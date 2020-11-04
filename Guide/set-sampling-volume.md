@@ -13,18 +13,31 @@
 
 ## 示例代码
 
-<pre props="android" language="java">
+<pre props="android">
+<code class="language-java">
 int volume = 200;
 // 将录音音量设置为原始音量的 200%。
 rtcEngine.adjustRecordingSignalVolume(volume);
+</code>
 </pre>
 
-<pre props="ios" language="swift">
+<pre props="ios">
+<code class="language-swift">
 // 将录音音量设置为原始音量的 50%。
 agoraKit.adjustRecordingSignalVolume(50)
+</code>
+</pre>
+
+<pre props="ios">
+<code class="language-oc">
+// 将录音音量设置为原始音量的 50%。
+[agoraKit adjustRecordingSignalVolume: 50];
+</code>
 </pre>
 
 ## API 参考
 
-[`adjustRecordingSignalVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af3747f72256eb683feadbca2b742bd05)
+<a props="android" href="./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af3747f72256eb683feadbca2b742bd05"><code>adjustRecordingSignalVolume</code></a>
+
+<a props="ios" href="https://docs.agora.io/cn/Video/API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/adjustRecordingSignalVolume:"><code>adjustRecordingSignalVolume</code></a>
 

@@ -1,0 +1,1 @@
+define({"topics" : [{"title":"设置采集音量","shortdesc":"<p class=\"shortdesc\"><strong class=\"ph b\">采集</strong>是指音频信号由录音设备采集后传输到发送端的过程。</p>","href":"adjust-volume-android.html#设置采集音量","attributes": {"data-id":"设置采集音量",},"menu": {"hasChildren":false,},"tocID":"设置采集音量-d61e59","topics":[]}]});
