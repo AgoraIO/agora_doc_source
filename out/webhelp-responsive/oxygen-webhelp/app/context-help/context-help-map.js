@@ -1,0 +1,1 @@
+define(function() { return [{"appname":"", "appid":"功能描述", "path":"volume-overview.html"},{"appname":"", "appid":"实现方法", "path":"implementation-intro.html"},{"appname":"", "appid":"设置采集音量", "path":"set-sampling-volume.html"}]});
