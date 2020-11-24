@@ -1,4 +1,4 @@
-# [setClientRole]
+# setClientRole
 
 <pre props="android">
 <code>public abstract int setClientRole(int role);
