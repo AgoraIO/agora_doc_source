@@ -1,14 +1,10 @@
 # setClientRole
 
-<pre props="android">
-<code>public abstract int setClientRole(int role);
-</code>
-</pre>
+<codeblock props="android">public abstract int setClientRole(int role);
+</codeblock>
 
-<pre props="ios">
-<code>- (int)setClientRole:(AgoraClientRole)role;
-</code>
-</pre>
+<codeblock props="ios">- (int)setClientRole:(AgoraClientRole)role;
+</codeblock>
 
 设置直播场景下的用户角色。
 
