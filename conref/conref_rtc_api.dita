@@ -5,8 +5,19 @@
     <body>
     <p id="def">
             <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
-            <codeblock props="ios">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
+            <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
     </p>
-    <example id="example"></example>
+    <example id="example">
+        <codeblock props="android" outputclass="java">
+private void setChannelProfile() {
+mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
+}
+        </codeblock>
+        <codeblock props="ios" outputclass="swift">
+// Swift
+// 设置频道场景。
+agoraKit.setChannelProfile(.liveBroadcasting)
+        </codeblock>
+    </example>
     </body>
 </topic>
