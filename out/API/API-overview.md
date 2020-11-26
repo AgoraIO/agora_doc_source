@@ -1,4 +1,0 @@
-# Agora Java API Reference for Android {#api-title}
-
-声网通过全球部署的虚拟网络，提供可以灵活搭配的 API 组合，提供质量可靠的实时音视频通信。
-

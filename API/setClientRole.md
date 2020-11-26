@@ -1,10 +1,6 @@
-# setClientRole
+# setClientRole {#setclientrole}
 
-<pre props="android"><code>public abstract int setClientRole(int role);</code>
-</pre>
-
-<pre props="ios"><code>- (int)setClientRole:(AgoraClientRole)role;</code>
-</pre>
+<p conref="../conref/conref_rtc_api.dita#apidef/setclientrole" />
 
 设置直播场景下的用户角色。
 

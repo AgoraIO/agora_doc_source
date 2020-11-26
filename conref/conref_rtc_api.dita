@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="onClientRoleChanged">
+<topic id="apidef">
     <title>RTC APIs for Reuse</title>
     <body>
-    <p id="def">
+    <p id="onclientrolechanged">
             <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
             <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
     </p>
-    <example id="example">
-        <codeblock props="android" outputclass="java">
-private void setChannelProfile() {
-mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
-}
-        </codeblock>
-        <codeblock props="ios" outputclass="swift">
-// Swift
-// 设置频道场景。
-agoraKit.setChannelProfile(.liveBroadcasting)
-        </codeblock>
-    </example>
+    <p id="setclientrole">
+            <codeblock props="android" outputclass="java">public abstract int setClientRole(int role);</codeblock>        
+            <codeblock props="ios" outputclass="objective-c">- (int)setClientRole:(AgoraClientRole)role;</codeblock>
+    </p>
     </body>
 </topic>

@@ -1,8 +1,6 @@
 # [onClientRoleChanged]
 
-<p conref="../conref/conref_rtc_api.dita#onClientRoleChanged/def" />
-
-<example conref="../conref/conref_rtc_api.dita#onClientRoleChanged/example" />
+<p conref="../conref/conref_rtc_api.dita#apidef/onclientrolechanged" />
 
 
 直播场景下用户角色已切换回调。如从观众切换为主播，反之亦然。
