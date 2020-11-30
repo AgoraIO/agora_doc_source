@@ -1,4 +1,4 @@
-# [engine]
+# [rtcEngine]
 
-[engine] 类包含应用程序调用的主要方法。
+[rtcEngine] 类包含应用程序调用的主要方法。
 

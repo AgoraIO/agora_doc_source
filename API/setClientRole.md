@@ -1,4 +1,4 @@
-# setClientRole {#setclientrole}
+# [setClientRole]
 
 <p conref="../conref/conref_rtc_api.dita#apidef/setclientrole" />
 
@@ -16,6 +16,8 @@
 ## 注意事项
 
 该方法仅在直播场景下生效。
+
+
 
 ## 参数
 
