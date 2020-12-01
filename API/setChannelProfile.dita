@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="setchannelprofile">
+    <title><ph keyref="setChannelProfile"/></title>
+    <body>
+        <p>设置频道场景。</p>
+        <p conref="../conref/conref_rtc_api.dita#apidef/setchannelprofile"/>
+        
+        <p>该方法用户设置 Agora 频道的使用场景。Agora SDK 会针对不同的使用场景采用不同的优化策略，如通信场景偏好流程，直播场景偏好画质。</p>
+        <section><title>调用时序</title><p>该方法需要在加入频道前调用。</p></section>
+        <section><title>注意事项</title><ul>
+                <li><p>为保证实时音视频质量，我们建议相同频道内的用户必须使用同一种频道场景。</p></li>
+                <li><p>不同的频道场景下，SDK 的默认音频路由和默认视频编码码率是不同的，详见
+                            <codeph>setDefaultAudioRoutetoSpeakerphone</codeph> 和
+                            <codeph>setVideoEncoderConfiguration</codeph> 中的说明。</p></li>
+            </ul></section>
+        <section><title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>profile</pt>
+                    <pd>
+                        频道使用场景<ul>
+                        <li>0: (默认)通信场景。该场景下，频道内所有用户都可以发布和接收音、视频流。适用于语音通话、视频群聊等应用场景。</li>
+                        <li>1: 直播场景。该场景有主播和观众两种用户角色，可以通过 <apiname keyref="setClientRole"/>
+                            设置。主播可以发布和接收音视频流，观众直接接收流。适用于语聊房、视频直播、互动大班课等应用场景。</li>
+                        <li>2: 游戏场景。该选项已废弃，Agora 不推荐使用。</li>
+                    </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>profile</pt>
+                    <pd>
+                        频道使用场景<ul>
+                            <li>0: (默认)通信场景。该场景下，频道内所有用户都可以发布和接收音、视频流。适用于语音通话、视频群聊等应用场景。</li>
+                            <li>1: 直播场景。该场景有主播和观众两种用户角色，可以通过 <apiname keyref="setClientRole"/>
+                                设置。主播可以发布和接收音视频流，观众直接接收流。适用于语聊房、视频直播、互动大班课等应用场景。</li>
+                            <li>2: 游戏场景。该选项已废弃，Agora 不推荐使用。</li>
+                        </ul></pd>
+                </plentry>
+            </parml>
+            <parameterentity>profile</parameterentity>
+            <parmname>profile</parmname>
+      
+            <simpletable>
+                <sthead>
+                    <stentry>参数</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry>profile</stentry>
+                    <stentry>频道使用场景：<ul>
+                            <li>0: (默认)通信场景。该场景下，频道内所有用户都可以发布和接收音、视频流。适用于语音通话、视频群聊等应用场景。</li>
+                            <li>1: 直播场景。该场景有主播和观众两种用户角色，可以通过 <apiname keyref="setClientRole"/>
+                                设置。主播可以发布和接收音视频流，观众直接接收流。适用于语聊房、视频直播、互动大班课等应用场景。</li>
+                            <li>2: 游戏场景。该选项已废弃，Agora 不推荐使用。</li>
+                        </ul></stentry>
+                </strow>
+            </simpletable></section>
+        <section><title>返回值</title><ul>
+                <li><p>0: 方法调用成功。</p></li>
+                <li><p>&lt; 0: 方法调用失败。</p><ul>
+                        <li>-2: 参数无效。</li>
+                        <li>-7: SDK 尚未初始化。</li>
+                    </ul></li>
+            </ul></section>
+    </body>
+</topic>
