@@ -3,19 +3,39 @@
 <topic id="apidef">
     <title>RTC APIs for Reuse</title>
     <body>
-    <p id="setclientrole">
-            <codeblock props="android" outputclass="java">public abstract int setClientRole(int role);</codeblock>        
-            <codeblock props="ios" outputclass="objective-c">- (int)setClientRole:(AgoraClientRole)role;</codeblock>
-    </p>
-    <p id="join">
-            <codeblock props="android" outputclass="java">public abstract int joinChannel(String token, String channelName, String optionalInfo, int optionalUid);</codeblock>
-    </p>
-    <p id="setchannelprofile">
-            <codeblock props="android" outputclass="java">public abstract int setChannelProfile(int profile);</codeblock>
-    </p>
-    <p id="onclientrolechanged">
-            <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
-            <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
-    </p>
-    </body>
+                <section id="section_mjq_rgy_vnb">
+                        <title>Methods</title>
+                        <p id="setclientrole">
+                                <codeblock props="android" outputclass="java">public abstract int setClientRole(int role);</codeblock>
+                                <codeblock props="ios" outputclass="objective-c">- (int)setClientRole:(AgoraClientRole)role;</codeblock>
+                                <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role) = 0;</codeblock>
+                        </p>
+                        <p id="join">
+                                <codeblock props="android" outputclass="java">public abstract int joinChannel(String token, String channelName, String optionalInfo, int optionalUid);</codeblock>
+                                <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, const char* info, uid_t uid) = 0;</codeblock>
+                        </p>
+                        <p id="setchannelprofile">
+                                <codeblock props="android" outputclass="java">public abstract int setChannelProfile(int profile);</codeblock>
+                                <codeblock props="windows" outputclass="language-cpp">virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;</codeblock>
+                        </p>
+                        <p id="setlivetranscoding">
+                                <codeblock props="windows" outputclass="language-cpp">virtual int setLiveTranscoding(const LiveTranscoding &amp;transcoding) = 0;</codeblock>
+                        </p>
+                </section>
+
+<section>
+                        <title>Callbacks</title>                <p id="onclientrolechanged">
+                        <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
+                        <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
+                                <codeblock props="windows">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
+                </p></section>
+<section>
+                        <title>Classes</title>                <p id="livetranscoding">
+                        <codeblock props="windows" outputclass="language-cpp">agora::rtc::LiveTranscoding::LiveTranscoding()</codeblock>
+                </p>
+                        <p id="videocodecprofiletype">
+                                <codeblock outputclass="language-cpp" props="windows">enum agora::rtc::VIDEO_CODEC_PROFILE_TYPE</codeblock>
+                        </p></section>
+
+        </body>
 </topic>

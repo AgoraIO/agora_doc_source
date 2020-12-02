@@ -1,1 +1,1 @@
-define({"title":"","topics" : [{"title":"API Reference","href":"API\/API-overview.html","menu": {"hasChildren":true,},"tocID":"tocId-d61e157","next":"tocId-d61e157",},{"title":"数据类型","shortdesc":"<p class=\"shortdesc\">Text</p>","href":"API\/api-data-type.html","attributes": {"data-id":"数据类型",},"menu": {"hasChildren":false,},"tocID":"数据类型-d61e258","topics":[]}]});
+define({"title":"","topics" : [{"title":"API Reference","href":"API\/API-overview.html","menu": {"hasChildren":true,},"tocID":"tocId-d61e23","next":"tocId-d61e23",}]});

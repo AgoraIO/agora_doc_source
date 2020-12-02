@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="setclientrole">
+    <title><ph keyref="setClientRole"/></title>
+    <shortdesc>设置直播场景下的用户角色。</shortdesc>
+    <body>
+        <p conref="../conref/conref_rtc_api.dita#apidef/setclientrole"> </p>
+        <section id="调用顺序"><title>调用顺序</title><ul>
+                <li><p>在加入频道前，用户需要通过本方法设置观众（默认）或主播模式。</p></li>
+                <li><p>在加入频道后，用户可以通过本方法切换用户模式。</p></li>
+            </ul></section>
+        <section id="关联回调"><title>关联回调</title><p>如果你在加入频道后调用该方法切换用户角色，调用成功后，本地会触发 <apiname
+                    keyref="onClientRoleChanged"/> 回调；远端会触发 <apiname keyref="onUserJoined"/>/<apiname
+                    keyref="onUserOffline"/>(USER_OFFLINE_BECOME_AUDIENCE) 回调。</p></section>
+        <section id="注意事项"><title>注意事项</title><p>该方法仅在直播场景下生效。</p></section>
+        <section id="参数"><title>参数</title></section>
+        <section id="返回值"><title>返回值</title></section>
+    </body>
+</topic>
