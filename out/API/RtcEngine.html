@@ -1,0 +1,116 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="copyright" content="(C) Copyright 2020"><meta name="DC.rights.owner" content="(C) Copyright 2020"><meta name="DC.type" content="topic"><meta name="description" content="IRtcEngine 类包含应用程序调用的主要方法。"><meta name="DC.format" content="HTML5"><meta name="DC.identifier" content="rtcengine"><link rel="stylesheet" type="text/css" href="../commonltr.css"><title>IRtcEngine</title></head><body><nav role="toc"><ul><li>API Reference<ul><li><a href="../API/API-overview.html">Agora C++ API Reference for All Platforms</a></li><li class="active"><a href="../API/RtcEngine.html#rtcengine">IRtcEngine</a><ul><li><a href="../API/RtcEngine.html#setchannelprofile">setChannelProfile</a></li><li><a href="../API/RtcEngine.html#join">joinChannel</a></li><li><a href="../API/RtcEngine.html#setclientrole">setClientRole</a></li><li><a href="../API/RtcEngine.html#setLiveTranscoding">setLiveTranscoding</a></li></ul></li><li><a href="../API/RtcEngineEventHandler.html#rtcevent">IRtcEngineEventHandler</a></li><li><a href="../API/api-data-type.html">数据类型</a></li></ul></li></ul></nav><main role="main"><article role="article" aria-labelledby="ariaid-title1"><article class="nested0" aria-labelledby="ariaid-title1" id="rtcengine">
+    <h1 class="title topictitle1" id="ariaid-title1"><span class="ph">IRtcEngine</span></h1>
+    
+    <div class="body"><p class="shortdesc"><span class="keyword apiname">IRtcEngine</span> 类包含应用程序调用的主要方法。</p></div>
+<article class="topic nested1" aria-labelledby="ariaid-title2" id="setchannelprofile">
+    <h2 class="title topictitle2" id="ariaid-title2"><span class="ph">setChannelProfile</span></h2>
+    <div class="body">
+        <p class="p">设置频道场景。</p>
+        <div class="p">
+                                
+                                <pre class="pre codeblock language-cpp"><code>virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;</code></pre>
+                        </div>
+        
+        <p class="p">该方法用户设置 Agora 频道的使用场景。Agora SDK 会针对不同的使用场景采用不同的优化策略，如通信场景偏好流程，直播场景偏好画质。</p>
+        <section class="section"><h3 class="title sectiontitle">调用时序</h3>
+            
+            
+            
+            <p class="p">该方法需要在加入频道前调用。</p>
+        </section>
+        <section class="section"><h3 class="title sectiontitle">注意事项</h3><ul class="ul">
+                <li class="li"><p class="p">为保证实时音视频质量，我们建议相同频道内的用户必须使用同一种频道场景。</p></li>
+                <li class="li"><p class="p">不同的频道场景下，SDK 的默认音频路由和默认视频编码码率是不同的，详见
+                            <code class="ph codeph">setDefaultAudioRoutetoSpeakerphone</code> 和
+                            <code class="ph codeph">setVideoEncoderConfiguration</code> 中的说明。</p></li>
+            </ul></section>
+        <section class="section"><h3 class="title sectiontitle">参数</h3>
+            <dl class="dl parml">
+                
+                    <dt class="dt pt dlterm">profile</dt>
+                    <dd class="dd pd">
+                        频道使用场景<ul class="ul">
+                        <li class="li">0: (默认)通信场景。该场景下，频道内所有用户都可以发布和接收音、视频流。适用于语音通话、视频群聊等应用场景。</li>
+                        <li class="li">1: 直播场景。该场景有主播和观众两种用户角色，可以通过 <a class="xref" href="RtcEngine.html#setclientrole" title="设置直播场景下的用户角色。"><span class="keyword apiname">setClientRole</span></a>
+                                设置。主播可以发布和接收音视频流，观众直接接收流。适用于语聊房、视频直播、互动大班课等应用场景。</li>
+                        <li class="li">2: 游戏场景。该选项已废弃，Agora 不推荐使用。</li>
+                    </ul></dd>
+                
+            </dl>
+        </section>
+        <section class="section"><h3 class="title sectiontitle">返回值</h3><ul class="ul">
+                <li class="li"><p class="p">0: 方法调用成功。</p></li>
+                <li class="li"><p class="p">&lt; 0: 方法调用失败。</p><ul class="ul">
+                        <li class="li">-2: 参数无效。</li>
+                        <li class="li">-7: SDK 尚未初始化。</li>
+                    </ul></li>
+            </ul></section>
+    </div>
+</article><article class="topic nested1" aria-labelledby="ariaid-title3" id="join">
+    <h2 class="title topictitle2" id="ariaid-title3"><span class="ph">joinChannel</span></h2>
+        
+    <div class="body"><p class="shortdesc">加入频道。</p>
+        <div class="p">
+                                
+                                <pre class="pre codeblock language-cpp"><code>virtual int joinChannel(const char* token, const char* channelId, const char* info, uid_t uid) = 0;</code></pre>
+                        </div> 
+        <p class="p">该方法让用户加入通话频道，在同一个频道内的用户可以互相通话，多个用户加入同一个频道，可以群聊。使用不同 App ID 的 App 是不能互通的。如果已在通话中，用户必须调用
+                <span class="keyword apiname">leave</span> 退出当前通话，才能进入下一个频道。</p>
+        <p class="p">成功调用该方加入频道后，本地会触发 <span class="keyword apiname">onJoinChannelSuccess</span> 回调；通信场景下的用户和直播场景下的主播加入频道后，远端会触发
+                <span class="keyword apiname">onUserJoined</span> 回调。</p>
+        <p class="p">在网络状况不理想的情况下，客户端可能会与 Agora 的服务器失去连接；SDK 会自动尝试重连，重连成功后，本地会触发 <span class="keyword apiname">onRejoinChannelSuccess</span> 回调。</p>
+    </div>
+</article><article class="topic nested1" aria-labelledby="ariaid-title4" id="setclientrole">
+    <h2 class="title topictitle2" id="ariaid-title4"><span class="ph">setClientRole</span></h2>
+    
+    <div class="body"><p class="shortdesc">设置直播场景下的用户角色。</p>
+        <div class="p">
+                                
+                                
+                                <pre class="pre codeblock language-cpp"><code>virtual int setClientRole(CLIENT_ROLE_TYPE role) = 0;</code></pre>
+                        </div>
+        <section class="section" id="setclientrole__调用顺序"><h3 class="title sectiontitle">调用顺序</h3><ul class="ul">
+                <li class="li"><p class="p">在加入频道前，用户需要通过本方法设置观众（默认）或主播模式。</p></li>
+                <li class="li"><p class="p">在加入频道后，用户可以通过本方法切换用户模式。</p></li>
+            </ul></section>
+        <section class="section" id="setclientrole__关联回调"><h3 class="title sectiontitle">关联回调</h3><p class="p">如果你在加入频道后调用该方法切换用户角色，调用成功后，本地会触发 <span class="keyword apiname">onClientRoleChanged</span> 回调；远端会触发 <span class="keyword apiname">onUserJoined</span>/<span class="keyword apiname">onUserOffline</span>(USER_OFFLINE_BECOME_AUDIENCE) 回调。</p></section>
+        <section class="section" id="setclientrole__注意事项"><h3 class="title sectiontitle">注意事项</h3><p class="p">该方法仅在直播场景下生效。</p></section>
+        <section class="section" id="setclientrole__参数"><h3 class="title sectiontitle">参数</h3></section>
+        <section class="section" id="setclientrole__返回值"><h3 class="title sectiontitle">返回值</h3></section>
+    </div>
+</article><article class="topic nested1" aria-labelledby="ariaid-title5" id="setLiveTranscoding">
+    <h2 class="title topictitle2" id="ariaid-title5"><span class="ph">setLiveTranscoding</span></h2>
+    
+    <div class="body"><p class="shortdesc">设置直播推流。</p>
+        <div class="p">
+                                <pre class="pre codeblock language-cpp"><code>virtual int setLiveTranscoding(const LiveTranscoding &amp;transcoding) = 0;</code></pre>
+                        </div>
+        <p class="p">该方法用于旁路推流的视图布局及音频设置等。调用该方法更新转码设置后本地会触发 <span class="keyword apiname">onTranscodingUpdated</span> 回调。</p>
+        <section class="section"><h3 class="title sectiontitle">注意事项</h3>
+            <ul class="ul">
+                <li class="li">在直播场景中，只有角色为主播的用户才能调用该方法。</li>
+                <li class="li">请确保已开通旁路推流的功能，详见进阶功能《推流到 CDN》中的前提条件。</li>
+                <li class="li">首次调用该方法更新转码设置时，不会触发 <span class="keyword apiname">onTranscodingUpdated</span> 回调。</li>
+                <li class="li">该方法需要在加入频道后调用。</li>
+                <li class="li">Agora 目前仅支持转码时向 CDN 推送 RTMPS 协议的媒体流。</li>
+            </ul></section>
+        <section class="section"><h3 class="title sectiontitle">参数</h3>
+            <dl class="dl parml">
+                
+                    <dt class="dt pt dlterm">transcoding</dt>
+                    <dd class="dd pd"> 推流设置，详见 <a class="xref" href="livetranscoding.html" title="管理旁路推流配置的类。"><span class="keyword apiname">LiveTranscoding</span></a>。</dd>
+                
+            </dl>
+        </section>
+        <section class="section" id="setLiveTranscoding__section_mg5_k3y_vnb"><h3 class="title sectiontitle">返回</h3>
+            
+            <ul class="ul" id="setLiveTranscoding__ul_lr3_l3y_vnb">
+                <li class="li">0：方法调用成功。</li>
+                <li class="li">&lt;0：方法调用失败。</li>
+            </ul>
+        </section>
+    </div>
+    <nav role="navigation" class="related-links"></nav>
+</article></article></article></main></body></html>
