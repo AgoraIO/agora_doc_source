@@ -1,0 +1,21 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="copyright" content="(C) 版权 2020"><meta name="DC.rights.owner" content="(C) 版权 2020"><meta name="DC.type" content="topic"><meta name="description" content="远端用户（通信场景）/主播（直播场景）加入当前频道回调。"><meta name="DC.subject" content="onUserJoined"><meta name="keywords" content="onUserJoined"><meta name="DC.format" content="HTML5"><meta name="DC.identifier" content="onuserjoined"><link rel="stylesheet" type="text/css" href="../commonltr.css"><title>onUserJoined</title></head><body id="onuserjoined"><nav role="toc"><ul><li>API Reference<ul><li><a href="../API/API-overview.html">Agora C++ API Reference for All Platforms</a></li><li><a href="../API/RtcEngine.html">IRtcEngine</a></li><li><a href="../API/RtcEngineEventHandler.html">IRtcEngineEventHandler</a><ul><li><a href="../API/onClientRoleChanged.html">onClientRoleChanged</a></li><li class="active"><a href="../API/onUserJoined.html">onUserJoined</a></li></ul></li><li><a href="../API/api_data_type.html">数据类型</a></li></ul></li></ul></nav><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+    <h1 class="title topictitle1" id="ariaid-title1"><a href="onUserJoined.html"><span class="ph">onUserJoined</span></a></h1>
+    
+    <div class="body"><p class="shortdesc">远端用户（通信场景）/主播（直播场景）加入当前频道回调。</p>
+        <ul class="ul">
+            <li class="li"><p class="p">通信场景下，该回调提示有远端用户加入了频道，并返回新加入用户的
+                    ID；如果加入之前，已经有其他用户在频道中了，新加入的用户也会收到这些已有用户加入频道的回调。</p></li>
+            <li class="li"><p class="p">直播场景下，该回调提示有主播加入了频道，并返回该主播的用户 ID。如果在加入之前，已经有主播在频道中了，新加入的用户也会收到已有主播加入频道的回调。Agora
+                    建议连麦主播不超过 17 人。</p></li>
+        </ul>
+        <p class="p">该回调在如下情况下会被触发：</p>
+        <ul class="ul">
+            <li class="li"><p class="p">远端用户/主播调用 <a class="xref" href="joinChannel.html" title="加入频道。"><span class="keyword">joinChannel</span></a> 方法加入频道。</p></li>
+            <li class="li"><p class="p">远端用户加入频道后调用 <a class="xref" href="setClientRole.html" title="设置直播场景下的用户角色。"><span class="keyword">setClientRole</span></a> 将用户角色改变为主播。</p></li>
+            <li class="li"><p class="p">远端用户/主播网络中断后重新加入频道。</p></li>
+            <li class="li"><p class="p">主播通过调用 <span class="xref"><span class="keyword">addInjectStreamUrl</span></span> 方法成功输入在线媒体流。</p></li>
+        </ul>
+    </div>
+</article></main></body></html>

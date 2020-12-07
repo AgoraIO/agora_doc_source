@@ -1,0 +1,47 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="copyright" content="(C) 版权 2020"><meta name="DC.rights.owner" content="(C) 版权 2020"><meta name="DC.type" content="topic"><meta name="description" content="设置频道场景。"><meta name="DC.subject" content="setChannelProfile"><meta name="keywords" content="setChannelProfile"><meta name="DC.format" content="HTML5"><meta name="DC.identifier" content="setchannelprofile"><link rel="stylesheet" type="text/css" href="../commonltr.css"><title>setChannelProfile</title></head><body id="setchannelprofile"><nav role="toc"><ul><li>API Reference<ul><li><a href="../API/API-overview.html">Agora C++ API Reference for All Platforms</a></li><li><a href="../API/RtcEngine.html">IRtcEngine</a><ul><li class="active"><a href="../API/setChannelProfile.html">setChannelProfile</a></li><li><a href="../API/joinChannel.html">joinChannel</a></li><li><a href="../API/setClientRole.html">setClientRole</a></li><li><a href="../API/setLiveTranscoding.html">setLiveTranscoding</a></li></ul></li><li><a href="../API/RtcEngineEventHandler.html">IRtcEngineEventHandler</a></li><li><a href="../API/api_data_type.html">数据类型</a></li></ul></li></ul></nav><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+    <h1 class="title topictitle1" id="ariaid-title1"><a href="setChannelProfile.html"><span class="ph">setChannelProfile</span></a></h1>
+    
+    <div class="body"><p class="shortdesc">设置频道场景。</p>
+        <div class="p">
+                                <pre class="pre codeblock java"><code>public abstract int setChannelProfile(int profile);</code></pre>
+                                
+                        </div>
+        
+        <p class="p">该方法用户设置 Agora 频道的使用场景。Agora SDK 会针对不同的使用场景采用不同的优化策略，如通信场景偏好流程，直播场景偏好画质。</p>
+        <section class="section"><h2 class="title sectiontitle">调用时序</h2>
+            
+            
+            
+            <p class="p">该方法需要在加入频道前调用。</p>
+        </section>
+        <section class="section"><h2 class="title sectiontitle">注意事项</h2><ul class="ul">
+                <li class="li"><p class="p">为保证实时音视频质量，我们建议相同频道内的用户必须使用同一种频道场景。</p></li>
+                <li class="li"><p class="p">不同的频道场景下，SDK 的默认音频路由和默认视频编码码率是不同的，详见
+                            <code class="ph codeph">setDefaultAudioRoutetoSpeakerphone</code> 和
+                            <code class="ph codeph">setVideoEncoderConfiguration</code> 中的说明。</p></li>
+            </ul></section>
+        <section class="section"><h2 class="title sectiontitle">参数</h2>
+            <dl class="dl parml">
+                
+                    <dt class="dt pt dlterm">profile</dt>
+                    <dd class="dd pd">
+                        频道使用场景<ul class="ul">
+                        <li class="li">0: (默认)通信场景。该场景下，频道内所有用户都可以发布和接收音、视频流。适用于语音通话、视频群聊等应用场景。</li>
+                        <li class="li">1: 直播场景。该场景有主播和观众两种用户角色，可以通过 <a class="xref" href="setClientRole.html" title="设置直播场景下的用户角色。"><span class="keyword apiname">setClientRole</span></a>
+                                设置。主播可以发布和接收音视频流，观众直接接收流。适用于语聊房、视频直播、互动大班课等应用场景。</li>
+                        <li class="li">2: 游戏场景。该选项已废弃，Agora 不推荐使用。</li>
+                    </ul></dd>
+                
+            </dl>
+        </section>
+        <section class="section"><h2 class="title sectiontitle">返回值</h2><ul class="ul">
+                <li class="li"><p class="p">0: 方法调用成功。</p></li>
+                <li class="li"><p class="p">&lt; 0: 方法调用失败。</p><ul class="ul">
+                        <li class="li">-2: 参数无效。</li>
+                        <li class="li">-7: SDK 尚未初始化。</li>
+                    </ul></li>
+            </ul></section>
+    </div>
+</article></main></body></html>
