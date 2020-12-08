@@ -26,7 +26,7 @@ Currently, we are working on the `dita-cpp` branch. This branch has some example
 
 See [Building output](https://www.dita-ot.org/dev/topics/building-output.html) for other building options.
 
-## Tool chain
+## Toolchain
 
 - Editing: Oxygen XML Editor.
 - Output: DITA-OT.
