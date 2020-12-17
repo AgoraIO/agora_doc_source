@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="setchannelprofile">
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="setchannelprofile">
     <title><ph keyref="setChannelProfile"/></title>
     <shortdesc>设置频道场景。</shortdesc>
     <prolog>
@@ -12,23 +12,28 @@
             </keywords>
         </metadata>
     </prolog>
-    <body>
+    <refbody><section id="prototype">
+        <title>原型</title>
         <p conref="../conref/conref_rtc_api.dita#apidef/setchannelprofile"/>
-        
-        <p>该方法用户设置 Agora 频道的使用场景。Agora SDK 会针对不同的使用场景采用不同的优化策略，如通信场景偏好流程，直播场景偏好画质。</p>
-        <section>
-            <title>调用时序</title>
-            <?oxy_comment_start author="jie" timestamp="20201202T112755+0800" comment="这个需不需要单独成为一个section？" id="uyn_zxv_vnb"?>
-            <?oxy_comment_start author="cy" timestamp="20201202T113816+0800" comment="This is a reply" parentID="uyn_zxv_vnb" mid="1"?>
-            <p>该方法需要在加入频道前调用。<?oxy_comment_end mid="1"?><?oxy_comment_end?></p>
         </section>
-        <section><title>注意事项</title><ul>
-                <li><p>为保证实时音视频质量，我们建议相同频道内的用户必须使用同一种频道场景。</p></li>
-                <li><p>不同的频道场景下，SDK 的默认音频路由和默认视频编码码率是不同的，详见
-                            <codeph>setDefaultAudioRoutetoSpeakerphone</codeph> 和
-                            <codeph>setVideoEncoderConfiguration</codeph> 中的说明。</p></li>
-            </ul></section>
-        <section><title>参数</title>
+        <section id="detailed_desc">
+            <title>详细描述</title>
+        <p>该方法用户设置 Agora 频道的使用场景。Agora SDK 会针对不同的使用场景采用不同的优化策略，如通信场景偏好流程，直播场景偏好画质。</p>
+            <note>
+                <?oxy_comment_start author="jie" timestamp="20201202T112755+0800" comment="这个需不需要单独成为一个section？" id="uyn_zxv_vnb"?>
+                <?oxy_comment_start author="cy" timestamp="20201202T113816+0800" comment="This is a reply" parentID="uyn_zxv_vnb" mid="1"?>
+                <p>该方法需要在加入频道前调用。<?oxy_comment_end mid="1"?><?oxy_comment_end?></p>
+            </note>
+            <note>
+                <ul>
+                    <li><p>为保证实时音视频质量，我们建议相同频道内的用户必须使用同一种频道场景。</p></li>
+                    <li><p>不同的频道场景下，SDK 的默认音频路由和默认视频编码码率是不同的，详见
+                        <codeph>setDefaultAudioRoutetoSpeakerphone</codeph> 和
+                        <codeph>setVideoEncoderConfiguration</codeph> 中的说明。</p></li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
                     <pt>profile</pt>
@@ -42,12 +47,18 @@
                 </plentry>
             </parml>
         </section>
-        <section><title>返回值</title><ul>
-                <li><p>0: 方法调用成功。</p></li>
-                <li><p>&lt; 0: 方法调用失败。</p><ul>
-                        <li>-2: 参数无效。</li>
-                        <li>-7: SDK 尚未初始化。</li>
-                    </ul></li>
-            </ul></section>
-    </body>
-</topic>
+        <section id="return_values">
+            <title>返回值</title>
+            <parml id = "return_value">
+                <plentry>
+                    <pt>0(ERR_OK)</pt>
+                    <pd>方法调用成功。</pd>
+                </plentry>
+                <plentry>
+                    <pt>&lt; 0</pt>
+                    <pd>-2 (ERR_INVALID_ARGUMENT): 参数无效。</pd>
+                    <pd>-7(ERR_NOT_INITIALIZED): SDK 尚未初始化。</pd>
+                </plentry>
+            </parml>
+        </section></refbody>
+</reference>
