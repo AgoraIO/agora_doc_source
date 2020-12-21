@@ -36,8 +36,47 @@
                 </p></section>
 <section>
                         <title>Classes</title>
-                        <!--LiveTranscoding-->                <p id="livetranscoding">
-                        <codeblock props="windows" outputclass="language-cpp">agora::rtc::LiveTranscoding::LiveTranscoding()</codeblock>
+                        <!--LiveTranscoding-->                
+        <p id="livetranscoding">
+                                <codeblock props="windows" outputclass="language-cpp">typedef struct LiveTranscoding {
+        int width;
+        int height;
+        int videoBitrate;
+        int videoFramerate;
+        
+        bool lowLatency;
+        
+        int videoGop;
+        VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
+        unsigned int backgroundColor;
+        unsigned int userCount;
+        TranscodingUser *transcodingUsers;
+        const char *transcodingExtraInfo;
+        RtcImage* watermark;
+        
+        AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
+        int audioBitrate;
+        int audioChannels;
+        
+        LiveTranscoding()
+        : width(360)
+        , height(640)
+        , videoBitrate(400)
+        , videoFramerate(15)
+        , lowLatency(false)
+        , backgroundColor(0x000000)
+        , videoGop(30)
+        , videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH)
+        , userCount(0)
+        , transcodingUsers(nullptr)
+        , transcodingExtraInfo(nullptr)
+        , watermark(nullptr)
+        , audioSampleRate(AUDIO_SAMPLE_RATE_48000)
+        , audioBitrate(48)
+        , audioChannels(1)
+        {}
+ } LiveTranscoding;</codeblock>
+                        <codeblock props="android" outputclass="java">agora::rtc::LiveTranscoding::LiveTranscoding()</codeblock>
                 </p>
                         <!--VIDEO_CODEC_PROFILE_TYPE-->
                         <p id="videocodecprofiletype">

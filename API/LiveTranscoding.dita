@@ -1,46 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="livetranscoding">
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="livetranscoding">
     <title><ph keyref="LiveTranscoding"></ph></title>
     <shortdesc>管理旁路推流配置的类。</shortdesc>
-    <body>
-        <p conref="../conref/conref_rtc_api.dita#apidef/livetranscoding"/>
-        <section id="section_o1m_w3y_vnb">
-            <title>属性</title>
-            <simpletable frame="all" relcolwidth="1* 1* 1*" id="simpletable_vn4_z3y_vnb">
-                <sthead>
-                    <stentry>名称</stentry>
-                    <stentry>类型</stentry>
-                    <stentry>描述</stentry>
-                </sthead>
-                <strow>
-                    <stentry><codeph>width</codeph></stentry>
-                    <stentry>Integer</stentry>
-                    <stentry>
-                        <p>推流视频的总宽度，默认值 360，单位为像素。</p>
-                        <ul id="ul_er3_wky_vnb">
-                            <li>如果推视频流，<codeph>width</codeph> 值不得低于 64，否则 Agora 会调整为 64。</li>
-                            <li>如果推音频流，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设为
-                                0。</li>
-                        </ul>
-                    </stentry>
-                </strow>
-                <strow>
-                    <stentry><codeph>videoCodecProfile</codeph></stentry>
-                    <stentry><xref keyref="VIDEO_CODEC_PROFILE_TYPE"/></stentry>
-                    <stentry>
-                        <p>用于旁路推流的输出视频的编码规格。<note>如果你将这个参数设为其他值，Agora 会将其设为默认值 100。</note></p>
-                    </stentry>
-                </strow>
-                <strow>
-                    <stentry><codeph>transcodingUsers</codeph></stentry>
-                    <stentry><xref href="TranscodingUser.dita"/></stentry>
-                    <stentry>
-                        <p>管理参与旁路直播的音视频转码合图的用户。最多支持 17 个用户。</p>
-                    </stentry>
-                </strow>
-            </simpletable>
+    <refbody>
+        <section id="prototype">
+            <p conref="../conref/conref_rtc_api.dita#apidef/livetranscoding"/>
         </section>
-
-    </body>
-</topic>
+        <section id="parameters">
+            <title>属性</title>
+            <parml>
+            <plentry>
+                <pt>width</pt>
+                <pd>类型：Integer</pd>
+                <pd>推流视频的总宽度，默认值 360，单位为像素。
+                    <ul>
+                        <li>如果推视频流，<codeph>width</codeph> 值不得低于 64，否则 Agora 会调整为 64。</li>
+                        <li>如果推音频流，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设为
+                            0。</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>videoCodecProfile</pt>
+                <pd>类型：<xref href="video_codec_profile_type.dita"></xref></pd>
+                <pd>用于旁路推流的输出视频的编码规格。<note>如果你将这个参数设为其他值，Agora 会将其设为默认值 100。</note></pd>
+            </plentry>
+                <plentry>
+                    <pt>transcodingUsers</pt>
+                    <pd>类型：<xref href="TranscodingUser.dita"/></pd>
+                    <pd>管理参与旁路直播的音视频转码合图的用户。最多支持 17 个用户。</pd>
+                </plentry>
+            </parml>
+        </section></refbody>
+</reference>
