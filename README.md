@@ -41,31 +41,20 @@ The following figure shows the overall structure:
 
 Details:
 
-- RTC APIs for Reuse
- This topic contains the API syntaxes for all platforms. It is conrefed in each API topic with a platform filter.
+- RTC APIs for Reuse: This topic contains the API syntaxes for all platforms. It is conrefed in each API topic with a platform filter.
 
 - Windows API ditamap
-  - Keys RTC C++ API
+  - Keys RTC C++ API: Key definitions of API names for C++.
 
-    Key definitions of API names for C++.
-
-  - windows.ditaval
-
-    Include the Windows platform only.
+  - windows.ditaval: Include the Windows platform only.
 
   - Relations
 
-    - Method-Class relationship table
+    - Method-Class relationship table: Classes need to have related methods.
 
-      Classes need to have related methods.
+    - Method-Callback relationship table: Methods and callbacks have bidirectional relationship.
 
-    - Method-Callback relationship table
-
-      Methods and callbacks have bidirectional relationship.
-
-    - API-feature relationship table
-
-      Group APIs by feature.
+    - API-feature relationship table: Group APIs by feature.
 
   - API topics
 
