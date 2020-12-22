@@ -34,7 +34,7 @@ See [Building output](https://www.dita-ot.org/dev/topics/building-output.html) f
 - Technical review: Agora internal doc site (under development).
 - Publishing: Agora self-developed CMS (in plan).
 
-## Project structure
+## DITA map structure
 
 The following figure shows the overall structure:
 ![](https://web-cdn.agora.io/docs-files/1608626365393)
