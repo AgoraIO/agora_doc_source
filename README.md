@@ -8,8 +8,8 @@ The primary purpose of this project is to single-source the API documentation so
 
 ### Working branches
 
-Currently, we are working on the `dita-cpp` branch. This branch has some example DITA topics and maps for the C++ API Reference of the RTC SDK.
-> The `master` branch has the LwDITA files for the Android API Reference.  
+- The `master` branch has the master ditamap for RTC API reference, and sub maps for each platform.  
+- The `dita-cpp` branch. This branch has some example DITA topics and maps for the C++ API Reference of the RTC SDK.
 
 ### Build output
 
@@ -34,16 +34,28 @@ See [Building output](https://www.dita-ot.org/dev/topics/building-output.html) f
 - Technical review: Agora internal doc site (under development).
 - Publishing: Agora self-developed CMS (in plan).
 
-## Project structure
+## DITA map structure
 
-The following lists the major folders and files on the `dita-cpp` branch:
+The following figure shows the overall structure:
+![](https://web-cdn.agora.io/docs-files/1608626365393)
 
-- `RTC_API.ditamap`: The DITA map for the C++ API Reference of the RTC SDK.
-- `API`: The DITA topics for the API documentation. Each API or class will be a topic.
-- `conref`: The DITA topics for conref.
-	- `conref_rtc_api.dita`:  The API syntaxes for all the platforms with filtering properties.
-- `config`: Configurations for the output.
-	- `windows.ditaval`: The filter for Windows.
-	- `html-windows.xml`:  The DITA-OT project file to generate HTML output.
-	- `keys-rtc-cpp-api.ditamap:` Keys for C++ APIs.
-- `out`: The output files.
+Details:
+
+- RTC APIs for Reuse: This topic contains the API syntaxes for all platforms. It is conrefed in each API topic with a platform filter.
+
+- Windows API ditamap
+  - Keys RTC C++ API: Key definitions of API names for C++.
+
+  - windows.ditaval: Include the Windows platform only.
+
+  - Relations
+
+    - Method-Class relationship table: Classes need to have related methods.
+
+    - Method-Callback relationship table: Methods and callbacks have bidirectional relationship.
+
+    - API-feature relationship table: Group APIs by feature.
+
+  - API topics
+
+- Ditamaps for other platforms
