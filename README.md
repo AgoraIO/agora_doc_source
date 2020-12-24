@@ -34,16 +34,32 @@ See [Building output](https://www.dita-ot.org/dev/topics/building-output.html) f
 - Technical review: Agora internal doc site (under development).
 - Publishing: Agora self-developed CMS (in plan).
 
+## Project structure
+
+The following lists the major folders and files:
+
+- `RTC_API.ditamap`: The master DITA map for the RTC API Reference of all platforms.
+- `API`: The DITA topics for the API documentation. Each API or class will be a topic.
+- `conref`: The DITA topics for conref.
+	- `conref_rtc_api.dita`:  The API syntaxes for all the platforms with filtering properties.
+- `config`: Configurations for the output.
+	- `.ditaval`: The filter files for each platform.
+	- `.xml`:  The DITA-OT project file to generate output.
+	- `keys-rtc-cpp-api.ditamap:` Keys for C++ APIs.
+  - `relations.ditamap`: The DITA map that define the relationship between API topics.
+- `out`: The output files.
+- `templates`: The DITA topic templates. Copy the files to the `templates` folder in the Oxygen installation directory to use the templates.
+
 ## DITA map structure
 
-The following figure shows the overall structure:
-![](https://web-cdn.agora.io/docs-files/1608626365393)
+The following figure shows the overall structure of the RTC_API.ditamap:
+![DITA map structure](https://web-cdn.agora.io/docs-files/1608626365393)
 
 Details:
 
 - RTC APIs for Reuse: This topic contains the API syntaxes for all platforms. It is conrefed in each API topic with a platform filter.
 
-- Windows API ditamap
+- Windows API DITA map
   - Keys RTC C++ API: Key definitions of API names for C++.
 
   - windows.ditaval: Include the Windows platform only.
@@ -58,4 +74,4 @@ Details:
 
   - API topics
 
-- Ditamaps for other platforms
+- DITA maps for other platforms
