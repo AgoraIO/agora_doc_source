@@ -1,0 +1,44 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="copyright" content="(C) 版权 2021"><meta name="DC.rights.owner" content="(C) 版权 2021"><meta name="DC.type" content="reference"><meta name="description" content="设置直播推流。"><meta name="DC.subject" content="setLiveTranscoding"><meta name="keywords" content="setLiveTranscoding"><meta name="DC.format" content="HTML5"><meta name="DC.identifier" content="setLiveTranscoding"><link rel="stylesheet" type="text/css" href="../html5/commonltr.css"><title>setLiveTranscoding</title></head><body id="setLiveTranscoding"><nav role="toc"><ul></ul></nav><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+    <h1 class="title topictitle1" id="ariaid-title1">setLiveTranscoding</h1>
+    
+    
+    <div class="body refbody"><p class="shortdesc">设置直播推流。</p>
+        <section class="section" id="setLiveTranscoding__prototype"><h2 class="title sectiontitle">原型</h2>
+            
+        <div class="p">
+                                <pre xmlns:version="java:net.sf.saxon.Version" class="pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> setLiveTranscoding(<strong class="hl-keyword">const</strong> LiveTranscoding &amp;transcoding) = <span class="hl-number">0</span>;</pre>
+                        </div>
+        </section>
+        <section class="section" id="setLiveTranscoding__detailed_desc"><h2 class="title sectiontitle">详细描述</h2>
+            
+        <p class="p">该方法用于旁路推流的视图布局及音频设置等。调用该方法更新转码设置后本地会触发 <span class="keyword apiname">onTranscodingUpdated</span> 回调。</p>
+            <div class="note note note_note"><span class="note__title">注：</span> 
+                <ul class="ul">
+                    <li class="li">在直播场景中，只有角色为主播的用户才能调用该方法。</li>
+                    <li class="li">请确保已开通旁路推流的功能，详见进阶功能《推流到 CDN》中的前提条件。</li>
+                    <li class="li">首次调用该方法更新转码设置时，不会触发 <span class="keyword apiname">onTranscodingUpdated</span> 回调。</li>
+                    <li class="li">该方法需要在加入频道后调用。</li>
+                    <li class="li">Agora 目前仅支持转码时向 CDN 推送 RTMPS 协议的媒体流。</li>
+                </ul>
+            </div>
+            </section>
+        <section class="section" id="setLiveTranscoding__parameters"><h2 class="title sectiontitle">参数</h2>
+            <dl class="dl parml">
+                
+                    <dt class="dt pt dlterm">transcoding</dt>
+                    <dd class="dd pd"> 
+                        <p class="p" id="setLiveTranscoding__datatype">类型：<a class="xref" href="class_livetranscoding.html" title="管理旁路推流配置的类。">LiveTranscoding</a></p>
+                        <p class="p">推流设置。</p></dd>
+                
+            </dl>
+        </section><section class="section" id="setLiveTranscoding__return_values"><h2 class="title sectiontitle">返回</h2>
+            
+            <ul class="ul">
+                <li class="li">0：方法调用成功。</li>
+                <li class="li">&lt;0：方法调用失败。</li>
+            </ul>
+        </section></div>
+    <nav role="navigation" class="related-links"></nav>
+</article></main></body></html>

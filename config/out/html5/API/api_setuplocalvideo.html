@@ -1,0 +1,41 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="copyright" content="(C) 版权 2021"><meta name="DC.rights.owner" content="(C) 版权 2021"><meta name="DC.type" content="reference"><meta name="description" content="初始化本地视图。"><meta name="DC.subject" content="setupLocalVideo"><meta name="keywords" content="setupLocalVideo"><meta name="DC.format" content="HTML5"><meta name="DC.identifier" content="api_setuplocalvideo"><link rel="stylesheet" type="text/css" href="../html5/commonltr.css"><title>setupLocalVideo</title></head><body id="api_setuplocalvideo"><nav role="toc"><ul></ul></nav><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+    <h1 class="title topictitle1" id="ariaid-title1"><a href="api_setuplocalvideo.html"><span class="ph">setupLocalVideo</span></a></h1>
+    
+    
+    <div class="body refbody"><p class="shortdesc">初始化本地视图。</p><section class="section" id="api_setuplocalvideo__prototype"><h2 class="title sectiontitle">原型</h2>
+        
+        <div class="p">
+                                <pre xmlns:version="java:net.sf.saxon.Version" class="pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> agora::rtc::IRtcEngine::setupLocalVideo (<strong class="hl-keyword">const</strong> VideoCanvas &amp; canvas)</pre>
+                        </div>
+        </section>
+        <section class="section" id="api_setuplocalvideo__detailed_desc"><h2 class="title sectiontitle">详细描述</h2>
+            
+            该方法初始化本地视图并设置本地用户视频显示信息，只影响本地用户看到的视频画面，不影响本地发布视频。调用该方法绑定本地视频流的显示视窗(view)，并设置本地用户视图的渲染模式和镜像模式。
+            <p class="p">在 App 开发中，通常在初始化后调用该方法进行本地视频设置，然后再加入频道。退出频道后，绑定仍然有效，如果需要解除绑定，可以指定空(<code class="ph codeph">NULL</code>)View 调用该方法。</p>
+        <div class="note note note_note"><span class="note__title">注：</span> 
+            <ul class="ul">
+                <li class="li">该方法在加入频道前后都能调用。</li>
+                <li class="li">如果你希望在通话中更新本地用户视图的渲染或镜像模式，请使用 <span class="xref"></span> 方法。</li>
+            </ul>
+        </div>
+        </section>
+        <section class="section" id="api_setuplocalvideo__parameters"><h2 class="title sectiontitle">参数</h2>
+            <dl class="dl parml">
+                
+                    <dt class="dt pt dlterm">canvas</dt>
+                    <dd class="dd pd">
+                        视频画布信息: <span class="xref"><span class="keyword">VideoCanvas</span></span> 。
+                    </dd>
+                
+            </dl>
+        </section>
+        <section class="section" id="api_setuplocalvideo__return_values"><h2 class="title sectiontitle">返回值</h2>
+            
+            <ul class="ul">
+                <li class="li">0：方法调用成功。</li>
+                <li class="li">&lt;0：方法调用失败。</li>
+            </ul>
+        </section></div>
+</article></main></body></html>

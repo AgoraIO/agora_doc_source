@@ -33,6 +33,10 @@
                         <p id="enableAudio">
                                 <codeblock outputclass="language-cpp" props="rust"/>
                         </p>
+                        <!--setupLocalVideo-->
+                        <p id="setupLocalVideo">
+                                <codeblock props="windows" outputclass="language-cpp">virtual int agora::rtc::IRtcEngine::setupLocalVideo (const VideoCanvas &amp; canvas)</codeblock>
+                        </p>
                 </section>
 
 <section>
@@ -89,7 +93,18 @@
                         <!--VIDEO_CODEC_PROFILE_TYPE-->
                         <p id="VideoCodecProfileType">
                                 <codeblock outputclass="language-cpp" props="windows">enum agora::rtc::VIDEO_CODEC_PROFILE_TYPE</codeblock>
-                        </p></section>
+                        </p>
+        <!-- VideoCanvas -->
+        <p id="VideoCanvas">
+                <codeblock outputclass="language-cpp" props="windows">struct VideoCanvas      {
+                        view_t view;
+                        int renderMode;
+                        char channelId[MAX_CHANNEL_ID_LENGTH];
+                        void *priv;
+                        VIDEO_MIRROR_MODE_TYPE mirrorMode;
+                        }</codeblock>
+        </p>
+</section>
 
         </body>
 </topic>

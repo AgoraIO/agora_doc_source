@@ -1,0 +1,49 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="copyright" content="(C) 版权 2021"><meta name="DC.rights.owner" content="(C) 版权 2021"><meta name="DC.type" content="reference"><meta name="description" content="设置直播场景下的用户角色。"><meta name="DC.subject" content="setClientRole"><meta name="keywords" content="setClientRole"><meta name="DC.format" content="HTML5"><meta name="DC.identifier" content="setClientRole"><link rel="stylesheet" type="text/css" href="../html5/commonltr.css"><title>setClientRole</title></head><body id="setClientRole"><nav role="toc"><ul></ul></nav><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+    <h1 class="title topictitle1" id="ariaid-title1"><a href="api_setclientrole.html"><span class="ph">setClientRole</span></a></h1>
+    
+    
+    <div class="body refbody"><p class="shortdesc">设置直播场景下的用户角色。</p>
+        <section class="section" id="setClientRole__prototype"><h2 class="title sectiontitle">原型</h2>
+            
+            <div class="p">
+                                <pre class="pre codeblock java"><code>public abstract int setClientRole(int role);</code></pre>
+                                <pre class="pre codeblock objective-c"><code>- (int)setClientRole:(AgoraClientRole)role;</code></pre>
+                                <pre xmlns:version="java:net.sf.saxon.Version" class="pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> setClientRole(CLIENT_ROLE_TYPE role) = <span class="hl-number">0</span>;</pre>
+                                
+                        </div>
+    </section>
+        <section class="section" id="setClientRole__detailed_desc"><h2 class="title sectiontitle">详细描述</h2>
+            <ul class="ul">
+                <li class="li"><p class="p">在加入频道前，用户需要通过本方法设置观众（默认）或主播模式。</p></li>
+                <li class="li"><p class="p">在加入频道后，用户可以通过本方法切换用户模式。</p></li>
+            </ul>
+            <p class="p">如果你在加入频道后调用该方法切换用户角色，调用成功后，本地会触发 <span class="keyword apiname">onClientRoleChanged</span> 回调；远端会触发 <span class="keyword apiname">onUserJoined</span>/<span class="keyword apiname">onUserOffline</span>(USER_OFFLINE_BECOME_AUDIENCE) 回调。</p>
+            <p class="p">该方法仅在直播场景下生效。</p></section>
+        <section class="section" id="setClientRole__parameters"><h2 class="title sectiontitle">参数</h2>
+            
+            <dl class="dl parml">
+                
+                    <dt class="dt pt dlterm">role</dt>
+                    <dd class="dd pd">
+                        <p class="p" id="setClientRole__datatype">类型：CLIENT_ROLE_TYPE</p>
+                        <p class="p">直播场景里的用户角色。</p>
+                    </dd>
+                
+            </dl>
+        </section>
+        <section class="section" id="setClientRole__return_values"><h2 class="title sectiontitle">返回值</h2>
+            
+            <ul class="ul">
+                <li class="li">0(ERR_OK): 方法调用成功。</li>
+                <li class="li">&lt; 0: 方法调用失败。
+                    <ul class="ul">
+                        <li class="li">-1(ERR_FAILED): 一般性的错误（未明确归类）。</li>
+                            <li class="li">-2(ERR_INALID_ARGUMENT): 参数无效。</li>
+                            <li class="li">-7(ERR_NOT_INITIALIZED): SDK 尚未初始化。</li>
+                    </ul>
+                </li>
+            </ul>
+        </section></div>
+</article></main></body></html>

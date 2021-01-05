@@ -1,0 +1,57 @@
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="copyright" content="(C) 版权 2021"><meta name="DC.rights.owner" content="(C) 版权 2021"><meta name="DC.type" content="reference"><meta name="description" content="加入频道。"><meta name="DC.subject" content="joinChannel"><meta name="keywords" content="joinChannel"><meta name="DC.format" content="HTML5"><meta name="DC.identifier" content="join"><link rel="stylesheet" type="text/css" href="../html5/commonltr.css"><title>joinChannel</title></head><body id="join"><nav role="toc"><ul></ul></nav><main role="main"><article role="article" aria-labelledby="ariaid-title1">
+    <h1 class="title topictitle1" id="ariaid-title1"><a href="api_joinchannel.html"><span class="ph">joinChannel</span></a></h1>
+        
+    
+    <div class="body refbody"><p class="shortdesc">加入频道。</p>
+        <section class="section" id="join__prototype"><h2 class="title sectiontitle">原型</h2>
+            
+            <div class="p">
+                                <pre class="pre codeblock java"><code>public abstract int joinChannel(String token, String channelName, String optionalInfo, int optionalUid);</code></pre>
+                                <pre xmlns:version="java:net.sf.saxon.Version" class="pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> joinChannel(<strong class="hl-keyword">const</strong> <strong class="hl-keyword">char</strong>* token, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">char</strong>* channelId, <strong class="hl-keyword">const</strong> <strong class="hl-keyword">char</strong>* info, uid_t uid) = <span class="hl-number">0</span>;</pre>
+                        </div>
+        </section>
+        <section class="section" id="join__detailed_desc"><h2 class="title sectiontitle">详细描述</h2>
+            
+            <p class="p">该方法让用户加入通话频道，在同一个频道内的用户可以互相通话，多个用户加入同一个频道，可以群聊。使用不同 App ID 的 app 是不能互通的。如果已在通话中，用户必须调用 <span class="keyword apiname">leave</span> 退出当前通话，才能进入下一个频道。</p>
+            <p class="p">成功调用该方法加入频道后，本地会触发 <span class="keyword apiname">onJoinChannelSuccess</span> 回调；通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <span class="keyword apiname">onUserJoined</span> 回调。</p>
+            <p class="p">在网络状况不理想的情况下，客户端可能会与 Agora 的服务器失去连接；SDK 会自动尝试重连，重连成功后，本地会触发 <span class="keyword apiname">onRejoinChannelSuccess</span> 回调。</p>
+            <div class="note note note_note"><span class="note__title">注：</span> 用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 mute 方法实现。</div>
+        </section>
+        <section class="section" id="join__parameters"><h2 class="title sectiontitle">参数</h2>
+            
+            <dl class="dl parml">
+                
+                    <dt class="dt pt dlterm">token</dt>
+                    <dd class="dd pd">
+                        <div class="p">动态秘钥。
+                            <ul class="ul"><li class="li">安全要求不高: 将值设为 <code class="ph codeph">NULL</code>。</li>
+                            <li class="li">安全要求高: 将值设置为 Token。如果你已经启用了 App Certificate, 请务必使用 Token。</li>
+                                <li class="li"></li>
+                            </ul></div>
+                    </dd>
+                
+                
+                    <dt class="dt pt dlterm">uid</dt>
+                    <dd class="dd pd">用户 ID，32 位无符号整数。建议设置范围：1到 2<sup class="ph sup">32</sup>-1，并保证唯一性。如果不指定（即设为 0），SDK 会自动分配一个，并在 <code class="ph codeph">onJoinChannelSuccess</code> 回调方法中返回，App 层必须记住该返回值并维护，SDK 不对该返回值进行维护。</dd>
+                
+            </dl>
+        </section>
+        <section class="section" id="join__return_values"><h2 class="title sectiontitle">返回值</h2>
+            
+            <ul class="ul">
+                <li class="li">0(ERR_OK) 方法调用成功。</li>
+                <li class="li">&lt; 0 方法调用失败。 <ul class="ul">
+                    <li class="li">-2(ERR_INVALID_ARGUMENT): 参数无效。</li>
+                    <li class="li">-3(ERR_NOT_READY): SDK 初始化失败，请尝试重新初始化 SDK。</li>
+                    <li class="li">-5(ERR_REFUSED): 调用被拒绝。可能有如下两个原因：
+                    <ul class="ul">
+                        <li class="li"></li>
+                    </ul>
+                    </li>
+                </ul></li>
+            </ul>
+        </section>
+    </div>
+</article></main></body></html>
