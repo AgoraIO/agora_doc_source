@@ -31,8 +31,8 @@
                         <p>动态秘钥。
                             <ul><li>安全要求不高: 将值设为 <codeph>NULL</codeph>。</li>
                             <li>安全要求高: 将值设置为 Token。如果你已经启用了 App Certificate, 请务必使用 Token。</li>
-                                <li></li>
-                            </ul></p>
+                                <li></li></ul>
+                            </p>
                     </pd>
                 </plentry>
                 <plentry>
@@ -50,7 +50,8 @@
                     <li>-3(ERR_NOT_READY): SDK 初始化失败，请尝试重新初始化 SDK。</li>
                     <li>-5(ERR_REFUSED): 调用被拒绝。可能有如下两个原因：
                     <ul>
-                        <li></li>
+                        <li>已经创建了一个同名的 RtcChannel 频道。</li>
+                            <li>已经通过 RtcChannel 加入了一个频道，并在该 RtcChannel 频道中发布了音视频流。</li>
                     </ul>
                     </li>
                 </ul></li>
