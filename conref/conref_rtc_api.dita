@@ -16,6 +16,14 @@
                                 <codeblock props="android" outputclass="java">public abstract int joinChannel(String token, String channelName, String optionalInfo, int optionalUid);</codeblock>
                                 <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, const char* info, uid_t uid) = 0;</codeblock>
                         </p>
+                        <!--leaveChannel-->
+                        <p id="leave">
+                                <codeblock props="windows" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>
+                        </p>
+                        <!--destroy-->
+                        <p id="destroy">
+                                <codeblock props="windows" outputclass="language-cpp">AGORA_CPP_API static void release (bool sync = false);</codeblock>
+                        </p>
                         <!--setChannelProfile-->
                         <p id="setChannelProfile">
                                 <codeblock props="android" outputclass="java">public abstract int setChannelProfile(int profile);</codeblock>
@@ -29,19 +37,48 @@
                         <p id="setLiveTranscoding">
                                 <codeblock props="windows" outputclass="language-cpp">virtual int setLiveTranscoding(const LiveTranscoding &amp;transcoding) = 0;</codeblock>
                         </p>
+                        <!--removePublishStreamUrl-->
+                        <p id="removePublishStreamUrl">
+                                <codeblock props="windows" outputclass="language-cpp">virtual int removePublishStreamUrl(const char *url) = 0;</codeblock>
+                        </p>
                         <!--enableAudio-->
                         <p id="enableAudio">
                                 <codeblock outputclass="language-cpp" props="rust"/>
+                        </p>
+                        <!--enableAudio-->
+                        <p id="enableVideo">
+                                <codeblock props="windows" outputclass="language-cpp">virtual int enableVideo() = 0;</codeblock>
+                        </p>
+                        <!--disableAudio-->
+                        <p id="disableVideo">
+                                <codeblock props="windows" outputclass="language-cpp">virtual int disableVideo() = 0;</codeblock>
                         </p>
                 </section>
 
 <section>
                         <title>Callbacks</title>
-                        <!--onClientRoleChanged-->                <p id="onClientRoleChanged">
-                        <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
-                        <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
+                        <!--onClientRoleChanged-->                
+                        <p id="onClientRoleChanged">
+                                <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
+                                <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
                                 <codeblock props="windows">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
-                </p></section>
+                        </p>
+                        <!--onLeaveChannel-->                
+                        <p id="onLeaveChannel">
+                                <codeblock props="windows" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
+                                        (void)stats;
+                                        }</codeblock>
+                        </p>
+                        <!--onUserOffline-->                
+                        <p id="onUserOffline">
+                                <codeblock props="windows" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
+                                        (void)uid;
+                                        (void)reason;
+                                        }</codeblock>
+                        </p>
+        
+        
+</section>
 <section>
                         <title>Classes</title>
                         <!--LiveTranscoding-->                
