@@ -10,8 +10,8 @@
                                 <codeblock props="android" outputclass="java">public abstract int setClientRole(int role);</codeblock>
                                 <codeblock props="ios" outputclass="objective-c">- (int)setClientRole:(AgoraClientRole)role;</codeblock>
                                 <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role) = 0;</codeblock>
-                        <!--joinChannel-->
                         </p>
+                        <!--joinChannel-->
                         <p id="join">
                                 <codeblock props="android" outputclass="java">public abstract int joinChannel(String token, String channelName, String optionalInfo, int optionalUid);</codeblock>
                                 <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, const char* info, uid_t uid) = 0;</codeblock>
@@ -40,6 +40,19 @@
                         <!--setupRemoteVideo-->
                         <p id="setupRemoteVideo">
                                 <codeblock props="windows" outputclass="language-cpp">virtual int setupRemoteVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
+                        <!--muteLocalVideoStream-->
+                        <p id="muteLocalVideoStream">
+                                <codeblock props = "windows" outputclass="language-cpp">virtual int agora::rtc::IRtcEngine::muteLocalVideoStream(bool mute) = 0; </codeblock>
+                                <codeblock props = "rust" outputclass="rust">pub fn mute_local_video_stream(&amp;self, mute: bool) -> i32 {
+                                        unsafe {
+                                        let m: i32 = if mute { 1 } else { 0 };
+                                        return agorartcnative::muteLocalVideoStream(self.native_engine, m);
+                                        }
+                                        } </codeblock>
+                        </p>
+                        <!--setAudioProfile-->
+                        <p id="setAudioProfile">
+                                <codeblock props="windows" outputclass="language-cpp"></codeblock>
                         </p>
                 </section>
 
@@ -52,16 +65,16 @@
                 </p></section>
 <section>
                         <title>Classes</title>
-                        <!--LiveTranscoding-->                
+                        <!--LiveTranscoding-->
         <p id="LiveTranscoding">
                                 <codeblock props="windows" outputclass="language-cpp">typedef struct LiveTranscoding {
         int width;
         int height;
         int videoBitrate;
         int videoFramerate;
-        
+
         bool lowLatency;
-        
+
         int videoGop;
         VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
         unsigned int backgroundColor;
@@ -69,11 +82,11 @@
         TranscodingUser *transcodingUsers;
         const char *transcodingExtraInfo;
         RtcImage* watermark;
-        
+
         AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
         int audioBitrate;
         int audioChannels;
-        
+
         LiveTranscoding()
         : width(360)
         , height(640)
