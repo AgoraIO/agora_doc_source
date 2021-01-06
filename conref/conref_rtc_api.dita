@@ -53,6 +53,18 @@
                         <p id="disableVideo">
                                 <codeblock props="windows" outputclass="language-cpp">virtual int disableVideo() = 0;</codeblock>
                         </p>
+                        <!--enableLocalVideo-->
+                        <p id="enableLocalVideo">
+                                <codeblock props="windows" outputclass="language-cpp">virtual int enableLocalVideo(bool enabled) = 0;</codeblock>
+                        </p>
+                        <!--setupLocalVideo-->
+                        <p id="setupLocalVideo">
+                                <codeblock props="windows" outputclass="language-cpp">virtual int setupLocalVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
+                        </p>
+                        <!--setLocalRenderMode-->
+                        <p id="setLocalRenderMode">
+                                <codeblock props="windows" outputclass="language-cpp">virtual int setLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
+                        </p>
                         <!--muteLocalVideoStream-->
                         <p id="muteLocalVideoStream">
                                 <codeblock props = "windows" outputclass="language-cpp">virtual int agora::rtc::IRtcEngine::muteLocalVideoStream(bool mute) = 0; </codeblock>
@@ -62,6 +74,14 @@
                                         return agorartcnative::muteLocalVideoStream(self.native_engine, m);
                                         }
                                         } </codeblock>
+                        </p>
+                        <!--muteRemoteVideoStream-->
+                        <p id="muteRemoteVideoStream">
+                                <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>
+                        </p>
+                        <!--muteAllRemoteVideoStreams-->
+                        <p id="muteAllRemoteVideoStreams">
+                                <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
                         </p>
                         <p id="setAudioProfile">
                                 <codeblock props="windows" outputclass="language-cpp">
@@ -89,6 +109,15 @@
                                 <codeblock props="windows" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
                                         (void)uid;
                                         (void)reason;
+                                        }</codeblock>
+                        </p>
+                        <!--onRemoteVideoStateChanged-->                
+                        <p id="onRemoteVideoStateChanged">
+                                <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
+                                        (void)uid;
+                                        (void)state;
+                                        (void)reason;
+                                        (void)elapsed;
                                         }</codeblock>
                         </p>
         
@@ -138,10 +167,12 @@
  } LiveTranscoding;</codeblock>
                         <codeblock props="android" outputclass="java">agora::rtc::LiveTranscoding::LiveTranscoding()</codeblock>
                 </p>
+        
                         <!--VIDEO_CODEC_PROFILE_TYPE-->
                         <p id="VideoCodecProfileType">
                                 <codeblock outputclass="language-cpp" props="windows">enum agora::rtc::VIDEO_CODEC_PROFILE_TYPE</codeblock>
                         </p></section>
+            
 
         </body>
 </topic>
