@@ -40,6 +40,7 @@
                         <!--setupRemoteVideo-->
                         <p id="setupRemoteVideo">
                                 <codeblock props="windows" outputclass="language-cpp">virtual int setupRemoteVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
+                        </p>
                         <!--muteRemoteVideoStream-->
                         <p id="muteRemoteVideoStream">
                                 <codeblock outputclass="language-cpp" props="windows">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>
@@ -58,15 +59,41 @@
                         <p id="setAudioProfile">
                                 <codeblock props="windows" outputclass="language-cpp"></codeblock>
                         </p>
+                        <!--setRemoteRenderMode-->
+                        <p id="setRemoteRenderMode">
+                                <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode) = 0;</codeblock>
+                        </p>
                 </section>
 
 <section>
                         <title>Callbacks</title>
-                        <!--onClientRoleChanged-->                <p id="onClientRoleChanged">
+                        <!--onClientRoleChanged-->                
+                        <p id="onClientRoleChanged">
                         <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
                         <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
-                                <codeblock props="windows">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
-                </p></section>
+                        <codeblock props="windows">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
+                        </p>
+                        <!--onRemoteVideoStateChanged-->                
+                        <p id="onRemoteVideoStateChanged">
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
+                                        (void)uid;
+                                        (void)state;
+                                        (void)reason;
+                                        (void)elapsed;
+                                        }	
+                        </codeblock>
+                        </p>
+                        <!--onFirstRemoteVideoDecoded-->                
+                        <p id="onFirstRemoteVideoDecoded">
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed) {
+                                        (void)uid;
+                                        (void)width;
+                                        (void)height;
+                                        (void)elapsed;
+                                        }
+                        </codeblock>
+                        </p>
+</section>
 <section>
                         <title>Classes</title>
                         <!--LiveTranscoding-->
