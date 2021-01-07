@@ -56,6 +56,7 @@
                         <!--muteRemoteVideoStream-->
                         <p id="muteRemoteVideoStream">
                                 <codeblock outputclass="language-cpp" props="windows">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>
+                        </p>
                         <!--enableVideo-->
                         <p id="enableVideo">
                                 <codeblock props="windows" outputclass="language-cpp">virtual int enableVideo() = 0;</codeblock>
@@ -67,10 +68,6 @@
                         <!--enableLocalVideo-->
                         <p id="enableLocalVideo">
                                 <codeblock props="windows" outputclass="language-cpp">virtual int enableLocalVideo(bool enabled) = 0;</codeblock>
-                        </p>
-                        <!--setupLocalVideo-->
-                        <p id="setupLocalVideo">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int setupLocalVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
                         </p>
                         <!--setLocalRenderMode-->
                         <p id="setLocalRenderMode">
@@ -86,15 +83,11 @@
                                         }
                                         } </codeblock>
                         </p>
-                        <!--setAudioProfile-->
-                        <!--muteRemoteVideoStream-->
-                        <p id="muteRemoteVideoStream">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>
-                        </p>
                         <!--muteAllRemoteVideoStreams-->
                         <p id="muteAllRemoteVideoStreams">
                                 <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
                         </p>
+                        <!--setAudioProfile-->
                         <p id="setAudioProfile">
                                 <codeblock props="windows" outputclass="language-cpp"></codeblock>
                         </p>
@@ -103,7 +96,6 @@
                                 <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode) = 0;</codeblock>
                         </p>
                 </section>
-
 <section>
                         <title>Callbacks</title>
                         <!--onClientRoleChanged-->
@@ -111,13 +103,6 @@
                         <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
                         <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
                         <codeblock props="windows">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
-                        </p>
-                        <!--onRemoteVideoStateChanged-->
-                        <p id="onRemoteVideoStateChanged">
-                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
-                                <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
-                                <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
-                                <codeblock props="windows">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
                         </p>
                         <!--onLeaveChannel-->
                         <p id="onLeaveChannel">
@@ -151,8 +136,6 @@
                                         (void)elapsed;
                                         }
                         </codeblock>
-                        </p>
-                                        }</codeblock>
                         </p>
 </section>
 <section>
