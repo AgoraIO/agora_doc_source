@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="apidef">
-    <title>RTC APIs for Reuse</title>
-    <body>
+        <title>RTC APIs for Reuse</title>
+        <body>
                 <section id="section_mjq_rgy_vnb">
                         <title>Methods</title>
                         <!--setClientRole-->
@@ -75,8 +75,8 @@
                         </p>
                         <!--muteLocalVideoStream-->
                         <p id="muteLocalVideoStream">
-                                <codeblock props = "windows" outputclass="language-cpp">virtual int agora::rtc::IRtcEngine::muteLocalVideoStream(bool mute) = 0; </codeblock>
-                                <codeblock props = "rust" outputclass="rust">pub fn mute_local_video_stream(&amp;self, mute: bool) -> i32 {
+                                <codeblock props="windows" outputclass="language-cpp">virtual int agora::rtc::IRtcEngine::muteLocalVideoStream(bool mute) = 0; </codeblock>
+                                <codeblock props="rust" outputclass="rust">pub fn mute_local_video_stream(&amp;self, mute: bool) -> i32 {
                                         unsafe {
                                         let m: i32 = if mute { 1 } else { 0 };
                                         return agorartcnative::muteLocalVideoStream(self.native_engine, m);
@@ -89,20 +89,20 @@
                         </p>
                         <!--setAudioProfile-->
                         <p id="setAudioProfile">
-                                <codeblock props="windows" outputclass="language-cpp"></codeblock>
+                                <codeblock props="windows" outputclass="language-cpp"/>
                         </p>
                         <!--setRemoteRenderMode-->
                         <p id="setRemoteRenderMode">
                                 <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode) = 0;</codeblock>
                         </p>
                 </section>
-<section>
+                <section>
                         <title>Callbacks</title>
                         <!--onClientRoleChanged-->
                         <p id="onClientRoleChanged">
-                        <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
-                        <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
-                        <codeblock props="windows">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
+                                <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
+                                <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
+                                <codeblock props="windows">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
                         </p>
                         <!--onLeaveChannel-->
                         <p id="onLeaveChannel">
@@ -117,7 +117,7 @@
                                         (void)reason;
                                         }</codeblock>
                         </p>
-                        <!--onRemoteVideoStateChanged-->                
+                        <!--onRemoteVideoStateChanged-->
                         <p id="onRemoteVideoStateChanged">
                                 <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
                                         (void)uid;
@@ -127,21 +127,21 @@
                                         }	
                         </codeblock>
                         </p>
-                        <!--onFirstRemoteVideoDecoded-->                
+                        <!--onFirstRemoteVideoDecoded-->
                         <p id="onFirstRemoteVideoDecoded">
-                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed) {
-                                        (void)uid;
-                                        (void)width;
-                                        (void)height;
-                                        (void)elapsed;
-                                        }
-                        </codeblock>
+                                <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed) {
+                (void)uid;
+                (void)width;
+                (void)height;
+                (void)elapsed;
+                }
+</codeblock>
                         </p>
-</section>
-<section>
+                </section>
+                <section>
                         <title>Classes</title>
                         <!--LiveTranscoding-->
-        <p id="LiveTranscoding">
+                        <p id="LiveTranscoding">
                                 <codeblock props="windows" outputclass="language-cpp">typedef struct LiveTranscoding {
         int width;
         int height;
@@ -180,24 +180,23 @@
         , audioChannels(1)
         {}
  } LiveTranscoding;</codeblock>
-                        <codeblock props="android" outputclass="java">agora::rtc::LiveTranscoding::LiveTranscoding()</codeblock>
-                </p>
-        
+                                <codeblock props="android" outputclass="java">agora::rtc::LiveTranscoding::LiveTranscoding()</codeblock>
+                        </p>
                         <!--VIDEO_CODEC_PROFILE_TYPE-->
                         <p id="VideoCodecProfileType">
                                 <codeblock outputclass="language-cpp" props="windows">enum agora::rtc::VIDEO_CODEC_PROFILE_TYPE</codeblock>
                         </p>
-        <!-- VideoCanvas -->
-        <p id="VideoCanvas">
-                <codeblock outputclass="language-cpp" props="windows">struct VideoCanvas      {
+                        <!-- VideoCanvas -->
+                        <p id="VideoCanvas">
+                                <codeblock outputclass="language-cpp" props="windows">struct VideoCanvas      {
                         view_t view;
                         int renderMode;
                         char channelId[MAX_CHANNEL_ID_LENGTH];
                         void *priv;
                         VIDEO_MIRROR_MODE_TYPE mirrorMode;
                         }</codeblock>
-        </p>
-</section>
+                        </p>
+                </section>
 
         </body>
 </topic>
