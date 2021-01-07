@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setuplocalvideo">
     <title><ph keyref="setupLocalVideo"/></title>
-    <shortdesc><?oxy-placeholder content="Provide a short description for this API."?></shortdesc>
+    <shortdesc>初始化本地视图。</shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -16,19 +16,30 @@
         </section>
         <section id="detailed_desc">
             <title>详细描述</title>
-            <?oxy-placeholder content="Details of this API, including any call limit, considerations, version information, deprecated information, and sample code."?>
+            该方法初始化本地视图并设置本地用户视频显示信息，只影响本地用户看到的视频画面，不影响本地发布视频。调用该方法绑定本地视频流的显示视窗(view)，并设置本地用户视图的渲染模式和镜像模式。
+            <p>在 App 开发中，通常在初始化后调用该方法进行本地视频设置，然后再加入频道。退出频道后，绑定仍然有效，如果需要解除绑定，可以指定空(<codeph>NULL</codeph>)View 调用该方法。</p>
+        <note>
+            <ul>
+                <li>该方法在加入频道前后都能调用。</li>
+                <li>如果你希望在通话中更新本地用户视图的渲染或镜像模式，请使用 <xref keyref="setLocalRenderMode"/> 方法。</li>
+            </ul>
+        </note>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the parameter."?></pt>
+                    <pt>canvas</pt>
                     <pd>
-                        <p><?oxy-placeholder content="The description of the parameter. Please specify if the parameter is optional, output, and has a default value or value range."?></p>
+                        视频画布信息: <xref keyref="VideoCanvas"/>。
                     </pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
+            <ul>
+                <li>0：方法调用成功。</li>
+                <li>&lt;0：方法调用失败。</li>
+            </ul>
         </section></refbody>
 </reference>
