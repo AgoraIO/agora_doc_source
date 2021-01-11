@@ -196,6 +196,45 @@
                         VIDEO_MIRROR_MODE_TYPE mirrorMode;
                         }</codeblock>
                         </p>
+                        <!-- VideoEncoderConfiguration -->
+                        <p id="VideoEncoderConfiguration">
+                                <codeblock outputclass="language-cpp" props="windows">struct VideoEncoderConfiguration {
+    VideoDimensions dimensions;
+    FRAME_RATE frameRate;
+    int minFrameRate;
+    int bitrate;
+    int minBitrate;
+    ORIENTATION_MODE orientationMode;
+    DEGRADATION_PREFERENCE degradationPreference;
+    VIDEO_MIRROR_MODE_TYPE mirrorMode;
+    
+    VideoEncoderConfiguration(
+        const VideoDimensions&amp; d, FRAME_RATE f,
+        int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mr = VIDEO_MIRROR_MODE_AUTO)
+        : dimensions(d), frameRate(f), minFrameRate(-1), bitrate(b),
+        minBitrate(DEFAULT_MIN_BITRATE), orientationMode(m),
+        degradationPreference(MAINTAIN_QUALITY), mirrorMode(mr)
+    {}
+    VideoEncoderConfiguration(
+        int width, int height, FRAME_RATE f,
+        int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mr = VIDEO_MIRROR_MODE_AUTO)
+        : dimensions(width, height), frameRate(f),
+        minFrameRate(-1), bitrate(b),
+        minBitrate(DEFAULT_MIN_BITRATE), orientationMode(m),
+        degradationPreference(MAINTAIN_QUALITY), mirrorMode(mr)
+    {}
+    VideoEncoderConfiguration()
+        : dimensions(640, 480)
+        , frameRate(FRAME_RATE_FPS_15)
+        , minFrameRate(-1)
+        , bitrate(STANDARD_BITRATE)
+        , minBitrate(DEFAULT_MIN_BITRATE)
+        , orientationMode(ORIENTATION_MODE_ADAPTIVE)
+        , degradationPreference(MAINTAIN_QUALITY)
+        , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
+    {}
+};</codeblock>
+                        </p>
                 </section>
 
         </body>
