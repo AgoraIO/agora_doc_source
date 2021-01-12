@@ -5,8 +5,12 @@
         <body>
                 <section id="section_mjq_rgy_vnb">
                         <title>Methods</title>
+                        <!-- createAgoraRtcEngine -->
+                        <p id="createAgoraRtcEngine">
+                                <codeblock props="windows" outputclass="language-cpp">AGORA_API agora::rtc::IRtcEngine *AGORA_CALL createAgoraRtcEngine ()</codeblock>
+                        </p>
                         <!--setClientRole-->
-                        <p id="setClientRole">
+                        <p id="setClientRole1">
                                 <codeblock props="android" outputclass="java">public abstract int setClientRole(int role);</codeblock>
                                 <codeblock props="ios" outputclass="objective-c">- (int)setClientRole:(AgoraClientRole)role;</codeblock>
                                 <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role) = 0;</codeblock>
@@ -93,7 +97,7 @@
                         </p>
                         <!--setAudioProfile-->
                         <p id="setAudioProfile">
-                                <codeblock props="windows" outputclass="language-cpp"/>
+                                <codeblock props="windows" outputclass="language-cpp">virtual int setAudioProfile(AUDIO_PROFILE_TYPE profile, AUDIO_SCENARIO_TYPE scenario) = 0;</codeblock>
                         </p>
                         <!--setRemoteRenderMode-->
                         <p id="setRemoteRenderMode">
@@ -119,34 +123,34 @@
                         <!--onLeaveChannel-->
                         <p id="onLeaveChannel">
                                 <codeblock props="windows" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
-                                        (void)stats;
-                                        }</codeblock>
+    (void)stats;
+}</codeblock>
                         </p>
                         <!--onUserOffline-->
                         <p id="onUserOffline">
                                 <codeblock props="windows" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
-                                        (void)uid;
-                                        (void)reason;
-                                        }</codeblock>
+    (void)uid;
+    (void)reason;
+}</codeblock>
                         </p>
                         <!--onRemoteVideoStateChanged-->
                         <p id="onRemoteVideoStateChanged">
                                 <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
-                                        (void)uid;
-                                        (void)state;
-                                        (void)reason;
-                                        (void)elapsed;
-                                        }
-                        </codeblock>
+    (void)uid;
+    (void)state;
+    (void)reason;
+    (void)elapsed;
+}
+  </codeblock>
                         </p>
                         <!--onFirstRemoteVideoDecoded-->
                         <p id="onFirstRemoteVideoDecoded">
                                 <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed) {
-                (void)uid;
-                (void)width;
-                (void)height;
-                (void)elapsed;
-                }
+    (void)uid;
+    (void)width;
+    (void)height;
+    (void)elapsed;
+}
 </codeblock>
                         </p>
                 </section>
@@ -155,48 +159,43 @@
                         <!--LiveTranscoding-->
                         <p id="LiveTranscoding">
                                 <codeblock props="windows" outputclass="language-cpp">typedef struct LiveTranscoding {
-        int width;
-        int height;
-        int videoBitrate;
-        int videoFramerate;
+    int width;
+    int height;
+    int videoBitrate;
+    int videoFramerate;
 
-        bool lowLatency;
+    bool lowLatency;
 
-        int videoGop;
-        VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
-        unsigned int backgroundColor;
-        unsigned int userCount;
-        TranscodingUser *transcodingUsers;
-        const char *transcodingExtraInfo;
-        RtcImage* watermark;
+    int videoGop;
+    VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
+    unsigned int backgroundColor;
+    unsigned int userCount;
+    TranscodingUser *transcodingUsers;
+    const char *transcodingExtraInfo;
+    RtcImage* watermark;
 
-        AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
-        int audioBitrate;
-        int audioChannels;
+    AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
+    int audioBitrate;
+    int audioChannels;
 
-        LiveTranscoding()
-        : width(360)
-        , height(640)
-        , videoBitrate(400)
-        , videoFramerate(15)
-        , lowLatency(false)
-        , backgroundColor(0x000000)
-        , videoGop(30)
-        , videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH)
-        , userCount(0)
-        , transcodingUsers(nullptr)
-        , transcodingExtraInfo(nullptr)
-        , watermark(nullptr)
-        , audioSampleRate(AUDIO_SAMPLE_RATE_48000)
-        , audioBitrate(48)
-        , audioChannels(1)
-        {}
+    LiveTranscoding()
+    : width(360)
+    , height(640)
+    , videoBitrate(400)
+    , videoFramerate(15)
+    , lowLatency(false)
+    , backgroundColor(0x000000)
+    , videoGop(30)
+    , videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH)
+    , userCount(0)
+    , transcodingUsers(nullptr)
+    , transcodingExtraInfo(nullptr)
+    , watermark(nullptr)
+    , audioSampleRate(AUDIO_SAMPLE_RATE_48000)
+    , audioBitrate(48)
+    , audioChannels(1)
+    {}
  } LiveTranscoding;</codeblock>
-                                <codeblock props="android" outputclass="java">agora::rtc::LiveTranscoding::LiveTranscoding()</codeblock>
-                        </p>
-                        <!--VIDEO_CODEC_PROFILE_TYPE-->
-                        <p id="VideoCodecProfileType">
-                                <codeblock outputclass="language-cpp" props="windows">enum agora::rtc::VIDEO_CODEC_PROFILE_TYPE</codeblock>
                         </p>
                         <!-- VideoCanvas -->
                         <p id="VideoCanvas">
@@ -207,6 +206,23 @@
                         void *priv;
                         VIDEO_MIRROR_MODE_TYPE mirrorMode;
                         }</codeblock>
+                        </p>
+                        <!--RtcImage-->
+                        <p id="RtcImage">
+                                <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
+    RtcImage() :
+       url(NULL),
+       x(0),
+       y(0),
+       width(0),
+       height(0)
+    {}
+    const char* url;
+    int x;
+    int y;
+    int width;
+    int height;
+} RtcImage;</codeblock>
                         </p>
                 </section>
 

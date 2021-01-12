@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onfirstremotevideodecoded">
     <title><ph keyref="onFirstRemoteVideoDecoded"/></title>
-    <shortdesc><?oxy-placeholder content="Provide a short description for this API."?></shortdesc>
+    <shortdesc>已接收到远端视频并完成解码回调。</shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -16,14 +16,46 @@
         </section>
         <section id="detailed_desc">
             <title>详细描述</title>
-            <?oxy-placeholder content="Details of this API, including any call limit, considerations, version information, deprecated information, and sample code."?>
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>自 v2.9.0 起废弃，请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调中的：
+                    <ul>
+                        <li><xref href="enum_remotevideostate.dita#enum_remotevideostate/1"></xref></li>
+                        <li><xref href="enum_remotevideostate.dita#enum_remotevideostate/2"></xref></li>
+                    </ul>
+                    </dd>
+                </dlentry>
+            </dl>
+            引擎收到第一帧远端视频流并解码成功时，触发此回调。 App 可在此回调中设置该用户的 view。有两种情况：
+            <ul>
+                <li>远端用户首次上线后发送视频。</li>
+                <li>远端用户视频离线再上线后发送视频。出现这种中断的可能原因包括：
+                <ul>
+                    <li>远端用户离开频道。</li>
+                    <li>远端用户掉线。</li>
+                    <li>远端用户调用 <xref keyref="muteLocalVideoStream"/> 方法停止发送本地视频流。</li>
+                    <li>远端用户调用 <xref keyref="disableVideo"/> 方法关闭视频模块。</li>
+                </ul></li>
+            </ul>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the parameter."?></pt>
-                    <pd>
-                        <p><?oxy-placeholder content="The description of the parameter. Please specify if the parameter is optional, output, and has a default value or value range."?></p>
+                    <pt>uid</pt>
+                    <pd>用户 ID，指定是哪个用户的视频流。</pd>
+                </plentry>
+                <plentry>
+                    <pt>width</pt>
+                    <pd>视频流宽（px）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>height</pt>
+                    <pd>视频流高（px）。</pd>
+                </plentry>
+                <plentry>
+                    <pt>elapsed</pt>
+                    <pd>从本地调用 <xref keyref="joinChannel"/> 开始到该回调触发的延迟（毫秒)。
                     </pd>
                 </plentry>
             </parml>
