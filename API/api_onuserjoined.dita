@@ -4,6 +4,9 @@
     <title><ph keyref="onUserJoined"/></title>
     <shortdesc>远端用户（通信场景）/主播（直播场景）加入当前频道回调。</shortdesc>
     <refbody>
+            <section id="prototype">
+                    <p conref="../conref/conref_rtc_api.dita#apidef/onUserJoined"/>
+            </section>
             <section id="detailed_desc">
                     <ul>
             <li>通信场景下，该回调提示有远端用户加入了频道，并返回新加入用户的
@@ -16,5 +19,28 @@
             <li>远端用户/主播网络中断后重新加入频道。</li>
             <li>主播通过调用 <apiname keyref="addInjectStreamUrl"/> 方法成功输入在线媒体流。</li>
         </ul>
-            </section></refbody>
+                        <note outputclass="note">
+                                <p>直播场景下，</p>
+                                <ul>
+                                        <li>主播间能相互收到新主播加入频道的回调，并能获得该主播的 uid。</li>
+                                        <li>观众也能收到新主播加入频道的回调，并能获得该主播的 uid。</li>
+                                        <li>当 Web 端加入直播频道时，只要 Web 端有推流，SDK 会默认该 Web 端为主播，并触发该回调。</li>
+                                </ul>
+                        </note>
+            </section>
+            <section id="parameters">
+                    <title>参数</title>
+                    <parml>
+                            <plentry>
+                                    <pt>uid</pt>
+                                    <pd>新加入频道的远端用户/主播 ID。</pd>
+                            </plentry>
+                            <plentry>
+                                    <pt>elapsed</pt>
+                                    <pd>从本地用户调用 joinChannel 到该回调触发的延迟（毫秒)。</pd>
+                            </plentry>
+                    </parml>
+            </section>
+            
+    </refbody>
 </reference>

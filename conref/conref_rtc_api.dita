@@ -222,28 +222,35 @@
                 </section>
                 <section>
                         <title>Callbacks</title>
+            <!--onUserJoined-->
+            <p id="onUserJoined">
+                <codeblock props="rust windows">virtual void onUserJoined(uid_t uid, int elapsed) {
+    (void)uid;
+    (void)elapsed;
+}</codeblock>
+            </p>
                         <!--onClientRoleChanged-->
                         <p id="onClientRoleChanged">
                                 <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
                                 <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
-                                <codeblock props="windows" outputclass="language-cpp">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
+                                <codeblock props="rust windows" outputclass="language-cpp">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
                         </p>
                         <!--onLeaveChannel-->
                         <p id="onLeaveChannel">
-                                <codeblock props="windows" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
+                                <codeblock props="rust windows" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
     (void)stats;
 }</codeblock>
                         </p>
                         <!--onUserOffline-->
                         <p id="onUserOffline">
-                                <codeblock props="windows" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
+                                <codeblock props="rust windows" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
     (void)uid;
     (void)reason;
 }</codeblock>
                         </p>
                         <!--onRemoteVideoStateChanged-->
                         <p id="onRemoteVideoStateChanged">
-                                <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
+                                <codeblock props="rust windows" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
     (void)uid;
     (void)state;
     (void)reason;
@@ -253,7 +260,7 @@
                         </p>
                         <!--onFirstRemoteVideoDecoded-->
                         <p id="onFirstRemoteVideoDecoded">
-                                <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed) {
+                                <codeblock props="rust windows" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed) {
     (void)uid;
     (void)width;
     (void)height;
