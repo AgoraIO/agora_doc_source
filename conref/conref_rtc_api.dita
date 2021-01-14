@@ -111,7 +111,7 @@
                         </p>
                         <!--setupLocalVideo-->
                         <p id="setupLocalVideo">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int agora::rtc::IRtcEngine::setupLocalVideo (const VideoCanvas &amp; canvas)</codeblock>
+                            <codeblock props="windows" outputclass="language-cpp">virtual int setupLocalVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
                                 <codeblock props="rust" outputclass="rust">pub fn setup_local_video(&amp;self, canvas: agorartcnative::VideoCanvas) -> i32 {
     unsafe {
         return agorartcnative::setupLocalVideo(self.native_engine, canvas);
@@ -193,8 +193,8 @@
 }</codeblock>
                         </p>
                         <!--setRemoteRenderMode-->
-                        <p id="setRemoteRenderMode">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode) = 0;</codeblock>
+                        <p id="setRemoteRenderMode2">
+                            <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
                                 <codeblock props="rust" outputclass="rust">pub fn set_remote_render_mode(&amp;self, uid: u32, render_mode: RENDER_MODE_TYPE) -> i32 {
     unsafe {
         return agorartcnative::setRemoteRenderMode(self.native_engine, uid, render_mode as u32);
@@ -334,13 +334,62 @@
                         </p>
                         <!-- VideoCanvas -->
                         <p id="VideoCanvas">
-                                <codeblock outputclass="language-cpp" props="windows">struct VideoCanvas      {
-                        view_t view;
-                        int renderMode;
-                        char channelId[MAX_CHANNEL_ID_LENGTH];
-                        void *priv;
-                        VIDEO_MIRROR_MODE_TYPE mirrorMode;
-                        }</codeblock>
+                            <codeblock outputclass="language-cpp" props="windows">struct VideoCanvas {
+    view_t view;
+    int renderMode;
+    char channelId[MAX_CHANNEL_ID_LENGTH];
+    uid_t uid;
+    void *priv;
+    VIDEO_MIRROR_MODE_TYPE mirrorMode;
+                                
+    VideoCanvas()
+    : view(NULL)
+    , renderMode(RENDER_MODE_HIDDEN)
+    , uid(0)
+    , priv(NULL)
+    , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
+    {
+    channelId[0] = '\0';
+    }
+    VideoCanvas(view_t v, int m, uid_t u)
+    : view(v)
+    , renderMode(m)
+    , uid(u)
+    , priv(NULL)
+    , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
+    {
+    channelId[0] = '\0';
+    }
+    VideoCanvas(view_t v, int m, const char *ch, uid_t u)
+    : view(v)
+    , renderMode(m)
+    , uid(u)
+    , priv(NULL)
+    , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
+    {
+    strncpy(channelId, ch, MAX_CHANNEL_ID_LENGTH);
+    channelId[MAX_CHANNEL_ID_LENGTH - 1] = '\0';
+    }
+    VideoCanvas(view_t v, int rm, uid_t u, VIDEO_MIRROR_MODE_TYPE mm)
+    : view(v)
+    , renderMode(rm)
+    , uid(u)
+    , priv(NULL)
+    , mirrorMode(mm)
+    {
+    channelId[0] = '\0';
+    }
+    VideoCanvas(view_t v, int rm, const char *ch, uid_t u, VIDEO_MIRROR_MODE_TYPE mm)
+    : view(v)
+    , renderMode(rm)
+    , uid(u)
+    , priv(NULL)
+    , mirrorMode(mm)
+    {
+    strncpy(channelId, ch, MAX_CHANNEL_ID_LENGTH);
+    channelId[MAX_CHANNEL_ID_LENGTH - 1] = '\0';
+    }
+}</codeblock>
                                 <codeblock props="rust" outputclass="rust">pub struct VideoCanvas {
     pub view: view_t,
     pub renderMode: ::std::os::raw::c_int,
