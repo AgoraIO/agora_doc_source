@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="setChannelProfile">
+<reference id="api_setchannelprofile">
     <title><ph keyref="setChannelProfile"/></title>
     <shortdesc>设置频道场景。</shortdesc>
     <prolog>
@@ -17,17 +17,11 @@
         <section id="detailed_desc">
             <title>详细描述</title>
             <p>该方法用于设置 Agora 频道的使用场景。Agora SDK 会针对不同的使用场景采用不同的优化策略，如通信场景偏好流畅，直播场景偏好画质。</p>
-            <note>
-                <?oxy_comment_start author="jie" timestamp="20201202T112755+0800" comment="这个需不需要单独成为一个section？" id="uyn_zxv_vnb" flag="done" mid="1"?>
-                <?oxy_comment_start author="cy" timestamp="20201202T113816+0800" comment="This is a reply" parentID="uyn_zxv_vnb" flag="done"?>
-                <p>该方法需要在加入频道前调用。<?oxy_comment_end?><?oxy_comment_end mid="1"?></p>
-            </note>
-            <note>
+            <note outputclass="warning">
                 <ul id="ul_mgd_h2l_b4b">
                     <li>为保证实时音视频质量，我们建议相同频道内的用户必须使用同一种频道场景。</li>
-                    <li>不同的频道场景下，SDK 的默认音频路由和默认视频编码码率是不同的，详见
-                                <codeph>setDefaultAudioRoutetoSpeakerphone</codeph> 和
-                                <codeph>setVideoEncoderConfiguration</codeph> 中的说明。
+                    <li>该方法必须在 <xref keyref="joinChannel"/> 前调用和进行设置，进入频道后无法再设置。</li>
+                    <li>不同的频道场景下，SDK 的默认音频路由和默认视频编码码率是不同的，详见 <xref keyref="setDefaultAudioRoutetoSpeakerphone" /> 和 <xref keyref="setVideoEncoderConfiguration" /> 中的说明。
                     </li>
                 </ul>
             </note>
@@ -37,14 +31,7 @@
                 <plentry>
                     <pt>profile</pt>
                     <pd>
-                        <p>频道使用场景。
-                            <ul>
-                                <li>0: （默认）通信场景。该场景下，频道内所有用户都可以发布和接收音、视频流。适用于语音通话、视频群聊等应用场景。</li>
-                                <li>1: 直播场景。该场景有主播和观众两种用户角色，可以通过 <apiname keyref="setClientRole"/>
-                                    设置。主播可以发布和接收音视频流，观众直接接收流。适用于语聊房、视频直播、互动大班课等应用场景。</li>
-                                <li>2: 游戏场景。该选项已废弃，Agora 不推荐使用。</li>
-                            </ul>
-                        </p>
+                        <p>频道使用场景。详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</p>
                         </pd>
                 </plentry>
             </parml>
