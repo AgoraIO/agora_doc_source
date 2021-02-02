@@ -1621,11 +1621,11 @@
 
 
     <topichead navtitle="Callbacks">
-        <topichead navtitle="频道事件">
-            <keydef keys="onJoinChannelSuccess">
+        <topichead navtitle="核心事件">
+            <keydef keys="onConnectionStateChanged">
                 <topicmeta>
                     <keywords>
-                        <keyword>onJoinChannelSuccess</keyword>
+                        <keyword>onConnectionStateChanged</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>        
@@ -1671,34 +1671,663 @@
                         </keywords>
                     </topicmeta>
                 </keydef>
-            </topichead>
-        <keydef keys="onFirstRemoteVideoDecoded" href="../API/api_onfirstremotevideodecoded.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>onFirstRemoteVideoDecoded</keyword>
-                </keywords></topicmeta>
-        </keydef>
-        <keydef keys="onRemoteVideoStateChanged" href="../API/api_onremotevideostatechanged.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>onRemoteVideoStateChanged</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="onTranscodingUpdated">
-            <topicmeta>
-                <keywords>
-                    <keyword>onTranscodingUpdated</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="onUserEnableLocalVideo">
-            <topicmeta>
-                <keywords>
-                    <keyword>onUserEnableLocalVideo</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
+            <keydef keys="onNetworkTypeChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onNetworkTypeChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onConnectionInterrupted">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onConnectionInterrupted</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onConnectionLost">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onConnectionLost</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onConnectionBanned">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onConnectionBanned</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onTokenPrivilegeWillExpire">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onTokenPrivilegeWillExpire</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onRequestToken">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRequestToken</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onLocalUserRegistered">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onLocalUserRegistered</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onUserInfoUpdated">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onUserInfoUpdated</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="本地媒体事件">
+            <keydef keys="onLocalAudioStateChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onLocalAudioStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onFirstLocalAudioFrame">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onFirstLocalAudioFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onLocalVideoStateChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onLocalVideoStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onVideoStopped">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onVideoStopped</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onFirstLocalAudioFramePublished">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onFirstLocalAudioFramePublished</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onFirstLocalVideoFramePublished">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onFirstLocalVideoFramePublished</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onFirstLocalVideoFrame">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onFirstLocalVideoFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onAudioPublishStateChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onAudioPublishStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onVideoPublishStateChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onVideoPublishStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="远端媒体事件">
+            <keydef keys="onAudioSubscribeStateChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onAudioSubscribeStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onFirstRemoteAudioDecoded">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onFirstRemoteAudioDecoded</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onFirstRemoteAudioFrame">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onFirstRemoteAudioFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onFirstRemoteVideoDecoded" href="../API/api_onfirstremotevideodecoded.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onFirstRemoteVideoDecoded</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onFirstRemoteVideoFrame">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onFirstRemoteVideoFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onRemoteAudioStateChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRemoteAudioStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onRemoteVideoStateChanged" href="../API/api_onremotevideostatechanged.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRemoteVideoStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>            
+            <keydef keys="onUserEnableLocalVideo">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onUserEnableLocalVideo</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onUserEnableVideo">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onUserEnableVideo</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onUserMuteAudio">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onUserMuteAudio</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onUserMuteVideo">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onUserMuteVideo</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onVideoSizeChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onVideoSizeChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onVideoSubscribeStateChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onVideoSubscribeStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="数据统计事件">
+            <keydef keys="onRtcStats">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRtcStats</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onNetworkQuality">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onNetworkQuality</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onLocalAudioStats">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onLocalAudioStats</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onLocalVideoStats">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onLocalVideoStats</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onRemoteAudioStats">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRemoteAudioStats</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onRemoteAudioTransportStats">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRemoteAudioTransportStats</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onRemoteVideoStats">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRemoteVideoStats</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onRemoteVideoTransportStats">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRemoteVideoTransportStats</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onAudioQuality">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onAudioQuality</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+
+        <topichead navtitle="音乐文件播放事件">
+            <keydef keys="onAudioMixingStateChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onAudioMixingStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onAudioMixingFinished">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onAudioMixingFinished</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onAudioEffectFinished">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onAudioEffectFinished</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="多频道事件">
+            <keydef keys="onChannelWarning">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onChannelWarning</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onChannelError">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onChannelError</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="CDN 推流事件">        
+            <keydef keys="onRtmpStreamingStateChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRtmpStreamingStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onRtmpStreamingEvent">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRtmpStreamingEvent</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onTranscodingUpdated">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onTranscodingUpdated</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>            
+            <keydef keys="onStreamPublished">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onStreamPublished</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onStreamUnpublished">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onStreamUnpublished</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="跨频道媒体流转发事件">
+            <keydef keys="onChannelMediaRelayStateChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onChannelMediaRelayStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onChannelMediaRelayEvent">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onChannelMediaRelayEvent</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="音量提示事件">
+            <keydef keys="onAudioVolumeIndication">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onAudioVolumeIndication</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onActiveSpeaker">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onActiveSpeaker</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="人脸检测事件">
+            <keydef keys="onFacePositionChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onFacePositionChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="音频播放路由">
+            <keydef keys="onAudioRouteChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onAudioRouteChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="音视频回退事件">
+            <keydef keys="onLocalPublishFallbackToAudioOnly">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onLocalPublishFallbackToAudioOnly</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onRemoteSubscribeFallbackToAudioOnly">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRemoteSubscribeFallbackToAudioOnly</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="通话前网络测试事件">
+            <keydef keys="onLastmileQuality">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onLastmileQuality</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onLastmileProbeResult">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onLastmileProbeResult</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="原始音频数据事件">
+            <keydef keys="onRecordAudioFrame">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRecordAudioFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onPlaybackAudioFrame">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onPlaybackAudioFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onPlaybackAudioFrameBeforeMixing">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onPlaybackAudioFrameBeforeMixing</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onMixedAudioFrame">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onMixedAudioFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="原始视频数据事件">
+            <keydef keys="getObservedFramePosition">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getObservedFramePosition</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onCaptureVideoFrame">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onCaptureVideoFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onPreEncodeVideoFrame">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onPreEncodeVideoFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="getSmoothRenderingEnabled">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getSmoothRenderingEnabled</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onRenderVideoFrame">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRenderVideoFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="getVideoFormatPreference">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getVideoFormatPreference</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="getRotationApplied">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getRotationApplied</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="getMirrorApplied">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getMirrorApplied</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="媒体附属信息事件">
+            <keydef keys="getMaxMetadataSize">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getMaxMetadataSize</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onReadyToSendMetadata">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onReadyToSendMetadata</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onMetadataReceived">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onMetadataReceived</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="输入在线媒体流事件">
+            <keydef keys="onStreamInjectedStatus">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onStreamInjectedStatus</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="摄像头事件">
+            <keydef keys="onCameraFocusAreaChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onCameraFocusAreaChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onCameraExposureAreaChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onCameraExposureAreaChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="设备管理事件">
+            <keydef keys="onAudioDeviceStateChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onAudioDeviceStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onAudioDeviceVolumeChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onAudioDeviceVolumeChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onVideoDeviceStateChanged">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onVideoDeviceStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="流消息事件">
+            <keydef keys="onStreamMessage">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onStreamMessage</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onStreamMessageError">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onStreamMessageError</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+
+        <topichead navtitle="其他事件">
+            <keydef keys="onWarning">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onWarning</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onError">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onError</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onApiCallExecuted">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onApiCallExecuted</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>            
+        </topichead>
     </topichead>
 
     <topichead navtitle="Classes">
