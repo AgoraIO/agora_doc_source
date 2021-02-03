@@ -5,10 +5,38 @@
         <body>
                 <section id="section_mjq_rgy_vnb">
                         <title>Methods</title>
-                        <!-- createAgoraRtcEngine -->
+                        <!--createAgoraRtcEngine-->
                         <p id="createAgoraRtcEngine">
                                 <codeblock props="windows" outputclass="language-cpp">AGORA_API agora::rtc::IRtcEngine *AGORA_CALL createAgoraRtcEngine ()</codeblock>
                         </p>
+                    
+                        <!--initialize-->
+                        <p id="initialize">
+                            <codeblock props="windows" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>
+                        </p>
+
+                        <!--release-->
+                        <p id="release">
+                            <codeblock props="windows" outputclass="language-cpp">AGORA_CPP_API static void release (bool sync = false);</codeblock>
+                            <codeblock props="rust" outputclass="rust">pub fn release(&amp;self, sync: bool) {
+                                unsafe {
+                                let is_sync: i32 = if sync { 1 } else { 0 };
+                                agorartcnative::release(self.native_engine, is_sync);
+                                }
+                                }</codeblock>
+                        </p>
+                    
+                        <!--setChannelProfile-->
+                        <p id="setChannelProfile">
+                            <codeblock props="android" outputclass="java">public abstract int setChannelProfile(int profile);</codeblock>
+                            <codeblock props="windows" outputclass="language-cpp">virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;</codeblock>
+                            <codeblock props="rust" outputclass="rust">pub fn set_channel_profile(&amp;self, profile: CHANNEL_PROFILE_TYPE) -> i32 {
+                                unsafe {
+                                return agorartcnative::setChannelProfile(self.native_engine, profile as u32);
+                                }
+                                }</codeblock>
+                        </p>
+                    
                         <!--setClientRole-->
                         <p id="setClientRole1">
                                 <codeblock props="android" outputclass="java">public abstract int setClientRole(int role);</codeblock>
@@ -20,8 +48,12 @@
     }
 }</codeblock>
                         </p>
+                      <p id="setClientRole2">  
+                          <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role, const ClientRoleOptions&amp; options) = 0;</codeblock>
+                       </p>                    
+                    
                         <!--joinChannel-->
-                        <p id="join">
+                    <p id="joinChannel1">
                                 <codeblock props="android" outputclass="java">public abstract int joinChannel(String token, String channelName, String optionalInfo, int optionalUid);</codeblock>
                                 <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, const char* info, uid_t uid) = 0;</codeblock>
                                 <codeblock props="rust" outputclass="rust">pub fn join_channel(&amp;self, token: &amp;str, channel_id: &amp;str, info: &amp;str, uid: u32) -> i32 {
@@ -33,6 +65,22 @@
     }
 }</codeblock>
                         </p>
+                        <p id="joinChannel2">  
+                            <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token,
+                                const char* channelId,
+                                const char* info,
+                                uid_t uid,
+                                const ChannelMediaOptions&amp; options) = 0;</codeblock>
+                        </p>   
+                    
+                    <!--switchChannel-->
+                    <p id="switchChannel1">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int switchChannel(const char* token, const char* channelId) = 0;</codeblock>
+                    </p>   
+                    <p id="switchChannel2">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int switchChannel(const char* token, const char* channelId, const ChannelMediaOptions&amp; options) = 0;</codeblock>
+                    </p>  
+
                         <!--leaveChannel-->
                         <p id="leave">
                                 <codeblock props="windows" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>
@@ -42,27 +90,129 @@
     }
 }</codeblock>
                         </p>
-                        <!--release-->
-                        <p id="release">
-                                <codeblock props="windows" outputclass="language-cpp">AGORA_CPP_API static void release (bool sync = false);</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn release(&amp;self, sync: bool) {
-    unsafe {
-        let is_sync: i32 = if sync { 1 } else { 0 };
-        agorartcnative::release(self.native_engine, is_sync);
-    }
-}</codeblock>
-                        </p>
-                        <!--setChannelProfile-->
-                        <p id="setChannelProfile">
-                                <codeblock props="android" outputclass="java">public abstract int setChannelProfile(int profile);</codeblock>
-                                <codeblock props="windows" outputclass="language-cpp">virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn set_channel_profile(&amp;self, profile: CHANNEL_PROFILE_TYPE) -> i32 {
-    unsafe {
-        return agorartcnative::setChannelProfile(self.native_engine, profile as u32);
-    }
-}</codeblock>
-                        </p>
-                        <!--setVideoEncoderConfiguration-->
+
+                    <!--renewToken-->
+                    <p id="renewToken">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>
+                    </p>   
+                    
+                    <!--getConnectionState-->
+                    <p id="getConnectionState">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionState() = 0;</codeblock>
+                    </p>  
+
+                    <!--registerLocalUserAccount-->
+                    <p id="registerLocalUserAccount">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int registerLocalUserAccount(
+                                const char* appId, const char* userAccount) = 0;
+                        </codeblock>
+                    </p>  
+
+                    <!--joinChannelWithUserAccount-->
+                    <p id="joinChannelWithUserAccount">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
+                            const char* channelId,
+                            const char* userAccount) = 0;    
+                        </codeblock>
+                    </p>  
+
+                    <!--getUserInfoByUserAccount-->
+                    <p id="getUserInfoByUserAccount">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getUserInfoByUserAccount(const char* userAccount, UserInfo* userInfo) = 0;</codeblock>
+                    </p>  
+
+                    <!--getUserInfoByUid-->
+                    <p id="getUserInfoByUid">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, UserInfo* userInfo) = 0;</codeblock>
+                    </p>  
+
+                    <!--enableWebSdkInteroperability-->
+                    <p id="enableWebSdkInteroperability">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableWebSdkInteroperability(bool enabled) = 0;</codeblock>
+                    </p>  
+
+                    <!--enableAudio-->
+                    <p id="enableAudio">
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool report_vad) = 0;</codeblock>
+                        <codeblock props="rust" outputclass="rust">pub fn enable_audio(&amp;self) -> i32 {
+                            unsafe {
+                            return agorartcnative::enableAudio(self.native_engine);
+                            }
+                            }</codeblock>                        
+                    </p>
+
+                    <!--disableAudio-->
+                    <p id="disableAudio">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int disableAudio() = 0;</codeblock>
+                    </p>  
+                    
+                    <!--pauseAudio-->
+                    <p id="pauseAudio">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int pauseAudioMixing() = 0;</codeblock>
+                    </p>  
+                    
+                    <!--resumeAudio-->
+                    <p id="resumeAudio">  
+                       
+                    </p>     
+                    
+                    <!--setAudioProfile-->
+                    <p id="setAudioProfile">
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setAudioProfile(AUDIO_PROFILE_TYPE profile, AUDIO_SCENARIO_TYPE scenario) = 0;</codeblock>
+                        <codeblock props="rust" outputclass="rust">pub fn set_audio_profile(&amp;self, profile: AUDIO_PROFILE_TYPE, scenario: AUDIO_SCENARIO_TYPE) -> i32 {
+                            unsafe {
+                            return agorartcnative::setAudioProfile(self.native_engine, profile as u32, scenario as u32);
+                            }
+                            }</codeblock>
+                    </p>
+ 
+                    <!--setHighQualityAudioParameters-->
+                    <p id="setHighQualityAudioParameters">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setHighQualityAudioParameters(bool fullband, bool stereo, bool fullBitrate) = 0;</codeblock>
+                    </p>  
+
+                    <!--adjustRecordingSignalVolume-->
+                    <p id="adjustRecordingSignalVolume">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int adjustRecordingSignalVolume(int volume) = 0;</codeblock>
+                    </p>  
+
+                    <!--adjustUserPlaybackSignalVolume-->
+                    <p id="adjustUserPlaybackSignalVolume">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolume(unsigned int uid, int volume) = 0;</codeblock>
+                    </p> 
+
+                    <!--adjustPlaybackSignalVolume-->
+                    <p id="adjustPlaybackSignalVolume">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int adjustPlaybackSignalVolume(int volume) = 0;</codeblock>
+                    </p> 
+                    
+                    <!--enableLocalAudio-->
+                    <p id="enableLocalAudio">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableLocalAudio(bool enabled) = 0;</codeblock>
+                    </p> 
+                    
+                    <!--muteLocalAudioStream-->
+                    <p id="muteLocalAudioStream">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int muteLocalAudioStream(bool mute) = 0;</codeblock>
+                    </p> 
+                    
+                    <!--muteRemoteAudioStream-->
+                    <p id="muteRemoteAudioStream">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteAudioStream(uid_t userId, bool mute) = 0;</codeblock>
+                    </p> 
+                    
+                    <!--muteAllRemoteAudioStreams-->
+                    <p id="muteAllRemoteAudioStreams">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteAudioStreams(bool mute) = 0;</codeblock>
+                    </p> 
+                    <!--setDefaultMuteAllRemoteAudioStreams-->
+                    <p id="setDefaultMuteAllRemoteAudioStreams">  
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteAudioStreams(bool mute) = 0;</codeblock>
+                    </p> 
+
+
+
+                     <!--setVideoEncoderConfiguration-->
                         <p id="setVideoEncoderConfiguration">
                                 <codeblock outputclass="language-cpp" props="windows">virtual int setVideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config) = 0;</codeblock>
                                 <codeblock props="rust">pub fn set_video_encoder_configuration(&amp;self, config: agorartcnative::VideoEncoderConfiguration) -> i32 {
@@ -90,15 +240,7 @@
     }
 }</codeblock>
                         </p>
-                        <!--enableAudio-->
-                        <p id="enableAudio">
-                                <codeblock outputclass="language-cpp" props="rust"/>
-                                <codeblock props="rust" outputclass="rust">pub fn enable_audio(&amp;self) -> i32 {
-    unsafe {
-        return agorartcnative::enableAudio(self.native_engine);
-    }
-}</codeblock>
-                        </p>
+
                         <!--setDefaultMuteAllRemoteVideoStreams-->
                         <p id="setDefaultMuteAllRemoteVideoStreams">
                                 <codeblock outputclass="language-cpp" props="windows">virtual int setDefaultMuteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
@@ -183,15 +325,7 @@
     }
 }</codeblock>
                         </p>
-                        <!--setAudioProfile-->
-                        <p id="setAudioProfile">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int setAudioProfile(AUDIO_PROFILE_TYPE profile, AUDIO_SCENARIO_TYPE scenario) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn set_audio_profile(&amp;self, profile: AUDIO_PROFILE_TYPE, scenario: AUDIO_SCENARIO_TYPE) -> i32 {
-    unsafe {
-        return agorartcnative::setAudioProfile(self.native_engine, profile as u32, scenario as u32);
-    }
-}</codeblock>
-                        </p>
+
                         <!--setRemoteRenderMode-->
                         <p id="setRemoteRenderMode2">
                             <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
