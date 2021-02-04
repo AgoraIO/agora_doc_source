@@ -1158,21 +1158,409 @@
                 </section>
             
             
-                <section>
-                        <title>Callbacks</title>
-            <!--onUserJoined-->
-            <p id="onUserJoined">
-                <codeblock props="rust windows">virtual void onUserJoined(uid_t uid, int elapsed) {
-    (void)uid;
-    (void)elapsed;
-}</codeblock>
-            </p>
-                        <!--onClientRoleChanged-->
-                        <p id="onClientRoleChanged">
-                                <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
-                                <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
-                                <codeblock props="rust windows" outputclass="language-cpp">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
-                        </p>
+                <section>                                           
+                    <title>Callbacks</title>
+                    <!--onConnectionStateChanged-->
+                    <p id="onConnectionStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionStateChanged(IChannel *rtcChannel,
+                            CONNECTION_STATE_TYPE state,
+                            CONNECTION_CHANGED_REASON_TYPE reason) {
+                            (void)rtcChannel;
+                            (void)state;
+                            (void)reason;
+                            }
+                            };</codeblock>            
+                    </p>
+                    
+                    <!--onJoinChannelSuccess-->
+                    <p id="onJoinChannelSuccess">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onJoinChannelSuccess(IChannel *rtcChannel, uid_t uid, int elapsed) {
+                            (void)rtcChannel;
+                            (void)uid;
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onRejoinChannelSuccess-->
+                    <p id="onRejoinChannelSuccess">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRejoinChannelSuccess(IChannel *rtcChannel, uid_t uid, int elapsed) {
+                            (void)rtcChannel;
+                            (void)uid;
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onLeaveChannel-->
+                    <p id="onLeaveChannel">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLeaveChannel(IChannel *rtcChannel, const RtcStats&amp; stats) {
+                            (void)rtcChannel;
+                            (void)stats;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onClientRoleChanged-->
+                    <p id="onClientRoleChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onClientRoleChanged(IChannel *rtcChannel, CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole) {
+                            (void)rtcChannel;
+                            (void)oldRole;
+                            (void)newRole;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onClientRoleChanged-->
+                    <p id="onClientRoleChanged">
+                        <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
+                        <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
+                        <codeblock props="rust windows" outputclass="language-cpp">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
+                    </p>  
+                    
+                    <!--onUserJoined-->
+                    <p id="onUserJoined">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserJoined(uid_t uid, int elapsed) {
+                            (void)uid;
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>         
+                    
+                    <!--onUserOffline-->
+                    <p id="onUserOffline">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserOffline(IChannel *rtcChannel, uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
+                            (void)rtcChannel;
+                            (void)uid;
+                            (void)reason;
+                            }</codeblock>            
+                    </p>
+
+                    <!--onNetworkTypeChanged-->
+                    <p id="onNetworkTypeChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onNetworkTypeChanged(NETWORK_TYPE type) {
+                            (void)type;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onConnectionInterrupted-->
+                    <p id="onConnectionInterrupted">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionInterrupted() {}</codeblock>            
+                    </p>
+                    
+                    <!--onConnectionLost-->
+                    <p id="onConnectionLost">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionLost() {}</codeblock>            
+                    </p>
+                    
+                    <!--onConnectionBanned-->
+                    <p id="onConnectionBanned">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionBanned() {}</codeblock>            
+                    </p>
+                    
+                    <!--onTokenPrivilegeWillExpire-->
+                    <p id="onTokenPrivilegeWillExpire">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onTokenPrivilegeWillExpire(const char* token) {
+                            (void)token;
+                            }</codeblock>            
+                    </p>
+
+                    <!--onRequestToken-->
+                    <p id="onRequestToken">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRequestToken() {
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onLocalUserRegistered-->
+                    <p id="onLocalUserRegistered">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLocalUserRegistered(uid_t uid, const char* userAccount) {
+                            (void)uid;
+                            (void)userAccount;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onUserInfoUpdated-->
+                    <p id="onUserInfoUpdated">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserInfoUpdated(uid_t uid, const UserInfo&amp; info) {
+                            (void)uid;
+                            (void)info;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onLocalAudioStateChanged-->
+                    <p id="onLocalAudioStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLocalAudioStateChanged(LOCAL_AUDIO_STREAM_STATE state, LOCAL_AUDIO_STREAM_ERROR error) {
+                            (void)state;
+                            (void)error;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onFirstLocalAudioFrame-->
+                    <p id="onFirstLocalAudioFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalAudioFrame(int elapsed) {
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>
+
+                    <!--onLocalVideoStateChanged-->
+                    <p id="onLocalVideoStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState, LOCAL_VIDEO_STREAM_ERROR error) {
+                            (void)localVideoState;
+                            (void)error;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onVideoStopped-->
+                    <p id="onVideoStopped">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onVideoStopped() {}</codeblock>            
+                    </p>
+
+                    <!--onFirstLocalAudioFramePublished-->
+                    <p id="onFirstLocalAudioFramePublished">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalAudioFramePublished(int elapsed) {
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>
+
+                    <!--onFirstLocalVideoFramePublished-->
+                    <p id="onFirstLocalVideoFramePublished">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalVideoFramePublished(int elapsed) {
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>
+
+                    <!--onFirstLocalVideoFrame-->
+                    <p id="onFirstLocalVideoFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalVideoFrame(int width, int height, int elapsed) {
+                            (void)width;
+                            (void)height;
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>
+
+                    <!--onAudioPublishStateChanged-->
+                    <p id="onAudioPublishStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioPublishStateChanged(const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
+                            (void)channel;
+                            (void)oldState;
+                            (void)newState;
+                            (void)elapseSinceLastState;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onVideoPublishStateChanged-->
+                    <p id="onVideoPublishStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onVideoPublishStateChanged(const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
+                            (void)channel;
+                            (void)oldState;
+                            (void)newState;
+                            (void)elapseSinceLastState;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onRemoteAudioStateChanged-->
+                    <p id="onRemoteAudioStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(uid_t uid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {
+                            (void)uid;
+                            (void)state;
+                            (void)reason;
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onRemoteVideoStateChanged-->
+                    <p id="onRemoteVideoStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
+                            (void)uid;
+                            (void)state;
+                            (void)reason;
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onFirstRemoteAudioFrame-->
+                    <p id="onFirstRemoteAudioFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteAudioFrame(uid_t uid, int elapsed) {
+                            (void)uid;
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>
+
+                    <!--onFirstRemoteAudioDecoded-->
+                    <p id="onFirstRemoteAudioDecoded">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) {
+                            (void)uid;
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onFirstRemoteVideoFrame-->
+                    <p id="onFirstRemoteVideoFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t uid, int width, int height, int elapsed) {
+                            (void)uid;
+                            (void)width;
+                            (void)height;
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onFirstRemoteVideoDecoded-->
+                    <p id="onFirstRemoteVideoDecoded">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed) {
+                            (void)uid;
+                            (void)width;
+                            (void)height;
+                            (void)elapsed;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onAudioSubscribeStateChanged-->
+                    <p id="onAudioSubscribeStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioSubscribeStateChanged(const char* channel, uid_t uid, STREAM_SUBSCRIBE_STATE oldState, STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState) {
+                            (void)channel;
+                            (void)uid;
+                            (void)oldState;
+                            (void)newState;
+                            (void)elapseSinceLastState;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onVideoSubscribeStateChanged-->
+                    <p id="onVideoSubscribeStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onVideoSubscribeStateChanged(const char* channel, uid_t uid, STREAM_SUBSCRIBE_STATE oldState, STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState) {
+                            (void)channel;
+                            (void)uid;
+                            (void)oldState;
+                            (void)newState;
+                            (void)elapseSinceLastState;
+                            }</codeblock>            
+                    </p>
+
+                    <!--onUserMuteAudio-->
+                    <p id="onUserMuteAudio">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserMuteAudio(uid_t uid, bool muted) {
+                            (void)uid;
+                            (void)muted;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onUserMuteVideo-->
+                    <p id="onUserMuteVideo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserMuteVideo(uid_t uid, bool muted) {
+                            (void)uid;
+                            (void)muted;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onUserEnableVideo-->
+                    <p id="onUserEnableVideo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserEnableVideo(uid_t uid, bool enabled) {
+                            (void)uid;
+                            (void)enabled;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onUserEnableLocalVideo-->
+                    <p id="onUserEnableLocalVideo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserEnableLocalVideo(uid_t uid, bool enabled) {
+                            (void)uid;
+                            (void)enabled;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onVideoSizeChanged-->
+                    <p id="onVideoSizeChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onVideoSizeChanged(uid_t uid, int width, int height, int rotation) {
+                            (void)uid;
+                            (void)width;
+                            (void)height;
+                            
+                            (void)rotation;
+                            }</codeblock>            
+                    </p>
+
+                    <!--onRtcStats-->
+                    <p id="onRtcStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRtcStats(const RtcStats&amp; stats) {
+                            (void)stats;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onNetworkQuality-->
+                    <p id="onNetworkQuality">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onNetworkQuality(uid_t uid, int txQuality, int rxQuality) {
+                            (void)uid;
+                            (void)txQuality;
+                            (void)rxQuality;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onLocalAudioStats-->
+                    <p id="onLocalAudioStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLocalAudioStats(const LocalAudioStats&amp; stats) {
+                            (void)stats;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onLocalVideoStats-->
+                    <p id="onLocalVideoStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStats(const LocalVideoStats&amp; stats) {
+                            (void)stats;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onRemoteAudioStats-->
+                    <p id="onRemoteAudioStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioStats(const RemoteAudioStats&amp; stats) {
+                            (void)stats;
+                            }</codeblock>            
+                    </p>
+
+                    <!--onRemoteAudioTransportStats-->
+                    <p id="onRemoteAudioTransportStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioTransportStats(
+                            uid_t uid, unsigned short delay, unsigned short lost,
+                            unsigned short rxKBitRate) {
+                            (void)uid;
+                            (void)delay;
+                            (void)lost;
+                            (void)rxKBitRate;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onRemoteVideoStats-->
+                    <p id="onRemoteVideoStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStats(const RemoteVideoStats&amp; stats) {
+                            (void)stats;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onRemoteVideoTransportStats-->
+                    <p id="onRemoteVideoTransportStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoTransportStats(
+                            uid_t uid, unsigned short delay, unsigned short lost,
+                            unsigned short rxKBitRate) {
+                            (void)uid;
+                            (void)delay;
+                            (void)lost;
+                            (void)rxKBitRate;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onAudioQuality-->
+                    <p id="onAudioQuality">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) {
+                            (void)uid;
+                            (void)quality;
+                            (void)delay;
+                            (void)lost;
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--onAudioMixingStateChanged-->
+                    <p id="onAudioMixingStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_ERROR_TYPE errorCode){
+                            }</codeblock>            
+                    </p>
+
+
+
+
                         <!--onLeaveChannel-->
                         <p id="onLeaveChannel">
                                 <codeblock props="rust windows" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
