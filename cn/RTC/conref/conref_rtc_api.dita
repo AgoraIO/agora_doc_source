@@ -1192,7 +1192,8 @@
                     <p id="onClientRoleChanged">
                         <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
                         <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
-                        <codeblock props="rust windows" outputclass="language-cpp">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)</codeblock>
+                        <codeblock props="rust windows" outputclass="language-cpp">virtual void onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole) {
+    }</codeblock>
                     </p>
                     
                     <!--onUserJoined-->
@@ -1449,7 +1450,6 @@
         (void)uid;
         (void)width;
         (void)height;
-
         (void)rotation;
     }</codeblock>            
                     </p>
@@ -2352,6 +2352,26 @@ BeautyOptions()
 
                     <!-- TranscodingUser -->
                     <p id="TranscodingUser">
+                        <codeblock props="windows" outputclass="language-cpp">typedef struct TranscodingUser {
+    uid_t uid;
+    int x;
+    int y;
+    int width;
+    int height;
+    int zOrder;
+    double alpha;
+    int audioChannel;
+    TranscodingUser()
+        : uid(0)
+        , x(0)
+        , y(0)
+        , width(0)
+        , height(0)
+        , zOrder(0)
+        , alpha(1.0)
+        , audioChannel(0)
+    {}
+} TranscodingUser;</codeblock>   
                         <codeblock props="rust" outputclass="rust">pub struct TranscodingUser {
     pub uid: uid_t,
     pub x: ::std::os::raw::c_int,
