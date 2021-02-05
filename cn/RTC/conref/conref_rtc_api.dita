@@ -3,274 +3,2057 @@
 <topic id="apidef">
         <title>RTC APIs for Reuse</title>
         <body>
-                <section id="section_mjq_rgy_vnb">
-                        <title>Methods</title>
-                        <!-- createAgoraRtcEngine -->
-                        <p id="createAgoraRtcEngine">
-                                <codeblock props="windows" outputclass="language-cpp">AGORA_API agora::rtc::IRtcEngine *AGORA_CALL createAgoraRtcEngine ()</codeblock>
-                        </p>
-                        <!--setClientRole-->
-                        <p id="setClientRole1">
-                                <codeblock props="android" outputclass="java">public abstract int setClientRole(int role);</codeblock>
-                                <codeblock props="ios" outputclass="objective-c">- (int)setClientRole:(AgoraClientRole)role;</codeblock>
-                                <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn set_client_role(&amp;self, role: CLIENT_ROLE_TYPE) -> i32 {
+                <section id="section_mjq_rgy_vnb"
+                ><title>Methods</title>
+                    <!--createAgoraRtcEngine-->
+                    <p id="createAgoraRtcEngine">
+                        <codeblock props="windows" outputclass="language-cpp">AGORA_API agora::rtc::IRtcEngine *AGORA_CALL createAgoraRtcEngine ()</codeblock>
+                    </p>
+                    
+                    <!--initialize-->
+                    <p id="initialize">
+                        <codeblock props="windows" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--release-->
+                    <p id="release">
+                        <codeblock props="windows" outputclass="language-cpp">AGORA_CPP_API static void release (bool sync = false);</codeblock>
+                        <codeblock props="rust" outputclass="rust">pub fn release(&amp;self, sync: bool) {
+    unsafe {
+    let is_sync: i32 = if sync { 1 } else { 0 };
+    agorartcnative::release(self.native_engine, is_sync);
+    }
+    }
+                        </codeblock>
+                    </p>
+                    
+                    <!--setChannelProfile-->
+                    <p id="setChannelProfile">
+                        <codeblock props="android" outputclass="java">public abstract int setChannelProfile(int profile);</codeblock>
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;</codeblock>
+                        <codeblock props="rust" outputclass="rust">pub fn set_channel_profile(&amp;self, profile: CHANNEL_PROFILE_TYPE) -> i32 {
+    unsafe {
+    return agorartcnative::setChannelProfile(self.native_engine, profile as u32);
+    }
+    }</codeblock>
+                    </p>
+                    
+                    <!--setClientRole1-->
+                    <p id="setClientRole1">
+                        <codeblock props="android" outputclass="java">public abstract int setClientRole(int role);</codeblock>
+                        <codeblock props="ios" outputclass="objective-c">- (int)setClientRole:(AgoraClientRole)role;</codeblock>
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role) = 0;</codeblock>
+                        <codeblock props="rust" outputclass="rust">pub fn set_client_role(&amp;self, role: CLIENT_ROLE_TYPE) -> i32 {
     unsafe {
         return agorartcnative::setClientRole(self.native_engine, role as u32);
     }
+}
+                        </codeblock>            
+                    </p>
+                    
+                    <!--setClientRole2-->
+                    <p id="setClientRole2">
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role, const ClientRoleOptions&amp; options) = 0;</codeblock>
+                    </p>
+                    
+                    <!--joinChannel1-->
+                    <p id="joinChannel1">
+                        <codeblock props="android" outputclass="java">public abstract int joinChannel(String token, String channelName, String optionalInfo, int optionalUid);</codeblock>
+                        <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, const char* info, uid_t uid) = 0;</codeblock>
+                        <codeblock props="rust" outputclass="rust">pub fn join_channel(&amp;self, token: &amp;str, channel_id: &amp;str, info: &amp;str, uid: u32) -> i32 {
+  unsafe {
+      let the_token: &amp;CStr = &amp;CString::new(token).expect("token new failed");
+      let the_channel_id: &amp;CStr = &amp;CString::new(channel_id).expect("channel_id new failed");
+      let the_info: &amp;CStr = &amp;CString::new(info).expect("info new failed");
+      return agorartcnative::joinChannel(self.native_engine, the_token.as_ptr(), the_channel_id.as_ptr(), the_info.as_ptr(), uid);
+  }
 }</codeblock>
-                        </p>
-                        <!--joinChannel-->
-                        <p id="join">
-                                <codeblock props="android" outputclass="java">public abstract int joinChannel(String token, String channelName, String optionalInfo, int optionalUid);</codeblock>
-                                <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, const char* info, uid_t uid) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn join_channel(&amp;self, token: &amp;str, channel_id: &amp;str, info: &amp;str, uid: u32) -> i32 {
-    unsafe {
-        let the_token: &amp;CStr = &amp;CString::new(token).expect("token new failed");
-        let the_channel_id: &amp;CStr = &amp;CString::new(channel_id).expect("channel_id new failed");
-        let the_info: &amp;CStr = &amp;CString::new(info).expect("info new failed");
-        return agorartcnative::joinChannel(self.native_engine, the_token.as_ptr(), the_channel_id.as_ptr(), the_info.as_ptr(), uid);
-    }
-}</codeblock>
-                        </p>
-                        <!--leaveChannel-->
-                        <p id="leave">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn leave_channel(&amp;self) -> i32 {
+                    </p>
+                    
+                    <!--joinChannel2-->
+                    <p id="joinChannel2">
+                        <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token,
+    const char* channelId,
+    const char* info,
+    uid_t uid,
+    const ChannelMediaOptions&amp; options) = 0;</codeblock>
+                    </p>
+                    
+                    <!--switchChannel1-->
+                    <p id="switchChannel1">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int switchChannel(const char* token, const char* channelId) = 0;</codeblock>
+                    </p>
+                    
+                    <!--switchChannel2-->
+                    <p id="switchChannel2">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int switchChannel(const char* token, const char* channelId, const ChannelMediaOptions&amp; options) = 0;</codeblock>
+                    </p>
+                    
+                    <!--leaveChannel-->
+                    <p id="leaveChannel">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn leave_channel(&amp;self) -> i32 {
     unsafe {
         return agorartcnative::leaveChannel(self.native_engine);
     }
-}</codeblock>
-                        </p>
-                        <!--release-->
-                        <p id="release">
-                                <codeblock props="windows" outputclass="language-cpp">AGORA_CPP_API static void release (bool sync = false);</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn release(&amp;self, sync: bool) {
-    unsafe {
-        let is_sync: i32 = if sync { 1 } else { 0 };
-        agorartcnative::release(self.native_engine, is_sync);
-    }
-}</codeblock>
-                        </p>
-                        <!--setChannelProfile-->
-                        <p id="setChannelProfile">
-                                <codeblock props="android" outputclass="java">public abstract int setChannelProfile(int profile);</codeblock>
-                                <codeblock props="windows" outputclass="language-cpp">virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn set_channel_profile(&amp;self, profile: CHANNEL_PROFILE_TYPE) -> i32 {
-    unsafe {
-        return agorartcnative::setChannelProfile(self.native_engine, profile as u32);
-    }
-}</codeblock>
-                        </p>
-                        <!--setVideoEncoderConfiguration-->
-                        <p id="setVideoEncoderConfiguration">
-                                <codeblock outputclass="language-cpp" props="windows">virtual int setVideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config) = 0;</codeblock>
-                                <codeblock props="rust">pub fn set_video_encoder_configuration(&amp;self, config: agorartcnative::VideoEncoderConfiguration) -> i32 {
-    unsafe {
-        return agorartcnative::setVideoEncoderConfiguration(self.native_engine, config);
-    }
-}</codeblock>
-                        </p>
-                        <!--setLiveTranscoding-->
-                        <p id="setLiveTranscoding">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int setLiveTranscoding(const LiveTranscoding &amp;transcoding) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn set_live_transcoding(&amp;self, transcoding: *const agorartcnative::LiveTranscoding) -> i32 {
-    unsafe {
-        return agorartcnative::setLiveTranscoding(self.native_engine, transcoding);
-    }
-}</codeblock>
-                        </p>
-                        <!--removePublishStreamUrl-->
-                        <p id="removePublishStreamUrl">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int removePublishStreamUrl(const char *url) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn remove_publish_stream_url(&amp;self, url: &amp;str) -> i32 {
-    unsafe {
-        let the_url: &amp;CStr = &amp;CString::new(url).expect("url new failed");
-        return agorartcnative::channel_removePublishStreamUrl(self.native_channel, the_url.as_ptr());
-    }
-}</codeblock>
-                        </p>
-                        <!--enableAudio-->
-                        <p id="enableAudio">
-                                <codeblock outputclass="language-cpp" props="rust"/>
-                                <codeblock props="rust" outputclass="rust">pub fn enable_audio(&amp;self) -> i32 {
-    unsafe {
-        return agorartcnative::enableAudio(self.native_engine);
-    }
-}</codeblock>
-                        </p>
-                        <!--setDefaultMuteAllRemoteVideoStreams-->
-                        <p id="setDefaultMuteAllRemoteVideoStreams">
-                                <codeblock outputclass="language-cpp" props="windows">virtual int setDefaultMuteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn set_default_mute_all_remote_video_streams(&amp;self, mute: bool) -> i32 {
-    unsafe {
-        let is_mute: i32 = if mute { 1 } else { 0 };
-        return agorartcnative::channel_setDefaultMuteAllRemoteVideoStreams(self.native_channel, is_mute);
-    }
-}</codeblock>
-                        </p>
-                        <!--setupLocalVideo-->
-                        <p id="setupLocalVideo">
-                            <codeblock props="windows" outputclass="language-cpp">virtual int setupLocalVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn setup_local_video(&amp;self, canvas: agorartcnative::VideoCanvas) -> i32 {
-    unsafe {
-        return agorartcnative::setupLocalVideo(self.native_engine, canvas);
-    }
-}</codeblock>
-                        </p>
-                        <!--setupRemoteVideo-->
-                        <p id="setupRemoteVideo">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int setupRemoteVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn setup_remote_video(&amp;self, canvas: agorartcnative::VideoCanvas) -> i32 {
-    unsafe {
-        return agorartcnative::setupRemoteVideo(self.native_engine, canvas);
-    }
-}</codeblock>
-                        </p>
-                        <!--muteRemoteVideoStream-->
-                        <p id="muteRemoteVideoStream">
-                                <codeblock outputclass="language-cpp" props="windows">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn mute_remote_video_stream(&amp;self, uid: u32, mute: bool) -> i32 {
-    unsafe {
-        let m: i32 = if mute { 1 } else { 0 };
-        return agorartcnative::muteRemoteVideoStream(self.native_engine, uid, m);
-    }
-}</codeblock>
-                        </p>
-                        <!--enableVideo-->
-                        <p id="enableVideo">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int enableVideo() = 0;</codeblock>
-                        </p>
-                        <!--disableVideo-->
-                        <p id="disableVideo">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int disableVideo() = 0;</codeblock>
-                        </p>
-                        <!--enableLocalVideo-->
-                        <p id="enableLocalVideo">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int enableLocalVideo(bool enabled) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn enable_video(&amp;self) -> i32 {
-    unsafe {
-        return agorartcnative::enableVideo(self.native_engine);
-    }
-}</codeblock>
-                        </p>
-                        <!--setLocalRenderMode-->
-                        <p id="setLocalRenderMode">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int setLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn set_local_render_mode(&amp;self, render_mode: RENDER_MODE_TYPE) -> i32 {
-    unsafe {
-        return agorartcnative::setLocalRenderMode(self.native_engine, render_mode as u32);
-    }
-}</codeblock>
-                        </p>
-                        <!--muteLocalVideoStream-->
-                        <p id="muteLocalVideoStream">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int agora::rtc::IRtcEngine::muteLocalVideoStream(bool mute) = 0; </codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn mute_local_video_stream(&amp;self, mute: bool) -> i32 {
-    unsafe {
-        let m: i32 = if mute { 1 } else { 0 };
-        return agorartcnative::muteLocalVideoStream(self.native_engine, m);
-    }
-} </codeblock>
-                        </p>
-                        <!--muteAllRemoteVideoStreams-->
-                        <p id="muteAllRemoteVideoStreams">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn mute_all_remote_video_streams(&amp;self, mute: bool) -> i32 {
-    unsafe {
-        let m: i32 = if mute { 1 } else { 0 };
-        return agorartcnative::muteAllRemoteVideoStreams(self.native_engine, m);
-    }
-}</codeblock>
-                        </p>
-                        <!--setAudioProfile-->
-                        <p id="setAudioProfile">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int setAudioProfile(AUDIO_PROFILE_TYPE profile, AUDIO_SCENARIO_TYPE scenario) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn set_audio_profile(&amp;self, profile: AUDIO_PROFILE_TYPE, scenario: AUDIO_SCENARIO_TYPE) -> i32 {
-    unsafe {
-        return agorartcnative::setAudioProfile(self.native_engine, profile as u32, scenario as u32);
-    }
-}</codeblock>
-                        </p>
-                        <!--setRemoteRenderMode-->
-                        <p id="setRemoteRenderMode2">
-                            <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn set_remote_render_mode(&amp;self, uid: u32, render_mode: RENDER_MODE_TYPE) -> i32 {
-    unsafe {
-        return agorartcnative::setRemoteRenderMode(self.native_engine, uid, render_mode as u32);
-    }
-}</codeblock>
-                        </p>
-                        <!--startPreview-->
-                        <p id="startPreview">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int startPreview() = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn start_preview(&amp;self) -> i32 {
-    unsafe {
-        return agorartcnative::startPreview(self.native_engine);
-    }
-}</codeblock>
-                        </p>
-                        <!-- stopPreview -->
-                        <p id="stopPreview">
-                                <codeblock props="windows" outputclass="language-cpp">virtual int stopPreview() = 0;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub fn stop_preview(&amp;self) -> i32 {
-    unsafe {
-        return agorartcnative::stopPreview(self.native_engine);
-    }
-}</codeblock>
-                        </p>
-                </section>
-                <section>
-                        <title>Callbacks</title>
-            <!--onUserJoined-->
-            <p id="onUserJoined">
-                <codeblock props="rust windows">virtual void onUserJoined(uid_t uid, int elapsed) {
-    (void)uid;
-    (void)elapsed;
-}</codeblock>
-            </p>
-                        <!--onClientRoleChanged-->
-                        <p id="onClientRoleChanged">
-                                <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
-                                <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
-                                <codeblock props="rust windows" outputclass="language-cpp">virtual void agora::rtc::IRtcEngineEventHandler::onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)	</codeblock>
-                        </p>
-                        <!--onLeaveChannel-->
-                        <p id="onLeaveChannel">
-                                <codeblock props="rust windows" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
-    (void)stats;
-}</codeblock>
-                        </p>
-                        <!--onUserOffline-->
-                        <p id="onUserOffline">
-                                <codeblock props="rust windows" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
-    (void)uid;
-    (void)reason;
-}</codeblock>
-                        </p>
-                        <!--onRemoteVideoStateChanged-->
-                        <p id="onRemoteVideoStateChanged">
-                                <codeblock props="rust windows" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
-    (void)uid;
-    (void)state;
-    (void)reason;
-    (void)elapsed;
 }
-  </codeblock>
-                        </p>
-                        <!--onFirstRemoteVideoDecoded-->
-                        <p id="onFirstRemoteVideoDecoded">
-                                <codeblock props="rust windows" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed) {
-    (void)uid;
-    (void)width;
-    (void)height;
-    (void)elapsed;
-}
-</codeblock>
-                        </p>
+                        </codeblock>
+                    </p>
+                    
+                    <!--renewToken-->
+                    <p id="renewToken">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getConnectionState-->
+                    <p id="getConnectionState">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionState() = 0;</codeblock>
+                    </p>
+                    
+                    <!--registerLocalUserAccount-->
+                    <p id="registerLocalUserAccount">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int registerLocalUserAccount(
+    const char* appId, const char* userAccount) = 0;
+                        </codeblock>            
+                    </p>
+                    
+                    <!--joinChannelWithUserAccount1-->
+                    <p id="joinChannelWithUserAccount1">                
+                        <codeblock props="windows" outputclass="language-cpp">    virtual int joinChannelWithUserAccount(const char* token,
+                                           const char* channelId,
+                                           const char* userAccount) = 0;    
+                        </codeblock>            
+                    </p>
+                    
+                    <!--joinChannelWithUserAccount2-->
+                    <p id="joinChannelWithUserAccount2">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
+                                           const char* channelId,
+                                           const char* userAccount,
+                                           const ChannelMediaOptions&amp; options) = 0;  </codeblock>            
+                    </p>
+
+                    <!--getUserInfoByUserAccount-->
+                    <p id="getUserInfoByUserAccount">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getUserInfoByUserAccount(const char* userAccount, UserInfo* userInfo) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getUserInfoByUid-->
+                    <p id="getUserInfoByUid">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, UserInfo* userInfo) = 0;</codeblock>                     
+                    </p>
+                    
+                    <!--enableWebSdkInteroperability-->
+                    <p id="enableWebSdkInteroperability">                       
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableWebSdkInteroperability(bool enabled) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--enableAudio-->
+                    <p id="enableAudio">              
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableAudio() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--disableAudio-->
+                    <p id="disableAudio">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int disableAudio() = 0;</codeblock>                       
+                    </p>
+                                        
+                    <!--setAudioProfile-->
+                    <p id="setAudioProfile">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setAudioProfile(AUDIO_PROFILE_TYPE profile, AUDIO_SCENARIO_TYPE scenario) = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn set_audio_profile(&amp;self, profile: AUDIO_PROFILE_TYPE, scenario: AUDIO_SCENARIO_TYPE) -> i32 {
+                        unsafe {
+                        return agorartcnative::setAudioProfile(self.native_engine, profile as u32, scenario as u32);
+                        }
+                        }</codeblock>            
+                    </p>
+                    
+                    <!--setHighQualityAudioParameters-->
+                    <p id="setHighQualityAudioParameters">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setHighQualityAudioParameters(bool fullband, bool stereo, bool fullBitrate) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--adjustRecordingSignalVolume-->
+                    <p id="adjustRecordingSignalVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int adjustRecordingSignalVolume(int volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--adjustUserPlaybackSignalVolume-->
+                    <p id="adjustUserPlaybackSignalVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolume(unsigned int uid, int volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--adjustPlaybackSignalVolume-->
+                    <p id="adjustPlaybackSignalVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int adjustPlaybackSignalVolume(int volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--enableLocalAudio-->
+                    <p id="enableLocalAudio">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableLocalAudio(bool enabled) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--muteLocalAudioStream-->
+                    <p id="muteLocalAudioStream">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int muteLocalAudioStream(bool mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--muteRemoteAudioStream-->
+                    <p id="muteRemoteAudioStream">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteAudioStream(uid_t userId, bool mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--muteAllRemoteAudioStreams-->
+                    <p id="muteAllRemoteAudioStreams">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteAudioStreams(bool mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setDefaultMuteAllRemoteAudioStreams-->
+                    <p id="setDefaultMuteAllRemoteAudioStreams">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteAudioStreams(bool mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--enableVideo-->
+                    <p id="enableVideo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableVideo() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--disableVideo-->
+                    <p id="disableVideo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int disableVideo() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setVideoProfile-->
+                    <p id="setVideoProfile">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setVideoProfile(VIDEO_PROFILE_TYPE profile, bool swapWidthAndHeight) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setVideoEncoderConfiguration-->
+                    <p id="setVideoEncoderConfiguration">                
+                        <codeblock outputclass="language-cpp" props="windows">virtual int setVideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config) = 0;</codeblock>                
+                        <codeblock props="rust">pub fn set_video_encoder_configuration(&amp;self, config: agorartcnative::VideoEncoderConfiguration) -> i32 {
+                            unsafe {
+                            return agorartcnative::setVideoEncoderConfiguration(self.native_engine, config);
+                            }
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--setupLocalVideo-->
+                    <p id="setupLocalVideo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setupLocalVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn setup_local_video(&amp;self, canvas: agorartcnative::VideoCanvas) -> i32 {
+                            unsafe {
+                            return agorartcnative::setupLocalVideo(self.native_engine, canvas);
+                            }
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--setupRemoteVideo-->
+                    <p id="setupRemoteVideo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setupRemoteVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn setup_remote_video(&amp;self, canvas: agorartcnative::VideoCanvas) -> i32 {
+                            unsafe {
+                            return agorartcnative::setupRemoteVideo(self.native_engine, canvas);
+                            }
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--setLocalRenderMode1-->
+                    <p id="setLocalRenderMode1">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setLocalRenderMode(RENDER_MODE_TYPE renderMode) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setLocalRenderMode2-->
+                    <p id="setLocalRenderMode2">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn set_local_render_mode(&amp;self, render_mode: RENDER_MODE_TYPE) -> i32 {
+                            unsafe {
+                            return agorartcnative::setLocalRenderMode(self.native_engine, render_mode as u32);
+                            }
+                            }</codeblock>
+                    </p>
+                    
+                    <!--setRemoteRenderMode1-->
+                    <p id="setRemoteRenderMode1">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setRemoteRenderMode2-->
+                    <p id="setRemoteRenderMode2">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn set_remote_render_mode(&amp;self, uid: u32, render_mode: RENDER_MODE_TYPE) -> i32 {
+                            unsafe {
+                            return agorartcnative::setRemoteRenderMode(self.native_engine, uid, render_mode as u32);
+                            }
+                            }</codeblock>
+                    </p>
+                    
+                    <!--startPreview-->
+                    <p id="startPreview">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startPreview() = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn start_preview(&amp;self) -> i32 {
+                            unsafe {
+                            return agorartcnative::startPreview(self.native_engine);
+                            }
+                            }</codeblock>            
+                    </p>
+                    
+                    <!-- stopPreview -->
+                    <p id="stopPreview">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopPreview() = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn stop_preview(&amp;self) -> i32 {
+                            unsafe {
+                            return agorartcnative::stopPreview(self.native_engine);
+                            }
+                            }</codeblock>           
+                    </p>
+                    
+                    <!--enableLocalVideo-->
+                    <p id="enableLocalVideo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableLocalVideo(bool enabled) = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn enable_video(&amp;self) -> i32 {
+                            unsafe {
+                            return agorartcnative::enableVideo(self.native_engine);
+                            }
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--muteLocalVideoStream-->
+                    <p id="muteLocalVideoStream">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int agora::rtc::IRtcEngine::muteLocalVideoStream(bool mute) = 0; </codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn mute_local_video_stream(&amp;self, mute: bool) -> i32 {
+                            unsafe {
+                            let m: i32 = if mute { 1 } else { 0 };
+                            return agorartcnative::muteLocalVideoStream(self.native_engine, m);
+                            }
+                            } </codeblock>            
+                    </p>
+                    
+                    <!--muteRemoteVideoStream-->
+                    <p id="muteRemoteVideoStream">                
+                        <codeblock outputclass="language-cpp" props="windows">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn mute_remote_video_stream(&amp;self, uid: u32, mute: bool) -> i32 {
+                            unsafe {
+                            let m: i32 = if mute { 1 } else { 0 };
+                            return agorartcnative::muteRemoteVideoStream(self.native_engine, uid, m);
+                            }
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--muteAllRemoteVideoStreams-->
+                    <p id="muteAllRemoteVideoStreams">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteVideoStreams(bool mute) = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn mute_all_remote_video_streams(&amp;self, mute: bool) -> i32 {
+                            unsafe {
+                            let m: i32 = if mute { 1 } else { 0 };
+                            return agorartcnative::muteAllRemoteVideoStreams(self.native_engine, m);
+                            }
+                            }</codeblock>
+                    </p>
+                    
+                    <!--setDefaultMuteAllRemoteVideoStreams-->
+                    <p id="setDefaultMuteAllRemoteVideoStreams">                
+                        <codeblock outputclass="language-cpp" props="windows">virtual int setDefaultMuteAllRemoteVideoStreams(bool mute) = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn set_default_mute_all_remote_video_streams(&amp;self, mute: bool) -> i32 {
+                            unsafe {
+                            let is_mute: i32 = if mute { 1 } else { 0 };
+                            return agorartcnative::channel_setDefaultMuteAllRemoteVideoStreams(self.native_channel, is_mute);
+                            }
+                            }                
+                        </codeblock>
+                    </p>
+                    
+                    <!--setBeautyEffectOptions-->
+                    <p id="setBeautyEffectOptions">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setBeautyEffectOptions(bool enabled, BeautyOptions options) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--createChannel-->
+                    <p id="createChannel">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual IChannel* createChannel(const char *channelId) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setChannelEventHandler-->
+                    <p id="setChannelEventHandler">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setChannelEventHandler(IChannelEventHandler *channelEh) = 0;</codeblock>           
+                    </p>
+                    
+                    <!--publish-->
+                    <p id="publish">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int publish() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--unpublish-->
+                    <p id="unpublish">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int unpublish() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--channelId-->
+                    <p id="channelId">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual const char *channelId() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--startScreenCaptureByDisplayId-->
+                    <p id="startScreenCaptureByDisplayId">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCaptureByDisplayId(unsigned int displayId, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--startScreenCaptureByScreenRect-->
+                    <p id="startScreenCaptureByScreenRect">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--startScreenCaptureByWindowId-->
+                    <p id="startScreenCaptureByWindowId">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(view_t windowId, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setScreenCaptureContentHint-->
+                    <p id="setScreenCaptureContentHint">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setScreenCaptureContentHint(VideoContentHint contentHint) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--updateScreenCaptureParameters-->
+                    <p id="updateScreenCaptureParameters">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int updateScreenCaptureParameters(const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--updateScreenCaptureRegion-->
+                    <p id="updateScreenCaptureRegion">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int updateScreenCaptureRegion(const Rectangle&amp; regionRect) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--stopScreenCapture-->
+                    <p id="stopScreenCapture">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopScreenCapture() = 0;</codeblock>            
+                    </p>
+
+                    <!--startAudioMixing-->
+                    <p id="startAudioMixing">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath, bool loopback, bool replace, int cycle) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--stopAudioMixing-->
+                    <p id="stopAudioMixing">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopAudioMixing() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--pauseAudioMixing-->
+                    <p id="pauseAudioMixing">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int pauseAudioMixing() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--resumeAudioMixing-->
+                    <p id="resumeAudioMixing">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int resumeAudioMixing() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--adjustAudioMixingVolume-->
+                    <p id="adjustAudioMixingVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int adjustAudioMixingVolume(int volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--adjustAudioMixingPlayoutVolume-->
+                    <p id="adjustAudioMixingPlayoutVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int adjustAudioMixingPlayoutVolume(int volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--adjustAudioMixingPublishVolume-->
+                    <p id="adjustAudioMixingPublishVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int adjustAudioMixingPublishVolume(int volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setAudioMixingPitch-->
+                    <p id="setAudioMixingPitch">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setAudioMixingPitch(int pitch) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getAudioMixingPlayoutVolume-->
+                    <p id="getAudioMixingPlayoutVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getAudioMixingPlayoutVolume() = 0;</codeblock>            
+                    </p>
+
+                    <!--getAudioMixingPublishVolume-->
+                    <p id="getAudioMixingPublishVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getAudioMixingPublishVolume() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getAudioMixingDuration-->
+                    <p id="getAudioMixingDuration">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getAudioMixingDuration() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getAudioMixingCurrentPosition-->
+                    <p id="getAudioMixingCurrentPosition">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getAudioMixingCurrentPosition() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setAudioMixingPosition-->
+                    <p id="setAudioMixingPosition">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setAudioMixingPosition(int pos /*in ms*/) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getEffectsVolume-->
+                    <p id="getEffectsVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getEffectsVolume() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setEffectsVolume-->
+                    <p id="setEffectsVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setEffectsVolume(int volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setVolumeOfEffect-->
+                    <p id="setVolumeOfEffect">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setVolumeOfEffect(int soundId, int volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--playEffect1-->
+                    <p id="playEffect1"> 
+                        
+                    </p>
+                    
+                    <!--playEffect2-->
+                    <p id="playEffect2">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int playEffect(int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish = false) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--stopEffect-->
+                    <p id="stopEffect">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopEffect(int soundId) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--stopAllEffects-->
+                    <p id="stopAllEffects">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopAllEffects() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--preloadEffect-->
+                    <p id="preloadEffect">     
+                        <codeblock props="windows" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>           
+                    </p>
+                    
+                    <!--unloadEffect-->
+                    <p id="unloadEffect">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int unloadEffect(int soundId) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--pauseEffect-->
+                    <p id="pauseEffect">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int pauseEffect(int soundId) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--pauseAllEffects-->
+                    <p id="pauseAllEffects">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int pauseAllEffects() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--resumeEffect-->
+                    <p id="resumeEffect">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int resumeEffect(int soundId) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--resumeAllEffects-->
+                    <p id="resumeAllEffects">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int resumeAllEffects() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setLocalVoiceChanger-->
+                    <p id="setLocalVoiceChanger">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceChanger(VOICE_CHANGER_PRESET voiceChanger) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setLocalVoiceReverbPreset-->
+                    <p id="setLocalVoiceReverbPreset">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceReverbPreset(AUDIO_REVERB_PRESET reverbPreset) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setLocalVoicePitch-->
+                    <p id="setLocalVoicePitch">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoicePitch(double pitch) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setLocalVoiceEqualization-->
+                    <p id="setLocalVoiceEqualization">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceEqualization(AUDIO_EQUALIZATION_BAND_FREQUENCY bandFrequency, int bandGain) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setLocalVoiceReverb-->
+                    <p id="setLocalVoiceReverb">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceReverb(AUDIO_REVERB_TYPE reverbKey, int value) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setVoiceBeautifierPreset-->
+                    <p id="setVoiceBeautifierPreset">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setVoiceBeautifierPreset(VOICE_BEAUTIFIER_PRESET preset) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setAudioEffectPreset-->
+                    <p id="setAudioEffectPreset">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setAudioEffectPreset(AUDIO_EFFECT_PRESET preset) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setAudioEffectParameters-->
+                    <p id="setAudioEffectParameters">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setAudioEffectParameters(AUDIO_EFFECT_PRESET preset, int param1, int param2) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--enableSoundPositionIndication-->
+                    <p id="enableSoundPositionIndication">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableSoundPositionIndication(bool enabled) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setRemoteVoicePosition-->
+                    <p id="setRemoteVoicePosition">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVoicePosition(uid_t uid, double pan, double gain) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setLiveTranscoding-->
+                    <p id="setLiveTranscoding">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setLiveTranscoding(const LiveTranscoding &amp;transcoding) = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn set_live_transcoding(&amp;self, transcoding: *const agorartcnative::LiveTranscoding) -> i32 {
+                            unsafe {
+                            return agorartcnative::setLiveTranscoding(self.native_engine, transcoding);
+                            }
+                            }</codeblock>            
+                    </p>
+                    
+                    <!--addPublishStreamUrl-->
+                    <p id="addPublishStreamUrl">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int addPublishStreamUrl(const char *url, bool transcodingEnabled) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--removePublishStreamUrl-->
+                    <p id="removePublishStreamUrl">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int removePublishStreamUrl(const char *url) = 0;</codeblock>                
+                        <codeblock props="rust" outputclass="rust">pub fn remove_publish_stream_url(&amp;self, url: &amp;str) -> i32 {
+                            unsafe {
+                            let the_url: &amp;CStr = &amp;CString::new(url).expect("url new failed");
+                            return agorartcnative::channel_removePublishStreamUrl(self.native_channel, the_url.as_ptr());
+                            }
+                            }</codeblock>            
+                    </p>
+                   
+                    <!--startChannelMediaRelay-->
+                    <p id="startChannelMediaRelay">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--updateChannelMediaRelay-->
+                    <p id="updateChannelMediaRelay">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int updateChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>            
+                    </p>
+                   
+                    <!--stopChannelMediaRelay-->
+                    <p id="stopChannelMediaRelay">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopChannelMediaRelay() = 0;</codeblock>           
+                    </p>
+                    
+                    <!--enableAudioVolumeIndication-->
+                    <p id="enableAudioVolumeIndication">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool report_vad) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--enableFaceDetection-->
+                    <p id="enableFaceDetection">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableFaceDetection(bool enable) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setDefaultAudioRouteToSpeakerphone-->
+                    <p id="setDefaultAudioRouteToSpeakerphone">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setEnableSpeakerphone-->
+                    <p id="setEnableSpeakerphone">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setEnableSpeakerphone(bool speakerOn) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--isSpeakerphoneEnabled-->
+                    <p id="isSpeakerphoneEnabled">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool isSpeakerphoneEnabled() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--enableInEarMonitoring-->
+                    <p id="enableInEarMonitoring">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableInEarMonitoring(bool enabled) = 0;</codeblock>            
+                    </p>
+                   
+                    <!--setInEarMonitoringVolume-->
+                    <p id="setInEarMonitoringVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setInEarMonitoringVolume(int volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--enableDualStreamMode-->
+                    <p id="enableDualStreamMode">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableDualStreamMode(bool enabled) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setRemoteVideoStreamType-->
+                    <p id="setRemoteVideoStreamType">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t userId, REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>           
+                    </p>
+                    
+                    <!--setRemoteDefaultVideoStreamType-->
+                    <p id="setRemoteDefaultVideoStreamType">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setLocalPublishFallbackOption-->
+                    <p id="setLocalPublishFallbackOption">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setLocalPublishFallbackOption(STREAM_FALLBACK_OPTIONS option) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setRemoteSubscribeFallbackOption-->
+                    <p id="setRemoteSubscribeFallbackOption">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteSubscribeFallbackOption(STREAM_FALLBACK_OPTIONS option) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setRemoteUserPriority-->
+                    <p id="setRemoteUserPriority">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteUserPriority(uid_t uid, PRIORITY_TYPE userPriority) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--startEchoTest1-->
+                    <p id="startEchoTest1">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startEchoTest() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--startEchoTest2-->
+                    <p id="startEchoTest2">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startEchoTest(int intervalInSeconds) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--stopEchoTest-->
+                    <p id="stopEchoTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopEchoTest() = 0;</codeblock>            
+                    </p>
+                    <!--enableLastmileTest-->
+                    <p id="enableLastmileTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableLastmileTest() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--disableLastmileTest-->
+                    <p id="disableLastmileTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int disableLastmileTest() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--startLastmileProbeTest-->
+                    <p id="startLastmileProbeTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startLastmileProbeTest(const LastmileProbeConfig&amp; config) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--stopLastmileProbeTest-->
+                    <p id="stopLastmileProbeTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopLastmileProbeTest() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setVideoSource-->
+                    <p id="setVideoSource">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool setVideoSource(IVideoSource *source) = 0;</codeblock>           
+                    </p>
+                    
+                    <!--setExternalVideoSource-->
+                    <p id="setExternalVideoSource">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setExternalVideoSource(bool enable, bool useTexture) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--pushVideoFrame-->
+                    <p id="pushVideoFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int pushVideoFrame(ExternalVideoFrame *frame) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setExternalAudioSource-->
+                    <p id="setExternalAudioSource">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setExternalAudioSource(bool enabled, int sampleRate, int channels) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--pushAudioFrame1-->
+                    <p id="pushAudioFrame1">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(MEDIA_SOURCE_TYPE type,
+                             IAudioFrameObserver::AudioFrame* frame,
+                             bool wrap) = 0;</codeblock>           
+                    </p>
+                    
+                    <!--pushAudioFrame2-->
+                    <p id="pushAudioFrame2">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setExternalAudioSink-->
+                    <p id="setExternalAudioSink">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setExternalAudioSink(bool enabled, int sampleRate, int channels) = 0;</codeblock>            
+                    </p>
+                   
+                    <!--pullAudioFrame-->
+                    <p id="pullAudioFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int pullAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--registerAudioFrameObserver-->
+                    <p id="registerAudioFrameObserver">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int registerAudioFrameObserver(IAudioFrameObserver* observer) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setRecordingAudioFrameParameters-->
+                    <p id="setRecordingAudioFrameParameters">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setPlaybackAudioFrameParameters-->
+                    <p id="setPlaybackAudioFrameParameters">
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setMixedAudioFrameParameters-->
+                    <p id="setMixedAudioFrameParameters">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setMixedAudioFrameParameters(int sampleRate, int samplesPerCall) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--registerVideoFrameObserver-->
+                    <p id="registerVideoFrameObserver">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--registerMediaMetadataObserver-->
+                    <p id="registerMediaMetadataObserver">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--addVideoWatermark1-->
+                    <p id="addVideoWatermark1">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int addVideoWatermark(const RtcImage&amp; watermark) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--addVideoWatermark2-->
+                    <p id="addVideoWatermark2">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int addVideoWatermark(const char* watermarkUrl, const WatermarkOptions&amp; options) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--clearVideoWatermarks-->
+                    <p id="clearVideoWatermarks">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int clearVideoWatermarks() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--enableEncryption-->
+                    <p id="enableEncryption">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableEncryption(bool enabled, const EncryptionConfig&amp; config) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--registerPacketObserver-->
+                    <p id="registerPacketObserver">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int registerPacketObserver(IPacketObserver* observer) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setEncryptionMode-->
+                    <p id="setEncryptionMode">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionMode(const char* encryptionMode) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setEncryptionSecret-->
+                    <p id="setEncryptionSecret">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionSecret(const char* secret) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--startAudioRecording1-->
+                    <p id="startAudioRecording1">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--startAudioRecording2-->
+                    <p id="startAudioRecording2">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, int sampleRate, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>           
+                    </p>
+                    
+                    <!--stopAudioRecording-->
+                    <p id="stopAudioRecording">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopAudioRecording() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--addInjectStreamUrl-->
+                    <p id="addInjectStreamUrl">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int addInjectStreamUrl(const char* url, const InjectStreamConfig&amp; config) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--removeInjectStreamUrl-->
+                    <p id="removeInjectStreamUrl">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int removeInjectStreamUrl(const char* url) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--switchCamera-->
+                    <p id="switchCamera">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int switchCamera() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--isCameraZoomSupported-->
+                    <p id="isCameraZoomSupported" > 
+                    </p>
+                    
+                    <!--isCameraTorchSupported-->
+                    <p id="isCameraTorchSupported"> 
+                    </p>
+                    
+                    <!--isCameraFocusSupported-->
+                    <p id="isCameraFocusSupported"> 
+                    </p>
+                    
+                    <!--isCameraExposurePositionSupported-->
+                    <p id="isCameraExposurePositionSupported">                 
+                    </p>
+                   
+                    <!--isCameraAutoFocusFaceModeSupported-->
+                    <p id="isCameraAutoFocusFaceModeSupported">                
+                    </p>
+                    
+                    <!--setCameraZoomFactor-->
+                    <p id="setCameraZoomFactor">                 
+                    </p>
+                    
+                    <!--getCameraMaxZoomFactor-->
+                    <p id="getCameraMaxZoomFactor"> 
+                    </p>
+                    
+                    <!--setCameraFocusPositionInPreview-->
+                    <p id="setCameraFocusPositionInPreview">                        
+                    </p>
+                    
+                    <!--setCameraExposurePosition-->
+                    <p id="setCameraExposurePosition">                 
+                    </p>
+                    
+                    <!--setCameraTorchOn-->
+                    <p id="setCameraTorchOn"> 
+                    </p>
+                    
+                    <!--setCameraAutoFocusFaceModeEnabled-->
+                    <p id="setCameraAutoFocusFaceModeEnabled"> 
+                    </p>
+                    
+                    <!--enumeratePlaybackDevices-->
+                    <p id="enumeratePlaybackDevices">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual IAudioDeviceCollection* enumeratePlaybackDevices() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--enumerateRecordingDevices-->
+                    <p id="enumerateRecordingDevices">               
+                        <codeblock props="windows" outputclass="language-cpp">virtual IAudioDeviceCollection* enumerateRecordingDevices() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setPlaybackDevice-->
+                    <p id="setPlaybackDevice">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setRecordingDevice-->
+                    <p id="setRecordingDevice">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--startPlaybackDeviceTest-->
+                    <p id="startPlaybackDeviceTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startPlaybackDeviceTest(const char* testAudioFilePath) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--stopPlaybackDeviceTest-->
+                    <p id="stopPlaybackDeviceTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopPlaybackDeviceTest() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--startRecordingDeviceTest-->
+                    <p id="startRecordingDeviceTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indicationInterval) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--stopRecordingDeviceTest-->
+                    <p id="stopRecordingDeviceTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopRecordingDeviceTest() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--startAudioDeviceLoopbackTest-->
+                    <p id="startAudioDeviceLoopbackTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startAudioDeviceLoopbackTest(int indicationInterval) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--stopAudioDeviceLoopbackTest-->
+                    <p id="stopAudioDeviceLoopbackTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopAudioDeviceLoopbackTest() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setPlaybackDeviceVolume-->
+                    <p id="setPlaybackDeviceVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackDeviceVolume(int volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getPlaybackDeviceVolume-->
+                    <p id="getPlaybackDeviceVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDeviceVolume(int *volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setRecordingDeviceVolume-->
+                    <p id="setRecordingDeviceVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingDeviceVolume(int volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getRecordingDeviceVolume-->
+                    <p id="getRecordingDeviceVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDeviceVolume(int *volume) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setPlaybackDeviceMute-->
+                    <p id="setPlaybackDeviceMute">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackDeviceMute(bool mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--isApplicationMute-->
+                    <p id="isApplicationMute">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int isApplicationMute(bool&amp; mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getPlaybackDeviceMute-->
+                    <p id="getPlaybackDeviceMute">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDeviceMute(bool *mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setRecordingDeviceMute-->
+                    <p id="setRecordingDeviceMute">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingDeviceMute(bool mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getRecordingDeviceMute-->
+                    <p id="getRecordingDeviceMute">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDeviceMute(bool *mute) = 0;</codeblock>           
+                    </p>
+                    
+                    <!--enumerateVideoDevices-->
+                    <p id="enumerateVideoDevices">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual IVideoDeviceCollection* enumerateVideoDevices() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--startDeviceTest-->
+                    <p id="startDeviceTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startDeviceTest(view_t hwnd) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--stopDeviceTest-->
+                    <p id="stopDeviceTest">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopDeviceTest() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getCount-->
+                    <p id="getCount">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getCount() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getDevice-->
+                    <p id="getDevice">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>           
+                    </p>
+                    
+                    <!--setDevice-->
+                    <p id="setDevice">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--createDataStream1-->
+                    <p id="createDataStream1">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int createDataStream(int* streamId, bool reliable, bool ordered) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--createDataStream2-->
+                    <p id="createDataStream2">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int createDataStream(int* streamId, DataStreamConfig&amp; config) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--sendStreamMessage-->
+                    <p id="sendStreamMessage">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int sendStreamMessage(int streamId, const char* data, size_t length) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setLogFile-->
+                   <p id="setLogFile">                
+                       <codeblock props="windows" outputclass="language-cpp">virtual int setLogFile(const char* filePath) = 0;</codeblock>            
+                   </p>
+                    
+                    <!--setLogFilter-->
+                    <p id="setLogFilter">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setLogFilter(unsigned int filter) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setLogFileSize-->
+                    <p id="setLogFileSize">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setLogFileSize(unsigned int fileSizeInKBytes) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--uploadLogFile-->
+                    <p id="uploadLogFile">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int uploadLogFile(agora::util::AString&amp; requestId) = 0;</codeblock>           
+                    </p>
+                    
+                    <!--enableLoopbackRecording-->
+                    <p id="enableLoopbackRecording">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--setAudioSessionOperationRestriction-->
+                    <p id="setAudioSessionOperationRestriction">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setAudioSessionOperationRestriction(AUDIO_SESSION_OPERATION_RESTRICTION restriction) = 0;</codeblock>           
+                    </p>
+                    
+                    <!--setCameraCapturerConfiguration-->
+                    <p id="setCameraCapturerConfiguration">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setCameraCapturerConfiguration(const CameraCapturerConfiguration&amp; config) = 0;</codeblock>            
+                    </p>
+
+                    <!--complain-->
+                    <p id="complain">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int complain(const char* callId, const char* description) = 0;</codeblock>            
+                    </p>
+
+                    <!--enableDeepLearningDenoise-->
+                    <p id="enableDeepLearningDenoise">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableDeepLearningDenoise(bool enable) = 0;</codeblock>            
+                    </p>
+
+                    <!--getCallId-->
+                    <p id="getCallId">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getCallId(agora::util::AString&amp; callId) = 0;</codeblock>            
+                    </p>
+
+                    <!--getErrorDescription-->
+                    <p id="getErrorDescription">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual const char* getErrorDescription(int code) = 0;</codeblock>           
+                    </p>
+
+                    <!--getVersion-->
+                    <p id="getVersion">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual const char* getVersion(int* build) = 0;</codeblock>            
+                    </p>
+
+                    <!--queryInterface-->
+                    <p id="queryInterface">               
+                        <codeblock props="windows" outputclass="language-cpp">virtual int queryInterface(INTERFACE_ID_TYPE iid, void** inter) = 0;</codeblock>
+                    </p>
+
+                    <!--rate-->
+                    <p id="rate">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int rate(const char* callId, int rating, const char* description) = 0;</codeblock>            
+                    </p>
+
+                    <!--sendCustomReportMessage-->
+                    <p id="sendCustomReportMessage">                        
+                        <codeblock props="windows" outputclass="language-cpp">virtual int sendCustomReportMessage(const char *id, const char* category, const char* event, const char* label, int value) = 0;</codeblock>                        
+                    </p>
+                    
+                    <!--setCloudProxy-->
+                    <p id="setCloudProxy">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock>            
+                    </p>
+                    
                 </section>
-                <section>
-                        <title>Classes</title>
+            
+            
+                <section>                                           
+                    <title>Callbacks</title>
+                    <!--onConnectionStateChanged-->
+                    <p id="onConnectionStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionStateChanged(
+                                          CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason) {
+        (void)state;
+        (void)reason;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onJoinChannelSuccess-->
+                    <p id="onJoinChannelSuccess">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onJoinChannelSuccess(const char* channel, uid_t uid, int elapsed) {
+        (void)channel;
+        (void)uid;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onRejoinChannelSuccess-->
+                    <p id="onRejoinChannelSuccess">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed) {
+        (void)channel;
+        (void)uid;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onLeaveChannel-->
+                    <p id="onLeaveChannel">
+                        <codeblock props="rust windows" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
+        (void)stats;
+    }</codeblock>
+                    </p>
+                    
+                    <!--onClientRoleChanged-->
+                    <p id="onClientRoleChanged">
+                        <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
+                        <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
+                        <codeblock props="rust windows" outputclass="language-cpp">virtual void onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole) {
+    }</codeblock>
+                    </p>
+                    
+                    <!--onUserJoined-->
+                    <p id="onUserJoined">
+                        <codeblock props="rust windows">virtual void onUserJoined(uid_t uid, int elapsed) {
+        (void)uid;
+        (void)elapsed;
+    }</codeblock>
+                    </p>
+                    
+                    <!--onUserOffline-->
+                    <p id="onUserOffline">
+                        <codeblock props="rust windows" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
+        (void)uid;
+        (void)reason;
+    }</codeblock>
+                    </p>
+                    
+                    <!--onNetworkTypeChanged-->
+                    <p id="onNetworkTypeChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onNetworkTypeChanged(NETWORK_TYPE type) {
+        (void)type;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onConnectionInterrupted-->
+                    <p id="onConnectionInterrupted">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionInterrupted() {}</codeblock>            
+                    </p>
+                    
+                    <!--onConnectionLost-->
+                    <p id="onConnectionLost">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionLost() {}</codeblock>            
+                    </p>
+                    
+                    <!--onConnectionBanned-->
+                    <p id="onConnectionBanned">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionBanned() {}</codeblock>            
+                    </p>
+                    
+                    <!--onTokenPrivilegeWillExpire-->
+                    <p id="onTokenPrivilegeWillExpire">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onTokenPrivilegeWillExpire(const char* token) {
+        (void)token;
+    }</codeblock>            
+                    </p>
+
+                    <!--onRequestToken-->
+                    <p id="onRequestToken">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRequestToken() {
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onLocalUserRegistered-->
+                    <p id="onLocalUserRegistered">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLocalUserRegistered(uid_t uid, const char* userAccount) {
+      (void)uid;
+      (void)userAccount;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onUserInfoUpdated-->
+                    <p id="onUserInfoUpdated">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserInfoUpdated(uid_t uid, const UserInfo&amp; info) {
+      (void)uid;
+      (void)info;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onLocalAudioStateChanged-->
+                    <p id="onLocalAudioStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLocalAudioStateChanged(LOCAL_AUDIO_STREAM_STATE state, LOCAL_AUDIO_STREAM_ERROR error) {
+        (void)state;
+        (void)error;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onFirstLocalAudioFrame-->
+                    <p id="onFirstLocalAudioFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalAudioFrame(int elapsed) {
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+
+                    <!--onLocalVideoStateChanged-->
+                    <p id="onLocalVideoStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState, LOCAL_VIDEO_STREAM_ERROR error) {
+        (void)localVideoState;
+        (void)error;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onVideoStopped-->
+                    <p id="onVideoStopped">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onVideoStopped() {}</codeblock>            
+                    </p>
+
+                    <!--onFirstLocalAudioFramePublished-->
+                    <p id="onFirstLocalAudioFramePublished">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalAudioFramePublished(int elapsed) {
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+
+                    <!--onFirstLocalVideoFramePublished-->
+                    <p id="onFirstLocalVideoFramePublished">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalVideoFramePublished(int elapsed) {
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+
+                    <!--onFirstLocalVideoFrame-->
+                    <p id="onFirstLocalVideoFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalVideoFrame(int width, int height, int elapsed) {
+        (void)width;
+        (void)height;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+
+                    <!--onAudioPublishStateChanged-->
+                    <p id="onAudioPublishStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioPublishStateChanged(const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
+        (void)channel;
+        (void)oldState;
+        (void)newState;
+        (void)elapseSinceLastState;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onVideoPublishStateChanged-->
+                    <p id="onVideoPublishStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onVideoPublishStateChanged(const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
+        (void)channel;
+        (void)oldState;
+        (void)newState;
+        (void)elapseSinceLastState;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onRemoteAudioStateChanged-->
+                    <p id="onRemoteAudioStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(uid_t uid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {
+        (void)uid;
+        (void)state;
+        (void)reason;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+              
+                    <!--onRemoteVideoStateChanged-->
+                    <p id="onRemoteVideoStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
+        (void)uid;
+        (void)state;
+        (void)reason;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onFirstRemoteAudioFrame-->
+                    <p id="onFirstRemoteAudioFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteAudioFrame(uid_t uid, int elapsed) {
+        (void)uid;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+
+                    <!--onFirstRemoteAudioDecoded-->
+                    <p id="onFirstRemoteAudioDecoded">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) {
+        (void)uid;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+
+                    <!--onFirstRemoteVideoFrame-->
+                    <p id="onFirstRemoteVideoFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t uid, int width, int height, int elapsed) {
+        (void)uid;
+        (void)width;
+        (void)height;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onFirstRemoteVideoDecoded-->
+                    <p id="onFirstRemoteVideoDecoded">
+                        <codeblock props="rust windows" outputclass="language-cpp">virtual void onFirstRemoteVideoDecoded(uid_t uid, int width, int height, int elapsed) {
+        (void)uid;
+        (void)width;
+        (void)height;
+        (void)elapsed;
+    }              </codeblock>
+                    </p>
+
+                    <!--onAudioSubscribeStateChanged-->
+                    <p id="onAudioSubscribeStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioSubscribeStateChanged(const char* channel, uid_t uid, STREAM_SUBSCRIBE_STATE oldState, STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState) {
+        (void)channel;
+        (void)uid;
+        (void)oldState;
+        (void)newState;
+        (void)elapseSinceLastState;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onVideoSubscribeStateChanged-->
+                    <p id="onVideoSubscribeStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onVideoSubscribeStateChanged(const char* channel, uid_t uid, STREAM_SUBSCRIBE_STATE oldState, STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState) {
+        (void)channel;
+        (void)uid;
+        (void)oldState;
+        (void)newState;
+        (void)elapseSinceLastState;
+    }</codeblock>            
+                    </p>
+
+                    <!--onUserMuteAudio-->
+                    <p id="onUserMuteAudio">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserMuteAudio(uid_t uid, bool muted) {
+        (void)uid;
+        (void)muted;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onUserMuteVideo-->
+                    <p id="onUserMuteVideo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserMuteVideo(uid_t uid, bool muted) {
+        (void)uid;
+        (void)muted;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onUserEnableVideo-->
+                    <p id="onUserEnableVideo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserEnableVideo(uid_t uid, bool enabled) {
+        (void)uid;
+        (void)enabled;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onUserEnableLocalVideo-->
+                    <p id="onUserEnableLocalVideo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserEnableLocalVideo(uid_t uid, bool enabled) {
+        (void)uid;
+        (void)enabled;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onVideoSizeChanged-->
+                    <p id="onVideoSizeChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onVideoSizeChanged(uid_t uid, int width, int height, int rotation) {
+        (void)uid;
+        (void)width;
+        (void)height;
+        (void)rotation;
+    }</codeblock>            
+                    </p>
+
+                    <!--onRtcStats-->
+                    <p id="onRtcStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRtcStats(const RtcStats&amp; stats) {
+        (void)stats;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onNetworkQuality-->
+                    <p id="onNetworkQuality">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onNetworkQuality(uid_t uid, int txQuality, int rxQuality) {
+        (void)uid;
+        (void)txQuality;
+        (void)rxQuality;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onLocalAudioStats-->
+                    <p id="onLocalAudioStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLocalAudioStats(const LocalAudioStats&amp; stats) {
+        (void)stats;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onLocalVideoStats-->
+                    <p id="onLocalVideoStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStats(const LocalVideoStats&amp; stats) {
+        (void)stats;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onRemoteAudioStats-->
+                    <p id="onRemoteAudioStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioStats(const RemoteAudioStats&amp; stats) {
+        (void)stats;
+    }</codeblock>            
+                    </p>
+
+                    <!--onRemoteAudioTransportStats-->
+                    <p id="onRemoteAudioTransportStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioTransportStats(
+        uid_t uid, unsigned short delay, unsigned short lost,
+        unsigned short rxKBitRate) {
+        (void)uid;
+        (void)delay;
+        (void)lost;
+        (void)rxKBitRate;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onRemoteVideoStats-->
+                    <p id="onRemoteVideoStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStats(const RemoteVideoStats&amp; stats) {
+        (void)stats;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onRemoteVideoTransportStats-->
+                    <p id="onRemoteVideoTransportStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoTransportStats(
+        uid_t uid, unsigned short delay, unsigned short lost,
+        unsigned short rxKBitRate) {
+        (void)uid;
+        (void)delay;
+        (void)lost;
+        (void)rxKBitRate;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onAudioQuality-->
+                    <p id="onAudioQuality">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) {
+        (void)uid;
+        (void)quality;
+        (void)delay;
+        (void)lost;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onAudioMixingStateChanged-->
+                    <p id="onAudioMixingStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_ERROR_TYPE errorCode){
+    }</codeblock>            
+                    </p>
+
+                    <!--onAudioMixingFinished-->
+                    <p id="onAudioMixingFinished">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioMixingFinished() {
+    }</codeblock>            
+                    </p>
+
+                    <!--onAudioEffectFinished-->
+                    <p id="onAudioEffectFinished">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioEffectFinished(int soundId) {
+    }</codeblock>            
+                    </p>
+
+                    <!--onChannelWarning-->
+                    <p id="onChannelWarning">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onChannelWarning(IChannel *rtcChannel, int warn, const char* msg) {
+        (void)rtcChannel;
+        (void)warn;
+        (void)msg;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onChannelError-->
+                    <p id="onChannelError">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onChannelError(IChannel *rtcChannel, int err, const char* msg) {
+        (void)rtcChannel;
+        (void)err;
+        (void)msg;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onRtmpStreamingStateChanged-->
+                    <p id="onRtmpStreamingStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRtmpStreamingStateChanged(const char *url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_ERROR errCode) {
+        (void) url;
+        (void) state;
+        (void) errCode;
+    }</codeblock>            
+                    </p>
+
+                    <!--onRtmpStreamingEvent-->
+                    <p id="onRtmpStreamingEvent">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRtmpStreamingEvent(const char* url, RTMP_STREAMING_EVENT eventCode) {
+      (void) url;
+      (void) eventCode;
+  }</codeblock>            
+                    </p>
+
+                    <!--onTranscodingUpdated-->
+                    <p id="onTranscodingUpdated">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onTranscodingUpdated() {
+    }</codeblock>            
+                    </p>
+
+                    <!--onStreamPublished-->
+                    <p id="onStreamPublished">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onStreamPublished(const char *url, int error) {
+        (void)url;
+        (void)error;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onStreamUnpublished-->
+                    <p id="onStreamUnpublished">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onStreamUnpublished(const char *url) {
+        (void)url;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onChannelMediaRelayStateChanged-->
+                    <p id="onChannelMediaRelayStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onChannelMediaRelayStateChanged(CHANNEL_MEDIA_RELAY_STATE state,CHANNEL_MEDIA_RELAY_ERROR code) {
+    }</codeblock>            
+                    </p>
+
+                    <!--onChannelMediaRelayEvent-->
+                    <p id="onChannelMediaRelayEvent">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onChannelMediaRelayEvent(CHANNEL_MEDIA_RELAY_EVENT code) {
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onAudioVolumeIndication-->
+                    <p id="onAudioVolumeIndication">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers, unsigned int speakerNumber, int totalVolume) {
+        (void)speakers;
+        (void)speakerNumber;
+        (void)totalVolume;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onActiveSpeaker-->
+                    <p id="onActiveSpeaker">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t uid) {
+        (void)uid;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onFacePositionChanged-->
+                    <p id="onFacePositionChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight, Rectangle* vecRectangle, int* vecDistance, int numFaces){
+       (void)imageWidth;
+       (void)imageHeight;
+       (void)vecRectangle;
+       (void)vecDistance;
+        (void)numFaces;
+    }
+#endif</codeblock>            
+                    </p>
+
+                    <!--onAudioRouteChanged-->
+                    <p id="onAudioRouteChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioRouteChanged(AUDIO_ROUTE_TYPE routing) {
+        (void)routing;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onLocalPublishFallbackToAudioOnly-->
+                    <p id="onLocalPublishFallbackToAudioOnly">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLocalPublishFallbackToAudioOnly(bool isFallbackOrRecover) {
+        (void)isFallbackOrRecover;
+    }</codeblock>            
+                    </p>
+
+                    <!--onRemoteSubscribeFallbackToAudioOnly-->
+                    <p id="onRemoteSubscribeFallbackToAudioOnly">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteSubscribeFallbackToAudioOnly(uid_t uid, bool isFallbackOrRecover) {
+        (void)uid;
+        (void)isFallbackOrRecover;
+    }</codeblock>            
+                    </p>
+
+                    <!--onLastmileQuality-->
+                    <p id="onLastmileQuality">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLastmileQuality(int quality) {
+        (void)quality;
+    }</codeblock>            
+                    </p>
+
+                    <!--onLastmileProbeResult-->
+                    <p id="onLastmileProbeResult">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLastmileProbeResult(const LastmileProbeResult&amp; result) {
+        (void)result;
+    }</codeblock>            
+                    </p>
+
+                    <!--onRecordAudioFrame-->
+                    <p id="onRecordAudioFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool onRecordAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>            
+                    </p>
+
+                    <!--onPlaybackAudioFrame-->
+                    <p id="onPlaybackAudioFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool onPlaybackAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>            
+                    </p>
+                                        
+                    <!--onPlaybackAudioFrameBeforeMixing-->
+                    <p id="onPlaybackAudioFrameBeforeMixing">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(unsigned int uid,
+      AudioFrame&amp; audioFrame) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--onMixedAudioFrame-->
+                    <p id="onMixedAudioFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool onMixedAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>            
+                    </p>
+
+                    <!--getObservedFramePosition-->
+                    <p id="getObservedFramePosition">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual uint32_t getObservedFramePosition() { return static_cast&lt;uint32_t&gt;(POSITION_POST_CAPTURER | POSITION_PRE_RENDERER); }</codeblock>            
+                    </p>
+
+                    <!--onCaptureVideoFrame-->
+                    <p id="onCaptureVideoFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool onCaptureVideoFrame(VideoFrame&amp; videoFrame) = 0;</codeblock>            
+                    </p>
+
+                    <!--onPreEncodeVideoFrame-->
+                    <p id="onPreEncodeVideoFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool onPreEncodeVideoFrame(VideoFrame&amp; videoFrame) { return true; }</codeblock>            
+                    </p>
+
+                    <!--getSmoothRenderingEnabled-->
+                    <p id="getSmoothRenderingEnabled">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool getSmoothRenderingEnabled(){ return false; }</codeblock>            
+                    </p>
+
+                    <!--onRenderVideoFrame-->
+                    <p id="onRenderVideoFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool onRenderVideoFrame(unsigned int uid, VideoFrame&amp; videoFrame) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--getVideoFormatPreference-->
+                    <p id="getVideoFormatPreference">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual VIDEO_FRAME_TYPE getVideoFormatPreference() { return FRAME_TYPE_YUV420; }</codeblock>            
+                    </p>
+
+                    <!--getRotationApplied-->
+                    <p id="getRotationApplied">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool getRotationApplied() { return false; }</codeblock>            
+                    </p>
+                    
+                    <!--getMirrorApplied-->
+                    <p id="getMirrorApplied">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool getMirrorApplied() { return false; }</codeblock>            
+                    </p>
+                    
+                    <!--getMaxMetadataSize-->
+                    <p id="getMaxMetadataSize">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getMaxMetadataSize() = 0;</codeblock>            
+                    </p>
+
+                    <!--onReadyToSendMetadata-->
+                    <p id="onReadyToSendMetadata">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool onReadyToSendMetadata(Metadata &amp;metadata) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--onMetadataReceived-->
+                    <p id="onMetadataReceived">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onMetadataReceived(const Metadata &amp;metadata) = 0;
+};</codeblock>            
+                    </p>
+                    
+                    <!--onStreamInjectedStatus-->
+                    <p id="onStreamInjectedStatus">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onStreamInjectedStatus(const char* url, uid_t uid, int status) {
+        (void)url;
+        (void)uid;
+        (void)status;
+    }</codeblock>            
+                    </p>
+
+                    <!--onCameraFocusAreaChanged-->
+                    <p id="onCameraFocusAreaChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onCameraFocusAreaChanged(int x, int y, int width, int height) {
+        (void)x;
+        (void)y;
+        (void)width;
+        (void)height;
+    }</codeblock>            
+                    </p>
+
+                    <!--onCameraExposureAreaChanged-->
+                    <p id="onCameraExposureAreaChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onCameraExposureAreaChanged(int x, int y, int width, int height) {
+        (void)x;
+        (void)y;
+        (void)width;
+        (void)height;
+    }</codeblock>            
+                    </p>
+
+                    <!--onAudioDeviceStateChanged-->
+                    <p id="onAudioDeviceStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioDeviceStateChanged(const char* deviceId, int deviceType, int deviceState) {
+        (void)deviceId;
+        (void)deviceType;
+        (void)deviceState;
+    }</codeblock>            
+                    </p>
+
+                    <!--onAudioDeviceVolumeChanged-->
+                    <p id="onAudioDeviceVolumeChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType, int volume, bool muted) {
+        (void)deviceType;
+        (void)volume;
+        (void)muted;
+    }</codeblock>            
+                    </p>
+
+                    <!--onVideoDeviceStateChanged-->
+                    <p id="onVideoDeviceStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onVideoDeviceStateChanged(const char* deviceId, int deviceType, int deviceState) {
+        (void)deviceId;
+        (void)deviceType;
+        (void)deviceState;
+    }</codeblock>            
+                    </p>
+
+                    <!--onStreamMessage-->
+                    <p id="onStreamMessage">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessage(uid_t uid, int streamId, const char* data, size_t length) {
+        (void)uid;
+        (void)streamId;
+        (void)data;
+        (void)length;
+    }</codeblock>            
+                    </p>
+
+                    <!--onStreamMessageError-->
+                    <p id="onStreamMessageError">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessageError(uid_t uid, int streamId, int code, int missed, int cached) {
+        (void)uid;
+        (void)streamId;
+        (void)code;
+        (void)missed;
+        (void)cached;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onWarning-->
+                    <p id="onWarning">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onWarning(int warn, const char* msg) {
+        (void)warn;
+        (void)msg;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--onError-->
+                    <p id="onError">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
+        (void)err;
+        (void)msg;
+    }</codeblock>            
+                    </p>
+
+                    <!--onApiCallExecuted-->
+                    <p id="onApiCallExecuted">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onApiCallExecuted(int err, const char* api, const char* result) {
+        (void)err;
+        (void)api;
+        (void)result;
+    }</codeblock>            
+                    </p>
+                    
+                </section>
+            
+
+                <section>                       
+                    <title>Classes</title>
+                    <!--AudioVolumeInfo-->                    
+                    <p id="AudioVolumeInfo">                
+                        <codeblock props="windows" outputclass="language-cpp">struct AudioVolumeInfo
+{
+    uid_t uid;
+    unsigned int volume; 
+    unsigned int vad;
+    const char * channelId;
+};                    </codeblock>            
+                    </p>                    
+
+                    <!--BeautyOptions-->                    
+                    <p id="BeautyOptions">                
+                        <codeblock props="windows" outputclass="language-cpp">struct BeautyOptions {
+    enum LIGHTENING_CONTRAST_LEVEL
+    {
+        LIGHTENING_CONTRAST_LOW = 0,
+        LIGHTENING_CONTRAST_NORMAL,
+        LIGHTENING_CONTRAST_HIGH
+    };
+
+LIGHTENING_CONTRAST_LEVEL lighteningContrastLevel;
+float lighteningLevel;
+float smoothnessLevel;
+float rednessLevel;
+
+BeautyOptions(LIGHTENING_CONTRAST_LEVEL contrastLevel, float lightening, float smoothness, float redness)
+    : lighteningLevel(lightening),
+    smoothnessLevel(smoothness),
+    rednessLevel(redness),
+    lighteningContrastLevel(contrastLevel) {}
+
+BeautyOptions()
+    : lighteningLevel(0),
+    smoothnessLevel(0),
+    rednessLevel(0),
+    lighteningContrastLevel(LIGHTENING_CONTRAST_NORMAL) {}
+};</codeblock>            
+                    </p>   
+
+                    <!--CameraCapturerConfiguration-->                    
+                    <p id="CameraCapturerConfiguration">                
+                        <codeblock props="windows" outputclass="language-cpp">struct CameraCapturerConfiguration{
+     CAPTURER_OUTPUT_PREFERENCE preference;
+     int captureWidth;
+     int captureHeight;
+     #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+     CAMERA_DIRECTION cameraDirection;
+     #endif
+
+     CameraCapturerConfiguration()
+        :preference(CAPTURER_OUTPUT_PREFERENCE_AUTO)
+        ,captureWidth(640)
+        ,captureHeight(480)
+        {}
+
+    CameraCapturerConfiguration(int width, int height)
+        :preference(CAPTURER_OUTPUT_PREFERENCE_MANUAL)
+        ,captureWidth(width)
+        ,captureHeight(height)
+        {}
+};</codeblock>            
+                    </p>  
+
+
+                    <!--ChannelMediaInfo-->                    
+                    <p id="ChannelMediaInfo">                
+                        <codeblock props="windows" outputclass="language-cpp">struct ChannelMediaInfo {
+	const char* channelName;
+	const char* token;
+	uid_t uid;
+};</codeblock>            
+                    </p>  
+                    <!--ChannelMediaOptions-->                    
+                    <p id="ChannelMediaOptions">                
+                        <codeblock props="windows" outputclass="language-cpp">struct ChannelMediaOptions {
+    bool autoSubscribeAudio;
+    bool autoSubscribeVideo;
+    ChannelMediaOptions()
+    : autoSubscribeAudio(true)
+    , autoSubscribeVideo(true)
+    {}
+};</codeblock>            
+                    </p>                      
+                    <!--ChannelMediaRelayConfiguration-->                    
+                    <p id="ChannelMediaRelayConfiguration">                
+                        <codeblock props="windows" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
+	ChannelMediaInfo *srcInfo;
+	ChannelMediaInfo *destInfos;
+	int destCount;
+
+	ChannelMediaRelayConfiguration()
+			: srcInfo(nullptr)
+			, destInfos(nullptr)
+			, destCount(0)
+	{}
+};</codeblock>            
+                    </p>                      
+                    <!--ClientRoleOptions-->                    
+                    <p id="ClientRoleOptions">                
+                        <codeblock props="windows" outputclass="language-cpp">struct ClientRoleOptions
+{
+    AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel;
+    ClientRoleOptions()
+        : audienceLatencyLevel(AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY) {}
+};</codeblock>            
+                    </p>  
+                    <!--DataStreamConfig-->                    
+                    <p id="DataStreamConfig">                
+                        <codeblock props="windows" outputclass="language-cpp">struct DataStreamConfig {
+    bool syncWithAudio;
+    bool ordered;
+};</codeblock>            
+                    </p>                      
+                    <!--EncryptionConfig-->                    
+                    <p id="EncryptionConfig">                
+                        <codeblock props="windows" outputclass="language-cpp">struct EncryptionConfig{
+    ENCRYPTION_MODE encryptionMode;
+    const char* encryptionKey;
+
+    EncryptionConfig() {
+        encryptionMode = AES_128_XTS;
+        encryptionKey = nullptr;
+    }
+};</codeblock>            
+                    </p>                      
+                    <!--InjectStreamConfig-->                    
+                    <p id="InjectStreamConfig">                
+                        <codeblock props="windows" outputclass="language-cpp">struct InjectStreamConfig {
+    int width;
+    int height;
+    int videoGop;
+    int videoFramerate;
+    int videoBitrate;
+    AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
+    int audioBitrate;
+    int audioChannels;
+
+    InjectStreamConfig()
+        : width(0)
+        , height(0)
+        , videoGop(30)
+        , videoFramerate(15)
+        , videoBitrate(400)
+        , audioSampleRate(AUDIO_SAMPLE_RATE_48000)
+        , audioBitrate(48)
+        , audioChannels(1)
+    {}
+};</codeblock>            
+                    </p>                     
+                    <!--LastmileProbeConfig-->                    
+                    <p id="LastmileProbeConfig">                
+                        <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeConfig {
+    bool probeUplink;
+    bool probeDownlink;
+    unsigned int expectedUplinkBitrate;
+    unsigned int expectedDownlinkBitrate;
+};</codeblock>            
+                    </p>
+                    <!--LastmileProbeOneWayResult-->                    
+                    <p id="LastmileProbeOneWayResult">                
+                        <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeOneWayResult {
+    unsigned int packetLossRate;
+    unsigned int jitter;
+    unsigned int availableBandwidth;
+};</codeblock>            
+                    </p>   
+                    <!--LastmileProbeResult-->                    
+                    <p id="LastmileProbeResult">                
+                        <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeResult{
+    LASTMILE_PROBE_RESULT_STATE state;
+    LastmileProbeOneWayResult uplinkReport;
+    LastmileProbeOneWayResult downlinkReport;
+    unsigned int rtt;
+};</codeblock>            
+                    </p>                       
+                    <!--LiveStreamAdvancedFeature-->                    
+                    <p id="LiveStreamAdvancedFeature">                
+                        <codeblock props="windows" outputclass="language-cpp">typedef struct LiveStreamAdvancedFeature {
+    LiveStreamAdvancedFeature() : featureName(NULL) , opened(false) {
+    }
+    const char* LBHQ = "lbhq";
+    const char* VEO = "veo";
+    const char* featureName;
+
+    bool opened;
+} LiveStreamAdvancedFeature;</codeblock>            
+                    </p>                       
                         <!--LiveTranscoding-->
                         <p id="LiveTranscoding">
                                 <codeblock props="windows" outputclass="language-cpp">typedef struct LiveTranscoding {
@@ -332,8 +2115,263 @@
     pub audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE,
 }</codeblock>
                         </p>
+                    
+                    <!--LocalAudioStats-->                    
+                    <p id="LocalAudioStats">                
+                        <codeblock props="windows" outputclass="language-cpp">struct LocalAudioStats
+{
+    int numChannels;
+    int sentSampleRate;
+    int sentBitrate;
+    unsigned short txPacketLossRate;
+};</codeblock>            
+                    </p>                       
+
+                    <!--LocalVideoStats-->                    
+                    <p id="LocalVideoStats">                
+                        <codeblock props="windows" outputclass="language-cpp">struct LocalVideoStats
+{
+    int sentBitrate;
+    int sentFrameRate;
+    int encoderOutputFrameRate;
+    int rendererOutputFrameRate;
+    int targetBitrate;
+    int targetFrameRate;
+    QUALITY_ADAPT_INDICATION qualityAdaptIndication;
+    int encodedBitrate;
+    int encodedFrameWidth;
+    int encodedFrameHeight;
+    int encodedFrameCount;
+    VIDEO_CODEC_TYPE codecType;
+    unsigned short txPacketLossRate;
+    int captureFrameRate;
+    CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel;
+};</codeblock>            
+                    </p>   
+
+                    <!--LogConfig-->                    
+                    <p id="LogConfig">                
+                        <codeblock props="windows" outputclass="language-cpp">struct LogConfig
+{
+    const char* filePath;
+    int fileSize;
+    LOG_LEVEL level;
+    LogConfig()
+    :filePath(NULL)
+    ,fileSize(-1)
+    ,level(LOG_LEVEL::LOG_LEVEL_INFO)
+    {}
+};</codeblock>            
+                    </p>   
+
+                    <!--Rect-->                    
+                    <p id="Rect">                
+                        <codeblock props="windows" outputclass="language-cpp">typedef struct Rect {
+    int top;
+    int left;
+    int bottom;
+    int right;
+
+    Rect(): top(0), left(0), bottom(0), right(0) {}
+    Rect(int t, int l, int b, int r): top(t), left(l), bottom(b), right(r) {}
+} Rect;</codeblock>            
+                    </p>   
+
+                    <!--Rectangle-->                    
+                    <p id="Rectangle">                
+                        <codeblock props="windows" outputclass="language-cpp">struct Rectangle
+{
+    int x;
+    int y;
+    int width;
+    int height;
+
+    Rectangle(): x(0), y(0), width(0), height(0) {}
+    Rectangle(int xx, int yy, int ww, int hh): x(xx), y(yy), width(ww), height(hh) {}
+};</codeblock>            
+                    </p>   
+
+                    <!--RemoteAudioStats-->                    
+                    <p id="RemoteAudioStats">                
+                        <codeblock props="windows" outputclass="language-cpp">struct RemoteAudioStats
+{
+    uid_t uid;
+    int quality;
+    int networkTransportDelay;
+    int jitterBufferDelay;
+    int audioLossRate;
+    int numChannels;
+    int receivedSampleRate;
+    int receivedBitrate;
+    int totalFrozenTime;
+    int frozenRate;
+    int totalActiveTime;
+    int publishDuration;
+    int qoeQuality;
+    int qualityChangedReason;
+};</codeblock>            
+                    </p>   
+
+                    <!--RemoteVideoStats-->                    
+                    <p id="RemoteVideoStats">                
+                        <codeblock props="windows" outputclass="language-cpp">struct RemoteVideoStats
+{
+    uid_t uid;
+    int delay;
+	int width;
+	int height;
+	int receivedBitrate;
+    int decoderOutputFrameRate;
+    int rendererOutputFrameRate;
+    int packetLossRate;
+    REMOTE_VIDEO_STREAM_TYPE rxStreamType;
+    int totalFrozenTime;
+    int frozenRate;
+    int totalActiveTime;
+    int publishDuration;
+};</codeblock>            
+                    </p>                       
+                    
+                    <!--RtcEngineContext-->                    
+                    <p id="RtcEngineContext">                
+                        <codeblock props="windows" outputclass="language-cpp">struct RtcEngineContext
+{
+    IRtcEngineEventHandler* eventHandler;
+    const char* appId;
+    void* context;
+    unsigned int areaCode;
+    LogConfig logConfig;
+    RtcEngineContext()
+    :eventHandler(NULL)
+    ,appId(NULL)
+    ,context(NULL)
+    ,areaCode(rtc::AREA_CODE_GLOB)
+    {}
+};</codeblock>            
+                    </p>   
+                    
+                    <!--RtcImage-->                    
+                    <p id="RtcImage">                
+                        <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
+    RtcImage() :
+       url(NULL),
+       x(0),
+       y(0),
+       width(0),
+       height(0)
+    {}
+
+    const char* url;
+    int x;
+    int y;
+    int width;
+    int height;
+} RtcImage;</codeblock>
+                        <codeblock props="rust" outputclass="rust">pub struct RtcImage {
+    pub url: *const ::std::os::raw::c_char,
+    pub x: ::std::os::raw::c_int,
+    pub y: ::std::os::raw::c_int,
+    pub width: ::std::os::raw::c_int,
+    pub height: ::std::os::raw::c_int,
+}</codeblock>                        
+                    </p>   
+
+
+                    <!--RtcStats-->                    
+                    <p id="RtcStats">                
+                        <codeblock props="windows" outputclass="language-cpp">struct RtcStats
+{
+    unsigned int duration;
+    unsigned int txBytes;
+    unsigned int rxBytes;
+    unsigned int txAudioBytes;
+    unsigned int txVideoBytes;
+    unsigned int rxAudioBytes;
+    unsigned int rxVideoBytes;
+    unsigned short txKBitRate;
+    unsigned short rxKBitRate;
+    unsigned short rxAudioKBitRate;
+    unsigned short txAudioKBitRate;
+    unsigned short rxVideoKBitRate;
+    unsigned short txVideoKBitRate;
+    unsigned short lastmileDelay;
+    unsigned short txPacketLossRate;
+    unsigned short rxPacketLossRate;
+
+    unsigned int userCount;
+    double cpuAppUsage;
+    double cpuTotalUsage;
+    int gatewayRtt;
+    double memoryAppUsageRatio;
+    double memoryTotalUsageRatio;
+    int memoryAppUsageInKbytes;
+    RtcStats()
+    : duration(0)
+    , txBytes(0)
+    , rxBytes(0)
+    , txAudioBytes(0)
+    , txVideoBytes(0)
+    , rxAudioBytes(0)
+    , rxVideoBytes(0)
+    , txKBitRate(0)
+    , rxKBitRate(0)
+    , rxAudioKBitRate(0)
+    , txAudioKBitRate(0)
+    , rxVideoKBitRate(0)
+    , txVideoKBitRate(0)
+    , lastmileDelay(0)
+    , txPacketLossRate(0)
+    , rxPacketLossRate(0)
+    , userCount(0)
+    , cpuAppUsage(0)
+    , cpuTotalUsage(0)
+    , gatewayRtt(0)
+    , memoryAppUsageRatio(0)
+    , memoryTotalUsageRatio(0)
+    , memoryAppUsageInKbytes(0) {}
+};</codeblock>            
+                    </p>   
+                    
+                    <!--ScreenCaptureParameters-->                    
+                    <p id="ScreenCaptureParameters">                
+                        <codeblock props="windows" outputclass="language-cpp">struct ScreenCaptureParameters
+{
+    VideoDimensions dimensions;
+    int frameRate;
+    int bitrate;
+    bool captureMouseCursor;
+    bool windowFocus;
+    view_t* excludeWindowList;
+    int excludeWindowCount;
+
+    ScreenCaptureParameters() : dimensions(1920, 1080), frameRate(5), bitrate(STANDARD_BITRATE), captureMouseCursor(true), windowFocus(false), excludeWindowList(NULL), excludeWindowCount(0) {}
+    ScreenCaptureParameters(const VideoDimensions&amp; d, int f, int b, bool c, bool focus, view_t *ex = NULL, int cnt = 0) : dimensions(d), frameRate(f), bitrate(b), captureMouseCursor(c), windowFocus(focus), excludeWindowList(ex), excludeWindowCount(cnt) {}
+    ScreenCaptureParameters(int width, int height, int f, int b, bool c, bool focus, view_t *ex = NULL, int cnt = 0) : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(c), windowFocus(focus), excludeWindowList(ex), excludeWindowCount(cnt) {}
+};</codeblock>            
+                    </p>                      
+
                     <!-- TranscodingUser -->
                     <p id="TranscodingUser">
+                        <codeblock props="windows" outputclass="language-cpp">typedef struct TranscodingUser {
+    uid_t uid;
+    int x;
+    int y;
+    int width;
+    int height;
+    int zOrder;
+    double alpha;
+    int audioChannel;
+    TranscodingUser()
+        : uid(0)
+        , x(0)
+        , y(0)
+        , width(0)
+        , height(0)
+        , zOrder(0)
+        , alpha(1.0)
+        , audioChannel(0)
+    {}
+} TranscodingUser;</codeblock>   
                         <codeblock props="rust" outputclass="rust">pub struct TranscodingUser {
     pub uid: uid_t,
     pub x: ::std::os::raw::c_int,
@@ -345,6 +2383,20 @@
     pub audioChannel: ::std::os::raw::c_int,
 }</codeblock>
                     </p>
+                    
+                    <!--UserInfo-->                    
+                    <p id="UserInfo">                
+                        <codeblock props="windows" outputclass="language-cpp">struct UserInfo {
+  uid_t uid;
+  char userAccount[MAX_USER_ACCOUNT_LENGTH];
+  UserInfo()
+      : uid(0) {
+    userAccount[0] = '\0';
+  }
+};</codeblock>            
+                    </p>   
+                    
+                    
                         <!-- VideoCanvas -->
                         <p id="VideoCanvas">
                             <codeblock outputclass="language-cpp" props="windows">struct VideoCanvas {
@@ -412,33 +2464,28 @@
     pub mirrorMode: VIDEO_MIRROR_MODE_TYPE,
 }</codeblock>
                         </p>
-                        <!--RtcImage-->
-                        <p id="RtcImage">
-                                <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
-    RtcImage() :
-       url(NULL),
-       x(0),
-       y(0),
-       width(0),
-       height(0)
-    {}
-    const char* url;
-    int x;
-    int y;
+                       
+                        <!--VideoDimensions-->
+                        <p id="VideoDimensions">
+                                <codeblock props="windows" outputclass="language-cpp">struct VideoDimensions {
     int width;
     int height;
-} RtcImage;</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub struct RtcImage {
-    pub url: *const ::std::os::raw::c_char,
-    pub x: ::std::os::raw::c_int,
-    pub y: ::std::os::raw::c_int,
+    VideoDimensions()
+        : width(640), height(480)
+    {}
+    VideoDimensions(int w, int h)
+        : width(w), height(h)
+    {}
+};</codeblock>
+                <codeblock props="rust" outputclass="rust">pub struct VideoDimensions {
     pub width: ::std::os::raw::c_int,
     pub height: ::std::os::raw::c_int,
 }</codeblock>
-</p>
-                        <!-- VideoEncoderConfiguration -->
-                        <p id="VideoEncoderConfiguration">
-                                <codeblock outputclass="language-cpp" props="windows">struct VideoEncoderConfiguration {
+                        </p>
+                    
+                    <!-- VideoEncoderConfiguration -->
+                    <p id="VideoEncoderConfiguration">
+                        <codeblock outputclass="language-cpp" props="windows">struct VideoEncoderConfiguration {
     VideoDimensions dimensions;
     FRAME_RATE frameRate;
     int minFrameRate;
@@ -449,7 +2496,7 @@
     VIDEO_MIRROR_MODE_TYPE mirrorMode;
     
     VideoEncoderConfiguration(
-        const VideoDimensions&amp; d, FRAME_RATE f,
+        const VideoDimensions&amp;amp; d, FRAME_RATE f,
         int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mr = VIDEO_MIRROR_MODE_AUTO)
         : dimensions(d), frameRate(f), minFrameRate(-1), bitrate(b),
         minBitrate(DEFAULT_MIN_BITRATE), orientationMode(m),
@@ -474,7 +2521,7 @@
         , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
     {}
 };</codeblock>
-                                <codeblock props="rust" outputclass="rust">pub struct VideoEncoderConfiguration {
+                        <codeblock props="rust" outputclass="rust">pub struct VideoEncoderConfiguration {
     pub dimensions: VideoDimensions,
     pub frameRate: FRAME_RATE,
     pub minFrameRate: ::std::os::raw::c_int,
@@ -484,24 +2531,59 @@
     pub degradationPreference: DEGRADATION_PREFERENCE,
     pub mirrorMode: VIDEO_MIRROR_MODE_TYPE,
 }</codeblock>
-                        </p>
-                        <!--VideoDimensions-->
-                        <p id="VideoDimensions">
-                                <codeblock props="windows" outputclass="language-cpp">struct VideoDimensions {
-    int width;
+                    </p>
+
+                    <!--WatermarkOptions-->                    
+                    <p id="WatermarkOptions">                
+                        <codeblock props="windows" outputclass="language-cpp">typedef struct WatermarkOptions {
+    bool visibleInPreview;
+    Rectangle positionInLandscapeMode;
+    Rectangle positionInPortraitMode;
+
+    WatermarkOptions()
+        : visibleInPreview(true)
+        , positionInLandscapeMode(0, 0, 0, 0)
+        , positionInPortraitMode(0, 0, 0, 0)
+    {}
+} WatermarkOptions;</codeblock>            
+                    </p>   
+                    
+                    <!--ExternalVideoFrame-->                    
+                    <p id="ExternalVideoFrame">                
+                        <codeblock props="windows" outputclass="language-cpp">struct ExternalVideoFrame
+{
+    enum VIDEO_BUFFER_TYPE
+    {
+        VIDEO_BUFFER_RAW_DATA = 1,
+    };
+    enum VIDEO_PIXEL_FORMAT
+    {
+        VIDEO_PIXEL_UNKNOWN = 0,
+        VIDEO_PIXEL_I420 = 1,
+        VIDEO_PIXEL_BGRA = 2,
+        VIDEO_PIXEL_NV21 = 3,
+        VIDEO_PIXEL_RGBA = 4,
+        VIDEO_PIXEL_IMC2 = 5,
+        VIDEO_PIXEL_ARGB = 7,
+        VIDEO_PIXEL_NV12 = 8,
+        VIDEO_PIXEL_I422 = 16,
+    };
+
+    VIDEO_BUFFER_TYPE type;
+    VIDEO_PIXEL_FORMAT format;
+    void* buffer;
+    int stride;
     int height;
-    VideoDimensions()
-        : width(640), height(480)
-    {}
-    VideoDimensions(int w, int h)
-        : width(w), height(h)
-    {}
-};</codeblock>
-                <codeblock props="rust" outputclass="rust">pub struct VideoDimensions {
-    pub width: ::std::os::raw::c_int,
-    pub height: ::std::os::raw::c_int,
-}</codeblock>
-                        </p>
+    int cropLeft;
+    int cropTop;
+    int cropRight;
+    int cropBottom;
+    int rotation;
+    long long timestamp;
+};</codeblock>            
+                    </p>   
+                    
+
                 </section>
 
         </body>
