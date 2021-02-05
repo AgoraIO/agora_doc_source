@@ -373,24 +373,214 @@
                         <codeblock props="windows" outputclass="language-cpp">virtual IChannel* createChannel(const char *channelId) = 0;</codeblock>            
                     </p>
                     
-                    <!--setChannelEventHandler-->
-                    <p id="setChannelEventHandler">                
-                        <codeblock props="windows" outputclass="language-cpp">virtual int setChannelEventHandler(IChannelEventHandler *channelEh) = 0;</codeblock>           
+                    <!--IChannel.release-->
+                    <p id="IChannel.release">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int release() = 0;</codeblock>           
                     </p>
                     
-                    <!--publish-->
-                    <p id="publish">                
+                    <!--IChannel.setChannelEventHandler-->
+                    <p id="IChannel.setChannelEventHandler">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setChannelEventHandler(IChannelEventHandler *channelEh) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.joinChannel-->
+                    <p id="IChannel.joinChannel">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token,
+                            const char* info,
+                            uid_t uid,
+                            const ChannelMediaOptions&amp; options) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.joinChannelWithUserAccount-->
+                    <p id="IChannel.joinChannelWithUserAccount">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
+                                           const char* userAccount,
+                                           const ChannelMediaOptions&amp; options) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.leaveChannel-->
+                    <p id="IChannel.leaveChannel">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>            
+                    </p>
+
+                    <!--IChannel.publish-->
+                    <p id="IChannel.publish">                
                         <codeblock props="windows" outputclass="language-cpp">virtual int publish() = 0;</codeblock>            
                     </p>
-                    
-                    <!--unpublish-->
-                    <p id="unpublish">                
+
+                    <!--IChannel.unpublish-->
+                    <p id="IChannel.unpublish">                
                         <codeblock props="windows" outputclass="language-cpp">virtual int unpublish() = 0;</codeblock>            
                     </p>
-                    
-                    <!--channelId-->
-                    <p id="channelId">                
+
+                    <!--IChannel.channelId-->
+                    <p id="IChannel.channelId">                
                         <codeblock props="windows" outputclass="language-cpp">virtual const char *channelId() = 0;</codeblock>            
+                    </p>
+
+                    <!--IChannel.getCallId-->
+                    <p id="IChannel.getCallId">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getCallId(agora::util::AString&amp; callId) = 0;</codeblock>            
+                    </p>
+
+                    <!--IChannel.renewToken-->
+                    <p id="IChannel.renewToken">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>            
+                    </p>
+
+                    <!--IChannel.setEncryptionSecret-->
+                    <p id="IChannel.setEncryptionSecret">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionSecret(const char* secret) = 0;</codeblock>            
+                    </p>
+
+                    <!--IChannel.setEncryptionMode-->
+                    <p id="IChannel.setEncryptionMode">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionMode(const char* encryptionMode) = 0;</codeblock>            
+                    </p>
+
+                    <!--IChannel.enableEncryption-->
+                    <p id="IChannel.enableEncryption">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int enableEncryption(bool enabled, const EncryptionConfig&amp; config) = 0;</codeblock>            
+                    </p>
+
+                    <!--IChannel.registerPacketObserver-->
+                    <p id="IChannel.registerPacketObserver">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int registerPacketObserver(IPacketObserver* observer) = 0;</codeblock>            
+                    </p>
+
+                    <!--IChannel.registerMediaMetadataObserver-->
+                    <p id="IChannel.registerMediaMetadataObserver">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.setClientRole1-->
+                    <p id="IChannel.setClientRole1">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.setClientRole2-->
+                    <p id="IChannel.setClientRole2">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role, const ClientRoleOptions&amp; options) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.setRemoteUserPriority-->
+                    <p id="IChannel.setRemoteUserPriority">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteUserPriority(uid_t uid, PRIORITY_TYPE userPriority) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.setRemoteVoicePosition-->
+                    <p id="IChannel.setRemoteVoicePosition">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVoicePosition(uid_t uid, double pan, double gain) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.setRemoteRenderMode-->
+                    <p id="IChannel.setRemoteRenderMode">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.setDefaultMuteAllRemoteAudioStreams-->
+                    <p id="IChannel.setDefaultMuteAllRemoteAudioStreams">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteAudioStreams(bool mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.setDefaultMuteAllRemoteVideoStreams-->
+                    <p id="IChannel.setDefaultMuteAllRemoteVideoStreams">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteVideoStreams(bool mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.muteAllRemoteAudioStreams-->
+                    <p id="IChannel.muteAllRemoteAudioStreams">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteAudioStreams(bool mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.adjustUserPlaybackSignalVolume-->
+                    <p id="IChannel.adjustUserPlaybackSignalVolume">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolume(uid_t userId, int volume) = 0;</codeblock>            
+                    </p>
+
+                    <!--IChannel.muteRemoteAudioStream-->
+                    <p id="IChannel.muteRemoteAudioStream">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteAudioStream(uid_t userId, bool mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.muteAllRemoteVideoStreams-->
+                    <p id="IChannel.muteAllRemoteVideoStreams">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteVideoStreams(bool mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.muteRemoteVideoStream-->
+                    <p id="IChannel.muteRemoteVideoStream">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.setRemoteVideoStreamType-->
+                    <p id="IChannel.setRemoteVideoStreamType">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t userId, REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.setRemoteDefaultVideoStreamType-->
+                    <p id="IChannel.setRemoteDefaultVideoStreamType">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.createDataStream1-->
+                    <p id="IChannel.createDataStream1">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int createDataStream(int* streamId, bool reliable, bool ordered) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.createDataStream2-->
+                    <p id="IChannel.createDataStream2">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int createDataStream(int* streamId, DataStreamConfig&amp; config) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.sendStreamMessage-->
+                    <p id="IChannel.sendStreamMessage">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int sendStreamMessage(int streamId, const char* data, size_t length) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.addPublishStreamUrl-->
+                    <p id="IChannel.addPublishStreamUrl">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int addPublishStreamUrl(const char *url, bool transcodingEnabled) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.removePublishStreamUrl-->
+                    <p id="IChannel.removePublishStreamUrl">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int removePublishStreamUrl(const char *url) = 0;</codeblock>            
+                    </p>
+
+                    <!--IChannel.setLiveTranscoding-->
+                    <p id="IChannel.setLiveTranscoding">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setLiveTranscoding(const LiveTranscoding &amp;transcoding) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.addInjectStreamUrl-->
+                    <p id="IChannel.addInjectStreamUrl">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int addInjectStreamUrl(const char* url, const InjectStreamConfig&amp; config) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.removeInjectStreamUrl-->
+                    <p id="IChannel.removeInjectStreamUrl">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int removeInjectStreamUrl(const char* url) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.startChannelMediaRelay-->
+                    <p id="IChannel.startChannelMediaRelay">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int startChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.updateChannelMediaRelay-->
+                    <p id="IChannel.updateChannelMediaRelay">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int updateChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.stopChannelMediaRelay-->
+                    <p id="IChannel.stopChannelMediaRelay">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int stopChannelMediaRelay() = 0;</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.getConnectionState-->
+                    <p id="IChannel.getConnectionState">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionState() = 0;</codeblock>            
                     </p>
                     
                     <!--startScreenCaptureByDisplayId-->
@@ -1550,24 +1740,321 @@
     }</codeblock>            
                     </p>
 
-                    <!--onChannelWarning-->
-                    <p id="onChannelWarning">                
+                    <!--IChannel.onChannelWarning-->
+                    <p id="IChannel.onChannelWarning">                
                         <codeblock props="windows" outputclass="language-cpp">virtual void onChannelWarning(IChannel *rtcChannel, int warn, const char* msg) {
         (void)rtcChannel;
         (void)warn;
         (void)msg;
     }</codeblock>            
                     </p>
-                    
-                    <!--onChannelError-->
-                    <p id="onChannelError">                
+
+                    <!--IChannel.onChannelError-->
+                    <p id="IChannel.onChannelError">                
                         <codeblock props="windows" outputclass="language-cpp">virtual void onChannelError(IChannel *rtcChannel, int err, const char* msg) {
         (void)rtcChannel;
         (void)err;
         (void)msg;
     }</codeblock>            
                     </p>
+
+                    <!--IChannel.onJoinChannelSuccess-->
+                    <p id="IChannel.onJoinChannelSuccess">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onJoinChannelSuccess(IChannel *rtcChannel, uid_t uid, int elapsed) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
                     
+                    <!--IChannel.onRejoinChannelSuccess-->
+                    <p id="IChannel.onRejoinChannelSuccess">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRejoinChannelSuccess(IChannel *rtcChannel, uid_t uid, int elapsed) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onLeaveChannel-->
+                    <p id="IChannel.onLeaveChannel">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLeaveChannel(IChannel *rtcChannel, const RtcStats&amp; stats) {
+        (void)rtcChannel;
+        (void)stats;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onClientRoleChanged-->
+                    <p id="IChannel.onClientRoleChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onClientRoleChanged(IChannel *rtcChannel, CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole) {
+        (void)rtcChannel;
+        (void)oldRole;
+        (void)newRole;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onUserJoined-->
+                    <p id="IChannel.onUserJoined">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserJoined(IChannel *rtcChannel, uid_t uid, int elapsed) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onUserOffline-->
+                    <p id="IChannel.onUserOffline">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onUserOffline(IChannel *rtcChannel, uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)reason;
+    }</codeblock>            
+                    </p>
+
+                    <!--IChannel.onConnectionLost-->
+                    <p id="IChannel.onConnectionLost">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionLost(IChannel *rtcChannel) {
+        (void)rtcChannel;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onRequestToken-->
+                    <p id="IChannel.onRequestToken">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRequestToken(IChannel *rtcChannel) {
+        (void)rtcChannel;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onTokenPrivilegeWillExpire-->
+                    <p id="IChannel.onTokenPrivilegeWillExpire">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onTokenPrivilegeWillExpire(IChannel *rtcChannel, const char* token) {
+        (void)rtcChannel;
+        (void)token;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onRtcStats-->
+                    <p id="IChannel.onRtcStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRtcStats(IChannel *rtcChannel, const RtcStats&amp; stats) {
+        (void)rtcChannel;
+        (void)stats;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onNetworkQuality-->
+                    <p id="IChannel.onNetworkQuality">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onNetworkQuality(IChannel *rtcChannel, uid_t uid, int txQuality, int rxQuality) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)txQuality;
+        (void)rxQuality;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onRemoteVideoStats-->
+                    <p id="IChannel.onRemoteVideoStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStats(IChannel *rtcChannel, const RemoteVideoStats&amp; stats) {
+        (void)rtcChannel;
+        (void)stats;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onRemoteAudioStats-->
+                    <p id="IChannel.onRemoteAudioStats">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioStats(IChannel *rtcChannel, const RemoteAudioStats&amp; stats) {
+        (void)rtcChannel;
+        (void)stats;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onRemoteAudioStateChanged-->
+                    <p id="IChannel.onRemoteAudioStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(IChannel *rtcChannel, uid_t uid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)state;
+        (void)reason;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+
+                    <!--IChannel.onAudioPublishStateChanged-->
+                    <p id="IChannel.onAudioPublishStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioPublishStateChanged(IChannel *rtcChannel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
+        (void)rtcChannel;
+        (void)oldState;
+        (void)newState;
+        (void)elapseSinceLastState;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onVideoPublishStateChanged-->
+                    <p id="IChannel.onVideoPublishStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onVideoPublishStateChanged(IChannel *rtcChannel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
+        (void)rtcChannel;
+        (void)oldState;
+        (void)newState;
+        (void)elapseSinceLastState;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onAudioSubscribeStateChanged-->
+                    <p id="IChannel.onAudioSubscribeStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onAudioSubscribeStateChanged(IChannel *rtcChannel, uid_t uid, STREAM_SUBSCRIBE_STATE oldState, STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)oldState;
+        (void)newState;
+        (void)elapseSinceLastState;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onVideoSubscribeStateChanged-->
+                    <p id="IChannel.onVideoSubscribeStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onVideoSubscribeStateChanged(IChannel *rtcChannel, uid_t uid, STREAM_SUBSCRIBE_STATE oldState, STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)oldState;
+        (void)newState;
+        (void)elapseSinceLastState;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onActiveSpeaker-->
+                    <p id="IChannel.onActiveSpeaker">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onActiveSpeaker(IChannel *rtcChannel, uid_t uid) {
+        (void)rtcChannel;
+        (void)uid;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onVideoSizeChanged-->
+                    <p id="IChannel.onVideoSizeChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onVideoSizeChanged(IChannel *rtcChannel, uid_t uid, int width, int height, int rotation) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)width;
+        (void)height;
+        (void)rotation;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onRemoteVideoStateChanged-->
+                    <p id="IChannel.onRemoteVideoStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(IChannel *rtcChannel, uid_t uid, REMOTE_VIDEO_STATE state, REMOTE_VIDEO_STATE_REASON reason, int elapsed) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)state;
+        (void)reason;
+        (void)elapsed;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onStreamMessage-->
+                    <p id="IChannel.onStreamMessage">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessage(IChannel *rtcChannel, uid_t uid, int streamId, const char* data, size_t length) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)streamId;
+        (void)data;
+        (void)length;
+    }</codeblock>            
+                    </p>
+
+                    <!--IChannel.onStreamMessageError-->
+                    <p id="IChannel.onStreamMessageError">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessageError(IChannel *rtcChannel, uid_t uid, int streamId, int code, int missed, int cached) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)streamId;
+        (void)code;
+        (void)missed;
+        (void)cached;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onChannelMediaRelayStateChanged-->
+                    <p id="IChannel.onChannelMediaRelayStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onChannelMediaRelayStateChanged(IChannel *rtcChannel, CHANNEL_MEDIA_RELAY_STATE state,CHANNEL_MEDIA_RELAY_ERROR code) {
+        (void)rtcChannel;
+        (void)state;
+        (void)code;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onChannelMediaRelayEvent-->
+                    <p id="IChannel.onChannelMediaRelayEvent">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onChannelMediaRelayEvent(IChannel *rtcChannel, CHANNEL_MEDIA_RELAY_EVENT code) {
+        (void)rtcChannel;
+        (void)code;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onRtmpStreamingStateChanged-->
+                    <p id="IChannel.onRtmpStreamingStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRtmpStreamingStateChanged(IChannel *rtcChannel, const char *url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_ERROR errCode) {
+        (void)rtcChannel;
+        (void) url;
+        (RTMP_STREAM_PUBLISH_STATE) state;
+        (RTMP_STREAM_PUBLISH_ERROR) errCode;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onRtmpStreamingEvent-->
+                    <p id="IChannel.onRtmpStreamingEvent">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRtmpStreamingEvent(IChannel *rtcChannel, const char* url, RTMP_STREAMING_EVENT eventCode) {
+        (void) rtcChannel;
+        (void) url;
+        (RTMP_STREAMING_EVENT) eventCode;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onTranscodingUpdated-->
+                    <p id="IChannel.onTranscodingUpdated">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onTranscodingUpdated(IChannel *rtcChannel) {
+        (void)rtcChannel;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onStreamInjectedStatus-->
+                    <p id="IChannel.onStreamInjectedStatus">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onStreamInjectedStatus(IChannel *rtcChannel, const char* url, uid_t uid, int status) {
+        (void)rtcChannel;
+        (void)url;
+        (void)uid;
+        (void)status;
+    }</codeblock>            
+                    </p>
+                    
+                    <!--IChannel.onLocalPublishFallbackToAudioOnly-->
+                    <p id="IChannel.onLocalPublishFallbackToAudioOnly">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onLocalPublishFallbackToAudioOnly(IChannel *rtcChannel, bool isFallbackOrRecover) {
+        (void)rtcChannel;
+        (void)isFallbackOrRecover;
+    }</codeblock>            
+                    </p>
+
+                    <!--IChannel.onRemoteSubscribeFallbackToAudioOnly-->
+                    <p id="IChannel.onRemoteSubscribeFallbackToAudioOnly">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteSubscribeFallbackToAudioOnly(IChannel *rtcChannel, uid_t uid, bool isFallbackOrRecover) {
+        (void)rtcChannel;
+        (void)uid;
+        (void)isFallbackOrRecover;
+    }</codeblock>            
+                    </p>
+
+                    <!--IChannel.onConnectionStateChanged-->
+                    <p id="IChannel.onConnectionStateChanged">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionStateChanged(IChannel *rtcChannel,
+                                          CONNECTION_STATE_TYPE state,
+                                          CONNECTION_CHANGED_REASON_TYPE reason) {
+        (void)rtcChannel;
+        (void)state;
+        (void)reason;
+    }
+};</codeblock>            
+                    </p>
+
                     <!--onRtmpStreamingStateChanged-->
                     <p id="onRtmpStreamingStateChanged">                
                         <codeblock props="windows" outputclass="language-cpp">virtual void onRtmpStreamingStateChanged(const char *url, RTMP_STREAM_PUBLISH_STATE state, RTMP_STREAM_PUBLISH_ERROR errCode) {
