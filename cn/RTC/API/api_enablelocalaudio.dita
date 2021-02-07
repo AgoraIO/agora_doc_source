@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enablelocalaudio">
+    <title><ph keyref="enableLocalAudio"/></title>
+    <shortdesc>开关本地音频采集。</shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableLocalAudio" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <title>原型</title>
+        <p conref="../conref/conref_rtc_api.dita#apidef/enableLocalAudio"/>
+        </section>
+        <section id="detailed_desc">
+            <title>详细描述</title>
+            <p>当用户加入频道时，语音功能默认是开启的。该方法可以关闭或重新开启本地语音功能，即停止或重新开始本地音频采集。</p>
+            <p>该方法不影响接收或播放远端音频流，<xref keyref="enableLocalAudio"></xref>(false) 适用于只听不发的用户场景。</p>
+            <p>语音功能关闭或重新开启后，会收到回调 <xref keyref="onLocalAudioStateChanged"></xref>， 并报告<codeph>LOCAL_AUDIO_STREAM_STATE_STOPPED(0)</codeph>或<codeph>LOCAL_AUDIO_STREAM_STATE_RECORDING</codeph>。</p>
+            <note outputclass="note"><ul>
+                <li>该方法在 <xref keyref="leaveChannel"></xref> 后仍然有效。</li>
+                <li>该方法响应时间较慢，因此声网建议使用如下方法来控制视频模块：<ul>
+                    <li><xref keyref="enableLocalVideo"></xref>: 是否启动摄像头采集并创建本地视频流。</li>
+                    <li><xref keyref="muteLocalVideoStream"></xref>: 是否发布本地视频流。</li>
+                    <li><xref keyref="muteRemoteVideoStream"></xref>: 是否接收并播放远端视频流。</li>
+                    <li><xref keyref="muteAllRemoteVideoStreams"></xref>: 是否接收并播放所有远端视频流。</li>
+                </ul></li>
+            </ul></note>        
+        
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry>
+                    <pt><?oxy-placeholder content="The name of the parameter."?></pt>
+                    <pd><?oxy-placeholder content="The description of the parameter. Please specify if the parameter is optional, output, and has a default value or value range."?></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+        </section></refbody>
+</reference>
