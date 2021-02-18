@@ -18,13 +18,15 @@
             <title>详细描述</title>
             <p>你可以多次调用该方法，通过传入不同的音效文件的 <codeph>soundID</codeph> 和 <codeph>filePath</codeph>，同时播放多个音效文件，实现音效叠加。为获得最佳用户体验，我们建议同时播放的音效文件不要超过 3 个。在 macOS 和 Windows 上，该方法不支持同时播放多个在线音效文件。</p>
             <note outputclass="note">该方法需要在加入频道后调用。</note>
-            <note outputclass="note">如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，确保这里设置的 <parmname>soundId</parmname> 与 <apiname keyref="preloadEffect"/> 设置的 <parmname>soundId</parmname> 相同。</note>
+            
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
                     <pt>soundId</pt>
-                    <pd>指定音效的 ID。每个音效均有唯一的 ID。</pd>
+                    <pd>指定音效的 ID。每个音效均有唯一的 ID。
+                        <note outputclass="note">如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，确保这里设置的 <parmname>soundId</parmname> 与 <apiname keyref="preloadEffect"/> 设置的 <parmname>soundId</parmname> 相同。</note>
+                    </pd>
                 </plentry>
                 <plentry>
                     <pt>filePath</pt>
