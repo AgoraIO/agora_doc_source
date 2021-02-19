@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_removepublishstreamurl">
     <title><ph keyref="removePublishStreamUrl"/></title>
-    <shortdesc><?oxy-placeholder content="Provide a short description for this API."?></shortdesc>
+    <shortdesc>删除旁路推流地址。</shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -16,19 +16,30 @@
         </section>
         <section id="detailed_desc">
             <title>详细描述</title>
-            <?oxy-placeholder content="Details of this API, including any call limit, considerations, version information, deprecated information, and sample code."?>
+            <p>调用该方法后，SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告删除旁路推流地址的状态。</p>
+            <note outputclass="note">
+                <ul>
+                    <li>该方法每次只能删除一路旁路推流地址。若需删除多路流，则需多次调用该方法。</li>
+                    <li>URL 不支持中文等特殊字符。</li>
+                    <li>在直播场景中，只有角色为主播的用户才能调用该方法。</li>
+                </ul>
+            </note>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the parameter."?></pt>
+                    <pt>url</pt>
                     <pd>
-                        <p><?oxy-placeholder content="The description of the parameter. Please specify if the parameter is optional, output, and has a default value or value range."?></p>
+                        待删除的旁路推流地址，格式为 RTMP。该字符长度不能超过 1024 字节。
                     </pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
+            <ul>
+                <li>0：方法调用成功</li>
+                <li>&lt;0：方法调用失败</li>
+            </ul>
         </section></refbody>
 </reference>
