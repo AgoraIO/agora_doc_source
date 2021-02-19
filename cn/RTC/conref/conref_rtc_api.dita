@@ -1020,6 +1020,10 @@
                         <codeblock props="windows" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>            
                     </p>
                     
+                    <!-- consumeRawVideoFrame -->
+                    <p id="consumeRawVideoFrame">
+                        <codeblock props="windows" outputclass="language-cpp">virtual void consumeRawVideoFrame(const unsigned char *buffer, agora::media::ExternalVideoFrame::VIDEO_PIXEL_FORMAT frameType, int width, int height, int rotation, long timestamp) = 0;</codeblock>
+                    </p>
                     <!--registerMediaMetadataObserver-->
                     <p id="registerMediaMetadataObserver">                
                         <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>            
@@ -2368,6 +2372,19 @@
 
                 <section>                       
                     <title>Classes</title>
+                    <!-- AudioFrame -->
+                    <p id="AudioFrame">
+                        <codeblock props="windows" outputclass="language-cpp">struct AudioFrame {
+  AUDIO_FRAME_TYPE type;
+  int samples;
+  int bytesPerSample;
+  int channels;
+  int samplesPerSec;
+  void* buffer;
+  int64_t renderTimeMs;
+  int avsync_type;
+};</codeblock>
+                    </p>
                     <!--AudioVolumeInfo-->                    
                     <p id="AudioVolumeInfo">                
                         <codeblock props="windows" outputclass="language-cpp">struct AudioVolumeInfo
