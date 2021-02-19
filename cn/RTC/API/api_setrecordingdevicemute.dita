@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setplaybackdevice">
-    <title><ph keyref="setPlaybackDevice"></ph></title>
-    <shortdesc>指定播放设备。</shortdesc>
+<reference id="api_setrecordingdevicemute">
+    <title><ph keyref="setRecordingDeviceMute"></ph></title>
+    <shortdesc>静音音频采集设备。</shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setPlaybackDevice" />
+                <indexterm keyref="setRecordingDeviceMute" />
             </keywords>
         </metadata>
     </prolog>
     <refbody><section id="prototype">
         <title>原型</title>
-        <p conref="../conref/conref_rtc_api.dita#apidef/setPlaybackDevice"/>
+        <p conref="../conref/conref_rtc_api.dita#apidef/setRecordingDeviceMute"/>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
-                    <pt>deviceId</pt>
-                    <pd><p>通过 deviceID 指定播放设备。由 <xref keyref="enumeratePlaybackDevices"></xref> 获取。插拔设备不会影响 <parmname>deviceId</parmname>。</p></pd>
+                    <pt>mute</pt>
+                    <pd><p>是否设置音频采集设备静音：<ul>
+                        <li><ph keyref="true"></ph>: 采集设备静音。</li>
+                        <li><ph keyref="false"></ph>: 采集设备为非静音。</li>
+                    </ul></p></pd>
                 </plentry>
             </parml>
         </section>
