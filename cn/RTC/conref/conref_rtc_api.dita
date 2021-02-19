@@ -788,6 +788,11 @@
                         <codeblock props="windows" outputclass="language-cpp">virtual int setVoiceBeautifierPreset(VOICE_BEAUTIFIER_PRESET preset) = 0;</codeblock>            
                     </p>
                     
+                    <!--setVoiceBeautifierParameters-->
+                    <p id="setVoiceBeautifierParameters">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setVoiceBeautifierParameters(VOICE_BEAUTIFIER_PRESET preset, int param1, int param2) = 0;</codeblock>            
+                    </p>
+                    
                     <!--setAudioEffectPreset-->
                     <p id="setAudioEffectPreset">                
                         <codeblock props="windows" outputclass="language-cpp">virtual int setAudioEffectPreset(AUDIO_EFFECT_PRESET preset) = 0;</codeblock>            
@@ -2363,6 +2368,19 @@
 
                 <section>                       
                     <title>Classes</title>
+                    <!-- AudioFrame -->
+                    <p id="AudioFrame">
+                        <codeblock props="windows" outputclass="language-cpp">struct AudioFrame {
+  AUDIO_FRAME_TYPE type;
+  int samples;
+  int bytesPerSample;
+  int channels;
+  int samplesPerSec;
+  void* buffer;
+  int64_t renderTimeMs;
+  int avsync_type;
+};</codeblock>
+                    </p>
                     <!--AudioVolumeInfo-->                    
                     <p id="AudioVolumeInfo">                
                         <codeblock props="windows" outputclass="language-cpp">struct AudioVolumeInfo
