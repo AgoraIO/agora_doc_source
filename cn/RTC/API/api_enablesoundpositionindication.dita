@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enablesoundpositionindication">
     <title><ph keyref="enableSoundPositionIndication"/></title>
-    <shortdesc><?oxy-placeholder content="Provide a short description for this API."?></shortdesc>
+    <shortdesc>开启/关闭远端用户的语音立体声。</shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -16,17 +16,26 @@
         </section>
         <section id="detailed_desc">
             <title>详细描述</title>
-            <?oxy-placeholder content="Details of this API, including any call limit, considerations, version information, deprecated information, and sample code."?>
+            <p>如果想调用 <xref keyref="setRemoteVoicePosition"/> 实现听声辨位的功能，请确保在加入频道前调用该方法开启远端用户的语音立体声。</p>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the parameter."?></pt>
-                    <pd><?oxy-placeholder content="The description of the parameter. Please specify if the parameter is optional, output, and has a default value or value range."?></pd>
+                    <pt>enabled</pt>
+                    <pd>是否开启远端用户语音立体声：
+                        <ul>
+                            <li><ph keyref="true"/>: 开启</li>
+                            <li><ph keyref="false"/>: 关闭</li>
+                        </ul>
+                    </pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
+            <ul>
+                <li>0: 方法调用成功</li>
+                <li>&lt; 0: 方法调用失败</li>
+            </ul>
         </section></refbody>
 </reference>
