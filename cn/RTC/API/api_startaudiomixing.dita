@@ -16,7 +16,7 @@
         </section>
         <section id="detailed_desc">
             <title>详细描述</title>
-            <p>指定本地或在线音频文件来和麦克风采集的音频流进行混音和替换。替换是指用音频文件替换音频采集设备采集的音频流。该方法可以选择是否让对方听到本地播 放的音频并指定循环播放的次数。成功调用该方法后，本地会触发 <xref keyref="onAudioMixingStateChanged"/> (<parmname>PLAY</parmname>) 回调。播放结束后， 会收到 <apiname keyref="onAudioMixingStateChanged"/> (<parmname>STOPPED</parmname>) 回调。</p>
+            <p>指定本地或在线音频文件来和麦克风采集的音频流进行混音和替换。替换是指用音频文件替换音频采集设备采集的音频流。该方法可以选择是否让对方听到本地播 放的音频并指定循环播放的次数。成功调用该方法后，本地会触发 <xref keyref="onAudioMixingStateChanged"/> (<codeph>PLAY</codeph>) 回调。播放结束后， 会收到 <apiname keyref="onAudioMixingStateChanged"/> (<codeph>STOPPED</codeph>) 回调。</p>
             <note outputclass="note">
                 <ul>
                     <li>请在频道内调用该方法，如果在频道外调用该方法可能会出现问题。</li>
@@ -28,11 +28,10 @@
             <parml>
                 <plentry>
                     <pt>filePath</pt>
-                    <pd>指定需要混音的本地或在线音频文件的绝对路径，例如：<codeph>C:/music/audio.mp4</codeph>。建议填写文件后缀名。若无法确定文件后缀名，可不填。
+                    <pd>指定需要混音的本地或在线音频文件的绝对路径，例如：<filepath>C:/music/audio.mp4</filepath>。建议填写文件后缀名。若无法确定文件后缀名，可不填。
                         支持的音频格式包括：3GP、ASF、ADTS、AVI、MP3、MP4、MPEG-4、SAMI 和 WAVE。 详见 <xref
                             href="https://docs.microsoft.com/zh-cn/windows/win32/medfound/supported-media-formats-in-media-foundation"
-                            scope="external">Supported Media Formats in Media
-                        Foundation</xref>。</pd>
+                            scope="external" format="html">Supported Media Formats in Media Foundation</xref>。</pd>
                 </plentry>
                 <plentry>
                     <pt>loopback</pt>
