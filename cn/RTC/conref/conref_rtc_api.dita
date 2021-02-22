@@ -1218,6 +1218,23 @@
                         <codeblock props="windows" outputclass="language-cpp">virtual int stopRecordingDeviceTest() = 0;</codeblock>            
                     </p>
                     
+                    <!--getPlaybackDevice-->
+                    <p id="getPlaybackDevice">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>            
+                    </p>
+                    <!--getPlaybackDeviceInfo-->
+                    <p id="getPlaybackDeviceInfo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDeviceInfo(char deviceId[MAX_DEVICE_ID_LENGTH], char deviceName[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>            
+                    </p>
+                    <!--getRecordingDevice-->
+                    <p id="getRecordingDevice">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>            
+                    </p>
+                    <!--getRecordingDeviceInfo-->
+                    <p id="getRecordingDeviceInfo">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDeviceInfo(char deviceId[MAX_DEVICE_ID_LENGTH], char deviceName[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>            
+                    </p>
+                    
                     <!--startAudioDeviceLoopbackTest-->
                     <p id="startAudioDeviceLoopbackTest">                
                         <codeblock props="windows" outputclass="language-cpp">virtual int startAudioDeviceLoopbackTest(int indicationInterval) = 0;</codeblock>            
@@ -1268,6 +1285,10 @@
                     <p id="getRecordingDeviceMute">                
                         <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDeviceMute(bool *mute) = 0;</codeblock>           
                     </p>
+                    <!--IAudioDeviceManager_release-->
+                    <p id="IAudioDeviceManager_release">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void release() = 0;</codeblock>           
+                    </p>
                     
                     <!--enumerateVideoDevices-->
                     <p id="enumerateVideoDevices">                
@@ -1283,21 +1304,37 @@
                     <p id="stopDeviceTest">                
                         <codeblock props="windows" outputclass="language-cpp">virtual int stopDeviceTest() = 0;</codeblock>            
                     </p>
-                    
-                    <!--getCount-->
-                    <p id="getCount">                
-                        <codeblock props="windows" outputclass="language-cpp">virtual int getCount() = 0;</codeblock>            
-                    </p>
-                    
-                    <!--getDevice-->
-                    <p id="getDevice">                
-                        <codeblock props="windows" outputclass="language-cpp">virtual int getDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>           
-                    </p>
-                    
-                    <!--setDevice-->
-                    <p id="setDevice">                
+                    <!--IVideoDeviceManager_setDevice-->
+                    <p id="IVideoDeviceManager_setDevice">                
                         <codeblock props="windows" outputclass="language-cpp">virtual int setDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>            
                     </p>
+                    <!--IVideoDeviceManager_getDevice-->
+                    <p id="IVideoDeviceManager_getDevice">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>           
+                    </p>
+                    <!--IVideoDeviceManager_release-->
+                    <p id="IVideoDeviceManager_release">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void release() = 0;</codeblock>           
+                    </p>
+                    
+                    <!--IVideoDeviceCollection_getCount-->
+                    <p id="IVideoDeviceCollection_getCount">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getCount() = 0;</codeblock>            
+                    </p>
+                    <!--IVideoDeviceCollection_getDevice-->
+                    <p id="IVideoDeviceCollection_getDevice">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int getDevice(int index, char deviceName[MAX_DEVICE_ID_LENGTH], char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>            
+                    </p>
+                    <!--IVideoDeviceCollection_setDevice-->
+                    <p id="IVideoDeviceCollection_setDevice">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual int setDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>            
+                    </p>
+                    <!--IVideoDeviceCollection_release-->
+                    <p id="IVideoDeviceCollection_release">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual void release() = 0;</codeblock>            
+                    </p>
+                    
+
                     
                     <!--createDataStream1-->
                     <p id="createDataStream1">                
