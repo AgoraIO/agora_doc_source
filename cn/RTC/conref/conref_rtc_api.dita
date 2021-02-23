@@ -1054,6 +1054,27 @@
                         <codeblock props="windows" outputclass="language-cpp">virtual int registerPacketObserver(IPacketObserver* observer) = 0;</codeblock>            
                     </p>
                     
+                    <!--onReceiveAudioPacket-->
+                    <p id="onReceiveAudioPacket">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool onReceiveAudioPacket(Packet&amp; packet) = 0;</codeblock>            
+                    </p>       
+
+                    <!--onReceiveVideoPacket-->
+                    <p id="onReceiveVideoPacket">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool onReceiveVideoPacket(Packet&amp; packet) = 0;
+};</codeblock>            
+                    </p>   
+
+                    <!--onSendAudioPacket-->
+                    <p id="onSendAudioPacket">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool onSendAudioPacket(Packet&amp; packet) = 0;</codeblock>            
+                    </p>   
+
+                    <!--onSendVideoPacket-->
+                    <p id="onSendVideoPacket">                
+                        <codeblock props="windows" outputclass="language-cpp">virtual bool onSendVideoPacket(Packet&amp; packet) = 0;</codeblock>            
+                    </p>   
+                    
                     <!--setEncryptionMode-->
                     <p id="setEncryptionMode">                
                         <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionMode(const char* encryptionMode) = 0;</codeblock>            
@@ -2855,6 +2876,16 @@ BeautyOptions()
     long long timeStampMs;
 };</codeblock>
                     </p>
+                    
+                    <!--Packet--> 
+                    <p id="Packet">
+                        <codeblock props="windows" outputclass="language-cpp">struct Packet
+	{
+		const unsigned char* buffer;
+		unsigned int size;
+	};</codeblock>
+                    </p>
+                    
                     <!--Rect-->                    
                     <p id="Rect">                
                         <codeblock props="windows" outputclass="language-cpp">typedef struct Rect {
