@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_createdatastream2">
+    <title><ph keyref="createDataStream2"></ph></title>
+    <shortdesc>创建数据流。</shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createDataStream2" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <title>原型</title>
+        <p conref="../conref/conref_rtc_api.dita#apidef/createDataStream2"/>
+        </section>
+        <section id="detailed_desc">
+            <title>详细描述</title>
+            <dl>
+                <dlentry outputclass="since">
+                    <dt>自从</dt>
+                    <dd>v3.3.0</dd>
+                </dlentry>
+            </dl>
+            <p>该方法用于创建数据流。每个用户在每个频道中最多只能创建 5 个数据流。</p>
+            <p>该方法不支持数据可靠。接收方会丢弃超出发送时间 5 秒后的数据包。</p>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>config</pt>
+                    <pd>数据流设置。详见 <xref keyref="DataStreamConfig"></xref>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+                <li>方法调用成功: 创建的数据流的 ID。</li>
+                <li>方法调用失败: &lt; 0。你可以参考 <xref href="error_rtc.md" format="md"></xref> 进行问题排查。</li>
+            </ul>
+        </section></refbody>
+</reference>
