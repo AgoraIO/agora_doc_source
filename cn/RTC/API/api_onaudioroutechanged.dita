@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_onmetadatareceived">
-    <title><ph keyref="onMetadataReceived"/></title>
-    <shortdesc>接收端已收到 <xref keyref="Metadata"/>。</shortdesc>
+<reference id="api_onaudioroutechanged">
+    <title><ph keyref="onAudioRouteChanged"/></title>
+    <shortdesc>语音路由已发生变化回调。</shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onMetadataReceived" />
+                <indexterm keyref="onAudioRouteChanged" />
             </keywords>
         </metadata>
     </prolog>
     <refbody><section id="prototype">
         <title>原型</title>
-        <p conref="../conref/conref_rtc_api.dita#apidef/onMetadataReceived"/>
+        <p conref="../conref/conref_rtc_api.dita#apidef/onAudioRouteChanged"/>
         </section>
         <section id="detailed_desc">
             <title>详细描述</title>
-            <p>当接收到远端用户发送的 <apiname keyref="Metadata"/> 时，SDK 会触发该回调。</p>
+            <p>当语音路由发生变化时，SDK 会触发此回调。</p>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
-                    <pt>metadata</pt>
-                    <pd>接收到的 <apiname keyref="Metadata"/>。</pd>
+                    <pt>routing</pt>
+                    <pd>当前的语音路由。详见：<xref keyref="AUDIO_ROUTE_TYPE"/> 。</pd>
                 </plentry>
             </parml>
-        </section></refbody>
+        </section>
+    </refbody>
 </reference>
