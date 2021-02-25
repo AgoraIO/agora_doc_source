@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getcallid">
     <title><ph keyref="getCallId"></ph></title>
-    <shortdesc>获取通话 ID。</shortdesc>
+    <shortdesc id="short">获取通话 ID。</shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,8 +20,21 @@
             需要在通话结束后调用，向 SDK 提交反馈。这些方法中需要填入指定的 <parmname>callId</parmname> 参数。</p>
             <note outputclass="note">该方法需要在加入频道后调用。</note>
         </section>
+        <section id="parameters" props="windows">
+            <title>参数</title>
+                <parml>
+                    <plentry>
+                        <pt>callId</pt>
+                        <pd>输出参数，当前的通话 ID。</pd>
+                    </plentry>
+                </parml>
+        </section>
         <section id="return_values">
             <title>返回值</title>
-                <p>通话 ID。</p>
+            <p props="android">通话 ID。</p>
+            <ul props="windows">
+                <li>0: 方法调用成功</li>
+                <li>&lt; 0: 方法调用失败</li>
+            </ul>
         </section></refbody>
 </reference>
