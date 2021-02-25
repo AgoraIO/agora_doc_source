@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_ivideodevicemanager_setdevice">
-    <title><ph keyref="IVideoDeviceManager_setDevice"></ph></title>
-    <shortdesc>指定设备。</shortdesc>
+<reference id="api_setlocalvideomirrormode">
+    <title><ph keyref="setLocalVideoMirrorMode"></ph></title>
+    <shortdesc>设置本地视频镜像。</shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="IVideoDeviceManager_setDevice" />
+                <indexterm keyref="setLocalVideoMirrorMode" />
             </keywords>
         </metadata>
     </prolog>
     <refbody><section id="prototype">
         <title>原型</title>
-        <p conref="../conref/conref_rtc_api.dita#apidef/IVideoDeviceManager_setDevice"/>
+        <p conref="../conref/conref_rtc_api.dita#apidef/setLocalVideoMirrorMode"/>
         </section>
         <section id="detailed_desc">
             <title>详细描述</title>
-            <note outputclass="note">插拔设备不会改变设备 ID。</note>
+            <dl>
+                <dlentry outputclass="deprecated">
+                    <dt>弃用:</dt>
+                    <dd>从 v3.0.0 起废弃。请改用 <xref keyref="setupLocalVideo"></xref> 或 <xref keyref="setLocalRenderMode2"></xref>。</dd>
+                </dlentry>
+            </dl>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
-                    <pt>deviceId</pt>
-                    <pd>设备 ID。可通过调用 <xref keyref="enumerateVideoDevices"></xref> 方法获取。最大长度为 <xref href="enum_maxdeviceidlengthtype.dita#enum_maxdeviceidlengthtype/MAX_DEVICE_ID_LENGTH"></xref>。</pd>
+                    <pt>mode</pt>
+                    <pd>本地视频镜像模式。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"></xref>。</pd>
                 </plentry>
             </parml>
         </section>
