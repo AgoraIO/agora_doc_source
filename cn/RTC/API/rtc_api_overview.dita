@@ -32,6 +32,54 @@
                     <stentry><xref keyref="createAgoraRtcEngine1"/></stentry>  
                     <stentry>创建 IRtcEngine 对象并返回指针。</stentry>
                 </strow>
+                <strow>
+                    <stentry><xref keyref="create2"/></stentry>  
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="release"/></stentry>  
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setChannelProfile"/></stentry>  
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setClientRole1"/></stentry>  
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setClientRole2"/></stentry>  
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="joinChannel1"/></stentry>  
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="joinChannel2"/></stentry>  
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="switchChannel1"/></stentry>  
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="switchChannel2"/></stentry>  
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="leaveChannel"/></stentry>  
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="renewToken"/></stentry>  
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getConnectionState"/></stentry>  
+                    <stentry></stentry>
+                </strow>
             </simpletable>
         </section>
         <section id="频道事件">
@@ -42,15 +90,435 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
+                    <stentry><xref keyref="onConnectionStateChanged"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onJoinChannelSuccess"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRejoinChannelSuccess"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onLeaveChannel"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
                     <stentry><xref keyref="onClientRoleChanged"/></stentry>
-                    <stentry>用户角色已切换回调</stentry>
+                    <stentry></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="onUserJoined"/></stentry>
-                    <stentry>远端用户加入当前频道回调</stentry>
+                    <stentry></stentry>
                 </strow>
-            </simpletable></section>
+                <strow>
+                    <stentry><xref keyref="onUserOffline"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onNetworkTypeChanged"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onConnectionLost"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onTokenPrivilegeWillExpire"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRequestToken"/></stentry>
+                    <stentry></stentry>
+                </strow>
+            </simpletable>
+        </section>
 
+        <section id="音频管理">
+            <title>音频管理</title>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="enableAudio"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="disableAudio"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setAudioProfile"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="adjustRecordingSignalVolume"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="adjustUserPlaybackSignalVolume"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="adjustPlaybackSignalVolume"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="enableLocalAudio"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="muteLocalAudioStream"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="muteRemoteAudioStream"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="muteAllRemoteAudioStreams"/></stentry>
+                    <stentry></stentry>
+                </strow>
+            </simpletable>
+        </section>
+
+        <section id="视频管理">
+            <title>视频管理</title>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="enableVideo"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="disableVideo"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setVideoEncoderConfiguration"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setupLocalVideo"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setupRemoteVideo"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setLocalRenderMode2"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setRemoteRenderMode2"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="startPreview"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopPreview"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="enableLocalVideo"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="muteLocalVideoStream"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="muteRemoteVideoStream"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="muteAllRemoteVideoStreams"/></stentry>
+                    <stentry></stentry>
+                </strow>
+            </simpletable>
+        </section>
+
+        <section id="本地媒体事件">
+            <title>本地媒体事件</title>
+            <simpletable>
+                <sthead>
+                    <stentry>事件</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onLocalAudioStateChanged"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onLocalVideoStateChanged"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onFirstLocalAudioFramePublished"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onFirstLocalVideoFramePublished"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onFirstLocalVideoFrame"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onAudioPublishStateChanged"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onVideoPublishStateChanged"/></stentry>
+                    <stentry></stentry>
+                </strow>
+            </simpletable>
+        </section>
+
+        <section id="远端媒体事件">
+            <title>远端媒体事件</title>
+            <simpletable>
+                <sthead>
+                    <stentry>事件</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onRemoteAudioStateChanged"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRemoteVideoStateChanged"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onFirstRemoteVideoFrame"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onAudioSubscribeStateChanged"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onVideoSubscribeStateChanged"/></stentry>
+                    <stentry></stentry>
+                </strow>
+            </simpletable>
+        </section>
+
+        <section id="数据统计事件">
+            <title>数据统计事件</title>
+            <p>加入频道后，SDK 每隔 2 秒自动触发本组回调。 我们为这些回调提供了详细的功能描述、实现方法文档，详情请参考<xref href="https://docs.agora.io/cn/Interactive%20Broadcast/in-call_quality_windows?platform=Windows" scope="external">通话中质量监测</xref>。</p>
+            <simpletable>
+                <sthead>
+                    <stentry>事件</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onRtcStats"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onNetworkQuality"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onLocalAudioStats"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onLocalVideoStats"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRemoteAudioStats"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRemoteVideoStats"/></stentry>
+                    <stentry></stentry>
+                </strow>
+            </simpletable>
+        </section>
+
+        <section id="视频前处理及后处理">
+            <title>视频前处理及后处理</title>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="setBeautyEffectOptions"/></stentry>
+                    <stentry></stentry>
+                </strow>
+            </simpletable>
+        </section>                
+
+        <section id="多频道管理">
+            <title>多频道管理</title>
+            <p>我们为该组接口提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref href="https://docs.agora.io/cn/Interactive%20Broadcast/multiple_channel_windows?platform=Windows" scope="external">加入多频道</xref>。</p>
+            <simpletable>
+                <sthead>
+                    <stentry>API</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="createChannel"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="IChannel"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="IChannelEventHandler"/></stentry>
+                    <stentry></stentry>
+                </strow>                   
+            </simpletable>
+        </section>
+        
+        <section id="屏幕共享">
+            <title>屏幕共享</title>
+            <p>我们为该组方法提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref href="https://docs.agora.io/cn/Interactive%20Broadcast/screensharing_windows?platform=Windows" scope="external">进行屏幕共享</xref>。</p>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="startScreenCaptureByDisplayId"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="startScreenCaptureByScreenRect"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="startScreenCaptureByWindowId"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setScreenCaptureContentHint"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="updateScreenCaptureParameters"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="updateScreenCaptureRegion1"/></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopScreenCapture"/></stentry>
+                    <stentry></stentry>
+                </strow>
+            </simpletable>
+        </section>        
+        
+        <section>
+            <title></title>
+            <simpletable>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+            </simpletable>
+        </section>        
+
+        <section>
+            <title></title>
+            <simpletable>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+            </simpletable>
+        </section>
+
+        <section>
+            <title></title>
+            <simpletable>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+                <strow>
+                    <stentry></stentry>
+                    <stentry></stentry>
+                </strow>
+            </simpletable>
+        </section>
+
+
+        
         <!--<section id="音频管理"><title>音频管理</title><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
