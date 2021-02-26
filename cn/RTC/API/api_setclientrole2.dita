@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setclientrole2">
     <title><ph keyref="setClientRole2"></ph>[2/2]</title>
-    <shortdesc>设置直播场景下的用户角色和级别。</shortdesc>
+    <shortdesc id="short">设置直播场景下的用户角色和级别。</shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,7 +19,7 @@
             <dl outputclass="since">
                 <dlentry>
                     <dt>自从</dt>
-                    <dd>v3.3.0</dd>
+                    <dd>v3.2.0</dd>
                 </dlentry>
             </dl>
             <p>在加入频道前和加入频道后均可调用该方法设置用户角色。</p>
@@ -29,7 +29,7 @@
             </ul></p>
             <note outputclass="note"><ul>
                 <li>该方法仅在频道场景为直播（<xref keyref="setChannelProfile"></xref> 中 <parmname>profile</parmname> 设为 <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"></ph>）时生效。</li>
-                <li>该方法与 <xref keyref="setClientRole1"/>[1/2] 的区别在于，该方法还支持设置用户级别。<ul>
+                <li>该方法与 <xref keyref="setClientRole1"/>[1/2] 的区别在于，该方法还支持设置用户级别。<ul id="diff">
                             <li>用户角色（<parmname>role</parmname>）确定用户在 SDK
                                 层的权限，包含是否可以发送流、是否可以接收流、是否可以推流到 CDN 等。</li>
                             <li>用户级别（<parmname>level</parmname>）需要与角色结合使用，确定用户在其权限范围内，可以操作和享受到的服务级别。例如对于观众，选择接收低延时还是超低延时的视频流。不同的级别会影响计费。</li>

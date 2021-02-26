@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_muteremotevideostream">
     <title><ph keyref="muteRemoteVideoStream"/></title>
-    <shortdesc>接收／停止接收指定远端用户的视频流。</shortdesc>
+    <shortdesc id="short">取消或恢复订阅指定远端用户的视频流。</shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,10 +21,8 @@
         <section>
             <note outputclass="note">
                 <ul>
-                    <li>该方法在加入频道前后都能调用。如果在加入频道前调用，需要自行维护远端用户的 <parmname>uid</parmname>。</li>
-                    <li>如果之前调用过 <xref keyref="muteAllRemoteVideoStreams"/>(<ph keyref="true"/>) 停止接收放所有远端视频流，在调用本 API 之前请确保你已调用 <apiname keyref="muteAllRemoteVideoStreams"/>(<ph keyref="false"/>)。
-                        <apiname keyref="muteAllRemoteVideoStreams"/> 是全局控制，
-                        <apiname keyref="muteRemoteVideoStream"/> 是精细控制。</li>
+                    <li>该方法需要在加入频道后调用。</li>
+                    <li>该方法的推荐设置详见《设置订阅状态》。</li>
                 </ul>
             </note>
         </section>
