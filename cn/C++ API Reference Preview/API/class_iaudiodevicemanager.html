@@ -1,0 +1,729 @@
+
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:whc="http://www.oxygenxml.com/webhelp/components" xml:lang="zh-cn" lang="zh-cn" whc:version="22.0">
+    <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta charset="UTF-8" /><meta name="copyright" content="(C) 版权 2021" /><meta name="DC.rights.owner" content="(C) 版权 2021" /><meta name="DC.type" content="reference" /><meta name="description" content="音频设备管理方法。" /><meta name="DC.subject" content="IAudioDeviceManager, enumeratePlaybackDevices, enumerateRecordingDevices, setPlaybackDevice, setRecordingDevice, startPlaybackDeviceTest, stopPlaybackDeviceTest, setPlaybackDeviceVolume, getPlaybackDeviceVolume, setRecordingDeviceVolume, getRecordingDeviceVolume, setPlaybackDeviceMute, getPlaybackDeviceMute, setRecordingDeviceMute, getRecordingDeviceMute, startRecordingDeviceTest, stopRecordingDeviceTest, getPlaybackDevice, getPlaybackDeviceInfo, getRecordingDevice, getRecordingDeviceInfo, startAudioDeviceLoopbackTest, stopAudioDeviceLoopbackTest, release" /><meta name="keywords" content="IAudioDeviceManager, enumeratePlaybackDevices, enumerateRecordingDevices, setPlaybackDevice, setRecordingDevice, startPlaybackDeviceTest, stopPlaybackDeviceTest, setPlaybackDeviceVolume, getPlaybackDeviceVolume, setRecordingDeviceVolume, getRecordingDeviceVolume, setPlaybackDeviceMute, getPlaybackDeviceMute, setRecordingDeviceMute, getRecordingDeviceMute, startRecordingDeviceTest, stopRecordingDeviceTest, getPlaybackDevice, getPlaybackDeviceInfo, getRecordingDevice, getRecordingDeviceInfo, startAudioDeviceLoopbackTest, stopAudioDeviceLoopbackTest, release" /><meta name="indexterms" content="enumeratePlaybackDevices, enumerateRecordingDevices, setPlaybackDevice, setRecordingDevice, startPlaybackDeviceTest, stopPlaybackDeviceTest, setPlaybackDeviceVolume, getPlaybackDeviceVolume, setRecordingDeviceVolume, getRecordingDeviceVolume, setPlaybackDeviceMute, getPlaybackDeviceMute, setRecordingDeviceMute, getRecordingDeviceMute, startRecordingDeviceTest, stopRecordingDeviceTest, getPlaybackDevice, getPlaybackDeviceInfo, getRecordingDevice, getRecordingDeviceInfo, startAudioDeviceLoopbackTest, stopAudioDeviceLoopbackTest, release" /><meta name="DC.format" content="HTML5" /><meta name="DC.identifier" content="class_iaudiodevicemanager" />        
+      <title>IAudioDeviceManager</title><!--  Generated with Oxygen version 23.0, build number 2020121702.  --><meta name="wh-path2root" content="../" /><meta name="wh-toc-id" content="class_iaudiodevicemanager-d5302e18767" /><meta name="wh-source-relpath" content="API/class_iaudiodevicemanager.dita" /><meta name="wh-out-relpath" content="API/class_iaudiodevicemanager.html" />
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="../oxygen-webhelp/lib/bootstrap/css/bootstrap.min.css" />
+    
+    <link rel="stylesheet" href="../oxygen-webhelp/lib/jquery-ui/jquery-ui.min.css" />
+    
+    <!-- Template default styles  -->
+    <link rel="stylesheet" type="text/css" href="../oxygen-webhelp/app/topic-page.css?buildId=2020121702" />
+    
+    
+    <script type="text/javascript" src="../oxygen-webhelp/lib/jquery/jquery-3.5.1.min.js"><!----></script>
+    
+    <script data-main="../oxygen-webhelp/app/topic-page.js" src="../oxygen-webhelp/lib/requirejs/require.js"></script>
+<link rel="stylesheet" type="text/css" href="../oxygen-webhelp/template/light.css?buildId=2020121702" /></head>
+
+    <body class="wh_topic_page frmBody">
+        <a href="#wh_topic_body" class="sr-only sr-only-focusable">跳转到主要内容</a>
+        <!-- EXM-36950 - Expand the args.hdr parameter here -->
+        
+        
+        
+        <header class="navbar navbar-default wh_header" whc:version="23.0">
+    <div class="container-fluid">
+        <div class="wh_header_flex_container navbar-nav navbar-expand-md navbar-dark">
+            <div class="wh_logo_and_publication_title_container">
+                <div class="wh_logo_and_publication_title">
+                    
+                    <!--
+                            This component will be generated when the next parameters are specified in the transformation scenario:
+                            'webhelp.logo.image' and 'webhelp.logo.image.target.url'.
+                            See: http://oxygenxml.com/doc/versions/17.1/ug-editor/#topics/dita_webhelp_output.html.
+                    -->
+                    
+                    <div class=" wh_publication_title "></div>
+                    
+                </div>
+                
+                <!-- The menu button for mobile devices is copied in the output only when the 'webhelp.show.top.menu' parameter is set to 'yes' -->
+                <button type="button" data-target="#wh_top_menu_and_indexterms_link" id="wh_menu_mobile_button" data-toggle="collapse" class="navbar-toggler collapsed wh_toggle_button" aria-expanded="false" aria-label="切换菜单" aria-controls="wh_top_menu_and_indexterms_link">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="wh_top_menu_and_indexterms_link collapse navbar-collapse" id="wh_top_menu_and_indexterms_link">
+                
+                <nav class=" wh_top_menu " aria-label="Menu Container"><ul xmlns:xhtml="http://www.w3.org/1999/xhtml" role="menubar" aria-label="Menu"><li role="menuitem" aria-haspopup="true" aria-expanded="false" class="has-children"><span id="tocId-d5302e13782-mi" data-tocid="tocId-d5302e13782" data-state="not-ready" class=" topicref "><span class="title"><a href="../API/rtc_api_overview.html">C++ API Reference for All Platforms</a></span></span></li></ul></nav>
+                <div class=" wh_indexterms_link "><a href="../indexTerms.html" title="索引" aria-label="转到索引术语页"><span>索引</span></a></div>
+                
+            </div>
+        </div>
+    </div>
+</header>
+        
+        <div class=" wh_search_input "><form id="searchForm" method="get" role="search" action="../search.html"><div><input type="search" placeholder="搜索 " class="wh_search_textfield" id="textToSearch" name="searchQuery" aria-label="搜索查询" required="required" /><button type="submit" class="wh_search_button" aria-label="搜索"><span class="search_input_text">搜索</span></button></div></form></div>
+        
+        <div class="container-fluid" id="wh_topic_container">
+            <div class="row">
+
+                <nav class="wh_tools d-print-none navbar-expand-md" aria-label="Tools">
+                    <div data-tooltip-position="bottom" class=" wh_breadcrumb "><ol xmlns:html="http://www.w3.org/1999/xhtml" class="d-print-none"><li><span class="home"><a href="../index.html"><span>主页</span></a></span></li><li><span class="topicref"><span class="title"><a href="../API/rtc_api_overview.html">C++ API Reference for All Platforms</a></span></span></li><li><span class="topicref"><span class="title"><a href="../API/class_iaudiodevicemanager.html#class_iaudiodevicemanager">设备管理</a></span></span></li><li class="active"><span class="topicref" data-id="class_iaudiodevicemanager"><span class="title"><a href="../API/class_iaudiodevicemanager.html#class_iaudiodevicemanager"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_iaudiodevicemanager.html#class_iaudiodevicemanager"><span class="ph">IAudioDeviceManager</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">音频设备管理方法。</span></p></span></span></span></li></ol></div>
+
+                    <div class="wh_right_tools">
+                        <button class="wh_hide_highlight" aria-label="切换搜索突出显示" title="切换搜索突出显示"></button>
+                        <button class="webhelp_expand_collapse_sections" data-next-state="collapsed" aria-label="折叠截面" title="折叠截面"></button>
+                        <div class=" wh_navigation_links "><span id="topic_navigation_links" class="navheader"></span></div>
+                        <div class=" wh_print_link print d-none d-md-inline-block "><button onClick="window.print()" title="打印此页" aria-label="打印此页"></button></div>
+                        
+                        <!-- Expand/Collapse publishing TOC 
+                             The menu button for mobile devices is copied in the output only when the publication TOC is available
+                        -->
+                        <button type="button" data-target="#wh_publication_toc" id="wh_toc_button" data-toggle="collapse" class="custom-toggler navbar-toggler collapsed wh_toggle_button navbar-light" aria-expanded="false" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="wh_content_area">
+                <div class="row">
+                    
+                        <nav id="wh_publication_toc" class="collapse col-lg-3 col-md-3 col-sm-12 d-md-block d-print-none" aria-label="Table of Contents Container">
+                            <div class=" wh_publication_toc " data-tooltip-position="right"><ul role="tree" aria-label="Table of Contents"><span class="expand-button-action-labels"><span id="button-expand-action" aria-label="Expand"></span><span id="button-collapse-action" aria-label="Collapse"></span><span id="button-pending-action" aria-label="Pending"></span></span><li role="treeitem" aria-expanded="true"><span data-tocid="tocId-d5302e13782" class="topicref" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action tocId-d5302e13782-link" class="wh-expand-btn"></span><span class="title"><a href="../API/rtc_api_overview.html" id="tocId-d5302e13782-link">C++ API Reference for All Platforms</a></span></span><ul role="group" class="navbar-nav nav-list"><li role="treeitem"><span data-tocid="api-title-d5302e13783" class="topicref" data-id="api-title" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/rtc_api_overview.html" id="api-title-d5302e13783-link">API Overview</a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">声网通过全球部署的虚拟网络，提供可以灵活搭配的 API 组合，为移动端到移动端以及移动端到 Web 端提供质量可靠的实时音视频通信。</span></p></span></span></span></li><li role="treeitem"><span data-tocid="class_rtcengine-d5302e13795" class="topicref" data-id="class_rtcengine" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/class_irtcengine.html#class_rtcengine" id="class_rtcengine-d5302e13795-link"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_irtcengine.html#class_rtcengine"><span class="ph">IRtcEngine</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">Agora Native SDK 的基础接口类，包含应用程序调用的主要方法。</span></p></span></span></span></li><li role="treeitem"><span data-tocid="class_rtcengineeventhandler-d5302e15953" class="topicref" data-id="class_rtcengineeventhandler" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/class_irtcengineeventhandler.html#class_rtcengineeventhandler" id="class_rtcengineeventhandler-d5302e15953-link"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_irtcengineeventhandler.html#class_rtcengineeventhandler"><span class="ph">IRtcEngineEventHandler</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph"><span class="keyword apiname">IRtcEngineEventHandler</span> 接口类用于 SDK 向 app 发送回调事件通知，app 通过继承该接口类的方法获取 SDK         的事件通知。</span></p></span></span></span></li><li role="treeitem" aria-expanded="false"><span data-tocid="tocId-d5302e17019" class="topicref" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action tocId-d5302e17019-link" class="wh-expand-btn"></span><span class="title"><a href="../API/class_ichannel.html#class_ichannel" id="tocId-d5302e17019-link">多频道管理</a></span></span></li><li role="treeitem" aria-expanded="false"><span data-tocid="tocId-d5302e18063" class="topicref" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action tocId-d5302e18063-link" class="wh-expand-btn"></span><span class="title"><a href="../API/class_imediaengine.html#class_imediaengine" id="tocId-d5302e18063-link">自定义音视频</a></span></span></li><li role="treeitem" aria-expanded="false"><span data-tocid="tocId-d5302e18308" class="topicref" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action tocId-d5302e18308-link" class="wh-expand-btn"></span><span class="title"><a href="../API/class_iaudioframeobserver.html#class_iaudioframeobserver" id="tocId-d5302e18308-link">数据观测器</a></span></span></li><li role="treeitem" aria-expanded="true"><span data-tocid="tocId-d5302e18766" class="topicref" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action tocId-d5302e18766-link" class="wh-expand-btn"></span><span class="title"><a href="../API/class_iaudiodevicemanager.html#class_iaudiodevicemanager" id="tocId-d5302e18766-link">设备管理</a></span></span><ul role="group" class="navbar-nav nav-list"><li role="treeitem" class="active"><span data-tocid="class_iaudiodevicemanager-d5302e18767" class="topicref" data-id="class_iaudiodevicemanager" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/class_iaudiodevicemanager.html#class_iaudiodevicemanager" id="class_iaudiodevicemanager-d5302e18767-link"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_iaudiodevicemanager.html#class_iaudiodevicemanager"><span class="ph">IAudioDeviceManager</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">音频设备管理方法。</span></p></span></span></span></li><li role="treeitem"><span data-tocid="class_iaudiodevicecollection-d5302e19084" class="topicref" data-id="class_iaudiodevicecollection" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/class_iaudiodevicecollection.html#class_iaudiodevicecollection" id="class_iaudiodevicecollection-d5302e19084-link"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_iaudiodevicecollection.html#class_iaudiodevicecollection"><span class="ph">IAudioDeviceCollection</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">IAudioDeviceCollection 类。你可以通过该接口类获取音频设备相关的信息。</span></p></span></span></span></li><li role="treeitem"><span data-tocid="class_ivideodevicemanager-d5302e19201" class="topicref" data-id="class_ivideodevicemanager" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/class_ivideodevicemanager.html#class_ivideodevicemanager" id="class_ivideodevicemanager-d5302e19201-link"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_ivideodevicemanager.html#class_ivideodevicemanager"><span class="ph">IVideoDeviceManager</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">视频设备管理方法。</span></p></span></span></span></li><li role="treeitem"><span data-tocid="class_ivideodevicecollection-d5302e19296" class="topicref" data-id="class_ivideodevicecollection" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/class_ivideodevicecollection.html#class_ivideodevicecollection" id="class_ivideodevicecollection-d5302e19296-link"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_ivideodevicecollection.html#class_ivideodevicecollection"><span class="ph">IVideoDeviceCollection</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">IVideoDeviceCollection 类。你可以通过该接口类获取视频设备相关的信息。</span></p></span></span></span></li></ul></li><li role="treeitem"><span data-tocid="datatype-d5302e19365" class="topicref" data-id="datatype" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/rtc_api_data_type.html#datatype" id="datatype-d5302e19365-link">类型定义</a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">本页列出 <span class="ph">Windows</span> API 所有的类型定义。</span></p></span></span></span></li><li role="treeitem"><span data-tocid="错误码和警告码-d5302e20833" class="topicref" data-id="错误码和警告码" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/error_rtc.html" id="错误码和警告码-d5302e20833-link">错误码和警告码</a></span></span></li></ul></li></ul></div>
+                        </nav>
+                    
+                    
+                    <div class="col-lg-7 col-md-9 col-sm-12" id="wh_topic_body">
+                        <div class=" wh_topic_content body "><main role="main"><article role="article" aria-labelledby="ariaid-title1"><article class="nested0" aria-labelledby="ariaid-title1" id="class_iaudiodevicemanager">
+    <h1 class="- topic/title title topictitle1" id="ariaid-title1"><a href="class_iaudiodevicemanager.html#class_iaudiodevicemanager"><span class="- topic/ph ph">IAudioDeviceManager</span></a></h1>
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="class_iaudiodevicemanager__shortdesc">音频设备管理方法。</span></p>
+        <section class="- topic/section section" id="class_iaudiodevicemanager__detailed_desc">
+   
+   <p class="- topic/p p"><span class="+ topic/keyword pr-d/apiname keyword apiname">IAudioDeviceManager</span> 接口类提供用于测试音频设备的相关接口。你可以通过实例化 <span class="+ topic/keyword pr-d/apiname keyword apiname">IAudioDeviceManager</span> 类来获取 <span class="+ topic/keyword pr-d/apiname keyword apiname">IAudioDeviceManager</span> 接口。</p>
+        </section>
+</div>
+<article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title2" id="api_enumerateplaybackdevices">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title2"><a href="class_iaudiodevicemanager.html#api_enumerateplaybackdevices"><span class="- topic/ph ph">enumeratePlaybackDevices</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_enumerateplaybackdevices__shortdesc">获取系统中所有的播放设备列表。</span></p><section class="- topic/section section" id="api_enumerateplaybackdevices__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> IAudioDeviceCollection* enumeratePlaybackDevices() = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_enumerateplaybackdevices__detailed_desc">
+   
+   <p class="- topic/p p">该方法返回一个 <a class="- topic/xref xref" href="class_iaudiodevicecollection.html#class_iaudiodevicecollection" title="IAudioDeviceCollection 类。你可以通过该接口类获取音频设备相关的信息。"><span class="- topic/keyword keyword">IAudioDeviceCollection</span></a> 对象，包含系统中所有的播放设备。通过 <span class="+ topic/keyword pr-d/apiname keyword apiname">IAudioDeviceCollection</span> 对象，
+       App 可以枚举播放设备。在使用结束后，App 需调用 <a class="- topic/xref xref" href="class_iaudiodevicecollection.html#api_iaudiodevicecollection_release" title="释放 IAudioDeviceCollection 对象占用的所有资源。"><span class="- topic/keyword keyword">release</span></a> 方法销毁返回的对象。</p>
+        </section>
+        <section class="- topic/section section" id="api_enumerateplaybackdevices__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">方法调用成功：返回一个 <a class="- topic/xref xref" href="class_iaudiodevicecollection.html#class_iaudiodevicecollection" title="IAudioDeviceCollection 类。你可以通过该接口类获取音频设备相关的信息。"><span class="- topic/keyword keyword">IAudioDeviceCollection</span></a> 对象，包含所有的音频播放设备。</li>
+       <li class="- topic/li li">方法调用失败：<span class="- topic/ph ph">NULL</span>。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title3" id="api_enumeraterecordingdevices">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title3"><a href="class_iaudiodevicemanager.html#api_enumeraterecordingdevices"><span class="- topic/ph ph">enumerateRecordingDevices</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_enumeraterecordingdevices__shortdesc">获取系统中所有的音频采集设备列表。</span></p><section class="- topic/section section" id="api_enumeraterecordingdevices__prototype">
+        
+        <div class="- topic/p p">      
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> IAudioDeviceCollection* enumerateRecordingDevices() = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_enumeraterecordingdevices__detailed_desc">
+   
+   <p class="- topic/p p">该方法返回一个 <a class="- topic/xref xref" href="class_iaudiodevicecollection.html#class_iaudiodevicecollection" title="IAudioDeviceCollection 类。你可以通过该接口类获取音频设备相关的信息。"><span class="- topic/keyword keyword">IAudioDeviceCollection</span></a> 对象，包含系统中所有的音频采集设备。通过 <span class="+ topic/keyword pr-d/apiname keyword apiname">IAudioDeviceCollection</span> 对象，
+       App 可以枚举音频采集设备。在使用结束后，App 需调用 <a class="- topic/xref xref" href="class_iaudiodevicecollection.html#api_iaudiodevicecollection_release" title="释放 IAudioDeviceCollection 对象占用的所有资源。"><span class="- topic/keyword keyword">release</span></a> 方法销毁返回的对象。</p>
+        </section>
+        <section class="- topic/section section" id="api_enumeraterecordingdevices__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">方法调用成功：返回一个 <a class="- topic/xref xref" href="class_iaudiodevicecollection.html#class_iaudiodevicecollection" title="IAudioDeviceCollection 类。你可以通过该接口类获取音频设备相关的信息。"><span class="- topic/keyword keyword">IAudioDeviceCollection</span></a> 对象，包含所有的音频采集设备。</li>
+       <li class="- topic/li li">方法调用失败：<span class="- topic/ph ph">NULL</span>。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title4" id="api_setplaybackdevice">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title4"><a href="class_iaudiodevicemanager.html#api_setplaybackdevice"><span class="- topic/ph ph">setPlaybackDevice</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_setplaybackdevice__shortdesc">指定播放设备。</span></p><section class="- topic/section section" id="api_setplaybackdevice__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> setPlaybackDevice(<strong class="hl-keyword">const</strong> <strong class="hl-keyword">char</strong> deviceId[MAX_DEVICE_ID_LENGTH]) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_setplaybackdevice__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">deviceId</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd"><p class="- topic/p p">通过 deviceID 指定播放设备。由 <a class="- topic/xref xref" href="class_iaudiodevicemanager.html#api_enumerateplaybackdevices" title="获取系统中所有的播放设备列表。"><span class="- topic/keyword keyword">enumeratePlaybackDevices</span></a> 获取。插拔设备不会影响 <span class="+ topic/keyword pr-d/parmname keyword parmname">deviceId</span>。
+      最大长度为 <a class="- topic/xref xref" href="rtc_api_data_type.html#enum_maxdeviceidlengthtype__MAX_DEVICE_ID_LENGTH">MAX_DEVICE_ID_LENGTH</a>。</p></dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_setplaybackdevice__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title5" id="api_setrecordingdevice">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title5"><a href="class_iaudiodevicemanager.html#api_setrecordingdevice"><span class="- topic/ph ph">setRecordingDevice</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_setrecordingdevice__shortdesc">指定音频采集设备。</span></p><section class="- topic/section section" id="api_setrecordingdevice__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> setRecordingDevice(<strong class="hl-keyword">const</strong> <strong class="hl-keyword">char</strong> deviceId[MAX_DEVICE_ID_LENGTH]) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_setrecordingdevice__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">deviceId</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">音频采集设备的 Device ID。可通过 <a class="- topic/xref xref" href="class_iaudiodevicemanager.html#api_enumeraterecordingdevices" title="获取系统中所有的音频采集设备列表。"><span class="- topic/keyword keyword">enumerateRecordingDevices</span></a> 获取。插拔设备不会影响 <span class="+ topic/keyword pr-d/parmname keyword parmname">deviceId</span>。
+      最大长度为 <a class="- topic/xref xref" href="rtc_api_data_type.html#enum_maxdeviceidlengthtype__MAX_DEVICE_ID_LENGTH">MAX_DEVICE_ID_LENGTH</a>。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_setrecordingdevice__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title6" id="api_startplaybackdevicetest">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title6"><a href="class_iaudiodevicemanager.html#api_startplaybackdevicetest"><span class="- topic/ph ph">startPlaybackDeviceTest</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_startplaybackdevicetest__shortdesc">启动音频播放设备测试。</span></p><section class="- topic/section section" id="api_startplaybackdevicetest__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> startPlaybackDeviceTest(<strong class="hl-keyword">const</strong> <strong class="hl-keyword">char</strong>* testAudioFilePath) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_startplaybackdevicetest__detailed_desc">
+   
+   <p class="- topic/p p">该方法测试音频播放设备是否能正常工作。启动测试后，SDK 播放指定的音频文件，测试者如果能听到声音，说明播放设备能正常工作。</p>
+   <p class="- topic/p p">调用该方法后，SDK 会每隔 100 ms 触发一次 <a class="- topic/xref xref" href="class_irtcengineeventhandler.html#api_onaudiovolumeindication" title="用户音量提示回调。"><span class="- topic/keyword keyword">onAudioVolumeIndication</span></a> 回调，报告 <span class="+ topic/keyword pr-d/parmname keyword parmname">uid</span> = 1 及播放设备的音量信息。</p>
+   <div class="- topic/note note note note_note"><span class="note__title">注：</span> 该方法需要在加入频道前调用。</div>
+        </section>
+        <section class="- topic/section section" id="api_startplaybackdevicetest__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">testAudioFilePath</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd"><div class="- topic/p p">音频文件的绝对路径，路径字符串使用 UTF-8 编码格式。<ul class="- topic/ul ul">
+      <li class="- topic/li li">支持文件格式: wav、mp3、m4a、aac。</li>
+      <li class="- topic/li li">支持文件采样率: 8000、16000、32000、44100、48000。</li>
+  </ul></div></dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_startplaybackdevicetest__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。同时你可以听到设置的音频文件的声音。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title7" id="api_stopplaybackdevicetest">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title7"><a href="class_iaudiodevicemanager.html#api_stopplaybackdevicetest"><span class="- topic/ph ph">stopPlaybackDeviceTest</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_stopplaybackdevicetest__shortdesc">停止播放设备测试。</span></p><section class="- topic/section section" id="api_stopplaybackdevicetest__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> stopPlaybackDeviceTest() = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_stopplaybackdevicetest__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title8" id="api_setplaybackdevicevolume">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title8"><a href="class_iaudiodevicemanager.html#api_setplaybackdevicevolume"><span class="- topic/ph ph">setPlaybackDeviceVolume</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_setplaybackdevicevolume__shortdesc">设置播放设备音量。</span></p><section class="- topic/section section" id="api_setplaybackdevicevolume__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> setPlaybackDeviceVolume(<strong class="hl-keyword">int</strong> volume) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_setplaybackdevicevolume__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">volume</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">播放设备音量。取值可在 [0,255]。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_setplaybackdevicevolume__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title9" id="api_getplaybackdevicevolume">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title9"><a href="class_iaudiodevicemanager.html#api_getplaybackdevicevolume"><span class="- topic/ph ph">getPlaybackDeviceVolume</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_getplaybackdevicevolume__shortdesc">获取播放设备音量。</span></p><section class="- topic/section section" id="api_getplaybackdevicevolume__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> getPlaybackDeviceVolume(<strong class="hl-keyword">int</strong> *volume) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_getplaybackdevicevolume__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">volume</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">播放设备音量。取值可在 [0,255]。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_getplaybackdevicevolume__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title10" id="api_setrecordingdevicevolume">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title10"><a href="class_iaudiodevicemanager.html#api_setrecordingdevicevolume"><span class="- topic/ph ph">setRecordingDeviceVolume</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_setrecordingdevicevolume__shortdesc">设置音频采集设备音量。</span></p><section class="- topic/section section" id="api_setrecordingdevicevolume__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> setRecordingDeviceVolume(<strong class="hl-keyword">int</strong> volume) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_setrecordingdevicevolume__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">volume</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">音频采集设备音量。取值范围 [0,255]。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_setrecordingdevicevolume__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title11" id="api_getrecordingdevicevolume">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title11"><a href="class_iaudiodevicemanager.html#api_getrecordingdevicevolume"><span class="- topic/ph ph">getRecordingDeviceVolume</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_getrecordingdevicevolume__shortdesc">获取音频采集设备音量。</span></p><section class="- topic/section section" id="api_getrecordingdevicevolume__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> getRecordingDeviceVolume(<strong class="hl-keyword">int</strong> *volume) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_getrecordingdevicevolume__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">volume</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">音频采集设备音量。取值范围 [0,255]。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_getrecordingdevicevolume__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title12" id="api_setplaybackdevicemute">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title12"><a href="class_iaudiodevicemanager.html#api_setplaybackdevicemute"><span class="- topic/ph ph">setPlaybackDeviceMute</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_setplaybackdevicemute__shortdesc">设置播放设备静音。</span></p><section class="- topic/section section" id="api_setplaybackdevicemute__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> setPlaybackDeviceMute(<strong class="hl-keyword">bool</strong> mute) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_setplaybackdevicemute__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">mute</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd"><div class="- topic/p p">是否设置播放设备为静音：<ul class="- topic/ul ul">
+      <li class="- topic/li li"><span class="- topic/ph ph">: 设备设为静音。</span></li>
+      <li class="- topic/li li"><span class="- topic/ph ph">: 设备不设为静音。</span></li>
+  </ul></div></dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_setplaybackdevicemute__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title13" id="api_getplaybackdevicemute">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title13"><a href="class_iaudiodevicemanager.html#api_getplaybackdevicemute"><span class="- topic/ph ph">getPlaybackDeviceMute</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_getplaybackdevicemute__shortdesc">获取播放设备静音状态。</span></p><section class="- topic/section section" id="api_getplaybackdevicemute__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> getPlaybackDeviceMute(<strong class="hl-keyword">bool</strong> *mute) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_getplaybackdevicemute__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">mute</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd"><div class="- topic/p p">播放设备静音状态指针：
+      <ul class="- topic/ul ul">
+<li class="- topic/li li"><span class="- topic/ph ph">true</span>: 播放设备为静音状态。</li>
+<li class="- topic/li li"><span class="- topic/ph ph">false</span>: 播放设备为非静音状态。</li>
+  </ul></div></dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_getplaybackdevicemute__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title14" id="api_setrecordingdevicemute">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title14"><a href="class_iaudiodevicemanager.html#api_setrecordingdevicemute"><span class="- topic/ph ph">setRecordingDeviceMute</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_setrecordingdevicemute__shortdesc">静音音频采集设备。</span></p><section class="- topic/section section" id="api_setrecordingdevicemute__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> setRecordingDeviceMute(<strong class="hl-keyword">bool</strong> mute) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_setrecordingdevicemute__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">mute</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd"><div class="- topic/p p">是否设置音频采集设备静音：<ul class="- topic/ul ul">
+      <li class="- topic/li li"><span class="- topic/ph ph">true</span>: 采集设备静音。</li>
+      <li class="- topic/li li"><span class="- topic/ph ph">false</span>: 采集设备为非静音。</li>
+  </ul></div></dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_setrecordingdevicemute__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title15" id="api_getrecordingdevicemute">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title15"><a href="class_iaudiodevicemanager.html#api_getrecordingdevicemute"><span class="- topic/ph ph">getRecordingDeviceMute</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_getrecordingdevicemute__shortdesc">获取音频采集设备静音状态。</span></p><section class="- topic/section section" id="api_getrecordingdevicemute__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> getRecordingDeviceMute(<strong class="hl-keyword">bool</strong> *mute) = <span class="hl-number">0</span>;</pre>  
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_getrecordingdevicemute__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">mute</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">音频采集设备静音状态指针：<ul class="- topic/ul ul">
+      <li class="- topic/li li"><span class="- topic/ph ph">true</span>: 采集设备为静音状态。</li>
+      <li class="- topic/li li"><span class="- topic/ph ph">false</span>: 采集设备为非静音状态。</li>
+  </ul></dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_getrecordingdevicemute__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title16" id="api_startrecordingdevicetest">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title16"><a href="class_iaudiodevicemanager.html#api_startrecordingdevicetest"><span class="- topic/ph ph">startRecordingDeviceTest</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_startrecordingdevicetest__shortdesc">启动音频采集设备测试。</span></p><section class="- topic/section section" id="api_startrecordingdevicetest__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> startRecordingDeviceTest(<strong class="hl-keyword">int</strong> indicationInterval) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_startrecordingdevicetest__detailed_desc">
+   
+   <p class="- topic/p p">该方法测试音频采集设备是否能正常工作。调用该方法后，SDK 会按设置的时间间隔 触发 <a class="- topic/xref xref" href="class_irtcengineeventhandler.html#api_onaudiovolumeindication" title="用户音量提示回调。"><span class="- topic/keyword keyword">onAudioVolumeIndication</span></a> 回调，
+       报告 <span class="+ topic/keyword pr-d/parmname keyword parmname">uid</span> = 0 及采集设备的音量信息。</p>
+   <div class="- topic/note note note note_note"><span class="note__title">注：</span> 该方法需要在加入频道前调用。</div>
+        </section>
+        <section class="- topic/section section" id="api_startrecordingdevicetest__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">indicationInterval</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">SDK 触发 <a class="- topic/xref xref" href="class_irtcengineeventhandler.html#api_onaudiovolumeindication" title="用户音量提示回调。"><span class="- topic/keyword keyword">onAudioVolumeIndication</span></a> 回调的时间间隔，单位为毫秒。建议设置到大于 200 毫秒。
+      不得小于 10 毫秒，否则会收不到 <span class="+ topic/keyword pr-d/apiname keyword apiname">onAudioVolumeIndication</span> 回调。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_startrecordingdevicetest__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title17" id="api_stoprecordingdevicetest">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title17"><a href="class_iaudiodevicemanager.html#api_stoprecordingdevicetest"><span class="- topic/ph ph">stopRecordingDeviceTest</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_stoprecordingdevicetest__shortdesc">停止音频采集设备测试。</span></p><section class="- topic/section section" id="api_stoprecordingdevicetest__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> stopRecordingDeviceTest() = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_stoprecordingdevicetest__detailed_desc">
+   
+   <p class="- topic/p p">该方法停止音频采集设备测试。调用 <a class="- topic/xref xref" href="class_iaudiodevicemanager.html#api_startrecordingdevicetest" title="启动音频采集设备测试。"><span class="- topic/keyword keyword">startRecordingDeviceTest</span></a> 后，必须调用该方法停止测试。</p>
+        </section>
+        <section class="- topic/section section" id="api_stoprecordingdevicetest__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title18" id="api_getplaybackdevice">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title18"><a href="class_iaudiodevicemanager.html#api_getplaybackdevice"><span class="- topic/ph ph">getPlaybackDevice</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_getplaybackdevice__shortdesc">获取音频播放设备。</span></p><section class="- topic/section section" id="api_getplaybackdevice__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> getPlaybackDevice(<strong class="hl-keyword">char</strong> deviceId[MAX_DEVICE_ID_LENGTH]) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_getplaybackdevice__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">deviceId</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">音频播放设备的设备 ID。最大长度为 <a class="- topic/xref xref" href="rtc_api_data_type.html#enum_maxdeviceidlengthtype__MAX_DEVICE_ID_LENGTH">MAX_DEVICE_ID_LENGTH</a>。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_getplaybackdevice__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title19" id="api_getplaybackdeviceinfo">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title19"><a href="class_iaudiodevicemanager.html#api_getplaybackdeviceinfo"><span class="- topic/ph ph">getPlaybackDeviceInfo</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_getplaybackdeviceinfo__shortdesc">根据设备 ID 和设备名称获取播放设备。</span></p><section class="- topic/section section" id="api_getplaybackdeviceinfo__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> getPlaybackDeviceInfo(<strong class="hl-keyword">char</strong> deviceId[MAX_DEVICE_ID_LENGTH], <strong class="hl-keyword">char</strong> deviceName[MAX_DEVICE_ID_LENGTH]) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_getplaybackdeviceinfo__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">deviceId</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">播放设备的设备 ID。最大长度为 <a class="- topic/xref xref" href="rtc_api_data_type.html#enum_maxdeviceidlengthtype__MAX_DEVICE_ID_LENGTH">MAX_DEVICE_ID_LENGTH</a>。</dd>
+       
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">deviceName</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">播放设备的设备名称。最大长度为 <a class="- topic/xref xref" href="rtc_api_data_type.html#enum_maxdeviceidlengthtype__MAX_DEVICE_ID_LENGTH">MAX_DEVICE_ID_LENGTH</a>。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_getplaybackdeviceinfo__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title20" id="api_getrecordingdevice">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title20"><a href="class_iaudiodevicemanager.html#api_getrecordingdevice"><span class="- topic/ph ph">getRecordingDevice</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_getrecordingdevice__shortdesc">根据设备 ID 获取音频采集设备。</span></p><section class="- topic/section section" id="api_getrecordingdevice__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> getRecordingDevice(<strong class="hl-keyword">char</strong> deviceId[MAX_DEVICE_ID_LENGTH]) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_getrecordingdevice__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">deviceId</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">采集设备的设备 ID。最大长度为 <a class="- topic/xref xref" href="rtc_api_data_type.html#enum_maxdeviceidlengthtype__MAX_DEVICE_ID_LENGTH">MAX_DEVICE_ID_LENGTH</a>。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_getrecordingdevice__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title21" id="api_getrecordingdeviceinfo">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title21"><a href="class_iaudiodevicemanager.html#api_getrecordingdeviceinfo"><span class="- topic/ph ph">getRecordingDeviceInfo</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_getrecordingdeviceinfo__shortdesc">根据设备名称和设备 ID 获取音频采集设备信息。</span></p><section class="- topic/section section" id="api_getrecordingdeviceinfo__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> getRecordingDeviceInfo(<strong class="hl-keyword">char</strong> deviceId[MAX_DEVICE_ID_LENGTH], <strong class="hl-keyword">char</strong> deviceName[MAX_DEVICE_ID_LENGTH]) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_getrecordingdeviceinfo__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">deviceId</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">音频采集设备的设备 ID。最大长度为 <a class="- topic/xref xref" href="rtc_api_data_type.html#enum_maxdeviceidlengthtype__MAX_DEVICE_ID_LENGTH">MAX_DEVICE_ID_LENGTH</a>。</dd>
+       
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">deviceName</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">音频采集设备的设备名称。最大长度为 <a class="- topic/xref xref" href="rtc_api_data_type.html#enum_maxdeviceidlengthtype__MAX_DEVICE_ID_LENGTH">MAX_DEVICE_ID_LENGTH</a>。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_getrecordingdeviceinfo__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title22" id="api_startaudiodeviceloopbacktest">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title22"><a href="class_iaudiodevicemanager.html#api_startaudiodeviceloopbacktest"><span class="- topic/ph ph">startAudioDeviceLoopbackTest</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_startaudiodeviceloopbacktest__shortdesc">开始音频设备回路测试。</span></p><section class="- topic/section section" id="api_startaudiodeviceloopbacktest__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> startAudioDeviceLoopbackTest(<strong class="hl-keyword">int</strong> indicationInterval) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_startaudiodeviceloopbacktest__detailed_desc">
+   
+   <p class="- topic/p p">该方法测试音频采集和播放设备是否能正常工作。一旦测试开始，音频采集设备会采集本地音频，然后使用音频播放设备播放出来。
+       SDK 会按设置的时间间隔触发两个 <a class="- topic/xref xref" href="class_irtcengineeventhandler.html#api_onaudiovolumeindication" title="用户音量提示回调。"><span class="- topic/keyword keyword">onAudioVolumeIndication</span></a> 回调，分别报告音频采集设备（<span class="+ topic/keyword pr-d/parmname keyword parmname">uid</span> = 0）
+       和音频播放设置（<span class="+ topic/keyword pr-d/parmname keyword parmname">uid</span> = 1）的音量信息。</p>
+   <div class="- topic/note note note note_note"><span class="note__title">注：</span> <ul class="- topic/ul ul">
+       <li class="- topic/li li">该方法需要在加入频道前调用。</li>
+       <li class="- topic/li li">该方法仅在本地进行音频设备测试，不涉及网络连接。</li>
+   </ul></div>
+        </section>
+        <section class="- topic/section section" id="api_startaudiodeviceloopbacktest__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">indicationInterval</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd"><p class="- topic/p p">SDK 触发 <a class="- topic/xref xref" href="class_irtcengineeventhandler.html#api_onaudiovolumeindication" title="用户音量提示回调。"><span class="- topic/keyword keyword">onAudioVolumeIndication</span></a> 回调的时间间隔，单位为毫秒。建议设置到大于 200 毫秒。不得少于 10 毫秒，否则会收不到
+  <span class="+ topic/keyword pr-d/apiname keyword apiname">onAudioVolumeIndication</span> 回调。</p></dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_startaudiodeviceloopbacktest__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title23" id="api_stopaudiodeviceloopbacktest">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title23"><a href="class_iaudiodevicemanager.html#api_stopaudiodeviceloopbacktest"><span class="- topic/ph ph">stopAudioDeviceLoopbackTest</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_stopaudiodeviceloopbacktest__shortdesc">停止音频设备回路测试。</span></p><section class="- topic/section section" id="api_stopaudiodeviceloopbacktest__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">int</strong> stopAudioDeviceLoopbackTest() = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_stopaudiodeviceloopbacktest__detailed_desc">
+   
+   <div class="- topic/note note note note_note"><span class="note__title">注：</span> 在调用 <a class="- topic/xref xref" href="class_iaudiodevicemanager.html#api_startaudiodeviceloopbacktest" title="开始音频设备回路测试。"><span class="- topic/keyword keyword">startAudioDeviceLoopbackTest</span></a> 后，必须调用该方法停止音频设备回路测试。</div>
+        </section>
+        <section class="- topic/section section" id="api_stopaudiodeviceloopbacktest__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li">0: 方法调用成功。</li>
+       <li class="- topic/li li">&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title24" id="api_iaudiodevicemanager_release">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title24"><a href="class_iaudiodevicemanager.html#api_iaudiodevicemanager_release"><span class="- topic/ph ph">release</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_iaudiodevicemanager_release__shortdesc">释放 <a href="class_iaudiodevicemanager.html#class_iaudiodevicemanager"><span class="- topic/ph ph">IAudioDeviceManager</span></a> 对象占用的所有资源。</span></p><section class="- topic/section section" id="api_iaudiodevicemanager_release__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">void</strong> release() = <span class="hl-number">0</span>;</pre>  
+  </div>
+        </section>
+ </div>
+</article></article></article></main></div>
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                        <nav role="navigation" id="wh_topic_toc" aria-label="On this page" class="col-lg-2 d-none d-lg-block navbar d-print-none"> 
+                            <div class=" wh_topic_toc "><div class="wh_topic_label">在本页上</div><ul><li class="topic-item"><a href="#api_enumerateplaybackdevices" data-tocid="api_enumerateplaybackdevices"><a href="class_iaudiodevicemanager.html#api_enumerateplaybackdevices"><span class="- topic/ph ph">enumeratePlaybackDevices</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_enumerateplaybackdevices__return_values" data-tocid="api_enumerateplaybackdevices__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_enumeraterecordingdevices" data-tocid="api_enumeraterecordingdevices"><a href="class_iaudiodevicemanager.html#api_enumeraterecordingdevices"><span class="- topic/ph ph">enumerateRecordingDevices</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_enumeraterecordingdevices__return_values" data-tocid="api_enumeraterecordingdevices__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_setplaybackdevice" data-tocid="api_setplaybackdevice"><a href="class_iaudiodevicemanager.html#api_setplaybackdevice"><span class="- topic/ph ph">setPlaybackDevice</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_setplaybackdevice__parameters" data-tocid="api_setplaybackdevice__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_setplaybackdevice__return_values" data-tocid="api_setplaybackdevice__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_setrecordingdevice" data-tocid="api_setrecordingdevice"><a href="class_iaudiodevicemanager.html#api_setrecordingdevice"><span class="- topic/ph ph">setRecordingDevice</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_setrecordingdevice__parameters" data-tocid="api_setrecordingdevice__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_setrecordingdevice__return_values" data-tocid="api_setrecordingdevice__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_startplaybackdevicetest" data-tocid="api_startplaybackdevicetest"><a href="class_iaudiodevicemanager.html#api_startplaybackdevicetest"><span class="- topic/ph ph">startPlaybackDeviceTest</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_startplaybackdevicetest__parameters" data-tocid="api_startplaybackdevicetest__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_startplaybackdevicetest__return_values" data-tocid="api_startplaybackdevicetest__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_stopplaybackdevicetest" data-tocid="api_stopplaybackdevicetest"><a href="class_iaudiodevicemanager.html#api_stopplaybackdevicetest"><span class="- topic/ph ph">stopPlaybackDeviceTest</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_stopplaybackdevicetest__return_values" data-tocid="api_stopplaybackdevicetest__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_setplaybackdevicevolume" data-tocid="api_setplaybackdevicevolume"><a href="class_iaudiodevicemanager.html#api_setplaybackdevicevolume"><span class="- topic/ph ph">setPlaybackDeviceVolume</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_setplaybackdevicevolume__parameters" data-tocid="api_setplaybackdevicevolume__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_setplaybackdevicevolume__return_values" data-tocid="api_setplaybackdevicevolume__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_getplaybackdevicevolume" data-tocid="api_getplaybackdevicevolume"><a href="class_iaudiodevicemanager.html#api_getplaybackdevicevolume"><span class="- topic/ph ph">getPlaybackDeviceVolume</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_getplaybackdevicevolume__parameters" data-tocid="api_getplaybackdevicevolume__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_getplaybackdevicevolume__return_values" data-tocid="api_getplaybackdevicevolume__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_setrecordingdevicevolume" data-tocid="api_setrecordingdevicevolume"><a href="class_iaudiodevicemanager.html#api_setrecordingdevicevolume"><span class="- topic/ph ph">setRecordingDeviceVolume</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_setrecordingdevicevolume__parameters" data-tocid="api_setrecordingdevicevolume__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_setrecordingdevicevolume__return_values" data-tocid="api_setrecordingdevicevolume__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_getrecordingdevicevolume" data-tocid="api_getrecordingdevicevolume"><a href="class_iaudiodevicemanager.html#api_getrecordingdevicevolume"><span class="- topic/ph ph">getRecordingDeviceVolume</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_getrecordingdevicevolume__parameters" data-tocid="api_getrecordingdevicevolume__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_getrecordingdevicevolume__return_values" data-tocid="api_getrecordingdevicevolume__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_setplaybackdevicemute" data-tocid="api_setplaybackdevicemute"><a href="class_iaudiodevicemanager.html#api_setplaybackdevicemute"><span class="- topic/ph ph">setPlaybackDeviceMute</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_setplaybackdevicemute__parameters" data-tocid="api_setplaybackdevicemute__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_setplaybackdevicemute__return_values" data-tocid="api_setplaybackdevicemute__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_getplaybackdevicemute" data-tocid="api_getplaybackdevicemute"><a href="class_iaudiodevicemanager.html#api_getplaybackdevicemute"><span class="- topic/ph ph">getPlaybackDeviceMute</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_getplaybackdevicemute__parameters" data-tocid="api_getplaybackdevicemute__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_getplaybackdevicemute__return_values" data-tocid="api_getplaybackdevicemute__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_setrecordingdevicemute" data-tocid="api_setrecordingdevicemute"><a href="class_iaudiodevicemanager.html#api_setrecordingdevicemute"><span class="- topic/ph ph">setRecordingDeviceMute</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_setrecordingdevicemute__parameters" data-tocid="api_setrecordingdevicemute__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_setrecordingdevicemute__return_values" data-tocid="api_setrecordingdevicemute__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_getrecordingdevicemute" data-tocid="api_getrecordingdevicemute"><a href="class_iaudiodevicemanager.html#api_getrecordingdevicemute"><span class="- topic/ph ph">getRecordingDeviceMute</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_getrecordingdevicemute__parameters" data-tocid="api_getrecordingdevicemute__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_getrecordingdevicemute__return_values" data-tocid="api_getrecordingdevicemute__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_startrecordingdevicetest" data-tocid="api_startrecordingdevicetest"><a href="class_iaudiodevicemanager.html#api_startrecordingdevicetest"><span class="- topic/ph ph">startRecordingDeviceTest</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_startrecordingdevicetest__parameters" data-tocid="api_startrecordingdevicetest__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_startrecordingdevicetest__return_values" data-tocid="api_startrecordingdevicetest__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_stoprecordingdevicetest" data-tocid="api_stoprecordingdevicetest"><a href="class_iaudiodevicemanager.html#api_stoprecordingdevicetest"><span class="- topic/ph ph">stopRecordingDeviceTest</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_stoprecordingdevicetest__return_values" data-tocid="api_stoprecordingdevicetest__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_getplaybackdevice" data-tocid="api_getplaybackdevice"><a href="class_iaudiodevicemanager.html#api_getplaybackdevice"><span class="- topic/ph ph">getPlaybackDevice</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_getplaybackdevice__parameters" data-tocid="api_getplaybackdevice__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_getplaybackdevice__return_values" data-tocid="api_getplaybackdevice__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_getplaybackdeviceinfo" data-tocid="api_getplaybackdeviceinfo"><a href="class_iaudiodevicemanager.html#api_getplaybackdeviceinfo"><span class="- topic/ph ph">getPlaybackDeviceInfo</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_getplaybackdeviceinfo__parameters" data-tocid="api_getplaybackdeviceinfo__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_getplaybackdeviceinfo__return_values" data-tocid="api_getplaybackdeviceinfo__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_getrecordingdevice" data-tocid="api_getrecordingdevice"><a href="class_iaudiodevicemanager.html#api_getrecordingdevice"><span class="- topic/ph ph">getRecordingDevice</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_getrecordingdevice__parameters" data-tocid="api_getrecordingdevice__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_getrecordingdevice__return_values" data-tocid="api_getrecordingdevice__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_getrecordingdeviceinfo" data-tocid="api_getrecordingdeviceinfo"><a href="class_iaudiodevicemanager.html#api_getrecordingdeviceinfo"><span class="- topic/ph ph">getRecordingDeviceInfo</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_getrecordingdeviceinfo__parameters" data-tocid="api_getrecordingdeviceinfo__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_getrecordingdeviceinfo__return_values" data-tocid="api_getrecordingdeviceinfo__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_startaudiodeviceloopbacktest" data-tocid="api_startaudiodeviceloopbacktest"><a href="class_iaudiodevicemanager.html#api_startaudiodeviceloopbacktest"><span class="- topic/ph ph">startAudioDeviceLoopbackTest</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_startaudiodeviceloopbacktest__parameters" data-tocid="api_startaudiodeviceloopbacktest__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_startaudiodeviceloopbacktest__return_values" data-tocid="api_startaudiodeviceloopbacktest__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_stopaudiodeviceloopbacktest" data-tocid="api_stopaudiodeviceloopbacktest"><a href="class_iaudiodevicemanager.html#api_stopaudiodeviceloopbacktest"><span class="- topic/ph ph">stopAudioDeviceLoopbackTest</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_stopaudiodeviceloopbacktest__return_values" data-tocid="api_stopaudiodeviceloopbacktest__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_iaudiodevicemanager_release" data-tocid="api_iaudiodevicemanager_release"><a href="class_iaudiodevicemanager.html#api_iaudiodevicemanager_release"><span class="- topic/ph ph">release</span></a></a></li></ul></div>
+                        </nav>
+                    
+                </div>
+            </div>
+        </div> 
+        <footer class="navbar navbar-default wh_footer" whc:version="23.0">
+  <div class=" footer-container mx-auto ">
+    
+            Generated by <a class="oxyFooter" href="http://www.oxygenxml.com/xml_webhelp.html" target="_blank">
+            &lt;oXygen/&gt; XML WebHelp
+            </a>
+        
+  </div>
+</footer>
+        
+        <div id="go2top" class="d-print-none">
+            <span class="oxy-icon oxy-icon-up"></span>
+        </div>
+        
+        <!-- The modal container for images -->
+        <div id="modal_img_large" class="modal">
+            <span class="close oxy-icon oxy-icon-remove"></span>
+            <!-- Modal Content (The Image) -->
+            <img class="modal-content" id="modal-img" alt="" />
+            <!-- Modal Caption (Image Text) -->
+            <div id="caption"></div>
+        </div>
+        
+        
+    </body>
+</html>
