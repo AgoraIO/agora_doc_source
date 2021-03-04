@@ -236,6 +236,14 @@
         </relrow>
         <relrow>
             <relcell>
+                <topicref keyref="setVoiceConversionPreset"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="VOICE_CONVERSION_PRESET"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
                 <topicref keyref="setLiveTranscoding"/>
             </relcell>
             <relcell>
@@ -244,6 +252,7 @@
                 <topicref keyref="TranscodingUser"/>
                 <topicref keyref="RtcImage"/>
                 <topicref keyref="AUDIO_SAMPLE_RATE_TYPE"/>
+                <topicref keyref="AUDIO_CODEC_PROFILE_TYPE"/>
             </relcell>
         </relrow>
         <relrow>
@@ -413,14 +422,6 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="joinChannelWithUserAccount2"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="ChannelMediaOptions"/>
-            </relcell>
-        </relrow>
-        <relrow>
-            <relcell>
                 <topicref keyref="pushAudioFrame2"/>
                 <topicref keyref="pullAudioFrame"/>
             </relcell>
@@ -465,6 +466,14 @@
             <relcell>
                 <topicref keyref="CONNECTION_STATE_TYPE"/>
                 <topicref keyref="CONNECTION_CHANGED_REASON_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onLeaveChannel"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="RtcStats"/>
             </relcell>
         </relrow>
         <relrow>
@@ -547,11 +556,58 @@
         </relrow>
         <relrow>
             <relcell>
+                <topicref keyref="onRtcStats"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="RtcStats"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
                 <topicref keyref="onNetworkQuality"/>
-                <topicref keyref="onAudioQuality"/>
             </relcell>
             <relcell>
                 <topicref keyref="QUALITY_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onLocalAudioStats"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="LocalAudioStats"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onLocalVideoStats"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="LocalVideoStats"></topicref>
+                <topicref keyref="QUALITY_ADAPT_INDICATION"/>
+                <topicref keyref="VIDEO_CODEC_TYPE"/>
+                <topicref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onRemoteAudioStats"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="RemoteAudioStats"/>
+                <topicref keyref="QUALITY_TYPE"/>
+                <topicref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>
+                <topicref keyref="EXPERIENCE_QUALITY_TYPE"/>
+                <topicref keyref="EXPERIENCE_POOR_REASON"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onRemoteVideoStats"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="RemoteVideoStats"/>
+                <topicref keyref="REMOTE_VIDEO_STREAM_TYPE"/>
             </relcell>
         </relrow>
         <relrow>
@@ -582,6 +638,20 @@
         </relrow>
         <relrow>
             <relcell>
+                <topicref keyref="onTranscodingUpdated"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="LiveTranscoding"/>
+                <topicref keyref="VIDEO_CODEC_PROFILE_TYPE"/>
+                <topicref keyref="TranscodingUser"/>
+                <topicref keyref="RtcImage"/>
+                <topicref keyref="AUDIO_SAMPLE_RATE_TYPE"/>
+                <topicref keyref="AUDIO_CODEC_PROFILE_TYPE"/>
+                
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
                 <topicref keyref="onChannelMediaRelayStateChanged"/>
             </relcell>
             <relcell>
@@ -599,6 +669,14 @@
         </relrow>
         <relrow>
             <relcell>
+                <topicref keyref="onAudioVolumeIndication"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AudioVolumeInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
                 <topicref keyref="onAudioRouteChanged"/>
             </relcell>
             <relcell>
@@ -607,10 +685,29 @@
         </relrow>
         <relrow>
             <relcell>
+                <topicref keyref="onRemoteSubscribeFallbackToAudioOnly"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="RemoteVideoStats"/>
+                <topicref keyref="REMOTE_VIDEO_STREAM_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
                 <topicref keyref="onLastmileQuality"/>
             </relcell>
             <relcell>
                 <topicref keyref="QUALITY_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onLastmileProbeResult"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="LastmileProbeResult"/>
+                <topicref keyref="LASTMILE_PROBE_RESULT_STATE"/>
+                <topicref keyref="LastmileProbeOneWayResult"/>
             </relcell>
         </relrow>
         <relrow>
@@ -624,6 +721,7 @@
         <relrow>
             <relcell>
                 <topicref keyref="onAudioDeviceStateChanged"/>
+                <topicref keyref="onVideoDeviceStateChanged"/>
             </relcell>
             <relcell>
                 <topicref keyref="MEDIA_DEVICE_TYPE"/>
@@ -640,20 +738,15 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="onVideoDeviceStateChanged"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="MEDIA_DEVICE_TYPE"/>
-                <topicref keyref="MEDIA_DEVICE_STATE_TYPE"/>
-            </relcell>
-        </relrow>
-        <relrow>
-            <relcell>
                 <topicref keyref="onUploadLogResult"/>
             </relcell>
             <relcell>
                 <topicref keyref="UPLOAD_ERROR_REASON"/>
             </relcell>
+        </relrow>
+        <relrow>
+            <relcell/>
+            <relcell/>
         </relrow>
         <relrow>
             <relcell>
@@ -673,23 +766,50 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="consumeRawVideoFrame"/>
+                <topicref keyref="getVideoContentHint"/>
             </relcell>
             <relcell>
-                <topicref keyref="VIDEO_PIXEL_FORMAT"/>
+                <topicref keyref="VIDEO_CONTENT_HINT"/>
             </relcell>
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="AudioFrame"/>
+                <topicref keyref="onRecordAudioFrame"/>
+                <topicref keyref="onPlaybackAudioFrame"/>
+                <topicref keyref="onPlaybackAudioFrameBeforeMixing"/>
+                <topicref keyref="onMixedAudioFrame"/>
+                <topicref keyref="onPlaybackAudioFrameBeforeMixingEx"/>
             </relcell>
             <relcell>
+                <topicref keyref="AudioFrame"/>
                 <topicref keyref="AUDIO_FRAME_TYPE"/>
             </relcell>
         </relrow>
         <relrow>
             <relcell>
+                <topicref keyref="getMaxMetadataSize"/>
+                <topicref keyref="onReadyToSendMetadata"/>
+                <topicref keyref="onMetadataReceived"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="Metadata"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onCaptureVideoFrame"/>
+                <topicref keyref="onPreEncodeVideoFrame"/>
+                <topicref keyref="onRenderVideoFrame"/>
+                <topicref keyref="getRotationApplied"/>
+                <topicref keyref="onRenderVideoFrameEx"/>
+            </relcell>
+            <relcell>
                 <topicref keyref="VideoFrame"/>
+                <topicref keyref="VIDEO_FRAME_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
                 <topicref keyref="getVideoFormatPreference"/>
             </relcell>
             <relcell>
@@ -1009,9 +1129,6 @@
             </relcell>
             <relcell>
                 <topicref keyref="onLocalUserRegistered"/>
-                <topicref keyref="onJoinChannelSuccess"/>
-                <topicref keyref="onUserJoined"/>
-                <topicref keyref="onUserInfoUpdated"/>
             </relcell>
         </relrow>
         <relrow>
