@@ -30,41 +30,41 @@ Agora Flexible Classroom uses the Netless Whiteboard SDK for interactive whitebo
 
 1. Log in to[ Netless console](https://console.netless.link/), click Application in the left navigation menu to enter **the project management **page, and make a note of the AppIdentifier. 后续在 Agora 控制台配置灵动课堂时需要传入。
 
-   ![获取 AppIdentifier](https://web-cdn.agora.io/docs-files/1603975237931)
+   ![GetAppIdentifier](https://web-cdn.agora.io/docs-files/1603975237931)
 
-2. 点击默认项目的**配置**按钮，点击**生成 sdkToken**，然后复制并保存此 sdkToken。 后续在 Agora 控制台配置灵动课堂时需要传入。
+2. Click the **configuration **button of the default project, click** Generate sdkToken**, and then copy and record the sdkToken. 后续在 Agora 控制台配置灵动课堂时需要传入。
 
-   ![获取 sdktoken](https://web-cdn.agora.io/docs-files/1603975258941)
+   ![Getsdktoken](https://web-cdn.agora.io/docs-files/1603975258941)
 
 <a name="step3"></a>
-## 3. 开通第三方云存储账号
+## 3. Third-party cloud storage service
 
-灵动课堂中的互动白板和云端录制功能都需要使用第三方云存储用于储存课堂文件和录制文件。 因此，在使用灵动课堂前，你需要开通一个第三方云存储账号。 Agora 建议使用[阿里云 OSS](https://www.aliyun.com/product/oss)，请参考[阿里云官方文档](https://help.aliyun.com/product/31815.html?spm=5176.7933691.J_1309819.8.2e392a66QiJZD3)开通阿里云 OSS 服务。
+Both the interactive whiteboard and cloud recording functions of Agora Flexible Classroom require third-party cloud storage for storing class files and recorded files. Therefore, you need to sign up for a third-party cloud storage account before using Agora Flexible Classroom. Agora recommends using[ Alibaba Cloud OSS](https://www.aliyun.com/product/oss). See the [Alibaba Cloud documents](https://help.aliyun.com/product/31815.html?spm=5176.7933691.J_1309819.8.2e392a66QiJZD3) for using Alibaba Cloud OSS.
 
 <a name="step4"></a>
-## 4. 在 Agora 控制台进行配置灵动课堂
+## 4. Configure Flexible Classroom in Agora Console
 
-参考以下步骤在 Agora 控制台对灵动课堂的白板和云端录制功能进行配置。
+Configure the whiteboard and cloud recording functions in Agora Console, as follows:
 
-1. 登录 [Agora 控制台](https://console.agora.io/)，进入**项目管理**页面，找到你刚刚创建的项目，点击该项目的**编辑**按钮进入**项目编辑**页面，然后点击 **aPaaS 配置**按钮。
+1. Log in [to Agora Console ](https://console.agora.io/)and enter the **project management **page. Find the project you create, click the **edit **button of this project to enter the **project edit** page. Click the** aPaaS configuration **button.
 
-![apaas配置](https://web-cdn.agora.io/docs-files/1611024994160)
+![aPaaSconfiguration](https://web-cdn.agora.io/docs-files/1611024994160)
 
-2. 进入 aPaaS 配置页面，**勾选**白板和云端录制以开通这两个功能，然后参考下文分别传入相应的 JSON 配置对象，点击**更新**。 返回**项目管理**页面后，再点击**保存**以确保 aPaaS 配置生效。
+2. On the aPaaS Configuration page, **select the** tickbox next to Whiteboard and Cloud recording to enable these two functions, and pass in JSON objects to configure these two functions according to the following **table**. After returning to the **project management **page, click **Save** to ensure the aPaaS configuration takes effect.
 
-![apaas配置](https://web-cdn.agora.io/docs-files/1611025023884)
+![aPaaSconfiguration](https://web-cdn.agora.io/docs-files/1611025023884)
 
-### 白板
+### Whiteboard
 
-白板的 JSON 配置对象包含以下字段：
+The JSON object for whiteboard contains the following fields:
 
-| 字段 | 类型 | Description |
+| Field | Type | Description |
 | :------ | :----- | :----------------------------------------------------------- |
-| `appId` | string | （必填）你在[第 2 步](#step2)获取到的白板 Netless 的 AppIdentifier。 如不设置，则无法进入灵动课堂。 |
-| `token` | string | （必填）你在[第 2 步](#step2)获取到的白板 Netless 的 sdkToken。 如不设置，则无法进入灵动课堂。 |
-| `oss` | object | （选填）阿里云 OSS 配置，用于储存你在课堂中上传的课件。 如不设置，则无法使用白板中的课件上传功能。 包含以下字段：<li>`region`: String 类型，阿里云 OSS 指定的地区信息，例如 `"oss-cn-shanghai"`。<li>`bucket`: String 类型，阿里云 OSS 的 Bucket 名称，例如 `"agora-whiteboard"`。<li>`folder`: String 类型，阿里云 OSS 中的资源路径，例如 `"whiteboard"`。<li>`accessKey`：String 类型，阿里云访问密钥 AccessKey 中的 `AccessKeyId`。 详见[阿里云文档](https://help.aliyun.com/document_detail/53045.html)。<li>`secretKey`：String 类型，阿里云访问密钥 AccessKey 中的 `AccessKeySecret`。 详见[阿里云文档](https://help.aliyun.com/document_detail/53045.html)。<li>`endpoint`: String 类型，阿里云 OSS [访问域名](https://help.aliyun.com/document_detail/31837.html?spm=a2c4g.11186623.6.625.49002345WzP07l)，例如 `"oss-cn-shanghai.aliyuncs.com"`。<p>**注意事项**：当前白板只支持阿里云 OSS。 |
+| `appId` | string | (Required) TheNetless[](#step2) AppIdentifier that you get in Step 2. If you do not set this parameter, you cannot enter a classroom. |
+| `token` | string | (Required) The[](#step2) Netless sdkToken that you get in Step 2. If you do not set this parameter, you cannot enter a classroom. |
+| `oss` | object | (Optional) Alibaba Cloud OSS configuration, used for storing the files you upload in a classroom. If you do not set this parameter, you cannot upload any file in a classroom. It contains the following fields:<li>`region`: String. The service` region of Alibaba Cloud OSS, such as "oss-cn-shanghai"`.<li>`Bucket`: String. The bucket name of Alibaba Cloud OSS, such as `"agora-whiteboard"`.<li>`folder`: String. The resource path in Alibaba Cloud OSS, such as `"whiteboard"`.<li>`accessKey`: String. Corresponds to the` AccessKeyId in the AccessKey of Alibaba Cloud. For details, see Alibaba Cloud's documentation`. 详见[阿里云文档](https://help.aliyun.com/document_detail/53045.html)。<li>`accessKey`: String. Corresponds to the` AccessKeySecret in the AccessKey of Alibaba Cloud. For details, see Alibaba Cloud's documentation`. 详见[阿里云文档](https://help.aliyun.com/document_detail/53045.html)。<li>`endpoint`: String. The access[ endpoint of Alibaba Cloud OSS](https://help.aliyun.com/document_detail/31837.html?spm=a2c4g.11186623.6.625.49002345WzP07l), such as `"oss-cn-shanghai.aliyuncs.com"`.<p>**Note**: Whiteboard only supports Alibaba Cloud OSS. |
 
-白板 JSON 示例：
+Whiteboard JSON example:
 
 ```json
 {
@@ -81,21 +81,21 @@ Agora Flexible Classroom uses the Netless Whiteboard SDK for interactive whitebo
  }
 ```
 
-### 云端录制
+### Cloud recording
 
-云端录制的 JSON 配置对象包含以下字段：
+The JSON object for cloud recording contains the following fields:
 
-| 字段 | 类型 | Description |
+| Field | Type | Description |
 | :---------------- | :----- | :----------------------------------------------------------- |
-| `recordingConfig` | object | （选填）录制设置。 如不设置，则使用[合流录制模式](https://docs.agora.io/cn/Agora%20Platform/composite_recording_mode)且只录制老师的音视频。 如需更改录制行为，请参考[云端录制设置](https://docs.agora.io/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#recordingConfig)。 |
-| `storageConfig` | object | （选填）云存储设置，用于储存你的录制文件。 如不设置，你的录制文件会存储在 Agora 的阿里云 OSS 账号中。 如需使用你自己的云存储，请参考[云存储设置](https://docs.agora.io/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#storageConfig)进行配置。<p>**注意事项**：`storageConfig` 中的 `endpoint` 字段为由阿里云 Bucket 名称和[访问域名](https://help.aliyun.com/document_detail/31837.html?spm=a2c4g.11186623.6.625.49002345WzP07l)拼成的完整路径。 假设你的 Bucket 名称为 `"agora-whiteboard"`，阿里云 OSS 访问域名为 `"oss-cn-shanghai.aliyuncs.com"`，则 `endpoint` 字段设为 `"https://agora-whiteboard.oss-cn-shanghai.aliyuncs.com"`。 |
+| `recordingConfig` | object | (Optional) Recording configuration. If you do not set this parameter, Agora [Flexible Classroom ](https://docs.agora.io/cn/Agora%20Platform/composite_recording_mode)records the audio and video of the teachers in composite recording mode by default. To change the recording behavior, see [cloud recording configuration](https://docs.agora.io/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#recordingConfig). |
+| `storageConfig` | object | (Optional) Cloud storage configuration, used for storing your recorded files. If you do not set this parameter, your recorded files will be stored in Agora's Alibaba Cloud OSS account. To use your own cloud storage account, see the [cloud storage configuration](https://docs.agora.io/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#storageConfig).<p>**Note:The **`endpoint `field in `storageConfig` is a path concatenating the bucket name and [access domain of Alibaba ](https://help.aliyun.com/document_detail/31837.html?spm=a2c4g.11186623.6.625.49002345WzP07l)Cloud OSS. Suppose your bucket name is `"agora-whiteboard"` and your access domain is `"oss-cn-shanghai.aliyuncs.com"`, set  `endpoint` as `"https://agora-whiteboard.oss-cn-shanghai. aliyuncs.com"` |
 
-云端录制 JSON 示例
+Cloud recording JSON example
 
 ```json
 {
         "recordingConfig": {},
-        "storageConfig": {
+ storageConfig
             "vendor": 2,
             "region": 1,
             "bucket": "<your_bucket_name>",
@@ -108,10 +108,10 @@ Agora Flexible Classroom uses the Netless Whiteboard SDK for interactive whitebo
 ```
 
 <a name="step5"></a>
-## 5. 生成 RTM Token
+## 5. Generate an RTM Token
 
-灵动课堂使用 RTM Token 进行鉴权。 RTM Token 是一种动态密钥，通过 Agora App ID、App 证书、UID 等参数生成，安全性较高。
+Agora Flexible Classroom uses the RTM Token for authentication. The RTM token is generated dynamically with the parameters including the Agora App ID, App Certificate, and User ID, which is highly secure.
 
-- 在项目测试阶段，你可以使用 Agora 提供的[临时 RTM Token 生成器](https://webdemo.agora.io/token-builder/)，传入你在[第 1 步](#step1)获取到的 App ID 和 App 证书，然后自行填入一个 UID，快速生成一个临时 RTM Token，有效期为 24 小时。
-<div class="alert info">UID 为一个不超过 64 字节的字符串。 以下为支持的字符集范围:<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字</li><li>0-9</li><li>空格</li><li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "|", "~", ","</li></ul></div>
-- 正式生产环境中，你需要在你的服务端部署一个 RTM Token 生成器。 用户进入课堂时，客户端需要向服务端申请 RTM Token；服务端生成 RTM Token 后，再将其传给客户端。 详情请参考[生成 RTM Token](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms) 文档。
+- When testing your app, you can use the[ Temporary RTM Token Generator](https://webdemo.agora.io/token-builder/) provided by Agora and pass[ the App ID and App Certificate that you get in Step 1](#step1), and a user ID to generate a temporary RTM Token with a validity period of 24 hours.
+<div class="alert info">UID 为一个不超过 64 字节的字符串。 以下为支持的字符集范围:<ul><li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters: </li><li>0-9</li><li>The space character.</li><li>- Punctuation characters and other symbols, including: "!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "|", "~", ",".</li></ul></div>
+For the development environment, you need to deploy an RTM token generator on your server. When a user enters the classroom, the client needs to apply for an RTM token from the server. After the server generates an RTM token, the sever passes it to the client. 详情请参考[生成 RTM Token](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms) 文档。
