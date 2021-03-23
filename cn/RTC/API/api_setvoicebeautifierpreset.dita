@@ -15,7 +15,7 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/setVoiceBeautifierPreset"/>
         </section>
         <section id="detailed_desc">
-   
+            <title>详细描述</title>
    <dl outputclass="since">
        <dlentry>
   <dt>自从</dt>
@@ -27,7 +27,9 @@
    <note outputclass="note">
        <ul>
   <li>该方法在加入频道前后都能调用。</li>
-  <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1) 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)，否则该方法会调用失败。</li>
+  <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname
+                            keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1) 或 <apiname
+                            keyref="AUDIO_PROFILE_IOT"/>(6)，否则该方法不生效。</li>
   <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
   <li>调用该方法后，Agora 不推荐调用以下方法，否则该方法设置的效果会被覆盖：
       <ul>
@@ -39,6 +41,7 @@
  <li><xref keyref="setLocalVoiceEqualization"/></li>
  <li><xref keyref="setLocalVoiceReverb"/></li>
  <li><xref keyref="setVoiceBeautifierParameters"/></li>
+          <li><xref keyref="setVoiceConversionPreset"/></li>
       </ul>
   </li>
        </ul>
