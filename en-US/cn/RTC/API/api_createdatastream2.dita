@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_createdatastream2">
-    <title><ph keyref="createDataStream2"></ph>[2/2]</title>
-    <shortdesc id="short"><ph id="shortdesc">创建数据流。</ph></shortdesc>
+    <title>[1/2]<ph keyref="createDataStream2"></ph></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -22,8 +22,8 @@
   <dd>v3.3.0。 用于取代 <xref keyref="createDataStream1"></xref>[1/2]。</dd>
        </dlentry>
    </dl>
-   <p id="desc">该方法用于创建数据流。 每个用户在每个频道中最多只能创建 5 个数据流。</p>
-   <p id="diff">相比 <apiname keyref="createDataStream1"></apiname>[1/2]，该方法不支持数据可靠。 接收方会丢弃超出发送时间 5 秒后的数据包。</p>
+   <p id="desc">该方法用于创建数据流。 Each user can create up to five data streams in a single channel.</p>
+   <p id="diff">相比 <apiname keyref="createDataStream1"></apiname>[1/2]，该方法不支持数据可靠。 This method does not support data reliability. If the receiver receives a data packet five seconds or more after it was sent, the SDK directly discards the data.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
@@ -33,16 +33,16 @@
        </plentry>
        <plentry id="config">
   <pt>config</pt>
-  <pd>数据流设置。 详见 <xref keyref="DataStreamConfig"></xref>。</pd>
+  <pd>The configurations for the data stream. 详见 <xref keyref="DataStreamConfig"></xref>。</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li props="windows">0: 创建数据流成功。</li>
+       <li props="windows">Success.</li>
        <li props="android">创建的数据流的 ID：方法调用成功。</li>
-       <li>&lt; 0：方法调用失败。 你可以参考 <xref href="error_rtc.md" format="md">错误码和警告码</xref> 进行问题排查。</li>
+       <li>&lt; 0: Failure. 你可以参考 <xref href="error_rtc.md" format="md">错误码和警告码</xref> 进行问题排查。</li>
    </ul>
         </section></refbody>
 </reference>
