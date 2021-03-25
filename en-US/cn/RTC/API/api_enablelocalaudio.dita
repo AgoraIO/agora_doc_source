@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enablelocalaudio">
     <title><ph keyref="enableLocalAudio"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开关本地音频采集。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Disables/Re-enables the local audio function.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,18 +16,18 @@
         </section>
         <section id="detailed_desc">
    
-   <p>当用户加入频道时，语音功能默认是开启的。 该方法可以关闭或重新开启本地语音功能，即停止或重新开始本地音频采集。</p>
+   <p>The audio function is enabled by default. This method disables or re-enables the local audio function, that is, to stop or restart local audio capturing.</p>
    <p>该方法不影响接收或播放远端音频流，<xref keyref="enableLocalAudio"></xref>(<ph keyref="false"/>) 适用于只听不发的用户场景。</p>
    <p>语音功能关闭或重新开启后，会收到回调 <xref keyref="onLocalAudioStateChanged"/>，并报告 <apiname
                     keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/>(0) 或 <apiname
                     keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING"/>(1)。</p>
    <note outputclass="note"><ul>
        <li>该方法与 <xref keyref="muteLocalAudioStream"/> 的区别在于：<ul>
-                            <li><apiname keyref="enableLocalVideo"/>: 开启或关闭本地语音采集及处理。 使用 <codeph>enableLocalAudio</codeph> 关闭或开启本地采集后，本地听远端播放会有短暂中断。</li>
+                            <li><apiname keyref="enableLocalVideo"/>: 开启或关闭本地语音采集及处理。 If you disable or re-<codeph>enable</codeph> local audio capturing using the `<codeph>enableLocalAudio</codeph>` method, the local user may hear a pause in the remote audio playback.</li>
                             <li><apiname keyref="muteLocalAudioStream"/>: 停止或继续发送本地音频流。</li>
                         </ul>
                     </li>       
-       <li>该该方法在加入频道前后都能调用。</li> 
+       <li>You can call this method either before or after joining a channel.</li> 
    </ul></note>
         </section>
         <section id="parameters"><title>Parameter</title>
@@ -35,8 +35,8 @@
        <plentry>
   <pt>enabled</pt>
   <pd><ul>
-      <li><ph keyref="true"/>: 重新开启本地语音功能，即开启本地语音采集（默认）；</li>
-      <li><ph keyref="false"/>: 关闭本地语音功能，即停止本地语音采集。</li>
+      <li><ph keyref="true"/>true: (Default) Re-enable the local audio function, that is, to start the local audio capturing device (for example, the microphone).</li>
+      <li><ph keyref="false"/>false: Disable the local audio function, that is, to stop local audio capturing.</li>
   </ul>     
   </pd>
        </plentry>
@@ -45,8 +45,8 @@
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功</li>
-       <li>&lt; 0: 方法调用失败</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
