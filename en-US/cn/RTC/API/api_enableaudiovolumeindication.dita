@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enableaudiovolumeindication">
     <title><ph keyref="enableAudioVolumeIndication"/></title>
-    <shortdesc id="short"><ph id="shortdesc">启用用户音量提示。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables the reporting of users&apos; volume indication.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,8 +16,8 @@
         </section>
         <section id="detailed_desc">
    
-   <p>该方法允许 SDK 定期向 app 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。 启用该方法后，只要频道内有发流用户， SDK 会在加入频道后按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
-   <note outputclass="note">该方法在加入频道前后都能调用。</note>
+   <p>This method enables the SDK to regularly report the volume information of the local user who sends a stream and remote users (up to three) whose instantaneous volumes are the highest to the app. 启用该方法后，只要频道内有发流用户， SDK 会在加入频道后按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调。</p>
+   <note outputclass="note">You can call this method either before or after joining a channel.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
@@ -25,21 +25,21 @@
   <pt>interval</pt>
   <pd>指定音量提示的时间间隔：<ul>
  <li>≤ 0: 禁用音量提示功能。</li>
- <li>> 0: 返回音量提示的间隔，单位为毫秒。 建议设置到大于 200 毫秒。 最小不得少于 10 毫秒，否则会收不到 <apiname
+ <li>>Time interval (ms) between two consecutive volume indications. We recommend a setting greater than 200 ms. 最小不得少于 10 毫秒，否则会收不到 <apiname
 keyref="onAudioVolumeIndication"/> 回调。</li>
       </ul>
   </pd>
        </plentry>
        <plentry>
   <pt>smooth</pt>
-  <pd>平滑系数，指定音量提示的灵敏度。 取值范围为 [0,10]，建议值为 3。 数字越大，波动越灵敏；数字越小，波动越平滑。</pd>
+  <pd>平滑系数，指定音量提示的灵敏度。 取值范围为 [0,10]，建议值为 3。 The greater the value, the more sensitive the indicator. The recommended value is 3.</pd>
        </plentry>
        <plentry>
   <pt>report_vad</pt>
   <pd>
       <ul>
- <li><ph keyref="true"/>：开启本地人声检测功能。 开启后，<apiname keyref="onAudioVolumeIndication"/> 回调的 <parmname>vad</parmname> 参数会报告是否在本地检测到人声。</li>
- <li><ph keyref="false"/>：（默认）关闭本地人声检测功能。 除引擎自动进行本地人声检测的场景外，<apiname keyref="onAudioVolumeIndication"/> 回调的 <parmname>vad</parmname> 参数不会报告是否在本地检测到人声。</li>
+ <li><ph keyref="true"/>true: Enable the voice activity detection of the local user. 开启后，<apiname keyref="onAudioVolumeIndication"/> 回调的 <parmname>vad</parmname> 参数会报告是否在本地检测到人声。</li>
+ <li><ph keyref="false"/>false: (Default) Disable the voice activity detection of the local user. 除引擎自动进行本地人声检测的场景外，<apiname keyref="onAudioVolumeIndication"/> 回调的 <parmname>vad</parmname> 参数不会报告是否在本地检测到人声。</li>
       </ul>
       
   </pd>
@@ -49,8 +49,8 @@ keyref="onAudioVolumeIndication"/> 回调。</li>
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li>0：方法调用成功</li>
-       <li>&lt;0：方法调用失败</li>
+       <li>Success.</li>
+       <li>&lt;Failure.</li>
    </ul>
         </section></refbody>
 </reference>
