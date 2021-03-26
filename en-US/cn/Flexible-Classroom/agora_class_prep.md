@@ -68,16 +68,16 @@ Whiteboard JSON example:
 
 ```json
 {
-       "appId": "<your_whiteboard_app_id>",
-       "token": "<your_whiteboard_sdk_token>",
-       "oss": {
-           "region": "oss-cn-shanghai",
-           "bucket": "<your_bucket_name>",
-           "folder": "whiteboard",
-           "accessKey": "<your_access_key>",
-           "secretKey": "<your_secret_key>",
-           "endpoint": "oss-cn-shanghai.aliyuncs.com"
-       }
+        "appId": "<your_whiteboard_app_id>",
+        "token": "<your_whiteboard_sdk_token>",
+        "oss": {
+            "region": "oss-cn-shanghai",
+            "bucket": "<your_bucket_name>",
+            "folder": "whiteboard",
+            "accessKey": "<your_access_key>",
+            "secretKey": "<your_secret_key>",
+            "endpoint": "oss-cn-shanghai.aliyuncs.com"
+        }
 }
 ```
 
@@ -94,16 +94,16 @@ Cloud recording JSON example
 
 ```json
 {
-       "recordingConfig": {},
-       storageConfig
-           "vendor": 2,
-           "region": 1,
-           "bucket": "<your_bucket_name>",
-           "accessKey": "<your_access_key>",
-           "secretKey": "<your_secret_key>",
-           "fileNamePrefix": ["directory1","directory2"],
-           "endpoint": "https://xxx.oss-cn-shanghai.aliyuncs.com"
-       }
+        "recordingConfig": {},
+        storageConfig
+            "vendor": 2,
+            "region": 1,
+            "bucket": "<your_bucket_name>",
+            "accessKey": "<your_access_key>",
+            "secretKey": "<your_secret_key>",
+            "fileNamePrefix": ["directory1","directory2"],
+            "endpoint": "https://xxx.oss-cn-shanghai.aliyuncs.com"
+        }
 }
 ```
 
