@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getuserinfobyuseraccount">
     <title><ph keyref="getUserInfoByUserAccount"></ph></title>
-    <shortdesc id="short"><ph id="shortdesc">通过 User Account 获取用户信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the user information by passing in the user account.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -22,26 +22,26 @@
   <dd>v2.8.0</dd>
        </dlentry>
    </dl>
-   <p>远端用户加入频道后，SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的 Mapping 表， 并在本地触发 <xref keyref="onUserInfoUpdated"></xref> 回调。</p>
-   <p>收到这个回调后，你可以调用该方法，通过传入 User Account 获取包含了指定用户 UID 的 <xref keyref="UserInfo"></xref> 对象。</p>
+   <p>After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object (`userInfo`), and triggers this callback on the local client.<xref keyref="onUserInfoUpdated"></xref></p>
+   <p>After receiving the o\ref agora::rtc::IRtcEngineEventHandler::onUserInfoUpdated &quot;onUserInfoUpdated&quot; callback, you can call this method to get the user ID of the remote user from the `userInfo` object by passing in the user account.<xref keyref="UserInfo"></xref></p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>userAccount</pt>
-  <pd>用户 User Account。 该参数为必填。</pd>
+  <pd>The user account. It is mandatory.</pd>
        </plentry>
        <plentry>
   <pt>userInfo</pt>
-  <pd>标识用户信息的 UserInfo 对象。 详见 <xref keyref="UserInfo"></xref> 类。</pd>
+  <pd>Identifiers of a user. 详见 <xref keyref="UserInfo"></xref> 类。</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt;0: 方法调用失败。</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

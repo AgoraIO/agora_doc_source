@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_adjustplaybacksignalvolume">
     <title><ph keyref="adjustPlaybackSignalVolume"/></title>
-    <shortdesc id="short"><ph id="shortdesc">调节本地播放的所有远端用户信号音量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Adjusts the playback signal volume of all remote users.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -18,9 +18,9 @@
    
    <note outputclass="note">
        <ul>
-  <li>该方法调节的是本地播放的所有远端用户混音后的音量。</li>
+  <li>This method adjusts the playback volume that is the mixed volume of all remote users.</li>
   <li>从 v2.3.2 开始，静音本地音频需同时调用 <codeph>adjustPlaybackSignalVolume</codeph> 和 <xref keyref="adjustAudioMixingPlayoutVolume"></xref> 方法，并将 <parmname>volume</parmname> 设置为 <codeph>0</codeph>。</li>
-  <li>该方法在加入频道前后都能调用。</li>
+  <li>You can call this method either before or after joining a channel.</li>
        </ul>
    </note>
         </section>
@@ -28,10 +28,10 @@
    <parml>
        <plentry>
   <pt>volume</pt>
-  <pd><p>播放音量。 为避免回声并提升通话质量，Agora 建议将 <parmname>volume</parmname> 值设为 [0,100]。 如果 <parmname>volume</parmname> 值需超过 100，联系<xref href="https://agora-ticket.agora.io/" scope="external" format="html">技术支持</xref>:</p>
+  <pd><p>播放音量。 To avoid echoes and improve call quality, Agora recommends setting the value of<parmname> volume</parmname> between 0 and 100. 如果 <parmname>volume</parmname> 值需超过 100，联系<xref href="https://agora-ticket.agora.io/" scope="external" format="html">技术支持</xref>:</p>
       <ul>
- <li>0: 静音；</li>
- <li>100: 原始音量。</li>
+ <li>0: Mute.</li>
+ <li>100: Original volume.</li>
       </ul>
   </pd>
        </plentry>
@@ -40,8 +40,8 @@
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功</li>
-       <li> &lt; 0: 方法调用失败</li>
+       <li>0: Success.</li>
+       <li> &lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
