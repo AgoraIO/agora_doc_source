@@ -1,0 +1,331 @@
+
+<!DOCTYPE html
+  SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:whc="http://www.oxygenxml.com/webhelp/components" xml:lang="zh-cn" lang="zh-cn" whc:version="22.0">
+    <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta charset="UTF-8" /><meta name="DC.rights.owner" content="(C) 版权 2021" /><meta name="copyright" content="(C) 版权 2021" /><meta name="generator" content="DITA-OT" /><meta name="DC.type" content="dita" /><meta name="description" content="IPacketObserver 定义。" /><meta name="DC.subject" content="IPacketObserver,Packet,onReceiveAudioPacket,onReceiveVideoPacket,onSendAudioPacket,onSendVideoPacket" /><meta name="keywords" content="IPacketObserver, Packet, onReceiveAudioPacket, onReceiveVideoPacket, onSendAudioPacket, onSendVideoPacket" /><meta name="indexterms" content="onReceiveAudioPacket, onReceiveVideoPacket, onSendAudioPacket, onSendVideoPacket" /><meta name="DC.format" content="HTML5" /><meta name="DC.identifier" content="class_ipacketobserver" />        
+      <title>IPacketObserver</title><!--  Generated with Oxygen version 23.1, build number 2021030117.  --><meta name="wh-path2root" content="../" /><meta name="wh-toc-id" content="class_ipacketobserver-d7110e18674" /><meta name="wh-source-relpath" content="API/class_ipacketobserver.dita" /><meta name="wh-out-relpath" content="API/class_ipacketobserver.html" />
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="../oxygen-webhelp/lib/bootstrap/css/bootstrap.min.css" />
+    
+    <link rel="stylesheet" href="../oxygen-webhelp/lib/jquery-ui/jquery-ui.min.css" />
+    
+    <!-- Template default styles  -->
+    <link rel="stylesheet" type="text/css" href="../oxygen-webhelp/app/topic-page.css?buildId=2021030117" />
+    
+    
+    <script type="text/javascript" src="../oxygen-webhelp/lib/jquery/jquery-3.5.1.min.js"><!----></script>
+    
+    <script data-main="../oxygen-webhelp/app/topic-page.js" src="../oxygen-webhelp/lib/requirejs/require.js"></script>
+<link rel="stylesheet" type="text/css" href="../oxygen-webhelp/template/light.css?buildId=2021030117" /></head>
+
+    <body class="wh_topic_page frmBody">
+        <a href="#wh_topic_body" class="sr-only sr-only-focusable">
+            跳转到主要内容
+        </a>
+        
+        
+        
+        
+        <header class="navbar navbar-default wh_header" whc:version="23.1">
+    <div class="container-fluid">
+        <div class="wh_header_flex_container navbar-nav navbar-expand-md navbar-dark">
+            <div class="wh_logo_and_publication_title_container">
+                <div class="wh_logo_and_publication_title">
+                    
+                    <!--
+                            This component will be generated when the next parameters are specified in the transformation scenario:
+                            'webhelp.logo.image' and 'webhelp.logo.image.target.url'.
+                            See: http://oxygenxml.com/doc/versions/17.1/ug-editor/#topics/dita_webhelp_output.html.
+                    -->
+                    
+                    <div class=" wh_publication_title "></div>
+                    
+                </div>
+                
+                <!-- The menu button for mobile devices is copied in the output only when the 'webhelp.show.top.menu' parameter is set to 'yes' -->
+                <button type="button" data-target="#wh_top_menu_and_indexterms_link" id="wh_menu_mobile_button" data-toggle="collapse" class="navbar-toggler collapsed wh_toggle_button" aria-expanded="false" aria-label="切换菜单" aria-controls="wh_top_menu_and_indexterms_link">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="wh_top_menu_and_indexterms_link collapse navbar-collapse" id="wh_top_menu_and_indexterms_link">
+                
+                <nav class=" wh_top_menu " aria-label="Menu Container"><ul xmlns:xhtml="http://www.w3.org/1999/xhtml" role="menubar" aria-label="Menu"><li role="menuitem" aria-haspopup="true" aria-expanded="false" class="has-children"><span id="tocId-d7110e14013-mi" data-tocid="tocId-d7110e14013" data-state="not-ready" class=" topicref "><span class="title"><a href="../API/rtc_api_overview.html">C++ API Reference for All Platforms</a></span></span></li></ul></nav>
+                <div class=" wh_indexterms_link "><a href="../indexTerms.html" title="索引" aria-label="转到索引术语页"><span>索引</span></a></div>
+                
+            </div>
+        </div>
+    </div>
+</header>
+        
+        
+         
+        
+        <!-- Search form -->
+        <div class=" wh_search_input navbar-form wh_topic_page_search search " role="form">
+            
+            
+            
+            <form id="searchForm" method="get" role="search" action="../search.html"><div><input type="search" placeholder="搜索 " class="wh_search_textfield" id="textToSearch" name="searchQuery" aria-label="搜索查询" required="required" /><button type="submit" class="wh_search_button" aria-label="搜索"><span class="search_input_text">搜索</span></button></div></form>
+            
+            
+            
+        </div>
+        
+        <div class="container-fluid" id="wh_topic_container">
+            <div class="row">
+
+                <nav class="wh_tools d-print-none navbar-expand-md" aria-label="Tools">
+                    
+                    <div data-tooltip-position="bottom" class=" wh_breadcrumb "><ol xmlns:html="http://www.w3.org/1999/xhtml" class="d-print-none"><li><span class="home"><a href="../index.html"><span>主页</span></a></span></li><li><span class="topicref"><span class="title"><a href="../API/rtc_api_overview.html">C++ API Reference for All Platforms</a></span></span></li><li><span class="topicref"><span class="title"><a href="../API/class_iaudioframeobserver.html#class_iaudioframeobserver">数据观测器</a></span></span></li><li class="active"><span class="topicref" data-id="class_ipacketobserver"><span class="title"><a href="../API/class_ipacketobserver.html#class_ipacketobserver"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_ipacketobserver.html#class_ipacketobserver"><span class="ph">IPacketObserver</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">IPacketObserver 定义。</span></p></span></span></span></li></ol></div>
+                    
+                    
+                    
+                    <div class="wh_right_tools">
+                        <button class="wh_hide_highlight" aria-label="切换搜索突出显示" title="切换搜索突出显示"></button>
+                        <button class="webhelp_expand_collapse_sections" data-next-state="collapsed" aria-label="折叠截面" title="折叠截面"></button>
+                        <div class=" wh_navigation_links "><span id="topic_navigation_links" class="navheader"></span></div>
+                        
+                        <!-- External resource link -->
+                        
+                        
+                        <div class=" wh_print_link print d-none d-md-inline-block "><button onClick="window.print()" title="打印此页" aria-label="打印此页"></button></div>
+                        
+                        <!-- Expand/Collapse publishing TOC 
+                             The menu button for mobile devices is copied in the output only when the publication TOC is available
+                        -->
+                        <button type="button" data-target="#wh_publication_toc" id="wh_toc_button" data-toggle="collapse" class="custom-toggler navbar-toggler collapsed wh_toggle_button navbar-light" aria-expanded="false" aria-label="Toggle publishing table of content" aria-controls="wh_publication_toc">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    
+                </nav>
+            </div>
+            
+            
+            
+            
+            <div class="wh_content_area">
+                <div class="row">
+                    
+                        
+                        <nav id="wh_publication_toc" class="collapse col-lg-3 col-md-3 col-sm-12 d-md-block d-print-none" aria-label="Table of Contents Container">
+                            <div class=" wh_publication_toc " data-tooltip-position="right"><ul role="tree" aria-label="Table of Contents"><span class="expand-button-action-labels"><span id="button-expand-action" aria-label="Expand"></span><span id="button-collapse-action" aria-label="Collapse"></span><span id="button-pending-action" aria-label="Pending"></span></span><li role="treeitem" aria-expanded="true"><span data-tocid="tocId-d7110e14013" class="topicref" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action tocId-d7110e14013-link" class="wh-expand-btn"></span><span class="title"><a href="../API/rtc_api_overview.html" id="tocId-d7110e14013-link">C++ API Reference for All Platforms</a></span></span><ul role="group" class="navbar-nav nav-list"><li role="treeitem"><span data-tocid="api-title-d7110e14014" class="topicref" data-id="api-title" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/rtc_api_overview.html" id="api-title-d7110e14014-link">API Overview</a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">声网通过全球部署的虚拟网络，提供可以灵活搭配的 API 组合，为移动端到移动端以及移动端到 Web 端提供质量可靠的实时音视频通信。</span></p></span></span></span></li><li role="treeitem"><span data-tocid="class_rtcengine-d7110e14026" class="topicref" data-id="class_rtcengine" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/class_irtcengine.html#class_rtcengine" id="class_rtcengine-d7110e14026-link"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_irtcengine.html#class_rtcengine"><span class="ph">IRtcEngine</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">Agora Native SDK 的基础接口类，包含应用程序调用的主要方法。</span></p></span></span></span></li><li role="treeitem"><span data-tocid="class_rtcengineeventhandler-d7110e16202" class="topicref" data-id="class_rtcengineeventhandler" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/class_irtcengineeventhandler.html#class_rtcengineeventhandler" id="class_rtcengineeventhandler-d7110e16202-link"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_irtcengineeventhandler.html#class_rtcengineeventhandler"><span class="ph">IRtcEngineEventHandler</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph"><span class="keyword apiname">IRtcEngineEventHandler</span> 接口类用于 SDK 向 app 发送回调事件通知，app 通过继承该接口类的方法获取 SDK         的事件通知。</span></p></span></span></span></li><li role="treeitem" aria-expanded="false"><span data-tocid="tocId-d7110e17259" class="topicref" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action tocId-d7110e17259-link" class="wh-expand-btn"></span><span class="title"><a href="../API/class_ichannel.html#class_ichannel" id="tocId-d7110e17259-link">多频道管理</a></span></span></li><li role="treeitem" aria-expanded="false"><span data-tocid="tocId-d7110e18311" class="topicref" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action tocId-d7110e18311-link" class="wh-expand-btn"></span><span class="title"><a href="../API/class_imediaengine.html#class_imediaengine" id="tocId-d7110e18311-link">自定义音视频</a></span></span></li><li role="treeitem" aria-expanded="true"><span data-tocid="tocId-d7110e18556" class="topicref" data-state="expanded"><span role="button" tabindex="0" aria-labelledby="button-collapse-action tocId-d7110e18556-link" class="wh-expand-btn"></span><span class="title"><a href="../API/class_iaudioframeobserver.html#class_iaudioframeobserver" id="tocId-d7110e18556-link">数据观测器</a></span></span><ul role="group" class="navbar-nav nav-list"><li role="treeitem"><span data-tocid="class_iaudioframeobserver-d7110e18557" class="topicref" data-id="class_iaudioframeobserver" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/class_iaudioframeobserver.html#class_iaudioframeobserver" id="class_iaudioframeobserver-d7110e18557-link"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_iaudioframeobserver.html#class_iaudioframeobserver"><span class="ph">IAudioFrameObserver</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">语音观测器。</span></p></span></span></span></li><li role="treeitem" class="active"><span data-tocid="class_ipacketobserver-d7110e18674" class="topicref" data-id="class_ipacketobserver" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/class_ipacketobserver.html#class_ipacketobserver" id="class_ipacketobserver-d7110e18674-link"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_ipacketobserver.html#class_ipacketobserver"><span class="ph">IPacketObserver</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">IPacketObserver 定义。</span></p></span></span></span></li><li role="treeitem"><span data-tocid="class_imetadataobserver-d7110e18754" class="topicref" data-id="class_imetadataobserver" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/class_imetadataobserver.html#class_imetadataobserver" id="class_imetadataobserver-d7110e18754-link"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_imetadataobserver.html#class_imetadataobserver"><span class="ph">IMetadataObserver</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">Metadata 观测器。</span></p></span></span></span></li><li role="treeitem"><span data-tocid="class_ivideoframeobserver-d7110e18844" class="topicref" data-id="class_ivideoframeobserver" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/class_ivideoframeobserver.html#class_ivideoframeobserver" id="class_ivideoframeobserver-d7110e18844-link"><a xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="../API/class_ivideoframeobserver.html#class_ivideoframeobserver"><span class="ph">IVideoFrameObserver</span></a></a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">视频观测器。</span></p></span></span></span></li></ul></li><li role="treeitem" aria-expanded="false"><span data-tocid="tocId-d7110e19029" class="topicref" data-state="not-ready"><span role="button" tabindex="0" aria-labelledby="button-expand-action tocId-d7110e19029-link" class="wh-expand-btn"></span><span class="title"><a href="../API/class_iaudiodevicemanager.html#class_iaudiodevicemanager" id="tocId-d7110e19029-link">设备管理</a></span></span></li><li role="treeitem"><span data-tocid="datatype-d7110e19628" class="topicref" data-id="datatype" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/rtc_api_data_type.html#datatype" id="datatype-d7110e19628-link">类型定义</a><span class="wh-tooltip"><p xmlns:toc="http://www.oxygenxml.com/ns/webhelp/toc" xmlns:xhtml="http://www.w3.org/1999/xhtml" class="shortdesc"><span class="ph">本页列出 <span class="ph">Windows</span> API 所有的类型定义。</span></p></span></span></span></li><li role="treeitem"><span data-tocid="错误码和警告码-d7110e21080" class="topicref" data-id="错误码和警告码" data-state="leaf"><span role="button" class="wh-expand-btn"></span><span class="title"><a href="../API/error_rtc.html" id="错误码和警告码-d7110e21080-link">错误码和警告码</a></span></span></li></ul></li></ul></div>
+                        </nav>
+                        
+                    
+                    
+                    <div class="col-lg-7 col-md-9 col-sm-12" id="wh_topic_body">
+                        
+                        <div class=" wh_topic_content body "><main role="main"><article role="article" aria-labelledby="ariaid-title1"><article class="nested0" aria-labelledby="ariaid-title1" id="class_ipacketobserver">
+    <h1 class="- topic/title title topictitle1" id="ariaid-title1"><a href="class_ipacketobserver.html#class_ipacketobserver"><span class="- topic/ph ph">IPacketObserver</span></a></h1>
+    <p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="class_ipacketobserver__shortdesc">IPacketObserver 定义。</span></p>
+<article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title2" id="class_packet">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title2"><a href="class_ipacketobserver.html#class_packet"><span class="- topic/ph ph">Packet</span></a></h2>
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="class_packet__shortdesc"><span class="+ topic/keyword pr-d/apiname keyword apiname">Packet</span> 定义。</span></p>
+        <section class="- topic/section section" id="class_packet__prototype" data-ofbid="class_packet__prototype">
+   <div class="- topic/p p">
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">struct</strong> Packet
+	{
+		<strong class="hl-keyword">const</strong> <strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">char</strong>* buffer;
+		<strong class="hl-keyword">unsigned</strong> <strong class="hl-keyword">int</strong> size;
+	};</pre>
+  </div>
+        </section>
+        <section class="- topic/section section" id="class_packet__parameters" data-ofbid="class_packet__parameters"><h3 class="- topic/title title sectiontitle">
+       属性
+       
+       
+       
+       
+       
+   </h3>
+   
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">buffer</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">
+      <p class="- topic/p p">需要发送或接收的数据的缓存地址。</p>
+      <div class="- topic/note note note note_note"><span class="note__title">注：</span> Agora 建议 <span class="+ topic/keyword pr-d/parmname keyword parmname">buffer</span> 值不要小于 2048 字节，否则有可能会出现未定义行为（例如崩溃）。</div>
+  </dd>
+       
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">size</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">将要发送或接收的数据的缓存大小。</dd>
+       
+   </dl>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title3" id="api_onreceiveaudiopacket">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title3"><a href="class_ipacketobserver.html#api_onreceiveaudiopacket"><span class="- topic/ph ph">onReceiveAudioPacket</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_onreceiveaudiopacket__shortdesc">收到音频包回调。</span></p><section class="- topic/section section" id="api_onreceiveaudiopacket__prototype" data-ofbid="api_onreceiveaudiopacket__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">bool</strong> onReceiveAudioPacket(Packet&amp; packet) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_onreceiveaudiopacket__detailed_desc" data-ofbid="api_onreceiveaudiopacket__detailed_desc">
+   
+   <p class="- topic/p p">在收到对方用户的音频包之前由 SDK 调用。</p>
+        </section>
+        <section class="- topic/section section" id="api_onreceiveaudiopacket__parameters" data-ofbid="api_onreceiveaudiopacket__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">packet</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">详见: <a class="- topic/xref xref" href="class_ipacketobserver.html#class_packet" title="Packet 定义。"><span class="- topic/keyword keyword">Packet</span></a> 。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_onreceiveaudiopacket__return_values" data-ofbid="api_onreceiveaudiopacket__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li"><span class="- topic/ph ph">true</span>: 发送音频包；</li>
+       <li class="- topic/li li"><span class="- topic/ph ph">false</span>: 丢弃音频包。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title4" id="api_onreceivevideopacket">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title4"><a href="class_ipacketobserver.html#api_onreceivevideopacket"><span class="- topic/ph ph">onReceiveVideoPacket</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_onreceivevideopacket__shortdesc">收到视频包回调。</span></p><section class="- topic/section section" id="api_onreceivevideopacket__prototype" data-ofbid="api_onreceivevideopacket__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">bool</strong> onReceiveVideoPacket(Packet&amp; packet) = <span class="hl-number">0</span>;
+};</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_onreceivevideopacket__detailed_desc" data-ofbid="api_onreceivevideopacket__detailed_desc">
+   
+   <p class="- topic/p p">在收到对方用户的视频包之前由 SDK 调用。</p>
+        </section>
+        <section class="- topic/section section" id="api_onreceivevideopacket__parameters" data-ofbid="api_onreceivevideopacket__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">packet</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">详见: <a class="- topic/xref xref" href="class_ipacketobserver.html#class_packet" title="Packet 定义。"><span class="- topic/keyword keyword">Packet</span></a> 。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_onreceivevideopacket__return_values" data-ofbid="api_onreceivevideopacket__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li"><span class="- topic/ph ph">true</span>: 发送音频包；</li>
+       <li class="- topic/li li"><span class="- topic/ph ph">false</span>: 丢弃音频包。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title5" id="api_onsendaudiopacket">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title5"><a href="class_ipacketobserver.html#api_onsendaudiopacket"><span class="- topic/ph ph">onSendAudioPacket</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_onsendaudiopacket__shortdesc">已发送音频包回调。</span></p><section class="- topic/section section" id="api_onsendaudiopacket__prototype" data-ofbid="api_onsendaudiopacket__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">bool</strong> onSendAudioPacket(Packet&amp; packet) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_onsendaudiopacket__detailed_desc" data-ofbid="api_onsendaudiopacket__detailed_desc">
+   
+   <p class="- topic/p p">在音频包被发送给对方用户前由 SDK 调用。</p>
+        </section>
+        <section class="- topic/section section" id="api_onsendaudiopacket__parameters" data-ofbid="api_onsendaudiopacket__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">packet</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">详见: <a class="- topic/xref xref" href="class_ipacketobserver.html#class_packet" title="Packet 定义。"><span class="- topic/keyword keyword">Packet</span></a> 。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_onsendaudiopacket__return_values" data-ofbid="api_onsendaudiopacket__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li"><span class="- topic/ph ph">true</span>: 发送音频包；</li>
+       <li class="- topic/li li"><span class="- topic/ph ph">false</span>: 丢弃音频包。</li>
+   </ul>
+        </section></div>
+</article><article class="- topic/topic reference/reference topic reference nested1" aria-labelledby="ariaid-title6" id="api_onsendvideopacket">
+    <h2 class="- topic/title title topictitle2" id="ariaid-title6"><a href="class_ipacketobserver.html#api_onsendvideopacket"><span class="- topic/ph ph">onSendVideoPacket</span></a></h2>
+    
+    
+    <div class="- topic/body reference/refbody body refbody"><p class="- topic/shortdesc shortdesc"><span class="- topic/ph ph" id="api_onsendvideopacket__shortdesc">已发送视频包回调。</span></p><section class="- topic/section section" id="api_onsendvideopacket__prototype" data-ofbid="api_onsendvideopacket__prototype">
+        
+        <div class="- topic/p p">       
+      <pre class="+ topic/pre pr-d/codeblock pre codeblock language-cpp"><strong class="hl-keyword">virtual</strong> <strong class="hl-keyword">bool</strong> onSendVideoPacket(Packet&amp; packet) = <span class="hl-number">0</span>;</pre>   
+  </div>
+        </section>
+        <section class="- topic/section section" id="api_onsendvideopacket__detailed_desc" data-ofbid="api_onsendvideopacket__detailed_desc">
+   
+   <p class="- topic/p p">在视频包被发送给对方用户前由 SDK 调用。</p>
+        </section>
+        <section class="- topic/section section" id="api_onsendvideopacket__parameters" data-ofbid="api_onsendvideopacket__parameters"><h3 class="- topic/title title sectiontitle">参数</h3>
+   <dl class="+ topic/dl pr-d/parml dl parml">
+       
+  <dt class="+ topic/dt pr-d/pt dt pt dlterm">packet</dt>
+  <dd class="+ topic/dd pr-d/pd dd pd">详见: <a class="- topic/xref xref" href="class_ipacketobserver.html#class_packet" title="Packet 定义。"><span class="- topic/keyword keyword">Packet</span></a> 。</dd>
+       
+   </dl>
+        </section>
+        <section class="- topic/section section" id="api_onsendvideopacket__return_values" data-ofbid="api_onsendvideopacket__return_values"><h3 class="- topic/title title sectiontitle">返回值</h3>
+   
+   <ul class="- topic/ul ul">
+       <li class="- topic/li li"><span class="- topic/ph ph">true</span>: 发送音频包；</li>
+       <li class="- topic/li li"><span class="- topic/ph ph">false</span>: 丢弃音频包。</li>
+   </ul>
+        </section></div>
+</article></article></article></main></div>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                        
+                        <nav role="navigation" id="wh_topic_toc" aria-label="On this page" class="col-lg-2 d-none d-lg-block navbar d-print-none"> 
+                            <div class=" wh_topic_toc "><div class="wh_topic_label">在本页上</div><ul><li class="topic-item"><a href="#class_packet" data-tocid="class_packet"><a href="class_ipacketobserver.html#class_packet"><span class="- topic/ph ph">Packet</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#class_packet__parameters" data-tocid="class_packet__parameters">
+       属性
+       
+       
+       
+       
+       
+   </a></div></li></ul></li><li class="topic-item"><a href="#api_onreceiveaudiopacket" data-tocid="api_onreceiveaudiopacket"><a href="class_ipacketobserver.html#api_onreceiveaudiopacket"><span class="- topic/ph ph">onReceiveAudioPacket</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_onreceiveaudiopacket__parameters" data-tocid="api_onreceiveaudiopacket__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_onreceiveaudiopacket__return_values" data-tocid="api_onreceiveaudiopacket__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_onreceivevideopacket" data-tocid="api_onreceivevideopacket"><a href="class_ipacketobserver.html#api_onreceivevideopacket"><span class="- topic/ph ph">onReceiveVideoPacket</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_onreceivevideopacket__parameters" data-tocid="api_onreceivevideopacket__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_onreceivevideopacket__return_values" data-tocid="api_onreceivevideopacket__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_onsendaudiopacket" data-tocid="api_onsendaudiopacket"><a href="class_ipacketobserver.html#api_onsendaudiopacket"><span class="- topic/ph ph">onSendAudioPacket</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_onsendaudiopacket__parameters" data-tocid="api_onsendaudiopacket__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_onsendaudiopacket__return_values" data-tocid="api_onsendaudiopacket__return_values">返回值</a></div></li></ul></li><li class="topic-item"><a href="#api_onsendvideopacket" data-tocid="api_onsendvideopacket"><a href="class_ipacketobserver.html#api_onsendvideopacket"><span class="- topic/ph ph">onSendVideoPacket</span></a></a><ul><li class="section-item"><div class="section-title"><a href="#api_onsendvideopacket__parameters" data-tocid="api_onsendvideopacket__parameters">参数</a></div></li><li class="section-item"><div class="section-title"><a href="#api_onsendvideopacket__return_values" data-tocid="api_onsendvideopacket__return_values">返回值</a></div></li></ul></li></ul></div>
+                        </nav>
+                        
+                    
+                </div>
+            </div>
+            
+            
+            
+        </div> 
+        <footer class="navbar navbar-default wh_footer" whc:version="23.1">
+  <div class=" footer-container mx-auto ">
+    
+            Generated by <a class="oxyFooter" href="http://www.oxygenxml.com/xml_webhelp.html" target="_blank">
+            &lt;oXygen/&gt; XML WebHelp
+            </a>
+        
+  </div>
+</footer>
+        
+        <div id="go2top" class="d-print-none">
+            <span class="oxy-icon oxy-icon-up"></span>
+        </div>
+        
+        <!-- The modal container for images -->
+        <div id="modal_img_large" class="modal">
+            <span class="close oxy-icon oxy-icon-remove"></span>
+            <!-- Modal Content (The Image) -->
+            <img class="modal-content" id="modal-img" alt="" />
+            <!-- Modal Caption (Image Text) -->
+            <div id="caption"></div>
+        </div>
+        
+        
+        
+    </body>
+</html>
