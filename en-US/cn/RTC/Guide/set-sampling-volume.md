@@ -14,7 +14,7 @@
 ## 示例代码
 
 <pre props="android"><code class="language-java">int volume = 200;
- // 将录音音量设置为原始音量的 200%。 
+// 将录音音量设置为原始音量的 200%。 
 rtcEngine.adjustRecordingSignalVolume(volume);
 </code>
 </pre>
@@ -26,6 +26,8 @@ agoraKit.adjustRecordingSignalVolume(50)
 </pre>
 
 <pre props="ios">
+
+
 <code class="language-oc">
 // 将录音音量设置为原始音量的 50%。 
 [agoraKit adjustRecordingSignalVolume: 50];
