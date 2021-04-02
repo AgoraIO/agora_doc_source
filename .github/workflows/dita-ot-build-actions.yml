@@ -6,8 +6,9 @@ name: CI
 jobs:
   build-dita:
     name: Build DITA
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
+      - run: DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
       - name: Git checkout
         uses: actions/checkout@v2
       - name: Build HTML
