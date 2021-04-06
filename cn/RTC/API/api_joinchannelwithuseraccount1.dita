@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_joinchannelwithuseraccount1">
     <title><ph keyref="joinChannelWithUserAccount1"/>[1/2]</title>
-    <shortdesc id="short"><ph id="shortdesc">使用 User Account 加入频道。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">加入频道。</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -24,7 +24,7 @@
    </dl>
    <p>该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
    <ul>
-       <li>本地：<xref keyref="onLocalUserRegistered"/> 和 <xref keyref="onJoinChannelSuccess"/> 回调。</li>
+       <li>本地：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"></xref> 回调。</li>
        <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</li>
    </ul></p>
    <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
@@ -36,16 +36,17 @@
   <pt>token</pt>
   <pd><p>动态秘钥。<ul>
       <li>安全要求不高: 将值设为 <ph keyref="NULL"/>。</li>
-      <li>安全要求高: 将值设置为 Token。如果你已经启用了 App Certificate, 请务必使用 Token。</li>
+      <li>安全要求高: 将值设置为从你的服务端生成的 Token。如果你的项目已经启用了 App Certificate, 请务必使用 Token。</li>
   </ul>
       <note outputclass="warning">
- 请务必确保用于生成 token 的 App ID 和 <xref keyref="create2"/> 方法初始化引擎时用的是同一个 App ID，否则会造成旁路推流失败。
+ 请确保用于生成 token 的 App ID、频道名和用户 User Account 和 <xref keyref="create2"/> 方法初始化引擎时用的 App ID、频道名和用户 User Account 一致。
       </note>
   </p></pd>
        </plentry>
        <plentry>
   <pt>channelName</pt>
-  <pd><p>标识通话的频道名称，长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:<ul id="ul_lx4_nrc_h4b">
+  <pd><p>频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同 <codeph>channelName</codeph> 的用户会进入同一个频道进行音视频互动。
+      该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:<ul id="ul_lx4_nrc_h4b">
       <li>26 个小写英文字母 a~z</li>
       <li>26 个大写英文字母 A~Z</li>
       <li>10 个数字 0~9</li>
@@ -55,7 +56,8 @@
        </plentry>
        <plentry>
   <pt>userAccount</pt>
-  <pd><p>用户 User Account。该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL"/>。请确保注册的 User Account 的唯一性。以下为支持的字符集范围（共 89 个字符）：<ul>
+  <pd><p>用户 User Account。该参数标识用户在实时音视频互动频道中的 Account。Agora 不会提供该参数，因此需要你自己设置，并保证同一频道内的所有用户 User Account 不一致。
+      该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL"/>。以下为支持的字符集范围（共 89 个字符）：<ul>
       <li>26 个小写英文字母 a-z</li>
       <li>26 个大写英文字母 A-Z</li>
       <li>10 个数字 0-9</li>
