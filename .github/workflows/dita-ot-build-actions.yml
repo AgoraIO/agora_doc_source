@@ -1,0 +1,19 @@
+name: CI
+'on':
+  push:
+    branches:
+      - gh-actions
+jobs:
+  build-dita:
+    name: Build DITA
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+      - name: Build HTML
+        uses: dita-ot/dita-ot-action@master
+        with:
+          input: cn/RTC/RTC_API_Windows.ditamap
+          transtype: html5
+          output-path: out
+          properties: '--filter=cn/RTC/config/filter-windows-3.3.1.ditaval'
