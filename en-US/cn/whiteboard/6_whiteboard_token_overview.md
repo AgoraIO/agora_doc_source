@@ -7,7 +7,7 @@ This article introduces how to generate and use different types of tokens for th
 <a name="tokenoverview"></a>
 ## Introduction
 
-The whiteboard service has three types of tokens: SDK Token, Room Token, and Task Token, in descending order of granted permissions. Each token can be assigned to an `admin`, `writer`, or `reader` role. Token 的级别越高，包含的权限越多。 These tokens must be issued from your app server.
+The whiteboard service has three types of tokens: SDK Token, Room Token, and Task Token, in descending order of granted permissions. Each token can be assigned to an `admin`, `writer`, or `reader` role. These tokens must be issued from your app server.
 
 ### SDK Token
 
@@ -139,7 +139,7 @@ To get a Task UUID, [call the interactive whiteboard RESTful API to start a file
 
 ## Use a Token
 
-你需要根据 app 客户端的请求，在 app 服务端生成相应权限的 Token。 当 app 客户端或服务端使用获取的 Token 访问 Agora 互动白板服务时，互动白板服务端会使用该 Token 校验其权限。
+When your app client or server uses a token to access the whiteboard service, the Agora server needs to verify its corresponding permissions.
 
 The following examples explain how tokens are used in this process:
 
