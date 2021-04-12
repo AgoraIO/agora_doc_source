@@ -11,11 +11,11 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
+
         <p conref="../conref/conref_rtc_api.dita#apidef/addPublishStreamUrl"/>
         </section>
         <section id="detailed_desc">
-   
+
    <p>调用该方法后，你可以向 CDN 推送 RTMP 或 RTMPS 协议的媒体流。SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告增加旁路推流地址的状态。</p>
    <note outputclass="note" id="note">
        <ul>
@@ -49,8 +49,7 @@
    <ul>
        <li>0: 方法调用成功。</li>
        <li>&lt; 0: 方法调用失败。<ul>
-                        <li><codeph>ERR_INVALID_ARGUMENT</codeph> (2): 参数无效，一般是 URL 为空或是长度为 0
-                            的的字符串。</li>
+                        <li><codeph>ERR_INVALID_ARGUMENT</codeph> (2): 参数无效，一般是 URL 为空或是长度为 0 的字符串。</li>
                         <li><codeph>ERR_NOT_INITIALIZED</codeph> (7): 推流时未初始化引擎。</li>
                     </ul>
                 </li>
