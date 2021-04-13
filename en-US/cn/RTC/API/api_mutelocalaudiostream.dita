@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_mutelocalaudiostream">
+    <title><ph keyref="muteLocalAudioStream"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Stops or resumes publishing the local audio stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="muteLocalAudioStream" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/muteLocalAudioStream"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>After the method is successfully called, the remote end will trigger a<xref keyref="onUserMuteAudio"/> callback.</p>
+   <note outputclass="note">
+       <ul>
+  <li>When @p mute is set as @p true, this method does not affect any ongoing audio recording, because it does not disable the microphone.</li>
+  <li>You can call this method either before or after joining a channel. If you call the method after this method<xref keyref="setChannelProfile"/>, the SDK will reset whether to cancel the local audio according to the channel scene and user role you set. Therefore, Agora recommends calling this method after the `<codeph>setChannelProfile</codeph>` method.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters">
+   <title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>mute</pt>
+  <pd><p>Unpublishes the Local Stream</p>
+  <ul>
+      <li><ph keyref="true"/>true: Stop publishing the local audio stream.</li>
+      <li><ph keyref="false"/>false: (Default) Resumes publishing the local audio stream.</li>
+  </ul>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li> &lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
