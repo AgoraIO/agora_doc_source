@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtcstats">
+    <title><ph keyref="RtcStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Statistics of the channel.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+   <p conref="../conref/conref_rtc_api.dita#apidef/RtcStats"/>
+        </section>
+        <section id="parameters">
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <parml>
+       <plentry>
+  <pt>duration</pt>
+  <pd>
+      <p>Call duration of the local user in seconds, represented by an aggregate value. Cumulative value.</p>
+      </pd>
+       </plentry>
+       <plentry>
+  <pt>txBytes</pt>
+  <pd>The number of bytes sent (bytes).</pd>
+       </plentry>
+       <plentry>
+  <pt>rxBytes</pt>
+  <pd>The number of bytes received (bytes).</pd>
+       </plentry>
+       <plentry>
+  <pt>txAudioBytes</pt>
+  <pd>Send audio bytes (bytes), cumulative value.</pd>
+       </plentry>
+       <plentry>
+  <pt>txVideoBytes</pt>
+  <pd>Send video bytes (bytes), cumulative value.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxAudioBytes</pt>
+  <pd>The number of received audio bytes (bytes), cumulative value.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxVideoBytes</pt>
+  <pd>The number of received video bytes (bytes), cumulative value.</pd>
+       </plentry>
+       <plentry>
+  <pt>txKBitRate</pt>
+  <pd>Video transmission bitrate (Kbps), represented by an instantaneous value.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxKBitRate</pt>
+  <pd>The receiving bitrate (Kbps), represented by an instantaneous value.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxAudioKBitRate</pt>
+  <pd>Audio receive bitrate (Kbps), represented by an instantaneous value.</pd>
+       </plentry>
+       <plentry>
+  <pt>txAudioKBitRate</pt>
+  <pd>Audio transmission bitrate (Kbps), represented by an instantaneous value.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxVideoKBitRate</pt>
+  <pd>Video receive bitrate (Kbps), represented by an instantaneous value.</pd>
+       </plentry>
+       <plentry>
+  <pt>txVideoKBitRate</pt>
+  <pd>Video transmission bitrate (Kbps), represented by an instantaneous value.</pd>
+       </plentry>
+       <plentry>
+  <pt>lastmileDelay</pt>
+  <pd>Client-to-server delay (milliseconds).</pd>
+       </plentry>
+       <plentry>
+  <pt>txPacketLossRate</pt>
+  <pd>The packet loss rate (%) from the local client to Agora&apos;s edge server, before using the anti-packet-loss method.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxPacketLossRate</pt>
+  <pd>The packet loss rate (%) from the local client to Agora&apos;s edge server, before using the anti-packet-loss method.</pd>
+       </plentry>
+       <plentry>
+  <pt>int userCount,&#13;</pt>
+  <pd><p>Number of users in the channel.<ul>
+      <li>`COMMUNICATION` profile: The number of users in the channel.</li>
+      <li>`LIVE_BROADCASTING` profile:<ul>
+ <li>If the local user is an audience: The number of users in the channel = The number of hosts in the channel + 1.</li>
+ <li>If the user is a host: The number of users in the channel = The number of hosts in the channel.</li>
+      </ul></li>
+  </ul>
+  </p></pd>
+       </plentry>
+       <plentry>
+  <pt>cpuAppUsage</pt>
+  <pd>Application CPU usage (%).</pd>
+       </plentry>
+       <plentry>
+  <pt>cpuTotalUsage</pt>
+  <pd>
+      <p>System CPU usage (%).</p>
+      <p>In the multi-kernel environment, this member represents the average CPU usage. The value = 100 System Idle Progress in Task Manager (%).</p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>gatewayRtt</pt>
+  <pd>The round-trip time delay from the client to the local router.</pd>
+       </plentry>
+       <plentry>
+  <pt>memoryAppUsageRatio</pt>
+  <pd>
+      <p>The memory usage ratio of the app (%).</p>
+      <note outputclass="note">@note This value is for reference only. Due to system limitations, you may not get the value of this member.</note>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>memoryTotalUsageRatio</pt>
+  <pd>
+      <p>The memory usage ratio of the system (%).</p>
+      <note outputclass="note">@note This value is for reference only. Due to system limitations, you may not get the value of this member.</note>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>memoryAppUsageInKbytes</pt>
+  <pd>
+      <p>The memory usage of the app (KB).</p>
+      <note outputclass="note">@note This value is for reference only. Due to system limitations, you may not get the value of this member.</note>
+  </pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>
