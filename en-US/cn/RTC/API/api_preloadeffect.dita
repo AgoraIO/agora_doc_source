@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_preloadeffect">
+    <title><ph keyref="preloadEffect"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Preloads a specified audio effect file into the memory.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="preloadEffect" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/preloadEffect"/>
+        </section>
+        <section id="detailed_desc">
+            <p>In order to ensure smooth communication, please pay attention to control the size of the preloaded sound effect file, and<apiname keyref="joinChannel1"/> use this method to complete the sound effect preload beforehand. Supported audio formats: mp3, aac, m4a, 3gp, and wav.</p>
+            <note outputclass="note">@note This method does not support online audio effect files.</note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>soundId</pt>
+  <pd>Each audio effect has a unique ID. Each audio effect has a unique ID.</pd>
+       </plentry>
+       <plentry>
+           <pt>filePath</pt>
+           <pd><p conkeyref="playEffect2/filepath"/></pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+       <ul>
+  <li>0: Success.</li>
+  <li>&lt; 0: Failure.</li>
+       </ul>
+        </section></refbody>
+</reference>
