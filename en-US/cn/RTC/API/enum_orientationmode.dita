@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_orientationmode">
+    <title><ph keyref="ORIENTATION_MODE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Video output orientation modes.</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+   <title>Enumerator</title>
+   <parml>
+       <plentry>
+  <pt><ph keyref="ORIENTATION_MODE_ADAPTIVE"/></pt>
+  <pd>
+      <p>(Default) Adaptive mode. The video encoder adapts to the orientation mode of the video input device. If the width of the captured video from the SDK is greater than the height, the encoder sends the video in landscape mode. The encoder also sends the rotational information of the video, and the receiver uses the rotational information to rotate the received video.</p>
+      <ul>
+ <li>When you use a custom video source, the output video from the encoder inherits the orientation of the original video. If the original video is in portrait mode, the output video from the encoder is also in portrait mode.</li>
+ <li>When you use a custom video source, the output video from the encoder inherits the orientation of the original video. If the original video is in portrait mode, the output video from the encoder is also in portrait mode.</li>
+      </ul>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="ORIENTATION_MODE_FIXED_LANDSCAPE"/></pt>
+  <pd>1: In this mode, the SDK always outputs videos in landscape (horizontal) mode. If the captured video is in portrait mode, the video encoder will crop it. The encoder also sends the rotational information of the video, and the receiver uses the rotational information to rotate the received video.</pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="ORIENTATION_MODE_FIXED_PORTRAIT"/></pt>
+  <pd>2: In this mode, the SDK always outputs video in portrait (portrait) mode. If the captured video is in landscape mode, the video encoder will crop it. The encoder also sends the rotational information of the video, and the receiver uses the rotational information to rotate the received video.</pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>
