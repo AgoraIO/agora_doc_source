@@ -16,30 +16,30 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This method enables the SDK to regularly report the volume information of the local user who sends a stream and remote users (up to three) whose instantaneous volumes are the highest to the app. After this method is enabled, as long as there are streaming users in the channel, the SDK will trigger a callback at the set time interval after joining the channel<xref keyref="onAudioVolumeIndication"/>.</p>
+   <p>This method enables the SDK to regularly report the volume information of the local user who sends a stream and remote users (up to three) whose instantaneous volumes are the highest to the app. Once you call this method and users send streams in the channel, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the time interval set in this method.</p>
    <note outputclass="note">You can call this method either before or after joining a channel.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>interval</pt>
-  <pd>Specify the time interval for the volume alert:<ul>
- <li>&amp;le;Disables the volume indication.</li>
- <li>>Time interval (ms) between two consecutive volume indications. We recommend a setting greater than 200 ms. The minimum is not less than 10 milliseconds, otherwise the callback will not be<apiname
-keyref="onAudioVolumeIndication"/> received.</li>
+  <pd>Sets the time interval between two consecutive volume indications:<ul>
+ <li>≤ 0: Disables the volume indication.</li>
+ <li>> 0: Time interval (ms) between two consecutive volume indications. We recommend a setting greater than 200 ms. Do not set this parameter to less than 10 milliseconds, otherwise the <apiname
+keyref="onAudioVolumeIndication"/> callback will not be triggered.</li>
       </ul>
   </pd>
        </plentry>
        <plentry>
   <pt>smooth</pt>
-  <pd>The smoothing factor specifies the sensitivity of the volume prompt. The value range is 0,16777215. The greater the value, the more sensitive the indicator. The recommended value is 3.</pd>
+  <pd>The smoothing factor sets the sensitivity of the audio volume indicator. The value ranges between 0 and 10. The recommended value is 3. The greater the value, the more sensitive the indicator.</pd>
        </plentry>
        <plentry>
   <pt>report_vad</pt>
   <pd>
       <ul>
- <li><ph keyref="true"/>true: Enable the voice activity detection of the local user. Once it is enabled, the `vad` <apiname keyref="onAudioVolumeIndication"/>parameter of the <parmname></parmname>`onAudioVolumeIndication` callback reports the voice activity status of the local user.</li>
- <li><ph keyref="false"/>false: (Default) Disable the voice activity detection of the local user. Once it is disabled, the `vad` parameter of the `onAudioVolumeIndication`<apiname keyref="onAudioVolumeIndication"/> callback does not report the voice activity status of the local user, except for the scenario where the<parmname></parmname> engine automatically detects the voice activity of the local user.</li>
+ <li><ph keyref="true"/>: Enable the voice activity detection of the local user. Once it is enabled, the <parmname>vad</parmname> parameter of the <apiname keyref="onAudioVolumeIndication"/> callback reports the voice activity status of the local user.</li>
+ <li><ph keyref="false"/>(Default) Disable the voice activity detection of the local user. Once it is disabled, the <parmname>vad</parmname> parameter of the <apiname keyref="onAudioVolumeIndication"/> callback does not report the voice activity status of the local user, except for the scenario where the engine automatically detects the voice activity of the local user.</li>
       </ul>
       
   </pd>
