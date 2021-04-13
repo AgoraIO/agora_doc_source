@@ -1,4 +1,4 @@
-在接入声网灵动课堂前，你需要先完成以下准备工作。
+在接入灵动课堂前，你需要先完成以下准备工作。
 
 ## 1. 创建 Agora 项目并获取 App ID 和 App 证书
 
@@ -52,13 +52,13 @@
 
 | 字段    | 类型   | 描述                                                         |
 | :------ | :----- | :----------------------------------------------------------- |
-| `appId` | string | （必填）你在[第二步](#2-获取-Agora-互动白板服务的-App-Identifier-和-SDK-Token)获取到的互动白板 App Identifier。如不设置，则无法进入灵动课堂。 |
-| `token` | string | （必填）你在[第二步](#2-获取-Agora-互动白板服务的-App-Identifier-和-SDK-Token)获取到的互动白板 SDK Token。如不设置，则无法进入灵动课堂。 |
-| `oss`   | object | （选填）阿里云 OSS 配置，用于储存你在课堂中上传的课件。如不设置，则无法使用白板中的课件上传功能。包含以下字段：<li>`region`: String 类型，阿里云 OSS 指定的地区信息，例如 `"oss-cn-shanghai"`。<li>`bucket`: String 类型，阿里云 OSS 的 Bucket 名称，例如 `"agora-whiteboard"`。<li>`folder`: String 类型，阿里云 OSS 中的资源路径，例如 `"whiteboard"`。<li>`accessKey`：String 类型，阿里云访问密钥 AccessKey 中的 `AccessKeyId`。详见[阿里云文档](https://help.aliyun.com/document_detail/53045.html)。<li>`secretKey`：String 类型，阿里云访问密钥 AccessKey 中的 `AccessKeySecret`。详见[阿里云文档](https://help.aliyun.com/document_detail/53045.html)。<li>`endpoint`: String 类型，阿里云 OSS [访问域名](https://help.aliyun.com/document_detail/31837.html?spm=a2c4g.11186623.6.625.49002345WzP07l)，例如 `"oss-cn-shanghai.aliyuncs.com"`。<p>**注意事项**：当前白板只支持阿里云 OSS。 |
+| `appId` | String | （必填）你在[第二步](#2-获取-Agora-互动白板服务的-App-Identifier-和-SDK-Token)获取到的互动白板 App Identifier。如不设置，则无法进入灵动课堂。 |
+| `token` | String | （必填）你在[第二步](#2-获取-Agora-互动白板服务的-App-Identifier-和-SDK-Token)获取到的互动白板 SDK Token。如不设置，则无法进入灵动课堂。 |
+| `oss`   | Object | （选填）阿里云 OSS 配置，用于储存你在课堂中上传的课件。如不设置，则无法使用白板中的课件上传功能。包含以下字段：<li>`region`: String 类型，阿里云 OSS 指定的地区信息，例如 `"oss-cn-shanghai"`。<li>`bucket`: String 类型，阿里云 OSS 的 Bucket 名称，例如 `"agora-whiteboard"`。<li>`folder`: String 类型，阿里云 OSS 中的资源路径，例如 `"whiteboard"`。<li>`accessKey`：String 类型，阿里云访问密钥 AccessKey 中的 `AccessKeyId`。详见[阿里云文档](https://help.aliyun.com/document_detail/53045.html)。<li>`secretKey`：String 类型，阿里云访问密钥 AccessKey 中的 `AccessKeySecret`。详见[阿里云文档](https://help.aliyun.com/document_detail/53045.html)。<li>`endpoint`: String 类型，阿里云 OSS [访问域名](https://help.aliyun.com/document_detail/31837.html?spm=a2c4g.11186623.6.625.49002345WzP07l)，例如 `"oss-cn-shanghai.aliyuncs.com"`。<p>**注意事项**：当前白板只支持阿里云 OSS。 |
 
 白板 JSON 示例：
 
-```
+```json
 {
         "appId": "<your_whiteboard_app_id>",
         "token": "<your_whiteboard_sdk_token>",
@@ -79,12 +79,12 @@
 
 | 字段              | 类型   | 描述                                                         |
 | :---------------- | :----- | :----------------------------------------------------------- |
-| `recordingConfig` | object | （选填）录制设置。如不设置，则使用[合流录制模式](https://docs.agora.io/cn/Agora%20Platform/composite_recording_mode)且只录制老师的音视频。如需更改录制行为，请参考[云端录制设置](https://docs.agora.io/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#recordingConfig)。 |
-| `storageConfig`   | object | （选填）云存储设置，用于储存你的录制文件。如不设置，你的录制文件会存储在 Agora 的阿里云 OSS 账号中。如需使用你自己的云存储，请参考[云存储设置](https://docs.agora.io/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#storageConfig)进行配置。<p>**注意事项**：`storageConfig` 中的 `endpoint` 字段为由阿里云 Bucket 名称和[访问域名](https://help.aliyun.com/document_detail/31837.html?spm=a2c4g.11186623.6.625.49002345WzP07l)拼成的完整路径。假设你的 Bucket 名称为 `"agora-whiteboard"`，阿里云 OSS 访问域名为 `"oss-cn-shanghai.aliyuncs.com"`，则 `endpoint` 字段设为 `"https://agora-whiteboard.oss-cn-shanghai.aliyuncs.com"`。 |
+| `recordingConfig` | Object | （选填）录制设置。如不设置，则使用[合流录制模式](https://docs.agora.io/cn/Agora%20Platform/composite_recording_mode)且只录制老师的音视频。如需更改录制行为，请参考[云端录制设置](https://docs.agora.io/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#recordingConfig)。 |
+| `storageConfig`   | Object | （选填）云存储设置，用于储存你的录制文件。如不设置，你的录制文件会存储在 Agora 的阿里云 OSS 账号中。如需使用你自己的云存储，请参考[云存储设置](https://docs.agora.io/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#storageConfig)进行配置。<p>**注意事项**：`storageConfig` 中的 `endpoint` 字段为由阿里云 Bucket 名称和[访问域名](https://help.aliyun.com/document_detail/31837.html?spm=a2c4g.11186623.6.625.49002345WzP07l)拼成的完整路径。假设你的 Bucket 名称为 `"agora-whiteboard"`，阿里云 OSS 访问域名为 `"oss-cn-shanghai.aliyuncs.com"`，则 `endpoint` 字段设为 `"https://agora-whiteboard.oss-cn-shanghai.aliyuncs.com"`。 |
 
 云端录制 JSON 示例
 
-```
+```json
 {
         "recordingConfig": {},
         "storageConfig": {
@@ -101,8 +101,8 @@
 
 ## 5. 生成 RTM Token
 
-灵动课堂使用 RTM Token 进行鉴权。 RTM Token 是一种动态密钥，通过 Agora App ID、App 证书、UID 等参数生成，安全性较高。
+灵动课堂使用 RTM Token 进行鉴权。 RTM Token 是一种动态密钥，通过 Agora App ID、App 证书、用户 ID 等参数生成，安全性较高。
 
-- 在项目测试阶段，你可以使用 Agora 提供的[临时 RTM Token 生成器](https://webdemo.agora.io/token-builder/)，传入你在[第一步](#1-创建-agora-项目并获取-app-id-和-app-证书)获取到的 App ID 和 App 证书，然后自行填入一个 UID，快速生成一个临时 RTM Token，有效期为 24 小时。
-<div class="alert info">UID 为一个不超过 64 字节的字符串。以下为支持的字符集范围:<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字</li><li>0-9</li><li>空格</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "|", "~", ","</li></ul></div>
+- 在项目测试阶段，你可以使用 Agora 提供的[临时 RTM Token 生成器](https://webdemo.agora.io/token-builder/)，传入你在[第一步](#1-创建-agora-项目并获取-app-id-和-app-证书)获取到的 App ID 和 App 证书，然后自行填入一个用户 ID，快速生成一个临时 RTM Token，有效期为 24 小时。
+<div class="alert info">用户 ID 为一个不超过 64 字节的字符串。以下为支持的字符集范围:<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字</li><li>0-9</li><li>空格</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "|", "~", ","</li></ul></div>
 - 正式生产环境中，你需要在你的服务端部署一个 RTM Token 生成器。用户进入课堂时，客户端需要向服务端申请 RTM Token；服务端生成 RTM Token 后，再将其传给客户端。详情请参考[生成 RTM Token](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms) 文档。
