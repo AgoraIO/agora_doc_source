@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_removepublishstreamurl">
+    <title><ph keyref="removePublishStreamUrl"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Removes an RTMP or RTMPS stream from the CDN. (CDN live only.)</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="removePublishStreamUrl" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/removePublishStreamUrl"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>After calling this method, the SDK will trigger a callback locally<xref keyref="onRtmpStreamingStateChanged"/> to report the status of deleting the bypass push address.</p>
+   <note outputclass="note" id="note">
+       <ul>
+           <li>Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in the advanced guide Push Streams to CDN.</li>
+           <li>This method applies to `LIVE_BROADCASTING` only.</li>
+           <li>Call this method after joining a channel.</li>
+           <li>This method removes only one CDN streaming URL each time it is called. To remove multiple URLs, call this method multiple times.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>Request URL</pt>
+  <pd>@param url The CDN streaming URL to be removed. The maximum length of this parameter is 1024 bytes. The CDN streaming URL must not contain special characters, such as Chinese language characters.</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
