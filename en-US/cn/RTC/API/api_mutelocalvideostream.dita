@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_mutelocalvideostream">
+    <title><ph keyref= "muteLocalVideoStream"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Stops or resumes publishing the local audio stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="muteLocalVideoStream"/>
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p conref="../conref/conref_rtc_api.dita#apidef/muteLocalVideoStream"/>
+        </section>
+        <section id="detailed_desc">
+        <p>After the method is successfully called, the remote end will trigger a<xref keyref="onUserMuteVideo"/> callback.<note outputclass="note">
+                    <ul id="ul_ogk_hwc_f4b">
+                        <li>Compared with <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) used to control the sending of local video streams, this method has a faster response time.</li>
+                        <li>When `mute` is set as `true`, this method does not affect any ongoing video recording, because it does not disable the camera.</li>
+                        <li>You can call this method either before or after joining a channel. If you call the method after this method<xref keyref="setChannelProfile"/>, the SDK will reset whether to stop sending local video according to the channel scene and user role you set. Therefore, we recommend<apiname
+                                keyref="setChannelProfile"/> calling this method after.</li>
+                    </ul>
+                </note></p>
+        </section>
+        <section id="parameters">
+            <title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>mute</pt>
+                    <pd>
+                        <p>The user stops sending video streams.<ul id="ul_xwr_mxc_f4b">
+                            <li><ph keyref="true"/>: Cancel sending.</li>
+                            <li><ph keyref="false"/>(Default) Audience.</li>
+                        </ul>
+                        </p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul id="ul_gkv_dxc_f4b">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
