@@ -17,28 +17,28 @@
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_STATE_CONNECTING"/></pt>
-  <pd><p>2: The SDK is connecting to the Agora edge server. This state indicates that the SDK is establishing a connection with the specified channel after the app calls .<apiname keyref="joinChannel1"/><ul>
-      <li>If you successfully join the channel, the app will receive a <xref keyref="onConnectionStateChanged"/> callback that indicates the current network state has changed to <ph keyref="CONNECTION_STATE_CONNECTED"/>. When the SDK successfully joins the channel, it triggers the onConnectionStateChanged callback and switches to the CONNECTION_STATE_CONNECTED state.</li>
-      <li>After the connection is established, the SDK will also initialize the media and call back when everything is ready<xref keyref="onJoinChannelSuccess"/>.</li>
+  <pd><p>2: The SDK is connecting to the Agora edge server. This state indicates that the SDK is establishing a connection with the specified channel after the app calls <apiname keyref="joinChannel1"/>.<ul>
+      <li>If the SDK successfully joins the channel, it triggers the <xref keyref="onConnectionStateChanged"/> callback and the connection state switches to <ph keyref="CONNECTION_STATE_CONNECTED"/>.</li>
+      <li>After the connection is established, the SDK also initializes the media and triggers <xref keyref="onJoinChannelSuccess"/> when everything is ready.</li>
   </ul></p>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_STATE_CONNECTED"/></pt>
-  <pd>3: The SDK is connected to Agora&apos;s edge server and has joined a channel. You can now publish or subscribe to a media stream in the channel. If the connection to the channel is lost because, for example, if the network is down or switched, the SDK automatically tries to reconnect and triggers<xref keyref="onConnectionStateChanged"/><ph keyref="CONNECTION_STATE_RECONNECTING"/>:</pd>
+  <pd>3: The SDK is connected to the Agora edge server. This state also indicates that the user has joined a channel and can now publish or subscribe to a media stream in the channel. If the connection to the Agora edge server is lost because, for example, the network is down or switched, the SDK automatically tries to reconnect and triggers <xref keyref="onConnectionStateChanged"/> that indicates the connection state switches to <ph keyref="CONNECTION_STATE_RECONNECTING"/>.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_STATE_RECONNECTING"/></pt>
-  <pd><p>4: The SDK keeps rejoining the channel after being disconnected from a joined channel because of network issues.<ul>
-      <li>If the SDK cannot rejoin the channel within 10 seconds,<xref keyref="onConnectionLost"/> it will be triggered, and the SDK will remain in<ph keyref="CONNECTION_STATE_RECONNECTING"/> the state and try to rejoin the channel.</li>
-      <li>If the SDK fails to rejoin the channel 20 minutes after being disconnected from<xref keyref="onConnectionStateChanged"/> Agora&apos;s edge server<ph keyref="CONNECTION_STATE_FAILED"/>, the SDK stops rejoining the channel.</li>
+  <pd><p>4: The SDK keeps reconnecting to the Agora edge server. The SDK keeps rejoining the channel after being disconnected from a joined channel because of network issues.<ul>
+      <li>If the SDK cannot rejoin the channel within 10 seconds, it triggers <xref keyref="onConnectionLost"/>, stays in the <ph keyref="CONNECTION_STATE_RECONNECTING"/> state, and keeps rejoining the channel.</li>
+      <li>If the SDK fails to rejoin the channel 20 minutes after being disconnected from the Agora edge server, the SDK triggers the <xref keyref="onConnectionStateChanged"/> callback, switches to the <ph keyref="CONNECTION_STATE_FAILED"/> state, and stops rejoining the channel.</li>
   </ul></p></pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_STATE_FAILED"/></pt>
-  <pd><p>5: The SDK fails to connect to Agora&apos;s edge server or join the channel. This status indicates that the SDK has no longer tried to rejoin the channel and needs to call to<xref keyref="leaveChannel"/> leave the channel.<ul>
-      <li>If the user wants to rejoin the channel, he needs to call again<apiname keyref="joinChannel1"/>.</li>
-      <li>If the SDK forbids joining the channel because the server uses the RESTful API, the app will receive<xref keyref="onConnectionStateChanged"/>.</li>
+  <pd><p>5: The SDK fails to connect to the Agora edge server or join the channel. This state indicates that the SDK stops trying to rejoin the channel. You must call <xref keyref="leaveChannel"/> to leave the channel.<ul>
+      <li>You can call <apiname keyref="joinChannel1"/> to rejoin the channel.</li>
+      <li>If the SDK is banned from joining the channel by the Agora edge server through the RESTful API, the SDK triggers the <xref keyref="onConnectionStateChanged"/> callback.</li>
   </ul></p></pd>
        </plentry>
    </parml>
