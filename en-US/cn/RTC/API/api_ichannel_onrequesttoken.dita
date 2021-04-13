@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ichannel_onrequesttoken">
+    <title><ph keyref="IChannel_onRequestToken"/></title>
+    <shortdesc conkeyref="onRequestToken/short"/>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="IChannel_onRequestToken" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/IChannel_onRequestToken"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>After<xref keyref="IChannel_joinChannel"/> a token is specified by calling the &quot;joinChannel&quot; method, if the SDK losses connection with the Agora server due to network issues, the token may expire after a certain period of time and a new token may be required to reconnect to the server.</p>
+   <p>Once you receive this callback, generate a new token on your app server, and call &quot;renewToken&quot; to pass<ph keyref="IChannel_renewToken"/> the new token to the SDK.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+  <pt></pt>
+  <pd></pd>
+       </plentry>
+   </parml>
+        </section>
+    </refbody>
+</reference>
