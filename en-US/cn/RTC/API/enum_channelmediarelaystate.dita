@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_channelmediarelaystate">
+    <title><ph keyref="CHANNEL_MEDIA_RELAY_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The state code in CHANNEL_MEDIA_RELAY_STATE.</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+   <title>Enumerator</title>
+   <parml>
+       <plentry>
+  <pt><ph keyref="RELAY_STATE_IDLE"/></pt>
+  <pd>1: The initial state. After successfully calling to<xref keyref="stopChannelMediaRelay"/> stop the cross-channel media stream forwarding,<xref keyref="onChannelMediaRelayStateChanged"/> this state will be called back.</pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="RELAY_STATE_CONNECTING"/></pt>
+  <pd>- 1: The SDK tries to relay the media stream to the destination channel.</pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="RELAY_STATE_RUNNING"/></pt>
+  <pd>- 2: The SDK successfully relays the media stream to the destination channel.</pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="RELAY_STATE_FAILURE"/></pt>
+  <pd>- 3: An error occurs. See<xref keyref="onChannelMediaRelayStateChanged"/> `<parmname>code</parmname>` for the error<parmname> code</parmname>.</pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>
