@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_startaudiorecording1">
+    <title><ph keyref="startAudioRecording1"/> [1/2]</title>
+    <shortdesc id="short"><ph id="shortdesc">Starts an audio recording on the client.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="startAudioRecording1" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/startAudioRecording1"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="deprecated">
+       <dlentry >
+  <dt>Deprecated:</dt>
+  <dd>This method is obsolete from v2.9.1, and its default recording sampling rate is 32 kHz, which cannot be modified. Please use the new<xref keyref="startAudioRecording2"/> method instead.</dd>
+       </dlentry>
+   </dl>
+   <p>The SDK allows recording during a call. After successfully calling this method, you can record the audio of all the users in the channel and get an audio recording file.<ul>
+  <li><codeph>.wav</codeph>: Large file size with high fidelity.</li>
+  <li><codeph>.aac</codeph>: Small file size with low fidelity.</li>
+       </ul>
+   </p>
+   <p>Ensure that the directory for the log files exists and is writable. This interface needs to be<xref keyref="joinChannel1"/> called later. Once the user leaves the<xref keyref="leaveChannel"/> channel, the recording automatically stops.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>filePath</pt>
+  <pd>The absolute path (including the suffixes of the filename) of the recording file. For example: C:<codeph>\music\audio.aac</codeph>.</pd>
+       </plentry>
+       <plentry>
+  <pt>quality</pt>
+  <pd><xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/> 。</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
