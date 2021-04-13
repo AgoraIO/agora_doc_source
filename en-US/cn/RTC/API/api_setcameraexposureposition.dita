@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setcameraexposureposition">
+    <title><ph keyref="setCameraExposurePosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the frame position for the video observer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="setCameraExposurePosition" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/setCameraExposurePosition"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="since">
+       <dlentry>
+  <dt>Since</dt>
+  <dd>Before v2.3.2</dd>
+       </dlentry>
+   </dl>
+   <p>This method needs to be called after the camera is started (for example, by<xref keyref="startPreview"/> calling or<xref keyref="joinChannel1"/> realization).</p>
+   <p>After the method is successfully called, the callback will be triggered<xref keyref="onCameraExposureAreaChanged"/> locally.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>positionXinView</pt>
+  <pd>The horizontal coordinate of the touch point relative to the view.</pd>
+       </plentry>
+       <plentry>
+  <pt>positionYinView</pt>
+  <pd>The ordinate of the touch point relative to the view.</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
