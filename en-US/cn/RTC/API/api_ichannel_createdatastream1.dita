@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ichannel_createdatastream1">
+    <title><ph keyref="IChannel_createDataStream1"/>[1/2]</title>
+    <shortdesc id="short" conkeyref="createDataStream1/short"/>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="IChannel_createDataStream1" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/IChannel_createDataStream1"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="deprecated">
+       <dlentry>
+  <dt>Deprecated:</dt>
+  <dd>This method is deprecated as of v2.4.0. Please use <xref keyref="IChannel_createDataStream2"/>[2/2] instead.</dd>
+       </dlentry>
+   </dl>
+   <p conkeyref="createDataStream1/desc"/>
+   <note conkeyref="createDataStream1/note"/>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry conkeyref="createDataStream1/streamId">
+  <pt/>
+  <pd/>
+       </plentry>
+       <plentry>
+  <pt>reliable</pt>
+  <pd><p>Is the data stream reliable:<ul>
+      <li><ph keyref="true"/>: The receiver will receive the data sent by the sender within 5 seconds, otherwise it will receive a<xref keyref="IChannel_onStreamMessageError"/> callback and get the corresponding error message.</li>
+      <li><ph keyref="false"/>false: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.</li>
+  </ul></p></pd>
+       </plentry>
+       <plentry conkeyref="createDataStream1/ordered">
+  <pt></pt>
+  <pd></pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values" conkeyref="createDataStream1/return_values"/></refbody>
+</reference>
