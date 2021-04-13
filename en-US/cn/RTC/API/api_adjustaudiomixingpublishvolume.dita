@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_adjustaudiomixingpublishvolume">
+    <title><ph keyref="adjustAudioMixingPublishVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Adjusts the audio mixing volume for publishing (for remote users).</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="adjustAudioMixingPublishVolume" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/adjustAudioMixingPublishVolume"/>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since" props="native">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>Before v2.3.2</dd>
+                </dlentry>
+            </dl>
+   <p>Adjusts the audio mixing volume for publishing (for remote users).</p>
+   <note outputclass="note">You need to call this method after calling<apiname keyref="startAudioMixing"/> and receiving <apiname keyref="onAudioMixingStateChanged"/>the (<codeph>PLAY</codeph>) callback.</note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>volume</pt>
+           <pd>@param level The volume of the mixing audio. The value ranges between 0 and 100 (default).</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
