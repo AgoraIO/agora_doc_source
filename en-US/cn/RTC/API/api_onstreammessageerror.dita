@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onstreammessageerror">
+    <title><ph keyref="onStreamMessageError"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the local user does not receive the data stream from the remote user within five seconds.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onStreamMessageError" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/onStreamMessageError"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>This callback indicates that the local user has not received the stream message sent by the remote user<xref keyref="sendStreamMessage"/> invoking the method.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry id="uid">
+  <pt>uid</pt>
+  <pd>@param uid User ID of the remote user sending the message.</pd>
+       </plentry>
+       <plentry id="streamId">
+  <pt>streamId</pt>
+  <pd>Stream ID of the received message.</pd>
+       </plentry>
+       <plentry id="code">
+  <pt>code</pt>
+  <pd>The error code where the error occurred. <xref href="error_rtc.md" format="md">Error Codes and Warning Codes</xref></pd>
+       </plentry>
+       <plentry id="missed">
+  <pt>missed</pt>
+  <pd>The number of messages lost.</pd>
+       </plentry>
+       <plentry id="cached">
+  <pt>cached</pt>
+  <pd>@param cached Number of incoming cached messages when the data stream is interrupted.</pd>
+       </plentry>
+   </parml>
+        </section>
+</refbody>
+</reference>
