@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_adjustaudiomixingvolume">
+    <title><ph keyref="adjustAudioMixingVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Adjusts the volume during audio mixing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="adjustAudioMixingVolume" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/adjustAudioMixingVolume"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>Adjusts the audio mixing volume for publishing (for remote users).</p>
+   <note outputclass="note">
+       <ul>
+  <li>Call this method<xref keyref="startAudioMixing"/> after joining a channel.</li>
+  <li>Calling this method does not affect the volume of the<xref keyref="playEffect2"/> calling and playing sound effect files.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>volume</pt>
+  <pd>@param volume Audio mixing volume. The value ranges between 0 and 100 (default).</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
