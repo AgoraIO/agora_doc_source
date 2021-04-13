@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enablefacedetection">
+    <title><ph keyref="enableFaceDetection"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Turn on/off local face detection.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="enableFaceDetection" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/enableFaceDetection"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="since">
+       <dlentry>
+  <dt>Since</dt>
+  <dd>v3.0.1</dd>
+       </dlentry>
+   </dl>
+   <note outputclass="info">You can call this method either before or after joining a channel.</note>
+   <note outputclass="note" props="windows">This method is for Android and iOS only.</note>
+   <p>After enabling local face detection, the SDK will trigger a callback to<xref keyref="onFacePositionChanged"/> report the face detection information to you:<ul>
+       <li>The width and height of the local video.</li>
+       <li>The position of the human face in the local video.</li>
+       <li>The distance between the human face and the device screen.</li>
+   </ul>
+   </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>enable</pt>
+  <pd>Whether to enable face detection:<ul>
+      <li><ph keyref="true"/>true: Enable face detection.</li>
+      <li><ph keyref="false"/>false: (Default) Disable face detection.</li>
+  </ul>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
