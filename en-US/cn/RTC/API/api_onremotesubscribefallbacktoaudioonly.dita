@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onremotesubscribefallbacktoaudioonly">
+    <title><ph keyref="onRemoteSubscribeFallbackToAudioOnly"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the remote media stream falls back to audio-only stream due to poor network conditions or switches back to the video stream after the network conditions improve.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onRemoteSubscribeFallbackToAudioOnly" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/onRemoteSubscribeFallbackToAudioOnly"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>If you set `fallbackType`<xref keyref="setRemoteSubscribeFallbackOption"/> as 2<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> in [[setStreamFallbackOption]], the SDK<parmname></parmname> triggers this callback when the remote media stream falls back to audio only due to unreliable network conditions or switches back to the video after the network condition improves.</p>
+   <note outputclass="note">@note Once the remote media stream switches to the low stream due to poor network conditions, you can<xref
+  keyref="RemoteVideoStats"/> monitor the stream switch between a high and low stream in the RemoteVideoStats callback.</note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry id="uid">
+  <pt>uid</pt>
+  <pd>@param uid ID of the remote user sending the stream.</pd>
+       </plentry>
+       <plentry id="isFallbackOrRecover">
+  <pt>@param isFallbackOrRecover Whether the published stream falls back to audio-only or switches back to the video:</pt>
+  <pd>
+      <ul>
+ <li><ph keyref="true"/>true: The remotely subscribed media stream falls back to audio-only due to poor network conditions.</li>
+ <li><ph keyref="false"/>false: The remotely subscribed media stream switches back to the video stream after the network conditions improved.</li>
+      </ul>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+    </refbody>
+</reference>
