@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_addhandler">
+    <title><ph keyref="addHandler"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Callback events</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="addHandler" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/addHandler"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p><xref keyref="IRtcEngineEventHandler"/> The SDK uses the IRtcEngineEventHandler interface class to send callbacks to the application. The application inherits the methods of this interface class to retrieve these callbacks. All methods in this interface class have default (empty) implementations. Therefore, the application can only inherit some required events. In the callbacks, avoid time-consuming tasks or calling blocking APIs, such as the SendMessage method<ph keyref="sendStreamMessage"/>. Otherwise, the SDK may not work properly.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>handler</pt>
+  <pd>For callback events to be added, see for details<xref keyref="IRtcEngineEventHandler"/>.</pd>
+       </plentry>
+   </parml>
+        </section>
+   </refbody>
+</reference>
