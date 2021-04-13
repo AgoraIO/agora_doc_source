@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setlivetranscoding">
+    <title>setLiveTranscoding</title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the video layout and audio settings for CDN live. (CDN live only.)</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="setLiveTranscoding" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+   
+        <p conref="../conref/conref_rtc_api.dita#apidef/setLiveTranscoding"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>Sets the video layout and audio for CDN live streaming. After calling this method to update the transcoding settings, a callback will be triggered<xref keyref="onTranscodingUpdated" /> locally.</p>
+   <note outputclass="note" id="note">
+       <ul>
+  <li>This method applies to `LIVE_BROADCASTING` only.</li>
+  <li>Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in the advanced guide Push Streams to CDN.</li>
+  <li>If you call the `setLiveTranscoding` method to update the transcoding setting for the first time, the SDK does not trigger the `onTranscodingUpdated<apiname keyref="onTranscodingUpdated" />` callback.</li>
+  <li>Call this method after joining a channel.</li>
+  <li>Agora supports pushing media streams in RTMPS protocol to the CDN only when you enable transcoding.</li>
+       </ul>
+   </note>
+   </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>transcoding</pt>
+  <pd>
+      <p>Push stream transcoding settings. Relevant links<xref href="class_livetranscoding.dita"/>:</p></pd>
+       </plentry>
+   </parml>
+        </section><section id="return_values">
+   <title>return</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+
+</reference>
