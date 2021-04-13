@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_updatechannelmediarelay">
+    <title><ph keyref="updateChannelMediaRelay"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Updates the channels for media stream relay.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="updateChannelMediaRelay" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/updateChannelMediaRelay"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p id="desc">After a successful \ref startChannelMediaRelay() &quot;startChannelMediaRelay&quot; method call, if you want to relay the media stream to more channels, or leave the current relay channel, you can call the \ref updateChannelMediaRelay() &quot;updateChannelMediaRelay&quot; method.</p>
+   <p>After the method is successfully called, the SDK will trigger a<xref keyref="onChannelMediaRelayEvent"/> callback and report the status code<apiname
+  keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL"/> (7) in the callback.</p>
+   <note outputclass="note">Please<xref keyref="startChannelMediaRelay"/> call this method after the method to update the channel forwarded by the media stream.</note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>configuration</pt>
+  <pd>Configurations of the media stream relay. Relevant links<xref keyref="ChannelMediaRelayConfiguration"/>:</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>Success.</li>
+       <li>&lt;Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
