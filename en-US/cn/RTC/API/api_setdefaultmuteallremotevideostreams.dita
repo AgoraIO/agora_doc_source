@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setdefaultmuteallremotevideostreams">
+    <title><ph keyref="setDefaultMuteAllRemoteVideoStreams"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Stops or resumes subscribing to the video streams of all remote users by default.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="setDefaultMuteAllRemoteVideoStreams" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+
+        <p conref="../conref/conref_rtc_api.dita#apidef/setDefaultMuteAllRemoteVideoStreams"/>
+        </section>
+        <section id="detailed_desc">
+   <dl otherprops="3.3.0">
+       <dlentry outputclass="deprecated" >
+           <dt>Deprecated:</dt>
+           <dd>This method is deprecated as of v2.4.0.</dd>
+       </dlentry>
+   </dl>
+            <p id="sequence" otherprops="3.3.0">Call this method after joining a channel. After successfully calling this method, the local user stops or resumes subscribing to the audio streams of all subsequent users.</p>
+            <note outputclass="note">@note If you need to resume subscribing to the video streams of remote users in the channel after calling \ref IRtcEngine::setDefaultMuteAllRemoteVideoStreams &quot;setDefaultMuteAllRemoteVideoStreams&quot; (true), do the following:<ul><li>If you need to resume subscribing to a single user&apos;s video stream, call <xref
+                    keyref="muteRemoteVideoStream"/>(<ph keyref="false"/>) and specify the ID of the remote user you want to subscribe to.</li>
+                    <li>If you want to resume subscribing to video streams of multiple users, you need to call <apiname
+                        keyref="muteRemoteVideoStream"/>(<ph keyref="false"/>) multiple times.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>mute</pt>
+  <pd>
+      <p>Stops or resumes subscribing to the video streams of all remote users by default.<ul>
+     <li><ph keyref="true"/>: Unsubscribe by default.</li>
+     <li><ph keyref="false"/>: (Default) default subscription.</li>
+ </ul>
+ </p>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
