@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_localvideostats">
+    <title><ph keyref="LocalVideoStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the statistics of the local video stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+   <p conref="../conref/conref_rtc_api.dita#apidef/LocalVideoStats"/>
+        </section>
+        <section id="parameters">
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <parml>
+       <plentry>
+  <pt>sentBitrate</pt>
+  <pd>
+      <p>Video transmission bitrate (Kbps), represented by an instantaneous value.<note outputclass="note">Does not include the bitrate of the retransmission videos.</note></p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>sentFrameRate: Sent frame rate (fps).</pt>
+  <pd>Actual sending frame rate (Kbps).<note outputclass="note">Does not include the frame rate of the retransmission videos.</note></pd>
+       </plentry>
+       <plentry>
+  <pt>encoderOutputFrameRate</pt>
+  <pd>The encoder output frame rate (fps) of the local video.</pd>
+       </plentry>
+       <plentry>
+  <pt>rendererOutputFrameRate</pt>
+  <pd>The render output frame rate (fps) of the local video.</pd>
+       </plentry>
+       <plentry>
+  <pt>targetBitrate</pt>
+  <pd>The target bitrate (Kbps) of the current encoder. This value is estimated by the SDK based on the current network conditions.</pd>
+       </plentry>
+       <plentry>
+  <pt>targetFrameRate</pt>
+  <pd>The target frame rate (fps) of the current encoder.</pd>
+       </plentry>
+       <plentry>
+  <pt>qualityAdaptIndication</pt>
+  <pd>Quality change of the local video in terms of target frame rate and target bit rate in this reported interval. Relevant links<xref keyref="QUALITY_ADAPT_INDICATION"
+      />:</pd>
+       </plentry>
+       <plentry>
+  <pt>encodedBitrate</pt>
+  <pd>
+      <p>Video receive bitrate (Kbps), represented by an instantaneous value.<note outputclass="note">Does not include the bitrate of the retransmission videos.</note></p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>encodedFrameWidth</pt>
+  <pd>The width of the encoding frame (px).</pd>
+       </plentry>
+       <plentry>
+  <pt>encodedFrameHeight</pt>
+  <pd>The height of the encoding frame (px).</pd>
+       </plentry>
+       <plentry>
+  <pt>encodedFrameCount</pt>
+  <pd>The value of the sent frames, represented by an aggregate value.</pd>
+       </plentry>
+       <plentry>
+  <pt>CodecType: Encoding type of the sent audio.</pt>
+  <pd>The codec type of the local video<xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+       </plentry>
+       <plentry>
+  <pt>txPacketLossRate</pt>
+  <pd>The video packet loss rate (%) from the local client to the Agora edge server before applying the anti-packet loss strategies.</pd>
+       </plentry>
+       <plentry>
+  <pt>CaptureFrameRate: Frame rate of the captured video, in fps.</pt>
+  <pd>The capture frame rate (fps) of the local video.</pd>
+       </plentry>
+       <plentry otherprops="3.3.0">
+  <pt>captureBrightnessLevel</pt>
+  <pd>
+      <dl outputclass="since">
+ <dlentry>
+     <dt>Since</dt>
+     <dd>v3.3.0</dd>
+ </dlentry>
+      </dl>
+      <p>The brightness level of the video image captured by the local camera. Relevant links<xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>:</p>
+  </pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>
