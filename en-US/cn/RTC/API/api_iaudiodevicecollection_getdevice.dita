@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicecollection_getdevice">
+    <title><ph keyref="IAudioDeviceCollection_getDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Retrieves a specified piece of information about an indexed audio device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="IAudioDeviceCollection_getDevice" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/IAudioDeviceCollection_getDevice"/>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>int index;</pt>
+  <pd>@param index The specified index that must be less than the return value of \ref IAudioDeviceCollection::getCount &quot;getCount&quot;.</pd>
+       </plentry>
+       <plentry>
+  <pt>deviceName</pt>
+  <pd>Output parameter, device name. The maximum length is<xref href="enum_maxdeviceidlengthtype.dita#enum_maxdeviceidlengthtype/MAX_DEVICE_ID_LENGTH"/>.</pd>
+       </plentry>
+       <plentry>
+  <pt>deviceId</pt>
+  <pd>Output parameter, device ID. The maximum length is<xref href="enum_maxdeviceidlengthtype.dita#enum_maxdeviceidlengthtype/MAX_DEVICE_ID_LENGTH"/>.</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
