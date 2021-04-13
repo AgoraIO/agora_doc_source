@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_registermediametadataobserver">
+    <title><ph keyref="registerMediaMetadataObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Registers the metadata observer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="registerMediaMetadataObserver" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+
+        <p conref="../conref/conref_rtc_api.dita#apidef/registerMediaMetadataObserver"/>
+        </section>
+        <section id="detailed_desc">
+
+   <dl outputclass="since">
+       <dlentry>
+  <dt>Since</dt>
+  <dd>v2.4.1</dd>
+       </dlentry>
+   </dl>
+   <p>
+       <note outputclass="note">
+  <ul id="ul_bmd_btz_r4b">
+      <li>Call this method when you are<apiname keyref="joinChannel1"/> in a channel.</li>
+      <li>This method applies only to the `LIVE_BROADCASTING` profile.</li>
+  </ul>
+       </note>
+   </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>observer</pt>
+  <pd>@param observer The IMetadataObserver class. Relevant links<xref keyref="IMetadataObserver"/>:</pd>
+       </plentry>
+       <plentry>
+  <pt>type</pt>
+  <pd>Metadata type of the observer. Currently only supports<apiname keyref="VIDEO_METADATA"/>. Relevant links<xref
+ keyref="METADATA_TYPE"/>:</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
