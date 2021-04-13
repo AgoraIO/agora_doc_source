@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_adjustaudiomixingplayoutvolume">
     <title><ph keyref="adjustAudioMixingPlayoutVolume"/></title>
-    <shortdesc id="short"><ph id="shortdesc">调节音乐文件本端播放音量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">调节音乐文件在本地播放的音量。</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -15,17 +15,22 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/adjustAudioMixingPlayoutVolume"/>
         </section>
         <section id="detailed_desc">
-   
-   <p>该方法调节混音音乐文件在本端的播放音量大小。</p>
+            <dl outputclass="since" props="native">
+                <dlentry>
+                    <dt>自从</dt>
+                    <dd>v2.3.2</dd>
+                </dlentry>
+            </dl>
+   <p>该方法调节混音音乐文件在本地播放的音量大小。</p>
    <note outputclass="note">
-       该方法需要在 <xref keyref="startAudioMixing"/> 后调用。
+       你需要在调用 <apiname keyref="startAudioMixing"/> 并收到 <apiname keyref="onAudioMixingStateChanged"/>(<codeph>PLAY</codeph>) 回调后调用该方法。
    </note>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
        <plentry>
   <pt>volume</pt>
-  <pd>音乐文件音量范围为 0~100。100 （默认值）为原始文件音量。</pd>
+  <pd>音乐文件音量范围为 [0,100]。100 （默认值）为原始文件音量。</pd>
        </plentry>
    </parml>
         </section>
