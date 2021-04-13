@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setdefaultaudioroutetospeakerphone">
+    <title><ph keyref="setDefaultAudioRouteToSpeakerphone"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the default audio playback route.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDefaultAudioRouteToSpeakerphone"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p conref="../conref/conref_rtc_api.dita#apidef/setDefaultAudioRouteToSpeakerphone"/>
+        </section>
+        <section id="detailed_desc">
+            <p>This method sets the received audio to sound from the earpiece or speaker. If the user does not call this method, the audio will be output from the earpiece by default.</p>
+            <p>The default audio routing in each channel scenario:<ul>
+                    <li>For the `COMMUNICATION` profile:<ul>
+                            <li>For voice calls, the default voice is from the handset.</li>
+                            <li>Audio broadcast: Speakerphone If a user uses the<xref keyref="disableVideo"/>,<xref
+                                    keyref="muteLocalVideoStream"/> or<xref
+                                    keyref="muteAllRemoteVideoStreams"/> method to turn off the video in the channel, the voice routing will automatically switch back to the handset.</li>
+                        </ul></li>
+                    <li>`LIVE_BROADCASTING`: Speakerphone.</li>
+                </ul>
+            </p>
+            <note outputclass="note">
+                <ul>
+                    <li props="windows">This method is for Android and iOS only.</li>
+                    <li props="ios">This method is for iOS only.</li>
+                    <li props="ios windows">This method is applicable only to the `COMMUNICATION` profile. For iOS, this method only works in a voice call. Call this method before calling the \ref IRtcEngine::joinChannel &quot;joinChannel&quot; method.</li>
+                    <li>This method needs to be<xref keyref="joinChannel1"/> set before, otherwise it will not take effect.</li>
+                    <li>Call this method after joining a channel<xref keyref="setEnableSpeakerphone"/>.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>defaultToSpeaker</pt>
+                    <pd>Sets the default audio playback route.<ul>
+                            <li><ph keyref="true"/>: By default, the sound is output from the external amplifier (speaker). If the playback device connects to the earpiece or Bluetooth, the audio cannot be routed to the speakerphone.</li>
+                            <li><ph keyref="false"/>: (Default) The sound is output from the earpiece by default. If a headset is plugged in, the audio is routed to the headset.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
