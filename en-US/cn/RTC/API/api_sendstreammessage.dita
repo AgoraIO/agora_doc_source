@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_sendstreammessage">
+    <title><ph keyref="sendStreamMessage"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="sendStreamMessage" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/sendStreamMessage"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p id="desc">Sends data stream messages to all users in a channel. Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 kB. Each client can send up to 6 kB of data per second. Each user can have up to five data streams simultaneously.</p>
+   <p>After successfully calling this method, the remote end will trigger a<xref keyref="onStreamMessage"/> callback, and the remote user can get the received stream message in this callback; if the call fails, the remote end will trigger the<xref keyref="onStreamMessageError"/> callback.</p>
+   <note outputclass="note"><ul>
+       <li>Please make sure that the<xref keyref="createDataStream2"/> data channel has been created before calling this method.</li>
+       <li>In the `LIVE_BROADCASTING` profile, only a host can call this method.</li>
+   </ul></note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>streamId</pt>
+  <pd>The configurations for the data stream. It can be<apiname keyref="createDataStream2"/> obtained through.</pd>
+       </plentry>
+       <plentry props="android">
+  <pt>message</pt>
+  <pd>Occurs each time the SDK receives a video frame sent by the remote user.</pd>
+       </plentry>
+       <plentry props="windows">
+  <pt>data</pt>
+  <pd>User-defined data.</pd>
+       </plentry>
+       <plentry props="windows">
+  <pt>length</pt>
+  <pd>Data length.</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
