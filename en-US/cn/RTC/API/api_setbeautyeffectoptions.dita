@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setbeautyeffectoptions">
+    <title><ph keyref="setBeautyEffectOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Enables/Disables image enhancement and sets the options.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="setBeautyEffectOptions" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/setBeautyEffectOptions"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="since">
+       <dlentry>
+  <dt>Since</dt>
+  <dd props="windows">v3.0.0</dd>
+  <dd props="android ios">v2.4.0</dd>
+  <dd props="mac">v3.2.0</dd>
+       </dlentry>
+   </dl>
+   <p>Enables/Disables image enhancement and sets the options.</p>
+   <p>Call this method<xref keyref="enableVideo"/> after joining a channel.</p>
+   <note outputclass="note" props="android">Android 4.4 or later.</note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>enabled</pt>
+  <pd>Whether to enable the beauty function:<ul>
+      <li><ph keyref="true"/>true: Enable the super-resolution algorithm.</li>
+      <li><ph keyref="false"/>false: (Default) Disable the advanced feature.</li>
+  </ul></pd>
+       </plentry>
+       <plentry>
+  <pt>options</pt>
+  <pd>Beauty options, see for detailed definitions<xref keyref="BeautyOptions"/>.</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>0: Success.<ul props="android"><li>ERR_NOT_SUPPORTED(4): The current device version is lower than Android 4.4, and this operation is not supported.</li></ul></li>
+   </ul>
+        </section></refbody>
+</reference>
