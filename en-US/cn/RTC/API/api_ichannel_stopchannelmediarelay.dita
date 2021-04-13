@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ichannel_stopchannelmediarelay">
+    <title><ph keyref="IChannel_stopChannelMediaRelay"/></title>
+    <shortdesc conkeyref="stopChannelMediaRelay/short"/> 
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="IChannel_stopChannelMediaRelay" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/IChannel_stopChannelMediaRelay"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>After this method call, the SDK triggers the following<xref keyref="IChannel_onChannelMediaRelayStateChanged"/> callbacks: If it reports<apiname
+  keyref="RELAY_STATE_IDLE"/> (0) and<apiname keyref="RELAY_OK"/> (0), it means that the media stream has stopped forwarding.</p>
+   <note outputclass="note">If the method call is unsuccessful, the SDK will trigger a<apiname
+  keyref="IChannel_onChannelMediaRelayStateChanged"/> callback and report the status code<apiname
+  keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/> (2) or<apiname
+  keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/> (8). You can call<xref
+  keyref="IChannel_leaveChannel"/> the method to leave the channel, and the cross-channel media stream forwarding will automatically stop.</note>
+        </section>
+        <section id="return_values" conkeyref="stopChannelMediaRelay/return_values"/></refbody>
+</reference>
