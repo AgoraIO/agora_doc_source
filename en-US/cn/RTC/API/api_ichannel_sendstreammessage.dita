@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ichannel_sendstreammessage">
+    <title><ph keyref="IChannel_sendStreamMessage"/></title>
+    <shortdesc conkeyref="sendStreamMessage/short"/> 
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="IChannel_sendStreamMessage" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/IChannel_sendStreamMessage"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p conkeyref="sendStreamMessage/desc"/>
+   <p>After successfully calling this method, the remote end will trigger a<xref keyref="IChannel_onStreamMessage"/> callback, and the remote user can get the received stream message in this callback; if the call fails, the remote end will trigger the<xref keyref="IChannel_onStreamMessageError"/> callback.</p>
+   <note outputclass="note"><ul>
+       <li>Please make sure that the<xref keyref="createDataStream2"/> data channel has been created before calling this method.</li>
+       <li>In the `LIVE_BROADCASTING` profile, only a host can call this method.</li>
+   </ul></note>
+        </section>
+        <section id="parameters" conkeyref="sendStreamMessage/parameters"/>
+        <section id="return_values" conkeyref="sendStreamMessage/return_values"/></refbody>
+</reference>
