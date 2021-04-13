@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enablelocalaudio">
+    <title><ph keyref="enableLocalAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Disables/Re-enables the local audio function.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="enableLocalAudio" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/enableLocalAudio"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>The audio function is enabled by default. This method disables or re-enables the local audio function, that is, to stop or restart local audio capturing.</p>
+   <p>This method does not affect the reception or playback of remote audio streams. <xref keyref="enableLocalAudio"/>(<ph keyref="false"/>) is suitable for user scenarios where only listening but not sending.</p>
+   <p>After the audio function is turned off or turned on again, it will receive a<xref keyref="onLocalAudioStateChanged"/> callback and report<apiname
+  keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/> (0) or <apiname
+  keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING"/>(1).<note outputclass="note"><ul>
+       <li>The difference between these two methods<xref keyref="muteLocalAudioStream"/> is as follows:<ul>
+                            <li><apiname keyref="enableLocalVideo"/>: Turn on or turn off local audio capture and processing. If you disable or re-<codeph>enable</codeph> local audio capturing using the `<codeph>enableLocalAudio</codeph>` method, the local user may hear a pause in the remote audio playback.</li>
+                            <li><apiname keyref="muteLocalAudioStream"/>Mute the local audio</li>
+                        </ul>
+                    </li>       
+       <li>You can call this method either before or after joining a channel.</li> 
+   </ul></note></p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>enabled</pt>
+  <pd><p><ul>
+      <li><ph keyref="true"/>true: (Default) Re-enable the local audio function, that is, to start the local audio capturing device (for example, the microphone).</li>
+      <li><ph keyref="false"/>false: Disable the local audio function, that is, to stop local audio capturing.</li>
+  </ul>     
+  </p></pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
