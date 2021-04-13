@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onlocalpublishfallbacktoaudioonly">
+    <title><ph keyref="onLocalPublishFallbackToAudioOnly"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the published media stream falls back to an audio-only stream due to poor network conditions or switches back to the video after the network conditions improve.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onLocalPublishFallbackToAudioOnly" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/onLocalPublishFallbackToAudioOnly"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>If you call the<xref keyref="setLocalPublishFallbackOption"/> interface and set <parmname>option</parmname> to<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>, the callback will be triggered when the upstream network environment is not ideal and the locally published media stream falls back to an audio stream, or when the upstream network improves and the media stream returns to an audio and video stream.</p>
+   <note outputclass="note">If the local streaming has been reverted to audio streaming, the remote app will receive<xref keyref="onUserMuteVideo"/> the callback event.</note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry id="isFallbackOrRecover">
+  <pt>@param isFallbackOrRecover Whether the published stream falls back to audio-only or switches back to the video:</pt>
+  <pd>
+      <ul>
+ <li><ph keyref="true"/>true: The published stream falls back to audio-only due to poor network conditions.</li>
+ <li><ph keyref="false"/>false: The published stream switches back to the video after the network conditions improve.</li>
+      </ul>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+    </refbody>
+</reference>
