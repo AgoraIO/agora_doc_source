@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screencaptureparameters">
+    <title><ph keyref="ScreenCaptureParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Screen sharing encoding parameters.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p conref="../conref/conref_rtc_api.dita#apidef/ScreenCaptureParameters"/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+                <plentry>
+                    <pt>dimensions</pt>
+                    <pd><p>The maximum encoding dimensions of the shared region in terms of width height. Relevant links<xref keyref="VideoDimensions"/>: The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
+                        <p>If the aspect ratio is different between the encoding dimensions and screen dimensions, Agora applies the following algorithms for encoding. Suppose the encoding dimensions are 1920 x 1080:<ul>
+                                <li>If the value of the screen dimensions is lower than that of the encoding dimensions, for example, 1000 x 1000 pixels, the SDK uses 1000 x 1000 pixels for encoding.</li>
+                                <li>If the value of the screen dimensions is higher than that of the encoding dimensions, for example, 2000 1500, the SDK uses the maximum value under 1920 1080 with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 1080.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>frameRate</pt>
+                    <pd>The frame rate (fps) of the shared region. The default value is 5. We do not recommend setting this to a value greater than 15.</pd>
+                </plentry>
+                <plentry>
+                    <pt>bitrate</pt>
+                    <pd>The bitrate (Kbps) of the shared region. The default value is 0 (the SDK works out a bitrate according to the dimensions of the current screen).</pd>
+                </plentry>
+                <plentry>
+                    <pt>captureMouseCursor</pt>
+                    <pd>
+                        <dl outputclass="since">
+                            <dlentry>
+                                <dt>Since</dt>
+                                <dd>v2.4.1</dd>
+                            </dlentry>
+                        </dl>
+                        <p>Sets whether or not to capture the mouse for screen sharing:<ul>
+                                <li><ph keyref="true"/>and captures the mouse by default.</li>
+                                <li><ph keyref="false"/>false: Do not capture the mouse.</li>
+                            </ul></p></pd>
+                </plentry>
+                <plentry>
+                    <pt>windowFocus</pt>
+                    <pd><dl outputclass="since">
+                        <dlentry>
+                            <dt>Since</dt>
+                            <dd>v3.1.0</dd>
+                        </dlentry>
+                    </dl><p>When<xref keyref="startScreenCaptureByWindowId"/> calling the method to share the window, whether to bring the window to the front:<ul>
+                            <li><ph keyref="true"/>true: Bring the window to the front.</li>
+                            <li><ph keyref="false"/>false: (Default) Do not bring the window to the front.</li>
+                        </ul></p></pd>
+                </plentry>
+                <plentry>
+                    <pt>excludeWindowList</pt>
+                    <pd props="windows"><dl outputclass="since">
+                        <dlentry>
+                            <dt>Since</dt>
+                            <dd>v3.1.0</dd>
+                        </dlentry>
+                    </dl>
+                        <p>A list of IDs of windows to be blocked. Call When <xref
+                                keyref="startScreenCaptureByScreenRect"/>screen sharing is enabled, you can use this parameter to block the specified window. You can use<xref keyref="updateScreenCaptureParameters"/> this parameter to dynamically shield the specified window when calling the configuration parameter of updating screen sharing.</p></pd>
+                    <pd props="mac">
+                        <dl outputclass="since">
+                            <dlentry>
+                                <dt>Since</dt>
+                                <dd>v3.1.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>A list of IDs of windows to be blocked. Call When <xref
+                                keyref="startScreenCaptureByDisplayId"/>screen sharing is enabled, you can use this parameter to block the specified window. You can use<xref keyref="updateScreenCaptureParameters"/> this parameter to dynamically shield the specified window when calling the configuration parameter of updating screen sharing.</p></pd>
+                </plentry>
+                <plentry props="windows">
+                    <pt>excludeWindowCount</pt>
+                    <pd>
+                        <dl outputclass="since">
+                        <dlentry>
+                            <dt>Since</dt>
+                            <dd>v3.1.0</dd>
+                        </dlentry>
+                    </dl>
+                        <p>The number of windows to be blocked.</p></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
