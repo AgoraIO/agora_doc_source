@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enableaudio">
+    <title><ph keyref="enableAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Enables the audio module.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="enableAudio" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/enableAudio"/>
+    </section>
+        <section id="detailed_desc">
+   
+   <p>The audio mode is enabled by default.</p>
+   <note outputclass="note"><ul>
+       <li>This method affects the internal engine and can be called after the \ref agora::rtc::IRtcEngine::leaveChannel &quot;leaveChannel&quot; method. <xref keyref="leaveChannel"/>It is still valid after.</li>
+       <li>This method enables the audio module and takes some time to take effect. Agora recommends using the following API methods to control the audio module separately:<ul>
+  <li><xref keyref="enableLocalAudio"/>: Whether to start microphone collection and create a local audio stream.</li>
+  <li><xref keyref="muteLocalAudioStream"/>Stops or resumes sending the local audio stream.</li>
+  <li><xref keyref="muteRemoteAudioStream"/>: Whether to receive and play the remote audio stream.</li>
+  <li><xref keyref="muteAllRemoteAudioStreams"/>: Whether to receive and play all remote audio streams.</li>
+       </ul></li>
+   </ul></note>        
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section>
+    </refbody>
+</reference>
