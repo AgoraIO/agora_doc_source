@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_addpublishstreamurl">
+    <title><ph keyref="addPublishStreamUrl"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Publishes the local stream to a specified CDN live address. (CDN live only.)</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="addPublishStreamUrl" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+
+        <p conref="../conref/conref_rtc_api.dita#apidef/addPublishStreamUrl"/>
+        </section>
+        <section id="detailed_desc">
+
+   <p>The SDK returns the result of this method call in the &quot;onStreamPublished&quot; callback. The SDK will trigger a callback locally<xref keyref="onRtmpStreamingStateChanged"/> to report the status of adding the bypass push address.</p>
+   <note outputclass="note" id="note">
+       <ul>
+  <li>Call this method after joining a channel.</li>
+  <li>Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in the advanced guide Push Streams to CDN.</li>
+  <li>This method applies to `LIVE_BROADCASTING` only.</li>
+  <li>This method adds only one stream CDN streaming URL each time it is called. To remove multiple URLs, call this method multiple times.</li>
+  <li>Agora supports pushing media streams in RTMPS protocol to the CDN only when you enable transcoding.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry id="url">
+  <pt>Request URL</pt>
+  <pd>@param url The CDN streaming URL in the RTMP or RTMPS format. The maximum length of this parameter is 1024 bytes. The CDN streaming URL must not contain special characters, such as Chinese language characters.</pd>
+       </plentry>
+       <plentry>
+  <pt>The host in a channel can call the addPublishStreamUrl method to add a media stream to the CDN.</pt>
+  <pd>
+      <ul>
+ <li><ph keyref="true"/>: Transcoding (<xref href="https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#%E8%BD%AC%E7%A0%81" scope="external" format="html">Transcoding</xref> refers to transcoding the audio and video streams during bypass push, and then pushing them to other CDN servers. It is mostly suitable for scenes where there are multiple anchors in the channel and need to be mixed and video mixing). If it is set to<ph keyref="true"/>, the method needs to be<xref keyref="setLiveTranscoding"/> called first.</li>
+ <li><ph keyref="false"/>false: Disable transcoding.</li>
+      </ul>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.<ul>
+                        <li>#<codeph>ERR_INVALID_ARGUMENT</codeph> (-2): The CDN streaming URL is NULL or has a string length of 0.</li>
+                        <li>#ERR_NOT_INITIALIZED (-7): You have <codeph>not initialized</codeph> the RTC engine when publishing the stream.</li>
+                    </ul>
+                </li>
+   </ul>
+        </section></refbody>
+</reference>
