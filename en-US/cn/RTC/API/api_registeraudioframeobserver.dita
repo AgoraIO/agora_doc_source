@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_registeraudioframeobserver">
+    <title><ph keyref="registerAudioFrameObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Registers an audio frame observer object.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="registerAudioFrameObserver" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/registerAudioFrameObserver"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>This method is used to register the voice observer object, that is, register the callback. When the engine needs to give<xref keyref="onRecordAudioFrame"/> or<xref keyref="onPlaybackAudioFrame"/> callback, you need to use this method to register the callback.</p>
+   <note outputclass="note">Ensure that you call this method before joining a channel.</note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>observer</pt>
+  <pd>
+      <p>Interface object instance. Relevant links<xref keyref="IAudioFrameObserver"/>: If it is passed in<ph keyref="NULL"/>, it means to cancel the registration. We recommend calling after receiving<xref keyref="onLeaveChannel"/> to release the voice observer object.</p>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section>
+   <title>Returns</title>
+   <ul id="ul_wtk_phz_r4b">
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
