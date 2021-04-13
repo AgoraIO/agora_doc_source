@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onrtmpstreamingstatechanged">
+    <title><ph keyref="onRtmpStreamingStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the state of the RTMP or RTMPS streaming changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onRtmpStreamingStateChanged" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/onRtmpStreamingStateChanged"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>This callback returns the result of calling the<xref keyref="addPublishStreamUrl"/> or<xref
+  keyref="removePublishStreamUrl"/> method by the local user. When the RTMP/RTMPS streaming status changes, the SDK will trigger the callback, and the URL address where the status has changed and the current streaming status are specified in the callback. This callback indicates the state of the RTMP or RTMPS streaming. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the errCode parameter.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry id="url">
+  <pt>Request URL</pt>
+  <pd>@param url The CDN streaming URL.</pd>
+       </plentry>
+       <plentry id="state">
+  <pt>state</pt>
+  <pd>For the current push status, see for details<xref keyref="RTMP_STREAM_PUBLISH_STATE"/>. When the push status is<apiname keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/> (4), you can view the returned<parmname> error</parmname> information in the<parmname> errorCode</parmname> parameter.</pd>
+       </plentry>
+       <plentry id="errCode">
+  <pt>errCode</pt>
+  <pd>Error codes of the RTMP or RTMPS streaming<xref keyref="RTMP_STREAM_PUBLISH_ERROR"/>.</pd>
+       </plentry>
+   </parml>
+        </section>
+    </refbody>
+</reference>
