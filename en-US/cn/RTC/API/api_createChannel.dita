@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_createChannel">
+    <title><ph keyref="createChannel"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates a Stream object for sending and receiving audio and<apiname keyref="IChannel"/> video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="createChannel" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/createChannel"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>You can call this method multiple times to create multiple <xref keyref="IChannel">IChannel</xref> objects, and then call the <apiname
+  keyref="IChannel"/>methods in <ph keyref="IChannel_joinChannel"/>each object to join multiple channels at the same time.</p>
+   <p>After joining multiple channels, you can subscribe to the audio and video streams of each channel at the same time; however, only one audio and video stream can be released on one channel at the same time.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>channelId</pt>
+  <pd>
+      <p conkeyref="joinChannel2/channelID_desc"/>
+      <note outputclass="note">
+ <ul>
+     <li>The parameter does not have a default value, please make sure to set the parameter value.</li>
+     <li>Please do not set this parameter to an empty character <codeph>&quot;&quot;</codeph>, otherwise the SDK will return <codeph>ERR_REFUSED</codeph>(5).</li>
+ </ul>
+      </note>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>The method is successfully called and returns<xref keyref="IChannel"/> a pointer to the object.</li>
+       <li>If the call fails, returns NO<ph keyref="NULL"/>.</li>
+   </ul>
+        </section></refbody>
+</reference>
