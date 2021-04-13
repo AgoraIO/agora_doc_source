@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ichannel_onuserjoined">
+    <title><ph keyref="IChannel_onUserJoined"/></title>
+    <shortdesc conkeyref="onUserJoined/short"/>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="IChannel_onUserJoined" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/IChannel_onUserJoined"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <ul conkeyref="onUserJoined/detailed_desc_scene">
+       <li></li>
+   </ul>
+   <p>The SDK triggers this callback under one of the following circumstances:<ul>
+  <li>Remote user/host calling<xref keyref="IChannel_joinChannel"/> method to join channel</li>
+  <li>Called after the remote user joins the channel<xref keyref="IChannel_setClientRole1"/> to change the user role as the host</li>
+  <li>A remote user/host rejoins the channel after a network interruption.</li>
+  <li>The host<xref keyref="IChannel_addInjectStreamUrl"/> successfully entered the online media stream by calling the method</li>
+       </ul>
+   </p>
+   <note outputclass="note" conkeyref="onUserJoined/note"/>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
+  <pt></pt>
+  <pd></pd>
+       </plentry>
+       <plentry conkeyref="onUserJoined/uid">
+  <pt></pt>
+  <pd></pd>
+       </plentry>
+       <plentry>
+  <pt>elapsed</pt>
+  <pd>The delay (in milliseconds<xref keyref="IChannel_joinChannel"/>) from when the local user is called to when the callback is triggered.</pd>
+       </plentry>
+   </parml>
+        </section>
+    </refbody>
+</reference>
