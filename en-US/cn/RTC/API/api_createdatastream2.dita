@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_createdatastream2">
+    <title><ph keyref="createDataStream2"/>[1/2]</title>
+    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="createDataStream2" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/createDataStream2"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="since">
+       <dlentry>
+  <dt>Since</dt>
+  <dd>v3.3.0。 Used to replace <xref keyref="createDataStream1"/>[1/2].</dd>
+       </dlentry>
+   </dl>
+   <p id="desc">Creates a data stream. Each user can create up to five data streams in a single channel.</p>
+   <p id="diff">Compared with <apiname keyref="createDataStream1"/>[1/2], this method does not support data reliability. This method does not support data reliability. If the receiver receives a data packet five seconds or more after it was sent, the SDK directly discards the data.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry id="streamId" props="windows">
+  <pt>streamId</pt>
+  <pd>Output parameter, data stream ID.</pd>
+       </plentry>
+       <plentry id="config">
+  <pt>config</pt>
+  <pd>The configurations for the data stream. Relevant links<xref keyref="DataStreamConfig"/>:</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li props="windows">Success.</li>
+       <li props="android">ID of the created data stream: the method was successfully called.</li>
+       <li>&lt; 0: Failure. You can refer to <xref href="error_rtc.md" format="md">error codes and warning codes for </xref>troubleshooting.</li>
+   </ul>
+        </section></refbody>
+</reference>
