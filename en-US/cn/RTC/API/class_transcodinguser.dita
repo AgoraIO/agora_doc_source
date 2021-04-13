@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_transcodinguser">
+    <title><ph keyref="TranscodingUser"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Manage the anchors participating in the bypass push and transcoding.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+   <p conref="../conref/conref_rtc_api.dita#apidef/TranscodingUser"/>
+        </section>
+        <section id="parameters">
+   <title>Attributes</title>
+        <parml>
+   <plentry>
+       <pt>uid</pt>
+       <pd>
+  <p>The user ID of the host who participates in the streaming transcoding.</p>
+       </pd>
+   </plentry>
+   <plentry>
+       <pt>x</pt>
+       <pd>
+  <p>The absolute value (pixel) of the abscissa of the host video screen relative to the upper left corner of the push output video. The value range is<xref keyref="LiveTranscoding"/> [0,width] set in the transcoding configuration () definition.</p></pd>
+   </plentry>
+                <plentry>
+                    <pt>Y</pt>
+                    <pd>The absolute value of the vertical coordinate (pixel) of the host video screen relative to the upper left corner of the output video. Vertical position (pixel) of the video frame relative to the top left corner.</pd>
+                </plentry>
+                <plentry>
+                    <pt>WIDTH: Width of the video.</pt>
+                    <pd>The width of the screen (pixel).</pd>
+                </plentry>
+                <plentry>
+                    <pt>HEIGHT: Height of the video.</pt>
+                    <pd>
+                        <p>The height of the screen (pixel).</p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>zOrder</pt>
+                    <pd>
+                        <p>The layer number of the screen. The value range is 0,100.<ul>
+                                <li>0: (default) the video screen is at the bottom of the layer.</li>
+                                <li>100: Top layer.</li>
+                            </ul>
+                        </p>
+                        <note outputclass="note">
+                            <ul>
+                                <li>If zOrder is beyond this range, the SDK reports #<codeph>ERR_INVALID_ARGUMENT</codeph>.</li>
+                                <li>As of v2.3, the SDK supports zOrder = 0.</li>
+                            </ul>
+                        </note>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>alpha</pt>
+                    <pd>
+                        <p>(Optional) The transparency of the image. The value ranges between 0.0 and 100.0 .<ul>
+                                <li>- 0.0: Completely transparent.</li>
+                                <li>1.0: (Default) Opaque</li>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+            <plentry>
+                <pt>audioChannel</pt>
+                <pd>
+                        <p>The audio channel where the host&apos;s audio is located. Integer only. The value range is [0,10000], and the default value is 0.<ul id="ul_ugm_rrh_v4b">
+                                <li><codeph></codeph>(Default) Supports dual channels at most, depending on the upstream of the host.</li>
+                                <li><codeph></codeph>The host&apos;s audio uses the FL audio channel. If the host&apos;s upstream uses multiple audio channels, these channels are mixed into mono first.</li>
+                                <li><codeph></codeph>The host&apos;s audio uses the FC audio channel. If the host&apos;s upstream uses multiple audio channels, these channels are mixed into mono first.</li>
+                                <li><codeph></codeph>The host&apos;s audio uses the FR audio channel. If the host&apos;s upstream uses multiple audio channels, these channels are mixed into mono first.</li>
+                                <li><codeph></codeph>The host&apos;s audio uses the BL audio channel. If the host&apos;s upstream uses multiple audio channels, these channels are mixed into mono first.</li>
+                                <li><codeph></codeph>The host&apos;s audio uses the BR audio channel. If the host&apos;s upstream uses multiple audio channels, these channels are mixed into mono first.</li>
+                                <li>`<codeph>0xFF</codeph>` or a value greater than `5`<codeph></codeph>: The host&apos;s audio is muted. The Agora server removes the host&apos;s audio.</li>
+                            </ul>
+                            <note outputclass="note">@note If the value is not `<codeph>0</codeph>`, a special player is required.</note></p>
+                    </pd>
+            </plentry>
+        </parml>
+        </section>
+    </refbody>
+</reference>
