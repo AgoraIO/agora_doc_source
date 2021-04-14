@@ -1,21 +1,21 @@
-互动白板服务端可以对指定场景或指定场景组下的所有场景进行截图，生成 PNG 格式的图片并上传至你提供的第三方云存储空间中。
+The screenshot management feature is implemented by Agora's server for the whiteboard service. You can take screenshots of a single scene or a group of scenes, generate images in PNG format, and upload them to a third-party cloud storage space.
 
-在调用截图管理 API 之前，请确保：
+Before calling the RESTful API for screen management, ensure that:
 
-- 已开通第三方云存储账号，并创建了存储空间。 目前互动白板支持的第三方云存储包括：
-   - [阿里云存储](https://help.aliyun.com/product/31815.html?spm=5176.7933691.J_1309819.8.2e392a66QiJZD3)
-   - [七牛云存储](https://www.qiniu.com/products/kodo)
-   - [AWS 云存储](https://amazonaws-china.com/cn/products/storage/?nc2=h_ql_prod_st)
-- 已在 Agora 控制台开启截图服务，并添加了存储配置。 [Enable server-side supporting features](/cn/whiteboard/enable_whiteboard?platform=RESTful#开启互动白板配套服务)
+- You have created a third-party cloud storage account and a storage space under the account. Select one of the following third-party cloud storage service:
+   - [AliCloud](https://help.aliyun.com/product/31815.html?spm=5176.7933691.J_1309819.8.2e392a66QiJZD3)
+   - [Qiniu Cloud](https://www.qiniu.com/products/kodo)
+   - [AWS](https://amazonaws-china.com/cn/products/storage/?nc2=h_ql_prod_st)
+- You have enabled the screenshot feature and configured storage settings at Agora Console. See [Enable server-side supporting features](/cn/whiteboard/enable_whiteboard?platform=RESTful#开启互动白板配套服务).
 
-## 生成场景截图（POST）
+## Screenshot a scene (POST)
 
-Take a screenshot of a specific scene
+Call this API to take screenshots of a single scene.
 
 ### Prototype
 
 - Method: `POST`
-- 接入点：`https://api.netless.link/v5/rooms/{uuid}/screenshots`
+- Access point: `https://api.netless.link/v5/rooms/{uuid}/screenshots`
 
 ### Request header
 
@@ -23,7 +23,7 @@ Pass in the following parameters in the request header:
 
 | Parameter | Data type | Required/Optional | Description |
 | :------- | :----- | :------- | :----------------------------------------------------------- |
-| `token` | string | Required | 拥有 `write` 或 `admin` 权限的 SDK Token 或 Room Token。 </br>The SDK Token, which can be obtained through one of the following ways:<li>Go to Agora Console. See [Get a SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate a SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li>The SDK Token, which can be obtained through one of the following ways:<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>Use code. See Generate a Token[ from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
+| `token` | string | Required | A `writer` or `admin` SDK Token or Room Token. </br>To get a SDK Token, you can:<li>Use Agora Console. See [Get an SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate an SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li>To get a Room Token, you can:<li>Call the RESTful API. See [Generate a Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
 | `region` | string | Optional | Specifies a data center to process the request:<li>(Default) `cn-hz`: The data center located in Hangzhou, China. Its service area includes East Asia, Southeast Asia, and areas not covered by other data centers.</li><li>`us-sv`: The data center located in Silicon Valley. Its service area includes North America and South America.</li> For details, see [Data center and globalization](https://developer.netless.link/javascript-zh/home/region-and-global). |
 
 ### Request Path
@@ -38,9 +38,9 @@ The following parameters are required in the URL:
 
 | Parameter | Data type | Required/Optional | Description |
 | :------- | :----- | :------- | :----------------------------------------------------------- |
-| `width` | number | Required | 获取截图的宽度，单位为像素。 |
-| `height` | number | Required | 获取截图的高度，单位为像素。 |
-| `path` | string | Optional | 需要截图的场景路径，以 `/` 开头。 如果不传，默认获取 `/init` 场景的截图。 |
+| `width` | number | Required | The width of the screenshot in pixels. |
+| `height` | number | Required | The height of the screenshot in pixels. |
+| `path` | string | Optional | The path to the scene, which starts with `/`. If you do not set it, the default path `/init` is used. |
 
 ### Request example
 
@@ -52,15 +52,15 @@ token: NETLESSSDK_YWs9xxxxxxzA5ZGM2MjRi
  
 {
     "width": 640,
-    "height": 480
+    ç
 }
 ```
 
 ### HTTP response
 
-For details about all possible response status codes, see [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
+For details about all possible response status codes, see the [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
 
-If the status code is `201`, the request is successful. 响应包含返回的操作结果和数据。
+If the status code is `201`, the request is successful. The response returns the status code and corresponding parameters.
 
 **The following is a response example for a successful request:**
 
@@ -75,25 +75,25 @@ If the status code is `201`, the request is successful. 响应包含返回的操
 }
 ```
 
-**响应包体参数：**
+**Description of parameters in the response:**
 
 | Parameter | Data type | Description |
 | :------- | :----- | :--------------------------- |
-| `url` | string | 截图的 URL。 |
-| `key` | string | 截图在存储空间内的文件名。 |
-| `bucket` | string | 截图存放的存储空间名称。 |
-| `region` | string | 截图存放的存储空间所属地域。 |
+| `url` | string | The URL of the screenshot. |
+| `key` | string | The filename of the screenshot in the storage space. |
+| `bucket` | string | The name of the storage space where the screenshot is saved. |
+| `region` | string | The region where the storage space is located. |
 
 If the status code is not `201`, the request fails. The response body includes a `message` field that describes the reason for the failure.
 
-## 生成场景截图列表（POST）
+## Screenshot a group of scenes (POST)
 
-Take screenshots for a group of scenes
+Call this API to take screenshots for a group of scenes.
 
 ### Prototype
 
 - Method: `POST`
-- 接入点：`https://api.netless.link/v5/rooms/{uuid}/screenshot-list`
+- Access point: `https://api.netless.link/v5/rooms/{uuid}/screenshot-list`
 
 ### Request header
 
@@ -101,7 +101,7 @@ Pass in the following parameters in the request header:
 
 | Parameter | Data type | Required/Optional | Description |
 | :------- | :----- | :------- | :----------------------------------------------------------- |
-| `token` | string | Required | 拥有 `write` 或 `admin` 权限的 SDK Token 或 Room Token。 </br>The SDK Token, which can be obtained through one of the following ways:<li>Go to Agora Console. See [Get a SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate a SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li>The SDK Token, which can be obtained through one of the following ways:<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>Use code. See Generate a Token[ from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
+| `token` | string | Required | A `writer` or `admin` SDK Token or Room Token. </br>To get a SDK Token, you can:<li>Use Agora Console. See [Get an SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate an SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li>To get a Room Token, you can:<li>Call the RESTful API. See [Generate a Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
 | `region` | string | Optional | Specifies a data center to process the request:<li>(Default) `cn-hz`: The data center located in Hangzhou, China. Its service area includes East Asia, Southeast Asia, and areas not covered by other data centers.</li><li>`us-sv`: The data center located in Silicon Valley. Its service area includes North America and South America.</li>For details, see [Data center and globalization](https://developer.netless.link/javascript-zh/home/region-and-global). |
 
 ### Request Path
@@ -116,9 +116,9 @@ The following parameters are required in the URL:
 
 | Parameter | Data type | Required/Optional | Description |
 | :------- | :----- | :------- | :----------------------------------------------------------- |
-| `width` | number | Required | 截图的宽度，单位为像素。 |
-| `height` | number | Required | 截图的高度，单位为像素。 |
-| `path` | string | Required | 场景组的路径地址，以 `/` 开头。 如果不传，则对当前所在场景组进行截图。 |
+| `width` | number | Required | The width of the screenshot in pixels. |
+| `height` | number | Required | The height of the screenshot in pixels. |
+| `path` | string | Required | The path to the group of scenes, which starts with `/`. If you do not set it, the current group of scenes is used. |
 
 #### Request example
 
@@ -137,9 +137,9 @@ Content-Type: application/json
 
 #### HTTP response
 
-For details about all possible response status codes, see [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
+For details about all possible response status codes, see the [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
 
-If the status code is `201`, the request is successful. 响应包含返回的操作结果和数据。
+If the status code is `201`, the request is successful. The response returns the status code and corresponding parameters.
 
 **The following is a response example for a successful request:**
 
@@ -162,14 +162,14 @@ If the status code is `201`, the request is successful. 响应包含返回的操
 ]
 ```
 
-响应包体为由场景截图信息组成的数组，每条场景信息包含以下参数：
+The response body is an array of the screenshot information for each scene. Every member in the array contains the following parameters:
 
 | Parameter | Data type | Description |
 | :------- | :----- | :--------------------------- |
 | Parameter | Data type | Description |
-| `url` | string | 截图的 URL。 |
-| `key` | string | 截图在存储空间内的文件名。 |
-| `bucket` | string | 截图存放的存储空间名称。 |
-| `region` | string | 截图存放的存储空间所属地域。 |
+| `url` | string | The URL of the screenshot. |
+| `key` | string | The filename of the screenshot in the storage space. |
+| `bucket` | string | The name of the storage space where the screenshot is saved. |
+| `region` | string | The region where the storage space is located. |
 
 If the status code is not `201`, the request fails. The response body includes a `message` field that describes the reason for the failure.
