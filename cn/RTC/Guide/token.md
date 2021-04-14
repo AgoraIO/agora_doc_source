@@ -19,7 +19,7 @@ When your app users try to join a channel, Agora validates their token and grant
 
 Tokens expire. A token is valid for 24 hours at most. You need to regularly generate new tokens to keep users connected.
 
-Agora supports specifying the privilege of a user in the token. For example, a user with the privilege of subscriber can only subscribe to streams, but not publish streams. See [How do I use co-host token authentication?](https://docs.agora.io/en/Interactive%20Broadcast/faq/token_cohost) for details.
+When generating a token, you can specify whether a user has the privilege to publish streams in an RTC channel. See [How do I use co-host token authentication?](https://docs.agora.io/en/Interactive%20Broadcast/faq/token_cohost) for details.
 
 The following figure shows the steps in the authentication flow:
 
