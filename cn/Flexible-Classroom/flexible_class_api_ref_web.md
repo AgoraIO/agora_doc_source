@@ -61,7 +61,7 @@ export type LaunchOption = {
   roomName: string,
   listener: ListenerCallback,
   pretest: boolean,
-  rtmUid: string
+  rtmUid: string,
   rtmToken: string,
   language: LanguageEnum,
   startTime: number,
@@ -79,7 +79,7 @@ export type LaunchOption = {
 | `roomUuid`               | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","|
 | `roomName`               | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
 | `roleType`               | 用户在课堂中的角色，可设为：<li>`1`: 老师</li><li>`2`: 学生</li>               |
-| `roomType`               | 课堂类型，可设为：<li>`0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。</li><li>`4`: 1 对 N 在线小班课。1 位教师对 N 名学生（2 ≤ N ≤ 16）进行在线辅导教学。 |
+| `roomType`               | 课堂类型，可设为：<li>`0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。</li><li>`4`: 互动直播小班课。一名老师进行教学，多名学生实时观看和收听。课堂人数上限为 500 人。上课过程中，老师可邀请学生“上台”发言。 |
 | `listener`               | 课堂启动状态。                                               |
 | `pretest`                | 是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
 | `language`               | 界面语言：<li>`zh`: 中文</li><li>`en`: 英文</li>                               |
@@ -111,7 +111,7 @@ export type CourseWareItem = {
   taskToken?: string,
   taskProgress?: NetlessTaskProgress
 }
- 
+
 export type CourseWareList = CourseWareItem[]
 ```
 
