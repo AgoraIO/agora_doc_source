@@ -75,12 +75,12 @@ For testing purposes, you can generate an SDK Token in Agora Console by performi
 4. Read the pop-up prompt carefully, click **Copy sdkToken**, and save the SDK Token in a secure location.
 
 
-<div class="alert note">Because such SDK Tokens have a high level of permission, do not send them to your app clients. Otherwise there might be a risk of leakage.</div>
+<div class="alert note">Because such SDK Tokens grant a high level of permission, do not send them to your app clients. Otherwise there might be a risk of leakage.</div>
 
 In a production environment, you need to generate the SDK Token from your app server using one of the following methods:
 
 - Use code. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server). (Recommended)
-- Call the interactive whiteboard server-side RESTful API. See [Generate a SDK Token (POST)](/cn/whiteboard/generate_whiteboard_token).
+- Call the Interactive Whiteboard RESTful API. See [Generate a SDK Token (POST)](/cn/whiteboard/generate_whiteboard_token).
 
 ## Enable server-side supporting features
 
@@ -96,15 +96,15 @@ Follow these steps to enable one or more supporting features and configure the s
 
 1. Go to the [Project Management](https://console.agora.io/projects) page in Agora Console, find the whiteboard project, and click **Edit**.
 
-2. On the **Edit Project **page, find **Whiteboard******, and click ****Config.
+2. On the **Edit Project** page, find **Whiteboard**, and click **Config**.****
 
 3. Under **Services**, select **Enabled** for **Docs to Picture**, **Docs to web**, or **Screenshot**.![](https://web-cdn.agora.io/docs-files/1616656791539)
 
 
 4. Click the arrowhead to the right of **Storage**, and select a storage space in the drop-down list:
 
-   - **default - white-cn-doc-convert**: The default storage space provided by Agora Interactive Whiteboard.
-   - ** Previously configured third-party storage service**:A third-party storage space you have already added and configured for the project.
+   - **default - white-cn-doc-convert**: The default storage space provided by the whiteboard service.
+   - **A previously configured third-party storage service**: If you have added and configured a third-party storage space, you can see its name in the list.
    - **New Storage Config**: If you do not want to use the default storage space and have not yet added a third-party storage space, select this option. See Step 5.
 
 ![](https://web-cdn.agora.io/docs-files/1616656819276)
