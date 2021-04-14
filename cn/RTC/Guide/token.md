@@ -126,7 +126,7 @@ Yay, it works.
 
 To facilitate authentication at the test stage, [Agora Console](https://console.agora.io/) supports generating temporary for testing purposes. A temporary token is valid for 24 hours.
 
-1. On the [Project Management](https://console.agora.io/projects) page, find your project, and click the ![temp_token](images/temp_token.png) icon to open the **Token** page.
+1. On the [Project Management](https://console.agora.io/projects) page, find your project, and click the ![temp_token](Images/temp_token.png) icon to open the **Token** page.
 2. Enter a channel name, and click **Generate Temp Token** to generate a temporary token.
 3. Use the generated token to join a real-time enagagement channel. Ensure that the channel name is the same with the one that you use to generate the temporary token.
 
