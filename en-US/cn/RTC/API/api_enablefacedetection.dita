@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enablefacedetection">
+    <title><ph keyref="enableFaceDetection"/></title>
+    <shortdesc id="short"><ph id="shortdesc">开启/关闭本地人脸检测。</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="enableFaceDetection" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/enableFaceDetection"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="since">
+       <dlentry>
+  <dt>自从</dt>
+  <dd>v3.0.1</dd>
+       </dlentry>
+   </dl>
+   <note outputclass="info">You can call this method either before or after joining a channel.</note>
+   <note outputclass="note" props="windows">This method is for Android and iOS only.</note>
+   <p>开启本地人脸检测后，SDK 会触发 <xref keyref="onFacePositionChanged"/> 回调向你报告人脸检测的信息：<ul>
+       <li>The width and height of the local video.</li>
+       <li>The position of the human face in the local video.</li>
+       <li>The distance between the human face and the device screen.</li>
+   </ul>
+   </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>enable</pt>
+  <pd>是否开启人脸检测：<ul>
+      <li><ph keyref="true"/>：开启人脸检测</li>
+      <li><ph keyref="false"/>：（默认）关闭人脸检测</li>
+  </ul>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_adjustplaybacksignalvolume">
+    <title><ph keyref="adjustPlaybackSignalVolume"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Adjusts the playback signal volume of all remote users.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="adjustPlaybackSignalVolume" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/adjustPlaybackSignalVolume"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <note outputclass="note">
+       <ul>
+  <li>This method adjusts the playback volume that is the mixed volume of all remote users.</li>
+  <li>从 v2.3.2 开始，静音本地音频需同时调用 <codeph>adjustPlaybackSignalVolume</codeph> 和 <xref keyref="adjustAudioMixingPlayoutVolume"></xref> 方法，并将 <parmname>volume</parmname> 设置为 <codeph>0</codeph>。</li>
+  <li>You can call this method either before or after joining a channel.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>volume</pt>
+  <pd><p>播放音量。 To avoid echoes and improve call quality, Agora recommends setting the value of<parmname> volume</parmname> between 0 and 100. 如果 <parmname>volume</parmname> 值需超过 100，联系<xref href="https://agora-ticket.agora.io/" scope="external" format="html">技术支持</xref>:</p>
+      <ul>
+ <li>0: Mute.</li>
+ <li>100: Original volume.</li>
+      </ul>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li> &lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>

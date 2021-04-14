@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_createdatastream1">
+    <title>[1/2]<ph keyref="createDataStream1"></ph></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="createDataStream1" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/createDataStream1"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl>
+       <dlentry outputclass="deprecated">
+  <dt>弃用：</dt>
+  <dd>This method is deprecated as of v2.4.0. 请改用 <xref keyref="createDataStream2"></xref>[2/2]。</dd>
+       </dlentry>
+   </dl>
+   <p id="desc">该方法用于创建数据流。 Each user can create up to five data streams during the lifecycle of the IRtcEngine. 频道内数据通道最多允许数据延迟 5 秒，若超过 5 秒接收方尚未收到数据流，则数据通道会向 App 报错。</p>
+   <note outputclass="note" id="note">
+       <ul>
+  <li>Call this method after joining a channel.</li>
+  <li><parmname>reliable</parmname> 和 <parmname>ordered</parmname> 需要同时为 <ph keyref="true"></ph> 或 <ph keyref="false"></ph>。 不可以一个设为 <ph keyref="true"></ph> 另一个设为 <ph keyref="false"></ph>。</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry props="windows" id="streamId">
+  <pt>streamId</pt>
+  <pd>输出参数，数据流 ID。</pd>
+       </plentry>
+       <plentry>
+  <pt>reliable</pt>
+  <pd><p>该数据流是否可靠：<ul>
+      <li><ph keyref="true"></ph>: 接收方 5 秒内会收到发送方所发送的数据，否则会收到 <xref keyref="onStreamMessageError"></xref> 回调并获得相应报错信息。</li>
+      <li>false: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.<ph keyref="false"></ph></li>
+  </ul></p></pd>
+       </plentry>
+       <plentry id="ordered">
+  <pt>ordered</pt>
+  <pd><p>该数据流是否有序：<ul>
+      <li>false: The recipients do not receive the data stream in the sent order.<ph keyref="true"></ph></li>
+      <li>false: The recipients do not receive the data stream in the sent order.<ph keyref="false"></ph></li>
+  </ul></p></pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <p><ul>
+       <li props="android">成功创建的数据流 ID：方法调用成功。</li>
+       <li props="windows">Success.</li>
+       <li>&lt; 0: 创建数据流失败。 你可以参考 <xref href="error_rtc.md" format="md">错误码和警告码</xref> 进行问题排查。</li>
+   </ul></p>
+        </section></refbody>
+</reference>

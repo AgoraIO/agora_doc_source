@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_addpublishstreamurl">
+    <title><ph keyref="addPublishStreamUrl"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Publishes the local stream to a specified CDN live address. (CDN live only.)</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="addPublishStreamUrl" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/addPublishStreamUrl"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>The SDK returns the result of this method call in the &quot;onStreamPublished&quot; callback. SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告增加旁路推流地址的状态。</p>
+   <note outputclass="note" id="note">
+       <ul>
+  <li>Ensure that the user joins the channel before calling this method.</li>
+  <li>Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in the advanced guide Push Streams to CDN.</li>
+  <li>This method adds only one stream CDN streaming URL each time it is called. 若需推送多路流，则需多次调用该方法。</li>
+  <li>This method applies to `LIVE_BROADCASTING` only.</li>
+  <li>Agora supports pushing media streams in RTMPS protocol to the CDN only when you enable transcoding.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry id="url">
+  <pt>url</pt>
+  <pd>CDN 推流地址，格式为 RTMP。 The maximum length of this parameter is 1024 bytes. The CDN streaming URL must not contain special characters, such as Chinese language characters.</pd>
+       </plentry>
+       <plentry>
+  <pt>transcodingEnabled</pt>
+  <pd>
+      <ul>
+ <li><ph keyref="true"/>: 转码（ <xref href="https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#%E8%BD%AC%E7%A0%81" scope="external" format="html">转码</xref> 是指在旁路推流时对音视频流进行转码处理后再推送到其他 CDN 服务器。 多适用于频道内有多个主播，需要进行混流、合图的场景）。 如果设为 <ph keyref="true"/>，需先调用 <xref keyref="setLiveTranscoding"/> 方法。</li>
+ <li><ph keyref="false"/>: 不转码。</li>
+      </ul>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.<ul>
+      <li>#<codeph>ERR_INVALID_ARGUMENT</codeph> (-2): The CDN streaming URL is NULL or has a string length of 0.</li>
+      <li>#ERR_NOT_INITIALIZED (-7): You have <codeph>not initialized</codeph> the RTC engine when publishing the stream.</li>
+  </ul>
+       </li>
+   </ul>
+        </section></refbody>
+</reference>

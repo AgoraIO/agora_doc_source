@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enablelastmiletest">
+    <title><ph keyref="enableLastmileTest"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Enables the network connection quality test.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="enableLastmileTest" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/enableLastmileTest"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>该方法启用网络连接质量测试，用于检测用户目前的网络接入质量（上行网络质量）。 默认该功能为关闭状态。 该方法主要用于以下场景:<ul>
+  <li>Before a user joins a channel or before an audience switches to a host, call this method to check the uplink network quality.</li>
+  <li>This method consumes additional network traffic, and hence may affect communication quality.</li>
+       </ul>
+   </p>
+   <p>无论哪种场景，启用该方法均会消耗网络流量，影响通话质量。 用户必须在收到 <xref keyref="onLastmileQuality"/> 回调后须调用 <xref
+  keyref="disableLastmileTest"/> 停止测试，再加入频道或切换为主播。</p>
+   <note outputclass="note">
+       <ul>
+  <li>该方法请勿与 <xref keyref="startLastmileProbeTest"/> 同时使用。</li>
+  <li>Otherwise, the<xref keyref="onLastmileQuality"/> callback may be interrupted by other methods, and hence may not be triggered.</li>
+  <li>A host should not call this method after joining a channel (when in a call).</li>
+  <li>加入频道前调用该方法检测网络质量后，SDK 会占用一路视频的带宽，码率与 <xref
+ keyref="setVideoEncoderConfiguration"/> 中设置的码率相同。 加入频道后，无论是否调用了 <xref
+ keyref="disableLastmileTest"/> ，SDK 均会自动停止带宽占用。</li>
+       </ul>
+   </note>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>

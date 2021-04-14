@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enableloopbackrecording">
+    <title><ph keyref="enableLoopbackRecording"></ph></title>
+    <shortdesc id="short"><ph id="shortdesc">Enables loopback audio capturing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="enableLoopbackRecording" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/enableLoopbackRecording"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>If you enable loopback audio capturing, the output of the sound card is mixed into the audio stream sent to the other end.</p>
+   <p>
+       <note outputclass="note">
+  <ul id="ul_pjq_swq_t4b">
+      <li props="windows">Applies to the macOS and Windows platforms only.</li>
+      <li props="windows, mac">macOS 系统默认声卡不支持采集功能，如需开启此功能需要 App 自己启用一个虚拟声卡，并将该虚拟声卡的名字作为 deviceName 传入 SDK。 Agora 测试并推荐 soundflower 作为虚拟声卡。</li>
+      <li>You can call this method either before or after joining a channel.</li>
+  </ul>
+       </note>
+   </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>     
+   <parml>
+       <plentry>
+  <pt>enabled</pt>
+  <pd>是否开启声卡采集:<ul id="ul_qjq_swq_t4b">
+ <li><ph keyref="true"/>: 开启声卡采集。</li>
+ <li><ph keyref="false"/>:（默认）关闭声卡采集。</li>
+      </ul></pd>
+       </plentry>
+       <plentry>
+  <pt>deviceName</pt>
+  <pd>声卡的设备名。 The default value is NULL (the default sound card). <ph keyref="NULL"></ph>如果用户使用虚拟声卡，如 &quot;Soundflower&quot;，可以将虚拟声卡名称 &quot;Soundflower&quot; 作为参数，SDK 会找到对应的虚拟声卡设备，并开始采集。</pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>

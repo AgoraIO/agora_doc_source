@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enablevideo">
+    <title><ph keyref="enableVideo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Enable the video module.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="enableVideo" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/enableVideo"/>
+        </section>
+        <section id="detailed_desc">Call this method either before joining a channel or during a call. If this method is called before joining a channel, the call starts in the video mode. 调用 <xref keyref="disableVideo"></xref> 方法可关闭视频模式。 成功调用该方法后，远端会触发 <xref keyref="onRemoteVideoStateChanged"></xref> 回调。<note outputclass="note"><ul>
+   <li>该方法在 <xref keyref="leaveChannel"></xref> 后仍然有效。</li>
+   <li>This method resets the internal engine and takes some time to take effect. We recommend using the following API methods to control the video engine modules separately:<ul>
+       <li><xref keyref="enableLocalVideo"></xref>: 是否启动摄像头采集并创建本地视频流。</li>
+       <li><xref keyref="muteLocalVideoStream"></xref>: 是否发布本地视频流。</li>
+       <li><xref keyref="muteRemoteVideoStream"></xref>: 是否接收并播放远端视频流。</li>
+       <li><xref keyref="muteAllRemoteVideoStreams"></xref>: 是否接收并播放所有远端视频流。</li>
+   </ul></li>
+        </ul></note>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_createdatastream2">
+    <title>[1/2]<ph keyref="createDataStream2"></ph></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="createDataStream2" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/createDataStream2"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl>
+       <dlentry outputclass="since">
+  <dt>自从</dt>
+  <dd>v3.3.0。 用于取代 <xref keyref="createDataStream1"></xref>[1/2]。</dd>
+       </dlentry>
+   </dl>
+   <p id="desc">该方法用于创建数据流。 Each user can create up to five data streams in a single channel.</p>
+   <p id="diff">相比 <apiname keyref="createDataStream1"></apiname>[1/2]，该方法不支持数据可靠。 This method does not support data reliability. If the receiver receives a data packet five seconds or more after it was sent, the SDK directly discards the data.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry id="streamId" props="windows">
+  <pt>streamId</pt>
+  <pd>输出参数，数据流 ID。</pd>
+       </plentry>
+       <plentry id="config">
+  <pt>config</pt>
+  <pd>The configurations for the data stream. 详见 <xref keyref="DataStreamConfig"></xref>。</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li props="windows">Success.</li>
+       <li props="android">创建的数据流的 ID：方法调用成功。</li>
+       <li>&lt; 0: Failure. 你可以参考 <xref href="error_rtc.md" format="md">错误码和警告码</xref> 进行问题排查。</li>
+   </ul>
+        </section></refbody>
+</reference>
