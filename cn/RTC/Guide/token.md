@@ -34,7 +34,7 @@ In order to follow this procedure you must have:
 
 ## Implement the authentication flow
 
-This section shows you how to supply and consume a token that gives rights to specific functionality to authenticated users
+This section shows you how to supply and consume a token that gives rights to specific functionality to authenticated users.
 
 ### Generate a token
 
@@ -42,26 +42,25 @@ Tokens are generated from your app server. To do that, you need to deploy a toke
 
 #### Deploy a sample token server
 
-For users who want a quick deployable sample server to test with, Agora provides a repo of a [NodeJS implementation](https://heroku.com/deploy?template=https://github.com/AgoraIO-Community/TokenServer-nodejs) where you can quickly deploy a token server at [Heroku](https://dashboard.heroku.com/).
+For users who want a deployable sample server to test with, Agora provides a repository of a [NodeJS implementation](https://heroku.com/deploy?template=https://github.com/AgoraIO-Community/TokenServer-nodejs) where you can quickly deploy a token server at [Heroku](https://dashboard.heroku.com/).
 
 **Warning**
-- This repo aims at providing a testing environment for front-end developers and is not meant for production purposes.
-- Heroku is an independent service provider and not affiliated with Agora. Therefore, Agora is not responsible got any charges you may incur with Heroku.
-
+- This repository aims at providing a testing environment for front-end developers and is not meant for production purposes.
+- Heroku is an independent service provider and not affiliated with Agora. Therefore, Agora is not responsible for any charges you may incur with Heroku.
 
 Follow the steps to deploy the token server and generate a token:
 
 1. Go to [Heroku](https://dashboard.heroku.com/), follow the on-screen instructions to create an account, and log onto Heroku.
 2. Go to [TokenServer-nodejs](https://heroku.com/deploy?template=https://github.com/AgoraIO-Community/TokenServer-nodejs). On the **Create New App** page, fill the **App name**, **APP_CERTIFICATE**, and **APP_ID**. Click **Deploy app**.
 3. Wait for Heroku to run a while, and when you see **Your app was succeessfully deployed**, click **Manage App**. You will get the URL of your app in the address bar.
-4. Open the following URL, replace `<heroku url>` with the URL of your app. Heroku  generates a token and returns it to the endpoint.
+4. Open the following URL, replace `<heroku url>` with the URL of your app. Heroku generates a token and returns it to the endpoint.
     ```
     https://<heroku url>/access_token?channel=test&uid=1234
     ```
 
 #### Deploy a token generator on your server
 
-Agora provides an open-source [AgoraDynamicKey](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) repository on GitHub, which enables you to generate tokens on your server with programming languages such as C++, Java, and Go.
+In the production environment, you need to deploy the token generator on your app server. Agora provides an open-source [AgoraDynamicKey](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) repository on GitHub, which enables you to generate tokens on your server with programming languages such as C++, Java, and Go.
 
 
 | Language  | Algorithm  | Core method  | Sample code |
@@ -141,7 +140,7 @@ Token-based authentication has requirements on the SDK version:
 
 If you are using an earlier version, refer to [Channel Keys](https://docs.agora.io/en/Agora%20Platform/channel_key) to authenticate your users. 
 
-#### Reference reading
+#### Related documents
 
 You can also refer to the following documents according to your needs:
 
