@@ -57,13 +57,11 @@ AgoraEduSDK.config({
 | `courseWareList`         | CourseWareList   | （选填）课件配置对象，用于预加载教育机构指派的课件，客户端进入课堂后无法进行新增或删除操作。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
 | `personalCourseWareList` | CourseWareList   | （选填）课件配置对象，用于预加载教师端上传的课件。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
 
-以下示例代码演示了如何以老师角色进入一个一对一互动教学的课堂。
+以下示例代码演示了如何以老师角色进入一个互动直播小班课。
 
 ```js
 // 配置课件
-// 课件 uuid
 let resourceUuid = "xxxxx"
-// 课件名称
 let resourceName = "my ppt slide"
 let sceneInfos = []
 let sceneInfo = {
@@ -79,19 +77,13 @@ sceneInfos.push(sceneInfo)
 let courseWareList = [{
     resourceUuid,
     resourceName,
-    // 课件大小
     size: 10000,
-    // 课件最后被修改的时间
     updateTime: new Date().getTime(),
-    // 文件后缀
     ext: "pptx",
-    // 非'ppt', 'pptx', 'doc', 'docx', 'pdf' 类型的文件必须提供 url, scenes可为空
     url:null,
-    // 'ppt', 'pptx', 'doc', 'docx', 'pdf' 类型的文件必须提供 scenes, url 可为空
     scenes: sceneInfos,
     taskUuid: "xxxx",
     taskToken: "xxx",
-    // 白板的任务进度对象
     taskProgress: NetlessTaskProgress
 }]
 
@@ -102,7 +94,7 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
     userName: "teacher",
     roomUuid: "4321",
     roleType: 1,
-    roomType: 0,
+    roomType: 4,
     roomName: "demo-class",
     pretest: false,
     language: "en",
