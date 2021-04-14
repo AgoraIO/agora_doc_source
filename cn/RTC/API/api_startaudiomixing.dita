@@ -16,48 +16,48 @@
         </section>
         <section id="detailed_desc">
    
-   <p>指定本地或在线音频文件来和麦克风采集的音频流进行混音和替换。替换是指用音频文件替换音频采集设备采集的音频流。该方法可以选择是否让对方听到本地播 放的音频并指定循环播放的次数。成功调用该方法后，本地会触发 <xref keyref="onAudioMixingStateChanged"/> (<codeph>PLAY</codeph>) 回调。播放结束后， 会收到 <apiname keyref="onAudioMixingStateChanged"/> (<codeph>STOPPED</codeph>) 回调。</p>
+            <p>该方法支持将本地或在线音乐文件和麦克风采集的音频进行混音或替换。成功播放音乐文件后，本地会触发 <xref keyref="onAudioMixingStateChanged"/> (<codeph>PLAY</codeph>) 回调。播放结束后，本地会触发 <apiname keyref="onAudioMixingStateChanged"/> (<codeph>STOPPED</codeph>) 回调。</p>
    <note outputclass="note">
        <ul>
-  <li>请在频道内调用该方法，如果在频道外调用该方法可能会出现问题。</li>
-  <li>如果本地音乐文件不存在、文件格式不支持、无法访问在线音乐文件 URL 都会返回警告码 <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph> (701)。</li>
+           <li>该方法需要在加入频道后调用。如需多次调用 <apiname keyref="startAudioMixing"/>，请确保调用间隔大于 500 ms。</li>
+           <li>如果本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL，则 SDK 会报告 <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph> (701)。</li>
+           <li props="android">如需调用该方法，请确保使用 Android 4.2 或以上设备，且 API Level 不低于 16。</li>
+           <li props="android">如果播放的是在线音乐文件，Agora 建议不要使用重定向地址。重定向地址在某些机型上可能无法打开。</li>
+           <li props="android">如果在模拟器上调用该方法，则请确保音乐文件在 /sdcard/ 目录下，且格式为 MP3。</li>
        </ul>
    </note>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
        <plentry>
-  <pt>filePath</pt>
-  <pd>指定需要混音的本地或在线音频文件的绝对路径，例如：<filepath>C:/music/audio.mp4</filepath>。建议填写文件后缀名。若无法确定文件后缀名，可不填。
-      支持的音频格式包括：3GP、ASF、ADTS、AVI、MP3、MP4、MPEG-4、SAMI 和 WAVE。 详见 <xref
- href="https://docs.microsoft.com/zh-cn/windows/win32/medfound/supported-media-formats-in-media-foundation"
- scope="external" format="html">Supported Media Formats in Media Foundation</xref>。</pd>
+           <pt>filePath</pt>
+           <pd><p conkeyref="playEffect2/filepath"/></pd>
        </plentry>
        <plentry>
   <pt>loopback</pt>
-  <pd>
+           <pd><p>是否只在本地播放音乐文件：
       <ul>
- <li><ph keyref="true"/>: 只有本地用户可以听到混音的音频；</li>
- <li><ph keyref="false"/>: 本地用户和远端用户都能听到混音的音频。</li>
-      </ul>
+          <li><ph keyref="true"/>: 只在本地播放音乐文件，只有本地用户能听到音乐。</li>
+          <li><ph keyref="false"/>: 将本地播放的音乐文件发布至远端，本地用户和远端用户都能听到音乐。</li>
+      </ul></p>
   </pd>
        </plentry>
        <plentry>
   <pt>replace</pt>
-  <pd>
+           <pd><p>是否用音乐文件替换麦克风采集的音频：
       <ul>
- <li><ph keyref="true"/>: 只推送指定的本地音频文件或者线上音频文件，不传输麦克风收录的音频。</li>
- <li><ph keyref="false"/>: 本地音频文件与来自麦克风的音频流混音。</li>
-      </ul>
+          <li><ph keyref="true"/>: 替换。用户只能听到音乐。</li>
+          <li><ph keyref="false"/>: 不替换。用户可以听到音乐和麦克风采集的音频。</li>
+      </ul></p>
   </pd>
        </plentry>
        <plentry>
   <pt>cycle</pt>
-  <pd>循环播放次数：
+           <pd><p>音乐文件的播放次数。
       <ul>
- <li>正整数: 循环播放的次数；</li>
- <li>-1: 无限循环。</li>
-      </ul>
+          <li>≥ 0: 播放次数。例如，0 表示不播放；1 表示播放 1 次。</li>
+          <li>-1: 无限循环播放。</li>
+      </ul></p>
   </pd>
        </plentry>
    </parml>
