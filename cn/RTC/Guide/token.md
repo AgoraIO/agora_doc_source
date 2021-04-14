@@ -23,7 +23,7 @@ When generating a token, you can specify whether a user has the privilege to pub
 
 The following figure shows the steps in the authentication flow:
 
-![token authentication flow](https://web-cdn.agora.io/docs-files/1618379347094)
+![token authentication flow](https://web-cdn.agora.io/docs-files/1618395721208)
 
 ## Prerequisites
 
