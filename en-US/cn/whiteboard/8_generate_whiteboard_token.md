@@ -1,10 +1,10 @@
 Agora Interactive Whiteboard use different types of tokens for user authentication. For details, see [Token overview](/cn/whiteboard/whiteboard_token_overview).
 
-This article introduces how to call the interactive whiteboard RESTful API to generate Tokens.
+This article introduces how to call the interactive whiteboard RESTful API to generate tokens.
 
-## Generate a SDK Token (POST)
+## Generate an SDK Token (POST)
 
-Refer to the following to generate a SDK Token:
+Call this API to generate an SDK Token:
 
 ### Prototype
 
@@ -23,10 +23,10 @@ Pass in the following parameters in the request header:
 
 | Parameter | Data type | Required/Optional | Description |
 | :---------------- | :------ | :------- | :----------------------------------------------------------- |
-| `accessKey` | string | Required | The Access Key (AK), which can be obtained at Agora Console. See [Get AK and SK](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-ak-和-sk). |
-| `secretAccessKey` | string | Required | The Secret Access Key (AK), which can be obtained at Agora Console. See [Get AK and SK](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-ak-和-sk). |
+| `accessKey` | string | Required | The Access Key (AK), which can be obtained in Agora Console. See [Get an access key pair](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-ak-和-sk). |
+| `secretAccessKey` | string | Required | The Secret Key (SK), which can be obtained in Agora Console. See [Get AK and SK](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-ak-和-sk). |
 | `lifespan` | integer | Required | Token 的有效时间（ms）。 设为 `0` 表示永久有效。 |
-| `role` | string | Required | The Token role:<li>`admin`</li><li>`writer`</li><li>`reader`</li>See [Introduction](/cn/whiteboard/whiteboard_token_overview?platform=RESTful#token-类型与权限). |
+| `role` | string | Required | The token role:<li>`admin`</li><li>`writer`</li><li>`reader`</li>See [Introduction](/cn/whiteboard/whiteboard_token_overview?platform=RESTful#token-类型与权限). |
 
 ### Request example
 
@@ -45,7 +45,7 @@ Content-Type: application/json
 
 ### HTTP response
 
-For details about all possible response status codes, see [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
+For details about all possible response status codes, see the [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
 
 If the status code is `201`, the request is successful. The response returns the generated `SDK Token`.
 
@@ -62,7 +62,7 @@ If the status code is not `201`, the request fails. The response body includes a
 
 ## Generate a Room Token (POST)
 
-Refer to the following to generate a Room Token:
+Call this API to generate a Room Token:
 
 ### Prototype
 
@@ -75,7 +75,7 @@ Pass in the following parameters in the request header:
 
 | Parameter | Data type | Required/Optional | Description |
 | :------- | :----- | :------- | :----------------------------------------------------------- |
-| `token` | string | Required | The SDK Token, which can be obtained through one of the following ways:<li>Go to Agora Console. See [Get a SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate a SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
+| `token` | string | Required | The SDK Token, which can be obtained through one of the following methods:<li>Use Agora Console. See [Get an SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate an SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
 | `region` | string | Optional | Specifies a data center to process the request:<li>(Default) `cn-hz`: The data center located in Hangzhou, China. Its service area includes East Asia, Southeast Asia, and areas not covered by other data centers.</li><li>`us-sv`: The data center located in Silicon Valley. Its service area includes North America and South America.</li>For details, see [Data center and globalization](https://developer.netless.link/javascript-zh/home/region-and-global). |
 
 ### Request Path
@@ -90,9 +90,9 @@ The following parameters are required in the URL:
 
 | Parameter | Data type | Required/Optional | Description |
 | :--------- | :------ | :------- | :----------------------------------------------------------- |
-| `ak` | string | Optional | The Access Key (AK), which can be obtained at Agora Console. See [Get AK and SK](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-ak-和-sk). |
+| `ak` | string | Optional | The Access Key (AK), which can be obtained in Agora Console. See [Get an access key pair](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-ak-和-sk). |
 | `lifespan` | integer | Required | Token 的有效时间（ms）。 设为 `0` 表示永久有效。 |
-| `role` | string | Required | The Token role:<li>`admin`</li><li>`writer`</li><li>`reader`</li>See [Introduction](/cn/whiteboard/whiteboard_token_overview?platform=RESTful#token-类型与权限). |
+| `role` | string | Required | The token role:<li>`admin`</li><li>`writer`</li><li>`reader`</li>See [Introduction](/cn/whiteboard/whiteboard_token_overview?platform=RESTful#token-类型与权限). |
 
 ### Request example
 
@@ -110,7 +110,7 @@ Content-Type: application/json
 
 ### HTTP response
 
-For details about all possible response status codes, see [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
+For details about all possible response status codes, see the [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
 
 If the status code is `201`, the request is successful. The response returns the generated `Room Token`.
 
@@ -127,7 +127,7 @@ If the status code is not `201`, the request fails. The response body includes a
 
 ## Generate a Task Token (POST)
 
-Refer to the following to generate a Task Token:
+Call this API to generate a Task Token:
 
 ### Prototype
 
@@ -140,7 +140,7 @@ Pass in the following parameters in the request header:
 
 | Parameter | Data type | Required/Optional | Description |
 | :------- | :----- | :------- | :----------------------------------------------------------- |
-| `token` | string | Required | The SDK Token, which can be obtained through one of the following ways:<li>Go to Agora Console. See [Get a SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate a SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
+| `token` | string | Required | The SDK Token, which can be obtained through one of the following methods:<li>Use Agora Console. See [Get an SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate an SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
 | `region` | string | Optional | Specifies a data center to process the request:<li>(Default) `cn-hz`: The data center located in Hangzhou, China. Its service area includes East Asia, Southeast Asia, and areas not covered by other data centers.</li><li>`us-sv`: The data center located in Silicon Valley. Its service area includes North America and South America.</li>For details, see [Data center and globalization](https://developer.netless.link/javascript-zh/home/region-and-global). |
 
 ### Request Path
@@ -149,15 +149,15 @@ The following parameters are required in the URL:
 
 | Parameter | Data type | Required/Optional | Description |
 | :----- | :----- | :------- | :----------------------------------------------------------- |
-| `uuid` | string | Required | The Task UUID, which is the unique identifier of a file conversion task. You can get it by [calling the RESTful API to start a file conversion task](/cn/whiteboard/whiteboard_file_conversion?platform=RESTful#发起文档转换（post）) or [calling the RESTful API to query the task progress](/cn/whiteboard/whiteboard_file_conversion?platform=RESTful#查询转换任务的进度（get）). |
+| `uuid` | string | Required | The Task UUID, which is the unique identifier of a file-conversion task. You can get it by [calling the RESTful API to start a file-conversion task](/cn/whiteboard/whiteboard_file_conversion?platform=RESTful#发起文档转换（post）) or [calling the RESTful API to query the task progress](/cn/whiteboard/whiteboard_file_conversion?platform=RESTful#查询转换任务的进度（get）). |
 
 ### Request Body
 
 | Parameter | Data type | Required/Optional | Description |
 | :--------- | :------ | :------- | :----------------------------------------------------------- |
-| `ak` | string | Optional | The Access Key (AK), which can be obtained at Agora Console. See [Get AK and SK](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-ak-和-sk). |
+| `ak` | string | Optional | The Access Key (AK), which can be obtained in Agora Console. See [Get an access key pair](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-ak-和-sk). |
 | `lifespan` | integer | Required | Token 的有效时间（ms）。 设为 `0` 表示永久有效。 |
-| `role` | string | Required | The Token role:<li>`admin`</li><li>`writer`</li><li>`reader`</li>See [Introduction](/cn/whiteboard/whiteboard_token_overview?platform=RESTful#token-类型与权限). |
+| `role` | string | Required | The token role:<li>`admin`</li><li>`writer`</li><li>`reader`</li>See [Introduction](/cn/whiteboard/whiteboard_token_overview?platform=RESTful#token-类型与权限). |
 
 ### Request example
 
@@ -175,7 +175,7 @@ Content-Type: application/json
 
 ### HTTP response
 
-All possible response status codes. See the [status code summary table for details.](/cn/whiteboard/basic_info?platform=RESTful#响应状态码)
+For details about all possible response status codes, see the [status code table.](/cn/whiteboard/basic_info?platform=RESTful#响应状态码)
 
 If the status code is `201`, the request is successful. The response returns the generated `Task Token`.
 
