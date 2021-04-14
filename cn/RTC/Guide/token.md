@@ -1,15 +1,15 @@
 
 # Authenticate Your Users with Tokens  
 
-To enhance communication security, Agora uses tokens to authenticate users before they access the Agora serivce, such as joining an RTC channel or logging onto the RTM system. 
+To enhance communication security, Agora uses tokens to authenticate users before they access the Agora serivce, such as joining an RTC channel. 
 
 This article describes how to generate a token and use it for authentication in your client app when a user tries to access the Agora service.
 
 ##  Understand the tech   
 
-A token is a dynamic key generated on your server. Agora provides code samples on GitHub for you to generate tokens.
+A token is a time-bound dynamic key generated on your server. Agora provides code samples on [GitHub](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) for you to generate tokens.
 
-When your app users tries to access the Agora service, Agora validates their token and grant access according to the following information in the token:
+When your app users try to join a channel, Agora validates their token and grants access according to the following information in the token:
 - The App ID of your Agora project
 - The app certificate of your Agora project
 - The channel name
