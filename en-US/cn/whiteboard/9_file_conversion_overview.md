@@ -1,4 +1,4 @@
-The file conversion feature provided by Agora Interactive Whiteboard allows for converting PPT, PPTX, DOC, DOCX, and PDF files into static images, and PPTX files into dynamic HTML web pages. The generated images and web pages can be presented on the whiteboard.
+The file conversion feature provided by Agora Interactive Whiteboard can convert PPT, PPTX, DOC, DOCX, and PDF files into static images, and PPTX files into dynamic HTML web pages. The generated images and web pages can be presented on the whiteboard.
 
 ## Feature list
 
@@ -9,20 +9,20 @@ The file conversion feature includes:
 
 ### Static file conversion
 
-Static file conversion refers to converting PPT, PPTX, DOC, DOCX, and PDF files to static images in PNG, JPG/JPEG or WEBP format. The generated file does not preserve any animation effect in the source file.
+Static file conversion refers to converting PPT, PPTX, DOC, DOCX, and PDF files to static images in PNG, JPG/JPEG or WEBP format. The generated file does not preserve animations in the source file.
 
-When using static file conversion, you should pay attention to the following items:
+When using static file conversion, you should pay attention to the following things:
 
 - Preferably, the source file is less than 50 pages. If the source file has more than 100 pages, there might be a conversion timeout.
 - The higher the image resolution in the source file, the slower the conversion.
 - Agora recommends PNG and JPG/JPEG for the image format.
 - Conversion of PDF files is the most accurate compared to source files in other formats. If the generated image differs a lot from the source file in terms of formatting, you can convert the source file to PDF and try again.
-- This feature is implemented with support from [Aspose](https://www.aspose.app/), so currently Agora may not respond to customization demand. Agora recommends that you perform sufficient tests beforehand. If the test result does not meet your expectation, you can use a third-party service.
+- This feature is implemented with support from [Aspose](https://www.aspose.app/), so Agora may not timely respond to your customization demand for now. Agora recommends that you run sufficient tests of the file conversion feature. If the test result does not meet your expectation, you can use a third-party service.
 - If a font is missing in the generated image, you can either use the SDK to add a custom font or contact support@agora.io.
 
 ### Dynamic file conversion
 
-Dynamic file conversion refers to converting PPTX files edited with Microsoft Office to HTML web pages. The generated file preserves the animation effects in the source file. 
+Dynamic file conversion refers to converting PPTX files edited with Microsoft Office to HTML web pages. The generated file preserves animations in the source file. 
 Currently, dynamic file conversion **does not support**:
 
 - Converting WPS files or PPTX files converted from WPS files.
@@ -53,15 +53,15 @@ Refer to the following steps:
 
 1. Go to the [Project Management](https://console.agora.io/projects) page in Agora Console, find the whiteboard project, and click **Edit**.
 
-2. On the **Edit Project **page, find **Whiteboard******, and click ****Config.
+2. On the **Edit Project** page, find **Whiteboard**, and click **Config**.****
 
 3. Under **Services**, select **Enabled** for **Docs to Picture**, **Docs to web**, or **Screenshot**.![](https://web-cdn.agora.io/docs-files/1616656791539)
 
 
 4. Click the arrowhead to the right of **Storage**, and select a storage space in the drop-down list:
 
-   - **default - white-cn-doc-convert**: The default storage space provided by Agora Interactive Whiteboard.
-   - ** Previously configured third-party storage service**:A third-party storage space you have already added and configured for the project.
+   - **default - white-cn-doc-convert**: The default storage space provided by the whiteboard service.
+   - **A previously configured third-party storage service**: If you have added and configured a third-party storage space, you can see its name in the list.
    - **New Storage Config**: If you do not want to use the default storage space and have not yet added a third-party storage space, select this option. See Step 5.
 
 ![](https://web-cdn.agora.io/docs-files/1616656819276)
@@ -89,9 +89,9 @@ Upload the source file to a third-party cloud storage space or your Nginx server
 
 ## Start file conversion
 
-The file conversion feature is provided by the Agora Interactive Whiteboard server and requires your business server to initiate a document conversion request to the Interactive whiteboard server by calling a RESTful API based on the app client's requirements, as shown in the following diagram.![](https://web-cdn.agora.io/docs-files/1616746976402)
+The file conversion feature is implemented by Agora's server for the whiteboard service. When an app client requests to convert a file, your app server needs to call the interactive whiteboard RESTful API to send the request to the Agora server. The full process is illustrated in the following diagram:![](https://web-cdn.agora.io/docs-files/1616746976402)
 
 
 > - To call the RESTful API to start a file conversion task, pass in the URL address of the source file, the task type, and other parameters. See [Start file conversion (POST)](/cn/whiteboard/whiteboard_file_conversion?platform=RESTful#发起文档转换（post）).
-> - To query the progress of the conversion task, pass in the corresponding Task UUID and Task Token. See [Query file conversion progress (GET)](/cn/whiteboard/whiteboard_file_conversion?platform=RESTful#查询转换任务的进度（get）).
-> - Agora recommends that you design a polling mechanism to regularly call the Query Conversion Task Progress API to get the status of the conversion task in real time.
+> - To query the progress of a conversion task, pass in the corresponding Task UUID and Task Token. See [Query file conversion progress (GET)](/cn/whiteboard/whiteboard_file_conversion?platform=RESTful#查询转换任务的进度（get）).
+> - Agora recommends that you design an algorithm to regularly query the conversion progress so that your data is up to date.
