@@ -1,11 +1,11 @@
-## 获取场景地址列表（GET）
+## Get scene address list (GET)
 
-Get a list of scene addresses in the room
+Call this API to get a list of scene addresses in a room
 
 ### Prototype
 
 - Method: `GET`
-- Access point: `https://api.netless.link/v5/tokens/rooms/{uuid}`
+- Access point: `https://api.netless.link/v5/rooms/{uuid}/scenes`
 
 ### Request header
 
@@ -13,7 +13,7 @@ Pass in the following parameters in the request header:
 
 | Parameter | Data type | Required/Optional | Description |
 | :------- | :----- | :------- | :----------------------------------------------------------- |
-| `token` | string | Required | 拥有 `writer` 或 `admin` 权限的 SDK Token 或 Room Token。 </br>The SDK Token, which can be obtained through one of the following ways:<li>Go to Agora Console. See [Get a SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate a SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li>The SDK Token, which can be obtained through one of the following ways:<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>Use code. See Generate a Token[ from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
+| `token` | string | Required | A `writer` or `admin` SDK Token or Room Token. </br>To get a SDK Token, you can:<li>Use Agora Console. See [Get an SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate an SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li>To get a Room Token, you can:<li>Call the RESTful API. See [Generate a Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
 | `region` | string | Optional | Specifies a data center to process the request:<li>(Default) `cn-hz`: The data center located in Hangzhou, China. Its service area includes East Asia, Southeast Asia, and areas not covered by other data centers.</li><li>`us-sv`: The data center located in Silicon Valley. Its service area includes North America and South America.</li> For details, see [Data center and globalization](https://developer.netless.link/javascript-zh/home/region-and-global). |
 
 ### Request Path
@@ -24,13 +24,13 @@ The following parameters are required in the URL:
 | :----- | :----- | :------- | :----------------------------------------------------------- |
 | `uuid` | string | Required | The Room UUID, which is the unique identifier of a room. You can get it by [calling the RESTful API to create a room](/cn/whiteboard/whiteboard_room_management?platform=RESTful#创建房间（post）) or [calling the RESTful API to get room information](/cn/whiteboard/whiteboard_room_management?platform=RESTful#获取房间信息（get）). |
 
-### 查询参数
+### Query Parameters
 
-该 API 可以传入以下查询参数：
+You can choose to pass in the following query parameters:
 
 | Parameter | Data type | Required/Optional | Description |
 | :--------- | :----- | :------- | :----------------------------------------------------------- |
-| `sceneDir` | string | Optional | 场景组的路径地址，以 `/` 开头。 如果填入该参数，则返回指定场景组下的场景地址列表；如果不填，则返回当前所在场景组下的场景地址列表。 |
+| `sceneDir` | string | Optional | The path to the group of scenes, which starts with `/`. If you pass in this parameter, the scene address list of the specified group is generated. If you do not pass in, the scene address list of the current group is generated. |
 
 ### Request example
 
@@ -43,9 +43,9 @@ Content-Type: application/json
 
 ### HTTP response
 
-For details about all possible response status codes, see [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
+For details about all possible response status codes, see the [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
 
-If the status code is `2XX`, the request is successful. 响应包含返回的操作结果和数据。
+If the status code is `200`, the request is successful. The response returns the status code and corresponding parameters.
 
 **Response example**
 
@@ -58,18 +58,18 @@ If the status code is `2XX`, the request is successful. 响应包含返回的操
 ]
 ```
 
-响应包体为 JSON Array，包含 String 型的场景地址。
+The response body is a JSON Array of scene address strings.
 
-If the status code is not `2XX`, the request fails. The response body includes a `message` field that describes the reason for the failure.
+If the status code is not `200`, the request fails. The response body includes a `message` field that describes the reason for the failure.
 
-## 插入新场景（POST）
+## Add a scene (POST)
 
-Add a scene
+Call this API to add a scene.
 
 ### Prototype
 
 - Method: `POST`
-- Access point: `https://api.netless.link/v5/tokens/rooms/{uuid}`
+- Access point: `https://api.netless.link/v5/rooms/{uuid}/scenes`
 
 ### Request header
 
@@ -77,7 +77,7 @@ Pass in the following parameters in the request header:
 
 | Parameter | Data type | Required/Optional | Description |
 | :------- | :----- | :------- | :----------------------------------------------------------- |
-| `token` | string | Required | 拥有 `write` 或 `admin` 权限的 SDK Token 或 Room Token。 </br>The SDK Token, which can be obtained through one of the following ways:<li>Go to Agora Console. See [Get a SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate a SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li>The SDK Token, which can be obtained through one of the following ways:<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>Use code. See Generate a Token[ from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
+| `token` | string | Required | A `writer` or `admin` SDK Token or Room Token. </br>To get a SDK Token, you can:<li>Use Agora Console. See [Get an SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate an SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li>To get a Room Token, you can:<li>Call the RESTful API. See [Generate a Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
 | `region` | string | Optional | Specifies a data center to process the request:<li>(Default) `cn-hz`: The data center located in Hangzhou, China. Its service area includes East Asia, Southeast Asia, and areas not covered by other data centers.</li><li>`us-sv`: The data center located in Silicon Valley. Its service area includes North America and South America.</li>For details, see [Data center and globalization](https://developer.netless.link/javascript-zh/home/region-and-global). |
 
 ### Request Path
@@ -92,9 +92,8 @@ The following parameters are required in the URL:
 
 | Parameter | Data type | Required/Optional | Description |
 | :------- | :----- | :------- | :----------------------------------------------------------- |
-| `scenes` |    array(
- | Required | 由场景组成的数组，每个场景包含以下参数：<li>`name`：String 类型，场景名称，不能与所属场景组下的其他场景重名，不能包含 `/`。</li><li>`ppt`：（选填）Object 类型，场景背景图的属性。</li><li>`src`：String 类型，图片的 URL。<div class="alert note">请确保你的浏览器可以访问并支持展示该图片，否则，该图片可能无法显示在白板场景中。</div></li><li>`width`：Number 类型，图片的宽度，单位像素。</li><li>`height`：Number 类型，图片的高度，单位像素。 |
-| `path` | string | Required | 场景组的地址。<div class="alert note">如果传入的场景组地址已经存在，则在已有的场景组下插入指定的新场景；<br>如果传入的场景组地址不存在，则自动新建一个场景组并在该场景下插入指定的新场景。</div> |
+| `scenes` | array | Required | An array of scenes, each containing the following parameters:<li>`name`: String. Sets the scene name. It cannot be the same as another scene in the same group and cannot contain `/`.</li><li>`ppt`: (Optional) Object. Sets the property of the background image of the scene.</li><li>`src`: String. Sets the URL of the image.<div class="alert note">Ensure that your browser can access and display the image properly. Otherwise, the image may not be displayed in the scene.</div></li><li>`width`: Number. Sets the width of the image in pixels.</li><li>`height`: Number. Sets the height of the image in pixels. |
+| `path` | string | Required | The address of a scene group.<div class="alert note">If the address already exists, the new scene is added to the corresponding scene group; If not, a new scene group is created and the new scene is added to the group.<br></div> |
 
 
 ### Request example
@@ -130,9 +129,9 @@ token: NETLESSSDK_YWs9QlxxxxxA0NzA5ZGM2MjRi
 
 ### HTTP response
 
-For details about all possible response status codes, see [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
+For details about all possible response status codes, see the [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
 
-If the status code is `201`, the request is successful. 响应包含返回的操作结果和数据。
+If the status code is `201`, the request is successful. The response returns the status code and corresponding parameters.
 
 **The following is a response example for a successful request:**
 
@@ -142,18 +141,18 @@ If the status code is `201`, the request is successful. 响应包含返回的操
 {}
 ```
 
-响应包体为 JSON object，内容为空。
+The response body is an empty JSON object.
 
 If the status code is not `201`, the request fails. The response body includes a `message` field that describes the reason for the failure.
 
-## 场景跳转（PATCH）
+## Switch to a scene (PATCH)
 
-当房间内存在多个场景或场景组，可调用该 API 切换场景。
+Call this API to switch scenes when there is multiple scenes or scene groups in the room.
 
 ### Prototype
 
-- 方法：`PATCH`
-- 接入点：`https://api.netless.link/v5/rooms/{uuid}/scene-state`
+- Method: `PATCH`
+- Access point: `https://api.netless.link/v5/rooms/{uuid}/scene-state`
 
 ### Request header
 
@@ -161,7 +160,7 @@ Pass in the following parameters in the request header:
 
 | Parameter | Data type | Required/Optional | Description |
 | :------- | :----- | :------- | :----------------------------------------------------------- |
-| `token` | string | Required | 拥有 `admin` 权限的 SDK Token 或 Room Token。 </br>The SDK Token, which can be obtained through one of the following ways:<li>Go to Agora Console. See [Get a SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate a SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li>The SDK Token, which can be obtained through one of the following ways:<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>Use code. See Generate a Token[ from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
+| `token` | string | Required | An `admin` SDK Token or Room Token. </br>To get a SDK Token, you can:<li>Use Agora Console. See [Get an SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate an SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li>To get a Room Token, you can:<li>Call the RESTful API. See [Generate a Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
 | `region` | string | Optional | Specifies a data center to process the request:<li>(Default) `cn-hz`: The data center located in Hangzhou, China. Its service area includes East Asia, Southeast Asia, and areas not covered by other data centers.</li><li>`us-sv`: The data center located in Silicon Valley. Its service area includes North America and South America.</li>For details, see [Data center and globalization](https://developer.netless.link/javascript-zh/home/region-and-global). |
 
 ### Request Path
@@ -176,7 +175,7 @@ The following parameters are required in the URL:
 
 | Parameter | Data type | Required/Optional | Description |
 | :---------- | :----- | :------- | :--------------------- |
-| `scenePath` | string | Required | 要切换到的场景的地址。 |
+| `scenePath` | string | Required | The address of the scene you want to switch to. |
 
 ### Request example
 
@@ -193,10 +192,10 @@ token: NETLESSSDK_YWs9TxxxxxYjc0
 
 ### HTTP response
 
-For details about all possible response status codes, see [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
+For details about all possible response status codes, see the [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
 
 
-If the status code is `201`, the request is successful. 响应包含返回的操作结果和数据。
+If the status code is `201`, the request is successful. The response returns the status code and corresponding parameters.
 
 **The following is a response example for a successful request:**
 
@@ -211,11 +210,10 @@ If the status code is `201`, the request is successful. 响应包含返回的操
 }
 ```
 
-**响应包体参数：**
+**Description of parameters in the response:**
 
 | Parameter | Data type | Description |
 | :----------------- | :---- | :------------------------------------------- |
-| `currentScenePath` |    array(
- | 当前的场景地址，由场景组和场景名组成的数组。 |
+| `currentScenePath` | array | The address of the current scene, which is an array consisting of the scene name and the corresponding scene group name. |
 
 If the status code is not `201`, the request fails. The response body includes a `message` field that describes the reason for the failure.
