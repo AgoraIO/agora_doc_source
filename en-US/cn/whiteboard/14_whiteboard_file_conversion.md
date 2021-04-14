@@ -1,18 +1,18 @@
-The file conversion feature provided by Agora Interactive Whiteboard allows for converting PPT, PPTX, DOC, DOCX, PDF, and other files into static images, and PPTX files into dynamic HTML web pages. The generated images and web pages can be presented on the whiteboard. 详见[文档转换服务](/cn/whiteboard/file_conversion_overview?platform=RESTful)。
+The file conversion feature provided by Agora Interactive Whiteboard can convert PPT, PPTX, Word, and PDF files into static images or dynamic HTML web pages. The generated images and web pages can be presented on the whiteboard. See [File conversion](/cn/whiteboard/file_conversion_overview?platform=RESTful).
 
-<div class="alert note">调用文档转换 API 前，请确保：
+<div class="alert note">Before calling the RESTful API for file conversion, ensure that:
 <ul>
-	<li>已在 <a href="https://console.agora.io/">Agora 控制台</a >开启<b>文档转图片</b>或<b>文档转网页</b>服务并添加存储配置。 <a href="https://docs.agora.io/cn/whiteboard/enable_whiteboard?platform=RESTful#%E5%BC%80%E5%90%AF%E4%BA%92%E5%8A%A8%E7%99%BD%E6%9D%BF%E9%85%8D%E5%A5%97%E6%9C%8D%E5%8A%A1">Enable server-side supporting features</a ></li>
-	<li>已为待转换的文档生成一个公网可访问的 URL 地址。</li></ul></div>
+	<li>You have enabled <b>Docs to Picture</b> or <b>Docs to Web</b> and configured storage settings at <a href="https://console.agora.io/">Agora Console</a >. See <a href="https://docs.agora.io/cn/whiteboard/enable_whiteboard?platform=RESTful#%E5%BC%80%E5%90%AF%E4%BA%92%E5%8A%A8%E7%99%BD%E6%9D%BF%E9%85%8D%E5%A5%97%E6%9C%8D%E5%8A%A1">Enable server-side supporting features</a >.</li>
+	<li>You have generated a URL address for the file you want to convert, and the address can be accessed by public IP addresses.</li></ul></div>
 
-## 发起文档转换（POST）
+## Start file conversion (POST)
 
-Start a file-conversion task
+Call this API to start a file conversion task.
 
 ### Prototype
 
 - Method: `POST`
-- 接入点：`https://api.netless.link/v5/services/conversion/tasks`
+- Access point: `https://api.netless.link/v5/services/conversion/tasks`
 
 ### Request header
 
@@ -20,7 +20,7 @@ Pass in the following parameters in the request header:
 
 | Parameter | Data type | Required/Optional | Description |
 | :------- | :----- | :------- | :----------------------------------------------------------- |
-| `token` | string | Required | 拥有 `write` 或 `admin` 权限的 SDK Token，可通过以下方式获取：<li>Go to Agora Console. See [Get a SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate a SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
+| `token` | string | Required | A `writer` or `admin` SDK Token. To get one, you can:<li>Use Agora Console. See [Get an SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token).</li><li>Call the RESTful API. See [Generate an SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）).</li><li>Write code on your app server. See [Generate a token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful).</li> |
 | `region` | string | Optional | Specifies a data center to process the request:<li>(Default) `cn-hz`: The data center located in Hangzhou, China. Its service area includes East Asia, Southeast Asia, and areas not covered by other data centers.</li><li>`us-sv`: The data center located in Silicon Valley. Its service area includes North America and South America.</li> For details, see [Data center and globalization](https://developer.netless.link/javascript-zh/home/region-and-global). |
 
 ### Request Body
@@ -29,11 +29,11 @@ The following parameters are required in the URL.
 
 | Parameter | Data type | Required/Optional | Description |
 | :------------- | :------ | :------- | :----------------------------------------------------------- |
-| `resource` | string | Required | 待转换的源文件 URL。 |
-| `type` | string | Required | 转换任务类型，取值如下：<li>`dynamic`：动态文档转换，即文档转网页。</li><li>`static`：静态文档转换，即文档转图片。</li> |
-| `preview` | boolean | Optional | 是否需要生成预览图：<li>`true`: Rotate.</li><li>`false`：否。</li><div class="alert note">该参数仅在 `type` 设为 `dynamic` 时生效。 生成预览图耗时较长，请谨慎选择。</div> |
-| `scale` | number | Optional | 图片缩放比例，取值范围 [0.1,3.0]，默认值为 `1.2`。 数值越大，图片越清晰。<div class="alert note">该参数仅在 `type` 设为 `static` 时生效。</div> |
-| `outputFormat` | string | Optional | 输出图片格式，取值如下：<li><code>png</code></li><li><code>jpg</code> 或 <code>jpeg</code></li><li><code>webp</code></li>默认值为 <code>png</code>  <div class="alert note">该参数仅在 `type` 设为 `static` 时生效。</div> |
+| `resource` | string | Required | The URL of the file you want to convert. |
+| `type` | string | Required | The conversion type:<li>`dynamic`: Dynamic file conversion, converting the file to web pages.</li><li>`static`: Static file conversion, converting the file to images.</li> |
+| `preview` | boolean | Optional | Whether to generate a preview of the generated images:<li>`true`: Generate.</li><li>`false`: Not generate.</li><div class="alert note">This parameter only takes effect when `type` is set to `dynamic`. Note that generating a preview can take a long time.</div> |
+| `scale` | number | Optional | The scale factor. The range is [0.1,3.0], and the default value is `1.2`. The higher the value, the clearer the generated image.<div class="alert note">This parameter only takes effect when `type` is set to `static`.</div> |
+| `outputFormat` | string | Optional | The format of the generated image:<li><code>png</code></li><li><code>jpg</code> or <code>jpeg</code></li><li><code>webp</code></li>The default value is <code>png.</code>  <div class="alert note">This parameter only takes effect when `type` is set to `static`.</div> |
 
 ### Request example
 
@@ -54,9 +54,9 @@ token: NETLESSSDK_YWs9QxxxxxxMjRi
 
 ### HTTP response
 
-For details about all possible response status codes, see [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
+For details about all possible response status codes, see the [status code table](/cn/whiteboard/basic_info?platform=RESTful#响应状态码).
 
-If the status code is `201`, the request is successful. 响应包含返回的操作结果和数据。
+If the status code is `201`, the request is successful. The response returns the status code and corresponding parameters.
 
 **The following is a response example for a successful request:**
 
@@ -70,24 +70,24 @@ If the status code is `201`, the request is successful. 响应包含返回的操
 }
 ```
 
-**响应包体参数：**
+**Description of parameters in the response:**
 
 | Parameter | Data type | Description |
 | :------- | :----- | :----------------------------------------------------------- |
-| `uuid` | string | 转换任务的 UUID，即转换任务的唯一标识符。 |
-| `type` | string | 转换任务类型，取值如下：<li>`dynamic`：动态文档转换，即文档转网页。</li><li>`static`：静态文档转换，即文档转图片。</li> |
-| `status` | string | 转换任务的状态：<li>`Waiting`：等待转换。</li><li>`Converting`：转换中。</li><li>`Finished`：已完成。</li><li>`Fail`：失败。</li> |
+| `uuid` | string | The Task UUID, which is the unique identifier of the file conversion task. |
+| `type` | string | The conversion type:<li>`dynamic`: Dynamic file conversion, converting the file to web pages.</li><li>`static`: Static file conversion, converting the file to images.</li> |
+| `status` | string | The status of the conversion task:<li>`Waiting`: Conversion is waiting to start.</li><li>`Converting`: Conversion is going on.</li><li>`Finished`: Conversion finished.</li><li>`Fail`: Conversion failed.</li> |
 
 If the status code is not `201`, the request fails. The response body includes a `message` field that describes the reason for the failure.
 
-## 查询转换任务的进度（GET）
+## Query file conversion progress (GET)
 
-Query the progress of the file-conversion task
+Call this API to query the progress of a file-conversion task.
 
 ### Prototype
 
 - Method: `GET`
-- Access point: `https://api.netless.link/v5/tokens/tasks/{uuid}`
+- Access point: `https://api.netless.link/v5/services/conversion/tasks/{uuid}`
 
 ### Request header
 
@@ -95,7 +95,7 @@ Pass in the following parameters in the request header:
 
 | Parameter | Data type | Required/Optional | Description |
 | :------- | :----- | :------- | :----------------------------------------------------------- |
-| `token` | string | Required | The SDK Token, which can be obtained through one of the following ways:<li>调用服务端生成 SDK Token API， 详见[生成 Task Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-task-token-（post）)。<li>Use code. See Generate a Token[ from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful). |
+| `token` | string | Required | The Task Token. To get one, you can:<li>Call the RESTful API. See [Generate a Task Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-task-token-（post）).<li>Write code on your app server. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful). |
 | `region` | string | Optional | Specifies a data center to process the request:<li>(Default) `cn-hz`: The data center located in Hangzhou, China. Its service area includes East Asia, Southeast Asia, and areas not covered by other data centers.</li><li>`us-sv`: The data center located in Silicon Valley. Its service area includes North America and South America.</li>For details, see [Data center and globalization](https://developer.netless.link/javascript-zh/home/region-and-global). |
 
 ### Request Path
@@ -104,15 +104,15 @@ The following parameters are required in the URL:
 
 | Parameter | Data type | Required/Optional | Description |
 | :----- | :----- | :------- | :----------------------------------------------------------- |
-| `uuid` | string | Required | 转换任务的 UUID, 即转换任务的唯一标识符，可通过调用发起转换任务 API 获取。 |
+| `uuid` | string | Required | The Task UUID, which is the unique identifier of the conversion task. You can get it by calling the RESTful API to start a file conversion. |
 
-### 查询参数
+### Query Parameters
 
-该 API 需要传入以下查询参数：
+You need to pass in the following query parameters:
 
 | Parameter | Data type | Required/Optional | Description |
 | :----- | :----- | :------- | :----------------------------------------------------------- |
-| `type` | string | Required | 转换任务类型，取值如下：<li>`dynamic`：动态文档转换，即文档转网页。</li><li>`static`：静态文档转换，即文档转图片</li> |
+| `type` | string | Required | The conversion type:<li>`dynamic`: Dynamic file conversion, converting the file to web pages.</li><li>`static: Static file conversion, converting the file to images.`</li> |
 
 ### Request example
 
@@ -127,7 +127,7 @@ token: NETLESSSDK_YWsxxxxxM2MjRi
 
 All possible response status codes. See the status code summary table for details.
 
-If the status code is `2XX`, the request is successful. 响应包含返回的操作结果和数据。
+If the status code is `200`, the request is successful. The response returns the status code and corresponding parameters.
 
 **The following is a response example for a successful request:**
 
@@ -158,14 +158,14 @@ If the status code is `2XX`, the request is successful. 响应包含返回的操
 }
 ```
 
-**响应包体参数：**
+**Description of parameters in the response:**
 
 | Parameter | Data type | Description |
 | :------------- | :----- | :----------------------------------------------------------- |
-| `uuid` | string | 转换任务的 UUID，转换任务的唯一标识符。 |
-| `type` | string | 转换任务类型，取值如下：<li>`dynamic`：动态文档转换，即文档转网页。</li><li>`static`：静态文档转换，即文档转图片。</li> |
-| `status` | string | 转换任务的状态：<li>`Waiting`：等待中。</li><li>`Converting`：转换中。</li><li>`Finished`：已完成。</li><li>`Fail`：失败。</li> |
-| `failedReason` | string | 转换任务失败的原因。 只有当 `status` 为 `Fail` 时，才会返回该字段。 |
-| `progress` | object | 转换任务的进度，包括以下字段：<li>`totalPageSize`：Number 类型，转换文档总页数。</li><li>`convertedPageSize`：Number 类型，已经完成转换的页数。</li><li>`convertedPercentage`：Number 类型，转换进度百分比。</li><li>`convertedFileList`：Array 类型，已完成转换的图片列表，每个图片包含以下参数：<ul><li>`width`：Number 类型，图片宽度，单位为像素。</subli><li>`height`：Number 类型，图片高度，单位为像素。</li><li>`conversionFileUrl`：String 类型，转换图片的 URL。</li><li>`preview`: String 类型，预览图地址。 当发起转换时请求包体中 `preview` 设为 `true` 且 `type` 为 `dynamic` 时，才会返回该字段。</li></ul></li><li>`currentStep`：String 类型，动态转换任务当前的步骤，返回值包括：<ul><li> `Extracting`：提取资源。</li><li>`Packaging`：打包资源。</li><li>`GeneratingPreview`：生成预览图。</li><li>`MediaTranscode`：媒体转码。</li></ul></li> 当发起转换时请求包体中 `type` 为 `dynamic` 时，才会返回 `currentStep` 字段。 |
+| `uuid` | string | The Task UUID, which is the unique identifier of the file conversion task. |
+| `type` | string | The conversion type:<li>`dynamic`: Dynamic file conversion, converting the file to web pages.</li><li>`static`: Static file conversion, converting the file to images.</li> |
+| `status` | string | The status of the conversion task:<li>`Waiting`: Conversion is waiting to start.</li><li>`Converting`: Conversion is going on.</li><li>`Finished`: Conversion finished.</li><li>`Fail`: Conversion failed.</li> |
+| `failedReason` | string | The reason the conversion task failed. This field is returned only when `status` is `Fail`. |
+| `progress` | object | The progress of the conversion task, which includes the following fields:<li>`totalPageSize`: Number. Indicates the number of pages of the source file.</li><li>`convertedPageSize`: Number. Indicates the number of pages that have been converted.</li><li>`convertedPercentage`: Number. Indicates the conversion progress in percentage form.</li><li>`convertedFileList`: Array. Contains a list of generated images, each containing the following parameters:<ul><li>`width`: Number. Indicates the width of the image in pixels.</subli><li>`height`: Number. Indicates the height of the image in pixels.</li><li>`conversionFileUrl`: String. Indicates the URL of the generated image.</li><li>`preview`: String. Indicates the address of the preview. This field is returned only when `preview` is set to `true` and `type` is set to `dynamic` in the request body when starting file conversion.</li></ul></li><li>`currentStep`: String. Indicates the current step of a dynamic conversion task:<ul><li> `Extracting`: The server is extracting resources.</li><li>`Packaging`: The server is packaging resources.</li><li>`GeneratingPreview`: The server is generating the preview.</li><li>`MediaTranscode`: The server is transcoding.</li></ul></li>` currentStep` is returned only when `type` is set to `dynamic` in the request body when starting file conversion. |
 
-If the status code is not `2XX`, the request fails. The response body includes a `message` field that describes the reason for the failure.
+If the status code is not `200`, the request fails. The response body includes a `message` field that describes the reason for the failure.
