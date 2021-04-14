@@ -23,7 +23,7 @@ Agora 还提供一个 [CodePen 示例项目](https://codepen.io/agoratechwriter/
 
 ## 进行全局配置
 
-首先，你需要进行 SDK 全局配置，包含以下参数：
+调用 `AgoraEduSDK.config` 方法进行 SDK 全局配置。你需要在该方法中传入以下参数：
 
 | 参数    | 描述                                                         |
 | :------ | :----------------------------------------------------------- |
@@ -42,9 +42,9 @@ AgoraEduSDK.config({
 
 | 参数       | 类型    | 描述                                                         |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `rtmToken` | string  | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web#5-生成-rtm-token)。 |
+| `rtmToken` | String  | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web#5-生成-rtm-token)。 |
 | `userUuid` | string  | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `userName` | string  | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
+| `userName` | String  | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
 | `roomUuid` | string  | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | string  | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
 | `roleType` | number  | 用户在课堂中的角色，可设为：<li>`1`: 老师<li>`2`: 学生                 |
