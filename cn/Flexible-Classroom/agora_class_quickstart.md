@@ -23,7 +23,7 @@ Agora 还提供一个 [CodePen 示例项目](https://codepen.io/agoratechwriter/
 
 ## 进行全局配置
 
-首先，你需要进行 SDK 全局配置，包含以下参数：
+调用 `AgoraEduSDK.config` 方法进行 SDK 全局配置。你需要在该方法中传入以下参数：
 
 | 参数    | 描述                                                         |
 | :------ | :----------------------------------------------------------- |
@@ -42,37 +42,77 @@ AgoraEduSDK.config({
 
 | 参数       | 类型    | 描述                                                         |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `rtmToken` | string  | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web#5-生成-rtm-token)。 |
-| `userUuid` | string  | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `userName` | string  | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
-| `roomUuid` | string  | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roomName` | string  | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
-| `roleType` | number  | 用户在课堂中的角色，可设为：<li>`1`: 老师<li>`2`: 学生                 |
-| `roomType` | number  | 课堂类型，可设为：<li>`0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。<li>`1`: 1 对 N 在线小班课。1 位教师对 N 名学生（2 ≤ N ≤ 16）进行在线辅导教学。<li>`2`: 互动直播大班课。一名老师进行教学，多名学生实时观看和收听，学生人数无上限。与此同时，学生可以“举手”请求发言，与老师进行实时音视频互动。 |
-| `pretest`  | boolean | 是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出一个设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。<li>`false`: 不开启课前设备检测。 |
-| `language`  | string | 界面语言：<li>`zh`: 中文 <li>`en`: 英文 |
+| `rtmToken` | String  | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web#5-生成-rtm-token)。 |
+| `userUuid` | String  | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `userName` | String  | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
+| `roomUuid` | String  | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomName` | String  | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
+| `roleType`               | EduRoleTypeEnum  | 用户在课堂中的角色，可设为：<li>`1`: 老师<li>`2`: 学生               |
+| `roomType`               | EduRoomTypeEnum  | 课堂类型，可设为：<li>`0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。<li>`4`: 互动直播小班课。一名老师进行教学，多名学生实时观看和收听。课堂人数上限为 500 人。上课过程中，老师可邀请学生“上台”发言。 |
+| `listener`               | ListenerCallback | 课堂启动状态。                                               |
+| `pretest`                | Boolean          | 是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出一个设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。<li>`false`: 不开启课前设备检测。 |
+| `language`               | LanguageEnum     | 界面语言：<li>`zh`: 中文<li>`en`: 英文                               |
+| `startTime`              | Number           | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
+| `duration`               | Number           | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
+| `courseWareList`         | CourseWareList   | （选填）课件配置对象，用于预加载教育机构指派的课件，客户端进入课堂后无法进行新增或删除操作。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
+| `personalCourseWareList` | CourseWareList   | （选填）课件配置对象，用于预加载教师端上传的课件。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
 
 以下示例代码演示了如何以老师角色进入一个一对一互动教学的课堂。
 
 ```js
-AgoraEduSDK.launch(
-  // 放置教育应用的 DOM 节点
-  document.querySelector("#root1"),
-  {
-    rtmToken: "<YOUR AGORA RTM TOKEN>",
-    userUuid: "userUuid",
-    userName: "userName",
-    roomUuid: "roomUuid",
-    roomName: "roomName",
+// 配置课件
+// 课件 uuid
+let resourceUuid = "xxxxx"
+// 课件名称
+let resourceName = "my ppt slide"
+let sceneInfos = []
+let sceneInfo = {
+    name: "1",
+    ppt: {
+        src: "pptx://....",
+        width: 480,
+        height: 360
+    }
+}
+sceneInfos.push(sceneInfo)
+
+let courseWareList = [{
+    resourceUuid,
+    resourceName,
+    // 课件大小
+    size: 10000,
+    // 课件最后被修改的时间
+    updateTime: new Date().getTime(),
+    // 文件后缀
+    ext: "pptx",
+    // 非'ppt', 'pptx', 'doc', 'docx', 'pdf' 类型的文件必须提供 url, scenes可为空
+    url:null,
+    // 'ppt', 'pptx', 'doc', 'docx', 'pdf' 类型的文件必须提供 scenes, url 可为空
+    scenes: sceneInfos,
+    taskUuid: "xxxx",
+    taskToken: "xxx",
+    // 白板的任务进度对象
+    taskProgress: NetlessTaskProgress
+}]
+
+// 启动课堂
+AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
+    rtmToken: "<your rtm token>",
+    userUuid: "test",
+    userName: "teacher",
+    roomUuid: "4321",
     roleType: 1,
     roomType: 0,
-    pretest: true,
-	  language: "en",
+    roomName: "demo-class",
+    pretest: false,
+    language: "en",
+    startTime: new Date().getTime(),
+    duration: 60 * 30,
+    courseWareList: [],
     listener: (evt) => {
-       console.log("evt", evt)
+        console.log("evt", evt)
     }
-  }
-).then(e => window.room$ = e)
+})
 ```
 
 成功运行后，你可以看到如下界面：

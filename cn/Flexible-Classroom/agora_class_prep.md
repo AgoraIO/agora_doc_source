@@ -26,7 +26,7 @@
 
 灵动课堂集成了 Agora 互动白板 SDK 以实现互动白板功能。因此，你需要进行以下操作：
 
-1. 登录 [Agora 控制台](https://console.agora.io/#onboarding)，为你在第一步创建的 Agora 项目[开启互动白板服务](https://docs.agora.io/cn/whiteboard/enable_whiteboard?platform=Android#开启互动白板服务)。
+1. 登录 [Agora 控制台](https://console.agora.io/#onboarding)，为你先前创建的 Agora 项目[开启互动白板服务](https://docs.agora.io/cn/whiteboard/enable_whiteboard?platform=Android#开启互动白板服务)。
 2. [获取互动白板服务的 App Identifier](https://docs.agora.io/cn/whiteboard/enable_whiteboard?platform=Android#获取-app-identifier)。你需要保存此 App Identifier，后续[配置灵动课堂](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=iOS#4-在-agora-控制台配置灵动课堂)时会用到。
 3. [获取互动白板服务的 SDK Token](https://docs.agora.io/cn/whiteboard/enable_whiteboard?platform=Android#获取-sdk-token)。你需要保存此 SDK Token，后续[配置灵动课堂](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=iOS#4-在-agora-控制台配置灵动课堂)时会用到。
 
@@ -40,15 +40,15 @@
 
 1. 登录 [Agora 控制台](https://console.agora.io/)，进入**项目管理**页面，找到你刚刚创建的项目，点击该项目的**编辑**按钮进入**项目编辑**页面，然后点击 **aPaaS 配置**按钮。
 
-  ![apaas配置](https://web-cdn.agora.io/docs-files/1611024994160)
+  ![项目管理页面](https://web-cdn.agora.io/docs-files/1611024994160)
 
 2. 进入 aPaaS 配置页面，**勾选**白板和云端录制以开通这两个功能，然后参考下文分别传入相应的 JSON 配置对象，点击**更新**。返回**项目管理**页面后，再点击**保存**以确保 aPaaS 配置生效。
 
   ![apaas配置](https://web-cdn.agora.io/docs-files/1611025023884)
 
-### 白板
+### 互动白板
 
-白板的 JSON 配置对象包含以下字段：
+互动白板的 JSON 配置对象包含以下字段：
 
 | 字段    | 类型   | 描述                                                         |
 | :------ | :----- | :----------------------------------------------------------- |
@@ -101,7 +101,7 @@
 
 ## 5. 生成 RTM Token
 
-灵动课堂使用 RTM Token 进行鉴权。 RTM Token 是一种动态密钥，通过 Agora App ID、App 证书、用户 ID 等参数生成，安全性较高。
+灵动课堂使用 RTM Token 进行鉴权。 RTM Token 是一种动态密钥，通过 Agora App ID、App 证书、用户 ID 生成，安全性较高。
 
 - 在项目测试阶段，你可以使用 Agora 提供的[临时 RTM Token 生成器](https://webdemo.agora.io/token-builder/)，传入你在[第一步](#1-创建-agora-项目并获取-app-id-和-app-证书)获取到的 App ID 和 App 证书，然后自行填入一个用户 ID，快速生成一个临时 RTM Token，有效期为 24 小时。
 <div class="alert info">用户 ID 为一个不超过 64 字节的字符串。以下为支持的字符集范围:<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字</li><li>0-9</li><li>空格</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "|", "~", ","</li></ul></div>
