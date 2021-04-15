@@ -103,7 +103,7 @@ static std::string buildTokenWithUid(
 
 Take the following steps to use the token for client-side user authentication. The code samples apply to Agora RTC Web SDK 4.x.
 
-### Fetch the token with uid
+### Fetch the token with uid and channel name
 
 Fetch the token with the uid to join the channel.
 
@@ -147,7 +147,7 @@ function fetchToken(uid, channelName) {
 }
 ```
 
-### Join channel with the token and uid
+### Join channel with the token, uid, and channel name
 
 Call `join` to join the channel with the token and uid.
 
