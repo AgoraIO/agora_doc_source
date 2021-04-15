@@ -5,30 +5,30 @@ updatedAt: 2021-01-22 10:14:41
 Products: ["Recording"]
 ---
 
-RTC Native SDK 支持的功能日益增多，包体积也随之增加。 本文介绍如何减少集成 SDK 后的 app 体积。
+RTC Native SDK supports more and more functions, and the package size also increases. This article describes how to reduce the size of the app after integrating the SDK.
 
-## 方案一、使用音频 SDK
+## Solution 1: Use audio SDK
 
-视频 SDK 的功能全，包体积大。 如果你只需使用纯音频功能，Agora 推荐你集成音频 SDK。
+The video SDK has full functions and a large package. If you only need to use the pure audio function, Agora recommends that you integrate the audio SDK.
 
-## 方案二、删除不需要的插件
+## Solution two, delete unnecessary plug-ins
 
-SDK 提供插件列表，即可选集成到项目文件的动态库。 插件的命名以 `Extension` 为后缀，详见[插件列表](#extension_libraries)。
+The SDK provides a list of plug-ins, that is, a dynamic library that can be optionally integrated into the project file. The name of the plug-in is suffixed with `Extension`, please refer to [the plug-in list for details](#extension_libraries).
 
-如果你不需要使用相关插件功能，你可以直接删除对应的插件，以减少 app 体积。
+If you don't need to use related plug-in functions, you can directly delete the corresponding plug-in to reduce the size of the app.
 
-### <a name="extension_libraries"></a>插件列表
+### <a name="extension_libraries"></a>List of plugins
 
-#### **AI 降噪插件**
+#### **AI noise reduction plug-in**
 
-SDK 默认开启传统降噪，以消除大部分平稳噪声。 AI 降噪是指在传统降噪的基础上消除非平稳噪声。 集成 AI 降噪插件后，你可以调用 `enableDeepLearningDenoise` 开启 AI 降噪。
+The SDK enables traditional noise reduction mode by default to reduce most of the stationary background noise. AI noise reduction refers to the elimination of non-stationary noise on the basis of traditional noise reduction. After integrating the AI noise reduction plug-in, you can call `enableDeepLearningDenoise` to enable AI noise reduction.
 
-各平台插件名及集成后 app 增加的体积见下表：
+The plug-in name of each platform and the added volume of the integrated app are shown in the following table:
 
-| 平台 | 架构 | 库名 | 集成后 app 增加的体积（KB） |
+| Platform | Architecture | Library name | Increased volume of the app after integration (KB) |
 | :------ | :---------- | :---------------------------------- | :-------------------------- |
-| Android | arm64-v8a | libagora_ai_denoise_extension.so | 1120 |
-| Android | armeabi-v7a | libagora_ai_denoise_extension.so | 792 |
+| Android: | arm64-v8a | libagora_ai_denoise_extension.so | 1120 |
+| Android: | armeabi-v7a folder | libagora_ai_denoise_extension.so | 792 |
 | iOS | arm64 | AgoraAIDenoiseExtension.xcframework | 502 |
 | iOS | armv7 | AgoraAIDenoiseExtension.xcframework | 448 |
 | macOS | arm64 | AgoraAIDenoiseExtension.framework | 496 |
@@ -36,32 +36,32 @@ SDK 默认开启传统降噪，以消除大部分平稳噪声。 AI 降噪是指
 | Windows | x86 | libagora_ai_denoise_extension.dll | 5312 |
 | Windows | x86_64 | libagora_ai_denoise_extension.dll | 5424 |
 
-#### AV1 插件
+#### AV1 plug-in
 
-AV1 功能可以提升屏幕共享中文本共享的清晰度。 如需使用该功能，请[提交工单](https://agora-ticket.agora.io/)联系技术支持。
+The AV1 function can improve the clarity of text sharing in screen sharing. Contact support@agora.io if you [want ](https://agora-ticket.agora.io/)to raise the limit.
 
-各平台插件名及集成后 app 增加的体积见下表：
+The plug-in name of each platform and the added volume of the integrated app are shown in the following table:
 
-| 平台 | 架构 | 库名 | 集成后 app 增加的体积（KB） |
+| Platform | Architecture | Library name | Increased volume of the app after integration (KB) |
 | :------ | :---------- | :----------------------------------------------------------- | :-------------------------- |
-| Android | arm64-v8a | libagora_dav1d_extension.so | 696 |
-| Android | armeabi-v7a | libagora_dav1d_extension.so | 608 |
+| Android: | arm64-v8a | libagora_dav1d_extension.so | 696 |
+| Android: | armeabi-v7a folder | libagora_dav1d_extension.so | 608 |
 | iOS | arm64 | AgoraDav1dExtension.xcframework | 959 |
 | iOS | armv7 | AgoraDav1dExtension.xcframework | 746 |
 | macOS | x86_64 | AgoraDav1dExtension.framework | 1316 |
 | Windows | x86 | libagora_dav1d_extension.dll | 1252 |
 | Windows | x86_64 | libagora_dav1d_extension.dll | 1756 |
 
-#### JND 插件
+#### JND plugin
 
-JND 功能用于视频感知编码，在保障同等画质的前提下降低带宽消耗。 例如，在带宽受限场景下提升视频流畅性，在移动网络场景下降低流量消耗。 如需使用该功能，请[提交工单](https://agora-ticket.agora.io/)联系技术支持。
+The JND function is used for video perceptual coding to reduce bandwidth consumption while ensuring the same image quality. For example, improve video fluency in bandwidth-constrained scenarios, and reduce traffic consumption in mobile network scenarios. Contact support@agora.io if you [want ](https://agora-ticket.agora.io/)to raise the limit.
 
-各平台插件名及集成后 app 增加的体积见下表：
+The plug-in name of each platform and the added volume of the integrated app are shown in the following table:
 
-| 平台 | 架构 | 库名 | 集成后 app 增加的体积（KB） |
+| Platform | Architecture | Library name | Increased volume of the app after integration (KB) |
 | :------ | :---------- | :----------------------------------------------------------- | :-------------------------- |
-| Android | arm64-v8a | libagora_jnd_extension.so | 1172 |
-| Android | armeabi-v7a | libagora_jnd_extension.so | 816 |
+| Android: | arm64-v8a | libagora_jnd_extension.so | 1172 |
+| Android: | armeabi-v7a folder | libagora_jnd_extension.so | 816 |
 | iOS | arm64 | AgoraJNDExtension.xcframework | 78 |
 | iOS | armv7 | AgoraJNDExtension.xcframework | 69 |
 | macOS | arm64 | AgoraJNDExtension.framework | 720 |
