@@ -67,9 +67,9 @@ UIKit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO
 
 4. 参考以下步骤在灵动课堂中查看修改后的 UI：
 
-   1. 把项目主目录和 `packages/agora-classroom-sdk` 目录下的 `env.example` 重命名为 `.env`，然后在 `.env` 文件中填写你的 Agora App ID，并将 `REACT_APP_AGORA_APP_SDK_DOMAIN` 设为 `https://api-test.agora.io/preview`。
+   1. 把项目根目录和 `packages/agora-classroom-sdk` 目录下的 `env.example` 重命名为 `.env`，然后在 `.env` 文件中填写你的 Agora App ID，并将 `REACT_APP_AGORA_APP_SDK_DOMAIN` 设为 `https://api-test.agora.io/preview`。
 
-   2. 在项目主目录下通过以下命令运行灵动课堂。
+   2. 在项目根目录下通过以下命令运行灵动课堂。
 
       ```shell
       npm run dev

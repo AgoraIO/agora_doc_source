@@ -23,20 +23,20 @@ You can find the source code of the UIKit in the `packages/agora-scenario-ui-kit
 
    ```shell
    # Install Node.js and npm globally
-npm install -g npm
-# Check Node.js version
-node -v
-# Check npm version
-npm -v
+   npm install -g npm
+   # Check Node.js version
+   node -v
+   # Check npm version
+   npm -v
    ```
 
 - Install yarn
 
    ```shell
    # Install yarn
-npm install yarn -g
-# Check yarn version
-yarn -v
+   npm install yarn -g
+   # Check yarn version
+   yarn -v
    ```
 
 ### Procedure
@@ -47,16 +47,16 @@ Modify the UI of Flexible Classroom, as follows:
 
    ```shell
    # Install global dev dependencies
-yarn
-# Install all dependencies via lerna and yarn
-yarn bootstrap
+   yarn
+   # Install all dependencies via lerna and yarn
+   yarn bootstrap
    ```
 
 2. Enter the `packages/agora-scenario-ui-kit` directory and run the following command to open Storybook.
 
    ```shell
    # Open storybook
-yarn s
+   yarn s
    ```
 
    You can see all the basic UI components used by Flexible Classroom in Storybook.
@@ -82,7 +82,7 @@ yarn s
       ```
 
 <a name="example"></a>
-## UI customization example
+## UI customization examples
 
 ### Change the color of the navigation bar
 
@@ -123,12 +123,12 @@ The following example shows how toadd the text "Add" to the ZoomController compo
 ```ts
 export const ZoomController: FC<ZoomControllerProps> = ({
 
-    return (
+  return (
     <div className={cls} {...restProps}>
 
-            ......
+      ......
 
-            <span className="line"></span>
+      <span className="line"></span>
       <Tooltip title={t('tool.prev')} placement="top">
         <Icon
           type="backward"
@@ -149,6 +149,7 @@ export const ZoomController: FC<ZoomControllerProps> = ({
         />
       </Tooltip>
     </div>
+  )
 };
 ```
 
@@ -157,12 +158,12 @@ export const ZoomController: FC<ZoomControllerProps> = ({
 ```ts
 export const ZoomController: FC<ZoomControllerProps> = ({
 
-    return (
+  return (
     <div className={cls} {...restProps}>
 
-            ......
+      ......
 
-            <span className="line"></span>
+      <span className="line"></span>
       <Tooltip title={t('tool.prev')} placement="top">
         <Icon
           type="backward"
@@ -184,6 +185,7 @@ export const ZoomController: FC<ZoomControllerProps> = ({
       </Tooltip>
       <div>Add</div>
     </div>
+  )
 };
 ```
 
@@ -201,23 +203,23 @@ The following example shows how to modify the global style of basic UI component
 
    ```css
    .fixed-container {
- display: flex;
- justify-content: center;
- align-items: center;
- flex: 1;
- "height": 360
- position: fixed;
- width: 480,
- z-index: 99;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    "height": 360
+    position: fixed;
+    width: 480,
+    z-index: 99;
+   }
    ```
 
 2. Add the following code to the `.stories.tsx` and `.tsx` files of the basic UI components to apply this global style:
 
    ```ts
    export const DialogContainer: React.FC<any> = observer(() => {
-  const { dialogQueue } = useDialogContext()
-  return (
+   const { dialogQueue } = useDialogContext()
+   return (
     <div>
      {
         dialogQueue.map(({ id, component: Component, props }: DialogType) => (
@@ -227,8 +229,8 @@ The following example shows how to modify the global style of basic UI component
        ))
      }
     </div>
- )
-})
+   )
+   })
    ```
 
 ### Add a basic UI component
@@ -237,95 +239,95 @@ The following example shows how to add a customized basic UI component and use i
 
 1. Create a `custom` folder under the `agora-scenario-ui-kit/src/components` directory and create the following files:
 
-   `The index.css` file
+   The `index.css` file
 
    ```css
    .custom {
-  display: inline-block;
-  padding: 10px;
-  background: #efebe9;
-  border: 5px solid #B4A078;
-  outline: #B4A078 dashed 1px;
-  outline-offset: -10px;
-}
+     display: inline-block;
+     padding: 10px;
+     background: #efebe9;
+     border: 5px solid #B4A078;
+     outline: #B4A078 dashed 1px;
+     outline-offset: -10px;
+   }
    ```
 
-   `The index.tsx` file
+   The `index.tsx` file
 
    ```ts
    import React, { FC } from 'react';
-import classnames from 'classnames';
-import { BaseProps } from '~components/interface/base-props';
-import './index.css';
+   import classnames from 'classnames';
+   import { BaseProps } from '~components/interface/base-props';
+   import './index.css';
 
-export interface CustomProps extends BaseProps {
-    width?: number;
-    height?: number;
-    children?: React.ReactNode;
-}
+   export interface CustomProps extends BaseProps {
+       width?: number;
+       height?: number;
+       children?: React.ReactNode;
+   }
 
-export const Custom: FC<CustomProps> = ({
-    width = 90,
-    height = 90,
-    children,
-    className,
-    ...restProps
-}) => {
-    const cls = classnames({
-        [`custom`]: 1,
-        [`${className}`]: !!className,
-    });
-    return (
-        <div
-            className={cls}
-            style={{
-                width,
-                height,
-            }}
-            {...restProps}
-        >
-            {children}
-        </div>
-    )
-}
+   export const Custom: FC<CustomProps> = ({
+       width = 90,
+       height = 90,
+       children,
+       className,
+       ...restProps
+   }) => {
+       const cls = classnames({
+           [`custom`]: 1,
+           [`${className}`]: !!className,
+       });
+       return (
+           <div
+               className={cls}
+               style={{
+                   width,
+                   height,
+               }}
+               {...restProps}
+           >
+               {children}
+           </div>
+       )
+   }
    ```
 
-   `The index.stories.tsx` file
+   The `index.stories.tsx` file
 
    ```ts
    import React from 'react'
-import { Meta } from '@storybook/react';
-import { Custom } from '~components/custom'
+   import { Meta } from '@storybook/react';
+   import { Custom } from '~components/custom'
 
-const meta: Meta = {
-    title: 'Components/Custom',
-    component: Custom,
-}
+   const meta: Meta = {
+       title: 'Components/Custom',
+       component: Custom,
+   }
 
-type DocsProps = {
-    width: number;
-    height: number;
-}
+   type DocsProps = {
+       width: number;
+       height: number;
+   }
 
-export const Docs = ({width, height}: DocsProps) => (
-    <>
-        <div className="mt-4">
-            <Custom
-                width={width}
-                height={height}
-            >
-                <h3>I am a custom component!</h3>
-            </Custom>
-        </div>
-    </>
-)
+   export const Docs = ({width, height}: DocsProps) => (
+       <>
+           <div className="mt-4">
+               <Custom
+                   width={width}
+                   height={height}
+               >
+                   <h3>I am a custom component!</h3>
+               </Custom>
+           </div>
+       </>
+   )
 
-Docs.args = {
-    width: 250,
-    height: 200,
-}
+   Docs.args = {
+       width: 250,
+       height: 200,
+   }
 
-export default meta;
+   export default meta;
    ```
 
    The Custom component is a div element with a two-layer border and renders a Children element. You can see the Custom component in Storybook.
@@ -348,43 +350,37 @@ export default meta;
 
    2. Use the Custom component in `WhiteboardContainer`:
 
-      ```ts
-      export const WhiteboardContainer = observer(() => {
-
-    return (
-    <div className="whiteboard">
-
-
-    
-    ......
-
-            {showZoomControl ? <ZoomController
-        className='zoom-position'
-        zoomValue={zoomValue}
-        currentPage={currentPage}
-        totalPage={totalPage}
-        maximum={!isFullScreen}
-        clickHandler={handleZoomControllerChange}
-      /> : null}
-
-            <Custom className='custom-position' width={200} height={200}>
-        <div>Use the custom component!</div>
-      </Custom>
-    </div>
-  )
-})
-      ```
+   ```ts
+   export const WhiteboardContainer = observer(() => {
+     return (
+       <div className="whiteboard">
+       ......
+         {showZoomControl ? <ZoomController
+           className='zoom-position'
+           zoomValue={zoomValue}
+           currentPage={currentPage}
+           totalPage={totalPage}
+           maximum={!isFullScreen}
+           clickHandler={handleZoomControllerChange}
+         /> : null}
+         <Custom className='custom-position' width={200}height=      {200}>
+           <div>Use the custom component!</div>
+         </Custom>
+       </div>
+     )
+   })
+   ```
 
    3. Define the style of `custom-position` in the `agora-classroom-sdk/src/ui-components/one-to-one/1v1.style.css` file:
 
-      ```ts
+      ```css
       .custom-position{
-  position: absolute;
-  left: 100px;
-  bottom: 200px;
-}
+        position: absolute;
+        left: 100px;
+        bottom: 200px;
+      }
       ```
 
-   4. Run the  Flexible Classroom to view the specific effects of the Custom component.
+   4. Run the Flexible Classroom to view the specific effects of the Custom component.
 
       ![custom-ui-compnent-fx](https://web-cdn.agora.io/docs-files/1617715517511)
