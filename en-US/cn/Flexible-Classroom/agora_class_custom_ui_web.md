@@ -13,33 +13,37 @@ You can find the source code of the UIKit in the `packages/agora-scenario-ui-kit
 | `components` | The source code of the basic UI components used by Flexible Classroom. A UI component generally contains the following files:<li>`.css`: Define the style of the component.</li><li>`.stories.tsx`: Define the display of components in Storybook.</li><li>`.tsx`: Define the detailed design of the component.</li> |
 | `scaffold` | The use-case-level UI components, which play as scaffolds and show how the basic UI components are combined in a use case. |
 | `styles` | Define the global style. |
-| `utilities` | Utility functions, such as internationalization, custom hooks, etc. |
+| `utilities` | For functions such as internationalization, and custom hooks. |
 
 ## Implementation
 
-### Environmental preparation
+### Development environment
 
-- Install[ Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- Install [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
    ```shell
-   # Install global dev dependencies
-yarn
-# Install all dependencies via lerna and yarn
-yarn bootstrap
+   # Install Node.js and npm globally
+npm install -g npm
+# Check Node.js version
+node -v
+# Check npm version
+npm -v
    ```
 
 - Install yarn
 
    ```shell
-   # Open storybook
-yarn s
+   # Install yarn
+npm install yarn -g
+# Check yarn version
+yarn -v
    ```
 
-### The basic steps
+### Procedure
 
-Refer to the following steps to modify the UI of  Flexible Classroom:
+Modify the UI of Flexible Classroom, as follows:
 
-1. Go to the root directory of the CloudClass-Desktop project and run the following command to install dependencies.
+1. Enter the root directory of the CloudClass-Desktop project and run the following command to install dependencies.
 
    ```shell
    # Install global dev dependencies
