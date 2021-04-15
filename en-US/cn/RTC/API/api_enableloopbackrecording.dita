@@ -21,7 +21,7 @@
        <note outputclass="note">
   <ul id="ul_pjq_swq_t4b">
       <li props="windows">Applies to the macOS and Windows platforms only.</li>
-      <li props="windows mac">The default sound card of the macOS system does not support the capture function. To enable this function, you need to enable a virtual sound card in the App itself, and pass the name of the virtual sound card into the SDK as the deviceName. Agora tested and recommended soundflower as a virtual sound card.</li>
+      <li props="windows mac">macOS does not support loopback capturing of the default sound card. If you need to use this method, please use a virtual sound card and pass its name to the deviceName parameter. Agora has tested and recommends using soundflower.</li>
       <li>You can call this method either before or after joining a channel.</li>
   </ul>
        </note>
@@ -31,14 +31,14 @@
    <parml>
        <plentry>
   <pt>enabled</pt>
-  <pd>Enables loopback audio capturing.<ul id="ul_qjq_swq_t4b">
- <li><ph keyref="true"/>Enables loopback audio capturing.</li>
- <li><ph keyref="false"/>false: (Default) Disable loopback capturing.</li>
+  <pd>Whether to enableloopback capturing.<ul id="ul_qjq_swq_t4b">
+ <li><ph keyref="true"/>: Enable loopback audio capturing.</li>
+ <li><ph keyref="false"/>: (Default) Disable loopback capturing.</li>
       </ul></pd>
        </plentry>
        <plentry>
   <pt>deviceName</pt>
-  <pd>The device name of the sound card. The default value is <ph keyref="NULL"/>NULL (the default sound card). If the user uses a virtual sound card, such as &quot;Soundflower&quot;, the virtual sound card name &quot;Soundflower&quot; can be used as a parameter, and the SDK will find the corresponding virtual sound card device and start collecting.</pd>
+  <pd>The device name of the sound card. The default value is <ph keyref="NULL"/> (the default sound card). If the user uses a virtual sound card, such as &quot;Soundflower&quot;, the virtual sound card name &quot;Soundflower&quot; can be passed to this parameter, and the SDK finds the corresponding virtual sound card device and starts collecting.</pd>
        </plentry>
    </parml>
         </section></refbody>
