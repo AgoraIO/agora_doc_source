@@ -1,4 +1,4 @@
-本文介绍灵动课堂云服务 RESTful API 的详细信息。
+This page provides detailed help for the Flexible Classroom RESTful APIs.
 
 <div class="alert info">查看灵动课堂云服务的<a href="./agora_class_restful_api_release">更新历史</a>。</div>
 
