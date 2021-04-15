@@ -16,7 +16,7 @@
         </section>
         <section id="detailed_desc">
    
-   <p>The SDK allows recording during a call. After successfully calling this method, you can record the audio of all the users in the channel and get an audio recording file. Supported formats of the recording file are as follows:<ul>
+   <p>The Agora SDK allows recording during a call. After successfully calling this method, you can record the audio of all the users in the channel and get an audio recording file. Supported formats of the recording file are as follows:<ul>
       <li>.wav: Large file size with high fidelity.</li>
       <li>.aac: Small file size with low fidelity.</li>
   </ul>
@@ -24,7 +24,7 @@
    <note outputclass="note">
        <ul>
   <li>Ensure that the directory you use to save the recording file exists and is writable.</li>
-  <li>This interface needs to be<apiname keyref="joinChannel1"/> called later. Once the user leaves the<xref keyref="leaveChannel"/> channel, the recording automatically stops.</li>
+  <li>This method should be called after the <apiname keyref="joinChannel1"/> method. The recording automatically stops when you call the <xref keyref="leaveChannel"/> method.</li>
   <li>To ensure the recording effect, when <parmname>sampleRate</parmname> is set to 44.1 kHz or 48 kHz, it is recommended to set <parmname>quality</parmname> to<apiname keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> or<apiname keyref="AUDIO_RECORDING_QUALITY_HIGH"/>.</li>
        </ul>
    </note>
