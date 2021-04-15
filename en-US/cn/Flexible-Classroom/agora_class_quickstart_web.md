@@ -6,7 +6,7 @@ Use this guide to integrate the Agora Classroom SDK into your Web project and ca
 
 Agora provides an open-source [sample project](https://github.com/AgoraIO-Community/CloudClass-Desktop) on GitHub, which demonstrates how to integrate the Agora Classroom SDK and call APIs to launch a flexible classroom. You can download and read the source code.
 
-Agora also provides a [sample project](https://codepen.io/agoratechwriter/pen/OJRrOxg) on CodePen. After you make all the [preparations](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web), you can pass in the [Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web#1-创建-agora-项目并获取-app-id-和-app-证书), an [RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web#5-生成-rtm-token), and a user ID in the sample project. The user ID must be consistent with the one you used for generating an RTM Token. Then you can immediately run the sample project to experience a flexible classroom.
+Agora also provides a [sample project](https://codepen.io/agoratechwriter/pen/OJRrOxg) on CodePen. After you make all the [preparations](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web), you can pass in the [Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web#1-create-an-agora-project-and-get-the-agora-app-id-and-app-certificate), an [RTM Token](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web#5-generate-an-rtm-token), and a user ID in the sample project. The user ID must be consistent with the one you used for generating an RTM Token. Then you can immediately run the sample project to experience a flexible classroom.
 
 ## Set up the development environment
 
@@ -15,7 +15,7 @@ Agora also provides a [sample project](https://codepen.io/agoratechwriter/pen/OJ
 
 ## Integrate the Agora Classroom SDK
 
-You can integrate the Agora Classroom SDK into your project through the CDN. Add the following code to the line before <style> in your project.
+You can integrate the Agora Classroom SDK into your project through the CDN. Add the following code to the line before `<style>` in your project.
 
 ```html
 <script src="https://download.agora.io/edu-apaas/edu_sdk_1.0.js"></script>
@@ -27,7 +27,7 @@ Call the `AgoraEduSDK.config` method to configure the SDK globally. Set the foll
 
 | Parameter | Description |
 | :------ | :----------------------------------------------------------- |
-| `appId` | The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web#1-创建-agora-项目并获取-app-id-和-app-证书). |
+| `appId` | The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web#1-create-an-agora-project-and-get-the-agora-app-id-and-app-certificate). |
 
 ```js
 AgoraEduSDK.config({
@@ -42,7 +42,7 @@ You need to create a classroom instance, mount the instance on a Dom element and
 
 | Parameter | Type | Description |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `rtmToken` | String | The RTM token used for authentication, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web#5-生成-rtm-token). |
+| `rtmToken` | String | The RTM token used for authentication, see [Generate an RTM Token](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web#5-generate-an-rtm-token). |
 | `userUuid` | String | User ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `userName` | String | The user name for display in the classroom. The string length must be less than 64 bytes. |
 | `roomUuid` | String | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
@@ -80,7 +80,7 @@ let courseWareList = [{
     size: 10000,
     updateTime: new Date().getTime(),
     ext: "pptx",
-    url:null,
+    url: null,
     scenes: sceneInfos,
     taskUuid: "xxxx",
     taskToken: "xxx",

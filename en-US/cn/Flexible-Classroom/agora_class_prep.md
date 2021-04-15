@@ -95,7 +95,7 @@ Cloud recording JSON example
 ```json
 {
         "recordingConfig": {},
-        storageConfig
+        "storageConfig": {
             "vendor": 2,
             "region": 1,
             "bucket": "<your_bucket_name>",
