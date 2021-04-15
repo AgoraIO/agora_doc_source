@@ -46,8 +46,7 @@ For users who want a deployable sample server to test with, Agora provides a rep
 
 **Warning**
 
-- This repository is a sample only and contains fatal security flaws. **DO NOT USE IT IN YOUR PRODUCTION ENVIRONMENT**.
-- This repository aims at providing a testing environment for front-end developers and is not meant for production purposes.
+- This repository is sample only and aims at providing a testing environment for front-end developers. **DO NOT USE IT IN YOUR PRODUCTION ENVIRONMENT**.
 - Heroku is an independent service provider and not affiliated with Agora. Therefore, Agora is not responsible for any charges you may incur with Heroku.
 
 Follow the steps to deploy the token server and generate a token:
@@ -196,7 +195,7 @@ client.on("token-privilege-did-expire", async function(){
 
 ## Reference
 
-#### Generate a token from Agora Console
+### Generate a token from Agora Console
 
 To facilitate authentication at the test stage, [Agora Console](https://console.agora.io/) supports generating temporary for testing purposes. A temporary token is valid for 24 hours.
 
@@ -206,7 +205,7 @@ To facilitate authentication at the test stage, [Agora Console](https://console.
 
 Temporary tokens are for test purposes only. In the production environment, Agora recommends generating tokens from your server.
 
-#### Channel Key
+### Channel Key
 
 Token-based authentication has requirements on the SDK version:
 - For RTC Native SDKs and the On-premise Recording SDK, ensure that the SDK version is v2.1.0 or later.
@@ -214,7 +213,7 @@ Token-based authentication has requirements on the SDK version:
 
 If you are using an earlier version, refer to [Channel Keys](https://docs.agora.io/en/Agora%20Platform/channel_key) to authenticate your users.
 
-#### Related documents
+### Related documents
 
 You can also refer to the following documents according to your needs:
 
