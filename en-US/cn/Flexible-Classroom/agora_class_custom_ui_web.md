@@ -11,7 +11,7 @@ You can find the source code of the UIKit in the `packages/agora-scenario-ui-kit
 | Folder | Description |
 | :----------- | :----------------------------------------------------------- |
 | `components` | The source code of the basic UI components used by Flexible Classroom. A UI component generally contains the following files:<li>`.css`: Define the style of the component.</li><li>`.stories.tsx`: Define the display of components in Storybook.</li><li>`.tsx`: Define the detailed design of the component.</li> |
-| `scaffold` | The use-case-level UI components, which play as scaffolds and show how the basic UI components are combined in a use case. |
+| `scaffold` | The classroom-level UI components, which play as scaffolds and show how the basic UI components are combined in a classroom. |
 | `styles` | Define the global style. |
 | `utilities` | For functions such as internationalization, and custom hooks. |
 
@@ -52,43 +52,43 @@ yarn
 yarn bootstrap
    ```
 
-2. Go to the `packages/agora-scenario-ui-kit` directory and run the following command to open Storybook.
+2. Enter the `packages/agora-scenario-ui-kit` directory and run the following command to open Storybook.
 
    ```shell
    # Open storybook
 yarn s
    ```
 
-   You can see all the basic UI components used   Flexible Classroom in Storybook.
+   You can see all the basic UI components used by Flexible Classroom in Storybook.
 
    ![storybook-example](https://web-cdn.agora.io/docs-files/1617714921810)
 
-3. You can modify the style by directly modifying the` component source files in the packages/agora-scenario-ui-kit/src/components` directory, and you can see the effect in real-time in Storybook after saving the code. If the basic UI components of Flexible Classroom Class cannot meet your needs, you can add UI components to the `packages/agora-scenario-ui-kit/src/components` directory by yourself, and then add them to `packages/agora-classroom-sdk/src/ui` Modify the combination rules of the basic UI components under the -components directory to adjust the smart classroom layout. See the modified example for details[](#example).
+3. You can directly edit the source code of a component in the `packages/agora-scenario-ui-kit/src/components` folder to modify the UI of this component. After saving the code, you can see the changed UI in Storybook. If the existing basic UI components of Flexible Classroom cannot meet your needs, you can add a new UI component in the `packages/agora-scenario-ui-kit/src/components` directory, and change the code of classroom-level UI components in the `packages/agora-classroom-sdk/src/ui` to apply the UI component that you add to Flexible Classroom. For details, see the [UI customization examples](#example).
 
-4. Refer to the following steps to view the revised UI in  Flexible Classroom:
+4. View the modified UI in Flexible Classroom, as follows:
 
-   1. Rename the project home directory and env.example in` the `packages/Agora-classroom-sdk` directory` to `.env`, then` fill in your Agora App ID` in the .env` file, and set REACT_APP_AGORA_APP_SDK_DOMAIN` to `https://api-test. Agora/preview`.
+   1. Rename the `env.example` file in the root directory of the project and in the `packages/Agora-classroom-sdk` folder to `.env`, then pass in your Agora App ID in the `.env` file, and set `REACT_APP_AGORA_APP_SDK_DOMAIN` as `https://api-test. Agora/preview`.
 
-   2. Go to the project directory, and run the following command to build the project:
+   2. Run the following command in the root directory to launch a flexible classroom.
 
       ```shell
       npm run dev
       ```
 
-      Or through the following command:
+      Or run the following command:
 
       ```shell
       yarn run dev
       ```
 
 <a name="example"></a>
-## Example
+## UI customization example
 
-### Modify the color of the navigation bar
+### Change the color of the navigation bar
 
-The following example demonstrates how to modify the background color of the` navigation bar component BizHeader from white to red by modifying the agora-scenario-ui-kit/src/components/biz-header/index.css` file.
+The following example shows how to change the background color of the navigation bar component BizHeader from white to red by editing the `agora-scenario-ui-kit/src/components/biz-header/index.css` file.
 
-#### before fixing
+#### Before
 
 ```css
 .biz-header {
@@ -99,7 +99,7 @@ The following example demonstrates how to modify the background color of the` na
 
 ![biz-header-before](https://web-cdn.agora.io/docs-files/1617714984066)
 
-#### After modification
+#### After
 
 ```css
 .biz-header {
@@ -110,25 +110,25 @@ The following example demonstrates how to modify the background color of the` na
 
 ![biz-header-after](https://web-cdn.agora.io/docs-files/1617715004882)
 
-After the modification, the background color of all the places where the BizHeader component is used in the Smart Classroom will become red.
+After the change, the background color of all the BizHeader components used in the Flexible Classroom becomes red.
 
 ![biz-header-after-fx](https://web-cdn.agora.io/docs-files/1617715029659)
 
-### Modify the zoom controller style
+### Change the style of the zoom controller
 
-The following example demonstrates how to `add "Add"` text to the zoom controller component ZoomController by modifying the agora-scenario-ui-kit/src/components/zoom-controller/index.tsx file.
+The following example shows how toadd the text "Add" to the ZoomController component by editing the `agora-scenario-ui-kit/src/components/zoom-controller/index.tsx` file.
 
-#### before fixing
+#### Before
 
 ```ts
 export const ZoomController: FC<ZoomControllerProps> = ({
 
-                            return;
+    return (
     <div className={cls} {...restProps}>
 
-      ......
+            ......
 
-      <span className="line"></span>
+            <span className="line"></span>
       <Tooltip title={t('tool.prev')} placement="top">
         <Icon
           type="backward"
@@ -138,7 +138,7 @@ export const ZoomController: FC<ZoomControllerProps> = ({
         />
       </Tooltip>
       <span className="page-info">
-        {currentPage} / {totalPage}
+        {currentPage}/{totalPage}
       </span>
       <Tooltip title={t('tool.next')} placement="top">
         <Icon
@@ -152,17 +152,17 @@ export const ZoomController: FC<ZoomControllerProps> = ({
 };
 ```
 
-#### After modification
+#### After
 
 ```ts
 export const ZoomController: FC<ZoomControllerProps> = ({
 
-                            return;
+    return (
     <div className={cls} {...restProps}>
 
-      ......
+            ......
 
-      <span className="line"></span>
+            <span className="line"></span>
       <Tooltip title={t('tool.prev')} placement="top">
         <Icon
           type="backward"
@@ -172,7 +172,7 @@ export const ZoomController: FC<ZoomControllerProps> = ({
         />
       </Tooltip>
       <span className="page-info">
-        {currentPage} / {totalPage}
+        {currentPage}/{totalPage}
       </span>
       <Tooltip title={t('tool.next')} placement="top">
         <Icon
@@ -189,13 +189,13 @@ export const ZoomController: FC<ZoomControllerProps> = ({
 
 ![zoom-controller-after](https://web-cdn.agora.io/docs-files/1617715061445)
 
-After modification, the "Add" text will be added to the ZoomController component in the lower left corner of the Smart Classroom.
+After the change, the "Add" text will be added to the ZoomController component in the lower left corner of Flexible Classroom.
 
 ![zoom-controller-after-fx](https://web-cdn.agora.io/docs-files/1617715077329)
 
-### Modify the global style of basic UI components
+### Change the global style of basic UI components
 
-The following example demonstrates how to modify the global style of basic UI components.
+The following example shows how to modify the global style of basic UI components.
 
 1. Define the global style in the `agora-scenario-ui-kit/src/styles/global.css` file:
 
@@ -212,12 +212,12 @@ The following example demonstrates how to modify the global style of basic UI co
 }
    ```
 
-2. Add the following code to the `.stories.tsx` and `.tsx` files of the basic UI components to use this global style:
+2. Add the following code to the `.stories.tsx` and `.tsx` files of the basic UI components to apply this global style:
 
    ```ts
    export const DialogContainer: React.FC<any> = observer(() => {
   const { dialogQueue } = useDialogContext()
-                          return;
+  return (
     <div>
      {
         dialogQueue.map(({ id, component: Component, props }: DialogType) => (
@@ -231,13 +231,13 @@ The following example demonstrates how to modify the global style of basic UI co
 })
    ```
 
-### Add basic UI components
+### Add a basic UI component
 
-The following example demonstrates how to customize a basic UI component and use it in  Flexible Classroom:
+The following example shows how to add a customized basic UI component and use it in  Flexible Classroom:
 
-1. Create a custom folder under the `agora-scenario-ui-kit/src/components``` directory and create the following files:
+1. Create a `custom` folder under the `agora-scenario-ui-kit/src/components` directory and create the following files:
 
-   `index.css` file
+   `The index.css` file
 
    ```css
    .custom {
@@ -250,7 +250,7 @@ The following example demonstrates how to customize a basic UI component and use
 }
    ```
 
-   `index.tsx` file
+   `The index.tsx` file
 
    ```ts
    import React, { FC } from 'react';
@@ -259,30 +259,30 @@ import { BaseProps } from '~components/interface/base-props';
 import './index.css';
 
 export interface CustomProps extends BaseProps {
-    width: Number type field.
-    height: Number type field.
+    width?: number;
+    height?: number;
     children?: React.ReactNode;
 }
 
 export const Custom: FC<CustomProps> = ({
-    width: 480,
-    "height": 750,
+    width = 90,
+    height = 90,
     children,
     className,
-    ... restProps
+    ...restProps
 }) => {
     const cls = classnames({
         [`custom`]: 1,
         [`${className}`]: !!className,
     });
-                          return;
+    return (
         <div
             className={cls}
             style={{
-                width
-                height
+                width,
+                height,
             }}
-            {... restProps}
+            {...restProps}
         >
             {children}
         </div>
@@ -290,7 +290,7 @@ export const Custom: FC<CustomProps> = ({
 }
    ```
 
-   `index.stories.tsx` file
+   `The index.stories.tsx` file
 
    ```ts
    import React from 'react'
@@ -303,8 +303,8 @@ const meta: Meta = {
 }
 
 type DocsProps = {
-    width: Number type field.
-    height: Number type field.
+    width: number;
+    height: number;
 }
 
 export const Docs = ({width, height}: DocsProps) => (
@@ -321,14 +321,14 @@ export const Docs = ({width, height}: DocsProps) => (
 )
 
 Docs.args = {
-    width: 480,
-    "height": 360
+    width: 250,
+    height: 200,
 }
 
 export default meta;
    ```
 
-   The Custom component is a div with a two-layer border and the Children element is rendered internally. You can see the specific effects of the Custom component in Storybook.
+   The Custom component is a div element with a two-layer border and renders a Children element. You can see the Custom component in Storybook.
 
    ![](https://web-cdn.agora.io/docs-files/1617715392109)
 
@@ -338,9 +338,9 @@ export default meta;
    export * from './custom'
    ```
 
-3. Refer to the following steps to use the Custom component in the whiteboard area of the 1:1 interactive scene:
+3. Apply the Custom component on the whiteboard of a one-to-one classroom, as follows:
 
-   1. Introduce the Custom component in the `agora-classroom-sdk/src/ui-components/common-containers/board.tsx` file:
+   1. Import the Custom component in the `agora-classroom-sdk/src/ui-components/common-containers/board.tsx` file:
 
       ```ts
       import { Custom } from 'agora-scenario-ui-kit'
@@ -351,22 +351,23 @@ export default meta;
       ```ts
       export const WhiteboardContainer = observer(() => {
 
-                            return;
+    return (
     <div className="whiteboard">
 
 
+    
     ......
 
-      {showZoomControl ? <ZoomController
+            {showZoomControl ? <ZoomController
         className='zoom-position'
         zoomValue={zoomValue}
         currentPage={currentPage}
-        totalPage = {totalPage}
+        totalPage={totalPage}
         maximum={!isFullScreen}
         clickHandler={handleZoomControllerChange}
-      The default value is NULL.
+      /> : null}
 
-      <Custom className='custom-position' width={200} height={200}>
+            <Custom className='custom-position' width={200} height={200}>
         <div>Use the custom component!</div>
       </Custom>
     </div>
@@ -374,7 +375,7 @@ export default meta;
 })
       ```
 
-   3. Define the `custom-position style` in the agora-classroom-sdk/src/ui-components/one-to-one/1v1.style.css file``:
+   3. Define the style of `custom-position` in the `agora-classroom-sdk/src/ui-components/one-to-one/1v1.style.css` file:
 
       ```ts
       .custom-position{
