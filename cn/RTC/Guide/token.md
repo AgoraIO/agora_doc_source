@@ -157,7 +157,7 @@ import AgoraRTC from "agora-rtc-sdk-ng"
 const client = AgoraRTC.createClient()
 
 async function startCall() {
-  token = await fetchToken(123456, "ChannelA");
+  let token = await fetchToken(123456, "ChannelA");
   // Join channel with token and uid
   await client.join("APPID", "ChannelA", token, 123456);
   ...
