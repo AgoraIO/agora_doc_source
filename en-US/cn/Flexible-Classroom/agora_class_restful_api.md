@@ -1,65 +1,65 @@
 This page provides detailed help for the Flexible Classroom RESTful APIs.
 
-<div class="alert info">See the changelog of Flexible Classroom Cloud Service<a href="./agora_class_restful_api_release"></a>.</div>
+<div class="alert info">查看灵动课堂云服务的<a href="./agora_class_restful_api_release">更新历史</a>。</div>
 
-## Basic information
+## 基本信息
 
-### Server
+### 域名
 
-All requests are sent to the host: api.agora.io.
+所有请求都发送给域名：api.agora.io。
 
-### Data format
+### 数据格式
 
-The Content-Type of all requests is application/json.
+所有请求的 Content-Type 类型为 application/json。
 
-### Authentication
+### 认证方式
 
-Flexible Classroom Cloud Service uses tokens for authentication. You need to put the following information to the `x-agora-token` and `x-agora-uid` fields when sending your HTTP request:
+灵动课堂云服务 RESTful API 支持 Token 认证。 你需要在发送 HTTP 请求时在 HTTP 请求头部的 `x-agora-token` 字段和 `x-agora-uid` 字段分别填入：
 
-- The RTM Token generated at your server.
-- The uid you use to generate the RTM token.
+- 服务端生成的 RTM Token。
+- 生成 RTM Token 时使用的 uid。
 
-For details, see[ Generate an RTM Token](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms).
+具体生成 RTM Token 的方法请参考[生成 RTM Token](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms) 文档。
 
-## Set the classroom state
+## 设置课堂状态
 
-### Description
+### 接口描述
 
-Call this method to set the classroom state: Not started, Started, Ended. For the detailed description of each state, seeclassroom [state management](./class_state).
+设置课堂状态（未开始/开始/结束）。 课堂状态说明详见[课堂状态管理文档](./class_state)。
 
-### Prototype
+### 接口原型
 
-- Method: PUT
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/states/{state}
+- 方法：PUT
+- 接入点：/edu/apps/{appId}/v2/rooms/{roomUUid}/states/{state}
 
-### Request parameters
+### 请求参数
 
-**URL parameters**
+**URL 参数**
 
-Pass the following parameter in the URL.
+需要在 URL 中传入以下参数。
 
 | Parameter | Type | Description |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see[ Get the Agora App ID](./agora_class_prep#step1). |
-| `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters: <li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `state` | integer | (Required) The classroom state:<li>` 0`: Not started.<li>` 1`: Start recording.<li>` 2`: Stop recording. |
+| `appId` | String | （必填）Agora App ID，详见[获取 Agora App ID](./agora_class_prep#step1)。 |
+| `roomUUid` | String | （必填）课堂 uuid。 这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。 The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `state` | Integer | （必填）课堂状态：<li>`0`: 未开始<li>`1`: 开始<li>`2`: 结束 |
 
-### Request example
+### 请求示例
 
 ```
-// See the state of test_class as started
+// 设置 test_class 的课堂状态为开始
 https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 ```
 
-### Response parameters
+### 响应参数
 
 | Parameter | Type | Description |
 | :----- | :------ | :------------------------------------------------ |
-| `code` | integer | Business status code:<li>0: The request succeeds.<li>Non-zero: The request fails. |
-| `msg` | String | The detailed information. |
-| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。<li>非 0: 请求失败。 |
+| `msg` | String | 详细信息。 |
+| `ts` | Number | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
 
-### Response example
+### 响应示例
 
 ```json
 "status": 200,
@@ -71,45 +71,45 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 }
 ```
 
-## Set the recording state
+## 设置录制状态
 
-### Description
+### 接口描述
 
-Start or stop recording a specified classroom.
+开始或结束录制指定课堂。
 
-### Prototype
+### 接口原型
 
-- Method: PUT
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/records/states/{state}
+- 方法：PUT
+- 接入点：/edu/apps/{appId}/v2/rooms/{roomUUid}/records/states/{state}
 
-### Request parameters
+### 请求参数
 
-**URL parameters**
+**URL 参数**
 
-Pass the following parameter in the URL.
+需要在 URL 中传入以下参数。
 
 | Parameter | Type | Description |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see[ Get the Agora App ID](./agora_class_prep#step1). |
-| `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters: <li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `state` | integer | (Required) The recording state:<li>`0`: 结束<li>` 1`: Start recording. |
+| `appId` | String | （必填）Agora App ID，详见[获取 Agora App ID](./agora_class_prep#step1)。 |
+| `roomUUid` | String | （必填）课堂 uuid。 这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。 The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `state` | Integer | （必填）录制状态：<li>`0`: 结束<li>`1`: 开始 |
 
-### Request example
+### 请求示例
 
 ```
-// Start recording test_class
+// 开始录制 test_class
 https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 ```
 
-### Response parameters
+### 响应参数
 
 | Parameter | Type | Description |
 | :----- | :------ | :------------------------------------------------ |
-| `code` | integer | Business status code:<li>0: The request succeeds.<li>Non-zero: The request fails. |
-| `msg` | String | The detailed information. |
-| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。<li>非 0: 请求失败。 |
+| `msg` | String | 详细信息。 |
+| `ts` | Number | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
 
-### Response example
+### 响应示例
 
 ```json
 "status": 200,
@@ -120,53 +120,53 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 }
 ```
 
-## Get the recording list
+## 获取录制列表
 
-### Description
+### 接口描述
 
-Get the recording list in a specified classroom.
+获取指定课堂内的录制列表。
 
-You can fetch data in batches with the `nextId` parameter. You can get up to 100 pieces of data each batch.
+你可以通过 `nextId` 分批拉取，每批最多拉取 100 条数据。
 
-### Prototype
+### 接口原型
 
-- Method: GET
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUuid}/records
+- 方法：GET
+- 接入点：/edu/apps/{appId}/v2/rooms/{roomUuid}/records
 
-### Request parameters
+### 请求参数
 
-**URL parameters**
+**URL 参数**
 
-Pass the following parameter in the URL.
+需要在 URL 中传入以下参数。
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see[ Get the Agora App ID](./agora_class_prep#step1). |
-| `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters: <li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `appId` | String | （必填）Agora App ID，详见[获取 Agora App ID](./agora_class_prep#step1)。 |
+| `roomUUid` | String | （必填）课堂 uuid。 这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。 The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 
-**Query parameters**
+**Query 参数**
 
 | Parameter | Type | Description |
 | :------- | :----- | :----------------------------------------------------------- |
-| `nextId` | String | (Optional) The starting ID of the next batch of data. When you call this method to get the data for the first time, leave this parameter empty or set is as null. Afterwards, you can set this parameter as the nextId that you get in the response of previous method ``call. |
+| `nextId` | String | （选填）下一批数据的起始 ID。 第一次获取可传 null，后续获取传入响应结果里得到的 `nextId`。 |
 
-### Request example
+### 请求示例
 
 ```
-// Get the recording list in test_class
+// 获取 test_class 里的录制列表
 https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
 ```
 
-### Response parameters
+### 响应参数
 
 | Parameter | Type | Description |
 | :----- | :------ | :----------------------------------------------------------- |
-| `code` | integer | Business status code:<li>0: The request succeeds.<li>Non-zero: The request fails. |
-| `msg` | String | The detailed information. |
-| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
-| `data` | object | Include the following parameters:<ul><li>`count`: Integer, the number of pieces of data in this batch.</li><li>`list`: JSONArray. An array of the recording list. A JSON object includes the following parameters:<ul><li>`appId`: Your Agora App ID.</li><li>`roomUuid`: The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel.</li><li>`recordId`: The unique identifier of a recording session. 调用设置录制状态 API 开始录制然后结束录制视为一次录制。</li><li>`startTime`: The UTC timestamp when a recording session starts, in milliseconds.</li><li>`endTime`: The UTC timestamp when a recording session stops, in milliseconds.</li><li>`resourceId`: The resourceId of Agora cloud recording service``.</li><li>`sid`: The sid of Agora cloud recording service``.</li><li>`recordUid`: The UID used by Agora cloud recording service in the channel.</li><li>`boardAppId`: The AppIdentifier of Netless whiteboard service.</li><li>`boardToken`: The sdkToken of Netless whiteboard service. 。 </li><li>`boardId`: The unique identifier of a whiteboard session.</li><li>`type`: Integer, the recording type:<ul><li>`1`: Individual Recording</li><li>`2`: Composite Recording</li></ul><li>`status`: Integer, the recording state:<ul><li>`1`: In recording.</li><li>`2`: Recording has ended.</li></ul><li>`url`: String, the url of the recording file.</li></ul><li>`nextId`: String, the starting ID of the next batch of data. If it is null, there is no next batch of data. 如不为 null，则可用此 `nextId` 继续查询，直到查到 null 为止。</li><li>`total`: Integer, the total number of pieces of data.</li></ul> |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。<li>非 0: 请求失败。 |
+| `msg` | String | 详细信息。 |
+| `ts` | Number | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
+| `data` | Object | 具体数据，包含：<ul><li>`count`: Integer 型，本批数据条数。</li><li>`list`: 由多个 Object 组成的数组。 每个 Object 包含以下字段：<ul><li>`appId`: 你的 Agora App ID。 </li><li>`roomUuid`: 课堂 uuid。 这是课堂的唯一标识符，也是 Agora RTC SDK 和 Agora RTM SDK 中使用的频道名。 </li><li>`recordId`: 一次录制的的唯一标识符。 调用设置录制状态 API 开始录制然后结束录制视为一次录制。</li><li>`startTime`: 录制开始的 UTC 时间戳，单位为毫秒。 </li><li>`endTime`: 录制结束的 UTC 时间戳，单位为毫秒。 </li><li>`resourceId`: Agora 云端录制服务的 `resourceId`。 </li><li>`sid`: Agora 云端录制服务的 `sid`。 </li><li>`recordUid`: Agora 云端录制服务在频道内使用的 UID。 </li><li>`boardAppId`: Agora 互动白板服务的 App Identifier。 </li><li>`boardToken`: Agora 互动白板服务的 SDK Token。 。 </li><li>`boardId`: 白板的唯一标识符。 </li><li>`type`: Integer 类型，录制类型：<ul><li>`1`: 单流录制</li><li>`2`: 合流录制</li></ul><li>`status`: Integer 类型，录制状态：<ul><li>`1`: 录制中</li><li>`2`: 录制已结束</li></ul><li>`url`: String 类型，录制文件的访问地址。 </li></ul><li>`nextId`: String 型，下一批数据的起始 ID。 如为 null，则表示没有下一批数据。 如不为 null，则可用此 `nextId` 继续查询，直到查到 null 为止。</li><li>`total`: Integer 型，数据总条数。</li></ul> |
 
-### Response example
+### 响应示例
 
 ```json
 "status": 200,
@@ -198,54 +198,54 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
     "count": 17
 }
 ```
-## Get classroom events
+## 获取课堂事件
 
-### Description
+### 接口描述
 
-Get all events in the classrooms associated with a specified App ID on the server.
+在服务端获取指定 App ID 下所有课堂中发生的事件。
 
-You can keep polling the server at regular intervals to listen for events that occur in the classrooms.
+你可定时轮询该接口来监听灵动课堂中发生的事件。
 
-<div class="alert note"><li>Each event can only be obtained once.</li><li>Note: You cannot get events any longer one hour after a classroom is destroyed.</li></div>
+<div class="alert note"><li>每个事件只能获取一次。</li><li>最早可查一小时内未销毁的课堂里的事件。</li></div>
 
-### Prototype
+### 接口原型
 
-- Method: GET
-- Endpoint: /edu/polling/apps/{appId}/v2/rooms/sequences
+- 方法：GET
+- 接入点：/edu/polling/apps/{appId}/v2/rooms/sequences
 
-### Request parameters
+### 请求参数
 
-**URL parameters**
+**URL 参数**
 
-Pass the following parameter in the URL.
+需要在 URL 中传入以下参数。
 
 | Parameter | Type | Description |
 | :------ | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see[ Get the Agora App ID](./agora_class_prep#step1). |
+| `appId` | String | （必填）Agora App ID，详见[获取 Agora App ID](./agora_class_prep#step1)。 |
 
-### Request example
+### 请求示例
 
 ```
 https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 ```
 
-### Response parameters
+### 响应参数
 
 | Parameter | Type | Description |
 | :----- | :------ | :----------------------------------------------------------- |
-| `code` | integer | Business status code:<li>0: The request succeeds.<li>Non-zero: The request fails. |
-| `msg` | String | The detailed information. |
-| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
-| `data` | object | Include the following parameters:<li>` roomUuid`: String, the classroom ID.<li>` cmd`: Integer, the event type. See [Flexible Classroom Events](./agora_class_restful_api_event).<li>`  sequence`: Integer. The event ID. This is the unique identifier of each event, which is automatically incremented in the classroom to ensure the order of events.<li>` version`: Integer, the service version.<li>` data`: Object, the detailed data of the event, The data varies depending on the event type. See [Flexible Classroom Events](./agora_class_restful_api_event). |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。<li>非 0: 请求失败。 |
+| `msg` | String | 详细信息。 |
+| `ts` | Number | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
+| `data` | Object | 具体数据，包含：<li>`roomUuid`: String 型，课堂 uuid。<li>`cmd`: Integer 型，事件类型。 详见[事件枚举](./agora_class_restful_api_event)。<li>`sequence`: Integer 型。 事件序号，是每个课堂内事件的唯一标识符，课堂内全局自增，用于确保事件的有序性。<li>`version`: Integer 型，版本号。<li>`data`: Object 型，事件的具体数据，取决于事件类型。 详见[事件枚举](./agora_class_restful_api_event)。 |
 
-### Response example
+### 响应示例
 
 ```json
 "status": 200,
 "body":
 {
-      "msg": "Success",
-      "code": 0,
+    "msg": "Success",
+    "code": 0,
     "ts": 1610167740309,
     "data":[
         {
@@ -259,20 +259,20 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 }
 ```
 
-## Status code
+## 响应状态码
 
-| HTTP response status code | Business status code | Description |
+| HTTP 响应状态码 | 业务状态码 | Description |
 | :-------------- | :--------- | :----------------------------------------------------------- |
-| 200 | 0 | The request is successful. |
-| 400 | 400 | The request parameter is incorrect. |
-| 401 | N/A | Possible reasons:<li>The App ID is invalid.<li>Unauthorized. Incorrect `x-agora-uid` or `x-agora-token`. |
-| 403 | 30403200 | The classroom is muted globally. You cannot send chat messages. |
-| 404 | N/A | The requested resource could not be found. |
-| 404 | 20404100 | The classroom does not exist. |
-| 404 | 20404200 | The user does not exist. |
-| 409 | 30409410 | The recording has not been started. |
-| 409 | 30409411 | The recording has not been ended. |
-| 409 | 30409100 | The class has been started. |
-| 409 | 30409101 | The class has been ended. |
-| 500 | 500 | Internal server error. |
-| 503 | N/A | Internal server error. The gateway or proxy server did not receive a timely response from the upstream server. |
+| 200 | 0 | 请求成功。 |
+| 400 | 400 | 请求的参数错误。 |
+| 401 | N/A | 可能的原因：<li>App ID 无效。<li>Token Authorization 中 `x-agora-uid` 和 `x-agora-token` 错误或不匹配。 |
+| 403 | 30403200 | 课堂已禁言，无法发送聊天消息。 |
+| 404 | N/A | 服务器无法找到请求的资源。 |
+| 404 | 20404100 | 课堂不存在。 |
+| 404 | 20404200 | 用户不存在。 |
+| 409 | 30409410 | 录制状态冲突，录制未开始。 |
+| 409 | 30409411 | 录制状态冲突，录制未结束。 |
+| 409 | 30409100 | 课程状态冲突，课程已开始。 |
+| 409 | 30409101 | 课程状态冲突，课程已结束。 |
+| 500 | 500 | 服务器内部错误，无法完成请求。 |
+| 503 | N/A | 服务器内部错误。 充当网关或代理的服务器未从远端服务器获取响应。 |
