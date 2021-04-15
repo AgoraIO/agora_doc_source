@@ -19,21 +19,21 @@
    <dl outputclass="deprecated">
        <dlentry >
   <dt>Deprecated:</dt>
-  <dd>This method is obsolete from v2.9.1, and its default recording sampling rate is 32 kHz, which cannot be modified. Please use the new<xref keyref="startAudioRecording2"/> method instead.</dd>
+  <dd>This method is deprecated as of v2.9.1. It has a fixed recording sample rate of 32 kHz. Please use the <xref keyref="startAudioRecording2"/> method instead.</dd>
        </dlentry>
    </dl>
-   <p>The SDK allows recording during a call. After successfully calling this method, you can record the audio of all the users in the channel and get an audio recording file.<ul>
+   <p>The Agora SDK allows recording during a call. This method records the audio of all the users in the channel and generates an audio recording file. Supported formats of the recording file are as follows:<ul>
   <li><codeph>.wav</codeph>: Large file size with high fidelity.</li>
   <li><codeph>.aac</codeph>: Small file size with low fidelity.</li>
        </ul>
    </p>
-   <p>Ensure that the directory for the log files exists and is writable. This interface needs to be<xref keyref="joinChannel1"/> called later. Once the user leaves the<xref keyref="leaveChannel"/> channel, the recording automatically stops.</p>
+   <p>Ensure that the directory for the recording file exists and is writable. This method should be called after the <xref keyref="joinChannel1"/> method. The recording automatically stops when you call the <xref keyref="leaveChannel"/> method.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>filePath</pt>
-  <pd>The absolute path (including the suffixes of the filename) of the recording file. For example: C:<codeph>\music\audio.aac</codeph>.</pd>
+  <pd>The absolute path (including the suffixes of the filename) of the recording file. For example, <codeph>/dir1/dir2/dir3/audio.aac</codeph>.</pd>
        </plentry>
        <plentry>
   <pt>quality</pt>
