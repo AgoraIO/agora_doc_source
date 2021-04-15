@@ -4,128 +4,310 @@ platform: Windows
 updatedAt: 2020-12-04 01:39:56
 ---
 ## 功能描述
-在通话或直播过程中，除了用户自己说话的声音，有时候需要播放自定义的声音或者音乐文件并且让频道内的其他人也听到，比如需要给游戏添加音效，或者需要播放背景音乐等，Agora 提供以下两组方法可以满足播放音效和音乐文件的需求。
 
-开始前请确保已在你的项目中实现基本的实时音视频功能。 详见[开始音视频通话](start_call_windows)或[开始互动直播](start_live_windows)。
+在实时音视频互动过程中，为烘托气氛、增添趣味性，用户通常需要播放音效或音乐文件并且让频道内所有用户都听到。例如，在游戏中添加打斗声，在唱歌时添加伴奏。Agora 提供两组独立的方法，你可以分别实现播放音效和音乐文件。
 
-## 播放音效文件
+## 示例项目
 
-音效通常指持续很短的音频。播放音效文件方法主要用来播放短小的氛围音，比如鼓掌、游戏子弹撞击声音等，可以多个音效叠加播放。
-音效由音频文件路径指定，但在 SDK 内部使用 sound id 来识别和处理音效。SDK 并不强制如何定义 sound id，保证每个音效有唯一的识别即可。一般的做法有自增 id，使用音效文件名的 hashCode 等。
+Agora 在 GitHub 上提供已实现播放[音效](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioEffect)和[音乐](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioMixing)文件功能的开源示例项目。你可以下载体验并参考源代码。
 
-### 实现方法
+## 音效文件
 
-```c++
-// 预加载音效（推荐），需注意音效文件的大小，并在加入频道前完成加载
-#ifdef UNICODE
-  CHAR wdFilePath[MAX_PATH];
-  ::WideCharToMultiByte(CP_UTF8, 0, filePath, -1, wdFilePath, MAX_PATH, NULL, NULL);
-  int nRet = rtcEngine.preloadEffect(nSoundID, wdFilePath);
-#else
-  int nRet = rtcEngine.preloadEffect(nSoundID, filePath);
-#endif
+本文提到的音效是指持续时间短的氛围音，例如掌声、欢呼声、打斗声、枪击声等，通常多个音效可以叠加使用。
 
-// 开始播放音效文件，如果设置了预加载，需要指定 nSoundID 
-#ifdef UNICODE
-  CHAR wdFilePath[MAX_PATH];
-  ::WideCharToMultiByte(CP_UTF8, 0, filePath, -1, wdFilePath, MAX_PATH, NULL, NULL);
-  int nRet = rtcEngine.playEffect(nSoundID, // 音效唯一标识
-  wdFilePath, // 文件路径
-  nLoopCount, // 重复播放次数
-  dPitch, // 音效的音调
-  dPan, // 音效的空间位置，0 表示正前方
-  nGain, // 音效音量，取值 0 - 100， 100 代表原始音量
-  TRUE // 是否令远端也能听到音效的声音
-#else
-  int nRet = rtcEngine.playEffect(nSoundID, filePath, nLoopCount, dPitch, dPan, nGain, TRUE);
-#endif
+Agora 提供一组方法播放和管理音效文件，主要包括如下功能：
 
-// 暂停指定的音效播放
-int nRet = rtcEngine.pauseEffect(nSoundID);
+- 播放本地或在线音效文件
+- 设置音效的空间位置、循环次数、播放位置、音量等播放选项
+- 灵活控制指定或全部音效文件的播放、暂停、恢复与停止
 
-// 暂停所有音效播放
-int nRet = rtcEngine.pauseAllEffects();
 
-// 继续指定的已经暂停的音效播放
-int nRet = rtcEngine.resumeEffect(nSoundID);
 
-// 继续所有已经暂停的音效播放
-int nRet = rtcEngine.resumeAllEffects();
+支持的音效文件格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。详见 [Supported Media Formats in Media Foundation](https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation)。
 
-// 停止指定的音效播放
-int nRet = rtcEngine.stopEffect(nSoundID);
+参考如下步骤实现播放音效文件：
 
-// 停止所有音效播放
-int nRet = rtcEngine.stopAllEffects();
+1. 加入频道前调用 `preloadEffect` 方法预加载本地音效文件。
+2. 加入频道后调用 `playEffect` 方法播放音效文件。当音效文件播放完成时，SDK 会触发 `onAudioEffectFinished` 回调。
 
-// 释放预加载的音效
-int nRet = rtcEngine.unloadEffect(nSoundID);
+### 指定音效文件
+
+在播放音效文件前，你需要设置 `filePath` 和 `soundId `指定音效文件。两个参数的含义如下：
+
+- `filePath`: 音效文件路径，支持本地或在线文件路径。SDK 会在该路径中查找音效文件。
+- `soundId`: 音效 ID，由你自行定义，具有唯一性。SDK 会根据音效 ID 来识别音效文件。常见的音效 ID 定义方法有自增 ID、使用音效文件名的 hashCode 等。
+
+```
+// 设置根据指定的音效文件路径自动分配 soundId，并将音效文件路径和 soundId 关联。
+m_mapEffect.insert(std::make_pair(strPath, m_soundId++));
+```
+
+### **预加载**
+
+SDK 支持预加载功能，你可以将音效文件提前加载到内存，以提高性能。预加载不是一个必须的步骤，Agora 建议你按需选择。
+
+- 如果需要反复播放某个特定的音效，则建议预加载音效文件。
+- 如果音效文件较大，则不建议预加载音效文件。
+
+如需加载多个本地音效文件，你需要多次调用 `preloadEffect`。
+
+
+- 仅支持预加载本地音效文件。
+- `preloadEffect` 需要在加入频道前调用。
+- 调用 `preloadEffect` 后，音效文件会一直占用内存，直至调用 `unloadEffect` 或者离开频道。
+
+```
+// 将指定的本地音效文件预加载至内存。 
+m_rtcEngine->preloadEffect(m_mapEffect[strEffect], strPath.c_str()); 
+
+// 释放预加载的音效文件。 
+m_rtcEngine->unloadEffect(m_mapEffect[strEffect]);
+```
+
+### **播放和停止**
+
+调用 `playEffect` 播放音效文件。根据需求，你可以多次调用 `playEffect` 同时播放多个音效文件。在播放音效文件时，你可以设置循环次数、音调、音量、播放位置等
+
+- `playEffect` 需要在加入频道后调用。
+- 不支持同时播放多个在线音效文件。
+
+```
+// 设置音效循环播放的次数。-1 表示无限循环。 
+int loops = -1; 
+// 设置的音效的音调。取值范围为 [0.5, 2.0]。 
+double pitch = 1.5; 
+// 设置音量。取值范围为 [0,100]，100 表示原始音量。 
+int gain = 100; 
+// 设置的音效空间位置。1.0 表示音效出现在右边。 
+double pan = 1.0; 
+// 设置是否将音效发布至远端。true 表示本地用户和远端用户都能听到音效；false 表示只有本地用户能听到音效。 
+BOOL publish = true; 
+// 设置音效文件的播放进度。500 表示从音效文件的第 500 ms 开始播放。 
+int startPos = 500; 
+ 
+// 播放指定的音效文件。（demo 缺少 startPos 的示例代码） 
+m_rtcEngine->playEffect(m_mapEffect[strEffect], strFile.c_str(), loops, pitch, pan, gain, publish, startPos); 
+ 
+// 本地音效文件播放已结束回调。 
+void onAudioEffectFinished(m_mapEffect[strEffect]);
+```
+
+成功播放后，你可以停止播放指定或全部的音效文件。
+
+```
+// 停止播放指定的音效文件。
+m_rtcEngine->stopEffect(m_mapEffect[strEffect]);
+ 
+// 停止播放所有音效文件。
+m_rtcEngine->stopAllEffects();
+```
+
+### **暂停与恢复**
+
+在音效文件播放时，你可以暂停或恢复播放指定或全部音效文件。
+
+本组方法需要在 `playEffect` 后调用。
+
+```
+// 暂停播放指定的音效文件。 
+m_rtcEngine->pauseEffect(m_mapEffect[strEffect]); 
+ 
+ 
+// 恢复播放指定的音效文件。 
+m_rtcEngine->resumeEffect(m_mapEffect[strEffect]); 
+ 
+ 
+// 暂停播放所有的音效文件。
+m_rtcEngine->pauseAllEffects(); 
+ 
+ 
+// 恢复播放所有的音效文件。
+m_rtcEngine->resumeAllEffects();
+```
+
+### **播放位置**
+
+如需在播放音效文件后调整播放位置，你可以调用本组方法。例如，在循环播放音效文件期间，你可以调用本组方法调整播放位置，无需停止播放。
+
+- 本组方法需要在 `playEffect` 后调用。
+- 本组方法仅适用于本地音效文件。
+
+```
+// 获取指定本地音效文件的总时长。 
+m_rtcEngine->getEffectDuration(m_mapEffect[strEffect]); 
+ 
+ 
+// 设置指定音效文件的播放位置。 
+m_rtcEngine->setEffectPosition(m_mapEffect[strEffect], pos); 
+ 
+ 
+// 获取指定本地音效文件的总时长。 
+m_rtcEngine->getEffectCurrentPosition(m_mapEffect[strEffect]);
+```
+
+### 音量
+
+在音效文件开始播放后，你可以调用本组方法调节播放音量。例如，在循环播放音效文件期间，你可以调用本组方法调节播放音量，无需停止播放。
+
+本组方法需要在 `playEffect` 后调用。
+
+```
+// 设置所有音效文件的播放音量。取值范围为 [0,100]，100 表示原始音量。 
+m_rtcEngine->setEffectsVolume(50); 
+ 
+ 
+// 设置指定音效文件的播放音量。取值范围为 [0,100]，100 表示原始音量。 
+m_rtcEngine->setVolumeOfEffect(m_mapEffect[strEffect], 50); 
+ 
+ 
+// 获取音效文件的播放音量。音量范围为 [0,100]，100 表示原始音量。 
+m_rtcEngine->getEffectsVolume();
 ```
 
 ### API 参考
 
-- [`preloadEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a02d0b23b0b66e8fb0e898eb2811a8e74)
-- [`playEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a7f4ddb5170b19a471d8c3c721fa19c8d)
-- [`pauseEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3c820db172c7fb43da58d81b7916d174)
-- [`pauseAllEffects`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ad731a94d9db9e2c3390e1443b379095f)
-- [`resumeEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a6489955af474172afe4f4b44e4edb38a)
-- [`resumeAllEffects`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a2fc1b5996df964f8e12ce579e0eb5f98)
-- [`stopEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ad74eb7c7799b8762bff2b1e7e7bba8b9)
-- [`stopAllEffects`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a888ecfec4fda81831988898420d60e49)
-- [`unloadEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aa560240d5994be0c1a7853e96077e5f9)
-
-### 开发注意事项
-
-- 预加载不是一个必须的步骤，一般来说为了提高性能或者需要反复播放某个特定的音效的时候，我们建议使用预加载。但如果音效文件较大，不建议预加载。
-- 以上方法都有返回值，返回值小于 0 表示方法调用失败。
+- `preloadEffect`
+- `unloadEffect`
+- `playEffect`
+- `stopEffect`
+- `stopAllEffects`
+- `pauseEffect`
+- `pauseAllEffects`
+- `resumeEffect`
+- `resumeAllEffects`
+- `getEffectDuration`
+- `setEffectPosition`
+- `getEffectCurrentPosition`
+- `setEffectsVolume`
+- `setVolumeOfEffect`
+- `getEffectsVolume`
+- `onAudioEffectFinished`
 
 ## 音乐混音
 
-混音是指播放本地或者在线音乐文件，同时让频道内的其他人听到此音乐。混音方法主要用来播放比较长的背景音，比如直播的时候播放的音乐，同时只可以有一个文件播放。如果在混音播放第一个文件的过程中播放第二个文件，会自动停止第一个文件的播放。
+音乐混音是指将音乐文件与麦克风采集的音频混合。使用混音功能的用户通常会播放比较长的音乐文件，并且同一时间只播放一个音乐文件。例如，在唱歌时播放伴奏，在聊天时播放背景音乐。
 
-Agora 混音功能支持如下设置：
+Agora 提供一组方法播放和管理音乐文件，主要包括如下功能：
 
-- 混音或替换： 混音指的是音乐文件的音频流跟麦克风采集的音频流进行混音（叠加）并编码发送给对方；替换指的是麦克风采集的音频被音乐文件的音频流替换掉，对方只能听见音乐播放。
-- 循环：可以设置是否循环播放混音文件，以及循环次数。
-- 调节音量：可以同时或分别调节音乐文件在本地和远端的播放音量。
-- 调节音调：可以分别调节本地人声的音调和音乐文件的音调。
+- 播放本地或在线音乐文件
+- 设置音乐文件的播放次数、播放位置、音量、音调等播放选项
+- 灵活控制音乐文件的播放、暂停、恢复与停止
+- 报告当前的音乐文件播放状态和播放状态改变的原因
 
-### 实现方法
+支持的音乐文件格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。详见 [Supported Media Formats in Media Foundation](https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation)。
 
-```c++
-LPCTSTR filePath = "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3";
-// 开始播放混音
-#ifdef UNICODE
- CHAR wdFilePath[MAX_PATH];
- ::WideCharToMultiByte(CP_UTF8, 0, filePath, -1, wdFilePath, MAX_PATH, NULL, NULL);
-int nRet = rtcEngine.startAudioMixing(wdFilePath, // 混音文件路径，支持网络文件，比如 http 协议的
- FALSE, // 只在本端播放
-  TRUE, // 混音文件内容替换麦克风采集的声音
-  1 // 混音文件重复播放次数
-  );
-#else
-int nRet = rtcEngine.startAudioMixing(filePath, FALSE, TRUE, 1);
-#endif
+成功调用 `startAudioMixing` 后，当音乐文件播放状态发生改变时，SDK 会触发 `onAudioMixingStateChanged` 回调。
 
-// 结束播放混音
-int nRet = rtcEngine.stopAudioMixing();
+### **播放和停止**
+
+调用 `startAudioMixing` 播放音乐文件。在播放音乐文件时，可以设置循环次数、播放位置等。
+
+- `startAudioMixing` 需要在加入频道后调用。
+- 如果在播放一个音乐文件时再次调用 `startAudioMixing`，则 SDK 会自动停止播放上一个音乐文件并开始播放下一个音乐文件。
+
+```
+// 指定需要混音的本地或在线音乐文件的绝对路径。 
+std::string filePath = "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3"; 
+// 设置是否只在本地播放音乐文件。true 表示只有本地用户能听到音乐；false 表示本地用户和远端用户都能听到音乐。 
+BOOL loopback = false; 
+// 设置是否用音乐文件替换麦克风采集的音频。true 表示用户只能听到音乐；false 表示用户可以听到音乐和麦克风采集的音频。 
+BOOL replace = true; 
+// 设置音乐文件的播放次数。1 表示播放 1 次。 
+int cycle = 1; 
+// 设置音乐文件的播放进度。500 表示从音乐文件的第 500 ms 开始播放。 
+int startPos = 500; 
+ 
+ 
+// 开始播放音乐文件。（demo 缺 startPos 的示例代码） 
+m_rtcEngine->startAudioMixing(filePath, loopback, replace, cycle, startPos); 
+ 
+ 
+// 本地用户的音乐文件播放状态已改变回调。 
+void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)
+```
+
+成功播放音乐文件后，你可以调用 `stopAudioMixing` 停止播放。
+
+```
+//停止播放音乐文件。
+m_rtcEngine->stopAudioMixing();
+```
+
+### **暂停与恢复**
+
+在音乐文件播放时，你可以暂停或恢复播放音乐文件。
+
+本组方法需要在 `startAudioMixing` 后调用。
+
+```
+// 暂停播放音乐文件。 
+m_rtcEngine->pauseAudioMixing(); 
+ 
+// 恢复播放音乐文件。 
+m_rtcEngine->resumeAudioMixing();
+```
+
+### **播放位置**
+
+在音乐文件播放时，你可以调用本组方法调整音乐文件的播放位置，无需停止播放。
+
+本组方法需要在调用 `startAudioMixing` 并收到 `onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)` 回调后调用。
+
+```
+// 获取指定音乐文件的总时长。 
+m_rtcEngine->getAudioMixingDuration(filePath); 
+ 
+// 设置当前音乐文件的播放位置。500 表示从音乐文件的第 500 ms 开始播放。 
+m_rtcEngine->setAudioMixingPosition(500); 
+ 
+// 获取当前音乐文件的播放进度。 
+m_rtcEngine->getAudioMixingCurrentPosition();
+```
+
+### 音量与音调
+
+成功播放音乐文件后，你可以调用本组方法调整音乐文件的播放音量与音调，无需停止播放。
+
+本组方法需要在调用 `startAudioMixing` 并收到 `onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)` 回调后调用。
+
+```
+// 调节当前音乐文件在本地和远端的播放音量。取值范围为 [0,100]，100 表示原始音量。 
+m_rtcEngine->adjustAudioMixingVolume(50); 
+ 
+ 
+// 调节当前音乐文件在远端的播放音量。取值范围为 [0,100]，100 表示原始音量。 
+m_rtcEngine->adjustAudioMixingPublishVolume(50); 
+ 
+ 
+// 调节当前音乐文件在本地的播放音量。取值范围为 [0,100]，100 表示原始音量。 
+m_rtcEngine->adjustAudioMixingPlayoutVolume(50); 
+ 
+ 
+// 获取当前音乐文件在本地的播放音量。音量范围为 [0,100]，100 表示原始音量。 
+m_rtcEngine->getAudioMixingPlayoutVolume(); 
+ 
+ 
+// 获取当前音乐文件在远端的播放音量。音量范围为 [0,100]，100 表示原始音量。 
+m_rtcEngine->getAudioMixingPublishVolume(); 
+ 
+ 
+// 调节当前音乐文件的音调。取值范围为 [-12,12]，0 表示原始音调，1 表示升高一个半音。
+m_rtcEngine->setAudioMixingPitch(5);
 ```
 
 ### API 参考
 
-- [`startAudioMixing`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a6f573cd61d53147ed6a2b7f033091d86)
-- [`stopAudioMixng`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a2b90cbf4142c913b3efa795482713b08)
-- [`adjustAudioMixingVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a544aee96b789ac5a57d26b61b7e1a5fa)
-- [`setLocalVoicePitch`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a43616f919e0906279dff5648830ce31a)
-- [`setAudioMixingPitch`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a26b117f7e097801b03522f7da9257425)
-- [`pauseAudioMixing`](./API%20Reference/cpp/v3.0.1/classagora_1_1rtc_1_1_i_rtc_engine.html#ab86885c38e7ee7a4b37d5bbacafcaa24)
-- [`resumeAudioMixing`](./API%20Reference/cpp/v3.0.1/classagora_1_1rtc_1_1_i_rtc_engine.html#a5a9606ad7ca4995e0d37fcf1642fe401)
-- [`getAudioMixingDuration`](./API%20Reference/cpp/v3.0.1/classagora_1_1rtc_1_1_i_rtc_engine.html#a6a87b6b9135a6f45095dcf6aa62295cb)
-- [`getAudioMixingCurrentPosition`](./API%20Reference/cpp/v3.0.1/classagora_1_1rtc_1_1_i_rtc_engine.html#aae54b86e9e6a7c0ed955b96f011855cb)
-- [`setAudioMixingPosition`](./API%20Reference/cpp/v3.0.1/classagora_1_1rtc_1_1_i_rtc_engine.html#a6c69e2229c438fd587b8f81df34214ad)
-- [`onAudioMixingStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a298389513bfaa50af4277fc3296e3f22)
-
-### 开发注意事项
-
-- 在频道内调用混音方法，否则会有潜在问题。
-- 以上方法都有返回值，返回值小于 0 表示方法调用失败。
+- `startAudioMixing`
+- `stopAudioMixng`
+- `pauseAudioMixing`
+- `resumeAudioMixing`
+- `getAudioMixingDuration`
+- `setAudioMixingPosition`
+- `getAudioMixingCurrentPosition`
+- `adjustAudioMixingVolume`
+- `adjustAudioMixingPublishVolume`
+- `adjustAudioMixingPlayoutVolume`
+- `getAudioMixingPlayoutVolume`
+- `getAudioMixingPublishVolume`
+- `setAudioMixingPitch`
+- `onAudioMixingStateChanged`
