@@ -46,6 +46,7 @@ For users who want a deployable sample server to test with, Agora provides a rep
 
 **Warning**
 
+- This repository is a sample only and contains fatal security flaws. **DO NOT USE IT IN YOUR PRODUCTION ENVIRONMENT**.
 - This repository aims at providing a testing environment for front-end developers and is not meant for production purposes.
 - Heroku is an independent service provider and not affiliated with Agora. Therefore, Agora is not responsible for any charges you may incur with Heroku.
 
@@ -100,7 +101,7 @@ static std::string buildTokenWithUid(
 
 ## Use the token for client-side user authentication
 
-Take the following steps in your client to use the token for client-side user authentication. The code samples apply to Agora RTC Web SDK 4.x.
+Take the following steps to use the token for client-side user authentication. The code samples apply to Agora RTC Web SDK 4.x.
 
 ### Fetch the token with uid
 
@@ -110,7 +111,8 @@ Fetch the token with the uid to join the channel.
 // Assume the client sends
 //
 //  {
-//    "uid": "123456"
+//    "uid": "123456",
+//    "channelName": "channelA"
 //  }
 //
 // the token server returns:
@@ -119,9 +121,9 @@ Fetch the token with the uid to join the channel.
 //    "message": "006970CA35de60c44645bbae8a215061b33IACtCBeHhqlszBWc9S8XyvSoz1fJm1YiL6OWFTbLNC7OMbdIfRCtk5C5IgB8zc0FZAN5YAQAAQD0v3dgAgD0v3dgAwD0v3dgBAD0v3dg"
 // }
 // Need to import axios
-function fetchToken(uid) {
+function fetchToken(uid, channelName) {
 
-    let data = JSON.stringify({ "uid": uid });
+    let data = JSON.stringify({ "uid": uid, "channelName": channelName });
 
     let config = {
         method: 'get',
@@ -155,22 +157,22 @@ import AgoraRTC from "agora-rtc-sdk-ng"
 const client = AgoraRTC.createClient()
 
 async function startCall() {
-  token = await fetchToken(123456);
+  token = await fetchToken(123456, "ChannelA");
   // Join channel with token and uid
-  await client.join("APPID", "CHANNEL", token, 123456);
+  await client.join("APPID", "ChannelA", token, 123456);
   ...
 }
 ```
 
 ### Handle token expiration
 
-If the token expires, the user gets disconnected and needs to join the channel again. Generally, the client needs to fetch a new token when the current token is about to expire. However, under certain network conditions, the client may fail to fetch the new token in time and the current token expires.
+Tokens expire, and when that happens, the user gets disconnected. To prevent that from happening, you also need to handle token expiration in your client logic.
 
 **When the token is about to expire**
 
 The `token-privilege-will-expire` callback occurs 30 seconds before a token expires.
 
-When the `token-privilege-will-expire` callback is triggered，the client must fetch the token from the server and call `renewToken` to use the new token to join the channel.
+When the `token-privilege-will-expire` callback is triggered，the client must fetch the token from the server and call `renewToken` to pass the new token to the SDK.
 
 ```JavaScript
 client.on("token-privilege-will-expire", async function(){
