@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_switchchannel1">
-    <title><ph keyref="switchChannel1"/><ph otherprops="3.3.0">[1/2]</ph></title>
+    <title><ph keyref="switchChannel1"/><ph>[1/2]</ph></title>
     <shortdesc id="short"><ph id="shortdesc">快速切换直播频道。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -25,24 +25,26 @@
        <plentry>
   <pt>token</pt>
   <pd><p>动态秘钥。<ul>
-      <li>安全要求不高: 将值设为 <ph keyref="NULL"/>。</li>
-      <li>安全要求高: 将值设置为 Token。如果你已经启用了 App Certificate, 请务必使用 Token。</li>
-  </ul>
-      <note outputclass="warning">
- 请务必确保用于生成 token 的 App ID 和 <xref keyref="create2"/> 方法初始化引擎时用的是同一个 App ID，否则会造成旁路推流失败。
-      </note>
-  </p></pd>
+                                <li>安全要求不高: 将值设为 <ph keyref="NULL"/>。</li>
+                                <li>安全要求高: 将值设置为从你的服务端生成的 Token。如果你的项目已经启用了 App Certificate, 请务必使用 Token。</li>
+                            </ul>
+                            <note outputclass="warning"> 请确保用于生成 token 的 App ID、频道名和用户名和 <xref
+                                    keyref="create2"/> 方法初始化引擎时用的 App ID，以及该方法中设置的频道名和用户名是一致的。
+                            </note>
+                        </p></pd>
        </plentry>
        <plentry>
   <pt><ph keyref="channelID"/></pt>
   <pd>
-      <p>标识通话的频道名称，长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:<ul id="ul_lx4_nrc_h4b">
- <li>26 个小写英文字母 a~z</li>
- <li>26 个大写英文字母 A~Z</li>
- <li>10 个数字 0~9</li>
- <li>空格</li>
- <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、">"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
-      </ul></p>
+      <p>频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同 <codeph>channelId</codeph> 的用户会进入同一个频道进行音视频互动。
+          该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:<ul
+                                id="ul_lx4_nrc_h4b">
+                                <li>26 个小写英文字母 a~z</li>
+                                <li>26 个大写英文字母 A~Z</li>
+                                <li>10 个数字 0~9</li>
+                                <li>空格</li>
+                                <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、">"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+                            </ul></p>
   </pd>
        </plentry>
    </parml>
