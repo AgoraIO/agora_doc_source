@@ -122,9 +122,9 @@ export type CourseWareList = CourseWareItem[]
 | `ext` | The file suffix. |
 | `size` | The file size (bytes). |
 | `updateTime` | The latest modified time of the file. |
-| `conversion` | The file conversion configuration object, which contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>`"dynamic"`: Convert the file to a static picture.</li><li>`"static"`: Convert the file to dynamic HTML.</li></ul><ul> |
-| `url` | File access address.   Flexible Classroom client will turn on file conversion by default for files with the suffixes `"ppt"``, `"pptx"`, "doc"`, `"docx"`, and `"pdf"` for display whiteboard the whiteboard in the classroom. If the suffix name is not listed above, url must be set``, `scenes` can be empty. |
-| `scenes` | The converted file download configuration. When the suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, scenes must be set``. |
-| `taskUuid` | The uuid of the file conversion task. |
+| `conversion` | The file conversion configuration object. Flexible Classroom automatically converts files with the suffixes of "ppt", "pptx", "doc", "docx", and "pdf" to formats that can be displayed on the whiteboard in the classroom. The JSON object contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>``"static": Convert the file to a static picture.</li><li>`"dynamic"`: Convert the file to a dynamic HTML page.</li></ul><ul> |
+| `url` | The download link of the file. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. When the file suffix is not "ppt", "pptx", "doc", "docx", and "pdf", you must set `url` and leave `scenes` empty. |
+| `scenes` | The download configuration of the converted file. When the file suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, you must set `scenes` for downloading the converted file. |
+| `taskUuid` | The unique identifier of the file conversion task. |
 | `taskToken` | The token used by the file conversion task. |
-| `taskProgress` | The file conversion task progress object. |
+| `taskProgress` | The JSON object that indicates the progress of the file conversion task. |
