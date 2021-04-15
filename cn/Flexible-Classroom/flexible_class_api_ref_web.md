@@ -128,3 +128,26 @@ export type CourseWareList = CourseWareItem[]
 | `taskUuid`     | 文件转换任务的 uuid。                                        |
 | `taskToken`    | 文件转换任务使用的 Token。                                   |
 | `taskProgress` | 文件转换任务进度对象。                                       |
+
+### EduRoleTypeEnum
+
+用户在课堂中的角色。用于 [AgoraEduSDK.launch](#launch) 方法。
+
+```
+export enum EduRoleTypeEnum {
+  teacher = 1,
+  student = 2
+}
+```
+
+### EduRoomTypeEnum
+
+课堂类型。用于 [AgoraEduSDK.launch](#launch) 方法。
+
+```
+export enum EduRoomTypeEnum {
+  Room1v1Class = 0,
+  RoomSmallClass = 4
+}
+```
+

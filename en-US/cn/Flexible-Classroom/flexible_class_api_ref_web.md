@@ -45,7 +45,7 @@ export type AgoraEduSDKConfigParams = {
 
 | Attributes | Description |
 | :------ | :----------------------------------------------------------- |
-| `appId` | The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep#step1). |
 
 ### LaunchOption
 
@@ -122,8 +122,8 @@ export type CourseWareList = CourseWareItem[]
 | `ext` | The file suffix. |
 | `size` | The file size (bytes). |
 | `updateTime` | The latest modified time of the file. |
-| `conversion` | The file conversion configuration object. Flexible Classroom automatically converts files with the suffixes of "ppt", "pptx", "doc", "docx", and "pdf" to formats that can be displayed on the whiteboard in the classroom. The JSON object contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>``"static": Convert the file to a static picture.</li><li>`"dynamic"`: Convert the file to a dynamic HTML page.</li></ul><ul> |
-| `url` | The download link of the file. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. When the file suffix is not "ppt", "pptx", "doc", "docx", and "pdf", you must set `url` and leave `scenes` empty. |
+| `conversion` | The file conversion configuration object. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. The JSON object contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>`"static"`: Convert the file to a static picture.</li><li>`"dynamic"`: Convert the file to a dynamic HTML page.</li></ul><ul> |
+| `url` | The download link of the file. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. When the file suffix is not `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"`, you must set `url` and leave `scenes` empty. |
 | `scenes` | The download configuration of the converted file. When the file suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, you must set `scenes` for downloading the converted file. |
 | `taskUuid` | The unique identifier of the file conversion task. |
 | `taskToken` | The token used by the file conversion task. |
