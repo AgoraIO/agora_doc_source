@@ -3,165 +3,122 @@ title: 播放音频文件
 platform: Windows
 updatedAt: 2020-12-04 01:39:56
 ---
-## 功能描述
+## Description
 
-在实时音视频互动过程中，为烘托气氛、增添趣味性，用户通常需要播放音效或音乐文件并且让频道内所有用户都听到。 例如，在游戏中添加打斗声，在唱歌时添加伴奏。 Agora 提供两组独立的方法，你可以分别实现播放音效和音乐文件。
+In the process of     real-time audio and video interaction, in order to enhance the atmosphere and add interest, users usually need to play sound effects or music files and let all users in the channel hear them. For example, adding fighting sounds to the game, and accompaniment when singing. Agora provides two independent methods, you can play sound effects and music files separately.
 
 ## Sample project
 
-Agora 在 GitHub 上提供已实现播放[音效](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioEffect)和[音乐](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioMixing)文件功能的开源示例项目。 You can view the source code on Github or download the project to try it out.
+Agora provides an open-source sample project on GitHub [](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioEffect)[](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioMixing)that implements setting the video profile. You can view the source code on Github or download the project to try it out.
 
-## 音效文件
+## Sound file
 
-本文提到的音效是指持续时间短的氛围音，例如掌声、欢呼声、打斗声、枪击声等，通常多个音效可以叠加使用。
+The sound effects mentioned in this article refer to short-duration ambient sounds, such as applause, cheers, fighting sounds, gunshots, etc. Usually multiple sound effects can be used in a superimposed manner.
 
-Agora 提供一组方法播放和管理音效文件，主要包括如下功能：
+Agora provides a set of methods to play and manage sound effect files, mainly including the following functions:
 
-- 播放本地或在线音效文件
-- 设置音效的空间位置、循环次数、播放位置、音量等播放选项
-- 灵活控制指定或全部音效文件的播放、暂停、恢复与停止
+- Play local or online audio files
+- Set the space position, loop times, playback position, volume and other playback options of the sound effect
+- Flexible control of the play, pause, resume and stop of specified or all sound effect files
 
+<div class="alert note">Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. Fore more information, see<a href="https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation">  Supported Media Formats in Media Foundation</a >。</div>
 
+Refer to the following steps to play audio files:
 
-支持的音效文件格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。 详见 [Supported Media Formats in Media Foundation](https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation)。
+1. Call the `preloadEffect `method to preload the local sound effect file before joining the channel.
+2. After joining the channel, call the `playEffect` method to play the sound effect file. After completing playing an audio effect file, the SDK triggers the `onAudioEffectFinished` callback.
 
-参考如下步骤实现播放音效文件：
+### Plays a specified audio effect.
 
-1. 加入频道前调用 `preloadEffect` 方法预加载本地音效文件。
-2. 加入频道后调用 `playEffect` 方法播放音效文件。 当音效文件播放完成时，SDK 会触发 `onAudioEffectFinished` 回调。
+Before playing the sound effect file, you need to set `filePath` and `soundId to specify the sound effect file`. The meaning of the two parameters is as follows:
 
-### 指定音效文件
+- `filePath`: Sound effect file path, supports local or online file path. The SDK will look for the sound effect file in this path.
+- `soundId`: Sound effect ID, which is defined by you and is unique. The SDK will identify the sound effect file based on the sound effect ID. Common methods for defining sound effect ID include self-incrementing ID, hashCode using sound effect file name, and so on.
 
-在播放音效文件前，你需要设置 `filePath` 和 `soundId `指定音效文件。 两个参数的含义如下：
-
-- `filePath`: 音效文件路径，支持本地或在线文件路径。 SDK 会在该路径中查找音效文件。
-- `soundId`: 音效 ID，由你自行定义，具有唯一性。 SDK 会根据音效 ID 来识别音效文件。 常见的音效 ID 定义方法有自增 ID、使用音效文件名的 hashCode 等。
-
-```
-// 设置根据指定的音效文件路径自动分配 soundId，并将音效文件路径和 soundId 关联。 
-m_mapEffect.insert(std::make_pair(strPath, m_soundId++));
+```c++
+// Set to automatically allocate soundId according to the specified sound effect file path, and associate the sound effect file path with soundId. m_mapEffect.insert(std::make_pair(strPath, m_soundId++));
 ```
 
-### **预加载**
+### 预加载
 
-SDK 支持预加载功能，你可以将音效文件提前加载到内存，以提高性能。 预加载不是一个必须的步骤，Agora 建议你按需选择。
+The SDK supports pre-loading. You can load the sound effect files into the memory in advance to improve performance. Preloading is not a necessary step, Agora recommends that you choose according to your needs.
 
-- 如果需要反复播放某个特定的音效，则建议预加载音效文件。
-- 如果音效文件较大，则不建议预加载音效文件。
+- If you need to play a specific sound effect repeatedly, it is recommended to preload the sound effect file.
+- Agora recommends you preload the audio effect to improve the efficiency or to play the audio effect multiple times.
 
-如需加载多个本地音效文件，你需要多次调用 `preloadEffect`。
+To load multiple local sound effect files, you need to call preloadEffect multiple times``.
 
+<div class="alert note"><li>Only supports pre-loading local sound effect files.</li><li><code>preloadEffect</code> 需要在加入频道前调用。</li><li>调用 <code>preloadEffect</code> 后，音效文件会一直占用内存，直至调用 <code>unloadEffect</code> 或者离开频道。</li></div>
 
-- 仅支持预加载本地音效文件。
-- `preloadEffect` 需要在加入频道前调用。
-- 调用 `preloadEffect` 后，音效文件会一直占用内存，直至调用 `unloadEffect` 或者离开频道。
-
-```
-// 将指定的本地音效文件预加载至内存。  
-m_rtcEngine->preloadEffect(m_mapEffect[strEffect], strPath.c_str()); 
-
-// 释放预加载的音效文件。  
-m_rtcEngine->unloadEffect(m_mapEffect[strEffect]);
+```c++
+// Preload the specified local sound effect file into the memory.  m_rtcEngine-> preloadEffect (m_mapEffect [strEffect], strPath.c_str ());
+// Release the preloaded sound effect file.  m_rtcEngine-> unloadEffect (m_mapEffect [strEffect]);
 ```
 
-### **播放和停止**
+### 播放和停止
 
-调用 `playEffect` 播放音效文件。 根据需求，你可以多次调用 `playEffect` 同时播放多个音效文件。 在播放音效文件时，你可以设置循环次数、音调、音量、播放位置等
+Call `playEffect` to play the sound effect file. According to your needs, you can call playEffect multiple times` to play` multiple sound effect files at the same time. When playing a sound effect file, you can set the number of loops, pitch, volume, playback position, etc.
 
-- `playEffect` 需要在加入频道后调用。
-- 不支持同时播放多个在线音效文件。
+<div class="alert note"><code>playEffect</code> 需要在加入频道后调用。</div>
 
-```
-// 设置音效循环播放的次数。 -1 表示无限循环。  
-int loops = -1; 
-// 设置的音效的音调。 取值范围为 [0.5, 2.0]。  
-double pitch = 1.5; 
-// 设置音量。 取值范围为 [0,100]，100 表示原始音量。  
-int gain = 100; 
-// 设置的音效空间位置。 1.0 表示音效出现在右边。  
-double pan = 1.0; 
-// 设置是否将音效发布至远端。 true 表示本地用户和远端用户都能听到音效；false 表示只有本地用户能听到音效。  
-BOOL publish = true; 
-// 设置音效文件的播放进度。 500 表示从音效文件的第 500 ms 开始播放。  
-int startPos = 500; 
- 
-// 播放指定的音效文件。 （demo 缺少 startPos 的示例代码） 
-m_rtcEngine->playEffect(m_mapEffect[strEffect], strFile.c_str(), loops, pitch, pan, gain, publish, startPos); 
- 
-// 本地音效文件播放已结束回调。  
-void onAudioEffectFinished(m_mapEffect[strEffect]);
+```c++
+// Set the number of times the sound effect is played in a loop. -1 means infinite loop.  int loops = -1;
+// Set the tone of the sound effect. The value range is [0.5, 2.0].  double pitch = 1.5;
+// Set the volume. The value range is [0,100], 100 represents the original volume.  int gain = 100;
+// Set the sound effect space position. 1.0: The audio effect displays to the right.  double pan = 1.0;
+// Set whether to publish the sound effect to the remote end. true means that both local users and remote users can hear the sound effect; false means that only the local user can hear the sound effect.  BOOL publish = true;
+// Set the playback progress of the sound effect file. 500 means to start playing from the 500th ms of the sound effect file.  int startPos = 500;
+ // Play the specified sound effect file. (The demo lacks the sample code of startPos)
+m_rtcEngine-> playEffect (m_mapEffect [strEffect], strFile.c_str (), loops, pitch, pan, gain, publish, startPos);
+ Occurs when the local audio effect playback finishes.  void onAudioEffectFinished (m_mapEffect [strEffect]);
 ```
 
-成功播放后，你可以停止播放指定或全部的音效文件。
+After successful playback, you can stop playing the specified or all sound effect files.
 
-```
-// 停止播放指定的音效文件。 
-m_rtcEngine->stopEffect(m_mapEffect[strEffect]);
- 
-// 停止播放所有音效文件。 
-m_rtcEngine->stopAllEffects();
+```c++
+Stops playing a specified audio effect. m_rtcEngine-> stopEffect (m_mapEffect [strEffect]);
+ Stops playing all audio effects. m_rtcEngine-> stopAllEffects ();
 ```
 
-### **暂停与恢复**
+### 暂停与恢复
 
-在音效文件播放时，你可以暂停或恢复播放指定或全部音效文件。
+When the sound effect file is playing, you can pause or resume playing the specified or all sound effect files.
 
-本组方法需要在 `playEffect` 后调用。
+<div class="alert note">Call this method after <code>playEffect</code>.</div>
 
-```
-// 暂停播放指定的音效文件。  
-m_rtcEngine->pauseEffect(m_mapEffect[strEffect]); 
+```c++
+// Pause playing the specified sound effect file.  m_rtcEngine-> pauseEffect (m_mapEffect [strEffect]);
+ Resumes playing a specified audio effect.  m_rtcEngine-> resumeEffect (m_mapEffect [strEffect]);
  
- 
-// 恢复播放指定的音效文件。  
-m_rtcEngine->resumeEffect(m_mapEffect[strEffect]); 
- 
- 
-// 暂停播放所有的音效文件。 
-m_rtcEngine->pauseAllEffects(); 
- 
- 
-// 恢复播放所有的音效文件。 
-m_rtcEngine->resumeAllEffects();
+// 暂停播放所有的音效文件。 m_rtcEngine-> pauseAllEffects ();
+ Resumes playing all audio effects. m_rtcEngine->resumeAllEffects();
 ```
 
-### **播放位置**
+### 播放位置
 
-如需在播放音效文件后调整播放位置，你可以调用本组方法。 例如，在循环播放音效文件期间，你可以调用本组方法调整播放位置，无需停止播放。
+If you need to adjust the playback position after playing the sound effect file, you can call this group of methods. For example, you can call this group of methods to adjust the playback position during the loop playback of the sound effect file without stopping the playback.
 
-- 本组方法需要在 `playEffect` 后调用。
-- 本组方法仅适用于本地音效文件。
+- Call this method` after playEffect`.
+- This set of methods is only applicable to local sound effect files.
 
-```
-// 获取指定本地音效文件的总时长。  
-m_rtcEngine->getEffectDuration(m_mapEffect[strEffect]); 
+```c++
+// Get the total duration of the specified local sound effect file.  m_rtcEngine-> getEffectDuration (m_mapEffect [strEffect]);
+ Sets the playback position of an audio effect file.  m_rtcEngine-> setEffectPosition (m_mapEffect [strEffect], pos);
  
- 
-// 设置指定音效文件的播放位置。  
-m_rtcEngine->setEffectPosition(m_mapEffect[strEffect], pos); 
- 
- 
-// 获取指定本地音效文件的总时长。  
-m_rtcEngine->getEffectCurrentPosition(m_mapEffect[strEffect]);
+// 获取指定本地音效文件的总时长。  m_rtcEngine-> getEffectCurrentPosition (m_mapEffect [strEffect]);
 ```
 
-### 音量
+### Volume setting
 
-在音效文件开始播放后，你可以调用本组方法调节播放音量。 例如，在循环播放音效文件期间，你可以调用本组方法调节播放音量，无需停止播放。
+After the sound effect file starts to play, you can call this set of methods to adjust the playback volume. For example, you can call this group of methods to adjust the playback volume during the loop playback of the sound effect file without stopping the playback.
 
-本组方法需要在 `playEffect` 后调用。
+<div class="alert note">Call this method after <code>playEffect</code>.</div>
 
-```
-// 设置所有音效文件的播放音量。 取值范围为 [0,100]，100 表示原始音量。  
-m_rtcEngine->setEffectsVolume(50); 
+```c++
+// Set the playback volume of all sound effect files. The value range is [0,100], 100 represents the original volume.  m_rtcEngine->setEffectsVolume(50);
  
- 
-// 设置指定音效文件的播放音量。 取值范围为 [0,100]，100 表示原始音量。  
-m_rtcEngine->setVolumeOfEffect(m_mapEffect[strEffect], 50); 
- 
- 
-// 获取音效文件的播放音量。 音量范围为 [0,100]，100 表示原始音量。  
-m_rtcEngine->getEffectsVolume();
+// 设置指定音效文件的播放音量。 The value range is [0,100], 100 represents the original volume.  m_rtcEngine-> setVolumeOfEffect (m_mapEffect [strEffect], 50);
+ Retrieves the volume of the audio effects. The volume range is [0,100], and 100 represents the original volume.  m_rtcEngine->getEffectsVolume();
 ```
 
 ### API reference
@@ -183,116 +140,85 @@ m_rtcEngine->getEffectsVolume();
 - `getEffectsVolume`
 - `onAudioEffectFinished`
 
-## 音乐混音
+## Audio mixing
 
-音乐混音是指将音乐文件与麦克风采集的音频混合。 使用混音功能的用户通常会播放比较长的音乐文件，并且同一时间只播放一个音乐文件。 例如，在唱歌时播放伴奏，在聊天时播放背景音乐。
+Music mixing refers to mixing music files with audio collected by a microphone. Users who use the audio mixing function usually play relatively long music files and only play one music file at a time. For example, play accompaniment when singing, and play background music when chatting.
 
-Agora 提供一组方法播放和管理音乐文件，主要包括如下功能：
+Agora provides a set of methods to play and manage music files, mainly including the following functions:
 
-- 播放本地或在线音乐文件
-- 设置音乐文件的播放次数、播放位置、音量、音调等播放选项
-- 灵活控制音乐文件的播放、暂停、恢复与停止
-- 报告当前的音乐文件播放状态和播放状态改变的原因
+- Play local or online music files
+- Set the number of play times, play position, volume, tone and other play options of music files
+- Flexible control of the playback, pause, resume and stop of music files
+- Report the current music file playback status and the reason for the playback status change
 
-支持的音乐文件格式包括 MP3、AAC、M4A、MP4、WAV 和 3GP。 详见 [Supported Media Formats in Media Foundation](https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation)。
+<div class="alert note">Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. Fore more information, see<a href="https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation">  Supported Media Formats in Media Foundation</a >。</div>
 
-成功调用 `startAudioMixing` 后，当音乐文件播放状态发生改变时，SDK 会触发 `onAudioMixingStateChanged` 回调。
+After successfully calling `startAudioMixing`, the SDK will trigger the `onAudioMixingStateChanged `callback when the playback state of the music file changes.
 
-### **播放和停止**
+### 播放和停止
 
-调用 `startAudioMixing` 播放音乐文件。 在播放音乐文件时，可以设置循环次数、播放位置等。
+720: Successfully call `startAudioMixing` to play music files. When playing music files, you can set the number of loops, playback position, etc.
 
-- `startAudioMixing` 需要在加入频道后调用。
-- 如果在播放一个音乐文件时再次调用 `startAudioMixing`，则 SDK 会自动停止播放上一个音乐文件并开始播放下一个音乐文件。
+<div class="alert note">如果在播放一个音乐文件时再次调用 <code>startAudioMixing</code>，则 SDK 会自动停止播放上一个音乐文件并开始播放下一个音乐文件。</div>
 
-```
-// 指定需要混音的本地或在线音乐文件的绝对路径。  
-std::string filePath = "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3"; 
-// 设置是否只在本地播放音乐文件。 true 表示只有本地用户能听到音乐；false 表示本地用户和远端用户都能听到音乐。  
-BOOL loopback = false; 
-// 设置是否用音乐文件替换麦克风采集的音频。 true 表示用户只能听到音乐；false 表示用户可以听到音乐和麦克风采集的音频。  
-BOOL replace = true; 
-// 设置音乐文件的播放次数。 1 表示播放 1 次。  
-int cycle = 1; 
-// 设置音乐文件的播放进度。 500 表示从音乐文件的第 500 ms 开始播放。  
-int startPos = 500; 
- 
- 
-// 开始播放音乐文件。 （demo 缺 startPos 的示例代码） 
-m_rtcEngine->startAudioMixing(filePath, loopback, replace, cycle, startPos); 
- 
- 
-// 本地用户的音乐文件播放状态已改变回调。  
-void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)
+```c++
+// Specify the absolute path of the local or online music file that needs to be mixed.  std::string filePath = "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3";
+// Set whether to play music files locally. true means that only local users can hear music; false means that both local users and remote users can hear music.  BOOL loopback = false;
+// Set whether to replace the audio collected by the microphone with a music file. true means that the user can only hear music; false means that the user can hear the music and audio collected by the microphone.  BOOL replace = true;
+// Set the number of times the music file is played. 1 means play once.  int cycle = 1;
+// Set the playback progress of the music file. 500 means to start playing from the 500th ms of the music file.  int startPos = 500;
+ Starts playing and mixing the music file. (The demo lacks the sample code of startPos)
+m_rtcEngine->startAudioMixing(filePath, loopback, replace, cycle, startPos);
+ Occurs when the state of the local user's audio mixing file changes.  virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason) {}
 ```
 
-成功播放音乐文件后，你可以调用 `stopAudioMixing` 停止播放。
+After successfully playing the music file, you can call `stopAudioMixing` to stop the playback.
 
-```
-//停止播放音乐文件。 
-m_rtcEngine->stopAudioMixing();
-```
-
-### **暂停与恢复**
-
-在音乐文件播放时，你可以暂停或恢复播放音乐文件。
-
-本组方法需要在 `startAudioMixing` 后调用。
-
-```
-// 暂停播放音乐文件。  
-m_rtcEngine->pauseAudioMixing(); 
- 
-// 恢复播放音乐文件。  
-m_rtcEngine->resumeAudioMixing();
+```c++
+Stops playing and mixing the music file. m_rtcEngine->stopAudioMixing();
 ```
 
-### **播放位置**
+### 暂停与恢复
 
-在音乐文件播放时，你可以调用本组方法调整音乐文件的播放位置，无需停止播放。
+When the music file is playing, you can pause or resume playing the music file.
 
-本组方法需要在调用 `startAudioMixing` 并收到 `onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)` 回调后调用。
+<div class="alert note">Call this method after calling `<code>startAudioMixing</code>`.</div>
 
-```
-// 获取指定音乐文件的总时长。  
-m_rtcEngine->getAudioMixingDuration(filePath); 
- 
-// 设置当前音乐文件的播放位置。 500 表示从音乐文件的第 500 ms 开始播放。  
-m_rtcEngine->setAudioMixingPosition(500); 
- 
-// 获取当前音乐文件的播放进度。  
-m_rtcEngine->getAudioMixingCurrentPosition();
+```c++
+Pauses playing and mixing the music file.  m_rtcEngine-> pauseAudioMixing ();
+ Resumes playing and mixing the music file.  m_rtcEngine->resumeAudioMixing();
 ```
 
-### 音量与音调
+### 播放位置
 
-成功播放音乐文件后，你可以调用本组方法调整音乐文件的播放音量与音调，无需停止播放。
+When the music file is playing, you can call this group of methods to adjust the playback position of the music file without stopping the playback.
 
-本组方法需要在调用 `startAudioMixing` 并收到 `onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)` 回调后调用。
+<div class="alert note">本组方法需要在调用 <code>startAudioMixing</code> 并收到 <code>onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</code> 回调后调用。</div>
 
+```c++
+Retrieves the total duration of the music file.  m_rtcEngine->getAudioMixingDuration(filePath);
+ // Set the playback position of the current music file. 500 means to start playing from the 500th ms of the music file.  m_rtcEngine->setAudioMixingPosition(500);
+ // Get the playback progress of the current music file.  m_rtcEngine->getAudioMixingCurrentPosition();
 ```
-// 调节当前音乐文件在本地和远端的播放音量。 取值范围为 [0,100]，100 表示原始音量。  
-m_rtcEngine->adjustAudioMixingVolume(50); 
+
+### Volume and tone
+
+After successfully playing the music file, you can call this set of methods to adjust the playback volume and pitch of the music file without stopping the playback.
+
+<div class="alert note">本组方法需要在调用 <code>startAudioMixing</code> 并收到 <code>onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</code> 回调后调用。</div>
+
+```c++
+// Adjust the local and remote playback volume of the current music file. The value range is [0,100], 100 represents the original volume.  m_rtcEngine->adjustAudioMixingVolume(50);
  
+// 调节当前音乐文件在远端的播放音量。 The value range is [0,100], 100 represents the original volume.  m_rtcEngine->adjustAudioMixingPublishVolume(50);
  
-// 调节当前音乐文件在远端的播放音量。 取值范围为 [0,100]，100 表示原始音量。  
-m_rtcEngine->adjustAudioMixingPublishVolume(50); 
+// 调节当前音乐文件在本地的播放音量。 The value range is [0,100], 100 represents the original volume.  m_rtcEngine->adjustAudioMixingPlayoutVolume(50);
  
+// 获取当前音乐文件在本地的播放音量。 The volume range is [0,100], and 100 represents the original volume.  m_rtcEngine->getAudioMixingPlayoutVolume();
  
-// 调节当前音乐文件在本地的播放音量。 取值范围为 [0,100]，100 表示原始音量。  
-m_rtcEngine->adjustAudioMixingPlayoutVolume(50); 
+// 获取当前音乐文件在远端的播放音量。 The volume range is [0,100], and 100 represents the original volume.  m_rtcEngine->getAudioMixingPublishVolume();
  
- 
-// 获取当前音乐文件在本地的播放音量。 音量范围为 [0,100]，100 表示原始音量。  
-m_rtcEngine->getAudioMixingPlayoutVolume(); 
- 
- 
-// 获取当前音乐文件在远端的播放音量。 音量范围为 [0,100]，100 表示原始音量。  
-m_rtcEngine->getAudioMixingPublishVolume(); 
- 
- 
-// 调节当前音乐文件的音调。 取值范围为 [-12,12]，0 表示原始音调，1 表示升高一个半音。 
-m_rtcEngine->setAudioMixingPitch(5);
+// 调节当前音乐文件的音调。 The value range is [-12,12], 0 means the original pitch, and 1 means raising it by a semitone. m_rtcEngine->setAudioMixingPitch(5);
 ```
 
 ### API reference
@@ -301,7 +227,7 @@ m_rtcEngine->setAudioMixingPitch(5);
 - `stopAudioMixng`
 - `pauseAudioMixing`
 - `resumeAudioMixing`
-- `getAudioMixingDuration`
+- 3. `getAudioMixingDuration`
 - `setAudioMixingPosition`
 - `getAudioMixingCurrentPosition`
 - `adjustAudioMixingVolume`
@@ -310,4 +236,4 @@ m_rtcEngine->setAudioMixingPitch(5);
 - `getAudioMixingPlayoutVolume`
 - `getAudioMixingPublishVolume`
 - `setAudioMixingPitch`
-- `onAudioMixingStateChanged`
+- 1. `onAudioMixingStateChanged`
