@@ -19,20 +19,20 @@
    <dl outputclass="deprecated">
        <dlentry >
   <dt>Deprecated:</dt>
-  <dd>This method is deprecated as of v2.3. Please use the method instead<xref keyref="setVideoEncoderConfiguration" />.</dd>
+  <dd>This method is deprecated as of v2.3. Please use the <xref keyref="setVideoEncoderConfiguration" /> method instead.</dd>
        </dlentry>
    </dl>
-   <p>Sets the video encoder configuration. You can call this method either before or after joining a channel. If the user does not need to reset the video encoding properties after joining the channel, Agora recommends to<xref keyref="enableVideo"/> call this method beforehand to speed up the first frame output time.</p>
+   <p>This method sets the video encoder configuration. You can call this method either before or after joining a channel. If the user does not need to reset the video encoding properties after joining the channel, Agora recommends calling this method before <xref keyref="enableVideo"/> to reduce the time to render the first video frame.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>profile</pt>
-  <pd>Video profile See:<xref keyref="VIDEO_PROFILE_TYPE"/>.</pd>
+  <pd>The video profile. See: <xref keyref="VIDEO_PROFILE_TYPE"/>.</pd>
        </plentry>
        <plentry>
   <pt>swapWidthAndHeight</pt>
-  <pd><p>The SDK will output a fixed width and height video according to the video<parmname> profile</parmname> you selected. This parameter sets whether to swap width and height:</p>
+  <pd><p>The SDK outputs video with a fixed width and height according to the video profile (<parmname>profile</parmname>) you selected. This parameter sets whether to swap width and height of the video:</p>
   <ul>
       <li><ph keyref="true"/>true: Swap the width and height.</li>
       <li><ph keyref="false"/>false: (Default) Do not swap the width and height.</li>
