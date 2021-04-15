@@ -22,17 +22,21 @@ UIKit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO
 - 安装 [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
   ```shell
-  # Install global dev dependencies
-  yarn
-  # Install all dependencies via lerna and yarn
-  yarn bootstrap
+  # Install Node.js and npm globally
+  npm install -g npm
+  # Check Node.js version
+  node -v
+  # Check npm version
+  npm -v
   ```
 
 - 安装 yarn
 
   ```shell
-  # Open storybook
-  yarn s
+  # Install yarn
+  npm install yarn -g
+  # Check yarn version
+  yarn -v
   ```
 
 ### 基本步骤
