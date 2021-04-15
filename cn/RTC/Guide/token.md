@@ -127,7 +127,7 @@ function fetchToken(uid, channelName) {
 
     let config = {
         method: 'get',
-        url: 'http://10.53.2.55:8081/fetch_rtc_token',
+        url: 'https://<SERVER_URL>/fetch_rtc_token',
         headers: {
             'Content-Type': 'application/json'
         },
