@@ -17,12 +17,12 @@
         <section id="detailed_desc">
    
    <p>This method disables or re-enables the local video capturer, and does not affect receiving the remote video stream.</p>
-   <p>After calling<xref keyref="enableVideo"/>, the local video is enabled by default. You can call <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) to close the local video capture. If you want to turn it back on after turning it off, you can call <codeph>enableLocalVideo(<ph keyref="true"/>)</codeph>.</p>
-   <p>After successfully disabling or enabling local video capture, the remote end will trigger a <xref keyref="onUserEnableLocalVideo"/><?oxy_comment_start author="pkl" timestamp="20210412T144618+0800" comment="Java/C++ 写的是这个，但是 OC 写的是 remoteVideoStateChangedOfUid" flag="done"?> callback<?oxy_comment_end?>.</p>
+   <p>After calling <xref keyref="enableVideo"/>, the local video capturer is enabled by default. You can call <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) to disable the local video capturer. If you want to re-enable it, call <codeph>enableLocalVideo(<ph keyref="true"/>)</codeph>.</p>
+   <p>After the local video capturer is successfully disabled or re-enabled, the SDK triggers the <xref keyref="onUserEnableLocalVideo"/><?oxy_comment_start author="pkl" timestamp="20210412T144618+0800" comment="Java/C++ 写的是这个，但是 OC 写的是 remoteVideoStateChangedOfUid" flag="done"?> callback<?oxy_comment_end?> on the remote client.</p>
    <note outputclass="note">
        <ul>
   <li>You can call this method either before or after joining a channel.</li>
-  <li>This method affects the internal engine and can be called after the \ref agora::rtc::IRtcEngine:<xref keyref="leaveChannel"/>:leaveChannel &quot;leaveChannel&quot; method.</li>
+  <li>This method enables the internal engine and is valid after <xref keyref="leaveChannel"/>.</li>
        </ul>
    </note>
         </section>
@@ -31,10 +31,10 @@
        <plentry>
   <pt>enabled</pt>
   <pd>
-      <p>Enables/Disables the local video capture.</p>
+      <p>Whether to enable the local video capture.</p>
       <ul>
- <li><ph keyref="true"/>true: (Default) Re-enable the local video.</li>
- <li><ph keyref="false"/>false: Disable the local video. Once the local video is disabled, the remote users can no longer receive the video stream of this user, while this user can still receive the video streams of the other remote users. When set to<ph keyref="false"/>, this method does not require a local camera.</li>
+ <li><ph keyref="true"/>: (Default) Enable the local video capture.</li>
+ <li><ph keyref="false"/>: Disable the local video capture. Once the local video is disabled, the remote users can no longer receive the video stream of this user, while this user can still receive the video streams of the other remote users. When set to <ph keyref="false"/>, this method does not require a local camera.</li>
       </ul>
   </pd>
        </plentry>
