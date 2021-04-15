@@ -15,11 +15,11 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/enableVideo"/>
         </section>
         <section id="detailed_desc">
-            <p>Call this method either before joining a channel or during a call. If this method is called before joining a channel, the call starts in the video mode. Call the<xref
-                keyref="disableVideo"/> method to turn off the video mode.</p><p>After the method is successfully called, the remote end will trigger a<xref
-                keyref="onRemoteVideoStateChanged"/> callback.</p><note outputclass="note">
+            <p>Call this method either before joining a channel or during a call. If this method is called before joining a channel, the call starts in the video mode. If this method is called during a call, the call switches to the video mode. Call the <xref
+                keyref="disableVideo"/> method to disable the video mode.</p><p>A successful call of this method triggers the <xref
+                keyref="onRemoteVideoStateChanged"/> callback on the remote client.</p><note outputclass="note">
                 <ul>
-                    <li>This method affects the internal engine and can be called after the \ref agora::rtc::IRtcEngine::leaveChannel &quot;<xref keyref="leaveChannel"/>leaveChannel&quot; method.</li>
+                    <li>This method enables the internal engine and is valid after <xref keyref="leaveChannel"/>.</li>
                     <li>This method resets the internal engine and takes some time to take effect. Agora recommends using the following API methods to control the video engine modules separately:<ul>
                             <li><xref keyref="enableLocalVideo"/>: Whether to enable the camera to create the local video stream.</li>
                             <li><xref keyref="muteLocalVideoStream"/>: Whether to publish the local video stream.</li>
