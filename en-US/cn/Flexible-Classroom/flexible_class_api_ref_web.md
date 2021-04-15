@@ -121,8 +121,8 @@ export type CourseWareList = CourseWareItem[]
 | `resourceUuid,` | The file uuid. This is the unique identifier of a file. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `ext` | The file suffix. |
 | `size` | The file size (bytes). |
-| `updateTime` | The time when the courseware was last modified. |
-| `conversion` | The file conversion configuration object contains the following fields:<ul><li>`type`: Conversion type:</li><ul><li>`"dynamic"`: Convert to a static picture.</li><li>`"static"`: Convert to dynamic HTML.</li></ul><ul> |
+| `updateTime` | The latest modified time of the file. |
+| `conversion` | The file conversion configuration object, which contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>`"dynamic"`: Convert the file to a static picture.</li><li>`"static"`: Convert the file to dynamic HTML.</li></ul><ul> |
 | `url` | File access address.   Flexible Classroom client will turn on file conversion by default for files with the suffixes `"ppt"``, `"pptx"`, "doc"`, `"docx"`, and `"pdf"` for display whiteboard the whiteboard in the classroom. If the suffix name is not listed above, url must be set``, `scenes` can be empty. |
 | `scenes` | The converted file download configuration. When the suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, scenes must be set``. |
 | `taskUuid` | The uuid of the file conversion task. |
