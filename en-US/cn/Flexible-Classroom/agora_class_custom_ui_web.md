@@ -1,45 +1,25 @@
-本页介绍如何自定义修改灵动课堂的 UI，如颜色、按钮、布局等。
+This page introduces how to customize the UI of Flexible Classroom, such as colors, buttons, and layout.
 
-## 工作原理
+## Working principles
 
-灵动课堂桌面端引入了开源工具 [Storybook](https://storybook.js.org/docs/react/get-started/introduction) 来开发和管理 UI 组件，将灵动课堂的 UI 代码和业务逻辑隔离开来，独立成 UIKit 以便于开发者自定义修改课堂 UI。
+The desktop client of Flexible Classroom uses the open-source tool [Storybook](https://storybook.js.org/docs/react/get-started/introduction) to develop and manage UI components. It derives the UI code from the business logic and provides the UIKit. With the UIKit, developers can customize the classroom UI without changing the business logic of Flexible Classroom.
 
 ![custom-ui-web](https://web-cdn.agora.io/docs-files/1617714946419)
 
-UIKit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas%2F1.1.0) 仓库（dev/apaas/1.1.0 分支）中 `packages/agora-scenario-ui-kit/src` 目录下，结构介绍如下：
+You can find the source code of the UIKit in the `packages/agora-scenario-ui-kit/src` folder in the [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas%2F1.1.0) repository on GitHub (Branch dev/apaas/1.1.0). The project structure of the UIKit is as follows:
 
-| 文件夹 | Description |
+| Folder | Description |
 | :----------- | :----------------------------------------------------------- |
-| `components` | 灵动课堂使用的基础 UI 组件的源码。 一个 UI 组件一般包含以下文件：<li>`.css`: 定义组件的样式。</li><li>`.stories.tsx`: 定义组件在 Storybook 中的展示。</li><li>`.tsx`: 定义组件的具体设计。</li> |
-| `scaffold` | 场景 UI 组件，可作为脚手架查看基础 UI 组件的组合效果。 |
-| `styles` | 定义全局样式。 |
-| `utilities` | 工具函数，如国际化、自定义 hooks 等。 |
+| `components` | The source code of the basic UI components used by Flexible Classroom. A UI component generally contains the following files:<li>`.css`: Define the style of the component.</li><li>`.stories.tsx`: Define the display of components in Storybook.</li><li>`.tsx`: Define the detailed design of the component.</li> |
+| `scaffold` | The use-case-level UI components, which play as scaffolds and show how the basic UI components are combined in a use case. |
+| `styles` | Define the global style. |
+| `utilities` | Utility functions, such as internationalization, custom hooks, etc. |
 
-## 实现方法
+## Implementation
 
-### 环境准备
+### Environmental preparation
 
-- 安装 [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-
-   ```shell
-   # Install global dev dependencies
-yarn
-# Install all dependencies via lerna and yarn
-yarn bootstrap
-   ```
-
-- 安装 yarn
-
-   ```shell
-   # Open storybook
-yarn s
-   ```
-
-### 基本步骤
-
-参考以下步骤修改灵动课堂的 UI：
-
-1. 进入 CloudClass-Desktop 项目根目录，运行以下命令安装依赖。
+- Install[ Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
    ```shell
    # Install global dev dependencies
@@ -48,43 +28,63 @@ yarn
 yarn bootstrap
    ```
 
-2. 进入 `packages/agora-scenario-ui-kit` 目录，运行以下命令打开 Storybook。
+- Install yarn
 
    ```shell
    # Open storybook
 yarn s
    ```
 
-   你可以在 Storybook 中看到灵动课堂使用的所有基础 UI 组件。
+### The basic steps
+
+Refer to the following steps to modify the UI of  Flexible Classroom:
+
+1. Go to the root directory of the CloudClass-Desktop project and run the following command to install dependencies.
+
+   ```shell
+   # Install global dev dependencies
+yarn
+# Install all dependencies via lerna and yarn
+yarn bootstrap
+   ```
+
+2. Go to the `packages/agora-scenario-ui-kit` directory and run the following command to open Storybook.
+
+   ```shell
+   # Open storybook
+yarn s
+   ```
+
+   You can see all the basic UI components used   Flexible Classroom in Storybook.
 
    ![storybook-example](https://web-cdn.agora.io/docs-files/1617714921810)
 
-3. 你可以通过直接修改 `packages/agora-scenario-ui-kit/src/components` 目录下组件的源码文件来修改样式，保存代码后即可在 Storybook 中实时看到效果。 如果灵动课堂的基础 UI 组件无法满足你的需求，你可以自行在 `packages/agora-scenario-ui-kit/src/components` 目录下新增 UI 组件，然后在 `packages/agora-classroom-sdk/src/ui-components` 目录下修改基础 UI 组件的组合规则调整灵动课堂布局。 详见[修改示例](#example)。
+3. You can modify the style by directly modifying the` component source files in the packages/agora-scenario-ui-kit/src/components` directory, and you can see the effect in real-time in Storybook after saving the code. If the basic UI components of Flexible Classroom Class cannot meet your needs, you can add UI components to the `packages/agora-scenario-ui-kit/src/components` directory by yourself, and then add them to `packages/agora-classroom-sdk/src/ui` Modify the combination rules of the basic UI components under the -components directory to adjust the smart classroom layout. See the modified example for details[](#example).
 
-4. 参考以下步骤在灵动课堂中查看修改后的 UI：
+4. Refer to the following steps to view the revised UI in  Flexible Classroom:
 
-   1. 把项目主目录和 `packages/agora-classroom-sdk` 目录下的 `env.example` 重命名为 `.env`，然后在 `.env` 文件中填写你的 Agora App ID，并将 `REACT_APP_AGORA_APP_SDK_DOMAIN` 设为 `https://api-test.agora.io/preview`。
+   1. Rename the project home directory and env.example in` the `packages/Agora-classroom-sdk` directory` to `.env`, then` fill in your Agora App ID` in the .env` file, and set REACT_APP_AGORA_APP_SDK_DOMAIN` to `https://api-test. Agora/preview`.
 
-   2. 在项目主目录下通过以下命令运行灵动课堂。
+   2. Go to the project directory, and run the following command to build the project:
 
       ```shell
       npm run dev
       ```
 
-      或者通过以下命令：
+      Or through the following command:
 
       ```shell
       yarn run dev
       ```
 
 <a name="example"></a>
-## 修改示例
+## Example
 
-### 修改导航栏颜色
+### Modify the color of the navigation bar
 
-以下示例演示了如何通过修改 `agora-scenario-ui-kit/src/components/biz-header/index.css` 文件将导航栏组件 BizHeader 的背景颜色从白色修改为红色。
+The following example demonstrates how to modify the background color of the` navigation bar component BizHeader from white to red by modifying the agora-scenario-ui-kit/src/components/biz-header/index.css` file.
 
-#### 修改前
+#### before fixing
 
 ```css
 .biz-header {
@@ -95,7 +95,7 @@ yarn s
 
 ![biz-header-before](https://web-cdn.agora.io/docs-files/1617714984066)
 
-#### 修改后
+#### After modification
 
 ```css
 .biz-header {
@@ -106,25 +106,25 @@ yarn s
 
 ![biz-header-after](https://web-cdn.agora.io/docs-files/1617715004882)
 
-修改后，灵动课堂中所有使用 BizHeader 组件的地方的背景色均会变成红色。
+After the modification, the background color of all the places where the BizHeader component is used in the Smart Classroom will become red.
 
 ![biz-header-after-fx](https://web-cdn.agora.io/docs-files/1617715029659)
 
-### 修改缩放控制器样式
+### Modify the zoom controller style
 
-以下示例演示了如何通过修改 `agora-scenario-ui-kit/src/components/zoom-controller/index.tsx` 文件在缩放控制器组件 ZoomController 的中增加 "Add" 文字。
+The following example demonstrates how to `add "Add"` text to the zoom controller component ZoomController by modifying the agora-scenario-ui-kit/src/components/zoom-controller/index.tsx file.
 
-#### 修改前
+#### before fixing
 
 ```ts
 export const ZoomController: FC<ZoomControllerProps> = ({
 
-    return (
+                            return;
     <div className={cls} {...restProps}>
 
-            ......
+      ......
 
-            <span className="line"></span>
+      <span className="line"></span>
       <Tooltip title={t('tool.prev')} placement="top">
         <Icon
           type="backward"
@@ -134,7 +134,7 @@ export const ZoomController: FC<ZoomControllerProps> = ({
         />
       </Tooltip>
       <span className="page-info">
-        {currentPage}/{totalPage}
+        {currentPage} / {totalPage}
       </span>
       <Tooltip title={t('tool.next')} placement="top">
         <Icon
@@ -148,17 +148,17 @@ export const ZoomController: FC<ZoomControllerProps> = ({
 };
 ```
 
-#### 修改后
+#### After modification
 
 ```ts
 export const ZoomController: FC<ZoomControllerProps> = ({
 
-    return (
+                            return;
     <div className={cls} {...restProps}>
 
-            ......
+      ......
 
-            <span className="line"></span>
+      <span className="line"></span>
       <Tooltip title={t('tool.prev')} placement="top">
         <Icon
           type="backward"
@@ -168,7 +168,7 @@ export const ZoomController: FC<ZoomControllerProps> = ({
         />
       </Tooltip>
       <span className="page-info">
-        {currentPage}/{totalPage}
+        {currentPage} / {totalPage}
       </span>
       <Tooltip title={t('tool.next')} placement="top">
         <Icon
@@ -185,15 +185,15 @@ export const ZoomController: FC<ZoomControllerProps> = ({
 
 ![zoom-controller-after](https://web-cdn.agora.io/docs-files/1617715061445)
 
-修改后，灵动课堂中左下角的 ZoomController 组件会增加 "Add" 文字。
+After modification, the "Add" text will be added to the ZoomController component in the lower left corner of the Smart Classroom.
 
 ![zoom-controller-after-fx](https://web-cdn.agora.io/docs-files/1617715077329)
 
-### 修改基础 UI 组件的全局样式
+### Modify the global style of basic UI components
 
-以下示例演示了如何通过修改基础 UI 组件的全局样式。
+The following example demonstrates how to modify the global style of basic UI components.
 
-1. 在 `agora-scenario-ui-kit/src/styles/global.css` 文件中定义全局样式：
+1. Define the global style in the `agora-scenario-ui-kit/src/styles/global.css` file:
 
    ```css
    .fixed-container {
@@ -201,19 +201,19 @@ export const ZoomController: FC<ZoomControllerProps> = ({
  justify-content: center;
  align-items: center;
  flex: 1;
- height: 100%;
+ "height": 360
  position: fixed;
- width: 100%;
+ width: 480,
  z-index: 99;
 }
    ```
 
-2. 在基础 UI 组件的 `.stories.tsx` 和 `.tsx` 文件中添加以下代码来使用该全局样式：
+2. Add the following code to the `.stories.tsx` and `.tsx` files of the basic UI components to use this global style:
 
    ```ts
    export const DialogContainer: React.FC<any> = observer(() => {
   const { dialogQueue } = useDialogContext()
-  return (
+                          return;
     <div>
      {
         dialogQueue.map(({ id, component: Component, props }: DialogType) => (
@@ -227,13 +227,13 @@ export const ZoomController: FC<ZoomControllerProps> = ({
 })
    ```
 
-### 新增基础 UI 组件
+### Add basic UI components
 
-以下示例演示了如何自定义一个基础 UI 组件并在灵动课堂中使用：
+The following example demonstrates how to customize a basic UI component and use it in  Flexible Classroom:
 
-1. 在 `agora-scenario-ui-kit/src/components` 目录下创建 `custom` 文件夹并新建以下文件：
+1. Create a custom folder under the `agora-scenario-ui-kit/src/components``` directory and create the following files:
 
-   `index.css` 文件
+   `index.css` file
 
    ```css
    .custom {
@@ -246,7 +246,7 @@ export const ZoomController: FC<ZoomControllerProps> = ({
 }
    ```
 
-   `index.tsx` 文件
+   `index.tsx` file
 
    ```ts
    import React, { FC } from 'react';
@@ -255,30 +255,30 @@ import { BaseProps } from '~components/interface/base-props';
 import './index.css';
 
 export interface CustomProps extends BaseProps {
-    width?: number;
-    height?: number;
+    width: Number type field.
+    height: Number type field.
     children?: React.ReactNode;
 }
 
 export const Custom: FC<CustomProps> = ({
-    width = 90,
-    height = 90,
+    width: 480,
+    "height": 750,
     children,
     className,
-    ...restProps
+    ... restProps
 }) => {
     const cls = classnames({
         [`custom`]: 1,
         [`${className}`]: !!className,
     });
-    return (
+                          return;
         <div
             className={cls}
             style={{
-                width,
-                height,
+                width
+                height
             }}
-            {...restProps}
+            {... restProps}
         >
             {children}
         </div>
@@ -286,7 +286,7 @@ export const Custom: FC<CustomProps> = ({
 }
    ```
 
-   `index.stories.tsx` 文件
+   `index.stories.tsx` file
 
    ```ts
    import React from 'react'
@@ -299,8 +299,8 @@ const meta: Meta = {
 }
 
 type DocsProps = {
-    width: number;
-    height: number;
+    width: Number type field.
+    height: Number type field.
 }
 
 export const Docs = ({width, height}: DocsProps) => (
@@ -317,53 +317,52 @@ export const Docs = ({width, height}: DocsProps) => (
 )
 
 Docs.args = {
-    width: 250,
-    height: 200,
+    width: 480,
+    "height": 360
 }
 
 export default meta;
    ```
 
-   Custom 组件是一个带有两层边框的 div，同时内部渲染出 Children 元素。 你可以在 Storybook 中看到 Custom 组件的具体效果。
+   The Custom component is a div with a two-layer border and the Children element is rendered internally. You can see the specific effects of the Custom component in Storybook.
 
    ![](https://web-cdn.agora.io/docs-files/1617715392109)
 
-2. 在 `packages/agora-scenario-ui-kit/src/components/index.ts` 文件中添加以下代码，导出 Custom 组件。
+2. Add the following code to the `packages/agora-scenario-ui-kit/src/components/index.ts` file to export the Custom component.
 
    ```ts
    export * from './custom'
    ```
 
-3. 参考以下步骤，在 1 对 1 互动场景的白板区域中使用 Custom 组件：
+3. Refer to the following steps to use the Custom component in the whiteboard area of the 1:1 interactive scene:
 
-   1. 在 `agora-classroom-sdk/src/ui-components/common-containers/board.tsx` 文件中引入 Custom 组件：
+   1. Introduce the Custom component in the `agora-classroom-sdk/src/ui-components/common-containers/board.tsx` file:
 
       ```ts
       import { Custom } from 'agora-scenario-ui-kit'
       ```
 
-   2. 在 `WhiteboardContainer` 中使用 Custom 组件：
+   2. Use the Custom component in `WhiteboardContainer`:
 
       ```ts
       export const WhiteboardContainer = observer(() => {
 
-    return (
+                            return;
     <div className="whiteboard">
 
 
-    
     ......
 
-            {showZoomControl ? <ZoomController
+      {showZoomControl ? <ZoomController
         className='zoom-position'
         zoomValue={zoomValue}
         currentPage={currentPage}
-        totalPage={totalPage}
+        totalPage = {totalPage}
         maximum={!isFullScreen}
         clickHandler={handleZoomControllerChange}
-      /> : null}
+      The default value is NULL.
 
-            <Custom className='custom-position' width={200} height={200}>
+      <Custom className='custom-position' width={200} height={200}>
         <div>Use the custom component!</div>
       </Custom>
     </div>
@@ -371,7 +370,7 @@ export default meta;
 })
       ```
 
-   3. 在 `agora-classroom-sdk/src/ui-components/one-to-one/1v1.style.css` 文件中定义 `custom-position` 的样式：
+   3. Define the `custom-position style` in the agora-classroom-sdk/src/ui-components/one-to-one/1v1.style.css file``:
 
       ```ts
       .custom-position{
@@ -381,6 +380,6 @@ export default meta;
 }
       ```
 
-   4. 运行灵动课堂，查看 Custom 组件的具体效果。
+   4. Run the  Flexible Classroom to view the specific effects of the Custom component.
 
       ![custom-ui-compnent-fx](https://web-cdn.agora.io/docs-files/1617715517511)
