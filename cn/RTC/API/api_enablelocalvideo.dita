@@ -17,7 +17,7 @@
         <section id="detailed_desc">
    
    <p>该方法禁用或重新启用本地视频采集，不影响接收远端视频。</p>
-   <p>调用 <xref keyref="enableVideo"/> 后，本地视频即默认开启。你可以调用 <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) 关闭本地视频采集。关闭后如果想要重新开启，则可调用 <codeph>enableLocalVideo(<ph keyref="true"/>)</codeph>。</p>
+   <p>调用 <xref keyref="enableVideo"/> 后，本地视频采集即默认开启。你可以调用 <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) 关闭本地视频采集。关闭后如果想要重新开启，则可调用 <codeph>enableLocalVideo(<ph keyref="true"/>)</codeph>。</p>
    <p>成功禁用或启用本地视频采集后，远端会触发 <xref keyref="onUserEnableLocalVideo"/>
                 <?oxy_comment_start author="pkl" timestamp="20210412T144618+0800" comment="Java/C++ 写的是这个，但是 OC 写的是 remoteVideoStateChangedOfUid" flag="done"?>回调<?oxy_comment_end?>。</p>
    <note outputclass="note">
@@ -34,8 +34,8 @@
   <pd>
       <p>是否开启本地视频采集。</p>
       <ul>
- <li><ph keyref="true"/>: （默认）开启本地视频采集和渲染 。</li>
- <li><ph keyref="false"/>: 关闭使用本地摄像头设备。关闭后，远端用户会接收不到本地用户的视频流；但本地用户依然可以接收远端用户的视频流。设置为 <ph keyref="false"/> 时，该方法不需要本地有摄像头。</li>
+ <li><ph keyref="true"/>:（默认）开启本地视频采集。</li>
+ <li><ph keyref="false"/>: 关闭本地视频采集。关闭后，远端用户会接收不到本地用户的视频流；但本地用户依然可以接收远端用户的视频流。设置为 <ph keyref="false"/> 时，该方法不需要本地有摄像头。</li>
       </ul>
   </pd>
        </plentry>
