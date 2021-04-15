@@ -1,12 +1,12 @@
-### 1. 创建房间
+### 1. Create a room
 
-在 app 客户端加入互动白板房间前，你需要在 app 服务端调用互动白板服务端 RESTful API 创建一个房间。 详见[创建房间（POST）](https://docs-preprod.agora.io/cn/whiteboard/whiteboard_room_management?platform=RESTful#创建房间（post）)。
+Before an app client requests to join a room, you need to call the Interactive Whiteboard RESTful API on your app server to create a room. See [Create a room (POST)](https://docs-preprod.agora.io/cn/whiteboard/whiteboard_room_management?platform=RESTful#创建房间（post）).
 
-**请求示例**
+**Request example**
 
-你可以使用以下 Node.js 脚本发送请求：
+Refer to the following Node.js script to send an HTTP request:
 
-<div class="alert info">使用 Node.js 发送 HTTP 请求前安装 <code>request</code> 模块。 你可以运行 <code>npm install request</code> 安装。</div>
+<div class="alert info">Before sending an HTTP request using Node.js, make sure that you have installed the <code>request</code> module. You can run the command line <code>npm install request</code> to install the module.</div>
 
 ```javascript
 var request = require("request");
@@ -14,7 +14,7 @@ var options = {
   "method": "POST",
   "url": "https://api.netless.link/v5/rooms",
   "headers": {
-    "token": "你的 SDK Token",
+    "token": "Your SDK Token",
     "Content-Type": "application/json"
   }
 };
@@ -24,13 +24,13 @@ request(options, function (error, response) {
 });
 ```
 
-如果方法调用成功，Agora 互动白板服务端将返回新建房间的信息，其中的 `uuid` 是房间的唯一标识，app 客户端加入房间时需要传入该参数。
+If the request is successful, Agora's server for the whiteboard service returns information about the created room, including the `uuid`, which is the unique identifier of the room. You need to pass in this parameter when an app client joins the room.
 
-**响应示例**
+**Response example**
 
 ```javascript
 {
-    "uuid": "4a50xxxxxx796b", // 房间的 UUID
+    "uuid": "4a50xxxxxx796b", // The Room UUID
     "name": "",
     "teamUUID": "RMmLxxxxxx15aw",
     "appUUID": "i54xxxxxx1AQ",
@@ -41,31 +41,31 @@ request(options, function (error, response) {
 }
 ```
 
-### 2. 生成 Room Token
+### 2. Generate a Room Token
 
-创建房间并获取新建房间的 `uuid` 后，你需要在 app 服务端生成 Room Token 并下发给 app 客户端。 当 app 客户端加入房间时，Agora 互动白板服务端会使用该 Token 对其鉴权。
+After creating a room and getting the `uuid` of the room, you need to generate a Room Token on your app server and send it to the app client. When an app client joins a room, Agora's server uses the Room Token for authentication.
 
-你可以通过以下方式在 app 服务端生成 Room Token：
+To generate a Room Token on your app server, you can:
 
-- 使用代码生成 Room Token，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server)。 （推荐）
-- 调用互动白板服务端 RESTful API 生成 Room Token，详见[生成 Room Token（POST）](/cn/whiteboard/generate_whiteboard_token#生成-room-token（post）)。
+- Use code. See [Generate a Token from your app server](/cn/whiteboard/generate_whiteboard_token_at_app_server). (Recommended)
+- Call the Interactive Whiteboard RESTful API. See [Generate a Room Token (POST)](/cn/whiteboard/generate_whiteboard_token#生成-room-token（post）).
 
-下面以调用 RESTful API 的方式为例介绍如何生成 Room Token。
+The following examples describe how to use the Interactive Whiteboard RESTful API to generate a Room Token.
 
-**请求示例**
+**Request example**
 
-你可以使用以下 Node.js 脚本发送请求：
+Refer to the following Node.js script to send an HTTP request:
 
-<div class="alert info">使用 Node.js 发送 HTTP 请求前安装 <code>request</code> 模块。 你可以运行 <code>npm install request</code> 安装。</div>
+<div class="alert info">Before sending an HTTP request using Node.js, make sure that you have installed the <code>request</code> module. You can run the command line <code>npm install request</code> to install the module.</div>
 
 ```javascript
 var request = require('request');
 var options = {
   "method": "POST",
-	// 将 <房间的 UUID> 替换成你的房间 UUID
-  "url": "https://api.netless.link/v5/tokens/rooms/<房间的 UUID>", 
+	// Replace <Room UUID> with your Room UUID
+  "url": "https://api.netless.link/v5/tokens/rooms/<Room UUID>", 
   "headers": {
-    "token": "你的 SDK Token",
+    "token": "Your SDK Token",
     "Content-Type": "application/json"
   },
   body: JSON.stringify({"lifespan":60,"role":"admin"})
@@ -77,9 +77,9 @@ request(options, function (error, response) {
 });
 ```
 
-如果方法调用成功，Agora 互动白板服务端将返回生成的 Room Token。
+If the request is successful, Agora's server returns a Room Token.
 
-**响应示例**
+**Response example**
 ```javascript
 "NETLESSROOM_YWs9XXXXXXXXXXXZWNhNjk" // Room Token
 ```
