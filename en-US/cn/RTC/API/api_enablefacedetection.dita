@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enablefacedetection">
     <title><ph keyref="enableFaceDetection"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Turn on/off local face detection.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables/Disables face detection for the local user.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -24,7 +24,7 @@
    </dl>
    <note outputclass="info">You can call this method either before or after joining a channel.</note>
    <note outputclass="note" props="windows">This method is for Android and iOS only.</note>
-   <p>After enabling local face detection, the SDK will trigger a callback to<xref keyref="onFacePositionChanged"/> report the face detection information to you:<ul>
+   <p>Once face detection is enabled, the SDK triggers the <xref keyref="onFacePositionChanged"/> callback to report the face information of the local user:<ul>
        <li>The width and height of the local video.</li>
        <li>The position of the human face in the local video.</li>
        <li>The distance between the human face and the device screen.</li>
@@ -36,8 +36,8 @@
        <plentry>
   <pt>enable</pt>
   <pd>Whether to enable face detection:<ul>
-      <li><ph keyref="true"/>true: Enable face detection.</li>
-      <li><ph keyref="false"/>false: (Default) Disable face detection.</li>
+      <li><ph keyref="true"/>: Enable face detection.</li>
+      <li><ph keyref="false"/>: (Default) Disable face detection.</li>
   </ul>
   </pd>
        </plentry>
