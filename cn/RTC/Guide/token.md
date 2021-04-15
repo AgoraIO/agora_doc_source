@@ -120,7 +120,9 @@ Fetch the token with the uid to join the channel.
 //    "code":"200",
 //    "token": "006970CA35de60c44645bbae8a215061b33IACtCBeHhqlszBWc9S8XyvSoz1fJm1YiL6OWFTbLNC7OMbdIfRCtk5C5IgB8zc0FZAN5YAQAAQD0v3dgAgD0v3dgAwD0v3dgBAD0v3dg"
 // }
-// Need to import axios
+//
+// You need to import axios
+//
 function fetchToken(uid, channelName) {
 
     let data = JSON.stringify({ "uid": uid, "channelName": channelName });
