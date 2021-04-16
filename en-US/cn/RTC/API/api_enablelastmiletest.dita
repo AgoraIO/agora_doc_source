@@ -15,18 +15,18 @@
             <p conref="../conref/conref_rtc_api.dita#apidef/enableLastmileTest" />
         </section>
         <section id="detailed_desc">
-            <p>This method tests the quality of the users&apos; network connections and is disabled by default. By default, this function is disabled. This method applies to the `LIVE_BROADCASTING` channel profile.<ul>
-                    <li>Before a user joins a channel or before an audience switches to a host, call this method to check the uplink network quality.</li>
-                    <li>This method consumes additional network traffic, and hence may affect communication quality.</li>
+            <p>This method tests the quality of the users&apos; network connections. By default, this function is disabled. This method applies to the following scenarios:<ul>
+                    <li>Before a user joins a channel, call this method to check the uplink network quality.</li>
+                    <li>Before an audience switches to a host, call this method to check the uplink network quality.</li>
                 </ul>
             </p>
-            <p>Regardless of the scenario, enabling this method will consume network traffic and affect the call quality. After receiving the<xref keyref="onLastmileQuality" /> callback,<xref keyref="disableLastmileTest" /> the user must call to stop the test, and then join the channel or switch to the host.</p>
+            <p>Regardless of the scenario, enabling this method consumes extra network traffic and affects the call quality. After receiving the <xref keyref="onLastmileQuality" /> callback, call <xref keyref="disableLastmileTest" /> to stop the test, and then join the channel or switch to the host.</p>
             <note outputclass="note">
                 <ul>
-                    <li>Do not use this method at the<xref keyref="startLastmileProbeTest" /> same time.</li>
-                    <li>Otherwise, the<xref keyref="onLastmileQuality" /> callback may be interrupted by other methods, and hence may not be triggered.</li>
+                    <li>Do not use this method together with <xref keyref="startLastmileProbeTest" />.</li>
+                    <li>Do not call any other methods before receiving the <xref keyref="onLastmileQuality" /> callback. Otherwise, the callback may be interrupted by other methods, and hence may not be triggered.</li>
                     <li>A host should not call this method after joining a channel (when in a call).</li>
-                    <li>After calling this method to check the network quality before joining the channel, the SDK will occupy the bandwidth of one video, and the bit rate is<xref keyref="setVideoEncoderConfiguration" /> the same as the bit rate set in. After joining a channel,<xref keyref="disableLastmileTest" /> the SDK will automatically stop bandwidth usage regardless of whether it is called.</li>
+                    <li>If you call this method to test the last mile network quality, the SDK consumes the bandwidth of a video stream, whose bitrate corresponds to the bitrate you set in <xref keyref="setVideoEncoderConfiguration" />. After joining a channel, whether you have called <xref keyref="disableLastmileTest" /> or not, the SDK automatically stops consuming the bandwidth.</li>
                 </ul>
             </note>
         </section>

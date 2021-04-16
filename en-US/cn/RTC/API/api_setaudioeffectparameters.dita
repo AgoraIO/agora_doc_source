@@ -27,7 +27,7 @@
   <li>Pitch correction effect: Sets the basic mode and tonic pitch of the pitch correction effect. Different songs have different modes and tonic pitches. Agora recommends bounding this method with interface elements to enable users to adjust the pitch correction interactively.</li>
        </ul>
    </p>
-   <p>After setting parameters, all users in the channel can hear the relevant effect.</p>
+   <p>After setting the audio parameters, all users in the channel can hear the effect.</p>
    <p>This method can be used alone or in combination<xref keyref="setAudioEffectPreset"/>. When used together, you need to call<apiname keyref="setAudioEffectPreset"/> and use or enumeration <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/><apiname keyref="PITCH_CORRECTION"/>first, and then call the method to use the same enumeration. Otherwise, the effect set by this method will override<apiname keyref="setAudioEffectPreset"/> the effect set.</p>
    <note outputclass="note">
        <ul>
@@ -35,7 +35,7 @@
   <li>To get better vocal effects, Agora recommends that you set <xref keyref="setAudioProfile"/><parmname>scenario</parmname> to <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3) before calling this method.</li>
   <li>Please do not set<apiname keyref="setAudioProfile"/> the <parmname>profile</parmname> parameter to<apiname
                             keyref="AUDIO_PROFILE_SPEECH_STANDARD"/> (1) or <apiname
-                            keyref="AUDIO_PROFILE_IOT"/>(6), otherwise the method will not take effect.</li>
+                            keyref="AUDIO_PROFILE_IOT"/>(6), or the method will not take effect.</li>
   <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
   <li>After calling this method, Agora recommends not calling the following methods, because they can override \ref IRtcEngine::setVoiceBeautifierPreset &quot;setVoiceBeautifierPreset&quot;:<ul>
  <li><xref keyref="setAudioEffectPreset"/></li>
@@ -56,7 +56,7 @@
    <parml>
        <plentry>
   <pt>preset</pt>
-  <pd>Sets an SDK preset audio effect.<ul>
+  <pd>The options for the preset audio effect.<ul>
  <li>3D human sound effects:<apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/><ul>
 <li>You need to set the <apiname keyref="setAudioProfile"/><parmname>profile</parmname> parameter to<xref keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> (3) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before using this enumeration, otherwise the enumeration setting is invalid.</li>
 <li>If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</li>
