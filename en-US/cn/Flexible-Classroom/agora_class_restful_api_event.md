@@ -1,16 +1,16 @@
 ## Overview
-本页列出通过灵动课堂云服务[获取课堂事件接口](./agora_class_restful_api#获取课堂事件)获取到的所有事件类型。
+This page lists all types of events that you can get through the [Get classroom events](./agora_class_restful_api#获取课堂事件) method.
 
-## 课堂状态变更
+## The classroom state changes
 
-`cmd` 为 `1` 时，该事件提示课堂状态发生变更，`data` 中包含以下字段：
+`When the `cmd` property of an event is 1`, the event indicates the classroom state changes, and the `data` property contains the following fields:
 
 | Parameter | Type | Description |
 | ----------- | ------- | ------------------------------------------------------------ |
-| `startTime` | Number | 课堂开始时间，Unix 时间戳（毫秒），UTC 时间。 课堂开始后此字段有值。 |
-| `state` | Integer | 当前课堂状态：<ul><li>`0`: 未开始。</li><li>`1`: 进行中。</li><li>`2`: 已结束，新用户无法进入。</li></ul> |
+| `startTime` | Number | The Unix timestamp (in milliseconds) when the classroom starts, in UTC. This property is available after the state of the classroom changes to "Started". |
+| `state` | Integer | The current state of the classroom:<ul><li>`0`: Not started.</li><li>`1`: In progress.</li><li>`2`: Ended. Users cannot enter the classroom when the classroom is in the "Ended" state.</li></ul> |
 
-**示例**
+**Example**
 
 ```json
 {
@@ -19,17 +19,17 @@
 }
 ```
 
-## 课堂聊天消息
+## Receives a room chat message
 
-`cmd` 为 `3` 时，该事件提示收到课堂聊天消息，`data` 中包含以下字段：
+`When the cmd` property of an event is `3`, the event indicates the server receives a room chat message, and the `data` contains the following fields:
 
 | Parameter | Type | Description |
 | ---------- | ------- | ------------------------------------------------------------ |
-| `fromUser` | Object | 发送该消息的用户，包含以下字段：<ul><li>`userUuid`: String 型，用户 uuid。</li><li>`userName`: String 型，用户名称。</li><li>`role`: Integer 型，用户在课堂中的角色：<ul><li>`1`: Teacher.</li><li>`2`: Student.</li></ul></li> |
-| `message` | String | 消息内容。 |
-| `type` | Integer | 消息类型，当前只支持 `1`，表示文本消息。 |
+| `fromUser` | Object | The user who sends this message. This object contains the following fields:<ul><li>`userUuid`: String. The user ID.</li><li>`userName`: String. The user name.</li><li>`role`: Integer. The user role:<ul><li>`1`: Teacher.</li><li>`2`: Student.</li></ul></li> |
+| `message` | String | Message content. |
+| `type` | Integer | The type of the message. Temporarily, you can only set this parameter as `1` (text). |
 
-**示例**
+**Example**
 ```json
 {
     "fromUser":{
@@ -42,17 +42,17 @@
 }
 ```
 
-## 用户进出课堂
+## Users enter or leave the classroom
 
-`cmd` 为 `20` 时，该事件提示有用户进出课堂。 `data` 中包含以下字段：
+`When cmd` is `20`, the event indicates that users have entered or left the classroom. `data` includes the following fields:
 
 | Parameter | Type | Description |
 | -------------- | ----------- | ------------------------------------------------------------ |
-| `total` | Integer | 进入和退出课堂的用户总数。 |
-| `onlineUsers` | Object array | 进入课堂的用户，包含以下字段：<ul><li>`userName`: String 型，用户名称。</li><li>`userUuid`: String 型，用户 uuid。</li><li>`role`: Integer 型，用户在课堂中的角色：<ul><li>`1`: Teacher.</li><li>`2`: Student.</li></ul></li><li>`userProperties`: Object 型，用户属性。</li><li>`streamUuid`: String 型，用户流的 uuid，也是加入 RTC 频道时用的 UID。</li><li>`type`: Integer 型，用户进入类型：<ul><li>`1`: 正常进入</li><li>`2`: 重连</li></ul></li><li>`updateTime`: Number 型，用户进入课堂时间，Unix 时间戳（毫秒），UTC 时间。</li></ul> |
-| `offlineUsers` | Object array | 退出课堂的用户，包含以下字段：<ul><li>`userName`: String 型，用户名称。</li><li>`userUuid`: String 型，用户 uuid。</li><li>`role`: Integer 型，用户在课堂中的角色：<ul><li>`1`: Teacher.</li><li>`2`: Student.</li></ul></li><li>`userProperties`: Object 型，用户属性。</li><li>`streamUuid`: String 型，用户流的 uuid，也是加入 RTC 频道时用的 UID。</li><li>`type`: Integer 型，用户退出类型：<ul><li>`1`: 由于客户端原因退出课堂，例如正常离开课堂、应用被强制关闭或由于网络状况不佳而断线。</li><li>`2`: 被踢出课堂。</li></ul></li><li>`updateTime`: Number 型，用户退出课堂时间，Unix 时间戳（毫秒），UTC 时间。</li></ul> |
+| `total` | Integer | The total number of users who have entered and left the classroom. |
+| `onlineUsers` | Object array | The users who have entered the classroom. This object contains the following fields:<ul><li>`userName`: String. The user name.</li><li>`userUuid`: String. The user ID.</li><li>`role`: Integer. The user role:<ul><li>`1`: Teacher.</li><li>`2`: Student.</li></ul></li><li>`changeProperties`: Object. The user property.</li><li>`streamUuid`: String. The ID of the stream, which is also the uid used when joining an RTC channel.</li><li>`type`: Integer, the reasons why the user enters the classroom:<ul><li>`1`: The user enters the classroom in a normal way.</li><li>`2`: The user re-enters the classroom.</li></ul></li><li>`updateTime`: Number, the time when the user enters the classroom, Unix timestamp (milliseconds), UTC time.</li></ul> |
+| `offlineUsers` | Object array | The users who have left the classroom. This object contains the following fields:<ul><li>`userName`: String. The user name.</li><li>`userUuid`: String. The user ID.</li><li>`role`: Integer. The user role:<ul><li>`1`: Teacher.</li><li>`2`: Student.</li></ul></li><li>`changeProperties`: Object. The user property.</li><li>`streamUuid`: String. The ID of the stream, which is also the uid used when joining an RTC channel.</li><li>`type`: Integer, the reasons why the user leaves the classroom:<ul><li>`1`: The user left the classroom on the client, such as leaving the class normally, the application is forcibly closed, or the user is disconnected due to poor network conditions.</li><li>`2`: The user was kicked out of the classroom.</li></ul></li><li>`updateTime`: Number, the time when the user enters or leaves the classroom, Unix timestamp (in milliseconds), UTC time.</li></ul> |
 
-**示例**
+**Example**
 ```json
 {
     "total":3,
@@ -82,19 +82,19 @@
 ```
 
 
-## 录制状态变更
+## The recording state changes
 
-`cmd` 为 `1001` 时，该事件提示录制状态发生变更，`data` 中包含以下字段：
+`When the cmd` property of an event is `1001`, the event indicates the recording state changes, and the `data` property contains the following fields:
 
 | Parameter | Type | Description |
 | ------------ | ------- | ------------------------------------------------------------ |
-| `recordId` | String | 一次录制的的唯一标识符。 A recording session starts when you call a method to start recording and ends when you call this method to stop recording. 仅当 `state` 为 `1` 时有此字段。 |
-| `sid` | String | Agora 云端录制服务的 `sid`。 仅当 `state` 为 `1` 时有此字段。 |
-| `resourceId` | String | Agora 云端录制服务的 `resourceId`。 仅当 `state` 为 `1` 时有此字段。 |
-| `state` | Integer | 当前录制状态：<ul><li>`1`: In recording.</li><li>`2`: Recording has ended.</li></ul> |
-| `startTime` | Number | 录制开始时间，Unix 时间戳（毫秒），UTC 时间。 录制开始后此字段有值。 |
+| `recordId` | String | This is the unique identifier of a recording session. A recording session starts when you call a method to start recording and ends when you call this method to stop recording. This field is available only when `state` is `1`. |
+| `sid` | String | The `sid` of the Agora Cloud Recording service. This field is available only when `state` is `1`. |
+| `resourceId` | String | The `resourceId` of the Agora Cloud Recording service. This field is available only when `state` is `1`. |
+| `state` | Integer | The current recording state:<ul><li>`1`: In recording.</li><li>`2`: Recording has ended.</li></ul> |
+| `startTime` | Number | The Unix timestamp (in milliseconds) when the recording starts, in UTC. This property is available after the recording state changes to "Started". |
 
-**示例**
+**Example**
 ```json
 {
     "recordId":"xxx",
@@ -105,16 +105,16 @@
 }
 ```
 
-## 奖励数量变更
+## The number of rewards changes
 
-`cmd` 为 `1101` 时，该事件提示奖励数量发生变更，`data` 中包含以下字段：
+`When the cmd` property of an event is `1101`, the event indicates the number of rewards changes, and the `data` property contains the following fields:
 
 | Parameter | Type | Description |
 | :-------------- | :---------- | :----------------------------------------------------------- |
-| `rewardDetails` | Object array | 一个 Object 代表一个用户的奖励数量变更情况，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li><li>`changedReward`: Integer 型，发生变更的奖励个数。</li><li>`totalReward`: Integer 型，变更后用户的奖励总数。</li> |
-| `updateTime` | Number | 奖励变更时间，Unix 时间戳（毫秒），UTC 时间。 |
+| `rewardDetails` | Object array | Each object represents the rewards of a user and contains the following fields:<li>`userUuid`: String. The user ID.</li><li>`changedReward`: Integer, the number of rewards that have changed.</li><li>`total`: Integer, the total number of rewards.</li> |
+| `updateTime` | Number | The Unix timestamp (in milliseconds) when the rewards change, in UTC. |
 
-**示例**：
+**Example**:
 
 ```json
 {
@@ -127,18 +127,18 @@
 }
 ```
 
-## 云盘资源变更
+## The resources in the classroom changes
 
-`cmd` 为 `1003` 时，该事件提示云盘资源发生变更，`data` 中包含以下字段：
+`When the cmd` property of an event is `1003`, the event indicates the resources in the classroom changes, and the `data` property contains the following fields:
 
 | Parameter | Type | Description |
 | :---------- | :---------- | :----------------------------------------------------------- |
 | Parameter | Type | Description |
-| `resources` | Object array | 一个 Object 代表一个资源的变更情况，包含以下字段：<li>`resourceUuid`: String. The resource ID.</li><li>`resourceName`: String 型，资源名称。</li><li>`size`: Number, the resource size (bytes).</li><li>`url`: String, the URL address of the resource.</li><li>`taskUuid`: String, the ID of the file conversion task.</li><li>`taskToken`: String, the token used by the file conversion task.</li><li>`taskProgress`: Object 型，文件转换任务进度。</li> |
-| `operator` | Object | 操作人，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li><li>`userName`: String 型，用户名称。</li><li>`role`: String 型，用户角色。</li> |
-| `action` | Integer | 资源变更类型：<li>`1`: 资源新增或更新。</li><li>`2`: 资源被删除。</li> |
+| `resources` | Object array | Each object represents a public resource and contains the following fields:<li>`resourceUuid`: String. The resource ID.</li><li>`resourceName`: String, the resource name for display in the classroom.</li><li>`size`: Number, the resource size (bytes).</li><li>`url`: String, the URL address of the resource.</li><li>`taskUuid`: String, the ID of the file conversion task.</li><li>`taskToken`: String, the token used by the file conversion task.</li><li>`taskProgress`: Object, the progress of the file conversion task.</li> |
+| `operator` | Object | It contains the following fields:<li>`userUuid`: String. The user ID.</li><li>`userName`: String. The user name.</li><li>`role`: integer. The user role.</li> |
+| `action` | Integer | The resource change type:<li>`1`: The resource is added or updated.</li><li>`2`: The resource is deleted.</li> |
 
-**示例**：
+**Example**:
 
 ```json
 {
