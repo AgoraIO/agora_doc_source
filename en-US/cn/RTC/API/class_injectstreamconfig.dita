@@ -2,62 +2,62 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_injectstreamconfig">
     <title><ph keyref="InjectStreamConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="InjectStreamConfig"/> definition.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="InjectStreamConfig"/> Configurations for an injected online stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p conref="../conref/conref_rtc_api.dita#apidef/InjectStreamConfig"/>
         </section>
         <section id="detailed_desc">
-            <note outputclass="warning">The client&apos;s online media streaming function will soon be discontinued. If you have not integrated this function, Agora recommends that you do not use it. For details, see <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/rtc_sunset?platform=Windows" scope="external" format="html">part of the service removal plan</xref>.</note>
+            <note outputclass="warning">Agora will soon stop the service for injecting online media streams on the client. If you have not implemented this service, Agora recommends that you do not use it. For details, see <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/rtc_sunset?platform=Windows" scope="external" format="html">Service Sunset Plans</xref>.</note>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt>WIDTH: Width of the video.</pt>
-                    <pd>Width of the injected stream in the interactive live streaming. The default value is 0 (same width as the original stream).</pd>
+                    <pt>width</pt>
+                    <pd>The width of the injected video stream. The default value is 0, which is the same width as the original stream.</pd>
                 </plentry>
                 <plentry>
-                    <pt>HEIGHT: Height of the video.</pt>
-                    <pd>Height of the injected stream in the interactive live streaming. The default value is 0 (same height as the original stream).</pd>
+                    <pt>height</pt>
+                    <pd>The height of the injected video stream. The default value is 0, which is the same height as the original stream.</pd>
                 </plentry>
                 <plentry>
                     <pt>videoGop</pt>
-                    <pd>Video GOP (in frames) of the injected stream in the interactive live streaming. The unit is frame. The default value is 30 fps.</pd>
+                    <pd>The GOP (in frames) of the injected video stream. The default value is 30 fps.</pd>
                 </plentry>
                 <plentry>
                     <pt>videoFramerate</pt>
-                    <pd>Video frame rate of the injected stream in the interactive live streaming. The default rate is 15 fps.</pd>
+                    <pd>The video frame rate of the injected video stream. The default rate is 15 fps.</pd>
                 </plentry>
                 <plentry>
                     <pt>videoBitrate</pt>
                     <pd>
-                        <p>Video bitrate of the injected stream in the interactive live streaming. The default value is 400 Kbps.</p>
-                        <note outputclass="note">@note The setting of the video bitrate is closely linked to the resolution. If the video bitrate you set is beyond a reasonable range, the SDK sets it within a reasonable range.</note>
+                        <p>The bitrate of the injected video stream. The default value is 400 Kbps.</p>
+                        <note outputclass="note">The setting of the video bitrate is closely linked to the resolution. If the video bitrate you set is beyond a reasonable range, the SDK sets it within a reasonable range.</note>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>audioSampleRate</pt>
-                    <pd><p>Audio-sample rate of the injected stream in the interactive live streaming: #AUDIO_SAMPLE_RATE_TYPE. The default value is 48000 Hz. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</p>
-                        <note outputclass="note">@note We recommend setting the default value.</note>
+                    <pd><p>The sample rate of the injected audio stream. The default value is 48000 Hz. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</p>
+                        <note outputclass="note">Agora recommends setting the default value.</note>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>audioBitrate</pt>
                     <pd>
-                        <p>Audio bitrate of the injected stream in the interactive live streaming. The default value is 48.</p>
-                        <note outputclass="note">@note We recommend setting the default value.</note>
+                        <p>The bitrate of the injected audio stream. The default value is 48 Kbps.</p>
+                        <note outputclass="note">Agora recommends setting the default value.</note>
                     </pd>
                 </plentry>
                 <plentry>
-                    <pt>audioChannels: Number type field.</pt>
+                    <pt>audioChannels</pt>
                     <pd>
-                        <p>Audio channels in the interactive live streaming.<ul>
+                        <p>The number of audio channels for the injected audio stream.<ul>
                                 <li>1: Mono (default)</li>
-                                <li>- 2: Stereo</li>
+                                <li>2: Stereo</li>
                             </ul>
                         </p>
-                        <note outputclass="note">@note We recommend setting the default value.</note>
+                        <note outputclass="note">Agora recommends setting the default value.</note>
                     </pd>
                 </plentry>
             </parml>
