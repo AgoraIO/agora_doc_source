@@ -1,6 +1,6 @@
-This page provides detailed help for the Flexible Classroom RESTful APIs.
+# Flexible Classroom RESTful API Reference
 
-<div class="alert info">See the <a href="./agora_class_restful_api_release">changelog</a> of Flexible Classroom Cloud Service.</div>
+This page provides detailed help for the Flexible Classroom RESTful APIs.
 
 ## Basic information
 
@@ -19,13 +19,13 @@ Flexible Classroom Cloud Service uses tokens for authentication. You need to put
 - The RTM Token generated at your server.
 - The uid you use to generate the RTM Token.
 
-For details, see [Generate an RTM Token](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms).
+For details, see [Generate an RTM Token](https://docs.agora.io/en/Real-time-Messaging/token_server_rtm?platform=All%20Platforms).
 
 ## Set the classroom state
 
 ### Description
 
-Call this method to set the classroom state: Not started, Started, Ended. For the detailed description of each state, see [classroom state management](./class_state).
+Call this method to set the classroom state: Not started, Started, Ended.
 
 ### Prototype
 
@@ -40,7 +40,7 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
+| `appId` | String | (Required) The Agora App ID, see Get the Agora App ID. |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `state` | Integer | (Required) The classroom state:<li>`0`: Not started.<li>`1`: Start recording.<li>`2`: Ended. |
 
@@ -90,7 +90,7 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | String | (Required) The Agora App ID, see Get the Agora App ID. |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 | `userUuid` | String | (Required) The user ID. This is the unique identifier of the user and also the user ID used when logging in to the Agora RTM system. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
@@ -159,7 +159,7 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
+| `appId` | String | (Required) The Agora App ID, see Get the Agora App ID. |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 | `state` | Integer | (Required) The recording state:<li>`0`: Stop recoding.</li><li>`1`: Start recording.</li> |
 
@@ -169,7 +169,7 @@ Pass in the following parameters in the request body.
 
 | Parameter | Type | Description |
 | :---------------- | :----- | :----------------------------------------------------------- |
-| `mode` | String | (Optional) The recording mode:<li>Set the recording as `web` to enable [page recording mode](https://docs.agora.io/cn/Agora%20Platform/webpage_recording). The format of recorded files is MP4. When the length of the recorded file reaches around two hours, or when the size of the file exceeds around 2 GB, the recording service automatically creates another MP4 file.</li><li>If this parameter is left empty, Agora enables the [composite recording mode] (https://docs.agora.io/cn/Agora Platform/composite_recording_mode) and only records the teacher's audio and video. The format of recorded files is M3U8 and TS.</li> |
+| `mode` | String | (Optional) The recording mode:<li>Set the recording as `web` to enable [page recording mode](https://docs.agora.io/en/Agora%20Platform/webpage_recording). The format of recorded files is MP4. When the length of the recorded file reaches around two hours, or when the size of the file exceeds around 2 GB, the recording service automatically creates another MP4 file.</li><li>If this parameter is left empty, Agora enables the [composite recording mode](https://docs.agora.io/en/Agora%20Platform/composite_recording_mode) and only records the teacher's audio and video. The format of recorded files is M3U8 and TS.</li> |
 | `webRecordConfig` | Object | (Optional) When the `mode` is `web`, you need to set the detailed configuration of the web page recording through `webRecordConfig`, including the following fields:<ul><li>`url`: (Required) String, the address of the web page to record.</li><li>`videoBitrate`: (Optional) Number, the bitrate of the video (Kbps). The value range is [50, 8000]. The default value of `videoBitrate` varies according to the resolution of the output video:<ul><li>1280 × 720: The default value is 1130.</li><li>960 × 720: The default value is 910.</li><li>848 × 480: The default value is 610.</li><li>640 × 480: The default value is 400.</li><li>For all other resolutions, the default value is 300.</li></ul><li>`videoFps`: (Optional) Number, the frame rate of the video (fps). The value range is [5,60]. The default value is 15.</li><li>`audioProfile`: (Optional) Number. The sample rate, encoding mode, number of audio channels, and bitrate.<ul><li>0: Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps.</li><li>1: Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 128 Kbps.</li><li>2: Sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 192 Kbps.</li></ul><li>`videoWidth`: Number, the width of the video (pixels). The value range is [ 480, 1280]. `The product of videoWidth` and `videoHeight` should not exceed 921,600 (1280 × 720).</li><li>`videoHeight`: Number, the height of the video (pixels). The value range is [ 480, 1280]. `The product of videoWidth` and `videoHeight` should not exceed 921,600 (1280 × 720).</li><li>`maxRecordingHour`: Number, the maximum recording length (hours). The value range is [1,720], and the default value is 3. If the limit set by `maxRecordingHour` is exceeded, the recording stops automatically. |
 
 ### Request example
@@ -232,7 +232,7 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
+| `appId` | String | (Required) The Agora App ID, see Get the Agora App ID. |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 
 **Query parameters**
@@ -314,7 +314,7 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :------------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | String | (Required) The Agora App ID, see Get the Agora App ID. |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 | `resourceUuid,` | String | (Required) The resource ID. This is the unique identifier of a file. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
@@ -328,7 +328,7 @@ Pass in the following parameters in the request body.
 | `size` | Number | (Required) The size (bytes) of the resource. |
 | `ext` | String | (Required) The resource extension. You can set this parameter as `"ppt"`, `"pptx"`, `"pptm"`, `"docx"`, `"doc"`, `"xlsx"`, `"xls"`, `"csv"`, or `"pdf"`. |
 | `url` | String | (Required) The URL address of the resource, such as `"https://xxx.com"`. |
-| `conversion` | Object | (Optional) If you want to display resources such as a PPT on the whiteboard in the classroom, you need to set `conversion` to convert the resource into a static image or a dynamic HTML page. `conversion `contains the following fields:<ul><li>`type`: (Required) String, the conversion type:<ul><li>`"static"`: Convert the file to a static picture. If the file extension is `"ppt"`, `"doc"`,` "docx"` or `"pdf"`, you can enable static conversion.</li><li> `"dynamic"`: Convert the file to a dynamic HTML page. When the extension is `"pptx"`, you can enable the dynamic conversion.</li></ul></li><li>`preview`: (Optional) Boolean, whether to generate a preview image. This parameter is valid only when `type` is `"dynamic"`.<ul><li>`true`: Generate a preview image. </li><li>`false`: (Default) Do not generate a preview image. </li></ul><li>`scale`: (Optional) Number, the scale factor. The range is [0.1,3.0], and the default value is 1.2. This parameter is valid only when `type` is `"static"`.</li><li>`outputFormat`:（选填）String 型，输出图片格式，可设为 `"png"`、`"jpg"`、`"jpeg"`、`"webp"`，默认值为 `"``png"`。 This parameter is valid only when `type` is `"static"`.</li> |
+| `conversion` | Object | (Optional) If you want to display resources such as a PPT on the whiteboard in the classroom, you need to set `conversion` to convert the resource into a static image or a dynamic HTML page. `conversion `contains the following fields:<ul><li>`type`: (Required) String, the conversion type:<ul><li>`"static"`: Convert the file to a static picture. If the file extension is `"ppt"`, `"doc"`,` "docx"` or `"pdf"`, you can enable static conversion.</li><li> `"dynamic"`: Convert the file to a dynamic HTML page. When the extension is `"pptx"`, you can enable the dynamic conversion.</li></ul></li><li>`preview`: (Optional) Boolean, whether to generate a preview image. This parameter is valid only when `type` is `"dynamic"`.<ul><li>`true`: Generate a preview image. </li><li>`false`: (Default) Do not generate a preview image. </li></ul><li>`scale`: (Optional) Number, the scale factor. The range is [0.1,3.0], and the default value is 1.2. This parameter is valid only when `type` is `"static"`.</li><li>`outputFormat`: (Optional) String, the format of the output image. You can set this parameter as `"png"`,`"jpg"`, `"jpeg"`, `"webp"`. The default value is `"png"`。 This parameter is valid only when `type` is `"static"`.</li> |
 
 ### Request example
 
@@ -363,7 +363,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources/class_
 | `code` | Integer | Business status code:<li>0: The request succeeds.</li><li>Non-zero: The request fails.</li> |
 | `msg` | String | The detailed information. |
 | `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
-| `data` | Object array | An array of republic resources. Each object represents a public resource and contains the following fields:<li>`resourceUuid`: String. The resource ID. This is the unique identifier of a file.</li><li>`resourceName`: String, the resource name for display in the classroom.</li> <li>`ext`: String, the resource extension.</li><li>`size`: Number, the resource size (bytes).</li><li>`url`: String, the URL address of the resource.</li><li>`updateTime`: Number, the update time of the resource, Unix timestamp (in milliseconds), UTC time.</li><li>`convert`: Boolean, whether to enable file conversion.</li><li>`taskUuid`: String, the ID of the file conversion task.</li><li>`taskToken`: String, the token used by the file conversion task.</li><li>`taskProgress`: Object, the progress of the file conversion task, including the following fields:<ul> <li>`totalPageSize`: Number, the total number of pages in the file.</li><li>`convertedPageSize`: Number, the number of pages that have been converted.</li> <li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li> <li>`convertedFileList`: Object array, the list of converted pages. Each object represents a converted page and contains the following fields:<ul><li>`name`: String. The page name.<li>`ppt`: Object, a PPT page, containing the following fields:<ul><li>`width`: Number, the page width (pixel).<li>`height`: Number 型。 页面高度，单位为 pixel。<li>`src`: String, the URL address of the converted page.<li>`preview`: String, the URL address of the preview image. This field is only available when the `type` is set as `"dynamic"` and `preview` is set as `true`.</ul></ul><li>`currentStep`: The current step of the conversion task. This field is only available when the `type` is `"dynamic"`. This field can be `"Extracting"`, `"Packaging"`, `"GeneratingPreview"`, or `"MediaTranscode"`.</ul> |
+| `data` | Object array | An array of republic resources. Each object represents a public resource and contains the following fields:<li>`resourceUuid`: String. The resource ID. This is the unique identifier of a file.</li><li>`resourceName`: String, the resource name for display in the classroom.</li> <li>`ext`: String, the resource extension.</li><li>`size`: Number, the resource size (bytes).</li><li>`url`: String, the URL address of the resource.</li><li>`updateTime`: Number, the update time of the resource, Unix timestamp (in milliseconds), UTC time.</li><li>`convert`: Boolean, whether to enable file conversion.</li><li>`taskUuid`: String, the ID of the file conversion task.</li><li>`taskToken`: String, the token used by the file conversion task.</li><li>`taskProgress`: Object, the progress of the file conversion task, including the following fields:<ul> <li>`totalPageSize`: Number, the total number of pages in the file.</li><li>`convertedPageSize`: Number, the number of pages that have been converted.</li> <li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li> <li>`convertedFileList`: Object array, the list of converted pages. Each object represents a converted page and contains the following fields:<ul><li>`name`: String. The page name.<li>`ppt`: Object, a PPT page, containing the following fields:<ul><li>`width`: Number, the page width (pixel).<li>`height`: Number, the page height (pixel).<li>`src`: String, the URL address of the converted page.<li>`preview`: String, the URL address of the preview image. This field is only available when the `type` is set as `"dynamic"` and `preview` is set as `true`.</ul></ul><li>`currentStep`: The current step of the conversion task. This field is only available when the `type` is `"dynamic"`. This field can be `"Extracting"`, `"Packaging"`, `"GeneratingPreview"`, or `"MediaTranscode"`.</ul> |
 
 ### Response example
 
@@ -420,7 +420,7 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | String | (Required) The Agora App ID, see Get the Agora App ID. |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
 **Request body parameters**
@@ -484,7 +484,7 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | String | (Required) The Agora App ID, see Get the Agora App ID. |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
 ### Request example
@@ -503,7 +503,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
 | `code` | Integer | Business status code:<li>0: The request succeeds.</li><li>Non-zero: The request fails.</li> |
 | `msg` | String | The detailed information. |
 | `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
-| `data` | Object array | An array of republic resources. Each object represents a public resource and contains the following fields:<li>`resourceUuid`: String. The resource ID. This is the unique identifier of a file.</li><li>`resourceName`: String, the resource name for display in the classroom.</li> <li>`ext`: String, the resource extension.</li><li>`size`: Number, the resource size (bytes).</li><li>`url`: String, the URL address of the resource.</li><li>`updateTime`: Number, the update time of the resource, Unix timestamp (in milliseconds), UTC time.</li><li>`convert`: Boolean, whether to enable file conversion.</li><li>`taskUuid`: String, the ID of the file conversion task.</li><li>`taskToken`: String, the token used by the file conversion task.</li><li>`taskProgress`: Object, the progress of the file conversion task, including the following fields:<ul> <li>`totalPageSize`: Number, the total number of pages in the file.</li><li>`convertedPageSize`: Number, the number of pages that have been converted.</li> <li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li> <li>`convertedFileList`: Object array, the list of converted pages. Each object represents a converted page and contains the following fields:<ul><li>`name`: String. The page name.<li>`ppt`: Object, a PPT page, containing the following fields:<ul><li>`width`: Number, the page width (pixel).<li>`height`: Number 型。 页面高度，单位为 pixel。<li>`src`: String, the URL address of the converted page.<li>`preview`: String, the URL address of the preview image. This field is only available when the `type` is set as `"dynamic"` and `preview` is set as `true`.</ul></ul><li>`currentStep`: The current step of the conversion task. This field is only available when the `type` is `"dynamic"`. This field can be `"Extracting"`, `"Packaging"`, `"GeneratingPreview"`, or `"MediaTranscode"`.</ul> |
+| `data` | Object array | An array of republic resources. Each object represents a public resource and contains the following fields:<li>`resourceUuid`: String. The resource ID. This is the unique identifier of a file.</li><li>`resourceName`: String, the resource name for display in the classroom.</li> <li>`ext`: String, the resource extension.</li><li>`size`: Number, the resource size (bytes).</li><li>`url`: String, the URL address of the resource.</li><li>`updateTime`: Number, the update time of the resource, Unix timestamp (in milliseconds), UTC time.</li><li>`convert`: Boolean, whether to enable file conversion.</li><li>`taskUuid`: String, the ID of the file conversion task.</li><li>`taskToken`: String, the token used by the file conversion task.</li><li>`taskProgress`: Object, the progress of the file conversion task, including the following fields:<ul> <li>`totalPageSize`: Number, the total number of pages in the file.</li><li>`convertedPageSize`: Number, the number of pages that have been converted.</li> <li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li> <li>`convertedFileList`: Object array, the list of converted pages. Each object represents a converted page and contains the following fields:<ul><li>`name`: String. The page name.<li>`ppt`: Object, a PPT page, containing the following fields:<ul><li>`width`: Number, the page width (pixel).<li>`height`: Number, the page height (pixel).<li>`src`: String, the URL address of the converted page.<li>`preview`: String, the URL address of the preview image. This field is only available when the `type` is set as `"dynamic"` and `preview` is set as `true`.</ul></ul><li>`currentStep`: The current step of the conversion task. This field is only available when the `type` is `"dynamic"`. This field can be `"Extracting"`, `"Packaging"`, `"GeneratingPreview"`, or `"MediaTranscode"`.</ul> |
 
 ### Response example
 
@@ -564,7 +564,7 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | String | (Required) The Agora App ID, see Get the Agora App ID. |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
 **Query parameters**
@@ -572,7 +572,7 @@ Pass the following parameters in the URL.
 | Parameter | Type | Description |
 | :------- | :------ | :----------------------------------------------------------- |
 | `nextId` | String | (Optional) The starting ID of the next batch of data. When you call this method to get the data for the first time, leave this parameter empty or set it as null. Afterward, you can set this parameter as the `nextId` that you get in the response of the previous method call. |
-| `cmd` | Integer | (Optional) Event type. For details, see [Flexible Classroom Cloud Service Events](https://docs.agora.io/cn/agora-class/agora_class_restful_api_event). |
+| `cmd` | Integer | (Optional) Event type. For details, see Flexible Classroom Cloud Service Events. |
 
 ### Request example
 
@@ -590,7 +590,7 @@ https://api.agora.io/edu/apps/{appId}/v2/rooms/test_class/sequences?nextId=50&cm
 | `code` | Integer | Business status code: 0: The request succeeds. Non-zero: The request fails. |
 | `msg` | String | The detailed information. |
 | `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
-| `data` | Object | Include the following parameters:<ul><li>`total`: Integer, the total number of pieces of data.</li><li>`count`: Integer, the number of pieces of data in this batch.</li><li>`list`: JSONArray. An array of the recording list. A JSON object includes the following parameters:<ul><li>`roomUuid`: String, the classroom ID.</li><li>`cmd`: Integer, the event type. See [Flexible Classroom Events](https://docs.agora.io/cn/agora-class/agora_class_restful_api_event).</li><li>`sequence`: Integer. The event ID. This is the unique identifier of an event, which is automatically generated to ensure the order of events.</li><li>`version`: Integer, the service version.</li><li>`data`: Object, the detailed data of the event, The data varies depending on the event type. See [Flexible Classroom Events](https://docs.agora.io/cn/agora-class/agora_class_restful_api_event).</li></ul><li>`nextId`: String, the starting ID of the next batch of data. If it is null, there is no next batch of data. If it is not null, use this `nextId` to continue the query until null is reported.</li></ul> |
+| `data` | Object | Include the following parameters:<ul><li>`total`: Integer, the total number of pieces of data.</li><li>`count`: Integer, the number of pieces of data in this batch.</li><li>`list`: JSONArray. An array of the recording list. A JSON object includes the following parameters:<ul><li>`roomUuid`: String, the classroom ID.</li><li>`cmd`: Integer, the event type. See Flexible Classroom Events.</li><li>`sequence`: Integer. The event ID. This is the unique identifier of an event, which is automatically generated to ensure the order of events.</li><li>`version`: Integer, the service version.</li><li>`data`: Object, the detailed data of the event, The data varies depending on the event type. See Flexible Classroom Events.</li></ul><li>`nextId`: String, the starting ID of the next batch of data. If it is null, there is no next batch of data. If it is not null, use this `nextId` to continue the query until null is reported.</li></ul> |
 
 ### Response example
 
@@ -639,7 +639,7 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :------ | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
+| `appId` | String | (Required) The Agora App ID, see Get the Agora App ID. |
 
 ### Request example
 
@@ -654,7 +654,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | `code` | Integer | Business status code:<li>0: The request succeeds.<li>Non-zero: The request fails. |
 | `msg` | String | The detailed information. |
 | `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
-| `data` | Object | Include the following parameters:<li>`roomUuid`: String, the classroom ID.<li>`cmd`: Integer, the event type. See [Flexible Classroom Events](./agora_class_restful_api_event).<li>`sequence`: Integer. The event ID. This is the unique identifier of an event, which is automatically generated to ensure the order of events.<li>`version`: Integer, the service version.<li>`data`: Object, the detailed data of the event, The data varies depending on the event type. See [Flexible Classroom Events](./agora_class_restful_api_event). |
+| `data` | Object | Include the following parameters:<li>`roomUuid`: String, the classroom ID.<li>`cmd`: Integer, the event type. See Flexible Classroom Events.<li>`sequence`: Integer. The event ID. This is the unique identifier of an event, which is automatically generated to ensure the order of events.<li>`version`: Integer, the service version.<li>`data`: Object, the detailed data of the event, The data varies depending on the event type. See Flexible Classroom Events. |
 
 ### Response example
 

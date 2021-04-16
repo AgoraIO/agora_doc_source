@@ -1,9 +1,10 @@
-## Overview
-This page lists all types of events that you can get through the [Get classroom events](./agora_class_restful_api#获取课堂事件) method.
+# Flexible Classroom Cloud Service Events
+
+This page lists all types of events that you can get through the Get classroom events method.
 
 ## The classroom state changes
 
-`When the `cmd` property of an event is 1`, the event indicates the classroom state changes, and the `data` property contains the following fields:
+When the `cmd` property of an event is `1`, the event indicates the classroom state changes, and the `data` property contains the following fields:
 
 | Parameter | Type | Description |
 | ----------- | ------- | ------------------------------------------------------------ |
@@ -21,7 +22,7 @@ This page lists all types of events that you can get through the [Get classroom 
 
 ## Receives a room chat message
 
-`When the cmd` property of an event is `3`, the event indicates the server receives a room chat message, and the `data` contains the following fields:
+When the `cmd` property of an event is `3`, the event indicates the server receives a room chat message, and the `data` contains the following fields:
 
 | Parameter | Type | Description |
 | ---------- | ------- | ------------------------------------------------------------ |
@@ -44,7 +45,7 @@ This page lists all types of events that you can get through the [Get classroom 
 
 ## Users enter or leave the classroom
 
-`When cmd` is `20`, the event indicates that users have entered or left the classroom. `data` includes the following fields:
+When `cmd` is `20`, the event indicates that users have entered or left the classroom. `data` includes the following fields:
 
 | Parameter | Type | Description |
 | -------------- | ----------- | ------------------------------------------------------------ |
@@ -84,7 +85,7 @@ This page lists all types of events that you can get through the [Get classroom 
 
 ## The recording state changes
 
-`When the cmd` property of an event is `1001`, the event indicates the recording state changes, and the `data` property contains the following fields:
+When the `cmd` property of an event is `1001`, the event indicates the recording state changes, and the `data` property contains the following fields:
 
 | Parameter | Type | Description |
 | ------------ | ------- | ------------------------------------------------------------ |
@@ -107,14 +108,14 @@ This page lists all types of events that you can get through the [Get classroom 
 
 ## The number of rewards changes
 
-`When the cmd` property of an event is `1101`, the event indicates the number of rewards changes, and the `data` property contains the following fields:
+When the `cmd` property of an event is `1101`, the event indicates the number of rewards changes, and the `data` property contains the following fields:
 
 | Parameter | Type | Description |
 | :-------------- | :---------- | :----------------------------------------------------------- |
 | `rewardDetails` | Object array | Each object represents the rewards of a user and contains the following fields:<li>`userUuid`: String. The user ID.</li><li>`changedReward`: Integer, the number of rewards that have changed.</li><li>`total`: Integer, the total number of rewards.</li> |
 | `updateTime` | Number | The Unix timestamp (in milliseconds) when the rewards change, in UTC. |
 
-**Example**:
+**Example**
 
 ```json
 {
@@ -129,7 +130,7 @@ This page lists all types of events that you can get through the [Get classroom 
 
 ## The resources in the classroom changes
 
-`When the cmd` property of an event is `1003`, the event indicates the resources in the classroom changes, and the `data` property contains the following fields:
+When the `cmd` property of an event is `1003`, the event indicates the resources in the classroom changes, and the `data` property contains the following fields:
 
 | Parameter | Type | Description |
 | :---------- | :---------- | :----------------------------------------------------------- |
@@ -138,7 +139,7 @@ This page lists all types of events that you can get through the [Get classroom 
 | `operator` | Object | It contains the following fields:<li>`userUuid`: String. The user ID.</li><li>`userName`: String. The user name.</li><li>`role`: integer. The user role.</li> |
 | `action` | Integer | The resource change type:<li>`1`: The resource is added or updated.</li><li>`2`: The resource is deleted.</li> |
 
-**Example**:
+**Example**
 
 ```json
 {

@@ -100,7 +100,7 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 
 | 参数    | 类型   | 描述                                                         |
 | :------ | :----- | :----------------------------------------------------------- |
-| `dirty` | Object | （选填）用户的污点设置，包含以下字段：`state`: Boolean 类型，污点状态：`1`: 有污点。有污点的用户无法进入课堂。`0`: 无污点。`duration`: Number 类型，有污点状态持续时间，单位为秒，从被踢出的时候开始计时。 |
+| `dirty` | Object | （选填）用户的污点设置，包含以下字段：<ul><li>`state`: Boolean 类型，污点状态：<ul><li>`1`: 有污点。有污点的用户无法进入课堂。</li><li>`0`: 无污点。</li></ul><li>`duration`: Number 类型，有污点状态持续时间，单位为秒，从被踢出的时候开始计时。</li></ul>|
 
 ### 请求示例
 
@@ -169,7 +169,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 
 | 参数              | 类型   | 描述                                                         |
 | :---------------- | :----- | :----------------------------------------------------------- |
-| `mode`            | String | （选填）录制模式：<li>设为 `web`，则启用[页面录制模式](https://docs.agora.io/cn/Agora%20Platform/webpage_recording)。录制生成 MP4 文件。此外，录制服务会在当前 MP4 文件时长超过 2 小时或大小超过 2 GB 时创建一个新的 MP4 文件。</li><li>不填，则启用[合流录制模式](https://docs.agora.io/cn/Agora Platform/composite_recording_mode)且只录制老师的音视频。录制生成 M3U8 和 TS 文件。</li> |
+| `mode`            | String | （选填）录制模式：<li>设为 `web`，则启用[页面录制模式](https://docs.agora.io/cn/Agora%20Platform/webpage_recording)。录制生成 MP4 文件。此外，录制服务会在当前 MP4 文件时长超过 2 小时或大小超过 2 GB 时创建一个新的 MP4 文件。</li><li>不填，则启用[合流录制模式](https://docs.agora.io/cn/Agora%20Platform/composite_recording_mode)且只录制老师的音视频。录制生成 M3U8 和 TS 文件。</li> |
 | `webRecordConfig` | Object | （选填）当 `mode` 为 `web` 时，你需要通过 `webRecordConfig` 设置页面录制的详细信息，包含以下字段：<ul><li>`url`:（必填）String 类型，待录制页面地址。</li><li>`videoBitrate`:（选填）Number 类型，输出视频的码率，单位为 kbps，范围为 [50, 8000]。针对不同的输出视频分辨率，`videoBitrate` 的默认值不同：<ul><li>1280 × 720：默认值为 1130</li><li>960 × 720：默认值为 910</li><li>848 × 480：默认值为 610</li><li>640 × 480：默认值为 400</li><li>其他情况下，默认值均为 300</li></ul><li>`videoFps`:（选填）Number 类型，输出视频的帧率，单位为 fps，范围为 [5, 60]，默认值为 15。</li><li>`audioProfile`: Number 类型，设置输出音频的采样率、码率、编码模式和声道数。<ul><li>0：48 kHz 采样率，音乐编码，单声道，编码码率约 48 Kbps</li><li>1：48 kHz 采样率，音乐编码，单声道，编码码率约 128 Kbps</li><li>2：48 kHz 采样率，音乐编码，双声道，编码码率约 192 Kbps</li></ul><li>`videoWidth`: Number 类型，设置输出视频的宽度，单位为 pixel，范围为 [480, 1280]。`videoWidth` 和 `videoHeight` 的乘积需小于等于 1280 x 720。</li><li>`videoHeight`: Number 类型，设置输出视频的高度，单位为 pixel，范围为 [480, 1280]。`videoWidth` 和 `videoHeight` 的乘积需小于等于 1280 x 720。</li><li>`maxRecordingHour`: Number 类型，设置录制的最大时长，单位为小时，范围为 [1,720]，默认为 3。当录制时长超过 `maxRecordingHour`，录制会自动停止。 |
 
 ### 请求示例

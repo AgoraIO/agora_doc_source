@@ -1,3 +1,5 @@
+# Customize the UI of Flexible Classroom
+
 This page introduces how to customize the UI of Flexible Classroom, such as colors, buttons, and layout.
 
 ## Working principles

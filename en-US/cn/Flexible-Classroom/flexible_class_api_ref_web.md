@@ -1,3 +1,5 @@
+# Flexible Classroom Web API Reference
+
 ## AgoraEduSDK
 
 `AgoraEduSDK` provides the main methods that can be invoked by your app.
@@ -45,7 +47,7 @@ export type AgoraEduSDKConfigParams = {
 
 | Attributes | Description |
 | :------ | :----------------------------------------------------------- |
-| `appId` | The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep#step1). |
+| `appId` | The Agora App ID, see Get the Agora App ID. |
 
 ### LaunchOption
 

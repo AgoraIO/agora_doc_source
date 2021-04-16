@@ -1,3 +1,5 @@
+# Flexible Classroom Web API Reference
+
 ## AgoraEduSDK
 
 `AgoraEduSDK` provides the main methods that can be invoked by your app.
@@ -45,7 +47,7 @@ export type AgoraEduSDKConfigParams = {
 
 | Attributes | Description |
 | :------ | :----------------------------------------------------------- |
-| `appId` | The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | The Agora App ID, see Get the Agora App ID. |
 
 ### LaunchOption
 
@@ -61,7 +63,7 @@ export type LaunchOption = {
   roomName: string,
   listener: ListenerCallback,
   pretest: boolean,
-  rtmUid: string
+  rtmUid: string,
   rtmToken: string,
   language: LanguageEnum,
   startTime: number,
@@ -79,7 +81,7 @@ export type LaunchOption = {
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roleType` | The role of the user in the classroom:<li>`1`: Teacher.</li><li>`2`: Student.</li> |
-| `roomType` | The room type:<li>`0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student.</li><li>`4`: 1 对 N 在线小班课。 1 位教师对 N 名学生（2 ≤ N ≤ 16）进行在线辅导教学。 |
+| `roomType` | The room type:<li>`0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student.</li><li>`4`: A small classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in the classroom is 500. During the class, the teacher can invite a student to "take the floor" and share ideas with others. |
 | `listener` | The state of classroom launching. |
 | `pretest` | Whether to enable the pre-class device test:<li>`true`: Enable the pre-class device test. After this function is enabled, end users can see a page for the device test before entering the classroom. They can check whether their camera, microphone, and speaker can work properly.</li><li>`false`: Disable the pre-class device test.</li> |
 | `language` | The UI language:<li>`zh`: zh-CN.</li><li>`en`: en-US.</li> |
@@ -122,8 +124,8 @@ export type CourseWareList = CourseWareItem[]
 | `ext` | The file suffix. |
 | `size` | The file size (bytes). |
 | `updateTime` | The latest modified time of the file. |
-| `conversion` | 文件转换配置对象，包含以下字段：<ul><li>`type`: The conversion type:</li><ul><li>`"dynamic"`: 转换为静态图片。</li><li>`"static"`: 转换为动态 HTML。</li></ul><ul> |
-| `url` | 文件访问地址。 Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. 如果后缀名非上述所列，必须设置 `url`，`scenes` 可为空。 |
+| `conversion` | The file conversion configuration object. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. The JSON object contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>`"static"`: Convert the file to a static picture.</li><li>`"dynamic"`: Convert the file to a dynamic HTML page.</li></ul><ul> |
+| `url` | The download link of the file. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. When the file suffix is not `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"`, you must set `url` and leave `scenes` empty. |
 | `scenes` | The download configuration of the converted file. When the file suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, you must set `scenes` for downloading the converted file. |
 | `taskUuid` | The unique identifier of the file conversion task. |
 | `taskToken` | The token used by the file conversion task. |

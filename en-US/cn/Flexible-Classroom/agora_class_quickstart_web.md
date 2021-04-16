@@ -1,12 +1,14 @@
+# Launch a Classroom
+
 Use this guide to integrate the Agora Classroom SDK into your Web project and call APIs to launch a flexible classroom.
 
-<div class="alert note"><li>Before proceeding, ensure that you make the <a href="./agora_class_prep">preparations</a> required for using Flexible Classroom.<li>On the Web client, a user can join a classroom as teachers and students.</div>
+<div class="alert note"><li>Before proceeding, ensure that you read the prerequisites required for using Flexible Classroom.<li>On the Web client, a user can join a classroom as teachers and students.</div>
 
 ## Sample project
 
 Agora provides an open-source [sample project](https://github.com/AgoraIO-Community/CloudClass-Desktop) on GitHub, which demonstrates how to integrate the Agora Classroom SDK and call APIs to launch a flexible classroom. You can download and read the source code.
 
-Agora also provides a [sample project](https://codepen.io/agoratechwriter/pen/OJRrOxg) on CodePen. After you make all the [preparations](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web), you can pass in the [Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web#1-create-an-agora-project-and-get-the-agora-app-id-and-app-certificate), an [RTM Token](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web#5-generate-an-rtm-token), and a user ID in the sample project. The user ID must be consistent with the one you used for generating an RTM Token. Then you can immediately run the sample project to experience a flexible classroom.
+Agora also provides a [sample project](https://codepen.io/agoratechwriter/pen/OJRrOxg) on CodePen. After you make all the [preparations](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web), you can pass in the [Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web#1-create-an-agora-project-and-get-the-agora-app-id-and-app-certificate), an [RTM Token](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web#5-generate-an-rtm-token), and a user ID in the sample project. The user ID must be consistent with the one you used for generating an RTM Token. Then you can immediately run the sample project to experience a flexible classroom.
 
 ## Set up the development environment
 
@@ -27,7 +29,7 @@ Call the `AgoraEduSDK.config` method to configure the SDK globally. Set the foll
 
 | Parameter | Description |
 | :------ | :----------------------------------------------------------- |
-| `appId` | The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web#1-create-an-agora-project-and-get-the-agora-app-id-and-app-certificate). |
+| `appId` | The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web#1-create-an-agora-project-and-get-the-agora-app-id-and-app-certificate). |
 
 ```js
 AgoraEduSDK.config({
@@ -109,4 +111,4 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
 
 After successful launching a classroom, you can see the following page:
 
-![](https://web-cdn.agora.io/docs-files/1611126476035)
+![](https://web-cdn.agora.io/docs-files/1618562379189)
