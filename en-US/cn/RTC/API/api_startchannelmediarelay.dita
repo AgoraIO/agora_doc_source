@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startchannelmediarelay">
     <title><ph keyref="startChannelMediaRelay"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Starts relaying media streams across channels. This method can be used to implement scenarios such as cross-channel connection of microphones.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts relaying media streams across channels. This method can be used to implement scenarios such as co-host across channels.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,18 +16,18 @@
         </section>
         <section id="detailed_desc">
    
-   <p>After successfully calling this method, the SDK will trigger<xref keyref="onChannelMediaRelayStateChanged"/> and<xref keyref="onChannelMediaRelayEvent"/> callbacks, and report the current cross-channel media stream forwarding status and events in the callback.<ul>
-  <li>If<apiname keyref="onChannelMediaRelayStateChanged"/> the callback reports<apiname keyref="RELAY_STATE_RUNNING"/> (2) and<apiname keyref="RELAY_OK"/> (0), and the<apiname keyref="onChannelMediaRelayEvent"/> callback report<apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL"/> (4), it means that the SDK starts to forward the media stream between the source channel and the target channel.</li>
-  <li>If the <apiname keyref="onChannelMediaRelayStateChanged"/>report (3) is called back<apiname keyref="RELAY_STATE_FAILURE"/>, it means that the cross-channel media stream forwarding is abnormal.</li>
+   <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> and <xref keyref="onChannelMediaRelayEvent"/> callbacks, and these callbacks return the state and events of the media stream relay.<ul>
+  <li>If the <apiname keyref="onChannelMediaRelayStateChanged"/> callback returns <apiname keyref="RELAY_STATE_RUNNING"/>(2) and <apiname keyref="RELAY_OK"/>(0), and the <apiname keyref="onChannelMediaRelayEvent"/> callback returns <apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL"/>(4), it means that the SDK starts relaying media streams between the source channel and the destination channel.</li>
+  <li>If the <apiname keyref="onChannelMediaRelayStateChanged"/> callback returns <apiname keyref="RELAY_STATE_FAILURE"/>(3), an exception occurs during the media stream relay.</li>
        </ul>
    </p>
    <note outputclass="note">
        <ul>
-  <li>Call this method after the \ref joinChannel() &quot;joinChannel&quot; method.</li>
-  <li>This method applies to `LIVE_BROADCASTING` only.</li>
-  <li>To call this method again after it succeeds, you must call {@link stopChannelMediaRelay}<xref keyref="stopChannelMediaRelay"/> to quit the current relay.</li>
-  <li>The cross-channel media stream forwarding function needs to <xref href="https://agora-ticket.agora.io/" scope="external" format="html">submit a work </xref>order to contact technical support for activation.</li>
-  <li>We do not support string user IDs in this API.</li>
+  <li>Call this method after joining the channel.</li>
+  <li>This method takes effect only when you are a host in a `LIVE_BROADCASTING` channel.</li>
+  <li>After a successful method call, if you want to call this method again, ensure that you call the <xref keyref="stopChannelMediaRelay"/> method to quit the current relay.</li>
+  <li>Contact support@agora.io before <xref href="https://agora-ticket.agora.io/" scope="external" format="html"></xref>implementing this function.</li>
+  <li>We do not support string user accounts in this API.</li>
        </ul>
    </note>
         </section>
@@ -35,14 +35,14 @@
    <parml>
        <plentry>
   <pt>configuration</pt>
-  <pd>Configurations of the media stream relay. See <xref keyref="ChannelMediaRelayConfiguration"/>.</pd>
+  <pd>The configuration of the media stream relay. See <xref keyref="ChannelMediaRelayConfiguration"/>.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li>Success.</li>
+       <li>0: Success.</li>
        <li>&lt;Failure.</li>
    </ul>
         </section></refbody>
