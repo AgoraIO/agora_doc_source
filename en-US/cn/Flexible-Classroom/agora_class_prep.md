@@ -1,3 +1,5 @@
+# Prerequisites for Flexible Classroom
+
 This page lists all the prerequisites required for using Flexible Classroom.
 
 ## 1. Create an Agora project and get the Agora App ID and App Certificate
@@ -8,7 +10,7 @@ Before using Agora services, you need to sign up for an Agora [developer account
 
 2. Click **create** on the **Project Management** page.
 
-   ![create-project](https://web-cdn.agora.io/docs-files/1594287028966)
+   [![create button](https://web-cdn.agora.io/docs-files/1594949127367)](https://dashboard.agora.io/projects)
 
 3. Enter your **project name**, and select **Secure mode: APP ID + Token** for the authentication mechanism in the pop-up window.
 
@@ -16,11 +18,11 @@ Before using Agora services, you need to sign up for an Agora [developer account
 
 5. Agora automatically assigns each project an App ID as a unique identifier. To copy this App ID, find your project on the **Project Management** page in Agora Console, and click the eye icon to the right of the App ID. Make a note of this App ID for generating an RTM Token and calling API methods later.
 
-   ![get-app-id](https://web-cdn.agora.io/docs-files/1603974707121)
+   ![get app id](https://web-cdn.agora.io/docs-files/1602646621028)
 
 6. Click the **edit** button of your project and enter the **Project Edit** page. Click the eye icon to the right of the primary certificate to copy the App Certificate of this project. Make a note of the App Certificate for generating an RTM Token later.
 
-![get-app-certificate](https://web-cdn.agora.io/docs-files/1611024919891)
+   ![img](https://web-cdn.agora.io/docs-files/1592535534341)
 
 ## 2. Get the App Identifier and SDK Token of the Agora Interactive Whiteboard service
 
@@ -36,11 +38,11 @@ Configure the interactive whiteboard and cloud recording functions in Agora Cons
 
 1. Log into [Agora Console](https://console.agora.io/) and enter the **project management** page. Find the project you create, click the **edit** button of this project to enter the **project edit** page. Click the **aPaaS configuration** button.
 
-![project-management](https://web-cdn.agora.io/docs-files/1611024994160)
+   ![apaas-configuration](https://web-cdn.agora.io/docs-files/1618474816680)
 
 2. On the aPaaS Configuration page,select the **tick box** next to Whiteboard and Cloud recording to enable these two functions, pass in JSON objects to configure these two functions according to the following table, and click **Update**. After returning to the **project management** page, click **Save** to ensure the aPaaS configuration takes effect.
 
-![apaas-configuration](https://web-cdn.agora.io/docs-files/1611025023884)
+   ![apaas-configuration](https://web-cdn.agora.io/docs-files/1618474940552)
 
 ### Interactive whiteboard
 
@@ -100,5 +102,12 @@ Example of the cloud recording configuration:
 Flexible Classroom uses the RTM token for authentication.  The RTM token is generated dynamically with the Agora App ID, App Certificate, and a User ID.
 
 - During the testing phase, you can use the [Temporary RTM Token Generator](https://webdemo.agora.io/token-builder/) and pass the App ID and App Certificate that you get in the [previous step](#1-create-an-agora-project-and-get-the-agora-app-id-and-app-certificate), and also a user ID to generate a temporary RTM Token with a validity period of 24 hours.
-<div class="alert info">The user ID is a string smaller than 64 bytes. The scope of supported characters is:<ul><li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "|", "~", ","</li></ul></div>
+> The user ID is a string smaller than 64 bytes. The scope of supported characters is:
+> - All lowercase English letters: a to z.
+> - All uppercase English letters: A to Z.
+> - All numeric characters.
+> - 0 to 9.
+> - The space character.
+> - "!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "|", "~", ","
+
 - For the development environment, you need to deploy an RTM token generator on your server. When a user enters the classroom, the client needs to apply for an RTM token from the server. The server generates an RTM token and passes it to the client. For details, see [Generate an RTM Token](https://docs.agora.io/en/Real-time-Messaging/token_server_rtm?platform=All%20Platforms).
