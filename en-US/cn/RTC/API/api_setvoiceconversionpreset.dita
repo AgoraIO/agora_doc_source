@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setvoiceconversionpreset">
     <title><ph keyref="setVoiceConversionPreset"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets an SDK preset voice beautifier effect.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets a preset voice beautifier effect.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -11,23 +11,21 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        <title>Prototype</title>
         <p conref="../conref/conref_rtc_api.dita#apidef/setVoiceConversionPreset"/>
         </section>
         <section id="detailed_desc">
-            <title>Detailed Description</title>
             <dl outputclass="since">
                 <dlentry>
                     <dt>Since</dt>
                     <dd>v3.3.1</dd>
                 </dlentry>
             </dl>
-            <p>Call this method to set an SDK preset voice beautifier effect for the local user who sends an audio stream. After setting an audio effect, all users in the channel can hear the effect. You can set different audio effects for different scenarios. See Set the Voice Beautifier and Audio Effects.</p>
-            <p>In order to obtain better vocal effects, Agora recommends that you set<xref keyref="setAudioProfile"/> the <parmname>profile</parmname> to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) or<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5) and set the <parmname>scenario</parmname> to <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3) before calling this method.</p>
+            <p>Call this method to set a preset voice beautifier effect for the local user who sends an audio stream. After setting an audio effect, all users in the channel can hear the effect. You can set different audio effects for different scenarios. See Set the Voice Beautifier and Audio Effects.</p>
+            <p>To achieve better audio effect quality, Agora recommends that you call <xref keyref="setAudioProfile"/> and set the <parmname>profile</parmname> to <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) and <parmname>scenario</parmname> to <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3) before calling this method.</p>
             <note outputclass="note">
                 <ul>
                     <li>You can call this method either before or after joining a channel.</li>
-                    <li>Please do not set<apiname keyref="setAudioProfile"/> the <parmname>profile</parmname> parameter to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="windows"> or <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>, otherwise the method will not take effect.</li>
+                    <li>Do not set the <parmname>profile</parmname> parameter of <apiname keyref="setAudioProfile"/> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="windows"> or <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>; otherwise, this method call does not take effect.</li>
                     <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
                     <li>After calling this method, Agora recommends not calling the following methods, because they can override \ref IRtcEngine::setVoiceBeautifierPreset &quot;setVoiceBeautifierPreset&quot;:<ul>
                             <li><xref keyref="setAudioEffectPreset"/></li>
@@ -48,7 +46,7 @@
             <parml>
                 <plentry>
                     <pt>preset</pt>
-                    <pd>The options for SDK preset voice beautifier effects<xref keyref="VOICE_CONVERSION_PRESET"/>.</pd>
+                    <pd>The options for the preset voice beautifier effects: <xref keyref="VOICE_CONVERSION_PRESET"/>.</pd>
                 </plentry>
             </parml>
         </section>
