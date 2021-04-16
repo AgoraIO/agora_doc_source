@@ -23,19 +23,19 @@
             </dl>
             <p>This method starts the last-mile network probe test before joining a channel to get the uplink and downlink last mile network statistics, including the bandwidth, packet loss, jitter, and round-trip time (RTT).</p>
             <p>Once this method is enabled, the SDK returns the following callbacks:<ul>
-                    <li><xref keyref="onLastmileQuality" />, It will return within 2 seconds depending on the network situation. This callback rates the network conditions and is more closely linked to the user experience.</li>
-                    <li><xref keyref="onLastmileProbeResult" />, It will return within 30 seconds depending on the network situation. This callback returns the real-time statistics of the network conditions and is more objective.</li>
+                    <li><xref keyref="onLastmileQuality" />: The SDK triggers this callback within two seconds depending on the network conditions. This callback rates the network conditions and is more closely linked to the user experience.</li>
+                    <li><xref keyref="onLastmileProbeResult" />: The SDK triggers this callback within 30 seconds depending on the network conditions. This callback returns the real-time statistics of the network conditions and is more objective.</li>
                 </ul>
             </p>
-            <p>This method applies to the `LIVE_BROADCASTING` channel profile.<ul>
+            <p>This method applies to the following scenarios:<ul>
                     <li>Before a user joins a channel, call this method to check the uplink network quality.</li>
-                    <li>This method consumes additional network traffic, and hence may affect communication quality.</li>
+                    <li>In a live streaming channel, call this method to check the uplink network quality before an audience member switches to a host.</li>
                 </ul>
             </p>
             <note outputclass="note">
                 <ul>
-                    <li>This method will consume a certain amount of network traffic and affect the quality of the call, so we recommend not to<xref keyref="enableLastmileTest" /> use it at the same time.</li>
-                    <li>Otherwise, the callback<apiname keyref="onLastmileQuality" /><apiname keyref="onLastmileProbeResult" /> may be interrupted by other methods, and hence may not be triggered.</li>
+                    <li>This method consumes extra network traffic and may affect communication quality. We do not recommend calling this method and <xref keyref="enableLastmileTest" /> at the same time.</li>
+                    <li>Do not call other methods before receiving the <apiname keyref="onLastmileQuality" /> and <apiname keyref="onLastmileProbeResult" /> callbacks. Otherwise, the callbacks may be interrupted.</li>
                     <li>A host should not call this method after joining a channel (when in a call).</li>
                 </ul>
             </note>
@@ -45,7 +45,7 @@
             <parml>
                 <plentry>
                     <pt>config</pt>
-                    <pd>Configurations of the last-mile network probe test<xref keyref="LastmileProbeConfig" />.</pd>
+                    <pd>The configurations of the last-mile network probe test: <xref keyref="LastmileProbeConfig" />.</pd>
                 </plentry>
             </parml>
         </section>
