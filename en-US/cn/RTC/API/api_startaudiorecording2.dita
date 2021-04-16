@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiorecording2">
-    <title><ph keyref="startAudioRecording2"/> [1/2]</title>
+    <title><ph keyref="startAudioRecording2"/> [2/2]</title>
     <shortdesc id="short"><ph id="shortdesc">Starts an audio recording on the client.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -15,7 +15,13 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/startAudioRecording2"/>
         </section>
         <section id="detailed_desc">
-   
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v2.9.1。 该方法取代 <xref keyref="startAudioRecording1"></xref>[1/2]。</dd>
+                </dlentry>
+            </dl>
+            
    <p>The Agora SDK allows recording during a call. After successfully calling this method, you can record the audio of all the users in the channel and get an audio recording file. Supported formats of the recording file are as follows:<ul>
       <li>.wav: Large file size with high fidelity.</li>
       <li>.aac: Small file size with low fidelity.</li>
@@ -25,7 +31,7 @@
        <ul>
   <li>Ensure that the directory you use to save the recording file exists and is writable.</li>
   <li>This method should be called after the <apiname keyref="joinChannel1"/> method. The recording automatically stops when you call the <xref keyref="leaveChannel"/> method.</li>
-  <li>To ensure the recording effect, when <parmname>sampleRate</parmname> is set to 44.1 kHz or 48 kHz, it is recommended to set <parmname>quality</parmname> to<apiname keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> or<apiname keyref="AUDIO_RECORDING_QUALITY_HIGH"/>.</li>
+  <li>For better recording effects, set <parmname>quality</parmname> to <apiname keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> or <apiname keyref="AUDIO_RECORDING_QUALITY_HIGH"/> when <parmname>sampleRate</parmname> is 44.1 kHz or 48 kHz.</li>
        </ul>
    </note>
         </section>
@@ -38,9 +44,9 @@
        <plentry>
   <pt>sampleRate</pt>
   <pd>
-      <p>@param sampleRate Sample rate (kHz) of the recording file. Supported values are as follows:<ul>
+      <p>The sample rate (kHz) of the recording file. Supported values are as follows:<ul>
      <li>16000</li>
-     <li>32000 (default)</li>
+     <li>32000 (Default)</li>
      <li>44100</li>
      <li>48000</li>
  </ul>
@@ -49,7 +55,7 @@
        </plentry>
        <plentry>
   <pt>quality</pt>
-  <pd>Audio recording qualities. Relevant links<xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>:</pd>
+  <pd>Audio recording qualities. For details, see <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</pd>
        </plentry>
    </parml>
         </section>
