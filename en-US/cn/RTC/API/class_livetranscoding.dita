@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
     <title><ph keyref="LiveTranscoding"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The class that manages the configuration of bypass streaming and transcoding.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">This class manages the configurations of pushing streams to the CDN.</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/LiveTranscoding"/>
@@ -14,28 +14,28 @@
                     <pd>
                         <p>The width of the video in pixels. The default value is 360.</p>
                         <ul>
-                            <li>When pushing video streams to the CDN, ensure that `<codeph>width</codeph>` is at least 64; otherwise, the Agora server adjusts the value to 64.</li>
-                            <li>When pushing audio streams to the CDN, set `<codeph>width</codeph>` and `<codeph>height</codeph>` as 0.</li>
+                            <li>When pushing video streams to the CDN, ensure that <codeph>width</codeph> is at least 64; otherwise, the Agora server adjusts the value to 64.</li>
+                            <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
                         </ul>
                     </pd>
                 </plentry>
        <plentry>
-  <pt>HEIGHT: Height of the video.</pt>
+  <pt>height</pt>
   <pd>
       <p>The height of the video in pixels. The default value is 640.</p>
       <ul>
- <li>When pushing video streams to the CDN, ensure that `height`<codeph></codeph> is at least 64; otherwise, the Agora server adjusts the value to 64.</li>
- <li>When pushing audio streams to the CDN, set `<codeph>width</codeph>` and `<codeph>height</codeph>` as 0.</li>
+ <li>When pushing video streams to the CDN, ensure that <codeph>height</codeph> is at least 64; otherwise, the Agora server adjusts the value to 64.</li>
+ <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
       </ul>
   </pd>
        </plentry>
        <plentry>
   <pt>videoBitrate</pt>
-  <pd>Bitrate of the CDN live output video stream. The minimum encoding bitrate (Kbps). The default value is 400 Kbps. Set this parameter according to the Video Bitrate Table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</pd>
+  <pd>The bitrate of the CDN live output video stream. The minimum encoding bitrate (Kbps). The default value is 400 Kbps. Set this parameter according to the Video Bitrate Table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</pd>
        </plentry>
        <plentry>
   <pt>videoFrameRate</pt>
-  <pd>Frame rate of the output video stream set for the CDN live streaming. The default value is 15 fps, and the value range is (0,30]. The default value is 15.<note outputclass="note">@note The Agora server adjusts any value over 30 to 30.</note></pd>
+  <pd>The frame rate (fps) of the output video stream. The default value is 15 fps, and the value range is (0,30]. The default value is 15.<note outputclass="note">The Agora server adjusts any value over 30 to 30.</note></pd>
        </plentry>
        <plentry>
   <pt>lowLatency</pt>
@@ -54,73 +54,73 @@
        </plentry>
        <plentry>
   <pt>videoGop</pt>
-  <pd>Video GOP (in frames) of the injected stream in the interactive live streaming. The unit is frame. The default value is 1.0.</pd>
+  <pd>The GOP (in frames) of the output video stream. The default value is 30.</pd>
        </plentry>
        <plentry>
        <pt>videoCodecProfile</pt>
        <pd>
-  <p>For the encoding specifications of the push-stream output video, see for details<xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.</p>
-  <note outputclass="note">@note If you set this parameter to other values, Agora adjusts it to the default value of 100.</note>
+  <p>The encoding specifications of the output video stream. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.</p>
+  <note outputclass="note">If you set this parameter to other values, Agora adjusts it to the default value 100.</note>
        </pd>
    </plentry>
        <plentry>
-  <pt>backgroundColor: (Optional) String.</pt>
-  <pd>The background color in RGB hex value. Value only. Do not include a preceeding #. For example, <codeph>0xFFB6C1</codeph> (light pink). The default value is <codeph>0x000000 </codeph>(black).</pd>
+  <pt>backgroundColor</pt>
+  <pd>The background color of the output video in RGB hex value. Do not include # in the value. For example, use <codeph>0xFFB6C1</codeph> for light pink. The default value is <codeph>0x000000</codeph>(black).</pd>
        </plentry>
        <plentry>
-  <pt>int userCount,&#13;</pt>
-  <pd>The number of users in the interactive live streaming.</pd>
+  <pt>userCount</pt>
+  <pd>The number of users involved in transcoding.</pd>
        </plentry>
        <plentry>
   <pt>transcodingUsers</pt>
   <pd>
-      <p>Manages the user layout configuration in the CDN live streaming<xref keyref="TranscodingUser"/>. This layout supports up to 17 users.</p>
+      <p>The transcoding configuration for each user (the maximum is 17 users). See <xref keyref="TranscodingUser"/>.</p>
   </pd>
        </plentry>
        <plentry>
   <pt>transcodingExtraInfo</pt>
-  <pd>Reserved parameters: user-defined information sent to the bypass push client. Reserved property. Extra user-defined information to send SEI for the H.264/H.265 video stream to the CDN live client. Maximum length: 4096 Bytes. For detailed information about SEI, see<xref href="https://docs.agora.io/cn/faq/sei" scope="external" format="html"> SEI frame related issues</xref>.</pd>
+  <pd>Reserved parameter: User-defined information to be sent to the CDN client receiving the pushed stream. This information is used to fill in the SEI frame of H.264/H.265 videos. The maximum length is 4096 bytes. For detailed information about SEI, see <xref href="https://docs.agora.io/cn/faq/sei" scope="external" format="html">SEI frame related issues</xref>.</pd>
        </plentry>
        <plentry>
-  <pt>-1: the metadata type is unknown.</pt>
+  <pt>metadata</pt>
   <pd>
       <dl>
  <dlentry>
      <dt>Deprecated:</dt>
-     <dd>This mode is deprecated.</dd>
+     <dd>This attribute is deprecated.</dd>
  </dlentry>
-      </dl>DEPRECATED The metadata sent to the CDN live client defined by the RTMP or HTTP-FLV metadata.</pd>
+      </dl>The metadata sent to the CDN client.</pd>
        </plentry>
        <plentry>
   <pt>watermark</pt>
-  <pd>This method supports adding a watermark image in the PNG file format only. Once a watermark image is added, the audience of the CDN live publishing stream can see the watermark image. See RtcImage<xref keyref="RtcImage"/>.</pd>
+  <pd>The watermark image added to the output video. Only the PNG format is supported. After adding a watermark image, all of the CDN audience can see the image. For details, see <xref keyref="RtcImage"/>.</pd>
        </plentry>
        <plentry>
   <pt>backgroundImage</pt>
-  <pd>The background image added to the CDN live publishing stream. Once a background image is added, the audience of the CDN live publishing stream can see the background image. See RtcImage<xref keyref="RtcImage"/>.</pd>
+  <pd>The background image added to the output video. After adding a background image, all of the CDN audience can see the image. For details, see <xref keyref="RtcImage"/>.</pd>
        </plentry>
        <plentry>
   <pt>audioSampleRate</pt>
-  <pd>The audio sampling rate (Hz) of the push stream output, see for details<xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
+  <pd>The audio sampling rate (Hz) of the output stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
        </plentry>
        <plentry>
   <pt>audioBitrate</pt>
-  <pd>Bitrate of the CDN live audio output stream. The default value is 48 Kbps, and the highest value is 128.</pd>
+  <pd>The audio bitrate (Kbps) of the output stream. The default value is 48, and the largest value is 128.</pd>
        </plentry>
        <plentry>
-  <pt>audioChannels: Number type field.</pt>
-  <pd>The numbder of audio channels for the CDN live stream. Agora recommends choosing 1 (mono), or 2 (stereo) audio channels. Special players are required if you choose option 3, 4, or<ul>
-      <li>- 1: (Default) Mono</li>
-      <li>- 2: Stereo</li>
-      <li>- 3: Three audio channels</li>
-      <li>- 4: Four audio channels</li>
-      <li>- 5: Five audio channels</li>
+  <pt>audioChannels</pt>
+  <pd>The number of audio channels for the output stream. The value must be an integer from 1 to 5. The default is 1. Agora recommends setting it to 1 or 2.<ul>
+      <li>1: (Default) Mono</li>
+      <li>2: Stereo</li>
+      <li>3: Three audio channels</li>
+      <li>4: Four audio channels</li>
+      <li>5: Five audio channels</li>
       </ul>
   </pd>
        </plentry>
        <plentry>
   <pt>audioCodecProfile</pt>
-  <pd>For the encoding specifications of the push-stream output video, see for details<xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+  <pd>The encoding specifications of the output video stream. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
        </plentry>
    </parml>
         </section></refbody>
