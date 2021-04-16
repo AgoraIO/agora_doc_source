@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiodeviceloopbacktest">
     <title><ph keyref="startAudioDeviceLoopbackTest"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Starts the audio device loopback test.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts an audio device loopback test.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,7 +16,7 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This method tests whether the local audio sampling device and playback device are working properly. After calling this method, the audio sampling device samples the local audio, and the audio playback device plays the sampled audio. The SDK will trigger two callbacks at the set time interval<xref keyref="onAudioVolumeIndication"/> to report the volume information of the audio capture device (<parmname>uid</parmname> = 0) and the audio playback setting (<parmname>uid</parmname> = 1) respectively.</p>
+   <p>This method tests whether the local audio sampling device and playback device are working properly. After calling this method, the audio sampling device records the local audio, and the audio playback device plays the sampled audio. The SDK triggers two independent <xref keyref="onAudioVolumeIndication"/> callbacks at the time interval set in this method, which reports the volume information of the sampling device (<parmname>uid</parmname> = 0) and the volume information of the playback device(<parmname>uid</parmname> = 1) respectively.</p>
    <note outputclass="note"><ul>
        <li>Ensure that you call this method before joining a channel.</li>
        <li>This method tests local audio devices and does not report the network conditions.</li>
@@ -26,7 +26,7 @@
    <parml>
        <plentry>
   <pt>indicationInterval</pt>
-  <pd><p>The interval between SDK triggering<xref keyref="onAudioVolumeIndication"/> callbacks, in milliseconds. We recommend a setting greater than 200 ms. It should not be less than 10 milliseconds, otherwise the callback will not be<apiname keyref="onAudioVolumeIndication"/> received.</p></pd>
+  <pd><p>The time interval(ms) at which the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback. We recommend a setting greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive the <apiname keyref="onAudioVolumeIndication"/> callback.</p></pd>
        </plentry>
    </parml>
         </section>
