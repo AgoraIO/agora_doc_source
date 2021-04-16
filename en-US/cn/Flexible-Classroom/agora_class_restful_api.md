@@ -1,65 +1,65 @@
 This page provides detailed help for the Flexible Classroom RESTful APIs.
 
-<div class="alert info">查看灵动课堂云服务的<a href="./agora_class_restful_api_release">更新历史</a>。</div>
+<div class="alert info">See the <a href="./agora_class_restful_api_release">changelog</a> of Flexible Classroom Cloud Service.</div>
 
-## 基本信息
+## Basic information
 
-### 域名
+### Server
 
-所有请求都发送给域名：api.agora.io。
+All requests are sent to the host: api.agora.io.
 
-### 数据格式
+### Data format
 
-所有请求的 Content-Type 类型为 application/json。
+The Content-Type of all requests is application/json.
 
-### 认证方式
+### Authentication
 
-灵动课堂云服务 RESTful API 支持 Token 认证。 你需要在发送 HTTP 请求时在 HTTP 请求头部的 `x-agora-token` 字段和 `x-agora-uid` 字段分别填入：
+Flexible Classroom Cloud Service uses tokens for authentication. You need to put the following information to the `x-agora-token` and `x-agora-uid` fields when sending your HTTP request:
 
-- 服务端生成的 RTM Token。
-- 生成 RTM Token 时使用的 uid。
+- The RTM Token generated at your server.
+- The uid you use to generate the RTM Token.
 
-具体生成 RTM Token 的方法请参考[生成 RTM Token](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms) 文档。
+For details, see [Generate an RTM Token](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms).
 
-## 设置课堂状态
+## Set the classroom state
 
-### 接口描述
+### Description
 
-设置课堂状态（未开始/开始/结束）。 课堂状态说明详见[课堂状态管理文档](./class_state)。
+Call this method to set the classroom state: Not started, Started, Ended. For the detailed description of each state, see [classroom state management](./class_state).
 
-### 接口原型
+### Prototype
 
-- 方法：PUT
-- 接入点：/edu/apps/{appId}/v2/rooms/{roomUUid}/states/{state}
+- Method: PUT
+- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/states/{state}
 
-### 请求参数
+### Request parameters
 
-**URL 参数**
+**URL parameters**
 
-需要在 URL 中传入以下参数。
+Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `appId` | String | （必填）Agora App ID，详见[获取 Agora App ID](./agora_class_prep#step1)。 |
-| `roomUUid` | String | （必填）课堂 uuid。 这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。 The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `state` | Integer | （必填）课堂状态：<li>`0`: 未开始<li>`1`: 开始<li>`2`: 结束 |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
+| `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `state` | Integer | (Required) The classroom state:<li>`0`: Not started.<li>`1`: Start recording.<li>`2`: Ended. |
 
-### 请求示例
+### Request example
 
 ```
-// 设置 test_class 的课堂状态为开始
+// Set the state of the test_class as started
 https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 ```
 
-### 响应参数
+### Response parameters
 
 | Parameter | Type | Description |
 | :----- | :------ | :------------------------------------------------ |
-| `code` | Integer | 业务状态码：<li>0: 请求成功。<li>非 0: 请求失败。 |
-| `msg` | String | 详细信息。 |
-| `ts` | Number | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
+| `code` | Integer | Business status code:<li>0: The request succeeds.<li>Non-zero: The request fails. |
+| `msg` | String | The detailed information. |
+| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
 
-### 响应示例
+### Response example
 
 ```json
 "status": 200,
@@ -71,114 +71,205 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 }
 ```
 
-## 设置录制状态
+## Kick a user out of a classroom
 
-### 接口描述
+### Description
 
-开始或结束录制指定课堂。
+Call this method to kick a specified user out of a classroom. After a successful method call, the server triggers an event indicating a user leaves the classroom. You can use the `dirty` parameter to determine whether the user can enter the classroom afterwards.
 
-### 接口原型
+### Prototype
 
-- 方法：PUT
-- 接入点：/edu/apps/{appId}/v2/rooms/{roomUUid}/records/states/{state}
+- Method: POST
+- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/users/{userUuid}/exit
 
-### 请求参数
+### Request parameters
 
-**URL 参数**
+**URL parameters**
 
-需要在 URL 中传入以下参数。
-
-| Parameter | Type | Description |
-| :--------- | :------ | :----------------------------------------------------------- |
-| `appId` | String | （必填）Agora App ID，详见[获取 Agora App ID](./agora_class_prep#step1)。 |
-| `roomUUid` | String | （必填）课堂 uuid。 这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。 The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `state` | Integer | （必填）录制状态：<li>`0`: 结束<li>`1`: 开始 |
-
-### 请求示例
-
-```
-// 开始录制 test_class
-https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
-```
-
-### 响应参数
-
-| Parameter | Type | Description |
-| :----- | :------ | :------------------------------------------------ |
-| `code` | Integer | 业务状态码：<li>0: 请求成功。<li>非 0: 请求失败。 |
-| `msg` | String | 详细信息。 |
-| `ts` | Number | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
-
-### 响应示例
-
-```json
-"status": 200,
-"body":
-{
-  "code": 0,
-  "ts": 1610450153520
-}
-```
-
-## 获取录制列表
-
-### 接口描述
-
-获取指定课堂内的录制列表。
-
-你可以通过 `nextId` 分批拉取，每批最多拉取 100 条数据。
-
-### 接口原型
-
-- 方法：GET
-- 接入点：/edu/apps/{appId}/v2/rooms/{roomUuid}/records
-
-### 请求参数
-
-**URL 参数**
-
-需要在 URL 中传入以下参数。
+Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | （必填）Agora App ID，详见[获取 Agora App ID](./agora_class_prep#step1)。 |
-| `roomUUid` | String | （必填）课堂 uuid。 这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。 The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
+| `userUuid` | String | (Required) The user ID. This is the unique identifier of the user and also the user ID used when logging in to the Agora RTM system. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
-**Query 参数**
+**Request body parameters**
 
-| Parameter | Type | Description |
-| :------- | :----- | :----------------------------------------------------------- |
-| `nextId` | String | （选填）下一批数据的起始 ID。 第一次获取可传 null，后续获取传入响应结果里得到的 `nextId`。 |
-
-### 请求示例
-
-```
-// 获取 test_class 里的录制列表
-https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
-```
-
-### 响应参数
+Pass in the following parameters in the request body.
 
 | Parameter | Type | Description |
-| :----- | :------ | :----------------------------------------------------------- |
-| `code` | Integer | 业务状态码：<li>0: 请求成功。<li>非 0: 请求失败。 |
-| `msg` | String | 详细信息。 |
-| `ts` | Number | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
-| `data` | Object | 具体数据，包含：<ul><li>`count`: Integer 型，本批数据条数。</li><li>`list`: 由多个 Object 组成的数组。 每个 Object 包含以下字段：<ul><li>`appId`: 你的 Agora App ID。 </li><li>`roomUuid`: 课堂 uuid。 这是课堂的唯一标识符，也是 Agora RTC SDK 和 Agora RTM SDK 中使用的频道名。 </li><li>`recordId`: 一次录制的的唯一标识符。 调用设置录制状态 API 开始录制然后结束录制视为一次录制。</li><li>`startTime`: 录制开始的 UTC 时间戳，单位为毫秒。 </li><li>`endTime`: 录制结束的 UTC 时间戳，单位为毫秒。 </li><li>`resourceId`: Agora 云端录制服务的 `resourceId`。 </li><li>`sid`: Agora 云端录制服务的 `sid`。 </li><li>`recordUid`: Agora 云端录制服务在频道内使用的 UID。 </li><li>`boardAppId`: Agora 互动白板服务的 App Identifier。 </li><li>`boardToken`: Agora 互动白板服务的 SDK Token。 。 </li><li>`boardId`: 白板的唯一标识符。 </li><li>`type`: Integer 类型，录制类型：<ul><li>`1`: 单流录制</li><li>`2`: 合流录制</li></ul><li>`status`: Integer 类型，录制状态：<ul><li>`1`: 录制中</li><li>`2`: 录制已结束</li></ul><li>`url`: String 类型，录制文件的访问地址。 </li></ul><li>`nextId`: String 型，下一批数据的起始 ID。 如为 null，则表示没有下一批数据。 如不为 null，则可用此 `nextId` 继续查询，直到查到 null 为止。</li><li>`total`: Integer 型，数据总条数。</li></ul> |
+| :------ | :----- | :----------------------------------------------------------- |
+| `dirty` | Object | (Optional) : The dirty setting of the user, which includes the following fields: `state`: Boolean, whether the user is dirty: `1`: Dirty. A dirty user cannot enter the classroom. `0`: Not dirty. `duration`: Number, the duration of the dirty setting (seconds), starting from the time when the user is kicked out of the classroom. |
 
-### 响应示例
+### Request example
+
+**Request URL**
+
+```
+// Kick the user with the ID 123 out of test_class
+https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
+```
+
+**Request Body**
+
+```json
+{
+    "dirty": {
+        "state": 1,
+        "duration": 600
+        }
+}
+```
+
+### Response parameters
+
+| Parameter | Type | Description |
+| :----- | :------ | :------------------------------------------- |
+| `code` | Integer | Business status code:<li>0: The request succeeds.</li><li>Non-zero: The request fails.</li> |
+| `msg` | String | The detailed information. |
+| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
+
+### Response example
+
+```json
+{
+  "msg": "Success",
+  "code": 0,
+    "ts": 1610167740309
+}
+```
+
+## Set the recording state
+
+### Description
+
+Call this method to start or stop recording a specified classroom.
+
+### Prototype
+
+- Method: PUT
+- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/records/states/{state}
+
+### Request parameters
+
+**URL parameters**
+
+Pass the following parameter in the URL.
+
+| Parameter | Type | Description |
+| :--------- | :------ | :----------------------------------------------------------- |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
+| `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
+| `state` | Integer | (Required) The recording state:<li>`0`: Stop recoding.</li><li>`1`: Start recording.</li> |
+
+**Request body parameters**
+
+Pass in the following parameters in the request body.
+
+| Parameter | Type | Description |
+| :---------------- | :----- | :----------------------------------------------------------- |
+| `mode` | String | (Optional) The recording mode:<li>Set the recording as `web` to enable [page recording mode](https://docs.agora.io/cn/Agora%20Platform/webpage_recording). The format of recorded files is MP4. When the length of the recorded file reaches around two hours, or when the size of the file exceeds around 2 GB, the recording service automatically creates another MP4 file.</li><li>If this parameter is left empty, Agora enables the [composite recording mode] (https://docs.agora.io/cn/Agora Platform/composite_recording_mode) and only records the teacher's audio and video. The format of recorded files is M3U8 and TS.</li> |
+| `webRecordConfig` | Object | (Optional) When the `mode` is `web`, you need to set the detailed configuration of the web page recording through `webRecordConfig`, including the following fields:<ul><li>`url`: (Required) String, the address of the web page to record.</li><li>`videoBitrate`: (Optional) Number, the bitrate of the video (Kbps). The value range is [50, 8000]. The default value of `videoBitrate` varies according to the resolution of the output video:<ul><li>1280 × 720: The default value is 1130.</li><li>960 × 720: The default value is 910.</li><li>848 × 480: The default value is 610.</li><li>640 × 480: The default value is 400.</li><li>For all other resolutions, the default value is 300.</li></ul><li>`videoFps`: (Optional) Number, the frame rate of the video (fps). The value range is [5,60]. The default value is 15.</li><li>`audioProfile`: (Optional) Number. The sample rate, encoding mode, number of audio channels, and bitrate.<ul><li>0: Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps.</li><li>1: Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 128 Kbps.</li><li>2: Sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 192 Kbps.</li></ul><li>`videoWidth`: Number, the width of the video (pixels). The value range is [ 480, 1280]. `The product of videoWidth` and `videoHeight` should not exceed 921,600 (1280 × 720).</li><li>`videoHeight`: Number, the height of the video (pixels). The value range is [ 480, 1280]. `The product of videoWidth` and `videoHeight` should not exceed 921,600 (1280 × 720).</li><li>`maxRecordingHour`: Number, the maximum recording length (hours). The value range is [1,720], and the default value is 3. If the limit set by `maxRecordingHour` is exceeded, the recording stops automatically. |
+
+### Request example
+
+**Request URL**
+
+```
+// Start recording test_class
+https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
+```
+
+**Request Body**
+
+```json
+      {
+    "mode": "web",
+    "webRecordConfig": {
+        "url":"https://xxxxx"
+        }
+}
+```
+
+### Response parameters
+
+| Parameter | Type | Description |
+| :----- | :------ | :------------------------------------------------ |
+| `code` | Integer | Business status code:<li>0: The request succeeds.<li>Non-zero: The request fails. |
+| `msg` | String | The detailed information. |
+| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
+
+### Response example
 
 ```json
 "status": 200,
 "body":
 {
   "code": 0,
-  "msg": "Success",
+  "ts": 1610450153520
+}
+```
+
+## Get the recording list
+
+### Description
+
+Get the recording list in a specified classroom.
+
+You can fetch data in batches with the `nextId` parameter. You can get up to 100 pieces of data for each batch.
+
+### Prototype
+
+- Method: GET
+- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUuid}/records
+
+### Request parameters
+
+**URL parameters**
+
+Pass the following parameter in the URL.
+
+| Parameter | Type | Description |
+| :--------- | :----- | :----------------------------------------------------------- |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
+| `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+
+**Query parameters**
+
+| Parameter | Type | Description |
+| :------- | :----- | :----------------------------------------------------------- |
+| `nextId` | String | (Optional) The starting ID of the next batch of data. When you call this method to get the data for the first time, leave this parameter empty or set it as null. Afterward, you can set this parameter as the `nextId` that you get in the response of the previous method call. |
+
+### Request example
+
+```
+// Get the recording list in test_class
+https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
+```
+
+### Response parameters
+
+| Parameter | Type | Description |
+| :----- | :------ | :----------------------------------------------------------- |
+| `code` | Integer | Business status code:<li>0: The request succeeds.<li>Non-zero: The request fails. |
+| `msg` | String | The detailed information. |
+| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
+| `data` | Object | Include the following parameters:<ul><li>`count`: Integer, the number of pieces of data in this batch.</li><li>`list`: JSONArray. An array of the recording list. A JSON object includes the following parameters:<ul><li>`appId`: Your Agora App ID.</li><li>`roomUuid`: The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel.</li><li>`recordId`: The unique identifier of a recording session. A recording session starts when you call a method to start recording and ends when you call this method to stop recording.</li><li>`startTime`: The UTC timestamp when a recording session starts, in milliseconds.</li><li>`endTime`: The UTC timestamp when a recording session ends, in milliseconds.</li><li>`resourceId`: The `resourceId` of the Agora Cloud Recording service.</li><li>`sid`: The `sid` of the Agora Cloud Recording service.</li><li>`recordUid`: The UID used by the Agora Cloud Recording service in the channel.</li><li>`boardAppId`: The App Identifier of the Agora Interactive Whiteboard service.</li><li>` boardToken`: The SDK Token of the Agora Interactive Whiteboard service.</li><li>`boardId`: The unique identifier of a whiteboard session.</li><li>`type`: Integer, the recording type:<ul><li>`1`: Individual Recording</li><li>`2`: Composite Recording</li></ul><li>`status`: Integer, the recording state:<ul><li>`1`: In recording.</li><li>`2`: Recording has ended.</li></ul><li>`url`: String, the URL address of the recorded files in composite recording mode.</li><li>`recordDetails`: JSONArray. The JSON object contains the following fields:<ul><li>`url`: String, the URL address of the recorded files in web page recording mode.</li></ul></ul><li>`nextId`: String, the starting ID of the next batch of data. If it is null, there is no next batch of data. If it is not null, use this `nextId` to continue the query until null is reported.</li><li>`total`: Integer, the total number of pieces of data.</li></ul> |
+
+### Response example
+
+```json
+"status": 200,
+"body":
+        {
+    "code": 0,
+    "msg": "Success",
   "ts": 1610450153520,
   "data": {
     "total": 17,
     "list": [
-      {
+{
         "recordId": "xxxxxx",
         "appId": "xxxxxx",
         "roomUuid": "jason0",
@@ -191,64 +282,391 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
         "boardToken": "xxxxxx",
         "type": 2,
         "status": 2,
-        "url": "scenario/recording/xxxxxx/xxxxxx/xxxxxx.m3u8"
+        "url": "scenario/recording/xxxxxx/xxxxxx/xxxxxx.m3u8",
+        "recordDetails":[
+{
+            "url":"xxxx/xxxx.mp4"
+        }
+    ]
       },
       {...},
     ],
     "count": 17
 }
 ```
-## 获取课堂事件
 
-### 接口描述
+## Upload a public resource
 
-在服务端获取指定 App ID 下所有课堂中发生的事件。
+### Description
 
-你可定时轮询该接口来监听灵动课堂中发生的事件。
+Call this method to upload a public resource to the specified classroom. All users in the classroom can see this public resources.
 
-<div class="alert note"><li>每个事件只能获取一次。</li><li>最早可查一小时内未销毁的课堂里的事件。</li></div>
+### Prototype
 
-### 接口原型
+- Method: PUT
+- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/states/{state}
 
-- 方法：GET
-- 接入点：/edu/polling/apps/{appId}/v2/rooms/sequences
+### Request parameters
 
-### 请求参数
+**URL parameters**
 
-**URL 参数**
+Pass the following parameters in the URL.
 
-需要在 URL 中传入以下参数。
+| Parameter | Type | Description |
+| :------------- | :----- | :----------------------------------------------------------- |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
+| `resourceUuid,` | String | (Required) The resource ID. This is the unique identifier of a file. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
+
+**Request body parameters**
+
+Pass in the following parameters in the request body.
+
+| Parameter | Type | Description |
+| :------------- | :----- | :----------------------------------------------------------- |
+| `resourceName` | String | The resource name for display in the classroom. The string length must be less than 64 bytes. |
+| `size` | Number | (Required) The size (bytes) of the resource. |
+| `ext` | String | (Required) The resource extension. You can set this parameter as `"ppt"`, `"pptx"`, `"pptm"`, `"docx"`, `"doc"`, `"xlsx"`, `"xls"`, `"csv"`, or `"pdf"`. |
+| `url` | String | (Required) The URL address of the resource, such as `"https://xxx.com"`. |
+| `conversion` | Object | (Optional) If you want to display resources such as a PPT on the whiteboard in the classroom, you need to set `conversion` to convert the resource into a static image or a dynamic HTML page. `conversion `contains the following fields:<ul><li>`type`: (Required) String, the conversion type:<ul><li>`"static"`: Convert the file to a static picture. If the file extension is `"ppt"`, `"doc"`,` "docx"` or `"pdf"`, you can enable static conversion.</li><li> `"dynamic"`: Convert the file to a dynamic HTML page. When the extension is `"pptx"`, you can enable the dynamic conversion.</li></ul></li><li>`preview`: (Optional) Boolean, whether to generate a preview image. This parameter is valid only when `type` is `"dynamic"`.<ul><li>`true`: Generate a preview image. </li><li>`false`: (Default) Do not generate a preview image. </li></ul><li>`scale`: (Optional) Number, the scale factor. The range is [0.1,3.0], and the default value is 1.2. This parameter is valid only when `type` is `"static"`.</li><li>`outputFormat`:（选填）String 型，输出图片格式，可设为 `"png"`、`"jpg"`、`"jpeg"`、`"webp"`，默认值为 `"``png"`。 This parameter is valid only when `type` is `"static"`.</li> |
+
+### Request example
+
+**Request URL**
+
+```
+// Upload a public resource with the ID of class_file_1 to test_class
+https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources/class_file_1
+```
+
+**Request Body**
+
+```json
+{
+    "resourceName": "class_file",
+    "size": 1024,
+    "ext":"ppt",
+    "url":"https://xxx.com",
+    "conversion": {
+        "type":"static",
+        "preview": false,
+        "scale": 1.2,
+        "outputFormat": ""
+      },
+}
+```
+
+### Response parameters
+
+| Parameter | Type | Description |
+| :----- | :---------- | :----------------------------------------------------------- |
+| `code` | Integer | Business status code:<li>0: The request succeeds.</li><li>Non-zero: The request fails.</li> |
+| `msg` | String | The detailed information. |
+| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
+| `data` | Object array | An array of republic resources. Each object represents a public resource and contains the following fields:<li>`resourceUuid`: String. The resource ID. This is the unique identifier of a file.</li><li>`resourceName`: String, the resource name for display in the classroom.</li> <li>`ext`: String, the resource extension.</li><li>`size`: Number, the resource size (bytes).</li><li>`url`: String, the URL address of the resource.</li><li>`updateTime`: Number, the update time of the resource, Unix timestamp (in milliseconds), UTC time.</li><li>`convert`: Boolean, whether to enable file conversion.</li><li>`taskUuid`: String, the ID of the file conversion task.</li><li>`taskToken`: String, the token used by the file conversion task.</li><li>`taskProgress`: Object, the progress of the file conversion task, including the following fields:<ul> <li>`totalPageSize`: Number, the total number of pages in the file.</li><li>`convertedPageSize`: Number, the number of pages that have been converted.</li> <li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li> <li>`convertedFileList`: Object array, the list of converted pages. Each object represents a converted page and contains the following fields:<ul><li>`name`: String. The page name.<li>`ppt`: Object, a PPT page, containing the following fields:<ul><li>`width`: Number, the page width (pixel).<li>`height`: Number 型。 页面高度，单位为 pixel。<li>`src`: String, the URL address of the converted page.<li>`preview`: String, the URL address of the preview image. This field is only available when the `type` is set as `"dynamic"` and `preview` is set as `true`.</ul></ul><li>`currentStep`: The current step of the conversion task. This field is only available when the `type` is `"dynamic"`. This field can be `"Extracting"`, `"Packaging"`, `"GeneratingPreview"`, or `"MediaTranscode"`.</ul> |
+
+### Response example
+
+```json
+{
+    "msg":"Success",
+    "code":0,
+    "ts":1610433913533,
+    "data":{
+        "resourceUuid": "class_file_1",
+        "resourceName": "class_file",
+        "ext": "ppt",
+        "size": 1024,
+        "url": "https://xxx.com",
+        "updateTime": 0,
+        "convert": true,
+        "taskUuid":"",
+        "taskToken":"",
+        "taskProgress": {
+            "totalPageSize": 10,
+            "convertedPageSize": 3,
+            "convertedPercentage": 30,
+            "convertedFileList": [{
+                "name": 1,
+                "ppt":{
+                    "width": 1024,
+                    "height": 960,
+                    "src": "xxxx://xxxx.xxx.xx/xxxx.xxx",
+                    "preview": "xxxx://xxxx.xxx.xx/xxxx.xxx",
+        }
+            },{...}],
+            "currentStep": "Extracting"
+        }
+        }
+}
+```
+
+## Delete public resources
+
+### Description
+
+Delete one or multiple public resources in the specified classroom.
+
+### Prototype
+
+- Method: DELETE
+- Endpoint: /edu/apps/{appId}/v1/rooms/{roomUuid}/resources
+
+### Request parameters
+
+**URL parameters**
+
+Pass the following parameters in the URL.
+
+| Parameter | Type | Description |
+| :--------- | :----- | :----------------------------------------------------------- |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
+
+**Request body parameters**
+
+Pass in the following parameters in the request body.
+
+| Parameter | Type | Description |
+| :------------- | :---------- | :----------------------------------------------------------- |
+| `resourceUuid,` | String array | (Required) An array of resource IDs. The resource ID is the unique identifier of a resource. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
+
+### Request example
+
+**Request URL**
+
+```
+https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
+```
+
+**Request Body**
+
+```json
+{
+    "resourceUuid": ["uuid1","uuid2"]
+}
+```
+
+### Response parameters
+
+| Parameter | Type | Description |
+| :----- | :------ | :------------------------------------------- |
+| `code` | Integer | Business status code:<li>0: The request succeeds.</li><li>Non-zero: The request fails.</li> |
+| `msg` | String | The detailed information. |
+| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
+
+### Response example
+
+```json
+{
+    "msg":"Success",
+    "code":0,
+    "ts":1610433913533
+}
+```
+
+## Get public resources
+
+### Description
+
+Get all public resources in the specified classroom.
+
+### Prototype
+
+- Method: GET
+- Endpoint: /edu/apps/{appId}/v1/rooms/{roomUuid}/resources
+
+### Request parameters
+
+**URL parameters**
+
+Pass the following parameters in the URL.
+
+| Parameter | Type | Description |
+| :--------- | :----- | :----------------------------------------------------------- |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
+
+### Request example
+
+**Request URL**
+
+```
+// Get the public resource with the ID of class_file_1 in test_class
+https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
+```
+
+### Response parameters
+
+| Parameter | Type | Description |
+| :----- | :---------- | :----------------------------------------------------------- |
+| `code` | Integer | Business status code:<li>0: The request succeeds.</li><li>Non-zero: The request fails.</li> |
+| `msg` | String | The detailed information. |
+| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
+| `data` | Object array | An array of republic resources. Each object represents a public resource and contains the following fields:<li>`resourceUuid`: String. The resource ID. This is the unique identifier of a file.</li><li>`resourceName`: String, the resource name for display in the classroom.</li> <li>`ext`: String, the resource extension.</li><li>`size`: Number, the resource size (bytes).</li><li>`url`: String, the URL address of the resource.</li><li>`updateTime`: Number, the update time of the resource, Unix timestamp (in milliseconds), UTC time.</li><li>`convert`: Boolean, whether to enable file conversion.</li><li>`taskUuid`: String, the ID of the file conversion task.</li><li>`taskToken`: String, the token used by the file conversion task.</li><li>`taskProgress`: Object, the progress of the file conversion task, including the following fields:<ul> <li>`totalPageSize`: Number, the total number of pages in the file.</li><li>`convertedPageSize`: Number, the number of pages that have been converted.</li> <li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li> <li>`convertedFileList`: Object array, the list of converted pages. Each object represents a converted page and contains the following fields:<ul><li>`name`: String. The page name.<li>`ppt`: Object, a PPT page, containing the following fields:<ul><li>`width`: Number, the page width (pixel).<li>`height`: Number 型。 页面高度，单位为 pixel。<li>`src`: String, the URL address of the converted page.<li>`preview`: String, the URL address of the preview image. This field is only available when the `type` is set as `"dynamic"` and `preview` is set as `true`.</ul></ul><li>`currentStep`: The current step of the conversion task. This field is only available when the `type` is `"dynamic"`. This field can be `"Extracting"`, `"Packaging"`, `"GeneratingPreview"`, or `"MediaTranscode"`.</ul> |
+
+### Response example
+
+```json
+{
+    "msg":"Success",
+    "code":0,
+    "ts":1610433913533,
+    "data":[{
+        "resourceUuid": "",
+        "resourceName": "",
+        "ext": "",
+        "size": 0,
+        "url": "",
+        "updateTime": 0,
+        "convert": true,
+        "taskUuid":"",
+        "taskToken":"",
+        "taskProgress": {
+            "totalPageSize": 10,
+            "convertedPageSize": 3,
+            "convertedPercentage": 30,
+            "convertedFileList": [{
+                "name": 1,
+                "ppt":{
+                    "width": 1024,
+                    "height": 960,
+                    "src": "xxxx://xxxx.xxx.xx/xxxx.xxx",
+                    "preview": "xxxx://xxxx.xxx.xx/xxxx.xxx",
+        }
+            },{...}],
+            "currentStep": "Extracting"
+        }
+    }]
+}
+```
+
+## Query a specified event
+
+### Description
+
+Query a specified type of event in a specified classroom.
+
+You can fetch data in batches with the `nextId` parameter. You can get up to 100 pieces of data for each batch.
+
+<div class="note info"><li>You can query the same event repeatedly.</li><li> You cannot query events in a destroyed classroom. A classroom is destroyed automatically one hour after it is ended.</li>
+
+### Prototype
+
+- Method: GET
+- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/sequences
+
+### Request parameters
+
+**URL parameters**
+
+Pass the following parameters in the URL.
+
+| Parameter | Type | Description |
+| :--------- | :----- | :----------------------------------------------------------- |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
+
+**Query parameters**
+
+| Parameter | Type | Description |
+| :------- | :------ | :----------------------------------------------------------- |
+| `nextId` | String | (Optional) The starting ID of the next batch of data. When you call this method to get the data for the first time, leave this parameter empty or set it as null. Afterward, you can set this parameter as the `nextId` that you get in the response of the previous method call. |
+| `cmd` | Integer | (Optional) Event type. For details, see [Flexible Classroom Cloud Service Events](https://docs.agora.io/cn/agora-class/agora_class_restful_api_event). |
+
+### Request example
+
+**Request URL**
+
+```
+// Get the event of classroom state update in test_class
+https://api.agora.io/edu/apps/{appId}/v2/rooms/test_class/sequences?nextId=50&cmd=1
+```
+
+### Response parameters
+
+| Parameter | Type | Description |
+| :----- | :------ | :----------------------------------------------------------- |
+| `code` | Integer | Business status code: 0: The request succeeds. Non-zero: The request fails. |
+| `msg` | String | The detailed information. |
+| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
+| `data` | Object | Include the following parameters:<ul><li>`total`: Integer, the total number of pieces of data.</li><li>`count`: Integer, the number of pieces of data in this batch.</li><li>`list`: JSONArray. An array of the recording list. A JSON object includes the following parameters:<ul><li>`roomUuid`: String, the classroom ID.</li><li>`cmd`: Integer, the event type. See [Flexible Classroom Events](https://docs.agora.io/cn/agora-class/agora_class_restful_api_event).</li><li>`sequence`: Integer. The event ID. This is the unique identifier of an event, which is automatically generated to ensure the order of events.</li><li>`version`: Integer, the service version.</li><li>`data`: Object, the detailed data of the event, The data varies depending on the event type. See [Flexible Classroom Events](https://docs.agora.io/cn/agora-class/agora_class_restful_api_event).</li></ul><li>`nextId`: String, the starting ID of the next batch of data. If it is null, there is no next batch of data. If it is not null, use this `nextId` to continue the query until null is reported.</li></ul> |
+
+### Response example
+
+```json
+{
+    "msg":"Success",
+    "code":0,
+    "ts":1610433913533,
+    "data":{
+        "total":1,
+        "list":[
+{
+                "roomUuid": "",
+            "cmd": 20,
+            "sequence": 1,
+            "version": 1,
+            "data":{}
+        }
+    ],
+        "nextId": null,
+        "count":1
+        }
+}
+```
+
+## Get classroom events
+
+### Description
+
+Get all events in the classrooms associated with a specified App ID.
+
+You can call this method at regular intervals to listen for all the events that occur in the flexible classrooms.
+
+<div class="alert note"><li>Each event can only be obtained once.</li><li>Note: You cannot get events one hour after a classroom is destroyed.</li></div>
+
+### Prototype
+
+- Method: GET
+- Endpoint: /edu/polling/apps/{appId}/v2/rooms/sequences
+
+### Request parameters
+
+**URL parameters**
+
+Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :------ | :----- | :----------------------------------------------------------- |
-| `appId` | String | （必填）Agora App ID，详见[获取 Agora App ID](./agora_class_prep#step1)。 |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
 
-### 请求示例
+### Request example
 
 ```
 https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 ```
 
-### 响应参数
+### Response parameters
 
 | Parameter | Type | Description |
 | :----- | :------ | :----------------------------------------------------------- |
-| `code` | Integer | 业务状态码：<li>0: 请求成功。<li>非 0: 请求失败。 |
-| `msg` | String | 详细信息。 |
-| `ts` | Number | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
-| `data` | Object | 具体数据，包含：<li>`roomUuid`: String 型，课堂 uuid。<li>`cmd`: Integer 型，事件类型。 详见[事件枚举](./agora_class_restful_api_event)。<li>`sequence`: Integer 型。 事件序号，是每个课堂内事件的唯一标识符，课堂内全局自增，用于确保事件的有序性。<li>`version`: Integer 型，版本号。<li>`data`: Object 型，事件的具体数据，取决于事件类型。 详见[事件枚举](./agora_class_restful_api_event)。 |
+| `code` | Integer | Business status code:<li>0: The request succeeds.<li>Non-zero: The request fails. |
+| `msg` | String | The detailed information. |
+| `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
+| `data` | Object | Include the following parameters:<li>`roomUuid`: String, the classroom ID.<li>`cmd`: Integer, the event type. See [Flexible Classroom Events](./agora_class_restful_api_event).<li>`sequence`: Integer. The event ID. This is the unique identifier of an event, which is automatically generated to ensure the order of events.<li>`version`: Integer, the service version.<li>`data`: Object, the detailed data of the event, The data varies depending on the event type. See [Flexible Classroom Events](./agora_class_restful_api_event). |
 
-### 响应示例
+### Response example
 
 ```json
 "status": 200,
 "body":
 {
-    "msg": "Success",
-    "code": 0,
+  "msg": "Success",
+  "code": 0,
     "ts": 1610167740309,
     "data":[
-        {
+{
             "roomUuid": "xxxxxx",
             "cmd": 20,
             "sequence": 1,
@@ -259,20 +677,20 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 }
 ```
 
-## 响应状态码
+## Status code
 
-| HTTP 响应状态码 | 业务状态码 | Description |
+| Response status code | Business status code | Description |
 | :-------------- | :--------- | :----------------------------------------------------------- |
-| 200 | 0 | 请求成功。 |
-| 400 | 400 | 请求的参数错误。 |
-| 401 | N/A | 可能的原因：<li>App ID 无效。<li>Token Authorization 中 `x-agora-uid` 和 `x-agora-token` 错误或不匹配。 |
-| 403 | 30403200 | 课堂已禁言，无法发送聊天消息。 |
-| 404 | N/A | 服务器无法找到请求的资源。 |
-| 404 | 20404100 | 课堂不存在。 |
-| 404 | 20404200 | 用户不存在。 |
-| 409 | 30409410 | 录制状态冲突，录制未开始。 |
-| 409 | 30409411 | 录制状态冲突，录制未结束。 |
-| 409 | 30409100 | 课程状态冲突，课程已开始。 |
-| 409 | 30409101 | 课程状态冲突，课程已结束。 |
-| 500 | 500 | 服务器内部错误，无法完成请求。 |
-| 503 | N/A | 服务器内部错误。 充当网关或代理的服务器未从远端服务器获取响应。 |
+| 200 | 0 | The request succeeds. |
+| 400 | 400 | The request parameter is incorrect. |
+| 401 | N/A | Possible reasons:<li>The App ID is invalid.<li>Unauthorized. Incorrect `x-agora-uid` or `x-agora-token`. |
+| 403 | 30403200 | The classroom is muted globally. Users cannot send chat messages. |
+| 404 | N/A | The server cannot find the requested resource. |
+| 404 | 20404100 | The classroom does not exist. |
+| 404 | 20404200 | The user does not exist. |
+| 409 | 30409410 | The recording has not been started. |
+| 409 | 30409411 | The recording has not been ended. |
+| 409 | 30409100 | The class has been started. |
+| 409 | 30409101 | The class has been ended. |
+| 500 | 500 | The server has an internal error and cannot process the request. |
+| 503 | N/A | Internal server error. The gateway or proxy server does not receive a timely response from the upstream server. |
