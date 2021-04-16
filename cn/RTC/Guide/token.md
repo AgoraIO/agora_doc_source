@@ -1,29 +1,35 @@
 
-# Authenticate Your Users with Tokens
+# Authenticate your users with tokens
 
-To enhance communication security, Agora uses tokens to authenticate users before they access the Agora serivce, such as joining an RTC channel.
+Authentication is the act of validating the identity of each user who has credentials to access your system, and providing them with a digital token that gives privileges to specific Agora Call, Streaming, Messaging or Analytics functionality. 
 
-This article describes how to generate a token and use it for authentication in your client app when a user tries to access the Agora service.
+Agora uses digital tokens to authenticate users and their privileges before they access an Agora service. For example, the token granted to a standard user has the `kJoinChannel` privilege only; this user may only join a channel. A moderator has `kInvitePublishVideoStream` and can invite people to a video stream. As you see, the privileges names are incomprehensibly difficult, you grant admin users the `kAdministrateChannel` privilege. 
+
+This section shows you how to integrate industrial grade security into your Agora app using tokens. 
 
 ##  Understand the tech
-
-A token is a time-bound dynamic key generated on your server. Agora provides code samples on [GitHub](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) for you to generate tokens.
-
-When your app users try to join a channel, Agora validates their token and grants access according to the following information in the token:
-- The App ID of your Agora project
-- The app certificate of your Agora project
-- The channel name
-- The user ID of the user to be authenticated
-- The privilege of the user
-- The expiration time of the token
-
-Tokens expire. A token is valid for 24 hours at most. You need to regularly generate new tokens to keep users connected.
-
-When generating a token, you can specify whether a user has the privilege to publish streams in an RTC channel. See [How do I use co-host token authentication?](https://docs.agora.io/en/Interactive%20Broadcast/faq/token_cohost) for details.
 
 The following figure shows the steps in the authentication flow:
 
 ![token authentication flow](https://web-cdn.agora.io/docs-files/1618395721208)
+
+A token is a dynamic key generated on your app server that is valid for a maximum of 24 hours. When your users connect to a channel from your App client, Agora SDK validates the token and reads the user and project information stored in the token. The app information is related to your project:
+
+![alt text](Images/project_information_in_the_console.png "Logo Title Text 1")
+
+
+Agora SDK grants access according to the following information in the token:
+
+- `appID` - the _App ID_ of your Agora project
+- `appCertificate` - the _App certificate_ of your Agora project
+- `channelName` - no idea where I find this
+- `uid` - the ID of the user to be authenticated
+- `I CANT FIND THE PARAMETER NAME`  - the privileges assigned to this user
+- `privilegeExpiredT (THIS IS A GUESS)` - a timestamp stating the time this token expires
+
+A token is valid for 24 hours at most. You need to regularly generate new tokens to keep users connected.
+
+
 
 ## Prerequisites
 
@@ -34,7 +40,7 @@ In order to follow this procedure you must have:
 
 ## Implement the authentication flow
 
-This section shows you how to supply and consume a token that gives rights to specific functionality to authenticated users.
+This section shows you how to generate, supply and consume the token that gives rights to specific functionality to authenticated users.
 
 ### Generate a token
 
@@ -221,4 +227,6 @@ You can also refer to the following documents according to your needs:
 - [What causes the 101 error on Cloud Recording SDK?](https://docs.agora.io/en/faq/101_error)
 - [How to use co-host token authentication?](https://docs.agora.io/en/faq/token_cohost)
 
+Agora provides code samples on [GitHub](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) for you to generate tokens.
 
+When generating a token, you can specify whether a user has the privilege to publish streams in an RTC channel. See [How do I use co-host token authentication?](https://docs.agora.io/en/Interactive%20Broadcast/faq/token_cohost) for details.
