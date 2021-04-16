@@ -61,7 +61,7 @@ export type LaunchOption = {
   roomName: string,
   listener: ListenerCallback,
   pretest: boolean,
-  rtmUid: string
+  rtmUid: string,
   rtmToken: string,
   language: LanguageEnum,
   startTime: number,
@@ -79,7 +79,7 @@ export type LaunchOption = {
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roleType` | The role of the user in the classroom:<li>`1`: Teacher.</li><li>`2`: Student.</li> |
-| `roomType` | The room type:<li>`0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student.</li><li>`4`: 1 对 N 在线小班课。 1 位教师对 N 名学生（2 ≤ N ≤ 16）进行在线辅导教学。 |
+| `roomType` | The room type:<li>`0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student.</li><li>`4`: Small Classroom. A teacher gives an online lesson to multiple students. The number of students in a small classroom should not exceed 16. |
 | `listener` | The state of classroom launching. |
 | `pretest` | Whether to enable the pre-class device test:<li>`true`: Enable the pre-class device test. After this function is enabled, end users can see a page for the device test before entering the classroom. They can check whether their camera, microphone, and speaker can work properly.</li><li>`false`: Disable the pre-class device test.</li> |
 | `language` | The UI language:<li>`zh`: zh-CN.</li><li>`en`: en-US.</li> |
