@@ -104,3 +104,58 @@
     "startTime":1611564500488
 }
 ```
+
+## 奖励数量变更
+
+`cmd` 为 `1101` 时，该事件提示奖励数量发生变更，`data` 中包含以下字段：
+
+| 参数            | 类型        | 描述                                                         |
+| :-------------- | :---------- | :----------------------------------------------------------- |
+| `rewardDetails` | Object 数组 | 一个 Object 代表一个用户的奖励数量变更情况，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li><li>`changedReward`: Integer 型，发生变更的奖励个数。</li><li>`totalReward`: Integer 型，变更后用户的奖励总数。</li> |
+| `updateTime`    | Number      | 奖励变更时间，Unix 时间戳（毫秒），UTC 时间。                |
+
+**示例**：
+
+```json
+{
+     "rewardDetails":[ {
+            "userUuid":"",
+            "changedReward": 1,
+            "totalReward": 10
+        } ],
+       "updateTime":1611564500488
+}
+```
+
+## 云盘资源变更
+
+`cmd` 为 `1003` 时，该事件提示云盘资源发生变更，`data` 中包含以下字段：
+
+| 参数        | 类型        | 描述                                                         |
+| :---------- | :---------- | :----------------------------------------------------------- |
+| 参数        | 类型        | 描述                                                         |
+| `resources` | Object 数组 | 一个 Object 代表一个资源的变更情况，包含以下字段：<li>`resourceUuid`: String 型，资源 uuid。</li><li>`resourceName`: String 型，资源名称。</li><li>`size`: Number 型，资源大小，单位为字节。</li><li>`url`: String 型，资源的访问地址。</li><li>`taskUuid`: String 型，文件转换任务的 uuid。</li><li>`taskToken`: String 型，文件转换任务使用的 Token。</li><li>`taskProgress`: Object 型，文件转换任务进度。</li> |
+| `operator`  | Object      | 操作人，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li><li>`userName`: String 型，用户名称。</li><li>`role`: String 型，用户角色。</li> |
+| `action`    | Integer     | 资源变更类型：<li>`1`: 资源新增或更新。</li><li>`2`: 资源被删除。</li>         |
+
+**示例**：
+
+```json
+{
+     "resources": [{
+            "resourceUuid":"",
+            "resourceName": "1",
+            "size": 1024,
+            "url": "http://xxx.com/ooo",
+            "taskUuid": "",
+            "taskToken": "",
+            "taskProgress": {},
+        } ],
+      "operator":{
+        "role":"1",
+        "userName":"jason",
+        "userUuid":"jason1"
+        },
+       "action": 1
+}
+```
