@@ -136,7 +136,7 @@ When the `cmd` property of an event is `1003`, the event indicates the resources
 | :---------- | :---------- | :----------------------------------------------------------- |
 | Parameter | Type | Description |
 | `resources` | Object array | Each object represents a public resource and contains the following fields:<li>`resourceUuid`: String. The resource ID.</li><li>`resourceName`: String, the resource name for display in the classroom.</li><li>`size`: Number, the resource size (bytes).</li><li>`url`: String, the URL address of the resource.</li><li>`taskUuid`: String, the ID of the file conversion task.</li><li>`taskToken`: String, the token used by the file conversion task.</li><li>`taskProgress`: Object, the progress of the file conversion task.</li> |
-| `operator` | Object | It contains the following fields:<li>`userUuid`: String. The user ID.</li><li>`userName`: String. The user name.</li><li>`role`: integer. The user role.</li> |
+| `operator` | Object | It contains the following fields:<li>`userUuid`: String. The user ID.</li><li>`userName`: String. The user name.</li><li>`role`: Integer 型，用户角色。</li> |
 | `action` | Integer | The resource change type:<li>`1`: The resource is added or updated.</li><li>`2`: The resource is deleted.</li> |
 
 **Example**
