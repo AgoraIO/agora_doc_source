@@ -22,16 +22,15 @@
       <dd>v3.0.1</dd>
   </dlentry>
        </dl>
-   <p>After successfully registering the video data observer, the SDK uses this callback to determine whether to trigger <xref keyref="onCaptureVideoFrame"/>, <xref keyref="onRenderVideoFrame"/> and <xref keyref="onPreEncodeVideoFrame"/> callback at each specific video frame processing position, so that you can observe the locally collected video data, the video data sent by the remote end, and the video data before encoding. You can set one or more positions you need to observe by modifying the return value of <apiname keyref="getObservedFramePosition"/> according to your scenario:<ul><li><apiname keyref="POSITION_POST_CAPTURER"></apiname>(1 &lt;&lt; 0) : The position after capturing the video data, which corresponds to the <apiname keyref="onCaptureVideoFrame"/> callback.</li>
+   <p>After successfully registering the video data observer, the SDK uses this callback to determine whether to trigger <xref keyref="onCaptureVideoFrame"/>, <xref keyref="onRenderVideoFrame"/> and <xref keyref="onPreEncodeVideoFrame"/> callback at each specific video frame processing position, so that you can observe the locally collected video data, the video data sent by the remote end, and the video data before encoding. You can set one or more positions you need to observe by modifying the return value of <apiname keyref="getObservedFramePosition"/> according to your scenario:<ul><li><apiname keyref="POSITION_POST_CAPTURER" />(1 &lt;&lt; 0) : The position after capturing the video data, which corresponds to the<apiname keyref="onCaptureVideoFrame"/> callback.</li>
        <li><apiname keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1): The position before receiving the remote video data, which corresponds to the <apiname keyref="onRenderVideoFrame"/> callback.</li>
        <li><apiname keyref="POSITION_PRE_ENCODER"/>(1 &lt;&lt; 2): The position before encoding the video data, which corresponds to the <apiname keyref="onPreEncodeVideoFrame"/> callback.</li>
    </ul></p>
    <note outputclass="note">
        <ul id="ul_rkl_wmg_s4b">
   <li>Use &apos;|&apos; (the OR operator) to observe multiple frame positions.</li>
-  <li>This callback observes <apiname keyref="POSITION_POST_CAPTURER"
- ></apiname>(1 &lt;&lt; 0) and <apiname
- keyref="POSITION_PRE_RENDERER"/>(1 &lt;&lt; 1) by default.</li>
+  <li>This callback observes<apiname keyref="POSITION_POST_CAPTURER"/> (1 &lt;&lt; 0) and<apiname
+ keyref="POSITION_PRE_RENDERER"/> (1 &lt;&lt; 1) by default.</li>
   <li>To conserve the system consumption, you can reduce the number of frame positions that you want to observe.</li>
        </ul>
    </note>
