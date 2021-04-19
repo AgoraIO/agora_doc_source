@@ -30,7 +30,7 @@ To play audio effect files, see the following steps:
 
 ### Specify an audio effect file
 
-Before playing an audio effect file, you need to set `filePath` and `soundId` to specify an audio effect file. The meaning of two parameters is as follows:
+Before playing an audio effect file, you need to set `filePath` and `soundId` to specify an audio effect file. The representing of two parameters is as follows:
 
 - ` filePath`: The audio effect file path, including the local and online file path. The SDK searches for audio effect files in this path.
 - ` soundId`: The audio effect ID, which is defined by yourself and must be unique. The SDK identifies the audio effect file based on the audio effect ID. Common solutions for defining audio effect IDs include incrementing the ID and using hashCode for the audio effect file name.
@@ -60,7 +60,7 @@ m_rtcEngine->unloadEffect(m_mapEffect[strEffect]);
 
 ### Play and stop
 
-Call `playEffect` to play the audio effect file. According to your needs, you can call `playEffect` multiple times to play multiple audio effect files at the same time. When playing an audio effect file, you can set the number of loops, pitch, volume, and playback position.
+Call `playEffect` to play the audio effect file. According to your needs, you can call `playEffect` multiple times to play multiple audio effect files at the same time. When playing an audio effect file, you can set the playback options, such as number of loops, pitch, volume, and playback position.
 
 <div class="alert note">Call <code>playEffect</code> after joining a channel.</div>
 
@@ -69,60 +69,85 @@ Call `playEffect` to play the audio effect file. According to your needs, you ca
 int loops = -1; 
  // Sets the pitch of the audio effect. The value range is 0.5 to 2.0.  
 double pitch = 1.5; 
- // Sets the volume of the audio effect. The value range is 0 to 100. 100 represents the original volume.  
+ // Sets the volume of the audio effect. The value range is 0 to 100 and 100 represents the original volume.  
 int gain = 100; 
  // Sets the spatial position of the audio effect. 1.0 represents the audio effect occurs on the right.  
 double pan = 1.0; 
- // Sets whether to publish the audio effect to the remote users. true means that both local users and remote users can hear the sound effect; false means that only the local user can hear the sound effect.  BOOL publish = true;
-// Set the playback progress of the sound effect file. 500 means to start playing from the 500th ms of the sound effect file.  int startPos = 500;
- // Play the specified sound effect file. (The demo lacks the sample code of startPos)
-m_rtcEngine-> playEffect (m_mapEffect [strEffect], strFile.c_str (), loops, pitch, pan, gain, publish, startPos);
- Occurs when the local audio effect playback finishes.  void onAudioEffectFinished (m_mapEffect [strEffect]);
+ // Sets whether to publish the audio effect to the remote users. true represents that both the local user and remote users can hear the audio effect; false represents that only the local user can hear the audio effect.  
+BOOL publish = true; 
+ // Sets the playback position of the audio effect file. 500 represents that the playback starts at the 500th ms of the audio effect file.  
+int startPos = 500; 
+ 
+// Plays the specified audio effect file. 
+m_rtcEngine->playEffect(m_mapEffect[strEffect], strFile.c_str(), loops, pitch, pan, gain, publish, startPos); 
+ 
+// Occurs when the local audio effect playback finishes.  
+void onAudioEffectFinished(m_mapEffect[strEffect]);
 ```
 
-After successful playback, you can stop playing the specified or all sound effect files.
+After successfully playing audio effect files, you can stop play the specified or all audio effect files.
 
 ```c++
-Stops playing a specified audio effect. m_rtcEngine-> stopEffect (m_mapEffect [strEffect]);
- Stops playing all audio effects. m_rtcEngine-> stopAllEffects ();
+// Stops playing a specified audio effect file. 
+m_rtcEngine->stopEffect(m_mapEffect[strEffect]);
+ 
+// Stops playing all audio effect files. 
+m_rtcEngine->stopAllEffects();
 ```
 
-### Pause and resume
+### Pause and resumption
 
-When the sound effect file is playing, you can pause or resume playing the specified or all sound effect files.
+When you play the audio effect files, you can pause or resume playing the specified or all audio effect files.
 
-<div class="alert note">Call this method after <code>playEffect</code>.</div>
+<div class="alert note">Call this group of method after <code>playEffect</code>.</div>
 
 ```c++
-// Pause playing the specified sound effect file.  m_rtcEngine-> pauseEffect (m_mapEffect [strEffect]);
- Resumes playing a specified audio effect.  m_rtcEngine-> resumeEffect (m_mapEffect [strEffect]);
- Pauses all audio effects. m_rtcEngine-> pauseAllEffects ();
- Resumes playing all audio effects. m_rtcEngine->resumeAllEffects();
+// Pauses playing a specified audio effect file.  
+m_rtcEngine->pauseEffect(m_mapEffect[strEffect]); 
+ 
+// Resumes playing a specified audio effect.  
+m_rtcEngine->resumeEffect(m_mapEffect[strEffect]); 
+ 
+// Pauses playing all audio effect files. 
+m_rtcEngine->pauseAllEffects(); 
+ 
+// Resumes playing all audio effect files. 
+m_rtcEngine->resumeAllEffects();
 ```
 
-### The playback state.
+### Playback position
 
-If you need to adjust the playback position after playing the sound effect file, you can call this group of methods. For example, you can call this group of methods to adjust the playback position during the loop playback of the sound effect file without stopping the playback.
+If you need to adjust the playback position after playing the audio effect file, you can call this group of methods. For example, you can call this group of methods to adjust the playback position during the loop playback of the audio effect file without stopping the playback.
 
-- Call this method` after playEffect`.
-- This set of methods is only applicable to local sound effect files.
+- Call this group of methods after `playEffect`.
+- This group of methods only applies to the local audio effect file.
 
 ```c++
-// Get the total duration of the specified local sound effect file.  m_rtcEngine-> getEffectDuration (m_mapEffect [strEffect]);
- Sets the playback position of an audio effect file.  m_rtcEngine-> setEffectPosition (m_mapEffect [strEffect], pos);
- Retrieves the duration of the audio effect file.  m_rtcEngine-> getEffectCurrentPosition (m_mapEffect [strEffect]);
+// Gets the total duration of a specified local audio effect file.  
+m_rtcEngine->getEffectDuration(m_mapEffect[strEffect]); 
+ 
+// Sets the playback position of a specified local audio effect file.  
+m_rtcEngine->setEffectPosition(m_mapEffect[strEffect], pos); 
+ 
+// Gets the playback position of a specified local audio effect file.  
+m_rtcEngine->getEffectCurrentPosition(m_mapEffect[strEffect]);
 ```
 
-### Volume setting
+### Volume
 
-After the sound effect file starts to play, you can call this set of methods to adjust the playback volume. For example, you can call this group of methods to adjust the playback volume during the loop playback of the sound effect file without stopping the playback.
+After the audio effect file starts to play, you can call this group of methods to adjust the playback volume. For example, you can call this group of methods to adjust the playback volume during the loop playback of the audio effect file without stopping the playback.
 
-<div class="alert note">Call this method after <code>playEffect</code>.</div>
+<div class="alert note">Call this group of method after <code>playEffect</code>.</div>
 
 ```c++
-// Set the playback volume of all sound effect files. The value range is [0,100], 100 represents the original volume.  m_rtcEngine->setEffectsVolume(50);
- Sets the volume of the audio effects. The value range is [0,100], 100 represents the original volume.  m_rtcEngine-> setVolumeOfEffect (m_mapEffect [strEffect], 50);
- Retrieves the volume of the audio effects. The volume range is [0,100], and 100 represents the original volume.  m_rtcEngine->getEffectsVolume();
+ // Sets the playback volume of all audio effect files. The value range is 0 to 100 and 100 represents the original volume.  
+m_rtcEngine->setEffectsVolume(50); 
+
+// Sets the playback volume of a specified audio effect file. The value range is 0 to 100 and 100 represents the original volume.  
+m_rtcEngine->setVolumeOfEffect(m_mapEffect[strEffect], 50); 
+ 
+// Gets the playback volume of all audio effect files. The volume range is 0 to 100 and 100 represents the original volume.  
+m_rtcEngine->getEffectsVolume();
 ```
 
 ### API reference
@@ -146,78 +171,106 @@ After the sound effect file starts to play, you can call this set of methods to 
 
 ## Audio mixing
 
-Music mixing refers to mixing music files with audio collected by a microphone. Users who use the audio mixing function usually play relatively long music files and only play one music file at a time. For example, play accompaniment when singing, and play background music when chatting.
+Audio mixing refers to mixing a music file with the audio captured by a microphone. Users who use the audio mixing function often play a relatively long music file and only play one music file at a time. For example, users can play accompaniment when singing or play background music when chatting.
 
-Agora provides a set of methods to play and manage music files, mainly including the following functions:
+Agora provides a group of methods to play and manage music files, mainly including the following functions:
 
-- Play local or online music files
-- Set the number of play times, play position, volume, tone and other play options of music files
-- Flexible control of the playback, pause, resume and stop of music files
-- Report the current music file playback status and the reason for the playback status change
+- Play local or online music files.
+- Set the playback times, playback position, volume, pitch, and other playback options of a music file.
+- Flexibly control the play, pause, resumption, and stop of the music file.
+- Report the current playback state of the music file and the reason for the change.
 
-<div class="alert note">Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <a href="https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation">Supported Media Formats in Media Foundation</a >.</div>
+<div class="alert note">Supported music file formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <a href="https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation">Supported Media Formats in Media Foundation</a >.</div>
 
-After successfully calling `startAudioMixing`, the SDK will trigger the `onAudioMixingStateChanged `callback when the playback state of the music file changes.
+After successfully calling `startAudioMixing`, the SDK triggers the `onAudioMixingStateChanged` callback when the playback state of the music file changes.
 
 ### Play and stop
 
-720: Successfully call `startAudioMixing` to play music files. When playing music files, you can set the number of loops, playback position, etc.
+Call `startAudioMixing` to play a music file. When playing a music file, you can set the playback options, such as playback times and playback position.
 
-<div class="alert note">If startAudioMixing is called again while playing a music file<code></code>, the SDK will automatically stop playing the previous music file and start playing the next music file.</div>
+<div class="alert note">If you call <code>startAudioMixing</code> again when the SDK is playing a music file, the SDK automatically stops playing the previous music file and starts playing the next music file.</div>
 
 ```c++
-// Specify the absolute path of the local or online music file that needs to be mixed.  std::string filePath = "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3";
-// Set whether to play music files locally. true means that only local users can hear music; false means that both local users and remote users can hear music.  BOOL loopback = false;
-// Set whether to replace the audio collected by the microphone with a music file. true means that the user can only hear music; false means that the user can hear the music and audio collected by the microphone.  BOOL replace = true;
-// Set the number of times the music file is played. 1 means play once.  int cycle = 1;
-// Set the playback progress of the music file. 500 means to start playing from the 500th ms of the music file.  int startPos = 500;
- Starts playing and mixing the music file. (The demo lacks the sample code of startPos)
-m_rtcEngine->startAudioMixing(filePath, loopback, replace, cycle, startPos);
- Occurs when the state of the local user's audio mixing file changes.  virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason) {}
+// Specifies the absolute path of the local or online music file that you want to play.  
+std::string filePath = "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3"; 
+// Sets whether to only play a music file on the local client. true represents that only the local user can hear the music; false represents that both the local user and remote users can hear the music.  
+BOOL loopback = false; 
+// Sets whether to replace the audio captured by the microphone with a music file. true represents that the user can only hear music; false represents that the user can hear both the music and the audio captured by the microphone.  
+BOOL replace = true; 
+// Sets the playback times of the music file. 1 represents play once.  
+int cycle = 1; 
+// Sets the playback position of the music file. 500 represents that the playback starts at the 500th ms of the music file.  
+int startPos = 500; 
+
+// Starts to play the music file.
+m_rtcEngine->startAudioMixing(filePath, loopback, replace, cycle, startPos); 
+ 
+// Occurs when the state of the local user's music file changes.  
+void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)
 ```
 
 After successfully playing the music file, you can call `stopAudioMixing` to stop the playback.
 
 ```c++
-Stops playing and mixing the music file. m_rtcEngine->stopAudioMixing();
+// Stops playing the music file. 
+m_rtcEngine->stopAudioMixing();
 ```
 
-### Pause and resume
+### Pause and resumption
 
-When the music file is playing, you can pause or resume playing the music file.
+When you play the music file, you can pause or resume playing the music file.
 
-<div class="alert note">Call this method after calling `<code>startAudioMixing</code>`.</div>
+<div class="alert note">Call this group of methods after calling <code>startAudioMixing</code>.</div>
 
 ```c++
-Pauses playing and mixing the music file.  m_rtcEngine-> pauseAudioMixing ();
- Resumes playing and mixing the music file.  m_rtcEngine->resumeAudioMixing();
+// Pauses playing the music file.  
+m_rtcEngine->pauseAudioMixing(); 
+ 
+// Resumes playing the music file.  
+m_rtcEngine->resumeAudioMixing();
 ```
 
-### The playback state.
+### Playback position
 
 When the music file is playing, you can call this group of methods to adjust the playback position of the music file without stopping the playback.
 
-<div class="alert note">After playing the <code>music file</code> successfully, the SDK triggers <code>onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</code>.</div>
+<div class="alert note">Call this group of methods after calling <code>startAudioMixing</code> and receiving the <code>onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</code> callback.</div>
 
 ```c++
-Retrieves the total duration of the music file.  m_rtcEngine->getAudioMixingDuration(filePath);
- // Set the playback position of the current music file. 500 means to start playing from the 500th ms of the music file.  m_rtcEngine->setAudioMixingPosition(500);
- // Get the playback progress of the current music file.  m_rtcEngine->getAudioMixingCurrentPosition();
+// Gets the total duration of a specified music file.  
+m_rtcEngine->getAudioMixingDuration(filePath); 
+ 
+// Sets the playback position of the current music file. 500 represents that the playback starts at the 500th ms of the music file.  
+m_rtcEngine->setAudioMixingPosition(500); 
+ 
+// Gets the playback position of the current music file.  
+m_rtcEngine->getAudioMixingCurrentPosition();
 ```
 
-### Volume and tone
+### Volume and pitch
 
-After successfully playing the music file, you can call this set of methods to adjust the playback volume and pitch of the music file without stopping the playback.
+After successfully playing the music file, you can call this group of methods to adjust the playback volume and pitch of the music file without stopping the playback.
 
-<div class="alert note">After playing the <code>music file</code> successfully, the SDK triggers <code>onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</code>.</div>
+<div class="alert note">Call this group of methods after calling <code>startAudioMixing</code> and receiving the <code>onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</code> callback.</div>
 
 ```c++
-// Adjust the local and remote playback volume of the current music file. The value range is [0,100], 100 represents the original volume.  m_rtcEngine->adjustAudioMixingVolume(50);
- Adjusts the audio mixing volume for publishing (for remote users). The value range is [0,100], 100 represents the original volume.  m_rtcEngine->adjustAudioMixingPublishVolume(50);
- Adjusts the volume during audio mixing. The value range is [0,100], 100 represents the original volume.  m_rtcEngine->adjustAudioMixingPlayoutVolume(50);
- Retrieves the audio mixing volume for local playback. The volume range is [0,100], and 100 represents the original volume.  m_rtcEngine->getAudioMixingPlayoutVolume();
- Retrieves the audio mixing volume for publishing. The volume range is [0,100], and 100 represents the original volume.  m_rtcEngine->getAudioMixingPublishVolume();
- Sets the pitch of the local music file. The value range is [-12,12], 0 means the original pitch, and 1 means raising it by a semitone. m_rtcEngine->setAudioMixingPitch(5);
+// Adjusts the playback volume of the current music file for both local and remote playback. The value range is 0 to 100 and 100 represents the original volume.  
+m_rtcEngine->adjustAudioMixingVolume(50); 
+ 
+// Adjusts the playback volume of the current music file for the remote playback. The value range is 0 to 100 and 100 represents the original volume.  
+m_rtcEngine->adjustAudioMixingPublishVolume(50); 
+ 
+// Adjusts the playback volume of the current music file for the local playback. The value range is 0 to 100 and 100 represents the original volume.  
+m_rtcEngine->adjustAudioMixingPlayoutVolume(50); 
+ 
+// Gets the playback volume of the current music file for the local playback. The volume range is 0 to 100 and 100 represents the original volume.  
+m_rtcEngine->getAudioMixingPlayoutVolume(); 
+ 
+// Gets the playback volume of the current music file for the remote playback. The volume range is 0 to 100 and 100 represents the original volume.  
+m_rtcEngine->getAudioMixingPublishVolume(); 
+ 
+// Sets the pitch of the current music file. The value range is -12 to 12. 0 represents the original pitch; 1 represents raising the original pitch by a semitone. 
+m_rtcEngine->setAudioMixingPitch(5);
 ```
 
 ### API reference
@@ -226,7 +279,7 @@ After successfully playing the music file, you can call this set of methods to a
 - `stopAudioMixng`
 - `pauseAudioMixing`
 - `resumeAudioMixing`
-- 3. `getAudioMixingDuration`
+- `getAudioMixingDuration`
 - `setAudioMixingPosition`
 - `getAudioMixingCurrentPosition`
 - `adjustAudioMixingVolume`
@@ -235,4 +288,4 @@ After successfully playing the music file, you can call this set of methods to a
 - `getAudioMixingPlayoutVolume`
 - `getAudioMixingPublishVolume`
 - `setAudioMixingPitch`
-- 1. `onAudioMixingStateChanged`
+- `onAudioMixingStateChanged`
