@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setclientrole2">
     <title><ph keyref="setClientRole2"/>[2/2]</title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the user role in a live broadcast.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the user role and level in a live interactive streaming.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -24,20 +24,20 @@
    </dl>
    <p>You can call this method either before or after joining the channel to set the user role as audience or host.</p>
    <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:<ul>
-      <li>The callback is triggered locally<xref keyref="onClientRoleChanged"/>.</li>
-      <li>Remote trigger<xref keyref="onUserJoined"/> or<xref keyref="onUserOffline"/> callback.</li>
+      <li>The local client: <xref keyref="onClientRoleChanged"/>.</li>
+      <li>The remote client: <xref keyref="onUserJoined"/> or<xref keyref="onUserOffline"/>.</li>
    </ul></p>
-   <p>The difference between this method and<xref keyref="setClientRole1"/> [1/2] is that this method also supports setting user levels.<ul id="diff">
+   <p>The difference between this method and <xref keyref="setClientRole1"/> [1/2] is that this method can set the user level in addition to the user role.<ul id="diff">
       <li>The user <parmname>role</parmname> determines the permissions that the SDK grants to a user, such as permission to send local streams, receive remote streams, and push streams to a CDN address.</li>
-      <li>The user <parmname>level </parmname>determines the <parmname>level </parmname>of services that a user can enjoy within the permissions of the user&apos;s role. For example, an audience can choose to receive remote streams with low latency or ultra low latency. Levels affect prices.</li>
+      <li>The user <parmname>level</parmname> determines the level of services that a user can enjoy within the permissions of the user&apos;s role. For example, an audience can choose to receive remote streams with low latency or ultra-low latency. Levels affect prices.</li>
     </ul></p>
-   <note outputclass="note">This method only takes effect when the channel scene is live broadcast (<xref keyref="setChannelProfile"/>the middle <parmname>profile</parmname> is set to <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>).</note>
+   <note outputclass="note">This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile"/> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>).</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>role</pt>
-  <pd>User roles in a live broadcast. See <xref href="enum_clientroletype.dita"/>.</pd>
+  <pd>The user role in a live interactive streaming. See <xref href="enum_clientroletype.dita"/>.</pd>
        </plentry>
        <plentry>
   <pt>options</pt>
