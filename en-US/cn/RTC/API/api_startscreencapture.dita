@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startscreencapture">
     <title><ph keyref="startScreenCapture"/></title>
-    <shortdesc id="short"><ph id="shortdesc">DEPRECATED Starts screen sharing.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts screen sharing.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -26,30 +26,30 @@
   </ul></dd>
        </dlentry>
    </dl>
-   <p>This method shares the whole screen, specified window, or specified region:<ul>
-       <li>Whole screen: Set @p <parmname>windowId</parmname> as 0 and @p <parmname>rect</parmname> as <ph keyref="NULL"/>NULL.</li>
-       <li>Specified window: Set @p <parmname>windowId</parmname> as a value other than 0. Each window has a @p windowId that is not 0<parmname></parmname>.</li>
-       <li>Specified region: Set @p <parmname>windowId</parmname> as 0 and @p <parmname>rect</parmname> not as NULL<ph keyref="NULL"/>. In this case, you can share the specified region, for example by dragging the mouse or implementing your own logic. The specified region is a region on the whole screen. Currently, sharing a specified region in a specific window is not supported.</li>
+   <p>This method shares the whole screen, a specified window, or the specified region:<ul>
+       <li>Whole screen: Set <parmname>windowId</parmname> as 0 and <parmname>rect</parmname> as <ph keyref="NULL"/>.</li>
+       <li>A specified window: Set <parmname>windowId</parmname> as a value other than 0. Each window has a <parmname>windowId</parmname> that is not 0.</li>
+       <li>The specified region: Set <parmname>windowId</parmname> as 0 and <parmname>rect</parmname> as a value other than <ph keyref="NULL"/>. In this case, you can share the specified region, for example by dragging the mouse or implementing your own logic. The specified region is a region on the whole screen. Currently, sharing a specified region in a specific window is not supported.</li>
    </ul></p>
-   <note outputclass="info"><parmname>captureFreq</parmname> is the captured frame rate once the screen-sharing function is enabled. The mandatory value ranges between 1 fps and 15 fps. No matter which of the above functions you enable, 0 will be returned when the execution is successful, and an error code will be returned when the execution fails.</note>
+   <note outputclass="info"><parmname>captureFreq</parmname> is the captured frame rate once the screen-sharing function is enabled. The mandatory value ranges between 1 fps and 15 fps. No matter which of the above functions you enable, the SDK returns 0 when the execution succeeds, and an error code when the execution fails.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>windowId</pt>
-  <pd>Updates the screen sharing region.</pd>
+  <pd>The screen sharing area.</pd>
        </plentry>
        <plentry>
   <pt>captureFreq</pt>
-  <pd>@param captureFreq (Mandatory) The captured frame rate. The value ranges between 1 fps and 15 fps.</pd>
+  <pd>(Mandatory) The captured frame rate. The value ranges between 1 fps and 15 fps.</pd>
        </plentry>
        <plentry>
   <pt>rect</pt>
-  <pd><parmname>@param rect</parmname> Specifies the screen-sharing region. <xref keyref="Rect"/><parmname>@p </parmname><parmname>rect</parmname> is valid when @p windowsId is set as 0. When @p rect is set as<ph keyref="NULL"/> NULL, the whole screen is shared.</pd>
+  <pd>Specifies the screen-sharing region: <xref keyref="Rect"/>. This parameter is valid when <parmname>windowsId</parmname> is set as 0. When <parmname>rect</parmname> is set as <ph keyref="NULL"/>, the whole screen is shared.</pd>
        </plentry>
        <plentry>
   <pt>bitrate</pt>
-  <pd>Screen-sharing.</pd>
+  <pd>The bitrate of the screen share.</pd>
        </plentry>
    </parml>
         </section>
