@@ -17,14 +17,14 @@
         <section id="detailed_desc">
    
    <p>This method tests if the audio playback device works properly. Once a user starts the test, the SDK plays an audio file specified by the user. If the user can hear the audio, the playback device works properly.</p>
-   <p>After calling this method, the SDK will trigger a callback every 100 ms<xref keyref="onAudioVolumeIndication"/>, reporting <parmname>uid</parmname> = 1 and the volume information of the playback device.</p>
+   <p>After calling this method, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback every 100 ms, reporting <parmname>uid</parmname> = 1 and the volume information of the playback device.</p>
    <note outputclass="note">Ensure that you call this method before joining a channel.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>testAudioFilePath</pt>
-  <pd><p>Must be in UTF-8.<ul>
+  <pd><p>Pointer to the path of the audio file for the audio playback device test in UTF-8.<ul>
       <li>Supported file formats: wav, mp3, m4a, and aac.</li>
       <li>Supported file sample rates: 8000, 16000, 32000, 44100, and 48000 Hz.</li>
   </ul></p></pd>
