@@ -9,44 +9,44 @@
    <parml>
        <plentry>
   <pt><ph keyref="SUB_STATE_IDLE"/></pt>
-  <pd>The initial subscribing state after joining the channel.</pd>
+  <pd>0: The initial subscribing state after joining the channel.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="SUB_STATE_NO_SUBSCRIBED"/></pt>
   <pd>
-      <p>Fails to subscribe to the remote stream. Possible reasons:<ul id="ul_xhd_lxk_p4b">
+      <p>1: Fails to subscribe to the remote stream. Possible reasons:<ul id="ul_xhd_lxk_p4b">
      <li>The remote user:<ul id="ul_dcs_mxk_p4b">
-<li>Call <xref keyref="muteLocalAudioStream"/>(<ph keyref="true"/>) or <xref keyref="muteLocalVideoStream"/>(<ph keyref="true"/>) to stop sending local media streams.</li>
-<li>Call<xref keyref="disableAudio"/> or<xref keyref="disableVideo"/> close the local audio or video module.</li>
-    <li>Call <xref keyref="enableLocalAudio"/>(<ph keyref="false"
+<li>Calls <xref keyref="muteLocalAudioStream"/>(<ph keyref="true"/>) or <xref keyref="muteLocalVideoStream"/>(<ph keyref="true"/>) to stop sending local media stream.</li>
+<li>Calls <xref keyref="disableAudio"/> or <xref keyref="disableVideo"/> to disable the local audio or video module.</li>
+    <li>Calls <xref keyref="enableLocalAudio"/>(<ph keyref="false"
         />) or <xref keyref="enableLocalVideo"/>(<ph
-   keyref="false"/>) to close the local audio or video capture.</li>
-    <li>The role of the remote user is `AUDIENCE`.</li>
+   keyref="false"/>) to disable the local audio or video capture.</li>
+    <li>The role of the remote user is audience.</li>
 </ul></li>
      <li>The local user calls the following methods to stop receiving remote streams:<ul id="ul_mjk_gyk_p4b">
-    <li>Call <xref keyref="muteRemoteAudioStream"/>(<ph
+    <li>Calls <xref keyref="muteRemoteAudioStream"/>(<ph
    keyref="true"/>), <xref
    keyref="muteAllRemoteAudioStreams"/>(<ph
    keyref="true"/>) or <xref
    keyref="setDefaultMuteAllRemoteAudioStreams"/>(<ph
-   keyref="true"/>) to stop receiving the remote audio stream.</li>
-    <li>Call <xref keyref="muteRemoteVideoStream"/>(<ph
+   keyref="true"/>) to stop receiving the remote audio streams.</li>
+    <li>Calls <xref keyref="muteRemoteVideoStream"/>(<ph
    keyref="true"/>), <xref
    keyref="muteAllRemoteVideoStreams"/>(<ph
    keyref="true"/>) or <xref
    keyref="setDefaultMuteAllRemoteVideoStreams"/>(<ph
-   keyref="true"/>) to stop receiving the remote video stream.</li>
+   keyref="true"/>) to stop receiving the remote video streams.</li>
 </ul></li>
  </ul></p>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="SUB_STATE_SUBSCRIBING"/></pt>
-  <pd>Subscribing.</pd>
+  <pd>2: Subscribing.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="SUB_STATE_SUBSCRIBED"/></pt>
-  <pd>Subscribes to and receives the remote stream successfully.</pd>
+  <pd>3: Subscribes to and receives the remote stream successfully.</pd>
        </plentry>
    </parml>
         </section></refbody>
