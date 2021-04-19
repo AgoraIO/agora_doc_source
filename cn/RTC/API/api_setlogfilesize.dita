@@ -1,46 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlogfilesize">
-    <title><ph keyref="setLogFileSize"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 Agora SDK 输出的单个日志文件大小。</ph></shortdesc>
+    <title>
+        <ph keyref="setLogFileSize" />
+    </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">设置 Agora SDK 输出的单个日志文件大小。</ph>
+    </shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setLogFileSize" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setLogFileSize" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        
-        <p conref="../conref/conref_rtc_api.dita#apidef/setLogFileSize"/>
+    <refbody>
+        <section id="prototype">
+            <p conref="../conref/conref_rtc_api.dita#apidef/setLogFileSize" />
         </section>
         <section id="detailed_desc">
-   
-   <dl outputclass="deprecated">
-       <dlentry>
-  <dt>弃用：</dt>
-  <dd>v3.3.0。请改用 <xref keyref="create2"/> 中的 <parmname>logConfig</parmname>。</dd>
-       </dlentry>
-   </dl>
-   <p>默认情况下，SDK 会生成 agorasdk.log、agorasdk_1.log、agorasdk_2.log、agorasdk_3.log、agorasdk_4.log 这 5 个日志文件。 
-       每个文件的默认大小为 1024 KB。日志文件为 UTF-8 编码。最新的日志永远写在 agorasdk.log 中。agorasdk.log 写满后，SDK 会从 1-4 中删除修改时间最早的一个
-       文件， 然后将 agorasdk.log 重命名为该文件，并建立新的 agorasdk.log 写入最新的日志。</p>
-   <note outputclass="note">如果想要设置日志文件的大小，则需要在 <xref keyref="setLogFile"/> 前调用该方法，否则日志会被清空。</note>
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>
+                        v3.3.0。请改用 <xref keyref="create2" /> 中的 <parmname>logConfig</parmname>。
+                    </dd>
+                </dlentry>
+            </dl>
+            <p>默认情况下，SDK 会生成 agorasdk.log、agorasdk_1.log、agorasdk_2.log、agorasdk_3.log、agorasdk_4.log 这 5 个日志文件。每个文件的默认大小为 1024 KB。日志文件为 UTF-8 编码。最新的日志永远写在 agorasdk.log 中。agorasdk.log 写满后，SDK 会从 1-4 中删除修改时间最早的一个 文件， 然后将 agorasdk.log 重命名为该文件，并建立新的 agorasdk.log 写入最新的日志。</p>
+            <note outputclass="note">
+                如果想要设置日志文件的大小，则需要在 <xref keyref="setLogFile" /> 前调用该方法，否则日志会被清空。
+            </note>
         </section>
-        <section id="parameters"><title>参数</title>
-   <parml>
-       <plentry>
-  <pt>fileSizeInKBytes</pt>
-  <pd>单个日志文件的大小，单位为 KB。默认值为 1024 KB。如果你将 fileSizeInKByte 设为 1024 KB，SDK 会最多输出 5 MB 的日志文件。
-      如果你将 <parmname>fileSizeInKByte</parmname> 设为小于 1024 KB，单个日志文件最大仍为 1024 KB。</pd>
-       </plentry>
-   </parml>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>fileSizeInKBytes</pt>
+                    <pd>
+                        单个日志文件的大小，单位为 KB。默认值为 1024 KB。如果你将 <parmname>fileSizeInKByte</parmname> 设为 1024 KB，SDK 会最多输出 5 MB 的日志文件。 如果你将 <parmname>fileSizeInKByte</parmname> 设为小于 1024 KB，单个日志文件最大仍为 1024 KB。
+                    </pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values">
-   <title>返回值</title>
-   <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。</li>
-   </ul>
-        </section></refbody>
+            <title>返回值</title>
+            <ul>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
+    </refbody>
 </reference>
