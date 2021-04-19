@@ -71,7 +71,7 @@ The error and warning codes may be returned in the following ways:
 | `151` | An error occurs when pushing streams to CDN. Please remove` the current URL address` by calling` the removePublishStreamUrl method, and then add a new address by calling the addPublishStreamUrl` method. |
 | `152` | The host has published more than 10 URLs. Please delete the unnecessary URLs before adding new ones. |
 | `153` | The host is making changes to other hosts' URLs, such as updating parameters and disabling a URL. Please check your app logic. |
-| `154` | An error occurred in the push server. Call the `addPublishStreamUrl` method to push the stream again. |
+| `154` | An error occurs in Agora's streaming server. Call the `addPublishStreamUrl` method to push the stream again. |
 | `155` | The server fails to find the stream. |
 | `156` | The URL format is incorrect. Please check the format. |
 
