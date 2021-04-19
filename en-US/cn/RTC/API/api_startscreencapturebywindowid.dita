@@ -22,7 +22,7 @@
   <dd>v2.4.0</dd>
        </dlentry>
    </dl>
-   <p>Share a window or part of the window. Users need to specify the ID of the window they want to share in this method.</p>
+   <p>This method shares a window or part of the window. You need to specify the ID of the window to be shared.</p>
    <note outputclass="note">
        <ul>
   <li>Call this method after joining a channel.</li>
@@ -39,16 +39,16 @@
       <colspec colnum="4" colname="col4"/>
       <tbody>
  <row>
-     <entry><b>system version</b></entry>
-     <entry><b>software</b></entry>
+     <entry><b>System version</b></entry>
+     <entry><b>Software</b></entry>
      <entry><b>Compatible versions</b></entry>
-     <entry><b>Does it support</b></entry>
+     <entry><b>Support</b></entry>
  </row>
  <row>
      <entry morerows="7">win10</entry>
-     <entry>Google Chrome 65+</entry>
+     <entry>Chrome</entry>
      <entry>76.0.3809.100</entry>
-     <entry>no</entry>
+     <entry>No</entry>
  </row>
  <row>
      <entry>Office Word</entry>
@@ -57,7 +57,7 @@
  </row>
  <row>
      <entry>Office Excel</entry>
-     <entry>no</entry>
+     <entry>No</entry>
  </row>
  <row>
      <entry>Office PPT</entry>
@@ -75,19 +75,19 @@
      <entry>WPS PPT</entry>
  </row>
  <row>
-     <entry>Media Player (included in the system)</entry>
-     <entry>Enable All</entry>
+     <entry>Media Player (come with the system)</entry>
+     <entry>All</entry>
      <entry>Yes</entry>
  </row>
  <row>
      <entry morerows="7">win8</entry>
-     <entry>Google Chrome 65+</entry>
-     <entry>Enable All</entry>
+     <entry>Chrome</entry>
+     <entry>All</entry>
      <entry>Yes</entry>
  </row>
  <row>
      <entry>Office Word</entry>
-     <entry morerows="2">Enable All</entry>
+     <entry morerows="2">All</entry>
      <entry morerows="2">Yes</entry>
  </row>
  <row>
@@ -108,19 +108,19 @@
      <entry>WPS PPT</entry>
  </row>
  <row>
-     <entry>Media Player (included in the system)</entry>
-     <entry>Enable All</entry>
+     <entry>Media Player (come with the system)</entry>
+     <entry>All</entry>
      <entry>Yes</entry>
  </row>
  <row>
      <entry morerows="7">win7</entry>
-     <entry>Google Chrome 65+</entry>
+     <entry>Chrome</entry>
      <entry>73.0.3683.103</entry>
-     <entry>no</entry>
+     <entry>No</entry>
  </row>
  <row>
      <entry>Office Word</entry>
-     <entry morerows="2">Enable All</entry>
+     <entry morerows="2">All</entry>
      <entry morerows="2">Yes</entry>
  </row>
  <row>
@@ -132,7 +132,7 @@
  <row>
      <entry>WPS Word</entry>
      <entry morerows="1">11.1.0.9098</entry>
-     <entry morerows="1">no</entry>
+     <entry morerows="1">No</entry>
  </row>
  <row>
      <entry>WPS Excel</entry>
@@ -143,9 +143,9 @@
      <entry>Yes</entry>
  </row>
  <row>
-     <entry>Media Player (included in the system)</entry>
-     <entry>Enable All</entry>
-     <entry>no</entry>
+     <entry>Media Player (come with the system)</entry>
+     <entry>All</entry>
+     <entry>No</entry>
  </row>
       </tbody>
   </tgroup>
@@ -156,15 +156,15 @@
    <parml>
        <plentry>
   <pt>windowId</pt>
-  <pd>Specify the ID of the window to be shared.</pd>
+  <pd>The ID of the window to be shared.</pd>
        </plentry>
        <plentry props="windows">
   <pt>regionRect</pt>
-  <pd>@param regionRect (Optional) Sets the relative location of the region to the screen. NULL means sharing the whole screen. See <xref keyref="Rectangle"/>. If the specified region overruns the window, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole window.</pd>
+  <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle"/>. If the specified region overruns the window, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole window.</pd>
        </plentry>
        <plentry props="mac">
-  <pt>See Rectangle.</pt>
-  <pd><p>(Optional) The position of the area to be shared relative to the entire window. NULL/NIL means sharing the whole window. It consists of the following parameters:<ul>
+  <pt>rectangle</pt>
+  <pd><p>(Optional) The relative location of the region to the screen or window. If you do not set this parameter, the SDK shares the whole screen or window. It consists of the following parameters:<ul>
       <li>The horizontal offset from the top-left corner.</li>
       <li>The vertical offset from the top-left corner.</li>
       <li>The width of the region.</li>
@@ -175,7 +175,7 @@
        </plentry>
        <plentry>
   <pt>captureParams</pt>
-  <pd>Screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters"/>.</pd>
+  <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters"/>.</pd>
        </plentry>
    </parml>
         </section>
