@@ -16,8 +16,8 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This method allows the audience of a `LIVE_BROADCASTING` channel to switch to a different channel.</p>
-   <p>After successfully calling the party to switch channels, the local will first receive the callback for leaving the original channel<xref keyref="onLeaveChannel"/>, and then the callback for successfully joining the new channel<xref keyref="onJoinChannelSuccess"/>.</p>
+   <p>This method allows the audience of a LIVE_BROADCASTING channel to switch to a different channel.</p>
+   <p>After the user successfully switches to another channel, the <xref keyref="onLeaveChannel"/> and <xref keyref="onJoinChannelSuccess"/> callbacks are triggered to indicate that the user has left the original channel and joined a new one.</p>
    <p>Once the user switches to another channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <apiname>mute</apiname> methods accordingly.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
@@ -25,17 +25,17 @@
        <plentry>
   <pt>token</pt>
   <pd><p>The token generated at your server.<ul>
-                                <li>If the user uses a static App ID, token is optional and can be set as <ph keyref="NULL"/>.</li>
-                                <li>High security requirements: Set the value to the Token generated from your server. If you enable the App Certificate, you must use a token to join the channel.</li>
+                                <li>In scenarios with low security requirements, token is optional and can be set as <ph keyref="NULL"/>.</li>
+                                <li>In scenarios with high security requirements, set the value to the token generated from your server. If you enable the App Certificate, you must use a token to join the channel.</li>
                             </ul>
-                            <note outputclass="warning">Ensure that the App ID used for creating the token is the same<xref
-                                    keyref="create2"/> App ID used by the method for initializing the RTC engine. Otherwise, the CDN live streaming may fail.</note>
+                            <note outputclass="warning">Ensure that the App ID used for creating the token is the sameApp ID used by the <xref
+                                    keyref="create2"/> method for initializing the RTC engine.</note>
                         </p></pd>
        </plentry>
        <plentry>
   <pt><ph keyref="channelID"/></pt>
   <pd>
-      <p>The channel name. The students attend the teacher&apos;s online class. Under the premise of the same App ID, users who fill in the same <codeph>channelId</codeph> will enter the same<codeph> channel</codeph> for audio and video interaction. The string length must be less than 64 bytes. Supported characters:<ul
+      <p>The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same <codeph>channelId</codeph> enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters:<ul
                                 id="ul_lx4_nrc_h4b">
                                 <li>All lowercase English letters: a to z.</li>
                                 <li>All uppercase English letters: A to Z.</li>
@@ -54,9 +54,9 @@
        <li>&lt; 0: Failure.<ul>
   <li>-1(ERR_FAILED): A general error occurs (no specified reason).</li>
   <li>-2 (ERR_INVALID_ARGUMENT): The parameter is invalid.</li>
-  <li>-5(ERR_REFUSED): The request is rejected. The role of the remote user is `AUDIENCE`.</li>
+  <li>-5(ERR_REFUSED): The request is rejected. The role of the remote user is not AUDIENCE.</li>
   <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
-  <li>-102(ERR_INVALID CHANNEL_NAME): The channel name is invalid. Please rejoin the channel with a valid channel name.</li>
+  <li>-102(ERR_INVALID CHANNEL_NAME): The channel name is invalid. Please use a valid channel name.</li>
   <li>-113(ERR_NOT_IN_CHANNEL): The user is not in the channel.</li>
        </ul></li>
    </ul>
