@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startpreview">
     <title><ph keyref="startPreview"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Starts the local video preview before joining the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables the local video preview.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -14,15 +14,15 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/startPreview"/>
         </section>
         <section id="detailed_desc">
-   <p>Before calling this method, you must: Record by API: Record a call by calling the APIs.</p>
+   <p>This method starts the local video preview before joining the channel. Before calling this method, ensure that you do the following:</p>
    <ul>
-       <li>Call<xref keyref="setupLocalVideo" /> to set the preview window and properties;</li>
-       <li>Call to<xref keyref="enableVideo" /> turn on the video function.</li>
+       <li>Call <xref keyref="setupLocalVideo" /> to set the local preview window;</li>
+       <li>Call <xref keyref="enableVideo" /> to enable the video.</li>
    </ul>
    <note outputclass="note">
        <ul>
-           <li>The local preview enables the mirroring function by default.</li>
-       <li>After the local video preview is enabled, if you call to<xref keyref="leaveChannel" /> exit the channel, the local preview is still active. If you need to close the local preview, you need to call<xref keyref="stopPreview"/>.</li>
+           <li>By default, the local preview enables the mirror mode.</li>
+       <li>After the local video preview is enabled, if you call <xref keyref="leaveChannel" /> to exit the channel, the local preview remains until you call <xref keyref="stopPreview"/> to disable it.</li>
    </ul>
    </note>
         </section>
