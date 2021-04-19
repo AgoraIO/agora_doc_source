@@ -3,70 +3,77 @@ title: 播放音频文件
 platform: Windows
 updatedAt: 2020-12-04 01:39:56
 ---
-## Description
+## Introduction
 
-In the process of     real-time audio and video interaction, in order to enhance the atmosphere and add interest, users usually need to play sound effects or music files and let all users in the channel hear them. For example, adding fighting sounds to the game, and accompaniment when singing. Agora provides two independent methods, you can play sound effects and music files separately.
+In real-time audio and video interaction, to foil the atmosphere and add fun, users often need to play audio effects or a music file and all users in the channel can hear. For example, users can add fighting sounds when playing the game or add an accompaniment when singing. Agora provides two independent groups of methods, you can play audio effect files and a music file separately.
 
 ## Sample project
 
-Agora provides an open-source sample project on GitHub [](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioEffect)[](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioMixing)that implements setting the video profile. You can view the source code on Github or download the project to try it out.
+Agora provides an open-source demo project on GitHub that implements [audio effect](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioEffect) files and a [music file](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioMixing). You can view the source code on Github or download the project to try it out.
 
-## Sound file
+## Audio effect files
 
-The sound effects mentioned in this article refer to short-duration ambient sounds, such as applause, cheers, fighting sounds, gunshots, etc. Usually multiple sound effects can be used in a superimposed manner.
+The audio effect mentioned in this article refers to the ambient sound with a short duration, such as applause, cheers, fighting sounds, and gunshots. Usually, you can play multiple audio effects at the same time.
 
-Agora provides a set of methods to play and manage sound effect files, mainly including the following functions:
+Agora provides a group of methods to play and manage audio effect files, mainly including the following functions:
 
-- Play local or online audio files
-- Set the space position, loop times, playback position, volume and other playback options of the sound effect
-- Flexible control of the play, pause, resume and stop of specified or all sound effect files
+- Play local or online audio effect files.
+- Set the spatial position, number of loops, playback position, volume, and other playback options of an audio effect.
+- Flexibly control the play, pause, resumption, and stop of specified or all audio effect files.
 
-<div class="alert note">Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. Fore more information, see<a href="https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation">  Supported Media Formats in Media Foundation</a >。</div>
+<div class="alert note">Supported audio effect file formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <a href="https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation">Supported Media Formats in Media Foundation</a >.</div>
 
-Refer to the following steps to play audio files:
+To play audio effect files, see the following steps:
 
-1. Call the `preloadEffect `method to preload the local sound effect file before joining the channel.
-2. After joining the channel, call the `playEffect` method to play the sound effect file. After completing playing an audio effect file, the SDK triggers the `onAudioEffectFinished` callback.
+1. Before joining a channel, call the `preloadEffect` method to preload the local audio effect file.
+2. After joining a channel, call the `playEffect` method to play the audio effect file. After completing playing an audio effect file, the SDK triggers the `onAudioEffectFinished` callback.
 
-### Plays a specified audio effect.
+### Specify an audio effect file
 
-Before playing the sound effect file, you need to set `filePath` and `soundId to specify the sound effect file`. The meaning of the two parameters is as follows:
+Before playing an audio effect file, you need to set `filePath` and `soundId` to specify an audio effect file. The meaning of two parameters is as follows:
 
-- `filePath`: Sound effect file path, supports local or online file path. The SDK will look for the sound effect file in this path.
-- `soundId`: Sound effect ID, which is defined by you and is unique. The SDK will identify the sound effect file based on the sound effect ID. Common methods for defining sound effect ID include self-incrementing ID, hashCode using sound effect file name, and so on.
+- ` filePath`: The audio effect file path, including the local and online file path. The SDK searches for audio effect files in this path.
+- ` soundId`: The audio effect ID, which is defined by yourself and must be unique. The SDK identifies the audio effect file based on the audio effect ID. Common solutions for defining audio effect IDs include incrementing the ID and using hashCode for the audio effect file name.
 
 ```c++
-// Set to automatically allocate soundId according to the specified sound effect file path, and associate the sound effect file path with soundId. m_mapEffect.insert(std::make_pair(strPath, m_soundId++));
+// Sets to automatically allocate soundId according to the specified path of the audio effect file, and associate the audio effect file path with soundId. 
+m_mapEffect.insert(std::make_pair(strPath, m_soundId++));
 ```
 
-### 预加载
+### Preloading
 
-The SDK supports pre-loading. You can load the sound effect files into the memory in advance to improve performance. Preloading is not a necessary step, Agora recommends that you choose according to your needs.
+The SDK supports preloading audio effect files. To improve performance, you can load the audio effect files into the memory in advance. Preloading is not a necessary step, Agora recommends that you choose whether to preload audio effect files according to your needs.
 
-- If you need to play a specific sound effect repeatedly, it is recommended to preload the sound effect file.
-- Agora recommends you preload the audio effect to improve the efficiency or to play the audio effect multiple times.
+- If you need to play a specified audio effect repeatedly, Agora recommends preloading the audio effect file.
+- If the audio effect file size is large, Agora recommends not preloading the audio effect file.
 
-To load multiple local sound effect files, you need to call preloadEffect multiple times``.
+To preload multiple audio effect files, you need to call `preloadEffect` multiple times.
 
-<div class="alert note"><li>Only supports pre-loading local sound effect files.</li><li><code>preloadEffect</code> 需要在加入频道前调用。</li><li>调用 <code>preloadEffect</code> 后，音效文件会一直占用内存，直至调用 <code>unloadEffect</code> 或者离开频道。</li></div>
+<div class="alert note"><li>The SDK only supports preloading local audio effect files.</li><li>Call <code>preloadEffect</code> before joining a channel.</li><li>After calling <code>preloadEffect</code>, the audio effect file occupies the memory until you call <code>unloadEffect</code> or the user leaves the channel.</li></div>
 
 ```c++
-// Preload the specified local sound effect file into the memory.  m_rtcEngine-> preloadEffect (m_mapEffect [strEffect], strPath.c_str ());
-// Release the preloaded sound effect file.  m_rtcEngine-> unloadEffect (m_mapEffect [strEffect]);
+// Preloads the specified local audio effect file into the memory.  
+m_rtcEngine->preloadEffect(m_mapEffect[strEffect], strPath.c_str()); 
+// Unloads the preloaded audio effect file.  
+m_rtcEngine->unloadEffect(m_mapEffect[strEffect]);
 ```
 
-### 播放和停止
+### Play and stop
 
-Call `playEffect` to play the sound effect file. According to your needs, you can call playEffect multiple times` to play` multiple sound effect files at the same time. When playing a sound effect file, you can set the number of loops, pitch, volume, playback position, etc.
+Call `playEffect` to play the audio effect file. According to your needs, you can call `playEffect` multiple times to play multiple audio effect files at the same time. When playing an audio effect file, you can set the number of loops, pitch, volume, and playback position.
 
-<div class="alert note"><code>playEffect</code> 需要在加入频道后调用。</div>
+<div class="alert note">Call <code>playEffect</code> after joining a channel.</div>
 
 ```c++
-// Set the number of times the sound effect is played in a loop. -1 means infinite loop.  int loops = -1;
-// Set the tone of the sound effect. The value range is [0.5, 2.0].  double pitch = 1.5;
-// Set the volume. The value range is [0,100], 100 represents the original volume.  int gain = 100;
-// Set the sound effect space position. 1.0: The audio effect displays to the right.  double pan = 1.0;
-// Set whether to publish the sound effect to the remote end. true means that both local users and remote users can hear the sound effect; false means that only the local user can hear the sound effect.  BOOL publish = true;
+// Sets the number of times the audio effect loops. -1 represents infinite loop.  
+int loops = -1; 
+ // Sets the pitch of the audio effect. The value range is 0.5 to 2.0.  
+double pitch = 1.5; 
+ // Sets the volume of the audio effect. The value range is 0 to 100. 100 represents the original volume.  
+int gain = 100; 
+ // Sets the spatial position of the audio effect. 1.0 represents the audio effect occurs on the right.  
+double pan = 1.0; 
+ // Sets whether to publish the audio effect to the remote users. true means that both local users and remote users can hear the sound effect; false means that only the local user can hear the sound effect.  BOOL publish = true;
 // Set the playback progress of the sound effect file. 500 means to start playing from the 500th ms of the sound effect file.  int startPos = 500;
  // Play the specified sound effect file. (The demo lacks the sample code of startPos)
 m_rtcEngine-> playEffect (m_mapEffect [strEffect], strFile.c_str (), loops, pitch, pan, gain, publish, startPos);
@@ -80,7 +87,7 @@ Stops playing a specified audio effect. m_rtcEngine-> stopEffect (m_mapEffect [s
  Stops playing all audio effects. m_rtcEngine-> stopAllEffects ();
 ```
 
-### 暂停与恢复
+### Pause and resume
 
 When the sound effect file is playing, you can pause or resume playing the specified or all sound effect files.
 
@@ -89,12 +96,11 @@ When the sound effect file is playing, you can pause or resume playing the speci
 ```c++
 // Pause playing the specified sound effect file.  m_rtcEngine-> pauseEffect (m_mapEffect [strEffect]);
  Resumes playing a specified audio effect.  m_rtcEngine-> resumeEffect (m_mapEffect [strEffect]);
- 
-// 暂停播放所有的音效文件。 m_rtcEngine-> pauseAllEffects ();
+ Pauses all audio effects. m_rtcEngine-> pauseAllEffects ();
  Resumes playing all audio effects. m_rtcEngine->resumeAllEffects();
 ```
 
-### 播放位置
+### The playback state.
 
 If you need to adjust the playback position after playing the sound effect file, you can call this group of methods. For example, you can call this group of methods to adjust the playback position during the loop playback of the sound effect file without stopping the playback.
 
@@ -104,8 +110,7 @@ If you need to adjust the playback position after playing the sound effect file,
 ```c++
 // Get the total duration of the specified local sound effect file.  m_rtcEngine-> getEffectDuration (m_mapEffect [strEffect]);
  Sets the playback position of an audio effect file.  m_rtcEngine-> setEffectPosition (m_mapEffect [strEffect], pos);
- 
-// 获取指定本地音效文件的总时长。  m_rtcEngine-> getEffectCurrentPosition (m_mapEffect [strEffect]);
+ Retrieves the duration of the audio effect file.  m_rtcEngine-> getEffectCurrentPosition (m_mapEffect [strEffect]);
 ```
 
 ### Volume setting
@@ -116,8 +121,7 @@ After the sound effect file starts to play, you can call this set of methods to 
 
 ```c++
 // Set the playback volume of all sound effect files. The value range is [0,100], 100 represents the original volume.  m_rtcEngine->setEffectsVolume(50);
- 
-// 设置指定音效文件的播放音量。 The value range is [0,100], 100 represents the original volume.  m_rtcEngine-> setVolumeOfEffect (m_mapEffect [strEffect], 50);
+ Sets the volume of the audio effects. The value range is [0,100], 100 represents the original volume.  m_rtcEngine-> setVolumeOfEffect (m_mapEffect [strEffect], 50);
  Retrieves the volume of the audio effects. The volume range is [0,100], and 100 represents the original volume.  m_rtcEngine->getEffectsVolume();
 ```
 
@@ -151,15 +155,15 @@ Agora provides a set of methods to play and manage music files, mainly including
 - Flexible control of the playback, pause, resume and stop of music files
 - Report the current music file playback status and the reason for the playback status change
 
-<div class="alert note">Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. Fore more information, see<a href="https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation">  Supported Media Formats in Media Foundation</a >。</div>
+<div class="alert note">Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <a href="https://docs.microsoft.com/zh-cn/windows/desktop/medfound/supported-media-formats-in-media-foundation">Supported Media Formats in Media Foundation</a >.</div>
 
 After successfully calling `startAudioMixing`, the SDK will trigger the `onAudioMixingStateChanged `callback when the playback state of the music file changes.
 
-### 播放和停止
+### Play and stop
 
 720: Successfully call `startAudioMixing` to play music files. When playing music files, you can set the number of loops, playback position, etc.
 
-<div class="alert note">如果在播放一个音乐文件时再次调用 <code>startAudioMixing</code>，则 SDK 会自动停止播放上一个音乐文件并开始播放下一个音乐文件。</div>
+<div class="alert note">If startAudioMixing is called again while playing a music file<code></code>, the SDK will automatically stop playing the previous music file and start playing the next music file.</div>
 
 ```c++
 // Specify the absolute path of the local or online music file that needs to be mixed.  std::string filePath = "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3";
@@ -178,7 +182,7 @@ After successfully playing the music file, you can call `stopAudioMixing` to sto
 Stops playing and mixing the music file. m_rtcEngine->stopAudioMixing();
 ```
 
-### 暂停与恢复
+### Pause and resume
 
 When the music file is playing, you can pause or resume playing the music file.
 
@@ -189,11 +193,11 @@ Pauses playing and mixing the music file.  m_rtcEngine-> pauseAudioMixing ();
  Resumes playing and mixing the music file.  m_rtcEngine->resumeAudioMixing();
 ```
 
-### 播放位置
+### The playback state.
 
 When the music file is playing, you can call this group of methods to adjust the playback position of the music file without stopping the playback.
 
-<div class="alert note">本组方法需要在调用 <code>startAudioMixing</code> 并收到 <code>onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</code> 回调后调用。</div>
+<div class="alert note">After playing the <code>music file</code> successfully, the SDK triggers <code>onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</code>.</div>
 
 ```c++
 Retrieves the total duration of the music file.  m_rtcEngine->getAudioMixingDuration(filePath);
@@ -205,20 +209,15 @@ Retrieves the total duration of the music file.  m_rtcEngine->getAudioMixingDura
 
 After successfully playing the music file, you can call this set of methods to adjust the playback volume and pitch of the music file without stopping the playback.
 
-<div class="alert note">本组方法需要在调用 <code>startAudioMixing</code> 并收到 <code>onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</code> 回调后调用。</div>
+<div class="alert note">After playing the <code>music file</code> successfully, the SDK triggers <code>onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</code>.</div>
 
 ```c++
 // Adjust the local and remote playback volume of the current music file. The value range is [0,100], 100 represents the original volume.  m_rtcEngine->adjustAudioMixingVolume(50);
- 
-// 调节当前音乐文件在远端的播放音量。 The value range is [0,100], 100 represents the original volume.  m_rtcEngine->adjustAudioMixingPublishVolume(50);
- 
-// 调节当前音乐文件在本地的播放音量。 The value range is [0,100], 100 represents the original volume.  m_rtcEngine->adjustAudioMixingPlayoutVolume(50);
- 
-// 获取当前音乐文件在本地的播放音量。 The volume range is [0,100], and 100 represents the original volume.  m_rtcEngine->getAudioMixingPlayoutVolume();
- 
-// 获取当前音乐文件在远端的播放音量。 The volume range is [0,100], and 100 represents the original volume.  m_rtcEngine->getAudioMixingPublishVolume();
- 
-// 调节当前音乐文件的音调。 The value range is [-12,12], 0 means the original pitch, and 1 means raising it by a semitone. m_rtcEngine->setAudioMixingPitch(5);
+ Adjusts the audio mixing volume for publishing (for remote users). The value range is [0,100], 100 represents the original volume.  m_rtcEngine->adjustAudioMixingPublishVolume(50);
+ Adjusts the volume during audio mixing. The value range is [0,100], 100 represents the original volume.  m_rtcEngine->adjustAudioMixingPlayoutVolume(50);
+ Retrieves the audio mixing volume for local playback. The volume range is [0,100], and 100 represents the original volume.  m_rtcEngine->getAudioMixingPlayoutVolume();
+ Retrieves the audio mixing volume for publishing. The volume range is [0,100], and 100 represents the original volume.  m_rtcEngine->getAudioMixingPublishVolume();
+ Sets the pitch of the local music file. The value range is [-12,12], 0 means the original pitch, and 1 means raising it by a semitone. m_rtcEngine->setAudioMixingPitch(5);
 ```
 
 ### API reference
