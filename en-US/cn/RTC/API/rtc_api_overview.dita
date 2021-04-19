@@ -2,29 +2,29 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="api-title" xml:lang="en-US">
     <title>API Overview</title>
-    <shortdesc id="short"><ph id="shortdesc">Through the virtual network deployed globally, Agora provides API combinations that can be flexibly matched to provide reliable real-time audio and video communications from mobile to mobile and mobile to a Web client.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Agora provides ensured quality of experience (QoE) for worldwide Internet-based voice and video communications through a virtual global network optimized for real-time web and mobile-to-mobile applications.</ph></shortdesc>
     <prolog/>
     <body>
         <note outputclass="info">
         <ul>
-            <li>Starting from v2.3.3, Agora C++ API Reference for All Platforms can be downloaded on the <xref
-                        href="https://kapeli.com/dash" scope="external" format="html">Dash</xref> platform, see <xref href="https://docs.agora.io/cn/Video/faq/api_download"
-                        scope="external" format="html">FAQ for </xref>details.</li>
-            <li props="windows">Starting from v3.0.0, Agora deprecated the <codeph>RtcEngineParameters</codeph> class. All interfaces under this class are covered by<xref keyref="IRtcEngine"/> the class, please use the<apiname keyref="IRtcEngine"/> class.</li>
-            <li>When you make an API call to access an Agora SDK, the SDK may return error codes or <xref href="error_rtc.md">warning codes</xref>:</li>
+            <li>As of v2.3.3, Agora C++ API Reference for All Platforms can be downloaded from <xref
+                        href="https://kapeli.com/dash" scope="external" format="html">Dash</xref>, see <xref href="https://docs.agora.io/cn/Video/faq/api_download"
+                        scope="external" format="html">FAQ</xref> for details.</li>
+            <li props="windows">As of v3.0.0, Agora deprecates the <codeph>RtcEngineParameters</codeph> class. <xref keyref="IRtcEngine"/> class covers all APIs of this class, use the <apiname keyref="IRtcEngine"/> class instead.</li>
+            <li>During API calls, the SDK may returns error codes and warning codes. See <xref href="error_rtc.md">Error Codes and Warning Codes</xref>.</li>
         </ul>
         </note>
         <ul>
-            <li><xref keyref="IRtcEngine"/> The IRecordingEngine class provides the main methods that can be invoked by your application.</li>
-            <li><xref keyref="IRtcEngineEventHandler"/> The class is used to send callback notifications to the application.</li>
-            <li><xref keyref="IChannel"/> The class implements real-time audio and video functions in the specified channel. By creating multiple<apiname keyref="IChannel"/> objects, users can join multiple channels at the same time.</li>
-            <li><xref keyref="IChannelEventHandler"/> The class monitors and reports the events and data of the specified channel.</li>
-            <li props="windows"><xref keyref="IAudioDeviceManager"/> The class provides related interfaces for testing audio equipment.</li>
-            <li props="windows"><xref keyref="IVideoDeviceManager"/> The class provides related interfaces for testing video equipment.</li>
+            <li><xref keyref="IRtcEngine"/> provides the main methods that can be invoked by your application.</li>
+            <li><xref keyref="IRtcEngineEventHandler"/> reports runtime events to the application.</li>
+            <li><xref keyref="IChannel"/> provides methods that enable real-time communications in a specified channel. By creating multiple <apiname keyref="IChannel"/> objects, the user can join multiple channels at the same time.</li>
+            <li><xref keyref="IChannelEventHandler"/> provides callbacks that report events and statistics of a specified channel.</li>
+            <li props="windows"><xref keyref="IAudioDeviceManager"/> allows for audio device interface testing.</li>
+            <li props="windows"><xref keyref="IVideoDeviceManager"/> allows for video device interface testing.</li>
         </ul>
 
         <section id="core_methods">
-            <title>Core API Summary</title>
+            <title>Core methods</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -85,10 +85,10 @@
             </simpletable>
         </section>
         <section id="core_events">
-            <title>Core Method</title>
+            <title>Core events</title>
             <simpletable>
                 <sthead>
-                    <stentry>Event codes</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -139,7 +139,7 @@
         </section>
 
         <section id="audio_management">
-            <title>Audio</title>
+            <title>Audio management</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -251,10 +251,10 @@
         </section>
 
         <section id="local_media_events">
-            <title>Media events</title>
+            <title>Local media events</title>
             <simpletable>
                 <sthead>
-                    <stentry>Event codes</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -289,10 +289,10 @@
         </section>
 
         <section id="remote_media_events">
-            <title>Media events</title>
+            <title>Remote media events</title>
             <simpletable>
                 <sthead>
-                    <stentry>Event description</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -319,13 +319,13 @@
         </section>
 
         <section id="statistics_events">
-            <title>Statistics event</title>
-            <p>After joining the channel, the SDK automatically triggers this group of callbacks every 2 seconds. We provide detailed function descriptions and implementation method documents for these callbacks. For details, please refer to <xref
+            <title>Statistics events</title>
+            <p>After joining a channel, SDK triggers this group of callbacks once every two seconds. We provide an advanced guide for these callbacks. For details, see <xref
                     href="https://docs.agora.io/cn/Interactive%20Broadcast/in-call_quality_windows?platform=Windows" format="html"
-                    scope="external">quality monitoring during a call</xref>.</p>
+                    scope="external">Report In-call Statistics</xref>.</p>
             <simpletable>
                 <sthead>
-                    <stentry>Event codes</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -370,11 +370,11 @@
         </section>                
 
         <section id="multiple_channels_management">
-            <title>Room management</title>
-            <p>We provide detailed scene descriptions, implementation methods, and development notes documents for this group of interfaces. For details, please refer <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/multiple_channel_windows?platform=Windows" scope="external" format="html">to Join Multi-channel</xref>.</p>
+            <title>Multiple channels management</title>
+            <p>We provide an advanced guide on the applicable scenarios, implementation and considerations for this group of methods. For details, see <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/multiple_channel_windows?platform=Windows" scope="external" format="html">Join Multiple Channels</xref>.</p>
             <simpletable>
                 <sthead>
-                    <stentry>FIRE</stentry>
+                    <stentry>API</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -394,7 +394,7 @@
         
         <section id="screen_capture">
             <title>Screen sharing</title>
-            <p>We provide detailed scene descriptions, implementation methods, and development notes documents for this group of methods. For details, please refer <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/screensharing_windows?platform=Windows" scope="external" format="html">to Screen Sharing</xref>.</p>
+            <p>We provide an advanced guide on the applicable scenarios, implementation and considerations for this group of methods. For details, see <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/screensharing_windows?platform=Windows" scope="external" format="html">Share the Screen</xref>.</p>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -493,7 +493,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event description</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -512,7 +512,7 @@
         </section>        
 
         <section id="audio_effect_playback">
-            <title>1. Audio effect file playback and management</title>
+            <title>Audio effect file playback</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -565,7 +565,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event description</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -577,7 +577,7 @@
 
 
         <section id="voice_changer_and_reverberation">
-            <title>Category</title>
+            <title>Voice effect</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -619,7 +619,7 @@
         </section>   
 
         <section id="sound_position_indication">
-            <title>sound localization</title>
+            <title>Sound localization</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -638,8 +638,8 @@
 
 
         <section id="CDN_publisher">
-            <title>CDN streaming address.</title>
-            <p>This method applies only to the `LIVE_BROADCASTING` profile.</p>
+            <title>CDN publisher</title>
+            <p>This method applies only to interactive live streaming.</p>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -660,7 +660,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event codes</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -679,7 +679,7 @@
         </section>   
 
         <section id="media_stream_relay_across_channels">
-            <title>Channel media stream relay</title>
+            <title>Media stream relay across channels</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -700,7 +700,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event codes</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -716,7 +716,7 @@
 
 
         <section id="audio_volume_indication">
-            <title>Volume reminder</title>
+            <title>Volume indication</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -729,7 +729,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event codes</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -744,7 +744,7 @@
         </section>
 
         <section id="face_detection">
-            <title>Face Detection</title>
+            <title>Face detection</title>
             <p>This method is for Android and iOS only.</p>
             <simpletable>
                 <sthead>
@@ -758,7 +758,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event codes</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -769,7 +769,7 @@
         </section>
 
         <section id="audio_routing_control">
-            <title>Audio playback device.</title>
+            <title>Audio routing control</title>
             <p>This method is for Android and iOS only.</p>
             <simpletable>
                 <sthead>
@@ -792,7 +792,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event codes</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -822,7 +822,7 @@
         </section>
 
         <section id="dual_video_stream_mode">
-            <title>Enables Dual Stream</title>
+            <title>Dual video stream mode</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -845,7 +845,7 @@
 
         <section id="stream_fallback">
             <title>Video stream fallback</title>
-            <p>We have provided detailed scene descriptions, implementation methods, and development notes documents for this group of APIs. For details, please refer to <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/fallback_windows?platform=Windows" scope="external" format="html">the video stream fallback</xref>.</p>
+            <p>We provide an advanced guide on the applicable scenarios, implementation and considerations for this group of methods. For details, see <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/fallback_windows?platform=Windows" scope="external" format="html">Video Stream Fallback</xref>.</p>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -866,7 +866,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event description</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -883,8 +883,8 @@
         
         
         <section id="pre-call_network_test">
-            <title>Lastmile tests</title>
-            <p>We provide detailed scenario descriptions, implementation methods, and development notes documents for this group of APIs. For details, please refer <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/lastmile_quality_windows?platform=Windows" scope="external" format="html">to Checking Network Quality Before Calling</xref>.</p>
+            <title>Pre-call network test</title>
+            <p>We provide an advanced guide on the applicable scenarios, implementation and considerations for this group of methods. For details, see <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/lastmile_quality_windows?platform=Windows" scope="external" format="html">Conduct a Last-mile Test</xref>.</p>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -917,7 +917,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event codes</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -932,7 +932,7 @@
         </section>
 
         <section id="custom_video_module">
-            <title>Customizes the video source.</title>
+            <title>Customizes video module</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -946,7 +946,7 @@
         </section>
 
         <section id="external_video_data">
-            <title>1. External video data (Push Mode)</title>
+            <title>External video data (push-mode only)</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -964,7 +964,7 @@
         </section>
 
         <section id="external_audio_data">
-            <title>1. External video data (Push Mode)</title>
+            <title>External audio data (push-mode only)</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -982,7 +982,7 @@
         </section>
         
         <section id="external_audio_sink">
-            <title>2. External audio sink (Pull Mode)</title>
+            <title>External audio sink (pull-mode only)</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1000,7 +1000,7 @@
         </section>
         
         <section id="raw_audio_data">
-            <title>Modify the raw data</title>
+            <title>Raw audio data</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1025,7 +1025,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event codes</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -1061,7 +1061,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event description</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -1100,8 +1100,8 @@
         </section>
 
         <section id="media_metadata">
-            <title>1. Adding media metadata</title>
-            <p>This method applies only to the `LIVE_BROADCASTING` profile.</p>
+            <title>Media metadata</title>
+            <p>This method applies only to interactive live streaming.</p>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1114,7 +1114,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event description</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -1134,8 +1134,8 @@
         
         
         <section id="watermark">
-            <title>Live watermark</title>
-            <p>This method applies only to the `LIVE_BROADCASTING` profile.</p>
+            <title>Watermark</title>
+            <p>This method applies only to interactive live streaming.</p>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1153,7 +1153,7 @@
         </section>
 
         <section id="encryption">
-            <title>encryption</title>
+            <title>Encryption</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1171,7 +1171,7 @@
         </section>
 
         <section id="audio_recorder">
-            <title>Custom Audio Source</title>
+            <title>Audio recorder</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1202,7 +1202,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event codes</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -1217,8 +1217,8 @@
         </section>
 
         <section id="device_manager">
-            <title>Equipment management</title>
-            <p>Applies to the Windows platform only.</p>
+            <title>Device management</title>
+            <p>This group of methods are for Windows only.</p>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1327,7 +1327,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event codes</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -1346,7 +1346,7 @@
         </section>
 
         <section id="stream_message">
-            <title>News</title>
+            <title>Stream message</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1363,7 +1363,7 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>Event description</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
@@ -1378,7 +1378,7 @@
         </section>
         
         <section id="miscellaneous_audio_control">
-            <title>Other audio controls</title>
+            <title>Miscellaneous audio control</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1397,7 +1397,7 @@
         </section>
 
         <section id="miscellaneous_video_control">
-            <title>Other video control</title>
+            <title>Miscellaneous video control</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1411,7 +1411,7 @@
         </section>
 
         <section id="miscellaneous_methods">
-            <title>Other methods</title>
+            <title>Miscellaneous methods</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1457,10 +1457,10 @@
         </section>
 
         <section id="miscellaneous_events">
-            <title>Miscellaneous events.</title>
+            <title>Miscellaneous events</title>
             <simpletable>
                 <sthead>
-                    <stentry>Method</stentry>
+                    <stentry>Event</stentry>
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
