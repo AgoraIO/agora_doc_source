@@ -31,19 +31,19 @@
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry id="token">
-  <pt>Renews the Token</pt>
+  <pt>token</pt>
   <pd>
       <p>The token generated at your server.<ul>
-          <li>If the user uses a static App ID, token is optional and can be set as <ph keyref="NULL"/>.</li>
-          <li>High security requirements: Set the value to the Token generated from your server. If you enable the App Certificate, you must use a token to join the channel.</li>
+          <li>In scenarios with low security requirements, token is optional and can be set as <ph keyref="NULL"/>.</li>
+          <li>In scenarios with high security requirements, set the value to the token generated from your server. If you enable the App Certificate, you must use a token to join the channel.</li>
       </ul>
-          <note outputclass="warning">Ensure that the App ID used for creating the token is the same<xref keyref="create2"/> App ID used by the method for initializing the RTC engine. Otherwise, the CDN live streaming may fail.</note></p>
+          <note outputclass="warning">Ensure that the App ID used for creating the token is the sameApp ID used by the <xref keyref="create2"/> method for initializing the RTC engine.</note></p>
       </pd>
        </plentry>
        <plentry id="channelID">
   <pt><ph keyref="channelID"/></pt>
   <pd>
-      <p id="channelID_desc">The channel name. The students attend the teacher&apos;s online class. Under the premise of the same App ID, users who fill in the same <codeph>channelId</codeph> will enter the same<codeph> channel</codeph> for audio and video interaction. The string length must be less than 64 bytes. Supported characters:<ul>
+      <p id="channelID_desc">The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same <codeph>channelId</codeph> will enter the same<codeph> channel</codeph> for audio and video interaction. The string length must be less than 64 bytes. Supported characters:<ul>
      <li>All lowercase English letters: a to z.</li>
      <li>All uppercase English letters: A to Z.</li>
      <li>All numeric characters: 0 to 9.</li>
