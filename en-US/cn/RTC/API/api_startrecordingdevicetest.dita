@@ -16,14 +16,14 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This method tests whether the audio sampling device works properly. After calling this method, the SDK will trigger a callback at the set time interval<xref keyref="onAudioVolumeIndication"/>, reporting <parmname>uid</parmname> = 0 and the volume information of the collection device.</p>
+   <p>This method tests whether the audio sampling device works properly. After calling this method, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the time interval set in this method, which reports <parmname>uid</parmname> = 0 and the volume information of the capturing device.</p>
    <note outputclass="note">Ensure that you call this method before joining a channel.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>indicationInterval</pt>
-  <pd>The time interval(ms) at which the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback. We recommend a setting greater than 200 ms. It must not be less than 10 milliseconds, otherwise the callback will not be<apiname keyref="onAudioVolumeIndication"/> received.</pd>
+  <pd>The time interval(ms) at which the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback. We recommend a setting greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive the <apiname keyref="onAudioVolumeIndication"/> callback.</pd>
        </plentry>
    </parml>
         </section>
