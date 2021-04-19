@@ -19,18 +19,18 @@
    <dl>
        <dlentry outputclass="deprected">
   <dt>Deprecated:</dt>
-  <dd>This method is deprecated as of v2.4.0. Please use<xref keyref="create2"/> the <parmname>mLogConfig</parmname> parameter to set the log file path instead.</dd>
+  <dd>This method is deprecated as of v2.4.0. Use the <parmname>mLogConfig</parmname> parameter in <xref keyref="create2"/> instead.</dd>
        </dlentry>
    </dl>
-   <p>By default, the SDK outputs five log files, `agorasdk.log`, `agorasdk_1.log`, `agorasdk_2.log`, `agorasdk_3.log`, `agorasdk_4.log`, each with a default size of 1024 KB. The log file has a default size of 512 KB. These log files are encoded in UTF-8. The SDK writes the latest logs in `agorasdk.log`. When `agorasdk.log` is full, the SDK deletes the log file with the earliest modification time among the other four, renames `agorasdk.log` to the name of the deleted log file, and create a new `agorasdk.log` to record latest logs.</p>
-   <note outputclass="note">Ensure that you call this method<xref keyref="IRtcEngine"/> immediately after calling the initialize method, otherwise the output log may not be complete.</note>
+   <p>By default, the SDK outputs five log files, agorasdk.log, agorasdk_1.log, agorasdk_2.log, agorasdk_3.log, and agorasdk_4.log, each with a default size of 1024 KB. These log files are encoded in UTF-8. The SDK writes the latest logs in agorasdk.log. When agorasdk.log is full, the SDK deletes the log file with the earliest modification time among the other four, renames agorasdk.log to the name of the deleted log file, and create a new agorasdk.log to record the latest logs.</p>
+   <note outputclass="note">Ensure that you call this method immediately after initializing <xref keyref="IRtcEngine"/>, otherwise, the output log may not be complete.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>filePath</pt>
   <pd>
-                        <p>The absolute path of the log files. The default file path is `<codeph>C: \Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\agorasdk.log</codeph>`. Ensure that the directory for the log files exists and is writable. You can use this parameter to rename the log files.</p>
+                        <p>The absolute path of the log files. The default file path is <codeph>C: \Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\agorasdk.log</codeph>. Ensure that the directory for the log files exists and is writable. You can use this parameter to rename the log files.</p>
                     </pd>
        </plentry>
    </parml>
