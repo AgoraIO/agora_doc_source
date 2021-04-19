@@ -9,26 +9,26 @@
    <parml>
        <plentry>
   <pt><ph keyref="PUB_STATE_IDLE"/></pt>
-  <pd>The initial publishing state after joining the channel.</pd>
+  <pd>0: The initial publishing state after joining the channel.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="PUB_STATE_NO_PUBLISHED"/></pt>
   <pd>
-      <p>1: Login fails. Possible reasons:<ul id="ul_yvl_nwk_p4b">
+      <p>1: Fails to publish the local stream. Possible reasons:<ul id="ul_yvl_nwk_p4b">
  <li>The local user calls <xref keyref="muteLocalAudioStream"/>(<ph keyref="true"/>) or <xref keyref="muteLocalVideoStream"/>(<ph keyref="true"/>) to stop sending the local media stream.</li>
- <li>The local user calls<xref keyref="disableAudio"/> or<xref keyref="disableVideo"/> closes the local audio or video module.</li>
- <li>The local user calls <xref keyref="enableLocalAudio"/>(<ph keyref="false"/>) or <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) to close the local audio or video capture.</li>
-     <li>The role of the local user is `AUDIENCE`.</li>
+ <li>The local user calls <xref keyref="disableAudio"/> or <xref keyref="disableVideo"/> to disable the local audio or video module.</li>
+ <li>The local user calls <xref keyref="enableLocalAudio"/>(<ph keyref="false"/>) or <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) to disable the local audio or video capture.</li>
+     <li>The role of the local user is audience.</li>
  </ul></p>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="PUB_STATE_PUBLISHING"/></pt>
-  <pd>Publishing.</pd>
+  <pd>2: Publishing.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="PUB_STATE_PUBLISHED"/></pt>
-  <pd>Publishes successfully.</pd>
+  <pd>3: Publishes successfully.</pd>
        </plentry>
    </parml>
         </section></refbody>
