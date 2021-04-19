@@ -11,6 +11,7 @@
    <title><text conref = "../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
    <plentry>
+   <pt>width</pt>
                     <pd>
                         <p>推流视频的总宽度，默认值 360，单位为像素。</p>
                         <ul>
@@ -37,7 +38,7 @@
        </plentry>
        <plentry>
   <pt>videoFrameRate</pt>
-  <pd>推流输出视频的帧率。取值范围是 (0,30]，单位为 fps。默认值为 15。 <note outputclass="note">Agora 会将所有高于 30 fps 的帧率统一设 30 fps。</note></pd>
+  <pd>推流输出视频的帧率，单位为 fps。取值范围是 (0,30]，默认值为 15。 <note outputclass="note">Agora 会将所有高于 30 fps 的帧率统一设 30 fps。</note></pd>
        </plentry>
        <plentry>
   <pt>lowLatency</pt>
@@ -71,12 +72,12 @@
        </plentry>
        <plentry>
   <pt>userCount</pt>
-  <pd>参与推流转码合图的用户数量，默认 0。</pd>
+  <pd>参与转码合图的用户数量，默认 0。</pd>
        </plentry>
        <plentry>
   <pt>transcodingUsers</pt>
   <pd>
-      <p>用于管理参与推流转码合图的用户，详见 <xref keyref="TranscodingUser"/>。最多支持 17 个用户。</p>
+      <p>设置每个用户的转码合图参数，最多支持 17 个用户。详见 <xref keyref="TranscodingUser"/>。</p>
   </pd>
        </plentry>
        <plentry>
@@ -109,11 +110,11 @@
        </plentry>
        <plentry>
   <pt>audioBitrate</pt>
-  <pd>推流输出的音频码率。单位为 Kbps，默认值为 48，最大值为 128。</pd>
+  <pd>推流输出的音频码率，单位为 Kbps。默认值为 48，最大值为 128。</pd>
        </plentry>
        <plentry>
   <pt>audioChannels</pt>
-  <pd>用于旁路推流的输出音频的声道数，默认值为 1。取值范围为 [1,5] 中的整型，建议取 1 或 2：
+  <pd>用于旁路推流的输出音频的声道数。取值范围为 [1,5] 中的整型，默认值为 1，建议取 1 或 2。
       <ul>
       <li>1: （默认）单声道</li>
       <li>2: 双声道</li>

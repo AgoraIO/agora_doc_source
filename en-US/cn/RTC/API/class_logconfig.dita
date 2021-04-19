@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_logconfig">
     <title><ph keyref="LogConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The configuration of the log files.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The configuration of the SDK log files.</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/LogConfig"/>
@@ -21,25 +21,25 @@
    <parml>
        <plentry>
   <pt>filePath</pt>
-  <pd><p>The absolute path of log files.</p>
-  <p>The default file path is:<ul>
-      <li>Android:<codeph> /storage/emulated/0/Android/data/&lt;package name>/files/agorasdk.log</codeph></li>
-      <li>The path of the log file is<codeph> App Sandbox/Library/caches/agoraplayer.log.</codeph></li>
-      <li>macOS<ul>
- <li>开启沙盒:<codeph> App Sandbox/Library/Logs/agorasdk.log</codeph>，例如<codeph> /Users/&lt;username>/Library/Containers/&lt;App Bundle Identifier>/Data/Library/Logs/agorasdk.log</codeph>。</li>
- <li>Close the sandbox: <codeph>~/Library/Logs/agorasdk.log</codeph></li>
+  <pd><p>The absolute path of the log files.</p>
+  <p>The default paths for different platforms are as follows:<ul>
+      <li>Android: <codeph>/storage/emulated/0/Android/data/&lt;package name>/files/agorasdk.log</codeph></li>
+      <li>iOS: <codeph>App Sandbox/Library/caches/agorasdk.log</codeph></li>
+      <li>macOS:<ul>
+ <li>If Sandbox is enabled: <codeph>App Sandbox/Library/Logs/agorasdk.log</codeph>, for example, <codeph>/Users/&lt;username>/Library/Containers/&lt;App Bundle Identifier>/Data/Library/Logs/agorasdk.log</codeph>.</li>
+ <li>If Sandbox is disabled: <codeph>~/Library/Logs/agorasdk.log</codeph></li>
       </ul></li>
-      <li>The default file path is `<codeph>C: \Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\agorasdk.log</codeph>`.</li>
+      <li>Windows: <codeph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\agorasdk.log</codeph>。</li>
   </ul></p>
   <p>Ensure that the directory for the log files exists and is writable. You can use this parameter to rename the log files.</p></pd>
        </plentry>
        <plentry>
   <pt>fileSize</pt>
-  <pd>The size (KB) of a log file. The default value is 1024 KB. If you set `<parmname>fileSize</parmname>` to 1024 KB, the SDK outputs at most 5 MB log files; if you set <parmname>it</parmname> to less than 1024 KB, the setting is invalid, and the maximum size of a log file is still 1024 KB.</pd>
+  <pd>The size (KB) of a log file. The default value is 2014 KB. If you set <parmname>fileSize</parmname> to 1024 KB, the maximum aggregate size of the log files output by the SDK is 5 MB. If you set <parmname>fileSize</parmname> to less than 1024 KB, the setting is invalid, and the maximum size of a log file is still 1024 KB.</pd>
        </plentry>
        <plentry>
   <pt>level</pt>
-  <pd>The output log level of the SDK. See #LOG_LEVEL<xref keyref="LOG_LEVEL"/>.</pd>
+  <pd>The output level of the SDK log file. See <xref keyref="LOG_LEVEL"/>.</pd>
        </plentry>
    </parml>
         </section></refbody>

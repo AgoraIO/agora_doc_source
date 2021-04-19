@@ -16,10 +16,10 @@
         </section>
         <section id="detailed_desc">
    
-            <p>This method supports mixing or replacing local or online music files and audio collected by a microphone. After the music file is successfully played, the<xref keyref="onAudioMixingStateChanged"/> (<codeph>PLAY</codeph>) callback will be triggered locally. After the playback ends, the<apiname keyref="onAudioMixingStateChanged"/> (<codeph>STOPPED</codeph>) callback will be triggered locally.</p>
+            <p>This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone&apos;s audio with the specified local or remote audio file. A successful method call triggers the <xref keyref="onAudioMixingStateChanged"/> (<codeph>PLAY</codeph>) callback. When the audio mixing file playback finishes, the SDK triggers the <apiname keyref="onAudioMixingStateChanged"/> (<codeph>STOPPED</codeph>) callback on the local client.</p>
    <note outputclass="note">
        <ul>
-           <li>Call this method after joining a channel. If you need to call startAudioMixing multiple times<apiname keyref="startAudioMixing"/>, ensure that the call interval is more than 500 ms.</li>
+           <li>Call this method after joining a channel. If you need to call <apiname keyref="startAudioMixing"/> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
            <li>If the local audio mixing file does not exist, or if the SDK does not support the file format or cannot access the music file URL, the SDK returns <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph> = 701.</li>
            <li props="android">To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>
            <li props="android">If you need to play an online music file, Agora does not recommend using the redirected URL address. Some Android devices may fail to open a redirected URL address.</li>
@@ -35,25 +35,25 @@
        </plentry>
        <plentry>
   <pt>loopback</pt>
-           <pd><p>Whether to play music files locally:<ul>
-          <li><ph keyref="true"/>Whether to only play music files on the local client: true: Only play music files on the local client so that only the local user can hear the music.</li>
-          <li><ph keyref="false"/>false: Publish music files to remote clients so that both the local user and remote users can hear the music.</li>
+           <pd><p>Whether to only play music files on the local client:<ul>
+          <li><ph keyref="true"/>: Only play music files on the local client so that only the local user can hear the music.</li>
+          <li><ph keyref="false"/>: Publish music files to remote clients so that both the local user and remote users can hear the music.</li>
       </ul></p>
   </pd>
        </plentry>
        <plentry>
   <pt>replace</pt>
-           <pd><p>Whether to replace the audio collected by the microphone with a music file: true: Replace. Users can only hear music.<ul>
-          <li><ph keyref="true"/>: Replace. Users can only hear music.</li>
-          <li><ph keyref="false"/>: Do not replace. false: do not test. Users can hear both music and audio collected by the microphone.</li>
+           <pd><p>Whether to replace the audio captured by the microphone with a music file:<ul>
+          <li><ph keyref="true"/>: Replace the audio captured by the microphone with a music file. Users can only hear the music.</li>
+          <li><ph keyref="false"/>: Do not replace the audio captured by the microphone with a music file. Users can hear both music and audio captured by the microphone.</li>
       </ul></p>
   </pd>
        </plentry>
        <plentry>
   <pt>cycle</pt>
            <pd><p>The number of times the music file plays.<ul>
-          <li>The number of times the music file plays. ≥ 0: The number of playback times. For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.</li>
-          <li>`-1`: Play the audio effect in an indefinite loop.</li>
+          <li>≥ 0: The number of playback times. For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.</li>
+          <li>-1: Play the music effect in an infinite loop.</li>
       </ul></p>
   </pd>
        </plentry>

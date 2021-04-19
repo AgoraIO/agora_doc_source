@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileprobeconfig">
     <title><ph keyref="LastmileProbeConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Configurations of the last-mile network probe test.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Configurations of the last-mile network test.</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/LastmileProbeConfig"/>
@@ -12,9 +12,9 @@
    <parml>
        <plentry>
   <pt>probeUplink</pt>
-  <pd><p>Sets whether or not to test the uplink network. Some users, for example, the audience in a `LIVE_BROADCASTING` channel, do not need such a test:<ul>
- <li><ph keyref="true"/>true: test.</li>
- <li><ph keyref="false"/>false: do not test.</li>
+  <pd><p>Sets whether to test the uplink network. Some users, for example, the audience members in a LIVE_BROADCASTING channel, do not need such a test.<ul>
+ <li><ph keyref="true"/>: Test.</li>
+ <li><ph keyref="false"/>: Not test.</li>
       </ul>
       </p>
   </pd>
@@ -22,21 +22,21 @@
        <plentry>
   <pt>probeDownlink</pt>
   <pd>
-      <p>Sets whether or not to test the downlink network:<ul>
-     <li><ph keyref="true"/>true: test.</li>
-     <li><ph keyref="false"/>false: do not test.</li>
+      <p>Sets whether to test the downlink network:<ul>
+     <li><ph keyref="true"/>: Test.</li>
+     <li><ph keyref="false"/>: Not test.</li>
  </ul>
       </p>
   </pd>
        </plentry>
        <plentry>
   <pt>expectedUplinkBitrate</pt>
-  <pd>The expected maximum sending bitrate (bps) of the local user. Agora recommends<xref
- keyref="setVideoEncoderConfiguration"/> setting the value of this parameter by referring to the bit rate value in.</pd>
+  <pd>The expected maximum uplink bitrate (bps) of the local user. The value range is [100000, 5000000]. Agora recommends referring to <xref
+ keyref="setVideoEncoderConfiguration"/> to set the value.</pd>
        </plentry>
        <plentry>
   <pt>expectedDownlinkBitrate</pt>
-  <pd>The expected maximum receiving bitrate (bps) of the local user. The value ranges between 100000 and 5000000.</pd>
+  <pd>The expected maximum downlink bitrate (bps) of the local user. The value range is [100000,5000000].</pd>
        </plentry>
    </parml>
         </section></refbody>

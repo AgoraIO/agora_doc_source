@@ -16,18 +16,18 @@
         </section>
         <section id="detailed_desc">
    
-   <p>After successfully calling this method, the SDK will trigger<xref keyref="IChannel_onChannelMediaRelayStateChanged"/> and<xref keyref="IChannel_onChannelMediaRelayEvent"/> callbacks, and report the current cross-channel media stream forwarding status and events in the callback.<ul>
-  <li>If<apiname keyref="IChannel_onChannelMediaRelayStateChanged"/> the callback reports<apiname keyref="RELAY_STATE_RUNNING"/> (2) and<apiname keyref="RELAY_OK"/> (0), and the<apiname keyref="IChannel_onChannelMediaRelayEvent"/> callback report<apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL"/> (4), it means that the SDK starts to forward the media stream between the source channel and the target channel.</li>
-  <li>If the <apiname keyref="IChannel_onChannelMediaRelayStateChanged"/>report (3) is called back<apiname keyref="RELAY_STATE_FAILURE"/>, it means that the cross-channel media stream forwarding is abnormal.</li>
+   <p>After a successful method call, the SDK triggers the <xref keyref="IChannel_onChannelMediaRelayStateChanged"/> and <xref keyref="IChannel_onChannelMediaRelayEvent"/> callbacks, and these callbacks return the state and events of the media stream relay.<ul>
+  <li>If the <apiname keyref="IChannel_onChannelMediaRelayStateChanged"/> callback returns <apiname keyref="RELAY_STATE_RUNNING"/>(2) and <apiname keyref="RELAY_OK"/>(0), and the <apiname keyref="IChannel_onChannelMediaRelayEvent"/> callback returns <apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL"/>(4), it means that the SDK starts relaying media streams between the source channel and the destination channel.</li>
+  <li>If the <apiname keyref="IChannel_onChannelMediaRelayStateChanged"/> callback returns <apiname keyref="RELAY_STATE_FAILURE"/>(3), an exception occurs during the media stream relay.</li>
        </ul>
    </p>
    <note outputclass="note">
        <ul>
-  <li>Call this method after the \ref joinChannel() &quot;joinChannel&quot; method.</li>
-  <li>This method applies to `LIVE_BROADCASTING` only.</li>
-  <li>To call this method again after it succeeds, you must call {@link stopChannelMediaRelay}<xref keyref="IChannel_stopChannelMediaRelay"/> to quit the current relay.</li>
-  <li>The cross-channel media stream forwarding function needs to <xref href="https://agora-ticket.agora.io/" scope="external" format="html">submit a work </xref>order to contact technical support for activation.</li>
-  <li>We do not support string user IDs in this API.</li>
+  <li>Call this method after joining the channel.</li>
+  <li>This method takes effect only when you are a host in a `LIVE_BROADCASTING` channel.</li>
+  <li>After a successful method call, if you want to call this method again, ensure that you call the <xref keyref="IChannel_stopChannelMediaRelay"/> method to quit the current relay.</li>
+  <li>Contact support@agora.io before implementing this function.<xref href="https://agora-ticket.agora.io/" scope="external" format="html"></xref></li>
+  <li>We do not support string user accounts in this API.</li>
        </ul>
    </note>
         </section>
