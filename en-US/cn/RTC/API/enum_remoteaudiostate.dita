@@ -9,27 +9,27 @@
    <parml>
        <plentry>
            <pt><ph keyref="REMOTE_AUDIO_STATE_STOPPED" id="0"/></pt>
-  <pd>The local audio is in the initial state. In <apiname keyref="REMOTE_AUDIO_STATE_REASON_LOCAL_MUTED"/>the case of,<apiname
-                            keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_MUTED"/> or<apiname
-                            keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_OFFLINE"/>, the status will be reported.</pd>
+  <pd>0: The local audio is in the initial state. The SDK reports this state in the case of <apiname keyref="REMOTE_AUDIO_STATE_REASON_LOCAL_MUTED"/>, <apiname
+                            keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_MUTED"/> or <apiname
+                            keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_OFFLINE"/>.</pd>
        </plentry>
        <plentry>
            <pt><ph keyref="REMOTE_AUDIO_STATE_STARTING" id="1"/></pt>
-  <pd>The first remote audio packet is received.</pd>
+  <pd>1: The first remote audio packet is received.</pd>
        </plentry>
        <plentry>
            <pt><ph keyref="REMOTE_AUDIO_STATE_DECODING" id="2"/></pt>
-  <pd>2: The remote audio stream is being decoded and played normally. In<apiname keyref="REMOTE_AUDIO_STATE_REASON_NETWORK_RECOVERY"/> the case of,<apiname
-                            keyref="REMOTE_AUDIO_STATE_REASON_LOCAL_UNMUTED"/> or<apiname
-                            keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_UNMUTED"/>, the status will be reported.</pd>
+  <pd>2: The remote audio stream is decoded and plays normally. The SDK reports this state in the case of <apiname keyref="REMOTE_AUDIO_STATE_REASON_NETWORK_RECOVERY"/>, <apiname
+                            keyref="REMOTE_AUDIO_STATE_REASON_LOCAL_UNMUTED"/> or <apiname
+                            keyref="REMOTE_AUDIO_STATE_REASON_REMOTE_UNMUTED"/>.</pd>
        </plentry>
        <plentry>
            <pt><ph keyref="REMOTE_AUDIO_STATE_FROZEN" id="3"/></pt>
-  <pd>3: The remote audio stream freezes. In<apiname keyref="REMOTE_AUDIO_STATE_REASON_NETWORK_CONGESTION"/> the case of, the status will be reported.</pd>
+  <pd>3: The remote audio is frozen. The SDK reports this state in the case of <apiname keyref="REMOTE_AUDIO_STATE_REASON_NETWORK_CONGESTION"/>.</pd>
        </plentry>
        <plentry>
            <pt><ph keyref="REMOTE_AUDIO_STATE_FAILED" id="4"/></pt>
-  <pd>4: Failed to play the remote audio stream. In<apiname keyref="REMOTE_AUDIO_STATE_REASON_INTERNAL"/> the case of, the status will be reported.</pd>
+  <pd>4: The remote audio fails to start. The SDK reports this state in the case of <apiname keyref="REMOTE_AUDIO_STATE_REASON_INTERNAL"/>.</pd>
        </plentry>
    </parml>
         </section></refbody>
