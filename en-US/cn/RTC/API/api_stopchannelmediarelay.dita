@@ -16,8 +16,8 @@
         </section>
         <section id="detailed_desc">
    
-   <p>After this method call, the SDK triggers the following<xref keyref="onChannelMediaRelayStateChanged"/> callbacks: If it reports<apiname keyref="RELAY_STATE_IDLE"/> (0) and<apiname keyref="RELAY_OK"/> (0), it means that the media stream has stopped forwarding.</p>
-   <note outputclass="note">If the method call is unsuccessful, the SDK will trigger a<apiname keyref="onChannelMediaRelayStateChanged"/> callback and report the status code<apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/> (2) or<apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/> (8). You can call<xref keyref="leaveChannel"/> the method to leave the channel, and the cross-channel media stream forwarding will automatically stop.</note>
+   <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback. If the callback reports <apiname keyref="RELAY_STATE_IDLE"/>(0) and <apiname keyref="RELAY_OK"/>(0), the host successfully stops the relay.</p>
+   <note outputclass="note">If the method call fails, the SDK triggers the <apiname keyref="onChannelMediaRelayStateChanged"/> callback with the <apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/>(2) or <apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/>(8) status code. You can call the <xref keyref="leaveChannel"/> method to leave the channel, and the media stream relay automatically stops.</note>
         </section>
         <section id="return_values">
    <title>Returns</title>
