@@ -14,28 +14,28 @@
   <pt>uid</pt>
   <pd>
       <p>User ID<ul>
-     <li>In the local user&apos;s callback, `<parmname>uid</parmname> = 0`.</li>
-     <li>In the remote users&apos; callback, `<parmname>uid</parmname>` is the<parmname> ID</parmname> of a remote user whose instantaneous volume is one of the three highest.</li>
+     <li>In the local user&apos;s callback, <parmname>uid</parmname> = 0.</li>
+     <li>In the remote users&apos; callback, <parmname>uid</parmname> is the ID of a remote user whose instantaneous volume is one of the three highest.</li>
  </ul>
       </p>
   </pd>
        </plentry>
        <plentry>
   <pt>volume</pt>
-  <pd>The value ranges between 0 (lowest volume) and 255 (highest volume). If the user calls<xref keyref="startAudioMixing"/>, then <parmname>volume</parmname> is the<parmname> volume</parmname> after the user&apos;s mixing.</pd>
+  <pd>The volume of the user. The value ranges between 0 (lowest volume) and 255 (highest volume). If the user calls <xref keyref="startAudioMixing"/>, then <parmname>volume</parmname> is the volume after audio mixing.</pd>
        </plentry>
        <plentry>
-  <pt>What</pt>
+  <pt>vad</pt>
   <pd>
       <p>Voice activity status of the local user.<ul>
-     <li>`0`: The local user is not speaking.</li>
-     <li>`1`: The local user is speaking.</li>
+     <li>0: The local user is not speaking.</li>
+     <li>1: The local user is speaking.</li>
  </ul>
       </p>
       <note outputclass="note">
  <ul>
-     <li>The `<parmname>vad</parmname>` parameter cannot report the voice activity status of remote users. In the remote users&apos; callback, `<parmname>vad</parmname>` is always `0`.</li>
-     <li>To use this parameter, please<xref keyref="enableAudioVolumeIndication"/> set <parmname>report_vad</parmname> to when calling<ph keyref="true"/>.</li>
+     <li>The <parmname>vad</parmname> parameter cannot report the voice activity status of remote users. In the remote users&apos; callback, the value of <parmname>vad</parmname> is always 0.</li>
+     <li>To use this parameter, you must set <parmname>report_vad</parmname> to <ph keyref="true"/> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
  </ul>
       </note>
   </pd>
