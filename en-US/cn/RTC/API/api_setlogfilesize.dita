@@ -19,17 +19,17 @@
    <dl outputclass="deprecated">
        <dlentry>
   <dt>Deprecated:</dt>
-  <dd>v3.3.0。 Please use <xref keyref="create2"/><parmname>logConfig</parmname> in instead.</dd>
+  <dd>v3.3.0. Use <parmname>logConfig</parmname> in <xref keyref="create2"/> instead.</dd>
        </dlentry>
    </dl>
-   <p>By default, the SDK outputs five log files, `agorasdk.log`, `agorasdk_1.log`, `agorasdk_2.log`, `agorasdk_3.log`, `agorasdk_4.log`, each with a default size of 1024 KB. The log file has a default size of 512 KB. These log files are encoded in UTF-8. The SDK writes the latest logs in `agorasdk.log`. When `agorasdk.log` is full, the SDK deletes the log file with the earliest modification time among the other four, renames `agorasdk.log` to the name of the deleted log file, and create a new `agorasdk.log` to record latest logs.</p>
-   <note outputclass="note">If you want to set the size of the log file, you need to<xref keyref="setLogFile"/> call this method before, otherwise the log will be cleared.</note>
+   <p>By default, the SDK outputs five log files, agorasdk.log, agorasdk_1.log, agorasdk_2.log, agorasdk_3.log, and agorasdk_4.log, each with a default size of 1024 KB. These log files are encoded in UTF-8. The SDK writes the latest logs in agorasdk.log. When agorasdk.log is full, the SDK deletes the log file with the earliest modification time among the other four, renames agorasdk.log to the name of the deleted log file, and create a new agorasdk.log to record the latest logs.</p>
+   <note outputclass="note">If you want to set the size of the log file, you need to call this method before <xref keyref="setLogFile"/>, otherwise, the log will be cleared.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>fileSizeInKBytes</pt>
-  <pd>The size (KB) of a log file. The default value is 1024 KB. If you set `fileSize` to 1024 KB, the SDK outputs at most 5 MB log files; if you set it to less than 1024 KB, the<parmname> setting</parmname> is invalid, and the maximum size of a log file is still 1024 KB.</pd>
+  <pd>The size (KB) of a log file. The default value is 1024 KB. If you set fileSizeInKByte to 1024 KB, the SDK outputs at most 5 MB log files; if you set <parmname>fileSizeInKByte</parmname> to less than 1024 KB, the setting is invalid, and the maximum size of a log file is still 1024 KB.</pd>
        </plentry>
    </parml>
         </section>
