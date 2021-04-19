@@ -22,16 +22,16 @@
   <dd>v3.3.0</dd>
        </dlentry>
    </dl>
-   <p>Uploads all SDK log files from the client to the Agora server. After calling this method successfully, the SDK will trigger a callback to<xref keyref="onUploadLogResult"/> report whether the log file is successfully uploaded to the Agora server.</p>
-   <p props="windows"><note outputclass="note">@note Do not call this method more than once per minute, otherwise the SDK reports #<codeph>ERR_TOO_OFTEN </codeph>(12).</note>。</p>
-   <p props="android ios mac"><note outputclass="note">This method cannot be called more than once per minute, and will return after exceeding<ph keyref="NULL"/>.</note></p>
-   <p>For easier debugging, Agora recommends that you bind <apiname>this</apiname> method to the UI element of your App, so as to instruct the user to<apiname> upload</apiname> a log file when a quality issue occurs.</p>
+   <p>Uploads all SDK log files from the client to the Agora server. After calling this method successfully, the SDK triggers the <xref keyref="onUploadLogResult"/> callback to report whether the log file is successfully uploaded to the Agora server.</p>
+   <p props="windows"><note outputclass="note">Do not call this method more than once per minute; otherwise, the SDK reports <codeph>ERR_TOO_OFTEN </codeph>(12).</note>.</p>
+   <p props="android ios mac"><note outputclass="note">This method cannot be called more than once per minute; otherwise, the SDK returns <ph keyref="NULL"/>.</note></p>
+   <p>For easier debugging, Agora recommends that you bind the <apiname>uploadLogFile</apiname> method to the UI element of your app, to instruct the user to upload a log file when a quality issue occurs.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml props="windows">
        <plentry>
   <pt>requestId</pt>
-  <pd><p>The unique ID of this request. The request ID is consistent with<xref keyref="onUploadLogResult"/> the requestId in the callback<parmname></parmname>. You can associate specific uploads with callbacks through<parmname> requestId</parmname>.</p></pd>
+  <pd><p>The request ID. The request ID is the same as the <parmname>requestId </parmname>in the <xref keyref="onUploadLogResult"/> callback. You can use the <parmname>requestId</parmname> to match a specific upload with a callback.</p></pd>
        </plentry>
    </parml>
         </section>
@@ -44,8 +44,8 @@
        </ul></li>
    </ul>
    <ul props="android ios mac">
-       <li>Method call succeeded: Return the request ID. The request ID is consistent with<xref keyref="onUploadLogResult"/> the requestId in the callback<parmname></parmname>. You can associate specific uploads with callbacks through<parmname> requestId</parmname>.</li>
-       <li>If the call fails, returns NO<ph keyref="NULL"/>. 5: The method call frequency exceeds the limit.</li>
+       <li>The method call succeeds: Return the request ID. The request ID is the same as the <parmname>requestId </parmname>in the <xref keyref="onUploadLogResult"/> callback. You can use the <parmname>requestId</parmname> to match a specific upload with a callback.</li>
+       <li>The method callI fails: Returns <ph keyref="NULL"/>. Probably because the method call frequency exceeds the limit.</li>
    </ul>
         </section></refbody>
 </reference>
