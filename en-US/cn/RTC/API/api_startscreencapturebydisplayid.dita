@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startscreencapturebydisplayid">
     <title><ph keyref="startScreenCaptureByDisplayId"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Share the screen by specifying the display ID.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Shares the screen by specifying the display ID.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -22,9 +22,9 @@
   <dd>v2.4.0</dd>
        </dlentry>
    </dl>
-   <p>Share a screen or part of the screen. The user needs to specify the ID of the screen they want to share in this method.</p>
+   <p>This method shares a screen or part of the screen. You need to specify the ID of the screen to be shared in this method.</p>
    <note outputclass="note"><ul>
-       <li>This method is for macOS only.</li>
+       <li>This method applies to macOS only.</li>
        <li>Call this method after joining a channel.</li>
    </ul></note>
         </section>
@@ -32,15 +32,15 @@
    <parml>
        <plentry>
   <pt>displayId</pt>
-  <pd>Specify the ID of the screen to be shared. The developer needs to specify the screen you want to share with this parameter.</pd>
+  <pd>The display ID of the screen to be shared. This parameter specifies which screen you want to share.</pd>
        </plentry>
        <plentry props="windows">
   <pt>regionRect</pt>
-  <pd>@param regionRect (Optional) Sets the relative location of the region to the screen. NULL means sharing the whole screen. See <xref keyref="Rectangle"/>. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
+  <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle"/>. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
        </plentry>
        <plentry props="mac">
-  <pt>See Rectangle.</pt>
-  <pd>@param regionRect (Optional) Sets the relative location of the region to the screen. NULL means sharing the whole screen. It consists of the following parameters:<ul>
+  <pt>rectangle</pt>
+  <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. It consists of the following parameters:<ul>
       <li>The horizontal offset from the top-left corner.</li>
       <li>The vertical offset from the top-left corner.</li>
       <li>The width of the region.</li>
@@ -50,7 +50,7 @@
        </plentry>
        <plentry>
   <pt>captureParams</pt>
-  <pd>Screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters"/>.</pd>
+  <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters"/>.</pd>
        </plentry>
    </parml>
         </section>
