@@ -9,28 +9,28 @@
    <parml>
        <plentry id="0">
   <pt><ph keyref="REMOTE_VIDEO_STATE_STOPPED"/></pt>
-           <pd>Initial state In<apiname keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED"/> the case of,<apiname
-                            keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> or<apiname
-                            keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE"/>, the status will be reported.</pd>
+           <pd>0: The remote video is in the initial state. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED"/>, <apiname
+                            keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> or <apiname
+                            keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE"/>.</pd>
        </plentry>
        <plentry id="1">
   <pt><ph keyref="REMOTE_VIDEO_STATE_STARTING"/></pt>
-  <pd>The first remote video packet is received.</pd>
+  <pd>1: The first remote video packet is received.</pd>
        </plentry>
        <plentry id="2">
   <pt><ph keyref="REMOTE_VIDEO_STATE_DECODING"/></pt>
-           <pd>2: The remote video stream is being decoded and played normally. In the <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY"
-                            />case of,<apiname keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED"/>,<apiname
-                            keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> or<apiname
-                            keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY"/>, the status will be reported.</pd>
+           <pd>2: The remote video stream is decoded and plays normally. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY"
+                            />, <apiname keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED"/>, <apiname
+                            keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> or <apiname
+                            keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY"/>.</pd>
        </plentry>
        <plentry id="3">
   <pt><ph keyref="REMOTE_VIDEO_STATE_FROZEN"/></pt>
-           <pd>The state of the remote video. In<apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION"/> the case of or<apiname keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK"/>, the status will be reported.</pd>
+           <pd>3: The remote video is frozen. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION"/> or <apiname keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK"/>.</pd>
        </plentry>
        <plentry id="4">
   <pt><ph keyref="REMOTE_VIDEO_STATE_FAILED"/></pt>
-           <pd>4: Failed to play the remote video stream. In<apiname keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL"/> the case of, the status will be reported.</pd>
+           <pd>4: The remote video fails to start. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL"/>.</pd>
        </plentry>
    </parml>
         </section></refbody>
