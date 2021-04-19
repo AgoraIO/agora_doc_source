@@ -22,15 +22,15 @@
   <dd>v3.3.0</dd>
        </dlentry>
    </dl>
-   <p>This method enables the recording server to join the channel with the user account. This callback occurs when the local user successfully joins the channel.<ul>
-  <li>Local:<xref keyref="onLocalUserRegistered"/>,<xref keyref="onJoinChannelSuccess"/> and callback.<xref keyref="onConnectionStateChanged"></xref></li>
-  <li>A successful call of this method triggers the following callbacks: The local client: .The remote client: , if the user joining the channel is in the COMMUNICATION profile, or is a host in the<xref keyref="onUserJoined"/><xref keyref="onUserInfoUpdated"/> LIVE_BROADCASTING profile.</li>
+   <p>This method allows a user to join the channel with the user account. After the user successfully joins the channel, the SDK triggers the following callbacks:<ul>
+  <li>The local client: <xref keyref="onLocalUserRegistered"/>, <xref keyref="onJoinChannelSuccess"/> and <xref keyref="onConnectionStateChanged"></xref>callbacks.</li>
+  <li>The remote client: <xref keyref="onUserJoined"/> and <xref keyref="onUserInfoUpdated"/>, if the user joining the channel is in the communication profile, or is a host in the live streaming profile.</li>
        </ul></p>
    <p>Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <apiname>mute</apiname> methods accordingly.</p>
    <note outputclass="note">
        <ul>
   <li>Compared to<xref keyref="joinChannelWithUserAccount1"/> [1/2], this method adds the <parmname>options</parmname> parameter to configure whether to automatically subscribe to all remote audio and video streams in the channel when the user joins the channel. By default, the user subscribes to the audio and video streams of all the other users in the channel, thus incurring all associated usage costs. To unsubscribe, set the `<parmname>options</parmname>` parameter or call the `<apiname>mute</apiname>` methods accordingly.</li>
-  <li>To ensure smooth communication, use the same parameter type to identify the user. That is, UID or User Account must be used uniformly in the same channel. If a user joins the channel with the Agora Web SDK, ensure that the uid of the user is set to the same parameter type.</li>
+  <li>To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the uid of the user is set to the same parameter type.</li>
        </ul>
    </note>
         </section>
