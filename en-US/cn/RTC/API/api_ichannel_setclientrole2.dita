@@ -24,13 +24,13 @@
    </dl>
    <p conkeyref="setClientRole1/desc"/>
    <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:<ul>
-       <li>The callback is triggered locally<xref keyref="IChannel_onClientRoleChanged"/>.</li>
-       <li>Remote trigger<xref keyref="IChannel_onUserJoined"/> or<xref keyref="IChannel_onUserOffline"/> callback.</li>
+       <li>The local client: <xref keyref="IChannel_onClientRoleChanged"/>.</li>
+       <li>The remote client: <xref keyref="IChannel_onUserJoined"/> or<xref keyref="IChannel_onUserOffline"/>.</li>
    </ul></p>
    <note outputclass="note">
        <ul>
-       <li>This method only takes effect when the channel scene is live broadcast (<xref keyref="setChannelProfile"/>the middle <parmname>profile</parmname> is set to <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>).</li>
-       <li>The difference between this method and<xref keyref="IChannel_setClientRole1"/> [1/2] is that this method also supports setting user levels.<ul conkeyref="setClientRole2/diff"><li/></ul>
+       <li>This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile"/> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>).</li>
+       <li>The difference between this method and <xref keyref="IChannel_setClientRole1"/> [1/2] is that this method can set the user level in addition to the user role.<ul conkeyref="setClientRole2/diff"><li/></ul>
        </li>
        </ul>
        </note>
