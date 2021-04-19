@@ -16,10 +16,10 @@
         </section>
         <section id="detailed_desc">
    
-   <p id="desc">After a successful \ref startChannelMediaRelay() &quot;startChannelMediaRelay&quot; method call, if you want to relay the media stream to more channels, or leave the current relay channel, you can call the \ref updateChannelMediaRelay() &quot;updateChannelMediaRelay&quot; method.</p>
-   <p>After the method is successfully called, the SDK will trigger a<xref keyref="onChannelMediaRelayEvent"/> callback and report the status code<apiname
-  keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL"/> (7) in the callback.</p>
-   <note outputclass="note">Please<xref keyref="startChannelMediaRelay"/> call this method after the method to update the channel forwarded by the media stream.</note>
+   <p id="desc">After the media relay starts, if you want to relay the media stream to more channels, or leave the current relay channel, you can call the updateChannelMediaRelay method.</p>
+   <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayEvent"/> callback with the <apiname
+  keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL"/>(7) state code.</p>
+   <note outputclass="note">Call this method after the <xref keyref="startChannelMediaRelay"/> method to update the destination channel.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
@@ -33,7 +33,7 @@
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>
-       <li>&lt;Failure.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
