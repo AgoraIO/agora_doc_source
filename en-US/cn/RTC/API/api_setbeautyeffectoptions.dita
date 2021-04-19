@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setbeautyeffectoptions">
     <title><ph keyref="setBeautyEffectOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables/Disables image enhancement and sets the options.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the image enhancement options.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -24,22 +24,22 @@
   <dd props="mac">v3.2.0</dd>
        </dlentry>
    </dl>
-   <p>Enables/Disables image enhancement and sets the options.</p>
+   <p>Enables or disables image enhancement and sets the options.</p>
    <p>Call this method after <xref keyref="enableVideo"/>.</p>
-   <note outputclass="note" props="android">Android 4.4 or later.</note>
+   <note outputclass="note" props="android">This method only applies to Android 4.4 or later.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>enabled</pt>
-  <pd>Whether to enable the beauty function:<ul>
-      <li><ph keyref="true"/>true: Enable the super-resolution algorithm.</li>
-      <li><ph keyref="false"/>false: (Default) Disable the advanced feature.</li>
+  <pd>Whether to enable the image enhancement function:<ul>
+      <li><ph keyref="true"/>Enable the image enhancement function.</li>
+      <li><ph keyref="false"/>(Default) Disable the image enhancement function.</li>
   </ul></pd>
        </plentry>
        <plentry>
   <pt>options</pt>
-  <pd>Beauty options, see for detailed definitions<xref keyref="BeautyOptions"/>.</pd>
+  <pd>The image enhancement options, see <xref keyref="BeautyOptions"/>.</pd>
        </plentry>
    </parml>
         </section>
@@ -47,7 +47,7 @@
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>
-       <li>0: Success.<ul props="android"><li>ERR_NOT_SUPPORTED(4): The current device version is lower than Android 4.4, and this operation is not supported.</li></ul></li>
+       <li>0: Success.<ul props="android"><li>ERR_NOT_SUPPORTED(4): The system version is earlier than Android 4.4, which does not support this function.</li></ul></li>
    </ul>
         </section></refbody>
 </reference>
