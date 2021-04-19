@@ -9,11 +9,11 @@
    <parml>
        <plentry>
   <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_IDLE"/></pt>
-  <pd>The RTMP or RTMPS streaming has not started or has ended. The SDK successfully<xref keyref="removePublishStreamUrl"/> publishes the RTMP or RTMPS streaming and returns this state.</pd>
+  <pd>The RTMP or RTMPS streaming has not started or has ended. This state is also triggered after you remove an RTMP or RTMPS stream from the CDN by calling <xref keyref="removePublishStreamUrl"/>.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_CONNECTING"/></pt>
-  <pd>The SDK is connecting to Agora&apos;s streaming server and the CDN server. The SDK successfully publishes<xref keyref="addPublishStreamUrl"/> the RTMP or RTMPS streaming and returns this state.</pd>
+  <pd>The SDK is connecting to Agora&apos;s streaming server and the CDN server. This state is triggered after you call the <xref keyref="addPublishStreamUrl"/> method.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/></pt>
@@ -24,14 +24,14 @@
   <pd>
       <p>The RTMP or RTMPS streaming is recovering. When exceptions occur to the CDN, or the streaming is interrupted, the SDK tries to resume RTMP or RTMPS streaming and returns this state.</p>
       <ul id="ul_sbd_ftk_p4b">
- <li>If the push is resumed successfully, it will enter state <ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/>(2).</li>
- <li>If the server fails or fails to recover within 60 seconds, it enters state <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/>(4). If you think 60 seconds is too long, you can also actively call<xref keyref="removePublishStreamUrl"/> and<xref keyref="addPublishStreamUrl"/> methods to try to reconnect.</li>
+ <li>If the SDK successfully resumes the streaming, <ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING"/> (2) returns.</li>
+ <li>If the streaming does not resume within 60 seconds or server errors occur, <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/> (4) returns. You can also reconnect to the server by calling the <xref keyref="removePublishStreamUrl"/> and <xref keyref="addPublishStreamUrl"/> methods.</li>
       </ul>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/></pt>
-  <pd>The RTMP or RTMPS streaming fails. After the failure, you can use the returned error code to troubleshoot the cause of the error, or you can call it again<xref keyref="addPublishStreamUrl"/> and try to push the stream again.</pd>
+  <pd>The RTMP or RTMPS streaming fails. See the error code for the detailed error information. You can also call the <xref keyref="addPublishStreamUrl"/> method to publish the RTMP or RTMPS stream again.</pd>
        </plentry>
    </parml>
         </section></refbody>
