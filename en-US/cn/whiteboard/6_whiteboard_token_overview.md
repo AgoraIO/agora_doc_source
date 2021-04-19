@@ -21,9 +21,9 @@ An SDK Token is linked with a whiteboard project in Agora Console and grants the
 | Get a list of rooms | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
 | Get room information | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
 | Disable a room | <font color="green">✔</font> | <font color="red">✘</font> | <font color="red">✘</font> |
-| Take a screenshot of a specific scene | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
-| Take screenshots for a group of scenes | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
-| Get a list of scene addresses in a room | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
+| Take a screenshot for a specific scene | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
+| Take screenshots for a scene directory | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
+| Get a list of scene paths in a room | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
 | Add a scene | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
 | Switch to a scene | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
 | Start a file-conversion task | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
@@ -48,9 +48,9 @@ A Room Token is linked with a room under a whiteboard project in Agora Console. 
 | Join the room in read-only mode | <font color="red">✘</font> | <font color="red">✘</font> | <font color="green">✔</font> |
 | Get information about the room | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
 | Disable the room | <font color="green">✔</font> | <font color="red">✘</font> | <font color="red">✘</font> |
-| Take a screenshot of a specific scene | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
-| Take screenshots for a group of scenes | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
-| Get a list of scene addresses in the room | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
+| Take a screenshot for a specific scene | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
+| Take screenshots for a scene directory | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
+| Get a list of scene paths in the room | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
 | Add a scene in the room | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
 | Switch to a scene in the room | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font> |
 
