@@ -33,9 +33,9 @@
        </plentry>
        <plentry>
   <pt>reliable</pt>
-  <pd><p>Is the data stream reliable:<ul>
-      <li><ph keyref="true"/>: The receiver will receive the data sent by the sender within 5 seconds, otherwise it will receive a<xref keyref="IChannel_onStreamMessageError"/> callback and get the corresponding error message.</li>
-      <li><ph keyref="false"/>false: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.</li>
+  <pd><p>Whether or not the data stream is reliable:<ul>
+      <li><ph keyref="true"/>: The recipients receive the data from the sender within five seconds. If the recipient does not receive the data within five seconds, the SDK triggers the <xref keyref="IChannel_onStreamMessageError"/> callback and returns an error code.</li>
+      <li><ph keyref="false"/>: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.</li>
   </ul></p></pd>
        </plentry>
        <plentry conkeyref="createDataStream1/ordered">
