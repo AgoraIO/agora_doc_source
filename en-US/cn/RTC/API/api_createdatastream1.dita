@@ -22,7 +22,7 @@
   <dd>This method is deprecated as of v2.4.0. Please use <xref keyref="createDataStream2"/>[2/2] instead.</dd>
        </dlentry>
    </dl>
-   <p id="desc">Creates a data stream. Each user can create up to five data streams during the lifecycle of the IRtcEngine. The data channel in the channel allows up to 5 seconds of data delay. If the receiver has not received the data stream for more than 5 seconds, the data channel will report an error to the App.</p>
+   <p id="desc">Creates a data stream. Each user can create up to five data streams during the lifecycle of RtcEngine. 频道内数据通道最多允许数据延迟 5 秒，若超过 5 秒接收方尚未收到数据流，则数据通道会向 App 报错。</p>
    <note outputclass="note" id="note">
        <ul>
   <li>Call this method after joining a channel.</li>
@@ -34,20 +34,20 @@
    <parml>
        <plentry props="windows" id="streamId">
   <pt>streamId</pt>
-  <pd>Output parameter, data stream ID.</pd>
+  <pd>Output parameter. Pointer to the ID of the created data stream.</pd>
        </plentry>
        <plentry>
   <pt>reliable</pt>
-  <pd><p>Is the data stream reliable:<ul>
-      <li><ph keyref="true"/>: The receiver will receive the data sent by the sender within 5 seconds, otherwise it will receive a<xref keyref="onStreamMessageError"/> callback and get the corresponding error message.</li>
-      <li><ph keyref="false"/>false: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.</li>
+  <pd><p>Whether or not the data stream is reliable:<ul>
+      <li><ph keyref="true"/>: The recipients receive the data from the sender within five seconds. If the recipient does not receive the data within five seconds, the SDK triggers the <xref keyref="onStreamMessageError"/> callback and returns an error code.</li>
+      <li><ph keyref="false"/>: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.</li>
   </ul></p></pd>
        </plentry>
        <plentry id="ordered">
   <pt>ordered</pt>
-  <pd><p>Is the data flow in order:<ul>
-      <li><ph keyref="true"/>false: The recipients do not receive the data stream in the sent order.</li>
-      <li><ph keyref="false"/>false: The recipients do not receive the data stream in the sent order.</li>
+  <pd><p>Whether or not the recipients receive the data stream in the sent order:<ul>
+      <li><ph keyref="true"/>: The recipients receive the data in the sent order.</li>
+      <li><ph keyref="false"/>: The recipients do not receive the data in the sent order.</li>
   </ul></p></pd>
        </plentry>
    </parml>
@@ -55,9 +55,9 @@
         <section id="return_values">
    <title>Returns</title>
    <p><ul>
-       <li props="android">Successfully created data stream ID: The method was successfully called.</li>
-       <li props="windows">Success.</li>
-       <li>&lt;Fails to create the data stream. You can refer to <xref href="error_rtc.md" format="md">error codes and warning codes for </xref>troubleshooting.</li>
+       <li props="android">Returns the stream ID, if the method call is successful.</li>
+       <li props="windows">0: The data stream is successfully created.</li>
+       <li>&lt; 0: Fails to create the data stream. You can refer to <xref href="error_rtc.md" format="md">Error Codes and Warning Codes</xref> for troubleshooting.</li>
    </ul></p>
         </section></refbody>
 </reference>
