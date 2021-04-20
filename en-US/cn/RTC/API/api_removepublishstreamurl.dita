@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_removepublishstreamurl">
     <title><ph keyref="removePublishStreamUrl"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Removes an RTMP or RTMPS stream from the CDN. (CDN live only.)</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Removes an RTMP or RTMPS stream from the CDN.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,11 +16,11 @@
         </section>
         <section id="detailed_desc">
    
-   <p>After calling this method, the SDK will trigger a callback locally<xref keyref="onRtmpStreamingStateChanged"/> to report the status of deleting the bypass push address.</p>
+   <p>After a successful method call, the SDK triggers <xref keyref="onRtmpStreamingStateChanged"/> on the local client to report the result of deleting the address.</p>
    <note outputclass="note" id="note">
        <ul>
-           <li>Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in the advanced guide Push Streams to CDN.</li>
-           <li>This method applies to `LIVE_BROADCASTING` only.</li>
+           <li>Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in Push Streams to CDN.</li>
+           <li>This method takes effect only when you are a host in live interactive streaming.</li>
            <li>Call this method after joining a channel.</li>
            <li>This method removes only one CDN streaming URL each time it is called. To remove multiple URLs, call this method multiple times.</li>
        </ul>
@@ -29,8 +29,8 @@
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt>Request URL</pt>
-  <pd>@param url The CDN streaming URL to be removed. The maximum length of this parameter is 1024 bytes. The CDN streaming URL must not contain special characters, such as Chinese language characters.</pd>
+  <pt>url</pt>
+  <pd>The CDN streaming URL to be removed. The maximum length of this parameter is 1024 bytes. The CDN streaming URL must not contain special characters, such as Chinese language characters.</pd>
        </plentry>
    </parml>
         </section>
