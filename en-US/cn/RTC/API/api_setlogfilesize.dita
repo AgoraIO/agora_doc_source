@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlogfilesize">
-    <title><ph keyref="setLogFileSize"/></title>
+    <title><ph keyref="setLogFileSize" /></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the size of a log file that the SDK outputs.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="setLogFileSize" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="setLogFileSize" />
+            </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        
-        <p conref="../conref/conref_rtc_api.dita#apidef/setLogFileSize"/>
+    <refbody>
+        <section id="prototype">
+            <p conref="../conref/conref_rtc_api.dita#apidef/setLogFileSize" />
         </section>
         <section id="detailed_desc">
-   
-   <dl outputclass="deprecated">
-       <dlentry>
-  <dt>Deprecated:</dt>
-  <dd>v3.3.0. Use <parmname>logConfig</parmname> in <xref keyref="create2"/> instead.</dd>
-       </dlentry>
-   </dl>
-   <p>By default, the SDK outputs five log files, agorasdk.log, agorasdk_1.log, agorasdk_2.log, agorasdk_3.log, and agorasdk_4.log, each with a default size of 1024 KB. These log files are encoded in UTF-8. The SDK writes the latest logs in agorasdk.log. When agorasdk.log is full, the SDK deletes the log file with the earliest modification time among the other four, renames agorasdk.log to the name of the deleted log file, and create a new agorasdk.log to record the latest logs.</p>
-   <note outputclass="note">If you want to set the size of the log file, you need to call this method before <xref keyref="setLogFile"/>, otherwise, the log will be cleared.</note>
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>v3.3.0. Use <parmname>logConfig</parmname> in <xref keyref="create2" /> instead.</dd>
+                </dlentry>
+            </dl>
+            <p>By default, the SDK outputs five log files, agorasdk.log, agorasdk_1.log, agorasdk_2.log, agorasdk_3.log, and agorasdk_4.log, each with a default size of 1024 KB. The log file has a default size of 512 KB. These log files are encoded in UTF-8. The SDK writes the latest logs in agorasdk.log. When agorasdk.log is full, the SDK deletes the log file with the earliest modification time among the other four, renames agorasdk.log to the name of the deleted log file, and create a new agorasdk.log to record the latest logs.</p>
+            <note outputclass="note">If you want to set the size of the log file, you need to call this method before <xref keyref="setLogFile" />, otherwise, the log will be cleared.</note>
         </section>
-        <section id="parameters"><title>Parameter</title>
-   <parml>
-       <plentry>
-  <pt>fileSizeInKBytes</pt>
-  <pd>The size (KB) of a log file. The default value is 1024 KB. If you set fileSizeInKByte to 1024 KB, the SDK outputs at most 5 MB log files; if you set <parmname>fileSizeInKByte</parmname> to less than 1024 KB, the setting is invalid, and the maximum size of a log file is still 1024 KB.</pd>
-       </plentry>
-   </parml>
+        <section id="parameters">
+            <title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>fileSizeInKBytes</pt>
+                    <pd>The size (KB) of a log file. The default value is 1024 KB. If you set <parmname>fileSize</parmname> to 1024 KB, the maximum aggregate size of the log files output by the SDK is 5 MB. if you set <parmname>fileSizeInKByte</parmname> to less than 1024 KB, the setting is invalid, and the maximum size of a log file is still 1024 KB.</pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
 </reference>
