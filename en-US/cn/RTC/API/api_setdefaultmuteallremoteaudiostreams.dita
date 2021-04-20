@@ -18,17 +18,17 @@
             <dl outputclass="deprecated">
        <dlentry >
   <dt>Deprecated:</dt>
-  <dd>This method is deprecated as of v2.4.0.</dd>
+  <dd>This method is deprecated as of v3.3.0.</dd>
        </dlentry>
    </dl>
    <p id="sequence">Call this method after joining a channel. After successfully calling this method, the local user stops or resumes subscribing to the audio streams of all subsequent users.</p>
-            <p>You can call this method either before or after joining a channel. If you call<apiname
+            <p>You can call this method either before or after joining a channel. If you call <apiname
                     keyref="setDefaultMuteAllRemoteAudioStreams"/> (true) after joining a channel, you will not receive the audio stream of users who join the channel later.</p>         
    <note outputclass="note">
-       <p>@note If you need to resume subscribing to the audio streams of remote users in the channel after calling \ref IRtcEngine::setDefaultMuteAllRemoteAudioStreams &quot;setDefaultMuteAllRemoteAudioStreams&quot; (true), do the following:</p>
+       <p>If you need to resume subscribing to the audio streams of remote users in the channel after calling this method, do the following:</p>
        <ul>
-  <li>If you need to resume subscribing to the audio stream of a single user, call<xref keyref="muteRemoteAudioStream"/> (<ph keyref="false"/>) and specify the ID of the remote user you want to subscribe to.</li>
-  <li>If you want to resume subscribing to multiple users&apos; audio streams, you need to call<apiname keyref="muteRemoteAudioStream"/> (<ph keyref="false"/>) multiple times.</li>
+  <li>If you need to resume subscribing to the audio stream of a specified user, call <xref keyref="muteRemoteAudioStream"/> (<ph keyref="false"/>), and specify the user ID.</li>
+  <li>If you need to resume subscribing to the audio streams of multiple remote users, call <apiname keyref="muteRemoteAudioStream"/>(<ph keyref="false"/>) multiple times.</li>
        </ul>
    </note>
         </section>
@@ -36,9 +36,9 @@
    <parml>
        <plentry>
   <pt>mute</pt>
-  <pd><p>Stops or resumes subscribing to the audio streams of all remote users by default.<ul>
- <li><ph keyref="true"/>: Unsubscribe by default.</li>
- <li><ph keyref="false"/>: (Default) default subscription.</li>
+  <pd><p>Whether to stop subscribing to the audio streams of all remote users by default.<ul>
+ <li><ph keyref="true"/>: Stop subscribing to the audio streams of all remote users by default.</li>
+ <li><ph keyref="false"/>: (Default) Resume subscribing to the audio streams of all remote users by default.</li>
       </ul>
       </p>
   </pd>
