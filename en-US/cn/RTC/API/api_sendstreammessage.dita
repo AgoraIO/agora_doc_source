@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_sendstreammessage">
     <title><ph keyref="sendStreamMessage"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sends data stream messages.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,30 +16,30 @@
         </section>
         <section id="detailed_desc">
    
-   <p id="desc">Sends data stream messages to all users in a channel. Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 kB. Each client can send up to 6 kB of data per second. Each user can have up to five data streams simultaneously.</p>
-   <p>After successfully calling this method, the remote end will trigger a<xref keyref="onStreamMessage"/> callback, and the remote user can get the received stream message in this callback; if the call fails, the remote end will trigger the<xref keyref="onStreamMessageError"/> callback.</p>
+   <p id="desc">Sends data stream messages to all users in a channel. The SDK has the following restrictions on this method: Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 KB. Each client can send up to 6 KB of data per second. Each user can have up to five data streams simultaneously.</p>
+   <p>A successful method call triggers the <xref keyref="onStreamMessage"/> callback on the remote client, from which the remote user gets the stream message. A failed method call triggers the <xref keyref="onStreamMessageError"/> callback on the remote client.</p>
    <note outputclass="note"><ul>
-       <li>Please make sure that the<xref keyref="createDataStream2"/> data channel has been created before calling this method.</li>
-       <li>In the `LIVE_BROADCASTING` profile, only a host can call this method.</li>
+       <li>Ensure that you call <xref keyref="createDataStream2"/> to create a data channel before calling this method.</li>
+       <li>In live broadcast streaming, this method only applies to hosts.</li>
    </ul></note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>streamId</pt>
-  <pd>The configurations for the data stream. It can be<apiname keyref="createDataStream2"/> obtained through.</pd>
+  <pd>The data stream ID. You can get the data stream ID by calling <apiname keyref="createDataStream2"/>.</pd>
        </plentry>
        <plentry props="android">
   <pt>message</pt>
-  <pd>Occurs each time the SDK receives a video frame sent by the remote user.</pd>
+  <pd>The message to be sent.</pd>
        </plentry>
        <plentry props="windows">
   <pt>data</pt>
-  <pd>User-defined data.</pd>
+  <pd>The custom data.</pd>
        </plentry>
        <plentry props="windows">
   <pt>length</pt>
-  <pd>Data length.</pd>
+  <pd>The length of the data.</pd>
        </plentry>
    </parml>
         </section>
