@@ -15,7 +15,13 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/stopChannelMediaRelay"/>
         </section>
         <section id="detailed_desc">
-   
+            <dl>
+                <dlentry outputclass="since">
+                    <dt>Since</dt>
+                    <dd>v2.9.0</dd>
+                </dlentry>
+            </dl>
+            
    <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback. If the callback reports <apiname keyref="RELAY_STATE_IDLE"/>(0) and <apiname keyref="RELAY_OK"/>(0), the host successfully stops the relay.</p>
    <note outputclass="note">If the method call fails, the SDK triggers the <apiname keyref="onChannelMediaRelayStateChanged"/> callback with the <apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/>(2) or <apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/>(8) status code. You can call the <xref keyref="leaveChannel"/> method to leave the channel, and the media stream relay automatically stops.</note>
         </section>
