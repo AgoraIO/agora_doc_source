@@ -12,7 +12,8 @@
   
   <!--initialize-->
   <p id="create2">
-      <codeblock props="windows" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">initialize(appId: string, areaCode: AREA_CODE = (0xFFFFFFFF), logConfig?: LogConfig): number</codeblock>
   </p>
   
   <!--release-->
@@ -25,6 +26,7 @@
     }
     }
       </codeblock>
+      <codeblock props="electron" outputclass="language-typescript">release(sync: boolean = false): number</codeblock>
   </p>
   
   <!--setChannelProfile-->
@@ -36,6 +38,7 @@
     return agorartcnative::setChannelProfile(self.native_engine, profile as u32);
     }
     }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setChannelProfile(profile: number): number</codeblock>
   </p>
   
   <!--setClientRole1-->
@@ -48,12 +51,14 @@
         return agorartcnative::setClientRole(self.native_engine, role as u32);
     }
 }
-      </codeblock>   
+      </codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setClientRole(role: CLIENT_ROLE_TYPE): number</codeblock>
   </p>
   
   <!--setClientRole2-->
   <p id="setClientRole2">
       <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role, const ClientRoleOptions&amp; options) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setClientRoleWithOptions(role: CLIENT_ROLE_TYPE, options: ClientRoleOptions): number</codeblock>
   </p>
   
   <!--joinChannel1-->
@@ -77,6 +82,12 @@
     const char* info,
     uid_t uid,
     const ChannelMediaOptions&amp; options) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">joinChannel(
+          token: string,
+          info: string,
+          uid: number,
+          options?: ChannelMediaOptions
+          ): number</codeblock>
   </p>
   
   <!--switchChannel1-->
@@ -87,6 +98,7 @@
   <!--switchChannel2-->
   <p id="switchChannel2">       
       <codeblock props="windows" outputclass="language-cpp">virtual int switchChannel(const char* token, const char* channelId, const ChannelMediaOptions&amp; options) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">switchChannel(token: string, channelId: string, options?: ChannelMediaOptions): number</codeblock>
   </p>
   
   <!--leaveChannel-->
@@ -98,23 +110,27 @@
     }
 }
       </codeblock>
+      <codeblock props="electron" outputclass="language-typescript">leaveChannel(): number</codeblock>
   </p>
   
   <!--renewToken-->
   <p id="renewToken">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">renewToken(token: string): number</codeblock>
   </p>
   
   <!--getConnectionState-->
   <p id="getConnectionState">       
       <codeblock props="windows" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionState() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getConnectionState(): CONNECTION_STATE_TYPE</codeblock>
   </p>
   
   <!--registerLocalUserAccount-->
   <p id="registerLocalUserAccount">       
       <codeblock props="windows" outputclass="language-cpp">virtual int registerLocalUserAccount(
     const char* appId, const char* userAccount) = 0;
-      </codeblock>   
+      </codeblock>
+      <codeblock props="electron" outputclass="language-typescript">registerLocalUserAccount(appId: string, userAccount: string): number</codeblock>
   </p>
   
   <!--joinChannelWithUserAccount1-->
@@ -129,32 +145,44 @@
       <codeblock props="windows" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
        const char* channelId,
        const char* userAccount,
-       const ChannelMediaOptions&amp; options) = 0;  </codeblock>   
+       const ChannelMediaOptions&amp; options) = 0;  </codeblock>
+      <codeblock props="electron" outputclass="language-typescript">joinChannelWithUserAccount(
+          token: string,
+          userAccount: string,
+          options: ChannelMediaOptions
+          ): number</codeblock>
   </p>
 
   <!--getUserInfoByUserAccount-->
   <p id="getUserInfoByUserAccount">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getUserInfoByUserAccount(const char* userAccount, UserInfo* userInfo) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getUserInfoByUserAccount(const char* userAccount, UserInfo* userInfo) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getUserInfoByUserAccount(
+          userAccount: string
+          ): { errCode: number; userInfo: UserInfo }</codeblock>
   </p>
   
   <!--getUserInfoByUid-->
   <p id="getUserInfoByUid">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, UserInfo* userInfo) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, UserInfo* userInfo) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getUserInfoByUid(uid: number): { errCode: number; userInfo: UserInfo }</codeblock>
   </p>
   
   <!--enableWebSdkInteroperability-->
   <p id="enableWebSdkInteroperability">     
-      <codeblock props="windows" outputclass="language-cpp">virtual int enableWebSdkInteroperability(bool enabled) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int enableWebSdkInteroperability(bool enabled) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableWebSdkInteroperability(enabled: boolean): number</codeblock>
   </p>
   
   <!--enableAudio-->
   <p id="enableAudio">     
-      <codeblock props="windows" outputclass="language-cpp">virtual int enableAudio() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int enableAudio() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableAudio(): number</codeblock>
   </p>
   
   <!--disableAudio-->
   <p id="disableAudio">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int disableAudio() = 0;</codeblock>     
+      <codeblock props="windows" outputclass="language-cpp">virtual int disableAudio() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">disableAudio(): number</codeblock>
   </p>
     
   <!--setAudioProfile-->
@@ -164,67 +192,90 @@
       unsafe {
       return agorartcnative::setAudioProfile(self.native_engine, profile as u32, scenario as u32);
       }
-      }</codeblock>   
+      }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setAudioProfile(
+          profile: AUDIO_PROFILE_TYPE,
+          scenario: AUDIO_SCENARIO_TYPE
+          ): number </codeblock>
   </p>
   
   <!--setHighQualityAudioParameters-->
   <p id="setHighQualityAudioParameters">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setHighQualityAudioParameters(bool fullband, bool stereo, bool fullBitrate) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setHighQualityAudioParameters(bool fullband, bool stereo, bool fullBitrate) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setHighQualityAudioParameters(
+          fullband: boolean,
+          stereo: boolean,
+          fullBitrate: boolean
+          ): number</codeblock>
   </p>
   
   <!--adjustRecordingSignalVolume-->
   <p id="adjustRecordingSignalVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int adjustRecordingSignalVolume(int volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int adjustRecordingSignalVolume(int volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">adjustRecordingSignalVolume(volume: number): number</codeblock>
   </p>
   
   <!--adjustUserPlaybackSignalVolume-->
   <p id="adjustUserPlaybackSignalVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolume(unsigned int uid, int volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolume(unsigned int uid, int volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">adjustUserPlaybackSignalVolume(uid: number, volume: number): number</codeblock>
   </p>
   
   <!--adjustPlaybackSignalVolume-->
   <p id="adjustPlaybackSignalVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int adjustPlaybackSignalVolume(int volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int adjustPlaybackSignalVolume(int volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">adjustPlaybackSignalVolume(volume: number): number</codeblock>
   </p>
   
   <!--enableLocalAudio-->
   <p id="enableLocalAudio">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int enableLocalAudio(bool enabled) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int enableLocalAudio(bool enabled) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableLocalAudio(enabled: boolean): number</codeblock>
   </p>
   
   <!--muteLocalAudioStream-->
   <p id="muteLocalAudioStream">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int muteLocalAudioStream(bool mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int muteLocalAudioStream(bool mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">muteLocalAudioStream(mute: boolean): number</codeblock>
   </p>
   
   <!--muteRemoteAudioStream-->
   <p id="muteRemoteAudioStream">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteAudioStream(uid_t userId, bool mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteAudioStream(uid_t userId, bool mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">muteRemoteAudioStream(userId: number, mute: boolean): number</codeblock>
   </p>
   
   <!--muteAllRemoteAudioStreams-->
   <p id="muteAllRemoteAudioStreams">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteAudioStreams(bool mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteAudioStreams(bool mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">muteAllRemoteAudioStreams(mute: boolean): number</codeblock>
   </p>
   
   <!--setDefaultMuteAllRemoteAudioStreams-->
   <p id="setDefaultMuteAllRemoteAudioStreams">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteAudioStreams(bool mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteAudioStreams(bool mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setDefaultMuteAllRemoteAudioStreams(mute: boolean): number</codeblock>
   </p>
   
   <!--enableVideo-->
   <p id="enableVideo">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int enableVideo() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int enableVideo() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableVideo(): number</codeblock>
   </p>
   
   <!--disableVideo-->
   <p id="disableVideo">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int disableVideo() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int disableVideo() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">disableVideo(): number</codeblock>
   </p>
   
   <!--setVideoProfile-->
   <p id="setVideoProfile">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setVideoProfile(VIDEO_PROFILE_TYPE profile, bool swapWidthAndHeight) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setVideoProfile(VIDEO_PROFILE_TYPE profile, bool swapWidthAndHeight) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setVideoProfile(
+          profile: VIDEO_PROFILE_TYPE,
+          swapWidthAndHeight: boolean = false
+          ): number</codeblock>
   </p>
   
   <!--setVideoEncoderConfiguration-->
@@ -234,7 +285,8 @@
  unsafe {
  return agorartcnative::setVideoEncoderConfiguration(self.native_engine, config);
  }
- }</codeblock>   
+ }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setVideoEncoderConfiguration(config: VideoEncoderConfiguration): number</codeblock>
   </p>
   
   <!--setupLocalVideo-->
@@ -244,7 +296,8 @@
  unsafe {
  return agorartcnative::setupLocalVideo(self.native_engine, canvas);
  }
- }</codeblock>   
+ }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setupLocalVideo(view: Element, options?: RendererOptions): number</codeblock>
   </p>
   
   <!--setupRemoteVideo-->
@@ -254,7 +307,8 @@
  unsafe {
  return agorartcnative::setupRemoteVideo(self.native_engine, canvas);
  }
- }</codeblock>   
+ }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setupRemoteVideo(uid: number, view?: Element, channel?: string, options?: RendererOptions): number</codeblock>
   </p>
   
   <!--setLocalRenderMode1-->
@@ -294,7 +348,8 @@
  unsafe {
  return agorartcnative::startPreview(self.native_engine);
  }
- }</codeblock>   
+ }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startPreview(): number</codeblock>
   </p>
   
   <!-- stopPreview -->
@@ -304,7 +359,8 @@
  unsafe {
  return agorartcnative::stopPreview(self.native_engine);
  }
- }</codeblock>  
+ }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopPreview(): number</codeblock>
   </p>
   
   <!--enableLocalVideo-->
@@ -314,7 +370,8 @@
  unsafe {
  return agorartcnative::enableVideo(self.native_engine);
  }
- }</codeblock>   
+ }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableLocalVideo(enabled: boolean): number</codeblock>
   </p>
   
   <!--muteLocalVideoStream-->
@@ -325,7 +382,8 @@
  let m: i32 = if mute { 1 } else { 0 };
  return agorartcnative::muteLocalVideoStream(self.native_engine, m);
  }
- } </codeblock>   
+ } </codeblock>
+      <codeblock props="electron" outputclass="language-typescript">muteLocalVideoStream(mute: boolean): number</codeblock>
   </p>
   
   <!--muteRemoteVideoStream-->
@@ -336,7 +394,8 @@
  let m: i32 = if mute { 1 } else { 0 };
  return agorartcnative::muteRemoteVideoStream(self.native_engine, uid, m);
  }
- }</codeblock>   
+ }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">muteRemoteVideoStream(userId: number, mute: boolean): number</codeblock>
   </p>
   
   <!--muteAllRemoteVideoStreams-->
@@ -348,6 +407,7 @@
  return agorartcnative::muteAllRemoteVideoStreams(self.native_engine, m);
  }
  }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">muteAllRemoteVideoStreams(mute: boolean): number</codeblock>
   </p>
   
   <!--setDefaultMuteAllRemoteVideoStreams-->
@@ -360,26 +420,34 @@
  }
  }       
       </codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setDefaultMuteAllRemoteVideoStreams(mute: boolean): number</codeblock>
   </p>
   
   <!--setBeautyEffectOptions-->
   <p id="setBeautyEffectOptions">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setBeautyEffectOptions(bool enabled, BeautyOptions options) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setBeautyEffectOptions(bool enabled, BeautyOptions options) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setBeautyEffectOptions(
+          enabled: boolean,
+          options: BeautyOptions
+          ): number</codeblock>
   </p>
   
   <!--createChannel-->
   <p id="createChannel">       
-      <codeblock props="windows" outputclass="language-cpp">virtual IChannel* createChannel(const char *channelId) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual IChannel* createChannel(const char *channelId) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">createChannel(channelId: string): (AgoraRtcChannel | null)</codeblock>
   </p>
   
   <!--IChannel_release-->
   <p id="IChannel_release">
        <codeblock props="windows" outputclass="language-cpp">virtual int release() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">release(): number</codeblock>
    </p>
   
   <!--IChannel_setChannelEventHandler-->
   <p id="IChannel_setChannelEventHandler">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setChannelEventHandler(IChannelEventHandler *channelEh) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setChannelEventHandler(IChannelEventHandler *channelEh) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">initEventHandler(): void</codeblock>
   </p>
   
   <!--IChannel_joinChannel-->
@@ -387,59 +455,79 @@
       <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token,
  const char* info,
  uid_t uid,
- const ChannelMediaOptions&amp; options) = 0;</codeblock>   
+ const ChannelMediaOptions&amp; options) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">joinChannel(
+          token: string,
+          info: string,
+          uid: number,
+          options?: ChannelMediaOptions
+          ): number</codeblock>
   </p>
   
   <!--IChannel_joinChannelWithUserAccount-->
   <p id="IChannel_joinChannelWithUserAccount">       
       <codeblock props="windows" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
        const char* userAccount,
-       const ChannelMediaOptions&amp; options) = 0;</codeblock>   
+       const ChannelMediaOptions&amp; options) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">joinChannelWithUserAccount(
+          token: string,
+          userAccount: string,
+          options: ChannelMediaOptions
+          ): number</codeblock>
   </p>
   
   <!--IChannel_leaveChannel-->
   <p id="IChannel_leaveChannel">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">leaveChannel(): number</codeblock>
   </p>
 
   <!--IChannel_publish-->
   <p id="IChannel_publish">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int publish() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int publish() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">publish(): number</codeblock>
   </p>
 
   <!--IChannel_unpublish-->
   <p id="IChannel_unpublish">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int unpublish() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int unpublish() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">unpublish(): number</codeblock>
   </p>
 
   <!--IChannel_channelId-->
   <p id="IChannel_channelId">       
-      <codeblock props="windows" outputclass="language-cpp">virtual const char *channelId() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual const char *channelId() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">channelId(): string</codeblock>
   </p>
 
   <!--IChannel_getCallId-->
   <p id="IChannel_getCallId">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getCallId(agora::util::AString&amp; callId) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getCallId(agora::util::AString&amp; callId) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getCallId(): string</codeblock>
   </p>
 
   <!--IChannel_renewToken-->
   <p id="IChannel_renewToken">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">renewToken(token: string): number</codeblock>
   </p>
 
   <!--IChannel_setEncryptionSecret-->
   <p id="IChannel_setEncryptionSecret">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionSecret(const char* secret) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionSecret(const char* secret) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setEncryptionSecret(secret: string): number</codeblock>
   </p>
 
   <!--IChannel_setEncryptionMode-->
   <p id="IChannel_setEncryptionMode">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionMode(const char* encryptionMode) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionMode(const char* encryptionMode) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setEncryptionMode(encryptionMode: string): number</codeblock>
   </p>
 
   <!--IChannel_enableEncryption-->
   <p id="IChannel_enableEncryption">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int enableEncryption(bool enabled, const EncryptionConfig&amp; config) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int enableEncryption(bool enabled, const EncryptionConfig&amp; config) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableEncryption(enabled: boolean, config: EncryptionConfig): number</codeblock>
   </p>
 
   <!--IChannel_registerPacketObserver-->
@@ -449,82 +537,97 @@
 
   <!--IChannel_registerMediaMetadataObserver-->
   <p id="IChannel_registerMediaMetadataObserver">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">registerMediaMetadataObserver(): number</codeblock>
   </p>
   
   <!--IChannel_setClientRole1-->
   <p id="IChannel_setClientRole1">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setClientRole(role: CLIENT_ROLE_TYPE): number</codeblock>
   </p>
   
   <!--IChannel_setClientRole2-->
   <p id="IChannel_setClientRole2">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role, const ClientRoleOptions&amp; options) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role, const ClientRoleOptions&amp; options) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setClientRoleWithOptions(role: CLIENT_ROLE_TYPE, options: ClientRoleOptions): number</codeblock>
   </p>
   
   <!--IChannel_setRemoteUserPriority-->
   <p id="IChannel_setRemoteUserPriority">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteUserPriority(uid_t uid, PRIORITY_TYPE userPriority) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteUserPriority(uid_t uid, PRIORITY_TYPE userPriority) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setRemoteUserPriority(uid: number, userPriority: PRIORITY_TYPE): number</codeblock>
   </p>
   
   <!--IChannel_setRemoteVoicePosition-->
   <p id="IChannel_setRemoteVoicePosition">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVoicePosition(uid_t uid, double pan, double gain) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVoicePosition(uid_t uid, double pan, double gain) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setRemoteVoicePosition(uid: number, pan: number, gain: number): number</codeblock>
   </p>
   
   <!--IChannel_setRemoteRenderMode-->
   <p id="IChannel_setRemoteRenderMode">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
   </p>
   
   <!--IChannel_setDefaultMuteAllRemoteAudioStreams-->
   <p id="IChannel_setDefaultMuteAllRemoteAudioStreams">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteAudioStreams(bool mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteAudioStreams(bool mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setDefaultMuteAllRemoteAudioStreams(mute: boolean): number</codeblock>
   </p>
   
   <!--IChannel_setDefaultMuteAllRemoteVideoStreams-->
   <p id="IChannel_setDefaultMuteAllRemoteVideoStreams">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteVideoStreams(bool mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript"></codeblock>
   </p>
   
   <!--IChannel_muteAllRemoteAudioStreams-->
   <p id="IChannel_muteAllRemoteAudioStreams">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteAudioStreams(bool mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteAudioStreams(bool mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setDefaultMuteAllRemoteVideoStreams(mute: boolean): number</codeblock>
   </p>
   
   <!--IChannel_adjustUserPlaybackSignalVolume-->
   <p id="IChannel_adjustUserPlaybackSignalVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolume(uid_t userId, int volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolume(uid_t userId, int volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">adjustUserPlaybackSignalVolume(userId: number, volume: number): number</codeblock>
   </p>
 
   <!--IChannel_muteRemoteAudioStream-->
   <p id="IChannel_muteRemoteAudioStream">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteAudioStream(uid_t userId, bool mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteAudioStream(uid_t userId, bool mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">muteRemoteAudioStream(userId: number, mute: boolean): number</codeblock>
   </p>
   
   <!--IChannel_muteAllRemoteVideoStreams-->
   <p id="IChannel_muteAllRemoteVideoStreams">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteVideoStreams(bool mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">muteAllRemoteVideoStreams(mute: boolean): number</codeblock>
   </p>
   
   <!--IChannel_muteRemoteVideoStream-->
   <p id="IChannel_muteRemoteVideoStream">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">muteRemoteVideoStream(userId: number, mute: boolean): number</codeblock>
   </p>
   
   <!--IChannel_setRemoteVideoStreamType-->
   <p id="IChannel_setRemoteVideoStreamType">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t userId, REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t userId, REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript"></codeblock>
   </p>
   
   <!--IChannel_setRemoteDefaultVideoStreamType-->
   <p id="IChannel_setRemoteDefaultVideoStreamType">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setRemoteVideoStreamType(userId: number, streamType: REMOTE_VIDEO_STREAM_TYPE): number</codeblock>
   </p>
   
   <!--IChannel_createDataStream1-->
   <p id="IChannel_createDataStream1">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int createDataStream(int* streamId, bool reliable, bool ordered) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int createDataStream(int* streamId, bool reliable, bool ordered) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">createDataStream(reliable: boolean, ordered: boolean): number</codeblock>
   </p>
   
   <!--IChannel_createDataStream2-->
@@ -534,52 +637,62 @@
   
   <!--IChannel_sendStreamMessage-->
   <p id="IChannel_sendStreamMessage">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int sendStreamMessage(int streamId, const char* data, size_t length) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int sendStreamMessage(int streamId, const char* data, size_t length) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">sendStreamMessage(streamId: number, msg: string): number</codeblock>
   </p>
   
   <!--IChannel_addPublishStreamUrl-->
   <p id="IChannel_addPublishStreamUrl">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int addPublishStreamUrl(const char *url, bool transcodingEnabled) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int addPublishStreamUrl(const char *url, bool transcodingEnabled) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">addPublishStreamUrl(url: string, transcodingEnabled: boolean): number</codeblock>
   </p>
   
   <!--IChannel_removePublishStreamUrl-->
   <p id="IChannel_removePublishStreamUrl">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int removePublishStreamUrl(const char *url) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int removePublishStreamUrl(const char *url) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">removePublishStreamUrl(url: string): number</codeblock>
   </p>
 
   <!--IChannel_setLiveTranscoding-->
   <p id="IChannel_setLiveTranscoding">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setLiveTranscoding(const LiveTranscoding &amp;transcoding) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setLiveTranscoding(const LiveTranscoding &amp;transcoding) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setLiveTranscoding(transcoding: LiveTranscoding): number</codeblock>
   </p>
   
   <!--IChannel_addInjectStreamUrl-->
   <p id="IChannel_addInjectStreamUrl">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int addInjectStreamUrl(const char* url, const InjectStreamConfig&amp; config) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int addInjectStreamUrl(const char* url, const InjectStreamConfig&amp; config) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">addInjectStreamUrl(url: string, config: InjectStreamConfig): number</codeblock>
   </p>
   
   <!--IChannel_removeInjectStreamUrl-->
   <p id="IChannel_removeInjectStreamUrl">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int removeInjectStreamUrl(const char* url) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int removeInjectStreamUrl(const char* url) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">removeInjectStreamUrl(url: string): number</codeblock>
   </p>
   
   <!--IChannel_startChannelMediaRelay-->
   <p id="IChannel_startChannelMediaRelay">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int startChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startChannelMediaRelay(configuration: ChannelMediaRelayConfiguration): number</codeblock>
   </p>
   
   <!--IChannel_updateChannelMediaRelay-->
   <p id="IChannel_updateChannelMediaRelay">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int updateChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int updateChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">updateChannelMediaRelay(configuration: ChannelMediaRelayConfiguration): number</codeblock>
   </p>
   
   <!--IChannel_stopChannelMediaRelay-->
   <p id="IChannel_stopChannelMediaRelay">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopChannelMediaRelay() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopChannelMediaRelay() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopChannelMediaRelay(): number</codeblock>
   </p>
   
   <!--IChannel_getConnectionState-->
   <p id="IChannel_getConnectionState">       
-      <codeblock props="windows" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionState() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionState() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getConnectionState(): CONNECTION_STATE_TYPE</codeblock>
   </p>
   
   <!--startScreenCapture-->
@@ -604,17 +717,20 @@
   
   <!--setScreenCaptureContentHint-->
   <p id="setScreenCaptureContentHint">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setScreenCaptureContentHint(VideoContentHint contentHint) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setScreenCaptureContentHint(VideoContentHint contentHint) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setScreenCaptureContentHint(contentHint: VideoContentHint): number</codeblock>
   </p>
   
   <!--updateScreenCaptureParameters-->
   <p id="updateScreenCaptureParameters">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int updateScreenCaptureParameters(const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int updateScreenCaptureParameters(const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">updateScreenCaptureParameters(captureParams: ScreenCaptureParameters): number</codeblock>
   </p>
   
   <!--updateScreenCaptureRegion1-->
   <p id="updateScreenCaptureRegion1">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int updateScreenCaptureRegion(const Rectangle&amp; regionRect) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int updateScreenCaptureRegion(const Rectangle&amp; regionRect) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">updateScreenCaptureRegion(regionRect: Rectangle): number</codeblock>
   </p>
   
   <!--updateScreenCaptureRegion2-->
@@ -624,87 +740,109 @@
   
   <!--stopScreenCapture-->
   <p id="stopScreenCapture">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopScreenCapture() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopScreenCapture() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopScreenCapture(): number</codeblock>
   </p>
 
   <!--startAudioMixing-->
   <p id="startAudioMixing">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath, bool loopback, bool replace, int cycle) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath, bool loopback, bool replace, int cycle) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startAudioMixing(
+          filePath: string,
+          loopback: boolean,
+          replace: boolean,
+          cycle: number
+          ): number</codeblock>
   </p>
   
   <!--stopAudioMixing-->
   <p id="stopAudioMixing">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopAudioMixing() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopAudioMixing() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopAudioMixing(): number</codeblock>
   </p>
   
   <!--pauseAudioMixing-->
   <p id="pauseAudioMixing">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int pauseAudioMixing() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int pauseAudioMixing() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">pauseAudioMixing(): number</codeblock>
   </p>
   
   <!--resumeAudioMixing-->
   <p id="resumeAudioMixing">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int resumeAudioMixing() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int resumeAudioMixing() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">resumeAudioMixing(): number</codeblock>
   </p>
   
   <!--adjustAudioMixingVolume-->
   <p id="adjustAudioMixingVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int adjustAudioMixingVolume(int volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int adjustAudioMixingVolume(int volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">adjustAudioMixingVolume(volume: number): number</codeblock>
   </p>
   
   <!--adjustAudioMixingPlayoutVolume-->
   <p id="adjustAudioMixingPlayoutVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int adjustAudioMixingPlayoutVolume(int volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int adjustAudioMixingPlayoutVolume(int volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">adjustAudioMixingPlayoutVolume(volume: number): number</codeblock>
   </p>
   
   <!--adjustAudioMixingPublishVolume-->
   <p id="adjustAudioMixingPublishVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int adjustAudioMixingPublishVolume(int volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int adjustAudioMixingPublishVolume(int volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">adjustAudioMixingPublishVolume(volume: number): number</codeblock>
   </p>
   
   <!--setAudioMixingPitch-->
   <p id="setAudioMixingPitch">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setAudioMixingPitch(int pitch) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setAudioMixingPitch(int pitch) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setAudioMixingPitch(pitch: number): number</codeblock>
   </p>
   
   <!--getAudioMixingPlayoutVolume-->
   <p id="getAudioMixingPlayoutVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getAudioMixingPlayoutVolume() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getAudioMixingPlayoutVolume() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getAudioMixingPlayoutVolume(): number</codeblock>
   </p>
 
   <!--getAudioMixingPublishVolume-->
   <p id="getAudioMixingPublishVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getAudioMixingPublishVolume() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getAudioMixingPublishVolume() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getAudioMixingPublishVolume(): number</codeblock>
   </p>
   
   <!--getAudioMixingDuration-->
   <p id="getAudioMixingDuration">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getAudioMixingDuration() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getAudioMixingDuration() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getAudioMixingDuration(): number</codeblock>
   </p>
   
   <!--getAudioMixingCurrentPosition-->
   <p id="getAudioMixingCurrentPosition">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getAudioMixingCurrentPosition() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getAudioMixingCurrentPosition() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getAudioMixingCurrentPosition(): number</codeblock>
   </p>
   
   <!--setAudioMixingPosition-->
   <p id="setAudioMixingPosition">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setAudioMixingPosition(int pos /*in ms*/) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setAudioMixingPosition(int pos /*in ms*/) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setAudioMixingPosition(pos: number): number</codeblock>
   </p>
   
   <!--getEffectsVolume-->
   <p id="getEffectsVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getEffectsVolume() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getEffectsVolume() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getEffectsVolume(): number</codeblock>
   </p>
   
   <!--setEffectsVolume-->
   <p id="setEffectsVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setEffectsVolume(int volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setEffectsVolume(int volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setEffectsVolume(volume: number): number</codeblock>
   </p>
   
   <!--setVolumeOfEffect-->
   <p id="setVolumeOfEffect">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setVolumeOfEffect(int soundId, int volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setVolumeOfEffect(int soundId, int volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setVolumeOfEffect(soundId: number, volume: number): number</codeblock>
   </p>
   
   <!--playEffect1-->
@@ -714,107 +852,135 @@
   
   <!--playEffect2-->
   <p id="playEffect2">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int playEffect(int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish = false) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int playEffect(int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish = false) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">playEffect(
+          soundId: number,
+          filePath: string,
+          loopCount: number,
+          pitch: number,
+          pan: number,
+          gain: number,
+          publish: number
+          ): number</codeblock>
   </p>
   
   <!--stopEffect-->
   <p id="stopEffect">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopEffect(int soundId) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopEffect(int soundId) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopEffect(soundId: number): number</codeblock>
   </p>
   
   <!--stopAllEffects-->
   <p id="stopAllEffects">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopAllEffects() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopAllEffects() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopAllEffects(): number</codeblock>
   </p>
   
   <!--preloadEffect-->
   <p id="preloadEffect">     
-      <codeblock props="windows" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>  
+      <codeblock props="windows" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">preloadEffect(soundId: number, filePath: string): number</codeblock>
   </p>
   
   <!--unloadEffect-->
   <p id="unloadEffect">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int unloadEffect(int soundId) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int unloadEffect(int soundId) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">unloadEffect(soundId: number): number</codeblock>
   </p>
   
   <!--pauseEffect-->
   <p id="pauseEffect">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int pauseEffect(int soundId) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int pauseEffect(int soundId) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">pauseEffect(soundId: number): number</codeblock>
   </p>
   
   <!--pauseAllEffects-->
   <p id="pauseAllEffects">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int pauseAllEffects() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int pauseAllEffects() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">pauseAllEffects(): number</codeblock>
   </p>
   
   <!--resumeEffect-->
   <p id="resumeEffect">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int resumeEffect(int soundId) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int resumeEffect(int soundId) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">resumeEffect(soundId: number): number</codeblock>
   </p>
   
   <!--resumeAllEffects-->
   <p id="resumeAllEffects">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int resumeAllEffects() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int resumeAllEffects() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">resumeAllEffects(): number</codeblock>
   </p>
   
   <!--setLocalVoiceChanger-->
   <p id="setLocalVoiceChanger">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceChanger(VOICE_CHANGER_PRESET voiceChanger) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceChanger(VOICE_CHANGER_PRESET voiceChanger) = 0;</codeblock>
+      <codeblock props="electron" outputclass="lanuage-typescript">setLocalVoiceChanger(voiceChanger: VOICE_CHANGER_PRESET): number</codeblock>
   </p>
   
   <!--setLocalVoiceReverbPreset-->
   <p id="setLocalVoiceReverbPreset">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceReverbPreset(AUDIO_REVERB_PRESET reverbPreset) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceReverbPreset(AUDIO_REVERB_PRESET reverbPreset) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setLocalVoiceReverbPreset(reverbPreset: AUDIO_REVERB_PRESET)</codeblock>
   </p>
   
   <!--setLocalVoicePitch-->
   <p id="setLocalVoicePitch">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoicePitch(double pitch) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoicePitch(double pitch) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setLocalVoicePitch(pitch: number): number</codeblock>
   </p>
   
   <!--setLocalVoiceEqualization-->
   <p id="setLocalVoiceEqualization">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceEqualization(AUDIO_EQUALIZATION_BAND_FREQUENCY bandFrequency, int bandGain) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceEqualization(AUDIO_EQUALIZATION_BAND_FREQUENCY bandFrequency, int bandGain) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">etLocalVoiceEqualization(bandFrequency: number, bandGain: number): number</codeblock>
   </p>
   
   <!--setLocalVoiceReverb-->
   <p id="setLocalVoiceReverb">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceReverb(AUDIO_REVERB_TYPE reverbKey, int value) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceReverb(AUDIO_REVERB_TYPE reverbKey, int value) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setLocalVoiceReverb(reverbKey: number, value: number): number</codeblock>
   </p>
   
   <!--setVoiceBeautifierPreset-->
   <p id="setVoiceBeautifierPreset">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setVoiceBeautifierPreset(VOICE_BEAUTIFIER_PRESET preset) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setVoiceBeautifierPreset(VOICE_BEAUTIFIER_PRESET preset) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setVoiceBeautifierPreset(preset: VOICE_BEAUTIFIER_PRESET): number</codeblock>
   </p>
   
   <!--setVoiceBeautifierParameters-->
   <p id="setVoiceBeautifierParameters">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setVoiceBeautifierParameters(VOICE_BEAUTIFIER_PRESET preset, int param1, int param2) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setVoiceBeautifierParameters(VOICE_BEAUTIFIER_PRESET preset, int param1, int param2) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setAudioEffectParameters(preset: AUDIO_EFFECT_PRESET, param1: number, param2: number): number</codeblock>
   </p>
   
   <!--setAudioEffectPreset-->
   <p id="setAudioEffectPreset">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setAudioEffectPreset(AUDIO_EFFECT_PRESET preset) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setAudioEffectPreset(AUDIO_EFFECT_PRESET preset) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript"></codeblock>
   </p>
   
   <!--setAudioEffectParameters-->
   <p id="setAudioEffectParameters">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setAudioEffectParameters(AUDIO_EFFECT_PRESET preset, int param1, int param2) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setAudioEffectParameters(AUDIO_EFFECT_PRESET preset, int param1, int param2) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setAudioEffectParameters(preset: AUDIO_EFFECT_PRESET, param1: number, param2: number): number</codeblock>
   </p>
            
            <!--setVoiceConversionPreset-->
            <p id="setVoiceConversionPreset">       
-       <codeblock props="windows" outputclass="language-cpp">virtual int setVoiceConversionPreset(VOICE_CONVERSION_PRESET preset) = 0;</codeblock>   
+       <codeblock props="windows" outputclass="language-cpp">virtual int setVoiceConversionPreset(VOICE_CONVERSION_PRESET preset) = 0;</codeblock>
     </p>
   
   <!--enableSoundPositionIndication-->
   <p id="enableSoundPositionIndication">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int enableSoundPositionIndication(bool enabled) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int enableSoundPositionIndication(bool enabled) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableSoundPositionIndication(enabled: boolean)</codeblock>
   </p>
   
   <!--setRemoteVoicePosition-->
   <p id="setRemoteVoicePosition">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVoicePosition(uid_t uid, double pan, double gain) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVoicePosition(uid_t uid, double pan, double gain) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setRemoteVoicePosition(uid: number, pan: number, gain: number): number</codeblock>
   </p>
   
   <!--setLiveTranscoding-->
@@ -824,12 +990,14 @@
  unsafe {
  return agorartcnative::setLiveTranscoding(self.native_engine, transcoding);
  }
- }</codeblock>   
+ }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setLiveTranscoding(transcoding: LiveTranscoding): number</codeblock>
   </p>
   
   <!--addPublishStreamUrl-->
   <p id="addPublishStreamUrl">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int addPublishStreamUrl(const char *url, bool transcodingEnabled) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int addPublishStreamUrl(const char *url, bool transcodingEnabled) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">addPublishStreamUrl(url: string, transcodingEnabled: boolean): number</codeblock>
   </p>
   
   <!--removePublishStreamUrl-->
@@ -840,27 +1008,32 @@
  let the_url: &amp;CStr = &amp;CString::new(url).expect("url new failed");
  return agorartcnative::channel_removePublishStreamUrl(self.native_channel, the_url.as_ptr());
  }
- }</codeblock>   
+ }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">removePublishStreamUrl(url: string): number</codeblock>
   </p>
  
   <!--startChannelMediaRelay-->
   <p id="startChannelMediaRelay">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int startChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startChannelMediaRelay(config: ChannelMediaRelayConfiguration): number</codeblock>
   </p>
   
   <!--updateChannelMediaRelay-->
   <p id="updateChannelMediaRelay">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int updateChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int updateChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">updateChannelMediaRelay(config: ChannelMediaRelayConfiguration): number</codeblock>
   </p>
  
   <!--stopChannelMediaRelay-->
   <p id="stopChannelMediaRelay">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopChannelMediaRelay() = 0;</codeblock>  
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopChannelMediaRelay() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopChannelMediaRelay(): number</codeblock>
   </p>
   
   <!--enableAudioVolumeIndication-->
   <p id="enableAudioVolumeIndication">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool report_vad) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool report_vad) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableAudioVolumeIndication(interval: number, smooth: number, report_vad: boolean = false): number</codeblock>
   </p>
   
   <!--enableFaceDetection-->
@@ -895,66 +1068,79 @@
   
   <!--enableDualStreamMode-->
   <p id="enableDualStreamMode">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int enableDualStreamMode(bool enabled) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int enableDualStreamMode(bool enabled) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableDualStreamMode(enabled: boolean): number</codeblock>
   </p>
   
   <!--setRemoteVideoStreamType-->
   <p id="setRemoteVideoStreamType">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t userId, REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>  
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t userId, REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setRemoteVideoStreamType(userId: number, streamType: REMOTE_VIDEO_STREAM_TYPE): number</codeblock>
   </p>
   
   <!--setRemoteDefaultVideoStreamType-->
   <p id="setRemoteDefaultVideoStreamType">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setRemoteDefaultVideoStreamType(streamType: REMOTE_VIDEO_STREAM_TYPE): number</codeblock>
   </p>
   
   <!--setLocalPublishFallbackOption-->
   <p id="setLocalPublishFallbackOption">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalPublishFallbackOption(STREAM_FALLBACK_OPTIONS option) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalPublishFallbackOption(STREAM_FALLBACK_OPTIONS option) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setLocalPublishFallbackOption(option: STREAM_FALLBACK_OPTIONS): number</codeblock>
   </p>
   
   <!--setRemoteSubscribeFallbackOption-->
   <p id="setRemoteSubscribeFallbackOption">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteSubscribeFallbackOption(STREAM_FALLBACK_OPTIONS option) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteSubscribeFallbackOption(STREAM_FALLBACK_OPTIONS option) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setRemoteSubscribeFallbackOption(option: STREAM_FALLBACK_OPTIONS): number</codeblock>
   </p>
   
   <!--setRemoteUserPriority-->
   <p id="setRemoteUserPriority">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteUserPriority(uid_t uid, PRIORITY_TYPE userPriority) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteUserPriority(uid_t uid, PRIORITY_TYPE userPriority) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setRemoteUserPriority(uid: number, userPriority: PRIORITY_TYPE)</codeblock>
   </p>
   
   <!--startEchoTest1-->
   <p id="startEchoTest1">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startEchoTest() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int startEchoTest() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startEchoTest(): number</codeblock>
   </p>
   
   <!--startEchoTest2-->
   <p id="startEchoTest2">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startEchoTest(int intervalInSeconds) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int startEchoTest(int intervalInSeconds) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startEchoTestWithInterval(intervalInSeconds: number): number</codeblock>
   </p>
   
   <!--stopEchoTest-->
   <p id="stopEchoTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopEchoTest() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopEchoTest() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopEchoTest(): number</codeblock>
   </p>
   <!--enableLastmileTest-->
   <p id="enableLastmileTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int enableLastmileTest() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int enableLastmileTest() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableLastmileTest(): number</codeblock>
   </p>
   
   <!--disableLastmileTest-->
   <p id="disableLastmileTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int disableLastmileTest() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int disableLastmileTest() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">disableLastmileTest(): number</codeblock>
   </p>
   
   <!--startLastmileProbeTest-->
   <p id="startLastmileProbeTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startLastmileProbeTest(const LastmileProbeConfig&amp; config) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int startLastmileProbeTest(const LastmileProbeConfig&amp; config) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startLastmileProbeTest(config: LastmileProbeConfig): number</codeblock>
   </p>
   
   <!--stopLastmileProbeTest-->
   <p id="stopLastmileProbeTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopLastmileProbeTest() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopLastmileProbeTest() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopLastmileProbeTest(): number</codeblock>
   </p>
   
   <!--setVideoSource-->
@@ -1006,12 +1192,13 @@
   
   <!--setRecordingAudioFrameParameters-->
   <p id="setRecordingAudioFrameParameters">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setRecordingAudioFrameParameters(sampleRate: number, channel: 1 | 2, mode: 0 | 1 | 2, samplesPerCall: number): number</codeblock>
   </p>
   
   <!--setPlaybackAudioFrameParameters-->
   <p id="setPlaybackAudioFrameParameters">
-      <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall) = 0;</codeblock>
   </p>
   
   <!--setMixedAudioFrameParameters-->
@@ -1030,27 +1217,32 @@
   </p>
   <!--registerMediaMetadataObserver-->
   <p id="registerMediaMetadataObserver">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">registerMediaMetadataObserver(): number</codeblock>
   </p>
   
   <!--addVideoWatermark1-->
   <p id="addVideoWatermark1">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int addVideoWatermark(const RtcImage&amp; watermark) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int addVideoWatermark(const RtcImage&amp; watermark) = 0;</codeblock>
+      
   </p>
   
   <!--addVideoWatermark2-->
   <p id="addVideoWatermark2">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int addVideoWatermark(const char* watermarkUrl, const WatermarkOptions&amp; options) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int addVideoWatermark(const char* watermarkUrl, const WatermarkOptions&amp; options) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">addVideoWatermark(watermarkUrl: string, options: WatermarkOptions): number</codeblock>
   </p>
   
   <!--clearVideoWatermarks-->
   <p id="clearVideoWatermarks">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int clearVideoWatermarks() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int clearVideoWatermarks() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">clearVideoWatermarks(): number</codeblock>
   </p>
   
   <!--enableEncryption-->
   <p id="enableEncryption">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int enableEncryption(bool enabled, const EncryptionConfig&amp; config) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int enableEncryption(bool enabled, const EncryptionConfig&amp; config) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableEncryption(enabled: boolean, config: EncryptionConfig): number</codeblock>
   </p>
   
   <!--registerPacketObserver-->
@@ -1081,12 +1273,14 @@
   
   <!--setEncryptionMode-->
   <p id="setEncryptionMode">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionMode(const char* encryptionMode) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionMode(const char* encryptionMode) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setEncryptionMode(encryptionMode: string): number</codeblock>
   </p>
   
   <!--setEncryptionSecret-->
   <p id="setEncryptionSecret">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionSecret(const char* secret) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionSecret(const char* secret) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setEncryptionSecret(secret: string): number</codeblock>
   </p>
   
   <!--startAudioRecording1-->
@@ -1096,22 +1290,26 @@
   
   <!--startAudioRecording2-->
   <p id="startAudioRecording2">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, int sampleRate, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>  
+      <codeblock props="windows" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, int sampleRate, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startAudioRecording(filePath: string, sampleRate: number, quality: number): number</codeblock>
   </p>
   
   <!--stopAudioRecording-->
   <p id="stopAudioRecording">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopAudioRecording() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopAudioRecording() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopAudioRecording(): number</codeblock>
   </p>
   
   <!--addInjectStreamUrl-->
   <p id="addInjectStreamUrl">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int addInjectStreamUrl(const char* url, const InjectStreamConfig&amp; config) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int addInjectStreamUrl(const char* url, const InjectStreamConfig&amp; config) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">addInjectStreamUrl(url: string, config: InjectStreamConfig): number</codeblock>
   </p>
   
   <!--removeInjectStreamUrl-->
   <p id="removeInjectStreamUrl">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int removeInjectStreamUrl(const char* url) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int removeInjectStreamUrl(const char* url) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">removeInjectStreamUrl(url: string): number</codeblock>
   </p>
   
   <!--switchCamera-->
@@ -1374,32 +1572,38 @@
   
   <!--createDataStream1-->
   <p id="createDataStream1">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int createDataStream(int* streamId, bool reliable, bool ordered) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int createDataStream(int* streamId, bool reliable, bool ordered) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">createDataStream(reliable: boolean, ordered: boolean): number</codeblock>
   </p>
   
   <!--createDataStream2-->
   <p id="createDataStream2">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int createDataStream(int* streamId, DataStreamConfig&amp; config) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int createDataStream(int* streamId, DataStreamConfig&amp; config) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript"></codeblock>
   </p>
   
   <!--sendStreamMessage-->
   <p id="sendStreamMessage">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int sendStreamMessage(int streamId, const char* data, size_t length) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int sendStreamMessage(int streamId, const char* data, size_t length) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">sendStreamMessage(streamId: number, msg: string): number</codeblock>
   </p>
   
   <!--setLogFile-->
  <p id="setLogFile">       
-     <codeblock props="windows" outputclass="language-cpp">virtual int setLogFile(const char* filePath) = 0;</codeblock>   
+     <codeblock props="windows" outputclass="language-cpp">virtual int setLogFile(const char* filePath) = 0;</codeblock>
+     <codeblock props="electron" outputclass="language-typescript">setLogFile(filePath: string): number</codeblock>
  </p>
   
   <!--setLogFilter-->
   <p id="setLogFilter">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setLogFilter(unsigned int filter) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setLogFilter(unsigned int filter) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setLogFilter(filter: number): number</codeblock>
   </p>
   
   <!--setLogFileSize-->
   <p id="setLogFileSize">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setLogFileSize(unsigned int fileSizeInKBytes) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setLogFileSize(unsigned int fileSizeInKBytes) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setLogFileSize(fileSizeInKBytes: number): number</codeblock>
   </p>
   
   <!--uploadLogFile-->
@@ -1409,7 +1613,11 @@
   
   <!--enableLoopbackRecording-->
   <p id="enableLoopbackRecording">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableLoopbackRecording(
+          enabled = false,
+          deviceName: string | null = null
+          ): number</codeblock>
   </p>
   
   <!--setAudioSessionOperationRestriction-->
@@ -1424,12 +1632,14 @@
   
   <!--setCameraCapturerConfiguration-->
   <p id="setCameraCapturerConfiguration">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setCameraCapturerConfiguration(const CameraCapturerConfiguration&amp; config) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setCameraCapturerConfiguration(const CameraCapturerConfiguration&amp; config) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setCameraCapturerConfiguration(config: CameraCapturerConfiguration): number</codeblock>
   </p>
 
   <!--complain-->
   <p id="complain">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int complain(const char* callId, const char* description) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int complain(const char* callId, const char* description) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">complain(callId: string, description: string): number</codeblock>
   </p>
 
   <!--enableDeepLearningDenoise-->
@@ -1439,17 +1649,20 @@
 
   <!--getCallId-->
   <p id="getCallId">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getCallId(agora::util::AString&amp; callId) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getCallId(agora::util::AString&amp; callId) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getCallId(): string</codeblock>
   </p>
 
   <!--getErrorDescription-->
   <p id="getErrorDescription">       
-      <codeblock props="windows" outputclass="language-cpp">virtual const char* getErrorDescription(int code) = 0;</codeblock>  
+      <codeblock props="windows" outputclass="language-cpp">virtual const char* getErrorDescription(int code) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getErrorDescription(errorCode: number): string</codeblock>
   </p>
 
   <!--getVersion-->
   <p id="getVersion">       
-      <codeblock props="windows" outputclass="language-cpp">virtual const char* getVersion(int* build) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual const char* getVersion(int* build) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getVersion(): string</codeblock>
   </p>
 
   <!--queryInterface-->
@@ -1459,17 +1672,20 @@
 
   <!--rate-->
   <p id="rate">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int rate(const char* callId, int rating, const char* description) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int rate(const char* callId, int rating, const char* description) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">rate(callId: string, rating: number, description: string): number</codeblock>
   </p>
 
   <!--sendCustomReportMessage-->
   <p id="sendCustomReportMessage">      
-      <codeblock props="windows" outputclass="language-cpp">virtual int sendCustomReportMessage(const char *id, const char* category, const char* event, const char* label, int value) = 0;</codeblock>      
+      <codeblock props="windows" outputclass="language-cpp">virtual int sendCustomReportMessage(const char *id, const char* category, const char* event, const char* label, int value) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">sendCustomReportMessage(id: string, category: string, event: string, label: string, value: number): number</codeblock>      
   </p>
   
   <!--setCloudProxy-->
   <p id="setCloudProxy">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setCloudProxy(type: CLOUD_PROXY_TYPE): number</codeblock>
   </p>
   
   <!--getNativeHandle-->
@@ -1510,7 +1726,8 @@
       CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason) {
         (void)state;
         (void)reason;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript"></codeblock>
   </p>
   
   <!--onJoinChannelSuccess-->
@@ -2632,7 +2849,14 @@
     unsigned int volume; 
     unsigned int vad;
     const char * channelId;
-};  </codeblock>   
+};  </codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface AudioVolumeInfo
+          {
+          uid: number,
+          volume: number
+          vad: number
+          channelId: string
+          }</codeblock>
   </p>  
 
   <!--BeautyOptions-->  
@@ -2661,7 +2885,13 @@ BeautyOptions()
     smoothnessLevel(0),
     rednessLevel(0),
     lighteningContrastLevel(LIGHTENING_CONTRAST_NORMAL) {}
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface BeautyOptions {
+          lighteningContrastLevel: LIGHTENING_CONTRAST_LEVEL;
+          lighteningLevel: number;
+          smoothnessLevel: number;
+          rednessLevel: number;
+          }</codeblock>
   </p>   
 
   <!--CameraCapturerConfiguration-->  
@@ -2685,7 +2915,10 @@ BeautyOptions()
         ,captureWidth(width)
         ,captureHeight(height)
         {}
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface CameraCapturerConfiguration {
+          preference: CAPTURER_OUTPUT_PREFERENCE;
+          }</codeblock>
   </p>  
 
 
@@ -2695,7 +2928,12 @@ BeautyOptions()
 	const char* channelName;
 	const char* token;
 	uid_t uid;
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface ChannelMediaInfo {
+          channelName: string;
+          token: string;
+          uid: number;
+          }</codeblock>
   </p>  
   <!--ChannelMediaOptions-->  
   <p id="ChannelMediaOptions">       
@@ -2706,7 +2944,11 @@ BeautyOptions()
     : autoSubscribeAudio(true)
     , autoSubscribeVideo(true)
     {}
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface ChannelMediaOptions {
+          autoSubscribeAudio: boolean;
+          autoSubscribeVideo: boolean;
+          }</codeblock>
   </p>    
   <!--ChannelMediaRelayConfiguration-->  
   <p id="ChannelMediaRelayConfiguration">       
@@ -2720,7 +2962,11 @@ BeautyOptions()
 			, destInfos(nullptr)
 			, destCount(0)
 	{}
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface ChannelMediaRelayConfiguration {
+          srcInfo: ChannelMediaInfo;
+          destInfos: [ChannelMediaInfo];
+          }</codeblock>
   </p>    
   <!--ClientRoleOptions-->  
   <p id="ClientRoleOptions">       
@@ -2729,7 +2975,10 @@ BeautyOptions()
     AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel;
     ClientRoleOptions()
         : audienceLatencyLevel(AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY) {}
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface ClientRoleOptions {
+          audienceLatencyLevel: AUDIENCE_LATENCY_LEVEL_TYPE;
+          }</codeblock>
   </p>  
   <!--DataStreamConfig-->  
   <p id="DataStreamConfig">       
@@ -2748,7 +2997,11 @@ BeautyOptions()
         encryptionMode = AES_128_XTS;
         encryptionKey = nullptr;
     }
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface EncryptionConfig {
+          encryptionMode: ENCRYPTION_MODE;
+          encryptionKey: string;
+          }</codeblock>
   </p>    
   <!--InjectStreamConfig-->  
   <p id="InjectStreamConfig">       
@@ -2772,7 +3025,17 @@ BeautyOptions()
         , audioBitrate(48)
         , audioChannels(1)
     {}
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface InjectStreamConfig {
+          width: number;
+          height: number;
+          videoBitrate: number;
+          videoFramerate: number;
+          videoGop: number;
+          audioSampleRate: AUDIO_SAMPLE_RATE_TYPE;
+          audioBitrate: number;
+          audioChannels: number;
+          }</codeblock>
   </p>   
   <!--LastmileProbeConfig-->  
   <p id="LastmileProbeConfig">       
@@ -2781,7 +3044,13 @@ BeautyOptions()
     bool probeDownlink;
     unsigned int expectedUplinkBitrate;
     unsigned int expectedDownlinkBitrate;
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface LastmileProbeConfig {
+          probeUplink: boolean;
+          probeDownlink: boolean;
+          expectedUplinkBitrate: number;
+          expectedDownlinkBitrate: number;
+          }</codeblock>
   </p>
   <!--LastmileProbeOneWayResult-->  
   <p id="LastmileProbeOneWayResult">       
@@ -2789,7 +3058,12 @@ BeautyOptions()
     unsigned int packetLossRate;
     unsigned int jitter;
     unsigned int availableBandwidth;
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface LastmileProbeOneWayResult {
+          packetLossRate: number;
+          jitter: number;
+          availableBandwidth: number;
+          }</codeblock>
   </p>   
   <!--LastmileProbeResult-->  
   <p id="LastmileProbeResult">       
@@ -2798,7 +3072,13 @@ BeautyOptions()
     LastmileProbeOneWayResult uplinkReport;
     LastmileProbeOneWayResult downlinkReport;
     unsigned int rtt;
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface LastmileProbeResult {
+          state: LASTMILE_PROBE_RESULT_STATE;
+          uplinkReport: LastmileProbeOneWayResult;
+          downlinkReport: LastmileProbeOneWayResult;
+          rtt: number;
+          }</codeblock>
   </p>     
   <!--LiveStreamAdvancedFeature-->  
   <p id="LiveStreamAdvancedFeature">       
@@ -2872,6 +3152,25 @@ BeautyOptions()
     pub audioChannels: ::std::os::raw::c_int,
     pub audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE,
 }</codeblock>
+          <codeblock props="electron" outputclass="language-typescript">export interface LiveTranscoding {
+              width: number;
+              height: number;
+              videoBitrate: number;
+              videoFrameRate: number;
+              lowLatency: boolean;
+              videoGop: number;
+              videoCodecProfile: VIDEO_CODEC_PROFILE_TYPE;
+              videoCodecType: VIDEO_CODEC_TYPE_FOR_STREAM;
+              backgroundColor: number;
+              userCount: number;
+              audioSampleRate: number;
+              audioChannels: number;
+              audioBitrate: number;
+              transcodingExtraInfo: string;
+              watermark: RtcImage;
+              background: RtcImage;
+              transcodingUsers: Array&lt;TranscodingUser&gt;
+              }</codeblock>
       </p>
   
   <!--LocalAudioStats-->  
@@ -2882,7 +3181,13 @@ BeautyOptions()
     int sentSampleRate;
     int sentBitrate;
     unsigned short txPacketLossRate;
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface LocalAudioStats {
+          numChannels: number;
+          sentSampleRate: number;
+          sentBitrate: number;
+          txPacketLossRate: number;
+          }</codeblock>
   </p>     
 
   <!--LocalVideoStats-->  
@@ -2904,7 +3209,24 @@ BeautyOptions()
     unsigned short txPacketLossRate;
     int captureFrameRate;
     CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel;
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface LocalVideoStats {
+          sentBitrate: number;
+          sentFrameRate: number;
+          encoderOutputFrameRate: number;
+          rendererOutputFrameRate: number;
+          targetBitrate: number;
+          targetFrameRate: number;
+          qualityAdaptIndication: QUALITY_ADAPT_INDICATION;
+          encodedBitrate: number;
+          encodedFrameWidth: number;
+          encodedFrameHeight: number;
+          encodedFrameCount: number;
+          codecType: VIDEO_CODEC_TYPE;
+          txPacketLossRate: number;
+          captureFrameRate: number;   
+          captureBrightnessLevel: CAPTURE_BRIGHTNESS_LEVEL_TYPE;
+          }</codeblock>
   </p>   
 
   <!--LogConfig-->  
@@ -2919,7 +3241,12 @@ BeautyOptions()
     ,fileSize(-1)
     ,level(LOG_LEVEL::LOG_LEVEL_INFO)
     {}
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface LogConfig {
+          filePath: string,
+          fileSize: number,
+          level: LOG_LEVEL
+          }</codeblock>
   </p>   
 
 <!-- Metadata -->
@@ -2931,6 +3258,12 @@ BeautyOptions()
     unsigned char *buffer;
     long long timeStampMs;
 };</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface Metadata {
+          uid: number;
+          size: number;
+          buffer: string;
+          timeStampMs: number;
+          }</codeblock>
   </p>
   
   <!--Packet--> 
@@ -2952,7 +3285,13 @@ BeautyOptions()
 
     Rect(): top(0), left(0), bottom(0), right(0) {}
     Rect(int t, int l, int b, int r): top(t), left(l), bottom(b), right(r) {}
-} Rect;</codeblock>   
+} Rect;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface Rect {
+          top: number;
+          left: number;
+          bottom: number;
+          right: number;
+          }</codeblock>
   </p>   
 
   <!--Rectangle-->  
@@ -2966,7 +3305,13 @@ BeautyOptions()
 
     Rectangle(): x(0), y(0), width(0), height(0) {}
     Rectangle(int xx, int yy, int ww, int hh): x(xx), y(yy), width(ww), height(hh) {}
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface Rectangle {
+          x: number;
+          y: number;
+          width: number;
+          height: number;
+          }</codeblock>
   </p>   
 
   <!--RemoteAudioStats-->  
@@ -2987,7 +3332,21 @@ BeautyOptions()
     int publishDuration;
     int qoeQuality;
     int qualityChangedReason;
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface RemoteAudioStats {
+          uid: number;
+          quality: number;
+          networkTransportDelay: number;
+          jitterBufferDelay: number;
+          audioLossRate: number;
+          numChannels: number;
+          receivedSampleRate: number;
+          receivedBitrate: number;
+          totalFrozenTime: number;
+          frozenRate: number;
+          totalActiveTime: number;
+          publishDuration: number;
+          }</codeblock>
   </p>   
 
   <!--RemoteVideoStats-->  
@@ -3007,7 +3366,22 @@ BeautyOptions()
     int frozenRate;
     int totalActiveTime;
     int publishDuration;
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface RemoteVideoStats {
+          uid: number;
+          delay: number;
+          width: number;
+          height: number;
+          receivedBitrate: number;
+          decoderOutputFrameRate: number;
+          rendererOutputFrameRate: number;
+          rxStreamType: REMOTE_VIDEO_STREAM_TYPE;
+          totalFrozenTime: number;
+          frozenRate: number;
+          packetLossRate: number;
+          totalActiveTime: number;
+          publishDuration: number;
+          }</codeblock>
   </p>     
   
   <!--RtcEngineConfig-->  
@@ -3025,7 +3399,12 @@ BeautyOptions()
     ,context(NULL)
     ,areaCode(rtc::AREA_CODE_GLOB)
     {}
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface RtcEngineContext {
+          appId: string,
+          areaCode: AREA_CODE,
+          logConfig: LogConfig
+          }</codeblock>
   </p>   
   
   <!--RtcImage-->  
@@ -3051,7 +3430,14 @@ BeautyOptions()
     pub y: ::std::os::raw::c_int,
     pub width: ::std::os::raw::c_int,
     pub height: ::std::os::raw::c_int,
-}</codeblock>      
+}</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface RtcImage {
+          x: number,
+          y: number,
+          width: number,
+          height: number,
+          url: string
+          }</codeblock>      
   </p>   
 
 
@@ -3107,7 +3493,32 @@ BeautyOptions()
     , memoryAppUsageRatio(0)
     , memoryTotalUsageRatio(0)
     , memoryAppUsageInKbytes(0) {}
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface RtcStats {
+          duration: number;
+          txBytes: number;
+          rxBytes: number;
+          txKBitRate: number;
+          rxKBitRate: number;
+          rxAudioKBitRate: number;
+          txAudioKBitRate: number;
+          rxVideoKBitRate: number;
+          txVideoKBitRate: number;
+          rxAudioKBytes: number;
+          txAudioKBytes: number;
+          rxVideoKBytes: number;
+          txVideoKBytes: number;
+          lastmileDelay: number;
+          txPacketLossRate: number;
+          rxPacketLossRate: number;
+          userCount: number;
+          cpuAppUsage: number;
+          cpuTotalUsage: number;
+          gatewayRtt: number;
+          memoryAppUsageRatio: number;
+          memoryTotalUsageRatio: number;
+          memoryAppUsageInKbytes: number;
+          }</codeblock>
   </p>   
   
   <!--ScreenCaptureParameters-->  
@@ -3125,7 +3536,17 @@ BeautyOptions()
     ScreenCaptureParameters() : dimensions(1920, 1080), frameRate(5), bitrate(STANDARD_BITRATE), captureMouseCursor(true), windowFocus(false), excludeWindowList(NULL), excludeWindowCount(0) {}
     ScreenCaptureParameters(const VideoDimensions&amp; d, int f, int b, bool c, bool focus, view_t *ex = NULL, int cnt = 0) : dimensions(d), frameRate(f), bitrate(b), captureMouseCursor(c), windowFocus(focus), excludeWindowList(ex), excludeWindowCount(cnt) {}
     ScreenCaptureParameters(int width, int height, int f, int b, bool c, bool focus, view_t *ex = NULL, int cnt = 0) : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(c), windowFocus(focus), excludeWindowList(ex), excludeWindowCount(cnt) {}
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface ScreenCaptureParameters {
+          width: number; // Width (pixels) of the video
+          height: number; // Height (pixels) of the video
+          frameRate: number; // The frame rate (fps) of the shared region. The default value is 5. We do not recommend setting this to a value greater than 15.
+          bitrate: number; //  The bitrate (Kbps) of the shared region. The default value is 0 (the SDK works out a bitrate according to the dimensions of the current screen).
+          captureMouseCursor: boolean;
+          windowFocus: boolean;
+          excludeWindowList: Array&lt;number&gt;;
+          excludeWindowCount: number;
+          }</codeblock>
   </p>    
 
   <!-- TranscodingUser -->
@@ -3160,6 +3581,16 @@ BeautyOptions()
     pub alpha: f64,
     pub audioChannel: ::std::os::raw::c_int,
 }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface TranscodingUser {
+          uid: number;
+          x: number;
+          y: number;
+          width: number;
+          height: number;
+          zOrder: number;
+          alpha: number;
+          audioChannel: number;
+          }</codeblock>
   </p>
   
   <!--UserInfo-->  
@@ -3171,7 +3602,11 @@ BeautyOptions()
       : uid(0) {
     userAccount[0] = '\0';
   }
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface UserInfo {
+          uid: number;
+          userAccount: string;
+          }</codeblock>
   </p>   
   
   
@@ -3259,6 +3694,10 @@ BeautyOptions()
     pub width: ::std::os::raw::c_int,
     pub height: ::std::os::raw::c_int,
 }</codeblock>
+          <codeblock props="electron" outputclass="language-typescript">export interface VideoDimensions {
+              width: number,
+              height: number
+              }</codeblock>
       </p>
   
   <!-- VideoEncoderConfiguration -->
@@ -3309,6 +3748,16 @@ BeautyOptions()
     pub degradationPreference: DEGRADATION_PREFERENCE,
     pub mirrorMode: VIDEO_MIRROR_MODE_TYPE,
 }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface VideoEncoderConfiguration {
+          dimensions: VideoDimensions;
+          frameRate: FRAME_RATE;
+          minFrameRate: number;
+          bitrate: number;
+          minBitrate: number;
+          orientationMode: ORIENTATION_MODE;
+          degradationPreference: DEGRADATION_PREFERENCE;
+          mirrorMode: VIDEO_MIRROR_MODE_TYPE;
+          }</codeblock>
    </p>
    <!--VideoFrame-->
    <p id="VideoFrame">
@@ -3340,7 +3789,12 @@ BeautyOptions()
         , positionInLandscapeMode(0, 0, 0, 0)
         , positionInPortraitMode(0, 0, 0, 0)
     {}
-} WatermarkOptions;</codeblock>   
+} WatermarkOptions;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">export interface WatermarkOptions {
+          visibleInPreview: boolean,
+          positionInPortraitMode: Rectangle,
+          positionInLandscapeMode: Rectangle
+          }</codeblock>
   </p>   
   
   <!--ExternalVideoFrame-->  
