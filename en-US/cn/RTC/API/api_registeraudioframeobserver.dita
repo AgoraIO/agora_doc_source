@@ -16,7 +16,7 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This method is used to register the voice observer object, that is, register the callback. When the engine needs to give<xref keyref="onRecordAudioFrame"/> or<xref keyref="onPlaybackAudioFrame"/> callback, you need to use this method to register the callback.</p>
+   <p>Call this method to register an audio frame observer object (register a callback). When you need the SDK to trigger <xref keyref="onRecordAudioFrame"/> or <xref keyref="onPlaybackAudioFrame"/> callback, you need to use this method to register the callbacks.</p>
    <note outputclass="note">Ensure that you call this method before joining a channel.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
@@ -24,7 +24,7 @@
        <plentry>
   <pt>observer</pt>
   <pd>
-      <p>Interface object instance. See <xref keyref="IAudioFrameObserver"/>. If it is passed in<ph keyref="NULL"/>, it means to cancel the registration. We recommend calling after receiving<xref keyref="onLeaveChannel"/> to release the voice observer object.</p>
+      <p>The observer object instance. See <xref keyref="IAudioFrameObserver"/>. Set the value as <ph keyref="NULL"/> to release the observer object. Agora recommends releasing the observer object after receiving the <xref keyref="onLeaveChannel"/> callback.</p>
   </pd>
        </plentry>
    </parml>
