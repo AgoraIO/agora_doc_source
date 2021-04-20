@@ -1,0 +1,89 @@
+
+ifdef::en_US[]
+
+= Deploy an {TOKEN} server
+
+{TOKEN}s generators create the {TOKEN}s requested by your {CLIENT} to enable secure access to {AGORA_BACKEND}. To serve these {TOKEN}s you deploy a generator in your security infrastructure.
+
+In order to show the authentication workflow, this section shows how to deploy and run a demo {TOKEN} generator on a server using Heroku:
+
+. In your browser, login to {CONSOLE} at https://console.agora.io/.
+
+. Click Edit on the project to use.
++
+This opens the _Basic Info_ page which contains the information you need for the {TOKEN}s generator.
+
+. In another tab in your browser, navigate to https://heroku.com/deploy?template=https://github.com/AgoraIO-Community/TokenServer-nodejs.
+
+. In _Create New App_ add the information for the Heroku deployment from the _Basic Info_ for your Agora project.
+
+. In _Create New App_, add a staging pipeline and click *Deploy App*.
++
+Take the weight off and enjoy your beverage of choice, the deployment takes a few minutes. When the deployment is completed, Heroku displays **Your app was successfully deployed**.
+
+.  Click **Manage App**.
++
+You see the dashboard for your Heroku app.
+
+. Click **Open App**.
++
+Your browser makes a GET call to <heroku url>. For example: https://tokens-and-web-sdk.herokuapp.com/. There are no return parameters.
+
+. Test {TOKEN} generation.
++
+In the address bar of your browser, add _access_token?channel=test&uid=1234_ to *<heroku url>*. For example: _https://<heroku url>/access_token?channel=test&uid=1234_.
+
+The {TOKEN} generator running in the Heroku cloud returns a valid access token. For example
+
+[source,json]
+----
+{"token":"006efb1df952a134400b1cbadc3409deIABAOVYZgbobti4I8MAzjp8xMarleyVDzjIR+Dsings+f9ij4OObgoodDILHA/l6YAEAASONGSAA"}
+----
+
+You have a working {TOKEN} server. However, this is a sample app running on an independent provider. To create a production grade {TOKEN} server, use the sample code in https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey to integrate an {TOKEN} generator into your infrastructure.
+
+
+endif::en_US[]
+
+ifdef::cn[]
+
+{TOKEN}的生成器创建您的{CLIENT}应用程序请求的{TOKEN}，以实现对{AGORA_BACKEND}的安全访问。为了服务于这些{TOKEN}，您需要在安全基础架构中部署一个生成器。
+
+为了显示身份验证工作流，本节介绍如何使用Heroku在服务器上部署和运行演示{TOKEN}演示程序：
+
+。在浏览器中，通过https://console.agora.io/登录到{CONSOLE}。
+
+。在要使用的项目上单击“编辑”。
++
+这将打开_Basic Info_页面，其中包含{TOKEN} s生成器所需的信息。
+
+。在浏览器的另一个标签中，导航到https://heroku.com/deploy?template=https://github.com/AgoraIO-Community/TokenServer-nodejs。
+
+。在_Create New App_中，从_Basic Info_中为您的Agora项目添加Heroku部署的信息。
+
+。在_Create New App_中，添加一个暂存管道，然后单击* Deploy App *。
++
+减轻体重，享受您选择的饮料，部署过程需要几分钟。部署完成后，Heroku将显示“您的应用已成功部署**”。
+
+。点击**管理应用**。
++
+您会看到Heroku应用程序的仪表板。
+
+。点击“打开应用”。
++
+您的浏览器对<heroku url>进行GET调用。例如：https：//tokens-and-web-sdk.herokuapp.com/。没有返回参数。
+
+。测试{TOKEN}的生成。
++
+在浏览器的地址栏中，将_access_token？channel = test＆uid = 1234_添加到* <heroku url> *。例如：_https：// <heroku url> / access_token？channel = test＆uid = 1234_。
+
+在Heroku云中运行的{TOKEN}生成器返回有效的访问令牌。例如
+
+[来源，json]
+-
+{“令牌”：“ 006efb1df952a134400b1cbadc3409deIABAOVYZgbobti4I8MAzjp8xMarleyVDzjIR + Dings + f9ij4OObgoodDILHA / l6YAEAASONGSAA”
+-
+
+您有一个运行正常的{TOKEN}服务器。但是，这是在独立提供程序上运行的示例应用程序。要创建生产级别的{TOKEN}服务器，请使用https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey中的示例代码将{TOKEN}生成器集成到您的基础架构中。
+
+endif::cn[]

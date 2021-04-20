@@ -5,22 +5,476 @@ include::{rootdir}/shared/.variables.adoc[]
 
 
 [#get_started_with_video_call_for_web]
-= Get started with {VIDEO_WEB}
+= Get started with the {VIDEO_WEB_NG}
 
+{COMPANY} {VIDEO_WEB_NG} makes it easy to embed real-time video chat into web, mobile and native apps. The next generation SDK enables you to develop rapidly and easily enhance your social, work, education and IoT apps with face to face interaction.
 
-
+This section shows you the minimum code you need to add a video call into your Web app.
 
 == Understand the tech
 
+To make any {COMPANY} call, your {CLIENT} app securely joins a channel using credentials in an {TOKEN}.
+
+image::agora_basic_workflow.svg[]
+
+In a test or production environment  {CLIENT} retrieves  {TOKEN}s from a server in your security infrastructure. For rapid testing you generate a token in {CONSOLE} and add these values to your {CLIENT} interface.
+
+Once your {CLIENT} retrieves an {TOKEN}, you use an `AgoraRTCClient` instance to enable local and remote users to join and leave a Video Call channel that is served and managed by {AGORA_BACKEND}.
+
+The workflow to join a {VIDEO} is:
+
+image::add-video-calling-in-your-web-app-using-agora-web-ng-sdk.png[]
+
+This section demonstrates the {COMPANY} call workflow in a barebones {CLIENT} using {VIDEO_WEB_NG}.
+
+include::{rootdir}/shared/.prerequisites.adoc[]
 
 
-== Prerequisites
+== Implement an {CLIENT} for {VIDEO}
+
+A standard {COMPANY} Web app has the following components:
+
+* JavaScript - programmable interface with {VIDEO_WEB_URL}/iagorartcclient.html[AgoraRTCClient] to implement the app logic
+* HTML - visual interface with the user
+* CSS - style the HTML interface
+
+To create a barebones {CLIENT}, in a directory, <app_dir>, create the following files:
+
+* _basicVideoCall.js_, with the following code:
++
+[source, javascript]
+----
+
+/*
+ *  These procedures use Agora Video Call SDK for Web to enable local and remote
+ *  users to join and leave a Video Call channel managed by Agora Platform.
+ */
+
+/*
+ *  Create an {@link https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartcclient.html|AgoraRTCClient} instance.
+ *
+ * @param {string} mode - The {@link https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/clientconfig.html#mode| streaming algorithm} used by Agora SDK.
+ * @param  {string} codec - The {@link https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/clientconfig.html#codec| client codec} used by the browser.
+ */
+var client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+
+/*
+ * Clear the video and audio tracks used by `client` on initiation.
+ */
+var localTracks = {
+  videoTrack: null,
+  audioTrack: null
+};
+
+/*
+ * On initiation no users are connected.
+ */
+var remoteUsers = {};
+
+/*
+ * On initiation. `client` is not attached to any project or channel for any specific user.
+ */
+var options = {
+  appid: null,
+  channel: null,
+  uid: null,
+  token: null
+};
+
+/*
+ * When this page is called with parameters in the URL, this procedure
+ * attempts to join a Video Call channel using those parameters.
+ */
+$(() => {
+  var urlParams = new URL(location.href).searchParams;
+  options.appid = urlParams.get("appid");
+  options.channel = urlParams.get("channel");
+  options.token = urlParams.get("token");
+  if (options.appid && options.channel) {
+    $("#appid").val(options.appid);
+    $("#token").val(options.token);
+    $("#channel").val(options.channel);
+    $("#join-form").submit();
+  }
+})
+
+/*
+ * When a user clicks Join or Leave in the HTML form, this procedure gathers the information
+ * entered in the form and calls join asynchronously. The UI is updated to match the options entered
+ * by the user.
+ */
+$("#join-form").submit(async function (e) {
+  e.preventDefault();
+  $("#join").attr("disabled", true);
+  try {
+    options.appid = $("#appid").val();
+    options.token = $("#token").val();
+    options.channel = $("#channel").val();
+    await join();
+    if(options.token) {
+      $("#success-alert-with-token").css("display", "block");
+    } else {
+      $("#success-alert a").attr("href", `index.html?appid=${options.appid}&channel=${options.channel}&token=${options.token}`);
+      $("#success-alert").css("display", "block");
+    }
+  } catch (error) {
+    console.error(error);
+  } finally {
+    $("#leave").attr("disabled", false);
+  }
+})
+
+/*
+ * Called when a user clicks Leave in order to exit a channel.
+ */
+$("#leave").click(function (e) {
+  leave();
+})
+
+/*
+ * Join a channel, then create local video and audio tracks and publish them to the channel.
+ */
+async function join() {
+
+  // Add an event listener to play remote tracks when remote user publishes.
+  client.on("user-published", handleUserPublished);
+  client.on("user-unpublished", handleUserUnpublished);
+
+  // Join a channel and create local tracks. Best practice is to use Promise.all and run them concurrently.
+  [ options.uid, localTracks.audioTrack, localTracks.videoTrack ] = await Promise.all([
+    // Join the channel.
+    client.join(options.appid, options.channel, options.token || null),
+    // Create tracks to the local microphone and camera.
+    AgoraRTC.createMicrophoneAudioTrack(),
+    AgoraRTC.createCameraVideoTrack()
+  ]);
+
+  // Play the local video track to the local browser and update the UI with the user ID.
+  localTracks.videoTrack.play("local-player");
+  $("#local-player-name").text(`localVideo(${options.uid})`);
+
+  // Publish the local video and audio tracks to the channel.
+  await client.publish(Object.values(localTracks));
+  console.log("publish success");
+}
+
+/*
+ * Stop all local and remote tracks then leave the channel.
+ */
+async function leave() {
+  for (trackName in localTracks) {
+    var track = localTracks[trackName];
+    if(track) {
+      track.stop();
+      track.close();
+      localTracks[trackName] = undefined;
+    }
+  }
+
+  // Remove remote users and player views.
+  remoteUsers = {};
+  $("#remote-playerlist").html("");
+
+  // leave the channel
+  await client.leave();
+
+  $("#local-player-name").text("");
+  $("#join").attr("disabled", false);
+  $("#leave").attr("disabled", true);
+  console.log("client leaves channel success");
+}
 
 
-== Implement a {VIDEO} app
+/*
+ * Add the local use to a remote channel.
+ *
+ * @param  {IAgoraRTCRemoteUser} user - The {@link  https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/iagorartcremoteuser.html| remote user} to add.
+ * @param {trackMediaType - The {@link https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/itrack.html#trackmediatype | media type} to add.
+ */
+async function subscribe(user, mediaType) {
+  const uid = user.uid;
+  // subscribe to a remote user
+  await client.subscribe(user, mediaType);
+  console.log("subscribe success");
+  if (mediaType === 'video') {
+    const player = $(`
+      <div id="player-wrapper-${uid}">
+        <p class="player-name">remoteUser(${uid})</p>
+        <div id="player-${uid}" class="player"></div>
+      </div>
+    `);
+    $("#remote-playerlist").append(player);
+    user.videoTrack.play(`player-${uid}`);
+  }
+  if (mediaType === 'audio') {
+    user.audioTrack.play();
+  }
+}
+
+/*
+ * Add a user who has subscribed to the live channel to the local interface.
+ *
+ * @param  {IAgoraRTCRemoteUser} user - The {@link  https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/iagorartcremoteuser.html| remote user} to add.
+ * @param {trackMediaType - The {@link https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/itrack.html#trackmediatype | media type} to add.
+ */
+function handleUserPublished(user, mediaType) {
+  const id = user.uid;
+  remoteUsers[id] = user;
+  subscribe(user, mediaType);
+}
+
+/*
+ * Remove the user specified from the channel in the local interface.
+ *
+ * @param  {string} user - The {@link  https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/iagorartcremoteuser.html| remote user} to remove.
+ */
+function handleUserUnpublished(user) {
+  const id = user.uid;
+  delete remoteUsers[id];
+  $(`#player-wrapper-${id}`).remove();
+}
+
+----
+
+* _index.hmtl_, with the following code:
++
+[source, html]
+----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Basic Video Call -- Agora</title>
+  <link rel="stylesheet" href="../assets/bootstrap.min.css">
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+
+<!--
+  This page interacts with the Agora Voice Call for Web Next Generation SDK to easily create Video Call
+  functionality in a Web page.
+
+  This HTML page imports the next generation Agora Video SDK for Web from
+  https://download.agora.io/sdk/release/AgoraRTC_N.js and local functionality from basicVideoCall.js.
+
+  The form in this page passes data and actions input by the user to basicVideoCall.js. basicVideoCall
+  creates an AgoraRTC client which adds and and removes local and remote users to a specific channel.
+-->
+
+<!--
+  Create the banner at the top of the page.
+-->
+<div class="container-fluid banner">
+  <p class="banner-text">Basic Video Call</p>
+  <a style="color: rgb(255, 255, 255);fill: rgb(255, 255, 255);fill-rule: evenodd; position: absolute; right: 10px; top: 4px;"
+     class="Header-link " href="https://github.com/AgoraIO-Community/AgoraWebSDK-NG/tree/master/Demo">
+    <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1" width="32" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+  </a>
+</div>
+
+<!--
+  When a user tries to join a Video Call without supplying an AccessToken, this button
+  calls #success-alert in basicVideoCall.js. #success-alert refreshes this page with the
+  user information.
+-->
+<div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Congratulations!</strong><span> You can invite others join this channel by click </span><a href="" target="_blank">here</a>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<!--
+  When a user successfully joins a Video Call channel with an AccessToken, this section displays
+  a banner with a close button.
+-->
+<div id="success-alert-with-token" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Congratulations!</strong><span> Joined room successfully. </span>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<!--
+  When a user successfully joins a Video Call channel with an AccessToken, this section displays
+  a banner with a close button.
+-->
+<div id="success-alert-with-token" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Congratulations!</strong><span> Joined room successfully. </span>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="container">
+
+  <!--
+    Input fields so the user can securely join a Video Call channel.
+  -->
+  <form id="join-form">
+    <div class="row join-info-group">
+      <div class="col-sm">
+        <p class="join-info-text">APP ID</p>
+        <input id="appid" type="text" placeholder="Enter the appid" required>
+        <p class="tips">You find your APP ID in the <a href="https://console.agora.io/projects">Agora Console</a></p>
+      </div>
+      <div class="col-sm">
+        <p class="join-info-text">Token(optional)</p>
+        <input id="token" type="text" placeholder="Enter the app token">
+        <p class="tips">To create a temporary token, <a href="https://console.agora.io/projects">edit your project</a> in Agora Console.</p>
+      </div>
+      <div class="col-sm">
+        <p class="join-info-text">Channel Name</p>
+        <input id="channel" type="text" placeholder="Enter the channel name" required>
+        <p class="tips">You create a channel when you create a temporary token. You guessed it, in <a href="https://console.agora.io/projects">Agora Console</a></p>
+      </div>
+    </div>
+
+    <!--
+      Join or leave a Video Call channel.
+    -->
+    <div class="button-group">
+      <button id="join" type="submit" class="btn btn-primary btn-sm">Join</button>
+      <button id="leave" type="button" class="btn btn-primary btn-sm" disabled>Leave</button>
+    </div>
+  </form>
+  <!--
+    This local media splayer is enabled when the user has successfully joined a Video Call channel.
+  -->
+  <div class="row video-group">
+    <div class="col">
+      <p id="local-player-name" class="player-name"></p>
+      <div id="local-player" class="player"></div>
+    </div>
+    <div class="w-100"></div>
+    <div class="col">
+      <div id="remote-playerlist"></div>
+    </div>
+  </div>
+</div>
+
+<!--
+  Import the Agora Video Call SDK for Web and local calls to it.
+-->
+<script src="../assets/jquery-3.4.1.min.js"></script>
+<script src="../assets/bootstrap.bundle.min.js"></script>
+<script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
+<script src="./basicVideoCall.js"></script>
+</body>
+</html>
+----
+
+* _index.css_, with the following code:
++
+[source, css]
+----
+.banner {
+  padding: 0;
+  background-color: #52575c;
+  color: white;
+}
+
+.banner-text {
+  padding: 8px 20px;
+  margin: 0;
+}
+
+
+#join-form {
+  margin-top: 10px;
+}
+
+.tips {
+  font-size: 12px;
+  margin-bottom: 2px;
+  color: gray;
+}
+
+.join-info-text {
+  margin-bottom: 2px;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.player {
+  width: 480px;
+  height: 320px;
+}
+
+.player-name {
+  margin: 8px 0;
+}
+
+#success-alert, #success-alert-with-token {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .player {
+    width: 320px;
+    height: 240px;
+  }
+}
+----
+
 
 
 == Test your app
 
+To make a {VIDEO} using your {CLIENT}:
+
+. In your browser, open <app_dir>/index.html.
++
+image::barebones-app-demo.png[]
+
+include::{rootdir}/shared/.retrieve_temporary_token.adoc[]
+
+. In your {CLIENT} enter the APP ID, Token and Channel Name from {CONSOLE} and click *Join*.
++
+`AgoraRTCClient` uses the information you entered to open a {VIDEO} in your HTML interface.
++
+image::barebones-app-live-call.png[]
+
+Yay, you are in a {VIDEO}. However, being in a call on your own is no fun. To {VIDEO} a friend, use the demo app at https://agoraio-community.github.io/AgoraWebSDK-NG/demo/basicVideoCall/index.html. Guess what? It's the same code.
+
+Generating a token by hand is not helpful in a production context. xref:{rootdir}/en/Video/authenticate-your-users-with-accesstokens.adoc[Authenticate your user with {TOKEN}s] shows you how to start a {VIDEO} with an {TOKEN} that you retrieve from a server.
+
 
 == Reference
+
+The most important objects use used to create your first {VIDEO} are:
+
+
+[%header,cols="1,1,1,6"]
+|===
+| Name | Default | Type | Description
+
+| client
+| null
+| {VIDEO_WEB_URL}/iagorartcclient.html[AgoraRTCClient]
+
+a| A local user in a {VIDEO}. The `AgoraRTCClient` interface provides the methods to implementing the major functionality required for a {VIDEO}. For example,  join a channel and publish local audio and video tracks to the channel. s
+
+| audioTrack
+| null
+| {VIDEO_WEB_URL}/ilocalaudiotrack.html[LocalAudioTracks]
+| Control playback for local audio tracks which you publish to the channel.
+
+| CameraVideoTracks
+| null
+|{VIDEO_WEB_URL}/icameravideotrack.html[ILocalVideoTrack]
+| Control playback for local video tracks which you publish to the channel.
+
+| user
+| null
+|{VIDEO_WEB_URL}/iagorartcremoteuser.html[IAgoraRTCRemoteUser]
+| The remote users who join a {VIDEO}.
+
+|===
+
+
