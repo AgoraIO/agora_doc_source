@@ -17,10 +17,10 @@
         <section id="detailed_desc">
    
    <p conkeyref="sendStreamMessage/desc"/>
-   <p>After successfully calling this method, the remote end will trigger a<xref keyref="IChannel_onStreamMessage"/> callback, and the remote user can get the received stream message in this callback; if the call fails, the remote end will trigger the<xref keyref="IChannel_onStreamMessageError"/> callback.</p>
+   <p>A successful method call triggers the <xref keyref="IChannel_onStreamMessage"/> callback on the remote client, from which the remote user gets the stream message. A failed method call triggers the <xref keyref="IChannel_onStreamMessageError"/> callback on the remote client.</p>
    <note outputclass="note"><ul>
-       <li>Please make sure that the<xref keyref="createDataStream2"/> data channel has been created before calling this method.</li>
-       <li>In the `LIVE_BROADCASTING` profile, only a host can call this method.</li>
+       <li>Ensure that you call <xref keyref="createDataStream2"/> to create a data channel before calling this method.</li>
+       <li>In live broadcast streaming, this method only applies to hosts.</li>
    </ul></note>
         </section>
         <section id="parameters" conkeyref="sendStreamMessage/parameters"/>
