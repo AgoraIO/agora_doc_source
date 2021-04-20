@@ -31,15 +31,7 @@
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
-       <plentry>
-  <pt>token</pt>
-  <pd><p>The token generated at your server.<ul>
-      <li>In scenarios with low security requirements, token is optional and can be set as <ph keyref="NULL"/>.</li>
-      <li>In scenarios with high security requirements, set the value to the token generated from your server. If you enable the App Certificate, you must use a token to join the channel.</li>
-  </ul>
-      <note outputclass="warning">Please ensure that the App ID, channel name and user User Account used to generate the token are consistent with<xref keyref="create2"/> the App ID and channel name used when the method initializes the engine.</note>
-  </p></pd>
-       </plentry>
+       <plentry conkeyref="joinChannel2/token"><pt/><pd/></plentry>
        <plentry>
   <pt>`channelName`: The name of the source channel.</pt>
   <pd><p>The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same <codeph>channelName</codeph> will enter the same<codeph> channel</codeph> for audio and video interaction. The string length must be less than 64 bytes. Supported characters:<ul id="ul_lx4_nrc_h4b">
