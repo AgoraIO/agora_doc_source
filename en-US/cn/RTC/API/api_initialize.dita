@@ -14,14 +14,14 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/create2"/>
         </section>
         <section id="detailed_desc">
-            <p props="windows">Initialize the instance before<xref keyref="createAgoraRtcEngine1"/><apiname keyref="create2"/> calling this method<xref href="class_irtcengine.dita"/>.</p>
-            <p props="android ios mac">Initialize the instance before calling this method<xref href="class_irtcengine.dita"/>.<apiname keyref="create2"></apiname></p>
+            <p props="windows">Before calling other APIs, you must call <xref keyref="createAgoraRtcEngine1"/> and <apiname keyref="create2"/> to create an <xref href="class_irtcengine.dita"/> object.</p>
+            <p props="android ios mac">Before calling other APIs, you must call <apiname keyref="create2"></apiname> to create an <xref href="class_irtcengine.dita"/> object.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>context</pt>
-  <pd>Sets the log files that the SDK outputs. See <xref href="class_rtcengineconfig.dita"/>.</pd>
+  <pd>Agora SDK 初始化设置。 See <xref href="class_rtcengineconfig.dita"/>.</pd>
        </plentry>
    </parml>
         </section>
@@ -31,8 +31,8 @@
        <li>0(ERR_OK): Success.</li>
        <li>&lt; 0: Failure.<ul>
   <li>-1(ERR_FAILED): A general error occurs (no specified reason).</li>
-  <li>-2 (ERR_INVALID_ARGUMENT): The parameter is invalid<xref href="class_irtcengineeventhandler.dita"/>.</li>
-  <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized. Check whether `context` is properly set.</li>
+  <li>-2 (ERR_INVALID_ARGUMENT): The <xref href="class_irtcengineeventhandler.dita"/> parameter is invalid.</li>
+  <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
   <li>-22(ERR_RESOURCE_LIMITED): The resource is limited. The SDK fails to allocate resources because your app uses too many system resources or system resources are insufficient.</li>
   <li>-101(ERR_INVALID_APP_ID): The App ID is invalid.</li>
        </ul></li>
