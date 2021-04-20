@@ -17,11 +17,11 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This method joins an AgoraRTC channel.</p>
-   <p>Users in the same channel can talk to each other, and multiple users in the same channel can start a group chat.</p>
-   <p>A successful call of this method triggers the following callbacks<xref keyref="onJoinChannelSuccess"/>: The local client: .The remote client: , if the user joining the channel is in the COMMUNICATION profile, or is a host in the LIVE_BROADCASTING<xref keyref="onUserJoined"/> profile.<xref keyref="onConnectionStateChanged"></xref></p>
-   <p>When the connection between the client and Agora&apos;s server is interrupted due to poor network conditions, the SDK tries reconnecting to the server. When the local client successfully rejoins the channel, the SDK triggers the callback on the local client<xref
-  keyref="onRejoinChannelSuccess"/>.</p>
+   <p>This method joins an Agora RTC channel.</p>
+   <p>Users with the same App ID in the same channel can talk to each other, and multiple users in the same channel can start a group chat.</p>
+   <p>A successful call of this method triggers the following callbacks: The local client: <xref keyref="onJoinChannelSuccess"/> and <xref keyref="onConnectionStateChanged"></xref> callbacks. The remote client: <xref keyref="onUserJoined"/> , if the user joining the channel is in the communication profile, or is a host in the live streaming profile.</p>
+   <p>When the connection between the client and Agora&apos;s server is interrupted due to poor network conditions, the SDK tries reconnecting to the server. When the local client successfully rejoins the channel, the SDK triggers the <xref
+  keyref="onRejoinChannelSuccess"/> callback on the local client.</p>
    <note outputclass="note">Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <apiname>mute</apiname> methods accordingly.</note>
         </section>
         <section id="parameters">
@@ -46,12 +46,12 @@
        <plentry>
   <pt><ph keyref="info"/></pt>
   <pd>
-      <p>(Optional) Pointer to additional information about the channel. This parameter can be set to NULL or contain channel related information. Other users in the channel will not receive this message.</p>
+      <p>Reserved for future use.</p>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="uid"/></pt>
-  <pd>User ID This parameter is used to identify the user in the real-time audio and video interaction channel. You need to set and manage user IDs yourself, and make sure that each user ID in the same channel is unique. User ID. A 32-bit unsigned integer with a value ranging from 1 to 232-1. The uid must be <sup></sup>unique. If a uid is not assigned (or set to 0), the SDK assigns and<apiname keyref="onJoinChannelSuccess"/> returns a uid in the callback. Your application must record and maintain the returned uid, because the SDK does not do so.</pd>
+  <pd>User ID This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique. User ID. A 32-bit unsigned integer with a value ranging from 1 to 2<sup>32</sup>-1. If the user ID is not assigned (or set to 0), the SDK assigns and returns a user ID in the <apiname keyref="onJoinChannelSuccess"/> callback. Your application must record and maintain the returned user ID, because the SDK does not do so.</pd>
        </plentry>
    </parml>
         </section>
@@ -63,9 +63,9 @@
       <li>-2 (ERR_INVALID_ARGUMENT): The parameter is invalid.</li>
       <li>-3(ERR_NOT_READY): The SDK fails to be initialized. You can try re-initializing the SDK.</li>
       <li>-5(ERR_REFUSED): The request is rejected. This may be caused by the following:<ul>
-     <li>You have created an<xref keyref="IChannel"/> object with the same channel name.</li>
- <li>You have<apiname keyref="IChannel"/> joined and published a stream in a channel<apiname keyref="IChannel"/> created by the object.</li></ul></li>
-  <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized before calling this method. Initialize the instance before calling<xref keyref="IRtcEngine"/> this method.</li>
+     <li>You have created an <xref keyref="IChannel"/> object with the same channel name.</li>
+ <li>You have joined and published a stream in an <apiname keyref="IChannel"/> channel created by the <apiname keyref="IChannel"/> object.</li></ul></li>
+  <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized before calling this method. Initialize the <xref keyref="IRtcEngine"/> instance before calling this method.</li>
   </ul></li>
    </ul>
         </section>
