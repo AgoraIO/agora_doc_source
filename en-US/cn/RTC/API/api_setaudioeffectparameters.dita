@@ -22,13 +22,12 @@
   <dd>v3.2.0</dd>
        </dlentry>
    </dl>
-   <p>Call this method to set the following parameters for the local user who send an audio stream:<ul>
+   <p>Call this method to set the following parameters for the local user who sends an audio stream:<ul>
   <li>3D voice effect: Sets the cycle period of the 3D voice effect.</li>
   <li>Pitch correction effect: Sets the basic mode and tonic pitch of the pitch correction effect. Different songs have different modes and tonic pitches. Agora recommends bounding this method with interface elements to enable users to adjust the pitch correction interactively.</li>
        </ul>
    </p>
    <p>After setting the audio parameters, all users in the channel can hear the effect.</p>
-   <p>This method can be used alone or in combination<xref keyref="setAudioEffectPreset"/>. When used together, you need to call<apiname keyref="setAudioEffectPreset"/> and use or enumeration <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/><apiname keyref="PITCH_CORRECTION"/>first, and then call the method to use the same enumeration. Otherwise, the effect set by this method will override <apiname keyref="setAudioEffectPreset"/> the effect set.</p>
    <note outputclass="note">
        <ul>
   <li>You can call this method either before or after joining a channel.</li>
@@ -37,7 +36,7 @@
                             keyref="AUDIO_PROFILE_SPEECH_STANDARD"/> (1) or <apiname
                             keyref="AUDIO_PROFILE_IOT"/>(6), or the method will not take effect.</li>
   <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
-  <li>After calling this method, Agora recommends not calling the following methods, because they can override \ref IRtcEngine::setVoiceBeautifierPreset &quot;setVoiceBeautifierPreset&quot;:<ul>
+  <li>After calling <apiname keyref="setAudioEffectParameters"/>, Agora recommends not calling the following methods, because they can override <apiname keyref="setAudioEffectParameters"/>:<ul>
  <li><xref keyref="setAudioEffectPreset"/></li>
  <li><xref keyref="setVoiceBeautifierPreset"/></li>
  <li><xref keyref="setLocalVoiceReverbPreset"/></li>
@@ -57,12 +56,12 @@
        <plentry>
   <pt>preset</pt>
   <pd>The options for the preset audio effect.<ul>
- <li>3D human sound effects:<apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/><ul>
-<li>You need to set the <apiname keyref="setAudioProfile"/><parmname>profile</parmname> parameter to<xref keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> (3) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before using this enumeration, otherwise the enumeration setting is invalid.</li>
+ <li>3D voice effect:<apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/><ul>
+<li>Call <apiname keyref="setAudioProfile"/> and set the <parmname>profile</parmname> parameter to <xref keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/>(3) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before setting this enumerator; otherwise, the enumerator setting does not take effect.</li>
 <li>If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</li>
      </ul>
  </li>
- <li>Electronic sound effects:<apiname keyref="PITCH_CORRECTION"/>. To obtain better vocal effects, Agora recommends that you set the <apiname keyref="setAudioProfile"/><parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before using this enumeration.</li>
+ <li>Pitch correction effect: <apiname keyref="PITCH_CORRECTION"/>. To obtain better vocal effects, Agora recommends that you set the <apiname keyref="setAudioProfile"/><parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before using this enumeration.</li>
       </ul>
   </pd>
        </plentry>
