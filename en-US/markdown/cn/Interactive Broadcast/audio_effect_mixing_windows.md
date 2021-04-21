@@ -5,7 +5,7 @@ updatedAt: 2020-12-04 01:39:56
 ---
 ## Introduction
 
-During real-time audio and video interaction,  host users can enhance the fun and immersion for all users in the channel by adding sound effects or background music.  For example, users might add fighting sounds when playing an action game or include an accompaniment when singing. Agora provides two independent groups of methods so that you can play audio effect files and a music file separately.
+During real-time audio and video interaction, for better atmosphere or entertainment, users often need to play audio effects or background music and make all users in the channel hear. For example, users might add fighting sounds when playing an action game or include an accompaniment when singing. Agora provides two independent groups of methods so that you can play audio effect files and a music file separately.
 
 ## Sample project
 
@@ -13,7 +13,7 @@ Agora provides an open-source demo project on GitHub that implements [audio effe
 
 ## Audio effect files
 
-In this context, The audio effects  are understood to be ambient sounds with a short duration, such as applause, cheers, fighting sounds, and gunshots. Usually, you can play multiple audio effects at the same time.
+In this context, the audio effects refer to the ambient sounds with a short duration, such as applause, cheers, fighting sounds, and gunshots. Usually, you can play multiple audio effects at the same time.
 
 Agora provides a group of methods to play and manage audio effect files that enable you to perform the following functions: 
 
