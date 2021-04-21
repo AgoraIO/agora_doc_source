@@ -16,13 +16,13 @@
         </section>
         <section id="detailed_desc">
    
-   <p>Before calling this method, call the <xref keyref="setExternalAudioSink"/> (enabled:true) method to notify the app to enable and set the external audio sink.</p>
-   <p>After a successful call of this method, the app pulls the decoded and mixed audio data for playback.</p>
+   <p>Before calling this method, call the<xref keyref="setExternalAudioSink"/> (enabled:true) method to notify the app to enable and set the external audio sink.</p>
+   <p>After a successful method call, the app pulls the decoded and mixed audio data for playback.</p>
    <note outputclass="note">
        <ul>
-  <li>After a successful call of this method, the app will not get any audio data from the <xref keyref="onPlaybackAudioFrame"/> callback.</li>
+  <li>After a successful call of this method, the app will not<xref keyref="onPlaybackAudioFrame"/> get any audio data from the callback.</li>
   <li>The difference between this method and the <apiname keyref="onPlaybackAudioFrame"/> callback is as follows:<ul>
- <li><apiname keyref="onPlaybackAudioFrame"/>: The SDK sends the audio data to the app through this callback. Any delay in processing the audio frames may result in audio jitter. Any delay in processing the audio frames may result in audio jitter.</li>
+ <li><apiname keyref="onPlaybackAudioFrame"/>: The SDK sends the audio data to the app through this callback. Any delay in processing the audio frames may result in audio jitter.</li>
  <li><apiname keyref="pullAudioFrame"/>: The app pulls the remote audio data. After setting the audio data parameters, the SDK adjusts the frame buffer and avoids problems caused by jitter in the external audio playback.</li>
       </ul></li>
        </ul>
