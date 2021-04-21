@@ -16,18 +16,18 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This method restricts the SDK’s manipulation of the audio session. The SDK does not configure the audio session anymore.</p>
-   <p>You can call this method either before or after joining a channel. The SDK does not configure the audio session anymore.</p>
+   <p>The SDK and the app can both configure the audio session by default. If you need to only use the app to configure the audio session, this method restricts the operational permission of the SDK on the audio session.</p>
+   <p>You can call this method either before or after joining a channel. Once you call this method to restrict the operational permission of the SDK on the audio session, the restriction takes effect when the SDK needs to change the audio session.</p>
    <note outputclass="note"><ul>
        <li props="windows">This method is for iOS only.</li>
-       <li>This method restricts the SDK’s manipulation of the audio session.</li>
+       <li>This method does not restrict the operational permission of the app on the audio session.</li>
    </ul></note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>restriction</pt>
-  <pd>Sets the operational permission of the SDK on the audio session<xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>. This parameter is Bit Mask, and each Bit corresponds to a permission.</pd>
+  <pd>The operational permission of the SDK on the audio session. See <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>. This parameter is in bit mask format, and each bit corresponds to a permission.</pd>
        </plentry>
    </parml>
         </section>
