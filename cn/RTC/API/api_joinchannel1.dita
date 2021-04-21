@@ -19,9 +19,11 @@
    
    <p>该方法让用户加入实时音视频互动频道。</p>
    <p>在 App ID 一致的前提下，进入同一个频道的用户可以互相通话；多个用户加入同一个频道可以群聊。</p>
-   <p>成功调用该方法加入频道后，本地会触发 <xref keyref="onJoinChannelSuccess"/>
-       和 <xref keyref="onConnectionStateChanged"></xref> 回调，分别报告本地用户已成功加入频道，以及当前的网络连接状态；
-       通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined"/> 回调。</p>
+   <p>成功调用该方法加入频道后会触发以下回调：<ul id="ul_db2_2qs_3pb">
+                    <li>本地会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref
+                            keyref="onConnectionStateChanged"/> 回调。</li>
+                    <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined"/> 回调。</li>
+                </ul></p>
    <p>在网络状况不理想的情况下，客户端可能会与 Agora 服务器失去连接；SDK 会自动尝试重连，重连成功后，本地会触发 <xref
   keyref="onRejoinChannelSuccess"/> 回调。</p>
    <note outputclass="note">用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</note>
@@ -33,28 +35,17 @@
         <pt/>
         <pd/>
     </plentry>
-       <plentry>
-  <pt><ph keyref="channelID"/></pt>
-  <pd>
-      <p>频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同 <codeph>channelId</codeph> 的用户会进入同一个频道进行音视频互动。
-          该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:<ul id="ul_lx4_nrc_h4b">
-     <li>26 个小写英文字母 a~z</li>
-     <li>26 个大写英文字母 A~Z</li>
-     <li>10 个数字 0~9</li>
-     <li>空格</li>
-     <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、">"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
- </ul></p>
-  </pd>
+       <plentry conkeyref="joinChannel2/channelID">
+  <pt/>
+  <pd/>
        </plentry>
-       <plentry>
-  <pt><ph keyref="info"/></pt>
-  <pd>
-      <p>(非必选项) 开发者想要添加的附加信息。一般可设置为空字符串，或频道相关信息。该信息不会传递给频道内的其他用户。</p>
-  </pd>
+       <plentry conkeyref="joinChannel2/info">
+  <pt/>
+  <pd/>
        </plentry>
-       <plentry>
-  <pt><ph keyref="uid"/></pt>
-  <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位无符号整数，建议设置范围：1 到 2<sup>32</sup>-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <apiname keyref="onJoinChannelSuccess"/> 回调中返回，应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
+       <plentry conkeyref="joinChannel2/uid">
+  <pt/>
+  <pd/>
        </plentry>
    </parml>
         </section>

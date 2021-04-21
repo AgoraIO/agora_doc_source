@@ -29,7 +29,6 @@
        </ul>
    </p>
    <p>设置后，频道内所有用户都能听到该效果。</p>
-   <p>该方法可以单独使用，也可以搭配 <xref keyref="setAudioEffectPreset"/> 使用。搭配使用时， 需要先调用 <apiname keyref="setAudioEffectPreset"/> 并使用 <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/> 或 <apiname keyref="PITCH_CORRECTION"/> 枚举，再调用该方法使用相同的枚举。否则，该方法设置的效果会覆盖 <apiname keyref="setAudioEffectPreset"/> 设置的效果。</p>
    <note outputclass="note">
        <ul>
   <li>该方法在加入频道前后都能调用。</li>
@@ -38,7 +37,7 @@
                             keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1) 或 <apiname
                             keyref="AUDIO_PROFILE_IOT"/>(6)，否则该方法不生效。</li>
   <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
-  <li>调用该方法后，Agora 不推荐调用以下方法，否则该方法设置的效果会被覆盖：
+  <li>调用 <apiname keyref="setAudioEffectParameters"/> 后，Agora 不推荐调用以下方法，否则 <apiname keyref="setAudioEffectParameters"/> 设置的效果会被覆盖：
       <ul>
  <li><xref keyref="setAudioEffectPreset"/></li>
  <li><xref keyref="setVoiceBeautifierPreset"/></li>

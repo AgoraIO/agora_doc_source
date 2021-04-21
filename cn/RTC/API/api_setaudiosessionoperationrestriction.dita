@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setaudiosessionoperationrestriction">
     <title><ph keyref="setAudioSessionOperationRestriction"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 SDK 对 Audio Session 的控制权限。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置 SDK 对 Audio Session 的操作权限。</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,20 +16,18 @@
         </section>
         <section id="detailed_desc">
    
-   <p>该方法可以在任意时候调用。</p>
+   <p>默认情况下，SDK 和 app 对 Audio Session 都有操作权限。如果你只需使用 app 对 Audio Session 进行操作，你可以调用该方法限制 SDK 对 Audio Session 的操作权限。</p>
+   <p>该方法在加入频道前后都能调用。一旦调用该方法限制了 SDK 对 Audio Session 的操作权限，该限制会在 SDK 需要更改 Audio Session 时生效。</p>
    <note outputclass="note"><ul>
        <li props="windows">该方法仅适用于 iOS 平台。</li>
-       <li>该方法限制 Agora SDK 对 Audio Session 的操作权限。在默认情况下，SDK 和 App 对 Audio Session 都有控制权，但某些场景下，app 会希望
-  限制 Agora SDK 对 Audio Session 的控制权限，而使用其他应用或第三方组件对 Audio Session 进行操控。调用该方法可以实现该功能。</li>
-       <li>一旦调用该方法限制了 Agora SDK 对 Audio Session 的控制权限， SDK 将无法对 Audio Session 进行相关设置，而需要用户自己或第三方组件进行维护。</li>
-       <li>该方法在加入频道前后都能调用。</li>
+       <li>该方法不会限制 app 对 Audio Session 的操作权限。</li>
    </ul></note>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
        <plentry>
   <pt>restriction</pt>
-  <pd>Agora SDK 对 Audio Session 的控制权限，详见 <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>。该参数为 Bit Mask，每个 Bit 对应一个权限。</pd>
+  <pd>SDK 对 Audio Session 的操作权限，详见 <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>。该参数为 Bit Mask，每个 Bit 对应一个权限。</pd>
        </plentry>
    </parml>
         </section>
