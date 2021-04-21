@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setaudiosessionoperationrestriction">
     <title><ph keyref="setAudioSessionOperationRestriction"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the audio session’s operational restriction.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the operational permission of the SDK on the audio session.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,19 +16,18 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This method can be called multiple times.</p>
+   <p>This method restricts the SDK’s manipulation of the audio session. The SDK does not configure the audio session anymore.</p>
+   <p>You can call this method either before or after joining a channel. The SDK does not configure the audio session anymore.</p>
    <note outputclass="note"><ul>
        <li props="windows">This method is for iOS only.</li>
-       <li>This method restricts the SDK’s manipulation of the audio session. By default, both the SDK and the App have control over the Audio Session, but in some scenarios, the app may wish to restrict the Agora SDK&apos;s control over the Audio Session, and use other applications or third-party components to control the Audio Session. This function can be realized by calling this method.</li>
-       <li>The SDK does not configure the audio session anymore.</li>
-       <li>You can call this method either before or after joining a channel.</li>
+       <li>This method restricts the SDK’s manipulation of the audio session.</li>
    </ul></note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>restriction</pt>
-  <pd>Sets the audio session’s operational restriction<xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>. This parameter is Bit Mask, and each Bit corresponds to a permission.</pd>
+  <pd>Sets the operational permission of the SDK on the audio session<xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION"/>. This parameter is Bit Mask, and each Bit corresponds to a permission.</pd>
        </plentry>
    </parml>
         </section>
