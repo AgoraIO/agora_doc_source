@@ -30,7 +30,7 @@ To play audio effect files, see the following steps:
 
 ### Specify an audio effect file
 
-Before playing an audio effect file, you need to set `filePath` and `soundId` to specify that audio effect file, as follows:. 
+Before playing an audio effect file, you need to set `filePath` and `soundId` to specify that audio effect file, as follows:. The representing of two parameters is as follows:
 
 - ` filePath`: The audio effect file path, including the local and online file path. The SDK searches for audio effect files in this path.
 - ` soundId`: The audio effect ID, which you define. This ID must be unique. The SDK identifies an audio effect file based on its audio effect ID. Common solutions for defining audio effect IDs include incrementing the ID and using hashCode for the audio effect file name.
@@ -75,7 +75,7 @@ int gain = 100;
 double pan = 1.0; 
  // Sets whether to publish the audio effect to the remote users. true represents that both the local user and remote users can hear the audio effect; false represents that only the local user can hear the audio effect.  
 BOOL publish = true; 
- // Sets the playback position of the audio effect file in milliseconds. 500 represents that the playback starts at the 500 ms mark of the audio effect file.  
+ // Sets the playback position of the audio effect file, in milliseconds. 500 represents that the playback starts at the 500 ms mark of the audio effect file.  
 int startPos = 500; 
  
 // Plays the specified audio effect file. 
@@ -197,9 +197,9 @@ std::string filePath = "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3
 BOOL loopback = false; 
 // Sets whether to replace the audio captured by the microphone with a music file. true represents that the user can only hear music; false represents that the user can hear both the music and the audio captured by the microphone.  
 BOOL replace = true; 
-// Sets the number of times to play the music file. 1 represents play once.  
+// Sets the number of times to play the music file. 1 represents play the file once.  
 int cycle = 1; 
-// Sets the playback position of the music file. 500 represents that the playback starts at the 500th ms of the music file.  
+// Sets the playback position of the music file. Sets the playback position of the music file, in milliseconds. 500 represents that the playback starts at the 500 ms mark of the music file.  
 int startPos = 500; 
 
 // Starts to play the music file.
@@ -240,7 +240,7 @@ When the music file is playing, you can call this group of methods to adjust the
 // Gets the total duration of a specified music file.  
 m_rtcEngine->getAudioMixingDuration(filePath); 
  
-// Sets the playback position of the current music file. 500 represents that the playback starts at the 500th ms of the music file.  
+// Sets the playback position of the current music file. Sets the playback position of the music file, in milliseconds. 500 represents that the playback starts at the 500 ms mark of the music file.  
 m_rtcEngine->setAudioMixingPosition(500); 
  
 // Gets the playback position of the current music file.  
@@ -254,19 +254,19 @@ After successfully playing the music file, you can call this group of methods to
 <div class="alert note">Call this group of methods after calling <code>startAudioMixing</code> and receiving the <code>onAudioMixingStateChanged(AUDIO_MIXING_STATE_PLAYING)</code> callback.</div>
 
 ```c++
-// Adjusts the playback volume of the current music file for both local and remote playback. The value range is 0 to 100 and 100 represents the original volume.  
+// Adjusts the playback volume of the current music file for both local and remote playback. The value range is 0 to 100. 100 represents the original volume.  
 m_rtcEngine->adjustAudioMixingVolume(50); 
  
-// Adjusts the playback volume of the current music file for the remote playback. The value range is 0 to 100 and 100 represents the original volume.  
+// Adjusts the playback volume of the current music file for the remote playback. The value range is 0 to 100. 100 represents the original volume.  
 m_rtcEngine->adjustAudioMixingPublishVolume(50); 
  
-// Adjusts the playback volume of the current music file for the local playback. The value range is 0 to 100 and 100 represents the original volume.  
+// Adjusts the playback volume of the current music file for the local playback. The value range is 0 to 100. 100 represents the original volume.  
 m_rtcEngine->adjustAudioMixingPlayoutVolume(50); 
  
-// Gets the playback volume of the current music file for the local playback. The volume range is 0 to 100 and 100 represents the original volume.  
+// Gets the playback volume of the current music file for the local playback. The volume range is 0 to 100. 100 represents the original volume.  
 m_rtcEngine->getAudioMixingPlayoutVolume(); 
  
-// Gets the playback volume of the current music file for the remote playback. The volume range is 0 to 100 and 100 represents the original volume.  
+// Gets the playback volume of the current music file for the remote playback. The volume range is 0 to 100. 100 represents the original volume.  
 m_rtcEngine->getAudioMixingPublishVolume(); 
  
 // Sets the pitch of the current music file. The value range is -12 to 12. 0 represents the original pitch; 1 represents raising the original pitch by a semitone. 
