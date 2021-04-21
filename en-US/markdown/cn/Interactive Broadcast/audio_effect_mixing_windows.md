@@ -30,22 +30,22 @@ To play audio effect files, see the following steps:
 
 ### Specify an audio effect file
 
-Before playing an audio effect file, you need to set `filePath` and `soundId` to specify that audio effect file, as follows:. The representing of two parameters is as follows:
+Before playing an audio effect file, you need to set `filePath` and `soundId` to specify the audio effect file. The representing of two parameters is as follows:
 
-- ` filePath`: The audio effect file path, including the local and online file path. The SDK searches for audio effect files in this path.
-- ` soundId`: The audio effect ID, which you define. This ID must be unique. The SDK identifies an audio effect file based on its audio effect ID. Common solutions for defining audio effect IDs include incrementing the ID and using hashCode for the audio effect file name.
+- `filePath`: The audio effect file path, including the local and online file path. The SDK searches for audio effect files in this path.
+- `soundId`: The audio effect ID, which you define. This ID must be unique. The SDK identifies an audio effect file based on its audio effect ID. Common solutions for defining audio effect IDs include incrementing the ID and using hashCode for the audio effect file name.
 
 ```c++
-// Automatically allocate soundId according to the specified path of the audio effect file, and associate the audio effect file path with soundId. 
+// Automatically allocates soundId according to the specified path of the audio effect file, and associate the audio effect file path with soundId. 
 m_mapEffect.insert(std::make_pair(strPath, m_soundId++));
 ```
 
 ### Preloading
 
-To improve performance, the SDK supports preloading the audio effect files into memory. Preloading is not required;, Agora recommends that you choose whether to preload audio effect files according to your needs.
+The SDK supports preloading audio effect files. To improve performance, you can add the audio effect files into the memory in advance. Preloading is not required;, Agora recommends that you choose whether to preload audio effect files according to your needs.
 
-- For example, Iif you need to play a specified audio effect repeatedly, Agora recommends preloading the audio effect file.
-- If an audio effect file size is large, however, Agora recommends not preloading the audio effect file.
+- If you need to play a specified audio effect repeatedly, Agora recommends preloading the audio effect file.
+- If an audio effect file size is large, Agora recommends not preloading the audio effect file.
 
 To preload multiple audio effect files, you need to call `preloadEffect` multiple times.
 
@@ -60,7 +60,7 @@ m_rtcEngine->unloadEffect(m_mapEffect[strEffect]);
 
 ### Play and stop
 
-Call `playEffect` to play the audio effect file. You can call `playEffect` multiple times to play multiple audio effect files at the same time, according to your requirements. When playing an audio effect file, you can set the playback options, such as number of loops, pitch, volume, and playback position.
+Call `playEffect` to play the audio effect file. You can call `playEffect` multiple times to play multiple audio effect files at the same time according to your requirements. When playing an audio effect file, you can set the playback options, such as number of loops, pitch, volume, and playback position.
 
 <div class="alert note">Call <code>playEffect</code> after joining a channel.</div>
 
@@ -71,11 +71,11 @@ int loops = -1;
 double pitch = 1.5; 
  // Sets the volume of the audio effect. The value range is 0 to 100. 100 represents the original volume.  
 int gain = 100; 
- // Sets the spatial position of the audio effect. The value range is -1.0 (completely on the left) to 1.0 (completely on the right), with 0 being a balanced location. 1.0 represents the audio effect occurs on the right.  
+ // Sets the spatial position of the audio effect. The value range is -1.0 to 1.0. -1.0 represents the audio effect occurs on the left; 0 represents the audio effect occurs in the front; 1.0 represents the audio effect occurs on the right.  
 double pan = 1.0; 
  // Sets whether to publish the audio effect to the remote users. true represents that both the local user and remote users can hear the audio effect; false represents that only the local user can hear the audio effect.  
 BOOL publish = true; 
- // Sets the playback position of the audio effect file, in milliseconds. 500 represents that the playback starts at the 500 ms mark of the audio effect file.  
+ // Sets the playback position (ms) of the audio effect file. 500 represents that the playback starts at the 500 ms mark of the audio effect file.  
 int startPos = 500; 
  
 // Plays the specified audio effect file. 
@@ -126,7 +126,7 @@ If you need to adjust the playback position after playing the audio effect file,
 // Gets the total duration of a specified local audio effect file.  
 m_rtcEngine->getEffectDuration(m_mapEffect[strEffect]); 
  
-// Sets the playback position of a specified local audio effect file.  
+// Sets the playback position (ms) of a specified local audio effect file. 500 represents that the playback starts at the 500 ms mark of the music file.  
 m_rtcEngine->setEffectPosition(m_mapEffect[strEffect], pos); 
  
 // Gets the playback position of a specified local audio effect file.  
@@ -199,7 +199,7 @@ BOOL loopback = false;
 BOOL replace = true; 
 // Sets the number of times to play the music file. 1 represents play the file once.  
 int cycle = 1; 
-// Sets the playback position of the music file. Sets the playback position of the music file, in milliseconds. 500 represents that the playback starts at the 500 ms mark of the music file.  
+ // Sets the playback position (ms) of the music file. 500 represents that the playback starts at the 500 ms mark of the music file.  
 int startPos = 500; 
 
 // Starts to play the music file.
@@ -240,7 +240,7 @@ When the music file is playing, you can call this group of methods to adjust the
 // Gets the total duration of a specified music file.  
 m_rtcEngine->getAudioMixingDuration(filePath); 
  
-// Sets the playback position of the current music file. Sets the playback position of the music file, in milliseconds. 500 represents that the playback starts at the 500 ms mark of the music file.  
+// Sets the playback position (ms) of the current music file. 500 represents that the playback starts at the 500 ms mark of the music file.  
 m_rtcEngine->setAudioMixingPosition(500); 
  
 // Gets the playback position of the current music file.  
