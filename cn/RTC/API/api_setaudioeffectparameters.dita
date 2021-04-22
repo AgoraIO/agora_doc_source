@@ -29,7 +29,6 @@
        </ul>
    </p>
    <p>设置后，频道内所有用户都能听到该效果。</p>
-   <p>该方法可以单独使用，也可以搭配 <xref keyref="setAudioEffectPreset"/> 使用。搭配使用时， 需要先调用 <apiname keyref="setAudioEffectPreset"/> 并使用 <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/> 或 <apiname keyref="PITCH_CORRECTION"/> 枚举，再调用该方法使用相同的枚举。否则，该方法设置的效果会覆盖 <apiname keyref="setAudioEffectPreset"/> 设置的效果。</p>
    <note outputclass="note">
        <ul>
   <li>该方法在加入频道前后都能调用。</li>
@@ -38,7 +37,7 @@
                             keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1) 或 <apiname
                             keyref="AUDIO_PROFILE_IOT"/>(6)，否则该方法不生效。</li>
   <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
-  <li>调用该方法后，Agora 不推荐调用以下方法，否则该方法设置的效果会被覆盖：
+  <li>调用 <apiname keyref="setAudioEffectParameters"/> 后，Agora 不推荐调用以下方法，否则 <apiname keyref="setAudioEffectParameters"/> 设置的效果会被覆盖：
       <ul>
  <li><xref keyref="setAudioEffectPreset"/></li>
  <li><xref keyref="setVoiceBeautifierPreset"/></li>
@@ -75,7 +74,7 @@
   <pd>
       <ul>
  <li>如果 <parmname>preset</parmname> 设为 <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/> ，则 <parmname>param1</parmname> 表示 3D 人声音效的环绕周期。取值范围为 [1,60]，单位为秒。默认值为 10，表示人声会 10 秒环绕 360 度。</li>
- <li>如果 <parmname>preset</parmname> 设为 <apiname keyref="PITCH_CORRECTION"/>，则 <parmname>param1</parmname> 表示电音音效的基础调式。可设为如下值：
+ <li>如果 <parmname>preset</parmname> 设为 <apiname keyref="PITCH_CORRECTION"/>，则 <parmname>param1</parmname> 表示电音音效的基础调式：
      <ul>
 <li><codeph>1</codeph>: （默认）自然大调。</li>
 <li><codeph>2</codeph>: 自然小调。</li>
@@ -90,7 +89,7 @@
   <pd>
       <ul>
  <li>如果 <parmname>preset</parmname> 设为 <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/>，你需要将 <parmname>param2</parmname> 设置为 <codeph>0</codeph>。</li>
- <li>如果 <parmname>preset</parmname> 设为 <apiname keyref="PITCH_CORRECTION"/>，则 <parmname>param2</parmname> 表示电音音效的主音音高。可设为如下值：
+ <li>如果 <parmname>preset</parmname> 设为 <apiname keyref="PITCH_CORRECTION"/>，则 <parmname>param2</parmname> 表示电音音效的主音音高：
      <ul>
 <li><codeph>1</codeph>: A</li>
 <li><codeph>2</codeph>: A#</li>
