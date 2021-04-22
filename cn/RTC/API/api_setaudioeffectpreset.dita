@@ -32,8 +32,8 @@
                             keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1) 或 <apiname
                             keyref="AUDIO_PROFILE_IOT"/>(6)，否则该方法不生效。</li>
   <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
-  <li>如果调用该方法并设置除 <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/> 或 <apiname keyref="PITCH_CORRECTION"/> 外的枚举，请勿再调用 <xref keyref="setAudioEffectParameters"/>，否则该方法设置的效果会被覆盖。</li>
-  <li>调用该方法后，Agora 不推荐调用以下方法，否则该方法设置的效果会被覆盖：
+  <li>如果调用 <apiname keyref="setAudioEffectPreset"/> 并设置除 <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/> 或 <apiname keyref="PITCH_CORRECTION"/> 外的枚举，请勿再调用 <xref keyref="setAudioEffectParameters"/>，否则 <apiname keyref="setAudioEffectPreset" /> 设置的效果会被覆盖。</li>
+  <li>调用 <apiname keyref="setAudioEffectPreset"/> 后，Agora 不推荐调用以下方法，否则 <apiname keyref="setAudioEffectPreset"/> 设置的效果会被覆盖：
       <ul>
          <li><xref keyref="setVoiceBeautifierPreset"/></li>
          <li><xref keyref="setLocalVoiceReverbPreset"/></li>
