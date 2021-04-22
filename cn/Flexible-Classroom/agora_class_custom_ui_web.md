@@ -11,7 +11,7 @@ UIKit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO
 | 文件夹       | 描述                                                         |
 | :----------- | :----------------------------------------------------------- |
 | `components` | 灵动课堂使用的基础 UI 组件的源码。一个 UI 组件一般包含以下文件：<li>`.css`: 定义组件的样式。</li><li>`.stories.tsx`: 定义组件在 Storybook 中的展示。</li><li>`.tsx`: 定义组件的具体设计。</li> |
-| `scaffold`   | 场景 UI 组件，可作为脚手架查看基础 UI 组件的组合效果。       |
+| `scaffold`   | 场景 UI 组件，可作为脚手架查看基础 UI 组件在各教学场景中的组装效果。 |
 | `styles`     | 定义全局样式。                                               |
 | `utilities`  | 工具函数，如国际化、自定义 hooks 等。                        |
 
@@ -233,7 +233,7 @@ export const ZoomController: FC<ZoomControllerProps> = ({
 
 ### 新增基础 UI 组件
 
-以下示例演示了如何自定义一个基础 UI 组件并在灵动课堂中使用：
+以下示例演示了如何自定义一个基础 UI 组件并在灵动课堂的 1 对 1 互动教学场景中使用：
 
 1. 在 `agora-scenario-ui-kit/src/components` 目录下创建 `custom` 文件夹并新建以下文件：
 
@@ -353,10 +353,11 @@ export const ZoomController: FC<ZoomControllerProps> = ({
 
         return (
           <div className="whiteboard">
+      ```
 
 
           ......
-
+    
             {showZoomControl ? <ZoomController
               className='zoom-position'
               zoomValue={zoomValue}
@@ -365,7 +366,7 @@ export const ZoomController: FC<ZoomControllerProps> = ({
               maximum={!isFullScreen}
               clickHandler={handleZoomControllerChange}
             /> : null}
-
+    
             <Custom className='custom-position' width={200} height={200}>
               <div>Use the custom component!</div>
             </Custom>
