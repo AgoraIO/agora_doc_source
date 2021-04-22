@@ -13,9 +13,9 @@ Agora provides an open-source demo project on GitHub that implements [audio effe
 
 ## Audio effect files
 
-In this context, the audio effects refer to the ambient sounds with a short duration, such as applause, cheers, fighting sounds, and gunshots. Usually, you can play multiple audio effects at the same time.
+In this context, the audio effects are ambient sounds with a short duration, such as applause, cheers, fighting sounds, and gunshots. Usually, you can play multiple audio effects at the same time.
 
-Agora provides a group of methods to play and manage audio effect files that enable you to perform the following functions: 
+Agora provides a group of methods to play and manage audio effect files. Supported functions include the following:
 
 - Play local or online audio effect files.
 - Set the spatial position, number of loops, playback position, volume, and other playback options of an audio effect.
@@ -67,7 +67,7 @@ Call `playEffect` to play the audio effect file. You can call `playEffect` multi
 ```c++
 // Sets the number of times the audio effect loops. -1 represents an infinite loop.  
 int loops = -1; 
- // Sets the pitch of the audio effect. The value range is 0.5 to 2.0.  
+ // Sets the pitch of the audio effect. The value range is 0.5 to 2.0, where 1.0 is the original pitch.  
 double pitch = 1.5; 
  // Sets the volume of the audio effect. The value range is 0 to 100. 100 represents the original volume.  
 int gain = 100; 
@@ -173,9 +173,9 @@ m_rtcEngine->getEffectsVolume();
 
 Audio mixing refers to mixing a music file with the audio captured by a microphone. Users who use the audio mixing function often play a relatively long music file and only play one music file at a time. For example, users can play accompaniment when singing or play background music when chatting.
 
-Agora provides a group of methods to play and manage music files that enable you to perform the following functions:
+Agora provides a group of methods to play and manage the music file. Supported functions include the following:
 
-- Play local or online music files.
+- Play the local or online music file.
 - Set the number of playbacks , playback position, volume, pitch, and other playback options of a music file.
 - Flexibly control the playing, pausing, resumption, and stopping of the music file.
 - Report the current playback state of the music file and the reason for the change.
