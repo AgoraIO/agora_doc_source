@@ -340,6 +340,53 @@
  }
  }</codeblock>
   </p>
+           
+  <!-- setVideoRenderDimension -->
+  <p id="setVideoRenderDimension">
+      <codeblock props="electron" outputclass="language-typescript">setVideoRenderDimension(
+          rendertype: number,
+          uid: number,
+          width: number,
+          height: number
+          )</codeblock>
+  </p>
+  
+  <!-- setVideoRenderFPS -->
+  <p id="setVideoRenderFPS">
+      <codeblock props="electron" outputclass="language-typescript">setVideoRenderFPS(fps: number)</codeblock>
+  </p>
+           
+  <!-- setVideoRenderHighFPS -->
+  <p id="setVideoRenderHighFPS">
+      <codeblock props="electron" outputclass="language-typescript">setVideoRenderHighFPS(fps: number)</codeblock>
+  </p>
+           
+  <!-- addVideoRenderToHighFPS -->
+  <p id="addVideoRenderToHighFPS">
+      <codeblock props="electron" outputclass="language-typescript">addVideoRenderToHighFPS(uid: number)</codeblock>
+  </p>
+           
+  <!-- removeVideoRenderFromHighFPS -->
+  <p id="remoteVideoRenderFromHighFPS">
+      <codeblock props="electron" outputclass="language-typescript">removeVideoRenderFromHighFPS(uid: number)</codeblock>
+  </p>
+           
+  <!-- setupViewContentMode -->
+  <p id="setupVideoContentMode">
+      <codeblock props="electron" outputclass="language-typescript">setupViewContentMode(
+          uid: number | 'local' | 'videosource',
+          mode: 0 | 1,
+          channelId: string | undefined
+          ): number</codeblock>
+  </p>
+           
+  <!-- destroyRender -->
+  <p id="destroyRender">
+      <codeblock props="electron" outputclass="language-typescript">destroyRender(
+          key: 'local' | 'videosource' | number, channelId: string | undefined,
+          onFailure?: (err: Error) => void
+          )</codeblock>
+  </p>
   
   <!--startPreview-->
   <p id="startPreview">       
@@ -540,6 +587,21 @@
       <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>
       <codeblock props="electron" outputclass="language-typescript">registerMediaMetadataObserver(): number</codeblock>
   </p>
+           
+  <!-- IChannel_unregisterMediaMetadataObserver -->
+  <p id="IChannel_unregisterMediaMetadataObserver">
+      <codeblock props="electron" outputclass="language-typescript">unRegisterMediaMetadataObserver(): number</codeblock>
+  </p>
+  
+  <!-- IChannel_sendMetadata -->
+  <p id="IChannel_sendMetadata">
+      <codeblock props="electron" outputclass="language-typescript">sendMetadata(metadata: Metadata): number</codeblock>
+  </p>
+           
+  <!-- IChannel_setMaxMetadataSize -->
+  <p id="IChannel_setMaxMetadataSize">
+      <codeblock props="electron" outputclass="language-typescript">setMaxMetadataSize(size: number): number</codeblock>
+  </p>
   
   <!--IChannel_setClientRole1-->
   <p id="IChannel_setClientRole1">       
@@ -579,7 +641,7 @@
   <!--IChannel_setDefaultMuteAllRemoteVideoStreams-->
   <p id="IChannel_setDefaultMuteAllRemoteVideoStreams">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultMuteAllRemoteVideoStreams(bool mute) = 0;</codeblock>
-      <codeblock props="electron" outputclass="language-typescript"></codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setDefaultMuteAllRemoteVideoStreams(mute: boolean): number</codeblock>
   </p>
   
   <!--IChannel_muteAllRemoteAudioStreams-->
@@ -615,13 +677,13 @@
   <!--IChannel_setRemoteVideoStreamType-->
   <p id="IChannel_setRemoteVideoStreamType">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVideoStreamType(uid_t userId, REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
-      <codeblock props="electron" outputclass="language-typescript"></codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setRemoteVideoStreamType(userId: number, streamType: REMOTE_VIDEO_STREAM_TYPE): number</codeblock>
   </p>
   
   <!--IChannel_setRemoteDefaultVideoStreamType-->
   <p id="IChannel_setRemoteDefaultVideoStreamType">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
-      <codeblock props="electron" outputclass="language-typescript">setRemoteVideoStreamType(userId: number, streamType: REMOTE_VIDEO_STREAM_TYPE): number</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setRemoteDefaultVideoStreamType(streamType: REMOTE_VIDEO_STREAM_TYPE): number</codeblock>
   </p>
   
   <!--IChannel_createDataStream1-->
@@ -693,6 +755,16 @@
   <p id="IChannel_getConnectionState">       
       <codeblock props="windows" outputclass="language-cpp">virtual CONNECTION_STATE_TYPE getConnectionState() = 0;</codeblock>
       <codeblock props="electron" outputclass="language-typescript">getConnectionState(): CONNECTION_STATE_TYPE</codeblock>
+  </p>
+           
+  <!-- getScreenWindowsInfo -->
+  <p id="getScreenWindowsInfo">
+      <codeblock props="electron" outputclass="language-typescript">getScreenWindowsInfo(): Array&lt;Object&gt;</codeblock>
+  </p>
+           
+  <!-- getScreenDisplaysInfo -->
+  <p id="getScreenDisplaysinfo">
+      <codeblock props="electron" outputclass="language-typescript">getScreenDisplaysInfo(): Array&lt;Object&gt;</codeblock>
   </p>
   
   <!--startScreenCapture-->
@@ -957,7 +1029,7 @@
   <!--setAudioEffectPreset-->
   <p id="setAudioEffectPreset">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setAudioEffectPreset(AUDIO_EFFECT_PRESET preset) = 0;</codeblock>
-      <codeblock props="electron" outputclass="language-typescript"></codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setAudioEffectPreset(preset: AUDIO_EFFECT_PRESET): number</codeblock>
   </p>
   
   <!--setAudioEffectParameters-->
@@ -1220,6 +1292,21 @@
       <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>
       <codeblock props="electron" outputclass="language-typescript">registerMediaMetadataObserver(): number</codeblock>
   </p>
+           
+  <!-- unregisterMediaMetadataObserver -->
+  <p id="unregisterMediaMetadataObserver">
+      <codeblock props="electron" outputclass="language-typescript">unRegisterMediaMetadataObserver(): number</codeblock>
+  </p>
+           
+  <!-- sendMetadata -->
+  <p id="sendMetadata">
+      <codeblock props="electron" outputclass="language-typescript">sendMetadata(metadata: Metadata): number</codeblock>
+  </p>
+           
+  <!-- setMaxMetadataSize -->
+  <p id="setMaxMetadataSize">
+      <codeblock props="electron" outputclass="language-typescript">setMaxMetadataSize(size: number): number</codeblock>
+  </p>
   
   <!--addVideoWatermark1-->
   <p id="addVideoWatermark1">       
@@ -1414,110 +1501,132 @@
   
   <!--enumeratePlaybackDevices-->
   <p id="enumeratePlaybackDevices">       
-      <codeblock props="windows" outputclass="language-cpp">virtual IAudioDeviceCollection* enumeratePlaybackDevices() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual IAudioDeviceCollection* enumeratePlaybackDevices() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getAudioPlaybackDevices(): Array&lt;{ deviceid: string, devicename: string }&gt;</codeblock>
   </p>
   
   <!--enumerateRecordingDevices-->
   <p id="enumerateRecordingDevices">      
-      <codeblock props="windows" outputclass="language-cpp">virtual IAudioDeviceCollection* enumerateRecordingDevices() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual IAudioDeviceCollection* enumerateRecordingDevices() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getAudioRecordingDevices(): Array&lt;{ deviceid: string, devicename: string }&gt;</codeblock>
   </p>
   
   <!--setPlaybackDevice-->
   <p id="setPlaybackDevice">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setAudioPlaybackDevice(deviceId: string): number</codeblock>
   </p>
   
   <!--setRecordingDevice-->
   <p id="setRecordingDevice">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setAudioRecordingDevice(deviceId: string): number</codeblock>
   </p>
   
   <!--startPlaybackDeviceTest-->
   <p id="startPlaybackDeviceTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startPlaybackDeviceTest(const char* testAudioFilePath) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int startPlaybackDeviceTest(const char* testAudioFilePath) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startAudioPlaybackDeviceTest(testAudioFilePath: string): number</codeblock>
   </p>
   
   <!--stopPlaybackDeviceTest-->
   <p id="stopPlaybackDeviceTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopPlaybackDeviceTest() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopPlaybackDeviceTest() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopAudioPlaybackDeviceTest(): number</codeblock>
   </p>
   
   <!--startRecordingDeviceTest-->
   <p id="startRecordingDeviceTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indicationInterval) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indicationInterval) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startAudioRecordingDeviceTest(testAudioFilePath: string): number</codeblock>
   </p>
   
   <!--stopRecordingDeviceTest-->
   <p id="stopRecordingDeviceTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopRecordingDeviceTest() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopRecordingDeviceTest() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopAudioRecordingDeviceTest(): number</codeblock>
   </p>
   
   <!--getPlaybackDevice-->
   <p id="getPlaybackDevice">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getCurrentAudioPlaybackDevice(): { deviceId: String }</codeblock>
   </p>
   <!--getPlaybackDeviceInfo-->
   <p id="getPlaybackDeviceInfo">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDeviceInfo(char deviceId[MAX_DEVICE_ID_LENGTH], char deviceName[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDeviceInfo(char deviceId[MAX_DEVICE_ID_LENGTH], char deviceName[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getPlaybackDeviceInfo(): Array&lt;{ deviceid: string, devicename: string }&gt;</codeblock>
   </p>
   <!--getRecordingDevice-->
   <p id="getRecordingDevice">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getCurrentAudioRecordingDevice(): { deviceid: string, devicename: string }</codeblock>
   </p>
   <!--getRecordingDeviceInfo-->
   <p id="getRecordingDeviceInfo">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDeviceInfo(char deviceId[MAX_DEVICE_ID_LENGTH], char deviceName[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDeviceInfo(char deviceId[MAX_DEVICE_ID_LENGTH], char deviceName[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getRecordingDeviceInfo(): Array&lt;{ deviceid: string, devicename: string }&gt;</codeblock>
   </p>
   
   <!--startAudioDeviceLoopbackTest-->
   <p id="startAudioDeviceLoopbackTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startAudioDeviceLoopbackTest(int indicationInterval) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int startAudioDeviceLoopbackTest(int indicationInterval) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startAudioDeviceLoopbackTest(indicationInterval: number): number</codeblock>
   </p>
   
   <!--stopAudioDeviceLoopbackTest-->
   <p id="stopAudioDeviceLoopbackTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopAudioDeviceLoopbackTest() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopAudioDeviceLoopbackTest() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopAudioDeviceLoopbackTest(): number</codeblock>
   </p>
   
   <!--setPlaybackDeviceVolume-->
   <p id="setPlaybackDeviceVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackDeviceVolume(int volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackDeviceVolume(int volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setAudioPlaybackVolume(volume: number): number</codeblock>
   </p>
   
   <!--getPlaybackDeviceVolume-->
   <p id="getPlaybackDeviceVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDeviceVolume(int *volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDeviceVolume(int *volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getAudioPlaybackVolume(): number</codeblock>
   </p>
   
   <!--setRecordingDeviceVolume-->
   <p id="setRecordingDeviceVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingDeviceVolume(int volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingDeviceVolume(int volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setAudioRecordingVolume(volume: number): number</codeblock>
   </p>
   
   <!--getRecordingDeviceVolume-->
   <p id="getRecordingDeviceVolume">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDeviceVolume(int *volume) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDeviceVolume(int *volume) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getAudioRecordingVolume(): number</codeblock>
   </p>
   
   <!--setPlaybackDeviceMute-->
   <p id="setPlaybackDeviceMute">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackDeviceMute(bool mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackDeviceMute(bool mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setAudioPlaybackDeviceMute(mute: boolean): number</codeblock>
   </p>
  
   
   <!--getPlaybackDeviceMute-->
   <p id="getPlaybackDeviceMute">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDeviceMute(bool *mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int getPlaybackDeviceMute(bool *mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getAudioRecordingDeviceMute(): boolean</codeblock>
   </p>
   
   <!--setRecordingDeviceMute-->
   <p id="setRecordingDeviceMute">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingDeviceMute(bool mute) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingDeviceMute(bool mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setAudioRecordingDeviceMute(mute: boolean): number</codeblock>
   </p>
   
   <!--getRecordingDeviceMute-->
   <p id="getRecordingDeviceMute">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDeviceMute(bool *mute) = 0;</codeblock>  
+      <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDeviceMute(bool *mute) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getAudioRecordingDeviceMute(): boolean</codeblock>
   </p>
   <!--IAudioDeviceManager_release-->
   <p id="IAudioDeviceManager_release">       
@@ -1526,25 +1635,30 @@
   
   <!--enumerateVideoDevices-->
   <p id="enumerateVideoDevices">       
-      <codeblock props="windows" outputclass="language-cpp">virtual IVideoDeviceCollection* enumerateVideoDevices() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual IVideoDeviceCollection* enumerateVideoDevices() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getVideoDevices(): Array&lt;{ deviceid: string, devicename: string }&gt;</codeblock>
   </p>
   
   <!--startDeviceTest-->
   <p id="startDeviceTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startDeviceTest(view_t hwnd) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int startDeviceTest(view_t hwnd) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startVideoDeviceTest(): number</codeblock>
   </p>
   
   <!--stopDeviceTest-->
   <p id="stopDeviceTest">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int stopDeviceTest() = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int stopDeviceTest() = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">stopVideoDeviceTest(): number</codeblock>
   </p>
   <!--IVideoDeviceManager_setDevice-->
   <p id="IVideoDeviceManager_setDevice">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setVideoDevice(deviceId: string): number</codeblock>
   </p>
   <!--IVideoDeviceManager_getDevice-->
   <p id="IVideoDeviceManager_getDevice">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int getDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>  
+      <codeblock props="windows" outputclass="language-cpp">virtual int getDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">getCurrentVideoDevice(): Object</codeblock>
   </p>
   <!--IVideoDeviceManager_release-->
   <p id="IVideoDeviceManager_release">       
@@ -1608,7 +1722,8 @@
   
   <!--uploadLogFile-->
   <p id="uploadLogFile">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int uploadLogFile(agora::util::AString&amp; requestId) = 0;</codeblock>  
+      <codeblock props="windows" outputclass="language-cpp">virtual int uploadLogFile(agora::util::AString&amp; requestId) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">uploadLogFile(): string</codeblock>
   </p>
   
   <!--enableLoopbackRecording-->
@@ -1644,7 +1759,8 @@
 
   <!--enableDeepLearningDenoise-->
   <p id="enableDeepLearningDenoise">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int enableDeepLearningDenoise(bool enable) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int enableDeepLearningDenoise(bool enable) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">enableDeepLearningDenoise(enable: boolean): number</codeblock>
   </p>
 
   <!--getCallId-->
@@ -1711,9 +1827,151 @@
   <p id="removeHandler">       
       <codeblock props="android" outputclass="language-java">public void removeHandler(IRtcEngineEventHandler handler) {
  mInstance.removeHandler(handler);
- }</codeblock>   
+ }</codeblock>
+  </p>
+   
+  <!-- videoSourceInitialize -->
+  <p id="videoSourceInitialize">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceInitialize(appId: string, areaCode: AREA_CODE = (0xFFFFFFFF), logConfig?: LogConfig): number</codeblock>
+  </p>
+           
+  <!-- videoSourceSetLogFile -->
+  <p id="videoSourceSetLogFile">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceSetLogFile(filePath: string): number</codeblock>
+  </p>
+   
+  <!-- setupLocalVideoSource -->
+  <p id="setupLocalVideoSource">
+      <codeblock props="electron" outputclass="language-typescript">setupLocalVideoSource(view: Element): void</codeblock>
+  </p>
+           
+  <!-- videoSourceEnableWebSdkInteroperability -->
+  <p id="videoSourceEnableWebSdkInteroperability">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceEnableWebSdkInteroperability(enabled: boolean): number</codeblock>
+  </p>
+           
+  <!-- videoSourceJoin -->
+  <p id="videoSourceJoin">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceJoin(
+          token: string,
+          channelId: string,
+          info: string,
+          uid: number,
+          options?: ChannelMediaOptions
+          ): number</codeblock>
+  </p>
+           
+  <!-- videoSourceLeave -->
+  <p id="videoSourceLeave">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceLeave(): number</codeblock>
+  </p>
+           
+  <!-- videoSourceRenewToken -->
+  <p id="videoSourceRenewToken">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceRenewToken(token: string): number</codeblock>
+  </p>
+           
+  <!-- videoSourceSetChannelProfile -->
+  <p id="videoSourceSetChannelProfile">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceSetChannelProfile(profile: number): number</codeblock>
+  </p>
+           
+  <!-- videoSourceSetVideoProfile -->
+  <p id="videoSourceSetVideoProfile">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceSetVideoProfile(
+          profile: VIDEO_PROFILE_TYPE,
+          swapWidthAndHeight = false
+          ): number</codeblock>
+  </p>
+           
+  <!-- videoSourceEnableDualStreamMode -->
+  <p id="videoSourceEnableDualStreamMode">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceEnableDualStreamMode(enabled: boolean): number</codeblock>
+  </p>
+           
+  <!-- videoSourceUpdateScreenCaptureRegion -->
+  <p id="videoSourceUpdateScreenCaptureRegion">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceUpdateScreenCaptureRegion(regionRect: Rectangle)</codeblock>
+  </p>
+           
+  <!-- videoSourceEnableLoopbackRecording -->
+  <p id="videoSourceEnableLoopbackRecording">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceEnableLoopbackRecording(enabled: boolean, deviceName: string | null = null): number</codeblock>
+  </p>
+           
+  <!-- videoSourceEnableAudio -->
+  <p id="videoSourceEnableAudio">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceEnableAudio(): number</codeblock>
+  </p>
+           
+  <!-- videoSourceEnableEncryption -->
+  <p id="videoSourceEnableEncryption">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceEnableEncryption(enabled: boolean, config: EncryptionConfig): number</codeblock>
+  </p>
+           
+  <!-- videoSourceSetEncryptionMode -->
+  <p id="videoSourceSetEncryptionMode">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceSetEncryptionMode(encryptionMode: string): number</codeblock>
   </p>
   
+  <!-- videoSourceSetEncryptionSecret -->
+  <p id="videoSourceSetEncryptionSecret">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceSetEncryptionSecret(secret: string): number</codeblock>
+  </p>
+  
+  <!-- videoSourceRelease -->
+  <p id="videoSourceRelease">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceRelease(): number</codeblock>
+  </p>
+           
+  <!-- videoSourceStartScreenCaptureByScreen -->
+  <p id="videoSourceStartScreenCaptureByScreen">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceStartScreenCaptureByScreen(
+          screenSymbol: ScreenSymbol,
+          regionRect: CaptureRect,
+          captureParams: ScreenCaptureParameters
+          ): number</codeblock>
+  </p>
+           
+  <!-- videoSourceStartScreenCaptureByWindow -->
+  <p id="videoSourceStartScreenCaptureByWindow">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceStartScreenCaptureByWindow(windowId: number, regionRect: CaptureRect, captureParams: ScreenCaptureParameters): number</codeblock>
+  </p>
+           
+  <!-- videoSourceUpdateScreenCaptureParameters -->
+  <p id="videoSourceUpdateScreenCaptureParameters">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceUpdateScreenCaptureParameters(captureParams: ScreenCaptureParameters): number</codeblock>
+  </p>
+           
+  <!-- videoSourceSetScreenCaptureContentHint -->
+  <p id="videoSourceSetScreenCaptureContentHint">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceSetScreenCaptureContentHint(contentHint: VideoContentHint): number</codeblock>
+  </p>
+           
+  <!-- videoSourceStartScreenCapture -->
+  <p id="videoSourceStartScreenCapture">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceStartScreenCapture(
+          windowId: number,
+          captureFreq: number,
+          rect: Rect,
+          bitrate: number
+          ): number</codeblock>
+  </p>
+           
+  <!-- videoSourceStopScreenCapture -->
+  <p id="videoSourceStopScreenCapture">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceStopScreenCapture(): number</codeblock>
+  </p>
+           
+  <!-- videoSourceStartScreenCapturePreview -->
+  <p id="videoSourceStartScreenCapturePreview">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceStartScreenCapturePreview(): number</codeblock>
+  </p>
+           
+  <!-- videoSourceStopScreenCapturePreview -->
+  <p id="videoSourceStopScreenCapturePreview">
+      <codeblock props="electron" outputclass="language-typescript">videoSourceStopScreenCapturePreview(): number</codeblock>
+  </p>
   
        </section>
    
@@ -1727,7 +1985,10 @@
         (void)state;
         (void)reason;
     }</codeblock>
-      <codeblock props="electron" outputclass="language-typescript"></codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'connectionStateChanged', cb: (
+          state: CONNECTION_STATE_TYPE,
+          reason: CONNECTION_CHANGED_REASON_TYPE
+          ) => void): this;</codeblock>
   </p>
   
   <!--onJoinChannelSuccess-->
@@ -1736,7 +1997,11 @@
         (void)channel;
         (void)uid;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'joinedChannel',
+          cb: (channel: string, uid: number, elapsed: number) => void
+          ): this;</codeblock>
   </p>
   
   <!--onRejoinChannelSuccess-->
@@ -1745,7 +2010,11 @@
         (void)channel;
         (void)uid;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'rejoinedChannel',
+          cb: (channel: string, uid: number, elapsed: number) => void
+          ): this;</codeblock>
   </p>
   
   <!--onLeaveChannel-->
@@ -1761,6 +2030,10 @@
       <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
       <codeblock props="rust windows" outputclass="language-cpp">virtual void onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole) {
     }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'clientRoleChanged',
+          cb: (oldRole: CLIENT_ROLE_TYPE, newRole: CLIENT_ROLE_TYPE) => void
+          ): this;</codeblock>
   </p>
   
   <!--onUserJoined-->
@@ -1769,6 +2042,7 @@
         (void)uid;
         (void)elapsed;
     }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'userJoined', cb: (uid: number, elapsed: number) => void): this;</codeblock>
   </p>
   
   <!--onUserOffline-->
@@ -1777,6 +2051,7 @@
         (void)uid;
         (void)reason;
     }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'userOffline', cb: (uid: number, reason: number) => void): this;</codeblock>
   </p>
   
   <!--onNetworkTypeChanged-->
@@ -1793,25 +2068,29 @@
   
   <!--onConnectionLost-->
   <p id="onConnectionLost">       
-      <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionLost() {}</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionLost() {}</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'connectionLost', cb: () => void): this;</codeblock>
   </p>
   
   <!--onConnectionBanned-->
   <p id="onConnectionBanned">       
-      <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionBanned() {}</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionBanned() {}</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'connectionBanned', cb: () => void): this;</codeblock>
   </p>
   
   <!--onTokenPrivilegeWillExpire-->
   <p id="onTokenPrivilegeWillExpire">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onTokenPrivilegeWillExpire(const char* token) {
         (void)token;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'tokenPrivilegeWillExpire', cb: (token: string) => void): this;</codeblock>
   </p>
 
   <!--onRequestToken-->
   <p id="onRequestToken">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onRequestToken() {
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'requestToken', cb: () => void): this;</codeblock>
   </p>
   
   <!--onLocalUserRegistered-->
@@ -1819,7 +2098,11 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onLocalUserRegistered(uid_t uid, const char* userAccount) {
       (void)uid;
       (void)userAccount;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'localUserRegistered',
+          cb: (uid: number, userAccount: string) => void
+          ): this;</codeblock>
   </p>
   
   <!--onUserInfoUpdated-->
@@ -1827,7 +2110,11 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onUserInfoUpdated(uid_t uid, const UserInfo&amp; info) {
       (void)uid;
       (void)info;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'userInfoUpdated',
+          cb: (uid: number, userInfo: UserInfo) => void
+          ): this;</codeblock>
   </p>
   
   <!--onLocalAudioStateChanged-->
@@ -1835,14 +2122,24 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onLocalAudioStateChanged(LOCAL_AUDIO_STREAM_STATE state, LOCAL_AUDIO_STREAM_ERROR error) {
         (void)state;
         (void)error;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'localAudioStateChanged', cb: (
+          state: number,
+          error: number
+          ) => void): this;</codeblock>
   </p>
+           
+   <!-- onMicrophoneEnabled -->
+   <p id="onMicrophoneEnabled">
+       <codeblock props="electron" outputclass="language-typescript">on(evt: 'microphoneEnabled', cb: (enabled: boolean) => void): this;</codeblock>
+   </p>
   
   <!--onFirstLocalAudioFrame-->
   <p id="onFirstLocalAudioFrame">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalAudioFrame(int elapsed) {
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'firstLocalAudioFrame', cb: (elapsed: number) => void): this;</codeblock>
   </p>
 
   <!--onLocalVideoStateChanged-->
@@ -1850,26 +2147,37 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState, LOCAL_VIDEO_STREAM_ERROR error) {
         (void)localVideoState;
         (void)error;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'localVideoStateChanged', cb: (
+          localVideoState: number,
+          error: number
+          ) => void): this;</codeblock>
   </p>
   
   <!--onVideoStopped-->
   <p id="onVideoStopped">       
-      <codeblock props="windows" outputclass="language-cpp">virtual void onVideoStopped() {}</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual void onVideoStopped() {}</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'videoStopped', cb: () => void): this;</codeblock>
   </p>
 
   <!--onFirstLocalAudioFramePublished-->
   <p id="onFirstLocalAudioFramePublished">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalAudioFramePublished(int elapsed) {
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'firstLocalAudioFramePublished', cb: (
+          elapsed: number
+          ) => void): this;</codeblock>
   </p>
 
   <!--onFirstLocalVideoFramePublished-->
   <p id="onFirstLocalVideoFramePublished">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalVideoFramePublished(int elapsed) {
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'firstLocalVideoFramePublished', cb: (
+          elapsed: number
+          ) => void): this;</codeblock>
   </p>
 
   <!--onFirstLocalVideoFrame-->
@@ -1878,7 +2186,11 @@
         (void)width;
         (void)height;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'firstLocalVideoFrame',
+          cb: (width: number, height: number, elapsed: number) => void
+          ): this;</codeblock>
   </p>
 
   <!--onAudioPublishStateChanged-->
@@ -1888,7 +2200,13 @@
         (void)oldState;
         (void)newState;
         (void)elapseSinceLastState;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'audioPublishStateChanged', cb: (
+          channel: string,
+          oldState: STREAM_PUBLISH_STATE,
+          newState: STREAM_PUBLISH_STATE,
+          elapseSinceLastState: number
+          ) => void): this;</codeblock>
   </p>
   
   <!--onVideoPublishStateChanged-->
@@ -1898,7 +2216,13 @@
         (void)oldState;
         (void)newState;
         (void)elapseSinceLastState;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'videoPublishStateChanged', cb: (
+          channel: string,
+          oldState: STREAM_PUBLISH_STATE,
+          newState: STREAM_PUBLISH_STATE,
+          elapseSinceLastState: number
+          ) => void): this;</codeblock>
   </p>
   
   <!--onRemoteAudioStateChanged-->
@@ -1908,7 +2232,13 @@
         (void)state;
         (void)reason;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'remoteAudioStateChanged', cb: (
+          uid: number,
+          state: REMOTE_AUDIO_STATE,
+          reason: REMOTE_AUDIO_STATE_REASON,
+          elapsed: number
+          ) => void): this;</codeblock>
   </p>
      
   <!--onRemoteVideoStateChanged-->
@@ -1918,7 +2248,16 @@
         (void)state;
         (void)reason;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'remoteVideoStateChanged',
+          cb: (
+          uid: number,
+          state: REMOTE_VIDEO_STATE,
+          reason: REMOTE_VIDEO_STATE_REASON,
+          elapsed: number
+          ) => void
+          ): this;</codeblock>
   </p>
   
   <!--onFirstRemoteAudioFrame-->
@@ -1926,7 +2265,11 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteAudioFrame(uid_t uid, int elapsed) {
         (void)uid;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'firstRemoteVideoFrame',
+          cb: (uid: number, width: number, height: number, elapsed: number) => void
+          ): this;</codeblock>
   </p>
 
   <!--onFirstRemoteAudioDecoded-->
@@ -1934,7 +2277,11 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) {
         (void)uid;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'firstRemoteAudioDecoded',
+          cb: (uid: number, elapsed: number) => void
+          ): this;</codeblock>
   </p>
 
   <!--onFirstRemoteVideoFrame-->
@@ -1944,7 +2291,8 @@
         (void)width;
         (void)height;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript"></codeblock>
   </p>
   
   <!--onFirstRemoteVideoDecoded-->
@@ -1955,6 +2303,10 @@
         (void)height;
         (void)elapsed;
     }     </codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'firstRemoteVideoDecoded',
+          cb: (uid: number, width: number, height: number, elapsed: number) => void
+          ): this;</codeblock>
   </p>
 
   <!--onAudioSubscribeStateChanged-->
@@ -1965,7 +2317,14 @@
         (void)oldState;
         (void)newState;
         (void)elapseSinceLastState;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'audioSubscribeStateChanged', cb: (
+          channel: string,
+          uid: number,
+          oldState: STREAM_SUBSCRIBE_STATE,
+          newState: STREAM_SUBSCRIBE_STATE,
+          elapseSinceLastState: number
+          ) => void): this;</codeblock>
   </p>
   
   <!--onVideoSubscribeStateChanged-->
@@ -1976,7 +2335,14 @@
         (void)oldState;
         (void)newState;
         (void)elapseSinceLastState;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'videoSubscribeStateChanged', cb: (
+          channel: string,
+          uid: number,
+          oldState: STREAM_SUBSCRIBE_STATE,
+          newState: STREAM_SUBSCRIBE_STATE,
+          elapseSinceLastState: number
+          ) => void): this;</codeblock>
   </p>
 
   <!--onUserMuteAudio-->
@@ -1984,7 +2350,8 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onUserMuteAudio(uid_t uid, bool muted) {
         (void)uid;
         (void)muted;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'userMuteAudio', cb: (uid: number, muted: boolean) => void): this;</codeblock>
   </p>
   
   <!--onUserMuteVideo-->
@@ -1992,7 +2359,8 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onUserMuteVideo(uid_t uid, bool muted) {
         (void)uid;
         (void)muted;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'userMuteVideo', cb: (uid: number, muted: boolean) => void): this;</codeblock>
   </p>
   
   <!--onUserEnableVideo-->
@@ -2000,7 +2368,8 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onUserEnableVideo(uid_t uid, bool enabled) {
         (void)uid;
         (void)enabled;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'userEnableVideo', cb: (uid: number, enabled: boolean) => void): this;</codeblock>
   </p>
   
   <!--onUserEnableLocalVideo-->
@@ -2008,7 +2377,11 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onUserEnableLocalVideo(uid_t uid, bool enabled) {
         (void)uid;
         (void)enabled;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'userEnableLocalVideo',
+          cb: (uid: number, enabled: boolean) => void
+          ): this;</codeblock>
   </p>
   
   <!--onVideoSizeChanged-->
@@ -2018,14 +2391,19 @@
         (void)width;
         (void)height;
         (void)rotation;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'videoSizeChanged',
+          cb: (uid: number, width: number, height: number, rotation: number) => void
+          ): this;</codeblock>
   </p>
 
   <!--onRtcStats-->
   <p id="onRtcStats">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onRtcStats(const RtcStats&amp; stats) {
         (void)stats;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'rtcStats', cb: (stats: RtcStats) => void): this;</codeblock>
   </p>
   
   <!--onNetworkQuality-->
@@ -2034,28 +2412,39 @@
         (void)uid;
         (void)txQuality;
         (void)rxQuality;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'networkQuality',
+          cb: (
+          uid: number,
+          txquality: QUALITY_TYPE,
+          rxquality: QUALITY_TYPE
+          ) => void
+          ): this;</codeblock>
   </p>
   
   <!--onLocalAudioStats-->
   <p id="onLocalAudioStats">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onLocalAudioStats(const LocalAudioStats&amp; stats) {
         (void)stats;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'localAudioStats', cb: (stats: LocalAudioStats) => void): this;</codeblock>
   </p>
   
   <!--onLocalVideoStats-->
   <p id="onLocalVideoStats">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStats(const LocalVideoStats&amp; stats) {
         (void)stats;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'localVideoStats', cb: (stats: LocalVideoStats) => void): this;</codeblock>
   </p>
   
   <!--onRemoteAudioStats-->
   <p id="onRemoteAudioStats">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioStats(const RemoteAudioStats&amp; stats) {
         (void)stats;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'remoteAudioStats', cb: (stats: RemoteAudioStats) => void): this;</codeblock>
   </p>
 
   <!--onRemoteAudioTransportStats-->
@@ -2067,14 +2456,19 @@
         (void)delay;
         (void)lost;
         (void)rxKBitRate;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'remoteAudioTransportStats',
+          cb: (stats: RemoteAudioTransportStats) => void
+          ): this;</codeblock>
   </p>
   
   <!--onRemoteVideoStats-->
   <p id="onRemoteVideoStats">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStats(const RemoteVideoStats&amp; stats) {
         (void)stats;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'remoteVideoStats', cb: (stats: RemoteVideoStats) => void): this;</codeblock>
   </p>
   
   <!--onRemoteVideoTransportStats-->
@@ -2086,7 +2480,8 @@
         (void)delay;
         (void)lost;
         (void)rxKBitRate;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'remoteVideoTransportStats', cb: (stats: RemoteVideoTransportStats) => void): this;</codeblock>
   </p>
   
   <!--onAudioQuality-->
@@ -2102,7 +2497,11 @@
                     <!--onAudioMixingStateChanged-->
                     <p id="onAudioMixingStateChanged">                
                         <codeblock props="windows" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_ERROR_TYPE errorCode){
-    }</codeblock>            
+    }</codeblock>
+                        <codeblock props="electron" outputclass="language-typescript">on(
+                            evt: 'audioMixingStateChanged',
+                            cb: (state: number, err: number) => void
+                            ): this;</codeblock>
                     </p>
 
                     <!--onAudioMixingFinished-->
@@ -2114,19 +2513,22 @@
                     <!--onAudioEffectFinished-->
                     <p id="onAudioEffectFinished">                
                         <codeblock props="windows" outputclass="language-cpp">virtual void onAudioEffectFinished(int soundId) {
-    }</codeblock>            
+    }</codeblock>
+                        <codeblock props="electron" outputclass="language-typescript">on(evt: 'audioEffectFinished', cb: (soundId: number) => void): this;</codeblock>
                     </p>
                     
                     <!--onRemoteAudioMixingBegin-->
                     <p id="onRemoteAudioMixingBegin">                
                         <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioMixingBegin() {
-    }</codeblock>            
+    }</codeblock>
+                        <codeblock props="electron" outputclass="language-typescript">on(evt: 'remoteAudioMixingBegin', cb: () => void): this;</codeblock>
                     </p>
 
                     <!--onRemoteAudioMixingEnd-->
                     <p id="onRemoteAudioMixingEnd">                
                         <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioMixingEnd() {
-    }</codeblock>            
+    }</codeblock>
+                        <codeblock props="electron" outputclass="language-typescript">on(evt: 'remoteAudioMixingEnd', cb: () => void): this;</codeblock>
                     </p>
 
                     <!--IChannel_onChannelWarning-->
@@ -2135,7 +2537,8 @@
         (void)rtcChannel;
         (void)warn;
         (void)msg;
-    }</codeblock>   
+    }</codeblock>
+                        <codeblock props="electron" outputclass="language-typescript">on(evt: 'channelWarning', cb: (warn: number, msg: string) => void): this;</codeblock>
   </p>
 
   <!--IChannel_onChannelError-->
@@ -2144,7 +2547,8 @@
         (void)rtcChannel;
         (void)err;
         (void)msg;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'channelError', cb: (err: number, msg: string) => void): this;</codeblock>
   </p>
 
   <!--IChannel_onJoinChannelSuccess-->
@@ -2153,7 +2557,8 @@
         (void)rtcChannel;
         (void)uid;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'joinChannelSuccess', cb: (uid: number, elapsed: number) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onRejoinChannelSuccess-->
@@ -2162,7 +2567,11 @@
         (void)rtcChannel;
         (void)uid;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'rejoinChannelSuccess',
+          cb: (uid: number, elapsed: number) => void
+          ): this;</codeblock>
   </p>
   
   <!--IChannel_onLeaveChannel-->
@@ -2170,7 +2579,8 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onLeaveChannel(IChannel *rtcChannel, const RtcStats&amp; stats) {
         (void)rtcChannel;
         (void)stats;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'leaveChannel', cb: (stats: RtcStats) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onClientRoleChanged-->
@@ -2179,7 +2589,11 @@
         (void)rtcChannel;
         (void)oldRole;
         (void)newRole;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'clientRoleChanged',
+          cb: (oldRole: CLIENT_ROLE_TYPE, newRole: CLIENT_ROLE_TYPE) => void
+          ): this;</codeblock>
   </p>
   
   <!--IChannel_onUserJoined-->
@@ -2188,7 +2602,8 @@
         (void)rtcChannel;
         (void)uid;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'userJoined', cb: (uid: number, elapsed: number) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onUserOffline-->
@@ -2197,21 +2612,24 @@
         (void)rtcChannel;
         (void)uid;
         (void)reason;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'userOffline', cb: (uid: number, reason: number) => void): this;</codeblock>
   </p>
 
   <!--IChannel_onConnectionLost-->
   <p id="IChannel_onConnectionLost">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionLost(IChannel *rtcChannel) {
         (void)rtcChannel;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'connectionLost', cb: () => void): this;</codeblock>
   </p>
   
   <!--IChannel_onRequestToken-->
   <p id="IChannel_onRequestToken">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onRequestToken(IChannel *rtcChannel) {
         (void)rtcChannel;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'requestToken', cb: () => void): this;</codeblock>
   </p>
   
   <!--IChannel_onTokenPrivilegeWillExpire-->
@@ -2219,7 +2637,8 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onTokenPrivilegeWillExpire(IChannel *rtcChannel, const char* token) {
         (void)rtcChannel;
         (void)token;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'tokenPrivilegeWillExpire', cb: (token: string) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onRtcStats-->
@@ -2227,7 +2646,8 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onRtcStats(IChannel *rtcChannel, const RtcStats&amp; stats) {
         (void)rtcChannel;
         (void)stats;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'rtcStats', cb: (stats: RtcStats) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onNetworkQuality-->
@@ -2237,7 +2657,15 @@
         (void)uid;
         (void)txQuality;
         (void)rxQuality;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'networkQuality',
+          cb: (
+          uid: number,
+          txquality: QUALITY_TYPE,
+          rxquality: QUALITY_TYPE
+          ) => void
+          ): this;</codeblock>
   </p>
   
   <!--IChannel_onRemoteVideoStats-->
@@ -2245,7 +2673,8 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStats(IChannel *rtcChannel, const RemoteVideoStats&amp; stats) {
         (void)rtcChannel;
         (void)stats;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'remoteVideoStats', cb: (stats: RemoteVideoStats) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onRemoteAudioStats-->
@@ -2253,7 +2682,8 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioStats(IChannel *rtcChannel, const RemoteAudioStats&amp; stats) {
         (void)rtcChannel;
         (void)stats;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'remoteAudioStats', cb: (stats: RemoteAudioStats) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onRemoteAudioStateChanged-->
@@ -2264,7 +2694,13 @@
         (void)state;
         (void)reason;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'remoteAudioStateChanged', cb: (
+          uid: number,
+          state: REMOTE_AUDIO_STATE,
+          reason: REMOTE_AUDIO_STATE_REASON,
+          elapsed: number
+          ) => void): this;</codeblock>
   </p>
 
   <!--IChannel_onAudioPublishStateChanged-->
@@ -2274,7 +2710,12 @@
         (void)oldState;
         (void)newState;
         (void)elapseSinceLastState;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'audioPublishStateChanged', cb: (
+          oldState: STREAM_PUBLISH_STATE,
+          newState: STREAM_PUBLISH_STATE,
+          elapseSinceLastState: number
+          ) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onVideoPublishStateChanged-->
@@ -2284,7 +2725,12 @@
         (void)oldState;
         (void)newState;
         (void)elapseSinceLastState;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'videoPublishStateChanged', cb: (
+          oldState: STREAM_PUBLISH_STATE,
+          newState: STREAM_PUBLISH_STATE,
+          elapseSinceLastState: number
+          ) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onAudioSubscribeStateChanged-->
@@ -2295,7 +2741,13 @@
         (void)oldState;
         (void)newState;
         (void)elapseSinceLastState;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'audioSubscribeStateChanged', cb: (
+          uid: number,
+          oldState: STREAM_SUBSCRIBE_STATE,
+          newState: STREAM_SUBSCRIBE_STATE,
+          elapseSinceLastState: number
+          ) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onVideoSubscribeStateChanged-->
@@ -2306,7 +2758,13 @@
         (void)oldState;
         (void)newState;
         (void)elapseSinceLastState;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'videoSubscribeStateChanged', cb: (
+          uid: number,
+          oldState: STREAM_SUBSCRIBE_STATE,
+          newState: STREAM_SUBSCRIBE_STATE,
+          elapseSinceLastState: number
+          ) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onActiveSpeaker-->
@@ -2314,7 +2772,8 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onActiveSpeaker(IChannel *rtcChannel, uid_t uid) {
         (void)rtcChannel;
         (void)uid;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'activeSpeaker', cb: (uid: number) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onVideoSizeChanged-->
@@ -2325,7 +2784,11 @@
         (void)width;
         (void)height;
         (void)rotation;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'videoSizeChanged',
+          cb: (uid: number, width: number, height: number, rotation: number) => void
+          ): this;</codeblock>
   </p>
   
   <!--IChannel_onRemoteVideoStateChanged-->
@@ -2336,7 +2799,16 @@
         (void)state;
         (void)reason;
         (void)elapsed;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'remoteVideoStateChanged',
+          cb: (
+          uid: number,
+          state: REMOTE_VIDEO_STATE,
+          reason: REMOTE_VIDEO_STATE_REASON,
+          elapsed: number
+          ) => void
+          ): this;</codeblock>
   </p>
   
   <!--IChannel_onStreamMessage-->
@@ -2347,7 +2819,11 @@
         (void)streamId;
         (void)data;
         (void)length;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'streamMessage',
+          cb: (uid: number, streamId: number, data: string) => void
+          ): this;</codeblock>
   </p>
 
   <!--IChannel_onStreamMessageError-->
@@ -2359,7 +2835,17 @@
         (void)code;
         (void)missed;
         (void)cached;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'streamMessageError',
+          cb: (
+          uid: number,
+          streamId: number,
+          code: number,
+          missed: number,
+          cached: number
+          ) => void
+          ): this;</codeblock>
   </p>
   
   <!--IChannel_onChannelMediaRelayStateChanged-->
@@ -2368,7 +2854,11 @@
         (void)rtcChannel;
         (void)state;
         (void)code;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'channelMediaRelayState', cb: (
+          state: CHANNEL_MEDIA_RELAY_STATE,
+          code: CHANNEL_MEDIA_RELAY_ERROR
+          ) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onChannelMediaRelayEvent-->
@@ -2376,7 +2866,10 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onChannelMediaRelayEvent(IChannel *rtcChannel, CHANNEL_MEDIA_RELAY_EVENT code) {
         (void)rtcChannel;
         (void)code;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'channelMediaRelayEvent', cb: (
+          event: CHANNEL_MEDIA_RELAY_EVENT
+          ) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onRtmpStreamingStateChanged-->
@@ -2386,7 +2879,8 @@
         (void) url;
         (RTMP_STREAM_PUBLISH_STATE) state;
         (RTMP_STREAM_PUBLISH_ERROR) errCode;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'rtmpStreamingStateChanged', cb: (url: string, state: number, code: number) => void): this;</codeblock>
   </p>
   
   <!--IChannel_onRtmpStreamingEvent-->
@@ -2395,14 +2889,16 @@
         (void) rtcChannel;
         (void) url;
         (RTMP_STREAMING_EVENT) eventCode;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript"></codeblock>
   </p>
   
   <!--IChannel_onTranscodingUpdated-->
   <p id="IChannel_onTranscodingUpdated">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onTranscodingUpdated(IChannel *rtcChannel) {
         (void)rtcChannel;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'transcodingUpdated', cb: () => void): this;</codeblock>
   </p>
   
   <!--IChannel_onStreamInjectedStatus-->
@@ -2412,7 +2908,11 @@
         (void)url;
         (void)uid;
         (void)status;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'streamInjectedStatus',
+          cb: (url: string, uid: number, status: number) => void
+          ): this;</codeblock>
   </p>
   
   <!--IChannel_onLocalPublishFallbackToAudioOnly-->
@@ -2420,7 +2920,8 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onLocalPublishFallbackToAudioOnly(IChannel *rtcChannel, bool isFallbackOrRecover) {
         (void)rtcChannel;
         (void)isFallbackOrRecover;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript"></codeblock>
   </p>
 
   <!--IChannel_onRemoteSubscribeFallbackToAudioOnly-->
@@ -2429,7 +2930,11 @@
         (void)rtcChannel;
         (void)uid;
         (void)isFallbackOrRecover;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'remoteSubscribeFallbackToAudioOnly', cb: (
+          uid: number,
+          isFallbackOrRecover: boolean
+          ) => void): this;</codeblock>
   </p>
 
   <!--IChannel_onConnectionStateChanged-->
@@ -2441,7 +2946,11 @@
         (void)state;
         (void)reason;
     }
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'connectionStateChanged', cb: (
+          state: CONNECTION_STATE_TYPE,
+          reason: CONNECTION_CHANGED_REASON_TYPE
+          ) => void): this;</codeblock>
   </p>
 
   <!--onRtmpStreamingStateChanged-->
@@ -2450,7 +2959,8 @@
         (void) url;
         (void) state;
         (void) errCode;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'rtmpStreamingStateChanged', cb: (url: string, state: number, code: number) => void): this;</codeblock>
   </p>
 
   <!--onRtmpStreamingEvent-->
@@ -2458,13 +2968,18 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onRtmpStreamingEvent(const char* url, RTMP_STREAMING_EVENT eventCode) {
       (void) url;
       (void) eventCode;
-  }</codeblock>   
+  }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'rtmpStreamingEvent', cb: (
+          url: string,
+          eventCode: RTMP_STREAMING_EVENT
+          ) => void): this;</codeblock>
   </p>
 
   <!--onTranscodingUpdated-->
   <p id="onTranscodingUpdated">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onTranscodingUpdated() {
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'transcodingUpdated', cb: () => void): this;</codeblock>
   </p>
 
   <!--onStreamPublished-->
@@ -2472,26 +2987,35 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onStreamPublished(const char *url, int error) {
         (void)url;
         (void)error;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">n(evt: 'streamPublished', cb: (url: string, error: number) => void): this;</codeblock>
   </p>
   
   <!--onStreamUnpublished-->
   <p id="onStreamUnpublished">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onStreamUnpublished(const char *url) {
         (void)url;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'streamUnpublished', cb: (url: string) => void): this;</codeblock>
   </p>
   
   <!--onChannelMediaRelayStateChanged-->
   <p id="onChannelMediaRelayStateChanged">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onChannelMediaRelayStateChanged(CHANNEL_MEDIA_RELAY_STATE state,CHANNEL_MEDIA_RELAY_ERROR code) {
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'channelMediaRelayState', cb: (
+          state: CHANNEL_MEDIA_RELAY_STATE,
+          code: CHANNEL_MEDIA_RELAY_ERROR
+          ) => void): this;</codeblock>
   </p>
 
   <!--onChannelMediaRelayEvent-->
   <p id="onChannelMediaRelayEvent">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onChannelMediaRelayEvent(CHANNEL_MEDIA_RELAY_EVENT code) {
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'channelMediaRelayEvent', cb: (
+          event: CHANNEL_MEDIA_RELAY_EVENT
+          ) => void): this;</codeblock>
   </p>
   
   <!--onAudioVolumeIndication-->
@@ -2500,14 +3024,27 @@
         (void)speakers;
         (void)speakerNumber;
         (void)totalVolume;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'audioVolumeIndication',
+          cb: (
+          speakers: {
+          uid: number;
+          volume: number;
+          vad: number;
+          }[],
+          speakerNumber: number,
+          totalVolume: number
+          ) => void
+          ): this;</codeblock>
   </p>
   
   <!--onActiveSpeaker-->
   <p id="onActiveSpeaker">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t uid) {
         (void)uid;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'activeSpeaker', cb: (uid: number) => void): this;</codeblock>
   </p>
   
   <!--onFacePositionChanged-->
@@ -2533,7 +3070,8 @@
   <p id="onLocalPublishFallbackToAudioOnly">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onLocalPublishFallbackToAudioOnly(bool isFallbackOrRecover) {
         (void)isFallbackOrRecover;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'localPublishFallbackToAudioOnly', cb: (isFallbackOrRecover: boolean) => void): this;</codeblock>
   </p>
 
   <!--onRemoteSubscribeFallbackToAudioOnly-->
@@ -2541,21 +3079,30 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteSubscribeFallbackToAudioOnly(uid_t uid, bool isFallbackOrRecover) {
         (void)uid;
         (void)isFallbackOrRecover;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'remoteSubscribeFallbackToAudioOnly', cb: (
+          uid: number,
+          isFallbackOrRecover: boolean
+          ) => void): this;</codeblock>
   </p>
 
   <!--onLastmileQuality-->
   <p id="onLastmileQuality">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onLastmileQuality(int quality) {
         (void)quality;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'lastMileQuality', cb: (quality: QUALITY_TYPE) => void): this;</codeblock>
   </p>
 
   <!--onLastmileProbeResult-->
   <p id="onLastmileProbeResult">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onLastmileProbeResult(const LastmileProbeResult&amp; result) {
         (void)result;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'lastmileProbeResult',
+          cb: (result: LastmileProbeResult) => void
+          ): this;</codeblock>
   </p>
   
    <!--onInitialize-->
@@ -2687,7 +3234,17 @@
   <!--onMetadataReceived-->
   <p id="onMetadataReceived">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onMetadataReceived(const Metadata &amp;metadata) = 0;
-};</codeblock>   
+};</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'receiveMetadata', cb: (
+          metadata: Metadata
+          ) => void): this;</codeblock>
+  </p>
+           
+  <!-- sendMetadataSuccess -->
+  <p id="sendMetadataSuccess">
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'sendMetadataSuccess', cb: (
+          metadata: Metadata
+          ) => void): this;</codeblock>
   </p>
   
   <!--onStreamInjectedStatus-->
@@ -2696,7 +3253,11 @@
         (void)url;
         (void)uid;
         (void)status;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'streamInjectStatus',
+          cb: (url: string, uid: number, status: number) => void
+          ): this;</codeblock>
   </p>
 
   <!--onCameraFocusAreaChanged-->
@@ -2706,7 +3267,11 @@
         (void)y;
         (void)width;
         (void)height;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'cameraFocusAreaChanged',
+          cb: (x: number, y: number, width: number, height: number) => void
+          ): this;</codeblock>
   </p>
 
   <!--onCameraExposureAreaChanged-->
@@ -2716,12 +3281,17 @@
         (void)y;
         (void)width;
         (void)height;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'cameraExposureAreaChanged',
+          cb: (x: number, y: number, width: number, height: number) => void
+          ): this;</codeblock>
   </p>
   
   <!--onCameraReady-->
   <p id="onCameraReady">       
-      <codeblock props="windows" outputclass="language-cpp">virtual void onCameraReady() {}</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual void onCameraReady() {}</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'cameraReady', cb: () => void): this;</codeblock>
   </p>
 
   <!--onAudioDeviceStateChanged-->
@@ -2730,7 +3300,11 @@
         (void)deviceId;
         (void)deviceType;
         (void)deviceState;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'audioDeviceStateChanged',
+          cb: (deviceId: string, deviceType: number, deviceState: number) => void
+          ): this;</codeblock>
   </p>
 
   <!--onAudioDeviceVolumeChanged-->
@@ -2739,7 +3313,11 @@
         (void)deviceType;
         (void)volume;
         (void)muted;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'audioDeviceVolumeChanged',
+          cb: (deviceType: MEDIA_DEVICE_TYPE, volume: number, muted: boolean) => void
+          ): this;</codeblock>
   </p>
 
   <!--onVideoDeviceStateChanged-->
@@ -2748,7 +3326,11 @@
         (void)deviceId;
         (void)deviceType;
         (void)deviceState;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'videoDeviceStateChanged',
+          cb: (deviceId: string, deviceType: number, deviceState: number) => void
+          ): this;</codeblock>
   </p>
   
   <!-- stateChanged -->
@@ -2766,7 +3348,11 @@
         (void)streamId;
         (void)data;
         (void)length;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'streamMessage',
+          cb: (uid: number, streamId: number, msg: string, len: number) => void
+          ): this;</codeblock>
   </p>
 
   <!--onStreamMessageError-->
@@ -2777,7 +3363,17 @@
         (void)code;
         (void)missed;
         (void)cached;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: 'streamMessageError',
+          cb: (
+          uid: number,
+          streamId: number,
+          code: number,
+          missed: number,
+          cached: number
+          ) => void
+          ): this;</codeblock>
   </p>
   <!--onUploadLogResult-->
   <p id="onUploadLogResult">       
@@ -2785,7 +3381,12 @@
  (void)requestId;
  (void)success;
  (void)reason;
- }</codeblock>   
+ }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'uploadLogResult', cb: (
+          requestId: string,
+          success: boolean,
+          reason: number
+          ) => void): this;</codeblock>
   </p>
   
   <!--onWarning-->
@@ -2793,7 +3394,8 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onWarning(int warn, const char* msg) {
         (void)warn;
         (void)msg;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'warning', cb: (warn: number, msg: string) => void): this;</codeblock>
   </p>
   
   <!--onError-->
@@ -2801,7 +3403,8 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
         (void)err;
         (void)msg;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'error', cb: (err: number, msg: string) => void): this;</codeblock>
   </p>
 
   <!--onApiCallExecuted-->
@@ -2810,18 +3413,50 @@
         (void)err;
         (void)api;
         (void)result;
-    }</codeblock>   
+    }</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'apiCallExecuted', cb: (api: string, err: number) => void): this;</codeblock>
   </p>
   
   <!--onMediaEngineLoadSuccess-->
   <p id="onMediaEngineLoadSuccess">       
-      <codeblock props="windows" outputclass="language-cpp">virtual void onMediaEngineLoadSuccess() {}</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual void onMediaEngineLoadSuccess() {}</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'mediaEngineStartCallSuccess', cb: () => void): this;</codeblock>
   </p>
   
   <!--onMediaEngineStartCallSuccess-->
   <p id="onMediaEngineStartCallSuccess">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onMediaEngineStartCallSuccess() {}</codeblock>   
   </p>
+           
+   <!-- videoSourceJoinedSuccess -->
+   <p id="videoSourceJoinedSuccess">
+       <codeblock props="electron" outputclass="language-typescript">on(evt: 'videoSourceJoinedSuccess', cb: (uid: number) => void): this;</codeblock>
+   </p>
+           
+   <!-- videoSourceRequestNewToken -->
+   <p id="videoSourceRequestNewToken">
+       <codeblock props="electron" outputclass="language-typescript">on(evt: 'videoSourceRequestNewToken', cb: () => void): this;</codeblock>
+   </p>
+           
+   <!-- videoSourceLeaveChannel -->
+   <p id="videoSourceLeaveChannel">
+       <codeblock props="electron" outputclass="language-typescript">on(evt: 'videoSourceLeaveChannel', cb: () => void): this;</codeblock>
+   </p>
+   
+   <!-- videoSourceLocalAudioStats -->
+   <p id="videoSourceLocalAudioStats">
+       <codeblock props="electron" outputclass="language-typescript">on(evt: 'videoSourceLocalAudioStats', cb: (stats: LocalAudioStats) => void): this;</codeblock>
+   </p>
+           
+   <!-- videoSourceLocalVideoStats -->
+   <p id="videoSourceLocalVideoStats">
+       <codeblock props="electron" outputclass="language-typescript">on(evt: 'videoSourceLocalVideoStats', cb: (stats: LocalVideoStats) => void): this;</codeblock>
+   </p>
+           
+   <!-- videoSourceVideoSizeChanged -->
+   <p id="videoSourceVideoSizeChanged">
+       <codeblock>on(evt: 'videoSourceVideoSizeChanged', cb: (uid: number, width: number, height: number, rotation: number) => void): this;</codeblock>
+   </p>
   
        </section>
    
@@ -3538,10 +4173,10 @@ BeautyOptions()
     ScreenCaptureParameters(int width, int height, int f, int b, bool c, bool focus, view_t *ex = NULL, int cnt = 0) : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(c), windowFocus(focus), excludeWindowList(ex), excludeWindowCount(cnt) {}
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export interface ScreenCaptureParameters {
-          width: number; // Width (pixels) of the video
-          height: number; // Height (pixels) of the video
-          frameRate: number; // The frame rate (fps) of the shared region. The default value is 5. We do not recommend setting this to a value greater than 15.
-          bitrate: number; //  The bitrate (Kbps) of the shared region. The default value is 0 (the SDK works out a bitrate according to the dimensions of the current screen).
+          width: number;
+          height: number;
+          frameRate: number;
+          bitrate: number;
           captureMouseCursor: boolean;
           windowFocus: boolean;
           excludeWindowList: Array&lt;number&gt;;
