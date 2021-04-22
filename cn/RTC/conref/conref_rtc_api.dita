@@ -379,6 +379,16 @@
           channelId: string | undefined
           ): number</codeblock>
   </p>
+       
+  <!-- setRenderMode -->
+  <p id="setRenderMode">
+      <codeblock props="electron" outputclass="language-typescript">setRenderMode(mode: RENDER_MODE = RENDER_MODE.WEBGL): void</codeblock>
+  </p>
+  
+  <!-- setCustomRenderMode -->
+  <p id="setCustomRenderMode">
+      <codeblock props="electron" outputclass="language-typescript">setCustomRenderer(customRenderer: IRenderer)</codeblock>
+  </p>
            
   <!-- destroyRender -->
   <p id="destroyRender">
@@ -1742,7 +1752,8 @@
   
   <!--setLocalVideoMirrorMode-->
   <p id="setLocalVideoMirrorMode">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVideoMirrorMode(VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVideoMirrorMode(VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setLocalVideoMirrorMode(mirrorMode: VIDEO_MIRROR_MODE_TYPE): number</codeblock>
   </p>
   
   <!--setCameraCapturerConfiguration-->
@@ -3420,12 +3431,12 @@
   <!--onMediaEngineLoadSuccess-->
   <p id="onMediaEngineLoadSuccess">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onMediaEngineLoadSuccess() {}</codeblock>
-      <codeblock props="electron" outputclass="language-typescript">on(evt: 'mediaEngineStartCallSuccess', cb: () => void): this;</codeblock>
   </p>
   
   <!--onMediaEngineStartCallSuccess-->
   <p id="onMediaEngineStartCallSuccess">       
-      <codeblock props="windows" outputclass="language-cpp">virtual void onMediaEngineStartCallSuccess() {}</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual void onMediaEngineStartCallSuccess() {}</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'mediaEngineStartCallSuccess', cb: () => void): this;</codeblock>
   </p>
            
    <!-- videoSourceJoinedSuccess -->
@@ -4465,7 +4476,22 @@ BeautyOptions()
     int rotation;
     long long timestamp;
 };</codeblock>   
-  </p>   
+  </p>
+  
+  <!-- RendererOptions -->
+  <p id="RendererOptions">
+      <codeblock props="electron" outputclass="language-typescript">export interface RendererOptions {
+          append: boolean
+          }</codeblock>
+  </p>
+           
+  <!-- Device -->
+  <p id="Device">
+      <codeblock props="electron" outputclass="language-typescript">export interface Device {
+          deviceId: string
+          deviceName: string
+          }</codeblock>
+  </p>
   
 
        </section>
