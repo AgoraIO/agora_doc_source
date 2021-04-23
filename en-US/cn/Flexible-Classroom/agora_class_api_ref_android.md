@@ -1,6 +1,6 @@
 ## AgoraEduSDK
 
-`AgoraEduSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
+`AgoraEduSDK` is the basic interface of the Agora Classroom SDK and provides the main methods that can be invoked by your app.
 
 ### version
 
@@ -273,10 +273,10 @@ The courseware pre-loaded configuration.  Used when calling `configCoursewares`.
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
-| `resourceName` | 文件名称。 |
-| `scenePath` | 文件路径。 建议由 `resourceName` 和  `scenes` 中第一个 `SceneInfo` 对象的 `name` 拼接而成，例如 `resourceName + "/" + sceneInfos.get(0).name`。 |
-| `scenes` | 完成转换的文件页面列表，由 `SceneInfo` 对象组成的数组。 灵动课堂客户端会对后缀名 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以在课堂内的白板上分页展示该文件。 每个 `SceneInfo` 对象对应一个页面。 |
-| `resourceUrl` | 文件的 URL 下载地址，例如 `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`。 |
+| `resourceName` | The file name. |
+| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of `resourceName` and the `name` of the first `SceneInfo` object in `scenes`, such as, `resourceName + "/" + sceneInfos.get(0).name`. |
+| `scenes` | A list of converted file pages, an array of `SceneInfo` objects. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom and then display the file on the whiteboard in pages. Each `SceneInfo` object represents one page. |
+| `resourceUrl` | The URL address of the file, such as `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`. |
 
 ### SceneInfo
 
@@ -288,13 +288,13 @@ public class SceneInfo {
 }
 ```
 
-单个文件页面的具体信息。 Set in `AgoraEduCourseware`.
+The detailed information of a page. Set in `AgoraEduCourseware`.
 
 | Attributes | Description |
 | :--------------- | :------------------------------------------------ |
-| `componentCount` | 页面数量。 |
-| `ppt` | 完成转换后的一个页面的具体信息，详见 `Ppt` 对象。 |
-| `name` | 页面名称。 |
+| `componentCount` | The number of pages. |
+| `ppt` | The detailed information of a converted page. See `Ppt`. |
+| `name` | The page name. |
 
 ### Ppt
 
@@ -306,10 +306,10 @@ public class Ppt {
 }
 ```
 
-一个白板页面上展示的一个幻灯片的具体信息。 Set in `SceneInfo`.
+The detailed information of a page displayed on the whiteboard. Set in `SceneInfo`.
 
 | Attributes | Description |
 | :------- | :------------------------------ |
-| `src` | 完成转换的页面的 URL 下载地址。 |
-| `width` | 页面宽度（pixel）。 |
-| `height` | 页面高度（pixel）。 |
+| `src` | The URL address of the converted page. |
+| `width` | The width (pixel) of the page. |
+| `height` | The height (pixel) of the page. |
