@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_initialize">
     <title><ph keyref="create2"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><ph props="ios mac android">Create and initialize the video capture</ph> object<apiname keyref="IRtcEngine"/>.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><ph props="ios mac android">Create and</ph> initialize the <apiname keyref="IRtcEngine"/> object.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -14,8 +14,8 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/create2"/>
         </section>
         <section id="detailed_desc">
-            <p props="windows">Before calling other APIs, you must call <xref keyref="createAgoraRtcEngine"/> and <apiname keyref="create2"/> to create an <xref href="class_irtcengine.dita"/> object.</p>
-            <p props="android ios mac">Before calling other APIs, you must call to<apiname keyref="create2"/> create an object<xref href="class_irtcengine.dita"/>.</p>
+            <p props="windows">Before calling other APIs, you must call <xref keyref="createAgoraRtcEngine"/> and <apiname keyref="create2"/> to create and initialize an <xref href="class_irtcengine.dita"/> object.</p>
+            <p props="android ios mac">Before calling other APIs, you must call to <apiname keyref="create2"/> create an <xref href="class_irtcengine.dita"/> object.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
@@ -23,7 +23,7 @@
   <pt props="windows">context</pt>
            <pt props="android ios mac">config</pt>
   <pd>
-                        <p><xref keyref="IRtcEngine"/> 实例的配置。 See <xref
+                        <p>Configurations for the <xref keyref="IRtcEngine"/> instance. See <xref
                                 href="class_rtcengineconfig.dita"/>.</p>
                     </pd>
        </plentry>
@@ -35,8 +35,8 @@
        <li>0(ERR_OK): Success.</li>
        <li>&lt; 0: Failure.<ul>
   <li>-1(ERR_FAILED): A general error occurs (no specified reason).</li>
-  <li>-2(ERR_INVALID_ARGUMENT): An invalid parameter is used<xref href="class_irtcengineeventhandler.dita"
-                            />.</li>
+  <li>-2(ERR_INVALID_ARGUMENT): An invalid parameter is used. For example, <xref href="class_irtcengineeventhandler.dita"
+                            /> is not set.</li>
   <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
   <li>-22(ERR_RESOURCE_LIMITED): The resource is limited. The SDK fails to allocate resources because your app uses too many system resources or system resources are insufficient.</li>
   <li>-101(ERR_INVALID_APP_ID): The App ID is invalid.</li>
