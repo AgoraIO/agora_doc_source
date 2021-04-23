@@ -2,16 +2,16 @@ This page introduces how to customize the UI of Flexible Classroom, such as colo
 
 ## Working principles
 
-Since 1.1.0, Agora has separated the UI code and business logic of the Smart Flexible Classroom and became UIKi independently. Developers do not need to deeply study the core business logic details of   Flexible Classroom, but only need to modify the UI components to customize and modify the UI of the  Flexible Classroom.
+From 1.1.0, Agora derives the UI code from the business logic of Flexible Classroom and provides the UIKit. With the UIKit, developers can customize the classroom UI without learning and changing the business logic of Flexible Classroom.
 
 ![](https://web-cdn.agora.io/docs-files/1619168618104)
 
-You can find the source code of the UIKit in the packages[/agora-scenario-ui-kit/src folder](https://github.com/AgoraIO-Community/CloudClass-Android) in the CloudClass-Desktop repository on GitHub (Branch dev/apaas/1.1.0)`. The project` structure of the UIKit is as follows: The core project structure is introduced as follows:
+You can find the source code of the UIKit in the `agoraui` folder in the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) repository on GitHub (Branch dev/apaas/1.1.0). The project structure of the UIKit is as follows:
 
 | Folder | Description |
 | :----------- | :----------------------------------------------------------- |
-| `interfaces` | Define the Protocol and Listener of the  Flexible Classroom business logic. There is no need to modify the contents of this directory to customize the UI. |
-| impl |  Flexible Classroom default implementation of each Protocol, that is, the default UI components used   Flexible Classroom, include:<ul><li>`chat`: chat area.</li><li>`handsup`: UI related to students "raising their hands" to apply for speaking.</li><li>`room`: Classroom status, navigation bar related UI.</li><li>`screnshare`: Screen sharing related UI.</li><li>`tool`: Toolbar containing various teaching aids.</li><li>`users`: UI related to user status.</li><li>`"`video`"`: Video track.</li><li>`whiterboard`: Whiteboard area.</li><li>`container`: Assemble default UI components in various teaching scenarios in the smart classroom to form the management class of contentView.</ul> |
+| `interfaces` | Defines the protocols and listeners of the  Flexible Classroom business logic. Do not need to edit the code under this directory. |
+| impl | The default implementations of each protocol in Flexible Classroom, that is, the default UI components used by Flexible Classroom, including:<ul><li>`chat`: The chat area.</li><li>`handsup`: The UI code related to students "raising their hands" to apply for speaking up.</li><li>`room`: The UI code related to the classroom states and navigation bar.</li><li>`screnshare`: The UI code related to screen sharing.</li><li>`tool`: The UI code related to the toolbar containing various teaching tools.</li><li>`users`: The UI code related to user states.</li><li>``"video`"`: Video track.</li><li>`whiterboard`: Whiteboard area.</li><li>`container`: Assemble default UI components in various teaching scenarios in the smart classroom to form the management class of contentView.</ul> |
 | `component`: Custom, | The source code of the basic UI components used by Flexible Classroom. |
 
 ## UI modification example
@@ -25,7 +25,7 @@ The following example demonstrates how to modify the background color of the` na
 #### Before
 
 ```xml
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
  android:layout_width="match_parent"
  android:layout_height="match_parent"
  android:background="@drawable/agora_class_room_rect_bg">
@@ -38,7 +38,7 @@ The following example demonstrates how to modify the background color of the` na
 #### After
 
 ```xml
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
  android:layout_width="match_parent"
  android:layout_height="match_parent"
  android:background="#BFBFBF">
@@ -57,26 +57,26 @@ The following example demonstrates how to change the position of the` leave room
 #### Before
 
 ```xml
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@drawable/agora_class_room_rect_bg">
   <androidx.appcompat.widget.AppCompatImageView
       android:id="@+id/agora_status_bar_network_state_icon"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:supportsRtl="true"
-      android:supportsRtl="true"
-      android:supportsRtl="true"
+      android:layout_width="@dimen/agora_status_bar_icon_size"
+      android:layout_height="@dimen/agora_status_bar_icon_size"
+      android:layout_centerVertical="true"
+      android:layout_alignParentStart="true"
+      android:layout_alignParentLeft="true"
       android:layout_marginStart="@dimen/margin_large"
       android:layout_marginLeft="@dimen/margin_large"/>
   <androidx.appcompat.widget.AppCompatImageView
-      android:id="@+id/activity_main"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:supportsRtl="true"
-      android:supportsRtl="true"
-      android:supportsRtl="true"
+      android:id="@+id/agora_status_bar_exit_icon"
+      android:layout_width="@dimen/agora_status_bar_icon_size"
+      android:layout_height="@dimen/agora_status_bar_icon_size"
+      android:layout_centerVertical="true"
+      android:layout_alignParentEnd="true"
+      android:layout_alignParentRight="true"
       android:layout_marginEnd="@dimen/margin_large"
       android:layout_marginRight="@dimen/margin_large"
       android:src="@drawable/agora_room_icon_exit"/>
@@ -89,26 +89,26 @@ The following example demonstrates how to change the position of the` leave room
 #### After
 
 ```xml
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@drawable/agora_class_room_rect_bg">
   <androidx.appcompat.widget.AppCompatImageView
     android:id="@+id/agora_status_bar_network_state_icon"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:supportsRtl="true"
-    android:supportsRtl="true"
-    android:supportsRtl="true"
+    android:layout_width="@dimen/agora_status_bar_icon_size"
+    android:layout_height="@dimen/agora_status_bar_icon_size"
+    android:layout_centerVertical="true"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
     android:layout_marginEnd="@dimen/margin_large"
     android:layout_marginRight="@dimen/margin_large"/>
  <androidx.appcompat.widget.AppCompatImageView
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:supportsRtl="true"
-    android:supportsRtl="true"
-    android:supportsRtl="true"
+    android:id="@+id/agora_status_bar_exit_icon"
+    android:layout_width="@dimen/agora_status_bar_icon_size"
+    android:layout_height="@dimen/agora_status_bar_icon_size"
+    android:layout_centerVertical="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentLeft="true"
     android:layout_marginStart="@dimen/margin_large"
     android:layout_marginLeft="@dimen/margin_large"
     android:src="@drawable/agora_room_icon_exit"/>
@@ -138,7 +138,7 @@ agoraui/src/main/res/values-zh/strings.xml`
 
    ```
    <!-- Customer -->
-<string name="custom_widget_text"> leave</string>
+<string name="custom_widget_text">离开</string>
    ```
    `agoraui/src/main/res/values/strings.xml`
 
@@ -147,10 +147,9 @@ agoraui/src/main/res/values-zh/strings.xml`
 <string name="custom_widget_text">Leave</string>
    ```
 
-2. Add a `custom_widget_layout.xml `file under the `agoraui/src/main/res/`layout directory to define the style of custom components.
+2. Add a `custom_widget_layout.xml` file under the `agoraui/src/main/res/` directory to define the style of custom components.
    ```
    <?xml version="1.0" encoding="utf-8"?>
-
    
 <FrameLayout
 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -167,7 +166,7 @@ android:layout_gravity="center"
 android:text="@string/custom_widget_text"/>
 </FrameLayout>
 ```
-3. Modify the `Agora/src/main/kotlin/io/Agora/uikit/impl/container/Agora` file to add custom components to the   One-to-one Classroom scene.
+3. Edit the `Agora/src/main/kotlin/io/Agora/uikit/impl/container/Agora` file to add the custom component to the one-to-one classroom.
 ```
 class AgoraUI1v1Container : AbsUIContainer() {
 override fun init(layout: ViewGroup, left: Int, top: Int, width: Int, height: Int) {
@@ -183,7 +182,8 @@ roomStatus?.showLeaveDialog()
 }
 }
 ```
-After modification, the  Flexible Classroom will appear in the one-to-one interactive teaching scene of Smart Classroom. 
+After modification, the following icon appears in the one-to-one classroom. 
+
 
 ![](https://web-cdn.agora.io/docs-files/1619168684154)
 
