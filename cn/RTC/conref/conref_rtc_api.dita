@@ -367,12 +367,12 @@
   </p>
            
   <!-- removeVideoRenderFromHighFPS -->
-  <p id="remoteVideoRenderFromHighFPS">
+  <p id="removeVideoRenderFromHighFPS">
       <codeblock props="electron" outputclass="language-typescript">removeVideoRenderFromHighFPS(uid: number)</codeblock>
   </p>
            
   <!-- setupViewContentMode -->
-  <p id="setupVideoContentMode">
+  <p id="setupViewContentMode">
       <codeblock props="electron" outputclass="language-typescript">setupViewContentMode(
           uid: number | 'local' | 'videosource',
           mode: 0 | 1,
@@ -504,7 +504,6 @@
   <!--IChannel_setChannelEventHandler-->
   <p id="IChannel_setChannelEventHandler">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setChannelEventHandler(IChannelEventHandler *channelEh) = 0;</codeblock>
-      <codeblock props="electron" outputclass="language-typescript">initEventHandler(): void</codeblock>
   </p>
   
   <!--IChannel_joinChannel-->
@@ -789,12 +788,22 @@
   
   <!--startScreenCaptureByScreenRect-->
   <p id="startScreenCaptureByScreenRect">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startScreenCaptureByScreen(
+          screenSymbol: ScreenSymbol,
+          regionRect: Rectangle,
+          captureParams: ScreenCaptureParameters
+          ): number</codeblock>
   </p>
   
   <!--startScreenCaptureByWindowId-->
   <p id="startScreenCaptureByWindowId">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(view_t windowId, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(view_t windowId, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startScreenCaptureByWindow(
+          windowId: number,
+          regionRect: Rectangle,
+          captureParams: ScreenCaptureParameters
+          ): number</codeblock>
   </p>
   
   <!--setScreenCaptureContentHint-->
@@ -2518,7 +2527,8 @@
                     <!--onAudioMixingFinished-->
                     <p id="onAudioMixingFinished">                
                         <codeblock props="windows" outputclass="language-cpp">virtual void onAudioMixingFinished() {
-    }</codeblock>            
+    }</codeblock>
+                        <codeblock props="electron" outputclass="language-typescript">on(evt: 'audioMixingFinished', cb: (soundId: number) => void): this;</codeblock>
                     </p>
 
                     <!--onAudioEffectFinished-->
