@@ -65,7 +65,7 @@ AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appI
 | `roleType`  | 用户在课堂中的角色，可设为：<li>`AgoraEduRoleTypeStudent`: 学生 |
 | `roomName`  | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
 | `roomUuid`  | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roomType`  | 课堂类型，可设为：<li>`AgoraEduRoomType1V1`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。<li>`AgoraEduRoomTypeSmall`: 1 对 N 在线小班课。1 位教师对 N 名学生（2 ≤ N ≤ 16）进行在线辅导教学。<li>`AgoraEduRoomTypeBig`: 互动直播大班课。一名老师进行教学，多名学生实时观看和收听，学生人数无上限。与此同时，学生可以“举手”请求发言，与老师进行实时音视频互动。 |
+| `roomType`  | 课堂类型，可设为：<li>`AgoraEduRoomType1V1`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。<li>`AgoraEduRoomTypeSmall`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。<li>`AgoraEduRoomTypeBig`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。 |
 | `rtmToken`  | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](./agora_class_prep#step5)。 |
 | `startTime` | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
 | `duration`  | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
@@ -86,7 +86,7 @@ AgoraEduRoleType roleType = AgoraEduRoleTypeStudent;
 AgoraEduRoomType roomType = AgoraEduRoomType1V1;
 // RTM Token
 NSString *rtmToken = "";
-// 课堂开始时间，以第一个进入教室的用户传入的参数为准
+// 课堂开始时间，单位为毫秒，以第一个进入教室的用户传入的参数为准
 NSNumber *startTime = @(XXX);
 // 课堂持续时间，单位为秒，以第一个进入教室的用户传入的参数为准
 NSNumber *duration = @(1800);

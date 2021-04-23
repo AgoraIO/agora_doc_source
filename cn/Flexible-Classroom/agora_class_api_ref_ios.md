@@ -263,7 +263,7 @@ SDK 全局配置。用于 `setConfig` 方法。
 | 属性           | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | 文件名称。                                                   |
-| `scenePath`    | 文件的本地存储路径，建议由 `resourceName` 和  `scenes` 中第一个 `SceneInfo` 对象的 `name` 拼接而成，例如 `resourceName + "/" + sceneInfos.get(0).name`。 |
+| `scenePath`    | 文件的本地存储路径，建议由 `resourceName` 和  `scenes` 中第一个 `SceneInfo` 对象的 `name` 拼接而成。 |
 | `resourceUrl`  | 课件下载地址，例如 `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"` |
 | `scenes`       | 完成转换的文件页面列表，由 `WhiteScene` 对象组成的数组。灵动课堂客户端会对后缀名 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以在课堂内的白板上分页展示该资源。每个 `WhiteScene` 对象对应一个页面。 |
 

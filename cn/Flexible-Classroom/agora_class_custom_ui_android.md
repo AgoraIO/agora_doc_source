@@ -2,7 +2,7 @@
 
 ## 工作原理
 
-自 1.1.0 起，Agora 将灵动课堂的 UI 代码和业务逻辑隔离开来，独立成 UIKi。开发者无需深入学习灵动课堂的核心业务逻辑细节，只需修改 UI 组件，即可自定义修改灵动课堂的 UI。
+自 1.1.0 起，Agora 将灵动课堂的 UI 代码和业务逻辑隔离开来，独立成 UIKit。开发者无需深入学习灵动课堂的核心业务逻辑细节，只需修改 UI 组件，即可自定义修改灵动课堂的 UI。
 
 ![](https://web-cdn.agora.io/docs-files/1619168618104)
 
@@ -169,11 +169,12 @@ UIKit 的源码位于 GitHub 上 [CloudClass-Android](https://github.com/AgoraIO
 3. 修改 `agoraui/src/main/kotlin/io/agora/uikit/impl/container/AgoraUI1v1Container.kt` 文件，将自定义组件添加到 1 对 1 互动教学场景中。
 
    ```
- class AgoraUI1v1Container : AbsUIContainer() {
- override fun init(layout: ViewGroup, left: Int, top: Int, width: Int, height: Int) {
- ...
- addCustomWidget(layout)
- }
+    class AgoraUI1v1Container : AbsUIContainer() {
+    override fun init(layout: ViewGroup, left: Int, top: Int, width: Int, height: Int) {
+    ...
+    addCustomWidget(layout)
+    }
+   ```
 
  private fun addCustomWidget(layout: ViewGroup){
  val customLayout = LayoutInflater.from(layout.context).inflate(R.layout.custom_widget_layout, layout)
@@ -187,3 +188,4 @@ UIKit 的源码位于 GitHub 上 [CloudClass-Android](https://github.com/AgoraIO
    修改后，灵动课堂的 1 对 1 互动教学场景中，会出现如下图标。
 
    ![](https://web-cdn.agora.io/docs-files/1619168684154)
+   ```

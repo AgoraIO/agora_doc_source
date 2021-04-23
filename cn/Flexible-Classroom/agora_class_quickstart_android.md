@@ -77,7 +77,7 @@ AgoraEduSDK.setConfig(new AgoraEduSDKConfig(appId, eyeCare));
 // 用户名
 String userName = "XXX";
 // 用户 ID，需要与你生成 RTM Token 时使用的用户 ID 一致
-String userName = "XXX";
+String userUuid = "XXX";
 // 教室名称
 String roomName = "XXX";
 // 教室 ID
