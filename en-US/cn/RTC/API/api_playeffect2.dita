@@ -1,82 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_playeffect2">
-    <title><ph keyref="playEffect2"/></title>
+    <title><ph keyref="playEffect2"/><ph props="windows">[1/2]</ph><ph props="android ios mac">[2/3]</ph></title>
     <shortdesc id="short"><ph id="shortdesc">This method plays the specified local or online audio effect file.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="playEffect2" />
-   </keywords>
+            <keywords>
+                <indexterm keyref="playEffect2" />
+            </keywords>
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
         <p conref="../conref/conref_rtc_api.dita#apidef/playEffect2"/>
         </section>
         <section id="detailed_desc">
-   
-            <p>To play multiple audio effect files at the same time, call this method multiple times with different <codeph>soundId</codeph> and <codeph>filePath</codeph>. For the best user experience, Agora recommends playing no more than three audio effect files at the same time.</p>
-            <p>After the sound effect file is played, the SDK will trigger a<apiname keyref="onAudioEffectFinished"/> callback.<note outputclass="note" props="android ios">Call this method after joining a channel.</note>
-                <note outputclass="note" props="mac windows"><ul>
-                    <li>Call this method after joining a channel.</li>
-                    <li><ph props="windows">On macOS and Windows, </ph>this method does not support playing multiple online audio files at the same time.</li>
-                </ul>
-                </note></p>
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>This method is deprecated as of v2.4.0. We recommend using <xref keyref="playEffect3" /><ph props="windows">[2/2</ph><ph props="android ios mac">]</ph> to start an<ph props="android ios mac"> audio</ph> call test.</dd>
+                </dlentry>
+            </dl>
+            <p>To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. For the best user experience, Agora recommends playing no more than three audio effect files at the same time.</p>
+            <p>After the sound effect file is played, the SDK will trigger a<apiname keyref="onAudioEffectFinished"/> callback.</p>
+            <note outputclass="note" props="android ios">Call this method after joining a channel.</note>
+            <note outputclass="note" props="mac windows"><ul>
+                <li>Call this method after joining a channel.</li>
+                <li><ph props="windows">On macOS and Windows, </ph>this method does not support playing multiple online audio files at the same time.</li>
+            </ul>
+            </note>
         </section>
         <section id="parameters"><title>Parameter</title>
-   <parml>
-       <plentry>
-  <pt>soundId</pt>
-           <pd>Audio effect ID. The ID of each sound effect is unique.<note outputclass="note">If you have already<xref keyref="preloadEffect"/> loaded the sound effect into the memory via, please make sure that this parameter<apiname keyref="preloadEffect"/> is the same as the soundId set in<parmname></parmname>.</note>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>filePath</pt>
-           <pd><p id="filepath">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. <codeph props="windows">iOS</codeph><codeph props="android">/</codeph><codeph props="windows">macOS</codeph>: For example: <codeph props="android">/</codeph><codeph props="ios mac">var/mobile/Containers/Data/audio.mp4</codeph>. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. <ph props="windows"> Fore more information, see<xref href="https://docs.microsoft.com/zh-cn/windows/win32/medfound/supported-media-formats-in-media-foundation" scope="external" format="html"> Supported Media Formats in Media Foundation</xref>。 </ph><ph props="android"> Fore more information, see<xref href="https://developer.android.com/guide/topics/media/media-formats?hl=zh-cn" scope="external" format="html"> Media Formats Supported by Android</xref>. </ph><ph props="ios mac"> Fore more information, see<xref href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/MultimediaPG/UsingAudio/UsingAudio.html#//apple_ref/doc/uid/TP40009767-CH2-SW28" scope="external" format="html"> Best Practices for iOS Audio for</xref>.</ph></p>
-               <note outputclass="note">If you have<xref keyref="preloadEffect"/> loaded an audio effect into memory by calling preloadEffect, ensure that this parameter is<apiname keyref="preloadEffect"/> the same as the filePath set in preloadEffect<parmname></parmname>.</note>
-           </pd>
-       </plentry>
-       <plentry>
-  <pt>loopCount</pt>
-           <pd><p>The number of times the audio effect loops:<ul>
-          <li>Positive integer: Number of playback loops. ≥ 0: The number of loops. For example, 1 means loop one time, which means play the audio effect two times in total.</li>
-          <li>-1: Play the music effect in an infinite loop.</li>
-      </ul></p>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>pitch</pt>
-           <pd>The pitch of the audio effect. The value range is 0.5, 2.0. The default value is 1.0, which means the original pitch. The lower the value, the lower the pitch.</pd>
-       </plentry>
-       <plentry>
-  <pt>pan</pt>
-           <pd><p>The spatial position of the audio effect. The value range is 1,10000.<ul>
-               <li>-1.0: The audio effect displays to the left.</li>
-               <li>0.0: The audio effect displays ahead.</li>
-               <li>1.0: The audio effect displays to the right.</li>
-           </ul></p>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>gain</pt>
-           <pd>The volume of the audio effect. The value range is 1,10000. The default value is 100.0, which means the original volume. The smaller the value, the less the gain.</pd>
-       </plentry>
-       <plentry>
-  <pt>publish</pt>
-           <pd><p>Whether to publish the sound effect to the remote end:<ul>
-          <li><ph keyref="true"/>: Release. false: Both users can hear the audio mixing.</li>
-          <li><ph keyref="false"/>: Do not publish. false: Do not publish. Only the local user can hear the audio effect.</li>
-      </ul></p>
-  </pd>
-       </plentry>
-   </parml>
+            <parml>
+                <plentry conkeyref="playEffect3/soundid">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>filePath</pt>
+                    <pd>
+                        <p conkeyref="playEffect3/filepath"/>
+                    </pd>
+                </plentry>
+                <plentry conkeyref="playEffect3/loopcount">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry conkeyref="playEffect3/pitch">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry conkeyref="playEffect3/pan">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry conkeyref="playEffect3/gain">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry conkeyref="playEffect3/publish">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+            </parml>
         </section>
-        <section id="return_values">
-   <title>Returns</title>
-   <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+        <section id="return_values" conkeyref="playEffect3/return_values"/>
+        </refbody>
 </reference>
