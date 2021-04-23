@@ -269,6 +269,11 @@
       <codeblock props="electron" outputclass="language-typescript">disableVideo(): number</codeblock>
   </p>
   
+  <!-- setVideoQualityParameters -->
+  <p id="setVideoQualityParameters">
+      <codeblock props="windows" outputclass="language-cpp">virtual int setVideoQualityParameters(bool preferFrameRateOverImageQuality) = 0;</codeblock>
+  </p>
+           
   <!--setVideoProfile-->
   <p id="setVideoProfile">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setVideoProfile(VIDEO_PROFILE_TYPE profile, bool swapWidthAndHeight) = 0;</codeblock>
@@ -385,8 +390,8 @@
       <codeblock props="electron" outputclass="language-typescript">setRenderMode(mode: RENDER_MODE = RENDER_MODE.WEBGL): void</codeblock>
   </p>
   
-  <!-- setCustomRenderMode -->
-  <p id="setCustomRenderMode">
+  <!-- setCustomRenderer -->
+  <p id="setCustomRenderer">
       <codeblock props="electron" outputclass="language-typescript">setCustomRenderer(customRenderer: IRenderer)</codeblock>
   </p>
            
@@ -935,12 +940,13 @@
       <codeblock props="windows" outputclass="language-cpp">virtual int setVolumeOfEffect(int soundId, int volume) = 0;</codeblock>
       <codeblock props="electron" outputclass="language-typescript">setVolumeOfEffect(soundId: number, volume: number): number</codeblock>
   </p>
-  
-  <!--playEffect1-->
-  <p id="playEffect1"> 
-      
-  </p>
-  
+           
+    <!--playEffect1-->
+    <p id="playEffect1"> 
+        <codeblock props="android" outputclass="language-java">public int playEffect(int soundId, String filePath, int loop, double pitch, double pan, double gain);</codeblock>
+        <codeblock props="apple" outputclass="language-objectivec">- (int)playEffect:(int)soundId filePath:(NSString* _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain __deprecated;</codeblock>
+    </p>
+
   <!--playEffect2-->
   <p id="playEffect2">       
       <codeblock props="windows" outputclass="language-cpp">virtual int playEffect(int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish = false) = 0;</codeblock>
@@ -953,6 +959,11 @@
           gain: number,
           publish: number
           ): number</codeblock>
+  </p>
+
+  <!--playEffect3-->
+  <p id="playEffect3">       
+      <codeblock props="windows" outputclass="language-cpp">virtual int playEffect(int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish, int startPos) = 0;</codeblock>   
   </p>
   
   <!--stopEffect-->
@@ -2046,8 +2057,8 @@
   
   <!--onClientRoleChanged-->
   <p id="onClientRoleChanged">
-      <codeblock props="android" outputclass="java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
-      <codeblock props="ios" outputclass="objective-c">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
+      <codeblock props="android" outputclass="language-java">public void onClientRoleChanged(int oldRole, int newRole);</codeblock>
+      <codeblock props="ios" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:(AgoraClientRole)oldRole newRole:(AgoraClientRole)newRole;</codeblock>
       <codeblock props="rust windows" outputclass="language-cpp">virtual void onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole) {
     }</codeblock>
       <codeblock props="electron" outputclass="language-typescript">on(
@@ -2136,7 +2147,7 @@
           cb: (uid: number, userInfo: UserInfo) => void
           ): this;</codeblock>
   </p>
-  
+
   <!--onLocalAudioStateChanged-->
   <p id="onLocalAudioStateChanged">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onLocalAudioStateChanged(LOCAL_AUDIO_STREAM_STATE state, LOCAL_AUDIO_STREAM_ERROR error) {
@@ -2148,11 +2159,6 @@
           error: number
           ) => void): this;</codeblock>
   </p>
-           
-   <!-- onMicrophoneEnabled -->
-   <p id="onMicrophoneEnabled">
-       <codeblock props="electron" outputclass="language-typescript">on(evt: 'microphoneEnabled', cb: (enabled: boolean) => void): this;</codeblock>
-   </p>
   
   <!--onFirstLocalAudioFrame-->
   <p id="onFirstLocalAudioFrame">       
@@ -2161,7 +2167,13 @@
     }</codeblock>
       <codeblock props="electron" outputclass="language-typescript">on(evt: 'firstLocalAudioFrame', cb: (elapsed: number) => void): this;</codeblock>
   </p>
-
+           
+   <!-- onMicrophoneEnabled -->
+   <p id="onMicrophoneEnabled">
+       <codeblock props="windows" outputclass="language-cpp">virtual void onMicrophoneEnabled(bool enabled) { (void)enabled; }</codeblock>
+       <codeblock props="electron" outputclass="language-typescript">on(evt: 'microphoneEnabled', cb: (enabled: boolean) => void): this;</codeblock>
+   </p>
+           
   <!--onLocalVideoStateChanged-->
   <p id="onLocalVideoStateChanged">       
       <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState, LOCAL_VIDEO_STREAM_ERROR error) {
@@ -2287,8 +2299,8 @@
         (void)elapsed;
     }</codeblock>
       <codeblock props="electron" outputclass="language-typescript">on(
-          evt: 'firstRemoteVideoFrame',
-          cb: (uid: number, width: number, height: number, elapsed: number) => void
+          evt: "firstRemoteAudioFrame",
+          cb: (uid: number, elapsed: number) => void
           ): this;</codeblock>
   </p>
 
@@ -2312,7 +2324,10 @@
         (void)height;
         (void)elapsed;
     }</codeblock>
-      <codeblock props="electron" outputclass="language-typescript"></codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+          evt: "firstRemoteVideoFrame",
+          cb: (uid: number, width: number, height: number, elapsed: number) => void
+          ): this;</codeblock>
   </p>
   
   <!--onFirstRemoteVideoDecoded-->
@@ -3112,7 +3127,7 @@
       <codeblock props="windows" outputclass="language-cpp">virtual void onLastmileQuality(int quality) {
         (void)quality;
     }</codeblock>
-      <codeblock props="electron" outputclass="language-typescript">on(evt: 'lastMileQuality', cb: (quality: QUALITY_TYPE) => void): this;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(evt: 'lastmileQuality', cb: (quality: QUALITY_TYPE) => void): this;</codeblock>
   </p>
 
   <!--onLastmileProbeResult-->
