@@ -17,7 +17,7 @@ The SDK version.
 ### setConfig
 
 ```
-public static void setConfig(AgoraEduSDKConfig agoraEduSDKConfig);
++ (void)setConfig:(AgoraEduSDKConfig *)config;
 ```
 
 Globally configures the SDK.
@@ -42,16 +42,16 @@ Launches a flexible classroom.
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
 | `config` | The classroom launching configuration, see `AgoraEduLaunchConfig`. |
-| `delegate` | The SDK uses the  `AgoraEduLaunchCallback` class to report events related to classroom launching to the app. |
+| `delegate` | The SDK uses the `AgoraEduClassroomDelegate` class to report events related to classroom launching to the app. |
 
 **Returns**
 
-The` AgoraEduClassRoom` class.
+`The AgoraEduClassroom` class.
 
 ### configCoursewares
 
 ```
-public static void configCoursewares(@NotNull List<AgoraEduCourseware> wares);
++ (void)configCoursewares:(NSArray<AgoraEduCourseware *> *)config;
 ```
 
 Configures downloading courseware before entering a classroom.
@@ -74,9 +74,9 @@ Pre-download the courseware.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `delegate` | The SDK reports events related to `courseware` preloading to the app through the AgoraEduCoursewarePreloadListener class. |
+| `delegate` | The SDK reports events related to courseware preloading to the app through the `AgoraEduCoursewareDelegate` class. |
 
-## The AgoraEduClassRoom class.
+## AgoraEduClassroom
 
 ### destroy
 
@@ -84,11 +84,11 @@ Pre-download the courseware.
 - (void)destroy;
 ```
 
-Release` the resources occupied by the AgoraEduClassroom` object.
+Release the resources occupied by the `AgoraEduClassroom` object.
 
 ## AgoraEduClassroomDelegate
 
-The` AgoraEduLaunchCallback` class reports events related to class launching to the app.
+`The AgoraEduLaunchCallback` class reports events related to classroom launching to the app.
 
 ### didReceivedEvent
 
@@ -106,7 +106,7 @@ Reports classroom events.
 
 ## AgoraEduCoursewareDelegate
 
-`The AgoraEduCoursewarePreloadListener` class reports events related to courseware preloading to the app.
+`The AgoraEduCoursewareDelegate` class reports events related to courseware preloading to the app.
 
 ### didProcessChanged
 
@@ -130,9 +130,9 @@ The courseware pre-downloading completes.
 
 ```
 typedef NS_ENUM(NSInteger, AgoraEduEvent) {
-    AgoraEduEventFailed(0),
-    AgoraEduEventReady(1),
-    AgoraEduEventDestroyed(2),
+    AgoraEduEventFailed = 0,
+    AgoraEduEventReady = 1,
+    AgoraEduEventDestroyed =2,
 };
 ```
 
@@ -147,8 +147,8 @@ Classroom events. Reported in the `didReceivedEvent` callback.
 ### AgoraEduRoleType
 
 ```
-public enum AgoraEduRoleType {
-    AgoraEduRoleTypeStudent: Student
+typedef NS_ENUM(NSInteger, AgoraEduRoleType) {
+    AgoraEduRoleTypeStudent = 2,
 };
 ```
 
@@ -161,10 +161,10 @@ The role of the user in the classroom. You need to set the user role in `AgoraEd
 ### AgoraEduRoomType
 
 ```
-public enum AgoraEduRoomType {
-    AgoraEduRoomType1V1(0),
-    AgoraEduRoomTypeSmall(4);
-    AgoraEduRoomTypeBig
+typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
+    AgoraEduRoomType1V1 = 0,
+    AgoraEduRoomTypeSmall = 4,
+    AgoraEduRoomTypeBig = 2,
 };
 ```
 
@@ -180,54 +180,52 @@ The classroom type. You need to set the user role in `AgoraEduLaunchConfig`.
 
 ```
 @interface AgoraEduSDKConfig : NSObject
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteSDK *sdk;
+@property (nonatomic, copy) NSString *appId;
+@property (nonatomic, assign) BOOL eyeCare;
 - (instancetype)initWithAppId:(NSString *)appId;
 - (instancetype)initWithAppId:(NSString *)appId
                       eyeCare:(BOOL)eyeCare;
- 
 @end
 ```
 
-The SDK global configuration. Used when `calling AgoraEduSDK.config`.
+The SDK global configuration. Used when calling `setConfig`.
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
 | `appId` | The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
-| `eyeCare` | Whether to enable eye care mode:<li>`false`: (default) Disable eye care mode.</li><li>`true`: Enable eye care mode.</li> |
+| `eyeCare` | Whether to enable eye care mode:<li>`false`: (Default) Disable eye care mode.</li><li>`true`: Enable eye care mode.</li> |
 
 ### AgoraEduLaunchConfig
 
 ```
-@NotNull AgoraEduLaunchConfig config,
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteBoardView *boardView;
-@property (nonatomic, strong) WhiteBoardView *boardView;
+@interface AgoraEduLaunchConfig : NSObject
+@property (nonatomic, copy) NSString *userName;
+@property (nonatomic, copy) NSString *userUuid;
+@property (nonatomic, assign) AgoraEduRoleType roleType;
+@property (nonatomic, copy) NSString *roomName;
+@property (nonatomic, copy) NSString *roomUuid;
+@property (nonatomic, assign) AgoraEduRoomType roomType;
+@property (nonatomic, copy) NSString *token;
+@property (nonatomic, strong, nullable) NSNumber *startTime;
+@property (nonatomic, strong, nullable) NSNumber *duration;
  
 - (instancetype)initWithUserName:(NSString *)userName
                         userUuid:(NSString *)userUuid
-                        roleType: EduRoleTypeEnum,
-                        roomName: string,
+                        roleType:(AgoraEduRoleType)roleType
+                        roomName:(NSString *)roomName
                         roomUuid:(NSString *)roomUuid
-                        roomType: EduRoomTypeEnum,
+                        roomType:(AgoraEduRoomType)roomType
                            token:(NSString *)token;
  
 - (instancetype)initWithUserName:(NSString *)userName
                         userUuid:(NSString *)userUuid
-                        roleType: EduRoleTypeEnum,
-                        roomName: string,
+                        roleType:(AgoraEduRoleType)roleType
+                        roomName:(NSString *)roomName
                         roomUuid:(NSString *)roomUuid
-                        roomType: EduRoomTypeEnum,
+                        roomType:(AgoraEduRoomType)roomType
                            token:(NSString *)token
-                       startTime: number,
-                        duration: number,
- 
+                       startTime:(NSNumber *)startTime
+                        duration:(NSNumber *)duration;
 @end
 ```
 
@@ -248,27 +246,26 @@ The classroom launching configuration. Used when calling `launch`.
 ### AgoraEduCourseware
 
 ```
-data class AgoraEduCourseware(
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteSDK *sdk;
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteSDK *sdk;
+@interface AgoraEduCourseware : NSObject
+@property (nonatomic, copy) NSString *resourceName;
+@property (nonatomic, copy) NSString *scenePath;
+@property (nonatomic, copy) NSString *resourceUrl;
+@property (nonatomic, strong) NSArray<WhiteScene *> *scenes;
 - (instancetype)initWithResourceName:(NSString *)resourceName
                            scenePath:(NSString *)scenePath
                               scenes:(NSArray<WhiteScene *> *)scenes
                          resourceUrl:(NSString *)resourceUrl;
- 
 @end
 ```
 
-Courseware pre-download configuration. The courseware `pre-loaded` configuration.  Used when calling configCoursewares.
+Courseware pre-download configuration. The courseware pre-loading configuration.  Used when calling `configCoursewares`.
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
-| `resourceName` | file name. |
-| `scenePath` | The local storage path of the file is suggested to be formed by concatenating `resourceName` and` the name of the first `SceneInfo` object in ``scenes`, for example,` resourceName + "/" + sceneInfos.get(0).name`. |
-| `resourceUrl` | Courseware download address, such as `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"` |
-| `scenes` | A list of converted file pages, an array of `WhiteScene` objects. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. Each `WhiteScene` object corresponds to a page. |
+| `resourceName` | The file name. |
+| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of `resourceName` and the `name` of the first `SceneInfo` object in `scenes```. |
+| `resourceUrl` | The URL address of the file, such as `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip".` |
+| `scenes` | A list of converted file pages, an array of `WhiteScene` objects. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom and then display the file on the whiteboard in pages. Each `WhiteScene` object represents one page. |
 
 ### WhiteObject
 
@@ -278,20 +275,19 @@ Courseware pre-download configuration. The courseware `pre-loaded` configuration
 - (instancetype)init;
 - (instancetype)initWithName:(nullable NSString *)name ppt:(nullable WhitePptPage *)ppt;
 
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteSDK *sdk;
- 
+@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, assign, readonly) NSInteger componentsCount;
+@property (nonatomic, strong, readonly, nullable) WhitePptPage *ppt;
 @end
 ```
 
-Specific information on a file page. Set in `AgoraEduCourseware`.
+The detailed information of a page. Set in `AgoraEduCourseware`.
 
 | Attributes | Description |
 | :---------------- | :--------------------------------------------------------- |
-| `componentsCount` | Number of pages. |
-| `ppt` | For the specific information of a converted page, see the `WhitePptPage` object for details. |
-| `name` | The name of the page. |
+| `componentsCount` | The number of pages. |
+| `ppt` | The detailed information of a converted page. See `WhitePptPage`. |
+| `name` | The page name. |
 
 ### WhitePptPage
 
@@ -301,20 +297,19 @@ Specific information on a file page. Set in `AgoraEduCourseware`.
 - (instancetype)initWithSrc:(NSString *)src size:(CGSize)size;
 - (instancetype)initWithSrc:(NSString *)src preview:(NSString *)url size:(CGSize)size;
 
-@property (nonatomic, strong) WhiteSDK *sdk;
-@property (nonatomic, strong) WhiteSDK *sdk;
-@property (nonatomic, strong) WhiteRoom *room;
-@property (nonatomic, strong) WhiteRoom *room;
+@property (nonatomic, copy) NSString *src;
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, copy, readonly) NSString *previewURL;
 
- 
 @end
 ```
 
-The specific information of a converted page. Set in `SceneInfo`.
+The detailed information of a page. Set in `SceneInfo`.
 
 | Attributes | Description |
 | :----------- | :------------------------------------------ |
-| `src` | The URL of the custom video thumbnail. |
-| `width` | The width of the screen (pixel). |
-| `height` | The height of the screen (pixel). |
-| `previewURL` | URL download URL of the preview image generated during dynamic file conversion. |
+| `src` | The URL address of the converted page. |
+| `width` | The width (pixel) of the page. |
+| `height` | The height (pixel) of the page. |
+| `previewURL` | The URL address of the preview image generated after the dynamic file conversion. |
