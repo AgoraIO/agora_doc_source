@@ -24,7 +24,7 @@
 | :---------------- | :----------------------------------------------------------- |
 | 1 对 1 互动教学 | 1 位老师对 1 名学生进行专属在线辅导教学，老师和学生进行实时音视频互动。 |
 | 1 对 N 在线小班课 | 1 位老师对 N 名学生（2 ≤ N ≤ 16）进行在线辅导教学，老师和学生进行实时音视频互动。 |
-| 互动直播大班课 | 1 位老师进行在线教学，多名学生实时观看和收听，学生人数无上限。 上课过程中，学生可以“举手”请求发言，与老师进行实时音视频互动。 |
+| 互动直播大班课 | 1 位老师进行在线教学，多名学生实时观看和收听，学生人数无上限。 During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
 
 ## 产品功能
 
@@ -49,8 +49,8 @@
 
 说明：
 
-1. Android 4.4 或以上版本。
-2. iOS 10 或以上版本。
+1. Android 4.4 or later.
+2. iOS 10 or later.
 3. Web 端请使用桌面端 Google Chrome 最新稳定版。
 4. macOS 10.10 或以上版本。
 5. Windows 7 或以上版本。
