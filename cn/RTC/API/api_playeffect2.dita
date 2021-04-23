@@ -16,18 +16,18 @@
         </section>
         <section id="detailed_desc">
    
-            <p>你可以多次调用该方法，传入不同的 <codeph>soundID</codeph> 和 <codeph>filePath</codeph>，同时播放多个音效文件。为获得最佳用户体验，Agora 推荐同时播放的音效文件不超过 3 个。</p>
-            <p>音效文件播放结束后，SDK 会触发 <apiname keyref="onAudioEffectFinished"/> 回调。
+            <p>你可以多次调用该方法，传入不同的 <parmname>soundID</parmname> 和 <parmname>filePath</parmname>，同时播放多个音效文件。为获得最佳用户体验，Agora 推荐同时播放的音效文件不超过 3 个。</p>
+                <p>音效文件播放结束后，SDK 会触发 <apiname keyref="onAudioEffectFinished"/> 回调。</p>
             <note outputclass="note" props="android ios">该方法需要在加入频道后调用。</note>
                 <note outputclass="note" props="mac windows"><ul>
                     <li>该方法需要在加入频道后调用。</li>
                     <li><ph props="windows">在 macOS 和 Windows上，</ph>该方法不支持同时播放多个在线音效文件。</li>
                 </ul>
-                </note></p>
+                </note>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
-       <plentry>
+       <plentry id="soundid">
   <pt>soundId</pt>
            <pd>音效的 ID。每个音效的 ID 具有唯一性。
       <note outputclass="note">如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"/> 中设置的 <parmname>soundId</parmname> 相同。</note>
@@ -43,7 +43,7 @@
                <note outputclass="note">如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"/> 中设置的 <parmname>filePath</parmname> 相同。</note>
            </pd>
        </plentry>
-       <plentry>
+       <plentry id="loopcount">
   <pt>loopCount</pt>
            <pd><p>音效循环播放的次数。
       <ul>
@@ -52,11 +52,11 @@
       </ul></p>
   </pd>
        </plentry>
-       <plentry>
+       <plentry id="pitch">
   <pt>pitch</pt>
            <pd>音效的音调，取值范围为 [0.5,2.0]。默认值为 1.0，表示原始音调。取值越小，则音调越低。 </pd>
        </plentry>
-       <plentry>
+       <plentry id="pan">
   <pt>pan</pt>
            <pd><p>音效的空间位置。取值范围为 [-1.0,1.0]，例如：<ul>
                <li>-1.0：音效出现在左边</li>
@@ -65,11 +65,11 @@
            </ul></p>
   </pd>
        </plentry>
-       <plentry>
+       <plentry id="gain">
   <pt>gain</pt>
            <pd>音效的音量。取值范围为 [0.0,100.0]。默认值为 100.0，表示原始音量。取值越小，则音量越低。</pd>
        </plentry>
-       <plentry>
+       <plentry id="publish">
   <pt>publish</pt>
            <pd><p>是否将音效发布至远端： 
       <ul>
@@ -78,13 +78,19 @@
       </ul></p>
   </pd>
        </plentry>
+                <plentry>
+                    <pt>startPos</pt>
+                    <pd>
+                        <p>音效文件的播放位置，单位为毫秒。</p>
+                    </pd>
+                </plentry>
    </parml>
         </section>
         <section id="return_values">
    <title>返回值</title>
    <ul>
-       <li>0：方法调用成功</li>
-       <li>&lt; 0：方法调用失败</li>
+       <li>0：方法调用成功。</li>
+       <li>&lt; 0：方法调用失败。</li>
    </ul>
         </section></refbody>
 </reference>

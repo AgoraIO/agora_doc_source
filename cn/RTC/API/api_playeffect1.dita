@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_playeffect1">
+    <title><ph keyref="playEffect1"/></title>
+    <shortdesc id="short"><ph id="shortdesc">播放指定的本地或在线音效文件。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="playEffect1" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p conref="../conref/conref_rtc_api.dita#apidef/playEffect1"/>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>自 v3.4.0 废弃，请改用 <xref keyref="playEffect2">[2/2]</xref> 方法。</dd>
+                </dlentry>
+            </dl>
+            <p>你可以多次调用该方法，传入不同的 <parmname>soundID</parmname> 和 <parmname>filePath</parmname>，同时播放多个音效文件。为获得最佳用户体验，Agora 推荐同时播放的音效文件不超过 3 个。</p>
+            <p>音效文件播放结束后，SDK 会触发 <apiname keyref="onAudioEffectFinished"/> 回调。</p>
+            <note outputclass="note" props="android ios">该方法需要在加入频道后调用。</note>
+            <note outputclass="note" props="mac windows"><ul>
+                <li>该方法需要在加入频道后调用。</li>
+                <li><ph props="windows">在 macOS 和 Windows上，</ph>该方法不支持同时播放多个在线音效文件。</li>
+            </ul>
+            </note>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry conkeyref="playEffect2/soundid">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>filePath</pt>
+                    <pd>
+                        <p conkeyref="playEffect2/filepath"/>
+                    </pd>
+                </plentry>
+                <plentry conkeyref="playEffect2/loopcount">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry conkeyref="playEffect2/pitch">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry conkeyref="playEffect2/pan">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry conkeyref="playEffect2/gain">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry conkeyref="playEffect2/publish">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" conkeyref="playEffect2/return_values"/>
+        </refbody>
+</reference>

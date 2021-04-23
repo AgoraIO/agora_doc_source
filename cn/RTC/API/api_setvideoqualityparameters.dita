@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setvideoqualityparameters">
+    <title><ph keyref="setVideoQualityParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置视频优化选项（仅适用于直播）。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoQualityParameters" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p conref="../conref/conref_rtc_api.dita#apidef/setVideoQualityParameters"/>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>该方法从 v2.4.0 起废弃。Agora 建议使用 <xref keyref="VideoEncoderConfiguration"/> 类中的 <parmname>degradationPreference</parmname> 参数设置视频质量偏好。</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>preferFrameRateOverImageQuality</pt>
+                    <pd>
+                        <p>画质和流畅度里，是否优先保证流畅度：<ul id="ul_q4q_k54_jpb">
+                                <li><ph keyref="true"/>：优先保证流畅度。</li>
+                                <li><ph keyref="false"/>： (默认)优先保证画质。</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section></refbody>
+</reference>
