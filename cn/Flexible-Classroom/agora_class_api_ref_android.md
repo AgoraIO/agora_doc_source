@@ -44,7 +44,7 @@ public static AgoraEduClassRoom launch(@NotNull Context context,
 | :--------- | :----------------------------------------------------------- |
 | `context`  | 应用程序的上下文环境。                                       |
 | `config`   | 课堂启动配置，详见 `AgoraEduLaunchConfig`。                  |
-| `callback` | SDK 通过 `AgoraEduLaunchCallback `类向应用程序报告课堂启动相关的事件。 |
+| `callback` | SDK 通过 `AgoraEduLaunchCallback  `类向应用程序报告课堂启动相关的事件。 |
 
 **返回值**
 
@@ -64,10 +64,10 @@ public static void configCoursewares(@NotNull List<AgoraEduCourseware> wares);
 | :------ | :------------------------------------------ |
 | `wares` | 课件预加载配置，详见 `AgoraEduCourseware`。 |
 
-### cacheCoursewares
+### downCoursewares
 
 ```
-public static void cacheCoursewares(@NotNull Context context, @Nullable AgoraEduCoursewarePreloadListener listener)
+public static void downloadCoursewares(@NotNull Context context, @Nullable AgoraEduCoursewarePreloadListener listener)
         throws Exception;
 ```
 
@@ -272,10 +272,10 @@ data class AgoraEduCourseware(
 
 | 属性           | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
-| `resourceName` | 资源名称，必须要 `"/"` 开头。                                |
-| `scenePath`    | 课件目录，建议设为 `resourceName` + "/" + `sceneInfos` 中第一个对象的name |
-| `scenes`       | 课件页面列表，每个 `SceneInfo` 对象对应一个页面。            |
-| `resourceUrl`  | 课件下载地址，例如 `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`。 |
+| `resourceName` | 资源名称，要以 `"/"` 开头。                                  |
+| `scenePath`    | 资源目录，建议设为 `resourceName` + "/" + `sceneInfos` 中第一个对象的name |
+| `scenes`       | 资源列表。灵动课堂的云盘组件会分页展示资源，每个 `SceneInfo` 对象对应一个页面。 |
+| `resourceUrl`  | 资源的 URL 下载地址，例如 `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`。 |
 
 ### SceneInfo
 
@@ -289,11 +289,11 @@ public class SceneInfo {
 
 课件页面列表。在 `AgoraEduCourseware` 中设置。
 
-| 属性             | 描述                        |
-| :--------------- | :-------------------------- |
-| `componentCount` | PPT 数量。                  |
-| `ppt`            | PPT 信息，详见 `Ppt` 对象。 |
-| `name`           | PPT 名称。                  |
+| 属性             | 描述                                                         |
+| :--------------- | :----------------------------------------------------------- |
+| `componentCount` | 课件数量。                                                   |
+| `ppt`            | 当课件类型为 PPT 时，需要设置 `ppt` 指定 PPT 的具体信息，详见 `Ppt` 对象。 |
+| `name`           | 课件名称。                                                   |
 
 ### Ppt
 
@@ -310,5 +310,5 @@ PPT 信息。在 `SceneInfo` 中设置。
 | 属性     | 描述                    |
 | :------- | :---------------------- |
 | `src`    | 转换后的 PPT 下载地址。 |
-| `width`  | PPT 宽度。              |
-| `height` | PPT 高度。              |
+| `width`  | PPT 宽度（pixel）。     |
+| `height` | PPT 高度（pixel）。     |
