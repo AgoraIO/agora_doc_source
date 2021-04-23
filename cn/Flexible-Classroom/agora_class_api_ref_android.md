@@ -1,6 +1,6 @@
 ## AgoraEduSDK
 
-`AgoraEduSDK` 是 Agora Classroom SDK 的基础接口类，包含供应用程序调用的主要接口。
+`AgoraEduSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
 
 ### version
 
@@ -190,7 +190,8 @@ public enum AgoraEduRoleType {
 ```
 public enum AgoraEduRoomType {
    AgoraEduRoomType1V1(0),
-   AgoraEduRoomTypeSmall(4);
+   AgoraEduRoomTypeSmall(4),
+   AgoraEduRoomTypeBig(2);
 }
 ```
 
@@ -272,10 +273,10 @@ data class AgoraEduCourseware(
 
 | 属性           | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
-| `resourceName` | 资源名称，要以 `"/"` 开头。                                  |
-| `scenePath`    | 资源目录，建议设为 `resourceName` + "/" + `sceneInfos` 中第一个对象的name |
-| `scenes`       | 资源列表。灵动课堂的云盘组件会分页展示资源，每个 `SceneInfo` 对象对应一个页面。 |
-| `resourceUrl`  | 资源的 URL 下载地址，例如 `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`。 |
+| `resourceName` | 文件名称。                                                   |
+| `scenePath`    | 文件路径。建议由 `resourceName` 和  `scenes` 中第一个 `SceneInfo` 对象的 `name` 拼接而成，例如 `resourceName + "/" + sceneInfos.get(0).name`。 |
+| `scenes`       | 完成转换的文件页面列表，由 `SceneInfo` 对象组成的数组。灵动课堂客户端会对后缀名 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以在课堂内的白板上分页展示该文件。每个 `SceneInfo` 对象对应一个页面。 |
+| `resourceUrl`  | 文件的 URL 下载地址，例如 `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`。 |
 
 ### SceneInfo
 
@@ -287,13 +288,13 @@ public class SceneInfo {
 }
 ```
 
-课件页面列表。在 `AgoraEduCourseware` 中设置。
+单个文件页面的具体信息。在 `AgoraEduCourseware` 中设置。
 
-| 属性             | 描述                                                         |
-| :--------------- | :----------------------------------------------------------- |
-| `componentCount` | 课件数量。                                                   |
-| `ppt`            | 当课件类型为 PPT 时，需要设置 `ppt` 指定 PPT 的具体信息，详见 `Ppt` 对象。 |
-| `name`           | 课件名称。                                                   |
+| 属性             | 描述                                              |
+| :--------------- | :------------------------------------------------ |
+| `componentCount` | 页面数量。                                        |
+| `ppt`            | 完成转换后的一个页面的具体信息，详见 `Ppt` 对象。 |
+| `name`           | 页面名称。                                        |
 
 ### Ppt
 
@@ -305,10 +306,10 @@ public class Ppt {
 }
 ```
 
-PPT 信息。在 `SceneInfo` 中设置。
+一个白板页面上展示的一个幻灯片的具体信息。在 `SceneInfo` 中设置。
 
-| 属性     | 描述                    |
-| :------- | :---------------------- |
-| `src`    | 转换后的 PPT 下载地址。 |
-| `width`  | PPT 宽度（pixel）。     |
-| `height` | PPT 高度（pixel）。     |
+| 属性     | 描述                            |
+| :------- | :------------------------------ |
+| `src`    | 完成转换的页面的 URL 下载地址。 |
+| `width`  | 页面宽度（pixel）。             |
+| `height` | 页面高度（pixel）。             |
