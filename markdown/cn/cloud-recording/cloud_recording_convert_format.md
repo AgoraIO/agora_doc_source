@@ -1,8 +1,5 @@
----
-title: 转换合流录制获得的录制文件格式
-platform: All Platforms
-updatedAt: 2021-02-20 09:11:03
----
+<div class="alert note">自 4 月 30 日起，合流录制模式下，你可以通过设置 <code>avFileType</code> 参数直接获得 MP4 文件，无需通过转码脚本进行格式转换。</div>
+
 ## 功能描述
 
 合流录制模式下，你会得到一个 M3U8 文件和多个 TS 文件，包含所有用户的音视频数据。你可以使用 FFmpeg 将 M3U8 文件转换为 MP4 文件，或使用声网提供的音视频格式转换脚本，将多个 TS 文件批量转换为多个 MP4 文件或纯音频文件。
@@ -30,7 +27,7 @@ ffmpeg -i input.m3u8 -vcodec copy -acodec copy -absf aac_adtstoasc output.mp4
 - Ubuntu 14.04+ x64
 - CentOS 6.5+（推荐 7.0）x64
 
-运行该脚本需要安装 Python 2，2.7 或以上版本。
+运行该脚本需要安装 [FFmpeg](http://ffmpeg.org/download.html) 3.3 及以上，以及 Python 2，2.7 或以上版本。
 
 #### 文件准备
 

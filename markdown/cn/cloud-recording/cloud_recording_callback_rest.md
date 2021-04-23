@@ -1,14 +1,10 @@
----
-title: 云端录制 RESTful API 回调服务
-platform: All Platforms
-updatedAt: 2021-02-18 09:12:47
----
 Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS 服务器地址来接收云端录制的事件通知。当事件发生时，Agora 云端录制服务会将事件消息发送给 Agora 消息通知服务器，然后 Agroa 消息通知服务器会通过 HTTP/HTTPS 请求将事件投递给你的服务器。
 
+<div class="alert note">消息通知服务只能作为辅助手段来监控录制状态。不建议你的核心业务逻辑依赖消息通知服务。如果你的业务对该服务强依赖，建议联系 <a href="mailto:sales@agora.io">sales@agora.io</a> 开通冗余消息功能，即接收双路消息通知，降低消息丢失的概率。冗余消息功能仍然不能保证 100% 的消息到达率。</div>
 
 ## Agora 消息通知服务
 
-使用 Agora 消息通知服务前需要申请开通并进行配置，关于如何开通服务以及消息通知回调的数据格式详见[消息通知服务](https://docs-preview.agoralab.co/cn/Agora%20Platform/ncs)。
+使用 Agora 消息通知服务前需要申请开通并进行配置，关于如何开通服务以及消息通知回调的数据格式详见[消息通知服务](https://docs-preprod.agora.io/cn/Agora%20Platform/ncs)。
 
 ## 回调内容
 
@@ -16,7 +12,7 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 
 下面以一个示例说明请求包体中的字段：
 ![](https://web-cdn.agora.io/docs-files/1567589432439)
-- 红色框内字段为消息通知服务请求包体的公共字段，所有回调中都包含这些字段，公共字段的含义详见[消息通知回调格式](https://docs-preview.agoralab.co/cn/Agora%20Platform/ncs?platform=All%20Platforms#消息通知回调格式)。
+- 红色框内字段为消息通知服务请求包体的公共字段，所有回调中都包含这些字段，公共字段的含义详见[消息通知回调格式](https://docs-preprod.agora.io/cn/Agora%20Platform/ncs?platform=All%20Platforms#消息通知回调格式)。
 - 蓝色框内字段为云端录制 `payload` 中的[公共字段](#payload)，所有的云端录制事件的回调中 `payload` 都包含这些字段。
 - `eventType`，`serviceType` 和 `details` 的内容取决于发生的事件，详见[回调事件](#event)。
 
@@ -27,6 +23,14 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
   - `uid`：String 类型，录制使用的 UID。
   - `sid`：String 类型，录制 ID，一次云端录制的唯一标识。
   - `sequence`：Number 类型，消息序列号，从 0 开始计数。消息可能乱序到达或者丢失重发，可以通过该参数标识消息。
+  - `serviceScene`：String 类型，当前运行的录制场景或录制阶段：
+    - `"rtc_record"`: 实时录制。
+    - `"rtc_snapshot"`: 截图。
+    - `"rtc_vod"`: 录制并上传至阿里视频点播服务。
+    - `"web_record"`: 页面录制。
+    - `"postpone_transcode::rtc_record"`: 延时转码场景下的第一阶段，即录制阶段。
+    - `"postpone_transcode::transcode"`: 延时转码场景下的第二阶段，即转码阶段。
+    - `"postpone_transcode::transcode_failover"`: 转码失败。
   - `sendts`：Number 类型， 事件发生的时间 （UTC 时间）。Unix 时间戳，精确到毫秒。
   - `serviceType`：Number 类型，回调事件服务的类型。
     - 0：云端录制服务。
@@ -39,25 +43,32 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 
 本节详细介绍云端录制每种回调事件对应的 `serviceType` 以及 `details` 包含的具体字段。
 
-| eventType | serviceType       | 事件描述                                                     |
-| --------- | ----------------- | ------------------------------------------------------------ |
-| [1](#1)   | 0（云端录制服务） | 云端录制服务发生错误                                         |
-| [2](#2)   | 0（云端录制服务） | 云端录制服务发生警告                                         |
-| [3](#3)   | 0（云端录制服务） | 云端录制服务状态发生变化                                     |
-| [4](#4)   | 0（云端录制服务） | 生成录制索引文件                                             |
-| [11](#11)   | 0（云端录制服务） | 云端录制服务结束任务并退出                                             |
-| [12](#12)   | 0（云端录制服务） | 云端录制[启用高可用机制](https://docs.agora.io/cn/faq/high-availability)                                             |
-| [30](#30) | 2（上传模块）     | 上传服务已启动                                               |
-| [31](#31) | 2（上传模块）     | 所有录制文件已上传至指定的第三方云存储                       |
-| [32](#32) | 2（上传模块）     | 所有录制文件已经全部上传完成，但至少有一片上传到 Agora 备份云 |
-| [33](#33) | 2（上传模块）     | 录制文件上传到第三方云存储的进度                             |
-| [40](#40) | 1（录制模块）     | 录制服务已启动                                               |
-| [41](#41) | 1（录制模块）     | 录制服务已退出                                               |
-| [42](#42) | 1（录制模块）     | 同步录制文件信息                                       |
-| [43](#43) | 1（录制模块）     | 音频流状态变化                                       |
-| [44](#44) | 1（录制模块）     | 视频流状态变化                                       |
-| [60](#60) | 4（扩展服务）     | 阿里视频点播服务上传模块启动，并成功获取上传凭证。|
-| [61](#61) | 4（扩展服务）     | 所有录制文件已上传至阿里视频点播服务。|
+| eventType     | serviceType       | 事件描述                                                     |
+| ------------- | ----------------- | ------------------------------------------------------------ |
+| [1](#1)       | 0（云端录制服务） | 云端录制服务发生错误                                         |
+| [2](#2)       | 0（云端录制服务） | 云端录制服务发生警告                                         |
+| [3](#3)       | 0（云端录制服务） | 云端录制服务状态发生变化                                     |
+| [4](#4)       | 0（云端录制服务） | 生成录制索引文件                                             |
+| [11](#11)     | 0（云端录制服务） | 云端录制服务结束任务并退出                                   |
+| [12](#12)     | 0（云端录制服务） | 云端录制[启用高可用机制](https://docs.agora.io/cn/faq/high-availability) |
+| [30](#30)     | 2（上传模块）     | 上传服务已启动                                               |
+| [31](#31)     | 2（上传模块）     | 所有录制文件已上传至指定的第三方云存储                       |
+| [32](#32)     | 2（上传模块）     | 所有录制文件已经全部上传完成，但至少有一片上传到 Agora 备份云 |
+| [33](#33)     | 2（上传模块）     | 录制文件上传到第三方云存储的进度                             |
+| [40](#40)     | 1（录制模块）     | 录制服务已启动                                               |
+| [41](#41)     | 1（录制模块）     | 录制服务已退出                                               |
+| [42](#42)     | 1（录制模块）     | 同步录制文件信息                                             |
+| [43](#43)     | 1（录制模块）     | 音频流状态变化                                               |
+| [44](#44)     | 1（录制模块）     | 视频流状态变化                                               |
+| [60](#60)     | 4（扩展服务）     | 阿里视频点播服务上传模块启动，并成功获取上传凭证。           |
+| [61](#61)     | 4（扩展服务）     | 所有录制文件已上传至阿里视频点播服务。                       |
+| [70](#70)     | 6 (页面录制）     | 页面录制已启动                                               |
+| [71](#71)     | 6 (页面录制）     | 页面录制已停止                                               |
+| [72](#72)     | 6 (页面录制）     | 待录制页面使用了不受支持的功能，录制即将停止                 |
+| [80](#80)     | 7 (延时转码模块） | 转码已启动                                                   |
+| [81](#81)     | 7 (延时转码模块） | 转码已完成                                                   |
+| [90](#90)     | 8 (下载模块）     | 下载录制文件失败                                             |
+| [1001](#1001) | 0 (云端录制服务） | 转码最终结果                                                 |
 
 ### <a name="1"></a>1 cloud_recording_error
 
@@ -74,7 +85,7 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
   - `3`：medium
   - `4`：major
   - `5`：fatal。fatal 级别的错误很可能导致录制退出，如果收到该级别的消息请及时调用 [query](https://docs.agora.io/cn/cloud-recording/restfulapi/#/%E4%BA%91%E7%AB%AF%E5%BD%95%E5%88%B6/query) API 查询当前状态，并结合错误消息的内容进行处理。
-- `errorCode`：Number 类型，错误码。如果错误发生在录制模块，请参考[错误码和警告码](https://docs.agora.io/cn/Recording/the_error_native)；如果错误发生在上传模块，请参考[上传错误码](#uploaderr)；如果错误发生在云端录制平台模块，请参考[云端录制平台错误码](#clouderr)；如果错误码未列出，请联系 Agora 技术支持。
+- `errorCode`：Number 类型，错误码。如果错误发生在录制模块，请参考[错误码](https://docs.agora.io/cn/Recording/API%20Reference/recording_cpp/namespaceagora_1_1linuxsdk.html#a5f37e3fa14fad2982f248d247d76996b)；如果错误发生在上传模块，请参考[上传错误码](#uploaderr)；如果错误发生在云端录制平台模块，请参考[云端录制平台错误码](#clouderr)；如果错误码未列出，请联系 Agora 技术支持。
 - `stat`：Number 类型，事件状态，0 表示正常，其他值表示异常。
 - `errorMsg`：String 类型，具体的错误信息。
 
@@ -86,7 +97,7 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 - `module`：Number 类型，发生警告的模块名。
   - `0`：录制模块
   - `1`：上传模块
-- `warnCode`：Number 类型，警告码。如果警告发生在录制模块，请参考[错误码和警告码](https://docs.agora.io/cn/Recording/the_error_native)；如果警告发生在上传模块，请参考[上传警告码](#uploadwarn)。
+- `warnCode`：Number 类型，警告码。如果警告发生在录制模块，请参考[警告码](https://docs.agora.io/cn/Recording/API%20Reference/recording_cpp/namespaceagora_1_1linuxsdk.html#a11cab69078db26c1f166c68e469dcfcf)；如果警告发生在上传模块，请参考[上传警告码](#uploadwarn)。
 
 ### <a name="3"></a>3 cloud_recording_status_update
 
@@ -137,6 +148,117 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 
 - `msgName`：String 类型，消息名称，即 `uploaded`。
 - `status`：Number 类型，事件状态，0 表示正常，其他值表示异常。
+- `fileList`：JSONArray 类型，由每个录制文件的具体信息组成的数组。
+  - `filename`：String 类型，录制产生的 M3U8 文件和 MP4 文件的文件名。
+  - `trackType`：String 类型，录制文件的类型。
+    - `"audio"`：纯音频文件。
+    - `"video"`：纯视频文件。
+    - `"audio_and_video"`：音视频文件。
+  - `uid`：String 类型，用户 UID，表示录制的是哪个用户的音频流或视频流。合流录制模式下，`uid` 为 `"0"`。
+  - `mixedAllUser`：Boolean 类型，用户是否是分开录制的。
+    - `true`：所有用户合并在一个录制文件中。
+    - `false`：每个用户分开录制。
+  - `isPlayable`：Boolean 类型，是否可以在线播放。
+    - `true`：可以在线播放。
+    - `false`：无法在线播放。
+  - `sliceStartTime`：Number 类型，该文件的录制开始时间，Unix 时间戳，单位为毫秒。
+
+#### 回调示例
+
+<details>
+	<summary><font color="#3ab7f8">单流录制</font></summary>
+<pre><code>{
+  <span class="hljs-attr">"msgName"</span>: <span class="hljs-string">"uploaded"</span>,
+  <span class="hljs-attr">"fileList"</span>: [
+    {
+      <span class="hljs-attr">"fileName"</span>: <span class="hljs-string">"xxx.m3u8"</span>,
+      <span class="hljs-attr">"trackType"</span>: <span class="hljs-string">"audio"</span>,
+      <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"57297"</span>,
+      <span class="hljs-attr">"mixedAllUser"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">"isPlayable"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"sliceStartTime"</span>: <span class="hljs-number">1619172871089</span>
+    },
+    {
+      <span class="hljs-attr">"fileName"</span>: <span class="hljs-string">"xxx.m3u8"</span>,
+      <span class="hljs-attr">"trackType"</span>: <span class="hljs-string">"audio"</span>,
+      <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"10230"</span>,
+      <span class="hljs-attr">"mixedAllUser"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">"isPlayable"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"sliceStartTime"</span>: <span class="hljs-number">1619172871099</span>
+    }
+  ],
+  <span class="hljs-attr">"status"</span>: <span class="hljs-number">0</span>
+}
+</code></pre>
+</details>
+
+
+<details>
+	<summary><font color="#3ab7f8">合流录制且不生成 MP4</font></summary>
+<pre><code>{
+  <span class="hljs-attr">"msgName"</span>: <span class="hljs-string">"uploaded"</span>,
+  <span class="hljs-attr">"fileList"</span>: [
+    {
+      <span class="hljs-attr">"fileName"</span>: <span class="hljs-string">"xxx.m3u8"</span>,
+      <span class="hljs-attr">"trackType"</span>: <span class="hljs-string">"audio_and_video"</span>,
+      <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"0"</span>,
+      <span class="hljs-attr">"mixedAllUser"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"isPlayable"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"sliceStartTime"</span>: <span class="hljs-number">1619170461821</span>
+    }
+  ],
+  <span class="hljs-attr">"status"</span>: <span class="hljs-number">0</span>
+}
+</code></pre>
+</details>
+<details>
+	<summary><font color="#3ab7f8">合流录制并生成 MP4</font></summary>
+<pre><code>{
+  <span class="hljs-attr">"msgName"</span>: <span class="hljs-string">"uploaded"</span>,
+  <span class="hljs-attr">"fileList"</span>: [
+    {
+      <span class="hljs-attr">"fileName"</span>: <span class="hljs-string">"xxx.mp4"</span>,
+      <span class="hljs-attr">"trackType"</span>: <span class="hljs-string">"audio_and_video"</span>,
+      <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"0"</span>,
+      <span class="hljs-attr">"mixedAllUser"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"isPlayable"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"sliceStartTime"</span>: <span class="hljs-number">1619172632080</span>
+    },
+    {
+      <span class="hljs-attr">"fileName"</span>: <span class="hljs-string">"xxx.m3u8"</span>,
+      <span class="hljs-attr">"trackType"</span>: <span class="hljs-string">"audio_and_video"</span>,
+      <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"0"</span>,
+      <span class="hljs-attr">"mixedAllUser"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"isPlayable"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"sliceStartTime"</span>: <span class="hljs-number">1619172632080</span>
+    }
+  ],
+  <span class="hljs-attr">"status"</span>: <span class="hljs-number">0</span>
+}
+</code></pre>
+</details>
+
+
+<details>
+	<summary><font color="#3ab7f8">页面录制并生成 MP4</font></summary>
+<pre><code>{
+<span class="hljs-attr">"msgName"</span>:<span class="hljs-string">"uploaded"</span>,
+<span class="hljs-attr">"status"</span>:<span class="hljs-string">"0"</span>,
+<span class="hljs-attr">"fileList"</span>:[{
+  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
+  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.m3u8"</span>,
+  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
+  {
+  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
+  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.mp4"</span>,
+  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
+  {
+  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
+  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.mp4"</span>,
+  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562732171000</span>}]
+}
+</code></pre>
+</details>
 
 ### <a name="32"></a>32 backuped
 
@@ -144,6 +266,95 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 
 - `msgName`：String 类型，消息名称，即 `backuped`。
 - `status`：Number 类型，事件状态，0 表示正常，其他值表示异常。
+- `fileList`：JSONArray 类型，由每个录制文件的具体信息组成的数组。
+  - `filename`：String 类型，录制产生的 M3U8 文件和 MP4 文件的文件名。
+  - `trackType`：String 类型，录制文件的类型。
+    - `"audio"`：纯音频文件。
+    - `"video"`：纯视频文件。
+    - `"audio_and_video"`：音视频文件。
+  - `uid`：String 类型，用户 UID，表示录制的是哪个用户的音频流或视频流。合流录制模式下，`uid` 为 `"0"`。
+  - `mixedAllUser`：Boolean 类型，用户是否是分开录制的。
+    - `true`：所有用户合并在一个录制文件中。
+    - `false`：每个用户分开录制。
+  - `isPlayable`：Boolean 类型，是否可以在线播放。
+    - `true`：可以在线播放。
+    - `false`：无法在线播放。
+  - `sliceStartTime`：Number 类型，该文件的录制开始时间，Unix 时间戳，单位为毫秒。
+
+#### 回调示例
+
+<details>
+	<summary><font color="#3ab7f8">单流录制</font></summary>
+<pre><code>{
+<span class="hljs-attr">"msgName"</span>:<span class="hljs-string">"backuped"</span>,
+<span class="hljs-attr">"status"</span>:<span class="hljs-string">"0"</span>,
+<span class="hljs-attr">"fileList"</span>:[{
+  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"123"</span>,
+  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.m3u8"</span>,
+  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
+  {
+  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"456"</span>,
+  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.m3u8"</span>,
+  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>}]
+}
+</code></pre>
+</details>
+
+<details>
+	<summary><font color="#3ab7f8">合流录制且不生成 MP4</font></summary>
+<pre><code>{
+<span class="hljs-attr">"msgName"</span>:<span class="hljs-string">"backuped"</span>,
+<span class="hljs-attr">"status"</span>:<span class="hljs-string">"0"</span>,
+<span class="hljs-attr">"fileList"</span>:[{
+  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
+  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.m3u8"</span>,
+  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>}]
+}
+</code></pre>
+</details>
+
+<details>
+	<summary><font color="#3ab7f8">合流录制并生成 MP4</font></summary>
+<pre><code>
+{
+<span class="hljs-attr">"msgName"</span>:<span class="hljs-string">"backuped"</span>,
+<span class="hljs-attr">"status"</span>:<span class="hljs-string">"0"</span>,
+<span class="hljs-attr">"fileList"</span>:[{
+  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
+  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.m3u8"</span>,
+  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
+  {
+  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
+  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.mp4"</span>,
+  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
+  {
+  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
+  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.mp4"</span>,
+  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562732171000</span>}]
+}
+</code></pre>
+</details>
+
+<details>
+	<summary><font color="#3ab7f8">页面录制并生成 MP4</font></summary>
+<pre><code>{
+<span class="hljs-attr">"msgName"</span>:<span class="hljs-string">"backuped"</span>,
+<span class="hljs-attr">"status"</span>:<span class="hljs-string">"0"</span>,
+<span class="hljs-attr">"fileList"</span>:[{
+  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
+  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.m3u8"</span>,
+  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
+  {
+  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
+  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.mp4"</span>,
+  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
+  {
+  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
+  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.mp4"</span>,
+  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562732171000</span>}]
+}
+</code></pre>
+</details>
 
 ### <a name="33"></a>33 uploading_progress
 
@@ -169,9 +380,9 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
   | 枚举值                  |                                                              |
   | :---------------------- | ------------------------------------------------------------ |
   | LEAVE_CODE_INIT         | 0：初始化失败。                                              |
-  | LEAVE_CODE_SIG          | 2（二进制 10）：AgoraCoreService 收到 SIGINT 信号而触发的退出。        |
-  | LEAVE_CODE_NO_USERS     | 4（二进制 100）：频道内除录制端外没有其他用户，录制端自动离开频道。     |
-  | LEAVE_CODE_TIMER_CATCH  | 8（二进制 1000）：可忽略。                                               |
+  | LEAVE_CODE_SIG          | 2（二进制 10）：AgoraCoreService 收到 SIGINT 信号而触发的退出。 |
+  | LEAVE_CODE_NO_USERS     | 4（二进制 100）：频道内除录制端外没有其他用户，录制端自动离开频道。 |
+  | LEAVE_CODE_TIMER_CATCH  | 8（二进制 1000）：可忽略。                                   |
   | LEAVE_CODE_CLIENT_LEAVE | 16（二进制 10000）：录制端调用 `leaveChannel` 方法退出频道。 |
 
 
@@ -228,23 +439,96 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 `eventType` 为 61 表示所有录制文件均已上传至阿里视频点播服务， `details` 中包含以下字段：
 
 - `msgName`：String 类型，消息名称，即 `"vod_triggered"`。
-- 
+
+### <a name="70"></a>70 web_recorder_started
+
+`eventType` 为 70 表示页面录制已启动， `details` 中包含以下字段：
+
+- `msgName`：String 类型，消息名称，即 `"web_recorder_started"`。
+
+### <a name="71"></a>71 web_recorder_stopped
+
+`eventType` 为 71 表示页面录制已停止， `details` 中包含以下字段：
+
+- `msgName`：String 类型，消息名称，即 `"web_recorder_stopped"`。
+- `fileList`：JSONArray 类型。由每个录制文件的具体信息组成的数组。
+  - `fileName`：String 类型，录制产生的 M3U8 或 MP4 文件的文件名。
+  - `sliceStartTime`：Number 类型，该文件的录制开始时间，Unix 时间戳，单位为毫秒。
+
+### <a name="72"></a>72 web_recorder_capability_limit
+
+`eventType` 为 72 表示待录制页面使用了不受支持的功能，录制即将停止。`details` 中包含以下字段：
+
+- `msgName`：String 类型，消息名称，即 `"web_recorder_capability_limit"`。
+- `limitType`：String 类型，限制类型名称，包含如下几种
+  - `"resolution"`:  待录制页面中包含超过 1280 x 720 分辨率的视频源。
+  - `"WebGL"`：待录制页面使用了 WebGL 功能。
+  
+### <a name="80"></a>80 transcoder_started
+
+`eventType` 为 80 表示转码已启动。`details` 中包含以下字段：
+
+- `msgName`：String 类型，消息名称，即 `"transcoder_started"`。
+
+### <a name="81"></a>81 transcoder_completed
+
+`eventType` 为 81 表示转码已完成。`details` 中包含以下字段：
+
+- `msgName`：String 类型，消息名称，即 `"transcoder_completed"`。
+- `result`: String 类型，转码结果。
+  - `"all_success"`：全部文件转码成功。
+  - `"partial_success"`：部分文件转码失败。
+  - `"fail"`：转码失败。
+- `uids`：JSONArray 类型。数组内容为每个 UID 对应的录制文件的转码结果以及 MP4 文件的文件名。
+  - `uid`：String 类型，录制文件对应的 UID。
+  - `result`：String 类型，转码结果。
+    - `"success"`：转码成功。
+    - `"fail"`：转码失败。
+  - `fileList`：JSONArray 类型，数组内容为 MP4 文件的相关信息。
+    - `filename`：String 类型，MP4 文件的文件名。
+
+### <a name="90"></a>90 download_failed
+
+`eventType` 为 90 表示下载任务失败。整个录制进程仅触发一次该回调。`details` 中包含以下字段：
+
+- `msgName`：String 类型，消息名称，即 `"download_failed"`。
+- `vendor`: Number 类型，第三方云存储供应商，和你在 [`start` ](/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#start)请求中设置的 `vendor` 一致。
+- `region`：Number 类型，第三方云存储指定的地区信息，和你在 [`start` ](/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#start)请求中设置的 `region` 一致。
+- `bucket`：String 类型，第三方云存储的 bucket，和你在 [`start` ](/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#start)请求中设置的 bucket 一致。
+- `filename`：String 类型，下载失败的 M3U8 或 TS/WebM 文件的文件名列表，文件名以 “`;`” 分隔 。
+
+
+
+### <a name="1001"></a>1001 postpone_transcode_final_result
+
+`eventType` 为 1001 表示转码的最终结果。`details` 中包含以下字段：
+
+- `msgName`：String 类型，消息名称，即 `"postpone_transcode_final_result"`。
+- `result`: String 类型，转码结果。
+  - `"total_success"`：全部文件转码成功。
+  - `"partial_success"`：部分文件转码失败。
+  - `"failed"`：转码失败。
+- `fileList`：JSONArray 类型，数组内容为 MP4 文件的相关信息。
+  - `filename`：String 类型，MP4 文件的文件名。
+
+
+
 ## 参考
 
 ### <a name="uploaderr"></a>上传错误码
 
-| 错误码 | 描述                                             |
-| :----- | :----------------------------------------------- |
-| 32     | 第三方云存储信息错误                             |
-| 47     | 文件上传失败                                     |
-| 51     | 上传时文件操作发生错误                           |
+| 错误码 | 描述                   |
+| :----- | :--------------------- |
+| 32     | 第三方云存储信息错误   |
+| 47     | 文件上传失败           |
+| 51     | 上传时文件操作发生错误 |
 
 ### <a name="uploadwarn"></a>上传警告码
 
-| 警告码 | 描述                                     |
-| :----- | :--------------------------------------- |
-| 31     | 重传到指定的云存储                       |
-| 32     | 重传到 Agora 备份云                      |
+| 警告码 | 描述                |
+| :----- | :------------------ |
+| 31     | 重传到指定的云存储  |
+| 32     | 重传到 Agora 备份云 |
 
 ### <a name="clouderr"></a>云端录制平台错误码
 
@@ -267,3 +551,5 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 | 7      | 云端录制服务全部停止 |
 | 8      | 云端录制准备退出     |
 | 20     | 云端录制异常退出     |
+
+**单流录制**

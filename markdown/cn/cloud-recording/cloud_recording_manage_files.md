@@ -1,24 +1,21 @@
----
-title: 管理录制文件
-platform: All Platforms
-updatedAt: 2021-03-02 02:25:10
----
 ## 功能描述
 
-云端录制生成的录制文件包括 M3U8 索引文件和 TS/WebM 切片文件。如果要对录制文件进行进一步处理，如音视频文件合并，或与其他数据流文件同步回放，你需要了解录制文件的命名规则、文件格式以及切片规则。
+云端录制生成的录制文件包括 M3U8 索引文件、TS/WebM 切片文件和 MP4 文件。如果要对录制文件进行进一步处理，如音视频文件合并，或与其他数据流文件同步回放，你需要了解录制文件的命名规则、文件格式以及切片规则。
 
 
 ## 录制文件命名规则
 
-### 单流模式
+### 单流录制模式
 
 单流模式下，云端录制生成的录制文件的命名规则如下：
 
-M3U8 文件名：`<sid>_<cname>__uid_s_<uid>__uid_e_<type>.m3u8`
+- M3U8 文件名：`<sid>_<cname>__uid_s_<uid>__uid_e_<type>.m3u8`
+- TS 文件名：`<sid>_<cname>__uid_s_<uid>__uid_e_<type>_utc.ts`
+- WebM 文件名：`<sid>_<cname>__uid_s_<uid>__uid_e_<type>_utc.webm`
+- MP4 文件名：`<sid>_<cname>__uid_s_<uid>__uid_e_<index>.mp4`
 
-TS 文件名：`<sid>_<cname>__uid_s_<uid>__uid_e_<type>_utc.ts`
+<div class="alert note">只有开启延时转码，才会生成 MP4 文件。</div>
 
-WebM 文件名：`<sid>_<cname>__uid_s_<uid>__uid_e_<type>_utc.webm`
 
 上述文件名中各字段含义如下：
 
@@ -27,21 +24,45 @@ WebM 文件名：`<sid>_<cname>__uid_s_<uid>__uid_e_<type>_utc.webm`
 - `<uid>`：用户 ID
 - `<type>`: 文件类型，`audio` 或 `video`
 - `<utc>`：该切片文件开始录制时的 UTC 时间，时区为 UTC+0，由年、月、日、小时、分钟、秒和毫秒组成。例如，`utc` 等于 `20190611073246073`，表示该切片文件的开始时间为 UTC 2019 年 6 月 11 日 7 点 32 分 46 秒 73 毫秒。
+- `<index>`：MP4 文件的索引数，`0` 表示生成的第一个 MP4 文件。录制服务会在当前 MP4 文件时长超过约 2 小时或大小超过 2 GB 左右时创建一个新的 MP4 文件。
 
 示例文件名 `sid713476478245_cnameagora__uid_s_123__uid_e_video_20190920125142485.ts` 中，`sid713476478245` 为录制 ID，`cnameagora` 为频道名，`123` 为用户 ID，录制时间为 2019 年 9 月 20 日 12 点 51 分 42 秒 485 毫秒。
 
-### 合流模式
+### 合流录制模式
 
 合流模式下，云端录制生成的录制文件的命名规则如下：
 
 - M3U8 文件名：`<sid>_<cname>.m3u8`
 - TS 文件名：`<sid>_<cname>_<utc>.ts`
+- MP4 文件名：`<sid>_<cname>_<index>.mp4`
+
+<div class="alert note">只有当你将 <code>avFileType</code> 设置为 <code>["hls","mp4"]</code> 时，才会生成 MP4 文件。</div>
 
 上述文件名中各字段含义如下：
 
 - `<sid>`：录制 ID
 - `<cname>`：频道名
 - `<utc>`：该切片文件开始录制时的 UTC 时间，时区为 UTC+0，由年、月、日、小时、分钟、秒和毫秒组成。例如 `20190611073246073` 表示该切片文件的开始时间为 UTC 2019 年 6 月 11 日 7 点 32 分 46 秒 73 毫秒。
+- `<index>`: 该 MP4 文件的索引数，`0` 表示录制生成的第一个 MP4 文件。录制服务会在当前 MP4 文件时长超过 2 小时或大小超过 2 GB 时创建一个新的 MP4 文件。
+
+### 页面录制模式
+
+页面录制模式下，云端录制生成的录制文件的命名规则如下：
+
+- M3U8 文件名：`<sid>_<cname>.m3u8`
+- TS 文件名：`<sid>_<cname>_<utc>.ts`
+- MP4 文件：`<sid>_<cname>_<index>.mp4`
+
+<div class="alert note">只有当你在 <code>avFileType</code>中设置了 <code>"mp4"</code> 时，才会生成 MP4 文件。</div>
+
+上述文件名中各字段含义如下：
+
+- `<sid>`：录制 ID。
+- `<cname>`: 你在 `acquire` 方法中填入的 `cname` 值。
+- `<utc>`：该切片文件开始录制时的 UTC 时间，时区为 UTC+0，由年、月、日、小时、分钟、秒和毫秒组成。例如 `20190611073246073` 表示该切片文件的开始时间为 UTC 2019 年 6 月 11 日 7 点 32 分 46 秒 73 毫秒。
+- `<index>`: 该 MP4 文件的索引数，`0` 表示页面生成的第一个 MP4 文件。录制服务会在当前 MP4 文件时长超过约 2 小时或大小超过 2 GB 左右时创建一个新的 MP4 文件。
+
+<div class="alert note">由于文件名不支持特殊字符，<code>cname</code>中的特殊字符在生成文件时会被替换成 "-"。特殊字符包括："!"、 "@"、 "#"、 "$"、 "%"、 "^"、 "&"、 "*"、 "("、 ")"、 "+"、 "_"、 "."、 "="、 "["、 "]"、 "{"、 "}"、 "~"、 "|"、 "、"、 ";"、 ":"、 "?"、 "<"、 ">"。</div>
 
 ## 异常状况下的录制文件名
 
@@ -56,7 +77,7 @@ WebM 文件名：`<sid>_<cname>__uid_s_<uid>__uid_e_<type>_utc.webm`
 
 > 当云存储中存在带有  `_<tick>_<index>` 后缀的 M3U8 文件，你需要将 `index` 最大的 M3U8 文件与无后缀的 M3U8 文件对比，选择内容较多的一个，作为最终使用的 M3U8 文件。
 
-通过备份云转存的 TS/WebM 文件的文件名不会附上该后缀。
+通过备份云转存的 TS/WebM 文件以及 MP4 文件的文件名不会附上该后缀。
 
 ### 服务器断网或进程被杀
 
@@ -64,7 +85,7 @@ WebM 文件名：`<sid>_<cname>__uid_s_<uid>__uid_e_<type>_utc.webm`
 
 以文件名 `bak0_sid713476478245_cnameagora.m3u8` 为例，`bak0` 表示该文件为本次录制中第一次启用高可用机制后生成的 M3U8 文件。
 
-启用高可用机制后，录制生成的 TS/WebM 文件的文件名也会增加 `bak<n>` 前缀。
+启用高可用机制后，录制生成的 TS/WebM 文件以及 MP4 文件的文件名也会增加 `bak<n>` 前缀。
 
 
 ## 录制文件大小
@@ -100,7 +121,7 @@ M3U8 文件包含多个切片文件的文件名及其描述符。Agora 云端录
 sid713476478245_cnameagora__uid_s_123__uid_e_video_20190920125142485.ts
 ```
 
-<div class="alert note">如果某些播放器因 #EXTINF:&#60;length&#62; 后没有逗号而出现兼容性问题，可以在 <a href="https://docs.agora.io/cn/cloud-recording/restfulapi/#/%E4%BA%91%E7%AB%AF%E5%BD%95%E5%88%B6/start">start</a> 请求中的 <code>recordingConfig</code> 参数中添加参数 <code>privateParams</code>，即 <code>"recordingConfig": {"privateParams":"{\"correctEXTINF\":true}", ...}</code> </div>
+<div class="alert note">如果某些播放器因 <code>#EXTINF:&#60;length&#62;</code> 后没有逗号而出现兼容性问题，你可以在 <a href="https://docs.agora.io/cn/cloud-recording/restfulapi/#/%E4%BA%91%E7%AB%AF%E5%BD%95%E5%88%B6/start">start</a> 请求中的 <code>recordingConfig</code> 参数中配置参数 <code>privateParams</code>，即 <code>"recordingConfig": {"privateParams":"{"correctEXTINF":true}", ...}</code> </div>
 
 
 ## 切片规则
