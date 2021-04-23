@@ -1,6 +1,6 @@
 ## AgoraEduSDK
 
-`AgoraEduSDK` provides the main methods that can be invoked by your app.
+`AgoraEduSDK` is the basic interface of the Agora Classroom SDK and provides the main methods that can be invoked by your app.
 
 ### version
 
@@ -8,11 +8,11 @@
 public static String version();
 ```
 
-查询 SDK 版本号。
+Gets the SDK version.
 
-**返回值**
+**Returns**
 
-SDK 版本号。
+The SDK version.
 
 ### setConfig
 
@@ -20,13 +20,13 @@ SDK 版本号。
 public static void setConfig(AgoraEduSDKConfig agoraEduSDKConfig);
 ```
 
-全局配置 SDK。
+Globally configures the SDK.
 
-**参数**
+**Parameter**
 
 | Parameter | Description |
 | :------------------ | :--------------------------------------- |
-| `agoraEduSDKConfig` | 全局配置参数，详见 `AgoraEduSDKConfig`。 |
+| `agoraEduSDKConfig` | The SDK global configuration, see `AgoraEduSDKConfig`. |
 
 ### launch
 
@@ -36,19 +36,19 @@ public static AgoraEduClassRoom launch(@NotNull Context context,
                                        @NotNull AgoraEduLaunchCallback callback);
 ```
 
-启动灵动课堂。
+Launches a flexible classroom.
 
-**参数**
+**Parameter**
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `context` | 应用程序的上下文环境。 |
-| `config` | 课堂启动配置，详见 `AgoraEduLaunchConfig`。 |
-| `callback` | SDK 通过 `AgoraEduLaunchCallback `类向应用程序报告课堂启动相关的事件。 |
+| `context` | The context of the app. |
+| `config` | The classroom launching configuration, see `AgoraEduLaunchConfig`. |
+| `callback` | SDK 通过 `AgoraEduLaunchCallback  `类向应用程序报告课堂启动相关的事件。 |
 
-**返回值**
+**Returns**
 
-`AgoraEduClassRoom` 类。
+`The AgoraEduClassRoom` class.
 
 ### configCoursewares
 
@@ -56,33 +56,33 @@ public static AgoraEduClassRoom launch(@NotNull Context context,
 public static void configCoursewares(@NotNull List<AgoraEduCourseware> wares);
 ```
 
-配置课件预加载。
+Configures downloading courseware before entering a classroom.
 
-**参数**
+**Parameter**
 
 | Parameter | Description |
 | :------ | :------------------------------------------ |
-| `wares` | 课件预加载配置，详见 `AgoraEduCourseware`。 |
+| `wares` | The courseware pre-downloading configuration. See `AgoraEduCourseware`. |
 
-### cacheCoursewares
+### downCoursewares
 
 ```
-public static void cacheCoursewares(@NotNull Context context, @Nullable AgoraEduCoursewarePreloadListener listener)
+public static void downloadCoursewares(@NotNull Context context, @Nullable AgoraEduCoursewarePreloadListener listener)
         throws Exception;
 ```
 
-预加载课件。
+Preload the courseware.
 
-**参数**
+**Parameter**
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `context` | 应用程序的上下文环境。 |
-| `listener` | SDK 通过 `AgoraEduCoursewarePreloadListener` 类向应用程序报告课件预加载相关的事件。 |
+| `context` | The context of the app. |
+| `listener` | The SDK reports events related to `courseware preloading` to the application through the AgoraEduCoursewarePreloadListener class. |
 
 ## AgoraEduLaunchCallback
 
-`AgoraEduLaunchCallback` 类用于 SDK 向应用程序报告课堂启动相关的事件。
+The` AgoraEduLaunchCallback` class is used by the SDK to report events related to class launching to the application.
 
 ### onCallback
 
@@ -90,15 +90,15 @@ public static void cacheCoursewares(@NotNull Context context, @Nullable AgoraEdu
 void onCallback(AgoraEduEvent state);
 ```
 
-课堂事件回调。
+Class event callback.
 
 | Parameter | Description |
 | :------ | :------------------------------- |
-| `state` | 课堂事件，详见 `AgoraEduEvent`。 |
+| `state` | For classroom events, see AgoraEduEvent for details``. |
 
 ## AgoraEduCoursewarePreloadListener
 
-`AgoraEduCoursewarePreloadListener` 类用于 SDK 向应用程序报告课件预加载相关的事件。
+The` AgoraEduCoursewarePreloadListener` class is used by the SDK to report events related to courseware preloading to the application.
 
 ### onStartDownload
 
@@ -106,11 +106,11 @@ void onCallback(AgoraEduEvent state);
 void onStartDownload(@NotNull AgoraEduCourseware ware);
 ```
 
-开始预加载课件。
+Start preloading the courseware.
 
 | Parameter | Description |
 | :----- | :------------------------------------------ |
-| `ware` | 课件预加载配置，详见 `AgoraEduCourseware`。 |
+| `would` | The courseware pre-downloading configuration. See `AgoraEduCourseware`. |
 
 ### onProgress
 
@@ -118,12 +118,12 @@ void onStartDownload(@NotNull AgoraEduCourseware ware);
 void onProgress(@NotNull AgoraEduCourseware ware, double progress);
 ```
 
-课件预加载进度。
+Courseware pre-download configuration.
 
 | Parameter | Description |
 | :--------- | :------------------------------------------ |
-| `ware` | 课件预加载配置，详见 `AgoraEduCourseware`。 |
-| `progress` | 进度。 |
+| `would` | The courseware pre-downloading configuration. See `AgoraEduCourseware`. |
+| `progress` | schedule. |
 
 ### onComplete
 
@@ -131,11 +131,11 @@ void onProgress(@NotNull AgoraEduCourseware ware, double progress);
 void onComplete(@NotNull AgoraEduCourseware ware);
 ```
 
-课件预加载完成。
+Courseware pre-download configuration.
 
 | Parameter | Description |
 | :----- | :------------------------------------------ |
-| `ware` | 课件预加载配置，详见 `AgoraEduCourseware`。 |
+| `would` | The courseware pre-downloading configuration. See `AgoraEduCourseware`. |
 
 ### onFailed
 
@@ -143,11 +143,11 @@ void onComplete(@NotNull AgoraEduCourseware ware);
 void onFailed(@NotNull AgoraEduCourseware ware);
 ```
 
-课件预加载失败。
+Courseware pre-download configuration.
 
 | Parameter | Description |
 | :----- | :------------------------------------------ |
-| `ware` | 课件预加载配置，详见 `AgoraEduCourseware`。 |
+| `would` | The courseware pre-downloading configuration. See `AgoraEduCourseware`. |
 
 ## Type definition
 
@@ -158,32 +158,32 @@ public enum AgoraEduEvent {
     AgoraEduEventFailed(0),
     AgoraEduEventReady(1),
     AgoraEduEventDestroyed(2),
-    AgoraEduEventForbidden(3);
+    AgoraEduEventForbidden (3);
 }
 ```
 
-课堂事件。 在 `onCallback` 回调中报告。
+Class event. Reported in the `onCallback` callback.
 
 | Attributes | Description |
 | :----------------------- | :------------------------ |
-| `AgoraEduEventFailed` | `0`: 进入课堂失败。 |
-| `AgoraEduEventReady` | `1`: 课堂准备完成。 |
-| `AgoraEduEventDestroyed` | `2`: 课堂已销毁。 |
-| `AgoraEduEventForbidden` | `3`: 用户被禁止进入课堂。 |
+| `AgoraEduEventFailed` | `0`: Failed to enter the classroom. |
+| `AgoraEduEventReady` | `1`: Class preparation is complete. |
+| `AgoraEduEventDestroyed` | `2`: The classroom has been destroyed. |
+| `AgoraEduEventForbidden` | `3`: The user is prohibited from entering the classroom. |
 
 ### AgoraEduRoleType
 
 ```
 public enum AgoraEduRoleType {
-   AgoraEduRoleTypeStudent(2);
+   AgoraEduRoleTypeStudent: Student
 }
 ```
 
-用户在课堂中的角色。 在 `AgoraEduLaunchConfig` 中设置。
+The role of the user in the classroom. Set in `AgoraEduLaunchConfig`.
 
 | Attributes | Description |
 | :------------------------ | :---------- |
-| `AgoraEduRoleTypeStudent` | `2`: 学生。 |
+| `AgoraEduRoleTypeStudent`: Student | `2`: Student. |
 
 ### AgoraEduRoomType
 
@@ -194,32 +194,32 @@ public enum AgoraEduRoomType {
 }
 ```
 
-课堂类型。 在 `AgoraEduLaunchConfig` 中设置。
+Classroom type. Set in `AgoraEduLaunchConfig`.
 
 | Attributes | Description |
 | :---------------------- | :----------------------------------------------------------- |
 | `AgoraEduRoomType1V1` | `0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student. |
-| `AgoraEduRoomTypeBig` | `2`: 互动直播大班课。 1 位老师进行在线教学，多名学生实时观看和收听。 学生人数无上限。 上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。 |
-| `AgoraEduRoomTypeSmall` | `4`: 在线互动小班课。 1 位老师进行在线教学，多名学生实时观看和收听。 课堂人数上限为 500。 上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。 |
+| `AgoraEduRoomTypeBig` | `2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. Students can "raise their hands" to interact with the teacher. |
+| `AgoraEduRoomTypeSmall` | `4`: Online interactive small class. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in the classroom is 500. During the class, the teacher can invite students to speak "on stage" and have real-time audio and video interactions with the teacher. |
 
 ### AgoraEduSDKConfig
 
 ```
 public class AgoraEduSDKConfig {
     @NotNull
-    private String appId;
+    private String appIdentifier;
     private int eyeCare;
 }
 ```
 
-The SDK global configuration. 用于 `setAgoraEduSDKConfig` 方法。
+The SDK global configuration. Used when calling `AgoraEduSDK.config`.
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
 | `appId` | The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
-| `eyeCare` | 是否开启护眼模式：<li>`0`:（默认）关闭护眼模式。</li><li>`1`: 开启护眼模式。</li> |
+| `eyeCare` | Whether to enable eye care mode:<li>`NO`: (Default) Disable eye care mode.</li><li>`YES`: Enable eye care modee.</li> |
 
-### AgoraEduLaunchConfig
+### The AgoraEduLaunchConfig instance includes the following parameters:
 
 ```
 public class AgoraEduLaunchConfig implements Parcelable {
@@ -228,7 +228,7 @@ public class AgoraEduLaunchConfig implements Parcelable {
     @NotNull
     private String userUuid;
     @NotNull
-    private String roomName;
+    private String scheme;
     @NotNull
     private String roomUuid;
     private int roleType = EduUserRole.STUDENT.getValue();
@@ -242,7 +242,7 @@ public class AgoraEduLaunchConfig implements Parcelable {
 }
 ```
 
-The classroom launching configuration. 用于 `launch` 方法。
+The classroom launching configuration. Used in the `launch` method.
 
 | Attributes | Description |
 | :---------- | :----------------------------------------------------------- |
@@ -250,8 +250,8 @@ The classroom launching configuration. 用于 `launch` 方法。
 | `userUuid` | User ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType` | 用户在课堂中的角色，详见 `AgoraEduRoleType`。 |
-| `roomType` | 课堂类型，详见 `AgoraEduRoomType`。 |
+| `roleType` | For the user's role in the classroom, see AgoraEduRoleType for details``. |
+| `roomType` | Classroom type, see AgoraEduRoomType for details``. |
 | `rtmToken` | The RTM token used for authentication, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
@@ -260,7 +260,7 @@ The classroom launching configuration. 用于 `launch` 方法。
 
 ```
 data class AgoraEduCourseware(
-        val resourceName: String?,
+        resourceName: string,
         val scenePath: String?,
         val scenes: List<SceneInfo>?,
         val resourceUrl: String?
@@ -268,14 +268,14 @@ data class AgoraEduCourseware(
 }
 ```
 
-课件预加载配置，用于 `configCoursewares` 方法。
+Courseware pre-loaded configuration, used in `configCoursewares` method.
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
-| `resourceName` | 资源名称，必须要 `"/"` 开头。 |
-| `scenePath` | 课件目录，建议设为 `resourceName` + "/" + `sceneInfos` 中第一个对象的name |
-| `scenes` | 课件页面列表，每个 `SceneInfo` 对象对应一个页面。 |
-| `resourceUrl` | 课件下载地址，例如 `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`。 |
+| `resourceName` | 资源名称，要以 `"/"` 开头。 |
+| `scenePath` | 资源目录，建议设为 `resourceName` + "/" + `sceneInfos` 中第一个对象的name |
+| `scenes` | 资源列表。 灵动课堂的云盘组件会分页展示资源，每个 `SceneInfo` 对象对应一个页面。 |
+| `resourceUrl` | 资源的 URL 下载地址，例如 `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`。 |
 
 ### SceneInfo
 
@@ -283,32 +283,32 @@ data class AgoraEduCourseware(
 public class SceneInfo {
     private int componentCount;
     private Ppt ppt;
-    private String name;
+    private String scheme;
 }
 ```
 
-课件页面列表。 在 `AgoraEduCourseware` 中设置。
+List of courseware pages. Set in `AgoraEduCourseware`.
 
 | Attributes | Description |
-| :--------------- | :-------------------------- |
-| `componentCount` | PPT 数量。 |
-| `ppt` | PPT 信息，详见 `Ppt` 对象。 |
-| `name` | PPT 名称。 |
+| :--------------- | :----------------------------------------------------------- |
+| `componentCount` | 课件数量。 |
+| `ppt` | 当课件类型为 PPT 时，需要设置 `ppt` 指定 PPT 的具体信息，详见 `Ppt` 对象。 |
+| `name` | 课件名称。 |
 
 ### Ppt
 
 ```
 public class Ppt {
-    private String src;
+    private String scheme;
     private double width;
     private double height;
 }
 ```
 
-PPT 信息。 在 `SceneInfo` 中设置。
+PPT information. Set in `SceneInfo`.
 
 | Attributes | Description |
 | :------- | :---------------------- |
-| `src` | 转换后的 PPT 下载地址。 |
-| `width` | PPT 宽度。 |
-| `height` | PPT 高度。 |
+| `src` | The converted PPT download address. |
+| `width`, | PPT 宽度（pixel）。 |
+| `height`, | PPT 高度（pixel）。 |
