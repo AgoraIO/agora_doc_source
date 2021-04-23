@@ -11,14 +11,14 @@ You can find the source code of the UIKit in the `agoraui` folder in the [CloudC
 | Folder | Description |
 | :----------- | :----------------------------------------------------------- |
 | `interfaces` | Defines the protocols and listeners of the  Flexible Classroom business logic. Do not need to edit the code under this directory. |
-| impl | The default implementations of each protocol in Flexible Classroom, that is, the default UI components used by Flexible Classroom, including:<ul><li>`chat`: The chat area.</li><li>`handsup`: The UI code related to students "raising their hands" to apply for speaking up.</li><li>`room`: The UI code related to the classroom states and navigation bar.</li><li>`screnshare`: The UI code related to screen sharing.</li><li>`tool`: The UI code related to the toolbar containing various teaching tools.</li><li>`users`: The UI code related to user states.</li><li>``"video`"`: Video track.</li><li>`whiterboard`: Whiteboard area.</li><li>`container`: Assemble default UI components in various teaching scenarios in the smart classroom to form the management class of contentView.</ul> |
-| `component`: Custom, | The source code of the basic UI components used by Flexible Classroom. |
+| impl | The default implementations of each protocol in Flexible Classroom, that is, the default UI components used by Flexible Classroom, including:<ul><li>`chat`: The UI code of the chat area.</li><li>`handsup`: The UI code related to students "raising their hands" to apply for speaking up.</li><li>`room`: The UI code related to the classroom states and navigation bar.</li><li>`screnshare`: The UI code related to screen sharing.</li><li>`tool`: The UI code related to the toolbar containing various teaching tools.</li><li>`users`: The UI code related to user states.</li><li>`video`: The UI code of the video area.</li><li>`whiterboard`: The UI code of the whiteboard area.</li><li>`container`: Show how the basic UI components are combined in a classroom.</ul> |
+| `component` | The other public components used by Flexible Classroom. |
 
-## UI modification example
+## UI customization example
 
 ### Change the color of the navigation bar
 
-The following example demonstrates how to modify the background color of the` navigation bar component from white to gray by modifying the agoraui/src/main/res/layout/agora_status_bar_layout.xml` file.
+The following example demonstrates how to modify the background color of the navigation bar component from white to gray by editing the `agoraui/src/main/res/layout/agora_status_bar_layout.xml` file.
 
 <div class="alert info">The navigation bar component is implemented in the <code>Agora/src/main/kotlin/io/Agora/uikit/impl/room/Agora</code> file.</div>
 
@@ -50,7 +50,7 @@ The following example demonstrates how to modify the background color of the` na
 
 ### Adjust the layout
 
-The following example demonstrates how to change the position of the` leave room button and the network status icon by modifying the agoraui/src/main/res/layout/agora_status_bar_layout.xml` file.
+The following example demonstrates how to switch the position of the leave room button and the network condition icon by editing the `agoraui/src/main/res/layout/agora_status_bar_layout.xml` file.
 
 <div class="alert info">The navigation bar component is implemented in the <code>Agora/src/main/kotlin/io/Agora/uikit/impl/room/Agora</code> file.</div>
 
@@ -120,20 +120,20 @@ The following example demonstrates how to change the position of the` leave room
 
 ### Add a basic UI component
 
-The following example shows how to add a customized basic UI component and use it in  Flexible Classroom:
+The following example shows how to add a custom basic UI component and use it in  Flexible Classroom:
 
-Suppose the properties of the UI component are as follows:
+Suppose the properties of the UI component are defined as follows:
 
 - Size: 100*100
-- Position: centered
+- Position: Centered
 - Background color: #BFBFBF
-- Text: `"`Leave"/`"Leave"`
+- Text: `“离开”`/`“Leave”`
 - Text color: UIColor.white
-- Click the button to realize the function: leave the room
+- What happens when clicking the button: Leave the room
 
-Complete the following steps to determine the call type:
+Add a basic UI component, as follows:
 
-1. Add Chinese and English copywriting to the following files respectively. `
+1. Add Chinese and English texts in the following files respectively. `
 agoraui/src/main/res/values-zh/strings.xml`
 
    ```
