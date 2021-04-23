@@ -1,4 +1,4 @@
-Use this guide to integrate the Agora Classroom SDK into your Web project and call APIs to launch a flexible classroom.
+Use this guide to integrate the Agora Classroom SDK into your Android project and call APIs to launch a flexible classroom.
 
 <div class="alert note"><li>Before proceeding, ensure that you make the <a href="./agora_class_prep">preparations</a> required for using Flexible Classroom.<li>The Android client only supports students.</div>
 
@@ -15,15 +15,15 @@ Agora provides an open-source [sample project](https://github.com/AgoraIO-Commun
 
 ## Integrate the Agora Classroom SDK
 
-Get the Agora Edu SDK through the Gradle, as follows:
+Get the Agora Classroom SDK through the Gradle, as follows:
 
 1. Add the following library to your project's **build.gradle** file:
 ```java
 	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+		 repositories {
+			  ...
+			  maven { url 'https://jitpack.io' }
+		 }
 	}
 ```
 
@@ -32,43 +32,39 @@ Get the Agora Edu SDK through the Gradle, as follows:
 ```java
 	dependencies {
       ...
-		// Please check the release instructions for the latest version number
-		 dependencies {
-      ...
-  // Get the latest version number through the release notes
-  implementation 'com.github.AgoraIO-Community:CloudClass-Android:v1.0.0'
- }
+		// Get the latest version number through the release notes.
+		 implementation 'com.github.AgoraIO-Community:CloudClass-Android:v1.0.0'
 	}
 ```
 
 
 ## Global configuration
 
-First, create an `AgoraEduSDKConfig` instance for global configuration, and then call the `setConfig` method and pass in this instance. The` AgoraEduSDKConfig` instance includes the following parameters:
+First, create an `AgoraEduSDKConfig` instance for global configuration, and then call the `setConfig` method and pass in this instance. `The AgoraEduSDKConfig` instance includes the following parameters:
 
 | Parameter | Description |
 | :-------- | :----------------------------------------------------------- |
 | `appId` | The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
-| `eyeCare` | Whether to enable eye care mode:<li>`false`: (default) Disable eye care mode.<li>`true`: Enable eye care mode. |
+| `eyeCare` | Whether to enable eye care mode:<li>`false`: (Default) Disable eye care mode.<li>`true`: Enable eye care mode. |
 
 ```java
-/**Global Configuration*/
+/** Global Configuration */
  // Agora App ID
 String appId = "XXX";
-//Whether to enable eye care mode
+// Whether to enable eye care mode
 boolean eyeCare = false;
 AgoraEduSDK.setConfig(new AgoraEduSDKConfig(appId, eyeCare));
 ```
 
 ## Launch a classroom
 
-After initialization, create an `AgoraEduLaunchConfig` instance for configuring the classroom startup configuration, and then call` the launch` method to pass in the instance. The` AgoraEduLaunchConfig` instance includes the following parameters:
+After initialization, create an `AgoraEduLaunchConfig` instance for the classroom launching configuration, and then call `launch` to pass in the instance. `The AgoraEduLaunchConfig` instance includes the following parameters:
 
 | Parameter | Description |
 | :---------- | :----------------------------------------------------------- |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
 | `userUuid` | User ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType` | The role of the user in the classroom:<li>`AgoraEduRoleTypeStudent`: Student |
+| `roleType` | The role of the user in the classroom:<li>`AgoraEduRoleTypeStudent`: Student. |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomType` | The room type:<li>`AgoraEduRoomType1V1`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student.<li>`AgoraEduRoomTypeSmall`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher.<li>`AgoraEduRoomTypeBig`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
@@ -77,29 +73,29 @@ After initialization, create an `AgoraEduLaunchConfig` instance for configuring 
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
 
 ```java
-/** Class start configuration */
-//The user name
+/** Classroom launching configuration */
+// The user name
 String userName = "XXX";
-//The user ID. Must be the same as the UID that you use for generating an RTM token.
+// The user ID. Must be the same as the UID that you use for generating an RTM token.
 String userName = "XXX";
-//The classroom name
+// The classroom name
 String roomName = "XXX";
-//The classroom ID
+// The classroom ID
 String roomUuid = "XXX";
-user role
+// The user role
 int roleType = AgoraEduRoleType.AgoraEduRoleTypeStudent.getValue();
-// class type
+// The classroom type
 int roomType = AgoraEduRoomType.AgoraEduRoomType1V1.getValue()/AgoraEduRoomType.AgoraEduRoomTypeSmall.getValue()/AgoraEduRoomType.AgoraEduRoomTypeBig.getValue();
-//The RTM token
+// The RTM token
 String rtmToken = "";
-The start time (ms) of the class, determined by the first user joining the classroom.
+// The start time (ms) of the class, determined by the first user joining the classroom.
 long startTime = System.currentTimeMillis() + 100;
-The duration (ms) of the class, determined by the first user joining the classroom.
+// The duration (ms) of the class, determined by the first user joining the classroom.
 long duration = 310L;
 AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfig(
-               userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken);
+        userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration);
 AgoraEduClassRoom classRoom = AgoraEduSDK.launch(getApplicationContext(), agoraEduLaunchConfig, (state) -> {
-       Log.e(TAG, "launch-Classroom-Status:" + state.name());
+    Log.e(TAG, "launch-classroom-state:" + state.name());
 });
 ```
 
