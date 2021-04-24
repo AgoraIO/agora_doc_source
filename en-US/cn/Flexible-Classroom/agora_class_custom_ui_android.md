@@ -168,12 +168,12 @@ android:text="@string/custom_widget_text"/>
 ```
 3. Edit the `Agora/src/main/kotlin/io/Agora/uikit/impl/container/Agora` file to add the custom component to the one-to-one classroom.
 ```
-class AgoraUI1v1Container : AbsUIContainer() {
-override fun init(layout: ViewGroup, left: Int, top: Int, width: Int, height: Int) {
-...
-addCustomWidget(layout)
-}
-
+    class AgoraUI1v1Container : AbsUIContainer() {
+    override fun init(layout: ViewGroup, left: Int, top: Int, width: Int, height: Int) {
+    ...
+    addCustomWidget(layout)
+    }
+```
 private fun addCustomWidget(layout: ViewGroup){
 val customLayout = LayoutInflater.from(layout.context).inflate(R.layout.custom_widget_layout, layout)
 customLayout.findViewById<TextView>(R.id.tv_custom_leave).setOnClickListener {
@@ -182,8 +182,10 @@ roomStatus?.showLeaveDialog()
 }
 }
 ```
-After modification, the following icon appears in the one-to-one classroom. 
 
+After modification, the following icon appears in the one-to-one classroom.
 
 ![](https://web-cdn.agora.io/docs-files/1619168684154)
+```
+
 
