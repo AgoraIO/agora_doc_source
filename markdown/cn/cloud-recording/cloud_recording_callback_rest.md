@@ -148,7 +148,7 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 
 - `msgName`：String 类型，消息名称，即 `uploaded`。
 - `status`：Number 类型，事件状态，0 表示正常，其他值表示异常。
-- `fileList`：JSONArray 类型，由每个录制文件的具体信息组成的数组。
+- `fileList`：JSONArray 类型，由每个录制文件的具体信息组成的数组。该字段仅在单流录制模式和合流录制模式下存在。
   - `filename`：String 类型，录制产生的 M3U8 文件和 MP4 文件的文件名。
   - `trackType`：String 类型，录制文件的类型。
     - `"audio"`：纯音频文件。
@@ -191,8 +191,6 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 }
 </code></pre>
 </details>
-
-
 <details>
 	<summary><font color="#3ab7f8">合流录制且不生成 MP4</font></summary>
 <pre><code>{
@@ -238,27 +236,15 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 </code></pre>
 </details>
 
-
 <details>
 	<summary><font color="#3ab7f8">页面录制并生成 MP4</font></summary>
 <pre><code>{
-<span class="hljs-attr">"msgName"</span>:<span class="hljs-string">"uploaded"</span>,
-<span class="hljs-attr">"status"</span>:<span class="hljs-string">"0"</span>,
-<span class="hljs-attr">"fileList"</span>:[{
-  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
-  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.m3u8"</span>,
-  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
-  {
-  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
-  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.mp4"</span>,
-  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
-  {
-  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
-  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.mp4"</span>,
-  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562732171000</span>}]
+  <span class="hljs-attr">"msgName"</span>: <span class="hljs-string">"uploaded"</span>,
+  <span class="hljs-attr">"status"</span>: <span class="hljs-number">0</span>
 }
 </code></pre>
 </details>
+
 
 ### <a name="32"></a>32 backuped
 
@@ -266,7 +252,7 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 
 - `msgName`：String 类型，消息名称，即 `backuped`。
 - `status`：Number 类型，事件状态，0 表示正常，其他值表示异常。
-- `fileList`：JSONArray 类型，由每个录制文件的具体信息组成的数组。
+- `fileList`：JSONArray 类型，由每个录制文件的具体信息组成的数组。该字段仅在单流录制模式和合流录制模式下存在。
   - `filename`：String 类型，录制产生的 M3U8 文件和 MP4 文件的文件名。
   - `trackType`：String 类型，录制文件的类型。
     - `"audio"`：纯音频文件。
@@ -286,51 +272,70 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 <details>
 	<summary><font color="#3ab7f8">单流录制</font></summary>
 <pre><code>{
-<span class="hljs-attr">"msgName"</span>:<span class="hljs-string">"backuped"</span>,
-<span class="hljs-attr">"status"</span>:<span class="hljs-string">"0"</span>,
-<span class="hljs-attr">"fileList"</span>:[{
-  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"123"</span>,
-  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.m3u8"</span>,
-  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
-  {
-  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"456"</span>,
-  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.m3u8"</span>,
-  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>}]
+  <span class="hljs-attr">"msgName"</span>: <span class="hljs-string">"backuped"</span>,
+  <span class="hljs-attr">"fileList"</span>: [
+    {
+      <span class="hljs-attr">"fileName"</span>: <span class="hljs-string">"xxx.m3u8"</span>,
+      <span class="hljs-attr">"trackType"</span>: <span class="hljs-string">"audio"</span>,
+      <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"57297"</span>,
+      <span class="hljs-attr">"mixedAllUser"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">"isPlayable"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"sliceStartTime"</span>: <span class="hljs-number">1619172871089</span>
+    },
+    {
+      <span class="hljs-attr">"fileName"</span>: <span class="hljs-string">"xxx.m3u8"</span>,
+      <span class="hljs-attr">"trackType"</span>: <span class="hljs-string">"audio"</span>,
+      <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"10230"</span>,
+      <span class="hljs-attr">"mixedAllUser"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">"isPlayable"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"sliceStartTime"</span>: <span class="hljs-number">1619172871099</span>
+    }
+  ],
+  <span class="hljs-attr">"status"</span>: <span class="hljs-number">0</span>
 }
 </code></pre>
 </details>
-
 <details>
 	<summary><font color="#3ab7f8">合流录制且不生成 MP4</font></summary>
 <pre><code>{
-<span class="hljs-attr">"msgName"</span>:<span class="hljs-string">"backuped"</span>,
-<span class="hljs-attr">"status"</span>:<span class="hljs-string">"0"</span>,
-<span class="hljs-attr">"fileList"</span>:[{
-  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
-  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.m3u8"</span>,
-  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>}]
+  <span class="hljs-attr">"msgName"</span>: <span class="hljs-string">"backuped"</span>,
+  <span class="hljs-attr">"fileList"</span>: [
+    {
+      <span class="hljs-attr">"fileName"</span>: <span class="hljs-string">"xxx.m3u8"</span>,
+      <span class="hljs-attr">"trackType"</span>: <span class="hljs-string">"audio_and_video"</span>,
+      <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"0"</span>,
+      <span class="hljs-attr">"mixedAllUser"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"isPlayable"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"sliceStartTime"</span>: <span class="hljs-number">1619170461821</span>
+    }
+  ],
+  <span class="hljs-attr">"status"</span>: <span class="hljs-number">0</span>
 }
 </code></pre>
 </details>
-
 <details>
 	<summary><font color="#3ab7f8">合流录制并生成 MP4</font></summary>
-<pre><code>
-{
-<span class="hljs-attr">"msgName"</span>:<span class="hljs-string">"backuped"</span>,
-<span class="hljs-attr">"status"</span>:<span class="hljs-string">"0"</span>,
-<span class="hljs-attr">"fileList"</span>:[{
-  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
-  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.m3u8"</span>,
-  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
-  {
-  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
-  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.mp4"</span>,
-  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
-  {
-  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
-  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.mp4"</span>,
-  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562732171000</span>}]
+<pre><code>{
+  <span class="hljs-attr">"msgName"</span>: <span class="hljs-string">"backuped"</span>,
+  <span class="hljs-attr">"fileList"</span>: [
+    {
+      <span class="hljs-attr">"fileName"</span>: <span class="hljs-string">"xxx.mp4"</span>,
+      <span class="hljs-attr">"trackType"</span>: <span class="hljs-string">"audio_and_video"</span>,
+      <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"0"</span>,
+      <span class="hljs-attr">"mixedAllUser"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"isPlayable"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"sliceStartTime"</span>: <span class="hljs-number">1619172632080</span>
+    },
+    {
+      <span class="hljs-attr">"fileName"</span>: <span class="hljs-string">"xxx.m3u8"</span>,
+      <span class="hljs-attr">"trackType"</span>: <span class="hljs-string">"audio_and_video"</span>,
+      <span class="hljs-attr">"uid"</span>: <span class="hljs-string">"0"</span>,
+      <span class="hljs-attr">"mixedAllUser"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"isPlayable"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"sliceStartTime"</span>: <span class="hljs-number">1619172632080</span>
+    }
+  ],
+  <span class="hljs-attr">"status"</span>: <span class="hljs-number">0</span>
 }
 </code></pre>
 </details>
@@ -338,20 +343,8 @@ Agora 提供消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS
 <details>
 	<summary><font color="#3ab7f8">页面录制并生成 MP4</font></summary>
 <pre><code>{
-<span class="hljs-attr">"msgName"</span>:<span class="hljs-string">"backuped"</span>,
-<span class="hljs-attr">"status"</span>:<span class="hljs-string">"0"</span>,
-<span class="hljs-attr">"fileList"</span>:[{
-  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
-  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.m3u8"</span>,
-  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
-  {
-  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
-  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.mp4"</span>,
-  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562724971626</span>},
-  {
-  <span class="hljs-attr">"uid"</span>:<span class="hljs-string">"0"</span>,
-  <span class="hljs-attr">"fileName"</span>:<span class="hljs-string">"xxx.mp4"</span>,
-  <span class="hljs-attr">"sliceStartTime"</span>:<span class="hljs-number">1562732171000</span>}]
+  <span class="hljs-attr">"msgName"</span>: <span class="hljs-string">"backuped"</span>,
+  <span class="hljs-attr">"status"</span>: <span class="hljs-number">0</span>
 }
 </code></pre>
 </details>
