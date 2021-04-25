@@ -46,7 +46,7 @@ Launches a flexible classroom.
 
 **Returns**
 
-`The AgoraEduClassroom` class.
+The `AgoraEduClassroom` class.
 
 ### configCoursewares
 
@@ -88,7 +88,7 @@ Release the resources occupied by the `AgoraEduClassroom` object.
 
 ## AgoraEduClassroomDelegate
 
-`The AgoraEduLaunchCallback` class reports events related to classroom launching to the app.
+The `AgoraEduLaunchCallback` class reports events related to classroom launching to the app.
 
 ### didReceivedEvent
 
@@ -106,7 +106,7 @@ Reports classroom events.
 
 ## AgoraEduCoursewareDelegate
 
-`The AgoraEduCoursewareDelegate` class reports events related to courseware preloading to the app.
+The `AgoraEduCoursewareDelegate` class reports events related to courseware preloading to the app.
 
 ### didProcessChanged
 
@@ -140,9 +140,9 @@ Classroom events. Reported in the `didReceivedEvent` callback.
 
 | Attributes | Description |
 | :----------------------- | :---------------- |
-| `AgoraEduEventFailed` | 0: The user fails to enter the classroom. |
-| `AgoraEduEventReady` | 1: The classroom is ready. |
-| `AgoraEduEventDestroyed` | 2: The classroom has been destroyed. |
+| `AgoraEduEventFailed` | `0`: The user fails to enter the classroom. |
+| `AgoraEduEventReady` | `1`: The classroom is ready. |
+| `AgoraEduEventDestroyed` | `2`: The classroom has been destroyed. |
 
 ### AgoraEduRoleType
 
@@ -234,9 +234,9 @@ The classroom launching configuration. Used when calling `launch`.
 | Attributes | Description |
 | :---------- | :----------------------------------------------------------- |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `userUuid` | User ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `userUuid` | User ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<ul><li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li></ul> |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
-| `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<ul><li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0 to 9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li></ul> |
 | `roleType` | The user's role in the classroom. See `AgoraEduRoleType`. |
 | `roomType` | The classroom type. See `AgoraEduRoomType`. |
 | `token` | The RTM token used for authentication, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
