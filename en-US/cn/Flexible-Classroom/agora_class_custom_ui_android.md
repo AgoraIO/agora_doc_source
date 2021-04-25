@@ -169,7 +169,7 @@ Add a basic UI component, as follows:
 
 3. Edit the `Agora/src/main/kotlin/io/Agora/uikit/impl/container/Agora` file to add the custom component to the one-to-one classroom.
   ```
-class AgoraUI1v1Container : AbsUIContainer() {
+  class AgoraUI1v1Container : AbsUIContainer() {
  override fun init(layout: ViewGroup, left: Int, top: Int, width: Int, height: Int) {
  ...
  addCustomWidget(layout)

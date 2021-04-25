@@ -77,7 +77,7 @@ After initialization, create an `AgoraEduLaunchConfig` instance for the classroo
 // The user name
 String userName = "XXX";
 // The user ID. Must be the same as the UID that you use for generating an RTM token.
-String userName = "XXX";
+String userUuid = "XXX";
 // The classroom name
 String roomName = "XXX";
 // The classroom ID

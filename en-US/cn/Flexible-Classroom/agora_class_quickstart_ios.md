@@ -17,7 +17,7 @@ Agora provides an open-source [sample project](https://github.com/AgoraIO-Commun
 
 Get the Agora Classroom SDK through CocoaPods, as follows:
 
-1. In Terminal, run the `pod init` command to create a `Podfile` in the root directory of your project.
+1. 在终端里进入你的项目根目录，并运行 `pod init` 命令。 项目文件夹下会生成一个 `Podfile` 文本文件。
 
 2. Open the `Podfile`, delete all contents and input the following contents. Remember to change `Your App` to the target name of your project.
 
@@ -86,7 +86,7 @@ AgoraEduRoleType roleType = AgoraEduRoleTypeStudent;
 AgoraEduRoomType roomType = AgoraEduRoomType1V1;
 // The RTM token
 NSString *rtmToken = "";
-The start time (ms) of the class, determined by the first user joining the classroom.
+// The start time (ms) of the class, determined by the first user joining the classroom.
 NSNumber *startTime = @(XXX);
 // The duration (ms) of the class, determined by the first user joining the classroom.
 NSNumber *duration = @(1800);
