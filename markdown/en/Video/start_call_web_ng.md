@@ -91,7 +91,7 @@ Copy the following code to your `index.html` file to implement the user interfac
     <script src="./dist/bundle.js"></script>
 </head>
 <body>
-    <h2 class="left-align">Agora Video Web SDK Quickstart</h5>
+    <h2 class="left-align">Agora Video Web SDK Quickstart</h2>
         <div class="row">
             <div>
                 <button type="button" id="join">JOIN</button>
@@ -119,11 +119,11 @@ let rtc = {
 
 let options = {
     // Pass your App ID here.
-    appId: "9cb1e3b9c53e412e98866fbe3919420b",
+    appId: "Your App ID",
     // Set the channel name.
     channel: "test",
     // Pass your temp token here.
-    token: "0069cb1e3b9c53e412e98866fbe3919420bIACR1mujdi0gTUeXOuSDO4UUfiUlM3Rp7aeJvLEl8+7XUQx+f9gAAAAAEAALtir+mteHYAEAAQCa14dg",
+    token: "Your temp token",
     // Set the user ID.
     uid: 123456
 };
