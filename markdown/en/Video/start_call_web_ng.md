@@ -332,7 +332,7 @@ Add the following code to the line before `<style>` in the `index.html` file of 
 
 #### Through the Agora website
 
-1. Download the latest [Agora Web SDK 4.x](https://docs.agora.io/en/Interactive Broadcast/downloads?platform=Web).
+1. Download the latest [Agora Web SDK 4.x](https://docs.agora.io/en/Video/downloads?platform=Web).
 
 2. Copy the `AgoraRTCSDK_N.js` file to the directory where your project files reside.
 
