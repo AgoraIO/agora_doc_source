@@ -334,7 +334,7 @@ Add the following code to the line before `<style>` in the `index.html` file of 
 
 1. Download the latest [Agora Web SDK 4.x](https://docs.agora.io/en/Video/downloads?platform=Web).
 
-2. Copy the `AgoraRTCSDK_N.js` file to the directory where your project files reside.
+2. Copy the `.js` file to the directory where your project files reside.
 
 3. Add the following code to the line before the `<style>` tag in your project.
 
