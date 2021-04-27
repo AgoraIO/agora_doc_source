@@ -15,7 +15,13 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/stopChannelMediaRelay"/>
         </section>
         <section id="detailed_desc">
-   
+            <dl>
+                <dlentry outputclass="since">
+                    <dt>自从</dt>
+                    <dd>v2.9.0</dd>
+                </dlentry>
+            </dl>
+            
    <p>成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调。如果报告 <apiname keyref="RELAY_STATE_IDLE"/> (0) 和 <apiname keyref="RELAY_OK"/> (0)，则表示已停止转发媒体流。</p>
    <note outputclass="note">
        如果该方法调用不成功，SDK 会触发 <apiname keyref="onChannelMediaRelayStateChanged"/> 回调，并报告状态码 <apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/> (2) 或 <apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/> (8)。你可以调用 <xref keyref="leaveChannel"/> 方法离开频道，跨频道媒体流转发会自动停止。

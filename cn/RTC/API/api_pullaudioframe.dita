@@ -16,16 +16,16 @@
         </section>
         <section id="detailed_desc">
    
-   <p>使用该方法前，你需要调用 <xref keyref="setExternalAudioSink"/>(enabled:true) 方法通知 App 开启并设置外部渲染。</p>
-   <p>调用该方法后，App 会采取主动拉取的方式获取远端已解码和混音后的音频数据，用于音频播放。</p>
+   <p>使用该方法前，你需要调用 <xref keyref="setExternalAudioSink"/>(enabled:true) 方法通知 app 开启并设置外部渲染。</p>
+   <p>调用该方法后，app 会采取主动拉取的方式获取远端已解码和混音后的音频数据，用于音频播放。</p>
    <note outputclass="note">
        <ul>
-  <li>使用该方法后，App 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。</li>
+  <li>使用该方法后，app 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。</li>
   <li>该方法和 <apiname keyref="onPlaybackAudioFrame"/> 回调相比，区别在于： <ul>
  <li><apiname keyref="onPlaybackAudioFrame"/>：SDK 通过该回调将音频数据传输给 app。如果
-     app 处理延时，可能会导致音频播放抖动。 如果 App 处理延时，可能会导致音频播放抖动。</li>
- <li><apiname keyref="pullAudioFrame"/>：App 主动拉取音频数据。通过设置音频数据， SDK
-     可以调整缓存，帮助 App 处理延时，从而有效避免音频播放抖动。</li>
+     app 处理延时，可能会导致音频播放抖动。</li>
+ <li><apiname keyref="pullAudioFrame"/>：App 主动拉取音频数据。通过设置音频数据，SDK
+     可以调整缓存，帮助 app 处理延时，从而有效避免音频播放抖动。</li>
       </ul></li>
        </ul>
    </note>

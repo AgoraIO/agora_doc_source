@@ -22,12 +22,11 @@
   <dd>该方法从 v3.3.0 起废弃。请改用 <xref keyref="createDataStream2"/>[2/2]。</dd>
        </dlentry>
    </dl>
-   <p id="desc">该方法用于创建数据流。RtcEngine 生命周期内，每个用户最多只能创建 5 个数据流。频道内数据通道最多允许数据延迟 5 秒，若超过 5 秒接收方尚未收到数据流，则数据通道会向 App 报错。</p>
+   <p id="desc">RtcEngine 生命周期内，每个用户最多只能创建 5 个数据流。</p>
    <note outputclass="note" id="note">
        <ul>
   <li>该方法需要在加入频道后调用。</li>
-  <li><parmname>reliable</parmname> 和 <parmname>ordered</parmname> 需要同时为 <ph keyref="true"/> 或 <ph keyref="false"/>。不可以一个设为 
-  <ph keyref="true"/> 另一个设为 <ph keyref="false"/>。</li>
+  <li>不可将 <parmname>reliable</parmname> 设为 <ph keyref="true"/> 且将 <parmname>ordered</parmname> 设为 <ph keyref="false"/>。</li>
        </ul>
    </note>
         </section>
