@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="apidef">
-        <title>RTC APIs for Reuse</title>
+        <title>RTC API Syntax</title>
         <body>
        <section id="section_mjq_rgy_vnb"
        ><title>Methods</title>
@@ -19,7 +19,7 @@
   <!--release-->
   <p id="release">
       <codeblock props="windows" outputclass="language-cpp">AGORA_CPP_API static void release (bool sync = false);</codeblock>
-      <codeblock props="rust" outputclass="rust">pub fn release(&amp;self, sync: bool) {
+      <codeblock props="rust" outputclass="language-rust">pub fn release(&amp;self, sync: bool) {
     unsafe {
     let is_sync: i32 = if sync { 1 } else { 0 };
     agorartcnative::release(self.native_engine, is_sync);
@@ -31,9 +31,9 @@
   
   <!--setChannelProfile-->
   <p id="setChannelProfile">
-      <codeblock props="android" outputclass="java">public abstract int setChannelProfile(int profile);</codeblock>
+      <codeblock props="android" outputclass="language-java">public abstract int setChannelProfile(int profile);</codeblock>
       <codeblock props="windows" outputclass="language-cpp">virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;</codeblock>
-      <codeblock props="rust" outputclass="rust">pub fn set_channel_profile(&amp;self, profile: CHANNEL_PROFILE_TYPE) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn set_channel_profile(&amp;self, profile: CHANNEL_PROFILE_TYPE) -> i32 {
     unsafe {
     return agorartcnative::setChannelProfile(self.native_engine, profile as u32);
     }
@@ -43,10 +43,10 @@
   
   <!--setClientRole1-->
   <p id="setClientRole1">
-      <codeblock props="android" outputclass="java">public abstract int setClientRole(int role);</codeblock>
+      <codeblock props="android" outputclass="language-java">public abstract int setClientRole(int role);</codeblock>
       <codeblock props="ios" outputclass="objective-c">- (int)setClientRole:(AgoraClientRole)role;</codeblock>
       <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role) = 0;</codeblock>
-      <codeblock props="rust" outputclass="rust">pub fn set_client_role(&amp;self, role: CLIENT_ROLE_TYPE) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn set_client_role(&amp;self, role: CLIENT_ROLE_TYPE) -> i32 {
     unsafe {
         return agorartcnative::setClientRole(self.native_engine, role as u32);
     }
@@ -63,9 +63,9 @@
   
   <!--joinChannel1-->
   <p id="joinChannel1">
-      <codeblock props="android" outputclass="java">public abstract int joinChannel(String token, String channelName, String optionalInfo, int optionalUid);</codeblock>
+      <codeblock props="android" outputclass="language-java">public abstract int joinChannel(String token, String channelName, String optionalInfo, int optionalUid);</codeblock>
       <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, const char* info, uid_t uid) = 0;</codeblock>
-      <codeblock props="rust" outputclass="rust">pub fn join_channel(&amp;self, token: &amp;str, channel_id: &amp;str, info: &amp;str, uid: u32) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn join_channel(&amp;self, token: &amp;str, channel_id: &amp;str, info: &amp;str, uid: u32) -> i32 {
   unsafe {
       let the_token: &amp;CStr = &amp;CString::new(token).expect("token new failed");
       let the_channel_id: &amp;CStr = &amp;CString::new(channel_id).expect("channel_id new failed");
@@ -104,7 +104,7 @@
   <!--leaveChannel-->
   <p id="leaveChannel">       
       <codeblock props="windows" outputclass="language-cpp">virtual int leaveChannel() = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn leave_channel(&amp;self) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn leave_channel(&amp;self) -> i32 {
     unsafe {
         return agorartcnative::leaveChannel(self.native_engine);
     }
@@ -188,7 +188,7 @@
   <!--setAudioProfile-->
   <p id="setAudioProfile">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setAudioProfile(AUDIO_PROFILE_TYPE profile, AUDIO_SCENARIO_TYPE scenario) = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn set_audio_profile(&amp;self, profile: AUDIO_PROFILE_TYPE, scenario: AUDIO_SCENARIO_TYPE) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn set_audio_profile(&amp;self, profile: AUDIO_PROFILE_TYPE, scenario: AUDIO_SCENARIO_TYPE) -> i32 {
       unsafe {
       return agorartcnative::setAudioProfile(self.native_engine, profile as u32, scenario as u32);
       }
@@ -297,7 +297,7 @@
   <!--setupLocalVideo-->
   <p id="setupLocalVideo">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setupLocalVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn setup_local_video(&amp;self, canvas: agorartcnative::VideoCanvas) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn setup_local_video(&amp;self, canvas: agorartcnative::VideoCanvas) -> i32 {
  unsafe {
  return agorartcnative::setupLocalVideo(self.native_engine, canvas);
  }
@@ -308,7 +308,7 @@
   <!--setupRemoteVideo-->
   <p id="setupRemoteVideo">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setupRemoteVideo(const VideoCanvas&amp; canvas) = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn setup_remote_video(&amp;self, canvas: agorartcnative::VideoCanvas) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn setup_remote_video(&amp;self, canvas: agorartcnative::VideoCanvas) -> i32 {
  unsafe {
  return agorartcnative::setupRemoteVideo(self.native_engine, canvas);
  }
@@ -324,7 +324,7 @@
   <!--setLocalRenderMode2-->
   <p id="setLocalRenderMode2">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn set_local_render_mode(&amp;self, render_mode: RENDER_MODE_TYPE) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn set_local_render_mode(&amp;self, render_mode: RENDER_MODE_TYPE) -> i32 {
  unsafe {
  return agorartcnative::setLocalRenderMode(self.native_engine, render_mode as u32);
  }
@@ -339,7 +339,7 @@
   <!--setRemoteRenderMode2-->
   <p id="setRemoteRenderMode2">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn set_remote_render_mode(&amp;self, uid: u32, render_mode: RENDER_MODE_TYPE) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn set_remote_render_mode(&amp;self, uid: u32, render_mode: RENDER_MODE_TYPE) -> i32 {
  unsafe {
  return agorartcnative::setRemoteRenderMode(self.native_engine, uid, render_mode as u32);
  }
@@ -406,7 +406,7 @@
   <!--startPreview-->
   <p id="startPreview">       
       <codeblock props="windows" outputclass="language-cpp">virtual int startPreview() = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn start_preview(&amp;self) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn start_preview(&amp;self) -> i32 {
  unsafe {
  return agorartcnative::startPreview(self.native_engine);
  }
@@ -417,7 +417,7 @@
   <!-- stopPreview -->
   <p id="stopPreview">       
       <codeblock props="windows" outputclass="language-cpp">virtual int stopPreview() = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn stop_preview(&amp;self) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn stop_preview(&amp;self) -> i32 {
  unsafe {
  return agorartcnative::stopPreview(self.native_engine);
  }
@@ -428,7 +428,7 @@
   <!--enableLocalVideo-->
   <p id="enableLocalVideo">       
       <codeblock props="windows" outputclass="language-cpp">virtual int enableLocalVideo(bool enabled) = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn enable_video(&amp;self) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn enable_video(&amp;self) -> i32 {
  unsafe {
  return agorartcnative::enableVideo(self.native_engine);
  }
@@ -439,7 +439,7 @@
   <!--muteLocalVideoStream-->
   <p id="muteLocalVideoStream">       
       <codeblock props="windows" outputclass="language-cpp">virtual int agora::rtc::IRtcEngine::muteLocalVideoStream(bool mute) = 0; </codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn mute_local_video_stream(&amp;self, mute: bool) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn mute_local_video_stream(&amp;self, mute: bool) -> i32 {
  unsafe {
  let m: i32 = if mute { 1 } else { 0 };
  return agorartcnative::muteLocalVideoStream(self.native_engine, m);
@@ -451,7 +451,7 @@
   <!--muteRemoteVideoStream-->
   <p id="muteRemoteVideoStream">       
       <codeblock outputclass="language-cpp" props="windows">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn mute_remote_video_stream(&amp;self, uid: u32, mute: bool) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn mute_remote_video_stream(&amp;self, uid: u32, mute: bool) -> i32 {
  unsafe {
  let m: i32 = if mute { 1 } else { 0 };
  return agorartcnative::muteRemoteVideoStream(self.native_engine, uid, m);
@@ -463,7 +463,7 @@
   <!--muteAllRemoteVideoStreams-->
   <p id="muteAllRemoteVideoStreams">       
       <codeblock props="windows" outputclass="language-cpp">virtual int muteAllRemoteVideoStreams(bool mute) = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn mute_all_remote_video_streams(&amp;self, mute: bool) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn mute_all_remote_video_streams(&amp;self, mute: bool) -> i32 {
  unsafe {
  let m: i32 = if mute { 1 } else { 0 };
  return agorartcnative::muteAllRemoteVideoStreams(self.native_engine, m);
@@ -475,7 +475,7 @@
   <!--setDefaultMuteAllRemoteVideoStreams-->
   <p id="setDefaultMuteAllRemoteVideoStreams">       
       <codeblock outputclass="language-cpp" props="windows">virtual int setDefaultMuteAllRemoteVideoStreams(bool mute) = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn set_default_mute_all_remote_video_streams(&amp;self, mute: bool) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn set_default_mute_all_remote_video_streams(&amp;self, mute: bool) -> i32 {
  unsafe {
  let is_mute: i32 = if mute { 1 } else { 0 };
  return agorartcnative::channel_setDefaultMuteAllRemoteVideoStreams(self.native_channel, is_mute);
@@ -1088,7 +1088,7 @@
   <!--setLiveTranscoding-->
   <p id="setLiveTranscoding">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setLiveTranscoding(const LiveTranscoding &amp;transcoding) = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn set_live_transcoding(&amp;self, transcoding: *const agorartcnative::LiveTranscoding) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn set_live_transcoding(&amp;self, transcoding: *const agorartcnative::LiveTranscoding) -> i32 {
  unsafe {
  return agorartcnative::setLiveTranscoding(self.native_engine, transcoding);
  }
@@ -1105,7 +1105,7 @@
   <!--removePublishStreamUrl-->
   <p id="removePublishStreamUrl">       
       <codeblock props="windows" outputclass="language-cpp">virtual int removePublishStreamUrl(const char *url) = 0;</codeblock>       
-      <codeblock props="rust" outputclass="rust">pub fn remove_publish_stream_url(&amp;self, url: &amp;str) -> i32 {
+      <codeblock props="rust" outputclass="language-rust">pub fn remove_publish_stream_url(&amp;self, url: &amp;str) -> i32 {
  unsafe {
  let the_url: &amp;CStr = &amp;CString::new(url).expect("url new failed");
  return agorartcnative::channel_removePublishStreamUrl(self.native_channel, the_url.as_ptr());
@@ -3803,7 +3803,7 @@ BeautyOptions()
     , audioChannels(1)
     {}
  } LiveTranscoding;</codeblock>
-     <codeblock props="rust" outputclass="rust">pub struct LiveTranscoding {
+     <codeblock props="rust" outputclass="language-rust">pub struct LiveTranscoding {
     pub width: ::std::os::raw::c_int,
     pub height: ::std::os::raw::c_int,
     pub videoBitrate: ::std::os::raw::c_int,
@@ -4095,7 +4095,7 @@ BeautyOptions()
     int width;
     int height;
 } RtcImage;</codeblock>
-      <codeblock props="rust" outputclass="rust">pub struct RtcImage {
+      <codeblock props="rust" outputclass="language-rust">pub struct RtcImage {
     pub url: *const ::std::os::raw::c_char,
     pub x: ::std::os::raw::c_int,
     pub y: ::std::os::raw::c_int,
@@ -4242,7 +4242,7 @@ BeautyOptions()
         , audioChannel(0)
     {}
 } TranscodingUser;</codeblock>   
-      <codeblock props="rust" outputclass="rust">pub struct TranscodingUser {
+      <codeblock props="rust" outputclass="language-rust">pub struct TranscodingUser {
     pub uid: uid_t,
     pub x: ::std::os::raw::c_int,
     pub y: ::std::os::raw::c_int,
@@ -4339,7 +4339,7 @@ BeautyOptions()
     channelId[MAX_CHANNEL_ID_LENGTH - 1] = '\0';
     }
 }</codeblock>
-     <codeblock props="rust" outputclass="rust">pub struct VideoCanvas {
+     <codeblock props="rust" outputclass="language-rust">pub struct VideoCanvas {
     pub view: view_t,
     pub renderMode: ::std::os::raw::c_int,
     pub channelId: [::std::os::raw::c_char; 65usize],
@@ -4361,7 +4361,7 @@ BeautyOptions()
         : width(w), height(h)
     {}
 };</codeblock>
-       <codeblock props="rust" outputclass="rust">pub struct VideoDimensions {
+       <codeblock props="rust" outputclass="language-rust">pub struct VideoDimensions {
     pub width: ::std::os::raw::c_int,
     pub height: ::std::os::raw::c_int,
 }</codeblock>
@@ -4409,7 +4409,7 @@ BeautyOptions()
         , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
     {}
 };</codeblock>
-       <codeblock props="rust" outputclass="rust">pub struct VideoEncoderConfiguration {
+       <codeblock props="rust" outputclass="language-rust">pub struct VideoEncoderConfiguration {
     pub dimensions: VideoDimensions,
     pub frameRate: FRAME_RATE,
     pub minFrameRate: ::std::os::raw::c_int,

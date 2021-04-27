@@ -28,7 +28,7 @@
   <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</li>
        </ul></p>
    <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
-   <note outputclass="note">
+   <note type="attention">
        <ul>
   <li>相比 <xref keyref="joinChannelWithUserAccount1"/>[1/2]，该方法加了 <parmname>options</parmname> 参数，用于配置用户加入频道时是否自动订阅频道内所有远端音视频流。
       默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并影响计费。如果想取消订阅，可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname>mute</apiname> 方法实现。</li>
