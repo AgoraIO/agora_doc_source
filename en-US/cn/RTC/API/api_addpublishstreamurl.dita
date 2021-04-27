@@ -17,7 +17,7 @@
         <section id="detailed_desc">
 
    <p>The SDK returns the result of this method call in the &quot;onStreamPublished&quot; callback. The SDK will trigger a callback locally<xref keyref="onRtmpStreamingStateChanged"/> to report the status of adding the bypass push address.</p>
-   <note outputclass="note" id="note">
+   <note type="attention" id="note">
        <ul>
   <li>Call this method after joining a channel.</li>
   <li>Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in the advanced guide Push Streams to CDN.</li>
@@ -36,10 +36,12 @@
        <plentry>
   <pt>The host in a channel can call the addPublishStreamUrl method to add a media stream to the CDN.</pt>
   <pd>
-      <ul>
- <li><ph keyref="true"/>: Transcoding (<xref href="https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#%E8%BD%AC%E7%A0%81" scope="external" format="html">Transcoding</xref> refers to transcoding the audio and video streams during bypass push, and then pushing them to other CDN servers. It is mostly suitable for scenes where there are multiple anchors in the channel and need to be mixed and video mixing). If it is set to<ph keyref="true"/>, the method needs to be<xref keyref="setLiveTranscoding"/> called first.</li>
- <li><ph keyref="false"/>false: Disable transcoding.</li>
-      </ul>
+      <p id="transcoding-desc">是否转码。 <xref keyref="term-transocding" scope="external" format="html"
+                            />是指在旁路推流时对音视频流进行转码处理后再推送到其他 CDN 服务器。 多适用于频道内有多个主播，需要进行混流、合图的场景。<ul>
+                                <li><ph keyref="true"/>: 转码。</li>
+                                <li><ph keyref="false"/>false: Disable transcoding.</li>
+                            </ul></p>
+      <note type="attention">如果该参数设为 <ph keyref="true"/>，需先调用 <xref keyref="setLiveTranscoding"/> 方法。</note>
   </pd>
        </plentry>
    </parml>
