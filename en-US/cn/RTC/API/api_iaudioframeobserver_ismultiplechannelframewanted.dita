@@ -25,7 +25,7 @@
    <p>After you register the audio frame observer, the SDK triggers this callback every time it captures an audio frame.</p>
    <p>In the multi-channel scenario, if you want to get audio data from multiple channels, set the return value of this callback as true<ph keyref="true"/>. After successful setting, the SDK will trigger a callback<xref
   keyref="onPlaybackAudioFrameBeforeMixingEx"/> to send you the received audio frame before mixing and report which channel the audio frame comes from.</p>
-   <note outputclass="note">
+   <note type="attention">
        <ul>
   <li>Once you set the return value of the callback to<ph keyref="true"/>, the SDK will only trigger<apiname keyref="onPlaybackAudioFrameBeforeMixingEx"/> to return the received audio data before mixing. <xref keyref="onPlaybackAudioFrameBeforeMixing"/> Will not be triggered. In the multi-channel scenario, Agora recommends setting the return value as true<ph keyref="true"/>.</li>
   <li>If you set the return value of this callback as false<ph keyref="false"/>, the SDK triggers only the `onRenderVideoFrame<apiname keyref="onPlaybackAudioFrameBeforeMixing"/>` callback to send the video data.</li>
