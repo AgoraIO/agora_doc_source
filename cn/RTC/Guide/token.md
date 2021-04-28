@@ -38,7 +38,9 @@ This section shows you how to supply and consume a token that gives rights to sp
 
 ### Deploy a simple token generator on your server
 
-Before you start, make sure you have installed [Golang](https://golang.org/).
+Before you start, make sure you have installed [Golang](https://golang.org/) and GO111MODULE is set to on.
+
+> If you are using Go 1.16 or later, GO111MODULE is on by default. See [this blog](https://blog.golang.org/go116-module-changes) for details.
 
 Take the following steps to build a simple RTC token server on your local machine in Golang:
 
@@ -69,17 +71,14 @@ Take the following steps to build a simple RTC token server on your local machin
     }
 
     var rtc_token string
-    var is_string_uid bool
     var int_uid uint32
-    var string_uid string
-    var rtm_uid string
     var channel_name string
 
     var role_num uint32
     var role rtctokenbuilder.Role
 
     // Use RtcTokenBuilder to generate an RTC token
-    func generateRtcToken(is_string_uid bool, int_uid uint32, string_uid string, channelName string){
+    func generateRtcToken(int_uid uint32, channelName string, role rtctokenbuilder.Role){
 
         appID := "<Your App ID>"
         appCertificate := "<Your App Certificate>"
@@ -98,6 +97,7 @@ Take the following steps to build a simple RTC token server on your local machin
             fmt.Printf("Token with uid: %s\n", result)
             fmt.Printf("uid is %d\n", int_uid )
             fmt.Printf("ChannelName is %s\n", channelName)
+            fmt.Printf("Role is %d\n", role)
         }
         rtc_token = result
     }
@@ -127,10 +127,9 @@ Take the following steps to build a simple RTC token server on your local machin
         if (int_err == nil) {
 
                     int_uid = t_int.Uid_rtc_int
-                    is_string_uid = false
                     channel_name = t_int.Channel_name
                     role_num = t_int.Role
-                    switch role {
+                    switch role_num {
                     case 0:
                         role = rtctokenbuilder.RoleAttendee
                     case 1:
@@ -151,7 +150,7 @@ Take the following steps to build a simple RTC token server on your local machin
             return
         }
 
-        generateRtcToken(is_string_uid, int_uid, string_uid, channel_name)
+        generateRtcToken(int_uid, channel_name, role)
         errorResponse(w, rtc_token, http.StatusOK)
         log.Println(w, r)
     }
@@ -234,7 +233,7 @@ Before you start, make sure you have installed [npm](https://www.npmjs.com/get-n
 
 3. Edit `client.js` to include the following content:
     - You need to replace `<Your App ID>` with your App ID.
-    - You need to replace `<Your Host URL and port>` with the host URL and port of the local Golang server you have just deployed.
+    - You need to replace `<Your Host URL and port>` with the host URL and port of the local Golang server you have just deployed, such as `10.53.3.234:8082`.
 
     ```js
     var rtc = {
