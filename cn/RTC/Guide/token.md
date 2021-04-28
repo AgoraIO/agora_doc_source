@@ -284,9 +284,9 @@ Before you start, make sure you have installed [npm](https://www.npmjs.com/get-n
         let token = await fetchToken(uid, options.channel, 1);
 
         await client.join(options.appId, options.channel, token, uid);
-        localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+        rtc.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
         rtc.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
-        await client.publish([localAudioTrack, rtc.localVideoTrack]);
+        await client.publish([rtc.localAudioTrack, rtc.localVideoTrack]);
         const localPlayerContainer = document.createElement("div");
         localPlayerContainer.id = uid;
         localPlayerContainer.style.width = "640px";
