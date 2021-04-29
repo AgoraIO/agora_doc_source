@@ -25,22 +25,21 @@ The following figure shows the steps in the authentication flow:
 
 ![token authentication flow](https://web-cdn.agora.io/docs-files/1618395721208)
 
-## Prerequisites
-
-In order to follow this procedure you must have:
-
-1. A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
-1. An Agora project with the [app certificate](https://docs.agora.io/en/Agora%20Platform/manage_projects?platform=All%20Platforms#manage-your-app-certificates) enabled.
-
 ## Implement the authentication flow
 
 This section shows you how to supply and consume a token that gives rights to specific functionality to authenticated users.
 
-### Deploy a simple token generator on your server
+### Prerequisites
 
-Before you start, make sure you have installed [Golang](https://golang.org/) and GO111MODULE is set to on.
+In order to follow this procedure you must have:
 
-> If you are using Go 1.16 or later, GO111MODULE is on by default. See [this blog](https://blog.golang.org/go116-module-changes) for details.
+- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
+- An Agora project with the [app certificate](https://docs.agora.io/en/Agora%20Platform/manage_projects?platform=All%20Platforms#manage-your-app-certificates) enabled.
+- [Golang](https://golang.org/) with GO111MODULE set to on. 
+    > If you are using Go 1.16 or later, GO111MODULE is on by default. See [this blog](https://blog.golang.org/go116-module-changes) for details.
+- [npm](https://www.npmjs.com/get-npm) and a supported browser per [Compatibility](https://docs.agora.io/en/Interactive%20Broadcast/product_live?platform=Web).
+
+### Deploy a simple token server on your local machine
 
 Take the following steps to build a simple RTC token server on your local machine in Golang:
 
@@ -202,8 +201,6 @@ Take the following steps to build a simple RTC token server on your local machin
 Take the following steps to use the token for client-side user authentication. The code samples apply to Agora RTC Web SDK 4.x.
 
 > Warning: This is a sample client for demonstration purposes only. **DO NOT USE IT IN YOUR PRODUCTION ENVIRONMENT**.
-
-Before you start, make sure you have installed [npm](https://www.npmjs.com/get-npm) and a supported browser per [Compatibility](https://docs.agora.io/en/Interactive%20Broadcast/product_live?platform=Web).
 
 1. Create a folder with the following files:
 
