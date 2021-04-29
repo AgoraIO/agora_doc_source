@@ -21,27 +21,27 @@
                         <dd>v2.9.0</dd>
                     </dlentry>
                 </dl>
-               <p>This callback indicates the state change of the remote audio stream.</p>
-               <note outputclass="note">@note This callback does not work properly when the number of users (in the `COMMUNICATION` profile) or hosts (in the `LIVE_BROADCASTING` profile) in the channel exceeds 17.</note>
+               <p>When the audio state of a remote user (in the voice/video call channel) or host (in the live streaming channel) changes, the SDK triggers this callback to report the current state of the remote audio stream.</p>
+               <note outputclass="note">This callback does not work properly when the number of users (in the voice/video call channel) or hosts (in the live streaming channel) in the channel exceeds 17.</note>
           </section>
           <section id="parameters">
                <title>Parameter</title>
                <parml>
                     <plentry id="uid">
                          <pt>uid</pt>
-                         <pd>@param uid ID of the remote user whose audio state changes.</pd>
+                         <pd>The ID of the remote user whose audio state changes.</pd>
                     </plentry>
                     <plentry id="state">
                          <pt>state</pt>
-                         <pd>Remote audio states<xref keyref="REMOTE_AUDIO_STATE" />.</pd>
+                         <pd>The state of the remote audio. See <xref keyref="REMOTE_AUDIO_STATE" />.</pd>
                     </plentry>
                     <plentry id="reason">
                          <pt>reason</pt>
-                         <pd>Remote audio state reasons<xref keyref="REMOTE_AUDIO_STATE_REASON" />.</pd>
+                         <pd>The reason of the remote audio state change. See <xref keyref="REMOTE_AUDIO_STATE_REASON" />.</pd>
                     </plentry>
                     <plentry>
                          <pt>elapsed</pt>
-                         <pd>The elapsed time<apiname keyref="joinChannel1" /> from when the local user calls the method to the occurrence of this event, in milliseconds.</pd>
+                         <pd>Time elapsed (ms) from the local user calling the <apiname keyref="joinChannel1" /> method until the SDK triggers this callback.</pd>
                     </plentry>
                </parml>
           </section>
