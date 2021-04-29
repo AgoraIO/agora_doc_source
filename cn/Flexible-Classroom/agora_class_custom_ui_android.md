@@ -11,7 +11,7 @@ UIKit 的源码位于 GitHub 上 [CloudClass-Android](https://github.com/AgoraIO
 | 文件夹       | 描述                                                         |
 | :----------- | :----------------------------------------------------------- |
 | `interfaces` | 定义灵动课堂业务逻辑的 Protocol 和 Listener。自定义 UI 无需修改该目录下的内容。 |
-| impl         | 灵动课堂对每个 Protocol 的默认实现，即灵动课堂使用的默认 UI 组件，包含：<ul><li>`chat`: 聊天区域。</li><li>`handsup`: 学生“举手”申请发言相关 UI。</li><li>`room`: 课堂状态、导航栏相关 UI。</li><li>`screnshare`: 屏幕共享相关 UI。</li><li>`tool`: 包含各种教具的工具栏。</li><li>`users`: 用户状态相关 UI。</li><li>`video`: 视频区域。</li><li>`whiterboard`: 白板区域。</li><li>`container`: 在灵动课堂的各种教学场景中组装默认 UI 组件形成 contentView 的管理类。</ul> |
+| `impl`       | 灵动课堂对每个 Protocol 的默认实现，即灵动课堂使用的默认 UI 组件，包含：<ul><li>`chat`: 聊天区域。</li><li>`handsup`: 学生“举手”申请发言相关 UI。</li><li>`room`: 课堂状态、导航栏相关 UI。</li><li>`screnshare`: 屏幕共享相关 UI。</li><li>`tool`: 包含各种教具的工具栏。</li><li>`users`: 用户状态相关 UI。</li><li>`video`: 视频区域。</li><li>`whiterboard`: 白板区域。</li><li>`container`: 在灵动课堂的各种教学场景中组装默认 UI 组件形成 contentView 的管理类。</ul> |
 | `component`  | 灵动课堂使用的公共组件。                                     |
 
 ## UI 修改示例

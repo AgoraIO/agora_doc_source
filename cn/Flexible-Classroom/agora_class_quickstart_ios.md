@@ -28,7 +28,7 @@ target 'Your App' do
 end
  ```
 
-3. 在终端内运行 `pod install` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。
+3. 在终端内运行 `pod install` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。pod install --repo-update
 
 4. 打开新生成的 `xcworkspace` 文件。
 
@@ -42,7 +42,7 @@ end
 | `eyeCare` | 是否开启护眼模式：<li>NO:（默认）关闭护眼模式。<li>YES: 开启护眼模式。 |
 
 示例代码：
-```
+```swift
 /** 全局配置 **/
 @interface AgoraEduSDKConfig : NSObject
 // Agora App ID

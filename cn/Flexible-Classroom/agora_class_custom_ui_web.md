@@ -2,18 +2,21 @@
 
 ## 工作原理
 
-灵动课堂桌面端引入了开源工具 [Storybook](https://storybook.js.org/docs/react/get-started/introduction) 来开发和管理 UI 组件，将灵动课堂的 UI 代码和业务逻辑隔离开来，独立成 UIKit 以便于开发者自定义修改课堂 UI。
+灵动课堂桌面端引入了开源工具 [Storybook](https://storybook.js.org/docs/react/get-started/introduction) 来开发和管理 UI 组件，
+
+Agora 将灵动课堂的 UI 代码和业务逻辑解耦，独立成 UIKit 以便于开发者自定义修改课堂 UI。
 
 ![custom-ui-web](https://web-cdn.agora.io/docs-files/1617714946419)
 
 UIKit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas%2F1.1.0) 仓库（dev/apaas/1.1.0 分支）中 `packages/agora-scenario-ui-kit/src` 目录下，结构介绍如下：
 
-| 文件夹       | 描述                                                         |
-| :----------- | :----------------------------------------------------------- |
-| `components` | 灵动课堂使用的基础 UI 组件的源码。一个 UI 组件一般包含以下文件：<li>`.css`: 定义组件的样式。</li><li>`.stories.tsx`: 定义组件在 Storybook 中的展示。</li><li>`.tsx`: 定义组件的具体设计。</li> |
-| `scaffold`   | 场景 UI 组件，可作为脚手架查看基础 UI 组件在各教学场景中的组装效果。 |
-| `styles`     | 定义全局样式。                                               |
-| `utilities`  | 工具函数，如国际化、自定义 hooks 等。                        |
+| 文件夹         | 描述                                                         |
+| :------------- | :----------------------------------------------------------- |
+| `components`   | 灵动课堂使用的基础 UI 组件的源码。一个 UI 组件一般包含以下文件：<li>`.css`: 定义组件的样式。</li><li>`.stories.tsx`: 定义组件在 Storybook 中的展示。</li><li>`.tsx`: 定义组件的具体设计。</li> |
+| `capabilities` | <li>`containers`: 灵动课堂使用的功能 UI 组件的源码。</li><li>`scenarioas`: 灵动课堂使用的场景 UI 组件的源码。</li> |
+| `scaffold`     | 场景 UI 组件，可作为脚手架查看基础 UI 组件在各教学场景中的组装效果。 |
+| `styles`       | 定义全局样式。                                               |
+| `utilities`    | 工具函数，如国际化、自定义 hooks 等。                        |
 
 ## 实现方法
 
@@ -340,42 +343,36 @@ export const ZoomController: FC<ZoomControllerProps> = ({
 
 3. 参考以下步骤，在 1 对 1 互动场景的白板区域中使用 Custom 组件：
 
-   1. 在 `agora-classroom-sdk/src/ui-components/common-containers/board.tsx` 文件中引入 Custom 组件：
+   1. 在 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx` 文件中引入 Custom 组件：
 
       ```ts
-      import { Custom } from 'agora-scenario-ui-kit'
+      import { Custom } from '~ui-kit'
       ```
 
    2. 在 `WhiteboardContainer` 中使用 Custom 组件：
 
       ```ts
       export const WhiteboardContainer = observer(() => {
-
         return (
           <div className="whiteboard">
-      ```
-
-
-          ......
-    
+          ...... 
             {showZoomControl ? <ZoomController
-              className='zoom-position'
-              zoomValue={zoomValue}
-              currentPage={currentPage}
-              totalPage={totalPage}
-              maximum={!isFullScreen}
-              clickHandler={handleZoomControllerChange}
+            className='zoom-position'
+            zoomValue={zoomValue}
+            currentPage={currentPage}
+            totalPage={totalPage}
+            maximum={!isFullScreen}
+            clickHandler={handleZoomControllerChange}
             /> : null}
-    
             <Custom className='custom-position' width={200} height={200}>
-              <div>Use the custom component!</div>
+              <div>使用Custom组件</div>
             </Custom>
-          </div>
+            </div>
         )
       })
       ```
 
-   3. 在 `agora-classroom-sdk/src/ui-components/one-to-one/1v1.style.css` 文件中定义 `custom-position` 的样式：
+   3. 在 `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/1v1/style.css` 文件中定义 `custom-position` 的样式：
 
       ```ts
       .custom-position{

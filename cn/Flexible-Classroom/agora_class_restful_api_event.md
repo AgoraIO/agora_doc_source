@@ -136,7 +136,7 @@
 | 参数        | 类型        | 描述                                                         |
 | `resources` | Object 数组 | 一个 Object 代表一个资源的变更情况，包含以下字段：<li>`resourceUuid`: String 型，资源 uuid。</li><li>`resourceName`: String 型，资源名称。</li><li>`size`: Number 型，资源大小，单位为字节。</li><li>`url`: String 型，资源的访问地址。</li><li>`taskUuid`: String 型，文件转换任务的 uuid。</li><li>`taskToken`: String 型，文件转换任务使用的 Token。</li><li>`taskProgress`: Object 型，文件转换任务进度。</li> |
 | `operator`  | Object      | 操作人，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li><li>`userName`: String 型，用户名称。</li><li>`role`: Integer 型，用户角色。</li> |
-| `action`    | Integer     | 资源变更类型：<li>`1`: 资源新增或更新。</li><li>`2`: 资源被删除。</li>         |
+| `action`    | Integer     | 资源变更类型：<li>`1`: 资源新增或更新。</li><li>`2`: 资源被删除。</li> |
 
 **示例**：
 

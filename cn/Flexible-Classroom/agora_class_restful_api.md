@@ -46,7 +46,7 @@
 
 ### 请求示例
 
-```
+```html
 // 设置 test_class 的课堂状态为开始
 https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 ```
@@ -100,13 +100,13 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 
 | 参数    | 类型   | 描述                                                         |
 | :------ | :----- | :----------------------------------------------------------- |
-| `dirty` | Object | （选填）用户的污点设置，包含以下字段：`state`: Boolean 类型，污点状态：`1`: 有污点。有污点的用户无法进入课堂。`0`: 无污点。`duration`: Number 类型，有污点状态持续时间，单位为秒，从被踢出的时候开始计时。 |
+| `dirty` | Object | （选填）用户的污点设置，包含以下字段：<ul><li>`state`: Boolean 类型，污点状态：<ul><li>`1`: 有污点。有污点的用户无法进入课堂。</li><li>`0`: 无污点。</li></ul><li>`duration`: Number 类型，有污点状态持续时间，单位为秒，从被踢出的时候开始计时。</li></ul> |
 
 ### 请求示例
 
 **请求 URL**
 
-```
+```html
 // 将 ID 为 123 的用户从 test_class 里踢出
 https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 ```
@@ -161,7 +161,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 | :--------- | :------ | :----------------------------------------------------------- |
 | `appId`    | String  | （必填）Agora App ID，详见[获取 Agora App ID](./agora_class_prep#step1)。 |
 | `roomUUid` | String  | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字</li><li>0-9</li><li>空格</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
-| `state`    | Integer | （必填）录制状态：<li>`0`: 结束</li><li>`1`: 开始</li>
+| `state`    | Integer | （必填）录制状态：<li>`0`: 结束</li><li>`1`: 开始</li> |
 
 **请求包体参数**
 
@@ -170,13 +170,13 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 | 参数              | 类型   | 描述                                                         |
 | :---------------- | :----- | :----------------------------------------------------------- |
 | `mode`            | String | （选填）录制模式：<li>设为 `web`，则启用[页面录制模式](https://docs.agora.io/cn/Agora%20Platform/webpage_recording)。录制生成 MP4 文件。此外，录制服务会在当前 MP4 文件时长超过 2 小时或大小超过 2 GB 时创建一个新的 MP4 文件。</li><li>不填，则启用[合流录制模式](https://docs.agora.io/cn/Agora%20Platform/composite_recording_mode)且只录制老师的音视频。录制生成 M3U8 和 TS 文件。</li> |
-| `webRecordConfig` | Object | （选填）当 `mode` 为 `web` 时，你需要通过 `webRecordConfig` 设置页面录制的详细信息，包含以下字段：<ul><li>`url`:（必填）String 类型，待录制页面地址。如你想要录制灵动课堂的某一节课，你需要在 URL 中传入启动课堂相关参数，以便 Agora 云端录制服务以一个“隐身用户”的身份加入指定课堂进行录制。可参考请求示例中 URL 的示例。URL 中需包含以下参数：<ul><li>`userUuid`: Agora 云端录制服务使用的用户 ID。请确保不要和课堂中已有用户的 ID 重复，否则 Agora 云端录制服务将无法加入课堂。</li><li>`roomUuid`: 待录制课堂的课堂 ID。</li><li>`roomType`: 待录制课堂的课堂类型。</li><li>`roleType`: Agora 云端录制服务在待录制课堂内的角色，设为 0（专用于录制的课堂角色）。</li><li>`pretest`: 是否开启课前检测，设为 `false`。</li><li>`rtmToken`: Agora 云端录制服务使用的 RTM  Token。</li><li>`language`: 界面语言，可设为 `zh` 或 `en`。</li><li>`appId`: Agora App ID。</li></ul><li>`videoBitrate`:（选填）Number 类型，输出视频的码率，单位为 kbps，范围为 [50, 8000]。针对不同的输出视频分辨率，`videoBitrate` 的默认值不同：<ul><li>1280 × 720：默认值为 1130</li><li>960 × 720：默认值为 910</li><li>848 × 480：默认值为 610</li><li>640 × 480：默认值为 400</li><li>其他情况下，默认值均为 300</li></ul><li>`videoFps`:（选填）Number 类型，输出视频的帧率，单位为 fps，范围为 [5, 60]，默认值为 15。</li><li>`audioProfile`: Number 类型，设置输出音频的采样率、码率、编码模式和声道数。<ul><li>0：48 kHz 采样率，音乐编码，单声道，编码码率约 48 Kbps</li><li>1：48 kHz 采样率，音乐编码，单声道，编码码率约 128 Kbps</li><li>2：48 kHz 采样率，音乐编码，双声道，编码码率约 192 Kbps</li></ul><li>`videoWidth`: Number 类型，设置输出视频的宽度，单位为 pixel，范围为 [480, 1280]。`videoWidth` 和 `videoHeight` 的乘积需小于等于 1280 x 720。</li><li>`videoHeight`: Number 类型，设置输出视频的高度，单位为 pixel，范围为 [480, 1280]。`videoWidth` 和 `videoHeight` 的乘积需小于等于 1280 x 720。</li><li>`maxRecordingHour`: Number 类型，设置录制的最大时长，单位为小时，范围为 [1,720]，默认为 3。当录制时长超过 `maxRecordingHour`，录制会自动停止。 |
+| `webRecordConfig` | Object | （选填）当 `mode` 为 `web` 时，你需要通过 `webRecordConfig` 设置页面录制的详细信息，包含以下字段：<ul><li>`url`:（必填）String 类型，待录制页面地址。如你想要录制灵动课堂的某一节课，你需要在 URL 中传入启动课堂相关参数，以便 Agora 云端录制服务以一个“隐身用户”的身份加入指定课堂进行录制。可参考请求示例中 URL 的示例。URL 中需包含以下参数：<ul><li>`userUuid`: Agora 云端录制服务使用的用户 ID。请确保不要和课堂中已有用户的 ID 重复，否则 Agora 云端录制服务将无法加入课堂。</li><li>`roomUuid`: 待录制课堂的课堂 ID。</li><li>`roomType`: 待录制课堂的课堂类型。</li><li>`roleType`: Agora 云端录制服务在待录制课堂内的角色，设为 0（专用于录制的课堂角色）。</li><li>`pretest`: 是否开启课前检测，设为 `false`。</li><li>`rtmToken`: Agora 云端录制服务使用的 RTM  Token。</li><li>`language`: 界面语言，可设为 `zh` 或 `en`。</li><li>`appId`: Agora App ID。</li></ul><li>`rootUrl`: 固定的 URL 地址，GitHub demo 中获取。</li><li>`videoBitrate`:（选填）Number 类型，输出视频的码率，单位为 kbps，范围为 [50, 8000]。针对不同的输出视频分辨率，`videoBitrate` 的默认值不同：<ul><li>1280 × 720：默认值为 1130</li><li>960 × 720：默认值为 910</li><li>848 × 480：默认值为 610</li><li>640 × 480：默认值为 400</li><li>其他情况下，默认值均为 300</li></ul><li>`videoFps`:（选填）Number 类型，输出视频的帧率，单位为 fps，范围为 [5, 60]，默认值为 15。</li><li>`audioProfile`: Number 类型，设置输出音频的采样率、码率、编码模式和声道数。<ul><li>0：（默认）48 kHz 采样率，音乐编码，单声道，编码码率约 48 Kbps</li><li>1：48 kHz 采样率，音乐编码，单声道，编码码率约 128 Kbps</li><li>2：48 kHz 采样率，音乐编码，双声道，编码码率约 192 Kbps</li></ul><li>`videoWidth`: Number 类型，设置输出视频的宽度，单位为 pixel，范围为 [480, 1280]。默认为 1280。`videoWidth` 和 `videoHeight` 的乘积需小于等于 1280 x 720。</li><li>`videoHeight`: Number 类型，设置输出视频的高度，单位为 pixel，范围为 [480, 1280]。默认为 720。`videoWidth` 和 `videoHeight` 的乘积需小于等于 1280 x 720。</li><li>`maxRecordingHour`: Number 类型，设置录制的最大时长，单位为小时，范围为 [1,720]，默认为 24。当录制时长超过 `maxRecordingHour`，录制会自动停止。 |
 
 ### 请求示例
 
 **请求 URL**
 
-```
+```html
 // 开始录制名称为 test_class 的课堂
 https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 ```
@@ -243,7 +243,7 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 
 ### 请求示例
 
-```
+```html
 // 获取 test_class 里的录制列表
 https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
 ```
@@ -326,15 +326,15 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
 | :------------- | :----- | :----------------------------------------------------------- |
 | `resourceName` | String | （必填）资源名称，用于显示，长度在 64 字节以内。             |
 | `size`         | Number | （必填）资源大小，单位为字节。                               |
-| `ext`          | String | （必填）资源扩展名，可设为 `"ppt"`、`"pptx"`、`"pptm"`、`"docx"`、`"doc"`、`"xlsx"`、`"xls"`、`"csv"`、`"pdf"`。 |
+| `ext`          | String | （必填）资源扩展名：<ul><li>`"ppt"`</li><li>`"pptx"`</li><li>`"pptm"`</li><li>`"docx"`</li><li>`"doc"`</li><li>`"xlsx"`</li><li>`"xls"`</li><li>`"csv"`</li><li>`"pdf"`</li></ul> |
 | `url`          | String | （必填）资源的访问地址，例如 `"https://xxx.com"`。           |
-| `conversion`   | Object | （选填）如果你想要将 PPT 等资源在课堂中的白板上展示，你需要设置 `conversion` 将资源转换成静态图片或动态 HTML。`conversion `包含以下字段：<ul><li>`type`:（必填）String 类型，转换类型：<ul><li>`"static"`: 将文件转换为静态图片。当扩展名为 `"ppt"`、`"doc"`、`"docx" `或 `"pdf"` 时，可开启静态转换。</li><li> `"dynamic"`: 将文件转换为动态 HTML。当扩展名为 `"pptx"` 时，可开启动态转换。 </li></ul></li><li>`preview`:（选填）Boolean 类型，是否生成预览图。仅当 `type` 为 `"dynamic"` 时有效。 <ul><li>`true`: 生成预览图。</li><li>`false`: （默认值）不生成预览图。</li></ul><li>`scale`:（选填）Number 类型，图片缩放比例，取值范围为 [0.1,3]，默认值为 1.2。仅当 `type` 为 `"static"` 时有效。</li><li>`outputFormat`:（选填）String 型，输出图片格式，可设为 `"png"`、`"jpg"`、`"jpeg"`、`"webp"`，默认值为 `"``png"`。仅当 `type` 为 `"static"` 时有效。</li> |
+| `conversion`   | Object | （选填）如果你想要将 PPT 等资源在课堂中的白板上展示，你需要设置 `conversion` 将资源转换成静态图片或动态 HTML。`conversion `包含以下字段：<ul><li>`type`:（必填）String 类型，转换类型：<ul><li>`"static"`: 将文件转换为静态图片。当扩展名为 `"ppt"`、`"doc"`、`"docx" ` 或 `"pdf"` 时，可开启静态转换。</li><li> `"dynamic"`: 将文件转换为动态 HTML。当扩展名为 `"pptx"` 时，可开启动态转换。 </li></ul></li><li>`preview`:（选填）Boolean 类型，是否生成预览图。仅当 `type` 为 `"dynamic"` 时有效。 <ul><li>`true`: 生成预览图。</li><li>`false`: （默认值）不生成预览图。</li></ul><li>`scale`:（选填）Number 类型，图片缩放比例，取值范围为 [0.1,3]，默认值为 1.2。仅当 `type` 为 `"static"` 时有效。</li><li>`outputFormat`:（选填）String 型，输出图片格式，可设为 `"png"`、`"jpg"`、`"jpeg"`、`"webp"`，默认值为 `"``png"`。仅当 `type` 为 `"static"` 时有效。</li> |
 
 ### 请求示例
 
 **请求 URL**
 
-```
+```html
 // 在 test_class 里上传一个 ID 为 class_file_1 的公共资源
 https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources/class_file_1
 ```
@@ -435,7 +435,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources/class_
 
 **请求 URL**
 
-```
+```html
 https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
 ```
 
@@ -491,7 +491,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
 
 **请求 URL**
 
-```
+```html
 // 获取 test_class 里 ID 为 class_file_1 的公共资源
 https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
 ```
@@ -578,7 +578,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
 
 **请求 URL**
 
-```
+```html
 // 获取 test_class 里的课堂状态变更事件
 https://api.agora.io/edu/apps/{appId}/v2/rooms/test_class/sequences?nextId=50&cmd=1
 ```
@@ -643,7 +643,7 @@ https://api.agora.io/edu/apps/{appId}/v2/rooms/test_class/sequences?nextId=50&cm
 
 ### 请求示例
 
-```
+```html
 https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 ```
 

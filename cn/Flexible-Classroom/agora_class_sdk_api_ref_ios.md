@@ -1,10 +1,12 @@
+本页提供灵动课堂 iOS 端的 Swift API 参考。
+
 ## AgoraEduSDK 
 
 `AgoraEduSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
 
 ### version
 
-```
+```swift
 (NSString *)version;
 ```
 
@@ -16,33 +18,74 @@ SDK 版本号。
 
 ### setConfig
 
-```
+```swift
 + (void)setConfig:(AgoraEduSDKConfig *)config;
 ```
 
 全局配置 SDK。
 
+**示例代码**
+
+```swift
+/** 全局配置 **/
+@interface AgoraEduSDKConfig : NSObject
+// Agora App ID
+@property (nonatomic, copy) NSString *appId;
+// 是否开启护眼模式
+@property (nonatomic, assign) BOOL eyeCare;
+@end
+AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
+[AgoraEduSDK setConfig:defaultConfig];
+```
+
 **参数**
 
-| 参数     | 描述                                     |
-| :------- | :--------------------------------------- |
-| `config` | 全局配置参数，详见 `AgoraEduSDKConfig`。 |
+| 参数     | 描述                                                         |
+| :------- | :----------------------------------------------------------- |
+| `config` | 全局配置参数，详见 [`AgoraEduSDKConfig`](#agoraedusdkconfig)。 |
 
 ### launch
 
-```
+```swift
 + (AgoraEduClassroom * _Nullable)launch:(AgoraEduLaunchConfig *)config
                                delegate:(id<AgoraEduClassroomDelegate> _Nullable)delegate;
 ```
 
 启动灵动课堂。
 
+**示例代码**
+
+```swift
+/** 课堂启动配置 */
+// 用户名
+NSString *userName = @"XXX";
+// 用户 ID，需要与你生成 RTM Token 时使用的用户 ID 一致
+NSString *userUUid = @"XXX";
+// 教室名称
+NSString *roomName = @"XXX";
+// 教室 ID
+NSString *roomUuid = @"XXX";
+// 用户角色
+AgoraEduRoleType roleType = AgoraEduRoleTypeStudent;
+// 课堂类型
+AgoraEduRoomType roomType = AgoraEduRoomType1V1;
+// RTM Token
+NSString *rtmToken = "";
+// 课堂开始时间，单位为毫秒，以第一个进入教室的用户传入的参数为准
+NSNumber *startTime = @(XXX);
+// 课堂持续时间，单位为秒，以第一个进入教室的用户传入的参数为准
+NSNumber *duration = @(1800);
+ 
+AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration];
+[AgoraEduSDK launch:config delegate:self];
+```
+
 **参数**
 
 | 参数       | 描述                                                         |
 | :--------- | :----------------------------------------------------------- |
-| `config`   | 课堂启动配置，详见 `AgoraEduLaunchConfig`。                  |
-| `delegate` | SDK 通过 `AgoraEduClassroomDelegate` 类向应用程序报告课堂启动相关的事件。 |
+| `config`   | 课堂启动配置，详见 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig)。 |
+| `delegate` | SDK 通过 [`AgoraEduClassroomDelegate`](#agoraeduclassroomdelegate) 类向 App 报告课堂启动相关的事件。 |
 
 **返回值**
 
@@ -50,17 +93,38 @@ SDK 版本号。
 
 ### configCoursewares
 
-```
+```swift
 + (void)configCoursewares:(NSArray<AgoraEduCourseware *> *)config;
 ```
 
 配置课件预加载。
 
+**示例代码**
+
+```swift
+/** 构造、配置、下载课件 */
+// 课件转换任务唯一 ID
+NSString *taskUuid = @"xxxx";
+// 课件下载地址
+NSString *resourceUrl = [NSString stringWithFormat:@"https://convertcdn.netless.link/dynamicConvert/%@/.zip", taskUuid];
+// 课件名称
+NSString *resourceName = @"XXX";
+// 课件页面列表，注意转成 WhiteScene
+NSArray<WhiteScene*> *convertedFileList = @[];
+// 课件目录
+// 建议用 resourceName 和 convertedFileList 里面第一个对象的 name 拼接
+NSString *scenePath = [NSString stringWithFormat:@"%@/%@", resourceName, [convertedFileList.firstObject name]];
+
+AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceName:resourceName scenePath:scenePath scenes:convertedFileList resourceUrl:resourceUrl];
+// 配置课件预加载
+[AgoraEduSDK configCoursewares:@[courseware]];
+```
+
 **参数**
 
-| 参数     | 描述                                        |
-| :------- | :------------------------------------------ |
-| `config` | 课件预加载配置，详见 `AgoraEduCourseware`。 |
+| 参数     | 描述                                                         |
+| :------- | :----------------------------------------------------------- |
+| `config` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
 
 ### downloadCoursewares
 
@@ -70,17 +134,34 @@ SDK 版本号。
 
 预加载课件。
 
+**示例代码**
+
+```swift
+// 下载配置好的课件
+[AgoraEduSDK downloadCoursewares:self];
+```
+
 **参数**
 
 | 参数       | 描述                                                         |
 | :--------- | :----------------------------------------------------------- |
-| `delegate` | SDK 通过 `AgoraEduCoursewareDelegate` 类向应用程序报告课件预加载相关的事件。 |
+| `delegate` | SDK 通过 [`AgoraEduCoursewareDelegate`](#agoraeducoursewaredelegate) 类向 App 报告课件预加载相关的事件。 |
+
+### registerExtApps
+
+```swift
++ (void)registerExtApps:(NSArray<AgoraExtAppConfiguration *> *)apps;
+```
+
+注册
+
+
 
 ## AgoraEduClassroom
 
 ### destroy
 
-```
+```swift
 - (void)destroy;
 ```
 
@@ -88,11 +169,11 @@ SDK 版本号。
 
 ## AgoraEduClassroomDelegate
 
-`AgoraEduClassroomDelegate` 类用于 SDK 向应用程序报告课堂启动相关的事件。
+`AgoraEduClassroomDelegate` 类用于 SDK 向 App 报告课堂启动相关的事件。
 
 ### didReceivedEvent
 
-```
+```swift
 - (void)classroom:(AgoraEduClassroom *)classroom didReceivedEvent:(AgoraEduEvent)event;
 ```
 
@@ -100,35 +181,43 @@ SDK 版本号。
 
 **参数**
 
-| 参数    | 描述                             |
-| :------ | :------------------------------- |
-| `event` | 课堂事件，详见 `AgoraEduEvent`。 |
+| 参数    | 描述                                               |
+| :------ | :------------------------------------------------- |
+| `event` | 课堂事件，详见 [`AgoraEduEvent`](#agoraeduevent)。 |
 
 ## AgoraEduCoursewareDelegate
 
-`AgoraEduCoursewareDelegate` 类用于 SDK 向应用程序报告课件预加载相关的事件。
+`AgoraEduCoursewareDelegate` 类用于 SDK 向 App 报告课件预加载相关的事件。
 
 ### didProcessChanged
 
-```
+```swift
 - (void)courseware:(AgoraEduCourseware *)courseware didProcessChanged:(float)process;
 ```
 
 课件预加载进度。
 
+| 参数       | 描述             |
+| :--------- | :--------------- |
+| `progress` | 课件预加载进度。 |
+
 ### didCompleted
 
-```
+```swift
 - (void)courseware:(AgoraEduCourseware *)courseware idCompleted:(NSError * _Nullable)error;
 ```
 
 课件预加载完成。
 
+| 参数    | 描述     |
+| :------ | :------- |
+| `error` | 错误码。 |
+
 ## 类型定义
 
 ### AgoraEduEvent
 
-```
+```swift
 typedef NS_ENUM(NSInteger, AgoraEduEvent) {
     AgoraEduEventFailed = 0,
     AgoraEduEventReady = 1,
@@ -136,23 +225,23 @@ typedef NS_ENUM(NSInteger, AgoraEduEvent) {
 };
 ```
 
-课堂事件。在 `didReceivedEvent` 回调中报告。
+课堂事件。在 [`didReceivedEvent`](#didreceivedevent) 回调中报告。
 
-| 属性                     | 描述              |
-| :----------------------- | :---------------- |
-| `AgoraEduEventFailed`    | 0: 进入课堂失败。 |
-| `AgoraEduEventReady`     | 1: 课堂准备完成。 |
-| `AgoraEduEventDestroyed` | 2: 课堂已销毁。   |
+| 属性                     | 描述                |
+| :----------------------- | :------------------ |
+| `AgoraEduEventFailed`    | `0`: 进入课堂失败。 |
+| `AgoraEduEventReady`     | `1`: 课堂准备完成。 |
+| `AgoraEduEventDestroyed` | `2`: 课堂已销毁。   |
 
 ### AgoraEduRoleType
 
-```
+```swift
 typedef NS_ENUM(NSInteger, AgoraEduRoleType) {
     AgoraEduRoleTypeStudent = 2,
 };
 ```
 
-用户在课堂中的角色。在 `AgoraEduLaunchConfig` 中设置。
+用户在课堂中的角色。在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
 
 | 属性                      | 描述        |
 | :------------------------ | :---------- |
@@ -160,7 +249,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoleType) {
 
 ### AgoraEduRoomType
 
-```
+```swift
 typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
     AgoraEduRoomType1V1 = 0,
     AgoraEduRoomTypeSmall = 4,
@@ -168,17 +257,17 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 };
 ```
 
-课堂类型。在 `AgoraEduLaunchConfig` 中设置。
+课堂类型。在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
 
 | 属性                    | 描述                                                         |
 | :---------------------- | :----------------------------------------------------------- |
 | `AgoraEduRoomType1V1`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。 |
 | `AgoraEduRoomTypeBig`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。 |
-| `AgoraEduRoomTypeSmall` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。 |
+| `AgoraEduRoomTypeSmall` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可点名学生“上台”发言，与老师进行实时音视频互动。 |
 
 ### AgoraEduSDKConfig
 
-```
+```swift
 @interface AgoraEduSDKConfig : NSObject
 @property (nonatomic, copy) NSString *appId;
 @property (nonatomic, assign) BOOL eyeCare;
@@ -188,7 +277,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 @end
 ```
 
-SDK 全局配置。用于 `setConfig` 方法。
+SDK 全局配置。用于 [`setConfig`](#setConfig) 方法。
 
 | 属性      | 描述                                                         |
 | :-------- | :----------------------------------------------------------- |
@@ -197,7 +286,7 @@ SDK 全局配置。用于 `setConfig` 方法。
 
 ### AgoraEduLaunchConfig
 
-```
+```swift
 @interface AgoraEduLaunchConfig : NSObject
 @property (nonatomic, copy) NSString *userName;
 @property (nonatomic, copy) NSString *userUuid;
@@ -229,7 +318,7 @@ SDK 全局配置。用于 `setConfig` 方法。
 @end
 ```
 
-课堂启动配置。用于 `launch` 方法。
+课堂启动配置。用于 [`launch`](#launch) 方法。
 
 | 属性        | 描述                                                         |
 | :---------- | :----------------------------------------------------------- |
@@ -245,7 +334,7 @@ SDK 全局配置。用于 `setConfig` 方法。
 
 ### AgoraEduCourseware
 
-```
+```swift
 @interface AgoraEduCourseware : NSObject
 @property (nonatomic, copy) NSString *resourceName;
 @property (nonatomic, copy) NSString *scenePath;
@@ -258,7 +347,7 @@ SDK 全局配置。用于 `setConfig` 方法。
 @end
 ```
 
-课件预加载配置。用于 `configCoursewares` 方法。
+课件预加载配置。用于 [`configCoursewares`](#configcoursewares) 方法。
 
 | 属性           | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
@@ -269,7 +358,7 @@ SDK 全局配置。用于 `setConfig` 方法。
 
 ### WhiteObject
 
-```
+```swift
 @interface WhiteScene : WhiteObject
 
 - (instancetype)init;
@@ -281,7 +370,7 @@ SDK 全局配置。用于 `setConfig` 方法。
 @end
 ```
 
-一个文件页面的具体信息。在 `AgoraEduCourseware` 中设置。
+一个文件页面的具体信息。在 [`AgoraEduCourseware`](#agoraeducourseware) 中设置。
 
 | 属性              | 描述                                                       |
 | :---------------- | :--------------------------------------------------------- |
@@ -291,7 +380,7 @@ SDK 全局配置。用于 `setConfig` 方法。
 
 ### WhitePptPage
 
-```
+```swift
 @interface WhitePptPage : WhiteObject
 
 - (instancetype)initWithSrc:(NSString *)src size:(CGSize)size;
@@ -305,7 +394,7 @@ SDK 全局配置。用于 `setConfig` 方法。
 @end
 ```
 
-一个完成转换后的页面的具体信息。在 `SceneInfo` 中设置。
+一个完成转换后的页面的具体信息。在 [`SceneInfo`](#sceneinfo) 中设置。
 
 | 属性         | 描述                                        |
 | :----------- | :------------------------------------------ |

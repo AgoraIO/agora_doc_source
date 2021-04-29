@@ -17,6 +17,39 @@ Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-
 
 你可以参考以下步骤，通过 Gradle 获取 Agora Classroom SDK。
 
+1. 添加 aar：将aar包放在 `app/libs` 目录下，然后在 app 模块的 `build.gradle` 文件里添加
+```
+dependencies {
+ implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+}
+```
+
+2. 在 app 模块的 `build.gradle` 文件里添加 aar 需要的依赖：
+```
+dependencies {
+ // edu dependencies
+ implementation "androidx.constraintlayout:constraintlayout:2.0.4"
+ implementation "com.squareup.retrofit2:retrofit:2.9.0"
+ implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+ implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+ implementation "androidx.preference:preference:1.1.1"
+ implementation "com.elvishew:xlog:1.7.0"
+ implementation "io.agora.rtm:rtm-sdk:1.4.1"
+ implementation "io.agora.rtc:agora-special-full:2.9.107.136"
+ implementation "com.github.duty-os:white-sdk-android:2.12.5"
+}
+```
+
+3. 引入 agoraui 模块
+```
+dependencies {
+ implementation project(path: ':agoraui')
+}
+```
+
+
+
+
 1. 在项目的 **build.gradle** 文件中添加以下库：
   ```java
 	allprojects {
@@ -67,7 +100,7 @@ AgoraEduSDK.setConfig(new AgoraEduSDKConfig(appId, eyeCare));
 | `roleType`  | 用户在课堂中的角色，可设为：<li>`AgoraEduRoleTypeStudent`: 学生 |
 | `roomName`  | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
 | `roomUuid`  | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roomType`  | 课堂类型，可设为：<li>`AgoraEduRoomType1V1`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。<li>`AgoraEduRoomTypeSmall`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。<li>`AgoraEduRoomTypeBig`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。 |
+| `roomType`  | 课堂类型，可设为：<li>`AgoraEduRoomType1V1`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。<li>`AgoraEduRoomTypeSmall`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可点名学生“上台”发言，与老师进行实时音视频互动。<li>`AgoraEduRoomTypeBig`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。 |
 | `rtmToken`  | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](./agora_class_prep#step5)。 |
 | `startTime` | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
 | `duration`  | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |

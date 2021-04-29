@@ -15,6 +15,30 @@ Agora 还提供一个 [CodePen 示例项目](https://codepen.io/agoratechwriter/
 
 ## 集成 Agora Classroom SDK
 
+### 方法一：使用 npm 获取 SDK
+
+使用该方法需要先安装 npm，详见 [npm 快速入门](https://www.npmjs.com.cn/getting-started/installing-node/)。
+
+1. 运行安装命令：
+
+   ```bash
+   npm install agora-classroom-sdk
+   ```
+
+2. 在项目的 JavaScript 代码中引入 `AgoraRTC` 模块：
+
+   ```javascript
+   import  from ''
+   ```
+
+   如果你使用 TypeScript, 还可以引入 SDK 中的类型对象：
+
+   ```typescript
+   import  from ""
+   ```
+
+### 方法二：使用 CDN 获取 SDK
+
 你可以通过 CDN 获取 Agora Classroom SDK。在你的项目的 HTML 文件中，添加如下代码：
 
 ```html
@@ -47,13 +71,14 @@ AgoraEduSDK.config({
 | `userName` | String  | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
 | `roomUuid` | String  | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | String  | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
-| `roleType`               | EduRoleTypeEnum  | 用户在课堂中的角色，可设为：<li>`1`: 老师<li>`2`: 学生               |
-| `roomType`               | EduRoomTypeEnum  | 课堂类型，可设为：<li>`0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。<li>`4`: 互动直播小班课。一名老师进行教学，多名学生实时观看和收听。课堂人数上限为 500 人。上课过程中，老师可邀请学生“上台”发言。 |
+| `roleType`               | EduRoleTypeEnum  | 用户在课堂中的角色，可设为：<li>`0`: 观众，仅用于页面录制。</li> <li>`1`: 老师</li><li>`2`: 学生</li><li>`3`: 助教。</li> |
+| `roomType`               | EduRoomTypeEnum  | 课堂类型，可设为：<li>`0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。<li>`2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。<li>`4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可点名学生“上台”发言，与老师进行实时音视频互动。 |
 | `listener`               | ListenerCallback | 课堂启动状态。                                               |
 | `pretest`                | Boolean          | 是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出一个设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。<li>`false`: 不开启课前设备检测。 |
 | `language`               | LanguageEnum     | 界面语言：<li>`zh`: 中文<li>`en`: 英文                               |
 | `startTime`              | Number           | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
 | `duration`               | Number           | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
+| `recordUrl` | String | （选填）待录制 URL 地址，开发者需传入自己部署的网页地址，用于页面录制，例如 `https://cn.bing.com/recordUrl`。 |
 | `courseWareList`         | CourseWareList   | （选填）课件配置对象，用于预加载教育机构指派的课件，客户端进入课堂后无法进行新增或删除操作。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
 | `personalCourseWareList` | CourseWareList   | （选填）课件配置对象，用于预加载教师端上传的课件。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
 
