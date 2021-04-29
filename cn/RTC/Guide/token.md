@@ -1,188 +1,410 @@
+# Authenticate Your Users with Tokens
 
-# Authenticate your users with AccessTokens
+To enhance communication security, Agora uses tokens to authenticate users before they access the Agora service, such as joining an RTC channel.
 
-Authentication is the act of validating the identity of each user who has credentials to access your system, and providing them with a digital AccessToken that gives privileges to specific Agora Call, Streaming, Messaging or Analytics functionality. 
+This article describes how to generate a token and use it for authentication in your client app when a user tries to access the Agora service.
 
-Agora uses digital AccessTokens to authenticate users and their privileges before they access an Agora service. For example, the AccessToken granted to a standard user has the `kJoinChannel` privilege only; this user may only join a channel. A moderator has `kInvitePublishVideoStream` and can invite people to a video stream. As you see, the privileges names are incomprehensibly difficult, you grant admin users the `kAdministrateChannel` privilege. 
+## Understand the tech
 
-This section shows you how to integrate industrial grade security into your Agora app using `AccessToken`s. 
+A token is a time-bound dynamic key generated on your server. Agora provides code samples on [GitHub](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) for you to generate tokens.
 
-##  Understand the tech
+When your app users try to join a channel, Agora validates their token and grants access according to the following information in the token:
+
+- The App ID of your Agora project
+- The app certificate of your Agora project
+- The channel name
+- The user ID of the user to be authenticated
+- The privilege of the user
+- The expiration time of the token
+
+Tokens expire. A token is valid for 24 hours at most. You need to regularly generate new tokens to keep users connected.
+
+When generating a token, you can specify whether a user has the privilege to publish streams in an RTC channel. See [How do I use co-host token authentication?](https://docs.agora.io/en/Interactive%20Broadcast/faq/token_cohost) for details.
 
 The following figure shows the steps in the authentication flow:
 
 ![token authentication flow](https://web-cdn.agora.io/docs-files/1618395721208)
 
-An AccessToken is a dynamic key generated on your app server that is valid for a maximum of 24 hours. When your users connect to a channel from your App client, Agora SDK validates the AccessToken and reads the user and project information stored in the AccessToken. The app information is related to your project:
+## Implement the authentication flow
 
-![alt text](Images/project_information_in_the_console.png "Logo Title Text 1")
+This section shows you how to supply and consume a token that gives rights to specific functionality to authenticated users.
 
-
-Agora SDK grants access according to the following information in the AccessToken:
-
-- `appID` - the _App ID_ of your Agora project
-- `appCertificate` - the _App certificate_ of your Agora project
-- `channelName` - no idea where I find this
-- `uid` - the ID of the user to be authenticated
-- `I CANT FIND THE PARAMETER NAME`  - the privileges assigned to this user
-- `privilegeExpiredT (THIS IS A GUESS)` - a timestamp stating the time this AccessToken expires
-
-An AccessToken is valid for 24 hours at most. You need to regularly generate new AccessTokens to keep users connected.
-
-
-
-## Prerequisites
+### Prerequisites
 
 In order to follow this procedure you must have:
 
-* A valid [Agora account](https://console.agora.io/)
-* An Agora project
+- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
+- An Agora project with the [app certificate](https://docs.agora.io/en/Agora%20Platform/manage_projects?platform=All%20Platforms#manage-your-app-certificates) enabled.
+- [Golang](https://golang.org/) with GO111MODULE set to on. 
+    > If you are using Go 1.16 or later, GO111MODULE is on by default. See [this blog](https://blog.golang.org/go116-module-changes) for details.
+- [npm](https://www.npmjs.com/get-npm) and a supported browser per [Compatibility](https://docs.agora.io/en/Interactive%20Broadcast/product_live?platform=Web).
 
-* A [Heroku](https://dashboard.heroku.com) account
+### Deploy a simple token server on your local machine
 
-## Implement the authentication flow
+Take the following steps to build a simple RTC token server on your local machine in Golang:
 
-This section shows you how to supply and consume the AccessToken that gives rights to specific functionality to authenticated users.
+> Warning: This is a sample server for demonstration purposes only. **DO NOT USE IT IN YOUR PRODUCTION ENVIRONMENT**.
 
-### Deploy an AccessToken server
+1. Create a file, `server.go`, with the following content:
+    - You need to replace `<Your App ID>` with your App ID.
+    - You need to replace `<Your App Certificate>` with your App Certificate.
 
-AccessTokens generators create the AccessTokens requested by your Agora Client app to enable secure access to Agora SDK. To serve these AccessTokens you deploy a generator in your security infrastructure. 
+   ```golang
+    package main
 
-In order to show the authentication workflow, this section shows how to deploy and run a demo AccessToken generator on a server using Heroku:
+    import (
+        rtctokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/RtcTokenBuilder"
+        "fmt"
+        "log"
+        "net/http"
+        "time"
+        "encoding/json"
+        "errors"
+        "strconv"
+    )
 
-1. In your browser, login to Agora console at https://console.agora.io/.
+    type rtc_int_token_struct struct{
+        Uid_rtc_int uint32 `json:"uid"`
+        Channel_name string `json:"ChannelName"`
+        Role uint32 `json:"role"`
+    }
 
-1. Click Edit on the project to use.
+    var rtc_token string
+    var int_uid uint32
+    var channel_name string
 
-   This opens the _Basic Info_ page which contains the information you need for the AccessTokens generator. 
+    var role_num uint32
+    var role rtctokenbuilder.Role
 
-1. In another tab in your browser, navigate to https://heroku.com/deploy?template=https://github.com/AgoraIO-Community/TokenServer-nodejs. 
+    // Use RtcTokenBuilder to generate an RTC token
+    func generateRtcToken(int_uid uint32, channelName string, role rtctokenbuilder.Role){
 
-1. In _Create New App_ add the information for the Heroku deployment from the _Basic Info_ for your Agora project. 
+        appID := "<Your App ID>"
+        appCertificate := "<Your App Certificate>"
+        // Number of seconds after which the token expires
+        // For demonstration purposes, set it to 40 so that you can easily observe the automatic token renew actions of the client
+        expireTimeInSeconds := uint32(40)
+        // Get current timestamp
+        currentTimestamp := uint32(time.Now().UTC().Unix())
+        // Timestamp when the token expires
+        expireTimestamp := currentTimestamp + expireTimeInSeconds
 
-1. In _Create New App_, add a staging pipeline and click *Deploy App*.
-
-   Take the weight off and enjoy your beverage of choice, the deployment takes a few minutes. When the deployment is completed, Heroku displays **Your app was successfully deployed**.
- 
-1.  Click **Manage App**. 
-   You see the dashboard for your Heroku app. 
-    
-1. Click **Open App**.
-
-   Your browser makes a GET call to <heroku url>. For example: https://tokens-and-web-sdk.herokuapp.com/. There are no return parameters.
-
-1. Test AccessToken generation. 
-
-   In the address bar of your browser, add *access_token?channel=test&uid=1234* to *\<heroku url\>*. For example: https://<heroku url>/access_token?channel=test&uid=1234.
-
-The AccessToken generator running in the Heroku cloud returns a valid access token. For example
-
-````json
-{"token":"006efb1df952a134400b1cbadc3409deIABAOVYZgbobti4I8MAzjp8xMarleyVDzjIR+Dsings+f9ij4OObgoodDILHA/l6YAEAASONGSAA"}
-````
-
-You have a working AccessToken server. However, this is a sample app running on an independent provider. To create a production grade AccessToken server, use the sample code in https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey to integrate an AccessToken generator into your infrastructure. 
+        result, err := rtctokenbuilder.BuildTokenWithUID(appID, appCertificate, channelName, int_uid, role, expireTimestamp)
+        if err != nil {
+            fmt.Println(err)
+        } else {
+            fmt.Printf("Token with uid: %s\n", result)
+            fmt.Printf("uid is %d\n", int_uid )
+            fmt.Printf("ChannelName is %s\n", channelName)
+            fmt.Printf("Role is %d\n", role)
+        }
+        rtc_token = result
+    }
 
 
-## Login to Agora SDK using your app client
+    func rtcTokenHandler(w http.ResponseWriter, r *http.Request){
+        w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+        w.Header().Set("Access-Control-Allow-Origin", "*")
+        w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS");
+        w.Header().Set("Access-Control-Allow-Headers", "*");
 
-Your client app retrieves an AccessToken from your server in order to login to Agora SDK. 
+        if r.Method == "OPTIONS" {
+            w.WriteHeader(http.StatusOK)
+            return
+        }
 
-IAIN: This does not say how i am doing this. Can I do it by adding the scripts to a web page and bob is your marley? Explain. 
+        if r.Method != "POST" && r.Method != "OPTIONS" {
+            http.Error(w, "Unsupported method. Please check.", http.StatusNotFound)
+            return
+        }
 
-To integrate authentication, add the following code to your Web App:
 
-1. Fetch the AccessToken with uid and channel name:
+        var t_int rtc_int_token_struct
+        var unmarshalErr *json.UnmarshalTypeError
+        int_decoder := json.NewDecoder(r.Body)
+        int_err := int_decoder.Decode(&t_int)
+        if (int_err == nil) {
 
-   ```JavaScript
-   // Assume the client sends
-   //
-   //  {
-   //    "uid": "123456",
-   //    "channelName": "channelA"
-   //  }
-   //
-   // the AccessToken server returns:
-   // {
-   //    "code":"200",
-   //    "token": "006970CA35de60c44645bbae8a215061b33IACtCBeHhqlszBWc9S8XyvSoz1fJm1YiL6OWFTbLNC7OMbdIfRCtk5C5IgB8zc0FZAN5YAQAAQD0v3dgAgD0v3dgAwD0v3dgBAD0v3dg"
-   // }
-   // Need to import axios
-   function fetchToken(uid, channelName) {
-   
-       let data = JSON.stringify({ "uid": uid, "channelName": channelName });
-   
-       let config = {
-           method: 'get',
-           url: 'https://<heroku url>/access_token?channel=test&uid=1234',
-           headers: {
-               'Content-Type': 'application/json'
-           },
-           data: data
-       };
-   
-       return new Promise(function (resolve) {
-           axios(config)
-               .then(function (response) {
-                   const token = response.data.token;
-                   resolve(token);
-               })
-               .catch(function (error) {
-                   console.log(error);
-               });
-       })
-   }
+                    int_uid = t_int.Uid_rtc_int
+                    channel_name = t_int.Channel_name
+                    role_num = t_int.Role
+                    switch role_num {
+                    case 0:
+                        role = rtctokenbuilder.RoleAttendee
+                    case 1:
+                        role = rtctokenbuilder.RolePublisher
+                    case 2:
+                        role = rtctokenbuilder.RoleSubscriber
+                    case 101:
+                        role = rtctokenbuilder.RoleAdmin
+                    }
+        }
+        if (int_err != nil) {
+
+            if errors.As(int_err, &unmarshalErr){
+                    errorResponse(w, "Bad request. Wrong type provided for field " + unmarshalErr.Value  + unmarshalErr.Field + unmarshalErr.Struct, http.StatusBadRequest)
+                    } else {
+                    errorResponse(w, "Bad request.", http.StatusBadRequest)
+                }
+            return
+        }
+
+        generateRtcToken(int_uid, channel_name, role)
+        errorResponse(w, rtc_token, http.StatusOK)
+        log.Println(w, r)
+    }
+
+    func errorResponse(w http.ResponseWriter, message string, httpStatusCode int){
+        w.Header().Set("Content-Type", "application/json")
+        w.Header().Set("Access-Control-Allow-Origin", "*")
+        w.WriteHeader(httpStatusCode)
+        resp := make(map[string]string)
+        resp["token"] = message
+        resp["code"] = strconv.Itoa(httpStatusCode)
+        jsonResp, _ := json.Marshal(resp)
+        w.Write(jsonResp)
+
+    }
+
+    func main(){
+        // Handling routes
+        // RTC token from RTC num uid
+        http.HandleFunc("/fetch_rtc_token", rtcTokenHandler)
+        fmt.Printf("Starting server at port 8082\n")
+
+        if err := http.ListenAndServe(":8082", nil); err != nil {
+            log.Fatal(err)
+        }
+    }
    ```
 
-1. Join channel with the AccessToken, uid, and channel name
+2. Run the following command to create a `go.mod` file.
 
-   ```JavaScript
-   import AgoraRTC from "agora-rtc-sdk-ng"
-   
-   const client = AgoraRTC.createClient()
-   
-   async function startCall() {
-     let token = await fetchToken(123456, "ChannelA");
-     // Join channel with token and uid
-     await client.join("APPID", "ChannelA", token, 123456);
-     ...
-   }
+   ```shell
+   $ go mod init sampleServer
    ```
 
-1. Handle AccessToken expiration.  AccessTokens expire, and when that happens, the user gets disconnected. To prevent that from happening, you also need to handle AccessToken expiration in your client logic.
+3. Run the following command to get dependencies:
 
-   * When the AccessToken is about to expire
+   ```shell
+   $ go get
+   ```
 
-      The `token-privilege-will-expire` callback occurs 30 seconds before a AccessToken expires. When the `token-privilege-will-expire` callback is triggered，fetch the AccessToken from the server and call `renewToken` to pass the new AccessToken to the SDK.
-      
-      ```JavaScript
-      client.on("token-privilege-will-expire", async function(){
-        // After requesting a new token
-        await client.renewToken(token);
-      });
-      ```
+4. Run the following command to start the server:
 
-   * When the AccessToken has expired
+   ```shell
+   $ go run server.go
+   ```
 
-      The `token-privilege-did-expire` callback occurs when the AccessToken expires. When the `token-privilege-did-expire` callback is triggered，the client must fetch the AccessToken from the server and call `join` to use the new AccessToken to join the channel.
-      
-      ```JavaScript
-      client.on("token-privilege-did-expire", async function(){
-        //After requesting a new token
-        await rtc.client.join(options.appId, options.channel, options.token, 123456);
-      });
-      ```
+## Use the token for client-side user authentication
 
-1. Now say how to run the app 
+Take the following steps to use the token for client-side user authentication. The code samples apply to Agora RTC Web SDK 4.x.
+
+> Warning: This is a sample client for demonstration purposes only. **DO NOT USE IT IN YOUR PRODUCTION ENVIRONMENT**.
+
+1. Create a folder with the following files:
+
+    ```text
+    |
+    |-- index.html
+    |-- client.js
+    ```
+
+2. Edit `index.html` to include the following content:
+
+    ```html
+    <html>
+    <head>
+        <title>Token demo</title>
+    </head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <body>
+        <h1>Token demo</h1>
+
+        <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
+        <script src="./client.js"></script>
+
+    </body>
+    </html>
+    ```
+
+3. Edit `client.js` to include the following content:
+    - You need to replace `<Your App ID>` with your App ID.
+    - You need to replace `<Your Host URL and port>` with the host URL and port of the local Golang server you have just deployed, such as `10.53.3.234:8082`.
+
+    ```js
+    var rtc = {
+        // For the local audio and video tracks.
+        localAudioTrack: null,
+        localVideoTrack: null,
+    };
+
+    var options = {
+        // Pass your app ID here.
+        appId: "<Your app ID>",
+        // Set the channel name.
+        channel: "ChannelA",
+        // Set the user role in the channel.
+        role: "host"
+    };
+
+    // Fetch a token from the Golang server
+    function fetchToken(uid, channelName, tokenRole) {
+
+        return new Promise(function (resolve) {
+            axios.post('http://<Your Host URL and port>/fetch_rtc_token', {
+                uid: uid,
+                channelName: channelName,
+                role: tokenRole
+            }, {
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                }
+            })
+                .then(function (response) {
+                    const token = response.data.token;
+                    resolve(token);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        })
+    }
+
+    async function startBasicCall() {
+
+        const client = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
+        client.setClientRole(options.role);
+        const uid = 123456;
+
+        // Fetch a token before calling join to join a channel
+        let token = await fetchToken(uid, options.channel, 1);
+
+        await client.join(options.appId, options.channel, token, uid);
+        rtc.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+        rtc.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
+        await client.publish([rtc.localAudioTrack, rtc.localVideoTrack]);
+        const localPlayerContainer = document.createElement("div");
+        localPlayerContainer.id = uid;
+        localPlayerContainer.style.width = "640px";
+        localPlayerContainer.style.height = "480px";
+        document.body.append(localPlayerContainer);
+
+        rtc.localVideoTrack.play(localPlayerContainer);
+
+        console.log("publish success!");
+
+        client.on("user-published", async (user, mediaType) => {
+            await client.subscribe(user, mediaType);
+            console.log("subscribe success");
+
+            if (mediaType === "video") {
+                const remoteVideoTrack = user.videoTrack;
+                const remotePlayerContainer = document.createElement("div");
+                remotePlayerContainer.textContent = "Remote user " + user.uid.toString();
+                remotePlayerContainer.style.width = "640px";
+                remotePlayerContainer.style.height = "480px";
+                document.body.append(remotePlayerContainer);
+                remoteVideoTrack.play(remotePlayerContainer);
+
+            }
+
+            if (mediaType === "audio") {
+                const remoteAudioTrack = user.audioTrack;
+                remoteAudioTrack.play();
+            }
+
+            client.on("user-unpublished", user => {
+                const remotePlayerContainer = document.getElementById(user.uid);
+                remotePlayerContainer.remove();
+            });
+
+        });
+
+        // When token-privilege-will-expire occurs, fetch a new token from the server and call renewToken to renew the token
+        client.on("token-privilege-will-expire", async function () {
+            let token = await fetchToken(uid, options.channel, 1);
+            await client.renewToken(token);
+        });
+
+        // When token-privilege-did-expire occurs, fetch a new token from the server and call join to rejoin the channel
+        client.on("token-privilege-did-expire", async function () {
+            console.log("Fetching the new Token")
+            let token = await fetchToken(uid, options.channel, 1);
+            console.log("Rejoining the channel with new Token")
+            await rtc.client.join(options.appId, options.channel, token, uid);
+        });
+
+    }
+
+    startBasicCall()
+    ```
+
+    In the code example above, we can see that token is related to the following code logic in the client:
+    - Call `join` to join the channel with token, uid, and channel name. The uid and channel name must be the same as the ones used to generate the token.
+    - The `token-privilege-will-expire` callback occurs 30 seconds before a token expires. When the `token-privilege-will-expire` callback is triggered，the client must fetch the token from the server and call `renewToken` to pass the new token to the SDK.
+    - The `token-privilege-did-expire` callback occurs when a token expires. When the `token-privilege-did-expire` callback is triggered, the client must fetch the token from the server and call `join` to use the new token to join the channel.
+
+
+4. Open `index.html` with a supported browser. You should be able to see the following actions performed by the client:
+    - Successfully joining a channel.
+    - Renewing a token every 10 seconds if you set `expireTimeInSeconds` to `40` in the Golang token server.
 
 
 ## Reference
 
+### Token generator libraries
 
+Agora provides an open-source [AgoraDynamicKey](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) repository on GitHub, which enables you to generate tokens on your server with programming languages such as C++, Java, and Go.
+
+| Language | Algorithm   | Core method                                                                                                                                         | Sample code                                                                                                                                                         |
+| -------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| C++      | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/RtcTokenBuilder.h)                              | [RtcTokenBuilderSample.cpp](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/sample/RtcTokenBuilderSample.cpp)                           |
+| Go       | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/src/RtcTokenBuilder/RtcTokenBuilder.go)              | [sample.go](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/sample/RtcTokenBuilder/sample.go)                                            |
+| Java     | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media/RtcTokenBuilder.java) | [RtcTokenBuilderSample.java](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/sample/RtcTokenBuilderSample.java) |
+| Node.js  | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/src/RtcTokenBuilder.js)                          | [RtcTokenBuilderSample.js](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/sample/RtcTokenBuilderSample.js)                          |
+| PHP      | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/src/RtcTokenBuilder.php)                            | [RtcTokenBuilderSample.php](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/sample/RtcTokenBuilderSample.php)                           |
+| Python   | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/src/RtcTokenBuilder.py)                          | [RtcTokenBuilderSample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/sample/RtcTokenBuilderSample.py)                          |
+| Python3  | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/src/RtcTokenBuilder.py)                         | [RtcTokenBuilderSample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/sample/RtcTokenBuilderSample.py)                         |
+
+**API Reference**
+
+This section introduces the parameters and descriptions for the method to generate a token. Take C++ as an example:
+
+```C++
+static std::string buildTokenWithUid(
+    const std::string& appId,
+    const std::string& appCertificate,
+    const std::string& channelName,
+    uint32_t uid,
+    UserRole role,
+    uint32_t privilegeExpiredTs = 0);
+```
+
+| Parameter            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `appId`              | The App ID of your project.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `appCertificate`     | The App Certificate of your project.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `channelName`        | The channel name. The string length must be less than 64 bytes. Supported character scopes are: <ul><li>All lowercase English letters: a to z.</li><li>All upper English letters: A to Z.</li><li>All numeric characters: 0 to 9.</li><li>The space character.</li><li>Punctuation characters and other symbols, including: "!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", ",".</li></ul>                                                                                                                                    |
+| `uid`                | The user ID. A 32-bit unsigned integer with a value range from 1 to (2³² - 1). It must be unique. Set `uid` as 0, if you do not want to authenticate the user ID, that is, any `uid` from the app client can join the channel.                                                                                                                                                                                                                                                                                                                                                                                |
+| `role`               | The user privilege. This parameter determines whether a user can publish streams in the channel. <ul><li>`Role_Publisher(1)`: (Default) The user has the privilege of a publisher, that is, the user can publish streams in the channel.</li><li>`Role_Subscriber(2)`: The user has the privilege of a subscriber, that is, the user can only subscribe to streams, not publish them, in the channel. This value takes effect only if you have enabled co-host authentication. For details, see FAQ [How do I use co-host authentication](https://docs.agora.io/en/Interactive%20Broadcast/faq/token_cohost). |
+| `privilegeExpiredTs` | The Unix timestamp when the token expires, represented by the sum of the current timestamp and the valid time of the token. For example, if you set `privilegeExpiredTs` as the current timestamp plus 600 seconds, the token expires in 10 minutes. A token is valid for 24 hours at most. If you set this parameter as 0 or a period longer than 24 hours, the token is still valid for 24 hours.                                                                                                                                                                                                           |
+
+
+### Generate a token from Agora Console
+
+To facilitate authentication at the test stage, [Agora Console](https://console.agora.io/) supports generating temporary for testing purposes. A temporary token is valid for 24 hours.
+
+1. On the [Project Management](https://console.agora.io/projects) page, find your project, and click the ![temp_token](Images/temp_token.png) icon to open the **Token** page.
+2. Enter a channel name, and click **Generate Temp Token** to generate a temporary token.
+3. Use the generated token to join a real-time engagement channel. Ensure that the channel name is the same with the one that you use to generate the temporary token.
+
+Temporary tokens are for test purposes only. In the production environment, Agora recommends generating tokens from your server.
 
 ### Channel Key
 
-AccessToken-based authentication has requirements on the SDK version:
+Token-based authentication has requirements on the SDK version:
+
 - For RTC Native SDKs and the On-premise Recording SDK, ensure that the SDK version is v2.1.0 or later.
 - For RTC Web SDKs, ensure that the SDK version is v2.4.0 or later.
 
@@ -195,7 +417,3 @@ You can also refer to the following documents according to your needs:
 - [How to solve token-related errors?](https://docs.agora.io/en/faq/token_error)
 - [What causes the 101 error on Cloud Recording SDK?](https://docs.agora.io/en/faq/101_error)
 - [How to use co-host token authentication?](https://docs.agora.io/en/faq/token_cohost)
-
-Agora provides code samples on [GitHub](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) for you to generate tokens.
-
-When generating a token, you can specify whether a user has the privilege to publish streams in an RTC channel. See [How do I use co-host token authentication?](https://docs.agora.io/en/Interactive%20Broadcast/faq/token_cohost) for details.
