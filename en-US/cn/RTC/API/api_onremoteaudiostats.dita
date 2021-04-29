@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onremoteaudiostats">
     <title><ph keyref="onRemoteAudioStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the transport-layer statistics of each remote audio stream. Used to replace<xref keyref="onAudioQuality"/> callbacks.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the statistics of the audio stream from each remote user/host. Used to replace<xref keyref="onAudioQuality"/> callbacks.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,13 +16,13 @@
         </section>
         <section id="detailed_desc">
    
-   <p>Reports the statistics of the local audio stream. The SDK triggers this callback once every two seconds. If a channel includes multiple remote users, the SDK triggers this callback as many times.</p>
+   <p>Reports the statistics of the local audio stream. The SDK triggers this callback once every two seconds for each remote user who is sending audio streams. If a channel includes multiple remote users, the SDK triggers this callback as many times.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry id="stats">
   <pt>stats</pt>
-  <pd>For the received remote audio statistics data, see for details<xref keyref="RemoteAudioStats"/>.</pd>
+  <pd>The statistics of the received remote audio streams. See <xref keyref="RemoteAudioStats"/>.</pd>
        </plentry>
    </parml>
         </section></refbody>
