@@ -57,9 +57,6 @@
             <topicref keyref="muteAllRemoteVideoStreams" toc="no"/>
             <topicref keyref="setDefaultMuteAllRemoteVideoStreams" toc="no"/>
             <topicref keyref="setBeautyEffectOptions" toc="no"/>
-            <topicref keyref="IRtcEngine2" toc="no">
-                <topicref keyref="createChannel"/>
-            </topicref>
             <topicref keyref="startScreenCapture" toc="no"/>
             <topicref keyref="startScreenCaptureByDisplayId" toc="no"/>
             <topicref keyref="startScreenCaptureByScreenRect" toc="no"/>
@@ -175,6 +172,9 @@
             <topicref keyref="joinChannelWithUserAccount1" toc="no"/>
             <topicref keyref="joinChannelWithUserAccount2" toc="no"/>
         </topicref>
+        <topicref keyref="IRtcEngine2" chunk="to-content">
+            <topicref keyref="createChannel" toc="no"/>
+        </topicref>
         <topicref keyref="IRtcEngineEventHandler" chunk="to-content">
             <topicref keyref="onConnectionStateChanged" toc="no"/>
             <topicref keyref="onJoinChannelSuccess" toc="no"/>
@@ -257,204 +257,194 @@
             <topicref keyref="onMediaEngineLoadSuccess" toc="no"/>
             <topicref keyref="onMediaEngineStartCallSuccess" toc="no"/>
         </topicref>
-        <topichead navtitle="多频道管理">
-            <topicref keyref="IChannel" chunk="to-content">
-                <topicref keyref="IChannel_release" toc="no"/>
-                <topicref keyref="IChannel_setChannelEventHandler" toc="no"/>
-                <topicref keyref="IChannel_joinChannel" toc="no"/>
-                <topicref keyref="IChannel_joinChannelWithUserAccount" toc="no"/>
-                <topicref keyref="IChannel_leaveChannel" toc="no"/>
-                <topicref keyref="IChannel_getConnectionState" toc="no"/>
-                <topicref keyref="IChannel_setClientRole1" toc="no"/>
-                <topicref keyref="IChannel_setClientRole2" toc="no"/>
-                <topicref keyref="IChannel_publish" toc="no"/>
-                <topicref keyref="IChannel_unpublish" toc="no"/>
-                <topicref keyref="IChannel_channelId" toc="no"/>
-                <topicref keyref="IChannel_renewToken" toc="no"/>
-                <topicref keyref="IChannel_setEncryptionSecret" toc="no"/>
-                <topicref keyref="IChannel_setEncryptionMode" toc="no"/>
-                <topicref keyref="IChannel_enableEncryption" toc="no"/>
-                <topicref keyref="IChannel_registerPacketObserver" toc="no"/>
-                <topicref keyref="IChannel_registerMediaMetadataObserver" toc="no"/>
-                <topicref keyref="IChannel_setRemoteUserPriority" toc="no"/>
-                <topicref keyref="IChannel_setRemoteVoicePosition" toc="no"/>
-                <topicref keyref="IChannel_setRemoteRenderMode" toc="no"/>
-                <topicref keyref="IChannel_setDefaultMuteAllRemoteAudioStreams" toc="no"/>
-                <topicref keyref="IChannel_setDefaultMuteAllRemoteVideoStreams" toc="no"/>
-                <topicref keyref="IChannel_muteAllRemoteAudioStreams" toc="no"/>
-                <topicref keyref="IChannel_adjustUserPlaybackSignalVolume" toc="no"/>
-                <topicref keyref="IChannel_muteRemoteAudioStream" toc="no"/>
-                <topicref keyref="IChannel_muteAllRemoteVideoStreams" toc="no"/>
-                <topicref keyref="IChannel_muteRemoteVideoStream" toc="no"/>
-                <topicref keyref="IChannel_setRemoteVideoStreamType" toc="no"/>
-                <topicref keyref="IChannel_setRemoteDefaultVideoStreamType" toc="no"/>
-                <topicref keyref="IChannel_createDataStream1" toc="no"/>
-                <topicref keyref="IChannel_createDataStream2" toc="no"/>
-                <topicref keyref="IChannel_sendStreamMessage" toc="no"/>
-                <topicref keyref="IChannel_addPublishStreamUrl" toc="no"/>
-                <topicref keyref="IChannel_removePublishStreamUrl" toc="no"/>
-                <topicref keyref="IChannel_setLiveTranscoding" toc="no"/>
-                <topicref keyref="IChannel_addInjectStreamUrl" toc="no"/>
-                <topicref keyref="IChannel_removeInjectStreamUrl" toc="no"/>
-                <topicref keyref="IChannel_startChannelMediaRelay" toc="no"/>
-                <topicref keyref="IChannel_updateChannelMediaRelay" toc="no"/>
-                <topicref keyref="IChannel_stopChannelMediaRelay" toc="no"/>
-                <topicref keyref="IChannel_getCallId" toc="no"/>
-            </topicref>
-            <topicref keyref="IChannelEventHandler" chunk="to-content">
-                <topicref keyref="IChannel_onChannelWarning" toc="no"/>
-                <topicref keyref="IChannel_onChannelError" toc="no"/>
-                <topicref keyref="IChannel_onJoinChannelSuccess" toc="no"/>
-                <topicref keyref="IChannel_onRejoinChannelSuccess" toc="no"/>
-                <topicref keyref="IChannel_onLeaveChannel" toc="no"/>
-                <topicref keyref="IChannel_onClientRoleChanged" toc="no"/>
-                <topicref keyref="IChannel_onUserJoined" toc="no"/>
-                <topicref keyref="IChannel_onUserOffline" toc="no"/>
-                <topicref keyref="IChannel_onConnectionLost" toc="no"/>
-                <topicref keyref="IChannel_onRequestToken" toc="no"/>
-                <topicref keyref="IChannel_onTokenPrivilegeWillExpire" toc="no"/>
-                <topicref keyref="IChannel_onRtcStats" toc="no"/>
-                <topicref keyref="IChannel_onNetworkQuality" toc="no"/>
-                <topicref keyref="IChannel_onRemoteVideoStats" toc="no"/>
-                <topicref keyref="IChannel_onRemoteAudioStats" toc="no"/>
-                <topicref keyref="IChannel_onRemoteAudioStateChanged" toc="no"/>
-                <topicref keyref="IChannel_onAudioPublishStateChanged" toc="no"/>
-                <topicref keyref="IChannel_onVideoPublishStateChanged" toc="no"/>
-                <topicref keyref="IChannel_onAudioSubscribeStateChanged" toc="no"/>
-                <topicref keyref="IChannel_onVideoSubscribeStateChanged" toc="no"/>
-                <topicref keyref="IChannel_onActiveSpeaker" toc="no"/>
-                <topicref keyref="IChannel_onVideoSizeChanged" toc="no"/>
-                <topicref keyref="IChannel_onRemoteVideoStateChanged" toc="no"/>
-                <topicref keyref="IChannel_onStreamMessage" toc="no"/>
-                <topicref keyref="IChannel_onStreamMessageError" toc="no"/>
-                <topicref keyref="IChannel_onChannelMediaRelayStateChanged" toc="no"/>
-                <topicref keyref="IChannel_onChannelMediaRelayEvent" toc="no"/>
-                <topicref keyref="IChannel_onRtmpStreamingStateChanged" toc="no"/>
-                <topicref keyref="IChannel_onRtmpStreamingEvent" toc="no"/>
-                <topicref keyref="IChannel_onTranscodingUpdated" toc="no"/>
-                <topicref keyref="IChannel_onStreamInjectedStatus" toc="no"/>
-                <topicref keyref="IChannel_onLocalPublishFallbackToAudioOnly" toc="no"/>
-                <topicref keyref="IChannel_onRemoteSubscribeFallbackToAudioOnly" toc="no"/>
-                <topicref keyref="IChannel_onConnectionStateChanged" toc="no"/>
-            </topicref>
-        </topichead>
-        <topichead navtitle="自定义音视频">
-            <topicref keyref="IMediaEngine" chunk="to-content">
-                <topicref keyref="registerAudioFrameObserver" toc="no"/>
-                <topicref keyref="registerVideoFrameObserver" toc="no"/>
-                <topicref keyref="pushAudioFrame1" toc="no"/>
-                <topicref keyref="pushAudioFrame2" toc="no"/>
-                <topicref keyref="pullAudioFrame" toc="no"/>
-                <topicref keyref="setExternalVideoSource" toc="no"/>
-                <topicref keyref="pushVideoFrame" toc="no"/>
-            </topicref>
-            <topicref keyref="IVideoSource" chunk="to-content">
-                <topicref keyref="onInitialize" toc="no"/>
-                <topicref keyref="onDispose" toc="no"/>
-                <topicref keyref="onStart" toc="no"/>
-                <topicref keyref="onStop" toc="no"/>
-                <topicref keyref="getBufferType" toc="no"/>
-                <topicref keyref="getVideoCaptureType" toc="no"/>
-                <topicref keyref="getVideoContentHint" toc="no"/>
-            </topicref>
-            <topicref keyref="IVideoFrameConsumer" chunk="to-content">
-                <topicref keyref="consumeRawVideoFrame" toc="no"/>
-            </topicref>
-        </topichead>
-        <topichead navtitle="数据观测器">
-            <topicref keyref="IAudioFrameObserver" chunk="to-content">
-                <topicref keyref="AudioFrame" toc="no"/>
-                <topicref keyref="AUDIO_FRAME_TYPE" toc="no"/>
-                <topicref keyref="onRecordAudioFrame" toc="no"/>
-                <topicref keyref="onPlaybackAudioFrame" toc="no"/>
-                <topicref keyref="onPlaybackAudioFrameBeforeMixing" toc="no"/>
-                <topicref keyref="onMixedAudioFrame" toc="no"/>
-                <topicref keyref="IAudioFrameObserver_isMultipleChannelFrameWanted"
-                    toc="no"/>
-                <topicref keyref="onPlaybackAudioFrameBeforeMixingEx" toc="no"/>
-            </topicref>
-            <topicref keyref="IPacketObserver" chunk="to-content">
-                <topicref keyref="Packet" toc="no"/>
-                <topicref keyref="onReceiveAudioPacket" toc="no"/>
-                <topicref keyref="onReceiveVideoPacket" toc="no"/>
-                <topicref keyref="onSendAudioPacket" toc="no"/>
-                <topicref keyref="onSendVideoPacket" toc="no"/>
-            </topicref>
-            <topicref keyref="IMetadataObserver" chunk="to-content">
-                <topicref keyref="Metadata" toc="no"/>
-                <topicref keyref="METADATA_TYPE" toc="no"/>
-                <topicref keyref="getMaxMetadataSize" toc="no"/>
-                <topicref keyref="onReadyToSendMetadata" toc="no"/>
-                <topicref keyref="onMetadataReceived" toc="no"/>
-            </topicref>
-            <topicref keyref="IVideoFrameObserver" chunk="to-content">
-                <topicref keyref="VideoFrame" toc="no"/>
-                <topicref keyref="VIDEO_FRAME_TYPE" toc="no"/>
-                <topicref keyref="VIDEO_OBSERVER_POSITION" toc="no"/>
-                <topicref keyref="onCaptureVideoFrame" toc="no"/>
-                <topicref keyref="onPreEncodeVideoFrame" toc="no"/>
-                <topicref keyref="onRenderVideoFrame" toc="no"/>
-                <topicref keyref="getVideoFormatPreference" toc="no"/>
-                <topicref keyref="getRotationApplied" toc="no"/>
-                <topicref keyref="getMirrorApplied" toc="no"/>
-                <topicref keyref="getSmoothRenderingEnabled" toc="no"/>
-                <topicref keyref="getObservedFramePosition" toc="no"/>
-                <topicref keyref="IVideoFrameObserver_isMultipleChannelFrameWanted"
-                    toc="no"/>
-                <topicref keyref="onRenderVideoFrameEx" toc="no"/>
-            </topicref>
-        </topichead>
-        <topichead navtitle="设备管理">
-            <topicref keyref="IAudioDeviceManager" chunk="to-content">
-                <topicref keyref="enumeratePlaybackDevices" toc="no"/>
-                <topicref keyref="enumerateRecordingDevices" toc="no"/>
-                <topicref keyref="setPlaybackDevice" toc="no"/>
-                <topicref keyref="setRecordingDevice" toc="no"/>
-                <topicref keyref="startPlaybackDeviceTest" toc="no"/>
-                <topicref keyref="stopPlaybackDeviceTest" toc="no"/>
-                <topicref keyref="setPlaybackDeviceVolume" toc="no"/>
-                <topicref keyref="getPlaybackDeviceVolume" toc="no"/>
-                <topicref keyref="setRecordingDeviceVolume" toc="no"/>
-                <topicref keyref="getRecordingDeviceVolume" toc="no"/>
-                <topicref keyref="setPlaybackDeviceMute" toc="no"/>
-                <topicref keyref="getPlaybackDeviceMute" toc="no"/>
-                <topicref keyref="setRecordingDeviceMute" toc="no"/>
-                <topicref keyref="getRecordingDeviceMute" toc="no"/>
-                <topicref keyref="startRecordingDeviceTest" toc="no"/>
-                <topicref keyref="stopRecordingDeviceTest" toc="no"/>
-                <topicref keyref="getPlaybackDevice" toc="no"/>
-                <topicref keyref="getPlaybackDeviceInfo" toc="no"/>
-                <topicref keyref="getRecordingDevice" toc="no"/>
-                <topicref keyref="getRecordingDeviceInfo" toc="no"/>
-                <topicref keyref="startAudioDeviceLoopbackTest" toc="no"/>
-                <topicref keyref="stopAudioDeviceLoopbackTest" toc="no"/>
-                <topicref keyref="IAudioDeviceManager_release" toc="no"/>
-            </topicref>
-            <topicref keyref="IAudioDeviceCollection" chunk="to-content">
-                <topicref keyref="IAudioDeviceCollection_getCount" toc="no"/>
-                <topicref keyref="IAudioDeviceCollection_getDevice" toc="no"/>
-                <topicref keyref="IAudioDeviceCollection_setDevice" toc="no"/>
-                <topicref keyref="setApplicationVolume" toc="no"/>
-                <topicref keyref="getApplicationVolume" toc="no"/>
-                <topicref keyref="setApplicationMute" toc="no"/>
-                <topicref keyref="isApplicationMute" toc="no"/>
-                <topicref keyref="IAudioDeviceCollection_release" toc="no"/>
-            </topicref>
-            <topicref keyref="IVideoDeviceManager" chunk="to-content">
-                <topicref keyref="enumerateVideoDevices" toc="no"/>
-                <topicref keyref="startDeviceTest" toc="no"/>
-                <topicref keyref="stopDeviceTest" toc="no"/>
-                <topicref keyref="IVideoDeviceManager_setDevice" toc="no"/>
-                <topicref keyref="IVideoDeviceManager_getDevice" toc="no"/>
-                <topicref keyref="IVideoDeviceManager_release" toc="no"/>
-            </topicref>
-            <topicref keyref="IVideoDeviceCollection" chunk="to-content">
-                <topicref keyref="IVideoDeviceCollection_getCount" toc="no"/>
-                <topicref keyref="IVideoDeviceCollection_getDevice" toc="no"/>
-                <topicref keyref="IVideoDeviceCollection_setDevice" toc="no"/>
-                <topicref keyref="IVideoDeviceCollection_release" toc="no"/>
-            </topicref>
-        </topichead>
+        <topicref keyref="IChannel" chunk="to-content">
+            <topicref keyref="IChannel_release" toc="no"/>
+            <topicref keyref="IChannel_setChannelEventHandler" toc="no"/>
+            <topicref keyref="IChannel_joinChannel" toc="no"/>
+            <topicref keyref="IChannel_joinChannelWithUserAccount" toc="no"/>
+            <topicref keyref="IChannel_leaveChannel" toc="no"/>
+            <topicref keyref="IChannel_getConnectionState" toc="no"/>
+            <topicref keyref="IChannel_setClientRole1" toc="no"/>
+            <topicref keyref="IChannel_setClientRole2" toc="no"/>
+            <topicref keyref="IChannel_publish" toc="no"/>
+            <topicref keyref="IChannel_unpublish" toc="no"/>
+            <topicref keyref="IChannel_channelId" toc="no"/>
+            <topicref keyref="IChannel_renewToken" toc="no"/>
+            <topicref keyref="IChannel_setEncryptionSecret" toc="no"/>
+            <topicref keyref="IChannel_setEncryptionMode" toc="no"/>
+            <topicref keyref="IChannel_enableEncryption" toc="no"/>
+            <topicref keyref="IChannel_registerPacketObserver" toc="no"/>
+            <topicref keyref="IChannel_registerMediaMetadataObserver" toc="no"/>
+            <topicref keyref="IChannel_setRemoteUserPriority" toc="no"/>
+            <topicref keyref="IChannel_setRemoteVoicePosition" toc="no"/>
+            <topicref keyref="IChannel_setRemoteRenderMode" toc="no"/>
+            <topicref keyref="IChannel_setDefaultMuteAllRemoteAudioStreams" toc="no"/>
+            <topicref keyref="IChannel_setDefaultMuteAllRemoteVideoStreams" toc="no"/>
+            <topicref keyref="IChannel_muteAllRemoteAudioStreams" toc="no"/>
+            <topicref keyref="IChannel_adjustUserPlaybackSignalVolume" toc="no"/>
+            <topicref keyref="IChannel_muteRemoteAudioStream" toc="no"/>
+            <topicref keyref="IChannel_muteAllRemoteVideoStreams" toc="no"/>
+            <topicref keyref="IChannel_muteRemoteVideoStream" toc="no"/>
+            <topicref keyref="IChannel_setRemoteVideoStreamType" toc="no"/>
+            <topicref keyref="IChannel_setRemoteDefaultVideoStreamType" toc="no"/>
+            <topicref keyref="IChannel_createDataStream1" toc="no"/>
+            <topicref keyref="IChannel_createDataStream2" toc="no"/>
+            <topicref keyref="IChannel_sendStreamMessage" toc="no"/>
+            <topicref keyref="IChannel_addPublishStreamUrl" toc="no"/>
+            <topicref keyref="IChannel_removePublishStreamUrl" toc="no"/>
+            <topicref keyref="IChannel_setLiveTranscoding" toc="no"/>
+            <topicref keyref="IChannel_addInjectStreamUrl" toc="no"/>
+            <topicref keyref="IChannel_removeInjectStreamUrl" toc="no"/>
+            <topicref keyref="IChannel_startChannelMediaRelay" toc="no"/>
+            <topicref keyref="IChannel_updateChannelMediaRelay" toc="no"/>
+            <topicref keyref="IChannel_stopChannelMediaRelay" toc="no"/>
+            <topicref keyref="IChannel_getCallId" toc="no"/>
+        </topicref>
+        <topicref keyref="IChannelEventHandler" chunk="to-content">
+            <topicref keyref="IChannel_onChannelWarning" toc="no"/>
+            <topicref keyref="IChannel_onChannelError" toc="no"/>
+            <topicref keyref="IChannel_onJoinChannelSuccess" toc="no"/>
+            <topicref keyref="IChannel_onRejoinChannelSuccess" toc="no"/>
+            <topicref keyref="IChannel_onLeaveChannel" toc="no"/>
+            <topicref keyref="IChannel_onClientRoleChanged" toc="no"/>
+            <topicref keyref="IChannel_onUserJoined" toc="no"/>
+            <topicref keyref="IChannel_onUserOffline" toc="no"/>
+            <topicref keyref="IChannel_onConnectionLost" toc="no"/>
+            <topicref keyref="IChannel_onRequestToken" toc="no"/>
+            <topicref keyref="IChannel_onTokenPrivilegeWillExpire" toc="no"/>
+            <topicref keyref="IChannel_onRtcStats" toc="no"/>
+            <topicref keyref="IChannel_onNetworkQuality" toc="no"/>
+            <topicref keyref="IChannel_onRemoteVideoStats" toc="no"/>
+            <topicref keyref="IChannel_onRemoteAudioStats" toc="no"/>
+            <topicref keyref="IChannel_onRemoteAudioStateChanged" toc="no"/>
+            <topicref keyref="IChannel_onAudioPublishStateChanged" toc="no"/>
+            <topicref keyref="IChannel_onVideoPublishStateChanged" toc="no"/>
+            <topicref keyref="IChannel_onAudioSubscribeStateChanged" toc="no"/>
+            <topicref keyref="IChannel_onVideoSubscribeStateChanged" toc="no"/>
+            <topicref keyref="IChannel_onActiveSpeaker" toc="no"/>
+            <topicref keyref="IChannel_onVideoSizeChanged" toc="no"/>
+            <topicref keyref="IChannel_onRemoteVideoStateChanged" toc="no"/>
+            <topicref keyref="IChannel_onStreamMessage" toc="no"/>
+            <topicref keyref="IChannel_onStreamMessageError" toc="no"/>
+            <topicref keyref="IChannel_onChannelMediaRelayStateChanged" toc="no"/>
+            <topicref keyref="IChannel_onChannelMediaRelayEvent" toc="no"/>
+            <topicref keyref="IChannel_onRtmpStreamingStateChanged" toc="no"/>
+            <topicref keyref="IChannel_onRtmpStreamingEvent" toc="no"/>
+            <topicref keyref="IChannel_onTranscodingUpdated" toc="no"/>
+            <topicref keyref="IChannel_onStreamInjectedStatus" toc="no"/>
+            <topicref keyref="IChannel_onLocalPublishFallbackToAudioOnly" toc="no"/>
+            <topicref keyref="IChannel_onRemoteSubscribeFallbackToAudioOnly" toc="no"/>
+            <topicref keyref="IChannel_onConnectionStateChanged" toc="no"/>
+        </topicref>
+        <topicref keyref="IAudioDeviceManager" chunk="to-content">
+            <topicref keyref="enumeratePlaybackDevices" toc="no"/>
+            <topicref keyref="enumerateRecordingDevices" toc="no"/>
+            <topicref keyref="setPlaybackDevice" toc="no"/>
+            <topicref keyref="setRecordingDevice" toc="no"/>
+            <topicref keyref="startPlaybackDeviceTest" toc="no"/>
+            <topicref keyref="stopPlaybackDeviceTest" toc="no"/>
+            <topicref keyref="setPlaybackDeviceVolume" toc="no"/>
+            <topicref keyref="getPlaybackDeviceVolume" toc="no"/>
+            <topicref keyref="setRecordingDeviceVolume" toc="no"/>
+            <topicref keyref="getRecordingDeviceVolume" toc="no"/>
+            <topicref keyref="setPlaybackDeviceMute" toc="no"/>
+            <topicref keyref="getPlaybackDeviceMute" toc="no"/>
+            <topicref keyref="setRecordingDeviceMute" toc="no"/>
+            <topicref keyref="getRecordingDeviceMute" toc="no"/>
+            <topicref keyref="startRecordingDeviceTest" toc="no"/>
+            <topicref keyref="stopRecordingDeviceTest" toc="no"/>
+            <topicref keyref="getPlaybackDevice" toc="no"/>
+            <topicref keyref="getPlaybackDeviceInfo" toc="no"/>
+            <topicref keyref="getRecordingDevice" toc="no"/>
+            <topicref keyref="getRecordingDeviceInfo" toc="no"/>
+            <topicref keyref="startAudioDeviceLoopbackTest" toc="no"/>
+            <topicref keyref="stopAudioDeviceLoopbackTest" toc="no"/>
+            <topicref keyref="IAudioDeviceManager_release" toc="no"/>
+        </topicref>
+        <topicref keyref="IAudioDeviceCollection" chunk="to-content">
+            <topicref keyref="IAudioDeviceCollection_getCount" toc="no"/>
+            <topicref keyref="IAudioDeviceCollection_getDevice" toc="no"/>
+            <topicref keyref="IAudioDeviceCollection_setDevice" toc="no"/>
+            <topicref keyref="setApplicationVolume" toc="no"/>
+            <topicref keyref="getApplicationVolume" toc="no"/>
+            <topicref keyref="setApplicationMute" toc="no"/>
+            <topicref keyref="isApplicationMute" toc="no"/>
+            <topicref keyref="IAudioDeviceCollection_release" toc="no"/>
+        </topicref>
+        <topicref keyref="IVideoDeviceManager" chunk="to-content">
+            <topicref keyref="enumerateVideoDevices" toc="no"/>
+            <topicref keyref="startDeviceTest" toc="no"/>
+            <topicref keyref="stopDeviceTest" toc="no"/>
+            <topicref keyref="IVideoDeviceManager_setDevice" toc="no"/>
+            <topicref keyref="IVideoDeviceManager_getDevice" toc="no"/>
+            <topicref keyref="IVideoDeviceManager_release" toc="no"/>
+        </topicref>
+        <topicref keyref="IVideoDeviceCollection" chunk="to-content">
+            <topicref keyref="IVideoDeviceCollection_getCount" toc="no"/>
+            <topicref keyref="IVideoDeviceCollection_getDevice" toc="no"/>
+            <topicref keyref="IVideoDeviceCollection_setDevice" toc="no"/>
+            <topicref keyref="IVideoDeviceCollection_release" toc="no"/>
+        </topicref>
+        <topicref keyref="IMediaEngine" chunk="to-content">
+            <topicref keyref="registerAudioFrameObserver" toc="no"/>
+            <topicref keyref="registerVideoFrameObserver" toc="no"/>
+            <topicref keyref="pushAudioFrame1" toc="no"/>
+            <topicref keyref="pushAudioFrame2" toc="no"/>
+            <topicref keyref="pullAudioFrame" toc="no"/>
+            <topicref keyref="setExternalVideoSource" toc="no"/>
+            <topicref keyref="pushVideoFrame" toc="no"/>
+        </topicref>
+        <topicref keyref="IVideoSource" chunk="to-content">
+            <topicref keyref="onInitialize" toc="no"/>
+            <topicref keyref="onDispose" toc="no"/>
+            <topicref keyref="onStart" toc="no"/>
+            <topicref keyref="onStop" toc="no"/>
+            <topicref keyref="getBufferType" toc="no"/>
+            <topicref keyref="getVideoCaptureType" toc="no"/>
+            <topicref keyref="getVideoContentHint" toc="no"/>
+        </topicref>
+        <topicref keyref="IVideoFrameConsumer" chunk="to-content">
+            <topicref keyref="consumeRawVideoFrame" toc="no"/>
+        </topicref>
+        <topicref keyref="IAudioFrameObserver" chunk="to-content">
+            <topicref keyref="AudioFrame" toc="no"/>
+            <topicref keyref="AUDIO_FRAME_TYPE" toc="no"/>
+            <topicref keyref="onRecordAudioFrame" toc="no"/>
+            <topicref keyref="onPlaybackAudioFrame" toc="no"/>
+            <topicref keyref="onPlaybackAudioFrameBeforeMixing" toc="no"/>
+            <topicref keyref="onMixedAudioFrame" toc="no"/>
+            <topicref keyref="IAudioFrameObserver_isMultipleChannelFrameWanted" toc="no"/>
+            <topicref keyref="onPlaybackAudioFrameBeforeMixingEx" toc="no"/>
+        </topicref>
+        <topicref keyref="IPacketObserver" chunk="to-content">
+            <topicref keyref="Packet" toc="no"/>
+            <topicref keyref="onReceiveAudioPacket" toc="no"/>
+            <topicref keyref="onReceiveVideoPacket" toc="no"/>
+            <topicref keyref="onSendAudioPacket" toc="no"/>
+            <topicref keyref="onSendVideoPacket" toc="no"/>
+        </topicref>
+        <topicref keyref="IMetadataObserver" chunk="to-content">
+            <topicref keyref="Metadata" toc="no"/>
+            <topicref keyref="METADATA_TYPE" toc="no"/>
+            <topicref keyref="getMaxMetadataSize" toc="no"/>
+            <topicref keyref="onReadyToSendMetadata" toc="no"/>
+            <topicref keyref="onMetadataReceived" toc="no"/>
+        </topicref>
+        <topicref keyref="IVideoFrameObserver" chunk="to-content">
+            <topicref keyref="VideoFrame" toc="no"/>
+            <topicref keyref="VIDEO_FRAME_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_OBSERVER_POSITION" toc="no"/>
+            <topicref keyref="onCaptureVideoFrame" toc="no"/>
+            <topicref keyref="onPreEncodeVideoFrame" toc="no"/>
+            <topicref keyref="onRenderVideoFrame" toc="no"/>
+            <topicref keyref="getVideoFormatPreference" toc="no"/>
+            <topicref keyref="getRotationApplied" toc="no"/>
+            <topicref keyref="getMirrorApplied" toc="no"/>
+            <topicref keyref="getSmoothRenderingEnabled" toc="no"/>
+            <topicref keyref="getObservedFramePosition" toc="no"/>
+            <topicref keyref="IVideoFrameObserver_isMultipleChannelFrameWanted" toc="no"/>
+            <topicref keyref="onRenderVideoFrameEx" toc="no"/>
+        </topicref>
         <topicref href="API/rtc_api_data_type.dita" chunk="to-content">
             <topicref keyref="AREA_CODE" toc="no"/>
             <topicref keyref="AUDIENCE_LATENCY_LEVEL_TYPE" toc="no"/>
@@ -566,6 +556,6 @@
             <topicref keyref="VideoDimensions" toc="no"/>
             <topicref keyref="WatermarkOptions" toc="no"/>
         </topicref>
-        <topicref href="API/error_rtc.md" format="markdown"/>
+        <topicref href="API/error_rtc.md" format="mdita"/>
     </topichead>
 </map>
