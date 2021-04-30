@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ichannel_publish">
     <title><ph keyref="IChannel_publish"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Publish local audio and video streams to this channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Publish local audio and video streams to the channel.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,11 +16,11 @@
         </section>
         <section id="detailed_desc">
    
-   <p>The call of this method must meet the following requirements, otherwise the SDK will return -5(ERR_REFUSED):<ul>
-  <li>This method only supports publishing audio and video streams to the channel corresponding to the current<xref keyref="IChannel"/> class.</li>
-  <li>In the `LIVE_BROADCASTING` profile, only a host can call this method. You can call the methods under this<apiname keyref="IChannel"/> class<apiname
- keyref="IChannel_setClientRole1"/> to set user roles.</li>
-  <li>The SDK only supports users to publish one audio and video stream on one channel at the same time. For details, please refer to the advanced function &quot;Multi-channel Management&quot;.</li>
+   <p>The call of this method must meet the following requirements, otherwise the SDK returns -5(ERR_REFUSED):<ul>
+  <li>This method only supports publishing audio and video streams to the channel corresponding to the current <xref keyref="IChannel"/> object.</li>
+  <li>In the interactive live streaming channel, only a host can call this method. To switch the client role, call <apiname
+ keyref="IChannel_setClientRole1"/> of the current <apiname keyref="IChannel"/> object.</li>
+  <li>You can publish a stream to only one channel at a time. For details on joining multiple channels, see the advanced guide Join Multiple Channels.</li>
        </ul></p>
         </section>
         <section id="return_values">
