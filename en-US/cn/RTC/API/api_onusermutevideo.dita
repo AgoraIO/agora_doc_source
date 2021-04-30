@@ -19,15 +19,15 @@
    <dl outputclass="deprecated">
        <dlentry >
   <dt>Deprecated:</dt>
-  <dd>This callback is deprecated. You can also use<xref keyref="onRemoteVideoStateChanged"/> callbacks:<ul>
-      <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) and<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5).</li>
-      <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) and<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6).</li>
+  <dd>This callback is deprecated. You can also use the <xref keyref="onRemoteVideoStateChanged"/> callback with the following parameters:<ul>
+      <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5).</li>
+      <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6).</li>
   </ul>
   </dd>
        </dlentry>
    </dl>
-   <p>This callback is triggered by the remote user<xref keyref="muteLocalVideoStream"/> calling the method to turn off or turn on video sending.</p>
-   <note outputclass="note">@note This callback does not work properly when the number of users (in the `COMMUNICATION` profile) or hosts (in the `LIVE_BROADCASTING` profile) in the channel exceeds 17.</note>
+   <p>The SDK triggers this callback when the remote user stops or resumes sending the video stream by calling the <xref keyref="muteLocalVideoStream"/> method.</p>
+   <note outputclass="note">This callback does not work properly when the number of users (in the COMMUNICATION profile) or hosts (in the LIVE_BROADCASTING profile) in the channel exceeds 17.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
@@ -37,9 +37,9 @@
        </plentry>
        <plentry>
   <pt>muted</pt>
-  <pd>true: Paused.<ul>
- <li><ph keyref="true"/>true: Paused.</li>
- <li><ph keyref="false"/>false: Resumed.</li>
+  <pd>Whether the remote user&apos;s video stream playback is paused/resumed:<ul>
+ <li><ph keyref="true"/>: Paused.</li>
+ <li><ph keyref="false"/>: Resumed.</li>
       </ul>
   </pd>
        </plentry>
