@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onuseroffline">
     <title><ph keyref="onUserOffline"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (`COMMUNICATION`)/ host (`LIVE_BROADCASTING`) leaves the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (COMMUNICATION)/ host (LIVE_BROADCASTING) leaves the channel.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,9 +16,9 @@
         </section>
         <section id="detailed_desc">
    
-   <p>It prompts that a remote user/host has left the channel (or dropped). There are two reasons for the user to leave the channel, namely, normal leaving and timeout drop:<ul>
-  <li>Leave the channel: When the user/host leaves the channel, the user/host sends a goodbye message. When the message is received, the SDK assumes that the user/host leaves the channel.</li>
-  <li>Drop offline: When no data packet of the user or host is received for a certain period of time, the SDK assumes that the user/host drops offline. A poor network connection may cause a false positive. Unreliable network connections may lead to false detections, so we recommend using the Agora RTM SDK for more reliable offline detection.</li>
+   <p>It prompts that a remote user/host has left the channel (or dropped).A There are two reasons for users to become offline:<ul>
+  <li>Leave the channel: When the user/host leaves the channel, the user/host sends a goodbye message. When this message is received, the SDK determines that the user/host leaves the channel.</li>
+  <li>Drop offline: When no data packet of the user or host is received for a certain period of time (20 seconds for the communication profile, and more for the live broadcast profile), the SDK assumes that the user/host drops offline. A poor network connection may lead to false detections, so we recommend using the Agora RTM SDK for more reliable offline detection.</li>
        </ul>
    </p>
         </section>
@@ -26,11 +26,11 @@
    <parml>
        <plentry id="uid">
   <pt>uid</pt>
-  <pd>User ID of the user displaying the video in the CDN live.</pd>
+  <pd>The ID of the user who leaves the channel or goes offline.</pd>
        </plentry>
        <plentry id="reason">
   <pt>reason</pt>
-  <pd>Reporting the reason why a remote user goes offline<xref keyref="USER_OFFLINE_REASON_TYPE"/></pd>
+  <pd>Reason why the user goes offline: <xref keyref="USER_OFFLINE_REASON_TYPE"/>.</pd>
        </plentry>
    </parml>
         </section></refbody>
