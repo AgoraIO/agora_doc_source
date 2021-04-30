@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onstreampublished">
     <title><ph keyref="onStreamPublished"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the publisher&apos;s transcoding is updated.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when an RTMP or RTMPS stream is published.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -22,33 +22,33 @@
   <dd>v3.0.0</dd>
        </dlentry>
    </dl>
-   <p>This method is deprecated, please use instead<xref keyref="onRtmpStreamingStateChanged"/>.</p>
-   <p>Reports the result of calling the \ref IRtcEngine::addPublishStreamUrl &quot;addPublishStreamUrl&quot; method. (CDN live only.)</p>
+   <p>This method is deprecated, please use <xref keyref="onRtmpStreamingStateChanged"/> instead.</p>
+   <p>Reports the result of publishing an RTMP or RTMPS stream.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>url</pt>
-  <pd>@param url The CDN streaming URL.</pd>
+  <pd>The CDN streaming URL.</pd>
        </plentry>
        <plentry>
-  <pt>3: ERROR.</pt>
+  <pt>error</pt>
   <pd>
-      <p>@param <codeph>error Error code</codeph>: #ERROR_CODE_TYPE. Main errors include:<ul>
-     <li>#<codeph>ERR_OK</codeph> (0): The publishing succeeds.</li>
-     <li>#<codeph>ERR_FAILED</codeph> (1): The publishing fails.</li>
-     <li>#ERR_INVALID_ARGUMENT (-2): <codeph>Invalid argument</codeph> used. If you do<xref
-    keyref="addPublishStreamUrl"/> not call configuration before calling<xref
-    keyref="setLiveTranscoding"/><xref
-    keyref="LiveTranscoding"/>, the SDK will call back <codeph>ERR_INVALID_ARGUMENT</codeph>.</li>
-     <li>#<codeph>ERR_TIMEDOUT</codeph> (-10): The publishing<codeph> timed</codeph> out.</li>
-     <li>#ERR_ALREADY_IN_USE (-19): The chosen URL address is already <codeph>in use</codeph> for CDN live streaming.</li>
-     <li>#ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH (130): You cannot <codeph>publish an encrypted stream</codeph>.</li>
-          <li><codeph>ERR_PUBLISH_STREAM_CDN_ERROR</codeph> (151): CDN related<codeph> error</codeph>. Please call the<xref keyref="removePublishStreamUrl"/> method to delete the original streaming address, and then call<xref keyref="addPublishStreamUrl"/> the method to push to the new address again.</li>
-          <li><codeph>ERR_PUBLISH_STREAM_NUM_REACH_LIMIT</codeph> (152): The number of push addresses of a single anchor reaches the upper limit of 10. Delete the unnecessary URLs before adding new ones.</li>
-          <li><codeph>ERR_PUBLISH_STREAM_NOT_AUTHORIZED</codeph> (153): Operate streams that are<codeph> not</codeph> owned by the host, such as updating the<codeph> stream</codeph> parameters of other hosts and stopping other hosts’ streams. Please check your app logic.</li>
-     <li><codeph>`LIVE_STREAMING_INTERNAL_SERVER_ERROR</codeph>`: An error occurs in Agora&apos;s streaming server. Please call to push the<xref keyref="removePublishStreamUrl"/> stream again.</li>
-     <li><codeph>ERR_PUBLISH_STREAM_FORMAT_NOT_SUPPORTED</codeph> (156): The<codeph> format</codeph> of the push<codeph> stream</codeph> address is incorrect. Please check the format.</li>
+      <p><codeph>ERROR_CODE_TYPE</codeph>.<ul>
+     <li><codeph>ERR_OK</codeph> (0): The publishing succeeds.</li>
+     <li><codeph>ERR_FAILED</codeph> (1): The publishing fails.</li>
+     <li><codeph>ERR_INVALID_ARGUMENT</codeph> (-2): Invalid argument used. If you do not call <xref
+    keyref="setLiveTranscoding"/> to configure <xref
+    keyref="LiveTranscoding"/> before calling <xref
+    keyref="addPublishStreamUrl"/>, the SDK reports<codeph> ERR_INVALID_ARGUMENT</codeph>.</li>
+     <li><codeph>ERR_TIMEDOUT</codeph> (-10): The publishing timed out.</li>
+     <li><codeph>ERR_ALREADY_IN_USE</codeph> (-19): The chosen URL address is alreadyin usefor CDN live streaming.</li>
+     <li><codeph>ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH</codeph> (130): You cannot publish an encrypted stream.</li>
+          <li><codeph>ERR_PUBLISH_STREAM_CDN_ERROR</codeph> (151): CDN related error. Remove the original URL address and add a new one by calling the <xref keyref="removePublishStreamUrl"/> and <xref keyref="addPublishStreamUrl"/> methods.</li>
+          <li><codeph>ERR_PUBLISH_STREAM_NUM_REACH_LIMIT</codeph> (152): The host manipulates more than 10 URLs. Delete the unnecessary URLs before adding new ones.</li>
+          <li><codeph>ERR_PUBLISH_STREAM_NOT_AUTHORIZED</codeph> (153): The host manipulates other hosts&apos; URLs. Please check your app logic.</li>
+     <li><codeph>ERR_PUBLISH_STREAM_INTERNAL_SERVER_ERROR</codeph>: An error occurs in Agora&apos;s streaming server. Call the <xref keyref="removePublishStreamUrl"/> method to publish the streaming again.</li>
+     <li><codeph>ERR_PUBLISH_STREAM_FORMAT_NOT_SUPPORTED</codeph> (156): The format of the CDN streaming URL is not supported. Please check the format.</li>
  </ul>
       </p>
   </pd>
