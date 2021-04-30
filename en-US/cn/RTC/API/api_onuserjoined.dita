@@ -2,22 +2,22 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onuserjoined">
     <title><ph keyref="onUserJoined"/></title>
-        <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (`COMMUNICATION`)/ host (`LIVE_BROADCASTING`) joins the channel.</ph></shortdesc>
+        <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (COMMUNICATION)/ host (LIVE_BROADCASTING) joins the channel.</ph></shortdesc>
     <refbody>
    <section id="prototype">
   <p conref="../conref/conref_rtc_api.dita#apidef/onUserJoined"/>
    </section>
    <section id="detailed_desc">
   <ul id="detailed_desc_scene">
-   <li>`COMMUNICATION` profile: This callback notifies the application that another user joins the channel. If other users are already in the channel, the SDK also reports to the application on the existing users.</li>
-   <li>In a live-broadcast channel, this callback indicates that a host joins the channel. If other hosts are already in the channel, the SDK also reports to the application on the existing hosts. Agora recommends limiting the number of hosts to 17.</li>
+   <li>In a communication channel, this callback notifies the application that another user joins the channel. If other users are already in the channel, the SDK also reports to the application on the existing users.</li>
+   <li>In a live streaming channel, this callback notifies the app when the host joins the channel. If other hosts are already in the channel, the SDK also reports to the application on the existing hosts. Agora recommends limiting the number of hosts to 17.</li>
         </ul>
   <p>The SDK triggers this callback under one of the following circumstances:</p>
   <ul>
-   <li>Occurs when a remote user or host<apiname keyref="joinChannel1"/> joins the channel.</li>
-   <li>Called after the remote user joins the channel<apiname keyref="setClientRole1"/> to change the user role as the host.</li>
+   <li>A remote user/host joins the channel by calling the <apiname keyref="joinChannel1"/> method.</li>
+   <li>A remote user switches the user role to the host by calling the <apiname keyref="setClientRole1"/> method after joining the channel.</li>
    <li>A remote user/host rejoins the channel after a network interruption.</li>
-   <li>The host<apiname keyref="addInjectStreamUrl"/> successfully entered the online media stream by calling the method.</li>
+   <li>The host injects an online media stream into the channel by calling the <apiname keyref="addInjectStreamUrl"/> method.</li>
         </ul>
       <note outputclass="note" id="note">
      <p>`LIVE_BROADCASTING` profile:</p>
@@ -33,11 +33,11 @@
   <parml>
  <plentry id="uid">
 <pt>uid</pt>
-<pd>@param uid ID of the user or host who joins the channel.</pd>
+<pd>The ID of the user or host who joins the channel.</pd>
  </plentry>
  <plentry>
 <pt>elapsed</pt>
-<pd>The delay (in milliseconds<apiname keyref="joinChannel1"/>) from when the local user is called to when the callback is triggered.</pd>
+<pd>Time delay (ms) from the local user calling <apiname keyref="joinChannel1"/> until this callback is triggered.</pd>
  </plentry>
   </parml>
    </section>
