@@ -16,29 +16,29 @@
         </section>
         <section id="detailed_desc">
    
-   <p>After successfully registering the video observer, if you set<xref keyref="IVideoFrameObserver_isMultipleChannelFrameWanted"/> the return value of to<ph keyref="true"/>, the SDK will trigger the callback when the video data in each channel is captured and send the video data to you.</p>
-   <p>You can process the video data retrieved from this callback according to your scenario, and send the processed data back to the SDK using the `<parmname>videoFrame</parmname>` parameter in this callback.</p>
-   <note outputclass="note">@note This callback does not support sending RGBA video data back to the SDK.</note>
+   <p>After you successfully register the video frame observer, if you set the return value of <xref keyref="IVideoFrameObserver_isMultipleChannelFrameWanted"/> as <ph keyref="true"/>, the SDK triggers this callback each time it receives a video frame from any of the channel.</p>
+   <p>You can process the video data retrieved from this callback according to your scenario, and send the processed data back to the SDK using the <parmname>videoFrame</parmname> parameter in this callback.</p>
+   <note outputclass="note">This callback does not support sending RGBA video data back to the SDK.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt><ph keyref="channelID"/></pt>
-  <pd>The name of the channel where the video frame is located.</pd>
+  <pd>The channel ID of this video frame.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="uid"/></pt>
-  <pd>The ID of the user who sent the frame of video.</pd>
+  <pd>The ID of the user sending this video frame.</pd>
        </plentry>
        <plentry>
-  <pt>Video frame information.</pt>
+  <pt>videoFrame</pt>
   <pd><xref keyref="VideoFrame"/></pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
    <title>Returns</title>
-   <p>@return Whether to send this video frame to the SDK if post-processing fails:<ul id="ul_mg4_vsg_s4b">
+   <p>Whether to send this video frame to the SDK if post-processing fails:<ul id="ul_mg4_vsg_s4b">
   <li><ph keyref="true"/>: Send.</li>
   <li><ph keyref="false"/>: Do not send.</li>
        </ul></p>
