@@ -19,28 +19,28 @@
    <dl outputclass="deprecated">
        <dlentry>
   <dt>Deprecated:</dt>
-  <dd>Deprecated as of v2.4.1. This callback has been deprecated, please use the callback instead<xref keyref="onRemoteVideoStateChanged"/>:<ul>
- <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) and<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5).</li>
- <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) and<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6).</li>
+  <dd>Deprecated as of v2.9.0. This callback is deprecated, please use <xref keyref="onRemoteVideoStateChanged"/> instead:<ul>
+ <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5).</li>
+ <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6).</li>
       </ul>
   </dd>
        </dlentry>
    </dl>
-   <p>Occurs when a specific remote user enables/disables the video module. Once the video module is disabled, the remote user can only use a voice call. The remote user cannot send or receive any video from other users.</p>
-   <p>This callback is triggered by the remote user calling the<xref keyref="enableVideo"/> or<xref keyref="disableVideo"/> method to turn on or turn off the video module.</p>
+   <p>Occurs when a specific remote user enables/disables the video module. Once the video module is disabled, the user can only use a voice call. The user cannot send or receive any video from other users.</p>
+   <p>The SDK triggers this callback when a remote user enables or disables the video module by calling the <xref keyref="enableVideo"/> or <xref keyref="disableVideo"/> method.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>uid</pt>
-  <pd>User ID of the remote user sending the video streams.</pd>
+  <pd>The user ID of the remote user sending the video stream.</pd>
        </plentry>
        <plentry>
   <pt>enabled</pt>
   <pd>
       <ul>
- <li><ph keyref="true"/>true: Enable. The remote user can enter a video session. Once enabled, the user can make video calls or live broadcasts.</li>
- <li><ph keyref="false"/>false: Disable. Once the video module is disabled, the remote user can only use a voice call. The remote user cannot send or receive any video from other users.</li>
+ <li><ph keyref="true"/>: Enable. The remote user can enter a video session. Once enabled, the user can make video calls or live broadcasts.</li>
+ <li><ph keyref="false"/>: Disable. Once the video module is disabled, the remote user can only use a voice call. The remote user cannot send or receive any video from other users.</li>
       </ul>
   </pd>
        </plentry>
