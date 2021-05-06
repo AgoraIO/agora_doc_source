@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotevideostreamtype">
      <title><ph keyref="setRemoteVideoStreamType" /></title>
-     <shortdesc id="short"><ph id="shortdesc">Sets the stream type of the remote video.</ph></shortdesc>
+     <shortdesc id="short"><ph id="shortdesc">Sets the stream type of the remote video. </ph><ph id="shortdesc">Sets the stream type of the remote video.</ph></shortdesc>
      <prolog>
           <metadata>
                <keywords>
@@ -15,29 +15,29 @@
                <p conref="../conref/conref_rtc_api.dita#apidef/setRemoteVideoStreamType" />
           </section>
           <section id="detailed_desc">
-               <p id="desc1">In the case of limited network conditions, if the sender does not call <xref keyref="enableDualStreamMode" />(<ph keyref="false" />) to close the dual stream mode, the receiver can choose to receive a large stream or a small stream. Dual streams are a hybrid of a high-quality video stream and a low-quality video stream: - High-quality video stream: High bitrate, high resolution. - Low-quality video stream: Low bitrate, low resolution.</p>
-               <p id="desc2">By default, users receive the high-quality video stream. Call this method if you want to switch to the low-video stream. This method allows the app to adjust the corresponding video stream type based on the size of the video window to reduce the bandwidth and resources. The aspect ratio of the low-video stream is the same as the high-quality video stream. Once the resolution of the high-quality video stream is set, the system automatically sets the resolution, frame rate, and bitrate of the low-video stream.</p>
-               <p id="desc3">The execution result of calling this method will be<xref keyref="onApiCallExecuted" /> returned in.</p>
-               <note outputclass="note">You can call this method either before or after joining a channel. If both are called<apiname keyref="setRemoteVideoStreamType" /> and are called<xref keyref="setRemoteDefaultVideoStreamType" />, the SDK takes<apiname keyref="setRemoteVideoStreamType" /> the setting in.</note>
+               <p id="desc1">在网络条件受限的情况下，如果发送端没有调用 <xref keyref="enableDualStreamMode" />(<ph keyref="false" />) 关闭双流模式，接收端可以选择接收大流还是小流。 In the case of limited network conditions, if the sender does not call <xref keyref="enableDualStreamMode" />(<ph keyref="false" />) to close the dual stream mode, the receiver can choose to receive a large stream or a small stream. The high-quality video stream has a higher resolution and bitrate, and the low-quality video stream has a lower resolution and bitrate. Dual streams are a hybrid of a high-quality video stream and a low-quality video stream: - High-quality video stream: High bitrate, high resolution. - Low-quality video stream: Low bitrate, low resolution.</p>
+               <p id="desc2">By default, users receive the high-quality video stream. By default, users receive the high-quality video stream. Call this method if you want to switch to the low-video stream. Call this method if you want to switch to the low-video stream. This method allows the app to adjust the corresponding video stream type based on the size of the video window to reduce the bandwidth and resources. This method allows the app to adjust the corresponding video stream type based on the size of the video window to reduce the bandwidth and resources. The aspect ratio of the low-video stream is the same as the high-quality video stream. The aspect ratio of the low-video stream is the same as the high-quality video stream. Once the resolution of the high-quality video stream is set, the system automatically sets the resolution, frame rate, and bitrate of the low-video stream. Once the resolution of the high-quality video stream is set, the system automatically sets the resolution, frame rate, and bitrate of the low-video stream.</p>
+               <p id="desc3">The execution result of calling this method will be<xref keyref="onApiCallExecuted" /> returned in. The execution result of calling this method will be<xref keyref="onApiCallExecuted" /> returned in.</p>
+               <note type="attention">You can call this method either before or after joining a channel. You can call this method either before or after joining a channel. 如果既调用了 <apiname keyref="setRemoteVideoStreamType" /> ，也调用了 <xref keyref="setRemoteDefaultVideoStreamType" /> ，则 SDK 以 <apiname keyref="setRemoteVideoStreamType" /> 中的设置为准。 If both are called<apiname keyref="setRemoteVideoStreamType" /> and are called<xref keyref="setRemoteDefaultVideoStreamType" />, the SDK takes<apiname keyref="setRemoteVideoStreamType" /> the setting in.</note>
           </section>
           <section id="parameters">
-               <title>Parameter</title>
+               <title>Parameter Parameter</title>
                <parml>
                     <plentry>
-                         <pt>userId</pt>
-                         <pd>User ID</pd>
+                         <pt>userId userId</pt>
+                         <pd>User ID User ID</pd>
                     </plentry>
                     <plentry>
-                         <pt>The stream type (streamType):</pt>
-                         <pd>The video stream type:<xref keyref="REMOTE_VIDEO_STREAM_TYPE" /></pd>
+                         <pt>The stream type (streamType): The stream type (streamType):</pt>
+                         <pd>The video stream type: <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />The video stream type:<xref keyref="REMOTE_VIDEO_STREAM_TYPE" /></pd>
                     </plentry>
                </parml>
           </section>
           <section id="return_values">
-               <title>Returns</title>
+               <title>Returns Returns</title>
                <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
+                    <li>0: Success. 0: Success.</li>
+                    <li>&lt; 0: Failure. &lt; 0: Failure.</li>
                </ul>
           </section>
      </refbody>
