@@ -2,34 +2,34 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onuserjoined">
     <title><ph keyref="onUserJoined"/></title>
-        <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (COMMUNICATION)/ host (LIVE_BROADCASTING) joins the channel. </ph><ph id="shortdesc">Occurs when a remote user (COMMUNICATION)/ host (LIVE_BROADCASTING) joins the channel.</ph></shortdesc>
+        <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (COMMUNICATION)/ host (LIVE_BROADCASTING) joins the channel.</ph></shortdesc>
     <refbody>
    <section id="prototype">
   <p conref="../conref/conref_rtc_api.dita#apidef/onUserJoined"/>
    </section>
    <section id="detailed_desc">
   <ul id="detailed_desc_scene">
-   <li>Occurs when a remote user or host joins the channel. Occurs when a remote user or host joins the channel. The SDK also triggers this callback to report the existing hosts in the channel when a user joins the channel. The SDK also triggers this callback to report the existing hosts in the channel when a user joins the channel.</li>
-   <li>In a live-broadcast channel, this callback indicates that a host joins the channel. In a live-broadcast channel, this callback indicates that a host joins the channel. The SDK also triggers this callback to report the existing hosts in the channel when a user joins the channel. The SDK also triggers this callback to report the existing hosts in the channel when a user joins the channel. Agora recommends limiting the number of hosts to 17. Agora recommends limiting the number of hosts to 17.</li>
+   <li>Occurs when a remote user or host joins the channel. The SDK also triggers this callback to report the existing hosts in the channel when a user joins the channel.</li>
+   <li>In a live-broadcast channel, this callback indicates that a host joins the channel. The SDK also triggers this callback to report the existing hosts in the channel when a user joins the channel. Agora recommends limiting the number of hosts to 17.</li>
         </ul>
-  <p>The SDK triggers this callback under one of the following circumstances: The SDK triggers this callback under one of the following circumstances:</p>
+  <p>The SDK triggers this callback under one of the following circumstances:</p>
   <ul>
-   <li>A remote user/host<apiname keyref="joinChannel1"/> joins the channel by calling the method. A remote user/host joins the channel by calling the <apiname keyref="joinChannel1"/> method.</li>
-   <li>A remote user switches<apiname keyref="setClientRole1"/> the user role to the host by calling the method after joining the channel. A remote user switches the user role to the host by calling the <apiname keyref="setClientRole1"/> method after joining the channel.</li>
-   <li>A remote user/host rejoins the channel after a network interruption. A remote user/host rejoins the channel after a network interruption.</li>
-   <li>The host<apiname keyref="addInjectStreamUrl"/> injects an online media stream into the channel by calling the method. The host injects an online media stream into the channel by calling the <apiname keyref="addInjectStreamUrl"/> method.</li>
+   <li>A remote user/host<apiname keyref="joinChannel1"/> joins the channel by calling the method.</li>
+   <li>A remote user switches<apiname keyref="setClientRole1"/> the user role to the host by calling the method after joining the channel.</li>
+   <li>A remote user/host rejoins the channel after a network interruption.</li>
+   <li>The host<apiname keyref="addInjectStreamUrl"/> injects an online media stream into the channel by calling the method.</li>
         </ul>
    </section>
    <section id="parameters">
-  <title>Parameter Parameter</title>
+  <title>Parameter</title>
   <parml>
  <plentry id="uid">
-<pt>uid uid</pt>
-<pd>The ID of the user or host who joins the channel. The ID of the user or host who joins the channel.</pd>
+<pt>uid</pt>
+<pd>The ID of the user or host who joins the channel.</pd>
  </plentry>
  <plentry>
-<pt>elapsed elapsed</pt>
-<pd>Time delay (ms) from the local user calling <apiname keyref="joinChannel1"/> until this callback is triggered. Time delay (ms) from the local user calling <apiname keyref="joinChannel1"/> until this callback is triggered.</pd>
+<pt>elapsed</pt>
+<pd>Time delay (ms) from the local user calling <apiname keyref="joinChannel1"/> until this callback is triggered.</pd>
  </plentry>
   </parml>
    </section>
