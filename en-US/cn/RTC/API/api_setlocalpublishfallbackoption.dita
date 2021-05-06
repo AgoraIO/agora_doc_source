@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlocalpublishfallbackoption">
     <title><ph keyref="setLocalPublishFallbackOption"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the fallback option for the published video stream based on the network conditions. </ph><ph id="shortdesc">Sets the fallback option for the published video stream based on the network conditions.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the fallback option for the published video stream based on the network conditions.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,31 +16,31 @@
         </section>
         <section id="detailed_desc">
    
-   <p>Unstable network affects the audio and video quality in a video call or live interactive video streaming. Unstable network affects the audio and video quality in a video call or live interactive video streaming. If `option` is set as<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> #STREAM_FALLBACK_OPTION_AUDIO_ONLY<parmname></parmname> (2), the SDK will: Disable the upstream video but enable audio only when the network conditions deteriorate and cannot support both video and audio. If `option` is set as<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> #STREAM_FALLBACK_OPTION_AUDIO_ONLY<parmname></parmname> (2), the SDK will: Disable the upstream video but enable audio only when the network conditions deteriorate and cannot support both video and audio. The SDK monitors the network quality and restores the video stream when the network conditions improve. The SDK monitors the network quality and restores the video stream when the network conditions improve. When the local push stream is rolled back to an audio stream, or when the audio stream is restored to an audio and video stream, the SDK will trigger the callback that the locally published media stream has been rolled back to an audio stream<xref keyref="onLocalPublishFallbackToAudioOnly"/>. When the local push stream is rolled back to an audio stream, or when the audio stream is restored to an audio and video stream, the SDK will trigger the callback that the locally published media stream has been rolled back to an audio stream<xref keyref="onLocalPublishFallbackToAudioOnly"/>.</p>
+   <p>Unstable network affects the audio and video quality in a video call or live interactive video streaming. If `option` is set as<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> #STREAM_FALLBACK_OPTION_AUDIO_ONLY<parmname></parmname> (2), the SDK will: Disable the upstream video but enable audio only when the network conditions deteriorate and cannot support both video and audio. The SDK monitors the network quality and restores the video stream when the network conditions improve. When the local push stream is rolled back to an audio stream, or when the audio stream is restored to an audio and video stream, the SDK will trigger the callback that the locally published media stream has been rolled back to an audio stream<xref keyref="onLocalPublishFallbackToAudioOnly"/>.</p>
    <note type="attention">
        <ul>
-  <li>In the bypass streaming scenario, setting the local streaming fallback to<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> (2) may cause a delay in the time for the remote CDN user to hear the sound. In the bypass streaming scenario, setting the local streaming fallback to<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> (2) may cause a delay in the time for the remote CDN user to hear the sound. Therefore, Agora recommends not to enable this function in scenarios where there is a bypass push. Therefore, Agora recommends not to enable this function in scenarios where there is a bypass push.</li>
-  <li>Ensure that you call this method before joining a channel. Ensure that you call this method before joining a channel.</li>
+  <li>In the bypass streaming scenario, setting the local streaming fallback to<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> (2) may cause a delay in the time for the remote CDN user to hear the sound. Therefore, Agora recommends not to enable this function in scenarios where there is a bypass push.</li>
+  <li>Ensure that you call this method before joining a channel.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameter Parameter</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt>option option</pt>
-  <pd>Stream fallback options. Stream fallback options.<ul>
- <li><apiname keyref="STREAM_FALLBACK_OPTION_DISABLED"/> No fallback behavior for the local/remote video stream when the uplink/downlink network conditions are poor. The quality of the stream is not guaranteed. <apiname keyref="STREAM_FALLBACK_OPTION_DISABLED"/> No fallback behavior for the local/remote video stream when the uplink/downlink network conditions are poor. The quality of the stream is not guaranteed.</li>
- <li><apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> (2): Only the audio stream is released when the uplink network is weak <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> (2): Only the audio stream is released when the uplink network is weak</li>
+  <pt>option</pt>
+  <pd>Stream fallback options.<ul>
+ <li><apiname keyref="STREAM_FALLBACK_OPTION_DISABLED"/> No fallback behavior for the local/remote video stream when the uplink/downlink network conditions are poor. The quality of the stream is not guaranteed.</li>
+ <li><apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> (2): Only the audio stream is released when the uplink network is weak</li>
       </ul>
   </pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>Returns Returns</title>
+   <title>Returns</title>
    <ul>
-       <li>0: Success. 0: Success.</li>
-       <li>&lt; 0: Failure. &lt; 0: Failure.</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
