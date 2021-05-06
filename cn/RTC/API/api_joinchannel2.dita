@@ -15,18 +15,18 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/joinChannel2"/>
         </section>
         <section id="detailed_desc">
-   
    <dl outputclass="since">
        <dlentry>
   <dt>自从</dt>
   <dd>v3.3.0</dd>
        </dlentry>
    </dl>
-   <p>该方法让用户加入实时音视频互动频道。</p>
-   <p>在 App ID 一致的前提下，进入同一个频道的用户可以互相通话；多个用户加入同一个频道可以群聊。</p>
-   <p>成功调用该方法加入频道后，本地会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"></xref> 回调，分别报告
-       本地用户已成功加入频道，以及当前的网络连接状态；通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</p>
-   <p>在网络状况不理想的情况下，客户端可能会与 Agora 的服务器失去连接；SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</p>
+            <p id="desc1">该方法让用户加入实时音视频互动频道。在 App ID 一致的前提下，进入同一个频道的用户可以互相通话；多个用户加入同一个频道可以群聊。</p>
+            <p id="desc2">成功调用该方法加入频道后会触发以下回调：<ul>
+                <li>本地会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
+                <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined"/> 回调。</li>
+            </ul></p>
+            <p id="desc3">在网络状况不理想的情况下，客户端可能会与 Agora 服务器失去连接；SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess"/> 回调。</p>
    <note type="attention">相比 <xref keyref="joinChannel1"/>[1/2]，该方法加了 <parmname>options</parmname> 参数，用于配置用户加入频道时是否自动订阅频道内所有远端音视频流。默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并影响计费。
       如果想取消订阅，可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname>mute</apiname> 方法实现。
    </note>
