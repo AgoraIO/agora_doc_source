@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onaudiovolumeindication">
     <title><ph keyref="onAudioVolumeIndication"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the volume information of users. </ph><ph id="shortdesc">Reports the volume information of users.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the volume information of users.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,35 +16,35 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This callback is disabled by default, and you can enable it<xref keyref="enableAudioVolumeIndication"/> through. This callback is disabled by default, and you can enable it<xref keyref="enableAudioVolumeIndication"/> through. After it is turned on, as long as there are streaming users in the channel, the SDK will trigger a callback at<apiname keyref="enableAudioVolumeIndication"/> the time interval set in<apiname keyref="onAudioVolumeIndication"/> after joining the channel. After it is turned on, as long as there are streaming users in the channel, the SDK will trigger a callback at<apiname keyref="enableAudioVolumeIndication"/> the time interval set in<apiname keyref="onAudioVolumeIndication"/> after joining the channel. The SDK triggers two independent<apiname keyref="onAudioVolumeIndication"/> `onAudioVolumeIndication` callbacks simultaneously, which separately report the volume information of the local user who sends a stream and the remote users (up to three) whose instantaneous volumes are the highest. The SDK triggers two independent<apiname keyref="onAudioVolumeIndication"/> `onAudioVolumeIndication` callbacks simultaneously, which separately report the volume information of the local user who sends a stream and the remote users (up to three) whose instantaneous volumes are the highest.</p>
-   <note type="attention">After this function is enabled, if a user mutes themselves (calls<xref keyref="muteLocalAudioStream"/> ), the SDK behavior will be affected as follows: After this function is enabled, if a user mutes themselves (calls<xref keyref="muteLocalAudioStream"/> ), the SDK behavior will be affected as follows:<ul>
-  <li>If the local user calls `muteLocalAudioStream`, the SDK stops triggering the local user&apos;s callback. If the local user calls `muteLocalAudioStream`, the SDK stops triggering the local user&apos;s callback.</li>
-  <li>20 seconds after a remote user whose volume is one of the three highest calls `muteLocalAudioStream`, the remote users&apos; callback excludes this remote user&apos;s information; 20 seconds after all remote users call `muteLocalAudioStream`, the SDK stops triggering the remote users&apos; callback. 20 seconds after a remote user whose volume is one of the three highest calls `muteLocalAudioStream`, the remote users&apos; callback excludes this remote user&apos;s information; 20 seconds after all remote users call `muteLocalAudioStream`, the SDK stops triggering the remote users&apos; callback.</li>
+   <p>This callback is disabled by default, and you can enable it<xref keyref="enableAudioVolumeIndication"/> through. After it is turned on, as long as there are streaming users in the channel, the SDK will trigger a callback at<apiname keyref="enableAudioVolumeIndication"/> the time interval set in<apiname keyref="onAudioVolumeIndication"/> after joining the channel. The SDK triggers two independent<apiname keyref="onAudioVolumeIndication"/> `onAudioVolumeIndication` callbacks simultaneously, which separately report the volume information of the local user who sends a stream and the remote users (up to three) whose instantaneous volumes are the highest.</p>
+   <note type="attention">After this function is enabled, if a user mutes themselves (calls<xref keyref="muteLocalAudioStream"/> ), the SDK behavior will be affected as follows:<ul>
+  <li>If the local user calls `muteLocalAudioStream`, the SDK stops triggering the local user&apos;s callback.</li>
+  <li>20 seconds after a remote user whose volume is one of the three highest calls `muteLocalAudioStream`, the remote users&apos; callback excludes this remote user&apos;s information; 20 seconds after all remote users call `muteLocalAudioStream`, the SDK stops triggering the remote users&apos; callback.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameter Parameter</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt>speakers speakers</pt>
-  <pd>The volume information of users<xref keyref="AudioVolumeInfo"/>. The volume information of users<xref keyref="AudioVolumeInfo"/>. An empty<parmname> speakers</parmname> array in the callback indicates that no remote user is in the channel or sending a stream at the moment. An empty<parmname> speakers</parmname> array in the callback indicates that no remote user is in the channel or sending a stream at the moment.</pd>
+  <pt>speakers</pt>
+  <pd>The volume information of users<xref keyref="AudioVolumeInfo"/>. An empty<parmname> speakers</parmname> array in the callback indicates that no remote user is in the channel or sending a stream at the moment.</pd>
        </plentry>
        <plentry props="windows">
-  <pt>@param speakerNumber Total number of users. @param speakerNumber Total number of users.</pt>
+  <pt>@param speakerNumber Total number of users.</pt>
   <pd>
-      <p>amount of users. amount of users.<ul>
-     <li>In the local user&apos;s callback, when the local user sends a stream, `<parmname>speakerNumber</parmname> = 1`. In the local user&apos;s callback, when the local user sends a stream, `<parmname>speakerNumber</parmname> = 1`.</li>
-     <li>In the remote users&apos; callback, the<parmname></parmname> value ranges between 0 and 3. In the remote users&apos; callback, the<parmname></parmname> value ranges between 0 and 3. If the number of remote users who send streams is greater than or equal to three, `<parmname>speakerNumber</parmname> = 3`. If the number of remote users who send streams is greater than or equal to three, `<parmname>speakerNumber</parmname> = 3`.</li>
+      <p>amount of users.<ul>
+     <li>In the local user&apos;s callback, when the local user sends a stream, `<parmname>speakerNumber</parmname> = 1`.</li>
+     <li>In the remote users&apos; callback, the<parmname></parmname> value ranges between 0 and 3. If the number of remote users who send streams is greater than or equal to three, `<parmname>speakerNumber</parmname> = 3`.</li>
  </ul>
       </p>
   </pd>
        </plentry>
        <plentry>
-  <pt>totalVolume totalVolume</pt>
+  <pt>totalVolume</pt>
   <pd>
-      <p>/The volume of the speaker. The value ranges between 0 (lowest volume) and 255 (highest volume). /The volume of the speaker. The value ranges between 0 (lowest volume) and 255 (highest volume).<ul>
-     <li>In the local user&apos;s callback, <parmname>totalVolume</parmname> is the volume of the local user who sends a stream. In the local user&apos;s callback, <parmname>totalVolume</parmname> is the volume of the local user who sends a stream.</li>
-     <li>In the remote users&apos; callback, <parmname>totalVolume</parmname> is the sum of the volume of all remote users (up to three) whose instantaneous volumes are the highest. In the remote users&apos; callback, <parmname>totalVolume</parmname> is the sum of the volume of all remote users (up to three) whose instantaneous volumes are the highest. In the local user&apos;s callback<xref keyref="startAudioMixing"/>, <parmname>totalVolume</parmname> is the volume of the local user who sends a stream. In the local user&apos;s callback<xref keyref="startAudioMixing"/>, <parmname>totalVolume</parmname> is the volume of the local user who sends a stream.</li>
+      <p>/The volume of the speaker. The value ranges between 0 (lowest volume) and 255 (highest volume).<ul>
+     <li>In the local user&apos;s callback, <parmname>totalVolume</parmname> is the volume of the local user who sends a stream.</li>
+     <li>In the remote users&apos; callback, <parmname>totalVolume</parmname> is the sum of the volume of all remote users (up to three) whose instantaneous volumes are the highest. In the local user&apos;s callback<xref keyref="startAudioMixing"/>, <parmname>totalVolume</parmname> is the volume of the local user who sends a stream.</li>
  </ul>
       </p>
   </pd>
