@@ -15,9 +15,8 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/IChannel_onRequestToken"/>
         </section>
         <section id="detailed_desc">
-   
-   <p>After<xref keyref="IChannel_joinChannel"/> a token is specified by calling the &quot;joinChannel&quot; method, if the SDK losses connection with the Agora server due to network issues, the token may expire after a certain period of time and a new token may be required to reconnect to the server.</p>
-   <p>Once you receive this callback, generate a new token on your app server, and call <ph keyref="IChannel_renewToken"/> to pass the new token to the SDK.</p>
+            <p>To prevent this from happening, the Agora SDKs have callbacks to remind the app to renew the token both before and after the token expires.</p>
+            <p>Once you receive this callback, generate a new token on your app server, and call to<xref keyref="IChannel_joinChannel"/> rejoin the channel.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
