@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onuserenablelocalvideo">
     <title><ph keyref="onUserEnableLocalVideo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a specified remote user enables/disables the video module.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a specific remote user enables/disables the video module. </ph><ph id="shortdesc">Occurs when a specific remote user enables/disables the video module.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,32 +16,30 @@
         </section>
         <section id="detailed_desc">
    
-   <dl outputclass="deprecated">
+   <dl outputclass="deprecated" props="hide">
        <dlentry>
-  <dt>Deprecated:</dt>
-  <dd>Deprecated as of v2.9.0. This callback is deprecated, please use <xref keyref="onRemoteVideoStateChanged"/> instead:<ul>
- <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5).</li>
- <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6).</li>
+  <dt>Deprecated: Deprecated:</dt>
+  <dd>Deprecated as of v2.9.0. Deprecated as of v2.9.0. This callback is deprecated, please use <xref keyref="onRemoteVideoStateChanged"/> instead: This callback is deprecated, please use <xref keyref="onRemoteVideoStateChanged"/> instead:<ul>
+ <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5). <apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5).</li>
+ <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6). <apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6).</li>
       </ul>
   </dd>
        </dlentry>
    </dl>
-   <p>Occurs when a specified remote user enables/disables the local video capturing function. Once the video module is disabled, the user can only use a voice call. The user cannot send or receive any video from other users.</p>
-   <p>The SDK triggers this callback when the remote user resumes or stops capturing the video stream by calling the <xref keyref="enableLocalVideo"/> method.</p>
+   <p>The SDK triggers this callback when the remote user resumes or stops capturing the video stream by calling the <xref keyref="enableLocalVideo"/> method. The SDK triggers this callback when the remote user resumes or stops capturing the video stream by calling the <xref keyref="enableLocalVideo"/> method.</p>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameter Parameter</title>
    <parml>
        <plentry>
-  <pt>uid</pt>
-  <pd>The user ID of the remote user sending the video stream.</pd>
+  <pt>uid uid</pt>
+  <pd>The user ID of the remote user sending the video stream. The user ID of the remote user sending the video stream.</pd>
        </plentry>
        <plentry>
-  <pt>enabled</pt>
-  <pd>
-      <ul>
- <li><ph keyref="true"/>: Enabled. Other users in the channel can see the video of this remote user.</li>
- <li><ph keyref="false"/>: Disabled. Other users in the channel can no longer receive the video stream from this remote user, while this remote user can still receive the video streams from other users.</li>
-      </ul>
+  <pt>enabled enabled</pt>
+  <pd><p>Occurs when a specific remote user enables/disables the video module. Occurs when a specific remote user enables/disables the video module.<ul>
+ <li><ph keyref="true"/>: Enabled. <ph keyref="true"/>: Enabled. Other users in the channel can see the video of this remote user. Other users in the channel can see the video of this remote user.</li>
+ <li><ph keyref="false"/>: Disabled. <ph keyref="false"/>: Disabled. Other users in the channel can no longer receive the video stream from this remote user, while this remote user can still receive the video streams from other users. Other users in the channel can no longer receive the video stream from this remote user, while this remote user can still receive the video streams from other users.</li>
+      </ul></p>
   </pd>
        </plentry>
    </parml>
