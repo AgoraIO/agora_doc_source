@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_joinchannel">
-    <title>[1/2]</title>
-    <shortdesc id="short">Allows a user to join a channel.</shortdesc>
+    <title><ph keyref="joinChannel1"/><ph>[1/2] </ph><ph keyref="joinChannel1"/><ph>[1/2]</ph></title>
+    <shortdesc id="short"><ph id="shortdesc">Allows a user to join a channel. </ph><ph id="shortdesc">Allows a user to join a channel.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,18 +16,13 @@
    <p conref="../conref/conref_rtc_api.dita#apidef/joinChannel1"/>
         </section>
         <section id="detailed_desc">
-   
-   <p>This method joins an Agora RTC channel.</p>
-   <p>Users with the same App ID in the same channel can talk to each other, and multiple users in the same channel can start a group chat.</p>
-   <p>A successful call of this method triggers the following callbacks:<ul id="ul_db2_2qs_3pb">
-                    <li>The local client: The and callbacks.</li>
-                    <li>The remote client: , if the user joining the channel is in the communication profile, or is a host in the live streaming profile.</li>
-                </ul></p>
-   <p>When the connection between the client and Agora&apos;s server is interrupted due to poor network conditions, the SDK tries reconnecting to the server. When the local client successfully rejoins the channel, the SDK triggers the callback on the local client.</p>
-   <note outputclass="note">Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the mute methods accordingly.</note>
+            <p conkeyref="joinChannel2/desc1"/>
+            <p conkeyref="joinChannel2/desc2"/>
+            <p conkeyref="joinChannel2/desc3"/>
+   <note type="attention">Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <apiname>mute</apiname> methods accordingly. If you do not want to subscribe to a specified stream or all remote streams, call the <apiname>mute</apiname> methods accordingly.</note>
         </section>
         <section id="parameters">
-   <title>Parameter</title>
+   <title>Parameter Parameter</title>
    <parml>
     <plentry conkeyref="joinChannel2/token">
         <pt/>
@@ -47,19 +42,6 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
-   <title>Returns</title>
-   <ul>
-       <li>0(ERR_OK): Success.</li>
-       <li>&lt; 0: Failure.<ul>
-      <li>-2 (ERR_INVALID_ARGUMENT): The parameter is invalid.</li>
-      <li>-3(ERR_NOT_READY): The SDK fails to be initialized. You can try re-initializing the SDK.</li>
-      <li>-5(ERR_REFUSED): The request is rejected. This may be caused by the following:<ul>
-     <li>You have created an object with the same channel name.</li>
- <li>You have joined and published a stream in an channel created by the object.</li></ul></li>
-  <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized before calling this method. Initialize the instance before calling this method.</li>
-  </ul></li>
-   </ul>
-        </section>
+        <section id="return_values" conkeyref="joinChannel2/return_values"/>
     </refbody>
 </reference>
