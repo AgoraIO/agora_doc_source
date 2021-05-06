@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startlastmileprobetest">
     <title><ph keyref="startLastmileProbeTest" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Starts the last-mile network probe test.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts the last-mile network probe test. </ph><ph id="shortdesc">Starts the last-mile network probe test.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,43 +17,43 @@
         <section id="detailed_desc">
             <dl outputclass="since">
                 <dlentry>
-                    <dt>Since</dt>
-                    <dd>v2.4.0</dd>
+                    <dt>Since Since</dt>
+                    <dd>v2.4.0 v2.4.0</dd>
                 </dlentry>
             </dl>
-            <p>This method starts the last-mile network probe test before joining a channel to get the uplink and downlink last mile network statistics, including the bandwidth, packet loss, jitter, and round-trip time (RTT).</p>
-            <p>Once this method is enabled, the SDK returns the following callbacks:<ul>
-                    <li><xref keyref="onLastmileQuality" />: The SDK triggers this callback within two seconds depending on the network conditions. This callback rates the network conditions and is more closely linked to the user experience.</li>
-                    <li><xref keyref="onLastmileProbeResult" />: The SDK triggers this callback within 30 seconds depending on the network conditions. This callback returns the real-time statistics of the network conditions and is more objective.</li>
+            <p>This method starts the last-mile network probe test before joining a channel to get the uplink and downlink last mile network statistics, including the bandwidth, packet loss, jitter, and round-trip time (RTT). This method starts the last-mile network probe test before joining a channel to get the uplink and downlink last mile network statistics, including the bandwidth, packet loss, jitter, and round-trip time (RTT).</p>
+            <p>Once this method is enabled, the SDK returns the following callbacks: Once this method is enabled, the SDK returns the following callbacks:<ul>
+                    <li><xref keyref="onLastmileQuality" />: The SDK triggers this callback within two seconds depending on the network conditions. <xref keyref="onLastmileQuality" />: The SDK triggers this callback within two seconds depending on the network conditions. This callback rates the network conditions and is more closely linked to the user experience. This callback rates the network conditions and is more closely linked to the user experience.</li>
+                    <li><xref keyref="onLastmileProbeResult" />: The SDK triggers this callback within 30 seconds depending on the network conditions. <xref keyref="onLastmileProbeResult" />: The SDK triggers this callback within 30 seconds depending on the network conditions. This callback returns the real-time statistics of the network conditions and is more objective. This callback returns the real-time statistics of the network conditions and is more objective.</li>
                 </ul>
             </p>
-            <p>This method applies to the following scenarios:<ul>
-                    <li>Before a user joins a channel, call this method to check the uplink network quality.</li>
-                    <li>In a live streaming channel, call this method to check the uplink network quality before an audience member switches to a host.</li>
+            <p>This method applies to the following scenarios: This method applies to the following scenarios:<ul>
+                    <li>Before a user joins a channel, call this method to check the uplink network quality. Before a user joins a channel, call this method to check the uplink network quality.</li>
+                    <li>In a live streaming channel, call this method to check the uplink network quality before an audience member switches to a host. In a live streaming channel, call this method to check the uplink network quality before an audience member switches to a host.</li>
                 </ul>
             </p>
-            <note outputclass="note">
+            <note type="attention">
                 <ul>
-                    <li>This method consumes extra network traffic and may affect communication quality. We do not recommend calling this method and <xref keyref="enableLastmileTest" /> at the same time.</li>
-                    <li>Do not call other methods before receiving the <apiname keyref="onLastmileQuality" /> and <apiname keyref="onLastmileProbeResult" /> callbacks. Otherwise, the callbacks may be interrupted.</li>
-                    <li>A host should not call this method after joining a channel (when in a call).</li>
+                    <li>This method consumes extra network traffic and may affect communication quality. We do not recommend calling this method and <xref keyref="enableLastmileTest" /> at the same time. This method consumes extra network traffic and may affect communication quality. We do not recommend calling this method and <xref keyref="enableLastmileTest" /> at the same time.</li>
+                    <li>Do not call other methods before receiving the <apiname keyref="onLastmileQuality" /> and <apiname keyref="onLastmileProbeResult" /> callbacks. Otherwise, the callbacks may be interrupted. Do not call other methods before receiving the <apiname keyref="onLastmileQuality" /> and <apiname keyref="onLastmileProbeResult" /> callbacks. Otherwise, the callbacks may be interrupted.</li>
+                    <li>A host should not call this method after joining a channel (when in a call). A host should not call this method after joining a channel (when in a call).</li>
                 </ul>
             </note>
         </section>
         <section id="parameters">
-            <title>Parameter</title>
+            <title>Parameter Parameter</title>
             <parml>
                 <plentry>
-                    <pt>config</pt>
-                    <pd>The configurations of the last-mile network probe test: <xref keyref="LastmileProbeConfig" />.</pd>
+                    <pt>config config</pt>
+                    <pd>The configurations of the last-mile network probe test: <xref keyref="LastmileProbeConfig" />. The configurations of the last-mile network probe test: <xref keyref="LastmileProbeConfig" />.</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
-            <title>Returns</title>
+            <title>Returns Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
+                <li>0: Success. 0: Success.</li>
+                <li>&lt; 0: Failure. &lt; 0: Failure.</li>
             </ul>
         </section>
     </refbody>
