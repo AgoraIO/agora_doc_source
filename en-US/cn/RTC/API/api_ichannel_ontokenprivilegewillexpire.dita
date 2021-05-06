@@ -16,7 +16,8 @@
         </section>
         <section id="detailed_desc">
    
-   <p>The user becomes offline if the token used<xref keyref="IChannel_joinChannel"/> in the \ref IRtcEngine::joinChannel &quot;joinChannel&quot; method expires. The SDK triggers this callback 30 seconds before the token expires to remind the application to get a new token. Upon receiving this callback, generate a new token on the server, and call <ph keyref="IChannel_renewToken"/> to pass the new token to the SDK.</p>
+   <p>To prevent this from happening, the Agora SDKs have callbacks to remind the app to renew the token both before and after the token expires. Upon receiving this callback, generate a new token on your server, and call to<ph
+                    keyref="IChannel_renewToken"/> pass the new token to the SDK.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
