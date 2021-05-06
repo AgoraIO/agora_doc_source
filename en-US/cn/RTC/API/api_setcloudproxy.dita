@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setcloudproxy">
     <title><ph keyref="setCloudProxy" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the Agora cloud proxy service.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the Agora cloud proxy service. </ph><ph id="shortdesc">Sets the Agora cloud proxy service.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,38 +17,38 @@
         <section id="detailed_desc">
             <dl outputclass="since">
                 <dlentry>
-                    <dt>Since</dt>
-                    <dd>3.3.0</dd>
+                    <dt>Since Since</dt>
+                    <dd>3.3.0 3.3.0</dd>
                 </dlentry>
             </dl>
-            <p>When the user&apos;s firewall restricts the IP address and port, refer to Use Cloud Proxy to add the specific IP addresses and ports to the firewall whitelist; then, call this method to enable the cloud proxy and set the cloud <parmname>proxyType</parmname> as <ph keyref="UDP_PROXY" />.</p>
-            <p>After successfully connecting to the cloud proxy, the SDK triggers the <xref keyref="onConnectionStateChanged" />(<ph keyref="CONNECTION_STATE_CONNECTING" />,<ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) callback.</p>
-            <p>To disable the cloud proxy that has been set, call <apiname>setCloudProxy</apiname>(NONE_PROXY).</p>
-            <p>To change the cloud proxy type that has been set, call <apiname>setCloudProxy</apiname>(NONE_PROXY) first, and then call <apiname>setCloudProxy</apiname> and pass the value that you expect in <parmname>proxyType</parmname>.</p>
-            <note outputclass="note">
+            <p>When the user&apos;s firewall restricts the IP address and port, refer to Use Cloud Proxy to add the specific IP addresses and ports to the firewall whitelist; then, call this method to enable the cloud proxy and set the cloud <parmname>proxyType</parmname> as <ph keyref="UDP_PROXY" />. When the user&apos;s firewall restricts the IP address and port, refer to Use Cloud Proxy to add the specific IP addresses and ports to the firewall whitelist; then, call this method to enable the cloud proxy and set the cloud <parmname>proxyType</parmname> as <ph keyref="UDP_PROXY" />.</p>
+            <p>After successfully connecting to the cloud proxy, the SDK triggers the<xref keyref="onConnectionStateChanged" /> (<ph keyref="CONNECTION_STATE_CONNECTING" />,<ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) callback. After successfully connecting to the cloud proxy, the SDK triggers the <xref keyref="onConnectionStateChanged" />(<ph keyref="CONNECTION_STATE_CONNECTING" />,<ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) callback.</p>
+            <p>To disable the cloud proxy that has been set, call <apiname>setCloudProxy</apiname>(NONE_PROXY). To disable the cloud proxy that has been set, call <apiname>setCloudProxy</apiname>(NONE_PROXY).</p>
+            <p>To change the cloud proxy type that has been set, call <apiname>setCloudProxy</apiname>(NONE_PROXY) first, and then call <apiname>setCloudProxy</apiname> and pass the value that you expect in <parmname>proxyType</parmname>. To change the cloud proxy type that has been set, call <apiname>setCloudProxy</apiname>(NONE_PROXY) first, and then call <apiname>setCloudProxy</apiname> and pass the value that you expect in <parmname>proxyType</parmname>.</p>
+            <note type="attention">
                 <ul>
-                    <li>Agora recommends that you call this method before joining the channel or after leaving the channel.</li>
-                    <li>When you use the cloud proxy for the UDP protocol, the services for pushing streams to CDN and co-hosting across channels are not available.</li>
+                    <li>Agora recommends that you call this method before joining the channel or after leaving the channel. Agora recommends that you call this method before joining the channel or after leaving the channel.</li>
+                    <li>When you use the cloud proxy for the UDP protocol, the services for pushing streams to CDN and co-hosting across channels are not available. When you use the cloud proxy for the UDP protocol, the services for pushing streams to CDN and co-hosting across channels are not available.</li>
                 </ul>
             </note>
         </section>
         <section id="parameters">
-            <title>Parameter</title>
+            <title>Parameter Parameter</title>
             <parml>
                 <plentry>
-                    <pt>proxyType</pt>
-                    <pd>The type of the cloud proxy. See <xref keyref="CLOUD_PROXY_TYPE" />. This parameter is required. The SDK reports an error if you do not pass in a value.</pd>
+                    <pt>proxyType proxyType</pt>
+                    <pd>The type of the cloud proxy. See<xref keyref="CLOUD_PROXY_TYPE" /> . The type of the cloud proxy. See <xref keyref="CLOUD_PROXY_TYPE" />. This parameter is required. The SDK reports an error if you do not pass in a value. This parameter is required. The SDK reports an error if you do not pass in a value.</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
-            <title>Returns</title>
+            <title>Returns Returns</title>
             <ul>
-                <li>0: Success.</li>
+                <li>0: Success. 0: Success.</li>
                 <li>
-                    &lt; 0: Failure.<ul>
-                        <li>-2 (<codeph>ERR_INVALID_ARGUMENT</codeph>): The parameter is invalid.</li>
-                        <li>-7(<codeph>ERR_NOT_INITIALIZED</codeph>): The SDK is not initialized.</li>
+                    &lt; 0: Failure. &lt; 0: Failure.<ul>
+                        <li>-2 (<codeph>ERR_INVALID_ARGUMENT</codeph>): The parameter is<codeph> invalid</codeph>. -2 (<codeph>ERR_INVALID_ARGUMENT</codeph>): The parameter is invalid.</li>
+                        <li>-7(ERR_NOT_INITIALIZED): The SDK is <codeph>not initialized</codeph>. -7(<codeph>ERR_NOT_INITIALIZED</codeph>): The SDK is not initialized.</li>
                     </ul>
                 </li>
             </ul>
