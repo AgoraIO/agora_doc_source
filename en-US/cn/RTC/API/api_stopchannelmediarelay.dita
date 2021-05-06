@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_stopchannelmediarelay">
     <title><ph keyref="stopChannelMediaRelay"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Stops the media stream relay. <ph id="shortdesc">Stops the media stream relay. Once the relay stops, the host quits all the destination channels. </ph>Once the relay stops, the host quits all the destination channels.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Stops the media stream relay. Once the relay stops, the host quits all the destination channels.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -17,19 +17,19 @@
         <section id="detailed_desc">
             <dl>
                 <dlentry outputclass="since">
-                    <dt>Since Since</dt>
-                    <dd>v2.9.0 v2.9.0</dd>
+                    <dt>Since</dt>
+                    <dd>v2.9.0</dd>
                 </dlentry>
             </dl>
             
-   <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback. After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback. If the callback reports <apiname keyref="RELAY_STATE_IDLE"/>(0) and <apiname keyref="RELAY_OK"/>(0), the host successfully stops the relay. If the callback reports <apiname keyref="RELAY_STATE_IDLE"/>(0) and <apiname keyref="RELAY_OK"/>(0), the host successfully stops the relay.</p>
-   <note type="attention">If the method call fails, the SDK triggers the <apiname keyref="onChannelMediaRelayStateChanged"/> callback with the <apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/>(2) or <apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/>(8) status code. If the method call fails, the SDK triggers the <apiname keyref="onChannelMediaRelayStateChanged"/> callback with the <apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/>(2) or <apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/>(8) status code. You can call the <xref keyref="leaveChannel"/> method to leave the channel, and the media stream relay automatically stops. You can call the <xref keyref="leaveChannel"/> method to leave the channel, and the media stream relay automatically stops.</note>
+   <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback. If the callback reports <apiname keyref="RELAY_STATE_IDLE"/>(0) and <apiname keyref="RELAY_OK"/>(0), the host successfully stops the relay.</p>
+   <note type="attention">If the method call fails, the SDK triggers the <apiname keyref="onChannelMediaRelayStateChanged"/> callback with the <apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/>(2) or <apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/>(8) status code. You can call the <xref keyref="leaveChannel"/> method to leave the channel, and the media stream relay automatically stops.</note>
         </section>
         <section id="return_values">
-   <title>Returns Returns</title>
+   <title>Returns</title>
    <ul>
-       <li>0: Success. 0: Success.</li>
-       <li>&lt; 0: Failure. &lt; 0: Failure.</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
