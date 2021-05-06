@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlocalvoicechanger">
     <title><ph keyref="setLocalVoiceChanger"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the local voice changer option. </ph><ph id="shortdesc">Sets the local voice changer option.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the local voice changer option.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -18,43 +18,43 @@
    
    <dl outputclass="deprecated">
        <dlentry >
-  <dt>Deprecated: Deprecated:</dt>
-           <dd>This method is deprecated as of v2.4.0. This method is deprecated as of v2.4.0.<ul>
-                   <li><xref keyref="setAudioEffectPreset"/> Audio effect <xref keyref="setAudioEffectPreset"/> Audio effect</li>
-                   <li><xref keyref="setVoiceBeautifierPreset"/> : Bel Canto <xref keyref="setVoiceBeautifierPreset"/> : Bel Canto</li>
-                   <li><xref keyref="setVoiceConversionPreset"/> ：Voice changing effect <xref keyref="setVoiceConversionPreset"/> ：Voice changing effect</li>
+  <dt>Deprecated:</dt>
+           <dd>This method is deprecated as of v2.4.0.<ul>
+                   <li><xref keyref="setAudioEffectPreset"/> Audio effect</li>
+                   <li><xref keyref="setVoiceBeautifierPreset"/> : Bel Canto</li>
+                   <li><xref keyref="setVoiceConversionPreset"/> ：Voice changing effect</li>
                </ul>
             </dd>
        </dlentry>
    </dl>
-   <p>This method can be used to set the local voice effect for users in a `COMMUNICATION` channel or hosts in a `LIVE_BROADCASTING` channel. Voice changer options include the following voice effects: This method can be used to set the local voice effect for users in a `COMMUNICATION` channel or hosts in a `LIVE_BROADCASTING` channel. Voice changer options include the following voice effects: After successfully calling this method, all users in the channel can hear the voice with reverberation. After successfully calling this method, all users in the channel can hear the voice with reverberation.<ul>
-  <li>`VOICE_CHANGER_XXX`: <codeph></codeph>`VOICE_CHANGER_XXX`: <codeph></codeph>Changes the local voice to an old man, a little boy, or the Hulk. Applies to the voice talk scenario. Changes the local voice to an old man, a little boy, or the Hulk. Applies to the voice talk scenario.</li>
-  <li>`<codeph>VOICE_BEAUTY_XXX</codeph>`: `<codeph>VOICE_BEAUTY_XXX</codeph>`: Beautifies the local voice by making it sound more vigorous, resounding, or adding spacial resonance. Applies to the voice talk and singing scenario. Beautifies the local voice by making it sound more vigorous, resounding, or adding spacial resonance. Applies to the voice talk and singing scenario.</li>
-  <li>`GENERAL_VOICE_BEAUTY_XXX`: Adds gender-based beautification effect to the local<codeph> voice</codeph>. `GENERAL_VOICE_BEAUTY_XXX`: Adds gender-based beautification effect to the local<codeph> voice</codeph>. Applies to the voice talk scenario. For a male voice: Adds magnetism to the voice. Applies to the voice talk scenario. For a male voice: Adds magnetism to the voice. For a female voice: Adds freshness or vitality to the voice. For a female voice: Adds freshness or vitality to the voice.</li>
+   <p>This method can be used to set the local voice effect for users in a `COMMUNICATION` channel or hosts in a `LIVE_BROADCASTING` channel. Voice changer options include the following voice effects: After successfully calling this method, all users in the channel can hear the voice with reverberation.<ul>
+  <li>`VOICE_CHANGER_XXX`: <codeph></codeph>Changes the local voice to an old man, a little boy, or the Hulk. Applies to the voice talk scenario.</li>
+  <li>`<codeph>VOICE_BEAUTY_XXX</codeph>`: Beautifies the local voice by making it sound more vigorous, resounding, or adding spacial resonance. Applies to the voice talk and singing scenario.</li>
+  <li>`GENERAL_VOICE_BEAUTY_XXX`: Adds gender-based beautification effect to the local<codeph> voice</codeph>. Applies to the voice talk scenario. For a male voice: Adds magnetism to the voice. For a female voice: Adds freshness or vitality to the voice.</li>
        </ul>
    </p>
    <note type="attention">
        <ul>
-  <li>In order to achieve a better sound effect, Agora recommends to set<xref keyref="setAudioProfile"/> the <parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) or<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5) before calling this method. In order to achieve a better sound effect, Agora recommends to set<xref keyref="setAudioProfile"/> the <parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) or<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5) before calling this method.</li>
-  <li>This method works best with the human voice, and Agora does not recommend using it for audio containing music and a human voice. This method works best with the human voice, and Agora does not recommend using it for audio containing music and a human voice.</li>
-  <li>This method cannot be used together with<xref keyref="setLocalVoiceReverbPreset"/> the method, otherwise the method adjusted first will not take effect. This method cannot be used together with<xref keyref="setLocalVoiceReverbPreset"/> the method, otherwise the method adjusted first will not take effect. For detailed considerations, see the advanced guide Voice Changer and Reverberation. For detailed considerations, see the advanced guide Voice Changer and Reverberation.</li>
-  <li>You can call this method either before or after joining a channel. You can call this method either before or after joining a channel.</li>
+  <li>In order to achieve a better sound effect, Agora recommends to set<xref keyref="setAudioProfile"/> the <parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) or<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5) before calling this method.</li>
+  <li>This method works best with the human voice, and Agora does not recommend using it for audio containing music and a human voice.</li>
+  <li>This method cannot be used together with<xref keyref="setLocalVoiceReverbPreset"/> the method, otherwise the method adjusted first will not take effect. For detailed considerations, see the advanced guide Voice Changer and Reverberation.</li>
+  <li>You can call this method either before or after joining a channel.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameter Parameter</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt>voiceChanger voiceChanger</pt>
-  <pd>Sets the local voice changer option<apiname keyref="VOICE_CHANGER_OFF"/>. Sets the local voice changer option<apiname keyref="VOICE_CHANGER_OFF"/>. Relevant links<xref keyref="VOICE_CHANGER_PRESET"/>: Relevant links<xref keyref="VOICE_CHANGER_PRESET"/>: When setting the bel canto effect, Agora recommends using<apiname keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC"/> for male voice and<apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH"/> or<apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY"/> for female voice, otherwise the audio may be distorted. When setting the bel canto effect, Agora recommends using<apiname keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC"/> for male voice and<apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH"/> or<apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY"/> for female voice, otherwise the audio may be distorted.</pd>
+  <pt>voiceChanger</pt>
+  <pd>Sets the local voice changer option<apiname keyref="VOICE_CHANGER_OFF"/>. Relevant links<xref keyref="VOICE_CHANGER_PRESET"/>: When setting the bel canto effect, Agora recommends using<apiname keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC"/> for male voice and<apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH"/> or<apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY"/> for female voice, otherwise the audio may be distorted.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>Returns Returns</title>
+   <title>Returns</title>
    <ul>
-       <li>0: Success. 0: Success.</li>
-       <li>&lt; 0: Failure. &lt; 0: Failure.</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
