@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onusermutevideo">
     <title><ph keyref="onUserMuteVideo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user&apos;s video stream playback pauses/resumes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user&apos;s video stream playback pauses/resumes. </ph><ph id="shortdesc">Occurs when a remote user&apos;s video stream playback pauses/resumes.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,30 +16,30 @@
         </section>
         <section id="detailed_desc">
    
-   <dl outputclass="deprecated">
+   <dl outputclass="deprecated" props="hide">
        <dlentry >
-  <dt>Deprecated:</dt>
-  <dd>This callback is deprecated. You can also use the <xref keyref="onRemoteVideoStateChanged"/> callback with the following parameters:<ul>
-      <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5).</li>
-      <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6).</li>
+  <dt>Deprecated: Deprecated:</dt>
+  <dd>This callback is deprecated. This callback is deprecated. You can also use the <xref keyref="onRemoteVideoStateChanged"/> callback with the following parameters: You can also use the <xref keyref="onRemoteVideoStateChanged"/> callback with the following parameters:<ul>
+      <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5). <apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5).</li>
+      <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6). <apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6).</li>
   </ul>
   </dd>
        </dlentry>
    </dl>
-   <p>The SDK triggers this callback when the remote user stops or resumes sending the video stream by calling the <xref keyref="muteLocalVideoStream"/> method.</p>
-   <note outputclass="note">This callback does not work properly when the number of users (in the COMMUNICATION profile) or hosts (in the LIVE_BROADCASTING profile) in the channel exceeds 17.</note>
+   <p>The SDK triggers this callback when the remote user stops or resumes sending the video stream by calling the <xref keyref="muteLocalVideoStream"/> method. The SDK triggers this callback when the remote user stops or resumes sending the video stream by calling the <xref keyref="muteLocalVideoStream"/> method.</p>
+   <note type="attention">This callback does not work properly when the number of users (in the COMMUNICATION profile) or hosts (in the LIVE_BROADCASTING profile) in the channel exceeds 17. This callback does not work properly when the number of users (in the COMMUNICATION profile) or hosts (in the LIVE_BROADCASTING profile) in the channel exceeds 17.</note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameter Parameter</title>
    <parml>
        <plentry>
-  <pt>uid</pt>
-  <pd>The ID of the remote user.</pd>
+  <pt>uid uid</pt>
+  <pd>The ID of the remote user. The ID of the remote user.</pd>
        </plentry>
        <plentry>
-  <pt>muted</pt>
-  <pd>Whether the remote user&apos;s video stream playback is paused/resumed:<ul>
- <li><ph keyref="true"/>: Paused.</li>
- <li><ph keyref="false"/>: Resumed.</li>
+  <pt>muted muted</pt>
+  <pd>Whether the remote user&apos;s video stream playback is paused/resumed: Whether the remote user&apos;s video stream playback is paused/resumed:<ul>
+ <li><ph keyref="true"/>: Paused. <ph keyref="true"/>: Paused.</li>
+ <li><ph keyref="false"/>: Resumed. <ph keyref="false"/>: Resumed.</li>
       </ul>
   </pd>
        </plentry>
