@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoencoderconfiguration">
     <title><ph keyref="VideoEncoderConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Video encoder configurations.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Video encoder configurations. </ph><ph id="shortdesc">Video encoder configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/VideoEncoderConfiguration"/>
@@ -11,30 +11,30 @@
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
        <plentry>
-  <pt>dimensions</pt>
+  <pt>dimensions dimensions</pt>
   <pd>
-      <p>The width of the encoding frame (px)<xref keyref="VideoDimensions"/>. It is used to measure encoding quality, expressed in length × width, and the default value is 640 × 360. The user can set the resolution by himself.</p></pd>
+      <p>The width of the encoding frame (px)<xref keyref="VideoDimensions"/>. The width of the encoding frame (px)<xref keyref="VideoDimensions"/>. 用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。 It is used to measure encoding quality, expressed in length × width, and the default value is 640 × 360. 用户可以自行设置分辨率。 The user can set the resolution by himself.</p></pd>
        </plentry>
        <plentry>
-  <pt>frameRate</pt>
+  <pt>frameRate frameRate</pt>
   <pd>
-      <p>Video encoding frame rate<xref keyref="FRAME_RATE"/>. The default value is 15.</p>
+      <p>Video encoding frame rate<xref keyref="FRAME_RATE"/>. Video encoding frame rate<xref keyref="FRAME_RATE"/>. The default value is 15. The default value is 15.</p>
   </pd>
        </plentry>
        <plentry>
-  <pt>minFramerate</pt>
-  <pd>The minimum frame rate of the video. The default value is -1.</pd>
+  <pt>minFramerate minFramerate</pt>
+  <pd>The minimum frame rate of the video. The minimum frame rate of the video. The default value is -1. The default value is -1.</pd>
        </plentry>
        <plentry>
-  <pt>bitrate</pt>
+  <pt>bitrate bitrate</pt>
   <pd>
-      <p>The video encoding bitrate (Kbps).</p>
-      <p>You can refer to the table below to manually set the bit rate you want according to the needs of the scene. If the video bitrate you set is beyond a reasonable range, the SDK sets it within a reasonable range. You can also directly select any of the following modes to set:</p>
+      <p>The video encoding bitrate (Kbps). The video encoding bitrate (Kbps).</p>
+      <p>你可以根据场景需要参照下表手动设置你想要的码率。 You can refer to the table below to manually set the bit rate you want according to the needs of the scene. If the video bitrate you set is beyond a reasonable range, the SDK sets it within a reasonable range. If the video bitrate you set is beyond a reasonable range, the SDK sets it within a reasonable range. 你也可以直接选择如下任意一种模式进行设置： You can also directly select any of the following modes to set:</p>
       <ul>
- <li><option keyref="STANDARD_BITRATE" /> : (Recommended) Standard bit rate mode. In this mode, the bitrates differ between the interactive live streaming and communication profiles: `COMMUNICATION` profile: The video bitrate is the same as the base bitrate. `LIVE_BROADCASTING` profile: The video bitrate is twice the base bitrate.</li>
- <li><option keyref="COMPATIBLE_BITRATE" />: Adaptation rate mode. The bitrate remains the same regardless of the channel profile. If you choose this mode in the `LIVE_BROADCASTING` profile, the video frame rate may be lower than the set value.</li>
+ <li><option keyref="STANDARD_BITRATE" /> : (推荐) 标准码率模式。 <option keyref="STANDARD_BITRATE" /> : (Recommended) Standard bit rate mode. In this mode, the bitrates differ between the interactive live streaming and communication profiles: `COMMUNICATION` profile: The video bitrate is the same as the base bitrate. `LIVE_BROADCASTING` profile: The video bitrate is twice the base bitrate. In this mode, the bitrates differ between the interactive live streaming and communication profiles: `COMMUNICATION` profile: The video bitrate is the same as the base bitrate. `LIVE_BROADCASTING` profile: The video bitrate is twice the base bitrate.</li>
+ <li><option keyref="COMPATIBLE_BITRATE" />:适配码率模式。 <option keyref="COMPATIBLE_BITRATE" />: Adaptation rate mode. The bitrate remains the same regardless of the channel profile. The bitrate remains the same regardless of the channel profile. If you choose this mode in the `LIVE_BROADCASTING` profile, the video frame rate may be lower than the set value. If you choose this mode in the `LIVE_BROADCASTING` profile, the video frame rate may be lower than the set value.</li>
       </ul>
-      <p>Agora uses different encoding methods in communication and live broadcast scenarios to improve user experience in different scenarios. the `COMMUNICATION` profile prioritizes smoothness, while the `LIVE_BROADCASTING` profile prioritizes video quality (requiring a higher bitrate). Therefore, Agora recommends setting this parameter to<option keyref="STANDARD_BITRATE" />.</p>
+      <p>Agora 在通信和直播场景下采用不同的编码方式，以提升不同场景下的用户体验。 Agora uses different encoding methods in communication and live broadcast scenarios to improve user experience in different scenarios. the `COMMUNICATION` profile prioritizes smoothness, while the `LIVE_BROADCASTING` profile prioritizes video quality (requiring a higher bitrate). the `COMMUNICATION` profile prioritizes smoothness, while the `LIVE_BROADCASTING` profile prioritizes video quality (requiring a higher bitrate). 所以声网推荐将该参数设置为 <option keyref="STANDARD_BITRATE" />。 Therefore, Agora recommends setting this parameter to<option keyref="STANDARD_BITRATE" />.</p>
       <table id="table_bitrate">
  <tgroup cols="4">
      <colspec colnum="1" colname="col1"/>
@@ -43,214 +43,214 @@
      <colspec colnum="4" colname="col4"/>
      <thead>
 <row>
-    <entry>Resolution</entry>
-    <entry>Frame rate (fps)</entry>
-    <entry>Bitrate (Kbps)</entry>
-    <entry>Bitrate (Kbps)</entry>
+    <entry>Resolution Resolution</entry>
+    <entry>Frame rate (fps) Frame rate (fps)</entry>
+    <entry>Bitrate (Kbps) Bitrate (Kbps)</entry>
+    <entry>Bitrate (Kbps) Bitrate (Kbps)</entry>
 </row>
      </thead>
      <tbody>
 <row>
-    <entry>60 s ~ 120 s</entry>
-    <entry>15</entry>
-    <entry>65</entry>
-    <entry>130</entry>
+    <entry>60 s ~ 120 s 60 s ~ 120 s</entry>
+    <entry>15 15</entry>
+    <entry>65 65</entry>
+    <entry>130 130</entry>
 </row>
 <row>
-    <entry>120 × 120</entry>
-    <entry>15</entry>
-    <entry>50</entry>
-    <entry>One million users</entry>
+    <entry>120 × 120 120 × 120</entry>
+    <entry>15 15</entry>
+    <entry>50 50</entry>
+    <entry>One million users One million users</entry>
 </row>
 <row>
-    <entry>320 × 180</entry>
-    <entry>15</entry>
-    <entry>140</entry>
-    <entry>280</entry>
+    <entry>320 × 180 320 × 180</entry>
+    <entry>15 15</entry>
+    <entry>140 140</entry>
+    <entry>280 280</entry>
 </row>
 <row>
-    <entry>180 × 180</entry>
-    <entry>15</entry>
-    <entry>One million users</entry>
-    <entry>200</entry>
+    <entry>180 × 180 180 × 180</entry>
+    <entry>15 15</entry>
+    <entry>One million users One million users</entry>
+    <entry>200 200</entry>
 </row>
 <row>
-    <entry>The subsequent 10 minutes: 240 × 180</entry>
-    <entry>15</entry>
-    <entry>120</entry>
-    <entry>240</entry>
+    <entry>The subsequent 10 minutes: 240 × 180 The subsequent 10 minutes: 240 × 180</entry>
+    <entry>15 15</entry>
+    <entry>120 120</entry>
+    <entry>240 240</entry>
 </row>
 <row>
-    <entry>320 × 240</entry>
-    <entry>15</entry>
-    <entry>200</entry>
-    <entry>400</entry>
+    <entry>320 × 240 320 × 240</entry>
+    <entry>15 15</entry>
+    <entry>200 200</entry>
+    <entry>400 400</entry>
 </row>
 <row>
-    <entry>240 × 240</entry>
-    <entry>15</entry>
-    <entry>140</entry>
-    <entry>280</entry>
+    <entry>240 × 240 240 × 240</entry>
+    <entry>15 15</entry>
+    <entry>140 140</entry>
+    <entry>280 280</entry>
 </row>
 <row>
-    <entry>424 × 240</entry>
-    <entry>15</entry>
-    <entry>220</entry>
-    <entry>440</entry>
+    <entry>424 × 240 424 × 240</entry>
+    <entry>15 15</entry>
+    <entry>220 220</entry>
+    <entry>440 440</entry>
 </row>
 <row>
-    <entry>The initial 10 minutes: 640 × 360</entry>
-    <entry>15</entry>
-    <entry>400</entry>
-    <entry>800</entry>
+    <entry>The initial 10 minutes: 640 × 360 The initial 10 minutes: 640 × 360</entry>
+    <entry>15 15</entry>
+    <entry>400 400</entry>
+    <entry>800 800</entry>
 </row>
 <row>
-    <entry>360 × 360</entry>
-    <entry>15</entry>
-    <entry>260</entry>
-    <entry>520</entry>
+    <entry>360 × 360 360 × 360</entry>
+    <entry>15 15</entry>
+    <entry>260 260</entry>
+    <entry>520 520</entry>
 </row>
 <row>
-    <entry>The initial 10 minutes: 640 × 360</entry>
-    <entry>30</entry>
-    <entry>600</entry>
-    <entry>1200</entry>
+    <entry>The initial 10 minutes: 640 × 360 The initial 10 minutes: 640 × 360</entry>
+    <entry>30 30</entry>
+    <entry>600 600</entry>
+    <entry>1200 1200</entry>
 </row>
 <row>
-    <entry>360 × 360</entry>
-    <entry>30</entry>
-    <entry>400</entry>
-    <entry>800</entry>
+    <entry>360 × 360 360 × 360</entry>
+    <entry>30 30</entry>
+    <entry>400 400</entry>
+    <entry>800 800</entry>
 </row>
 <row>
-    <entry>480 × 360</entry>
-    <entry>15</entry>
-    <entry>320</entry>
-    <entry>640</entry>
+    <entry>480 × 360 480 × 360</entry>
+    <entry>15 15</entry>
+    <entry>320 320</entry>
+    <entry>640 640</entry>
 </row>
 <row>
-    <entry>480 × 360</entry>
-    <entry>30</entry>
-    <entry>490</entry>
-    <entry>980</entry>
+    <entry>480 × 360 480 × 360</entry>
+    <entry>30 30</entry>
+    <entry>490 490</entry>
+    <entry>980 980</entry>
 </row>
 <row>
-    <entry>640 × 480</entry>
-    <entry>15</entry>
-    <entry>500</entry>
-    <entry>1000</entry>
+    <entry>640 × 480 640 × 480</entry>
+    <entry>15 15</entry>
+    <entry>500 500</entry>
+    <entry>1000 1000</entry>
 </row>
 <row>
-    <entry>480 × 480</entry>
-    <entry>15</entry>
-    <entry>400</entry>
-    <entry>800</entry>
+    <entry>480 × 480 480 × 480</entry>
+    <entry>15 15</entry>
+    <entry>400 400</entry>
+    <entry>800 800</entry>
 </row>
 <row>
-    <entry>640 × 480</entry>
-    <entry>30</entry>
-    <entry>750</entry>
-    <entry>1500</entry>
+    <entry>640 × 480 640 × 480</entry>
+    <entry>30 30</entry>
+    <entry>750 750</entry>
+    <entry>1500 1500</entry>
 </row>
 <row>
-    <entry>480 × 480</entry>
-    <entry>30</entry>
-    <entry>600</entry>
-    <entry>1200</entry>
+    <entry>480 × 480 480 × 480</entry>
+    <entry>30 30</entry>
+    <entry>600 600</entry>
+    <entry>1200 1200</entry>
 </row>
 <row>
-    <entry>848 × 480</entry>
-    <entry>15</entry>
-    <entry>610</entry>
-    <entry>1220</entry>
+    <entry>848 × 480 848 × 480</entry>
+    <entry>15 15</entry>
+    <entry>610 610</entry>
+    <entry>1220 1220</entry>
 </row>
 <row>
-    <entry>848 × 480</entry>
-    <entry>30</entry>
-    <entry>930</entry>
-    <entry>1860</entry>
+    <entry>848 × 480 848 × 480</entry>
+    <entry>30 30</entry>
+    <entry>930 930</entry>
+    <entry>1860 1860</entry>
 </row>
 <row>
-    <entry>640 × 480</entry>
-    <entry>10</entry>
-    <entry>400</entry>
-    <entry>800</entry>
+    <entry>640 × 480 640 × 480</entry>
+    <entry>10 10</entry>
+    <entry>400 400</entry>
+    <entry>800 800</entry>
 </row>
 <row>
-    <entry>Video from D: 1280 × 720</entry>
-    <entry>15</entry>
-    <entry>1130</entry>
-    <entry>2260</entry>
+    <entry>Video from D: 1280 × 720 Video from D: 1280 × 720</entry>
+    <entry>15 15</entry>
+    <entry>1130 1130</entry>
+    <entry>2260 2260</entry>
 </row>
 <row>
-    <entry>Video from D: 1280 × 720</entry>
-    <entry>30</entry>
-    <entry>1710</entry>
-    <entry>3420</entry>
+    <entry>Video from D: 1280 × 720 Video from D: 1280 × 720</entry>
+    <entry>30 30</entry>
+    <entry>1710 1710</entry>
+    <entry>3420 3420</entry>
 </row>
 <row>
-    <entry>960 × 720</entry>
-    <entry>15</entry>
-    <entry>910</entry>
-    <entry>1820</entry>
+    <entry>960 × 720 960 × 720</entry>
+    <entry>15 15</entry>
+    <entry>910 910</entry>
+    <entry>1820 1820</entry>
 </row>
 <row>
-    <entry>960 × 720</entry>
-    <entry>30</entry>
-    <entry>1380</entry>
-    <entry>2760</entry>
+    <entry>960 × 720 960 × 720</entry>
+    <entry>30 30</entry>
+    <entry>1380 1380</entry>
+    <entry>2760 2760</entry>
 </row>
 <row>
-    <entry>1920 × 1080</entry>
-    <entry>15</entry>
-    <entry>2080</entry>
-    <entry>4160</entry>
+    <entry>1920 × 1080 1920 × 1080</entry>
+    <entry>15 15</entry>
+    <entry>2080 2080</entry>
+    <entry>4160 4160</entry>
 </row>
 <row>
-    <entry>1920 × 1080</entry>
-    <entry>30</entry>
-    <entry>3150</entry>
-    <entry>6300</entry>
+    <entry>1920 × 1080 1920 × 1080</entry>
+    <entry>30 30</entry>
+    <entry>3150 3150</entry>
+    <entry>6300 6300</entry>
 </row>
 <row>
-    <entry>1920 × 1080</entry>
-    <entry>60</entry>
-    <entry>4780</entry>
-    <entry>6500</entry>
+    <entry>1920 × 1080 1920 × 1080</entry>
+    <entry>60 60</entry>
+    <entry>4780 4780</entry>
+    <entry>6500 6500</entry>
 </row>
      </tbody>
  </tgroup>
       </table>
-      <note outputclass="note">The base bitrate in the video profile table applies to the communication profile. Generally speaking, a live stream requires a higher bitrate to ensure high-video quality. Agora recommends<option keyref="STANDARD_BITRATE" /> to achieve this through the setting mode. You can also directly set the bit rate value to the reference bit rate value × 2.</note>
+      <note type="attention">The base bitrate in the video profile table applies to the communication profile. The base bitrate in the video profile table applies to the communication profile. Generally speaking, a live stream requires a higher bitrate to ensure high-video quality. Generally speaking, a live stream requires a higher bitrate to ensure high-video quality. Agora recommends<option keyref="STANDARD_BITRATE" /> to achieve this through the setting mode. 声网推荐通过设置 <option keyref="STANDARD_BITRATE" /> 模式来实现。 You can also directly set the bit rate value to the reference bit rate value × 2. 你也可以直接将码率值设为基准码率值 × 2。</note>
   </pd>
        </plentry>
        <plentry>
-  <pt>minBitrate</pt>
+  <pt>minBitrate minBitrate</pt>
   <pd>
-      <p>The minimum encoding bitrate (Kbps).</p>
-      <p>The SDK automatically adjusts the encoding bitrate to adapt to the network conditions. Using a value greater than the default value forces the video encoder to output high-quality images but may cause more packet loss and hence sacrifice the smoothness of the video transmission. That said, unless you have special requirements for image quality, Agora does not recommend changing this value.</p>
-      <note outputclass="note">This method applies only to the `LIVE_BROADCASTING` profile.</note>
+      <p>The minimum encoding bitrate (Kbps). The minimum encoding bitrate (Kbps).</p>
+      <p>The SDK automatically adjusts the encoding bitrate to adapt to the network conditions. The SDK automatically adjusts the encoding bitrate to adapt to the network conditions. Using a value greater than the default value forces the video encoder to output high-quality images but may cause more packet loss and hence sacrifice the smoothness of the video transmission. Using a value greater than the default value forces the video encoder to output high-quality images but may cause more packet loss and hence sacrifice the smoothness of the video transmission. That said, unless you have special requirements for image quality, Agora does not recommend changing this value. That said, unless you have special requirements for image quality, Agora does not recommend changing this value.</p>
+      <note type="attention">This method applies only to the `LIVE_BROADCASTING` profile. This method applies only to the `LIVE_BROADCASTING` profile.</note>
   </pd>
        </plentry>
        <plentry>
-  <pt>orientationMode</pt>
-  <pd>Video output orientation modes<xref keyref="ORIENTATION_MODE" />.</pd>
+  <pt>orientationMode orientationMode</pt>
+  <pd>Video output orientation modes<xref keyref="ORIENTATION_MODE" />. Video output orientation modes<xref keyref="ORIENTATION_MODE" />.</pd>
        </plentry>
        <plentry>
-  <pt>degradationPreference</pt>
-  <pd>Video degradation preferences when the bandwidth is a constraint. For details, see <xref keyref="DEGRADATION_PREFERENCE" />.</pd>
+  <pt>degradationPreference degradationPreference</pt>
+  <pd>Video degradation preferences when the bandwidth is a constraint. Video degradation preferences when the bandwidth is a constraint. For details, see <xref keyref="DEGRADATION_PREFERENCE" />. For details, see <xref keyref="DEGRADATION_PREFERENCE" />.</pd>
        </plentry>
        <plentry>
-  <pt>mirrorMode</pt>
+  <pt>mirrorMode mirrorMode</pt>
   <pd>
       <dl outputclass="since">
  <dlentry>
-     <dt>Since</dt>
-     <dd>v3.3.0</dd>
+     <dt>Since Since</dt>
+     <dd>v3.3.0 v3.3.0</dd>
  </dlentry>
       </dl>
-      <p>Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
-      <note outputclass="note">Disable mirror mode.</note>
+      <p>Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+      <note type="attention">Disable mirror mode. Disable mirror mode.</note>
   </pd>
        </plentry>
    </parml>
