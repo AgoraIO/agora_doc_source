@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="api-title" xml:lang="zh-CN">
-    <title>API Overview</title>
+    <title>API 概览</title>
     <shortdesc id="short"><ph id="shortdesc">声网通过全球部署的虚拟网络，提供可以灵活搭配的 API 组合，为移动端到移动端以及移动端到 Web 端提供质量可靠的实时音视频通信。</ph></shortdesc>
-    <prolog/>
     <body>
-        <note outputclass="info">
+        <note type="note">
         <ul>
-            <li>自 v2.3.3 开始，Agora C++ API Reference for All Platforms 可以在 <xref
-                        href="https://kapeli.com/dash" scope="external" format="html">Dash</xref>
-                    平台下载，详见 <xref href="https://docs.agora.io/cn/Video/faq/api_download"
-                        scope="external" format="html">FAQ</xref>。</li>
+            <li>自 v2.3.3 开始，Agora C++ API Reference for All Platforms 可以在 <xref href="https://kapeli.com/dash" scope="external" format="html">Dash</xref> 平台下载，详见 <xref keyref="faq-dash"/>。</li>
             <li props="windows">自 v3.0.0 开始，Agora 废弃 <codeph>RtcEngineParameters</codeph> 类。该类下所有接口均被 <xref keyref="IRtcEngine"/> 类覆盖，请使用 <apiname keyref="IRtcEngine"/> 类。</li>
             <li>在调用 API 过程中，SDK 可能会返回错误码和警告码，详见<xref href="error_rtc.md">错误码和警告码</xref>。</li>
         </ul>
@@ -34,8 +30,8 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry><xref keyref="createAgoraRtcEngine1"/></stentry>  
-                    <stentry><ph conkeyref="createAgoraRtcEngine1/shortdesc"/></stentry>
+                    <stentry><xref keyref="createAgoraRtcEngine"/></stentry>  
+                    <stentry><ph conkeyref="createAgoraRtcEngine/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="create2"/></stentry>  
@@ -323,9 +319,7 @@
 
         <section id="statistics_events">
             <title>数据统计事件</title>
-            <p>加入频道后，SDK 每隔 2 秒自动触发本组回调。我们为这些回调提供了详细的功能描述、实现方法文档，详情请参考<xref
-                    href="https://docs.agora.io/cn/Interactive%20Broadcast/in-call_quality_windows?platform=Windows" format="html"
-                    scope="external">通话中质量监测</xref>。</p>
+            <p>加入频道后，SDK 每隔 2 秒自动触发本组回调。我们为这些回调提供了详细的功能描述、实现方法文档，详情请参考<xref keyref="guide-in-call-quality"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>事件</stentry>
@@ -374,7 +368,7 @@
 
         <section id="multiple_channels_management">
             <title>多频道管理</title>
-            <p>我们为该组接口提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref href="https://docs.agora.io/cn/Interactive%20Broadcast/multiple_channel_windows?platform=Windows" scope="external" format="html">加入多频道</xref>。</p>
+            <p>我们为该组接口提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref keyref="guide-multiple-channel"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>API</stentry>
@@ -397,7 +391,7 @@
         
         <section id="screen_capture">
             <title>屏幕共享</title>
-            <p>我们为该组方法提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref href="https://docs.agora.io/cn/Interactive%20Broadcast/screensharing_windows?platform=Windows" scope="external" format="html">进行屏幕共享</xref>。</p>
+            <p>我们为该组方法提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref keyref="guide-screensharing"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -534,8 +528,8 @@
                     <stentry><ph conkeyref="setVolumeOfEffect/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry><xref keyref="playEffect2"/></stentry>
-                    <stentry><ph conkeyref="playEffect2/shortdesc"/></stentry>
+                    <stentry><xref keyref="playEffect3"/></stentry>
+                    <stentry><ph conkeyref="playEffect3/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="stopEffect"/></stentry>
@@ -748,7 +742,7 @@
 
         <section id="face_detection">
             <title>人脸检测</title>
-            <p>该组功能仅适用于 Android 和 iOS 平台。</p>
+            <p props="windows">该组功能仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -807,7 +801,7 @@
 
         <section id="in-ear_monitoring">
             <title>耳返控制</title>
-            <p>该组方法仅适用于 Android 和 iOS 平台。</p>
+            <p props="windows">该组方法仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -848,7 +842,7 @@
 
         <section id="stream_fallback">
             <title>视频流回退</title>
-            <p>我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref href="https://docs.agora.io/cn/Interactive%20Broadcast/fallback_windows?platform=Windows" scope="external" format="html">视频流回退</xref>。</p>
+            <p>我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref keyref="guide-fallback"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -887,7 +881,7 @@
         
         <section id="pre-call_network_test">
             <title>通话前网络测试</title>
-            <p>我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref href="https://docs.agora.io/cn/Interactive%20Broadcast/lastmile_quality_windows?platform=Windows" scope="external" format="html">通话前检测网络质量</xref>。</p>
+            <p>我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref keyref="guide-lastmile-quality"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -1221,7 +1215,7 @@
 
         <section id="device_manager">
             <title>设备管理</title>
-            <p>该组方法仅适用于 Windows。</p>
+            <p props="windows">该组方法仅适用于 Windows。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -1463,7 +1457,7 @@
             <title>其他事件</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
+                    <stentry>事件</stentry>
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>

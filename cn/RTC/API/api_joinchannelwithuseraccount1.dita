@@ -28,42 +28,20 @@
        <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</li>
    </ul></p>
    <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
-   <note outputclass="note">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Agora Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note>
+   <note type="attention">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Agora Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
-       <plentry>
-  <pt>token</pt>
-  <pd><p>动态秘钥。<ul>
-      <li>安全要求不高: 将值设为 <ph keyref="NULL"/>。</li>
-      <li>安全要求高: 将值设置为从你的服务端生成的 Token。如果你的项目已经启用了 App Certificate, 请务必使用 Token。</li>
-  </ul>
-      <note outputclass="warning">
- 请确保用于生成 token 的 App ID、频道名和用户 User Account 和 <xref keyref="create2"/> 方法初始化引擎时用的 App ID、频道名和用户 User Account 一致。
-      </note>
-  </p></pd>
-       </plentry>
+       <plentry conkeyref="joinChannel2/token"><pt/><pd/></plentry>
        <plentry>
   <pt>channelName</pt>
-  <pd><p>频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同 <codeph>channelName</codeph> 的用户会进入同一个频道进行音视频互动。
-      该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:<ul id="ul_lx4_nrc_h4b">
-      <li>26 个小写英文字母 a~z</li>
-      <li>26 个大写英文字母 A~Z</li>
-      <li>10 个数字 0~9</li>
-      <li>空格</li>
-      <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、">"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
-  </ul></p></pd>
+  <pd><p conkeyref="joinChannel2/channelID_desc"/></pd>
        </plentry>
        <plentry>
   <pt>userAccount</pt>
   <pd><p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。
-      该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL"/>。以下为支持的字符集范围（共 89 个字符）：<ul>
-      <li>26 个小写英文字母 a-z</li>
-      <li>26 个大写英文字母 A-Z</li>
-      <li>10 个数字 0-9</li>
-      <li>空格</li>
-      <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、">"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
-      </ul></p></pd>
+      该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL"/>。以下为支持的字符集范围（共 89 个字符）：<ul conkeyref="joinChannel2/char_support"><li/></ul>
+      </p></pd>
        </plentry>
    </parml>
         </section>
@@ -71,7 +49,7 @@
    <title>返回值</title>
    <ul>
        <li>0: 方法调用成功。</li>
-       <li>&lt;0: 方法调用失败。
+       <li>&lt; 0: 方法调用失败。
        <ul>
   <li>-2(ERR_INVALID_ARGUMENT): 参数无效。</li>
   <li>-3(ERR_NOT_READY): SDK 初始化失败，请尝试重新初始化 SDK。</li>
