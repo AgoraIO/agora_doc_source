@@ -16,8 +16,8 @@
         </section>
         <section id="detailed_desc">
    
-   <p>If you call and set <xref keyref="setLocalPublishFallbackOption"/><parmname>option</parmname> as <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>, the SDK triggers this callback when the remote media stream falls back to audio-only mode due to poor uplink conditions, or when the remote media stream switches back to the video after the uplink network condition improves.</p>
-   <note type="attention">如果本地发流已回退为音频流，远端的 App 上会收到 <xref keyref="onUserMuteVideo"/> 的回调事件。</note>
+   <p>If you call <xref keyref="setLocalPublishFallbackOption"/> and set <parmname>option</parmname> as <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>, the SDK triggers this callback when the remote media stream falls back to audio-only mode due to poor uplink conditions, or when the remote media stream switches back to the video after the uplink network condition improves.</p>
+   <note type="attention">If the local stream fallbacks to the audio-only stream, the remote user receives the <xref keyref="onUserMuteVideo"/> callback.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
@@ -25,8 +25,8 @@
   <pt>isFallbackOrRecover</pt>
   <pd>
       <ul>
- <li><ph keyref="true"/>true: The published stream falls back to audio-only due to poor network conditions.</li>
- <li><ph keyref="false"/>: The remotely subscribed media stream switches back to the video stream after the network conditions improved.</li>
+ <li><ph keyref="true"/>: The published stream falls back to audio-only due to poor network conditions.</li>
+ <li><ph keyref="false"/>: The published stream switches back to the video after the network conditions improve.</li>
       </ul>
   </pd>
        </plentry>
