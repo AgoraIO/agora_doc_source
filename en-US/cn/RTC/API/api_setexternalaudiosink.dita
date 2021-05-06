@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setexternalaudiosink">
     <title><ph keyref="setExternalAudioSink"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the external audio sink. </ph><ph id="shortdesc">Sets the external audio sink.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the external audio sink.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,43 +16,43 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This method applies to scenarios where you want to use external audio data for playback. This method applies to scenarios where you want to use external audio data for playback. 开启外部音频渲染后，你可以通过调用 <xref keyref="pullAudioFrame"/> 方法拉取远端音频数据。 After enabling external audio rendering, you can<xref keyref="pullAudioFrame"/> pull remote audio data by calling the method. App 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。 App can process the pulled original audio data before rendering to obtain the desired audio effect.</p>
+   <p>This method applies to scenarios where you want to use external audio data for playback. 开启外部音频渲染后，你可以通过调用 <xref keyref="pullAudioFrame"/> 方法拉取远端音频数据。 App 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。</p>
    <note type="attention">
        <ul id="ul_ng3_ljz_r4b">
-  <li>After a successful call of this method, the app will not<xref keyref="onPlaybackAudioFrame"/> get any audio data from the callback. After enabling external audio rendering, the App will not be able to<xref keyref="onPlaybackAudioFrame"/> obtain data from the callback.</li>
-  <li>Ensure that you call this method before joining a channel. Ensure that you call this method before joining a channel.</li>
+  <li>After a successful call of this method, the app will not<xref keyref="onPlaybackAudioFrame"/> get any audio data from the callback.</li>
+  <li>Ensure that you call this method before joining a channel.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameter Parameter</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt>enabled enabled</pt>
+  <pt>enabled</pt>
   <pd>
       <ul>
- <li><ph keyref="true"/>true: Enables the external audio sink. <ph keyref="true"/>true: Enables the external audio sink.</li>
- <li><ph keyref="false"/>false: (Default) Disables the external audio sink. <ph keyref="false"/>false: (Default) Disables the external audio sink.</li>
+ <li><ph keyref="true"/>true: Enables the external audio sink.</li>
+ <li><ph keyref="false"/>false: (Default) Disables the external audio sink.</li>
       </ul>
   </pd>
        </plentry>
        <plentry>
-  <pt>sampleRate sampleRate</pt>
-  <pd>@param sampleRate Sets the sample rate (Hz) of the external audio sink, which can be set as 16000, 32000, 44100 or 48000. @param sampleRate Sets the sample rate (Hz) of the external audio sink, which can be set as 16000, 32000, 44100 or 48000.</pd>
+  <pt>sampleRate</pt>
+  <pd>@param sampleRate Sets the sample rate (Hz) of the external audio sink, which can be set as 16000, 32000, 44100 or 48000.</pd>
        </plentry>
        <plentry>
-  <pt>channels channels</pt>
-  <pd>外部音频渲染的通道数，可设置为 1 或 2: The number of channels for external audio rendering, which can be set to 1 or 2:<ul id="ul_cpd_khz_r4b">
- <li>1: Mono. 1: Mono.</li>
- <li>2: Stereo. 2: Stereo.</li>
+  <pt>channels</pt>
+  <pd>外部音频渲染的通道数，可设置为 1 或 2:<ul id="ul_cpd_khz_r4b">
+ <li>1: Mono.</li>
+ <li>2: Stereo.</li>
       </ul></pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>Returns Returns</title>
+   <title>Returns</title>
    <ul>
-       <li>0: Success. 0: Success.</li>
-       <li>&lt; 0: Failure. &lt; 0: Failure.</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
