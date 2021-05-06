@@ -2,7 +2,7 @@
 
 ## VideoContext
 
-`VideoContext` 类提供可供 App 调用的视频控制相关方法。
+`VideoContext` 类提供可供 App 调用的媒体控制相关方法。
 
 ### updateVideo
 
@@ -43,7 +43,7 @@ abstract fun renderVideo(viewGroup: ViewGroup?, streamUuid: String)
 
 ## IVideoHandler
 
-`IVideoHandler` 类用于向 App 报告视频相关的事件回调。
+`IVideoHandler` 类用于向 App 报告媒体相关的事件回调。
 
 ### onUserDetailInfoUpdated
 

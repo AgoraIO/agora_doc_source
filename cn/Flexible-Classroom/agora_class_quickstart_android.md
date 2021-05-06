@@ -3,58 +3,29 @@
 <div class="alert note"><li>开始前请确保满足接入灵动课堂的<a href="./agora_class_prep">前提条件</a>。<li>Android 仅支持学生。</div>
 
 ## 示例项目
+
 Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-Community/CloudClass-Android)，演示了如何集成 Agora Classroom SDK 并调用 API 启动灵动课堂。你可以下载并查看源代码。
 
 ## 准备开发环境
 
 - [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html)。
-- Android Studio 2.0 及以上。
+- Android Studio 4.0 及以上。
 - 一台 Android 设备。部分模拟机可能存在功能缺失或者性能问题，所以推荐使用真机。
-- Android 4.4 或以上版本。
+- Android 5.0 或以上版本。
 - 物理音视频采集设备，如内置摄像头和麦克风。
 
 ## 集成 Agora Classroom SDK
 
 你可以参考以下步骤，通过 Gradle 获取 Agora Classroom SDK。
 
-1. 添加 aar：将aar包放在 `app/libs` 目录下，然后在 app 模块的 `build.gradle` 文件里添加
-```
-dependencies {
- implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-}
-```
-
-2. 在 app 模块的 `build.gradle` 文件里添加 aar 需要的依赖：
-```
-dependencies {
- // edu dependencies
- implementation "androidx.constraintlayout:constraintlayout:2.0.4"
- implementation "com.squareup.retrofit2:retrofit:2.9.0"
- implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
- implementation "com.squareup.retrofit2:converter-gson:2.9.0"
- implementation "androidx.preference:preference:1.1.1"
- implementation "com.elvishew:xlog:1.7.0"
- implementation "io.agora.rtm:rtm-sdk:1.4.1"
- implementation "io.agora.rtc:agora-special-full:2.9.107.136"
- implementation "com.github.duty-os:white-sdk-android:2.12.5"
-}
-```
-
-3. 引入 agoraui 模块
-```
-dependencies {
- implementation project(path: ':agoraui')
-}
-```
-
-
-
 
 1. 在项目的 **build.gradle** 文件中添加以下库：
+
   ```java
 	allprojects {
 		repositories {
 			...
+			maven { url'http://maven.aliyun.com/nexus/content/groups/public' }
 			maven { url 'https://jitpack.io' }
 		}
 	}
@@ -63,10 +34,10 @@ dependencies {
 2. 在项目的 **build.gradle** 文件中添加以下依赖：
 
   ```java
- 	dependencies {
+  dependencies {
         ...
 		// 请查看发版说明获取最新版本号
-		implementation 'com.github.AgoraIO-Community:CloudClass-Android:v1.0.0'
+		implementation 'com.github.AgoraIO-Community:CloudClass-Android:v1.1.0'
 	}
   ```
 
@@ -104,6 +75,7 @@ AgoraEduSDK.setConfig(new AgoraEduSDKConfig(appId, eyeCare));
 | `rtmToken`  | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](./agora_class_prep#step5)。 |
 | `startTime` | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
 | `duration`  | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
+| `region`    | 课堂所在区域，各客户端的区域必须一致，否则无法互通。         |
 
 ```java
 /** 课堂启动配置 */
@@ -125,8 +97,10 @@ String rtmToken = "";
 long startTime = System.currentTimeMillis() + 100;
 // 课堂持续时间，单位为秒，以第一个进入教室的用户传入的参数为准
 long duration = 310L;
+// 课堂所在区域，各客户端的区域必须一致，否则无法互通。
+String region = AgoraEduRegionStr.cn;
 AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfig(
-        userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration);
+        userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration, region);
 AgoraEduClassRoom classRoom = AgoraEduSDK.launch(getApplicationContext(), agoraEduLaunchConfig, (state) -> {
     Log.e(TAG, "launch-课堂状态:" + state.name());
 });

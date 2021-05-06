@@ -153,9 +153,7 @@ AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceNam
 + (void)registerExtApps:(NSArray<AgoraExtAppConfiguration *> *)apps;
 ```
 
-注册
-
-
+注册扩展应用 ExtApp。ExtApp 是灵动课堂 UIKit 的补充插件。详见[通过 ExtApp 自定义插件](./agora_class_ext_app_ios?platform=iOS)。
 
 ## AgoraEduClassroom
 
@@ -297,6 +295,7 @@ SDK 全局配置。用于 [`setConfig`](#setConfig) 方法。
 @property (nonatomic, copy) NSString *token;
 @property (nonatomic, strong, nullable) NSNumber *startTime;
 @property (nonatomic, strong, nullable) NSNumber *duration;
+@property (nonatomic, copy) NSString *boardRegion;
  
 - (instancetype)initWithUserName:(NSString *)userName
                         userUuid:(NSString *)userUuid
@@ -315,22 +314,24 @@ SDK 全局配置。用于 [`setConfig`](#setConfig) 方法。
                            token:(NSString *)token
                        startTime:(NSNumber *)startTime
                         duration:(NSNumber *)duration;
+                     boardRegion:(NSString *_Nullable)boardRegion;
 @end
 ```
 
 课堂启动配置。用于 [`launch`](#launch) 方法。
 
-| 属性        | 描述                                                         |
-| :---------- | :----------------------------------------------------------- |
-| `userName`  | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
-| `userUuid`  | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）: <li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roomName`  | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
-| `roomUuid`  | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType`  | 用户在课堂中的角色，详见 `AgoraEduRoleType`。                |
-| `roomType`  | 课堂类型，详见 `AgoraEduRoomType`。                          |
-| `token`     | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
-| `startTime` | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
-| `duration`  | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
+| 属性          | 描述                                                         |
+| :------------ | :----------------------------------------------------------- |
+| `userName`    | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
+| `userUuid`    | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）: <li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomName`    | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
+| `roomUuid`    | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roleType`    | 用户在课堂中的角色，详见 `AgoraEduRoleType`。                |
+| `roomType`    | 课堂类型，详见 `AgoraEduRoomType`。                          |
+| `token`       | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
+| `startTime`   | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
+| `duration`    | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
+| `boardRegion` | 课堂所在区域。各客户端的区域必须一致，否则无法互通。         |
 
 ### AgoraEduCourseware
 

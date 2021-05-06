@@ -2,19 +2,21 @@
 
 ## 工作原理
 
-自 1.1.0 起，Agora 将灵动课堂的 UI 代码和业务逻辑隔离开来，独立成 UIKi。开发者无需深入学习灵动课堂的核心业务逻辑细节，只需修改 UI 组件，即可自定义修改灵动课堂的 UI。
+自 1.1.0 起，Agora 将灵动课堂的 UI 代码和核心业务逻辑隔离开来，独立成 UI Kit 和 Edu Core。UI Kit 中提供灵动课堂的 UI 组件源码。开发者如果只想修改课堂 UI，则可以无需深入学习灵动课堂的核心业务逻辑细节，只修改 UI 组件。
 
 ![](https://web-cdn.agora.io/docs-files/1619169594360)
 
 UIKit 的源码位于 GitHub 上 [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) 仓库（dev/apaas/1.1.0 分支）中 `Modules` 目录下，主要包含以下文件夹：
 
-| 文件夹                | 描述                                               |
-| :-------------------- | :------------------------------------------------- |
-| `AgoraUIBaseViews`    | 灵动课堂使用的基础 UI 组件，如基础 btn、view。     |
-| `AgoraUIEduBaseViews` | 灵动课堂使用的高阶 UI 组件，如聊天区域、渲染视图。 |
-| `AgoraUIEduAppViews`  | 在灵动课堂的各种教学场景中组装 UI 组件。           |
+| 文件夹                | 描述                                                  |
+| :-------------------- | :---------------------------------------------------- |
+| `AgoraUIBaseViews`    | 灵动课堂使用的基础 UI 组件，如基础 btn、view。        |
+| `AgoraUIEduBaseViews` | 灵动课堂使用的高阶 UI 组件，如聊天区域 UI、渲染视图。 |
+| `AgoraUIManager`      | 在灵动课堂的各种教学场景中组装 UI 组件。              |
 
 ## UI 修改示例
+
+以下提供几个修改灵动课堂 UI 的示例。
 
 ### 修改导航栏颜色
 
@@ -105,66 +107,84 @@ func initLayout() {
 
    ```
    /*
- * Add a function like below
- */
-DemoLeave = "离开";
+    * Operation:
+    *          add a function like below
+    */
+   DemoLeave = "离开";
    ```
    `AgoraUIEduBaseViews/AgoraUIEduBaseViews/AgoraResources/en.lproj/Localizable.strings`
 
    ```
    /*
- * Add a function like below
- */
-DemoLeave = "Leave";
+    * Operation:
+    *          add a function like below
+    */
+   DemoLeave = "Leave";
    ```
 
-   
 
-2. 在 `AgoraUIEduAppViews/AgoraUIEduAppViews/Views/AgoraUIEduAppViews.swift` 文件中添加属性。
+   ```
+   
+   ```
+
+2. 在 `/AgoraUIEduAppViews/AgoraUIEduAppViews/AgoraUIManager.swift` 文件中添加属性。
 
    ```
    /*
- * Add a property to the AgoraUIEduAppViews class
- */
-weak var demoButton: AgoraBaseUIButton?
+    * Operation:
+    *           add a property to the class AgoraUIManager
+    */
+   weak var demoButton: AgoraBaseUIButton?
    ```
 
-3. 在 `AgoraUIEduAppViews/AgoraUIEduAppViews/AgoraUIEduAppViews.swift` 文件中添加如下代码。
+   ```
+   
+   ```
+
+3. 在 `/AgoraUIEduAppViews/AgoraUIEduAppViews/AgoraUIManager.swift` 文件中添加如下代码。
 
    ```
-/*
-  * Add the initView function
-  */
-func initView() {
-    ···
-    let demoBtn = AgoraBaseUIButton()
-    demoBtn.setTitle(AgoraKitLocalizedString("DemoLeave"), for: UIControl.State.normal)
-    demoBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-    demoBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
-    demoBtn.backgroundColor = UIColor(rgb: UInt32("BFBFBF",radix: 16) ?? 0)
-    demoBtn.addTarget(self,
-                      action: #selector(onTouchLeaveDemo(_:)),
-                      for: UIControl.Event.touchUpInside)
-    self.demoButton = demoBtn
-    addSubview(demoBtn)
-}
-/*
- * Add the initLayout function
- */
-func initLayout() {
+   /*
+    * Function:
+    *          addContainerViews
+    * Operation:
+    *          add code like below
+    */
+   func addContainerViews() {
+   ···
+   let demoBtn = AgoraBaseUIButton()
+   demoBtn.setTitle(AgoraKitLocalizedString("DemoLeave"), for: UIControl.State.normal)
+   demoBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+   demoBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
+   demoBtn.backgroundColor = UIColor(rgb: UInt32("BFBFBF",radix: 16) ?? 0)
+   demoBtn.addTarget(self,
+                     action: #selector(onTouchLeaveDemo(_:)),
+                     for: UIControl.Event.touchUpInside)
+   self.demoButton = demoBtn
+   self.appView.addSubview(demoBtn)
+   }
+ 
+   /*
+    * Function:
+    *          initLayout
+    * Operation:
+    *          add code like below
+    */
+   func layoutContainerViews() {
         ···
         demoButton?.agora_center_x = self.agora_center_x
         demoButton?.agora_center_y = self.agora_center_y
         demoButton?.agora_width = 100
         demoButton?.agora_height = 100
-}
-/*
- * Add the onTouchLeaveDemo function
- */
-@objc func onTouchLeaveDemo(_ btn: AgoraBaseUIButton) {
-    self.roomListener?.onLeaveRoom()
-}
-```
+   }
+   /*
+    * Operation:
+    *          add a function like below
+    */
+   @objc func onTouchLeaveDemo(_ btn: AgoraBaseUIButton) {
+       self.roomListener?.onLeaveRoom()
+   }
+   ```
 
    修改后，灵动课堂的 1 对 1 互动教学场景中，会出现如下图标。
 

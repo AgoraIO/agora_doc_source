@@ -73,8 +73,10 @@ String rtmToken = "";
 long startTime = System.currentTimeMillis() + 100;
 // 课堂持续时间，单位为秒，以第一个进入教室的用户传入的参数为准
 long duration = 310L;
+// 课堂所在区域，各客户端的区域必须一致，否则无法互通。
+String region = AgoraEduRegionStr.cn;
 AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfig(
-        userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration);
+        userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration, region);
 AgoraEduClassRoom classRoom = AgoraEduSDK.launch(getApplicationContext(), agoraEduLaunchConfig, (state) -> {
     Log.e(TAG, "launch-课堂状态:" + state.name());
 });
@@ -175,7 +177,7 @@ downloadCoursewares(activityContext, new AgoraEduCoursewarePreloadListener() {
 public static void registerExtApps(List<AgoraExtAppConfiguration> apps);
 ```
 
-注册扩展组件 ExtApp。ExtApp 是灵动课堂 UIKit 的补充组件。开发者可以通过在不修改 UIKit 代码的情况下，在灵动课堂内加入自己的 UI 组件。详见[扩展插件 ExtApp 使用指南]()。
+注册扩展应用 ExtApp。ExtApp 是灵动课堂 UIKit 的补充插件。详见[通过 ExtApp 自定义插件](./agora_class_ext_app_android?platform=Android)。
 
 ## AgoraEduLaunchCallback
 
@@ -344,17 +346,18 @@ public class AgoraEduLaunchConfig implements Parcelable {
 
 课堂启动配置。用于 [`launch`](#launch) 方法。
 
-| 属性        | 描述                                                         |
-| :---------- | :----------------------------------------------------------- |
-| `userName`  | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
-| `userUuid`  | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roomName`  | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
-| `roomUuid`  | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType`  | 用户在课堂中的角色，详见 [`AgoraEduRoleType`](#agoraeduroletype)。 |
-| `roomType`  | 课堂类型，详见 [`AgoraEduRoomType`](#agoraeduroomtype)。     |
-| `rtmToken`  | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
-| `startTime` | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
-| `duration`  | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
+| 属性          | 描述                                                         |
+| :------------ | :----------------------------------------------------------- |
+| `userName`    | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
+| `userUuid`    | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomName`    | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
+| `roomUuid`    | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roleType`    | 用户在课堂中的角色，详见 [`AgoraEduRoleType`](#agoraeduroletype)。 |
+| `roomType`    | 课堂类型，详见 [`AgoraEduRoomType`](#agoraeduroomtype)。     |
+| `rtmToken`    | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
+| `startTime`   | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
+| `duration`    | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
+| `boardRegion` | 课堂所在区域。各个客户端的区域必须一致，否则无法互通。详见 []()。 |
 
 ### AgoraEduCourseware
 
@@ -412,3 +415,23 @@ public class Ppt {
 | `src`    | 完成转换的页面的 URL 下载地址。 |
 | `width`  | 页面宽度（pixel）。             |
 | `height` | 页面高度（pixel）。             |
+
+### AgoraEduRegionStr
+
+```java
+object AgoraEduRegionStr {
+    val cn = "cn-hz"
+    val na = "us-sv"
+    val eu = "gb-lon"
+    val ap = "sg"
+}
+```
+
+课堂所在区域。
+
+| 属性 | 描述       |
+| :--- | :--------- |
+| `cn` | 中国大陆。 |
+| `na` | 北美。     |
+| `eu` | 欧洲。     |
+| `ap` | 亚太。     |

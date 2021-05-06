@@ -1,4 +1,4 @@
-本页提供灵动课堂 Web 和 Electron 端的 TyptScript API 参考。
+本页提供 Agora Classroom SDK for Web/Electron 的 TypeScript API 参考。
 
 ## AgoraEduSDK
 
@@ -131,7 +131,6 @@ export type LaunchOption = {
   personalCourseWareList?: CourseWareList,
   recordUrl?: string,
   extApps?: IAgoraExtApp[]
-  region?: AgoraRegion
 }
 ```
 
@@ -152,6 +151,7 @@ export type LaunchOption = {
 | `recordUrl`              | 待录制 URL 地址，开发者需传入自己部署的网页地址，用于页面录制，例如 `https://cn.bing.com/recordUrl`。 |
 | `courseWareList`         | 教育机构指派的课件配置，客户端无法编辑。详见 [`CourseWareList`](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
 | `personalCourseWareList` | 老师端自行上传的课件配置，详见 [`CourseWareList`](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
+| `extApps`                | 注册扩展应用 ExtApp。ExtApp 是灵动课堂 UIKit 的补充插件。详见[通过 ExtApp 自定义插件](./agora_class_ext_app_web?platform=Web)。 |
 
 ### CourseWareList
 

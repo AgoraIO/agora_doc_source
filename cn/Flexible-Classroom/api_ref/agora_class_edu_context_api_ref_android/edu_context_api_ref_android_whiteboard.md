@@ -12,9 +12,9 @@ abstract fun selectAppliance(type: WhiteboardApplianceType)
 
 选中白板工具。
 
-| 参数   | 描述                                                         |
-| :----- | :----------------------------------------------------------- |
-| `type` | 白板工具类型，详见 [`WhiteboardApplianceType`](#whiteboardappliancetype)。 |
+| 参数   | 描述                                           |
+| :----- | :--------------------------------------------- |
+| `type` | 白板工具类型，详见 `WhiteboardApplianceType`。 |
 
 ### selectColor
 
@@ -181,7 +181,7 @@ fun onDrawingConfig(config: WhiteboardDrawingConfig)
 
 | 参数 | 描述 |
 | :--- | :--- |
-|  `config`    |  白板初始配置，详见 [WhiteboardDrawingConfig](#whiteboarddrawingconfig)。    |
+|  `config`    |  白板初始配置，详见 `WhiteboardDrawingConfig`。  |
 
 ### onDrawingEnabled
 

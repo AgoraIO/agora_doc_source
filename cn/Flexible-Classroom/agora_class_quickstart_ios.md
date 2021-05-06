@@ -21,16 +21,20 @@ Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-
 
 2. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
 
- ```
-# platform :ios, '10.0' use_frameworks!
-target 'Your App' do
-    pod 'AgoraEduSDK'
-end
- ```
+  ```
+  # platform :ios, '10.0' use_frameworks!
+  target 'Your App' do
+      pod 'AgoraEduSDK'
+  end
+  ```
 
-3. 在终端内运行 `pod install` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。pod install --repo-update
-
+3. 在终端内运行 `pod install` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。
 4. 打开新生成的 `xcworkspace` 文件。
+
+自 v1.1.0 起，灵动课堂 iOS 端基于 Swift 语言进行开发。如果开发者基于 Object-C 语言开发，需要参考以下步骤在项目中创建一个 Swift 文件，生成 Swift 环境。
+
+1. 在 Xcode 中打开 `ios/ProjectName.xcworkspace` 文件夹。
+2. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Next** > **Create**，新建一个空的 `File.swift` 文件。
 
 ## 进行全局配置
 
