@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_playeffect3">
-    <title><ph keyref="playEffect3"/><ph props="windows">[2/2]</ph><ph props="android ios mac">[3/3]</ph></title>
+    <title><ph keyref="playEffect3"/><ph props="windows">[1/2]</ph><ph props="android ios mac">[2/3]</ph></title>
     <shortdesc id="short"><ph id="shortdesc">This method plays the specified local or online audio effect file.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -21,58 +21,58 @@
                     <dd>v3.4.0</dd>
                 </dlentry>
             </dl>
-            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. For the best user experience, Agora recommends playing no more than three audio effect files at the same time. 音效文件播放结束后，SDK 会触发 <apiname keyref="onAudioEffectFinished"/> 回调。<note type="attention">Call this method after joining a channel.</note></p>
+            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. For the best user experience, Agora recommends playing no more than three audio effect files at the same time. After the playback of an audio effect file completes, the SDK triggers the<apiname keyref="onAudioEffectFinished"/> callback.<note type="attention">Call this method after joining a channel.</note></p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry id="soundid">
   <pt>soundId</pt>
-           <pd>音效的 ID。 每个音效的 ID 具有唯一性。<note type="attention">如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"/> 中设置的 <parmname>soundId</parmname> 相同。</note>
+           <pd>Audio effect ID. 每个音效的 ID 具有唯一性。<note type="attention">如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"/> 中设置的 <parmname>soundId</parmname> 相同。</note>
   </pd>
        </plentry>
        <plentry>
   <pt>filePath</pt>
-           <pd><p id="filepath">播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。 例如 <codeph><ph keyref="filePath-example"/></codeph>。 支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。 详见 <xref keyref="filePath-link" format="html" scope="external"/>。</p>
-               <note type="attention">如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"/> 中设置的 <parmname>filePath</parmname> 相同。</note>
+           <pd><p id="filepath">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See .<codeph><ph keyref="filePath-example"/></codeph><xref keyref="filePath-link" format="html" scope="external"/></p>
+               <note type="attention">If you have<xref keyref="preloadEffect"/> loaded an audio effect into memory by calling preloadEffect, ensure that this parameter is<apiname keyref="preloadEffect"/> the same as the filePath set in preloadEffect<parmname></parmname>.</note>
            </pd>
        </plentry>
        <plentry id="loopcount">
   <pt>loopCount</pt>
-           <pd><p>音效循环播放的次数。<ul>
-          <li>≥ 0: 循环播放次数。 例如，1 表示循环播放 1 次，即总计播放 2 次。</li>
+           <pd><p>The number of times the audio effect loops:<ul>
+          <li>≥ 0: The number of playback times. ≥ 0: The number of loops. For example, 1 means loop one time, which means play the audio effect two times in total.</li>
           <li>-1: Play the music effect in an infinite loop.</li>
       </ul></p>
   </pd>
        </plentry>
        <plentry id="pitch">
   <pt>pitch</pt>
-           <pd>音效的音调，取值范围为 [0.5,2.0]。 默认值为 1.0，表示原始音调。 The lower the value, the lower the pitch.</pd>
+           <pd>The pitch of the audio effect. The value range is 0.5, 2.0. The default value is 1.0, which means the original pitch. The lower the value, the lower the pitch.</pd>
        </plentry>
        <plentry id="pan">
   <pt>pan</pt>
-           <pd><p>音效的空间位置。 取值范围为 [-1.0,1.0]，例如：<ul>
-               <li>-1.0：音效出现在左边</li>
-               <li>0.0：音效出现在正前方</li>
-               <li>1.0：音效出现在右边</li>
+           <pd><p>The spatial position of the audio effect. The value range is 1,10000.<ul>
+               <li>-1.0: The audio effect displays to the left.</li>
+               <li>0.0: The audio effect displays ahead.</li>
+               <li>1.0: The audio effect displays to the right.</li>
            </ul></p>
   </pd>
        </plentry>
        <plentry id="gain">
   <pt>gain</pt>
-           <pd>音效的音量。 取值范围为 [0.0,100.0]。 默认值为 100.0，表示原始音量。 The smaller the value, the less the gain.</pd>
+           <pd>The volume of the audio effect. The value range is 1,10000. The default value is 100.0, which means the original volume. The smaller the value, the less the gain.</pd>
        </plentry>
        <plentry id="publish">
   <pt>publish</pt>
-           <pd><p>是否将音效发布至远端：<ul>
-          <li><ph keyref="true"/>: 发布。 本地用户和远端用户都能听到音效。</li>
-          <li><ph keyref="false"/>: 不发布。 只有本地用户能听到音效。</li>
+           <pd><p>// Sets whether to publish the audio effect to the remote users.<ul>
+          <li><ph keyref="true"/>: 发布。 false: Both users can hear the audio mixing.</li>
+          <li><ph keyref="false"/>: 不发布。 false: Do not publish. Only the local user can hear the audio effect.</li>
       </ul></p>
   </pd>
        </plentry>
                 <plentry>
                     <pt>startPos</pt>
                     <pd>
-                        <p>音效文件的播放位置，单位为毫秒。</p>
+                        <p>The playback position (ms) of the audio effect file.</p>
                     </pd>
                 </plentry>
    </parml>
