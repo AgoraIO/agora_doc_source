@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_sendstreammessage">
     <title><ph keyref="sendStreamMessage"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sends data stream messages.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sends data stream messages. </ph><ph id="shortdesc">Sends data stream messages.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,38 +16,38 @@
         </section>
         <section id="detailed_desc">
    
-   <p id="desc">Sends data stream messages to all users in a channel. The SDK has the following restrictions on this method:<ul><li>Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 KB.</li><li>Each client can send up to 6 KB of data per second.</li><li>Each user can have up to five data streams simultaneously.</li></ul></p>
-   <p>A successful method call triggers the <xref keyref="onStreamMessage"/> callback on the remote client, from which the remote user gets the stream message. A failed method call triggers the <xref keyref="onStreamMessageError"/> callback on the remote client.</p>
-   <note outputclass="note"><ul>
-       <li>Ensure that you call <xref keyref="createDataStream2"/> to create a data channel before calling this method.</li>
-       <li>In live broadcast streaming, this method only applies to hosts.</li>
+   <p id="desc">Sends data stream messages to all users in a channel. Sends data stream messages to all users in a channel. The SDK has the following restrictions on this method: The SDK has the following restrictions on this method:<ul><li>Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 KB. Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 KB.</li><li>Each client can send up to 6 KB of data per second. Each client can send up to 6 KB of data per second.</li><li>Each user can have up to five data streams simultaneously. Each user can have up to five data streams simultaneously.</li></ul></p>
+   <p>A successful method call triggers the <xref keyref="onStreamMessage"/> callback on the remote client, from which the remote user gets the stream message. A failed method call triggers the <xref keyref="onStreamMessageError"/> callback on the remote client. A successful method call triggers the <xref keyref="onStreamMessage"/> callback on the remote client, from which the remote user gets the stream message. A failed method call triggers the <xref keyref="onStreamMessageError"/> callback on the remote client.</p>
+   <note type="attention"><ul>
+       <li>Ensure that you call <xref keyref="createDataStream2"/> to create a data channel before calling this method. Ensure that you call <xref keyref="createDataStream2"/> to create a data channel before calling this method.</li>
+       <li>In live broadcast streaming, this method only applies to hosts. In live broadcast streaming, this method only applies to hosts.</li>
    </ul></note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameter Parameter</title>
    <parml>
        <plentry>
-  <pt>streamId</pt>
-  <pd>The data stream ID. You can get the data stream ID by calling <apiname keyref="createDataStream2"/>.</pd>
+  <pt>streamId streamId</pt>
+  <pd>The data stream ID. The data stream ID. You can get the data stream ID by calling <apiname keyref="createDataStream2"/>. You can get the data stream ID by calling <apiname keyref="createDataStream2"/>.</pd>
        </plentry>
        <plentry props="android">
-  <pt>message</pt>
-  <pd>The message to be sent.</pd>
+  <pt>message message</pt>
+  <pd>The message to be sent. The message to be sent.</pd>
        </plentry>
        <plentry props="windows">
-  <pt>data</pt>
-  <pd>The custom data.</pd>
+  <pt>data data</pt>
+  <pd>The custom data. The custom data.</pd>
        </plentry>
        <plentry props="windows">
-  <pt>length</pt>
-  <pd>The length of the data.</pd>
+  <pt>length length</pt>
+  <pd>The length of the data. The length of the data.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>Returns</title>
+   <title>Returns Returns</title>
    <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
+       <li>0: Success. 0: Success.</li>
+       <li>&lt; 0: Failure. &lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
