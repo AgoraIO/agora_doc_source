@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onusermuteaudio">
     <title><ph keyref="onUserMuteAudio"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user stops/resumes sending the audio stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user&apos;s video stream playback pauses/resumes. </ph><ph id="shortdesc">Occurs when a remote user&apos;s video stream playback pauses/resumes.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,27 +16,26 @@
         </section>
         <section id="detailed_desc">
    
-   <dl outputclass="deprecated">
+   <dl outputclass="deprecated" props="hide">
        <dlentry >
-  <dt>Deprecated:</dt>
-  <dd>This callback is deprecated as of v3.0.0. Please use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
+  <dt>Deprecated: Deprecated:</dt>
+  <dd>This callback is deprecated as of v3.0.0. This callback is deprecated as of v3.0.0. Please use <xref keyref="onRemoteAudioStateChanged"/> instead. Please use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
        </dlentry>
    </dl>
-   <p>Occurs when a remote user&apos;s audio stream playback pauses/resumes.</p>
-   <p>The SDK triggers this callback when the remote user stops or resumes sending the audio stream by calling the <xref keyref="muteLocalAudioStream"/> method.</p>
-   <note outputclass="note">This callback does not work properly when the number of users (in the COMMUNICATION profile) or hosts (in the LIVE_BROADCASTING profile) in the channel exceeds 17.</note>
+   <p>The SDK triggers this callback when the remote user stops or resumes sending the audio stream by calling the <xref keyref="muteLocalAudioStream"/> method. The SDK triggers this callback when the remote user stops or resumes sending the audio stream by calling the <xref keyref="muteLocalAudioStream"/> method.</p>
+   <note type="attention">This callback does not work properly when the number of users (in the COMMUNICATION profile) or hosts (in the LIVE_BROADCASTING profile) in the channel exceeds 17. This callback does not work properly when the number of users (in the COMMUNICATION profile) or hosts (in the LIVE_BROADCASTING profile) in the channel exceeds 17.</note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameter Parameter</title>
    <parml>
        <plentry>
-  <pt>uid</pt>
-  <pd>User ID</pd>
+  <pt>uid uid</pt>
+  <pd>User ID User ID</pd>
        </plentry>
        <plentry>
-  <pt>muted</pt>
-  <pd>Whether the remote user&apos;s audio stream is muted/unmuted:<ul>
-      <li><ph keyref="true"/>: Muted.</li>
-      <li><ph keyref="false"/>: Unmuted.</li>
+  <pt>muted muted</pt>
+  <pd>Whether the remote user&apos;s audio stream is muted/unmuted: Whether the remote user&apos;s audio stream is muted/unmuted:<ul>
+      <li><ph keyref="true"/>: Muted. <ph keyref="true"/>: Muted.</li>
+      <li><ph keyref="false"/>: Unmuted. <ph keyref="false"/>: Unmuted.</li>
   </ul>
   </pd>
        </plentry>
