@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onfacepositionchanged">
     <title><ph keyref="onFacePositionChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the face detection result of the local user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the face detection result of the local user. </ph><ph id="shortdesc">Reports the face detection result of the local user.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -18,55 +18,55 @@
    
    <dl outputclass="since">
        <dlentry>
-  <dt>Since</dt>
-  <dd>v3.0.1</dd>
+  <dt>Since Since</dt>
+  <dd>v3.0.1 v3.0.1</dd>
        </dlentry>
    </dl>
-   <p>After calling <xref keyref="enableFaceDetection"/>(<ph keyref="true"/>) to enable local face detection, you can use this callback to obtain the following face detection information in real time:<ul>
-  <li>The width and height of the local video.</li>
-  <li>The position of the human face in the local video.</li>
-  <li>The distance between the human face and the screen.</li>
+   <p>调用 <xref keyref="enableFaceDetection"/>(<ph keyref="true"/>) 开启本地人脸检测后，你可以通过该回调实时获取以下人脸检测的信息： After calling <xref keyref="enableFaceDetection"/>(<ph keyref="true"/>) to enable local face detection, you can use this callback to obtain the following face detection information in real time:<ul>
+  <li>The width and height of the local video. The width and height of the local video.</li>
+  <li>The position of the human face in the local video. The position of the human face in the local video.</li>
+  <li>The distance between the human face and the screen. The distance between the human face and the screen.</li>
        </ul>
    </p>
-   <p>This value is based on the fitting calculation of the local video size and the position of the human face.</p>
-   <note outputclass="note">
+   <p>This value is based on the fitting calculation of the local video size and the position of the human face. This value is based on the fitting calculation of the local video size and the position of the human face.</p>
+   <note type="attention">
        <ul>
-           <li>This method is for Android and iOS only.</li>
-  <li>If the SDK does not detect a face, it reduces the frequency of this callback to reduce power consumption on the local device.</li>
-  <li>The SDK stops triggering this callback when a human face is in close proximity to the screen.</li>
-  <li>On Android, the `<parmname>distance</parmname>` value reported in this callback may be slightly different from the actual <parmname>distance</parmname>. Therefore, Agora does not recommend using it for accurate calculation.</li>
+           <li>This method is for Android and iOS only. This method is for Android and iOS only.</li>
+  <li>If the SDK does not detect a face, it reduces the frequency of this callback to reduce power consumption on the local device. If the SDK does not detect a face, it reduces the frequency of this callback to reduce power consumption on the local device.</li>
+  <li>The SDK stops triggering this callback when a human face is in close proximity to the screen. The SDK stops triggering this callback when a human face is in close proximity to the screen.</li>
+  <li>On Android, the `<parmname>distance</parmname>` value reported in this callback may be slightly different from the actual <parmname>distance</parmname>. Therefore, Agora does not recommend using it for accurate calculation. On Android, the `<parmname>distance</parmname>` value reported in this callback may be slightly different from the actual <parmname>distance</parmname>. Therefore, Agora does not recommend using it for accurate calculation.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameter Parameter</title>
    <parml>
        <plentry>
-  <pt>imageWidth</pt>
-  <pd>The width (px) of the video image captured by the local camera.</pd>
+  <pt>imageWidth imageWidth</pt>
+  <pd>The width (px) of the video image captured by the local camera. The width (px) of the video image captured by the local camera.</pd>
        </plentry>
        <plentry>
-  <pt>imageHeight</pt>
-  <pd>The height (px) of the video image captured by the local camera.</pd>
+  <pt>imageHeight imageHeight</pt>
+  <pd>The height (px) of the video image captured by the local camera. The height (px) of the video image captured by the local camera.</pd>
        </plentry>
        <plentry>
-  <pt>vecRectangle</pt>
+  <pt>vecRectangle vecRectangle</pt>
   <pd>
-      <p>Face information detected:<ul>
-     <li>`<codeph>x</codeph>`: The x coordinate (px) of the human face in the local video. Taking the top left corner of the captured video as the origin, the x coordinate represents the relative lateral displacement of the top left corner of the human face to the origin.</li>
-     <li>`<codeph>y</codeph>`: The y coordinate (px) of the human face in the local video. Taking the top left corner of the captured video as the origin, the y coordinate represents the relative longitudinal displacement of the top left corner of the human face to the origin.</li>
-     <li>`<codeph>width</codeph>`: The<codeph> width</codeph> (px) of the human face in the captured video.</li>
-     <li>`<codeph>height</codeph>`: The<codeph> height</codeph> (px) of the human face in the captured video.</li>
+      <p>检测到的人脸信息： Face information detected:<ul>
+     <li>`<codeph>x</codeph>`: The x coordinate (px) of the human face in the local video. `<codeph>x</codeph>`: The x coordinate (px) of the human face in the local video. Taking the top left corner of the captured video as the origin, the x coordinate represents the relative lateral displacement of the top left corner of the human face to the origin. Taking the top left corner of the captured video as the origin, the x coordinate represents the relative lateral displacement of the top left corner of the human face to the origin.</li>
+     <li>`<codeph>y</codeph>`: The y coordinate (px) of the human face in the local video. `<codeph>y</codeph>`: The y coordinate (px) of the human face in the local video. Taking the top left corner of the captured video as the origin, the y coordinate represents the relative longitudinal displacement of the top left corner of the human face to the origin. Taking the top left corner of the captured video as the origin, the y coordinate represents the relative longitudinal displacement of the top left corner of the human face to the origin.</li>
+     <li>`<codeph>width</codeph>`: The<codeph> width</codeph> (px) of the human face in the captured video. `<codeph>width</codeph>`: The<codeph> width</codeph> (px) of the human face in the captured video.</li>
+     <li>`<codeph>height</codeph>`: The<codeph> height</codeph> (px) of the human face in the captured video. `<codeph>height</codeph>`: The<codeph> height</codeph> (px) of the human face in the captured video.</li>
  </ul>
       </p>
   </pd>
        </plentry>
        <plentry>
-  <pt>vecDistance</pt>
-  <pd>The distance between the human face and the device screen.</pd>
+  <pt>vecDistance vecDistance</pt>
+  <pd>The distance between the human face and the device screen. The distance between the human face and the device screen.</pd>
        </plentry>
        <plentry>
-  <pt>numFaces</pt>
-  <pd>The number of detected faces. If the value is 0, it means that no human face is detected.</pd>
+  <pt>numFaces numFaces</pt>
+  <pd>检测的人脸数量。 The number of detected faces. If the value is 0, it means that no human face is detected. If the value is 0, it means that no human face is detected.</pd>
        </plentry>
    </parml>
         </section>
