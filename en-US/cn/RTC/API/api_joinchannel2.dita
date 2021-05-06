@@ -23,18 +23,18 @@
    </dl>
             <p id="desc1">This method joins an Agora RTC channel. Users with the same App ID in the same channel can talk to each other, and multiple users in the same channel can start a group chat.</p>
             <p id="desc2">A successful call of this method triggers the following callbacks:<ul>
-                <li>The local client: The and callbacks<xref keyref="onJoinChannelSuccess"/><xref keyref="onConnectionStateChanged"/>.</li>
-                <li>The remote client: , if the user joining the channel is in the communication profile, or is a host in the live streaming profile<xref keyref="onUserJoined"/>.</li>
+                <li>The local client: The <xref keyref="onJoinChannelSuccess"/> and <xref keyref="onConnectionStateChanged"/> callbacks.</li>
+                <li>The remote client: <xref keyref="onUserJoined"/>, if the user joining the channel is in the communication profile, or is a host in the live streaming profile.</li>
             </ul></p>
-            <p id="desc3">When the connection between the client and Agora&apos;s server is interrupted due to poor network conditions, the SDK tries reconnecting to the server. When the local client successfully rejoins the channel, the SDK triggers the callback on the local client<xref keyref="onRejoinChannelSuccess"/>.</p>
-   <note type="attention">Compared to<xref keyref="joinChannel1"/> [1/2], this method adds the <parmname>options</parmname> parameter to configure whether to automatically subscribe to all remote audio and video streams in the channel when the user joins the channel. By default, the user subscribes to the audio and video streams of all the other users in the channel, thus incurring all associated usage costs. To unsubscribe, set the `<parmname>options</parmname>` parameter or call the `<apiname>mute</apiname>` methods accordingly.</note>
+            <p id="desc3">When the connection between the client and Agora&apos;s server is interrupted due to poor network conditions, the SDK tries reconnecting to the server. When the local client successfully rejoins the channel, the SDK triggers the <xref keyref="onRejoinChannelSuccess"/> callback on the local client.</p>
+   <note type="attention">Compared to <xref keyref="joinChannel1"/>[1/2], this method adds the <parmname>options</parmname> parameter to configure whether to automatically subscribe to all remote audio and video streams in the channel when the user joins the channel. By default, the user subscribes to the audio and video streams of all the other users in the channel, thus incurring all associated usage costs. To unsubscribe, set the <parmname>options</parmname> parameter or call the <apiname>mute</apiname> methods accordingly.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry id="token">
   <pt>token</pt>
   <pd>
-    <p>在服务端生成的用于鉴权的动态密钥。 For details, see <xref keyref="guide-token"/>.</p>
+    <p>The token generated on your server for authentication. For details, see <xref keyref="guide-token"/>.</p>
     <note type="caution">Ensure that the App ID used for creating the token is the sameApp ID used by the <xref keyref="create2"/> method for initializing the RTC engine.</note>
       </pd>
        </plentry>
@@ -58,7 +58,7 @@
        </plentry>
        <plentry id="uid">
   <pt><ph keyref="uid"/></pt>
-  <pd>User ID This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique. This parameter is a 32-bit unsigned integer. A <sup>32</sup>-bit unsigned integer with a value ranging from 1 to 2&lt;sup><sup>32</sup>&lt;/sup>-1. If a uid is not assigned (or set to 0), the SDK assigns and<apiname keyref="onJoinChannelSuccess"/> returns a uid in the callback. Your application must record and maintain the returned uid, because the SDK does not do so.</pd>
+  <pd>User ID This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique. A <sup>32</sup>-bit unsigned integer with a value ranging from 1 to 2<sup>32</sup>-1. If the user ID is not assigned (or set to 0), the SDK assigns and returns a user ID in the <apiname keyref="onJoinChannelSuccess"/> callback. Your application must record and maintain the returned user ID, because the SDK does not do so.</pd>
        </plentry>
        <plentry id="options">
   <pt>options</pt>
