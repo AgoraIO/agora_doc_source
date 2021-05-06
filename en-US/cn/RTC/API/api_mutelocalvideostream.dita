@@ -17,10 +17,10 @@
         <section id="detailed_desc">
         <p>A successful call of this method triggers the <xref keyref="onUserMuteVideo"/> callback on the remote client.<note type="attention">
                     <ul id="ul_ogk_hwc_f4b">
-                        <li>Compared with <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) used to control the sending of local video streams, this method has a faster response time.</li>
-                        <li>When `mute` is set as `true`, this method does not affect any ongoing video recording, because it does not disable the camera.</li>
-                        <li>You can call this method either before or after joining a channel. If you call the method after this method<xref keyref="setChannelProfile"/>, the SDK will reset whether to stop sending local video according to the channel scene and user role you set. Therefore, we recommend<apiname
-                                keyref="setChannelProfile"/> calling this method after.</li>
+                        <li>This method executes faster than the <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) method, which controls the sending of the local video stream.</li>
+                        <li>This method does not affect any ongoing video recording, because it does not disable the camera.</li>
+                        <li>You can call this method either before or after joining a channel. If you call <xref keyref="setChannelProfile"/> after this method, the SDK resets whether or not to stop publishing the local video according to the channel profile and user role. Therefore, Agora recommends calling this method after the <apiname
+                                keyref="setChannelProfile"/> method.</li>
                     </ul>
                 </note></p>
         </section>
@@ -30,9 +30,9 @@
                 <plentry>
                     <pt>mute</pt>
                     <pd>
-                        <p>The user stops sending video streams.<ul id="ul_xwr_mxc_f4b">
-                            <li><ph keyref="true"/>: Cancel sending.</li>
-                            <li><ph keyref="false"/>(Default) Audience.</li>
+                        <p>Whether to stop publishing the local video stream.<ul id="ul_xwr_mxc_f4b">
+                            <li><ph keyref="true"/>: Stop publishing the local video stream.</li>
+                            <li><ph keyref="false"/>: (Default) Resumes publishing the local video stream.</li>
                         </ul>
                         </p>
                     </pd>
