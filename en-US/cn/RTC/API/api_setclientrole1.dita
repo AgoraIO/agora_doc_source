@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setclientrole1">
-    <title><ph keyref="setClientRole1"/>[1/2]</title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the user role in a live broadcast.</ph></shortdesc>
+    <title><ph keyref="setClientRole1"/>[1/2] <ph keyref="setClientRole1"/>[1/2]</title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the user role in a live broadcast. </ph><ph id="shortdesc">Sets the user role in a live broadcast.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,29 +16,29 @@
    <p conref="../conref/conref_rtc_api.dita#apidef/setClientRole1"> </p>
     </section>
         <section id="detailed_desc">
-   <p id="desc">You can call this method either before or after joining the channel to set the user role as audience or host.</p>
-   <p>If you call this method to switch user roles after joining the channel, after the call is successful, the callback will be triggered locally<xref keyref="onClientRoleChanged"/>; the remote side will trigger<xref keyref="onUserJoined"/> or<xref keyref="onUserOffline"/> (USER_OFFLINE_BECOME_AUDIENCE) callback.</p>
-   <note outputclass="note">This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile"/> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>).</note>
+   <p id="desc">You can call this method either before or after joining the channel to set the user role as audience or host. You can call this method either before or after joining the channel to set the user role as audience or host.</p>
+   <p>If you call this method to switch user roles after joining the channel, after the call is successful, the callback will be triggered locally<xref keyref="onClientRoleChanged"/>; the remote side will trigger<xref keyref="onUserJoined"/> or<xref keyref="onUserOffline"/> (USER_OFFLINE_BECOME_AUDIENCE) callback. If you call this method to switch user roles after joining the channel, after the call is successful, the callback will be triggered locally<xref keyref="onClientRoleChanged"/>; the remote side will trigger<xref keyref="onUserJoined"/> or<xref keyref="onUserOffline"/> (USER_OFFLINE_BECOME_AUDIENCE) callback.</p>
+   <note type="attention">This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile"/> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>). This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile"/> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>).</note>
         </section>
         <section id="parameters">
-   <title>Parameter</title>
+   <title>Parameter Parameter</title>
    <parml>
        <plentry>
-  <pt>role</pt>
+  <pt>role role</pt>
   <pd>
-      <p>User roles in a live broadcast. See <xref keyref="CLIENT_ROLE_TYPE" />.</p>
+      <p>User roles in a live broadcast. User roles in a live broadcast. See <xref keyref="CLIENT_ROLE_TYPE" />. See <xref keyref="CLIENT_ROLE_TYPE" />.</p>
   </pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>Returns</title>
+   <title>Returns Returns</title>
    <ul>
-       <li>0(ERR_OK): Success.</li>
-       <li>&lt; 0: Failure.<ul>
-      <li>-1(ERR_FAILED): A general error occurs (no specified reason).</li>
- <li>-2(ERR_INALID_ARGUMENT): The parameter is invalid.</li>
- <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
+       <li>0(ERR_OK): Success. 0(ERR_OK): Success.</li>
+       <li>&lt; 0: Failure. &lt; 0: Failure.<ul>
+      <li>-1(ERR_FAILED): A general error occurs (no specified reason). -1(ERR_FAILED): A general error occurs (no specified reason).</li>
+ <li>-2(ERR_INALID_ARGUMENT): The parameter is invalid. -2(ERR_INALID_ARGUMENT): The parameter is invalid.</li>
+ <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized. -7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
   </ul>
        </li>
    </ul>
