@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onmicrophoneenabled">
     <title><ph keyref="onMicrophoneEnabled"/></title>
-    <shortdesc id="short"><ph id="shortdesc">麦克风状态已改变回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the microphone is enabled/disabled.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,14 +19,14 @@
                 <dlentry>
                     <dt>Deprecated:</dt>
                     <dd>
-                        <p>自 v2.9.0 起废弃，请改用 <xref keyref="onLocalAudioStateChanged"/> 回调的：<ul>
+                        <p>This method is deprecated as of v2.4.0. We recommend using [<xref keyref="onLocalAudioStateChanged"/>2/2] to start an audio call test.<ul>
                                 <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/>(0)。</li>
                                 <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING"/>(1)。</li>
                             </ul></p>
                     </dd>
                 </dlentry>
             </dl>
-            <p>该回调是由本地用户调用 <xref keyref="enableLocalAudio"/> 方法开启或关闭本地音频采集触发的。</p>
+            <p>The SDK triggers this callback when the remote user<xref keyref="enableLocalAudio"/> resumes or stops capturing the video stream by calling the method.</p>
         </section>
         <section id="parameters">
             <title>Parameter</title>
@@ -36,7 +36,7 @@
                     <pd>
                         <p>麦克风状态：<ul>
                                 <li><ph keyref="true"/>：麦克风已启用。</li>
-                                <li><ph keyref="false"/>：麦克风已禁用。</li>
+                                <li><ph keyref="false"/>false: Disabled.</li>
                             </ul></p>
                     </pd>
                 </plentry>
