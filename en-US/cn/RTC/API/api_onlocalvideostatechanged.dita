@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onlocalvideostatechanged">
     <title><ph keyref="onLocalVideoStateChanged" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the local video stream state changes. </ph><ph id="shortdesc">Occurs when the local video stream state changes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the local video stream state changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,29 +17,29 @@
         <section id="detailed_desc">
             <dl outputclass="since">
                 <dlentry>
-                    <dt>Since Since</dt>
-                    <dd>v2.4.1 v2.4.1</dd>
+                    <dt>Since</dt>
+                    <dd>v2.4.1</dd>
                 </dlentry>
             </dl>
-            <p>This callback occurs when the connection state of the local user changes. You can get the connection state and reason for the state change in this callback. This callback occurs when the connection state of the local user changes. You can get the connection state and reason for the state change in this callback. This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you to troubleshoot issues when exceptions occur. This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you to troubleshoot issues when exceptions occur.</p>
-            <p>The SDK triggers the `onLocalVideoStateChanged<apiname keyref="onLocalVideoStateChanged" />(<codeph>LOCAL_VIDEO_STREAM_STATE_FAILED</codeph>，LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE)` callback in the following situations<codeph></codeph>: The SDK triggers the `onLocalVideoStateChanged<apiname keyref="onLocalVideoStateChanged" />(<codeph>LOCAL_VIDEO_STREAM_STATE_FAILED</codeph>，LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE)` callback in the following situations<codeph></codeph>:<ul>
-                    <li>The application exits to the background, and the system recycles the camera. The application exits to the background, and the system recycles the camera.</li>
-                    <li>The camera starts normally, but the captured video is not output for four seconds. The camera starts normally, but the captured video is not output for four seconds.</li>
+            <p>This callback occurs when the connection state of the local user changes. You can get the connection state and reason for the state change in this callback. This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you to troubleshoot issues when exceptions occur.</p>
+            <p>The SDK triggers the `onLocalVideoStateChanged<apiname keyref="onLocalVideoStateChanged" />(<codeph>LOCAL_VIDEO_STREAM_STATE_FAILED</codeph>，LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE)` callback in the following situations<codeph></codeph>:<ul>
+                    <li>The application exits to the background, and the system recycles the camera.</li>
+                    <li>The camera starts normally, but the captured video is not output for four seconds.</li>
                 </ul>
             </p>
-            <p>摄像头输出采集的视频帧时，如果连续 15 帧中，所有视频帧都一样，SDK 触发 <apiname keyref="onLocalVideoStateChanged" /> 回调，状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>，错误码为 <codeph>LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE</codeph>。 When the camera outputs the captured video frames, if all the video frames are the same for 15 consecutive frames, the SDK triggers a callback<apiname keyref="onLocalVideoStateChanged" />, the state is <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>, and the error code is <codeph>LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE</codeph>. Note that the video frame duplication detection is only available for video frames with a resolution greater than 200 × 200, a frame rate greater than or equal to 10 fps, and a bitrate less than 20 Kbps. Note that the video frame duplication detection is only available for video frames with a resolution greater than 200 × 200, a frame rate greater than or equal to 10 fps, and a bitrate less than 20 Kbps.</p>
-            <note type="attention">@note For some device models, the SDK will not trigger this callback when the state of the local video changes while the local video capturing device is in use, so you have to make your own timeout judgment. @note For some device models, the SDK will not trigger this callback when the state of the local video changes while the local video capturing device is in use, so you have to make your own timeout judgment.</note>
+            <p>摄像头输出采集的视频帧时，如果连续 15 帧中，所有视频帧都一样，SDK 触发 <apiname keyref="onLocalVideoStateChanged" /> 回调，状态为 <codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>，错误码为 <codeph>LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE</codeph>。 Note that the video frame duplication detection is only available for video frames with a resolution greater than 200 × 200, a frame rate greater than or equal to 10 fps, and a bitrate less than 20 Kbps.</p>
+            <note type="attention">@note For some device models, the SDK will not trigger this callback when the state of the local video changes while the local video capturing device is in use, so you have to make your own timeout judgment.</note>
         </section>
         <section id="parameters">
-            <title>Parameter Parameter</title>
+            <title>Parameter</title>
             <parml>
                 <plentry>
-                    <pt>localVideoState localVideoState</pt>
-                    <pd>The local video is normal<xref keyref="LOCAL_VIDEO_STREAM_STATE" />. The local video is normal<xref keyref="LOCAL_VIDEO_STREAM_STATE" />.</pd>
+                    <pt>localVideoState</pt>
+                    <pd>The local video is normal<xref keyref="LOCAL_VIDEO_STREAM_STATE" />.</pd>
                 </plentry>
                 <plentry>
-                    <pt>error error</pt>
-                    <pd>Local video state error codes <xref keyref="LOCAL_VIDEO_STREAM_ERROR" />Local video state error codes<xref keyref="LOCAL_VIDEO_STREAM_ERROR" /></pd>
+                    <pt>error</pt>
+                    <pd>Local video state error codes<xref keyref="LOCAL_VIDEO_STREAM_ERROR" /></pd>
                 </plentry>
             </parml>
         </section>
