@@ -20,30 +20,30 @@ The error and warning codes may be returned in the following ways:
 | `0` | No error occurs. |
 | `1` | A general error occurs (no specified reason). Try calling the method again. |
 | `2` | An invalid parameter is used. For example, the specified channel name includes illegal characters. Please reset the parameters. |
-| `3` | The SDK is not ready due to one of the following reasons: Possible reasons:<ul><li>[RtcEngine] fails to initialize. Please re-initialize [RtcEngine].</li><li>No user has joined the channel when the method is called. Please check your code logic.</li><li>Users have not left the channel when the [rate] and [complain] methods are called. Please check your code logic.</li><li>The audio module is disabled.</li><li>The program is not complete.</li></ul> |
-| `4` | [RtcEngine] does not support the request due to one of the following reasons: Possible reasons:<ul><li>The [setBeautyEffectOptions] method is called on devices running versions earlier than Android 4.4. Please check the Android version.</li><li>The built-in encryption mode is incorrect or the SDK fails to load the external encryption library. Please check the encryption mode setting or reload the external encryption library.</li></ul> |
-| `5` | The request is rejected due to one of the following reasons: Possible reasons:<ul><li>[RtcEngine] fails to initialize. Please re-initialize [RtcEngine].</li><li>The channel name] is set[ as the empty string "" when creating the RtcChannel instance. Please reset the channel name.</li><li>When the [joinChannel method] is called to join one of multiple channels, the specified channel name is already in use. Please reset the channel name.</li><li>The [joinChannel `method in RtcEngine] is called to join another channel after an [RtcChannel] instance has been created[]` to join a channel and a stream has been published in the channel. The `joinChannel `method in RtcEngine is called to[ join another channel after an RtcChannel instance has been created ]`to join `a channel and a stream has been published in the channel.</li><li>A user whose[ role is not audience calls the switchChannel] method. Ensure that the` user role is audience before calling the switchChannel` method.</li></ul> |
+| `3` | The SDK is not ready. Possible reasons:<ul><li>[IRtcEngine] fails to initialize. Please re-initialize [IRtcEngine].</li><li>No user has joined the channel when the method is called. Please check your code logic.</li><li>Users have not left the channel when the [rate] and [complain] methods are called. Please check your code logic.</li><li>The audio module is disabled.</li><li>The program is not complete.</li></ul> |
+| `4` | [IRtcEngine] does not support the request. Possible reasons:<ul><li>The [setBeautyEffectOptions] method is called on devices running versions earlier than Android 4.4. Please check the Android version.</li><li>The built-in encryption mode is incorrect or the SDK fails to load the external encryption library. Please check the encryption mode setting or reload the external encryption library.</li></ul> |
+| `5` | The request is rejected. Possible reasons:<ul><li>[IRtcEngine] fails to initialize. Please re-initialize [IRtcEngine].</li><li>The channel name is set as the empty string "" when creating the [IChannel] instance. Please reset the channel name.</li><li>When the [joinChannel2] method is called to join one of multiple channels, the specified channel name is already in use. Please reset the channel name.</li><li>The `joinChannel` method in [IRtcEngine] is called to join another channel after an [IChannel] instance has been created to join a channel and a stream has been published in the channel. The `joinChannel` method in [IRtcEngine] is called to join another channel after an `IChannel` instance has been created to join a channel and a stream has been published in the channel.[]</li><li>A user whose role is not audience calls the [switchChannel2] method. Ensure that the user role is audience before calling the `switchChannel` method.</li></ul> |
 | `6` | The buffer size is insufficient to store the returned data. |
-| `0.99` | [A] method is called before the initialization of RtcEngine. Ensure that the [RtcEngine ]instance is created and initialized before calling the method. |
+| `7` | [A method is called before the initialization of IRtcEngine]. Ensure that the [IRtcEngine] instance is created and initialized before calling the method. |
 | `9` | Permission to access is not granted. Check whether your app has access to the audio and video device. |
 | `10` | A timeout occurs. Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 10 seconds) to return the result. |
-| `17` | The request to join the channel is rejected. Typical reasons include:<ul><li>The user is already in the channel and still calls a method (for example, [joinChannel) to join] the channel. Stop calling this method to clear this error.</li><li>The user tries[] to join a channel during[] a call test. To join a channel, the call test must be ended by calling `stopEchoTest`.</li></ul> |
-| `18` | The request to leave the channel is rejected. Typical reasons include:<ul><li>The user has left the channel but still calls a method (for example, [leaveChannel]) to leave the channel. Stop calling this method to clear this error.</li><li>The user is not in the channel. In this case, no extra operation is needed.</li></ul> |
+| `17` | The request to join the channel is rejected. Typical reasons include:<ul><li>The user is already in the channel and still calls a method (for example, [joinChannel2]) to join the channel. Stop calling this method to clear this error.</li><li>The user tries[] to join a channel during[] a call test. To join a channel, the call test must be ended by calling `stopEchoTest`.</li></ul> |
+| `18` | The request to leave the channel is rejected. Typical reasons include:<ul><li>The user has left the channel but still calls a method (for example, [leaveChannel]) to leave the channel. Stop calling this method to clear this error.</li><li>The user is not in the channel and calls a method to leave the channel. In this case, no extra operation is needed.</li></ul> |
 | `19` | Resources are already in use. |
-| `20 `s | The request is abandoned by the SDK, possibly because the request has been sent too frequently. |
-| `21` | RtcEngine] fails to initialize and has crashed because of specific [Windows firewall settings. |
+| `20` | The request is abandoned by the SDK, possibly because the request has been sent too frequently. |
+| `21` | [IRtcEngine] fails to initialize and has crashed because of specific Windows firewall settings. |
 | `22` | The SDK fails to allocate resources because your app uses too many system resources or system resources are insufficient. |
 | `101` | The specified App ID is invalid. Please rejoin the channel with a valid App ID. |
-| `102` | 7: The connection failed since channel name is not valid. The specified channel name is invalid, possibly because the data types of some parameters are incorrect. Please rejoin the channel with a valid channel name. |
-| `103` | RtcEngine fails to get server resources in the specified region. Try[ another region when initializing RtcEngine]. |
+| `102` | The specified channel name is invalid, possibly because the data types of some parameters are incorrect. Please rejoin the channel with a valid channel name. |
+| `103` | Fails to get server resources in the specified region. Try another region when initializing [IRtcEngine]. |
 | `109` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_TOKEN_EXPIRED](9) in the [onConnectionStateChanged] callback instead. </br>The current token has expired. Please apply for a new token on the server and call renewToken. |
 | `110` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_INVALID_TOKEN](8) in the [onConnectionStateChanged] callback instead. </br>The token is invalid. Typical reasons include:<ul><li>App Certificate is enabled in Agora Console, but the code still uses App ID for authentication. Once App Certificate is enabled for a project, you must use token-based authentication.</li><li>The uid used to generate the token is not the same as the one used to join the channel.</li></ul> |
 | `111` | The network connection is interrupted. This error occurs when the SDK has connected to the server but lost connection for more than 4 seconds. |
 | `112` | The network connection is lost.  This error occurs when the connection is interrupted and the SDK cannot reconnect to the server within 10 seconds. |
 | `113` | The user is not in the channel when calling the method. |
-| `114` | The[ data size exceeds 1024 bytes when calling the sendStreamMessage] method. |
-| `115` | The[ data bitrate exceeds 6 Kbps when calling the sendStreamMessage] method. |
-| `116` | More[ than five data streams are created] when calling the createDataStream method. |
+| `114` | The data size exceeds 1024 bytes when calling the [sendStreamMessage] method. |
+| `115` | The data bitrate exceeds 6 Kbps when calling the [sendStreamMessage] method. |
+| `116` | More than five data streams are created when calling the [createDataStream2] method. |
 | `117` | The data stream transmission times out. |
 | `119` | Switching roles fails. |
 | `120` | Decryption fails. The user may have entered an incorrect password to join the channel. Check the entered password or tell the user to try rejoining the channel. |
@@ -103,9 +103,9 @@ The error and warning codes may be returned in the following ways:
 | `1115` | Recording fails. Check whether there is permission to record or whether there is a problem with the network connection. |
 | `1201` | The current device does not support audio input, possibly because the configuration of the Audio Session category is incorrect, or because the device is already in use. Agora recommends terminating all background apps and rejoining the channel. |
 | `1206` | Audio Session fails to launch. Check your recording settings. |
-| `1210` | An error occurs when initializing the playback device. An error occurs when initializing the audio device, usually because some audio device parameters are incorrect. |
-| `1213` | An error occurs when initializing the playback device. An error occurs when initializing the audio device, usually because some audio device parameters are incorrect. |
-| `1214` | Error restarting the audio device. An error occurs when restarting the audio device, usually because the Audio Session category setting is not compatible with the audio device settings. |
+| `1210` | An error occurs when initializing the audio device, usually because some audio device parameters are incorrect. |
+| `1213` | An error occurs when re-initializing the audio device, usually because some audio device parameters are incorrect. |
+| `1214` |  An error occurs when restarting the audio device, usually because the Audio Session category setting is not compatible with the audio device settings. |
 | `1301` | The audio device module fails to initialize. Disable and re-enable the audio device, or restart the device on which your app is running. |
 | `1303` | The audio device module fails to terminate. Disable and re-enable the audio device, or restart the device on which your app is running. |
 | `1306` | The playback device fails to initialize. Disable and re-enable the audio device, or restart the device on which your app is running. |
@@ -154,13 +154,13 @@ The error and warning codes may be returned in the following ways:
 | Enumerator | Description |
 | :----- | :----------------------------------------------------------- |
 | `8` | The specified view is invalid. The video call function requires a specified view. |
-| `16` | The microphone fails to initialize. The SDK fails to initialize the video call function, possibly due to a lack of resources. When this warning occurs, users cannot make a video call, but the voice call function is not affected. |
-| `20 `s | The request is pending. The request is pending, usually because some modules are not ready, causing the SDK to postpone processing the request. |
-| `103` | 103: No channel resources are available. Maybe because the server cannot allocate any channel resource. |
+| `16` | The SDK fails to initialize the video call function, possibly due to a lack of resources. When this warning occurs, users cannot make a video call, but the voice call function is not affected. |
+| `20` | The request is pending, usually because some modules are not ready, causing the SDK to postpone processing the request. |
+| `103` | No channel resources are available, possibly because the server fails to allocate channel resources. |
 | `104` | A timeout occurs when the SDK is searching for a specified channel. When receiving a request to join a channel, the SDK searches for the channel first. This warning usually occurs when the network connection is too poor for the SDK to connect to the server. |
-| `105` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_REJECTED_BY_SERVER](10) in the [onConnectionStateChanged] callback instead. </br>105: The server rejected the request to look up the channel. The server cannot process this request or the request is illegal. |
+| `105` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_REJECTED_BY_SERVER](10) in the [onConnectionStateChanged] callback instead. </br>The server rejects the request to search for the channel because the server cannot process the request or the request is illegal. |
 | `106` | A timeout occurs when joining the channel. Once the specified channel is found, the SDK starts joining the channel. This warning usually occurs when the network connection is too poor for the SDK to connect to the server. |
-| `107` | 105: The server rejected the request to look up the channel. The server cannot process this request or the request is illegal. |
+| `107` |  The server rejects the request to join the channel because the server cannot process this request or the request is illegal. |
 | `111` | A timeout occurs when switching to the live video. |
 | `118` | A timeout occurs when setting user roles in the live-streaming profile. |
 | `121` | The ticket to join the channel is invalid. |
@@ -172,10 +172,10 @@ The error and warning codes may be returned in the following ways:
 | `1014` | A playback device warning occurs. |
 | `1016` | A recording device warning occurs. |
 | `1019` | No data is recorded. Possible solutions: Check whether the microphone is already in use. Check whether permission to record is granted. Check whether the recording device works properly. Restart the device. |
-| `1020` | The playback frequency is abnormal. The audio playback frequency is abnormal due to high CPU usage. Recommended solutions: Close other apps that are consuming CPU resources. Check whether the audio module is enabled in your app. Try rejoining the channel. |
-| `1021` | The audio recording frequency is abnormal due to high CPU usage. Recommended solutions: Close other apps that are consuming CPU resources. Check whether the audio module is enabled in your app. Try rejoining the channel. |
+| `1020` | The audio playback frequency is abnormal due to high CPU usage. You can close other apps that are consuming CPU resources. You can also check whether the audio module is enabled in your app or try rejoining the channel. |
+| `1021` | The audio recording frequency is abnormal due to high CPU usage. You can close other apps that are consuming CPU resources. You can also check whether the audio module is enabled in your app or try rejoining the channel. |
 | `1025` | The audio playback or recording is interrupted by system events (such as a phone call). |
-| `1029` | The Audio Session category is not set as `AVAudioSessionCategoryPlayAndRecord. During a call, [RtcEngine] monitors the Audio Session category`. If the category is modified, this warning occurs, and RtcEngine automatically sets it back to `AVAudioSessionCategoryPlayAndRecord`. |
+| `1029` | The Audio Session category must be set as `AVAudioSessionCategoryPlayAndRecord`. During a call, [IRtcEngine] monitors the Audio Session category. If the category is modified, this warning occurs, and the SDK automatically sets it back to `AVAudioSessionCategoryPlayAndRecord`. |
 | `1031` | The recording volume is too low. Check whether the user's microphone is muted or whether the user has enabled microphone augmentation. |
 | `1032` | The playback volume is too low. Check whether the user's microphone is muted or whether the user has enabled microphone augmentation. |
 | `1033` | The recording device is already in use. Check whether permission to record is granted or whether another app is using the device. |
