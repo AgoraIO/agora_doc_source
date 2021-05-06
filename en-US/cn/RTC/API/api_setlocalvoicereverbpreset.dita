@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlocalvoicereverbpreset">
     <title><ph keyref="setLocalVoiceReverbPreset"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the local voice reverberation option, including the virtual stereo.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the local voice reverberation option, including the virtual stereo. </ph><ph id="shortdesc">Sets the local voice reverberation option, including the virtual stereo.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -18,35 +18,35 @@
    
    <dl outputclass="deprecated">
        <dlentry >
-  <dt>Deprecated:</dt>
-  <dd>This method is deprecated as of v2.4.0<xref keyref="setAudioEffectPreset"/><xref keyref="setVoiceBeautifierPreset"/>.</dd>
+  <dt>Deprecated: Deprecated:</dt>
+  <dd>This method is deprecated as of v2.4.0. We recommend using [2/2] to start an audio call test<xref keyref="setAudioEffectPreset"/><xref keyref="setVoiceBeautifierPreset"/>. This method is deprecated as of v2.4.0<xref keyref="setAudioEffectPreset"/><xref keyref="setVoiceBeautifierPreset"/>.</dd>
        </dlentry>
    </dl>
-   <p>This method sets the local voice reverberation for users in a `COMMUNICATION` channel or hosts in a `LIVE_BROADCASTING` channel. After successfully calling this method, all users in the channel can hear the voice with reverberation.</p>
-   <note outputclass="note">
+   <p>This method sets the local voice reverberation for users in a `COMMUNICATION` channel or hosts in a `LIVE_BROADCASTING` channel. This method sets the local voice reverberation for users in a `COMMUNICATION` channel or hosts in a `LIVE_BROADCASTING` channel. After successfully calling this method, all users in the channel can hear the voice with reverberation. After successfully calling this method, all users in the channel can hear the voice with reverberation.</p>
+   <note type="attention">
        <ul>
-  <li>When using the enumeration value<xref keyref="setAudioProfile"/> prefixed with <codeph>AUDIO_REVERB_FX</codeph>, please make sure to set the <parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) or<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5) before calling this method, otherwise the method setting is invalid.</li>
-  <li>When using<apiname keyref="AUDIO_VIRTUAL_STEREO"/>, Agora recommends to set<apiname keyref="setAudioProfile"/> the <parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5) before calling this method.</li>
-  <li>This method works best with the human voice, and Agora does not recommend using it for audio containing music and a human voice.</li>
-  <li>This method cannot be used together with<xref keyref="setLocalVoiceChanger"/> the method, otherwise the method adjusted first will not take effect. For detailed considerations, see the advanced guide Voice Changer and Reverberation.</li>
-  <li>You can call this method either before or after joining a channel.</li>
+  <li>当使用以 <codeph>AUDIO_REVERB_FX</codeph> 为前缀的枚举值时，请确保在调用该方法前将 <xref keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5) ，否则该方法设置无效。 When using the enumeration value<xref keyref="setAudioProfile"/> prefixed with <codeph>AUDIO_REVERB_FX</codeph>, please make sure to set the <parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) or<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5) before calling this method, otherwise the method setting is invalid.</li>
+  <li>To achieve better audio effect<apiname keyref="AUDIO_VIRTUAL_STEREO"/> quality, Agora recommends calling and setting<apiname keyref="setAudioProfile"/> the <parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (4) or (5) before setting this enumerator. When using<apiname keyref="AUDIO_VIRTUAL_STEREO"/>, Agora recommends to set<apiname keyref="setAudioProfile"/> the <parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5) before calling this method.</li>
+  <li>This method works best with the human voice, and Agora does not recommend using it for audio containing music and a human voice. This method works best with the human voice, and Agora does not recommend using it for audio containing music and a human voice.</li>
+  <li>This method cannot be used together with<xref keyref="setLocalVoiceChanger"/> the method, otherwise the method adjusted first will not take effect. This method cannot be used together with<xref keyref="setLocalVoiceChanger"/> the method, otherwise the method adjusted first will not take effect. For detailed considerations, see the advanced guide Voice Changer and Reverberation. For detailed considerations, see the advanced guide Voice Changer and Reverberation.</li>
+  <li>You can call this method either before or after joining a channel. You can call this method either before or after joining a channel.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameter Parameter</title>
    <parml>
        <plentry>
-  <pt>reverbPreset</pt>
-  <pd><p>The local voice reverb option, the default value is<apiname keyref="AUDIO_REVERB_OFF"/>, which is the original sound. Relevant links<xref keyref="AUDIO_REVERB_PRESET"/>:</p>
-      <p>To implement better voice effects, Agora recommends enumerations with <codeph>AUDIO_REVERB_FX</codeph> as the prefix.</p></pd>
+  <pt>reverbPreset reverbPreset</pt>
+  <pd><p>本地语音混响选项，默认值为 <apiname keyref="AUDIO_REVERB_OFF"/> ，即原声。 The local voice reverb option, the default value is<apiname keyref="AUDIO_REVERB_OFF"/>, which is the original sound. Relevant links<xref keyref="AUDIO_REVERB_PRESET"/>: Relevant links<xref keyref="AUDIO_REVERB_PRESET"/>:</p>
+      <p>To implement better voice effects, Agora recommends enumerations with <codeph>AUDIO_REVERB_FX</codeph> as the prefix. To implement better voice effects, Agora recommends enumerations with <codeph>AUDIO_REVERB_FX</codeph> as the prefix.</p></pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>Returns</title>
+   <title>Returns Returns</title>
    <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
+       <li>0: Success. 0: Success.</li>
+       <li>&lt; 0: Failure. &lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
