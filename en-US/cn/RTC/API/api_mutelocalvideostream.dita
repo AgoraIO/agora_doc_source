@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_mutelocalvideostream">
     <title><ph keyref= "muteLocalVideoStream"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Stops or resumes publishing the local audio stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Stops or resumes publishing the local audio stream. </ph><ph id="shortdesc">Stops or resumes publishing the local audio stream.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -15,24 +15,25 @@
             <p conref="../conref/conref_rtc_api.dita#apidef/muteLocalVideoStream"/>
         </section>
         <section id="detailed_desc">
-        <p>A successful call of this method triggers the <xref keyref="onUserMuteVideo"/> callback on the remote client.<note outputclass="note">
+        <p>A successful call of this method triggers the <xref keyref="onUserMuteVideo"/> callback on the remote client. A successful call of this method triggers the <xref keyref="onUserMuteVideo"/> callback on the remote client.<note type="attention">
                     <ul id="ul_ogk_hwc_f4b">
-                        <li>Compared with <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) used to control the sending of local video streams, this method has a faster response time.</li>
-                        <li>When `mute` is set as `true`, this method does not affect any ongoing video recording, because it does not disable the camera.</li>
-                        <li>You can call this method either before or after joining a channel. If you call the method after this method<xref keyref="setChannelProfile"/>, the SDK will reset whether to stop sending local video according to the channel scene and user role you set. Therefore, we recommend<apiname
-                                keyref="setChannelProfile"/> calling this method after.</li>
+                        <li>Compared with <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) used to control the sending of local video streams, this method has a faster response time. 相比于 <xref keyref="enableLocalVideo"/>(<ph keyref="false"/>) 用于控制本地视频流发送的方法，该方法响应速度更快。</li>
+                        <li>When `mute` is set as `true`, this method does not affect any ongoing video recording, because it does not disable the camera. When `mute` is set as `true`, this method does not affect any ongoing video recording, because it does not disable the camera.</li>
+                        <li>You can call this method either before or after joining a channel. You can call this method either before or after joining a channel. If you call the method after this method<xref keyref="setChannelProfile"/>, the SDK will reset whether to stop sending local video according to the channel scene and user role you set. 如果你在该方法后调用 <xref keyref="setChannelProfile"/> 方法，SDK 会根据你设置的频道场景以及用户角色，重新设置是否停止发送本地视频。 Therefore, we recommend<apiname
+                                keyref="setChannelProfile"/> calling this method after. 因此我们建议在 <apiname
+                                keyref="setChannelProfile"/> 后调用该方法。</li>
                     </ul>
                 </note></p>
         </section>
         <section id="parameters">
-            <title>Parameter</title>
+            <title>Parameter Parameter</title>
             <parml>
                 <plentry>
-                    <pt>mute</pt>
+                    <pt>mute mute</pt>
                     <pd>
-                        <p>The user stops sending video streams.<ul id="ul_xwr_mxc_f4b">
-                            <li><ph keyref="true"/>: Cancel sending.</li>
-                            <li><ph keyref="false"/>(Default) Audience.</li>
+                        <p>The user stops sending video streams. The user stops sending video streams.<ul id="ul_xwr_mxc_f4b">
+                            <li><ph keyref="true"/>: Cancel sending. <ph keyref="true"/>: 取消发送。</li>
+                            <li><ph keyref="false"/>(Default) Audience. <ph keyref="false"/>(Default) Audience.</li>
                         </ul>
                         </p>
                     </pd>
@@ -40,10 +41,10 @@
             </parml>
         </section>
         <section id="return_values">
-            <title>Returns</title>
+            <title>Returns Returns</title>
             <ul id="ul_gkv_dxc_f4b">
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
+                <li>0: Success. 0: Success.</li>
+                <li>&lt; 0: Failure. &lt; 0: Failure.</li>
             </ul>
         </section>
     </refbody>
