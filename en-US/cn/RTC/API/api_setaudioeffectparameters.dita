@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setaudioeffectparameters">
     <title><ph keyref="setAudioEffectParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets parameters for SDK preset audio effects. </ph><ph id="shortdesc">Sets parameters for SDK preset audio effects.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets parameters for SDK preset audio effects.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -15,30 +15,28 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/setAudioEffectParameters"/>
         </section>
         <section id="detailed_desc">
-            <title>Detailed Description Detailed Description</title>
+            <title>Detailed Description</title>
    <dl outputclass="since">
        <dlentry>
-  <dt>Since Since</dt>
-  <dd>v3.2.0 v3.2.0</dd>
+  <dt>Since</dt>
+  <dd>v3.2.0</dd>
        </dlentry>
    </dl>
-   <p>Call this method to set the following parameters for the local user who sends an audio stream: Call this method to set the following parameters for the local user who sends an audio stream:<ul>
-  <li>3D voice effect: Sets the cycle period of the 3D voice effect. 3D voice effect: Sets the cycle period of the 3D voice effect.</li>
-  <li>Pitch correction effect: Sets the basic mode and tonic pitch of the pitch correction effect. Pitch correction effect: Sets the basic mode and tonic pitch of the pitch correction effect. Different songs have different modes and tonic pitches. Agora recommends bounding this method with interface elements to enable users to adjust the pitch correction interactively. Different songs have different modes and tonic pitches. Agora recommends bounding this method with interface elements to enable users to adjust the pitch correction interactively.</li>
+   <p>Call this method to set the following parameters for the local user who sends an audio stream:<ul>
+  <li>3D voice effect: Sets the cycle period of the 3D voice effect.</li>
+  <li>Pitch correction effect: Sets the basic mode and tonic pitch of the pitch correction effect. Different songs have different modes and tonic pitches. Agora recommends bounding this method with interface elements to enable users to adjust the pitch correction interactively.</li>
        </ul>
    </p>
-   <p>After setting the audio parameters, all users in the channel can hear the effect. After setting the audio parameters, all users in the channel can hear the effect.</p>
+   <p>After setting the audio parameters, all users in the channel can hear the effect.</p>
    <note type="attention">
        <ul>
-  <li>You can call this method either before or after joining a channel. You can call this method either before or after joining a channel.</li>
-  <li>To get better audio effect quality, Agora recommends calling and setting the scenario parameter as before calling this method<xref keyref="setAudioProfile"/><parmname></parmname><apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>. To get better audio effect quality, Agora recommends calling <xref keyref="setAudioProfile"/> and setting the <parmname>scenario</parmname> parameter as <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/> before calling this method.</li>
+  <li>You can call this method either before or after joining a channel.</li>
+  <li>To get better audio effect quality, Agora recommends calling and setting the scenario parameter as before calling this method<xref keyref="setAudioProfile"/><parmname></parmname><apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>.</li>
   <li>Do not set<apiname keyref="setAudioProfile"/> the <parmname>profile</parmname> parameter in to<apiname
                             keyref="AUDIO_PROFILE_SPEECH_STANDARD"/> (1) or <apiname
-                            keyref="AUDIO_PROFILE_IOT"/>(6), or the method will not take effect. Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile"/> to<apiname
-                            keyref="AUDIO_PROFILE_SPEECH_STANDARD"/> (1) or <apiname
                             keyref="AUDIO_PROFILE_IOT"/>(6), or the method will not take effect.</li>
-  <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music. This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
-  <li>After<apiname keyref="setAudioEffectParameters"/> calling<apiname keyref="setAudioEffectParameters"/> , Agora recommends not calling the following methods, because they can override : After calling <apiname keyref="setAudioEffectParameters"/>, Agora recommends not calling the following methods, because they can override <apiname keyref="setAudioEffectParameters"/>:<ul>
+  <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
+  <li>After<apiname keyref="setAudioEffectParameters"/> calling<apiname keyref="setAudioEffectParameters"/> , Agora recommends not calling the following methods, because they can override :<ul>
  <li><xref keyref="setAudioEffectPreset"/></li>
  <li><xref keyref="setVoiceBeautifierPreset"/></li>
  <li><xref keyref="setLocalVoiceReverbPreset"/></li>
@@ -53,52 +51,52 @@
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameter Parameter</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt>preset preset</pt>
-  <pd>The options for the preset audio effect. The options for the preset audio effect.<ul>
- <li>3D voice effect: <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/>3D voice effect:<apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/><ul>
-<li>Call and set the <apiname keyref="setAudioProfile"/><parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> (3) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before setting this enumerator; otherwise, the enumerator setting does not take effect. Call <apiname keyref="setAudioProfile"/> and set the <parmname>profile</parmname> parameter to <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/>(3) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before setting this enumerator; otherwise, the enumerator setting does not take effect.</li>
-<li>If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect. If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</li>
+  <pt>preset</pt>
+  <pd>The options for the preset audio effect.<ul>
+ <li>3D voice effect:<apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/><ul>
+<li>Call and set the <apiname keyref="setAudioProfile"/><parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> (3) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before setting this enumerator; otherwise, the enumerator setting does not take effect.</li>
+<li>If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</li>
      </ul>
  </li>
- <li>Pitch correction effect: <apiname keyref="PITCH_CORRECTION"/>. Pitch correction effect: <apiname keyref="PITCH_CORRECTION"/>. To achieve better audio effect quality, Agora recommends calling and setting the <apiname keyref="setAudioProfile"/><parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before setting this enumerator. To achieve better audio effect quality, Agora recommends calling <apiname keyref="setAudioProfile"/> and setting the <parmname>profile</parmname> parameter to <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before setting this enumerator.</li>
+ <li>Pitch correction effect: <apiname keyref="PITCH_CORRECTION"/>. To achieve better audio effect quality, Agora recommends calling and setting the <apiname keyref="setAudioProfile"/><parmname>profile</parmname> parameter to<apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> (4) or <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5) before setting this enumerator.</li>
       </ul>
   </pd>
        </plentry>
        <plentry>
-  <pt>param1 param1</pt>
+  <pt>param1</pt>
   <pd>
       <ul>
- <li>If you set <parmname>preset</parmname> to<apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/> , <parmname>param1</parmname> sets the cycle period of the 3D voice effect. If you set <parmname>preset</parmname> to <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/>, <parmname>param1</parmname> sets the cycle period of the 3D voice effect. The value range is [1,60] and the unit is a second. The value range is [1,60] and the unit is a second. The default value is 10 seconds, indicating that the voice moves around you every 10 seconds. The default value is 10 seconds, indicating that the voice moves around you every 10 seconds.</li>
- <li>If you set <parmname>preset</parmname> to<apiname keyref="PITCH_CORRECTION"/> , <parmname>param1</parmname> sets the basic mode of the pitch correction effect: If you set <parmname>preset</parmname> to <apiname keyref="PITCH_CORRECTION"/>, <parmname>param1</parmname> sets the basic mode of the pitch correction effect:<ul>
-<li><codeph>1</codeph>: (Default) Natural major scale. <codeph>1</codeph>: (Default) Natural major scale.</li>
-<li><codeph>2</codeph>: Natural minor scale. <codeph>2</codeph>: Natural minor scale.</li>
-<li><codeph>3</codeph>: Japanese pentatonic scale. <codeph>3</codeph>: Japanese pentatonic scale.</li>
+ <li>If you set <parmname>preset</parmname> to<apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/> , <parmname>param1</parmname> sets the cycle period of the 3D voice effect. The value range is [1,60] and the unit is a second. The default value is 10 seconds, indicating that the voice moves around you every 10 seconds.</li>
+ <li>If you set <parmname>preset</parmname> to<apiname keyref="PITCH_CORRECTION"/> , <parmname>param1</parmname> sets the basic mode of the pitch correction effect:<ul>
+<li><codeph>1</codeph>: (Default) Natural major scale.</li>
+<li><codeph>2</codeph>: Natural minor scale.</li>
+<li><codeph>3</codeph>: Japanese pentatonic scale.</li>
      </ul>
  </li>
       </ul>
   </pd>
        </plentry>
        <plentry>
-  <pt>param2 param2</pt>
+  <pt>param2</pt>
   <pd>
       <ul>
- <li>If you set <parmname>preset</parmname> to<apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/> , you need to set <parmname>param2</parmname> to <codeph>0</codeph>. If you set <parmname>preset</parmname> to <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/>, you need to set <parmname>param2</parmname> to <codeph>0</codeph>.</li>
- <li>If you set <parmname>preset</parmname> to<apiname keyref="PITCH_CORRECTION"/> , <parmname>param2</parmname> sets the tonic pitch of the pitch correction effect: If you set <parmname>preset</parmname> to <apiname keyref="PITCH_CORRECTION"/>, <parmname>param2</parmname> sets the tonic pitch of the pitch correction effect:<ul>
-<li><codeph>1</codeph>: A <codeph>1</codeph>: A</li>
-<li><codeph>2</codeph>: A# <codeph>2</codeph>: A#</li>
-<li><codeph>3</codeph>: B <codeph>3</codeph>: B</li>
-<li><codeph>4</codeph>: (Default) C <codeph>4</codeph>: (Default) C</li>
-<li><codeph>5</codeph>: C# <codeph>5</codeph>: C#</li>
-<li><codeph>6</codeph>: D <codeph>6</codeph>: D</li>
-<li><codeph>7</codeph>: D# <codeph>7</codeph>: D#</li>
-<li><codeph>8</codeph>: E <codeph>8</codeph>: E</li>
-<li><codeph>9</codeph>: F <codeph>9</codeph>: F</li>
-<li><codeph>10</codeph>: F# <codeph>10</codeph>: F#</li>
-<li><codeph>11</codeph>: G <codeph>11</codeph>: G</li>
-<li><codeph>12</codeph>: G# <codeph>12</codeph>: G#</li>
+ <li>If you set <parmname>preset</parmname> to<apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/> , you need to set <parmname>param2</parmname> to <codeph>0</codeph>.</li>
+ <li>If you set <parmname>preset</parmname> to<apiname keyref="PITCH_CORRECTION"/> , <parmname>param2</parmname> sets the tonic pitch of the pitch correction effect:<ul>
+<li><codeph>1</codeph>: A</li>
+<li><codeph>2</codeph>: A#</li>
+<li><codeph>3</codeph>: B</li>
+<li><codeph>4</codeph>: (Default) C</li>
+<li><codeph>5</codeph>: C#</li>
+<li><codeph>6</codeph>: D</li>
+<li><codeph>7</codeph>: D#</li>
+<li><codeph>8</codeph>: E</li>
+<li><codeph>9</codeph>: F</li>
+<li><codeph>10</codeph>: F#</li>
+<li><codeph>11</codeph>: G</li>
+<li><codeph>12</codeph>: G#</li>
      </ul>
  </li>
       </ul>
@@ -107,10 +105,10 @@
    </parml>
         </section>
         <section id="return_values">
-   <title>Returns Returns</title>
+   <title>Returns</title>
    <ul>
-       <li>0: Success. 0: Success.</li>
-       <li>&lt; 0: Failure. &lt; 0: Failure.</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
