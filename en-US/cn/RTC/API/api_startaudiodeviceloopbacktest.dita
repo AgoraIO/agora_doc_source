@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiodeviceloopbacktest">
     <title><ph keyref="startAudioDeviceLoopbackTest"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Starts an audio device loopback test.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts an audio device loopback test. </ph><ph id="shortdesc">Starts an audio device loopback test.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,25 +16,25 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This method tests whether the local audio sampling device and playback device are working properly. After calling this method, the audio sampling device records the local audio, and the audio playback device plays the sampled audio. The SDK triggers two independent <xref keyref="onAudioVolumeIndication"/> callbacks at the time interval set in this method, which reports the volume information of the sampling device (<parmname>uid</parmname> = 0) and the volume information of the playback device(<parmname>uid</parmname> = 1) respectively.</p>
-   <note outputclass="note"><ul>
-       <li>Ensure that you call this method before joining a channel.</li>
-       <li>This method tests local audio devices and does not report the network conditions.</li>
+   <p>This method tests whether the local audio sampling device and playback device are working properly. This method tests whether the local audio sampling device and playback device are working properly. After calling this method, the audio sampling device records the local audio, and the audio playback device plays the sampled audio. After calling this method, the audio sampling device records the local audio, and the audio playback device plays the sampled audio. The SDK triggers two independent <xref keyref="onAudioVolumeIndication"/> callbacks at the time interval set in this method, which reports the volume information of the sampling device (<parmname>uid</parmname> = 0) and the volume information of the playback device(<parmname>uid</parmname> = 1) respectively. The SDK triggers two independent<xref keyref="onAudioVolumeIndication"/> callbacks at the time interval set in this method, which reports the volume information of the sampling device (<parmname>uid</parmname> = 0) and the volume information of the playback device(<parmname>uid</parmname> = 1) respectively.</p>
+   <note type="attention"><ul>
+       <li>Ensure that you call this method before joining a channel. Ensure that you call this method before joining a channel.</li>
+       <li>This method tests local audio devices and does not report the network conditions. This method tests local audio devices and does not report the network conditions.</li>
    </ul></note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameter Parameter</title>
    <parml>
        <plentry>
-  <pt>indicationInterval</pt>
-  <pd><p>The time interval(ms) at which the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback. We recommend a setting greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive the <apiname keyref="onAudioVolumeIndication"/> callback.</p></pd>
+  <pt>indicationInterval indicationInterval</pt>
+  <pd><p>The time interval(ms) at which the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback. The time interval(ms) at which the SDK triggers the<xref keyref="onAudioVolumeIndication"/> callback. We recommend a setting greater than 200 ms. We recommend a setting greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive the <apiname keyref="onAudioVolumeIndication"/> callback. This value must not be less than 10 ms; otherwise, you can not receive the<apiname keyref="onAudioVolumeIndication"/> callback.</p></pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>Returns</title>
+   <title>Returns Returns</title>
    <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
+       <li>0: Success. 0: Success.</li>
+       <li>&lt; 0: Failure. &lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
