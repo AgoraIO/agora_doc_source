@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setclientrole2">
-    <title><ph keyref="setClientRole2"/>[2/2] <ph keyref="setClientRole2"/>[2/2]</title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the user role and level in a live interactive streaming. </ph><ph id="shortdesc">Sets the user role and level in a live interactive streaming.</ph></shortdesc>
+    <title><ph keyref="setClientRole2"/>[2/2]</title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the user role and level in a live interactive streaming.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -18,41 +18,41 @@
    
    <dl outputclass="since">
        <dlentry>
-  <dt>Since Since</dt>
-  <dd>v3.2.0 v3.2.0</dd>
+  <dt>Since</dt>
+  <dd>v3.2.0</dd>
        </dlentry>
    </dl>
-   <p>You can call this method either before or after joining the channel to set the user role as audience or host. You can call this method either before or after joining the channel to set the user role as audience or host.</p>
-   <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks: If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:<ul>
-      <li>The local client: <xref keyref="onClientRoleChanged"/>. The local client: <xref keyref="onClientRoleChanged"/>.</li>
-      <li>The remote client: <xref keyref="onUserJoined"/> or<xref keyref="onUserOffline"/>. The remote client: <xref keyref="onUserJoined"/> or<xref keyref="onUserOffline"/>.</li>
+   <p>You can call this method either before or after joining the channel to set the user role as audience or host.</p>
+   <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:<ul>
+      <li>The local client: <xref keyref="onClientRoleChanged"/>.</li>
+      <li>The remote client: <xref keyref="onUserJoined"/> or<xref keyref="onUserOffline"/>.</li>
    </ul></p>
-   <p>The difference between this method and <xref keyref="setClientRole1"/> [1/2] is that this method can set the user level in addition to the user role. The difference between this method and <xref keyref="setClientRole1"/> [1/2] is that this method can set the user level in addition to the user role.<ul id="diff">
-      <li>The user <parmname>role</parmname> determines the permissions that the SDK grants to a user, such as permission to send local streams, receive remote streams, and push streams to a CDN address. The user <parmname>role</parmname> determines the permissions that the SDK grants to a user, such as permission to send local streams, receive remote streams, and push streams to a CDN address.</li>
-      <li>The user <parmname>level</parmname> determines the level of services that a user can enjoy within the permissions of the user&apos;s role. The user <parmname>level</parmname> determines the level of services that a user can enjoy within the permissions of the user&apos;s role. For example, an audience can choose to receive remote streams with low latency or ultra-low latency. For example, an audience can choose to receive remote streams with low latency or ultra-low latency. Levels affect prices. Levels affect prices.</li>
+   <p>The difference between this method and <xref keyref="setClientRole1"/> [1/2] is that this method can set the user level in addition to the user role.<ul id="diff">
+      <li>The user <parmname>role</parmname> determines the permissions that the SDK grants to a user, such as permission to send local streams, receive remote streams, and push streams to a CDN address.</li>
+      <li>The user <parmname>level</parmname> determines the level of services that a user can enjoy within the permissions of the user&apos;s role. For example, an audience can choose to receive remote streams with low latency or ultra-low latency. Levels affect prices.</li>
     </ul></p>
-   <note type="attention">This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile"/> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>). This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile"/> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>).</note>
+   <note type="attention">This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile"/> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>).</note>
         </section>
-        <section id="parameters"><title>Parameter Parameter</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt>role role</pt>
-  <pd>The user role in a live interactive streaming. The user role in a live interactive streaming. See <xref href="enum_clientroletype.dita"/>. See <xref href="enum_clientroletype.dita"/>.</pd>
+  <pt>role</pt>
+  <pd>The user role in a live interactive streaming. See <xref href="enum_clientroletype.dita"/>.</pd>
        </plentry>
        <plentry>
-  <pt>options options</pt>
-  <pd>The detailed options of a user, including the user level. The detailed options of a user, including the user level. See <xref href="class_clientroleoptions.dita"/>. See <xref href="class_clientroleoptions.dita"/>.</pd>
+  <pt>options</pt>
+  <pd>The detailed options of a user, including the user level. See <xref href="class_clientroleoptions.dita"/>.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>Returns Returns</title>
+   <title>Returns</title>
    <ul>
-       <li>0(ERR_OK): Success. 0(ERR_OK): Success.</li>
-       <li>&lt; 0: Failure. &lt; 0: Failure.<ul>
-  <li>-1(ERR_FAILED): A general error occurs (no specified reason). -1(ERR_FAILED): A general error occurs (no specified reason).</li>
-  <li>-2 (ERR_INVALID_ARGUMENT): The parameter is invalid. -2 (ERR_INVALID_ARGUMENT): The parameter is invalid.</li>
-  <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized. -7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
+       <li>0(ERR_OK): Success.</li>
+       <li>&lt; 0: Failure.<ul>
+  <li>-1(ERR_FAILED): A general error occurs (no specified reason).</li>
+  <li>-2 (ERR_INVALID_ARGUMENT): The parameter is invalid.</li>
+  <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
        </ul></li>
    </ul>
         </section></refbody>
