@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setcameracapturerconfiguration">
     <title><ph keyref="setCameraCapturerConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the camera capture configuration.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the camera capture configuration. </ph><ph id="shortdesc">Sets the camera capture configuration.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,33 +16,38 @@
         </section>
         <section id="detailed_desc">
    
-   <p>For a video call or the interactive live video streaming, generally the SDK controls the camera output parameters. When the default camera capturer settings do not meet special requirements or cause performance problems, we recommend using this method to set the camera capturer configuration:<ul>
+   <p>For a video call or the interactive live video streaming, generally the SDK controls the camera output parameters. For a video call or the interactive live video streaming, generally the SDK controls the camera output parameters. When the default camera capturer settings do not meet special requirements or cause performance problems, we recommend using this method to set the camera capturer configuration: When the default camera capturer settings do not meet special requirements or cause performance problems, we recommend using this method to set the camera capturer configuration:<ul>
                     <li>When using the original audio and video data self-collection interface, if the resolution and frame rate of the SDK output are higher than<xref
+                            keyref="setVideoEncoderConfiguration"/> the parameters specified in the parameter, subsequent processing of video frames, such as the beauty function, will require higher CPU and memory, which is easy Cause performance problems. When using the original audio and video data self-collection interface, if the resolution and frame rate of the SDK output are higher than<xref
                             keyref="setVideoEncoderConfiguration"/> the parameters specified in the parameter, subsequent processing of video frames, such as the beauty function, will require higher CPU and memory, which is easy Cause performance problems. In this case, we recommend setting the camera capture preference to<ph
+                            keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/> (1) to avoid performance issues. In this case, we recommend setting the camera capture preference to<ph
                             keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/> (1) to avoid performance issues.</li>
                     <li>If you do not need local video preview or are willing to sacrifice preview quality, we recommend setting config as #CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE<ph
+                            keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/> (1) to optimize CPU and RAM usage. If you do not need local video preview or are willing to sacrifice preview quality, we recommend setting config as #CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE<ph
                             keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/> (1) to optimize CPU and RAM usage.</li>
                     <li>If you want better quality for the local video preview, we recommend setting config as #CAPTURER_OUTPUT_PREFERENCE_PREVIEW <ph
+                            keyref="CAPTURER_OUTPUT_PREFERENCE_PREVIEW"/>(2). If you want better quality for the local video preview, we recommend setting config as #CAPTURER_OUTPUT_PREFERENCE_PREVIEW <ph
                             keyref="CAPTURER_OUTPUT_PREFERENCE_PREVIEW"/>(2).</li>
                     <li>If the user needs to customize the width and height of the locally captured video, please set the capture preference to <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"
+                        />(3). If the user needs to customize the width and height of the locally captured video, please set the capture preference to <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"
                         />(3).</li>
                 </ul>
             </p>
-   <note outputclass="note">Please call this method before starting the camera, such as<xref keyref="joinChannel1"/>,<xref keyref="enableVideo"/> or<xref keyref="enableLocalVideo"/> before.</note>
+   <note type="attention">Please call this method before starting the camera, such as<xref keyref="joinChannel1"/>,<xref keyref="enableVideo"/> or<xref keyref="enableLocalVideo"/> before. Please call this method before starting the camera, such as<xref keyref="joinChannel1"/>,<xref keyref="enableVideo"/> or<xref keyref="enableLocalVideo"/> before.</note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameter Parameter</title>
    <parml>
        <plentry>
-  <pt>config</pt>
-  <pd>Camera capture preference<xref keyref="CameraCapturerConfiguration"/>.</pd>
+  <pt>config config</pt>
+  <pd>Camera capture preference<xref keyref="CameraCapturerConfiguration"/>. Camera capture preference<xref keyref="CameraCapturerConfiguration"/>.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>Returns</title>
+   <title>Returns Returns</title>
    <ul>
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
+       <li>0: Success. 0: Success.</li>
+       <li>&lt; 0: Failure. &lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
