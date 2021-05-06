@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onlocalpublishfallbacktoaudioonly">
     <title><ph keyref="onLocalPublishFallbackToAudioOnly"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the published media stream falls back to an audio-only stream due to poor network conditions or switches back to the video after the network conditions improve.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the published media stream falls back to an audio-only stream due to poor network conditions or switches back to the video after the network conditions improve. </ph><ph id="shortdesc">Occurs when the published media stream falls back to an audio-only stream due to poor network conditions or switches back to the video after the network conditions improve.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,17 +16,17 @@
         </section>
         <section id="detailed_desc">
    
-   <p>If you call the<xref keyref="setLocalPublishFallbackOption"/> interface and set <parmname>option</parmname> to<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>, the callback will be triggered when the upstream network environment is not ideal and the locally published media stream falls back to an audio stream, or when the upstream network improves and the media stream returns to an audio and video stream.</p>
-   <note outputclass="note">If the local streaming has been reverted to audio streaming, the remote app will receive<xref keyref="onUserMuteVideo"/> the callback event.</note>
+   <p>If you call and set <xref keyref="setLocalPublishFallbackOption"/><parmname>option</parmname> as <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>, the SDK triggers this callback when the remote media stream falls back to audio-only mode due to poor uplink conditions, or when the remote media stream switches back to the video after the uplink network condition improves. If you call the<xref keyref="setLocalPublishFallbackOption"/> interface and set <parmname>option</parmname> to<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>, the callback will be triggered when the upstream network environment is not ideal and the locally published media stream falls back to an audio stream, or when the upstream network improves and the media stream returns to an audio and video stream.</p>
+   <note type="attention">如果本地发流已回退为音频流，远端的 App 上会收到 <xref keyref="onUserMuteVideo"/> 的回调事件。 If the local streaming has been reverted to audio streaming, the remote app will receive<xref keyref="onUserMuteVideo"/> the callback event.</note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameter Parameter</title>
    <parml>
        <plentry id="isFallbackOrRecover">
-  <pt>@param isFallbackOrRecover Whether the published stream falls back to audio-only or switches back to the video:</pt>
+  <pt>isFallbackOrRecover isFallbackOrRecover</pt>
   <pd>
       <ul>
- <li><ph keyref="true"/>true: The published stream falls back to audio-only due to poor network conditions.</li>
- <li><ph keyref="false"/>false: The published stream switches back to the video after the network conditions improve.</li>
+ <li><ph keyref="true"/>true: The published stream falls back to audio-only due to poor network conditions. <ph keyref="true"/>true: The published stream falls back to audio-only due to poor network conditions.</li>
+ <li><ph keyref="false"/>: The remotely subscribed media stream switches back to the video stream after the network conditions improved. <ph keyref="false"/>false: The published stream switches back to the video after the network conditions improve.</li>
       </ul>
   </pd>
        </plentry>
