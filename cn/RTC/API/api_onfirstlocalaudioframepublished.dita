@@ -25,21 +25,12 @@
                     <dd>v3.1.0</dd>
                 </dlentry>
             </dl>
-            <p>
-                SDK 会在以下三种时机触发该回调：
-                <ul>
-                    <li>
-                        开启本地音频的情况下，调用 <apiname keyref="joinChannel1" /> 成功加入频道后。
-                    </li>
-                    <li>
-                        调用<xref keyref="muteLocalAudioStream" />(<ph keyref="true" />)，再调用 <apiname keyref="muteLocalAudioStream" />(<ph keyref="false" />) 后。
-                    </li>
-                    <li>
-                        调用 <xref keyref="disableAudio" />，再调用 <xref keyref="enableAudio" /> 后。
-                    </li>
-                    <li props="android">
-                        调用 <codeph>pushExternalAudioFrame</codeph> 成功向 SDK 推送音频帧后。
-                    </li>
+            <p> SDK 会在以下时机触发该回调： <ul>
+                    <li>开启本地音频的情况下，调用 <apiname keyref="joinChannel1"/> 成功加入频道后。 </li>
+                    <li>调用<xref keyref="muteLocalAudioStream"/>(<ph keyref="true"/>)，再调用 <apiname
+                            keyref="muteLocalAudioStream"/>(<ph keyref="false"/>) 后。 </li>
+                    <li>调用 <xref keyref="disableAudio"/>，再调用 <xref keyref="enableAudio"/> 后。 </li>
+                    <li>调用 <codeph><apiname keyref="pushAudioFrame2"/></codeph> 成功向 SDK 推送音频帧后。</li>
                 </ul>
             </p>
         </section>
@@ -49,7 +40,7 @@
                 <plentry>
                     <pt>elapsed</pt>
                     <pd>
-                        从调用 <apiname keyref="joinChannel1" /> 方法到触发该回调的时间间隔（毫秒）。
+                        从调用 <apiname keyref="joinChannel2" /> 方法到触发该回调的时间间隔（毫秒）。
                     </pd>
                 </plentry>
             </parml>
