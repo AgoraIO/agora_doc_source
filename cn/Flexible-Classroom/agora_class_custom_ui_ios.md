@@ -6,7 +6,7 @@
 
 ![](https://web-cdn.agora.io/docs-files/1619169594360)
 
-UIKit 的源码位于 GitHub 上 [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) 仓库（dev/apaas/1.1.0 分支）中 `Modules` 目录下，主要包含以下文件夹：
+UIKit 的源码位于 GitHub 上 [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) 仓库（release/apaas/1.1.0 分支）中 `Modules` 目录下，主要包含以下文件夹：
 
 | 文件夹                | 描述                                                  |
 | :-------------------- | :---------------------------------------------------- |

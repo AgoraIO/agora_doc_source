@@ -6,7 +6,7 @@
 
 ![custom-ui-web](https://web-cdn.agora.io/docs-files/1617714946419)
 
-UI Kit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas%2F1.1.0) 仓库（dev/apaas/1.1.0 分支）中 `packages/agora-classroom-sdk/src/ui-kit` 目录下，结构介绍如下：
+UI Kit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas%2F1.1.0) 仓库（release/apaas/1.1.0 分支）中 `packages/agora-classroom-sdk/src/ui-kit` 目录下，结构介绍如下：
 
 | 文件夹         | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |

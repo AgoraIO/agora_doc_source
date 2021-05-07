@@ -6,7 +6,7 @@
 
 ![](https://web-cdn.agora.io/docs-files/1619168618104)
 
-UIKit 的源码位于 GitHub 上 [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) 仓库（dev/apaas/1.1.0 分支）中 `agoraui` 目录下。核心项目结构介绍如下：
+UIKit 的源码位于 GitHub 上 [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) 仓库（release/apaas/1.1.0 分支）中 `agoraui` 目录下。核心项目结构介绍如下：
 
 | 文件夹       | 描述                                                         |
 | :----------- | :----------------------------------------------------------- |
