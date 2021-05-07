@@ -23,9 +23,9 @@
        </dlentry>
    </dl>
    <p>The SDK triggers this callback under one of the following circumstances:<ul>
-  <li>When the local video is turned on, after the call<apiname keyref="joinChannel1"/> is successfully joined to the channel.</li>
-  <li>After calling <xref keyref="muteLocalVideoStream"/>(<ph keyref="true"/>), then calling <apiname keyref="muteLocalVideoStream"/>(<ph keyref="false"/>).</li>
-  <li>After<xref keyref="enableVideo"/> calling<xref keyref="disableVideo"/>, and then calling.</li>
+  <li>The local client enables the video module and calls <apiname keyref="joinChannel1"/> successfully.</li>
+  <li>The local client calls <xref keyref="muteLocalVideoStream"/>(<ph keyref="true"/>) and <apiname keyref="muteLocalVideoStream"/>(<ph keyref="false"/>) in sequence.</li>
+  <li>The local client calls <xref keyref="disableVideo"/> and <xref keyref="enableVideo"/> in sequence.</li>
        </ul>
    </p>
         </section>
@@ -33,7 +33,7 @@
    <parml>
        <plentry>
   <pt>elapsed</pt>
-  <pd>The time<apiname keyref="joinChannel1"/> interval (in milliseconds) from when the method is called to when the callback is triggered.</pd>
+  <pd>The time elapsed (ms) from the local client calling <apiname keyref="joinChannel1"/> until the SDK triggers this callback.</pd>
        </plentry>
    </parml>
         </section>
