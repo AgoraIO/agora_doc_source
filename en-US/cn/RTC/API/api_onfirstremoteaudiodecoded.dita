@@ -19,16 +19,16 @@
    <dl outputclass="deprecated">
        <dlentry >
   <dt>Deprecated:</dt>
-  <dd>From v3.0.0. This callback is deprecated. Please use instead<xref keyref="onRemoteAudioStateChanged"/>.</dd>
+  <dd>From v3.0.0. This callback is deprecated. Please use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
        </dlentry>
    </dl>
    <p>This callback is triggered in either of the following scenarios: There are two scenarios:<ul>
   <li>The remote user joins the channel and sends the audio stream.</li>
-  <li>The remote user stops sending the video stream and re-sends it after 15 seconds. The remote user stops sending the audio stream and re-sends it after 15 seconds. Reasons for such an interruption include:<ul>
+  <li>The remote user stops sending the audio stream and re-sends it after 15 seconds. Reasons for such an interruption include:<ul>
  <li>The remote user leaves channel.</li>
  <li>The remote user drops offline.</li>
- <li>The remote user calls the<xref keyref="muteLocalAudioStream"/> method to stop sending the audio stream</li>
- <li>The remote user calls the<xref keyref="disableAudio"/> method to turn off the audio</li>
+ <li>The remote user calls <xref keyref="muteLocalAudioStream"/> to stop sending the audio stream.</li>
+ <li>The remote user calls <xref keyref="disableAudio"/> to disable audio.</li>
       </ul>
   </li>
        </ul>
@@ -38,11 +38,11 @@
    <parml>
        <plentry>
   <pt>uid</pt>
-  <pd>Remote user ID.</pd>
+  <pd>The user ID of the remote user.</pd>
        </plentry>
        <plentry>
   <pt>elapsed</pt>
-  <pd>The delay from the local user call<apiname keyref="joinChannel1"/> until the callback is triggered, in milliseconds.</pd>
+  <pd>Time elapsed (ms) from the local user calling <apiname keyref="joinChannel1"/> until the SDK triggers this callback.</pd>
        </plentry>
    </parml>
         </section>
