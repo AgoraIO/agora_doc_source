@@ -19,22 +19,22 @@
    <dl outputclass="deprecated">
        <dlentry >
   <dt>Deprecated:</dt>
-  <dd>This method is deprecated as of v2.4.0. Please use the <xref keyref="enableEncryption"/> method instead.</dd>
+  <dd>Deprecated as of v3.1.0. Please use the <xref keyref="enableEncryption"/> method instead.</dd>
        </dlentry>
    </dl>
-   <p id="desc">The Agora SDK supports built-in encryption, which is set to the @p aes-128-xts mode by default. Call this method to use other encryption modes. All users in the same channel must use the same encryption mode and<parmname></parmname> password. Refer to the information related to the AES encryption algorithm on the differences between the encryption modes.</p>
-   <note type="attention">Before calling this method, please call to enable<xref keyref="setEncryptionSecret"/> the built-in encryption function.</note>
+   <p id="desc">The Agora SDK supports built-in encryption. The default encryption is AES-128-XTS. Call this method to use other encryption modes. All users in the same channel must use the same encryption mode and<parmname></parmname> password. Refer to the information related to the AES encryption algorithm on the differences between the encryption modes.</p>
+   <note type="attention">Before calling this method, please call <xref keyref="setEncryptionSecret"/> to enable the built-in encryption function.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt>@param encryptionMode The encryption mode.</pt>
+  <pt>encryptionMode</pt>
   <pd>
       <p>Encryption mode.<ul>
      <li>&quot;<codeph>aes-128-xts</codeph>&quot;: (Default) 128-bit AES encryption, XTS mode.</li>
      <li>&quot;<codeph>aes-128-ecb</codeph>&quot;: 128-bit AES encryption, ECB mode.</li>
      <li>&quot;<codeph>aes-256-xts</codeph>&quot;: 256-bit AES encryption, XTS mode.</li>
-     <li>&quot;&quot;: When encryptionMode is set as NULL, the encryption mode is set as &quot;<codeph>aes-128-xts</codeph>&quot; by default.</li>
+     <li>&quot;&quot;: When setting as NULL, the encryption mode is set as &quot;<codeph>aes-128-xts</codeph>&quot; by default.</li>
  </ul>
       </p>
   </pd>
