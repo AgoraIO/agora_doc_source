@@ -21,13 +21,13 @@
                     <dd>v2.4.1</dd>
                 </dlentry>
             </dl>
-            <p>This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you to troubleshoot issues when exceptions occur.</p>
-            <p>The SDK triggers the <apiname keyref="onLocalVideoStateChanged" />(<codeph>LOCAL_VIDEO_STREAM_STATE_FAILED</codeph>, <codeph>LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE</codeph>) callback in the following situations:<ul>
+            <p>When the state of the local video stream changes (including the state of the video capture and encoding), the SDK triggers this callback to report the current state. This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you to troubleshoot issues when exceptions occur.</p>
+            <p>The SDK triggers the <apiname keyref="onLocalVideoStateChanged"/>(<codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></codeph>, <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph>) callback in the following situations:<ul>
                     <li>The application exits to the background, and the system recycles the camera.</li>
                     <li>The camera starts normally, but the captured video is not output for four seconds.</li>
                 </ul>
             </p>
-            <p>When the camera outputs the captured video frames, if all the video frames are the same for 15 consecutive frames, the SDK triggers the <apiname keyref="onLocalVideoStateChanged" />(<codeph>LOCAL_VIDEO_STREAM_STATE_CAPTURING</codeph>, <codeph>LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE</codeph>) callback. Note that the video frame duplication detection is only available for video frames with a resolution greater than 200 × 200, a frame rate greater than or equal to 10 fps, and a bitrate less than 20 Kbps.</p>
+            <p>When the camera outputs the captured video frames, if all the video frames are the same for 15 consecutive frames, the SDK triggers the <apiname keyref="onLocalVideoStateChanged" />(<codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/></codeph>, <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph>) callback. Note that the video frame duplication detection is only available for video frames with a resolution greater than 200 × 200, a frame rate greater than or equal to 10 fps, and a bitrate less than 20 Kbps.</p>
             <note type="attention">For some device models, the SDK does not trigger this callback when the state of the local video changes while the local video capturing device is in use, so you have to make your own timeout judgment.</note>
         </section>
         <section id="parameters">
