@@ -22,10 +22,10 @@
                 </dlentry>
             </dl>
             <p>The SDK triggers this callback under one of the following circumstances:<ul>
-                    <li>When the local audio is turned on, after the call<apiname keyref="joinChannel1" /> is successfully added to the channel.</li>
-                    <li>After calling <xref keyref="muteLocalAudioStream" />(<ph keyref="true" />), then calling <apiname keyref="muteLocalAudioStream" />(<ph keyref="false" />).</li>
-                    <li>After<xref keyref="enableAudio" /> calling<xref keyref="disableAudio" />, and then calling.</li>
-                    <li props="android">After calling <codeph>pushExternalAudioFrame</codeph> to successfully push the audio frame to the SDK.</li>
+                    <li>The local client enables the audio module and calls <apiname keyref="joinChannel1" /> successfully.</li>
+                    <li>The local client calls <xref keyref="muteLocalAudioStream" />(<ph keyref="true" />) and <apiname keyref="muteLocalAudioStream" />(<ph keyref="false" />) in sequence.</li>
+                    <li>The local client calls <xref keyref="disableAudio" /> and <xref keyref="enableAudio" /> in sequence.</li>
+                    <li props="android">The local client calls pushAudioFrame to successfully push the video frame to the SDK.<codeph></codeph></li>
                 </ul>
             </p>
         </section>
@@ -34,7 +34,7 @@
             <parml>
                 <plentry>
                     <pt>elapsed</pt>
-                    <pd>The time<apiname keyref="joinChannel1" /> interval (in milliseconds) from when the method is called to when the callback is triggered.</pd>
+                    <pd>The time elapsed (ms) from the local client calling <apiname keyref="joinChannel1" /> until the SDK triggers this callback.</pd>
                 </plentry>
             </parml>
         </section>
