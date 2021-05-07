@@ -35,19 +35,17 @@ In order to follow this procedure you must have:
 
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
 - An Agora project with the [app certificate](https://docs.agora.io/en/Agora%20Platform/manage_projects?platform=All%20Platforms#manage-your-app-certificates) enabled.
-- [Golang](https://golang.org/) with GO111MODULE set to on. 
-    > If you are using Go 1.16 or later, GO111MODULE is on by default. See [this blog](https://blog.golang.org/go116-module-changes) for details.
-- [npm](https://www.npmjs.com/get-npm) and a supported browser per [Compatibility](https://docs.agora.io/en/Interactive%20Broadcast/product_live?platform=Web).
+- [Golang](https://golang.org/) 1.14+ with GO111MODULE set to on. 
+    > If you are using Go 1.16+, GO111MODULE is on by default. See [this blog](https://blog.golang.org/go116-module-changes) for details.
+- [npm](https://www.npmjs.com/get-npm) and a [supported browser](https://docs.agora.io/en/Interactive%20Broadcast/product_live?platform=Web).
 
 ### Deploy a simple token server on your local machine
 
-Take the following steps to build a simple RTC token server on your local machine in Golang:
+Token generators create the tokens requested by your client app to enable secure access to Agora Platform. To serve these tokens you deploy a generator in your security infrastructure.
 
-> Warning: This is a sample server for demonstration purposes only. **DO NOT USE IT IN YOUR PRODUCTION ENVIRONMENT**.
+In order to show the authentication workflow, this section shows how to build and run a token server written in Golang on your local machine. This sample server is for demonstration purposes only. Do not use it in a production environment.
 
-1. Create a file, `server.go`, with the following content:
-    - You need to replace `<Your App ID>` with your App ID.
-    - You need to replace `<Your App Certificate>` with your App Certificate.
+1. Create a file, `server.go`, with the following content. Then replace `<Your App ID>` and `<Your App Certificate>` with your App ID and App Certificate.
 
    ```golang
     package main
@@ -76,17 +74,17 @@ Take the following steps to build a simple RTC token server on your local machin
     var role_num uint32
     var role rtctokenbuilder.Role
 
-    // Use RtcTokenBuilder to generate an RTC token
+    // Use RtcTokenBuilder to generate an RTC token.
     func generateRtcToken(int_uid uint32, channelName string, role rtctokenbuilder.Role){
 
         appID := "<Your App ID>"
         appCertificate := "<Your App Certificate>"
-        // Number of seconds after which the token expires
-        // For demonstration purposes, set it to 40 so that you can easily observe the automatic token renew actions of the client
+        // Number of seconds after which the token expires.
+        // For demonstration purposes the expiry time is set to 40 seconds. This shows you the automatic token renew actions of the client.
         expireTimeInSeconds := uint32(40)
-        // Get current timestamp
+        // Get current timestamp.
         currentTimestamp := uint32(time.Now().UTC().Unix())
-        // Timestamp when the token expires
+        // Timestamp when the token expires.
         expireTimestamp := currentTimestamp + expireTimeInSeconds
 
         result, err := rtctokenbuilder.BuildTokenWithUID(appID, appCertificate, channelName, int_uid, role, expireTimestamp)
@@ -178,19 +176,19 @@ Take the following steps to build a simple RTC token server on your local machin
     }
    ```
 
-2. Run the following command to create a `go.mod` file.
+2. A `go.mod` file defines this module’s import path and dependency requirements. To create the `go.mod` for your token server, run the following command:
 
    ```shell
    $ go mod init sampleServer
    ```
 
-3. Run the following command to get dependencies:
+3. Get dependencies by running the following command:
 
    ```shell
    $ go get
    ```
 
-4. Run the following command to start the server:
+4. Start the server by running the following command:
 
    ```shell
    $ go run server.go
@@ -198,9 +196,9 @@ Take the following steps to build a simple RTC token server on your local machin
 
 ## Use the token for client-side user authentication
 
-Take the following steps to use the token for client-side user authentication. The code samples apply to Agora RTC Web SDK 4.x.
+Take the following steps to use the token for client-side user authentication.
 
-> Warning: This is a sample client for demonstration purposes only. **DO NOT USE IT IN YOUR PRODUCTION ENVIRONMENT**.
+In order to show the authentication workflow, this section shows how to build and run a Web client on your local machine. This sample client is for demonstration purposes only. Do not use it in a production environment. The Web client uses Agora RTC Web SDK 4.x.
 
 1. Create a folder with the following files:
 
@@ -210,7 +208,7 @@ Take the following steps to use the token for client-side user authentication. T
     |-- client.js
     ```
 
-2. Edit `index.html` to include the following content:
+2. Create the user interface by editing `index.html` to include the following content:
 
     ```html
     <html>
@@ -229,8 +227,13 @@ Take the following steps to use the token for client-side user authentication. T
     ```
 
 3. Edit `client.js` to include the following content:
-    - You need to replace `<Your App ID>` with your App ID.
+    - You need to replace `<Your App ID>` with your App ID. The App ID must match the one in the server.
     - You need to replace `<Your Host URL and port>` with the host URL and port of the local Golang server you have just deployed, such as `10.53.3.234:8082`.
+
+    In the following code example, you can see that token is related to the following code logic in the client:
+    - Call `join` to join the channel with token, uid, and channel name. The uid and channel name must be the same as the ones used to generate the token.
+    - The `token-privilege-will-expire` callback occurs 30 seconds before a token expires. When the `token-privilege-will-expire` callback is triggered，the client must fetch the token from the server and call `renewToken` to pass the new token to the SDK.
+    - The `token-privilege-did-expire` callback occurs when a token expires. When the `token-privilege-did-expire` callback is triggered, the client must fetch the token from the server and call `join` to use the new token to join the channel.
 
     ```js
     var rtc = {
@@ -248,7 +251,7 @@ Take the following steps to use the token for client-side user authentication. T
         role: "host"
     };
 
-    // Fetch a token from the Golang server
+    // Fetch a token from the Golang server.
     function fetchToken(uid, channelName, tokenRole) {
 
         return new Promise(function (resolve) {
@@ -277,7 +280,7 @@ Take the following steps to use the token for client-side user authentication. T
         client.setClientRole(options.role);
         const uid = 123456;
 
-        // Fetch a token before calling join to join a channel
+        // Fetch a token before calling join to join a channel.
         let token = await fetchToken(uid, options.channel, 1);
 
         await client.join(options.appId, options.channel, token, uid);
@@ -321,13 +324,13 @@ Take the following steps to use the token for client-side user authentication. T
 
         });
 
-        // When token-privilege-will-expire occurs, fetch a new token from the server and call renewToken to renew the token
+        // When token-privilege-will-expire occurs, fetch a new token from the server and call renewToken to renew the token.
         client.on("token-privilege-will-expire", async function () {
             let token = await fetchToken(uid, options.channel, 1);
             await client.renewToken(token);
         });
 
-        // When token-privilege-did-expire occurs, fetch a new token from the server and call join to rejoin the channel
+        // When token-privilege-did-expire occurs, fetch a new token from the server and call join to rejoin the channel.
         client.on("token-privilege-did-expire", async function () {
             console.log("Fetching the new Token")
             let token = await fetchToken(uid, options.channel, 1);
@@ -340,18 +343,15 @@ Take the following steps to use the token for client-side user authentication. T
     startBasicCall()
     ```
 
-    In the code example above, we can see that token is related to the following code logic in the client:
-    - Call `join` to join the channel with token, uid, and channel name. The uid and channel name must be the same as the ones used to generate the token.
-    - The `token-privilege-will-expire` callback occurs 30 seconds before a token expires. When the `token-privilege-will-expire` callback is triggered，the client must fetch the token from the server and call `renewToken` to pass the new token to the SDK.
-    - The `token-privilege-did-expire` callback occurs when a token expires. When the `token-privilege-did-expire` callback is triggered, the client must fetch the token from the server and call `join` to use the new token to join the channel.
 
-
-4. Open `index.html` with a supported browser. You should be able to see the following actions performed by the client:
+4. Open `index.html` with a supported browser to perform the following actions:
     - Successfully joining a channel.
-    - Renewing a token every 10 seconds if you set `expireTimeInSeconds` to `40` in the Golang token server.
+    - Renewing a token every 10 seconds.
 
 
 ## Reference
+
+This section introduces token generator libraries, version requirements, and related documents about tokens.
 
 ### Token generator libraries
 
@@ -390,7 +390,6 @@ static std::string buildTokenWithUid(
 | `role`               | The user privilege. This parameter determines whether a user can publish streams in the channel. <ul><li>`Role_Publisher(1)`: (Default) The user has the privilege of a publisher, that is, the user can publish streams in the channel.</li><li>`Role_Subscriber(2)`: The user has the privilege of a subscriber, that is, the user can only subscribe to streams, not publish them, in the channel. This value takes effect only if you have enabled co-host authentication. For details, see FAQ [How do I use co-host authentication](https://docs.agora.io/en/Interactive%20Broadcast/faq/token_cohost). |
 | `privilegeExpiredTs` | The Unix timestamp when the token expires, represented by the sum of the current timestamp and the valid time of the token. For example, if you set `privilegeExpiredTs` as the current timestamp plus 600 seconds, the token expires in 10 minutes. A token is valid for 24 hours at most. If you set this parameter as 0 or a period longer than 24 hours, the token is still valid for 24 hours.                                                                                                                                                                                                           |
 
-
 ### Generate a token from Agora Console
 
 To facilitate authentication at the test stage, [Agora Console](https://console.agora.io/) supports generating temporary for testing purposes. A temporary token is valid for 24 hours.
@@ -412,7 +411,7 @@ If you are using an earlier version, refer to [Channel Keys](https://docs.agora.
 
 ### Related documents
 
-You can also refer to the following documents according to your needs:
+For more information about tokens, see:
 
 - [How to solve token-related errors?](https://docs.agora.io/en/faq/token_error)
 - [What causes the 101 error on Cloud Recording SDK?](https://docs.agora.io/en/faq/101_error)
