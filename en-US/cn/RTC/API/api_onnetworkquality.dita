@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onnetworkquality">
     <title><ph keyref="onNetworkQuality"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the last mile network quality of each user in the channel once every two seconds.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the last mile network quality of each user in the channel.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -17,19 +17,19 @@
         </section>
         <section id="detailed_desc">
    
-   <p>Last mile refers to the connection between the local device and Agora&apos;s edge server.</p>
-   <p>This callback reports once every two seconds the last mile network conditions of each user in the channel. If a channel includes multiple users, the SDK triggers this callback as many times.</p>
+   <p>This callback reports the last mile network conditions of each user in the channel. Last mile refers to the connection between the local device and Agora&apos;s edge server.</p>
+   <p>The SDK triggers this callback once every two seconds. If a channel includes multiple users, the SDK triggers this callback as many times.</p>
         </section>
         <section id="parameters">
    <title>Parameter</title>
    <parml>
        <plentry id="uid">
   <pt><ph keyref="uid"/></pt>
-  <pd>User ID The network quality of the user with this @p uid is reported. If<ph keyref="uid"/> @p uid is 0, the local network quality is reported.</pd>
+  <pd>User ID The network quality of the user with this user ID is reported. If <ph keyref="uid"/> is 0, the local network quality is reported.</pd>
        </plentry>
        <plentry id="txQuality">
   <pt>txQuality</pt>
-  <pd>Uplink network quality rating of the user in terms of the transmission bitrate, packet loss rate, average RTT (Round-Trip Time) and jitter of the uplink network. @p txQuality is a quality rating helping you understand how well the current uplink network conditions can support the selected VideoEncoderConfiguration. For example, a 1000 Kbps uplink network may be adequate for video frames with a resolution of 640 480 and a frame rate of 15 fps in the `LIVE_BROADCASTING` profile, but may be inadequate for resolutions higher than 1280 720. See <xref keyref="QUALITY_TYPE"/>.</pd>
+  <pd>Uplink network quality rating of the user in terms of the transmission bit rate, packet loss rate, average RTT (Round-Trip Time) and jitter of the uplink network. This parameter is a quality rating helping you understand how well the current uplink network conditions can support the selected video encoder configuration. For example, a 1000 Kbps uplink network may be adequate for video frames with a resolution of 640 × 480 and a frame rate of 15 fps in the LIVE_BROADCASTING profile, but may be inadequate for resolutions higher than 1280 × 720. See <xref keyref="QUALITY_TYPE"/>.</pd>
        </plentry>
        <plentry id="rxQuality">
   <pt>rxQuality</pt>
