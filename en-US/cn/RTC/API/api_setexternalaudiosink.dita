@@ -16,10 +16,10 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This method applies to scenarios where you want to use external audio data for playback. 开启外部音频渲染后，你可以通过调用 <xref keyref="pullAudioFrame"/> 方法拉取远端音频数据。 App 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。</p>
+   <p>This method applies to scenarios where you want to use external audio data for playback. After enabling the external audio sink, you can call the <xref keyref="pullAudioFrame"/> method to pull the remote audio data, process it, and play it with the audio effects that you want.</p>
    <note type="attention">
        <ul id="ul_ng3_ljz_r4b">
-  <li>After a successful call of this method, the app will not<xref keyref="onPlaybackAudioFrame"/> get any audio data from the callback.</li>
+  <li>Once you enable the external audio sink, the app will not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame"/> callback.</li>
   <li>Ensure that you call this method before joining a channel.</li>
        </ul>
    </note>
@@ -30,18 +30,18 @@
   <pt>enabled</pt>
   <pd>
       <ul>
- <li><ph keyref="true"/>true: Enables the external audio sink.</li>
- <li><ph keyref="false"/>false: (Default) Disables the external audio sink.</li>
+ <li><ph keyref="true"/>: Enables the external audio sink.</li>
+ <li><ph keyref="false"/>: (Default) Disables the external audio sink.</li>
       </ul>
   </pd>
        </plentry>
        <plentry>
   <pt>sampleRate</pt>
-  <pd>@param sampleRate Sets the sample rate (Hz) of the external audio sink, which can be set as 16000, 32000, 44100 or 48000.</pd>
+  <pd>The sample rate (Hz) of the external audio sink, which can be set as 16000, 32000, 44100, or 48000.</pd>
        </plentry>
        <plentry>
   <pt>channels</pt>
-  <pd>外部音频渲染的通道数，可设置为 1 或 2:<ul id="ul_cpd_khz_r4b">
+  <pd>The number of audio channels of the external audio sink:<ul id="ul_cpd_khz_r4b">
  <li>1: Mono.</li>
  <li>2: Stereo.</li>
       </ul></pd>
