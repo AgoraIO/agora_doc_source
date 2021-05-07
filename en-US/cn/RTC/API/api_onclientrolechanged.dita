@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onclientrolechanged">
     <title><ph keyref="onClientRoleChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the user role switches in the interactive live streaming. For example, from a host to an audience or vice versa.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the user role switches in the interactive live streaming.</ph></shortdesc>
     <refbody>
         <section id="prototype">
    
@@ -11,18 +11,18 @@
         <section id="detailed_desc">
    
    <p id="desc">This callback notifies the application of a user role switch when the application calls the \ref IRtcEngine::setClientRole &quot;setClientRole&quot; method.</p>
-   <p>This callback is triggered by a local user who<xref keyref="setClientRole1"/> changes the user role after joining the channel.</p>
+   <p>The SDK triggers this callback when the local user switches the user role by calling <xref keyref="setClientRole1"/> after joining the channel.</p>
         </section>
     <section id="parameters">
         <title>Parameter</title>
         <parml>
    <plentry id="oldRole">
        <pt>oldRole</pt>
-       <pd>Role before switching:<xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
+       <pd>Role that the user switches from: <xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
    </plentry>
    <plentry id="newRole">
        <pt>newRole</pt>
-       <pd>Role after switching:<apiname keyref="CLIENT_ROLE_TYPE"/>.</pd>
+       <pd>Role that the user switches to: <apiname keyref="CLIENT_ROLE_TYPE"/>.</pd>
    </plentry>
         </parml>
     </section>
