@@ -39,6 +39,24 @@ In order to follow this procedure you must have:
     > If you are using Go 1.16+, GO111MODULE is on by default. See [this blog](https://blog.golang.org/go116-module-changes) for details.
 - [npm](https://www.npmjs.com/get-npm) and a [supported browser](https://docs.agora.io/en/Interactive%20Broadcast/product_live?platform=Web).
 
+### Get your App ID and App Certificate
+
+This section shows you how to get your App ID and App Certificate.
+
+#### Get App ID
+
+Agora automatically assigns each project an App ID as a unique identifier.
+
+To copy this App ID, find your project on the [Project Management](https://dashboard.agora.io/projects) page in Agora Console, and click the eye icon to the right of the App ID.
+
+![Get App ID](https://web-cdn.agora.io/docs-files/1602646621028)
+
+#### Get App Certificate
+
+Click **Edit** and enter the **Edit Project** page. Click the eye icon to copy the App certificate.
+
+![Get App Cert](https://web-cdn.agora.io/docs-files/1592535534341)
+
 ### Deploy a simple token server on your local machine
 
 Token generators create the tokens requested by your client app to enable secure access to Agora Platform. To serve these tokens you deploy a generator in your security infrastructure.
@@ -200,7 +218,9 @@ Take the following steps to use the token for client-side user authentication.
 
 In order to show the authentication workflow, this section shows how to build and run a Web client on your local machine. This sample client is for demonstration purposes only. Do not use it in a production environment. The Web client uses Agora RTC Web SDK 4.x.
 
-1. Create a folder with the following files:
+1. Create the project structure of the Web client with a folder including the following files.
+    - `index.html`: User interface
+    - `client.js`: App logic with Agora RTC Web SDK 4.x
 
     ```text
     |
@@ -226,14 +246,7 @@ In order to show the authentication workflow, this section shows how to build an
     </html>
     ```
 
-3. Edit `client.js` to include the following content:
-    - You need to replace `<Your App ID>` with your App ID. The App ID must match the one in the server.
-    - You need to replace `<Your Host URL and port>` with the host URL and port of the local Golang server you have just deployed, such as `10.53.3.234:8082`.
-
-    In the following code example, you can see that token is related to the following code logic in the client:
-    - Call `join` to join the channel with token, uid, and channel name. The uid and channel name must be the same as the ones used to generate the token.
-    - The `token-privilege-will-expire` callback occurs 30 seconds before a token expires. When the `token-privilege-will-expire` callback is triggered，the client must fetch the token from the server and call `renewToken` to pass the new token to the SDK.
-    - The `token-privilege-did-expire` callback occurs when a token expires. When the `token-privilege-did-expire` callback is triggered, the client must fetch the token from the server and call `join` to use the new token to join the channel.
+3. Create the app logic by editing `client.js` with the following content. Then replace `<Your App ID>` with your App ID. The App ID must match the one in the server. You also need to replace `<Your Host URL and port>` with the host URL and port of the local Golang server you have just deployed, such as `10.53.3.234:8082`.
 
     ```js
     var rtc = {
@@ -342,7 +355,11 @@ In order to show the authentication workflow, this section shows how to build an
 
     startBasicCall()
     ```
-
+    
+    In the code example, you can see that token is related to the following code logic in the client:
+    - Call `join` to join the channel with token, uid, and channel name. The uid and channel name must be the same as the ones used to generate the token.
+    - The `token-privilege-will-expire` callback occurs 30 seconds before a token expires. When the `token-privilege-will-expire` callback is triggered，the client must fetch the token from the server and call `renewToken` to pass the new token to the SDK.
+    - The `token-privilege-did-expire` callback occurs when a token expires. When the `token-privilege-did-expire` callback is triggered, the client must fetch the token from the server and call `join` to use the new token to join the channel.
 
 4. Open `index.html` with a supported browser to perform the following actions:
     - Successfully joining a channel.
