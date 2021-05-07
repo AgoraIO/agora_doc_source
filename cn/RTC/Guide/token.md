@@ -2,7 +2,7 @@
 
 To enhance communication security, Agora uses tokens to authenticate users before they access the Agora service, such as joining an RTC channel.
 
-This article describes how to generate a token and use it for authentication in your client app when a user tries to access the Agora service.
+This document shows you how to create a token server and a client app. The client app retrieves a token from the token server. This token authenticates the current user when the user accesses the Agora service.
 
 ## Understand the tech
 
