@@ -5,11 +5,11 @@ updatedAt: 2020-12-04 01:39:56
 ---
 ## Introduction
 
-During real-time audio and video interaction, for better atmosphere or entertainment, users often need to play audio effects or background music and make all users in the channel hear. For example, users might add fighting sounds when playing an action game or include an accompaniment when singing. Agora provides two independent groups of methods so that you can play audio effect files and a music file separately.
+During real-time audio and video interaction, for better atmosphere or entertainment, users often need to play audio effects or background music and make all users in the channel hear them. For example, users might add fighting sounds when playing an action game or include an accompaniment when singing. Agora provides two independent groups of methods so that you can play audio effect files and a music file separately.
 
 ## Sample project
 
-Agora provides an open-source demo project on GitHub that implements [audio effect](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioEffect) files and a [music file](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioMixing). You can view the source code on Github or download the project to try it out.
+Agora provides an open-source demo project on GitHub that implements [audio effect files](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioEffect) and a [music file](https://github.com/AgoraIO/API-Examples/tree/master/windows/APIExample/APIExample/Advanced/AudioMixing). You can view the source code on Github or download the project to try it out.
 
 ## Audio effect files
 
@@ -28,7 +28,7 @@ To play audio effect files, see the following steps:
 1. Before joining a channel, call the `preloadEffect` method to preload the local audio effect file.
 2. After joining a channel, call the `playEffect` method to play the audio effect file. After completing playing an audio effect file, the SDK triggers the `onAudioEffectFinished` callback.
 
-### Specify an audio effect file
+### Specifying an audio effect file
 
 Before playing an audio effect file, you need to set `filePath` and `soundId` to specify the audio effect file. The representing of two parameters is as follows:
 
@@ -42,7 +42,7 @@ m_mapEffect.insert(std::make_pair(strPath, m_soundId++));
 
 ### Preloading
 
-The SDK supports preloading audio effect files. To improve performance, you can add the audio effect files into the memory in advance. Preloading is not required;, Agora recommends that you choose whether to preload audio effect files according to your needs.
+The SDK supports preloading audio effect files. To improve performance, you can add the audio effect files into the memory in advance. Preloading is not required. Agora recommends that you choose whether to preload audio effect files according to your needs.
 
 - If you need to play a specified audio effect repeatedly, Agora recommends preloading the audio effect file.
 - If an audio effect file size is large, Agora recommends not preloading the audio effect file.
@@ -53,12 +53,13 @@ To preload multiple audio effect files, you need to call `preloadEffect` multipl
 
 ```c++
 // Preloads the specified local audio effect file into the memory.  
-m_rtcEngine->preloadEffect(m_mapEffect[strEffect], strPath.c_str()); 
-// Unloads the preloaded audio effect file.  
+m_rtcEngine->preloadEffect(m_mapEffect[strEffect], strPath.c_str());
+
+// Unloads the preloaded audio effect file.
 m_rtcEngine->unloadEffect(m_mapEffect[strEffect]);
 ```
 
-### Play and stop
+### Playing and stopping
 
 Call `playEffect` to play the audio effect file. You can call `playEffect` multiple times to play multiple audio effect files at the same time according to your requirements. When playing an audio effect file, you can set the playback options, such as number of loops, pitch, volume, and playback position.
 
@@ -71,7 +72,8 @@ int loops = -1;
 double pitch = 1.5; 
  // Sets the volume of the audio effect. The value range is 0 to 100. 100 represents the original volume.  
 int gain = 100; 
- // Sets the spatial position of the audio effect. The value range is -1.0 to 1.0. -1.0 represents the audio effect occurs on the left; 0 represents the audio effect occurs in the front; 1.0 represents the audio effect occurs on the right.  
+ // Sets the spatial position of the audio effect. The value range is -1.0 to 1.0. 
+ // -1.0 represents the audio effect occurs on the left; 0 represents the audio effect occurs in the front; 1.0 represents the audio effect occurs on the right.  
 double pan = 1.0; 
  // Sets whether to publish the audio effect to the remote users. true represents that both the local user and remote users can hear the audio effect; false represents that only the local user can hear the audio effect.  
 BOOL publish = true; 
@@ -95,7 +97,7 @@ m_rtcEngine->stopEffect(m_mapEffect[strEffect]);
 m_rtcEngine->stopAllEffects();
 ```
 
-### Pause and resumption
+### Pausing and resumption
 
 When you play audio effect files, you can pause or resume playing either a specified file or all audio effect files.
 
@@ -105,11 +107,11 @@ When you play audio effect files, you can pause or resume playing either a speci
 // Pauses playing a specified audio effect file.  
 m_rtcEngine->pauseEffect(m_mapEffect[strEffect]); 
  
-// Resumes playing a specified audio effect.  
-m_rtcEngine->resumeEffect(m_mapEffect[strEffect]); 
- 
 // Pauses playing all audio effect files. 
 m_rtcEngine->pauseAllEffects(); 
+ 
+// Resumes playing a specified audio effect.  
+m_rtcEngine->resumeEffect(m_mapEffect[strEffect]); 
  
 // Resumes playing all audio effect files. 
 m_rtcEngine->resumeAllEffects();
@@ -119,15 +121,15 @@ m_rtcEngine->resumeAllEffects();
 
 If you need to adjust the playback position after playing the audio effect file, you can call this group of methods. For example, you can call this group of methods to adjust the playback position during looped playback of the audio effect file without stopping the playback.
 
-- Call this group of methods after `playEffect`.
-- This group of methods only applies to the local audio effect file.
+<div class="alert note"><li>Call <code>getEffectDuration</code> after joining a channel, and call other methods in this group after <code>playEffect</code>.</li>
+<li>This group of methods only applies to the local audio effect file.</li></div>
 
 ```c++
 // Gets the total duration of a specified local audio effect file.  
-m_rtcEngine->getEffectDuration(m_mapEffect[strEffect]); 
+m_rtcEngine->getEffectDuration(strFile.c_str()); 
  
 // Sets the playback position (ms) of a specified local audio effect file. 500 represents that the playback starts at the 500 ms mark of the music file.  
-m_rtcEngine->setEffectPosition(m_mapEffect[strEffect], pos); 
+m_rtcEngine->setEffectPosition(m_mapEffect[strEffect], 500); 
  
 // Gets the playback position of a specified local audio effect file.  
 m_rtcEngine->getEffectCurrentPosition(m_mapEffect[strEffect]);
@@ -152,26 +154,26 @@ m_rtcEngine->getEffectsVolume();
 
 ### API reference
 
-- `preloadEffect`
-- `unloadEffect`
-- `playEffect`
-- `stopEffect`
-- `stopAllEffects`
-- `pauseEffect`
-- `pauseAllEffects`
-- `resumeEffect`
-- `resumeAllEffects`
-- `getEffectDuration`
-- `setEffectPosition`
-- `getEffectCurrentPosition`
-- `setEffectsVolume`
-- `setVolumeOfEffect`
-- `getEffectsVolume`
-- `onAudioEffectFinished`
+- [`preloadEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a02d0b23b0b66e8fb0e898eb2811a8e74)
+- [`unloadEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aa560240d5994be0c1a7853e96077e5f9)
+- [`playEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aa713b173d4b9aa234f482ebb932f5955)
+- [`stopEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ad74eb7c7799b8762bff2b1e7e7bba8b9)
+- [`stopAllEffects`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a888ecfec4fda81831988898420d60e49)
+- [`pauseEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3c820db172c7fb43da58d81b7916d174)
+- [`pauseAllEffects`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ad731a94d9db9e2c3390e1443b379095f)
+- [`resumeEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a6489955af474172afe4f4b44e4edb38a)
+- [`resumeAllEffects`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a2fc1b5996df964f8e12ce579e0eb5f98)
+- [`getEffectDuration`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4d2a31c0016d1da9106222edb6c395fd)
+- [`setEffectPosition`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#acc753bf864b6c84d97c2d6778234c36e)
+- [`getEffectCurrentPosition`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#abe60e8ce475a3fef96245ffc47e95e50)
+- [`setEffectsVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#add9a7fd856700acd288d47ff3c7da19d)
+- [`setVolumeOfEffect`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a08287428f277b7bf24d51a86ef61799b)
+- [`getEffectsVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0e9787c57db5b5e8fcc53ef5bb6d24c7)
+- [`onAudioEffectFinished`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ab329b207f42408b3f673837a5de3b9e5)
 
 ## Audio mixing
 
-Audio mixing refers to mixing a music file with the audio captured by a microphone. Users who use the audio mixing function often play a relatively long music file and only play one music file at a time. For example, users can play accompaniment when singing or play background music when chatting.
+Audio mixing means mixing a music file with the audio captured by a microphone. Users who use the audio mixing function often play a relatively long music file and only play one music file at a time. For example, users can play accompaniment when singing or play background music when chatting.
 
 Agora provides a group of methods to play and manage the music file. Supported functions include the following:
 
@@ -184,7 +186,7 @@ Agora provides a group of methods to play and manage the music file. Supported f
 
 After successfully calling `startAudioMixing`, the SDK triggers the `onAudioMixingStateChanged` callback when the playback state of the music file changes.
 
-### Play and stop
+### Playing and stopping
 
 Call `startAudioMixing` to play a music file. When playing a music file, you can set the playback options, such as number of loops and playback position.
 
@@ -192,18 +194,18 @@ Call `startAudioMixing` to play a music file. When playing a music file, you can
 
 ```c++
 // Specifies the absolute path of the local or online music file that you want to play.  
-std::string filePath = "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3"; 
+std::string strAudioPath = "C:\music\audio.mp4";
 // Sets whether to only play a music file on the local client. true represents that only the local user can hear the music; false represents that both the local user and remote users can hear the music.  
-BOOL loopback = false; 
+BOOL bOnlyLocal = FALSE;
 // Sets whether to replace the audio captured by the microphone with a music file. true represents that the user can only hear music; false represents that the user can hear both the music and the audio captured by the microphone.  
-BOOL replace = true; 
+BOOL bReplaceMicroPhone = TRUE;
 // Sets the number of times to play the music file. 1 represents play the file once.  
-int cycle = 1; 
- // Sets the playback position (ms) of the music file. 500 represents that the playback starts at the 500 ms mark of the music file.  
+int iRepeatTimes = 1;
+// Sets the playback position (ms) of the music file. 500 represents that the playback starts at the 500 ms mark of the music file.  
 int startPos = 500; 
 
 // Starts to play the music file.
-m_rtcEngine->startAudioMixing(filePath, loopback, replace, cycle, startPos); 
+m_rtcEngine->startAudioMixing(strAudioPath.c_str(), bOnlyLocal, bReplaceMicroPhone, iRepeatTimes, startPos);
  
 // Occurs when the state of the local user's music file changes.  
 void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)
@@ -216,7 +218,7 @@ After successfully playing the music file, you can call `stopAudioMixing` to sto
 m_rtcEngine->stopAudioMixing();
 ```
 
-### Pause and resumption
+### Pausing and resumption
 
 When you play the music file, you can pause or resume playing the music file.
 
@@ -238,7 +240,7 @@ When the music file is playing, you can call this group of methods to adjust the
 
 ```c++
 // Gets the total duration of a specified music file.  
-m_rtcEngine->getAudioMixingDuration(filePath); 
+m_rtcEngine->getAudioMixingDuration(strAudioPath.c_str()); 
  
 // Sets the playback position (ms) of the current music file. 500 represents that the playback starts at the 500 ms mark of the music file.  
 m_rtcEngine->setAudioMixingPosition(500); 
@@ -275,17 +277,17 @@ m_rtcEngine->setAudioMixingPitch(5);
 
 ### API reference
 
-- `startAudioMixing`
-- `stopAudioMixng`
-- `pauseAudioMixing`
-- `resumeAudioMixing`
-- `getAudioMixingDuration`
-- `setAudioMixingPosition`
-- `getAudioMixingCurrentPosition`
-- `adjustAudioMixingVolume`
-- `adjustAudioMixingPublishVolume`
-- `adjustAudioMixingPlayoutVolume`
-- `getAudioMixingPlayoutVolume`
-- `getAudioMixingPublishVolume`
-- `setAudioMixingPitch`
-- `onAudioMixingStateChanged`
+- [`startAudioMixing`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a21063bfb71a8a5cbc0d391f9d7ac75be)
+- [`stopAudioMixng`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a2b90cbf4142c913b3efa795482713b08)
+- [`pauseAudioMixing`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ab86885c38e7ee7a4b37d5bbacafcaa24)
+- [`resumeAudioMixing`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a5a9606ad7ca4995e0d37fcf1642fe401)
+- [`getAudioMixingDuration`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3b67f2476a43679cc5174ac5424efed5)
+- [`setAudioMixingPosition`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a6c69e2229c438fd587b8f81df34214ad)
+- [`getAudioMixingCurrentPosition`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aae54b86e9e6a7c0ed955b96f011855cb)
+- [`adjustAudioMixingVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a544aee96b789ac5a57d26b61b7e1a5fa)
+- [`adjustAudioMixingPublishVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a9fafbaaf39578810ec9c11360fc7f027)
+- [`adjustAudioMixingPlayoutVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a8677c3f3160927d25d9814a88ab06da6)
+- [`getAudioMixingPlayoutVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aed9dda5a7b2683776f41f6ba0e1f281c)
+- [`getAudioMixingPublishVolume`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aa65e55a9a331cfd32b36d8847a9631a4)
+- [`setAudioMixingPitch`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a26b117f7e097801b03522f7da9257425)
+- [`onAudioMixingStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ae2e257d7bbf120b970b600b9b3731a07)
