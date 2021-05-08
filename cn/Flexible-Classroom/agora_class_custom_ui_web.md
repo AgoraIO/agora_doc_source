@@ -1,12 +1,14 @@
-本页介绍如何自定义修改灵动课堂的 UI，如颜色、按钮、布局等。
+## 概述
 
-## 工作原理
+Agora 在 npm 上提供完整的 [Agora Classroom SDK](https://www.npmjs.com/package/agora-classroom-sdk) 供你集成。但是，如果 Agora Classroom SDK 中默认的 UI 无法满足你的需求，你也可以获取 Agora Classroom SDK 的源码，自行开发、调试和编译。Agora Classroom SDK 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas%2F1.1.0) 仓库（release/apaas/1.1.0 分支）。
 
-自 1.1.0 起，Agora 将灵动课堂的 UI 代码和核心业务逻辑隔离开来，独立成 UI Kit 和 Edu Core。UI Kit 中提供灵动课堂的 UI 组件代码，并引入开源工具 [Storybook](https://storybook.js.org/docs/react/get-started/introduction) 来开发和管理 UI 组件。开发者如果只想修改课堂 UI，则可以无需深入学习灵动课堂的核心业务逻辑细节，只修改 UI 组件。
+在 Agora Classroom SDK 中，灵动课堂的 UI 代码和核心业务逻辑相隔离，独立成 UI Kit 和 Edu Core，两者通过 Agora Edu Context 产生关联。举例来说，对于灵动课堂中的文字聊天功能，需要通过一个按钮发送消息，同时需要接收其他用户发送的消息。这种情况下，我们在 UI Kit 中可以调用 Chat Context 中的发送消息方法，并监听 Chat Context 中消息接收相关事件。如果你需要修改该按钮的样式，
 
-![custom-ui-web](https://web-cdn.agora.io/docs-files/1617714946419)
+![](https://web-cdn.agora.io/docs-files/1619696813295)
 
-UI Kit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas%2F1.1.0) 仓库（release/apaas/1.1.0 分支）中 `packages/agora-classroom-sdk/src/ui-kit` 目录下，结构介绍如下：
+UI Kit 中提供灵动课堂的 UI 组件代码，并引入开源工具 [Storybook](https://storybook.js.org/docs/react/get-started/introduction) 来开发和管理 UI 组件。开发者如果只想修改课堂 UI，则可以无需深入学习灵动课堂的核心业务逻辑细节，只修改 UI 组件。
+
+UI Kit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas%2F1.1.0) 仓库（release/apaas/1.1.0 分支）中 `packages/agora-classroom-sdk/src/ui-kit` 目录下，项目结构介绍如下：
 
 | 文件夹         | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
@@ -40,11 +42,11 @@ UI Kit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraI
   yarn -v
   ```
 
-### 基本步骤
+### 操作步骤
 
 参考以下步骤修改灵动课堂的 UI：
 
-1. 进入 CloudClass-Desktop 项目根目录，运行以下命令安装依赖。
+1. 进入 CloudClass-Desktop 项目根目录，检出 release/apaas/1.1.0 分支，然后运行以下命令安装依赖。
 
    ```shell
    # Install global dev dependencies
@@ -66,7 +68,7 @@ UI Kit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraI
 
    你可以通过直接修改 `packages/agora-scenario-ui-kit/src/components` 目录下基础 UI 组件的源码文件来修改样式，保存代码后即可在 Storybook 中实时看到效果。如果灵动课堂的基础 UI 组件无法满足你的需求，你可以自行在 `packages/agora-scenario-ui-kit/src/components` 目录下新增 UI 组件，然后在 `packages/agora-classroom-sdk/src/ui-components` 目录下修改基础 UI 组件的组合规则调整灵动课堂布局。详见[修改示例](#example)。
 
-3. Storybook 中的 UI 调整均基于 Mock 数据，能够帮助你根据组件属性快速查看 UI 展示。如果需要针对真实场景调整 UI，建议参考以下步骤通过 Classroom SDK 开发模式调整 UI。
+3. Storybook 中的 UI 调整均基于 Mock 数据，能够帮助你根据组件属性快速查看 UI 展示。如果需要针对真实场景调整 UI，建议参考以下步骤通过 Agora Classroom SDK 开发模式调整 UI。
 
    1. 把项目主目录和 `packages/agora-classroom-sdk` 目录下的 `env.example` 重命名为 `.env`，然后在 `.env` 文件中填写你的 Agora App ID，并将 `REACT_APP_AGORA_APP_SDK_DOMAIN` 设为 `https://api-test.agora.io/preview`。
 
@@ -76,8 +78,10 @@ UI Kit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraI
       yarn dev
       ```
 
+4. 
 
 <a name="example"></a>
+
 ## 修改示例
 
 以下提供几个修改灵动课堂 UI 的示例。
@@ -419,7 +423,7 @@ export const OneToOneScenario = observer(() => {
    ```
 
    修改完后运行灵动课堂，可以看到时间属性被显示在了 Custom 组件上。
-	 
+	
 	 ![](https://web-cdn.agora.io/docs-files/1620289134349)
 
 3. 接下来，我们要引入真实的课堂时间数据。你可以在 UI 高阶组件中通过 hooks 方法通过 Agora Edu Context 获取你需要的 Context。在这个示例中，我们通过 Agora Edu Context 中的 RoomContext 的 [liveClassStatus](https://docs.agora.io/cn/agora-class/edu_context_api_ref_wev_room?platform=Web#liveclassstatus) 来获取课堂时间。你可以修改 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx`，获取课堂时间并作为属性设入Custom 组件。
