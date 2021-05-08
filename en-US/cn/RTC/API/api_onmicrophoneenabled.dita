@@ -19,14 +19,14 @@
                 <dlentry>
                     <dt>Deprecated:</dt>
                     <dd>
-                        <p>This method is deprecated as of v2.4.0. We recommend using [<xref keyref="onLocalAudioStateChanged"/>2/2] to start an audio call test.<ul>
-                                <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/>(0)。</li>
+                        <p>This callback is deprecated as of v2.9.0. Please use the <xref keyref="onLocalAudioStateChanged"/> callback:<ul>
+                                <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/>(0).</li>
                                 <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING"/>(1).</li>
                             </ul></p>
                     </dd>
                 </dlentry>
             </dl>
-            <p>The SDK triggers this callback when the remote user<xref keyref="enableLocalAudio"/> resumes or stops capturing the video stream by calling the method.</p>
+            <p>The SDK triggers this callback when the local user resumes or stops capturing the local audio stream by calling the <xref keyref="enableLocalAudio"/> method.</p>
         </section>
         <section id="parameters">
             <title>Parameter</title>
@@ -34,9 +34,9 @@
                 <plentry>
                     <pt>enabled</pt>
                     <pd>
-                        <p>麦克风状态：<ul>
-                                <li><ph keyref="true"/>：麦克风已启用。</li>
-                                <li><ph keyref="false"/>false: Disabled.</li>
+                        <p>Whether the microphone is enabled/disabled:<ul>
+                                <li><ph keyref="true"/>: The microphone is enabled.</li>
+                                <li><ph keyref="false"/>: The microphone is disabled.</li>
                             </ul></p>
                     </pd>
                 </plentry>
