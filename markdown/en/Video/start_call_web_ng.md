@@ -6,14 +6,17 @@ updatedAt: 2021-02-05 04:36:36
 
 # Get Started with the Agora Video SDK for Web
 
-This article shows you the minimum code you need to add a video call into your Web app by using the Agora Video SDK for Web.
+The Agora Video SDK for Web makes it easy to embed real-time video call into web apps. It enables you to develop rapidly and easily to enhance your social, work, education and IoT apps with face-to-face interaction.
+
+This document shows you the minimum code you need to add a video call into your Web app by using the Agora Video SDK for Web.
 
 ## Understand the tech
+
 The following figure shows the workflow of a basic video call implemented by the Agora SDK.
 
-![](https://web-cdn.agora.io/docs-files/1619335084232)
+![video-call](https://web-cdn.agora.io/docs-files/1620472908634)
 
-To make a video call, your app client uses an [AgoraRTCClient](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartcclient.html) object to join an Agora RTC channel with the following parameters:
+To make a video call, your app client uses an [AgoraRTCClient](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartcclient.html) object to join an Agora RTC(Real-time Communication) channel with the following parameters:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID in Agora Console.
 - The user ID: The unique identifier of a user. An integer or a string specified by your app user.
 - A token: A credential for verifying the identity of the user when your app user joins an RTC channel. In a test or production environment, your app client retrieves tokens from your app server in your security infrastructure. For rapid testing, you can get a temporary token with a validity period of 24 hours in Agora Console.
@@ -21,19 +24,20 @@ To make a video call, your app client uses an [AgoraRTCClient](https://docs.agor
 
 After your app clients join an RTC channel, you can use [LocalTrack](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/ilocalaudiotrack.html) and [RemoteTrack](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iremotetrack.html) objects to publish and subscribe audio and video streams in the channel.
 
-The next section shows the procedure of implementing a client for video call.
-
 ## Prerequisites
 
 - A Windows or macOS computer with access to the Internet. If your network has a firewall, follow the instructions in [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=Web) to access Agora services.
 - Your computer is equipped with an Intel 2.2GHz Core i3/i5/i7 processor (2nd generation) or equivalent.
 - Physical media input devices, such as a built-in camera and a built-in microphone.
 - The latest stable version of [Chrome](https://www.google.com/chrome/).
+- [Node.js](https://nodejs.org/en/).
 - A valid Agora [account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up?platform=Web).
   - [Create an Agora project in Agora Console]()
   - [Get an Agora App ID and a temporary token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms) in Agora Console
 
 ## Implement a client for video call
+
+The following section shows how to use the Agora Video SDK for Web to add a video call into your Web app step by step.
 
 ### 1. Create a Web project
 
@@ -51,7 +55,7 @@ On the command line, navigate to the `agora_web_quickstart` directory, and run `
 
 Integrate the Agora Video SDK for Web into your project through npm, as follows:
 
-1. In the `package.json` file, add `agora-rtc-sdk-ng` and its version number to the `dependencies` field:
+1. In `package.json`, add `agora-rtc-sdk-ng` and its version number to the `dependencies` field:
 
    ```json
    {
@@ -70,7 +74,7 @@ Integrate the Agora Video SDK for Web into your project through npm, as follows:
    }
    ```
 
-2. Add the following code at the beginning of the `basicVideoCall.js` file to import the `AgoraRTC` module in your project.
+2. To import the `AgoraRTC` module in your project, copy the following code into `basicVideoCall.js`.
 
    ```javascript
    import AgoraRTC from "agora-rtc-sdk-ng"
@@ -78,7 +82,7 @@ Integrate the Agora Video SDK for Web into your project through npm, as follows:
 
 ### 3. Implement the user interface
 
-Copy the following code to your `index.html` file to implement the user interface:
+To implement the user interface, copy the following code into `index.html`:
 
 ```html
 <!DOCTYPE html>
@@ -105,9 +109,21 @@ Copy the following code to your `index.html` file to implement the user interfac
 
 ### 4. Implement the app logic
 
-Copy the following code to your `basicVideoCall.js` file to implement the app logic:
+To implement the app logic,copy the following code into `basicVideoCall.js`, then replace `appID` and `token` with [values from your Agora project](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms).
 
-> You need to replace the placeholders in the sample code with your own App ID and temporary token.
+In the following code snippet, we do the following things:
+
+1. Call [`createClient`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartc.html#createclient) to create an `AgoraRTCClient` object.
+2. Call [`join`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartcclient.html#join) to join an RTC channel with the App ID, user ID, token, and channel name.
+3. Call [`createMicrophoneAudioTrack`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartc.html#createmicrophoneaudiotrack) to create a local audio track from the audio sampled by a microphone, call [`createCameraVideoTrack`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartc.html#createcameravideotrack) to create a local video track from the video captured by a camera, and then call `publish` to publish the local audio and video tracks to the channel.
+4. When a remote user joins the channel and publishes tracks:
+   1. Listen for the [`client.on("user-published")`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartcclient.html#event_user_published) event. And when the SDK triggers this event, get an `AgoraRTCRemoteUser` object from this event.
+   2. Call [`subscribe`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartcclient.html#subscribe) to subscribe to the `AgoraRTCRemoteUser` object and get the `RemoteAudioTrack` and `RemoteVideoTrack` objects of the remote user.
+   3. Call [`play`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/itrack.html#play) to play the remote tracks.
+
+The following figure shows the API call sequence of a basic one-to-one video call.
+
+![](https://web-cdn.agora.io/docs-files/1617877252660)
 
 ```js
 import AgoraRTC from "agora-rtc-sdk-ng"
@@ -225,16 +241,6 @@ async function startBasicCall() {
 startBasicCall()
 ```
 
-In the above code, we do the following things:
-
-1. Call [`createClient`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartc.html#createclient) to create an `AgoraRTCClient` object.
-2. Call [`join`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartcclient.html#join) to join an RTC channel with the App ID, user ID, token, and channel name.
-3. Call [`createMicrophoneAudioTrack`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartc.html#createmicrophoneaudiotrack) to create a local audio track from the audio sampled by a microphone, call [`createCameraVideoTrack`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartc.html#createcameravideotrack) to create a local video track from the video captured by a camera, and then call `publish` to publish the local audio and video tracks to the channel.
-4. When a remote user joins the channel and publishes tracks:
-   1. Listen for the [`client.on("user-published")`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartcclient.html#event_user_published) event. And when the SDK triggers this event, get an `AgoraRTCRemoteUser` object from this event.
-   2. Call [`subscribe`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/iagorartcclient.html#subscribe) to subscribe to the `AgoraRTCRemoteUser` object and get the `RemoteAudioTrack` and `RemoteVideoTrack` objects of the remote user.
-   3. Call [`play`](https://docs.agora.io/en/Video/API%20Reference/web_ng/interfaces/itrack.html#play) to play the remote tracks.
-
 ## Test your app
 
 This quickstart uses [webpack](https://webpack.js.org/) to package the project and `webpack-dev-server` to run your project.
@@ -242,7 +248,7 @@ This quickstart uses [webpack](https://webpack.js.org/) to package the project a
 > - Running the web app through a local server (localhost) is for testing purposes only. In production, ensure that you use the HTTPS protocol when deploying your project.
 > - Due to security limits on HTTP addresses except 127.0.0.1, the Web SDK only supports HTTPS or http://localhost (http://127.0.0.1). If you deploy your project over HTTP, you can only visit your project at http://localhost（http://127.0.0.1).
 
-1. In the `package.json` file, add `webpack`, `webpack-cli`, and `webpack-dev-server` to the `dependencies` field, and the `build` and `start:dev` commands to the `scripts` field.
+1. In `package.json`, add `webpack`, `webpack-cli`, and `webpack-dev-server` to the `dependencies` field, and the `build` and `start:dev` commands to the `scripts` field.
 
    ```json
    {
@@ -284,13 +290,13 @@ This quickstart uses [webpack](https://webpack.js.org/) to package the project a
     };
    ```
 
-3. Run the following command in the project directory to install dependencies:
+3. To install dependencies, run the following command in the project director:
 
    ```shell
    $ npm install
    ```
 
-4. Run the following command to build and run the project using webpack:
+4. To build and run the project using webpack, run the following command:
 
    ```shell
    # Use webpack to package the project
@@ -303,7 +309,7 @@ This quickstart uses [webpack](https://webpack.js.org/) to package the project a
    $ npm run start:dev
    ```
 
- If the project runs successfully, you can see the following page:
+NPM automatically opens a local web server in your browser. You see the following page:
 
 ![](https://web-cdn.agora.io/docs-files/1619428543085)
 
@@ -345,9 +351,3 @@ Add the following code to the line before `<style>` in the `index.html` file of 
 
 > If you use the above methods, the SDK fully exports an `AgoraRTC` object. You can visit the `AgoraRTC` object to operate the Web SDK.
 
-
-### API call sequence
-
-The following figure shows the API call sequence of a basic one-to-one video call.
-
-![](https://web-cdn.agora.io/docs-files/1617877252660)
