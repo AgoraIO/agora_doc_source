@@ -9,6 +9,7 @@ updatedAt: 2021-02-05 04:36:36
 This article shows you the minimum code you need to add a video call into your Web app by using the Agora Video SDK for Web.
 
 ## Understand the tech
+The following figure shows the workflow of a basic video call implemented by the Agora SDK.
 
 ![](https://web-cdn.agora.io/docs-files/1619335084232)
 
