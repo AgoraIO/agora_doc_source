@@ -1,40 +1,34 @@
 # Authenticate Your Users with Tokens
 
-To enhance communication security, Agora uses tokens to authenticate users before they access the Agora service, such as joining an RTC channel.
+Authentication is the act of validating the identity of each user before they access your system. Agora uses digital tokens to authenticate users and their privileges before they access an Agora service, such as joining an Agora call, or logging into the real-time messaging system.
 
 This document shows you how to create a token server and a client app. The client app retrieves a token from the token server. This token authenticates the current user when the user accesses the Agora service.
 
 ## Understand the tech
 
-A token is a time-bound dynamic key generated on your server. Agora provides code samples on [GitHub](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) for you to generate tokens.
-
-When your app users try to join a channel, Agora validates their token and grants access according to the following information in the token:
-
-- The App ID of your Agora project
-- The app certificate of your Agora project
-- The channel name
-- The user ID of the user to be authenticated
-- The privilege of the user
-- The expiration time of the token
-
-Tokens expire. A token is valid for 24 hours at most. You need to regularly generate new tokens to keep users connected.
-
-When generating a token, you can specify whether a user has the privilege to publish streams in an RTC channel. See [How do I use co-host token authentication?](https://docs.agora.io/en/Interactive%20Broadcast/faq/token_cohost) for details.
-
 The following figure shows the steps in the authentication flow:
 
 ![token authentication flow](https://web-cdn.agora.io/docs-files/1618395721208)
 
+A token is a dynamic key generated on your app server that is valid for a maximum of 24 hours. When your users connect to an Agora channel from your app client, Agora Platform validates the token and reads the user and project information stored in the token. A token contains the following information:
+
+- The App ID of your Agora project
+- The App Certificate of your Agora project
+- The channel name
+- The user ID of the user to be authenticated
+- The privilege of the user, either as a publisher or a subscriber
+- The Unix timestamp when the token expires
+
 ## Implement the authentication flow
 
-This section shows you how to supply and consume a token that gives rights to specific functionality to authenticated users.
+This section shows you how to supply and consume a token that gives rights to specific functionality to authenticated users using the source code provided by Agora on [GitHub](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey).
 
 ### Prerequisites
 
-In order to follow this procedure you must have:
+In order to follow this procedure you must have the following:
 
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
-- An Agora project with the [app certificate](https://docs.agora.io/en/Agora%20Platform/manage_projects?platform=All%20Platforms#manage-your-app-certificates) enabled.
+- An Agora project with the [App Certificate](https://docs.agora.io/en/Agora%20Platform/manage_projects?platform=All%20Platforms#manage-your-app-certificates) enabled.
 - [Golang](https://golang.org/) 1.14+ with GO111MODULE set to on. 
     > If you are using Go 1.16+, GO111MODULE is on by default. See [this blog](https://blog.golang.org/go116-module-changes) for details.
 - [npm](https://www.npmjs.com/get-npm) and a [supported browser](https://docs.agora.io/en/Interactive%20Broadcast/product_live?platform=Web).
@@ -214,9 +208,9 @@ In order to show the authentication workflow, this section shows how to build an
 
 ## Use the token for client-side user authentication
 
-Take the following steps to use the token for client-side user authentication.
+This section uses the Web client as an example to show how to use a token for client-side user authentication.
 
-In order to show the authentication workflow, this section shows how to build and run a Web client on your local machine. This sample client is for demonstration purposes only. Do not use it in a production environment. The Web client uses Agora RTC Web SDK 4.x.
+In order to show the authentication workflow, this section shows how to build and run a Web client on your local machine. This sample client is for demonstration purposes only. Do not use it in a production environment.
 
 1. Create the project structure of the Web client with a folder including the following files.
     - `index.html`: User interface
@@ -228,7 +222,7 @@ In order to show the authentication workflow, this section shows how to build an
     |-- client.js
     ```
 
-2. Create the user interface by editing `index.html` to include the following content:
+2. In `index.html`, add the following code to include the app logic in the UI:
 
     ```html
     <html>
@@ -384,7 +378,7 @@ Agora provides an open-source [AgoraDynamicKey](https://github.com/AgoraIO/Tools
 | Python   | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/src/RtcTokenBuilder.py)                          | [RtcTokenBuilderSample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/sample/RtcTokenBuilderSample.py)                          |
 | Python3  | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/src/RtcTokenBuilder.py)                         | [RtcTokenBuilderSample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/sample/RtcTokenBuilderSample.py)                         |
 
-**API Reference**
+### API Reference
 
 This section introduces the parameters and descriptions for the method to generate a token. Take C++ as an example:
 
@@ -400,22 +394,12 @@ static std::string buildTokenWithUid(
 
 | Parameter            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `appId`              | The App ID of your project.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `appCertificate`     | The App Certificate of your project.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `appId`              | The App ID of your Agora project                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `appCertificate`     | The App Certificate of your Agora project                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | `channelName`        | The channel name. The string length must be less than 64 bytes. Supported character scopes are: <ul><li>All lowercase English letters: a to z.</li><li>All upper English letters: A to Z.</li><li>All numeric characters: 0 to 9.</li><li>The space character.</li><li>Punctuation characters and other symbols, including: "!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", ",".</li></ul>                                                                                                                                    |
-| `uid`                | The user ID. A 32-bit unsigned integer with a value range from 1 to (2³² - 1). It must be unique. Set `uid` as 0, if you do not want to authenticate the user ID, that is, any `uid` from the app client can join the channel.                                                                                                                                                                                                                                                                                                                                                                                |
-| `role`               | The user privilege. This parameter determines whether a user can publish streams in the channel. <ul><li>`Role_Publisher(1)`: (Default) The user has the privilege of a publisher, that is, the user can publish streams in the channel.</li><li>`Role_Subscriber(2)`: The user has the privilege of a subscriber, that is, the user can only subscribe to streams, not publish them, in the channel. This value takes effect only if you have enabled co-host authentication. For details, see FAQ [How do I use co-host authentication](https://docs.agora.io/en/Interactive%20Broadcast/faq/token_cohost). |
-| `privilegeExpiredTs` | The Unix timestamp when the token expires, represented by the sum of the current timestamp and the valid time of the token. For example, if you set `privilegeExpiredTs` as the current timestamp plus 600 seconds, the token expires in 10 minutes. A token is valid for 24 hours at most. If you set this parameter as 0 or a period longer than 24 hours, the token is still valid for 24 hours.                                                                                                                                                                                                           |
-
-### Generate a token from Agora Console
-
-To facilitate authentication at the test stage, [Agora Console](https://console.agora.io/) supports generating temporary for testing purposes. A temporary token is valid for 24 hours.
-
-1. On the [Project Management](https://console.agora.io/projects) page, find your project, and click the ![temp_token](Images/temp_token.png) icon to open the **Token** page.
-2. Enter a channel name, and click **Generate Temp Token** to generate a temporary token.
-3. Use the generated token to join a real-time engagement channel. Ensure that the channel name is the same with the one that you use to generate the temporary token.
-
-Temporary tokens are for test purposes only. In the production environment, Agora recommends generating tokens from your server.
+| `uid`                | The user ID of the user to be authenticated. A 32-bit unsigned integer with a value range from 1 to (2³² - 1). It must be unique. Set `uid` as 0, if you do not want to authenticate the user ID, that is, any `uid` from the app client can join the channel.                                                                                                                                                                                                                                                                                                                                                                                |
+| `role`               | The privilege of the user, either as a publisher or a subscriber. This parameter determines whether a user can publish streams in the channel. <ul><li>`Role_Publisher(1)`: (Default) The user has the privilege of a publisher, that is, the user can publish streams in the channel.</li><li>`Role_Subscriber(2)`: The user has the privilege of a subscriber, that is, the user can only subscribe to streams, not publish them, in the channel. This value takes effect only if you have enabled co-host authentication. For details, see FAQ [How do I use co-host authentication](https://docs.agora.io/en/Interactive%20Broadcast/faq/token_cohost). |
+| `privilegeExpiredTs` | The Unix timestamp when the token expires, represented by the sum of the current timestamp and the valid time of the token. For example, if you set `privilegeExpiredTs` as the current timestamp plus 600 seconds, the token expires in 10 minutes. A token is valid for 24 hours at most. If you set this parameter as 0 or a period longer than 24 hours, the token is still valid for 24 hours.                          |
 
 ### Channel Key
 
@@ -433,3 +417,4 @@ For more information about tokens, see:
 - [How to solve token-related errors?](https://docs.agora.io/en/faq/token_error)
 - [What causes the 101 error on Cloud Recording SDK?](https://docs.agora.io/en/faq/101_error)
 - [How to use co-host token authentication?](https://docs.agora.io/en/faq/token_cohost)
+- [How to upgrade to token-based authentication?](https://docs.agora.io/en/All/faq/appid_to_token)
