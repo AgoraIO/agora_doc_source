@@ -22,12 +22,12 @@ Agora SDK 在运行过程中，可能通过如下方式返回错误码或警告�
 | `2`      | 方法中设置了无效的参数。例如指定的频道名中含有非法字符。请重新设置参数。 |
 | `3`      | SDK 尚未准备好。可能的原因有：<ul><li>[IRtcEngine] 初始化失败。请重新初始化 [IRtcEngine]。</li><li>调用方法时用户尚未加入频道。请检查方法的调用逻辑。</li><li>调用 [rate] 或 [complain] 方法时用户尚未离开频道。请检查方法的调用逻辑。</li><li>请检查是否已开启音频模块。 </li><li>请检查程序集完整性。 </li></ul>|
 | `4`      | [IRtcEngine] 当前状态不支持该操作。可能的原因有：<ul><li>Android 平台调用 [setBeautyEffectOptions] 方法时，如果设备版本低于 Android 4.4，会报这个错。请确认 Android 设备版本。</li><li>使用内置加密时，设置的加密模式不正确，或加载外部加密库失败。请检查加密的枚举值是否正确，或重新加载外部加密库。</li></ul> |
-| `5`      | 方法调用被拒绝。可能的原因有：<ul><li>[IRtcEngine] 初始化失败。请重新初始化 [IRtcEngine]。</li><li>在创建 [IChannel] 对象时，将频道名设为空字符 ""。请重新设置频道名。</li><li>多频道场景下，在调用 [joinChannel2] 方法加入频道时，设置的频道名已存在。请重新设置频道名。</li><li>已经通过 [IChannel] 加入了一个频道，并在该 [IChannel] 频道中发布了音视频流，又尝试通过 [IRtcEngine] 的 `joinChannel` 方法加入第二个频道。如果已经通过 `RtcChannel` 对象加入了一个频道，且在该频道内发了流，就不能再通过 [IRtcEngine] 的 `joinChannel` 方法加入第二个频道。</li><li>在调用 [switchChannel2] 方法切换直播频道时，用户角色不是观众。调用 `switchChannel` 方法时，请确保当前的用户角色为观众。</li></ul> |
+| `5`      | 方法调用被拒绝。可能的原因有：<ul><li>[IRtcEngine] 初始化失败。请重新初始化 [IRtcEngine]。</li><li>在创建 [IChannel] 对象时，将频道名设为空字符 ""。请重新设置频道名。</li><li>多频道场景下，在调用 [joinChannel2] 方法加入频道时，设置的频道名已存在。请重新设置频道名。</li><li>已经通过 [IChannel] 加入了一个频道，并在该频道中发布了音视频流，又尝试通过 [IRtcEngine] 的 `joinChannel` 方法加入第二个频道。如果已经通过 [IChannel] 对象加入了一个频道，且在该频道内发了流，就不能再通过 [IRtcEngine] 的 `joinChannel` 方法加入第二个频道。</li><li>在调用 [switchChannel2] 方法切换直播频道时，用户角色不是观众。调用 `switchChannel` 方法时，请确保当前的用户角色为观众。</li></ul> |
 | `6`      | 缓冲区大小不足以存放返回的数据。  |
-| `7`      | [IRtcEngine] 尚未初始化就调用方法。请确认在调用该方法前已创建 [IRtcEngine] 对象，并完成初始化。 |
+| `7`      | 尚未初始化 [IRtcEngine] 就调用方法。请确认在调用该方法前已创建 [IRtcEngine] 对象，并完成初始化。 |
 | `9`      | 没有操作权限。请检查用户是否授予了 app 音视频设备的使用权限。 |
 | `10`     | 方法调用超时。有些方法调用需要 SDK 返回结果，如果 SDK 处理事件过长，超过 10 秒没有返回，会出现此错误。 |
-| `17`     | 加入频道被拒绝。一般有以下原因：<ul><li>用户已经在频道中，再次调用加入频道的方法，如 [joinChannel2] 时，会返回此错误。停止调用该方法即可。</li><li>用户在调用 [startEchoTest2] 进行通话测试时，未调用 [stopEchoTest] 结束当前测试，就尝试加入频道。开始通话测试后，需要先调用 `stopEchoTest` 结束当前测试，再加入频道。</li></ul> |
+| `17`     | 加入频道被拒绝。一般有以下原因：<ul><li>用户已经在频道中，再次调用加入频道的方法，如 [joinChannel2] 时，会返回此错误。停止调用该方法即可。</li><li>用户在调用 [startEchoTest2] 进行通话测试时，未结束当前测试就尝试加入频道。开始通话测试后，需要先调用 [stopEchoTest] 结束当前测试，再加入频道。</li></ul> |
 | `18`     | 离开频道失败。一般有以下原因：<ul><li>用户已离开频道，再次调用退出频道的方法，如 [leaveChannel] 时，会返回此错误。停止调用该方法即可。</li><li>用户尚未加入频道，就调用退出频道的方法。这种情况下无需额外操作。</li></ul> |
 | `19`     | 资源已被占用，不能重复使用。        |
 | `20`     | SDK 放弃请求，可能由于请求的次数太多。       |
@@ -36,7 +36,7 @@ Agora SDK 在运行过程中，可能通过如下方式返回错误码或警告�
 | `101`    | 不是有效的 App ID。请更换有效的 App ID 重新加入频道。        |
 | `102`    | 不是有效的频道名。可能的原因是设置的参数数据类型不正确。请更换有效的频道名重新加入频道。  |
 | `103`    | 无法获取当前区域的服务器资源。请在初始化 [IRtcEngine] 时尝试指定其他区域。 |
-| `109`    | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_TOKEN_EXPIRED] (9)。</br>当前使用的 Token 过期，不再有效。请在服务端申请生成新的 Token，并调用 renewToken 更新 Token。 |
+| `109`    | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_TOKEN_EXPIRED] (9)。</br>当前使用的 Token 过期，不再有效。请在服务端申请生成新的 Token，并调用 [renewToken] 更新 Token。 |
 | `110`   | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_INVALID_TOKEN] (8)。</br>Token 无效。一般有以下原因：<ul><li>在 Agora 控制台中启用了 App 证书，但仍旧在代码里使用了 App ID。当项目启用了 App 证书，就必须使用 Token 鉴权。</li><li>生成 Token 时填入的 uid 字段，和用户加入频道时填入的 uid 不匹配。</li></ul> |
 | `111`    | 网络连接中断。SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会报告该错误。     |
 | `112`    | 网络连接丢失。 网络连接中断，且 SDK 无法在 10 秒内连接服务器，会报告fail错误。    |
