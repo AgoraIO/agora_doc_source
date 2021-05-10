@@ -16,7 +16,7 @@
         </section>
         <section id="detailed_desc">
    
-   <p>The SDK returns the result of this method call in the &quot;onStreamPublished&quot; callback. The SDK will trigger a callback locally<xref keyref="IChannel_onRtmpStreamingStateChanged"/> to report the status of adding the bypass push address.</p>
+   <p>After calling this method, you can push media streams in RTMP or RTMPS protocol to the CDN. The SDK triggers the <xref keyref="IChannel_onRtmpStreamingStateChanged"/> callback on the local client to report the state of adding a local stream to the CDN.</p>
    <note conkeyref="addPublishStreamUrl/note"/>
         </section>
         <section id="parameters"><title>Parameter</title>
@@ -26,9 +26,9 @@
   <pd></pd>
        </plentry>
        <plentry>
-       <pt>The host in a channel can call the addPublishStreamUrl method to add a media stream to the CDN.</pt>
+       <pt>transcodingEnabled</pt>
        <pd><p conkeyref="addPublishStreamUrl/transcoding-desc"/>
-           <note type="attention">如果该参数设为 <ph keyref="true"/>，需先调用 <xref keyref="IChannel_setLiveTranscoding"/> 方法。</note>
+           <note type="attention">If you set this parameter as <ph keyref="true"/>, ensure that you call the <xref keyref="IChannel_setLiveTranscoding"/> method before this method.</note>
        </pd>
    </plentry>
    </parml>
