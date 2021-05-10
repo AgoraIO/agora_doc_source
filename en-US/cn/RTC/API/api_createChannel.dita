@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_createChannel">
     <title><ph keyref="createChannel"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Creates a Stream object for sending and receiving audio and<apiname keyref="IChannel"/> video.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Creates and gets an <apiname keyref="IChannel"/> object.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -17,8 +17,8 @@
         <section id="detailed_desc">
    
    <p>You can call this method multiple times to create multiple <xref keyref="IChannel">IChannel</xref> objects, and then call the <apiname
-  keyref="IChannel"/>methods in <ph keyref="IChannel_joinChannel"/>each object to join multiple channels at the same time.</p>
-   <p>After joining multiple channels, you can subscribe to the audio and video streams of each channel at the same time; however, only one audio and video stream can be released on one channel at the same time.</p>
+  keyref="IChannel"/> methods in of each <ph keyref="IChannel_joinChannel"/> to join multiple channels at the same time.</p>
+   <p>After joining multiple channels, you can simultaneously subscribe to the the audio and video streams of all the channels, but publish a stream in only one channel at one time.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
@@ -28,8 +28,8 @@
       <p conkeyref="joinChannel2/channelID_desc"/>
       <note type="attention">
  <ul>
-     <li>The parameter does not have a default value, please make sure to set the parameter value.</li>
-     <li>Please do not set this parameter to an empty character <codeph>&quot;&quot;</codeph>, otherwise the SDK will return <codeph>ERR_REFUSED</codeph>(5).</li>
+     <li>The parameter does not have a default value. You must set it.</li>
+     <li>Do not set this parameter as the empty string <codeph>&quot;&quot;</codeph>. Otherwise, the SDK returns <codeph>ERR_REFUSED</codeph>(5).</li>
  </ul>
       </note>
   </pd>
@@ -39,8 +39,8 @@
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li>The method is successfully called and returns<xref keyref="IChannel"/> a pointer to the object.</li>
-       <li>If the call fails, returns NO<ph keyref="NULL"/>.</li>
+       <li>A pointer to the <xref keyref="IChannel"/> instance, if the method call succeeds.</li>
+       <li>An empty pointer <ph keyref="NULL"/>, if the method call fails.</li>
    </ul>
         </section></refbody>
 </reference>
