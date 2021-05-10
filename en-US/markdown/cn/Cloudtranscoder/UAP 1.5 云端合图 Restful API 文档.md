@@ -12,76 +12,76 @@ You can control the cloud transcoder through the cloud transcoding RESTful API:
 
 - Create: Create a cloud transcoder. The Agora server will start transcoding and mixing the multiple streams you specified into one and push them to the Agora RTC channel.
 - Delete: Destroy the cloud transcoder. The Agora server will stop transcoding and mixing streams.
-- Query: Get cloud transcoder status information. The Agora server will query the cloud transcoder you specified.
-- Update: 更新 cloud transcoder。 The Agora server will update the transcoding merge according to the configuration you specify.
+- Query: Query the information of the cloud transcoder. The Agora server will query the cloud transcoder you specified.
+- Update: Update the cloud transcoder。 The Agora server will update the cloud transcoder  according to the configuration you set.
 
-After using these RESTful APIs, Agora's notification server sends the callback notification to your server through HTTP or HTTPS request.For details, see Message Notification Service.
+After using the cloud transcoding RESTful API, Agora notification server will send the callback notification to your server through the HTTP request.
 
-## Generate a Token
+## Generate a builderToken
 
-builderToken is also called a dynamic key. The builderToken can guarantee the security of your request to control the cloud transcoder. Please call this method to generate a builderToken before creating the cloud transcoder.
+builderToken is also called a dynamic key,  which can guarantee the security of your request to control a cloud transcoder. Please call this method to generate a builderToken before creating a cloud transcoder.
 
 ### HTTP request
 
 ```http
-POST https://api.agora.io/v1/projects/<appId>/rtmp-converters
+POST https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/builderTokens
 ```
-`appId`: (Required) String type parameter. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
+`appId`: (Required) String The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
 
-#### Header field of the request message
+#### Request header
 
 - `Content-Type`: `application/json`
 - `Authorization`: The value of this field needs to refer to the [authentication instructions.](https://docs.agora.io/cn/faq/restful_authentication)
 
-#### Body of the request message
+#### Request body
 
 The URL requires the following query string parameters:
 
-| Field Name | Category | Description |
+| Field | Type | Description |
 |---|----|---|
-| `instanceId` | (Required)String  | The instance ID specified by the user. The length must be within 64 characters. The supported character set range is:<li>All lowercase English letters (a-z)</li><li>All uppercase English letters (A-Z)</li><li>Numbers 0-9</li><li>"-", "_"</li><div class="alert note"><li>One `instanceId` can generate multiple builderTokens, but only one builderToken can be used to initiate a request in a task.</li></div> |
+| `instanceId` | (Required)String  | The instance ID setted by the developer. The length must be within 64 characters. The supported character set range is:<li>All lowercase English letters (a-z)</li><li>All uppercase English letters (A-Z)</li><li>Numbers 0-9</li><li>"-", "_"</li><div class="alert note"><li>One `instanceId` can generate multiple builderTokens, but only one builderToken can be used to send a request in a task.</li></div> |
 
 ### HTTP response
 
-#### Header field of the response message.
+#### Request header
 
-`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
+`x-request-id`: UUID (Universal Unique Identifier), which identifies this request.
 <div class="alert note"><ul><li>If there is an error in the request, please print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, there may not be this field in the response header.</li></ul></div>
 
-#### Body of the response message
+#### Response body
 
 The response body contains the following fields:
 
-| Field Name | Category | Description |
+| Field | Type | Description |
 |---|----|---|
 | `tokenName` | String | The value of builderToken, which needs to be passed in when calling other methods later. |
-| `createTs` | Number | The Unix timestamp (s) when the Converter is created. |
-| `instanceId` | Number | The instanceId set at the time of the request``. |
+| `createTs` | Number | The Unix timestamp (seconds) when the builderToken was generated. |
+| `instanceId` | Number | The `instanceId` set at the time of the request. |
 
-<div class="alert note">If this method call succeeds, you get a <code>resource</code> ID (<code>resourceId</code>) from the HTTP response body. Please use this builderToken to initiate a cloud confluence request within 5 minutes. After the time has expired, you need to regenerate the builderToken, otherwise other methods of cloud confluence cannot be called.
+<div class="alert note">After calling this method successfully, you can get a builderToken from the <code>tokenName</code> field in the HTTP response body. Please use this builderToken to send a request within 5 minutes. After the time has expired, you need to regenerate the builderToken, otherwise other methods cannot be called.
 
-## Start the task Create: Create a cloud transcoder
+## Create: Create a cloud transcoder
 
 ### HTTP request
 
 ```http
-POST https://api.agora.io/v1/projects/<appId>/rtmp-converters?regionHintIp={regionHintIp}
+POST https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks?builderToken=<tokenName>
 ```
 ### Path parameter
 
-`appId`: (Required) String type parameter. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
+`appId`: (Required) String. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
 
 ### Query Parameters
 
-`builderToken`: String type required field, that is, dynamic key. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
+`builderToken`: (Required) String. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
 
 
-#### Header field of the request message
+#### Request header
 
 - `Content-Type`: `application/json`
 - `Authorization`: The value of this field needs to refer to the [authentication instructions.](https://docs.agora.io/cn/faq/restful_authentication)
 
-#### Body of the request message
+#### Request body
 ```json
 {
     "services": {
@@ -171,7 +171,7 @@ Request` Body is the `converter field of JSON Object type, including the followi
 
 - The details about `the recording status`.
 
-   | Field Name | Category | Description |
+   | Field | Type | Description |
    |---|----|---|
    | `<service>` |  (Required)JSON Object | The service name is set by the developer. It is necessary to ensure that the service name used in a cloud transcoder is unique. |
    | `<service>.serviceType` | (Required)String  | Service type. Cloud `Confluence: `cloudTranscoder. |
@@ -180,7 +180,7 @@ Request` Body is the `converter field of JSON Object type, including the followi
 
 - `<service>.config.transcoder` contains the following fields:
 
-   | Field Name | Category | Description |
+   | Field | Type | Description |
    |---|----|---|
    | `idleTimeOut` | (Optional)Number  | The maximum time (s) that the Converter is idle. Idle means that all users corresponding to the media stream processed by the Converter have left the channel. After the idle state exceeds the set `idleTimeOut`, the Converter will be destroyed automatically. Integer only. The value range is [[0,10000]], and the default value is `360`. |
    | `inputRtcTokens` | (Optional)JSON Array  | Leaves the RTC channel. The cloud transcoder needs this information to input the transcoded stream into the RTC channel.<li>Your Agora project has enabled the App Certificate on Console.</li><li>Your Agora project has enabled the App Certificate on Console.</li> |
@@ -227,18 +227,18 @@ Request` Body is the `converter field of JSON Object type, including the followi
 
 ### HTTP response
 
-#### Header field of the response message.
+#### Request header
 
-`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
+`x-request-id`: UUID (Universal Unique Identifier), which identifies this request.
 <div class="alert note"><ul><li>If there is an error in the request, please print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, there may not be this field in the response header.</li></ul></div>
 
-#### Body of the response message
+#### Response body
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1go15n67ctej30b8088wep.jpg" alt="create_response" style="zoom:80%;" />
 
 Recoveries
 
-| Field Name | Category | Description |
+| Field | Type | Description |
 |---|----|---|
 | `taskId` | JSON Object | The task ID of the cloud transcoder, UUID, is used to identify the cloud transcoder created in this request. |
 | `createTs` | integer | The Unix timestamp (s) when the Converter is created. |
@@ -261,31 +261,31 @@ DELETE https://api.agora.io/v1/projects/<appId>/rtmp-converters/<converterId>
 
 ### Path parameter
 
-- `appId`: (Required) String type parameter. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
+- `appId`: (Required) String. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
 - `taskId`: The task ID of the cloud transcoder, UUID, used to identify the cloud transcoder created in this request.
 
 ### Query Parameters
 
-`builderToken`: String type required field, that is, dynamic key. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
+`builderToken`: (Required) String. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
 
 
-#### Header field of the request message
+#### Request header
 
 - `Content-Type`: `application/json`
 - `Authorization`: The value of this field needs to refer to the [authentication instructions.](https://docs.agora.io/cn/faq/restful_authentication)
 
-#### Body of the request message
+#### Request body
 
 None
 
 ### HTTP response
 
-#### Header field of the response message.
+#### Request header
 
-- `X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
+- `x-request-id`: UUID (Universal Unique Identifier), which identifies this request.
    <div class="alert note"><ul><li>If there is an error in the request, please print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, there may not be this field in the response header.</li></ul></div>
 
-#### Body of the response message
+#### Response body
 
 The response body contains the following fields:
 
@@ -293,7 +293,7 @@ The response body contains the following fields:
 
 Recoveries
 
-| Field Name | Category | Description |
+| Field | Type | Description |
 |---|----|---|
 | `taskId` | JSON Object | The task ID of the cloud transcoder, UUID, is used to identify the cloud transcoder created in this request. |
 | `createTs` | integer | The Unix timestamp (s) when the Converter is created. |
@@ -314,30 +314,30 @@ PATCH https://api.agora.io/v1/projects/<appId>/rtmp-converters/<converterId>?seq
 ```
 ### Path parameter
 
-- `appId`: (Required) String type parameter. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
+- `appId`: (Required) String. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
 - `taskId`: The task ID of the cloud transcoder, UUID, used to identify the cloud transcoder created in this request.
 
 ### Query Parameters
 
-`builderToken`: String type required field, that is, dynamic key. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
+`builderToken`: (Required) String. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
 
-#### Header field of the request message
+#### Request header
 
 - `Content-Type`: `application/json`
 - `Authorization`: The value of this field needs to refer to the [authentication instructions.](https://docs.agora.io/cn/faq/restful_authentication)
 
-#### Body of the request message
+#### Request body
 
 None
 
 ### HTTP response
 
-#### Header field of the response message.
+#### Request header
 
-`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
+`x-request-id`: UUID (Universal Unique Identifier), which identifies this request.
 <div class="alert note"><ul><li>If there is an error in the request, please print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, there may not be this field in the response header.</li></ul></div>
 
-#### Body of the response message
+#### Response body
 
 The response body contains the following fields:
 
@@ -345,7 +345,7 @@ The response body contains the following fields:
 
 Recoveries
 
-| Field Name | Category | Description |
+| Field | Type | Description |
 |---|----|---|
 | `taskId` | JSON Object | The task ID of the cloud transcoder, UUID, is used to identify the cloud transcoder created in this request. |
 | `createTs` | integer | The Unix timestamp (s) when the Converter is created. |
@@ -369,21 +369,21 @@ PATCH https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks/
 
 ### Path parameter
 
-- `appId`: (Required) String type parameter. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
+- `appId`: (Required) String. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
 - `taskId`: The task ID of the cloud transcoder, UUID, used to identify the cloud transcoder created in this request.
 
 ### Query Parameters
 
-- `builderToken`: String type required field, that is, dynamic key. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
+- `builderToken`: (Required) String. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
 - `zIndex`: Number type required field. The request sequence number is specified by the user. It starts counting from 0 and needs to be incremented to prevent the request from being out of order.
 - `imageUrl`: String type field. For the field mask of JSON encoding, please refer to the[ Google protobuf FieldMask document for details](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
 
-#### Header field of the request message
+#### Request header
 
 - `Content-Type`: `application/json`
 - `Authorization`: The value of this field needs to refer to the [authentication instructions.](https://docs.agora.io/cn/faq/restful_authentication)
 
-#### Body of the request message
+#### Request body
 
 ```json
 {
@@ -456,7 +456,7 @@ Request` Body is the `converter field of JSON Object type, including the followi
 
 - The details about `the recording status`.
 
-   | Field Name | Category | Description |
+   | Field | Type | Description |
    |---|----|---|
    | region: JSON Object `type field`. | Service name, set when creating cloud transcoder. |
    | `<service>.serviceType` | (Required)String  | Service type. Cloud `Confluence: `cloudTranscoder. |
@@ -465,7 +465,7 @@ Request` Body is the `converter field of JSON Object type, including the followi
 
 - `services.config.transcoder` contains the following fields:
 
-   | Field Name | Category | Description |
+   | Field | Type | Description |
    |---|----|---|
    | `inputRtcTokens` | (Optional)JSON Array  | Leaves the RTC channel. The cloud transcoder needs this information to input the transcoded stream into the RTC channel.<li>Your Agora project has enabled the App Certificate on Console.</li><li>Your Agora project has enabled the App Certificate on Console.</li> |
    | `inputRtcTokens.rtcChannel` | (Required)String  | Leaves the RTC channel. |
@@ -505,12 +505,12 @@ Agora supports you to call the `Update` method to update the following fields:
 
 ### HTTP response
 
-#### Header field of the response message.
+#### Request header
 
-`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
+`x-request-id`: UUID (Universal Unique Identifier), which identifies this request.
 <div class="alert note"><ul><li>If there is an error in the request, please print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, there may not be this field in the response header.</li></ul></div>
 
-#### Body of the response message
+#### Response body
 
 The response body contains the following fields:
 
@@ -518,7 +518,7 @@ The response body contains the following fields:
 
 Recoveries
 
-| Field Name | Category | Description |
+| Field | Type | Description |
 |---|----|---|
 | `taskId` | JSON Object | The task ID of the cloud transcoder, UUID, is used to identify the cloud transcoder created in this request. |
 | `createTs` | integer | The Unix timestamp (s) when the Converter is created. |
