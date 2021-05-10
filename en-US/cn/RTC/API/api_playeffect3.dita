@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_playeffect3">
-    <title><ph keyref="playEffect3"/><ph props="windows">[1/2]</ph><ph props="android ios mac">[2/3]</ph></title>
+    <title><ph keyref="playEffect3"/><ph props="windows">[2/2]</ph><ph props="android ios mac">[3/3]</ph></title>
     <shortdesc id="short"><ph id="shortdesc">This method plays the specified local or online audio effect file.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -21,36 +21,36 @@
                     <dd>v3.4.0</dd>
                 </dlentry>
             </dl>
-            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. For the best user experience, Agora recommends playing no more than three audio effect files at the same time. After the playback of an audio effect file completes, the SDK triggers the<apiname keyref="onAudioEffectFinished"/> callback.<note type="attention">Call this method after joining a channel.</note></p>
+            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. For the best user experience, Agora recommends playing no more than three audio effect files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished"/> callback.<note type="attention">Call this method after joining a channel.</note></p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry id="soundid">
   <pt>soundId</pt>
-           <pd>Audio effect ID. 每个音效的 ID 具有唯一性。<note type="attention">如果你已通过 <xref keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"/> 中设置的 <parmname>soundId</parmname> 相同。</note>
+           <pd>The audio effect ID. The ID of each audio effect file is unique.<note type="attention">If you preloaded an audio effect into memory by calling <xref keyref="preloadEffect"/>, ensure that this parameter is set to the same value as <parmname>soundId</parmname> in <apiname keyref="preloadEffect"/>.</note>
   </pd>
        </plentry>
        <plentry>
   <pt>filePath</pt>
-           <pd><p id="filepath">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See .<codeph><ph keyref="filePath-example"/></codeph><xref keyref="filePath-link" format="html" scope="external"/></p>
-               <note type="attention">If you have<xref keyref="preloadEffect"/> loaded an audio effect into memory by calling preloadEffect, ensure that this parameter is<apiname keyref="preloadEffect"/> the same as the filePath set in preloadEffect<parmname></parmname>.</note>
+           <pd><p id="filepath">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <codeph><ph keyref="filePath-example"/></codeph>Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link" format="html" scope="external"/>.</p>
+               <note type="attention">If you preloaded an audio effect into memory by calling <xref keyref="preloadEffect"/>, ensure that this parameter is set to the same value as <parmname>filePath</parmname> in <apiname keyref="preloadEffect"/>.</note>
            </pd>
        </plentry>
        <plentry id="loopcount">
   <pt>loopCount</pt>
            <pd><p>The number of times the audio effect loops:<ul>
-          <li>≥ 0: The number of playback times. ≥ 0: The number of loops. For example, 1 means loop one time, which means play the audio effect two times in total.</li>
+          <li>≥ 0: The number of playback times. For example, 1 means loop one time, which means play the audio effect two times in total.</li>
           <li>-1: Play the music effect in an infinite loop.</li>
       </ul></p>
   </pd>
        </plentry>
        <plentry id="pitch">
   <pt>pitch</pt>
-           <pd>The pitch of the audio effect. The value range is 0.5, 2.0. The default value is 1.0, which means the original pitch. The lower the value, the lower the pitch.</pd>
+           <pd>The pitch of the audio effect. The value range is 0.5 to 2.0. The default value is 1.0, which means the original pitch. The lower the value, the lower the pitch.</pd>
        </plentry>
        <plentry id="pan">
   <pt>pan</pt>
-           <pd><p>The spatial position of the audio effect. The value range is 1,10000.<ul>
+           <pd><p>The spatial position of the audio effect. The value range is 1 to10000.<ul>
                <li>-1.0: The audio effect displays to the left.</li>
                <li>0.0: The audio effect displays ahead.</li>
                <li>1.0: The audio effect displays to the right.</li>
@@ -59,13 +59,13 @@
        </plentry>
        <plentry id="gain">
   <pt>gain</pt>
-           <pd>The volume of the audio effect. The value range is 1,10000. The default value is 100.0, which means the original volume. The smaller the value, the less the gain.</pd>
+           <pd>The volume of the audio effect. The value range is 1 to10000. The default value is 100.0, which means the original volume. The smaller the value, the less the gain.</pd>
        </plentry>
        <plentry id="publish">
   <pt>publish</pt>
-           <pd><p>// Sets whether to publish the audio effect to the remote users.<ul>
-          <li><ph keyref="true"/>: 发布。 false: Both users can hear the audio mixing.</li>
-          <li><ph keyref="false"/>: 不发布。 false: Do not publish. Only the local user can hear the audio effect.</li>
+           <pd><p>Whether to publish the audio effect to the remote users.<ul>
+          <li><ph keyref="true"/>: Publish the audio effect. Both the local user and remote users can hear the audio effect.</li>
+          <li><ph keyref="false"/>: Do not publish the audio effect. Only the local user can hear the audio effect.</li>
       </ul></p>
   </pd>
        </plentry>
