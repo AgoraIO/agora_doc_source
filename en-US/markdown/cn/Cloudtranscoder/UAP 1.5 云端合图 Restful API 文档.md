@@ -10,16 +10,16 @@ The process of transcoding and mixing multiple streams on the Agora server is eq
 
 You can control the cloud transcoder through the cloud transcoding RESTful API:
 
-- Create: Create a cloud transcoder. The Agora server will start transcoding and mixing the multiple streams you specified into one and push them to the Agora RTC channel.
-- Delete: Destroy the cloud transcoder. The Agora server will stop transcoding and mixing streams.
-- Query: Query the information of the cloud transcoder. The Agora server will query the cloud transcoder you specified.
-- Update: Update the cloud transcoder。 The Agora server will update the cloud transcoder  according to the configuration you set.
+- `Create`: Create a cloud transcoder. The Agora server will start transcoding and mixing the multiple streams you specified into one and push them to the Agora RTC channel.
+- `Delete`: Destroy the cloud transcoder. The Agora server will stop transcoding and mixing streams.
+- `Query`: Query the information of the cloud transcoder. The Agora server will query the cloud transcoder you specified.
+- `Update`: Update the cloud transcoder。 The Agora server will update the cloud transcoder  according to the configuration you set.
 
 After using the cloud transcoding RESTful API, Agora notification server will send the callback notification to your server through the HTTP request.
 
 ## Generate a builderToken
 
-builderToken is also called a dynamic key,  which can guarantee the security of your request to control a cloud transcoder. Please call this method to generate a builderToken before creating a cloud transcoder.
+ which can guarantee the security of your request to control a cloud transcoder. Please call this method to generate a builderToken before creating a cloud transcoder.
 
 ### HTTP request
 
@@ -73,7 +73,7 @@ POST https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks?b
 
 ### Query Parameters
 
-`builderToken`: (Required) String. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
+`builderToken`: (Required) String, that is, dynamic key. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
 
 
 #### Request header
@@ -266,7 +266,7 @@ DELETE https://api.agora.io/v1/projects/<appId>/rtmp-converters/<converterId>
 
 ### Query Parameters
 
-`builderToken`: (Required) String. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
+`builderToken`: (Required) String, that is, dynamic key. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
 
 
 #### Request header
@@ -282,8 +282,8 @@ None
 
 #### Request header
 
-- `x-request-id`: UUID (Universal Unique Identifier), which identifies this request.
-   <div class="alert note"><ul><li>If there is an error in the request, please print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, there may not be this field in the response header.</li></ul></div>
+`x-request-id`: UUID (Universal Unique Identifier), which identifies this request.
+<div class="alert note"><ul><li>If there is an error in the request, please print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, there may not be this field in the response header.</li></ul></div>
 
 #### Response body
 
@@ -319,7 +319,7 @@ PATCH https://api.agora.io/v1/projects/<appId>/rtmp-converters/<converterId>?seq
 
 ### Query Parameters
 
-`builderToken`: (Required) String. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
+`builderToken`: (Required) String, that is, dynamic key. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
 
 #### Request header
 
@@ -374,8 +374,8 @@ PATCH https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks/
 
 ### Query Parameters
 
-- `builderToken`: (Required) String. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
-- `zIndex`: Number type required field. The request sequence number is specified by the user. It starts counting from 0 and needs to be incremented to prevent the request from being out of order.
+- `builderToken`: (Required) String, that is, dynamic key. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
+- `zIndex`: Number type required field. The request sequence number is specified by the developer. It` starts counting from 0` and needs to be incremented to prevent the request from being out of order.
 - `imageUrl`: String type field. For the field mask of JSON encoding, please refer to the[ Google protobuf FieldMask document for details](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
 
 #### Request header
