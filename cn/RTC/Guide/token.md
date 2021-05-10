@@ -19,7 +19,7 @@ A token is a dynamic key generated on your app server that is valid for a maximu
 - The privilege of the user, either as a publisher or a subscriber
 - The Unix timestamp when the token expires
 
-### Prerequisites
+## Prerequisites
 
 In order to follow this procedure you must have the following:
 
@@ -33,11 +33,11 @@ In order to follow this procedure you must have the following:
 
 This section shows you how to supply and consume a token that gives rights to specific functionality to authenticated users using the [source code](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) provided by Agora.
 
-### Get your App ID and App Certificate
+### Get the App ID and App Certificate
 
-This section shows you how to get your App ID and App Certificate.
+This section shows you how to get the security information needed to generate a token, including the App ID and App Certificate of your project.
 
-#### Get App ID
+#### 1. Get the App ID
 
 Agora automatically assigns each project an App ID as a unique identifier.
 
@@ -45,7 +45,7 @@ To copy this App ID, find your project on the [Project Management](https://dashb
 
 ![Get App ID](https://web-cdn.agora.io/docs-files/1602646621028)
 
-#### Get App Certificate
+#### 2. Get the App Certificate
 
 Click **Edit** and enter the **Edit Project** page. Click the eye icon to copy the App certificate.
 
