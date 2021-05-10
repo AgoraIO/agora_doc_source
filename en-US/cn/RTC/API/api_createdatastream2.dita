@@ -23,7 +23,7 @@
        </dlentry>
    </dl>
    <p id="desc">Creates a data stream. Each user can create up to five data streams in a single channel.</p>
-   <p id="diff">Compared with <apiname keyref="createDataStream1"/>[1/2], this method does not support data reliability. This method does not support data reliability. If the receiver receives a data packet five seconds or more after it was sent, the SDK directly discards the data.</p>
+   <p id="diff">Compared with <apiname keyref="createDataStream1"/>[1/2], this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
@@ -41,7 +41,7 @@
    <title>Returns</title>
    <ul>
        <li props="windows">0: The data stream is successfully created.</li>
-       <li props="android">ID of the created data stream: the method was successfully called.</li>
+       <li props="android">ID of the created data stream, if the method call succeeds.</li>
        <li>&lt; 0: Failure. You can refer to <xref href="error_rtc.md" format="md">Error Codes and Warning Codes</xref> for troubleshooting.</li>
    </ul>
         </section></refbody>
