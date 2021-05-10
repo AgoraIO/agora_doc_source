@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setvideoqualityparameters">
     <title><ph keyref="setVideoQualityParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置视频优化选项（仅适用于直播）。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the preferences for high-quality video. (LIVE_BROADCASTING only).</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,18 +17,18 @@
             <dl outputclass="deprecated">
                 <dlentry>
                     <dt>Deprecated:</dt>
-                    <dd>This method is deprecated as of v2.4.0. To optimize user experience<xref keyref="VideoEncoderConfiguration"/> in weak network conditions, Agora provides the <parmname>degradationPreference</parmname> parameter to set how you wish to<parmname> degrade</parmname> the video under limited network bandwidth.</dd>
+                    <dd>Deprecated as of v2.4.0. Agora recommends using the <parmname>degradationPreference</parmname> parameter in the <xref keyref="VideoEncoderConfiguration"/>class to set the preferences for high-quality video.</dd>
                 </dlentry>
             </dl>
         </section>
         <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
-                    <pt>@param preferFrameRateOverImageQuality Sets the video quality preference:</pt>
+                    <pt>preferFrameRateOverImageQuality</pt>
                     <pd>
-                        <p>true: Frame rate over image quality.<ul id="ul_q4q_k54_jpb">
-                                <li><ph keyref="true"/>：优先保证流畅度。</li>
-                                <li><ph keyref="false"/>： (默认)优先保证画质。</li>
+                        <p>Whether to prioritize smoothness or image quality.<ul id="ul_q4q_k54_jpb">
+                                <li><ph keyref="true"/>: Prioritizes smoothness.</li>
+                                <li><ph keyref="false"/>: (Default) Prioritizes the image quality.</li>
                             </ul></p>
                     </pd>
                 </plentry>
