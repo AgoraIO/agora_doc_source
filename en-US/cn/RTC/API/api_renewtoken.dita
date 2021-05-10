@@ -14,7 +14,7 @@
         
         <p conref="../conref/conref_rtc_api.dita#apidef/renewToken"/>
         </section>
-        <section id="detailed_desc">Passes a new token to the SDK. A token expires after a certain period of time. The application should call this method to get the new `token`. Failure to do so will result in the SDK disconnecting from the server.<ul>
+        <section id="detailed_desc">Passes a new token to the SDK. A token expires after a certain period of time. In the following two cases, the app should call this method to pass in a new token. Failure to do so will result in the SDK disconnecting from the server.<ul>
        <li>The SDK triggers the <xref keyref="onTokenPrivilegeWillExpire"/> callback.</li>
        <li>The <xref keyref="onConnectionStateChanged"/> callback reports <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9).</li>
    </ul>
@@ -23,7 +23,7 @@
    <parml>
        <plentry>
   <pt>token</pt>
-  <pd>New Token.</pd>
+  <pd>The new token.</pd>
        </plentry>
    </parml>
         </section>
