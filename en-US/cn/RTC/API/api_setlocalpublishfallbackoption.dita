@@ -16,10 +16,10 @@
         </section>
         <section id="detailed_desc">
    
-   <p>Unstable network affects the audio and video quality in a video call or live interactive video streaming. If `option` is set as<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> #STREAM_FALLBACK_OPTION_AUDIO_ONLY<parmname></parmname> (2), the SDK will: Disable the upstream video but enable audio only when the network conditions deteriorate and cannot support both video and audio. The SDK monitors the network quality and restores the video stream when the network conditions improve. When the local push stream is rolled back to an audio stream, or when the audio stream is restored to an audio and video stream, the SDK will trigger the callback that the locally published media stream has been rolled back to an audio stream<xref keyref="onLocalPublishFallbackToAudioOnly"/>.</p>
+   <p>An unstable network affects the audio and video quality in a video call or interactive live video streaming. If <parmname>option</parmname> is set as <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>(2), the SDK disables the upstream video but enables audio only when the network conditions deteriorate and cannot support both video and audio. The SDK monitors the network quality and restores the video stream when the network conditions improve. When the published video stream falls back to audio only or when the audio-only stream switches back to the video, the SDK triggers the <xref keyref="onLocalPublishFallbackToAudioOnly"/> callback.</p>
    <note type="attention">
        <ul>
-  <li>In the bypass streaming scenario, setting the local streaming fallback to<apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> (2) may cause a delay in the time for the remote CDN user to hear the sound. Therefore, Agora recommends not to enable this function in scenarios where there is a bypass push.</li>
+  <li>Agora does not recommend using this method for CDN live streaming, because the remote CDN live user will have a noticeable lag when the published video stream falls back to <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>(2).</li>
   <li>Ensure that you call this method before joining a channel.</li>
        </ul>
    </note>
@@ -28,9 +28,9 @@
    <parml>
        <plentry>
   <pt>option</pt>
-  <pd>Stream fallback options.<ul>
- <li><apiname keyref="STREAM_FALLBACK_OPTION_DISABLED"/> No fallback behavior for the local/remote video stream when the uplink/downlink network conditions are poor. The quality of the stream is not guaranteed.</li>
- <li><apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> (2): Only the audio stream is released when the uplink network is weak</li>
+  <pd>The stream fallback option.<ul>
+ <li><apiname keyref="STREAM_FALLBACK_OPTION_DISABLED"/> (0): (Default) No fallback behavior for the published video stream when the uplink network condition is poor. The stream quality is not guaranteed.</li>
+ <li><apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> (2): The published video stream falls back to audio only when the uplink network condition is poor.</li>
       </ul>
   </pd>
        </plentry>
