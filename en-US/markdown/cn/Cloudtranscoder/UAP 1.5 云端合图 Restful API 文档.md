@@ -1,18 +1,18 @@
 ## Introduction
 
-Agora develops cloud converged services for multi-person live broadcast scenarios, and supports transcoding and converging the audio and video streams of multiple anchors on the Agora server and input them to the Agora RTC channel. Viewers in the channel only need to subscribe to the transcoded and combined audio and video streams to watch the live broadcast.
+Agora provides cloud transcoding services for multi-hosted interactive streaming scenarios, and supports transcoding and stream mixing on the Agora server to push the streams of multiple hosts to the Agora RTC channel. Audience in the RTC channel only need to subscribe to the transcoded and mixed streams to watch the live broadcast.
 
-After using the cloud converged service, viewers do not need to subscribe to the audio and video streams of multiple anchors, which can greatly save downstream bandwidth pressure and client device performance consumption.
+After using the cloud transcoding service, audiences do not need to subscribe to the streams of multiple hosts, which can greatly save pressure of downstream bandwidth and consumption of client device performance.
 
 ### Working principles
 
-The process of transcoding and merging multiple streams on the Agora server is equivalent to creating a cloud transcoder. The multi-channel stream before transcoding is the input of the cloud transcoder, and the stream after transcoding is the output of the cloud transcoder.
+The process of transcoding and mixing multiple streams on the Agora server is equivalent to creating a cloud transcoder. The multiple streams before transcoding is the input of the cloud transcoder, and the stream after transcoding is the output of the cloud transcoder.
 
-You can control the cloud transcoder through the cloud confluence RESTful API:
+You can control the cloud transcoder through the cloud transcoding RESTful API:
 
-- Create: Create a cloud transcoder. The Agora server will start transcoding and merging the multiple streams you specified and input them to the Agora RTC channel.
-- Delete: Destroy the cloud transcoder task. The Agora server will stop transcoding and merging.
-- Query: Query cloud transcoder status information. The Agora server will query the cloud transcoder you specified.
+- Create: Create a cloud transcoder. The Agora server will start transcoding and mixing the multiple streams you specified into one and push them to the Agora RTC channel.
+- Delete: Destroy the cloud transcoder. The Agora server will stop transcoding and mixing streams.
+- Query: Get cloud transcoder status information. The Agora server will query the cloud transcoder you specified.
 - Update: 更新 cloud transcoder。 The Agora server will update the transcoding merge according to the configuration you specify.
 
 After using these RESTful APIs, Agora's notification server sends the callback notification to your server through HTTP or HTTPS request.For details, see Message Notification Service.
