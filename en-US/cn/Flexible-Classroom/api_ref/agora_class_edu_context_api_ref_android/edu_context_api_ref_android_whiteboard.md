@@ -156,7 +156,7 @@ Go to the next page.
 
 ## WhiteboardHandler
 
-The` WhiteboardContext` class is used to report whiteboard-related event callbacks to the App.
+`WhiteboardContext` reports whiteboard-related event callbacks to the app.
 
 ### getBoardContainer
 
@@ -181,7 +181,7 @@ Return to the initial tool configuration of the whiteboard.
 
 | Parameter | Description |
 | :--- | :--- |
-| `config` | For the initial configuration of the whiteboard, see WhiteboardDrawingConfig for details``. |
+| `config` | The initial configuration of the whiteboard. See `WhiteboardDrawingConfig`. |
 
 ### onDrawingEnabled
 
@@ -189,11 +189,11 @@ Return to the initial tool configuration of the whiteboard.
 fun onDrawingEnabled(enabled: Boolean)
 ```
 
-Report whether the whiteboard tool is available.
+Report whether the whiteboard editing tools are enabled.
 
 | Parameter | Description |
 | :--- | :--- |
-| `enabled` | Whether the whiteboard tool is available. |
+| `enabled` | Whether the whiteboard editing tools are enabled. |
 
 
 ### onPageNo
@@ -206,8 +206,8 @@ Report the current page number and total page number of the whiteboard.
 
 | Parameter | Description |
 | :--- | :--- |
-| `no` | current page number. |
-| `count` | total pages. |
+| `no` | The current page number. |
+| `count` | The total number of pages. |
 
 
 ### onPagingEnabled
@@ -216,11 +216,11 @@ Report the current page number and total page number of the whiteboard.
 fun onPagingEnabled(enabled: Boolean)
 ```
 
-Whether the report can be paged.
+Report whether the paging function is enabled.
 
 | Parameter | Description |
 | :--- | :--- |
-| `enabled` | Whether the page can be turned. |
+| `enabled` | Whether the paging function is enabled. |
 
 
 ### onZoomEnabled
@@ -228,23 +228,23 @@ Whether the report can be paged.
 ```kotlin
 fun onZoomEnabled(zoomOutEnabled: Boolean?, zoomInEnabled: Boolean?)
 ```
-Whether the report can be zoomed in or out.
+Report whether the zooming function is enabled.
 
 | Parameter | Description |
 | :--- | :--- |
-| `zoomOutEnabled` | Whether it can be reduced. |
-| `zoomInEnabled` | Whether it can be zoomed in. |
+| `zoomOutEnabled` | Whether the zooming out function is enabled. |
+| `zoomInEnabled` | Whether the zooming in function is enabled. |
 
 ### onFullScreenEnabled
 
 ```kotlin
 fun onFullScreenEnabled(enabled: Boolean)
 ```
-Whether the report can be a full-screen whiteboard.
+Report whether the can be a full-screen whiteboard.
 
 | Parameter | Description |
 | :--- | :--- |
-| `enabled` | Whether  whiteboard can be full screen. |
+| `enabled` | Whether whiteboard can be full screen. |
 
 ### onFullScreenChanged
 
@@ -264,11 +264,11 @@ Report whether the current whiteboard is full screen.
 fun onInteractionEnabled(enabled: Boolean)
 ```
 
-Report whether the PageControl toolbar is available.
+Reports whether the page control toolbar is enabled.
 
 | Parameter | Description |
 | :--- | :--- |
-| `enabled` | Whether the PageControl toolbar is available. |
+| `enabled` | Whether the page control toolbar is enabled. |
 
 
 ### onLoadingVisible
@@ -293,19 +293,19 @@ Report the progress of the current courseware download.
 
 | Parameter | Description |
 | :--- | :--- |
-| `url` | Courseware download URL address. |
-| `progress` | The courseware is downloaded and entered, and the value range is 0 to 1. |
+| `url` | The download link of the file. |
+| `progress` | The courseware download progress. The value range is 0 to 1. |
 
 ### onDownloadTimeout
 
 ```kotlin
 fun onDownloadTimeout(url: String)
 ```
-Report that the courseware download timed out. When a courseware download takes more than 15 seconds, the callback will be triggered.
+Occurs when the courseware download task times out. When a courseware download task takes more than 15 seconds, the SDK triggers this callback.
 
 | Parameter | Description |
 | :--- | :--- |
-| `url` | Courseware download URL address. |
+| `url` | The download link of the file. |
 
 
 ### onDownloadCompleted
@@ -314,11 +314,11 @@ Report that the courseware download timed out. When a courseware download takes 
 fun onDownloadCompleted(url: String)
 ```
 
-The download of the report courseware is complete.
+Occurs when the courseware download task completes.
 
 | Parameter | Description |
 | :--- | :--- |
-| `url` | Courseware download URL address. |
+| `url` | The download link of the file. |
 
 
 ### onDownloadError
@@ -327,11 +327,11 @@ The download of the report courseware is complete.
 fun onDownloadError(url: String)
 ```
 
-Report that the download of the courseware failed.
+Occurs when the courseware download task fails.
 
 | Parameter | Description |
 | :--- | :--- |
-| `url` | Courseware download URL address. |
+| `url` | The download link of the file. |
 
 ### onDownloadCanceled
 
@@ -339,11 +339,11 @@ Report that the download of the courseware failed.
 fun onDownloadCanceled(url: String)
 ```
 
-Report that the current courseware download task is cancelled.
+Occurs when the current courseware download task is canceled.
 
 | Parameter | Description |
 | :--- | :--- |
-| `url` | Courseware download URL address. |
+| `url` | The download link of the file. |
 
 ### onPermissionGranted
 
@@ -351,9 +351,9 @@ Report that the current courseware download task is cancelled.
 fun onPermissionGranted(granted: Boolean)
 ```
 
-Report whiteboard permissions have changed.
+Occurs when the whiteboard permission changes.
 
 | Parameter | Description |
 | :--- | :--- |
-| `granted` | Whether you have whiteboard permissions. |
+| `granted` | Whether the local client has the permission of drawing on the whiteboard. |
 
