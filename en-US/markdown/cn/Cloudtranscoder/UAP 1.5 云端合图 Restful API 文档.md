@@ -163,69 +163,69 @@ Request body example:
 
 ```json
 {
-    "services": {
-        "cloudTranscoder": {
-            "serviceType": "cloudTranscoder",
-            config
-                "transcoder": {
-                    "name": "teacher101",
-                    "idleTimeout": 300,
-                    "inputs": {
-                        "videoInputs": {
-                            "canvas": {
-                                "height": 720,
-                                "width": 1280
-                        },
-                            "inputSources": [
+"services": {
+"cloudTranscoder": {
+"serviceType": "cloudTranscoder",
+"config": {
+"transcoder": {
+"name": "test_transcoder1620701223",
+"idleTimeOut": 5,
+"inputs": {
+"videoInputs": {
+"canvas": {
+"height": 720,
+"width": 1280
+},
+"inputSources": [
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000001
-                        },
-                                    "region": {
-                                        "x": 0,
-                                        "y": 0,
-                                        "width": 680,
-                                        "height": 400
-                        },
-                                    "zOrder": 1
-                        },
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000001
+},
+"region": {
+"x": 0,
+"y": 0,
+"width": 680,
+"height": 400
+},
+"zOrder": 1
+},
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000002
-                        },
-                                    "region": {
-                                        "x": 0,
-                                        "y": 0,
-                                        "width": 640,
-                                        "height": 360
-                        },
-                                    "zOrder": 2
-                                    }
-                            ]
-                                    }
-                        },
-                    "outputs": [
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000002
+},
+"region": {
+"x": 0,
+"y": 0,
+"width": 640,
+"height": 360
+},
+"zOrder": 2
+}
+]
+}
+},
+"outputs": [
 {
-                            "out": {
-                                "rtcChannel": "transcoder_output_channel1620701216989",
-                                "rtcUid": 1000003,
-                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063
-                        },
-                            "videoOption": {
-                                "fps": 30,
-                                "codec": "H264",
-                                "bitrate": 3000,
-                                "height": 1280,
-                                "width": 720
-                                    }
-                                    }
-                            ]
-                                    }
-                                    }
-                                    }
-                                    }
+"out": {
+"rtcChannel": "transcoder_output_channel1620701216989",
+"rtcUid": 1000003,
+"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063"
+},
+"videoOption": {
+"fps": 30,
+"codec": "H264",
+"bitrate": 3000,
+"height": 1280,
+"width": 720
+}
+}
+]
+}
+}
+}
+}
 }
 ```
 
@@ -261,78 +261,77 @@ Response body example:
 
 ```json
 {
-    "createTs": 1575508644,
-    "services": {
-        "cloudTranscoder": {
-            config
-                "transcoder": {
-                    "idleTimeout": 300,
-                    "inputs": {
-                        "videoInputs": {
-                            "canvas": {
-                                "height": 720,
-                                "width": 1280
-                        },
-                            "inputSources": [
+"createTs": 1620701223,
+"services": {
+"cloudTranscoder": {
+"config": {
+"transcoder": {
+"idleTimeOut": 5,
+"inputs": {
+"videoInputs": {
+"canvas": {
+"height": 720,
+"width": 1280
+},
+"inputSources": [
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000001
-                        },
-                                    "region": {
-                                        "height": 400,
-                                        "width": 680,
-                                        "x": 0,
-                                        "y": 0
-                        },
-                                    "zOrder": 1
-                        },
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000001
+},
+"region": {
+"height": 400,
+"width": 680,
+"x": 0,
+"y": 0
+},
+"zOrder": 1
+},
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000002
-                        },
-                                    "region": {
-                                        "height": 360,
-                                        "width": 640,
-                                        "x": 0,
-                                        "y": 0
-                        },
-                                    "zOrder": 2
-                                    }
-                            ]
-                                    }
-                        },
-                    "name": "teacher101",
-                    "outputs": [
-                                {
-                            "out": {
-                                "rtcChannel": "transcoder_output_channel1620701216989",
-                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
-                                "rtcUid": 1000003
-                        },
-                            "videoOption": {
-                                "bitrate": 3000,
-                                "codec": "H264",
-                                "fps": 30,
-                                "height": 1280,
-                                "width": 720
-                                    }
-                                    }
-                            ]
-                                    }
-                        },
-            "createTs": 1575508644,
-            "details": {
-                
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000002
+},
+"region": {
+"height": 360,
+"width": 640,
+"x": 0,
+"y": 0
+},
+"zOrder": 2
+}
+]
+}
+},
+"name": "test_transcoder1620701223",
+"outputs": [
+{
+"out": {
+"rtcChannel": "transcoder_output_channel1620701216989",
+"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063",
+"rtcUid": 1000003
+},
+"videoOption": {
+"bitrate": 3000,
+"codec": "H264",
+"fps": 30,
+"height": 1280,
+"width": 720
+}
+}
+]
+}
+},
+"createTs": 1620701223,
+"details": {
             },
-              "msg": "Success",
-            "serviceType": "cloudTranscoder",
-            "status": "serviceReady"
-                                    }
-                        },
-    "status": "STARTED",
-    "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
+"message": "success",
+"serviceType": "cloudTranscoder",
+"status": "serviceReady"
+}
+},
+"status": "STARTED",
+"taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
 }
 ```
 
