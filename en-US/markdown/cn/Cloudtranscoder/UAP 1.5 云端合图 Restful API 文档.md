@@ -142,7 +142,7 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `inputs.videoInputs.inputSources.region.x` | (Required)Number  | The x coordinate (pixel) of the screen on the canvas. The lateral displacement relative to the origin. (Take the upper left corner of the canvas as the origin, and the x coordinate as the upper left corner of the screen.) The value range is [0,3840]. |
    | `inputs.videoInputs.inputSources.region.y` | (Required)Number  | The y coordinate (pixel) of the screen on the canvas. The longitudinal displacement to the origin.（Take the upper left corner of the canvas as the origin and the y coordinate as the upper left corner of the screen.） The value range is [0,3840]. |
    | `inputs.videoInputs.inputSources.region.width` | (Required)Number  | The width of the image (pixel). The value range is ]120,3840[. |
-   | `inputs.videoInputs.inputSources.region.height` | (Required)Number  | The height (px) of the video image captured by the local camera. The value range is ]120,3840[. |
+   | `inputs.videoInputs.inputSources.region.height` | (Required)Number  | The height of the canvas (pixel). The value range is ]120,3840[. |
    | `inputs.videoInputs.inputSources.zOrder` | (Required)Number  | The layer number of the video input screen of the cloud transcoder. The value range is [0,100]. 0 represents the lowest layer. 100 represents the top layer. |
    | `outputs` | (Required)JSON Array  | The output configuration of the cloud transcoder. Supports output of multiple streams processed by different transcoding configurations. |
    | `outputs.out` |  (Required)JSON Object | The output configuration of the cloud transcoder. |
@@ -686,7 +686,7 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `inputs.videoInputs.inputSources.region.x` | (Required)Number  | The x coordinate (pixel) of the screen on the canvas. The lateral displacement relative to the origin. (Take the upper left corner of the canvas as the origin, and the x coordinate as the upper left corner of the screen.) The value range is [0,3840]. |
    | `inputs.videoInputs.inputSources.region.y` | (Required)Number  | The y coordinate (pixel) of the screen on the canvas. The longitudinal displacement to the origin.（Take the upper left corner of the canvas as the origin and the y coordinate as the upper left corner of the screen.） The value range is [0,3840]. |
    | `inputs.videoInputs.inputSources.region.width` | (Required)Number  | The width of the image (pixel). The value range is ]120,3840[. |
-   | `inputs.videoInputs.inputSources.region.height` | (Required)Number  | The height (px) of the video image captured by the local camera. The value range is ]120,3840[. |
+   | `inputs.videoInputs.inputSources.region.height` | (Required)Number  | The height of the canvas (pixel). The value range is ]120,3840[. |
    | `inputs.videoInputs.inputSources.zOrder` | (Required)Number  | The layer number of the video input screen of the cloud transcoder. The value range is [0,100]. 0 represents the lowest layer. 100 represents the top layer. |
 
 Request body
