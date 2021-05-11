@@ -49,7 +49,7 @@ Sample code:
 ```swift
 /** Global configuration **/
 @interface AgoraEduSDKConfig : NSObject
- // Agora App ID
+// Agora App ID
 @property (nonatomic, copy) NSString *appId;
 // Whether to enable eye care mode
 @property (nonatomic, assign) BOOL eyeCare;
