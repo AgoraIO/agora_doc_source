@@ -28,7 +28,7 @@ Globally configures the SDK.
 
 ```java
 /** Global Configuration */
- // Agora App ID
+// Agora App ID
 String appId = "XXX";
 // Whether to enable eye care mode
 boolean eyeCare = false;
