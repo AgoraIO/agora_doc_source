@@ -45,7 +45,7 @@ whiteboard tool attribute configuration class.
 | Parameter | Description |
 | :---------------- | :----------- |
 | `activeAppliance` | Whiteboard toolkit |
-| `color` | colour. |
+| `color` | The color. |
 | `fontsize` | The font size. |
 | `thick` | Brush thickness. |
 
