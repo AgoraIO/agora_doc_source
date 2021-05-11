@@ -2,7 +2,7 @@
 
 ## WhiteboardContext
 
-The` WhiteboardContext` class provides whiteboard-related methods that can be called by the App.
+`WhiteboardContext` provides whiteboard-related methods that can be called by the app.
 
 ### selectAppliance
 
@@ -10,11 +10,11 @@ The` WhiteboardContext` class provides whiteboard-related methods that can be ca
 abstract fun selectAppliance(type: WhiteboardApplianceType)
 ```
 
-Select the whiteboard tool.
+Select a whiteboard editing tool.
 
 | Parameter | Description |
 | :----- | :--------------------------------------------- |
-| `type` | Whiteboard` tool type, see WhiteboardApplianceType for details`. |
+| `type` | The editing tool type, For details, see `WhiteboardApplianceType`. |
 
 ### selectColor
 
@@ -22,11 +22,11 @@ Select the whiteboard tool.
 abstract fun selectColor(color: Int)
 ```
 
-choose the color.
+Select a color.
 
 | Parameter | Description |
 | :------ | :----- |
-| `color` | colour. |
+| `color` | The color. |
 
 ### selectFontSize
 
@@ -34,7 +34,7 @@ choose the color.
 abstract fun selectFontSize(size: Int)
 ```
 
-The font size.
+Select a font size.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -46,11 +46,11 @@ The font size.
 abstract fun selectThickness(thick: Int)
 ```
 
-Choose the brush thickness.
+Select the line thickness.
 
 | Parameter | Description |
 | :--- | :--- |
-| `think` | Brush thickness. |
+| `thick` | The line thickness |
 
 ### selectRoster
 
@@ -58,11 +58,11 @@ Choose the brush thickness.
 abstract fun selectRoster(anchor: View)
 ```
 
-Select the list of people.
+Click the user list.
 
 | Parameter | Description |
 | :--- | :--- |
-| `anchor` | Icon-View of user list. |
+| `anchor` | The Icon-View of the user list. |
 
 ### setBoardInputEnable
 
@@ -72,7 +72,7 @@ abstract fun setBoardInputEnable(enable: Boolean)
 
 | Parameter | Description |
 | :--- | :--- |
-| `enable` | Is it possible to use the whiteboard tool and PageControl toolbar. When the progress box or download failure box pops up on the whiteboard, the whiteboard tool and PageControl toolbar cannot be used. |
+| `enable` | Whether to enable the whiteboard editing tools and PageControl toolbar. When the progress box or download failure box pops up on the whiteboard, the whiteboard tool and PageControl toolbar cannot be used. |
 
 ### skipDownload
 
@@ -116,11 +116,11 @@ Retry the courseware download.
 abstract fun setFullScreen(full: Boolean)
 ```
 
-Set whether the whiteboard is full screen.
+Make the whiteboard full screen.
 
 | Parameter | Description |
 | :--- | :--- |
-| `full` | Whether  whiteboard is full screen. |
+| `full` | Whether to make the whiteboard full screen. |
 
 ### setZoomOut
 
@@ -128,7 +128,7 @@ Set whether the whiteboard is full screen.
 abstract fun setZoomOut()
 ```
 
-Zoom out  whiteboard. Each call is reduced by 20%.
+Zoom out the whiteboard. Every time you call this method, the whiteboard is zoomed out by 20%.
 
 ### setZoomIn
 
@@ -136,7 +136,7 @@ Zoom out  whiteboard. Each call is reduced by 20%.
 abstract fun setZoomIn()
 ```
 
-Zoom in on the whiteboard. Each time it is called, it zooms in by 20%.
+Zoom in the whiteboard. Every time you call this method, the whiteboard is zoomed in by 20%.
 
 ### setPrevPage
 
@@ -144,7 +144,7 @@ Zoom in on the whiteboard. Each time it is called, it zooms in by 20%.
 abstract fun setPrevPage()
 ```
 
-Turn to the previous page.
+Go to the previous page.
 
 ### setNextPage
 
@@ -152,7 +152,7 @@ Turn to the previous page.
 abstract fun setNextPage()
 ```
 
-Turn to the next page.
+Go to the next page.
 
 ## WhiteboardHandler
 
