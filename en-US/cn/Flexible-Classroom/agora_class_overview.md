@@ -1,6 +1,6 @@
 Flexible Classroom is an aPaaS solution provided by Agora for online interactive tutoring. It encapsulates the complex APIs of the Agora RTC SDK, Agora RTM SDK, Interactive Whiteboard SDK, and the Agora Cloud Recording service into modules. Flexible Classroom empowers developers can quickly build apps for online interactive classrooms in a low-code way, with no need to learn the complex logic of real-time audio and video.
 
-Flexible Classroom covers a variety of teaching scenarios, including one-to-one classrooms, small classrooms, and lecture halls. Users can join a flexible classroom in the role of a teacher, student, or teaching assistant. Flexible Classroom has an abundance of features, including real-time audio and video interaction, real-time messaging, interactive whiteboard, recording, screen sharing, and also classroom and user management. More importantly, Flexible Classroom enables developers to customize their classrooms with tools such as the Agora Edu Context, UI Kit, and Ext App. Developers can also connect Flexible Classroom with their own systems, such as their user management system and class management systems.
+Flexible Classroom covers a variety of teaching scenarios, including one-to-one classrooms, small classrooms, and lecture halls. Users can join a flexible classroom in the role of a teacher, student, or teaching assistant. Flexible Classroom has an abundance of features, including real-time audio and video interaction, real-time messaging, interactive whiteboard, recording, screen sharing, and also classroom and user management. More importantly, Flexible Classroom enables developers to customize their classrooms with tools such as the Agora Edu Context, UIKit, and ExtApp. Developers can also connect Flexible Classroom with their own systems, such as their user management system and class management systems.
 
 ![](https://web-cdn.agora.io/docs-files/1619757465085)
 
@@ -8,30 +8,30 @@ Flexible Classroom covers a variety of teaching scenarios, including one-to-one 
 
 Agora provides aPaaS and PaaS solutions for online interactive classrooms. See the following table for their differences.
 
-| <span style="white-space:nowrap;">&emsp;&emsp;&emsp;&emsp;</span> | aPaaS 教育解决方案 | PaaS 教育解决方案 |
+| <span style="white-space:nowrap;">&emsp;&emsp;&emsp;&emsp;</span> | aPaaS solution | PaaS solution |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| 方案介绍 | 使用 Agora 灵动课堂来实现在线互动教学场景。 | 分别集成 Agora RTC SDK、Agora RTM SDK、Agora 互动白板 SDK 和 Agora 云端录制服务来搭建在线互动教学场景。 |
-| 适用客户 | 适用于开发资源有限、排期紧、需要快速上线在线互动教学场景、有定制化需求的客户。 | 适用于开发资源充足、对定制化需求较高的客户。 |
-| 开发成本 | 低 | 高 |
-| 上线时间 | 最短 15 分钟 | 1 个月至 3 个月 |
-| 实现功能 | 提供课堂内的实时互动体验，支持实时音视频、实时消息、互动白板、实时录制、屏幕共享等核心功能。 提供灵动课堂云服务用于课堂和用户管理。 支持业务功能的灵活扩展，能够与教学机构的用户系统和排课系统无缝对接。 | 客户自行实现实时音视频、实时消息、互动白板等功能。 |
-| 可拓展性 | 较强 | 强 |
-| 业务数据安全 | Agora 不保存客户的业务数据。 | Agora 不保存客户的业务数据。 |
-| 前端 UI | Agora 提供默认的课堂 UI 且支持定制化修改。 | 客户自行实现所有 UI。 |
-| 平台 | <li>Android<li>iOS<li>macOS<li>Windows<li>Web | 支持超过 20 个平台和框架。 |
-| 支持场景 | 1 对 1 互动教学在线互动小班课互动直播大班课 | 客户自行定义和实现任意在线互动教学场景。 |
+| Solution introduction | Use Flexible Classroom to implement online interactive classrooms. | Integrate the Agora RTC SDK, RTM SDK, Interactive Whiteboard SDK, and Cloud Recording service respectively to implement online interactive classrooms. |
+| Target customers | Suitable for customers with limited development resources, tight schedules, and medium demand for customization. | Suitable for customers with sufficient development resources and high demand for customization. |
+| Cost | Low | High |
+| Development time | As short as 15 minutes | One to three months |
+| Features | Supports features including real-time audio and video communication, real-time messaging, interactive whiteboard, recording, screen sharing and so on. Provides the cloud service for classroom and user management. Flexible Classroom can be seamlessly connected with developers' other systems, such as their user management system and class management systems. | Developers implement real-time audio and video, real-time messaging, interactive whiteboard, and other functions all by themselves. |
+| Scalability | Medium | High |
+| Data security | Agora does not store any business data of customers. | Agora does not store any business data of customers. |
+| User interface | Agora provides default classroom user interfaces. Developers also have the freedom to customize user interfaces. | Developers implement user interfaces all by themselves. |
+| Platform | <li>Android<li>iOS<li>macOS<li>Windows<li>Web | Supports more than 20 platforms and frameworks. |
+| Supported scenarios | One-to-one Classroom Small Classroom     Lecture Hall | Developers define and implement any online interactive teaching scenarios by themselves. |
 
 ## Scenarios
 
 Flexible Classroom supports the following teaching scenarios:
 
-- 1 对 1 互动教学：1 位老师对 1 名学生进行专属在线辅导教学。
-- 在线互动小班课：1 位老师进行在线教学，多名学生实时观看和收听。 The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher.
-- 互动直播大班课：1 位老师进行在线教学，多名学生实时观看和收听。 There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher.
+- One-to-one Classroom: An online teacher gives an exclusive lesson to only one student.
+- Small Classroom: A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher.
+- Lecture Hall: A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher.
 
 ## Classroom demonstation
 
-灵动课堂主要包含导航栏、白板、音视频、实时消息四大区域。
+A flexible classroom mainly includes four areas: navigation bar, whiteboard area, video area, and chat area.
 
 ### Desktop
 
@@ -68,40 +68,40 @@ The teacher can draw and make notes on the whiteboard. Flexible Classroom suppor
 
 Flexible Classroom supports the following teaching tools to enhance interactivity:
 
-- Cloud storage: Teaching institutions and teachers can upload teaching files in various formats such as PDF, PPT, DOC, etc., to help students master the content of the class. Flexible Classroom also supports pre-loading of courseware, which enables the courseware to be loaded locally and displayed in the classroom when the classroom starts, enhancing the teaching experience.
+- Cloud storage: Teaching institutions and teachers can upload files to classrooms to help students better understand the class. Supported formats include PDF, PPT, and DOC. Flexible Classroom also supports pre-downloading courseware to the local before the classroom starts and displaying it on the whiteboard, which enhances the teaching experience.
 - Rewards: Teachers can reward students with virtual credits, such as stars and trophies, for good performance during the class.
-- 用户列表：展示课堂中所有用户的上下台状态、摄像头状态、麦克风状态、奖励个数等信息，老师和助教可通过用户列表进行邀请学生上下台、白板授权、开关音视频、授予奖励、踢人等操作。
+- User list: Display the status of all users in the classroom, such as whether the user is "on stage", whether the camera and microphone are on or off, the number of rewards. With the user list, the teacher and teaching assistant can ask students to speak up "on stage, grand the permission of drawing on the whiteboard to students, switch on and off the camera and microphone of students, give rewards, and kick a user out of the classroom.
 
 ### Screen sharing
 
-Teachers can share their screens, windows or browser tabs with students in class.
+Teachers can share their screens, windows, or browser tabs with students in class.
 
 ### Recording and replay
 
-Teachers can start recording in the classroom.  Flexible Classroom will[](https://docs.agora.io/cn/cloud-recording/cloud_recording_webpage_mode?platform=RESTful) mix and record the page content and audio of the specified URL into an MP4 audio and video file through page recording, so as to achieve simultaneous recording of audio and video content, whiteboard content, and courseware content. After the recording is over, a playback link can be provided for students to review after class.
+Teachers can start recording in the classroom. Flexible Classroom uses [Web Page Recording](https://docs.agora.io/cn/cloud-recording/cloud_recording_webpage_mode?platform=RESTful) to record the audio, video, and whiteboard content in a single file and provides a link to students after the recording finishes.
 
-### Custom class UI
+### Custom the classroom user interface
 
-灵动课堂提供 UIKit。 开发者无需深入学习灵动课堂的核心业务逻辑，只需通过 UI Kit 修改 UI 组件，即可自定义修改灵动课堂的 UI， 如修改颜色、更换按钮、调整布局、添加 logo 等，使在线互动课堂更为个性化。
+With UIKit, developers have the freedom to customize the user interfaces, such as changing colors, changing buttons, adjusting layouts, adding logos, even if they do not understand the business logic of the flexible classroom.
 
-### Extension App
+### Extension app
 
-灵动课堂提供扩展应用模块 ExtApp，能够帮助开发者根据实际需求在灵动课堂内嵌入自己实现的应用，例如倒计时、骰子等。
+With ExtApp, developers can embed their own applications, such as a countdown plug-in, or a dice, into Flexible Classroom.
 
 ### Flexible Classroom cloud service
 
-Agora provides  Flexible Classroom cloud services to support the management of classrooms and users, including the following functions:
+Agora provides the Flexible Classroom cloud service for classroom and user management:
 
 - Classroom status management.
 - Recording status management.
 - Public resource management.
 - Classroom events.
-- User role and authority management.
+- User role and permission management.
 
-### Transparent teaching quality
+### Traceability
 
-- 灵动课堂支持课前麦克风、摄像头、扬声器等音视频设备检测以及课中网络状况监测，确保高质量的互动教学体验。
-- Provide full-cycle call quality monitoring and analysis tool [crystal ball](https://docs.agora.io/cn/Agora%20Analytics/aa_guide?platform=All%20Platforms).
+- Supports testing the audio and video input and output devices before the class and monitoring the network quality during the class to ensure smooth classroom experience.
+- Provides [Agora Analytics](https://docs.agora.io/cn/Agora%20Analytics/aa_guide?platform=All%20Platforms) for monitor the quality, user behavior, device state, and Quality of Experience (QoE)/Quality of Service (QoS) statistics.
 
 ## Supported platforms
 
