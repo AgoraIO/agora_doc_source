@@ -89,11 +89,11 @@ Get the whiteboard container View.
 @objc optional func onSetDrawingEnabled(_ enabled: Bool)
 ```
 
-Report whether the whiteboard tool is available.
+Report whether the whiteboard editing tools are enabled.
 
 | Parameter | Description |
 | :-------- | :----------------- |
-| `enabled` | Whether the whiteboard tool is available. |
+| `enabled` | Whether the whiteboard editing tools are enabled. |
 
 ### onSetLoadingVisible
 
@@ -118,7 +118,7 @@ Report the progress of the current courseware download.
 
 | Parameter | Description |
 | :--------- | :---------------------------------- |
-| `url` | Courseware download URL address. |
+| `url` | The download link of the file. |
 | `progress` | Courseware download progress, the value range is 0-100. |
 
 ### onSetDownloadTimeOut
@@ -127,11 +127,11 @@ Report the progress of the current courseware download.
 @objc optional func onSetDownloadTimeOut(_ url: String)
 ```
 
-Report that the courseware download timed out. When a courseware download takes more than 15 seconds, the callback will be triggered.
+Occurs when the courseware download task times out. When a courseware download task takes more than 15 seconds, the SDK triggers this callback.
 
 | Parameter | Description |
 | :---- | :------------------ |
-| `url` | Courseware download URL address. |
+| `url` | The download link of the file. |
 
 
 ### onSetDownloadComplete
@@ -140,11 +140,11 @@ Report that the courseware download timed out. When a courseware download takes 
 @objc optional func onSetDownloadComplete(_ url: String)
 ```
 
-The download of the report courseware is complete.
+Occurs when the courseware download task completes.
 
 | Parameter | Description |
 | :---- | :------------------ |
-| `url` | Courseware download URL address. |
+| `url` | The download link of the file. |
 
 
 ### onDownloadError
@@ -153,11 +153,11 @@ The download of the report courseware is complete.
 @objc optional func onDownloadError(_ url: String)
 ```
 
-Report that the download of the courseware failed.
+Occurs when the courseware download task fails.
 
 | Parameter | Description |
 | :---- | :------------------ |
-| `url` | Courseware download URL address. |
+| `url` | The download link of the file. |
 
 ### onCancelCurDownload
 
@@ -165,11 +165,11 @@ Report that the download of the courseware failed.
 @objc optional func onCancelCurDownload ()
 ```
 
-Report that the current courseware download task is cancelled.
+Occurs when the current courseware download task is canceled.
 
 | Parameter | Description |
 | :---- | :------------------ |
-| `url` | Courseware download URL address. |
+| `url` | The download link of the file. |
 
 ### onShowPermissionTips
 
@@ -177,11 +177,11 @@ Report that the current courseware download task is cancelled.
 @objc optional func onShowPermissionTips(_ granted: Bool)
 ```
 
-Report whiteboard permissions have changed.
+Occurs when the whiteboard permission changes.
 
 | Parameter | Description |
 | :-------- | :----------------- |
-| `granted` | Whether you have whiteboard permissions. |
+| `granted` | Whether the local client has the permission of drawing on the whiteboard. |
 
 ## AgoraEduWhiteBoardToolContext
 
@@ -290,8 +290,8 @@ Report the current page number and total page number of the whiteboard.
 
 | Parameter | Description |
 | :---------- | :--------- |
-| `pageIndex` | current page number. |
-| `pageCount` | total pages. |
+| `pageIndex` | The current page number. |
+| `pageCount` | The total number of pages. |
 
 
 ### onSetPagingEnable
@@ -300,11 +300,11 @@ Report the current page number and total page number of the whiteboard.
 @objc optional func onSetPagingEnable(_ enable: Bool)
 ```
 
-Whether the report can be paged.
+Report whether the paging function is enabled.
 
 | Parameter | Description |
 | :------- | :----------- |
-| `enable` | Whether the page can be turned. |
+| `enable` | Whether the paging function is enabled. |
 
 
 ### onSetZoomEnable
@@ -314,12 +314,12 @@ Whether the report can be paged.
                                       zoomInEnable: Bool)
 ```
 
-Whether the report can be zoomed in or out.
+Report whether the zooming function is enabled.
 
 | Parameter | Description |
 | :-------------- | :----------- |
-| `zoomOutEnable` | Whether it can be reduced. |
-| `zoomInEnable` | Whether it can be zoomed in. |
+| `zoomOutEnable` | Whether the zooming out function is enabled. |
+| `zoomInEnable` | Whether the zooming in function is enabled. |
 
 ### onSetResizeFullScreenEnable
 
@@ -327,11 +327,11 @@ Whether the report can be zoomed in or out.
 @objc optional func onSetResizeFullScreenEnable(_ enable: Bool)
 ```
 
-Whether the report can be a full-screen whiteboard.
+Report whether the can be a full-screen whiteboard.
 
 | Parameter | Description |
 | :------- | :--------------- |
-| `enable` | Whether  whiteboard can be full screen. |
+| `enable` | Whether whiteboard can be full screen. |
 
 ### onSetFullScreen
 
