@@ -1,6 +1,6 @@
 ## Introduction
 
-Agora provides cloud transcoding services for multi-hosted interactive streaming scenarios, and supports transcoding and stream mixing on the Agora server to push the streams of multiple hosts to the Agora RTC channel. Audience in the RTC channel only need to subscribe to the transcoded and mixed streams to watch the live broadcast.
+Agora provides cloud transcoding services for one or multi-hosted interactive streaming scenarios, and supports transcoding and stream mixing on the Agora server to push the streams of multiple hosts to the Agora RTC channel. Audience in the RTC channel only need to subscribe to the transcoded and mixed streams to watch the live broadcast.
 
 After using the cloud transcoding service, audiences do not need to subscribe to the streams of multiple hosts, which can greatly save pressure of downstream bandwidth and consumption of client device performance.
 
@@ -70,9 +70,9 @@ Response body example:
 
 ```json
 {
-    "createTs": 1575508644,
-    {"instanceId": "myInstance11620701216"}
-    "tokenName": "IqCWKgW2CD0KqnZm0lcCzZvPp_zOKb1og0k8tVYqrYB8c"
+"createTs": 1620701216577,
+"instanceId": "myInstance11620701216",
+"tokenName": "IqCWKgW2CD0KqnZm0lcCzZvPp_zOKb1og0k8tVYqrYB8c"
 }
 ```
 
@@ -155,7 +155,7 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `outputs.videoOption.fps` | (Optional)Number  | The frame rate (fps) of the transcoded output video. The value range is [1,30]. The default value is 15. |
    | `outputs.videoOption.codec` | (Required)String  | The codec of the transcoded output video. The supported value is `"H265"`. |
    | `outputs.videoOption.bitrate` | (Optional)Number  | The bitrate of the transcoded output video. The value range is [1,10000]. If you do not pass the value, Agora will automatically set the video bitrate according to the network situation and other video attributes. |
-   | `outputs.videoOption.width` | (Required)Number  | The width (px) of the video image captured by the local camera. The value range is ]120,3840[. |
+   | `outputs.videoOption.width` | (Required)Number  | The width(px) of the transcoded output video. The value range is ]120,3840[. |
    | `outputs.videoOption.height` | (Required)Number  | The height (px) of the transcoded output video. The value range is ]120,3840[. |
 
 
