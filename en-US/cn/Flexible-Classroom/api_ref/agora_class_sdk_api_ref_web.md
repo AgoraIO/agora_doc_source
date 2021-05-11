@@ -1,4 +1,4 @@
-This page provides the TypeScript API reference of Agora Classroom SDK for Web/Electron.
+This page provides the TypeScript API reference of the Agora Classroom SDK for Web/Electron.
 
 ## AgoraEduSDK
 
@@ -16,8 +16,8 @@ Configure the SDK.
 
 ```typescript
 AgoraEduSDK.config({
-   // Agora App ID
-   appId: '<YOUR AGORA APPID>',
+  // Agora App ID
+  appId: '<YOUR AGORA APPID>',
 })
 ```
 
