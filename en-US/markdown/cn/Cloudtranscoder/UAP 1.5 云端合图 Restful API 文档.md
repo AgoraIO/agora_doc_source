@@ -35,7 +35,7 @@ POST https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/builder
 
 #### Request body
 
-The following parameters need to be passed in the request body:
+The URL requires the following query string parameters:
 
 | Field | Type | Description |
 |---|----|---|
@@ -69,10 +69,10 @@ The Body contains the following fields:
 Response body example:
 
 ```json
-{
-"createTs": 1620701216577,
-"instanceId": "myInstance11620701216",
-"tokenName": "IqCWKgW2CD0KqnZm0lcCzZvPp_zOKb1og0k8tVYqrYB8c"
+                                {
+    "createTs": 1575508644,
+    {"instanceId": "myInstance11620701216"}
+    "tokenName": "IqCWKgW2CD0KqnZm0lcCzZvPp_zOKb1og0k8tVYqrYB8c"
 }
 ```
 
@@ -177,7 +177,7 @@ Request body
                                 "width": 1280
                         },
                             "inputSources": [
-                                {
+                        {
                                     "in": {
                                         "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
                                         "rtcUid": 1000001
@@ -190,7 +190,7 @@ Request body
                                     },
                                     "zOrder": 1
                                     },
-                        {
+{
                                     "in": {
                                         "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
                                         "rtcUid": 1000002
@@ -844,7 +844,7 @@ Response body example:
                                     }
                         },
                     "outputs": [
-{
+                                {
                             "audioOption":
                                 "profileType": "AUDIO_PROFILE_MUSIC_STANDARD"
                         },
