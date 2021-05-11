@@ -51,13 +51,13 @@ The following example demonstrates how to change the position of the` leave room
 #### Before
 
 ```
-func initLayout () {
+func initLayout() {
         signalImgView.agora_safe_x = 10
         signalImgView.agora_width = 20
         signalImgView.agora_height = 20
         signalImgView.agora_center_y = 0
          
-        leaveButton.agora_safe_right = 10
+                leaveButton.agora_safe_right = 10
         leaveButton.agora_width = 24
         leaveButton.agora_height = 24
         leaveButton.agora_center_y = 0
@@ -70,13 +70,13 @@ func initLayout () {
 #### After
 
 ```
-func initLayout () {
+func initLayout() {
         signalImgView.agora_safe_right = 10
         signalImgView.agora_width = 20
         signalImgView.agora_height = 20
         signalImgView.agora_center_y = 0
          
-        leaveButton.agora_safe_x = 10
+                leaveButton.agora_safe_x = 10
         leaveButton.agora_width = 24
         leaveButton.agora_height = 24
         leaveButton.agora_center_y = 0
