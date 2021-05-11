@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_addpublishstreamurl">
     <title><ph keyref="addPublishStreamUrl"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Publishes the local stream to a specified CDN live address. (CDN live only.)</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Publishes the local stream to a specified CDN live streaming URL.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -22,7 +22,7 @@
   <li>Call this method after joining a channel.</li>
   <li>Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in the advanced guide Push Streams to CDN.</li>
   <li>This method takes effect only when you are a host in live interactive streaming.</li>
-  <li>This method adds only one stream CDN streaming URL each time it is called. To remove multiple URLs, call this method multiple times.</li>
+  <li>This method adds only one stream CDN streaming URL each time it is called. To push multiple URLs, call this method multiple times.</li>
   <li>Agora supports pushing media streams in RTMPS protocol to the CDN only when you enable transcoding.</li>
        </ul>
    </note>
@@ -31,14 +31,14 @@
    <parml>
        <plentry id="url">
   <pt>url</pt>
-  <pd>@param url The CDN streaming URL in the RTMP or RTMPS format. The maximum length of this parameter is 1024 bytes. The CDN streaming URL must not contain special characters, such as Chinese language characters.</pd>
+  <pd>The CDN streaming URL in the RTMP or RTMPS format. The maximum length of this parameter is 1024 bytes. The URL address must not contain special characters, such as Chinese language characters.</pd>
        </plentry>
        <plentry>
   <pt>transcodingEnabled</pt>
   <pd>
-      <p id="transcoding-desc">enableTranscoding <xref keyref="term-transocding"/>Transcoding sets the audio and video profiles and the picture-in-picture layout for the stream to be pushed to the CDN. It is often used to combine the audio and video streams of multiple hosts in a CDN live stream. 多适用于频道内有多个主播，需要进行混流、合图的场景。<ul>
-                                <li><ph keyref="true"/>: 转码。</li>
-                                <li><ph keyref="false"/>false: Disable transcoding.</li>
+      <p id="transcoding-desc">Whether to enable transcoding. <xref keyref="term-transocding"/> in a CDN live streaming converts the audio and video streams before pushing them to the CDN server. It applies to scenarios where a channel has multiple broadcasters and composite layout is needed<ul>
+                                <li><ph keyref="true"/>: Enable transcoding.</li>
+                                <li><ph keyref="false"/>: Disable transcoding.</li>
                             </ul></p>
       <note type="attention">If you set this parameter as <ph keyref="true"/>, ensure that you call the <xref keyref="setLiveTranscoding"/> method before this method.</note>
   </pd>
@@ -50,8 +50,8 @@
    <ul>
        <li>0: Success.</li>
        <li>&lt; 0: Failure.<ul>
-                        <li>#<codeph>ERR_INVALID_ARGUMENT</codeph> (-2): The CDN streaming URL is NULL or has a string length of 0.</li>
-                        <li>#ERR_NOT_INITIALIZED (-7): You have <codeph>not initialized</codeph> the RTC engine when publishing the stream.</li>
+                        <li><codeph>ERR_INVALID_ARGUMENT</codeph>(-2): Invalid argument, usually because the URL address is null or the string length is 0.</li>
+                        <li><codeph>ERR_NOT_INITIALIZED</codeph>(-7): You have not initialized the RTC engine when publishing the stream.</li>
                     </ul>
                 </li>
    </ul>
