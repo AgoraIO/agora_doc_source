@@ -110,7 +110,7 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `<service>` |  (Required)JSON Object | The service name, set by the developer. It is necessary to ensure that the service name used in a cloud transcoder is unique. |
    | `<service>.serviceType` | (Required)String  | Service type. Cloud transcoding:`cloudTranscoder`. |
    | `<service>.config` |  (Required)JSON Object | Parameter settings of cloud transcoder,   which used to set the business parameters of the cloud transcoder. |
-   | `<service>.config.transcoder` | (Required)String  | Object of cloud transcoder. |
+   | `<service>.config.transcoder` | (Required)String  | Cloud transcoder object. |
 
 - `<service>.config.transcoder` contains the following fields:
 
@@ -252,7 +252,7 @@ Recoveries
 | `services.<service>` | JSON Object | service name. |
 | `services.<service>.serviceType` | String | Service type. Cloud transcoding:`cloudTranscoder`. |
 | `services.<service>.config` | JSON Object | Service parameters. |
-| `services.<service>.config.transcoder` | (Required)String  | Object of cloud transcoder. For the included fields and meanings, please refer to the request Body field and meaning. |
+| `services.<service>.config.transcoder` | (Required)String  | Cloud transcoder object. For the included fields and meanings, please refer to the request Body field and meaning. |
 | `services.<service>.status` | String | Service status<li>`"IDLE"`: Service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: Service has started</li><li>`"IN_PROGRESS"`: Service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the tasks are all completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: Service parameter verification failed</li><li>`"ABNORMAL"`: Service exited abnormally</li><li>`"unknown": Unknown` status.</li> |
 | `services.<service>.message` | String | The execution information of the service, which describes the specific reason for the abnormality of the service. |
 | `services.<service>.details` | JSON Object | The execution details of the service. |
@@ -387,7 +387,7 @@ Recoveries
 | `services.<service>` | JSON Object | service name. |
 | `services.<service>.serviceType` | String | Service type. Cloud transcoding:`cloudTranscoder`. |
 | `services.<service>.config` | JSON Object | Service parameters. |
-| `services.<service>.config.transcoder` | (Required)String  | Object of cloud transcoder. For the included fields and meanings, please refer to the request Body field and meaning. |
+| `services.<service>.config.transcoder` | (Required)String  | Cloud transcoder object. For the included fields and meanings, please refer to the request Body field and meaning. |
 | `services.<service>.status` | String | Service status<li>`"IDLE"`: Service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: Service has started</li><li>`"IN_PROGRESS"`: Service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the tasks are all completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: Service parameter verification failed</li><li>`"ABNORMAL"`: Service exited abnormally</li><li>`"unknown": Unknown` status.</li> |
 | `services.<service>.message` | String | The execution information of the service, which describes the specific reason for the abnormality of the service. |
 | `services.<service>.details` | JSON Object | The execution details of the service. |
@@ -587,7 +587,7 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | region: JSON Object `type field`. | Service name, set when creating cloud transcoder. |
    | `<service>.serviceType` | (Required)String  | Service type. Cloud transcoding:`cloudTranscoder`. |
    | `<service>.config` |  (Required)JSON Object | Cloud convergence parameters.  which used to set the business parameters of the cloud transcoder. |
-   | `<service>.config.transcoder` | (Required)String  | Object of cloud transcoder. |
+   | `<service>.config.transcoder` | (Required)String  | Cloud transcoder object. |
 
 - `services.config.transcoder` contains the following fields:
 
@@ -705,7 +705,7 @@ Recoveries
 | `services.<service>` | JSON Object | service name. |
 | `services.<service>.serviceType` | String | Service type. Cloud transcoding:`cloudTranscoder`. |
 | `services.<service>.config` | JSON Object | Service parameters. |
-| `services.<service>.config.transcoder` | (Required)String  | Object of cloud transcoder. For the included fields and meanings, please refer to the request Body field and meaning. |
+| `services.<service>.config.transcoder` | (Required)String  | Cloud transcoder object. For the included fields and meanings, please refer to the request Body field and meaning. |
 | `services.<service>.status` | String | Service status<li>`"IDLE"`: Service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: Service has started</li><li>`"IN_PROGRESS"`: Service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the tasks are all completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: Service parameter verification failed</li><li>`"ABNORMAL"`: Service exited abnormally</li><li>`"unknown": Unknown` status.</li> |
 | `services.<service>.message` | String | The execution information of the service, which describes the specific reason for the abnormality of the service. |
 | `services.<service>.details` | JSON Object | The execution details of the service. |
