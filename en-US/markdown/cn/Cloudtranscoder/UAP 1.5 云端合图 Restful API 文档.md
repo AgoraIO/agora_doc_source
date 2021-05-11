@@ -116,7 +116,7 @@ The request Body is a `services` field of JSON Object type. The field structure 
 
    | Field | Type | Description |
    |---|----|---|
-   | `idleTimeOut` | (Optional)Number  | The maximum time (second) that the Converter is idle. Idle means that all users corresponding to the media stream processed by the Converter have left the channel. After the idle state exceeds the set `idleTimeOut`, the Converter will be destroyed automatically. Integer only. The value range is [[0,10000]], and the default value is `360`. |
+   | `idleTimeOut` | (Optional)Number  | The maximum time (second) that the Converter is idle. Idle means that all users corresponding to the streams processed by the cloud transcoder have left the channel. After the idle state exceeds the set `idleTimeOut`, the cloud transcoder will be destroyed automatically. The value range is [1,86400], and the default value is `300`. |
    | `inputRtcTokens` | (Optional)JSON Array  | Leaves the RTC channel. The cloud transcoder needs this information to input the transcoded stream into the RTC channel.<li>Your Agora project has enabled the App Certificate on Console.</li><li>Your Agora project has enabled the App Certificate on Console.</li> |
    | `inputRtcTokens.rtcChannel` | (Required)String  | Leaves the RTC channel. |
    | `inputRtcTokens.rtcToken` | (Required)String  | The token required to enter the RTC channel is used to ensure channel security. |
