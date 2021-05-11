@@ -146,9 +146,9 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `inputs.videoInputs.inputSources.zOrder` | (Required)Number  | The layer number of the video input screen of the cloud transcoder. The value range is [0,100]. 0 represents the lowest layer. 100 represents the top layer. |
    | `outputs` | (Required)JSON Array  | The output configuration of the cloud transcoder. Supports output of multiple streams processed by different transcoding configurations. |
    | `outputs.out` |  (Required)JSON Object | The output configuration of the cloud transcoder. |
-   | `outputs.out.rtcChannel` | (Required)String  | RTC channel name. The value is` the same as inputRtcTokens.rtcChannel`. |
+   | `outputs.out.rtcChannel` | (Required)String  | RTC channel name. The value isthe same as `inputRtcTokens.rtcChannel`. |
    | `outputs.out.rtcToken` | (Required)String  | The token required to enter the RTC channel is used to ensure channel security. The value is the same as `inputRtcTokens.rtcToken`. |
-   | `outputs.out.rtcUid` | (Required)Number  | UID。 The value is` the same as inputRtcTokens.rtcUid`. |
+   | `outputs.out.rtcUid` | (Required)Number  | UID。 The value is the same as `inputRtcTokens.rtcUid`. |
    | `outputs.audioOption` | (Optional)JSON Object | Cloud transcoder transcoding and mixing configuration for audio streams. AUDIO_PROFILE_MUSIC_STANDARD`(2): A sample rate of` 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps. |
    | `outputs.audioOption.profileType` |  (Optional)String | Audio profiles. Support value:<li>`AUDIO_PROFILE_MUSIC_STANDARD(2`): A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps.</li><li>`AUDIO_PROFILE_MUSIC_STANDARD_STEREO(3)`: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 56 Kbps.</li><li>`AUDIO_PROFILE_MUSIC_HIGH_QUALITY(4)`: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 128 Kbps.</li><li>`AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO(5)`: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 192 Kbps.</li> |
    | `outputs.videoOption` |  (Required)JSON Object | Cloud transcoder is the configuration of transcoding and combining the video stream. |
