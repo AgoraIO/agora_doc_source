@@ -26,14 +26,14 @@
       <li>Call this method after joining a channel.</li>
   </ul>
        </note>
-   <p>This method imports the currently playing audio and video as audio and video sources into the ongoing live broadcast. This is applicable to scenarios where all of the audience members in the channel can watch a live show and interact with each other. After calling this method, the SDK will trigger a callback locally<xref keyref="onStreamInjectedStatus"/> to report the status of the input online media stream; after successfully inputting the media stream, the audio and video stream will appear in the channel, and all users in the channel will receive the<xref keyref="onUserJoined"/> callback, where the <parmname>uid</parmname> is 666. The audio and video stream will appear in the channel.</p>
+   <p>This method injects the currently playing audio and video as audio and video sources into the ongoing live broadcast. This applies to scenarios where all users in the channel can watch a live show and interact with each other. After calling this method, the SDK triggers the <xref keyref="onStreamInjectedStatus"/> callback on the local client to report the state of injecting the online media stream; after successfully injecting the media stream, the stream joins the channel, and all users in the channel receive the <xref keyref="onUserJoined"/> callback, where <parmname>uid</parmname> is 666. The audio and video stream will appear in the channel.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>url</pt>
   <pd>
-      <p>@param url Pointer to the URL address to be added to the ongoing streaming. Valid protocols are RTMP, HLS, and HTTP-FLV.<ul>
+      <p>The URL address to be added to the ongoing streaming. Valid protocols are RTMP, HLS, and HTTP-FLV.<ul>
      <li>Supported audio codec type: AAC.</li>
      <li>Supported video codec type: H264 (AVC).</li>
  </ul>
@@ -42,7 +42,7 @@
        </plentry>
        <plentry>
   <pt>config</pt>
-  <pd>For the definition of the added video stream attributes, see:<xref keyref="InjectStreamConfig"/>.</pd>
+  <pd>The configuration information for the added voice or video stream: <xref keyref="InjectStreamConfig"/>.</pd>
        </plentry>
    </parml>
         </section>
@@ -51,12 +51,12 @@
    <ul>
        <li>0: Success.</li>
        <li>&lt; 0: Failure.<ul>
-      <li>#<codeph>ERR_INVALID_ARGUMENT</codeph> (-2): The injected URL does not exist. Call this method again to inject the stream and ensure that the URL is valid.</li>
-      <li>#<codeph>ERR_NOT_READY</codeph> (-3): The user is not in the channel.</li>
-      <li>#<codeph>ERR_NOT_SUPPORTED</codeph> (-4): The channel profile is not `<codeph>LIVE_BROADCASTING</codeph>`. Please call<xref
-     keyref="setChannelProfile"/> and set the channel as a live broadcast scene before calling this method.</li>
-      <li>#<codeph>ERR_NOT_INITIALIZED</codeph> (-7): The SDK is not<codeph> initialized</codeph>. Initialize the instance before calling<xref
-     keyref="IRtcEngine"/> this method.</li>
+      <li><codeph>ERR_INVALID_ARGUMENT</codeph> (-2): The injected URL does not exist. Call this method again to inject the stream and ensure that the URL is valid.</li>
+      <li><codeph>ERR_NOT_READY</codeph> (-3): The user is not in the channel.</li>
+      <li>#<codeph>ERR_NOT_SUPPORTED</codeph> (-4): The channel profile is not <codeph>LIVE_BROADCASTING</codeph>. Call <xref
+     keyref="setChannelProfile"/> and set the channel profile live broadcasting before calling this method.</li>
+      <li><codeph>ERR_NOT_INITIALIZED</codeph> (-7): The SDK is not initialized. Ensure that the <xref
+     keyref="IRtcEngine"/> object is Initialized before using this method.</li>
   </ul>
        </li>
    </ul>
