@@ -40,8 +40,8 @@ Call the `AgoraEduSDK.config` method to configure the SDK globally. Set the foll
 
 ```js
 AgoraEduSDK.config({
-   // Agora App ID
-   appId: '<YOUR AGORA APPID>',
+  // Agora App ID
+  appId: '<YOUR AGORA APPID>',
 })
 ```
 
