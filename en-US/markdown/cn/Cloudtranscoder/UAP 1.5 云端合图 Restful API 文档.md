@@ -136,8 +136,8 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `inputs.videoInputs.inputSources.in.rtcChannel` | (Required)String  | The name of the RTC channel to which the input source belongs. |
    | `inputs.videoInputs.inputSources.in.rtcUid` | (Required)Number  | The UID corresponding to the input source. The value is the same as `inputs.audioInputs.inputSources.in.rtcUid`. |
    | `inputs.videoInputs.inputSources.in.OfflineImage` | (Optional)JSON Object | The background image of the host after offline. If you don't pass the value, the screen after the host is offline will have no background image. |
-   | `inputs.videoInputs.inputSources.in.OfflineImage.imageType` | (Required)String  | Picture type. Support JPG and PNG format pictures. |
-   | `inputs.videoInputs.inputSources.in.OfflineImage.imageUrl` | (Required)String  | Picture URL. Must be legal and URL, and include `jpg` or `png` suffix. |
+   | `inputs.videoInputs.inputSources.in.OfflineImage.imageType` | (Required)String  | Image type. Support JPG and PNG format pictures. |
+   | `inputs.videoInputs.inputSources.in.OfflineImage.imageUrl` | (Required)String  | Image URL. Must be legal and URL, and include `jpg` or `png` suffix. |
    | `inputs.videoInputs.inputSources.region` |  (Required)JSON Object | The position on the canvas of the video input source picture of the cloud transcoder. |
    | `inputs.videoInputs.inputSources.region.x` | (Required)Number  | The x coordinate (pixel) of the screen on the canvas. The lateral displacement relative to the origin. (Take the upper left corner of the canvas as the origin, and the x coordinate as the upper left corner of the screen.) The value range is [1,30]. |
    | `inputs.videoInputs.inputSources.region.y` | (Required)Number  | The y coordinate (pixel) of the screen on the canvas. The longitudinal displacement to the origin.（Take the upper left corner of the canvas as the origin and the y coordinate as the upper left corner of the screen.） The value range is [0,100]. |
@@ -680,8 +680,8 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `inputs.videoInputs.inputSources.in.rtcChannel` | (Required)String  | The name of the RTC channel to which the input source belongs. |
    | `inputs.videoInputs.inputSources.in.rtcUid` | (Required)Number  | The UID corresponding to the input source. The value is the same as `inputs.audioInputs.inputSources.in.rtcUid`. |
    | `inputs.videoInputs.inputSources.in.OfflineImage` | (Optional)JSON Object | The background image of the host after offline. If you don't pass the value, the screen after the host is offline will have no background image. |
-   | `inputs.videoInputs.inputSources.in.OfflineImage.imageType` | (Required)String  | Picture type. Support JPG and PNG format pictures. |
-   | `inputs.videoInputs.inputSources.in.OfflineImage.imageUrl` | (Required)String  | Picture URL. Must be legal and URL, and include `jpg` or `png` suffix. |
+   | `inputs.videoInputs.inputSources.in.OfflineImage.imageType` | (Required)String  | Image type. Support JPG and PNG format pictures. |
+   | `inputs.videoInputs.inputSources.in.OfflineImage.imageUrl` | (Required)String  | Image URL. Must be legal and URL, and include `jpg` or `png` suffix. |
    | `inputs.videoInputs.inputSources.region` |  (Required)JSON Object | The position on the canvas of the video input source picture of the cloud transcoder. |
    | `inputs.videoInputs.inputSources.region.x` | (Required)Number  | The x coordinate (pixel) of the screen on the canvas. The lateral displacement relative to the origin. (Take the upper left corner of the canvas as the origin, and the x coordinate as the upper left corner of the screen.) The value range is [1,30]. |
    | `inputs.videoInputs.inputSources.region.y` | (Required)Number  | The y coordinate (pixel) of the screen on the canvas. The longitudinal displacement to the origin.（Take the upper left corner of the canvas as the origin and the y coordinate as the upper left corner of the screen.） The value range is [0,100]. |
