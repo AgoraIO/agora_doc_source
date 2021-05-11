@@ -41,6 +41,12 @@ The URL requires the following query string parameters:
 |---|----|---|
 | `instanceId` | (Required)String  | The instance ID setted by the developer. The length must be within 64 characters. The supported character set range is:<li>All lowercase English letters (a-z)</li><li>All uppercase English letters (A-Z)</li><li>Numbers 0-9</li><li>"-", "_"</li><div class="alert note"><li>One `instanceId` can generate multiple builderTokens, but only one builderToken can be used to send a request in a task.</li></div> |
 
+Request body
+
+```json
+{"instanceId": "myInstance11620701216"}
+```
+
 ### HTTP response
 
 #### Request header
@@ -50,7 +56,7 @@ The URL requires the following query string parameters:
 
 #### Response body
 
-The response body contains the following fields:
+The Body contains the following fields:
 
 | Field | Type | Description |
 |---|----|---|
@@ -59,6 +65,16 @@ The response body contains the following fields:
 | `instanceId` | Number | The `instanceId` set at the time of the request. |
 
 <div class="alert note">After calling this method successfully, you can get a builderToken from the <code>tokenName</code> field in the HTTP response body. Please use this builderToken to send a request within 5 minutes. After the time has expired, you need to regenerate the builderToken, otherwise other methods cannot be called.
+
+Response body example:
+
+```json
+{
+    "createTs": 1575508644,
+    "instanceId": "myInstance11620701216",
+    "tokenName": "IqCWKgW2CD0KqnZm0lcCzZvPp_zOKb1og0k8tVYqrYB8c"
+}
+```
 
 ## Create: Create a cloud transcoder
 
@@ -82,88 +98,6 @@ POST https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks?b
 - `Authorization`: The value of this field needs to refer to the [authentication instructions.](https://docs.agora.io/cn/faq/restful_authentication)
 
 #### Request body
-```json
-{
-"services": {
-"cloudTranscoder": {
-"serviceType": "cloudTranscoder",
-"config": {
-"transcoder": {
-"idleTimeOut": 300,
-"inputs": {
-"audioInputs": {
-"inputSources": [
-{
-"in": {
-"rtcChannel": "ccft",
-"rtcUid": 123456
-}
-},
-{
-"in": {
-"rtcChannel": "mcu_test1",
-"rtcUid": 8989
-}
-}
-]
-},
-"videoInputs": {
-"canvas": {
-"height": 1080,
-"width": 1920,
-"fps": 30
-},
-"inputSources": [
-{
-"in": {
-"rtcChannel": "ccft",
-"rtcUid": 123456
-},
-"region": {
-"x": 0,
-"y": 0,
-"width": 400,
-"height": 400
-},
-"zOrder": 1
-},
-{
-"in": {
-"rtcChannel": "mcu_test1",
-"rtcUid": 8989
-},
-"region": {
-"x": 0,
-"y": 400,
-"width": 400,
-"height": 400
-},
-"zOrder": 1
-}
-]
-}
-},
-"outputs": [
-{
-"out": {
-"rtcChannel": "mcu_test1",
-"rtcUid": 9393,
-"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063"
-},
-"videoOption": {
-"fps": 30,
-"codec": "H264",
-"height": 1080,
-"width": 1920
-}
-}
-]
-}
-}
-}
-}
-}
-```
 
 The request Body is a `services` field of JSON Object type. The field structure is shown in the figure:
 
@@ -225,6 +159,77 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `outputs.videoOption.height` | Int, required | The height (px) of the video image captured by the local camera. The value range is [1,30]. |
 
 
+Request body
+
+```json
+                                {
+    "services": {
+        "cloudTranscoder": {
+            "serviceType": "cloudTranscoder",
+            config
+                "transcoder": {
+                    "name": "teacher101",
+                    "idleTimeout": 300,
+                    "inputs": {
+                        "videoInputs": {
+                            "canvas": {
+                                "height": 720,
+                                "width": 1280
+                        },
+                            "inputSources": [
+                                {
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000001
+                            },
+                                    "region": {
+                                        "x": 0,
+                                        "y": 0,
+                                        "width": 680,
+                                        "height": 400
+                                    },
+                                    "zOrder": 1
+                                    },
+                        {
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000002
+                    },
+                                    "region": {
+                                        "x": 0,
+                                        "y": 0,
+                                        "width": 640,
+                                        "height": 360
+                            },
+                                    "zOrder": 2
+                                    }
+                            ]
+                                }
+                        },
+                    "outputs": [
+{
+                            "out": {
+                                "rtcChannel": "transcoder_output_channel1620701216989",
+                                "rtcUid": 1000003,
+                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063
+                        },
+                            "videoOption": {
+                                "fps": 30,
+                                "codec": "H264",
+                                "bitrate": 3000,
+                                "height": 1280,
+                                "width": 720
+                                }
+                        }
+                            ]
+                            }
+                        }
+                }
+            }
+}
+```
+
+
 ### HTTP response
 
 #### Request header
@@ -247,9 +252,89 @@ Recoveries
 | `services.<service>` | JSON Object | service name. |
 | `services.<service>.serviceType` | String | Service type. Cloud `Confluence: `cloudTranscoder. |
 | `services.<service>.config` | JSON Object | Service parameters. |
+| `services.<service>.config.transcoder` | (Required)String  | Object of cloud transcoder. For the included fields and meanings, please refer to the request Body field and meaning. |
 | `services.<service>.status` | String | Service status<li>`"IDLE"`: Service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: Service has started</li><li>`"IN_PROGRESS"`: Service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the tasks are all completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: Service parameter verification failed</li><li>`"ABNORMAL"`: Service exited abnormally</li><li>`"unknown": Unknown` status.</li> |
 | `services.<service>.message` | String | The execution information of the service, which describes the specific reason for the abnormality of the service. |
 | `services.<service>.details` | JSON Object | The execution details of the service. |
+
+Response body example:
+
+```json
+{
+    "createTs": 1575508644,
+    "services": {
+        "cloudTranscoder": {
+            config
+                "transcoder": {
+                    "idleTimeout": 300,
+                    "inputs": {
+                        "videoInputs": {
+                            "canvas": {
+                                "height": 720,
+                                "width": 1280
+                        },
+                            "inputSources": [
+{
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000001
+                        },
+                                    "region": {
+                                        "height": 400,
+                                        "width": 680,
+                                        "x": 0,
+                                        "y": 0
+                        },
+                                    "zOrder": 1
+                        },
+{
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000002
+                        },
+                                    "region": {
+                                        "height": 360,
+                                        "width": 640,
+                                        "x": 0,
+                                        "y": 0
+                        },
+                                    "zOrder": 2
+        }
+                    ]
+    }
+                        },
+                    "name": "teacher101",
+                    "outputs": [
+{
+                            "out": {
+                                "rtcChannel": "transcoder_output_channel1620701216989",
+                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
+                                "rtcUid": 1000003
+                        },
+                            "videoOption": {
+                                "bitrate": 3000,
+                                "codec": "H264",
+                                "fps": 30,
+                                "height": 1280,
+                                "width": 720
+                                    }
+                                    }
+                            ]
+                                    }
+                        },
+            "createTs": 1575508644,
+            "details": {
+                
+            },
+              "msg": "Success",
+            "serviceType": "cloudTranscoder",
+            "status": "connecting"
+                                    }
+                        },
+    "status": 200,
+    "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
+}
+```
 
 ## Stop task Delete: Destroy the cloud transcoder
 
@@ -287,7 +372,7 @@ None
 
 #### Response body
 
-The response body contains the following fields:
+The Body contains the following fields:
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1go15n67ctej30b8088wep.jpg" alt="create_response" style="zoom:80%;" />
 
@@ -302,9 +387,115 @@ Recoveries
 | `services.<service>` | JSON Object | service name. |
 | `services.<service>.serviceType` | String | Service type. Cloud `Confluence: `cloudTranscoder. |
 | `services.<service>.config` | JSON Object | Service parameters. |
+| `services.<service>.config.transcoder` | (Required)String  | Object of cloud transcoder. For the included fields and meanings, please refer to the request Body field and meaning. |
 | `services.<service>.status` | String | Service status<li>`"IDLE"`: Service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: Service has started</li><li>`"IN_PROGRESS"`: Service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the tasks are all completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: Service parameter verification failed</li><li>`"ABNORMAL"`: Service exited abnormally</li><li>`"unknown": Unknown` status.</li> |
 | `services.<service>.message` | String | The execution information of the service, which describes the specific reason for the abnormality of the service. |
 | `services.<service>.details` | JSON Object | The execution details of the service. |
+
+Response body example:
+
+```json
+{
+            "createTs": 1575508644,
+    "services": {
+        "cloudTranscoder": {
+            config
+                "transcoder": {
+                            "idleTimeout": 300,
+                            "inputRtcTokens": [
+                                
+                            ],
+                    "inputs": {
+                        "audioInputs": {
+                            "inputSources": [
+{
+                                    "in": {
+                                                "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                                "rtcUid": 1000001
+                                    }
+                        },
+{
+                                    "in": {
+                                                "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000002
+                                    }
+                                    }
+                            ]
+                        },
+                        "videoInputs": {
+                            "canvas": {
+                                        "fps": 32668,
+                                        "height": 720,
+                                        "width": 1280
+                        },
+                            "inputSources": [
+{
+                                    "in": {
+                                                "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                                "rtcUid": 1000001
+                        },
+                                    "region": {
+                                                "height": 360,
+                                                "width": 640,
+                                        "x": 0,
+                                                "y": 0
+                        },
+                                            "zOrder": 2
+                        },
+{
+                                    "in": {
+                                                "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000002
+                        },
+                                    "region": {
+                                                "height": 400,
+                                                "width": 680,
+                                        "x": 0,
+                                                "y": 0
+                        },
+                                    "zOrder": 1
+                                    }
+                            ]
+                                    }
+                        },
+                    "outputs": [
+{
+                                    "audioOption":
+                                        "profileType": "AUDIO_PROFILE_MUSIC_STANDARD"
+                        },
+                            "out": {
+                                        "rtcChannel": "transcoder_output_channel1620701216989",
+                                        rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
+                                        "rtcUid": 1000003
+                        },
+                            "videoOption": {
+                                        "bitrate": 3000,
+                                "codec": "H264",
+                                "fps": 30,
+                                        "height": 1280,
+                                        "width": 720
+                                    }
+                                    }
+                            ]
+                                    }
+                        },
+                    "createTs": 1575508644,
+                    "details": {
+                        "msg": "user call delete"
+                        },
+                    "message": "quit",
+            "serviceType": "cloudTranscoder",
+                    "status": "connecting"
+                                    }
+                        },
+            "status": 200,
+            "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
+                        },
+        "version": "1.0.0",
+                                    }
+}
+```
+
 
 ## Query task Query: query cloud transcoder status information
 ### HTTP request
@@ -385,71 +576,6 @@ PATCH https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks/
 
 #### Request body
 
-```json
-{
-    "services": {
-        "cloudTranscoder": {
-            "serviceType": "cloudTranscoder",
-            config
-                "transcoder": {
-                    "name": "web",
-                    "idleTimeout": 300,
-                    "inputs": {
-                        "audioInputs": {
-                            "inputSources": [
-                                {
-                                    "in": {
-                                        "rtcChannel": "test_transcoder_input_1",
-                                        "rtcUid": 1000002
-                                    }
-                                }
-                            ]
-                        },
-                        "videoInputs": {
-                            "canvas": {
-                                "height": 1080,
-                                "width": 1920,
-                                "fps": 30
-                            },
-                            "inputSources": [
-                                {
-                                    "in": {
-                                        "rtcChannel": "test_transcoder_input_1",
-                                        "rtcUid": 1000002
-                                    },
-                                    "region": {
-                                        "x": 0,
-                                        "y": 0,
-                                        "width": 1280,
-                                        "height": 720
-                                    },
-                                    "zOrder": 1
-                                }
-                            ]
-                        }
-                    },
-                    "outputs": [
-                        {
-                            "out": {
-                                "rtcChannel": "test_failover_12",
-                                "rtcUid": 9222,
-                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063
-                            },
-                            "videoOption": {
-                                "fps": 30,
-                                "codec": "H264",
-                                "height": 1080,
-                                "width": 1920
-                            }
-                        }
-                    ]
-                }
-            }
-        }
-    }
-}
-```
-
 The request Body is a `services` field of JSON Object type. The field structure is shown in the figure:
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnzxcugrdzj30u017otda.jpg" alt="create_request" style="zoom: 50%;" />
@@ -495,6 +621,58 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `inputs.videoInputs.inputSources.region.height` | (Required)Number  | The height (px) of the video image captured by the local camera. The value range is [1,30]. |
    | `inputs.videoInputs.inputSources.zOrder` | (Required)Number  | The layer number of the video input screen of the cloud transcoder. The value range is [0,100]. 0 represents the lowest layer. 100 represents the top layer. |
 
+Request body
+```json
+{
+    "services": {
+        "cloudTranscoder": {
+            "serviceType": "cloudTranscoder",
+            config
+                "transcoder": {
+                    "idleTimeout": 300,
+                    "inputs": {
+                        "videoInputs": {
+                            "canvas": {
+                                "height": 720,
+                                "width": 1280
+                        },
+                            "inputSources": [
+{
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000001
+                        },
+                                    "region": {
+                                        "x": 0,
+                                        "y": 0,
+                                        "width": 640,
+                                        "height": 360
+                        },
+                                    "zOrder": 2
+                        },
+{
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000002
+                        },
+                                    "region": {
+                                        "x": 0,
+                                        "y": 0,
+                                        "width": 680,
+                                        "height": 400
+                        },
+                                    "zOrder": 1
+                                    }
+                            ]
+                                    }
+                                    }
+                                    }
+                                    }
+                                    }
+                                    }
+}
+```
+
 
 Agora supports you to call the `Update` method to update the following fields:
 
@@ -512,7 +690,7 @@ Agora supports you to call the `Update` method to update the following fields:
 
 #### Response body
 
-The response body contains the following fields:
+The Body contains the following fields:
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1go15n67ctej30b8088wep.jpg" alt="create_response" style="zoom:80%;" />
 
@@ -527,10 +705,110 @@ Recoveries
 | `services.<service>` | JSON Object | service name. |
 | `services.<service>.serviceType` | String | Service type. Cloud `Confluence: `cloudTranscoder. |
 | `services.<service>.config` | JSON Object | Service parameters. |
+| `services.<service>.config.transcoder` | (Required)String  | Object of cloud transcoder. For the included fields and meanings, please refer to the request Body field and meaning. |
 | `services.<service>.status` | String | Service status<li>`"IDLE"`: Service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: Service has started</li><li>`"IN_PROGRESS"`: Service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the tasks are all completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: Service parameter verification failed</li><li>`"ABNORMAL"`: Service exited abnormally</li><li>`"unknown": Unknown` status.</li> |
 | `services.<service>.message` | String | The execution information of the service, which describes the specific reason for the abnormality of the service. |
 | `services.<service>.details` | JSON Object | The execution details of the service. |
 
+Response body example:
+```json
+{
+    "createTs": 1575508644,
+    "services": {
+        "cloudTranscoder": {
+            config
+                "transcoder": {
+                    "idleTimeout": 300,
+                    "inputRtcTokens": [
+                        
+                    ],
+                    "inputs": {
+                        "audioInputs": {
+                            "inputSources": [
+{
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000001
+                                    }
+                        },
+{
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000002
+                                    }
+                                    }
+                            ]
+                        },
+                        "videoInputs": {
+                            "canvas": {
+                                "fps": 32668,
+                                "height": 720,
+                                "width": 1280
+                        },
+                            "inputSources": [
+{
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000001
+                        },
+                                    "region": {
+                                        "height": 360,
+                                        "width": 640,
+                                        "x": 0,
+                                        "y": 0
+                        },
+                                    "zOrder": 2
+                        },
+{
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000002
+                        },
+                                    "region": {
+                                        "height": 400,
+                                        "width": 680,
+                                        "x": 0,
+                                        "y": 0
+                        },
+                                    "zOrder": 1
+                                    }
+                            ]
+                                    }
+                        },
+                    "outputs": [
+{
+                            "audioOption":
+                                "profileType": "AUDIO_PROFILE_MUSIC_STANDARD"
+                        },
+                            "out": {
+                                "rtcChannel": "transcoder_output_channel1620701216989",
+                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
+                                "rtcUid": 1000003
+                        },
+                            "videoOption": {
+                                "bitrate": 3000,
+                                "codec": "H264",
+                                "fps": 30,
+                                "height": 1280,
+                                "width": 720
+                                    }
+                                    }
+                            ]
+                                    }
+                        },
+            "createTs": 1575508644,
+            "details": {
+                
+            },
+            message
+            "serviceType": "cloudTranscoder",
+            "status": "connecting"
+                                    }
+                        },
+    "status": "connecting"
+    "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
+}
+```
 
 ## Status codes
 
