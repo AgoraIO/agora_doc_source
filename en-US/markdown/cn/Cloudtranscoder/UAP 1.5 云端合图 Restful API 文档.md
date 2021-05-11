@@ -793,86 +793,85 @@ Response body example:
                             "inputSources": [
 {
                                     "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000001
-                                    }
-                        },
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000001
+}
+},
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000002
-                                    }
-                                    }
-                            ]
-                        },
-                        "videoInputs": {
-                            "canvas": {
-                                "fps": 32668,
-                                "height": 720,
-                                "width": 1280
-                        },
-                            "inputSources": [
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000002
+}
+}
+]
+},
+"videoInputs": {
+"canvas": {
+"fps": 32668,
+"height": 720,
+"width": 1280
+},
+"inputSources": [
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000001
-                        },
-                                    "region": {
-                                        "height": 360,
-                                        "width": 640,
-                                        "x": 0,
-                                        "y": 0
-                        },
-                                    "zOrder": 2
-                        },
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000001
+},
+"region": {
+"height": 360,
+"width": 640,
+"x": 0,
+"y": 0
+},
+"zOrder": 2
+},
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000002
-                        },
-                                    "region": {
-                                        "height": 400,
-                                        "width": 680,
-                                        "x": 0,
-                                        "y": 0
-                        },
-                                    "zOrder": 1
-                                    }
-                            ]
-                                    }
-                        },
-                    "outputs": [
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000002
+},
+"region": {
+"height": 400,
+"width": 680,
+"x": 0,
+"y": 0
+},
+"zOrder": 1
+}
+]
+}
+},
+"outputs": [
 {
-                            "audioOption":
-                                "profileType": "AUDIO_PROFILE_MUSIC_STANDARD"
-                        },
-                            "out": {
-                                "rtcChannel": "transcoder_output_channel1620701216989",
-                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
-                                "rtcUid": 1000003
-                        },
-                            "videoOption": {
-                                "bitrate": 3000,
-                                "codec": "H264",
-                                "fps": 30,
-                                "height": 1280,
-                                "width": 720
-                                    }
-                                    }
-                            ]
-                                    }
-                        },
-    "createTs": 1575508644,
-            "details": {
-                
+"audioOption": {
+"profileType": "AUDIO_PROFILE_MUSIC_STANDARD"
+},
+"out": {
+"rtcChannel": "transcoder_output_channel1620701216989",
+"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063",
+"rtcUid": 1000003
+},
+"videoOption": {
+"bitrate": 3000,
+"codec": "H264",
+"fps": 30,
+"height": 1280,
+"width": 720
+}
+}
+]
+}
+},
+"createTs": 1620701223,
+"details": {
             },
-            message
-            "serviceType": "cloudTranscoder",
-            "status": "connecting"
-                                    }
-                        },
-    "status": "connecting"
-    "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
+"message": "",
+"serviceType": "cloudTranscoder",
+"status": "serviceInProgress"
+}
+},
+"status": "IN_PROGRESS",
+"taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
 }
 ```
 
@@ -886,22 +885,22 @@ Response body example:
 | 200 OK | The request succeeds. |
 | 201 Created | The task is already in progress, please do not use the same builderToken to open the task repeatedly. |
 | 202 Accepted | The server has received the task request, but the execution has not been completed. Please use the <code>GET</code> method to check the execution status. |
-| 400 Bad Request | The request parameter is incorrect. If the appid you fill in<code></code> does not have  Cloud Recording permission, 400 will be returned<code>. Please<code> handle it</code> in conjunction with the message field of the response message message</code>. |
-| 401 Unauthorized | Authorization: The value of this field needs to refer to the authentication instructions. |
+| 400 Bad Request | The syntax of the request is incorrect (such as a parameter error). If the <code>appid</code> you fill in does not have Cloud Recording permission, <code>400</code> will be returned. Please handle it in conjunction with the <code>message</code> field of the response message message. |
+| 401 Unauthorized | Authorization is invalid. |
 | 403 Forbidden | Your App ID has not yet activated cloud transcoder, please contact us. |
 | 404 Not Found | Could not find cloud transcoder. |
 | 409 Conflict | There is already a cloud transcoder with the same name. If you want to create a new cloud transcoder, please delete the old cloud transcoder with the same name first. |
 | 429 Too Many Requests | The method call frequency exceeds the limit. |
-| 500 Unknown | An error occurs in the Agora server. Try uploading the log files later. |
+| 500 Unknown | There is an internal error in the Agora server, please contact us. |
 | 501 Not Implemented | This method is not implemented. |
 | 503 Service Unavailable | The Agora server is temporarily overloaded or is under temporary maintenance. Please use the retry mechanism or contact us. |
 | 504 Gateway Timeout | The server was acting as a gateway or proxy and did not receive a timely response from the upstream server. Please contact us. |
 
-## Item
+## Considerations
 
-This section summarizes the important considerations for using Push Streaming RESTful API.
+This section summarizes the important considerations for using the cloud transcoding RESTful API.
 
-- Please do not do` any logic on the content of the message` field in the response message packet body. If the request fails, please troubleshoot the problem with the status code.
+- Please do not doany logic on the content of the `message` field in the response message packet body. If the request fails, please troubleshoot the problem with the status code.
 - The<code>` 202` status code only indicates that the server has received the task request, but it does not mean that the execution is complete. You need to continue to query the execution status through the GET</code> method to determine whether the task has been executed.
-- After receiving the `404` status code, if` the` CREATE` request has returned successfully and the DELETE `method is not actively called, or the idle state of the cloud transcoder exceeds the `idleTimeout `field in the request parameters, it is recommended to adopt a backoff algorithm (for example, 5 seconds, 10 seconds, 15 seconds) ) Call the `Query` method to confirm.
+- After receiving the `404` status code, if` the` CREATE` request has returned successfully and the DELETE `method is not actively called, or the idle state of the cloud transcoder exceeds the `idleTimeout`field in the request parameters, it is recommended to adopt a backoff algorithm (for example, 5 seconds, 10 seconds, 15 seconds) ) Call the `Query` method to confirm.
 - After` receiving` the 5xx` response status code, it is generally because the server has a problem in the response process. It is recommended to use the backoff algorithm (for example, 5 seconds, 10 seconds, 15 seconds) to call the Query` request for confirmation.
