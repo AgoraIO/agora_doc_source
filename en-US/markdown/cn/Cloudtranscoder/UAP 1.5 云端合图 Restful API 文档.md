@@ -73,7 +73,7 @@ POST https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks?b
 
 ### Query Parameters
 
-`builderToken`: (Required) String, that is, dynamic key. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
+`builderToken`: (Required) String Get the parameter value **tokenName** of `builderToken` by `generating builderToken method`.
 
 
 #### Request header
@@ -84,88 +84,88 @@ POST https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks?b
 #### Request body
 ```json
 {
-    "services": {
-        "cloudTranscoder": {
-            "serviceType": "cloudTranscoder",
-            config
-                "transcoder": {
-                    "idleTimeout": 300,
-                    "inputs": {
-                        "audioInputs": {
-                            "inputSources": [
-                                {
-                                    "in": {
-                                        "rtcChannel": "ccft",
-                                        "rtcUid": 123456
-                                    }
-                                },
-                                {
-                                    "in": {
-                                        "rtcChannel": "mcu_test1",
-                                        "rtcUid": 8989
-                                    }
-                                }
-                            ]
-                        },
-                        "videoInputs": {
-                            "canvas": {
-                                "height": 1080,
-                                "width": 1920,
-                                "fps": 30
-                            },
-                            "inputSources": [
-                                {
-                                    "in": {
-                                        "rtcChannel": "ccft",
-                                        "rtcUid": 123456
-                                    },
-                                    "region": {
-                                        "x": 0,
-                                        "y": 0,
-                                        "width": 400,
-                                        "height": 400
-                                    },
-                                    "zOrder": 1
-                                },
-                                {
-                                    "in": {
-                                        "rtcChannel": "mcu_test1",
-                                        "rtcUid": 8989
-                                    },
-                                    "region": {
-                                        "x": 0,
-                                        "y": 400,
-                                        "width": 400,
-                                        "height": 400
-                                    },
-                                    "zOrder": 1
-                                }
-                            ]
-                        }
-                    },
-                    "outputs": [
-                        {
-                            "out": {
-                                "rtcChannel": "mcu_test1",
-                                "rtcUid": 9393,
-                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063
-                            },
-                            "videoOption": {
-                                "fps": 30,
-                                "codec": "H264",
-                                "height": 1080,
-                                "width": 1920
-                            }
-                        }
-                    ]
-                }
-            }
-        }
-    }
+"services": {
+"cloudTranscoder": {
+"serviceType": "cloudTranscoder",
+"config": {
+"transcoder": {
+"idleTimeOut": 300,
+"inputs": {
+"audioInputs": {
+"inputSources": [
+{
+"in": {
+"rtcChannel": "ccft",
+"rtcUid": 123456
+}
+},
+{
+"in": {
+"rtcChannel": "mcu_test1",
+"rtcUid": 8989
+}
+}
+]
+},
+"videoInputs": {
+"canvas": {
+"height": 1080,
+"width": 1920,
+"fps": 30
+},
+"inputSources": [
+{
+"in": {
+"rtcChannel": "ccft",
+"rtcUid": 123456
+},
+"region": {
+"x": 0,
+"y": 0,
+"width": 400,
+"height": 400
+},
+"zOrder": 1
+},
+{
+"in": {
+"rtcChannel": "mcu_test1",
+"rtcUid": 8989
+},
+"region": {
+"x": 0,
+"y": 400,
+"width": 400,
+"height": 400
+},
+"zOrder": 1
+}
+]
+}
+},
+"outputs": [
+{
+"out": {
+"rtcChannel": "mcu_test1",
+"rtcUid": 9393,
+"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063"
+},
+"videoOption": {
+"fps": 30,
+"codec": "H264",
+"height": 1080,
+"width": 1920
+}
+}
+]
+}
+}
+}
+}
 }
 ```
 
-Request` Body is the `converter field of JSON Object type, including the following fields: The field structure is shown in the figure:
+The request Body is a `services` field of JSON Object type. The field structure is shown in the figure:
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnzxcugrdzj30u017otda.jpg" alt="create_request" style="zoom: 50%;" />
 
@@ -266,7 +266,7 @@ DELETE https://api.agora.io/v1/projects/<appId>/rtmp-converters/<converterId>
 
 ### Query Parameters
 
-`builderToken`: (Required) String, that is, dynamic key. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
+`builderToken`: (Required) String Get the parameter value **tokenName** of `builderToken` by `generating builderToken method`.
 
 
 #### Request header
@@ -319,7 +319,7 @@ PATCH https://api.agora.io/v1/projects/<appId>/rtmp-converters/<converterId>?seq
 
 ### Query Parameters
 
-`builderToken`: (Required) String, that is, dynamic key. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
+`builderToken`: (Required) String Get the parameter value **tokenName** of `builderToken` by `generating builderToken method`.
 
 #### Request header
 
@@ -374,7 +374,7 @@ PATCH https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks/
 
 ### Query Parameters
 
-- `builderToken`: (Required) String, that is, dynamic key. Get** the parameter value tokenName** of builderToken by generating `builderToken` method``.
+- `builderToken`: (Required) String Get the parameter value **tokenName** of `builderToken` by `generating builderToken method`.
 - `zIndex`: Number type required field. The request sequence number is specified by the developer. It` starts counting from 0` and needs to be incremented to prevent the request from being out of order.
 - `imageUrl`: String type field. For the field mask of JSON encoding, please refer to the[ Google protobuf FieldMask document for details](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
 
@@ -450,7 +450,7 @@ PATCH https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks/
 }
 ```
 
-Request` Body is the `converter field of JSON Object type, including the following fields: The field structure is shown in the figure:
+The request Body is a `services` field of JSON Object type. The field structure is shown in the figure:
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnzxcugrdzj30u017otda.jpg" alt="create_request" style="zoom: 50%;" />
 
