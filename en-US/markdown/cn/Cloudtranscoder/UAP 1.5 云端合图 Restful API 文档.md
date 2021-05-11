@@ -41,7 +41,7 @@ The request body requires the following query string parameters:
 |---|----|---|
 | `instanceId` | (Required)String  | The instance ID setted by the developer. The length must be within 64 characters. The supported character set range is:<li>All lowercase English letters (a-z)</li><li>All uppercase English letters (A-Z)</li><li>Numbers 0-9</li><li>"-", "_"</li><div class="alert note"><li>One `instanceId` can generate multiple builderTokens, but only one builderToken can be used to send a request in a task.</li></div> |
 
-Request body
+Request body example:
 
 ```json
 {"instanceId": "myInstance11620701216"}
@@ -150,82 +150,82 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `outputs.out.rtcToken` | (Required)String  | The token required to enter the RTC channel is used to ensure channel security. The value is the same as `inputRtcTokens.rtcToken`. |
    | `outputs.out.rtcUid` | (Required)Number  | UID。 The value is the same as `inputRtcTokens.rtcUid`. |
    | `outputs.audioOption` | (Optional)JSON Object | Cloud transcoder transcoding and mixing configuration for audio streams. If you don't pass the value, the audio attribute of Agora transcoding output is `AUDIO_PROFILE_MUSIC_STANDARD`, which means 48 KHz sampling rate, music encoding, mono, and the maximum encoding rate is 64 Kbps. |
-   | `outputs.audioOption.profileType` |  (Optional)String | Audio profiles. Support value:<li>`AUDIO_PROFILE_MUSIC_STANDARD(2`): A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps.</li><li>`AUDIO_PROFILE_MUSIC_STANDARD_STEREO(3)`: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 56 Kbps.</li><li>`AUDIO_PROFILE_MUSIC_HIGH_QUALITY(4)`: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 128 Kbps.</li><li>`AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO(5)`: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 192 Kbps.</li> |
-   | `outputs.videoOption` |  (Required)JSON Object | Cloud transcoder is the configuration of transcoding and combining the video stream. |
-   | `outputs.videoOption.fps` | Int, optional | The decoder output frame rate (fps) of the remote video. The value range is [1,30]. The default value is 15. |
+   | `outputs.audioOption.profileType` |  (Optional)String | Audio profile. Support values:<li>`"AUDIO_PROFILE_MUSIC_STANDARD"`: (Default) A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps. </li><li>`"AUDIO_PROFILE_MUSIC_STANDARD_STEREO"`: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 56 Kbps.</li><li>`"AUDIO_PROFILE_MUSIC_HIGH_QUALITY"`: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 128 Kbps.</li><li>`"AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"`: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 128 Kbps.</li> |
+   | `outputs.videoOption` |  (Required)JSON Object | Cloud transcoder is the configuration of transcoding and 	video mixing. |
+   | `outputs.videoOption.fps` | (Optional)Number | The frame rate (fps) of the transcoded output video. The value range is [1,30]. The default value is 15. |
    | `outputs.videoOption.codec` | (Required)String  | The codec of the transcoded output video. The supported value is `"H265"`. |
-   | `outputs.videoOption.bitrate` | Int, optional | Bitrate of the CDN live output video stream. The value range is [1,10000]. If you do not pass the value, Agora will automatically set the video bitrate according to the network situation and other video attributes. |
-   | `outputs.videoOption.width` | Int, required | The width (px) of the video image captured by the local camera. The value range is ]120,3840[. |
-   | `outputs.videoOption.height` | Int, required | The height (px) of the video image captured by the local camera. The value range is ]120,3840[. |
+   | `outputs.videoOption.bitrate` | (Optional)Number | The bitrate of the transcoded output video. The value range is [1,10000]. If you do not pass the value, Agora will automatically set the video bitrate according to the network situation and other video attributes. |
+   | `outputs.videoOption.width` | (Required)Number | The width (px) of the video image captured by the local camera. The value range is ]120,3840[. |
+   | `outputs.videoOption.height` | (Required)Number | The height (px) of the transcoded output video. The value range is ]120,3840[. |
 
 
-Request body
+Request body example:
 
 ```json
-                                {
-    "services": {
-        "cloudTranscoder": {
-            "serviceType": "cloudTranscoder",
-            config
-                "transcoder": {
-                    "name": "teacher101",
-                    "idleTimeout": 300,
-                    "inputs": {
-                        "videoInputs": {
-                            "canvas": {
-                                "height": 720,
-                                "width": 1280
-                        },
-                            "inputSources": [
-                        {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000001
-                            },
-                                    "region": {
-                                        "x": 0,
-                                        "y": 0,
-                                        "width": 680,
-                                        "height": 400
-                                    },
-                                    "zOrder": 1
-                                    },
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000002
-                    },
-                                    "region": {
-                                        "x": 0,
-                                        "y": 0,
-                                        "width": 640,
-                                        "height": 360
-                            },
-                                    "zOrder": 2
-                                    }
-                            ]
-                                }
-                        },
-                    "outputs": [
+"services": {
+"cloudTranscoder": {
+"serviceType": "cloudTranscoder",
+"config": {
+"transcoder": {
+"name": "test_transcoder1620701223",
+"idleTimeOut": 5,
+"inputs": {
+"videoInputs": {
+"canvas": {
+"height": 720,
+"width": 1280
+},
+"inputSources": [
 {
-                            "out": {
-                                "rtcChannel": "transcoder_output_channel1620701216989",
-                                "rtcUid": 1000003,
-                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063
-                        },
-                            "videoOption": {
-                                "fps": 30,
-                                "codec": "H264",
-                                "bitrate": 3000,
-                                "height": 1280,
-                                "width": 720
-                                }
-                        }
-                            ]
-                            }
-                        }
-                }
-            }
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000001
+},
+"region": {
+"x": 0,
+"y": 0,
+"width": 680,
+"height": 400
+},
+"zOrder": 1
+},
+{
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000002
+},
+"region": {
+"x": 0,
+"y": 0,
+"width": 640,
+"height": 360
+},
+"zOrder": 2
+}
+]
+}
+},
+"outputs": [
+{
+"out": {
+"rtcChannel": "transcoder_output_channel1620701216989",
+"rtcUid": 1000003,
+"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063"
+},
+"videoOption": {
+"fps": 30,
+"codec": "H264",
+"bitrate": 3000,
+"height": 1280,
+"width": 720
+}
+}
+]
+}
+}
+}
+}
 }
 ```
 
@@ -241,19 +241,19 @@ Request body
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1go15n67ctej30b8088wep.jpg" alt="create_response" style="zoom:80%;" />
 
-Recoveries
+The meanings of the fields are shown in the following table:
 
 | Field | Type | Description |
 |---|----|---|
 | `taskId` | JSON Object | The task ID of the cloud transcoder, UUID, is used to identify the cloud transcoder created in this request. |
-| `createTs` | integer | The Unix timestamp (s) when the Converter is created. |
-| `status` | String | The running status of the task to create a cloud transcoder:<li>`"IDLE"`: The task has not started</li><li>`"PREPARED"`: The task has received a start request</li><li>`"STARTING"`: The task is starting</li><li>`"CREATED"`: Task initialization completed</li><li>`"STARTED"`: The task has been started</li><li>`"IN_PROGRESS"`: The task is in progress</li><li>`"STOPPING"`: The task is stopping</li><li>``"stopped"``: The SDK stops processing the audio buffer.</li><li>`"EXIT"`: The task exits normally</li><li>`"FAILURE_STOP"`: The task exited abnormally</li> |
+| `createTs` | Number | The Unix timestamp (s) when the cloud transcoder is created. |
+| `status` | String | The running status of the task to create a cloud transcoder:<li>`"IDLE"`: The task has not started</li><li>`"PREPARED"`: The task has received a start request</li><li>`"STARTING"`: The task is starting</li><li>`"CREATED"`: The task initialization is completed</li><li>`"STARTED"`: The task has been started</li><li>`"IN_PROGRESS"`: The task is in progress</li><li>`"STOPPING"`: The task is stopping</li><li>`"STOPPED"`: The task has been stopped</li><li>`"EXIT"`: The task exits normally</li><li>`"FAILURE_STOP"`: The task exited abnormally</li> |
 | `services` | JSON Object | Information about all services included in the task. |
 | `services.<service>` | JSON Object | service name. |
 | `services.<service>.serviceType` | String | Service type. Cloud transcoding:`cloudTranscoder`. |
 | `services.<service>.config` | JSON Object | Service parameters. |
-| `services.<service>.config.transcoder` | (Required)String  | Cloud transcoder object. For the included fields and meanings, please refer to the request Body field and meaning. |
-| `services.<service>.status` | String | Service status<li>`"IDLE"`: Service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: Service has started</li><li>`"IN_PROGRESS"`: Service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the tasks are all completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: Service parameter verification failed</li><li>`"ABNORMAL"`: Service exited abnormally</li><li>`"unknown": Unknown` status.</li> |
+| `services.<service>.config.transcoder` | (Required)String  | Cloud transcoder object. For the included fields and meanings, please refer to the request Body fields and meanings. |
+| `services.<service>.status` | String | The running status of services:<li>`"IDLE"`: The service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: The service has started</li><li>`"IN_PROGRESS"`: The service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the task is completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: The service parameter verification failed</li><li>`"ABNORMAL"`: The service exited abnormally</li><li>`"UNKNOWN"`: The service exited abnormally</li> |
 | `services.<service>.message` | String | The execution information of the service, which describes the specific reason for the abnormality of the service. |
 | `services.<service>.details` | JSON Object | The execution details of the service. |
 
@@ -261,82 +261,81 @@ Response body example:
 
 ```json
 {
-    "createTs": 1575508644,
-    "services": {
-        "cloudTranscoder": {
-            config
-                "transcoder": {
-                    "idleTimeout": 300,
-                    "inputs": {
-                        "videoInputs": {
-                            "canvas": {
-                                "height": 720,
-                                "width": 1280
-                        },
-                            "inputSources": [
+"createTs": 1620701223,
+"services": {
+"cloudTranscoder": {
+"config": {
+"transcoder": {
+"idleTimeOut": 5,
+"inputs": {
+"videoInputs": {
+"canvas": {
+"height": 720,
+"width": 1280
+},
+"inputSources": [
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000001
-                        },
-                                    "region": {
-                                        "height": 400,
-                                        "width": 680,
-                                        "x": 0,
-                                        "y": 0
-                        },
-                                    "zOrder": 1
-                        },
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000001
+},
+"region": {
+"height": 400,
+"width": 680,
+"x": 0,
+"y": 0
+},
+"zOrder": 1
+},
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000002
-                        },
-                                    "region": {
-                                        "height": 360,
-                                        "width": 640,
-                                        "x": 0,
-                                        "y": 0
-                        },
-                                    "zOrder": 2
-        }
-                    ]
-    }
-                        },
-                    "name": "teacher101",
-                    "outputs": [
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000002
+},
+"region": {
+"height": 360,
+"width": 640,
+"x": 0,
+"y": 0
+},
+"zOrder": 2
+}
+]
+}
+},
+"name": "test_transcoder1620701223",
+"outputs": [
 {
-                            "out": {
-                                "rtcChannel": "transcoder_output_channel1620701216989",
-                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
-                                "rtcUid": 1000003
-                        },
-                            "videoOption": {
-                                "bitrate": 3000,
-                                "codec": "H264",
-                                "fps": 30,
-                                "height": 1280,
-                                "width": 720
-                                    }
-                                    }
-                            ]
-                                    }
-                        },
-            "createTs": 1575508644,
-            "details": {
-                
+"out": {
+"rtcChannel": "transcoder_output_channel1620701216989",
+"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063",
+"rtcUid": 1000003
+},
+"videoOption": {
+"bitrate": 3000,
+"codec": "H264",
+"fps": 30,
+"height": 1280,
+"width": 720
+}
+}
+]
+}
+},
+"createTs": 1620701223,
+"details": {
             },
-              "msg": "Success",
-            "serviceType": "cloudTranscoder",
-            "status": "connecting"
-                                    }
-                        },
-    "status": 200,
-    "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
+"message": "success",
+"serviceType": "cloudTranscoder",
+"status": "serviceReady"
+}
+},
+"status": "STARTED",
+"taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
 }
 ```
 
-## Stop task Delete: Destroy the cloud transcoder
+## Delete: Destroy the cloud transcoder
 
 ### HTTP request
 
@@ -347,7 +346,7 @@ DELETE https://api.agora.io/v1/projects/<appId>/rtmp-converters/<converterId>
 ### Path parameter
 
 - `appId`: (Required) String. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
-- `taskId`: The task ID of the cloud transcoder, UUID, used to identify the cloud transcoder created in this request.
+- `taskId`: The task ID of the cloud transcoder, UUID, which used to identify the cloud transcoder created in this request.
 
 ### Query Parameters
 
@@ -376,121 +375,36 @@ The Body contains the following fields:
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1go15n67ctej30b8088wep.jpg" alt="create_response" style="zoom:80%;" />
 
-Recoveries
+The meanings of the fields are shown in the following table:
 
 | Field | Type | Description |
 |---|----|---|
 | `taskId` | JSON Object | The task ID of the cloud transcoder, UUID, is used to identify the cloud transcoder created in this request. |
-| `createTs` | integer | The Unix timestamp (s) when the Converter is created. |
-| `status` | String | The running status of the task to create a cloud transcoder:<li>`"IDLE"`: The task has not started</li><li>`"PREPARED"`: The task has received a start request</li><li>`"STARTING"`: The task is starting</li><li>`"CREATED"`: Task initialization completed</li><li>`"STARTED"`: The task has been started</li><li>`"IN_PROGRESS"`: The task is in progress</li><li>`"STOPPING"`: The task is stopping</li><li>``"stopped"``: The SDK stops processing the audio buffer.</li><li>`"EXIT"`: The task exits normally</li><li>`"FAILURE_STOP"`: The task exited abnormally</li> |
+| `createTs` | Number | The Unix timestamp (s) when the cloud transcoder is created. |
+| `status` | String | The running status of the task to create a cloud transcoder:<li>`"IDLE"`: The task has not started</li><li>`"PREPARED"`: The task has received a start request</li><li>`"STARTING"`: The task is starting</li><li>`"CREATED"`: The task initialization is completed</li><li>`"STARTED"`: The task has been started</li><li>`"IN_PROGRESS"`: The task is in progress</li><li>`"STOPPING"`: The task is stopping</li><li>`"STOPPED"`: The task has been stopped</li><li>`"EXIT"`: The task exits normally</li><li>`"FAILURE_STOP"`: The task exited abnormally</li> |
 | `services` | JSON Object | All service information contained in the task. |
 | `services.<service>` | JSON Object | service name. |
 | `services.<service>.serviceType` | String | Service type. Cloud transcoding:`cloudTranscoder`. |
 | `services.<service>.config` | JSON Object | Service parameters. |
-| `services.<service>.config.transcoder` | (Required)String  | Cloud transcoder object. For the included fields and meanings, please refer to the request Body field and meaning. |
-| `services.<service>.status` | String | Service status<li>`"IDLE"`: Service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: Service has started</li><li>`"IN_PROGRESS"`: Service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the tasks are all completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: Service parameter verification failed</li><li>`"ABNORMAL"`: Service exited abnormally</li><li>`"unknown": Unknown` status.</li> |
+| `services.<service>.config.transcoder` | (Required)String  | Cloud transcoder object. For the included fields and meanings, please refer to the request Body fields and meanings. |
+| `services.<service>.status` | String | The running status of services:<li>`"IDLE"`: The service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: The service has started</li><li>`"IN_PROGRESS"`: The service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the task is completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: The service parameter verification failed</li><li>`"ABNORMAL"`: The service exited abnormally</li><li>`"UNKNOWN"`: The service exited abnormally</li> |
 | `services.<service>.message` | String | The execution information of the service, which describes the specific reason for the abnormality of the service. |
 | `services.<service>.details` | JSON Object | The execution details of the service. |
 
 Response body example:
 
 ```json
-{
-            "createTs": 1575508644,
-    "services": {
-        "cloudTranscoder": {
-            config
-                "transcoder": {
-                            "idleTimeout": 300,
-                            "inputRtcTokens": [
-                                
-                            ],
-                    "inputs": {
-                        "audioInputs": {
-                            "inputSources": [
-{
-                                    "in": {
-                                                "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                                "rtcUid": 1000001
-                                    }
-                        },
-{
-                                    "in": {
-                                                "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000002
-                                    }
-                                    }
-                            ]
-                        },
-                        "videoInputs": {
-                            "canvas": {
-                                        "fps": 32668,
-                                        "height": 720,
-                                        "width": 1280
-                        },
-                            "inputSources": [
-{
-                                    "in": {
-                                                "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                                "rtcUid": 1000001
-                        },
-                                    "region": {
-                                                "height": 360,
-                                                "width": 640,
-                                        "x": 0,
-                                                "y": 0
-                        },
-                                            "zOrder": 2
-                        },
-{
-                                    "in": {
-                                                "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000002
-                        },
-                                    "region": {
-                                                "height": 400,
-                                                "width": 680,
-                                        "x": 0,
-                                                "y": 0
-                        },
-                                    "zOrder": 1
-                                    }
-                            ]
-                                    }
-                        },
-                    "outputs": [
-{
-                                    "audioOption":
-                                        "profileType": "AUDIO_PROFILE_MUSIC_STANDARD"
-                        },
-                            "out": {
-                                        "rtcChannel": "transcoder_output_channel1620701216989",
-                                        rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
-                                        "rtcUid": 1000003
-                        },
-                            "videoOption": {
-                                        "bitrate": 3000,
-                                "codec": "H264",
-                                "fps": 30,
-                                        "height": 1280,
-                                        "width": 720
-                                    }
-                                    }
-                            ]
-                                    }
-                        },
-                    "createTs": 1575508644,
-                    "details": {
-                        "msg": "user call delete"
-                        },
-                    "message": "quit",
-            "serviceType": "cloudTranscoder",
-                    "status": "connecting"
-                                    }
-                        },
-            "status": 200,
-            "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
-}
+ {
+ "createTs": 1575508644,
+ "services": { "cloudTranscoder": { config "transcoder": { "idleTimeout": 300,
+ "inputRtcTokens": [ ], "inputs": { "audioInputs": { "inputSources": [ {
+ "in": { "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989", "rtcUid": 1000001 } }, {
+ "in": { "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989", "rtcUid": 1000002 } } ] }, "videoInputs": { "canvas": { "fps": 32668, "height": 720, "width": 1280 }, "inputSources": [ {
+ "in": { "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989", "rtcUid": 1000001 }, "region": { "height": 360, "width": 640, "x": 0, "y": 0 }, "zOrder": 2 }, {
+ "in": { "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989", "rtcUid": 1000002 }, "region": { "height": 400, "width": 680, "x": 0, "y": 0 }, "zOrder": 1 } ] } }, "outputs": [ {
+ "audioOption": "profileType": "AUDIO_PROFILE_MUSIC_STANDARD" }, "out": { "rtcChannel": "transcoder_output_channel1620701216989", rtcToken: aab8b8f5a8cd4469a63042fcfafe7063, "rtcUid": 1000003 }, "videoOption": { "bitrate": 3000, "codec": "H264", "fps": 30, "height": 1280, "width": 720 } } ] } }, "createTs": 1575508644,
+ "details": { "msg": "user call delete" }, "message": "quit", "serviceType": "cloudTranscoder", "status": "connecting"
+ } }, "status": 200, "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56" }
 ```
 
 
@@ -503,7 +417,7 @@ PATCH https://api.agora.io/v1/projects/<appId>/rtmp-converters/<converterId>?seq
 ### Path parameter
 
 - `appId`: (Required) String. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
-- `taskId`: The task ID of the cloud transcoder, UUID, used to identify the cloud transcoder created in this request.
+- `taskId`: The task ID of the cloud transcoder, UUID, which used to identify the cloud transcoder created in this request.
 
 ### Query Parameters
 
@@ -531,94 +445,94 @@ The Body contains the following fields:
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1go15n67ctej30b8088wep.jpg" alt="create_response" style="zoom:80%;" />
 
-Recoveries
+The meanings of the fields are shown in the following table:
 
 | Field | Type | Description |
 |---|----|---|
 | `taskId` | JSON Object | The task ID of the cloud transcoder, UUID, is used to identify the cloud transcoder created in this request. |
-| `createTs` | integer | The Unix timestamp (s) when the Converter is created. |
-| `status` | String | The running status of the task to create a cloud transcoder:<li>`"IDLE"`: The task has not started</li><li>`"PREPARED"`: The task has received a start request</li><li>`"STARTING"`: The task is starting</li><li>`"CREATED"`: Task initialization completed</li><li>`"STARTED"`: The task has been started</li><li>`"IN_PROGRESS"`: The task is in progress</li><li>`"STOPPING"`: The task is stopping</li><li>``"stopped"``: The SDK stops processing the audio buffer.</li><li>`"EXIT"`: The task exits normally</li><li>`"FAILURE_STOP"`: The task exited abnormally</li> |
+| `createTs` | Number | The Unix timestamp (s) when the cloud transcoder is created. |
+| `status` | String | The running status of the task to create a cloud transcoder:<li>`"IDLE"`: The task has not started</li><li>`"PREPARED"`: The task has received a start request</li><li>`"STARTING"`: The task is starting</li><li>`"CREATED"`: The task initialization is completed</li><li>`"STARTED"`: The task has been started</li><li>`"IN_PROGRESS"`: The task is in progress</li><li>`"STOPPING"`: The task is stopping</li><li>`"STOPPED"`: The task has been stopped</li><li>`"EXIT"`: The task exits normally</li><li>`"FAILURE_STOP"`: The task exited abnormally</li> |
 | `services` | JSON Object | All service information contained in the task. |
 | `services.<service>` | JSON Object | service name. |
 | `services.<service>.serviceType` | String | Service type. Cloud transcoding:`cloudTranscoder`. |
 | `services.<service>.config` | JSON Object | Service parameters. |
-| `services.<service>.status` | String | Service status<li>`"IDLE"`: Service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: Service has started</li><li>`"IN_PROGRESS"`: Service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the tasks are all completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: Service parameter verification failed</li><li>`"ABNORMAL"`: Service exited abnormally</li><li>`"unknown": Unknown` status.</li> |
+| `services.<service>.status` | String | The running status of services:<li>`"IDLE"`: The service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: The service has started</li><li>`"IN_PROGRESS"`: The service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the task is completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: The service parameter verification failed</li><li>`"ABNORMAL"`: The service exited abnormally</li><li>`"UNKNOWN"`: The service exited abnormally</li> |
 | `services.<service>.message` | String | The execution information of the service, which describes the specific reason for the abnormality of the service. |
 | `services.<service>.details` | JSON Object | The execution details of the service. |
 
 Response body example:
 ```JSON
 {
-    "createTs": 1575508644,
-    "services": {
-        "cloudTranscoder": {
-            config
-                "transcoder": {
-                    "idleTimeout": 300,
-                    "inputs": {
-                        "audioInputs": {
-                            "inputSources": [
+"createTs": 1620703975,
+"services": {
+"cloudTranscoder": {
+"config": {
+"transcoder": {
+"idleTimeOut": 5,
+"inputs": {
+"audioInputs": {
+"inputSources": [
 {
-                                    "in": {
-                                        "rtcChannel": "test_delete_and_query1620703973593",
-                                        "rtcUid": 1000001
-                                    }
-                                    }
-                            ]
-                        },
-                        "videoInputs": {
-                            "canvas": {
-                                        "height": 360,
-                                "width": 640
-                        },
-                            "inputSources": [
+"in": {
+"rtcChannel": "test_delete_and_query1620703973593",
+"rtcUid": 1000001
+}
+}
+]
+},
+"videoInputs": {
+"canvas": {
+"height": 360,
+"width": 640
+},
+"inputSources": [
 {
-                                    "in": {
-                                        "rtcChannel": "test_delete_and_query1620703973593",
-                                        "rtcUid": 1000001
-                        },
-                                    "region": {
-                                        "height": 360,
-                                        "width": 640,
-                                        "x": 0,
-                                        "y": 0
-                        },
-                                    "zOrder": 1
-                                    }
-                            ]
-                                    }
-                        },
-                    "name": "teacher101",
-                    "outputs": [
+"in": {
+"rtcChannel": "test_delete_and_query1620703973593",
+"rtcUid": 1000001
+},
+"region": {
+"height": 360,
+"width": 640,
+"x": 0,
+"y": 0
+},
+"zOrder": 1
+}
+]
+}
+},
+"name": "test_transcoder1620703974",
+"outputs": [
 {
-                            "out": {
-                                "rtcChannel": "test_delete_and_query1620703973593",
-                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
-                                "rtcUid": 1000003
-                        },
-                            "videoOption": {
-                                "codec": "H264",
-                                "fps": 30,
-                                        "height": 360,
-                                "width": 640
-                                    }
-                                    }
-                            ]
-                                    }
-                        },
-            "createTs": 1575508644,
-            "details": {},
-            message
-            "serviceType": "cloudTranscoder",
-            "status": "connecting"
-                                    }
-                        },
-    "status": "connecting"
-    "taskId": "3859fd4c53413165a7f6bdba48b67839"
+"out": {
+"rtcChannel": "test_delete_and_query1620703973593",
+"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063",
+"rtcUid": 1000003
+},
+"videoOption": {
+"codec": "H264",
+"fps": 30,
+"height": 360,
+"width": 640
+}
+}
+]
+}
+},
+"createTs": 1620703975,
+"details": {},
+"message": "",
+"serviceType": "cloudTranscoder",
+"status": "serviceInProgress"
+}
+},
+"status": "IN_PROGRESS",
+"taskId": "3859fd4c53413165a7f6bdba48b67839"
 }
 ```
 
-## Update task Update: update cloud transcoder
+## Update: update cloud transcoder
 
 ### HTTP request
 
@@ -629,13 +543,13 @@ PATCH https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks/
 ### Path parameter
 
 - `appId`: (Required) String. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. An App ID is the unique identification of a project.
-- `taskId`: The task ID of the cloud transcoder, UUID, used to identify the cloud transcoder created in this request.
+- `taskId`: The task ID of the cloud transcoder, UUID, which used to identify the cloud transcoder created in this request.
 
 ### Query Parameters
 
 - `builderToken`: (Required) String Get the parameter value **tokenName** of `builderToken` by `generating builderToken method`.
-- `zIndex`: Number type required field. The request sequence number is specified by the developer. It` starts counting from 0` and needs to be incremented to prevent the request from being out of order.
-- `imageUrl`: String type field. For the field mask of JSON encoding, please refer to the[ Google protobuf FieldMask document for details](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
+- `sequenceId: (Required)Number The request sequence number is set by the developer. It starts counting from `0` and needs to be incremented to prevent the request from being out of order.`
+- `updateMask`: (Required) String For the field mask of JSON encoding, please refer to the[ Google protobuf FieldMask document for details](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
 
 #### Request header
 
@@ -652,9 +566,9 @@ The request Body is a `services` field of JSON Object type. The field structure 
 
    | Field | Type | Description |
    |---|----|---|
-   | region: JSON Object `type field`. | Service name, set when creating cloud transcoder. |
+   | `<service>`:  (Required)JSON Object | Service name, set when creating a cloud transcoder. |
    | `<service>.serviceType` | (Required)String  | Service type. Cloud transcoding:`cloudTranscoder`. |
-   | `<service>.config` |  (Required)JSON Object | Cloud convergence parameters.  which used to set the business parameters of the cloud transcoder. |
+   | `<service>.config` |  (Required)JSON Object | Parameter settings of cloud transcoder,   which used to set the business parameters of the cloud transcoder. |
    | `<service>.config.transcoder` | (Required)String  | Cloud transcoder object. |
 
 - `services.config.transcoder` contains the following fields:
@@ -689,7 +603,7 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `inputs.videoInputs.inputSources.region.height` | (Required)Number  | The height of the canvas (pixel). The value range is ]120,3840[. |
    | `inputs.videoInputs.inputSources.zOrder` | (Required)Number  | The layer number of the video input screen of the cloud transcoder. The value range is [0,100]. 0 represents the lowest layer. 100 represents the top layer. |
 
-Request body
+Request body example:
 ```json
 {
     "services": {
@@ -762,19 +676,19 @@ The Body contains the following fields:
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1go15n67ctej30b8088wep.jpg" alt="create_response" style="zoom:80%;" />
 
-Recoveries
+The meanings of the fields are shown in the following table:
 
 | Field | Type | Description |
 |---|----|---|
 | `taskId` | JSON Object | The task ID of the cloud transcoder, UUID, is used to identify the cloud transcoder created in this request. |
-| `createTs` | integer | The Unix timestamp (s) when the Converter is created. |
-| `status` | String | The running status of the task to create a cloud transcoder:<li>`"IDLE"`: The task has not started</li><li>`"PREPARED"`: The task has received a start request</li><li>`"STARTING"`: The task is starting</li><li>`"CREATED"`: Task initialization completed</li><li>`"STARTED"`: The task has been started</li><li>`"IN_PROGRESS"`: The task is in progress</li><li>`"STOPPING"`: The task is stopping</li><li>``"stopped"``: The SDK stops processing the audio buffer.</li><li>`"EXIT"`: The task exits normally</li><li>`"FAILURE_STOP"`: The task exited abnormally</li> |
+| `createTs` | Number | The Unix timestamp (s) when the cloud transcoder is created. |
+| `status` | String | The running status of the task to create a cloud transcoder:<li>`"IDLE"`: The task has not started</li><li>`"PREPARED"`: The task has received a start request</li><li>`"STARTING"`: The task is starting</li><li>`"CREATED"`: The task initialization is completed</li><li>`"STARTED"`: The task has been started</li><li>`"IN_PROGRESS"`: The task is in progress</li><li>`"STOPPING"`: The task is stopping</li><li>`"STOPPED"`: The task has been stopped</li><li>`"EXIT"`: The task exits normally</li><li>`"FAILURE_STOP"`: The task exited abnormally</li> |
 | `services` | JSON Object | Information about all services included in the task. |
 | `services.<service>` | JSON Object | service name. |
 | `services.<service>.serviceType` | String | Service type. Cloud transcoding:`cloudTranscoder`. |
 | `services.<service>.config` | JSON Object | Service parameters. |
-| `services.<service>.config.transcoder` | (Required)String  | Cloud transcoder object. For the included fields and meanings, please refer to the request Body field and meaning. |
-| `services.<service>.status` | String | Service status<li>`"IDLE"`: Service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: Service has started</li><li>`"IN_PROGRESS"`: Service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the tasks are all completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: Service parameter verification failed</li><li>`"ABNORMAL"`: Service exited abnormally</li><li>`"unknown": Unknown` status.</li> |
+| `services.<service>.config.transcoder` | (Required)String  | Cloud transcoder object. For the included fields and meanings, please refer to the request Body fields and meanings. |
+| `services.<service>.status` | String | The running status of services:<li>`"IDLE"`: The service has not started</li><li>`"READY"`: The service is ready</li><li>`"STARTED"`: The service has started</li><li>`"IN_PROGRESS"`: The service is in progress</li><li>`"COMPLETED"`: The service has been stopped and the task is completed</li><li>`"PARTIAL_COMPLETED"`: The service has stopped and the task is partially completed</li><li>`"VALIDATION_FAILED"`: The service parameter verification failed</li><li>`"ABNORMAL"`: The service exited abnormally</li><li>`"UNKNOWN"`: The service exited abnormally</li> |
 | `services.<service>.message` | String | The execution information of the service, which describes the specific reason for the abnormality of the service. |
 | `services.<service>.details` | JSON Object | The execution details of the service. |
 
