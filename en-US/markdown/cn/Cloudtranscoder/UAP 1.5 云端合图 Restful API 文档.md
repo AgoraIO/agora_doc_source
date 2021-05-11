@@ -35,7 +35,7 @@ POST https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/builder
 
 #### Request body
 
-The URL requires the following query string parameters:
+The following parameters need to be passed in the request body:
 
 | Field | Type | Description |
 |---|----|---|
@@ -51,7 +51,7 @@ Request body
 
 #### Request header
 
-`x-request-id`: UUID (Universal Unique Identifier), which identifies this request.
+`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
 <div class="alert note"><ul><li>If there is an error in the request, please print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, there may not be this field in the response header.</li></ul></div>
 
 #### Response body
@@ -70,9 +70,9 @@ Response body example:
 
 ```json
 {
-    "createTs": 1575508644,
-    "instanceId": "myInstance11620701216",
-    "tokenName": "IqCWKgW2CD0KqnZm0lcCzZvPp_zOKb1og0k8tVYqrYB8c"
+"createTs": 1620701216577,
+"instanceId": "myInstance11620701216",
+"tokenName": "IqCWKgW2CD0KqnZm0lcCzZvPp_zOKb1og0k8tVYqrYB8c"
 }
 ```
 
@@ -117,36 +117,36 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | Field | Type | Description |
    |---|----|---|
    | `idleTimeOut` | (Optional)Number  | The maximum time (second) that the Converter is idle. Idle means that all users corresponding to the streams processed by the cloud transcoder have left the channel. After the idle state exceeds the set `idleTimeOut`, the cloud transcoder will be destroyed automatically. The value range is [1,86400], and the default value is `300`. |
-   | `inputRtcTokens` | (Optional)JSON Array  | Leaves the RTC channel. The cloud transcoder needs this information to input the transcoded stream into the RTC channel.<li>Your Agora project has enabled the App Certificate on Console.</li><li>Your Agora project has enabled the App Certificate on Console.</li> |
-   | `inputRtcTokens.rtcChannel` | (Required)String  | Leaves the RTC channel. |
+   | `inputRtcTokens` | (Optional)JSON Array  | Information required to join the RTC channel. The cloud transcoder needs this information to push the transcoded stream into the RTC channel.<li>If you have not enabled the  App Certificate in the  Agora Console, you do not need to pass the value.</li><li>If you have not enabled the  App Certificate in the  Agora Console, you must pass the value.</li> |
+   | `inputRtcTokens.rtcChannel` | (Required)String  | RTC channel name. |
    | `inputRtcTokens.rtcToken` | (Required)String  | The token required to enter the RTC channel is used to ensure channel security. |
-   | `inputRtcTokens.rtcUid` | (Required)Number  | UID。 The same UID is not allowed in the RTC channel, so please make sure that the value is different from `inputs.videoInputs.inputSources.in.rtcUid`. |
+   | `inputRtcTokens.rtcUid` | (Required)Number  | UID。 The same UID is not allowed in the RTC channel, so please make sure that the value is different from`inputs.videoInputs.inputSources.in.rtcUid`. |
    | `inputs` |  (Required)JSON Object | The input configuration of cloud transcoder. |
    | `inputs.audioInputs` | (Optional)JSON Object | Audio input configuration of cloud transcoder.<li>If you do not pass a value, Agora will use the `input source corresponding to inputs.videoInputs.inputSources.in.rtcUid` as the audio input source of the cloud transcoder. This value method is suitable for scenes where both the host's audio and video are transcoded.</li><li>If you pass the value, Agora will transcode and mix the audio input source you specify. This value method is suitable for scenes where` inputs.audioInputs.inputSources.in.rtcUid` and `inputs.videoInputs.inputSources.in.rtcUid` are not exactly the same, that is, part of the host’s video is transcoded but the audio is not transcoded.</li> |
    | `inputs.audioInputs.inputSources` | (Required)JSON Array  | The audio input source of the cloud transcoder. Supports multiple input sources. |
    | `inputs.audioInputs.inputSources.in` |  (Required)JSON Object | The audio input source of the cloud transcoder. |
-   | `inputs.audioInputs.inputSources.in.rtcChannel` | (Required)String  | Leaves the RTC channel. |
-   | `inputs.audioInputs.inputSources.in.rtcUid` | (Required)Number  | The UID corresponding to the input source. Multiple users joins the channel with the same uid. |
+   | `inputs.audioInputs.inputSources.in.rtcChannel` | (Required)String  | The name of the RTC channel to which the input source belongs. |
+   | `inputs.audioInputs.inputSources.in.rtcUid` | (Required)Number  | The UID corresponding to the input source. The same UID is not allowed in the RTC channel. |
    | `inputs.videoInputs` |  (Required)JSON Object | Video input configuration of cloud transcoder. |
    | `inputs.videoInputs.canvas` |  (Required)JSON Object | The canvas that hosts the cloud transcoder  video mixing. |
-   | `inputs.videoInputs.canvas.height` | (Required)Number  | The height of the canvas (pixel). The value range is [1,30]. |
-   | `inputs.videoInputs.canvas.width` | (Required)Number  | The width of the canvas (pixel). The value range is [1,30]. |
+   | `inputs.videoInputs.canvas.height` | (Required)Number  | The height of the canvas (pixel). The value range is ]120,3840[. |
+   | `inputs.videoInputs.canvas.width` | (Required)Number  | The width of the canvas (pixel). The value range is ]120,3840[. |
    | `inputs.videoInputs.inputSources` | (Required)JSON Array  | The video input source of cloud transcoder. Supports multiple input sources. |
    | `inputs.videoInputs.inputSources.in` |  (Required)JSON Object | The video input source of cloud transcoder. |
-   | `inputs.videoInputs.inputSources.in.rtcChannel` | (Required)String  | Leaves the RTC channel. |
+   | `inputs.videoInputs.inputSources.in.rtcChannel` | (Required)String  | The name of the RTC channel to which the input source belongs. |
    | `inputs.videoInputs.inputSources.in.rtcUid` | (Required)Number  | The UID corresponding to the input source. The value is the same as `inputs.audioInputs.inputSources.in.rtcUid`. |
-   | `inputs.videoInputs.inputSources.in.OfflineImage` | (Optional)JSON Object | The background image of the anchor after offline. If you don't pass the value, the screen after the anchor is offline will have no background image. |
+   | `inputs.videoInputs.inputSources.in.OfflineImage` | (Optional)JSON Object | The background image of the host after offline. If you don't pass the value, the screen after the anchor is offline will have no background image. |
    | `inputs.videoInputs.inputSources.in.OfflineImage.imageType` | (Required)String  | The image watermark. Support JPG and PNG format pictures. |
    | `inputs.videoInputs.inputSources.in.OfflineImage.imageUrl` | (Required)String  | Picture URL. Must be legal and URL, and include `jpg` or `png` suffix. |
    | `inputs.videoInputs.inputSources.region` |  (Required)JSON Object | The position on the canvas of the video input source picture of the cloud transcoder. |
    | `inputs.videoInputs.inputSources.region.x` | (Required)Number  | The x coordinate (pixel) of the screen on the canvas. The lateral displacement relative to the origin. (Take the upper left corner of the canvas as the origin, and the x coordinate as the upper left corner of the screen.) The value range is [1,30]. |
    | `inputs.videoInputs.inputSources.region.y` | (Required)Number  | The y coordinate (pixel) of the screen on the canvas. The longitudinal displacement to the origin.（Take the upper left corner of the canvas as the origin and the y coordinate as the upper left corner of the screen.） The value range is [0,100]. |
-   | `inputs.videoInputs.inputSources.region.width` | (Required)Number  | The width (px) of the video image captured by the local camera. The value range is [1,30]. |
-   | `inputs.videoInputs.inputSources.region.height` | (Required)Number  | The height (px) of the video image captured by the local camera. The value range is [1,30]. |
+   | `inputs.videoInputs.inputSources.region.width` | (Required)Number  | The width (px) of the video image captured by the local camera. The value range is ]120,3840[. |
+   | `inputs.videoInputs.inputSources.region.height` | (Required)Number  | The height (px) of the video image captured by the local camera. The value range is ]120,3840[. |
    | `inputs.videoInputs.inputSources.zOrder` | (Required)Number  | The layer number of the video input screen of the cloud transcoder. The value range is [0,100]. 0 represents the lowest layer. 100 represents the top layer. |
    | `outputs` | (Required)JSON Array  | The output configuration of the cloud transcoder. Supports output of multiple streams processed by different transcoding configurations. |
    | `outputs.out` |  (Required)JSON Object | The output configuration of the cloud transcoder. |
-   | `outputs.out.rtcChannel` | (Required)String  | Leaves the RTC channel. The value is` the same as inputRtcTokens.rtcChannel`. |
+   | `outputs.out.rtcChannel` | (Required)String  | RTC channel name. The value is` the same as inputRtcTokens.rtcChannel`. |
    | `outputs.out.rtcToken` | (Required)String  | The token required to enter the RTC channel is used to ensure channel security. The value is the same as `inputRtcTokens.rtcToken`. |
    | `outputs.out.rtcUid` | (Required)Number  | UID。 The value is` the same as inputRtcTokens.rtcUid`. |
    | `outputs.audioOption` | (Optional)JSON Object | Cloud transcoder transcoding and mixing configuration for audio streams. AUDIO_PROFILE_MUSIC_STANDARD`(2): A sample rate of` 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps. |
@@ -155,8 +155,8 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `outputs.videoOption.fps` | Int, optional | The decoder output frame rate (fps) of the remote video. The value range is [1,30]. The default value is 15. |
    | `outputs.videoOption.codec` | (Required)String  | The codec of the transcoded output video. The supported value is `"H265"`. |
    | `outputs.videoOption.bitrate` | Int, optional | Bitrate of the CDN live output video stream. The value range is [1,10000]. If you do not pass the value, Agora will automatically set the video bitrate according to the network situation and other video attributes. |
-   | `outputs.videoOption.width` | Int, required | The width (px) of the video image captured by the local camera. The value range is [1,30]. |
-   | `outputs.videoOption.height` | Int, required | The height (px) of the video image captured by the local camera. The value range is [1,30]. |
+   | `outputs.videoOption.width` | Int, required | The width (px) of the video image captured by the local camera. The value range is ]120,3840[. |
+   | `outputs.videoOption.height` | Int, required | The height (px) of the video image captured by the local camera. The value range is ]120,3840[. |
 
 
 Request body
@@ -234,7 +234,7 @@ Request body
 
 #### Request header
 
-`x-request-id`: UUID (Universal Unique Identifier), which identifies this request.
+`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
 <div class="alert note"><ul><li>If there is an error in the request, please print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, there may not be this field in the response header.</li></ul></div>
 
 #### Response body
@@ -367,7 +367,7 @@ None
 
 #### Request header
 
-`x-request-id`: UUID (Universal Unique Identifier), which identifies this request.
+`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
 <div class="alert note"><ul><li>If there is an error in the request, please print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, there may not be this field in the response header.</li></ul></div>
 
 #### Response body
@@ -490,9 +490,6 @@ Response body example:
                         },
             "status": 200,
             "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
-                        },
-        "version": "1.0.0",
-                                    }
 }
 ```
 
@@ -525,12 +522,12 @@ None
 
 #### Request header
 
-`x-request-id`: UUID (Universal Unique Identifier), which identifies this request.
+`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
 <div class="alert note"><ul><li>If there is an error in the request, please print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, there may not be this field in the response header.</li></ul></div>
 
 #### Response body
 
-The response body contains the following fields:
+The Body contains the following fields:
 
 <img src="https://tva1.sinaimg.cn/large/008eGmZEly1go15n67ctej30b8088wep.jpg" alt="create_response" style="zoom:80%;" />
 
@@ -549,6 +546,77 @@ Recoveries
 | `services.<service>.message` | String | The execution information of the service, which describes the specific reason for the abnormality of the service. |
 | `services.<service>.details` | JSON Object | The execution details of the service. |
 
+Response body example:
+```JSON
+{
+    "createTs": 1575508644,
+    "services": {
+        "cloudTranscoder": {
+            config
+                "transcoder": {
+                    "idleTimeout": 300,
+                    "inputs": {
+                        "audioInputs": {
+                            "inputSources": [
+{
+                                    "in": {
+                                        "rtcChannel": "test_delete_and_query1620703973593",
+                                        "rtcUid": 1000001
+                                    }
+                                    }
+                            ]
+                        },
+                        "videoInputs": {
+                            "canvas": {
+                                        "height": 360,
+                                "width": 640
+                        },
+                            "inputSources": [
+{
+                                    "in": {
+                                        "rtcChannel": "test_delete_and_query1620703973593",
+                                        "rtcUid": 1000001
+                        },
+                                    "region": {
+                                        "height": 360,
+                                        "width": 640,
+                                        "x": 0,
+                                        "y": 0
+                        },
+                                    "zOrder": 1
+                                    }
+                            ]
+                                    }
+                        },
+                    "name": "teacher101",
+                    "outputs": [
+{
+                            "out": {
+                                "rtcChannel": "test_delete_and_query1620703973593",
+                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
+                                "rtcUid": 1000003
+                        },
+                            "videoOption": {
+                                "codec": "H264",
+                                "fps": 30,
+                                        "height": 360,
+                                "width": 640
+                                    }
+                                    }
+                            ]
+                                    }
+                        },
+            "createTs": 1575508644,
+            "details": {},
+            message
+            "serviceType": "cloudTranscoder",
+            "status": "connecting"
+                                    }
+                        },
+    "status": "connecting"
+    "taskId": "3859fd4c53413165a7f6bdba48b67839"
+}
+```
 
 ## Update task Update: update cloud transcoder
 
@@ -593,32 +661,32 @@ The request Body is a `services` field of JSON Object type. The field structure 
 
    | Field | Type | Description |
    |---|----|---|
-   | `inputRtcTokens` | (Optional)JSON Array  | Leaves the RTC channel. The cloud transcoder needs this information to input the transcoded stream into the RTC channel.<li>Your Agora project has enabled the App Certificate on Console.</li><li>Your Agora project has enabled the App Certificate on Console.</li> |
-   | `inputRtcTokens.rtcChannel` | (Required)String  | Leaves the RTC channel. |
+   | `inputRtcTokens` | (Optional)JSON Array  | Information required to join the RTC channel. The cloud transcoder needs this information to push the transcoded stream into the RTC channel.<li>If you have not enabled the  App Certificate in the  Agora Console, you do not need to pass the value.</li><li>If you have not enabled the  App Certificate in the  Agora Console, you must pass the value.</li> |
+   | `inputRtcTokens.rtcChannel` | (Required)String  | RTC channel name. |
    | `inputRtcTokens.rtcToken` | (Required)String  | The token required to enter the RTC channel is used to ensure channel security. |
-   | `inputRtcTokens.rtcUid` | (Required)Number  | UID。 The same UID is not allowed in the RTC channel, so please make sure that the value is different from `inputs.videoInputs.inputSources.in.rtcUid`. |
+   | `inputRtcTokens.rtcUid` | (Required)Number  | UID。 The same UID is not allowed in the RTC channel, so please make sure that the value is different from`inputs.videoInputs.inputSources.in.rtcUid`. |
    | `inputs` |  (Required)JSON Object | The input configuration of cloud transcoder. |
    | `inputs.audioInputs` | (Optional)JSON Object | Audio input configuration of cloud transcoder.<li>If you do not pass a value, Agora will use the `input source corresponding to inputs.videoInputs.inputSources.in.rtcUid` as the audio input source of the cloud transcoder. This value method is suitable for scenes where both the host's audio and video are transcoded.</li><li>If you pass the value, Agora will transcode and mix the audio input source you specify. This value method is suitable for scenes where` inputs.audioInputs.inputSources.in.rtcUid` and `inputs.videoInputs.inputSources.in.rtcUid` are not exactly the same, that is, part of the host’s video is transcoded but the audio is not transcoded.</li> |
    | `inputs.audioInputs.inputSources` | (Required)JSON Array  | The audio input source of the cloud transcoder. Supports multiple input sources. |
    | `inputs.audioInputs.inputSources.in` |  (Required)JSON Object | The audio input source of the cloud transcoder. |
-   | `inputs.audioInputs.inputSources.in.rtcChannel` | (Required)String  | Leaves the RTC channel. |
-   | `inputs.audioInputs.inputSources.in.rtcUid` | (Required)Number  | The UID corresponding to the input source. Multiple users joins the channel with the same uid. |
+   | `inputs.audioInputs.inputSources.in.rtcChannel` | (Required)String  | The name of the RTC channel to which the input source belongs. |
+   | `inputs.audioInputs.inputSources.in.rtcUid` | (Required)Number  | The UID corresponding to the input source. The same UID is not allowed in the RTC channel. |
    | `inputs.videoInputs` |  (Required)JSON Object | Video input configuration of cloud transcoder. |
    | `inputs.videoInputs.canvas` |  (Required)JSON Object | The canvas that hosts the cloud transcoder  video mixing. |
-   | `inputs.videoInputs.canvas.height` | (Required)Number  | The height of the canvas (pixel). The value range is [1,30]. |
-   | `inputs.videoInputs.canvas.width` | (Required)Number  | The width of the canvas (pixel). The value range is [1,30]. |
+   | `inputs.videoInputs.canvas.height` | (Required)Number  | The height of the canvas (pixel). The value range is ]120,3840[. |
+   | `inputs.videoInputs.canvas.width` | (Required)Number  | The width of the canvas (pixel). The value range is ]120,3840[. |
    | `inputs.videoInputs.inputSources` | (Required)JSON Array  | The video input source of cloud transcoder. Supports multiple input sources. |
    | `inputs.videoInputs.inputSources.in` |  (Required)JSON Object | The video input source of cloud transcoder. |
-   | `inputs.videoInputs.inputSources.in.rtcChannel` | (Required)String  | Leaves the RTC channel. |
+   | `inputs.videoInputs.inputSources.in.rtcChannel` | (Required)String  | The name of the RTC channel to which the input source belongs. |
    | `inputs.videoInputs.inputSources.in.rtcUid` | (Required)Number  | The UID corresponding to the input source. The value is the same as `inputs.audioInputs.inputSources.in.rtcUid`. |
-   | `inputs.videoInputs.inputSources.in.OfflineImage` | (Optional)JSON Object | The background image of the anchor after offline. If you don't pass the value, the screen after the anchor is offline will have no background image. |
+   | `inputs.videoInputs.inputSources.in.OfflineImage` | (Optional)JSON Object | The background image of the host after offline. If you don't pass the value, the screen after the anchor is offline will have no background image. |
    | `inputs.videoInputs.inputSources.in.OfflineImage.imageType` | (Required)String  | The image watermark. Support JPG and PNG format pictures. |
    | `inputs.videoInputs.inputSources.in.OfflineImage.imageUrl` | (Required)String  | Picture URL. Must be legal and URL, and include `jpg` or `png` suffix. |
    | `inputs.videoInputs.inputSources.region` |  (Required)JSON Object | The position on the canvas of the video input source picture of the cloud transcoder. |
    | `inputs.videoInputs.inputSources.region.x` | (Required)Number  | The x coordinate (pixel) of the screen on the canvas. The lateral displacement relative to the origin. (Take the upper left corner of the canvas as the origin, and the x coordinate as the upper left corner of the screen.) The value range is [1,30]. |
    | `inputs.videoInputs.inputSources.region.y` | (Required)Number  | The y coordinate (pixel) of the screen on the canvas. The longitudinal displacement to the origin.（Take the upper left corner of the canvas as the origin and the y coordinate as the upper left corner of the screen.） The value range is [0,100]. |
-   | `inputs.videoInputs.inputSources.region.width` | (Required)Number  | The width (px) of the video image captured by the local camera. The value range is [1,30]. |
-   | `inputs.videoInputs.inputSources.region.height` | (Required)Number  | The height (px) of the video image captured by the local camera. The value range is [1,30]. |
+   | `inputs.videoInputs.inputSources.region.width` | (Required)Number  | The width (px) of the video image captured by the local camera. The value range is ]120,3840[. |
+   | `inputs.videoInputs.inputSources.region.height` | (Required)Number  | The height (px) of the video image captured by the local camera. The value range is ]120,3840[. |
    | `inputs.videoInputs.inputSources.zOrder` | (Required)Number  | The layer number of the video input screen of the cloud transcoder. The value range is [0,100]. 0 represents the lowest layer. 100 represents the top layer. |
 
 Request body
@@ -685,7 +753,7 @@ Agora supports you to call the `Update` method to update the following fields:
 
 #### Request header
 
-`x-request-id`: UUID (Universal Unique Identifier), which identifies this request.
+`X-Request-ID`: UUID (Universal Unique Identifier), which identifies this request.
 <div class="alert note"><ul><li>If there is an error in the request, please print out the value in the log to troubleshoot the problem.</li><li>If the response status code of this request is not 2XX, there may not be this field in the response header.</li></ul></div>
 
 #### Response body
