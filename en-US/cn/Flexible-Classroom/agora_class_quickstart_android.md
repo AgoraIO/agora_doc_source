@@ -53,7 +53,7 @@ First, create an `AgoraEduSDKConfig` instance for global configuration, and then
 
 ```java
 /** Global Configuration */
- // Agora App ID
+// Agora App ID
 String appId = "XXX";
 // Whether to enable eye care mode
 boolean eyeCare = false;
