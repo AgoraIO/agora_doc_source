@@ -547,72 +547,72 @@ The meanings of the fields are shown in the following table:
 Response body example:
 ```JSON
 {
-    "createTs": 1575508644,
-    "services": {
-        "cloudTranscoder": {
-            config
-                "transcoder": {
-                    "idleTimeout": 300,
-                    "inputs": {
-                        "audioInputs": {
-                            "inputSources": [
+"createTs": 1620703975,
+"services": {
+"cloudTranscoder": {
+"config": {
+"transcoder": {
+"idleTimeOut": 5,
+"inputs": {
+"audioInputs": {
+"inputSources": [
 {
-                                    "in": {
-                                        "rtcChannel": "test_delete_and_query1620703973593",
-                                        "rtcUid": 1000001
-                                    }
-                                    }
-                            ]
-                        },
-                        "videoInputs": {
-                            "canvas": {
-                                        "height": 360,
-                                "width": 640
-                        },
-                            "inputSources": [
+"in": {
+"rtcChannel": "test_delete_and_query1620703973593",
+"rtcUid": 1000001
+}
+}
+]
+},
+"videoInputs": {
+"canvas": {
+"height": 360,
+"width": 640
+},
+"inputSources": [
 {
-                                    "in": {
-                                        "rtcChannel": "test_delete_and_query1620703973593",
-                                        "rtcUid": 1000001
-                        },
-                                    "region": {
-                                        "height": 360,
-                                        "width": 640,
-                                        "x": 0,
-                                        "y": 0
-                        },
-                                    "zOrder": 1
-                                    }
-                            ]
-                                    }
-                        },
-                    "name": "teacher101",
-                    "outputs": [
+"in": {
+"rtcChannel": "test_delete_and_query1620703973593",
+"rtcUid": 1000001
+},
+"region": {
+"height": 360,
+"width": 640,
+"x": 0,
+"y": 0
+},
+"zOrder": 1
+}
+]
+}
+},
+"name": "test_transcoder1620703974",
+"outputs": [
 {
-                            "out": {
-                                "rtcChannel": "test_delete_and_query1620703973593",
-                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
-                                "rtcUid": 1000003
-                        },
-                            "videoOption": {
-                                "codec": "H264",
-                                "fps": 30,
-                                        "height": 360,
-                                "width": 640
-                                    }
-                                    }
-                            ]
-                                    }
-                        },
-            "createTs": 1575508644,
-            "details": {},
-            message
-            "serviceType": "cloudTranscoder",
-            "status": "connecting"
-                                    }
-                        },
-    "status": "connecting"
-    "taskId": "3859fd4c53413165a7f6bdba48b67839"
+"out": {
+"rtcChannel": "test_delete_and_query1620703973593",
+"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063",
+"rtcUid": 1000003
+},
+"videoOption": {
+"codec": "H264",
+"fps": 30,
+"height": 360,
+"width": 640
+}
+}
+]
+}
+},
+"createTs": 1620703975,
+"details": {},
+"message": "",
+"serviceType": "cloudTranscoder",
+"status": "serviceInProgress"
+}
+},
+"status": "IN_PROGRESS",
+"taskId": "3859fd4c53413165a7f6bdba48b67839"
 }
 ```
 
