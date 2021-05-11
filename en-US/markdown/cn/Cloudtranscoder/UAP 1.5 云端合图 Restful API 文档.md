@@ -901,6 +901,6 @@ Response body example:
 This section summarizes the important considerations for using the cloud transcoding RESTful API.
 
 - Please do not doany logic on the content of the `message` field in the response message packet body. If the request fails, please troubleshoot the problem with the status code.
-- The<code>` 202` status code only indicates that the server has received the task request, but it does not mean that the execution is complete. You need to continue to query the execution status through the GET</code> method to determine whether the task has been executed.
+- `The 202<code> status code only indicates that the server has received the task request, but it does not mean that the execution is complete. You need to continue to query the execution status through the `GET</code> method to determine whether the task has been executed.
 - After receiving the `404` status code, if` the` CREATE` request has returned successfully and the DELETE `method is not actively called, or the idle state of the cloud transcoder exceeds the `idleTimeout`field in the request parameters, it is recommended to adopt a backoff algorithm (for example, 5 seconds, 10 seconds, 15 seconds) ) Call the `Query` method to confirm.
 - After` receiving` the 5xx` response status code, it is generally because the server has a problem in the response process. It is recommended to use the backoff algorithm (for example, 5 seconds, 10 seconds, 15 seconds) to call the Query` request for confirmation.
