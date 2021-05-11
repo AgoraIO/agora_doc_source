@@ -395,109 +395,108 @@ Response body example:
 
 ```json
 {
-    "createTs": 1575508644,
-    "services": {
-        "cloudTranscoder": {
-            config
-                "transcoder": {
-                    "idleTimeout": 300,
-                    "inputRtcTokens": [
-                                
+"createTs": 1620701223,
+"services": {
+"cloudTranscoder": {
+"config": {
+"transcoder": {
+"idleTimeOut": 5,
+"inputRtcTokens": [
                             ],
-                    "inputs": {
-                        "audioInputs": {
-                            "inputSources": [
+"inputs": {
+"audioInputs": {
+"inputSources": [
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000001
-                                    }
-                        },
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000001
+}
+},
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000002
-                                    }
-                                    }
-                            ]
-                        },
-                        "videoInputs": {
-                            "canvas": {
-                                "fps": 32668,
-                                "height": 720,
-                                "width": 1280
-                        },
-                            "inputSources": [
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000002
+}
+}
+]
+},
+"videoInputs": {
+"canvas": {
+"fps": 32668,
+"height": 720,
+"width": 1280
+},
+"inputSources": [
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000001
-                        },
-                                    "region": {
-                                        "height": 360,
-                                        "width": 640,
-                                        "x": 0,
-                                        "y": 0
-                        },
-                                    "zOrder": 2
-                        },
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000001
+},
+"region": {
+"height": 360,
+"width": 640,
+"x": 0,
+"y": 0
+},
+"zOrder": 2
+},
 {
-                                    "in": {
-                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-                                        "rtcUid": 1000002
-                        },
-                                    "region": {
-                                        "height": 400,
-                                        "width": 680,
-                                        "x": 0,
-                                        "y": 0
-                        },
-                                    "zOrder": 1
-                                    }
-                            ]
-                                    }
-                        },
-                    "outputs": [
+"in": {
+"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+"rtcUid": 1000002
+},
+"region": {
+"height": 400,
+"width": 680,
+"x": 0,
+"y": 0
+},
+"zOrder": 1
+}
+]
+}
+},
+"outputs": [
 {
-                            "audioOption":
-                                "profileType": "AUDIO_PROFILE_MUSIC_STANDARD"
-                        },
-                            "out": {
-                                "rtcChannel": "transcoder_output_channel1620701216989",
-                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
-                                "rtcUid": 1000003
-                        },
-                            "videoOption": {
-                                "bitrate": 3000,
-                                "codec": "H264",
-                                "fps": 30,
-                                "height": 1280,
-                                "width": 720
-                                    }
-                                    }
-                            ]
-                                    }
-                        },
-    "createTs": 1575508644,
-            "details": {
-                        "msg": "user call delete"
-                        },
-                    "message": "quit",
-            "serviceType": "cloudTranscoder",
-                    "status": "serviceCompleted"
-                                    }
-                        },
-            "status": "STOPPED",
-    "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
+"audioOption": {
+"profileType": "AUDIO_PROFILE_MUSIC_STANDARD"
+},
+"out": {
+"rtcChannel": "transcoder_output_channel1620701216989",
+"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063",
+"rtcUid": 1000003
+},
+"videoOption": {
+"bitrate": 3000,
+"codec": "H264",
+"fps": 30,
+"height": 1280,
+"width": 720
+}
+}
+]
+}
+},
+"createTs": 1620701223,
+"details": {
+"msg": "user call delete"
+},
+"message": "quit",
+"serviceType": "cloudTranscoder",
+"status": "serviceCompleted"
+}
+},
+"status": "STOPPED",
+"taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
 }
 ```
 
 
-## Query task Query: query cloud transcoder status information
+## Query: query the information of the cloud transcoder
 ### HTTP request
 
 ```http
-PATCH https://api.agora.io/v1/projects/<appId>/rtmp-converters/<converterId>?sequence={sequence}
+GET https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks/<taskId>?builderToken=<tokenName>
 ```
 ### Path parameter
 
