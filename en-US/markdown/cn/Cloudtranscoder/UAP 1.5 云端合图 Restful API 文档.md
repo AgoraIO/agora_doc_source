@@ -70,9 +70,9 @@ Response body example:
 
 ```json
 {
-"createTs": 1620701216577,
-"instanceId": "myInstance11620701216",
-"tokenName": "IqCWKgW2CD0KqnZm0lcCzZvPp_zOKb1og0k8tVYqrYB8c"
+    "createTs": 1575508644,
+    {"instanceId": "myInstance11620701216"}
+    "tokenName": "IqCWKgW2CD0KqnZm0lcCzZvPp_zOKb1og0k8tVYqrYB8c"
 }
 ```
 
@@ -152,80 +152,80 @@ The request Body is a `services` field of JSON Object type. The field structure 
    | `outputs.audioOption` | (Optional)JSON Object | Cloud transcoder transcoding and mixing configuration for audio streams. If you don't pass the value, the audio attribute of Agora transcoding output is `AUDIO_PROFILE_MUSIC_STANDARD`, which means 48 KHz sampling rate, music encoding, mono, and the maximum encoding rate is 64 Kbps. |
    | `outputs.audioOption.profileType` |  (Optional)String | Audio profile. Support values:<li>`"AUDIO_PROFILE_MUSIC_STANDARD"`: (Default) A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps. </li><li>`"AUDIO_PROFILE_MUSIC_STANDARD_STEREO"`: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 56 Kbps.</li><li>`"AUDIO_PROFILE_MUSIC_HIGH_QUALITY"`: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 128 Kbps.</li><li>`"AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"`: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 128 Kbps.</li> |
    | `outputs.videoOption` |  (Required)JSON Object | Cloud transcoder is the configuration of transcoding and 	video mixing. |
-   | `outputs.videoOption.fps` | (Optional)Number | The frame rate (fps) of the transcoded output video. The value range is [1,30]. The default value is 15. |
+   | `outputs.videoOption.fps` | (Optional)Number  | The frame rate (fps) of the transcoded output video. The value range is [1,30]. The default value is 15. |
    | `outputs.videoOption.codec` | (Required)String  | The codec of the transcoded output video. The supported value is `"H265"`. |
-   | `outputs.videoOption.bitrate` | (Optional)Number | The bitrate of the transcoded output video. The value range is [1,10000]. If you do not pass the value, Agora will automatically set the video bitrate according to the network situation and other video attributes. |
-   | `outputs.videoOption.width` | (Required)Number | The width (px) of the video image captured by the local camera. The value range is ]120,3840[. |
-   | `outputs.videoOption.height` | (Required)Number | The height (px) of the transcoded output video. The value range is ]120,3840[. |
+   | `outputs.videoOption.bitrate` | (Optional)Number  | The bitrate of the transcoded output video. The value range is [1,10000]. If you do not pass the value, Agora will automatically set the video bitrate according to the network situation and other video attributes. |
+   | `outputs.videoOption.width` | (Required)Number  | The width (px) of the video image captured by the local camera. The value range is ]120,3840[. |
+   | `outputs.videoOption.height` | (Required)Number  | The height (px) of the transcoded output video. The value range is ]120,3840[. |
 
 
 Request body example:
 
 ```json
 {
-"services": {
-"cloudTranscoder": {
-"serviceType": "cloudTranscoder",
-"config": {
-"transcoder": {
-"name": "test_transcoder1620701223",
-"idleTimeOut": 5,
-"inputs": {
-"videoInputs": {
-"canvas": {
-"height": 720,
-"width": 1280
-},
-"inputSources": [
+    "services": {
+        "cloudTranscoder": {
+            "serviceType": "cloudTranscoder",
+            config
+                "transcoder": {
+                    "name": "teacher101",
+                    "idleTimeout": 300,
+                    "inputs": {
+                        "videoInputs": {
+                            "canvas": {
+                                "height": 720,
+                                "width": 1280
+                        },
+                            "inputSources": [
 {
-"in": {
-"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-"rtcUid": 1000001
-},
-"region": {
-"x": 0,
-"y": 0,
-"width": 680,
-"height": 400
-},
-"zOrder": 1
-},
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000001
+                        },
+                                    "region": {
+                                        "x": 0,
+                                        "y": 0,
+                                        "width": 680,
+                                        "height": 400
+                        },
+                                    "zOrder": 1
+                        },
 {
-"in": {
-"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-"rtcUid": 1000002
-},
-"region": {
-"x": 0,
-"y": 0,
-"width": 640,
-"height": 360
-},
-"zOrder": 2
-}
-]
-}
-},
-"outputs": [
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000002
+                        },
+                                    "region": {
+                                        "x": 0,
+                                        "y": 0,
+                                        "width": 640,
+                                        "height": 360
+                        },
+                                    "zOrder": 2
+                                    }
+                            ]
+                                    }
+                        },
+                    "outputs": [
 {
-"out": {
-"rtcChannel": "transcoder_output_channel1620701216989",
-"rtcUid": 1000003,
-"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063"
-},
-"videoOption": {
-"fps": 30,
-"codec": "H264",
-"bitrate": 3000,
-"height": 1280,
-"width": 720
-}
-}
-]
-}
-}
-}
-}
+                            "out": {
+                                "rtcChannel": "transcoder_output_channel1620701216989",
+                                "rtcUid": 1000003,
+                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063
+                        },
+                            "videoOption": {
+                                "fps": 30,
+                                "codec": "H264",
+                                "bitrate": 3000,
+                                "height": 1280,
+                                "width": 720
+                                    }
+                                    }
+                            ]
+                                    }
+                                    }
+                                    }
+                                    }
 }
 ```
 
@@ -261,77 +261,78 @@ Response body example:
 
 ```json
 {
-"createTs": 1620701223,
-"services": {
-"cloudTranscoder": {
-"config": {
-"transcoder": {
-"idleTimeOut": 5,
-"inputs": {
-"videoInputs": {
-"canvas": {
-"height": 720,
-"width": 1280
-},
-"inputSources": [
+    "createTs": 1575508644,
+    "services": {
+        "cloudTranscoder": {
+            config
+                "transcoder": {
+                    "idleTimeout": 300,
+                    "inputs": {
+                        "videoInputs": {
+                            "canvas": {
+                                "height": 720,
+                                "width": 1280
+                        },
+                            "inputSources": [
 {
-"in": {
-"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-"rtcUid": 1000001
-},
-"region": {
-"height": 400,
-"width": 680,
-"x": 0,
-"y": 0
-},
-"zOrder": 1
-},
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000001
+                        },
+                                    "region": {
+                                        "height": 400,
+                                        "width": 680,
+                                        "x": 0,
+                                        "y": 0
+                        },
+                                    "zOrder": 1
+                        },
 {
-"in": {
-"rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
-"rtcUid": 1000002
-},
-"region": {
-"height": 360,
-"width": 640,
-"x": 0,
-"y": 0
-},
-"zOrder": 2
-}
-]
-}
-},
-"name": "test_transcoder1620701223",
-"outputs": [
-{
-"out": {
-"rtcChannel": "transcoder_output_channel1620701216989",
-"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063",
-"rtcUid": 1000003
-},
-"videoOption": {
-"bitrate": 3000,
-"codec": "H264",
-"fps": 30,
-"height": 1280,
-"width": 720
-}
-}
-]
-}
-},
-"createTs": 1620701223,
-"details": {
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000002
+                        },
+                                    "region": {
+                                        "height": 360,
+                                        "width": 640,
+                                        "x": 0,
+                                        "y": 0
+                        },
+                                    "zOrder": 2
+                                    }
+                            ]
+                                    }
+                        },
+                    "name": "teacher101",
+                    "outputs": [
+                                {
+                            "out": {
+                                "rtcChannel": "transcoder_output_channel1620701216989",
+                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
+                                "rtcUid": 1000003
+                        },
+                            "videoOption": {
+                                "bitrate": 3000,
+                                "codec": "H264",
+                                "fps": 30,
+                                "height": 1280,
+                                "width": 720
+                                    }
+                                    }
+                            ]
+                                    }
+                        },
+            "createTs": 1575508644,
+            "details": {
+                
             },
-"message": "success",
-"serviceType": "cloudTranscoder",
-"status": "serviceReady"
-}
-},
-"status": "STARTED",
-"taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
+              "msg": "Success",
+            "serviceType": "cloudTranscoder",
+            "status": "serviceReady"
+                                    }
+                        },
+    "status": "STARTED",
+    "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
 }
 ```
 
@@ -394,17 +395,102 @@ The meanings of the fields are shown in the following table:
 Response body example:
 
 ```json
- {
- "createTs": 1575508644,
- "services": { "cloudTranscoder": { config "transcoder": { "idleTimeout": 300,
- "inputRtcTokens": [ ], "inputs": { "audioInputs": { "inputSources": [ {
- "in": { "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989", "rtcUid": 1000001 } }, {
- "in": { "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989", "rtcUid": 1000002 } } ] }, "videoInputs": { "canvas": { "fps": 32668, "height": 720, "width": 1280 }, "inputSources": [ {
- "in": { "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989", "rtcUid": 1000001 }, "region": { "height": 360, "width": 640, "x": 0, "y": 0 }, "zOrder": 2 }, {
- "in": { "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989", "rtcUid": 1000002 }, "region": { "height": 400, "width": 680, "x": 0, "y": 0 }, "zOrder": 1 } ] } }, "outputs": [ {
- "audioOption": "profileType": "AUDIO_PROFILE_MUSIC_STANDARD" }, "out": { "rtcChannel": "transcoder_output_channel1620701216989", rtcToken: aab8b8f5a8cd4469a63042fcfafe7063, "rtcUid": 1000003 }, "videoOption": { "bitrate": 3000, "codec": "H264", "fps": 30, "height": 1280, "width": 720 } } ] } }, "createTs": 1575508644,
- "details": { "msg": "user call delete" }, "message": "quit", "serviceType": "cloudTranscoder", "status": "connecting"
- } }, "status": 200, "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56" }
+{
+    "createTs": 1575508644,
+    "services": {
+        "cloudTranscoder": {
+            config
+                "transcoder": {
+                    "idleTimeout": 300,
+                    "inputRtcTokens": [
+                                
+                            ],
+                    "inputs": {
+                        "audioInputs": {
+                            "inputSources": [
+{
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000001
+                                    }
+                        },
+{
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000002
+                                    }
+                                    }
+                            ]
+                        },
+                        "videoInputs": {
+                            "canvas": {
+                                "fps": 32668,
+                                "height": 720,
+                                "width": 1280
+                        },
+                            "inputSources": [
+{
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000001
+                        },
+                                    "region": {
+                                        "height": 360,
+                                        "width": 640,
+                                        "x": 0,
+                                        "y": 0
+                        },
+                                    "zOrder": 2
+                        },
+{
+                                    "in": {
+                                        "rtcChannel": "test_update_inputSource_zOrder_input_1620701216989",
+                                        "rtcUid": 1000002
+                        },
+                                    "region": {
+                                        "height": 400,
+                                        "width": 680,
+                                        "x": 0,
+                                        "y": 0
+                        },
+                                    "zOrder": 1
+                                    }
+                            ]
+                                    }
+                        },
+                    "outputs": [
+{
+                            "audioOption":
+                                "profileType": "AUDIO_PROFILE_MUSIC_STANDARD"
+                        },
+                            "out": {
+                                "rtcChannel": "transcoder_output_channel1620701216989",
+                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
+                                "rtcUid": 1000003
+                        },
+                            "videoOption": {
+                                "bitrate": 3000,
+                                "codec": "H264",
+                                "fps": 30,
+                                "height": 1280,
+                                "width": 720
+                                    }
+                                    }
+                            ]
+                                    }
+                        },
+    "createTs": 1575508644,
+            "details": {
+                        "msg": "user call delete"
+                        },
+                    "message": "quit",
+            "serviceType": "cloudTranscoder",
+                    "status": "serviceCompleted"
+                                    }
+                        },
+            "status": "STOPPED",
+    "taskId": "bc2d7b3ab6411e3fd4be96b92d312c56"
+}
 ```
 
 
@@ -463,72 +549,72 @@ The meanings of the fields are shown in the following table:
 Response body example:
 ```JSON
 {
-"createTs": 1620703975,
-"services": {
-"cloudTranscoder": {
-"config": {
-"transcoder": {
-"idleTimeOut": 5,
-"inputs": {
-"audioInputs": {
-"inputSources": [
+    "createTs": 1575508644,
+    "services": {
+        "cloudTranscoder": {
+            config
+                "transcoder": {
+                    "idleTimeout": 300,
+                    "inputs": {
+                        "audioInputs": {
+                            "inputSources": [
 {
-"in": {
-"rtcChannel": "test_delete_and_query1620703973593",
-"rtcUid": 1000001
-}
-}
-]
-},
-"videoInputs": {
-"canvas": {
-"height": 360,
-"width": 640
-},
-"inputSources": [
+                                    "in": {
+                                        "rtcChannel": "test_delete_and_query1620703973593",
+                                        "rtcUid": 1000001
+                                    }
+                                    }
+                            ]
+                        },
+                        "videoInputs": {
+                            "canvas": {
+                                        "height": 360,
+                                "width": 640
+                        },
+                            "inputSources": [
 {
-"in": {
-"rtcChannel": "test_delete_and_query1620703973593",
-"rtcUid": 1000001
-},
-"region": {
-"height": 360,
-"width": 640,
-"x": 0,
-"y": 0
-},
-"zOrder": 1
-}
-]
-}
-},
-"name": "test_transcoder1620703974",
-"outputs": [
+                                    "in": {
+                                        "rtcChannel": "test_delete_and_query1620703973593",
+                                        "rtcUid": 1000001
+                        },
+                                    "region": {
+                                        "height": 360,
+                                        "width": 640,
+                                        "x": 0,
+                                        "y": 0
+                        },
+                                    "zOrder": 1
+                                    }
+                            ]
+                                    }
+                        },
+                    "name": "teacher101",
+                    "outputs": [
 {
-"out": {
-"rtcChannel": "test_delete_and_query1620703973593",
-"rtcToken": "aab8b8f5a8cd4469a63042fcfafe7063",
-"rtcUid": 1000003
-},
-"videoOption": {
-"codec": "H264",
-"fps": 30,
-"height": 360,
-"width": 640
-}
-}
-]
-}
-},
-"createTs": 1620703975,
-"details": {},
-"message": "",
-"serviceType": "cloudTranscoder",
-"status": "serviceInProgress"
-}
-},
-"status": "IN_PROGRESS",
-"taskId": "3859fd4c53413165a7f6bdba48b67839"
+                            "out": {
+                                "rtcChannel": "test_delete_and_query1620703973593",
+                                rtcToken: aab8b8f5a8cd4469a63042fcfafe7063,
+                                "rtcUid": 1000003
+                        },
+                            "videoOption": {
+                                "codec": "H264",
+                                "fps": 30,
+                                        "height": 360,
+                                "width": 640
+                                    }
+                                    }
+                            ]
+                                    }
+                        },
+            "createTs": 1575508644,
+            "details": {},
+            message
+            "serviceType": "cloudTranscoder",
+            "status": "connecting"
+                                    }
+                        },
+    "status": "connecting"
+    "taskId": "3859fd4c53413165a7f6bdba48b67839"
 }
 ```
 
@@ -548,7 +634,7 @@ PATCH https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/tasks/
 ### Query Parameters
 
 - `builderToken`: (Required) String Get the parameter value **tokenName** of `builderToken` by `generating builderToken method`.
-- `sequenceId: (Required)Number The request sequence number is set by the developer. It starts counting from `0` and needs to be incremented to prevent the request from being out of order.`
+- `sequenceId`: (Required)Number The request sequence number is set by the developer. It starts counting from `0` and needs to be incremented to prevent the request from being out of order.
 - `updateMask`: (Required) String For the field mask of JSON encoding, please refer to the[ Google protobuf FieldMask document for details](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
 
 #### Request header
@@ -758,7 +844,7 @@ Response body example:
                                     }
                         },
                     "outputs": [
-                                {
+{
                             "audioOption":
                                 "profileType": "AUDIO_PROFILE_MUSIC_STANDARD"
                         },
@@ -778,7 +864,7 @@ Response body example:
                             ]
                                     }
                         },
-            "createTs": 1575508644,
+    "createTs": 1575508644,
             "details": {
                 
             },
