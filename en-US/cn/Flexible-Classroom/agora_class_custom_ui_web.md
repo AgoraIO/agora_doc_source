@@ -193,7 +193,7 @@ The following example shows how to add a custom basic UI component and use it in
 
 1. Create a custom folder under the `packages/agora-classroom-sdk/src/ui-kit/components``` directory and create the following files:
 
-   The `index.css` file
+   `index.css`
 
    ```css
    .custom {
@@ -206,7 +206,7 @@ The following example shows how to add a custom basic UI component and use it in
 }
    ```
 
-   The `index.tsx` file
+   `index.tsx`
 
    ```tsx
    import React, { FC } from 'react';
@@ -246,7 +246,7 @@ export const Custom: FC<CustomProps> = ({
 }
    ```
 
-   `The index.stories.tsx` file
+   `index.stories.tsx`
 
    ```tsx
    import React from 'react'
