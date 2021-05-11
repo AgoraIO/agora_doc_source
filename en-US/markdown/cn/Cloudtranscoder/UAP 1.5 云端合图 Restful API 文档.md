@@ -35,7 +35,7 @@ POST https://api.agora.io/v1/projects/<appid>/rtsc/cloud-service-builder/builder
 
 #### Request body
 
-The URL requires the following query string parameters:
+The request body requires the following query string parameters:
 
 | Field | Type | Description |
 |---|----|---|
