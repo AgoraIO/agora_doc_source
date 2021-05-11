@@ -193,7 +193,7 @@ The` AgoraEduWhiteBoardToolContext` class provides whiteboard tool-related metho
 func applianceSelected(_ mode: AgoraEduContextApplianceType)
 ```
 
-Select the whiteboard tool.
+Select a whiteboard editing tool.
 
 | Parameter | Description |
 | :----- | :-------------------------------------------------- |
@@ -205,11 +205,11 @@ Select the whiteboard tool.
 func colorSelected(_ color: UIColor)
 ```
 
-choose the color.
+Select a color.
 
 | Parameter | Description |
 | :------ | :----- |
-| `color` | colour. |
+| `color` | The color. |
 
 ### fontSizeSelected
 
@@ -217,7 +217,7 @@ choose the color.
 func fontSizeSelected(_ size: Int)
 ```
 
-The font size.
+Select a font size.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -229,11 +229,11 @@ The font size.
 func thicknessSelected(_ thick: Int)
 ```
 
-Choose the brush thickness.
+Select the line thickness.
 
 | Parameter | Description |
 | :--- | :--- |
-| `think` | Brush thickness. |
+| `thick` | The line thickness |
 
 ## AgoraEduWhiteBoardPageControlContext
 
@@ -243,7 +243,7 @@ Choose the brush thickness.
 func zoomOut()
 ```
 
-Zoom out  whiteboard. Each call is reduced by 10%.
+Zoom out the whiteboard. Each call is reduced by 10%.
 
 ### zoomIn
 
@@ -251,7 +251,7 @@ Zoom out  whiteboard. Each call is reduced by 10%.
 func zoomIn ()
 ```
 
-Zoom in on the whiteboard. Each time it is called, the zoom is 10%.
+Zoom in the whiteboard. Each time it is called, the zoom is 10%.
 
 ### prevPage
 
@@ -259,7 +259,7 @@ Zoom in on the whiteboard. Each time it is called, the zoom is 10%.
 func prevPage ()
 ```
 
-Turn to the previous page.
+Go to the previous page.
 
 ### nextPage
 
@@ -267,7 +267,7 @@ Turn to the previous page.
 func nextPage()
 ```
 
-Turn to the next page.
+Go to the next page.
 
 ### registerPageControlEventHandler
 
