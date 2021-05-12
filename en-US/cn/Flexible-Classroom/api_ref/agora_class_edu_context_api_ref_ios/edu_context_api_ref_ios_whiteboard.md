@@ -63,7 +63,6 @@ Refresh the size of the whiteboard. This method needs to be called when the size
 ### registerBoardEventHandler
 
 ```swift
-// event monitoring
 func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 ```
 
