@@ -42,7 +42,7 @@ AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appI
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `config` | The SDK global configuration, see [`AgoraEduSDKConfig`](#agoraedusdkconfig). |
+| `config` | The SDK global configuration. See [`AgoraEduSDKConfig`](#agoraedusdkconfig). |
 
 ### launch
 
@@ -59,7 +59,7 @@ Launches a flexible classroom.
 /** Classroom launching configuration */
 // The user name
 NSString *userName = @"XXX";
-// The user ID. Must be the same as the UID that you use for generating an RTM token.
+// The user ID. Must be the same as the user ID that you use for generating an RTM token.
 NSString *userUUid = @"XXX";
 // The classroom name
 NSString *roomName = @"XXX";
@@ -84,7 +84,7 @@ AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:us
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `config` | The classroom launching configuration, see [`AgoraEduLaunchConfig`](#agoraedulaunchconfig). |
+| `config` | The classroom launching configuration. See [`AgoraEduLaunchConfig`](#agoraedulaunchconfig). |
 | `delegate` | The SDK uses the [`AgoraEduClassroomDelegate`](#agoraeduclassroomdelegate) class to report events related to classroom launching to the app. |
 
 **Returns**
@@ -97,7 +97,7 @@ The` AgoraEduClassroom` class.
 + (void)configCoursewares:(NSArray<AgoraEduCourseware *> *)config;
 ```
 
-Configures downloading courseware before entering a classroom.
+Configures courseware downloading.
 
 **Sample code**
 
@@ -331,7 +331,7 @@ The classroom launching configuration. Used when calling [`launch`](#launch).
 | `token` | The RTM token used for authentication, see[ Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `boardRegion` | The area where the classroom is located. The area of each client must be the same, otherwise they cannot communicate with each other. |
+| `boardRegion` | The area where the classrooms is located. The area of each client must be the same, otherwise they cannot communicate with each other. |
 
 ### AgoraEduCourseware
 
