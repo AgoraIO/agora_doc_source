@@ -13,7 +13,7 @@ Agora provides aPaaS and PaaS solutions for online interactive classrooms. See t
 | Solution introduction | Use Flexible Classroom to implement online interactive classrooms. | Integrate the Agora RTC SDK, RTM SDK, Interactive Whiteboard SDK, and Cloud Recording service respectively to implement online interactive classrooms. |
 | Target customers | Suitable for customers with limited development resources, tight schedules, and medium demand for customization. | Suitable for customers with sufficient development resources and high demand for customization. |
 | Cost | Low | High |
-| Development time | As short as 15 minutes | One to three months |
+| Development time | 最短 15 分钟 | One to three months |
 | Features | Supports features including real-time audio and video communication, real-time messaging, interactive whiteboard, recording, screen sharing and so on. Provides the cloud service for classroom and user management. Flexible Classroom can be seamlessly connected with developers' other systems, such as their user management system and class management systems. | Developers implement real-time audio and video, real-time messaging, interactive whiteboard, and other functions all by themselves. |
 | Scalability | Medium | High |
 | Data security | Agora does not store any business data of customers. | Agora does not store any business data of customers. |
@@ -78,11 +78,11 @@ Teachers can share their screens, windows, or browser tabs with students in clas
 
 ### Recording and replay
 
-Teachers can start recording in the classroom. Flexible Classroom uses [Web Page Recording](https://docs.agora.io/cn/cloud-recording/cloud_recording_webpage_mode?platform=RESTful) to record the audio, video, and whiteboard content in a single file and provides a link to students after the recording finishes.
+Teachers can start recording in the classroom. 灵动课堂会通过[页面录制](https://docs.agora.io/cn/cloud-recording/cloud_recording_webpage_mode?platform=RESTful)将指定 URL 的页面内容和音频混合录制为一个 MP4 音视频文件，实现音视频内容、白板内容、课件内容同步录制。 录制结束后可提供回放链接供学生课后复习。
 
 ### Custom the classroom user interface
 
-With UIKit, developers have the freedom to customize the user interfaces, such as changing colors, changing buttons, adjusting layouts, adding logos, even if they do not understand the business logic of the flexible classroom.
+灵动课堂提供 UIKit。 开发者无需深入学习灵动课堂的核心业务逻辑，只需通过 UIKit 修改 UI 组件，即可自定义修改灵动课堂的 UI， 如修改颜色、更换按钮、调整布局、添加 logo 等，使在线互动课堂更为个性化。
 
 ### Extension app
 
