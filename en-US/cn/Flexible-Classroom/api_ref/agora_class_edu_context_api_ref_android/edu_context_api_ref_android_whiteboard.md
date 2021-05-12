@@ -294,7 +294,7 @@ Report the progress of the current courseware download.
 | Parameter | Description |
 | :--- | :--- |
 | `url` | The download link of the file. |
-| `progress` | The courseware download progress. The value range is 0 to 1. |
+| `progress` | 课件下载进度，取值范围为 0 到 1。 |
 
 ### onDownloadTimeout
 
