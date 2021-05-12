@@ -63,7 +63,6 @@ func boardRefreshSize()
 ### registerBoardEventHandler
 
 ```swift
-// 事件监听
 func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 ```
 
@@ -233,7 +232,7 @@ func thicknessSelected(_ thick: Int)
 
 | 参数 | 描述 |
 | :--- | :--- |
-|  `think`    |  画笔粗细。   |
+|  `thick`   |  画笔粗细。   |
 
 ## AgoraEduWhiteBoardPageControlContext
 

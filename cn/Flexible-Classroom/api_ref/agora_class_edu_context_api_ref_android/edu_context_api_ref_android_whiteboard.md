@@ -50,7 +50,7 @@ abstract fun selectThickness(thick: Int)
 
 | 参数 | 描述 |
 | :--- | :--- |
-|  `think`    |  画笔粗细。   |
+|  `thick`   |  画笔粗细。   |
 
 ### selectRoster
 
@@ -294,7 +294,7 @@ fun onDownloadProgress(url: String, progress: Float)
 | 参数 | 描述 |
 | :--- | :--- |
 |  `url`    |  课件下载 URL 地址。    |
-|  `progress`    | 课件下载进入，取值范围为 0 到 1。     |
+|  `progress`    | 课件下载进度，取值范围为 0 到 1。   |
 
 ### onDownloadTimeout
 
