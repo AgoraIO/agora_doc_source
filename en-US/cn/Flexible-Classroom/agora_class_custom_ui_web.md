@@ -1,10 +1,10 @@
 ## Overview
 
-Agora provides a complete[ Agora Classroom SDK on npm](https://www.npmjs.com/package/agora-classroom-sdk) for you to integrate. However, if the default UI in the Agora Classroom SDK cannot meet your needs, you can also obtain the source code of the Agora Classroom SDK to develop, debug, and compile by yourself. Agora Classroom SDK for Desktop 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/master) 仓库（release/apaas/1.1.0 分支）。 在 Agora Classroom SDK 中，灵动课堂的 UI 代码和核心业务逻辑相隔离，独立成 UIKit 和 EduCore 两个库，两者通过 [Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_web_overview?platform=Web) 产生关联。 For example, for the text chat function in the  Flexible Classroom, you need to send a message through a button, and at the same time you need to receive messages sent by other users. 这种情况下，我们在 UIKit 中可以调用 Chat Context 中的发送消息方法，并监听 Chat Context 中消息接收相关事件。
+Agora provides a complete[ Agora Classroom SDK on npm](https://www.npmjs.com/package/agora-classroom-sdk) for you to integrate. However, if the default UI in the Agora Classroom SDK cannot meet your needs, you can also obtain the source code of the Agora Classroom SDK to develop, debug, and compile by yourself. The source code of the Agora Classroom SDK for Desktop is located in the [CloudClass-Desktop ](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/master)repository on GitHub (release/apaas/1.1.0 branch). In the Agora Classroom SDK, the UI code of the Flexible Classroom Classroom is separated from the core business logic, and separated into two libraries, UIKit and EduCore, which are related through[ Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_web_overview?platform=Web). For example, for the text chat function in the  Flexible Classroom, you need to send a message through a button, and at the same time you need to receive messages sent by other users. In this case, we can call the sending message method in the Chat Context in UIKit and monitor the message reception related events in the Chat Context.
 
 ![](https://web-cdn.agora.io/docs-files/1619696813295)
 
-UIKit 中提供灵动课堂的 UI 组件代码，并引入开源工具 [Storybook](https://storybook.js.org/docs/react/get-started/introduction) 来开发和管理 UI 组件。 UIKit 的源码位于 GitHub 上 CloudClass-Desktop 仓库（release/apaas/1.1.0 分支）中 `packages/agora-classroom-sdk/src/ui-kit` 目录下，项目结构介绍如下：
+UIKit provides  Flexible Classroom UI component code, and introduces the open source tool [Storybook](https://storybook.js.org/docs/react/get-started/introduction) to develop and manage UI components. You can find the source code of the UIKit in the packages/`agora-scenario-ui-`kit/src folder in the CloudClass-Desktop repository on GitHub (Branch dev/apaas/1.1.0). The project structure of the UIKit is as follows:
 
 | Folder | Description |
 | :------------- | :----------------------------------------------------------- |
@@ -51,7 +51,7 @@ yarn
 yarn bootstrap
    ```
 
-2. 运行以下命令打开 Storybook 进行快速调整 UI。
+2. Run the following command to open Storybook to quickly adjust the UI.
 
    ```shell
    # Open storybook
@@ -62,7 +62,7 @@ yarn dev:ui-kit
 
    ![storybook-example](https://web-cdn.agora.io/docs-files/1617714921810)
 
-   你可以通过直接修改 `packages/agora-classroom-sdk/src/ui-kit/components` 目录下基础 UI 组件的源码文件来修改样式，保存代码后即可在 Storybook 中实时看到效果。 如果灵动课堂的基础 UI 组件无法满足你的需求，你可以自行在 `packages/agora-classroom-sdk/src/ui-kit/components` 目录下新增基础 UI 组件，然后在 `packages/agora-classroom-sdk/src/ui-kit/capabilities` 目录下修改基础 UI 组件的组合规则调整灵动课堂布局。 For details, see the [UI customization examples](#example).
+   You can directly edit the source code of a component in the `packages/agora-scenario-ui-kit/src/components` folder to modify the UI of this component. After saving the code, you can see the changed UI in Storybook. If the existing basic UI components of Flexible Classroom cannot meet your needs, you can` add a new` UI component in the packages/agora-scenario-ui-kit/src/components` directory, and change the code of classroom-`level UI components in the packages/agora-classroom-sdk/src/ui to apply the UI component that you add to Flexible Classroom. For details, see the [UI customization examples](#example).
 
 3. The UI adjustments in Storybook are all based on mock data, which can help you quickly view the UI display based on component properties. If you need to adjust the UI for the real scene, it is recommended to adjust the UI through the Agora Classroom SDK development mode by referring to the following steps.
 
