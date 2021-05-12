@@ -1,4 +1,4 @@
-This page provides  Agora reference of Agora Classroom SDK for Android.
+This page provides the Kotlin API reference of the Agora Classroom SDK for Android.
 
 ## AgoraEduSDK
 
@@ -39,7 +39,7 @@ AgoraEduSDK.setConfig(new AgoraEduSDKConfig(appId, eyeCare));
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
-| `agoraEduSDKConfig` | The SDK global configuration, see [`AgoraEduSDKConfig`](#agoraedusdkconfig). |
+| `agoraEduSDKConfig` | The SDK global configuration. See [`AgoraEduSDKConfig`](#agoraedusdkconfig). |
 
 ### launch
 
@@ -57,8 +57,8 @@ Launches a flexible classroom.
 /** Classroom launching configuration */
 // The user name
 String userName = "XXX";
-// The user ID. Must be the same as the UID that you use for generating an RTM token.
-String userUUid = "XXX";
+// The user ID. Must be the same as the user ID that you use for generating an RTM token.
+String userUuid = "XXX";
 // The classroom name
 String roomName = "XXX";
 // The classroom ID
@@ -73,10 +73,10 @@ String rtmToken = "";
 long startTime = System.currentTimeMillis() + 100;
 // The duration (ms) of the class, determined by the first user joining the classroom.
 long duration = 310L;
-// The area where the classroom is located, the area of each client must be the same, otherwise it will not be able to communicate. 
+// The area where the classroom is located. Each client must use the same be the same, otherwise, it will not be able to communicate. 
 String region = AgoraEduRegionStr.cn;
 AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfig(
-        userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration);
+        userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration, region);
 AgoraEduClassRoom classRoom = AgoraEduSDK.launch(getApplicationContext(), agoraEduLaunchConfig, (state) -> {
     Log.e(TAG, "launch-classroom-state:" + state.name());
 });
@@ -87,12 +87,12 @@ AgoraEduClassRoom classRoom = AgoraEduSDK.launch(getApplicationContext(), agoraE
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
 | `context` | The context of the app. |
-| `config` | The classroom launching configuration, see [`AgoraEduLaunchConfig`](#agoraedulaunchconfig). |
-| `callback` | The SDK uses the[`  AgoraEduLaunchCallback`](#agoraedulaunchcallback) class to report events related to classroom launching to the app. |
+| `config` | The classroom launching configuration. See [`AgoraEduLaunchConfig`](#agoraedulaunchconfig). |
+| `callback` | The SDK uses the [`  AgoraEduLaunchCallback`](#agoraedulaunchcallback) class to report events related to classroom launching to the app. |
 
 **Returns**
 
-The` AgoraEduClassRoom` class.
+`AgoraEduClassRoom`
 
 ### configCoursewares
 
@@ -100,7 +100,7 @@ The` AgoraEduClassRoom` class.
 public static void configCoursewares(@NotNull List<AgoraEduCourseware> wares);
 ```
 
-Configures downloading courseware before entering a classroom.
+Configures courseware downloading.
 
 **Sample code**
 
@@ -357,7 +357,7 @@ The classroom launching configuration. Used when calling [`launch`](#launch).
 | `rtmToken` | The RTM token used for authentication, see[ Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `boardRegion` | The area where the classroom is located. The area of each client must be the same, otherwise they cannot communicate with each other. See [](). |
+| `boardRegion` | The area where the classrooms is located. The area of each client must be the same, otherwise they cannot communicate with each other. See [](). |
 
 ### AgoraEduCourseware
 
@@ -420,18 +420,18 @@ The detailed information of a page displayed on the whiteboard. Set in [`SceneIn
 
 ```java
 object AgoraEduRegionStr {
-    Val cn = "CN-HZ"
+    val cn = "cn-hz"
     val na = "us-sv"
     val eu = "gb-lon"
     val ap = "sg"
 }
 ```
 
-The area where the classroom is located.
+The area where the classrooms is located.
 
 | Attributes | Description |
 | :--- | :--------- |
 | `cn` | Mainland China. |
-| `on` | Kitami. |
-| `me` | Europe. |
+| `na` | North America. |
+| `eu` | Europe. |
 | `ap` | Asia Pacific. |
