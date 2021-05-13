@@ -1,5 +1,3 @@
-# User List Context
-
 ## UserContext
 
 `UserContext` class provides user-list-related methods that can be called by your app.
