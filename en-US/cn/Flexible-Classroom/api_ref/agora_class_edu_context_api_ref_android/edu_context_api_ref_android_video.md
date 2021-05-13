@@ -10,7 +10,7 @@ The` VideoContext` class provides media control-related methods that can be call
 abstract fun updateVideo(enabled: Boolean)
 ```
 
-Turn local video on or off.
+Enable or disable the local video.
 
 | Parameter | Description |
 | :-------- | :----------------- |
@@ -22,7 +22,7 @@ Turn local video on or off.
 abstract fun updateAudio(enabled: Boolean)
 ```
 
-Turn local audio on or off.
+Enable or disable the local audio.
 
 | Parameter | Description |
 | :-------- | :----------------- |
@@ -38,8 +38,8 @@ Start or stop rendering the local video stream.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------- |
-| `container` | Video Container. If ``viewGroup` is null`, it means to close the stream rendering. |
-| `streamUuid` | Stream ID. |
+| `container` | The video container. `Setting viewGroup` as `null` means stopping rendering the video stream. |
+| `streamUuid` | The stream ID. |
 
 ## VideoHandler
 
@@ -67,8 +67,8 @@ Prompt for volume update.
 
 | Parameter | Description |
 | :----------- | :------ |
-| `volume` | volume. |
-| `streamUuid` | Stream ID. |
+| `volume` | The volume. |
+| `streamUuid` | The stream ID. |
 
 ### onMessageUpdated
 
@@ -87,5 +87,5 @@ There are the following tips:
 
 | Parameter | Description |
 | :---- | :--------- |
-| `msg` | The event message. |
+| `msg` | The tip. |
 
