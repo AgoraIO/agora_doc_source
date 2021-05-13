@@ -1,5 +1,3 @@
-# Screenshare Context
-
 ## AgoraEduScreenShareContext
 
 `The AgoraEduScreenShareContext` class provides screen sharing related methods that can be called by App.
