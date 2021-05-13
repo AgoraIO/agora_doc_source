@@ -1,27 +1,34 @@
-# Launch a Classroom
-
 Use this guide to integrate the Agora Classroom SDK into your Web project and call APIs to launch a flexible classroom.
 
-<div class="alert note"><li>Before proceeding, ensure that you read the prerequisites required for using Flexible Classroom.<li>On the Web client, a user can join a classroom as teachers and students.</div>
+<div class="alert note"><li>Before proceeding, ensure that you make the preparations required for using Flexible Classroom<a href="./agora_class_prep"></a>.<li>On the Web client, a user can join a classroom as teachers and students.</div>
 
 ## Sample project
 
 Agora provides an open-source [sample project](https://github.com/AgoraIO-Community/CloudClass-Desktop) on GitHub, which demonstrates how to integrate the Agora Classroom SDK and call APIs to launch a flexible classroom. You can download and read the source code.
 
-Agora also provides a [sample project](https://codepen.io/agoratechwriter/pen/OJRrOxg) on CodePen. After you make all the [preparations](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web), you can pass in the [Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web#1-create-an-agora-project-and-get-the-agora-app-id-and-app-certificate), an [RTM Token](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web#5-generate-an-rtm-token), and a user ID in the sample project. The user ID must be consistent with the one you used for generating an RTM Token. Then you can immediately run the sample project to experience a flexible classroom.
-
 ## Set up the development environment
 
-- The latest version of [Google Chrome](https://www.google.cn/chrome/) on desktop.
+- The latest version of[ Google Chrome](https://www.google.cn/chrome/) on desktop.
 - Physical media input devices, such as a built-in camera and a built-in microphone.
 
 ## Integrate the Agora Classroom SDK
 
-You can integrate the Agora Classroom SDK into your project through the CDN. Add the following code to the line before `<style>` in your project.
+### Use npm to get the SDK
 
-```html
-<script src="https://download.agora.io/edu-apaas/edu_sdk_1.0.js"></script>
-```
+This method requires npm. See Install npm for details[](https://www.npmjs.com.cn/getting-started/installing-node/).
+
+1. Run the following command to install the SDK.
+
+   ```bash
+   npm install agora-classroom-sdk
+   ```
+
+2. Import the SDK in the index.js`` file:
+
+   ```javascript
+   import {AgoraEduSDK} from 'agora-classroom-sdk'
+   ```
+
 
 ## Global configuration
 
@@ -29,33 +36,34 @@ Call the `AgoraEduSDK.config` method to configure the SDK globally. Set the foll
 
 | Parameter | Description |
 | :------ | :----------------------------------------------------------- |
-| `appId` | The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web#1-create-an-agora-project-and-get-the-agora-app-id-and-app-certificate). |
+| `appId` | The Agora App ID, see[ Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web#1-创建-agora-项目并获取-app-id-和-app-证书). |
 
 ```js
 AgoraEduSDK.config({
-   // Agora App ID
-   appId: '<YOUR AGORA APPID>',
+  // Agora App ID
+  appId: '<YOUR AGORA APPID>',
 })
 ```
 
 ## Launch a classroom
 
-You need to create a classroom instance, mount the instance on a Dom element and call the `launch` method to enter the classroom. When calling `launch`, you need to pass in a JSON object containing the following parameters:
+You need to create a classroom instance, mount the instance on a Dom element and call the launch`` method to enter the classroom. When calling `launch`, you need to pass in a JSON object containing the following parameters:
 
-| Parameter | Type | Description |
+| Parameter | Category | Description |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `rtmToken` | String | The RTM token used for authentication, see [Generate an RTM Token](https://docs.agora.io/en/agora-class/agora_class_prep?platform=Web#5-generate-an-rtm-token). |
-| `userUuid` | String | User ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `rtmToken` | String | The RTM token used for authentication, see[ Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep?platform=Web#5-生成-rtm-token). |
+| `userUuid` | String | User ID. This is the globally unique identifier of a user.** Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `userName` | String | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `roomUuid` | String | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0 to 9.<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomUuid` | String | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | String | The room name for display in the classroom. The string length must be less than 64 bytes. |
-| `roleType` | EduRoleTypeEnum | The role of the user in the classroom:<li>`1`: Teacher.<li>`2`: Student. |
-| `roomType` | EduRoomTypeEnum | The room type:<li>`0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student.<li>`4`: A small classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in the classroom is 500. During the class, the teacher can invite a student to "take the floor" and share ideas with others. |
+| `roleType` | EduRoleTypeEnum | The role of the user in the classroom:<li>`0`: Audience, only used for page recording.</li> <li>`1`: Teacher.</li><li>`2`: Student.</li><li>`3`: Teaching assistant.</li> |
+| `roomType` | EduRoomTypeEnum | The room type:<li>`0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student.<li>`2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher.<li>`4`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. |
 | `listener` | ListenerCallback | The state of classroom launching. |
 | `pretest` | boolean | Whether to enable the pre-class device test:<li>`true`: Enable the pre-class device test. After this function is enabled, end users can see a page for the device test before entering the classroom. They need to test whether their camera, microphone, and speaker can work properly.<li>`false`: Disable the pre-class device test. |
 | `language` | LanguageEnum | The UI language:<li>`zh`: zh-CN.<li>`en`: en-US. |
 | `startTime` | Number | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | Number | The duration (ms) of the class, determined by the first user joining the classroom. |
+| `recordUrl` | String | (Optional) URL address to be recorded. Developers need to pass in the URL of the web page deployed by themselves for page recording, such as `https://cn.bing.com/recordUrl`. |
 | `courseWareList` | CourseWareList | (Optional) The courseware configuration object for downloading the courseware assigned by the educational institution. This courseware cannot be added or deleted. After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 | `personalCourseWareList` | CourseWareList | (Optional) The courseware configuration object for downloading the courseware uploaded by a teacher. After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 
@@ -82,7 +90,7 @@ let courseWareList = [{
     size: 10000,
     updateTime: new Date().getTime(),
     ext: "pptx",
-    url: null,
+    url:null,
     scenes: sceneInfos,
     taskUuid: "xxxx",
     taskToken: "xxx",
@@ -110,5 +118,3 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
 ```
 
 After successful launching a classroom, you can see the following page:
-
-![](https://web-cdn.agora.io/docs-files/1618562379189)
