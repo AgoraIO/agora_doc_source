@@ -1,5 +1,3 @@
-# Whiteboard Context
-
 ## WhiteboardContext
 
 `WhiteboardContext` provides the methods that can be called by your app for the whiteboard.
