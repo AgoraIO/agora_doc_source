@@ -2,7 +2,7 @@
 
 ## AgoraEduUserContext
 
-The` AgoraEduUserContext` class provides methods related to the user list that can be called by the App.
+`AgoraEduUserContext` provides user-list-related methods that can be called by your app.
 
 ### muteVideo
 
@@ -10,11 +10,11 @@ The` AgoraEduUserContext` class provides methods related to the user list that c
 func muteVideo(_ mute: Bool)
 ```
 
-Turn local video on or off.
+Enable or disable the local video.
 
 | Parameter | Description |
 | :----- | :----------------- |
-| `mute` | Whether to close the local video. |
+| `mute` | Whether to disable the local video. |
 
 ### muteAudio
 
@@ -22,7 +22,7 @@ Turn local video on or off.
 func muteAudio(_ mute: Bool)
 ```
 
-Turn local audio on or off.
+Enable or disable the local audio.
 
 | Parameter | Description |
 | :----- | :----------------- |
@@ -38,8 +38,8 @@ Start or stop rendering the local video stream.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------- |
-| `view` | Video Container. The ``view` is nil`, which means that streaming rendering is closed. |
-| `streamUuid` | Stream ID. |
+| `view` | The video container. `Setting view` as `nil` means stopping rendering the video stream. |
+| `streamUuid` | The stream ID. |
 
 ### registerEventHandler
 
@@ -47,7 +47,7 @@ Start or stop rendering the local video stream.
 func registerEventHandler(_ handler: AgoraEduUserHandler)
 ```
 
-Register event listener.
+Register the event listener.
 
 | Parameter | Description |
 | :-------- | :------------------------------ |
@@ -55,7 +55,7 @@ Register event listener.
 
 ## AgoraEduUserHandler
 
-The` AgoraEduUserHandler` class is used to report event callbacks related to the user list to the App.
+`AgoraEduUserHandler` reports user-list-related event callbacks to the app.
 
 ### onUpdateUserList
 
@@ -63,11 +63,11 @@ The` AgoraEduUserHandler` class is used to report event callbacks related to the
 @objc optional func onUpdateUserList(_ list: [AgoraEduContextUserDetailInfo])
 ```
 
-Prompt that the user list has been updated. Only display information about online users.
+Occurs when the user list is updated. Only display the information of online users.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `list` | Online user list, an array composed of `AgoraEduContextUserDetailInfo` objects. |
+| `list` | The list of online users, which is an array of `AgoraEduContextUserDetailInfo` objects. |
 
 ### onUpdateCoHostList
 
@@ -75,11 +75,11 @@ Prompt that the user list has been updated. Only display information about onlin
 @objc optional func onUpdateCoHostList(_ list: [AgoraEduContextUserDetailInfo])
 ```
 
-Prompt that the list of on-stage users has been updated. Only display the information of users who are on the stage, including users who are not online.
+Occurs when the list of on-stage users is updated. Only display the information of users who are on the stage, including the offline users.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `list` | The list of on-stage users, an array composed of `AgoraEduContextUserDetailInfo` objects. |
+| `list` | The list of on-stage users, which is an array of `AgoraEduContextUserDetailInfo` objects. |
 
 ### onShowUserReward
 
@@ -87,11 +87,11 @@ Prompt that the list of on-stage users has been updated. Only display the inform
 @objc optional func onShowUserReward(_ user: AgoraEduContextUserInfo)
 ```
 
-Receive rewards.
+Occurs when the local user receives a reward.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------- |
-| `userInfo` | For user information, see AgoraEduContextUserInfo for details``. |
+| `userInfo` | The user information. See `AgoraEduContextUserInfo` for details. |
 
 ### onKickedOut
 
@@ -99,7 +99,7 @@ Receive rewards.
 @objc optional func onKickedOut()
 ```
 
-The local client is brought up in the classroom.
+Occurs when the local user is kicked out of the classroom.
 
 ### onUpdateAudioVolumeIndication
 
@@ -107,12 +107,12 @@ The local client is brought up in the classroom.
 @objc optional func onUpdateAudioVolumeIndication(_ value: Int, streamUuid: String)
 ```
 
-Prompt volume.
+Occurs when the volume of the local user is updated.
 
 | Parameter | Description |
 | :----------- | :------ |
-| `volume` | volume. |
-| `streamUuid` | Stream ID. |
+| `volume` | The volume. |
+| `streamUuid` | The stream ID. |
 
 ### onShowUserTips
 
@@ -120,15 +120,15 @@ Prompt volume.
 @objc optional func onShowUserTips(_ message: String)
 ```
 
-Report user-related prompt information.
+Reports the tips related to the user.
 
 There are the following tips:
 
-- Your camera is turned off.
-- Your camera is turned on.
-- Your microphone is turned off.
-- Your microphone is turned on.
+- Your camera has been turned off.
+- Your camera has been turned on.
+- Your microphone has been turned off.
+- Your microphone has been turned on.
 
 | Parameter | Description |
 | :-------- | :--------- |
-| `message` | The event message. |
+| `message` | The tip. |
