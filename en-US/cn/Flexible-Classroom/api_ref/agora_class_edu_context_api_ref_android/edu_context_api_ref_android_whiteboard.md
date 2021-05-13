@@ -10,11 +10,11 @@
 abstract fun selectAppliance(type: WhiteboardApplianceType)
 ```
 
-选中白板基础工具。
+Select a whiteboard basic editing tool.
 
 | Parameter | Description |
 | :----- | :------------------------------------------------- |
-| `type` | 白板基础工具类型，详见 `WhiteboardApplianceType`。 |
+| `type` | The whiteboard editing tool type. See `WhiteboardApplianceType`. |
 
 ### selectColor
 
@@ -58,7 +58,7 @@ Select the line thickness.
 abstract fun selectRoster(anchor: View)
 ```
 
-选中用户列表。
+Click the user list.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -72,7 +72,7 @@ abstract fun setBoardInputEnable(enable: Boolean)
 
 | Parameter | Description |
 | :--- | :--- |
-| `enable` | 是否可以使用白板基础工具和白板页面控制工具。 白板弹出进度框或下载失败框的时候，白板基础工具和白板页面控制工具工具条不可使用。 |
+| `enable` | Enable or disable the whiteboard basic editing tools and page controller. When a whiteboard courseware downloading progress bar or dialog box appears, the whiteboard basic tools and page controller are not available. |
 
 ### skipDownload
 
@@ -177,7 +177,7 @@ Get the whiteboard container ViewGroup.
 fun onDrawingConfig(config: WhiteboardDrawingConfig)
 ```
 
-Return to the initial tool configuration of the whiteboard.
+Indicates the initial tool configuration of the whiteboard.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -189,11 +189,11 @@ Return to the initial tool configuration of the whiteboard.
 fun onDrawingEnabled(enabled: Boolean)
 ```
 
-Report whether the whiteboard editing tools are enabled.
+报告白板基础工具是否可用。
 
 | Parameter | Description |
 | :--- | :--- |
-| `enabled` | Whether the whiteboard editing tools are enabled. |
+| `enabled` | 白板基础工具是否可用。 |
 
 
 ### onPageNo
@@ -202,7 +202,7 @@ Report whether the whiteboard editing tools are enabled.
 fun onPageNo(no: Int, count: Int)
 ```
 
-Report the current page number and total page number of the whiteboard.
+Indicates the current page number and total page number of the whiteboard.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -216,7 +216,7 @@ Report the current page number and total page number of the whiteboard.
 fun onPagingEnabled(enabled: Boolean)
 ```
 
-Report whether the paging function is enabled.
+Indicates whether the whiteboard page navigator is enabled.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -228,7 +228,7 @@ Report whether the paging function is enabled.
 ```kotlin
 fun onZoomEnabled(zoomOutEnabled: Boolean?, zoomInEnabled: Boolean?)
 ```
-Report whether the zooming function is enabled.
+Indicates whether the page zoom function is enabled.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -240,22 +240,22 @@ Report whether the zooming function is enabled.
 ```kotlin
 fun onFullScreenEnabled(enabled: Boolean)
 ```
-Report whether the can be a full-screen whiteboard.
+Indicates whether the whiteboard full-screen function is enabled.
 
 | Parameter | Description |
 | :--- | :--- |
-| `enabled` | Whether whiteboard can be full screen. |
+| `enabled` | Whether the whiteboard full-screen function is enabled. |
 
 ### onFullScreenChanged
 
 ```kotlin
 fun onFullScreenChanged(isFullScreen: Boolean)
 ```
-Report whether the current whiteboard is full screen.
+Indicates whether the whiteboard is full screen.
 
 | Parameter | Description |
 | :--- | :--- |
-| `isFullScreen` | Whether the current whiteboard is full screen. |
+| `isFullScreen` | Whether the whiteboard is full screen. |
 
 
 ### onInteractionEnabled
@@ -268,7 +268,7 @@ Indicates whether the whiteboard page controller is enabled.
 
 | Parameter | Description |
 | :--- | :--- |
-| `enabled` | Whether the page control toolbar is enabled. |
+| `enabled` | 白板页面控制工具是否可用。 |
 
 
 ### onLoadingVisible
