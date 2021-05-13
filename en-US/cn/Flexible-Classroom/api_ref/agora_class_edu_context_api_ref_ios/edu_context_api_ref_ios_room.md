@@ -18,7 +18,7 @@ Leave the class.
 func registerEventHandler(_ handler: AgoraEduRoomHandler)
 ```
 
-Register event listener.
+Register the event listener.
 
 | Parameter | Description |
 | :-------- | :------------------------------ |
