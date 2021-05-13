@@ -58,7 +58,7 @@ func retryDownload(_ url: String)
 func boardRefreshSize()
 ```
 
-刷新白板大小。在白板容器大小发送变化的时候，需要调用该方法
+刷新白板大小。在白板容器大小发生变化时，需要调用该方法。
 
 ### registerBoardEventHandler
 
@@ -184,7 +184,7 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 
 ## AgoraEduWhiteBoardToolContext
 
-`AgoraEduWhiteBoardToolContext` 类提供可供 App 调用的白板工具相关方法。
+`AgoraEduWhiteBoardToolContext` 类提供可供 App 调用的白板基础工具相关方法。
 
 ### applianceSelected
 
