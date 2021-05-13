@@ -1,4 +1,4 @@
-This page provides Swift API reference for  Flexible Classroom iOS.
+本页提供 Agora Classroom SDK for iOS 的 Swift API 参考。
 
 ## AgoraEduSDK
 
