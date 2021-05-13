@@ -309,4 +309,4 @@ Cancel the whiteboard authorization.
 async grantUserPermission(userUuid: string): void
 ```
 
-Grant designated students whiteboard permissions.
+给予指定学生白板权限。
