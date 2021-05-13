@@ -42,10 +42,6 @@ data class WhiteboardDrawingConfig(
 
 whiteboard tool attribute configuration class.
 
-| Parameter | Description |
-| :--- | :--- |
-|  |  |
-
 ## EduContextNetworkState
 
 ```kotlin
