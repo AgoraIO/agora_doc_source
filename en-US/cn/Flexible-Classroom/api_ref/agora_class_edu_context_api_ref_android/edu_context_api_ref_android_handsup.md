@@ -1,5 +1,3 @@
-# Hands-up Context
-
 ## HandsUpContext
 
 The` HandsUpContext` class provides hands-up related methods that can be called by App.
