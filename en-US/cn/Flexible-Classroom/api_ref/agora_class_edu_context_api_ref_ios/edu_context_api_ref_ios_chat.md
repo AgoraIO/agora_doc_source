@@ -48,7 +48,7 @@ Get historical news.
 func registerEventHandler(_ handler: AgoraEduMessageHandler)
 ```
 
-Register event listener.
+Register the event listener.
 
 | Parameter | Description |
 | :-------- | :--------------------------------- |
@@ -110,4 +110,4 @@ There are the following tips:
 
 | Parameter | Description |
 | :-------- | :--------- |
-| `message` | The event message. |
+| `message` | The tip. |
