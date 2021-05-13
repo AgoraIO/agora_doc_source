@@ -1,8 +1,6 @@
-# Chat Context
-
 ## ChatContext
 
-The` ChatContext` class provides messaging and chat-related methods that can be called by the App.
+`ChatContext` provides the methods that can be called by your app for the chat module.
 
 ### sendLocalMessage
 
@@ -10,13 +8,13 @@ The` ChatContext` class provides messaging and chat-related methods that can be 
 abstract fun sendLocalMessage (message: String, timestamp: Long, callback: EduContextCallback <EduContextChatItemSendResult>): EduContextChatItem
 ```
 
-Send chat messages.
+Send a message.
 
 | Parameter | Description |
 | :---------- | :------------------------------------------------ |
-| `message` | Message content. |
-| `timestamp` | The timestamp of the sent message. |
-| `callback` | Get the message sending` result asynchronously through EduContextCallback`. |
+| `message` | The message. |
+| `timestamp` | The timestamp when the message is sent. |
+| `callback` | Get the result of sending the message asynchronously through `EduContextCallback`. |
 
 ### fetchHistory
 
@@ -24,17 +22,17 @@ Send chat messages.
 abstract fun fetchHistory(startId: Int?, count: Int? = 50, callback: EduContextCallback<List<EduContextChatItem>>)
 ```
 
-Get historical news.
+Fetch the message history.
 
 | Parameter | Description |
 | :--------- | :-------------------------------------------- |
-| `startId` | The messageId `is passed in`, which indicates which message to get from. |
+| `startId` | You need to pass in a `messageId`, which indicates you need to get this message and messages sent before this message. |
 | `count` | The number of messages you want to get. |
-| `callback` | Acquire historical messages asynchronously through` EduContextCallback`. |
+| `callback` | Get the result of fetching the message history asynchronously through `EduContextCallback`. |
 
 ## IChatHandler
 
-The` IChatHandler` class is used to report message chat-related event callbacks to the App.
+`IChatHandler` reports the message-related event callbacks to your app. 
 
 ### onReceiveMessage
 
@@ -42,11 +40,11 @@ The` IChatHandler` class is used to report message chat-related event callbacks 
 fun onReceiveMessage (item: EduContextChatItem)
 ```
 
-Receive chat message.
+Occurs when the local client receives a message.
 
 | Parameter | Description |
 | :----- | :---------------------------------------- |
-| `item` | Chat message object, see EduContextChatItem for details``. |
+| `item` | The message object. See `EduContextChatItem` for details. |
 
 ### onReceiveChatHistory
 
@@ -54,11 +52,11 @@ Receive chat message.
 fun onReceiveChatHistory(history: List<EduContextChatItem>)
 ```
 
-Get historical chat messages.
+Occurs when the local client receives the message history.
 
 | Parameter | Description |
 | :-------- | :-------------------------------------------------------- |
-| `history` | An array composed of multiple chat message objects, see EduContextChatItem for details``. |
+| `history` | An array of message objects. See `EduContextChatItem` for details. |
 
 ### onChatAllowed
 
@@ -66,11 +64,11 @@ Get historical chat messages.
 fun onChatAllowed(allowed: Boolean)
 ```
 
-Chat permissions have changed
+Occurs when the chat permission changes.
 
 | Parameter | Description |
 | :-------- | :--------------------------------- |
-| `allowed` | Do you have permission to chat with messages (being banned). |
+| `allowed` | Whether the local client has the permission of sending chat messages. |
 
 ### onChatTips
 
@@ -78,12 +76,12 @@ Chat permissions have changed
 fun onChatTips(tip: String)
 ```
 
-Report the prompt message during the chat.
+Reports the tips related to the chat.
 
 There are the following tips:
 
-- Mute mode is turned on.
-- Mute mode is turned off.
+- You have no permission of sending chat messages.
+- You have the permission of sending chat messages.
 
 | Parameter | Description |
 | :---- | :--------- |
