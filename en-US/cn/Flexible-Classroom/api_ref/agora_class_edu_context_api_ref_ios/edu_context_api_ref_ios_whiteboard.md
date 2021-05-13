@@ -14,7 +14,7 @@ Enable or disable the whiteboard basic editing tools.
 
 | Parameter | Description |
 | :------- | :--------------------- |
-| `enable` | 是否可以使用白板基础工具。 |
+| `enable` | Whether to enable the whiteboard basic editing tools. |
 
 ### skipDownload
 
@@ -58,7 +58,7 @@ Retry the courseware download.
 func boardRefreshSize()
 ```
 
-Refresh the whiteboard size. 在白板容器大小发送变化的时候，需要调用该方法
+Refresh the whiteboard size. 在白板容器大小发生变化时，需要调用该方法。
 
 ### registerBoardEventHandler
 
@@ -184,7 +184,7 @@ Occurs when the whiteboard permission changes.
 
 ## AgoraEduWhiteBoardToolContext
 
-`AgoraEduWhiteBoardToolContext` 类提供可供 App 调用的白板工具相关方法。
+`AgoraEduWhiteBoardToolContext` 类提供可供 App 调用的白板基础工具相关方法。
 
 ### applianceSelected
 
