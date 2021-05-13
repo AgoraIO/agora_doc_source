@@ -78,7 +78,7 @@ After initialization, create an `AgoraEduLaunchConfig` instance for the classroo
 /** Classroom launching configuration */
 // The user name
 NSString *userName = @"XXX";
-// The user ID. Must be the same as the UID that you use for generating an RTM token.
+// The user ID. Must be the same as the user ID that you use for generating an RTM token.
 NSString *userUUid = @"XXX";
 // The classroom name
 NSString *roomName = @"XXX";
