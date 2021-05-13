@@ -2,7 +2,7 @@
 
 ## AgoraEduWhiteBoardContext
 
-The` AgoraEduWhiteBoardContext` class provides whiteboard control related methods that can be called by App.
+`AgoraEduWhiteBoardContext` provides whiteboard-related methods that can be called by your app.
 
 ### boardInputEnable
 
@@ -10,11 +10,11 @@ The` AgoraEduWhiteBoardContext` class provides whiteboard control related method
 func boardInputEnable(_ enable: Bool)
 ```
 
-设置是否可以使用白板基础工具。
+Enable or disable the whiteboard basic editing tools.
 
 | Parameter | Description |
 | :------- | :--------------------- |
-| `enable` | Is it possible to use whiteboard tools. |
+| `enable` | 是否可以使用白板基础工具。 |
 
 ### skipDownload
 
@@ -58,7 +58,7 @@ Retry the courseware download.
 func boardRefreshSize()
 ```
 
-Refresh the size of the whiteboard. This method needs to be called when the size of the whiteboard container changes
+Refresh the whiteboard size. 在白板容器大小发送变化的时候，需要调用该方法
 
 ### registerBoardEventHandler
 
@@ -70,7 +70,7 @@ Register the event listener.
 
 | Parameter | Description |
 | :-------- | :--------------------------------- |
-| `handler` | See AgoraEduWhiteBoardHandler for details``. |
+| `handler` | See `AgoraEduWhiteBoardHandler` for details. |
 
 ## AgoraEduWhiteBoardHandler
 
@@ -80,7 +80,7 @@ Register the event listener.
 @objc optional func onGetBoardContainer() -> UIView
 ```
 
-Get the whiteboard container View.
+Gets the whiteboard container view.
 
 ### onSetDrawingEnabled
 
@@ -88,11 +88,11 @@ Get the whiteboard container View.
 @objc optional func onSetDrawingEnabled(_ enabled: Bool)
 ```
 
-报告白板基础工具是否可用。
+Indicates whether the whiteboard basic editing tools are enabled.
 
 | Parameter | Description |
 | :-------- | :----------------- |
-| `enabled` | 白板基础工具是否可用。 |
+| `enabled` | Whether the whiteboard editing tools are enabled. |
 
 ### onSetLoadingVisible
 
@@ -118,7 +118,7 @@ Indicates the progress of the current courseware download.
 | Parameter | Description |
 | :--------- | :---------------------------------- |
 | `url` | The download link of the file. |
-| `progress` | Courseware download progress, the value range is 0-100. |
+| `progress` | The courseware download progress. The value range is 0 to 100. |
 
 ### onSetDownloadTimeOut
 
@@ -184,7 +184,7 @@ Occurs when the whiteboard permission changes.
 
 ## AgoraEduWhiteBoardToolContext
 
-The` AgoraEduWhiteBoardToolContext` class provides whiteboard tool-related methods that can be called by App.
+`AgoraEduWhiteBoardToolContext` 类提供可供 App 调用的白板工具相关方法。
 
 ### applianceSelected
 
@@ -192,11 +192,11 @@ The` AgoraEduWhiteBoardToolContext` class provides whiteboard tool-related metho
 func applianceSelected(_ mode: AgoraEduContextApplianceType)
 ```
 
-选中白板基础工具。
+Select a whiteboard basic editing tool.
 
 | Parameter | Description |
 | :----- | :-------------------------------------------------- |
-| `type` | 白板基础工具类型，详见 `AgoraEduContextApplianceType`。 |
+| `type` | The whiteboard editing tool type. See `AgoraEduContextApplianceType`. |
 
 ### colorSelected
 
@@ -242,7 +242,7 @@ Select the line thickness.
 func zoomOut()
 ```
 
-Zoom out the whiteboard. Each call is reduced by 10%.
+Zoom out the whiteboard. Every time you call this method, the whiteboard is zoomed out by 10%.
 
 ### zoomIn
 
@@ -250,7 +250,7 @@ Zoom out the whiteboard. Each call is reduced by 10%.
 func zoomIn ()
 ```
 
-Zoom in the whiteboard. Each time it is called, the zoom is 10%.
+Zoom in the whiteboard. Every time you call this method, the whiteboard is zoomed in by 10%.
 
 ### prevPage
 
@@ -285,7 +285,7 @@ Register the event listener.
                                      pageCount: NSInteger)
 ```
 
-Report the current page number and total page number of the whiteboard.
+Indicates the current page number and total page number of the whiteboard.
 
 | Parameter | Description |
 | :---------- | :--------- |
@@ -299,7 +299,7 @@ Report the current page number and total page number of the whiteboard.
 @objc optional func onSetPagingEnable(_ enable: Bool)
 ```
 
-Report whether the paging function is enabled.
+Indicates whether the whiteboard page navigator is enabled.
 
 | Parameter | Description |
 | :------- | :----------- |
@@ -313,7 +313,7 @@ Report whether the paging function is enabled.
                                       zoomInEnable: Bool)
 ```
 
-Report whether the zooming function is enabled.
+Indicates whether the page zoom function is enabled.
 
 | Parameter | Description |
 | :-------------- | :----------- |
@@ -326,11 +326,11 @@ Report whether the zooming function is enabled.
 @objc optional func onSetResizeFullScreenEnable(_ enable: Bool)
 ```
 
-Report whether the can be a full-screen whiteboard.
+Indicates whether the whiteboard full-screen function is enabled.
 
 | Parameter | Description |
 | :------- | :--------------- |
-| `enable` | Whether whiteboard can be full screen. |
+| `enable` | Whether the whiteboard full-screen function is enabled. |
 
 ### onSetFullScreen
 
@@ -338,8 +338,8 @@ Report whether the can be a full-screen whiteboard.
 @objc optional func onSetFullScreen(_ fullScreen: Bool)
 ```
 
-Report whether the current whiteboard is full screen.
+Indicates whether the whiteboard is full screen.
 
 | Parameter | Description |
 | :----------- | :----------------- |
-| `fullScreen` | Whether the current whiteboard is full screen. |
+| `fullScreen` | Whether the whiteboard is full screen. |
