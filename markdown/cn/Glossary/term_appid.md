@@ -7,12 +7,11 @@ App ID 是 Agora 为开发项目生成的字符串，是项目的唯一标识。
 
 开发者在初始化 Agora 相关服务时，需要填入 App ID。Agora 根据 App ID 提供计费、管理、数据统计等服务。
 
-在正式生产环境中，Agora 建议在 app 用户加入 RTC 频道，或登录 RTM 系统时，使用动态的 Token 对用户鉴权，保证通信安全。
-
 <div class="alert info">相关链接：
-	<li><a href="https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms">校验用户权限</a></li>
-	<li><a href="./terms#appid">App 证书</a></li>
-	<li><a href="./terms#appcertificate">Token</a></li>
+	<li><a href="https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms">获取 App ID 和临时 Token</a></li>
+	<li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/faq/appid_to_token?platform=All%20Platforms">如何升级到 Token 鉴权方案？</a></li>
 </div>
 
+
 <a href="./terms"><button>返回术语库</button></a>
+
