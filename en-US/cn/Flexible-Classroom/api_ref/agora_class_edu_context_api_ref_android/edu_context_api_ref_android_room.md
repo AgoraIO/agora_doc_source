@@ -2,7 +2,7 @@
 
 ## RoomContext
 
-The` RoomContext` class provides classroom management related methods that can be called by the App.
+`RoomContext` provides the methods that can be called by your app for classroom management.
 
 ### leave
 
@@ -10,12 +10,12 @@ The` RoomContext` class provides classroom management related methods that can b
 abstract fun leave()
 ```
 
-Leave the class.
+Leave the classroom.
 
 
 ## IRoomHandler
 
-The` IRoomHandler` class is used to report class-related event callbacks to the App.
+`IRoomHandler` reports the classroom-related event callbacks to your app. 
 
 ### onClassroomName
 
@@ -23,11 +23,11 @@ The` IRoomHandler` class is used to report class-related event callbacks to the 
 fun onClassroomName(name: String)
 ```
 
-Report the class name.
+Indicates the classroom name.
 
 | Parameter | Description |
 | :----- | :--------- |
-| `name` | Class name. |
+| `name` | The classroom name. |
 
 ### onClassState
 
@@ -35,11 +35,11 @@ Report the class name.
 fun onClassState(state: EduContextClassState)
 ```
 
-Report class status.
+Indicates the classroom state.
 
 | Parameter | Description |
-| :------ | :------------------------------------ |
-| `state` | Class state, see EduContextClassState for details. |
+| :------ | :-------------------------------------- |
+| `state` | 课堂状态，详见 `EduContextClassState`。 |
 
 ### onClassTime
 
@@ -47,16 +47,15 @@ Report class status.
 fun onClassTime(time: String)
 ```
 
-Report class time.
+Reports the class time.
 
-- When the class status is `Init`, the reminder is X minutes and X seconds before class.
-- When the class status is `Start`, it indicates that the class has started for X minutes and X seconds.
-
-   * When the class status is `End`, it prompts that the class has timed out for X minutes and X seconds.
+- 课堂状态为 `Init` 时，`time` 表示距离上课还有几秒。
+- 课堂状态为 `Start` 时，`time` 表示已开始上课几秒。
+- 课堂状态为 `End` 时，`time` 表示课堂已超时几秒。
 
 | Parameter | Description |
 | :----- | :--------- |
-| `time` | Class time. |
+| `time` | The class time. |
 
 ### onNetworkStateChanged
 
@@ -64,11 +63,11 @@ Report class time.
 fun onNetworkStateChanged (state: EduContextNetworkState)
 ```
 
-Report network status.
+Reports the network state.
 
 | Parameter | Description |
 | :------ | :---------------------------------------- |
-| `state` | Network status, see EduContextNetworkState for details``. |
+| `state` | The network state. See `EduContextNetworkState` for details. |
 
 ### onConnectionStateChanged
 
@@ -106,8 +105,8 @@ There are the following tips:
 fun onError(error: EduContextError)
 ```
 
-Report wrong information during class.
+Reports the error message during the class.
 
 | Parameter | Description |
 | :------ | :--------------------------------- |
-| `error` | Error information, see `EduContextError `for details. |
+| `error` | The error message. See `EduContextErro` for details. |
