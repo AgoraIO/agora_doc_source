@@ -2,7 +2,7 @@
 
 ## AgoraEduHandsUpContext
 
-The` AgoraEduHandsUpContext` class provides hand-raising-related methods that can be called by App.
+`AgoraEduHandsUpContext` provides hand-raising-related methods that can be called by App.
 
 ### performHandsUp
 
@@ -22,7 +22,7 @@ Update the hand status.
 func registerEventHandler(_ handler: AgoraEduHandsUpHandler)
 ```
 
-Register event listener.
+Register the event listener.
 
 | Parameter | Description |
 | :-------- | :--------------------------------- |
@@ -89,5 +89,5 @@ There are the following tips:
 
 | Parameter | Description |
 | :-------- | :--------- |
-| `message` | The event message. |
+| `message` | The tip. |
 
