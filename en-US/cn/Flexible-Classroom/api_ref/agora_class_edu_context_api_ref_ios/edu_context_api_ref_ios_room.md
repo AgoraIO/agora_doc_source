@@ -10,7 +10,7 @@ The` AgoraEduRoomContext` class provides classroom management-related methods th
 func leaveRoom()
 ```
 
-Leave the class.
+Leave the classroom.
 
 ### registerEventHandler
 
@@ -35,11 +35,11 @@ The` AgoraEduRoomHandler` class is used to report class-related event callbacks 
 @objc optional func onSetClassroomName(_ name: String)
 ```
 
-Report the class name.
+Indicates the classroom name.
 
 | Parameter | Description |
 | :----- | :--------- |
-| `name` | Class name. |
+| `name` | The classroom name. |
 
 ### onSetClassState
 
@@ -47,7 +47,7 @@ Report the class name.
 @objc optional func onSetClassState(_ state: AgoraEduContextClassState)
 ```
 
-Report class status.
+Indicates the classroom state.
 
 | Parameter | Description |
 | :------ | :------------------------------------------- |
@@ -59,15 +59,15 @@ Report class status.
 @objc optional func onSetClassTime(_ time: String)
 ```
 
-Report class time.
+Reports the class time.
 
-- When the class status is `Init`, the reminder is X minutes and X seconds before class.
-- When the class status is `Start`, it indicates that the class has started for X minutes and X seconds.
-- When the class status is `End`, it prompts that the class has timed out for X minutes and X seconds.
+- 课堂状态为 `Init` 时，`time` 表示距离上课还有几秒。
+- 课堂状态为 `Start` 时，`time` 表示已开始上课几秒。
+- 课堂状态为 `End` 时，`time` 表示课堂已超时几秒。
 
 | Parameter | Description |
 | :----- | :--------- |
-| `time` | Class time. |
+| `time` | The class time. |
 
 ### onSetNetworkQuality
 
@@ -75,7 +75,7 @@ Report class time.
 @objc optional func onSetNetworkQuality(_ quality: AgoraEduContextNetworkQuality)
 ```
 
-Report network status.
+Reports the network state.
 
 | Parameter | Description |
 | :-------- | :----------------------------------------------- |
