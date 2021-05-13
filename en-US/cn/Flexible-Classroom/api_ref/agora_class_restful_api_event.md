@@ -26,7 +26,7 @@ When `the `cmd` property of an event` is 3`, the event indicates the server rece
 | Parameter | Category | Description |
 | ---------- | ------- | ------------------------------------------------------------ |
 | `fromUser` | Object | The user who sends this message. This object contains the following fields:<ul><li>`userUuid`: String. The user ID.</li><li>`userName`: String. The user name.</li><li>`role`: Integer. The user role:<ul><li>`1`: Teacher.</li><li>`2`: Student.</li></ul></li> |
-| `message` | String | Message content. |
+| `message` | String | The message. |
 | `type` | Integer | The type of the message. Temporarily, you can only set this parameter as `1 `(text). |
 
 **Example**
