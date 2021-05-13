@@ -1,8 +1,6 @@
-# Screenshare Context
-
 ## ScreenShareContext
 
-`ScreenShareContext` provides screen-sharing-related methods that can be called by your app.
+`ScreenShareContext` provides the methods that can be called by your app for screen sharing.
 
 ### setScreenShareState
 
