@@ -1,5 +1,3 @@
-# Screenshare Context
-
 ## ScreenShareContext
 
 `ScreenShareContext` 类提供可供 App 调用的屏幕共享相关方法。

@@ -1,5 +1,3 @@
-# User List Context
-
 ## UserContext
 
 `UserContext` 类提供可供 App 调用的用户列表相关方法。

@@ -1,5 +1,3 @@
-# Whiteboard Context
-
 ## WhiteboardContext
 
 `WhiteboardContext` 类提供可供 App 调用的白板相关方法。

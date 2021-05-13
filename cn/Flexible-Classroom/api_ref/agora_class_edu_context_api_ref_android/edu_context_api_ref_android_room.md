@@ -1,5 +1,3 @@
-# Room Context
-
 ## RoomContext
 
 `RoomContext` 类提供可供 App 调用的课堂管理相关方法。

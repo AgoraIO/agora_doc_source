@@ -1,5 +1,3 @@
-# Hands-up Context
-
 ## HandsUpContext
 
 `HandsUpContext` 类提供可供 App 调用的举手上台相关方法。

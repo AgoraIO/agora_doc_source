@@ -1,5 +1,3 @@
-# Room Context
-
 ## AgoraEduRoomContext
 
 `AgoraEduRoomContext` 类提供可供 App 调用的课堂管理相关方法。
@@ -117,7 +115,7 @@ func registerEventHandler(_ handler: AgoraEduRoomHandler)
 @objc optional func onShowErrorInfo(_ error: AgoraEduContextError)
 ```
 
-xi上课过程中的错误信息。
+上课过程中的错误信息。
 
 | 参数    | 描述                                    |
 | :------ | :-------------------------------------- |

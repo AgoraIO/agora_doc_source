@@ -1,5 +1,3 @@
-# Chat Context
-
 ## AgoraEduMessageContext
 
 `AgoraEduMessageContext` 类提供可供 App 调用的消息聊天相关方法。
