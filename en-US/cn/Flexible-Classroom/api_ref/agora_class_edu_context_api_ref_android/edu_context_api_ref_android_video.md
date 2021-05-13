@@ -1,5 +1,3 @@
-# Video Context
-
 ## VideoContext
 
 The` VideoContext` class provides media control-related methods that can be called by the App.

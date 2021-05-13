@@ -16,11 +16,11 @@ This page lists the type definitions used by Edu Context.
 }
 ```
 
-Error code
+Error code.
 
 | Parameter | Description |
 | :------- | :------- |
-| `code` | Error code |
+| `code` | Error code. |
 | `message` | Error codes of the RTMP or RTMPS streaming. |
 
 ## AgoraEduContextApplianceType
@@ -234,8 +234,8 @@ The specific information of the chat message.
 
 | Parameter | Description |
 | :---------- | :----------------------------------------- |
-| `id` | Retrieves the unique ID of the message. |
-| `message` | Message content. |
+| `id` | The message ID. |
+| `message` | The message. |
 | `user` | Message sender information, see AgoraEduContextUserInfo for details``. |
 | `sendState` | Message sending status, see AgoraEduContextChatState for details``. |
 | `type` | Message type, see AgoraEduContextChatType for details``. |

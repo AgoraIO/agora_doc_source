@@ -23,7 +23,7 @@ async getHistoryChatMessage(data: {
 }): array
 ```
 
-Get historical chat messages.
+Occurs when the local client receives the message history.
 
 Call example:` getHistoryChatMeassage({nextId:"idstring", sort: 1})`
 
@@ -52,7 +52,7 @@ async sendMessage(message: any): {
     fromRoomName
 }
 ```
-Send chat messages.
+Send a message.
 
 
 | Parameter | Description |

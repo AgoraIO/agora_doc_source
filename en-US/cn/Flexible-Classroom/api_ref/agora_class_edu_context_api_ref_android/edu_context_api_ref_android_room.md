@@ -1,5 +1,3 @@
-# Room Context
-
 ## RoomContext
 
 `RoomContext` provides the methods that can be called by your app for classroom management.
@@ -39,7 +37,7 @@ Indicates the classroom state.
 
 | Parameter | Description |
 | :------ | :-------------------------------------- |
-| `state` | 课堂状态，详见 `EduContextClassState`。 |
+| `state` | The classroom state. See `EduContextClassState` for details. |
 
 ### onClassTime
 
@@ -49,9 +47,9 @@ fun onClassTime(time: String)
 
 Reports the class time.
 
-- 课堂状态为 `Init` 时，`time` 表示距离上课还有几秒。
-- 课堂状态为 `Start` 时，`time` 表示已开始上课几秒。
-- 课堂状态为 `End` 时，`time` 表示课堂已超时几秒。
+- When the classroom state is `Init`, `time` indicates how many seconds are left before the class begins.
+- When the classroom state is `Start`, `time` indicates how many seconds the class has lasted.
+- When the classroom state is `End`, `time` means how many seconds the class has gone over time.
 
 | Parameter | Description |
 | :----- | :--------- |
@@ -75,11 +73,11 @@ Reports the network state.
 fun onConnectionStateChanged(state: EduContextConnectionState)
 ```
 
-Report connection status.
+Indicates the connection state.
 
 | Parameter | Description |
 | :------ | :------------------------------------------- |
-| `state` | Connection status, see EduContextConnectionState for details``. |
+| `state` | The connection state. See `EduContextConnectionState` for details. |
 
 ### onClassTip
 
@@ -87,17 +85,17 @@ Report connection status.
 fun onClassTip(tip: String)
 ```
 
-Report tips during class.
+Class notifications.
 
 There are the following tips:
 
-- The course ends in 5 minutes.
-- The class is over and there are 5 minutes to close the classroom.
-- There is still 1 minute until the classroom closes.
+- The class ends in five minutes.
+- The class is over and the classroom closes in five minutes.
+- The classroom closes in one minute.
 
 | Parameter | Description |
 | :---- | :------- |
-| `tip` | Prompt word. |
+| `tip` | The notification. |
 
 ### onError
 
