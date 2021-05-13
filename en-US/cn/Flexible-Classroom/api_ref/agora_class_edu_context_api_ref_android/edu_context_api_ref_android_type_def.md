@@ -10,7 +10,7 @@ enum class WhiteboardApplianceType {
 }
 ```
 
-whiteboard tool type.
+白板基础工具类型。
 
 | Parameter | Description |
 | :------- | :------- |
@@ -40,11 +40,11 @@ data class WhiteboardDrawingConfig(
 }
 ```
 
-whiteboard tool attribute configuration class.
+白板基础工具属性配置类。
 
 | Parameter | Description |
 | :---------------- | :----------- |
-| `activeAppliance` | Whiteboard toolkit |
+| `activeAppliance` | 可用的白板基础工具。 |
 | `color` | The color. |
 | `fontsize` | The font size. |
 | `thick` | Brush thickness. |
