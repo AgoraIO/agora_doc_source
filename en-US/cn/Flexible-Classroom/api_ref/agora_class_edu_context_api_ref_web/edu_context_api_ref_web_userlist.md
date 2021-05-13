@@ -73,7 +73,7 @@ The teacher agreed to the student's request to raise his hand.
 userList: array,
 ```
 
-A list of all users in the current classroom.
+The list of all users in the classroom.
 
 ## acceptedUserList
 
