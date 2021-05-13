@@ -81,8 +81,8 @@ After initialization, create an `AgoraEduLaunchConfig` instance for the classroo
 /** Classroom launching configuration */
 // The user name
 String userName = "XXX";
-// The user ID. Must be the same as the UID that you use for generating an RTM token.
-String userUUid = "XXX";
+// The user ID. Must be the same as the user ID that you use for generating an RTM token.
+String userUuid = "XXX";
 // The classroom name
 String roomName = "XXX";
 // The classroom ID
@@ -97,10 +97,10 @@ String rtmToken = "";
 long startTime = System.currentTimeMillis() + 100;
 // The duration (ms) of the class, determined by the first user joining the classroom.
 long duration = 310L;
-// The area where the classroom is located, the area of each client must be the same, otherwise it will not be able to communicate. 
+// The area where the classroom is located. Each client must use the same be the same, otherwise, it will not be able to communicate. 
 String region = AgoraEduRegionStr.cn;
 AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfig(
-        userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration);
+        userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration, region);
 AgoraEduClassRoom classRoom = AgoraEduSDK.launch(getApplicationContext(), agoraEduLaunchConfig, (state) -> {
     Log.e(TAG, "launch-classroom-state:" + state.name());
 });
