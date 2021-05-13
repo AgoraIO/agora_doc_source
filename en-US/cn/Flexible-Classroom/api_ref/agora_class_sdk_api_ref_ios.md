@@ -209,7 +209,7 @@ The courseware pre-downloading completes.
 
 | Parameter | Description |
 | :------ | :------- |
-| `error` | Error code |
+| `error` | Error code. |
 
 ## Type definition
 
