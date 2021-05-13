@@ -308,4 +308,4 @@ async revokeUserPermission(userUuid: string): void
 async grantUserPermission(userUuid: string): void
 ```
 
-授予指定学生白板权限。
+给予指定学生白板权限。

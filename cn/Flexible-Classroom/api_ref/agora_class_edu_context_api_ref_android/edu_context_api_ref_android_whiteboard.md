@@ -72,7 +72,7 @@ abstract fun setBoardInputEnable(enable: Boolean)
 
 | 参数 | 描述 |
 | :--- | :--- |
-|  `enable`    | 是否可以使用白板基础工具和白板页面控制工具。白板弹出进度框或下载失败框的时候，白板基础工具和白板页面控制工具工具条不可使用。 |
+|  `enable`    | 是否可以使用白板基础工具和白板页面控制工具。白板弹出进度框或下载失败框的时候，白板基础工具和白板页面控制工具不可使用。 |
 
 ### skipDownload
 
@@ -189,11 +189,11 @@ fun onDrawingConfig(config: WhiteboardDrawingConfig)
 fun onDrawingEnabled(enabled: Boolean)
 ```
 
-报告白板工具是否可用。
+报告白板基础工具是否可用。
 
 | 参数 | 描述 |
 | :--- | :--- |
-| `enabled`     |  白板工具是否可用。  |
+| `enabled`     |  白板基础工具是否可用。  |
 
 
 ### onPageNo
@@ -264,11 +264,11 @@ fun onFullScreenChanged(isFullScreen: Boolean)
 fun onInteractionEnabled(enabled: Boolean)
 ```
 
-报告 PageControl 工具条是否可用。
+报告白板页面控制工具是否可用。
 
 | 参数 | 描述 |
 | :--- | :--- |
-| `enabled`     |  PageControl 工具条是否可用。     |
+| `enabled`     |  白板页面控制工具是否可用。     |
 
 
 ### onLoadingVisible

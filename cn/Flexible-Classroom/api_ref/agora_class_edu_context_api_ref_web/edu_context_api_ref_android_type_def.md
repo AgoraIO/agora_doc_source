@@ -42,10 +42,6 @@ data class WhiteboardDrawingConfig(
 
 白板工具属性配置类。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|      |      |
-
 ## EduContextNetworkState
 
 ```kotlin

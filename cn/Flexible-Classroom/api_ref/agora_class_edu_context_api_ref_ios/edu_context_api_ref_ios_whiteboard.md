@@ -14,7 +14,7 @@ func boardInputEnable(_ enable: Bool)
 
 | 参数     | 描述                   |
 | :------- | :--------------------- |
-| `enable` | 是否可以使用白板工具。 |
+| `enable` | 是否可以使用白板基础工具。 |
 
 ### skipDownload
 
