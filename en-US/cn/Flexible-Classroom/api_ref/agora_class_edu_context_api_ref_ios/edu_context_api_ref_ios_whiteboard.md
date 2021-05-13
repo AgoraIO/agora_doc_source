@@ -1,5 +1,3 @@
-# Whiteboard Context
-
 ## AgoraEduWhiteBoardContext
 
 `AgoraEduWhiteBoardContext` provides whiteboard-related methods that can be called by your app.
