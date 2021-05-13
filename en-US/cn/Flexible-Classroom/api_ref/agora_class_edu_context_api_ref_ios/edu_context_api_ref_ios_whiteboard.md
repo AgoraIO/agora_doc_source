@@ -10,7 +10,7 @@ The` AgoraEduWhiteBoardContext` class provides whiteboard control related method
 func boardInputEnable(_ enable: Bool)
 ```
 
-Set whether the whiteboard tool can be used.
+设置是否可以使用白板基础工具。
 
 | Parameter | Description |
 | :------- | :--------------------- |
@@ -66,7 +66,7 @@ Refresh the size of the whiteboard. This method needs to be called when the size
 func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 ```
 
-Register event listener.
+Register the event listener.
 
 | Parameter | Description |
 | :-------- | :--------------------------------- |
@@ -88,11 +88,11 @@ Get the whiteboard container View.
 @objc optional func onSetDrawingEnabled(_ enabled: Bool)
 ```
 
-Report whether the whiteboard editing tools are enabled.
+报告白板基础工具是否可用。
 
 | Parameter | Description |
 | :-------- | :----------------- |
-| `enabled` | Whether the whiteboard editing tools are enabled. |
+| `enabled` | 白板基础工具是否可用。 |
 
 ### onSetLoadingVisible
 
@@ -100,11 +100,11 @@ Report whether the whiteboard editing tools are enabled.
 @objc optional func onSetLoadingVisible(_ visible: Bool)
 ```
 
-Report whether  whiteboard loading status is visible.
+Indicates whether the whiteboard loading status is visible.
 
 | Parameter | Description |
 | :-------- | :--------------------- |
-| `visible` | Whether the loading status of  whiteboard is visible. |
+| `visible` | Whether the whiteboard loading status is visible. |
 
 ### onSetDownloadProgress
 
@@ -113,7 +113,7 @@ Report whether  whiteboard loading status is visible.
                                             progress: Float)
 ```
 
-Report the progress of the current courseware download.
+Indicates the progress of the current courseware download.
 
 | Parameter | Description |
 | :--------- | :---------------------------------- |
@@ -192,11 +192,11 @@ The` AgoraEduWhiteBoardToolContext` class provides whiteboard tool-related metho
 func applianceSelected(_ mode: AgoraEduContextApplianceType)
 ```
 
-Select a whiteboard editing tool.
+选中白板基础工具。
 
 | Parameter | Description |
 | :----- | :-------------------------------------------------- |
-| `type` | whiteboard tool type, see `AgoraEduContextApplianceType `for details. |
+| `type` | 白板基础工具类型，详见 `AgoraEduContextApplianceType`。 |
 
 ### colorSelected
 
@@ -274,7 +274,7 @@ Go to the next page.
 func registerPageControlEventHandler(_ handler: AgoraEduWhiteBoardPageControlHandler)
 ```
 
-Register event listener.
+Register the event listener.
 
 ## AgoraEduWhiteBoardPageControlHandler
 
