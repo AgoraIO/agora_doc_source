@@ -79,5 +79,5 @@ There are the following tips:
 
 | Parameter | Description |
 | :----- | :--------- |
-| `tips` | The event message. |
+| `tips` | The tip. |
 
