@@ -1,10 +1,12 @@
 根据本文指导在你的 Web 项目中快速集成 Agora Classroom SDK 并调用 API 启动灵动课堂。
 
-<div class="alert note"><li>开始前请确保满足接入灵动课堂的<a href="./agora_class_prep">前提条件</a>。<li>Web 既支持老师也支持学生。</div>
+<div class="alert note"><li>开始前请确保满足接入灵动课堂的<a href="./agora_class_prep">前提条件</a>。<li>Web 端支持老师、学生和助教。</div>
 
 ## 示例项目
 
 Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-Community/CloudClass-Desktop)，演示了如何集成 Agora Classroom SDK 并调用 API 启动灵动课堂。你可以下载并查看源代码。
+
+Agora 还提供一个 [CodePen 示例项目](https://codepen.io/agoratechwriter/pen/OJRrOxg)。你可以在该示例项目中设置参数并运行，即刻体验灵动课堂。
 
 ## 准备开发环境
 
@@ -13,7 +15,9 @@ Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-
 
 ## 集成 Agora Classroom SDK
 
-### 使用 npm 获取 SDK
+选择如下任意一种方法获取 Agora Classroom SDK：
+
+### 方法一：使用 npm 获取 SDK
 
 使用该方法需要先安装 npm，详见 [npm 快速入门](https://www.npmjs.com.cn/getting-started/installing-node/)。
 
@@ -29,6 +33,12 @@ Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-
    import {AgoraEduSDK} from 'agora-classroom-sdk'
    ```
 
+### 方法二：使用 CDN 获取 SDK
+
+你可以通过 CDN 获取 Agora Classroom SDK。在你的项目的 HTML 文件中，添加如下代码：
+```
+<script src="https://download.agora.io/edu-apaas/edu_sdk_1.1.0.js"></script>
+```
 
 ## 进行全局配置
 
@@ -119,3 +129,4 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
 
 成功运行后，你可以看到如下界面：
 
+![](https://web-cdn.agora.io/docs-files/1620446413556)

@@ -24,9 +24,11 @@ Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-
   ```
   # platform :ios, '10.0' use_frameworks!
   target 'Your App' do
-      pod 'AgoraEduSDK'
+      pod 'AgoraClassroomSDK'
   end
   ```
+
+ <div class="alert info">1.0.0 版本请使用 <code>pod 'AgoraEduSDK'</code>。</div>
 
 3. 在终端内运行 `pod install` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。
 4. 打开新生成的 `xcworkspace` 文件。

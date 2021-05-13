@@ -18,7 +18,6 @@ Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-
 
 你可以参考以下步骤，通过 Gradle 获取 Agora Classroom SDK。
 
-
 1. 在项目的 **build.gradle** 文件中添加以下库：
 
   ```java
