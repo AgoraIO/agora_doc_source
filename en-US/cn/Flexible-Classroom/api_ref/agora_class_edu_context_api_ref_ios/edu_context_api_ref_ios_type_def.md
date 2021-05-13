@@ -31,7 +31,7 @@ Error code
 }
 ```
 
-whiteboard tool type.
+白板基础工具类型。
 
 | Parameter | Description |
 | :------- | :------- |
@@ -63,7 +63,7 @@ Class information.
 | Parameter | Description |
 | :---------------- | :----------- |
 | `roomUuid` | The room ID. |
-| `roomName` | Class name. |
+| `roomName` | The classroom name. |
 
 ## AgoraEduContextClassState
 
