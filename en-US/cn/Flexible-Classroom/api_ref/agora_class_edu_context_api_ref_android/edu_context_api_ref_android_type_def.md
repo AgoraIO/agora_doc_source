@@ -213,8 +213,8 @@ The specific information of the chat message.
 | :---------- | :----------------------------------------- |
 | `name` | The name of the message sender. |
 | `uid` | The ID of the message sender. |
-| `message` | Message content. |
-| `messageId` | Retrieves the unique ID of the message. |
+| `message` | The message. |
+| `messageId` | The message ID. |
 | `type` | Message type, see EduContextChatItemType for details``. |
 | `source` | The source of the message, see EduContextChatSource for details``. |
 | `state` | Message sending status, see EduContextChatState for details``. |
