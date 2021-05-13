@@ -1,8 +1,6 @@
-# Chat Context
-
 ## AgoraEduMessageContext
 
-The` AgoraEduMessageContext` class provides messaging and chat-related methods that can be called by App.
+`AgoraEduMessageContext` provides the methods that can be called by your app for the chat module.
 
 ### sendRoomMessage
 
@@ -10,11 +8,11 @@ The` AgoraEduMessageContext` class provides messaging and chat-related methods t
 func sendRoomMessage(_ message: String)
 ```
 
-Send room message.
+Send a message.
 
 | Parameter | Description |
 | :-------- | :--------- |
-| `message` | Message content. |
+| `message` | The message. |
 
 ### resendRoomMessage
 
@@ -22,12 +20,12 @@ Send room message.
 func resendRoomMessage(_ message: String, messageId: Int)
 ```
 
-Resend the room information.
+Resend a message.
 
 | Parameter | Description |
 | :---------- | :--------- |
-| `message` | Message content. |
-| `messageId` | Retrieves the unique ID of the message. |
+| `message` | The message. |
+| `messageId` | The message ID. |
 
 ### fetchHistoryMessages
 
@@ -35,11 +33,11 @@ Resend the room information.
 func fetchHistoryMessages(_ startId: Int, count: Int)
 ```
 
-Get historical news.
+Fetch the message history.
 
 | Parameter | Description |
 | :-------- | :----------------------------------------- |
-| `startId` | The messageId `is passed in`, which indicates which message to get from. |
+| `startId` | You need to pass in a `messageId`, which indicates you need to get this message and messages sent before this message. |
 | `count` | The number of messages you want to get. |
 
 ### registerEventHandler
@@ -56,7 +54,7 @@ Register the event listener.
 
 ## AgoraEduMessageHandler
 
-The` AgoraEduMessageHandler` class is used to report message chat-related event callbacks to the App.
+`AgoraEduMessageHandler` reports the message-related event callbacks to your app. 
 
 ### onAddRoomMessage
 
@@ -64,11 +62,11 @@ The` AgoraEduMessageHandler` class is used to report message chat-related event 
 @objc optional func onAddRoomMessage(_ info: AgoraEduContextChatInfo)
 ```
 
-Receive room chat message.
+Occurs when the local client receives a message.
 
 | Parameter | Description |
 | :----- | :--------------------------------------------- |
-| `Info` | The chat message object, see AgoraEduContextChatInfo for details``. |
+| `Info` | The message object. See `AgoraEduContextChatInfo` for details. |
 
 ### onFetchHistoryMessagesResult
 
@@ -76,12 +74,12 @@ Receive room chat message.
 @objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?, list: [AgoraEduContextChatInfo]?)
 ```
 
-Get the results of historical chat messages.
+Get the results of fetching the message history.
 
 | Parameter | Description |
 | :------ | :-------------------------------------------------------- |
-| `error` | Error code If `error` is not empty, it means the acquisition failed. |
-| `list` | An array composed of multiple chat message objects, see EduContextChatItem for details``. |
+| `error` | Error code. If `error` is not empty, it means the local client fails to fetch the message history. |
+| `list` | An array of message objects. See `EduContextChatItem` for details. |
 
 ### onUpdateChatPermission
 
@@ -89,11 +87,11 @@ Get the results of historical chat messages.
 @objc optional func onUpdateChatPermission(_ allow: Bool)
 ```
 
-Chat permissions have changed
+Occurs when the chat permission changes.
 
 | Parameter | Description |
 | :------ | :--------------------------------- |
-| `allow` | Do you have permission to chat with messages (being banned). |
+| `allow` | Whether the local client has the permission of sending chat messages. |
 
 ### onShowChatTips
 
@@ -101,12 +99,12 @@ Chat permissions have changed
 @objc optional func onShowChatTips(_ message: String)
 ```
 
-Display the prompt message during the chat.
+Reports the tips related to the chat.
 
 There are the following tips:
 
-- Mute mode is turned on.
-- Mute mode is turned off.
+- You have no permission of sending chat messages.
+- You have the permission of sending chat messages.
 
 | Parameter | Description |
 | :-------- | :--------- |
