@@ -2,7 +2,7 @@
 
 ## UserContext
 
-The` UserContext` class provides methods related to the user list that can be called by the App.
+`UserContext` class provides user-list-related methods that can be called by your app.
 
 ### muteVideo
 
@@ -10,11 +10,11 @@ The` UserContext` class provides methods related to the user list that can be ca
 abstract fun muteVideo(muted: Boolean)
 ```
 
-Turn local video on or off.
+Enable or disable the local video.
 
 | Parameter | Description |
 | :------ | :----------------- |
-| `muted` | Whether to close the local video. |
+| `muted` | Whether to disable the local video. |
 
 ### muteAudio
 
@@ -22,7 +22,7 @@ Turn local video on or off.
 abstract fun muteAudio(muted: Boolean)
 ```
 
-Turn local audio on or off.
+Enable or disable the local audio.
 
 | Parameter | Description |
 | :------ | :----------------- |
@@ -38,14 +38,12 @@ Start or stop rendering the local video stream.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------- |
-| `container` | Video Container. If ``viewGroup` is null`, it means to close the stream rendering. |
-| `streamUuid` | Stream ID. |
-
-
+| `container` | The video container. `Setting viewGroup` as `null` means stopping rendering the video stream. |
+| `streamUuid` | The stream ID. |
 
 ## IUserHandler
 
-The` IUserHandler` class is used to report event callbacks related to the user list to the App.
+`IUserHandler` reports user-list-related event callbacks to the app.
 
 ### onUserListUpdated
 
@@ -53,24 +51,23 @@ The` IUserHandler` class is used to report event callbacks related to the user l
 fun onUserListUpdated(list: MutableList<EduContextUserDetailInfo>)
 ```
 
-Prompt that the user list has been updated. Only display information about online users.
+Occurs when the user list is updated. Only display the information of online users.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `list` | List of online users, an array of `EduContextUserDetailInfo` objects. |
+| `list` | The list of online users, which is an array of `EduContextUserDetailInfo` objects. |
 
 ### onCoHostListUpdated
 
 ```kotlin
-// Update the list of personnel information on stage, only display personnel information on stage. (Onstage will include offline ones)
 fun onCoHostListUpdated(list: MutableList<EduContextUserDetailInfo>)
 ```
 
-Prompt that the list of on-stage users has been updated. Only display the information of users who are on the stage, including users who are not online.
+Occurs when the list of on-stage users is updated. Only display the information of users who are on the stage, including the offline users.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `list` | The list of on-stage users, an array of `EduContextUserDetailInfo` objects. |
+| `list` | The list of on-stage users, which is an array of `EduContextUserDetailInfo` objects. |
 
 ### onUserReward
 
@@ -78,20 +75,19 @@ Prompt that the list of on-stage users has been updated. Only display the inform
 fun onUserReward (userInfo: EduContextUserInfo)
 ```
 
-Receive rewards.
+Occurs when the local user receives a reward.
 
 | Parameter | Description |
 | :--------- | :------------------------------------ |
-| `userInfo` | User information, see EduContextUserInfo for details``. |
+| `userInfo` | The user information. See `EduContextUserInfo`. |
 
 ### onKickOut
 
 ```kotlin
-// I was kicked out
 fun onKickOut()
 ```
 
-The local client is brought up in the classroom.
+Occurs when the local user is kicked out of the classroom.
 
 ### onVolumeUpdated
 
@@ -99,12 +95,12 @@ The local client is brought up in the classroom.
 fun onVolumeUpdated(volume: Int, streamUuid: String)
 ```
 
-Prompt volume.
+Occurs when the volume of the local user is updated.
 
 | Parameter | Description |
 | :----------- | :------ |
-| `volume` | volume. |
-| `streamUuid` | Stream ID. |
+| `volume` | The volume. |
+| `streamUuid` | The stream ID. |
 
 ### onUserTip
 
@@ -112,18 +108,18 @@ Prompt volume.
 fun onUserTip(tip: String)
 ```
 
-Report user-related prompt information.
+Reports the tips related to the user.
 
 There are the following tips:
 
-- Your camera is turned off.
-- Your camera is turned on.
-- Your microphone is turned off.
-- Your microphone is turned on.
+- Your camera has been turned off.
+- Your camera has been turned on.
+- Your microphone has been turned off.
+- Your microphone has been turned on.
 
 | Parameter | Description |
 | :------- | :--------- |
-| `String` | The event message. |
+| `string` | The tip. |
 
 ### onRoster
 
@@ -131,11 +127,11 @@ There are the following tips:
 fun onRoster(context: Context, anchor: View, type: Int?)
 ```
 
-Display a list of users.
+Display the user list.
 
 | Parameter | Description |
 | :-------- | :----------------------------------------------------------- |
 | `context` | The context of the app. |
-| `anchor` | User list Icon-View. |
-| `type` | There are two types of user lists:<li>`RosterType.SmallClass`: The user list of the interactive small class.<li>`RosterType.LargeClass`: A list of users who broadcast large classes. |
+| `anchor` | The Icon-View of the user list. |
+| `type` | There are two types of user lists:<li>`RosterType.SmallClass`: The user list for small classrooms.<li>`RosterType.LargeClass`: The user list for lecture halls. |
 
