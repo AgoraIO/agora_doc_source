@@ -38,7 +38,7 @@ interface EduContextPool {
     // Media control, mainly controlling the audio and video of teachers and students in one-to-one, as well as the audio and video of teachers in small and large classes
     fun videoContext(): VideoContext?
  
-    // whiteboard, including toolBar and pageControl
+        // 白板，包含白板基础工具和页面控制工具
     fun whiteboardContext(): WhiteboardContext?
  
     // Private voice: currently only supports person-to-person
