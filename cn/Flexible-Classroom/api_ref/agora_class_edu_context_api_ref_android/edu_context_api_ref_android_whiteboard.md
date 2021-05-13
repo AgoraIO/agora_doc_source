@@ -10,11 +10,11 @@
 abstract fun selectAppliance(type: WhiteboardApplianceType)
 ```
 
-选中白板工具。
+选中白板基础工具。
 
-| 参数   | 描述                                           |
-| :----- | :--------------------------------------------- |
-| `type` | 白板工具类型，详见 `WhiteboardApplianceType`。 |
+| 参数   | 描述                                               |
+| :----- | :------------------------------------------------- |
+| `type` | 白板基础工具类型，详见 `WhiteboardApplianceType`。 |
 
 ### selectColor
 
@@ -58,7 +58,7 @@ abstract fun selectThickness(thick: Int)
 abstract fun selectRoster(anchor: View)
 ```
 
-选中人员列表。
+选中用户列表。
 
 | 参数 | 描述 |
 | :--- | :--- |
@@ -72,7 +72,7 @@ abstract fun setBoardInputEnable(enable: Boolean)
 
 | 参数 | 描述 |
 | :--- | :--- |
-|  `enable`    | 是否可以使用白板工具和 PageControl 工具条。白板弹出进度框或下载失败框的时候，白板工具和 PageControl 工具条不可使用。 |
+|  `enable`    | 是否可以使用白板基础工具和白板页面控制工具。白板弹出进度框或下载失败框的时候，白板基础工具和白板页面控制工具工具条不可使用。 |
 
 ### skipDownload
 

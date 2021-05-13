@@ -10,7 +10,7 @@ enum class WhiteboardApplianceType {
 }
 ```
 
-白板工具类型。
+白板基础工具类型。
 
 | 参数     | 描述     |
 | :------- | :------- |

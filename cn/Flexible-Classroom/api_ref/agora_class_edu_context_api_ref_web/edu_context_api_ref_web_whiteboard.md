@@ -108,7 +108,7 @@ ready: boolean,
 tools: array,
 ```
 
-白板工具列表 。
+白板基础工具列表。
 
 ## changeStroke
 
@@ -124,7 +124,7 @@ async changeStroke(value: any): void
 async changeHexColor(colorHex: string): void
 ```
 
-修改画笔颜色。
+修改颜色。
 
 ## mountToDOM
 

@@ -10,7 +10,7 @@
 func boardInputEnable(_ enable: Bool)
 ```
 
-设置是否可以使用白板工具。
+设置是否可以使用白板基础工具。
 
 | 参数     | 描述                   |
 | :------- | :--------------------- |
@@ -88,11 +88,11 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 @objc optional func onSetDrawingEnabled(_ enabled: Bool)
 ```
 
-报告白板工具是否可用。
+报告白板基础工具是否可用。
 
 | 参数      | 描述               |
 | :-------- | :----------------- |
-| `enabled` | 白板工具是否可用。 |
+| `enabled` | 白板基础工具是否可用。 |
 
 ### onSetLoadingVisible
 
@@ -192,11 +192,11 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 func applianceSelected(_ mode: AgoraEduContextApplianceType)
 ```
 
-选中白板工具。
+选中白板基础工具。
 
 | 参数   | 描述                                                |
 | :----- | :-------------------------------------------------- |
-| `type` | 白板工具类型，详见 `AgoraEduContextApplianceType`。 |
+| `type` | 白板基础工具类型，详见 `AgoraEduContextApplianceType`。 |
 
 ### colorSelected
 

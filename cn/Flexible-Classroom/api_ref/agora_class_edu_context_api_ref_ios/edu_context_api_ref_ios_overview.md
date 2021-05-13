@@ -21,9 +21,9 @@ Agora Classroom SDK 提供以下 Context：
 public protocol AgoraEduContextPool {
     // 白板通用控制，包含下载
     var whiteBoard: AgoraEduWhiteBoardContext { get }
-    // 白板工具
+    // 白板基础工具
     var whiteBoardTool: AgoraEduWhiteBoardToolContext { get }
-    // 白板页控制
+    // 白板页面控制工具
     var whiteBoardPageControl: AgoraEduWhiteBoardPageControlContext { get }
     // 课堂管理
     var room: AgoraEduRoomContext { get }
