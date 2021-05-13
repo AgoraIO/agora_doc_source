@@ -2,7 +2,7 @@
 
 ## ScreenShareContext
 
-The` ScreenShareContext` class provides screen sharing related methods that can be called by App.
+`ScreenShareContext` provides screen-sharing-related methods that can be called by your app.
 
 ### setScreenShareState
 
@@ -10,11 +10,11 @@ The` ScreenShareContext` class provides screen sharing related methods that can 
 abstract fun setScreenShareState(sharing: Boolean)
 ```
 
-Turn screen sharing on or off.
+Start or stop screen sharing.
 
 | Parameter | Description |
 | :-------- | :----------------- |
-| `sharing` | Whether to enable screen sharing. |
+| `sharing` | Whether to start screen sharing. |
 
 ### renderScreenShare
 
@@ -22,16 +22,16 @@ Turn screen sharing on or off.
 abstract fun renderScreenShare(container: ViewGroup?, streamUuid: String)
 ```
 
-Start or stop rendering the screen sharing stream.
+Start or stop rendering the screen-sharing stream.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------- |
-| `container` | Video Container. If ``viewGroup` is null`, it means to close the stream rendering. |
-| `streamUuid` | Stream ID. |
+| `container` | The video container. `Setting viewGroup` as `null` means stopping rendering the video stream. |
+| `streamUuid` | The stream ID. |
 
 ## IScreenShareHandler
 
-The` IScreenShareHandler` class is used to report screen sharing-related event callbacks to the App.
+`IScreenShareHandler` reports screen-sharing-related event callbacks to your app.
 
 ### onScreenShareStateUpdated
 
@@ -39,12 +39,12 @@ The` IScreenShareHandler` class is used to report screen sharing-related event c
 fun onScreenShareStateUpdated(sharing: Boolean, streamUuid: String)
 ```
 
-Report that screen sharing is turned on or off.
+Occurs when the state of screen sharing is updated.
 
 | Parameter | Description |
 | :----------- | :----------------- |
 | `sharing` | Whether the screen is being shared. |
-| `streamUuid` | Stream ID. |
+| `streamUuid` | The stream ID. |
 
 ### onScreenShareTip
 
@@ -56,10 +56,10 @@ Display screen sharing related prompts.
 
 There are the following tips:
 
-- XXX turned on screen sharing.
+- The teacher has be turned on screen sharing.
 - XXX turned off screen sharing.
 
 | Parameter | Description |
 | :----- | :--------- |
-| `tips` | The event message. |
+| `tips` | The tip. |
 
