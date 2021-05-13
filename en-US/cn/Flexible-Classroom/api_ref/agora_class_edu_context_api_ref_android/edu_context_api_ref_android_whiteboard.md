@@ -10,11 +10,11 @@
 abstract fun selectAppliance(type: WhiteboardApplianceType)
 ```
 
-Select a whiteboard editing tool.
+选中白板基础工具。
 
 | Parameter | Description |
-| :----- | :--------------------------------------------- |
-| `type` | The editing tool type, For details, see `WhiteboardApplianceType`. |
+| :----- | :------------------------------------------------- |
+| `type` | 白板基础工具类型，详见 `WhiteboardApplianceType`。 |
 
 ### selectColor
 
@@ -58,7 +58,7 @@ Select the line thickness.
 abstract fun selectRoster(anchor: View)
 ```
 
-Click the user list.
+选中用户列表。
 
 | Parameter | Description |
 | :--- | :--- |
@@ -72,7 +72,7 @@ abstract fun setBoardInputEnable(enable: Boolean)
 
 | Parameter | Description |
 | :--- | :--- |
-| `enable` | Whether to enable the whiteboard editing tools and PageControl toolbar. When the progress box or download failure box pops up on the whiteboard, the whiteboard tool and PageControl toolbar cannot be used. |
+| `enable` | 是否可以使用白板基础工具和白板页面控制工具。 白板弹出进度框或下载失败框的时候，白板基础工具和白板页面控制工具工具条不可使用。 |
 
 ### skipDownload
 
@@ -168,7 +168,7 @@ Get the whiteboard container ViewGroup.
 
 | Parameter | Description |
 | :--- | :--- |
-| `ViewGroup` | whiteboard container ViewGroup. |
+| `ViewGroup` | The whiteboard container ViewGroup. |
 
 
 ### onDrawingConfig
@@ -264,7 +264,7 @@ Report whether the current whiteboard is full screen.
 fun onInteractionEnabled(enabled: Boolean)
 ```
 
-Reports whether the page control toolbar is enabled.
+Indicates whether the whiteboard page controller is enabled.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -277,11 +277,11 @@ Reports whether the page control toolbar is enabled.
 fun onLoadingVisible(visible: Boolean)
 ```
 
-Report whether  whiteboard loading status is visible.
+Indicates whether the whiteboard loading status is visible.
 
 | Parameter | Description |
 | :--- | :--- |
-| `visible` | Whether the loading status of  whiteboard is visible. |
+| `visible` | Whether the whiteboard loading status is visible. |
 
 
 ### onDownloadProgress
@@ -289,12 +289,12 @@ Report whether  whiteboard loading status is visible.
 ```kotlin
 fun onDownloadProgress(url: String, progress: Float)
 ```
-Report the progress of the current courseware download.
+Indicates the progress of the current courseware download.
 
 | Parameter | Description |
 | :--- | :--- |
 | `url` | The download link of the file. |
-| `progress` | 课件下载进度，取值范围为 0 到 1。 |
+| `progress` | The courseware download progress. The value range is 0 to 1. |
 
 ### onDownloadTimeout
 
