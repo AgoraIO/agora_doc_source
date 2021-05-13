@@ -1,8 +1,6 @@
-# Room Context
-
 ## AgoraEduRoomContext
 
-The` AgoraEduRoomContext` class provides classroom management-related methods that can be called by App.
+`AgoraEduRoomContext` provides the methods that can be called by your app for classroom management.
 
 ### leaveRoom
 
@@ -27,7 +25,7 @@ Register the event listener.
 
 ## AgoraEduRoomHandler
 
-The` AgoraEduRoomHandler` class is used to report class-related event callbacks to the App.
+`AgoraEduRoomHandler` reports the classroom-related event callbacks to your app.
 
 ### onSetClassroomName
 
@@ -51,7 +49,7 @@ Indicates the classroom state.
 
 | Parameter | Description |
 | :------ | :------------------------------------------- |
-| `state` | Classroom status, see AgoraEduContextClassState for details``. |
+| `state` | The classroom state. See `AgoraEduContextClassState` for details. |
 
 ### onSetClassTime
 
@@ -61,9 +59,9 @@ Indicates the classroom state.
 
 Reports the class time.
 
-- 课堂状态为 `Init` 时，`time` 表示距离上课还有几秒。
-- 课堂状态为 `Start` 时，`time` 表示已开始上课几秒。
-- 课堂状态为 `End` 时，`time` 表示课堂已超时几秒。
+- When the classroom state is `Init`, `time` indicates how many seconds are left before the class begins.
+- When the classroom state is `Start`, `time` indicates how many seconds the class has lasted.
+- When the classroom state is `End`, `time` means how many seconds the class has gone over time.
 
 | Parameter | Description |
 | :----- | :--------- |
@@ -79,7 +77,7 @@ Reports the network state.
 
 | Parameter | Description |
 | :-------- | :----------------------------------------------- |
-| `quality` | Network status, see AgoraEduContextNetworkQuality for details``. |
+| `quality` | The network state. See `AgoraEduContextNetworkQuality` for details. |
 
 ### onSetConnectionState
 
@@ -87,11 +85,11 @@ Reports the network state.
 @objc optional func onSetConnectionState(_ state: AgoraEduContextConnectionState)
 ```
 
-Report connection status.
+Indicates the connection state.
 
 | Parameter | Description |
 | :------ | :------------------------------------------------ |
-| `state` | Connection status, see AgoraEduContextConnectionState for details``. |
+| `state` | The connection state. See `AgoraEduContextConnectionState` for details. |
 
 ### onShowClassTips
 
@@ -99,17 +97,17 @@ Report connection status.
 @objc optional func onShowClassTips(_ message: String)
 ```
 
-Show tips during class.
+Class notifications.
 
 There are the following tips:
 
-- The course ends in 5 minutes.
-- The class is over and there are 5 minutes to close the classroom.
-- There is still 1 minute until the classroom closes.
+- The class ends in five minutes.
+- The class is over and the classroom closes in five minutes.
+- The classroom closes in one minute.
 
 | Parameter | Description |
 | :-------- | :------- |
-| `message` | Prompt word. |
+| `message` | The notification. |
 
 ### onShowErrorInfo
 
@@ -117,8 +115,8 @@ There are the following tips:
 @objc optional func onShowErrorInfo(_ error: AgoraEduContextError)
 ```
 
-xi Error messages during class.
+上课过程中的错误信息。
 
 | Parameter | Description |
 | :------ | :-------------------------------------- |
-| `error` | For error information, see `AgoraEduContextError `for details. |
+| `error` | The error message. See `AgoraEduContextError` for details. |
