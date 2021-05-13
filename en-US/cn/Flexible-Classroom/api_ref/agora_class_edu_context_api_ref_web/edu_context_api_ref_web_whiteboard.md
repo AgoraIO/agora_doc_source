@@ -109,7 +109,7 @@ Is  whiteboard ready?
 tools: array,
 ```
 
-List of whiteboard tools.
+白板基础工具列表。
 
 ## changeStroke
 
@@ -125,7 +125,7 @@ Modify the brush width.
 async changeHexColor(colorHex: string): void
 ```
 
-Modify the brush color.
+修改颜色。
 
 ## mountToDOM
 
