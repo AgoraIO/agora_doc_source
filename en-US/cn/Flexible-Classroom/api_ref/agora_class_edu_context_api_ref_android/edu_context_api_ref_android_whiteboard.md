@@ -2,7 +2,7 @@
 
 ## WhiteboardContext
 
-`WhiteboardContext` provides whiteboard-related methods that can be called by the app.
+`WhiteboardContext` provides the methods that can be called by your app for the whiteboard.
 
 ### selectAppliance
 
@@ -189,11 +189,11 @@ Indicates the initial tool configuration of the whiteboard.
 fun onDrawingEnabled(enabled: Boolean)
 ```
 
-报告白板基础工具是否可用。
+Indicates whether the whiteboard basic editing tools are enabled.
 
 | Parameter | Description |
 | :--- | :--- |
-| `enabled` | 白板基础工具是否可用。 |
+| `enabled` | Whether the whiteboard editing tools are enabled. |
 
 
 ### onPageNo
@@ -268,7 +268,7 @@ Indicates whether the whiteboard page controller is enabled.
 
 | Parameter | Description |
 | :--- | :--- |
-| `enabled` | 白板页面控制工具是否可用。 |
+| `enabled` | Indicates whether the whiteboard page controller is enabled. |
 
 
 ### onLoadingVisible
