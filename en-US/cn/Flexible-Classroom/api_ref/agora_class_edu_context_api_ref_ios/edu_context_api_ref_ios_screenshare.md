@@ -2,7 +2,7 @@
 
 ## AgoraEduScreenShareContext
 
-The` AgoraEduScreenShareContext` class provides screen sharing related methods that can be called by App.
+`The AgoraEduScreenShareContext` class provides screen sharing related methods that can be called by App.
 
 ### registerEventHandler
 
@@ -10,7 +10,7 @@ The` AgoraEduScreenShareContext` class provides screen sharing related methods t
 func registerEventHandler (_ handler: AgoraEduScreenShareHandler)
 ```
 
-Register event listener.
+Register the event listener.
 
 | Parameter | Description |
 | :-------- | :------------------------------------- |
@@ -27,12 +27,12 @@ The` AgoraEduScreenShareHandler` class is used to report screen sharing-related 
                                                streamUuid: String)
 ```
 
-Report that screen sharing is turned on or off.
+Occurs when the state of screen sharing is updated.
 
 | Parameter | Description |
 | :----------- | :----------------- |
 | `sharing` | Whether the screen is being shared. |
-| `streamUuid` | Stream ID. |
+| `streamUuid` | The stream ID. |
 
 ### onScreenShareTip
 
@@ -44,10 +44,10 @@ Display screen sharing related prompts.
 
 There are the following tips:
 
-- XXX turned on screen sharing.
+- The teacher has be turned on screen sharing.
 - XXX turned off screen sharing.
 
 | Parameter | Description |
 | :-------- | :--------- |
-| `message` | The event message. |
+| `message` | The tip. |
 
