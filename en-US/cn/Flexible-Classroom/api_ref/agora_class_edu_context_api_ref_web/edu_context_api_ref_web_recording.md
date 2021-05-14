@@ -1,31 +1,31 @@
-# useRecordingContext
+# useRecordingContext useRecordingContext
 
-`useRecordingContext()` provides screen sharing related capabilities.
+`useRecordingContext()` 提供录制相关能力。 `useRecordingContext()` 提供录制相关能力。
 
-You can` import useRecordingContext by import {useRecordingContext} from'agora-edu-core';```, and then use` const {...} = useRecordingContext()` to get the ability of messaging and chat in the  Flexible Classroom.
+你可以通过 `import { useRecordingContext } from 'agora-edu-core';  ` 引入 `useRecordingContext`，然后使用 `const {...} = useRecordingContext()` 获取灵动课堂中录制相关能力。 你可以通过 `import { useRecordingContext } from 'agora-edu-core';  ` 引入 `useRecordingContext`，然后使用 `const {...} = useRecordingContext()` 获取灵动课堂中录制相关能力。
 
-The following specifically lists the capabilities provided by `useRecordingContext()`.
+以下具体列出`useRecordingContext()` 提供的能力。 This page lists all the functions and events provided by `useRecordingContext()`.
 
-## isRecording
-
-```typescript
-isRecording: boolean,
-```
-
-Whether it is currently recording.
-
-## startRecording
+## isRecording isRecording
 
 ```typescript
-async startRecording(): void
+isRecording: boolean, isRecording: boolean,
 ```
 
-Start recording
+当前是否正在录制 。 Whether the class is being recorded.
 
-## stopRecording
+## startRecording startRecording
 
 ```typescript
-async stopRecording(): void
+async startRecording(): void async startRecording(): void
 ```
 
-Stop recording
+开始录制。 Start recording.
+
+## stopRecording stopRecording
+
+```typescript
+async stopRecording(): void async stopRecording(): void
+```
+
+停止录制。 Stop recording.
