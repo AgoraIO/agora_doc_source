@@ -1,41 +1,41 @@
 ## Overview
 
-The Agora Classroom SDK provides App developers with the ability to implement smart classroom business functions through Edu Context.
+Agora Edu Context enables developers to implement the functions in the Flexible Classroom.
 
-Different Contexts represent different business function modules in the  Flexible Classroom. Each Context contains methods for the App to call and also reports event callbacks to the App.
+Different contexts represent different function modules in the Flexible Classroom. Each context contains methods for the app to call and also reports event callbacks to the app.
 
-The Agora Classroom SDK provides the following Context:
+The Agora Classroom SDK provides the following contexts:
 
 - Whiteboard Context: Whiteboard.
-- Chat Context: Message chat.
+- Chat Context: Chat.
 - Room Context: Classroom management.
-- Hands-up Context: Raise your hands on stage.
+- Hands-up Context: Hand raising.
 - Screenshare Context: Screen sharing.
 - User List Context: User list.
 
 ## AgoraEduContextPool
 
- Flexible Classroom ability pool. You can use and monitor various business abilities currently provided by  Flexible Classroom through this object.
+The edu context pool interface. Use this interface to implement all the functions provided by the Agora Classroom SDK.
 
 ```swift
 public protocol AgoraEduContextPool {
-    // whiteboard general control, including download
+    // General control over the whiteboard
     var whiteBoard: AgoraEduWhiteBoardContext { get }
-    // 白板基础工具
+    // The whiteboard basic editing tools
     var whiteBoardTool: AgoraEduWhiteBoardToolContext { get }
-    // 白板页面控制工具
+    // The whiteboard page controller
     var whiteBoardPageControl: AgoraEduWhiteBoardPageControlContext { get }
     // Classroom management
     var room: AgoraEduRoomContext {get
-    // Message chat
+    // Chat
     var chat: AgoraEduMessageContext { get }
-    // user list
+    // User list
     var user: AgoraEduUserContext { get }
-    // Raise hands on stage
+    // Hand raising
     var handsUp: AgoraEduHandsUpContext {get}
-    // screen sharing
+    // Screen sharing
     var shareScreen: AgoraEduScreenShareContext { get }
-    // Extended application
-    var extApp: AgoraEduExtAppContext {get}
+    // Extension application
+    var extApp: AgoraEduExtAppContext { get }
 }
 ```
