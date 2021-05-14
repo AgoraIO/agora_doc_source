@@ -1,14 +1,14 @@
 ## Overview
 
-Extended application ExtApp is a supplementary plug-in for  Flexible Classroom. You can understand ExtApp as a relatively independent App with its own life cycle and data management, but it also depends on the Agora Classroom SDK. You can customize the UI of the plug-in through ExtApp, pass custom data and monitor data changes, and embed custom plug-ins, such as countdown, dice, etc., in the  Flexible Classroom.
+ExtApp is a tool for embedding plug-ins in Flexible Classroom. Plug-ins implemented by ExtApp can be regarded as an independent application with its own life cycle and data management, but they also depend on the Agora Classroom SDK. You can customize the user interfaces of the plug-in, pass custom data to the Agora Classroom SDK, and monitor data changes through ExtApp. ExtApp enables you to embed custom plug-ins, such as a countdown tool or a dice in the  Flexible Classroom.
 
 The source code of ExtApp is located in the [AgoraExtApp` directory in `the CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) repository on GitHub.
 
-The following describes the basic steps of embedding custom plug-ins in Smart Classroom by extending ExtApp.
+This page describes the procedure of using ExtApp to embed a custom plug-in in the Flexible Classroom.
 
-## Implement real-time messaging
+## Procedure
 
-### 1. Implement the plug-in
+### 1. Implement a plug-in
 
 First, you need to inherit the `AgoraBaseExtApp` class and implement a custom plug-in in your App.
 
@@ -81,7 +81,7 @@ The plugin has been loaded. You can initialize in this callback.
 
 The plugin will be uninstalled. You can perform operations such as data backup in this callback.
 
-### 2. Register the plugin
+### 2. Register the plug-in
 
 Call the `Agora method to register the plug-in` in the Agora Classroom SDK.
 
@@ -108,9 +108,9 @@ let apps = [countDown]
 AgoraEduSDK.registerExtApps(apps)
 ```
 
-### 3. Start the plugin
+### 3. Use the plug-in
 
-By default, successfully registered plug-ins will be displayed in the toolbox pop-up window of the  Flexible Classroom whiteboard toolbar.
+By default, the registered plug-in is displayed in the whiteboard toolbar in the Flexible Classroom.
 
 If you want to customize an entry for the plug-in, you can modify the corresponding file of the UI Kit module, add an entry for the plug-in in the three major scenes of  Flexible Classroom, and then call the following method when the plug-in is clicked or displayed.
 
