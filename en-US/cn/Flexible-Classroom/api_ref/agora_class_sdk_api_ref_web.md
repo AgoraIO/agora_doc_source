@@ -151,11 +151,11 @@ export type LaunchOption = {
 | `recordUrl` | The URL address to be recorded. Developers need to pass in the URL of the web page deployed by themselves for page recording, such as `https://cn.bing.com/recordUrl`. |
 | `courseWareList` | The configuration of courseware assigned by the educational institution, which cannot be edited by the client. See [`courseWareList`](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 | `personalCourseWareList` | The configuration of courseware uploaded by a teacher. See [`CourseWareList`](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
-| `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a supplementary plug-  Flexible Classroom UIKit of Smart Classroom. For details, see[ Customize Plug-ins via ExtApp](./agora_class_ext_app_web?platform=Web). |
+| `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a supplementary plug-  Flexible Classroom UIKit of Smart Classroom. For details, see [Customize Plug-ins via ExtApp](./agora_class_ext_app_web?platform=Web). |
 
 ### CourseWareList
 
-Courseware pre-download configuration. Used when calling [`AgoraEduSDK.launch`](#launch).
+The courseware pre-download configuration. Used when calling [`AgoraEduSDK.launch`](#launch).
 
 ```typescript
 export type CourseWareItem = {
@@ -170,9 +170,9 @@ export type CourseWareItem = {
   updateTime: number,
   scenes: SceneDefinition[],
   convert?: boolean,
-  taskUuid ?: string,
+  taskUuid?: string,
   taskToken?: string,
-  taskProgress: NetlessTaskProgress
+  taskProgress?: NetlessTaskProgress
 }
  
 export type CourseWareList = CourseWareItem[]
@@ -181,7 +181,7 @@ export type CourseWareList = CourseWareItem[]
 | Parameter | Description |
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | The file name for display in the classroom. The string length must be less than 64 bytes. |
-| `resourceUuid`, | The file uuid. This is the unique identifier of a file. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `resourceUuid` | The file ID. This is the unique identifier of a file. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `ext` | The file suffix. |
 | `size` | The file size (bytes). |
 | `updateTime` | The latest modified time of the file. |
