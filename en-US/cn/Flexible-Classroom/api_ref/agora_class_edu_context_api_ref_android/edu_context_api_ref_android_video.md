@@ -61,7 +61,7 @@ Occurs when the user info updates.
 fun onVolumeUpdated(volume: Int, streamUuid: String)
 ```
 
-Prompt for volume update.
+Occurs when the volume of the local user is updated.
 
 | Parameter | Description |
 | :----------- | :------ |
@@ -74,14 +74,14 @@ Prompt for volume update.
 fun onMessageUpdated(msg: String)
 ```
 
-Display media-related prompt information.
+Display media-related tips.
 
 There are the following tips:
 
-- Your camera is turned off
-- Your camera is turned on
-- Your microphone is turned off
-- Your microphone is turned on
+- Your camera has been turned off.
+- Your camera has been turned on.
+- Your microphone has been turned off.
+- Your microphone has been turned on.
 
 | Parameter | Description |
 | :---- | :--------- |
