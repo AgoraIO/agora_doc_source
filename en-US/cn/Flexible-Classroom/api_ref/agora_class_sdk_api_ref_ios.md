@@ -1,4 +1,4 @@
-本页提供 Agora Classroom SDK for iOS 的 Swift API 参考。
+This page provides the Swift API reference of the Agora Classroom SDK for iOS.
 
 ## AgoraEduSDK
 
@@ -89,7 +89,7 @@ AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:us
 
 **Returns**
 
-The` AgoraEduClassroom` class.
+`AgoraEduClassroom`.
 
 ### configCoursewares
 
@@ -102,21 +102,21 @@ Configures courseware downloading.
 **Sample code**
 
 ```swift
-/** Construct, configure, download courseware */
-// The unique ID of the courseware conversion task
-NSString * taskUuid = @ "xxxx";
-// Courseware download address
+/** Construct, configure, and download the courseware */
+// The ID of the courseware conversion task
+NSString *taskUuid = @"xxxx";
+// The courseware download address
 NSString *resourceUrl = [NSString stringWithFormat:@"https://convertcdn.netless.link/dynamicConvert/%@/.zip", taskUuid];
-// Courseware name
-NSString *userName = @"XXX";
-// List of courseware pages, pay attention to convert to WhiteScene
+// The courseware name
+NSString *resourceName = @"XXX";
+// The list of courseware pages
 NSArray<WhiteScene*> *convertedFileList = @[];
-// Courseware catalog
-// It is recommended to use resourceName and the name of the first object in convertedFileList to join
+// The path for storing the courseware
+// Agora recommends setting this parameter as the combination of resourceName and name of the first object in convertedFileList
 NSString *scenePath = [NSString stringWithFormat:@"%@/%@", resourceName, [convertedFileList.firstObject name]];
 
 AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceName:resourceName scenePath:scenePath scenes:convertedFileList resourceUrl:resourceUrl];
-// Configure courseware preload
+// Configure the courseware pre-downloading
 [AgoraEduSDK configCoursewares:@[courseware]];
 ```
 
@@ -145,7 +145,7 @@ Pre-download the courseware.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `delegate` | The SDK reports events related to [`courseware`](#agoraeducoursewaredelegate) preloading to the app through the AgoraEduCoursewareDelegate class. |
+| `delegate` | The SDK reports events related to courseware preloading to the app through the [`AgoraEduCoursewareDelegate`](#agoraeducoursewaredelegate) class. |
 
 ### registerExtApps
 
@@ -153,7 +153,7 @@ Pre-download the courseware.
 + (void)registerExtApps:(NSArray<AgoraExtAppConfiguration *> *)apps;
 ```
 
-Register an extension application by using the ExtApp tool. ExtApp is a supplementary plug-  Flexible Classroom UIKit of Smart Classroom. For details, see [Customize Plug-ins via ExtApp](./agora_class_ext_app_ios?platform=iOS).
+Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](./agora_class_ext_app_ios?platform=iOS).
 
 ## AgoraEduClassroom
 
@@ -163,7 +163,7 @@ Register an extension application by using the ExtApp tool. ExtApp is a suppleme
 - (void)destroy;
 ```
 
-Release` the resources occupied by the AgoraEduClassroom` object.
+Release the resources occupied by the `AgoraEduClassroom` object.
 
 ## AgoraEduClassroomDelegate
 
@@ -239,7 +239,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoleType) {
 };
 ```
 
-The role of the user in the classroom. You need to set the[` user role in AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The role of the user in the classroom. You need to set the user role in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :------------------------ | :---------- |
@@ -255,7 +255,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 };
 ```
 
-The classroom type. You need to set the[` user role in AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The classroom type. You need to set the user role in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :---------------------- | :----------------------------------------------------------- |
