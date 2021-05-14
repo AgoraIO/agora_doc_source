@@ -186,7 +186,7 @@ export type CourseWareList = CourseWareItem[]
 | `size` | The file size (bytes). |
 | `updateTime` | The latest modified time of the file. |
 | `conversion` | The file conversion configuration object, which contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>`"dynamic"`: Convert the file to a static picture.</li><li>`"static"`: Convert the file to dynamic HTML.</li></ul></ul> |
-| `url` | The address of the file. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. If the suffix name is not listed above, url must be set``, `scenes` can be empty. |
+| `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. If the suffix name is not listed above, url must be set``, `scenes` can be empty. |
 | `scenes` | The download configuration of the converted file. When the file suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, you must set scenes for downloading the converted file``. |
 | `taskUuid` | The unique identifier of the file conversion task. |
 | `taskToken` | The token used by the file conversion task. |
@@ -207,7 +207,7 @@ The role of the user in the classroom. Set in [`LaunchOption`](#launchoption).
 
 | Parameter | Description |
 | :---------- | :------------------------ |
-| `audience` | `0`: Audience, used for page recording. |
+| `audience` | `0`: Audience, only used for web page recording. |
 | `teacher` | `1`: Teacher. |
 | `student` | `2`: A student. |
 | `assistant` | `3`: Teaching assistant. |
