@@ -52,7 +52,7 @@ Occurs when the local client receives a message.
 fun onReceiveChatHistory(history: List<EduContextChatItem>)
 ```
 
-Occurs when the local client receives the message history.
+Fetch the message history.
 
 | Parameter | Description |
 | :-------- | :-------------------------------------------------------- |
