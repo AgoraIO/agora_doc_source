@@ -38,7 +38,7 @@ The instance of the extended application is initialized.
 
 | Parameter | Description |
 | :-------- | :--------------- |
-| `context` | Android context. |
+| `context` | The android context. |
 
 ### onCreateView
 
@@ -50,7 +50,7 @@ The view of the extended application has been created.
 
 | Parameter | Description |
 | :-------- | :--------------- |
-| `context` | Android context. |
+| `context` | The android context. |
 
 ### onPropertyUpdated
 
