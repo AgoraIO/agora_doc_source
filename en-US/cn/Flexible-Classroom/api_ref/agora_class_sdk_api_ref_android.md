@@ -73,7 +73,7 @@ String rtmToken = "";
 long startTime = System.currentTimeMillis() + 100;
 // The duration (ms) of the class, determined by the first user joining the classroom.
 long duration = 310L;
-// The area where the classroom is located. Each client must use the same be the same, otherwise, it will not be able to communicate. 
+// The area where the classroom is located. 
 String region = AgoraEduRegionStr.cn;
 AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfig(
         userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration, region);
@@ -106,26 +106,26 @@ Configures courseware downloading.
 
 ```java
 /** Construct and configure courseware */
-// Configure courseware
+// Configure the courseware
 String taskUuid = "xxxxx";
-// Courseware download address
+// The courseware download address
 String resourceUrl = String.formate ("https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip", taskUuid);
-// Courseware name
+// The courseware name
 String resourceName = "xxxxxxx"
-// Courseware page list
+// The list of courseware pages
 List<SceneInfo> sceneInfos = new ArrayList();
-// Converted page PPT link
+// The link of a converted page
 String src = "http://xxxxxxx";
 Ppt ppt = new Ppt(src, 360, 640);
 SceneInfo sceneInfo = new SceneInfo(1, ppt, "ppt-file-name");
 List<SceneInfo> sceneInfos = new ArrayList();
 sceneInfos.push(sceneInfo)
-// Courseware catalog
+// The path for storing the courseware
 String scenePath = resourceName + "/" + sceneInfos.get(0).name;
 AgoraEduCourseware courseware = new AgoraEduCourseware(resourceName, scenePath, sceneInfos, resourceUrl);
 List<AgoraEduCourseware> wares = new ArrayList();
 wares.add(courseware);
-// Configure courseware preload
+// Configure the courseware pre-downloading
 configCoursewares(wares);
 ```
 
@@ -150,16 +150,16 @@ Pre-download the courseware.
 // Download the configured courseware
 downloadCoursewares(activityContext, new AgoraEduCoursewarePreloadListener() {
     @Override
-    void onStartDownload(@NotNull AgoraEduCourseware ware);
+    public void onStartDownload(@NotNull AgoraEduCourseware ware) {
     }
     @Override
-    void onProgress(@NotNull AgoraEduCourseware ware, double progress);
+    public void onProgress(@NotNull AgoraEduCourseware ware, double progress) {
     }
     @Override
-    void onComplete(@NotNull AgoraEduCourseware ware);
+    public void onComplete(@NotNull AgoraEduCourseware ware) {
     }
     @Override
-    void onFailed(@NotNull AgoraEduCourseware ware);
+    public void onFailed(@NotNull AgoraEduCourseware ware) {
     }
 });
 ```
@@ -169,7 +169,7 @@ downloadCoursewares(activityContext, new AgoraEduCoursewarePreloadListener() {
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
 | `context` | The context of the app. |
-| `listener` | The SDK reports events related to [`courseware preloading`](#agoraeducoursewarepreloadlistener) to the app through the AgoraEduCoursewarePreloadListener class. |
+| `listener` | The SDK reports events related to courseware preloading to the app through the [`AgoraEduCoursewarePreloadListener`](#agoraeducoursewarepreloadlistener) class. |
 
 ### registerExtApps
 
@@ -177,11 +177,11 @@ downloadCoursewares(activityContext, new AgoraEduCoursewarePreloadListener() {
 public static void registerExtApps(List<AgoraExtAppConfiguration> apps);
 ```
 
-Register an extension application by using the ExtApp tool. ExtApp is a supplementary plug-  Flexible Classroom UIKit of Smart Classroom. For details, see [Customize Plug-ins via ExtApp](./agora_class_ext_app_android?platform=Android).
+Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](./agora_class_ext_app_android?platform=Android).
 
 ## AgoraEduLaunchCallback
 
-The` AgoraEduLaunchCallback` class reports events related to class launching to the app.
+`AgoraEduLaunchCallback` reports events related to classroom launching to the app.
 
 ### onCallback
 
@@ -197,7 +197,7 @@ Reports classroom events.
 
 ## AgoraEduCoursewarePreloadListener
 
-The` AgoraEduCoursewarePreloadListener` class reports events related to courseware preloading to the app.
+`AgoraEduCoursewarePreloadListener` reports events related to courseware preloading to the app.
 
 ### onStartDownload
 
@@ -278,7 +278,7 @@ public enum AgoraEduRoleType {
 }
 ```
 
-The role of the user in the classroom. You need to set the[` user role in AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The role of the user in the classroom. You need to set the user role in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :------------------------ | :---------- |
@@ -294,7 +294,7 @@ public enum AgoraEduRoomType {
 }
 ```
 
-The classroom type. You need to set the[` user role in AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The classroom type. You need to set the user role in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :---------------------- | :----------------------------------------------------------- |
@@ -357,7 +357,7 @@ The classroom launching configuration. Used when calling [`launch`](#launch).
 | `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `boardRegion` | The area where the classrooms is located. The area of each client must be the same, otherwise they cannot communicate with each other. See [](). |
+| `boardRegion` | The area where the classrooms is located. All clients must set the same area, otherwise, they may fail to communicate with each other. See [](). |
 
 ### AgoraEduCourseware
 
@@ -376,7 +376,7 @@ The courseware pre-loaded configuration.  Used when calling [`configCoursewares`
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | The file name. |
-| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of `resourceName` and` the name of` the first `SceneInfo` object in `scenes`, such as,` resourceName + "/" + sceneInfos.get(0).name`. |
+| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of `resourceName` and `name` of the first `SceneInfo` object in `scenes`, such as, `resourceName + "/" + sceneInfos.get(0).name`. |
 | `scenes` | A list of converted file pages, an array of `SceneInfo` objects. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom and then display the file on the whiteboard in pages. Each `SceneInfo` object represents one page. |
 | `resourceUrl` | The URL address of the file, such as `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`. |
 
