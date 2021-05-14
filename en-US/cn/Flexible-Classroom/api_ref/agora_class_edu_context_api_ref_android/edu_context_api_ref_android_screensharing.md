@@ -50,12 +50,12 @@ Occurs when the state of screen sharing is updated.
 fun onScreenShareTip(tips: String)
 ```
 
-Display screen sharing related prompts.
+Displays tips related to screen sharing.
 
 There are the following tips:
 
-- The teacher has be turned on screen sharing.
-- XXX turned off screen sharing.
+- User A has started screen sharing.
+- User A has stopped screen sharing.
 
 | Parameter | Description |
 | :----- | :--------- |
