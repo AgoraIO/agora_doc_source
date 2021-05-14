@@ -1,6 +1,6 @@
 Use this guide to integrate the Agora Classroom SDK into your Android project and call APIs to launch a flexible classroom.
 
-<div class="alert note"><li>Before proceeding, ensure that you make the preparations required for using Flexible Classroom<a href="./agora_class_prep"></a>.<li>The Android client only supports students.</div>
+<div class="alert note"><li>Before proceeding, ensure that you make the <a href="./agora_class_prep">preparations</a> required for using Flexible Classroom.<li>The Android client only supports students.</div>
 
 ## Sample project
 
@@ -17,7 +17,6 @@ Agora provides an open-source [sample project](https://github.com/AgoraIO-Commun
 ## Integrate the Agora Classroom SDK
 
 Get the Agora Classroom SDK through the Gradle, as follows:
-
 
 1. Add the following library to your project's **build.gradle** file:
 
