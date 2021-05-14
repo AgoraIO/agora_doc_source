@@ -27,7 +27,7 @@ Agora 还提供一个 [CodePen 示例项目](https://codepen.io/agoratechwriter/
    npm install agora-classroom-sdk
    ```
 
-2. 在项目的 JavaScript 代码中引入 `AgoraRTC` 模块：
+2. 在项目的 JavaScript 代码中引入 `AgoraEduSDK` 模块：
 
    ```javascript
    import {AgoraEduSDK} from 'agora-classroom-sdk'
