@@ -1,6 +1,6 @@
 ## AgoraEduHandsUpContext
 
-`AgoraEduHandsUpContext` provides hand-raising-related methods that can be called by App.
+`AgoraEduHandsUpContext` provides the methods that can be called by your app for the hand-raising function.
 
 ### performHandsUp
 
@@ -8,11 +8,11 @@
 func updateHandsUpState(_ state: AgoraEduContextHandsUpState)
 ```
 
-Update the hand status.
+Raise or lower the hand.
 
 | Parameter | Description |
 | :------ | :---------------------------------------- |
-| `state` | Hands up state, see EduContextHandsUpState for details``. |
+| `state` | Whether the hand is raised. See `EduContextHandsUpState` for details. |
 
 ### registerEventHandler
 
@@ -28,7 +28,7 @@ Register the event listener.
 
 ## AgoraEduHandsUpHandler
 
-The` AgoraEduHandsUpHandler` class is used to report event callbacks related to raising hands to the App.
+`AgoraEduHandsUpHandler` reports event callbacks related to the hand-raising function to your app.
 
 ### onSetHandsUpEnable
 
@@ -36,11 +36,11 @@ The` AgoraEduHandsUpHandler` class is used to report event callbacks related to 
 @objc optional func onSetHandsUpEnable(_ enable: Bool)
 ```
 
-Report whether you can raise your hand.
+Indicates whether the hand-raising function is enabled.
 
 | Parameter | Description |
 | :------- | :------------- |
-| `enable` | Can you raise your hand? |
+| `enable` | Whether the hand-raising function is enabled. |
 
 ### onHandsUpStateUpdated
 
@@ -48,11 +48,11 @@ Report whether you can raise your hand.
 @objc optional func onSetHandsUpState(_ state: AgoraEduContextHandsUpState)
 ```
 
-Report the current hand-raising status.
+Indicate the current hand state.
 
 | Parameter | Description |
 | :------ | :------------------------------------------------- |
-| `state` | For the current hands-up state, see `AgoraEduContextHandsUpState `for details. |
+| `state` | The current hand state. See `AgoraEduContextHandsUpState` for details. |
 
 ### onHandsUpStateResultUpdated
 
@@ -60,7 +60,7 @@ Report the current hand-raising status.
 @objc optional func onUpdateHandsUpStateResult(_ error: AgoraEduContextError?)
 ```
 
-Report the result of the raise of hands.  If` error` is not empty, it means that the hand has failed.
+Reports the result of raise the hand. ` If error` is not empty, it means the local client fails to raise the hand.
 
 | Parameter | Description |
 | :------ | :------------------------------------ |
@@ -72,18 +72,18 @@ Report the result of the raise of hands.  If` error` is not empty, it means that
 @objc optional func onShowHandsUpTips(_ message: String)
 ```
 
-Display prompts related to raising hands.
+Displays tips related to hand-raising.
 
 There are the following tips:
 
-- Raise hand timed out.
-- The teacher rejected your application for a raise of hand.
-- The teacher approved your application by raising your hand.
-- You were stepped down by the teacher.
-- Raise your hand successfully.
-- Succeeded in canceling raise of hand.
-- The teacher turned off the raise hand function.
-- The teacher turned on the raise hand function
+- A timeout occurs.
+- The teacher has rejected your application for a talk.
+- The teacher has approved your application for a talk.
+- You have been removed from the "stage" by the teacher.
+- You have raise your hand.
+- You have lowered your hand.
+- The teacher has disabled the raise hand function.
+- The teacher has enabled the raise hand function.
 
 | Parameter | Description |
 | :-------- | :--------- |
