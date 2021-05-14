@@ -1,6 +1,6 @@
 # Type definition
 
-This page lists the type definitions used by Edu Context.
+This page lists the type definitions used by Agora Edu Context.
 
 ## AgoraEduContextError
 
@@ -16,12 +16,12 @@ This page lists the type definitions used by Edu Context.
 }
 ```
 
-Error code.
+The error code.
 
 | Parameter | Description |
 | :------- | :------- |
-| `code` | Error code. |
-| `message` | Error codes of the RTMP or RTMPS streaming. |
+| `code` | The error code. |
+| `message` | The error message. |
 
 ## AgoraEduContextApplianceType
 
@@ -31,16 +31,16 @@ Error code.
 }
 ```
 
-白板基础工具类型。
+The whiteboard editing tool.
 
 | Parameter | Description |
 | :------- | :------- |
 | `select` | Selector. |
-| `pen` | brush. |
-| `rect` | rectangle. |
-| `circle` | Round. |
-| `line` | line. |
-| `eraser` | Eraser |
+| `pen` | Pen. |
+| `rect` | Rectangle. |
+| `circle` | Circle. |
+| `line` | Line. |
+| `eraser` | Eraser. |
 
 
 ## AgoraEduContextRoomInfo
@@ -50,15 +50,15 @@ Error code.
     public var roomUuid: String
     public var roomName: String
      
-    public init(roomUuid: String,
-                roomName: string,
+        public init(roomUuid: String,
+                roomName: String) {
         self.roomUuid = roomUuid
         self.roomName = roomName
     }
 }
 ```
 
-Class information.
+The classroom information.
 
 | Parameter | Description |
 | :---------------- | :----------- |
@@ -73,14 +73,14 @@ Class information.
 }
 ```
 
-Classroom status.
+The classroom state.
 
 | Parameter | Description |
 | :---------- | :----------------- |
-| `default` | The class has been initialized. |
+| `default` | The classroom has been initialized. |
 | `start` | The class has started. |
 | `end` | The class is over. |
-| `close` | The class is closed. |
+| `close` | The classroom is closed. |
 
 ## AgoraEduContextAppType
 
@@ -94,8 +94,8 @@ The classroom type.
 
 | Parameter | Description |
 | :---------- | :----------------- |
-| `oneToOne` | One-to-one Online Classroom |
-| `small` | Live broadcast small classes online. |
+| `oneToOne` | One-to-one Classroom. |
+| `small` | Small Classroom. |
 
 ## AgoraEduContextNetworkQuality
 
@@ -105,14 +105,14 @@ The classroom type.
 }
 ```
 
-Network conditions.
+The network quality.
 
 | Parameter | Description |
 | :-------- | :----- |
-| `good` | better. |
-| `medium` | general. |
+| `good` | Good. |
+| `medium` | Medium. |
 | `bad` | Poor. |
-| `unknown` | unknown. |
+| `unknown` | Unknown. |
 
 ## AgoraEduContextConnectionState
 
@@ -122,14 +122,14 @@ Network conditions.
 }
 ```
 
-RTM connection status.
+The connection state with the RTM system.
 
 | Parameter | Description |
 | :------------- | :----------- |
-| `disconnected` | The SDK disconnects from the network. |
-| `connecting` | connecting. |
-| `connected` | connected. |
-| `reconnecting` | Reconnecting. |
+| `disconnected` | The SDK disconnects from the RTM system. |
+| `connecting` | The SDK is connecting to the RTM system. |
+| `connected` | The SDK is connected to the RTM system. |
+| `reconnecting` | The SDK is reconnecting to the RTM system. |
 | `aborted` | The connection has been aborted. |
 
 
@@ -145,8 +145,8 @@ The user role.
 
 | Parameter | Description |
 | :---------- | :----- |
-| `teacher` | teacher. |
-| `student` | student. |
+| `teacher` | Teacher. |
+| `student` | Student. |
 | `assistant` | Teaching assistant. |
 
 ## NowEduContextUserInfo
@@ -159,13 +159,13 @@ The user role.
 }
 ```
 
-Basic user information.
+The basic user information.
 
 | Parameter | Description |
 | :--------- | :------------------------------------ |
 | `userUuid` | The user ID. |
-| `userName` | user name. |
-| `role` | User role, see AgoraEduContextUserRole for details``. |
+| `userName` | The user name. |
+| `role` | The user role. See `AgoraEduContextUserRole` for details. |
 
 ## AgoraEduContextUserDetailInfo
 
@@ -185,20 +185,20 @@ Basic user information.
 }
 ```
 
-The detailed information.
+The detailed user information.
 
 | Parameter | Description |
 | :------------- | :----------------------------------- |
-| `user` | For basic user information, see AgoraEduContextUserInfo for details``. |
-| `isSelf` | Whether it is a local user. |
+| `user` | For the basic user information, see `AgoraEduContextUserInfo`. |
+| `isSelf` | Whether the user is the local user. |
 | `streamUuid` | The stream ID of the user. |
-| `onLine` | Is it online? |
-| `coHost` | Is it on stage? |
-| `boardGranted` | Whether to have whiteboard permission. |
-| `cameraState` | Camera availability status, see AgoraEduContextDeviceState for details``. |
-| `microState` | Microphone availability status, see AgoraEduContextDeviceState for details``. |
-| `enableVideo` | Enables video. |
-| `enableAudio` | Whether to turn on audio. |
+| `onLine` | Whether the user is online. |
+| `coHost` | Whether the user is on stage. |
+| `boardGranted` | Whether the user has permission of drawing on the whiteboard. |
+| `cameraState` | The camera state of the user. See `AgoraEduContextDeviceState`. |
+| `microState` | The microphone state of the user. See `AgoraEduContextDeviceState`. |
+| `enableVideo` | Whether the user enables the video. |
+| `enableAudio` | Whether the user enables the audio. |
 | `rewardCount` | The number of rewards. |
 
 ## AgoraEduContextDeviceState
@@ -209,14 +209,14 @@ The detailed information.
 }
 ```
 
-Media device states.
+The device state.
 
 | Parameter | Description |
 | :------------ | :------------- |
 | `notAvailable` | The device is unavailable. |
-| `available` | The equipment is available. |
+| `available` | The device is available. |
 
-## NowEduContextChatInfo
+## AgoraEduContextChatInfo
 
 ```swift
 @objcMembers public class AgoraEduContextChatInfo: NSObject {
@@ -230,13 +230,13 @@ Media device states.
 }
 ```
 
-The specific information of the chat message.
+The information of the message.
 
 | Parameter | Description |
 | :---------- | :----------------------------------------- |
 | `id` | The message ID. |
 | `message` | The message. |
-| `user` | Message sender information, see AgoraEduContextUserInfo for details``. |
+| `user` | The user who sends the message. See `AgoraEduContextUserInfo` for details. |
 | `sendState` | Message sending status, see AgoraEduContextChatState for details``. |
 | `type` | Message type, see AgoraEduContextChatType for details``. |
 | `time` | Message sending timestamp. |
@@ -283,10 +283,10 @@ Message sending status.
 
 | Parameter | Description |
 | :----------- | :------------- |
-| `default` | The default state. |
+| `default` | The initial state. |
 | `inProgress` | The message is being sent. |
-| `success` | The message was sent successfully. |
-| `fail` | Failed to send the message. |
+| `success` | The message is sent successfully. |
+| `fail` | Fail to send the message. |
 
 ## AgoraEduContextHandsUpState
 
@@ -298,10 +298,10 @@ Message sending status.
 }
 ```
 
-Hand up state.
+The hand state.
 
 | Parameter | Description |
 | :---------- | :--------- |
 | `default` | The initial state. |
-| `dandsUp` | Raise your hands. |
-| `dandsDown` | Hands down. |
+| `dandsUp` | Hand raised. |
+| `dandsDown` | Hand lowered. |
