@@ -1,10 +1,10 @@
-## 概述
+## Overview
 
-Agora 在 JitPack 上提供完整的 [Agora Classroom SDK](https://jitpack.io/#AgoraIO-Community/CloudClass-Android) 供你集成。 但是，如果 Agora Classroom SDK 中默认的 UI 无法满足你的需求，你也可以获取 Agora Classroom SDK 的源码，自行开发、调试和编译。 Agora Classroom SDK for Android 的源码位于 GitHub 上 [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) 仓库（release/apaas/1.1.0 分支）。 在 Agora Classroom SDK 中，灵动课堂的 UI 代码和核心业务逻辑相隔离，独立成 UIKit 和 EduCore 两个库，两者通过 [Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_android_overview?platform=Android) 产生关联。 举例来说，对于灵动课堂中的文字聊天功能，需要通过一个按钮发送消息，同时需要接收其他用户发送的消息。 这种情况下，我们在 UIKit 中可以调用 Chat Context 中的发送消息方法，并监听 Chat Context 中消息接收相关事件。
+Agora provides the complete [Agora Classroom SDK](https://jitpack.io/#AgoraIO-Community/CloudClass-Android) on JitPack. However, if you want to customize the user interfaces of classrooms, Agora provides the source code of the Agora Classroom SDK for you to further develop, debug, and compile. The source code of the Agora Classroom SDK for Android is in the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) repository on GitHub (branch release/apaas/1.1.0). The Agora Classroom SDK separates the code of the user interfaces from the code of core business logic and provides two libraries, UIKit and EduCore. These two libraries connect with each other through [Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_android_overview?platform=Android). For example, for the chat module in the  Flexible Classroom, a user needs to click on a button to send a message, and they also receive messages sent by other users. In this case, in UIKit, we can call a method in the Chat Context to send a message and listen for the events in the Chat Context to receive messages.
 
 ![](https://web-cdn.agora.io/docs-files/1619696813295)
 
-UIKit 中提供灵动课堂的 UI 组件代码。 UIKit 的源码位于 GitHub 上 CloudClass-Android 仓库（release/apaas/1.1.0 分支）中  `agoraui` 目录下，核心项目结构介绍如下：
+UIKit provides all the code for the user interfaces in Flexible Classroom. You can find the source code of the UIKit in the `agoraui` folder in the CloudClass-Android repository on GitHub (Branch release/apaas/1.1.0). The project structure of UIKit is as follows:
 
 | Folder | Description |
 | :----------- | :----------------------------------------------------------- |
@@ -14,13 +14,13 @@ UIKit 中提供灵动课堂的 UI 组件代码。 UIKit 的源码位于 GitHub �
 
 ## UI customization example
 
-Here are a few examples of modifying     Flexible Classroom.
+This section provides examples of customizing the user interfaces of Flexible Classroom.
 
 ### Change the color of the navigation bar
 
-The following example demonstrates how to modify the background color of the` navigation bar component from white to gray by editing the agoraui/src/main/res/layout/agora_status_bar_layout.xml` file.
+The following example demonstrates how to modify the background color of the navigation bar component from white to gray by editing `agoraui/src/main/res/layout/agora_status_bar_layout.xml`.
 
-<div class="alert info">The navigation bar component is implemented in the <code>Agora/src/main/kotlin/io/Agora/uikit/impl/room/Agora</code> file.</div>
+<div class="alert info">The navigation bar component is implemented in <code>Agora/src/main/kotlin/io/Agora/uikit/impl/room/Agora</code>.</div>
 
 #### Before
 
@@ -50,9 +50,9 @@ The following example demonstrates how to modify the background color of the` na
 
 ### Adjust the layout
 
-The following example demonstrates how to switch the position of the` leave room button and the network condition icon by editing the agoraui/src/main/res/layout/agora_status_bar_layout.xml` file.
+The following example demonstrates how to switch the position of the leave room button and the network condition icon by editing `agoraui/src/main/res/layout/agora_status_bar_layout.xml`.
 
-<div class="alert info">The navigation bar component is implemented in the <code>Agora/src/main/kotlin/io/Agora/uikit/impl/room/Agora</code> file.</div>
+<div class="alert info">The navigation bar component is implemented in <code>Agora/src/main/kotlin/io/Agora/uikit/impl/room/Agora</code>.</div>
 
 #### Before
 
@@ -120,7 +120,7 @@ The following example demonstrates how to switch the position of the` leave room
 
 ### Add a basic UI component
 
-The following example shows how to add a custom basic UI component and use it in  Flexible Classroom:
+The following example shows how to add a custom basic UI component and use it in Flexible Classroom:
 
 Suppose the properties of the UI component are defined as follows:
 
@@ -147,7 +147,7 @@ agoraui/src/main/res/values-zh/strings.xml`
 <string name="custom_widget_text">Leave</string>
    ```
 
-2. Add a `custom_widget_layout.xml `file under the `agoraui/src/main/res/` directory to define the style of custom components.
+2. Add a `custom_widget_layout.xml` file under the `agoraui/src/main/res/` directory to define the style of custom components.
    ```
    <?xml version="1.0" encoding="utf-8"?>
    
