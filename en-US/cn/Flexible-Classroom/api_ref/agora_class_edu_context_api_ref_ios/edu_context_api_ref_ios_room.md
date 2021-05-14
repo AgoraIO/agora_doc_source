@@ -115,7 +115,7 @@ There are the following tips:
 @objc optional func onShowErrorInfo(_ error: AgoraEduContextError)
 ```
 
-上课过程中的错误信息。
+Reports the error message during the class.
 
 | Parameter | Description |
 | :------ | :-------------------------------------- |
