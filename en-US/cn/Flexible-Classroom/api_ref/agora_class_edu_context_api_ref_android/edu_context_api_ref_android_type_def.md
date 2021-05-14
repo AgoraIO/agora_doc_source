@@ -1,6 +1,6 @@
 # Type definition
 
-This page lists the type definitions used by Edu Context.
+This page lists the type definitions used by Agora Edu Context.
 
 ## WhiteboardApplianceType
 
@@ -10,16 +10,16 @@ enum class WhiteboardApplianceType {
 }
 ```
 
-白板基础工具类型。
+The whiteboard editing tool.
 
 | Parameter | Description |
 | :------- | :------- |
 | `Select` | Selector. |
-| `Pen` | brush. |
-| `rect` | rectangle. |
-| `Circle` | Round. |
-| `Line` | line. |
-| `Eraser` | Eraser |
+| `Pen` | Pen. |
+| `rect` | Rectangle. |
+| `Circle` | Circle. |
+| `Line` | Line. |
+| `Eraser` | Eraser. |
 | `Text` | Text box. |
 
 ## WhiteboardDrawingConfig
@@ -57,14 +57,14 @@ enum class EduContextNetworkState {
 }
 ```
 
-Network conditions.
+The network quality.
 
 | Parameter | Description |
 | :-------- | :----- |
-| `Good` | better. |
-| `Medium` | general. |
+| `Good` | Good. |
+| `Medium` | Medium. |
 | `Bad` | Poor. |
-| `Unknown` | unknown. |
+| `Unknown` | Unknown. |
 
 ## EduContextConnectionState
 
@@ -78,14 +78,14 @@ enum class EduContextConnectionState {
 }
 ```
 
-RTM connection status.
+The connection state with the RTM system.
 
 | Parameter | Description |
 | :------------- | :----------- |
-| `Disconnected` | The SDK disconnects from the network. |
-| `Connecting` | connecting. |
-| `Connected` | connected. |
-| `Reconnecting` | Reconnecting. |
+| `Disconnected` | The SDK disconnects from the RTM system. |
+| `Connecting` | The SDK is connecting to the RTM system. |
+| `Connected` | The SDK is connected to the RTM system. |
+| `Reconnecting` | The SDK is reconnecting to the RTM system. |
 | `Aborted` | Was kicked out. |
 
 ## EduContextClassState
@@ -96,11 +96,11 @@ enum class EduContextClassState {
 }
 ```
 
-Classroom status.
+The classroom state.
 
 | Parameter | Description |
 | :---------- | :----------------- |
-| `Init` | The class has been initialized. |
+| `Init` | The classroom has been initialized. |
 | `Start` | The class has started. |
 | `end` | The class is over. |
 | `Destroyed` | The classroom has been destroyed. |
@@ -119,8 +119,8 @@ The user role.
 
 | Parameter | Description |
 | :---------- | :----- |
-| `Teacher` | teacher. |
-| `Student` | student. |
+| `Teacher` | Teacher. |
+| `Student` | Student. |
 | `Assistant` | Teaching assistant. |
 
 ## EduContextUserInfo
@@ -139,7 +139,7 @@ The volume information of users.
 | Parameter | Description |
 | :--------- | :------------------------------------ |
 | `userUuid` | The user ID. |
-| `userName` | user name. |
+| `userName` | The user name. |
 | `role` | User role, see EduContextUserRole for details``. |
 
 ## EduContextUserDetailInfo
@@ -160,18 +160,18 @@ data class EduContextUserDetailInfo(val user: EduContextUserInfo, val streamUuid
 }
 ```
 
-The detailed information.
+The detailed user information.
 
 | Parameter | Description |
 | :------------- | :----------------------------------- |
-| `isSelf` | Whether it is a local user. |
-| `onLine` | Is it online? |
-| `coHots` | Is it on stage? |
-| `boardGranted` | Whether to have whiteboard permission. |
+| `isSelf` | Whether the user is the local user. |
+| `onLine` | Whether the user is online. |
+| `coHots` | Whether the user is on stage. |
+| `boardGranted` | Whether the user has permission of drawing on the whiteboard. |
 | `cameraState` | The available state of the camera, see DeviceState for details``. |
 | `microState` | Microphone available status, see DeviceState for details``. |
-| `enableVideo` | Enables video. |
-| `enableAudio` | Whether to turn on audio. |
+| `enableVideo` | Whether the user enables the video. |
+| `enableAudio` | Whether the user enables the audio. |
 | `rewardCount` | The number of rewards. |
 
 ## deviceState
@@ -184,12 +184,12 @@ enum class DeviceState(val value: Int) {
 }
 ```
 
-Media device states.
+The device state.
 
 | Parameter | Description |
 | :------------ | :------------- |
 | `UnAvailable` | The device is unavailable. |
-| `Available` | The equipment is available. |
+| `Available` | The device is available. |
 | `Closed` | The device has been shut down. |
 
 ## EduContextChatItem
@@ -207,7 +207,7 @@ data class EduContextChatItem(
 }
 ```
 
-The specific information of the chat message.
+The information of the message.
 
 | Parameter | Description |
 | :---------- | :----------------------------------------- |
@@ -262,10 +262,10 @@ Message sending status.
 
 | Parameter | Description |
 | :----------- | :------------- |
-| `Default` | The default state. |
+| `Default` | The initial state. |
 | `InProgress` | The message is being sent. |
-| `success` | The message was sent successfully. |
-| `Fail` | Failed to send the message. |
+| `success` | The message is sent successfully. |
+| `Fail` | Fail to send the message. |
 
 ## EduContextHandsUpState
 
@@ -277,10 +277,10 @@ enum class EduContextHandsUpState(val value: Int) {
 }
 ```
 
-Hand up state.
+The hand state.
 
 | Parameter | Description |
 | :---------- | :--------- |
 | `Init` | The initial state. |
-| `HandsUp` | Raise your hands. |
-| `HandsDown` | Hands down. |
+| `HandsUp` | Hand raised. |
+| `HandsDown` | Hand lowered. |
