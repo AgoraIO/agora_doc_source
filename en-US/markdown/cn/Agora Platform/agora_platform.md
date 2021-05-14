@@ -13,7 +13,7 @@ After integrating the Agora SDK, you can call different sets of APIs to implemen
 
 ## Self-built infrastructure
 
-SD-RTN™, or Software Defined Real-time Network, is a real-time transmission network built by Agora and is the only network infrastructure specifically designed for real-time communications in the world. All audio and video services provided by the Agora SDK are deployed and transmitted through the Agora SD-RTN™. This is also the only infrastructure in the world designed specifically for real-time transmission. 声网通过智能动态路由算法，确保全球范围内的毫秒级超低延迟传输，端到端优质传输率大于 99%。
+SD-RTN™, or Software Defined Real-time Network, is a real-time transmission network built by Agora and is the only network infrastructure specifically designed for real-time communications in the world. All audio and video services provided by the Agora SDK are deployed and transmitted through the Agora SD-RTN™. This is also the only infrastructure in the world designed specifically for real-time transmission. Agora uses intelligent dynamic routing algorithms to achieve millisecond latency and ensure that the end-to-end high-quality transmission rate is greater than 99%.
 
 | Feature | Description |
 | ------------------- | ------------------------------------------------------------ |
@@ -25,7 +25,7 @@ SD-RTN™, or Software Defined Real-time Network, is a real-time transmission ne
 | Global network reliability | <li>Global network availability at 99.999%<li>Invisible core business, such as anti-DDoS |
 | Compatibility and interoperability | <li>Support for 6000+ devices<li>Support for mainstream web browsers, including Google Chrome, Safari, and Firefox<li>Support for iOS, Android, the Web, Windows, macOS, Electron, Linux, CoCos, Unity, and so on |
 | UDP (User Datagram Protocol) optimization | Optimizes multiple private protocols based on the UDP |
-| Anti-packet-loss optimization | Algorithm for optimizing anti-packet-loss mechanism under weak network conditions Audio anti-packet-loss rate of 70% |
+| Anti-packet-loss optimization | Algorithm for optimizing anti-packet-loss mechanism under weak network conditions Audio anti-packet-loss rate of 80% |
 
 ## Self-developed audio and video codecs
 
@@ -92,7 +92,7 @@ Agora uses different channels to transmit different types of data. The RTC chann
 
 Additional components provided by Agora, such as On-premise Recording and Cloud Recording, can join the RTC channel and provide real-time recording, transmission acceleration, media playback, and content moderation.
 
-Agora channel name. Users with the same channel name join the same channel and interact with each other. A channel no longer exists when the last user leaves the channel.
+Agora uses the channel name to identify a channel. Users with the same channel name join the same channel and interact with each other. A channel no longer exists when the last user leaves the channel.
 
 #### **The channel profile.**
 
@@ -102,7 +102,7 @@ Agora supports the following channel  profiles:
 
 | The channel profile. | Description |
 | ---------------- | ---------------- |
-| COMMUNICATION (Voice/Video) | One-on-one or group calls, where all users in the channel can talk freely. |
+| COMMUNICATION | One-on-one or group calls, where all users in the channel can talk freely. |
 | LIVE_BROADCASTING | In a live interactive streaming channel, users have two client roles: Host and audience. The host sends and receives audio/video, and the audience receives audio/video with the sending function disabled. |
 
 #### <a name="username"></a>**User ID**
