@@ -1,6 +1,6 @@
 ## VideoContext
 
-The` VideoContext` class provides media control-related methods that can be called by the App.
+`VideoContext` provides the methods that can be called by your app for media control.
 
 ### updateVideo
 
@@ -12,7 +12,7 @@ Enable or disable the local video.
 
 | Parameter | Description |
 | :-------- | :----------------- |
-| `enabled` | Whether to enable the local video capture. |
+| `enabled` | Whether to enable the local video. |
 
 ### updateAudio
 
@@ -24,7 +24,7 @@ Enable or disable the local audio.
 
 | Parameter | Description |
 | :-------- | :----------------- |
-| `enabled` | Whether to enable the local video capture. |
+| `enabled` | Whether to enable the local audio. |
 
 ### renderVideo
 
@@ -39,9 +39,9 @@ Start or stop rendering the local video stream.
 | `container` | The video container. `Setting viewGroup` as `null` means stopping rendering the video stream. |
 | `streamUuid` | The stream ID. |
 
-## VideoHandler
+## IVideoHandler
 
-The` IVideoHandler` class is used to report media-related event callbacks to the App.
+`IVideoHandler` reports the event callbacks related to media control to your app.
 
 ### onUserDetailInfoUpdated
 
@@ -49,11 +49,11 @@ The` IVideoHandler` class is used to report media-related event callbacks to the
 fun onUserDetailInfoUpdated (info: EduContextUserDetailInfo)
 ```
 
-Prompt the user to update the information.
+Occurs when the user info updates.
 
 | Parameter | Description |
 | :----- | :------------------------------------------ |
-| `info` | User information, see EduContextUserDetailInfo for details``. |
+| `info` | The user information. See `EduContextUserDetailInfo` for details. |
 
 ### onVolumeUpdated
 
