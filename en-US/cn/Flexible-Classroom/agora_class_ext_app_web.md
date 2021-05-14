@@ -1,37 +1,37 @@
 ## Overview
 
-Extended application ExtApp is a supplementary plug-in for  Flexible Classroom. You can understand ExtApp as a relatively independent App with its own life cycle and data management, but it also depends on the Agora Classroom SDK. You can customize the UI of the plug-in through ExtApp, pass custom data and monitor data changes, and embed custom plug-ins, such as countdown, dice, etc., in the  Flexible Classroom.
+ExtApp is a tool for embedding plug-ins in Flexible Classroom. Plug-ins implemented by ExtApp can be regarded as an independent application with its own life cycle and data management, but they also depend on the Agora Classroom SDK. You can customize the user interfaces of the plug-in, pass custom data to the Agora Classroom SDK, and monitor data changes through ExtApp. ExtApp enables you to embed custom plug-ins, such as a countdown tool or a dice in the  Flexible Classroom.
 
-The following describes the basic steps of embedding custom plug-ins in Smart Classroom by extending ExtApp.
+This page describes the procedure of using ExtApp to embed a custom plug-in in the Flexible Classroom.
 
-## Implement real-time messaging
+## Procedure
 
-### 1. Implement the plug-in
+### 1. Implement a plug-in
 
-First, you can refer to the PluginGallery provided by Agora[](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas/1.1.0/packages/agora-plugin-gallery) to create an independent JavaScript project.
+First, you can refer to the [PluginGallery](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas/1.1.0/packages/agora-plugin-gallery) provided by Agora to create an independent JavaScript project.
 
-Take PluginGallery's countdown countdown plugin as an example, you need to introduce related Context.
+Take the countdown plugin in PluginGallery as an example. You need to import the following contexts.
 
 ```
 import type {IAgoraExtApp, AgoraExtAppContext, AgoraExtAppHandle} from 'agora-edu-core'
 ```
 
-You need to create a class that implements IAgoraExtApp, refer to the following code to implement a plug-in.
+Create a class that implements IAgoraExtApp, refer to the following code to develop a plug-in.
 
 ```javascript
 export class AgoraExtAppCountDown implements IAgoraExtApp {
-  // Plug-in ID, the same plug-in on different platforms must use the same ID. 
-  appIdentifier = "io.agora.countdown"
-  // plugin name
+  // The plug-in ID. 
+    appIdentifier = "io.agora.countdown"
+  // The plug-in name
   appName = "Count Down"
-  // Plug-in default window size
+  // The default size of the plug-in
   width = 640
-  "height": 480
+  height= 480
 
-  // Used for state management of AgoraExtAppCountDown itself, not required
+  // (Optional) The state management of AgoraExtAppCountDown
   store?:PluginStore
 
-  constructor(){
+    constructor(){
   }
 
   // The initialization method of ExtApp, you need to draw the content of your own plug-in application in dom, ctx and handle are the plug-in context and capabilities provided to you
@@ -49,16 +49,16 @@ export class AgoraExtAppCountDown implements IAgoraExtApp {
   extAppRoomPropertiesDidUpdate(properties:any, cause:any): void {
     this.store?.onReceivedProps(properties, cause)
   }
-  // Remove plugin
+  // Remove the plug-in
   extAppWillUnload(): void {
     this.store?.cleanup()
   }
 }
 ```
 
-### 2. Register the plugin
+### 2. Register the plug-in
 
-When calling the `Agora method, `register the plug-in` to the Agora Classroom SDK through the extApps` parameter.
+To register the plug-in in the Agora Classroom SDK, set the `extApps` parameter when calling `AgoraEduSDK.launch`.
 
 The following sample code demonstrates how to register the countdown plug-in CountDownExtApp.
 
@@ -66,15 +66,15 @@ The following sample code demonstrates how to register the countdown plug-in Cou
 import { AgoraExtAppCountDown } from 'agora-plugin-gallery'
 
 const countDownApp = new AgoraExtAppCountDown()
-AgoraSDK.launch (dom, {
+AgoraSDK.launch(dom, {
 	extApps: [countDownApp],
 	...
 })
 ```
 
-### 3. Start the plugin
+### 3. Use the plug-in
 
-By default, successfully registered plug-ins will be displayed in the toolbox pop-up window of the  Flexible Classroom whiteboard toolbar. Click to start the plug-in.
+By default, the registered plug-in is displayed in the whiteboard toolbar in the Flexible Classroom. Click the icon of the plug-in to use the plug-in.
 
 ![](https://web-cdn.agora.io/docs-files/1619755145025)
 
@@ -82,4 +82,4 @@ By default, successfully registered plug-ins will be displayed in the toolbox po
 
 
 
-If you don’t want to start the plug-in by default, you can also modify the corresponding file of the UI Kit module, add an entry for the plug-in in the three major scenarios of Smart Class, and then get the startup event through the useAppPluginContext of Agora Edu Context, at the right time Start the plug-in through onLaunchAppPlugin.
+You can also change the way the corresponding file of the UI Kit module, add an entry for the plug-in in the three major scenarios of Smart Class, and then get the startup event through the useAppPluginContext of Agora Edu Context, at the right time Start the plug-in through onLaunchAppPlugin.
