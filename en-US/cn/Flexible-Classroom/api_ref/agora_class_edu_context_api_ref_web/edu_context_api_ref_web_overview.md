@@ -1,20 +1,20 @@
 ## Overview
 
-The Agora Classroom SDK provides App developers with the ability to implement smart classroom business functions through Edu Context.
+Agora Edu Context enables developers to implement the functions in the Flexible Classroom.
 
 ![](https://web-cdn.agora.io/docs-files/1619696813295)
 
-Different Contexts represent different business function modules in the  Flexible Classroom. Each Context contains methods for the App to call and also reports event callbacks to the App.
+Different contexts represent different function modules in the Flexible Classroom. Each context contains methods for the app to call and also reports event callbacks to the app.
 
-The Agora Classroom SDK provides the following Context:
+The Agora Classroom SDK provides the following contexts:
 
-- `usePretestContext()`: Test before class.
-- `useBoardContext(): Whiteboard`.
-- `useChatContext()`: Message chat.
+- `usePretestContext()`: Pre-class test.
+- `useBoardContext()`: Whiteboard.
+- `useChatContext()`: Chat.
 - `useRoomContext()`: Classroom management.
-- `useHandsUpContext`: Raise your hands on the stage.
+- `useHandsUpContext`: Hand-raising.
 - `useScreenShareContext()`: Screen sharing.
 - `useUserListContext()`: User list.
-- `useRecordingContext()`: Class recording.
+- `useRecordingContext()`: Recording.
 
-For example, `useRoomContext()` provides classroom management related capabilities. You can` import useRoomContext by import {useRoomContext} from'agora-edu-core';```, and then use` const {...} = useRoomContext()` to obtain classroom management related abilities in smart classrooms. Suppose you need to get the chat message list and confirm whether the local host is the host, you can get` this ability through const {messageList, isHost} = useChatConxt();`
+For example, `useRoomContext()` provides methods and callbacks related to classroom management. You can import `useRoomContext` by `import {useRoomContext} from'agora-edu-core';` and then use `const {...} = useRoomContext()` to implement the functions and events related to classroom management. Suppose you need to get the message list and check whether the local client is the host, you can get this ability through `const {messageList, isHost} = useChatConxt();`
