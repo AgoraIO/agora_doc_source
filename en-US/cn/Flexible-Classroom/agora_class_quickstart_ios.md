@@ -1,6 +1,6 @@
 Use this guide to integrate the Agora Classroom SDK into your iOS project and call APIs to launch a flexible classroom.
 
-<div class="alert note"><li>Before proceeding, ensure that you make the preparations required for using Flexible Classroom<a href="./agora_class_prep"></a>.<li>The iOS client only supports students.</div>
+<div class="alert note"><li>Before proceeding, ensure that you make the <a href="./agora_class_prep">preparations</a> required for using Flexible Classroom.<li>The iOS client only supports students.</div>
 
 ## Sample project
 Agora provides an open-source [sample project](https://github.com/AgoraIO-Community/CloudClass-iOS) on GitHub, which demonstrates how to integrate the Agora Classroom SDK and call APIs to launch a flexible classroom. You can download and read the source code.
@@ -24,9 +24,11 @@ Get the Agora Classroom SDK through CocoaPods, as follows:
 ```
 # platform :ios, '10.0' use_frameworks!
 target 'Your App' do
-    pod 'AgoraEduSDK'
+    pod 'AgoraClassroomSDK'
 end
 ```
+
+<div class="alert info">1.0.0 版本请使用 <code>pod 'AgoraEduSDK'</code>。</div>
 
 3. Run the` pod install` command to install the SDK. Once you successfully install the SDK, it shows` Pod installation complete!` in Terminal, and you can see an `xcworkspace` file in the project folder.
 4. Open the generated `xcworkspace` file in Xcode.
