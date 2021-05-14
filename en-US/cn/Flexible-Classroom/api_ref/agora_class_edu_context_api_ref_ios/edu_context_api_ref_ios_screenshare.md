@@ -1,11 +1,11 @@
 ## AgoraEduScreenShareContext
 
-`The AgoraEduScreenShareContext` class provides screen sharing related methods that can be called by App.
+`AgoraEduScreenShareContext` provides the methods that can be called by your app for screen sharing.
 
 ### registerEventHandler
 
 ```swift
-func registerEventHandler (_ handler: AgoraEduScreenShareHandler)
+func registerEventHandler(_ handler: AgoraEduScreenShareHandler)
 ```
 
 Register the event listener.
@@ -16,7 +16,7 @@ Register the event listener.
 
 ## AgoraEduScreenShareHandler
 
-The` AgoraEduScreenShareHandler` class is used to report screen sharing-related event callbacks to the App.
+`AgoraEduScreenShareHandler` reports screen-sharing-related event callbacks to your app.
 
 ### onScreenShareStateUpdated
 
@@ -38,12 +38,12 @@ Occurs when the state of screen sharing is updated.
 @objc optional func onShowScreenShareTips(_ message: String)
 ```
 
-Display screen sharing related prompts.
+Displays tips related to screen sharing.
 
 There are the following tips:
 
-- The teacher has be turned on screen sharing.
-- XXX turned off screen sharing.
+- User A has started screen sharing.
+- User A has stopped screen sharing.
 
 | Parameter | Description |
 | :-------- | :--------- |
