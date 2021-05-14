@@ -1,84 +1,84 @@
-# useUserListContext
+# useUserListContext useUserListContext
 
-`useUserListContext()` provides user list related capabilities.
+`useUserListContext()` enables developers to implement the user list module in the flexible classroom. `useUserListContext()` 提供用户列表相关能力。
 
-You can` import useUserListContext by import {useUserListContext} from'agora-edu-core';```, and then` use const {...} = useUserListContext()` to obtain classroom management related capabilities in  Flexible Classroom.
+你可以通过 `import { useUserListContext } from 'agora-edu-core';  ` 引入 `useUserListContext`，然后使用 `const {...} = useUserListContext()` 获取灵动课堂中用户列表相关能力。 你可以通过 `import { useUserListContext } from 'agora-edu-core';  ` 引入 `useUserListContext`，然后使用 `const {...} = useUserListContext()` 获取灵动课堂中用户列表相关能力。
 
-The following specifically lists the capabilities provided by `useUserListContext()`.
+This page lists all the functions and events provided by `useUserListContext()`. 以下具体列出 `useUserListContext()` 提供的能力。
 
-## localUserUuid
-
-```javascript
-localUserUuid: string,
-```
-
-The ID of the local user.
-
-## muteAudio
+## localUserUuid localUserUuid
 
 ```javascript
-myRole: string,
+localUserUuid: string, localUserUuid: string,
 ```
 
-The role of the local user.
+The ID of the local user. 本地用户的 ID。
 
-## rosterUserList
+## myRole myRole
 
 ```javascript
-rosterUserList: array,
+myRole: string, myRole: string,
 ```
 
-The current class is displayed in the list of students in the user list.
+The role of the local user. 本地用户的角色。
 
-## handleRosterClick
+## rosterUserList rosterUserList
 
 ```javascript
-async handleRosterClick(actionType: string, uid: string): void
+rosterUserList: array, rosterUserList: array,  
 ```
 
-Handle the click events on the user list, such as going to the stage, whiteboard authorization, turning on the camera or microphone.
+The students displayed in the user list of the classroom. 当前课堂显示在用户列表中的学生列表。
 
-| Parameter | Description |
+## handleRosterClick handleRosterClick
+
+```javascript
+async handleRosterClick(actionType: string, uid: string): void async handleRosterClick(actionType: string, uid: string): void
+```
+
+Handle the click events on the user list, such as standing on the stage, whiteboard authorization, turning on the camera or microphone. 处理在用户列表上的点击事件，如上台、白板授权、打开摄像头或麦克风。
+
+| Parameter Parameter | Description Description |
 | :----------- | :------------ |
-| `actionType` | Operation type. |
-| `uid` | The ID of the operator. |
+| `actionType ``actionType` | The action. 操作类型。 |
+| `uid ``uid` | The ID of the operator. 操作者的 ID。 |
 
-## revokeCoVideo
+## revokeCoVideo revokeCoVideo
 
 ```javascript
-async revokeCoVideo(userUuid: string): void
+async revokeCoVideo(userUuid: string): void async revokeCoVideo(userUuid: string): void
 ```
 
-Turn off the camera of the specified user.
+Turn off the camera of the specified user. 关闭指定用户的摄像头。
 
-| Parameter | Description |
+| Parameter Parameter | Description Description |
 | :--------- | :-------- |
-| `userUuid` | The user ID. |
+| `userUuid ``userUuid` | The user ID. The user ID. |
 
-## teacherAcceptHandsUp
+## teacherAcceptHandsUp teacherAcceptHandsUp
 
 ```javascript
-async teacherAcceptHandsUp(userUuid: string): void
+async teacherAcceptHandsUp(userUuid: string): void async teacherAcceptHandsUp(userUuid: string): void
 ```
 
-The teacher agreed to the student's request to raise his hand.
+The teacher accepts the student's application for speaking up. 老师同意学生的举手请求。
 
-| Parameter | Description |
+| Parameter Parameter | Description Description |
 | :--------- | :-------- |
-| `userUuid` | The user ID. |
+| `userUuid ``userUuid` | The user ID. The user ID. |
 
-## userList
-
-```javascript
-userList: array,
-```
-
-The list of all users in the classroom.
-
-## acceptedUserList
+## userList userList
 
 ```javascript
-acceptedUserList: array,
+userList: array, userList: array,
 ```
 
-Raise your hand to request a list of students approved by the teacher.
+The list of all users in the classroom. 当前课堂内的所有用户列表。
+
+## acceptedUserList acceptedUserList
+
+```javascript
+acceptedUserList: array, acceptedUserList: array,
+```
+
+The list of users whose application for speaking up has been approved by the teacher. 举手请求被老师同意的学生列表。
