@@ -132,7 +132,7 @@ The volume information of users.
 
 | Parameter | Description |
 | :--------- | :------------------------------------ |
-| `userUuid` | User ID. |
+| `userUuid` | The user ID. |
 | `userName` | user name. |
 | `role` | User role, see EduContextUserRole for details``. |
 
