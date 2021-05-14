@@ -16,7 +16,7 @@ Take the countdown plugin in PluginGallery as an example. You need to import the
 import type {IAgoraExtApp, AgoraExtAppContext, AgoraExtAppHandle} from 'agora-edu-core'
 ```
 
-Create a class that implements IAgoraExtApp, refer to the following code to develop a plug-in.
+Refer to the following code to inherit the IAgoraExtApp class to implement a plug-in.
 
 ```javascript
 export class AgoraExtAppCountDown implements IAgoraExtApp {
@@ -34,7 +34,7 @@ export class AgoraExtAppCountDown implements IAgoraExtApp {
     constructor(){
   }
 
-  // The initialization method of ExtApp, you need to draw the content of your own plug-in application in dom, ctx and handle are the plug-in context and capabilities provided to you
+  // Initialize the plug-in
   extAppDidLoad(dom: Element, ctx: AgoraExtAppContext, handle: AgoraExtAppHandle): void {
     this.store = new PluginStore(ctx, handle)
     ReactDOM.render((
@@ -45,8 +45,8 @@ export class AgoraExtAppCountDown implements IAgoraExtApp {
       dom
     );
   }
-  // Each plug-in has an independent shared kv space, and communication with other plug-ins can be completed through this attribute. When a plug-in updates its properties, other clients that have registered the plug-in will receive this callback. 
-  extAppRoomPropertiesDidUpdate(properties:any, cause:any): void {
+  // Each plug-in has its own shared kv space. Plug-ins can communicate with each other through this attribute. When a plug-in updates its properties, other clients that have registered the plug-in will receive this callback. 
+    extAppRoomPropertiesDidUpdate(properties:any, cause:any): void {
     this.store?.onReceivedProps(properties, cause)
   }
   // Remove the plug-in
@@ -82,4 +82,4 @@ By default, the registered plug-in is displayed in the whiteboard toolbar in the
 
 
 
-You can also change the way the corresponding file of the UI Kit module, add an entry for the plug-in in the three major scenarios of Smart Class, and then get the startup event through the useAppPluginContext of Agora Edu Context, at the right time Start the plug-in through onLaunchAppPlugin.
+If you want to customize an entry for the plug-in in the flexible classroom, you can edit the source code of the UI components and call the onLaunchAppPlugin method when the user clicks on the plug-in icon.
