@@ -153,7 +153,7 @@ Pre-download the courseware.
 + (void)registerExtApps:(NSArray<AgoraExtAppConfiguration *> *)apps;
 ```
 
-Register the extension application ExtApp. ExtApp is a supplementary plug-  Flexible Classroom UIKit of Smart Classroom. For details, see[ Customize Plug-ins via ExtApp](./agora_class_ext_app_ios?platform=iOS).
+Register an extension application by using the ExtApp tool. ExtApp is a supplementary plug-  Flexible Classroom UIKit of Smart Classroom. For details, see [Customize Plug-ins via ExtApp](./agora_class_ext_app_ios?platform=iOS).
 
 ## AgoraEduClassroom
 
@@ -348,7 +348,7 @@ The classroom launching configuration. Used when calling [`launch`](#launch).
 @end
 ```
 
-Courseware pre-download configuration. The courseware `](#configcoursewares)pre-loading[` configuration.  Used when calling configCoursewares.
+The courseware pre-download configuration. The courseware `](#configcoursewares)pre-loading[` configuration.  Used when calling configCoursewares.
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
