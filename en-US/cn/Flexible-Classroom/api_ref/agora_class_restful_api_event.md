@@ -1,9 +1,9 @@
 ## Overview
-This page lists all types of [events that you can get through the Get classroom ](./agora_class_restful_api#获取课堂事件)events method.
+This page lists all types of events that you can get through the [Get classroom events](./agora_class_restful_api#获取课堂事件) method.
 
 ## The classroom state changes
 
-When `the `cmd` property of an event` is 1`, the event indicates the classroom state changes, and the data` property contains the following fields:
+`When the cmd` property of an event is `1`, the event indicates the classroom state changes, and the `data` property contains the following fields:
 
 | Parameter | Type | Description |
 | ----------- | ------- | ------------------------------------------------------------ |
@@ -21,7 +21,7 @@ When `the `cmd` property of an event` is 1`, the event indicates the classroom s
 
 ## Receives a room chat message
 
-When `the `cmd` property of an event` is 3`, the event indicates the server receives a room chat message, and the data` contains the following fields:
+`When the cmd` property of an event is `3`, the event indicates the server receives a room chat message, and the `data` contains the following fields:
 
 | Parameter | Type | Description |
 | ---------- | ------- | ------------------------------------------------------------ |
@@ -44,7 +44,7 @@ When `the `cmd` property of an event` is 3`, the event indicates the server rece
 
 ## Users enter or leave the classroom
 
-When ``cmd` is 20`, the event indicates that users have entered or left the classroom. `data` includes the following fields:
+`When cmd` is `20`, the event indicates that users have entered or left the classroom. `data` includes the following fields:
 
 | Parameter | Type | Description |
 | -------------- | ----------- | ------------------------------------------------------------ |
@@ -84,13 +84,13 @@ When ``cmd` is 20`, the event indicates that users have entered or left the clas
 
 ## The recording state changes
 
-When `the `cmd` property of an event` is 1001`, the event indicates the recording state changes, and the data` property contains the following fields:
+`When the cmd` property of an event is `1001`, the event indicates the recording state changes, and the `data` property contains the following fields:
 
 | Parameter | Type | Description |
 | ------------ | ------- | ------------------------------------------------------------ |
 | `recordId` | String | This is the unique identifier of a recording session. A recording session starts when you call a method to start recording and ends when you call this method to stop recording. This field is available only when `state` is `1`. |
-| `sid` | String | The sid of the Agora Cloud Recording service``. This field is available only when `state` is `1`. |
-| `resourceId` | String | The resourceId of the Agora Cloud Recording service``. This field is available only when `state` is `1`. |
+| `sid` | String | The `sid` of the Agora Cloud Recording service. This field is available only when `state` is `1`. |
+| `resourceId` | String | The `resourceId` of the Agora Cloud Recording service. This field is available only when `state` is `1`. |
 | `state` | Integer | The current recording state:<ul><li>`1`: In recording.</li><li>`2`: Recording has ended.</li></ul> |
 | `startTime` | Number | The Unix timestamp (in milliseconds) when the recording starts, in UTC. This property is available after the recording state changes to "Started". |
 
@@ -107,7 +107,7 @@ When `the `cmd` property of an event` is 1001`, the event indicates the recordin
 
 ## The number of rewards changes
 
-When the`` cmd` property of an event `is 1101`, the event indicates the number of rewards changes, and the data` property contains the following fields:
+`When the cmd` property of an event is `1101`, the event indicates the number of rewards changes, and the `data` property contains the following fields:
 
 | Parameter | Type | Description |
 | :-------------- | :---------- | :----------------------------------------------------------- |
@@ -129,7 +129,7 @@ When the`` cmd` property of an event `is 1101`, the event indicates the number o
 
 ## The resources in the classroom changes
 
-When the`` cmd` property of an event `is 1003`, the event indicates the resources in the classroom changes, and the data` property contains the following fields:
+`When the cmd` property of an event is `1003`, the event indicates the resources in the classroom changes, and the `data` property contains the following fields:
 
 | Parameter | Type | Description |
 | :---------- | :---------- | :----------------------------------------------------------- |
