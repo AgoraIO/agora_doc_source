@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onaudiomixingstatechanged">
     <title><ph keyref="onAudioMixingStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the state of the local user&apos;s audio mixing file changes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the playback state of the music file changes.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -22,18 +22,18 @@
   <dd>v2.4.0</dd>
        </dlentry>
    </dl>
-   <p>When you call the \ref IRtcEngine::startAudioMixing &quot;startAudioMixing&quot; method and the state of audio mixing file changes, the SDK triggers this callback.</p>
-   <p>If the local audio mixing file does not exist, or if the SDK does not support the file format or cannot access the music file URL, the SDK returns <apiname>WARN_AUDIO_MIXING_OPEN_ERROR </apiname>= 701.</p>
+   <p>This callback occurs when the playback state of the music file changes, and reports the current state and error code.</p>
+   <p>If the local music file does not exist, or if the SDK does not support the file format, or if the SDK cannot access the URL of the online music file, the SDK returns the warning code <apiname>WARN_AUDIO_MIXING_OPEN_ERROR </apiname>(701).</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>state</pt>
-  <pd>The states of the local user&apos;s audio mixing file<xref keyref="AUDIO_MIXING_STATE_TYPE"/>.</pd>
+  <pd>The playback state of the music file. See <xref keyref="AUDIO_MIXING_STATE_TYPE"/>.</pd>
        </plentry>
        <plentry>
   <pt>errorCode</pt>
-  <pd>The error code<xref keyref="AUDIO_MIXING_ERROR_TYPE"/>.</pd>
+  <pd>The error code. See <xref keyref="AUDIO_MIXING_ERROR_TYPE"/>.</pd>
        </plentry>
    </parml>
         </section></refbody>
