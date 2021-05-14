@@ -1,6 +1,6 @@
 ## HandsUpContext
 
-The` HandsUpContext` class provides hands-up related methods that can be called by App.
+`HandsUpContext` provides the methods that can be called by your app for the hand-raising function.
 
 ### performHandsUp
 
@@ -8,16 +8,16 @@ The` HandsUpContext` class provides hands-up related methods that can be called 
 abstract fun performHandsUp(state: EduContextHandsUpState, callback: EduContextCallback<Boolean>? = null)
 ```
 
-Update the hand status.
+Raise or lower the hand.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------- |
-| `state` | Hands up state, see EduContextHandsUpState for details``. |
-| `callback` | Obtain the interface` call result asynchronously through EduContextCallback`. |
+| `state` | Whether the hand is raised. See `EduContextHandsUpState` for details. |
+| `callback` | Get the result of hand raising asynchronously through `EduContextCallback`. |
 
 ## IHandsUpHandler
 
-The` IHandsUpHandler` class is used to report event callbacks related to raising hands to the App.
+`IHandsUpHandler reports event callbacks related to the hand-raising function to your app.`
 
 ### onHandsUpEnabled
 
@@ -25,11 +25,11 @@ The` IHandsUpHandler` class is used to report event callbacks related to raising
 fun onHandsUpEnabled(enabled: Boolean)
 ```
 
-Report whether you can raise your hand.
+Indicates whether the hand-raising function is enabled.
 
 | Parameter | Description |
 | :-------- | :------------- |
-| `enabled` | Can you raise your hand? |
+| `enabled` | Whether the hand-raising function is enabled. |
 
 ### onHandsUpStateUpdated
 
@@ -37,12 +37,12 @@ Report whether you can raise your hand.
 fun onHandsUpStateUpdated(state: EduContextHandsUpState, coHost: Boolean)
 ```
 
-The hands up status has been updated.
+Occurs when the hand state updates.
 
 | Parameter | Description |
 | :------- | :-------------------------------------------- |
-| `state` | For the current hands-up state, see EduContextHandsUpState for details``. |
-| `coHost` | Whether the current student is on stage. Students on the stage cannot raise their hands. |
+| `state` | The current hand state. See `EduContextHandsUpState` for details. |
+| `coHost` | Whether the local client is on "stage". The on-stage students cannot raise their hands. |
 
 ### onHandsUpStateResultUpdated
 
@@ -50,11 +50,11 @@ The hands up status has been updated.
 fun onHandsUpStateResultUpdated(error: EduContextError?)
 ```
 
-Report the result of the raise of hands.  If` error` is not empty, it means that the hand has failed.
+Reports the result of raise the hand. ` If error` is not empty, it means the local client fails to raise the hand.
 
 | Parameter | Description |
 | :------ | :------------------------------- |
-| `error` | Error code, see EduContextError for details``. |
+| `error` | The error code. See `EduContextError` for details. |
 
 ### onHandsUpTips
 
@@ -62,18 +62,18 @@ Report the result of the raise of hands.  If` error` is not empty, it means that
 fun onHandsUpTips (tips: String)
 ```
 
-Display prompts related to raising hands.
+Displays tips related to hand-raising.
 
 There are the following tips:
 
-- Raise hand timed out.
-- The teacher rejected your application for a raise of hand.
-- The teacher approved your application by raising your hand.
-- You were stepped down by the teacher.
-- Raise your hand successfully.
-- Succeeded in canceling raise of hand.
-- The teacher turned off the raise hand function.
-- The teacher turned on the raise hand function
+- A timeout occurs.
+- The teacher has rejected your application for a talk.
+- The teacher has approved your application for a talk.
+- You have been removed from the "stage" by the teacher.
+- You have raise your hand.
+- You have lowered your hand.
+- The teacher has disabled the raise hand function.
+- The teacher has enabled the raise hand function.
 
 | Parameter | Description |
 | :----- | :--------- |
