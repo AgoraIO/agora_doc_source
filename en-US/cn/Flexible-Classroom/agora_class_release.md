@@ -18,10 +18,10 @@ allprojects {
 }
 ```
 
-iOS: Starting from v1.1.0, the iOS terminal   Flexible Classroom is developed based on Swift language. If the developer develops based on the Object-C language, you need to refer to the following steps to create a Swift file in the project to generate the Swift environment.
+iOS: Starting from v1.1.0, the iOS terminal   Flexible Classroom is developed based on Swift language. If your project uses Object-C, see the following steps to create a Swift file in the project to generate the Swift environment.
 
 1. Open the `ios/ProjectName.xcworkspace` folder in Xcode.
-2. Click** File> New> File**, select **iOS**>** Swift File**, and click **Next**> **Create** to` create an empty File.swift file`.
+2. Click **File> New> File**, select **iOS**>** Swift File**, and click **Next**> **Create** to create an empty `File.swift` file.
 
 Web/Electron: Starting from v1.1.0, Flexible Classroom Classroom desktop supports the integration of Agora Classroom SDK through npm. See the[ integrated SDK ]()for details.
 
