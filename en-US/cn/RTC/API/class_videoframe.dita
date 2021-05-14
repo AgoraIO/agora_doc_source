@@ -2,61 +2,61 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoframe">
     <title><ph keyref="VideoFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="VideoFrame"/> Configurations for an injected online stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="VideoFrame"/> Video frame configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/VideoFrame"/>
         </section>
         <section id="detailed_desc">
    
-   <p>The video data format is YUV420. The buffer provides a pointer to a pointer. The interface cannot modify the pointer of the buffer, but can modify the content of the buffer only.</p>
+   <p>The video data format is YUV420. Note that the buffer provides a pointer to a pointer. The interface cannot modify the pointer of the buffer but can modify the content of the buffer.</p>
         </section>
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
        <plentry>
   <pt>type</pt>
-  <pd>The video frame type<xref keyref="VIDEO_FRAME_TYPE"/>.</pd>
+  <pd>The type of the video frame<xref keyref="VIDEO_FRAME_TYPE"/>.</pd>
        </plentry>
        <plentry>
   <pt>width</pt>
-  <pd>Width of the video in the number of pixels.</pd>
+  <pd>The width of the video in pixels.</pd>
        </plentry>
        <plentry>
   <pt>height</pt>
-  <pd>Height of the video in the number of pixels.</pd>
+  <pd>The height of the video in pixels.</pd>
        </plentry>
        <plentry>
   <pt>yStride</pt>
-  <pd>Line span of the Y buffer.</pd>
+  <pd>The line span of the Y buffer within the YUV data.</pd>
        </plentry>
        <plentry>
   <pt>uStride</pt>
-  <pd>Line span of the U buffer.</pd>
+  <pd>The line span of the U buffer within the YUV data.</pd>
        </plentry>
        <plentry>
   <pt>vStride</pt>
-  <pd>Line span of the V buffer.</pd>
+  <pd>The line span of the V buffer within the YUV data.</pd>
        </plentry>
        <plentry>
   <pt>yBuffer</pt>
-  <pd>Pointer to the Y buffer pointer within the YUV data.</pd>
+  <pd>The pointer to the Y buffer pointer within the YUV data.</pd>
        </plentry>
        <plentry>
   <pt>uBuffer</pt>
-  <pd>Pointer to the U buffer pointer within the YUV data.</pd>
+  <pd>The pointer to the U buffer pointer within the YUV data.</pd>
        </plentry>
        <plentry>
   <pt>vBuffer</pt>
-  <pd>Pointer to the V buffer pointer within the YUV data.</pd>
+  <pd>The pointer to the V buffer pointer within the YUV data.</pd>
        </plentry>
        <plentry>
   <pt>rotation</pt>
-  <pd>Set the rotation of this frame before rendering the video. Supports 0, 90, 180, 270 degrees clockwise.</pd>
+  <pd>Sets the clockwise rotation of the video frame before rendering. Supported values include 0, 90, 180, and 270 degrees.</pd>
        </plentry>
        <plentry>
   <pt>renderTimeMs</pt>
-  <pd>The timestamp (ms) of the external audio frame. It is mandatory. Restore the order of the captured audio frame. Synchronize audio and video frames in video-related scenarios, including scenarios where external video sources are used.</pd>
+  <pd>The timestamp (ms) of the external audio frame. It is mandatory. You can use it to restore the order of the captured audio frame, or synchronize audio and video frames in video-related scenarios (including scenarios where external video sources are used).</pd>
        </plentry>
        <plentry>
   <pt>avsync_type</pt>
