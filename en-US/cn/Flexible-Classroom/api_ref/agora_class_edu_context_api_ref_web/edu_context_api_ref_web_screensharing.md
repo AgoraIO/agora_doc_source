@@ -1,10 +1,10 @@
 # useScreenShareContext
 
-`useScreenShareContext()` provides screen sharing related capabilities.
+`useScreenShareContext()` enables developers to implement the screen sharing function in the flexible classroom.
 
-You can` import useScreenShareContext by import {useScreenShareContext} from'agora-edu-core';```, and then use` const {...} = useScreenShareContext()` to get the message chat-related capabilities in the  Flexible Classroom.
+你可以通过 `import { useScreenShareContext } from 'agora-edu-core';  ` 引入 `useScreenShareContext`，然后使用 `const {...} = useScreenShareContext()` 获取灵动课堂中屏幕共享相关能力。
 
-The following specifically lists the` capabilities provided by useScreenShareContext()`.
+This page lists all the functions and events provided by `useScreenShareContext()`.
 
 ## nativeAppWindowItems
 
@@ -12,7 +12,7 @@ The following specifically lists the` capabilities provided by useScreenShareCon
 nativeAppWindowItems: array,
 ```
 
-Remote screen sharing stream list.
+The list of remote screen sharing streams.
 
 ## screenShareStream
 
@@ -20,7 +20,7 @@ Remote screen sharing stream list.
 screenShareStream: object,
 ```
 
-Stream information for local screen sharing.
+The information of the local screen sharing screen.
 
 ## startOrStopSharing
 
