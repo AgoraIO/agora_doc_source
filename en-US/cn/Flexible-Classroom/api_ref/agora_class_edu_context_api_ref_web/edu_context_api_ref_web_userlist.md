@@ -53,7 +53,7 @@ Turn off the camera of the specified user.
 
 | Parameter | Description |
 | :--------- | :-------- |
-| `userUuid` | User ID. |
+| `userUuid` | The user ID. |
 
 ## teacherAcceptHandsUp
 
@@ -65,7 +65,7 @@ The teacher agreed to the student's request to raise his hand.
 
 | Parameter | Description |
 | :--------- | :-------- |
-| `userUuid` | User ID. |
+| `userUuid` | The user ID. |
 
 ## userList
 
