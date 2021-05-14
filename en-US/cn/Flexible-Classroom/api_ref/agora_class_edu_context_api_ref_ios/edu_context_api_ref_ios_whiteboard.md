@@ -56,7 +56,7 @@ Retry the courseware download.
 func boardRefreshSize()
 ```
 
-Refresh the whiteboard size. 在白板容器大小发生变化时，需要调用该方法。
+Refresh the whiteboard size. You need to call this method when the size of the whiteboard container changes.
 
 ### registerBoardEventHandler
 
@@ -182,7 +182,7 @@ Occurs when the whiteboard permission changes.
 
 ## AgoraEduWhiteBoardToolContext
 
-`AgoraEduWhiteBoardToolContext` 类提供可供 App 调用的白板基础工具相关方法。
+`AgoraEduWhiteBoardContext` provides the methods that can be called by your app for whiteboard basic editing tools.
 
 ### applianceSelected
 
