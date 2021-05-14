@@ -1,10 +1,10 @@
 # useHandsUpContext
 
-`useHandsUpContext` provides the ability to raise hands.
+`useHandsUpContext()` 提供举手上台相关能力。
 
-You can` import useHandsUpContext by import {useHandsUpContext} from'agora-edu-core';```, and then` use const {...} = useHandsUpContext()` to obtain the ability to raise hands in   Flexible Classroom.
+You can import `useHandsUpContext` by `import { useHandsUpContext } from 'agora-edu-core';` and then use `const {...} = useHandsUpContext()` to implement the functions and events related to classroom management.
 
-The following specifically lists the capabilities provided by `useHandsUpContext()`.
+This page lists all the functions and events provided by `useHandsUpContext()`.
 
 ## teacherUuid
 
@@ -20,7 +20,7 @@ The ID of the teacher.
 handsUpState: string,
 ```
 
-The student's hand-raising state.
+The student's hand state.
 
 ## teacherHandsUpState
 
@@ -28,7 +28,7 @@ The student's hand-raising state.
 teacherHandsUpState: string,
 ```
 
-The teacher's hand-raising state.
+The teacher's hand state.
 
 ## studentHandsUp
 
@@ -36,7 +36,7 @@ The teacher's hand-raising state.
 async studentHandsUp(teacherUuid: string): void
 ```
 
-The student raised his hand and asked the teacher to speak.
+The student raises a hand to apply for speaking up.
 
 
 | Parameter | Description |
@@ -50,7 +50,7 @@ The student raised his hand and asked the teacher to speak.
 async studentCancelHandsUp(): void
 ```
 
-The student cancels the request to raise the hand.
+The student lowers the hand to cancel the application for speaking up.
 
 ## handsUpStudentList
 
@@ -58,7 +58,7 @@ The student cancels the request to raise the hand.
 handsUpStudentList: array<{userUuid, userName, coVideo}>,
 ```
 
-Raise your hand to the list of students.
+The list of students who raise their hand to apply for speaking up.
 
 ## coVideoUsers
 
@@ -66,7 +66,7 @@ Raise your hand to the list of students.
 coVideoUsers: array,
 ```
 
-A list of users who are currently sending video streams.
+The list of users who are sending video streams.
 
 ## onlineUserCount
 
@@ -74,7 +74,7 @@ A list of users who are currently sending video streams.
 onlineUserCount: number,
 ```
 
-The total number of online users (not including users whose role is audience).
+在线用户总数（不包含角色为观众的用户）。
 
 ## processUserCount
 
@@ -82,7 +82,7 @@ The total number of online users (not including users whose role is audience).
 processUserCount: number,
 ```
 
-The total number of users currently sending video streams.
+The total number of users who are sending video streams.
 
 ## teacherAcceptHandsUp
 
@@ -90,11 +90,11 @@ The total number of users currently sending video streams.
 async teacherAcceptHandsUp(userUuid: string): void
 ```
 
-The teacher accepts the student's request to raise their hand.
+The teacher accepts the student's application for speaking up.
 
 | Parameter | Description |
 | :--------- | :-------- |
-| `userUuid` | Student ID. |
+| `userUuid` | The student ID. |
 
 ## teacherRejectHandsUp
 
@@ -102,8 +102,8 @@ The teacher accepts the student's request to raise their hand.
 async teacherRejectHandsUp(userUuid: string): void
 ```
 
-The teacher refused the student's request to raise his hand.
+The teacher approves the student's application for speaking up.
 
 | Parameter | Description |
 | :--------- | :-------- |
-| `userUuid` | Student ID. |
+| `userUuid` | The student ID. |
