@@ -148,7 +148,7 @@ Disable the video of the specified user.
 
 | Parameter | Description |
 | :--------- | :--------------- |
-| `userUuid` | User ID. |
+| `userUuid` | The user ID. |
 | `isLocal` | Whether it is a local user. |
 
 ## unmuteVideo
@@ -161,7 +161,7 @@ Undisable the video of the specified user.
 
 | Parameter | Description |
 | :--------- | :--------------- |
-| `userUuid` | User ID. |
+| `userUuid` | The user ID. |
 | `isLocal` | Whether it is a local user. |
 
 ## muteAudio
@@ -174,7 +174,7 @@ Prohibit the audio of the specified user.
 
 | Parameter | Description |
 | :--------- | :--------------- |
-| `userUuid` | User ID. |
+| `userUuid` | The user ID. |
 | `isLocal` | Whether it is a local user. |
 
 ## unmuteAudio
@@ -187,5 +187,5 @@ Unban the audio of the specified user.
 
 | Parameter | Description |
 | :--------- | :--------------- |
-| `userUuid` | User ID. |
+| `userUuid` | The user ID. |
 | `isLocal` | Whether it is a local user. |
