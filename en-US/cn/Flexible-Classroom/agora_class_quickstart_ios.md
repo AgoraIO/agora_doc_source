@@ -8,7 +8,7 @@ Agora provides an open-source [sample project](https://github.com/AgoraIO-Commun
 ## Set up the development environment
 
 - Xcode 10.0 or later.
-- CocoaPods. See the[ installation guide in Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started).
+- CocoaPods. See the installation guide in [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started).
 - A physical iOS device (iPhone or iPad).
 - iOS 10 or later.
 - Physical media input devices, such as a built-in camera and a built-in microphone.
@@ -17,9 +17,9 @@ Agora provides an open-source [sample project](https://github.com/AgoraIO-Commun
 
 Get the Agora Classroom SDK through CocoaPods, as follows:
 
-1. In Terminal, run the` pod init` command to create a Podfile in the root directory of your project. after which you can find the `Podfile `under the project directory.
+1. In Terminal, run the `pod init` command to create a Podfile in the root directory of your project. after which you can find the `Podfile `under the project directory.
 
-2. Open the `Podfile`, delete all contents and input the following contents. Remember to change` Your App` to the target name of your project.
+2. Open `Podfile`, delete all contents, and input the following contents. Remember to change `Your App` to the target name of your project.
 
 ```
 # platform :ios, '10.0' use_frameworks!
@@ -28,19 +28,19 @@ target 'Your App' do
 end
 ```
 
-<div class="alert info">1.0.0 版本请使用 <code>pod 'AgoraEduSDK'</code>。</div>
+<div class="alert info">For v1.0.0, use <code>pod 'AgoraEduSDK'</code>.</div>
 
-3. Run the` pod install` command to install the SDK. Once you successfully install the SDK, it shows` Pod installation complete!` in Terminal, and you can see an `xcworkspace` file in the project folder.
+3. Run `pod install` to install the SDK. Once you successfully install the SDK, it shows `Pod installation complete!` in Terminal, and you can see an `xcworkspace` file in the project folder.
 4. Open the generated `xcworkspace` file in Xcode.
 
-Starting from v1.1.0,  Flexible Classroom iOS is developed based on the Swift language. If the developer develops based on the Object-C language, you need to refer to the following steps to create a Swift file in the project to generate the Swift environment.
+As of v1.1.0,  the Agora Classroom SDK for iOS is developed in Swift. If your project uses Object-C, see the following steps to create a Swift file in the project to generate the Swift environment.
 
 1. Open the `ios/ProjectName.xcworkspace` folder in Xcode.
-2. Click** File> New> File**, select **iOS**>** Swift File**, and click **Next**> **Create** to` create an empty File.swift file`.
+2. Click **File> New> File**, select **iOS**>** Swift File**, and click **Next**> **Create** to create an empty `File.swift` file.
 
 ## Global configuration
 
-First, create an `AgoraEduSDKConfig` instance for global configuration, and then call the `setConfig` method and pass in this instance. The` AgoraEduSDKConfig` instance includes the following parameters:
+First, create an `AgoraEduSDKConfig` instance for global configuration, and then call the `setConfig` method and pass in this instance. `AgoraEduSDKConfig` includes the following parameters:
 
 | Parameter | Description |
 | :-------- | :----------------------------------------------------------- |
@@ -62,7 +62,7 @@ AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appI
 
 ## Launch a classroom
 
-After initialization, create an `AgoraEduLaunchConfig` instance for the classroom` launching configuration, and then call launch` to pass in the instance. The` AgoraEduLaunchConfig` instance includes the following parameters:
+After initialization, create an `AgoraEduLaunchConfig` instance for the classroom launching configuration and then call `launch` to pass in the instance. `AgoraEduLaunchConfig` includes the following parameters:
 
 | Parameter | Description |
 | :---------- | :----------------------------------------------------------- |
