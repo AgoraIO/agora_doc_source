@@ -1,10 +1,10 @@
 # useRoomContext
 
-`useRoomContext()` Provides classroom management related capabilities.
+`useRoomContext()` enables developers to implement the classroom management.
 
-You can` import useRoomContext by import {useRoomContext} from'agora-edu-core';```, and then use` const {...} = useRoomContext()` to obtain classroom management related abilities in smart classrooms.
+You can import `useRoomContext` by `import {useRoomContext} from'agora-edu-core';` and then use `const {...} = useRoomContext()` to implement the functions and events related to classroom management.
 
-The following specifically lists` the capabilities provided by useChatContext()`.
+This page lists all the functions and events provided by `useChatContext()`.
 
 ## sceneType
 
@@ -12,7 +12,7 @@ The following specifically lists` the capabilities provided by useChatContext()`
 sceneType: number,
 ```
 
-Room type:
+The classroom type:
 
 - `0`: One-to-one Classroom.
 - `2`: Lecture Hall.
@@ -24,7 +24,7 @@ Room type:
 async destroyRoom(): void
 ```
 
-Destroy the room.
+Destroy the classroom.
 
 ## joinRoom
 
@@ -32,7 +32,7 @@ Destroy the room.
 async joinRoom(): void
 ```
 
-Join the room.
+Join a classroom.
 
 ## startNativeScreenShareBy
 
@@ -40,12 +40,12 @@ Join the room.
 async startNativeScreenShareBy(windowId: number): void
 ```
 
-Screen sharing via Window ID.
+Start screen sharing by the window ID.
 
 
 | Parameter | Description |
 | :--------- | :---------- |
-| `windowId` | Window ID。 |
+| `windowId` | The window ID。 |
 
 
 ## teacherAcceptHandsUp
@@ -54,11 +54,11 @@ Screen sharing via Window ID.
 async teacherAcceptHandsUp(userUuid: string): void
 ```
 
-The teacher accepts the student's request to raise their hand.
+The teacher accepts the student's application for speaking up.
 
 | Parameter | Description |
 | :--------- | :-------- |
-| `userUuid` | Student ID. |
+| `userUuid` | The student ID. |
 
 ## teacherRejectHandsUp
 
@@ -66,11 +66,11 @@ The teacher accepts the student's request to raise their hand.
 async teacherRejectHandsUp(userUuid: string): void
 ```
 
-The teacher refused the student's request to raise his hand.
+The teacher approves the student's application for speaking up.
 
 | Parameter | Description |
 | :--------- | :-------- |
-| `userUuid` | Student ID. |
+| `userUuid` | The student ID. |
 
 ## handsUpStudentList
 
@@ -78,7 +78,7 @@ The teacher refused the student's request to raise his hand.
 handsUpStudentList: array<{userUuid, userName, coVideo}>,
 ```
 
-Raise your hand to the list of students.
+The list of students who raise their hand to apply for speaking up.
 
 ## processUserCount
 
@@ -86,7 +86,7 @@ Raise your hand to the list of students.
 processUserCount: number,
 ```
 
-The total number of users currently sending video streams.
+The total number of users who are sending video streams.
 
 ## roomInfo
 
@@ -94,7 +94,7 @@ The total number of users currently sending video streams.
 roomInfo: object,
 ```
 
-Current classroom information.
+The information of the current classroom.
 
 ## isCourseStart
 
@@ -110,11 +110,11 @@ Whether the class has started.
 async kickOutOnce(userUuid: string, roomUuid: string): void
 ```
 
-Kick the student out of class once. Follow-up students can also re-enter the classroom.
+Kick a student out of the classroom. The student who is kicked out of the classroom can re-join the classroom.
 
 | Parameter | Description |
 | :--------- | :-------- |
-| `userUuid` | Student ID. |
+| `userUuid` | The student ID. |
 | `roomUuid` | The room ID. |
 
 ## kickOutBan
@@ -123,11 +123,11 @@ Kick the student out of class once. Follow-up students can also re-enter the cla
 async kickOutBan(userUuid: string, roomUuid: string): void
 ```
 
-Kick the student out of the classroom and prohibit the student from re-entering the classroom.
+Kick a student out of the classroom and prohibit the student from re-joining the classroom.
 
 | Parameter | Description |
 | :--------- | :-------- |
-| `userUuid` | Student ID. |
+| `userUuid` | The student ID. |
 | `roomUuid` | The room ID. |
 
 ## liveClassStatus
@@ -136,7 +136,7 @@ Kick the student out of the classroom and prohibit the student from re-entering 
 liveClassStatus: object,
 ```
 
-The current state of the classroom:
+The current state of the classroom.
 
 ## muteVideo
 
@@ -149,7 +149,7 @@ Disable the video of the specified user.
 | Parameter | Description |
 | :--------- | :--------------- |
 | `userUuid` | The user ID. |
-| `isLocal` | Whether it is a local user. |
+| `isLocal` | Whether the user is the local user. |
 
 ## unmuteVideo
 
@@ -157,12 +157,12 @@ Disable the video of the specified user.
 async unmuteVideo(userUuid: string, isLocal: boolean): void
 ```
 
-Undisable the video of the specified user.
+Enable the video of the specified user.
 
 | Parameter | Description |
 | :--------- | :--------------- |
 | `userUuid` | The user ID. |
-| `isLocal` | Whether it is a local user. |
+| `isLocal` | Whether the user is the local user. |
 
 ## muteAudio
 
@@ -170,12 +170,12 @@ Undisable the video of the specified user.
 async muteAudio(userUuid: string, isLocal: boolean): void
 ```
 
-Prohibit the audio of the specified user.
+Disable the audio of the specified user.
 
 | Parameter | Description |
 | :--------- | :--------------- |
 | `userUuid` | The user ID. |
-| `isLocal` | Whether it is a local user. |
+| `isLocal` | Whether the user is the local user. |
 
 ## unmuteAudio
 
@@ -183,9 +183,9 @@ Prohibit the audio of the specified user.
 async unmuteAudio(userUuid: string, isLocal: boolean): void
 ```
 
-Unban the audio of the specified user.
+Enable the audio of the specified user.
 
 | Parameter | Description |
 | :--------- | :--------------- |
 | `userUuid` | The user ID. |
-| `isLocal` | Whether it is a local user. |
+| `isLocal` | Whether the user is the local user. |
