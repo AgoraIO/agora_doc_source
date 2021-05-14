@@ -78,7 +78,7 @@ Get the results of fetching the message history.
 
 | Parameter | Description |
 | :------ | :-------------------------------------------------------- |
-| `error` | Error code. If `error` is not empty, it means the local client fails to fetch the message history. |
+| `error` | The error code. If `error` is not empty, it means the local client fails to fetch the message history. |
 | `list` | An array of message objects. See `EduContextChatItem` for details. |
 
 ### onUpdateChatPermission
