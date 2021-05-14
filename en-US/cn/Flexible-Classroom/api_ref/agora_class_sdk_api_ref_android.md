@@ -177,7 +177,7 @@ downloadCoursewares(activityContext, new AgoraEduCoursewarePreloadListener() {
 public static void registerExtApps(List<AgoraExtAppConfiguration> apps);
 ```
 
-Register the extension application ExtApp. ExtApp is a supplementary plug-  Flexible Classroom UIKit of Smart Classroom. For details, see[ Customize Plug-ins via ExtApp](./agora_class_ext_app_android?platform=Android).
+Register an extension application by using the ExtApp tool. ExtApp is a supplementary plug-  Flexible Classroom UIKit of Smart Classroom. For details, see [Customize Plug-ins via ExtApp](./agora_class_ext_app_android?platform=Android).
 
 ## AgoraEduLaunchCallback
 
