@@ -25,7 +25,7 @@ AgoraEduSDK.config({
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `params` | The SDK global configuration, see [`AgoraEduSDKConfigParams`](#agoraedusdkconfigparams). |
+| `params` | The SDK global configuration. See [`AgoraEduSDKConfigParams`](#agoraedusdkconfigparams) for details. |
 
 ### launch
 
@@ -47,7 +47,7 @@ let sceneInfo = {
     ppt: {
         src: "pptx://....",
         width: 480,
-        "height": 360
+        height: 360
     }
 }
 sceneInfos.push(sceneInfo)
@@ -90,7 +90,7 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
 | `dom` | See [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document). |
-| `option` | The classroom launching configuration, see [`LaunchOption`](#launchoption). |
+| `option` | The classroom launching configuration. See [`LaunchOption`](#launchoption) for details. |
 
 ## Type definition
 
@@ -106,7 +106,7 @@ export type AgoraEduSDKConfigParams = {
 
 | Attributes | Description |
 | :------ | :----------------------------------------------------------- |
-| `appId` | The Agora App ID, see[ Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
 
 ### LaunchOption
 
@@ -128,7 +128,7 @@ export type LaunchOption = {
   startTime: number,
   duration: number,
   courseWareList: CourseWareList,
-  personalCourseWareList?: CourseWareList
+  personalCourseWareList?: CourseWareList,
   recordUrl?: string,
   extApps?: IAgoraExtApp[]
 }
@@ -136,14 +136,14 @@ export type LaunchOption = {
 
 | Parameter | Description |
 | :----------------------- | :----------------------------------------------------------- |
-| `rtmToken` | The RTM token used for authentication, see[ Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
-| `userUuid` | User ID. This is the globally unique identifier of a user.** Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
+| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
-| `roleType` | For the user's role in the classroom, see EduRoleTypeEnum for details[``](#eduroletypeenum). |
-| `roomType` | Classroom type, see EduRoomTypeEnum for details[``](#eduroomtypeenum). |
-| `listener` | The state of classroom launching.<li>`ready`: The class is ready.</li><li>`destroyed`: The classroom has been destroyed.</li> |
+| `roleType` | The user role in the classroom. See [`EduRoleTypeEnum`](#eduroletypeenum) for details. |
+| `roomType` | The classroom type. See [`EduRoomTypeEnum`](#eduroomtypeenum) for details. |
+| `listener` | The state of classroom launching.<li>`ready`: The classroom is ready.</li><li>`destroyed`: The classroom has been destroyed.</li> |
 | `pretest` | Whether to enable the pre-class device test:<li>`true`: Enable the pre-class device test. After this function is enabled, end users can see a page for the device test before entering the classroom. They can check whether their camera, microphone, and speaker can work properly.</li><li>`false`: Disable the pre-class device test.</li> |
 | `language` | Interface language, see LanguageEnum for details[``](#languageenum). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
