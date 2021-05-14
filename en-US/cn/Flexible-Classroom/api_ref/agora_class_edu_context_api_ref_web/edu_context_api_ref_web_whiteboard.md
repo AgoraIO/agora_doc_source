@@ -1,6 +1,6 @@
 # useBoardContext
 
-`useBoardContext() provides whiteboard` related capabilities.
+`useBoardContext()` provides whiteboardrelated capabilities.
 
 You can` import useBoardContext by import {useBoardContext} from'agora-edu-core';```, and then` use const {...} = useBoardContext()` to get the ability to chat in the  Flexible Classroom.
 
@@ -69,7 +69,7 @@ The current pen width.
 hasPermission: boolean,
 ```
 
-Whether to have whiteboard permission.
+Whether the user has permission of drawing on the whiteboard.
 
 ## currentSelector
 
