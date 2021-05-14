@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remoteaudiostats">
     <title><ph keyref="RemoteAudioStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Audio statistics of the remote stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Audio statistics of the remote user.</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/RemoteAudioStats"/>
@@ -12,26 +12,26 @@
    <parml>
        <plentry>
   <pt><ph keyref="uid"/></pt>
-  <pd>User ID of the remote user sending the audio streams.</pd>
+  <pd>The User ID of the remote user.</pd>
        </plentry>
        <plentry>
   <pt>quality</pt>
-  <pd>Audio quality received by the user: #QUALITY_TYPE<xref keyref="QUALITY_TYPE"/>.</pd>
+  <pd>The quality of the audio stream sent by the user. See <xref keyref="QUALITY_TYPE"/>.</pd>
        </plentry>
        <plentry>
   <pt>networkTransportDelay</pt>
-  <pd>Network delay (ms) from the sender to the receiver.</pd>
+  <pd>The network delay (ms) from the audio sender to the receiver.</pd>
        </plentry>
        <plentry>
   <pt>jitterBufferDelay</pt>
   <pd>
-      <p>Network delay (ms) from the receiver to the jitter buffer.<note type="attention">When the receiving end is an audience and<xref
-keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> it is 1, this parameter does not take effect.</note></p>
+      <p>The network delay (ms) from the audio receiver to the network jitter buffer.<note type="attention">This parameter does not take effect if the receiver is an audience member and <xref
+keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> is 1.</note></p>
   </pd>
        </plentry>
        <plentry>
-  <pt>audioLossRate: Audio packet loss rate (%).</pt>
-  <pd>The audio frame loss rate in the reported interval.</pd>
+  <pt>audioLossRate</pt>
+  <pd>The frame loss rate (%) of the remote audio stream in the reported interval.</pd>
        </plentry>
        <plentry>
   <pt>numChannels</pt>
@@ -39,11 +39,11 @@ keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> it is 1, this parameter does not take eff
        </plentry>
        <plentry>
   <pt>receivedSampleRate</pt>
-  <pd>The sample rate (Hz) of the received audio stream in the reported interval.</pd>
+  <pd>The sampling rate (Hz) of the audio stream received from the remote user in the reported interval.</pd>
        </plentry>
        <plentry>
-  <pt>receivedBitrate: Received bitrate (Kbps).</pt>
-  <pd>The average bitrate (Kbps) of the received audio stream in the reported interval.</pd>
+  <pt>receivedBitrate</pt>
+  <pd>The average bitrate (Kbps) of the audio stream received from the remote user in the reported interval.</pd>
        </plentry>
        <plentry>
   <pt>totalFrozenTime</pt>
@@ -51,7 +51,7 @@ keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> it is 1, this parameter does not take eff
        </plentry>
        <plentry>
   <pt>frozenRate</pt>
-  <pd>The total audio freeze time as a percentage (%) of the total time when the audio is available. When the remote user/host neither stops sending the video stream nor disables the video module after joining the channel, the video is available.</pd>
+  <pd>The total audio freeze time as a percentage (%) of the total time when the audio is available. When the remote user neither stops sending the audio stream nor disables the audio module after joining the channel, the video is available.</pd>
        </plentry>
        <plentry>
   <pt>totalActiveTime</pt>
