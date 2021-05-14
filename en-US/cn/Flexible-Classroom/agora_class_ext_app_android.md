@@ -1,14 +1,14 @@
 ## Overview
 
-Extended application ExtApp is a supplementary plug-in for  Flexible Classroom. You can understand ExtApp as a relatively independent App with its own life cycle and data management, but it also depends on the Agora Classroom SDK. You can customize the UI of the plug-in through ExtApp, pass custom data and monitor data changes, and embed custom plug-ins, such as countdown, dice, etc., in the  Flexible Classroom.
+ExtApp is a tool for embedding plug-ins in Flexible Classroom. Plug-ins implemented by ExtApp can be regarded as an independent application with its own life cycle and data management, but they also depend on the Agora Classroom SDK. You can customize the user interfaces of the plug-in, pass custom data to the Agora Classroom SDK, and monitor data changes through ExtApp. ExtApp enables you to embed custom plug-ins, such as a countdown tool or a dice in the  Flexible Classroom.
 
-The source code of ExtApp is located in the extapp directory in the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) repository on `GitHub`.
+The source code of ExtApp is in the `extapp` directory in the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) repository on GitHub.
 
-The following describes the basic steps of embedding custom plug-ins in Smart Classroom by extending ExtApp.
+This page describes the procedure of using ExtApp to embed a custom plug-in in the Flexible Classroom.
 
-## Implement real-time messaging
+## Procedure
 
-### 1. Implement the plug-in
+### 1. Implement a plug-in
 
 First, you need to extend the `io.agora.extension.AgoraExtAppBase` class to implement a custom plug-in in your App.
 
@@ -122,7 +122,7 @@ fun onExtAppUnloaded()
 
 Triggered after the plug-in is closed and before the View is removed from the container.
 
-### 2. Register the plugin
+### 2. Register the plug-in
 
 Call the `Agora method to register the plug`-in to the Agora Classroom SDK.
 
@@ -147,7 +147,7 @@ AgoraEduSDK.registerExtApps(Arrays.asList(
 ));
 ```
 
-### 3. Start the plugin
+### 3. Use the plug-in
 
 By default, successfully registered plug-ins will be displayed in the ToolBox pop-up window of the  Flexible Classroom toolbar.
 
