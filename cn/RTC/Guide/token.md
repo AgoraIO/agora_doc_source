@@ -51,7 +51,7 @@ Click **Edit** and enter the **Edit Project** page. Click the eye icon to copy t
 
 ![Get App Cert](https://web-cdn.agora.io/docs-files/1592535534341)
 
-### Deploy a simple token server on your local machine
+### Deploy a token server
 
 Token generators create the tokens requested by your client app to enable secure access to Agora Platform. To serve these tokens you deploy a generator in your security infrastructure.
 
@@ -206,7 +206,7 @@ In order to show the authentication workflow, this section shows how to build an
    $ go run server.go
    ```
 
-## Use the token for client-side user authentication
+## Use tokens for user authentication
 
 This section uses the Web client as an example to show how to use a token for client-side user authentication.
 
@@ -366,7 +366,7 @@ This section introduces token generator libraries, version requirements, and rel
 
 ### Token generator libraries
 
-Agora provides an open-source [AgoraDynamicKey](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) repository on GitHub, which enables you to generate tokens on your server with programming languages such as C++, Java, and Go.
+Agora provides an open source [AgoraDynamicKey](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) repository on GitHub, which enables you to generate tokens on your server with programming languages such as C++, Java, and Go.
 
 | Language | Algorithm   | Core method                                                                                                                                         | Sample code                                                                                                                                                         |
 | -------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
