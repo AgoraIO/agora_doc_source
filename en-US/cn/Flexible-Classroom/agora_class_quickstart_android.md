@@ -9,9 +9,9 @@ Agora provides an open-source [sample project](https://github.com/AgoraIO-Commun
 ## Set up the development environment
 
 - [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html).
-- Android Studio 2.0 or later.
-- An Android device. A physical Android device.
-- Android 4.4 or later.
+- Android Studio 4.0 or later.
+- A physical Android device.
+- Android 5.0 or later.
 - Physical media input devices, such as a built-in camera and a built-in microphone.
 
 ## Integrate the Agora Classroom SDK
@@ -23,10 +23,10 @@ Get the Agora Classroom SDK through the Gradle, as follows:
 ```java
 	allprojects {
 		 repositories {
-			...
-			maven { url 'https://maven.aliyun.com/nexus/content/repositories/releases/'}
+			  ...
+			  maven { url'http://maven.aliyun.com/nexus/content/groups/public' }
 			  maven { url 'https://jitpack.io' }
-		}
+		 }
 	}
 ```
 
@@ -43,7 +43,7 @@ dependencies {
 
 ## Global configuration
 
-First, create an `AgoraEduSDKConfig` instance for global configuration, and then call the `setConfig` method and pass in this instance. The` AgoraEduSDKConfig` instance includes the following parameters:
+首先，创建 `AgoraEduSDKConfig` 实例对 SDK 进行全局配置，然后调用 `setConfig` 方法传入该实例。 `AgoraEduSDKConfig` includes the following parameters:
 
 | Parameter | Description |
 | :-------- | :----------------------------------------------------------- |
@@ -61,7 +61,7 @@ AgoraEduSDK.setConfig(new AgoraEduSDKConfig(appId, eyeCare));
 
 ## Launch a classroom
 
-After initialization, create an `AgoraEduLaunchConfig` instance for the classroom` launching configuration, and then call launch` to pass in the instance. The` AgoraEduLaunchConfig` instance includes the following parameters:
+After initialization, create an `AgoraEduLaunchConfig` instance for the classroom launching configuration and then call `launch` to pass in the instance. `AgoraEduLaunchConfig` includes the following parameters:
 
 | Parameter | Description |
 | :---------- | :----------------------------------------------------------- |
@@ -74,7 +74,7 @@ After initialization, create an `AgoraEduLaunchConfig` instance for the classroo
 | `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](./agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `region` | In the area where the classroom is located, the area of each client must be the same, otherwise they cannot communicate. |
+| `region` | The area where the classroom is located. All clients must set the same area, otherwise, they may fail to communicate with each other. |
 
 ```java
 /** Classroom launching configuration */
@@ -96,7 +96,7 @@ String rtmToken = "";
 long startTime = System.currentTimeMillis() + 100;
 // The duration (ms) of the class, determined by the first user joining the classroom.
 long duration = 310L;
-// The area where the classroom is located. Each client must use the same be the same, otherwise, it will not be able to communicate. 
+// The area where the classroom is located. 
 String region = AgoraEduRegionStr.cn;
 AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfig(
         userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration, region);
