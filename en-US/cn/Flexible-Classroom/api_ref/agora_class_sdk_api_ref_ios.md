@@ -167,7 +167,7 @@ Release the resources occupied by the `AgoraEduClassroom` object.
 
 ## AgoraEduClassroomDelegate
 
-The` AgoraEduLaunchCallback` class reports events related to classroom launching to the app.
+`AgoraEduLaunchCallback` reports events related to classroom launching to your app.
 
 ### didReceivedEvent
 
@@ -185,7 +185,7 @@ Reports classroom events.
 
 ## AgoraEduCoursewareDelegate
 
-The` AgoraEduCoursewareDelegate` class reports events related to courseware preloading to the app.
+`AgoraEduCoursewareDelegate` reports events related to courseware preloading to your app.
 
 ### didProcessChanged
 
@@ -209,7 +209,7 @@ The courseware pre-downloading completes.
 
 | Parameter | Description |
 | :------ | :------- |
-| `error` | Error code. |
+| `error` | The error code. |
 
 ## Type definition
 
@@ -295,7 +295,7 @@ The SDK global configuration. Used when calling [`setConfig`](#setConfig).
 @property (nonatomic, copy) NSString *token;
 @property (nonatomic, strong, nullable) NSNumber *startTime;
 @property (nonatomic, strong, nullable) NSNumber *duration;
-@property (nonatomic, copy) NSString *appId;
+@property (nonatomic, copy) NSString *boardRegion;
  
 - (instancetype)initWithUserName:(NSString *)userName
                         userUuid:(NSString *)userUuid
@@ -331,7 +331,7 @@ The classroom launching configuration. Used when calling [`launch`](#launch).
 | `token` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `boardRegion` | The area where the classrooms is located. The area of each client must be the same, otherwise they cannot communicate with each other. |
+| `boardRegion` | The area where the classrooms is located. All clients must set the same area, otherwise, they may fail to communicate with each other. |
 
 ### AgoraEduCourseware
 
@@ -348,12 +348,12 @@ The classroom launching configuration. Used when calling [`launch`](#launch).
 @end
 ```
 
-The courseware pre-download configuration. The courseware `](#configcoursewares)pre-loading[` configuration.  Used when calling configCoursewares.
+The courseware pre-download configuration. The courseware pre-loading configuration. Used when calling [`configCoursewares`](#configcoursewares).
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | The file name. |
-| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the` combination of` resourceName` and the name` of the first `SceneInfo` object in `scenes`. |
+| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of `resourceName` and the `name` of the first `SceneInfo` object in `scenes`. |
 | `resourceUrl` | The URL address of the file, such as `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip".` |
 | `scenes` | A list of converted file pages, an array of `WhiteScene` objects. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom and then display the file on the whiteboard in pages. Each `WhiteScene` object represents one page. |
 
@@ -395,7 +395,7 @@ The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducours
 @end
 ```
 
-The detailed information of a page. Set in [`SceneInfo`](#sceneinfo).
+The detailed information of a converted page. Set in [`SceneInfo`](#sceneinfo).
 
 | Attributes | Description |
 | :----------- | :------------------------------------------ |
