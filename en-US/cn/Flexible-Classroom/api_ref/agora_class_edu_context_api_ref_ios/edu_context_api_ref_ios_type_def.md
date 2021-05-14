@@ -163,7 +163,7 @@ Basic user information.
 
 | Parameter | Description |
 | :--------- | :------------------------------------ |
-| `userUuid` | User ID. |
+| `userUuid` | The user ID. |
 | `userName` | user name. |
 | `role` | User role, see AgoraEduContextUserRole for details``. |
 
