@@ -1,10 +1,10 @@
 # usePretestContext
 
-`usePretestContext()` provides pre-class detection related capabilities to detect whether the camera, microphone, and speaker are working properly.
+`usePretestContext()` enables developers to implement the pre-class test module in the flexible classroom, such as check whether the camera, microphone, and speaker are working properly.
 
-You can` import usePretestContext by import {usePretestContext} from'agora-edu-core';```, and then` use const {...} = usePretestContext()` to obtain classroom management related abilities in  Flexible Classroom.
+You can import `usePretestContext` by `import { usePretestContext } from 'agora-edu-core'; ` and then use `const {...} = usePretestContext()` to implement the functions and events related to classroom management.
 
-The following specifically lists the` capabilities provided by usePretestContext()`.
+This page lists all the functions and events provided by `usePretestContext()`.
 
 ## cameraList
 
@@ -12,7 +12,7 @@ The following specifically lists the` capabilities provided by usePretestContext
 cameraList: array,
 ```
 
-Camera list.
+The camera list.
 
 ## microphoneList
 
@@ -20,7 +20,7 @@ Camera list.
 microphoneList: array,
 ```
 
-Microphone list.
+The microphone list.
 
 ## speakerList
 
@@ -28,7 +28,7 @@ Microphone list.
 speakerList: array,
 ```
 
-Speaker list.
+The speaker list.
 
 ## cameraError
 
@@ -53,7 +53,7 @@ Whether the microphone is working properly.
 cameraId: string,
 ```
 
-The currently selected camera ID.
+The ID of the selected ID.
 
 ## microphoneId
 
@@ -61,7 +61,7 @@ The currently selected camera ID.
 microphoneId: string,
 ```
 
-The ID of the currently selected microphone.
+The ID of the selected microphone.
 
 ## speakerId
 
@@ -69,7 +69,7 @@ The ID of the currently selected microphone.
 speakerId: string,
 ```
 
-The currently selected speaker ID.
+The ID of the selected speaker.
 
 ## isMirror
 
@@ -77,7 +77,7 @@ The currently selected speaker ID.
 isMirror: boolean,
 ```
 
-Whether the current camera screen is mirrored.
+Whether the current camera view is mirrored.
 
 ## setMirror
 
@@ -85,7 +85,7 @@ Whether the current camera screen is mirrored.
 setMirror(mirror: boolean): void
 ```
 
-Set whether the camera is mirrored.
+Whether to mirror the camera view.
 
 ## microphoneLevel
 
@@ -93,7 +93,7 @@ Set whether the camera is mirrored.
 microphoneLevel: number,
 ```
 
-The current microphone volume. The value range is 0-20.
+The current volume of the microphone. The value range is 0 to 20.
 
 ## changeTestSpeakerVolume
 
@@ -117,7 +117,7 @@ Adjust the volume of the microphone.
 async changeTestCamera(deviceId: string): void
 ```
 
-Switch camera.
+Switch the camera.
 
 ## changeTestMicrophone
 
@@ -125,7 +125,7 @@ Switch camera.
 async changeTestMicrophone(deviceId: string): void
 ```
 
-Switch microphone.
+Switch the microphone.
 
 ## startPretestCamera
 
