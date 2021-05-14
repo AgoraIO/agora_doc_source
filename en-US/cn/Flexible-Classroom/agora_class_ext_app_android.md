@@ -10,9 +10,9 @@ This page describes the procedure of using ExtApp to embed a custom plug-in in t
 
 ### 1. Implement a plug-in
 
-First, you need to extend the `io.agora.extension.AgoraExtAppBase` class to implement a custom plug-in in your App.
+First, inherit the `io.agora.extension.AgoraExtAppBase` class to implement a custom plug-in in your app.
 
-The methods and callbacks in the` AgoraExtAppBase` class are introduced as follows:
+`AgoraExtAppBase` includes the following methods and callbacks:
 
 #### Method
 
@@ -24,13 +24,13 @@ fun updateProperties(properties: MutableMap<String, Any?>,
                      callback: AgoraExtAppCallback<String>? = null)
 ```
 
-Update attributes. Other plug-ins will` receive updated property information through onPropertyUpdated`.
+Update properties. Other plug-ins receive the `onPropertyUpdated` callback to get the new properties.
 
 | Parameter | Description |
 | ------------ | --------------------------------------------- |
-| `properties` | Property Map. |
-| `cause` | Update reason Map. |
-| `callback` | Asynchronously` obtain whether it is successful through AgoraExtAppCallback`. |
+| `properties` | The property map. |
+| `cause` | The reason map. |
+| `callback` | Asynchronously check whether this method call is successful through `AgoraExtAppCallback`. |
 
 **deleteProperties**
 
@@ -40,13 +40,13 @@ fun deleteProperties(propertyKeys: MutableList<String>,
                      callback: AgoraExtAppCallback<String>?)
 ```
 
-Delete attributes. Other plug-ins will` receive the deleted property information through onPropertyUpdated`.
+Delete properties. Other plug-ins receive the `onPropertyUpdated` callback to get the new properties.
 
 | Parameter | Description |
 | ------------ | --------------------------------------------- |
-| `properties` | Property Map. |
-| `cause` | Update reason Map. |
-| `callback` | Asynchronously` obtain whether it is successful through AgoraExtAppCallback`. |
+| `properties` | The property map. |
+| `cause` | The reason map. |
+| `callback` | Asynchronously check whether this method call is successful through `AgoraExtAppCallback`. |
 
 **unload**
 
@@ -54,7 +54,7 @@ Delete attributes. Other plug-ins will` receive the deleted property information
 fun unload()
 ```
 
-Remove the plug-in. After successfully calling this method, the `onExtAppUnloaded `callback will be triggered.
+Remove the plug-in. A successful method call triggers the `onExtAppUnloaded` callback.
 
 **getLocalUserInfo**
 
@@ -62,15 +62,15 @@ Remove the plug-in. After successfully calling this method, the `onExtAppUnloade
 fun getLocalUserInfo(): AgoraExtAppUserInfo?
 ```
 
-Get current user information.
+Get the current user information.
 
 **getRoomInfo**
 
 ```kotlin
-fun getRoomInfo (): AgoraExtAppRoomInfo?
+fun getRoomInfo(): AgoraExtAppRoomInfo?
 ```
 
-Get current room information.
+Get the current classroom information.
 
 **getProperties**
 
@@ -78,7 +78,7 @@ Get current room information.
 fun getProperties(): MutableMap<String, Any?>?
 ```
 
-Get the current latest attribute list.
+Get the current property list.
 
 #### Callback
 
@@ -88,11 +88,11 @@ Get the current latest attribute list.
 fun onExtAppLoaded(context: Context)
 ```
 
-This callback is triggered before the View is added to the container after the plugin is initialized.
+This callback is triggered after the plug-in is initialized and before the view is added to the container.
 
 | Parameter | Description |
 | --------- | ---------------- |
-| `context` | Android context. |
+| `context` | The android context. |
 
 **onCreateView**
 
@@ -100,19 +100,19 @@ This callback is triggered before the View is added to the container after the p
 fun onCreateView(content: Context): View
 ```
 
-The view added to the container has been created.
+Occurs when the view is created.
 
 ```kotlin
 fun onPropertyUpdated(properties: MutableMap<String, Any>?, cause: MutableMap<String, Any?>?)
 ```
 
-The properties of the container have been updated.
+Occurs when the properties of the container are updated.
 
 | Parameter | Description |
 | ------------ | --------------------------------------------- |
-| `properties` | Property Map. |
-| `cause` | Update reason Map. |
-| `callback` | Asynchronously` obtain whether it is successful through AgoraExtAppCallback`. |
+| `properties` | The property map. |
+| `cause` | The reason map. |
+| `callback` | Asynchronously check whether this method call is successful through `AgoraExtAppCallback`. |
 
 **onExtAppUnloaded**
 
@@ -120,38 +120,38 @@ The properties of the container have been updated.
 fun onExtAppUnloaded()
 ```
 
-Triggered after the plug-in is closed and before the View is removed from the container.
+Occurs after the plug-in is closed and before the view is removed from the container.
 
 ### 2. Register the plug-in
 
-Call the `Agora method to register the plug`-in to the Agora Classroom SDK.
+To register the plug-in in the Agora Classroom SDK, call `AgoraEduSDK.registerExtApp`.
 
-The following sample code demonstrates how to register a countdown plug-in CountDownExtApp.
+The following sample code demonstrates how to register the countdown plug-in CountDownExtApp.
 
 ```java
 AgoraEduSDK.registerExtApps(Arrays.asList(
    new AgoraExtAppConfiguration(
-       // Plug-in ID, which will be used when starting the plug-in later. 
-       CountDownExtApp.getAppIdentifier(),
-       // The size of the plug-in container, the position of the container can be set by specifying the margin. 
-       new ViewGroup.LayoutParams(
+       // The plug-in ID. 
+              CountDownExtApp.getAppIdentifier(),
+       // The size of the plug-in container. 
+              new ViewGroup.LayoutParams(
                ViewGroup.LayoutParams.WRAP_CONTENT,
                ViewGroup.LayoutParams.WRAP_CONTENT),
-       // The class implemented by the plug-in inherits io.agora.extension.AgoraExtAppBase. 
-       CountDownExtApp.class,
-       // Plug-in language type. 
-       Locale.getDefault () .getLanguage (),
-       // The plug-in icon will be displayed in the ToolBox pop-up window of the toolbar. 
-       CountDownExtApp.getAppIconResource()),
+       // Inherits io.agora.extension.AgoraExtAppBase to implement the plug-in 
+              CountDownExtApp.class,
+       // The language of the plug-in. 
+              Locale.getDefault().getLanguage(),
+       // The plug-in icon. 
+              CountDownExtApp.getAppIconResource()),
    ......
 ));
 ```
 
 ### 3. Use the plug-in
 
-By default, successfully registered plug-ins will be displayed in the ToolBox pop-up window of the  Flexible Classroom toolbar.
+By default, the registered plug-in is displayed in the whiteboard toolbar in the Flexible Classroom.
 
-If you want to customize an entry for the plug-in, you can modify the `Agora, AgoraUILargeClassContainer.kt` and ``AgoraUISmallClassContainer.kt ```files under `the Agora/src/main/kotlin/io/agora/uikit/impl/container path in the  Flexible Classroom Add an entry for the plug-in in the three major scenarios, and then call the following method when the plug-in is clicked or displayed.
+If you want to customize an entry for the plug-in in the flexible classroom, you can edit the `AgoraUI1v1Container.kt`, `AgoraUILargeClassContainer.kt`, and `AgoraUISmallClassContainer.kt` files under the `agoraui/src/main/kotlin/io/agora/uikit/impl/container` path. Then call the following methods when the user clicks on the plug-in icon.
 
 ```java
 // Pass in the plug-in ID in the launchExtApp method. 
