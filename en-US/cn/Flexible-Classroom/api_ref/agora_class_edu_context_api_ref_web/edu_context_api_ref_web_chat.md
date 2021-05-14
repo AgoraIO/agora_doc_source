@@ -1,10 +1,10 @@
 # useChatContext
 
-`useChatContext()` Provides message chat related capabilities.
+`useChatContext()` enables developers to implement the chat function in the flexible classroom.
 
-You can` use import {useChatContext} from'agora-edu-core';` to introduce `useChatContext`, and then` use const {...} = useChatContext()` to obtain the ability of message chat in the  Flexible Classroom.
+You can import `useChatContext` by `import { useChatContext } from 'agora-edu-core';` and then use `const {...} = useChatContext()` to implement the functions and events related to classroom management.
 
-The following specifically lists` the capabilities provided by useChatContext()`.
+This page lists all the functions and events provided by `useChatContext()`.
 
 ## isHost
 
@@ -12,7 +12,7 @@ The following specifically lists` the capabilities provided by useChatContext()`
 isHost: boolean,
 ```
 
-Whether the role is a teacher or a teaching assistant.
+Whether the role is the teacher or teaching assistant.
 
 ## getHistoryChatMessage
 
@@ -23,23 +23,23 @@ async getHistoryChatMessage(data: {
 }): array
 ```
 
-Occurs when the local client receives the message history.
+Fetch the message history.
 
-Call example:` getHistoryChatMeassage({nextId:"idstring", sort: 1})`
+Example:` getHistoryChatMeassage({nextId:"idstring", sort: 1})`
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `nextId` | Used to obtain messages in batches. Pass an empty string for the first time. There is a `nextId `field in the returned result, and the next batch will get this value. |
-| `sort` | <li>`0`: Obtain historical chat messages in positive sequence.<li>`1`: Get historical chat messages in reverse order. |
+| `nextId` | You can fetch message history in batches with this parameter. When you call this method for the first time, leave this parameter empty or set it as null. You can set this parameter as the `nextId` that you get in the response of the previous method call. |
+| `sort` | <li>`0`: Fetch message history in ascending order.<li>`1`: Fetch message history in descending order. |
 
 ## messageList
 
 ```typescript
 messageList: array,
 ```
-Chat message list.
+The message list.
 
-## And sendMessage
+## sendMessage
 
 ```typescript
 async sendMessage(message: any): {
@@ -57,7 +57,7 @@ Send a message.
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `message` | Chat message. |
+| `message` | The message. |
 
 
 ## muteChat
@@ -65,7 +65,7 @@ Send a message.
 ```typescript
 async muteChat(): void
 ```
-Chatting is prohibited.
+Disable the chat function.
 
 ## unmuteChat
 
@@ -73,7 +73,7 @@ Chatting is prohibited.
 async unmuteChat(): void
 ```
 
-Unban chat.
+Enable the chat function.
 
 ## chatCollapse
 
@@ -81,7 +81,7 @@ Unban chat.
 chatCollapse: boolean,
 ```
 
-Whether to collapse the chat message box.
+Whether is the chatbox is folded.
 
 ## toggleChatMinimize
 
@@ -89,7 +89,7 @@ Whether to collapse the chat message box.
 toggleChatMinimize(): void
 ```
 
-Switch the folded state.
+Fold or expand the chatbox.
 
 ## unreadMessageCount
 
@@ -105,7 +105,7 @@ The number of unread messages.
 canChatting: boolean,
 ```
 
-Whether the chat function is available.
+Whether the chat function is enabled.
 
 ## addChatMessage
 
@@ -113,8 +113,8 @@ Whether the chat function is available.
 addChatMessage(args: any): void
 ```
 
-Add a chat message to the chat message list.
+Add a message to the message list.
 
 | Parameter | Description |
 | :----- | :--------------------------------- |
-| `args` | Pass in the object returned in the method of sending chat messages. |
+| `args` | Pass in the object returned in the method of sending a message. |
