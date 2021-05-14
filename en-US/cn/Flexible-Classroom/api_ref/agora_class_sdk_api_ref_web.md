@@ -151,7 +151,7 @@ export type LaunchOption = {
 | `recordUrl` | The URL address to be recorded. Developers need to pass in the URL of the web page deployed by themselves for page recording, such as `https://cn.bing.com/recordUrl`. |
 | `courseWareList` | The configuration of courseware assigned by the educational institution, which cannot be edited by the client. See [`courseWareList`](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 | `personalCourseWareList` | The configuration of courseware uploaded by a teacher. See [`CourseWareList`](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
-| `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a supplementary plug-  Flexible Classroom UIKit of Smart Classroom. For details, see [Customize Plug-ins via ExtApp](./agora_class_ext_app_web?platform=Web). |
+| `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](./agora_class_ext_app_web?platform=Web). |
 
 ### CourseWareList
 
@@ -186,11 +186,11 @@ export type CourseWareList = CourseWareItem[]
 | `size` | The file size (bytes). |
 | `updateTime` | The latest modified time of the file. |
 | `conversion` | The file conversion configuration object, which contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>`"dynamic"`: Convert the file to a static picture.</li><li>`"static"`: Convert the file to dynamic HTML.</li></ul></ul> |
-| `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. If the suffix name is not listed above, url must be set``, `scenes` can be empty. |
+| `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. If the suffix name is not listed above, you must set `url` and leave `scenes` empty. |
 | `scenes` | The download configuration of the converted file. When the file suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, you must set scenes for downloading the converted file``. |
 | `taskUuid` | The unique identifier of the file conversion task. |
 | `taskToken` | The token used by the file conversion task. |
-| `taskProgress` | The JSON object that indicates the progress of the file conversion task. |
+| `taskProgress` | The JSON object indicates the progress of the file conversion task. |
 
 ### EduRoleTypeEnum
 
@@ -236,9 +236,9 @@ The classroom type. Set in [`LaunchOption`](#launchoption).
 export type LanguageEnum = "en" | "zh"
 ```
 
-The UI language: Set in [`LaunchOption`](#launchoption).
+The language of the user interface. Set in [`LaunchOption`](#launchoption).
 
 | Parameter | Description |
 | :----- | :----- |
-| `"on"` | English. |
+| `"en"` | English. |
 | `"zh"` | Chinese. |
