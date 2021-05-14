@@ -1,67 +1,67 @@
 ## Overview
 
-The Agora Classroom SDK provides App developers with the ability to implement smart classroom business functions through Edu Context.
+Agora Edu Context enables developers to implement the functions in the Flexible Classroom.
 
-Different Contexts represent different business function modules in the  Flexible Classroom. Each Context contains methods for the App to call and also reports event callbacks to the App.
+Different contexts represent different function modules in the Flexible Classroom. Each context contains methods for the app to call and also reports event callbacks to the app.
 
-The Agora Classroom SDK provides the following Context:
+The Agora Classroom SDK provides the following contexts:
 
 - Whiteboard Context: Whiteboard.
-- Chat Context: Message chat.
+- Chat Context: Chat.
 - Room Context: Classroom management.
-- Hands-up Context: Raise your hands on stage.
+- Hands-up Context: Hand raising.
 - Screenshare Context: Screen sharing.
 - User List Context: User list.
-- Video Context: media control.
+- Video Context: Media control.
 
 ## EduContextPool
 
- Flexible Classroom functional ability pool. You can use this object to use various business functions currently provided by Flexible Classroom Class.
+The edu context pool interface. Use this interface to implement all the functions provided by the Agora Classroom SDK.
 
 ```kotlin
 interface EduContextPool {
-    // chat function
+    // Chat
     fun chatContext (): ChatContext?
  
-    // Raise hands on stage
+    // Hand raising
     fun handsUpContext (): HandsUpContext?
  
     // Classroom management
     fun roomContext(): RoomContext?
  
-    // screen sharing
+    // Screen sharing
     fun screenShareContext(): ScreenShareContext?
  
-    // user list
+    // User list
     fun userContext(): UserContext?
  
-    // Media control, mainly controlling the audio and video of teachers and students in one-to-one, as well as the audio and video of teachers in small and large classes
+    // Media control, mainly for the audio and video control of teachers and students in the one-to-one classroom and the audio and video control of teachers in the small classroom and lecture halls
     fun videoContext(): VideoContext?
  
-        // 白板，包含白板基础工具和页面控制工具
+    // Whiteboard, including the whiteboard basic editing tools and page controller.
     fun whiteboardContext(): WhiteboardContext?
  
-    // Private voice: currently only supports person-to-person
+    // Private audio call.
     fun privateChatContext(): PrivateChatContext?
  
-    // Expansion container: The application container provides life cycle, expansion
+    // Extension application.
     fun extAppContext(): ExtAppContext?
 }
 ```
 
 ## IHandlerPool
 
- Flexible Classroom callback ability pool. You can monitor various callback capabilities currently provided by  Flexible Classroom through this object.
+The handler pool interface. Use this interface to implement all the callbacks provided by the Agora Classroom SDK.
 
 ```kotlin
-interface IHandlerPool <T> {
-    // Register the callback listener corresponding to the Context
+interface IHandlerPool<T> {
+    // Register the callback listener for the context
     fun addHandler(handler: T?)
      
-    // Remove the callback listener corresponding to the Context
+    // Remove the callback listener for the context
     fun removeHandler(handler: T?)
  
-    // Get all callback listeners corresponding to Context
+    // Get all callback listeners of the context
     fun getHandlers(): List<T>?
 }
 ```
