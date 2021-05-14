@@ -47,7 +47,7 @@ First, create an `AgoraEduSDKConfig` instance for global configuration, and then
 
 | Parameter | Description |
 | :-------- | :----------------------------------------------------------- |
-| `appId` | The Agora App ID, see[ Get the Agora App ID](./agora_class_prep#step1). |
+| `appId` | The Agora App ID. See [Get the Agora App ID](./agora_class_prep#step1). |
 | `eyeCare` | Whether to enable eye care mode:<li>`false`: (Default) Disable eye care mode.<li>`true`: Enable eye care mode. |
 
 ```java
@@ -66,12 +66,12 @@ After initialization, create an `AgoraEduLaunchConfig` instance for the classroo
 | Parameter | Description |
 | :---------- | :----------------------------------------------------------- |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `userUuid` | User ID. This is the globally unique identifier of a user.** Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roleType` | The role of the user in the classroom:<li>`AgoraEduRoleTypeStudent`: Student. |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomType` | The room type:<li>`AgoraEduRoomType1V1`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student.<li>`AgoraEduRoomTypeSmall`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher.<li>`AgoraEduRoomTypeBig`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
-| `rtmToken` | The RTM token used for authentication, see[ Generate an RTM Token](./agora_class_prep#step5). |
+| `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](./agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
 | `region` | In the area where the classroom is located, the area of each client must be the same, otherwise they cannot communicate. |
