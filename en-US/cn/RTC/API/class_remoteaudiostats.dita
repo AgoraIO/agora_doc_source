@@ -12,7 +12,7 @@
    <parml>
        <plentry>
   <pt><ph keyref="uid"/></pt>
-  <pd>The User ID of the remote user.</pd>
+  <pd>The ID of the remote user sending the stream.</pd>
        </plentry>
        <plentry>
   <pt>quality</pt>
@@ -25,7 +25,7 @@
        <plentry>
   <pt>jitterBufferDelay</pt>
   <pd>
-      <p>The network delay (ms) from the audio receiver to the network jitter buffer.<note type="attention">This parameter does not take effect if the receiver is an audience member and <xref
+      <p>Network delay (ms) from the receiver to the jitter buffer.<note type="attention">This parameter does not take effect if the receiver is an audience member and <xref
 keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> is 1.</note></p>
   </pd>
        </plentry>
@@ -39,11 +39,11 @@ keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> is 1.</note></p>
        </plentry>
        <plentry>
   <pt>receivedSampleRate</pt>
-  <pd>The sampling rate (Hz) of the audio stream received from the remote user in the reported interval.</pd>
+  <pd>The sample rate of the received remote audio streams in the reported interval.</pd>
        </plentry>
        <plentry>
   <pt>receivedBitrate</pt>
-  <pd>The average bitrate (Kbps) of the audio stream received from the remote user in the reported interval.</pd>
+  <pd>The average bitrate (Kbps) of the received audio stream in the reported interval.</pd>
        </plentry>
        <plentry>
   <pt>totalFrozenTime</pt>
@@ -55,7 +55,7 @@ keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> is 1.</note></p>
        </plentry>
        <plentry>
   <pt>totalActiveTime</pt>
-  <pd>The total time (ms) when the audio is available, i.e., when the remote user in the COMMUNICATION profile or the remote host in the LIVE_BROADCASTING profile neither stops sending the audio stream nor disables the audio module after joining the channel.</pd>
+  <pd>The total time (ms) when the remote user in the `COMMUNICATION` profile or the remote host in the `LIVE_BROADCASTING` profile neither stops sending the audio stream nor disables the audio module after joining the channel.</pd>
        </plentry>
        <plentry>
   <pt>publishDuration</pt>
@@ -94,37 +94,37 @@ keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> is 1.</note></p>
                        <dd>v3.3.1</dd>
                    </dlentry>
                </dl>
-               <p>During the statistical period, the Agora real-time audio MOS (average subjective opinion score) evaluation method scores the quality of the received remote audio stream. The return value range is [0,500]. The return value is divided by 100 to get the MOS score, in the range of [0,5] points. The higher the score, the better the audio quality.</p>
+               <p>The quality of the remote audio stream in the reported interval. The quality is determined by the Agora real-time audio MOS (Mean Opinion Score) measurement method. The return value range is [0, 500]. Dividing the return value by 100 gets the MOS score, which ranges from 0 to 5. The higher the score, the better the audio quality.</p>
                
-               <p>The subjective sound quality experience corresponding to the Agora real-time audio MOS score is as follows:<simpletable frame="all"
+               <p>The subjective perception of audio quality corresponding to the Agora real-time audio MOS scores is as follows:<simpletable frame="all"
                                 id="simpletable_qzy_hdp_v4b">
                                 <sthead>
                                     <stentry>MOS score</stentry>
-                                    <stentry>Sound quality experience</stentry>
+                                    <stentry>Perception of audio quality</stentry>
                                 </sthead>
                                 <strow>
-                                    <stentry>More than 4 points</stentry>
-                                    <stentry>The audio quality is good, clear and smooth.</stentry>
+                                    <stentry>Greater than 4</stentry>
+                                    <stentry>Excellent. The audio sounds clear and smooth.</stentry>
                                 </strow>
                                 <strow>
-                                    <stentry>3.5-4 points</stentry>
-                                    <stentry>The audio quality is good, with occasional sound quality impairments, but still clear.</stentry>
+                                    <stentry>From 3.5 to 4</stentry>
+                                    <stentry>Good. The audio has some perceptible impairment but still sounds clear.</stentry>
                                 </strow>
                                 <strow>
-                                    <stentry>3-3.5 points</stentry>
-                                    <stentry>The audio quality is average, with occasional stuttering, not very smooth, and requires a little attention to hear clearly.</stentry>
+                                    <stentry>From 3 to 3.5</stentry>
+                                    <stentry>Fair. The audio freezes occasionally and requires attentive listening.</stentry>
                                 </strow>
                                 <strow>
-                                    <stentry>2.5-3 points</stentry>
-                                    <stentry>The audio quality is poor, and it freezes frequently. It requires concentration to hear clearly.</stentry>
+                                    <stentry>From 2.5 to 3</stentry>
+                                    <stentry>Poor. The audio sounds choppy and requires considerable effort to understand.</stentry>
                                 </strow>
                                 <strow>
-                                    <stentry>2-2.5 points</stentry>
-                                    <stentry>The audio quality is very poor, there are occasional noises, part of the semantics is lost, and it is difficult to communicate.</stentry>
+                                    <stentry>From 2 to 2.5</stentry>
+                                    <stentry>Bad. The audio has occasional noise. Consecutive audio dropouts occur, resulting in some information loss. The users can communicate only with difficulty.</stentry>
                                 </strow>
                                 <strow>
-                                    <stentry>Fewer than 4</stentry>
-                                    <stentry>The audio quality is very poor, there is noisy audio, a lot of semantics is lost, and communication is completely impossible.</stentry>
+                                    <stentry>Less than 2</stentry>
+                                    <stentry>Very bad. The audio has persistent noise. Consecutive audio dropouts are frequent, resulting in severe information loss. Communication is nearly impossible.</stentry>
                                 </strow>
                             </simpletable></p>
            </pd>
