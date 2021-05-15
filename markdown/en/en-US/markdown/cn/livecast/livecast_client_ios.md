@@ -31,7 +31,7 @@ Refer to the following diagram to call the core APIs of the Agora RTC SDK and im
 
 ![](https://web-cdn.agora.io/docs-files/1617073965299)
 
-**Managing co-host seats**
+**Managing cohost seats**
 
 ![img](https://confluence.agoralab.co/download/attachments/721393269/%E9%BA%A6%E4%BD%8D.png?version=1&modificationDate=1615803522208&api=v2)
 
@@ -41,16 +41,16 @@ Refer to the following diagram to call the core APIs of the Agora RTC SDK and im
 | API | Functions |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | [sharedEngineWithAppId](API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/sharedEngineWithAppId:delegate:) | 调用其他 API 之前，需要调用该方法创建 `AgoraRtcEngineKit` 实例。 |
-| [setClientRole](API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setClientRole:) | Sets the client role. 加入频道时，需要将房主的用户角色设为 `BROADCASTER、`听众的用户角色设为 `AUDIENCE`。 After an audience member becomes a co-host, you need to call this method to set the role of the audience member to `BROADCASTER` so that they can publish audio streams. |
-| [joinChannelByToken](API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByToken:channelId:info:uid:joinSuccess:) | Joins the room. A user must joins the room before publishing or receiving audio streams. |
+| [setClientRole](API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setClientRole:) | Sets the client role. 加入频道时，需要将房主的用户角色设为 `BROADCASTER、`听众的用户角色设为 `AUDIENCE`。 After an audience member becomes a cohost, you need to call this method to set the role of the audience member to `BROADCASTER` so that they can publish audio streams. |
+| [joinChannelByToken](API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByToken:channelId:info:uid:joinSuccess:) | Joins the room. A user must join the room before publishing or receiving audio streams. |
 | [leaveChannel](API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/leaveChannel:) | Leaves the room. If the host leaves the room, the room object is destroyed and other room members leave the room automatically. |
-| [muteLocalAudioStream](API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/muteLocalAudioStream:) | 禁用/开启本地麦克风。 This method is used together with the state management function of cloud storage so that the host can mute a co-host and remove a co-host. |
+| [muteLocalAudioStream](API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/muteLocalAudioStream:) | 禁用/开启本地麦克风。 This method is used together with the state management function of cloud storage so that the host can mute  or remove a cohost. |
 
 ## Additional functions
 
 **Audio mixing and effects**
 
-After joining the channel, call `startAudioMixing` to play a music file for background music, or call `playEffect` to play an audio effect file for a better atmosphere. See [Play Audio Effect or Music File](/cn/InteractiveBroadcast/effect_mixing_ios?platform=iOS).
+After joining the channel, call `startAudioMixing` to play a music file for background music, or call `playEffect` to play an audio effect file  to enhance the room's atmosphere with applause, cheering, or other ambient noise.. See [Play Audio Effect or Music File](/cn/InteractiveBroadcast/effect_mixing_ios?platform=iOS).
 
 **Set the Voice Effect**
 
@@ -70,5 +70,5 @@ Agora provides an open-source demo for Livecast on GitHub. You can view the sour
 
 ## FAQ
 
-- [How to protect interactive live streaming from stream bombing?](https://docs.agora.io/cn/InteractiveBroadcast/faq/stream_bombing)
-- [How do I use co-host token authentication?](https://docs.agora.io/cn/InteractiveBroadcast/faq/token_cohost)
+- [How do I protect interactive live streaming from stream bombing?](https://docs.agora.io/cn/InteractiveBroadcast/faq/stream_bombing)
+- [How do I use cohost token authentication?](https://docs.agora.io/cn/InteractiveBroadcast/faq/token_cohost)
