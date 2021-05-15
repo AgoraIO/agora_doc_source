@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcengineconfig">
     <title><ph keyref="RtcEngineConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the log files that the SDK outputs.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Configurations of initializing the SDK.</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/RtcEngineConfig"/>
@@ -12,30 +12,30 @@
    <parml>
        <plentry>
   <pt>eventHandler</pt>
-  <pd>Agora SDK callback handle. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+  <pd>The event handler of the Agora SDK. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
        </plentry>
        <plentry>
   <pt props="windows">appId</pt>
   <pt props="android">mAppId</pt>
-  <pd><p>The App ID issued by Agora for the app development project. Only users in apps with the same App ID can join the same channel and communicate with each other.</p>
-      <p props="windows">Use an App ID to create only one `IRtcEngine<xref keyref="IRtcEngine"/>` instance. If you need to change the App ID, you must first call to<xref keyref="release"/> destroy the current IRtcEngine, and then call<xref keyref="createAgoraRtcEngine"/> and<xref keyref="create2"/> recreate.<apiname keyref="IRtcEngine"></apiname></p>
-      <p props="android ios mac">Use an App ID to create only one `IRtcEngine<xref keyref="IRtcEngine"/>` instance. If you need to change the App ID, you must call<xref keyref="release"/> destroy the current IRtcEngine first, and then call<xref keyref="create2"/> recreate.<apiname keyref="IRtcEngine"></apiname></p>
+  <pd><p>The App ID issued by Agora for your app development project. Only users in apps with the same App ID can join the same channel and communicate with each other.</p>
+      <p props="windows">An App ID can only be used to create one <xref keyref="IRtcEngine"/> instance. If you need to change the App ID, you must call <xref keyref="release"/> to destroy the current IRtcEngine, and then call <xref keyref="createAgoraRtcEngine"/> and <xref keyref="create2"/> to recreate<apiname keyref="IRtcEngine"></apiname>.</p>
+      <p props="android ios mac">An App ID can only be used to create one <xref keyref="IRtcEngine"/> instance. If you need to change the App ID, you must call <xref keyref="release"/> destroy the current IRtcEngine, and then call <xref keyref="create2"/> to recreate<apiname keyref="IRtcEngine"></apiname>.</p>
   </pd>
        </plentry>
        <plentry>
   <pt>context</pt>
-  <pd>The video window handle. Once set, this parameter enables you to plug or unplug the video devices while they are powered.</pd>
+  <pd>The video window handler. Once set, this parameter enables you to plug or unplug the video devices while they are powered.</pd>
        </plentry>
        <plentry>
   <pt>areaCode</pt>
-  <pd><p>The region for connection. This advanced feature applies to scenarios that have regional restrictions. See for details of supported regions<xref keyref="AREA_CODE"/>.</p>
+  <pd><p>The region for connection. This advanced feature applies to scenarios that have regional restrictions. See <xref keyref="AREA_CODE"/> for details about supported regions.</p>
   <p>After specifying the region, the SDK connects to the Agora servers within that region.</p></pd>
        </plentry>
        <plentry>
   <pt>logConfig</pt>
-  <pd><p>The configuration of the log files<xref keyref="LogConfig"/>.</p>
-  <p>By default, the SDK outputs five log files, `<codeph>agorasdk.log</codeph>`, `<codeph>agorasdk_1.log</codeph>`, `<codeph>agorasdk_2.log</codeph>`, `<codeph>agorasdk_3.log</codeph>`, `<codeph>agorasdk_4.log</codeph>`, each with a default size of 1024 KB.</p>
-  <p>The log file has a default size of 512 KB. These log files are encoded in UTF-8. The SDK writes the latest logs in `<codeph>agorasdk.log</codeph>`. When <codeph>`agorasdk.log</codeph>` is full, the SDK deletes the log file with the earliest modification time among the other four, renames `<codeph>agorasdk.log`</codeph> to the name of the deleted log file, and create a new `<parmname>agorasdk.log</parmname>` to record latest<parmname> logs</parmname>.</p></pd>
+  <pd><p>The configuration of the log files. See <xref keyref="LogConfig"/>.</p>
+  <p>By default, the SDK outputs five log files: <codeph>agorasdk.log</codeph>, <codeph>agorasdk_1.log</codeph>, <codeph>agorasdk_2.log</codeph>, <codeph>agorasdk_3.log</codeph>, and <codeph>agorasdk_4.log</codeph>.</p>
+  <p>Each log file has a default size of 512 KB. The SDK writes the latest log in <codeph>agorasdk.log</codeph>. When <codeph>agorasdk.log</codeph> is full, the SDK deletes the log file with the earliest modification time among the other four, renames <codeph>agorasdk.log</codeph> to the name of the deleted log file, and create a new <parmname>agorasdk.log</parmname> to record the latest log.</p></pd>
        </plentry>
    </parml>
         </section></refbody>
