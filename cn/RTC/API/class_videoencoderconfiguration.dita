@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoencoderconfiguration">
     <title><ph keyref="VideoEncoderConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc">视频编码器配置的属性。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">视频编码器的配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/VideoEncoderConfiguration"/>
@@ -32,13 +32,13 @@
       <p>你可以根据场景需要参照下表手动设置你想要的码率。若设置的视频码率超出合理范围，SDK 会自动按照合理区间处理码率。你也可以直接选择如下任意一种模式进行设置：</p>
       <ul>
  <li><option keyref="STANDARD_BITRATE" /> : (推荐)
-     标准码率模式。该模式下，视频在通信和直播场景下的码率有所不同：通信场景下，码率与基准码率一致；直播场景下，码率对照基准码率翻倍。 </li>
+     标准码率模式。该模式下，视频在直播场景下的码率是通信场景的两倍。 </li>
  <li>
-     <option keyref="COMPATIBLE_BITRATE" />:适配码率模式。该模式下，视频在通信和直播场景下的码率均与基准码率一致。直播下如果选择该模式，视频帧率可能会低于设置的值。
+     <option keyref="COMPATIBLE_BITRATE" />: 适配码率模式。该模式下，视频在通信和直播场景下的码率一致。直播时如果选择该模式，视频帧率可能会低于设置的值。
  </li>
       </ul>
       <p>Agora 在通信和直播场景下采用不同的编码方式，以提升不同场景下的用户体验。通信场景保证流畅，而直播场景则更注重画面质量，因此直播场景对码率的需求大于通信场景。所以声网推荐将该参数设置为
- <option keyref="STANDARD_BITRATE" />。</p>
+ <option keyref="STANDARD_BITRATE" />。你也可以直接将直播场景的码率值设为通信场景码率值的 2 倍。</p>
       <table id="table_bitrate">
  <tgroup cols="4">
      <colspec colnum="1" colname="col1"/>
@@ -225,8 +225,6 @@
      </tbody>
  </tgroup>
       </table>
-      <note type="attention">该表中的基准码率适用于通信场景。直播场景下通常需要较大码率来提升视频质量。声网推荐通过设置 <option keyref="STANDARD_BITRATE" /> 模式来实现。你也可以直接将码率值设为基准码率值 × 2。
-      </note>
   </pd>
        </plentry>
        <plentry>
