@@ -22,7 +22,8 @@ UIKit provides all the code for the user interfaces in Flexible Classroom and us
 
    ```shell
    # Install Node.js and npm globally
-npm install -g npm
+   npm install -g npm
+   ```
 # Check Node.js version
 node -v
 # Check npm version
@@ -46,7 +47,8 @@ Modify the UI of Flexible Classroom, as follows:
 
    ```shell
    # Install global dev dependencies
-yarn
+   yarn
+   ```
 # Install all dependencies via lerna and yarn
 yarn bootstrap
    ```
@@ -192,22 +194,23 @@ The following example shows how to add a custom basic UI component and use it in
 
    ```css
    .custom {
-  display: inline-block;
-  padding: 10px;
-  background: #efebe9;
-  border: 5px solid #B4A078;
-  outline: #B4A078 dashed 1px;
-  outline-offset: -10px;
-}
+     display: inline-block;
+     padding: 10px;
+     background: #efebe9;
+     border: 5px solid #B4A078;
+     outline: #B4A078 dashed 1px;
+     outline-offset: -10px;
+   }
    ```
 
    `index.tsx`
 
    ```tsx
    import React, { FC } from 'react';
-import classnames from 'classnames';
-import { BaseProps } from '~components/interface/base-props';
-import './index.css';
+   import classnames from 'classnames';
+   import { BaseProps } from '~components/interface/base-props';
+   import './index.css';
+   ```
 
 export interface CustomProps extends BaseProps {
     width?: number;
@@ -301,7 +304,8 @@ export default meta;
 
       ```tsx
       export const WhiteboardContainer = observer(() => {
-  return (
+      return (
+     ```
     <div className="whiteboard">
       ...... 
       {showZoomControl ? <ZoomController
@@ -315,23 +319,23 @@ export default meta;
       <Custom className='custom-position' width={200} height={200}>
         <div>Use the custom component</div>
       </Custom>
-      </div>
+     </div>
   )
-})
-      ```
-
-   3. Define the `custom-position` style in `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/1v1/style.css`:
-
+   })
+   ```
+   
+3. Define the `custom-position` style in `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/1v1/style.css`:
+   
       ```ts
-      .custom-position{
-  position: absolute;
-  left: 100px;
+     .custom-position{
+    position: absolute;
+    left: 100px;
   bottom: 200px;
-}
-      ```
-
-   4. Check the custom component in the flexible classroom.
-
+   }
+   ```
+   
+4. Check the custom component in the flexible classroom.
+   
       ![custom-ui-compnent-fx](https://web-cdn.agora.io/docs-files/1617715517511)
 
 ### Connect UI components with the business logic
@@ -344,45 +348,47 @@ The following example shows how to display class time in the custom component we
 
    ```tsx
    import React, { FC } from 'react';
-import classnames from 'classnames';
-import { BaseProps } from '~components/interface/base-props';
-import './index.css';
+   import classnames from 'classnames';
+   import { BaseProps } from '~components/interface/base-props';
+   import './index.css';
+   /** Add an attribute named time. */
+   export interface CustomProps extends BaseProps {
+       width?: number;
+       height?: number;
+       children?: React.ReactNode;
+       time: number;
+   }
+   
+   /** Render time. */
+   export const Custom: FC<CustomProps> = ({
+       width = 90,
+       height = 90,
+       children,
+       className,
+       time,
+       ...restProps
+   }) => {
+       const cls = classnames({
+           [`custom`]: 1,
+           [`${className}`]: !!className,
+       })
+       return (
+           <div
+               className={cls}
+               style={{
+                   width,
+                   height,
+               }}
+               {...restProps}
+           >
+               {time}
+               {children}
+           </div>
+       )
+   }
+   ```
 
-/** Add an attribute named time. */
-export interface CustomProps extends BaseProps {
-    width?: number;
-    height?: number;
-    children?: React.ReactNode;
-    time: number;
-}
 
-/** Render time. */
-export const Custom: FC<CustomProps> = ({
-    width = 90,
-    height = 90,
-    children,
-    className,
-    time,
-    ...restProps
-}) => {
-    const cls = classnames({
-        [`custom`]: 1,
-        [`${className}`]: !!className,
-    })
-    return (
-        <div
-            className={cls}
-            style={{
-                width,
-                height,
-            }}
-            {...restProps}
-        >
-            {time}
-            {children}
-        </div>
-    )
-}
    ```
 
 2. In `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx`
@@ -428,10 +434,10 @@ export const Custom: FC<CustomProps> = ({
    ```tsx
    ...
 export const WhiteboardContainer = observer(() => {
-  ...
-  const {
+    ...
+    const {
     liveClassStatus
-  } = useRoomContext()
+    } = useRoomContext()
 
     return (
     <div className="whiteboard">
@@ -456,7 +462,7 @@ export const WhiteboardContainer = observer(() => {
         <div>Use the custom component</div>
       </Custom>
     </div>
-  )
+    )
 })
    ```
 
@@ -519,8 +525,8 @@ The following example shows how to modify the global style of basic UI component
 
    ```ts
    export const DialogContainer: React.FC<any> = observer(() => {
-  const { dialogQueue } = useDialogContext()
-  return (
+    const { dialogQueue } = useDialogContext()
+    return (
     <div>
      {
         dialogQueue.map(({ id, component: Component, props }: DialogType) => (
