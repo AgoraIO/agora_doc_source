@@ -16,11 +16,11 @@
         </section>
         <section id="detailed_desc">
    
-   <p>设置远端用户声音的空间位置和音量，方便本地用户听声辨位。</p>
-   <p>When the local user calls this method to set the sound position of a remote user, the sound difference between the left and right channels allows the local user to track the real-time position of the remote user, creating a real sense of space. This method applies to massively multiplayer online games, such as Battle Royale games. 在多人在线游戏场景，如吃鸡游戏中，该方法能有效增加游戏角色的方位感，模拟真实场景。</p>
+   <p>This method sets the sound position and gain of a remote user.</p>
+   <p>When the local user calls this method to set the sound position of a remote user, the sound difference between the left and right channels allows the local user to track the real-time position of the remote user, creating a real sense of space. This method applies to massively multiplayer online games, such as Battle Royale games.</p>
    <note type="attention">
        <ul>
-  <li>Ensure that you call this method before joining a channel to enable stereo panning<xref keyref="enableSoundPositionIndication"/> for remote users so that the local user can track the position of a remote user by calling .</li>
+  <li>For this method to work, enable stereo panning for remote users by calling the <xref keyref="enableSoundPositionIndication"/> method before joining a channel.</li>
   <li>This method requires hardware support. For the best sound positioning, we recommend using a stereo speaker.</li>
   <li>Call this method after joining a channel.</li>
        </ul>
@@ -30,11 +30,11 @@
    <parml>
        <plentry>
   <pt>uid</pt>
-  <pd>远端用户的 ID</pd>
+  <pd>The ID of the remote user.</pd>
        </plentry>
        <plentry>
   <pt>pan</pt>
-  <pd>@param pan The sound position of the remote user. The value ranges from -1.0 to 1.0:<ul>
+  <pd>The sound position of the remote user. The value ranges from -1.0 to 1.0:<ul>
  <li>0.0: the remote sound comes from the front.</li>
  <li>-1.0: the remote sound comes from the left.</li>
  <li>1.0: the remote sound comes from the right.</li>
@@ -43,7 +43,7 @@
        </plentry>
        <plentry>
   <pt>gain</pt>
-  <pd>@param gain Gain of the remote user. The value ranges from 0.0 to 100.0. The default value is 100.0 (the original gain of the remote user). The smaller the value, the less the gain.</pd>
+  <pd>The gain of the remote user. The value ranges from 0.0 to 100.0. The default value is 100.0 (the original gain of the remote user). The smaller the value, the less the gain.</pd>
        </plentry>
    </parml>
         </section>
