@@ -89,7 +89,8 @@ The following sample code demonstrates how to register the countdown plug-in Cou
 
 ```swift
 // The plug-in ID. 
-// Inherit the AgoraBaseExtApp class to implement a custom plug-in.  // The size of the plug-in container. 
+// Inherit the AgoraBaseExtApp class to implement a custom plug-in. 
+// frame: 插件容器的大小，代表距离底层视图的间距。 底层视图由 Classroom SDK 生成（不包含安全区域）。 
 // The plug-in language. 
 let countDown = AgoraExtAppConfiguration(appIdentifier: "io.agora.countdown",
                                          extAppClass: CountDownExtApp.self,
