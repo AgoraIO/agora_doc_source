@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setrecordingaudioframeparameters">
     <title><ph keyref="setRecordingAudioFrameParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the audio decoding format.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the audio recording format.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,11 +16,11 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This method sets the<xref keyref="onRecordAudioFrame"/> collected audio format of the callback.</p>
+   <p>Sets the audio recording format for the <xref keyref="onRecordAudioFrame"/> callback.</p>
    <note type="attention">
        <ul id="ul_t13_lnz_r4b">
   <li>Ensure that you call this method before joining a channel.</li>
-  <li>And, Sample interval (sec) = <parmname>`samplePerCall</parmname>`/(`<parmname>sampleRate</parmname>` × `<parmname>channel</parmname>`).<equation-inline>And, Sample interval (sec) = `samplePerCall`/(`sampleRate` × `channel`).</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK will trigger a callback according to the sampling interval<apiname keyref="onRecordAudioFrame"/>.</li>
+  <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = samplePerCall/(sampleRate × channel).</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>
        </ul>
    </note>
         </section>
@@ -28,12 +28,12 @@
    <parml>
        <plentry>
   <pt>sampleRate</pt>
-  <pd>Supported<apiname keyref="onRecordAudioFrame"/> file sample rates: 8000, 16000, 32000, 44100, and 48000 Hz.</pd>
+  <pd>The sample rate returned in the <apiname keyref="onRecordAudioFrame"/> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
        </plentry>
        <plentry>
   <pt>channel</pt>
   <pd>
-      <p><apiname keyref="onRecordAudioFrame"/> The number of channels to return data in, can be set to 1 or 2:<ul
+      <p>The number of channels (channels) returned in the <apiname keyref="onRecordAudioFrame"/> callback:<ul
      id="ul_xg2_cnz_r4b">
      <li>1: Mono.</li>
      <li>2: Stereo.</li>
@@ -42,12 +42,12 @@
        </plentry>
        <plentry>
   <pt>mode</pt>
-  <pd><apiname keyref="onRecordAudioFrame"/> For the usage mode of callbacks, see for details<xref
- keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</pd>
+  <pd>The use mode (see <xref
+ keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>) of the <apiname keyref="onRecordAudioFrame"/> callback.</pd>
        </plentry>
        <plentry>
   <pt>samplesPerCall</pt>
-  <pd><apiname keyref="onRecordAudioFrame"/> The number of sampling points of the data returned in the RTMP/RTMPS streaming application is usually 1024.</pd>
+  <pd>The number of samples returned in the <apiname keyref="onRecordAudioFrame"/> callback. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
        </plentry>
    </parml>
         </section>
