@@ -16,16 +16,16 @@
         </section>
         <section id="detailed_desc">
    
-   <p id="desc1">In the case of limited network conditions, if the sender does not call<xref keyref="enableDualStreamMode"/> (<ph keyref="false"/>) to close the dual stream mode, the receiver can choose to receive a large stream or a small stream. Dual streams are a hybrid of a high-quality video stream and a low-quality video stream: - High-quality video stream: High bitrate, high resolution. - Low-quality video stream: Low bitrate, low resolution.</p>
+   <p id="desc1">Under limited network conditions, if the publisher has not disabled the dual-stream mode using <xref keyref="enableDualStreamMode"/>(<ph keyref="false"/>), the receiver can choose to receive either the high-quality video stream (the high resolution, and high bitrate video stream) or the low-video stream (the low resolution, and low bitrate video stream).</p>
    <p id="desc2">By default, users receive the high-quality video stream. Call this method if you want to switch to the low-video stream. This method allows the app to adjust the corresponding video stream type based on the size of the video window to reduce the bandwidth and resources. The aspect ratio of the low-video stream is the same as the high-quality video stream. Once the resolution of the high-quality video stream is set, the system automatically sets the resolution, frame rate, and bitrate of the low-video stream.</p>
-   <p id="desc3">The execution result of calling this method will be<xref keyref="onApiCallExecuted"/> returned in.</p>
+   <p id="desc3">The method result returns in the <xref keyref="onApiCallExecuted"/> callback.</p>
    <note type="attention">You can call this method either before or after joining a channel. If you call both <apiname keyref="setRemoteVideoStreamType"/> and <xref keyref="setRemoteDefaultVideoStreamType"/>, the setting of <apiname keyref="setRemoteVideoStreamType"/> takes effect.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt>The stream type (streamType):</pt>
-  <pd>The video stream type:<xref keyref="REMOTE_VIDEO_STREAM_TYPE"/></pd>
+  <pt>streamType</pt>
+  <pd>The video stream type: <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>.</pd>
        </plentry>
    </parml>
         </section>
