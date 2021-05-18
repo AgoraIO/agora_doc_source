@@ -1,10 +1,10 @@
 ## Overview
 
-ExtApp is a tool for embedding plug-ins in Flexible Classroom. Plug-ins implemented by ExtApp can be regarded as an independent application with its own life cycle and data management, but they also depend on the Agora Classroom SDK. You can customize the user interfaces of the plug-in, pass custom data to the Agora Classroom SDK, and monitor data changes through ExtApp. ExtApp enables you to embed custom plug-ins, such as a countdown tool or a dice in the  Flexible Classroom.
+扩展应用 ExtApp 能够帮助开发者实现一个自定义插件并嵌入灵动课堂内，例如倒计时、骰子等。 你可以将通过 ExtApp 实现的插件理解为一个相对独立的 App，有自己的生命周期和数据管理，但是又依赖于 Agora Classroom SDK。 开发者可以自定义插件的 UI，传递自定义数据和监听数据变化。
 
 The source code of ExtApp is in the `extapp` directory in the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) repository on GitHub.
 
-This page describes the procedure of using ExtApp to embed a custom plug-in in the Flexible Classroom.
+下文介绍通过扩展应用 ExtApp 实现自定义插件并在灵动课堂内嵌入该插件的基本步骤。
 
 ## Procedure
 
@@ -151,7 +151,7 @@ AgoraEduSDK.registerExtApps(Arrays.asList(
 
 By default, the registered plug-in is displayed in the whiteboard toolbar in the Flexible Classroom.
 
-If you want to customize an entry for the plug-in in the flexible classroom, you can edit the `AgoraUI1v1Container.kt`, `AgoraUILargeClassContainer.kt`, and `AgoraUISmallClassContainer.kt` files under the `agoraui/src/main/kotlin/io/agora/uikit/impl/container` path. Then call the following methods when the user clicks on the plug-in icon.
+如果你想要为该插件自定义一个入口，你可修改 `agoraui/src/main/kotlin/io/agora/uikit/impl/container` 路径下 `AgoraUI1v1Container.kt`、`AgoraUILargeClassContainer.kt` 和 `AgoraUISmallClassContainer.kt` 文件，在灵动课堂中为该插件添加一个入口，然后在点击或者显示该插件时调用以下方法即可。
 
 ```java
 // Pass in the plug-in ID in the launchExtApp method. 
