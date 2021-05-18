@@ -10,7 +10,7 @@ Agora provides an open-source [sample project](https://github.com/AgoraIO-Commun
 
 - [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html).
 - Android Studio 4.0 or later.
-- 一台 Android 设备。 部分模拟机可能存在功能缺失或者性能问题，所以推荐使用真机。
+- An Android device. 部分模拟机可能存在功能缺失或者性能问题，所以推荐使用真机。
 - Android 5.0 or later.
 - Physical media input devices, such as a built-in camera and a built-in microphone.
 
