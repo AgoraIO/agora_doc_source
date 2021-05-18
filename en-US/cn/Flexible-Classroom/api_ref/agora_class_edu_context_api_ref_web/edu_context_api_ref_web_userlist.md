@@ -2,7 +2,7 @@
 
 `useUserListContext()` enables developers to implement the user list module in the flexible classroom.
 
-你可以通过 `import { useUserListContext } from 'agora-edu-core';  ` 引入 `useUserListContext`，然后使用 `const {...} = useUserListContext()` 获取灵动课堂中用户列表相关能力。
+You can import `useUserListContext` by `import { useUserListContext } from 'agora-edu-core';` and then use `const {...} = useUserListContext()` to implement the functions and events related to the user list.
 
 This page lists all the functions and events provided by `useUserListContext()`.
 
