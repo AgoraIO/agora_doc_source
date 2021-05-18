@@ -17,13 +17,13 @@
         <section id="detailed_desc">
    
    <p>This method initializes the video view of a remote stream on the local device. It affects only the video view that the local user sees. Call this method to bind the remote video stream to a video view and to set the rendering and mirror modes of the video view.</p>
-   <p>The application specifies the uid of the remote video in this method before the remote user joins the channel. 如果无法在加入频道前得到远端用户的 ID，可以在收到 <xref keyref="onUserJoined"/> 回调时调用该方法。</p>
-            <p>To unbind the remote user from the view, set<xref keyref="VideoCanvas"/> the view in VideoCanvas<parmname></parmname> to NULL.</p>
+   <p>The application specifies the uid of the remote video in this method before the remote user joins the channel. If the remote uid is unknown to the application, set it after the application receives the <xref keyref="onUserJoined"/> callback.</p>
+            <p>To unbind the remote user from the view, set the <parmname>view</parmname> parameter in <xref keyref="VideoCanvas"/> to NULL.</p>
             <p>Once the remote user leaves the channel, the SDK unbinds the remote user.</p>
    <note type="attention">
        <ul>
-           <li>如果你希望在通话中更新远端用户视图的渲染或镜像模式，请使用 <xref keyref="setRemoteRenderMode2"/> 方法。</li>
-           <li>如果你使用了 Agora 录制服务，录制服务会作为一个哑客户端加入频道，因此也会触发 <xref keyref="onUserJoined"/> 回调。 由于录制服务不会发送视频流，app 无需为它绑定视图。 如果 app 无法识别哑客户端，可以在收到 <xref keyref="onFirstRemoteVideoDecoded"/> 回调时再绑定远端用户视图。</li>
+           <li>To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderMode2"/> method.</li>
+           <li>If the Video Recording function is enabled, the Video Recording Service joins the channel as a dummy client, causing other clients to also receive the <xref keyref="onUserJoined"/> callback. Do not bind the dummy client to the application view because the dummy client does not send any video streams. If your application does not recognize the dummy client, bind the remote user to the view when the SDK triggers the <xref keyref="onFirstRemoteVideoDecoded"/> callback.</li>
        </ul>
    </note>
         </section>
@@ -32,7 +32,7 @@
        <plentry>
   <pt>canvas</pt>
   <pd>
-      <p>Set the remote video. See <xref keyref="VideoCanvas"/>.</p>
+      <p>Pointer to the remote video view and settings. See <xref keyref="VideoCanvas"/>.</p>
   </pd>
        </plentry>
    </parml>
