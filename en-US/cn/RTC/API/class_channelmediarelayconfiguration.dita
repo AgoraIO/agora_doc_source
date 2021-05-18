@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediarelayconfiguration">
     <title><ph keyref="ChannelMediaRelayConfiguration"/></title>
-    <shortdesc><apiname keyref="ChannelMediaRelayConfiguration"/> Class definition.</shortdesc>
+    <shortdesc>The definition of <apiname keyref="ChannelMediaRelayConfiguration"/>.</shortdesc>
     <refbody>
         <section id="prototype">
             <p conref="../conref/conref_rtc_api.dita#apidef/ChannelMediaRelayConfiguration"/>
@@ -13,12 +13,12 @@
                 <plentry>
                     <pt>srcInfo</pt>
                     <pd>
-                        <p>Pointer to the information of the source channel: ChannelMediaInfo<xref keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
+                        <p>Pointer to the information of the source channel:<xref keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
                                 <li><codeph>channelName</codeph>: The name of the source channel. The default value is <codeph>NULL</codeph>, which means the SDK applies the name of the current channel.</li>
                                 <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the source channel. The default value is 0, which means the SDK generates a random <codeph>UID</codeph>. You must set it as 0.</li>
-                                <li><codeph>token</codeph>: The <codeph>token</codeph> for joining the source channel. It is generated with the `<codeph></codeph><codeph>channelName</codeph>` and `uid` you set in `<codeph>srcInfo</codeph>`.<ul>
-                                        <li>If you have not enabled the App Certificate, set this parameter as the default value `<codeph>NULL</codeph>`, which means the SDK applies the App ID.</li>
-                                        <li>If you have enabled the App Certificate, you must use the `token` generated with the `<codeph>channelName</codeph>` and `<codeph>uid</codeph><codeph></codeph>`, and the `<codeph>uid</codeph>` must be set as 0.</li>
+                                <li><codeph>token</codeph>: The <codeph>token</codeph> for joining the source channel. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>srcInfo</codeph>.<ul>
+                                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph>NULL</codeph>, which means the SDK applies the App ID.</li>
+                                        <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>, and the <codeph>uid</codeph> must be set as 0.</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -28,12 +28,12 @@
                 <plentry>
                     <pt>destInformation</pt>
                     <pd>
-                        <p>Pointer to the information of the destination channel: ChannelMediaInfo<apiname keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
-                                <li>`<codeph>channelName</codeph>`: The name of the destination <codeph>channel</codeph>.</li>
-                                <li>`<codeph>uid</codeph>`: The unique ID to identify the relay stream in the destination channel. The value ranges from 0 to (2&lt;sup>32&lt;/sup><sup></sup>-1). To avoid UID conflicts, this `uid` must be different from any other UIDs in the destination channel. The default value is 0, which means the SDK generates a random UID. Do not set this parameter as the `uid` of the host in the destination channel, and ensure that this `uid` is different from any other `uid` in the channel.</li>
-                                <li>`<codeph>token</codeph>`: The token for joining the destination channel<codeph></codeph>. It is generated with the `<codeph>channelName</codeph>` and `uid` you set in `<codeph></codeph><codeph>destInfos</codeph>`.<ul>
-                                        <li>If you have not enabled the App Certificate, set this parameter as the default value `<codeph>NULL</codeph>`, which means the SDK applies the App ID.</li>
-                                        <li>If you have enabled the App Certificate, you must use the `token` generated with the `<codeph>channelName</codeph>` and `<codeph>uid</codeph><codeph></codeph>`.</li>
+                        <p>Pointer to the information of the destination channel: <apiname keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
+                                <li><codeph>channelName</codeph>: The name of the destination channel.</li>
+                                <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the destination channel. The value ranges from 0 to (2<sup>32</sup>-1). To avoid UID conflicts, this uid must be different from any other UIDs in the destination channel. The default value is 0, which means the SDK generates a random UID. Do not set this parameter as the `uid` of the host in the destination channel, and ensure that this `uid` is different from any other `uid` in the channel.</li>
+                                <li><codeph>token</codeph>: The <codeph>token</codeph> for joining the destination channel. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>destInfos</codeph>.<ul>
+                                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph>NULL</codeph>, which means the SDK applies the App ID.</li>
+                                        <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -42,8 +42,8 @@
                 </plentry>
                 <plentry>
                     <pt>destCount</pt>
-                    <pd>The number of destination channels. The default value is 0, and the value range is [0,4]. Ensure that the value of this parameter corresponds to the number of<apiname
-                            keyref="ChannelMediaInfo"/> ChannelMediaInfo structs you define in `<codeph>destInfos</codeph>`.</pd>
+                    <pd>The number of destination channels. The default value is 0, and the value range is from 0 to 4. Ensure that the value of this parameter corresponds to the number of <apiname
+                            keyref="ChannelMediaInfo"/> structs you define in <codeph>destInfos</codeph>.</pd>
                 </plentry>
             </parml>
         </section></refbody>
