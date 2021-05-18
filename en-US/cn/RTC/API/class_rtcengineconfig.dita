@@ -17,7 +17,7 @@
        <plentry>
   <pt props="windows">appId</pt>
   <pt props="android">mAppId</pt>
-  <pd><p>The App ID issued by Agora for your app development project. Only users in apps with the same App ID can join the same channel and communicate with each other.</p>
+  <pd><p>The App ID issued by Agora for your app development project. Only users who use the same App ID can join the same channel and communicate with each other.</p>
       <p props="windows">An App ID can only be used to create one <xref keyref="IRtcEngine"/> instance. If you need to change the App ID, you must call <xref keyref="release"/> to destroy the current IRtcEngine, and then call <xref keyref="createAgoraRtcEngine"/> and <xref keyref="create2"/> to recreate<apiname keyref="IRtcEngine"></apiname>.</p>
       <p props="android ios mac">An App ID can only be used to create one <xref keyref="IRtcEngine"/> instance. If you need to change the App ID, you must call <xref keyref="release"/> destroy the current IRtcEngine, and then call <xref keyref="create2"/> to recreate<apiname keyref="IRtcEngine"></apiname>.</p>
   </pd>
@@ -35,7 +35,7 @@
   <pt>logConfig</pt>
   <pd><p>The configuration of the log files. See <xref keyref="LogConfig"/>.</p>
   <p>By default, the SDK outputs five log files: <codeph>agorasdk.log</codeph>, <codeph>agorasdk_1.log</codeph>, <codeph>agorasdk_2.log</codeph>, <codeph>agorasdk_3.log</codeph>, and <codeph>agorasdk_4.log</codeph>.</p>
-  <p>Each log file has a default size of 512 KB. The SDK writes the latest log in <codeph>agorasdk.log</codeph>. When <codeph>agorasdk.log</codeph> is full, the SDK deletes the log file with the earliest modification time among the other four, renames <codeph>agorasdk.log</codeph> to the name of the deleted log file, and create a new <parmname>agorasdk.log</parmname> to record the latest log.</p></pd>
+  <p>Each log file has a default size of 512 KB and is encoded in UTF-8 format. The SDK writes the latest log in <codeph>agorasdk.log</codeph>. When <codeph>agorasdk.log</codeph> is full, the SDK deletes the log file with the earliest modification time among the other four, renames <codeph>agorasdk.log</codeph> to the name of the deleted log file, and create a new <parmname>agorasdk.log</parmname> to record the latest log.</p></pd>
        </plentry>
    </parml>
         </section></refbody>
