@@ -1,6 +1,6 @@
 # useBoardContext
 
-`useBoardContext()` provides whiteboardrelated capabilities.
+`useBoardContext()` provides whiteboard-related capabilities.
 
 You can` import useBoardContext by import {useBoardContext} from'agora-edu-core';```, and then` use const {...} = useBoardContext()` to get the ability to chat in the  Flexible Classroom.
 
@@ -12,7 +12,7 @@ The following specifically lists` the capabilities provided by useBoardContext()
 room: object,
 ```
 
-whiteboard room object.
+The whiteboard room object.
 
 ## zoomValue
 
@@ -20,7 +20,7 @@ whiteboard room object.
 zoomValue: number,
 ```
 
-The value of  whiteboard zoom.
+The value of zooming in or out the whiteboard.
 
 ## currentPage
 
@@ -28,7 +28,7 @@ The value of  whiteboard zoom.
 currentPage: number,
 ```
 
-The current number of whiteboard pages.
+The current number of the whiteboard page.
 
 ## totalPage
 
@@ -45,7 +45,7 @@ courseWareList: [],
 
 ```
 
-List of courseware.
+The list of courseware.
 
 ## currentColor
 
@@ -229,7 +229,7 @@ Set the current tool as a laser pointer.
 resourcesList: array,
 ```
 
-List of courseware.
+The list of courseware.
 
 ## refreshCloudResources
 
