@@ -9,7 +9,7 @@
         </section>
         <section id="detailed_desc">
    
-   <p>The following table shows the behavior of the SDK under different parameter settings:</p>
+   <p>The following table shows the SDK behaviors under different parameter settings:</p>
    <table id="table_uxz_bjk_t4b">
        <tgroup cols="3">
   <colspec colnum="1" colname="col1" colwidth="1.16*"/>
@@ -19,17 +19,17 @@
       <row>
  <entry><codeph>syncWithAudio</codeph></entry>
  <entry><codeph>ordered</codeph></entry>
- <entry>SDK behavior</entry>
+ <entry>SDK behaviors</entry>
       </row>
       <row>
  <entry><ph keyref="false"/></entry>
  <entry><ph keyref="false"/></entry>
- <entry>The SDK triggers the `onStreamMessage` callback immediately after the receiver receives a data<xref keyref="onStreamMessage"/> packet</entry>
+ <entry>The SDK triggers the <xref keyref="onStreamMessage"/> callback immediately after the receiver receives a data packet.</entry>
       </row>
       <row>
  <entry><ph keyref="true"/></entry>
  <entry><ph keyref="false"/></entry>
- <entry>If the data packet delay is within the audio delay, the SDK triggers the `onStreamMessage` callback when the synchronized audio packet is<ph keyref="onStreamMessage"/> played out. If the data packet delay exceeds the audio delay, the SDK triggers the `onStreamMessage`<ph keyref="onStreamMessage"/> callback as soon as the data packet is received.</entry>
+ <entry>If the data packet delay is within the audio delay, the SDK triggers the <ph keyref="onStreamMessage"/> callback when the synchronized audio packet is played out. If the data packet delay exceeds the audio delay, the SDK triggers the <ph keyref="onStreamMessage"/> callback as soon as the data packet is received.</entry>
       </row>
       <row>
  <entry><ph keyref="false"/></entry>
@@ -53,20 +53,20 @@
   <pt>syncWithAudio</pt>
   <pd>
                         <p>Whether to synchronize the data packet with the published audio packet.<ul>
-                                <li><ph keyref="true"/>true: Synchronize the data packet with the audio packet.</li>
-                                <li><ph keyref="false"/>false: Do not synchronize the data packet with the audio packet.</li>
-                            </ul>When you set the data packet to synchronize with the audio, then if the data packet delay is within the audio delay, the SDK triggers the `onStreamMessage` callback when the synchronized audio packet is<xref
-                                keyref="onStreamMessage"/> played out. Do not set this parameter as `true` if you need the receiver to receive the data packet immediately<ph
-                                keyref="true"/>. Agora recommends that you set this parameter to `true` only when you need to implement specific functions, for example lyric synchronization.</p>
+                                <li><ph keyref="true"/>: Synchronize the data packet with the audio packet.</li>
+                                <li><ph keyref="false"/>: Do not synchronize the data packet with the audio packet.</li>
+                            </ul>When you set the data packet to synchronize with the audio, then if the data packet delay is within the audio delay, the SDK triggers the <xref
+                                keyref="onStreamMessage"/> callback when the synchronized audio packet is played out. Do not set this parameter as <ph
+                                keyref="true"/> if you need the receiver to receive the data packet immediately. Agora recommends that you set this parameter to `true` only when you need to implement specific functions, for example lyric synchronization.</p>
                     </pd>
        </plentry>
        <plentry>
   <pt>ordered</pt>
   <pd>
                         <p>Whether the SDK guarantees that the receiver receives the data in the sent order.<ul>
-                                <li><ph keyref="true"/>true: Guarantee that the receiver receives the data in the sent order.</li>
-                                <li><ph keyref="false"/>false: Do not guarantee that the receiver receives the data in the sent order.</li>
-                            </ul>Do not set this parameter as `true` if you need the receiver to receive the data packet immediately<ph keyref="true"/>.</p>
+                                <li><ph keyref="true"/>: Guarantee that the receiver receives the data in the sent order.</li>
+                                <li><ph keyref="false"/>: Do not guarantee that the receiver receives the data in the sent order.</li>
+                            </ul>Do not set this parameter as <ph keyref="true"/> if you need the receiver to receive the data packet immediately.</p>
                     </pd>
        </plentry>
    </parml>
