@@ -16,11 +16,13 @@
         </section>
         <section id="detailed_desc">
    
-   <p>离开频道，即挂断或退出通话。该方法会把会话相关的所有资源释放掉。该方法是异步操作，调用返回时并没有真正退出频道。</p>
+   <p>该方法会把会话相关的所有资源释放掉。该方法是异步操作，调用返回时并没有真正退出频道。</p>
    <p>调用 <apiname keyref="joinChannel1"/> 后，必须调用 <apiname keyref="leaveChannel"/> 结束通话，否则无法开始下一次通话。</p>
-   <p>不管当前是否在通话中，都可以调用 <apiname keyref="leaveChannel"/>，没有副作用。</p>
-   <p>成功调用该方法离开频道后，本地会触发 <xref keyref="onLeaveChannel"/> 回调；通信场景下的用户和直播场景下的主播离开频道后，远端会触发 <xref keyref="onUserOffline"/> 回调。</p>
-   <note outputclass="note">
+   <p>成功调用该方法离开频道后会触发以下回调：<ul id="ul_enf_q2p_lpb">
+                    <li>本地：<xref keyref="onLeaveChannel"/> 回调。</li>
+                    <li>远端：通信场景下的用户和直播场景下的主播离开频道后，远端会触发 <xref keyref="onUserOffline"/> 回调。</li>
+                </ul></p>
+   <note type="attention">
        <ul>
   <li>如果你调用了 <apiname keyref="leaveChannel"/> 后立即调用 <xref keyref="release"/> 方法，SDK 将无法触发 <apiname keyref="onLeaveChannel"/> 回调。</li>
   <li>如果你在旁路推流过程中调用了 <apiname keyref="leaveChannel"/> 方法，SDK 将自动调用 <xref keyref="removePublishStreamUrl"/> 方法。</li>
@@ -35,7 +37,7 @@
        <ul>
   <li>-1(ERR_FAILED): 一般性的错误（未明确归类）。</li>
   <li>-2(ERR_INVALID_ARGUMENT): 参数无效。</li>
-  <li>-3(ERR_NOT_INITIALIZED): SDK 尚未初始化。</li>
+  <li>-7(ERR_NOT_INITIALIZED): SDK 尚未初始化。</li>
        </ul></li>
    </ul>
         </section></refbody>

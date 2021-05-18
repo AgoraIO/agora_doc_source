@@ -16,10 +16,10 @@
         </section>
         <section id="detailed_desc">
    
-   <note id="streamurl" outputclass="warning">
-       客户端输入在线媒体流功能即将停服。如果你尚未集成该功能，Agora 建议你不要使用。详见<xref href="https://docs.agora.io/cn/Interactive%20Broadcast/rtc_sunset" scope="external" format="html">部分服务下架计划</xref>。
+   <note id="inject-sunset-note" type="caution">
+       客户端输入在线媒体流功能即将停服。如果你尚未集成该功能，Agora 建议你不要使用。详见<xref keyref="rtc-sunset" scope="external" format="html"/>。
    </note>
-   <note outputclass="note">
+   <note type="attention">
   <ul>
       <li>请确保已开通旁路推流的功能，详见进阶功能《推流到 CDN》中的前提条件。</li>
       <li>该方法适用于 Native SDK v2.4.1 及之后的版本。</li>
@@ -28,7 +28,7 @@
       <li>该方法需要在加入频道后调用。</li>
   </ul>
        </note>
-   <p>该方法将正在播放的音视频作为音视频源导入到正在进行的直播中。可主要应用于赛事直播、多人看视频互动等直播场景。调用该方法后，SDK 会在本地触发 <xref keyref="onStreamInjectedStatus"/> 回调，报告输入在线媒体流的状态；成功输入媒体流后，该音视频流会出现在频道中，频道内所有用户都会收到 <xref keyref="onUserJoined"/> 回调，其中 <parmname>uid</parmname> 为 666。该音视频流会出现在频道中。</p>
+   <p>该方法将正在播放的音视频作为音视频源导入到正在进行的直播中。可主要应用于赛事直播、多人看视频互动等直播场景。调用该方法后，SDK 会在本地触发 <xref keyref="onStreamInjectedStatus"/> 回调，报告输入在线媒体流的状态；成功输入媒体流后，该音视频流会出现在频道中，频道内所有用户都会收到 <xref keyref="onUserJoined"/> 回调，其中 <parmname>uid</parmname> 为 666。</p>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
