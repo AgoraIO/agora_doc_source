@@ -2,9 +2,9 @@
 
 `useBoardContext()` provides whiteboard-related capabilities.
 
-You can` import useBoardContext by import {useBoardContext} from'agora-edu-core';```, and then` use const {...} = useBoardContext()` to get the ability to chat in the  Flexible Classroom.
+You can import `useBoardContext` by `import {useBoardContext} from'agora-edu-core';`, and then use `const {...} = useBoardContext()` to get the whiteboard-related ability in the flexible classroom.
 
-The following specifically lists` the capabilities provided by useBoardContext()`.
+This page lists all the functions and events provided by `useBoardContext()`.
 
 ## room
 
@@ -45,7 +45,7 @@ courseWareList: [],
 
 ```
 
-The list of courseware.
+The list of the courseware.
 
 ## currentColor
 
@@ -53,7 +53,7 @@ The list of courseware.
 currentColor: string,
 ```
 
-The current pen color.
+The color.
 
 ## currentStrokeWidth
 
@@ -61,7 +61,7 @@ The current pen color.
 currentStrokeWidth: number,
 ```
 
-The current pen width.
+The line thickness.
 
 ## hasPermission
 
@@ -77,7 +77,7 @@ Whether the user has permission of drawing on the whiteboard.
 currentSelector: string,
 ```
 
-The selection tool of the current whiteboard.
+The whiteboard selector.
 
 ## lineSelector
 
@@ -85,7 +85,7 @@ The selection tool of the current whiteboard.
 lineSelector: string,
 ```
 
-The line tool of the current whiteboard.
+The line drawing tool.
 
 ## activeMap
 
@@ -93,7 +93,7 @@ The line tool of the current whiteboard.
 activeMap: Record<string, boolean>,
 ```
 
-Tools activated by default.
+The active whiteboard tools by default.
 
 ## ready
 
@@ -101,7 +101,7 @@ Tools activated by default.
 ready: boolean,
 ```
 
-Is  whiteboard ready?
+Whether the whiteboard is ready.
 
 ## tools
 
@@ -109,7 +109,7 @@ Is  whiteboard ready?
 tools: array,
 ```
 
-白板基础工具列表。
+The list of the whiteboard editing tools.
 
 ## changeStroke
 
@@ -117,7 +117,7 @@ tools: array,
 async changeStroke(value: any): void
 ```
 
-Modify the brush width.
+Set the line thickness.
 
 ## changeHexColor
 
@@ -125,7 +125,7 @@ Modify the brush width.
 async changeHexColor(colorHex: string): void
 ```
 
-修改颜色。
+Select a color.
 
 ## mountToDOM
 
@@ -133,7 +133,7 @@ async changeHexColor(colorHex: string): void
 async mountToDOM(dom: HTMLDivElement | null): void
 ```
 
-Mount  whiteboard on the DOM node or unmount  whiteboard.
+Mount or unmount the whiteboard to the DOM.
 
 ## setTool
 
@@ -149,7 +149,7 @@ Switch tools.
 async zoomBoard(type: string): void
 ```
 
-Zoom in or zoom out  whiteboard.
+Zoom in or out the whiteboard.
 
 ## setZoomScale
 
@@ -157,7 +157,7 @@ Zoom in or zoom out  whiteboard.
 async setZoomScale(operation: string): void
 ```
 
-Set the enlargement or reduction ratio.
+Set the ration of zooming in or out.
 
 ## changeFooterMenu
 
@@ -165,7 +165,7 @@ Set the enlargement or reduction ratio.
 async changeFooterMenu(itemName: string): void
 ```
 
-Set which page the whiteboard jumps to.
+Set to which whiteboard page that you want to jump to.
 
 ## downloadList
 
@@ -173,7 +173,7 @@ Set which page the whiteboard jumps to.
 downloadList: array,
 ```
 
-List of downloadable cloud disk resources.
+The list of downloadable classroom resources.
 
 ## putSceneByResourceUuid
 
@@ -181,7 +181,7 @@ List of downloadable cloud disk resources.
 async putSceneByResourceUuid(uuid: string): void
 ```
 
-Open the courseware on the whiteboard.
+Display the courseware on the whiteboard.
 
 ## startDownload
 
@@ -189,7 +189,7 @@ Open the courseware on the whiteboard.
 async startDownload (taskUuid: string): void
 ```
 
-Start preloading the courseware.
+Start downloading the courseware.
 
 ## updatePen
 
@@ -197,7 +197,7 @@ Start preloading the courseware.
 async updatePen(value: any): void
 ```
 
-Update the brush.
+Update the pen.
 
 ## boardPenIsActive
 
@@ -205,7 +205,7 @@ Update the brush.
 boardPenIsActive: boolean,
 ```
 
-Whether the tool currently used by  whiteboard is a pen.
+Whether the currently selected tool is a pen.
 
 ## startOrStopSharing
 
@@ -221,7 +221,7 @@ Start or stop screen sharing.
 setLaserPoint(): void
 ```
 
-Set the current tool as a laser pointer.
+Select the laser pointer.
 
 ## resourcesList
 
@@ -229,7 +229,7 @@ Set the current tool as a laser pointer.
 resourcesList: array,
 ```
 
-The list of courseware.
+The list of the courseware.
 
 ## refreshCloudResources
 
@@ -237,7 +237,7 @@ The list of courseware.
 async refreshCloudResources(): void
 ```
 
-Update the list of courseware.
+Update the courseware list.
 
 ## removeMaterialList
 
@@ -245,7 +245,7 @@ Update the list of courseware.
 async removeMaterialList(resourceUuids: string[]): void
 ```
 
-Remove courseware.
+Remove the courseware.
 
 ## cancelUpload
 
@@ -253,7 +253,7 @@ Remove courseware.
 async cancelUpload(): void
 ```
 
-Cancel upload of courseware.
+Cancel uploading a file to the classroom.
 
 ## doUpload
 
@@ -261,7 +261,7 @@ Cancel upload of courseware.
 async doUpload(payload: any): void
 ```
 
-Upload the courseware.
+Upload a file to the classroom.
 
 ## closeMaterial
 
@@ -269,7 +269,7 @@ Upload the courseware.
 async closeMaterial(resourceUuid: string): void
 ```
 
-Close the courseware.
+Close the file.
 
 ## installTools
 
@@ -277,7 +277,7 @@ Close the courseware.
 async installTools(tools: any[]): void
 ```
 
-Installation tools.
+Install tools.
 
 ## personalResources
 
@@ -285,7 +285,7 @@ Installation tools.
 personalResources: array,
 ```
 
-The list of courseware uploaded by the teacher through the  Flexible Classroom client.
+The list of courseware uploaded by the teacher through the Flexible Classroom client.
 
 ## publicResources
 
@@ -293,7 +293,7 @@ The list of courseware uploaded by the teacher through the  Flexible Classroom c
 publicResources: array,
 ```
 
-A list of courseware assigned by the teaching institution.
+The list of courseware assigned by the teaching institution.
 
 ## revokeUserPermission
 
@@ -309,4 +309,4 @@ Cancel the whiteboard authorization.
 async grantUserPermission(userUuid: string): void
 ```
 
-给予指定学生白板权限。
+Grant the permission of drawing on the whiteboard to a specified student.
