@@ -1,16 +1,16 @@
 ## Overview
 
-扩展应用 ExtApp 能够帮助开发者实现一个自定义插件并嵌入灵动课堂内，例如倒计时、骰子等。 你可以将通过 ExtApp 实现的插件理解为一个相对独立的 App，有自己的生命周期和数据管理，但是又依赖于 Agora Classroom SDK。 开发者可以自定义插件的 UI，传递自定义数据和监听数据变化。
+ExtApp enables developers to develop a custom plugin, such as a countdown plugin or a dice, and embed the plugin in the flexible classroom. Plugins implemented by ExtApp can be regarded as an independent application with its own life cycle and data management, but they also connect with the Agora Classroom SDK. Developers can customize the user interfaces of the plugins, pass custom data to the Agora Classroom SDK, and also listen for data change from the Agora Classroom SDK. 
 
 The source code of ExtApp is located in the [AgoraExtApp` directory in `the CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) repository on GitHub.
 
-下文介绍通过扩展应用 ExtApp 实现自定义插件并在灵动课堂内嵌入该插件的基本步骤。
+This page introduces the procedure of using ExtApp to develop and embed a custom plugin in the flexible classroom.
 
 ## Procedure
 
-### 1. Implement a plug-in
+### 1. Implement a plugin
 
-First, inherit the `AgoraBaseExtApp class` to implement a custom plug-in in your app.
+First, inherit the `AgoraBaseExtApp class` to implement a custom plugin in your app.
 
 `AgoraExtAppBase` includes the following methods and callbacks:
 
@@ -35,7 +35,7 @@ Initialize the plugin.
                   fail:(AgoraExtAppErrorCompletion)fail;
 ```
 
-Update properties. Other plug-ins receive the `propertiesDidUpdate` callback to get the new properties.
+Update properties. Other plugins receive the `propertiesDidUpdate` callback to get the new properties.
 
 **deleteProperties**
 
@@ -45,7 +45,7 @@ Update properties. Other plug-ins receive the `propertiesDidUpdate` callback to 
                   fail:(AgoraExtAppErrorCompletion)fail;
 ```
 
-Delete properties. Other plug-ins receive the `propertiesDidUpdate` callback to get the new properties.
+Delete properties. Other plugins receive the `propertiesDidUpdate` callback to get the new properties.
 
 **unload**
 
@@ -53,7 +53,7 @@ Delete properties. Other plug-ins receive the `propertiesDidUpdate` callback to 
 (void)unload;
 ```
 
-Remove the plug-in. A successful method call triggers the `onExtAppUnloaded` callback.
+Remove the plugin. A successful method call triggers the `onExtAppUnloaded` callback.
 
 #### Callback
 
@@ -71,7 +71,7 @@ Occurs when the properties have been updated.
 (void)extAppDidLoad:(AgoraExtAppContext *)context;
 ```
 
-Occurs when the plug-in has been loaded. You can initialize the plug-in in this callback.
+Occurs when the plugin has been loaded. You can initialize the plugin in this callback.
 
 **extAppWillUnload**
 
@@ -79,19 +79,19 @@ Occurs when the plug-in has been loaded. You can initialize the plug-in in this 
 (void)extAppWillUnload;
 ```
 
-Occurs before the plug-in is unloaded. You can perform operations such as data backup in this callback.
+Occurs before the plugin is unloaded. You can perform operations such as data backup in this callback.
 
-### 2. Register the plug-in
+### 2. Register the plugin to the Agora Classroom SDK
 
-To register the plug-in in the Agora Classroom SDK, call `AgoraEduSDK.registerExtApps`.
+To register the plugin in the Agora Classroom SDK, call `AgoraEduSDK.registerExtApps`.
 
-The following sample code demonstrates how to register the countdown plug-in CountDownExtApp.
+The following sample code demonstrates how to register the countdown plugin CountDownExtApp.
 
 ```swift
-// appIdentifier: 插件 ID，不同平台的相同插件必须使用同一 ID。 
-// Inherit the AgoraBaseExtApp class to implement a custom plug-in. 
-// frame: 插件容器的大小，代表距离底层视图的间距。 底层视图由 Agora Classroom SDK 生成（不包含安全区域）。 
-// language: 容器语言，Agora Classroom SDK 会透传该变量到具体插件容器中，这样容器可以自己设置多语言。 
+// appIdentifier: The plugin ID. Different clients must use the same ID for the same plugin. 
+// extAppClass: Inherit the AgoraBaseExtApp class to implement a custom plugin. 
+// frame: 插件容器的大小。 
+// language: 容器语言。 
 let countDown = AgoraExtAppConfiguration(appIdentifier: "io.agora.countdown",
                                          extAppClass: CountDownExtApp.self,
                                          frame: UIEdgeInsets(top: 10,
@@ -101,20 +101,20 @@ let countDown = AgoraExtAppConfiguration(appIdentifier: "io.agora.countdown",
                                                         language: "zh")
 
 
-// The plug-in icon. 
+// The plugin icon. 
 countDown.image = image
 countDown.selectedImage = selectedImage
 let apps = [countDown]
 AgoraEduSDK.registerExtApps(apps)
 ```
 
-### 3. Use the plug-in
+### 3. Use the plugin in the flexible classroom
 
-By default, the registered plug-in is displayed in the whiteboard toolbar in the Flexible Classroom.
+By default, the icon of the registered plugin is displayed in the whiteboard toolbar in the flexible classroom.
 
-如果你想要为该插件自定义一个入口，你可修改 UIKit 模块的相应文件，在灵动课堂中为该插件添加一个入口，然后在点击或者显示该插件时调用以下方法即可。
+If you want to customize an entry for the plugin in the flexible classroom, you can edit the source code of the UI components and call the following methods when the user clicks on the plugin icon.
 
 ```java
-// Pass in the plug-in ID in the willLaunchExtApp method. 
+// Pass in the plugin ID in the willLaunchExtApp method. 
 extAppContext?.willLaunchExtApp(appIdentifier)
 ```
