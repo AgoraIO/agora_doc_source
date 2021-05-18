@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_transcodinguser">
     <title><ph keyref="TranscodingUser"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Manage the anchors participating in the bypass push and transcoding.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">参与转码合流的每个主播的设置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/TranscodingUser"/>
@@ -13,21 +13,21 @@
    <plentry>
        <pt>uid</pt>
        <pd>
-  <p>The user ID of the host who participates in the streaming transcoding.</p>
+  <p>User ID of the user displaying the video in the CDN live.</p>
        </pd>
    </plentry>
    <plentry>
        <pt>x</pt>
        <pd>
-  <p>The absolute value (pixel) of the abscissa of the host video screen relative to the upper left corner of the push output video. The value range is<xref keyref="LiveTranscoding"/> [0,width] set in the transcoding configuration () definition.</p></pd>
+  <p>The x coordinate (pixel) of the image on the video frame (taking the upper left corner of the video frame as the origin). 取值范围为[0, width]，width 为 <xref keyref="LiveTranscoding"/> 中设置的 <codeph>width</codeph>。</p></pd>
    </plentry>
                 <plentry>
                     <pt>y</pt>
-                    <pd>The absolute value of the vertical coordinate (pixel) of the host video screen relative to the upper left corner of the output video. Vertical position (pixel) of the video frame relative to the top left corner.</pd>
+                    <pd>The y coordinate (pixel) of the image on the video frame (taking the upper left corner of the video frame as the origin). 取值范围为[0, height]，height 为 <xref keyref="LiveTranscoding"/> 中设置的 <codeph>height</codeph>。</pd>
                 </plentry>
                 <plentry>
                     <pt>width</pt>
-                    <pd>The width of the screen (pixel).</pd>
+                    <pd>The width (pixel) of the image on the video frame.</pd>
                 </plentry>
                 <plentry>
                     <pt>height</pt>
@@ -56,7 +56,7 @@
                     <pd>
                         <p>(Optional) The transparency of the image. The value ranges between 0.0 and 100.0 .<ul>
                                 <li>- 0.0: Completely transparent.</li>
-                                <li>1.0: (Default) Opaque</li>
+                                <li>- 1.0: Opaque.</li>
                             </ul>
                         </p>
                     </pd>
@@ -64,7 +64,7 @@
             <plentry>
                 <pt>audioChannel</pt>
                 <pd>
-                        <p>The audio channel where the host&apos;s audio is located. Integer only. The value range is [0,10000], and the default value is 0.<ul id="ul_ugm_rrh_v4b">
+                        <p>The audio channel where the host&apos;s audio is located. The number of destination channels. The default value is 0, and the value range is from 0 to 4.<ul id="ul_ugm_rrh_v4b">
                                 <li><codeph></codeph>(Default) Supports dual channels at most, depending on the upstream of the host.</li>
                                 <li><codeph></codeph>The host&apos;s audio uses the FL audio channel. If the host&apos;s upstream uses multiple audio channels, these channels are mixed into mono first.</li>
                                 <li><codeph></codeph>The host&apos;s audio uses the FC audio channel. If the host&apos;s upstream uses multiple audio channels, these channels are mixed into mono first.</li>
