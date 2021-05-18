@@ -7,10 +7,11 @@ Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-
 
 ## 准备开发环境
 
-- Xcode 10.0 及以上。
-- CocoaPods。参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
-- 一台 iOS 真机（iPhone 或 iPad）。
+- Xcode 10.0 或以上版本。
+- CocoaPods 1.10 或以上版本。参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
 - iOS 10 或以上版本。
+- 如果你使用 Swift 开发，请确保使用 Swift 5.3.2 或以上版本。
+- 一台 iOS 真机（iPhone 或 iPad）。
 - 物理音视频采集设备，如内置摄像头和麦克风。
 
 ## 集成 Agora Classroom SDK
@@ -96,7 +97,7 @@ NSString *rtmToken = "";
 NSNumber *startTime = @(XXX);
 // 课堂持续时间，单位为秒，以第一个进入教室的用户传入的参数为准
 NSNumber *duration = @(1800);
- 
+
 AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration];
 [AgoraEduSDK launch:config delegate:self];
 ```
