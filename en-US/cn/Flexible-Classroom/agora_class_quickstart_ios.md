@@ -7,10 +7,11 @@ Agora provides an open-source [sample project](https://github.com/AgoraIO-Commun
 
 ## Set up the development environment
 
-- Xcode 10.0 or later.
-- CocoaPods. See the installation guide in [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started).
-- A physical iOS device (iPhone or iPad).
+- Xcode 10.0 或以上版本。
+- CocoaPods 1.10 或以上版本。 See the installation guide in [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started).
 - iOS 10 or later.
+- 如果你使用 Swift 开发，请确保使用 Swift 5.3.2 或以上版本。
+- A physical iOS device (iPhone or iPad).
 - Physical media input devices, such as a built-in camera and a built-in microphone.
 
 ## Integrate the Agora Classroom SDK
