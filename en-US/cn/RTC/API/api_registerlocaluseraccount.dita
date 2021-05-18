@@ -22,17 +22,17 @@
   <dd>v2.8.0</dd>
        </dlentry>
    </dl>
-   <p>Once registered, the user account can be used to identify the local user when the user joins the channel. 注册成功后，该 User Account 即可标识该本地用户的身份，用户可以使用它加入频道。</p>
-   <p>成功注册 User Account 后，本地会触发 <xref keyref="onLocalUserRegistered"/> 回调，告知本地用户的 UID 和 User Account。</p>
-   <p>This method is called synchronously. To join a channel with a user account, you can choose either of the following:<ul>
-       <li>先调用 <apiname keyref="registerLocalUserAccount"/> 方法注册 Account，再调用 <apiname keyref="joinChannelWithUserAccount1"/> 方法加入频道。</li>
-       <li>直接调用 <apiname keyref="joinChannelWithUserAccount1"/> 方法加入频道。</li>
+   <p>Once registered, the user account can be used to identify the local user when the user joins the channel. After the registration is successful, the user account can identify the identity of the local user, and the user can use it to join the channel.</p>
+   <p>After the user successfully registers a user account, the SDK triggers the <xref keyref="onLocalUserRegistered"/> callback on the local client, reporting the user ID and user account of the local user.</p>
+   <p>This method is optional. To join a channel with a user account, you can choose either of the following ways:<ul>
+       <li>First call <apiname keyref="registerLocalUserAccount"/> to register the Account, and then call <apiname keyref="joinChannelWithUserAccount1"/> to join the channel.</li>
+       <li>Call the <apiname keyref="joinChannelWithUserAccount1"/> method to join the channel.</li>
    </ul></p>
-   <p>The difference between the two methods is that calling in advance<apiname keyref="registerLocalUserAccount"/> can shorten<apiname keyref="joinChannelWithUserAccount1"/> the time to enter the channel.</p>
+   <p>The difference between the two ways is that the time elapsed between calling the <apiname keyref="registerLocalUserAccount"/> method and joining the channel is shorter than directly calling <apiname keyref="joinChannelWithUserAccount1"/>.</p>
    <note type="attention">
        <ul>
-  <li>Ensure that you set the `<parmname>userAccount</parmname>` parameter. Otherwise, this method does not take effect.</li>
-  <li>Ensure that the value of the `userAccount` parameter is unique in the channel.</li>
+  <li>Ensure that you set the <parmname>userAccount</parmname> parameter. Otherwise, this method does not take effect.</li>
+  <li>Ensure that the user account is unique in the channel.</li>
   <li>To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the uid of the user is set to the same parameter type.</li>
        </ul>
    </note>
