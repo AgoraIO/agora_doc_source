@@ -1,30 +1,30 @@
 ## Overview
 
-扩展应用 ExtApp 能够帮助开发者实现一个自定义插件并嵌入灵动课堂内，例如倒计时、骰子等。 你可以将通过 ExtApp 实现的插件理解为一个相对独立的 App，有自己的生命周期和数据管理，但是又依赖于 Agora Classroom SDK。 开发者可以自定义插件的 UI，传递自定义数据和监听数据变化。
+ExtApp enables developers to develop a custom plugin, such as a countdown plugin or a dice, and embed the plugin in the flexible classroom. Plugins implemented by ExtApp can be regarded as an independent application with its own life cycle and data management, but they also connect with the Agora Classroom SDK. Developers can customize the user interfaces of the plugins, pass custom data to the Agora Classroom SDK, and also listen for data change from the Agora Classroom SDK. 
 
-下文介绍通过扩展应用 ExtApp 实现自定义插件并在灵动课堂内嵌入该插件的基本步骤。
+This page introduces the procedure of using ExtApp to develop and embed a custom plugin in the flexible classroom.
 
 ## Procedure
 
-### 1. Implement a plug-in
+### 1. Implement a plugin
 
-你可参考 Agora 提供的 [PluginGallery](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas/1.1.0/packages/agora-plugin-gallery)，创建一个独立的 JavaScript 工程项目。
+Refer to the [PluginGallery](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas/1.1.0/packages/agora-plugin-gallery) provided by Agora to create an independent JavaScript project.
 
-以 PluginGallery 的 countdown 倒计时插件为例，你需要引入相关 Agora Edu Context。
+Take the countdown plugin in PluginGallery as an example. You need to import the following contexts.
 
 ```javascript
 import type {IAgoraExtApp, AgoraExtAppContext, AgoraExtAppHandle} from 'agora-edu-core'
 ```
 
-Refer to the following code to inherit the IAgoraExtApp class to implement a plug-in.
+Refer to the following code to inherit the IAgoraExtApp class to implement a plugin.
 
 ```javascript
 export class AgoraExtAppCountDown implements IAgoraExtApp {
-  // The plug-in ID. 
+  // The plugin ID. 
     appIdentifier = "io.agora.countdown"
-  // The plug-in name
+  // The plugin name
   appName = "Count Down"
-  // The default size of the plug-in
+  // The default size of the window for the plugin
   width = 640
   height= 480
 
@@ -34,7 +34,7 @@ export class AgoraExtAppCountDown implements IAgoraExtApp {
     constructor(){
   }
 
-    // 初始化插件。 你需要在 dom 中绘制你自己插件的内容，ctx 和 handle 是 Agora 提供的 Edu Context，提供插件相关能力
+  // Initialize the plugin. Draw the content of the plug-in in dom. The ctx and handle parameter refers to the edu context provided by Agora
   extAppDidLoad(dom: Element, ctx: AgoraExtAppContext, handle: AgoraExtAppHandle): void {
     this.store = new PluginStore(ctx, handle)
     ReactDOM.render((
@@ -45,22 +45,22 @@ export class AgoraExtAppCountDown implements IAgoraExtApp {
       dom
     );
   }
-  // 每个插件具有独立的共享 kv 空间，可以通过这个属性完成和其他插件的通信。 When a plug-in updates its properties, other clients that have registered the plug-in will receive this callback. 
+  // Each plugin has its own shared kv space. Plugins can communicate with each other through this property. When the property of the plugin is updated, other clients that have also registered the plugin will receive this callback. 
     extAppRoomPropertiesDidUpdate(properties:any, cause:any): void {
     this.store?.onReceivedProps(properties, cause)
   }
-  // Remove the plug-in
+  // Remove the plugin
   extAppWillUnload(): void {
     this.store?.cleanup()
   }
 }
 ```
 
-### 2. Register the plug-in
+### 2. Register the plugin to the Agora Classroom SDK
 
-在调用 `AgoraEduSDK.launch` 方法时，通过 `extApps` 参数将该插件注册到 Agora Classroom SDK 中。
+To register the plugin in the Agora Classroom SDK, set the `extApps` parameter when calling `AgoraEduSDK.launch`.
 
-The following sample code demonstrates how to register the countdown plug-in CountDownExtApp.
+The following sample code shows how to register the countdown plugin CountDownExtApp to the Agora Classroom SDK.
 
 ```javascript
 import { AgoraExtAppCountDown } from 'agora-plugin-gallery'
@@ -72,14 +72,14 @@ AgoraSDK.launch(dom, {
 })
 ```
 
-### 3. Use the plug-in
+### 3. Use the plugin in the flexible classroom
 
-By default, the registered plug-in is displayed in the whiteboard toolbar in the Flexible Classroom. 点击插件的图标即可启动该插件。
+By default, the icon of the registered plugin is displayed in the whiteboard toolbar in the flexible classroom. Click the icon to use the plugin.
 
 ![](https://web-cdn.agora.io/docs-files/1619755145025)
 
-若你不想通过默认的方式启动插件，你也可以通过修改 UIKit 模块的相应文件，在灵动课堂中为该插件添加一个入口，然后通过 Agora Edu Context 的 `useAppPluginContext` 获取启动事件，在合适的时机通过 `onLaunchAppPlugin` 启动插件。
+If you want to customize an entry for the plugin in the flexible classroom, you can edit the source code of the UI components. Listen for the events of the Agora Classroom SDK through `useAppPluginContext` and call the `onLaunchAppPlugin` method to launch the plugin when the user clicks on the plugin icon.
 
-## 相关文档
+## See also
 
 - [Ext App Context]()
