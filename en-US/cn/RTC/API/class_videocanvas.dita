@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videocanvas">
     <title><ph keyref="VideoCanvas"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Video display modes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Video display configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/VideoCanvas"/>
@@ -15,7 +15,7 @@
    <parml>
        <plentry>
   <pt>view</pt>
-  <pd>The display window for the video (view).</pd>
+  <pd>The video display window (view).</pd>
        </plentry>
        <plentry>
   <pt>renderMode</pt>
@@ -30,17 +30,17 @@
      <dd>v3.0.0</dd>
  </dlentry>
       </dl>
-      <p>The unique channel name for the AgoraRTC session in the string format. Supported characters are (89 in total):<ul>
+      <p>The unique channel name in the string format. Supported characters are (89 in total):<ul>
      <li>All lowercase English letters: a to z.</li>
      <li>All uppercase English letters: A to Z.</li>
      <li>All numeric characters: 0 to 9.</li>
      <li>The space character.</li>
-     <li>其他符号：&quot;!&quot;、&quot;#&quot;、&quot;$&quot;、&quot;%&quot;、&quot;&amp;&quot;、&quot;(&quot;、&quot;)&quot;、&quot;+&quot;、&quot;-&quot;、&quot;:&quot;、&quot;;&quot;、&quot;&lt;&quot;、&quot;=&quot;、&quot;.&quot;、&quot;>&quot;、&quot;?&quot;、&quot;@&quot;、&quot;[&quot;、&quot;]&quot;、&quot;^&quot;、&quot;_&quot;、&quot; {&quot;、&quot;}&quot;、&quot;|&quot;、&quot;~&quot;、&quot;,&quot;。</li>
+     <li>Other symbols: &quot;!&quot;, &quot;#&quot;, &quot;$&quot;, &quot;%&quot;, &quot;&amp;&quot;, &quot;(&quot;, &quot;)&quot;, &quot;+&quot;, &quot;-&quot;, &quot;:&quot;, &quot;;&quot;, &quot;&lt;&quot; , &quot;=&quot;, &quot;.&quot;, &quot;>&quot;, &quot;?&quot;, &quot;@&quot;, &quot;[&quot;, &quot;]&quot;, &quot;^&quot;, &quot;_&quot;, &quot;{&quot;, &quot;}&quot;, &quot;|&quot;,&quot; ~&quot;, &quot;,&quot;.</li>
  </ul>
  <note type="attention">
      <ul>
-<li>The default value is the empty string &quot;&quot;. If the user joins the channel through the <xref keyref="IRtcEngine"/>method of the class<xref keyref="joinChannel1"/>, set this parameter to the default value. which means the user&apos;s rendering view in the channel. 此时 <codeph>VideoCanvas</codeph> 设置的是该用户在频道内的视图。</li>
-<li>If the user joins the channel using the <xref keyref="IChannel"/>method of the class<apiname keyref="joinChannel1"/>, set this parameter to the channelId of the object. The `VideoCanvas` struct defines the video canvas of the user in the channel with the specified <apiname keyref="IChannel"/><codeph>channel</codeph> ID. 此时 <codeph>VideoCanvas</codeph> 设置的是用户在该 <codeph>channelId</codeph> 对应频道内的视图。</li>
+<li>The default value is the empty string &quot;&quot;. If the user joins the channel through the <xref keyref="IRtcEngine"/> method of the <xref keyref="joinChannel1"/> class, set this parameter to the default value. In this case, <codeph>VideoCanvas</codeph> sets the user&apos;s view in the channel.</li>
+<li>If the user joins the channel using the <apiname keyref="joinChannel1"/> method of the <xref keyref="IChannel"/> class, set this parameter to the <codeph>channelId</codeph> of the <apiname keyref="IChannel"/> object. In this case, <codeph>VideoCanvas</codeph> sets the user&apos;s view in the channel corresponding to the <codeph>channelId</codeph>.</li>
      </ul>
  </note>
       </p>
@@ -61,12 +61,12 @@
       </dl>
       <p>The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.<note type="attention">
      <ul>
-<li>Clears all attributes of the local user.<ul>
+<li>For the local user:<ul>
         <li>If the user uses the front camera, the mirror mode is enabled by default.</li>
         <li>If the user uses the rear camera, the mirror mode is disabled by default.</li>
     </ul>
 </li>
-<li>@note The SDK disables the mirror mode by default.</li>
+<li>For the remote user: The SDK disables the mirror mode by default.</li>
      </ul>
  </note>
       </p>
