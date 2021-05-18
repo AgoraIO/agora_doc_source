@@ -90,8 +90,8 @@ ExtApp 的源码位于 GitHub 上 [CloudClass-iOS](https://github.com/AgoraIO-Co
 ```swift
 // appIdentifier: 插件 ID，不同平台的相同插件必须使用同一 ID。
 // extAppClass: 容器 App Class Type, 由 SDK 创建该类的实例。
-// frame: 插件容器的大小，代表距离底层视图的间距。底层视图由 Agora Classroom SDK 生成（不包含安全区域）。
-// language: 容器语言，Agora Classroom SDK 会透传该变量到具体插件容器中，这样容器可以自己设置多语言。
+// frame: 插件容器的大小。
+// language: 容器语言。
 let countDown = AgoraExtAppConfiguration(appIdentifier: "io.agora.countdown",
                                          extAppClass: CountDownExtApp.self,
                                          frame: UIEdgeInsets(top: 10,

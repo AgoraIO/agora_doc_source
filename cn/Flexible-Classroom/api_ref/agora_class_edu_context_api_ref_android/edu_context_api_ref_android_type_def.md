@@ -145,8 +145,6 @@ data class EduContextUserInfo(
 ## EduContextUserDetailInfo
 
 ```kotlin
-// user: 用户信息
-// streamUuid: 流 ID
 data class EduContextUserDetailInfo(val user: EduContextUserInfo, val streamUuid: String) {
     var isSelf: Boolean = true
     var onLine: Boolean = false
