@@ -16,7 +16,7 @@ The whiteboard editing tool.
 | :------- | :------- |
 | `Select` | Selector. |
 | `Pen` | Pen. |
-| `rect` | Rectangle. |
+| `Rect` | Rectangle. |
 | `Circle` | Circle. |
 | `Line` | Line. |
 | `Eraser` | Eraser. |
@@ -31,7 +31,7 @@ data class WhiteboardDrawingConfig(
         var fontSize: Int = 22,
         var thick: Int = 0) {
  
-    fun set(config: AgoraUIDrawingConfig) {
+        fun set(config: AgoraUIDrawingConfig) {
         this.activeAppliance = config.activeAppliance
         this.color = config.color
         this.fontSize = config.fontSize
@@ -40,7 +40,7 @@ data class WhiteboardDrawingConfig(
 }
 ```
 
-whiteboard tool attribute configuration class.
+The configuration of the whiteboard editing tools.
 
 ## EduContextNetworkState
 
@@ -95,7 +95,7 @@ The classroom state.
 | :---------- | :----------------- |
 | `Init` | The classroom has been initialized. |
 | `Start` | The class has started. |
-| `end` | The class is over. |
+| `End` | The class is over. |
 | `Destroyed` | The classroom has been destroyed. |
 
 ## EduContextUserRole
@@ -121,9 +121,9 @@ The user role.
 ```kotlin
 // User Info
 data class EduContextUserInfo(
-        userUuid: string,
-        userName: string,
-        role wave: EduContextUserRole = EduContextUserRole.Student
+        val userUuid: String,
+        val userName: String,
+        val role: EduContextUserRole = EduContextUserRole.Student
 ) {
 }
 ```
@@ -134,7 +134,7 @@ The volume information of users.
 | :--------- | :------------------------------------ |
 | `userUuid` | The user ID. |
 | `userName` | The user name. |
-| `role` | User role, see EduContextUserRole for details``. |
+| `role` | The user role. See `EduContextUserRole` for details. |
 
 ## EduContextUserDetailInfo
 
