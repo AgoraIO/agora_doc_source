@@ -1,6 +1,6 @@
 # useHandsUpContext
 
-`useHandsUpContext()` 提供举手上台相关能力。
+`useHandsUpContext()` enables developers to implement the hand-raising function in the flexible classroom.
 
 You can import `useHandsUpContext` by `import { useHandsUpContext } from 'agora-edu-core';` and then use `const {...} = useHandsUpContext()` to implement the functions and events related to classroom management.
 
@@ -74,7 +74,7 @@ The list of users who are sending video streams.
 onlineUserCount: number,
 ```
 
-在线用户总数（不包含角色为观众的用户）。
+The total number of online users, excluding users whose role is the audience.
 
 ## processUserCount
 
