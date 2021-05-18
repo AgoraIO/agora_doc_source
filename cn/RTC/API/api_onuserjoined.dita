@@ -5,7 +5,13 @@
         <shortdesc id="short"><ph id="shortdesc">远端用户（通信场景）/主播（直播场景）加入当前频道回调。</ph></shortdesc>
     <refbody>
    <section id="prototype">
-  <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onUserJoined"/>
+  <p outputclass="codeblock">
+       <codeblock props="windows" outputclass="language-cpp">virtual void onUserJoined(uid_t uid, int elapsed) {
+           (void)uid;
+           (void)elapsed;
+           }</codeblock>
+       <codeblock props="electron" outputclass="language-typescript">on(evt: 'userJoined', cb: (uid: number, elapsed: number) => void): this;</codeblock>
+  </p>
    </section>
    <section id="detailed_desc">
   <ul id="detailed_desc_scene">
