@@ -18,7 +18,7 @@
        <plentry>
   <pt>frameRate</pt>
   <pd>
-      <p>The frame rate (fps) of encoding the video<xref keyref="FRAME_RATE"/>. The default value is 15.</p>
+      <p>The frame rate (fps) of encoding the video. See <xref keyref="FRAME_RATE"/>. The default value is 15.</p>
   </pd>
        </plentry>
        <plentry>
@@ -31,10 +31,10 @@
       <p>The bitrate (Kbps) of encoding the video.</p>
       <p>You can refer to the table below to set your bitrate according to your app scenario. If the bitrate you set is beyond a reasonable range, the SDK sets it within a reasonable range. You can also choose from the following options:</p>
       <ul>
- <li><option keyref="STANDARD_BITRATE" /> : (Recommended) Standard bitrate mode The bitrate remains the same regardless of the channel profile. In this mode, the bitrates differ between the interactive live streaming and communication profiles: `COMMUNICATION` profile: The video bitrate is the same as the base bitrate. `LIVE_BROADCASTING` profile: The video bitrate is twice the base bitrate.</li>
- <li><option keyref="COMPATIBLE_BITRATE" />: Adaptive bitrate mode In this mode, the bitrate remains the same regardless of the channel profile. If you choose this mode for the LIVE_BROADCASTING profile, the video frame rate may be lower than the set value.</li>
+ <li><option keyref="STANDARD_BITRATE" /> : (Recommended) Standard bitrate mode The bitrate remains the same regardless of the channel profile.</li>
+ <li><option keyref="COMPATIBLE_BITRATE" />: Adaptive bitrate mode In this mode, the bitrates differ between the interactive live streaming and communication profiles. If you choose this mode in the `LIVE_BROADCASTING` profile, the video frame rate may be lower than the set value.</li>
       </ul>
-      <p>Agora uses different video codecs for different profiles to optimize the user experience. The COMMUNICATION profile prioritizes the smoothness while the LIVE_BROADCASTING profile prioritizes the video quality (a higher bitrate). Therefore, Agora recommends setting this parameter as <option keyref="STANDARD_BITRATE" />. You can also directly set the bit rate value to the reference bit rate value × 2.</p>
+      <p>Agora uses different video codecs for different profiles to optimize the user experience. The COMMUNICATION profile prioritizes the smoothness while the LIVE_BROADCASTING profile prioritizes the video quality (a higher bitrate). Therefore, Agora recommends setting this parameter as <option keyref="STANDARD_BITRATE" />. You can also directly set the bitrate value to the reference bitrate value × 2.</p>
       <table id="table_bitrate">
  <tgroup cols="4">
      <colspec colnum="1" colname="col1"/>
