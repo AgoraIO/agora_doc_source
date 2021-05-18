@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
     <title><ph keyref="LiveTranscoding"/></title>
-    <shortdesc id="short"><ph id="shortdesc">This class manages the configurations of pushing streams to the CDN.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The configurations for CDN live stream transcoding.</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/LiveTranscoding"/>
@@ -13,30 +13,30 @@
    <plentry>
    <pt>width</pt>
                     <pd>
-                        <p>The width of the video in pixels. The default value is 360.</p>
+                        <p>输出媒体流的宽，单位为像素。 默认值为 360。</p>
                         <ul>
-                            <li>When pushing video streams to the CDN, ensure that <codeph>width</codeph> is at least 64; otherwise, the Agora server adjusts the value to 64.</li>
-                            <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
+                            <li>When pushing video streams to the CDN, ensure that<codeph> width</codeph> is at least 64; otherwise, the Agora server adjusts the value to 64.</li>
+                            <li>When pushing audio streams to the CDN, set<codeph></codeph> width and height as 0.</li>
                         </ul>
                     </pd>
                 </plentry>
        <plentry>
   <pt>height</pt>
   <pd>
-      <p>The height of the video in pixels. The default value is 640.</p>
+      <p>输出媒体流的高，单位为像素。 默认值为 640。</p>
       <ul>
- <li>When pushing video streams to the CDN, ensure that <codeph>height</codeph> is at least 64; otherwise, the Agora server adjusts the value to 64.</li>
- <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
+ <li>When pushing video streams to the CDN, ensure that<codeph> height</codeph> is at least 64; otherwise, the<codeph> Agora</codeph> server adjusts the value to 64.</li>
+ <li>When pushing audio streams to the CDN, set width<codeph></codeph> and height as 0.</li>
       </ul>
   </pd>
        </plentry>
        <plentry>
   <pt>videoBitrate</pt>
-  <pd>Bitrate of the CDN live output video stream. The minimum encoding bitrate (Kbps). The default value is 400 Kbps. Set this parameter according to the Video Bitrate Table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</pd>
+  <pd>Bitrate The default value is 0. 你可以参考 <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/cdn_streaming_windows?platform=Windows" scope=external>推流到 CDN</xref> 设置该参数的值。</pd>
        </plentry>
        <plentry>
   <pt>videoFrameRate</pt>
-  <pd>The video frame rate (fps) of the CDN live stream. The value range is (0,30], and the default value is 15.<note type="attention">The Agora server adjusts any value over 30 to 30.</note></pd>
+  <pd>输出媒体流的视频帧率（fps）。 A positive integer. The default value is 15 fps. The value range is [1, 30].<note type="attention">The Agora server adjusts any value over 30 to 30.</note></pd>
        </plentry>
        <plentry>
   <pt>lowLatency</pt>
@@ -55,7 +55,7 @@
        </plentry>
        <plentry>
   <pt>videoGop</pt>
-  <pd>The GOP (in frames) of the output video stream. 单位为帧。 The default value is 30.</pd>
+  <pd>输出媒体流的视频 GOP（Group of Pictures)。 The default value is 30.</pd>
        </plentry>
        <plentry>
        <pt>videoCodecProfile</pt>
@@ -66,21 +66,21 @@
    </plentry>
        <plentry>
   <pt>backgroundColor</pt>
-  <pd>The background color of the output video in RGB hex value. Do not include # in the value. For example, use <codeph>0xFFB6C1</codeph> for light pink. The default value is <codeph>0x000000</codeph>(black).</pd>
+  <pd>输出媒体流的视频背景色。 格式为 RGB 定义下的十六进制整数，不要带 # 号。 如 <codeph>0xFFB6C1</codeph> 表示浅粉色。 The default value is <codeph>0x000000</codeph>(black).</pd>
        </plentry>
        <plentry>
   <pt>userCount</pt>
-  <pd>The number of users involved in transcoding.</pd>
+  <pd>参与转码合流的主播数量。 The default value is 0.</pd>
        </plentry>
        <plentry>
   <pt>transcodingUsers</pt>
   <pd>
-      <p>The transcoding configuration for each user (the maximum is 17 users). See . See <xref keyref="TranscodingUser"/>.</p>
+      <p>参与转码合流的每个主播的设置。 Up to 17 hosts can be supported in the same live streaming channel. See <xref keyref="TranscodingUser"/>.</p>
   </pd>
        </plentry>
        <plentry>
   <pt>transcodingExtraInfo</pt>
-  <pd>Reserved parameter: User-defined information to be sent to the CDN client receiving the pushed stream. This information is used to fill in the SEI frame of H.264/H.265 videos. The maximum length is 4096 bytes. For detailed information about SEI, see SEI frame related issues<xref keyref="faq-sei" scope="external" format="html"/>.</pd>
+  <pd>The user SEI information in the video. Used to send user-defined SEI information to the CDN. The maximum length is 4096 bytes. See <xref keyref="faq-sei" scope="external" format="html"/>.</pd>
        </plentry>
        <plentry>
   <pt>metadata</pt>
@@ -94,11 +94,11 @@
        </plentry>
        <plentry>
   <pt>watermark</pt>
-  <pd>The watermark image added to the output video. Only the PNG format is supported. After adding a watermark image, all of the CDN audience can see the image. For details, see <xref keyref="RtcImage"/>.</pd>
+  <pd>输出媒体流的视频水印。 Ensure that the format of the image is PNG. See <xref keyref="RtcImage"/>.</pd>
        </plentry>
        <plentry>
   <pt>backgroundImage</pt>
-  <pd>The background image added to the output video. After adding a background image, all of the CDN audience can see the image. For details, see <xref keyref="RtcImage"/>.</pd>
+  <pd>输出媒体流的视频背景图。 See <xref keyref="RtcImage"/>.</pd>
        </plentry>
        <plentry>
   <pt>audioSampleRate</pt>
@@ -106,11 +106,11 @@
        </plentry>
        <plentry>
   <pt>audioBitrate</pt>
-  <pd>The bitrate (Kbps) of the output video stream. A positive integer. The default value is 48, and the highest value is 128.</pd>
+  <pd>Audio receive bitrate (Kbps), represented by an instantaneous value. A positive integer. The default value is 48, and the highest value is 128.</pd>
        </plentry>
        <plentry>
   <pt>audioChannels</pt>
-  <pd>The number of audio channels for the CDN live stream. Agora recommends choosing 1 (mono), or 2 (stereo) audio channels. Special players are required if you choose option 3, 4, or<ul>
+  <pd>输出媒体流的音频声道数。 The default value is 1. 建议取值为 1 或 2。<ul>
       <li>1: (Default) Mono</li>
       <li>2: Stereo.</li>
       <li>3: Three audio channels</li>
@@ -121,7 +121,7 @@
        </plentry>
        <plentry>
   <pt>audioCodecProfile</pt>
-  <pd>The encoding specifications of the output video stream. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+  <pd>The codec of the media stream. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
        </plentry>
    </parml>
         </section></refbody>
