@@ -79,7 +79,7 @@ The connection state with the RTM system.
 | `Connecting` | The SDK is connecting to the RTM system. |
 | `Connected` | The SDK is connected to the RTM system. |
 | `Reconnecting` | The SDK is reconnecting to the RTM system. |
-| `Aborted` | Was kicked out. |
+| `Aborted` | The connection is aborted. |
 
 ## EduContextClassState
 
@@ -169,7 +169,7 @@ The detailed user information.
 | :--- | :--- |
 |  |  |
 
-## deviceState
+## DeviceState
 
 ```kotlin
 enum class DeviceState(val value: Int) {
@@ -185,7 +185,7 @@ The device state.
 | :------------ | :------------- |
 | `UnAvailable` | The device is unavailable. |
 | `Available` | The device is available. |
-| `Closed` | The device has been shut down. |
+| `Closed` | The device has been closed. |
 
 ## EduContextChatItem
 
@@ -232,11 +232,11 @@ enum class EduContextChatItemType {
 }
 ```
 
-Information type.
+The message type.
 
 | Parameter | Description |
 | :----- | :--------- |
-| `Text` | Text message. |
+| `Text` | Text. |
 
 ## EduContextChatSource
 
@@ -246,13 +246,13 @@ enum class EduContextChatSource {
 }
 ```
 
-Information Sources.
+The message source.
 
 | Parameter | Description |
 | :------- | :--------- |
-| `Local` | Local news. |
-| `Remote` | Remote message. |
-| `System` | system information. |
+| `Local` | The message is from a local user. |
+| `Remote` | The message is from a remote user. |
+| `System` | The message is from the system |
 
 ## EduContextChatState
 
@@ -262,7 +262,7 @@ enum class EduContextChatState {
 }
 ```
 
-Message sending status.
+The sending state of the message.
 
 | Parameter | Description |
 | :----------- | :------------- |
@@ -276,7 +276,7 @@ Message sending status.
 ```kotlin
 enum class EduContextHandsUpState(val value: Int) {
     Init(0),
-    HandsUp (1),
+    HandsUp(1),
     HandsDown(2)
 }
 ```
