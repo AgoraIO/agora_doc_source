@@ -1,10 +1,3 @@
----
-title: Token
-platform: All Platforms
-updatedAt: 2021-01-28 10:43:18
----
-#### <a name="token"></a>**Token**
-
 A token is also known as a dynamic key. It serves as an authentication mechanism. To ensure communication security, Agora supports the use of tokens to check the permissions of app users.
 
 The following figure shows the process of verifying user permissions with a token:
@@ -17,7 +10,7 @@ For different products, the information contained in a token is not exactly the 
 
 After the token expires, the user cannot use the Agora service. Developers can set the expiration time of the token according to their business needs, and renew the expired tokens in time.
 
-<div class="alert info">See also:<li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/faq/appid_to_token">How do I upgrade to token-based authentication?</a></li><li><a href="https://docs.agora.io/cn/Agora%20Platform/token#temptoken">Get a temporary token</a></li><li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/token_server">Generate a token for Agora RTC SDK, On-premise Recording, or Cloud Recording</a></li><li><a href="https://docs.agora.io/cn/Real-time-Messaging/rtm_token">Generate a token for Agora RTM SDK</a></li><li><a href="https://docs.agora.io/cn/whiteboard/whiteboard_token_overview">Interactive Whiteboard Token Overview</a></li>
+<div class="alert info">See also:<li><a href="https://docs.agora.io/en/Interactive%20Broadcast/faq/appid_to_token">How do I upgrade to token-based authentication?</a></li><li><a href="https://docs.agora.io/en/Agora%20Platform/token#temptoken">Get a temporary token</a></li><li><a href="https://docs.agora.io/en/Interactive%20Broadcast/token_server">Generate a token for Agora RTC SDK, On-premise Recording, or Cloud Recording</a></li><li><a href="https://docs.agora.io/en/Real-time-Messaging/rtm_token">Generate a token for Agora RTM SDK</a></li><li><a href="https://docs.agora.io/en/whiteboard/whiteboard_token_overview">Interactive Whiteboard Token Overview</a></li>
 </div>
 
 <a href="./terms"><button>Back to glossary</button></a>

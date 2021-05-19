@@ -1,15 +1,8 @@
----
-title: Token
-platform: All Platforms
-updatedAt: 2021-01-28 10:43:18
----
-#### <a name="token"></a>**Token**
-
 Token 也称为动态密钥，是一种鉴权方案。为了保证通信安全，Agora 支持使用 Token 校验 app 用户的权限。
 
 下图展示了用 Token 校验用户权限的流程：
 
-![token-workflow](/Users/wangjie/Desktop/token-workflow.png)
+![token 工作流程](https://web-cdn.agora.io/docs-files/1621413049902)
 
 开发者需要在自己的 app 服务端生成 Token 并回传给客户端，当用户使用 Agora 服务（如加入 RTC 频道、登录 RTM 系统、进入白板房间等）时传入 Token，Agora 服务端会根据 Token 中的信息校验用户的权限。
 
@@ -17,7 +10,7 @@ Token 也称为动态密钥，是一种鉴权方案。为了保证通信安全�
 
 Token 过期后，用户将无法正常使用 Agora 服务。开发者可以根据自己的业务需要，合理设置 Token 的有效期，并及时更换过期 Token。
 
-<div class="alert info">相关链接：<li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/faq/appid_to_token">如何升级到 Token 鉴权方案？</a></li><li><a href="https://docs.agora.io/cn/Agora%20Platform/token#temptoken">获取临时 Token</a></li><li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/token_server">生成 RTC 产品的 Token</a></li><li><a href="https://docs.agora.io/cn/Real-time-Messaging/rtm_token">生成 RTM 产品的 Token</a></li><li><a href="https://docs.agora.io/cn/whiteboard/whiteboard_token_overview">互动白板 Token 概述</a></li>
+<div class="alert info">相关链接：<li><a href="https://docs.agora.io/cn/faq/appid_to_token">如何升级到 Token 鉴权方案？</a></li><li><a href="https://docs.agora.io/cn/Agora%20Platform/token#temptoken">获取临时 Token</a></li><li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/token_server">生成 RTC 产品的 Token</a></li><li><a href="https://docs.agora.io/cn/Real-time-Messaging/rtm_token">生成 RTM 产品的 Token</a></li><li><a href="https://docs.agora.io/cn/whiteboard/whiteboard_token_overview">互动白板 Token 概述</a></li>
 </div>
 
 <a href="./terms"><button>返回术语库</button></a>

@@ -1,9 +1,4 @@
----
-title: 如何处理频道相关常见问题？
-platform: ["Android","iOS","macOS","Windows"]
-updatedAt: 2020-11-12 07:39:41
-Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
----
+
 ### In poor network conditions, does the SDK force users to leave a channel?
 
 No, users will not automatically leave a channel unless they do so by themselves, for example, when the application calls `leaveChannel`.
