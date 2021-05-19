@@ -82,7 +82,7 @@ You can get the App Certificate in [Agora Console](https://console.agora.io). Se
 
 #### <a name="key"></a>**Token**
 
-A token, also known as a dynamic key, is used by the Agora server for dynamic authentication. For more information, see [Authenticate Your Users with Tokens](./token).
+A token, also known as a dynamic key, is used by the Agora server to check user permissions. For more information, see [Authenticate Your Users with Tokens](./token).
 
 #### **Channel**
 
