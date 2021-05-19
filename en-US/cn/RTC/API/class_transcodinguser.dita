@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_transcodinguser">
     <title><ph keyref="TranscodingUser"/></title>
-    <shortdesc id="short"><ph id="shortdesc">参与转码合流的每个主播的设置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Transcoding configurations of each host.</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/TranscodingUser"/>
@@ -13,40 +13,40 @@
    <plentry>
        <pt>uid</pt>
        <pd>
-  <p>User ID of the user displaying the video in the CDN live.</p>
+  <p>The user ID of the host.</p>
        </pd>
    </plentry>
    <plentry>
        <pt>x</pt>
        <pd>
-  <p>The x coordinate (pixel) of the image on the video frame (taking the upper left corner of the video frame as the origin). 取值范围为[0, width]，width 为 <xref keyref="LiveTranscoding"/> 中设置的 <codeph>width</codeph>。</p></pd>
+  <p>The x coordinate (pixel) of the host&apos;s video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, width], where width is the <xref keyref="LiveTranscoding"/><codeph>width</codeph> set in .</p></pd>
    </plentry>
                 <plentry>
                     <pt>y</pt>
-                    <pd>The y coordinate (pixel) of the image on the video frame (taking the upper left corner of the video frame as the origin). 取值范围为[0, height]，height 为 <xref keyref="LiveTranscoding"/> 中设置的 <codeph>height</codeph>。</pd>
+                    <pd>The y coordinate (pixel) of the host&apos;s video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, height], where height is the <xref keyref="LiveTranscoding"/><codeph>height</codeph> set in .</pd>
                 </plentry>
                 <plentry>
                     <pt>width</pt>
-                    <pd>The width (pixel) of the image on the video frame.</pd>
+                    <pd>The width (pixel) of the host&apos;s video.</pd>
                 </plentry>
                 <plentry>
                     <pt>height</pt>
                     <pd>
-                        <p>The height of the screen (pixel).</p>
+                        <p>The height (pixel) of the host&apos;s video.</p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>zOrder</pt>
                     <pd>
-                        <p>The layer number of the screen. The value ranges from 0 to 100.<ul>
-                                <li>0: (default) the video screen is at the bottom of the layer.</li>
-                                <li>100: Top layer.</li>
+                        <p>The layer number of the host&apos;s video. The value ranges from 0 to 100.<ul>
+                                <li>0: (Default) The host&apos;s video is the bottom layer.</li>
+                                <li>100: The host&apos;s video is the top layer.</li>
                             </ul>
                         </p>
                         <note type="attention">
                             <ul>
-                                <li>If zOrder is beyond this range, the SDK reports #<codeph>ERR_INVALID_ARGUMENT</codeph>.</li>
-                                <li>As of v2.3, the SDK supports zOrder = 0.</li>
+                                <li>If the value is beyond this range, the SDK reports the error code <codeph>ERR_INVALID_ARGUMENT</codeph>.</li>
+                                <li>As of v2.3, the SDK supports setting zOrder to 0.</li>
                             </ul>
                         </note>
                     </pd>
@@ -54,9 +54,9 @@
                 <plentry>
                     <pt>alpha</pt>
                     <pd>
-                        <p>(Optional) The transparency of the image. The value ranges between 0.0 and 100.0 .<ul>
-                                <li>- 0.0: Completely transparent.</li>
-                                <li>- 1.0: Opaque.</li>
+                        <p>The transparency of the host&apos;s video. The value ranges between 0.0 and 1.0:<ul>
+                                <li>0.0: Completely transparent.</li>
+                                <li>1.0: (Default) Opaque.</li>
                             </ul>
                         </p>
                     </pd>
@@ -64,16 +64,16 @@
             <plentry>
                 <pt>audioChannel</pt>
                 <pd>
-                        <p>The audio channel where the host&apos;s audio is located. The number of destination channels. The default value is 0, and the value range is from 0 to 4.<ul id="ul_ugm_rrh_v4b">
-                                <li><codeph></codeph>(Default) Supports dual channels at most, depending on the upstream of the host.</li>
-                                <li><codeph></codeph>The host&apos;s audio uses the FL audio channel. If the host&apos;s upstream uses multiple audio channels, these channels are mixed into mono first.</li>
-                                <li><codeph></codeph>The host&apos;s audio uses the FC audio channel. If the host&apos;s upstream uses multiple audio channels, these channels are mixed into mono first.</li>
-                                <li><codeph></codeph>The host&apos;s audio uses the FR audio channel. If the host&apos;s upstream uses multiple audio channels, these channels are mixed into mono first.</li>
-                                <li><codeph></codeph>The host&apos;s audio uses the BL audio channel. If the host&apos;s upstream uses multiple audio channels, these channels are mixed into mono first.</li>
-                                <li><codeph></codeph>The host&apos;s audio uses the BR audio channel. If the host&apos;s upstream uses multiple audio channels, these channels are mixed into mono first.</li>
-                                <li>`<codeph>0xFF</codeph>` or a value greater than `5`<codeph></codeph>: The host&apos;s audio is muted. The Agora server removes the host&apos;s audio.</li>
+                        <p>The audio channel used by the host&apos;s audio in the output audio. The default value is 0, and the value range is [0, 5].<ul id="ul_ugm_rrh_v4b">
+                                <li><codeph>0</codeph>: (Recommended) The defaut setting, which supports dual channels at most and depends on the upstream of the host.</li>
+                                <li><codeph>1</codeph>: The host&apos;s audio uses the FL audio channel. If the host&apos;s upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
+                                <li><codeph>2</codeph>: The host&apos;s audio uses the FC audio channel. If the host&apos;s upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
+                                <li><codeph>3</codeph>: The host&apos;s audio uses the FR audio channel. If the host&apos;s upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
+                                <li><codeph>4</codeph>: The host&apos;s audio uses the BL audio channel. If the host&apos;s upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
+                                <li><codeph>5</codeph>: The host&apos;s audio uses the BR audio channel. If the host&apos;s upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
+                                <li><codeph>0xFF</codeph> or a value greater than <codeph>5</codeph>: The host&apos;s audio is muted, and the Agora server removes the host&apos;s audio.</li>
                             </ul>
-                            <note type="attention">@note If the value is not `<codeph>0</codeph>`, a special player is required.</note></p>
+                            <note type="attention">If the value is not <codeph>0</codeph>, a special player is required.</note></p>
                     </pd>
             </plentry>
         </parml>
