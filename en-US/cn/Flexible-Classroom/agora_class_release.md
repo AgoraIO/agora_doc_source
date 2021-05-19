@@ -1,6 +1,6 @@
 ## v1.1.0
 
-v2.12.8 was released on March 30, 2021.
+Flexible Classroom v1.1.0 was released on April 30, 2021.
 
 ### Compatibility changes
 
@@ -12,7 +12,7 @@ Android: Starting from v1.1.0, to integrate the Agora Classroom SDK through JitP
 allprojects {
     repositories {
         ...
-        maven { url 'https://maven.aliyun.com/nexus/content/repositories/releases/'}
+        maven { url'http://maven.aliyun.com/nexus/content/groups/public' }
         maven { url 'https://jitpack.io' }
     }
 }
