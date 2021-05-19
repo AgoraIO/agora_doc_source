@@ -13,9 +13,9 @@
                 <plentry>
                     <pt>dimensions</pt>
                     <pd><p>The maximum dimensions of encoding the shared region. See <xref keyref="VideoDimensions"/>. The default value is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
-                        <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose the encoding<codeph> dimensions</codeph> are 1920 x 1080:<ul>
-                                <li>If the value of the screen dimensions is lower than that of the encoding <codeph>dimensions</codeph>, for example, 1000 x 1000 pixels, the SDK uses 1000 x 1000 pixels for encoding.</li>
-                                <li>If the value of the screen dimensions is higher than that of the encoding <codeph>dimensions</codeph>, for example, 2000 1500, the SDK uses the maximum value under 1920 1080 with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 1080.</li>
+                        <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <codeph>dimensions</codeph> are set to 1920 x 1080:<ul>
+                                <li>If the value of the screen dimensions is lower than that of <codeph>dimensions</codeph>, for example, 1000 x 1000 pixels, the SDK uses 1000 x 1000 pixels for encoding.</li>
+                                <li>If the value of the screen dimensions is higher than that of <codeph>dimensions</codeph>, for example, 2000 x 1500, the SDK uses the maximum value next to 1920 x 1080 with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 x 1080.</li>
                             </ul></p>
                     </pd>
                 </plentry>
@@ -48,7 +48,7 @@
                             <dt>Since</dt>
                             <dd>v3.1.0</dd>
                         </dlentry>
-                    </dl><p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId"/> method to share it:<ul>
+                    </dl><p>Sets whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId"/> method to share it:<ul>
                             <li><ph keyref="true"/>: Bring the window to the front.</li>
                             <li><ph keyref="false"/>: (Default) Do not bring the window to the front.</li>
                         </ul></p></pd>
