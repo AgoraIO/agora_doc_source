@@ -149,7 +149,7 @@ The user role.
 | `student` | Student. |
 | `assistant` | Teaching assistant. |
 
-## NowEduContextUserInfo
+## AgoraEduContextUserInfo
 
 ```swift
 @objcMembers public class AgoraEduContextUserInfo: NSObject {
@@ -237,10 +237,10 @@ The information of the message.
 | `id` | The message ID. |
 | `message` | The message. |
 | `user` | The user who sends the message. See `AgoraEduContextUserInfo` for details. |
-| `sendState` | Message sending status, see AgoraEduContextChatState for details``. |
-| `type` | Message type, see AgoraEduContextChatType for details``. |
-| `time` | Message sending timestamp. |
-| `source` | The source of the message, see AgoraEduContextChatFrom for details``. |
+| `sendState` | The sending state of the message. See `AgoraEduContextChatState` for details. |
+| `type` | The message type. See `AgoraEduContextChatType` for details. |
+| `time` | The timestamp when the message is sent. |
+| `source` | The source of the message. See `AgoraEduContextChatFrom` for details. |
 
 ## AgoraEduContextChatType
 
@@ -250,11 +250,11 @@ The information of the message.
 }
 ```
 
-Information type.
+The message type.
 
 | Parameter | Description |
 | :----- | :--------- |
-| `text` | Text message. |
+| `text` | Text. |
 
 ## AgoraEduContextChatFrom
 
@@ -264,12 +264,12 @@ Information type.
 }
 ```
 
-Information Sources.
+The message source.
 
 | Parameter | Description |
 | :------- | :--------- |
-| `local` | Local news. |
-| `remote` | Remote message. |
+| `local` | The message is from a local user. |
+| `remote` | The message is from a remote user. |
 
 ## AgoraEduContextChatState
 
@@ -279,7 +279,7 @@ Information Sources.
 }
 ```
 
-Message sending status.
+The sending state of the message.
 
 | Parameter | Description |
 | :----------- | :------------- |
