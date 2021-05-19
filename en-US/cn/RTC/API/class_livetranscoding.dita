@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
     <title><ph keyref="LiveTranscoding"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The configurations for CDN live stream transcoding.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for CDN live streaming.</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/LiveTranscoding"/>
@@ -13,30 +13,30 @@
    <plentry>
    <pt>width</pt>
                     <pd>
-                        <p>输出媒体流的宽，单位为像素。 默认值为 360。</p>
+                        <p>The width of the output media stream in pixels. The default value is 360.</p>
                         <ul>
-                            <li>When pushing video streams to the CDN, ensure that<codeph> width</codeph> is at least 64; otherwise, the Agora server adjusts the value to 64.</li>
-                            <li>When pushing audio streams to the CDN, set<codeph></codeph> width and height as 0.</li>
+                            <li>When the output media stream is video, ensure that <codeph>width</codeph> is set to 64 or higher. Otherwise, the Agora server adjusts the value to 64.</li>
+                            <li>When the output media stream is audio, set<codeph>width</codeph> to 0.</li>
                         </ul>
                     </pd>
                 </plentry>
        <plentry>
   <pt>height</pt>
   <pd>
-      <p>输出媒体流的高，单位为像素。 默认值为 640。</p>
+      <p>The height of the output media stream in pixels. The default value is 640.</p>
       <ul>
- <li>When pushing video streams to the CDN, ensure that<codeph> height</codeph> is at least 64; otherwise, the<codeph> Agora</codeph> server adjusts the value to 64.</li>
- <li>When pushing audio streams to the CDN, set width<codeph></codeph> and height as 0.</li>
+ <li>When the output media stream is video, ensure that <codeph>height</codeph> is set to 64 or higher. Otherwise, the Agora server adjusts the value to 64.</li>
+ <li>When the output media stream is audio, set <codeph>height</codeph> to 0.</li>
       </ul>
   </pd>
        </plentry>
        <plentry>
   <pt>videoBitrate</pt>
-  <pd>Bitrate The default value is 0. 你可以参考 <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/cdn_streaming_windows?platform=Windows" scope=external>推流到 CDN</xref> 设置该参数的值。</pd>
+  <pd>The video bitrate (Kbps) of the output media stream. The default value is 400. You can refer to <xref href="https://docs.agora.io/cn/Interactive%20Broadcast/cdn_streaming_windows?platform=Windows" scope=external>Pushing Streams to CDN</xref> to set this paramter.</pd>
        </plentry>
        <plentry>
   <pt>videoFrameRate</pt>
-  <pd>输出媒体流的视频帧率（fps）。 A positive integer. The default value is 15 fps. The value range is [1, 30].<note type="attention">The Agora server adjusts any value over 30 to 30.</note></pd>
+  <pd>The video frame rate (fps) of the output media stream. The default value is 15, and the value range is [1, 30].<note type="attention">The Agora server adjusts any value over 30 fps to 30 fps.</note></pd>
        </plentry>
        <plentry>
   <pt>lowLatency</pt>
@@ -44,7 +44,7 @@
       <dl outputclass="deprecated">
  <dlentry>
      <dt>Deprecated</dt>
-     <dd>This attribute is obsolete since v2.8.0, and Agora does not recommend it.</dd>
+     <dd>This attribute is deprecated since v2.8.0, and Agora does not recommend it.</dd>
  </dlentry>
       </dl>
       <ul>
@@ -55,32 +55,32 @@
        </plentry>
        <plentry>
   <pt>videoGop</pt>
-  <pd>输出媒体流的视频 GOP（Group of Pictures)。 The default value is 30.</pd>
+  <pd>The video GOP (Group of Pictures) of the output media stream. The default value is 30.</pd>
        </plentry>
        <plentry>
        <pt>videoCodecProfile</pt>
        <pd>
-  <p>The encoding specifications of the output video stream. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.</p>
-  <note type="attention">If you set this parameter to other values, Agora adjusts it to the default value 100.</note>
+  <p>The video encoding specifications of the output media stream. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.</p>
+  <note type="attention">If you set this parameter to other values, Agora adjusts it to the default value.</note>
        </pd>
    </plentry>
        <plentry>
   <pt>backgroundColor</pt>
-  <pd>输出媒体流的视频背景色。 格式为 RGB 定义下的十六进制整数，不要带 # 号。 如 <codeph>0xFFB6C1</codeph> 表示浅粉色。 The default value is <codeph>0x000000</codeph>(black).</pd>
+  <pd>The video background color of the output media stream. The format is a hexadecimal integer defined by RGB without the # symbol. For example, <codeph>0xFFB6C1</codeph> represents light pink. The default value is <codeph>0x000000</codeph> (black).</pd>
        </plentry>
        <plentry>
   <pt>userCount</pt>
-  <pd>参与转码合流的主播数量。 The default value is 0.</pd>
+  <pd>The number of hosts involved in transcoding. The default value is 0.</pd>
        </plentry>
        <plentry>
   <pt>transcodingUsers</pt>
   <pd>
-      <p>参与转码合流的每个主播的设置。 Up to 17 hosts can be supported in the same live streaming channel. See <xref keyref="TranscodingUser"/>.</p>
+      <p>Transcoding configurations of each host. One live streaming channel supports up to 17 hosts. See <xref keyref="TranscodingUser"/>.</p>
   </pd>
        </plentry>
        <plentry>
   <pt>transcodingExtraInfo</pt>
-  <pd>The user SEI information in the video. Used to send user-defined SEI information to the CDN. The maximum length is 4096 bytes. See <xref keyref="faq-sei" scope="external" format="html"/>.</pd>
+  <pd>The user SEI information embedded in the output media stream. This parameter is used to send SEI information to the CDN. The maximum length is 4096 bytes. See <xref keyref="faq-sei" scope="external" format="html"/>.</pd>
        </plentry>
        <plentry>
   <pt>metadata</pt>
@@ -94,23 +94,23 @@
        </plentry>
        <plentry>
   <pt>watermark</pt>
-  <pd>输出媒体流的视频水印。 Ensure that the format of the image is PNG. See <xref keyref="RtcImage"/>.</pd>
+  <pd>The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. See <xref keyref="RtcImage"/>.</pd>
        </plentry>
        <plentry>
   <pt>backgroundImage</pt>
-  <pd>输出媒体流的视频背景图。 See <xref keyref="RtcImage"/>.</pd>
+  <pd>The video background image of the output media stream. See <xref keyref="RtcImage"/>.</pd>
        </plentry>
        <plentry>
   <pt>audioSampleRate</pt>
-  <pd>The audio sampling rate (Hz) of the output stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
+  <pd>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
        </plentry>
        <plentry>
   <pt>audioBitrate</pt>
-  <pd>Audio receive bitrate (Kbps), represented by an instantaneous value. A positive integer. The default value is 48, and the highest value is 128.</pd>
+  <pd>The audio bitrate (Kbps) of the output media stream. The default value is 48, and the maximum is 128.</pd>
        </plentry>
        <plentry>
   <pt>audioChannels</pt>
-  <pd>输出媒体流的音频声道数。 The default value is 1. 建议取值为 1 或 2。<ul>
+  <pd>The number of audio channels of the output media stream. The default value is 1. Agora recommends setting it to 1 or 2.<ul>
       <li>1: (Default) Mono</li>
       <li>2: Stereo.</li>
       <li>3: Three audio channels</li>
