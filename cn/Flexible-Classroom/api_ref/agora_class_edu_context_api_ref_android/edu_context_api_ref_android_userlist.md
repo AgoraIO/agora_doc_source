@@ -1,5 +1,3 @@
-# User List Context
-
 ## UserContext
 
 `UserContext` 类提供可供 App 调用的用户列表相关方法。
@@ -41,8 +39,6 @@ abstract fun renderVideo(container: ViewGroup?, streamUuid: String)
 | `container`  | 视频 Container。`viewGroup` 为 `null` 代表关闭流渲染。 |
 | `streamUuid` | 流 ID。                                                |
 
-
-
 ## IUserHandler
 
 `IUserHandler` 类用于向 App 报告用户列表相关的事件回调。
@@ -62,7 +58,6 @@ fun onUserListUpdated(list: MutableList<EduContextUserDetailInfo>)
 ### onCoHostListUpdated
 
 ```kotlin
-// 更新上台人员信息列表，只显示台上人员信息。（台上会包含不在线的）
 fun onCoHostListUpdated(list: MutableList<EduContextUserDetailInfo>)
 ```
 
@@ -87,7 +82,6 @@ fun onUserReward(userInfo: EduContextUserInfo)
 ### onKickOut
 
 ```kotlin
-// 自己被踢出
 fun onKickOut()
 ```
 

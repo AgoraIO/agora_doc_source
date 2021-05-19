@@ -38,7 +38,7 @@ interface EduContextPool {
     // 媒体控制，主要控制一对一中的老师和学生的音视频，以及小班课、大班课中老师的音视频
     fun videoContext(): VideoContext?
  
-    // 白板，包含 toolBar 和 pageControl
+    // 白板，包含白板基础工具和页面控制工具
     fun whiteboardContext(): WhiteboardContext?
  
     // 私密语音：目前只支持个人对个人

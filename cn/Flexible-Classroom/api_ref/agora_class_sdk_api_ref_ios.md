@@ -1,4 +1,4 @@
-本页提供灵动课堂 iOS 端的 Swift API 参考。
+本页提供 Agora Classroom SDK for iOS 的 Swift API 参考。
 
 ## AgoraEduSDK 
 

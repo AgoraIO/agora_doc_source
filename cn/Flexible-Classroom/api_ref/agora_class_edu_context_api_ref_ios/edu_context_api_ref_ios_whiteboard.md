@@ -1,5 +1,3 @@
-# Whiteboard Context
-
 ## AgoraEduWhiteBoardContext
 
 `AgoraEduWhiteBoardContext` 类提供可供 App 调用的白板控制相关方法。
@@ -10,11 +8,11 @@
 func boardInputEnable(_ enable: Bool)
 ```
 
-设置是否可以使用白板工具。
+设置是否可以使用白板基础工具。
 
 | 参数     | 描述                   |
 | :------- | :--------------------- |
-| `enable` | 是否可以使用白板工具。 |
+| `enable` | 是否可以使用白板基础工具。 |
 
 ### skipDownload
 
@@ -58,12 +56,11 @@ func retryDownload(_ url: String)
 func boardRefreshSize()
 ```
 
-刷新白板大小。在白板容器大小发送变化的时候，需要调用该方法
+刷新白板大小。在白板容器大小发生变化时，需要调用该方法。
 
 ### registerBoardEventHandler
 
 ```swift
-// 事件监听
 func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 ```
 
@@ -89,11 +86,11 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 @objc optional func onSetDrawingEnabled(_ enabled: Bool)
 ```
 
-报告白板工具是否可用。
+报告白板基础工具是否可用。
 
 | 参数      | 描述               |
 | :-------- | :----------------- |
-| `enabled` | 白板工具是否可用。 |
+| `enabled` | 白板基础工具是否可用。 |
 
 ### onSetLoadingVisible
 
@@ -185,7 +182,7 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 
 ## AgoraEduWhiteBoardToolContext
 
-`AgoraEduWhiteBoardToolContext` 类提供可供 App 调用的白板工具相关方法。
+`AgoraEduWhiteBoardToolContext` 类提供可供 App 调用的白板基础工具相关方法。
 
 ### applianceSelected
 
@@ -193,11 +190,11 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 func applianceSelected(_ mode: AgoraEduContextApplianceType)
 ```
 
-选中白板工具。
+选中白板基础工具。
 
 | 参数   | 描述                                                |
 | :----- | :-------------------------------------------------- |
-| `type` | 白板工具类型，详见 `AgoraEduContextApplianceType`。 |
+| `type` | 白板基础工具类型，详见 `AgoraEduContextApplianceType`。 |
 
 ### colorSelected
 
@@ -233,7 +230,7 @@ func thicknessSelected(_ thick: Int)
 
 | 参数 | 描述 |
 | :--- | :--- |
-|  `think`    |  画笔粗细。   |
+|  `thick`   |  画笔粗细。   |
 
 ## AgoraEduWhiteBoardPageControlContext
 

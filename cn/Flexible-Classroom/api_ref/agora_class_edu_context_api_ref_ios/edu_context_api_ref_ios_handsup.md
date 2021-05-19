@@ -1,5 +1,3 @@
-# Hands-up Context
-
 ## AgoraEduHandsUpContext
 
 `AgoraEduHandsUpContext` 类提供可供 App 调用的举手上台相关方法。

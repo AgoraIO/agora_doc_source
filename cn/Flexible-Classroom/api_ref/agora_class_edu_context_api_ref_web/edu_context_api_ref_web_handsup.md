@@ -1,6 +1,6 @@
 # useHandsUpContext
 
-`useHandsUpContext` 提供举手上台相关能力。
+`useHandsUpContext()` 提供举手上台相关能力。
 
 你可以通过 `import { useHandsUpContext } from 'agora-edu-core';  ` 引入 `useHandsUpContext`，然后使用 `const {...} = useHandsUpContext()` 获取灵动课堂中举手上台相关能力。
 
@@ -74,7 +74,7 @@ coVideoUsers: array,
 onlineUserCount: number,
 ```
 
-在线用户总数（不包含角色名为观众的用户）。
+在线用户总数（不包含角色为观众的用户）。
 
 ## processUserCount
 

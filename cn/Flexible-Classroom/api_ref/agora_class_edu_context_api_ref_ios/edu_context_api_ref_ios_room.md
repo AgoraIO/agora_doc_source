@@ -1,5 +1,3 @@
-# Room Context
-
 ## AgoraEduRoomContext
 
 `AgoraEduRoomContext` 类提供可供 App 调用的课堂管理相关方法。
@@ -61,9 +59,9 @@ func registerEventHandler(_ handler: AgoraEduRoomHandler)
 
 报告课堂时间。
 
-- 课堂状态为 `Init` 时，提示距离上课还有 X 分 X 秒。
-- 课堂状态为 `Start` 时， 提示已开始上课 X 分 X 秒。
-- 课堂状态为 `End` 时，提示课堂已超时 X 分 X 秒。
+- 课堂状态为 `Init` 时，`time` 表示距离上课还有几秒。
+- 课堂状态为 `Start` 时，`time` 表示已开始上课几秒。
+- 课堂状态为 `End` 时，`time` 表示课堂已超时几秒。
 
 | 参数   | 描述       |
 | :----- | :--------- |
@@ -117,7 +115,7 @@ func registerEventHandler(_ handler: AgoraEduRoomHandler)
 @objc optional func onShowErrorInfo(_ error: AgoraEduContextError)
 ```
 
-xi上课过程中的错误信息。
+上课过程中的错误信息。
 
 | 参数    | 描述                                    |
 | :------ | :-------------------------------------- |

@@ -1,5 +1,3 @@
-# Whiteboard Context
-
 ## WhiteboardContext
 
 `WhiteboardContext` 类提供可供 App 调用的白板相关方法。
@@ -10,11 +8,11 @@
 abstract fun selectAppliance(type: WhiteboardApplianceType)
 ```
 
-选中白板工具。
+选中白板基础工具。
 
-| 参数   | 描述                                           |
-| :----- | :--------------------------------------------- |
-| `type` | 白板工具类型，详见 `WhiteboardApplianceType`。 |
+| 参数   | 描述                                               |
+| :----- | :------------------------------------------------- |
+| `type` | 白板基础工具类型，详见 `WhiteboardApplianceType`。 |
 
 ### selectColor
 
@@ -50,7 +48,7 @@ abstract fun selectThickness(thick: Int)
 
 | 参数 | 描述 |
 | :--- | :--- |
-|  `think`    |  画笔粗细。   |
+|  `thick`   |  画笔粗细。   |
 
 ### selectRoster
 
@@ -58,7 +56,7 @@ abstract fun selectThickness(thick: Int)
 abstract fun selectRoster(anchor: View)
 ```
 
-选中人员列表。
+选中用户列表。
 
 | 参数 | 描述 |
 | :--- | :--- |
@@ -72,7 +70,7 @@ abstract fun setBoardInputEnable(enable: Boolean)
 
 | 参数 | 描述 |
 | :--- | :--- |
-|  `enable`    | 是否可以使用白板工具和 PageControl 工具条。白板弹出进度框或下载失败框的时候，白板工具和 PageControl 工具条不可使用。 |
+|  `enable`    | 是否可以使用白板基础工具和白板页面控制工具。白板弹出进度框或下载失败框的时候，白板基础工具和白板页面控制工具不可使用。 |
 
 ### skipDownload
 
@@ -189,11 +187,11 @@ fun onDrawingConfig(config: WhiteboardDrawingConfig)
 fun onDrawingEnabled(enabled: Boolean)
 ```
 
-报告白板工具是否可用。
+报告白板基础工具是否可用。
 
 | 参数 | 描述 |
 | :--- | :--- |
-| `enabled`     |  白板工具是否可用。  |
+| `enabled`     |  白板基础工具是否可用。  |
 
 
 ### onPageNo
@@ -264,11 +262,11 @@ fun onFullScreenChanged(isFullScreen: Boolean)
 fun onInteractionEnabled(enabled: Boolean)
 ```
 
-报告 PageControl 工具条是否可用。
+报告白板页面控制工具是否可用。
 
 | 参数 | 描述 |
 | :--- | :--- |
-| `enabled`     |  PageControl 工具条是否可用。     |
+| `enabled`     |  白板页面控制工具是否可用。     |
 
 
 ### onLoadingVisible
@@ -294,7 +292,7 @@ fun onDownloadProgress(url: String, progress: Float)
 | 参数 | 描述 |
 | :--- | :--- |
 |  `url`    |  课件下载 URL 地址。    |
-|  `progress`    | 课件下载进入，取值范围为 0 到 1。     |
+|  `progress`    | 课件下载进度，取值范围为 0 到 1。   |
 
 ### onDownloadTimeout
 

@@ -1,12 +1,10 @@
-本页介绍如何自定义修改灵动课堂的 UI，如颜色、按钮、布局等。
+## 概述
 
-## 工作原理
+Agora 在 CocoaPods 上提供完整的 Agora Classroom SDK 供你集成。但是，如果 Agora Classroom SDK 中默认的 UI 无法满足你的需求，你也可以获取 Agora Classroom SDK 的源码，自行开发、调试和编译。Agora Classroom SDK for iOS 的源码位于 GitHub 上 [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) 仓库（release/apaas/1.1.0 分支）。在 Agora Classroom SDK 中，灵动课堂的 UI 代码和核心业务逻辑相隔离，独立成 UIKit 和 EduCore 两个库，两者通过 [Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_ios_overview?platform=iOS) 产生关联。举例来说，对于灵动课堂中的文字聊天功能，需要通过一个按钮发送消息，同时需要接收其他用户发送的消息。这种情况下，我们在 UIKit 中可以调用 Chat Context 中的发送消息方法，并监听 Chat Context 中消息接收相关事件。
 
-自 1.1.0 起，Agora 将灵动课堂的 UI 代码和核心业务逻辑隔离开来，独立成 UI Kit 和 Edu Core。UI Kit 中提供灵动课堂的 UI 组件源码。开发者如果只想修改课堂 UI，则可以无需深入学习灵动课堂的核心业务逻辑细节，只修改 UI 组件。
+![](https://web-cdn.agora.io/docs-files/1619696813295)
 
-![](https://web-cdn.agora.io/docs-files/1619169594360)
-
-UIKit 的源码位于 GitHub 上 [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) 仓库（release/apaas/1.1.0 分支）中 `Modules` 目录下，主要包含以下文件夹：
+UIKit 中提供灵动课堂的 UI 组件代码。UIKit 的源码位于 GitHub 上 CloudClass-Android 仓库（release/apaas/1.1.0 分支）中 `Modules` 目录下，核心项目结构介绍如下：
 
 | 文件夹                | 描述                                                  |
 | :-------------------- | :---------------------------------------------------- |

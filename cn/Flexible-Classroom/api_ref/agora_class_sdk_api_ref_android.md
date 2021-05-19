@@ -1,4 +1,4 @@
-本页提供 Agora Classroom SDK for Android 的 Java API 参考。
+本页提供 Agora Classroom SDK for Android 的 Kotlin API 参考。
 
 ## AgoraEduSDK
 

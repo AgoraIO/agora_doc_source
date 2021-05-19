@@ -1,5 +1,3 @@
-# Video Context
-
 ## VideoContext
 
 `VideoContext` 类提供可供 App 调用的媒体控制相关方法。
