@@ -44,10 +44,10 @@ The configuration of the whiteboard editing tools.
 
 | Parameter | Description |
 | :---------------- | :----------- |
-| `activeAppliance` | 可用的白板基础工具。 |
+| `activeAppliance` | Active whiteboard basic editing tools. |
 | `color` | The color. |
 | `fontsize` | The font size. |
-| `thick` | Brush thickness. |
+| `thick` | The line thickness. |
 
 ## EduContextNetworkState
 
@@ -86,7 +86,7 @@ The connection state with the RTM system.
 | `Connecting` | The SDK is connecting to the RTM system. |
 | `Connected` | The SDK is connected to the RTM system. |
 | `Reconnecting` | The SDK is reconnecting to the RTM system. |
-| `Aborted` | Was kicked out. |
+| `Aborted` | The connection is aborted. |
 
 ## EduContextClassState
 
@@ -166,13 +166,13 @@ The detailed user information.
 | `onLine` | Whether the user is online. |
 | `coHots` | Whether the user is on stage. |
 | `boardGranted` | Whether the user has permission of drawing on the whiteboard. |
-| `cameraState` | The available state of the camera, see DeviceState for details``. |
-| `microState` | Microphone available status, see DeviceState for details``. |
+| `cameraState` | Whether the camera is available. See `DeviceState` for details. |
+| `microState` | Whether the microphone is available. See `DeviceState` for details. |
 | `enableVideo` | Whether the user enables the video. |
 | `enableAudio` | Whether the user enables the audio. |
 | `rewardCount` | The number of rewards. |
 
-## deviceState
+## DeviceState
 
 ```kotlin
 enum class DeviceState(val value: Int) {
@@ -188,7 +188,7 @@ The device state.
 | :------------ | :------------- |
 | `UnAvailable` | The device is unavailable. |
 | `Available` | The device is available. |
-| `Closed` | The device has been shut down. |
+| `Closed` | The device has been closed. |
 
 ## EduContextChatItem
 
@@ -213,10 +213,10 @@ The information of the message.
 | `uid` | The ID of the message sender. |
 | `message` | The message. |
 | `messageId` | The message ID. |
-| `type` | Message type, see EduContextChatItemType for details``. |
-| `source` | The source of the message, see EduContextChatSource for details``. |
-| `state` | Message sending status, see EduContextChatState for details``. |
-| `timestamp` | Message sending timestamp. |
+| `type` | The message type. See `EduContextChatItemType` for details. |
+| `source` | The source of the message. See `EduContextChatSource` for details. |
+| `state` | The sending state of the message. See `EduContextChatState` for details. |
+| `timestamp` | The timestamp when the message is sent. |
 
 ## EduContextChatItemType
 
@@ -226,11 +226,11 @@ enum class EduContextChatItemType {
 }
 ```
 
-Information type.
+The message type.
 
 | Parameter | Description |
 | :----- | :--------- |
-| `Text` | Text message. |
+| `Text` | Text. |
 
 ## EduContextChatSource
 
@@ -240,13 +240,13 @@ enum class EduContextChatSource {
 }
 ```
 
-Information Sources.
+The message source.
 
 | Parameter | Description |
 | :------- | :--------- |
-| `Local` | Local news. |
-| `Remote` | Remote message. |
-| `System` | system information. |
+| `Local` | The message is from a local user. |
+| `Remote` | The message is from a remote user. |
+| `System` | The message is from the system |
 
 ## EduContextChatState
 
@@ -256,7 +256,7 @@ enum class EduContextChatState {
 }
 ```
 
-Message sending status.
+The sending state of the message.
 
 | Parameter | Description |
 | :----------- | :------------- |
@@ -270,7 +270,7 @@ Message sending status.
 ```kotlin
 enum class EduContextHandsUpState(val value: Int) {
     Init(0),
-    HandsUp (1),
+    HandsUp(1),
     HandsDown(2)
 }
 ```
