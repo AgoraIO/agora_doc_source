@@ -90,8 +90,9 @@ The following sample code demonstrates how to register the countdown plugin Coun
 ```swift
 // appIdentifier: The plugin ID. Different clients must use the same ID for the same plugin. 
 // extAppClass: Inherit the AgoraBaseExtApp class to implement a custom plugin. 
-// frame: 插件容器的大小。 
-// language: 容器语言。 
+// frame: The size of the plugin container. 
+// language: The language of the container.
+
 let countDown = AgoraExtAppConfiguration(appIdentifier: "io.agora.countdown",
                                          extAppClass: CountDownExtApp.self,
                                          frame: UIEdgeInsets(top: 10,
