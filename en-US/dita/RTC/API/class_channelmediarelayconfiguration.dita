@@ -30,7 +30,7 @@
                     <pd>
                         <p>Pointer to the information of the destination channel: <apiname keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
                                 <li><codeph>channelName</codeph>: The name of the destination channel.</li>
-                                <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the destination channel. The value ranges from 0 to (2<sup>32</sup>-1). To avoid UID conflicts, this uid must be different from any other UIDs in the destination channel. The default value is 0, which means the SDK generates a random UID. Do not set this parameter as the `uid` of the host in the destination channel, and ensure that this `uid` is different from any other `uid` in the channel.</li>
+                                <li><codeph>uid</codeph>: The unique ID to identify the relay stream in the destination channel. The value ranges from 0 to (2<sup>32</sup>-1). To avoid UID conflicts, this ID must be different from any other UIDs in the destination channel. The default value is 0, which means the SDK generates a random UID. Do not set this parameter as the UID of the host in the destination channel, and ensure that this UID is different from any other UIDs in the channel.</li>
                                 <li><codeph>token</codeph>: The <codeph>token</codeph> for joining the destination channel. It is generated with the <codeph>channelName</codeph> and <codeph>uid</codeph> you set in <codeph>destInfos</codeph>.<ul>
                                         <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph>NULL</codeph>, which means the SDK applies the App ID.</li>
                                         <li>If you have enabled the App Certificate, you must use the <codeph>token</codeph> generated with the <codeph>channelName</codeph> and <codeph>uid</codeph>.</li>
@@ -43,7 +43,7 @@
                 <plentry>
                     <pt>destCount</pt>
                     <pd>The number of destination channels. The default value is 0, and the value range is from 0 to 4. Ensure that the value of this parameter corresponds to the number of <apiname
-                            keyref="ChannelMediaInfo"/> structs you define in <codeph>destInfos</codeph>.</pd>
+                            keyref="ChannelMediaInfo"/> structs you define in <parmname>destInformation</parmname>.</pd>
                 </plentry>
             </parml>
         </section></refbody>
