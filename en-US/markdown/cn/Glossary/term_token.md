@@ -1,10 +1,10 @@
-A token is also known as a dynamic key. It serves as an authentication mechanism. To ensure communication security, Agora supports the use of tokens to check the permissions of app users.
+A token is also known as a dynamic key. It serves as an authentication mechanism that checks permissions of app users before they use Agora services.
 
 The following figure shows the process of verifying user permissions with a token:
 
 ![token-workflow](/Users/wangjie/Desktop/token-workflow.png)
 
-Developers need to generate tokens on their app servers and send them back to the client. When users use Agora services (such as joining an RTC channel, logging in to the RTM system, entering a whiteboard room), they pass the tokens, and the Agora server checks the user permissions with the information in the tokens.
+Developers need to deploy the code provided by Agora to generate tokens on their app servers and send them back to the client. When users use Agora services (such as joining an RTC channel, logging in to the RTM system, entering a whiteboard room), they pass the tokens, and the Agora server checks the user permissions with the information in the tokens.
 
 For different products, the information contained in a token is not exactly the same. Generally speaking, a token includes information about an Agora project (such as the App ID), information about the Agora service to be used (such as the RTC channel name, the UUID of the whiteboard room), user roles or permissions, and the expiration time of the token.
 
