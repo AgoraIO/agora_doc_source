@@ -15,9 +15,8 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/IChannel_onRequestToken"/>
         </section>
         <section id="detailed_desc">
-   
-   <p>在调用 <xref keyref="IChannel_joinChannel"/>, 时如果指定了 Token，由于 Token 具有一定的时效，在通话过程中 SDK 可能由于网络原因和服务器失去连接，重连时可能需要新的 Token。</p>
-   <p>该回调通知 App 需要生成新的 Token，并调用 <ph keyref="IChannel_renewToken"/> 更新 Token。</p>
+            <p>在通话过程中如果 Token 已失效，SDK 会触发该回调，提醒 app 更新 Token。</p>
+            <p>当收到该回调时，你需要重新在服务端生成新的 Token，然后调用 <xref keyref="IChannel_joinChannel"/> 重新加入频道。</p>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>

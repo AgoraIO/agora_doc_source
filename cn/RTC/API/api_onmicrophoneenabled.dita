@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onmicrophoneenabled">
+    <title><ph keyref="onMicrophoneEnabled"/></title>
+    <shortdesc id="short"><ph id="shortdesc">麦克风状态已改变回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMicrophoneEnabled"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p conref="../conref/conref_rtc_api.dita#apidef/onMicrophoneEnabled"/>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>
+                        <p>自 v2.9.0 起废弃，请改用 <xref keyref="onLocalAudioStateChanged"/> 回调的：<ul>
+                                <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/>(0)。</li>
+                                <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING"/>(1)。</li>
+                            </ul></p>
+                    </dd>
+                </dlentry>
+            </dl>
+            <p>该回调是由本地用户调用 <xref keyref="enableLocalAudio"/> 方法开启或关闭本地音频采集触发的。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>enabled</pt>
+                    <pd>
+                        <p>麦克风状态：<ul>
+                                <li><ph keyref="true"/>：麦克风已启用。</li>
+                                <li><ph keyref="false"/>：麦克风已禁用。</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

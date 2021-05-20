@@ -16,7 +16,8 @@
         </section>
         <section id="detailed_desc">
    
-   <p>该方法将一张 PNG 图片作为水印添加到本地发布的直播视频流上，同一直播频道中的观众、旁路直播观众和采集设备都能看到或采集到该水印图片。Agora 当前只支持在直播视频流中添加一个水印，后添加的水印会替换掉之前添加的水印。</p>
+   <p>该方法将一张 PNG 图片作为水印添加到本地发布的直播视频流上，同一直播频道中的用户、旁路直播观众和采集设备都能看到或采集到该水印图片。Agora
+                当前只支持在直播视频流中添加一个水印，后添加的水印会替换掉之前添加的水印。</p>
    <p>水印坐标和 <xref keyref="setVideoEncoderConfiguration"/> 方法中的设置有依赖关系：<ul>
   <li>如果视频编码方向（<xref keyref="ORIENTATION_MODE"/>）
       固定为横屏或自适应模式下的横屏，那么水印使用横屏坐标。</li>
@@ -26,7 +27,7 @@
       方法中设置的视频尺寸，否则超出部分将被裁剪。</li>
        </ul>
    </p>
-   <note outputclass="note">
+   <note type="attention">
        <ul>
   <li>你需要在调用 <xref keyref="enableVideo"/> 方法之后再调用本方法。</li>
   <li>如果你只是在旁路直播（推流到 CDN）中添加水印，你可以使用本方法或 <xref keyref="setLiveTranscoding"/> 方法设置水印。</li>

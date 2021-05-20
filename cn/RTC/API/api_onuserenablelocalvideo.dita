@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onuserenablelocalvideo">
     <title><ph keyref="onUserEnableLocalVideo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">其他用户启用/关闭本地视频。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">远端用户开/关本地视频采集回调。</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,7 +16,7 @@
         </section>
         <section id="detailed_desc">
    
-   <dl outputclass="deprecated">
+   <dl outputclass="deprecated" props="hide">
        <dlentry>
   <dt>弃用：</dt>
   <dd>从 v2.9.0。该回调已被废弃，请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调的：
@@ -27,7 +27,6 @@
   </dd>
        </dlentry>
    </dl>
-   <p>提示有其他用户启用/关闭了本地视频功能。关闭视频功能是指该用户只能进行语音通话，不能显示、发送自己的视频，也不能接收、显示别人的视频。</p>
    <p>该回调是由远端用户调用 <xref keyref="enableLocalVideo"/> 方法开启或关闭视频采集触发的。</p>
         </section>
         <section id="parameters"><title>参数</title>
@@ -38,11 +37,11 @@
        </plentry>
        <plentry>
   <pt>enabled</pt>
-  <pd>
+  <pd><p>远端用户是否启用视频采集：
       <ul>
  <li><ph keyref="true"/>: 该用户已启用视频功能。启用后，其他用户可以接收到该用户的视频流。</li>
  <li><ph keyref="false"/>: 该用户已关闭视频功能。关闭后，该用户仍然可以接收其他用户的视频流，但其他用户接收不到该用户的视频流。</li>
-      </ul>
+      </ul></p>
   </pd>
        </plentry>
    </parml>

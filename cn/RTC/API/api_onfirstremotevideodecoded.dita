@@ -27,20 +27,17 @@
   </dd>
        </dlentry>
    </dl>
-   <p>引擎收到第一帧远端视频流并解码成功时，触发此回调。</p>
-   <p>App 可在此回调中设置该用户的 <parmname>view</parmname>。有两种情况：
-       <ul>
-  <li>远端用户首次上线后发送视频。</li>
-  <li>远端用户视频离线再上线后发送视频。出现这种中断的可能原因包括：
-      <ul>
- <li>远端用户离开频道。</li>
- <li>远端用户掉线。</li>
- <li>远端用户调用 <xref keyref="muteLocalVideoStream"/> 方法停止发送本地视频流。</li>
- <li>远端用户调用 <xref keyref="disableVideo"/> 方法关闭视频模块。</li>
-      </ul>
-  </li>
-       </ul>
-   </p>
+   <p>SDK 会在以下时机触发该回调：  <ul id="ul_xcz_f34_npb">
+                    <li>远端用户首次上线后发送视频。</li>
+                    <li>远端用户视频离线再上线后发送视频。出现这种中断的可能原因包括： <ul id="ul_ycz_f34_npb">
+                            <li>远端用户离开频道。</li>
+                            <li>远端用户掉线。</li>
+                            <li>远端用户调用 <xref keyref="muteLocalVideoStream"/> 方法停止发送本地视频流。</li>
+                            <li>远端用户调用 <xref keyref="disableVideo"/> 方法关闭视频模块。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </p>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
