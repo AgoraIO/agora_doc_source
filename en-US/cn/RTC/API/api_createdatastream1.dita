@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_createdatastream1">
+    <title><ph keyref="createDataStream1"/><ph>[1/2]</ph></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="createDataStream1" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/createDataStream1"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="deprecated">
+       <dlentry>
+  <dt>Deprecated:</dt>
+  <dd>This method is deprecated as of v2.4.0. Please use <xref keyref="createDataStream2"/>[2/2] instead.</dd>
+       </dlentry>
+   </dl>
+   <p id="desc">Each user can create up to five data streams during the lifecycle of RtcEngine.</p>
+   <note type="attention" id="note">
+       <ul>
+  <li>Call this method after joining a channel.</li>
+  <li>Agora does not support setting <parmname>reliable</parmname> as <ph keyref="true"/> and <parmname>ordered</parmname> as <ph keyref="false"/>.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry props="windows" id="streamId">
+  <pt>streamId</pt>
+  <pd>Output parameter. Pointer to the ID of the created data stream.</pd>
+       </plentry>
+       <plentry>
+  <pt>reliable</pt>
+  <pd><p>Whether or not the data stream is reliable:<ul>
+      <li><ph keyref="true"/>: The recipients receive the data from the sender within five seconds. If the recipient does not receive the data within five seconds, the SDK triggers the <xref keyref="onStreamMessageError"/> callback and returns an error code.</li>
+      <li><ph keyref="false"/>: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.</li>
+  </ul></p></pd>
+       </plentry>
+       <plentry id="ordered">
+  <pt>ordered</pt>
+  <pd><p>Whether or not the recipients receive the data stream in the sent order:<ul>
+      <li><ph keyref="true"/>: The recipients receive the data in the sent order.</li>
+      <li><ph keyref="false"/>: The recipients do not receive the data in the sent order.</li>
+  </ul></p></pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li props="android">Returns the stream ID, if the method call is successful.</li>
+       <li props="windows">0: The data stream is successfully created.</li>
+       <li>&lt; 0: Fails to create the data stream. You can refer to <xref href="error_rtc.md" format="md">Error Codes and Warning Codes</xref> for troubleshooting.</li>
+   </ul>
+        </section></refbody>
+</reference>

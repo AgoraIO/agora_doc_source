@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_getaudiomixingcurrentposition">
+    <title><ph keyref="getAudioMixingCurrentPosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Retrieves the playback position (ms) of the music file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="getAudioMixingCurrentPosition" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/getAudioMixingCurrentPosition"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>Retrieves the playback position (ms) of the audio.</p>
+            <note type="attention">You need to call this method after calling <apiname keyref="startAudioMixing"/> and receiving the <apiname keyref="onAudioMixingStateChanged"/>(<codeph>PLAY</codeph>) callback.</note>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>≥ 0: The current playback position of the audio mixing, if this method call succeeds.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
