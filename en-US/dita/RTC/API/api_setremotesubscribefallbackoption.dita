@@ -12,7 +12,7 @@
      </prolog>
      <refbody>
           <section id="prototype">
-               <p conref="../conref/conref_rtc_api.dita#apidef/setRemoteSubscribeFallbackOption" />
+               <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setRemoteSubscribeFallbackOption" />
           </section>
           <section id="detailed_desc">
                <p>Unreliable network conditions affect the overall quality of the live interactive streaming. If <parmname>option</parmname> is set as <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW" />(1) or <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" />(2), the SDK automatically switches the video from a high stream to a low stream or disables the video when the downlink network conditions cannot support both audio and video to guarantee the quality of the audio. The SDK monitors the network quality and restores the video stream when the network conditions improve. When the remote video stream falls back to audio-only or when the audio-only stream switches back to the video, the SDK triggers the <xref keyref="onRemoteSubscribeFallbackToAudioOnly" /> callback.</p>
