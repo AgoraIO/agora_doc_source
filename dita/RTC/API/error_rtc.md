@@ -37,7 +37,7 @@ Agora SDK 在运行过程中，可能通过如下方式返回错误码或警告�
 | `102`    | 不是有效的频道名。可能的原因是设置的参数数据类型不正确。请更换有效的频道名重新加入频道。  |
 | `103`    | 无法获取当前区域的服务器资源。请在初始化 [IRtcEngine] 时尝试指定其他区域。 |
 | `109`    | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_TOKEN_EXPIRED] (9)。</br>当前使用的 Token 过期，不再有效。请在服务端申请生成新的 Token，并调用 [renewToken] 更新 Token。 |
-| `110`   | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_INVALID_TOKEN] (8)。</br>Token 无效。一般有以下原因：<ul><li>在 Agora 控制台中启用了 App 证书，但仍旧在代码里使用了 App ID。当项目启用了 App 证书，就必须使用 Token 鉴权。</li><li>生成 Token 时填入的 uid 字段，和用户加入频道时填入的 uid 不匹配。</li></ul> |
+| `110`   | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_INVALID_TOKEN] (8)。</br>Token 无效。一般有以下原因：<ul><li>在 Agora 控制台中启用了 App 证书，但仍旧在代码里使用了 App ID。当项目启用了 App 证书，就必须使用 Token 鉴权。</li><li>生成 Token 时填入的用户 ID 和用户加入频道时填入的用户 ID 不匹配。</li></ul> |
 | `111`    | 网络连接中断。SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会报告该错误。     |
 | `112`    | 网络连接丢失。 网络连接中断，且 SDK 无法在 10 秒内连接服务器，会报告fail错误。    |
 | `113`    | 调用方法时用户不在频道内。        |
