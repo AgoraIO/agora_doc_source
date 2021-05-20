@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onlocalpublishfallbacktoaudioonly">
+    <title><ph keyref="onLocalPublishFallbackToAudioOnly"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the published media stream falls back to an audio-only stream due to poor network conditions or switches back to the video after the network conditions improve.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onLocalPublishFallbackToAudioOnly" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/onLocalPublishFallbackToAudioOnly"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>If you call <xref keyref="setLocalPublishFallbackOption"/> and set <parmname>option</parmname> as <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>, the SDK triggers this callback when the remote media stream falls back to audio-only mode due to poor uplink conditions, or when the remote media stream switches back to the video after the uplink network condition improves.</p>
+   <note type="attention">If the local stream fallbacks to the audio-only stream, the remote user receives the <xref keyref="onUserMuteVideo"/> callback.</note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry id="isFallbackOrRecover">
+  <pt>isFallbackOrRecover</pt>
+  <pd>
+      <ul>
+ <li><ph keyref="true"/>: The published stream falls back to audio-only due to poor network conditions.</li>
+ <li><ph keyref="false"/>: The published stream switches back to the video after the network conditions improve.</li>
+      </ul>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_getmirrorapplied">
+    <title><ph keyref="getMirrorApplied"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives a video frame and prompts you whether or not to mirror the captured video.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="getMirrorApplied" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/getMirrorApplied"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>If the video data you want to obtain is a mirror image of the original video, you need to register this callback when calling <xref keyref="registerVideoFrameObserver"/>. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set whether or not to mirror the video frame in the return value of this callback.</p>
+   <note type="attention">This callback applies to RGBA video data only.</note>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <p>Sets whether or not to mirror the captured video:<ul>
+  <li><ph keyref="true"/>: Mirror.</li>
+  <li><ph keyref="false"/>: (Default) Do not mirror.</li>
+       </ul></p>
+        </section></refbody>
+</reference>

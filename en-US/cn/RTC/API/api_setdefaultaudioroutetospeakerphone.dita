@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setdefaultaudioroutetospeakerphone">
+    <title><ph keyref="setDefaultAudioRouteToSpeakerphone"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the default audio playback route.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDefaultAudioRouteToSpeakerphone"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p conref="../conref/conref_rtc_api.dita#apidef/setDefaultAudioRouteToSpeakerphone"/>
+        </section>
+        <section id="detailed_desc">
+            <p>This method sets whether the received audio is routed to the earpiece or speakerphone by default before joining a channel. If a user does not call this method, the audio is routed to the earpiece by default.</p>
+            <p>The default settings for each profile:<ul>
+                    <li>For the communication profile:<ul>
+                            <li>In a voice call, the default audio route is the earpiece.</li>
+                            <li>In a video call, the default audio route is the speakerphone. If a user calls the <xref keyref="disableVideo"/>, <xref
+                                    keyref="muteLocalVideoStream"/>, or <xref
+                                    keyref="muteAllRemoteVideoStreams"/> method, the default audio route switches back to the earpiece automatically.</li>
+                        </ul></li>
+                    <li>For the live broadcasting profile: Speakerphone.</li>
+                </ul>
+            </p>
+            <note type="attention">
+                <ul>
+                    <li props="windows">This method is for Android and iOS only.</li>
+                    <li props="ios">This method is for iOS only.</li>
+                    <li props="ios windows">For iOS, this method only works in a voice call.</li>
+                    <li>This method needs to be set before <xref keyref="joinChannel1"/>, otherwise, it will not take effect.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>defaultToSpeaker</pt>
+                    <pd>The default audio playback route.<ul>
+                            <li><ph keyref="true"/>: Route the audio to the speakerphone. If the playback device connects to the earpiece or Bluetooth, the audio cannot be routed to the speakerphone.</li>
+                            <li><ph keyref="false"/>: (Default) Route the audio to the earpiece. If a headset is plugged in, the audio is routed to the headset.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

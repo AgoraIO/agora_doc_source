@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onaudiomixingstatechanged">
+    <title><ph keyref="onAudioMixingStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the playback state of the music file changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onAudioMixingStateChanged" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/onAudioMixingStateChanged"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="since">
+       <dlentry>
+  <dt>Since</dt>
+  <dd>v2.4.0</dd>
+       </dlentry>
+   </dl>
+   <p>This callback occurs when the playback state of the music file changes, and reports the current state and error code.</p>
+   <p>If the local music file does not exist, or if the SDK does not support the file format, or if the SDK cannot access the URL of the online music file, the SDK returns the warning code <apiname>WARN_AUDIO_MIXING_OPEN_ERROR </apiname>(701).</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>state</pt>
+  <pd>The playback state of the music file. See <xref keyref="AUDIO_MIXING_STATE_TYPE"/>.</pd>
+       </plentry>
+       <plentry>
+  <pt>errorCode</pt>
+  <pd>The error code. See <xref keyref="AUDIO_MIXING_ERROR_TYPE"/>.</pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>

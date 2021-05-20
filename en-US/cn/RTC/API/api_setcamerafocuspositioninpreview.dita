@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setcamerafocuspositioninpreview">
+    <title><ph keyref="setCameraFocusPositionInPreview"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the camera manual focus position.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="setCameraFocusPositionInPreview" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/setCameraFocusPositionInPreview"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>This method needs to be called after the camera is started (for example, by calling <xref keyref="startPreview"/> or <xref keyref="joinChannel1"/>). After a successful method call, the SDK triggers the <xref keyref="onCameraFocusAreaChanged"/> callback.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+   <parml>
+       <plentry>
+  <pt>positionX</pt>
+  <pd>The horizontal coordinate of the touchpoint in the view.</pd>
+       </plentry>
+       <plentry>
+  <pt>positionY</pt>
+  <pd>The vertical coordinate of the touchpoint in the view.</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
