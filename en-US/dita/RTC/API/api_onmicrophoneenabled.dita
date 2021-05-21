@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onmicrophoneenabled">
+    <title><ph keyref="onMicrophoneEnabled"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the microphone is enabled/disabled.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onMicrophoneEnabled"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onMicrophoneEnabled"/>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>
+                        <p>This callback is deprecated as of v2.9.0. Please use the <xref keyref="onLocalAudioStateChanged"/> callback:<ul>
+                                <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED"/>(0).</li>
+                                <li><apiname keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING"/>(1).</li>
+                            </ul></p>
+                    </dd>
+                </dlentry>
+            </dl>
+            <p>The SDK triggers this callback when the local user resumes or stops capturing the local audio stream by calling the <xref keyref="enableLocalAudio"/> method.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>enabled</pt>
+                    <pd>
+                        <p>Whether the microphone is enabled/disabled:<ul>
+                                <li><ph keyref="true"/>: The microphone is enabled.</li>
+                                <li><ph keyref="false"/>: The microphone is disabled.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
