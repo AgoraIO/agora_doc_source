@@ -1,4 +1,4 @@
-Agora.io provides building blocks for you to add real-time voice and video communications through a simple and powerful SDK. You can integrate the Agora SDK to enable real-time communications in your own application quickly.
+Agora.io provides building blocks for you to add real-time engagement functions through a simple and powerful SDK. You can integrate the Agora SDK to enable real-time engagement in your own application quickly.
 
 ## Agora SDK
 
