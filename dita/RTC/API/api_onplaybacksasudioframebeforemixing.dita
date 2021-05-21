@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onplaybacksasudioframebeforemixing">
+    <title><ph keyref="onPlaybackAudioFrameBeforeMixing"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获得混音前的指定用户的声音。</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onPlaybackAudioFrameBeforeMixing" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onPlaybackAudioFrameBeforeMixing"/>
+        </section>
+        <section id="parameters"><title>参数</title>
+   <parml>
+       <plentry>
+  <pt>uid</pt>
+  <pd>指定用户的用户 ID。</pd>
+       </plentry>
+       <plentry>
+  <pt>audioFrame</pt>
+  <pd>音频裸数据。详见 <xref keyref="AudioFrame"/>。</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>返回值</title>
+   <ul>
+       <li><ph keyref="true"/>: <apiname keyref="AudioFrame">AudioFrame</apiname> 中 buffer
+  数据有效，数据会被发送。</li>
+       <li><ph keyref="false"/>: <apiname keyref="AudioFrame">AudioFrame</apiname> 中 buffer
+  数据无效，数据会被舍弃。</li>
+   </ul>
+        </section></refbody>
+</reference>

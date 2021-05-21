@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onerror">
+    <title><ph keyref="onError"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports an error during SDK runtime.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onError" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onError"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>This callback indicates that an error occurs during SDK runtime. In most cases, the SDK cannot fix the issue and resume running. The SDK requires the application to take action or informs the user about the issue. For example, the SDK reports an <parmname>ERR_START_CALL </parmname>error when failing to initialize a call. The app informs the user that the call initialization failed and invokes the <xref
+  keyref="leaveChannel"/> method to leave the channel.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+   <parml>
+       <plentry>
+  <pt>err</pt>
+  <pd>The error code, see <xref href="error_rtc.md" format="md"/>.</pd>
+       </plentry>
+       <plentry>
+  <pt>msg</pt>
+  <pd>The error message.</pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>

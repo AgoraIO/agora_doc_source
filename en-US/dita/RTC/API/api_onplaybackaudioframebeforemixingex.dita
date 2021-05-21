@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onplaybackaudioframebeforemixingex">
+    <title><ph keyref="onPlaybackAudioFrameBeforeMixingEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the before-mixing playback audio frame from multiple channels.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onPlaybackAudioFrameBeforeMixingEx" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onPlaybackAudioFrameBeforeMixingEx"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>After you successfully register the audio frame observer, if you set the return value of <xref keyref="IAudioFrameObserver_isMultipleChannelFrameWanted"/> as <ph keyref="true"/>, the SDK triggers this callback each time it receives a audio frame from any of the channel.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+   <parml>
+       <plentry>
+  <pt><ph keyref="channelID"/></pt>
+  <pd>The channel name of this audio frame.</pd>
+       </plentry>
+       <plentry>
+  <pt><ph keyref="uid"/></pt>
+  <pd>The ID of the user sending the audio frame.</pd>
+       </plentry>
+       <plentry>
+  <pt>audioFrame</pt>
+  <pd>The audio frame. See <xref keyref="AudioFrame"/>.</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li><ph keyref="true"/>: Valid buffer in <apiname keyref="AudioFrame">AudioFrame</apiname>, and the captured audio frame is sent out.</li>
+       <li><ph keyref="false"/>: Invalid buffer in <apiname keyref="AudioFrame">AudioFrame</apiname>, and the captured audio frame is discarded.</li>
+   </ul>
+        </section></refbody>
+</reference>

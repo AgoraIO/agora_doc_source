@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setvideoprofile">
+    <title><ph keyref="setVideoProfile"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the video encoder configuration.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="setVideoProfile" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setVideoProfile"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="deprecated">
+       <dlentry >
+  <dt>Deprecated:</dt>
+  <dd>This method is deprecated as of v2.3. Please use the <xref keyref="setVideoEncoderConfiguration" /> method instead.</dd>
+       </dlentry>
+   </dl>
+   <p>This method sets the video encoder configuration. You can call this method either before or after joining a channel. If the user does not need to reset the video encoding properties after joining the channel, Agora recommends calling this method before <xref keyref="enableVideo"/> to reduce the time to render the first video frame.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+   <parml>
+       <plentry>
+  <pt>profile</pt>
+  <pd>The video profile. See <xref keyref="VIDEO_PROFILE_TYPE"/>.</pd>
+       </plentry>
+       <plentry>
+  <pt>swapWidthAndHeight</pt>
+  <pd><p>The SDK outputs video with a fixed width and height according to the video profile (<parmname>profile</parmname>) you selected. This parameter sets whether to swap width and height of the video:</p>
+  <ul>
+      <li><ph keyref="true"/>true: Swap the width and height.</li>
+      <li><ph keyref="false"/>false: (Default) Do not swap the width and height.</li>
+  </ul>
+  </pd>
+       </plentry>
+   </parml>
+   
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li> &lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>

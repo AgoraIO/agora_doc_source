@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_disableaudio">
+    <title><ph keyref="disableAudio"/></title>
+    <shortdesc id="short"><ph id="shortdesc">关闭音频模块。</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="disableAudio" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/disableAudio"/>
+        </section>
+        <section id="detailed_desc">
+   
+        </section>
+        <section>   
+   <note type="attention"><ul>
+       <li>该方法设置内部引擎为禁用状态，在频道内和频道外均可调用。 <xref keyref="leaveChannel"/> 后仍然有效。</li>
+       <li>该方法重置整个引擎，响应时间较慢，因此声网建议使用如下方法来控制音频模块：<ul>
+  <li><xref keyref="enableLocalAudio"/>: 是否启动麦克风采集并创建本地音频流。</li>
+  <li><xref keyref="muteLocalAudioStream"/>: 是否发布本地音频流。</li>
+  <li><xref keyref="muteRemoteAudioStream"/>: 是否接收并播放远端音频流。</li>
+  <li><xref keyref="muteAllRemoteAudioStreams"/>: 是否接收并播放所有远端音频流。</li>
+       </ul></li>
+   </ul></note>     
+        </section>
+        <section id="return_values">
+   <title>返回值</title>
+   <ul>
+       <li>0: 方法调用成功。</li>
+       <li>&lt; 0: 方法调用失败。 </li>
+   </ul>
+        </section>
+    </refbody>
+</reference>

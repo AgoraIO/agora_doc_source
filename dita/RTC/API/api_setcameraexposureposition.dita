@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setcameraexposureposition">
+    <title><ph keyref="setCameraExposurePosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置手动曝光位置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="setCameraExposurePosition" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setCameraExposurePosition"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="since">
+       <dlentry>
+  <dt>自从</dt>
+  <dd>v2.3.2</dd>
+       </dlentry>
+   </dl>
+   <p>该方法需要在相机启动（如通过调用 <xref keyref="startPreview"/> 或 <xref keyref="joinChannel1"/> 实现）后调用。</p>
+   <p>成功调用该方法后，本地会触发 <xref keyref="onCameraExposureAreaChanged"/> 回调。</p>
+        </section>
+        <section id="parameters"><title>参数</title>
+   <parml>
+       <plentry>
+  <pt>positionXinView</pt>
+  <pd>触摸点相对于视图的横坐标。</pd>
+       </plentry>
+       <plentry>
+  <pt>positionYinView</pt>
+  <pd>触摸点相对于视图的纵坐标。</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>返回值</title>
+   <ul>
+       <li>0: 方法调用成功。</li>
+       <li>&lt; 0: 方法调用失败。</li>
+   </ul>
+        </section></refbody>
+</reference>

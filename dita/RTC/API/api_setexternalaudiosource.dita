@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setexternalaudiosource">
+    <title><ph keyref="setExternalAudioSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置外部音频采集参数。</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="setExternalAudioSource" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setExternalAudioSource"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>请在 <apiname keyref="joinChannel1"/> 和 <xref keyref="startPreview"/> 前调用该方法。</p>
+        </section>
+        <section id="parameters"><title>参数</title>
+   <parml>
+       <plentry>
+  <pt>enabled</pt>
+  <pd>
+      <ul id="ul_uq4_mgz_r4b">
+ <li><ph keyref="true"/>: 开启使用外部音频源的功能。</li>
+ <li><ph keyref="false"/>: （默认）关闭使用外部音频源的功能。</li>
+      </ul>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>sampleRate</pt>
+  <pd>外部音频源的采样率 (Hz)，可设置为 8000，16000，32000，44100 或 48000。</pd>
+       </plentry>
+       <plentry>
+  <pt>channels</pt>
+  <pd>
+      <p>外部音频源的通道数，可设置为 1 或 2:<ul id="ul_cpd_khz_r4b">
+     <li>1: 单声道</li>
+     <li>2: 双声道</li>
+ </ul></p>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>返回值</title>
+   <ul>
+       <li>0：方法调用成功。</li>
+       <li>&lt; 0：方法调用失败。</li>
+   </ul>
+        </section></refbody>
+</reference>
