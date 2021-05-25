@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="${ask('Set API ID', String, 'ID', @apiID)}">
-    <title><ph keyref="${answer(@apiID)}"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this API."?></ph></shortdesc>
+<reference id="api_sendmetadata">
+    <title><ph keyref="sendMetadata"/></title>
+    <shortdesc id="short"><ph id="shortdesc">发送媒体附属信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="${answer(@apiID)}"/>
+                <indexterm keyref="sendMetadata"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,31 +16,30 @@
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp"/>
-                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="electron" outputclass="language-typescript">sendMetadata(metadata: Metadata): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-                <dlentry>
-                    <dt>自从</dt>
-                    <dd>v</dd>
-                </dlentry>
-            </dl>
-            <p/>
+            <p>成功调用 <xref keyref="registerMediaMetadataObserver"></xref> 方法后，你可以调用该方法发送媒体附属信息。</p>
+            <p>如果成功发送了媒体附属信息，则发送端会收到 <xref keyref="sendMetadataSuccess"/> 的回调；接收端会收到 <xref keyref="receiveMetadata" /> 回调。</p>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the parameter."?></pt>
-                    <pd><?oxy-placeholder content="The description of the parameter. Please specify if the parameter is optional, output, and has a default value or value range."?></pd>
+                    <pt>metadata</pt>
+                    <pd>媒体附属信息。详见 <xref keyref="Metadata"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
+            <ul>
+                <li>0：方法调用成功。</li>
+                <li>&lt; 0：方法调用失败。</li>
+            </ul>
         </section>
     </refbody>
 </reference>
