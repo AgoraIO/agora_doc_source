@@ -11,21 +11,36 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onWarning"/>
-        </section>
+        <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine didOccurWarning:(AgoraWarningCode)warningCode;</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">virtual void onWarning(int warn, const char* msg) {
+                (void)warn;
+                (void)msg;
+                }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">on(evt: 'warning', cb: (warn: number, msg: string) => void): this;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
+    </section>
         <section id="detailed_desc">
    
    <p>该回调方法表示 SDK 运行时出现了（网络或媒体相关的）警告。通常情况下，SDK 上报的警告信息 App 可以忽略，SDK 会自动恢复。比如和服务器失去连接时，SDK
-       可能会上报 <parmname>WARN_OPEN_CHANNEL_TIMEOUT</parmname> 警告，同时自动尝试重连。</p>
+       可能会上报 <codeph props="windows">WARN_OPEN_CHANNEL_TIMEOUT</codeph><codeph props="ios mac">AgoraWarningCodeOpenChannelTimeout</codeph> 警告，同时自动尝试重连。</p>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
-       <plentry>
-  <pt>warn</pt>
-  <pd>警告代码，详见 <xref href="error_rtc.md" format="md"/>。</pd>
+       <plentry conkeyref="onAudioMixingStateChanged/engine">
+           <pt></pt>
+           <pd></pd>
        </plentry>
        <plentry>
+           <pt props="windows">warn</pt>
+           <pt props="ios mac">warningCode</pt>
+  <pd>警告代码，详见 <xref href="error_rtc.md" format="md"/>。</pd>
+       </plentry>
+       <plentry props="windows">
   <pt>msg</pt>
   <pd>警告描述。</pd>
        </plentry>
