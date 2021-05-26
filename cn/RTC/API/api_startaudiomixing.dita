@@ -12,7 +12,7 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="android" outputclass="language-java">public abstract int startAudioMixing(String filePath, boolean loopback, boolean replace, int cycle);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="windows" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath, bool loopback, bool replace, int cycle) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">startAudioMixing(
@@ -27,11 +27,22 @@
         </p>
         </section>
         <section id="detailed_desc"> 
-            <p>该方法支持将本地或在线音乐文件和麦克风采集的音频进行混音或替换。成功播放音乐文件后，本地会触发 <xref keyref="onAudioMixingStateChanged"/> (<codeph>PLAY</codeph>) 回调。播放结束后，本地会触发 <apiname keyref="onAudioMixingStateChanged"/> (<codeph>STOPPED</codeph>) 回调。</p>
+            <p props="windows">该方法支持将本地或在线音乐文件和麦克风采集的音频进行混音或替换。成功播放音乐文件后，本地会触发 <xref
+                    keyref="onAudioMixingStateChanged"/> (<codeph>PLAY</codeph>) 回调。播放结束后，本地会触发
+                    <apiname keyref="onAudioMixingStateChanged"/> (<codeph>STOPPED</codeph>) 回调。</p>
+            <p props="android"
+                >该方法指定本地或在线音频文件来和麦克风采集的音频流进行混音或替换。替换是指用音频文件替换麦克风采集的音频流。该方法可以选择是否让对方听到本地播放的音频，并指定循环播放的次数。成功调用该方法后，本地会触发
+                    <xref keyref="onAudioMixingStateChanged"/>
+                    (<codeph>MEDIA_ENGINE_AUDIO_EVENT_MIXING_PLAY</codeph>) 回调。播放结束后，会收到 <xref
+                    keyref="onAudioMixingStateChanged"
+                    />(<codeph>MEDIA_ENGINE_AUDIO_EVENT_MIXING_STOPPED</codeph>) 回调。</p>
    <note type="attention">
        <ul>
            <li>该方法需要在加入频道后调用。如需多次调用 <apiname keyref="startAudioMixing"/>，请确保调用间隔大于 500 ms。</li>
-           <li>如果本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL，则 SDK 会报告 <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph> (701)。</li>
+           <li props="windows">如果本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL，则 SDK 会报告
+                            <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph> (701)。</li>
+                    <li props="android">如果本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL，则 SDK 会报告
+                            <codeph>MEDIA_ENGINE_AUDIO_ERROR_MIXING_OPEN (701)</codeph>。</li>
            <li props="android">如需调用该方法，请确保使用 Android 4.2 或以上设备，且 API Level 不低于 16。</li>
            <li props="android">如果播放的是在线音乐文件，Agora 建议不要使用重定向地址。重定向地址在某些机型上可能无法打开。</li>
            <li props="android">如果在模拟器上调用该方法，则请确保音乐文件在 /sdcard/ 目录下，且格式为 MP3。</li>
@@ -42,7 +53,8 @@
    <parml>
        <plentry>
            <pt>filePath</pt>
-           <pd><p conkeyref="playEffect3/filepath"/></pd>
+           <pd><p conkeyref="playEffect3/filepath"/>
+                        <p conkeyref="playEffect3/filePathboth"/></pd>
        </plentry>
        <plentry>
   <pt>loopback</pt>
