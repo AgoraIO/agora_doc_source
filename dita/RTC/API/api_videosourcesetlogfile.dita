@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_videosourcesetlogfile">
     <title><ph keyref="videoSourceSetLogFile"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 <codeph>videoSource</codeph> 对象的日志。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置 SDK Native 层 <codeph>videoSource</codeph>
+            进程的日志。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,8 +31,11 @@
                 </dlentry>
             </dl>
             <p>双实例方法。</p>
-            <note type="attention">如需调用本方法，请在初始化 <codeph>videoSource</codeph>
-                对象后立即调用，否则可能造成输出日志不完整。</note>
+            <note type="attention"><ul>
+                <li>如需调用本方法，请在初始化 <codeph>videoSource</codeph> 对象后立即调用，否则可能造成输出日志不完整。</li>
+                <li><codeph>videoSource</codeph> 进程和主进程的默认日志文件路径相同，你需要修改文件路径，避免日志文件被覆盖。</li>
+            </ul>
+                </note>
         </section>
         <section id="parameters" conkeyref="setLogFile/parameters"/>
         <section id="return_values" conkeyref="setLogFile/return_values"/>
