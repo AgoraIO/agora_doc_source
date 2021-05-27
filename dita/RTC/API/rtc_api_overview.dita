@@ -29,7 +29,7 @@
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
                 </sthead>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="createAgoraRtcEngine"/></stentry>  
                     <stentry><ph conkeyref="createAgoraRtcEngine/shortdesc"/></stentry>
                 </strow>
@@ -53,7 +53,7 @@
                     <stentry><xref keyref="setClientRole2"/></stentry>  
                     <stentry><ph conkeyref="setClientRole2/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android ios mac windows">
                     <stentry><xref keyref="joinChannel1"/></stentry>  
                     <stentry><ph conkeyref="joinChannel1/shortdesc"/></stentry>
                 </strow>
@@ -61,7 +61,7 @@
                     <stentry><xref keyref="joinChannel2"/></stentry>
                     <stentry><ph conkeyref="joinChannel2/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android ios mac windows">
                     <stentry><xref keyref="switchChannel1"/></stentry>  
                     <stentry><ph conkeyref="switchChannel1/shortdesc"/></stentry>
                 </strow>
@@ -214,11 +214,11 @@
                     <stentry><xref keyref="setupRemoteVideo"/></stentry>
                     <stentry><ph conkeyref="setupRemoteVideo/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android ios mac windows">
                     <stentry><xref keyref="setLocalRenderMode2"/></stentry>
                     <stentry><ph conkeyref="setLocalRenderMode2/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android ios mac windows">
                     <stentry><xref keyref="setRemoteRenderMode2"/></stentry>
                     <stentry><ph conkeyref="setRemoteRenderMode2/shortdesc"/></stentry>
                 </strow>
@@ -397,7 +397,7 @@
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
                 </sthead>
-                <strow>
+                <strow props="windows mac">
                     <stentry><xref keyref="startScreenCaptureByDisplayId"/></stentry>
                     <stentry><ph conkeyref="startScreenCaptureByDisplayId/shortdesc"/></stentry>
                 </strow>
@@ -740,7 +740,7 @@
             </simpletable>
         </section>
 
-        <section id="face_detection">
+        <section id="face_detection" props="android ios windows">
             <title>人脸检测</title>
             <p props="windows">该组功能仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
@@ -765,9 +765,9 @@
             </simpletable>
         </section>
 
-        <section id="audio_routing_control">
+        <section id="audio_routing_control" props="android ios windows">
             <title>音频播放路由</title>
-            <p>该组方法仅适用于 Android 和 iOS 平台。</p>
+            <p props="windows">该组方法仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -799,7 +799,7 @@
             </simpletable>
         </section>
 
-        <section id="in-ear_monitoring">
+        <section id="in-ear_monitoring" props="android ios windows">
             <title>耳返控制</title>
             <p props="windows">该组方法仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
@@ -1160,7 +1160,7 @@
                     <stentry><xref keyref="enableEncryption"/></stentry>
                     <stentry><ph conkeyref="enableEncryption/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="registerPacketObserver"/></stentry>
                     <stentry><ph conkeyref="registerPacketObserver/shortdesc"/></stentry>
                 </strow>
@@ -1187,7 +1187,7 @@
         
         <section id="camera_control">
             <title>摄像头控制</title>
-            <simpletable>
+            <simpletable props="android ios windows">
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -1281,7 +1281,7 @@
                     <stentry><xref keyref="setPlaybackDeviceMute"/></stentry>
                     <stentry><ph conkeyref="setPlaybackDeviceMute/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="isApplicationMute"/></stentry>
                     <stentry><ph conkeyref="isApplicationMute/shortdesc"/></stentry>
                 </strow>
@@ -1309,7 +1309,7 @@
                     <stentry><xref keyref="stopDeviceTest"/></stentry>
                     <stentry><ph conkeyref="stopDeviceTest/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="IVideoDeviceCollection_getCount"/></stentry>
                     <stentry><ph conkeyref="IVideoDeviceCollection_getCount/shortdesc"/></stentry>
                 </strow>
@@ -1385,7 +1385,7 @@
                     <stentry><xref keyref="enableLoopbackRecording"/></stentry>
                     <stentry><ph conkeyref="enableLoopbackRecording/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="ios mac windows">
                     <stentry><xref keyref="setAudioSessionOperationRestriction"/></stentry>
                     <stentry><ph conkeyref="setAudioSessionOperationRestriction/shortdesc"
                         /></stentry>
@@ -1403,6 +1403,125 @@
                 <strow>
                     <stentry><xref keyref="setCameraCapturerConfiguration"/></stentry>
                     <stentry><ph conkeyref="setCameraCapturerConfiguration/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
+        
+        <section id="video_source" props="electron">
+            <title>双实例</title>
+            <p>Agora Electron SDK 提供双实例的实现方法。第二个实例用以屏幕共享，请调用下表中的方法实现对应功能。</p>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="videoSourceInitializeWithContext"/></stentry>
+                    <stentry><ph conkeyref="videoSourceInitializeWithContext/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRelease"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRelease/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceSetLogFile"/></stentry>
+                    <stentry><ph conkeyref="videoSourceSetLogFile/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceSetChannelProfile"/></stentry>
+                    <stentry><ph conkeyref="videoSourceSetChannelProfile/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceJoinChannel"/></stentry>
+                    <stentry><ph conkeyref="videoSourceJoinChannel/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceLeaveChannel"/></stentry>
+                    <stentry><ph conkeyref="videoSourceLeaveChannel/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRenewToken"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRenewToken/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceDisableAudio"/></stentry>
+                    <stentry><ph conkeyref="videoSourceDisableAudio/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceDisableVideo"/></stentry>
+                    <stentry><ph conkeyref="videoSourceDisableVideo/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableAudio"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableAudio/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableDualStreamMode"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableDualStreamMode/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableEncryption"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableEncryption/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableLocalVideo"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableLocalVideo/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableLoopbackRecording"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableLoopbackRecording/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableVideo"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableVideo/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceMuteAllRemoteAudioStreams"/></stentry>
+                    <stentry><ph conkeyref="videoSourceMuteAllRemoteAudioStreams/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceMuteAllRemoteVideoStreams"/></stentry>
+                    <stentry><ph conkeyref="videoSourceMuteAllRemoteVideoStreams/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceSetAddonLogFile"/></stentry>
+                    <stentry><ph conkeyref="videoSourceSetAddonLogFile/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceSetScreenCaptureContentHint"/></stentry>
+                    <stentry><ph conkeyref="videoSourceSetScreenCaptureContentHint/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceSetVideoEncoderConfiguration"/></stentry>
+                    <stentry><ph conkeyref="videoSourceSetVideoEncoderConfiguration/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceStartPreview"/></stentry>
+                    <stentry><ph conkeyref="videoSourceStartPreview/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceStartScreenCaptureByScreen"/></stentry>
+                    <stentry><ph conkeyref="videoSourceStartScreenCaptureByScreen/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceStartScreenCaptureByWindow"/></stentry>
+                    <stentry><ph conkeyref="videoSourceStartScreenCaptureByWindow/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceStopPreview"/></stentry>
+                    <stentry><ph conkeyref="videoSourceStopPreview/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceStopScreenCapture"/></stentry>
+                    <stentry><ph conkeyref="videoSourceStopScreenCapture/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceUpdateScreenCaptureParameters"/></stentry>
+                    <stentry><ph conkeyref="videoSourceUpdateScreenCaptureParameters/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceUpdateScreenCaptureRegion"/></stentry>
+                    <stentry><ph conkeyref="videoSourceUpdateScreenCaptureRegion/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -1446,7 +1565,7 @@
                     <stentry><xref keyref="getErrorDescription"/></stentry>
                     <stentry><ph conkeyref="getErrorDescription/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="queryInterface"/></stentry>
                     <stentry><ph conkeyref="queryInterface/shortdesc"/></stentry>
                 </strow>
