@@ -12,7 +12,7 @@
     </prolog>
     <refbody><section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="android" outputclass="language-java">public int preloadEffect(int soundId, String filePath);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadEffect:(int)soundId filePath:(NSString* _Nullable)filePath;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">preloadEffect(soundId: number, filePath: string): number</codeblock>
@@ -33,7 +33,13 @@
        </plentry>
        <plentry>
            <pt>filePath</pt>
-           <pd>播放文件的绝对路径，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example"/></codeph>。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见 <xref keyref="filePath-link" format="html" scope="external"/>。
+           <pd>
+           <p>播放文件的绝对路径，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example"/></codeph>。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见 <xref keyref="filePath-link" format="html" scope="external"/>。</p>
+           <p props="android" id="filepathlocal">本地音效文件的路径，需精确到文件名及后缀。支持本地文件的 URI
+                            地址、绝对路径或以 <codeph>/assets/</codeph> 开头的路径。通过绝对路径访问本地文件可能会遇到权限问题，Agora
+                            推荐使用 URI 地址访问本地文件。例如：<codeph><ph keyref="filePath-example"/></codeph>
+                            支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见 <xref keyref="filePath-link"
+                                format="html" scope="external"/>。</p></pd>
            </pd>
        </plentry>
    </parml>
