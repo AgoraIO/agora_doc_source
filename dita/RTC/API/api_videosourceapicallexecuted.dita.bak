@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_videosourceuserjoined">
-    <title><ph keyref="videoSourceUserJoined"/></title>
-    <shortdesc id="short"><ph id="shortdesc" conkeyref="onUserJoined/shortdesc"><?oxy-placeholder content="Provide a short description for this API."?></ph></shortdesc>
+<reference id="api_videosourceapicallexecuted">
+    <title><ph keyref="videoSourceApiCallExecuted"/></title>
+    <shortdesc id="short"><ph id="shortdesc" conkeyref="onApiCallExecuted/shortdesc"><?oxy-placeholder content="Provide a short description for this API."?></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="videoSourceUserJoined"/>
+                <indexterm keyref="videoSourceApiCallExecuted"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,8 +17,8 @@
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp"/>
                 <codeblock props="electron" outputclass="language-typescript">on(
-    evt: "videoSourceUserJoined",
-    cb: (uid: number, elapsed: number) => void
+    evt: "videoSourceApiCallExecuted",
+    cb: (api: string, err: number, result: string) => void
   ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -26,13 +26,7 @@
             </p>
         </section>
         <section id="detailed_desc">双实例回调。</section>
-        <section id="parameters"><title>参数</title>
-            <parml>
-                <plentry>
-                    <pt><?oxy-placeholder content="The name of the parameter."?></pt>
-                    <pd><?oxy-placeholder content="The description of the parameter. Please specify if the parameter is optional, output, and has a default value or value range."?></pd>
-                </plentry>
-            </parml>
+        <section id="parameters" conkeyref="onApiCallExecuted/parameters">
         </section>
     </refbody>
 </reference>

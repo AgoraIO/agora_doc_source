@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_videosourcelastmileproberesult">
-    <title><ph keyref="videoSourceLastmileProbeResult"/></title>
-    <shortdesc id="short"><ph id="shortdesc" conkeyref="onLastmileProbeResult/shortdesc"><?oxy-placeholder content="Provide a short description for this API."?></ph></shortdesc>
+<reference id="api_videosourceaudiosubscribestatechanged">
+    <title><ph keyref="videoSourceAudioSubscribeStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" conkeyref="onAudioSubscribeStateChanged/shortdesc"><?oxy-placeholder content="Provide a short description for this API."?></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="videoSourceLastmileProbeResult"/>
+                <indexterm keyref="videoSourceAudioSubscribeStateChanged"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,8 +17,14 @@
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp"/>
                 <codeblock props="electron" outputclass="language-typescript">on(
-    evt: "videoSourceLastmileProbeResult",
-    cb: (result: LastmileProbeResult) => void
+    evt: "videoSourceAudioSubscribeStateChanged",
+    cb: (
+      channel: string,
+      uid: number,
+      oldState: STREAM_SUBSCRIBE_STATE,
+      newState: STREAM_SUBSCRIBE_STATE,
+      elapseSinceLastState: number
+    ) => void
   ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -26,9 +32,15 @@
             </p>
         </section>
         <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>自从</dt>
+                    <dd>v3.1.0</dd>
+                </dlentry>
+            </dl>
             <p>双实例回调。</p>
         </section>
-        <section id="parameters" conkeyref="onLastmileProbeResult/parameters"><title>参数</title>
+        <section id="parameters" conkeyref="onAudioSubscribeStateChanged/parameters"><title>参数</title>
             <parml>
                 <plentry>
                     <pt><?oxy-placeholder content="The name of the parameter."?></pt>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_videosourceconnectionstatechanged">
-    <title><ph keyref="videoSourceConnectionStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc" conkeyref="onConnectionStateChanged/shortdesc"/></shortdesc>
+<reference id="api_videosourceremotevideotransportstats">
+    <title><ph keyref="videoSourceRemoteVideoTransportStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc" conkeyref="onRemoteVideoTransportStats/shortdesc"><?oxy-placeholder content="Provide a short description for this API."?></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="videoSourceConnectionStateChanged"/>
+                <indexterm keyref="videoSourceRemoteVideoTransportStats"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,11 +17,8 @@
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp"/>
                 <codeblock props="electron" outputclass="language-typescript">on(
-    evt: "videoSourceConnectionStateChanged",
-    cb: (
-      state: CONNECTION_STATE_TYPE,
-      reason: CONNECTION_CHANGED_REASON_TYPE
-    ) => void
+    evt: "videoSourceRemoteVideoTransportStats",
+    cb: (uid: number, delay: number, lost: number, rxKBitRate: number) => void
   ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -29,9 +26,17 @@
             </p>
         </section>
         <section id="detailed_desc">
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>该回调已被废弃，请改用 <xref keyref="videoSourceRemoteVideoStats"/>。</dd>
+                </dlentry>
+            </dl>
             <p>双实例回调。</p>
-            <p conkeyref="onConnectionStateChanged/desc"/>
+            <p conkeyref="onRemoteVideoTransportStats/desc1"/>
+            <p conkeyref="onRemoteVideoTransportStats/desc2"/>
         </section>
-        <section id="parameters" conkeyref="onConnectionStateChanged/parameters"/>
+        <section id="parameters" conkeyref="onRemoteVideoTransportStats/parameters">
+        </section>
     </refbody>
 </reference>

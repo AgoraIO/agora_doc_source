@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_videosourceaudiovolumeindication">
-    <title><ph keyref="videoSourceAudioVolumeIndication"/></title>
-    <shortdesc id="short"><ph id="shortdesc" conkeyref="onAudioVolumeIndication/shortdesc"><?oxy-placeholder content="Provide a short description for this API."?></ph></shortdesc>
+<reference id="api_videosourceaudiopublishstatechanged">
+    <title><ph keyref="videoSourceAudioPublishStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" conkeyref="onAudioPublishStateChanged/shortdesc"><?oxy-placeholder content="Provide a short description for this API."?></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="videoSourceAudioVolumeIndication"/>
+                <indexterm keyref="videoSourceAudioPublishStateChanged"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,11 +17,12 @@
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp"/>
                 <codeblock props="electron" outputclass="language-typescript">on(
-    evt: "videoSourceAudioVolumeIndication",
+    evt: "videoSourceAudioPublishStateChanged",
     cb: (
-      speakers: AudioVolumeInfo[],
-      speakerNumber: number,
-      totalVolume: number
+      channel: string,
+      oldState: STREAM_PUBLISH_STATE,
+      newState: STREAM_PUBLISH_STATE,
+      elapseSinceLastState: number
     ) => void
   ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -30,10 +31,15 @@
             </p>
         </section>
         <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>自从</dt>
+                    <dd>v3.1.0</dd>
+                </dlentry>
+            </dl>
             <p>双实例回调。</p>
-            <p/>
         </section>
-        <section id="parameters" conkeyref="onAudioVolumeIndication/parameters"><title>参数</title>
+        <section id="parameters" conkeyref="onAudioPublishStateChanged/parameters"><title>参数</title>
             <parml>
                 <plentry>
                     <pt><?oxy-placeholder content="The name of the parameter."?></pt>

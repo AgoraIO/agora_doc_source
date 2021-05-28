@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_videosourceconnectionstatechanged">
-    <title><ph keyref="videoSourceConnectionStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc" conkeyref="onConnectionStateChanged/shortdesc"/></shortdesc>
+<reference id="api_videosourcevideostopped">
+    <title><ph keyref="videoSourceVideoStopped"/></title>
+    <shortdesc id="short"><ph id="shortdesc" conkeyref="onVideoStopped/shortdesc"><?oxy-placeholder content="Provide a short description for this API."?></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="videoSourceConnectionStateChanged"/>
+                <indexterm keyref="videoSourceVideoStopped"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,22 +16,21 @@
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp"/>
-                <codeblock props="electron" outputclass="language-typescript">on(
-    evt: "videoSourceConnectionStateChanged",
-    cb: (
-      state: CONNECTION_STATE_TYPE,
-      reason: CONNECTION_CHANGED_REASON_TYPE
-    ) => void
-  ): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: "videoSourceVideoStopped", cb: () => void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>
         </section>
         <section id="detailed_desc">
+            <dl outputclass="deprecated">
+                <dlentry >
+                    <dt>弃用：</dt>
+                    <dd>从 v2.4.1 起废弃。请改用 <xref keyref="videoSourceLocalVideoStateChanged"/> 回调中的 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_STOPPED"/>(0)。</dd>
+                </dlentry>
+            </dl>
             <p>双实例回调。</p>
-            <p conkeyref="onConnectionStateChanged/desc"/>
+            <p conkeyref="onVideoStopped/desc"/>
         </section>
-        <section id="parameters" conkeyref="onConnectionStateChanged/parameters"/>
     </refbody>
 </reference>
