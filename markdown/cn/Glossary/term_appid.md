@@ -9,7 +9,7 @@ App ID 是 Agora 为开发项目生成的字符串，是项目的唯一标识。
 
 <div class="alert info">相关链接：
 	<li><a href="https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms">获取 App ID 和临时 Token</a></li>
-	<li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/faq/appid_to_token?platform=All%20Platforms">如何升级到 Token 鉴权方案？</a></li>
+	<li><a href="https://docs.agora.io/cn/faq/appid_to_token?platform=All%20Platforms">如何升级到 Token 鉴权方案？</a></li>
 </div>
 
 

@@ -6,7 +6,6 @@
     <body>
         <note type="note">
         <ul>
-            <li>自 v2.3.3 开始，Agora C++ API Reference for All Platforms 可以在 <xref href="https://kapeli.com/dash" scope="external" format="html">Dash</xref> 平台下载，详见 <xref keyref="faq-dash"/>。</li>
             <li props="windows">自 v3.0.0 开始，Agora 废弃 <codeph>RtcEngineParameters</codeph> 类。该类下所有接口均被 <xref keyref="IRtcEngine"/> 类覆盖，请使用 <apiname keyref="IRtcEngine"/> 类。</li>
             <li>在调用 API 过程中，SDK 可能会返回错误码和警告码，详见<xref href="error_rtc.md">错误码和警告码</xref>。</li>
         </ul>
@@ -319,7 +318,9 @@
 
         <section id="statistics_events">
             <title>数据统计事件</title>
-            <p>加入频道后，SDK 每隔 2 秒自动触发本组回调。我们为这些回调提供了详细的功能描述、实现方法文档，详情请参考<xref keyref="guide-in-call-quality"/>。</p>
+            <p>加入频道后，SDK 每隔 2 秒自动触发本组回调。</p>
+            <p props="ios mac windows android">我们为这些回调提供了详细的功能描述、实现方法文档，详情请参考<xref
+                    keyref="guide-in-call-quality"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>事件</stentry>
@@ -368,7 +369,8 @@
 
         <section id="multiple_channels_management">
             <title>多频道管理</title>
-            <p>我们为该组接口提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref keyref="guide-multiple-channel"/>。</p>
+            <p props="ios mac windows android">我们为该组接口提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref
+                    keyref="guide-multiple-channel"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>API</stentry>
@@ -385,13 +387,14 @@
                 <strow>
                     <stentry><xref keyref="IChannelEventHandler"/></stentry>
                     <stentry><ph conkeyref="IChannelEventHandler/shortdesc"/></stentry>
-                </strow>                   
+                </strow>
             </simpletable>
         </section>
         
         <section id="screen_capture">
             <title>屏幕共享</title>
-            <p>我们为该组方法提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref keyref="guide-screensharing"/>。</p>
+            <p props="ios mac windows android">我们为该组方法提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref
+                    keyref="guide-screensharing"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -436,8 +439,8 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry><xref keyref="startAudioMixing"/></stentry>
-                    <stentry><ph conkeyref="startAudioMixing/shortdesc"/></stentry>
+                    <stentry><xref keyref="startAudioMixing2"/></stentry>
+                    <stentry><ph conkeyref="startAudioMixing2/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="stopAudioMixing"/></stentry>
@@ -478,6 +481,10 @@
                 <strow>
                     <stentry><xref keyref="getAudioMixingDuration"/></stentry>
                     <stentry><ph conkeyref="getAudioMixingDuration/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getAudioMixingDuration2"/></stentry>
+                    <stentry><ph conkeyref="getAudioMixingDuration2/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="getAudioMixingCurrentPosition"/></stentry>
@@ -558,7 +565,19 @@
                 <strow>
                     <stentry><xref keyref="resumeAllEffects"/></stentry>
                     <stentry><ph conkeyref="resumeAllEffects/shortdesc"/></stentry>
-                </strow>             
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getEffectDuration"/></stentry>
+                    <stentry><ph conkeyref="getEffectDuration/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setEffectPosition"/></stentry>
+                    <stentry><ph conkeyref="setEffectPosition/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getEffectCurrentPosition"/></stentry>
+                    <stentry><ph conkeyref="getEffectCurrentPosition/shortdesc"/></stentry>
+                </strow> 
             </simpletable>
             <simpletable>
                 <sthead>
@@ -570,8 +589,30 @@
                     <stentry><ph conkeyref="onAudioEffectFinished/shortdesc"/></stentry>
                 </strow>   
             </simpletable>
-        </section>              
-
+        </section>  
+        
+        <section id="rhythm_player" props="android ios flutter">
+            <title>虚拟节拍器</title>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="startRhythmPlayer"/></stentry>
+                    <stentry><ph conkeyref="startRhythmPlayer/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopRhythmPlayer"/></stentry>
+                    <stentry><ph conkeyref="stopRhythmPlayer/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="configRhythmPlayer"/></stentry>
+                    <stentry><ph conkeyref="configRhythmPlayer/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
+        
 
         <section id="voice_changer_and_reverberation">
             <title>人声效果</title>
@@ -842,7 +883,8 @@
 
         <section id="stream_fallback">
             <title>视频流回退</title>
-            <p>我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref keyref="guide-fallback"/>。</p>
+            <p props="ios mac windows android">我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref
+                    keyref="guide-fallback"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -881,7 +923,8 @@
         
         <section id="pre-call_network_test">
             <title>通话前网络测试</title>
-            <p>我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref keyref="guide-lastmile-quality"/>。</p>
+            <p props="ios mac windows android">我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref
+                    keyref="guide-lastmile-quality"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -928,7 +971,7 @@
             </simpletable>
         </section>
 
-        <section id="custom_video_module">
+        <section id="custom_video_module" props="windows">
             <title>自定义视频模块</title>
             <simpletable>
                 <sthead>
@@ -942,7 +985,7 @@
             </simpletable>
         </section>
 
-        <section id="external_video_data">
+        <section id="external_video_data" props="windows">
             <title>视频自采集（仅 Push 模式）</title>
             <simpletable>
                 <sthead>
@@ -960,7 +1003,7 @@
             </simpletable>
         </section>
 
-        <section id="external_audio_data">
+        <section id="external_audio_data" props="windows">
             <title>音频自采集（仅 Push 模式）</title>
             <simpletable>
                 <sthead>
@@ -978,7 +1021,7 @@
             </simpletable>
         </section>
         
-        <section id="external_audio_sink">
+        <section id="external_audio_sink" props="windows">
             <title>音频自渲染（仅 Pull 模式）</title>
             <simpletable>
                 <sthead>
@@ -996,7 +1039,7 @@
             </simpletable>
         </section>
         
-        <section id="raw_audio_data">
+        <section id="raw_audio_data" props="windows">
             <title>原始音频数据</title>
             <simpletable>
                 <sthead>
@@ -1044,7 +1087,7 @@
             </simpletable>
         </section>
 
-        <section id="raw_video_data">
+        <section id="raw_video_data" props="windows">
             <title>原始视频数据</title>
             <simpletable>
                 <sthead>
@@ -1175,8 +1218,8 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry><xref keyref="startAudioRecording2"/></stentry>
-                    <stentry><ph conkeyref="startAudioRecording2/shortdesc"/></stentry>
+                    <stentry><xref keyref="startAudioRecording3"/></stentry>
+                    <stentry><ph conkeyref="startAudioRecording3/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="stopAudioRecording"/></stentry>
