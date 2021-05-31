@@ -849,6 +849,7 @@
           replace: boolean,
           cycle: number
           ): number</codeblock>
+      <codeblock props="ios" outputclass="language-objective-c">- (int)startAudioMixing:(NSString* _Nonnull)filePath loopback:(BOOL)loopback replace:(BOOL)replace cycle:(NSInteger)cycle;</codeblock>
   </p>
   
   <!--stopAudioMixing-->
@@ -963,7 +964,8 @@
 
   <!--playEffect3-->
   <p id="playEffect3">       
-      <codeblock props="windows" outputclass="language-cpp">virtual int playEffect(int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish, int startPos) = 0;</codeblock>   
+      <codeblock props="windows" outputclass="language-cpp">virtual int playEffect(int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish, int startPos) = 0;</codeblock>
+      <codeblock props="ios" outputclass="language-objective-c">- (int)playEffect:(int)soundId filePath:(NSString* _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain publish:(BOOL)publish startPos:(int)startPos;</codeblock>
   </p>
   
   <!--stopEffect-->
@@ -982,6 +984,7 @@
   <p id="preloadEffect">     
       <codeblock props="windows" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>
       <codeblock props="electron" outputclass="language-typescript">preloadEffect(soundId: number, filePath: string): number</codeblock>
+      <codeblock props="ios" outputclass="language-objective-c">- (int)preloadEffect:(int)soundId filePath:(NSString* _Nullable)filePath;</codeblock>
   </p>
   
   <!--unloadEffect-->
@@ -2537,6 +2540,7 @@
                             evt: 'audioMixingStateChanged',
                             cb: (state: number, err: number) => void
                             ): this;</codeblock>
+                        <codeblock props="ios" outputclass="language-objective-c">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine localAudioMixingStateDidChanged:(AgoraAudioMixingStateCode)state reason:(AgoraAudioMixingReasonCode)reason;</codeblock>
                     </p>
 
                     <!--onAudioMixingFinished-->
@@ -2551,6 +2555,7 @@
                         <codeblock props="windows" outputclass="language-cpp">virtual void onAudioEffectFinished(int soundId) {
     }</codeblock>
                         <codeblock props="electron" outputclass="language-typescript">on(evt: 'audioEffectFinished', cb: (soundId: number) => void): this;</codeblock>
+                        <codeblock props="ios" outputclass="language-objective-c">- (void)rtcEngineDidAudioEffectFinish:(AgoraRtcEngineKit* _Nonnull)engine soundId:(NSInteger)soundId;</codeblock>
                     </p>
                     
                     <!--onRemoteAudioMixingBegin-->
@@ -3432,6 +3437,7 @@
         (void)msg;
     }</codeblock>
       <codeblock props="electron" outputclass="language-typescript">on(evt: 'warning', cb: (warn: number, msg: string) => void): this;</codeblock>
+      <codeblock props="ios" outputclass="language-objective-c">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine didOccurWarning:(AgoraWarningCode)warningCode;</codeblock>
   </p>
   
   <!--onError-->
@@ -3441,6 +3447,7 @@
         (void)msg;
     }</codeblock>
       <codeblock props="electron" outputclass="language-typescript">on(evt: 'error', cb: (err: number, msg: string) => void): this;</codeblock>
+      <codeblock props="ios" outputclass="language-objective-c">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine didOccurError:(AgoraErrorCode)errorCode;</codeblock>
   </p>
 
   <!--onApiCallExecuted-->
