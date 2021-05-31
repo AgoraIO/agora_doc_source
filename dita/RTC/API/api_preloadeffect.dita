@@ -2,7 +2,11 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_preloadeffect">
     <title><ph keyref="preloadEffect"/></title>
+<<<<<<< HEAD
     <shortdesc id="short"><ph id="shortdesc">将音效文件预加载至内存。</ph></shortdesc>
+=======
+    <shortdesc id="short"><ph id="shortdesc">将音效文件加载至内存。</ph></shortdesc>
+>>>>>>> master
     <prolog>
         <metadata>
    <keywords>
@@ -11,6 +15,7 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+<<<<<<< HEAD
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public int preloadEffect(int soundId, String filePath);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadEffect:(int)soundId filePath:(NSString* _Nullable)filePath;</codeblock>
@@ -23,6 +28,14 @@
         </section>
         <section id="detailed_desc">
             <p>为保证通信畅通，请注意控制预加载音效文件的大小，并在 <apiname keyref="joinChannel1"/> 前就调用该方法完成音效预加载。</p>
+=======
+        
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/preloadEffect"/>
+        </section>
+        <section id="detailed_desc">
+            <p>为保证通信畅通，请注意控制预加载音效文件的大小，并在 <apiname keyref="joinChannel1"/>
+       前就使用该方法完成音效预加载。音频文件支持以下音频格式: mp3、aac、m4a、3gp 和 wav。</p>
+>>>>>>> master
             <note type="attention">该方法不支持在线音频文件。</note>
         </section>
         <section id="parameters"><title>参数</title>
@@ -33,6 +46,7 @@
        </plentry>
        <plentry>
            <pt>filePath</pt>
+<<<<<<< HEAD
            <pd>
            <p>播放文件的绝对路径，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example"/></codeph>。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见 <xref keyref="filePath-link" format="html" scope="external"/>。</p>
            <p props="android" id="filepathlocal">本地音效文件的路径，需精确到文件名及后缀。支持本地文件的 URI
@@ -41,6 +55,9 @@
                             支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见 <xref keyref="filePath-link"
                                 format="html" scope="external"/>。</p></pd>
            </pd>
+=======
+           <pd><p conkeyref="playEffect3/filepath"/></pd>
+>>>>>>> master
        </plentry>
    </parml>
         </section>

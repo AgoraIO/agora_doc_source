@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setcameracapturerconfiguration">
+    <title><ph keyref="setCameraCapturerConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the camera capture configuration.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="setCameraCapturerConfiguration" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setCameraCapturerConfiguration"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>For a video call or the interactive live video streaming, generally the SDK controls the camera output parameters. When the default camera capturer settings do not meet special requirements or cause performance problems, we recommend using this method to set the camera capturer configuration:<ul>
+                    <li>If the resolution or frame rate of the captured raw video data are higher than those set by <xref
+                            keyref="setVideoEncoderConfiguration"/>, processing video frames requires extra CPU and RAM usage and degrades performance. Agora recommends setting the camera capture configuration to <ph
+                            keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/>(1) to avoid such problems.</li>
+       <li>If you do not need a local video preview or are willing to sacrifice preview quality, we recommend setting <parmname>config</parmname> as <ph
+                            keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/>(1) to optimize CPU and RAM usage.</li>
+       <li>If you want better quality for the local video preview, we recommend setting <parmname>config</parmname> as <ph
+                            keyref="CAPTURER_OUTPUT_PREFERENCE_PREVIEW"/>(2).</li>
+                    <li>To customize the width and height of the video image captured by the local camera, set the camera capture configuration as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"
+                        />(3).</li>
+                </ul>
+            </p>
+   <note type="attention">Call this method before enabling the local camera. That said, you can call this method before calling <xref keyref="joinChannel1"/>, <xref keyref="enableVideo"/>, or <xref keyref="enableLocalVideo"/>, depending on which method you use to turn on your local camera.</note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+   <parml>
+       <plentry>
+  <pt>config</pt>
+  <pd>The camera capturer configuration. See <xref keyref="CameraCapturerConfiguration"/>.</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>

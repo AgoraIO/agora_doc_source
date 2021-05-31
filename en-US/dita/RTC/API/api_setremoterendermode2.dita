@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setremoterendermode2">
+    <title><ph keyref="setRemoteRenderMode2"/> [2/2]</title>
+    <shortdesc id="short"><ph id="shortdesc">Updates the display mode of the video view of a remote user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="setRemoteRenderMode2" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setRemoteRenderMode2"/>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="since">
+       <dlentry>
+  <dt>Since</dt>
+  <dd>v3.0.0</dd>
+       </dlentry>
+   </dl>
+   <p>After initializing the video view of a remote user, you can call this method to update its rendering and mirror modes. This method affects only the video view that the local user sees.</p>
+   <note outputclass="note">
+       <ul>
+  <li>Please call this<xref keyref="setupRemoteVideo"/> method after calling the method to initialize the remote view.</li>
+  <li>During a call, you can call this method as many times as necessary to update the display mode of the video view of a remote user.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+   <parml>
+       <plentry>
+  <pt>userId</pt>
+  <pd>
+      <p>Remote user ID.</p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>renderMode: The video display mode:</pt>
+  <pd>
+      <p>The rendering mode of the remote user view, see for details<xref keyref="RENDER_MODE_TYPE"/>.</p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>mirrorMode</pt>
+  <pd>
+      <p>The mirror mode of the remote user view, see for details<xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
+      <note outputclass="note">Note: The SDK disables the mirror mode by default.</note>
+  </pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
