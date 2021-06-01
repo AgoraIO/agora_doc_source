@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_preloadeffect">
     <title><ph keyref="preloadEffect"/></title>
-    <shortdesc id="short"><ph id="shortdesc">将音效文件加载至内存。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Preloads a specified audio effect file into the memory.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -22,29 +22,29 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>为保证通信畅通，请注意控制预加载音效文件的大小，并在 <apiname keyref="joinChannel1"/> 前就使用该方法完成音效预加载。 音频文件支持以下音频格式: mp3、aac、m4a、3gp 和 wav。</p>
-            <note type="attention">该方法不支持在线音频文件。</note>
+            <p>To ensure smooth communication, limit the size of the audio effect file. We recommend using this method to preload the audio effect before calling <apiname keyref="joinChannel1"/>. Supported audio formats: mp3, aac, m4a, 3gp, and wav.</p>
+            <note type="attention">This method does not support online audio effect files.</note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>soundId</pt>
-  <pd>指定音效文件的 ID。 每个音效文件均有唯一的 ID。</pd>
+  <pd>The ID of the audio effect. Each audio effect has a unique ID.</pd>
        </plentry>
        <plentry>
            <pt>filePath</pt>
            <pd>
-           <p>播放文件的绝对路径，需精确到文件名及后缀。 例如 <codeph><ph keyref="filePath-example"/></codeph>。 支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。 详见 <xref keyref="filePath-link" format="html" scope="external"/>。</p>
-           <p props="android" id="filepathlocal">本地音效文件的路径，需精确到文件名及后缀。 支持本地文件的 URI 地址、绝对路径或以 <codeph>/assets/</codeph> 开头的路径。 通过绝对路径访问本地文件可能会遇到权限问题，Agora 推荐使用 URI 地址访问本地文件。 例如：<codeph><ph keyref="filePath-example"/></codeph> 支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。 详见 <xref keyref="filePath-link"
-                                format="html" scope="external"/>。</p></pd>
+           <p>The absolute path (including the suffixes of the filename) of the local music file. For example: <codeph><ph keyref="filePath-example"/></codeph>Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link" format="html" scope="external"/>.</p>
+           <p props="android" id="filepathlocal">The absolute path (including the suffixes of the filename) of the local music file. Agora supports using a URI address, an absolute path, or a path that starts with <codeph>/assets/</codeph>. You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example: <codeph><ph keyref="filePath-example"/></codeph>Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link"
+                                format="html" scope="external"/>.</p></pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>返回值</title>
+   <title>Returns</title>
        <ul>
-  <li>0: 方法调用成功</li>
-  <li>&lt; 0: 方法调用失败</li>
+  <li>0: Success.</li>
+  <li>&lt; 0: Failure.</li>
        </ul>
         </section></refbody>
 </reference>
