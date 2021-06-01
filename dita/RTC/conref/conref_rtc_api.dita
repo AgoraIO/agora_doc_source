@@ -1035,13 +1035,13 @@
   <!--setLocalVoiceEqualization-->
   <p id="setLocalVoiceEqualization">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceEqualization(AUDIO_EQUALIZATION_BAND_FREQUENCY bandFrequency, int bandGain) = 0;</codeblock>
-      <codeblock props="electron" outputclass="language-typescript">etLocalVoiceEqualization(bandFrequency: number, bandGain: number): number</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setLocalVoiceEqualization(bandFrequency: AUDIO_EQUALIZATION_BAND_FREQUENCY, bandGain: number): number</codeblock>
   </p>
   
   <!--setLocalVoiceReverb-->
   <p id="setLocalVoiceReverb">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceReverb(AUDIO_REVERB_TYPE reverbKey, int value) = 0;</codeblock>
-      <codeblock props="electron" outputclass="language-typescript">setLocalVoiceReverb(reverbKey: number, value: number): number</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setLocalVoiceReverb(reverbKey: AUDIO_REVERB_TYPE, value: number): number</codeblock>
   </p>
   
   <!--setVoiceBeautifierPreset-->
@@ -1408,7 +1408,11 @@
   <!--startAudioRecording2-->
   <p id="startAudioRecording2">       
       <codeblock props="windows" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, int sampleRate, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
-      <codeblock props="electron" outputclass="language-typescript">startAudioRecording(filePath: string, sampleRate: number, quality: number): number</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">startAudioRecording(
+  filePath: string,
+  sampleRate: number,
+  quality: AUDIO_RECORDING_QUALITY_TYPE
+): number </codeblock>
   </p>
   
   <!--stopAudioRecording-->
@@ -1741,7 +1745,7 @@
   <!--setLogFilter-->
   <p id="setLogFilter">       
       <codeblock props="windows" outputclass="language-cpp">virtual int setLogFilter(unsigned int filter) = 0;</codeblock>
-      <codeblock props="electron" outputclass="language-typescript">setLogFilter(filter: number): number</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">setLogFilter(filter: LOG_FILTER_TYPE): number</codeblock>
   </p>
   
   <!--setLogFileSize-->
@@ -2946,9 +2950,9 @@
         (void)status;
     }</codeblock>
       <codeblock props="electron" outputclass="language-typescript">on(
-          evt: 'streamInjectedStatus',
-          cb: (url: string, uid: number, status: number) => void
-          ): this;</codeblock>
+    evt: "streamInjectedStatus",
+    cb: (channelId: string, url: string, uid: number, status: INJECT_STREAM_STATUS) => void
+  ): this;</codeblock>
   </p>
   
   <!--IChannel_onLocalPublishFallbackToAudioOnly-->
@@ -3291,9 +3295,9 @@
         (void)status;
     }</codeblock>
       <codeblock props="electron" outputclass="language-typescript">on(
-          evt: 'streamInjectStatus',
-          cb: (url: string, uid: number, status: number) => void
-          ): this;</codeblock>
+    evt: "streamInjectedStatus",
+    cb: (url: string, uid: number, status: INJECT_STREAM_STATUS) => void
+  ): this;</codeblock>
   </p>
 
   <!--onCameraFocusAreaChanged-->
@@ -3339,7 +3343,7 @@
     }</codeblock>
       <codeblock props="electron" outputclass="language-typescript">on(
           evt: 'audioDeviceStateChanged',
-          cb: (deviceId: string, deviceType: number, deviceState: number) => void
+          cb: (deviceId: string, deviceType: number, deviceState: MEDIA_DEVICE_STATE_TYPE) => void
           ): this;</codeblock>
   </p>
 
@@ -3450,7 +3454,10 @@
         (void)api;
         (void)result;
     }</codeblock>
-      <codeblock props="electron" outputclass="language-typescript">on(evt: 'apiCallExecuted', cb: (api: string, err: number) => void): this;</codeblock>
+      <codeblock props="electron" outputclass="language-typescript">on(
+    evt: "apiCallExecuted",
+    cb: (api: string, err: number, result: string) => void
+  ): this;</codeblock>
   </p>
   
   <!--onMediaEngineLoadSuccess-->
