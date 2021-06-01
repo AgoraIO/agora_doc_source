@@ -14,7 +14,7 @@
         <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public int playEffect(int soundId, String filePath, int loopCount, double pitch, double pan, double gain, boolean publish, int startPos);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)playEffect:(int)soundId filePath:(NSString* _Nullable)filePath loopCount:(int)loopCount pitch:(double)pitch pan:(double)pan gain:(double)gain publish:(BOOL)publish startPos:(int)startPos;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int playEffect(int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish, int startPos) = 0;</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">virtual int playEffect(int soundId, const char* filePath, int loopCount, double pitch, double pan, int gain, bool publish = false, int startPos = 0) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">playEffect(soundId: number, filePath: string, loopCount: number, pitch: number, pan: number, gain: number, publish: number): number</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
@@ -42,9 +42,9 @@
            <pd><p id="filepath" props="windows ios">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <codeph><ph
                                     keyref="filePath-example"/></codeph>Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link" format="html"
                                 scope="external"/>.</p>
-                        <p props="android" id="filePathboth">播放文件的路径，需精确到文件名及后缀。 支持在线文件的 URL 地址，本地文件的 URI 地址、绝对路径或以 <codeph>/assets/</codeph> 开头的路径。 通过绝对路径访问本地文件可能会遇到权限问题，Agora 推荐使用 URI 地址访问本地文件。 例如：<codeph><ph
-                                    keyref="filePath-example"/></codeph>。 Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. 详见 <xref keyref="filePath-link" format="html"
-                                scope="external"/>。</p>
+                        <p props="android" id="filePathboth">The absolute path (including the suffixes of the filename) of the local music file. Agora supports using a URI address, an absolute path, or a path that starts with <codeph>/assets/</codeph>. You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example: <codeph><ph
+                                    keyref="filePath-example"/></codeph>. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link" format="html"
+                                scope="external"/>.</p>
                <note type="attention">If you preloaded an audio effect into memory by calling <xref keyref="preloadEffect"/>, ensure that this parameter is set to the same value as <parmname>filePath</parmname> in <apiname keyref="preloadEffect"/>.</note>
            </pd>
        </plentry>
