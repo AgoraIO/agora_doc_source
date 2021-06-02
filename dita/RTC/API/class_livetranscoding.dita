@@ -5,7 +5,86 @@
     <shortdesc id="short"><ph id="shortdesc">CDN 直播推流的转码属性。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-   <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/LiveTranscoding"/>
+            <p outputclass="codeblock">
+<codeblock props="windows" outputclass="language-cpp">typedef struct LiveTranscoding {
+    int width;
+    int height;
+    int videoBitrate;
+    int videoFramerate;
+    
+    bool lowLatency;
+    
+    int videoGop;
+    VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
+    unsigned int backgroundColor;
+    unsigned int userCount;
+    TranscodingUser *transcodingUsers;
+    const char *transcodingExtraInfo;
+    RtcImage* watermark;
+    
+    AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
+    int audioBitrate;
+    int audioChannels;
+    
+    LiveTranscoding()
+    : width(360)
+    , height(640)
+    , videoBitrate(400)
+    , videoFramerate(15)
+    , lowLatency(false)
+    , backgroundColor(0x000000)
+    , videoGop(30)
+    , videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH)
+    , userCount(0)
+    , transcodingUsers(nullptr)
+    , transcodingExtraInfo(nullptr)
+    , watermark(nullptr)
+    , audioSampleRate(AUDIO_SAMPLE_RATE_48000)
+    , audioBitrate(48)
+    , audioChannels(1)
+    {}
+    } LiveTranscoding;</codeblock>
+<codeblock props="rust" outputclass="language-rust">pub struct LiveTranscoding {
+    pub width: ::std::os::raw::c_int,
+    pub height: ::std::os::raw::c_int,
+    pub videoBitrate: ::std::os::raw::c_int,
+    pub videoFramerate: ::std::os::raw::c_int,
+    pub lowLatency: BOOL,
+    pub videoGop: ::std::os::raw::c_int,
+    pub videoCodecProfile: VIDEO_CODEC_PROFILE_TYPE,
+    pub backgroundColor: ::std::os::raw::c_uint,
+    pub userCount: ::std::os::raw::c_uint,
+    pub transcodingUsers: *mut TranscodingUser,
+    pub transcodingExtraInfo: *const ::std::os::raw::c_char,
+    pub metadata: *const ::std::os::raw::c_char,
+    pub watermark: *mut RtcImage,
+    pub backgroundImage: *mut RtcImage,
+    pub audioSampleRate: AUDIO_SAMPLE_RATE_TYPE,
+    pub audioBitrate: ::std::os::raw::c_int,
+    pub audioChannels: ::std::os::raw::c_int,
+    pub audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE,
+    }</codeblock>
+<codeblock props="electron" outputclass="language-typescript">export interface LiveTranscoding {
+    width: number;
+    height: number;
+    videoBitrate: number;
+    videoFrameRate: number;
+    lowLatency: boolean;
+    videoGop: number;
+    videoCodecProfile: VIDEO_CODEC_PROFILE_TYPE;
+    videoCodecType: VIDEO_CODEC_TYPE_FOR_STREAM;
+    backgroundColor: number;
+    userCount: number;
+    audioSampleRate: number;
+    audioChannels: number;
+    audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE;
+    audioBitrate: number;
+    transcodingExtraInfo: string;
+    watermark: RtcImage;
+    backgroundImage: RtcImage;
+    transcodingUsers: Array&lt;TranscodingUser&gt;
+    }</codeblock>
+            </p>
         </section>
         <section id="parameters">
    <title><text conref = "../conref/conref_api_metadata.dita#metadata/property"/></title>

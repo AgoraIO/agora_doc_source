@@ -16,18 +16,16 @@
         </section>
         <section id="detailed_desc">
    
-   <p>启用声卡采集功能后，声卡播放的声音会被合到本地音频流中，从而可以发送到远端。</p>
-   <p>
-       <note type="attention">
+   <p id="desc">启用声卡采集功能后，声卡播放的声音会被合到本地音频流中，从而可以发送到远端。</p>
+       <note type="attention" id="note">
   <ul id="ul_pjq_swq_t4b">
       <li props="windows">该方法仅适用于 macOS 和 Windows 平台。</li>
-      <li props="windows mac">macOS 系统默认声卡不支持采集功能，如需开启此功能需要 App
+      <li props="windows mac electron">macOS 系统默认声卡不支持采集功能，如需开启此功能需要 App
  自己启用一个虚拟声卡，并将该虚拟声卡的名字作为 deviceName 传入 SDK。 Agora 测试并推荐 soundflower
  作为虚拟声卡。</li>
       <li>该方法在加入频道前后都能调用。</li>
   </ul>
        </note>
-   </p>
         </section>
         <section id="parameters"><title>参数</title>     
    <parml>
@@ -44,5 +42,13 @@
       "Soundflower" 作为参数，SDK 会找到对应的虚拟声卡设备，并开始采集。</pd>
        </plentry>
    </parml>
-        </section></refbody>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。 </li>
+            </ul>
+        </section>
+    </refbody>
 </reference>

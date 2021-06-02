@@ -6,7 +6,6 @@
     <body>
         <note type="note">
         <ul>
-            <li>自 v2.3.3 开始，Agora C++ API Reference for All Platforms 可以在 <xref href="https://kapeli.com/dash" scope="external" format="html">Dash</xref> 平台下载，详见 <xref keyref="faq-dash"/>。</li>
             <li props="windows">自 v3.0.0 开始，Agora 废弃 <codeph>RtcEngineParameters</codeph> 类。该类下所有接口均被 <xref keyref="IRtcEngine"/> 类覆盖，请使用 <apiname keyref="IRtcEngine"/> 类。</li>
             <li>在调用 API 过程中，SDK 可能会返回错误码和警告码，详见<xref href="error_rtc.md">错误码和警告码</xref>。</li>
         </ul>
@@ -29,7 +28,7 @@
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
                 </sthead>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="createAgoraRtcEngine"/></stentry>  
                     <stentry><ph conkeyref="createAgoraRtcEngine/shortdesc"/></stentry>
                 </strow>
@@ -53,7 +52,7 @@
                     <stentry><xref keyref="setClientRole2"/></stentry>  
                     <stentry><ph conkeyref="setClientRole2/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android ios mac windows">
                     <stentry><xref keyref="joinChannel1"/></stentry>  
                     <stentry><ph conkeyref="joinChannel1/shortdesc"/></stentry>
                 </strow>
@@ -61,7 +60,7 @@
                     <stentry><xref keyref="joinChannel2"/></stentry>
                     <stentry><ph conkeyref="joinChannel2/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android ios mac windows">
                     <stentry><xref keyref="switchChannel1"/></stentry>  
                     <stentry><ph conkeyref="switchChannel1/shortdesc"/></stentry>
                 </strow>
@@ -214,11 +213,11 @@
                     <stentry><xref keyref="setupRemoteVideo"/></stentry>
                     <stentry><ph conkeyref="setupRemoteVideo/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android ios mac windows">
                     <stentry><xref keyref="setLocalRenderMode2"/></stentry>
                     <stentry><ph conkeyref="setLocalRenderMode2/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android ios mac windows">
                     <stentry><xref keyref="setRemoteRenderMode2"/></stentry>
                     <stentry><ph conkeyref="setRemoteRenderMode2/shortdesc"/></stentry>
                 </strow>
@@ -319,7 +318,9 @@
 
         <section id="statistics_events">
             <title>数据统计事件</title>
-            <p>加入频道后，SDK 每隔 2 秒自动触发本组回调。我们为这些回调提供了详细的功能描述、实现方法文档，详情请参考<xref keyref="guide-in-call-quality"/>。</p>
+            <p>加入频道后，SDK 每隔 2 秒自动触发本组回调。</p>
+            <p props="ios mac windows android">我们为这些回调提供了详细的功能描述、实现方法文档，详情请参考<xref
+                    keyref="guide-in-call-quality"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>事件</stentry>
@@ -368,7 +369,8 @@
 
         <section id="multiple_channels_management">
             <title>多频道管理</title>
-            <p>我们为该组接口提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref keyref="guide-multiple-channel"/>。</p>
+            <p props="ios mac windows android">我们为该组接口提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref
+                    keyref="guide-multiple-channel"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>API</stentry>
@@ -385,19 +387,20 @@
                 <strow>
                     <stentry><xref keyref="IChannelEventHandler"/></stentry>
                     <stentry><ph conkeyref="IChannelEventHandler/shortdesc"/></stentry>
-                </strow>                   
+                </strow>
             </simpletable>
         </section>
         
         <section id="screen_capture">
             <title>屏幕共享</title>
-            <p>我们为该组方法提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref keyref="guide-screensharing"/>。</p>
+            <p props="ios mac windows android">我们为该组方法提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref
+                    keyref="guide-screensharing"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
                 </sthead>
-                <strow>
+                <strow props="windows mac">
                     <stentry><xref keyref="startScreenCaptureByDisplayId"/></stentry>
                     <stentry><ph conkeyref="startScreenCaptureByDisplayId/shortdesc"/></stentry>
                 </strow>
@@ -778,7 +781,7 @@
             </simpletable>
         </section>
 
-        <section id="face_detection">
+        <section id="face_detection" props="android ios windows">
             <title>人脸检测</title>
             <p props="windows">该组功能仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
@@ -803,9 +806,9 @@
             </simpletable>
         </section>
 
-        <section id="audio_routing_control">
+        <section id="audio_routing_control" props="android ios windows">
             <title>音频播放路由</title>
-            <p>该组方法仅适用于 Android 和 iOS 平台。</p>
+            <p props="windows">该组方法仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -837,7 +840,7 @@
             </simpletable>
         </section>
 
-        <section id="in-ear_monitoring">
+        <section id="in-ear_monitoring" props="android ios windows">
             <title>耳返控制</title>
             <p props="windows">该组方法仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
@@ -880,7 +883,8 @@
 
         <section id="stream_fallback">
             <title>视频流回退</title>
-            <p>我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref keyref="guide-fallback"/>。</p>
+            <p props="ios mac windows android">我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref
+                    keyref="guide-fallback"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -919,7 +923,8 @@
         
         <section id="pre-call_network_test">
             <title>通话前网络测试</title>
-            <p>我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref keyref="guide-lastmile-quality"/>。</p>
+            <p props="ios mac windows android">我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref
+                    keyref="guide-lastmile-quality"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -966,7 +971,7 @@
             </simpletable>
         </section>
 
-        <section id="custom_video_module">
+        <section id="custom_video_module" props="windows">
             <title>自定义视频模块</title>
             <simpletable>
                 <sthead>
@@ -980,7 +985,7 @@
             </simpletable>
         </section>
 
-        <section id="external_video_data">
+        <section id="external_video_data" props="windows">
             <title>视频自采集（仅 Push 模式）</title>
             <simpletable>
                 <sthead>
@@ -998,7 +1003,7 @@
             </simpletable>
         </section>
 
-        <section id="external_audio_data">
+        <section id="external_audio_data" props="windows">
             <title>音频自采集（仅 Push 模式）</title>
             <simpletable>
                 <sthead>
@@ -1016,7 +1021,7 @@
             </simpletable>
         </section>
         
-        <section id="external_audio_sink">
+        <section id="external_audio_sink" props="windows">
             <title>音频自渲染（仅 Pull 模式）</title>
             <simpletable>
                 <sthead>
@@ -1034,7 +1039,7 @@
             </simpletable>
         </section>
         
-        <section id="raw_audio_data">
+        <section id="raw_audio_data" props="windows">
             <title>原始音频数据</title>
             <simpletable>
                 <sthead>
@@ -1082,7 +1087,7 @@
             </simpletable>
         </section>
 
-        <section id="raw_video_data">
+        <section id="raw_video_data" props="windows">
             <title>原始视频数据</title>
             <simpletable>
                 <sthead>
@@ -1198,7 +1203,7 @@
                     <stentry><xref keyref="enableEncryption"/></stentry>
                     <stentry><ph conkeyref="enableEncryption/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="registerPacketObserver"/></stentry>
                     <stentry><ph conkeyref="registerPacketObserver/shortdesc"/></stentry>
                 </strow>
@@ -1225,7 +1230,7 @@
         
         <section id="camera_control">
             <title>摄像头控制</title>
-            <simpletable>
+            <simpletable props="android ios windows">
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -1319,7 +1324,7 @@
                     <stentry><xref keyref="setPlaybackDeviceMute"/></stentry>
                     <stentry><ph conkeyref="setPlaybackDeviceMute/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="isApplicationMute"/></stentry>
                     <stentry><ph conkeyref="isApplicationMute/shortdesc"/></stentry>
                 </strow>
@@ -1347,7 +1352,7 @@
                     <stentry><xref keyref="stopDeviceTest"/></stentry>
                     <stentry><ph conkeyref="stopDeviceTest/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="IVideoDeviceCollection_getCount"/></stentry>
                     <stentry><ph conkeyref="IVideoDeviceCollection_getCount/shortdesc"/></stentry>
                 </strow>
@@ -1423,7 +1428,7 @@
                     <stentry><xref keyref="enableLoopbackRecording"/></stentry>
                     <stentry><ph conkeyref="enableLoopbackRecording/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="ios mac windows">
                     <stentry><xref keyref="setAudioSessionOperationRestriction"/></stentry>
                     <stentry><ph conkeyref="setAudioSessionOperationRestriction/shortdesc"
                         /></stentry>
@@ -1441,6 +1446,300 @@
                 <strow>
                     <stentry><xref keyref="setCameraCapturerConfiguration"/></stentry>
                     <stentry><ph conkeyref="setCameraCapturerConfiguration/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
+        
+        <section id="video_source" props="electron">
+            <title>双实例</title>
+            <p>Agora Electron SDK 提供双实例的实现方法。第二个实例用以屏幕共享，请调用下表中的方法实现对应功能。</p>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="videoSourceInitializeWithContext"/></stentry>
+                    <stentry><ph conkeyref="videoSourceInitializeWithContext/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRelease"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRelease/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceSetLogFile"/></stentry>
+                    <stentry><ph conkeyref="videoSourceSetLogFile/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceSetChannelProfile"/></stentry>
+                    <stentry><ph conkeyref="videoSourceSetChannelProfile/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceJoinChannel"/></stentry>
+                    <stentry><ph conkeyref="videoSourceJoinChannel/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceLeaveChannel"/></stentry>
+                    <stentry><ph conkeyref="videoSourceLeaveChannel/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRenewToken"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRenewToken/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceDisableAudio"/></stentry>
+                    <stentry><ph conkeyref="videoSourceDisableAudio/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceDisableVideo"/></stentry>
+                    <stentry><ph conkeyref="videoSourceDisableVideo/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableAudio"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableAudio/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableDualStreamMode"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableDualStreamMode/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableEncryption"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableEncryption/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableLocalAudio"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableLocalAudio/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableLocalVideo"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableLocalVideo/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableLoopbackRecording"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableLoopbackRecording/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceEnableVideo"/></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableVideo/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceMuteAllRemoteAudioStreams"/></stentry>
+                    <stentry><ph conkeyref="videoSourceMuteAllRemoteAudioStreams/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceMuteAllRemoteVideoStreams"/></stentry>
+                    <stentry><ph conkeyref="videoSourceMuteAllRemoteVideoStreams/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceSetAddonLogFile"/></stentry>
+                    <stentry><ph conkeyref="videoSourceSetAddonLogFile/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceSetScreenCaptureContentHint"/></stentry>
+                    <stentry><ph conkeyref="videoSourceSetScreenCaptureContentHint/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceSetVideoEncoderConfiguration"/></stentry>
+                    <stentry><ph conkeyref="videoSourceSetVideoEncoderConfiguration/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceStartPreview"/></stentry>
+                    <stentry><ph conkeyref="videoSourceStartPreview/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceStartScreenCaptureByScreen"/></stentry>
+                    <stentry><ph conkeyref="videoSourceStartScreenCaptureByScreen/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceStartScreenCaptureByWindow"/></stentry>
+                    <stentry><ph conkeyref="videoSourceStartScreenCaptureByWindow/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceStopPreview"/></stentry>
+                    <stentry><ph conkeyref="videoSourceStopPreview/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceStopScreenCapture"/></stentry>
+                    <stentry><ph conkeyref="videoSourceStopScreenCapture/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceUpdateScreenCaptureParameters"/></stentry>
+                    <stentry><ph conkeyref="videoSourceUpdateScreenCaptureParameters/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceUpdateScreenCaptureRegion"/></stentry>
+                    <stentry><ph conkeyref="videoSourceUpdateScreenCaptureRegion/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+            <p>下表为以上双实例方法对应的回调。</p>
+            <simpletable>
+                <sthead>
+                    <stentry>回调</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="videoSourceJoinChannelSuccess"/></stentry>
+                    <stentry><ph conkeyref="videoSourceJoinChannelSuccess/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceOnLeaveChannel"/></stentry>
+                    <stentry><ph conkeyref="videoSourceOnLeaveChannel/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceLocalAudioStats"/></stentry>
+                    <stentry><ph conkeyref="videoSourceLocalAudioStats/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceLocalVideoStats"/></stentry>
+                    <stentry><ph conkeyref="videoSourceLocalVideoStats/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceVideoSizeChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceVideoSizeChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceApiCallExecuted"/></stentry>
+                    <stentry><ph conkeyref="videoSourceApiCallExecuted/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceApiError"/></stentry>
+                    <stentry><ph conkeyref="videoSourceApiError/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceWarning"/></stentry>
+                    <stentry><ph conkeyref="videoSourceWarning/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceError"/></stentry>
+                    <stentry><ph conkeyref="videoSourceError/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRejoinChannelSuccess"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRejoinChannelSuccess/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRtcStats"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRtcStats/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRemoteVideoStats"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteVideoStats/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRemoteAudioStats"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteAudioStats/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRemoteVideoTransportStats"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteVideoTransportStats/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRemoteAudioTransportStats"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteAudioTransportStats/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceAudioDeviceStateChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceAudioDeviceStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceVideoDeviceStateChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceVideoDeviceStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceNetworkQuality"/></stentry>
+                    <stentry><ph conkeyref="videoSourceNetworkQuality/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceFirstLocalVideoFrame"/></stentry>
+                    <stentry><ph conkeyref="videoSourceFirstLocalVideoFrame/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceFirstRemoteVideoFrame"/></stentry>
+                    <stentry><ph conkeyref="videoSourceFirstRemoteVideoFrame/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceUserOffline"/></stentry>
+                    <stentry><ph conkeyref="videoSourceUserOffline/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceUserEnableVideo"/></stentry>
+                    <stentry><ph conkeyref="videoSourceUserEnableVideo/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceUserEnableLocalVideo"/></stentry>
+                    <stentry><ph conkeyref="videoSourceUserEnableLocalVideo/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceCameraReady"/></stentry>
+                    <stentry><ph conkeyref="videoSourceCameraReady/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceVideoStopped"/></stentry>
+                    <stentry><ph conkeyref="videoSourceVideoStopped/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceConnectionLost"/></stentry>
+                    <stentry><ph conkeyref="videoSourceConnectionLost/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceConnectionInterrupted"/></stentry>
+                    <stentry><ph conkeyref="videoSourceConnectionInterrupted/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceConnectionBanned"/></stentry>
+                    <stentry><ph conkeyref="videoSourceConnectionBanned/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceMediaEngineStartCallSuccess"/></stentry>
+                    <stentry><ph conkeyref="videoSourceMediaEngineStartCallSuccess/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRequestToken"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRequestToken/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceFirstRemoteAudioFrame"/></stentry>
+                    <stentry><ph conkeyref="videoSourceFirstRemoteAudioFrame/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRemoteVideoStateChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteVideoStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceTokenPrivilegeWillExpire"/></stentry>
+                    <stentry><ph conkeyref="videoSourceTokenPrivilegeWillExpire/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceConnectionStateChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceConnectionStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceLocalVideoStateChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceLocalVideoStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceLocalAudioStateChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceLocalAudioStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceRemoteAudioStateChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteAudioStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceAudioPublishStateChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceAudioPublishStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceVideoPublishStateChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceVideoPublishStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceAudioSubscribeStateChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceAudioSubscribeStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceVideoSubscribeStateChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceVideoSubscribeStateChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -1484,7 +1783,7 @@
                     <stentry><xref keyref="getErrorDescription"/></stentry>
                     <stentry><ph conkeyref="getErrorDescription/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="queryInterface"/></stentry>
                     <stentry><ph conkeyref="queryInterface/shortdesc"/></stentry>
                 </strow>
