@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiorecording2">
-    <title><ph keyref="startAudioRecording2"/></title>
+    <title><ph keyref="startAudioRecording2"/> [2/2]</title>
     <shortdesc id="short"><ph id="shortdesc">开始客户端录音。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -12,28 +12,23 @@
     </prolog>
     <refbody><section id="prototype">
         
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/startAudioRecording2"/>
+        <p conref="../conref/conref_rtc_api.dita#apidef/startAudioRecording2"/>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="deprecated">
-                <dlentry>
-                    <dt>弃用：</dt>
-                    <dd>自 v3.4.0 废弃，请改用 <xref keyref="startAudioRecording3"/>。</dd>
-                </dlentry>
-            </dl>
             <dl outputclass="since">
                 <dlentry>
                     <dt>自从</dt>
-                    <dd>v2.9.1。该方法取代 <xref keyref="startAudioRecording1"/>。</dd>
+                    <dd>v2.9.1。该方法取代 <xref keyref="startAudioRecording1"></xref>[1/2]。</dd>
                 </dlentry>
-            </dl>            
+            </dl>
+            
    <p>Agora SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内所有用户的音频，并得到一个包含所有用户声音的录音文件。录音文件格式可以为:
   <ul>
       <li>.wav: 文件大，音质保真度较高。</li>
       <li>.aac: 文件小，音质保真度较低。</li>
   </ul>
        </p>
-   <note type="attention">
+   <note outputclass="note">
        <ul>
   <li>请确保你在该方法中指定的路径存在并且可写。</li>
   <li>该接口需在 <apiname keyref="joinChannel1"/> 之后调用。如果调用 <xref keyref="leaveChannel"/> 时还在录音，录音会自动停止。</li>

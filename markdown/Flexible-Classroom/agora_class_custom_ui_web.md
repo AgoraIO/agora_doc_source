@@ -66,7 +66,7 @@ UIKit 中提供灵动课堂的 UI 组件代码，并引入开源工具 [Storyboo
 
 3. Storybook 中的 UI 调整均基于 Mock 数据，能够帮助你根据组件属性快速查看 UI 展示。如果需要针对真实场景调整 UI，建议参考以下步骤通过 Agora Classroom SDK 开发模式调整 UI。
 
-   1. 把项目主目录和 `packages/agora-classroom-sdk` 目录下的 `env.example` 重命名为 `.env`，然后在 `.env` 文件中填写你的 Agora App ID，并将 `REACT_APP_AGORA_APP_SDK_DOMAIN` 设为 `https://api-test.agora.io/preview`。
+   1. 把项目根目录和 `packages/agora-classroom-sdk` 目录下的 `env.example` 重命名为 `.env`，然后在 `.env` 文件中填写你的 Agora App ID，并将 `REACT_APP_AGORA_APP_SDK_DOMAIN` 设为 `https://api-test.agora.io/preview`。
 
    2. 在项目主目录下通过以下命令以开发模式运行灵动课堂。
 

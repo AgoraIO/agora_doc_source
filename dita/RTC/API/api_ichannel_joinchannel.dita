@@ -12,7 +12,7 @@
     </prolog>
     <refbody><section id="prototype">
         
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/IChannel_joinChannel"/>
+        <p conref="../conref/conref_rtc_api.dita#apidef/IChannel_joinChannel"/>
         </section>
         <section id="detailed_desc">
    
@@ -21,13 +21,11 @@
        <tgroup cols="2">
   <colspec colnum="1" colname="col1"/>
   <colspec colnum="2" colname="col2"/>
-           <thead>
-               <row>
-                   <entry><apiname keyref="IChannel_joinChannel">IChannel::joinChannel</apiname></entry>
-                   <entry><apiname keyref="joinChannel1">IRtcEngine::joinChannel</apiname></entry>
-               </row>
-           </thead>
-           <tbody>
+  <tbody>
+      <row>
+ <entry><apiname keyref="IChannel_joinChannel">IChannel::joinChannel</apiname></entry>
+ <entry><apiname keyref="joinChannel1">IRtcEngine::joinChannel</apiname></entry>
+      </row>
       <row>
  <entry>无 <parmname>channelId</parmname> 参数。因为创建 <xref keyref="IChannel"/> 对象时已指定了 <parmname>channelId</parmname>。 </entry>
  <entry>需要填入可以标识频道的 <parmname>channelId</parmname>。 </entry>
@@ -45,7 +43,7 @@ keyref="IChannel_publish"/> 方法进行发布。 </entry>
        </tgroup>
    </table>
    <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <codeph>mute</codeph> 方法实现。</p>
-   <note type="attention">
+   <note outputclass="note">
        <ul>
   <li>该方法不支持相同的用户重复加入同一个频道。</li>
   <li>我们建议不同频道中使用不同的 UID。</li>
@@ -64,7 +62,7 @@ keyref="IChannel_publish"/> 方法进行发布。 </entry>
   <pd/>
        </plentry>
        <plentry>
-  <pt>uid</pt>
+  <pt><ph keyref="uid"/></pt>
   <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位无符号整数，建议设置范围：1 到 21 到 2<sup>32</sup>-1如果不指定（即设为 0），SDK 会自动分配一个，并在 <xref keyref="IChannel_onJoinChannelSuccess"/> 回调中返回，App 层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
        </plentry>
        <plentry conkeyref="joinChannel2/options">

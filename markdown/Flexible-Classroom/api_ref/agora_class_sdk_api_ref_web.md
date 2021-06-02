@@ -122,7 +122,7 @@ export type LaunchOption = {
   roomName: string,
   listener: ListenerCallback,
   pretest: boolean,
-  rtmUid: string
+  rtmUid: string,
   rtmToken: string,
   language: LanguageEnum,
   startTime: number,
@@ -174,7 +174,7 @@ export type CourseWareItem = {
   taskToken?: string,
   taskProgress?: NetlessTaskProgress
 }
- 
+
 export type CourseWareList = CourseWareItem[]
 ```
 
@@ -182,7 +182,7 @@ export type CourseWareList = CourseWareItem[]
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | 课件名称，用于显示，长度在 64 字节以内。                     |
 | `resourceUuid` | 课件 uuid。这是资源的唯一标识符。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `ext`          | 课件后缀，决定文件类型。                                     |
+| `ext`          | 课件后缀。                                     |
 | `size`         | 课件大小，单位为字节。                                       |
 | `updateTime`   | 课件最后被修改的时间。                                       |
 | `conversion`   | 文件转换配置对象，包含以下字段：<ul><li>`type`: 转换类型：</li><ul><li>`"dynamic"`: 转换为静态图片。</li><li>`"static"`: 转换为动态 HTML。</li></ul></ul> |

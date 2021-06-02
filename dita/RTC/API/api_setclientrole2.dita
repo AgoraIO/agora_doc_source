@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setclientrole2">
-    <title><ph keyref="setClientRole2"/></title>
+    <title><ph keyref="setClientRole2"/>[2/2]</title>
     <shortdesc id="short"><ph id="shortdesc">设置直播场景下的用户角色和级别。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -12,7 +12,7 @@
     </prolog>
     <refbody><section id="prototype">
         
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setClientRole2"/>
+        <p conref="../conref/conref_rtc_api.dita#apidef/setClientRole2"/>
         </section>
         <section id="detailed_desc">
    
@@ -27,11 +27,11 @@
       <li>本地触发 <xref keyref="onClientRoleChanged"/> 回调。</li>
       <li>远端触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/> 回调。</li>
    </ul></p>
-   <p>该方法与 <xref keyref="setClientRole1"/> 的区别在于，该方法还支持设置用户级别。<ul id="diff">
+   <p>该方法与 <xref keyref="setClientRole1"/>[1/2] 的区别在于，该方法还支持设置用户级别。<ul id="diff">
       <li>用户角色（<parmname>role</parmname>）确定用户在 SDK 层的权限，包含是否可以发送流、是否可以接收流、是否可以推流到 CDN 等。</li>
       <li>用户级别（<parmname>level</parmname>）需要与角色结合使用，确定用户在其权限范围内，可以操作和享受到的服务级别。例如对于观众，选择接收低延时还是超低延时的视频流。不同的级别会影响计费。</li>
     </ul></p>
-   <note type="attention">该方法仅在频道场景为直播（<xref keyref="setChannelProfile"/> 中 <parmname>profile</parmname> 设为 <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>）时生效。
+   <note outputclass="note">该方法仅在频道场景为直播（<xref keyref="setChannelProfile"/> 中 <parmname>profile</parmname> 设为 <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>）时生效。
        </note>
         </section>
         <section id="parameters"><title>参数</title>

@@ -10,23 +10,14 @@
    </keywords>
         </metadata>
     </prolog>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp"/>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: "readyToSendMetadata", cb: (metadata: Metadata) => void): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+    <refbody><section id="prototype">
+        
+        <p conref="../conref/conref_rtc_api.dita#apidef/onReadyToSendMetadata"/>
         </section>
         <section id="detailed_desc">
    
-   <p>当 SDK 准备好发送 <apiname keyref="Metadata"/> 时，会触发该回调。</p>
-   <p props="electron">收到该回调后，你可以调用 <xref keyref="sendMetadata"/> 发送媒体附属信息。</p>
-   <note props="android apple windows" type="attention">请确保在该方法中传入的 <apiname keyref="Metadata"/> 大小不超过 <xref keyref="getMaxMetadataSize"/> 中设定的值。</note>
+   <p>当 SDK 准备好接收和发送 <apiname keyref="Metadata"/> 时，会触发该回调。</p>
+   <note outputclass="note">请确保在该方法中传入的 <apiname keyref="Metadata"/> 大小不超过 <xref keyref="getMaxMetadataSize"/> 中设定的值。</note>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
@@ -36,7 +27,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values" props="android apple windows">
+        <section id="return_values">
    <title>返回值</title>
    <ul>
        <li><ph keyref="true"/>: 发送</li>

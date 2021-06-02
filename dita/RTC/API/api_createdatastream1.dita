@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_createdatastream1">
-    <title><ph keyref="createDataStream1"/></title>
+    <title><ph keyref="createDataStream1"/><ph>[1/2]</ph></title>
     <shortdesc id="short"><ph id="shortdesc">创建数据流。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -12,18 +12,18 @@
     </prolog>
     <refbody><section id="prototype">
         
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/createDataStream1"/>
+        <p conref="../conref/conref_rtc_api.dita#apidef/createDataStream1"/>
         </section>
         <section id="detailed_desc">
    
    <dl outputclass="deprecated">
        <dlentry>
   <dt>弃用：</dt>
-  <dd>该方法从 v3.3.0 起废弃。请改用 <xref keyref="createDataStream2"/>。</dd>
+  <dd>该方法从 v3.3.0 起废弃。请改用 <xref keyref="createDataStream2"/>[2/2]。</dd>
        </dlentry>
    </dl>
    <p id="desc">RtcEngine 生命周期内，每个用户最多只能创建 5 个数据流。</p>
-   <note type="attention" id="note">
+   <note outputclass="note" id="note">
        <ul>
   <li>该方法需要在加入频道后调用。</li>
   <li>不可将 <parmname>reliable</parmname> 设为 <ph keyref="true"/> 且将 <parmname>ordered</parmname> 设为 <ph keyref="false"/>。</li>
@@ -54,10 +54,10 @@
         </section>
         <section id="return_values">
    <title>返回值</title>
-   <ul>
+   <p><ul>
        <li props="android">成功创建的数据流 ID：方法调用成功。 </li>
        <li props="windows">0: 创建数据流成功。</li>
        <li>&lt; 0: 创建数据流失败。你可以参考<xref href="error_rtc.md" format="md">错误码和警告码</xref>进行问题排查。</li>
-   </ul>
+   </ul></p>
         </section></refbody>
 </reference>

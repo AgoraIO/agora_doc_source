@@ -12,7 +12,7 @@
     </prolog>
     <refbody><section id="prototype">
         
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/startScreenCaptureByWindowId"/>
+        <p conref="../conref/conref_rtc_api.dita#apidef/startScreenCaptureByWindowId"/>
         </section>
         <section id="detailed_desc">
    
@@ -22,30 +22,28 @@
   <dd>v2.4.0</dd>
        </dlentry>
    </dl>
-   <p id="desc">共享一个窗口或该窗口的部分区域。用户需要在该方法中指定想要共享的窗口 ID。</p>
-   <note type="attention" id="note">
+   <p>共享一个窗口或该窗口的部分区域。用户需要在该方法中指定想要共享的窗口 ID。</p>
+   <note outputclass="note">
        <ul>
   <li>该方法需要在加入频道后调用。</li>
   <li props="windows">该方法仅适用于 macOS 和 Windows 平台。</li>
        </ul>
    </note>
    <p props="windows">自 v3.0.0 起，该方法支持共享通用 Windows 平台（UWP）应用窗口。声网使用最新版 SDK 对主流的 UWP 应用进行了测试，结果如下：</p>
-   <p props="windows">
+   <p>
        <table id="table_lvk_tfs_r4b">
   <tgroup cols="4">
       <colspec colnum="1" colname="col1"/>
       <colspec colnum="2" colname="col2"/>
       <colspec colnum="3" colname="col3"/>
       <colspec colnum="4" colname="col4"/>
-      <thead>
-          <row>
-              <entry><b>系统版本</b></entry>
-              <entry><b>软件</b></entry>
-              <entry><b>软件版本</b></entry>
-              <entry><b>是否支持</b></entry>
-          </row>
-      </thead>
       <tbody>
+ <row>
+     <entry><b>系统版本</b></entry>
+     <entry><b>软件</b></entry>
+     <entry><b>软件版本</b></entry>
+     <entry><b>是否支持</b></entry>
+ </row>
  <row>
      <entry morerows="7">win10</entry>
      <entry>Chrome</entry>
@@ -158,10 +156,9 @@
    <parml>
        <plentry>
   <pt>windowId</pt>
-  <pd>指定待共享的窗口 ID。
-      <p props="electron">你可以通过 <xref keyref="getWindowsInfo"/> 方法获取。</p></pd>
+  <pd>指定待共享的窗口 ID。</pd>
        </plentry>
-       <plentry props="windows electron">
+       <plentry props="windows">
   <pt>regionRect</pt>
   <pd>（可选）指定待共享区域相对于整个屏幕的位置。如不填，则表示共享整个屏幕。详见 <xref keyref="Rectangle"/>。如果设置的共享区域超出了窗口的边界，则只共享窗口内的内容；如果宽或高为 0，则共享整个窗口。</pd>
        </plentry>

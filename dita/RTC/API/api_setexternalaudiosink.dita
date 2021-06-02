@@ -12,13 +12,13 @@
     </prolog>
     <refbody><section id="prototype">
         
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setExternalAudioSink"/>
+        <p conref="../conref/conref_rtc_api.dita#apidef/setExternalAudioSink"/>
         </section>
         <section id="detailed_desc">
    
    <p>该方法适用于需要自行渲染音频的场景。开启外部音频渲染后，你可以通过调用 <xref keyref="pullAudioFrame"/> 方法拉取远端音频数据。 App
        可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。</p>
-   <note type="attention">
+   <note outputclass="note">
        <ul id="ul_ng3_ljz_r4b">
   <li>开启外部音频渲染后，App 会无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。</li>
   <li>该方法需要在加入频道前调用。</li>
