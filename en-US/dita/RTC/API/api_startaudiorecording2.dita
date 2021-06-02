@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_startaudiorecording2">
+    <title><ph keyref="startAudioRecording2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Starts an audio recording on the client.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="startAudioRecording2" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/startAudioRecording2"/>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v2.9.1. This method replaces <xref keyref="startAudioRecording1"></xref>.</dd>
+                </dlentry>
+            </dl>
+            
+   <p>The Agora SDK allows recording during a call. After successfully calling this method, you can record the audio of all the users in the channel and get an audio recording file. Supported formats of the recording file are as follows:<ul>
+      <li>.wav: Large file size with high fidelity.</li>
+      <li>.aac: Small file size with low fidelity.</li>
+  </ul>
+       </p>
+   <note type="attention">
+       <ul>
+  <li>Ensure that the directory you use to save the recording file exists and is writable.</li>
+  <li>This method should be called after the <apiname keyref="joinChannel1"/> method. The recording automatically stops when you call the <xref keyref="leaveChannel"/> method.</li>
+  <li>For better recording effects, set <parmname>quality</parmname> to or when <parmname>sampleRate</parmname> is 44.1 kHz or 48 kHz<parmname></parmname><apiname keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/><apiname keyref="AUDIO_RECORDING_QUALITY_HIGH"/>.</li>
+       </ul>
+   </note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+   <parml>
+       <plentry>
+  <pt>filePath</pt>
+  <pd>The absolute path (including the suffixes of the filename) of the recording file. For example: <codeph>C:\music\audio.aac</codeph>.</pd>
+       </plentry>
+       <plentry>
+  <pt>sampleRate</pt>
+  <pd>
+      <p>The sample rate (kHz) of the recording file. Supported values are as follows:<ul>
+     <li>16000</li>
+     <li>32000 (Default)</li>
+     <li>44100</li>
+     <li>48000</li>
+ </ul>
+      </p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>quality</pt>
+  <pd>Recording quality. For details, see <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_registermediametadataobserver">
+    <title><ph keyref="registerMediaMetadataObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">注册媒体 metadata 观测器用于接收或发送 metadata。</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="registerMediaMetadataObserver" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/registerMediaMetadataObserver"/>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>自从</dt>
+                    <dd>v2.4.1</dd>
+                </dlentry>
+            </dl>
+   <p>
+       <note type="attention">
+  <ul id="ul_bmd_btz_r4b">
+      <li>请在 <apiname keyref="joinChannel2"/> 前调用该方法。</li>
+      <li>该方法仅适用于直播场景。</li>
+  </ul>
+       </note>
+   </p>
+        </section>
+        <section id="parameters"><title>参数</title>
+   <parml>
+       <plentry props="windows android apple">
+  <pt>observer</pt>
+  <pd>
+      指向已注册的 metadata 观测器的指针。详见 <xref keyref="IMetadataObserver"/>。
+  </pd>
+       </plentry>
+       <plentry id="metadatatype">
+  <pt>type</pt>
+  <pd>用户希望在观测器中使用的 METADATA 类型 。目前仅支持 <apiname keyref="VIDEO_METADATA"/> 。详见 <xref href="enum_metadatatype.dita"/>。</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>返回值</title>
+   <ul>
+       <li>0：方法调用成功。</li>
+       <li>&lt; 0：方法调用失败。</li>
+   </ul>
+        </section></refbody>
+</reference>

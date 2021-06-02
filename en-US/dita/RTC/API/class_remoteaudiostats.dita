@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_remoteaudiostats">
+    <title><ph keyref="RemoteAudioStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Audio statistics of the remote user.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+   <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/RemoteAudioStats"/>
+        </section>
+        <section id="parameters">
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <parml>
+       <plentry>
+  <pt><ph keyref="uid"/></pt>
+  <pd>The ID of the remote user sending the stream.</pd>
+       </plentry>
+       <plentry>
+  <pt>quality</pt>
+  <pd>The quality of the audio stream sent by the user. See <xref keyref="QUALITY_TYPE"/>.</pd>
+       </plentry>
+       <plentry>
+  <pt>networkTransportDelay</pt>
+  <pd>The network delay (ms) from the audio sender to the receiver.</pd>
+       </plentry>
+       <plentry>
+  <pt>jitterBufferDelay</pt>
+  <pd>
+      <p>The network delay (ms) from the audio receiver to the jitter buffer.<note type="attention">This parameter does not take effect if the receiver is an audience member and <xref
+keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> is 1.</note></p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>audioLossRate</pt>
+  <pd>The frame loss rate (%) of the remote audio stream in the reported interval.</pd>
+       </plentry>
+       <plentry>
+  <pt>numChannels</pt>
+  <pd>The number of audio channels.</pd>
+       </plentry>
+       <plentry>
+  <pt>receivedSampleRate</pt>
+  <pd>The sampling rate of the received remote audio stream in the reported interval.</pd>
+       </plentry>
+       <plentry>
+  <pt>receivedBitrate</pt>
+  <pd>The average bitrate (Kbps) of the received audio stream in the reported interval.</pd>
+       </plentry>
+       <plentry>
+  <pt>totalFrozenTime</pt>
+  <pd>The total freeze time (ms) of the remote audio stream after the remote user joins the channel. In a session, audio freeze occurs when the audio frame loss rate reaches 4%.</pd>
+       </plentry>
+       <plentry>
+  <pt>frozenRate</pt>
+  <pd>The total audio freeze time as a percentage (%) of the total time when the audio is available. The audio is available means that the remote user neither stops sending the audio stream nor disables the audio module after joining the channel.</pd>
+       </plentry>
+       <plentry>
+  <pt>totalActiveTime</pt>
+  <pd>The total time (ms) when the remote user in the COMMUNICATION profile or the remote host in the LIVE_BROADCASTING profile neither stops sending the audio stream nor disables the audio module after joining the channel.</pd>
+       </plentry>
+       <plentry>
+  <pt>publishDuration</pt>
+  <pd>The total duration (ms) of the published remote audio stream.</pd>
+       </plentry>
+       <plentry>
+  <pt>qoeQuality</pt>
+  <pd>
+      <dl outputclass="since">
+ <dlentry>
+     <dt>Since</dt>
+     <dd>v3.3.0</dd>
+ </dlentry>
+      </dl>
+      <p>Quality of experience (QoE) of the local user when receiving the remote audio stream<xref keyref="EXPERIENCE_QUALITY_TYPE"/>.</p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>qualityChangedReason</pt>
+  <pd>
+      <dl outputclass="since">
+ <dlentry>
+     <dt>Since</dt>
+     <dd>v3.3.0</dd>
+ </dlentry>
+      </dl>
+      <p>The reason for poor QoE of the local user when receiving the remote audio stream<xref keyref="EXPERIENCE_POOR_REASON"/>.</p>
+  </pd>
+       </plentry>
+       <plentry>
+           <pt>mosValue</pt>
+           <pd>
+               <dl outputclass="since">
+                   <dlentry>
+                       <dt>Since</dt>
+                       <dd>v3.3.1</dd>
+                   </dlentry>
+               </dl>
+               <p>The quality of the remote audio stream in the reported interval. The quality is determined by the Agora real-time audio MOS (Mean Opinion Score) measurement method. The return value range is [0, 500]. Dividing the return value by 100 gets the MOS score, which ranges from 0 to 5. The higher the score, the better the audio quality.</p>
+               
+               <p>The subjective perception of audio quality corresponding to the Agora real-time audio MOS scores is as follows:<simpletable frame="all"
+                                id="simpletable_qzy_hdp_v4b">
+                                <sthead>
+                                    <stentry>MOS score</stentry>
+                                    <stentry>Perception of audio quality</stentry>
+                                </sthead>
+                                <strow>
+                                    <stentry>Greater than 4</stentry>
+                                    <stentry>Excellent. The audio sounds clear and smooth.</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry>From 3.5 to 4</stentry>
+                                    <stentry>Good. The audio has some perceptible impairment but still sounds clear.</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry>From 3 to 3.5</stentry>
+                                    <stentry>Fair. The audio freezes occasionally and requires attentive listening.</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry>From 2.5 to 3</stentry>
+                                    <stentry>Poor. The audio sounds choppy and requires considerable effort to understand.</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry>From 2 to 2.5</stentry>
+                                    <stentry>Bad. The audio has occasional noise. Consecutive audio dropouts occur, resulting in some information loss. The users can communicate only with difficulty.</stentry>
+                                </strow>
+                                <strow>
+                                    <stentry>Less than 2</stentry>
+                                    <stentry>Very bad. The audio has persistent noise. Consecutive audio dropouts are frequent, resulting in severe information loss. Communication is nearly impossible.</stentry>
+                                </strow>
+                            </simpletable></p>
+           </pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>

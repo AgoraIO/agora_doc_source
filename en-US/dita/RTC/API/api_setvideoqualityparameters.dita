@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setvideoqualityparameters">
+    <title><ph keyref="setVideoQualityParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the preferences for high-quality video. (LIVE_BROADCASTING only).</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setVideoQualityParameters" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setVideoQualityParameters"/>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>Deprecated as of v2.4.0. Agora recommends using the <parmname>degradationPreference</parmname> parameter in the <xref keyref="VideoEncoderConfiguration"/>class to set the preferences for high-quality video.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>preferFrameRateOverImageQuality</pt>
+                    <pd>
+                        <p>Whether to prioritize smoothness or image quality.<ul id="ul_q4q_k54_jpb">
+                                <li><ph keyref="true"/>: Prioritizes smoothness.</li>
+                                <li><ph keyref="false"/>: (Default) Prioritizes the image quality.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section></refbody>
+</reference>
