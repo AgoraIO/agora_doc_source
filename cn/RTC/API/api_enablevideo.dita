@@ -15,17 +15,19 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/enableVideo"/>
         </section>
         <section id="detailed_desc">
-   
-   该方法可以在加入频道前或者通话中调用，在加入频道前调用则自动开启视频模块；在通话中调用则由音频模式切换为视频模式。 调用 <xref keyref="disableVideo"></xref> 方法可关闭视频模式。 成功调用该方法后，远端会触发 <xref keyref="onRemoteVideoStateChanged"></xref> 回调。
-        <note outputclass="note"><ul>
-   <li>该方法在 <xref keyref="leaveChannel"></xref> 后仍然有效。</li>
-   <li>该方法响应时间较慢，因此声网建议使用如下方法来控制视频模块：<ul>
-       <li><xref keyref="enableLocalVideo"></xref>: 是否启动摄像头采集并创建本地视频流。</li>
-       <li><xref keyref="muteLocalVideoStream"></xref>: 是否发布本地视频流。</li>
-       <li><xref keyref="muteRemoteVideoStream"></xref>: 是否接收并播放远端视频流。</li>
-       <li><xref keyref="muteAllRemoteVideoStreams"></xref>: 是否接收并播放所有远端视频流。</li>
-   </ul></li>
-        </ul></note>
+            <p>该方法可以在加入频道前或者通话中调用，在加入频道前调用则自动开启视频模块；在通话中调用则由音频模式切换为视频模式。 调用 <xref
+                keyref="disableVideo"/> 方法可关闭视频模式。</p><p>成功调用该方法后，远端会触发 <xref
+                keyref="onRemoteVideoStateChanged"/> 回调。 </p><note outputclass="note">
+                <ul>
+                    <li>该方法设置的是内部引擎为启用状态，在 <xref keyref="leaveChannel"/> 后仍然有效。</li>
+                    <li>该方法重置整个引擎，响应时间较慢，因此声网建议使用如下方法来控制视频模块：<ul>
+                            <li><xref keyref="enableLocalVideo"/>: 是否启动摄像头采集并创建本地视频流。</li>
+                            <li><xref keyref="muteLocalVideoStream"/>: 是否发布本地视频流。</li>
+                            <li><xref keyref="muteRemoteVideoStream"/>: 是否接收并播放远端视频流。</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams"/>: 是否接收并播放所有远端视频流。</li>
+                        </ul></li>
+                </ul>
+            </note>
         </section>
         <section id="return_values">
    <title>返回值</title>

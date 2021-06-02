@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setvoicebeautifierparameters">
     <title><ph keyref="setVoiceBeautifierParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 SDK 预设美声效果的参数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置预设美声效果的参数。</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -15,7 +15,6 @@
         <p conref="../conref/conref_rtc_api.dita#apidef/setVoiceBeautifierParameters"/>
         </section>
         <section id="detailed_desc">
-            <title>详细描述</title>
    <dl outputclass="since">
        <dlentry>
   <dt>自从</dt>
@@ -29,17 +28,17 @@
   <li>该方法在加入频道前后都能调用。</li>
   <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1) 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)，否则该方法会不生效。</li>
   <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
-  <li>调用该方法后，Agora 不推荐调用以下方法，否则该方法设置的效果会被覆盖：
+  <li>调用 <apiname keyref="setVoiceBeautifierParameters"/>，Agora 不推荐调用以下方法，否则 <apiname keyref="setVoiceBeautifierParameters"/> 设置的效果会被覆盖：
       <ul>
- <li><xref keyref="setAudioEffectPreset"></xref></li>
- <li><xref keyref="setAudioEffectParameters"></xref></li>
- <li><xref keyref="setVoiceBeautifierPreset"></xref></li>
- <li><xref keyref="setLocalVoiceReverbPreset"></xref></li>
- <li><xref keyref="setLocalVoiceChanger"></xref></li>
- <li><xref keyref="setLocalVoicePitch"></xref></li>
- <li><xref keyref="setLocalVoiceEqualization"></xref></li>
- <li><xref keyref="setLocalVoiceReverb"></xref></li>
-          <li><xref keyref="setVoiceConversionPreset"/></li>
+ <li><xref keyref="setAudioEffectPreset"/></li>
+ <li><xref keyref="setAudioEffectParameters"/></li>
+ <li><xref keyref="setVoiceBeautifierPreset"/></li>
+ <li><xref keyref="setLocalVoiceReverbPreset"/></li>
+ <li><xref keyref="setLocalVoiceChanger"/></li>
+ <li><xref keyref="setLocalVoicePitch"/></li>
+ <li><xref keyref="setLocalVoiceEqualization"/></li>
+ <li><xref keyref="setLocalVoiceReverb"/></li>
+ <li><xref keyref="setVoiceConversionPreset"/></li>
       </ul>
   </li>
        </ul>
@@ -49,7 +48,7 @@
    <parml>
        <plentry>
   <pt>preset</pt>
-  <pd>SDK 预设的音效：
+  <pd>预设的音效：
       <ul>
  <li><codeph>SINGING_BEAUTIFIER</codeph>: 歌唱美声。</li>
       </ul>

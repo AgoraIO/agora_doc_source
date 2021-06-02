@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_renewtoken">
-    <title><ph keyref="renewToken"></ph></title>
+    <title><ph keyref="renewToken"/></title>
     <shortdesc id="short"><ph id="shortdesc">更新 Token。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -19,8 +19,8 @@
    该方法用于更新 Token。Token 生成后会在有效期过期后失效。在以下两种情况下，app 应重新获取 Token,
    然后调用 <apiname>renewToken</apiname> 更新 Token，否则 SDK 无法和服务器建立连接：
    <ul>
-       <li>发生 <xref keyref="onTokenPrivilegeWillExpire"></xref> 回调时。</li>
-       <li><xref keyref="onConnectionStateChanged"></xref> 回调报告 <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"></apiname>(9) 时。</li>
+       <li>发生 <xref keyref="onTokenPrivilegeWillExpire"/> 回调时。</li>
+       <li><xref keyref="onConnectionStateChanged"/> 回调报告 <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9) 时。</li>
    </ul>
         </section>
         <section id="parameters"><title>参数</title>
@@ -35,7 +35,7 @@
    <title>返回值</title>
    <ul>
        <li>0(ERR_OK): 方法调用成功。</li>
-       <li>&lt;0: 方法调用失败。<ul>
+       <li>&lt; 0: 方法调用失败。<ul>
   <li>-1(ERR_FAILED): 一般性的错误（未明确归类）。</li>
   <li>-2(ERR_INVALID_ARGUMENT): 参数无效。</li>
   <li>-7(ERR_NOT_INITIALIZED): SDK 尚未初始化。</li>

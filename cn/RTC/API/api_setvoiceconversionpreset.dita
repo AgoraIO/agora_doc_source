@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setvoiceconversionpreset">
     <title><ph keyref="setVoiceConversionPreset"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 SDK 预设的变声效果。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置预设的变声效果。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -11,11 +11,9 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        <title>原型</title>
         <p conref="../conref/conref_rtc_api.dita#apidef/setVoiceConversionPreset"/>
         </section>
         <section id="detailed_desc">
-            <title>详细描述</title>
             <dl outputclass="since">
                 <dlentry>
                     <dt>自从</dt>
@@ -28,9 +26,11 @@
             <note outputclass="note">
                 <ul>
                     <li>该方法在加入频道前后都能调用。</li>
-                    <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1) 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)，否则该方法不生效。</li>
+                    <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为
+                            <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="windows">
+                            或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>，否则该方法不生效。</li>
                     <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
-                    <li>调用该方法后，Agora 不推荐调用以下方法，否则该方法设置的效果会被覆盖：<ul>
+                    <li>调用 <apiname keyref="setVoiceConversionPreset"/> 后，Agora 不推荐调用以下方法，否则 <apiname keyref="setVoiceConversionPreset"/> 设置的效果会被覆盖：<ul>
                             <li><xref keyref="setAudioEffectPreset"/></li>
                             <li><xref keyref="setAudioEffectParameters"/></li>
                             <li><xref keyref="setVoiceBeautifierPreset"/></li>
@@ -56,8 +56,8 @@
         <section id="return_values">
             <title>返回值</title>
             <ul>
-                <li>0：方法调用成功</li>
-                <li>&lt; 0：方法调用失败</li>
+                <li>0：方法调用成功。</li>
+                <li>&lt; 0：方法调用失败。</li>
             </ul>
         </section></refbody>
 </reference>

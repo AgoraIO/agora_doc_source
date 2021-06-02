@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setdefaultmuteallremotevideostreams">
     <title><ph keyref="setDefaultMuteAllRemoteVideoStreams"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置是否默认停止接收视频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">默认取消或恢复订阅远端用户的视频流。</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -11,27 +11,36 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
+
         <p conref="../conref/conref_rtc_api.dita#apidef/setDefaultMuteAllRemoteVideoStreams"/>
         </section>
         <section id="detailed_desc">
-   
-   <p id="sequence">该方法在加入频道前后都可调用。如果在加入频道后调用 <apiname keyref="setDefaultMuteAllRemoteVideoStreams"/>(<ph keyref="true"/>)，会接收不到设置后加入频道的用户的视频流。</p>
-   <note outputclass="note">
-       停止接收视频流后，如果想要恢复接收，请调用 <xref keyref="muteRemoteVideoStream"/>(<ph keyref="false"/>)，并指定你想要接收的远端用户 <parmname>uid</parmname>； 如果想恢复接收多个用户的视频流，则需要多次调用 <apiname keyref="muteRemoteVideoStream"/>。<apiname keyref="setDefaultMuteAllRemoteVideoStreams"/>(<ph keyref="false"/>) 只能恢复接收后面加入频道的用户的视频流。
-   </note>
+   <dl>
+       <dlentry outputclass="deprecated" >
+           <dt>弃用：</dt>
+           <dd>该方法自 v3.3.0 起废弃。</dd>
+       </dlentry>
+   </dl>
+            <p id="sequence">该方法需要在加入频道后调用。调用成功后，本地用户取消或恢复订阅调用时刻之后加入频道的远端用户。</p>
+            <note outputclass="note">取消订阅视频流后，如果需要恢复订阅频道内的远端用户，可以进行如下操作：
+                <ul><li>如果需要恢复订阅单个用户的视频流，调用 <xref
+                    keyref="muteRemoteVideoStream"/>(<ph keyref="false"/>)，并指定你想要订阅的远端用户 ID。</li>
+                    <li>如果想恢复订阅多个用户的视频流，则需要多次调用 <apiname
+                        keyref="muteRemoteVideoStream"/>(<ph keyref="false"/>)。</li>
+                </ul>
+            </note>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
        <plentry>
   <pt>mute</pt>
   <pd>
-      <p>
+      <p>是否默认取消订阅远端用户的视频流：
  <ul>
-     <li><ph keyref="true"/>: 默认停止接收所有远端视频；</li>
-     <li><ph keyref="false"/>: 默认接收所有远端视频（默认）。</li>
+     <li><ph keyref="true"/>: 默认取消订阅。</li>
+     <li><ph keyref="false"/>:（默认）默认订阅。</li>
  </ul>
-      </p>
+ </p>
   </pd>
        </plentry>
    </parml>
