@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_transcodinguser">
     <title><ph keyref="TranscodingUser"/></title>
-    <shortdesc id="short"><ph id="shortdesc">管理参与旁路直播的音视频转码的用户。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">管理参与旁路推流转码的主播。</ph></shortdesc>
     <refbody>
         <section id="prototype">
    <p conref="../conref/conref_rtc_api.dita#apidef/TranscodingUser"/>
@@ -13,34 +13,36 @@
    <plentry>
        <pt>uid</pt>
        <pd>
-  <p>旁路主播的用户 ID。</p>
+  <p>参与推流转码的主播用户 ID。</p>
        </pd>
    </plentry>
    <plentry>
        <pt>x</pt>
        <pd>
-  <p>屏幕里该区域相对左上角的横坐标绝对值 (pixel)。取值范围为转码配置（<xref keyref="LiveTranscoding"
-  ></xref>）定义中设置的 [0,width]。</p></pd>
+  <p>主播视频画面相对推流输出视频左上角的横坐标绝对值 (pixel)。取值范围为转码配置（<xref keyref="LiveTranscoding"/>）定义中设置的
+                            [0,width]。</p></pd>
    </plentry>
                 <plentry>
                     <pt>y</pt>
-                    <pd>屏幕里该区域相对左上角的纵坐标绝对值 (pixel)。取值范围为转码配置参数定义中设置的 [0,height]。</pd>
+                    <pd>主播视频画面相对推流输出视频左上角的纵坐标绝对值 (pixel)。取值范围为转码配置参数定义中设置的 [0,height]。</pd>
                 </plentry>
                 <plentry>
                     <pt>width</pt>
-                    <pd>视频帧宽度 (pixel)。</pd>
+                    <pd>主播视频画面的宽度 (pixel)。</pd>
                 </plentry>
                 <plentry>
                     <pt>height</pt>
-                    <pd>视频帧高度 (pixel)。</pd>
+                    <pd>
+                        <p>主播视频画面的高度 (pixel)。</p>
+                    </pd>
                 </plentry>
                 <plentry>
                     <pt>zOrder</pt>
                     <pd>
-                        <p>视频帧图层编号。<ul>
-                            <li>0:（默认）表示该区域图像位于最下层。</li>
-                            <li>100: 表示该区域图像位于最上层。</li>
-                        </ul>
+                        <p>主播视频画面的图层编号。取值范围为 [0,100]。<ul>
+                                <li>0:（默认）视频画面位于图层的最下层。</li>
+                                <li>100: 视频画面位于图层的最上层。</li>
+                            </ul>
                         </p>
                         <note outputclass="note">
                             <ul>
@@ -53,36 +55,35 @@
                 <plentry>
                     <pt>alpha</pt>
                     <pd>
-                        <p>直播视频上用户视频的透明度。
-                        <ul>
-                            <li>0: 该区域图像完全透明。</li>
-                            <li>1:（默认）该区域图像完全不透明。</li>
-                        </ul>
+                        <p>主播视频画面的透明度。取值范围为 [0.0, 1.0]。<ul>
+                                <li>0.0: 该区域图像完全透明。</li>
+                                <li>1.0:（默认）该区域图像完全不透明。</li>
+                            </ul>
                         </p>
                     </pd>
                 </plentry>
             <plentry>
                 <pt>audioChannel</pt>
                 <pd>
-                        <p>主播音频所在的声道。取值范围为 [0, 5]：<ul id="ul_ugm_rrh_v4b">
-                                <li><codeph>0</codeph>: (推荐) 默认混音设置，最多支持双声道，与主播端上行音频相关。</li>
-                                <li><codeph>1</codeph>: 该主播的音频在推流中位于 FL
-                                    声道。如果主播端上行音频是多声道，会先把多声道混音成单声道。</li>
-                                <li><codeph>2</codeph>: 该主播的音频在推流中位于 FC
-                                    声道。如果主播端上行音频是多声道，会先把多声道混音成单声道。</li>
-                                <li><codeph>3</codeph>: 该主播的音频在推流中位于 FR
-                                    声道。如果主播端上行音频是多声道，会先把多声道混音成单声道。</li>
-                                <li><codeph>4</codeph>: 该主播的音频在推流中位于 BL
-                                    声道。如果主播端上行音频是多声道，会先把多声道混音成单声道。</li>
-                                <li><codeph>5</codeph>: 该主播的音频在推流中位于 BR
-                                    声道。如果主播端上行音频是多声道，会先把多声道混音成单声道。</li>
+                        <p>主播音频在输出音频中占用的声道。取值范围为 [0,5]，默认值为 0：<ul id="ul_ugm_rrh_v4b">
+                                <li><codeph>0</codeph>: （推荐）默认混音设置，最多支持双声道，与主播端上行音频相关。</li>
+                                <li><codeph>1</codeph>: 主播音频在输出音频的 FL 声道。如果主播上行音频是多声道，Agora
+                                    服务器会先把多声道混音成单声道。</li>
+                                <li><codeph>2</codeph>: 主播音频在输出音频的 FC 声道。如果主播上行音频是多声道，Agora
+                                    服务器会先把多声道混音成单声道。</li>
+                                <li><codeph>3</codeph>: 主播音频在输出音频的 FR 声道。如果主播上行音频是多声道，Agora
+                                    服务器会先把多声道混音成单声道。</li>
+                                <li><codeph>4</codeph>: 主播音频在输出音频的 BL 声道。如果主播上行音频是多声道，Agora
+                                    服务器会先把多声道混音成单声道。</li>
+                                <li><codeph>5</codeph>: 主播音频在输出音频的 BR 声道。如果主播上行音频是多声道，Agora
+                                    服务器会先把多声道混音成单声道。</li>
                                 <li><codeph>0xFF</codeph> 或取值大于 <codeph>5</codeph>: 该主播音频静音，Agora
                                     服务器移除该主播的音频。</li>
                             </ul>
                             <note outputclass="note">取值不为 <codeph>0</codeph> 时，需要使用特殊的播放器。</note></p>
                     </pd>
             </plentry>
-        </parml>   
+        </parml>
         </section>
     </refbody>
 </reference>
