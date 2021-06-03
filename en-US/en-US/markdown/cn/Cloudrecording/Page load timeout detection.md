@@ -7,7 +7,7 @@ During web page recording,  poor network performance may cause the following iss
 
 In order to solve these issues, the cloud recording service supports **web page loading timeout detection**. During the web page recording process, you need to call the native interface of the browser to notify the browser that the web page has been loaded to achieve the following functions:
 
-- If the web page loads before the timeout limit, the browser receives a notification that the web page is loaded. The browser  starts recording the web page and notifies the developer in time as an event message to ensure the integrity of the recorded content.
+- If the browser receives a notification that the web page is loaded before the timeout limit. The browser  starts recording the web page and notifies the developer in time as an event message to ensure the integrity of the recorded content.
 - If the browser does not receive a notification that the web page is loaded before the timeout limit,  the browser automatically reloads the web page and tries to restore it and avoid a white screen.
 
 ## Implementation
@@ -27,7 +27,7 @@ You need to set the web page load timeout limit through the `readyTimeout` param
 
 `readyTimeout`: (optional) Number, set the web page loading timeout limit, in seconds.
 
-- Set to 0 or not set, which meanst the web page loading status is not checked.
+- Set to 0 or not set, which means the web page loading status is not detected.
 - Set to an integer greater than or equal to 1, which sets the web page load timeout limit.
 - Set to less than 0 or a non-integer, which means the setting is incorrect, and error code `2` is received.
 
