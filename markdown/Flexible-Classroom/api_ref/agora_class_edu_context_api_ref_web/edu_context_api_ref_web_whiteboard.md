@@ -1,10 +1,6 @@
-# useBoardContext
+# BoardContext
 
-`useBoardContext()` 提供白板相关能力。
-
-你可以通过 `import { useBoardContext } from 'agora-edu-core';  ` 引入 `useBoardContext`，然后使用 `const {...} = useBoardContext()` 获取灵动课堂中消息聊天相关能力。
-
-以下具体列出 `useBoardContext()` 提供的能力。
+`BoardContext` 提供白板相关能力。
 
 ## room
 
@@ -84,7 +80,7 @@ currentSelector: string,
 lineSelector: string,
 ```
 
-当前白板的线条工具。
+当前白板的画线工具。
 
 ## activeMap
 
@@ -105,7 +101,7 @@ ready: boolean,
 ## tools
 
 ```typescript
-tools: array,
+tools: any[],
 ```
 
 白板基础工具列表。
@@ -113,7 +109,7 @@ tools: array,
 ## changeStroke
 
 ```typescript
-async changeStroke(value: any): void
+changeStroke: (value: any) => void,
 ```
 
 修改画笔宽度。
@@ -121,7 +117,7 @@ async changeStroke(value: any): void
 ## changeHexColor
 
 ```typescript
-async changeHexColor(colorHex: string): void
+changeHexColor: (value: any) => void,
 ```
 
 修改颜色。
@@ -129,7 +125,7 @@ async changeHexColor(colorHex: string): void
 ## mountToDOM
 
 ```typescript
-async mountToDOM(dom: HTMLDivElement | null): void
+mountToDOM: (dom: HTMLDivElement | null) => void,
 ```
 
 将白板挂载在 DOM 节点上或者卸载白板。
@@ -137,63 +133,55 @@ async mountToDOM(dom: HTMLDivElement | null): void
 ## setTool
 
 ```typescript
-async setTool(tool: string): void
+setTool: (tool: string) => void,
 ```
 
-切换工具。
+切换白板工具。
+
+| 参数   | 描述       |
+| :----- | :--------- |
+| `tool` | 工具名称。 |
 
 ## zoomBoard
 
 ```typescript
-async zoomBoard(type: string): void
+zoomBoard: (type: string) => void,
 ```
 
-放大或缩小白板。
+全屏白板。
+
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
+| `type` | 可设为：<li> `fullscreen` : 全屏。<li> `fullscreenExit`: 退出全屏。 |
 
 ## setZoomScale
 
 ```typescript
-async setZoomScale(operation: string): void
+setZoomScale: (operation: string) => void,
 ```
 
-设置放大或缩小的比例。
+放大或缩小白板。
+
+| 参数        | 描述                                                |
+| :---------- | :-------------------------------------------------- |
+| `operation` | 可设为：<li> `out`: 缩小白板。<li> `in`: 放大白板。 |
 
 ## changeFooterMenu
 
 ```typescript
-async changeFooterMenu(itemName: string): void
+changeFooterMenu: (itemName: string) => void,
 ```
 
 设置白板跳转到哪一页。
 
-## downloadList
-
-```typescript
-downloadList: array,
-```
-
-可下载的云盘资源列表。
-
-## putSceneByResourceUuid
-
-```typescript
-async putSceneByResourceUuid(uuid: string): void
-```
-
-在白板上打开课件。
-
-## startDownload
-
-```typescript
-async startDownload(taskUuid: string): void
-```
-
-开始下载课件。
+| 参数       | 描述                                                         |
+| :--------- | :----------------------------------------------------------- |
+| `itemName` | 可设为：<li>`first_page`: 第一页。<li> `last_page`: 最后一页。<li>`next_page`: 下一页。<li>`prev_page`: 上一页。 |
 
 ## updatePen
 
 ```typescript
-async updatePen(value: any): void
+updatePen: (value: any) => void,
 ```
 
 更新画笔。
@@ -206,69 +194,13 @@ boardPenIsActive: boolean,
 
 当前白板使用的工具是否为画笔。
 
-## startOrStopSharing
-
-```typescript
-async startOrStopSharing(): void
-```
-
-开始或停止屏幕共享。
-
 ## setLaserPoint
 
 ```typescript
-setLaserPoint(): void
+setLaserPoint: () => void,
 ```
 
 设置当前工具为激光笔。
-
-## resourcesList
-
-```typescript
-resourcesList: array,
-```
-
-课件列表。
-
-## refreshCloudResources
-
-```typescript
-async refreshCloudResources(): void
-```
-
-更新课件列表。
-
-## removeMaterialList
-
-```typescript
-async removeMaterialList(resourceUuids: string[]): void
-```
-
-移除课件。
-
-## cancelUpload
-
-```typescript
-async cancelUpload(): void
-```
-
-取消上传课件。
-
-## doUpload
-
-```typescript
-async doUpload(payload: any): void
-```
-
-上传课件。
-
-## closeMaterial
-
-```typescript
-async closeMaterial(resourceUuid: string): void
-```
-
-关闭课件。
 
 ## installTools
 
@@ -276,23 +208,7 @@ async closeMaterial(resourceUuid: string): void
 async installTools(tools: any[]): void
 ```
 
-安装工具。
-
-## personalResources
-
-```typescript
-personalResources: array,
-```
-
-老师通过灵动课堂客户端上传的课件列表。
-
-## publicResources
-
-```typescript
-publicResources: array,
-```
-
-教学机构指派的课件列表。
+安装白板工具。
 
 ## revokeUserPermission
 
@@ -309,3 +225,11 @@ async grantUserPermission(userUuid: string): void
 ```
 
 给予指定学生白板权限。
+
+## showBoardTool
+
+```typescript
+showBoardTool: [boolean, boolean];
+```
+
+当前是否显示白板基础工具栏和页面控制工具栏。

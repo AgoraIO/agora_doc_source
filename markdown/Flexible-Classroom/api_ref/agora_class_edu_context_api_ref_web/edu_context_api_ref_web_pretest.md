@@ -1,15 +1,11 @@
-# usePretestContext
+# PretestContext
 
-`usePretestContext()` 提供课前检测相关能力，用于检测摄像头、麦克风和扬声器是否正常工作。
-
-你可以通过 `import { usePretestContext } from 'agora-edu-core';  ` 引入 `usePretestContext`，然后使用 `const {...} = usePretestContext()` 获取灵动课堂中课堂管理相关能力。
-
-以下具体列出 `usePretestContext()` 提供的能力。
+`PretestContext` 提供课前检测相关能力，用于检测摄像头、麦克风和扬声器是否正常工作。
 
 ## cameraList
 
 ```typescript
-cameraList: array,
+cameraList: any[],
 ```
 
 摄像头列表。
@@ -17,7 +13,7 @@ cameraList: array,
 ## microphoneList
 
 ```typescript
-microphoneList: array,
+microphoneList: any[],
 ```
 
 麦克风列表。
@@ -25,7 +21,7 @@ microphoneList: array,
 ## speakerList
 
 ```typescript
-speakerList: array,
+speakerList: any[],
 ```
 
 扬声器列表。

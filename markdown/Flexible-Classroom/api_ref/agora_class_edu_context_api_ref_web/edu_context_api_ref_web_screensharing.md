@@ -1,15 +1,11 @@
-# useScreenShareContext
+# ScreenShareContext
 
-`useScreenShareContext()` 提供屏幕共享相关能力。
-
-你可以通过 `import { useScreenShareContext } from 'agora-edu-core';  ` 引入 `useScreenShareContext`，然后使用 `const {...} = useScreenShareContext()` 获取灵动课堂中屏幕共享相关能力。
-
-以下具体列出 `useScreenShareContext()` 提供的能力。
+`ScreenShareContext` 提供屏幕共享相关能力。
 
 ## nativeAppWindowItems
 
 ```typescript
-nativeAppWindowItems: array,
+nativeAppWindowItems: any[],
 ```
 
 远端屏幕共享流列表。
@@ -17,15 +13,72 @@ nativeAppWindowItems: array,
 ## screenShareStream
 
 ```typescript
-screenShareStream: object,
+screenShareStream: EduMediaStream,
 ```
 
-本地屏幕共享流信息。
+本地屏幕共享媒体流。
+
+## screenEduStream
+
+```typescript
+screenEduStream: EduStream,
+```
+
+本地屏幕共享数据流。
 
 ## startOrStopSharing
 
 ```typescript
-async startOrStopSharing(): void
+startOrStopSharing: (type?:ScreenShareType) => Promise<void>
 ```
 
 开始或停止屏幕共享。
+
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
+| `type` | 屏幕共享类型，包含 `Window` （共享一个窗口，默认）和 `Screen`（共享一个屏幕）。 |
+
+## screenEduStream
+
+```typescript
+screenEduStream: EduStream,
+```
+
+本地屏幕共享数据流。
+
+## isScreenSharing
+
+```typescript
+isScreenSharing: boolean,
+```
+
+当前是否正在共享屏幕。
+
+## customScreenSharePickerType
+
+```typescript
+customScreenSharePickerType: ScreenShareType,
+```
+
+当前显示的屏幕共享选择器类型。
+
+## startNativeScreenShareBy
+
+```typescript
+startNativeScreenShareBy: (windowId: number, type?: ScreenShareType) => Promise<void>,
+```
+
+使用指定的窗口或屏幕 ID 进行屏幕共享。
+
+| 参数       | 描述                                                         |
+| :--------- | :----------------------------------------------------------- |
+| `windowId` | 窗口或屏幕 ID。                                              |
+| `type`     | 屏幕共享类型，包含 `Window` （共享一个窗口，默认）和 `Screen`（共享一个屏幕）。 |
+
+## canSharingScreen
+
+```typescript
+canSharingScreen: boolean;
+```
+
+当前是否允许屏幕共享。
