@@ -113,7 +113,7 @@ isJoiningRoom: boolean,
 roomProperties: any,
 ```
 
-获取全部课堂属性，包含灵动课堂内置的课堂属性。
+获取全部课堂属性，包含灵动课堂内置的课堂属性和开发者自定义的课堂属性。
 
 ## updateFlexRoomProperties
 
