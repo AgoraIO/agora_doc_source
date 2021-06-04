@@ -121,7 +121,7 @@ roomProperties: any,
 updateFlexRoomProperties: (properties: any, cause: any) => Promise<any>;
 ```
 
-新增或更新自定义课堂属性。
+新增或更新自定义课堂属性。支持整体修改和根据路径查找并修改某个属性的值。
 
 | 参数         | 描述       |
 | :----------- | :--------- |

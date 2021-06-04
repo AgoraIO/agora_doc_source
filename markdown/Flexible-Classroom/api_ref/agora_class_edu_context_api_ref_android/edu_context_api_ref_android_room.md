@@ -25,7 +25,7 @@ abstract fun updateFlexRoomProps(properties: MutableMap<String, String>,
                                  cause: MutableMap<String, String>?)
 ```
 
-新增或更新自定义课堂属性。
+新增或更新自定义课堂属性。支持整体修改和根据路径查找并修改某个属性的值。
 
 属性成功更新后，会触发 `onFlexRoomPropertiesChanged` 回调。
 

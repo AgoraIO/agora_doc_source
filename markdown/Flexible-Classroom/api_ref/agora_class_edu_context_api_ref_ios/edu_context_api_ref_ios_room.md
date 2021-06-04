@@ -22,17 +22,17 @@ func uploadLog()
 
 ```swift
 func updateFlexRoomProperties(_ properties:[String: String],
-                                cause:[String: String]?)
+                              cause:[String: String]?)
 ```
 
-新增或更新自定义课堂属性。
+新增或更新自定义课堂属性。支持整体修改和根据路径查找并修改某个属性的值。
 
 属性成功更新后，会触发 `onFlexRoomPropertiesChanged` 回调。
 
-| 参数         | 描述                                                         |
-| :----------- | :----------------------------------------------------------- |
-| `properties` | 课堂属性。可设为 `{"key.subkey":"1"}`  或 `{"key":{"subkey":"1"}}`。 |
-| `cause`      | 更新原因。                                                   |
+| 参数         | 描述       |
+| :----------- | :--------- |
+| `properties` | 课堂属性。 |
+| `cause`      | 更新原因。 |
 
 ### registerEventHandler
 

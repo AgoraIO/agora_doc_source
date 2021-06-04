@@ -23,20 +23,19 @@ UIKit provides all the code for the user interfaces in Flexible Classroom and us
    ```shell
    # Install Node.js and npm globally
    npm install -g npm
-   ```
-# Check Node.js version
-node -v
-# Check npm version
-npm -v
+   # Check Node.js version
+	 node -v
+	 # Check npm version
+   npm -v
    ```
 
 - Install yarn
 
    ```shell
    # Install yarn
-npm install yarn -g
-# Check yarn version
-yarn -v
+   npm install yarn -g
+   # Check yarn version
+   yarn -v
    ```
 
 ### Procedure
@@ -48,16 +47,15 @@ Modify the UI of Flexible Classroom, as follows:
    ```shell
    # Install global dev dependencies
    yarn
-   ```
-# Install all dependencies via lerna and yarn
-yarn bootstrap
+   # Install all dependencies via lerna and yarn
+   yarn bootstrap
    ```
 
 2. Run the following command to open Storybook to quickly adjust the UI.
 
    ```shell
    # Open storybook
-yarn dev:ui-kit
+   yarn dev:ui-kit
    ```
 
    You can see all the basic UI components used by Flexible Classroom in Storybook.
@@ -66,9 +64,9 @@ yarn dev:ui-kit
 
    You can directly edit the source code of a component in the `packages/agora-classroom-sdk/src/ui-kit/components` folder and see the changed UI in Storybook. If the existing basic UI components of Flexible Classroom cannot meet your needs, you can add a new UI component in the `packages/agora-classroom-sdk/src/ui-kit/components` directory, and then edit the code of classroom-level UI components in the `packages/agora-classroom-sdk/src/ui-kit/capabilities` to apply the UI component that you add to Flexible Classroom. For details, see the [UI customization examples](#example).
 
-3. The user interfaces in Storybook are all based on Mock data, which can help you quickly view the UI display based on component properties. If you need to adjust the UI for the real scene, it is recommended to adjust the UI through the Agora Classroom SDK development mode by referring to the following steps.
+3. The user interfaces in Storybook are all based on Mock data, which can help you quickly view the UI display based on component properties. If you need to adjust the UI for the real scene, Agora recommends adjusting the UI in the development mode of the Agora Classroom SDK.
 
-   1. Rename the env.example file in the home directory of the project and `in the `packages/Agora-classroom-sdk` folder` to `.env`, then` pass in your Agora App ID in `the .env` file, and set REACT_APP_AGORA_APP_SDK_DOMAIN` as `https://api-test. Agora/preview`.
+   1. Rename the `env.example` file in the `packages/Agora-classroom-sdk` folder to `.env`, then pass in your Agora App ID and App Certificate in the `.env` file.
 
    2. Run the following command in the root directory to launch a flexible classroom.
 
@@ -190,103 +188,102 @@ The following example shows how to add a custom basic UI component and use it in
 
 1. Create a `custom` folder under the `packages/agora-classroom-sdk/src/ui-kit/components` directory and create the following files:
 
-   `index.css`
+   - `index.css`
 
-   ```css
-   .custom {
-     display: inline-block;
-     padding: 10px;
-     background: #efebe9;
-     border: 5px solid #B4A078;
-     outline: #B4A078 dashed 1px;
-     outline-offset: -10px;
-   }
-   ```
+     ```css
+     .custom {
+       display: inline-block;
+       padding: 10px;
+       background: #efebe9;
+       border: 5px solid #B4A078;
+       outline: #B4A078 dashed 1px;
+       outline-offset: -10px;
+     }
+     ```
 
-   `index.tsx`
+   - `index.tsx`
+   
+     ```tsx
+     import React, { FC } from 'react';
+     import classnames from 'classnames';
+     import { BaseProps } from '~components/interface/base-props';
+     import './index.css';
+     
+     export interface CustomProps extends BaseProps {
+         width?: number;
+         height?: number;
+         children?: React.ReactNode;
+     }
+     
+     export const Custom: FC<CustomProps> = ({
+         width = 90,
+         height = 90,
+         children,
+         className,
+         ...restProps
+     }) => {
+         const cls = classnames({
+             [`custom`]: 1,
+             [`${className}`]: !!className,
+         });
+         return (
+             <div
+                 className={cls}
+                 style={{
+                     width,
+                     height,
+                 }}
+                 {...restProps}
+             >
+                 {children}
+             </div>
+         )
+     }
+     ```
+   
+   - `index.stories.tsx`
+   
+     ```tsx
+     import React from 'react'
+     import { Meta } from '@storybook/react';
+     import { Custom } from '~components/custom'
+     
+     const meta: Meta = {
+         title: 'Components/Custom',
+         component: Custom,
+     }
+     
+     type DocsProps = {
+         width: number;
+         height: number;
+     }
+     
+     export const Docs = ({width, height}: DocsProps) => (
+         <>
+             <div className="mt-4">
+                 <Custom
+                     width={width}
+                     height={height}
+                 >
+                     <h3>Custom UI component</h3>
+                 </Custom>
+             </div>
+         </>
+     )
+     
+     Docs.args = {
+         width: 250,
+         height: 200,
+     }
+     
+     export default meta;
+     ```
 
-   ```tsx
-   import React, { FC } from 'react';
-   import classnames from 'classnames';
-   import { BaseProps } from '~components/interface/base-props';
-   import './index.css';
-   ```
+The custom component is a div element with a two-layer border and renders a children element. You can see the custom component in Storybook.
 
-export interface CustomProps extends BaseProps {
-    width?: number;
-    height?: number;
-    children?: React.ReactNode;
-}
+![](https://web-cdn.agora.io/docs-files/1622777338261)
 
-export const Custom: FC<CustomProps> = ({
-    width = 90,
-    height = 90,
-    children,
-    className,
-    ...restProps
-}) => {
-    const cls = classnames({
-        [`custom`]: 1,
-        [`${className}`]: !!className,
-    });
-    return (
-        <div
-            className={cls}
-            style={{
-                width,
-                height,
-            }}
-            {...restProps}
-        >
-            {children}
-        </div>
-    )
-}
-   ```
-
-   `index.stories.tsx`
-
-   ```tsx
-   import React from 'react'
-import { Meta } from '@storybook/react';
-import { Custom } from '~components/custom'
-
-const meta: Meta = {
-    title: 'Components/Custom',
-    component: Custom,
-}
-
-type DocsProps = {
-    width: number;
-    height: number;
-}
-
-export const Docs = ({width, height}: DocsProps) => (
-    <>
-        <div className="mt-4">
-            <Custom
-                width={width}
-                height={height}
-            >
-                <h3>我是自定义组件</h3>
-            </Custom>
-        </div>
-    </>
-)
-
-Docs.args = {
-    width: 250,
-    height: 200,
-}
-
-export default meta;
-   ```
-
-   The Custom component is a div element with a two-layer border and renders a Children element. You can see the custom component in Storybook.
-
-   ![](https://web-cdn.agora.io/docs-files/1617715392109)
-
-2. Add the following code to `packages/agora-scenario-ui-kit/src/components/index.ts` to export the Custom component.
+2. To export the custom component, add the following code to `packages/agora-scenario-ui-kit/src/components/index.ts` .
 
    ```ts
    export * from './custom'
@@ -305,60 +302,55 @@ export default meta;
       ```tsx
       export const WhiteboardContainer = observer(() => {
       return (
+         <div className="whiteboard">
+           ...... 
+           {showZoomControl ? <ZoomController
+           className='zoom-position'
+           zoomValue={zoomValue}
+           currentPage={currentPage}
+           totalPage={totalPage}
+           maximum={!isFullScreen}
+           clickHandler={handleZoomControllerChange}
+           /> : null}
+           <Custom className='custom-position' width={200} height={200}>
+             <div>使用Custom组件</div>
+           </Custom>
+           </div>
+      )
+  })
      ```
-    <div className="whiteboard">
-      ...... 
-      {showZoomControl ? <ZoomController
-      className='zoom-position'
-      zoomValue={zoomValue}
-      currentPage={currentPage}
-      totalPage={totalPage}
-      maximum={!isFullScreen}
-      clickHandler={handleZoomControllerChange}
-      /> : null}
-      <Custom className='custom-position' width={200} height={200}>
-        <div>Use the custom component</div>
-      </Custom>
-     </div>
-  )
-   })
-   ```
+     
+   3. Define the `custom-position` style in `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/1v1/style.css`:
    
-3. Define the `custom-position` style in `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/1v1/style.css`:
-   
-      ```ts
+     ```
      .custom-position{
-    position: absolute;
-    left: 100px;
-  bottom: 200px;
-   }
-   ```
-   
-4. Check the custom component in the flexible classroom.
-   
+       position: absolute;
+       left: 100px;
+       bottom: 200px;
+     }
+     ```
+   4. Check the custom component in the flexible classroom.
+      
       ![custom-ui-compnent-fx](https://web-cdn.agora.io/docs-files/1617715517511)
 
-### Connect UI components with the business logic
+### Connect UI components with the app business logic
 
-Sometimes you need to modify the UI components related to the business state, or you may want to customize a UI component for a specific function.
+The following example shows how to display the class time in the custom component we added in the previous section.
 
-The following example shows how to display class time in the custom component we added in the previous section.
-
-1. Modify the `index.tsx` file of the custom component to ensure the custom component supports displaying time.
+1. To ensure the custom component supports displaying time, edit the `index.tsx` file of the custom component .
 
    ```tsx
    import React, { FC } from 'react';
    import classnames from 'classnames';
    import { BaseProps } from '~components/interface/base-props';
    import './index.css';
-   /** Add an attribute named time. */
+   /** Add the time property. */
    export interface CustomProps extends BaseProps {
        width?: number;
        height?: number;
        children?: React.ReactNode;
        time: number;
    }
-   
    /** Render time. */
    export const Custom: FC<CustomProps> = ({
        width = 90,
@@ -388,57 +380,10 @@ The following example shows how to display class time in the custom component we
    }
    ```
 
-
-   ```
-
-2. In `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx`
+2. Add a property to the custom component in `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx`.
 
    ```tsx
    ...
-  return (
-    <div className="whiteboard">
-      {
-        ready ?
-        <div id="netless" style={{position: 'absolute', top: 0, left: 0, height: '100%', width: '100%'}} ref={mountToDOM} ></div> : null
-      }
-      {showTab ?
-      <TabsContainer /> : null}
-      {showToolBar ?
-        <Toolbar active={currentSelector} activeMap={activeMap} tools={tools} onClick={handleToolClick} className="toolbar-biz" />
-      : null}
-      {showZoomControl ? <ZoomController
-        className='zoom-position'
-        zoomValue={zoomValue}
-        currentPage={currentPage}
-        totalPage={totalPage}
-        maximum={!isFullScreen}
-        clickHandler={handleZoomControllerChange}
-      /> : null}
-      /** Add an attribute named time. */
-      <Custom time={5000} className='custom-position' width={200} height={200}>
-        <div>Use the custom component</div>
-      </Custom>
-    </div>
-  )
-})
-   ```
-
-   After the modification, run the project, and you can see that the time attribute is displayed on the custom component.
-
-   ![](https://web-cdn.agora.io/docs-files/1620289134349)
-
-3. Next, we have to import real class time data. Get the Context you need through Agora Edu Context in the function-level UI component through hooks. In this example, we use the [liveClassStatus](https://docs.agora.io/cn/agora-class/edu_context_api_ref_wev_room?platform=Web#liveclassstatus) property of the RoomContext in the Agora Edu Context to get the class time. Edit `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx` to get the class time and set it as a property in the custom component .
-
-   <div class="alter note">Agora does not recommend directly referencing Context in basic UI components, because basic UI components may be reused in different scenarios.</div>
-
-   ```tsx
-   ...
-export const WhiteboardContainer = observer(() => {
-    ...
-    const {
-    liveClassStatus
-    } = useRoomContext()
-
     return (
     <div className="whiteboard">
       {
@@ -458,7 +403,8 @@ export const WhiteboardContainer = observer(() => {
         maximum={!isFullScreen}
         clickHandler={handleZoomControllerChange}
       /> : null}
-      <Custom time={liveClassStatus.duration} className='custom-position' width={200} height={200}>
+      /** Add the time property. */
+      <Custom time={5000} className='custom-position' width={200} height={200}>
         <div>Use the custom component</div>
       </Custom>
     </div>
@@ -466,7 +412,50 @@ export const WhiteboardContainer = observer(() => {
 })
    ```
 
-   Run the project after the modification, and you can see that the class time is automatically updated on the user interface in milliseconds. We can then modify the `index.tsx` file of the custom component, fine-tune the style of the custom component, and then format the time.
+   After the modification, run the project, and you can see that the time is displayed on the custom component.
+
+   ![](https://web-cdn.agora.io/docs-files/1622779701958)
+
+3. We need to import real class time. In this example, we use the [liveClassStatus](https://docs.agora.io/cn/agora-class/edu_context_api_ref_wev_room?platform=Web#liveclassstatus) property of the RoomContext in the Agora Edu Context to get the class time. Edit `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx` to get the class time and set it as a property in the custom component .
+
+   <div class="alter note">Agora does not recommend directly referencing the Agora Edu Context in basic UI components, because basic UI components may be reused in different scenarios.</div>
+
+   ```tsx
+   ...
+export const WhiteboardContainer = observer(() => {
+     ...
+     const {
+       liveClassStatus
+     } = useRoomContext()
+
+     return (
+       <div className="whiteboard">
+         {
+           ready ?
+           <div id="netless" style={{position: 'absolute', top: 0, left: 0, height: '100%', width: '100%'}} ref={mountToDOM} ></div> : null
+         }
+         {showTab ?
+         <TabsContainer /> : null}
+         {showToolBar ?
+           <Toolbar active={currentSelector} activeMap={activeMap} tools={tools} onClick={handleToolClick} className="toolbar-biz" />
+         : null}
+         {showZoomControl ? <ZoomController
+           className='zoom-position'
+           zoomValue={zoomValue}
+           currentPage={currentPage}
+           totalPage={totalPage}
+           maximum={!isFullScreen}
+           clickHandler={handleZoomControllerChange}
+         /> : null}
+         <Custom time={liveClassStatus.duration} className='custom-position' width={200} height={200}>
+           <div>Use the custom component</div>
+         </Custom>
+       </div>
+     )
+})
+   ```
+
+   After the modification, run the project, and you can see that the class time is automatically updated on the user interface in milliseconds. We can then modify the `index.tsx` file of the custom component, fine-tune the style of the custom component, and then format the time.
 
    ```tsx
    ...
@@ -500,7 +489,7 @@ export const Custom: FC<CustomProps> = ({
 
    The final user interface is as follows:
 
-   ![](https://web-cdn.agora.io/docs-files/1620289155801)
+   ![](https://web-cdn.agora.io/docs-files/1622780228732)
 
 ### Change the global style of basic UI components
 
