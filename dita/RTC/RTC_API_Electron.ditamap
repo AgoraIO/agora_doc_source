@@ -10,8 +10,9 @@
         <topicref href="conref/conref_rtc_api.dita" processing-role="resource-only"/>
         <topicref href="config/subject-scheme-rtc.ditamap" format="ditamap" type="subjectScheme"
             navtitle="Conditional processing attributes"/>
-        <mapref href="config/relations-rtc-api.ditamap" format="ditamap"/>
+        <mapref href="config/relations-rtc-api.ditamap" format="ditamap" processing-role="resource-only"/>
         <topicref href="config/keys-rtc-api-electron.ditamap" format="ditamap"/>
+        <mapref href="config/keys-rtc-links-electron.ditamap" format="ditamap"/>
     </topichead>
     <topichead navtitle="Agora Electron SDK API Reference ">
         <topicref href="API/rtc_api_overview.dita"/>
@@ -26,6 +27,10 @@
             <topicref keyref="setClientRole2" toc="no"/>
             <topicref keyref="leaveChannel" toc="no"/>
             <topicref keyref="renewToken" toc="no"/>
+            <topicref keyref="joinChannelWithUserAccount2" toc="no"/>
+            <topicref keyref="getUserInfoByUid" toc="no"/>
+            <topicref keyref="getUserInfoByUserAccount" toc="no"/>
+            <topicref keyref="registerLocalUserAccount" toc="no"/>
             <topicref keyref="getConnectionState" toc="no"/>
             <topicref keyref="enableWebSdkInteroperability" toc="no"/>
             <topicref keyref="enableAudio" toc="no"/>
@@ -157,7 +162,6 @@
             <topicref keyref="setCloudProxy" toc="no"/>
             <topicref keyref="enableDeepLearningDenoise" toc="no"/>
             <topicref keyref="sendCustomReportMessage" toc="no"/>
-            <topicref keyref="joinChannelWithUserAccount2" toc="no"/>
             <topicref keyref="enumeratePlaybackDevices" toc="no"/>
             <topicref keyref="enumerateRecordingDevices" toc="no"/>
             <topicref keyref="setPlaybackDevice" toc="no"/>
@@ -194,13 +198,17 @@
             <topicref keyref="videoSourceEnableLocalAudio" toc="no"/>
             <topicref keyref="videoSourceEnableLocalVideo" toc="no"/>
             <topicref keyref="videoSourceEnableLoopbackRecording" toc="no"/>
+            <topicref keyref="videoSourceEnablePlugin" toc="no"/>
             <topicref keyref="videoSourceEnableVideo" toc="no"/>
             <topicref keyref="videoSourceEnableWebSdkInteroperability" toc="no"/>
+            <topicref keyref="videoSourceGetPluginParameter" toc="no"/>
+            <topicref keyref="videoSourceGetPlugins" toc="no"/>
             <topicref keyref="videoSourceInitializeWithContext" toc="no"/>
             <topicref keyref="videoSourceJoinChannel" toc="no"/>
             <topicref keyref="videoSourceLeaveChannel" toc="no"/>
             <topicref keyref="videoSourceMuteAllRemoteAudioStreams" toc="no"/>
             <topicref keyref="videoSourceMuteAllRemoteVideoStreams" toc="no"/>
+            <topicref keyref="videoSourceRegisterPlugin" toc="no"/>
             <topicref keyref="videoSourceRelease" toc="no"/>
             <topicref keyref="videoSourceRenewToken" toc="no"/>
             <topicref keyref="videoSourceSetAddonLogFile" toc="no"/>
@@ -208,6 +216,7 @@
             <topicref keyref="videoSourceSetEncryptionMode" toc="no"/>
             <topicref keyref="videoSourceSetEncryptionSecret" toc="no"/>
             <topicref keyref="videoSourceSetLogFile" toc="no"/>
+            <topicref keyref="videoSourceSetPluginParameter" toc="no"/>
             <topicref keyref="videoSourceSetScreenCaptureContentHint" toc="no"/>
             <topicref keyref="videoSourceSetVideoEncoderConfiguration" toc="no"/>
             <topicref keyref="videoSourceSetVideoProfile" toc="no"/>
@@ -216,10 +225,17 @@
             <topicref keyref="videoSourceStartScreenCaptureByWindow" toc="no"/>
             <topicref keyref="videoSourceStopPreview" toc="no"/>
             <topicref keyref="videoSourceStopScreenCapture" toc="no"/>
+            <topicref keyref="videoSourceUnregisterPlugin" toc="no"/>
             <topicref keyref="videoSourceUpdateScreenCaptureParameters" toc="no"/>
             <topicref keyref="videoSourceUpdateScreenCaptureRegion" toc="no"/>
+            <topicref keyref="registerPlugin" toc="no"/>
+            <topicref keyref="unregisterPlugin" toc="no"/>
+            <topicref keyref="getPlugins" toc="no"/>
+            <topicref keyref="enablePlugin" toc="no"/>
+            <topicref keyref="getPluginParameter" toc="no"/>
+            <topicref keyref="setPluginParameter" toc="no"/>
         </topicref>
-        <topichead chunk="to-content" navtitle="AgoraRtcEngine 回调">
+        <topicref keyref="IRtcEngineEventHandler" chunk="to-content">
             <topicref keyref="onConnectionStateChanged" toc="no"/>
             <topicref keyref="onJoinChannelSuccess" toc="no"/>
             <topicref keyref="onRejoinChannelSuccess" toc="no"/>
@@ -233,6 +249,8 @@
             <topicref keyref="onConnectionBanned" toc="no"/>
             <topicref keyref="onTokenPrivilegeWillExpire" toc="no"/>
             <topicref keyref="onRequestToken" toc="no"/>
+            <topicref keyref="onLocalUserRegistered" toc="no"/>
+            <topicref keyref="onUserInfoUpdated" toc="no"/>
             <topicref keyref="onLocalAudioStateChanged" toc="no"/>
             <topicref keyref="onMicrophoneEnabled" toc="no"/>
             <topicref keyref="onFirstLocalAudioFrame" toc="no"/>
@@ -294,11 +312,10 @@
             <topicref keyref="onMetadataReceived" toc="no"/>
             <topicref keyref="onStreamMessage" toc="no"/>
             <topicref keyref="onStreamMessageError" toc="no"/>
-            <topicref keyref="onUploadLogResult" toc="no"/>
             <topicref keyref="onWarning" toc="no"/>
             <topicref keyref="onError" toc="no"/>
+            <topicref keyref="onApiError" toc="no"/>
             <topicref keyref="onApiCallExecuted" toc="no"/>
-            <topicref keyref="onMediaEngineLoadSuccess" toc="no"/>
             <topicref keyref="onMediaEngineStartCallSuccess" toc="no"/>
             <topicref keyref="videoSourceApiCallExecuted" toc="no"/>
             <topicref keyref="videoSourceApiError" toc="no"/>
@@ -340,7 +357,7 @@
             <topicref keyref="videoSourceVideoStopped" toc="no"/>
             <topicref keyref="videoSourceVideoSubscribeStateChanged" toc="no"/>
             <topicref keyref="videoSourceWarning" toc="no"/>
-        </topichead>
+        </topicref>
         <topicref keyref="IChannel" chunk="to-content">
             <topicref keyref="IChannel_release" toc="no"/>
             <topicref keyref="IChannel_joinChannel" toc="no"/>
@@ -384,7 +401,7 @@
             <topicref keyref="IChannel_stopChannelMediaRelay" toc="no"/>
             <topicref keyref="IChannel_getCallId" toc="no"/>
         </topicref>
-        <topichead chunk="to-content" navtitle="AgoraRtcChannel 回调">
+        <topicref keyref="IChannelEventHandler" chunk="to-content">
             <topicref keyref="IChannel_onChannelWarning" toc="no"/>
             <topicref keyref="IChannel_onChannelError" toc="no"/>
             <topicref keyref="IChannel_onJoinChannelSuccess" toc="no"/>
@@ -420,7 +437,7 @@
             <topicref keyref="IChannel_onConnectionStateChanged" toc="no"/>
             <topicref keyref="IChannel_onMetadataReceived" toc="no"/>
             <topicref keyref="IChannel_onReadyToSendMetadata" toc="no"/>
-        </topichead>
+        </topicref>
         <topicref href="API/rtc_api_data_type.dita" chunk="to-content">
             <topicref keyref="AREA_CODE" toc="no"/>
             <topicref keyref="AUDIENCE_LATENCY_LEVEL_TYPE" toc="no"/>
@@ -509,6 +526,8 @@
             <topicref keyref="LocalVideoStats" toc="no"/>
             <topicref keyref="LogConfig" toc="no"/>
             <topicref keyref="Metadata" toc="no"/>
+            <topicref keyref="Plugin" toc="no"/>
+            <topicref keyref="PluginInfo" toc="no"/>
             <topicref keyref="Rect" toc="no"/>
             <topicref keyref="Rectangle" toc="no"/>
             <topicref keyref="RemoteAudioStats" toc="no"/>
