@@ -6,7 +6,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-<codeblock props="windows" outputclass="language-cpp">typedef struct LiveTranscoding {
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">typedef struct LiveTranscoding {
     int width;
     int height;
     int videoBitrate;
@@ -44,27 +46,7 @@
     , audioChannels(1)
     {}
     } LiveTranscoding;</codeblock>
-<codeblock props="rust" outputclass="language-rust">pub struct LiveTranscoding {
-    pub width: ::std::os::raw::c_int,
-    pub height: ::std::os::raw::c_int,
-    pub videoBitrate: ::std::os::raw::c_int,
-    pub videoFramerate: ::std::os::raw::c_int,
-    pub lowLatency: BOOL,
-    pub videoGop: ::std::os::raw::c_int,
-    pub videoCodecProfile: VIDEO_CODEC_PROFILE_TYPE,
-    pub backgroundColor: ::std::os::raw::c_uint,
-    pub userCount: ::std::os::raw::c_uint,
-    pub transcodingUsers: *mut TranscodingUser,
-    pub transcodingExtraInfo: *const ::std::os::raw::c_char,
-    pub metadata: *const ::std::os::raw::c_char,
-    pub watermark: *mut RtcImage,
-    pub backgroundImage: *mut RtcImage,
-    pub audioSampleRate: AUDIO_SAMPLE_RATE_TYPE,
-    pub audioBitrate: ::std::os::raw::c_int,
-    pub audioChannels: ::std::os::raw::c_int,
-    pub audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE,
-    }</codeblock>
-<codeblock props="electron" outputclass="language-typescript">export interface LiveTranscoding {
+                <codeblock props="electron" outputclass="language-typescript">export interface LiveTranscoding {
     width: number;
     height: number;
     videoBitrate: number;
@@ -80,10 +62,14 @@
     audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE;
     audioBitrate: number;
     transcodingExtraInfo: string;
+    metadata?: string;
     watermark: RtcImage;
     backgroundImage: RtcImage;
     transcodingUsers: Array&lt;TranscodingUser&gt;
     }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
             </p>
         </section>
         <section id="parameters">
