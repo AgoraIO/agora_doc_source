@@ -122,6 +122,8 @@ changeAudioVolume: (deviceType: string, value: any) => Promise<void>,
 changeCamera: (deviceId: string) => Promise<void>
 ```
 
+> 自 v1.1.2 起新增。
+
 切换摄像头。
 
 | 参数       | 描述      |
@@ -133,6 +135,8 @@ changeCamera: (deviceId: string) => Promise<void>
 ```typescript
 changeMicrophone: (deviceId: string) => Promise<void>
 ```
+
+> 自 v1.1.2 起新增。
 
 切换麦克风。
 
@@ -146,6 +150,8 @@ changeMicrophone: (deviceId: string) => Promise<void>
 changeSpeakerVolume: (v: number) => Promise<void>
 ```
 
+> 自 v1.1.2 起新增。
+
 调整扬声器的音量。
 
 ## changeMicrophoneVolume
@@ -153,5 +159,7 @@ changeSpeakerVolume: (v: number) => Promise<void>
 ```typescript
 changeMicrophoneVolume: (v: number) => Promise<void>
 ```
+
+> 自 v1.1.2 起新增。
 
 调整麦克风的音量。

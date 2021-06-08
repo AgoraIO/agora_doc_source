@@ -1,21 +1,21 @@
-Flexible Classroom is an aPaaS solution provided by Agora for online interactive tutoring. It encapsulates the complex APIs of the Agora RTC SDK, Agora RTM SDK, Interactive Whiteboard SDK, and the Agora Cloud Recording service into modules. Flexible Classroom empowers developers can quickly build apps for online interactive classrooms in a low-code way, with no need to learn the complex logic of real-time audio and video.
+Flexible Classroom is an aPaaS solution provided by Agora for online interactive tutoring. It encapsulates the complex APIs of the Agora RTC SDK, Agora RTM SDK, Interactive Whiteboard SDK, and the Agora Cloud Recording service into modules. Flexible Classroom empowers developers to quickly build apps for online interactive classrooms in a low-code way, with no need to learn the complex logic of real-time audio and video.
 
 Flexible Classroom covers a variety of teaching scenarios, including one-to-one classrooms, small classrooms, and lecture halls. Users can join a flexible classroom in the role of a teacher, student, or teaching assistant. Flexible Classroom has an abundance of features, including real-time audio and video interaction, real-time messaging, interactive whiteboard, recording, screen sharing, and also classroom and user management. More importantly, Flexible Classroom enables developers to customize their classrooms with tools such as the Agora Edu Context, UIKit, and ExtApp. Developers can also connect Flexible Classroom with their own systems, such as their user management system and class management systems.
 
-![](https://web-cdn.agora.io/docs-files/1619757465085)
+![](https://web-cdn.agora.io/docs-files/1620992401221)
 
 ## Education solution comparison
 
 Agora provides aPaaS and PaaS solutions for online interactive classrooms. See the following table for their differences.
 
-| <span style="white-space:nowrap;">&emsp;&emsp;&emsp;&emsp;</span> | aPaaS solution | PaaS solution |
+| <span style="white-space:nowrap;">&emsp;&emsp;&emsp;&emsp;</span> | Flexible Classroom | PaaS solution |
 | :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| Solution introduction | Use Flexible Classroom to implement online interactive classrooms. | Integrate the Agora RTC SDK, RTM SDK, Interactive Whiteboard SDK, and Cloud Recording service respectively to implement online interactive classrooms. |
+| Solution introduction | Use Flexible Classroom, an aPaaS solution provided by Agora, to implement online interactive classrooms. | Integrate the Agora RTC SDK, RTM SDK, Interactive Whiteboard SDK, and Cloud Recording service respectively to implement online interactive classrooms. |
 | Target customers | Suitable for customers with limited development resources, tight schedules, and medium demand for customization. | Suitable for customers with sufficient development resources and high demand for customization. |
-| Cost | Low | High |
+| Implementation Cost | Low | High |
 | Development time | As short as 15 minutes | One to three months |
 | Features | Supports features including real-time audio and video communication, real-time messaging, interactive whiteboard, recording, screen sharing and so on. Provides the cloud service for classroom and user management. Flexible Classroom can be seamlessly connected with developers' other systems, such as their user management system and class management systems. | Developers implement real-time audio and video, real-time messaging, interactive whiteboard, and other functions all by themselves. |
-| Scalability | Medium | High |
+| Extensibility and Customization | Medium | High |
 | Data security | Agora does not store any business data of customers. | Agora does not store any business data of customers. |
 | User interface | Agora provides default classroom user interfaces. Developers also have the freedom to customize user interfaces. | Developers implement user interfaces all by themselves. |
 | Platform | <li>Android<li>iOS<li>macOS<li>Windows<li>Web | Supports more than 20 platforms and frameworks. |
@@ -35,12 +35,11 @@ A flexible classroom mainly includes four areas: navigation bar, whiteboard area
 
 ### Desktop
 
-![](https://web-cdn.agora.io/docs-files/1619757500907)
+![](https://web-cdn.agora.io/docs-files/1622430316012)
 
 ### Mobile
 
-![](https://web-cdn.agora.io/docs-files/1619757513895)
-
+![](https://web-cdn.agora.io/docs-files/1622431132516)
 
 ## Features
 
@@ -123,7 +122,7 @@ Note:
 
 The cloud service of Flexible Classroom is free of charge until December 31, 2021. According to your actual usage, Agora will charge fees for Real-time Audio and Video Communication, Real-time Messaging, Cloud Recording, and Interactive Whiteboard. See the following documents for the pricing of each product:
 
-- [Pricing for Real-time Audio and Video Communication](https://docs.agora.io/cn/Interactive%20Broadcast/billing_rtc?platform=Android)
-- [Pricing for Real-time Messaging](https://docs.agora.io/cn/Real-time-Messaging/billing_rtm?platform=All%20Platforms)
-- [Pricing for Cloud Recording](https://docs.agora.io/cn/cloud-recording/billing_cloud_recording?platform=RESTful)
+- [Pricing for Real-time Audio and Video Communication](https://docs.agora.io/en/Interactive%20Broadcast/billing_rtc?platform=Android)
+- [Pricing for Real-time Messaging](https://docs.agora.io/en/Real-time-Messaging/billing_rtm?platform=All%20Platforms)
+- [Pricing for Cloud Recording](https://docs.agora.io/en/cloud-recording/billing_cloud_recording?platform=RESTful)
 - [Pricing for Interactive Whiteboard](https://www.herewhite.com/zh-CN/price)

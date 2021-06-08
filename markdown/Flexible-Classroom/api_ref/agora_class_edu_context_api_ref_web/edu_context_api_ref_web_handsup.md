@@ -114,6 +114,8 @@ teacherRejectHandsUp: (userUuid: string) => Promise<void>,
 teacherRevokeCoVideo: (userUuid: string) => Promise<void>,
 ```
 
+> 自 v1.1.2 起新增。
+
 老师让指定用户下台。
 
 | 参数       | 描述      |
@@ -125,5 +127,7 @@ teacherRevokeCoVideo: (userUuid: string) => Promise<void>,
 ```typescript
 studentExitCoVideo: () => Promise<void>,
 ```
+
+> 自 v1.1.2 起新增。
 
 学生主动下台。

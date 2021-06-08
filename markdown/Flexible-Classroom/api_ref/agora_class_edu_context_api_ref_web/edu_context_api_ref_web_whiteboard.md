@@ -232,4 +232,16 @@ async grantUserPermission(userUuid: string): void
 showBoardTool: [boolean, boolean];
 ```
 
+> 自 v1.1.2 起新增。
+
 当前是否显示白板基础工具栏和页面控制工具栏。
+
+## startOrStopSharing
+
+```typescript
+startOrStopSharing: () => Promise<void>,
+```
+
+> 自 v1.1.2 起废弃。Agora 建议改用 ScreenShareContext 中的 `startOrStopSharing`。
+
+开始或停止屏幕共享。

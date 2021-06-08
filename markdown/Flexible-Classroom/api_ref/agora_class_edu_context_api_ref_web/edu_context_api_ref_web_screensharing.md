@@ -52,6 +52,8 @@ screenEduStream: EduStream,
 isScreenSharing: boolean,
 ```
 
+> 自 v1.1.2 起新增。
+
 当前是否正在共享屏幕。
 
 ## customScreenSharePickerType
@@ -60,6 +62,8 @@ isScreenSharing: boolean,
 customScreenSharePickerType: ScreenShareType,
 ```
 
+> 自 v1.1.2 起新增。
+
 当前显示的屏幕共享选择器类型。
 
 ## startNativeScreenShareBy
@@ -67,6 +71,8 @@ customScreenSharePickerType: ScreenShareType,
 ```typescript
 startNativeScreenShareBy: (windowId: number, type?: ScreenShareType) => Promise<void>,
 ```
+
+> 自 v1.1.2 起新增。
 
 使用指定的窗口或屏幕 ID 进行屏幕共享。
 
@@ -80,5 +86,7 @@ startNativeScreenShareBy: (windowId: number, type?: ScreenShareType) => Promise<
 ```typescript
 canSharingScreen: boolean;
 ```
+
+> 自 v1.1.2 起新增。
 
 当前是否允许屏幕共享。

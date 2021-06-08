@@ -32,6 +32,8 @@ acceptedUserList: array,
 localUserInfo: EduUser,
 ```
 
+> 自 v1.1.2 起新增。
+
 本地用户信息。
 
 ## teacherInfo
@@ -40,6 +42,8 @@ localUserInfo: EduUser,
 teacherInfo?: EduUser,
 ```
 
+> 自 v1.1.2 起新增。
+
 当前课堂的老师信息。
 
 ## toggleWhiteboardPermission
@@ -47,6 +51,8 @@ teacherInfo?: EduUser,
 ```javascript
 toggleWhiteboardPermission: (userUuid:string, whiteboardGranted: boolean) => Promise<any>,
 ```
+
+> 自 v1.1.2 起新增。
 
 设置指定用户的白板权限。
 
@@ -61,6 +67,8 @@ toggleWhiteboardPermission: (userUuid:string, whiteboardGranted: boolean) => Pro
 toggleCamera: (userUuid:string, enabled: boolean) => Promise<any>,
 ```
 
+> 自 v1.1.2 起新增。
+
 开启或关闭指定用户的摄像头。
 
 | 参数       | 描述             |
@@ -74,6 +82,8 @@ toggleCamera: (userUuid:string, enabled: boolean) => Promise<any>,
 toggleMic: (userUuid:string, enabled: boolean) => Promise<any>,
 ```
 
+> 自 v1.1.2 起新增。
+
 开启或关闭指定用户的麦克风。
 
 | 参数       | 描述             |
@@ -81,11 +91,33 @@ toggleMic: (userUuid:string, enabled: boolean) => Promise<any>,
 | `userUuid` | 用户 ID。        |
 | `enabled`  | 麦克风是否开启。 |
 
+## controlTools
+
+```javascript
+controlTools: ControlTool[],
+```
+
+> 自 v1.1.2 起新增。
+
+可用的用户管理工具。
+
+## controlTools
+
+```javascript
+isHost: boolean
+```
+
+> 自 v1.1.2 起新增。
+
+是否为房主。
+
 ## kick
 
 ```javascript
 kick: (userUuid:string) => Promise<any>,
 ```
+
+> 自 v1.1.2 起新增。
 
 将指定用户踢出房间。
 
