@@ -8,7 +8,36 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="windows" outputclass="language-cpp">struct ExternalVideoFrame {
+    enum VIDEO_BUFFER_TYPE
+    {
+        VIDEO_BUFFER_RAW_DATA = 1,
+    };
+    enum VIDEO_PIXEL_FORMAT
+    {
+        VIDEO_PIXEL_UNKNOWN = 0,
+        VIDEO_PIXEL_I420 = 1,
+        VIDEO_PIXEL_BGRA = 2,
+        VIDEO_PIXEL_NV21 = 3,
+        VIDEO_PIXEL_RGBA = 4,
+        VIDEO_PIXEL_IMC2 = 5,
+        VIDEO_PIXEL_ARGB = 7,
+        VIDEO_PIXEL_NV12 = 8,
+        VIDEO_PIXEL_I422 = 16,
+    };
+
+    VIDEO_BUFFER_TYPE type;
+    VIDEO_PIXEL_FORMAT format;
+    void* buffer;
+    int stride;
+    int height;
+    int cropLeft;
+    int cropTop;
+    int cropRight;
+    int cropBottom;
+    int rotation;
+    long long timestamp;
+    };</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>

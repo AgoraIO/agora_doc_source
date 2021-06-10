@@ -8,7 +8,62 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="windows" outputclass="language-cpp">struct VideoCanvas {
+    view_t view;
+    int renderMode;
+    char channelId[MAX_CHANNEL_ID_LENGTH];
+    uid_t uid;
+    void *priv;
+    VIDEO_MIRROR_MODE_TYPE mirrorMode;
+     
+    VideoCanvas()
+    : view(NULL)
+    , renderMode(RENDER_MODE_HIDDEN)
+    , uid(0)
+    , priv(NULL)
+    , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
+    {
+    channelId[0] = '\0';
+    }
+    VideoCanvas(view_t v, int m, uid_t u)
+    : view(v)
+    , renderMode(m)
+    , uid(u)
+    , priv(NULL)
+    , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
+    {
+    channelId[0] = '\0';
+    }
+    VideoCanvas(view_t v, int m, const char *ch, uid_t u)
+    : view(v)
+    , renderMode(m)
+    , uid(u)
+    , priv(NULL)
+    , mirrorMode(VIDEO_MIRROR_MODE_AUTO)
+    {
+    strncpy(channelId, ch, MAX_CHANNEL_ID_LENGTH);
+    channelId[MAX_CHANNEL_ID_LENGTH - 1] = '\0';
+    }
+    VideoCanvas(view_t v, int rm, uid_t u, VIDEO_MIRROR_MODE_TYPE mm)
+    : view(v)
+    , renderMode(rm)
+    , uid(u)
+    , priv(NULL)
+    , mirrorMode(mm)
+    {
+    channelId[0] = '\0';
+    }
+    VideoCanvas(view_t v, int rm, const char *ch, uid_t u, VIDEO_MIRROR_MODE_TYPE mm)
+    : view(v)
+    , renderMode(rm)
+    , uid(u)
+    , priv(NULL)
+    , mirrorMode(mm)
+    {
+    strncpy(channelId, ch, MAX_CHANNEL_ID_LENGTH);
+    channelId[MAX_CHANNEL_ID_LENGTH - 1] = '\0';
+    }
+    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>

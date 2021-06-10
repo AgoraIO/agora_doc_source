@@ -8,8 +8,36 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp"/>
-                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="windows" outputclass="language-cpp">struct RemoteVideoStats {
+    uid_t uid;
+    int delay;
+    int width;
+    int height;
+    int receivedBitrate;
+    int decoderOutputFrameRate;
+    int rendererOutputFrameRate;
+    int packetLossRate;
+    REMOTE_VIDEO_STREAM_TYPE rxStreamType;
+    int totalFrozenTime;
+    int frozenRate;
+    int totalActiveTime;
+    int publishDuration;
+    };</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">export interface RemoteVideoStats {
+    uid: number;
+    delay: number;
+    width: number;
+    height: number;
+    receivedBitrate: number;
+    decoderOutputFrameRate: number;
+    rendererOutputFrameRate: number;
+    rxStreamType: REMOTE_VIDEO_STREAM_TYPE;
+    totalFrozenTime: number;
+    frozenRate: number;
+    packetLossRate: number;
+    totalActiveTime: number;
+    publishDuration: number;
+    }</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
