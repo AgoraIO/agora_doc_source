@@ -1,6 +1,6 @@
 ## Overview
 
-Agora provides the complete [Agora Classroom SDK](https://jitpack.io/#AgoraIO-Community/CloudClass-Android) on JitPack. However, if you want to customize the user interfaces of classrooms, Agora provides the source code of the Agora Classroom SDK for you to further develop, debug, and compile. The source code of the Agora Classroom SDK for Android is in the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) repository on GitHub (branch release/apaas/1.1.0). The Agora Classroom SDK separates the code of the user interfaces from the code of core business logic and provides two libraries, UIKit and EduCore. These two libraries connect with each other through [Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_android_overview?platform=Android). For example, for the chat module in the  Flexible Classroom, a user needs to click on a button to send a message, and they also receive messages sent by other users. In this case, in UIKit, we can call a method in the Chat Context to send a message and listen for the events in the Chat Context to receive messages.
+Agora provides the complete [Agora Classroom SDK](https://jitpack.io/#AgoraIO-Community/CloudClass-Android) on JitPack. However, if you want to customize the user interfaces of classrooms, Agora provides the source code of the Agora Classroom SDK for you to further develop, debug, and compile. The source code of the Agora Classroom SDK for Android is in the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) repository on GitHub (branch release/apaas/1.1.0). The Agora Classroom SDK separates the code of the user interfaces from the code of core business logic and provides two libraries, UIKit and EduCore. These two libraries connect with each other through [Agora Edu Context](./edu_context_api_ref_android_overview?platform=Android). For example, for the chat module in the  Flexible Classroom, a user needs to click on a button to send a message, and they also receive messages sent by other users. In this case, in UIKit, we can call a method in the Chat Context to send a message and listen for the events in the Chat Context to receive messages.
 
 ![](https://web-cdn.agora.io/docs-files/1619696813295)
 
@@ -20,7 +20,7 @@ This section provides examples of customizing the user interfaces of Flexible Cl
 
 The following example demonstrates how to modify the background color of the navigation bar component from white to gray by editing `agoraui/src/main/res/layout/agora_status_bar_layout.xml`.
 
-<div class="alert info">The navigation bar component is implemented in <code>Agora/src/main/kotlin/io/Agora/uikit/impl/room/Agora</code>.</div>
+<div class="alert info">The navigation bar component is implemented in <code>agoraui/src/main/kotlin/io/agora/uikit/impl/room/AgoraUIRoomStatus.kt</code>.</div>
 
 #### Before
 
@@ -33,7 +33,7 @@ The following example demonstrates how to modify the background color of the nav
 </RelativeLayout>
 ```
 
-![](https://web-cdn.agora.io/docs-files/1619168631686)
+![](https://web-cdn.agora.io/docs-files/1622431132516)
 
 #### After
 
@@ -46,13 +46,13 @@ The following example demonstrates how to modify the background color of the nav
 </RelativeLayout>
 ```
 
-![](https://web-cdn.agora.io/docs-files/1619168642141)
+![](https://web-cdn.agora.io/docs-files/1623327367108)
 
 ### Adjust the layout
 
 The following example demonstrates how to switch the position of the leave room button and the network condition icon by editing `agoraui/src/main/res/layout/agora_status_bar_layout.xml`.
 
-<div class="alert info">The navigation bar component is implemented in <code>Agora/src/main/kotlin/io/Agora/uikit/impl/room/Agora</code>.</div>
+<div class="alert info">The navigation bar component is implemented in <code>agoraui/src/main/kotlin/io/agora/uikit/impl/room/AgoraUIRoomStatus.kt</code>.</div>
 
 #### Before
 
@@ -84,7 +84,7 @@ The following example demonstrates how to switch the position of the leave room 
 </RelativeLayout>
 ```
 
-![](https://web-cdn.agora.io/docs-files/1619168654208)
+![](https://web-cdn.agora.io/docs-files/1622431132516)
 
 #### After
 
@@ -116,7 +116,7 @@ The following example demonstrates how to switch the position of the leave room 
 </RelativeLayout>
 ```
 
-![](https://web-cdn.agora.io/docs-files/1619168663484)
+![](https://web-cdn.agora.io/docs-files/1623332519282)
 
 ### Add a basic UI component
 
@@ -127,66 +127,55 @@ Suppose the properties of the UI component are defined as follows:
 - Size: 100*100
 - Position: Centered
 - Background color: #BFBFBF
-- Text: `“离开”`/`“Leave”`
+- Text: Leave
 - Text color: UIColor.white
 - What happens when clicking the button: Leave the room
 
 Add a basic UI component, as follows:
 
-1. Add Chinese and English texts in the following files respectively. `
-agoraui/src/main/res/values-zh/strings.xml`
+1. Add the text in `agoraui/src/main/res/values/strings.xml`.
 
-   ```
-   <!-- Customer -->
-<string name="custom_widget_text">离开</string>
-   ```
-   `agoraui/src/main/res/values/strings.xml`
+```
+   <!-- Custom -->
+   <string name="custom_widget_text" translatable="false">Leave</string>
+```
 
-   ```
-   <!-- Customer -->
-<string name="custom_widget_text">Leave</string>
-   ```
-
-2. Add a `custom_widget_layout.xml` file under the `agoraui/src/main/res/` directory to define the style of custom components.
+2. Add a `custom_widget_layout.xml` file under the `agoraui/src/main/res/layout` directory to define the style of the custom component.
    ```
    <?xml version="1.0" encoding="utf-8"?>
-   
-<FrameLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-<TextView
-android:id="@+id/tv_custom_leave"
-android:layout_width="100dp"
-android:layout_height="100dp"
-android:background="#BFBFBF"
-android:textColor="@android:color/white"
-android:gravity="center"
-android:layout_gravity="center"
-android:text="@string/custom_widget_text"/>
-</FrameLayout>
-```
-3. Edit the `Agora/src/main/kotlin/io/Agora/uikit/impl/container/Agora` file to add the custom component to the one-to-one classroom.
-```
-class AgoraUI1v1Container : AbsUIContainer() {
-override fun init(layout: ViewGroup, left: Int, top: Int, width: Int, height: Int) {
-...
-addCustomWidget(layout)
-}
-private fun addCustomWidget(layout: ViewGroup){
-val customLayout = LayoutInflater.from(layout.context).inflate(R.layout.custom_widget_layout, layout)
-customLayout.findViewById<TextView>    (R.id.tv_custom_leave).setOnClickListener {
-roomStatus?.showLeaveDialog()
-}
-}
-}
-```
-After modification, the following icon appears in the one-to-one classroom. 
+   <FrameLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent">
+   <TextView
+   android:id="@+id/tv_custom_leave"
+   android:layout_width="100dp"
+   android:layout_height="100dp"
+   android:background="#BFBFBF"
+   android:textColor="@android:color/white"
+   android:gravity="center"
+   android:layout_gravity="center"
+   android:text="@string/custom_widget_text"/>
+   </FrameLayout>
+   ```
 
+3. Copy the following code to `agoraui/src/main/kotlin/io.agora.uikit/impl/container/AgoraUI1v1Container.kt` to add the custom component to the one-to-one classroom.
 
-![](https://web-cdn.agora.io/docs-files/1619168684154)
-```
+   ```kotlin
+   class AgoraUI1v1Container : AbsUIContainer() {
+     override fun init(layout: ViewGroup, left: Int, top: Int, width: Int, height: Int) {
+     ...
+       addCustomWidget(layout)
+     }
+     private fun addCustomWidget(layout: ViewGroup){
+       val customLayout = LayoutInflater.from(layout.context).inflate(R.layout.custom_widget_layout, layout)
+       customLayout.findViewById<TextView>    (R.id.tv_custom_leave).setOnClickListener {
+   roomStatus?.showLeaveDialog()
+       }
+     }
+   }
+   ```
 
-```
+   You can see the following icon in the one-to-one classroom.
 
-
+   ![](https://web-cdn.agora.io/docs-files/1623333238071)
