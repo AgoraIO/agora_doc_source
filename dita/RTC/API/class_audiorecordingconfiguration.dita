@@ -7,59 +7,59 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public class AudioRecordingConfiguration
-                    {
-                    public String filePath;
-                    public int recordingQuality;
-                    public int recordingPosition;
-                    public int recordingSampleRate;
+    {
+    public String filePath;
+    public int recordingQuality;
+    public int recordingPosition;
+    public int recordingSampleRate;
                     
-                    public AudioRecordingConfiguration()
-                    {
-                    this.recordingQuality = Constants.AUDIO_RECORDING_QUALITY_MEDIUM;
-                    this.recordingPosition = Constants.AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK;
-                    this.recordingSampleRate = 32000;
-                    }
+    public AudioRecordingConfiguration()
+    {
+    this.recordingQuality = Constants.AUDIO_RECORDING_QUALITY_MEDIUM;
+    this.recordingPosition = Constants.AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK;
+    this.recordingSampleRate = 32000;
+    }
                     
-                    public AudioRecordingConfiguration(String filePath, int quality, int position, int sampleRate)
-                    {
-                    this.filePath = filePath;
-                    this.recordingQuality = quality;
-                    this.recordingPosition = position;
-                    this.recordingSampleRate = sampleRate;
-                    }
-                    }</codeblock>
+    public AudioRecordingConfiguration(String filePath, int quality, int position, int sampleRate)
+    {
+    this.filePath = filePath;
+    this.recordingQuality = quality;
+    this.recordingPosition = position;
+    this.recordingSampleRate = sampleRate;
+    }
+    }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioRecordingConfiguration : NSObject
                     
-                    @property(copy, nonatomic) NSString* _Nullable filePath;
-                    @property(assign, nonatomic) AgoraAudioRecordingQuality recordingQuality;
-                    @property(assign, nonatomic) AgoraAudioRecordingPosition recordingPosition;
-                    @property(assign, nonatomic) NSInteger recordingSampleRate;
-                    @end</codeblock>
+    @property(copy, nonatomic) NSString* _Nullable filePath;
+    @property(assign, nonatomic) AgoraAudioRecordingQuality recordingQuality;
+    @property(assign, nonatomic) AgoraAudioRecordingPosition recordingPosition;
+    @property(assign, nonatomic) NSInteger recordingSampleRate;
+    @end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">struct AudioRecordingConfiguration {
 
-                    const char* filePath;
-                    AUDIO_RECORDING_QUALITY_TYPE recordingQuality;
-                    AUDIO_RECORDING_POSITION recordingPosition;
-                    int recordingSampleRate;
+    const char* filePath;
+    AUDIO_RECORDING_QUALITY_TYPE recordingQuality;
+    AUDIO_RECORDING_POSITION recordingPosition;
+    int recordingSampleRate;
                     
-                    AudioRecordingConfiguration() : 
-                      filePath(nullptr), 
-                      recordingQuality(AUDIO_RECORDING_QUALITY_MEDIUM), 
-                      recordingPosition(AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK), 
-                      recordingSampleRate(32000) 
-                    {}
+    AudioRecordingConfiguration() : 
+      filePath(nullptr), 
+      recordingQuality(AUDIO_RECORDING_QUALITY_MEDIUM), 
+      recordingPosition(AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK), 
+      recordingSampleRate(32000) 
+    {}
                     
-                    AudioRecordingConfiguration(
-                      const char* path, 
-                      AUDIO_RECORDING_QUALITY_TYPE quality, 
-                      AUDIO_RECORDING_POSITION position, 
-                      int sampleRate) : 
-                        filePath(path), 
-                        recordingQuality(quality), 
-                        recordingPosition(position), 
-                        recordingSampleRate(sampleRate) 
-                      {}
-                    };</codeblock>
+    AudioRecordingConfiguration(
+      const char* path, 
+      AUDIO_RECORDING_QUALITY_TYPE quality, 
+      AUDIO_RECORDING_POSITION position, 
+      int sampleRate) : 
+      filePath(path), 
+      recordingQuality(quality), 
+      recordingPosition(position), 
+      recordingSampleRate(sampleRate) 
+    {}
+    };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity" outputclass="language-csharp"></codeblock>
             <codeblock props="rn" outputclass="language-typescript"></codeblock>

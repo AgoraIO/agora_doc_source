@@ -14,9 +14,30 @@
                </keywords>
           </metadata>
      </prolog>
-     <refbody>
-          <section id="prototype">
-               <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onRemoteVideoStateChanged" />
+     <refbody><section id="prototype">
+         <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStateChanged(uid_t uid, 
+     REMOTE_VIDEO_STATE state, 
+     REMOTE_VIDEO_STATE_REASON reason, 
+     int elapsed) {
+     (void)uid;
+     (void)state;
+     (void)reason;
+     (void)elapsed;
+     }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REMOTE_VIDEO_STATE_CHANGED, cb: (
+     uid: number,
+     state: REMOTE_VIDEO_STATE,
+     reason: REMOTE_VIDEO_STATE_REASON,
+     elapsed: number
+     ) => void
+     ): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
           </section>
           <section id="detailed_desc">
                <dl outputclass="since">

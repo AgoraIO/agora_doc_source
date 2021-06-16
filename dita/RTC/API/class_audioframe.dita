@@ -5,7 +5,24 @@
     <shortdesc id="short"><ph id="shortdesc">AudioFrame 定义。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-   <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/AudioFrame"/>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">struct AudioFrame {
+    AUDIO_FRAME_TYPE type;
+    int samples;
+    int bytesPerSample;
+    int channels;
+    int samplesPerSec;
+    void* buffer;
+    int64_t renderTimeMs;
+    int avsync_type;
+    };</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
