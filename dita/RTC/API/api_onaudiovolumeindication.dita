@@ -21,12 +21,8 @@
     (void)speakerNumber;
     (void)totalVolume;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: 'audioVolumeIndication', cb: (
-    speakers: {
-    uid: number;
-    volume: number;
-    vad: number;
-    }[],
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_VOLUME_INDICATION, cb: (
+    speakers: AudioVolumeInfo[],
     speakerNumber: number,
     totalVolume: number
     ) => void

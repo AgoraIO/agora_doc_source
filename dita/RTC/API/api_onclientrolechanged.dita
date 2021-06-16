@@ -9,8 +9,11 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didClientRoleChanged:
     (AgoraClientRole)oldRole 
     newRole:(AgoraClientRole)newRole;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp"/>
-                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CLIENT_ROLE_CHANGED, cb: (
+    oldRole: CLIENT_ROLE_TYPE, 
+    newRole: CLIENT_ROLE_TYPE) => void
+    ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
