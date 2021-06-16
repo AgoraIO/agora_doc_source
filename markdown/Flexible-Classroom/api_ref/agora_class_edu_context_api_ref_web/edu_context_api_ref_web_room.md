@@ -46,7 +46,7 @@ isCourseStart: boolean,
 
 课堂是否开始。
 
-## kickOutOnce
+## kickOutBan
 
 ```typescript
 kickOutBan: (userUuid: string, roomUuid: string) => Promise<void>,
@@ -59,7 +59,7 @@ kickOutBan: (userUuid: string, roomUuid: string) => Promise<void>,
 | `userUuid` | 学生 ID。 |
 | `roomUuid` | 课堂 ID。 |
 
-## kickOutBan
+## kickOutOnce
 
 ```typescript
 kickOutOnce: (userUuid: string, roomUuid: string) => Promise<void>,

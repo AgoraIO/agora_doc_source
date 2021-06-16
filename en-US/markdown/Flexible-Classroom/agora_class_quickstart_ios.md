@@ -74,7 +74,7 @@ To launch a flexible classroom, do the following:
      ```
      # platform :ios, '10.0' use_frameworks!
      target 'Your App' do
-        pod 'AgoraEduSDK'
+        pod 'AgoraClassroomRegionSDK'
      end
      ```
 

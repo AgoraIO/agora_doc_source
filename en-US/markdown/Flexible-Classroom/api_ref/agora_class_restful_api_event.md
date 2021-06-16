@@ -1,5 +1,5 @@
 ## Overview
-This page lists all types of events that you can get through the [Get classroom events](./agora_class_restful_api#获取课堂事件) method.
+This page lists all types of events that you can get through the [Get classroom events](./agora_class_restful_api#get-classroom-events) method.
 
 ## The classroom state changes
 

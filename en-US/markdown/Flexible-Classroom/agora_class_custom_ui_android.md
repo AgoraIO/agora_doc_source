@@ -1,10 +1,14 @@
-## Overview
+Agora provides the complete [Agora Classroom SDK](https://www.npmjs.com/package/agora-classroom-sdk) on JitPack. However, if you want to customize the user interfaces of classrooms, such as changing colors, changing buttons, adjusting layouts, and adding logos, Agora provides the source code of the Agora Classroom SDK for you to further develop, debug, and compile.
 
-Agora provides the complete [Agora Classroom SDK](https://jitpack.io/#AgoraIO-Community/CloudClass-Android) on JitPack. However, if you want to customize the user interfaces of classrooms, Agora provides the source code of the Agora Classroom SDK for you to further develop, debug, and compile. The source code of the Agora Classroom SDK for Android is in the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) repository on GitHub (branch release/apaas/1.1.0). The Agora Classroom SDK separates the code of the user interfaces from the code of core business logic and provides two libraries, UIKit and EduCore. These two libraries connect with each other through [Agora Edu Context](./edu_context_api_ref_android_overview?platform=Android). For example, for the chat module in the  Flexible Classroom, a user needs to click on a button to send a message, and they also receive messages sent by other users. In this case, in UIKit, we can call a method in the Chat Context to send a message and listen for the events in the Chat Context to receive messages.
+This page shows you how to customize the user interfaces of Flexible Classroom by editing the the source code of the UIKit in the Agora Classroom SDK.
 
-![](https://web-cdn.agora.io/docs-files/1619696813295)
+## Understand the tech
 
-UIKit provides all the code for the user interfaces in Flexible Classroom. You can find the source code of the UIKit in the `agoraui` folder in the CloudClass-Android repository on GitHub (Branch release/apaas/1.1.0). The project structure of UIKit is as follows:
+In the Agora Classroom SDK, the code of the user interfaces is separated from the code of core business logic. The Classroom SDK contains two libraries, UIKit and EduCore. These two libraries connect with each other through [Agora Edu Context](./edu_context_api_ref_android_overview?platform=Android). For example, for the text chat feature of Flexible Classroom, a user can click on a button to send a text message, and the user can receive messages sent by other users. In this case, you can call a method in the Chat Context to send a message and listen for the events in the Chat Context to receive messages.
+
+![](https://web-cdn.agora.io/docs-files/1623761240753)
+
+UIKit contains all the code for the user interfaces of Flexible Classroom. You can find the source code of UIKit in the `agoraui` folder in the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) repository on GitHub (Branch release/apaas/1.1.0_region). The project structure of UIKit is as follows:
 
 | Folder | Description |
 | :----------- | :----------------------------------------------------------- |
@@ -12,7 +16,7 @@ UIKit provides all the code for the user interfaces in Flexible Classroom. You c
 | `impl` | The default implementations of each protocol in Flexible Classroom, that is, the default UI components used by Flexible Classroom, including:<ul><li>`chat`: The UI code of the chat area.</li><li>`handsup`: The UI code related to students "raising their hands" to apply for speaking up.</li><li>`room`: The UI code related to the classroom states and navigation bar.</li><li>`screnshare`: The UI code related to screen sharing.</li><li>`tool`: The UI code related to the toolbar containing various teaching tools.</li><li>`users`: The UI code related to user states.</li><li>`video`: The UI code of the video area.</li><li>`whiterboard`: The UI code of the whiteboard area.</li><li>`container`: Show how the basic UI components are combined in a classroom.</ul> |
 | `component` | The other public components used by Flexible Classroom. |
 
-## UI customization example
+## UI customization examples
 
 This section provides examples of customizing the user interfaces of Flexible Classroom.
 

@@ -73,8 +73,8 @@ String rtmToken = "";
 long startTime = System.currentTimeMillis() + 100;
 // The duration (ms) of the class, determined by the first user joining the classroom.
 long duration = 310L;
-// The area where the classroom is located. 
-String region = AgoraEduRegionStr.cn;
+// The region where the classroom is located. 
+String region = AgoraEduRegionStr.na;
 AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfig(
         userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration, region);
 AgoraEduClassRoom classRoom = AgoraEduSDK.launch(getApplicationContext(), agoraEduLaunchConfig, (state) -> {
@@ -316,7 +316,7 @@ The SDK global configuration. Used when calling [`setConfig`](#setconfig).
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
-| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep#step1). |
 | `eyeCare` | Whether to enable eye care mode:<li>`0`: (Default) Disable eye care mode.</li><li>`1`: Enable eye care mode.</li> |
 
 ### AgoraEduLaunchConfig
@@ -340,7 +340,7 @@ public class AgoraEduLaunchConfig implements Parcelable {
     @Nullable
     private Long duration;
     @Nullable
-    private String boardRegion;
+    private String region;
 }
 ```
 
@@ -354,10 +354,10 @@ The classroom launching configuration. Used when calling [`launch`](#launch).
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roleType` | The user's role in the classroom. See [`AgoraEduRoleType`](#agoraeduroletype). |
 | `roomType` | The classroom type. See [`AgoraEduRoomType`](#agoraeduroomtype). |
-| `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
+| `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/en/agora-class/agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `boardRegion` | The area where the classrooms is located. All clients must set the same area, otherwise, they may fail to communicate with each other. See [](). |
+| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
 
 ### AgoraEduCourseware
 
@@ -419,11 +419,11 @@ The detailed information of a page displayed on the whiteboard. Set in [`SceneIn
 ### AgoraEduRegionStr
 
 ```java
-object AgoraEduRegionStr {
-    val cn = "cn-hz"
-    val na = "us-sv"
-    val eu = "gb-lon"
-    val ap = "sg"
+object AgoraEduRegion {
+    const val cn = "CN"
+    const val na = "NA"
+    const val eu = "EU"
+    const val ap = "AP"
 }
 ```
 

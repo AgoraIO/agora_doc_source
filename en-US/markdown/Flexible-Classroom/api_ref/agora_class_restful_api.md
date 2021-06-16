@@ -1,7 +1,5 @@
 This page provides detailed help for the Flexible Classroom RESTful APIs.
 
-<div class="alert info">See the <a href="./agora_class_restful_api_release">changelog</a> of Flexible Classroom Cloud Service.</div>
-
 ## Basic information
 
 ### Server
@@ -19,18 +17,18 @@ Flexible Classroom Cloud Service uses tokens for authentication. You need to put
 - The RTM Token generated at your server.
 - The uid you use to generate the RTM Token.
 
-For details, see [Generate an RTM Token](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms).
+For details, see [Generate an RTM Token](https://docs.agora.io/en/Real-time-Messaging/token_server_rtm?platform=All%20Platforms).
 
 ## Set the classroom state
 
 ### Description
 
-Call this method to set the classroom state: Not started, Started, Ended. For the detailed description of each state, see classroom [state management](./class_state).
+Call this method to set the classroom state: Not started, Started, Ended.
 
 ### Prototype
 
 - Method: PUT
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/states/{state}
+- Endpoint: /{region}/edu/apps/{appId}/v2/rooms/{roomUUid}/states/{state}
 
 ### Request parameters
 
@@ -40,7 +38,8 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
+| `region` | String | (Required) The region for connection. For details, see [Network geofencing](./agora_class_security?#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](/en/Agora%20Platform/get_appid_token#get-the-app-id). |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `state` | Integer | (Required) The classroom state:<li>`0`: Not started.<li>`1`: Start recording.<li>`2`: Ended. |
 
@@ -48,7 +47,7 @@ Pass the following parameter in the URL.
 
 ```html
 // Set the state of the test_class as started
-https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
+https://api.agora.io/na/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 ```
 
 ### Response parameters
@@ -80,7 +79,7 @@ Call this method to kick a specified user out of a classroom. After a successful
 ### Prototype
 
 - Method: POST
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/users/{userUuid}/exit
+- Endpoint: /{region}/edu/apps/{appId}/v2/rooms/{roomUUid}/users/{userUuid}/exit
 
 ### Request parameters
 
@@ -90,7 +89,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `region` | String | (Required) The region for connection. For details, see [Network geofencing](./agora_class_security?#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep#step1). |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0-9</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 | `userUuid` | String | (Required) The user ID. This is the unique identifier of the user and also the user ID used when logging in to the Agora RTM system. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0-9</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
@@ -108,7 +108,7 @@ Pass in the following parameters in the request body.
 
 ```html
 // Kick the user with the ID 123 out of test_class
-https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
+https://api.agora.io/na/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 ```
 
 **Request Body**
@@ -149,7 +149,7 @@ Call this method to start or stop recording a specified classroom.
 ### Prototype
 
 - Method: PUT
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/records/states/{state}
+- Endpoint: /{region}/edu/apps/{appId}/v2/rooms/{roomUUid}/records/states/{state}
 
 ### Request parameters
 
@@ -159,7 +159,8 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
+| `region` | String | (Required) The region for connection. For details, see [Network geofencing](./agora_class_security?#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](/en/Agora%20Platform/get_appid_token#get-the-app-id). |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0-9</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 | `state` | Integer | (Required) The recording state:<li>`0`: Stop recoding.</li><li>`1`: Start recording.</li> |
 
@@ -169,7 +170,7 @@ Pass in the following parameters in the request body.
 
 | Parameter | Type | Description |
 | :---------------- | :----- | :----------------------------------------------------------- |
-| `mode` | String | (Optional) The recording mode:<li>Set the recording](https://docs.agora.io/cn/Agora%20Platform/webpage_recording) as `web `to enable [page recording mode. The format of recorded files is MP4. When the length of the recorded file reaches around two hours, or when the size of the file exceeds around 2 GB, the recording service automatically creates another MP4 file.</li><li>If you do not set this parameter, Flexible Classroom records the audio and video of the teachers in [composite recording mode](https://docs.agora.io/cn/Agora%20Platform/composite_recording_mode) by default. The format of recorded files is M3U8 and TS.</li> |
+| `mode` | String | (Optional) The recording mode:<li>Set  `mode` as `web ` to enable [web page recording mode](https://docs.agora.io/en/Agora%20Platform/webpage_recording). The format of recorded files is MP4. When the length of the recorded file reaches around two hours, or when the size of the file exceeds around 2 GB, the recording service automatically creates another MP4 file.</li><li>If you do not set this parameter, Flexible Classroom records the audio and video of the teachers in [composite recording mode](https://docs.agora.io/en/Agora%20Platform/composite_recording_mode) by default. The format of recorded files is M3U8 and TS.</li> |
 | `webRecordConfig` | Object | (Optional) When the `mode` is set as `web`, you need to set the detailed configuration of the webpage recording through `webRecordConfig`, including the following fields:<ul><li>`url`: (Required) String, the address of the web page to record. If you want to record a certain flexible classroom, you need to pass in the parameters required for launching a classroom in the URL. The Agora Cloud Recording service can join the specified classroom as an "invisible user" for recording. See the URL example in the request example. The following parameters are required in the URL:<ul><li>`userUuid`: The user ID used by the Agora Cloud Recording service. Please ensure that the user ID used by the Agora Cloud Recording service is not the same as that of existing users in the classroom, otherwise, the Agora Cloud Recording service will fail to join the classroom.</li><li>`roomUuid`: The ID of the classroom to be recorded.</li><li>`roomType`: The type of the classroom to be recorded.</li><li>`roleType`: The role of the Agora Cloud Recording service in the classroom to be recorded. Set this parameter as 0.</li><li>`pretest`: Whether to enable the pre-class test. Set this parameter as `false`.</li><li>`rtmToken`: The RTM Token used by the Agora Cloud Recording service.</li><li>`language`: The language of the user interface. Set this parameter as `zh` or `en`.</li><li>`appId`: Your Agora App ID.</li></ul><li>`videoBitrate`: (Optional) Number. The bitrate of the video (Kbps). The value range is [50, 8000]. The default value of `videoBitrate` varies according to the resolution of the output video:<ul><li>1280 × 720: The default value is 1130.</li><li>960 × 720: The default value is 910.</li><li>848 × 480: The default value is 610.</li><li>640 × 480: The default value is 400.</li><li>For all other resolutions, the default value is 300.</li></ul><li>`videoFps`: (Optional) Number. The frame rate of the video (fps). The value range is [5,60]. The default value is 15.</li><li>`audioProfile`: (Optional) Number. The sample rate, encoding mode, number of audio channels, and bitrate.<ul><li>0: (Default) Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps.</li><li>1: Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 128 Kbps.</li><li>2: Sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 192 Kbps.</li></ul><li>`videoWidth`: Number. The width of the video (pixels). The value range is [480, 1280]. The default value is 1280. `The product of `videoWidth` and videoHeight` should not exceed 921,600 (1280 × 720).</li><li>`videoHeight`: Number. The height of the video (pixels). The value range is [480, 1280]. The default value is 720. `The product of `videoWidth` and videoHeight` should not exceed 921,600 (1280 × 720).</li><li>`maxRecordingHour`: Number, the maximum recording length (hours). The value range is [1,720], and the default value is 24. If the limit set by `maxRecordingHour` is exceeded, the recording stops automatically. |
 
 ### Request example
@@ -178,7 +179,7 @@ Pass in the following parameters in the request body.
 
 ```html
 // Start recording test_class
-https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
+https://api.agora.io/na/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 ```
 
 **Request Body**
@@ -206,7 +207,7 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 "status": 200,
 "body":
 {
-    "code": 0,
+  "code": 0,
   "ts": 1610450153520
 }
 ```
@@ -222,7 +223,7 @@ You can fetch data in batches with the `nextId` parameter. You can get up to 100
 ### Prototype
 
 - Method: GET
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUuid}/records
+- Endpoint: /{region}/edu/apps/{appId}/v2/rooms/{roomUuid}/records
 
 ### Request parameters
 
@@ -232,7 +233,8 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
+| `region` | String | (Required) The region for connection. For details, see [Network geofencing](./agora_class_security?#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](/en/Agora%20Platform/get_appid_token#get-the-app-id). |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 
 **Query parameters**
@@ -245,7 +247,7 @@ Pass the following parameter in the URL.
 
 ```html
 // Get the recording list in test_class
-https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
+https://api.agora.io/na/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
 ```
 
 ### Response parameters
@@ -304,7 +306,7 @@ Call this method to upload a public resource to the specified classroom. All use
 ### Prototype
 
 - Method: PUT
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/states/{state}
+- Endpoint: /{region}/edu/apps/{appId}/v2/rooms/{roomUUid}/states/{state}
 
 ### Request parameters
 
@@ -314,7 +316,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :------------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `region` | String | (Required) The region for connection. For details, see [Network geofencing](./agora_class_security?#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep#step1). |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0-9</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 | `resourceUuid` | String | (Required) The resource ID. This is the unique identifier of a file. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0-9</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
@@ -336,7 +339,7 @@ Pass in the following parameters in the request body.
 
 ```html
 // Upload a public resource with the ID of class_file_1 to test_class
-https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources/class_file_1
+https://api.agora.io/na/edu/apps/{your_app_Id}/v1/rooms/test_class/resources/class_file_1
 ```
 
 **Request Body**
@@ -410,7 +413,7 @@ Delete one or multiple public resources in the specified classroom.
 ### Prototype
 
 - Method: DELETE
-- Endpoint: /edu/apps/{appId}/v1/rooms/{roomUuid}/resources
+- Endpoint: /{region}/edu/apps/{appId}/v1/rooms/{roomUuid}/resources
 
 ### Request parameters
 
@@ -420,7 +423,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `region` | String | (Required) The region for connection. For details, see [Network geofencing](./agora_class_security?#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep#step1). |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0-9</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
 **Request body parameters**
@@ -436,13 +440,13 @@ Pass in the following parameters in the request body.
 **Request URL**
 
 ```html
-https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
+https://api.agora.io/na/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
 ```
 
 **Request Body**
 
 ```json
-  {
+{
     "resourceUuid": ["uuid1","uuid2"]
 }
 ```
@@ -458,7 +462,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
 ### Response example
 
 ```json
-  {
+{
     "msg":"Success",
     "code":0,
     "ts":1610433913533
@@ -474,7 +478,7 @@ Get all public resources in the specified classroom.
 ### Prototype
 
 - Method: GET
-- Endpoint: /edu/apps/{appId}/v1/rooms/{roomUuid}/resources
+- Endpoint: /{region}/edu/apps/{appId}/v1/rooms/{roomUuid}/resources
 
 ### Request parameters
 
@@ -484,7 +488,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `region` | String | (Required) The region for connection. For details, see [Network geofencing](./agora_class_security?#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep#step1). |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0-9</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
 ### Request example
@@ -493,7 +498,7 @@ Pass the following parameters in the URL.
 
 ```html
 // Get the public resource with the ID of class_file_1 in test_class
-https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
+https://api.agora.io/na/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
 ```
 
 ### Response parameters
@@ -508,7 +513,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
 ### Response example
 
 ```json
-      {
+{
     "msg":"Success",
     "code":0,
     "ts":1610433913533,
@@ -554,7 +559,7 @@ You can fetch data in batches with the `nextId` parameter. You can get up to 100
 ### Prototype
 
 - Method: GET
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/sequences
+- Endpoint: /{region}/edu/apps/{appId}/v2/rooms/{roomUUid}/sequences
 
 ### Request parameters
 
@@ -564,7 +569,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `region` | String | (Required) The region for connection. For details, see [Network geofencing](./agora_class_security?#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep#step1). |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0-9</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
 **Query parameters**
@@ -572,7 +578,7 @@ Pass the following parameters in the URL.
 | Parameter | Type | Description |
 | :------- | :------ | :----------------------------------------------------------- |
 | `nextId` | String | (Optional) The starting ID of the next batch of data. When you call this method to get the data for the first time, leave this parameter empty or set it as null. Afterward, you can set this parameter as the `nextId` that you get in the response of the previous method call. |
-| `cmd` | Integer | (Optional) Event type. For details, see Flexible [Classroom Cloud Service Events](https://docs.agora.io/cn/agora-class/agora_class_restful_api_event). |
+| `cmd` | Integer | (Optional) Event type. For details, see Flexible [Classroom Cloud Service Events](https://docs.agora.io/en/agora-class/agora_class_restful_api_event). |
 
 ### Request example
 
@@ -580,7 +586,7 @@ Pass the following parameters in the URL.
 
 ```html
 // Get the event of classroom state update in test_class
-https://api.agora.io/edu/apps/{appId}/v2/rooms/test_class/sequences?nextId=50&cmd=1
+https://api.agora.io/na/edu/apps/{appId}/v2/rooms/test_class/sequences?nextId=50&cmd=1
 ```
 
 ### Response parameters
@@ -590,29 +596,29 @@ https://api.agora.io/edu/apps/{appId}/v2/rooms/test_class/sequences?nextId=50&cm
 | `code` | Integer | Business status code: 0: The request succeeds. Non-zero: The request fails. |
 | `msg` | String | The detailed information. |
 | `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
-| `data` | Object | Include the following parameters:<ul><li>`total`: Integer, the total number of pieces of data.</li><li>`count`: Integer, the number of pieces of data in this batch.</li><li>`list`: JSONArray. An array of the recording list. A JSON object includes the following parameters:<ul><li>`roomUuid`: String, the classroom ID.</li><li>`cmd`: Integer, the event type. See [Flexible Classroom Events](https://docs.agora.io/cn/agora-class/agora_class_restful_api_event).</li><li>`sequence`: Integer. The event ID. This is the unique identifier of an event, which is automatically generated to ensure the order of events.</li><li>`version`: Integer, the service version.</li><li>`data`: Object, the detailed data of the event, The data varies depending on the event type. See [Flexible Classroom Events](https://docs.agora.io/cn/agora-class/agora_class_restful_api_event).</li></ul><li>`nextId`: String, the starting ID of the next batch of data. If it is null, there is no next batch of data. If it is not null, use this `nextId` to continue the query until null is reported.</li></ul> |
+| `data` | Object | Include the following parameters:<ul><li>`total`: Integer, the total number of pieces of data.</li><li>`count`: Integer, the number of pieces of data in this batch.</li><li>`list`: JSONArray. An array of the recording list. A JSON object includes the following parameters:<ul><li>`roomUuid`: String, the classroom ID.</li><li>`cmd`: Integer, the event type. See [Flexible Classroom Events](https://docs.agora.io/en/agora-class/agora_class_restful_api_event).</li><li>`sequence`: Integer. The event ID. This is the unique identifier of an event, which is automatically generated to ensure the order of events.</li><li>`version`: Integer, the service version.</li><li>`data`: Object, the detailed data of the event, The data varies depending on the event type. See [Flexible Classroom Events](https://docs.agora.io/en/agora-class/agora_class_restful_api_event).</li></ul><li>`nextId`: String, the starting ID of the next batch of data. If it is null, there is no next batch of data. If it is not null, use this `nextId` to continue the query until null is reported.</li></ul> |
 
 ### Response example
 
 ```json
-      {
+{
     "msg":"Success",
     "code":0,
     "ts":1610433913533,
     "data":{
         "total":1,
         "list":[
-            {
+          {
                 "roomUuid": "",
                 "cmd": 20,
                 "sequence": 1,
                 "version": 1,
                 "data":{}
-        }
-    ],
+          }
+        ],
         "nextId": null,
         "count":1
-        }
+     }
 }
 ```
 
@@ -629,7 +635,7 @@ You can call this method at regular intervals to listen for all the events that 
 ### Prototype
 
 - Method: GET
-- Endpoint: /edu/polling/apps/{appId}/v2/rooms/sequences
+- Endpoint: /{region}/edu/polling/apps/{appId}/v2/rooms/sequences
 
 ### Request parameters
 
@@ -639,12 +645,13 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :------ | :----- | :----------------------------------------------------------- |
-| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](./agora_class_prep#step1). |
+| `region` | String | (Required) The region for connection. For details, see [Network geofencing](./agora_class_security?#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
+| `appId` | String | (Required) The Agora App ID, see [Get the Agora App ID](/en/Agora%20Platform/get_appid_token#get-the-app-id). |
 
 ### Request example
 
 ```html
-https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
+https://api.agora.io/na/edu/polling/apps/{yourappId}/v2/rooms/sequences
 ```
 
 ### Response parameters
@@ -661,19 +668,19 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 ```json
 "status": 200,
 "body":
-            {
+{
     "msg": "Success",
-  "code": 0,
+    "code": 0,
     "ts": 1610167740309,
     "data":[
-{
+     {
             "roomUuid": "xxxxxx",
                 "cmd": 20,
                 "sequence": 1,
                 "version": 1,
                 "data":{}
-    }
-        ]
+     }
+     ]
 }
 ```
 

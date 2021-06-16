@@ -75,8 +75,10 @@ NSString *rtmToken = "";
 NSNumber *startTime = @(XXX);
 // The duration (ms) of the class, determined by the first user joining the classroom.
 NSNumber *duration = @(1800);
+// The region
+NSString *region = "NA";
  
-AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration];
+AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration region:region];
 [AgoraEduSDK launch:config delegate:self];
 ```
 
@@ -279,7 +281,7 @@ The SDK global configuration. Used when calling [`setConfig`](#setConfig).
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
-| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep#step1). |
 | `eyeCare` | Whether to enable eye care mode:<li>`false`: (Default) Disable eye care mode.</li><li>`true`: Enable eye care mode.</li> |
 
 ### AgoraEduLaunchConfig
@@ -295,15 +297,7 @@ The SDK global configuration. Used when calling [`setConfig`](#setConfig).
 @property (nonatomic, copy) NSString *token;
 @property (nonatomic, strong, nullable) NSNumber *startTime;
 @property (nonatomic, strong, nullable) NSNumber *duration;
-@property (nonatomic, copy) NSString *boardRegion;
- 
-- (instancetype)initWithUserName:(NSString *)userName
-                        userUuid:(NSString *)userUuid
-                        roleType:(AgoraEduRoleType)roleType
-                        roomName:(NSString *)roomName
-                        roomUuid:(NSString *)roomUuid
-                        roomType:(AgoraEduRoomType)roomType
-                           token:(NSString *)token;
+@property (nonatomic, copy) NSString *region;
  
 - (instancetype)initWithUserName:(NSString *)userName
                         userUuid:(NSString *)userUuid
@@ -314,7 +308,7 @@ The SDK global configuration. Used when calling [`setConfig`](#setConfig).
                            token:(NSString *)token
                        startTime:(NSNumber *)startTime
                         duration:(NSNumber *)duration;
-                     boardRegion:(NSString *_Nullable)boardRegion;
+                     region:(NSString *_Nullable)region;
 @end
 ```
 
@@ -328,10 +322,10 @@ The classroom launching configuration. Used when calling [`launch`](#launch).
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roleType` | The user's role in the classroom. See `AgoraEduRoleType`. |
 | `roomType` | The classroom type. See `AgoraEduRoomType`. |
-| `token` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
+| `token` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/en/agora-class/agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `boardRegion` | The area where the classrooms is located. All clients must set the same area, otherwise, they may fail to communicate with each other. |
+| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
 
 ### AgoraEduCourseware
 

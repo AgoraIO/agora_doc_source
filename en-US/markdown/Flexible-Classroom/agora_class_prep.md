@@ -6,7 +6,7 @@ Before configuring the aPaaS service, ensure that you meet the following require
 
 - A valid Agora account with an active Agora project. See [Get Started with Agora](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms).
 - Enable the Agora Interactive Whiteboard service and get the App Identifier and SDK Token of the Agora Interactive Whiteboard service. See [Enable and Configure Interactive Whiteboard Service](https://docs.agora.io/en/whiteboard/enable_whiteboard).
-- Third-party cloud storage for storing class files and recorded files in Flexible Classroom. Agora recommends using Alibaba Cloud OSS. For how to use Alibaba Cloud OSS, see the [documents](https://help.aliyun.com/product/31815.html?spm=5176.7933691.J_1309819.8.2e392a66QiJZD3) of Alibaba Cloud.
+- Third-party cloud storage for storing class files and recorded files in Flexible Classroom. Agora supports only [Amazon Simple Storage Service (Amazon S3)](https://aws.amazon.com/s3/?nc1=h_ls) now.
 
 ## Configure the aPaaS service
 
@@ -33,15 +33,18 @@ Configure the aPaaS service in Agora Console, as follows:
              "appId": "<your_whiteboard_app_id>",
              "token": "<your_whiteboard_sdk_token>",
              "oss": {
-                 "region": "oss-cn-shanghai",
-                 "bucket": "<your_bucket_name>",
-                 "folder": "whiteboard",
-                 "accessKey": "<your_access_key>",
-                 "secretKey": "<your_secret_key>",
-                 "endpoint": "oss-cn-shanghai.aliyuncs.com"
-             }
-     }
+                 "vendor": 1,
+                 "region": "",
+                 "endpoint": "",
+                 "bucket": "",
+                 "folder": "",
+                 "accessKey": "",
+                 "secretKey": "",
+             }  
+         }
      ```
+
+     <div class="note alert">For the detaild description of the configuration parameters, see <a href="#reference">Reference</>.</div>
 
    - Cloud Recording
 
@@ -49,18 +52,18 @@ Configure the aPaaS service in Agora Console, as follows:
      {
              "recordingConfig": {},
              "storageConfig": {
-                 "vendor": 2,
+                 "vendor": 1,
                  "region": 1,
                  "bucket": "<your_bucket_name>",
                  "accessKey": "<your_access_key>",
                  "secretKey": "<your_secret_key>",
                  "fileNamePrefix": ["directory1","directory2"],
-                 "endpoint": "https://xxx.oss-cn-shanghai.aliyuncs.com"
+                 "endpoint": ""
                }
      }
      ```
-
-      For the detaild description of the configuration parameters, see [Reference](#reference).
+	
+     <div class="note alert">For the detaild description of the configuration parameters, see <a href="#reference">Reference</>.</div>
 
 4. After returning to the **project management** page, click **Save** to ensure the aPaaS configuration takes effect.
 
@@ -80,14 +83,12 @@ After configuring the aPaaS service, refer to the following documents to launch 
   | :--------- | :----- | :----------------------------------------------------------- |
   | `appId`    | String | (Required) The App Identifier of the Interactive Whiteboard service that you get in the previous step. If you do not set this parameter, you cannot enter a classroom. |
   | `token`    | String | (Required) The SDK Token of the Interactive Whiteboard service that you get in the previous step. If you do not set this parameter, you cannot enter a classroom. |
-  | `oss`      | Object | (Optional) The configuration of Alibaba Cloud OSS for storing the files you upload in a classroom. If you do not set this parameter, you cannot upload any file in the classroom.<p>**Note**: Temporarily, the Agora Interactive Whiteboard service only supports Alibaba Cloud OSS.<p>The JSON object for the whiteboard contains the following fields:<ul><li>`region`: String. The service region of Alibaba Cloud OSS, such as `"oss-cn-shanghai"`.</li><li>`Bucket`: String. The bucket name of Alibaba Cloud OSS, such as `"agora-whiteboard"`.</li><li>`folder`: String. The resource path in Alibaba Cloud OSS, such as `"whiteboard"`.</li><li>`accessKey`: String. The `AccessKeyId` in the AccessKey of Alibaba Cloud OSS. For details, see the [documentation](https://help.aliyun.com/document_detail/53045.html) of Alibaba Cloud OSS. This parameter is only applicable to the Flexible Classroom versions earlier than v1.1.0.</li><li>`accessKey`: String. The `AccessKeySecret` in the AccessKey of Alibaba Cloud OSS. For details, see the [documentation](https://help.aliyun.com/document_detail/53045.html) of Alibaba Cloud OSS. This parameter is only applicable to the Flexible Classroom versions earlier than v1.1.0.</li><li>`endpoint`: String. The [access endpoint](https://help.aliyun.com/document_detail/31837.html?spm=a2c4g.11186623.6.625.49002345WzP07l) of Alibaba Cloud OSS, such as `"oss-cn-shanghai.aliyuncs.com"`.<li>`ramAccessKey`: String. The `AccessKeyId` in the STS AK of Alibaba Cloud OSS. For details, see the [documentation](https://www.alibabacloud.com/help/doc-detail/100624.htm?spm=a2c63.p38356.b99.135.48b226dcvXg2Yw) of Alibaba Cloud OSS. This parameter is only applicable to the Flexible Classroom v1.1.0 or later.</li><li>`ramAccessSecret`: String. The `AccessKeySecret` in the STS AK of Alibaba Cloud OSS. For details, see the [documentation](https://www.alibabacloud.com/help/doc-detail/100624.htm?spm=a2c63.p38356.b99.135.48b226dcvXg2Yw) of Alibaba Cloud OSS. This parameter is only applicable to the Flexible Classroom v1.1.0 or later.</li><li>`roleArn`: String. The role ARN for temporary access of Alibaba Cloud OSS. For details, see the [documentation](https://www.alibabacloud.com/help/doc-detail/100624.htm?spm=a2c63.p38356.b99.135.48b226dcvXg2Yw) of Alibaba Cloud OSS. This parameter is only applicable to the Flexible Classroom v1.1.0 or later.</li><li>`roleSessionName`: (Optional) String. The name of the temporary access of Alibaba Cloud OSS. For details, see the [documentation](https://www.alibabacloud.com/help/doc-detail/100624.htm?spm=a2c63.p38356.b99.135.48b226dcvXg2Yw) of Alibaba Cloud OSS. This parameter is only applicable to the Flexible Classroom v1.1.0 or later.</li></ul> |
+  | `oss`      | Object | (Optional) The configuration of Amazon S3 for storing the files you upload in a classroom. If you do not set this parameter, you cannot upload any file in the classroom. The JSON object for the whiteboard contains the following fields:<ul><li>`vendor`: Number. The third-party cloud storage vendor. Set this parameter as `1` to use Amazon S3.</li><li>`region`: String. The location of the data center you specified when creating a bucket.</li><li>`endpoint`: String. The domain name used to access the third-party cloud storage service.</li><li>`bucket`: String. The name of the storage space.</li><li>`folder`: String. The path used to save the resources in the storage space， such as `"whiteboard"`. The default is the root directory.</li><li>`accessKey`: String. The Access Key provided by the third-party cloud storage vendor, which is used by the vendor to identify visitors.</li><li>`secretKey`: String. The Secret Key provided by the third-party cloud storage vendor, which is used to authenticate signatures.</li></ul><p>**Note**: To get the above information about a third-party storage service, see the documentation provided by the vendor. |
 
 
 - The JSON object for **Cloud Recording** contains the following fields:
 
   | Field Name        | Type   | Description                                                  |
   | :---------------- | :----- | :----------------------------------------------------------- |
-  | `recordingConfig` | Object | (Optional) Recording configuration. If you do not set this parameter, Agora records the audio and video of teachers in a classroom in [composite recording mode](https://docs.agora.io/en/Agora%20Platform/composite_recording_mode) by default. To change the recording behavior, see the [cloud recording configuration](https://docs.agora.io/en/cloud-recording/cloud_recording_api_rest?platform=RESTful#recordingConfig). |
-  | `storageConfig`   | Object | (Optional) Cloud storage configuration, used for storing your recorded files. If you do not set this parameter, your recorded files will be stored in Agora's Alibaba Cloud OSS account. To use your own cloud storage account, see the [cloud storage configuration](https://docs.agora.io/en/cloud-recording/cloud_recording_api_rest?platform=RESTful#storageConfig).<p>**Note**: The `endpoint` field in `storageConfig` is a path consisting of the bucket name and [access domain](https://help.aliyun.com/document_detail/31837.html?spm=a2c4g.11186623.6.625.49002345WzP07l) in Alibaba Cloud OSS. Suppose your bucket name is `"agora-whiteboard"` and your access domain is `"oss-cn-shanghai.aliyuncs.com"`, set `endpoint` as `"https://agora-whiteboard.oss-cn-shanghai. aliyuncs.com"`. |
-
-  
+  | `recordingConfig` | Object | (Optional) Recording configuration. If you do not set this parameter, Agora records the audio and video of teachers in a classroom in [composite recording mode](https://docs.agora.io/en/Agora%20Platform/composite_recording_mode) by default. To change the recording configuration, see the [cloud recording configuration](https://docs.agora.io/en/cloud-recording/cloud_recording_api_rest?platform=RESTful#recordingConfig). |
+  | `storageConfig`   | Object | (Optional) Cloud storage configuration, used for storing your recorded files. If you do not set this parameter, your recorded files will be stored in Agora's Amazon S3 account. To use your own cloud storage, see the [cloud storage configuration](https://docs.agora.io/en/cloud-recording/cloud_recording_api_rest?platform=RESTful#storageConfig). |

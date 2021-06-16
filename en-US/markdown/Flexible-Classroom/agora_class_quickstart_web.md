@@ -49,57 +49,57 @@ In the following code snippet, we do the following things:
 3. Call the `AgoraEduSDK.launch` method to launch the classroom. For the detailed description of parameters, see the API reference of [`AgoraEduSDK.launch`]().
 
    <div class="alert note">On the Web client, a user can join a classroom as the role of the teacher, student, or teaching assistant.</div>
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AgoraFlexibleClassroomDemo</title>
-  <script src="https://download.agora.io/edu-apaas/edu_sdk_1.1.0.js"></script>
-</head>
-
-<body>
-  <style>
-    #root1 {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-  <div id="root1"></div>
-  <script type="text/javascript">
-    AgoraEduSDK.config({
-      // Here pass in the Agora App ID you have got
-      appId: "<your_app_id>",
-    })
-    AgoraEduSDK.launch(
-      document.querySelector("#root1"), {
-        // Here pass in the RTM token you have generated
-        rtmToken: "<your_rtm_token>",
-        // The user ID must be the same as the one you used for generating the RTM token
-        userUuid: "<your_user_id>",
-        userName: "teacher",
-        roomUuid: "321",
-        roomName: "demo-class",
-        roleType: 1,
-        roomType: 0,
-        pretest: true,
-        language: "en",
-        startTime: new Date().getTime(),
-        duration: 60 * 30,
-        courseWareList: [],
-        listener: (evt) => {
-          console.log("evt", evt)
-        }
-      }
-    )
-  </script>
-</body>
-
-</html>
-```
+   
+   ```html
+   <!DOCTYPE html>
+   <html lang="en">
+   
+   <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>AgoraFlexibleClassroomDemo</title>
+     <script src="https://download.agora.io/edu-apaas/edu_sdk_1.1.0_ga.js"></script>
+   </head>
+   
+   <body>
+     <style>
+       #root1 {
+         width: 100%;
+         height: 100%;
+       }
+     </style>
+     <div id="root1"></div>
+     <script type="text/javascript">
+       AgoraEduSDK.config({
+         // Here pass in the Agora App ID you have got
+         appId: "<your_app_id>",
+       })
+       AgoraEduSDK.launch(
+         document.querySelector("#root1"), {
+           // Here pass in the RTM token you have generated
+           rtmToken: "<your_rtm_token>",
+           // The user ID must be the same as the one you used for generating the RTM token
+           userUuid: "<your_user_id>",
+           userName: "teacher",
+           roomUuid: "321",
+           roomName: "demo-class",
+           roleType: 1,
+           roomType: 0,
+           pretest: true,
+           language: "en",
+           startTime: new Date().getTime(),
+           duration: 60 * 30,
+           courseWareList: [],
+           listener: (evt) => {
+             console.log("evt", evt)
+           }
+         }
+       )
+     </script>
+   </body>
+   
+   </html>
+   ```
 
 ## Test your app
 
@@ -112,17 +112,3 @@ Open `index.html` in your browser. You see the following page:
 - Agora provides an open-source [sample project](https://github.com/AgoraIO-Community/CloudClass-Desktop) on GitHub, which demonstrates how to integrate the Agora Classroom SDK and call APIs to launch a flexible classroom. You can download and read the source code.
 
 - Agora also provides a [sample project](https://codepen.io/agoratechwriter/pen/OJRrOxg) on CodePen. After you [configure Flexible Classroom](./agora_class_prep) on Agora Console, replace `appID` and `rtmToken` with [values that you get](#prerequsites). The user ID must be consistent with the one you used for generating an RTM Token. Then you can immediately run the sample project to join a flexible classroom.
-
-- In addition to integrating the Agora Classroom SDK into your project through CDN, you can also integrate the SDK through npm, as follows:
-
-  1. Run the following command to install the SDK:
-
-     ```shell
-     npm install agora-classroom-sdk
-     ```
-
-  2. Add the following code in the JavaScript code in your project to import the module:
-
-     ```shell
-     import {AgoraEduSDK} from 'agora-classroom-sdk'
-     ```

@@ -1,14 +1,14 @@
-Agora provides the complete Agora Classroom SDK on [npm](https://www.npmjs.com/package/agora-classroom-sdk). However, if you want to customize the user interfaces of classrooms, Agora provides the source code of the Agora Classroom SDK for you to further develop, debug, and compile.
+Agora provides the complete [Agora Classroom SDK](https://www.npmjs.com/package/agora-classroom-sdk) on npm. However, if you want to customize the user interfaces of classrooms, such as changing colors, changing buttons, adjusting layouts, and adding logos, Agora provides the source code of the Agora Classroom SDK for you to further develop, debug, and compile.
 
-This page shows you how to customize the user interfaces of Flexible Classroom by editing the UIKit in the source code of the Agora Classroom SDK.
+This page shows you how to customize the user interfaces of Flexible Classroom by editing the the source code of the UIKit in the Agora Classroom SDK.
 
 ## Understand the tech
 
-The Agora Classroom SDK separates the code of the user interfaces from the code of core business logic and provides two libraries, UIKit and EduCore. These two libraries connect with each other through [Agora Edu Context](./edu_context_api_ref_web_overview?platform=Web). For example, for the chat module in the Flexible Classroom, a user needs to click on a button to send a message, and the user receives messages sent by other users. In this case, you can call a method in the Chat Context to send a message and listen for the events in the Chat Context to receive messages.
+In the Agora Classroom SDK, the code of the user interfaces is separated from the code of core business logic. The Classroom SDK contains two libraries, UIKit and EduCore. These two libraries connect with each other through [Agora Edu Context](./edu_context_api_ref_web_overview?platform=Web). For example, for the text chat feature of Flexible Classroom, a user can click on a button to send a text message, and the user can receive messages sent by other users. In this case, you can call a method in the Chat Context to send a message and listen for the events in the Chat Context to receive messages.
 
-![](https://web-cdn.agora.io/docs-files/1619696813295)
+![](https://web-cdn.agora.io/docs-files/1623761240753)
 
-UIKit provides all the code for the user interfaces in Flexible Classroom and uses the open-source tool [Storybook](https://storybook.js.org/docs/react/get-started/introduction) to develop and manage all UI components. You can find the source code of the UIKit in the `packages/agora-classroom-sdk/src/ui-kit` folder in the CloudClass-Desktop repository on GitHub (Branch release/apaas/1.1.0). The project structure of UIKit is as follows:
+UIKit contains all the code for the user interfaces of Flexible Classroom and uses the open-source tool [Storybook](https://storybook.js.org/docs/react/get-started/introduction) to develop and manage all UI components. You can find the source code of UIKit in the `packages/agora-classroom-sdk/src/ui-kit` folder in the [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) repository on GitHub (Branch release/apaas/1.1.0_region). The project structure of UIKit is as follows:
 
 | Folder | Description |
 | :------------- | :----------------------------------------------------------- |
@@ -17,8 +17,6 @@ UIKit provides all the code for the user interfaces in Flexible Classroom and us
 | `scaffold` | Scaffolds and show how the basic UI components are combined in a classroom. |
 | `styles` | Define the global style. |
 | `utilities` | For functions such as internationalization, and custom hooks. |
-
-
 
 ## Implementation
 
@@ -48,8 +46,12 @@ UIKit provides all the code for the user interfaces in Flexible Classroom and us
 
 Modify the UI of Flexible Classroom, as follows:
 
-1. Clone 
+1. Run the folllowing command to clone the CloudClass-Desktop project:
 
+   ```bash
+   git clone https://github.com/AgoraIO-Community/CloudClass-Desktop.git
+   ```
+   
 2. Navigate to the root directory of the CloudClass-Desktop project, check out the release/apaas/1.1.0 branch, and then run the following command to install the dependencies.
 
    ```shell
@@ -79,7 +81,7 @@ Modify the UI of Flexible Classroom, as follows:
    2. Run the following command in the root directory to launch a flexible classroom.
 
       ```shell
-      yarn -v
+      yarn dev
       ```
 
 
@@ -91,7 +93,7 @@ This section provides examples of customizing the user interfaces of Flexible Cl
 
 ### Change the color of the navigation bar
 
-The following example shows how to change the background color `of the navigation bar component BizHeader` from white to red by editing the agora-scenario-ui-kit/src/components/biz-header/index.css file.
+The following example shows how to change the background color of the navigation bar component BizHeader from white to red by editing the `agora-scenario-ui-kit/src/components/biz-header/index.css` file.
 
 #### Before
 
@@ -286,10 +288,10 @@ The following example shows how to add a custom basic UI component and use it in
      
      export default meta;
      ```
-
-The custom component is a div element with a two-layer border and renders a children element. You can see the custom component in Storybook.
-
-![](https://web-cdn.agora.io/docs-files/1622777338261)
+   
+   The custom component is a div element with a two-layer border and renders a children element. You can see the custom component in Storybook.
+   
+   ![](https://web-cdn.agora.io/docs-files/1622777338261)
 
 2. To export the custom component, add the following code to `packages/agora-scenario-ui-kit/src/components/index.ts` .
 
@@ -321,27 +323,27 @@ The custom component is a div element with a two-layer border and renders a chil
            clickHandler={handleZoomControllerChange}
            /> : null}
            <Custom className='custom-position' width={200} height={200}>
-             <div>使用Custom组件</div>
+             <div>Use the custom component</div>
            </Custom>
            </div>
       )
-      })
-     ```
+       })
+      ```
      ```
      
    3. Define the `custom-position` style in `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/1v1/style.css`:
    
      ```
-     .custom-position{
+      .custom-position{
        position: absolute;
        left: 100px;
        bottom: 200px;
-     }
-     ```
+      }
+      ```
    4. Check the custom component in the flexible classroom.
-      
-      ![custom-ui-compnent-fx](https://web-cdn.agora.io/docs-files/1617715517511)
-     ```
+   
+         ![custom-ui-compnent-fx](https://web-cdn.agora.io/docs-files/1617715517511)
+      ```
 
 ### Connect UI components with the app business logic
 
@@ -426,7 +428,7 @@ The following example shows how to display the class time in the custom componen
 
    ![](https://web-cdn.agora.io/docs-files/1622779701958)
 
-3. We need to import real class time. In this example, we use the [liveClassStatus](https://docs.agora.io/cn/agora-class/edu_context_api_ref_wev_room?platform=Web#liveclassstatus) property of the RoomContext in the Agora Edu Context to get the class time. Edit `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx` to get the class time and set it as a property in the custom component .
+3. We need to import real class time. In this example, we use the [liveClassStatus](https://docs.agora.io/en/agora-class/edu_context_api_ref_wev_room?platform=Web#liveclassstatus) property of the RoomContext in the Agora Edu Context to get the class time. Edit `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx` to get the class time and set it as a property in the custom component .
 
    <div class="alter note">Agora does not recommend directly referencing the Agora Edu Context in basic UI components, because basic UI components may be reused in different scenarios.</div>
 
