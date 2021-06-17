@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_videosourcelocalvideostatechanged">
+    <title><ph keyref="videoSourceLocalVideoStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc" conkeyref="onLocalVideoStateChanged/shortdesc"
+        /></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="videoSourceLocalVideoStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript">on( evt: &quot;videoSourceLocalVideoStateChanged&quot;, cb: (localVideoState: number, error: number) => void ): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>双实例回调。</p>
+            <p conkeyref="onLocalVideoStateChanged/desc1"/>
+            <p>The SDK triggers the callback with the state code of and error code of in the following situations:<apiname keyref="videoSourceLocalVideoStateChanged"/><codeph><ph
+                keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></codeph><codeph><ph
+                    keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph><ul>
+                        <li>The application exits to the background, and the system recycles the camera.</li>
+                        <li>The camera starts normally, but the captured video is not output for four seconds.</li>
+                    </ul>
+            </p>
+            <p>When the camera outputs the captured video frames, if all the video frames are the same for 15 consecutive frames, the SDK triggers the (, ) callback. Note that the video frame duplication detection is only available for video frames with a resolution greater than 200 × 200, a frame rate greater than or equal to 10 fps, and a bitrate less than 20 Kbps.<apiname keyref="videoSourceLocalVideoStateChanged" /><codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/></codeph><codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph></p>
+            <note conkeyref="onLocalVideoStateChanged/note"/>
+        </section>
+        <section id="parameters" conkeyref="onLocalVideoStateChanged/parameters"/>
+    </refbody>
+</reference>
