@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
+    <title>C++ API Reference for All Platforms</title>
     <topicmeta>
         <navtitle>C++ API Reference</navtitle>
     </topicmeta>
     <topichead navtitle="Configurations" toc="no">
         <topicref href="conref/conref_api_metadata.dita" processing-role="resource-only"/>
-        <topicref href="conref/conref_rtc_api.dita" processing-role="resource-only"/>
         <topicref href="config/subject-scheme-rtc.ditamap" format="ditamap" type="subjectScheme"
             navtitle="Conditional processing attributes"/>
         <mapref href="config/relations-rtc-api.ditamap" format="ditamap"/>
         <mapref href="config/keys-rtc-api-cpp.ditamap" format="ditamap"
             processing-role="resource-only"/>
+        <topicref href="config/keys-rtc-links-windows.ditamap" format="ditamap"/>
     </topichead>
     <topichead navtitle="C++ API Reference for All Platforms">
         <topicref href="API/rtc_api_overview.dita"/>
@@ -28,6 +29,11 @@
             <topicref keyref="setClientRole2" toc="no"/>
             <topicref keyref="leaveChannel" toc="no"/>
             <topicref keyref="renewToken" toc="no"/>
+            <topicref keyref="registerLocalUserAccount" toc="no"/>
+            <topicref keyref="joinChannelWithUserAccount1" toc="no"/>
+            <topicref keyref="joinChannelWithUserAccount2" toc="no"/>
+            <topicref keyref="getUserInfoByUserAccount" toc="no"/>
+            <topicref keyref="getUserInfoByUid" toc="no"/>
             <topicref keyref="getConnectionState" toc="no"/>
             <topicref keyref="enableWebSdkInteroperability" toc="no"/>
             <topicref keyref="enableAudio" toc="no"/>
@@ -179,8 +185,6 @@
             <topicref keyref="setCloudProxy" toc="no"/>
             <topicref keyref="enableDeepLearningDenoise" toc="no"/>
             <topicref keyref="sendCustomReportMessage" toc="no"/>
-            <topicref keyref="joinChannelWithUserAccount1" toc="no"/>
-            <topicref keyref="joinChannelWithUserAccount2" toc="no"/>
         </topicref>
         <topicref keyref="IRtcEngine2" chunk="to-content">
             <topicref keyref="createChannel" toc="no"/>
@@ -193,6 +197,8 @@
             <topicref keyref="onClientRoleChanged" toc="no"/>
             <topicref keyref="onUserJoined" toc="no"/>
             <topicref keyref="onUserOffline" toc="no"/>
+            <topicref keyref="onLocalUserRegistered" toc="no"/>
+            <topicref keyref="onUserInfoUpdated" toc="no"/>
             <topicref keyref="onNetworkTypeChanged" toc="no"/>
             <topicref keyref="onConnectionInterrupted" toc="no"/>
             <topicref keyref="onConnectionLost" toc="no"/>
@@ -260,7 +266,6 @@
             <topicref keyref="onVideoDeviceStateChanged" toc="no"/>
             <topicref keyref="onStreamMessage" toc="no"/>
             <topicref keyref="onStreamMessageError" toc="no"/>
-            <topicref keyref="onUploadLogResult" toc="no"/>
             <topicref keyref="onWarning" toc="no"/>
             <topicref keyref="onError" toc="no"/>
             <topicref keyref="onApiCallExecuted" toc="no"/>
@@ -537,13 +542,15 @@
    <topicref keyref="VOICE_BEAUTIFIER_PRESET" toc="no"/>
    <topicref keyref="VOICE_CHANGER_PRESET" toc="no"/>
     <topicref keyref="VOICE_CONVERSION_PRESET" toc="no"/>
+    <topicref keyref="AgoraRhythmPlayerConfig" toc="no"/>
+    <topicref keyref="AudioRecordingConfiguration" toc="no"/>
             <topicref keyref="AudioVolumeInfo" toc="no"/>
             <topicref keyref="BeautyOptions" toc="no"/>
             <topicref keyref="CameraCapturerConfiguration" toc="no"/>
-   <topicref keyref="ChannelMediaOptions" toc="no"/>
-   <topicref keyref="ClientRoleOptions" toc="no"/>
-            <topicref keyref="AgoraRhythmPlayerConfig" toc="no"/>
-            <topicref keyref="AudioRecordingConfiguration" toc="no"/>
+            <topicref keyref="ChannelMediaInfo" toc="no"/>
+            <topicref keyref="ChannelMediaOptions" toc="no"/>
+            <topicref keyref="ChannelMediaRelayConfiguration" toc="no"/>
+            <topicref keyref="ClientRoleOptions" toc="no"/>
             <topicref keyref="DataStreamConfig" toc="no"/>
             <topicref keyref="EncryptionConfig" toc="no"/>
             <topicref keyref="ExternalVideoFrame" toc="no"/>
@@ -554,6 +561,7 @@
             <topicref keyref="LiveTranscoding" toc="no"/>
             <topicref keyref="LocalAudioStats" toc="no"/>
             <topicref keyref="LocalVideoStats" toc="no"/>
+            <topicref keyref="LogConfig" toc="no"/>
             <topicref keyref="Rect" toc="no"/>
             <topicref keyref="Rectangle" toc="no"/>
             <topicref keyref="RemoteAudioStats" toc="no"/>
