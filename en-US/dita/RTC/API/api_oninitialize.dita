@@ -11,18 +11,25 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onInitialize"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual bool onInitialize(IVideoFrameConsumer *consumer) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
    <p>The SDK triggers this callback to remind you to initialize the custom video source. After receiving this callback, you can do some preparation, such as enabling the camera, and then use the return value to tell the SDK whether the custom video source is prepared.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>consumer</pt>
-  <pd>A <xref keyref="IVideoFrameConsumer"/> object passed to you by the SDK. You need to reserve this object and use it to send the video frame to the SDK once the custom video source is started.</pd>
+  <pd>A object passed to you by the SDK<xref keyref="IVideoFrameConsumer"/>. You need to reserve this object and use it to send the video frame to the SDK once the custom video source is started.</pd>
        </plentry>
    </parml>
         </section>
