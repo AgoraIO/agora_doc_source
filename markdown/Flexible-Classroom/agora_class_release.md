@@ -1,5 +1,65 @@
 本页提供灵动课堂的发版说明。
 
+## v1.1.2
+
+灵动课堂 v1.1.2 于 2021 年 6 月 17 日发布。
+
+#### 升级必看（Desktop）
+
+灵动课堂桌面端 v1.1.2 对于 Agora Edu Context 进行了以下改动：
+
+- 对 v1.1.0 的 Edu Context 进行重构，废弃了一些重复的 Context API，详见 Edu Context API 参考。对于废弃的 API，Agora 支持向下兼容，但建议尽快使用最新的 API。
+- 去除了 v1.1.0 中的 UI Context。从 v1.1.0 升级至 v1.1.2 时，你需要参考 `agora-classroom-sdk/src/infra/api/index.ts` 和 `agora-classroom-sdk/src/infra/stores/app/ui.ts` 文件，在 `agora-classroom-sdk` 中添加 UI Store 进行 UI 状态管理。
+
+#### 新增特性
+
+**倒计时（全平台）**
+
+v1.1.2 新增倒计时工具。老师可在工具箱中打开倒计时工具并设置倒计时数值。老师点击开始倒计时后学生端会出现倒计时面板。
+
+**媒体设备管理（Android/iOS）**
+
+v1.1.2 支持学生在课堂内开启和关闭本地摄像头、麦克风和扬声器以及切换前置和后置摄像头。Agora Edu Context 中新增 `DeviceContext` 和 `IDeviceHandler` 类，提供本地设备相关方法和回调。
+
+**屏幕共享标注（全平台）**
+
+v1.1.2 支持老师开始屏幕共享后在共享内容上使用白板基础绘画工具进行标注。
+
+**自定义用户属性和课堂属性（全平台）**
+
+v1.1.2 支持开发者自定义用户属性和课堂属性，同时支持更新属性和监听属性更新。例如，开发者可通过自定义用户属性设置用户头像。具体改动如下：
+
+**Web**
+
+- 课堂属性：在 `RoomContext` 中新增以下 API：
+  - `updateFlexRoomProperties` 方法，用于新增或更新自定义课堂属性。
+  - `flexRoomProperties` 字段，用于监听课堂属性的变更。
+- 用户属性：`LaunchOption` 中新增 `userFlexProperties` 字段，用于在启动课堂时传入自定义用户属性。
+
+**Android**
+
+- 课堂属性：
+  - `RoomContext` 中新增 `updateFlexRoomProps` 方法，用于新增或更新自定义课堂属性。
+  - `IRoomHandler` 中新增 `onFlexRoomPropsInitialized` 和 `onFlexRoomPropertiesChanged` 回调，用于监听初始课堂自定义属性和课堂属性的变更。
+- 用户属性：
+  - `AgoraEduLaunchConfig` 中新增 `userProperties` 字段，用于在启动课堂时传入自定义用户属性。
+  - `UserContext` 中新增 `updateFlexUserProperties` 方法，用于新增或更新自定义用户属性。
+  - `IEduUserHandler` 中新增 `onFlexUserPropertiesChanged` 回调，用于监听课堂属性的变更。
+
+**iOS**
+
+- 课堂属性：
+  - `AgoraEduRoomContext` 中新增 `updateFlexRoomProps` 方法，用于新增或更新自定义课堂属性。
+  - `AgoraEduRoomHandler` 中新增 `onFlexRoomPropsInitialized` 和 `onFlexRoomPropertiesChanged` 回调，用于监听初始课堂自定义属性和课堂属性的变更。
+- 用户属性：
+  - `AgoraEduLaunchConfig` 中新增 `userProperties` 字段，用于在启动课堂时传入自定义用户属性。
+  - `AgoraEduUserContext` 中新增 `updateFlexUserProperties` 方法，用于新增或更新自定义用户属性。
+  - `AgoraEduUserHandler` 中新增 `onFlexUserPropertiesChanged` 回调，用于监听课堂属性的变更。
+
+**HTML5 课件（全平台）**
+
+v1.1.2 支持老师在课堂白板上展示 HTML5 课件。
+
 ## v1.1.0
 
 灵动课堂 v1.1.0 于 2021 年 4 月 30 日发布。
