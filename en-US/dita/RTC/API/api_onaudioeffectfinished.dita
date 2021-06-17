@@ -10,17 +10,23 @@
    </keywords>
         </metadata>
     </prolog>
-    <refbody>
-        <section id="prototype">
-   
-   <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onAudioEffectFinished"/>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioEffectFinished(int soundId) { }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_EFFECT_FINISHED, cb: (soundId: number) => void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>This callback occurs when the local audio effect file finishes playing.</p>
+   <p id="desc">This callback occurs when the local audio effect file finishes playing.</p>
         </section>
         <section id="parameters">
-   <title>Parameters</title>
+   <title>Parameter</title>
    <parml>
        <plentry>
   <pt>soundId</pt>
