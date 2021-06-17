@@ -14,9 +14,20 @@
             </keywords>
         </metadata>
     </prolog>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onFirstLocalAudioFramePublished" />
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalAudioFramePublished(int elapsed) {
+    (void)elapsed;
+    }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_LOCAL_AUDIO_FRAME_PUBLISHED, cb: (
+    elapsed: number
+    ) => void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
