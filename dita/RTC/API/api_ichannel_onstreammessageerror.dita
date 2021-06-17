@@ -27,14 +27,17 @@
      (void)missed;
      (void)cached;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: ChannelEvents.STREAM_MESSAGE_ERROR, cb: (
-     uid: number,
-     streamId: number,
-     code: number,
-     missed: number,
-     cached: number
-     ) => void
-     ): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(
+  evt: ChannelEvents.STREAM_MESSAGE_ERROR,
+  cb: (
+    channelId: string,
+    uid: number,
+    streamId: number,
+    code: number,
+    missed: number,
+    cached: number
+  ) => void
+): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>

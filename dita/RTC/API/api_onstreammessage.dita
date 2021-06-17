@@ -23,12 +23,10 @@
      (void)data;
      (void)length;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.STREAM_MESSAGE, cb: (
-     uid: number, 
-     streamId: number, 
-     msg: string, 
-     len: number) => void
-     ): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(
+  evt: EngineEvents.STREAM_MESSAGE,
+  cb: (uid: number, streamId: number, data: string) => void
+): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
@@ -52,7 +50,7 @@
   <pt>data</pt>
   <pd>接收到的数据。</pd>
        </plentry>
-       <plentry id="length">
+       <plentry id="length" props="windows">
   <pt>length</pt>
   <pd>数据长度，单位为字节。</pd>
        </plentry>

@@ -21,7 +21,10 @@
      (void)uid;
      (void)elapsed;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: ChannelEvents.JOIN_CHANNEL_SUCCESS, cb: (uid: number, elapsed: number) => void): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(
+  evt: ChannelEvents.CHANNEL_ERROR,
+  cb: (channelId: string, err: number, msg: string) => void
+): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
@@ -33,9 +36,11 @@
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
-       <plentry id="rtcChannel" props="android ios mac windows">
-  <pt>rtcChannel</pt>
-  <pd><xref keyref="IChannel"/>。</pd>
+       <plentry id="rtcChannel">
+  <pt props="android ios mac windows">rtcChannel</pt>
+  <pt props="electron">channelId</pt>         
+  <pd props="android ios mac windows"><xref keyref="IChannel"/>。</pd>
+  <pd props="electron">频道 ID。</pd>         
        </plentry>
        <plentry>
   <pt>uid</pt>
