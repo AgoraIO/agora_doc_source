@@ -11,7 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setVoiceConversionPreset"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setVoiceConversionPreset(VOICE_CONVERSION_PRESET preset) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -27,7 +35,7 @@
                     <li>You can call this method either before or after joining a channel.</li>
                     <li>Do not set<apiname keyref="setAudioProfile"/> the <parmname>profile</parmname> parameter in to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="windows"> or <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>, or the method will not take effect.</li>
                     <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
-                    <li>After calling <apiname keyref="setVoiceConversionPreset"/>, Agora recommends not calling the following methods, because they can override <apiname keyref="setVoiceConversionPreset"/>:<ul>
+                    <li>After<apiname keyref="setVoiceConversionPreset"/> calling<apiname keyref="setVoiceConversionPreset"/> , Agora recommends not calling the following methods, because they can override :<ul>
                             <li><xref keyref="setAudioEffectPreset"/></li>
                             <li><xref keyref="setAudioEffectParameters"/></li>
                             <li><xref keyref="setVoiceBeautifierPreset"/></li>
@@ -42,7 +50,7 @@
                 </ul>
             </note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>preset</pt>
