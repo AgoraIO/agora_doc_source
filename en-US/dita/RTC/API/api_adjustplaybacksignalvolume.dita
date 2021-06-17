@@ -11,20 +11,27 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/adjustPlaybackSignalVolume"/>
+        <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int adjustPlaybackSignalVolume(int volume);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustPlaybackSignalVolume:(NSInteger)volume;</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">virtual int adjustPlaybackSignalVolume(int volume) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">adjustPlaybackSignalVolume(volume: number): number</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public int AdjustPlaybackSignalVolume(int volume)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">adjustPlaybackSignalVolume(volume: number): Promise&lt;void></codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> adjustPlaybackSignalVolume(int volume);</codeblock>
+        </p>
         </section>
         <section id="detailed_desc">
    
    <note type="attention">
        <ul>
   <li>This method adjusts the playback volume that is the mixed volume of all remote users.</li>
-  <li>Starting from v2.3.2, to mute the local audio, you need to call the <codeph>adjustPlaybackSignalVolume</codeph> and <xref keyref="adjustAudioMixingPlayoutVolume"/> methods at the same time, and set <codeph>volume</codeph> to <codeph>0</codeph>.</li>
+  <li>As of v2.3.2, to mute the local audio, you need to call the <codeph>adjustPlaybackSignalVolume</codeph> and <xref keyref="adjustAudioMixingPlayoutVolume"/> methods at the same time, and set <codeph>volume</codeph> to <codeph>0</codeph>.</li>
   <li>You can call this method either before or after joining a channel.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>volume</pt>
