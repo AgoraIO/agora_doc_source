@@ -11,27 +11,34 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/startChannelMediaRelay"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int startChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">startChannelMediaRelay(config: ChannelMediaRelayConfiguration): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> and <xref keyref="onChannelMediaRelayEvent"/> callbacks, and these callbacks return the state and events of the media stream relay.<ul>
-  <li>If the <apiname keyref="onChannelMediaRelayStateChanged"/> callback returns <apiname keyref="RELAY_STATE_RUNNING"/>(2) and <apiname keyref="RELAY_OK"/>(0), and the <apiname keyref="onChannelMediaRelayEvent"/> callback returns <apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL"/>(4), it means that the SDK starts relaying media streams between the source channel and the destination channel.</li>
-  <li>If the <apiname keyref="onChannelMediaRelayStateChanged"/> callback returns <apiname keyref="RELAY_STATE_FAILURE"/>(3), an exception occurs during the media stream relay.</li>
+   <p>After a successful method call, the SDK triggers<xref keyref="onChannelMediaRelayStateChanged"/> the and<xref keyref="onChannelMediaRelayEvent"/> callbacks, and these callbacks return the state and events of the media stream relay.<ul>
+  <li>If<apiname keyref="onChannelMediaRelayStateChanged"/> the callback returns<apiname keyref="RELAY_STATE_RUNNING"/> (2) and<apiname keyref="RELAY_OK"/> (0), and the<apiname keyref="onChannelMediaRelayEvent"/> callback returns<apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL"/> (4), it means that the SDK starts relaying media streams between the source channel and the destination channel.</li>
+  <li>If the<apiname keyref="onChannelMediaRelayStateChanged"/> callback returns<apiname keyref="RELAY_STATE_FAILURE"/> (3), an exception occurs during the media stream relay.</li>
        </ul>
    </p>
    <note type="attention">
        <ul>
   <li>Call this method after joining the channel.</li>
   <li>This method takes effect only when you are a host in a LIVE_BROADCASTING channel.</li>
-  <li>After a successful method call, if you want to call this method again, ensure that you call the <xref keyref="stopChannelMediaRelay"/> method to quit the current relay.</li>
-  <li>Contact <xref href="https://agora-ticket.agora.io/" scope="external" format="html">support@agora.io</xref> before implementing this function.</li>
+  <li>After a successful method call, if you want to call this method again, ensure that you call the<xref keyref="stopChannelMediaRelay"/> method to quit the current relay.</li>
+  <li>Contact support@agora.io before <xref href="https://agora-ticket.agora.io/" scope="external" format="html"></xref>implementing this function.</li>
   <li>We do not support string user accounts in this API.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>configuration</pt>
@@ -43,7 +50,7 @@
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
+       <li>&lt;Failure.</li>
    </ul>
         </section></refbody>
 </reference>
