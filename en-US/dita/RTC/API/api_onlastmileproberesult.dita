@@ -10,9 +10,16 @@
             </keywords>
         </metadata>
     </prolog>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onLastmileProbeResult" />
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onLastmileProbeResult(const LastmileProbeResult&amp; result) { (void)result; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LASTMILE_PROBE_RESULT, cb: (result: LastmileProbeResult) => void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -21,10 +28,10 @@
                     <dd>v2.4.0</dd>
                 </dlentry>
             </dl>
-            <p>The SDK triggers this callback within 30 seconds after the app calls <xref keyref="startLastmileProbeTest" />.</p>
+            <p>The<xref keyref="startLastmileProbeTest" /> SDK triggers this callback within 30 seconds after the app calls .</p>
         </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>result</pt>
