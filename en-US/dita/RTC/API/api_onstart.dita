@@ -11,12 +11,19 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onStart"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual bool onStart() = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>The SDK triggers this callback to remind you to start the custom video source for capturing video. The SDK uses <xref keyref="IVideoFrameConsumer"/> to receive the video frame that you capture after the video source is started. You must use the return value to tell the SDK whether the custom video source is started.</p>
+   <p>The SDK triggers this callback to remind you to start the custom video source for capturing video. The SDK uses to<xref keyref="IVideoFrameConsumer"/> receive the video frame that you capture after the video source is started. You must use the return value to tell the SDK whether the custom video source is started.</p>
         </section>
         <section id="return_values">
    <title>Returns</title>
