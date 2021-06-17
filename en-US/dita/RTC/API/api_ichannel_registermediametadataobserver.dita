@@ -11,14 +11,21 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/IChannel_registerMediaMetadataObserver"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">registerMediaMetadataObserver(type: METADATA_TYPE = 0): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
    <note type="attention">
        <ul>
-  <li>Call this method before <xref keyref="IChannel_joinChannel"/>.</li>
+  <li>Call<xref keyref="IChannel_joinChannel"/> this method before .</li>
   <li>This method applies only to interactive live streaming.</li>
        </ul>
    </note>
