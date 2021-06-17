@@ -11,15 +11,22 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/startAudioRecording1"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
    <dl outputclass="deprecated">
        <dlentry >
   <dt>Deprecated:</dt>
-  <dd>This method is deprecated as of v2.9.1. It has a fixed recording sample rate of 32 kHz. Please use the <xref keyref="startAudioRecording2"/> method instead.</dd>
+  <dd>This method is deprecated as of v2.9.1. It has a fixed recording sample rate of 32 kHz. Please use the<xref keyref="startAudioRecording3"/> method instead.</dd>
        </dlentry>
    </dl>
    <p>The Agora SDK allows recording during a call. This method records the audio of all the users in the channel and generates an audio recording file. Supported formats of the recording file are as follows:<ul>
@@ -27,17 +34,17 @@
   <li><codeph>.aac</codeph>: Small file size with low fidelity.</li>
        </ul>
    </p>
-   <p>Ensure that the directory for the recording file exists and is writable. This method should be called after the <xref keyref="joinChannel1"/> method. The recording automatically stops when you call the <xref keyref="leaveChannel"/> method.</p>
+   <p>Ensure that the directory for the recording file exists and is writable. This method should be called after the method<xref keyref="joinChannel1"/>. The recording automatically stops when you<xref keyref="leaveChannel"/> call the method.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>filePath</pt>
-      <pd>The absolute path of the recording file specified by the user. The file path must include the file name and its format. For example: <codeph props="android">/sdcard/emulated/0/audio/aac</codeph> <codeph props="windows">C:/music/audio.aac</codeph> <codeph props="apple"> /var/mobile/Containers/Data/audio.aac</codeph>.</pd>
+      <pd>The absolute path of the recording file specified by the user. The file path must include the file name and its format. For example: <codeph props="android">/sdcard/emulated/0/audio/aac </codeph><codeph props="windows">C:/music/audio.aac </codeph><codeph props="apple">/var/mobile/Containers/Data/audio.aac</codeph>.</pd>
        </plentry>
        <plentry>
   <pt>quality</pt>
-  <pd>Recording configuration. For details, see <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</pd>
+  <pd>Recording configuration. For details, see<xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/> .</pd>
        </plentry>
    </parml>
         </section>
