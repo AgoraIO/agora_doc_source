@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setcamerazoomfactor">
     <title><ph keyref="setCameraZoomFactor"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the camera capture configuration.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the camera zoom ratio.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -11,26 +11,33 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setCameraZoomFactor"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setCameraZoomFactor(float factor);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>This method needs to be called after the camera is started (for example, by<xref keyref="startPreview"/> calling or<xref keyref="joinChannel1"/> realization).</p>
+   <p>This method needs to be called after the camera is started (for example, by<xref keyref="startPreview"/> calling or<xref keyref="joinChannel1"/> ).</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>factor</pt>
-  <pd>Camera zoom ratio, the effective range is from 1.0 to the maximum zoom ratio. You can<xref keyref="getCameraMaxZoomFactor"/> get the maximum zoom ratio supported by the device through the method.</pd>
+  <pd>The camera zoom ratio. The value ranges between 1.0 and the maximum zoom supported by the device. You can<xref keyref="getCameraMaxZoomFactor"/> get the maximum zoom ratio supported by the device by calling the method.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li>Method call succeeded: Return the set <parmname>factor</parmname> value.</li>
-       <li>Method call failed: return value &lt; 0.</li>
+       <li>The set camera zoom factor, if this method call is successful<parmname></parmname>.</li>
+       <li>&lt;0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
