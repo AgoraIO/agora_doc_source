@@ -2,22 +2,22 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_rawaudioframeopmodetype">
     <title><ph keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The use mode of the audio data returned in the <ph keyref="onRecordAudioFrame"/> or <ph keyref="onPlaybackAudioFrame"/> callback.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">音频数据的使用模式。</ph></shortdesc>
     <refbody>
         <section id="parameters">
    <title>Enumerator</title>
    <parml>
        <plentry>
   <pt><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"/></pt>
-  <pd>0: Read-only mode: Users only read the <xref keyref="AudioFrame"/> data without modifying anything. For example, when users acquire the data with the Agora SDK, then push the RTMP or RTMPS streams.</pd>
+  <pd>0: Read-only mode:<ph props="windows"> Users only<xref keyref="AudioFrame"/> read the data without modifying anything. </ph><ph props="electron">用户仅获取 SDK 返回的原始数据，不作任何修改。 </ph>For example, when users acquire the data with the Agora SDK, then push the RTMP or RTMPS streams.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY"/></pt>
-  <pd>1: Write-only mode: Users replace the <xref keyref="AudioFrame"/> data with their own data and pass the data to the SDK for encoding. For example, when users acquire the data.</pd>
+  <pd>1: Write-only mode:<ph props="windows"> Users replace<xref keyref="AudioFrame"/> the data with their own data and pass the data to the SDK for encoding. </ph><ph props="electron">用户替换 SDK 返回的原始视频，并返回给 SDK 进行编码传输。 </ph>For example, when users acquire the data.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"/></pt>
-  <pd>2: Read and write mode: Users read the data from <xref keyref="AudioFrame"/>, modify it, and then play it. For example, when users have their own sound-effect processing module and perform some voice pre-processing, such as a voice change.</pd>
+  <pd>2: Read and write mode:<ph props="windows"> Users<xref keyref="AudioFrame"/> read the data from , modify it, and then play it. </ph><ph props="electron">用户修改 SDK 返回的原始视频，并返回给 SDK 进行编码传输。 </ph>For example, when users have their own sound-effect processing module and perform some voice pre-processing, such as a voice change.</pd>
        </plentry>
    </parml>
         </section></refbody>
