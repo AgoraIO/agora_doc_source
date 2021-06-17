@@ -10,17 +10,24 @@
             </keywords>
         </metadata>
     </prolog>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setDefaultAudioRouteToSpeakerphone"/>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
             <p>This method sets whether the received audio is routed to the earpiece or speakerphone by default before joining a channel. If a user does not call this method, the audio is routed to the earpiece by default.</p>
             <p>The default settings for each profile:<ul>
-                    <li>For the communication profile:<ul>
+                    <li>For the `COMMUNICATION` profile:<ul>
                             <li>In a voice call, the default audio route is the earpiece.</li>
-                            <li>In a video call, the default audio route is the speakerphone. If a user calls the <xref keyref="disableVideo"/>, <xref
-                                    keyref="muteLocalVideoStream"/>, or <xref
+                            <li>In a video call, the default audio route is the speakerphone. If a user calls the<xref keyref="disableVideo"/> , ,<xref
+                                    keyref="muteLocalVideoStream"/> or<xref
                                     keyref="muteAllRemoteVideoStreams"/> method, the default audio route switches back to the earpiece automatically.</li>
                         </ul></li>
                     <li>For the live broadcasting profile: Speakerphone.</li>
@@ -31,11 +38,11 @@
                     <li props="windows">This method is for Android and iOS only.</li>
                     <li props="ios">This method is for iOS only.</li>
                     <li props="ios windows">For iOS, this method only works in a voice call.</li>
-                    <li>This method needs to be set before <xref keyref="joinChannel1"/>, otherwise, it will not take effect.</li>
+                    <li>This method needs to be<xref keyref="joinChannel1"/> set before , otherwise, it will not take effect.</li>
                 </ul>
             </note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>defaultToSpeaker</pt>
