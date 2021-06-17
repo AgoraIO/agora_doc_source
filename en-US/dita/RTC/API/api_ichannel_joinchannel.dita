@@ -11,13 +11,20 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/IChannel_joinChannel"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* info, uid_t uid, const ChannelMediaOptions&amp; options) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">joinChannel(token: string, info: string, uid: number, options?: ChannelMediaOptions ): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>This method differs from the <apiname keyref="joinChannel1"/> method in the <xref keyref="IRtcEngine"/> class in the following aspects:</p>
-   <table id="table_diff">
+   <p props="android ios mac windows">This method differs from<xref keyref="IRtcEngine"/> the method in the class<apiname keyref="joinChannel1"/> in the following aspects:</p>
+   <table id="table_diff" props="android ios mac windows">
        <tgroup cols="2">
   <colspec colnum="1" colname="col1"/>
   <colspec colnum="2" colname="col2"/>
@@ -29,15 +36,15 @@
            </thead>
            <tbody>
       <row>
- <entry>Does not contain the <parmname>channelId</parmname> parameter. Because <parmname>channelId</parmname> is specified when creating the <xref keyref="IChannel"/> object.</entry>
- <entry>You need to fill in the <parmname>channelId</parmname> that can identify the channel.</entry>
+ <entry>Does not contain the <parmname>channelId</parmname> parameter. Because <xref keyref="IChannel"/><parmname>channelId</parmname> is specified when creating the object.</entry>
+ <entry>You need to fill in the channelId that can identify the <parmname>channel</parmname>.</entry>
       </row>
       <row>
- <entry>Users can join multiple channels simultaneously by creating multiple <apiname keyref="IChannel"/> objects and calling the <apiname keyref="IChannel_joinChannel"/> methods of each object.</entry>
+ <entry>Users can join multiple channels simultaneously by creating multiple<apiname keyref="IChannel"/> objects and<apiname keyref="IChannel_joinChannel"/> calling the methods of each object.</entry>
  <entry>Users can join only one channel.</entry>
       </row>
       <row>
- <entry>By default, the SDK does not publish any stream after the user joins the channel. You need to call the <xref
+ <entry>By default, the SDK does not publish any stream after the user joins the channel. You need to call the<xref
 keyref="IChannel_publish"/> method to do that.</entry>
  <entry>By default, the SDK publishes streams once the user joins the channel.</entry>
       </row>
@@ -53,7 +60,7 @@ keyref="IChannel_publish"/> method to do that.</entry>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry conkeyref="joinChannel2/token">
   <pt/>
@@ -64,8 +71,8 @@ keyref="IChannel_publish"/> method to do that.</entry>
   <pd/>
        </plentry>
        <plentry>
-  <pt><ph keyref="uid"/></pt>
-  <pd>The user ID. This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique. This parameter is a 32-bit unsigned integer with a value ranging from 1 to 2<sup>32</sup> -1. If the user ID is not assigned (or set as 0), the SDK assigns a user ID and reports it in the<xref keyref="IChannel_onJoinChannelSuccess"/> callback. Your app must maintain this user ID.</pd>
+  <pt>uid</pt>
+  <pd>User ID. This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique. This parameter is a 32-bit unsigned integer with a value ranging from 1 to 232<sup></sup> -1. If the user ID is not assigned (or set as 0), the SDK assigns a<xref keyref="IChannel_onJoinChannelSuccess"/> user ID and reports it in the callback. Your app must maintain this user ID.</pd>
        </plentry>
        <plentry conkeyref="joinChannel2/options">
   <pt/>
