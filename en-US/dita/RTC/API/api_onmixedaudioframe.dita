@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onMixedAudioFrame"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual bool onMixedAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -20,7 +27,7 @@
        <note type="attention">This callback only returns the single-channel data.</note>
    </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>audioFrame</pt>
@@ -31,8 +38,8 @@
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li><ph keyref="true"/>: Valid buffer in <apiname keyref="AudioFrame">AudioFrame</apiname>, and the captured audio frame is sent out.</li>
-       <li><ph keyref="false"/>: Invalid buffer in <apiname keyref="AudioFrame">AudioFrame</apiname>, and the captured audio frame is discarded.</li>
+       <li><ph keyref="true"/>: Valid buffer in<apiname keyref="AudioFrame"> AudioFrame</apiname>, and the captured<apiname keyref="AudioFrame"> audio</apiname> frame is sent out.</li>
+       <li><ph keyref="false"/>: Invalid buffer in<apiname keyref="AudioFrame"> AudioFrame</apiname>, and the captured audio frame is discarded.</li>
    </ul>
         </section></refbody>
 </reference>
