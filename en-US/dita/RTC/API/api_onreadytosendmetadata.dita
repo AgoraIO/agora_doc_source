@@ -10,16 +10,25 @@
    </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onReadyToSendMetadata"/>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript">on( evt: ChannelEvents.METADATA_RECEIVED, cb: (metadata: Metadata) => void ): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
    
-   <p>This callback is triggered<apiname keyref="Metadata"/> when the SDK is ready to receive and send .</p>
-   <note type="attention">Ensure that the size of the<apiname keyref="Metadata"/> does not exceed the<xref keyref="getMaxMetadataSize"/> value set in the callback.</note>
+   <p>This callback is triggered when the SDK is ready to receive and send<apiname keyref="Metadata"/> .</p>
+   <p props="electron">收到该回调后，你可以调用 <xref keyref="sendMetadata"/> 发送媒体附属信息。</p>
+   <note props="android apple windows" type="attention">Ensure that the size of the<apiname keyref="Metadata"/> does not exceed the<xref keyref="getMaxMetadataSize"/> value set in the callback.</note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>metadata</pt>
@@ -27,10 +36,10 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="android apple windows">
    <title>Returns</title>
    <ul>
-       <li><ph keyref="true"/>: Send.</li>
+       <li><ph keyref="true"/>: 发送</li>
        <li><ph keyref="false"/>: Do not send.</li>
    </ul>
         </section></refbody>
