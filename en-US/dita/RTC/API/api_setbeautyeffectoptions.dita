@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setBeautyEffectOptions"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setBeautyEffectOptions(bool enabled, BeautyOptions options) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setBeautyEffectOptions(enabled: boolean, options: BeautyOptions): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -28,12 +35,12 @@
    <p>Call this method after <xref keyref="enableVideo"/>.</p>
    <note type="attention" props="android">This method only applies to Android 4.4 or later.</note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>enabled</pt>
   <pd>Whether to enable the image enhancement function:<ul>
-      <li><ph keyref="true"/>: Enable the image enhancement function.</li>
+      <li><ph keyref="true"/>: 开启。</li>
       <li><ph keyref="false"/>: (Default) Disable the image enhancement function.</li>
   </ul></pd>
        </plentry>
