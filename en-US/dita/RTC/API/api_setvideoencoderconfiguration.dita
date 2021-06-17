@@ -11,15 +11,21 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setVideoEncoderConfiguration"/>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setVideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setVideoEncoderConfiguration(config: VideoEncoderConfiguration): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
-
-   <p>Sets the encoder configuration for the local video.</p>
-   <note type="attention">You can call this method either before or after joining a channel. If the user does not need to reset the video encoding properties after joining the channel, Agora recommends calling this method before <xref keyref="enableVideo"/> to reduce the time to render the first video frame.</note>
+   <p id="desc">Sets the encoder configuration for the local video.</p>
+   <note type="attention">You can call this method either before or after joining a channel. If the user does not need to reset the video encoding properties after joining the channel, Agora recommends<xref keyref="enableVideo"/> calling this method before to reduce the time to render the first video frame.</note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>config</pt>
