@@ -11,17 +11,29 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/startAudioRecording2"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, int sampleRate, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">startAudioRecording(filePath: string, sampleRate: number, quality: AUDIO_RECORDING_QUALITY_TYPE ): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>自 v3.4.0 废弃，请改用 <xref keyref="startAudioRecording3"/>。</dd>
+                </dlentry>
+            </dl>
             <dl outputclass="since">
                 <dlentry>
                     <dt>Since</dt>
-                    <dd>v2.9.1. This method replaces <xref keyref="startAudioRecording1"></xref>.</dd>
+                    <dd>v2.9.1</dd>
                 </dlentry>
-            </dl>
-            
+            </dl>            
    <p>The Agora SDK allows recording during a call. After successfully calling this method, you can record the audio of all the users in the channel and get an audio recording file. Supported formats of the recording file are as follows:<ul>
       <li>.wav: Large file size with high fidelity.</li>
       <li>.aac: Small file size with low fidelity.</li>
@@ -30,12 +42,12 @@
    <note type="attention">
        <ul>
   <li>Ensure that the directory you use to save the recording file exists and is writable.</li>
-  <li>This method should be called after the <apiname keyref="joinChannel1"/> method. The recording automatically stops when you call the <xref keyref="leaveChannel"/> method.</li>
+  <li>This method should be called after the method<apiname keyref="joinChannel2"/>. The recording automatically stops when you<xref keyref="leaveChannel"/> call the method.</li>
   <li>For better recording effects, set <parmname>quality</parmname> to or when <parmname>sampleRate</parmname> is 44.1 kHz or 48 kHz<parmname></parmname><apiname keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/><apiname keyref="AUDIO_RECORDING_QUALITY_HIGH"/>.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>filePath</pt>
@@ -55,7 +67,7 @@
        </plentry>
        <plentry>
   <pt>quality</pt>
-  <pd>Recording quality. For details, see <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</pd>
+  <pd>Recording quality. 详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/> 。</pd>
        </plentry>
    </parml>
         </section>
