@@ -11,18 +11,25 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onLeaveChannel"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) { (void)stats; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LEAVE_CHANNEL, cb: (stats: RtcStats) => void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>This callback notifies the app that a user leaves the channel when the application calls <xref keyref="leaveChannel"/>. From this callback, the app can get information such as the call duration and statistics.</p>
+   <p>This callback<xref keyref="leaveChannel"/> notifies the app that a user leaves the channel when the application calls . From this callback, the app can get information such as the call duration and statistics.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry id="stats">
   <pt>stats</pt>
-  <pd>The statistics of the call, see <xref keyref="RtcStats"/>.</pd>
+  <pd>The statistics of the call, <xref keyref="RtcStats"/>see .</pd>
        </plentry>
    </parml>
         </section>
