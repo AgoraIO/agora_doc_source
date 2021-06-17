@@ -11,18 +11,25 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setLocalVoiceEqualization"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceEqualization(AUDIO_EQUALIZATION_BAND_FREQUENCY bandFrequency, int bandGain) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setLocalVoiceEqualization(bandFrequency: AUDIO_EQUALIZATION_BAND_FREQUENCY, bandGain: number): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
    <note type="attention">You can call this method either before or after joining a channel.</note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>bandFrequency</pt>
-  <pd>The band frequency. The value ranges between 0 and 9, representing the respective 10-band center frequencies of the voice effects, including 31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, and 16k Hz. For details, see <xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY"/>.</pd>
+  <pd>The band frequency. 取值范围是 [0,9]，分别代表音效的 10 个频带。 对应的中心频率为 [31，62，125，250，500，1k，2k，4k，8k，16k] Hz。 For details, see<xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY"/> .</pd>
        </plentry>
        <plentry>
   <pt>bandGain</pt>
