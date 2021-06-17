@@ -10,9 +10,16 @@
                </keywords>
           </metadata>
      </prolog>
-     <refbody>
-          <section id="prototype">
-               <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setRemoteUserPriority" />
+     <refbody><section id="prototype">
+         <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteUserPriority(uid_t uid, PRIORITY_TYPE userPriority) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setRemoteUserPriority(uid: number, userPriority: PRIORITY_TYPE)</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+         </p>
           </section>
           <section id="detailed_desc">
                <dl outputclass="since">
@@ -21,7 +28,7 @@
                          <dd>v2.4.0</dd>
                     </dlentry>
                </dl>
-               <p>Prioritizes a remote user&apos;s stream. The SDK ensures the high-priority user gets the best possible stream quality.</p>
+               <p>Prioritizes a remote user&apos;s stream. The SDK ensures the high-priority user gets the best possible stream quality. The SDK ensures the high-priority user gets the best possible stream quality.</p>
                <note type="attention">
                     <ul>
                          <li>The SDK supports setting only one user as high priority.</li>
@@ -30,11 +37,11 @@
                </note>
           </section>
           <section id="parameters">
-               <title>Parameters</title>
+               <title>Parameter</title>
                <parml>
                     <plentry>
                          <pt>uid</pt>
-                         <pd>The ID of the remote user.</pd>
+                         <pd>远端用户的 ID。</pd>
                     </plentry>
                     <plentry>
                          <pt>userPriority</pt>
