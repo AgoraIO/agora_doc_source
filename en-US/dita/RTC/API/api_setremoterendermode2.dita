@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setRemoteRenderMode2"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderMode(uid_t userId, RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -23,32 +30,32 @@
        </dlentry>
    </dl>
    <p>After initializing the video view of a remote user, you can call this method to update its rendering and mirror modes. This method affects only the video view that the local user sees.</p>
-   <note outputclass="note">
+   <note type="attention">
        <ul>
   <li>Please call this<xref keyref="setupRemoteVideo"/> method after calling the method to initialize the remote view.</li>
   <li>During a call, you can call this method as many times as necessary to update the display mode of the video view of a remote user.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>userId</pt>
   <pd>
-      <p>Remote user ID.</p>
+      <p>The ID of the remote user.</p>
   </pd>
        </plentry>
        <plentry>
-  <pt>renderMode: The video display mode:</pt>
+  <pt>renderMode</pt>
   <pd>
-      <p>The rendering mode of the remote user view, see for details<xref keyref="RENDER_MODE_TYPE"/>.</p>
+      <p>The rendering mode of the remote user view. See for details<xref keyref="RENDER_MODE_TYPE"/>.</p>
   </pd>
        </plentry>
        <plentry>
   <pt>mirrorMode</pt>
   <pd>
-      <p>The mirror mode of the remote user view, see for details<xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
-      <note outputclass="note">Note: The SDK disables the mirror mode by default.</note>
+      <p>The mirror mode of the remote user view. See for details<xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
+      <note type="attention">The SDK disables the mirror mode by default.</note>
   </pd>
        </plentry>
    </parml>
