@@ -11,18 +11,25 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onWarning"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onWarning(int warn, const char* msg) { (void)warn; (void)msg; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.WARNING, cb: (warn: number, msg: string) => void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>Occurs when a warning occurs during SDK runtime. In most cases, the app can ignore the warnings reported by the SDK because the SDK can usually fix the issue and resume running. For example, when losing connection with the server, the SDK may report <parmname>WARN_LOOKUP_CHANNEL_TIMEOUT</parmname> and automatically try to reconnect.</p>
+   <p id="desc">Occurs when a warning occurs during SDK runtime. In most cases, the app can ignore the warnings reported by the SDK because the SDK can usually fix the issue and resume running. For example, when losing connection with the server, the SDK may report <parmname>WARN_LOOKUP_CHANNEL_TIMEOUT</parmname> and automatically try to reconnect.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>warn</pt>
-  <pd>Warning code, see <xref href="error_rtc.md" format="md"/>.</pd>
+  <pd>Warning codes. For details, see <xref keyref="errorCode">Error Codes and Warning Codes</xref>.</pd>
        </plentry>
        <plentry>
   <pt>msg</pt>
