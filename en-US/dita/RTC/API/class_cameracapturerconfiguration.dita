@@ -5,44 +5,52 @@
     <shortdesc id="short"><ph id="shortdesc">Camera capture preference.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-   <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/CameraCapturerConfiguration"/>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">struct CameraCapturerConfiguration { CAPTURER_OUTPUT_PREFERENCE preference; int captureWidth; int captureHeight; #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS) CAMERA_DIRECTION cameraDirection; #endif CameraCapturerConfiguration() :preference(CAPTURER_OUTPUT_PREFERENCE_AUTO) ,captureWidth(640) ,captureHeight(480) {} CameraCapturerConfiguration(int width, int height) :preference(CAPTURER_OUTPUT_PREFERENCE_MANUAL) ,captureWidth(width) ,captureHeight(height) {} };</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
        <plentry>
   <pt>preference</pt>
-  <pd>Camera capture preference settings. See <xref keyref="CAPTURER_OUTPUT_PREFERENCE"/>.</pd>
+  <pd>Camera capture preference. See <xref keyref="CAPTURER_OUTPUT_PREFERENCE"/>.</pd>
        </plentry>
-       <plentry outputclass="since">
+       <plentry>
                     <pt>captureWidth</pt>
                     <pd>
-                        <dl>
+                        <dl outputclass="since">
                             <dlentry>
                                 <dt>Since</dt>
-                                <dd>v3.3.0</dd>
+                                <dd><ph keyref="since-cameraconfig"/></dd>
                             </dlentry>
                         </dl>
-                        <p>The width (px) of the video image captured by the local camera. To customize the width of the video image, set <parmname>preference</parmname> as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"/>(3) first, and then use <parmname>captureWidth</parmname>.</p>
-                    </pd>
-                </plentry>
-       <plentry outputclass="since">
-                    <pt>captureHeight</pt>
-                    <pd>
-                        <dl>
-                            <dlentry>
-                                <dt>Since</dt>
-                                <dd>v3.3.0</dd>
-                            </dlentry>
-                        </dl>
-                        <p>The height (px) of the video image captured by the local camera. To customize the height of the video image, set <parmname>preference</parmname> as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"/>(3) first, and then use <parmname>captureHeight</parmname>.</p>
+                        <p>The width (px) of the video image captured by the local camera. To customize the width of the video image, set <parmname>preference</parmname> as<ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"/> (3) first, and then use <parmname>captureWidth</parmname>.</p>
                     </pd>
                 </plentry>
        <plentry>
+                    <pt>captureHeight</pt>
+                    <pd>
+                        <dl outputclass="since">
+                            <dlentry>
+                                <dt>Since</dt>
+                                <dd><ph keyref="since-cameraconfig"/></dd>
+                            </dlentry>
+                        </dl>
+                        <p>The height (px) of the video image captured by the local camera. To customize the height of the video image, set <parmname>preference</parmname> as<ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"/> (3) first, and then use <parmname>captureHeight</parmname>.</p>
+                    </pd>
+                </plentry>
+       <plentry props="android ios windows">
   <pt>cameraDirection</pt>
   <pd>
       <p props="windows">This method applier to Android and iOS only.</p>
-      <p>Camera direction. See <xref keyref="CAMERA_DIRECTION"/>.</p>
+      <p>The camera direction. See <xref keyref="CAMERA_DIRECTION"/>.</p>
   </pd>
        </plentry>
    </parml>
