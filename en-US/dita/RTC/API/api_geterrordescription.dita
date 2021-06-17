@@ -11,10 +11,17 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/getErrorDescription"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual const char* getErrorDescription(int code) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">getErrorDescription(errorCode: number): string</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>code</pt>
@@ -24,6 +31,6 @@
         </section>
         <section id="return_values">
    <title>Returns</title>
-   <p>The specific error or warning description. You can refer to <xref href="error_rtc.md" format="md">Error Codes and Warning Codes</xref> for troubleshooting.</p>
+   <p>The specific error or warning description. You can refer to <xref keyref="errorCode">Error Codes and Warning Codes</xref> for troubleshooting.</p>
         </section></refbody>
 </reference>
