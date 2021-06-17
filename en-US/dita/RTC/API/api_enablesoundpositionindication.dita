@@ -11,14 +11,21 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/enableSoundPositionIndication"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int enableSoundPositionIndication(bool enabled) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">enableSoundPositionIndication(enabled: boolean)</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>Ensure that you call this method before joining a channel to enable stereo panning for remote users so that the local user can track the position of a remote user by calling <apiname keyref="setRemoteVoicePosition"/>.</p>
+   <p>Ensure that you<apiname keyref="setRemoteVoicePosition"/> call this method before joining a channel to enable stereo panning for remote users so that the local user can track the position of a remote user by calling .</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>enabled</pt>
