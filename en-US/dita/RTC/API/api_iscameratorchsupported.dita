@@ -11,13 +11,20 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/isCameraTorchSupported"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract boolean isCameraTorchSupported();</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>This method needs to be called after the camera is started (for example, by calling <xref keyref="startPreview"/> or <xref keyref="joinChannel1"/>).</p>
-            <note type="attention">The app enables the front camera by default. If your front camera does not support the flash function, this method returns <ph keyref="false"/>. If you want to check whether the rear camera supports the flash function, call <xref keyref="switchCamera"/> before this method.</note>
+   <p>This method needs to be called after the camera is started (for example, by<xref keyref="startPreview"/> calling or<xref keyref="joinChannel1"/> ).</p>
+            <note type="attention">The app enables the front camera by default. If your front camera does not support the flash function, this method returns <ph keyref="false"/>. If you want to check whether the rear camera supports the flash function, call<xref keyref="switchCamera"/> before this method.</note>
         </section>
         <section id="return_values">
    <title>Returns</title>
