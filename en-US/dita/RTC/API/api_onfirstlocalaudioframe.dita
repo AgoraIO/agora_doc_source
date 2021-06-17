@@ -11,23 +11,30 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onFirstLocalAudioFrame"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalAudioFrame(int elapsed) { (void)elapsed; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_LOCAL_AUDIO_FRAME, cb: (elapsed: number) => void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
    <dl outputclass="deprecated">
        <dlentry >
   <dt>Deprecated:</dt>
-  <dd>This callback is deprecated as of v3.1.0, please use the <xref keyref="onFirstLocalAudioFramePublished"/> callback instead.</dd>
+  <dd>This callback is deprecated as of v3.1.0, please use the callback instead<xref keyref="onFirstLocalAudioFramePublished"/>.</dd>
        </dlentry>
    </dl>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>elapsed</pt>
-  <pd>Time elapsed (ms) from the local user calling <apiname keyref="joinChannel1"/> until the SDK triggers this callback.</pd>
+  <pd>Time elapsed (<apiname keyref="joinChannel2"/>ms) from the local user calling until the SDK triggers this callback.</pd>
        </plentry>
    </parml>
         </section>
