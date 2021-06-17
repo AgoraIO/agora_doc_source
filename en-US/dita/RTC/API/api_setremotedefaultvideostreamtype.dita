@@ -11,21 +11,28 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setRemoteDefaultVideoStreamType"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteDefaultVideoStreamType(REMOTE_VIDEO_STREAM_TYPE streamType) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setRemoteDefaultVideoStreamType(streamType: REMOTE_VIDEO_STREAM_TYPE): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p id="desc1">Under limited network conditions, if the publisher has not disabled the dual-stream mode using <xref keyref="enableDualStreamMode"/>(<ph keyref="false"/>), the receiver can choose to receive either the high-quality video stream (the high resolution, and high bitrate video stream) or the low-video stream (the low resolution, and low bitrate video stream).</p>
+   <p id="desc1">在网络条件受限的情况下，如果发送端没有调用 <xref keyref="enableDualStreamMode"/> (<ph keyref="false"/>) 关闭双流模式，接收端可以选择接收大流还是小流。 The high-quality video stream has a higher resolution and bitrate, and the low-quality video stream has a lower resolution and bitrate.</p>
    <p id="desc2">By default, users receive the high-quality video stream. Call this method if you want to switch to the low-video stream. This method allows the app to adjust the corresponding video stream type based on the size of the video window to reduce the bandwidth and resources. The aspect ratio of the low-video stream is the same as the high-quality video stream. Once the resolution of the high-quality video stream is set, the system automatically sets the resolution, frame rate, and bitrate of the low-video stream.</p>
-   <p id="desc3">The method result returns in the <xref keyref="onApiCallExecuted"/> callback.</p>
-   <note type="attention">You can call this method either before or after joining a channel. If you call both <apiname keyref="setRemoteVideoStreamType"/> and <xref keyref="setRemoteDefaultVideoStreamType"/>, the setting of <apiname keyref="setRemoteVideoStreamType"/> takes effect.</note>
+   <p id="desc3">The method result<xref keyref="onApiCallExecuted"/> returns in the callback.</p>
+   <note type="attention">You can call this method either before or after joining a channel. If you call both<apiname keyref="setRemoteVideoStreamType"/><xref keyref="setRemoteDefaultVideoStreamType"/> and , the setting of<apiname keyref="setRemoteVideoStreamType"/> takes effect.</note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>streamType</pt>
-  <pd>The video stream type: <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>.</pd>
+  <pd>The video stream type:<xref keyref="REMOTE_VIDEO_STREAM_TYPE"/></pd>
        </plentry>
    </parml>
         </section>
