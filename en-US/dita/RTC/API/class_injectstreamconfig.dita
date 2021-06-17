@@ -5,7 +5,15 @@
     <shortdesc id="short"><ph id="shortdesc">Configurations of injecting an external audio or video stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/InjectStreamConfig"/>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">struct InjectStreamConfig { int width; int height; int videoGop; int videoFramerate; int videoBitrate; AUDIO_SAMPLE_RATE_TYPE audioSampleRate; int audioBitrate; int audioChannels; InjectStreamConfig() : width(0) , height(0) , videoGop(30) , videoFramerate(15) , videoBitrate(400) , audioSampleRate(AUDIO_SAMPLE_RATE_48000) , audioBitrate(48) , audioChannels(1) {} };</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">export interface InjectStreamConfig { width: number; height: number; videoBitrate: number; videoFramerate: number; videoGop: number; audioSampleRate: AUDIO_SAMPLE_RATE_TYPE; audioBitrate: number; audioChannels: number; }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
             <note conkeyref="addInjectStreamUrl/inject-sunset-note" />
