@@ -11,18 +11,25 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/enumerateVideoDevices"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual IVideoDeviceCollection* enumerateVideoDevices() = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">getVideoDevices(): Array&lt;{ deviceid: string, devicename: string }></codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>This method returns an <xref keyref="IVideoDeviceCollection"/> object including all video devices in the system. With the <apiname keyref="IVideoDeviceCollection"/> object, the application can enumerate video devices. The application must call the <xref keyref="IVideoDeviceCollection_release"/> method to release the returned object after using it.</p>
+   <p>This method returns an<xref keyref="IVideoDeviceCollection"/> object including all video devices in the system. With<apiname keyref="IVideoDeviceCollection"/> the object, the application can enumerate video devices. The application must call the<xref keyref="IVideoDeviceCollection_release"/> method to release the returned object after using it.</p>
         </section>
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li>Success: An <xref keyref="IVideoDeviceCollection"/> object including all video devices in the system.</li>
-       <li>Failure: <ph keyref="NULL"/>.</li>
+       <li>Success: An<xref keyref="IVideoDeviceCollection"/> object including all video devices in the system.</li>
+       <li>方法调用失败: <ph keyref="NULL"/>。</li>
    </ul>
         </section></refbody>
 </reference>
