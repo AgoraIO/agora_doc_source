@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_videosourcefirstlocalvideoframe">
+    <title><ph keyref="videoSourceFirstLocalVideoFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc" conkeyref="onFirstLocalVideoFrame/shortdesc"/></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="videoSourceFirstLocalVideoFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript">on( evt: &quot;videoSourceFirstLocalVideoFrame&quot;, cb: (width: number, height: number, elapsed: number) => void ): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>双实例回调。</p>
+            <p conkeyref="onFirstLocalVideoFrame/desc"/>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>width</pt>
+                    <pd>The width (px) of the first local video frame.</pd>
+                </plentry>
+                <plentry>
+                    <pt>height</pt>
+                    <pd>The height (px) of the first local video frame.</pd>
+                </plentry>
+                <plentry>
+                    <pt>elapsed</pt>
+                    <pd>Time elapsed<apiname keyref="videoSourceJoinChannel" /> (ms) from the local user calling until the SDK triggers this callback. If you call before calling<apiname keyref="videoSourceJoinChannel" /><xref keyref="videoSourceStartPreview" /> , then this parameter is the<apiname keyref="videoSourceStartPreview" /> time elapsed from calling method until the SDK triggers this callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
