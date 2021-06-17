@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiorecording2">
-    <title><ph keyref="startAudioRecording2"/> [2/2]</title>
+    <title><ph keyref="startAudioRecording2"/></title>
     <shortdesc id="short"><ph id="shortdesc">开始客户端录音。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -11,17 +11,34 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/startAudioRecording2"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, 
+    int sampleRate, 
+    AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">startAudioRecording(filePath: string,
+    sampleRate: number,
+    quality: AUDIO_RECORDING_QUALITY_TYPE
+    ): number </codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>自 v3.4.0 废弃，请改用 <xref keyref="startAudioRecording3"/>。</dd>
+                </dlentry>
+            </dl>
             <dl outputclass="since">
                 <dlentry>
                     <dt>自从</dt>
-                    <dd>v2.9.1。该方法取代 <xref keyref="startAudioRecording1"/> [1/2]。</dd>
+                    <dd>v2.9.1</dd>
                 </dlentry>
-            </dl>
-            
+            </dl>            
    <p>Agora SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内所有用户的音频，并得到一个包含所有用户声音的录音文件。录音文件格式可以为:
   <ul>
       <li>.wav: 文件大，音质保真度较高。</li>
@@ -31,7 +48,7 @@
    <note type="attention">
        <ul>
   <li>请确保你在该方法中指定的路径存在并且可写。</li>
-  <li>该接口需在 <apiname keyref="joinChannel1"/> 之后调用。如果调用 <xref keyref="leaveChannel"/> 时还在录音，录音会自动停止。</li>
+  <li>该接口需在 <apiname keyref="joinChannel2"/> 之后调用。如果调用 <xref keyref="leaveChannel"/> 时还在录音，录音会自动停止。</li>
   <li>为保证录音效果，当 <parmname>sampleRate</parmname> 设为 44.1 kHz 或 48 kHz 时，建议将 <parmname>quality</parmname> 设为 <apiname keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> 或 <apiname keyref="AUDIO_RECORDING_QUALITY_HIGH"/> 。</li>
        </ul>
    </note>
@@ -40,7 +57,7 @@
    <parml>
        <plentry>
   <pt>filePath</pt>
-  <pd>录音文件在本地保存的绝对路径，由用户自行指定，需精确到文件名及格式，例如：<codeph>c:/music/audio.aac</codeph>。</pd>
+  <pd>录音文件在本地保存的绝对路径，由用户自行指定，需精确到文件名及格式，例如：<codeph>C:/music/audio.aac</codeph>。</pd>
        </plentry>
        <plentry>
   <pt>sampleRate</pt>

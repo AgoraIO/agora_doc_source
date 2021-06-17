@@ -11,8 +11,28 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/IChannel_onStreamMessage"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessage(IChannel *rtcChannel, 
+     uid_t uid, 
+     int streamId, 
+     const char* data, 
+     size_t length) {
+     (void)rtcChannel;
+     (void)uid;
+     (void)streamId;
+     (void)data;
+     (void)length;
+     }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(
+  evt: ChannelEvents.STREAM_MESSAGE,
+  cb: (channelId: string, uid: number, streamId: number, data: string) => void
+): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -36,7 +56,7 @@
   <pt></pt>
   <pd></pd>
        </plentry>
-       <plentry conkeyref="onStreamMessage/length">
+       <plentry conkeyref="onStreamMessage/length" props="windows">
   <pt></pt>
   <pd></pd>
        </plentry>

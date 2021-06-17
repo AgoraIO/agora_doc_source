@@ -5,7 +5,28 @@
     <shortdesc id="short"><ph id="shortdesc">视频帧的属性设置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-   <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/VideoFrame"/>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">struct VideoFrame {
+   VIDEO_FRAME_TYPE type;
+   int width;
+   int height;
+   int yStride;
+   int uStride;
+   int vStride;
+   void* yBuffer;
+   void* uBuffer;
+   void* vBuffer;
+   int rotation;
+   int64_t renderTimeMs;
+   int avsync_type;
+   };</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
    

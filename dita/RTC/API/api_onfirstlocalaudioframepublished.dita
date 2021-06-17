@@ -14,9 +14,20 @@
             </keywords>
         </metadata>
     </prolog>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onFirstLocalAudioFramePublished" />
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalAudioFramePublished(int elapsed) {
+    (void)elapsed;
+    }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_LOCAL_AUDIO_FRAME_PUBLISHED, cb: (
+    elapsed: number
+    ) => void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -26,11 +37,11 @@
                 </dlentry>
             </dl>
             <p> SDK 会在以下时机触发该回调： <ul>
-                    <li>开启本地音频的情况下，调用 <apiname keyref="joinChannel1"/> 成功加入频道后。 </li>
+                    <li>开启本地音频的情况下，调用 <apiname keyref="joinChannel2"/> 成功加入频道后。 </li>
                     <li>调用<xref keyref="muteLocalAudioStream"/>(<ph keyref="true"/>)，再调用 <apiname
                             keyref="muteLocalAudioStream"/>(<ph keyref="false"/>) 后。 </li>
                     <li>调用 <xref keyref="disableAudio"/>，再调用 <xref keyref="enableAudio"/> 后。 </li>
-                    <li>调用 <codeph><apiname keyref="pushAudioFrame2"/></codeph> 成功向 SDK 推送音频帧后。</li>
+                    <li props="windows android ios mac">调用 <codeph><apiname keyref="pushAudioFrame2"/></codeph> 成功向 SDK 推送音频帧后。</li>
                 </ul>
             </p>
         </section>

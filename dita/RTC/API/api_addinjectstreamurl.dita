@@ -11,13 +11,23 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/addInjectStreamUrl"/>
+        <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int addInjectStreamUrl(String url, LiveInjectStreamConfig config);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)addInjectStreamUrl:(NSString* _Nonnull)url config:(AgoraLiveInjectStreamConfig* _Nonnull)config;</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">virtual int addInjectStreamUrl(const char* url, const InjectStreamConfig&amp; config) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">addInjectStreamUrl(url: string, config: InjectStreamConfig): number</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public int AddInjectStreamUrl(string url, InjectStreamConfig streamConfig)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">addInjectStreamUrl(
+    url: string,
+    config: LiveInjectStreamConfig
+  ): Promise&lt;void></codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> addInjectStreamUrl(String url, LiveInjectStreamConfig config);</codeblock>
+        </p>
         </section>
         <section id="detailed_desc">
    
    <note id="inject-sunset-note" type="caution">
-       客户端输入在线媒体流功能即将停服。如果你尚未集成该功能，Agora 建议你不要使用。详见<xref keyref="rtc-sunset" scope="external" format="html"/>。
+       客户端输入在线媒体流功能即将停服。如果你尚未集成该功能，Agora 建议你不要使用。详见<xref keyref="rtc-sunset">部分服务下架计划</xref>。
    </note>
    <note type="attention">
   <ul>

@@ -11,8 +11,17 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/sendStreamMessage"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int sendStreamMessage(int streamId, 
+     const char* data, 
+     size_t length) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">sendStreamMessage(streamId: number, data: string): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -30,13 +39,10 @@
   <pt>streamId</pt>
   <pd>数据流 ID。可以通过 <apiname keyref="createDataStream2"/> 获取。</pd>
        </plentry>
-       <plentry props="android">
-  <pt>message</pt>
+       <plentry>
+  <pt props="android">message</pt>
+  <pt props="electron windows ios mac">data</pt>
   <pd>待发送的数据。</pd>
-       </plentry>
-       <plentry props="windows">
-  <pt>data</pt>
-  <pd>自定义数据。</pd>
        </plentry>
        <plentry props="windows">
   <pt>length</pt>

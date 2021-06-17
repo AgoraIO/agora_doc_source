@@ -5,7 +5,72 @@
     <shortdesc id="short"><ph id="shortdesc">CDN 直播推流的转码属性。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-   <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/LiveTranscoding"/>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">typedef struct LiveTranscoding {
+    int width;
+    int height;
+    int videoBitrate;
+    int videoFramerate;
+    
+    bool lowLatency;
+    
+    int videoGop;
+    VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
+    unsigned int backgroundColor;
+    unsigned int userCount;
+    TranscodingUser *transcodingUsers;
+    const char *transcodingExtraInfo;
+    RtcImage* watermark;
+    
+    AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
+    int audioBitrate;
+    int audioChannels;
+    
+    LiveTranscoding()
+    : width(360)
+    , height(640)
+    , videoBitrate(400)
+    , videoFramerate(15)
+    , lowLatency(false)
+    , backgroundColor(0x000000)
+    , videoGop(30)
+    , videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH)
+    , userCount(0)
+    , transcodingUsers(nullptr)
+    , transcodingExtraInfo(nullptr)
+    , watermark(nullptr)
+    , audioSampleRate(AUDIO_SAMPLE_RATE_48000)
+    , audioBitrate(48)
+    , audioChannels(1)
+    {}
+    } LiveTranscoding;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">export interface LiveTranscoding {
+    width: number;
+    height: number;
+    videoBitrate: number;
+    videoFrameRate: number;
+    lowLatency: boolean;
+    videoGop: number;
+    videoCodecProfile: VIDEO_CODEC_PROFILE_TYPE;
+    videoCodecType: VIDEO_CODEC_TYPE_FOR_STREAM;
+    backgroundColor: number;
+    userCount: number;
+    audioSampleRate: number;
+    audioChannels: number;
+    audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE;
+    audioBitrate: number;
+    transcodingExtraInfo: string;
+    metadata?: string;
+    watermark: RtcImage;
+    backgroundImage: RtcImage;
+    transcodingUsers: Array&lt;TranscodingUser&gt;
+    }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
    <title><text conref = "../conref/conref_api_metadata.dita#metadata/property"/></title>
@@ -32,7 +97,7 @@
        </plentry>
        <plentry>
   <pt>videoBitrate</pt>
-  <pd>输出媒体流的视频码率（Kbps）。默认值为 400。你可以参考 <xref keyref="guide-cdn-streaming"/> 设置该参数的值。</pd>
+  <pd>输出媒体流的视频码率（Kbps）。默认值为 400。你可以参考 <xref keyref="guide-cdn-streaming">推流到 CDN</xref> 设置该参数的值。</pd>
        </plentry>
        <plentry>
   <pt>videoFrameRate</pt>
@@ -64,6 +129,10 @@
   <note type="attention">如果你把这个参数设为其他值，Agora 服务器会将其调整为默认值。</note>
        </pd>
    </plentry>
+                <plentry>
+                    <pt>videoCodecType</pt>
+                    <pd>输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
+                </plentry>
        <plentry>
   <pt>backgroundColor</pt>
   <pd>输出媒体流的视频背景色。格式为 RGB 定义下的十六进制整数，不要带 # 号。如 <codeph>0xFFB6C1</codeph> 表示浅粉色。默认值为 <codeph>0x000000</codeph>，表示黑色。</pd>
@@ -80,7 +149,7 @@
        </plentry>
        <plentry>
   <pt>transcodingExtraInfo</pt>
-  <pd>输出媒体流中嵌入的用户 SEI 信息。用于向 CDN 推送 SEI 信息。长度限制 4096 字节。详见 <xref keyref="faq-sei" scope="external" format="html"/>。</pd>
+  <pd>输出媒体流中嵌入的用户 SEI 信息。用于向 CDN 推送 SEI 信息。长度限制 4096 字节。详见 <xref keyref="faq-sei">SEI 帧相关问题</xref>。</pd>
        </plentry>
        <plentry>
   <pt>metadata</pt>

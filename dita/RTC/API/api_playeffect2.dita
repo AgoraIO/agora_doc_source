@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_playeffect2">
-    <title><ph keyref="playEffect2"/><ph props="windows"> [1/2]</ph><ph props="android ios mac"> [2/3]</ph></title>
+    <title><ph keyref="playEffect2"/></title>
     <shortdesc id="short"><ph id="shortdesc">播放指定的本地或在线音效文件。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -11,13 +11,27 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/playEffect2"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int playEffect(int soundId, 
+    const char* filePath, 
+    int loopCount, 
+    double pitch, 
+    double pan, 
+    int gain, 
+    bool publish = false) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
                 <dlentry>
                     <dt>弃用：</dt>
-                    <dd>自 v3.4.0 废弃，请改用 <xref keyref="playEffect3" /><ph props="windows"> [2/2]</ph><ph props="android ios mac"> [3/3]</ph> 方法。</dd>
+                    <dd>自 v3.4.0 废弃，请改用 <xref keyref="playEffect3" /> 方法。</dd>
                 </dlentry>
             </dl>
             <p conkeyref="playEffect3/playEffect-desc"/>

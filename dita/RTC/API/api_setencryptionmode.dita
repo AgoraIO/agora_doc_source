@@ -11,15 +11,21 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setEncryptionMode"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionMode(const char* encryptionMode) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setEncryptionMode(encryptionMode: string): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
-   
    <dl outputclass="deprecated">
        <dlentry >
   <dt>弃用：</dt>
-  <dd>该方法自 v3.1.0 起废弃。请改用 <xref keyref="enableEncryption"/> 方法。</dd>
+  <dd>该方法自 <ph keyref="deprecate-encryption"/> 起废弃。请改用 <xref keyref="enableEncryption"/> 方法。</dd>
        </dlentry>
    </dl>
    <p id="desc">Agora Video SDK 支持内置加密方案，默认支持 AES-128-XTS。如需采用其他加密方案，可以调用本方法。同一频道内的所有用户必须设置相同的加密方式和 <parmname>secret</parmname> 才能进行通话。关于这几种加密方式的区别，请参考 AES 加密算法的相关资料。</p>

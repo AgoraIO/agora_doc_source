@@ -5,7 +5,34 @@
     <shortdesc id="short"><ph id="shortdesc">摄像头采集配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-   <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/CameraCapturerConfiguration"/>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">struct CameraCapturerConfiguration {
+     CAPTURER_OUTPUT_PREFERENCE preference;
+     int captureWidth;
+     int captureHeight;
+     #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
+     CAMERA_DIRECTION cameraDirection;
+     #endif
+
+     CameraCapturerConfiguration()
+        :preference(CAPTURER_OUTPUT_PREFERENCE_AUTO)
+        ,captureWidth(640)
+        ,captureHeight(480)
+        {}
+
+    CameraCapturerConfiguration(int width, int height)
+        :preference(CAPTURER_OUTPUT_PREFERENCE_MANUAL)
+        ,captureWidth(width)
+        ,captureHeight(height)
+        {}
+    };</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
@@ -20,7 +47,7 @@
                         <dl outputclass="since">
                             <dlentry>
                                 <dt>自从</dt>
-                                <dd>v3.3.0</dd>
+                                <dd><ph keyref="since-cameraconfig"/></dd>
                             </dlentry>
                         </dl>
                         <p>本地采集的视频宽度 (px)。如果你需要自定义本地采集的视频宽度，请先将 <parmname>preference</parmname> 设为
@@ -34,7 +61,7 @@
                         <dl outputclass="since">
                             <dlentry>
                                 <dt>自从</dt>
-                                <dd>v3.3.0</dd>
+                                <dd><ph keyref="since-cameraconfig"/></dd>
                             </dlentry>
                         </dl>
                         <p>本地采集的视频高度 (px)。如果你需要自定义本地采集的视频高度，请先将 <parmname>preference</parmname> 设为
@@ -42,7 +69,7 @@
                                 <parmname>captureHeight</parmname> 设置采集的视频高度。</p>
                     </pd>
                 </plentry>
-       <plentry>
+       <plentry props="android ios windows">
   <pt>cameraDirection</pt>
   <pd>
       <p props="windows">该参数仅适用于 Android 和 iOS 平台。</p>

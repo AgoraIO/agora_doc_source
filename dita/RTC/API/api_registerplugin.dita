@@ -23,26 +23,28 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>注册插件后，你可以在 SDK 中使用插件的功能。举例来说，如果你想使用 FaceUnity 的插件，你可以先将该插件文件集成到 SDK
+            <p id="desc">注册插件后，你可以在 SDK 中使用插件的功能。举例来说，如果你想使用 FaceUnity 的插件，你可以先将该插件文件集成到 SDK
                 的项目工程文件中，然后调用该方法注册插件。</p>
-            <p>Agora 提供两种方式供你使用插件：<ul>
-                    <li>
-                        <p>调用 <xref keyref="getPlugins"/> 方法，并通过 <xref keyref="Plugin"/> 接口中的
-                                <codeph>enable</codeph>、<codeph>disable</codeph>、<codeph>setParameter</codeph>、<codeph>getParameter</codeph>
-                            函数开启插件，关闭插件，设置插件参数，获取插件参数。</p>
-                    </li>
+            <p>Agora 提供两种方式供你使用插件：
+                <ul>
+                    <li>调用 <xref keyref="getPlugins"/> 方法，并通过 <xref keyref="Plugin"/> 接口中的 <apiname>enable</apiname>、<apiname>disable</apiname>、<apiname>setParameter</apiname>、<apiname>getParameter</apiname> 函数开启插件，关闭插件，设置插件参数，获取插件参数。</li>
+                    <li>调用 <xref keyref="enablePlugin"/>、<xref keyref="setPluginParameter"/>、<xref keyref="getPluginParameter"/> 方法，开关插件、设置插件参数、获取插件参数。</li>
                 </ul></p>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the parameter."?></pt>
-                    <pd><?oxy-placeholder content="The description of the parameter. Please specify if the parameter is optional, output, and has a default value or value range."?></pd>
+                    <pt>pluginInfo</pt>
+                    <pd>插件信息。详见 <xref keyref="PluginInfo"/>。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
+            <ul>
+                <li>0：方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
         </section>
     </refbody>
 </reference>
