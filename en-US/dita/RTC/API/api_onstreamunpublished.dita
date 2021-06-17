@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onStreamUnpublished"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onStreamUnpublished(const char *url) { (void)url; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.STREAM_UNPUBLISHED, cb: (url: string) => void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -22,9 +29,9 @@
   <dd>v3.0.0</dd>
        </dlentry>
    </dl>
-   <p>This method is deprecated, please use <xref keyref="onRtmpStreamingStateChanged"/> instead.</p>
+   <p>This method is deprecated, please use instead<xref keyref="onRtmpStreamingStateChanged"/>.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>url</pt>
