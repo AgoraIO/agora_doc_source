@@ -21,26 +21,28 @@
      (void)oldRole;
      (void)newRole;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: ChannelEvents.CLIENT_ROLE_CHANGED, cb: (
-     oldRole: CLIENT_ROLE_TYPE, 
-     newRole: CLIENT_ROLE_TYPE) => void
-     ): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(
+  evt: ChannelEvents.CLIENT_ROLE_CHANGED,
+  cb: (
+    channelId: string,
+    oldRole: CLIENT_ROLE_TYPE,
+    newRole: CLIENT_ROLE_TYPE
+  ) => void
+): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
         </p>
         </section>
         <section id="detailed_desc">
-   
-   <p conkeyref="onClientRoleChanged/desc"/>
    <p>该回调由本地用户在加入频道后调用 <ph keyref="IChannel_setClientRole1"/> 改变用户角色触发的。</p>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
        <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-  <pt></pt>
-  <pd></pd>
-       </plentry>
+                    <pt/>
+                    <pd/>
+                </plentry>
        <plentry conkeyref="onClientRoleChanged/oldRole">
   <pt></pt>
   <pd></pd>

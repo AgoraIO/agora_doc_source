@@ -23,11 +23,15 @@
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: ChannelEvents.AUDIO_PUBLISH_STATE_CHANGED, cb: (
-     oldState: STREAM_PUBLISH_STATE,
-     newState: STREAM_PUBLISH_STATE,
-     elapseSinceLastState: number
-     ) => void): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(
+  evt: ChannelEvents.AUDIO_PUBLISH_STATE_CHANGED,
+  cb: (
+    channelId: string,
+    oldState: STREAM_PUBLISH_STATE,
+    newState: STREAM_PUBLISH_STATE,
+    elapseSinceLastState: number
+  ) => void
+): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>

@@ -21,7 +21,14 @@
     (void)uid;
     (void)reason;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: ChannelEvents.USER_OFFLINE, cb: (uid: number, reason: number) => void): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(
+  evt: ChannelEvents.USER_OFFLINE,
+  cb: (
+    channelId: string,
+    uid: number,
+    reason: USER_OFFLINE_REASON_TYPE
+  ) => void
+): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>

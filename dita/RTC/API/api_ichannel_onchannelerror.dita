@@ -21,7 +21,10 @@
     (void)err;
     (void)msg;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: ChannelEvents.CHANNEL_ERROR, cb: (err: number, msg: string) => void): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(
+  evt: ChannelEvents.CHANNEL_ERROR,
+  cb: (channelId: string, err: number, msg: string) => void
+): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
@@ -35,7 +38,7 @@
        </plentry>
        <plentry>
   <pt>err</pt>
-  <pd>错误码，详见 <xref href="error_rtc.md">错误码和警告码</xref></pd>
+  <pd>错误码，详见<xref keyref="errorCode">错误码和警告码</xref>。</pd>
        </plentry>
        <plentry>
   <pt>msg</pt>

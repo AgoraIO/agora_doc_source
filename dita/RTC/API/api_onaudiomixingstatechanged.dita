@@ -16,7 +16,7 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine localAudioMixingStateDidChanged:(AgoraAudioMixingStateCode)state reason:(AgoraAudioMixingReasonCode)reason;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(
-    evt: "audioMixingStateChanged",
+    evt: EngineEvents.AUDIO_MIXING_STATE_CHANGED,
     cb: (state: number, errorCode: number) => void
     ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -27,7 +27,7 @@
 
         <section id="detailed_desc">
    
-   <dl outputclass="since">
+   <dl outputclass="since" props="android ios mac windows">
        <dlentry>
   <dt>自从</dt>
   <dd>v3.4.0</dd>
