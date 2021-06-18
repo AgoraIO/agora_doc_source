@@ -429,7 +429,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources/class_
 
 | 参数           | 类型        | 描述                                                         |
 | :------------- | :---------- | :----------------------------------------------------------- |
-| `resourceUuid` | String 数组 | （必填）由资源 uuid 组成的数组。资源 uuid 是资源的唯一标识符。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字</li><li>0-9</li><li>空格</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
+| `resourceUuids` | String 数组 | （必填）由资源 uuid 组成的数组。资源 uuid 是资源的唯一标识符。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字</li><li>0-9</li><li>空格</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
 #### 请求示例
 
@@ -443,7 +443,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
 
 ```json
 {
-    "resourceUuid": ["uuid1","uuid2"]
+    "resourceUuids": ["uuid1","uuid2"]
 }
 ```
 
@@ -697,7 +697,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `appId`    | String | （必填）Agora App ID，详见[获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
-| `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:26 个小写英文字母 a-z26 个大写英文字母 A-Z10 个数字0-9空格"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
 **请求包体参数**
 
@@ -726,7 +726,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 | 参数   | 类型    | 描述                                         |
 | :----- | :------ | :------------------------------------------- |
-| `code` | Integer | 业务状态码：0: 请求成功。非 0: 请求失败。    |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。</li><li>非 0: 请求失败。</li>    |
 | `msg`  | String  | 详细信息。                                   |
 | `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
 
@@ -760,7 +760,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `appId`    | String | （必填）Agora App ID，详见[获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
-| `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:26 个小写英文字母 a-z26 个大写英文字母 A-Z10 个数字0-9空格"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~|
 
 **请求包体参数**
 
@@ -768,7 +768,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 | 参数         | 类型   | 描述       |
 | :----------- | :----- | :--------- |
-| `properties` | Object | 课堂属性。 |
+| `properties` | String 数组 | 课堂属性。 |
 | `cause`      | Object | 删除原因。 |
 
 #### 请求示例
@@ -789,7 +789,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 | 参数   | 类型    | 描述                                         |
 | :----- | :------ | :------------------------------------------- |
-| `code` | Integer | 业务状态码：0: 请求成功。非 0: 请求失败。    |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。</li><li>非 0: 请求失败。</li>    |
 | `msg`  | String  | 详细信息。                                   |
 | `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
 
@@ -823,8 +823,8 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `appId`    | String | （必填）Agora App ID，详见[获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
-| `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:26 个小写英文字母 a-z26 个大写英文字母 A-Z10 个数字0-9空格"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `userUuid` | String | （必填）用户 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。以下为支持的字符集范围:26 个小写英文字母 a-z26 个大写英文字母 A-Z10 个数字 0-9空格"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~|
+| `userUuid` | String | （必填）用户 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
 **请求包体参数**
 
@@ -853,7 +853,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 | 参数   | 类型    | 描述                                         |
 | :----- | :------ | :------------------------------------------- |
-| `code` | Integer | 业务状态码：0: 请求成功。非 0: 请求失败。    |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。</li><li>非 0: 请求失败。</li>    |
 | `msg`  | String  | 详细信息。                                   |
 | `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
 
@@ -887,8 +887,8 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `appId`    | String | （必填）Agora App ID，详见[获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
-| `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:26 个小写英文字母 a-z26 个大写英文字母 A-Z10 个数字0-9空格"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `userUuid` | String | （必填）用户 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。以下为支持的字符集范围:26 个小写英文字母 a-z26 个大写英文字母 A-Z10 个数字 0-9空格"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
+| `userUuid` | String | （必填）用户 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~  |
 
 **请求包体参数**
 
@@ -896,7 +896,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 | 参数         | 类型   | 描述       |
 | :----------- | :----- | :--------- |
-| `properties` | Object | 用户属性。 |
+| `properties` | String 数组 | 用户属性。 |
 | `cause`      | Object | 删除原因。 |
 
 #### 请求示例
@@ -917,7 +917,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 | 参数   | 类型    | 描述                                         |
 | :----- | :------ | :------------------------------------------- |
-| `code` | Integer | 业务状态码：0: 请求成功。非 0: 请求失败。    |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。</li><li>非 0: 请求失败。</li>    |
 | `msg`  | String  | 详细信息。                                   |
 | `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
 
