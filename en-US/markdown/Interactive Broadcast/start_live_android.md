@@ -194,6 +194,8 @@ protected void onCreate(Bundle savedInstanceState) {
     if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
             checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID)) {
         initializeAgoraEngine();
+        setChannelProfile();
+        setClientRole();
         setupLocalVideo();
         joinChannel();
     }
