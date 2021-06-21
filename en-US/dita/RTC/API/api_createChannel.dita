@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_createChannel">
     <title><ph keyref="createChannel"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Creates and gets an<apiname keyref="IChannel"/> object.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Creates and gets an <apiname keyref="IChannel"/> object.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -14,7 +14,7 @@
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual void setChannelId(const char channelId) = 0;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual IChannel* createChannel(const char *channelId) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">createChannel(channelId: string): (AgoraRtcChannel | null)</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -23,8 +23,8 @@
         </section>
         <section id="detailed_desc">
    
-   <p>You can call this method multiple times to create multiple IChannel<xref keyref="IChannel"/> objects, and then call the <apiname
-  keyref="IChannel"/>methods in of <ph keyref="IChannel_joinChannel"/>each to join multiple channels at the same time.</p>
+   <p>You can call this method multiple times to create multiple <xref keyref="IChannel"/> objects, and then call the <ph keyref="IChannel_joinChannel"/> methods in of each <apiname
+  keyref="IChannel"/> to join multiple channels at the same time.</p>
    <p>After joining multiple channels, you can simultaneously subscribe to the the audio and video streams of all the channels, but publish a stream in only one channel at one time.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
@@ -46,8 +46,8 @@
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li>A pointer to<xref keyref="IChannel"/> the instance, if the method call succeeds.</li>
-       <li>If the call fails, returns NO<ph keyref="NULL"/>.</li>
+       <li>A pointer to the <xref keyref="IChannel"/> instance, if the method call succeeds.</li>
+       <li>If the call fails, returns <ph keyref="NULL"/>.</li>
    </ul>
         </section></refbody>
 </reference>
