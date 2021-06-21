@@ -11,8 +11,21 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onLocalUserRegistered"/>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onLocalUserRegistered(uid_t uid, const char* userAccount) {
+     (void)uid;
+     (void)userAccount;
+     }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_USER_REGISTERED, cb: (
+     uid: number, 
+     userAccount: string) => void
+     ): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="detailed_desc">
    
@@ -22,7 +35,7 @@
   <dd>v2.8.0</dd>
        </dlentry>
    </dl>
-   <p>本地用户成功调用 <xref keyref="registerLocalUserAccount"/> 方法注册用户 User Account，或调用 <apiname keyref="joinChannelWithUserAccount1"/> 加入频道后，SDK 会触发该回调，
+   <p>本地用户成功调用 <xref keyref="registerLocalUserAccount"/> 方法注册用户 User Account，或调用 <apiname keyref="joinChannelWithUserAccount2"/> 加入频道后，SDK 会触发该回调，
    并告之本地用户的 UID 和 User Account。</p>
         </section>
         <section id="parameters"><title>参数</title>

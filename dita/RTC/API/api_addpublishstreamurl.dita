@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/addPublishStreamUrl"/>
+        <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int addInjectStreamUrl(String url, LiveInjectStreamConfig config);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)addPublishStreamUrl:(NSString* _Nonnull)url transcodingEnabled:(BOOL)transcodingEnabled;</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">virtual int addPublishStreamUrl(const char* url, bool transcodingEnabled) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">addPublishStreamUrl(url: string, transcodingEnabled: boolean): number</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public int AddPublishStreamUrl(string url, bool transcodingEnabled)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">addPublishStreamUrl(url: string, transcodingEnabled: boolean): Promise&lt;void></codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> addPublishStreamUrl(String url, bool transcodingEnabled);</codeblock>
+        </p>
         </section>
         <section id="detailed_desc">
 
@@ -36,7 +43,7 @@
        <plentry>
   <pt>transcodingEnabled</pt>
   <pd>
-      <p id="transcoding-desc">是否转码。<xref keyref="term-transocding"/>是指在旁路推流时对音视频流进行转码处理后再推送到其他 CDN 服务器。多适用于频道内有多个主播，需要进行混流、合图的场景。 <ul>
+      <p id="transcoding-desc">是否转码。<xref keyref="term-transocding">转码</xref>是指在旁路推流时对音视频流进行转码处理后再推送到其他 CDN 服务器。多适用于频道内有多个主播，需要进行混流、合图的场景。 <ul>
                                 <li><ph keyref="true"/>: 转码。</li>
                                 <li><ph keyref="false"/>: 不转码。</li>
                             </ul></p>

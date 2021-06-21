@@ -5,7 +5,43 @@
     <shortdesc id="short"><ph id="shortdesc">参与转码合流的每个主播的设置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-   <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/TranscodingUser"/>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">typedef struct TranscodingUser {
+    uid_t uid;
+    int x;
+    int y;
+    int width;
+    int height;
+    int zOrder;
+    double alpha;
+    int audioChannel;
+    TranscodingUser()
+        : uid(0)
+        , x(0)
+        , y(0)
+        , width(0)
+        , height(0)
+        , zOrder(0)
+        , alpha(1.0)
+        , audioChannel(0)
+    {}
+    } TranscodingUser;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">export interface TranscodingUser {
+    uid: number;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    zOrder: number;
+    alpha: number;
+    audioChannel: number;
+    }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
    <title>属性</title>

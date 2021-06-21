@@ -7,12 +7,12 @@
     </topicmeta>
     <topichead navtitle="Configurations" toc="no">
         <topicref href="conref/conref_api_metadata.dita" processing-role="resource-only"/>
-        <topicref href="conref/conref_rtc_api.dita" processing-role="resource-only"/>
         <topicref href="config/subject-scheme-rtc.ditamap" format="ditamap" type="subjectScheme"
             navtitle="Conditional processing attributes"/>
         <mapref href="config/relations-rtc-api.ditamap" format="ditamap"
             processing-role="resource-only"/>
-        <topicref href="config/keys-rtc-api-electron.ditamap" format="ditamap"/>
+        <mapref href="config/keys-rtc-api-electron.ditamap" format="ditamap"
+            processing-role="resource-only"/>
         <mapref href="config/keys-rtc-links-electron.ditamap" format="ditamap"/>
     </topichead>
     <topichead navtitle="Agora Electron SDK API Reference ">
@@ -72,7 +72,8 @@
             <topicref keyref="updateScreenCaptureParameters" toc="no"/>
             <topicref keyref="updateScreenCaptureRegion1" toc="no"/>
             <topicref keyref="stopScreenCapture" toc="no"/>
-            <topicref keyref="startAudioMixing" toc="no"/>
+            <topicref keyref="startAudioMixing" toc="no" processing-role="resource-only"/>
+            <topicref keyref="startAudioMixing2" toc="no"/>
             <topicref keyref="stopAudioMixing" toc="no"/>
             <topicref keyref="pauseAudioMixing" toc="no"/>
             <topicref keyref="resumeAudioMixing" toc="no"/>
@@ -82,13 +83,12 @@
             <topicref keyref="setAudioMixingPitch" toc="no"/>
             <topicref keyref="getAudioMixingPlayoutVolume" toc="no"/>
             <topicref keyref="getAudioMixingPublishVolume" toc="no"/>
-            <topicref keyref="getAudioMixingDuration" toc="no"/>
+            <topicref keyref="getAudioMixingDuration2" toc="no"/>
             <topicref keyref="getAudioMixingCurrentPosition" toc="no"/>
             <topicref keyref="setAudioMixingPosition" toc="no"/>
             <topicref keyref="getEffectsVolume" toc="no"/>
             <topicref keyref="setEffectsVolume" toc="no"/>
             <topicref keyref="setVolumeOfEffect" toc="no"/>
-            <topicref keyref="playEffect2" toc="no"/>
             <topicref keyref="playEffect3" toc="no"/>
             <topicref keyref="stopEffect" toc="no"/>
             <topicref keyref="stopAllEffects" toc="no"/>
@@ -98,6 +98,9 @@
             <topicref keyref="pauseAllEffects" toc="no"/>
             <topicref keyref="resumeEffect" toc="no"/>
             <topicref keyref="resumeAllEffects" toc="no"/>
+            <topicref keyref="setEffectPosition" toc="no"/>
+            <topicref keyref="getEffectDuration" toc="no"/>
+            <topicref keyref="getEffectCurrentPosition" toc="no"/>
             <topicref keyref="setLocalVoiceChanger" toc="no"/>
             <topicref keyref="setLocalVoiceReverbPreset" toc="no"/>
             <topicref keyref="setLocalVoicePitch" toc="no"/>
@@ -141,6 +144,7 @@
             <topicref keyref="setEncryptionMode" toc="no"/>
             <topicref keyref="setEncryptionSecret" toc="no"/>
             <topicref keyref="startAudioRecording2" toc="no"/>
+            <topicref keyref="startAudioRecording3" toc="no"/>
             <topicref keyref="stopAudioRecording" toc="no"/>
             <topicref keyref="addInjectStreamUrl" toc="no"/>
             <topicref keyref="removeInjectStreamUrl" toc="no"/>
@@ -281,7 +285,6 @@
             <topicref keyref="onRemoteAudioTransportStats" toc="no"/>
             <topicref keyref="onRemoteVideoStats" toc="no"/>
             <topicref keyref="onRemoteVideoTransportStats" toc="no"/>
-            <topicref keyref="onAudioQuality" toc="no"/>
             <topicref keyref="onAudioMixingStateChanged" toc="no"/>
             <topicref keyref="onAudioMixingFinished" toc="no"/>
             <topicref keyref="onAudioEffectFinished" toc="no"/>
@@ -337,6 +340,7 @@
             <topicref keyref="videoSourceLocalVideoStats" toc="no"/>
             <topicref keyref="videoSourceMediaEngineStartCallSuccess" toc="no"/>
             <topicref keyref="videoSourceNetworkQuality" toc="no"/>
+            <topicref keyref="videoSourceNetworkTypeChanged" toc="no"/>
             <topicref keyref="videoSourceRejoinChannelSuccess" toc="no"/>
             <topicref keyref="videoSourceRequestToken" toc="no"/>
             <topicref keyref="videoSourceRemoteAudioStateChanged" toc="no"/>
@@ -444,8 +448,10 @@
             <topicref keyref="AUDIO_EFFECT_PRESET" toc="no"/>
             <topicref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY" toc="no"/>
             <topicref keyref="AUDIO_MIXING_ERROR_TYPE" toc="no"/>
+            <topicref keyref="AUDIO_MIXING_REASON_TYPE" toc="no"/>
             <topicref keyref="AUDIO_MIXING_STATE_TYPE" toc="no"/>
             <topicref keyref="AUDIO_PROFILE_TYPE" toc="no"/>
+            <topicref keyref="AUDIO_RECORDING_POSITION" toc="no"/>
             <topicref keyref="AUDIO_RECORDING_QUALITY_TYPE" toc="no"/>
             <topicref keyref="AUDIO_REVERB_PRESET" toc="no"/>
             <topicref keyref="AUDIO_REVERB_TYPE" toc="no"/>
@@ -501,12 +507,14 @@
             <topicref keyref="USER_OFFLINE_REASON_TYPE" toc="no"/>
             <topicref keyref="VIDEO_CODEC_PROFILE_TYPE" toc="no"/>
             <topicref keyref="VIDEO_CODEC_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" toc="no"/>
             <topicref keyref="VIDEO_CONTENT_HINT" toc="no"/>
             <topicref keyref="VIDEO_MIRROR_MODE_TYPE" toc="no"/>
             <topicref keyref="VIDEO_PROFILE_TYPE" toc="no"/>
             <topicref keyref="VOICE_BEAUTIFIER_PRESET" toc="no"/>
             <topicref keyref="VOICE_CHANGER_PRESET" toc="no"/>
             <topicref keyref="VOICE_CONVERSION_PRESET" toc="no"/>
+            <topicref keyref="AudioRecordingConfiguration" toc="no"/>
             <topicref keyref="AudioVolumeInfo" toc="no"/>
             <topicref keyref="BeautyOptions" toc="no"/>
             <topicref keyref="CameraCapturerConfiguration" toc="no"/>
@@ -517,7 +525,6 @@
             <topicref keyref="ClientRoleOptions" toc="no"/>
             <topicref keyref="DataStreamConfig" toc="no"/>
             <topicref keyref="Device" toc="no"/>
-            <topicref keyref="DataStreamConfig" toc="no"/>
             <topicref keyref="EncryptionConfig" toc="no"/>
             <topicref keyref="InjectStreamConfig" toc="no"/>
             <topicref keyref="LastmileProbeConfig" toc="no"/>
@@ -549,6 +556,6 @@
             <topicref keyref="WatermarkOptions" toc="no"/>
             <topicref keyref="WindowInfo" toc="no"/>
         </topicref>
-        <topicref href="API/error_rtc.md" format="mdita"/>
+        <topicref keyref="errorCode"/>
     </topichead>
 </map>

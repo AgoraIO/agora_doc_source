@@ -6,18 +6,19 @@
     <body>
         <note type="note">
             <ul>
-                <li props="windows">自 v3.0.0 开始，Agora 废弃 <codeph>RtcEngineParameters</codeph>
-                    类。该类下所有接口均被 <xref keyref="IRtcEngine"/> 类覆盖，请使用 <apiname keyref="IRtcEngine"/>
-                    类。</li>
-                <li>在调用 API 过程中，SDK 可能会返回错误码和警告码，详见<xref href="error_rtc.md">错误码和警告码</xref>。</li>
+                <li props="windows">自 v3.0.0 开始，Agora 废弃 <codeph>RtcEngineParameters</codeph> 类。该类下所有接口均被 <xref keyref="IRtcEngine"/> 类覆盖，请使用 <apiname keyref="IRtcEngine"/> 类。</li>
+                <li>在调用 API 过程中，SDK 可能会返回错误码和警告码，详见<xref keyref="errorCode">错误码和警告码</xref>。</li>
             </ul>
         </note>
         <ul>
             <li><xref keyref="IRtcEngine"/> 类包含应用程序调用的主要方法。</li>
-            <li><xref keyref="IRtcEngineEventHandler"/> 类用于向应用程序发送回调通知。</li>
+            <li props="android ios mac windows"><xref keyref="IRtcEngineEventHandler"/> 类用于向应用程序发送回调通知。</li>
+            <li props="electron"><xref keyref="IRtcEngineEventHandler">AgoraRtcEngine.on</xref> 用于向应用程序发送回调通知。</li>
             <li><xref keyref="IChannel"/> 类在指定频道中实现实时音视频功能。通过创建多个 <apiname keyref="IChannel"/>
                 对象，用户可以同时加入多个频道。</li>
-            <li><xref keyref="IChannelEventHandler"/> 类监听和报告指定频道的事件和数据。</li>
+            <li props="ios mac windows android"><xref keyref="IChannelEventHandler"/>
+                类监听和报告指定频道的事件和数据。</li>
+            <li props="electron"><xref keyref="IChannelEventHandler">AgoraRtcChannel.on</xref> 监听和报告指定频道的事件和数据。</li>
             <li props="windows"><xref keyref="IAudioDeviceManager"/> 类提供用于测试音频设备的相关接口。</li>
             <li props="windows"><xref keyref="IVideoDeviceManager"/> 类提供用于测试视频设备的相关接口。</li>
         </ul>
@@ -498,10 +499,6 @@
                 <strow>
                     <stentry><xref keyref="getAudioMixingPublishVolume"/></stentry>
                     <stentry><ph conkeyref="getAudioMixingPublishVolume/shortdesc"/></stentry>
-                </strow>
-                <strow>
-                    <stentry><xref keyref="getAudioMixingDuration"/></stentry>
-                    <stentry><ph conkeyref="getAudioMixingDuration/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="getAudioMixingDuration2"/></stentry>
@@ -1553,6 +1550,10 @@
                 <strow>
                     <stentry><xref keyref="videoSourceOnLeaveChannel"/></stentry>
                     <stentry><ph conkeyref="videoSourceOnLeaveChannel/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="videoSourceNetworkTypeChanged"/></stentry>
+                    <stentry><ph conkeyref="videoSourceNetworkTypeChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceLocalAudioStats"/></stentry>
