@@ -272,7 +272,6 @@ private void setupLocalVideo() {
     // Bind the local view with local_video_view_container.
     FrameLayout container = (FrameLayout) findViewById(R.id.local_video_view_container);
     SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
-    surfaceView.setZOrderMediaOverlay(true);
     container.addView(surfaceView);
 
     // Call setupLocalVideo to configure the local view.
@@ -303,6 +302,7 @@ After a remote host joins the channel, the SDK gets the host's user ID and repor
 private void setupRemoteVideo(int uid) {
     FrameLayout container = (FrameLayout) findViewById(R.id.remote_video_view_container);
  
+    surfaceView.setZOrderMediaOverlay(true);
     SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
     container.addView(surfaceView);
     mRtcEngine.setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, uid));
