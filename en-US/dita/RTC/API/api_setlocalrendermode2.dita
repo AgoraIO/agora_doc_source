@@ -14,7 +14,7 @@
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">or \ref IRtcEngine::setLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) &quot;setLocalRenderMode&quot; method instead.</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -32,7 +32,7 @@
    <p>After initializing the local video view, you can call this method to update its rendering and mirror modes. It affects only the video view that the local user sees, not the published local video stream.</p>
    <note type="attention">
        <ul>
-  <li>Ensure that you have<xref keyref="setupLocalVideo"/> called the method to initialize the local video view before calling this method.</li>
+  <li>Ensure that you have called the <xref keyref="setupLocalVideo"/> method to initialize the local video view before calling this method.</li>
   <li>During a call, you can call this method as many times as necessary to update the display mode of the local video view.</li>
        </ul>
    </note>
@@ -41,7 +41,7 @@
    <parml>
        <plentry>
   <pt>renderMode</pt>
-  <pd>The rendering mode of the local video view. See .<xref keyref="RENDER_MODE_TYPE"/></pd>
+  <pd>The rendering mode of the local video view. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
        </plentry>
        <plentry>
   <pt>mirrorMode</pt>
