@@ -199,7 +199,8 @@ func main(){
 
 2. 下载 [Agora RTM SDK for Web](https://docs.agora.io/cn/Real-time-Messaging/downloads?platform=Web)。将 `libs` 中的 JS 文件保存到你的项目下。
 
-3. 在 `index.html` 中加入以下代码，创建用户界面。将 `path to the JS file` 替换为 JS 文件的路径。
+3. 在 `index.html` 中加入以下代码，创建用户界面。
+    - 你需要将 `<path to the JS file>` 替换为 JS 文件的路径。
 
    ```html
    <html>
@@ -209,7 +210,7 @@ func main(){
    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
    <body>
       <h1>Token demo</h1>
-      <script src="path to the JS file"></script>
+      <script src="<path to the JS file>"></script>
     <script src="./client.js"></script>
 
    </body>
