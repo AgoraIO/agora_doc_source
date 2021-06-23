@@ -16,7 +16,7 @@
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp"/>
-                <codeblock props="electron" outputclass="language-typescript">on( evt: ChannelEvents.METADATA_RECEIVED, cb: (metadata: Metadata) => void ): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.READY_TO_SEND_METADATA, cb: (metadata: Metadata) => void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
@@ -25,14 +25,14 @@
         <section id="detailed_desc">
    
    <p>This callback is triggered when the SDK is ready to receive and send <apiname keyref="Metadata"/>.</p>
-   <p props="electron">收到该回调后，你可以调用 <xref keyref="sendMetadata"/> 发送媒体附属信息。</p>
-   <note props="android apple windows" type="attention">Ensure that the size of the<apiname keyref="Metadata"/> does not exceed the<xref keyref="getMaxMetadataSize"/> value set in the callback.</note>
+   <p props="electron">After receiving this callback, you can call <xref keyref="sendMetadata"/> to send the media metadata.</p>
+   <note props="android apple windows" type="attention">Ensure that the size of the <apiname keyref="Metadata"/> does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>metadata</pt>
-  <pd>The to be sent<apiname keyref="Metadata"/>.</pd>
+  <pd>The <apiname keyref="Metadata"/> to be sent.</pd>
        </plentry>
    </parml>
         </section>
