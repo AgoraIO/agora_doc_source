@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setrecordingaudioframeparameters">
     <title><ph keyref="setRecordingAudioFrameParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置采集的原始音频数据格式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Set the format of the captured raw audio data.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,12 +23,12 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p props="windows">Sets the<xref keyref="onRecordAudioFrame"/> audio recording format for the callback.</p>
+            <p props="windows">Sets the audio recording format for the <xref keyref="onRecordAudioFrame"/> callback.</p>
             <p props="electron">调用 <xref keyref="registerPlugin"/> 注册插件并获取采集的原始音频数据后，你可以调用本方法设置 SDK 返回的该原始数据的采样率、声道数等参数。</p>
             <note type="attention">
                 <ul>
                     <li>Ensure that you call this method before joining a channel.</li>
-                    <li props="windows">The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = samplePerCall/(sampleRate × channel).</equation-inline>。 Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the callback according to the sampling interval<apiname keyref="onRecordAudioFrame"/>.</li>
+                    <li props="windows">The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = samplePerCall/(sampleRate × channel)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>
                 </ul>
             </note>
         </section>
@@ -36,13 +36,13 @@
             <parml>
                 <plentry>
                     <pt>sampleRate</pt>
-                    <pd props="windows"><apiname keyref="onRecordAudioFrame"/> The sample rate returned in the callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                    <pd props="windows">The sample rate returned in the <apiname keyref="onRecordAudioFrame"/> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
                     <pd props="electron">The sample rate returned in the callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
                 </plentry>
                 <plentry>
                     <pt>channel</pt>
                     <pd props="windows">
-                        <p><apiname keyref="onRecordAudioFrame"/> The number of channels (channels) returned in the callback:<ul>
+                        <p>The number of channels (channels) returned in the <apiname keyref="onRecordAudioFrame"/> callback:<ul>
                                 <li>1: Mono.</li>
                                 <li>2: Stereo.</li>
                             </ul></p>
@@ -54,14 +54,14 @@
                 </plentry>
                 <plentry>
                     <pt>mode</pt>
-                    <pd props="windows"><apiname keyref="onRecordAudioFrame"/> The use mode (see ) of the callback<xref
-                            keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</pd>
+                    <pd props="windows">The use mode (see <xref
+                            keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>) of the <apiname keyref="onRecordAudioFrame"/> callback.</pd>
                     <pd props="electron">SDK 返回数据的使用模式，详见 <xref
                             keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
                 </plentry>
                 <plentry>
                     <pt>samplesPerCall</pt>
-                    <pd props="windows"><apiname keyref="onRecordAudioFrame"/> The number of samples returned in the callback. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
+                    <pd props="windows">The number of samples returned in the <apiname keyref="onRecordAudioFrame"/> callback. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
                     <pd props="electron">The number of samples returned in the callback. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
                 </plentry>
             </parml>
