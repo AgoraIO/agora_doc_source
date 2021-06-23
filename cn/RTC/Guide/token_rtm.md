@@ -125,7 +125,6 @@ func rtmTokenHandler(w http.ResponseWriter, r *http.Request){
         }
 
         if (rtm_err != nil) {
-            is_string_uid = false
             if errors.As(rtm_err, &unmarshalErr){
             errorResponse(w, "Bad request. Please check your params.", http.StatusBadRequest)
             } else {
@@ -135,7 +134,7 @@ func rtmTokenHandler(w http.ResponseWriter, r *http.Request){
     }
 
         generateRtmToken(rtm_uid)
-        errorResponse(w, rtc_token, http.StatusOK)
+        errorResponse(w, rtm_token, http.StatusOK)
         log.Println(w, r)
 }
 
