@@ -237,7 +237,7 @@ func main(){
     function fetchToken(uid) {
 
         return new Promise(function (resolve) {
-            axios.post('http://10.53.3.234:8082/fetch_rtm_token', {
+            axios.post('http://<Your Host URL and port>/fetch_rtm_token', {
                 uid: uid,
             }, {
                 headers: {
