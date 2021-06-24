@@ -1,0 +1,6 @@
+tap "homebrew/bundle"
+tap "homebrew/core"
+brew "dita-ot"
+brew "gh"
+brew "libevent"
+brew "vale"
