@@ -433,7 +433,7 @@ Pass in the following parameters in the request body.
 
 | Parameter | Type | Description |
 | :------------- | :---------- | :----------------------------------------------------------- |
-| `resourceUuid` | String array | (Required) An array of resource IDs. The resource ID is the unique identifier of a resource. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0-9</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
+| `resourceUuids` | String array | (Required) An array of resource IDs. The resource ID is the unique identifier of a resource. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0-9</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li> |
 
 ### Request example
 

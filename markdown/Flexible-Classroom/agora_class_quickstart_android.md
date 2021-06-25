@@ -35,10 +35,11 @@ Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-
   ```java
   dependencies {
         ...
-		// 请查看发版说明获取最新版本号
-		implementation 'com.github.AgoraIO-Community:CloudClass-Android:v1.1.0'
+		// 请访问 https://jitpack.io/#AgoraIO-Community/CloudClass-Android 获取最新 Tag
+		implementation 'com.github.AgoraIO-Community:CloudClass-Android:Tag'
 	}
   ```
+
 
 
 ## 进行全局配置

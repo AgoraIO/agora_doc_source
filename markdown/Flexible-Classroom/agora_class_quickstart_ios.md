@@ -1,38 +1,67 @@
-根据本文指导在你的 iOS 项目中快速集成 Agora Classroom SDK 并调用 API 启动灵动课堂。
 
-<div class="alert note"><li>开始前请确保满足接入灵动课堂的<a href="./agora_class_prep">前提条件</a>。<li>iOS 仅支持学生。</div>
 
-## 示例项目
-Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-Community/CloudClass-iOS)，演示了如何集成 Agora Classroom SDK 并调用 API 启动灵动课堂。你可以下载并查看源代码。
+根据本文指导快速在 iOS 设备上通过 Agora Classroom SDK 启动灵动课堂。
 
-## 准备开发环境
+## 技术原理
+下图展示了启动灵动课堂的基本流程。
 
+
+
+当你的 app 客户端请求加入灵动课堂时：
+
+1. 你的 app 服务端向你的 app 服务端请求获取 RTM Token 用于鉴权。
+2. 你的 app 服务端使用 Agora App ID、App 证书和用户 ID 生成 RTM Token，返回给 app 客户端。详见[生成 RTM Token]()。
+3. 你的 app 客户端调用 API 并传入以下参数加入灵动课堂：
+   - 用户 ID：字符串，用户的唯一标识符，必须与你生成 RTM Token 时使用的用户 ID 保持一致。
+   - 课堂 ID：字符串，课堂的唯一标识符。第一个用户加入课堂时，Agora 云服务会自动创建一个课堂。
+   - RTM Token：用户在使用 Agora 服务，Agora 使用 Token 对其鉴权。
+
+## 前提条件
+
+- 
 - Xcode 10.0 或以上版本。
 - CocoaPods 1.10 或以上版本。参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
 - iOS 10 或以上版本。
 - 如果你使用 Swift 开发，请确保使用 Swift 5.3.2 或以上版本。
-- 一台 iOS 真机（iPhone 或 iPad）。
-- 物理音视频采集设备，如内置摄像头和麦克风。
+- 一台 iOS 真机（iPhone 或 iPad），配备物理音视频采集设备，如内置摄像头和麦克风。
 
-## 集成 Agora Classroom SDK
+## 启动灵动课堂
 
-你可以参考以下步骤，通过 CocoaPods 获取 Agora Classroom SDK。
+
+
+### 1. 获取 Agora 提供的灵动课堂 iOS 示例项目
+
+运行以下命令将 Agora 提供的灵动课堂 iOS 示例项目克隆至本地：
+
+```bash
+git clone https://github.com/AgoraIO-Community/CloudClass-iOS
+```
+
+### 2. 加入课堂
+
+参考以下步骤启动
+
+
+
+参考以下步骤，通过 CocoaPods 在你的项目中集成 Agora Classroom SDK。
 
 1. 在终端里进入你的项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
 
 2. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
 
-  ```
-  # platform :ios, '10.0' use_frameworks!
-  target 'Your App' do
-      pod 'AgoraClassroomSDK'
-  end
-  ```
+   ```
+   # platform :ios, '10.0' use_frameworks!
+   target 'Your App' do
+       pod 'AgoraClassroomSDK'
+   end
+   ```
 
  <div class="alert info">1.0.0 版本请使用 <code>pod 'AgoraEduSDK'</code>。</div>
 
 3. 在终端内运行 `pod install` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。
 4. 打开新生成的 `xcworkspace` 文件。
+
+
 
 自 v1.1.0 起，灵动课堂 iOS 端基于 Swift 语言进行开发。如果开发者基于 Object-C 语言开发，需要参考以下步骤在项目中创建一个 Swift 文件，生成 Swift 环境。
 
