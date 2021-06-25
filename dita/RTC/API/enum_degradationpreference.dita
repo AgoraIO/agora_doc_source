@@ -9,11 +9,13 @@
    <parml>
        <plentry>
   <pt><ph keyref="MAINTAIN_QUALITY"/></pt>
-  <pd>0：（默认）降低编码帧率以保证视频质量。</pd>
+  <pd><p>0：（默认）带宽受限时，视频编码时优先降低视频帧率，维持视频质量不变。该降级偏好适用于画质优先的场景。</p>
+  <note type="attention">通信（COMMUNICATION）场景下，本地发送的视频分辨率可能改变，远端用户需能处理这种情况， 详见 <xref
+                                keyref="onVideoSizeChanged"/>。</note></pd>
        </plentry>
        <plentry>
   <pt><ph keyref="MAINTAIN_FRAMERATE"/></pt>
-  <pd>1：降低视频质量以保证编码帧率。</pd>
+  <pd>1：带宽受限时，视频编码时优先降低视频质量，维持视频帧率不变。该降级偏好适用于流畅性优先且允许画质降低的场景。</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="MAINTAIN_BALANCED"/></pt>
