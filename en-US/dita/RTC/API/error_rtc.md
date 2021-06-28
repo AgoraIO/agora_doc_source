@@ -4,7 +4,7 @@ When you make an API call to access an Agora SDK, the SDK may return error codes
 
 This article provides descriptions and troubleshooting tips for common Agora SDK error and warning codes. If you receive a response that is not included here, Agora recommends you [submit a ticket](https://agora-ticket.agora.io/) so that our technical support team can help resolve the issue.
 
-<div class="alert note">An error code can be a negative number. In such a case, it should be read as if it were positive. For example, if the SDK returns error code <code>-2</code>, you should refer to 2 in the error code table<code></code>.</div>
+<div class="alert note">An error code can be a negative number. In such a case, it should be read as if it were positive. For example, if the SDK returns error code <code>-2</code>, you should refer to <code>2</code> in the error code table.</div>
 
 The error and warning codes may be returned in the following ways:
 
