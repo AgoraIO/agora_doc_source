@@ -1,17 +1,39 @@
 根据本文指导在你的 Web 项目中快速集成 Agora Classroom SDK 并调用 API 启动灵动课堂。
 
-<div class="alert note"><li>开始前请确保满足接入灵动课堂的<a href="./agora_class_prep">前提条件</a>。<li>Web 端支持老师、学生和助教。</div>
+## 技术原理
 
-## 示例项目
+下图展示了加入一个 Agora 灵动课堂的基本流程。
+
+
+
+当你的 app 客户端请求加入灵动课堂时：
+
+1. 你的 app 客户端向 app 服务端申请 RTM Token。
+2. 你的 app 服务端使用 Agora App ID、App 证书和用户 ID 生成一个 RTM Token，返回给 app 客户端。详见[生成 RTM Token](/cn/Real-time-Messaging/token_server_rtm)。
+3. 你的 app 客户端调用 SDK 的方法并传入以下参数加入一个灵动课堂。
+   - 用户 ID：
+   - 课堂 ID：
+   - RTM Token：
 
 Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-Community/CloudClass-Desktop)，演示了如何集成 Agora Classroom SDK 并调用 API 启动灵动课堂。你可以下载并查看源代码。
 
 Agora 还提供一个 [CodePen 示例项目](https://codepen.io/agoratechwriter/pen/OJRrOxg)。你可以在该示例项目中设置参数并运行，即刻体验灵动课堂。
 
-## 准备开发环境
+## 前提条件
 
 - 安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
+
 - 物理音视频采集设备，如内置摄像头和麦克风。
+
+  灵动课堂使用 RTM Token 进行鉴权。 RTM Token 是一种动态密钥，通过 Agora App ID、App 证书、用户 ID 生成，安全性较高。
+
+  - 在项目测试阶段，你可以使用 Agora 提供的[临时 RTM Token 生成器](https://webdemo.agora.io/token-builder/)，传入你在获取到的 App ID 和 App 证书，然后自行填入一个用户 ID，快速生成一个临时 RTM Token，有效期为 24 小时。
+
+  <div class="alert info">用户 ID 为一个不超过 64 字节的字符串。以下为支持的字符集范围:<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字</li><li>0-9</li><li>空格</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "|", "~", ","</li></ul></div>
+
+  - 正式生产环境中，你需要在你的服务端部署一个 RTM Token 生成器。用户进入课堂时，客户端需要向服务端申请 RTM Token；服务端生成 RTM Token 后，再将其传给客户端。详情请参考 文档。
+
+  
 
 ## 集成 Agora Classroom SDK
 
