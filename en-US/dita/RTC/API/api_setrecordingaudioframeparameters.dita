@@ -24,7 +24,7 @@
         </section>
         <section id="detailed_desc">
             <p props="windows">Sets the audio recording format for the <xref keyref="onRecordAudioFrame"/> callback.</p>
-            <p props="electron">调用 <xref keyref="registerPlugin"/> 注册插件并获取采集的原始音频数据后，你可以调用本方法设置 SDK 返回的该原始数据的采样率、声道数等参数。</p>
+            <p props="electron">After calling <xref keyref="registerPlugin"/> to register a plugin and get the captured raw audio data, you can call this method to set the sample rate and number of audio channels of the raw data returned by the SDK.</p>
             <note type="attention">
                 <ul>
                     <li>Ensure that you call this method before joining a channel.</li>
@@ -47,7 +47,7 @@
                                 <li>2: Stereo.</li>
                             </ul></p>
                     </pd>
-                    <pd props="electron"><p>SDK 返回数据的通道数。 取值可为 1 或 2：<ul>
+                    <pd props="electron"><p>The number of channels returned by the SDK. You can set is as 1 or 2:<ul>
                                 <li>1: Mono.</li>
                                 <li>2: Stereo.</li>
                             </ul></p></pd>
@@ -56,13 +56,13 @@
                     <pt>mode</pt>
                     <pd props="windows">The use mode (see <xref
                             keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>) of the <apiname keyref="onRecordAudioFrame"/> callback.</pd>
-                    <pd props="electron">SDK 返回数据的使用模式，详见 <xref
-                            keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</pd>
+                    <pd props="electron">The use mode of the returned data, see <xref
+                            keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</pd>
                 </plentry>
                 <plentry>
                     <pt>samplesPerCall</pt>
                     <pd props="windows">The number of samples returned in the <apiname keyref="onRecordAudioFrame"/> callback. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
-                    <pd props="electron">The number of samples returned in the callback. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
+                    <pd props="electron">The number of samples returned by the SDK. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
                 </plentry>
             </parml>
         </section>
