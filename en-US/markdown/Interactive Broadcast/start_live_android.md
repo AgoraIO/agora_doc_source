@@ -1,4 +1,4 @@
-# Start Interactive Live Video Streaming
+# Get Started with Interactive Live Streaming Premium
 
 The Agora Video SDK for Android makes it easy to embed interactive live streaming into Android apps. It enables you to develop reapidly to enhance your social, work, education and IoT apps with real-time engagement.
 
@@ -6,31 +6,31 @@ This page shows the minimum code you need to add interactive live streaming into
 
 ## Understand the tech
 
-The following figure shows the workflow of interactive live streaming implemented by the Agora SDK.
+The following figure shows the workflow you need to implement to integrate Interactive Live Streaming Premium into your app.
 
 ![](images/live_streaming_tech.png)
 
 
-To start interactive live streaming, your app client has the following steps to take: 
+To start interactive live streaming premium, you implement the following steps in your app: 
 
-**1. Set the client role**
-An interactive live streaming session differs from a voice or video call in that users in a live streaming channel have different roles: host (`BROADCASTER`) and audience (`AUDIENCE`). 
-Only app clients with the role of `BROADCASTER` can publish streams in the channel. Those with the role of `AUDIENCE` can only susbcribe to streams.
+1. **Set the role**
+   Users in an Interactive Live Streaming Premium channel are either the `BROADCASTER` or the `AUDIENCE`. The `BROADCASTER` publishes streams to the channel, the `AUDIENCE` subscribes to them. 
+   Only app clients with the role of `BROADCASTER` can publish streams in the channel. Those with the role of `AUDIENCE` can only susbcribe to streams.
 
-**2. Get a token**
-The app client requests a token from your app server. This token authenticates the user when the app client joins a channel.
+2. **Retrieve a token**
+   The token is a credential for authenticating the identity of the user when your app client joins an RTC channel. The app client requests a token from your app server. This token authenticates the user when the app client joins a channel.
 
-**3. Join an Agora RTC channel**
-The client joins an RTC (Real-time Communication) channel by calling the APIs provided by Agora. When that happens, Agora automatically creates an RTC channel. App clients that pass the same channel name join the same channel.
+3. **Join a channel**
+   Call `joinChannel` to connect to Agora and create a channel. Apps that pass the same channel name join the same channel.
 
-**4. Publish and subscribe to audio and video in the channel**
-After joining a channel, only app clients with the role of `BROADCASTER` can publish audio and video. For an auidence memeber to send audio and video, you can call the API to switch the client role. 
+4. **Publish and subscribe to audio and video in the channel**
+   After joining a channel, only app clients with the role of `BROADCASTER` can publish audio and video. For an auidence memeber to send audio and video, you can call the API to switch the client role. 
 
 For an app client to join an RTC channel, you need the following information:
 
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
-- A token: A credential for authenticating the identity of the user when your app client joins an RTC channel.
+- A token: In a test or production environment, your app client retrieves tokend your server in your security infrastructure. For rapid testing, you can use a temporary token with a validity period of 24 hours in Agora Console.
 - The channel name: A string that identifies the RTC channel for the live stream.
 
 ## Prerequisites
@@ -47,88 +47,70 @@ Before proceeding, ensure that you have the following:
 
 ## Project setup
 
-In this section, we will create an Android projet and add the Android device permission to set up the project.
+Follow the steps to create the environment necessary to make an interactive live stream.
 
-### Create an Android project
+1. For new projects, in Android Studio, create a *Phone and Tablet* [Android project](https://developer.android.com/studio/projects/create-project) with an *Empty Activity*.
 
-Follow the steps to create an empty Android project. Skip to [integrate the SDK](#integrate) if a project already exists.
+2. Integrate the Video SDK into your project.
 
-1. Open **Android Studio** and click **Start a new Android Studio project**.
+   a. In `/Grale Scripts/build.gradle(Project: <projectname>)`, add the following line to add the JitPack dependency.
 
-2. On the **Select a Project Template** panel, choose **Phone and Tablet** > **Empty Activity**, and click **Next**.
+    ```xml
+    all projects {
+    repositories {
+        ...
+        maven { url 'https://www.jitpack.io' }
+    }
+    }
+    ```
 
-3. On the **Configure Your Project** panel, fill in the following:
+    b. In `/Gradle Scripts/build.gradle(Module: <projectname>)`, add the following line to integrate the Agora Video SDK into your Android project.
 
-    - **Name**: The name of your project, for example, Live Streaming
-    - **Package name**: The name of the project package, for example, io.agora.livestreaming
-    - **Save location**: The path to save the project
-    - **Language**: The programming language of the project, for example, Java
-    - **Minimum API level**: The minimum API level of the project
-
-Click **Finish**. Follow the on-screen instructions, if any, to install the plug-ins.
-
-> The steps above take Android Studio 3.6.2 as an example. To create a project, you can also refer to the official Android user guide [Build your first app](https://developer.android.com/training/basics/firstapp).
-
-### Add project permissions
-
-Add the following permissions in the `/app/src/main/AndroidManifest.xml` file:
-
-```xml
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-   package="io.agora.livestreaming">
-
-   <uses-permission android:name="android.permission.INTERNET" />
-   <uses-permission android:name="android.permission.CAMERA" />
-   <uses-permission android:name="android.permission.RECORD_AUDIO" />
-   <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-   <uses-permission android:name="android.permission.BLUETOOTH" />
-...
-</manifest>
-```
-
-### Prevent code obfuscation
-
-Add the following line in the `/app/proguard-rules.pro` file to prevent obfuscating the code of the SDK:
-
-```
--keep class io.agora.**{*;}
-```
-
-## Implement an interactive live streaming
-
-This section shows how to use the Agora Video SDK to implement a live streaming. The following figure shows the API call sequence of a basic video live streaming.
-
-![](images/sequence_live_android.png)
-
-### 1. Integrate the SDK
-
-In the `/build.gradle` file of your project, add the following line to add the JitPack dependency.
-
-```xml
-all projects {
-  repositories {
+    ```xml
     ...
-    maven { url 'https://www.jitpack.io' }
-  }
-}
-```
+    dependencies {
+    ...
+    // For x.y.z, fill in a specific SDK version number. For example, 3.4.0
+    implementation 'io.agora.rtc:full-sdk:x.y.z'
+    }
+    ```
 
-In the `/app/build.gradle` file of your project, add the following line to integrate the Agora Video SDK into your Android project.
+3. Enable your app to connect to networks and use video and audio material on a mobile device.
 
-```xml
-...
-dependencies {
-  ...
-  // For x.y.z, fill in a specific SDK version number. For example, 3.4.0
-  implementation 'com.github.agorabuilder:native-full-sdk:x.y.z'
-}
-```
+   In `/app/Manifests/AndroidManifest.xml`, add the following permissions:
 
-### 2. Create the UI
+    ```xml
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.agora.livestreaming">
 
-This UI is functional rather than beautiful. In the interface, you have one frame for local video and another for remote video. In the `/app/res/layout/activity_main.xml` file, replace the content with the following:
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    ...
+    </manifest>
+    ```
+
+4. Prevent code obfuscation.
+
+   In `/Gradle Scripts/proguard-rules.pro`, add the following line to prevent obfuscating the code of the SDK:
+
+    ```
+    -keep class io.agora.**{*;}
+    ```
+
+## Implement a client for Interactive Live Streaming Premium
+
+This section shows how to use the Agora Video SDK to implement live streaming into your Android app step by step.
+
+When a user opens this app on their mobile device, it automatically joins the channel. When another user joins the channel, their video and audio is rendered in the app.
+
+### 1. Create the UI
+
+This UI is functional rather than beautiful. In the interface, you have one frame for local video and another for remote video. In `/app/res/layout/activity_main.xml`, replace the content with the following:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -160,9 +142,41 @@ This UI is functional rather than beautiful. In the interface, you have one fram
 </RelativeLayout>
 ```
 
-### 3. Import the classes
+### 2. Create the Android system logic
 
-In the activity file of your project, import the classes by adding the following lines:
+When your app launches, check if the permissions necessary to insert Live Streaming functionality into the app are granted. If the permissions are not granted, use the built-in Android functionality to request them. And if they are, return `true`.
+
+```java
+private static final int PERMISSION_REQ_ID = 22;
+
+private static final String[] REQUESTED_PERMISSIONS = {
+        Manifest.permission.RECORD_AUDIO,
+        Manifest.permission.CAMERA
+};
+
+private boolean checkSelfPermission(String permission, int requestCode) {
+    if (ContextCompat.checkSelfPermission(this, permission) !=
+            PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, requestCode);
+        return false;
+    }
+    return true;
+}
+```
+
+### Implement the Interactive Live Streaming Premium logic
+
+When your app opens, you create an `RtcEngine` instance, enable the video, join a channel, and if the local user is a host, publish the local video to the lower frame in the UI. When another host joins the channel, you app catches the join event and adds the remote video to the top frame in the UI.
+
+The following figure shows the API call sequence of a basic video live streaming. 
+
+![](images/sequence_live_android.png)
+
+To implement this logic, take the following steps:
+
+a. Import the Agora classes.
+
+In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
 
 ```java
 import io.agora.rtc.IRtcEngineEventHandler;
@@ -172,51 +186,18 @@ import io.agora.rtc.video.VideoCanvas;
 import io.agora.rtc.video.VideoEncoderConfiguration;
 ```
 
-### 4. Get the device permission
+b. Create the variables you use to create or join a live streaming channel.
 
-Use the built-in Android method `checkSelfPermission` to check if your app has camera and microphone permissions when launching the activity.
-
-```java
-private static final int PERMISSION_REQ_ID = 22;
-
-// Ask for Android device permissions at runtime.
-private static final String[] REQUESTED_PERMISSIONS = {
-        Manifest.permission.RECORD_AUDIO,
-        Manifest.permission.CAMERA
-};
-
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_video_chat_view);
-
-    // If all the permissions are granted, initialize the RtcEngine object and join a channel.
-    if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
-            checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID)) {
-        initializeAgoraEngine();
-        setChannelProfile();
-        setClientRole();
-        setupLocalVideo();
-        joinChannel();
-    }
-}
-
-private boolean checkSelfPermission(String permission, int requestCode) {
-    if (ContextCompat.checkSelfPermission(this, permission) !=
-            PackageManager.PERMISSION_GRANTED) {
-        ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, requestCode);
-        return false;
-    }
-
-    return true;
-}
-```
-
-### 5. Initialize RtcEngine
-
-Call the `create` method and fill your App ID to initialize the `RtcEngine` object calling calling any other Agora APIs.
+In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
 
 ```java
+// Fill the App ID of your project generated on Agora Console
+private String appId = "";
+// Fill the channel name
+private String channelName = "";
+// Fill the temp token generated on Agora Console
+private String token = "";
+
 private RtcEngine mRtcEngine;
 
 private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
@@ -232,87 +213,77 @@ private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandl
         });
     }
 };
+```
 
-private void initializeAgoraEngine() {
+c. Initialize the app and join the channel.
+
+In `/app/java/com.example.<projectname>/MainActivity`, add `initializeAndJoinChannel` to the `MainActivity` class.
+
+```java
+private void initializeAndJoinChannel() {
     try {
-        mRtcEngine = RtcEnigne.create(getBaseContext(), "bf702ed04f9a44dfb80f84537122e619", mRtcEventHandler);
+        mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
     } catch (Exception e) {
         throw new RuntimeException("Check the error.");
     }
-}
-```
 
-### 6. Set the channel profile and user role
+    mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
+    mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
 
-Call the `setChannelProfile` method and set the channel profile as `LIVE_BROADCASTING`. And then call `setClientRole` to set the user role as a host (`BROADCASTER`) or an audience member (`AUDIENCE`).
-
-In an interactive live streaming channel, only the host can be seen and heard. You can call `setClientRole` to switch the user role after joining a channel.
-
-```java
-private void setChannelProfile() {
-  mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
-}
-
-private void setClientRole() {
-  // Set the client role as BROADCASTER if the local user is a host. Otherwise, set it as CLIENT_ROLE_AUDIENCE
-  mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
-}
-```
-
-### 7. Set the local video
-
-Set the local video view before joining a channel so that hosts can see the local video.
-
-```java
-private void setupLocalVideo() {
-
-    // Enable Video.
+    // By default, video is disabled, and you need to call enableVideo to start a video stream.
     mRtcEngine.enableVideo();
 
-    // Bind the local view with local_video_view_container.
+
     FrameLayout container = (FrameLayout) findViewById(R.id.local_video_view_container);
+    // Call CreateRendererView to create a SurfaceView pbject and add it as a child to the FrameLayout
     SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
     container.addView(surfaceView);
-
-    // Call setupLocalVideo to configure the local view.
+    // Pass the SurfaceView object to Agora so that it renders the local video
     mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
+
+    // Join the channel with a token
+    mRtcEngine.joinChannel(token, channelName, "", 0);
 }
 ```
 
-### 8. Join the channel
+d. Add the remote interface when a remote host joins the channel.
 
-Call `joinChannel` to join an RTC channel. In this method you need to fill the following:
-- A token, for user authentication.
-- A channel name. App clients that fill the same channel name join the same channel.
-- User ID. You need to specify the user ID yourself, and make sure that this user ID is unique in the channel. If you do not specify a user ID, the Agora SDK automatically generates one for you.
-
-```java
-// Java
-private void joinChannel() {
-    mRtcEngine.joinChannel(<YOUR_TEMP_TOKEN>, "demoChannel1", "Extra Optional Data", 0); // if you do not specify the uid, we will generate the uid for you
-}
-```
-
-### 9. Set the remote video
-
-After a remote host joins the channel, the SDK gets the host's user ID and reports this user ID in the `onUserJoined` callback. Call the `setupRemoteVideo` method in the callback and pass the user ID to set the remote video.
-
+In `/app/java/com.example.<projectname>/MainActivity`, add `setupRemoteVideo` to the `MainActivity` class.
 
 ```java
 private void setupRemoteVideo(int uid) {
     FrameLayout container = (FrameLayout) findViewById(R.id.remote_video_view_container);
- 
-    surfaceView.setZOrderMediaOverlay(true);
     SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
+    surfaceView.setZOrderMediaOverlay(true);
     container.addView(surfaceView);
     mRtcEngine.setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, uid));
- 
+}
+```
+### 4. Start and stop your app
+
+Now you have created the Live Streaming Premium and Android system functionality, start and stop the app. In this implementation, the call starts when the user opens your app. The call ends when the user closes your app.
+
+a. Check that the app has the correct permissions. When permissions are granted, call `initializeAndJoinChannel` to join a live streming channel.
+
+In `/app/java/com.example.<projectname>/MainActivity`, replace `onCreate` with the following code in the `MainActivity` class.
+
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_video_chat_view);
+
+    // If all the permissions are granted, initialize the RtcEngine object and join a channel.
+    if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
+            checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID)) {
+        initializeAndJoinChannel();
+    }
 }
 ```
 
-### 10. Leave the channel
+b. When the user closes this app, elegantly clean up all the resources you created in `initializeAndJoinChannel`.
 
-Call the `leaveChannel` method to leave the current live stream.
+In `/app/java/com.example.<projectname>/MainActivity`, add `onDestroy` to the `MainActivity` class.
 
 ```java
 protected void onDestroy() {
