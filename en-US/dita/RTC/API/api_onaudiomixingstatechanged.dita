@@ -11,19 +11,26 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onAudioMixingStateChanged"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public void onAudioMixingStateChanged(int state,int reason)</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine localAudioMixingStateDidChanged:(AgoraAudioMixingStateCode)state reason:(AgoraAudioMixingReasonCode)reason;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason)</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on( evt: EngineEvents.AUDIO_MIXING_STATE_CHANGED, cb: (state: number, errorCode: number) => void ): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
+
         <section id="detailed_desc">
    
-   <dl outputclass="since">
+   <dl outputclass="since" props="android ios mac windows">
        <dlentry>
   <dt>Since</dt>
-  <dd>v2.4.0</dd>
+  <dd>v3.4.0</dd>
        </dlentry>
    </dl>
    <p>This callback occurs when the playback state of the music file changes, and reports the current state and error code.</p>
-   <p>If the local music file does not exist, or if the SDK does not support the file format, or if the SDK cannot access the URL of the online music file, the SDK returns the warning code <apiname>WARN_AUDIO_MIXING_OPEN_ERROR </apiname>(701).</p>
         </section>
         <section id="parameters"><title>Parameters</title>
    <parml>
@@ -32,7 +39,7 @@
   <pd>The playback state of the music file. See <xref keyref="AUDIO_MIXING_STATE_TYPE"/>.</pd>
        </plentry>
        <plentry>
-  <pt>errorCode</pt>
+  <pt>reason</pt>
   <pd>The error code. See <xref keyref="AUDIO_MIXING_ERROR_TYPE"/>.</pd>
        </plentry>
    </parml>

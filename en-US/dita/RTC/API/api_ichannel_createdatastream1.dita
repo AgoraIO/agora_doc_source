@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/IChannel_createDataStream1"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int createDataStream(int* streamId, bool reliable, bool ordered) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">createDataStream(reliable: boolean, ordered: boolean): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -27,22 +34,25 @@
         </section>
         <section id="parameters"><title>Parameters</title>
    <parml>
-       <plentry conkeyref="createDataStream1/streamId" props="windows">
-  <pt/>
-  <pd/>
-       </plentry>
-       <plentry>
-  <pt>reliable</pt>
-  <pd><p>Whether or not the data stream is reliable:<ul>
-      <li><ph keyref="true"/>: The recipients receive the data from the sender within five seconds. If the recipient does not receive the data within five seconds, the SDK triggers the <xref keyref="IChannel_onStreamMessageError"/> callback and returns an error code.</li>
-      <li><ph keyref="false"/>: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.</li>
-  </ul></p></pd>
-       </plentry>
-       <plentry conkeyref="createDataStream1/ordered">
-  <pt></pt>
-  <pd></pd>
-       </plentry>
-   </parml>
+                <plentry conkeyref="createDataStream1/streamId" props="windows">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>reliable</pt>
+                    <pd>
+                        <p>Whether or not the data stream is reliable:<ul>
+                                <li><ph keyref="true"/>: The recipients receive the data from the sender within five seconds. If the recipient does not receive the data within five seconds, the SDK triggers the <xref
+                                        keyref="IChannel_onStreamMessageError"/> callback and returns an error code.</li>
+                                <li><ph keyref="false"/>: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry conkeyref="createDataStream1/ordered">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values" conkeyref="createDataStream1/return_values"/></refbody>
 </reference>

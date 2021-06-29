@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/enableDeepLearningDenoise"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int enableDeepLearningDenoise(bool enable) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">enableDeepLearningDenoise(enable: boolean): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -24,12 +31,12 @@
    </dl>
    <p>The SDK enables traditional noise reduction mode by default to reduce most of the stationary background noise. If you need to reduce most of the non-stationary background noise, Agora recommends enabling deep-learning noise reduction as follows:<ol>
        <li>Integrate the dynamical library under the libs folder to your project: <codeph><ph keyref="lib-file"/></codeph></li>
-       <li>2. Call <apiname>enableDeepLearningDenoise</apiname>(<ph keyref="true"/>).</li>
+       <li>Call <apiname>enableDeepLearningDenoise</apiname>(<ph keyref="true"/>).</li>
    </ol></p>
    <p>Deep-learning noise reduction requires high-performance devices. The deep-learning noise reduction is enabled only when the device supports this function. For example, the following devices and later models are known to support deep-learning noise reduction:<ul>
        <li>iPhone 6S</li>
        <li>MacBook Pro 2015</li>
-       <li>iPad Pro (5nd generation)</li>
+       <li>iPad Pro (2nd generation)</li>
        <li>iPad mini (5th generation)</li>
        <li>iPad Air (3rd generation)</li>
    </ul></p>
@@ -44,9 +51,9 @@
    <parml>
        <plentry>
   <pt>enabled</pt>
-  <pd><p>Enables or disables deep-learning noise reduction.<ul>
-      <li><ph keyref="true"/>true: (Default) Enables deep-learning noise reduction.</li>
-      <li><ph keyref="false"/>: Disables deep-learning noise reduction.</li>
+  <pd><p>Whether to enable deep-learning noise reduction.<ul>
+      <li><ph keyref="true"/>: (Default) Enable deep-learning noise reduction.</li>
+      <li><ph keyref="false"/>: Disable deep-learning noise reduction.</li>
   </ul></p></pd>
        </plentry>
    </parml>

@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/IChannel_onJoinChannelSuccess"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onJoinChannelSuccess(IChannel *rtcChannel, uid_t uid, int elapsed) { (void)rtcChannel; (void)uid; (void)elapsed; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on( evt: ChannelEvents.JOIN_CHANNEL_SUCCESS, cb: (channelId: string, uid: number, elapsed: number) => void ): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -21,12 +28,14 @@
         <section id="parameters"><title>Parameters</title>
    <parml>
        <plentry id="rtcChannel">
-  <pt>rtcChannel</pt>
-  <pd><xref keyref="IChannel"/>。</pd>
+  <pt props="android ios mac windows">rtcChannel</pt>
+  <pt props="electron">channelId</pt>         
+  <pd props="android ios mac windows"><xref keyref="IChannel"/>.</pd>
+  <pd props="electron">Sets the channel ID.</pd>         
        </plentry>
        <plentry>
   <pt>uid</pt>
-  <pd>The user ID. If you have specified a user ID in <xref keyref="IChannel_joinChannel"/>, the ID will be returned here; otherwise, the SDK returns an ID automatically assigned by the Agora server.</pd>
+  <pd>User ID. If you have specified a user ID in <xref keyref="IChannel_joinChannel"/>, the ID will be returned here; otherwise, the SDK returns an ID automatically assigned by the Agora server.</pd>
        </plentry>
        <plentry>
   <pt>elapsed</pt>

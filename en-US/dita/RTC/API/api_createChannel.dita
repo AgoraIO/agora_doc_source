@@ -11,14 +11,21 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/createChannel"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual IChannel* createChannel(const char *channelId) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">createChannel(channelId: string): (AgoraRtcChannel | null)</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>You can call this method multiple times to create multiple <xref keyref="IChannel"/> objects, and then call the <apiname
-  keyref="IChannel"/> methods in of each <ph keyref="IChannel_joinChannel"/> to join multiple channels at the same time.</p>
-   <p>After joining multiple channels, you can simultaneously subscribe to the audio and video streams of all the channels, but publish a stream in only one channel at one time.</p>
+   <p>You can call this method multiple times to create multiple <xref keyref="IChannel"/> objects, and then call the <ph keyref="IChannel_joinChannel"/> methods in of each <apiname
+  keyref="IChannel"/> to join multiple channels at the same time.</p>
+   <p>After joining multiple channels, you can simultaneously subscribe to the the audio and video streams of all the channels, but publish a stream in only one channel at one time.</p>
         </section>
         <section id="parameters"><title>Parameters</title>
    <parml>
@@ -40,7 +47,7 @@
    <title>Returns</title>
    <ul>
        <li>A pointer to the <xref keyref="IChannel"/> instance, if the method call succeeds.</li>
-       <li>An empty pointer <ph keyref="NULL"/>, if the method call fails.</li>
+       <li>If the call fails, returns <ph keyref="NULL"/>.</li>
    </ul>
         </section></refbody>
 </reference>

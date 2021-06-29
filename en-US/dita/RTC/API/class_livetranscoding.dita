@@ -5,7 +5,15 @@
     <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for CDN live streaming.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-   <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/LiveTranscoding"/>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">typedef struct LiveTranscoding { int width; int height; int videoBitrate; int videoFramerate; bool lowLatency; int videoGop; VIDEO_CODEC_PROFILE_TYPE videoCodecProfile; unsigned int backgroundColor; unsigned int userCount; TranscodingUser *transcodingUsers; const char *transcodingExtraInfo; RtcImage* watermark; AUDIO_SAMPLE_RATE_TYPE audioSampleRate; int audioBitrate; int audioChannels; LiveTranscoding() : width(360) , height(640) , videoBitrate(400) , videoFramerate(15) , lowLatency(false) , backgroundColor(0x000000) , videoGop(30) , videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH) , userCount(0) , transcodingUsers(nullptr) , transcodingExtraInfo(nullptr) , watermark(nullptr) , audioSampleRate(AUDIO_SAMPLE_RATE_48000) , audioBitrate(48) , audioChannels(1) {} } LiveTranscoding;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">export interface LiveTranscoding { width: number; height: number; videoBitrate: number; videoFrameRate: number; lowLatency: boolean; videoGop: number; videoCodecProfile: VIDEO_CODEC_PROFILE_TYPE; videoCodecType: VIDEO_CODEC_TYPE_FOR_STREAM; backgroundColor: number; userCount: number; audioSampleRate: number; audioChannels: number; audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE; audioBitrate: number; transcodingExtraInfo: string; metadata?: string; watermark: RtcImage; backgroundImage: RtcImage; transcodingUsers: Array&lt;TranscodingUser> }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
    <title><text conref = "../conref/conref_api_metadata.dita#metadata/property"/></title>
@@ -15,8 +23,8 @@
                     <pd>
                         <p>The width of the output media stream in pixels. The default value is 360.</p>
                         <ul>
-                            <li>When the output media stream is video, ensure that <codeph>width</codeph> is set to 64 or higher. Otherwise, the Agora server adjusts the value to 64.</li>
-                            <li>When the output media stream is audio, set<codeph>width</codeph> to 0.</li>
+                            <li>When the output media stream is video, ensure that<codeph> width</codeph> is set to 64 or higher. Otherwise, the Agora server adjusts the value to 64.</li>
+                            <li>When the output media stream is audio, setwidth<codeph></codeph> to 0.</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -25,18 +33,18 @@
   <pd>
       <p>The height of the output media stream in pixels. The default value is 640.</p>
       <ul>
- <li>When the output media stream is video, ensure that <codeph>height</codeph> is set to 64 or higher. Otherwise, the Agora server adjusts the value to 64.</li>
+ <li>When the output media stream is video, ensure that<codeph> height</codeph> is set to 64 or higher. Otherwise, the<codeph> Agora</codeph> server adjusts the value to 64.</li>
  <li>When the output media stream is audio, set <codeph>height</codeph> to 0.</li>
       </ul>
   </pd>
        </plentry>
        <plentry>
   <pt>videoBitrate</pt>
-           <pd>The video bitrate (Kbps) of the output media stream. The default value is 400. You can refer to <xref keyref="guide-cdn-streaming"/> to set this parameter.</pd>
+  <pd>The video bitrate (Kbps) of the output media stream. The default value is 400. You can refer<xref keyref="guide-cdn-streaming"> to Pushing Streams to CDN</xref> to set this paramter.</pd>
        </plentry>
        <plentry>
   <pt>videoFrameRate</pt>
-  <pd>The video frame rate (fps) of the output media stream. The default value is 15, and the value range is [1,30].<note type="attention">The Agora server adjusts any value over 30 fps to 30 fps.</note></pd>
+  <pd>The video frame rate (fps) of the output media stream. The default value is 15, and the value range is [1, 30].<note type="attention">The Agora server adjusts any value over 30 fps to 30 fps.</note></pd>
        </plentry>
        <plentry>
   <pt>lowLatency</pt>
@@ -64,9 +72,13 @@
   <note type="attention">If you set this parameter to other values, Agora adjusts it to the default value.</note>
        </pd>
    </plentry>
+                <plentry>
+                    <pt>videoCodecType</pt>
+                    <pd>The codec type of the output video. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
+                </plentry>
        <plentry>
   <pt>backgroundColor</pt>
-  <pd>The video background color of the output media stream. The format is a hexadecimal integer defined by RGB without the # symbol. For example, <codeph>0xFFB6C1</codeph> represents light pink. The default value is <codeph>0x000000</codeph> (black).</pd>
+  <pd>The video background color of the output media stream. The format is a hexadecimal integer defined by RGB without the # symbol. For example, <codeph>0xFFB6C1</codeph> represents light pink. The default value is <codeph>0x000000 </codeph>(black).</pd>
        </plentry>
        <plentry>
   <pt>userCount</pt>
@@ -80,7 +92,7 @@
        </plentry>
        <plentry>
   <pt>transcodingExtraInfo</pt>
-  <pd>The user SEI information embedded in the output media stream. This parameter is used to send SEI information to the CDN. The maximum length is 4096 bytes. See <xref keyref="faq-sei" scope="external" format="html"/>.</pd>
+  <pd>The user SEI information embedded in the output media stream. This parameter is used to send SEI information to the CDN. The maximum length is 4096 bytes. See <xref keyref="faq-sei">How to solve SEI-related issues?</xref></pd>
        </plentry>
        <plentry>
   <pt>metadata</pt>

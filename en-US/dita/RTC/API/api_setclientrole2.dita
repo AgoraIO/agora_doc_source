@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setClientRole2"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setClientRole(CLIENT_ROLE_TYPE role, const ClientRoleOptions&amp; options) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setClientRoleWithOptions(role: CLIENT_ROLE_TYPE, options: ClientRoleOptions): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+         </p>
         </section>
         <section id="detailed_desc">
    
@@ -25,11 +32,11 @@
    <p>You can call this method either before or after joining the channel to set the user role as audience or host.</p>
    <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:<ul>
       <li>The local client: <xref keyref="onClientRoleChanged"/>.</li>
-      <li>The remote client: <xref keyref="onUserJoined"/> or<xref keyref="onUserOffline"/>.</li>
+      <li>The remote client: <xref keyref="onUserJoined"/> or <xref keyref="onUserOffline"/>.</li>
    </ul></p>
-   <p>The difference between this method and <xref keyref="setClientRole1"/> is that this method can set the user level in addition to the user role.<ul id="diff">
+   <p>The difference between this method and <xref keyref="setClientRole1"/>[1/2] is that this method can set the user level in addition to the user role.<ul id="diff">
       <li>The user <parmname>role</parmname> determines the permissions that the SDK grants to a user, such as permission to send local streams, receive remote streams, and push streams to a CDN address.</li>
-      <li>The user <parmname>level</parmname> determines the level of services that a user can enjoy within the permissions of the user&apos;s role. For example, an audience can choose to receive remote streams with low latency or ultra-low latency. Levels affect prices.</li>
+      <li>The user <parmname>level </parmname>determines the <parmname>level </parmname>of services that a user can enjoy within the permissions of the user&apos;s role. For example, an audience can choose to receive remote streams with low latency or ultra-low latency. Levels affect prices.</li>
     </ul></p>
    <note type="attention">This method only takes effect when the channel profile is live interactive streaming (when the <parmname>profile</parmname> parameter in <xref keyref="setChannelProfile"/> set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>).</note>
         </section>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enableloopbackrecording">
     <title><ph keyref="enableLoopbackRecording"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables loopback audio capturing.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables loopback audio capture.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -11,29 +11,34 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/enableLoopbackRecording"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">enableLoopbackRecording( enabled = false, deviceName: string | null = null ): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>If you enable loopback audio capturing, the output of the sound card is mixed into the audio stream sent to the other end.</p>
-   <p>
-       <note type="attention">
+   <p id="desc">If you enable loopback audio capturing, the output of the sound card is mixed into the audio stream sent to the other end.</p>
+       <note type="attention" id="note">
   <ul id="ul_pjq_swq_t4b">
       <li props="windows">Applies to the macOS and Windows platforms only.</li>
-      <li props="windows mac">macOS does not support loopback capturing of the default sound card. If you need to use this method, please use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora has tested and recommends using soundflower.</li>
+      <li props="windows mac electron">macOS does not support loopback capturing of the default sound card. If you need to use this method, please use a virtual sound card and pass its name to the deviceName parameter. Agora has tested and recommends using soundflower.</li>
       <li>You can call this method either before or after joining a channel.</li>
   </ul>
        </note>
-   </p>
         </section>
         <section id="parameters"><title>Parameters</title>     
    <parml>
        <plentry>
   <pt>enabled</pt>
-  <pd>Whether to enable loopback capturing.<ul id="ul_qjq_swq_t4b">
- <li><ph keyref="true"/>: Enable loopback audio capturing.</li>
- <li><ph keyref="false"/>: (Default) Disable loopback capturing.</li>
+  <pd>Whether to enableloopback capture.<ul id="ul_qjq_swq_t4b">
+ <li><ph keyref="true"/>: Enable loopback audio capture.</li>
+ <li><ph keyref="false"/>: (Default) Disable loopback capture.</li>
       </ul></pd>
        </plentry>
        <plentry>
@@ -41,5 +46,13 @@
   <pd>The device name of the sound card. The default value is <ph keyref="NULL"/> (the default sound card). If the user uses a virtual sound card, such as &quot;Soundflower&quot;, the virtual sound card name &quot;Soundflower&quot; can be passed to this parameter, and the SDK finds the corresponding virtual sound card device and starts collecting.</pd>
        </plentry>
    </parml>
-        </section></refbody>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
 </reference>

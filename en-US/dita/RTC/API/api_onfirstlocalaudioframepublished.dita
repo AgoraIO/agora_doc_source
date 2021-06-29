@@ -10,9 +10,16 @@
             </keywords>
         </metadata>
     </prolog>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onFirstLocalAudioFramePublished" />
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalAudioFramePublished(int elapsed) { (void)elapsed; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_LOCAL_AUDIO_FRAME_PUBLISHED, cb: ( elapsed: number ) => void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -22,11 +29,11 @@
                 </dlentry>
             </dl>
             <p>The SDK triggers this callback under one of the following circumstances:<ul>
-                    <li>The local client enables the audio module and calls <apiname keyref="joinChannel1"/> successfully.</li>
+                    <li>The local client enables the audio module and calls <apiname keyref="joinChannel2"/> successfully.</li>
                     <li>The local client calls <xref keyref="muteLocalAudioStream"/>(<ph keyref="true"/>) and <apiname
                             keyref="muteLocalAudioStream"/>(<ph keyref="false"/>) in sequence.</li>
                     <li>The local client calls <xref keyref="disableAudio"/> and <xref keyref="enableAudio"/> in sequence.</li>
-                    <li>The local client calls <codeph><apiname keyref="pushAudioFrame2"/></codeph> to successfully push the audio frame to the SDK.</li>
+                    <li props="windows android ios mac">The local client calls <codeph><apiname keyref="pushAudioFrame2"/></codeph> to successfully push the audio frame to the SDK.</li>
                 </ul>
             </p>
         </section>
