@@ -306,7 +306,7 @@ Connect an Android device to your computer, and click `Run 'app'` on your Androi
 
 ## Next steps
 
-Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens]() shows you how to start an interactive live streaming with a token that you retrieve your your server.
+Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens]() shows you how to start live streaming with a token that you retrieve from your server.
 
 ## See also
 
