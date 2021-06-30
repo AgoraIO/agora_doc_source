@@ -36,8 +36,8 @@ The error and warning codes may be returned in the following ways:
 | `101` | The specified App ID is invalid. Please rejoin the channel with a valid App ID. |
 | `102` | The specified channel name is invalid, possibly because the data types of some parameters are incorrect. Please rejoin the channel with a valid channel name. |
 | `103` | Fails to get server resources in the specified region. Try another region when initializing [IRtcEngine]. |
-| `109` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_TOKEN_EXPIRED](9) in the [onConnectionStateChanged] callback instead. </br>The current token has expired. Please apply for a new token on the server and call [renewToken]. |
-| `110` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_INVALID_TOKEN](8) in the [onConnectionStateChanged] callback instead. </br>The token is invalid. Typical reasons include:<ul><li>App Certificate is enabled in Agora Console, but the code still uses App ID for authentication. Once App Certificate is enabled for a project, you must use token-based authentication.</li><li>The user ID used to generate the token is not the same as the one used to join the channel.</li></ul> |
+| `109` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_TOKEN_EXPIRED]\(9) in the [onConnectionStateChanged] callback instead. </br>The current token has expired. Please apply for a new token on the server and call [renewToken]. |
+| `110` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_INVALID_TOKEN]\(8) in the [onConnectionStateChanged] callback instead. </br>The token is invalid. Typical reasons include:<ul><li>App Certificate is enabled in Agora Console, but the code still uses App ID for authentication. Once App Certificate is enabled for a project, you must use token-based authentication.</li><li>The user ID used to generate the token is not the same as the one used to join the channel.</li></ul> |
 | `111` | The network connection is interrupted. This error occurs when the SDK has connected to the server but lost connection for more than 4 seconds. |
 | `112` | The network connection is lost.  This error occurs when the connection is interrupted and the SDK cannot reconnect to the server within 10 seconds. |
 | `113` | The user is not in the channel when calling the method. |
@@ -131,10 +131,10 @@ The error and warning codes may be returned in the following ways:
 
 | Enumerator | Description |
 | :----- | :----------------------------------------------------------- |
-| `1003` | **Note**: This method is deprecated as of v2.4.1. Please use [LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE](4) in the [onLocalVideoStateChanged] callback instead. </br>The camera fails to start. Check whether the camera is already in use by another app, or try rejoining the channel. |
+| `1003` | **Note**: This method is deprecated as of v2.4.1. Please use [LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE]\(4) in the [onLocalVideoStateChanged] callback instead. </br>The camera fails to start. Check whether the camera is already in use by another app, or try rejoining the channel. |
 | `1004` | The video rendering module fails to start. |
 | `1510` | Permission to access the camera is not granted. Check whether permission to access the camera permission is granted. |
-| `1512` | **Note**: This method is deprecated as of v2.4.1. Please use [LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY](3) in the [onLocalVideoStateChanged] callback instead. </br>The camera is already in use. |
+| `1512` | **Note**: This method is deprecated as of v2.4.1. Please use [LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY]\(3) in the [onLocalVideoStateChanged] callback instead. </br>The camera is already in use. |
 | `1600` | An unknown error occurs. |
 | `1601` | Video encoding initialization fails. Try rejoining the channel. |
 | `1602` | Video encoding fails. Try rejoining the channel. |
@@ -158,7 +158,7 @@ The error and warning codes may be returned in the following ways:
 | `20` | The request is pending, usually because some modules are not ready, causing the SDK to postpone processing the request. |
 | `103` | 103: No channel resources are available. Maybe because the server cannot allocate any channel resource. |
 | `104` | A timeout occurs when the SDK is searching for a specified channel. When receiving a request to join a channel, the SDK searches for the channel first. This warning usually occurs when the network connection is too poor for the SDK to connect to the server. |
-| `105` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_REJECTED_BY_SERVER](10) in the [onConnectionStateChanged] callback instead. </br>105: The server rejected the request to look up the channel. The server cannot process this request or the request is illegal. |
+| `105` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_REJECTED_BY_SERVER]\(10) in the [onConnectionStateChanged] callback instead. </br>105: The server rejected the request to look up the channel. The server cannot process this request or the request is illegal. |
 | `106` | A timeout occurs when joining the channel. Once the specified channel is found, the SDK starts joining the channel. This warning usually occurs when the network connection is too poor for the SDK to connect to the server. |
 | `107` | 105: The server rejected the request to look up the channel. The server cannot process this request or the request is illegal. |
 | `111` | A timeout occurs when switching to the live video. |
