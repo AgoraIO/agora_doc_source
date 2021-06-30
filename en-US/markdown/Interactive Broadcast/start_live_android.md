@@ -1,8 +1,8 @@
 # Get Started with Interactive Live Streaming Premium
 
-The Agora Video SDK for Android makes it easy to embed interactive live streaming into Android apps. It enables you to develop reapidly to enhance your social, work, education and IoT apps with real-time engagement.
+The Interactive Live Streaming SDK for Android makes it easy to embed interactive live streaming into Android apps. It enables you to develop reapidly to enhance your social, work, education and IoT apps with real-time engagement.
 
-This page shows the minimum code you need to add interactive live streaming into your Android app by using the Agora Video SDK for Android.
+This page shows the minimum code you need to add interactive live streaming into your Android app by using the Agora Interactive Live Streaming SDK for Android.
 
 ## Understand the tech
 
@@ -10,8 +10,7 @@ The following figure shows the workflow you need to implement to integrate Inter
 
 ![](images/live_streaming_tech.png)
 
-
-To start interactive live streaming premium, you implement the following steps in your app: 
+To start Interactive Live Streaming Premium, you implement the following steps in your app: 
 
 1. **Set the role**
    Users in an Interactive Live Streaming Premium channel are either the `BROADCASTER` or the `AUDIENCE`. The `BROADCASTER` publishes streams to the channel, the `AUDIENCE` subscribes to them. 
@@ -41,17 +40,18 @@ Before proceeding, ensure that you have the following:
 - Android SDK API Level 16 or higher
 - A valid [Agora account](https://console.agora.io/)
 - A valid Agora project with an App ID and a temporary token. For details, see [Get started with Agora](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms).
-- A mobile device that meets the following requirements:
-  - Running Android 4.1 or later.
-  - Having access to the internet. open the specified ports in [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms) if your network has a firewall.
+- A computer that meets the following requirements:
+  - Access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms).
+  - An Intel 2.2GHz Core i3/i5/i7 processor (2nd generation) or equivalent.
+- A mobile device that runs Android 4.1 or later.
 
 ## Project setup
 
-Follow the steps to create the environment necessary to make an interactive live stream.
+Follow the steps to create the environment necessary to enable interactive live stream.
 
-1. For new projects, in Android Studio, create a *Phone and Tablet* [Android project](https://developer.android.com/studio/projects/create-project) with an *Empty Activity*.
+1. For new projects, in **Android Studio**, create a *Phone and Tablet* [Android project](https://developer.android.com/studio/projects/create-project) with an *Empty Activity*.
 
-2. Integrate the Video SDK into your project.
+2. Integrate the Interactive Live Streaming SDK into your project.
 
    a. In `/Grale Scripts/build.gradle(Project: <projectname>)`, add the following line to add the JitPack dependency.
 
@@ -64,14 +64,14 @@ Follow the steps to create the environment necessary to make an interactive live
     }
     ```
 
-    b. In `/Gradle Scripts/build.gradle(Module: <projectname>)`, add the following line to integrate the Agora Video SDK into your Android project.
+    b. In `/Gradle Scripts/build.gradle(Module: <projectname>)`, add the following line to integrate the Agora Interactive Live Streaming SDK into your Android project.
 
     ```xml
     ...
     dependencies {
     ...
     // For x.y.z, fill in a specific SDK version number. For example, 3.4.0
-    implementation 'io.agora.rtc:full-sdk:x.y.z'
+    implementation 'com.github.agorabuilder:native-full-sdk:x.y.z'
     }
     ```
 
@@ -104,9 +104,9 @@ Follow the steps to create the environment necessary to make an interactive live
 
 ## Implement a client for Interactive Live Streaming Premium
 
-This section shows how to use the Agora Video SDK to implement live streaming into your Android app step by step.
+This section shows how to use the Agora Interactive Live Streaming SDK to implement live streaming into your Android app step by step.
 
-When a user opens this app on their mobile device, it automatically joins the channel. When another user joins the channel, their video and audio is rendered in the app.
+When a user opens this app on their mobile device, it automatically joins the channel. When another host joins the channel, their video and audio is rendered in the app.
 
 ### 1. Create the UI
 
@@ -116,7 +116,7 @@ This UI is functional rather than beautiful. In the interface, you have one fram
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_video_chat_view"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -179,11 +179,10 @@ a. Import the Agora classes.
 In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
 
 ```java
+import io.agora.rtc.Constants;
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
-
-import io.agora.rtc.video.VideoEncoderConfiguration;
 ```
 
 b. Create the variables you use to create or join a live streaming channel.
@@ -227,7 +226,9 @@ private void initializeAndJoinChannel() {
         throw new RuntimeException("Check the error.");
     }
 
+    // For a live streaming scenario, set the channel profile as BROADCASTING.
     mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
+    // Set the client role as BORADCASTER or AUDIENCE according to the scenario.
     mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
 
     // By default, video is disabled, and you need to call enableVideo to start a video stream.
