@@ -2,7 +2,7 @@
 
 The Interactive Live Streaming SDK for Android makes it easy to embed interactive live streaming into Android apps. It enables you to develop reapidly to enhance your social, work, education and IoT apps with real-time engagement.
 
-This page shows the minimum code you need to add interactive live streaming into your Android app by using the Agora Interactive Live Streaming SDK for Android.
+This page shows the minimum code you need to add interactive live streaming into your app by using the Agora Interactive Live Streaming SDK for Android.
 
 ## Understand the tech
 
@@ -47,7 +47,7 @@ Before proceeding, ensure that you have the following:
 
 ## Project setup
 
-Follow the steps to create the environment necessary to enable interactive live stream.
+Follow the steps to create the environment necessary to add live stream into your app.
 
 1. For new projects, in **Android Studio**, create a *Phone and Tablet* [Android project](https://developer.android.com/studio/projects/create-project) with an *Empty Activity*.
 
@@ -104,7 +104,7 @@ Follow the steps to create the environment necessary to enable interactive live 
 
 ## Implement a client for Interactive Live Streaming Premium
 
-This section shows how to use the Agora Interactive Live Streaming SDK to implement live streaming into your Android app step by step.
+This section shows how to use the Agora Interactive Live Streaming SDK to implement live stream into your Android app step-by-step.
 
 When a user opens this app on their mobile device, it automatically joins the channel. When another host joins the channel, their video and audio is rendered in the app.
 
@@ -262,7 +262,7 @@ private void setupRemoteVideo(int uid) {
 ```
 ### 4. Start and stop your app
 
-Now you have created the Live Streaming Premium and Android system functionality, start and stop the app. In this implementation, the call starts when the user opens your app. The call ends when the user closes your app.
+Now you have created the Live Streaming Premium and Android system functionality, start and stop the app. In this implementation, the live stream starts when the user opens your app. The live stream ends when the user closes your app.
 
 a. Check that the app has the correct permissions. When permissions are granted, call `initializeAndJoinChannel` to join a live streming channel.
 
