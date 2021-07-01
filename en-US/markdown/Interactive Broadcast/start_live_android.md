@@ -1,6 +1,6 @@
 # Get Started with Interactive Live Streaming Premium
 
-The Interactive Live Streaming SDK for Android enables you to develop reapidly to enhance your social, work, education and IoT apps with real-time engagement.
+The Interactive Live Streaming SDK enables you to develop reapidly to enhance your social, work, education and IoT apps with real-time engagement.
 
 This page shows the minimum code you need to add interactive live stream into your app by using the Agora Interactive Live Streaming SDK for Android.
 
@@ -104,7 +104,7 @@ Follow the steps to create the environment necessary to add live stream into you
 
 ## Implement a client for Interactive Live Streaming Premium
 
-This section shows how to use the Agora Interactive Live Streaming SDK to implement live stream into your Android app step-by-step.
+This section shows how to use the Agora Interactive Live Streaming SDK to implement live stream into your app step-by-step.
 
 When a user opens this app on their mobile device, it automatically joins the channel. When another host joins the channel, their video and audio is rendered in the app.
 
