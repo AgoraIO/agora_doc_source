@@ -32,13 +32,9 @@
                     <dd>3.3.0</dd>
                 </dlentry>
             </dl>
-            <p>
-                当用户防火墙限制 IP 和端口号时，你需要参考《使用云代理》开放相应 IP 和端口号，然后调用该方法开启云代理，并将
-                <parmname>proxyType</parmname>
-                设为
-                <ph keyref="UDP_PROXY" />
-                (1)， 即使用 UDP 协议的云代理。
-            </p>
+            <p>当用户防火墙限制 IP 和端口号时，你需要参考<xref keyref="guide-cloud-proxy">使用云代理</xref>开放相应 IP
+                和端口号，然后调用该方法开启云代理，并将 <parmname>proxyType</parmname> 设为 <ph keyref="UDP_PROXY"/> (1)，
+                即使用 UDP 协议的云代理。 </p>
             <p>
                 成功连接云代理后，SDK 会触发
                 <xref keyref="onConnectionStateChanged" />
@@ -55,9 +51,9 @@
             </p>
             <p>
                 如果你想更改已设置的云代理类型，请先调用
-                <apiname>setCloudProxy</apiname>
+                <apiname keyref="setCloudProxy"/>
                 (NONE_PROXY)， 再调用
-                <apiname>setCloudProxy</apiname>
+                <apiname keyref="setCloudProxy"/>
                 并传入你期望的
                 <parmname>proxyType</parmname>
                 值。

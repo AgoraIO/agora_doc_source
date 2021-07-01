@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setrecordingaudioframeparameters">
     <title><ph keyref="setRecordingAudioFrameParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Set the format of the captured raw audio data.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the format of the captured raw audio
+        data.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,7 +29,14 @@
             <note type="attention">
                 <ul>
                     <li>Ensure that you call this method before joining a channel.</li>
-                    <li props="windows">The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = samplePerCall/(sampleRate × channel)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>
+                    <li>The SDK calculates the sampling interval based on the
+                            <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and
+                            <parmname>channel</parmname> parameters set in this
+                            method.<equation-inline>Sample interval (sec) =
+                            samplePerCall/(sampleRate × channel)</equation-inline>. Ensure that the
+                        sample interval ≥ 0.01 (s).<ph props="windows"> The SDK triggers the
+                                <apiname keyref="onRecordAudioFrame"/> callback according to the
+                            sample interval.</ph></li>
                 </ul>
             </note>
         </section>
