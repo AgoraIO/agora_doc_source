@@ -1,8 +1,8 @@
 # Get Started with Interactive Live Streaming Premium
 
-The Interactive Live Streaming SDK for Android makes it easy to embed interactive live streaming into Android apps. It enables you to develop reapidly to enhance your social, work, education and IoT apps with real-time engagement.
+The Interactive Live Streaming SDK for Android enables you to develop reapidly to enhance your social, work, education and IoT apps with real-time engagement.
 
-This page shows the minimum code you need to add interactive live streaming into your app by using the Agora Interactive Live Streaming SDK for Android.
+This page shows the minimum code you need to add interactive live stream into your app by using the Agora Interactive Live Streaming SDK for Android.
 
 ## Understand the tech
 
@@ -25,20 +25,20 @@ To start Interactive Live Streaming Premium, you implement the following steps i
 4. **Publish and subscribe to audio and video in the channel**
    After joining a channel, only app clients with the role of `BROADCASTER` can publish audio and video. For an auidence memeber to send audio and video, you can call the API to switch the client role. 
 
-For an app client to join an RTC channel, you need the following information:
+For an app client to join a channel, you need the following information:
 
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokend your server in your security infrastructure. For rapid testing, you can use a temporary token with a validity period of 24 hours in Agora Console.
-- The channel name: A string that identifies the RTC channel for the live stream.
+- The channel name: A string that identifies the channel for the live stream.
 
 ## Prerequisites
 
 Before proceeding, ensure that you have the following:
 
-- Android Studio 3.0 or later
-- Android SDK API Level 16 or higher
-- A valid [Agora account](https://console.agora.io/)
+- Android Studio 3.0 or later.
+- Android SDK API Level 16 or higher.
+- A valid [Agora account](https://console.agora.io/).
 - A valid Agora project with an App ID and a temporary token. For details, see [Get started with Agora](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms).
 - A computer that meets the following requirements:
   - Access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms).
@@ -108,7 +108,7 @@ This section shows how to use the Agora Interactive Live Streaming SDK to implem
 
 When a user opens this app on their mobile device, it automatically joins the channel. When another host joins the channel, their video and audio is rendered in the app.
 
-### 1. Create the UI
+### Create the UI
 
 This UI is functional rather than beautiful. In the interface, you have one frame for local video and another for remote video. In `/app/res/layout/activity_main.xml`, replace the content with the following:
 
@@ -142,7 +142,7 @@ This UI is functional rather than beautiful. In the interface, you have one fram
 </RelativeLayout>
 ```
 
-### 2. Create the Android system logic
+### Create the Android system logic
 
 When your app launches, check if the permissions necessary to insert Live Streaming functionality into the app are granted. If the permissions are not granted, use the built-in Android functionality to request them. And if they are, return `true`.
 
@@ -168,133 +168,134 @@ private boolean checkSelfPermission(String permission, int requestCode) {
 
 When your app opens, you create an `RtcEngine` instance, enable the video, join a channel, and if the local user is a host, publish the local video to the lower frame in the UI. When another host joins the channel, you app catches the join event and adds the remote video to the top frame in the UI.
 
-The following figure shows the API call sequence of a basic video live streaming. 
+The following figure shows the API call sequence of implementing interactive live stream. 
 
 ![](images/sequence_live_android.png)
 
 To implement this logic, take the following steps:
 
-a. Import the Agora classes.
+1. Import the Agora classes.
 
-In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
+   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
 
-```java
-import io.agora.rtc.Constants;
-import io.agora.rtc.IRtcEngineEventHandler;
-import io.agora.rtc.RtcEngine;
-import io.agora.rtc.video.VideoCanvas;
-```
+    ```java
+    import io.agora.rtc.Constants;
+    import io.agora.rtc.IRtcEngineEventHandler;
+    import io.agora.rtc.RtcEngine;
+    import io.agora.rtc.video.VideoCanvas;
+    ```
 
-b. Create the variables you use to create or join a live streaming channel.
+2. Create the variables you use to create or join a live streaming channel.
 
-In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
+   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
 
-```java
-// Fill the App ID of your project generated on Agora Console
-private String appId = "";
-// Fill the channel name
-private String channelName = "";
-// Fill the temp token generated on Agora Console
-private String token = "";
+    ```java
+    // Fill the App ID of your project generated on Agora Console
+    private String appId = "";
+    // Fill the channel name
+    private String channelName = "";  
+    // Fill the temp token generated on Agora Console
+    private String token = "";
 
-private RtcEngine mRtcEngine;
+    private RtcEngine mRtcEngine;
 
-private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
-    @Override
-    // Listen for the remote host joining the channel to get the uid of the host
-    public void onUserJoined(int uid, int elapsed) {
-        runOnUniThread(new Runnable() {
-            @Override
-            public void run() {
-                // Call setupRemoteVideo to set the remote video view after getting uid from the onUserJoined callback
-                setupRemoteVideo(uid);
-            }
-        });
+    private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
+        @Override
+        // Listen for the remote host joining the channel to get the uid of the host
+        public void onUserJoined(int uid, int elapsed) {
+            runOnUniThread(new Runnable() {
+                @Override
+                public void run() {
+                    // Call setupRemoteVideo to set the remote video view after getting uid from the onUserJoined callback
+                    setupRemoteVideo(uid);
+                }
+            });
+        }
+    };
+    ```
+
+3. Initialize the app and join the channel.
+
+   In `/app/java/com.example.<projectname>/MainActivity`, add `initializeAndJoinChannel` to the `MainActivity` class.
+
+    ```java
+    private void initializeAndJoinChannel() {
+        try {
+            mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
+        } catch (Exception e) {
+            throw new RuntimeException("Check the error.");
+        }
+
+        // For a live streaming scenario, set the channel profile as BROADCASTING.
+        mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
+        // Set the client role as BORADCASTER or AUDIENCE according to the scenario.
+        mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
+
+        // By default, video is disabled, and you need to call enableVideo to start a video stream.
+        mRtcEngine.enableVideo();
+
+
+        FrameLayout container = (FrameLayout) findViewById(R.id.local_video_view_container);
+        // Call CreateRendererView to create a SurfaceView pbject and add it as a child to the FrameLayout
+        SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
+        container.addView(surfaceView);
+        // Pass the SurfaceView object to Agora so that it renders the local video
+        mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
+
+        // Join the channel with a token
+        mRtcEngine.joinChannel(token, channelName, "", 0);
     }
-};
-```
+    ```
 
-c. Initialize the app and join the channel.
+4. Add the remote interface when a remote host joins the channel.
 
-In `/app/java/com.example.<projectname>/MainActivity`, add `initializeAndJoinChannel` to the `MainActivity` class.
+   In `/app/java/com.example.<projectname>/MainActivity`, add `setupRemoteVideo` to the `MainActivity` class.
 
-```java
-private void initializeAndJoinChannel() {
-    try {
-        mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
-    } catch (Exception e) {
-        throw new RuntimeException("Check the error.");
+    ```java
+    private void setupRemoteVideo(int uid) {
+        FrameLayout container = (FrameLayout) findViewById(R.id.remote_video_view_container);
+        SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
+        surfaceView.setZOrderMediaOverlay(true);
+        container.addView(surfaceView);
+        mRtcEngine.setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, uid));
     }
+    ```
 
-    // For a live streaming scenario, set the channel profile as BROADCASTING.
-    mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
-    // Set the client role as BORADCASTER or AUDIENCE according to the scenario.
-    mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
-
-    // By default, video is disabled, and you need to call enableVideo to start a video stream.
-    mRtcEngine.enableVideo();
-
-
-    FrameLayout container = (FrameLayout) findViewById(R.id.local_video_view_container);
-    // Call CreateRendererView to create a SurfaceView pbject and add it as a child to the FrameLayout
-    SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
-    container.addView(surfaceView);
-    // Pass the SurfaceView object to Agora so that it renders the local video
-    mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
-
-    // Join the channel with a token
-    mRtcEngine.joinChannel(token, channelName, "", 0);
-}
-```
-
-d. Add the remote interface when a remote host joins the channel.
-
-In `/app/java/com.example.<projectname>/MainActivity`, add `setupRemoteVideo` to the `MainActivity` class.
-
-```java
-private void setupRemoteVideo(int uid) {
-    FrameLayout container = (FrameLayout) findViewById(R.id.remote_video_view_container);
-    SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
-    surfaceView.setZOrderMediaOverlay(true);
-    container.addView(surfaceView);
-    mRtcEngine.setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, uid));
-}
-```
-### 4. Start and stop your app
+### Start and stop your app
 
 Now you have created the Live Streaming Premium and Android system functionality, start and stop the app. In this implementation, the live stream starts when the user opens your app. The live stream ends when the user closes your app.
 
-a. Check that the app has the correct permissions. When permissions are granted, call `initializeAndJoinChannel` to join a live streming channel.
+1. Check that the app has the correct permissions. When permissions are granted, call `initializeAndJoinChannel` to join a live streming channel.
 
-In `/app/java/com.example.<projectname>/MainActivity`, replace `onCreate` with the following code in the `MainActivity` class.
+   In `/app/java/com.example.<projectname>/MainActivity`, replace `onCreate` with the following code in the `MainActivity` class.
 
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_video_chat_view);
+    ```java
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_video_chat_view);
 
-    // If all the permissions are granted, initialize the RtcEngine object and join a channel.
-    if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
-            checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID)) {
-        initializeAndJoinChannel();
+        // If all the permissions are granted, initialize the RtcEngine object and join a channel.
+        if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
+                checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID)) {
+            initializeAndJoinChannel();
+        }
     }
-}
-```
+    ```
 
-b. When the user closes this app, elegantly clean up all the resources you created in `initializeAndJoinChannel`.
+2. When the user closes this app, elegantly clean up all the resources you created in `initializeAndJoinChannel`.
 
-In `/app/java/com.example.<projectname>/MainActivity`, add `onDestroy` to the `MainActivity` class.
+   In `/app/java/com.example.<projectname>/MainActivity`, add `onDestroy` to the `MainActivity` class.
 
-```java
-protected void onDestroy() {
-    super.onDestroy();
+    ```java
+    protected void onDestroy() {
+        super.onDestroy();
 
-    mRtcEngine.leaveChannel();
-    mRtcEngine.destroy();
-    mRtcEngine = null;
-}
-```
+        mRtcEngine.leaveChannel();
+        mRtcEngine.destroy();
+        mRtcEngine = null;
+    }
+    ```
 
 ## Test your app
 
