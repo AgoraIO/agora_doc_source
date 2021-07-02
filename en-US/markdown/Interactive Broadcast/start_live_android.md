@@ -53,7 +53,7 @@ Follow the steps to create the environment necessary to add live stream into you
 
 2. Integrate the Interactive Live Streaming SDK into your project.
 
-   a. In `/Grale Scripts/build.gradle(Project: <projectname>)`, add the following line to add the JitPack dependency.
+   a. In `/Grale Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the JitPack dependency.
 
     ```xml
     all projects {
