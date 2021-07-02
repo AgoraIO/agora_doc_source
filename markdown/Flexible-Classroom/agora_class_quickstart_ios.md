@@ -18,7 +18,8 @@
 
 ## 前提条件
 
-- 
+- 在 Agora 控制台创建 Agora 项目，获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id)、[App 证书](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6)并[配置 aPaaS 服务](/cn/agora-class/agora_class_prep?platform=Web)。
+- 灵动课堂使用 RTM Token 进行鉴权。在测试阶段，你可以使用 Agora 提供的[临时 RTM Token 生成器](https://webdemo.agora.io/token-builder/)，传入你获取到的 App ID 和 App 证书，然后自行填入一个用户 ID，快速生成一个临时 RTM Token，有效期为 24 小时。
 - Xcode 10.0 或以上版本。
 - CocoaPods 1.10 或以上版本。参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
 - iOS 10 或以上版本。
@@ -27,15 +28,17 @@
 
 ## 启动灵动课堂
 
+参考以下步骤启动灵动课堂：
 
+1. 运行以下命令将 Agora 提供的灵动课堂 iOS 示例项目克隆至本地：
 
-### 1. 获取 Agora 提供的灵动课堂 iOS 示例项目
+   ```
+   git clone https://github.com/AgoraIO-Community/CloudClass-iOS
+   ```
 
-运行以下命令将 Agora 提供的灵动课堂 iOS 示例项目克隆至本地：
+2. 
 
-```bash
-git clone https://github.com/AgoraIO-Community/CloudClass-iOS
-```
+   
 
 ### 2. 加入课堂
 
