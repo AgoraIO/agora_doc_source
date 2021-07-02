@@ -64,7 +64,7 @@ Follow the steps to create the environment necessary to add live stream into you
     }
     ```
 
-    b. In `/Gradle Scripts/build.gradle(Module: <projectname>)`, add the following line to integrate the Agora Interactive Live Streaming SDK into your Android project.
+    b. In `/Gradle Scripts/build.gradle(Module: <projectname>)`, add the following lines to integrate the Agora Interactive Live Streaming SDK into your Android project.
 
     ```xml
     ...
