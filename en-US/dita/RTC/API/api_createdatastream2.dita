@@ -11,19 +11,28 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/createDataStream2"/>
-        </section>
+        <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="windows" outputclass="language-cpp">virtual int createDataStream(int* streamId, DataStreamConfig&amp;amp; config) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">createDataStreamWithConfig(config: DataStreamConfig): number</codeblock>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
+    </section>
         <section id="detailed_desc">
-   
-   <dl outputclass="since">
-       <dlentry>
-  <dt>Since</dt>
-  <dd>v3.3.0. Used to replace <xref keyref="createDataStream1"/>.</dd>
-       </dlentry>
-   </dl>
-   <p id="desc">Creates a data stream. Each user can create up to five data streams in a single channel.</p>
-   <p id="diff">Compared with <apiname keyref="createDataStream1"/>, this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
+            <dl outputclass="since" props="android ios mac windows">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v3.3.0</dd>
+                </dlentry>
+            </dl>
+            <p id="desc">Creates a data stream. Each user can create up to five data streams in a
+                single channel.  </p>
+            <p id="diff">Compared with <xref keyref="createDataStream1"/>, this method does not
+                support data reliability. If a data packet is not received five seconds after it was
+                sent, the SDK directly discards the data.</p>
         </section>
         <section id="parameters"><title>Parameters</title>
    <parml>
@@ -41,8 +50,8 @@
    <title>Returns</title>
    <ul>
        <li props="windows">0: The data stream is successfully created.</li>
-       <li props="android">ID of the created data stream, if the method call succeeds.</li>
-       <li>&lt; 0: Failure. You can refer to <xref href="error_rtc.md" format="md">Error Codes and Warning Codes</xref> for troubleshooting.</li>
+       <li props="android ios mac electron">ID of the created data stream, if the method call succeeds.</li>
+       <li>&lt; 0: Failure. You can refer to <xref keyref="errorCode">Error Codes and Warning Codes</xref> for troubleshooting.</li>
    </ul>
         </section></refbody>
 </reference>

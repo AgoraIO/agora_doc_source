@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/startScreenCaptureByScreenRect"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect, const Rectangle&amp; regionRect, const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">startScreenCaptureByScreen(screenSymbol: ScreenSymbol, regionRect: Rectangle, captureParams: ScreenCaptureParameters ): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -22,19 +29,18 @@
   <dd>v2.4.0</dd>
        </dlentry>
    </dl>
-   <p>This method shares a screen or part of the screen. You need to specify the area of the screen to be shared.</p>
-   <note type="attention">
-       <ul>
-  <li>Call this method after joining a channel.</li>
-  <li>This method applies to Windows only.</li>
-       </ul>
-   </note>
+   <p id="desc">This method shares a screen or part of the screen. You need to specify the area of the screen to be shared.</p>
+   <note type="attention" id="note">Call this method after joining a channel.</note>
         </section>
         <section id="parameters"><title>Parameters</title>
    <parml>
-       <plentry>
+       <plentry props="windows unity">
   <pt>screenRect</pt>
   <pd>Sets the relative location of the screen to the virtual screen.</pd>
+       </plentry>
+       <plentry props="electron">
+  <pt>screenSymbol</pt>
+  <pd>The display ID (macOS) or ScreenRect that identifies the screen. See <xref keyref="ScreenSymbol"/>. You can get the data stream ID by calling <xref keyref="getScreensInfo"/>.</pd>
        </plentry>
        <plentry>
   <pt>regionRect</pt>

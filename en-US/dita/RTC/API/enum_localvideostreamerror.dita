@@ -32,13 +32,31 @@
   <pd>5: The local video encoding fails.</pd>
        </plentry>
        <plentry>
+           <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND"/></pt>
+           <pd>
+                        <dl outputclass="since" props="android ios mac windows">
+                            <dlentry>
+                                <dt>Since</dt>
+                                <dd>v3.4.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>8: Fails to find a local video capture device.</p>
+                    </pd>
+       </plentry>
+       <plentry>
   <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED"/></pt>
   <pd>11: When calling <xref keyref="startScreenCaptureByWindowId"/> to share the window, the shared window is in a minimized state.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED"/></pt>
   <pd>
-      <p>The error code indicates that a window shared by the window ID has been closed, or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</p>
+      <dl outputclass="since">
+          <dlentry>
+              <dt>Since</dt>
+              <dd>v3.2.0</dd>
+          </dlentry>
+      </dl>
+      <p>12: The error code indicates that a window shared by the window ID has been closed, or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</p>
       <p>Common scenarios for reporting this error code:<ul>
  <li>When the local user closes the shared window, the SDK reports this error code.</li>
      <li>The local user shows some slides in full-screen mode first, and then shares the windows of the slides. After the user exits full-screen mode, the SDK reports this error code.</li>

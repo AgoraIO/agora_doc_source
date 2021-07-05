@@ -11,15 +11,22 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/adjustAudioMixingVolume"/>
+        <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int adjustAudioMixingVolume(int volume);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustAudioMixingVolume:(NSInteger)volume;</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">virtual int adjustAudioMixingVolume(int volume) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">adjustAudioMixingVolume(volume: number): number</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public int AdjustAudioMixingVolume(int volume)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">adjustAudioMixingVolume(volume: number): Promise&lt;void></codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> adjustAudioMixingVolume(int volume);</codeblock>
+        </p>
         </section>
         <section id="detailed_desc">
    
    <p>This method adjusts the audio mixing volume on both the local client and remote clients.</p>
    <note type="attention">
        <ul>
-  <li>Call this method after <xref keyref="startAudioMixing"/>.</li>
+  <li>Call this method after <xref keyref="startAudioMixing2"/>.</li>
   <li>Calling this method does not affect the volume of audio effect file playback invoked by the <xref keyref="playEffect3"/> method.</li>
        </ul>
    </note>

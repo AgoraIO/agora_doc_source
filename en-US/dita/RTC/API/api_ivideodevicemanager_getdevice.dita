@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideodevicemanager_getdevice">
-    <title><ph keyref="IVideoDeviceManager_getDevice"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the video capture device that is in use.</ph></shortdesc>
+    <title><ph keyref="getDevice_IVideoDeviceManager"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Retrieves the video capture device that is in use.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
-       <indexterm keyref="IVideoDeviceManager_getDevice" />
+       <indexterm keyref="getDevice_IVideoDeviceManager" />
    </keywords>
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/IVideoDeviceManager_getDevice"/>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="windows" outputclass="language-cpp">virtual int getDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">getCurrentVideoDevice(): Device</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters" props="windows"><title>Parameters</title>
    <parml>
        <plentry>
   <pt>deviceId</pt>
@@ -24,9 +31,10 @@
         </section>
         <section id="return_values">
    <title>Returns</title>
-   <ul>
+   <ul props="windows">
        <li>0: Success.</li>
        <li>&lt; 0: Failure.</li>
    </ul>
+            <p props="electron">The video capture device. See <xref keyref="Device"/>.</p>
         </section></refbody>
 </reference>

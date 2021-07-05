@@ -10,9 +10,16 @@
             </keywords>
         </metadata>
     </prolog>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setCloudProxy" />
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setCloudProxy(type: CLOUD_PROXY_TYPE): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -21,10 +28,18 @@
                     <dd>3.3.0</dd>
                 </dlentry>
             </dl>
-            <p>When the user&apos;s firewall restricts the IP address and port, refer to Use Cloud Proxy to add the specific IP addresses and ports to the firewall whitelist; then, call this method to enable the cloud proxy and set the cloud <parmname>proxyType</parmname> as <ph keyref="UDP_PROXY" />.</p>
-            <p>After successfully connecting to the cloud proxy, the SDK triggers the<xref keyref="onConnectionStateChanged" /> (<ph keyref="CONNECTION_STATE_CONNECTING" />,<ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) callback.</p>
-            <p>To disable the cloud proxy that has been set, call <apiname>setCloudProxy</apiname>(NONE_PROXY).</p>
-            <p>To change the cloud proxy type that has been set, call <apiname>setCloudProxy</apiname>(NONE_PROXY) first, and then call <apiname>setCloudProxy</apiname> and pass the value that you expect in <parmname>proxyType</parmname>.</p>
+            <p>When the user&apos;s firewall restricts the IP address and port, refer to <xref
+                    keyref="guide-cloud-proxy">Use Cloud Proxy</xref> to add the specific IP
+                addresses and ports to the firewall whitelist; then, call this method to enable the
+                cloud proxy and set the cloud <parmname>proxyType</parmname> as <ph
+                    keyref="UDP_PROXY"/>.</p>
+            <p>After successfully connecting to the cloud proxy, the SDK triggers the <xref keyref="onConnectionStateChanged" /> (<ph keyref="CONNECTION_STATE_CONNECTING" />,<ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) callback.</p>
+            <p>To disable the cloud proxy that has been set, call <apiname keyref="setCloudProxy"/>
+                (NONE_PROXY).</p>
+            <p>To change the cloud proxy type that has been set, call <apiname
+                    keyref="setCloudProxy"/> (NONE_PROXY) first, and then call <apiname
+                    keyref="setCloudProxy"/> and pass the value that you expect in
+                    <parmname>proxyType</parmname>.</p>
             <note type="attention">
                 <ul>
                     <li>Agora recommends that you call this method before joining the channel or after leaving the channel.</li>
@@ -37,7 +52,7 @@
             <parml>
                 <plentry>
                     <pt>proxyType</pt>
-                    <pd>The type of the cloud proxy. See<xref keyref="CLOUD_PROXY_TYPE" /> . This parameter is required. The SDK reports an error if you do not pass in a value.</pd>
+                    <pd>The type of the cloud proxy. See <xref keyref="CLOUD_PROXY_TYPE" /> . This parameter is required. The SDK reports an error if you do not pass in a value.</pd>
                 </plentry>
             </parml>
         </section>
@@ -47,8 +62,8 @@
                 <li>0: Success.</li>
                 <li>
                     &lt; 0: Failure.<ul>
-                        <li>-2 (<codeph>ERR_INVALID_ARGUMENT</codeph>): The parameter is<codeph> invalid</codeph>.</li>
-                        <li>-7(ERR_NOT_INITIALIZED): The SDK is <codeph>not initialized</codeph>.</li>
+                        <li>-2 (<codeph>ERR_INVALID_ARGUMENT</codeph>): The parameter is invalid.</li>
+                        <li>-7(<codeph>ERR_NOT_INITIALIZED</codeph>): The SDK is not initialized.</li>
                     </ul>
                 </li>
             </ul>
