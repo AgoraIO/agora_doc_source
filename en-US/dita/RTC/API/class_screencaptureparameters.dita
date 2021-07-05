@@ -5,7 +5,15 @@
     <shortdesc id="short"><ph id="shortdesc">Screen sharing configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/ScreenCaptureParameters"/>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">struct ScreenCaptureParameters { VideoDimensions dimensions; int frameRate; int bitrate; bool captureMouseCursor; bool windowFocus; view_t* excludeWindowList; int excludeWindowCount; ScreenCaptureParameters() : dimensions(1920, 1080), frameRate(5), bitrate(STANDARD_BITRATE), captureMouseCursor(true), windowFocus(false), excludeWindowList(NULL), excludeWindowCount(0) {} ScreenCaptureParameters(const VideoDimensions&amp; d, int f, int b, bool c, bool focus, view_t *ex = NULL, int cnt = 0) : dimensions(d), frameRate(f), bitrate(b), captureMouseCursor(c), windowFocus(focus), excludeWindowList(ex), excludeWindowCount(cnt) {} ScreenCaptureParameters(int width, int height, int f, int b, bool c, bool focus, view_t *ex = NULL, int cnt = 0) : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(c), windowFocus(focus), excludeWindowList(ex), excludeWindowCount(cnt) {} };</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">export interface ScreenCaptureParameters { width: number; height: number; frameRate: number; bitrate: number; captureMouseCursor: boolean; windowFocus: boolean; excludeWindowList: Array&lt;number>; excludeWindowCount: number; }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
@@ -37,8 +45,8 @@
                             </dlentry>
                         </dl>
                         <p>Sets whether to capture the mouse in screen sharing:<ul>
-                                <li><ph keyref="true"/>: (Default) Capture the mouse.</li>
-                                <li><ph keyref="false"/>: Do not capture the mouse.</li>
+                                <li><codeph><ph keyref="true"/></codeph>: (Default) Capture the mouse.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: Do not capture the mouse.</li>
                             </ul></p></pd>
                 </plentry>
                 <plentry>
@@ -49,8 +57,8 @@
                             <dd>v3.1.0</dd>
                         </dlentry>
                     </dl><p>Sets whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId"/> method to share it:<ul>
-                            <li><ph keyref="true"/>: Bring the window to the front.</li>
-                            <li><ph keyref="false"/>: (Default) Do not bring the window to the front.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Bring the window to the front.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: (Default) Do not bring the window to the front.</li>
                         </ul></p></pd>
                 </plentry>
                 <plentry>

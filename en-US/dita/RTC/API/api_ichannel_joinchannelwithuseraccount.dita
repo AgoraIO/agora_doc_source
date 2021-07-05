@@ -11,13 +11,18 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/IChannel_joinChannelWithUserAccount"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token, const char* userAccount, const ChannelMediaOptions&amp; options) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">joinChannelWithUserAccount(token: string, userAccount: string, options: ChannelMediaOptions ): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>This method differs from the <apiname keyref="joinChannelWithUserAccount1"/> method in the <xref keyref="IRtcEngine"/> class in the following aspects:</p>
-   <table id="table_diff">
+   <p props="android ios mac windows">This method differs from the <xref keyref="IRtcEngine"/> method in the <apiname keyref="joinChannelWithUserAccount1"/> class in the following aspects:<table id="table_diff">
        <tgroup cols="2">
   <colspec colnum="1" colname="col1"/>
   <colspec colnum="2" colname="col2"/>
@@ -29,7 +34,7 @@
            </thead>
            <tbody>
       <row>
- <entry>Does not contain the <parmname>channelId</parmname> parameter. Because <parmname>channelId</parmname> is specified when creating the <xref keyref="IChannel"/> object.</entry>
+ <entry>Does not contain the <parmname>channelId</parmname> parameter, because <parmname>channelId</parmname> is specified when creating the <xref keyref="IChannel"/> object.</entry>
  <entry>You need to fill in the <parmname>channelId</parmname> that can identify the channel.</entry>
       </row>
       <row>
@@ -44,6 +49,7 @@ keyref="IChannel_publish"/> method to do that.</entry>
   </tbody>
        </tgroup>
    </table>
+       </p>
    <p>Once the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the <codeph>mute</codeph> methods accordingly.</p>
    <note type="attention">
        <ul>

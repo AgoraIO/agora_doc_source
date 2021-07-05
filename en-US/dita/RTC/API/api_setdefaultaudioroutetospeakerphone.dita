@@ -10,14 +10,21 @@
             </keywords>
         </metadata>
     </prolog>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setDefaultAudioRouteToSpeakerphone"/>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
             <p>This method sets whether the received audio is routed to the earpiece or speakerphone by default before joining a channel. If a user does not call this method, the audio is routed to the earpiece by default.</p>
             <p>The default settings for each profile:<ul>
-                    <li>For the communication profile:<ul>
+                    <li>For the `COMMUNICATION` profile:<ul>
                             <li>In a voice call, the default audio route is the earpiece.</li>
                             <li>In a video call, the default audio route is the speakerphone. If a user calls the <xref keyref="disableVideo"/>, <xref
                                     keyref="muteLocalVideoStream"/>, or <xref
@@ -40,7 +47,7 @@
                 <plentry>
                     <pt>defaultToSpeaker</pt>
                     <pd>The default audio playback route.<ul>
-                            <li><ph keyref="true"/>: Route the audio to the speakerphone. If the playback device connects to the earpiece or Bluetooth, the audio cannot be routed to the speakerphone.</li>
+                            <li><ph keyref="true"/>: The audio routing is speakerphone. If the device connects to the earpiece or Bluetooth, the audio cannot be routed to the speakerphone.</li>
                             <li><ph keyref="false"/>: (Default) Route the audio to the earpiece. If a headset is plugged in, the audio is routed to the headset.</li>
                         </ul>
                     </pd>

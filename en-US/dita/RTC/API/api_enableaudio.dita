@@ -11,12 +11,19 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/enableAudio"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int enableAudio() = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">enableAudio(): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
     </section>
         <section id="detailed_desc">
    
-   <p>The audio mode is enabled by default.</p>
+   <p id="desc">The audio mode is enabled by default.</p>
    <note type="attention"><ul>
        <li>This method enables the internal engine and can be called anytime after initialization. It is still valid after <xref keyref="leaveChannel"/>.</li>
        <li>This method enables the audio module and takes some time to take effect. Agora recommends using the following API methods to control the audio module separately:<ul>
