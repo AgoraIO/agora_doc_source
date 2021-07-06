@@ -163,7 +163,7 @@ private boolean checkSelfPermission(String permission, int requestCode) {
 
 When your app opens, you create an `RtcEngine` instance, enable the video, join a channel, and if the local user is a host, publish the local video to the lower frame layout in the UI. When another host joins the channel, you app catches the join event and adds the remote video to the top frame layout in the UI.
 
-The following figure shows the API call sequence of implementing interactive live stream. 
+The following figure shows the API call sequence of implementing Interactive Live Streaming Premium. 
 
 ![](images/sequence_live_android.png)
 
