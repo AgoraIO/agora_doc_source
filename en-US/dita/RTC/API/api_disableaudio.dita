@@ -11,22 +11,26 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/disableAudio"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int disableAudio() = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">disableAudio(): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
-   
-        </section>
-        <section>   
-   <note type="attention"><ul>
-       <li>This method disables the internal engine and can be called anytime after initialization. <xref keyref="leaveChannel"/> It is still valid after.</li>
-       <li>This method resets the internal engine and takes some time to take effect. Agora recommends using the following API methods to control the audio modules separately:<ul>
-  <li><xref keyref="enableLocalAudio"/>: Whether to enable the microphone to create the local audio stream.</li>
-  <li><xref keyref="muteLocalAudioStream"/>: Whether to publish the local audio stream.</li>
-  <li><xref keyref="muteRemoteAudioStream"/>: Whether to subscribe and play the remote audio stream.</li>
-  <li><xref keyref="muteAllRemoteAudioStreams"/>: Whether to subscribe to and play all remote audio streams.</li>
-       </ul></li>
-   </ul></note>     
+            <note type="attention" id="note"><ul>
+                <li>This method disables the internal engine and can be called anytime after initialization. It is still valid after <xref keyref="leaveChannel"/>.</li>
+                <li>This method resets the internal engine and takes some time to take effect. Agora recommends using the following API methods to control the audio modules separately:<ul>
+                    <li><xref keyref="enableLocalAudio"/>: Whether to enable the microphone to create the local audio stream.</li>
+                    <li><xref keyref="muteLocalAudioStream"/>: Whether to publish the local audio stream.</li>
+                    <li><xref keyref="muteRemoteAudioStream"/>: Whether to subscribe and play the remote audio stream.</li>
+                    <li><xref keyref="muteAllRemoteAudioStreams"/>: Whether to subscribe to and play all remote audio streams.</li>
+                </ul></li>
+            </ul></note>  
         </section>
         <section id="return_values">
    <title>Returns</title>

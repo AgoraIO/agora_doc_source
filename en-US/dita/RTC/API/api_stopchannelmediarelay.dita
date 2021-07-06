@@ -11,19 +11,26 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/stopChannelMediaRelay"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int stopChannelMediaRelay() = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">stopChannelMediaRelay(): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
-            <dl>
-                <dlentry outputclass="since">
+            <dl outputclass="since">
+                <dlentry>
                     <dt>Since</dt>
                     <dd>v2.9.0</dd>
                 </dlentry>
             </dl>
             
    <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback. If the callback reports <apiname keyref="RELAY_STATE_IDLE"/>(0) and <apiname keyref="RELAY_OK"/>(0), the host successfully stops the relay.</p>
-   <note type="attention">If the method call fails, the SDK triggers the <apiname keyref="onChannelMediaRelayStateChanged"/> callback with the <apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/>(2) or <apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/>(8) status code. You can call<xref keyref="leaveChannel"/> the method to leave the channel, and the media stream relay automatically stops.</note>
+   <note type="attention">If the method call fails, the SDK triggers the <apiname keyref="onChannelMediaRelayStateChanged"/> callback with the <apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/>(2) or <apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/>(8) status code. You can call the <xref keyref="leaveChannel"/> method to leave the channel, and the media stream relay automatically stops.</note>
         </section>
         <section id="return_values">
    <title>Returns</title>

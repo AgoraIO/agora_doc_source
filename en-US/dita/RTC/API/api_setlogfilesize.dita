@@ -10,9 +10,16 @@
             </keywords>
         </metadata>
     </prolog>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setLogFileSize" />
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setLogFileSize(unsigned int fileSizeInKBytes) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setLogFileSize(fileSizeInKBytes: number): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
@@ -21,8 +28,8 @@
                     <dd>v3.3.0. Use <parmname>logConfig</parmname> in <xref keyref="create2" /> instead.</dd>
                 </dlentry>
             </dl>
-            <p>By default, the SDK outputs five log files, agorasdk.log, agorasdk_1.log, agorasdk_2.log, agorasdk_3.log, and agorasdk_4.log, each with a default size of 1024 KB. Each log file has a default size of 512 KB. These log files are encoded in UTF-8. The SDK writes the latest logs in agorasdk.log. When agorasdk.log is full, the SDK deletes the log file with the earliest modification time among the other four, renames agorasdk.log to the name of the deleted log file, and create a new agorasdk.log to record the latest logs.</p>
-            <note type="attention">If you want to set the size of the log file, you need to<xref keyref="setLogFile" /> call this method before , otherwise, the log will be cleared.</note>
+            <p>By default, the SDK outputs five log files: agorasdk.log, agorasdk_1.log, agorasdk_2.log, agorasdk_3.log, and agorasdk_4.log. Each log file has a default size of 512 KB. These log files are encoded in UTF-8. The SDK writes the latest log in agorasdk.log. When agorasdk.log is full, the SDK deletes the log file with the earliest modification time among the other four, renames agorasdk.log to the name of the deleted log file, and create a new agorasdk.log to record the latest logs.</p>
+            <note type="attention">If you want to set the size of the log file, you need to call this method before <xref keyref="setLogFile" />, otherwise, the log will be cleared.</note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
