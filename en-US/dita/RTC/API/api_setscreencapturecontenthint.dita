@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setScreenCaptureContentHint"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setScreenCaptureContentHint(VideoContentHint contentHint) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setScreenCaptureContentHint(contentHint: VideoContentHint): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -22,10 +29,10 @@
   <dd>v2.4.0</dd>
        </dlentry>
    </dl>
-   <p>A content hint suggests the type of the content being shared, so that the SDK applies different optimization algorithms to different types of content. If you don&apos;t call this method, the default content hint is <ph keyref="CONTENT_HINT_NONE"/>.</p>
-   <note type="attention">You can call this method either before or after you start screen sharing.</note>
+   <p id="desc">A content hint suggests the type of the content being shared, so that the SDK applies different optimization algorithms to different types of content. If you don&apos;t call this method, the default content hint is <ph keyref="CONTENT_HINT_NONE"/>.</p>
+   <note type="attention" id="note">You can call this method either before or after you start screen sharing.</note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>contentHint</pt>

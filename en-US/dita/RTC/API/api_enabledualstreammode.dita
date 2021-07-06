@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/enableDualStreamMode"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int enableDualStreamMode(bool enabled) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">enableDualStreamMode(enabled: boolean): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -25,12 +32,19 @@
   <pt>enabled</pt>
   <pd>
       <ul>
- <li><ph keyref="true"/>: Enables dual-stream mode.</li>
- <li><ph keyref="false"/>: Disables dual-stream mode.</li>
+ <li><codeph><ph keyref="true"/></codeph>: Enables dual-stream mode.</li>
+ <li><codeph><ph keyref="false"/></codeph>: Disables dual-stream mode.</li>
       </ul>
   </pd>
        </plentry>
    </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
         </section>
     </refbody>
 </reference>

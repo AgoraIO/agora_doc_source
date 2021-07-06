@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onAudioVolumeIndication"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers, unsigned int speakerNumber, int totalVolume) { (void)speakers; (void)speakerNumber; (void)totalVolume; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_VOLUME_INDICATION, cb: ( speakers: AudioVolumeInfo[], speakerNumber: number, totalVolume: number ) => void ): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -44,7 +51,7 @@
   <pd>
       <p>The volume of the speaker. The value ranges between 0 (lowest volume) and 255 (highest volume).<ul>
      <li>In the callback for the local user, <parmname>totalVolume</parmname> is the volume of the local user who sends a stream.</li>
-     <li>In the callback for remote users, <parmname>totalVolume</parmname> is the sum of the volume of all remote users (up to three) whose instantaneous volumes are the highest. If the user calls <xref keyref="startAudioMixing"/>, then <parmname>totalVolume</parmname> is the volume after audio mixing.</li>
+     <li>In the callback for remote users, <parmname>totalVolume</parmname> is the sum of the volume of all remote users (up to three) whose instantaneous volumes are the highest. If the user calls <xref keyref="startAudioMixing2"/>, then <parmname>totalVolume</parmname> is the volume after audio mixing.</li>
  </ul>
       </p>
   </pd>

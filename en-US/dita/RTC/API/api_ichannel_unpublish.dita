@@ -11,12 +11,20 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/IChannel_unpublish"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int unpublish() = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">unpublish(): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>If you call this method in a channel where you are not publishing streams, the SDK returns -5 (ERR_REFUSED).</p>
+   <p>If you call this method in a channel where you are not publishing streams, the SDK returns
+                    <codeph>-5</codeph> (ERR_REFUSED).</p>
         </section>
         <section conkeyref="IChannel_publish/return_values"/>
     </refbody>

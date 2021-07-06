@@ -11,12 +11,19 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/registerAudioFrameObserver"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int registerAudioFrameObserver(IAudioFrameObserver* observer) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
-   <p>Call this method to register an audio frame observer object (register a callback). When you need the SDK to trigger <xref keyref="onRecordAudioFrame"/> or<xref keyref="onPlaybackAudioFrame"/> callback, you need to use this method to register the callbacks.</p>
+   <p>Call this method to register an audio frame observer object (register a callback). When you need the SDK to trigger <xref keyref="onRecordAudioFrame"/> or <xref keyref="onPlaybackAudioFrame"/> callback, you need to use this method to register the callbacks.</p>
    <note type="attention">Ensure that you call this method before joining a channel.</note>
         </section>
         <section id="parameters"><title>Parameters</title>

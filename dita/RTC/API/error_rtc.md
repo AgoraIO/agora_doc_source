@@ -36,8 +36,8 @@ Agora SDK 在运行过程中，可能通过如下方式返回错误码或警告�
 | `101`    | 不是有效的 App ID。请更换有效的 App ID 重新加入频道。        |
 | `102`    | 不是有效的频道名。可能的原因是设置的参数数据类型不正确。请更换有效的频道名重新加入频道。  |
 | `103`    | 无法获取当前区域的服务器资源。请在初始化 [IRtcEngine] 时尝试指定其他区域。 |
-| `109`    | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_TOKEN_EXPIRED] (9)。</br>当前使用的 Token 过期，不再有效。请在服务端申请生成新的 Token，并调用 [renewToken] 更新 Token。 |
-| `110`   | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_INVALID_TOKEN] (8)。</br>Token 无效。一般有以下原因：<ul><li>在 Agora 控制台中启用了 App 证书，但仍旧在代码里使用了 App ID。当项目启用了 App 证书，就必须使用 Token 鉴权。</li><li>生成 Token 时填入的用户 ID 和用户加入频道时填入的用户 ID 不匹配。</li></ul> |
+| `109`    | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_TOKEN_EXPIRED]\(9)。</br>当前使用的 Token 过期，不再有效。请在服务端申请生成新的 Token，并调用 [renewToken] 更新 Token。 |
+| `110`   | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_INVALID_TOKEN]\(8)。</br>Token 无效。一般有以下原因：<ul><li>在 Agora 控制台中启用了 App 证书，但仍旧在代码里使用了 App ID。当项目启用了 App 证书，就必须使用 Token 鉴权。</li><li>生成 Token 时填入的用户 ID 和用户加入频道时填入的用户 ID 不匹配。</li></ul> |
 | `111`    | 网络连接中断。SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会报告该错误。     |
 | `112`    | 网络连接丢失。 网络连接中断，且 SDK 无法在 10 秒内连接服务器，会报告fail错误。    |
 | `113`    | 调用方法时用户不在频道内。        |
@@ -131,10 +131,10 @@ Agora SDK 在运行过程中，可能通过如下方式返回错误码或警告�
 
 | 枚举值 | 说明   |
 | :----- | :----------------------------------------------------------- |
-| `1003`   | **弃用**：从 v2.4.1 起废弃。请改用 [onLocalVideoStateChanged] 回调中的 [LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE] (4)。</br>启动摄像头失败。请检查摄像头是否被其他应用占用，或者尝试重新加入频道。 |
+| `1003`   | **弃用**：从 v2.4.1 起废弃。请改用 [onLocalVideoStateChanged] 回调中的 [LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE]\(4)。</br>启动摄像头失败。请检查摄像头是否被其他应用占用，或者尝试重新加入频道。 |
 | `1004`   | 启用视频渲染模块失败。   |
 | `1510`   | 没有摄像头使用权限。请检查是否已经打开摄像头权限。|
-| `1512`   | **弃用**：v2.4.1 起废弃。请改用 [onLocalVideoStateChanged] 回调中的 [LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY] (3)。</br>摄像头正在使用中。|
+| `1512`   | **弃用**：v2.4.1 起废弃。请改用 [onLocalVideoStateChanged] 回调中的 [LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY]\(3)。</br>摄像头正在使用中。|
 | `1600`  | 未知错误。|
 | `1601`  | 视频编码初始化失败。请尝试重新加入频道。|
 | `1602`  | 视频编码失败。请尝试重新加入频道。|
@@ -158,7 +158,7 @@ Agora SDK 在运行过程中，可能通过如下方式返回错误码或警告�
 | `20`  | 请求处于待定状态。一般是由于某个模块还没准备好，请求被延迟处理。|
 | `103`  | 没有可用的频道资源。可能是因为服务器没法分配频道资源。|
 | `104`  | 查找频道超时。在加入频道时 SDK 先要查找指定的频道，出现该警告一般是因为网络太差，无法连接服务器。|
-| `105`  | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_REJECTED_BY_SERVER] (10)。</br>查找频道请求被服务器拒绝。服务器可能没有办法处理这个请求或请求是非法的。|
+| `105`  | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_REJECTED_BY_SERVER]\(10)。</br>查找频道请求被服务器拒绝。服务器可能没有办法处理这个请求或请求是非法的。|
 | `106`  | 加入频道超时。查找到指定频道后，SDK 接着加入该频道，超时一般是因为网络太差，连接不到服务器。|
 | `107`  | 加入频道请求被服务器拒绝。服务器可能没有办法处理该请求或该请求是非法的。|
 | `111`  | 切换直播视频超时。 |
