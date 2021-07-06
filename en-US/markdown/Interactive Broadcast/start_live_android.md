@@ -215,7 +215,7 @@ To implement this logic, take the following steps:
 
    In `/app/java/com.example.<projectname>/MainActivity`, add `initializeAndJoinChannel` to the `MainActivity` class.
 
-    ```java
+   ```java
     private void initializeAndJoinChannel() {
         try {
             mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
@@ -230,19 +230,18 @@ To implement this logic, take the following steps:
 
         // By default, video is disabled, and you need to call enableVideo to start a video stream.
         mRtcEngine.enableVideo();
-
-
+        
         FrameLayout container = (FrameLayout) findViewById(R.id.local_video_view_container);
         // Call CreateRendererView to create a SurfaceView pbject and add it as a child to the FrameLayout
         SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
         container.addView(surfaceView);
         // Pass the SurfaceView object to Agora so that it renders the local video
         mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
-
+   
         // Join the channel with a token
         mRtcEngine.joinChannel(token, channelName, "", 0);
-    }
-    ```
+    }    
+   ```
 
 4. Add the remote interface when a remote host joins the channel.
 
