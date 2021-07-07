@@ -16,7 +16,6 @@ Configure the SDK.
 
 ```typescript
 AgoraEduSDK.config({
-  // Agora App ID
   appId: '<YOUR AGORA APPID>',
 })
 ```
@@ -131,7 +130,8 @@ export type LaunchOption = {
   personalCourseWareList?: CourseWareList,
   region?: AgoraRegion
   recordUrl?: string,
-  extApps?: IAgoraExtApp[]
+  extApps?: IAgoraExtApp[],
+  mediaOptions?: MediaOptions
 }
 ```
 
@@ -154,6 +154,59 @@ export type LaunchOption = {
 | `courseWareList` | The configuration of courseware assigned by the educational institution, which cannot be edited by the client. See [`courseWareList`](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 | `personalCourseWareList` | The configuration of courseware uploaded by a teacher. See [`CourseWareList`](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 | `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](./agora_class_ext_app_web?platform=Web). |
+| `mediaOptions` | The media options, including media encryption configurations. See [MediaOptions](#mediaoptions). |
+
+### MediaOptions
+
+```typescript
+export type MediaOptions = {
+  encryptionConfig?: MediaEncryptionConfig
+}
+```
+
+The media options, including media encryption configurations. Used in [LaunchOption](#launchoption).
+
+| Attributes         | Description                                                  |
+| :----------------- | :----------------------------------------------------------- |
+| `encryptionConfig` | The media encryption configurations. See [MediaEncryptionConfig](#mediaencryptionconfig). |
+
+### MediaEncryptionConfig
+
+```typescript
+export declare interface MediaEncryptionConfig {
+  mode: MediaEncryptionMode,
+  key: string
+}
+```
+
+The media encryption configurations. Used in [MediaOptions](#mediaoptions).
+
+| Attributes | Description                                                  |
+| :--------- | :----------------------------------------------------------- |
+| `mode`     | The media encryption modes. See [MediaEncryptionMode](#mediaencryptionmode). |
+| `key`      | The encryption key in string type.                           |
+
+### MediaEncryptionMode
+
+```swift
+export enum MediaEncryptionMode {
+  AES_128_XTS = 1,
+  AES_128_ECB = 2,
+  AES_256_XTS = 3,
+  AES_128_GCM = 5,
+  AES_256_GCM = 6
+}
+```
+
+The encryption mode. Used in [MediaEncryptionConfig](#mediaencryptionconfig).
+
+| Attributes    | Description                       |
+| :------------ | :-------------------------------- |
+| `AES_128_XTS` | 128-bit AES encryption, XTS mode. |
+| `AES_128_ECB` | 128-bit AES encryption, ECB mode. |
+| `AES_256_XTS` | 256-bit AES encryption, XTS mode. |
+| `AES_128_GCM` | 128-bit AES encryption, GCM mode. |
+| `AES_256_GCM` | 256-bit AES encryption, GCM mode. |
 
 ### CourseWareList
 

@@ -321,7 +321,7 @@ The SDK global configuration. Used when calling [`setConfig`](#setconfig).
 
 ### AgoraEduLaunchConfig
 
-```java
+```kotlin
 public class AgoraEduLaunchConfig implements Parcelable {
     @NotNull
     private String userName;
@@ -341,6 +341,8 @@ public class AgoraEduLaunchConfig implements Parcelable {
     private Long duration;
     @Nullable
     private String region;
+    @Nullable
+    private AgoraEduMediaOptions mediaOptions;
 }
 ```
 
@@ -358,6 +360,59 @@ The classroom launching configuration. Used when calling [`launch`](#launch).
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
 | `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
+| `mediaOptions` | The media options, including media encryption configurations. See [AgoraEduMediaOptions](#agoraedumediaoptions). |
+
+### AgoraEduMediaOptions
+
+```kotlin
+public class AgoraEduMediaOptions implements Parcelable {
+    private AgoraEduMediaEncryptionConfigs encryptionConfigs;
+}
+```
+
+The media options, including media encryption configurations. Used in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
+
+| Attributes         | Description                                                  |
+| :----------------- | :----------------------------------------------------------- |
+| `encryptionConfig` | The media encryption configurations. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig). |
+
+### AgoraEduMediaEncryptionConfig
+
+```kotlin
+public class AgoraEduMediaEncryptionConfigs implements Parcelable {
+    private String encryptionKey;
+    private String encryptionMode;
+}
+```
+
+The media encryption configurations. Used in [AgoraEduMediaOptions](#agoraedumediaoptions).
+
+| Attributes | Description                                                  |
+| :--------- | :----------------------------------------------------------- |
+| `mode`     | The media encryption modes. See [EncryptionMode](#encryptionmode). |
+| `key`      | The encryption key in string type.                           |
+
+### EncryptionMode
+
+```kotlin
+public enum EncryptionMode{
+  AES_128_XTS(1),
+  AES_128_ECB(2),
+  AES_256_XTS(3),
+  AES_128_GCM(5),
+  AES_256_GCM(6),
+}
+```
+
+The encryption mode. Used in [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfigs).
+
+| Attributes    | Description                       |
+| :------------ | :-------------------------------- |
+| `AES_128_XTS` | 128-bit AES encryption, XTS mode. |
+| `AES_128_ECB` | 128-bit AES encryption, ECB mode. |
+| `AES_256_XTS` | 256-bit AES encryption, XTS mode. |
+| `AES_128_GCM` | 128-bit AES encryption, GCM mode. |
+| `AES_256_GCM` | 256-bit AES encryption, GCM mode. |
 
 ### AgoraEduCourseware
 

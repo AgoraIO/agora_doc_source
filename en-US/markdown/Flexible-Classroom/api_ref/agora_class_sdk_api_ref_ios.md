@@ -298,6 +298,7 @@ The SDK global configuration. Used when calling [`setConfig`](#setConfig).
 @property (nonatomic, strong, nullable) NSNumber *startTime;
 @property (nonatomic, strong, nullable) NSNumber *duration;
 @property (nonatomic, copy) NSString *region;
+@property (nonatomic, strong, nullable) AgoraEduMediaOptions *mediaOptions;
  
 - (instancetype)initWithUserName:(NSString *)userName
                         userUuid:(NSString *)userUuid
@@ -308,7 +309,8 @@ The SDK global configuration. Used when calling [`setConfig`](#setConfig).
                            token:(NSString *)token
                        startTime:(NSNumber *)startTime
                         duration:(NSNumber *)duration;
-                     region:(NSString *_Nullable)region;
+                          region:(NSString *_Nullable)region;
+                    mediaOptions:(AgoraEduMediaOptions *_Nullable)mediaOptions;
 @end
 ```
 
@@ -326,6 +328,63 @@ The classroom launching configuration. Used when calling [`launch`](#launch).
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
 | `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
+| `mediaOptions` | The media options, including media encryption configurations. See [AgoraEduMediaOptions](#agoraedumediaoptions). |
+
+### AgoraEduMediaOptions
+
+```swift
+@interface AgoraEduMediaOptions : NSObject
+@property (nonatomic, strong) AgoraEduMediaEncryptionConfig *encryptionConfig;
+
+- (instancetype)initWithConfig:(AgoraEduMediaEncryptionConfig *)encryptionConfig;
+@end
+```
+
+The media options, including media encryption configurations. Used in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
+
+| Attributes         | Description                                                  |
+| :----------------- | :----------------------------------------------------------- |
+| `encryptionConfig` | The media encryption configurations. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig). |
+
+### AgoraEduMediaEncryptionConfig
+
+```swift
+@interface AgoraEduMediaEncryptionConfig : NSObject
+@property (nonatomic, assign) AgoraEduMediaEncryptionMode mode;
+@property (nonatomic, copy) NSString *key;
+
+- (instancetype)initWithMode:(AgoraEduMediaEncryptionMode)mode key:(NSString *)key;
+@end
+```
+
+The media encryption configurations. Used in [AgoraEduMediaOptions](#agoraedumediaoptions).
+
+| Attributes | Description                                                  |
+| :--------- | :----------------------------------------------------------- |
+| `mode`     | The media encryption modes. See [AgoraEduMediaEncryptionMode](#agoraedumediaencryptionmode). |
+| `key`      | The encryption key in string type.                           |
+
+### AgoraEduMediaEncryptionMode
+
+```swift
+typedef NS_ENUM(NSInteger, AgoraEduMediaEncryptionMode) {
+    AgoraEduMediaEncryptionModeAES128XTS = 1,
+    AgoraEduMediaEncryptionModeAES128ECB = 2,
+    AgoraEduMediaEncryptionModeAES256XTS = 3,
+    AgoraEduMediaEncryptionModeAES128GCM = 5,
+    AgoraEduMediaEncryptionModeAES256GCM = 6,
+};
+```
+
+The encryption mode. Used in [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfigs).
+
+| Attributes                             | Description                       |
+| :------------------------------------- | :-------------------------------- |
+| `AgoraEduMediaEncryptionModeAES128XTS` | 128-bit AES encryption, XTS mode. |
+| `AgoraEduMediaEncryptionModeAES128ECB` | 128-bit AES encryption, ECB mode. |
+| `AgoraEduMediaEncryptionModeAES256XTS` | 256-bit AES encryption, XTS mode. |
+| `AgoraEduMediaEncryptionModeAES128GCM` | 128-bit AES encryption, GCM mode. |
+| `AgoraEduMediaEncryptionModeAES256GCM` | 256-bit AES encryption, GCM mode. |
 
 ### AgoraEduCourseware
 
