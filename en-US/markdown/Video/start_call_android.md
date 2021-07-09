@@ -138,6 +138,8 @@ In the interface, you have one frame for local video and another for remote vide
 
 When your app launches, check if the permissions necessary to insert live streaming functionality into the app are granted. If the permissions are not granted, use the built-in Android functionality to request them; if they are, return `true`.
 
+In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
+
 ```java
 // Java
 private static final int PERMISSION_REQ_ID = 22;
@@ -396,7 +398,7 @@ Connect an Android device to your computer, and click `Run 'app'` on your Androi
 
 ## Next steps
 
-Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) shows you how to start video calling with a token that you retrieve from your server.
+Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Video/token_server?platform=Android) shows you how to start video calling with a token that you retrieve from your server.
 
 ## See also
 
