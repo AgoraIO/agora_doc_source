@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_localvideostats">
+    <title><ph keyref="LocalVideoStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The statistics of the local video stream.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">struct LocalVideoStats { int sentBitrate; int sentFrameRate; int encoderOutputFrameRate; int rendererOutputFrameRate; int targetBitrate; int targetFrameRate; QUALITY_ADAPT_INDICATION qualityAdaptIndication; int encodedBitrate; int encodedFrameWidth; int encodedFrameHeight; int encodedFrameCount; VIDEO_CODEC_TYPE codecType; unsigned short txPacketLossRate; int captureFrameRate; CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel; };</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">export interface LocalVideoStats { sentBitrate: number; sentFrameRate: number; encoderOutputFrameRate: number; rendererOutputFrameRate: number; targetBitrate: number; targetFrameRate: number; qualityAdaptIndication: QUALITY_ADAPT_INDICATION; encodedBitrate: number; encodedFrameWidth: number; encodedFrameHeight: number; encodedFrameCount: number; codecType: VIDEO_CODEC_TYPE; txPacketLossRate: number; captureFrameRate: number; captureBrightnessLevel: CAPTURE_BRIGHTNESS_LEVEL_TYPE; }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="parameters">
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <parml>
+       <plentry>
+  <pt>sentBitrate</pt>
+  <pd>
+      <p>The actual bitrate (Kbps) while sending the local video stream.<note type="attention">This value does not include the bitrate while resending the video after packet loss.</note></p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>sentFrameRate</pt>
+  <pd>The actual frame rate (Kbps) while sending the local video stream.<note type="attention">This value does not include the frame rate while resending the video after packet loss.</note></pd>
+       </plentry>
+       <plentry>
+  <pt>encoderOutputFrameRate</pt>
+  <pd>The output frame rate (fps) of the local video encoder.</pd>
+       </plentry>
+       <plentry>
+  <pt>rendererOutputFrameRate</pt>
+  <pd>The output frame rate (fps) of the local video renderer.</pd>
+       </plentry>
+       <plentry>
+  <pt>targetBitrate</pt>
+  <pd>The target bitrate (Kbps) of the current encoder. This is an estimate made by the SDK based on the current network conditions.</pd>
+       </plentry>
+       <plentry>
+  <pt>targetFrameRate</pt>
+  <pd>The target frame rate (fps) of the current encoder.</pd>
+       </plentry>
+       <plentry>
+  <pt>qualityAdaptIndication</pt>
+  <pd>Quality adaption of the local video stream in the reported interval (in terms of the target frame rate and target bitrate). See <xref keyref="QUALITY_ADAPT_INDICATION"
+      />.</pd>
+       </plentry>
+       <plentry>
+  <pt>encodedBitrate</pt>
+  <pd>
+      <p>The bitrate (Kbps) while encoding the local video stream.<note type="attention">This value does not include the bitrate while resending the video after packet loss.</note></p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>encodedFrameWidth</pt>
+  <pd>The width of the encoded video (px).</pd>
+       </plentry>
+       <plentry>
+  <pt>encodedFrameHeight</pt>
+  <pd>The height of the encoded video (px).</pd>
+       </plentry>
+       <plentry>
+  <pt>encodedFrameCount</pt>
+  <pd>The number of sent video frames, represented by an aggregate value.</pd>
+       </plentry>
+       <plentry>
+  <pt>CodecType: Encoding type of the sent audio.</pt>
+  <pd>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+       </plentry>
+       <plentry>
+  <pt>txPacketLossRate</pt>
+  <pd>The video packet loss rate (%) from the local client to the Agora edge server before applying the anti-packet loss strategies.</pd>
+       </plentry>
+       <plentry>
+  <pt>captureFrameRate</pt>
+  <pd>The capture frame rate (fps) of the local video stream.</pd>
+       </plentry>
+       <plentry>
+  <pt>captureBrightnessLevel</pt>
+  <pd>
+      <dl outputclass="since">
+ <dlentry>
+     <dt>Since</dt>
+     <dd>v3.3.0</dd>
+ </dlentry>
+      </dl>
+      <p>The brightness level of the video image captured by the local camera. See <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>.</p>
+  </pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>

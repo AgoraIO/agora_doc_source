@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_seteffectposition">
+    <title><ph keyref="setEffectPosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the playback position of an audio effect file.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setEffectPosition"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public int setEffectPosition(int soundId, int pos);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setEffectPosition:(int)soundId pos:(NSInteger)pos;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setEffectPosition(int soundId, int pos) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setEffectPosition(soundId: number, pos: number): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since" props="android ios mac windows">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v3.4.0</dd>
+                </dlentry>
+            </dl>
+            <p>After a successful setting, the local audio effect file starts playing at the specified position.</p>
+            <note type="attention">Call this method after <apiname>playEffect</apiname>.</note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>soundId</pt>
+                    <pd>Audio effect ID. Ensure that this parameter matches the <parmname>soundId</parmname> set in <apiname>playEffect</apiname>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>pos</pt>
+                    <pd>The playback position (ms) of the audio effect file.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

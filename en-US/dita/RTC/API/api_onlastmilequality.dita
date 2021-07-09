@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onlastmilequality">
+    <title><ph keyref="onLastmileQuality"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the last mile network quality of the local user once every two seconds.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onLastmileQuality" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onLastmileQuality(int quality) { (void)quality; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LASTMILE_QUALITY, cb: (quality: QUALITY_TYPE) => void): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
+        </section>
+        <section id="detailed_desc">
+   
+   <p>This callback reports the last-mile network conditions of the local user before the user joins the channel. Last mile refers to the connection between the local device and Agora&apos;s edge server.</p>
+   <p>After the app calls <xref keyref="enableLastmileTest"/>, the SDK triggers this callback once every two seconds.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+   <parml>
+       <plentry>
+  <pt>quality</pt>
+  <pd>The last mile network quality. See <xref keyref="QUALITY_TYPE"/>.</pd>
+       </plentry>
+   </parml>
+        </section>
+    </refbody>
+</reference>

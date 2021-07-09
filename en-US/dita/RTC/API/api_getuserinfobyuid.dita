@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_getuserinfobyuid">
+    <title><ph keyref="getUserInfoByUid"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the user information by passing in the user ID.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="getUserInfoByUid" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, UserInfo* userInfo) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">getUserInfoByUid(uid: number): { errCode: number; userInfo: UserInfo }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+       </p>
+        </section>
+        <section id="detailed_desc">
+   
+   <dl outputclass="since">
+       <dlentry>
+  <dt>Since</dt>
+  <dd>v2.8.0</dd>
+       </dlentry>
+   </dl>
+   <p>After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers the <xref keyref="onUserInfoUpdated"/> callback on the local client.</p> 
+   <p>After receiving the callback, you can call this method to get the user account of the remote user from the <xref keyref="UserInfo"/> object by passing in the user ID.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+   <parml>
+       <plentry>
+  <pt>uid</pt>
+  <pd>User ID. It is mandatory.</pd>
+       </plentry>
+       <plentry>
+  <pt>userInfo</pt>
+  <pd>Identifiers of a user. See <xref keyref="UserInfo"/> for details.</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>Returns</title>
+   <ul>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+   </ul>
+        </section></refbody>
+</reference>
