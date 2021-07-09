@@ -19,7 +19,6 @@ The token is a credential for authenticating the identity of the user when your 
 **2. Join a channel**
 
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
-
 **3. Publish and subscribe to audio and video in the channel**
 
 After joining a channel, the app client automatically publishes and subscribes to audio and video in the channel.
@@ -51,7 +50,7 @@ Before proceeding, ensure that your development environment meets the following 
    a. In `/Grale Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the JitPack dependency.
 
     ```java
-    all projects {
+    allprojects {
     repositories {
         ...
         maven { url 'https://www.jitpack.io' }
@@ -115,13 +114,13 @@ In the interface, you have one frame for local video and another for remote vide
     tools:context=".MainActivity">
  
     <FrameLayout
-        android:id="@+id/remote_video_view_container"
+        android:id="@+id/local_video_view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white" />
  
     <FrameLayout
-        android:id="@+id/local_video_view_container"
+        android:id="@+id/remote_video_view_container"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_alignParentEnd="true"
@@ -160,6 +159,9 @@ private boolean checkSelfPermission(String permission, int requestCode) {
 
 ```java
 // Kotlin
+private val PERMISSION_REQ_ID_RECORD_AUDIO = 22
+private val PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1
+
 private fun checkSelfPermission(permisson: String, requestCode: Int): Boolean {
   if (ContextCompat.checkSelfPermission(this, permission) != 
       PackageManager.PERMISSION_GRANTED) {
@@ -187,7 +189,6 @@ To implement this logic, take the following steps:
    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
 
     ```java
-    import io.agora.rtc.Constants;
     import io.agora.rtc.IRtcEngineEventHandler;
     import io.agora.rtc.RtcEngine;
     import io.agora.rtc.video.VideoCanvas;
@@ -226,11 +227,11 @@ To implement this logic, take the following steps:
     ```java
     // Kotlin
     // Fill the App ID of your project generated on Agora Console.
-    private const val APP_ID = ""
+    private val APP_ID = ""
     // Fill the channel name.
-    private const val CHANNEL = ""
+    private val CHANNEL = ""
     // Fill the temp token generated on Agora Console.
-    private const val TOKEN = ""
+    private val TOKEN = ""
 
     private var mRtcEngine: RtcEngine ?= null
 
@@ -282,13 +283,17 @@ To implement this logic, take the following steps:
     
       }
   
+      // By default, video is disabled, and you need to call enableVideo to start a video stream.
       mRtcEngine!!.enableVideo()
   
-      val localContainer = findViewById(R.id.local_video_view_container)
+      val localContainer = findViewById(R.id.local_video_view_container) as FrameLayout
+      // Call CreateRendererView to create a SurfaceView object and add it as a child to the FrameLayout.
       val localFrame = RtcEngine.CreateRendererView(baseContext)
-      localContainer.addView(localFrame, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
-      mRtcEgnine!!.setupLocalVideo(VideoCanvas(localFrame, VideoCanvas.RENDER_MODE_HIDDEN, 0))
+      localContainer.addView(localFrame)
+      // Pass the SurfaceView object to Agora so that it renders the local video.
+      mRtcEgnine!!.setupLocalVideo(VideoCanvas(localFrame, VideoCanvas.RENDER_MODE_FIT, 0))
   
+      // Join the channel with a token.
       mRtcEngine!!.joinChannel(TOKEN, CHANNEL, "", O)
     }
    ```
@@ -311,12 +316,12 @@ To implement this logic, take the following steps:
     ```java
     // Kotlin
     private fun setupRemoteVideo(uid: Int) {
-        val container = findViewById(R.id.remote_video_view_container) as FrameLayout
+        val remoteContainer = findViewById(R.id.remote_video_view_container) as FrameLayout
   
-        val surfaceView = RtcEngine.CreateRendererView(baseContext)
-        surfaceView.setZOrderMediaOverlay(true)
-        container.addView(surfaveView)
-        mRtcEngine!!.setupRemoteVideo(VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, uid))
+        val remoteFrame = RtcEngine.CreateRendererView(baseContext)
+        remoteFrame.setZOrderMediaOverlay(true)
+        remoteContainer.addView(remoteFrame)
+        mRtcEngine!!.setupRemoteVideo(VideoCanvas(remoteFrame, VideoCanvas.RENDER_MODE_FIT, uid))
     }
     ```
 
@@ -349,6 +354,7 @@ Now you have created the Video Calling functionality, start and stop the app. In
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
   
+        // If all the permissions are granted, initialize the RtcEngine object and join a channel.
         if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) && checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA)) {
           initializeAndJoinChannel()
         }
@@ -376,7 +382,6 @@ Now you have created the Video Calling functionality, start and stop the app. In
   
         mRtcEngine?.leaveChannel()
         RtcEngine.destroy()
-        mRtcEngine = null
     }
     ```
 
