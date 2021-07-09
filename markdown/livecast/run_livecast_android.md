@@ -3,7 +3,9 @@ title: 跑通 Livecast 示例项目
 platform: Android
 updatedAt: 2021-03-31 08:46:36
 ---
-Agora 在 GitHub 上提供开源的互动播客示例项目 [Livecast](https://github.com/AgoraIO-Usecase/InteractivePodcast)。 本文介绍如何快速跑通该示例项目，体验 Agora 互动播客。
+
+Agora 在 GitHub 上提供开源的互动播客示例项目 [Livecast](https://github.com/AgoraIO-Usecase/InteractivePodcast)。本文介绍如何快速跑通该示例项目，体验 Agora 互动播客。
+
 
 ## 前提条件
 
@@ -13,6 +15,7 @@ Agora 在 GitHub 上提供开源的互动播客示例项目 [Livecast](https://g
 <div class="alert note">如果你的网络环境部署了防火墙，请参考<a href="https://docs.agora.io/cn/AgoraPlatform/firewall?platform=iOS">应用企业防火墙限制</a>以正常使用 Agora 服务。</div>
 
 ## 操作步骤
+
 
 ### 1. 创建 Agora 项目
 
@@ -39,7 +42,7 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 ### 3. 获取第三方云存储服务
 
-Agora 提供的互动播客示例项目使用了第三方云存储服务，因此你还需要获取该云存储服务的有关信息。 具体步骤如下：
+Agora 提供的互动播客示例项目使用了第三方云存储服务，因此你还需要获取该云存储服务的有关信息。具体步骤如下：
 
 1. 前往[第三方云存储控制台](https://console.leancloud.cn/)注册账号，创建一个新的应用。
 2. 应用创建成功后，点击![](https://web-cdn.agora.io/docs-files/1617009267331)> **应用 Keys**，就能看到该应用的 AppID、AppKey 和 REST API 服务器地址。

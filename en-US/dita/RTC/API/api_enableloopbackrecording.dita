@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_enableloopbackrecording">
+    <title><ph keyref="enableLoopbackRecording"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Enables loopback audio capture.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="enableLoopbackRecording" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">enableLoopbackRecording( enabled = false, deviceName: string | null = null ): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
+        </section>
+        <section id="detailed_desc">
+   
+   <p id="desc">If you enable loopback audio capturing, the output of the sound card is mixed into the audio stream sent to the other end.</p>
+       <note type="attention" id="note">
+  <ul>
+      <li props="windows">Applies to the macOS and Windows platforms only.</li>
+      <li props="windows mac electron">macOS does not support loopback capturing of the default sound card. If you need to use this method, please use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora has tested and recommends using soundflower.</li>
+      <li>You can call this method either before or after joining a channel.</li>
+  </ul>
+       </note>
+        </section>
+        <section id="parameters"><title>Parameters</title>     
+   <parml>
+       <plentry>
+  <pt>enabled</pt>
+  <pd>Whether to enableloopback capture:<ul>
+ <li><codeph><ph keyref="true"/></codeph>: Enable loopback audio capture.</li>
+ <li><codeph><ph keyref="false"/></codeph>: (Default) Disable loopback capture.</li>
+      </ul></pd>
+       </plentry>
+       <plentry>
+  <pt>deviceName</pt>
+  <pd>The device name of the sound card. The default value is <codeph><ph keyref="NULL"/></codeph> (the default sound card). If the user uses a virtual sound card, such as &quot;Soundflower&quot;, the virtual sound card name &quot;Soundflower&quot; can be passed to this parameter, and the SDK finds the corresponding virtual sound card device and starts collecting.</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

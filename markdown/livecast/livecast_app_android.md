@@ -5,7 +5,9 @@ updatedAt: 2021-03-31 08:46:24
 ---
 Agora 在 GitHub 上提供开源的互动播客示例项目：
 
-| Android | iOS |
+
+| Android                                                      | iOS                                                          |
+
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | [Livecast (Android)](https://github.com/AgoraIO-Usecase/InteractivePodcast/tree/main/Android) | [Livecast (iOS)](https://github.com/AgoraIO-Usecase/InteractivePodcast/tree/main/iOS) |
 
@@ -20,4 +22,3 @@ Agora 在 GitHub 上提供开源的互动播客示例项目：
    - 听众端点击屏幕右下角的举手图标请求上麦，房主端可以选择同意或拒绝。 在等待房主同意或拒绝的过程中，听众端可以放弃举手。
 
    - 房主端点击连麦主播的头像，可以体验下麦和禁麦功能。
-

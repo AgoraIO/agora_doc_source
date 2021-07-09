@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audioframe">
+    <title><ph keyref="AudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The definition of AudioFrame.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">struct AudioFrame { AUDIO_FRAME_TYPE type; int samples; int bytesPerSample; int channels; int samplesPerSec; void* buffer; int64_t renderTimeMs; int avsync_type; };</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="parameters">
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <parml>
+       <plentry>
+  <pt>type</pt>
+  <pd>
+      <p>The type of the audio frame. See <xref keyref="AUDIO_FRAME_TYPE"/>.</p>
+      </pd>
+       </plentry>
+       <plentry>
+  <pt>samples</pt>
+  <pd>The number of samples per channel in the audio frame.</pd>
+       </plentry>
+       <plentry>
+  <pt>bytesPerSample</pt>
+  <pd>The number of bytes per audio sample, which is usually 16-bit (2 bytes).</pd>
+       </plentry>
+       <plentry>
+  <pt>channels</pt>
+  <pd>
+      <p>The number of audio channels (the data are interleaved if stereo).<ul id="ul_zxz_2wt_r4b">
+     <li>1: Mono.</li>
+     <li>2: Stereo.</li>
+ </ul></p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>samplesPerSec</pt>
+  <pd>The number of samples per channel in the audio frame.</pd>
+       </plentry>
+       <plentry>
+  <pt>buffer</pt>
+  <pd>
+      <p>The data buffer of the audio frame. When the audio frame uses a stereo channel, the data buffer is interleaved.</p>
+      <p>The size of the data buffer is as follows: <codeph>buffer</codeph> = <codeph>samples</codeph> ×<codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>renderTimeMs</pt>
+  <pd>
+      <p>The timestamp (ms) of the external audio frame.</p>
+      <p>You can use this timestamp to restore the order of the captured audio frame, and synchronize audio and video frames in video scenarios, including scenarios where external video sources are used.</p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>avsync_type</pt>
+  <pd>A reserved parameter.</pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>

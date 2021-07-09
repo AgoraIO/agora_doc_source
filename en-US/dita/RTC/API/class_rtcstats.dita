@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtcstats">
+    <title><ph keyref="RtcStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Statistics of a call session.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">struct RtcStats { unsigned int duration; unsigned int txBytes; unsigned int rxBytes; unsigned int txAudioBytes; unsigned int txVideoBytes; unsigned int rxAudioBytes; unsigned int rxVideoBytes; unsigned short txKBitRate; unsigned short rxKBitRate; unsigned short rxAudioKBitRate; unsigned short txAudioKBitRate; unsigned short rxVideoKBitRate; unsigned short txVideoKBitRate; unsigned short lastmileDelay; unsigned short txPacketLossRate; unsigned short rxPacketLossRate; unsigned int userCount; double cpuAppUsage; double cpuTotalUsage; int gatewayRtt; double memoryAppUsageRatio; double memoryTotalUsageRatio; int memoryAppUsageInKbytes; RtcStats() : duration(0) , txBytes(0) , rxBytes(0) , txAudioBytes(0) , txVideoBytes(0) , rxAudioBytes(0) , rxVideoBytes(0) , txKBitRate(0) , rxKBitRate(0) , rxAudioKBitRate(0) , txAudioKBitRate(0) , rxVideoKBitRate(0) , txVideoKBitRate(0) , lastmileDelay(0) , txPacketLossRate(0) , rxPacketLossRate(0) , userCount(0) , cpuAppUsage(0) , cpuTotalUsage(0) , gatewayRtt(0) , memoryAppUsageRatio(0) , memoryTotalUsageRatio(0) , memoryAppUsageInKbytes(0) {} };</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">export interface RtcStats { duration: number; txBytes: number; rxBytes: number; txKBitRate: number; rxKBitRate: number; rxAudioKBitRate: number; txAudioKBitRate: number; rxVideoKBitRate: number; txVideoKBitRate: number; rxAudioKBytes: number; txAudioKBytes: number; rxVideoKBytes: number; txVideoKBytes: number; lastmileDelay: number; txPacketLossRate: number; rxPacketLossRate: number; userCount: number; cpuAppUsage: number; cpuTotalUsage: number; gatewayRtt: number; memoryAppUsageRatio: number; memoryTotalUsageRatio: number; memoryAppUsageInKbytes: number; }</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript">export interface RtcStats { duration: number; txBytes: number; rxBytes: number; txKBitRate: number; rxKBitRate: number; rxAudioKBitRate: number; txAudioKBitRate: number; rxVideoKBitRate: number; txVideoKBitRate: number; rxAudioKBytes: number; txAudioKBytes: number; rxVideoKBytes: number; txVideoKBytes: number; lastmileDelay: number; txPacketLossRate: number; rxPacketLossRate: number; userCount: number; cpuAppUsage: number; cpuTotalUsage: number; gatewayRtt: number; memoryAppUsageRatio: number; memoryTotalUsageRatio: number; memoryAppUsageInKbytes: number; }</codeblock>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="parameters">
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <parml>
+       <plentry>
+  <pt>duration</pt>
+  <pd>
+      <p>Call duration of the local user in seconds, represented by an aggregate value.</p>
+      </pd>
+       </plentry>
+       <plentry>
+  <pt>txBytes</pt>
+  <pd>The number of bytes sent.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxBytes</pt>
+  <pd>The number of bytes received.</pd>
+       </plentry>
+       <plentry>
+  <pt>txAudioBytes</pt>
+  <pd>The total number of audio bytes sent, represented by an aggregate value.</pd>
+       </plentry>
+       <plentry>
+  <pt>txVideoBytes</pt>
+  <pd>The total number of video bytes sent, represented by an aggregate value.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxAudioBytes</pt>
+  <pd>The total number of audio bytes received, represented by an aggregate value.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxVideoBytes</pt>
+  <pd>The total number of video bytes received, represented by an aggregate value.</pd>
+       </plentry>
+       <plentry>
+  <pt>txKBitRate</pt>
+  <pd>The bitrate (Kbps) of sending data.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxKBitRate</pt>
+  <pd>The receiving bitrate (Kbps), represented by an instantaneous value.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxAudioKBitRate</pt>
+  <pd>Audio receive bitrate (Kbps), represented by an instantaneous value.</pd>
+       </plentry>
+       <plentry>
+  <pt>txAudioKBitRate</pt>
+  <pd>The bitrate (Kbps) of sending the audio packet.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxVideoKBitRate</pt>
+  <pd>Video receive bitrate (Kbps), represented by an instantaneous value.</pd>
+       </plentry>
+       <plentry>
+  <pt>txVideoKBitRate</pt>
+  <pd>The bitrate (Kbps) of sending the video.</pd>
+       </plentry>
+       <plentry>
+  <pt>lastmileDelay</pt>
+  <pd>The client-to-server delay (milliseconds).</pd>
+       </plentry>
+       <plentry>
+  <pt>txPacketLossRate</pt>
+  <pd>The packet loss rate (%) from the client to the Agora server before using the anti-packet-loss method.</pd>
+       </plentry>
+       <plentry>
+  <pt>rxPacketLossRate</pt>
+  <pd>The packet loss rate (%) from the Agora server to the client before using the anti-packet-loss method.</pd>
+       </plentry>
+       <plentry>
+  <pt>userCount</pt>
+  <pd><p>The number of users in the channel.<ul>
+      <li>For COMMUNICATION profile: The number of users in the channel.</li>
+      <li>For LIVE_BROADCASTING profile:<ul>
+ <li>If the local user is an audience member: The number of users in the channel = The number of hosts in the channel + 1.</li>
+ <li>If the user is a host: The number of users in the channel = The number of hosts in the channel.</li>
+      </ul></li>
+  </ul>
+  </p></pd>
+       </plentry>
+       <plentry>
+  <pt>cpuAppUsage</pt>
+  <pd>The CPU usage (%) of the application.</pd>
+       </plentry>
+       <plentry>
+  <pt>cpuTotalUsage</pt>
+  <pd>
+      <p>The system CPU usage (%).</p>
+      <p>In the multi-kernel environment, this member represents the average CPU usage. The value = 100 - System Idle Progress in Task Manager.</p>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>gatewayRtt</pt>
+  <pd>The round-trip time delay from the client to the local router.</pd>
+       </plentry>
+       <plentry>
+  <pt>memoryAppUsageRatio</pt>
+  <pd>
+      <p>The memory occupied by the application (%).</p>
+      <note type="attention">This value is for reference only. Due to system limitations, you might
+                            not get this value.</note>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>memoryTotalUsageRatio</pt>
+  <pd>
+      <p>The memory occupied by the system (%).</p>
+      <note type="attention">This value is for reference only. Due to system limitations, you might
+                            not get this value.</note>
+  </pd>
+       </plentry>
+       <plentry>
+  <pt>memoryAppUsageInKbytes</pt>
+  <pd>
+      <p>The memory occupied by the application (KB).</p>
+      <note type="attention">This value is for reference only. Due to system limitations, you might
+                            not get this value.</note>
+  </pd>
+       </plentry>
+   </parml>
+        </section></refbody>
+</reference>
