@@ -6,11 +6,11 @@ This page shows the minimum code you need to add video calling into your app by 
 
 ## Understand the tech
 
-The following figure shows the workflow to intergrate Video Calling into your app.
+The following figure shows the workflow to intergrate video calling into your app.
 
 ![](images/video_calling_tech.png)
 
-To start Video Calling, you implement the following steps in your app:
+To start video calling, you implement the following steps in your app:
 
 **1. Retrieve a token** 
 
@@ -19,6 +19,7 @@ The token is a credential for authenticating the identity of the user when your 
 **2. Join a channel**
 
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+
 **3. Publish and subscribe to audio and video in the channel**
 
 After joining a channel, the app client automatically publishes and subscribes to audio and video in the channel.
@@ -71,12 +72,9 @@ Before proceeding, ensure that your development environment meets the following 
 
 3. Add permissions for network and device access.
 
-   In `/app/Manifests/AndroidManifest.xml`, add the following permissions:
+   In `/app/Manifests/AndroidManifest.xml`, add the following permissions after `</application>`:
 
     ```xml
-    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.agora.helloagora">
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -84,8 +82,6 @@ Before proceeding, ensure that your development environment meets the following 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    ...
-    </manifest>
     ```
 
 4. Prevent code obfuscation.
@@ -98,7 +94,7 @@ Before proceeding, ensure that your development environment meets the following 
 
 ## Implement a client for Video Calling
 
-This section shows how to use the Agora Video SDK to implement video calling into your app step by step.
+This section shows how to use the Agora Video SDK to implement Video Calling into your app step by step.
 
 ### Create the UI
 
@@ -136,7 +132,7 @@ In the interface, you have one frame for local video and another for remote vide
 
 ### Handle the Android permissions
 
-When your app launches, check if the permissions necessary to insert live streaming functionality into the app are granted. If the permissions are not granted, use the built-in Android functionality to request them; if they are, return `true`.
+When your app launches, check if the permissions necessary to insert video calling functionality into the app are granted. If the permissions are not granted, use the built-in Android functionality to request them; if they are, return `true`.
 
 In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
 
@@ -178,7 +174,7 @@ private fun checkSelfPermission(permisson: String, requestCode: Int): Boolean {
 
 ### Implement the Video Calling logic
 
-When your app opens, you create an `RtcEngine` instance, enable the video, join a channel, and publish the local audio and video to the lower frame layout in the UI. When another user joins the channel, you app catches the join event and adds the remote video to the top frame layout in the UI.
+When your app opens, you create an `RtcEngine` instance, enable the video, join a channel, and publish the local video to the lower frame layout in the UI. When another user joins the channel, you app catches the join event and adds the remote video to the top frame layout in the UI.
 
 The following figure shows the API call sequence of implementing Video Calling.
 
@@ -389,7 +385,7 @@ Now you have created the Video Calling functionality, start and stop the app. In
 
 ## Test your app
 
-Connect an Android device to your computer, and click `Run 'app'` on your Android Studio. A moment later you will see the project installed on your device. Take the following steps to test the video calling app:
+Connect an Android device to your computer, and click `Run 'app'` on your **Android Studio**. A moment later you will see the project installed on your device. Take the following steps to test the video calling app:
 
 1. Grant microphone and camera access to your app.
 2. When the app launches, you should be able to see yourself on the local view.
