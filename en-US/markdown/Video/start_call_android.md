@@ -294,7 +294,7 @@ To implement this logic, take the following steps:
 
    ```kotlin
    // Kotlin
-   private fun initializeAndJoinChanenl() {
+   private fun initializeAndJoinChannel() {
       try {
           mRtcEngine = RtcEngine.create(baseContext, APP_ID, mRtcEventHandler)
       } catch (e: Exception) {
