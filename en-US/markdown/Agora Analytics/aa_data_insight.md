@@ -7,13 +7,10 @@ The **Data Insight** function of Agora Analytics provides periodic call usage an
 1. Purchase the <a href="https://console.agora.io/support/plan">support package</a > or contact support@agora.io to enable the **Data Insight** function for your project.
 2. Login to [Agora Console](https://console.agora.io) and click **Agora Analytics** on the left navigation bar.
 3. Select a project in the top-left corner.
-   ![选择项目](/Users/dyx/Desktop/水晶球/数据洞察NEW/Console图片/选择项目.png)
 4. Click **Usage Overview** to view the usage statistics or **Quality Overview** to view the quality statistics.
 5. Configure the data filter:
-   <li>**Usage Overview**: Select the timezone, data granularity, and time frame in the upper-right corner.
-   ![时间筛选-用量](/Users/dyx/Desktop/水晶球/数据洞察NEW/Console图片/时间筛选-用量.png)</li>
-   <li>**Quality Overview**: Select the product type in the upper-left corner, and the timezone, data granularity, and time frame in the upper-right corner.
-   ![时间筛选-质量](/Users/dyx/Desktop/水晶球/数据洞察NEW/Console图片/时间筛选-质量.png)</li>
+   <li>**Usage Overview**: Select the timezone, data granularity, and time frame in the upper-right corner.</li>
+   <li>**Quality Overview**: Select the product type in the upper-left corner, and the timezone, data granularity, and time frame in the upper-right corner.</li>
 
 
 ## <a name="usage"></a>Usage Overview
