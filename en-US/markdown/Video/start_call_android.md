@@ -72,7 +72,7 @@ Before proceeding, ensure that your development environment meets the following 
 
 3. Add permissions for network and device access.
 
-   In `/app/Manifests/AndroidManifest.xml`, add the following permissions after `</application>`:
+   In `/app/manifests/AndroidManifest.xml`, add the following permissions after `</application>`:
 
     ```xml
     <uses-permission android:name="android.permission.INTERNET" />
