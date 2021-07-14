@@ -1,16 +1,16 @@
-# Get Started with Video Calling
+# Get Started with Video Call
 
 The Agora Video SDK enables you to develop rapidly to enhance your social, work, education, and IoT apps with real-time engagements.
 
-This page shows the minimum code you need to add video calling into your app by using the Agora Video SDK for Android.
+This page shows the minimum code you need to add video call into your app by using the Agora Video SDK for Android.
 
 ## Understand the tech
 
-The following figure shows the workflow to intergrate video calling into your app.
+The following figure shows the workflow to intergrate video call into your app.
 
 ![](images/video_calling_tech.png)
 
-To start video calling, you implement the following steps in your app:
+To start a video call, you implement the following steps in your app:
 
 **1. Retrieve a token** 
 
@@ -93,9 +93,9 @@ Before proceeding, ensure that your development environment meets the following 
     -keep class io.agora.**{*;}
     ```
 
-## Implement a client for Video Calling
+## Implement a client for Video Call
 
-This section shows how to use the Agora Video SDK to implement Video Calling into your app step by step.
+This section shows how to use the Agora Video SDK to implement Video Call into your app step by step.
 
 ### Create the UI
 
@@ -191,11 +191,11 @@ In this section, we import the necessary Android classes and handle the Android 
    }
    ```
 
-### Implement the Video Calling logic
+### Implement the Video Call logic
 
 When your app opens, you create an `RtcEngine` instance, enable the video, join a channel, and publish the local video to the lower frame layout in the UI. When another user joins the channel, you app catches the join event and adds the remote video to the top frame layout in the UI.
 
-The following figure shows the API call sequence of implementing Video Calling.
+The following figure shows the API call sequence of implementing Video Call.
 
 ![](images/sequence_video_calling.png)
 
@@ -211,7 +211,7 @@ To implement this logic, take the following steps:
     import io.agora.rtc.video.VideoCanvas;
     ```
 
-2. Create the variables that you use to create and join a Video Calling channel.
+2. Create the variables that you use to create and join a video call channel.
 
    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `AppCompatActivity {`:
 
@@ -345,9 +345,9 @@ To implement this logic, take the following steps:
 
 ### Start and stop your app
 
-Now you have created the Video Calling functionality, start and stop the app. In this implementation, a video call starts when the user opens your app. The call ends when the user closes your app.
+Now you have created the Video Call functionality, start and stop the app. In this implementation, a video call starts when the user opens your app. The call ends when the user closes your app.
 
-1. Check that the app has the correct permissions. If permissions are granted, call `initializeAndJoinChannel` to join a video calling channel.
+1. Check that the app has the correct permissions. If permissions are granted, call `initializeAndJoinChannel` to join a video call channel.
 
    In `/app/java/com.example.<projectname>/MainActivity`, replace `onCreate` with the following code in the `MainActivity` class.
 
@@ -418,10 +418,16 @@ Generating a token by hand is not helpful in a production context. [Authenticate
 
 ## See also
 
-This section provides additional information for your reference: 
+This section provides additional information for your reference.
 
-- Agora provides an open source sample project [Basic Video Call](https://github.com/AgoraIO/Basic-Video-Call) on GitHub that implements one-to-one video calling and group video calling for your reference.
-- In addition to integrating the Agora Video SDK for Android through JitPack, you can also import the SDK into your project manually by [downloading the SDK](https://docs.agora.io/en/Interactive%20Broadcast/downloads?platform=Android), extracting it, and copying the following files of the downloaded SDK package to the path of your project:
+### Sample project
+
+Agora provides an open source sample project [Basic Video Call](https://github.com/AgoraIO/Basic-Video-Call) on GitHub that implements one-to-one video call and group video call for your reference.
+
+### Other approches to integrate the SDK 
+In addition to integrating the Agora Video SDK for Android through JitPack, you can also import the SDK into your project using either of the following:
+
+- Integrate the SDK manually, by [downloading the SDK](https://docs.agora.io/en/Interactive%20Broadcast/downloads?platform=Android), extracting it, and copying the following files of the downloaded SDK package to the path of your project:
 
     | File or subfolder | Path of your project |
     |-------|----------|
@@ -439,7 +445,7 @@ This section provides additional information for your reference:
 	</ul>
 	</div>
 - If your SDK version is 3.5.0 or higher, you can also integrate the SDK using mavenCentral.
-  1. In `/Grale Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the mavenCentral dependency.
+  a. In `/Grale Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the mavenCentral dependency.
 
      ```java
      buildscript {
@@ -457,7 +463,7 @@ This section provides additional information for your reference:
      }
      ```
 
-  2. In `/Gradle Scripts/build.gradle(Module: <projectname>.app)`, add the following lines to integrate the Agora SDK into your Android project.
+  b. In `/Gradle Scripts/build.gradle(Module: <projectname>.app)`, add the following lines to integrate the Agora SDK into your Android project.
 
      ```java
      ...
