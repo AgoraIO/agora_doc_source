@@ -38,13 +38,14 @@ Before proceeding, ensure that your development environment meets the following 
 - Android Studio 3.0 or later.
 - Android SDK API Level 16 or higher.
 - A valid [Agora account](https://console.agora.io/).
-- A valid Agora project with an App ID and a temporary token. For details, see [Get Started with Agora](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms).
+- An active Agora project with an App ID and a temporary token. For details, see [Get Started with Agora](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms).
 - A computer with access to the internet. If your network has a firewall, follow the instructions in [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms).
 - A mobile device that runs Android 4.1 or later.
 
 ## Project setup
 
 1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**.
+   > After creating the project, **Android Studio** automatically starts gradle sync. If the sync fails, the files mentioned in the following steps won't appear.
 
 2. Integrate the Video SDK into your project.
 
@@ -52,21 +53,21 @@ Before proceeding, ensure that your development environment meets the following 
 
     ```java
     allprojects {
-    repositories {
-        ...
-        maven { url 'https://www.jitpack.io' }
-    }
+        repositories {
+            ...
+            maven { url 'https://www.jitpack.io' }
+        }
     }
     ```
 
-    b. In `/Gradle Scripts/build.gradle(Module: <projectname>)`, add the following lines to integrate the Agora Video SDK into your Android project.
+    b. In `/Gradle Scripts/build.gradle(Module: <projectname>.app)`, add the following lines to integrate the Agora Video SDK into your Android project.
 
     ```java
     ...
     dependencies {
-    ...
-    // For x.y.z, fill in a specific SDK version number. For example, 3.4.0
-    implementation 'com.github.agorabuilder:native-full-sdk:x.y.z'
+        ...
+        // For x.y.z, fill in a specific SDK version number. For example, 3.4.0
+        implementation 'com.github.agorabuilder:native-full-sdk:x.y.z'
     }
     ```
 
@@ -88,7 +89,7 @@ Before proceeding, ensure that your development environment meets the following 
 
    In `/Gradle Scripts/proguard-rules.pro`, add the following line to prevent obfuscating the code of the SDK:
 
-    ```
+    ```xml
     -keep class io.agora.**{*;}
     ```
 
@@ -130,47 +131,65 @@ In the interface, you have one frame for local video and another for remote vide
 </RelativeLayout>
 ```
 
-### Handle the Android permissions
+### Handle the Android system logic
 
-When your app launches, check if the permissions necessary to insert video calling functionality into the app are granted. If the permissions are not granted, use the built-in Android functionality to request them; if they are, return `true`.
+In this section, we import the necessary Android classes and handle the Android permissions.
 
-In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
+1. Import Android classes
 
-```java
-// Java
-private static final int PERMISSION_REQ_ID = 22;
+   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `import androidx.appcompat.app.AppCompatActivity`:
 
-private static final String[] REQUESTED_PERMISSIONS = {
+   ```java
+   import androidx.core.app.ActivityCompat;
+   import androidx.core.content.ContextCompat;
+
+   import android.Manifest;
+   import android.content.pm.PackageManager;
+   import android.view.SurfaceView;
+   import android.widget.FrameLayout;
+   ```
+
+2. Handle the Android permissions
+
+   When your app launches, check if the permissions necessary to insert video calling functionality into the app are granted. If the permissions are not granted, use the built-in Android functionality to request them; if they are, return `true`.
+
+   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:add the following lines after `AppCompatActivity {`:
+
+   ```java
+   // Java
+   private static final int PERMISSION_REQ_ID = 22;
+
+   private static final String[] REQUESTED_PERMISSIONS = {
         Manifest.permission.RECORD_AUDIO,
         Manifest.permission.CAMERA
-};
+   };
 
-private boolean checkSelfPermission(String permission, int requestCode) {
-    if (ContextCompat.checkSelfPermission(this, permission) !=
-            PackageManager.PERMISSION_GRANTED) {
-        ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, requestCode);
-        return false;
-    }
-    return true;
-}
-```
+   private boolean checkSelfPermission(String permission, int requestCode) {
+       if (ContextCompat.checkSelfPermission(this, permission) !=
+               PackageManager.PERMISSION_GRANTED) {
+           ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, requestCode);
+           return false;
+       }
+       return true;
+   }
+   ```
 
-```java
-// Kotlin
-private val PERMISSION_REQ_ID_RECORD_AUDIO = 22
-private val PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1
+   ```kotlin
+   // Kotlin
+   private val PERMISSION_REQ_ID_RECORD_AUDIO = 22
+   private val PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1
 
-private fun checkSelfPermission(permisson: String, requestCode: Int): Boolean {
-  if (ContextCompat.checkSelfPermission(this, permission) != 
-      PackageManager.PERMISSION_GRANTED) {
-    ActivityCompat.requestPermissions(this,
-                                     arrayOf(permission),
-                                     requestCode)
-    return false
-  }
-  return true
-}
-```
+   private fun checkSelfPermission(permisson: String, requestCode: Int): Boolean {
+     if (ContextCompat.checkSelfPermission(this, permission) != 
+         PackageManager.PERMISSION_GRANTED) {
+       ActivityCompat.requestPermissions(this,
+                                        arrayOf(permission),
+                                        requestCode)
+       return false
+     }
+     return true
+   }
+   ```
 
 ### Implement the Video Calling logic
 
@@ -184,7 +203,7 @@ To implement this logic, take the following steps:
 
 1. Import the Agora classes.
 
-   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
+   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `import android.os.Bundle;`:
 
     ```java
     import io.agora.rtc.IRtcEngineEventHandler;
@@ -194,7 +213,7 @@ To implement this logic, take the following steps:
 
 2. Create the variables that you use to create and join a Video Calling channel.
 
-   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
+   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `AppCompatActivity {`:
 
     ```java
     // Java
@@ -204,14 +223,13 @@ To implement this logic, take the following steps:
     private String channelName = "";  
     // Fill the temp token generated on Agora Console.
     private String token = "";
-
     private RtcEngine mRtcEngine;
 
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
         @Override
         // Listen for the remote user joining the channel to get the uid of the user.
         public void onUserJoined(int uid, int elapsed) {
-            runOnUniThread(new Runnable() {
+            runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     // Call setupRemoteVideo to set the remote video view after getting uid from the onUserJoined callback.
@@ -222,7 +240,7 @@ To implement this logic, take the following steps:
     };
     ```
 
-    ```java
+    ```kotlin
     // Kotlin
     // Fill the App ID of your project generated on Agora Console.
     private val APP_ID = ""
@@ -246,7 +264,9 @@ To implement this logic, take the following steps:
 
 3. Initialize the app and join the channel.
 
-   In `/app/java/com.example.<projectname>/MainActivity`, add the core methods for joining a channel to the `MainActivity` class. In the following sample code, we use an `initializeAndJoinChannel` function to encapsulte these core methods.
+    Call the core methods for joining a channel. In the following sample code, we use an `initializeAndJoinChannel` function to encapsulte these core methods.
+
+    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `checkSelfPermssion` function:
 
    ```java
     // Java
@@ -260,7 +280,7 @@ To implement this logic, take the following steps:
         // By default, video is disabled, and you need to call enableVideo to start a video stream.
         mRtcEngine.enableVideo();
         
-        FrameLayout container = (FrameLayout) findViewById(R.id.local_video_view_container);
+        FrameLayout container = findViewById(R.id.local_video_view_container);
         // Call CreateRendererView to create a SurfaceView object and add it as a child to the FrameLayout.
         SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
         container.addView(surfaceView);
@@ -272,7 +292,7 @@ To implement this logic, take the following steps:
     }    
    ```
 
-   ```java
+   ```kotlin
    // Kotlin
    private fun initializeAndJoinChanenl() {
       try {
@@ -298,12 +318,12 @@ To implement this logic, take the following steps:
 
 4. Add the remote interface when a remote user joins the channel.
 
-   In `/app/java/com.example.<projectname>/MainActivity`, add `setupRemoteVideo` to the `MainActivity` class.
+   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `initializeAndJoinChannel` function.
 
     ```java
     // Java
     private void setupRemoteVideo(int uid) {
-        FrameLayout container = (FrameLayout) findViewById(R.id.remote_video_view_container);
+        FrameLayout container = findViewById(R.id.remote_video_view_container);
         SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
         surfaceView.setZOrderMediaOverlay(true);
         container.addView(surfaceView);
@@ -311,7 +331,7 @@ To implement this logic, take the following steps:
     }
     ```
 
-    ```java
+    ```kotlin
     // Kotlin
     private fun setupRemoteVideo(uid: Int) {
         val remoteContainer = findViewById(R.id.remote_video_view_container) as FrameLayout
@@ -346,7 +366,7 @@ Now you have created the Video Calling functionality, start and stop the app. In
     }
     ```
 
-    ```java
+    ```kotlin
     // Kotlin
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -361,7 +381,7 @@ Now you have created the Video Calling functionality, start and stop the app. In
 
 2. When the user closes this app, clean up all the resources you created in `initializeAndJoinChannel`.
 
-   In `/app/java/com.example.<projectname>/MainActivity`, add `onDestroy` to the `MainActivity` class.
+   In `/app/java/com.example.<projectname>/MainActivity`, add `onDestroy` after the `onCreate` function.
 
     ```java
     // Java
@@ -373,7 +393,7 @@ Now you have created the Video Calling functionality, start and stop the app. In
     }
     ```
 
-    ```java
+    ```kotlin
     // Kotlin
     override fun onDestroy() {
         super.onDestroy()
@@ -418,3 +438,32 @@ This section provides additional information for your reference:
 		<li>Not all libraries in the SDK package are necessary. Refer to <a href="https://docs.agora.io/en/Video/faq/reduce_app_size_rtc">How can I reduce the app size after integrating the RTC Native SDK</a> for details.</li>
 	</ul>
 	</div>
+- If your SDK version is 3.5.0 or higher, you can also integrate the SDK using mavenCentral.
+  1. In `/Grale Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the mavenCentral dependency.
+
+     ```java
+     buildscript {
+         repositories {
+             ...
+             mavenCentral()
+         }
+         ...
+     }
+     allprojects {
+         repositories {
+             ...
+             mavenCentral()
+         }
+     }
+     ```
+
+  2. In `/Gradle Scripts/build.gradle(Module: <projectname>.app)`, add the following lines to integrate the Agora SDK into your Android project.
+
+     ```java
+     ...
+     dependencies {
+         ...
+         // For x.y.z, fill in a specific SDK version number. For example, 3.4.0
+         implementation 'io.agora.rtc:full-sdk:x.y.z'
+     }
+     ```
