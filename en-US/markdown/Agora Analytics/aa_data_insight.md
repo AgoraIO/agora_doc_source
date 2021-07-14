@@ -23,7 +23,7 @@ The **Usage Overview** page presents **Overall Trend** and **Multidimensional An
 
 The **Overall Trend** panel has three sections: **Peak traffic**, **Channel and user count**, and **Service minutes**. In each section, the cards in the upper-left corner highlight the aggregate or peak value of each usage metrics, and the line chart in the bottom area shows the daily values of each usage metrics. You can click **More** in the top-right corner of each section to view all data in a table or download the data.
 
-![1](/Users/dyx/Desktop/1.jpg)
+![1](./screenshots/1.jpg)
 
 Descriptions of each usage metrics are listed in [Usage metrics](#usagemetrics). 
 
@@ -40,7 +40,7 @@ The **Multidimensional Analysis** panel has six sections: **Geography**, **Netwo
 
 In the top-right corner of the panel, you can select the usage metrics. In the top-right corner of each section, you can click **More** to view all data in a table or download the data.
 
-![2](/Users/dyx/Desktop/2.jpg)
+![2](./screenshots/2.jpg)
 
 Definitions of each dimension are listed in [Dimensions](#dimensions). 
 
@@ -54,7 +54,7 @@ The **Quality Overview** page presents **Overall Trend** and **Multidimensional 
 
 The **Overall Trend** panel has two sections: **User experience** and **Channel-joining success**. In each section, the cards in the upper-left corner highlight the peak or bottom value of each quality metrics, and the line chart in the bottom area shows the daily or hourly values of each quality metrics. You can click **More** in the top-right corner of the section to view all data in a table or download the data.
 
-![3](/Users/dyx/Desktop/3.jpg)
+![3](./screenshots/3.jpg)
 
 Definitions of each quality metrics are listed in [Quality metrics](#qualitymetrics).
 
@@ -63,14 +63,14 @@ Definitions of each quality metrics are listed in [Quality metrics](#qualitymetr
 Each line chart provides the following features:
 
 - Hide and display: To hide or display the line for a quality metrics, click on the corresponding card.
-- Change time selection: When data granularity is set to **Daily** in the data filter, you can click a data point and select **Hourly data**, which changes the data granularity to **Hourly** and the time frame to the hour corresponding to the data point. If you want to switch back to the original filter setting, click **Restore filter** in the upper-center area of the panel.![4](/Users/dyx/Desktop/4.jpg)
+- Change time selection: When data granularity is set to **Daily** in the data filter, you can click a data point and select **Hourly data**, which changes the data granularity to **Hourly** and the time frame to the hour corresponding to the data point. If you want to switch back to the original filter setting, click **Restore filter** in the upper-center area of the panel.![4](./screenshots/4.jpg)
 - Jump to multidimensional analysis: To jump to the multidimensional analysis panel of a quality metrics for a specific day or hour, click the corresponding data point on the line and select **Multidimensional analysis**. If you want to use the previously selected time frame, click **Restore** in the upper-left area of the panel.
 
 ### Multidimensional Analysis
 
 The **Multidimensional Analysis** panel has six sections: **Geography**, **Network type**, **Operating system**, **SDK version**, **Device type**, and **Channel size**. Each section presents the relation between quality and usage in the form of bubble chart.
 
-In the top-right corner of the panel, you can select the quality metrics. In the top-right corner of each section, you can click ***\*More\****  to view all data in a table or download the data.![5](/Users/dyx/Desktop/5.jpg)
+In the top-right corner of the panel, you can select the quality metrics. In the top-right corner of each section, you can click ***\*More\****  to view all data in a table or download the data.![5](./screenshots/5.jpg)
 
 Definitions of each dimension are listed in [Dimensions](#dimensions).
 
