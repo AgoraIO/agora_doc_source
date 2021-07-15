@@ -45,7 +45,7 @@ Before proceeding, ensure that your development environment meets the following 
 ## Project setup
 
 1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**.
-   > After creating the project, **Android Studio** automatically starts gradle sync. If the sync fails, the files mentioned in the following steps won't appear.
+   > After creating the project, **Android Studio** automatically starts gradle sync. Ensure that the sync succeeds before your continue.
 
 2. Integrate the Video SDK into your project.
 
@@ -137,7 +137,7 @@ In this section, we import the necessary Android classes and handle the Android 
 
 1. Import Android classes
 
-   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `import androidx.appcompat.app.AppCompatActivity`:
+   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `package com.example.<projectname>`:
 
    ```java
    import androidx.core.app.ActivityCompat;
@@ -153,7 +153,7 @@ In this section, we import the necessary Android classes and handle the Android 
 
    When your app launches, check if the permissions necessary to insert video calling functionality into the app are granted. If the permissions are not granted, use the built-in Android functionality to request them; if they are, return `true`.
 
-   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:add the following lines after `AppCompatActivity {`:
+   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines before the `onCreate` function:
 
    ```java
    // Java
@@ -266,7 +266,7 @@ To implement this logic, take the following steps:
 
     Call the core methods for joining a channel. In the following sample code, we use an `initializeAndJoinChannel` function to encapsulte these core methods.
 
-    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `checkSelfPermssion` function:
+    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `onCreate` function:
 
    ```java
     // Java
