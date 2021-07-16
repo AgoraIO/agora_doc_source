@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_sdkprofile">
+    <title><ph keyref="SdkProfile"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The SDK profile.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">struct SdkProfile {
+                    std::string appid;
+                    #if RTE_ANDROID
+                    void* app_context;
+                    #endif
+                    LogConfig log_config;
+                    };
+                </codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc">
+           
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+                <plentry>
+                    <pt>appid</pt>
+                    <pd>The App ID issued to you by Agora. See How to get the App ID. Only users in apps with the same App ID can join the same channel and communicate with each other.</pd>
+                </plentry>
+                <plentry>
+                    <pt>app_context</pt>
+                    <pd>The app context.
+                    <ul>
+                        <li>For Windows, it is the handle of the window that loads the video. Specify this value to support plugging or unplugging the video devices while the
+                            host is powered on.</li>
+                        <li>For Android, it is the context of activity.</li>
+                    </ul>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>log_config</pt>
+                    <pd>Log file configuration.</pd>
+                </plentry>
+            </parml>
+        </section></refbody>
+</reference>
