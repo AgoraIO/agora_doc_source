@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rteremotevideostats">
+    <title>RteRemoteVideoStats</title>
+    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
+            <codeblock props="windows" outputclass="language-cpp">/**
+ * Statistics of the remote video stream.
+ */
+struct RteRemoteVideoStats {
+  /**
+   * @deprecated Time delay (ms).
+   *
+   * In scenarios where audio and video is synchronized, you can use the
+   * value of `networkTransportDelay` and `jitterBufferDelay` in `RemoteAudioStats`
+   * to know the delay statistics of the remote video.
+   */
+  int delay;
+  /**
+   * The width (pixels) of the video stream.
+   */
+  int width;
+  /**
+   * The height (pixels) of the video stream.
+   */
+  int height;
+  /**
+   * Bitrate (Kbps) received since the last count.
+   */
+  int receivedBitrate;
+  /**
+   * The decoder output frame rate (fps) of the remote video.
+   */
+  int decoderOutputFrameRate;
+  /**
+   * The render output frame rate (fps) of the remote video.
+   */
+  int rendererOutputFrameRate;
+  /**
+   * The video frame loss rate (%) of the remote video stream in the reported interval.
+   */
+  int frameLossRate;
+  /**
+   * Packet loss rate (%) of the remote video stream after using the anti-packet-loss method.
+   */
+  int packetLossRate;
+  /**
+   * The type of the remote video stream: #VIDEO_STREAM_TYPE.
+   */
+  VIDEO_STREAM_TYPE rxStreamType;
+  /**
+   * The total freeze time (ms) of the remote video stream after the remote user joins the channel.
+   * In a video session where the frame rate is set to no less than 5 fps, video freeze occurs when
+   * the time interval between two adjacent renderable video frames is more than 500 ms.
+   */
+  int totalFrozenTime;
+  /**
+   * The total video freeze time as a percentage (%) of the total time when the video is available.
+   */
+  int frozenRate;
+  /**
+   * The offset (ms) between audio and video stream. A positive value indicates the audio leads the
+   * video, and a negative value indicates the audio lags the video.
+   */
+  int avSyncTimeMs;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+                <plentry>
+                    <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
+                    <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
