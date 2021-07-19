@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtefileinfo">
+    <title>RteFileInfo</title>
+    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
+            <codeblock props="windows" outputclass="language-cpp">struct RteFileInfo {
+  int32_t file_id;  
+  std::string
+      file_url;      
+  int64_t duration;  
+  int32_t video_width;   
+  int32_t video_height;  
+  int32_t frame_rate;    
+  int32_t
+      index;  
+  int64_t begin_time;           
+
+  RteFileInfo() {
+    file_id = INVALID_RTE_FILE_ID;
+    file_url = "";
+    duration = 0;
+    video_width = 0;
+    video_height = 0;
+    frame_rate = 0;
+    index = -1;
+    begin_time = 0;
+  }
+
+  void Reset() {
+    file_id = INVALID_RTE_FILE_ID;
+    file_url = "";
+    duration = 0;
+    video_width = 0;
+    video_height = 0;
+    frame_rate = 0;
+    index = -1;
+    begin_time = 0;
+  }
+
+  bool IsValid() { return (file_id != INVALID_RTE_FILE_ID); }
+
+  void CloneTo(RteFileInfo&amp; out_file_info) {
+    out_file_info.file_id = file_id;
+    out_file_info.file_url = file_url;
+    out_file_info.video_width = video_width;
+    out_file_info.video_height = video_height;
+    out_file_info.frame_rate = frame_rate;
+    out_file_info.index = index;
+    out_file_info.begin_time = begin_time;
+  }
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+                <plentry>
+                    <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
+                    <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

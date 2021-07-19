@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_layoutconfig">
+    <title>LayoutConfig</title>
+    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
+            <codeblock props="windows" outputclass="language-cpp">struct LayoutConfig {
+  /**
+   * layout type to tell which tar.
+   */
+  LayoutType layout_type;
+  /**
+   * The unique id where we apply layout setting to.
+   * The Id will be automaticaly created if it doesn't exist.
+   */
+  std::string id;
+  /**
+   * The horizontal position of the top left corner of the video frame. (pixel)
+   */
+  int x = 0;
+  /**
+   * The vertical position of the top left corner of the video frame. (pixel)
+   */
+  int y = 0;
+  /**
+   * // TODO (yejun): Need to confirm pixel is the unit
+   * The width of the video frame. (pixel)
+   */
+  int width = 0;
+  /**
+   * The height of the video frame. (pixel)
+   */
+  int height = 0;
+  /**
+   * The layer of the video frame that ranges from 1 to 100:
+   * - 1: (Default) The lowest layer.
+   * - 100: The highest layer.
+   */
+  int zOrder = 0;
+  /**
+   * The transparency of the video frame.
+   * 0 means the region is transparent, and 1 means the region is opaque
+   */
+  float alpha = 1.0;
+  /**
+   * mirror of the source video frame (only valid for camera streams)
+   */
+  bool mirror = false;
+
+  /**
+   * Local image file path.
+   * 1. When layout type is Image, the image will be mixed with layer settings.
+   * 2. When layout type is track, the image is only valid for remote track
+   * which will display the image when remote track is muted.
+   */
+  std::string image_path;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+                <plentry>
+                    <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
+                    <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
