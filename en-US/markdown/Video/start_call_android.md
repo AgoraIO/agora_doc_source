@@ -45,7 +45,7 @@ Before proceeding, ensure that your development environment meets the following 
 ## Project setup
 
 1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**.
-   > After creating the project, **Android Studio** automatically starts gradle sync. Ensure that the sync succeeds before your continue.
+   > After creating the project, **Android Studio** automatically starts gradle sync. Ensure that the sync succeeds before you continue.
 
 2. Integrate the Video SDK into your project.
 
@@ -318,7 +318,7 @@ To implement this logic, take the following steps:
 
 4. Add the remote interface when a remote user joins the channel.
 
-   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `initializeAndJoinChannel` function.
+   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `initializeAndJoinChannel` function:
 
     ```java
     // Java
@@ -469,7 +469,7 @@ In addition to integrating the Agora Video SDK for Android through JitPack, you 
      ...
      dependencies {
          ...
-         // For x.y.z, fill in a specific SDK version number. For example, 3.4.0
+         // For x.y.z, fill in a specific SDK version number. For example, 3.5.0
          implementation 'io.agora.rtc:full-sdk:x.y.z'
      }
      ```
