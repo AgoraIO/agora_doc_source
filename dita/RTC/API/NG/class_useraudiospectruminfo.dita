@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_useraudiospectruminfo">
+    <title><ph keyref="UserAudioSpectrumInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">远端用户的音频频谱信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
+            <codeblock props="windows" outputclass="language-cpp">struct UserAudioSpectrumInfo  {
+  agora::rtc::uid_t uid;
+  struct AudioSpectrumData spectrumData;
+
+  UserAudioSpectrumInfo () : uid(0), spectrumData() {}
+  UserAudioSpectrumInfo(agora::rtc::uid_t _uid, const float *data, int length) :
+    uid(_uid) { spectrumData.audioSpectrumData = data; spectrumData.dataLength = length; }
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            </p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>远端用户 ID。</pd>
+                </plentry>
+                <plentry>
+                    <pt>spectrumData</pt>
+                    <pd>
+                        <p>远端用户的音频频谱数据。详见 <xref keyref="AudioSpectrumData"/>。</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
