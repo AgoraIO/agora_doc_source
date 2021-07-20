@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_init">
+    <title><ph keyref="init"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Initializes the RTE SDK instance.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="init" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public static int init(AgoraRteEngineConfig config)</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (instancetype _Nonnull)initWithProfile:(AgoraRteSdkProfile *_Nonnull)profile;</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">static int Init(const SdkProfile&amp; profile, bool enable_rtc_compatible_mode = false);</codeblock>
+        </p>
+    </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>profile</pt>
+                    <pd>The SDK profile. See <xref keyref="SdkProfile"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>enable_rtc_compatible_mode</pt>
+                    <pd>Whether to enable the RTE SDK to interoperate with the RTC SDK.In compatible mode, you can only publish a single track in a scene. The RTE user ID is equivelant to the String user ID in RTC SDK.
+                    <ul>
+                        <li>True: Enables the RTE SDK to interoperate with the RTC SDK </li>
+                        <li>False (Default): Disables the RTE SDK to interoperate with the RTC SDK.</li>
+                    </ul></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.<ul>
+                    <li>-101: The app ID is invalid. Check whether it is in the correct format.</li>
+                </ul></li>
+            </ul>
+        </section></refbody>
+</reference>

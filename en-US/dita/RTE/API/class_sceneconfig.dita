@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_sceneconfig">
+    <title><ph keyref="SceneConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Configurations of the scene.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">struct SceneConfig {
+                    SceneType scene_type = SceneType::kAdhoc;
+                    bool enable_audio_recording_or_playout = true;
+                    };
+                </codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+                <plentry>
+                    <pt>scene_type</pt>
+                    <pd>Type of the scene. The default is <apiname>kAdhoc</apiname>. See <xref keyref="SceneType"></xref>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>enable_audio_recording_or_playout</pt>
+                    <pd>Whether to enable audio recording or playout. <ul>
+                            <li>True (Default): In the scene, the SDK publishes audio that mixes
+                                audio from the microphone. Audio recording and playout is
+                                enabled.</li>
+                            <li>False: In the scene, the SDK publishes custom audio frames only
+                                without audio recording or playout.</li>
+                        </ul></pd>
+                </plentry>
+            </parml>
+        </section></refbody>
+</reference>

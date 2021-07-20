@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_playerstreaminfo">
+    <title>PlayerStreamInfo</title>
+    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
+            <codeblock props="windows" outputclass="language-cpp">struct PlayerStreamInfo {
+  int streamIndex;
+  MEDIA_STREAM_TYPE streamType;
+  char codecName[kMaxCharBufferLength];
+  char language[kMaxCharBufferLength];
+  int videoFrameRate;
+  int videoBitRate;
+  int videoWidth;
+  int videoHeight;
+  int videoRotation;
+  int audioSampleRate;
+  int audioChannels;
+  int audioBitsPerSample;
+  int64_t duration;
+
+  PlayerStreamInfo() : streamIndex(0),
+                       streamType(STREAM_TYPE_UNKNOWN),
+                       videoFrameRate(0),
+                       videoBitRate(0),
+                       videoWidth(0),
+                       videoHeight(0),
+                       videoRotation(0),
+                       audioSampleRate(0),
+                       audioChannels(0),
+                       audioBitsPerSample(0),
+                       duration(0) {
+    memset(codecName, 0, sizeof(codecName));
+    memset(language, 0, sizeof(language));
+  }
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+                <plentry>
+                    <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
+                    <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

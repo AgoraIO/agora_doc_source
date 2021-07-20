@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rteremoteaudiostats">
+    <title>RteRemoteAudioStats</title>
+    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"></codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
+            <codeblock props="windows" outputclass="language-cpp">/**
+ * Statistics of the remote audio stream.
+ */
+struct RteRemoteAudioStats {
+  /**
+   * The quality of the remote audio: #QUALITY_TYPE.
+   */
+  int quality;
+  /**
+   * The network delay (ms) from the sender to the receiver.
+   */
+  int networkTransportDelay;
+  /**
+   * The network delay (ms) from the receiver to the jitter buffer.
+   */
+  int jitterBufferDelay;
+  /**
+   * The audio frame loss rate in the reported interval.
+   */
+  int audioLossRate;
+  /**
+   * The number of channels.
+   */
+  int numChannels;
+  /**
+   * The sample rate (Hz) of the remote audio stream in the reported interval.
+   */
+  int receivedSampleRate;
+  /**
+   * The average bitrate (Kbps) of the remote audio stream in the reported
+   * interval.
+   */
+  int receivedBitrate;
+  /**
+   * The total freeze time (ms) of the remote audio stream after the remote
+   * user joins the channel.
+   *
+   * In a session, audio freeze occurs when the audio frame loss rate reaches 4%.
+   */
+  int totalFrozenTime;
+  /**
+   * The total audio freeze time as a percentage (%) of the total time when the
+   * audio is available.
+   */
+  int frozenRate;
+  /**
+   * The quality of the remote audio stream as determined by the Agora
+   * real-time audio MOS (Mean Opinion Score) measurement method in the
+   * reported interval. The return value ranges from 0 to 500. Dividing the
+   * return value by 100 gets the MOS score, which ranges from 0 to 5. The
+   * higher the score, the better the audio quality.
+   *
+   * | MOS score       | Perception of audio quality                                                                                                                                 |
+   * |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   * | Greater than 4  | Excellent. The audio sounds clear and smooth.                                                                                                               |
+   * | From 3.5 to 4   | Good. The audio has some perceptible impairment, but still sounds clear.                                                                                    |
+   * | From 3 to 3.5   | Fair. The audio freezes occasionally and requires attentive listening.                                                                                      |
+   * | From 2.5 to 3   | Poor. The audio sounds choppy and requires considerable effort to understand.                                                                               |
+   * | From 2 to 2.5   | Bad. The audio has occasional noise. Consecutive audio dropouts occur, resulting in some information loss. The users can communicate only with difficulty.  |
+   * | Less than 2     | Very bad. The audio has persistent noise. Consecutive audio dropouts are frequent, resulting in severe information loss. Communication is nearly impossible. |
+   */
+  int mosValue;
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+                <plentry>
+                    <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
+                    <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
