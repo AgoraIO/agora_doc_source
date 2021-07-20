@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioframe">
-    <title>AudioFrame</title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <title><ph keyref="AudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The AudioFrame struct.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -43,14 +43,37 @@
                     <dd>v</dd>
                 </dlentry>
             </dl>
-            <p/>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
-                    <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                    <pt>type</pt>
+                    <pd>The audio frame type: <xref keyref="AUDIO_FRAME_TYPE"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>samplesPerChannel</pt>
+                    <pd>The number of samples per channel in this frame.</pd>
+                </plentry>
+                <plentry>
+                    <pt>bytesPerSample</pt>
+                    <pd>The number of bytes per sample: <xref keyref="BYTES_PER_SAMPLE"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>channels</pt>
+                    <pd>The number of audio channels (data is interleaved, if stereo).</pd>
+                </plentry>
+                <plentry>
+                    <pt>buffer</pt>
+                    <pd>Pointer to the audio data buffer.</pd>
+                </plentry>
+                <plentry>
+                    <pt>renderTimeMs</pt>
+                    <pd>The timestamp to render the audio data. Use this member for audio-video synchronization.</pd>
+                </plentry>
+                <plentry>
+                    <pt>avsync_type</pt>
+                    <pd>A reserved member.</pd>
                 </plentry>
             </parml>
         </section>
