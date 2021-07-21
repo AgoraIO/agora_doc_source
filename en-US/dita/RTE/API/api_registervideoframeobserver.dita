@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_iagorarteaudiodevicecollection_release">
-    <title>Release</title>
-    <shortdesc id="short"><ph id="shortdesc">Releases the <xref keyref="IAgoraRteAudioDeviceCollection"/> object.</ph></shortdesc>
+<reference id="api_registervideoframeobserver">
+    <title><ph keyref="RegisterVideoFrameObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Registers a video frame observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="Release_IAgoraRteAudioDeviceCollection"/>
+                <indexterm keyref="RegisterVideoFrameObserver"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,7 +15,8 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual void Release() = 0;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void RegisterVideoFrameObserver(
+    std::shared_ptr&lt;IAgoraRteVideoFrameObserver> observer) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -29,7 +30,14 @@
                     <dd>v</dd>
                 </dlentry>
             </dl>
-            <p/>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>observer</pt>
+                    <pd>Pointer to an <xref keyref="IAgoraRteVideoFrameObserver"/> object.</pd>
+                </plentry>
+            </parml>
         </section>
     </refbody>
 </reference>
