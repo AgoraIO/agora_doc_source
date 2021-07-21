@@ -44,7 +44,7 @@ Before proceeding, ensure that you have the following:
 
 Follow the steps to create the environment necessary to add live streaming into your app.
 
-1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**.
+1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**. After creating the project, **Android Studio** automatically starts gradle sync. Ensure that the sync succeeds before you continue.
 
 2. Integrate the Video SDK into your project.
 
@@ -72,12 +72,9 @@ Follow the steps to create the environment necessary to add live streaming into 
 
 3. Add permissions for network and device access.
 
-   In `/app/Manifests/AndroidManifest.xml`, add the following permissions:
+   In `/app/Manifests/AndroidManifest.xml`, add the following permissions after `/application`:
 
     ```xml
-    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.agora.helloagora">
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -85,8 +82,6 @@ Follow the steps to create the environment necessary to add live streaming into 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    ...
-    </manifest>
     ```
 
 4. Prevent code obfuscation.
@@ -115,13 +110,13 @@ In the interface, you have one frame for local video and another for remote vide
     tools:context=".MainActivity">
  
     <FrameLayout
-        android:id="@+id/remote_video_view_container"
+        android:id="@+id/local_video_view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white" />
  
     <FrameLayout
-        android:id="@+id/local_video_view_container"
+        android:id="@+id/remote_video_view_container"
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_alignParentEnd="true"
@@ -188,12 +183,13 @@ To implement this logic, take the following steps:
 
 1. Import the Agora classes.
 
-   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
+   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `import android.os.Bundle`:
 
     ```java
     import io.agora.rtc.Constants;
     import io.agora.rtc.IRtcEngineEventHandler;
     import io.agora.rtc.RtcEngine;
+    import io.agora.rtc.models.ClientRoleOptions;
     import io.agora.rtc.video.VideoCanvas;
     ```
 2. Create the variables that you use to create and join an Interactive Live Streaming Premium channel.
@@ -242,7 +238,9 @@ To implement this logic, take the following steps:
         // For a live streaming scenario, set the channel profile as BROADCASTING.
         mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
         // Set the client role as AUDIENCE and the latency level as low latency.
-        mRtcEngine.setClientRole(Constants.CLIENT_ROLE_AUDIENCE, Constants.AUDIENCE_LATENCY_LEVEL_LOW_LATECY);
+        ClientRoleOptions clientRoleOptions = new ClientRoleOptions();
+        clientRoleOptions.audienceLatencyLevel = Constants.AUDIENCE_LATENCY_LEVEL_LOW_LATENCY;
+        mRtcEngine.setClientRole(Constants.CLIENT_ROLE_AUDIENCE, clientRoleOptions);
 
         // By default, video is disabled, and you need to call enableVideo to start a video stream.
         mRtcEngine.enableVideo();
@@ -312,12 +310,72 @@ Now you have created the Interactive Live Streaming Standard functionality, star
 
 Connect an Android device to your computer, and click `Run 'app'` on your Android Studio. A moment later you will see the project installed on your device. Take the following steps to test the live streaming app:
 
-1. Grant microphone and camera access to your app.
-2. When the app launches, you should be able to see yourself on the local view.
-3. Ask a friend to join the live streaming with you on the [demo app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicLive/index.html). Enter the same App ID and channel name.
-4. If your friend joins as a host, you should be able to see and hear your friend. Because we set the user role as `AUDIENCE` in the code snippet, your friend will not be able to see or hear you.
+1. Because we set the client role as audience in this demo project, when the app launches, you will not be able to see yourself on the local view.
+2. Ask a friend to join the live streaming with you on the [demo app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicVideoCall/index.html). Enter the same App ID and channel name.
+3. After your friend joins the channel, you should be able to see and hear your friend, but your friend will not be able to see or hear you.
 
 
 ## Next steps
 
 Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/live-streaming/token_server?platform=Android) shows you how to start live streaming with a token that you retrieve from your server.
+
+## See also
+
+This section provides additional information for your reference:
+
+### Sample project
+
+Agora provides an open source sample project [LiveStreaming](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/LiveStreaming.java) on GitHub that implements interactive live video streaming for your reference.
+
+### Other approcahes to integrate the SDK
+
+In addition to integrating the Agora Video SDK for Android through JitPack, you can also import the SDK into your project through mavenCentral or by manually copying the SDK files.
+
+**Automatically integrate the SDK with mavenCentral**
+
+For Agora SDK v3.5.0 or later, you can intergrate the SDK with mavenCentral.
+
+1. In `/Gradle Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the mavenCentral dependency:
+
+    ```xml
+    buildscript {
+        repositories {
+            ...
+            mavenCentral()
+        }
+        ...
+    }
+
+    allprojects {
+        repositories {
+            ...
+            mavenCentral()
+        }
+    }
+    ```
+
+2. In `/Gradle Scripts/build.gradle(Module: <projectname>.app)`, add the following lines to integrate the Agora Video SDK into your Android project:
+
+    ```xml
+    dependencies {
+    ...
+    // For x.y.z, fill in a specific SDK version number. For example, 3.5.0.
+    // Get the latest version number through the release notes.
+    implementation 'io.agora.rtc:full-sdk:x.y.z'
+    }
+    ```
+
+**Manually copy the SDK files**
+
+1. Go to [SDK downloads](https://docs.agora.io/en/Interactive%20Broadcast/downloads?platform=Android), download the latest version of the Agora Video SDK, and extract the files from the downloaded SDK package.
+
+2. Copying the following files or subfolders from the libs folder of the downloaded SDK package to the path of your project.
+
+    | File or subfolder | Path of your project |
+    |-------|----------|
+    | `agora-rtc-sdk.jar` file | `/app/libs/` |
+    | `arm-v8a` folder | `/app/src/main/jniLibs/` |
+    | `armeabi-v7a` folder | `/app/src/main/jniLibs/` |
+    | `x86` folder | `/app/src/main/jniLibs/` |
+    | `x86_64` folder | `/app/src/main/jniLibs/` |
+    | `include` folder | `/app/src/main/jniLibs/` | 
