@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_render_mode_type">
     <title>RENDER_MODE_TYPE</title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this enum."?></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The video display mode.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -16,8 +16,26 @@
             <title>Enumerator</title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the enumerator."?></pt>
-                    <pd><?oxy-placeholder content="The description of the enumerator."?></pd>
+                    <pt>RENDER_MODE_HIDDEN</pt>
+                    <pd>1: Uniformly scale the video until it fills the visible boundaries
+                        (cropped). One dimension of the video may have clipped contents.</pd>
+                </plentry>
+                <plentry>
+                    <pt>RENDER_MODE_FIT </pt>
+                    <pd>2: Uniformly scale the video until one of its dimension fits the boundary
+                        (zoomed to fit). Areas that are not filled due to the disparity in the
+                        aspect ratio will be filled with black.</pd>
+                </plentry>
+                <plentry>
+                    <pt>RENDER_MODE_ADAPTIVE </pt>
+                    <pd>
+                        <dl outputclass="deprecated">
+                                <dlentry>
+                                    <dt>Deprecated</dt>
+                                    <dd>3: This mode is deprecated.</dd>
+                                </dlentry>
+                            </dl>
+                        </pd>
                 </plentry>
             </parml>
         </section></refbody>
