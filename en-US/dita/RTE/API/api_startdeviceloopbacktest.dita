@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_startdeviceloopbacktest">
+    <title>StartDeviceLoopbackTest</title>
+    <shortdesc id="short"><ph id="shortdesc">Starts the audio device loopback test.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="StartDeviceLoopbackTest"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int StartDeviceLoopbackTest(int indicationInterval) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p>This method tests whether the local audio devices are working properly. After calling this method, the microphone captures the local audio and plays it through the speaker, and the <xref keyref="OnAudioVolumeIndication"/> callback returns the local audio volume information at the set interval.</p>
+            <note>This method tests the local audio devices and does not report the network conditions.</note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>indicationInterval</pt>
+                    <pd>The time interval (ms) at which the <xref keyref="OnAudioVolumeIndication"/> callback returns.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt;0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
