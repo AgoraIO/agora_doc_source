@@ -30,8 +30,8 @@
                     <dd>该方法已废弃。请改用 <xref keyref="createDataStream2"/>。</dd>
                 </dlentry>
             </dl>
-            <p id="desc">你可以调用该方法创建数字流并提高数据传输的可靠性和有序性。</p>
-            <note type="attention" id="note">
+            <p id="desc">你可以调用该方法创建数据流并提高数据传输的可靠性和有序性。</p>
+                        <note type="attention" id="note">
                 <ul id="ul_gvq_yqm_3qb">
                     <li>请确保将 <codeph>reliable</codeph> 和 <codeph>ordered</codeph> 设为相同的值。</li>
                     <li>在 <xref keyref="IRtcEngine"/> 生命周期内，每个用户最多只能创建 5 个数据流。</li>
@@ -56,31 +56,26 @@
                                     不会报错。</li>
                             </ul></p>
                     </pd>
-                </plentry>
-            </parml>
-        </section>
-        <section id="section_ewc_jsm_3qb">
-            <parml id="parml_fwc_jsm_3qb">
-                <plentry id="ordered">
+                </plentry><plentry id="ordered">
                     <pt>ordered</pt>
                     <pd>
                         <p>是否保证数据有序性，即接收方是否需要收到有序的数据：<ul id="ul_gwc_jsm_3qb">
-                                <li><ph keyref="true"/>:
-                                    保证接收方会按照发送方发送的顺序收到数据包。</li>
-                                <li><ph keyref="true"/>:
-                                    不保证接收方按照发送方发送的顺序收到数据包。</li>
-                            </ul></p>
+                            <li><codeph><ph keyref="true"/></codeph>:
+                                保证接收方会按照发送方发送的顺序收到数据包。</li>
+                            <li><codeph><ph keyref="false"/></codeph>:
+                                不保证接收方按照发送方发送的顺序收到数据包。</li>
+                        </ul></p>
                     </pd>
                 </plentry>
                 <plentry>
-                    <pt><b>connectionId</b></pt>
+                    <pt>connectionId</pt>
                     <pd>
                         <p>连接 ID。</p>
                     </pd>
                 </plentry>
-            </parml>
+                </parml>
         </section>
-        <section id="return_values">
+                    <section id="return_values">
    <title>返回值</title>
    <ul>
        <li props="android ios mac electron">成功创建的数据流 ID：方法调用成功。</li>
