@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_changeplaybackspeed">
-    <title><ph keyref="ChangePlaybackSpeed"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Changes playback speed.</ph></shortdesc>
+<reference id="api_unregistermediaplayerobserver">
+    <title><ph keyref="UnregisterMediaPlayerObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Unregisters the media player observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="ChangePlaybackSpeed"/>
+                <indexterm keyref="UnregisterMediaPlayerObserver"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual int ChangePlaybackSpeed(MEDIA_PLAYER_PLAYBACK_SPEED speed) = 0;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int UnregisterMediaPlayerObserver(std::shared_ptr&lt;IAgoraRteMediaPlayerObserver> observer) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -33,8 +33,8 @@
         <section id="parameters"><title>Parameters</title>
             <parml>
                 <plentry>
-                    <pt>speed</pt>
-                    <pd>The speed to be changed to. See <xref keyref="MEDIA_PLAYER_PLAYBACK_SPEED"/>.</pd>
+                    <pt>observer</pt>
+                    <pd>The observer to be unregistered. See <xref keyref="IAgoraRteMediaPlayerObserver"/>.</pd>
                 </plentry>
             </parml>
         </section>
