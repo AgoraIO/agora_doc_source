@@ -13,13 +13,15 @@ Agora 在 GitHub 上提供开源的互动播客示例项目 [Livecast](https://g
 - 有效的 [Agora 开发者账号](https://docs.agora.io/cn/AgoraPlatform/sign_in_and_sign_up)。
 <div class="alert note">如果你的网络环境部署了防火墙，请参考<a href="https://docs.agora.io/cn/AgoraPlatform/firewall?platform=iOS">应用企业防火墙限制</a>以正常使用 Agora 服务。</div>
 
-##  操作步骤
+
+## 操作步骤
 
 ### 1. 创建 Agora 项目
 
 按照以下步骤，在控制台创建一个 Agora 项目。
 
-1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏 ![img](https://web-cdn.agora.io/docs-files/1594283671161) **项目管理**按钮进入**[项目管理](https://dashboard.agora.io/projects)**页面**。**
+
+1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏 ![img](https://web-cdn.agora.io/docs-files/1594283671161) **项目管理**按钮进入**[项目管理](https://dashboard.agora.io/projects)**页面**。 **
 
 2. 在**项目管理**页面，点击**创建**按钮。
 

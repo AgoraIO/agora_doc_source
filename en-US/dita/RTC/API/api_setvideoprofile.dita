@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/setVideoProfile"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setVideoProfile(VIDEO_PROFILE_TYPE profile, bool swapWidthAndHeight) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setVideoProfile(profile: VIDEO_PROFILE_TYPE, swapWidthAndHeight: boolean = false): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -28,14 +35,14 @@
    <parml>
        <plentry>
   <pt>profile</pt>
-  <pd>The video profile. See <xref keyref="VIDEO_PROFILE_TYPE"/>.</pd>
+  <pd>Video profile. See <xref keyref="VIDEO_PROFILE_TYPE"/>.</pd>
        </plentry>
        <plentry>
   <pt>swapWidthAndHeight</pt>
   <pd><p>The SDK outputs video with a fixed width and height according to the video profile (<parmname>profile</parmname>) you selected. This parameter sets whether to swap width and height of the video:</p>
   <ul>
-      <li><ph keyref="true"/>true: Swap the width and height.</li>
-      <li><ph keyref="false"/>false: (Default) Do not swap the width and height.</li>
+      <li><codeph><ph keyref="true"/></codeph>: Swap the width and height.</li>
+      <li><codeph><ph keyref="false"/></codeph>: (Default) Do not swap the width and height.</li>
   </ul>
   </pd>
        </plentry>

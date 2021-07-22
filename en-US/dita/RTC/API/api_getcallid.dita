@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/getCallId"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int getCallId(agora::util::AString&amp; callId) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">getCallId(): string</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -30,7 +37,7 @@
         </section>
         <section id="return_values">
    <title>Returns</title>
-   <p props="android">The current call ID.</p>
+   <p props="android ios mac electron">The current call ID.</p>
    <ul props="windows">
        <li>0: Success.</li>
        <li>&lt; 0: Failure.</li>

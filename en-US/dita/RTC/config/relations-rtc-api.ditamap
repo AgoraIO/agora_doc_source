@@ -5,19 +5,19 @@
     <reltable title="Method-Class Relations">
         <!--Methods and related classes, including enumerations. The relationship is in one direction.-->
         <relheader>
-   <relcolspec type="reference"/>
-   <relcolspec type="reference" processing-role="resource-only"/>
+            <relcolspec type="reference"/>
+            <relcolspec type="reference" processing-role="resource-only"/>
         </relheader>
         <relrow>
-   <relcell>
-       <topicref keyref="create2"/>
-   </relcell>
-   <relcell>
-       <topicref keyref="RtcEngineConfig"/>
+            <relcell>
+                <topicref keyref="create2"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="RtcEngineConfig"/>
                 <topicref keyref="AREA_CODE"/>
                 <topicref keyref="LogConfig"/>
                 <topicref keyref="LOG_LEVEL"/>
-   </relcell>
+            </relcell>
         </relrow>
         <relrow>
             <relcell>
@@ -92,7 +92,34 @@
                 <topicref keyref="VIDEO_MIRROR_MODE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="electron">
+            <relcell>
+                <topicref keyref="setView"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="RendererConfig"/>
+                <topicref keyref="RendererOptions"/>
+                <topicref keyref="User"/>
+            </relcell>
+        </relrow>
+        <relrow props="electron">
+            <relcell>
+                <topicref keyref="destroyRenderer"/>
+                <topicref keyref="setVideoRenderDimension"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="User"/>
+            </relcell>
+        </relrow>
+        <relrow props="electron">
+            <relcell>
+                <topicref keyref="setRenderMode"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="RENDER_MODE"/>
+            </relcell>
+        </relrow>
+        <relrow props="android ios mac windows">
             <relcell>
                 <topicref keyref="setupLocalVideo"/>
                 <topicref keyref="setupRemoteVideo"/>
@@ -103,7 +130,7 @@
                 <topicref keyref="VIDEO_MIRROR_MODE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios mac windows">
             <relcell>
                 <topicref keyref="setLocalRenderMode1"/>
                 <topicref keyref="setLocalRenderMode2"/>
@@ -114,12 +141,25 @@
                 <topicref keyref="VIDEO_MIRROR_MODE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios mac windows">
             <relcell>
                 <topicref keyref="setRemoteRenderMode1"/>
             </relcell>
             <relcell>
                 <topicref keyref="RENDER_MODE_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="enumerateVideoDevices"/>
+                <topicref keyref="getDevice_IVideoDeviceManager"/>
+                <topicref keyref="enumeratePlaybackDevices"/>
+                <topicref keyref="enumerateRecordingDevices"/>
+                <topicref keyref="getPlaybackDevice"/>
+                <topicref keyref="getRecordingDevice"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="Device" props="electron"/>
             </relcell>
         </relrow>
         <relrow>
@@ -140,9 +180,26 @@
                 <topicref keyref="LIGHTENING_CONTRAST_LEVEL"/>
             </relcell>
         </relrow>
+        <relrow props="android ios flutter">
+            <relcell>
+                <topicref keyref="startRhythmPlayer"/>
+                <topicref keyref="configRhythmPlayer"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AgoraRhythmPlayerConfig"/>
+            </relcell>
+        </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="startScreenCaptureByDisplayId"/>
+                <topicref keyref="startAudioRecording3"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AudioRecordingConfiguration"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="startScreenCaptureByDisplayId" props="mac windows"/>
                 <topicref keyref="startScreenCaptureByScreenRect"/>
                 <topicref keyref="startScreenCaptureByWindowId"/>
             </relcell>
@@ -177,13 +234,21 @@
                 <topicref keyref="Rectangle"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="updateScreenCaptureRegion2"/>
                 <topicref keyref="startScreenCapture"/>
             </relcell>
             <relcell>
                 <topicref keyref="Rect"/>
+            </relcell>
+        </relrow>
+        <relrow props="electron">
+            <relcell>
+                <topicref keyref="getWindowsInfo"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="WindowInfo"/>
             </relcell>
         </relrow>
         <relrow>
@@ -249,6 +314,8 @@
             <relcell>
                 <topicref keyref="LiveTranscoding"/>
                 <topicref keyref="VIDEO_CODEC_PROFILE_TYPE"/>
+                <topicref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>
+                <topicref keyref="VIDEO_CODEC_TYPE"/>
                 <topicref keyref="TranscodingUser"/>
                 <topicref keyref="RtcImage"/>
                 <topicref keyref="AUDIO_SAMPLE_RATE_TYPE"/>
@@ -301,7 +368,7 @@
         <relrow>
             <relcell>
                 <topicref keyref="setRecordingAudioFrameParameters"/>
-                <topicref keyref="setPlaybackAudioFrameParameters"/>
+                <topicref keyref="setPlaybackAudioFrameParameters" props="windows"/>
             </relcell>
             <relcell>
                 <topicref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>
@@ -317,7 +384,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="addVideoWatermark1"/>
+                <topicref keyref="addVideoWatermark1" props="android ios mac windows"/>
             </relcell>
             <relcell>
                 <topicref keyref="RtcImage"/>
@@ -344,11 +411,19 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="startAudioRecording1"/>
+                <topicref keyref="startAudioRecording1" props="android ios mac windows"/>
                 <topicref keyref="startAudioRecording2"/>
             </relcell>
             <relcell>
                 <topicref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell><topicref keyref="startAudioRecording3"/></relcell>
+            <relcell>
+                <topicref keyref="AudioRecordingConfiguration"/>
+                <topicref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>
+                <topicref keyref="AUDIO_RECORDING_POSITION"/>
             </relcell>
         </relrow>
         <relrow>
@@ -367,7 +442,7 @@
                 <topicref keyref="DataStreamConfig"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows ios mac">
             <relcell>
                 <topicref keyref="setAudioSessionOperationRestriction"/>
             </relcell>
@@ -390,7 +465,7 @@
             <relcell>
                 <topicref keyref="CameraCapturerConfiguration"/>
                 <topicref keyref="CAPTURER_OUTPUT_PREFERENCE"/>
-                <topicref keyref="CAMERA_DIRECTION"/>
+                <topicref keyref="CAMERA_DIRECTION" props="android ios"/>
             </relcell>
         </relrow>
         <relrow>
@@ -401,7 +476,7 @@
                 <topicref keyref="LOG_FILTER_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="queryInterface"/>
             </relcell>
@@ -417,7 +492,7 @@
                 <topicref keyref="CLOUD_PROXY_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="pushAudioFrame2"/>
                 <topicref keyref="pullAudioFrame"/>
@@ -427,7 +502,7 @@
                 <topicref keyref="AUDIO_FRAME_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="pushVideoFrame"/>
             </relcell>
@@ -437,12 +512,21 @@
                 <topicref keyref="VIDEO_PIXEL_FORMAT"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="consumeRawVideoFrame"/>
             </relcell>
             <relcell>
                 <topicref keyref="VIDEO_PIXEL_FORMAT"/>
+            </relcell>
+        </relrow>
+        <relrow props="electron">
+            <relcell>
+                <topicref keyref="registerPlugin"/>
+                <topicref keyref="enablePlugin"></topicref>
+            </relcell>
+            <relcell>
+                <topicref keyref="PluginInfo"/>
             </relcell>
         </relrow>
         <relrow>
@@ -569,7 +653,7 @@
                 <topicref keyref="onLocalVideoStats"/>
             </relcell>
             <relcell>
-                <topicref keyref="LocalVideoStats"></topicref>
+                <topicref keyref="LocalVideoStats"/>
                 <topicref keyref="QUALITY_ADAPT_INDICATION"/>
                 <topicref keyref="VIDEO_CODEC_TYPE"/>
                 <topicref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>
@@ -602,7 +686,7 @@
             </relcell>
             <relcell>
                 <topicref keyref="AUDIO_MIXING_STATE_TYPE"/>
-                <topicref keyref="AUDIO_MIXING_ERROR_TYPE"/>
+                <topicref keyref="AUDIO_MIXING_REASON_TYPE"/>
             </relcell>
         </relrow>
         <relrow>
@@ -620,20 +704,6 @@
             </relcell>
             <relcell>
                 <topicref keyref="RTMP_STREAMING_EVENT"/>
-            </relcell>
-        </relrow>
-        <relrow>
-            <relcell>
-                <topicref keyref="onTranscodingUpdated"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="LiveTranscoding"/>
-                <topicref keyref="VIDEO_CODEC_PROFILE_TYPE"/>
-                <topicref keyref="TranscodingUser"/>
-                <topicref keyref="RtcImage"/>
-                <topicref keyref="AUDIO_SAMPLE_RATE_TYPE"/>
-                <topicref keyref="AUDIO_CODEC_PROFILE_TYPE"/>
-                
             </relcell>
         </relrow>
         <relrow>
@@ -663,7 +733,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="onAudioRouteChanged"/>
+                <topicref keyref="onAudioRouteChanged" props="ios mac windows android"/>
             </relcell>
             <relcell>
                 <topicref keyref="AUDIO_ROUTE_TYPE"/>
@@ -722,7 +792,7 @@
                 <topicref keyref="MEDIA_DEVICE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="hide">
             <relcell>
                 <topicref keyref="onUploadLogResult"/>
             </relcell>
@@ -730,7 +800,7 @@
                 <topicref keyref="UPLOAD_ERROR_REASON"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios mac windows">
             <relcell>
                 <topicref keyref="getBufferType"/>
             </relcell>
@@ -738,7 +808,7 @@
                 <topicref keyref="VIDEO_PIXEL_FORMAT"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows android ios mac">
             <relcell>
                 <topicref keyref="getVideoCaptureType"/>
             </relcell>
@@ -746,7 +816,7 @@
                 <topicref keyref="VIDEO_CAPTURE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows android ios mac">
             <relcell>
                 <topicref keyref="getVideoContentHint"/>
             </relcell>
@@ -754,7 +824,7 @@
                 <topicref keyref="VIDEO_CONTENT_HINT"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="onRecordAudioFrame"/>
                 <topicref keyref="onPlaybackAudioFrame"/>
@@ -769,7 +839,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="getMaxMetadataSize"/>
+                <topicref keyref="getMaxMetadataSize" props="android ios mac windows"/>
                 <topicref keyref="onReadyToSendMetadata"/>
                 <topicref keyref="onMetadataReceived"/>
             </relcell>
@@ -777,7 +847,7 @@
                 <topicref keyref="Metadata"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios mac windows">
             <relcell>
                 <topicref keyref="onCaptureVideoFrame"/>
                 <topicref keyref="onPreEncodeVideoFrame"/>
@@ -790,7 +860,7 @@
                 <topicref keyref="VIDEO_FRAME_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios mac windows">
             <relcell>
                 <topicref keyref="getVideoFormatPreference"/>
             </relcell>
@@ -798,7 +868,7 @@
                 <topicref keyref="VIDEO_FRAME_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios mac windows">
             <relcell>
                 <topicref keyref="getObservedFramePosition"/>
             </relcell>
@@ -811,12 +881,12 @@
     <reltable title="Method-Callback Relations">
         <!--Methods and corresponding callbacks.-->
         <relheader>
-   <relcolspec type="reference"/>
-   <relcolspec type="reference"/>
+            <relcolspec type="reference"/>
+            <relcolspec type="reference"/>
         </relheader>
         <relrow>
             <relcell>
-                <topicref keyref="joinChannel1"/>
+                <topicref keyref="joinChannel1" props="android ios mac windows"/>
                 <topicref keyref="joinChannel2"/>
             </relcell>
             <relcell>
@@ -827,7 +897,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="switchChannel1"/>
+                <topicref keyref="switchChannel1" props="android ios mac windows"/>
                 <topicref keyref="switchChannel2"/>
             </relcell>
             <relcell>
@@ -887,6 +957,7 @@
             </relcell>
             <relcell>
                 <topicref keyref="onRemoteVideoStateChanged"/>
+                <topicref keyref="onUserEnableVideo"></topicref>
             </relcell>
         </relrow>
         <relrow>
@@ -907,7 +978,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="startAudioMixing"/>
+                <topicref keyref="startAudioMixing2"/>
             </relcell>
             <relcell>
                 <topicref keyref="onAudioMixingStateChanged"/>
@@ -963,7 +1034,7 @@
                 <topicref keyref="onAudioVolumeIndication"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios">
             <relcell>
                 <topicref keyref="enableFaceDetection"/>
             </relcell>
@@ -971,7 +1042,7 @@
                 <topicref keyref="onFacePositionChanged"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios mac windows">
             <relcell>
                 <topicref keyref="setEnableSpeakerphone"/>
             </relcell>
@@ -1012,7 +1083,7 @@
                 <topicref keyref="onLastmileProbeResult"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows ios mac android">
             <relcell>
                 <topicref keyref="setRecordingAudioFrameParameters"/>
             </relcell>
@@ -1020,7 +1091,7 @@
                 <topicref keyref="onRecordAudioFrame"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios mac windows">
             <relcell>
                 <topicref keyref="setPlaybackAudioFrameParameters"/>
             </relcell>
@@ -1028,7 +1099,7 @@
                 <topicref keyref="onPlaybackAudioFrame"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios mac windows">
             <relcell>
                 <topicref keyref="setMixedAudioFrameParameters"/>
             </relcell>
@@ -1036,9 +1107,9 @@
                 <topicref keyref="onMixedAudioFrame"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
-                <topicref keyref="IAudioFrameObserver_isMultipleChannelFrameWanted"/>
+                <topicref keyref="isMultipleChannelFrameWanted_IAudioFrameObserver"/>
             </relcell>
             <relcell>
                 <topicref keyref="onPlaybackAudioFrameBeforeMixingEx"/>
@@ -1061,7 +1132,7 @@
                 <topicref keyref="onStreamMessageError"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="hide">
             <relcell>
                 <topicref keyref="uploadLogFile"/>
             </relcell>
@@ -1079,14 +1150,14 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="joinChannelWithUserAccount1"/>
+                <topicref keyref="joinChannelWithUserAccount1" props="android ios mac windows"/>
                 <topicref keyref="joinChannelWithUserAccount2"/>
             </relcell>
             <relcell>
                 <topicref keyref="onLocalUserRegistered"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="registerAudioFrameObserver"/>
             </relcell>
@@ -1095,7 +1166,7 @@
                 <topicref keyref="onPlaybackAudioFrame"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="consumeRawVideoFrame"/>
             </relcell>

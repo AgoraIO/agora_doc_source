@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/onFacePositionChanged"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight, Rectangle* vecRectangle, int* vecDistance, int numFaces){ (void)imageWidth; (void)imageHeight; (void)vecRectangle; (void)vecDistance; (void)numFaces; }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -34,7 +41,7 @@
            <li>This method is for Android and iOS only.</li>
   <li>If the SDK does not detect a face, it reduces the frequency of this callback to reduce power consumption on the local device.</li>
   <li>The SDK stops triggering this callback when a human face is in close proximity to the screen.</li>
-  <li>On Android, the value of <parmname>distance</parmname> reported in this callback may be slightly different from the actual distance. Therefore, Agora does not recommend using it for accurate calculation.</li>
+  <li>On Android, the value of distance reported in this callback may be slightly different from the actual <parmname>distance</parmname>. Therefore, Agora does not recommend using it for accurate calculation.</li>
        </ul>
    </note>
         </section>

@@ -11,8 +11,15 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        
-        <p outputclass="codeblock" conref="../conref/conref_rtc_api.dita#apidef/startChannelMediaRelay"/>
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int startChannelMediaRelay(const ChannelMediaRelayConfiguration &amp;configuration) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">startChannelMediaRelay(config: ChannelMediaRelayConfiguration): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
         </section>
         <section id="detailed_desc">
    
@@ -24,7 +31,7 @@
    <note type="attention">
        <ul>
   <li>Call this method after joining the channel.</li>
-  <li>This method takes effect only when you are a host in a LIVE_BROADCASTING channel.</li>
+  <li>This method takes effect only when you are a host in a live streaming channel.</li>
   <li>After a successful method call, if you want to call this method again, ensure that you call the <xref keyref="stopChannelMediaRelay"/> method to quit the current relay.</li>
   <li>Contact <xref href="https://agora-ticket.agora.io/" scope="external" format="html">support@agora.io</xref> before implementing this function.</li>
   <li>We do not support string user accounts in this API.</li>
