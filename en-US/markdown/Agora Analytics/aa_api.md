@@ -1,8 +1,8 @@
 Agora Analytics provides RESTful APIs for you to retrieve the statistics of your calls and use them in your own application.
 
-Before moving on to the RESTful APIs, check out Agora Analytics at [Agora Console](https://console.agora.io) to get a visual understanding of the quality and usage metrics. See [Agora Analytics](./aa_guide) for details.
+Before working with the RESTful APIs, review the Agora Analytics features in [Agora Console](https://console.agora.io) to gain a visual understanding of the quality and usage metrics that are available. See [Agora Analytics](./aa_guide) for details.
 
-You can use the Agora Analytics RESTful APIs to request the following data.
+You can use the Agora Analytics RESTful APIs to request the following data:
 
 - [Data Insight](#datainsight)
   - Usage statistics within a specified time frame.
@@ -11,7 +11,7 @@ You can use the Agora Analytics RESTful APIs to request the following data.
   - A list of calls with basic information.
   - Detailed quality metrics of a call.
 
-<div class="alert info">Agora Analytics RESTful API is in the Beta release. Purchase the <a href="https://console.agora.io/support/plan">support package</a > or contact <a href="mailto:support@agora.io">support@agora.io</a > to enable this function.</div>
+<div class="alert info">To use Agora Analytics RESTful APIs, purchase the <a href="https://console.agora.io/support/plan">support package</a > or contact <a href="mailto:support@agora.io">support@agora.io</a >.</div>
 
 ## Authentication
 
@@ -22,7 +22,7 @@ You can use the Agora Analytics RESTful APIs to request the following data.
 All requests are sent to the host: `api.agora.io`.
 
 - Request: The request uses query string parameters in the URL.
-- Response: The response content is in JSON format. 
+- Response: The response content is in JSON format.
 
 ## <a name="insight"></a>Data Insight
 
@@ -30,18 +30,18 @@ With the Data Insight RESTful APIs, you can query the usage and quality metrics 
 
 ### API limitations
 
-The Data Insight RESTful APIs have the following limitations in terms of request frequency, available data, specified time frame, data granularity, and data delay :
+The Data Insight RESTful APIs have the following limitations in terms of request frequency, available data, query time frame, data granularity, and data delay:
 
-| Endpoint                      | Request frequency             | Available data     | Specified time frame | Data granularity | Data delay |
+| Endpoint                      | Request frequency             | Available data     | Query time frame | Data granularity | Data delay |
 | :---------------------------- | :---------------------------- | :----------------- | -------------------- | ---------------- | ---------- |
-| /beta/insight/usage/by_time   | No more than 1/min and 10/day | In the past 3 days | No more than 1 day   | Daily            | 24 hours   |
-| /beta/insight/quality/by_time | No more than 1/min and 10/day | In the past 3 days | No more than 1 day   | Daily and hourly | 12 hours   |
+| /beta/insight/usage/by_time   | No more than 1/min and 10/day | Within the past 3 days | No longer than 1 day   | 1 day           | 24 hours   |
+| /beta/insight/quality/by_time | No more than 1/min and 10/day | Within the past 3 days | No longer than 1 day   | 1 day or 1 hour | 12 hours   |
 
-<div class="alert note"><li>Request frequency is calculated using the server's UTC time.</li><li>Data delay refers to the lag between the time when a call begins and the time when the call data is available for query.</li></div>
+<div class="alert note"><li>Request frequency is calculated using the server's UTC time.</li><li>Data delay refers to the time between when a call begins and when the call data is available for query.</li></div>
 
 ### Query usage metrics
 
-This method queries usage metrics such as the number of users and channels.
+This method queries usage metrics such as the number of users or channels.
 
 - Method: GET
 - Endpoint: /beta/insight/usage/by_time
@@ -54,16 +54,18 @@ The following query string parameters are required in the URL:
 | :--------------------- | :----- | :----------------------------------------------------------- |
 | `startTs`              | Number | The start point (Unix timestamp) of the time frame to query. |
 | `endTs`                | Number | The end point (Unix timestamp) of the time frame to query.   |
-| `appid`                | String | [App ID](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-appid-a-app-id) of your project. |
-| `metric`               | String | The metrics you want to query. You can set it to:<li>`userCount`: Total number of users across channels. A user joining the same channel with different UIDs or joining different channels with the same UID is counted multiple times.</li><li>`sessionCount`: Total channel-joining counts. Each time a user joins a channel is counted.</li><li>`channelCount`: Total number of channels. A channel begins when the first user joins and ends when the last user leaves.</li><li>`peakCurrentChannels`: The maximum number of channels in use.</li><li>`peakCurrentUsers`: The maximum number of in-call users across channels.</li><li>`totalDuration`: The total duration of video and audio-only calls calculated by users</li><li>`totalVideoDuration`: The total duration of video calls calculated by users.</li><li>`totalAudioDuration`: The total duration of audio-only calls calculated by users</li> |
+| `appid`                | String | The [App ID](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-appid-a-app-id) of your project. |
+| `metric`               | String | The metrics you want to query. You can set it to one of the following:<li>`userCount`: The total number of users across all channels. A user joining the same channel with different user IDs or joining different channels with the same user ID is counted multiple times.</li><li>`sessionCount`: The total count of users joining channels. Each time any user ID joins any channel is counted.</li><li>`channelCount`: The total number of channels. A channel is counted once for each period of time between when the first user joins it until the last user leaves it.</li><li>`peakCurrentChannels`: The maximum number of channels in use.</li><li>`peakCurrentUsers`: The maximum number of in-call users across channels.</li><li>`totalDuration`: The total duration of video and audio-only calls calculated by the number of users</li><li>`totalVideoDuration`: The total duration of video calls calculated by the number of users.</li><li>`totalAudioDuration`: The total duration of audio-only calls calculated by the number of users</li> |
 | `aggregateGranularity` | String | The level of time-related detail in the returned data. You can only set it to `1d`, which returns the values corresponding to 12:00 am (UTC) on each day within the specified time frame. |
 
-#### HTTP Request example
+<div class="alert info">For more information about "calculated by the number of users", see <a href="./aa_data_insight#calculation">this term</a>. </div>
 
-The following example queries the total number of users across channels starting from 8:00 am on July 1st, 2021 to 8:00 am on July 3rd, 2021:
+#### HTTP request example
+
+The following example queries the total number of users across all channels starting from 8:00 am on July 1, 2021 to 8:00 am on July 2, 2021:
 
 ```http
-GET /beta/insight/usage/by_time?startTs=1625097600&endTs=1625270400&appid=axxxxxxxxxxxxxxxxxxxx&metric=userCount&aggregateGranularity=1d HTTP/1.1
+GET /beta/insight/usage/by_time?startTs=1625097600&endTs=1625184000&appid=axxxxxxxxxxxxxxxxxxxx&metric=userCount&aggregateGranularity=1d HTTP/1.1
 Host: api.agora.io
 Accept: application/json
 Authorization: Basic ZGJhZDMyNmFkxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxWQzYTczNzg2ODdiMmNiYjRh
@@ -71,7 +73,7 @@ Authorization: Basic ZGJhZDMyNmFkxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 #### Response example
 
-The response for the previous HTTP request example should look like:
+The response for the previous HTTP request example is as follows:
 
 ```json
 {
@@ -82,10 +84,6 @@ The response for the previous HTTP request example should look like:
             "userCount": 42,
             "ts": 1625155200
        },
-       {
-            "userCount": 65,
-            "ts": 1625241600
-       },
    ]
 }
 ```
@@ -94,15 +92,15 @@ The response contains the following fields:
 
 - `code`: Number. The [status code](#code).
 
-- `message`: String. The error message.
+- `message`: String. The success or error message.
 
-- `data`: JSONArray, an array of JSON objects. Each JSON object contains a Unix timestamp representing 12:00 am (UTC) on each day within the specified time frame and the corresponding value of the specified metrics. In the case of the previous request example, two JSON objects should be returned: one is for 12:00 am on July 2, 2021, and the other is for 12:00 am on July 3, 2021.
+- `data`: JSONArray, an array of JSON objects. Each JSON object contains a Unix timestamp representing 12:00 am (UTC) on each day within the specified time frame and the corresponding value of the specified metrics. In the case of the previous request example, one JSON object should be returned for 12:00 am on July 2, 2021.
+  - `userCount`: Number. Total number of users across all channels.
   - `ts`: Number. Unix timestamp.
-  - `userCount`: Number. Total number of users across channels.
 
 ### Query quality metrics
 
-This method queries quality metrics such as video freeze rate.
+This method queries quality metrics such as the audio or video freeze rate.
 
 - Method: GET
 - Endpoint: /beta/insight/quality/by_time
@@ -115,17 +113,19 @@ The following query string parameters are required in the URL:
 | :--------------------- | :----- | :----------------------------------------------------------- |
 | `startTs`              | Number | The start point (Unix timestamp) of the time frame to query. |
 | `endTs`                | Number | The end point (Unix timestamp) of the time frame to query.   |
-| `appid`                | String | [App ID](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-appid-a-app-id) of your project. |
-| `metric`               | String | The metrics you want to query. You can set it to:<li>`joinSuccessRate`: Channel-joining success rate, which equals Number of users who have joined ÷ Number of attempts to join.</li><li>`joinSuccessIn5sRate`: Channel-joining success rate within 5 seconds, which equals Number of users who have joined within 5 seconds ÷ Number of attempts to join.</li><li>`audioFreezeRate`: Total audio freeze time ÷ Total audio minutes calculated by streams. Only audio freezes longer than 200 milliseconds are counted.</li><li>`videoFreezeRate`: Total video freeze time ÷ Total video minutes calculated by streams. Only video freezes longer than 600 milliseconds are counted.</li><li>`networkDelay`: Total end-to-end network delay ÷ Total audio and video minutes calculated by streams. Only end-to-end network delays longer than 400 milliseconds are counted.</li> |
-| `aggregateGranularity` | String | The level of time-related detail in the returned data. You can set it to: <li> `1d`, which returns the metrics corresponding to 12:00 am (UTC) on each day within the specified time frame.</li><li>`1h`, which returns the metrics corresponding to every hour within the specified time frame.</li> |
+| `appid`                | String | The [App ID](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-appid-a-app-id) of your project. |
+| `metric`               | String | The metrics you want to query. You can set it to one of the following:<li>`joinSuccessRate`: The rate at which users attempting to join any channel succeed, which equals Number of users who have joined ÷ Number of attempts to join.</li><li>`joinSuccessIn5sRate`: The rate at which users attempting to join any channel succeed within 5 seconds, which equals Number of users who have joined within 5 seconds ÷ Number of attempts to join.</li><li>`audioFreezeRate`: The rate at which audio freezing occurs, which equals Total audio freeze time ÷ Total audio minutes calculated by the number of streams. Only audio freezes longer than 200 milliseconds are counted.</li><li>`videoFreezeRate`: The rate at which video freezing occurs, which equals Total video freeze time ÷ Total video minutes calculated by the number of streams. Only video freezes longer than 600 milliseconds are counted.</li><li>`networkDelay`: The rate at which network delay occurs, which equals Total end-to-end network delay ÷ Total audio and video minutes calculated by the number of streams. Only end-to-end network delays longer than 400 milliseconds are counted.</li> |
+| `aggregateGranularity` | String | The level of time-related detail in the returned data. You can set it to one of the following: <li> `1d`, which returns the metrics corresponding to 12:00 am (UTC) on each day within the specified time frame.</li><li>`1h`, which returns the metrics corresponding to every hour within the specified time frame.</li> |
 | `productType`          | String | The product for which you want to query the metrics. You can set it to: <li>`Native`: The Agora RTC SDK for Android, iOS, macOS, and Windows.</li><li>`WebRTC`: The Agora RTC SDK for Web.</li> |
 
-#### HTTP Request example
+<div class="alert info">For more information about "calculated by the number of streams", see <a href="./aa_data_insight#calculation">this term</a>. </div>
 
-The following example queries the daily network delay rate starting from 8:00 am on July 1st, 2021 to 8:00 am on July 3rd, 2021:
+#### HTTP request example
+
+The following example queries the hourly network delay rate starting from 8:00 am on July 1, 2021 to 8:00 am on July 2, 2021:
 
 ```http
-GET /beta/insight/quality/by_time?startTs=1625097600&endTs=1625270400&appid=axxxxxxxxxxxxxxxxxxxx&metric=networkDelay&aggregateGranularity=1d&productType=Native HTTP/1.1
+GET /beta/insight/quality/by_time?startTs=1625097600&endTs=1625184000&appid=axxxxxxxxxxxxxxxxxxxx&metric=networkDelay&aggregateGranularity=1h&productType=Native HTTP/1.1
 Host: api.agora.io
 Accept: application/json
 Authorization: Basic ZGJhZDMyNmFkxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxWQzYTczNzg2ODdiMmNiYjRh
@@ -133,7 +133,7 @@ Authorization: Basic ZGJhZDMyNmFkxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 #### Response example
 
-The response for the previous HTTP request example should look like:
+The response for the previous HTTP request example is as follows:
 
 ```json
 {
@@ -142,11 +142,16 @@ The response for the previous HTTP request example should look like:
     "data": [
        {
             "networkDelay": 0.064762,
-            "ts": 1625155200
+            "ts": 1625097600
        },
        {
-            "networkDelay": 0.046284,
-            "ts": 1625241600
+            "networkDelay": 0.028156,
+            "ts": 1625101200
+       },
+       ...
+       {
+            "networkDelay": 0.03765,
+            "ts": 1625184000
        },
    ]
 }
@@ -155,10 +160,10 @@ The response for the previous HTTP request example should look like:
 The response contains the following fields:
 
 - `code`: Number. The [status code](#code).
-- `message`: String. The error message.
-- `data`: JSONArray, an array of JSON objects. Each JSON object contains a Unix timestamp representing 12:00 am (UTC) on each day within the specified time frame and the corresponding value of the specified metrics. In the case of the previous request example, two JSON objects should be returned: one is for 12:00 am on July 2, 2021, and the other is for 12:00 am on July 3, 2021.
+- `message`: String. The success or error message.
+- `data`: JSONArray, an array of JSON objects. Each JSON object contains a Unix timestamp representing every hour within the specified time frame and the corresponding value of the specified metrics. In the case of the previous request example, 25 JSON objects should be returned. The first one is for 8:00 am on July 1, 2021, the second for 9:00 am on July 1, 2021, and so on. The last one is for 8:00 am on July 2, 2021.
+  - `networkDelay`: Number. The network delay rate.
   - `ts`: Number. Unix timestamp (sec).
-  - `networkDelay`: Number. Network delay rate.
 
 ## <a name="search"></a>Call Search
 
@@ -195,7 +200,7 @@ The following query string parameters are required in the URL as search criteria
 | `cname`    | String | (Optional) The channel name.                                 |
 | `appid`    | String | [App ID](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-appid-a-app-id) of your project. |
 
-#### An HTTP request example
+#### HTTP request example
 
 ```http
 GET /beta/analytics/call/lists?start_ts=1550024508&end_ts=1550025508&appid=xxxxxxxxxxxxxxxxxxxx HTTP/1.1
@@ -204,14 +209,14 @@ Accept: application/json
 Authorization: Basic ZGJhZDMyNmFkxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxWQzYTczNzg2ODdiMmNiYjRh
 ```
 
-#### A response example
+#### Response example
 
 ```json
 {
 "code": 200,
 "message": "",
 "has_more": false,
-"call_lists": 
+"call_lists":
 [
   {
   "call_id": "cxxxxxxxxxxxxxxxxxxxx",
@@ -258,7 +263,7 @@ The following query string parameters are required in the URL to specify the cal
 | `appid`               | String  | [App ID](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-appid-a-app-id) of your project. |
 | `exclude_server_user` | Boolean | (Optional) Whether or not to exclude Linux users. `true` by default, which represents excluding Linux users. |
 
-#### An HTTP request example
+#### HTTP request example
 
 ```http
 GET /beta/analytics/call/sessions?start_ts=1548665345&end_ts=1548670821&appid=axxxxxxxxxxxxxxxxxxxx&call_id=cxxxxxxxxxxxxxxxxxxxx&page_no=1&page_size=20&uids=uxx1,uxx2 HTTP/1.1
@@ -267,7 +272,7 @@ Accept: application/json
 Authorization: Basic ZGJhZDMyNmFkxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxWQzYTczNzg2ODdiMmNiYjRh
 ```
 
-#### A response example
+#### Response example
 
 ```json
 {
@@ -335,7 +340,7 @@ The following query string parameters are required in the URL to specify the cal
 | `call_id`  | String | The unique ID of the call.                                   |
 | `sids`     | String | The list of user session IDs separated by commas, for example,  `sids=SXXXXXXXXXXXXXXXX1,SXXXXXXXXXXXXXXXX2`. You can specify a maximum of 20 user session IDs. |
 
-#### An HTTP request example
+#### HTTP request example
 
 ```http
 GET /beta/analytics/call/metrics?start_ts=1548665345&end_ts=1548670821&appid=axxxxxxxxxxxxxxxxxxxx&call_id=cxxxxxxxxxxxxxxxxxxxx&sids=sxxxxxxxxxxxxxxxx1,sxxxxxxxxxxxxxxxx2,sxxxxxxxxxxxxxxxx3 HTTP/1.1
@@ -344,7 +349,7 @@ Accept: application/json
 Authorization: Basic ZGJhZDMyNmFkxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxWQzYTczNzg2ODdiMmNiYjRh
 ```
 
-#### A response example
+#### Response example
 
 ```json
 {
