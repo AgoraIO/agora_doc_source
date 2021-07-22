@@ -5,12 +5,22 @@ The **Data Insight** function of Agora Analytics provides periodic call-usage an
 ## Getting started
 
 1. Purchase the <a href="https://console.agora.io/support/plan">support package</a > or contact support@agora.io to enable the **Data Insight** function for your project.
+
 2. Login to [Agora Console](https://console.agora.io) and click **Agora Analytics** on the left navigation bar.
+
 3. Select a project in the top-left corner.
+   ![1](./screenshots/1.png)
+
 4. Click **Usage Overview** to view the usage statistics or **Quality Overview** to view the quality statistics.
+
 5. Configure the data filter:
    <li>**Usage Overview**: Select the timezone, data granularity, and time frame in the upper-right corner.</li>
+   ![2](./screenshots/2.png)
    <li>**Quality Overview**: Select the product type in the upper-left corner, and the timezone, data granularity, and time frame in the upper-right corner.</li>
+   
+   ![3](./screenshots/3.png)
+   
+   
 
 
 ## <a name="usage"></a>Usage Overview
@@ -21,9 +31,8 @@ The **Usage Overview** page presents **Overall Trend** and **Metric Analysis** f
 
 ### Overall Trend
 
-The **Overall Trend** panel has three sections: **Peak traffic**, **Channel and user count**, and **Service minutes**. In each section, the summary boxes in the upper-left corner highlight the aggregate or peak value of each usage metric, and the line chart in the bottom area shows the daily values of each usage metric. You can click **More** in the top-right corner of each section to download the data or view it in table form.
+The **Overall Trend** panel has three sections: **Peak traffic**, **Channel and user count**, and **Service minutes**. In each section, the summary boxes in the upper-left corner highlight the aggregate or peak value of each usage metric, and the line chart in the bottom area shows the daily values of each usage metric. You can click **All data** in the top-right corner of each section to download the data or view it in table form.
 
-![1](./screenshots/1.jpg)
 
 The usage metrics are described in [Usage metrics](#usagemetrics).
 
@@ -38,9 +47,9 @@ Each line chart provides the following features:
 
 The **Metric Analysis** panel has six sections: **Geography**, **Network type**, **Operating system**, **SDK version**, **Device type**, and **Channel size**. Each section presents the top six values for that dimension in bar-chart form.
 
-In the top-right corner of the panel, you can select the usage metric you want to view. In the top-right corner of each section, you can click **More** to download the data or view it in table form.
+In the top-right corner of the panel, you can select the usage metric you want to view. In the top-right corner of each section, you can click **All data** to download the data or view it in table form.
 
-![2](./screenshots/2.jpg)
+![4](./screenshots/4.png)
 
 The six dimensions are described in [Dimensions](#dimensions).
 
@@ -52,9 +61,7 @@ The **Quality Overview** page presents **Overall Trend** and **Metric Analysis**
 
 ### Overall Trend
 
-The **Overall Trend** panel has two sections: **User experience** and **Success at joining channels**. In each section, the summary boxes in the upper-left corner highlight the peak or bottom value of each quality metric, and the line chart in the bottom area shows the daily or hourly values of each quality metric. You can click **More** in the top-right corner of the section to download the data or view it in table form.
-
-![3](./screenshots/3.jpg)
+The **Overall Trend** panel has two sections: **User experience** and **Success at joining channels**. In each section, the summary boxes in the upper-left corner highlight the peak or bottom value of each quality metric, and the line chart in the bottom area shows the daily or hourly values of each quality metric. You can click **All data** in the top-right corner of the section to download the data or view it in table form.
 
 The quality metrics are described in [Quality metrics](#qualitymetrics).
 
@@ -63,16 +70,16 @@ The quality metrics are described in [Quality metrics](#qualitymetrics).
 Each line chart provides the following features:
 
 - Hide and display: To hide or display the line for a quality metric, click on the corresponding summary box.
-- Change time selection: When data granularity is set to **Daily** in the data filter, you can click a data point and select **Hourly data**, which changes the data granularity to **Hourly** and the time frame to the hour corresponding to the data point. If you want to switch back to the original filter setting, click **Restore filter** in the upper-center area of the panel.![4](./screenshots/4.jpg)
+- Change time selection: When data granularity is set to **Daily** in the data filter, you can click a data point and select **Hourly data**, which changes the data granularity to **Hourly** and the time frame to the hour corresponding to the data point. If you want to switch back to the original filter setting, click **Restore filter** in the upper-center area of the panel.
 - Jump to Metric Analysis: To jump to the Metric Analysis panel of a quality metric for a specific day or hour, click the corresponding data point on the line, and select **Metric Analysis**. If you want to use the previously selected time frame, click **Restore** in the upper-left area of the panel.
 
 ### Metric Analysis
 
 The **Metric Analysis** panel has six sections: **Geography**, **Network type**, **Operating system**, **SDK version**, **Device type**, and **Channel size**. Each section presents the connection between quality and usage in bubble-chart form.
 
-In the top-right corner of the panel, you can select the quality metric you want to view. In the top-right corner of each section, you can click **More** to download the data or view it in table form.
+In the top-right corner of the panel, you can select the quality metric you want to view. In the top-right corner of each section, you can click **All data** to download the data or view it in table form.
 
-![5](./screenshots/5.jpg)
+![5](./screenshots/5.png)
 
 The six dimensions are described in [Dimensions](#dimensions).
 
