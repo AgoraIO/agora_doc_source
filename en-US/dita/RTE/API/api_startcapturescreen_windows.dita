@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_startcapturescreen_windows">
+    <title><ph keyref="StartCaptureScreen_Windows"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Shares the whole or part of a screen by specifying the
+            screen rect.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="StartCaptureScreen_Windows"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int StartCaptureScreen(const Rectangle&amp; screenRect,
+                                const Rectangle&amp; regionRect) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p props="windows">This method applies to Windows only.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>screenRect</pt>
+                    <pd>The relative location of the screen to the virtual screen. See <xref
+                            keyref="Rectangle"/>.</pd>
+                </plentry>
+                <plentry id="regionRect">
+                    <pt>regionRect</pt>
+                    <pd>The relative location of the region to the screen. <codeph><ph keyref="null"
+                            /></codeph> means sharing the whole screen. See <xref keyref="Rectangle"
+                        />. If the specified region overruns the screen, the SDK shares only the
+                        region within it; if you set the width or height as 0, the SDK shares the
+                        whole screen.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul id="ul_mp5_fq5_3qb">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
