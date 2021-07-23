@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="class_videodimensions">
-    <title><ph keyref="VideoDimensions"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The width and height of the video.</ph></shortdesc>
+<reference id="api_removemediaplayer">
+    <title><ph keyref="RemoveMediaPlayer"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Removes a media player from the mixed video
+        track.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="RemoveMediaPlayer"/>
+            </keywords>
+        </metadata>
+    </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">struct VideoDimensions {
-  int width;
-  int height;
-  VideoDimensions() : width(640), height(480) {}
-  VideoDimensions(int w, int h) : width(w), height(h) {}
-  bool operator==(const VideoDimensions&amp; rhs) const {
-    return width == rhs.width &amp;&amp; height == rhs.height;
-  }
-};</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int RemoveMediaPlayer(
+    std::shared_ptr&lt;IAgoraRteMediaPlayer> mediaPlayer) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -31,18 +32,21 @@
                 </dlentry>
             </dl>
         </section>
-        <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+        <section id="parameters"><title>Parameters</title>
             <parml>
                 <plentry>
-                    <pt>width</pt>
-                    <pd>The width of the video (pixel).</pd>
-                </plentry>
-                <plentry>
-                    <pt>height</pt>
-                    <pd>The height of the video (pixel).</pd>
+                    <pt>mediaPlayer</pt>
+                    <pd>The media player to be removed. See <xref keyref="IAgoraRteMediaPlayer"
+                        />.</pd>
                 </plentry>
             </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul id="ul_zh4_dj5_3qb">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
         </section>
     </refbody>
 </reference>
