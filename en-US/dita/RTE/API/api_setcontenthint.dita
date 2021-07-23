@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setcontenthint">
+    <title><ph keyref="SetContentHint"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the content hint for screen
+        sharing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetContentHint"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int SetContentHint(VIDEO_CONTENT_HINT contentHint) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p>A content hint suggests the type of the content being shared, so that the SDK applies
+                different optimization algorithms to different types of content.</p>
+            <note type="attention" props="windows">This method does not support Android or
+                iOS.</note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>contentHint</pt>
+                    <pd>The content hint for screen capture. See <xref keyref="VIDEO_CONTENT_HINT"
+                        />.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul id="ul_t1v_dl5_3qb">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
