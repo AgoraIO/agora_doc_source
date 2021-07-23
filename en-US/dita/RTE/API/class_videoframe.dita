@@ -2,7 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoframe">
     <title>VideoFrame</title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The definition of the VideoFrame
+        struct.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -53,15 +54,69 @@
                     <dd>v</dd>
                 </dlentry>
             </dl>
-            <p/>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
-                    <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                    <pt>type</pt>
+                    <pd>The video pixel format: <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
                 </plentry>
+                <plentry>
+                    <pt>width</pt>
+                    <pd>The width of the video frame.</pd>
+                </plentry>
+                <plentry>
+                    <pt>height</pt>
+                    <pd>The height of the video frame.</pd>
+                </plentry>
+                <plentry>
+                    <pt>yStride</pt>
+                    <pd>The line span of Y buffer in the YUV data.</pd>
+                </plentry>
+                <plentry>
+                    <pt>uStride</pt>
+                    <pd>The line span of U buffer in the YUV data.</pd>
+                </plentry>
+                <plentry>
+                    <pt>vStride</pt>
+                    <pd>The line span of V buffer in the YUV data.</pd>
+                </plentry>
+                <plentry>
+                    <pt>yBuffer</pt>
+                    <pd>The pointer to the Y buffer in the YUV data.</pd>
+                </plentry>
+                <plentry>
+                    <pt>uBuffer</pt>
+                    <pd>The pointer to the U buffer in the YUV data.</pd>
+                </plentry>
+                <plentry>
+                    <pt>vBuffer</pt>
+                    <pd>The pointer to the V buffer in the YUV data.</pd>
+                </plentry>
+                <plentry>
+                    <pt>rotation</pt>
+                    <pd>The clockwise rotation information of this frame. You can set it as 0, 90, 180 or 270.</pd>
+                </plentry>
+                <plentry>
+                    <pt>renderTimeMs</pt>
+                    <pd>The timestamp to render the video stream. Use this parameter for audio-video
+                        synchronization when rendering the video.<note type="note">This parameter is for rendering the video, not capturing the
+                        video.</note></pd>
+                </plentry>
+                <plentry>
+                    <pt>avsync_type</pt>
+                    <pd>The type of audio-video synchronization.</pd>
+                </plentry>
+                <plentry>
+                    <pt>metadata_buffer</pt>
+                    <pd>(Texture related parameter) The MetaData buffer. The default value is <ph keyref="null"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>metadata_size</pt>
+                    <pd>(Texture related parameter) The MetaData size. The default value is 0.</pd>
+                </plentry>
+                
             </parml>
         </section>
     </refbody>
