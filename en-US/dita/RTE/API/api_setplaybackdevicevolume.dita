@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setdevice">
-    <title>SetDevice</title>
-    <shortdesc id="short"><ph id="shortdesc">Specifies a device with the device ID.</ph></shortdesc>
+<reference id="api_setplaybackdevicevolume">
+    <title>SetPlaybackDeviceVolume</title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the volume of the audio playback device.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="SetDevice"/>
+                <indexterm keyref="SetPlaybackDeviceVolume"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual int SetDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int SetPlaybackDeviceVolume(int volume) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -34,8 +34,8 @@
         <section id="parameters"><title>Parameters</title>
             <parml>
                 <plentry>
-                    <pt>deviceId</pt>
-                    <pd>ID of the device. The length must not exceed the value of <xref keyref="MAX_DEVICE_ID_LENGTH"></xref>.</pd>
+                    <pt>volume</pt>
+                    <pd>The volume of the audio playing device. The value range is [0, 255].</pd>
                 </plentry>
             </parml>
         </section>
@@ -43,7 +43,7 @@
             <title>Returns</title>
             <ul>
                 <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
+                <li>&lt;0: Failure.</li>
             </ul>
         </section>
     </refbody>
