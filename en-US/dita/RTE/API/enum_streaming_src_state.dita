@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_streaming_src_state">
-    <title>STREAMING_SRC_STATE</title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this enum."?></ph></shortdesc>
+    <title><ph keyref="STREAMING_SRC_STATE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The state of the streaming source.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -16,8 +16,32 @@
             <title>Enumerator</title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the enumerator."?></pt>
-                    <pd><?oxy-placeholder content="The description of the enumerator."?></pd>
+                    <pt><ph keyref="STREAMING_SRC_STATE_CLOSED"/></pt>
+                    <pd>The streaming source is cloded.</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="STREAMING_SRC_STATE_OPENING"/></pt>
+                    <pd>The SDK starts opening the streaming source, after you call <apiname keyref="Open1_IAgoraRteStreamingSource"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="STREAMING_SRC_STATE_IDLE"/></pt>
+                    <pd>The streaming source is reafy for play.</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="STREAMING_SRC_STATE_PLAYING"/></pt>
+                    <pd>The SDK plays and publishes the streaming source, after you call <apiname keyref="Play_IAgoraRteStreamingSource"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="STREAMING_SRC_STATE_SEEKING"/></pt>
+                    <pd>The SDK starts seeking the playback position of the streaming source, after you call <apiname keyref="Seek_IAgoraRteStreamingSource"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="STREAMING_SRC_STATE_EOF"/></pt>
+                    <pd>The playback position is at the end of the streaming source and the SDK cannot play the media file.</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="STREAMING_SRC_STATE_ERROR"/></pt>
+                    <pd>An error occurs with the streaming source. Call <xref keyref="Close_IAgoraRteStreamingSource"/> to close the media file.</pd>
                 </plentry>
             </parml>
         </section></refbody>
