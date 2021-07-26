@@ -1,62 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_layoutconfig">
-    <title>LayoutConfig</title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <title><ph keyref="LayoutConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Layout configurations for one layer.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct LayoutConfig {
-  /**
-   * layout type to tell which tar.
-   */
   LayoutType layout_type;
-  /**
-   * The unique id where we apply layout setting to.
-   * The Id will be automaticaly created if it doesn't exist.
-   */
   std::string id;
-  /**
-   * The horizontal position of the top left corner of the video frame. (pixel)
-   */
   int x = 0;
-  /**
-   * The vertical position of the top left corner of the video frame. (pixel)
-   */
   int y = 0;
-  /**
-   * // TODO (yejun): Need to confirm pixel is the unit
-   * The width of the video frame. (pixel)
-   */
   int width = 0;
-  /**
-   * The height of the video frame. (pixel)
-   */
   int height = 0;
-  /**
-   * The layer of the video frame that ranges from 1 to 100:
-   * - 1: (Default) The lowest layer.
-   * - 100: The highest layer.
-   */
   int zOrder = 0;
-  /**
-   * The transparency of the video frame.
-   * 0 means the region is transparent, and 1 means the region is opaque
-   */
   float alpha = 1.0;
-  /**
-   * mirror of the source video frame (only valid for camera streams)
-   */
   bool mirror = false;
-
-  /**
-   * Local image file path.
-   * 1. When layout type is Image, the image will be mixed with layer settings.
-   * 2. When layout type is track, the image is only valid for remote track
-   * which will display the image when remote track is muted.
-   */
   std::string image_path;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
@@ -72,14 +33,62 @@
                     <dd>v</dd>
                 </dlentry>
             </dl>
-            <p/>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
-                    <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                    <pt>layout_type</pt>
+                    <pd>The type of the layer. See <xref keyref="LayoutType"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>id</pt>
+                    <pd>The unique ID of the layer. The ID is automaticaly created if it does not
+                        exist.</pd>
+                </plentry>
+                <plentry>
+                    <pt>x</pt>
+                    <pd>The horizontal position (pixel) of the top left corner of the video
+                        frame.</pd>
+                </plentry>
+                <plentry>
+                    <pt>y</pt>
+                    <pd>The vertical (pixel) position of the top left corner of the video
+                        frame.</pd>
+                </plentry>
+                <plentry>
+                    <pt>width</pt>
+                    <pd>The width (pixel) of the video frame.</pd>
+                </plentry>
+                <plentry>
+                    <pt>height</pt>
+                    <pd>The height (pixel) of the video frame.</pd>
+                </plentry>
+                <plentry>
+                    <pt>zOrder</pt>
+                    <pd>The layer order of the video frame. The value range is [1,100]:<ul
+                            id="ul_v1x_lh5_3qb">
+                            <li>1: (Default) The lowest layer.</li>
+                            <li>100: The highest layer.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>alpha</pt>
+                    <pd>The transparency of the video frame. The value ranges from 0 (transparent)
+                        to 1 (opaque).  The default value is 1.0.</pd>
+                </plentry>
+                <plentry>
+                    <pt>mirror</pt>
+                    <pd>Whether to mirror the video frame. Only valid for camera video tracks.</pd>
+                </plentry>
+                <plentry>
+                    <pt>image_path</pt>
+                    <pd>The local path to an image file. <ul id="ul_ysc_zh5_3qb">
+                            <li>If the layout type is <codeph>Image</codeph>, the specified image is
+                                mixed in the layout.</li>
+                            <li>If the layout type is <codeph>Track</codeph>, the specified image
+                                displays when the remote video track is muted.</li>
+                        </ul></pd>
                 </plentry>
             </parml>
         </section>

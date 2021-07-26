@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_startcapturescreen_android">
+    <title><ph keyref="StartCaptureScreen_Android"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Starts screen sharing.. </ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="StartCaptureScreen_Android"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int StartCaptureScreen(void* data,
+                                const VideoDimensions&amp; dimensions) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p>After successfully calling this method, you can share the entire screen through
+                    <codeph>MediaProjection</codeph>, an Android native class.</p>
+            <note props="windows" type="attention">This method applies to Android only.</note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>data</pt>
+                    <pd>The Intent data from the <apiname>onActivityResult</apiname> callback after
+                        you create an Intent from <apiname>MediaProjection</apiname> and sends the
+                        Intent to <apiname>startActivityForResult</apiname>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>dimensions</pt>
+                    <pd>The screen sharing dimensions (width × height). See <xref
+                            keyref="VideoDimensions"/>.</pd>
+                    <pd>If you set the width or height as 0, the dimensions are the width × height
+                        of the shared screen.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul id="ul_ghk_3n5_3qb">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

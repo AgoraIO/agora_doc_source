@@ -2,31 +2,16 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_canvasconfig">
     <title>CanvasConfig</title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Canvas settings for a video frame.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct CanvasConfig {
-  /**
-   * Width of the canvas (pixel)
-   */
   int width = 1920;
-  /**
-   * Height of the canvas (pixel)
-   */
   int height = 1080;
-  /**
-   * Fps of the mixed video.
-   * The value will be replaced by stream's video encoder configuration
-   * when the video is published to stream.
-   */
   int fps = 15;
-  /**
-   * Local file path of the canvas background image, if path
-   * is invalid or empty, the background will be back.
-   */
   std::string image_file_path;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
@@ -42,14 +27,28 @@
                     <dd>v</dd>
                 </dlentry>
             </dl>
-            <p/>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
-                    <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                    <pt>width</pt>
+                    <pd>Width of the canvas (pixel).</pd>
+                </plentry>
+                <plentry>
+                    <pt>height</pt>
+                    <pd>Height of the canvas (pixel).</pd>
+                </plentry>
+                <plentry>
+                    <pt>fps</pt>
+                    <pd>The frame rate (fps) of the mixed video. The value is replaced by the
+                        stream's video encoder configuration  when the video is published to a
+                        stream.</pd>
+                </plentry>
+                <plentry>
+                    <pt>image_file_path</pt>
+                    <pd>The local path of the canvas background image. If the path is invalid or
+                        empty, the background is back.</pd>
                 </plentry>
             </parml>
         </section>
