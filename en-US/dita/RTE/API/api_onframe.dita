@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onframe">
+    <title><ph keyref="OnFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a video frame is captured.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="OnFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void OnFrame(const std::string stream_id,
+                       const media::base::VideoFrame&amp; video_frame) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p>This callback is triggered when a video frame from either the local user or a remote
+                user is captured.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>stream_id</pt>
+                    <pd>The ID of the stream. If the track is not published to the stream, this parameter returns empty.</pd>
+                </plentry>
+                <plentry>
+                    <pt>video_frame</pt>
+                    <pd>Reference to the video frame: <xref keyref="VideoFrame"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+        </section>
+    </refbody>
+</reference>

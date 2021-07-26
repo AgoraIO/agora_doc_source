@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iagorartestreamingsourceobserver_onstatechanged">
+    <title><ph keyref="OnStateChanged_IAgoraRteStreamingSourceObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the playback state of the streaming
+            source.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="OnStateChanged_IAgoraRteStreamingSourceObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void OnStateChanged(const RteFileInfo&amp; current_file_info,
+                              agora::rtc::STREAMING_SRC_STATE state,
+                              agora::rtc::STREAMING_SRC_ERR err_code) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p>When the playback state of the streaming source changes, the SDK triggers this
+                callback to report the new playback state and the reason or error for such
+                changes.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>current_file_info</pt>
+                    <pd>The information of the current media file.</pd>
+                </plentry>
+                <plentry>
+                    <pt>state</pt>
+                    <pd>The new playback state: <xref keyref="STREAMING_SRC_STATE"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>err_code</pt>
+                    <pd>The error information: <xref keyref="STREAMING_SRC_ERR"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
