@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iagorartestreamingsourceobserver_oneofonce">
+    <title><ph keyref="OnEofOnce_IAgoraRteStreamingSourceObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the media file playback finishes one
+            time.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="OnEofOnce_IAgoraRteStreamingSourceObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void OnEofOnce(const RteFileInfo&amp; current_file_info,
+                         int64_t progress_ms, int64_t repeat_count) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p>If you set the playback loopcount as three, this callback will be triggered three times.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>current_file_info</pt>
+                    <pd>The information of the current media file.</pd>
+                </plentry>
+                <plentry>
+                    <pt>progress_ms</pt>
+                    <pd>The playback position (ms) of the media file.</pd>
+                </plentry>
+                <plentry>
+                    <pt>repeat_count</pt>
+                    <pd>The count of the playback in the current callback.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

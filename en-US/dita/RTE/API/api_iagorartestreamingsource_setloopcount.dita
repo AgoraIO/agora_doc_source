@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iagorartestreamingsource_setloopcount">
+    <title><ph keyref="SetLoopCount_IAgoraRteStreamingSource"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the number of loops for playback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="SetLoopCount_IAgoraRteStreamingSource"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int SetLoopCount(int64_t loop_count) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>loop_count</pt>
+                    <pd>The number of times of looping the media file.<ul>
+                        <li>1: Play the media file once.</li>
+                        <li>2: Play the media file twice.</li>
+                        <li>≤ 0: Play the media file in a loop indefinitely, until <xref keyref="Stop_IAgoraRteStreamingSource"/> is called.</li>
+                    </ul></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure. For details, see <xref keyref="STREAMING_SRC_ERR"/>.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

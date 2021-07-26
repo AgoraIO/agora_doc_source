@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtestreamingsourcestatus">
     <title>RteStreamingSourceStatus</title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The RTE streaming source status.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -35,14 +35,40 @@
                     <dd>v</dd>
                 </dlentry>
             </dl>
-            <p/>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
-                    <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                    <pt>curr_file_id</pt>
+                    <pd>The ID of the current media file. </pd>
+                </plentry>
+                <plentry>
+                    <pt>curr_file_url</pt>
+                    <pd>The URL of the current media file. <ul>
+                        <li>For a local file, this memeber is the absolute path to this file.</li>
+                        <li>For an online file, this memeber is an HTTP or HTTPS URL.</li>
+                    </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>current_file_duration</pt>
+                    <pd>The duration (ms) of the current media file.</pd>
+                </plentry>
+                <plentry>
+                    <pt>curr_file_index</pt>
+                    <pd>The file index in the playlist.</pd>
+                </plentry>
+                <plentry>
+                    <pt>curr_file_begin_time</pt>
+                    <pd>The beginning timestamp (ms) of the current file in the playlist timeline.</pd>
+                </plentry>
+                <plentry>
+                    <pt>source_state</pt>
+                    <pd>The state of the current file: <xref keyref="STREAMING_SRC_STATE"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>progress_pos</pt>
+                    <pd>The playback position (ms) of the current file.</pd>
                 </plentry>
             </parml>
         </section>
