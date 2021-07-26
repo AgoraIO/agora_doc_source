@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_insertfile">
+    <title><ph keyref="InsertFile"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Inserts a new file into the play list at the specified
+            position.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="InsertFile"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int InsertFile(const char* file_url, int32_t insert_index, RteFileInfo&amp; out_file_info) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>file_url</pt>
+                    <pd>The absolute path of local file or URL for cloud file.</pd>
+                </plentry>
+                <plentry>
+                    <pt>insert_index</pt>
+                    <pd>The index at which to insert a file in the file list, ranging between [0,
+                        (file_count-1)].</pd>
+                    <pd>Insert_index &lt;= 0: insert into the head of the list.</pd>
+                    <pd>Insert_index >= file_count: insert into the tail of the list.</pd>
+                </plentry>
+                <plentry>
+                    <pt>out_file_info</pt>
+                    <pd>Output parameter. The file information. See <xref keyref="RteFileInfo"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul id="ul_mfq_jpf_3qb">
+                <li>&lt; 0: Failure.</li>
+                <li>>= 0: Success.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
