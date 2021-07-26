@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_iagorartestreamingsource_onseekdone">
-    <title><ph keyref="OnSeekDone_IAgoraRteStreamingSourceObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when SDK finishes seeking for the media
-            file</ph></shortdesc>
+<reference id="api_adjustuserplaybacksignalvolume">
+    <title>AdjustUserPlaybackSignalVolume</title>
+    <shortdesc id="short"><ph id="shortdesc">Adjusts playback volume for the remote user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="OnSeekDone_IAgoraRteStreamingSourceObserver"/>
+                <indexterm keyref="AdjustUserPlaybackSignalVolume"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,8 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual void OnSeekDone(const RteFileInfo&amp; current_file_info,
-                          STREAMING_SRC_ERR err_code) = 0;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int AdjustUserPlaybackSignalVolume(const std::string&amp; remote_stream_id, int volume) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -31,18 +29,26 @@
                     <dd>v</dd>
                 </dlentry>
             </dl>
+            <p/>
         </section>
         <section id="parameters"><title>Parameters</title>
             <parml>
                 <plentry>
-                    <pt>current_file_info</pt>
-                    <pd>The information of the current media file: <xref keyref="RteFileInfo"/>.</pd>
+                    <pt>remote_stream_id</pt>
+                    <pd>The ID of the remote stream.</pd>
                 </plentry>
                 <plentry>
-                    <pt>err_code</pt>
-                    <pd>The error code. See <xref keyref="STREAMING_SRC_ERR"/>.</pd>
+                    <pt>volume</pt>
+                    <pd>The playback volume, which ranges in [0, 100].</pd>
                 </plentry>
             </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
         </section>
     </refbody>
 </reference>

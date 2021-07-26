@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_iagorartestreamingsource_onseekdone">
-    <title><ph keyref="OnSeekDone_IAgoraRteStreamingSourceObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when SDK finishes seeking for the media
-            file</ph></shortdesc>
+<reference id="api_onstreamtokenexpired">
+    <title>OnStreamTokenExpired</title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the stream token expires.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="OnSeekDone_IAgoraRteStreamingSourceObserver"/>
+                <indexterm keyref="OnStreamTokenExpired"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,8 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual void OnSeekDone(const RteFileInfo&amp; current_file_info,
-                          STREAMING_SRC_ERR err_code) = 0;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void OnStreamTokenExpired(const std::string&amp; stream_id) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -31,16 +29,19 @@
                     <dd>v</dd>
                 </dlentry>
             </dl>
+            <p>After a stream token is specified by calling the <xref keyref="CreateOrUpdateRTCStream"/> method, if the SDK losses connection with the Agora server due to network issues, the stream token may expire after a certain period of time and a new stream token may be required to publish the stream.</p>
+            <p>Once you receive this callback, generate a new token on your app server, and call
+                <xref keyref="CreateOrUpdateRTCStream"/> to pass the new token to the SDK.</p>
+            
+            <note>If the SDK stops publishing the stream because
+                of token expiration, the user is still in the scene before you
+                call <xref keyref="Leave"></xref> to leave the scene.</note>
         </section>
         <section id="parameters"><title>Parameters</title>
             <parml>
                 <plentry>
-                    <pt>current_file_info</pt>
-                    <pd>The information of the current media file: <xref keyref="RteFileInfo"/>.</pd>
-                </plentry>
-                <plentry>
-                    <pt>err_code</pt>
-                    <pd>The error code. See <xref keyref="STREAMING_SRC_ERR"/>.</pd>
+                    <pt>stream_id</pt>
+                    <pd>The ID of the stream.</pd>
                 </plentry>
             </parml>
         </section>
