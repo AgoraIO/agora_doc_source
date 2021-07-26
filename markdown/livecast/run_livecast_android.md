@@ -3,22 +3,25 @@ title: 跑通 Livecast 示例项目
 platform: Android
 updatedAt: 2021-03-31 08:46:36
 ---
+
 Agora 在 GitHub 上提供开源的互动播客示例项目 [Livecast](https://github.com/AgoraIO-Usecase/InteractivePodcast)。本文介绍如何快速跑通该示例项目，体验 Agora 互动播客。
+
 
 ## 前提条件
 
 - Android Studio 4.0.0 或以上版本。
-- Android 4.1 或以上版本的设备。Agora 推荐使用真机，部分模拟机可能无法支持本项目的全部功能。
+- Android 4.1 或以上版本的设备。 Agora 推荐使用真机，部分模拟机可能无法支持本项目的全部功能。
 - 有效的 [Agora 开发者账号](https://docs.agora.io/cn/AgoraPlatform/sign_in_and_sign_up)。
 <div class="alert note">如果你的网络环境部署了防火墙，请参考<a href="https://docs.agora.io/cn/AgoraPlatform/firewall?platform=iOS">应用企业防火墙限制</a>以正常使用 Agora 服务。</div>
 
-##  操作步骤
+## 操作步骤
+
 
 ### 1. 创建 Agora 项目
 
 按照以下步骤，在控制台创建一个 Agora 项目。
 
-1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏 ![img](https://web-cdn.agora.io/docs-files/1594283671161) **项目管理**按钮进入**[项目管理](https://dashboard.agora.io/projects)**页面**。**
+1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏 ![img](https://web-cdn.agora.io/docs-files/1594283671161) **项目管理**按钮进入**[项目管理](https://dashboard.agora.io/projects)**页面**。 **
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
