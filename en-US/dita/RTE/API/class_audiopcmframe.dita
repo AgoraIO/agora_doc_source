@@ -28,6 +28,7 @@
     sample_rate_hz_(0),
     num_channels_(0),
     bytes_per_sample(0) {}
+    memset(data_, 0, sizeof(data_));
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity" outputclass="language-csharp"></codeblock>
@@ -47,12 +48,16 @@
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt>apture_timestamp</pt>
-                    <pd>The timestamp (ms) ofz the audio frame.</pd>
+                    <pt><xref keyref="OPTIONAL_ENUM_SIZE_T"/></pt>
+                    <pd>The buffer size of the PCM audio frame. See <xref keyref="OPTIONAL_ENUM_SIZE_T"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>capture_timestamp</pt>
+                    <pd>The timestamp (ms) of the audio frame.</pd>
                 </plentry>
                 <plentry>
                     <pt>samples_per_channel_</pt>
-                    <pd>The number of samples per channel.</pd>
+                    <pd>The number of samples per channel. The max number is <ph keyref="kMaxDataSizeSamples"/>, see <xref keyref="OPTIONAL_ENUM_SIZE_T"/>.</pd>
                 </plentry>
                 <plentry>
                     <pt>sample_rate_hz_</pt>
@@ -64,8 +69,13 @@
                 </plentry>
                 <plentry>
                     <pt>bytes_per_sample</pt>
-                    <pd>The number of bytes per sample. See <xref keyref="BYTES_PER_SAMPLE"/>.</pd>
+                    <pd>The number of bytes pyer sample. See <xref keyref="BYTES_PER_SAMPLE"/>.</pd>
                 </plentry>
+                <plentry>
+                    <pt>data_</pt>
+                    <pd>The audio frame data.The max number is <ph keyref="kMaxDataSizeBytes"/>, see <xref keyref="OPTIONAL_ENUM_SIZE_T"/>.</pd>
+                </plentry>
+
                 
             </parml>
         </section>
