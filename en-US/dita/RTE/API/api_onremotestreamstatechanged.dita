@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onremotestreamstatechanged">
+    <title>OnRemoteStreamStateChanged</title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the media state of the remote stream changes.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="OnRemoteStreamStateChanged"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void OnRemoteStreamStateChanged(const StreamInfo&amp; streams,
+                    MediaType media_type,
+                    StreamMediaState old_state,
+                    StreamMediaState new_state,
+                    StreamStateChangedReason reason) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry>
+                    <dt>Since</dt>
+                    <dd>v</dd>
+                </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>stream</pt>
+                    <pd>Information of the remote stream. See <xref keyref="StreamInfo"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>media_type</pt>
+                    <pd>Media type of the remote stream. See <xref keyref="MediaType"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>old_state</pt>
+                    <pd>The previous media state. See <xref keyref="StreamMediaState"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>new_state</pt>
+                    <pd>The current media state. See <xref keyref="StreamMediaState"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>reason</pt>
+                    <pd>The reason of the media state change. See <xref keyref="StreamStateChangedReason"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
