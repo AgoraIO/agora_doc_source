@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_onmixedaudioframe">
-    <title><ph keyref="OnMixedAudioFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the mixed audio data is
-        received.</ph></shortdesc>
+<reference id="api_getremoteusers">
+    <title>GetRemoteUsers</title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the information of all remote users.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="OnMixedAudioFrame"/>
+                <indexterm keyref="GetRemoteUsers"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,7 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual bool OnMixedAudioFrame(AudioFrame&amp; audio_frame) = 0;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual std::vector&lt;UserInfo&gt; GetRemoteUsers() const = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -30,21 +29,11 @@
                     <dd>v</dd>
                 </dlentry>
             </dl>
-        </section>
-        <section id="parameters"><title>Parameters</title>
-            <parml>
-                <plentry>
-                    <pt>audio_frame</pt>
-                    <pd>The audio frame: <xref keyref="AudioFrame"/></pd>
-                </plentry>
-            </parml>
+            <p/>
         </section>
         <section id="return_values">
             <title>Returns</title>
-            <ul>
-                <li><ph keyref="true"/>: The mixed audio data is valid.</li>
-                <li><ph keyref="false"/>: The mixed audio data is invalid.</li>
-            </ul>
+            <p>The information of all remote users. See <xref keyref="UserInfo"/>.</p>
         </section>
     </refbody>
 </reference>
