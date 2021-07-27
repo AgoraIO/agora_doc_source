@@ -189,6 +189,7 @@
             <topicref keyref="onConnectionInterrupted" toc="no"/>
             <topicref keyref="onConnectionLost" toc="no"/>
             <topicref keyref="onConnectionStateChanged" toc="no"/>
+            <topicref keyref="onEncryptionError" toc="no"/>
             <topicref keyref="onError" toc="no"/>
             <topicref keyref="onFacePositionChanged" toc="no"/>
             <topicref keyref="onFirstLocalAudioFramePublished" toc="no"/>
@@ -211,6 +212,7 @@
             <topicref keyref="onMicrophoneEnabled" toc="no"/>
             <topicref keyref="onNetworkQuality" toc="no"/>
             <topicref keyref="onNetworkTypeChanged" toc="no"/>
+            <topicref keyref="onPermissionError" toc="no"/>
             <topicref keyref="onRejoinChannelSuccess" toc="no"/>
             <topicref keyref="onRemoteAudioMixingBegin" toc="no"/>
             <topicref keyref="onRemoteAudioMixingEnd" toc="no"/>
@@ -231,6 +233,7 @@
             <topicref keyref="onStreamUnpublished" toc="no"/>
             <topicref keyref="onTokenPrivilegeWillExpire" toc="no"/>
             <topicref keyref="onTranscodingUpdated" toc="no"/>
+            <topicref keyref="onUplinkNetworkInfoUpdated" toc="no"/>
             <topicref keyref="onUserEnableLocalVideo" toc="no"/>
             <topicref keyref="onUserEnableVideo" toc="no"/>
             <topicref keyref="onUserInfoUpdated" toc="no"/>
@@ -314,10 +317,18 @@
         <topicref keyref="IMediaEngine" chunk="to-content">
             <topicref keyref="pullAudioFrame" toc="no"/>
             <topicref keyref="pushAudioFrame1" toc="no"/>
+            <topicref keyref="pushEncodedVideoImage" toc="no"/>
             <topicref keyref="pushVideoFrame" toc="no"/>
             <topicref keyref="registerAudioFrameObserver" toc="no"/>
+            <topicref keyref="registerVideoEncodedImageReceiver" toc="no"/>
             <topicref keyref="registerVideoFrameObserver" toc="no"/>
             <topicref keyref="setExternalVideoSource" toc="no"/>
+        </topicref>
+        <topicref keyref="IMediaPlayerSourceObserver" chunk="to-content">
+            <topicref keyref="onCompleted" toc="no"/>
+            <topicref keyref="onMetaData" toc="no"/>
+            <topicref keyref="onPlayerEvent" toc="no"/>
+            <topicref keyref="onPositionChanged" toc="no"/>
         </topicref>
         <topicref keyref="IAudioFrameObserver" chunk="to-content">
             <topicref keyref="AUDIO_FRAME_TYPE" toc="no"/>
@@ -326,6 +337,10 @@
             <topicref keyref="onPlaybackAudioFrame" toc="no"/>
             <topicref keyref="onPlaybackAudioFrameBeforeMixing" toc="no"/>
             <topicref keyref="onRecordAudioFrame" toc="no"/>
+        </topicref>
+        <topicref keyref="IAudioSpectrumObserver" chunk="to-content">
+            <topicref keyref="onLocalAudioSpectrum" toc="no"/>
+            <topicref keyref="onRemoteAudioSpectrum" toc="no"/>
         </topicref>
         <topicref keyref="IPacketObserver" chunk="to-content">
             <topicref keyref="onReceiveAudioPacket" toc="no"/>
@@ -341,14 +356,16 @@
             <topicref keyref="onMetadataReceived" toc="no"/>
             <topicref keyref="onReadyToSendMetadata" toc="no"/>
         </topicref>
+        <topicref keyref="IVideoEncodedImageReceiver" chunk="to-content"> </topicref>
         <topicref keyref="IVideoFrameObserver" chunk="to-content">
             <topicref keyref="getMirrorApplied" toc="no"/>
             <topicref keyref="getRotationApplied" toc="no"/>
+            <topicref keyref="getVideoFrameProcessMode" toc="no"/>
             <topicref keyref="onCaptureVideoFrame" toc="no"/>
+            <topicref keyref="onMediaPlayerVideoFrame" toc="no"/>
+            <topicref keyref="onScreenCaptureVideoFrame" toc="no"/>
             <topicref keyref="onRenderVideoFrame" toc="no"/>
-            <topicref keyref="VIDEO_FRAME_TYPE" toc="no"/>
-            <topicref keyref="VIDEO_OBSERVER_POSITION" toc="no"/>
-            <topicref keyref="VideoFrame" toc="no"/>
+            <topicref keyref="VIDEO_FRAME_PROCESS_MODE" toc="no"/>
         </topicref>
         <topicref href="API/rtc_api_data_type.dita" chunk="to-content">
             <topicref keyref="AREA_CODE" toc="no"/>
@@ -379,6 +396,7 @@
             <topicref keyref="CONNECTION_CHANGED_REASON_TYPE" toc="no"/>
             <topicref keyref="CONNECTION_STATE_TYPE" toc="no"/>
             <topicref keyref="DEGRADATION_PREFERENCE" toc="no"/>
+            <topicref keyref="ENCRYPTION_ERROR_TYPE" toc="no"/>
             <topicref keyref="ENCRYPTION_MODE" toc="no"/>
             <topicref keyref="EXPERIENCE_POOR_REASON" toc="no"/>
             <topicref keyref="EXPERIENCE_QUALITY_TYPE" toc="no"/>
@@ -399,11 +417,14 @@
             <topicref keyref="MEDIA_DEVICE_STATE_TYPE" toc="no"/>
             <topicref keyref="MEDIA_DEVICE_TYPE" toc="no"/>
             <topicref keyref="MEDIA_PLAYER_PLAYBACK_SPEED" toc="no"/>
+            <topicref keyref="MEDIA_PLAYER_ERROR" toc="no"/>
+            <topicref keyref="MEDIA_PLAYER_EVENT" toc="no"/>
             <topicref keyref="MEDIA_PLAYER_STATE" toc="no"/>
             <topicref keyref="MEDIA_SOURCE_TYPE" toc="no"/>
             <topicref keyref="MEDIA_STREAM_TYPE" toc="no"/>
             <topicref keyref="NETWORK_TYPE" toc="no"/>
             <topicref keyref="ORIENTATION_MODE" toc="no"/>
+            <topicref keyref="PERMISSION_TYPE" toc="no"/>
             <topicref keyref="PRIORITY_TYPE" toc="no"/>
             <topicref keyref="QUALITY_ADAPT_INDICATION" toc="no"/>
             <topicref keyref="QUALITY_REPORT_FORMAT_TYPE" toc="no"/>
@@ -423,18 +444,22 @@
             <topicref keyref="STREAM_PUBLISH_STATE" toc="no"/>
             <topicref keyref="STREAM_SUBSCRIBE_STATE" toc="no"/>
             <topicref keyref="UPLOAD_ERROR_REASON" toc="no"/>
-    <topicref keyref="VOICE_CONVERSION_PRESET" toc="no"/>
-   <topicref keyref="USER_OFFLINE_REASON_TYPE" toc="no"/>
-   <topicref keyref="VIDEO_BUFFER_TYPE" toc="no"/>
-   <topicref keyref="VIDEO_CAPTURE_TYPE" toc="no"/>
-   <topicref keyref="VIDEO_CODEC_PROFILE_TYPE" toc="no"/>
-   <topicref keyref="VIDEO_CODEC_TYPE" toc="no"/>
-   <topicref keyref="VIDEO_CONTENT_HINT" toc="no"/>
-   <topicref keyref="VIDEO_MIRROR_MODE_TYPE" toc="no"/>
-   <topicref keyref="VIDEO_PIXEL_FORMAT" toc="no"/>
-   <topicref keyref="VIDEO_PROFILE_TYPE" toc="no"/>
-   <topicref keyref="VOICE_BEAUTIFIER_PRESET" toc="no"/>
-   <topicref keyref="VOICE_CHANGER_PRESET" toc="no"/>
+            <topicref keyref="USER_OFFLINE_REASON_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_BUFFER_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_CAPTURE_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_CODEC_PROFILE_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_CODEC_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_CONTENT_HINT" toc="no"/>
+            <topicref keyref="VIDEO_MIRROR_MODE_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_ORIENTATION" toc="no"/>
+            <topicref keyref="VIDEO_PIXEL_FORMAT" toc="no"/>
+            <topicref keyref="VIDEO_PROFILE_TYPE" toc="no"/>
+            <topicref keyref="VOICE_BEAUTIFIER_PRESET" toc="no"/>
+            <topicref keyref="VOICE_CHANGER_PRESET" toc="no"/>
+            <topicref keyref="VOICE_CONVERSION_PRESET" toc="no"/>
+            <topicref keyref="AgoraRhythmPlayerConfig" toc="no"/>
+            <topicref keyref="AudioRecordingConfiguration" toc="no"/>
+            <topicref keyref="AudioSpectrumData" toc="no"/>
             <topicref keyref="AudioVolumeInfo" toc="no"/>
             <topicref keyref="BeautyOptions" toc="no"/>
             <topicref keyref="CameraCapturerConfiguration" toc="no"/>
@@ -443,6 +468,7 @@
             <topicref keyref="ChannelMediaRelayConfiguration" toc="no"/>
             <topicref keyref="ClientRoleOptions" toc="no"/>
             <topicref keyref="DataStreamConfig" toc="no"/>
+            <topicref keyref="EncodedVideoFrameInfo" toc="no"/>
             <topicref keyref="EncryptionConfig" toc="no"/>
             <topicref keyref="ExternalVideoFrame" toc="no"/>
             <topicref keyref="InjectStreamConfig" toc="no"/>
@@ -463,13 +489,14 @@
             <topicref keyref="RtcStats" toc="no"/>
             <topicref keyref="ScreenCaptureParameters" toc="no"/>
             <topicref keyref="TranscodingUser" toc="no"/>
+            <topicref keyref="UplinkNetworkInfo" toc="no"/>
+            <topicref keyref="UserAudioSpectrumInfo" toc="no"/>
             <topicref keyref="UserInfo" toc="no"/>
             <topicref keyref="VideoCanvas" toc="no"/>
             <topicref keyref="VideoDimensions" toc="no"/>
             <topicref keyref="VideoEncoderConfiguration" toc="no"/>
+            <topicref keyref="VideoFrame" toc="no"/>
             <topicref keyref="WatermarkOptions" toc="no"/>
-    <topicref keyref="AgoraRhythmPlayerConfig" toc="no"/>
-    <topicref keyref="AudioRecordingConfiguration" toc="no"/>
         </topicref>
         <topicref href="API/error_rtc.md" format="mdita"/>
     </topichead>
