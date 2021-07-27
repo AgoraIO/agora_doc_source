@@ -60,7 +60,7 @@
             <parml>
                 <plentry>
                     <pt>type</pt>
-                    <pd>The video frame type: <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+                    <pd>The video pixel format: <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
                 </plentry>
                 <plentry>
                     <pt>width</pt>
@@ -71,16 +71,16 @@
                     <pd>The height of the video frame.</pd>
                 </plentry>
                 <plentry>
-                    <pt>ystride</pt>
-                    <pd>The line span of the Y buffer in the YUV data.</pd>
+                    <pt>yStride</pt>
+                    <pd>The line span of Y buffer in the YUV data.</pd>
                 </plentry>
                 <plentry>
                     <pt>uStride</pt>
-                    <pd>The line span of the U buffer in the YUV data.</pd>
+                    <pd>The line span of U buffer in the YUV data.</pd>
                 </plentry>
                 <plentry>
                     <pt>vStride</pt>
-                    <pd>The line span of the V buffer in the YUV data.</pd>
+                    <pd>The line span of V buffer in the YUV data.</pd>
                 </plentry>
                 <plentry>
                     <pt>yBuffer</pt>
@@ -100,7 +100,9 @@
                 </plentry>
                 <plentry>
                     <pt>renderTimeMs</pt>
-                    <pd>The timestamp to render the video stream. Use this parameter for audio-video synchronization when rendering the video frame.</pd>
+                    <pd>The timestamp to render the video stream. Use this parameter for audio-video
+                        synchronization when rendering the video.<note type="note">This parameter is for rendering the video, not capturing the
+                        video.</note></pd>
                 </plentry>
                 <plentry>
                     <pt>avsync_type</pt>
@@ -108,12 +110,13 @@
                 </plentry>
                 <plentry>
                     <pt>metadata_buffer</pt>
-                    <pd>The metadata buffer. This memeber takes effect only when the video format is Texture.</pd>
+                    <pd>(Texture related parameter) The MetaData buffer. The default value is <ph keyref="null"/>.</pd>
                 </plentry>
                 <plentry>
                     <pt>metadata_size</pt>
-                    <pd>The meradata size. This memeber takes effect only when the video format is Texture.</pd>
+                    <pd>(Texture related parameter) The MetaData size. The default value is 0.</pd>
                 </plentry>
+                
             </parml>
         </section>
     </refbody>
