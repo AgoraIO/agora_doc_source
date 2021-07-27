@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiopcmframe">
-    <title>AudioPcmFrame</title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <title><ph keyref="AudioPcmFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The detailed information of the incoming audio frame in
+            the PCM format.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -27,6 +28,7 @@
     sample_rate_hz_(0),
     num_channels_(0),
     bytes_per_sample(0) {}
+    memset(data_, 0, sizeof(data_));
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity" outputclass="language-csharp"></codeblock>
@@ -41,15 +43,40 @@
                     <dd>v</dd>
                 </dlentry>
             </dl>
-            <p/>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
-                    <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                    <pt><xref keyref="OPTIONAL_ENUM_SIZE_T"/></pt>
+                    <pd>The buffer size of the PCM audio frame. See <xref keyref="OPTIONAL_ENUM_SIZE_T"/>.</pd>
                 </plentry>
+                <plentry>
+                    <pt>capture_timestamp</pt>
+                    <pd>The timestamp (ms) of the audio frame.</pd>
+                </plentry>
+                <plentry>
+                    <pt>samples_per_channel_</pt>
+                    <pd>The number of samples per channel. The max number is <ph keyref="kMaxDataSizeSamples"/>, see <xref keyref="OPTIONAL_ENUM_SIZE_T"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>sample_rate_hz_</pt>
+                    <pd>The sample rate (Hz) of the audio data.</pd>
+                </plentry>
+                <plentry>
+                    <pt>num_channels_</pt>
+                    <pd>The channel number.</pd>
+                </plentry>
+                <plentry>
+                    <pt>bytes_per_sample</pt>
+                    <pd>The number of bytes pyer sample. See <xref keyref="BYTES_PER_SAMPLE"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>data_</pt>
+                    <pd>The audio frame data.The max number is <ph keyref="kMaxDataSizeBytes"/>, see <xref keyref="OPTIONAL_ENUM_SIZE_T"/>.</pd>
+                </plentry>
+
+                
             </parml>
         </section>
     </refbody>
