@@ -29,11 +29,21 @@
             <parml>
                 <plentry>
                     <pt>scene_id</pt>
-                    <pd>The ID of the scene. Must be a unique string.</pd>
+                    <pd id="scene_id">
+                        <p>Unique ID for the scene. Must be smaller than 64 bytes. Supported characters:</p>
+                        <ul>
+                        <li>All lowercase English letters: a to z.</li>
+                            <li>All uppercase English letters: A to Z.</li>
+                            <li>All numeric characters: 0 to 9.</li>
+                            <li>The space character.</li>
+                            <li>Punctuation characters and other symbols, including: "!", "#", "$", "%", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", " {", "}", "|", "~", ",".</li>
+                        </ul>
+                        <note type="attention">The "&amp;" character is not supported.</note>
+                    </pd>
                 </plentry>
                 <plentry>
                     <pt>config</pt>
-                    <pd>Configurations for the scene.See <xref keyref="SceneConfig"/>.</pd>
+                    <pd>Configurations for the scene. See <xref keyref="SceneConfig"/>.</pd>
                 </plentry>
             </parml>
         </section>
