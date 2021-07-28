@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcstreamoptions">
     <title>RtcStreamOptions</title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Options to configure the RTC stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,21 +14,14 @@
   RtcStreamOptions(const std::string&amp; input_token)
     : StreamOption(StreamType::kRtcStream), token(input_token) {}
 
-  /**
-   * @brief
-   *
-   * @param option
-   */
+
   void Assign(const StreamOption&amp; option) override {
     if (option.type == StreamType::kRtcStream) {
       token = static_cast&lt;const RtcStreamOptions&amp;>(option).token;
     }
   }
 
-  /**
-   * The token for joining scene
-   * // TODO (yejun): how to generate token
-   */
+
   std::string token;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
@@ -50,8 +43,8 @@
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
-                    <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                    <pt>token</pt>
+                    <pd>The stream token.</pd>
                 </plentry>
             </parml>
         </section>

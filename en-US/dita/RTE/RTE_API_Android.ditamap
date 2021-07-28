@@ -1,4 +1,296 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
+    <title>Java API Reference for Android</title>
+    <topicmeta>
+        <navtitle>Java API Reference</navtitle>
+    </topicmeta>
+    <topichead navtitle="Configurations" toc="no">
+        <topicref href="conref/conref_api_metadata.dita" processing-role="resource-only"/>
+        <topicref href="config/subject-scheme-rte.ditamap" format="ditamap" type="subjectScheme"
+            navtitle="Conditional processing attributes"/>
+        <mapref href="config/keys-rte-api-java.ditamap" format="ditamap"
+            processing-role="resource-only"/>
+    </topichead>
+    <topichead navtitle="C++ API Reference for All Platforms">
+        <topicref href="API/rte_api_overview.dita"/>
+        <topicref chunk="to-content" keyref="AgoraRteSdk">
+            <topicref keyref="CreateRteScene" toc="no"/>
+            <topicref keyref="Deinit" toc="no"/>
+            <topicref keyref="GetRteMediaFactory" toc="no"/>
+            <topicref keyref="Init" toc="no"/>
+        </topicref>
+        <topicref chunk="to-content" keyref="IAgoraRteMediaFactory">
+            <topicref keyref="CreateCameraVideoTrack" toc="no"/>
+            <topicref keyref="CreateScreenVideoTrack" toc="no"/>
+            <topicref keyref="CreateMixedVideoTrack" toc="no"/>
+            <topicref keyref="CreateCustomVideoTrack" toc="no"/>
+            <topicref keyref="CreateMicrophoneAudioTrack" toc="no"/>
+            <topicref keyref="CreateCustomAudioTrack" toc="no"/>
+            <topicref keyref="CreateMediaPlayer" toc="no"/>
+            <topicref keyref="CreateStreamingSource" toc="no"/>
+        </topicref>
+        <topicref keyref="IAgoraRteAudioTrack" chunk="to-content">
+            <topicref keyref="AdjustPlayoutVolume" toc="no"/>
+            <topicref keyref="AdjustPublishVolume" toc="no"/>
+            <topicref keyref="EnableLocalPlayback" toc="no"/>
+            <topicref keyref="GetAttachedStreamId" toc="no"/>
+            <topicref keyref="GetSourceType" toc="no"/>
+        </topicref>
+        <topicref keyref="IAgoraRteCameraVideoTrack" chunk="to-content">
+            <topicref keyref="SetCameraAutoFaceFocus" toc="no"/>
+            <topicref keyref="SetCameraDevice" toc="no"/>
+            <topicref keyref="SetCameraFaceDetection" toc="no"/>
+            <topicref keyref="SetCameraFocus" toc="no"/>
+            <topicref keyref="SetCameraSource" toc="no"/>
+            <topicref keyref="SetCameraZoom" toc="no"/>
+            <topicref keyref="SetDeviceOrientation" toc="no"/>
+            <topicref keyref="StartCapture" toc="no"/>
+            <topicref keyref="StopCapture_Camera" toc="no"/>
+            <topicref keyref="SwitchCamera" toc="no"/>
+        </topicref>
+        <topicref keyref="IAgoraRteCustomAudioTrack" chunk="to-content">
+            <topicref keyref="PushAudioFrame" toc="no"/>
+        </topicref>
+        <topicref keyref="IAgoraRteCustomVideoTrack" chunk="to-content">
+            <topicref keyref="PushVideoFrame" toc="no"/>
+        </topicref>
+        <topicref keyref="IAgoraRteMicrophoneAudioTrack" chunk="to-content">
+            <topicref keyref="EnableEarMonitor" toc="no"/>
+            <topicref keyref="SetAudioReverbPreset" toc="no"/>
+            <topicref keyref="SetVoiceChangerPreset" toc="no"/>
+            <topicref keyref="StartRecording" toc="no"/>
+            <topicref keyref="StopRecording" toc="no"/>
+        </topicref>
+        <topicref keyref="IAgoraRteMixedVideoTrack" chunk="to-content">
+            <topicref keyref="AddMediaPlayer" toc="no"/>
+            <topicref keyref="AddTrack" toc="no"/>
+            <topicref keyref="GetLayout" toc="no"/>
+            <topicref keyref="RemoveMediaPlayer" toc="no"/>
+            <topicref keyref="RemoveTrack" toc="no"/>
+            <topicref keyref="SetLayout" toc="no"/>
+        </topicref>
+        <topicref keyref="IAgoraRteScreenVideoTrack" chunk="to-content">
+            <topicref keyref="SetContentHint" toc="no"/>
+            <topicref keyref="StartCaptureScreen_Windows" toc="no"/>
+            <topicref keyref="StartCaptureScreen_macOS" toc="no"/>
+            <topicref keyref="StartCaptureScreen_Android" toc="no"/>
+            <topicref keyref="StartCaptureScreen_iOS" toc="no"/>
+            <topicref keyref="StartCaptureWindow_Windows" toc="no"/>
+            <topicref keyref="StartCaptureWindow_macOS" toc="no"/>
+            <topicref keyref="StopCapture_Screen" toc="no"/>
+            <topicref keyref="UpdateScreenCaptureRegion" toc="no"/>
+        </topicref>
+        <topicref keyref="IAgoraRteVideoTrack" chunk="to-content">
+            <topicref keyref="EnableVideoFilter" toc="no"/>
+            <topicref keyref="GetAttachedStreamId" toc="no"/>
+            <topicref keyref="GetFilterProperty" toc="no"/>
+            <topicref keyref="GetSourceType" toc="no"/>
+            <topicref keyref="RegisterVideoFrameObserver" toc="no"/>
+            <topicref keyref="SetFilterProperty" toc="no"/>
+            <topicref keyref="SetPreviewCanvas" toc="no"/>
+            <topicref keyref="UnregisterVideoFrameObserver" toc="no"/>
+        </topicref>
+        <topicref chunk="to-content" keyref="IAgoraRteAudioFrameObserver">
+            <topicref keyref="OnRecordAudioFrame" toc="no"/>
+            <topicref keyref="OnPlaybackAudioFrame" toc="no"/>
+            <topicref keyref="OnMixedAudioFrame" toc="no"/>
+            <topicref keyref="OnPlaybackAudioFrameBeforeMixing" toc="no"/>
+        </topicref>
+        <topicref chunk="to-content" keyref="IAgoraRteVideoFrameObserver">
+            <topicref keyref="OnFrame" toc="no"/>
+        </topicref>
+        <topicref chunk="to-content" keyref="IAgoraRteStreamingSource">
+            <topicref keyref="CreatePlayList_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="GetRteVideoTrack_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="GetRteAudioTrack_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="Open1_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="Open2_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="Close_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="IsVideoValid_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="IsAudioValid_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="GetDuration_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="GetStreamCount_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="GetStreamInfo_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="SetLoopCount_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="Play_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="Pause_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="Stop_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="Seek_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="SeekToPrev_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="SeekToNext_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="SeekToFile_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="GetStreamingSourceStatus_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="GetCurrPosition_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="GetCurrState_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="AppendSeiData_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="RegisterObserver_IAgoraRteStreamingSource" toc="no"/>
+            <topicref keyref="UnregisterObserver_IAgoraRteStreamingSource" toc="no"/>
+        </topicref>
+        <topicref chunk="to-content" keyref="IAgoraRteStreamingSourceObserver">
+            <topicref keyref="OnStateChanged_IAgoraRteStreamingSourceObserver"/>
+            <topicref keyref="OnOpenDone_IAgoraRteStreamingSourceObserver"/>
+            <topicref keyref="OnSeekDone_IAgoraRteStreamingSourceObserver"/>
+            <topicref keyref="OnEofOnce_IAgoraRteStreamingSourceObserver"/>
+            <topicref keyref="OnAllMediasCompleted_IAgoraRteStreamingSourceObserver"/>
+            <topicref keyref="OnProgress_IAgoraRteStreamingSourceObserver"/>
+            <topicref keyref="OnMetaData_IAgoraRteStreamingSourceObserver"/>
+        </topicref>
+          <topicref chunk="to-content" keyref="IAgoraRteMediaPlayer">
+            <topicref keyref="AdjustPlayoutVolume" toc="no"/>
+            <topicref keyref="ChangePlaybackSpeed" toc="no"/>
+            <topicref keyref="CreatePlayList" toc="no"/>
+            <topicref keyref="GetAudioTrack" toc="no"/>
+            <topicref keyref="GetDuration" toc="no"/>
+            <topicref keyref="GetPlayerStatus" toc="no"/>
+            <topicref keyref="GetPlayerVersion" toc="no"/>
+            <topicref keyref="GetPlayoutVolume" toc="no"/>
+            <topicref keyref="GetPlayPosition" toc="no"/>
+            <topicref keyref="GetState" toc="no"/>
+            <topicref keyref="GetStreamCount" toc="no"/>
+            <topicref keyref="GetStreamId" toc="no"/>
+            <topicref keyref="GetStreamInfo" toc="no"/>
+            <topicref keyref="GetVideoTrack" toc="no"/>
+            <topicref keyref="IsAudioMuted" toc="no"/>
+            <topicref keyref="IsMuted" toc="no"/>
+            <topicref keyref="IsVideoMuted" toc="no"/>
+            <topicref keyref="Mute" toc="no"/>
+            <topicref keyref="MuteAudio" toc="no"/>
+            <topicref keyref="MuteVideo" toc="no"/>
+            <topicref keyref="Open1" toc="no"/>
+            <topicref keyref="Open2" toc="no"/>
+            <topicref keyref="Play" toc="no"/>
+            <topicref keyref="Pause" toc="no"/>
+            <topicref keyref="RegisterMediaPlayerObserver" toc="no"/>
+            <topicref keyref="Resume" toc="no"/>
+            <topicref keyref="Seek" toc="no"/>
+            <topicref keyref="SeekToPrev" toc="no"/>
+            <topicref keyref="SeekToNext" toc="no"/>
+            <topicref keyref="SeekToFile" toc="no"/>
+            <topicref keyref="SelectAudioTrack" toc="no"/>
+            <topicref keyref="SetLoopCount" toc="no"/>
+            <topicref keyref="SetPlayerOption" toc="no"/>
+            <topicref keyref="SetPlayerOptionString" toc="no"/>
+            <topicref keyref="SetRenderMode" toc="no"/>
+            <topicref keyref="SetStreamId" toc="no"/>
+            <topicref keyref="SetView" toc="no"/>
+            <topicref keyref="Stop" toc="no"/>
+            <topicref keyref="UnregisterMediaPlayerObserver" toc="no"/>
+        </topicref>
+        <topicref chunk="to-content" keyref="IAgoraRteMediaPlayerObserver">
+            <topicref keyref="OnAllMediasCompleted" toc="no"/>
+            <topicref keyref="OnAudioFrame" toc="no"/>
+            <topicref keyref="OnMetadata" toc="no"/>
+            <topicref keyref="OnPlayerBufferUpdated" toc="no"/>
+            <topicref keyref="OnPlayerEvent" toc="no"/>
+            <topicref keyref="OnPlayerStateChanged" toc="no"/>
+            <topicref keyref="OnPositionChanged" toc="no"/>
+            <topicref keyref="OnVideoFrame" toc="no"/>
+        </topicref>
+        <topicref chunk="to-content" keyref="IAgoraRtePlayList">      
+            <topicref keyref="AppendFile" toc="no"/>
+            <topicref keyref="ClearFileList" toc="no"/>
+            <topicref keyref="RemoveFileById" toc="no"/>
+            <topicref keyref="RemoveFileByIndex" toc="no"/>
+            <topicref keyref="RemoveFileByUrl" toc="no"/>
+            <topicref keyref="GetFileCount" toc="no"/>
+            <topicref keyref="GetFileInfoById" toc="no"/>
+            <topicref keyref="GetFileInfoByIndex" toc="no"/>
+            <topicref keyref="GetFileList" toc="no"/>
+            <topicref keyref="GetFirstFileInfo" toc="no"/>
+            <topicref keyref="GetLastFileInfo" toc="no"/>
+            <topicref keyref="GetTotalDuration" toc="no"/>
+            <topicref keyref="InsertFile" toc="no"/>
+        </topicref>
+        <topicref chunk="to-content" keyref="IAgoraRteScene">
+            <topicref keyref="Join" toc="no"/>
+            <topicref keyref="Leave" toc="no"/>
+            <topicref keyref="GetSceneInfo" toc="no"/>
+            <topicref keyref="GetLocalUserInfo" toc="no"/>
+            <topicref keyref="OnAudioVolumeIndication" toc="no"/>
+            <topicref keyref="GetRemoteUsers" toc="no"/>
+            <topicref keyref="GetLocalStreams" toc="no"/>
+            <topicref keyref="GetRemoteStreams" toc="no"/>
+            <topicref keyref="GetRemoteStreamsByUserId" toc="no"/>
+            <topicref keyref="CreateOrUpdateRTCStream" toc="no"/>
+            <topicref keyref="CreateOrUpdateDirectCDNStream" toc="no"/>
+            <topicref keyref="DestroyStream" toc="no"/>
+            <topicref keyref="SetAudioEncoderConfiguration" toc="no"/>
+            <topicref keyref="SetVideoEncoderConfiguration" toc="no"/>
+            <topicref keyref="PublishLocalAudioTrack" toc="no"/>
+            <topicref keyref="PublishLocalVideoTrack" toc="no"/>
+            <topicref keyref="UnpublishLocalAudioTrack" toc="no"/>
+            <topicref keyref="UnpublishLocalVideoTrack" toc="no"/>
+            <topicref keyref="PublishMediaPlayer" toc="no"/>
+            <topicref keyref="UnpublishMediaPlayer" toc="no"/>
+            <topicref keyref="SubscribeRemoteAudio" toc="no"/>
+            <topicref keyref="UnsubscribeRemoteAudio" toc="no"/>
+            <topicref keyref="SubscribeRemoteVideo" toc="no"/>
+            <topicref keyref="UnsubscribeRemoteVideo" toc="no"/>
+            <topicref keyref="SetRemoteVideoCanvas" toc="no"/>
+            <topicref keyref="RegisterEventHandler" toc="no"/>
+            <topicref keyref="UnregisterEventHandler" toc="no"/>
+            <topicref keyref="RegisterRemoteVideoFrameObserver" toc="no"/>
+            <topicref keyref="UnregisterRemoteVideoFrameObserver" toc="no"/>
+            <topicref keyref="RegisterAudioFrameObserver" toc="no"/>
+            <topicref keyref="UnregisterAudioFrameObserver" toc="no"/>
+            <topicref keyref="AdjustUserPlaybackSignalVolume" toc="no"/>
+            <topicref keyref="GetUserPlaybackSignalVolume" toc="no"/>
+            <topicref keyref="RenewSceneToken" toc="no"/>
+        </topicref>
+        <topicref chunk="to-content" keyref="IAgoraRteSceneEventHandler">
+            <topicref keyref="OnConnectionStateChanged" toc="no"/>
+            <topicref keyref="OnRemoteUserJoined" toc="no"/>
+            <topicref keyref="OnRemoteUserLeft" toc="no"/>
+            <topicref keyref="OnRemoteStreamAdded" toc="no"/>
+            <topicref keyref="OnRemoteStreamRemoved" toc="no"/>
+            <topicref keyref="OnLocalStreamStateChanged" toc="no"/>
+            <topicref keyref="OnRemoteStreamStateChanged" toc="no"/>
+            <topicref keyref="OnSceneTokenWillExpire" toc="no"/>
+            <topicref keyref="OnSceneTokenExpired" toc="no"/>            
+            <topicref keyref="OnStreamTokenWillExpire" toc="no"/>
+            <topicref keyref="OnStreamTokenExpired" toc="no"/>
+            <topicref keyref="OnSceneStats" toc="no"/>
+            <topicref keyref="OnLocalStreamStats" toc="no"/>
+            <topicref keyref="OnRemoteStreamStats" toc="no"/>
+        </topicref>
+        <topicref href="API/rte_api_data_type.dita" chunk="to-content">
+            <topicref keyref="AUDIO_FRAME_TYPE" toc="no"/>
+            <topicref keyref="AUDIO_PROFILE_TYPE" toc="no"/>
+            <topicref keyref="AUDIO_REVERB_PRESET" toc="no"/>
+            <topicref keyref="BYTES_PER_SAMPLE" toc="no"/>
+            <topicref keyref="CameraSource" toc="no"/>
+            <topicref keyref="CameraState" toc="no"/>
+            <topicref keyref="EGL_CONTEXT_TYPE" toc="no"/>
+            <topicref keyref="LayoutType" toc="no"/>
+            <topicref keyref="MEDIA_PLAYER_ERROR" toc="no"/>
+            <topicref keyref="MEDIA_PLAYER_EVENT" toc="no"/>
+            <topicref keyref="MEDIA_PLAYER_METADATA_TYPE" toc="no"/>
+            <topicref keyref="MEDIA_PLAYER_PLAYBACK_SPEED" toc="no"/>
+            <topicref keyref="MEDIA_PLAYER_STATE" toc="no"/>
+            <topicref keyref="MEDIA_STREAM_TYPE" toc="no"/>
+            <topicref keyref="MediaType" toc="no"/>
+            <topicref keyref="OPTIONAL_ENUM_SIZE_T" toc="no"/>
+            <topicref keyref="RENDER_MODE_TYPE" toc="no"/>
+            <topicref keyref="STREAMING_SRC_ERR" toc="no"/>
+            <topicref keyref="SourceType" toc="no"/>
+            <topicref keyref="StreamMediaState" toc="no"/>
+            <topicref keyref="StreamStateChangedReason" toc="no"/>
+            <topicref keyref="StreamType" toc="no"/>
+            <topicref keyref="VIDEO_BUFFER_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_MIRROR_MODE_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_ORIENTATION" toc="no"/>
+            <topicref keyref="VIDEO_PIXEL_FORMAT" toc="no"/>
+            <topicref keyref="VIDEO_SOURCE_TYPE" toc="no"/>
+            <topicref keyref="VOICE_CHANGER_PRESET" toc="no"/>
+            <topicref keyref="AudioFrame" toc="no"/>
+            <topicref keyref="CanvasConfig" toc="no"/>
+            <topicref keyref="ExternalVideoFrame" toc="no"/>
+            <topicref keyref="LayoutConfig" toc="no"/>
+            <topicref keyref="LayoutConfigs" toc="no"/>
+            <topicref keyref="Rectangle" toc="no"/>
+            <topicref keyref="VideoCanvas"/>
+            <topicref keyref="VideoDimensions" toc="no"/>
+        </topicref>
+    </topichead>    
 </map>
