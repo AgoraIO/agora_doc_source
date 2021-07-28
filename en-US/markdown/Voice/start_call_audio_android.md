@@ -44,52 +44,56 @@ Before proceeding, ensure that your development environment meets the following 
 
 ## Project setup
 
+Follow the steps to set up your Android project.
+
 1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**. After creating the project, **Android Studio** automatically starts gradle sync. Ensure that the sync succeeds before you continue.
 
 2. Integrate the Voice SDK into your project.
 
-a. In `/Gradle Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the JitPack dependency.
+   a. In `/Gradle Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the JitPack dependency.
 
-```xml
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://www.jitpack.io' }
+    ```xml
+    allprojects {
+        repositories {
+            ...
+            maven { url 'https://www.jitpack.io' }
+        }
     }
-}
-```
+    ```
 
-b. In `/Gradle Scripts/build.gradle(Module: <projectname>.app)`, add the following lines to integrate the Agora Video SDK into your Android project.
+   b. In `/Gradle Scripts/build.gradle(Module: <projectname>.app)`, add the following lines to integrate the Agora Video SDK into your Android project.
 
-```xml
-...
-dependencies {
- ...
- // For x.y.z, please fill in a specific SDK version number. For example, 3.4.0
- implementation 'com.github.agorabuilder:native-voice-sdk:x.y.z'
-}
-```
+    ```xml
+    ...
+    dependencies {
+    ...
+    // For x.y.z, please fill in a specific SDK version number. For example, 3.4.0
+    implementation 'com.github.agorabuilder:native-voice-sdk:x.y.z'
+    }
+    ```
 
 3. Add permissions for network and device access.
 
-In `/app/Manifests/AndroidManifest.xml`, add the following permissons after `</application>`:
+   In `/app/Manifests/AndroidManifest.xml`, add the following permissons after `</application>`:
 
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
-<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.BLUETOOTH" />
-```
+    ```xml
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    ```
 
-4. Prevent code obfuscation
+4. Prevent code obfuscation.
 
-In `/Gradle Scripts/proguard-rules.pro`, add the following line to prevent obfuscating the code of the SDK:
+   In `/Gradle Scripts/proguard-rules.pro`, add the following line to prevent obfuscating the code of the SDK:
 
-```xml
--keep class io.agora.**{*;}
-```
+    ```xml
+    -keep class io.agora.**{*;}
+    ```
+
+5. Sync the Android project by clicking **Sync Project with Gradle Files**.
 
 ## Implement a client for Voice Call
 
@@ -121,7 +125,7 @@ In `/app/res/layout/activity_main.xml`, replace the content with the following:
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_gravity="center_vertical|start"
-            android:text="This is the Agora Voice Call channel."/>
+            android:text="Welcome to the Agora Voice Call channel."/>
 
     </FrameLayout>
 </RelativeLayout>
@@ -133,25 +137,64 @@ In this section, we import the necessary Android classes and handle the Android 
 
 1. Import Android classes
 
-In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `package com.example.<projectname>`:
+    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `package com.example.<projectname>`:
 
-```java
+    ```java
+    // Java
+    import androidx.core.app.ActivityCompat;
+    import androidx.core.content.ContextCompat;
 
-```
+    import android.Manifest;
+    import android.content.pm.PackageManager;
+    ```
+
+    ```kotlin
+    // Kotlin
+    import android.content.pm.PackageManager
+    import androidx.core.app.ActivityCompat
+    import androidx.core.content.ContextCompat
+    import android.Manifest
+    import java.lang.Exception
+    ```
 
 2. Handle the Android permissions
 
-When your app launches, check if the permission necessary to insert voice calling functionality into the app are granted. If the permissions are not granted, use the built-in Android functionality to request them; if they are, return `true`.
+    When your app launches, check if the permission necessary to insert voice calling functionality into the app are granted. If the permissions are not granted, use the built-in Android functionality to request them; if they are, return `true`.
 
-In `/app/java/com.example.<projectname>/MainActivity>`, add the following lines before the `onCreate` function:
+    In `/app/java/com.example.<projectname>/MainActivity>`, add the following lines after the `onCreate` function:
 
-```java
+    ```java
+    // Java
+    private static final int PERMISSION_REQ_ID = 22;
 
-```
+    private static final String[] REQUESTED_PERMISSIONS = {
+                Manifest.permission.RECORD_AUDIO
+    };
 
-```kotlin
+    private boolean checkSelfPermission(String permission, int requestCode) {
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, requestCode);
+            return false;
+        }
+        return true;
+    }
+    ```
 
-```
+    ```kotlin
+    // Kotlin
+    private val PERMISSION_REQ_ID_RECORD_AUDIO = 22
+
+    private fun checkSelfPermission(permission: String, requestCode: Int): Boolean {
+        if (ContextCompat.checkSelfPermission(this, permission) !=
+                PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+            arrayOf(permission),
+            requestCode)
+            return false
+        }
+        return true
+    }
+    ```
 
 ### Implement the Voice Call logic
 
@@ -165,32 +208,70 @@ To implement this logic, take the following steps:
 
 1. Import the Agora classes
 
-In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `import android.os.Bundle;`
+    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `import android.os.Bundle;`
 
-```java
-```
+    ```java
+    import io.agora.rtc.RtcEngine;
+    import io.agora.rtc.IRtcEngineEventHandler;
+    ```
 
 2. Create the variables that you use to create and join a voice call channel.
 
-In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `appCompatActivity {`:
+    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines before the `onCreate` function:
 
-```java
-```
+    ```java
+    // Java
+    private String appId = "bf702ed04f9a44dfb80f84537122e619";
+    private String channelName = "demoChannel01";
+    private String token = "";
+    private RtcEngine mRtcEngine;
+    private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
+    };
+    ```
 
-```kotlin
-```
+    ```kotlin
+    // Kotlin
+    private val APP_ID = "b140a2ba6e3545bd9e1b38f884caa1c1"
+    private val CHANNEL = "demoChannel01"
+    private val TOKEN = ""
+
+    private var mRtcEngine: RtcEngine ?= null
+
+    private val mRtcEventHandler = object : IRtcEngineEventHandler() {
+    }
+    ```
 
 3. Initialize the app and join the channel.
 
-Call the core methods for joining a channel. In the following sample code, we use an `initializeAndJoinChannel` function to encapsulate these core methods.
+    Call the core methods for joining a channel. In the following sample code, we use an `initializeAndJoinChannel` function to encapsulate these core methods.
 
-In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `onCreate` function:
+    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `checkSelfPermission` function:
 
-```java
-```
+    ```java
+    // Java
+    private void initializeAndJoinChannel() {
+        try {
+            mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
+        } catch (Exception e) {
+            throw new RuntimeException("Check the error");
+        }
 
-```kotlin
-```
+        mRtcEngine.joinChannel(token, channelName, "", 0);
+    }
+    ```
+
+    ```kotlin
+    // Kotlin
+    private fun initializeAndJoinChannel() {
+        try {
+            mRtcEngine = RtcEngine.create(baseContext, APP_ID, mRtcEventHandler)
+        } catch (e: Exception) {
+
+        }
+
+        mRtcEngine!!.joinChannel(TOKEN, CHANNEL, "", 0)
+    }
+    ```
 
 ### Start and stop your app
 
@@ -198,23 +279,56 @@ Now you have created the Voice Call functionality, start and stop the app. In th
 
 1. Check that the app has the corrent permissions. If permissions are granted, call `initializeAndJoinChannel` to join a voice call channel.
 
-In `/app/java/com.example.<projectname>/MainActivity`, replace `onCreate` with the following code.
+    In `/app/java/com.example.<projectname>/MainActivity`, replace `onCreate` with the following code.
 
-```java
-```
+    ```java
+    // Java
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-```kotlin
-```
+        if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID)) {
+            initializeAndJoinChannel();
+        }
+    }
+    ```
+
+    ```kotlin
+    // Kotlin
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO)) {
+            initializeAndJoinChannel();
+        }
+    }
+    ```
 
 2. When the user closes this app, clean up all the resources you created in `initializeAndJoinChannel`. 
 
-In `/app/java/com.example.<projectname>/MainActivity`, add `onDestroy` after the `onCreate` function.
+    In `/app/java/com.example.<projectname>/MainActivity`, add `onDestroy` after the `onCreate` function.
 
-```java
-```
+    ```java
+    // Java
+    protected void onDestroy() {
+        super.onDestroy();
 
-```kotlin
-```
+        mRtcEngine.leaveChannel();
+        mRtcEngine.destroy();
+    }
+    ```
+
+    ```kotlin
+    // Kotlin
+    override fun onDestroy() {
+        super.onDestroy()
+
+        mRtcEngine?.leaveChannel()
+        RtcEngine.destroy()
+    }
+    ```
 
 ## Test your app
 
