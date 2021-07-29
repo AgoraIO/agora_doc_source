@@ -13,8 +13,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">int open(String url, long startPos);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">-(int)open:(NSString *_Nonnull)url startPos:(NSInteger)startPos;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int Open(const std::string&amp; url, int64_t start_pos) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -29,7 +29,6 @@
                     <dd>v</dd>
                 </dlentry>
             </dl>
-            <p/>
         </section>
         <section id="parameters"><title>Parameters</title>
             <parml>
@@ -42,7 +41,7 @@
                 </plentry>
                 <plentry>
                     <pt>start_pos</pt>
-                    <pd>The start position (ms) of the file to be opened, the rang is 0 ~
+                    <pd>The start position (ms) of the file to be opened, which ranges from 0 to
                         file_duration.</pd>
                 </plentry>
             </parml>

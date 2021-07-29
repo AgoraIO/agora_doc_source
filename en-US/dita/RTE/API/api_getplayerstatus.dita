@@ -2,8 +2,8 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getplayerstatus">
     <title><ph keyref="GetPlayerStatus"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the current playing status of the Media
-            Player.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the current playing status of the media
+            player.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,8 +14,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">AgoraRtePlayerStatus getPlayerStatus();</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">-(AgoraRtePlayerStatus * _Nonnull)getPlayerStatus;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int GetPlayerStatus(RtePlayerStatus&amp; out_playing_status) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -35,7 +35,8 @@
             <parml>
                 <plentry>
                     <pt>out_playing_status</pt>
-                    <pd>Output parameter. The playing status for output.</pd>
+                    <pd>Output parameter. The playing status. See <xref keyref="RtePlayerStatus"
+                        />.</pd>
                 </plentry>
             </parml>
         </section>
