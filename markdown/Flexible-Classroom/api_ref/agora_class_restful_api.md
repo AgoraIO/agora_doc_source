@@ -1,7 +1,5 @@
 本文介绍灵动课堂云服务 RESTful API 的详细信息。
 
-<div class="alert info">查看灵动课堂云服务的<a href="./agora_class_restful_api_release">更新历史</a>。</div>
-
 ## 基本信息
 
 ### 域名
@@ -21,61 +19,11 @@
 
 具体生成 RTM Token 的方法请参考[生成 RTM Token](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms) 文档。
 
-## 设置课堂状态
-
-#### 接口描述
-
-设置课堂状态（未开始/开始/结束）。课堂状态说明详见[课堂状态管理文档](./class_state)。
-
-#### 接口原型
-
-- 方法：PUT
-- 接入点：/edu/apps/{appId}/v2/rooms/{roomUUid}/states/{state}
-
-#### 请求参数
-
-**URL 参数**
-
-需要在 URL 中传入以下参数。
-
-| 参数       | 类型    | 描述                                                         |
-| :--------- | :------ | :----------------------------------------------------------- |
-| `appId`    | String  | （必填）Agora App ID，详见[获取 Agora App ID](./agora_class_prep#step1)。 |
-| `roomUUid` | String  | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `state`    | Integer | （必填）课堂状态：<li>`0`: 未开始<li>`1`: 开始<li>`2`: 结束  |
-
-#### 请求示例
-
-```html
-// 设置 test_class 的课堂状态为开始
-https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
-```
-
-#### 响应参数
-
-| 参数   | 类型    | 描述                                              |
-| :----- | :------ | :------------------------------------------------ |
-| `code` | Integer | 业务状态码：<li>0: 请求成功。<li>非 0: 请求失败。 |
-| `msg`  | String  | 详细信息。                                        |
-| `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。      |
-
-#### 响应示例
-
-```json
-"status": 200,
-"body":
-{
-  "code": 0,
-  "msg": "Success",
-  "ts": 1610450153520
-}
-```
-
 ## 踢人
 
 #### 接口描述
 
-将指定用户从课堂中踢出。成功调用此接口后，服务端会触发一个用户进出课堂事件。你可通过 `dirty` 参数设置该用户后续是否还能再加入课堂。
+将指定用户从房间中踢出。成功调用此接口后，服务端会触发一个用户进出课堂事件。你可通过 `dirty` 参数设置该用户后续是否还能再加入课堂。
 
 #### 接口原型
 
@@ -124,11 +72,11 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 
 #### 响应参数
 
-| 参数   | 类型    | 描述                                         |
-| :----- | :------ | :------------------------------------------- |
-| `code` | Integer | 业务状态码：<li>0: 请求成功。</li><li>非 0: 请求失败。</li>    |
-| `msg`  | String  | 详细信息。                                   |
-| `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
+| 参数   | 类型    | 描述                                                        |
+| :----- | :------ | :---------------------------------------------------------- |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。</li><li>非 0: 请求失败。</li> |
+| `msg`  | String  | 详细信息。                                                  |
+| `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。                |
 
 #### 响应示例
 
@@ -137,6 +85,56 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
     "msg": "Success",
     "code": 0,
     "ts": 1610167740309
+}
+```
+
+## 设置课堂状态
+
+#### 接口描述
+
+设置课堂状态（未开始/开始/结束）。课堂状态说明详见[课堂状态管理文档](./class_state)。
+
+#### 接口原型
+
+- 方法：PUT
+- 接入点：/edu/apps/{appId}/v2/rooms/{roomUUid}/states/{state}
+
+#### 请求参数
+
+**URL 参数**
+
+需要在 URL 中传入以下参数。
+
+| 参数       | 类型    | 描述                                                         |
+| :--------- | :------ | :----------------------------------------------------------- |
+| `appId`    | String  | （必填）Agora App ID，详见[获取 Agora App ID](./agora_class_prep#step1)。 |
+| `roomUUid` | String  | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `state`    | Integer | （必填）课堂状态：<li>`0`: 未开始<li>`1`: 开始<li>`2`: 结束  |
+
+#### 请求示例
+
+```html
+// 设置 test_class 的课堂状态为开始
+https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
+```
+
+#### 响应参数
+
+| 参数   | 类型    | 描述                                              |
+| :----- | :------ | :------------------------------------------------ |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。<li>非 0: 请求失败。 |
+| `msg`  | String  | 详细信息。                                        |
+| `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。      |
+
+#### 响应示例
+
+```json
+"status": 200,
+"body":
+{
+  "code": 0,
+  "msg": "Success",
+  "ts": 1610450153520
 }
 ```
 
@@ -920,6 +918,135 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | `code` | Integer | 业务状态码：<li>0: 请求成功。</li><li>非 0: 请求失败。</li>    |
 | `msg`  | String  | 详细信息。                                   |
 | `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。 |
+
+#### 响应示例
+
+```json
+{
+    "msg": "Success",
+    "code": 0,
+    "ts": 1610167740309
+}
+```
+
+## 设置 extApp 属性
+
+#### 接口描述
+
+新增或更新指定课堂内 extApp 的属性。
+
+#### 接口原型
+
+- 方法：PUT
+- 接入点：/edu/apps/{appId}/v2/rooms/{roomUUid}/extApps/{extAppUuid}/properties
+
+#### 请求参数
+
+**URL 参数**
+
+在 URL 中传入以下参数。
+
+| 参数         | 类型   | 描述                                                         |
+| :----------- | :----- | :----------------------------------------------------------- |
+| `appId`      | String | （必填）Agora App ID，详见[获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
+| `roomUUid`   | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
+| `extAppUuid` | String | （必填）extApp 的 uuid。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
+
+**请求包体参数**
+
+在请求包体中传入以下参数。
+
+| 参数         | 类型   | 描述                                                         |
+| :----------- | :----- | :----------------------------------------------------------- |
+| `properties` | Object | 用户属性。                                                   |
+| `common`     | Object | 包含以下字段：<li>`state`: Integer 型，extApp 的状态，`0` 表示关闭，`1` 表示开启。</li> |
+| `cause`      | Object | 更新原因。                                                   |
+
+#### 请求示例
+
+**请求包体**
+
+```json
+{
+    "properties" :{},
+    "common":{
+        "state":0
+    },
+    "cause":{}
+}
+```
+
+#### 响应参数
+
+| 参数   | 类型    | 描述                                                        |
+| :----- | :------ | :---------------------------------------------------------- |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。</li><li>非 0: 请求失败。</li> |
+| `msg`  | String  | 详细信息。                                                  |
+| `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。                |
+
+#### 响应示例
+
+```json
+{
+    "msg": "Success",
+    "code": 0,
+    "ts": 1610167740309
+}
+```
+
+## 删除 extApp 属性
+
+#### 接口描述
+
+删除指定课堂内 extApp 的属性。
+
+#### 接口原型
+
+- 方法：DELETE
+- 接入点：/edu/apps/{appId}/v2/rooms/{roomUUid}/extApps/{extAppUuid}/properties
+
+#### 请求参数
+
+**URL 参数**
+
+在 URL 中传入以下参数。
+
+| 参数         | 类型   | 描述                                                         |
+| :----------- | :----- | :----------------------------------------------------------- |
+| `appId`      | String | （必填）Agora App ID，详见[获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
+| `roomUUid`   | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
+| `extAppUuid` | String | （必填）extApp 的 uuid。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
+
+**请求包体参数**
+
+在请求包体中传入以下参数。
+
+| 参数         | 类型        | 描述       |
+| :----------- | :---------- | :--------- |
+| `properties` | String 数组 | 用户属性。 |
+| `cause`      | Object      | 删除原因。 |
+
+#### 请求示例
+
+**请求包体**
+
+```json
+{
+    "properties" :[
+        "key-path1",
+        "key-path2"
+    ],
+    "cause":{}
+}
+```
+
+#### 响应参数
+
+| 参数   | 类型    | 描述                                                        |
+| :----- | :------ | :---------------------------------------------------------- |
+| `code` | Integer | 业务状态码：<li>0: 请求成功。</li><li>非 0: 请求失败。</li> |
+| `msg`  | String  | 详细信息。                                                  |
+| `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。                |
 
 #### 响应示例
 
