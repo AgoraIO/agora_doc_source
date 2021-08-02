@@ -42,7 +42,7 @@ Before proceeding, ensure that your development environment meets the following 
 
 In Xcode, follow the steps to create the environment necessary to add live streaming into your app.
 
-1. [Create a new project](https://help.apple.com/xcode/mac/current/#/dev07db0e578) for iOS using the **Single View App** template. Make sure you select **Swift** as the language and **Storyboard** as the user interface.
+1. [Create a new project](https://help.apple.com/xcode/mac/current/#/dev07db0e578) for an iOS app using the **Single View App** template. Make sure you select **Storyboard** as the user interface.
    
    <div class="alert note">If you have not added any team information, you can see an **Add account...** button. Click it, input your Apple ID, and click **Next** to add your team.</div>
    
@@ -51,19 +51,23 @@ In Xcode, follow the steps to create the environment necessary to add live strea
    Go to **File** > **Swift Packages** > **Add Package Dependencies...**, and paste the following link:
 
    `https://github.com/AgoraIO/AgoraRtcEngine_iOS`
+   
+   In the next sheet, [specify version requirements](https://help.apple.com/xcode/mac/current/#/devb83d64851) according to your needs.
 
-<div class="alert note"><li>This method applies to v3.4.3 or later. For more integration methods, see <a href="#othermethods">Other approaches to integrating the SDK</a></li><li>If you have issues installing this Swift Package, try going to <b>File</b> > <b>Swift Packages</b> > <b>Reset Package Caches</b>.</li></div>
+<div class="alert note"><li>Each SDK version has a corresponding Swift Package with the same version number. For the Video SDK, Agora provides Swift Packages for 3.4.3 or later versions.</li><li>If you have issues installing this Swift Package, try going to <b>File</b> > <b>Swift Packages</b> > <b>Reset Package Caches</b>.</li><li>For more integration methods, see <a href="#othermethods">Other approaches to integrating the SDK</a></li></div>
 
 3. [Enable automatic signing](https://help.apple.com/xcode/mac/current/#/dev23aab79b4) for your project.
 4. [Set the target devices](https://help.apple.com/xcode/mac/current/#/deve69552ee5) to deploy your iOS app.
 5. Add permissions for microphone and camera usage.
-   Open the `info.plist` file in the left navigation panel, and [edit the property list](https://help.apple.com/xcode/mac/current/#/dev3f399a2a6) to add the following properties:
+   Open the `info.plist` file in the project navigation panel, and [edit the property list](https://help.apple.com/xcode/mac/current/#/dev3f399a2a6) to add the following properties:
    - Privacy - Microphone Usage Description
    - Privacy - Camera Usage Description
 
 ## Implement a client for Interactive Live Streaming Premium
 
 This section shows how to use the Agora Video SDK to implement live streaming in your app step by step.
+
+<div class="alert note">The code samples in this section are written in Swift. If you prefer programming with Objective-C, see <a href="#oc">Objective-C code sample</a></div>
 
 ### Create the UI
 
@@ -133,6 +137,7 @@ To implement this logic, take the following steps:
 
    ```swift
     func initializeAndJoinChannel() {
+      // Pass in your App ID here
       agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: "Your App ID", delegate: self)
       // For a live streaming scenario, set the channel profile as liveBroadcasting.
       agoraKit?.setChannelProfile(.liveBroadcasting)
@@ -147,7 +152,7 @@ To implement this logic, take the following steps:
            videoCanvas.view = localView
            agoraKit?.setupLocalVideo(videoCanvas)
       
-      // Join the channel with a token.
+      // Join the channel with a token. Pass in your token adn channel name here
       agoraKit?.joinChannel(byToken: "Your token", channelId: "Channel name", info: nil, uid: 0, joinSuccess: { (channel, uid, elapsed) in
            })
        }
@@ -244,6 +249,86 @@ In addition to integrating the Agora Video SDK for iOS through Swift Package, yo
 3. In Xcode, [link your target to the frameworks or libraries](https://help.apple.com/xcode/mac/current/#/dev51a648b07) you have copied. Be sure to choose **Embed & Sign **from the pop-up menu in the Embed column.
 
    <div class="alert note"><ul><li>Apple does not allow an app extension to contain any dynamic library. If you are integrating the Agora SDK to an app extension, choose <b>Do Not Embed</b> in the Embed column.</li><li>The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</li></ul></div>
+
+<a name="oc"></a>
+
+### Objective-C code sample
+
+To implement live streaming in your app using Objective-C:
+
+1. Replace the contents in the  `ViewController.h` file with the following:
+
+   ```objective-c
+   #import <UIKit/UIKit.h>
+   
+   #import <AgoraRtcKit/AgoraRtcEngineKit.h>
+   
+   @interface ViewController : UIViewController <AgoraRtcEngineDelegate>
+   @property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
+   
+   @end
+   ```
+
+2. Replace the contents in the `ViewController.m` file with the following:
+
+   ```objective-c
+   #import "ViewController.h"
+   #import <UIKit/UIKit.h>
+   
+   @interface ViewController ()
+   @property (nonatomic, strong) UIView *localView;
+   @property (nonatomic, strong) UIView *remoteView;
+   @end
+   
+   @implementation ViewController
+   - (void)viewDidLoad {
+       [super viewDidLoad];
+       [self initViews];
+       [self initializeAndJoinChannel];
+   }
+   
+   - (void)viewDidLayoutSubviews {
+       [super viewDidLayoutSubviews];
+       self.remoteView.frame = self.view.bounds;
+       self.localView.frame = CGRectMake(self.view.bounds.size.width - 90, 0, 90, 160);
+   }
+   
+   - (void)initViews {
+       self.remoteView = [[UIView alloc] init];
+       [self.view addSubview:self.remoteView];
+       self.localView = [[UIView alloc] init];
+       [self.view addSubview:self.localView];
+   }
+   
+   - (void)initializeAndJoinChannel {
+       // Pass in your App ID here
+       self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:@"Your App ID" delegate:self];
+       [self.agoraKit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
+       [self.agoraKit setClientRole:AgoraClientRoleBroadcaster];
+       [self.agoraKit enableVideo];
+       AgoraRtcVideoCanvas *videoCanvas = [[AgoraRtcVideoCanvas alloc] init];
+       videoCanvas.uid = 0;
+       videoCanvas.renderMode = AgoraVideoRenderModeHidden;
+       videoCanvas.view = self.localView;
+       [self.agoraKit setupLocalVideo:videoCanvas];
+       // Pass in your token and channel name here
+       [self.agoraKit joinChannelByToken:@"Your App ID" channelId:@"Channel name" info:nil uid:0 joinSuccess:^(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed) {
+       }];
+   }
+   
+   - (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed {
+       AgoraRtcVideoCanvas *videoCanvas = [[AgoraRtcVideoCanvas alloc] init];
+       videoCanvas.uid = uid;
+       videoCanvas.renderMode = AgoraVideoRenderModeHidden;
+       videoCanvas.view = self.remoteView;
+       [self.agoraKit setupRemoteVideo:videoCanvas];
+   }
+   
+   - (void)applicationWillTerminate:(NSNotification *)notification{
+       [self.agoraKit leaveChannel:nil];
+       [AgoraRtcEngineKit destroy];
+   }
+   @end
 
 ### Listening for audience events
 
