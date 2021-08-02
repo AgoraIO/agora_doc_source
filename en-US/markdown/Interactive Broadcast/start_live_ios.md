@@ -6,7 +6,7 @@ This page shows the minimum code you need to add interactive live streaming into
 
 The following figure shows the workflow to integrate Interactive Live Streaming Premium into your app.
 
-![tech](./tech.png)
+![](https://web-cdn.agora.io/docs-files/1625465916613)
 
 To start Interactive Live Streaming Premium, you implement the following steps in your app:
 
@@ -106,7 +106,7 @@ When your app opens, you create an `RtcEngine` instance, enable the video, join 
 
 The following figure shows the API call sequence of implementing Interactive Live Streaming Premium. 
 
-![api_sequence](./api_sequence.png)
+![](https://web-cdn.agora.io/docs-files/1627888336100)
 
 To implement this logic, take the following steps:
 
