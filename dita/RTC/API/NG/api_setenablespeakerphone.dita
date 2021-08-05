@@ -24,7 +24,7 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调。</p>
+            <p>成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRouteChanged"/> 回调。</p>
             <p>该 API 可以在加入频道前、频道中、离开频道后调用。但是由于该 API 为暂态行为，我们推荐你在频道中调用，用来临时改变音频路由。</p>
             <note id="note_nvp_trf_3qb">
                 <p>该方法设置的是暂时的音频路由。任何音频路由的相关行为，如用户插拔耳机，或者在部分 Audio scenario 中重启 ADM
@@ -35,7 +35,7 @@
             <parml>
                 <plentry>
                     <pt><b>speakerOn</b></pt>
-                    <pd><?oxy-placeholder content="The description of the parameter. Please specify if the parameter is optional, output, and has a default value or value range."?><p>是否使用扬声器作为当前音频路由：
+                    <pd><p>是否使用扬声器作为当前音频路由：
                         <ul><li>true: 暂时设置扬声器为音频路由。（对 iOS 设备：由于系统限制，如果设备连接了耳机或蓝牙，则 setEnableSpeakerphone(true) 无法将音频路由设置到扬声器。）</li>
                             <li>false: 不将当前音频路由设为扬声器。音频路由会根据 <xref keyref="guide-audio-route"/>
                                     来决定。</li></ul></p></pd>
