@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_joinchannel2">
+    <title><ph keyref="joinChannel2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置媒体选项并加入频道。</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="joinChannel2" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, uid_t uid,
+                          const ChannelMediaOptions&amp; options) = 0;
+</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">joinChannel(
+    token: string,
+    info: string,
+    uid: number,
+    options?: ChannelMediaOptions
+    ): number</codeblock>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
+        </section>
+        <section id="detailed_desc">
+            <p id="desc1">该方法让用户加入通话频道，在同一个频道内的用户可以互相通话，多个用户加入同一个频道，可以群聊。 使用不同 App ID 的 App
+                不能互通。</p>
+            <p>如果已在通话中，用户必须调用 <codeph>leaveChannel</codeph> 退出当前通话，才能进入下一个频道。<note
+                    id="note_cyz_w1l_mqb" type="attention">
+                    <ul id="ul_sz1_y1l_mqb">
+                        <li>该方法允许用户一次加入仅一个频道。</li>
+                        <li>频道内每个用户的用户 ID 必须是唯一的。如果想要从不同的设备同时接入同一个频道，请确保每个设备上使用的
+                                <codeph>uid</codeph> 是不同的。如果将 <codeph>uid</codeph> 设为 0，系统将自动分配一个
+                                <codeph>uid</codeph>。</li>
+                        <li>请务必确保用于生成 Token 的 App ID 和 initialize 方法初始化引擎时用的是同一个 App ID，否则使用 Token
+                            加入频道失败。</li>
+                    </ul>
+                </note></p>
+        </section>
+        <section id="parameters"><title>参数</title>
+   <parml>
+       <plentry id="token">
+  <pt>token</pt>
+  <pd>
+    <p>在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token">使用 Token 鉴权</xref>。</p>
+      </pd>
+       </plentry>
+       <plentry id="channelID">
+  <pt>channelId</pt>
+  <pd>
+      <p id="channelID_desc">频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同频道名的用户会进入同一个频道
+          进行音视频互动。该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:<ul id="char_support">
+     <li>26 个小写英文字母 a~z</li>
+     <li>26 个大写英文字母 A~Z</li>
+     <li>10 个数字 0~9</li>
+     <li>空格</li>
+     <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、">"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+ </ul></p>
+  </pd>
+       </plentry>
+       <plentry id="uid">
+  <pt>uid</pt>
+  <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位无符号整数。 建议设置范围：1 到
+                            2<sup>32</sup>-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <apiname
+                            keyref="onJoinChannelSuccess"/> 回调中返回， App 层必须记住该返回值并维护，SDK
+                        不对该返回值进行维护。</pd>
+       </plentry>
+       <plentry id="options">
+  <pt>options</pt>
+  <pd>频道媒体设置选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values">
+   <title>返回值</title>
+   <ul>
+       <li>0：方法调用成功。</li>
+       <li>&lt; 0： 方法调用失败。 </li>
+   </ul>
+        </section></refbody>
+</reference>
