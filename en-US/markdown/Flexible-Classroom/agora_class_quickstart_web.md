@@ -60,7 +60,7 @@ In the following code snippet, we do the following things:
      <title>AgoraFlexibleClassroomDemo</title>
      <script src="https://download.agora.io/edu-apaas/release/edu_sdk_1.1.0.1_ga.js"></script>
    </head>
-  
+    
    <body>
      <style>
        #root1 {
@@ -115,4 +115,4 @@ Not satisfied with the default UI of Flexible Classroom? Refer to [Customize the
 
 ### GitHub projects
 
-Agora provides an [open-source project](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/release/apaas-1.1.0.1-ga) for Flexible Classroom on GitHub, which demonstrates how to integrate the Agora Classroom SDK and call APIs to launch a flexible classroom. You can download and read the source code.
+You can also use the [low-code solution](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/release/apaas-1.1.0.1-ga) provided by Agora to launch a flexible classroom.
