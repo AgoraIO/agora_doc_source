@@ -45,7 +45,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="getConnectionState"/>
+                <topicref keyref="getConnectionStateEx"/>
             </relcell>
             <relcell>
                 <topicref keyref="CONNECTION_STATE_TYPE"/>
@@ -141,6 +141,23 @@
             </relcell>
             <relcell>
                 <topicref keyref="Device" props="electron"/>
+            </relcell>
+        </relrow><relrow>
+            <relcell>
+                <topicref keyref="getPlaybackDevice"/>
+                <topicref keyref="getPlaybackDeviceInfo"/>
+                <topicref keyref="setPlaybackDevice"/>
+                <topicref keyref="setRecordingDevice"/>
+                <topicref keyref="getDevice_IVideoDeviceCollection"/>
+                <topicref keyref="release_IAudioDeviceCollection"/>
+                <topicref keyref="setDevice_IAudioDeviceCollection"/>
+                <topicref keyref="getDevice_IVideoDeviceManager"/>
+                <topicref keyref="setDevice_IVideoDeviceManager"/>
+                <topicref keyref="getDevice_IVideoDeviceCollection"/>
+                <topicref keyref="setDevice_IVideoDeviceCollection"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>
             </relcell>
         </relrow>
         <relrow>
@@ -323,6 +340,22 @@
         </relrow>
         <relrow>
             <relcell>
+                <topicref keyref="leaveChannel"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="LeaveChannelOptions"/>
+            </relcell>
+        </relrow>
+            <relrow>
+                <relcell>
+                    <topicref keyref="startLocalVideoTranscoder"/>
+                </relcell>
+                <relcell>
+                    <topicref keyref="LocalTranscoderConfiguration"/>
+                </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
                 <topicref keyref="setRecordingAudioFrameParameters"/>
                 <topicref keyref="setPlaybackAudioFrameParameters" props="windows"/>
             </relcell>
@@ -392,7 +425,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="createDataStream2"/>
+                <topicref keyref="createDataStreamEx2"/>
             </relcell>
             <relcell>
                 <topicref keyref="DataStreamConfig"/>
@@ -440,6 +473,15 @@
                 <topicref keyref="AudioFrame"/>
                 <topicref keyref="AUDIO_FRAME_TYPE"/>
             </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="pushAudioFrame"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="MEDIA_SOURCE_TYPE"/>
+                <topicref keyref="AudioFrame"/>
+             </relcell>
         </relrow>
         <relrow props="windows">
             <relcell>
@@ -756,7 +798,373 @@
                 <topicref keyref="VIDEO_FRAME_TYPE"/>
             </relcell>
         </relrow>
-        <relrow/>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerAudioEncodedFrameObserver"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AudioEncodedFrameObserverConfig"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onLocalAudioSpectrum"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AudioSpectrumData"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onRemoteAudioSpectrum"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="UserAudioSpectrumInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="pushEncodedVideoImage"/>
+                <topicref keyref="sendEncodedVideoImage"/>
+                <topicref keyref="pushExternalEncodedVideoFrameEx"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="EncodedVideoFrameInfo"/>
+                <topicref keyref="VideoEncodedFrameInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerVideoEncodedImageReceiver"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IVideoEncodedImageReceiver"/>
+                <topicref keyref="IVideoFrameObserver"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="changePlaybackSpeed"/>
+                            </relcell>
+            <relcell>
+                <topicref keyref="MEDIA_PLAYER_PLAYBACK_SPEED"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setBeautyEffectOptions"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="BeautyOptions"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onUplinkNetworkInfoUpdated"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="UplinkNetworkInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="joinChannelEx"/>
+                <topicref keyref="joinChannelWithUserAccountEx"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IRtcEngine"/>
+                <topicref keyref="ChannelMediaOptions"/>
+                <topicref keyref="IRtcEngineEventHandler"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="getState"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="MEDIA_PLAYER_STATE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="getStreamInfo"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="PlayerStreamInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerAudioFrameObserver1"/>
+                <topicref keyref="registerAudioFrameObserver2"/>
+                <topicref keyref="unregisterAudioFrameObserver"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IAudioFrameObserver"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerAudioFrameObserver2"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>
+                <topicref keyref="IAudioFrameObserver"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerPlayerSourceObserver"/>
+                <topicref keyref="unregisterPlayerSourceObserver"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IMediaPlayerSourceObserver"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerVideoFrameObserver"/>
+                <topicref keyref="unregisterVideoFrameObserver"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IVideoFrameObserver"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setRenderMode"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="RENDER_MODE_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onLocalAudioSpectrum"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AudioSpectrumData"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onRemoteAudioSpectrum"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="UserAudioSpectrumInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="pushEncodedVideoImage"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="EncodedVideoFrameInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerVideoEncodedImageReceiver"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IVideoEncodedImageReceiver"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onPlayerEvent"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="MEDIA_PLAYER_EVENT"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onPlayerSourceStateChanged"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="MEDIA_PLAYER_STATE"/>
+                <topicref keyref="MEDIA_PLAYER_ERROR"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="createMediaPlayer"/>
+                <topicref keyref="destroyMediaPlayer"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IMediaPlayer"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="enableDualStreamMode2"/>
+                <topicref keyref="enableDualStreamMode3"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="VIDEO_SOURCE_TYPE"/>
+                <topicref keyref="SimulcastStreamConfig"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="leaveChannel2"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="LeaveChannelOptions"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="enableExtension"/>
+                <topicref keyref="setExtensionProperty"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="Extension"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerAudioEncodedFrameObserver"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AudioEncodedFrameObserverConfig"/>
+                <topicref keyref="IAudioEncodedFrameObserver"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerAudioSpectrumObserver"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IAudioSpectrumObserver"/>
+             </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerMediaMetadataObserver"/>
+                <topicref keyref="unregisterMediaMetadataObserver"/>
+                
+            </relcell>
+            <relcell>
+                <topicref keyref="IMetadataObserver"/>
+                <topicref keyref="METADATA_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setCameraDeviceOrientation"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="VIDEO_SOURCE_TYPE"/>
+                <topicref keyref="VIDEO_ORIENTATION"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="startLocalVideoTranscoder"/>
+                <topicref keyref="updateLocalTranscoderConfiguration"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="LocalTranscoderConfiguration"/>
+                 </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="startPrimaryCameraCapture"/>
+                <topicref keyref="startSecondaryCameraCapture"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="CameraCapturerConfiguration"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="startPrimaryScreenCapture"/>
+                <topicref keyref="startSecondaryScreenCapture"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="ScreenCaptureConfiguration"/>
+             </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="startScreenCapture"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="ScreenCaptureParameters"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onEncryptionError"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="ENCRYPTION_ERROR_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onPermissionError"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="PERMISSION_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onUplinkNetworkInfoUpdated"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="UplinkNetworkInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="getVideoFrameProcessMode"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="VIDEO_FRAME_PROCESS_MODE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onMediaPlayerVideoFrame"/>
+                <topicref keyref="onScreenCaptureVideoFrame"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="VideoFrame"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="addVideoWatermarkEx"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="WatermarkOptions"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="getUserInfoByUidEx"/>
+                <topicref keyref="getUserInfoByUserAccountEx"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="UserInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onReceiveAudioPacket"/>
+                <topicref keyref="onReceiveVideoPacket"/>
+                <topicref keyref="onSendAudioPacket"/>
+                <topicref keyref="onSendVideoPacket"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="Packet"/>
+            </relcell>
+        </relrow>
+                       
     </reltable>
     <reltable title="Method-Callback Relations">
         <!--Methods and corresponding callbacks.-->
@@ -775,7 +1183,7 @@
                 <topicref keyref="onRejoinChannelSuccess"/>
             </relcell>
         </relrow>
-        <relrow>
+                <relrow>
             <relcell>
                 <topicref keyref="setClientRole1"/>
             </relcell>
@@ -946,7 +1354,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="sendStreamMessage"/>
+                 <topicref keyref="sendStreamMessageEx"/>
             </relcell>
             <relcell>
                 <topicref keyref="onStreamMessage"/>
@@ -965,7 +1373,7 @@
             <relcell>
                 <topicref keyref="joinChannelWithUserAccount1" props="android ios mac windows"/>
                 <topicref keyref="joinChannelWithUserAccount2"/>
-            </relcell>
+                            </relcell>
             <relcell>
                 <topicref keyref="onLocalUserRegistered"/>
             </relcell>
@@ -989,6 +1397,102 @@
                 <topicref keyref="onAudioVolumeIndication"/>
             </relcell>
         </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="joinChannelWithUserAccountEx"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onLocalUserRegistered"/>
+                <topicref keyref="onJoinChannelSuccess"/>
+                <topicref keyref="onUserJoined"/>
+                <topicref keyref="onUserInfoUpdated"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="seek"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onPlayerEvent"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setLoopCount"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onPlayerSourceStateChanged"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="enableAudioSpectrumMonitor"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onLocalAudioSpectrum"/>
+                <topicref keyref="onRemoteAudioSpectrum"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="leaveChannel2"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onLocalAudioSpectrum"/>
+                <topicref keyref="onRemoteAudioSpectrum"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerMediaMetadataObserver"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="getMaxMetadataSize"/>
+             </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setDefaultAudioRouteToSpeakerphone"/>
+                <topicref keyref="setEnableSpeakerphone"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onAudioRoutingChanged"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setMixedAudioFrameParameters"/>
+              </relcell>
+            <relcell>
+                <topicref keyref="onMixedAudioFrame"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setPlaybackAudioFrameBeforeMixingParameters"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onPlaybackAudioFrameBeforeMixing"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="getUserInfoByUidEx"/>
+                <topicref keyref="getUserInfoByUserAccountEx"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onUserInfoUpdated"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="pullAudioFrame"/>
+                </relcell>
+            <relcell>
+                <topicref keyref="onPlaybackAudioFrame"/>
+            </relcell>
+        </relrow>
+        
     </reltable>
     <reltable title="API-Feature Relations">
         <!--APIs grouped by feature. Topics in each cell in the first column are related to each other. The second column is reserved for related guides.-->
