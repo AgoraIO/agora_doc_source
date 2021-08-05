@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_getuserinfobyuid">
-    <title><ph keyref="getUserInfoByUid"/></title>
+<reference id="api_getuserinfobyuidex">
+    <title><ph keyref="getUserInfoByUidEx"/></title>
     <shortdesc id="short"><ph id="shortdesc">通过 UID 获取用户信息。</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
-       <indexterm keyref="getUserInfoByUid" />
+       <indexterm keyref="getUserInfoByUidEx" />
    </keywords>
         </metadata>
     </prolog>
@@ -16,14 +16,15 @@
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, rtc::UserInfo* userInfo, conn_id_t connectionId = agora::rtc::DEFAULT_CONNECTION_ID) = 0;
 </codeblock>
-                <codeblock props="electron" outputclass="language-typescript">getUserInfoByUid(uid: number): { errCode: number; userInfo: UserInfo }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
        </p>
         </section>
         <section id="detailed_desc">
-   <p>远端用户加入频道后， SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的 Mapping 表，并在本地触发 <xref keyref="onUserInfoUpdated"/> 回调。</p> 
+   <p>远端用户加入频道后，SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的 Mapping
+                表，并在本地触发 <xref keyref="onUserInfoUpdated"/> 回调。</p> 
    <p>收到这个回调后，你可以调用该方法，通过传入 UID 获取包含了指定用户 User Account 的 <xref keyref="UserInfo"/> 对象。</p>
         </section>
         <section id="parameters"><title>参数</title>
