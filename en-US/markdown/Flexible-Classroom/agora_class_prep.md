@@ -4,9 +4,10 @@ To use Agora Flexible Classroom, you need to enable and configure the aPaaS serv
 
 Before configuring the aPaaS service, ensure that you meet the following requirements:
 
-- A valid Agora account with an active Agora project. See [Get Started with Agora](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms).
-- Enable the Agora Interactive Whiteboard service and get the App Identifier and SDK Token of the Agora Interactive Whiteboard service. See [Enable and Configure Interactive Whiteboard Service](https://docs.agora.io/en/whiteboard/enable_whiteboard).
+- A valid Agora account with an active Agora project. See [Create an Agora Project](/en/Agora%20Platform/get_appid_token#create-an-agora-project).
+- Enable the Agora Interactive Whiteboard service and get the App Identifier and SDK Token of the Agora Interactive Whiteboard service. See [Enable and Configure Interactive Whiteboard Service](/en/whiteboard/enable_whiteboard).
 - Third-party cloud storage for storing class files and recorded files in Flexible Classroom. Agora supports only [Amazon Simple Storage Service (Amazon S3)](https://aws.amazon.com/s3/?nc1=h_ls) now.
+- [Generate a set of Customer ID and secret](/en/Agora%20Platform/get_appid_token#generate-a-set-of-customer-id-and-secret) for Agora RESTful API access.
 
 ## Configure the aPaaS service
 
@@ -39,12 +40,12 @@ Configure the aPaaS service in Agora Console, as follows:
                  "bucket": "",
                  "folder": "",
                  "accessKey": "",
-                 "secretKey": "",
+                 "secretKey": ""
              }  
          }
-     ```
+```
 
-     <div class="note alert">For the detaild description of the configuration parameters, see <a href="#reference">Reference</>.</div>
+     <div class="note alert">For the detaild description of the configuration parameters, see <a href="#reference">Reference</a>.</div>
 
    - Cloud Recording
 
@@ -61,19 +62,20 @@ Configure the aPaaS service in Agora Console, as follows:
                  "endpoint": ""
                }
      }
-     ```
-	
-     <div class="note alert">For the detaild description of the configuration parameters, see <a href="#reference">Reference</>.</div>
+```
+
+     <div class="note alert">For the detaild description of the configuration parameters, see <a href="#reference">Reference</a>.</div>
 
 4. After returning to the **project management** page, click **Save** to ensure the aPaaS configuration takes effect.
 
 ## Next steps
 
-After configuring the aPaaS service, refer to the following documents to launch a flexible classroom using the Agora Classroom SDK:
+After configuring the aPaaS service, see the following documents to launch a flexible classroom using the Agora Classroom SDK as it is:
 
-- [Launch a flexible classroom (Web)](./agora-class/agora_class_quickstart_web?platform=Web)
+- [Launch a flexible classroom (Web)](./agora_class_quickstart_web?platform=Web)
 - [Launch a flexible classroom (Android)](./agora_class_quickstart_android?platform=Android)
-- [Launch a flexible classroom (iOS)](./agora-class/agora_class_quickstart_ios?platform=iOS)
+- [Launch a flexible classroom (iOS)](./agora_class_quickstart_ios?platform=iOS)
+- [Launch a flexible classroom (Electron)](./agora_class_quickstart_electron?platform=Electron)
 
 ## Reference
 
@@ -90,5 +92,5 @@ After configuring the aPaaS service, refer to the following documents to launch 
 
   | Field Name        | Type   | Description                                                  |
   | :---------------- | :----- | :----------------------------------------------------------- |
-  | `recordingConfig` | Object | (Optional) Recording configuration. If you do not set this parameter, Agora records the audio and video of teachers in a classroom in [composite recording mode](https://docs.agora.io/en/Agora%20Platform/composite_recording_mode) by default. To change the recording configuration, see the [cloud recording configuration](https://docs.agora.io/en/cloud-recording/cloud_recording_api_rest?platform=RESTful#recordingConfig). |
-  | `storageConfig`   | Object | (Optional) Cloud storage configuration, used for storing your recorded files. If you do not set this parameter, your recorded files will be stored in Agora's Amazon S3 account. To use your own cloud storage, see the [cloud storage configuration](https://docs.agora.io/en/cloud-recording/cloud_recording_api_rest?platform=RESTful#storageConfig). |
+  | `recordingConfig` | Object | (Optional) Recording configuration. If you do not set this parameter, Agora records the audio and video of teachers in a classroom in [composite recording mode](/en/Agora%20Platform/composite_recording_mode) by default. To change the recording configuration, see the [cloud recording configuration](/en/cloud-recording/cloud_recording_api_rest?platform=RESTful#recordingConfig). |
+  | `storageConfig`   | Object | (Optional) Cloud storage configuration, used for storing your recorded files. If you do not set this parameter, your recorded files will be stored in Agora's Amazon S3 account. To use your own cloud storage, see the [cloud storage configuration](/en/cloud-recording/cloud_recording_api_rest?platform=RESTful#storageConfig). |

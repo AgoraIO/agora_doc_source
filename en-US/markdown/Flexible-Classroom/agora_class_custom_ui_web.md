@@ -1,4 +1,4 @@
-Agora provides the complete [Agora Classroom SDK](https://www.npmjs.com/package/agora-classroom-sdk) on npm. However, if you want to customize the user interfaces of classrooms, such as changing colors, changing buttons, adjusting layouts, and adding logos, Agora provides the source code of the Agora Classroom SDK for you to further develop, debug, and compile.
+You can use the Agora Classroom SDK as it is to launch a flexible classroom. However, if you want to customize the UI of classrooms, such as changing colors, changing buttons, adjusting layouts, and adding logos, you can get the source code of the Agora Classroom SDK and build a Classroom SDK on your own.
 
 This page shows you how to customize the user interfaces of Flexible Classroom by editing the the source code of the UIKit in the Agora Classroom SDK.
 
@@ -8,15 +8,15 @@ In the Agora Classroom SDK, the code of the user interfaces is separated from th
 
 ![](https://web-cdn.agora.io/docs-files/1623761240753)
 
-UIKit contains all the code for the user interfaces of Flexible Classroom and uses the open-source tool [Storybook](https://storybook.js.org/docs/react/get-started/introduction) to develop and manage all UI components. You can find the source code of UIKit in the `packages/agora-classroom-sdk/src/ui-kit` folder in the [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) repository on GitHub (Branch release/apaas/1.1.0_region). The project structure of UIKit is as follows:
+You can find the source code of UIKit in the [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/release/apaas-1.1.0.1-ga) repository on GitHub (Branch release/apaas-1.1.0.1-ga). The UIKit contains the following two parts:
 
-| Folder | Description |
-| :------------- | :----------------------------------------------------------- |
-| `components` | The source code of the basic UI components used by Flexible Classroom. A UI component generally contains the following files:<li>`.css`: Define the style of the component.</li><li>`.stories.tsx`: Define the display of components in Storybook.</li><li>`.tsx`: Define the detailed design of the component.</li> |
-| `capabilities` | <li>`containers`: The source code of function-level UI components used by Flexible Classroom.</li><li>`scenarios`: The source code of the classroom-level UI components used by Flexible Classroom.</li> |
-| `scaffold` | Scaffolds and show how the basic UI components are combined in a classroom. |
-| `styles` | Define the global style. |
-| `utilities` | For functions such as internationalization, and custom hooks. |
+- `packages/agora-scenario-ui-kit/src/components`: The source code of the basic UI components used by Flexible Classroom. You can use the open-source tool [Storybook](https://storybook.js.org/docs/react/get-started/introduction) to develop and manage all UI components. A UI component generally contains the following files:
+  - `.css`: Define the style of the component.
+  - `.stories.tsx`: Define the display of components in Storybook.
+  - `.tsx`: Define the detailed design of the component.
+- `package /agora-classroom-sdk/src/ui-kit`:
+  - `containers`: The source code of function-level UI components used by Flexible Classroom.
+  - `scenarios`: The source code of the classroom-level UI components used by Flexible Classroom.
 
 ## Implementation
 
@@ -434,12 +434,12 @@ The following example shows how to display the class time in the custom componen
 
    ```tsx
    ...
-export const WhiteboardContainer = observer(() => {
+   export const WhiteboardContainer = observer(() => {
      ...
      const {
        liveClassStatus
      } = useRoomContext()
-
+   
      return (
        <div className="whiteboard">
          {
@@ -464,21 +464,21 @@ export const WhiteboardContainer = observer(() => {
          </Custom>
        </div>
      )
-})
+   })
    ```
 
    After the modification, run the project, and you can see that the class time is automatically updated on the user interface in milliseconds. We can then modify the `index.tsx` file of the custom component, fine-tune the style of the custom component, and then format the time.
 
    ```tsx
    ...
-export const Custom: FC<CustomProps> = ({
+   export const Custom: FC<CustomProps> = ({
     width = 90,
     height = 90,
     children,
     className,
     time,
     ...restProps
-}) => {
+   }) => {
     const cls = classnames({
         [`custom`]: 1,
         [`${className}`]: !!className,
@@ -496,7 +496,7 @@ export const Custom: FC<CustomProps> = ({
             {children}
         </div>
     )
-}
+   }
    ```
 
    The final user interface is as follows:
@@ -537,6 +537,6 @@ The following example shows how to modify the global style of basic UI component
        ))
      }
     </div>
- )
-})
+    )
+   })
    ```

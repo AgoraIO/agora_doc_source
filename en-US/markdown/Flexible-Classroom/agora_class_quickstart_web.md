@@ -44,9 +44,9 @@ In the following code snippet, we do the following things:
 
 1. Integrate the Agora Classroom SDK into your project through the CDN.
 
-2. Call the `AgoraEduSDK.config` method to configure the SDK globally. For the detailed description of parameters, see the API reference of [ `AgoraEduSDK.config`]().
+2. Call the `AgoraEduSDK.config` method to configure the SDK globally. For the detailed description of parameters, see the API reference of [ `AgoraEduSDK.config`](./agora_class_api_ref_web?platform=Web#config).
 
-3. Call the `AgoraEduSDK.launch` method to launch the classroom. For the detailed description of parameters, see the API reference of [`AgoraEduSDK.launch`]().
+3. Call the `AgoraEduSDK.launch` method to launch the classroom. For the detailed description of parameters, see the API reference of [`AgoraEduSDK.launch`](./agora_class_api_ref_web?platform=Web#launch).
 
    <div class="alert note">On the Web client, a user can join a classroom as the role of the teacher, student, or teaching assistant.</div>
    
@@ -58,9 +58,9 @@ In the following code snippet, we do the following things:
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <title>AgoraFlexibleClassroomDemo</title>
-     <script src="https://download.agora.io/edu-apaas/edu_sdk_1.1.0_ga.js"></script>
+     <script src="https://download.agora.io/edu-apaas/release/edu_sdk_1.1.0.1_ga.js"></script>
    </head>
-   
+  
    <body>
      <style>
        #root1 {
@@ -107,8 +107,12 @@ Open `index.html` in your browser. You see the following page:
 
 ![](https://web-cdn.agora.io/docs-files/1621308595366)
 
+## Next steps
+
+Not satisfied with the default UI of Flexible Classroom? Refer to [Customize the UI of Flexible Classroom](./agora_class_custom_ui_web?platform=Web) to get the source code of the Agora Classroom SDK, customize the UI with UIKit, and build a Classroom SDK on your own.
+
 ## See also
 
-- Agora provides an open-source [sample project](https://github.com/AgoraIO-Community/CloudClass-Desktop) on GitHub, which demonstrates how to integrate the Agora Classroom SDK and call APIs to launch a flexible classroom. You can download and read the source code.
+### GitHub projects
 
-- Agora also provides a [sample project](https://codepen.io/agoratechwriter/pen/OJRrOxg) on CodePen. After you [configure Flexible Classroom](./agora_class_prep) on Agora Console, replace `appID` and `rtmToken` with [values that you get](#prerequsites). The user ID must be consistent with the one you used for generating an RTM Token. Then you can immediately run the sample project to join a flexible classroom.
+Agora provides an [open-source project](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/release/apaas-1.1.0.1-ga) for Flexible Classroom on GitHub, which demonstrates how to integrate the Agora Classroom SDK and call APIs to launch a flexible classroom. You can download and read the source code.

@@ -8,7 +8,7 @@ This page introduces the procedure of using ExtApp to develop and embed a custom
 
 ### 1. Implement a plugin
 
-Refer to the [PluginGallery](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/dev/apaas/1.1.0/packages/agora-plugin-gallery) provided by Agora to create an independent JavaScript project.
+Refer to the [PluginGallery](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/release/apaas-1.1.0.1-ga/packages/agora-plugin-gallery) provided by Agora to create an independent JavaScript project.
 
 Take the countdown plugin in PluginGallery as an example. You need to import the following contexts.
 

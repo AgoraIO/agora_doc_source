@@ -36,6 +36,8 @@ To clone the project provided by Agora, run the following command:
 
 ```bash
 git clone https://github.com/AgoraIO-Community/CloudClass-Desktop.git
+git fetch
+git checkout release/apaas-1.1.0.1-ga
 ```
 
 ### 2. Configure the project
@@ -137,3 +139,6 @@ Launch a flexible classroom on Windows, as follows:
 
    ![](https://web-cdn.agora.io/docs-files/1623404345070)
 
+## Next steps
+
+Not satisfied with the default UI of Flexible Classroom? Refer to [Customize the UI of Flexible Classroom](./agora_class_custom_ui_web?platform=Electron) to get the source code of the Agora Classroom SDK, customize the UI with UIKit, and build a Classroom SDK on your own.

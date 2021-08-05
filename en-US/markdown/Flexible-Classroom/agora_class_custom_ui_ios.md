@@ -1,4 +1,4 @@
-Agora provides the complete Agora Classroom SDK on CocoaPods. However, if you want to customize the user interfaces of classrooms, such as changing colors, changing buttons, adjusting layouts, and adding logos, Agora provides the source code of the Agora Classroom SDK for you to further develop, debug, and compile.
+You can use the Agora Classroom SDK as it is to launch a flexible classroom. However, if you want to customize the UI of classrooms, such as changing colors, changing buttons, adjusting layouts, and adding logos, you can get the source code of the Agora Classroom SDK and build a Classroom SDK on your own.
 
 This page shows you how to customize the user interfaces of Flexible Classroom by editing the the source code of the UIKit in the Agora Classroom SDK.
 
@@ -8,7 +8,7 @@ In the Agora Classroom SDK, the code of the user interfaces is separated from th
 
 ![](https://web-cdn.agora.io/docs-files/1623761240753)
 
-UIKit provides all the code for the user interfaces of Flexible Classroom. You can find the source code of UIKit in the `Modules` folder in the [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) repository on GitHub (Branch release/apaas/1.1.0_region). The project structure of UIKit is as follows:
+UIKit provides all the code for the user interfaces of Flexible Classroom. You can find the source code of UIKit in the `Modules` folder in the [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS/tree/release/apaas%2F1.1.0.1-region) repository on GitHub (Branch release/apaas/1.1.0.1-region). The project structure of UIKit is as follows:
 
 | Folder | Description |
 | :-------------------- | :---------------------------------------------------- |
@@ -106,7 +106,7 @@ Add a basic UI component, as follows:
 1. Copy the following code to `AgoraUIEduBaseViews/AgoraUIEduBaseViews/AgoraResources/en.lproj/Localizable.strings` to add the text.
 
    ```
-DemoLeave = "Leave";
+   DemoLeave = "Leave";
    ```
 2. Copy the following code to `AgoraUIEduAppViews/AgoraUIEduAppViews/AgoraUIManager.swift` to add the properties of the component.
 
