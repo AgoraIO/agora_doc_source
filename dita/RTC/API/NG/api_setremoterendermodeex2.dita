@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setremoterendermode2">
-    <title><ph keyref="setRemoteRenderMode2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">更新远端视图显示模式。</ph></shortdesc>
+<reference id="api_setremoterendermodeex2">
+    <title><ph keyref="setRemoteRenderModeEx2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置远端视图显示模式。</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
-       <indexterm keyref="setRemoteRenderMode2" />
+       <indexterm keyref="setRemoteRenderModeEx2" />
    </keywords>
         </metadata>
     </prolog>
@@ -25,40 +25,31 @@
         </p>
         </section>
         <section id="detailed_desc">
-   <p>初始化远端用户视图后，你可以调用该方法更新远端用户视图在本地显示时的渲染和镜像模式。该方法只影响本地用户看到的视频画面。</p>
-   <note type="note">
-                <ul>
-                    <li>请在调用 <xref keyref="setupRemoteVideo"/> 方法初始化远端视图后，调用该方法。</li>
-                    <li>你可以在通话中多次调用该方法，多次更新远端用户视图的显示模式。</li>
-                </ul>
-            </note>
+   <p>初始化远端用户视图后，你可以调用该方法更新远端用户视图在本地显示时的渲染和镜像模式。该方法只影响本地用户看到的视频画面。<note id="note_dpq_mtr_mqb"
+                    type="attention">
+                    <ul id="ul_ft3_ntr_mqb">
+                        <li>请在调用 <xref keyref="setupRemoteVideo"/> 方法初始化远端视图后，调用该方法。 </li>
+                        <li>你可以在通话中多次调用该方法，多次更新远端用户视图的显示模式。</li>
+                    </ul>
+                </note></p>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
        <plentry>
   <pt>uid</pt>
-  <pd>
-      <p>远端用户 ID。</p>
-  </pd>
+  <pd>远端用户 ID。</pd>
        </plentry>
        <plentry>
   <pt>renderMode</pt>
-  <pd>
-      <p>远端用户视图的渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
-  </pd>
-       </plentry>
-       <plentry>
-  <pt>mirrorMode</pt>
-  <pd>
-      <p>远端用户视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
-      <note type="note">默认关闭远端用户的镜像模式。</note>
-  </pd>
+  <pd>远端视图显示模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
        </plentry>
                 <plentry>
-                    <pt><b>connectionId</b></pt>
-                    <pd>
-                        <p>连接 ID。</p>
-                    </pd>
+                    <pt>mirrorMode</pt>
+                    <pd>远端用户视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>connectionId</pt>
+                    <pd>连接 ID。</pd>
                 </plentry>
    </parml>
         </section>
