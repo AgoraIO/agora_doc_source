@@ -217,6 +217,19 @@ In order to show the authentication workflow, this section shows how to build an
 
 <div class="alert warning">This sample client is for demonstration purposes only. Do not use it in a production environment.</div>
 
+1. Based on the quickstart project, add the following dependencies to `build.gradle`:
+
+```
+dependencies {
+    ...
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.google.code.gson:gson:2.8.4'
+    ...
+    }
+```
+
+2. Update `MainActivity.java` with the following code:
+
 ```java
 package com.example.rtcquickstart;
 
@@ -229,6 +242,8 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.os.Handler;
+import android.os.Message;
 import android.view.SurfaceView;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -237,18 +252,21 @@ import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
 
-
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.Call;
-import okhttp3.FormBody;
+
 import okhttp3.Callback;
 
 import com.google.gson.Gson;
 
 import java.util.Map;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -262,6 +280,8 @@ public class MainActivity extends AppCompatActivity {
     private String token = "";
 
     private RtcEngine mRtcEngine;
+
+    private Handler mHandler;
 
 
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
@@ -285,6 +305,7 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.CAMERA
     };
 
+
     private boolean checkSelfPermission(String permission, int requestCode) {
         if (ContextCompat.checkSelfPermission(this, permission) !=
                 PackageManager.PERMISSION_GRANTED) {
@@ -295,24 +316,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Fetches the RTC token
-    public String fetchToken(int uid,String channelName,int tokenRole){
+    private void fetchToken(int uid,String channelName,int tokenRole){
         OkHttpClient client = new OkHttpClient();
-        FormBody body = new FormBody.Builder()
-                .add("uid", Integer.toString(uid))
-                .add("ChannelName", channelName)
-                .add("role", Integer.toString(tokenRole))
-                .build();
+
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+        JSONObject json = new JSONObject();
+        try {
+            json.put("uid", uid);
+            json.put("ChannelName", channelName);
+            json.put("role", tokenRole);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(JSON, String.valueOf(json));
+
         Request request = new Request.Builder()
-                .url("http://192.168.31.46:8082/fetch_rtc_token")
+                .url("http://10.53.3.234:8082/fetch_rtc_token")
                 .header("Content-Type", "application/json; charset=UTF-8")
-                .post(body)
+                .post(requestBody)
                 .build();
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                Toast toast = Toast.makeText(MainActivity.this, "Error: " + e.toString(), Toast.LENGTH_SHORT);
-                toast.show();
+
             }
 
             @Override
@@ -321,19 +349,31 @@ public class MainActivity extends AppCompatActivity {
                     Gson gson = new Gson();
                     String result = response.body().string();
                     Map map = gson.fromJson(result, Map.class);
-                    token = map.get("token").toString();
-                    Toast toast = Toast.makeText(MainActivity.this, "The fetched token is: " + token, Toast.LENGTH_SHORT);
-                    toast.show();
+
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            token = map.get("token").toString();
+                            Toast toast = Toast.makeText(MainActivity.this, "The token is: " + token, Toast.LENGTH_SHORT);
+                            toast.show();
+                            // Join the channel with a token.
+                            mRtcEngine.joinChannel(token, channelName, "", 1234);
+
+                        }
+                    });
+
+
                 }
             }
         });
-        return token;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mHandler = new Handler();
 
         // If all the permissions are granted, initialize the RtcEngine object and join a channel.
         if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
@@ -371,12 +411,9 @@ public class MainActivity extends AppCompatActivity {
         // Pass the SurfaceView object to Agora so that it renders the local video.
         mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
         // Fetches the token from token server
-        token = fetchToken(1234, channelName, 1);
-        Toast toast = Toast.makeText(MainActivity.this, "The token is: " + token, Toast.LENGTH_SHORT);
+        fetchToken(1234, channelName, 1);
 
-        toast.show();
-        // Join the channel with a token.
-        mRtcEngine.joinChannel(token, channelName, "", 1234);
+
     }
 
     private void setupRemoteVideo(int uid) {
