@@ -211,184 +211,159 @@ In order to show the authentication workflow, this section shows how to build an
 
 ### Use tokens for user authentication
 
-This section uses the Android client as an example to show how to use a token for client-side user authentication.
+This section uses the Web client as an example to show how to use a token for client-side user authentication.
 
-In order to show the authentication workflow, this section shows how to build and run an Android client on the simulator of your local machine.
+In order to show the authentication workflow, this section shows how to build and run a Web client on your local machine.
 
 <div class="alert warning">This sample client is for demonstration purposes only. Do not use it in a production environment.</div>
 
-```java
-package com.example.rtcquickstart;
+1. Create the project structure of the Web client with a folder including the following files.
+    - `index.html`: User interface
+    - `client.js`: App logic with Agora RTC Web SDK 4.x
 
-import androidx.appcompat.app.AppCompatActivity;
+    ```text
+    |
+    |-- index.html
+    |-- client.js
+    ```
 
-import android.os.Bundle;
+2. In `index.html`, add the following code to include the app logic in the UI:
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+    ```html
+    <html>
+    <head>
+        <title>Token demo</title>
+    </head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <body>
+        <h1>Token demo</h1>
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.view.SurfaceView;
-import android.widget.FrameLayout;
-import android.widget.Toast;
-import io.agora.rtc.Constants;
-import io.agora.rtc.IRtcEngineEventHandler;
-import io.agora.rtc.RtcEngine;
-import io.agora.rtc.video.VideoCanvas;
+        <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
+        <script src="./client.js"></script>
 
+    </body>
+    </html>
+    ```
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.Call;
-import okhttp3.FormBody;
-import okhttp3.Callback;
+3. Create the app logic by editing `client.js` with the following content. Then replace `<Your App ID>` with your App ID. The App ID must match the one in the server. You also need to replace `<Your Host URL and port>` with the host URL and port of the local Golang server you have just deployed, such as `10.53.3.234:8082`.
 
-import com.google.gson.Gson;
+    ```js
+    var rtc = {
+        // For the local audio and video tracks.
+        localAudioTrack: null,
+        localVideoTrack: null,
+    };
 
-import java.util.Map;
+    var options = {
+        // Pass your app ID here.
+        appId: "<Your app ID>",
+        // Set the channel name.
+        channel: "ChannelA",
+        // Set the user role in the channel.
+        role: "host"
+    };
 
+    // Fetch a token from the Golang server.
+    function fetchToken(uid, channelName, tokenRole) {
 
-import java.io.IOException;
-
-public class MainActivity extends AppCompatActivity {
-
-    // Fill the App ID of your project generated on Agora Console.
-    private String appId = "";
-    // Fill the channel name.
-    private String channelName = "1234";
-    // Fill the temp token generated on Agora Console.
-    private String token = "";
-
-    private RtcEngine mRtcEngine;
-
-
-    private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
-        @Override
-        // Listen for the remote host joining the channel to get the uid of the host.
-        public void onUserJoined(int uid, int elapsed) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    // Call setupRemoteVideo to set the remote video view after getting uid from the onUserJoined callback.
-                    setupRemoteVideo(uid);
+        return new Promise(function (resolve) {
+            axios.post('http://<Your Host URL and port>/fetch_rtc_token', {
+                uid: uid,
+                channelName: channelName,
+                role: tokenRole
+            }, {
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
                 }
+            })
+                .then(function (response) {
+                    const token = response.data.token;
+                    resolve(token);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        })
+    }
+
+    async function startBasicCall() {
+
+        const client = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
+        client.setClientRole(options.role);
+        const uid = 123456;
+
+        // Fetch a token before calling join to join a channel.
+        let token = await fetchToken(uid, options.channel, 1);
+
+        await client.join(options.appId, options.channel, token, uid);
+        rtc.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+        rtc.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
+        await client.publish([rtc.localAudioTrack, rtc.localVideoTrack]);
+        const localPlayerContainer = document.createElement("div");
+        localPlayerContainer.id = uid;
+        localPlayerContainer.style.width = "640px";
+        localPlayerContainer.style.height = "480px";
+        document.body.append(localPlayerContainer);
+
+        rtc.localVideoTrack.play(localPlayerContainer);
+
+        console.log("publish success!");
+
+        client.on("user-published", async (user, mediaType) => {
+            await client.subscribe(user, mediaType);
+            console.log("subscribe success");
+
+            if (mediaType === "video") {
+                const remoteVideoTrack = user.videoTrack;
+                const remotePlayerContainer = document.createElement("div");
+                remotePlayerContainer.textContent = "Remote user " + user.uid.toString();
+                remotePlayerContainer.style.width = "640px";
+                remotePlayerContainer.style.height = "480px";
+                document.body.append(remotePlayerContainer);
+                remoteVideoTrack.play(remotePlayerContainer);
+
+            }
+
+            if (mediaType === "audio") {
+                const remoteAudioTrack = user.audioTrack;
+                remoteAudioTrack.play();
+            }
+
+            client.on("user-unpublished", user => {
+                const remotePlayerContainer = document.getElementById(user.uid);
+                remotePlayerContainer.remove();
             });
-        }
-    };
 
-    private static final int PERMISSION_REQ_ID = 22;
-
-    private static final String[] REQUESTED_PERMISSIONS = {
-            Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.CAMERA
-    };
-
-    private boolean checkSelfPermission(String permission, int requestCode) {
-        if (ContextCompat.checkSelfPermission(this, permission) !=
-                PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, requestCode);
-            return false;
-        }
-        return true;
-    }
-
-    // Fetches the RTC token
-    public String fetchToken(int uid,String channelName,int tokenRole){
-        OkHttpClient client = new OkHttpClient();
-        FormBody body = new FormBody.Builder()
-                .add("uid", Integer.toString(uid))
-                .add("ChannelName", channelName)
-                .add("role", Integer.toString(tokenRole))
-                .build();
-        Request request = new Request.Builder()
-                .url("http://192.168.31.46:8082/fetch_rtc_token")
-                .header("Content-Type", "application/json; charset=UTF-8")
-                .post(body)
-                .build();
-        Call call = client.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Toast toast = Toast.makeText(MainActivity.this, "Error: " + e.toString(), Toast.LENGTH_SHORT);
-                toast.show();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if(response.isSuccessful()){
-                    Gson gson = new Gson();
-                    String result = response.body().string();
-                    Map map = gson.fromJson(result, Map.class);
-                    token = map.get("token").toString();
-                    Toast toast = Toast.makeText(MainActivity.this, "The fetched token is: " + token, Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
         });
-        return token;
+
+        // When token-privilege-will-expire occurs, fetch a new token from the server and call renewToken to renew the token.
+        client.on("token-privilege-will-expire", async function () {
+            let token = await fetchToken(uid, options.channel, 1);
+            await client.renewToken(token);
+        });
+
+        // When token-privilege-did-expire occurs, fetch a new token from the server and call join to rejoin the channel.
+        client.on("token-privilege-did-expire", async function () {
+            console.log("Fetching the new Token")
+            let token = await fetchToken(uid, options.channel, 1);
+            console.log("Rejoining the channel with new Token")
+            await rtc.client.join(options.appId, options.channel, token, uid);
+        });
+
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    startBasicCall()
+    ```
 
-        // If all the permissions are granted, initialize the RtcEngine object and join a channel.
-        if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
-                checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID)) {
-            initializeAndJoinChannel();
-        }
-    }
+    In the code example, you can see that token is related to the following code logic in the client:
+    - Call `join` to join the channel with token, uid, and channel name. The uid and channel name must be the same as the ones used to generate the token.
+    - The `token-privilege-will-expire` callback occurs 30 seconds before a token expires. When the `token-privilege-will-expire` callback is triggered，the client must fetch the token from the server and call `renewToken` to pass the new token to the SDK.
+    - The `token-privilege-did-expire` callback occurs when a token expires. When the `token-privilege-did-expire` callback is triggered, the client must fetch the token from the server and call `join` to use the new token to join the channel.
 
-    protected void onDestroy() {
-        super.onDestroy();
+4. Open `index.html` with a supported browser to perform the following actions:
+    - Successfully joining a channel.
+    - Renewing a token every 10 seconds.
 
-        mRtcEngine.leaveChannel();
-        mRtcEngine.destroy();
-    }
-
-    private void initializeAndJoinChannel() {
-        try {
-            mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
-        } catch (Exception e) {
-            throw new RuntimeException("Check the error.");
-        }
-
-        // For a live streaming scenario, set the channel profile as BROADCASTING.
-        mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
-        // Set the client role as BROADCASTER or AUDIENCE according to the scenario.
-        mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
-
-        // By default, video is disabled, and you need to call enableVideo to start a video stream.
-        mRtcEngine.enableVideo();
-
-        FrameLayout container = findViewById(R.id.local_video_view_container);
-        // Call CreateRendererView to create a SurfaceView object and add it as a child to the FrameLayout.
-        SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
-        container.addView(surfaceView);
-        // Pass the SurfaceView object to Agora so that it renders the local video.
-        mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
-        // Fetches the token from token server
-        token = fetchToken(1234, channelName, 1);
-        Toast toast = Toast.makeText(MainActivity.this, "The token is: " + token, Toast.LENGTH_SHORT);
-
-        toast.show();
-        // Join the channel with a token.
-        mRtcEngine.joinChannel(token, channelName, "", 1234);
-    }
-
-    private void setupRemoteVideo(int uid) {
-        FrameLayout container = findViewById(R.id.remote_video_view_container);
-        SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
-        surfaceView.setZOrderMediaOverlay(true);
-        container.addView(surfaceView);
-        mRtcEngine.setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, uid));
-    }
-
-}
-```
 
 ## Reference
 
