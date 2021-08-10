@@ -14,7 +14,8 @@
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;
+</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">registerMediaMetadataObserver(type: METADATA_TYPE = 0): number </codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -28,6 +29,9 @@
                     <dd>v2.4.1</dd>
                 </dlentry>
             </dl>
+            <p>你需要自行实现 <xref keyref="IMetadataObserver"/> 类并在本方法中指定 metadata 类型。本方法允许你为视频流添加同步的
+                metadata，用于多样化的直播互动，如发送购物链接、电子优惠券和在线测试。</p>
+            <p>调用该方法成功后，SDK 会触发 <xref keyref="getMaxMetadataSize"/> 回调。</p>
    <p>
        <note type="attention">
   <ul id="ul_bmd_btz_r4b">
@@ -41,9 +45,7 @@
    <parml>
        <plentry props="windows android apple">
   <pt>observer</pt>
-  <pd>
-      指向已注册的 metadata 观测器的指针。详见 <xref keyref="IMetadataObserver"/>。
-  </pd>
+  <pd> metadata 观测器。详见 <xref keyref="IMetadataObserver"/>。 </pd>
        </plentry>
        <plentry id="metadatatype">
   <pt>type</pt>
