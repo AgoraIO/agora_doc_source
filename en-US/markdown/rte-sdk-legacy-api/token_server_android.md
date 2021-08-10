@@ -283,6 +283,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Handler mHandler;
 
+    private int joined = 1;
+
 
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
         @Override
@@ -295,6 +297,26 @@ public class MainActivity extends AppCompatActivity {
                     setupRemoteVideo(uid);
                 }
             });
+        }
+
+        @Override
+        public void onTokenPrivilegeWillExpire(String token) {
+            fetchToken(1234, channelName, 1);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    Toast toast = Toast.makeText(MainActivity.this, "Renewed your token", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            });
+            super.onTokenPrivilegeWillExpire(token);
+        }
+
+        @Override
+        public void onRequestToken() {
+            // Need to leave the channel and rejoin with a new token.
+            super.onRequestToken();
         }
     };
 
@@ -355,10 +377,8 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
 
                             token = map.get("token").toString();
-                            Toast toast = Toast.makeText(MainActivity.this, "The token is: " + token, Toast.LENGTH_SHORT);
-                            toast.show();
                             // Join the channel with a token.
-                            mRtcEngine.joinChannel(token, channelName, "", 1234);
+                            if (joined != 0){joined = mRtcEngine.joinChannel(token, channelName, "", 1234);}
 
                         }
                     });
