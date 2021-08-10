@@ -26,25 +26,10 @@
        </p>
         </section>
         <section id="detailed_desc">
-   <p>该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
-   <ul>
-       <li>本地：<xref keyref="onLocalUserRegistered"/> 和 <xref keyref="onJoinChannelSuccess"/>
-                        回调。</li>
-       <li>远端：通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined"/> 和 <xref
-                            keyref="onUserInfoUpdated"/> 回调。</li>
-   </ul></p>
-   <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
-   <note type="attention">
-                <ul id="ul_yqm_yx5_3qb">
-                    <li>相比 <xref keyref="joinChannelWithUserAccount1"/> ， 该方法加了
-                            <parmname>options</parmname>
-                        参数，用于配置用户加入频道时是否自动订阅频道内所有远端音视频流。默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并影响计费。如果想取消订阅，
-                        可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname keyref="mute"/>
-                        方法实现。</li>
-                    <li>为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Agora
-                        Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</li>
-                </ul>
-            </note>
+   <p conkeyref="joinChannelWithUserAccount2/desc1"/>
+   <p conkeyref="joinChannelWithUserAccount2/desc2"/>
+            <note conkeyref="joinChannelWithUserAccount1/note"/>
+
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
@@ -53,28 +38,21 @@
   <pt>channelId</pt>
   <pd><p conkeyref="joinChannel2/channelID_desc"/></pd>
        </plentry>
-       <plentry>
-  <pt>userAccount</pt>
-  <pd><p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。
-                            该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL"/>。以下为支持的字符集范围（共 89 个字符）：<ul
-                                conkeyref="joinChannel2/char_support">
-                                <li/>
-                            </ul></p></pd>
+       <plentry conkeyref="joinChannelWithUserAccount2/userAccount">
+  <pt/>
+  <pd/>
        </plentry>
-                <plentry>
-                    <pt>options</pt>
-                    <pd>
-                        <p>频道媒体设置选项： <xref keyref="ChannelMediaOptions"/>。</p>
-                    </pd>
+                <plentry conkeyref="joinChannel2/options">
+                    <pt/>
+                    <pd/>
                 </plentry>
-                <plentry>
-                    <pt>eventHandler</pt>
-                    <pd><xref keyref="IRtcEngine"/> 的事件 handler，详见 <xref
-                            keyref="IRtcEngineEventHandler"/>。</pd>
+                <plentry conkeyref="joinChannelEx/event">
+                    <pt/>
+                    <pd/>
                 </plentry>
-                <plentry>
-                    <pt>connectionId</pt>
-                    <pd>[in, out] 连接 ID。当你多次加入相同频道时，连接 ID 能用于控制不同的 connection 实例。</pd>
+                <plentry conkeyref="joinChannelEx/connectionId">
+                    <pt/>
+                    <pd/>
                 </plentry>
    </parml>
         </section>

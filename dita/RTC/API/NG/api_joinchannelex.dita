@@ -40,44 +40,31 @@
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
-                <plentry>
-                    <pt>token</pt>
-                    <pd>动态密钥。如果你在控制台中开启了 App Certificate 则必须使用动态密钥。它由你的服务器生成，详见<xref
-                            keyref="guide-token"/>： <ul id="ul_xrr_wh5_3qb">
-                            <li>安全要求不高：你可以使用控制台生成的临时 Token。 </li>
-                            <li>安全要求高：将值设为你的服务端生成的正式 Token。</li>
-                        </ul></pd>
+                <plentry conkeyref="joinChannel2/token">
+                    <pt/>
+                    <pd/>
                 </plentry>
-                <plentry>
-                    <pt>channelId</pt>
-                    <pd>标识频道的频道名，最大不超过 64 字节。以下为支持的字符集范围 （共 89 个字符）：<ul id="ul_dlg_sk5_3qb">
-                            <li>26 个小写英文字母 a-z</li>
-                            <li>26 个大写英文字母 A-Z</li>
-                            <li>10 个数字 0-9</li>
-                            <li>空格</li>
-                            <li>"!"，"#"，"$"，"%"，"&amp;"，"("，")"，"+"，"-"，":"，";"，"&lt;"，"="，"."，">"，
-                                "?"，"@"，"["，"]"，"^"，"_"，" {"， "}"，"|"，"~"，","</li>
-                        </ul>
-                    </pd>
+                <plentry conkeyref="joinChannel2/channelID">
+                    <pt/>
+                    <pd/>
                 </plentry>
-                <plentry>
-                    <pt>uid</pt>
-                    <pd>
-                        <p>用户 UID，32位无符号整数。建议设置范围：1到 (2<sup>32</sup>-1)，并保证其在频道内的唯一性。</p>
-                    </pd>
+                <plentry conkeyref="joinChannel2/uid">
+                    <pt/>
+                    <pd/>
                 </plentry>
-                <plentry>
-                    <pt>options</pt>
-                    <pd>跨频道转发媒体流选项，详见 <xref keyref="ChannelMediaOptions"/>。</pd>
+                <plentry conkeyref="joinChannel2/options">
+                    <pt/>
+                    <pd/>
                 </plentry>
-                <plentry>
+                <plentry id="event">
                     <pt>eventHandler</pt>
-                    <pd><xref keyref="IRtcEngine"/> 的事件 hander，详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
+                    <pd><xref keyref="IRtcEngine"/> 的事件 handler，详见 <xref
+                            keyref="IRtcEngineEventHandler"/>。</pd>
                 </plentry>
-                <plentry>
+                <plentry id="connectionId">
                     <pt>connectionId</pt>
                     <pd>
-                        <p>连接 ID。当你多次加入相同频道时，连接 ID 能用于控制不同的 connection 实例。</p>
+                        <p>输出参数，连接 ID。当你多次加入相同频道时，连接 ID 能用于控制不同的 connection 实例。</p>
                     </pd>
                 </plentry>
             </parml>
