@@ -94,6 +94,13 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="IMediaExtensionObserver">
+            <topicmeta>
+                <keywords>
+                    <keyword>IMediaExtensionObserver</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="IMediaPlayer" href="../API/NG/class_imediaplayer.dita">
             <topicmeta>
                 <keywords>
@@ -931,6 +938,13 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="startAudioMixing2" href="../API/api_startaudiomixing.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>startAudioMixing</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="stopAudioMixing" href="../API/api_stopaudiomixing.dita">
                 <topicmeta>
                     <keywords>
@@ -1402,33 +1416,61 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="pushVideoFrame1">
+                <topicmeta>
+                    <keywords>
+                        <keyword>pushExternalVideoFrame [1/2]</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="pushVideoFrame" href="../API/api_pushvideoframe.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>pushVideoFrame</keyword>
+                        <keyword>pushExternalVideoFrame [2/2]</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
             <keydef keys="pushEncodedVideoImage" href="../API/NG/api_pushencodedvideoimage.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>pushEncodedVideoImage</keyword>
+                        <keyword>pushExternalEncodedVideoImage</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="isTextureEncodeSupported">
+                <topicmeta>
+                    <keywords>
+                        <keyword>isTextureEncodeSupported</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
         </topichead>
         <topichead navtitle="音频自采集">
-            <keydef keys="setExternalAudioSource" href="../API/NG/api_setexternalaudiosource.dita">
+            <keydef keys="setExternalAudioSource1">
                 <topicmeta>
                     <keywords>
-                        <keyword>setExternalAudioSource</keyword>
+                        <keyword>setExternalAudioSource [1/2]</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="pushAudioFrame" href="../API/NG/api_pushaudioframe.dita">
+            <keydef keys="setExternalAudioSource" href="../API/NG/api_setexternalaudiosource.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>pushAudioFrame</keyword>
+                        <keyword>setExternalAudioSource [2/2]</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="pushExternalAudioFrame1">
+                <topicmeta>
+                    <keywords>
+                        <keyword>pushExternalAudioFrame [1/2]</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="pushExternalAudioFrame2">
+                <topicmeta>
+                    <keywords>
+                        <keyword>pushExternalAudioFrame [2/2]</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -1510,7 +1552,14 @@
             <keydef keys="pullAudioFrame" href="../API/api_pullaudioframe.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>pullAudioFrame</keyword>
+                        <keyword>pullPlaybackAudioFrame [1/2]</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="pullAudioFrame">
+                <topicmeta>
+                    <keywords>
+                        <keyword>pullPlaybackAudioFrame [2/2]</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -1538,14 +1587,31 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="onMixedAudioEncodedFrame" href="../API/NG/api_onmixedaudioencodedframe.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>OnMixedAudioEncodedFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
         </topichead>
-        <keydef keys="onMixedAudioEncodedFrame" href="../API/NG/api_onmixedaudioencodedframe.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>OnMixedAudioEncodedFrame</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
+        <topichead navtitle="视频编码数据">
+            <keydef keys="registerVideoFrameObserver"
+                href="../API/api_registervideoframeobserver.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>registerVideoFrameObserver</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onEncodedVideoImageReceived" href="../API/NG/api_onencodedvideoimagereceived.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onEncodedVideoImageReceived</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
         <topichead navtitle="原始音频数据">
             <keydef keys="registerAudioFrameObserver"
                 href="../API/api_registeraudioframeobserver.dita">
@@ -1589,19 +1655,11 @@
             </keydef>
         </topichead>
         <topichead navtitle="原始视频数据">
-            <keydef keys="registerVideoFrameObserver"
-                href="../API/api_registervideoframeobserver.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>registerVideoFrameObserver</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
             <keydef keys="registerVideoEncodedImageReceiver"
                 href="../API/NG/api_registervideoencodedimagereceiver.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>registerVideoEncodedImageReceiver</keyword>
+                        <keyword>registerVideoEncodedImageObserver</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -1621,36 +1679,17 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="loadExtension">
+                <topicmeta>
+                    <keywords>
+                        <keyword>loadExtension</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="onExtensionEvent" href="../API/NG/api_onextensionevent.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>onExtensionEvent</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-        </topichead>
-        <topichead navtitle="本地合图">
-            <keydef keys="startLocalVideoTranscoder"
-                href="../API/NG/api_startlocalvideotranscoder.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>startLocalVideoTranscoder</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="stopLocalVideoTranscoder"
-                href="../API/NG/api_stoplocalvideotranscoder.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>stopLocalVideoTranscoder</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="updateLocalTranscoderConfiguration"
-                href="../API/NG/api_updatelocaltranscoderconfiguration.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>updateLocalTranscoderConfiguration</keyword>
+                        <keyword>onEvent</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -1704,13 +1743,6 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="registerPacketObserver" href="../API/api_registerpacketobserver.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>registerPacketObserver</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
             <keydef keys="setEncryptionMode" href="../API/api_setencryptionmode.dita">
                 <topicmeta>
                     <keywords>
@@ -1725,40 +1757,26 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="onReceiveAudioPacket" href="../API/api_onreceiveaudiopacket.dita">
+            <keydef keys="onEncryptionError">
                 <topicmeta>
                     <keywords>
-                        <keyword>onReceiveAudioPacket</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="onReceiveVideoPacket" href="../API/api_onreceivevideopacket.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>onReceiveVideoPacket</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="onSendAudioPacket" href="../API/api_onsendaudiopacket.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>onSendAudioPacket</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="onSendVideoPacket" href="../API/api_onsendvideopacket.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>onSendVideoPacket</keyword>
+                        <keyword>onEncryptionError</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
         </topichead>
         <topichead navtitle="音频采集">
-            <keydef keys="startAudioRecording3" href="../API/NG/api_startaudiorecording3.dita">
+            <keydef keys="startAudioRecording1" href="../API/api_startaudiorecording1.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>startAudioRecording</keyword>
+                        <keyword>startAudioRecording [1/2]</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="startAudioRecording3" href="../API/api_startaudiorecording3.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>startAudioRecording [2/2]</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -1843,6 +1861,13 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="getCameraMaxZoomFactor">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getCameraMaxZoomFactor</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="setCameraFocusPositionInPreview" href="../API/api_setcamerafocuspositioninpreview.dita">
                 <topicmeta>
                     <keywords>
@@ -1871,318 +1896,6 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="setCameraDeviceOrientation"
-                href="../API/NG/api_setcameradeviceorientation.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setCameraDeviceOrientation</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-        </topichead>
-        <topichead navtitle="设备管理">
-            <keydef keys="getCount_IAudioDeviceCollection"
-                href="../API/api_iaudiodevicecollection_getcount.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getCount</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getDevice_IAudioDeviceCollection"
-                href="../API/api_iaudiodevicecollection_getdevice.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getDevice</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setDevice_IAudioDeviceCollection"
-                href="../API/api_iaudiodevicecollection_setdevice.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setDevice</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setApplicationVolume" href="../API/api_setapplicationvolume.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setApplicationVolume</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getApplicationVolume" href="../API/api_getapplicationvolume.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getApplicationVolume</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setApplicationMute" href="../API/api_setapplicationmute.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setApplicationMute</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="isApplicationMute" href="../API/api_isapplicationmute.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>isApplicationMute</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="release_IAudioDeviceCollection"
-                href="../API/api_iaudiodevicecollection_release.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>release</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="enumeratePlaybackDevices" href="../API/api_enumerateplaybackdevices.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>enumeratePlaybackDevices</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="enumerateRecordingDevices"
-                href="../API/api_enumeraterecordingdevices.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>enumerateRecordingDevices</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setPlaybackDevice" href="../API/api_setplaybackdevice.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setPlaybackDevice</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setRecordingDevice" href="../API/api_setrecordingdevice.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setRecordingDevice</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="startPlaybackDeviceTest" href="../API/api_startplaybackdevicetest.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>startPlaybackDeviceTest</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="stopPlaybackDeviceTest" href="../API/api_stopplaybackdevicetest.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>stopPlaybackDeviceTest</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="startRecordingDeviceTest" href="../API/api_startrecordingdevicetest.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>startRecordingDeviceTest</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="stopRecordingDeviceTest" href="../API/api_stoprecordingdevicetest.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>stopRecordingDeviceTest</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getPlaybackDevice" href="../API/api_getplaybackdevice.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getPlaybackDevice</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getPlaybackDeviceInfo" href="../API/api_getplaybackdeviceinfo.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getPlaybackDeviceInfo</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getRecordingDevice" href="../API/api_getrecordingdevice.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getRecordingDevice</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getRecordingDeviceInfo" href="../API/api_getrecordingdeviceinfo.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getRecordingDeviceInfo</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="startAudioDeviceLoopbackTest"
-                href="../API/api_startaudiodeviceloopbacktest.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>startAudioDeviceLoopbackTest</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="stopAudioDeviceLoopbackTest"
-                href="../API/api_stopaudiodeviceloopbacktest.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>stopAudioDeviceLoopbackTest</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setPlaybackDeviceVolume" href="../API/api_setplaybackdevicevolume.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setPlaybackDeviceVolume</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getPlaybackDeviceVolume" href="../API/api_getplaybackdevicevolume.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getPlaybackDeviceVolume</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setRecordingDeviceVolume" href="../API/api_setrecordingdevicevolume.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setRecordingDeviceVolume</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getRecordingDeviceVolume" href="../API/api_getrecordingdevicevolume.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getRecordingDeviceVolume</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setPlaybackDeviceMute" href="../API/api_setplaybackdevicemute.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setPlaybackDeviceMute</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getPlaybackDeviceMute" href="../API/api_getplaybackdevicemute.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getPlaybackDeviceMute</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setRecordingDeviceMute" href="../API/api_setrecordingdevicemute.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setRecordingDeviceMute</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getRecordingDeviceMute" href="../API/api_getrecordingdevicemute.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getRecordingDeviceMute</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="release_IAudioDeviceManager"
-                href="../API/api_iaudiodevicemanager_release.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>release</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="enumerateVideoDevices" href="../API/api_enumeratevideodevices.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>enumerateVideoDevices</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="startDeviceTest" href="../API/api_startdevicetest.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>startDeviceTest</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="stopDeviceTest" href="../API/api_stopdevicetest.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>stopDeviceTest</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setDevice_IVideoDeviceManager"
-                href="../API/api_ivideodevicemanager_setdevice.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setDevice</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getDevice_IVideoDeviceManager"
-                href="../API/api_ivideodevicemanager_getdevice.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getDevice</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="release_IVideoDeviceManager"
-                href="../API/api_ivideodevicemanager_release.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>release</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getCount_IVideoDeviceCollection"
-                href="../API/api_ivideodevicecollection_getcount.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getCount</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getDevice_IVideoDeviceCollection"
-                href="../API/api_ivideodevicecollection_getdevice.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getDevice</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setDevice_IVideoDeviceCollection"
-                href="../API/api_ivideodevicecollection_setdevice.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setDevice</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="release_IVideoDeviceCollection"
-                href="../API/api_ivideodevicecollection_release.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>release</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
         </topichead>
         <topichead navtitle="流消息">
             <keydef keys="createDataStream1" href="../API/NG/api_createdatastreamex1.dita">
@@ -2203,22 +1916,6 @@
                 <topicmeta>
                     <keywords>
                         <keyword>sendStreamMessage</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-        </topichead>
-        <topichead navtitle="其他音频控制">
-            <keydef keys="enableLoopbackRecording" href="../API/NG/api_enableloopbackrecording.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>enableLoopbackRecording [1/2]</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="enableLoopbackRecording2" href="../API/NG/api_enableloopbackrecordingex.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>enableLoopbackRecording [2/2]</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -2338,13 +2035,6 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="queryInterface" href="../API/api_queryinterface.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>queryInterface</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
         </topichead>
     </topichead>
     <topichead navtitle="Callbacks">
@@ -2441,7 +2131,6 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-        </topichead>
         <keydef keys="onLocalUserRegistered" href="../API/api_onlocaluserregistered.dita">
             <topicmeta>
                 <keywords>
@@ -2470,6 +2159,7 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        </topichead>
         <topichead navtitle="本地媒体事件">
             <keydef keys="onLocalAudioStateChanged" href="../API/api_onlocalaudiostatechanged.dita">
                 <topicmeta>
@@ -2842,6 +2532,13 @@
                 </topicmeta>
             </keydef>            
         </topichead>
+        <keydef keys="enableFaceDetection" href="../API/api_enablefacedetection.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>enableFaceDetection</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <topichead navtitle="音频播放路由">
             <keydef keys="onAudioRouteChanged" href="../API/api_onaudioroutechanged.dita">
                 <topicmeta>
@@ -2922,13 +2619,6 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="onEncodedVideoImageReceived" href="../API/NG/api_onencodedvideoimagereceived.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>OnEncodedVideoImageReceived</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
             <keydef keys="onMediaPlayerVideoFrame" href="../API/NG/api_onmediaplayervideoframe.dita">
                 <topicmeta>
                     <keywords>
@@ -2968,6 +2658,13 @@
                 <topicmeta>
                     <keywords>
                         <keyword>getVideoFrameProcessMode</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="getVideoFormatPreference">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getVideoFormatPreference</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -3072,20 +2769,6 @@
             </keydef>
         </topichead>
         <topichead navtitle="其他事件">
-            <keydef keys="onWarning" href="../API/api_onwarning.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>onWarning</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="onError" href="../API/api_onerror.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>onError</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
             <keydef keys="onApiCallExecuted" href="../API/api_onapicallexecuted.dita">
                 <topicmeta>
                     <keywords>
@@ -3357,17 +3040,10 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="RtcEngineConfig" href="../API/class_rtcengineconfig.dita">
+        <keydef keys="RtcEngineConfig" href="../API/NG/class_rtcengineconfig.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>RtcEngineContext</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="RtcEngineContext" href="../API/NG/class_rtcenginecontext.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>RtcEngineContext</keyword>
+                    <keyword>RtcEngineConfig</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
