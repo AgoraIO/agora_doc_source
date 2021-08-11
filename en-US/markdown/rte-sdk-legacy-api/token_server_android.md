@@ -250,6 +250,7 @@ import io.agora.rtc2.Constants;
 import io.agora.rtc2.IRtcEngineEventHandler;
 import io.agora.rtc2.RtcEngine;
 import io.agora.rtc2.video.VideoCanvas;
+import io.agora.rtc2.ChannelMediaOptions;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -257,7 +258,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.Call;
-
 import okhttp3.Callback;
 
 import com.google.gson.Gson;
@@ -279,6 +279,8 @@ public class MainActivity extends AppCompatActivity {
     private String token = "";
 
     private RtcEngine mRtcEngine;
+
+    private ChannelMediaOptions options;
 
     private int joined = 1;
 
@@ -421,6 +423,8 @@ public class MainActivity extends AppCompatActivity {
         mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
         // Start local preview
         mRtcEngine.startPreview();
+        // Set the role as broadcaster
+        options.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER;
         // Fetches the token from token server
         fetchToken(1234, channelName, 1);
     }
