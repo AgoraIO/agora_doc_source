@@ -12,7 +12,7 @@ Follow the steps in this section to migrate to 4.0 Preview according to the func
 
 ### Integrate the SDK
 
-In the BETA stage, you need to integrate the SDK by manually copying SDK files. If you integrated the 3.x SDK by using Jitpack, take the following steps:
+In the BETA stage, you need to integrate the SDK by manually copying SDK files. If you integrated the 3.x SDK by using Jitpack or mavenCrentral, take the following steps:
 
 1. Remove reference to the Agora SDK by deleting the following line in the `/Gradle Scripts/build.gradle(Module: <projectname>.app)` file:
    ```
@@ -27,7 +27,7 @@ In the BETA stage, you need to integrate the SDK by manually copying SDK files. 
    | `/sdk/armebi-v7a` folder | `/app/src/main/jniLibs/` |
    | `/sdk/x86` folder | `/app/src/main/jniLibs/` |
    | `/sdk/x86_64` folder | `/app/src/main/jniLibs/` |
-   | `sdk/high_level_api/include` folder | `/app/src/main/jniLibs/` |
+   | `/sdk/high_level_api/include` folder | `/app/src/main/jniLibs/` |
 
 ### Rename imports
 
@@ -37,17 +37,17 @@ In the activity files, change `import io.agora.rtc` to `import io.agora.rtc2`.
 
 The following table provides API mapping information between SDK 3.x and SDK 4.0 Preview from the perspective of functions.
 
+Agora also provides the complete demo project for major functions of the new SDK on GitHub. You can download [API Examples](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/Android/APIExample) to try the demo and check the source code. If you want to see the logic change compared to 3.x SDK, switch to the `master` branch to view the source code.
+
 | Function | 3.x API | 4.0 Preview API |
 |---|---|---|
 | Start a video call  | `create`</br>`enableVideo`</br>`CreateRendererView`</br>`setupLocalVideo`</br>`joinChannel`</br>`setupRemoteVideo`</br> | `create`</br>`setClientRole`</br>`enableVideo`</br>`setupLocalVideo`</br>`startPreview`</br>`joinChannel`</br>`setupRemoteVideo`</br> |
-| Start an interactive live streaming |`create`</br>`setChannelProfile`</br>`setClientRole`</br>`enableVideo`</br>`CreateRendererView`</br>`setupLocalVideo`</br>`joinChannel`</br>`setupRemoteVideo`  | `create`</br>`setClientRole`</br>`enableVideo`</br>`startPreview`</br>`setupLocalVideo`</br>`joinChannel`</br>`setupRemoteVideo` |
+| Start an interactive live streaming |`create`</br>`setChannelProfile`</br>`setClientRole`</br>`enableVideo`</br>`CreateRendererView`</br>`setupLocalVideo`</br>`joinChannel`</br>`setupRemoteVideo`  | `create`</br>`setClientRole`</br>`enableVideo`</br>`setupLocalVideo`</br>`startPreview`</br>`joinChannel`</br>`setupRemoteVideo` |
 | Custom audio source and renderer |`setExternalAudioSource`</br>`pushExternalAudioFrame`</br>`setExternalAudioSink`</br>`pullPlaybackAudioFrame`  |  |
 | Custom video source and renderer | `setExternalVideoSource`</br>`pushVideoFrame` |  |
 | Raw audio data | `registerAudioFrameObserver` |  |
 | Raw video data | `registerVideoFrameObserver`  |  |
 | Join multiple channels | `create`</br>`setChannelProfile`</br>`createRtcChannel`</br>`RtcChannel::setRtcChannelEventHandler`</br>`RtcChannel::setClientRole`</br>`RtcChannel::joinChannel`</br> |  |
-
-Agora also provides the complete demo project for major functions of the new SDK on GitHub. You can download [API Example](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/Android/APIExample) to try the demo and check the source code. If you want to see the logic change compared to 3.x SDK, switch to the `master` branch to view the source code.
 
 ## Reference
 
@@ -86,7 +86,7 @@ The 4.0 Preview SDK deletes the `onError` and `onWarning` callback that report e
 
 **3. Miscellaneous**
 
-The followings are method or parameter changes in 4.0 Preview SDK that can lead to incompatability issues in your project. Notice that the list here is not comprehensive and you can refer to the actual header file or details.
+The followings are method or parameter changes in 4.0 Preview SDK that can lead to incompatability issues in your project. Note that the list is not comprehensive and you can refer to the actual header file or details.
 
 - The 4.0 Preview SDK does not have the following methods, parameters, members, and Constants:
   - `onFirstLocalAudioFrame`, which is replaced by `onFirstLocalAudioFramePublished`.
