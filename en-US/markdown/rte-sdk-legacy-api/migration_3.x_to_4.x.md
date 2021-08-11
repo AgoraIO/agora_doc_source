@@ -1,15 +1,52 @@
+# Migrate from 3.x to 4.0 Preview
+
 This migration guide helps you migration from RTC SDK 3.x to 4.0 Preview. If you are migrating from 3.x, feel free to reach us via support@agora.io.
 
 ## Benefits
 
 To be added.
 
+## Migrate to 4.0 Preview
+
+Follow the steps in this section to migrate to 4.0 Preview according to the functions you implement in your app.
+
+### Integrate the SDK
+
+In the BETA stage, you need to integrate the SDK by manually copying SDK files. If you integrated the 3.x SDK by using Jitpack, take the following steps:
+
+1. Remove reference to the Agora SDK by deleting the following line in the `/Gradle Scripts/build.gradle(Module: <projectname>.app)` file:
+   ```
+   implementation 'com.github.agorabuilder:native-full-sdk:x.y.z'
+   ```
+2. Download the [Android SDK](http://10.80.1.174:8090/) and copy the files into your project.
+
+   | File or subfolder | Path of your project |
+   |---|---|
+   | `/sdk/agora-rtc-sdk.jar` file | `/app/libs/` |
+   | `/sdk/arm-v8a` folder | `/app/src/main/jniLibs/` |
+   | `/sdk/armebi-v7a` folder | `/app/src/main/jniLibs/` |
+   | `/sdk/x86` folder | `/app/src/main/jniLibs/` |
+   | `/sdk/x86_64` folder | `/app/src/main/jniLibs/` |
+   | `sdk/high_level_api/include` folder | `/app/src/main/jniLibs/` |
+
+### Add project permissions
+
+In `/app/Manifests/AndroidManifest.xml`, add the following permissions after `</application>` if your app has a screen sharing feature.:
+
+```xml
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+```
+
+### Rename imports
+
+In the activity files, change `import io.agora.rtc` to `import io.agora.rtc2`.
+
 ## Function-based API mapping
 
 The following table provides API mapping information between SDK 3.x and SDK 4.0 Preview from the perspective of functions.
 
 | Function | 3.x API | 4.0 Preview API |
-|---|---|---|---|
+|---|---|---|
 | Start a video call  | `create`</br>`enableVideo`</br>`CreateRendererView`</br>`setupLocalVideo`</br>`joinChannel`</br>`setupRemoteVideo`</br> | `create`</br>`setClientRole`</br>`enableVideo`</br>`setupLocalVideo`</br>`startPreview`</br>`joinChannel`</br>`setupRemoteVideo`</br> |
 | Start an interactive live streaming |`create`</br>`setChannelProfile`</br>`setClientRole`</br>`enableVideo`</br>`CreateRendererView`</br>`setupLocalVideo`</br>`joinChannel`</br>`setupRemoteVideo`  | `create`</br>`setClientRole`</br>`enableVideo`</br>`startPreview`</br>`setupLocalVideo`</br>`joinChannel`</br>`setupRemoteVideo` |
 | Custom audio source and renderer |`setExternalAudioSource`</br>`pushExternalAudioFrame`</br>`setExternalAudioSink`</br>`pullPlaybackAudioFrame`  |  |
@@ -18,15 +55,11 @@ The following table provides API mapping information between SDK 3.x and SDK 4.0
 | Raw video data | `registerVideoFrameObserver`  |  |
 | Join multiple channels | `create`</br>`setChannelProfile`</br>`createRtcChannel`</br>`RtcChannel::setRtcChannelEventHandler`</br>`RtcChannel::setClientRole`</br>`RtcChannel::joinChannel`</br> |  |
 
+Agora also provides the complete demo project for major functions of the new SDK on GitHub. You can download [API Example](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/Android/APIExample) to try the demo and check the source code. If you want to see the logic change compared to 3.x SDK, switch to the `master` branch to view the source code.
+
 ## Reference
 
 This section includes detailed reference in API changes that you need to know before migrating the SDK.
-
-### Integration changes
-
-This section includes changes in the 4.0 Preview SDK regarding how to integrate the SDK into your project.
-
-In the BETA phase, you can integrate the SDK by manually copying the SDK files.
 
 ### SDK behavior changes
 
@@ -93,7 +126,7 @@ The followings are method or parameter changes in 4.0 Preview SDK that can lead 
 
 **Function gaps**
 
-To be added
+MediaIO is not supported in 4.0 Preview.
 
 
 
