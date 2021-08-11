@@ -243,8 +243,6 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.os.Handler;
-import android.os.Message;
 import android.view.SurfaceView;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -312,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onRequestToken() {
-            // Need to leave the channel and rejoin with a new token.
+            fetchToken(1234, channelName, 1);
             super.onRequestToken();
         }
     };
@@ -374,10 +372,9 @@ public class MainActivity extends AppCompatActivity {
                             token = map.get("token").toString();
                             // Join the channel with a token.
                             if (joined != 0){joined = mRtcEngine.joinChannel(token, channelName, "", 1234);}
+                            else {mRtcEngine.renewToken(token);}
                         }
                     });
-
-
                 }
             }
         });
