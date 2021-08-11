@@ -29,14 +29,6 @@ In the BETA stage, you need to integrate the SDK by manually copying SDK files. 
    | `/sdk/x86_64` folder | `/app/src/main/jniLibs/` |
    | `sdk/high_level_api/include` folder | `/app/src/main/jniLibs/` |
 
-### Add project permissions
-
-If your app has screen sharing related features, add the following permissions in `/app/Manifests/AndroidManifest.xml`:
-
-```xml
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-```
-
 ### Rename imports
 
 In the activity files, change `import io.agora.rtc` to `import io.agora.rtc2`.
