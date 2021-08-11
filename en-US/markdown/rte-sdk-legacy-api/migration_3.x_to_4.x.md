@@ -1,0 +1,99 @@
+This migration guide helps you migration from RTC SDK 3.x to 4.0 Preview. If you are migrating from 3.x, feel free to reach us via support@agora.io.
+
+## Benefits
+
+To be added.
+
+## Function-based API mapping
+
+The following table provides API mapping information between SDK 3.x and SDK 4.0 Preview from the perspective of functions.
+
+| Function | 3.x API | 4.0 Preview API |
+|---|---|---|---|
+| Start a video call  | `create`</br>`enableVideo`</br>`CreateRendererView`</br>`setupLocalVideo`</br>`joinChannel`</br>`setupRemoteVideo`</br> | `create`</br>`setClientRole`</br>`enableVideo`</br>`setupLocalVideo`</br>`startPreview`</br>`joinChannel`</br>`setupRemoteVideo`</br> |
+| Start an interactive live streaming |`create`</br>`setChannelProfile`</br>`setClientRole`</br>`enableVideo`</br>`CreateRendererView`</br>`setupLocalVideo`</br>`joinChannel`</br>`setupRemoteVideo`  | `create`</br>`setClientRole`</br>`enableVideo`</br>`startPreview`</br>`setupLocalVideo`</br>`joinChannel`</br>`setupRemoteVideo` |
+| Custom audio source and renderer |`setExternalAudioSource`</br>`pushExternalAudioFrame`</br>`setExternalAudioSink`</br>`pullPlaybackAudioFrame`  |  |
+| Custom video source and renderer | `setExternalVideoSource`</br>`pushVideoFrame` |  |
+| Raw audio data | `registerAudioFrameObserver` |  |
+| Raw video data | `registerVideoFrameObserver`  |  |
+| Join multiple channels | `create`</br>`setChannelProfile`</br>`createRtcChannel`</br>`RtcChannel::setRtcChannelEventHandler`</br>`RtcChannel::setClientRole`</br>`RtcChannel::joinChannel`</br> |  |
+
+## Reference
+
+This section includes detailed reference in API changes that you need to know before migrating the SDK.
+
+### Integration changes
+
+This section includes changes in the 4.0 Preview SDK regarding how to integrate the SDK into your project.
+
+In the BETA phase, you can integrate the SDK by manually copying the SDK files.
+
+### SDK behavior changes
+
+This section includes changes on the default behavior of the SDK.
+
+**Channel profile and client role**
+
+The Video SDK 3.x has the default channel profile of `COMMUNICATION`, and diffferent channel profiles have different client roles:
+
+- In the `COMMUNCATION` channel profile, the default client role is `BROADCASTER`.
+- In the `LIVE_BROADCASTING` channel profile, the default client role is `AUDIENCE`.
+
+In the 4.0 Preview version, the SDK does not have a default channel profile, and you need to call `setChannelProfile` to set one. Also client roles are not bound with the channel profile. Regardless of the channel profile, for a user to publish audio or video in the channel, you need to call `setClientRole` and set the role as `BROADCASTER`.
+
+**Local preview**
+
+In a video call or live streaming powered by the Video SDK 3.x, when a user joins a channel, the user automaticcally sees the local preview.
+
+With 4.0 Preview, you need to call `startPreview` before joining a channel to see the local view.
+
+**Default audio route**
+
+### API changes
+
+This section includes changes in 4.0 Preview to the API behavior and prototype that are imcompatible with 3.x.
+
+**Publish and Subscribe**
+
+**Error codes and warning codes**
+
+The 4.0 Preview SDK deletes the `onError` and `onWarning` callback that report error and warning messages during SDK runtime. The `ERROR_CODE` and `WARN_CODE` class are also deleted and the SDK uses state codes and error codes in respective callbacks to report error messages.
+
+**Miscellaneous**
+
+The followings are method or parameter changes in 4.0 Preview SDK that can lead to incompatability issues in your project. Notice that the list here is not comprehensive and you can refer to the actual header file or details.
+
+- The 4.0 Preview SDK does not have the following methods, parameters, members, and Constants:
+  - `onFirstLocalAudioFrame`, which is replaced by `onFirstLocalAudioFramePublished`.
+  - `setClientRole[2/2]`, which will be added in a subsequent version.
+  - `switchChannel`, because the SDK supports automatically quickly switching channels.
+  - `onUserMuteAudio`, which is replaced by `onRemoteAudioStateChanged`.
+  - The `info` parameter in `joinChannel[2/2]`, which was optional and rarely used in 3.x.
+  - The `publishLocalAudio` and `publishLocalVideo` members in `ChannelMediaOptions` which are replaced by parameters with more specified information such as `publishAudioTrack`, `publishCustomAudioTrack`, `publishCameraTrack`, and `publishScreenTrack`.
+  - The `gatewayRtt` member in `RtcStats`, which does not take effect in 3.0.
+  - The `txPacketLossRate` member in `LocalAudioStats`, which will be added in the subsequent version.
+  - `totalActiveTime`, `publishDuration`, `qoeQuality`, and `qualityChangedReason` in `RemoteAudioStats`, which will be added in the subsequent version.
+  - `qualitAdaptIndication`, `txPacketLossRate`, `captureFrameRate`, and `captureBrightnessLevel` in `LocalVideoStats`, which will be added in the subsequent version.
+  - `LOCAL_AUDIO_STREAM_ERROR_INTERRUPTED(8)`
+  - `LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND(8)`
+
+- The 4.0 Preview SDK renamed the following methods or parameters:
+  - The `fileSize` member in `LogConfig` is renamed to `fileSizeInKB`.
+  - The `channelId` and `uid` parameters in `joinChannel[2/2]` are renamed to `channelName` and `optionalUid` respectively.
+  - The `localVideoState` parameter in `onLocalVideoStateChanged` is renamed to `state`.
+  - The `REMOTE_VIDEO_STATE_DECODING(2)` enumeration is renamed to `REMOTE_VIDEO_STATE_PLAYING(2)`.
+
+- The 4.0 Preview SDK changes the path of the following files in the SDK:
+  - The path to ChannelMediaOptions.java file in the SDK is changed from `/models` to the root directory.
+
+- The 4.0 Preview SDK changes the data type in the following methods:
+    - The `state` and `error` parameters in `onLocalAudioStateChanged`are enum classes in 4.0 Preview, while those in 3.x are integers.
+    - The `state` and `reason` parameters in `onRemoteAudioStateChanged` are enum classes in 4.0 Preview, while those in 3.x are integers.
+    - The `oldState` and `newState` parameters in `onAudioPublishStateChanged`, `onVideoPublishStateChanged`, `onAudioSubscribeStateChanged`, and `onVideoSubscribeStateChanged` are enum classes, while those in 3.0 are integers. 
+
+**Function gaps**
+
+To be added
+
+
+
