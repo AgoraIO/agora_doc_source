@@ -246,10 +246,10 @@ import android.content.pm.PackageManager;
 import android.view.SurfaceView;
 import android.widget.FrameLayout;
 import android.widget.Toast;
-import io.agora.rtc.Constants;
-import io.agora.rtc.IRtcEngineEventHandler;
-import io.agora.rtc.RtcEngine;
-import io.agora.rtc.video.VideoCanvas;
+import io.agora.rtc2.Constants;
+import io.agora.rtc2.IRtcEngineEventHandler;
+import io.agora.rtc2.RtcEngine;
+import io.agora.rtc2.video.VideoCanvas;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -322,7 +322,6 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.CAMERA
     };
 
-
     private boolean checkSelfPermission(String permission, int requestCode) {
         if (ContextCompat.checkSelfPermission(this, permission) !=
                 PackageManager.PERMISSION_GRANTED) {
@@ -335,7 +334,6 @@ public class MainActivity extends AppCompatActivity {
     // Fetches the RTC token
     private void fetchToken(int uid,String channelName,int tokenRole){
         OkHttpClient client = new OkHttpClient();
-
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         JSONObject json = new JSONObject();
         try {
@@ -347,7 +345,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         RequestBody requestBody = RequestBody.create(JSON, String.valueOf(json));
-
         Request request = new Request.Builder()
                 .url("http://10.53.3.234:8082/fetch_rtc_token")
                 .header("Content-Type", "application/json; charset=UTF-8")
@@ -370,8 +367,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             token = map.get("token").toString();
-                            // Join the channel with a token.
+                            // If user has not joined, join the channel with a token.
                             if (joined != 0){joined = mRtcEngine.joinChannel(token, channelName, "", 1234);}
+                            // If user has joined, renew the token by calling renewToken
                             else {mRtcEngine.renewToken(token);}
                         }
                     });
@@ -416,19 +414,20 @@ public class MainActivity extends AppCompatActivity {
 
         FrameLayout container = findViewById(R.id.local_video_view_container);
         // Call CreateRendererView to create a SurfaceView object and add it as a child to the FrameLayout.
-        SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
+        // SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
+        SurfaceView surfaceView = new SurfaceView (getBaseContext());
         container.addView(surfaceView);
         // Pass the SurfaceView object to Agora so that it renders the local video.
         mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
+        // Start local preview
+        mRtcEngine.startPreview();
         // Fetches the token from token server
         fetchToken(1234, channelName, 1);
-
-
     }
 
     private void setupRemoteVideo(int uid) {
         FrameLayout container = findViewById(R.id.remote_video_view_container);
-        SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
+        SurfaceView surfaceView = new SurfaceView (getBaseContext());
         surfaceView.setZOrderMediaOverlay(true);
         container.addView(surfaceView);
         mRtcEngine.setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, uid));
