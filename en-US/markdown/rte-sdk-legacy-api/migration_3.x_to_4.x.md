@@ -31,7 +31,7 @@ In the BETA stage, you need to integrate the SDK by manually copying SDK files. 
 
 ### Add project permissions
 
-In `/app/Manifests/AndroidManifest.xml`, add the following permissions after `</application>` if your app has a screen sharing feature.:
+If your app has screen sharing related features, add the following permissions in `/app/Manifests/AndroidManifest.xml`:
 
 ```xml
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
