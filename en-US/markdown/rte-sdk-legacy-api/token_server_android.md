@@ -217,9 +217,10 @@ In order to show the authentication workflow, this section shows how to build an
 
 <div class="alert warning">This sample client is for demonstration purposes only. Do not use it in a production environment.</div>
 
-1. Based on the quickstart project, add the following dependencies to `build.gradle`:
+1. Based on the project you have created in [Get Started with Interactive Live Streaming Premium
+](//TODO: LINK NEEDED), add the following dependencies to `/Gradle Scripts/build.gradle(Module: <projectname>.app)`:
 
-```
+```gradle
 dependencies {
     ...
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
@@ -228,7 +229,7 @@ dependencies {
     }
 ```
 
-2. Update `MainActivity.java` with the following code:
+2. Update `MainActivity.java` with the following code. Replace `Your App ID` with your App ID.
 
 ```java
 package com.example.rtcquickstart;
@@ -273,7 +274,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     // Fill the App ID of your project generated on Agora Console.
-    private String appId = "";
+    private String appId = "Your App ID";
     // Fill the channel name.
     private String channelName = "1234";
     // Fill the temp token generated on Agora Console.
@@ -281,10 +282,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RtcEngine mRtcEngine;
 
-    private Handler mHandler;
-
     private int joined = 1;
-
 
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
         @Override
@@ -305,7 +303,6 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-
                     Toast toast = Toast.makeText(MainActivity.this, "Renewed your token", Toast.LENGTH_SHORT);
                     toast.show();
                 }
@@ -371,15 +368,12 @@ public class MainActivity extends AppCompatActivity {
                     Gson gson = new Gson();
                     String result = response.body().string();
                     Map map = gson.fromJson(result, Map.class);
-
-                    mHandler.post(new Runnable() {
+                    runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
                             token = map.get("token").toString();
                             // Join the channel with a token.
                             if (joined != 0){joined = mRtcEngine.joinChannel(token, channelName, "", 1234);}
-
                         }
                     });
 
@@ -393,7 +387,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mHandler = new Handler();
 
         // If all the permissions are granted, initialize the RtcEngine object and join a channel.
         if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
@@ -446,6 +439,16 @@ public class MainActivity extends AppCompatActivity {
 
 }
 ```
+
+In the code example, you can see that token is related to the following code logic in the client:
+
+- Call `joinChannel` to join the channel with token, uid, and channel name. The uid and channel name must be the same as the ones used to generate the token.
+- The `onTokenPrivilegeWillExpire` callback occurs 30 seconds before a token expires. When the token-privilege-will-expire callback is triggered，the client must fetch the token from the server and call renewToken to pass the new token to the SDK.
+- The `onRequestToken` callback occurs when a token expires. When the `onRequestToken` callback is triggered, the client must fetch the token from the server and call `joinChannel` to use the new token to join the channel.
+
+3. Build and run the project in your Android simulator in the local machine to perform the following actions:
+- Successfully joining a channel.
+- Renewing a token every 10 seconds.
 
 ## Reference
 
