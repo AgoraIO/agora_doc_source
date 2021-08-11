@@ -65,7 +65,7 @@ This section includes detailed reference in API changes that you need to know be
 
 This section includes changes on the default behavior of the SDK.
 
-**Channel profile and client role**
+**1. Channel profile and client role**
 
 The Video SDK 3.x has the default channel profile of `COMMUNICATION`, and diffferent channel profiles have different client roles:
 
@@ -74,25 +74,25 @@ The Video SDK 3.x has the default channel profile of `COMMUNICATION`, and difffe
 
 In the 4.0 Preview version, the SDK does not have a default channel profile, and you need to call `setChannelProfile` to set one. Also client roles are not bound with the channel profile. Regardless of the channel profile, for a user to publish audio or video in the channel, you need to call `setClientRole` and set the role as `BROADCASTER`.
 
-**Local preview**
+**2. Local preview**
 
 In a video call or live streaming powered by the Video SDK 3.x, when a user joins a channel, the user automaticcally sees the local preview.
 
 With 4.0 Preview, you need to call `startPreview` before joining a channel to see the local view.
 
-**Default audio route**
+**3. Default audio route**
 
 ### API changes
 
 This section includes changes in 4.0 Preview to the API behavior and prototype that are imcompatible with 3.x.
 
-**Publish and Subscribe**
+**1. Publish and Subscribe**
 
-**Error codes and warning codes**
+**2. Error codes and warning codes**
 
 The 4.0 Preview SDK deletes the `onError` and `onWarning` callback that report error and warning messages during SDK runtime. The `ERROR_CODE` and `WARN_CODE` class are also deleted and the SDK uses state codes and error codes in respective callbacks to report error messages.
 
-**Miscellaneous**
+**3. Miscellaneous**
 
 The followings are method or parameter changes in 4.0 Preview SDK that can lead to incompatability issues in your project. Notice that the list here is not comprehensive and you can refer to the actual header file or details.
 
@@ -124,7 +124,7 @@ The followings are method or parameter changes in 4.0 Preview SDK that can lead 
     - The `state` and `reason` parameters in `onRemoteAudioStateChanged` are enum classes in 4.0 Preview, while those in 3.x are integers.
     - The `oldState` and `newState` parameters in `onAudioPublishStateChanged`, `onVideoPublishStateChanged`, `onAudioSubscribeStateChanged`, and `onVideoSubscribeStateChanged` are enum classes, while those in 3.0 are integers. 
 
-**Function gaps**
+**3. Function gaps**
 
 MediaIO is not supported in 4.0 Preview.
 
