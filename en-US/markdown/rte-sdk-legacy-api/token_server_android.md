@@ -280,8 +280,6 @@ public class MainActivity extends AppCompatActivity {
 
     private RtcEngine mRtcEngine;
 
-    private ChannelMediaOptions options;
-
     private int joined = 1;
 
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
@@ -303,18 +301,21 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast toast = Toast.makeText(MainActivity.this, "Renewed your token", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(MainActivity.this, "Token renewed", Toast.LENGTH_SHORT);
                     toast.show();
                 }
             });
             super.onTokenPrivilegeWillExpire(token);
         }
 
+
         @Override
         public void onRequestToken() {
+            joined = 1;
             fetchToken(1234, channelName, 1);
             super.onRequestToken();
         }
+
     };
 
     private static final int PERMISSION_REQ_ID = 22;
@@ -348,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
 
         RequestBody requestBody = RequestBody.create(JSON, String.valueOf(json));
         Request request = new Request.Builder()
-                .url("http://10.53.3.234:8082/fetch_rtc_token")
+                .url("http://192.168.31.46:8082/fetch_rtc_token")
                 .header("Content-Type", "application/json; charset=UTF-8")
                 .post(requestBody)
                 .build();
@@ -365,12 +366,13 @@ public class MainActivity extends AppCompatActivity {
                     Gson gson = new Gson();
                     String result = response.body().string();
                     Map map = gson.fromJson(result, Map.class);
-                    runOnUiThread(new Runnable() {
+                    new Thread(new Runnable() {
                         @Override
                         public void run() {
                             token = map.get("token").toString();
                             // If user has not joined, join the channel with a token.
-                            if (joined != 0){joined = mRtcEngine.joinChannel(token, channelName, "", 1234);}
+                            ChannelMediaOptions options = new ChannelMediaOptions();
+                            if (joined != 0){joined = mRtcEngine.joinChannel(token, channelName, 1234, options);}
                             // If user has joined, renew the token by calling renewToken
                             else {mRtcEngine.renewToken(token);}
                         }
@@ -423,8 +425,7 @@ public class MainActivity extends AppCompatActivity {
         mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
         // Start local preview
         mRtcEngine.startPreview();
-        // Set the role as broadcaster
-        options.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER;
+        ChannelMediaOptions options = new ChannelMediaOptions();
         // Fetches the token from token server
         fetchToken(1234, channelName, 1);
     }
