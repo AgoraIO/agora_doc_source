@@ -15,14 +15,20 @@ To start Interactive Live Streaming Premium, you implement the following steps i
 **1. Set the role**
 Users in an Interactive Live Streaming Premium channel are either a host or an audience member. The host publishes streams to the channel, and the audience subscribes to the streams. 
 
-**2. Retrieve a token**
-The token is a credential for authenticating the identity of the user when your app client joins a channel. The app client requests a token from your app server. This token authenticates the user when the app client joins a channel.
+**2.  Request a token**
+The app client requests a token from your app server. This token authenticates the user when the app client joins a channel.
 
-**3. Join a channel**
+**3.  Return token**
+The app server returns a token to the app client. 
+
+**4. Join a channel**
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
-**4. Publish and subscribe to audio and video in the channel**
-After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+**5. Publish and subscribe to audio and video in the channel**
+After joining a channel, a host can publish audio and video and subscribe other hosts in the channel.
+
+**6.  Subscribe to audio and video in the channel**
+ The role of audience can only subscribe to all hosts in the channel, you can call `setClientRole` to switch the client role to host. 
 
 For an app client to join a channel, you need the following information:
 
@@ -34,7 +40,6 @@ For an app client to join a channel, you need the following information:
 ## Prerequisites
 
 - Xcode 9.0 or later.
-- A macOS device running on macOS 10.10 or later.
 - An iOS device running iOS 8.0 or later
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project, obtain the App ID of the project, and generate a temporary token. For details, please refer to [Start using the Agora platform](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms). 
 - Apple developer account.
@@ -48,9 +53,11 @@ In Xcode, follow the steps to create the environment necessary to add live strea
 
    <div class="alert note">If you have not added any team information, you can see an **Add account...** button. Click it, input your Apple ID, and click **Next** to add your team.</div>
 
-2. [Set the target devices](https://help.apple.com/xcode/mac/current/#/deve69552ee5) to deploy your iOS app.
+2. [Enable automatic signing](https://help.apple.com/xcode/mac/current/#/dev23aab79b4) for your project.
 
-3. Add project permissions for microphone and camera usage.
+3. [Set the target devices](https://help.apple.com/xcode/mac/current/#/deve69552ee5) to deploy your iOS app.
+
+4. Add project permissions for microphone and camera usage.
 
    Open the `info.plist ` file in the project navigation panel, and [edit the property list](https://help.apple.com/xcode/mac/current/#/dev3f399a2a6) to add the following properties:
 
@@ -59,9 +66,10 @@ In Xcode, follow the steps to create the environment necessary to add live strea
    | Privacy-Microphone Usage Description | String | The purpose for accessing the microphone, such as for a call or live interactive streaming. |
    | Privacy-Camera Usage Description     | String | To access the camera, such as for a call or live interactive streaming. |
 
-4. Integrate the video SDK into your Xcode project through Cocoapods.
+5. Integrate the video SDK into your Xcode project through Cocoapods.
 
    Ensure that you have installed CocoaPods before the following steps. If it is not installed, you can refer to [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) to install Cocoapods to this machine.
+
    1. Enter the project root directory in **Terminal** and run the `pod init` command. after which you can find the **Podfile** under the project directory.
 
    2. Open the **Podfile** and modify it by referring to the code below. Remember to change`Your App` to the target name of your project.
