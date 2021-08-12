@@ -84,7 +84,7 @@
             href="../API/class_imediaplayersourceobserver.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>IMediaPlayerSourceObserver</keyword>
+                    <keyword>IMediaPlayerObserver</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -1427,6 +1427,13 @@
             </keydef>
         </topichead>
         <topichead navtitle="音频自采集">
+            <keydef keys="enableExternalAudioSourceLocalPlayback">
+                <topicmeta>
+                    <keywords>
+                        <keyword>enableExternalAudioSourceLocalPlayback</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="setExternalAudioSource" href="../API/api_setexternalaudiosource.dita">
                 <topicmeta>
                     <keywords>
@@ -1452,64 +1459,6 @@
                 <topicmeta>
                     <keywords>
                         <keyword>pushExternalAudioFrame [2/2]</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-        </topichead>
-        <topichead navtitle="多设备采集">
-            <keydef keys="startPrimaryCameraCapture" href="../API/api_startprimarycameracapture.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>startPrimaryCameraCapture</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="startPrimaryScreenCapture" href="../API/api_startprimaryscreencapture.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>startPrimaryScreenCapture</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="startSecondaryCameraCapture" href="../API/api_startsecondarycameracapture.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>startSecondaryCameraCapture</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="startSecondaryScreenCapture" href="../API/api_startsecondaryscreencapture.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>startSecondaryScreenCapture</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="stopPrimaryCameraCapture" href="../API/api_stopprimarycameracapture.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>stopPrimaryCameraCapture</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="stopPrimaryScreenCapture" href="../API/api_stopprimaryscreencapture.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>stopPrimaryScreenCapture</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="stopSecondaryCameraCapture" href="../API/api_stopsecondarycameracapture.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>stopSecondaryCameraCapture</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="stopSecondaryScreenCapture" href="../API/api_stopsecondaryscreencapture.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>stopSecondaryScreenCapture</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -1729,8 +1678,6 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-        </topichead>
-        <topichead navtitle="音频采集">
             <keydef keys="startAudioRecording3" href="../API/api_startaudiorecording3_ng.dita">
                 <topicmeta>
                     <keywords>
@@ -1925,45 +1872,10 @@
             </keydef>
         </topichead>
         <topichead navtitle="其他方法">
-            <keydef keys="setLogFile" href="../API/api_setlogfile_ng.dita">
+            <keydef keys="addHandler">
                 <topicmeta>
                     <keywords>
-                        <keyword>setLogFile</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setLogFilter" href="../API/api_setlogfilter.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setLogFilter</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="setLogFileSize" href="../API/api_setlogfilesize_ng.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setLogFileSize</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="sendCustomReportMessage" href="../API/api_sendcustomreportmessage.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>sendCustomReportMessage</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getCallId" href="../API/api_getcallid.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getCallId</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="rate" href="../API/api_rate.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>rate</keyword>
+                        <keyword>addHandler</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -1974,10 +1886,10 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="getVersion" href="../API/api_getversion.dita">
+            <keydef keys="getCallId" href="../API/api_getcallid.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>getVersion</keyword>
+                        <keyword>getCallId</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -1985,6 +1897,76 @@
                 <topicmeta>
                     <keywords>
                         <keyword>getErrorDescription</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="getMediaEngineVersion">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getMediaEngineVersion</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="getNativeHandle">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getNativeHandle</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="getVersion" href="../API/api_getversion.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getSdkVersion</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="rate" href="../API/api_rate.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>rate</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="removeHandler">
+                <topicmeta>
+                    <keywords>
+                        <keyword>removeHandler</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="setLogFile" href="../API/api_setlogfile_ng.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setLogFile</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="setLogFileSize" href="../API/api_setlogfilesize_ng.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setLogFileSize</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="setLogFilter" href="../API/api_setlogfilter.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setLogFilter</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="setLogLevel">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setLogLevel</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="sendCustomReportMessage" href="../API/api_sendcustomreportmessage.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>sendCustomReportMessage</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
