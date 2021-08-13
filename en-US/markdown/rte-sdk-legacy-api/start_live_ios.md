@@ -6,7 +6,7 @@ This page shows the minimum code you need to integrate high-quality, low-latency
 
 The following figure shows the workflow to integrate Interactive Live Streaming Premium into your app.
 
-![](https://web-cdn.agora.io/docs-files/1628819027629)
+![](https://web-cdn.agora.io/docs-files/1628835475394)
 
 You start Interactive Live Streaming Premium when you call joinChannel from your RtcEngine instance.
 

@@ -6,7 +6,7 @@ This page shows the minimum code you need to integrate high-quality, low-latency
 
 The following figure shows the basic workflow of integrating Agora video call in the app:
 
-![](https://web-cdn.agora.io/docs-files/1628825113821)
+![](https://web-cdn.agora.io/docs-files/1628835486553)
 
 To start video call, implement the following steps in your app:
 
