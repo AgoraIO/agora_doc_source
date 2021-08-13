@@ -1,19 +1,18 @@
 Agora’s Video SDKs make it easy for you to build apps with audio and video streaming that encourage real-time exchanges.
 
-This page shows the minimum code you need to integrate high-quality, low-latency live streaming experiences into your app using the SDK for iOS.
+This page shows the minimum code you need to integrate high-quality, low-latency video function into your app using the video SDK for iOS.
 
 ## Understand the tech
 
-The following figure shows the workflow to integrate Interactive Live Streaming Premium into your app.
+The following figure shows the workflow to integrate video call into your app.
 
-![](https://web-cdn.agora.io/docs-files/1628819027629)
+![](https://web-cdn.agora.io/docs-files/1628825113821)
 
-You start Interactive Live Streaming Premium when you call joinChannel from your RtcEngine instance.
-
-The Interactive Live Streaming Premium workflow you integrate into your app is:
+To start video call, implement the following steps in your app:
 
 **1. Set the role**
-Users in an Interactive Live Streaming Premium channel are either a host or an audience member. The host publishes streams to the channel, and the audience subscribes to the streams. 
+
+Both app clients should be set as the host.
 
 **2 & 3.  Retrieve a token**
 
@@ -23,17 +22,14 @@ A token is the credential that authenticates a user when your app client joins a
 Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 **5. Publish and subscribe to audio and video in the channel**
-After joining a channel, a host can publish audio and video and subscribe other hosts in the channel.
-
-**6.  Subscribe to audio and video in the channel**
- The role of audience can only subscribe to all hosts in the channel, you can call `setClientRole` to switch the client role to host. 
+After joining a channel,  both hosts can publish video and audio stream to the channel and subscribe to each other.
 
 For an app client to join a channel, you need the following information:
 
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from your server. For rapid testing, you can use a temporary token with a validity period of 24 hours.
-- The channel name: A string that identifies the channel for live streaming. 
+- The channel name: A string that identifies the channel. 
 
 ## Prerequisites
 
@@ -45,7 +41,7 @@ For an app client to join a channel, you need the following information:
 
 ## Project setup
 
-In Xcode, follow the steps to create the environment necessary to integrate live streaming into your app.
+In Xcode, follow the steps to create the environment necessary to integrate video call into your app.
 
 1. [Create a new project](https://help.apple.com/xcode/mac/current/#/dev07db0e578) for an iOS app using the **Single View App** template. Make sure you select **Storyboard** as the user interface.
 
@@ -78,33 +74,31 @@ In Xcode, follow the steps to create the environment necessary to integrate live
       pod'AgoraRtcEngine_Special_iOS'
       end
       ```
-      
+
    3. Run the `pod install` command in the *Terminal* to install the Agora SDK. Once you successfully install the **SDK**, it shows `Pod installation complete!`
-   
+
    4. A new file with a suffix of .xcworkspace will be generated under the project folder. Use Xcode to open it for subsequent operations.
 
-## Implement a client for Interactive Live Streaming Premium
+## Implement a client for video call
 
 ### Create the UI
 
-<div>In the interface, you should have one frame for local video and another for remote video, refer to <a href="#referencecode">Reference code</a> for details.</div>
+<div>In the interface, you should have one frame for local video and another for remote video, refer to <a href="#referencecode">Reference code</a> for details.</div>
 
-### Implement the Interactive Live Streaming Premium logic
+### Implement the Video Call logic
 
-The following figure and steps show the API call sequence of implementing Interactive Live Streaming Premium. 
+The following figure and steps show the API call sequence of implementing video call. 
 
-![](https://web-cdn.agora.io/docs-files/1628585647397)
+![](https://web-cdn.agora.io/docs-files/1628824327200)
 
 1. Initialize `AgoraEngine`: Call the `sharedEngineWithConfig` method to create an instance of `AgoraRtcEngineKit`, and set channel profile as `LiveBroadcasting`.
 
    Each `AgoraRtcEngineKit` object supports one profile only. If you want to switch to another profile, call `destroy` to release the current `AgoraRtcEngineKit` object and then create a new one by calling `sharedEngineWithConfig` again.
 
-2. Set client role: You can set the client role as a host or audience. The default role is audience. 
-
-   1. Ask the user to choose a client role.
-   2. Call `setClientRole` and pass in the client role set by the user.
+2. Set client role as a host. 
 
 3. Enable the video module: Call `setupLocalVideo` to initialize the local view.
+
    1. Call the `enableVideo` method to enable the video module.
    2. Call the `startPreview` method to enable the local video preview before joining the channel.
 
@@ -112,7 +106,7 @@ The following figure and steps show the API call sequence of implementing Intera
 
 5. Set the remote view: To set the video view of a remote host, monitor the `didJoinedOfUid` callback, which returns the remote host's ID shortly after the remote host joins the channel; then, call the `setupRemoteVideo` method in the callback, and pass in the retrieved `uid`.
 
-6. Leave channel: Call the `leaveChannel` method to leave the channel, for example, to end live video streaming, close the app, or run the app in the background.
+6. Leave channel: Call the `leaveChannel` method to leave the channel, for example, to end video call, close the app, or run the app in the background.
 
    1. Call `stopPreview` to stop the local video preview.
    2. Call `leaveChannel` to leave the channel.
@@ -178,7 +172,7 @@ class ViewController: UIViewController {
         let config = AgoraRtcEngineConfig()
         // Pass in your App ID here.
         config.appId = "YourAppId"
-        // Sets the channel profile as live broadcast.
+        //Sets the channel profile as live broadcast.
         config.channelProfile = .liveBroadcasting
         agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
     }
@@ -201,7 +195,7 @@ class ViewController: UIViewController {
         agoraKit.setupLocalVideo(videoCanvas)
     }
 
-    // Join the channel, the uid of each user in the channel must be unique.
+    //Join the channel, the uid of each user in the channel must be unique.
     func joinChannel(){
         let option = AgoraRtcChannelMediaOptions()
         agoraKit.joinChannel(byToken: "YourToken", channelId: "YourChannelID", uid: "Youruid", mediaOptions: option)
@@ -245,11 +239,11 @@ extension ViewController: AgoraRtcEngineDelegate{
 
 5. Ask a friend to use a second device to join the channel with the same App ID, token, and channel name.
 
-   If the second equipment joins as a host, you should be able to see and hear each other; if as an audience member, you should only be able to see yourself while your friend can see and hear you.
+   You should be able to see and hear each other.
 
 ## Next steps
 
-Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms) shows you how to start live streaming with a token that you retrieve from your server.
+Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms) shows you how to start video call with a token that you retrieve from your server.
 
 ## See also
 
@@ -257,7 +251,7 @@ This section provides additional information for your reference.
 
 ### Sample project
 
-Agora provides an open source interactive live broadcast example project [JoinChannelVideo](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/iOS/APIExample/Examples/Basic/JoinChannelVideo) on GitHub for your reference.
+Agora provides an open source video call example project [JoinChannelVideo](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/iOS/APIExample/Examples/Basic/JoinChannelVideo) on GitHub for your reference.
 
 ### Manually integrate the SDK
 
@@ -272,8 +266,3 @@ In addition to integrating the Agora Video SDK for through Cocoapods, you can al
 3. In Xcode, [link your target to the frameworks or libraries](https://help.apple.com/xcode/mac/current/#/dev51a648b07) you have copied. Be sure to choose **Embed & Sign **from the pop-up menu in the Embed column.
 
    <div class="alert note"><ul><li>Apple does not allow an app extension to contain any dynamic library. If you are integrating the Agora SDK to an app extension, choose <b>Do Not Embed</b> in the Embed column.</li><li>The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</li></ul></div>
-
-### Listening for audience events
-
-The Agora Video SDK does not report events of an audience member in a live streaming channel. Refer to [How can I listen for an audience joining or leaving an interactive live streaming channel](https://docs.agora.io/en/Interactive%20Broadcast/faq/audience_event) if your scenario requires so.
-
