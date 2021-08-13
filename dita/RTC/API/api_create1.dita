@@ -29,28 +29,24 @@
                 <ul id="ul_uy4_mtq_4qb">
                     <li>请确保在调用其他 API 前先调用该方法创建并初始化 <apiname keyref="IRtcEngine"/>。</li>
                     <li>调用该方法和 <xref keyref="create2"/> 均能创建 <apiname keyref="IRtcEngine"/> 实例。该方法与 <apiname keyref="create2"/> 的区别在于，<apiname keyref="create2"/> 支持在创建 <apiname keyref="IRtcEngine"/> 实例时指定访问区域。</li>
-                    <li>前 Agora RTC Native SDK 只支持每个 app 创建一个 <apiname keyref="IRtcEngine"/> 实例。
+                    <li>目前 Agora RTC Native SDK 只支持每个 app 创建一个 <apiname keyref="IRtcEngine"/> 实例。
                     </li>
                 </ul>
             </note>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
-                <plentry>
-                    <pt>context</pt>
-                    <pd>Android Activity 的 context。</pd>
+                <plentry conkeyref="RtcEngineConfig/context">
+                    <pt/>
+                    <pd/>
                 </plentry>
                 <plentry>
-                    <pt>appId</pt>
-                    <pd>Agora 为 app 开发者签发的 App ID，详见 <xref
-                            href="https://docs.agora.io/cn/Agora%20Platform/token?platform=Android#get-an-app-id"
-                            format="html" scope="external">获取App ID</xref>。 使用同一个 App ID 的 app
-                        才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <apiname keyref="IRtcEngine"/>。 如需更换 App
-                        ID，必须先调用 <xref keyref="release"/>  再重新创建 。</pd>
+                    <pt>appID</pt>
+                    <pd conkeyref="RtcEngineConfig/appid"/>
                 </plentry>
-                <plentry>
-                    <pt>handler</pt>
-                    <pd><xref keyref="IRtcEngineEventHandler"/> 类。该类为一个提供了缺省实现的抽象类，SDK 通过该 抽象类向 App 报告 SDK 运行时的各种事件。</pd>
+                <plentry conkeyref="RtcEngineConfig/eventhandler">
+                    <pt/>
+                    <pd/>
                 </plentry>
             </parml>
         </section>
@@ -61,7 +57,7 @@
                 <li>方法调用失败，返回错误码。</li>
             </ul>
         </section>
-        <section id="section_yqx_kwq_4qb">
+        <section id="section_yqx_kwq_4qb" props="android">
             <title>异常</title>
             <parml>
                 <plentry>

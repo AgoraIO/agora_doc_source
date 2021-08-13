@@ -6,7 +6,18 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"></codeblock>
+            <codeblock props="android" outputclass="language-java">public RtcEngineConfig() {
+    mContext = null;
+    mAppId = "";
+    mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
+    mEventHandler = null;
+    mEnableAudioDevice = true;
+    mAudioScenario = Constants.AUDIO_SCENARIO_HIGH_DEFINITION;
+    mAreaCode = Constants.AreaCode.AREA_CODE_GLOB;
+    mExtensionList = new ArrayList&lt;>();
+    mExtensionObserver = null;
+    mLogConfig = new LogConfig();
+  }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct RtcEngineContext {
   IRtcEngineEventHandler* eventHandler;
@@ -33,19 +44,19 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
-                <plentry>
+                <plentry id="eventhandler">
                     <pt>eventHandler</pt>
                     <pd><xref keyref="IRtcEngine"/> 的事件句柄，详见 <xref keyref="IRtcEngineEventHandler"
                         />。</pd>
                 </plentry>
                 <plentry>
                     <pt>appId</pt>
-                    <pd>Agora 为 app 开发者签发的 App ID，详见获取 App ID。 使用同一个 App ID 的 app
+                    <pd id="appid">Agora 为 app 开发者签发的 App ID，详见获取 App ID。 使用同一个 App ID 的 app
                         才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <apiname keyref="IRtcEngine"/> 。如需更换 App
                         ID，必须先调用 <xref keyref="release"/> 销毁当前 <apiname keyref="IRtcEngine"/> 再重新创建
                         。</pd>
                 </plentry>
-                <plentry props="android windows">
+                <plentry id="context" props="android windows">
                     <pt>context</pt>
                     <pd>
                         <ul props="windows">
