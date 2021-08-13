@@ -144,7 +144,7 @@ To implement this logic, take the following steps:
            videoCanvas.view = localView
            agoraKit?.setupLocalVideo(videoCanvas)
       
-      // Join the channel with a token. Pass in your token adn channel name here
+      // Join the channel with a token. Pass in your token and channel name here
       agoraKit?.joinChannel(byToken: "Your token", channelId: "Channel name", info: nil, uid: 0, joinSuccess: { (channel, uid, elapsed) in
            })
        }
@@ -197,7 +197,7 @@ Now you have created the Video Call functionality, start and stop the app. In th
 
 ## Test your app
 
-Connect an iOS device to your computer, and click the Run button on your Xcode to [build and run your app](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca) on the device. A moment later you will see the project installed on your device. Take the following steps to test the live streaming app:
+Connect an iOS device to your computer, and click the Run button on your Xcode to [build and run your app](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca) on the device. A moment later you will see the project installed on your device. Take the following steps to test the video call app:
 
 1. Grant microphone and camera access to your app.
 2. When the app launches, you should be able to see yourself on the local view.
@@ -238,7 +238,7 @@ In addition to integrating the Agora Video SDK for iOS through Swift Package, yo
    
    <div class="alert note">Certain files and subfolders under the <code>libs</code> folder are optional. See <a href="https://docs.agora.io/en/Video/faq/reduce_app_size_rtc?platform=iOS#extension_libraries">extension libraries</a> for details.</div>
    
-3. In Xcode, [link your target to the frameworks or libraries](https://help.apple.com/xcode/mac/current/#/dev51a648b07) you have copied. Be sure to choose **Embed & Sign **from the pop-up menu in the Embed column.
+3. In Xcode, [link your target to the frameworks or libraries](https://help.apple.com/xcode/mac/current/#/dev51a648b07) you have copied. Be sure to choose **Embed & Sign**from the pop-up menu in the Embed column.
 
    <div class="alert note"><ul><li>Apple does not allow an app extension to contain any dynamic library. If you are integrating the Agora SDK to an app extension, choose <b>Do Not Embed</b> in the Embed column.</li><li>The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</li></ul></div>
 
@@ -319,4 +319,5 @@ To implement Video Call in your app using Objective-C:
        [AgoraRtcEngineKit destroy];
    }
    @end
+   ```
 
