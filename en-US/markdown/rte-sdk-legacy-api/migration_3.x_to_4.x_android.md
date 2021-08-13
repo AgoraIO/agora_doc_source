@@ -14,7 +14,7 @@ This section includes detailed reference in API changes that you need to know be
 
 This section includes changes on the default behavior of the SDK.
 
-**1. Channel profile and client role**
+#### 1. Channel profile and client role
 
 The Video SDK 3.x has the default channel profile of `COMMUNICATION`, and diffferent channel profiles have different client roles:
 
@@ -23,25 +23,44 @@ The Video SDK 3.x has the default channel profile of `COMMUNICATION`, and difffe
 
 In the 4.0 Preview version, the default channel profile is `LIVE_BROADCASTING`. And client roles are not bound to the channel profile. Regardless of the channel profile, for a user to publish audio or video in the channel, you need to call `setClientRole` and set the role as `BROADCASTER`.
 
-**2. Local preview**
+#### 2. Local preview
 
 In a video call or live streaming powered by the Video SDK 3.x, when a user joins a channel, the user automaticcally sees the local preview.
 
 With 4.0 Preview, you need to call `startPreview` before joining a channel to see the local view.
 
-**3. Default audio route**
+#### 3. Audio route
+
+**3.1 How audio route changes when an external device is removed**
+
+When an external playback device is removed, for example, by unplugging the Bluetooth headset, the audio route change in Video SDK 3.x and 4.0 Preview are different:
+
+- In Video SDK 3.x, the audio route is as follows (in terms of priority): The external device connected next to last (if any) > ... > The external device connected first > `setEnableSpeakerphone` > `setDefaultAudioRoutetoSpeakerphone` > The default audio route.
+- In Video SDK 4.0 Preview, the audio route is as follows (in terms of priority): The external device connected next to last (if any) > ... > The external device connected first > `setDefaultAudioRoutetoSpeakerphone` > The default audio route.
+
+**3.2 How system limitations affect the audio route**
+
+The audio route change is subject to system limitations, and such limitations have different impacts on the two SDKs:
+
+- In Video SDK 3.x, as long as an external playback device is connected, you cannot change the audio route to the headset or loudspeaker. The audio route always go the external device.
+- In 4.0 Preview, such limitations only apply to iOS when you want to change the audio route to loudspeaker by calling `setEnableSpeakerphone(true)`.
+
+**3.3 How audio routes affect system volume and in-call volume**
+
+To be added
+
 
 ### API behavior changes
 
 This section includes changes in 4.0 Preview to the API behavior and prototype that are imcompatible with 3.x.
 
-**1. Publish and Subscribe**
+#### 1. Audio profile and audio scenario
 
-**2. Error codes and warning codes**
+#### 2. Error codes and warning codes
 
 The 4.0 Preview SDK deletes the `onError` and `onWarning` callback that report error and warning messages during SDK runtime. The `ERROR_CODE` and `WARN_CODE` class are also deleted and the SDK uses state codes and error codes in respective callbacks to report error messages.
 
-### Updated method and parameters
+### Updated methods and parameters
 
 This section lists the methods and parameters that have changed in 4.0 Preview SDK that can lead to incompatability issues in your project. 
 
@@ -83,7 +102,7 @@ MediaIO is not supported in 4.0 Preview.
 
 Follow the steps in this section to migrate to 4.0 Preview according to the functions you implement in your app.
 
-### Integrate the SDK
+### 1. Integrate the SDK
 
 RTC SDK 4.x has not been released to package repositories. To integrate the SDK, remove references to package repositories and add the SDK libraries into your project manually. To do this:
 
@@ -102,11 +121,11 @@ RTC SDK 4.x has not been released to package repositories. To integrate the SDK,
    | `/sdk/x86_64` folder | `/app/src/main/jniLibs/` |
    | `/sdk/high_level_api/include` folder | `/app/src/main/jniLibs/` |
 
-### Rename imports
+### 2. Rename imports
 
 To integrate the 4.0 Preview SDK functionality into your app, for each Agora import in each source file of your app, change `import io.agora.rtc` to `import io.agora.rtc2`.
 
-### Update the Agora code in your app
+### 3. Update the Agora code in your app
 
 SDK 4.0 Preview makes changes to the API and callflow. In order to retain Agora functionality in your app, update your app to match the following code mapping.
 
