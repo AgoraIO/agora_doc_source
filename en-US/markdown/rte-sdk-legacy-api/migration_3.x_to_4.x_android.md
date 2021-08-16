@@ -4,7 +4,7 @@ This migration guide helps you migration from RTC SDK 3.x to 4.0 Preview. If you
 
 ## Benefits
 
-To be added.
+- Multiple tracks.
 
 ## What has changed
 
