@@ -37,7 +37,7 @@ For an app client to join a channel, you need the following information:
 - Two iOS devices running iOS 8.0 or later
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project, obtain the App ID of the project, and generate a temporary token. For details, please refer to [Start using the Agora platform](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms). 
 - Apple developer account.
-- A computer that can access the Internet. If a firewall is deployed in your network environment, please refer to [Application Enterprise Firewall Restrictions](https://docs.agora.io/en/Agora Platform/firewall?platform=All Platforms) to use Agora services normally.
+- A computer that can access the Internet. Ensure that no firewall is deployed in your network environment, otherwise the project will fail.
 
 ## Project setup
 
