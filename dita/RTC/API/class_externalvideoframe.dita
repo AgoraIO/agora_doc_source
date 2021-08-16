@@ -6,7 +6,23 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="android" outputclass="language-java">public AgoraVideoFrame() {
+    format = 10; // GL_TEXTURE_2D
+    timeStamp = 0;
+    stride = 0;
+    height = 0;
+    textureID = 0;
+    syncMode = true;
+    transform = null;
+    eglContext11 = null;
+    eglContext14 = null;
+    buf = null;
+    cropLeft = 0;
+    cropTop = 0;
+    cropRight = 0;
+    cropBottom = 0;
+    rotation = 0;
+  }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp">struct ExternalVideoFrame {
     enum VIDEO_BUFFER_TYPE
@@ -47,7 +63,7 @@
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
-       <plentry>
+       <plentry props="windows">
   <pt>type</pt>
   <pd>
       <p>视频类型。详见 <xref keyref="VIDEO_BUFFER_TYPE"/>。</p>
@@ -55,7 +71,16 @@
        </plentry>
        <plentry>
   <pt>format</pt>
-  <pd>像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+  <pd props="windows">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+           <pd props="android">视频数据的格式：
+               <ul>
+                   <li>10：TEXTURE_2D。</li>
+                   <li>11：TEXTURE_OES，通常摄像头采集的数据为这种格式。</li>
+                   <li>1：I420。</li>
+                   <li>3：NV21。</li>
+                   <li>4：RGBA。</li>
+               </ul>
+               </pd>
        </plentry>
        <plentry>
   <pt>buffer</pt>
@@ -69,21 +94,53 @@
   <pt>height</pt>
   <pd>传入视频帧的高度。</pd>
        </plentry>
+                <plentry props="android">
+                    <pt>textureID</pt>
+                    <pd>该帧的 Texture ID。该参数仅适用于 Texture 格式的视频数据。</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>syncMode</pt>
+                    <pd>设置是否开启同步模式，开启后 SDK 会在 Texture 处理时进行等待。该参数仅适用于 Texture 格式的视频数据。<ul
+                            id="ul_oxx_wmy_4qb">
+                        <li><codeph><ph keyref="true"/></codeph>：开启同步模式。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不开启同步模式。</li>
+                        </ul></pd>
+                </plentry>
+       <plentry props="android">
+                    <pt>transform</pt>
+           <pd>Texture 帧额外的转换。该参数仅适用于 Texture 格式的视频数据。</pd>
+                </plentry>
+       <plentry props="android">
+                    <pt>eglContext11</pt>
+           <pd>EGLContext11。该参数仅适用于 Texture 格式的视频数据。</pd>
+                </plentry>
+       <plentry props="android">
+                    <pt>eglContext14</pt>
+           <pd>EGLContext14。该参数仅适用于 Texture 格式的视频数据。</pd>
+                </plentry>
+       <plentry props="android">
+                    <pt>buf</pt>
+           <pd>该帧的 Buffer。该参数仅适用于非 Texture 格式的视频数据。</pd>
+                </plentry>
        <plentry>
   <pt>cropLeft</pt>
   <pd>原始数据相关字段。指定左边裁剪掉的像素数量。默认为 0。</pd>
+           <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
        </plentry>
        <plentry>
   <pt>cropTop</pt>
   <pd>原始数据相关字段。指定顶边裁剪掉的像素数量。默认为 0。</pd>
+           <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
        </plentry>
        <plentry>
   <pt>cropRight</pt>
   <pd> 原始数据相关字段。指定右边裁剪掉的像素数量。默认为 0。 </pd>
+           <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
        </plentry>
        <plentry>
   <pt>cropBottom</pt>
   <pd>原始数据相关字段。指定底边裁剪掉的像素数量。默认为 0。</pd>
+           <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
        </plentry>
        <plentry>
   <pt>rotation</pt>
