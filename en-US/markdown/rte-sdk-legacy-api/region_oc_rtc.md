@@ -40,7 +40,3 @@ agoraRtcEngineConfig.appId = type.appId(isClassical: settings.shouldUseClassical
 agoraRtcEngineConfig.areaCode = AgoraAreaCode.GLOB.rawValue ^ AgoraAreaCode.CN.rawValue
 agoraKit = AgoraRtcEngineKit.sharedEngine(with: agoraRtcEngineConfig, delegate: self)
 ```
-
-## Considerations
-
-If a firewall is deployed in your network environment, ensure that you whitelist all domains and ports listed in [Use Cloud Proxy](cloudproxy_native).

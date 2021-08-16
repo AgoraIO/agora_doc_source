@@ -57,7 +57,3 @@ private void initializeEngine() {
 ...
 }
 ```
-
-## Considerations
-
-If a firewall is deployed in your network environment, ensure that you whitelist all domains and ports listed in [Use Cloud Proxy](cloudproxy_native).
