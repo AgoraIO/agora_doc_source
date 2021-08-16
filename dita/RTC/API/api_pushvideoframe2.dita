@@ -22,12 +22,23 @@
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>
         </section>
+        <section id="detailed_desc">
+            <p>该方法主动将视频帧数据用 <codeph>VideoFrame</codeph> 类封装后传递给 SDK。 请确保在你调用本方法前已调用 <xref keyref="setExternalVideoSource"/>， 并将参数
+                    <codeph>enable</codeph> 设置为 <codeph>true</codeph>，不然调用本方法后会一直报错。</p>
+            <p>调用该方法或 <xref keyref="pushVideoFrame"/> 均能将视频帧数据传递给SDK。 当视频帧数据为 <codeph>texture</codeph> 格式时，如果你想让 SDK 更好地发挥硬件性能，Agora 推荐你使用 <xref keyref="pushVideoFrame2"/> 方法。</p>
+        </section>
         <section id="parameters"><title>参数</title>
             <parml>
-                <plentry>
-                    <pt>frame</pt>
-                    <pd><?oxy-placeholder content="The description of the parameter. Please specify if the parameter is optional, output, and has a default value or value range."?></pd>
-                </plentry>
+            <plentry>
+                <pt>frame</pt>
+                <pd>待推送的外部原始视频帧。详见 <codeph>VideoFrame</codeph>:
+                    <ul>
+                        <li><codeph>buffer</codeph>: Buffer 型。视频帧的 buffer。</li>
+                        <li><codeph>rotation</codeph>: int 型。视频帧的旋转角度（度数）。</li>
+                        <li><codeph>timestampNs</codeph>: long 型。视频帧的 Unix 时间戳（纳秒）。</li>
+                    </ul>
+                </pd>
+            </plentry>
             </parml>
         </section>
         <section id="return_values">
