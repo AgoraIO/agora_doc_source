@@ -211,159 +211,223 @@ In order to show the authentication workflow, this section shows how to build an
 
 ### Use tokens for user authentication
 
-This section uses the Web client as an example to show how to use a token for client-side user authentication.
+This section uses the Android client as an example to show how to use a token for client-side user authentication.
 
-In order to show the authentication workflow, this section shows how to build and run a Web client on your local machine.
+In order to show the authentication workflow, this section shows how to build and run an Android client on the simulator of your local machine.
 
 <div class="alert warning">This sample client is for demonstration purposes only. Do not use it in a production environment.</div>
 
-1. Create the project structure of the Web client with a folder including the following files.
-    - `index.html`: User interface
-    - `client.js`: App logic with Agora RTC Web SDK 4.x
+1. Based on the project you have created in [Get Started with Interactive Live Streaming Premium
+](//TODO: LINK NEEDED), update `ViewController.swift` with the following code. Replace `Your App ID` with your App ID. The App ID must match the one in the server. You also need to replace &lt;Your Host URL and port&gt; with the host URL and port of the local Golang server you have just deployed, such as 10.53.3.234:8082.
 
-    ```text
-    |
-    |-- index.html
-    |-- client.js
-    ```
+```java
+//
+//  ViewController.swift
+//  RteQuickstart
+//
+//  Created by macoscatalina on 2021/8/12.
+//  Copyright © 2021 macoscatalina. All rights reserved.
+//
 
-2. In `index.html`, add the following code to include the app logic in the UI:
+import UIKit
+import AgoraRtcKit
 
-    ```html
-    <html>
-    <head>
-        <title>Token demo</title>
-    </head>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <body>
-        <h1>Token demo</h1>
+import Foundation
 
-        <script src="https://download.agora.io/sdk/release/AgoraRTC_N.js"></script>
-        <script src="./client.js"></script>
+public enum TokenError: Error{
+    case noData
+    case invalidData
+}
 
-    </body>
-    </html>
-    ```
+class ViewController: UIViewController {
+    var localView: UIView!
+    var remoteView: UIView!
 
-3. Create the app logic by editing `client.js` with the following content. Then replace `<Your App ID>` with your App ID. The App ID must match the one in the server. You also need to replace `<Your Host URL and port>` with the host URL and port of the local Golang server you have just deployed, such as `10.53.3.234:8082`.
+    var agoraKit: AgoraRtcEngineKit!
 
-    ```js
-    var rtc = {
-        // For the local audio and video tracks.
-        localAudioTrack: null,
-        localVideoTrack: null,
-    };
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        initView()
+        initializeAgoraEngine()
+        setClientRole()
+        setupLocalVideo()
+        fetchToken(channelName: "test", userId: 1234, role: 1){ result in
+            switch result {
+            case .success(let token):
+                print("token is: \(token)")
+                self.joinChannel(token: token)
+            case .failure(let err):
+                print("Could not fetch token: \(err)")
+            }
+        }
 
-    var options = {
-        // Pass your app ID here.
-        appId: "<Your app ID>",
-        // Set the channel name.
-        channel: "ChannelA",
-        // Set the user role in the channel.
-        role: "host"
-    };
+    }
 
-    // Fetch a token from the Golang server.
-    function fetchToken(uid, channelName, tokenRole) {
+    override func viewDidLayoutSubviews(){
+        super.viewDidLayoutSubviews()
+        remoteView.frame = self.view.bounds
+        localView.frame = CGRect(x: self.view.bounds.width - 90, y: 0, width: 90, height: 160)
+        }
 
-        return new Promise(function (resolve) {
-            axios.post('http://<Your Host URL and port>/fetch_rtc_token', {
-                uid: uid,
-                channelName: channelName,
-                role: tokenRole
-            }, {
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        leaveChannel()
+        destroy()
+
+    }
+
+    func initView(){
+        remoteView = UIView()
+        self.view.addSubview(remoteView)
+        localView = UIView()
+        self.view.addSubview(localView)
+    }
+
+
+
+    func initializeAgoraEngine(){
+        let config = AgoraRtcEngineConfig()
+        config.appId = "Your App ID"
+        config.channelProfile = .liveBroadcasting
+        agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
+        if agoraKit != nil{
+            print("Initialization successful")
+        }
+        else{
+            print("Initialization failed")
+        }
+    }
+
+    func setClientRole(){
+        agoraKit.setClientRole(.broadcaster)
+    }
+
+    func setupLocalVideo(){
+        agoraKit.enableVideo()
+        agoraKit.startPreview()
+        let videoCanvas = AgoraRtcVideoCanvas()
+        videoCanvas.uid = 0
+        videoCanvas.renderMode = .hidden
+        videoCanvas.view = localView
+        agoraKit.setupLocalVideo(videoCanvas)
+    }
+
+    func joinChannel(token:String){
+        let option = AgoraRtcChannelMediaOptions()
+        agoraKit.joinChannel(byToken: token, channelId: "test", uid: 123456, mediaOptions: option)
+    }
+
+    func leaveChannel(){
+        agoraKit.stopPreview()
+        agoraKit.leaveChannel(nil)
+    }
+
+    func destroy(){
+        AgoraRtcEngineKit.destroy()
+    }
+
+    func fetchToken(channelName: String, userId: UInt, role: UInt,
+        callback: @escaping (Result<String, Error>) -> Void
+    ){
+        let url = URL(string: "http://10.53.3.234:8082/fetch_rtc_token")
+        let parameters = ["uid":userId,"channelName": channelName, "role": role] as [String : Any]
+
+        print(parameters.self)
+
+
+        var request = URLRequest(
+            url: url!,
+            timeoutInterval: 10
+        )
+
+        request.httpMethod = "POST"
+
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        }
+        catch let error {
+            print(error.localizedDescription)
+        }
+
+        URLSession.shared.dataTask(with: request){data, _, err in
+            guard let data = data else {
+                if let err = err {
+                    callback(.failure(err))
                 }
-            })
-                .then(function (response) {
-                    const token = response.data.token;
-                    resolve(token);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        })
+                else {
+                    callback(.failure(TokenError.noData))
+                }
+
+            return
+        }
+
+        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+
+        if let responseDict = responseJSON as? [String: Any], let token = responseDict["token"] as? String {
+            callback(.success(token))
+        } else {
+            callback(.failure(TokenError.invalidData))
+        }
+
+    }.resume()
+
+  }
+}
+
+extension ViewController: AgoraRtcEngineDelegate{
+
+    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int){
+        let videoCanvas = AgoraRtcVideoCanvas()
+        videoCanvas.uid = uid
+        videoCanvas.renderMode = .hidden
+        videoCanvas.view = remoteView
+        agoraKit.setupRemoteVideo(videoCanvas)
     }
 
-    async function startBasicCall() {
-
-        const client = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
-        client.setClientRole(options.role);
-        const uid = 123456;
-
-        // Fetch a token before calling join to join a channel.
-        let token = await fetchToken(uid, options.channel, 1);
-
-        await client.join(options.appId, options.channel, token, uid);
-        rtc.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
-        rtc.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
-        await client.publish([rtc.localAudioTrack, rtc.localVideoTrack]);
-        const localPlayerContainer = document.createElement("div");
-        localPlayerContainer.id = uid;
-        localPlayerContainer.style.width = "640px";
-        localPlayerContainer.style.height = "480px";
-        document.body.append(localPlayerContainer);
-
-        rtc.localVideoTrack.play(localPlayerContainer);
-
-        console.log("publish success!");
-
-        client.on("user-published", async (user, mediaType) => {
-            await client.subscribe(user, mediaType);
-            console.log("subscribe success");
-
-            if (mediaType === "video") {
-                const remoteVideoTrack = user.videoTrack;
-                const remotePlayerContainer = document.createElement("div");
-                remotePlayerContainer.textContent = "Remote user " + user.uid.toString();
-                remotePlayerContainer.style.width = "640px";
-                remotePlayerContainer.style.height = "480px";
-                document.body.append(remotePlayerContainer);
-                remoteVideoTrack.play(remotePlayerContainer);
-
+    func rtcEngine(_ engine: AgoraRtcEngineKit, tokenPrivilegeWillExpire token: String) {
+        self.fetchToken(channelName: "test", userId: 1234, role: 1){ result in
+            switch result {
+            case .success(let token):
+                print("token is: \(token)")
+                self.agoraKit.renewToken(token)
+                print("Renewed the token")
+            case .failure(let err):
+                print("Could not fetch token: \(err)")
             }
-
-            if (mediaType === "audio") {
-                const remoteAudioTrack = user.audioTrack;
-                remoteAudioTrack.play();
-            }
-
-            client.on("user-unpublished", user => {
-                const remotePlayerContainer = document.getElementById(user.uid);
-                remotePlayerContainer.remove();
-            });
-
-        });
-
-        // When token-privilege-will-expire occurs, fetch a new token from the server and call renewToken to renew the token.
-        client.on("token-privilege-will-expire", async function () {
-            let token = await fetchToken(uid, options.channel, 1);
-            await client.renewToken(token);
-        });
-
-        // When token-privilege-did-expire occurs, fetch a new token from the server and call join to rejoin the channel.
-        client.on("token-privilege-did-expire", async function () {
-            console.log("Fetching the new Token")
-            let token = await fetchToken(uid, options.channel, 1);
-            console.log("Rejoining the channel with new Token")
-            await rtc.client.join(options.appId, options.channel, token, uid);
-        });
-
+        }
     }
 
-    startBasicCall()
-    ```
+    func rtcEngine(_ engine: AgoraRtcEngineKit, connectionStateChanged state: AgoraConnectionState, reason: AgoraConnectionChangedReason) {
+        print("Connection state changed to")
+        print(state.rawValue)
+    }
 
-    In the code example, you can see that token is related to the following code logic in the client:
-    - Call `join` to join the channel with token, uid, and channel name. The uid and channel name must be the same as the ones used to generate the token.
-    - The `token-privilege-will-expire` callback occurs 30 seconds before a token expires. When the `token-privilege-will-expire` callback is triggered，the client must fetch the token from the server and call `renewToken` to pass the new token to the SDK.
-    - The `token-privilege-did-expire` callback occurs when a token expires. When the `token-privilege-did-expire` callback is triggered, the client must fetch the token from the server and call `join` to use the new token to join the channel.
+    func rtcEngineRequestToken(_ engine: AgoraRtcEngineKit) {
+        fetchToken(channelName: "test", userId: 1234, role: 1){ result in
+            switch result {
+                case .success(let token):
+                    print("token is: \(token)")
+                    self.joinChannel(token: token)
+                case .failure(let err):
+                    print("Could not fetch token: \(err)")
+                }
+        }
+    }
 
-4. Open `index.html` with a supported browser to perform the following actions:
-    - Successfully joining a channel.
-    - Renewing a token every 10 seconds.
+}
 
+```
+
+In the code example, you can see that token is related to the following code logic in the client:
+
+- Call `joinChannel` to join the channel with token, uid, and channel name. The uid and channel name must be the same as the ones used to generate the token.
+- The `tokenPrivilegeWillExpire` callback occurs 30 seconds before a token expires. When the `tokenPrivilegeWillExpire` callback is triggered，the client must fetch the token from the server and call renewToken to pass the new token to the SDK.
+- The `rtcEngineRequestToken` callback occurs when a token expires. When the `rtcEngineRequestToken` callback is triggered, the client must fetch the token from the server and call `joinChannel` to use the new token to join the channel.
+
+3. Build and run the project in your iOS simulator in the local machine to perform the following actions:
+- Successfully joining a channel.
+- Renewing a token every 10 seconds.
 
 ## Reference
 

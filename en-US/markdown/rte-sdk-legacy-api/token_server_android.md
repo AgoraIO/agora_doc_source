@@ -229,7 +229,7 @@ dependencies {
     }
 ```
 
-2. Update `MainActivity.java` with the following code. Replace `Your App ID` with your App ID.
+2. Update `MainActivity.java` with the following code. Replace `Your App ID` with your App ID. The App ID must match the one in the server. You also need to replace &lt;Your Host URL and port&gt; with the host URL and port of the local Golang server you have just deployed, such as 10.53.3.234:8082.
 
 ```java
 package com.example.rtcquickstart;
@@ -444,7 +444,7 @@ public class MainActivity extends AppCompatActivity {
 In the code example, you can see that token is related to the following code logic in the client:
 
 - Call `joinChannel` to join the channel with token, uid, and channel name. The uid and channel name must be the same as the ones used to generate the token.
-- The `onTokenPrivilegeWillExpire` callback occurs 30 seconds before a token expires. When the token-privilege-will-expire callback is triggered，the client must fetch the token from the server and call renewToken to pass the new token to the SDK.
+- The `onTokenPrivilegeWillExpire` callback occurs 30 seconds before a token expires. When the `onTokenPrivilegeWillExpire` callback is triggered，the client must fetch the token from the server and call renewToken to pass the new token to the SDK.
 - The `onRequestToken` callback occurs when a token expires. When the `onRequestToken` callback is triggered, the client must fetch the token from the server and call `joinChannel` to use the new token to join the channel.
 
 3. Build and run the project in your Android simulator in the local machine to perform the following actions:
