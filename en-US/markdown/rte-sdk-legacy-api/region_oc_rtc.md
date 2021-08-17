@@ -21,7 +21,7 @@ When creating an `AgoraRtcEngineKit` instance by calling [`sharedEngineWithConfi
 <div class="alert note">The area codes support bitwise operation. </div>
 
 
-## Sample code
+### Specify a region
 
 ```swift
 // Swift
@@ -31,6 +31,8 @@ agoraRtcEngineConfig.appId = type.appId(isClassical: settings.shouldUseClassical
 agoraRtcEngineConfig.areaCode = AgoraAreaCode.NA.rawValue
 agoraKit = AgoraRtcEngineKit.sharedEngine(with: agoraRtcEngineConfig, delegate: self)
 ```
+
+### Exclude a region
 
 ```swift
 // Swift
