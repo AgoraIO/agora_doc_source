@@ -20,7 +20,7 @@ When creating an RtcEngine instance by calling [`create`](https://docs-preview.a
 
 <div class="alert note">The area codes support bitwise operation.</div>
 
-### Specify a region for connection
+### Specify a region
 
 ```java
 // Specify the region for connection as North America.
