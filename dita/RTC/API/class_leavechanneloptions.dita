@@ -6,8 +6,17 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
+            <codeblock props="android" outputclass="language-java">public class LeaveChannelOptions {
+  public boolean stopAudioMixing;
+  public boolean stopAllEffect;
+  public boolean stopMicrophoneRecording;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLeaveChannelOptions : NSObject
+@property(nonatomic, assign) BOOL stopAudioMixing;
+@property(nonatomic, assign) BOOL stopAllEffect;
+@property(nonatomic, assign) BOOL stopMicrophoneRecording;
+
+@end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct LeaveChannelOptions {
   bool stopAudioMixing;
   bool stopAllEffect;
