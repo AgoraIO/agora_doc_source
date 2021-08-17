@@ -14,7 +14,15 @@
   public int samplesPerChannel;
   public long timestamp;
   }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioFrame: NSObject
+ @property (assign, nonatomic) NSInteger samplesPerChannel;
+ @property (assign, nonatomic) NSInteger bytesPerSample;
+ @property (assign, nonatomic) NSInteger channels;
+ @property (assign, nonatomic) NSInteger samplesPerSec;
+ @property (strong, nonatomic) NSData* _Nullable buffer;
+ @property (assign, nonatomic) int64_t renderTimeMs;
+ @property (assign, nonatomic) NSInteger avSyncType;
+@end</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>

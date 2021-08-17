@@ -8,7 +8,6 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public static class TranscodingUser {
     public int uid;
-    public String userId;
 
     public int x;
     public int y;
@@ -19,7 +18,14 @@
     public float alpha;
     public int audioChannel;
   }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscodingUser : NSObject
+
+@property(assign, nonatomic) NSUInteger uid;
+@property(assign, nonatomic) CGRect rect;
+@property(assign, nonatomic) NSInteger zOrder;
+@property(assign, nonatomic) double alpha;
+@property(assign, nonatomic) NSInteger audioChannel;
+@end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">typedef struct TranscodingUser {
     uid_t uid;
     int x;

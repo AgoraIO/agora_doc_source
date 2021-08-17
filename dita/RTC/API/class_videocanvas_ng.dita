@@ -18,7 +18,17 @@
   public int sourceId;
   public int uid;
 }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
+
+@property(strong, nonatomic) VIEW_CLASS *_Nullable view;
+@property(assign, nonatomic) AgoraVideoRenderMode renderMode;
+@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
+@property(assign, nonatomic) NSUInteger uid;
+@property(copy, nonatomic) NSString *_Nullable userId;
+@property(nonatomic, assign) AgoraVideoSourceType sourceType;
+@property(nonatomic, assign) int sourceId;
+
+@end</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>

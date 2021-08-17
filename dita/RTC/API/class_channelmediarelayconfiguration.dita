@@ -18,7 +18,14 @@
   public void setSrcChannelInfo(ChannelMediaInfo srcInfo) {
     this.srcInfo = srcInfo;
   }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
+
+@property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *> *_Nullable destinationInfos;
+@property (strong, nonatomic) AgoraChannelMediaRelayInfo *_Nonnull sourceInfo;
+
+- (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName;
+- (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName;
+@end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
 	ChannelMediaInfo *srcInfo;
 	ChannelMediaInfo *destInfos;
