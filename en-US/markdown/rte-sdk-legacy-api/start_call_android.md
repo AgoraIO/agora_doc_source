@@ -67,7 +67,7 @@ Follow the steps to create the environment necessary to integrate Video Call int
       | `x86_64` folder          | `/app/src/main/jniLibs/` |
       | `include` folder         | `/app/src/main/jniLibs/` |
 
-      <div  class="alert note"><ul><li>If you use the armeabi architecture, copy files from the armeabi-v7a folder to the armeabi file of your project. Contact <a href="mailto: support@agora.io">support@agora.io</a> if you encounter any incompability issue.</li><li>
+      <div  class="alert note"><ul><li>If you use the armeabi architecture, copy files from the armeabi-v7a folder to the armeabi folder of your project. Contact <a href="mailto: support@agora.io">support@agora.io</a> if you encounter any incompability issue.</li><li>
           Not all libraries in the SDK package are necessary. Refer to <a href="https://docs.agora.io/en/Video/faq/reduce_app_size_rtc">How can I reduce the app size after integrating the RTC Native SDK</a> for details.</li></ul></div>
 
    3. In `/Gradle Scripts/build.gradle(Module: )`, add dependencies to local Jar packages as the code shown below.
