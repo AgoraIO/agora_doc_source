@@ -428,7 +428,6 @@ In the code example, you can see that token is related to the following code log
             mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
             // Start local preview
             mRtcEngine.startPreview();
-            ChannelMediaOptions options = new ChannelMediaOptions();
             // Fetches the token from token server
             fetchToken(1234, channelName, 1);
         }
