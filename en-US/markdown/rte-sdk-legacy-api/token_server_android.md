@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
     private String appId = "Your App ID";
     // Fill the channel name.
     private String channelName = "1234";
-    // Fill the temp token generated on Agora Console.
+
     private String token = "";
 
     private RtcEngine mRtcEngine;
