@@ -1,34 +1,39 @@
-Agora’s Video SDKs make it easy for you to build apps with audio and video streaming that encourage real-time exchanges.
-
-This page shows the minimum code you need to integrate high-quality, low-latency video function into your app using the video SDK for Android.
+This page shows the minimum code you need to integrate high-quality, low-latency Video Call function into your app using the Video SDK for Android.
 
 ## Understand the tech
 
-The following figure shows the basic workflow of integrating Agora video call in the app:
+The following figure shows the workflow you need to integrate into your app in order to achieve Video Call functionality.
 
 ![](https://web-cdn.agora.io/docs-files/1628835486553)
 
-To start video call, implement the following steps in your app:
+To start Video Call, implement the following steps in your app:
 
-**1. Set the role**
+1. **Set the role**
 
-Both app clients should be set as the host.
+   Set both app clients as the host.
 
-**2 & 3.  Retrieve a token**
+2. **Request token**
 
-A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your app server. For this section, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
+3. **Return token**
 
-**4. Join a channel**
-Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+   A token is the credential that authenticates a user when your app client joins a channel.
 
-**5. Publish and subscribe to audio and video in the channel**
-After joining a channel,  both hosts can publish video and audio stream to the channel and subscribe to each other.
+   - In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms) for details.
+   - The procedure in this page is to get a temporary token from the Agora Console as an example.
+
+4. **Join a channel**
+
+   Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+
+5. **Publish and subscribe to audio and video in the channel**
+
+   After joining a channel,  both hosts can publish video and audio stream to the channel and subscribe to each other.
 
 For an app client to join a channel, you need the following information:
 
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
+- A token: A  temporary token with a validity period of 24 hours.You can get the token from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
-- A token: In a test or production environment, your app client retrieves tokens from your server. For rapid testing, you can use a temporary token with a validity period of 24 hours.
 - The channel name: A string that identifies the channel. 
 
 ## Prerequisites
@@ -41,7 +46,7 @@ For an app client to join a channel, you need the following information:
 
 ## Project setup
 
-Follow the steps to create the environment necessary to integrate video call into your app.
+Follow the steps to create the environment necessary to integrate Video Call into your app.
 
 1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**.
 
@@ -65,7 +70,7 @@ Follow the steps to create the environment necessary to integrate video call int
       <div  class="alert note"><ul><li>If you use the armeabi architecture, copy files from the armeabi-v7a folder to the armeabi file of your project. Contact <a href="mailto: support@agora.io">support@agora.io</a> if you encounter any incompability issue.</li><li>
           Not all libraries in the SDK package are necessary. Refer to <a href="https://docs.agora.io/en/Video/faq/reduce_app_size_rtc">How can I reduce the app size after integrating the RTC Native SDK</a> for details.</li></ul></div>
 
-   3. Add dependencies to local Jar packages in `/Gradle Scripts/build.gradle` file as the following.
+   3. In `/Gradle Scripts/build.gradle(Module: )`, add dependencies to local Jar packages as the code shown below.
 
       ```
       dependencies {
@@ -87,17 +92,19 @@ Follow the steps to create the environment necessary to integrate video call int
        <uses-permission android:name="android.permission.BLUETOOTH" />
       ```
 
-   5. Add the following line in `/Gradle Scripts/proguard-rules.pro` file to prevent obfuscating the code of the SDK:
+   5. To prevent obfuscating the code in the SDK, add the following line in `/Gradle Scripts/proguard-rules.pro` file:
 
       ```
        -keep class io.agora.**{*;}
       ```
 
-## Implement a client for video call
+## Implement a client for Video Call
+
+This section shows how to use the Agora Video SDK to implement Video Call into your app step by step.
 
 ### Create the UI
 
-In the interface, you should have one frame for local video and another for remote video. In `/app/res/layout/activity_main.xml`, replace the content with the following:
+In the interface, create one frame for local video and another for remote video. In `/app/res/layout/activity_main.xml`, replace the content with the following:
 
 ```java
 <?xml version="1.0" encoding="utf-8"?>
@@ -142,9 +149,9 @@ In the interface, you should have one frame for local video and another for remo
 
 <div>Import necessary Android classes and handle the Android permissions, and check if the necessary permissions to insert video call functionality into the app are granted, refer to <a href="#referencecode">Reference code</a> for details.</div>
 
-### Implement the video call logic
+### Implement the Video Call logic
 
-The following figure and steps show the API call sequence of implementing video call. 
+The following figure and steps show the API call sequence of implementing Video Call. 
 
 ![](https://web-cdn.agora.io/docs-files/1628824176250)
 
@@ -154,7 +161,9 @@ The following figure and steps show the API call sequence of implementing video 
 
 3. Initialize the app and join the channel.
 
-   Call the core methods for joining a channel to the `MainActivity` class. In the following sample code, we use an `initializeAndJoinChannel` function to encapsulate these core methods.
+   Call the core methods for joining a channel to the `MainActivity` class, pass in your App ID, channel name, and temp token.
+
+   In the following reference code, the core methods are wrapped in the `initializeAndJoinChannel` function.
 
 4. Add the remote interface when a remote host joins the channel.
 
@@ -213,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
-    //When your app launches, check if the permissions necessary to insert video call functionality into the app are granted. 
+    //When your app launches, check if the permissions necessary to insert Video Call functionality into the app are granted. 
     //If the permissions are not granted, use the built-in Android functionality to request them; if they are, return true.
     private static final int PERMISSION_REQ_ID = 22;
     private static final String[] REQUESTED_PERMISSIONS = {
@@ -304,13 +313,9 @@ public class MainActivity extends AppCompatActivity {
 
 ## Next steps
 
-Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms) shows you how to start video call with a token that you retrieve from your server.
+Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms) shows you how to start Video Call with a token that you retrieve from your server.
 
-## See also
+## Sample project
 
-This section provides additional information for your reference.
-
-### Sample project
-
-Agora provides an open source video call example project [JoinChannelVideo](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/basic) on GitHub for your reference.
+Agora provides an open source Video Call example project [JoinChannelVideo](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/basic) on GitHub for your reference.
 

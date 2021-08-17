@@ -1,28 +1,34 @@
-Agora’s Video SDKs make it easy for you to build apps with audio and video streaming that encourage real-time exchanges.
-
-This page shows the minimum code you need to integrate high-quality, low-latency video function into your app using the video SDK for iOS.
+This page shows the minimum code you need to integrate high-quality, low-latency Video Call function into your app using the Video SDK for iOS.
 
 ## Understand the tech
 
-The following figure shows the workflow to integrate video call into your app.
+The following figure shows the workflow you need to integrate into your app in order to achieve Video Call functionality.
 
 ![](https://web-cdn.agora.io/docs-files/1628835486553)
 
 To start video call, implement the following steps in your app:
 
-**1. Set the role**
+1. **Set the role**
 
-Both app clients should be set as the host.
+   Set both app clients as the host.
 
-**2 & 3.  Retrieve a token**
+2. **Request token**
 
-A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your app server. For this section, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
+   Send a request to app server for a token.
 
-**4. Join a channel**
-Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+3. **Return token**
 
-**5. Publish and subscribe to audio and video in the channel**
-After joining a channel,  both hosts can publish video and audio stream to the channel and subscribe to each other.
+   Generate a token and pass it to app client.
+
+   <div>A token is the credential that authenticates a user when your app client joins a channel. <ul><li>In a test or production environment, use a token server to generate token is recommended to ensure communication security (as shown in the figure above), see <xref href="https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms">Authenticate Your Users with Tokens</xref> for details.</li><li>The description on this page shows how to get a temporary token from the Agora Console as a quick testing example.</li></ul></div>
+
+4. **Join a channel**
+
+   Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+
+5. **Publish and subscribe to audio and video in the channel**
+
+   After joining a channel,  both hosts can publish video and audio stream to the channel and subscribe to each other.
 
 For an app client to join a channel, you need the following information:
 
@@ -79,11 +85,13 @@ In Xcode, follow the steps to create the environment necessary to integrate vide
 
    4. A new file with a suffix of .xcworkspace will be generated under the project folder. Use Xcode to open it for subsequent operations.
 
-## Implement a client for video call
+## Implement a client for Video Call
+
+This section shows how to use the Agora Video SDK to implement Video Call into your app step by step.
 
 ### Create the UI
 
-<div>In the interface, you should have one frame for local video and another for remote video, refer to <a href="#referencecode">Reference code</a> for details.</div>
+<div>In the interface, create one frame for local video and another for remote video, refer to <a href="#referencecode">Reference code</a> for details.</div>
 
 ### Implement the Video Call logic
 

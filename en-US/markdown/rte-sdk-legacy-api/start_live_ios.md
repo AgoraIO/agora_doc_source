@@ -1,10 +1,8 @@
-Agora’s Video SDKs make it easy for you to build apps with audio and video streaming that encourage real-time exchanges.
-
-This page shows the minimum code you need to integrate high-quality, low-latency live streaming experiences into your app using the SDK for iOS.
+This page shows the minimum code you need to integrate high-quality, low-latency Interactive Live Streaming into your app using the Video SDK for iOS.
 
 ## Understand the tech
 
-The following figure shows the workflow to integrate Interactive Live Streaming Premium into your app.
+The following figure shows the workflow you need to integrate into your app in order to achieve Interactive Live Streaming Premium functionality.
 
 ![](https://web-cdn.agora.io/docs-files/1628835475394)
 
@@ -12,21 +10,31 @@ You start Interactive Live Streaming Premium when you call joinChannel from your
 
 The Interactive Live Streaming Premium workflow you integrate into your app is:
 
-**1. Set the role**
-Users in an Interactive Live Streaming Premium channel are either a host or an audience member. The host publishes streams to the channel, and the audience subscribes to the streams. 
+1. **Set the role**
 
-**2 & 3.  Retrieve a token**
+   Users in an Interactive Live Streaming Premium channel are either a host or an audience member. The host publishes streams to the channel, and the audience subscribes to the streams. 
 
-A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your app server. For this section, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
+2. **Request token**
 
-**4. Join a channel**
-Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+   Send a request to app server for a token.
 
-**5. Publish and subscribe to audio and video in the channel**
-After joining a channel, a host can publish audio and video and subscribe other hosts in the channel.
+3. **Return token**
 
-**6.  Subscribe to audio and video in the channel**
- The role of audience can only subscribe to all hosts in the channel, you can call `setClientRole` to switch the client role to host. 
+   Generate a token and pass it to app client.
+
+   <div>A token is the credential that authenticates a user when your app client joins a channel. <ul><li>In a test or production environment, use a token server to generate token is recommended to ensure communication security (as shown in the figure above), see <xref href="https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms">Authenticate Your Users with Tokens</xref> for details.</li><li>The description on this page shows how to get a temporary token from the Agora Console as a quick testing example.</li></ul></div>
+
+4. **Join a channel**
+
+   Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+
+5. **Publish and subscribe to audio and video in the channel**
+
+   After joining a channel, a host can publish audio and video and subscribe other hosts in the channel.
+
+6.  Subscribe to audio and video in the channel
+
+   The role of audience can only subscribe to all hosts in the channel, you can call `setClientRole` to switch the client role to host. 
 
 For an app client to join a channel, you need the following information:
 
@@ -45,7 +53,7 @@ For an app client to join a channel, you need the following information:
 
 ## Project setup
 
-In Xcode, follow the steps to create the environment necessary to integrate live streaming into your app.
+In order to create the environment necessary to integrate Interactive Live Streaming into your app, do the following in Xcode:
 
 1. [Create a new project](https://help.apple.com/xcode/mac/current/#/dev07db0e578) for an iOS app using the **Single View App** template. Make sure you select **Storyboard** as the user interface.
 
@@ -85,9 +93,11 @@ In Xcode, follow the steps to create the environment necessary to integrate live
 
 ## Implement a client for Interactive Live Streaming Premium
 
+This section shows how to use the Agora Video SDK to implement Interactive Live Streaming Premium into your app step by step.
+
 ### Create the UI
 
-<div>In the interface, you should have one frame for local video and another for remote video, refer to <a href="#referencecode">Reference code</a> for details.</div>
+<div>In the interface, create one frame for local video and another for remote video, refer to <a href="#referencecode">Reference code</a> for details.</div>
 
 ### Implement the Interactive Live Streaming Premium logic
 
