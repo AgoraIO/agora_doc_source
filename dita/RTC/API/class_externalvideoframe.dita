@@ -6,24 +6,53 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public AgoraVideoFrame() {
-    format = 10; // GL_TEXTURE_2D
-    timeStamp = 0;
-    stride = 0;
-    height = 0;
-    textureID = 0;
-    syncMode = true;
-    transform = null;
-    eglContext11 = null;
-    eglContext14 = null;
-    buf = null;
-    cropLeft = 0;
-    cropTop = 0;
-    cropRight = 0;
-    cropBottom = 0;
-    rotation = 0;
-  }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {
+
+  public static final int FORMAT_NONE = -1;
+  public static final int FORMAT_TEXTURE_2D = 10;
+  public static final int FORMAT_TEXTURE_OES = 11;
+  public static final int FORMAT_I420 = 1;
+  public static final int FORMAT_BGRA = 2;
+  public static final int FORMAT_NV21 = 3;
+  public static final int FORMAT_RGBA = 4;
+  public static final int BUFFER_TYPE_NONE = -1;/
+  public static final int BUFFER_TYPE_BUFFER = 1;
+  public static final int BUFFER_TYPE_ARRAY = 2;
+  public static final int BUFFER_TYPE_TEXTURE = 3;
+
+  public int format;
+  public long timeStamp;
+  public int stride;
+  public int height;
+  public int textureID;
+  public boolean syncMode;
+  public float[] transform;
+  public javax.microedition.khronos.egl.EGLContext eglContext11;
+  public android.opengl.EGLContext eglContext14;
+
+  public byte[] buf;
+  public int cropLeft;
+  public int cropTop;
+  public int cropRight;
+  public int cropBottom;
+  public int rotation;
+}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraExtVideoFrame : NSObject
+
+@property (nonatomic, assign) NSInteger type;
+@property (nonatomic, assign) int width;
+@property (nonatomic, assign) int height;
+@property (nonatomic, assign) int yStride;
+@property (nonatomic, assign) int uStride;
+@property (nonatomic, assign) int vStride;
+@property (nonatomic, assign) uint8_t* _Nullable yBuffer;
+@property (nonatomic, assign) uint8_t* _Nullable uBuffer;
+@property (nonatomic, assign) uint8_t* _Nullable vBuffer;
+@property (nonatomic, assign) int rotation;
+@property (nonatomic, assign) int64_t renderTimeMs;
+@property (nonatomic, assign) int avSyncType;
+@property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
+@end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">struct ExternalVideoFrame {
     enum VIDEO_BUFFER_TYPE
     {
