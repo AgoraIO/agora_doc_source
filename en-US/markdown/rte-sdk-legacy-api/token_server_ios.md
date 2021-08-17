@@ -21,11 +21,9 @@ A token is a dynamic key generated on your app server that is valid for a maximu
 
 In order to follow this procedure you must have the following:
 
-- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
-- An Agora project with the [App Certificate](https://docs.agora.io/en/Agora%20Platform/manage_projects?platform=All%20Platforms#manage-your-app-certificates) enabled.
+- A project based on [Get Started with Interactive Live Streaming Premium](./start_live_ios).
 - [Golang](https://golang.org/) 1.14+ with GO111MODULE set to on.
     <div class="alert note"> If you are using Go 1.16+, GO111MODULE is on by default. See <a href="https://blog.golang.org/go116-module-changes">this blog</a> for details.</div>
-- [npm](https://www.npmjs.com/get-npm) and a [supported browser](https://docs.agora.io/en/All/faq/browser_support).
 
 ## Implement the authentication flow
 
@@ -35,19 +33,17 @@ This section shows you how to supply and consume a token that gives rights to sp
 
 This section shows you how to get the security information needed to generate a token, including the App ID and App Certificate of your project.
 
-#### 1. Get the App ID
+1. Get the App ID.
 
-Agora automatically assigns each project an App ID as a unique identifier.
+    Agora automatically assigns each project an App ID as a unique identifier. To copy this App ID, find your project on the [Project Management](https://dashboard.agora.io/projects) page in Agora Console, and click the eye icon to the right of the App ID.
 
-To copy this App ID, find your project on the [Project Management](https://dashboard.agora.io/projects) page in Agora Console, and click the eye icon to the right of the App ID.
+    ![Get App ID](https://web-cdn.agora.io/docs-files/1602646621028)
 
-![Get App ID](https://web-cdn.agora.io/docs-files/1602646621028)
+2. Get the App Certificate.
 
-#### 2. Get the App Certificate
+    Click **Edit** and enter the **Edit Project** page. Click the eye icon to copy the App certificate.
 
-Click **Edit** and enter the **Edit Project** page. Click the eye icon to copy the App certificate.
-
-![Get App Cert](https://web-cdn.agora.io/docs-files/1592535534341)
+    ![Get App Cert](https://web-cdn.agora.io/docs-files/1592535534341)
 
 ### Deploy a token server
 
@@ -59,136 +55,136 @@ In order to show the authentication workflow, this section shows how to build an
 
 1. Create a file, `server.go`, with the following content. Then replace `<Your App ID>` and `<Your App Certificate>` with your App ID and App Certificate.
 
-```golang
- package main
+    ```golang
+    package main
 
- import (
-     rtctokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/RtcTokenBuilder"
-     "fmt"
-     "log"
-     "net/http"
-     "time"
-     "encoding/json"
-     "errors"
-     "strconv"
- )
+    import (
+        rtctokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/RtcTokenBuilder"
+        "fmt"
+        "log"
+        "net/http"
+        "time"
+        "encoding/json"
+        "errors"
+        "strconv"
+    )
 
- type rtc_int_token_struct struct{
-     Uid_rtc_int uint32 `json:"uid"`
-     Channel_name string `json:"ChannelName"`
-     Role uint32 `json:"role"`
- }
+    type rtc_int_token_struct struct{
+        Uid_rtc_int uint32 `json:"uid"`
+        Channel_name string `json:"ChannelName"`
+        Role uint32 `json:"role"`
+    }
 
- var rtc_token string
- var int_uid uint32
- var channel_name string
+    var rtc_token string
+    var int_uid uint32
+    var channel_name string
 
- var role_num uint32
- var role rtctokenbuilder.Role
+    var role_num uint32
+    var role rtctokenbuilder.Role
 
- // Use RtcTokenBuilder to generate an RTC token.
- func generateRtcToken(int_uid uint32, channelName string, role rtctokenbuilder.Role){
+    // Use RtcTokenBuilder to generate an RTC token.
+    func generateRtcToken(int_uid uint32, channelName string, role rtctokenbuilder.Role){
 
-     appID := "<Your App ID>"
-     appCertificate := "<Your App Certificate>"
-     // Number of seconds after which the token expires.
-     // For demonstration purposes the expiry time is set to 40 seconds. This shows you the automatic token renew actions of the client.
-     expireTimeInSeconds := uint32(40)
-     // Get current timestamp.
-     currentTimestamp := uint32(time.Now().UTC().Unix())
-     // Timestamp when the token expires.
-     expireTimestamp := currentTimestamp + expireTimeInSeconds
+        appID := "<Your App ID>"
+        appCertificate := "<Your App Certificate>"
+        // Number of seconds after which the token expires.
+        // For demonstration purposes the expiry time is set to 40 seconds. This shows you the automatic token renew actions of the client.
+        expireTimeInSeconds := uint32(40)
+        // Get current timestamp.
+        currentTimestamp := uint32(time.Now().UTC().Unix())
+        // Timestamp when the token expires.
+        expireTimestamp := currentTimestamp + expireTimeInSeconds
 
-     result, err := rtctokenbuilder.BuildTokenWithUID(appID, appCertificate, channelName, int_uid, role, expireTimestamp)
-     if err != nil {
-         fmt.Println(err)
-     } else {
-         fmt.Printf("Token with uid: %s\n", result)
-         fmt.Printf("uid is %d\n", int_uid )
-         fmt.Printf("ChannelName is %s\n", channelName)
-         fmt.Printf("Role is %d\n", role)
-     }
-     rtc_token = result
- }
-
-
- func rtcTokenHandler(w http.ResponseWriter, r *http.Request){
-     w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-     w.Header().Set("Access-Control-Allow-Origin", "*")
-     w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS");
-     w.Header().Set("Access-Control-Allow-Headers", "*");
-
-     if r.Method == "OPTIONS" {
-         w.WriteHeader(http.StatusOK)
-         return
-     }
-
-     if r.Method != "POST" && r.Method != "OPTIONS" {
-         http.Error(w, "Unsupported method. Please check.", http.StatusNotFound)
-         return
-     }
+        result, err := rtctokenbuilder.BuildTokenWithUID(appID, appCertificate, channelName, int_uid, role, expireTimestamp)
+        if err != nil {
+            fmt.Println(err)
+        } else {
+            fmt.Printf("Token with uid: %s\n", result)
+            fmt.Printf("uid is %d\n", int_uid )
+            fmt.Printf("ChannelName is %s\n", channelName)
+            fmt.Printf("Role is %d\n", role)
+        }
+        rtc_token = result
+    }
 
 
-     var t_int rtc_int_token_struct
-     var unmarshalErr *json.UnmarshalTypeError
-     int_decoder := json.NewDecoder(r.Body)
-     int_err := int_decoder.Decode(&t_int)
-     if (int_err == nil) {
+    func rtcTokenHandler(w http.ResponseWriter, r *http.Request){
+        w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+        w.Header().Set("Access-Control-Allow-Origin", "*")
+        w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS");
+        w.Header().Set("Access-Control-Allow-Headers", "*");
 
-                 int_uid = t_int.Uid_rtc_int
-                 channel_name = t_int.Channel_name
-                 role_num = t_int.Role
-                 switch role_num {
-                 case 0:
-                     // DEPRECATED. RoleAttendee has the same privileges as RolePublisher.
-                     role = rtctokenbuilder.RoleAttendee
-                 case 1:
-                     role = rtctokenbuilder.RolePublisher
-                 case 2:
-                     role = rtctokenbuilder.RoleSubscriber
-                 case 101:
-                     // DEPRECATED. RoleAdmin has the same privileges as RolePublisher.
-                     role = rtctokenbuilder.RoleAdmin
-                 }
-     }
-     if (int_err != nil) {
+        if r.Method == "OPTIONS" {
+            w.WriteHeader(http.StatusOK)
+            return
+        }
 
-         if errors.As(int_err, &unmarshalErr){
-                 errorResponse(w, "Bad request. Wrong type provided for field " + unmarshalErr.Value  + unmarshalErr.Field + unmarshalErr.Struct, http.StatusBadRequest)
-                 } else {
-                 errorResponse(w, "Bad request.", http.StatusBadRequest)
-             }
-         return
-     }
+        if r.Method != "POST" && r.Method != "OPTIONS" {
+            http.Error(w, "Unsupported method. Please check.", http.StatusNotFound)
+            return
+        }
 
-     generateRtcToken(int_uid, channel_name, role)
-     errorResponse(w, rtc_token, http.StatusOK)
-     log.Println(w, r)
- }
 
- func errorResponse(w http.ResponseWriter, message string, httpStatusCode int){
-     w.Header().Set("Content-Type", "application/json")
-     w.Header().Set("Access-Control-Allow-Origin", "*")
-     w.WriteHeader(httpStatusCode)
-     resp := make(map[string]string)
-     resp["token"] = message
-     resp["code"] = strconv.Itoa(httpStatusCode)
-     jsonResp, _ := json.Marshal(resp)
-     w.Write(jsonResp)
+        var t_int rtc_int_token_struct
+        var unmarshalErr *json.UnmarshalTypeError
+        int_decoder := json.NewDecoder(r.Body)
+        int_err := int_decoder.Decode(&t_int)
+        if (int_err == nil) {
 
- }
+                    int_uid = t_int.Uid_rtc_int
+                    channel_name = t_int.Channel_name
+                    role_num = t_int.Role
+                    switch role_num {
+                    case 0:
+                        // DEPRECATED. RoleAttendee has the same privileges as RolePublisher.
+                        role = rtctokenbuilder.RoleAttendee
+                    case 1:
+                        role = rtctokenbuilder.RolePublisher
+                    case 2:
+                        role = rtctokenbuilder.RoleSubscriber
+                    case 101:
+                        // DEPRECATED. RoleAdmin has the same privileges as RolePublisher.
+                        role = rtctokenbuilder.RoleAdmin
+                    }
+        }
+        if (int_err != nil) {
 
- func main(){
-     // Handling routes
-     // RTC token from RTC num uid
-     http.HandleFunc("/fetch_rtc_token", rtcTokenHandler)
-     fmt.Printf("Starting server at port 8082\n")
+            if errors.As(int_err, &unmarshalErr){
+                    errorResponse(w, "Bad request. Wrong type provided for field " + unmarshalErr.Value  + unmarshalErr.Field + unmarshalErr.Struct, http.StatusBadRequest)
+                    } else {
+                    errorResponse(w, "Bad request.", http.StatusBadRequest)
+                }
+            return
+        }
 
-     if err := http.ListenAndServe(":8082", nil); err != nil {
-         log.Fatal(err)
-     }
- }
-```
+        generateRtcToken(int_uid, channel_name, role)
+        errorResponse(w, rtc_token, http.StatusOK)
+        log.Println(w, r)
+    }
+
+    func errorResponse(w http.ResponseWriter, message string, httpStatusCode int){
+        w.Header().Set("Content-Type", "application/json")
+        w.Header().Set("Access-Control-Allow-Origin", "*")
+        w.WriteHeader(httpStatusCode)
+        resp := make(map[string]string)
+        resp["token"] = message
+        resp["code"] = strconv.Itoa(httpStatusCode)
+        jsonResp, _ := json.Marshal(resp)
+        w.Write(jsonResp)
+
+    }
+
+    func main(){
+        // Handling routes
+        // RTC token from RTC num uid
+        http.HandleFunc("/fetch_rtc_token", rtcTokenHandler)
+        fmt.Printf("Starting server at port 8082\n")
+
+        if err := http.ListenAndServe(":8082", nil); err != nil {
+            log.Fatal(err)
+        }
+    }
+    ```
 
 
 2. A `go.mod` file defines this module’s import path and dependency requirements. To create the `go.mod` for your token server, run the following command:
@@ -218,206 +214,7 @@ In order to show the authentication workflow, this section shows how to build an
 <div class="alert warning">This sample client is for demonstration purposes only. Do not use it in a production environment.</div>
 
 1. Based on the project you have created in [Get Started with Interactive Live Streaming Premium
-](//TODO: LINK NEEDED), update `ViewController.swift` with the following code. Replace `Your App ID` with your App ID. The App ID must match the one in the server. You also need to replace &lt;Your Host URL and port&gt; with the host URL and port of the local Golang server you have just deployed, such as 10.53.3.234:8082.
-
-```java
-//
-//  ViewController.swift
-//  RteQuickstart
-//
-//  Created by macoscatalina on 2021/8/12.
-//  Copyright © 2021 macoscatalina. All rights reserved.
-//
-
-import UIKit
-import AgoraRtcKit
-
-import Foundation
-
-public enum TokenError: Error{
-    case noData
-    case invalidData
-}
-
-class ViewController: UIViewController {
-    var localView: UIView!
-    var remoteView: UIView!
-
-    var agoraKit: AgoraRtcEngineKit!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        initView()
-        initializeAgoraEngine()
-        setClientRole()
-        setupLocalVideo()
-        fetchToken(channelName: "test", userId: 1234, role: 1){ result in
-            switch result {
-            case .success(let token):
-                print("token is: \(token)")
-                self.joinChannel(token: token)
-            case .failure(let err):
-                print("Could not fetch token: \(err)")
-            }
-        }
-
-    }
-
-    override func viewDidLayoutSubviews(){
-        super.viewDidLayoutSubviews()
-        remoteView.frame = self.view.bounds
-        localView.frame = CGRect(x: self.view.bounds.width - 90, y: 0, width: 90, height: 160)
-        }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-        leaveChannel()
-        destroy()
-
-    }
-
-    func initView(){
-        remoteView = UIView()
-        self.view.addSubview(remoteView)
-        localView = UIView()
-        self.view.addSubview(localView)
-    }
-
-
-
-    func initializeAgoraEngine(){
-        let config = AgoraRtcEngineConfig()
-        config.appId = "Your App ID"
-        config.channelProfile = .liveBroadcasting
-        agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
-        if agoraKit != nil{
-            print("Initialization successful")
-        }
-        else{
-            print("Initialization failed")
-        }
-    }
-
-    func setClientRole(){
-        agoraKit.setClientRole(.broadcaster)
-    }
-
-    func setupLocalVideo(){
-        agoraKit.enableVideo()
-        agoraKit.startPreview()
-        let videoCanvas = AgoraRtcVideoCanvas()
-        videoCanvas.uid = 0
-        videoCanvas.renderMode = .hidden
-        videoCanvas.view = localView
-        agoraKit.setupLocalVideo(videoCanvas)
-    }
-
-    func joinChannel(token:String){
-        let option = AgoraRtcChannelMediaOptions()
-        agoraKit.joinChannel(byToken: token, channelId: "test", uid: 123456, mediaOptions: option)
-    }
-
-    func leaveChannel(){
-        agoraKit.stopPreview()
-        agoraKit.leaveChannel(nil)
-    }
-
-    func destroy(){
-        AgoraRtcEngineKit.destroy()
-    }
-
-    func fetchToken(channelName: String, userId: UInt, role: UInt,
-        callback: @escaping (Result<String, Error>) -> Void
-    ){
-        let url = URL(string: "http://<Your Host URL and port>/fetch_rtc_token")
-        let parameters = ["uid":userId,"channelName": channelName, "role": role] as [String : Any]
-
-        print(parameters.self)
-
-
-        var request = URLRequest(
-            url: url!,
-            timeoutInterval: 10
-        )
-
-        request.httpMethod = "POST"
-
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
-
-        URLSession.shared.dataTask(with: request){data, _, err in
-            guard let data = data else {
-                if let err = err {
-                    callback(.failure(err))
-                }
-                else {
-                    callback(.failure(TokenError.noData))
-                }
-
-            return
-        }
-
-        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-
-        if let responseDict = responseJSON as? [String: Any], let token = responseDict["token"] as? String {
-            callback(.success(token))
-        } else {
-            callback(.failure(TokenError.invalidData))
-        }
-
-    }.resume()
-
-  }
-}
-
-extension ViewController: AgoraRtcEngineDelegate{
-
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int){
-        let videoCanvas = AgoraRtcVideoCanvas()
-        videoCanvas.uid = uid
-        videoCanvas.renderMode = .hidden
-        videoCanvas.view = remoteView
-        agoraKit.setupRemoteVideo(videoCanvas)
-    }
-
-    func rtcEngine(_ engine: AgoraRtcEngineKit, tokenPrivilegeWillExpire token: String) {
-        self.fetchToken(channelName: "test", userId: 1234, role: 1){ result in
-            switch result {
-            case .success(let token):
-                print("token is: \(token)")
-                self.agoraKit.renewToken(token)
-                print("Renewed the token")
-            case .failure(let err):
-                print("Could not fetch token: \(err)")
-            }
-        }
-    }
-
-    func rtcEngine(_ engine: AgoraRtcEngineKit, connectionStateChanged state: AgoraConnectionState, reason: AgoraConnectionChangedReason) {
-        print("Connection state changed to")
-        print(state.rawValue)
-    }
-
-    func rtcEngineRequestToken(_ engine: AgoraRtcEngineKit) {
-        fetchToken(channelName: "test", userId: 1234, role: 1){ result in
-            switch result {
-                case .success(let token):
-                    print("token is: \(token)")
-                    self.joinChannel(token: token)
-                case .failure(let err):
-                    print("Could not fetch token: \(err)")
-                }
-        }
-    }
-
-}
-
-```
+](./start_live_ios), replace the content in `ViewController.swift` with the following code. Replace `Your App ID` with your App ID. The App ID must match the one in the server. You also need to replace &lt;Your Host URL and port&gt; with the host URL and port of the local Golang server you have just deployed, such as 10.53.3.234:8082.
 
 In the code example, you can see that token is related to the following code logic in the client:
 
@@ -425,7 +222,206 @@ In the code example, you can see that token is related to the following code log
 - The `tokenPrivilegeWillExpire` callback occurs 30 seconds before a token expires. When the `tokenPrivilegeWillExpire` callback is triggered，the client must fetch the token from the server and call renewToken to pass the new token to the SDK.
 - The `rtcEngineRequestToken` callback occurs when a token expires. When the `rtcEngineRequestToken` callback is triggered, the client must fetch the token from the server and call `joinChannel` to use the new token to join the channel.
 
-3. Build and run the project in your iOS simulator in the local machine to perform the following actions:
+    ```java
+    //
+    //  ViewController.swift
+    //  RteQuickstart
+    //
+    //  Created by macoscatalina on 2021/8/12.
+    //  Copyright © 2021 macoscatalina. All rights reserved.
+    //
+
+    import UIKit
+    import AgoraRtcKit
+
+    import Foundation
+
+    public enum TokenError: Error{
+        case noData
+        case invalidData
+    }
+
+    class ViewController: UIViewController {
+        var localView: UIView!
+        var remoteView: UIView!
+
+        var agoraKit: AgoraRtcEngineKit!
+
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            // Do any additional setup after loading the view.
+            initView()
+            initializeAgoraEngine()
+            setClientRole()
+            setupLocalVideo()
+            fetchToken(channelName: "test", userId: 1234, role: 1){ result in
+                switch result {
+                case .success(let token):
+                    print("token is: \(token)")
+                    self.joinChannel(token: token)
+                case .failure(let err):
+                    print("Could not fetch token: \(err)")
+                }
+            }
+
+        }
+
+        override func viewDidLayoutSubviews(){
+            super.viewDidLayoutSubviews()
+            remoteView.frame = self.view.bounds
+            localView.frame = CGRect(x: self.view.bounds.width - 90, y: 0, width: 90, height: 160)
+            }
+
+        override func viewDidDisappear(_ animated: Bool) {
+            super.viewDidDisappear(true)
+            leaveChannel()
+            destroy()
+
+        }
+
+        func initView(){
+            remoteView = UIView()
+            self.view.addSubview(remoteView)
+            localView = UIView()
+            self.view.addSubview(localView)
+        }
+
+        func initializeAgoraEngine(){
+            let config = AgoraRtcEngineConfig()
+            config.appId = "Your App ID"
+            config.channelProfile = .liveBroadcasting
+            agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
+            if agoraKit != nil{
+                print("Initialization successful")
+            }
+            else{
+                print("Initialization failed")
+            }
+        }
+
+        func setClientRole(){
+            agoraKit.setClientRole(.broadcaster)
+        }
+
+        func setupLocalVideo(){
+            agoraKit.enableVideo()
+            agoraKit.startPreview()
+            let videoCanvas = AgoraRtcVideoCanvas()
+            videoCanvas.uid = 0
+            videoCanvas.renderMode = .hidden
+            videoCanvas.view = localView
+            agoraKit.setupLocalVideo(videoCanvas)
+        }
+
+        func joinChannel(token:String){
+            let option = AgoraRtcChannelMediaOptions()
+            agoraKit.joinChannel(byToken: token, channelId: "test", uid: 123456, mediaOptions: option)
+        }
+
+        func leaveChannel(){
+            agoraKit.stopPreview()
+            agoraKit.leaveChannel(nil)
+        }
+
+        func destroy(){
+            AgoraRtcEngineKit.destroy()
+        }
+
+        func fetchToken(channelName: String, userId: UInt, role: UInt,
+            callback: @escaping (Result<String, Error>) -> Void
+        ){
+            let url = URL(string: "http://<Your Host URL and port>/fetch_rtc_token")
+            let parameters = ["uid":userId,"channelName": channelName, "role": role] as [String : Any]
+
+            print(parameters.self)
+
+
+            var request = URLRequest(
+                url: url!,
+                timeoutInterval: 10
+            )
+
+            request.httpMethod = "POST"
+
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            }
+            catch let error {
+                print(error.localizedDescription)
+            }
+
+            URLSession.shared.dataTask(with: request){data, _, err in
+                guard let data = data else {
+                    if let err = err {
+                        callback(.failure(err))
+                    }
+                    else {
+                        callback(.failure(TokenError.noData))
+                    }
+
+                return
+            }
+
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+
+            if let responseDict = responseJSON as? [String: Any], let token = responseDict["token"] as? String {
+                callback(.success(token))
+            } else {
+                callback(.failure(TokenError.invalidData))
+            }
+
+        }.resume()
+
+    }
+    }
+
+    extension ViewController: AgoraRtcEngineDelegate{
+
+        func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int){
+            let videoCanvas = AgoraRtcVideoCanvas()
+            videoCanvas.uid = uid
+            videoCanvas.renderMode = .hidden
+            videoCanvas.view = remoteView
+            agoraKit.setupRemoteVideo(videoCanvas)
+        }
+
+        func rtcEngine(_ engine: AgoraRtcEngineKit, tokenPrivilegeWillExpire token: String) {
+            self.fetchToken(channelName: "test", userId: 1234, role: 1){ result in
+                switch result {
+                case .success(let token):
+                    print("token is: \(token)")
+                    self.agoraKit.renewToken(token)
+                    print("Renewed the token")
+                case .failure(let err):
+                    print("Could not fetch token: \(err)")
+                }
+            }
+        }
+
+        func rtcEngine(_ engine: AgoraRtcEngineKit, connectionStateChanged state: AgoraConnectionState, reason: AgoraConnectionChangedReason) {
+            print("Connection state changed to")
+            print(state.rawValue)
+        }
+
+        func rtcEngineRequestToken(_ engine: AgoraRtcEngineKit) {
+            fetchToken(channelName: "test", userId: 1234, role: 1){ result in
+                switch result {
+                    case .success(let token):
+                        print("token is: \(token)")
+                        self.joinChannel(token: token)
+                    case .failure(let err):
+                        print("Could not fetch token: \(err)")
+                    }
+            }
+        }
+
+    }
+
+    ```
+
+### Test your implementation
+
+Build and run the project in your iOS simulator in the local machine to perform the following actions:
 - Successfully joining a channel.
 - Renewing a token every 10 seconds.
 
