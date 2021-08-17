@@ -6,8 +6,39 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public class MediaStreamInfo {
+  private int streamIndex;
+  private int mediaStreamType;
+  private String codecName;
+  private String language;
+  private int videoFrameRate;
+  private int videoBitRate;
+  private int videoWidth;
+  private int videoHeight;
+  private int videoRotation;
+  private int audioSampleRate;
+  private int audioChannels;
+  private int audioBytesPerSample;
+  private long duration;
+
+  public MediaStreamInfo() {}
+}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaStreamInfo : NSObject
+
+@property(nonatomic, assign) NSInteger streamIndex;
+@property(nonatomic, assign) AgoraMediaStreamType streamType;
+@property(nonatomic, copy) NSString *_Nonnull codecName;
+@property(nonatomic, copy) NSString *_Nullable language;
+@property(nonatomic, assign) NSInteger videoFrameRate;
+@property(nonatomic, assign) NSInteger videoBitRate;
+@property(nonatomic, assign) NSInteger videoWidth;
+@property(nonatomic, assign) NSInteger videoHeight;
+@property(nonatomic, assign) NSInteger audioSampleRate;
+@property(nonatomic, assign) NSInteger audioChannels;
+@property(nonatomic, assign) NSInteger duration;
+@property(nonatomic, assign) NSInteger rotation;
+
+@end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">struct PlayerStreamInfo {
   int streamIndex;
   MEDIA_STREAM_TYPE streamType;
