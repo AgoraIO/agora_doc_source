@@ -1,4 +1,4 @@
-## Introduction
+## Understand the tech
 
 To meet the laws and regulations of different countries or regions, the Agora RTC SDK supports geofencing. After enabling geofencing, the Agora SDK only connects to Agora servers within the specified region.
 
