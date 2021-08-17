@@ -207,9 +207,9 @@ In order to show the authentication workflow, this section shows how to build an
 
 ### Use tokens for user authentication
 
-This section uses the Android client as an example to show how to use a token for client-side user authentication.
+This section uses the iOS client as an example to show how to use a token for client-side user authentication.
 
-In order to show the authentication workflow, this section shows how to build and run an Android client on the simulator of your local machine.
+In order to show the authentication workflow, this section shows how to build and run an iOS client on the simulator of your local machine.
 
 <div class="alert warning">This sample client is for demonstration purposes only. Do not use it in a production environment.</div>
 
