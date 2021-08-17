@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
         mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
         ChannelMediaOptions options = new ChannelMediaOptions();
         // Join the channel.
-        mRtcEngine.joinChannel(null, channelName, token, options);
+        mRtcEngine.joinChannel(token, channelName, 0, options);
     }
     // Add the remote interface for a remote user.
     private void setupRemoteVideo(int uid) {
