@@ -445,7 +445,7 @@ In the code example, you can see that token is related to the following code log
 
 ### Test your implementation
 
-Build and run the project in your Android simulator in the local machine to perform the following actions:
+Build and run the project in your Android simulator in the local machine to perform the following actions. Ensure the API level of the simulator matches the target API level of the project.
 - Successfully joining a channel.
 - Renewing a token every 10 seconds.
 
