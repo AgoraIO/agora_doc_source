@@ -349,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
 
         RequestBody requestBody = RequestBody.create(JSON, String.valueOf(json));
         Request request = new Request.Builder()
-                .url("http://192.168.31.46:8082/fetch_rtc_token")
+                .url("http://<Your Host URL and port>/fetch_rtc_token")
                 .header("Content-Type", "application/json; charset=UTF-8")
                 .post(requestBody)
                 .build();

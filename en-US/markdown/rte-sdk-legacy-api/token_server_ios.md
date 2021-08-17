@@ -330,7 +330,7 @@ class ViewController: UIViewController {
     func fetchToken(channelName: String, userId: UInt, role: UInt,
         callback: @escaping (Result<String, Error>) -> Void
     ){
-        let url = URL(string: "http://10.53.3.234:8082/fetch_rtc_token")
+        let url = URL(string: "http://<Your Host URL and port>/fetch_rtc_token")
         let parameters = ["uid":userId,"channelName": channelName, "role": role] as [String : Any]
 
         print(parameters.self)
