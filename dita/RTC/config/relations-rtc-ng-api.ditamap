@@ -8,6 +8,15 @@
             <relcolspec type="reference"/>
             <relcolspec type="reference" processing-role="resource-only"/>
         </relheader>
+        <relrow props="android">
+            <relcell>
+                <topicref keyref="create1"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IRtcEngine"/>
+                <topicref keyref="IRtcEngineEventHandler"/>
+            </relcell>
+        </relrow>
         <relrow>
             <relcell>
                 <topicref keyref="create2"/>
@@ -58,6 +67,23 @@
             <relcell>
                 <topicref keyref="AUDIO_PROFILE_TYPE"/>
                 <topicref keyref="AUDIO_SCENARIO_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setAudioProfile2"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="RtcEngineConfig"/>
+                <topicref keyref="AUDIO_PROFILE_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setVideoProfile"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="VIDEO_PROFILE_TYPE"/>
             </relcell>
         </relrow>
         <relrow>
@@ -130,7 +156,7 @@
                 <topicref keyref="RENDER_MODE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="enumerateVideoDevices"/>
                 <topicref keyref="getDevice_IVideoDeviceManager"/>
@@ -142,7 +168,8 @@
             <relcell>
                 <topicref keyref="Device" props="electron"/>
             </relcell>
-        </relrow><relrow>
+        </relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="getPlaybackDevice"/>
                 <topicref keyref="getPlaybackDeviceInfo"/>
@@ -169,7 +196,7 @@
                 <topicref keyref="LOCAL_AUDIO_STREAM_ERROR"/>
             </relcell>
         </relrow>
-        <relrow props="android ios flutter">
+        <relrow props="ios flutter">
             <relcell>
                 <topicref keyref="startRhythmPlayer"/>
                 <topicref keyref="configRhythmPlayer"/>
@@ -186,7 +213,7 @@
                 <topicref keyref="AudioFileRecordingConfig"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="mac windows">
             <relcell>
                 <topicref keyref="startScreenCaptureByDisplayId" props="mac windows"/>
                 <topicref keyref="startScreenCaptureByScreenRect"/>
@@ -198,7 +225,7 @@
                 <topicref keyref="VideoDimensions"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="setScreenCaptureContentHint"/>
             </relcell>
@@ -206,7 +233,7 @@
                 <topicref keyref="VIDEO_CONTENT_HINT"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="updateScreenCaptureParameters"/>
             </relcell>
@@ -215,7 +242,7 @@
                 <topicref keyref="VideoDimensions"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow  props="windows">
             <relcell>
                 <topicref keyref="updateScreenCaptureRegion1"/>
             </relcell>
@@ -338,7 +365,7 @@
                 <topicref keyref="LastmileProbeConfig"/>
             </relcell>
         </relrow>
-            <relrow>
+        <relrow props="windows">
                 <relcell>
                     <topicref keyref="startLocalVideoTranscoder"/>
                 </relcell>
@@ -457,24 +484,32 @@
                 <topicref keyref="AUDIO_FRAME_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
-                <topicref keyref="pushAudioFrame"/>
+                <topicref keyref="pushAudioFrame1"/>
             </relcell>
             <relcell>
                 <topicref keyref="MEDIA_SOURCE_TYPE"/>
                 <topicref keyref="AudioFrame"/>
              </relcell>
         </relrow>
-        <relrow props="windows">
+        <relrow props="windows android">
             <relcell>
                 <topicref keyref="pushVideoFrame"/>
             </relcell>
             <relcell>
                 <topicref keyref="ExternalVideoFrame"/>
-                <topicref keyref="VIDEO_BUFFER_TYPE"/>
-                <topicref keyref="VIDEO_PIXEL_FORMAT"/>
+                <topicref props="rtc" keyref="VIDEO_BUFFER_TYPE"/>
+                <topicref props="rtc" keyref="VIDEO_PIXEL_FORMAT"/>
             </relcell>
+        </relrow>
+         <relrow props="android">
+                <relcell>
+                    <topicref keyref="pushVideoFrame2" toc="no"/>
+                </relcell>
+                <relcell>
+                    <topicref keyref="ExternalVideoFrame"/>
+                </relcell>
         </relrow>
         <relrow props="electron">
             <relcell>
@@ -821,7 +856,7 @@
                 <topicref keyref="MEDIA_PLAYER_PLAYBACK_SPEED"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows">
             <relcell>
                 <topicref keyref="setBeautyEffectOptions"/>
             </relcell>
@@ -866,9 +901,9 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="registerAudioFrameObserver1"/>
+                <topicref props="windows" keyref="registerAudioFrameObserver1"/>
                 <topicref keyref="registerAudioFrameObserver2"/>
-                <topicref keyref="unregisterAudioFrameObserver"/>
+                <topicref props="windows" keyref="unregisterAudioFrameObserver"/>
             </relcell>
             <relcell>
                 <topicref keyref="IAudioFrameObserver"/>
@@ -892,7 +927,7 @@
                 <topicref keyref="IMediaPlayerSourceObserver"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows" >
             <relcell>
                 <topicref keyref="registerVideoFrameObserver_IMediaPlayer"/>
                 <topicref keyref="unregisterVideoFrameObserver"/>
@@ -1013,7 +1048,7 @@
                 <topicref keyref="METADATA_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows" >
             <relcell>
                 <topicref keyref="setCameraDeviceOrientation"/>
             </relcell>
@@ -1022,7 +1057,7 @@
                 <topicref keyref="VIDEO_ORIENTATION"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows" >
             <relcell>
                 <topicref keyref="startLocalVideoTranscoder"/>
                 <topicref keyref="updateLocalTranscoderConfiguration"/>
@@ -1031,7 +1066,7 @@
                 <topicref keyref="LocalTranscoderConfiguration"/>
                  </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows" >
             <relcell>
                 <topicref keyref="startPrimaryCameraCapture"/>
                 <topicref keyref="startSecondaryCameraCapture"/>
@@ -1040,7 +1075,7 @@
                 <topicref keyref="CameraCapturerConfiguration"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows" >
             <relcell>
                 <topicref keyref="startPrimaryScreenCapture"/>
                 <topicref keyref="startSecondaryScreenCapture"/>
@@ -1115,7 +1150,7 @@
                 <topicref keyref="UserInfo"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows" >
             <relcell>
                 <topicref keyref="onReceiveAudioPacket"/>
                 <topicref keyref="onReceiveVideoPacket"/>
@@ -1145,7 +1180,55 @@
                 <topicref keyref="EncodedVideoFrameInfo"/>
             </relcell>
         </relrow>
-                       
+        <relrow>
+            <relcell>
+                <topicref keyref="updateChannelMediaOptions"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="ChannelMediaOptions"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="getPlayPosition"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="MEDIA_PLAYER_ERROR"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="pushVideoFrameEx2"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="ExternalVideoFrame"/>
+            </relcell>
+        </relrow>
+        <relrow props="android">
+            <relcell>
+                <topicref keyref="getAudioEffectManager"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IAudioEffectManager"/>
+            </relcell>
+        </relrow>
+        <relrow props="android">
+            <relcell>
+                <topicref keyref="addHandler"/>
+                <topicref keyref="removeHandler"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IRtcEngineEventHandler"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setLogLevel"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="LOG_LEVEL"/>
+            </relcell>
+        </relrow>               
     </reltable>
     <reltable title="Method-Callback Relations">
         <!--Methods and corresponding callbacks.-->
@@ -1370,7 +1453,7 @@
                 <topicref keyref="onPlaybackAudioFrame"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="windows" >
             <relcell>
                 <topicref keyref="startPlaybackDeviceTest"/>
                 <topicref keyref="startRecordingDeviceTest"/>
@@ -1465,7 +1548,7 @@
             <relcell>
                 <topicref keyref="onPlaybackAudioFrame"/>
             </relcell>
-        </relrow> 
+        </relrow>
     </reltable>
     <reltable title="API-Feature Relations">
         <!--APIs grouped by feature. Topics in each cell in the first column are related to each other. The second column is reserved for related guides.-->
