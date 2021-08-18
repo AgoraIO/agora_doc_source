@@ -58,7 +58,7 @@ private void initializeAndJoinChannel() {
         config.mAppId = appId;
         config.mContext = mContext;
         config.mEventHandler = mEngineEventHandler.mRtcEventHandler;
-        // Specify the region for connection as North America.
+        // Excludes Mainland China from the regions for connection
         config.mAreaCode = AREA_CODE_GLOB ^ AREA_CODE_CN;
         mRtcEngine = RtcEngine.create(config);
     } catch (Exception e) {
