@@ -1,10 +1,16 @@
-## Understand the tech
+# Geofencing
 
 To meet the laws and regulations of different countries or regions, the Agora RTC SDK supports geofencing. After enabling geofencing, the Agora SDK only connects to Agora servers within the specified region.
+
+## Understand the tech
 
 For example, if you specify North America as the region for connection, the SDK only connects to Agora servers in North America. When there is no available server in North American, the SDK throws an error instead of connecting to servers in another region.
 
 <div class="alert note">Do not enable geofencing if your scenarios do not have regional restrictions.</div>
+
+## Prerequisites
+
+Before proceeding, ensure that you have a project that has implemented the basic real-time engagement functionality. For details, see [Start a Video Call]().
 
 ## Implementation
 
@@ -22,40 +28,40 @@ When creating an RtcEngine instance by calling [`create`](https://docs-preview.a
 
 ### Specify a region
 
+To specify the region for connection as North America, add `config.mAreaCode = AREA_CODE_NA;` before creating an instance of `RtcEngine`.
+
 ```java
-// Specify the region for connection as North America.
-private void initializeEngine() {
+// Initialize the app and join the channel.
+private void initializeAndJoinChannel() {
     try {
         RtcEngineConfig config = new RtcEngineConfig();
         config.mAppId = appId;
         config.mContext = mContext;
         config.mEventHandler = mEngineEventHandler.mRtcEventHandler;
+        // Specify the region for connection as North America.
         config.mAreaCode = AREA_CODE_NA;
         mRtcEngine = RtcEngine.create(config);
     } catch (Exception e) {
-        Log.e(TAG, Log.getStackTraceString(e));
-        throw new RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e));
+            throw new RuntimeException("Check the error.");
     }
-...
-}
 ```
 
 ### Exclude a region
 
+To exclude Mainland China from the regions for connection, add `config.mAreaCode = AREA_CODE_GLOB ^ AREA_CODE_CN;` before creating an instance of `RtcEngine`.
+
 ```java
-// Exclude Mainland China from the regions for connection.
-private void initializeEngine() {
+// Initialize the app and join the channel.
+private void initializeAndJoinChannel() {
     try {
         RtcEngineConfig config = new RtcEngineConfig();
         config.mAppId = appId;
         config.mContext = mContext;
         config.mEventHandler = mEngineEventHandler.mRtcEventHandler;
+        // Specify the region for connection as North America.
         config.mAreaCode = AREA_CODE_GLOB ^ AREA_CODE_CN;
         mRtcEngine = RtcEngine.create(config);
     } catch (Exception e) {
-        Log.e(TAG, Log.getStackTraceString(e));
-        throw new RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e));
+            throw new RuntimeException("Check the error.");
     }
-...
-}
 ```
