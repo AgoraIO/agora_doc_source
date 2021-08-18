@@ -6,8 +6,27 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
+            <codeblock props="android" outputclass="language-java">public class AudioFileRecordingConfig {
+  public String filePath;
+  public int sampleRate;
+  public boolean codec;
+  public int fileRecordOption;
+  public int quality;
+
+  public AudioFileRecordingConfig() {
+    sampleRate = 32000;
+    codec = true;
+    fileRecordOption = Constants.AUDIO_FILE_RECORDING_MIXED;
+    quality = Constants.AUDIO_RECORDING_QUALITY_LOW;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioFileRecordingConfig: NSObject
+@property (copy, nonatomic) NSString * _Nullable filePath;
+@property (assign, nonatomic) BOOL codec;
+@property (assign, nonatomic) NSUInteger sampleRate;
+@property (assign, nonatomic) AgoraAudioFileRecordingType fileRecordOption;
+@property (assign, nonatomic) AgoraAudioRecordingQuality quality;
+@end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct AudioFileRecordingConfig {
   const char* filePath;
   bool encode;
