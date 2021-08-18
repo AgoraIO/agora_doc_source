@@ -4,7 +4,7 @@ This page shows the minimum code you need to integrate high-quality, low-latency
 
 The following figure shows the workflow you need to integrate into your app in order to achieve Video Call functionality.
 
-![](https://web-cdn.agora.io/docs-files/1628835486553)
+![](https://web-cdn.agora.io/docs-files/1629250175461)
 
 To start Video Call, implement the following steps in your app:
 
@@ -12,16 +12,7 @@ To start Video Call, implement the following steps in your app:
 
    Set both app clients as the host.
 
-2. **Request token**
-
-3. **Return token**
-
-   A token is the credential that authenticates a user when your app client joins a channel.
-
-   - In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms) for details.
-   - The procedure in this page is to get a temporary token from the Agora Console as an example.
-
-4. **Join a channel**
+2. **Join a channel**
 
    Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
@@ -29,24 +20,20 @@ To start Video Call, implement the following steps in your app:
 
    After joining a channel,  both hosts can publish video and audio stream to the channel and subscribe to each other.
 
-For an app client to join a channel, you need the following information:
-
-- The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
-- A token: A  temporary token with a validity period of 24 hours.You can get the token from [Agora Console](https://console.agora.io).
-- The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
-- The channel name: A string that identifies the channel. 
-
 ## Prerequisites
 
 - Android Studio 4.1 or later.
 - Android SDK API Level 16 or higher.
 - Two mobile devices that run Android 4.1 or later.
-- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project, obtain the App ID of the project, and generate a temporary token. For details, please refer to [Start using the Agora platform](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms). 
+- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project, please refer to [Start using the Agora platform](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms) and get the following information from Agora Console:
+  - The App ID: A randomly generated string provided by Agora for identifying your app. 
+  - A temporary  token: A token is the credential that authenticates a user when your app client joins a channel. A  temporary token is valid for 24 hours.
+  - The channel name: A string that identifies the channel. 
 - A computer that can access the Internet. Ensure that no firewall is deployed in your network environment, otherwise the project will fail.
 
 ## Project setup
 
-Follow the steps to create the environment necessary to integrate Video Call into your app.
+In order to create the environment necessary to integrate Video Call into your app, do the following:
 
 1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**.
 
@@ -56,16 +43,16 @@ Follow the steps to create the environment necessary to integrate Video Call int
 
    1. Go to [SDK Downloads](https://docs.agora.io/en/Interactive Broadcast/downloads?platform=Android), download the latest version of the Agora Video SDK, and extract the files from the downloaded SDK package.
 
-   2. Copy the following files or subfolders from the libs folder of the downloaded SDK package to the path of your project.
+   2. Copy the necessary files and folders from the unzipped SDK package to your project, as shown in the following table.
 
-      | File or subfolder               | Path of your project     |
-      | :------------------------------ | :----------------------- |
-      | `agora-rtc-sdk.jar` file        | `/app/libs/`             |
-      | `arm-v8a` folder                | `/app/src/main/jniLibs/` |
-      | `armeabi-v7a` folder            | `/app/src/main/jniLibs/` |
-      | `x86` folder                    | `/app/src/main/jniLibs/` |
-      | `x86_64` folder                 | `/app/src/main/jniLibs/` |
-      | `high_level_api/include` folder | `/app/src/main/jniLibs/` |
+      | File or subfolder                    | Path of your project     |
+      | :----------------------------------- | :----------------------- |
+      | `agora-rtc-sdk.jar` file             | `/app/libs/`             |
+      | `arm-v8a` folder                     | `/app/src/main/jniLibs/` |
+      | `armeabi-v7a` folder                 | `/app/src/main/jniLibs/` |
+      | `x86` folder                         | `/app/src/main/jniLibs/` |
+      | `x86_64` folder                      | `/app/src/main/jniLibs/` |
+      | `include` folder in `high_level_api` | `/app/src/main/jniLibs/` |
       
    3. In `/Gradle Scripts/build.gradle(Module: )`, add dependencies to local Jar packages as the code shown below.
    
@@ -259,6 +246,7 @@ public class MainActivity extends AppCompatActivity {
         mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
         ChannelMediaOptions options = new ChannelMediaOptions();
         // Join the channel.
+        // You need to specify the user ID yourself, and ensure that it is unique in the channel.
         mRtcEngine.joinChannel(token, channelName, 0, options);
     }
     // Add the remote interface for a remote user.
@@ -286,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         mRtcEngine.stopPreview();
         mRtcEngine.leaveChannel();
-        mRtcEngine.destroy();
+        RtcEngine.destroy();
     }
 
 }
@@ -306,11 +294,10 @@ public class MainActivity extends AppCompatActivity {
 
    You should be able to see and hear each other.
 
-   
 
 ## Next steps
 
-Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms) shows you how to start Video Call with a token that you retrieve from your server.
+In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms) for details.
 
 ## Sample project
 

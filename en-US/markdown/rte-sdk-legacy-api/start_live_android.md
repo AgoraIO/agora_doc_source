@@ -4,7 +4,7 @@ This page shows the minimum code you need to integrate high-quality, low-latency
 
 The following figure shows the workflow you need to integrate into your app in order to achieve Interactive Live Streaming functionality.
 
-![](https://web-cdn.agora.io/docs-files/1628835475394)
+![](https://web-cdn.agora.io/docs-files/1629250184756)
 
 You start Interactive Live Streaming Premium when you call joinChannel from your RtcEngine instance.
 
@@ -14,16 +14,6 @@ The Interactive Live Streaming Premium workflow you integrate into your app is:
 
    Users in an Interactive Live Streaming Premium channel are either a host or an audience member. The host publishes streams to the channel, and the audience subscribes to the streams. 
 
-2. **Request token**
-
-   Send a request to app server for a token.
-
-3. **Return token**
-
-   Generate a token and pass it to app client.
-
-   <div>A token is the credential that authenticates a user when your app client joins a channel. <ul><li>In a test or production environment, use a token server to generate token is recommended to ensure communication security (as shown in the figure above), see <xref href="https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms">Authenticate Your Users with Tokens</xref> for details.</li><li>The description on this page shows how to get a temporary token from the Agora Console as a quick testing example.</li></ul></div>
-
 4. **Join a channel**
 
    Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
@@ -32,23 +22,19 @@ The Interactive Live Streaming Premium workflow you integrate into your app is:
 
    After joining a channel, a host can publish audio and video and subscribe other hosts in the channel.
 
-6.  Subscribe to audio and video in the channel
+6.  **Subscribe to audio and video in the channel**
 
    The role of audience can only subscribe to all hosts in the channel, you can call `setClientRole` to switch the client role to host. 
-
-For an app client to join a channel, you need the following information:
-
-- The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
-- The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
-- A token: In a test or production environment, your app client retrieves tokens from your server. For rapid testing, you can use a temporary token with a validity period of 24 hours.
-- The channel name: A string that identifies the channel for live streaming. 
 
 ## Prerequisites
 
 - Android Studio 4.1 or later.
 - Android SDK API Level 16 or higher.
 - Two mobile devices that run Android 4.1 or later.
-- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project, obtain the App ID of the project, and generate a temporary token. For details, please refer to [Start using the Agora platform](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms). 
+- A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project, please refer to [Start using the Agora platform](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms) and get the following information from Agora Console:
+  - The App ID: A randomly generated string provided by Agora for identifying your app. 
+  - A temporary  token: A token is the credential that authenticates a user when your app client joins a channel. A  temporary token is valid for 24 hours.
+  - The channel name: A string that identifies the channel. 
 - A computer that can access the Internet. Ensure that no firewall is deployed in your network environment, otherwise the project will fail.
 
 ## Project setup
@@ -65,16 +51,15 @@ In order to create the environment necessary to integrate Interactive Live Strea
 
    2. Copy the necessary files and folders from the unzipped SDK package to your project, as shown in the following table.
 
-      | File or subfolder        | Path of your project     |
-      | :----------------------- | :----------------------- |
-      | `agora-rtc-sdk.jar` file | `/app/libs/`             |
-      | `arm-v8a` folder         | `/app/src/main/jniLibs/` |
-      | `armeabi-v7a` folder     | `/app/src/main/jniLibs/` |
-      | `x86` folder             | `/app/src/main/jniLibs/` |
-      | `x86_64` folder          | `/app/src/main/jniLibs/` |
-      | `high_level_api` folder  | `/app/src/main/jniLibs/` |
-      | `low_level_api` folder   | `/app/src/main/jniLibs/` |
-   
+      | File or subfolder                    | Path of your project     |
+      | :----------------------------------- | :----------------------- |
+      | `agora-rtc-sdk.jar` file             | `/app/libs/`             |
+      | `arm-v8a` folder                     | `/app/src/main/jniLibs/` |
+      | `armeabi-v7a` folder                 | `/app/src/main/jniLibs/` |
+      | `x86` folder                         | `/app/src/main/jniLibs/` |
+      | `x86_64` folder                      | `/app/src/main/jniLibs/` |
+      | `include` folder in `high_level_api` | `/app/src/main/jniLibs/` |
+      
    3. In `/Gradle Scripts/build.gradle(Module: )`, add dependencies to local Jar packages as the code shown below.
    
       ```
@@ -267,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
         mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
         ChannelMediaOptions options = new ChannelMediaOptions();
         // Join the channel.
+        // You need to specify the user ID yourself, and ensure that it is unique in the channel.
         mRtcEngine.joinChannel(token, channelName, 0, options);
     }
     // Add the remote interface for a remote user.
@@ -294,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         mRtcEngine.stopPreview();
         mRtcEngine.leaveChannel();
-        mRtcEngine.destroy();
+        RtcEngine.destroy();
     }
 
 }
@@ -318,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
 
 ## Next steps
 
-Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms) shows you how to start live streaming with a token that you retrieve from your server.
+In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms) for details.
 
 ## See also
 
