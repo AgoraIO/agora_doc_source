@@ -1,4 +1,4 @@
-## Introduction
+## Understand the tech
 
 The Agora RTC SDK enables you to manage the volume of the recorded audio or of the audio playback according to your actual scenario. For example, to mute a remote user in a one-to-one call, you can set the audio playback volume as 0.
 

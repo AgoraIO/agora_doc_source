@@ -1,4 +1,4 @@
-## Description
+## Understand the tech
 
 In real-time scenarios requiring high quality, conducting tests before joining a channel helps troubleshoot in advance and improve the overall user experience. You can perform the following pre-call tests:
 
