@@ -1,4 +1,4 @@
-This page shows you how to integrate and use an extension from the Agora Extensions Marketplace.
+This page shows you how to integrate and use an extension from the [Agora Extensions Marketplace](TBD).
 
 ## Understand the tech
 
@@ -18,7 +18,7 @@ When calling the above-mentioned APIs, you need the following information from t
 - `EXTENSION_NAME`: The name of the extension.
 - `EXTENSION_VENDOR_NAME`: The name of the extension provider.
 - `EXTENSION_VIDEO_FILTER_NAME` or `EXTENSION_AUDIO_FILTER_NAME`: The name of the video or audio filter plugin of the extension.
-- Key-value pairs for `setExtensionProperty`: Each feature has a unique key-value pair.
+- Key-value pairs for `setExtensionProperty`: These key-value pairs configure the properties of the extension, such as enabling a feature and setting the parameters for a feature.
 
 ## Prerequisites
 
@@ -52,11 +52,11 @@ This section shows how to implement the features of an extension in your Agora p
 
 For demonstration purposes, a simple watermark extension is used to explain the procedure. The watermark extension adds a watermark for local video.
 
-You can get the watermark extension from [API-Example](http://xxx/), and follow the procedure to experience its feature. 
+You can get the watermark extension from [API-Example](http://xxx/), and follow the procedure to see how extensions work. 
 
 ### Import necessary classes
 
-In `/app/java/com.example.<projectname>/MainActivity`:
+In `app/src/main/java/com.example.<projectname>/MainActivity`:
 
 1. Add the following lines to import the Android classes used by the extension:
 
@@ -65,29 +65,18 @@ In `/app/java/com.example.<projectname>/MainActivity`:
    import org.json.JSONObject;
    ```
 
-2. Before `import io.agora.rtc2.video.VideoCanvas`,  add the following lines to import the Agora classes used by the extension:
+2. Add the following lines to import the Agora classes used by the extension:
 
    ```java
+   // ExtensionManager is used to pass in basic information about the extension
    import io.agora.extension.ExtensionManager;
-   import io.agora.rtc2.Constants;
    import io.agora.rtc2.IMediaExtensionObserver;
+   import io.agora.rtc2.RtcEngineConfig;
    ```
-
-### Pass in basic extension information
-
-Basic information about the watermark extension is defined in  `/agora-simple-filter/src/main/java/io/agora/extension/ExtensionManager.java`, as follows:
-
-```java
-public static final String EXTENSION_NAME = "agora-simple-filter";
-public static final String EXTENSION_VENDOR_NAME = "Agora";
-public static final String EXTENSION_VIDEO_FILTER_NAME = "Watermark";
-```
-
-You do not need to change anything.
 
 ### Enable and use the extension
 
-In `/app/java/com.example.<projectname>/MainActivity`, replace the current `initializeAndJoinChannel` function with the following code:
+In `app/src/main/java/com.example.<projectname>/MainActivity`, replace the current `initializeAndJoinChannel` function with the following code:
 
 ```java
 private void initializeAndJoinChannel() {
@@ -95,13 +84,13 @@ private void initializeAndJoinChannel() {
         RtcEngineConfig config = new RtcEngineConfig();
         config.mContext = this;
         config.mAppId = appId;
-        // Call addExtension to add the extension
-        config.addExtension(ExtensionManager.EXTENSION_NAME);
-        // Register IMediaExtensionObserver to receive events from the extension
+        // Call addExtension to add the extension.
+     config.addExtension(ExtensionManager.EXTENSION_NAME);
+        // Register IMediaExtensionObserver to receive events from the extension.
         config.mExtensionObserver = new IMediaExtensionObserver() {
             @Override
             public void onEvent(String vendor, String extension, String key, String value) {
-                // Add callback handling logics for extension events
+                // Add callback handling logics for extension events.
             }
         };
         config.mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
@@ -114,8 +103,8 @@ private void initializeAndJoinChannel() {
  
     mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
     // Call enableExtension to enable the extension.
-    // To enable multiple extensions, call enableExtension as many times. The sequence of enabling multiple extensions determines the order of extensions in the transmission pipeline.
-    // For example, if you enable extension A before extension B, the data processed by extension B is already processed by extension A.
+    // To enable multiple extensions, call enableExtension as many times. The sequence of enabling multiple extensions determines the order of these extensions in the transmission pipeline.
+    // For example, if you enable extension A before extension B, extension A processes data from the SDK before extension B.
     mRtcEngine.enableExtension(ExtensionManager.EXTENSION_VENDOR_NAME, ExtensionManager.EXTENSION_VIDEO_FILTER_NAME, true);
  
     mRtcEngine.enableVideo();
