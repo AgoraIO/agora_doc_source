@@ -1,47 +1,82 @@
 # Channel Connection
 
-During a real-time engagement session, the connection state between an app client and Agora SD-RTN<sup>TM</sup> changes as the client joins and leaves an Agora channel, or go offline due to network or authentication reasons. 
+During a real-time engagement session, the connection state between an app client and Agora SD-RTN<sup>TM</sup> changes as the client joins and leaves an Agora channel, or goes offline due to network or authentication reasons. 
 
-This page includes introductions to the various connection states and how they change, as well as the reasons behind these changes.
+This page includes introductions to the various connection states and how they change, as well as the reasons behind these changes to help you better manage users and troubleshoot when network interruption occurs.
 
-## Understand the tech
+## Channel connection states
 
-Agora provides an `onConnectionStateChanged` callback that occurs when the connection state changes. The following diagram illustrates the various states and how the states change:
+Agora provides an `onConnectionStateChanged` callback that occurs when the connection state changes. The following diagram illustrates the various states and how the states change as a client app joins and leaves a channel:
 
 ![](images/connection_tech.png)
 
-As shown in the diagram, a client app can have five connection states before and after it joins an Agora channel. You can use these connection states to better manage the user and troubleshoot when network interruption occurs.
+As shown in the above diagram, an app can have the following five connection states before and after the app joins and leaves the channel:
 
-## Implement channel connection monitoring
+| Connection state | Description |
+| --- | --- |
+| Disconnected | The initial connection state. It usually occurs under the following circumstances:<ul><li>Before calling `joinChannel`.</li><li>After calling `leaveChannel`.</li></ul> |
+| Connecting | This is the instantaneous state after calling the `joinChannel` method. |
+| Connected | This state occurs after the app successfully joins the channel. The SDK also triggers `onJoinChannelSuccess` to report that the local client has joined the channel. Users can now publish or subcribe to audio and video in the channel. |
+| Reconnecting | This state occurs when the connection is interrupted. The SDK automatically tries to reconnect after the interruption.<ul><li>If it successfully rejoins the channel, the SDK trigger the `onRejoinChannelSuccess` callback.</li><li>If is does not join the channel in 10 seconds, the SDK triggers `onConnectionLost` while keeping rejoining the channel.</li></ul> |
+| Failed | The connection fails. This state occurs when the SDK cannot join the channel in 20 minutes, and the SDK stops reconnecting to the channel. When this state occurs, call `leaveChannel` to leave the current channel, and `joinChannel` to join the channel again. |
 
-This section includes how to implemnent channel connection monitoring in a real-time engagement app.
+## Connection state change reasons
 
-```java
-public void onConnectionStateChanged(int state, int reason) {
-    super.onConnectionStateChanged(state, reason);
-    Log.i(TAG, "onConnectoionStateChanged->" + ", state->" + state + ", reason->" + reason);
-}
-```
+To help you troubleshoot when network interruption occurs, `onConnectionStateChanged` also provides a `reason` parameter that explains why the connection state changes.
 
- The `onConnectionStateChanged` callback that includes all these state and a `reason` parameter that explains the reasons for connection state changes:
+The following table lists the mapping relationship between the connection state, reasons for the state change, and how to troubleshoot when network interruption occurs.
 
- | Connection state | Reasons for the state change | Trouble shooting |
- | --- | --- | --- |
- | Disconnected | <ul><li>`LEAVE_CHANNEL`</li> | N/A |
- | Connecting | <ul><li>`CONNECTING`</li><li>`RENEW_TOKEN`</li> | N/A |
- | Connected | <ul><li>`JOIN_SUCCESS`</ul> | N/A |
- | Reconnecting | <ul><li>`INTERUPTED`</li><li>`INVALID_APP_ID`</li><li>`INVALID_CHANNEL_NAME`</li><li>`INVALID_TOKEN`</li><li>`TOKEN_EXPIRED`</li><li>`SETTING_PROXY_SERVER`</li><li>`CLIENT_IP_ADDRESS_CHANGED`</li><li>`KEEP_ALIVE_TIMEOUT`</li><li>`PROXY_SERVER_INTERRUPTED`</li>| |
- | Failed | <ul><li>`BANNED_BY_SERVER`</li><li>`JOIN_FAILED`</li><li>`REJECTED_BY_SERVER`</li> |
+| Connection state | Reasons for the state change and how to troubleshoot | 
+| --- | --- |
+| Disconnected | <ul><li>`LEAVE_CHANNEL`: The user leaves the channel.</li><li>`INVALID_TOKEN`: Use a valid token to join the channel.</li></ul> |
+| Connecting | <ul><li>`CONNECTING`: The app is attempting to join an Agora channel.</li></ul> |
+| Connected | <ul><li>`JOIN_SUCCESS`: The app has successfully joined the channel.</li></ul> |
+| Reconnecting | <ul><li>`INTERUPTED`: When the network connection is interrupted, the SDK automatically reconnects to the channel, and the connection state keeps changing. For how automatic reconnection affects the connection state, see [API behavior during SDK reconnection](#reconnection).</li><li>`SETTING_PROXY_SERVER`: Wait till the SDK successfully reconnects the server.</li><li>`CLIENT_IP_ADDRESS_CHANGED`: Wait till the SDK successfully reconnects the server.</li><li>`KEEP_ALIVE_TIMEOUT`: Wait till the SDK successfully reconnects the server.</li><li>`PROXY_SERVER_INTERRUPTED`: Wait till the SDK successfully reconnects the server.</li><li>`RENEW_TOKEN`: The token is renewed and the app is attempting to rejoin the channel.</li></ul>| |
+| Failed | <ul><li>`INVALID_APP_ID`: Use a valid app ID to join the channel.</li><li>`INVALID_CHANNEL_NAME`: Use a valid channel name to join the channel.</li><li>`TOKEN_EXPIRED`: Get a new token from your app server and call `joinChannel` to join the channel.</li><li>`BANNED_BY_SERVER`: The user is banned by the server.<li>`JOIN_FAILED`: The SDK fails to join the channel for more than 20 minutes and stops reconnecting to the channel. Call `leaveChannel` to leave the current channel and `joinChannel` to join the channel again.</li><li>`REJECTED_BY_SERVER`: This reason occurs in the following situations:<ul><li>If the app calls `joinChannel` after the local user has already joined the channel.</li><li>When the app calls `startEchoTest` but not `stopEchoTest`.</ul></li></li> |
 
+<a name="reconnection"></a>
 
+## API behavior during SDK reconnection
 
 When the network connection is interrupted, the SDK automatically tries to reconnect to the server. 
-- If it successfully rejoins the channel, the SDK triggers `onRejoinChannelSuccess`.
-- If not in 10 seconds, the SDK triggers `onConnectionLost` while still trying rejoining the channel.
-- If not in 20 minutes, the SDK stops
+
+The following diagram shows the callbacks received by the local user (UID1) and the remote user (UID2) when the local user joins the channel, gets a network exception, lises connection, and rejoins the channal. 
+
+![](images/reconnection_tech.png)
+
+In the above diagram:
+
+- T0: The SDK receives the `joinChannel` request from UID1.
+- T1: 200 ms after calling `joinChannel`, UID1 joins the channel. In the process, UID also receives the `onConnectionStateChanged(CONNECTING, CONNECTING)` callback. When successfully joining the channel, UID 1 receives the `onConnectionStateChanged(CONNECTED, JOIN_SUCCESS)` and `onJoinChannelSuccess` callbacks.
+- T2: 100 ms after UID1 joins the channel, UID2 receives the `onUserJoined` callback.
+- T3: The uplink network condition of UID1 deteriorates. The SDK automatically tries rejoining the channel.
+- T4: If UID1 fails to receive any data from the server in four seconds, UID1 receives `onConnectionStateChanged(RECONNCTING, INTERRUPTED)`; meanwhile the SDK continues to try rejoining the channel.
+- T5: If UID1 fails to receive any data from the server in ten seconds, UID1 receives `onConnectionLost`; meanwhile the SDK continues to try rejoining the channel.
+- T6: If UID2 fails to receive any data from UID1 in 20 seconds, the SDK decides that UID1 is offline. UID2 receives `onUserOffline`.
+- T7: If UID1 fails to rejoin the channel in 20 minutes, the SDK stops trying to rejoin the channel. UID1 receives `onConnectionStateChanged(FAILED, JOIN_FAILED)`.
 
 
 ## Reference
+
+This section provides reference information you may need when managing the channel connection state.
+
+- API Reference
+
+  - [getConnectionState]()
+  - [onConnectionStateChanged]()
+  - [onConnectionLost]()
+
+- For the SDK reconnection mechanism in the Agora RTC SDK earlier than v2.3.2 and how connection states change with the process is terminated, see [FAQ: Does Agora have reconnection mechanism?]()
+
+
+
+
+
+
+
+
+
+
 
 
  
