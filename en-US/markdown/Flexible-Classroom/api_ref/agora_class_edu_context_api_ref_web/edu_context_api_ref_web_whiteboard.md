@@ -1,10 +1,4 @@
-# useBoardContext
-
-`useBoardContext()` provides whiteboard-related capabilities.
-
-You can import `useBoardContext` by `import {useBoardContext} from'agora-edu-core';`, and then use `const {...} = useBoardContext()` to get the whiteboard-related ability in the flexible classroom.
-
-This page lists all the functions and events provided by `useBoardContext()`.
+This page lists all the functions and events provided by `BoardContext` for the interactive whiteboard module of Flexible Classroom.
 
 ## room
 
@@ -41,8 +35,7 @@ The total number of whiteboard pages.
 ## courseWareList
 
 ```typescript
-courseWareList: [],
-
+courseWareList: array,
 ```
 
 The list of the courseware.
@@ -106,7 +99,7 @@ Whether the whiteboard is ready.
 ## tools
 
 ```typescript
-tools: array,
+tools: any[],
 ```
 
 The list of the whiteboard editing tools.
@@ -114,7 +107,7 @@ The list of the whiteboard editing tools.
 ## changeStroke
 
 ```typescript
-async changeStroke(value: any): void
+changeStroke: (value: any) => void,
 ```
 
 Set the line thickness.
@@ -122,7 +115,7 @@ Set the line thickness.
 ## changeHexColor
 
 ```typescript
-async changeHexColor(colorHex: string): void
+changeHexColor: (value: any) => void,
 ```
 
 Select a color.
@@ -130,7 +123,7 @@ Select a color.
 ## mountToDOM
 
 ```typescript
-async mountToDOM(dom: HTMLDivElement | null): void
+mountToDOM: (dom: HTMLDivElement | null) => void,
 ```
 
 Mount or unmount the whiteboard to the DOM.
@@ -138,7 +131,7 @@ Mount or unmount the whiteboard to the DOM.
 ## setTool
 
 ```typescript
-async setTool(tool: string): void
+setTool: (tool: string) => void,
 ```
 
 Switch tools.
@@ -146,55 +139,35 @@ Switch tools.
 ## zoomBoard
 
 ```typescript
-async zoomBoard(type: string): void
+zoomBoard: (type: string) => void,
 ```
 
-Zoom in or out the whiteboard.
+Whether to make the whitboard fullscreen.
+
+| Parameter | Description                                                  |
+| :-------- | :----------------------------------------------------------- |
+| `type`    | <li> `fullscreen` : Make the whitboard fullscreen.<li> `fullscreenExit`: Exit fullscreen. |
 
 ## setZoomScale
 
 ```typescript
-async setZoomScale(operation: string): void
+setZoomScale: (operation: string) => void,
 ```
 
-Set the ration of zooming in or out.
+Zoom in or out the whiteboard.
 
 ## changeFooterMenu
 
 ```typescript
-async changeFooterMenu(itemName: string): void
+changeFooterMenu: (itemName: string) => void,
 ```
 
 Set to which whiteboard page that you want to jump to.
 
-## downloadList
-
-```typescript
-downloadList: array,
-```
-
-The list of downloadable classroom resources.
-
-## putSceneByResourceUuid
-
-```typescript
-async putSceneByResourceUuid(uuid: string): void
-```
-
-Display the courseware on the whiteboard.
-
-## startDownload
-
-```typescript
-async startDownload (taskUuid: string): void
-```
-
-Start downloading the courseware.
-
 ## updatePen
 
 ```typescript
-async updatePen(value: any): void
+updatePen: (value: any) => void,
 ```
 
 Update the pen.
@@ -207,69 +180,13 @@ boardPenIsActive: boolean,
 
 Whether the currently selected tool is a pen.
 
-## startOrStopSharing
-
-```typescript
-async startOrStopSharing(): void
-```
-
-Start or stop screen sharing.
-
 ## setLaserPoint
 
 ```typescript
-setLaserPoint(): void
+setLaserPoint: () => void,
 ```
 
 Select the laser pointer.
-
-## resourcesList
-
-```typescript
-resourcesList: array,
-```
-
-The list of the courseware.
-
-## refreshCloudResources
-
-```typescript
-async refreshCloudResources(): void
-```
-
-Update the courseware list.
-
-## removeMaterialList
-
-```typescript
-async removeMaterialList(resourceUuids: string[]): void
-```
-
-Remove the courseware.
-
-## cancelUpload
-
-```typescript
-async cancelUpload(): void
-```
-
-Cancel uploading a file to the classroom.
-
-## doUpload
-
-```typescript
-async doUpload(payload: any): void
-```
-
-Upload a file to the classroom.
-
-## closeMaterial
-
-```typescript
-async closeMaterial(resourceUuid: string): void
-```
-
-Close the file.
 
 ## installTools
 
@@ -278,22 +195,6 @@ async installTools(tools: any[]): void
 ```
 
 Install tools.
-
-## personalResources
-
-```typescript
-personalResources: array,
-```
-
-The list of courseware uploaded by the teacher through the Flexible Classroom client.
-
-## publicResources
-
-```typescript
-publicResources: array,
-```
-
-The list of courseware assigned by the teaching institution.
 
 ## revokeUserPermission
 
