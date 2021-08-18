@@ -1,8 +1,8 @@
 # Channel Connection
 
-During a real-time engagement session, the connection state between an app client and Agora SD-RTN<sup>TM</sup> changes as the client joins and leaves an Agora channel, or goes offline due to network or authentication reasons. 
+During a real-time engagement session, the connection state between an app client and Agora SD-RTN<sup>TM</sup> changes as the client joins and leaves an Agora channel, or goes offline due to network or authentication issues. 
 
-This page includes introductions to the various connection states and how they change, as well as the reasons behind these changes to help you better manage users and troubleshoot when network interruption occurs.
+This page explains the connection states, how they change and why they change, to help you better manage users and troubleshoot when network interruption occurs.
 
 ## Understand the tech
 
