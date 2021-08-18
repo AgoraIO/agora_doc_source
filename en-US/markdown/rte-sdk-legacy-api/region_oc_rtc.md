@@ -8,6 +8,10 @@ For example, if you specify North America as the region for connection, the SDK 
 
 <div class="alert note">Do not enable geofencing if your scenarios do not have regional restrictions.</div>
 
+## Prerequisites
+
+Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
+
 ## Implementation
 
 When creating an `AgoraRtcEngineKit` instance by calling [`sharedEngineWithConfig`](https://docs-preview.agoralab.co/en/trinity/API%20Reference/oc_high_level/interface_agora_rtc_engine_kit.html#a7b846b533c9144396668b7ce9d90cb8b), set the `areaCode` parameter in `AgoraRtcEngineConfig` to specify the region for connection.
