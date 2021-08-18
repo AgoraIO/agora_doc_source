@@ -10,7 +10,7 @@ For example, if you specify North America as the region for connection, the SDK 
 
 ## Prerequisites
 
-Before proceeding, ensure that you have a project that has implemented the basic real-time engagement functionality. For details, see [Start a Video Call]().
+Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_android) or [Start Interactive Live Streaming](start_live_android).
 
 ## Implementation
 
