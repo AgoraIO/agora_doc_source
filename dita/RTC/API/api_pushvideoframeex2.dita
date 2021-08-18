@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int pushExternalVideoFrameEx(AgoraVideoFrame frame, RtcConnection connection);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pushExternalVideoFrame:(AgoraVideoFrame * _Nonnull)frame connectionId:(NSUInteger)connectionId;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp"/>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -26,7 +26,9 @@
             <p>调用 <xref keyref="setExternalVideoSource"/>方法，且设置
                     <codeph>enable</codeph> 参数为 <codeph><ph keyref="true"/></codeph>，<codeph>encodedFrame</codeph>
                 参数为 <codeph><ph keyref="false"/></codeph> 后，你可以调用本方法将未编码的外部视频帧推送到 SDK。</p>
-            <p>调用该方法或 <xref keyref="pushVideoFrameEx"/> 均能将视频帧数据传递给 SDK。 当视频帧数据为 <codeph>texture</codeph> 格式时，如果你想让 SDK 更好地发挥硬件性能，Agora 推荐你使用 <apiname keyref="pushVideoFrameEx"/> 方法。</p>
+            <p props="windows android">调用该方法或 <xref keyref="pushVideoFrameEx"/> 均能将视频帧数据传递给 SDK。
+                当视频帧数据为 <codeph>texture</codeph> 格式时，如果你想让 SDK 更好地发挥硬件性能，Agora 推荐你使用 <apiname
+                    keyref="pushVideoFrameEx"/> 方法。</p>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
