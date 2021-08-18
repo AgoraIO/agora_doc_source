@@ -72,18 +72,22 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 
 ## AgoraEduWhiteBoardHandler
 
-### onGetBoardContainer
+### onBoardContentView
 
 ```swift 
-@objc optional func onGetBoardContainer() -> UIView
+@objc optional func onBoardContentView(_ view: UIView)
 ```
 
-获取白板容器 View。
+返回白板容器 View。
 
-### onSetDrawingEnabled
+| 参数   | 描述            |
+| :----- | :-------------- |
+| `view` | 白板容器 View。 |
+
+### onDrawingEnabled
 
 ```swift
-@objc optional func onSetDrawingEnabled(_ enabled: Bool)
+@objc optional func onDrawingEnabled(_ enabled: Bool)
 ```
 
 报告白板基础工具是否可用。
@@ -162,11 +166,7 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 @objc optional func onCancelCurDownload()
 ```
 
-报告当前课件下载任务被取消。
-
-| 参数  | 描述                |
-| :---- | :------------------ |
-| `url` | 课件下载 URL 地址。 |
+报告课件下载被取消。
 
 ### onShowPermissionTips 
 
