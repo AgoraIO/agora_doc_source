@@ -42,7 +42,7 @@ This section provides reference information you may need when managing the chann
 <a name="connection_state"></a>
 ### Channel connection states
 
-As shown in the above diagram, an app can have the following five connection states before and after the app joins and leaves the channel:
+As shown in the diagram, an app can have the following five connection states before and after the app joins and leaves the channel:
 
 | Connection state | Description |
 | --- | --- |
