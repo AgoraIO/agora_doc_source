@@ -6,8 +6,19 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
+            <codeblock props="android" outputclass="language-java">public class AudioEncodedFrameObserverConfig {
+  public int postionType;
+  public int encodingType;
+
+  public AudioEncodedFrameObserverConfig() {
+    postionType = Constants.AUDIO_FILE_RECORDING_PLAYBACK;
+    encodingType = Constants.AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioEncodedFrameDelegateConfig: NSObject
+@property (assign, nonatomic) AgoraAudioEncodedFrameDelegatePosition postionType;
+@property (assign, nonatomic) AgoraAudioEncodingType encodingType;
+@end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct AudioEncodedFrameObserverConfig {
     AUDIO_ENCODED_FRAME_OBSERVER_POSITION postionType;
     AUDIO_ENCODING_TYPE encodingType;
