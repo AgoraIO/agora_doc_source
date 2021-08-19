@@ -1,19 +1,22 @@
+# Use an Extension
+
+Extensions are add-ons designed to extend the functionality of the Agora SDK. The [Extensions Gallery](https://agora/) is home to extensions that make your app more fun. These extensions provide features such as:
+
+- Audio effects and voice changing.
+- Image enhancement and face filters.
+- Live transcription and captioning.
+
 This page shows you how to integrate and use an extension from the [Agora Extensions Marketplace](TBD).
 
 ## Understand the tech
 
-Extensions are add-ons that are designed to extend the functionality of the Agora SDK. The [Extensions Gallery](https://agora/) presents dozens of extensions that make your app more fun. These extensions provide features such as:
-
-- Audio effects and voice changing.
-- Image enhancement and face filters.
-
 To use an extension in your Agora project, implement the following steps in your app:
 
-1. Call `addExtension` to add the extension when initializing `RtcEngine`.
-2. Call `enableExtension` before joining a channel to enable the extension.
-3. Call `setExtensionProperty` to use a specific feature of the extension.
+1. Add the extension to your app: Call `addExtension` when you initialize `RtcEngine`.
+2. Enable the extension: Call `enableExtension` before joining a channel.
+3. Use an extension feature: Call `setExtensionProperty` set parameters for the feature.
 
-When calling the above-mentioned APIs, you need the following information from the extension provider:
+When you call these APIs, you need the following information that you can find in the Extensions Gallery:
 
 - `EXTENSION_NAME`: The name of the extension.
 - `EXTENSION_VENDOR_NAME`: The name of the extension provider.
@@ -24,27 +27,25 @@ When calling the above-mentioned APIs, you need the following information from t
 
 To follow the procedure on this page, you must have:
 
-- An Agora project that has implemented [a client for Video Call (Android)](TBD) or [a client for Interactive Live Streaming Premium (Android)](TBD).
-- A valid extension package. For details, see [Get an extension](TBD).
+- An Agora project that has successfully started [Video Call](TBD) or [Interactive Live Streaming Premium](TBD).
+- An extension package (`.aar` or `.so`) and details about the extension. See [Get an extension](TBD).
 
 ## Project setup
 
-Follow the steps to create the environment necessary to integrate the extension into your app.
+To create the environment necessary to integrate the extension into your app, do the following:
 
-If the extension package is a `.aar` file:
-
-1. Save the `.aar` file to  `/app/libs` in your project folder.
-
-2. In `/Gradle Scripts/build.gradle(Module: <ProjectName> app)`, add the following line under `dependencies`:
+- Android Archive file (`.aar`)
+	1. Save the `.aar` file to  `/app/libs` in your project folder.
+	2. In `/Gradle Scripts/build.gradle(Module: <ProjectName> app)`, add the following line under `dependencies`:
 
    ```java
    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
    ```
-
-If the extension package is a `.so` file, save the `.so` file to the following paths in your project folder:
-
-- `/app/src/main/jniLibs/arm64-v8a`
--  `/app/src/main/jniLibs/armeabi-v7a`
+- Shared Library (.so)
+	Save the `.so` file to the following paths in your project folder:
+	
+	- `/app/src/main/jniLibs/arm64-v8a`
+	-  `/app/src/main/jniLibs/armeabi-v7a`
 
 ## Implement the extension in your project
 
@@ -52,7 +53,7 @@ This section shows how to implement the features of an extension in your Agora p
 
 For demonstration purposes, a simple watermark extension is used to explain the procedure. The watermark extension adds a watermark for local video.
 
-You can get the watermark extension from [API-Example](http://xxx/), and follow the procedure to see how extensions work. 
+To follow the procedure in this section, download the [watermark extension](TBD) first. 
 
 ### Import necessary classes
 
@@ -120,7 +121,7 @@ private void initializeAndJoinChannel() {
     JSONObject o = new JSONObject();
     try {
         // Pass in the key-value pairs defined by the extension provider to configure the feature you want to use.
-        o.put("plugin.watermask.wmStr", "123456");
+        o.put("plugin.watermark.wmStr", "123456");
         o.put("plugin.watermark.wmEffectEnabled", true);
  
         // Call setExtensionProperty to use the feature.
@@ -137,9 +138,7 @@ mRtcEngine.setExtensionProperty(ExtensionManager.EXTENSION_VENDOR_NAME, Extensio
 
 2. Click `Run 'app'` on your Android Studio. A moment later you will see the project installed on your device.
 
-3. Grant microphone and camera access to your app.
-
-4. When the app launches, you should be able to see yourself and the watermark "123456" on the local view.
+4. When the app launches, you can see yourself and the watermark "123456" on the local view.
 
 
 ## Sample project
