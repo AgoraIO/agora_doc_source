@@ -143,5 +143,5 @@ mRtcEngine.setExtensionProperty(ExtensionManager.EXTENSION_VENDOR_NAME, Extensio
 
 ## Sample project
 
-Agora provides an open source sample project (TBD) on GitHub for your reference.
+Agora provides an open source sample project [TBD]() on GitHub for your reference.
 
