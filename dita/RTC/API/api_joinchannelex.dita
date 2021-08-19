@@ -14,21 +14,15 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int joinChannelEx(String token, String channelId, int uid,
-      ChannelMediaOptions options, IRtcEngineEventHandler eventHandler, RtcConnection connection);
-</codeblock>
+      ChannelMediaOptions options, IRtcEngineEventHandler eventHandler, RtcConnection connection);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelExByToken:(NSString* _Nullable)token
-                  channelId:(NSString* _Nonnull)channelId
-                        uid:(NSUInteger)uid
-               connectionId:(NSUInteger *)connectionId
+                 connection:(AgoraRtcConnection * _Nonnull)connection
                    delegate:(id&lt;AgoraRtcEngineDelegate> _Nullable)delegate
                mediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions
-                joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;
-</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int joinChannelEx(const char* token, const char* channelId, uid_t uid,
-                            const ChannelMediaOptions&amp; options,
-                            IRtcEngineEventHandler* eventHandler,
-                            conn_id_t* connectionId) = 0;
-</codeblock>
+                joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int joinChannelEx(const char* token, const RtcConnection&amp; connection,
+                              const ChannelMediaOptions&amp; options,
+                              IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -71,9 +65,9 @@
                             keyref="IRtcEngineEventHandler"/>。</pd>
                 </plentry>
                 <plentry id="connectionId">
-                    <pt>connectionId</pt>
+                    <pt>connection</pt>
                     <pd>
-                        <p>输出参数，连接 ID。当你多次加入相同频道时，连接 ID 能用于控制不同的 connection 实例。</p>
+                        <p>Connection 信息。详见 <xref keyref="RtcConnection"/>。</p>
                     </pd>
                 </plentry>
             </parml>

@@ -12,14 +12,11 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract UserInfo getUserInfoByUid(int uid, RtcConnection connection);
-</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract UserInfo getUserInfoByUid(int uid, RtcConnection connection);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)getUserInfoWithUserId:(NSUInteger)uid
                     userInfo:(AgoraUserInfo *_Nullable* _Nullable)userInfo
-                connectionId:(NSUInteger)connectionId;
-</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int getUserInfoByUid(uid_t uid, rtc::UserInfo* userInfo, conn_id_t connectionId = agora::rtc::DEFAULT_CONNECTION_ID) = 0;
-</codeblock>
+                  connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -37,7 +34,7 @@
   <pt>uid</pt>
   <pd>用户 ID。该参数为必填。</pd>
        </plentry>
-       <plentry>
+       <plentry props="apple windows">
                     <pt>userInfo</pt>
                     <pd>标识用户信息的 <xref keyref="UserInfo"/> 对象。<ul id="ul_sty_x5s_3qb">
                             <li>输入值：一个 <apiname keyref="UserInfo"/> 对象。</li>
@@ -46,17 +43,21 @@
                         </ul></pd>
                 </plentry>
                 <plentry>
-                    <pt>connectionId</pt>
-                    <pd>连接 ID。
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。
                     </pd>
                 </plentry>
    </parml>
         </section>
         <section id="return_values">
    <title>返回值</title>
-   <ul>
+   <ul props="apple windows">
        <li>0: 方法调用成功。</li>
        <li>&lt; 0: 方法调用失败。</li>
+   </ul>
+   <ul props="android">
+       <li>方法调用成功，返回 <xref keyref="UserInfo"/> 对象。</li>
+       <li>方法调用失败，则返回 <ph keyref="NULL"/>。</li>
    </ul>
         </section></refbody>
 </reference>
