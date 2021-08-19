@@ -1,3 +1,5 @@
+Real-time video chatting immerses people in the sights and sounds of human connections, keeping them engaged in your app longer.
+
 This page shows the minimum code you need to integrate high-quality, low-latency Video Call function into your app using the Video SDK for iOS.
 
 ## Understand the tech
@@ -22,18 +24,19 @@ To start video call, implement the following steps in your app:
 
 ## Prerequisites
 
-- Android Studio 4.1 or later.
-- Android SDK API Level 16 or higher.
-- Two mobile devices that run Android 4.1 or later.
+- Xcode 9.0 or later.
+- Two iOS devices running iOS 8.0 or later
+- A computer that can access the Internet. Ensure that no firewall is deployed in your network environment, otherwise the project will fail.
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project, please refer to [Start using the Agora platform](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms) and get the following information from Agora Console:
   - The App ID: A randomly generated string provided by Agora for identifying your app. 
   - A temporary  token: A token is the credential that authenticates a user when your app client joins a channel. A  temporary token is valid for 24 hours.
   - The channel name: A string that identifies the channel. 
-- A computer that can access the Internet. Ensure that no firewall is deployed in your network environment, otherwise the project will fail.
+- Apple developer account.
+
 
 ## Project setup
 
-In order to create the environment necessary to integrate Video Call into your app, do the following:
+In order to create the environment necessary to integrate Video Call into your app, do the following in Xcode:
 
 1. [Create a new project](https://help.apple.com/xcode/mac/current/#/dev07db0e578) for an iOS app using the **Single View App** template. Make sure you select **Storyboard** as the user interface.
 
@@ -77,80 +80,27 @@ This section shows how to use the Agora Video SDK to implement Video Call into y
 
 ### Create the UI
 
-<div>In the interface, create one frame for local video and another for remote video, refer to <a href="#referencecode">Reference code</a> for details.</div>
-
-### Implement the Video Call logic
-
-The following figure and steps show the API call sequence of implementing video call. 
-
-![](https://web-cdn.agora.io/docs-files/1628824327200)
-
-1. Initialize `AgoraEngine`: Call the `sharedEngineWithConfig` method to create an instance of `AgoraRtcEngineKit`, and set channel profile as `LiveBroadcasting`.
-
-   Each `AgoraRtcEngineKit` object supports one profile only. If you want to switch to another profile, call `destroy` to release the current `AgoraRtcEngineKit` object and then create a new one by calling `sharedEngineWithConfig` again.
-
-2. Set client role as a host. 
-
-3. Enable the video module: Call `setupLocalVideo` to initialize the local view.
-
-   1. Call the `enableVideo` method to enable the video module.
-   2. Call the `startPreview` method to enable the local video preview before joining the channel.
-
-4. Join the channel: Call `joinChannelByToken` to join the channel.
-
-5. Set the remote view: To set the video view of a remote host, monitor the `didJoinedOfUid` callback, which returns the remote host's ID shortly after the remote host joins the channel; then, call the `setupRemoteVideo` method in the callback, and pass in the retrieved `uid`.
-
-6. Leave channel: Call the `leaveChannel` method to leave the channel, for example, to end video call, close the app, or run the app in the background.
-
-   1. Call `stopPreview` to stop the local video preview.
-   2. Call `leaveChannel` to leave the channel.
-
-7. Destroy `AgoraRtcEngineKit` : Call `destroy` to destroy the `AgoraRtcEngineKit` to release all resources used by the Agora SDK.
-
-### <a name="referencecode">Reference  code</a>
-
-The complete code example for this scenario is listed below.
+When creating the user interface for basic Video Call, Agora recommends adding the video view of the host on both the local and remote clients. Refer to the following code samples to create a basic UI from scratch:
 
 ```swift
 // ViewController.swift
-// Imports the AgoraRtcKit class in your project.
 import UIKit
-import AgoraRtcKit
-
 class ViewController: UIViewController {
-    // Defines localView 
+    ...
+     // Defines localView
     var localView: UIView!
-    // Defines remoteView 
+    // Defines remoteView
     var remoteView: UIView!
-    // Defines agoraKit 
+    // Defines agoraKit
     var agoraKit: AgoraRtcEngineKit!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        // Initializes the video view
-        initView()
-        // The following functions are used when calling Agora APIs
-        initializeAgoraEngine()
-        setClientRole()
-        setupLocalVideo()
-        joinChannel()
-    }
-
+  
     // Sets the video view layout
     override func viewDidLayoutSubviews(){
         super.viewDidLayoutSubviews()
         remoteView.frame = self.view.bounds
         localView.frame = CGRect(x: self.view.bounds.width - 90, y: 0, width: 90, height: 160)
         }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-        leaveChannel()
-        destroy()
-        
-    }
-    
+      
     func initView(){
         // Initializes the remote video view. This view displays video when a remote host joins the channel.
         remoteView = UIView()
@@ -159,69 +109,141 @@ class ViewController: UIViewController {
         localView = UIView()
         self.view.addSubview(localView)
     }
-    
-    
-    // Initializes AgoraEngine
-    func initializeAgoraEngine(){
-        let config = AgoraRtcEngineConfig()
-        // Pass in your App ID here.
-        config.appId = "YourAppId"
-        //Sets the channel profile as live broadcast.
-        config.channelProfile = .liveBroadcasting
-        agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
-    }
-    
-    func setClientRole(){
-        // Sets client role as host (.broadcaster) or audience (.audience)
-        agoraKit.setClientRole(.broadcaster)
-    }
-    
-    func setupLocalVideo(){
-        // Enables video module
-        agoraKit.enableVideo()
-        // Starts the local video preview
-        agoraKit.startPreview()
-        let videoCanvas = AgoraRtcVideoCanvas()
-        videoCanvas.uid = 0
-        videoCanvas.renderMode = .hidden
-        videoCanvas.view = localView
-        // Sets the local video view
-        agoraKit.setupLocalVideo(videoCanvas)
-    }
-
-    //Join the channel, the uid of each user in the channel must be unique.
-    func joinChannel(){
-        let option = AgoraRtcChannelMediaOptions()
-        agoraKit.joinChannel(byToken: "YourToken", channelId: "YourChannelID", uid: "Youruid", mediaOptions: option)
-    }
-    
-    func leaveChannel(){
-        // Stop local video preview
-        agoraKit.stopPreview()
-        // Leave the channel
-        agoraKit.leaveChannel(nil)
-    }
-    
-    func destroy(){
-        // Destroy the AgoraRtcEngineKit object.
-        AgoraRtcEngineKit.destroy()
-    }
-    
-}
-
-// Set the remote view
-extension ViewController: AgoraRtcEngineDelegate{
-    func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int){
-        let videoCanvas = AgoraRtcVideoCanvas()
-        videoCanvas.uid = uid
-        videoCanvas.renderMode = .hidden
-        videoCanvas.view = remoteView
-        agoraKit.setupRemoteVideo(videoCanvas)
-    }
-}
 ```
 
+### Implement the Video Call logic
+
+The following figure and steps show the API call sequence of implementing Video Call. 
+
+![](https://web-cdn.agora.io/docs-files/1629361200930)
+
+To implement this logic, take the following steps:
+
+1. Import the Agora kit.
+
+   In `ViewController.swift`, add the following line after `import UIKit`:
+
+   ```swift
+    import AgoraRtcKit
+   ```
+
+   And add the `agoraKit` variable in the `ViewController` class:
+
+   ```swift
+   class ViewController: UIViewController {
+      // Defines localView
+       var localView: UIView!
+       // Defines remoteView
+       var remoteView: UIView!
+       // Defines agoraKit
+       var agoraKit: AgoraRtcEngineKit!
+   }
+   ```
+
+2. Initialize `AgoraEngine`.
+
+   Each `AgoraRtcEngineKit` object supports one profile only. If you want to switch to another profile, call `destroy` to release the current `AgoraRtcEngineKit` object and then create a new one by calling `sharedEngineWithConfig` again.
+
+   In `ViewController.swift`, add the following lines after the `initView` function:
+
+   ```swift
+       func initializeAgoraEngine(){
+           let config = AgoraRtcEngineConfig()
+           // Pass in your App ID here.
+           config.appId = "Your app Id"
+           agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
+       }
+   ```
+
+3. Enable the video module.
+
+   In `ViewController.swift`, add the following lines after the `initializeAgoraEngine` function:
+
+   ```swift
+       func setupLocalVideo(){
+           // Enables video module
+           agoraKit.enableVideo()
+           // Starts the local video preview
+           agoraKit.startPreview()
+           let videoCanvas = AgoraRtcVideoCanvas()
+           videoCanvas.uid = 0
+           videoCanvas.renderMode = .hidden
+           videoCanvas.view = localView
+           // Sets the local video view
+           agoraKit.setupLocalVideo(videoCanvas)
+       }
+   ```
+
+4. Join the channel with a temp token, channel name, and uid of your project. Channel profile and client role type will also be configured.
+
+   In `ViewController.swift`, add the following lines after the `setupLocalVideo` function:
+
+   ```swift
+       func joinChannel(){
+           let option = AgoraRtcChannelMediaOptions()
+           // For a video call scenario, set the channel profile as liveBroadcasting.
+           option.channelProfile = .of((Int32)(AgoraChannelProfile.liveBroadcasting.rawValue))
+           // Set the client role as broadcaster.
+           option.clientRoleType = .of((Int32)(AgoraClientRole.broadcaster.rawValue))
+           
+           // Join the channel with a temp token. Pass in your token and channel name here   
+           agoraKit.joinChannel(byToken: "Your token", channelId: "Your channel name", uid:0, mediaOptions: option)
+       }
+   ```
+
+5. Add the remote interface when a remote host joins the channel.
+
+   In `ViewController.swift`, add the following lines after the `ViewController` class:
+
+    ```swift
+   extension ViewController: AgoraRtcEngineDelegate{
+       func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int){
+           let videoCanvas = AgoraRtcVideoCanvas()
+           videoCanvas.uid = uid
+           videoCanvas.renderMode = .hidden
+           videoCanvas.view = remoteView
+           agoraKit.setupRemoteVideo(videoCanvas)
+       }
+   }
+    ```
+
+### Start and stop your app
+
+Now you have created the Video Call functionality. In this implementation, a video call starts when the user opens your app. The video call ends when the user closes your app.
+
+1. When the view is loaded, call `initializeAndJoinChannel` to join channel.
+
+   In `ViewController.swift`, add the `viewDidLoad` function inside the `UIViewController` function:
+
+    ```swift
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            // Do any additional setup after loading the view.
+            // Initializes the video view
+            initView()
+            // The following functions are used when calling Agora APIs
+            initializeAgoraEngine()
+            setupLocalVideo()
+            joinChannel()
+        }
+    ```
+
+2. Leave channel in order to clean up all the resources used by your app. 
+
+   In `ViewController.swift`, add `viewDidDisappear` after the `joinChannel` function:
+
+   ```swift
+       override func viewDidDisappear(_ animated: Bool) {
+           super.viewDidDisappear(true)
+           agoraKit.stopPreview()
+           agoraKit.leaveChannel(nil)
+           AgoraRtcEngineKit.destroy()
+       }
+   ```
+
 ## Test your  app
+
+Please follow the test procedure as shown in the example.
 
 1. Connect the iOS devices to the computer.
 
@@ -256,5 +278,3 @@ In addition to integrating the Agora Video SDK for through Cocoapods, you can al
 2. From the `libs` folder of the downloaded SDK package, copy the files or subfolders you need to the root of your project folder.
 
 3. In Xcode, [link your target to the frameworks or libraries](https://help.apple.com/xcode/mac/current/#/dev51a648b07) you have copied. Be sure to choose **Embed & Sign **from the pop-up menu in the Embed column.
-
-   <div class="alert note"><ul><li>Apple does not allow an app extension to contain any dynamic library. If you are integrating the Agora SDK to an app extension, choose <b>Do Not Embed</b> in the Embed column.</li><li>The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</li></ul></div>
