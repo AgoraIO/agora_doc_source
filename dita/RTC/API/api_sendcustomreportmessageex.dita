@@ -13,19 +13,15 @@
     <refbody><section id="prototype">
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int sendCustomReportMessageEx(
-      String id, String category, String event, String label, int value, RtcConnection connection);
-</codeblock>
+      String id, String category, String event, String label, int value, RtcConnection connection);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)sendCustomReportMessageEx:(NSString * _Nullable)messageId
                         category:(NSString * _Nullable)category
                            event:(NSString * _Nullable)event
                            label:(NSString * _Nullable)label
                            value:(NSInteger)value
-                    connectionId:(NSUInteger)connectionId;
-</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int sendCustomReportMessage(
-      const char* id, const char* category, const char* event, const char* label, int value,
-      conn_id_t connectionId = agora::rtc::DEFAULT_CONNECTION_ID) = 0;
-</codeblock>
+                      connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int sendCustomReportMessageEx(const char* id, const char* category, const char* event, const char* label,
+      int value, const RtcConnection&amp; connection) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
