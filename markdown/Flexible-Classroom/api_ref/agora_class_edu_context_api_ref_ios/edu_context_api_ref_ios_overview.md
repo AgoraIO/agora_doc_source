@@ -6,13 +6,13 @@ Agora Classroom SDK 通过 Edu Context 为 App 开发者提供实现灵动课堂
 
 Agora Classroom SDK 提供以下 Context：
 
-- Whiteboard Context: 白板。
-- Chat Context: 消息聊天。
-- Room Context: 课堂管理。
-- Hands-up Context: 举手上台。
-- Screenshare Context: 屏幕共享。
-- User List Context: 用户列表。
-- Media Context: 媒体管理。
+- Whiteboard Context：白板。
+- Chat Context：消息聊天。
+- Room Context：课堂管理。
+- Hands-up Context：举手上台。
+- Screenshare Context：屏幕共享。
+- User List Context：用户列表。
+- Media Context
 
 ## AgoraEduContextPool
 
