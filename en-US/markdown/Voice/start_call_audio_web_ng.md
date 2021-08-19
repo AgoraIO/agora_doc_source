@@ -1,6 +1,6 @@
-The Agora Voice SDK for Web makes it easy to embed real-time Voice Call into web apps.
+Real-time chatting immerses people in the sounds of human connections, keeping them engaged in your app longer. The Agora Voice SDK provides crystal-clear voice chat for your web, mobile and native apps.
 
-This page shows you the minimum code you need to add Voice Call into your Web app by using the Agora Voice SDK for Web.
+This page shows the minimum code you need to integrate crystal-clear voice chat functionality into your app using the Voice SDK for Web.
 
 # Understand the tech
 
@@ -10,21 +10,14 @@ The following figure shows the workflow of Voice Call implemented by the Agora S
 
 To make a voice call, your app client has the following steps to take:
 
-**1. Get a token**
-The app client requests a token from your app server. This token authenticates the user when the app client joins a channel.
+1. The app client requests a token from your app server. This token authenticates the user when the app client joins a channel.
 
-**2. Join an Agora RTC channel**
-The client joins an RTC (Real-time Communication) channel by calling the APIs provided by Agora. When that happens, Agora automatically creates an RTC channel. App clients that pass the same channel name join the same channel.
+2. The client joins an Real-time Communication (RTC) channel by calling the APIs provided by Agora. When that happens, Agora automatically creates an RTC channel. App clients that pass the same channel name join the same channel.
 
-**3. Publish and subscribe to audio in the channel**
-
-After joining an RTC channel, you can use the `LocalTrack` and `RemoteTrack` objects to publish and subscirbe to audio tracks in the channel.
-
-For an app client to join an RTC channel, you need the following information:
-
+3. After joining an RTC channel, use the `LocalTrack` and `RemoteTrack` objects to publish and subscirbe to audio tracks in the channel. For an app client to join an RTC channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io/).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
-- A token: A credential for authenticating the identity of the user when your app client joins an RTC channel.
+- A token: A credential for authenticating the identity of the user when your app client joins an RTC channel. For rapid testing, you do not need to deploy a token server. [Generate a temporary token](/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#rtc-temp-token) on Agora Console.
 - The channel name: A string that identifies the RTC channel for the voice call.
 
 ## Prerequisites
@@ -32,10 +25,10 @@ For an app client to join an RTC channel, you need the following information:
 In order to follow the procedure in this page, you must have:
 
 - A valid Agora account
-- An [Agora project](https://docs.agora.io/en/Agora Platform/get_appid_token?platform=Web) with an App ID and a temp token
+- An [Agora project](/en/Agora%20Platform/get_appid_token?platform=Web) with an App ID and a temp token
 - A Windows or macOS computer meets the following requirements:
-  - Access to the Internet. If your network has a firewall, follow the instructions in [Firewall Requirements](https://docs.agora.io/en/Agora Platform/firewall?platform=Web) to access Agora services.
-  - A browser that matches the [supported browser list](https://docs.agora.io/en/Voice/faq/browser_support?platform=Web). Agora highly recommends using the [latest version](https://www.google.com/chrome/) of Google Chrome.
+  - Access to the Internet. If your network has a firewall, follow the instructions in [Firewall Requirements](/en/Agora%20Platform/firewall?platform=Web) to access Agora services.
+  - A browser that matches the [supported browser list](/en/Voice/faq/browser_support?platform=Web). Agora highly recommends using the [latest version](https://www.google.com/chrome/) of Google Chrome.
   - Physical audio input devices
   - An Intel 2.2GHz Core i3/i5/i7 processor (2nd generation) or equivalent
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
@@ -46,7 +39,7 @@ Create a new directory named `agora_web_quickstart`. For a minimal Web app clien
 
 - `index.html`: The visual interface with the user.
 - `basicVoiceCall.js`: The programmable interface with `AgoraRTCClient` to implement the client logic.
-- `package.json`: Install and manage the dependencies of your project. To create the `package.json` file, you can navigate to the `agora_web_quickstart` directory on the command line and run `npm init`.
+- `package.json`: Install and manage the dependencies of your project. To create the `package.json` file, in the terminal navigate to the `agora_web_quickstart` directory on the command line and run `npm init`.
 
 ## Implement a client for Voice Call
 
@@ -110,7 +103,7 @@ To implement the user interface, copy the following code into `index.html`:
 
 ### 3. Implement the client logic
 
-To implement the client logic of Voice Call, we need to do the following things:
+The client logic you implement in order to add Voice Call to your app is:
 
 1. Call [`createClient`](./API%20Reference/web_ng/interfaces/iagorartc.html#createclient) to create an `AgoraRTCClient` object.
 2. Call [`join`](./API%20Reference/web_ng/interfaces/iagorartcclient.html#join) to join an RTC channel with the App ID, user ID, token, and channel name. 
@@ -124,13 +117,11 @@ The following figure shows the API call sequence of a basic one-to-one Voice Cal
 
 ![](https://web-cdn.agora.io/docs-files/1617876672414)
 
-
-
-Copy the following code into `script.js` and then replace `yourAppId` and `yourToken` with [values from your Agora project](https://docs.agora.io/en/Agora Platform/get_appid_token?platform=Web).
+To implement this logic, do the following:
+1. Copy the following code into `script.js`.
+2. Replace `Your App ID` and `Your temp token` with [values from your Agora project](/en/Agora%20Platform/get_appid_token?platform=Web).
 
 ```javascript
-import AgoraRTC from "agora-rtc-sdk-ng"
-
 let rtc = {
     localAudioTrack: null,
     client: null
@@ -161,16 +152,14 @@ async function startBasicCall() {
         if (mediaType === "audio") {
             // Get the RemoteAudioTrack object in the AgoraRTCRemoteUser object.
             const remoteAudioTrack = user.audioTrack;
-            // Play the remote audio track. No need to pass any DOM element.
+            // Play the remote audio track.
             remoteAudioTrack.play();
         }
 
         // Listen for the "user-unpublished" event
         rtc.client.on("user-unpublished", user => {
-            // Get the dynamically created DIV container.
-            const remotePlayerContainer = document.getElementById(user.uid);
-            // Destroy the container.
-            remotePlayerContainer.remove();
+            // Unsubscribe from the tracks of the remote user.
+            await rtc.client.unsubscribe(user);
         });
 
     });
@@ -184,31 +173,13 @@ async function startBasicCall() {
             rtc.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
             // Publish the local audio tracks to the RTC channel.
             await rtc.client.publish([rtc.localAudioTrack]);
-            // Dynamically create a container in the form of a DIV element for playing the local audio track.
-            const localPlayerContainer = document.createElement("div");
-            // Specify the ID of the DIV container. You can use the uid of the local user.
-            localPlayerContainer.id = options.uid;
-            localPlayerContainer.textContent = "Local user " + options.uid;
-            localPlayerContainer.style.width = "640px";
-            localPlayerContainer.style.height = "480px";
-            document.body.append(localPlayerContainer);
-
-            // Play the local audio track.
-            // Pass the DIV container and the SDK dynamically creates a player in the container for playing the local audio track.
-            rtc.localAudioTrack.play(localPlayerContainer);
+          
             console.log("publish success!");
         }
 
         document.getElementById("leave").onclick = async function () {
-            // Destroy the local audio tracks.
+            // Destroy the local audio track.
             rtc.localAudioTrack.close();
-
-            // Traverse all remote users.
-            rtc.client.remoteUsers.forEach(user => {
-                // Destroy the dynamically created DIV containers.
-                const playerContainer = document.getElementById(user.uid);
-                playerContainer && playerContainer.remove();
-            });
 
             // Leave the channel.
             await rtc.client.leave();
@@ -217,10 +188,7 @@ async function startBasicCall() {
 }
 
 startBasicCall()
-
 ```
-
-
 
 ## Test your app
 
@@ -287,17 +255,17 @@ This quickstart uses [webpack](https://webpack.js.org/) to package the project a
    npm run start:dev
    ```
 
-A local web server automatically opens in your browser. You see the following page:
+ A local web server automatically opens in your browser. You see the following page:
 
-![image-20210715100118636](/Users/admin/Desktop/image-20210715100118636.png)
+![](https://web-cdn.agora.io/docs-files/1629367212930)
 
-Click **JOIN** to start a voice call. 
+6. Click **JOIN** to start a voice call. However, being in a call on your own is no fun. Ask a friend to join the same voice call with you on the [demo app](https://webdemo.agora.io/basicVideoCall/index.html).
 
 <div class="alert info"><li>Running the web app through a local server (localhost) is for testing purposes only. In production, ensure that you use the HTTPS protocol when deploying your project.</li><li>Due to security limits on HTTP addresses except 127.0.0.1, the Web SDK only supports HTTPS or http://localhost (http://127.0.0.1). If you deploy your project over HTTP, you can only visit your project at http://localhost (http://127.0.0.1).</li></div>
 
 ## Next steps
 
-Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Voice/token_server?platform=All%20Platforms) shows you how to start a voice call with a token that you retrieve from your server.
+Generating a temp token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Voice/token_server?platform=All%20Platforms) shows you how to start a voice call with a token that you retrieve from your server.
 
 ## See also
 
@@ -308,17 +276,15 @@ Generating a token by hand is not helpful in a production context. [Authenticate
   - Through the CDN: Add the following code to the line before `<style>` in the `index.html` file of your project.
 
     ```html
-    <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.5.0.js"></script>
+    <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.6.3.js"></script>
     ```
-
+    
   - Manually download the latest [Agora Web SDK 4.x](https://docs.agora.io/en/Voice/downloads?platform=Web), copy the `.js` file to the directory of your project files, and add the following code to the line before the `<style>` tag in your project.
 
     ```html
-    <script src="./AgoraRTC_N-4.5.0.js"></script>
+    <script src="./AgoraRTC_N-4.6.3.js"></script>
     ```
 
  <div class="alert info">If you use the above methods, the SDK fully exports an <code>AgoraRTC</code> object. You can visit the <code>AgoraRTC</code> object to operate the Web SDK.</div>
 
-- This page only applies to the Agora Web SDK 4.x. If you use the Web SDK 3.x or earlier version, see the following quickstart guides:
-  - [Start a Voice Call](https://docs.agora.io/en/Voice/start_call_audio_web?platform=Web)
-
+- This page only applies to the Web SDK 4.x. If you use the Web SDK 3.x or earlier version, see [Start a Voice Call](https://docs.agora.io/en/Voice/start_call_audio_web?platform=Web).
