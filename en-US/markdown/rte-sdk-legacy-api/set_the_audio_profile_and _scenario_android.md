@@ -1,4 +1,4 @@
-# Set the audio profile and scenario
+# Set the Audio Profile and Scenario
 
 ## Understand the tech
 
