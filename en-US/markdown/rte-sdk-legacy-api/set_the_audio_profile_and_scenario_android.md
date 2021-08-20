@@ -1,16 +1,10 @@
 # Set the Audio Profile and Scenario
 
-## Understand the tech
-
 An audio profile includes the audio sample rate, encoding scheme, number of channels, and bitrate for the encoding audio stream; an audio scenario determines the audio processing module.
 
 Different applications require different audio profiles or scenarios. This page introduces how to call Agora APIs to set an appropriate audio profile and scenario according to your application.
 
-## Sample project
-
-Agora provides an open-source demo project that implements [setting audio profile](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/SetAudioProfile.java) on GitHub. You can try the demo and view the source code.
-
-## API introduction
+## Understand the tech
 
 The SDK uses the `AUDIO_PROFILE_DEFAULT` profile and the `AUDIO_SCENARIO_HIGH_DEFINITION` scenario by default. If the default setting does not meet your requirements, you can call the following APIs to set another audio profile or scenario:
 
@@ -24,7 +18,7 @@ The SDK uses the `AUDIO_PROFILE_DEFAULT` profile and the `AUDIO_SCENARIO_HIGH_DE
 
 The higher the bitrate in the audio profile, the higher the audio quality. If the default audio profile (`AUDIO_PROFILE_DEFAULT`) does not meet your requirements, you can set the following audio profiles instead:
 
-| Audio profile (with the prefix `AUDIO_PROFILE_` )                              | Description                                                           |
+| Audio profile (with the prefix `AUDIO_PROFILE_`)                              | Description                                                           |
 | :-------------------------------------- | ------------------------------------------------------------ |
 | `DEFAULT`                   | 0: Default audio profile:<li>For the interactive streaming profile: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps.</li><li>For the communication profile: A sample rate of 32 kHz, music encoding, mono, and a bitrate of up to 18 Kbps.</li> |
 | `SPEECH_STANDARD`           | 1: A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps. |
@@ -45,42 +39,32 @@ If the default audio scenario (`AUDIO_SCENARIO_HIGH_DEFINITION`) does not meet y
 
 The audio scenario also affects the volume type. For details, see [Volume type](#volume_type).
 
-### Sample code
+## Prerequisites
 
-The following table shows how to set the audio profile and scenario in common applications:
+Before proceeding, ensure that you have a project that has implemented the basic real-time engagement functionality.
 
-| Application           | Audio profile (with the prefix `AUDIO_PROFILE_` )                    | Audio scenario (with the prefix `AUDIO_SCENARIO_`)                |
+## Implementation
+
+To set the audio profile and scenario, see the following sample code:
+
+```java
+// Set the audio scenario as AUDIO_SCENARIO_HIGH_DEFINITION when creating the `RtcEngine` instance.
+RtcEngineConfig config = new RtcEngineConfig();
+config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.HIGH_DEFINITION);
+engine = RtcEngine.create(config);
+// Set the audio profile as AUDIO_PROFILE_MUSIC_HIGH_QUALITY.
+RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY);
+```
+
+The following table shows the recommended audio profile and scenario in common applications:
+
+| Application           | Audio profile (with the prefix `AUDIO_PROFILE_`)                    | Audio scenario (with the prefix `AUDIO_SCENARIO_`)                |
 | :--------------------- | :------------------------- | :---------------------- |
 | One-to-one classroom:<p>Requires the call quality with smooth transmission.</p>   | `DEFAULT`                    | `DEFAULT`                 |
 | Battle royale game:<p>Transmits the voice of group talk. Requires noise reduction and low transmission bitrate.</p>     | `SPEECH_STANDARD`            | `CHATROOM`         |
 | Murder mystery game:<p>Requires standard audio quality and smooth audio expirence when a user frequently switchs the user role or mute and unmute the microphone.</p>    | `MUSIC_STANDARD`             | `CHATROOM` |
 | KTV: <p>Requires high-fidelity audio and a high performance to music or singing voice.</p>                    | `MUSIC_HIGH_QUALITY`        | `HIGH_DEFINITION`          |
 | Podcast: <p>Uses professional audio hardware devices. Requires high-fidelity audio and stereo channels.</p>                | `MUSIC_HIGH_QUALITY_STEREO` | `HIGH_DEFINITION`                |
-
-```java
-RtcEngineConfig config = new RtcEngineConfig();
-engine = RtcEngine.create(config);
-
-// One-to-one classroom
-config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.DEFAULT);
-RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_DEFAULT);
-
-// Battle royale game
-config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.CHATROOM);
-RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_SPEECH_STANDARD);
-
-// Murder mystery game
-config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.CHATROOM);
-RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_STANDARD);
-
-// KTV
-config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.HIGH_DEFINITION);
-RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY);
-
-// Podcast
-config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.HIGH_DEFINITION);
-RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO);
-```
 
 ### API reference
 
@@ -89,6 +73,10 @@ RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO);
 - [setAudioProfile](https://docs-preview.agoralab.co/en/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#ac4d4cabacd4c45dcbb7439ba9d86136e) 2
 
 ## Reference
+
+### Sample project
+
+Agora provides an open-source demo project that implements [setting audio profile](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/SetAudioProfile.java) on GitHub. You can try the demo and view the source code.
 
 <a name="volume_type"></a>
 
