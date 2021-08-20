@@ -1,20 +1,10 @@
-## Introduction
+This article shows how to call the API provided by Agora to set video profiles.
+
+## Understand the tech
 
 User experience in real-time engagement scenarios involving video is closely related to the quality of the video, such as its sharpness and smoothness.
 
-Video profiles are preset configurations of resolution, frame rate, and bitrate. Developers can implement video profiles to control how video streams will appear to users under ideal network conditions. This article shows how to call the API provided by Agora to set video profiles.
-
-## Sample project
-
-Agora provides an open-source sample project on GitHub that implements [setting the video profile](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/SetVideoProfile.java). You can download the sample project to try it out or view the source code.
-
-## Implementation
-
-Before proceeding, ensure that you have implemented real-time audio and video functions in your project.
-
-The Agora SDK provides the [`setVideoEncoderConfiguration`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af5f4de754e2c1f493096641c5c5c1d8f) method to set the video profile. After you initialize the `RtcEngine` object, you can call `setVideoEncoderConfiguration` either before or after joining a channel.
-
-If you do not intend to update the video profile after joining a channel, Agora recommends calling `setVideoEncoderConfiguration` before `enableVideo`, which reduces the time to render the first local video frame.
+Video profiles are preset configurations of resolution, frame rate, and bitrate. Developers can implement video profiles to control how video streams will appear to users under ideal network conditions.
 
 ### Resolution, frame rate and bitrate
 
@@ -23,7 +13,6 @@ You can set the video resolution, frame rate, and bitrate with the following par
 - `dimensions`: The video encoding resolution (px). The default value is 640 × 360. Generally speaking, the higher the resolution, the sharper the video. The value of this parameter does not indicate the orientation mode of the output video. For how to set the orientation mode of the output video, see [Orientation mode](#orientation).
 - `frameRate`: The video encoding frame rate (fps), that is, the number of frames that the SDK encodes per second. The default value is 15. Generally speaking, the higher the frame rate, the smoother the video. For scenarios with high requirements on video smoothness, You can set this parameter as 20 or 25. Agora recommends not setting `frameRate` as any value beyond 30.
 - `bitrate`: The video encoding bitrate (Kbps). The default value is `STANDARD_BITRATE`, that is, the standard bitrate mode. Under the standard bitrate mode, the SDK assigns a bitrate value according to the channel profile, video dimensions, and frame rate that you set.
-
 
 <div class="alert note"> <ul>
 <li> To achieve high video quality, you need to strike a balance between video dimensions, bitrate, and frame rate. Higher video dimensions require higher bitrate. With a fixed bitrate, excessive frame rate reduces video dimensions.</li>
@@ -34,39 +23,36 @@ The Agora SDK provides selections of video dimensions, frame rate, and bitrate f
 
 **Video profile table**
 
-
 <div class="alert note">
 Whether 720p+ can be supported depends on the device. If the device cannot support 720p, the frame rate will be lower than the one listed in the table.</div>
 
-
-
-| Resolution (width × height) | Frame rate (fps) | Base bitrate (Kbps, for Communication) | Live bitrate (Kbps, for LiveBroadcasting) |
-| :-------------------------- | :--------------- | :------------------------------------- | :---------------------------------------- |
-| 160 × 120                   | 15               | 65                                     | 130                                       |
-| 120 × 120                   | 15               | 50                                     | 100                                       |
-| 320 × 180                   | 15               | 140                                    | 280                                       |
-| 180 × 180                   | 15               | 100                                    | 200                                       |
-| 240 × 180                   | 15               | 120                                    | 240                                       |
-| 320 × 240                   | 15               | 200                                    | 400                                       |
-| 240 × 240                   | 15               | 140                                    | 280                                       |
-| 424 × 240                   | 15               | 220                                    | 440                                       |
-| 640 × 360                   | 15               | 400                                    | 800                                       |
-| 360 × 360                   | 15               | 260                                    | 520                                       |
-| 640 × 360                   | 30               | 600                                    | 1200                                      |
-| 360 × 360                   | 30               | 400                                    | 800                                       |
-| 480 × 360                   | 15               | 320                                    | 640                                       |
-| 480 × 360                   | 30               | 490                                    | 980                                       |
-| 640 × 480                   | 15               | 500                                    | 1000                                      |
-| 480 × 480                   | 15               | 400                                    | 800                                       |
-| 640 × 480                   | 30               | 750                                    | 1500                                      |
-| 480 × 480                   | 30               | 600                                    | 1200                                      |
-| 848 × 480                   | 15               | 610                                    | 1220                                      |
-| 848 × 480                   | 30               | 930                                    | 1860                                      |
-| 640 × 480                   | 10               | 400                                    | 800                                       |
-| 1280 × 720                  | 15               | 1130                                   | 2260                                      |
-| 1280 × 720                  | 30               | 1710                                   | 3420                                      |
-| 960 × 720                   | 15               | 910                                    | 1820                                      |
-| 960 × 720                   | 30               | 1380                                   | 2760                                      |
+| Resolution (width × height) | Frame rate (fps) | Live bitrate (Kbps) |
+| :-------------------------- | :--------------- | :---------------------------------------- |
+| 160 × 120                   | 15               | 130                                       |
+| 120 × 120                   | 15               | 100                                       |
+| 320 × 180                   | 15               | 280                                       |
+| 180 × 180                   | 15               | 200                                       |
+| 240 × 180                   | 15               | 240                                       |
+| 320 × 240                   | 15               | 400                                       |
+| 240 × 240                   | 15               | 280                                       |
+| 424 × 240                   | 15               | 440                                       |
+| 640 × 360                   | 15               | 800                                       |
+| 360 × 360                   | 15               | 520                                       |
+| 640 × 360                   | 30               | 1200                                      |
+| 360 × 360                   | 30               | 800                                       |
+| 480 × 360                   | 15               | 640                                       |
+| 480 × 360                   | 30               | 980                                       |
+| 640 × 480                   | 15               | 1000                                      |
+| 480 × 480                   | 15               | 800                                       |
+| 640 × 480                   | 30               | 1500                                      |
+| 480 × 480                   | 30               | 1200                                      |
+| 848 × 480                   | 15               | 1220                                      |
+| 848 × 480                   | 30               | 1860                                      |
+| 640 × 480                   | 10               | 800                                       |
+| 1280 × 720                  | 15               | 2260                                      |
+| 1280 × 720                  | 30               | 3420                                      |
+| 960 × 720                   | 15               | 1820                                      |
+| 960 × 720                   | 30               | 2760                                      |
 
 **Recommended video profiles**
 
@@ -93,12 +79,10 @@ To avoid issues such as video scaling and cropping caused by video rotation, the
 
 The `orientationMode` parameter provides three modes to suit different user needs: `ORIENTATION_MODE_ADAPTIVE`, `ORIENTATION_MODE_FIXED_LANDSCAPE`, and `ORIENTATION_MODE_FIXED_PORTRAIT`.
 
-
 <div class="alert note">
 Regardless of the mode, the relative position of the video and the status bar on both the video capturer and the player remain the same.</div>
 
 **ORIENTATION_MODE_ADAPTIVE**
-
 
 In the `ORIENTATION_MODE_ADAPTIVE` mode, the output video always follows the orientation of the captured video, and the receiver takes the rotation information passed on from the video encoder. This mode applies to scenarios where video orientation can be adjusted on the receiver and is usually used between Agora SDKs.
 
@@ -110,11 +94,11 @@ The relative position of the status bar remains the same as the screen and not a
 
 - For a landscape capturer:
 
-	<img alt="../_images/rotation_adaptive_uilock_landscape.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_adaptive_uilock_landscape.jpg" />
+<img alt="../_images/rotation_adaptive_uilock_landscape.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_adaptive_uilock_landscape.jpg" />
 
 - For a portrait capturer:
 
-	<img alt="../_images/rotation_adaptive_uilock_portrait.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_adaptive_uilock_portrait.jpg" />
+<img alt="../_images/rotation_adaptive_uilock_portrait.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_adaptive_uilock_portrait.jpg" />
 
 **UI unlocked with the app enabling the screen auto-rotation**
 
@@ -122,7 +106,7 @@ The status bar of the app remains horizontal, regardless of the orientation of t
 
 - For a landscape capturer:
 
-	<img alt="../_images/rotation_adaptive_uiunlock_landscape.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_adaptive_uiunlock_landscape.jpg" />
+<img alt="../_images/rotation_adaptive_uiunlock_landscape.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_adaptive_uiunlock_landscape.jpg" />
 
 - For a portrait capturer:
 
@@ -136,11 +120,11 @@ The following figures show the video orientations at the video capturer and the 
 
 - The captured video in the landscape mode (video cropping is not needed):
 
-	<img alt="../_images/rotation_fixed_landscape.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_fixed_landscape.jpg" />
+<img alt="../_images/rotation_fixed_landscape.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_fixed_landscape.jpg" />
 
 - The captured video in the portrait mode (video cropping is needed):
 
-	<img alt="../_images/rotation_fixed_landscape_cut.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_fixed_landscape_cut.jpg" />
+<img alt="../_images/rotation_fixed_landscape_cut.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_fixed_landscape_cut.jpg" />
 
 **ORIENTATION_MODE_FIXED_PORTRAIT**
 
@@ -154,7 +138,7 @@ The following figures show the video orientations at the video capturer and the 
 
 - The captured video in the landscape mode (video cropping is needed):
 
-	<img alt="../_images/rotation_fixed_portrait_cut.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_fixed_portrait_cut.jpg" />
+<img alt="../_images/rotation_fixed_portrait_cut.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_fixed_portrait_cut.jpg" />
 
 ### Degradation preference
 
@@ -171,15 +155,20 @@ If your scenario has special requirements for video sharpness or smoothness, you
 - `minFrameRate`: The minimum video frame rate (fps). You can use `minFrameRate` and `MAINTAIN_QUALITY` to balance the video sharpness and video smoothness under unreliable connections. When `minFrameRate` is relatively low, the frame rate degrades significantly, so the poor network conditions have limited impact on video sharpness. When `minFrameRate` is relatively high, the frame rate degrades within a limited range, so the poor network conditions can have high impact on video sharpness.
 - `minBitrate`: The minimum video bitrate (Kbps). The Agora SDK automatically adjusts the encoding bitrate to adapt to the network conditions. Setting this parameter to a value greater than the default value forces the video encoder to output high-quality video images but may cause more packet loss and sacrifice video smoothness.
 
-
 <div class="alert note">
 	The default values of <code>minFrameRate</code> and <code>minBitrate</code> can meet the requirements of most real-time scenarios. Unless you have special requirements, Agora recommends not changing these default values.</div>
 
-### Sample code
+## Implementation
+
+Before proceeding, ensure that you have implemented real-time audio and video functions in your project.
+
+The Agora SDK provides the [`setVideoEncoderConfiguration`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af5f4de754e2c1f493096641c5c5c1d8f) method to set the video profile. After you initialize the `RtcEngine` object, you can call `setVideoEncoderConfiguration` either before or after joining a channel.
+
+If you do not intend to update the video profile after joining a channel, Agora recommends calling `setVideoEncoderConfiguration` before `enableVideo`, which reduces the time to render the first local video frame.
 
 You can refer to the following code sample when setting the parameters of `setVideoEncoderConfiguration`:
 
-```
+```java
 // Set the video encoding resolution, frame rate, bitrate and orientation mode according to the settings of the user
 VideoEncoderConfiguration.VideoDimensions value = VD_640x360;
 try {
@@ -200,7 +189,13 @@ engine.setVideoEncoderConfiguration(new VideoEncoderConfiguration(
 ));
 ```
 
-## Considerations
+## Reference
+
+### Sample project
+
+Agora provides an open-source sample project on GitHub that implements [setting the video profile](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/SetVideoProfile.java). You can download the sample project to try it out or view the source code.
+
+### Considerations
 
 - The parameters specified in `setVideoEncoderConfiguration` are the maximum values under ideal network conditions. The SDK adapts (most often downwards) these parameters according to the network conditions in real-time.
 - Setting parameters in `setVideoEncoderConfiguration` affects your bill. If network adaptation occurs, the unit price is calculated based on the actual video dimensions. For more information, see [Billing for Real-time Communication](./billing_rtc).
