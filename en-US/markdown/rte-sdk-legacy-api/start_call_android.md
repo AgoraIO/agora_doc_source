@@ -39,7 +39,7 @@ In order to create the environment necessary to integrate Video Call into your a
 
 1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**.
 
-   <div class="alert note">After creating the project, **Android Studio** automatically starts gradle sync. Ensure that the sync succeeds before you continue.</div>
+   <div class="alert note">After creating the project, <b>Android Studio</b> automatically starts gradle sync. Ensure that the sync succeeds before you continue.</div>
 
 2. Integrate the Video SDK into your project.
 

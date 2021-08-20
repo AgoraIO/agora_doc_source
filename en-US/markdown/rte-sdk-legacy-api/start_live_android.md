@@ -43,7 +43,7 @@ In order to create the environment necessary to integrate Interactive Live Strea
 
 1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**.
 
-   <div class="alert note">After creating the project, **Android Studio** automatically starts gradle sync, wait until Android Studio completes the Gradle sync.</div>
+   <div class="alert note">After creating the project, <b>Android Studio</b> automatically starts gradle sync, wait until Android Studio completes the Gradle sync.</div>
 
 2. Integrate the Video SDK into your project.
 
