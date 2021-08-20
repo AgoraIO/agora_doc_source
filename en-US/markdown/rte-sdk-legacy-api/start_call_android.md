@@ -319,11 +319,11 @@ Please follow the test procedure as shown in the example.
 
 3. Grant microphone and camera access to your app.
 
-4. When the app launches, you should be able to see yourself on the local view if you set the client role as `BROADCASTER`.
+4. When the app launches, you can see yourself on the local view if you set the client role as `BROADCASTER`.
 
 5. Ask a friend to use a second device to join the channel with the same App ID, token, and channel name.
 
-   You should be able to see and hear each other.
+   You will see and hear each other.
 
 
 ## Next steps

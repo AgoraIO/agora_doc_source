@@ -1,3 +1,5 @@
+Agora’s Interactive Live Streaming makes it easy for you to build apps with audio and video streaming that encourage real-time exchanges, creating deeper connections and driving revenue opportunities.
+
 This page shows the minimum code you need to integrate high-quality, low-latency Interactive Live Streaming into your app using the Video SDK for iOS.
 
 ## Understand the tech
@@ -253,11 +255,11 @@ Please follow the test procedure as shown in the example.
 
 3. Grant microphone and camera access to your app.
 
-4. When the app launches, you should be able to see yourself on the local view if you set the client role as `broadcaster`.
+4. When the app launches, you can see yourself on the local view if you set the client role as `broadcaster`.
 
 5. Ask a friend to use a second device to join the channel with the same App ID, token, and channel name.
 
-   If the second equipment joins as a host, you should be able to see and hear each other; if as an audience member, you should only be able to see yourself while your friend can see and hear you.
+   If the second equipment joins as a host, you will see and hear each other; if as an audience member, you will only see yourself while your friend can see and hear you.
 
 ## Next steps
 
