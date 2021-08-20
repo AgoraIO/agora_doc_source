@@ -13,14 +13,10 @@
     <refbody><section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int setVideoEncoderConfigurationEx(
-      VideoEncoderConfiguration config, RtcConnection connection);
-</codeblock>
+      VideoEncoderConfiguration config, RtcConnection connection);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVideoEncoderConfigurationEx:(AgoraVideoEncoderConfiguration* _Nonnull)config
-                         connectionId:(NSUInteger)connectionId;
-</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int setVideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config,
-                               conn_id_t connectionId = DEFAULT_CONNECTION_ID) = 0;
-</codeblock>
+                           connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setVideoEncoderConfigurationEx(const VideoEncoderConfiguration&amp; config, const RtcConnection&amp; connection) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -39,8 +35,8 @@
   <pd>视频编码参数配置。详见 <xref keyref="VideoEncoderConfiguration" />。</pd>
        </plentry>
                 <plentry>
-                    <pt>connectionId</pt>
-                    <pd>连接 ID。</pd>
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
                 </plentry>
    </parml>
         </section>
