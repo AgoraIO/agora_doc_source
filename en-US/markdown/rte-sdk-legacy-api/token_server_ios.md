@@ -423,7 +423,7 @@ In the code example, you can see that token is related to the following code log
 
 Build and run the project in your iOS simulator in the local machine to perform the following actions:
 - Join a channel.
-- Renewing a token every 10 seconds.
+- Renew a token every 10 seconds.
 
 ## Reference
 
