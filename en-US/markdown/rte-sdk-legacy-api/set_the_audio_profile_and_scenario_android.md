@@ -66,17 +66,17 @@ The following table shows the recommended audio profile and scenario in common a
 | KTV: <p>Requires high-fidelity audio and a high performance to music or singing voice.</p>                    | `MUSIC_HIGH_QUALITY`        | `HIGH_DEFINITION`          |
 | Podcast: <p>Uses professional audio hardware devices. Requires high-fidelity audio and stereo channels.</p>                | `MUSIC_HIGH_QUALITY_STEREO` | `HIGH_DEFINITION`                |
 
-### API reference
-
-- [create](https://docs-preview.agoralab.co/en/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#afffd4c0d9b799631ed407c5167b6e09a) 2
-- [setAudioProfile](https://docs-preview.agoralab.co/en/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#abb4b63716fda137ecd5254137c79547f) 1
-- [setAudioProfile](https://docs-preview.agoralab.co/en/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#ac4d4cabacd4c45dcbb7439ba9d86136e) 2
-
 ## Reference
 
 ### Sample project
 
 Agora provides an open-source demo project that implements [setting audio profile](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/SetAudioProfile.java) on GitHub. You can try the demo and view the source code.
+
+### API reference
+
+- [create](https://docs-preview.agoralab.co/en/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#afffd4c0d9b799631ed407c5167b6e09a) 2
+- [setAudioProfile](https://docs-preview.agoralab.co/en/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#abb4b63716fda137ecd5254137c79547f) 1
+- [setAudioProfile](https://docs-preview.agoralab.co/en/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#ac4d4cabacd4c45dcbb7439ba9d86136e) 2
 
 <a name="volume_type"></a>
 
