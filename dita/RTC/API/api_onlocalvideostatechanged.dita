@@ -60,13 +60,47 @@
                 <plentry>
                     <pt>localVideoState</pt>
                     <pd>
-                        本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE" />。
+                        <p props="ios mac windows">本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE" />。</p>
+                        <p props="android">
+                            <ul>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_STOPPED"/> (0): 本地视频默认初始状态。</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1): 本地视频采集设备启动成功。</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_ENCODING"/> (2): 本地视频首帧编码成功。</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/> (3): 本地视频启动失败。</li>
+                            </ul>
+                        </p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>error</pt>
                     <pd>
-                        本地视频出错原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_ERROR" />。
+                        <p props="ios mac windows">本地视频出错原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_ERROR" />。</p>
+                        <p props="android">
+                            <ul>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/> (0): 本地视频状态正常。</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_FAILURE"/> (1): 出错原因不明确。</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION"
+                                /> (2): 没有权限启动本地视频采集设备。</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/> (3): 本地视频采集设备正在使用中。</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/> (4):
+                                        本地视频采集失败，建议检查采集设备是否正常工作。<ul id="ul_ygj_tdx_qqb">
+                                            <li>Android 9 及以上版本，app 切后台一段时间后，系统收回相机权限。</li>
+                                        <li>Android 6 及以上版本，如果相机被第三方应用占用，且未被及时释放。如果一段时间后，相机被释放，则 SDK
+                                            会再次出发该回调，并报告 <codeph>state</codeph> 为
+                                                <codeph>CAPTURING</codeph>，<codeph>error</codeph> 为
+                                                <codeph>ERROR_OK</codeph>。</li>
+                                    </ul></li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE"/> (5): 本地视频编码失败。</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND"/> 8: 找不到本地视频采集设备。</li>
+                                <li><ph
+                                        keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED"
+                                /> 11: 调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，共享窗口处于最小化的状态。</li>
+                                <li><ph
+                                        keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED"
+                                /> 12: 该错误码表示通过窗口 ID 共享的窗口已关闭，或通过窗口 ID 共享的全屏窗口已退出全屏。
+                                    退出全屏模式后，远端用户将无法看到共享的窗口。为避免远端用户看到黑屏，Agora 建议你立即结束本次共享。</li>
+                            </ul>
+                        </p>
                     </pd>
                 </plentry>
             </parml>
