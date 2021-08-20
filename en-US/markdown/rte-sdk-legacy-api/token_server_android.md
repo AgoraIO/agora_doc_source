@@ -446,7 +446,7 @@ In the code example, you can see that token is related to the following code log
 ### Test your implementation
 
 Build and run the project in your Android simulator in the local machine to perform the following actions:
-- Successfully joining a channel.
+- Join a channel.
 - Renewing a token every 10 seconds.
 
 <div class="alert note">If you are using an x86 simulator, make sure the target API level is 22 or earlier. If the target API level is 23 or later, text relocation error may occur.</div>
