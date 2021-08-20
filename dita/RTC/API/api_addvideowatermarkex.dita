@@ -12,14 +12,10 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int addVideoWatermarkEx(
-      String watermarkUrl, WatermarkOptions options, RtcConnection connection);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)addVideoWatermarkEx:(NSURL* _Nonnull)url 
-    options:(WatermarkOptions* _Nonnull)options 
-    connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int addVideoWatermarkEx(const char* watermarkUrl, 
-    const WatermarkOptions&amp; options, 
-    const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="windows" outputclass="language-cpp">virtual int addVideoWatermark(const char* watermarkUrl, const WatermarkOptions&amp; options, conn_id_t connectionId = agora::rtc::DEFAULT_CONNECTION_ID) = 0;
+</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
@@ -60,8 +56,9 @@
   <pd>待添加的水印图片的设置选项，详见 <xref keyref="WatermarkOptions"/>。</pd>
        </plentry>
        <plentry>
-           <pt>connection</pt>
-           <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+           <pt>connectionId</pt>
+           <pd>连接 ID。
+           </pd>
        </plentry>
    </parml>
           </section>

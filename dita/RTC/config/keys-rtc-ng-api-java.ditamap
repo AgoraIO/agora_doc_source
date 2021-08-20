@@ -1322,6 +1322,29 @@
                 </topicmeta>
             </keydef>
         </topichead>
+        <topichead navtitle="音视频回退">
+            <keydef keys="setLocalPublishFallbackOption" href="../API/api_setlocalpublishfallbackoption.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setLocalPublishFallbackOption</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="setRemoteSubscribeFallbackOption" href="../API/api_setremotesubscribefallbackoption.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setRemoteSubscribeFallbackOption</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="setRemoteUserPriority" href="../API/api_setremoteuserpriority.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setRemoteUserPriority</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
         <topichead navtitle="通话前网络测试">
             <keydef keys="startEchoTest1" href="../API/api_startechotest1.dita">
                 <topicmeta>
@@ -2262,7 +2285,7 @@
             </keydef>
         </topichead>
         <topichead navtitle="音乐文件播放事件">
-            <keydef keys="onAudioMixingStateChanged" href="../API/api_onaudiomixingstatechanged_ng.dita">
+            <keydef keys="onAudioMixingStateChanged" href="../API/api_onaudiomixingstatechanged.dita">
                 <topicmeta>
                     <keywords>
                         <keyword>onAudioMixingStateChanged</keyword>
@@ -2370,6 +2393,22 @@
                 <topicmeta>
                     <keywords>
                         <keyword>onAudioRouteChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
+        <topichead navtitle="音视频回退事件">
+            <keydef keys="onLocalPublishFallbackToAudioOnly" href="../API/api_onlocalpublishfallbacktoaudioonly.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onLocalPublishFallbackToAudioOnly</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onRemoteSubscribeFallbackToAudioOnly" href="../API/api_onremotesubscribefallbacktoaudioonly.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onRemoteSubscribeFallbackToAudioOnly</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -2825,13 +2864,6 @@
             <topicmeta>
                 <keywords>
                     <keyword>RemoteVideoStats</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="RtcConnection" href="../API/class_rtcconnection.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>RtcConnection</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3439,6 +3471,34 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="AUDIO_FILE_RECORDING_TYPE" href="../API/enum_audiofilerecordingtype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AUDIO_FILE_RECORDING_TYPE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AUDIO_FILE_RECORDING_MIC">
+            <topicmeta>
+                <keywords>
+                    <keyword>AUDIO_FILE_RECORDING_MIC</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AUDIO_FILE_RECORDING_PLAYBACK">
+            <topicmeta>
+                <keywords>
+                    <keyword>AUDIO_FILE_RECORDING_PLAYBACK</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AUDIO_FILE_RECORDING_MIXED">
+            <topicmeta>
+                <keywords>
+                    <keyword>AUDIO_FILE_RECORDING_MIXED</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="AUDIO_FRAME_TYPE" href="../API/enum_audioframetype.dita">
             <topicmeta>
                 <keywords>
@@ -3450,6 +3510,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>FRAME_TYPE_PCM16</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AUDIO_MIXING_ERROR_TYPE" href="../API/enum_audiomixingerrortype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AUDIO_MIXING_ERROR_TYPE</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3558,6 +3625,13 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="AUDIO_MIXING_STATE_TYPE" href="../API/enum_audiomixingstatetype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AUDIO_MIXING_STATE_TYPE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="AUDIO_MIXING_STATE_PLAYING">
             <topicmeta>
                 <keywords>
@@ -3583,20 +3657,6 @@
             <topicmeta>
                 <keywords>
                     <keyword>AUDIO_MIXING_STATE_FAILED</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="AUDIO_MIXING_STATE_COMPLETED">
-            <topicmeta>
-                <keywords>
-                    <keyword>AUDIO_MIXING_STATE_COMPLETED</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED">
-            <topicmeta>
-                <keywords>
-                    <keyword>AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3663,31 +3723,31 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="AUDIO_RECORDING_POSITION" href="../API/enum_audiorecordingposition.dita">
+        <keydef keys="AUDIO_RECORDING_POSITION">
             <topicmeta>
                 <keywords>
-                    <keyword>AUDIO_FILE_RECORDING_TYPE</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="AUDIO_RECORDING_POSITION_RECORDING">
-            <topicmeta>
-                <keywords>
-                    <keyword>AUDIO_FILE_RECORDING_MIC</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK">
-            <topicmeta>
-                <keywords>
-                    <keyword>AUDIO_FILE_RECORDING_PLAYBACK</keyword>
+                    <keyword>AUDIO_RECORDING_POSITION</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK">
             <topicmeta>
                 <keywords>
-                    <keyword>AUDIO_FILE_RECORDING_MIXED</keyword>
+                    <keyword>AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AUDIO_RECORDING_POSITION_RECORDING">
+            <topicmeta>
+                <keywords>
+                    <keyword>AUDIO_RECORDING_POSITION_RECORDING</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK">
+            <topicmeta>
+                <keywords>
+                    <keyword>AUDIO_RECORDING_POSITION_MIXED_PLAYBACK</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3716,6 +3776,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>AUDIO_RECORDING_QUALITY_HIGH</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AUDIO_REVERB_PRESET" href="../API/enum_audioreverbpreset.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AUDIO_REVERB_PRESET</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -4073,13 +4140,6 @@
             <topicmeta>
                 <keywords>
                     <keyword>AUDIO_SCENARIO_NUM</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="AUDIO_SCENARIO_CHORUS">
-            <topicmeta>
-                <keywords>
-                    <keyword>AUDIO_SCENARIO_CHORUS</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -4590,6 +4650,13 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="CHANNEL_PROFILE_TYPE" href="../API/enum_channelprofiletype_ng.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>CHANNEL_PROFILE_TYPE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="CHANNEL_PROFILE_COMMUNICATION">
             <topicmeta>
                 <keywords>
@@ -4615,6 +4682,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>CHANNEL_PROFILE_CLOUD_GAMING</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CLIENT_ROLE_TYPE" href="../API/enum_clientroletype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>CLIENT_ROLE_TYPE</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -6277,6 +6351,34 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="REMOTE_VIDEO_STREAM_TYPE" href="../API/enum_remotevideostreamtype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>REMOTE_VIDEO_STREAM_TYPE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="REMOTE_VIDEO_STREAM_HIGH">
+            <topicmeta>
+                <keywords>
+                    <keyword>REMOTE_VIDEO_STREAM_HIGH</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="REMOTE_VIDEO_STREAM_LOW">
+            <topicmeta>
+                <keywords>
+                    <keyword>REMOTE_VIDEO_STREAM_LOW</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RENDER_MODE_TYPE" href="../API/enum_rendermodetype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>RENDER_MODE_TYPE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="RENDER_MODE_HIDDEN">
             <topicmeta>
                 <keywords>
@@ -6785,6 +6887,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>VIDEO_FRAME_TYPE_UNKNOW</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_MIRROR_MODE_TYPE" href="../API/enum_videomirrormodetype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>VIDEO_MIRROR_MODE_TYPE</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -7418,6 +7527,13 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="VOICE_BEAUTIFIER_PRESET" href="../API/enum_voicebeautifierpreset.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>VOICE_BEAUTIFIER_PRESET</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="VOICE_BEAUTIFIER_OFF">
             <topicmeta>
                 <keywords>
@@ -7506,6 +7622,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>TIMBRE_TRANSFORMATION_RINGING</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_CHANGER_PRESET" href="../API/enum_voicechangerpreset.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>VOICE_CHANGER_PRESET</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -7681,6 +7804,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>AGORA_IID_SIGNALING_ENGINE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VOICE_CONVERSION_PRESET" href="../API/enum_voiceconversionpreset.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>VOICE_CONVERSION_PRESET</keyword>
                 </keywords>
             </topicmeta>
         </keydef>

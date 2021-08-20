@@ -14,11 +14,12 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int pushExternalEncodedVideoFrameEx(
-      ByteBuffer data, EncodedVideoFrameInfo frameInfo, RtcConnection connection);</codeblock>
+      ByteBuffer data, EncodedVideoFrameInfo frameInfo, RtcConnection connection);
+</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp">virtual int pushEncodedVideoImage(const uint8_t* imageBuffer, size_t length,
-      const agora::rtc::EncodedVideoFrameInfo&amp; videoEncodedFrameInfo,
-      const rtc::RtcConnection&amp; connection) = 0;</codeblock>
+                                  const agora::rtc::EncodedVideoFrameInfo&amp; videoEncodedFrameInfo,
+                                  rtc::conn_id_t connectionId = rtc::DEFAULT_CONNECTION_ID) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -45,8 +46,8 @@
                     <pd>外部编码视频帧的信息。详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
                 </plentry>
                 <plentry>
-                    <pt>connection</pt>
-                    <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    <pt>connectionId</pt>
+                    <pd>连接 ID。</pd>
                 </plentry>
             </parml>
         </section>
