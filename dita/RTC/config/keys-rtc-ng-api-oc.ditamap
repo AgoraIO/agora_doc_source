@@ -2224,7 +2224,7 @@
             <keydef keys="onMetaData" href="../API/api_onmetadata.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>metaDataType</keyword>
+                        <keyword>didReceiveData</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -2611,21 +2611,7 @@
         </topichead>
     </topichead>
     <topichead navtitle="Classes">
-        <keydef keys="AudioFileRecordingConfig" href="../API/class_audiofilerecordingconfig.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>AgoraAudioFileRecordingConfig</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="AudioFrame" href="../API/class_audioframe.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>AgoraAudioFrame</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="AudioRecordingConfiguration" href="../API/class_audiorecordingconfiguration.dita">
+        <keydef keys="AudioRecordingConfiguration" href="../API/class_audiofilerecordingconfig.dita">
             <topicmeta>
                 <keywords>
                     <keyword>AgoraAudioFileRecordingConfig</keyword>
@@ -2804,13 +2790,6 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraRtcMediaStreamInfo</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="Rectangle" href="../API/class_rectangle.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>updateScreenCaptureRegion</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3495,7 +3474,7 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="AUDIO_MIXING_STATE_ALL_LOOP_COMPLETED">
+        <keydef keys="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED">
             <topicmeta>
                 <keywords>
                     <keyword>AgoraAudioMixingStateTypeAllLoopsCompleted</keyword>
@@ -3576,21 +3555,21 @@
         <keydef keys="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK">
             <topicmeta>
                 <keywords>
-                    <keyword>AgoraAudioFileRecordingTypeMic</keyword>
+                    <keyword>AgoraAudioFileRecordingTypeMixed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="AUDIO_RECORDING_POSITION_RECORDING">
             <topicmeta>
                 <keywords>
-                    <keyword>AgoraAudioFileRecordingTypePlayback</keyword>
+                    <keyword>AgoraAudioFileRecordingTypeMic</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK">
             <topicmeta>
                 <keywords>
-                    <keyword>AgoraAudioFileRecordingTypeMixed</keyword>
+                    <keyword>AgoraAudioFileRecordingTypePlayback</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3951,13 +3930,6 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="AUDIO_SCENARIO_CHORUS">
-            <topicmeta>
-                <keywords>
-                    <keyword>AgoraAudioScenarioChorus</keyword>
-                </keywords>
-            </topicmeta>  
-        </keydef>
         <keydef keys="AUDIO_SCENARIO_SHOWROOM">
             <topicmeta>
                 <keywords>
@@ -4215,21 +4187,21 @@
         <keydef keys="CAMERA_DIRECTION" href="../API/enum_cameradirection.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>CAMERA_DIRECTION</keyword>
+                    <keyword>AgoraCameraDirection</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="CAMERA_REAR">
             <topicmeta>
                 <keywords>
-                    <keyword>CAMERA_REAR</keyword>
+                    <keyword>AgoraCameraDirectionRear</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="CAMERA_FRONT">
             <topicmeta>
                 <keywords>
-                    <keyword>CAMERA_FRONT</keyword>
+                    <keyword>AgoraCameraDirectionFront</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -4307,273 +4279,287 @@
         <keydef keys="CHANNEL_MEDIA_RELAY_ERROR" href="../API/enum_channelmediarelayerror.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>CHANNEL_MEDIA_RELAY_ERROR</keyword>
+                    <keyword>AgoraChannelMediaRelayError</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_OK">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_OK</keyword>
+                    <keyword>AgoraChannelMediaRelayErrorNone</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_ERROR_SERVER_ERROR_RESPONSE">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_ERROR_SERVER_ERROR_RESPONSE</keyword>
+                    <keyword>AgoraChannelMediaRelayErrorServerErrorResponse</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_ERROR_SERVER_NO_RESPONSE">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_ERROR_SERVER_NO_RESPONSE</keyword>
+                    <keyword>AgoraChannelMediaRelayErrorServerNoResponse</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_ERROR_NO_RESOURCE_AVAILABLE">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_ERROR_NO_RESOURCE_AVAILABLE</keyword>
+                    <keyword>AgoraChannelMediaRelayErrorNoResourceAvailable</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_ERROR_FAILED_JOIN_SRC">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_ERROR_FAILED_JOIN_SRC</keyword>
+                    <keyword>AgoraChannelMediaRelayErrorFailedJoinSourceChannel</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_ERROR_FAILED_JOIN_DEST">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_ERROR_FAILED_JOIN_DEST</keyword>
+                    <keyword>AgoraChannelMediaRelayErrorFailedJoinDestinationChannel</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC</keyword>
+                    <keyword>AgoraChannelMediaRelayErrorFailedPacketReceivedFromSource</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST</keyword>
+                    <keyword>AgoraChannelMediaRelayErrorFailedPacketSentToDestination</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_ERROR_SERVER_CONNECTION_LOST">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_ERROR_SERVER_CONNECTION_LOST</keyword>
+                    <keyword>AgoraChannelMediaRelayErrorServerConnectionLost</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_ERROR_INTERNAL_ERROR">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_ERROR_INTERNAL_ERROR</keyword>
+                    <keyword>AgoraChannelMediaRelayErrorInternalError</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_ERROR_SRC_TOKEN_EXPIRED">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_ERROR_SRC_TOKEN_EXPIRED</keyword>
+                    <keyword>AgoraChannelMediaRelayErrorSourceTokenExpired</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_ERROR_DEST_TOKEN_EXPIRED">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_ERROR_DEST_TOKEN_EXPIRED</keyword>
+                    <keyword>AgoraChannelMediaRelayErrorDestinationTokenExpired </keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="CHANNEL_MEDIA_RELAY_EVENT" href="../API/enum_channelmediarelayevent.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>CHANNEL_MEDIA_RELAY_EVENT</keyword>
+                    <keyword>AgoraChannelMediaRelayEvent</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_EVENT_NETWORK_DISCONNECTED">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_EVENT_NETWORK_DISCONNECTED</keyword>
+                    <keyword>AgoraChannelMediaRelayEventDisconnect</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_EVENT_NETWORK_CONNECTED">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_EVENT_NETWORK_CONNECTED</keyword>
+                    <keyword>AgoraChannelMediaRelayEventConnected</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_EVENT_PACKET_JOINED_SRC_CHANNEL">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_EVENT_PACKET_JOINED_SRC_CHANNEL</keyword>
+                    <keyword>AgoraChannelMediaRelayEventJoinedSourceChannel</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_EVENT_PACKET_JOINED_DEST_CHANNEL">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_EVENT_PACKET_JOINED_DEST_CHANNEL</keyword>
+                    <keyword>AgoraChannelMediaRelayEventJoinedDestinationChannel</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL</keyword>
+                    <keyword>AgoraChannelMediaRelayEventSentToDestinationChannel</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_EVENT_PACKET_RECEIVED_VIDEO_FROM_SRC">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_EVENT_PACKET_RECEIVED_VIDEO_FROM_SRC</keyword>
+                    <keyword>AgoraChannelMediaRelayEventReceivedVideoPacketFromSource</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_EVENT_PACKET_RECEIVED_AUDIO_FROM_SRC">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_EVENT_PACKET_RECEIVED_AUDIO_FROM_SRC</keyword>
+                    <keyword>AgoraChannelMediaRelayEventReceivedAudioPacketFromSource</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL</keyword>
+                    <keyword>AgoraChannelMediaRelayEventUpdateDestinationChannel</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_REFUSED">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_REFUSED</keyword>
+                    <keyword>AgoraChannelMediaRelayEventUpdateDestinationChannelRefused</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_NOT_CHANGE">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_NOT_CHANGE</keyword>
+                    <keyword>AgoraChannelMediaRelayEventUpdateDestinationChannelNotChange</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_IS_NULL">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_IS_NULL</keyword>
+                    <keyword>AgoraChannelMediaRelayEventUpdateDestinationChannelIsNil</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_EVENT_VIDEO_PROFILE_UPDATE">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_EVENT_VIDEO_PROFILE_UPDATE</keyword>
+                    <keyword>AgoraChannelMediaRelayEventVideoProfileUpdate</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="CHANNEL_MEDIA_RELAY_STATE" href="../API/enum_channelmediarelaystate.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>CHANNEL_MEDIA_RELAY_STATE</keyword>
+                    <keyword>AgoraChannelMediaRelayState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_STATE_IDLE">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_STATE_IDLE</keyword>
+                    <keyword>AgoraChannelMediaRelayStateIdle</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_STATE_CONNECTING">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_STATE_CONNECTING</keyword>
+                    <keyword>AgoraChannelMediaRelayStateConnecting</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_STATE_RUNNING">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_STATE_RUNNING</keyword>
+                    <keyword>AgoraChannelMediaRelayStateRunning</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RELAY_STATE_FAILURE">
             <topicmeta>
                 <keywords>
-                    <keyword>RELAY_STATE_FAILURE</keyword>
+                    <keyword>AgoraChannelMediaRelayStateFailure</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="CHANNEL_PROFILE_TYPE" href="../API/enum_channelprofiletype_ng.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>CHANNEL_PROFILE_TYPE</keyword>
+                    <keyword>AgoraChannelProfile</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="CHANNEL_PROFILE_COMMUNICATION">
             <topicmeta>
                 <keywords>
-                    <keyword>CHANNEL_PROFILE_COMMUNICATION</keyword>
+                    <keyword>AgoraChannelProfileCommunication</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="CHANNEL_PROFILE_LIVE_BROADCASTING">
             <topicmeta>
                 <keywords>
-                    <keyword>CHANNEL_PROFILE_LIVE_BROADCASTING</keyword>
+                    <keyword>AgoraChannelProfileLiveBroadcasting</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="CHANNEL_PROFILE_GAME">
             <topicmeta>
                 <keywords>
-                    <keyword>CHANNEL_PROFILE_GAME</keyword>
+                    <keyword>AgoraChannelProfileGame</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="CHANNEL_PROFILE_CLOUD_GAMING">
             <topicmeta>
                 <keywords>
-                    <keyword>CHANNEL_PROFILE_CLOUD_GAMING</keyword>
+                    <keyword>AgoraChannelProfileCloudGaming</keyword>
                 </keywords>
             </topicmeta>
+        </keydef>
+        <keydef keys="CHANNEL_PROFILE_COMMUNICATION_1V1">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraChannelProfileCommunication_1v1</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CHANNEL_PROFILE_LIVE_BROADCASTING_2">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraChannelProfileLiveBroadcasting_2</keyword>
+                </keywords>
+            </topicmeta>          
         </keydef>
         <keydef keys="CLIENT_ROLE_TYPE" href="../API/enum_clientroletype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>CLIENT_ROLE_TYPE</keyword>
+                    <keyword>AgoraClientRole</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="CLIENT_ROLE_BROADCASTER">
             <topicmeta>
                 <keywords>
-                    <keyword>CLIENT_ROLE_BROADCASTER</keyword>
+                    <keyword>AgoraClientRoleBroadcaster</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="CLIENT_ROLE_AUDIENCE">
             <topicmeta>
                 <keywords>
-                    <keyword>CLIENT_ROLE_AUDIENCE</keyword>
+                    <keyword>AgoraClientRoleAudience</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -4608,56 +4594,70 @@
         <keydef keys="DEGRADATION_PREFERENCE" href="../API/enum_degradationpreference.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>DEGRADATION_PREFERENCE</keyword>
+                    <keyword>AgoraDegradationPreference</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="MAINTAIN_QUALITY">
             <topicmeta>
                 <keywords>
-                    <keyword>MAINTAIN_QUALITY</keyword>
+                    <keyword>AgoraDegradationMaintainQuality</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="MAINTAIN_FRAMERATE">
             <topicmeta>
                 <keywords>
-                    <keyword>MAINTAIN_FRAMERATE</keyword>
+                    <keyword>AgoraDegradationMaintainFramerate</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="MAINTAIN_BALANCED">
             <topicmeta>
                 <keywords>
-                    <keyword>MAINTAIN_BALANCED</keyword>
+                    <keyword>AgoraDegradationBalanced</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="MAINTAIN_RESOLUTION">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraDegradationMaintainResolution</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="EAR_MONITORING_FILTER_TYPE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraEarMonitoringFilterType</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="EAR_MONITORING_FILTER_NONE">
             <topicmeta>
                 <keywords>
-                    <keyword>EAR_MONITORING_FILTER_NONE</keyword>
+                    <keyword>AgoraEarMonitoringFilterNone</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS">
             <topicmeta>
                 <keywords>
-                    <keyword>EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS</keyword>
+                    <keyword>AgoraEarMonitoringFilterBuiltInAudioFilters</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="EAR_MONITORING_FILTER_NOISE_SUPPRESSION">
             <topicmeta>
                 <keywords>
-                    <keyword>EAR_MONITORING_FILTER_NOISE_SUPPRESSION</keyword>
+                    <keyword>AgoraEarMonitoringFilterNoiseSuppression</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="ENCRYPTION_ERROR_TYPE" href="../API/enum_encryptionerrortype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>ENCRYPTION_ERROR_TYPE</keyword>
+                    <keyword>AgoraEncryptionErrorType</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -4685,7 +4685,7 @@
         <keydef keys="ENCRYPTION_MODE" href="../API/enum_encryptionmode.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>ENCRYPTION_MODE</keyword>
+                    <keyword>AgoraEncryptionMode</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -4713,14 +4713,28 @@
         <keydef keys="SM4_128_ECB">
             <topicmeta>
                 <keywords>
-                    <keyword>SM4_128_ECB</keyword>
+                    <keyword>AgoraEncryptionModeSM4128ECB</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AES_128_GCM2">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraEncryptionModeAES128GCM2</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AES_256_GCM2">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraEncryptionModeAES256GCM2</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="MODE_END">
             <topicmeta>
                 <keywords>
-                    <keyword>MODE_END</keyword>
+                    <keyword>AgoraEncryptionModeEnd</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -4790,329 +4804,350 @@
         <keydef keys="FRAME_RATE" href="../API/enum_framerate.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>FRAME_RATE</keyword>
+                    <keyword>AgoraVideoFrameRate</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="FRAME_RATE_FPS_1">
             <topicmeta>
                 <keywords>
-                    <keyword>FRAME_RATE_FPS_1</keyword>
+                    <keyword>AgoraVideoFrameRateFps1</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="FRAME_RATE_FPS_7">
             <topicmeta>
                 <keywords>
-                    <keyword>FRAME_RATE_FPS_7</keyword>
+                    <keyword>AgoraVideoFrameRateFps7</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="FRAME_RATE_FPS_10">
             <topicmeta>
                 <keywords>
-                    <keyword>FRAME_RATE_FPS_10</keyword>
+                    <keyword>AgoraVideoFrameRateFps10</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="FRAME_RATE_FPS_15">
             <topicmeta>
                 <keywords>
-                    <keyword>FRAME_RATE_FPS_15</keyword>
+                    <keyword>AgoraVideoFrameRateFps15</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="FRAME_RATE_FPS_24">
             <topicmeta>
                 <keywords>
-                    <keyword>FRAME_RATE_FPS_24</keyword>
+                    <keyword>AgoraVideoFrameRateFps24</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="FRAME_RATE_FPS_30">
             <topicmeta>
                 <keywords>
-                    <keyword>FRAME_RATE_FPS_30</keyword>
+                    <keyword>AgoraVideoFrameRateFps30</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="FRAME_RATE_FPS_60">
             <topicmeta>
                 <keywords>
-                    <keyword>FRAME_RATE_FPS_60</keyword>
+                    <keyword>AgoraVideoFrameRateFps60</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="INJECT_STREAM_STATUS" href="../API/enum_injectstreamstatus.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>INJECT_STREAM_STATUS</keyword>
+                    <keyword>AgoraInjectStreamStatus</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="INJECT_STREAM_STATUS_START_SUCCESS">
             <topicmeta>
                 <keywords>
-                    <keyword>INJECT_STREAM_STATUS_START_SUCCESS</keyword>
+                    <keyword>AgoraInjectStreamStatusStartSuccess</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="INJECT_STREAM_STATUS_START_ALREADY_EXISTS">
             <topicmeta>
                 <keywords>
-                    <keyword>INJECT_STREAM_STATUS_START_ALREADY_EXISTS</keyword>
+                    <keyword>AgoraInjectStreamStatusStartAlreadyExists</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="INJECT_STREAM_STATUS_START_UNAUTHORIZED">
             <topicmeta>
                 <keywords>
-                    <keyword>INJECT_STREAM_STATUS_START_UNAUTHORIZED</keyword>
+                    <keyword>AgoraInjectStreamStatusStartUnauthorized</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="INJECT_STREAM_STATUS_START_TIMEDOUT">
             <topicmeta>
                 <keywords>
-                    <keyword>INJECT_STREAM_STATUS_START_TIMEDOUT</keyword>
+                    <keyword>AgoraInjectStreamStatusStartTimedout</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="INJECT_STREAM_STATUS_START_FAILED">
             <topicmeta>
                 <keywords>
-                    <keyword>INJECT_STREAM_STATUS_START_FAILED</keyword>
+                    <keyword>AgoraInjectStreamStatusStartFailed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="INJECT_STREAM_STATUS_STOP_SUCCESS">
             <topicmeta>
                 <keywords>
-                    <keyword>INJECT_STREAM_STATUS_STOP_SUCCESS</keyword>
+                    <keyword>AgoraInjectStreamStatusStopSuccess</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="INJECT_STREAM_STATUS_STOP_NOT_FOUND">
             <topicmeta>
                 <keywords>
-                    <keyword>INJECT_STREAM_STATUS_STOP_NOT_FOUND</keyword>
+                    <keyword>AgoraInjectStreamStatusStopNotFound</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="INJECT_STREAM_STATUS_STOP_UNAUTHORIZED">
             <topicmeta>
                 <keywords>
-                    <keyword>INJECT_STREAM_STATUS_STOP_UNAUTHORIZED</keyword>
+                    <keyword>AgoraInjectStreamStatusStopUnauthorized</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="INJECT_STREAM_STATUS_STOP_TIMEDOUT">
             <topicmeta>
                 <keywords>
-                    <keyword>INJECT_STREAM_STATUS_STOP_TIMEDOUT</keyword>
+                    <keyword>AgoraInjectStreamStatusStopTimedout</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="INJECT_STREAM_STATUS_STOP_FAILED">
             <topicmeta>
                 <keywords>
-                    <keyword>INJECT_STREAM_STATUS_STOP_FAILED</keyword>
+                    <keyword>AgoraInjectStreamStatusStopFailed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="INJECT_STREAM_STATUS_BROKEN">
             <topicmeta>
                 <keywords>
-                    <keyword>INJECT_STREAM_STATUS_BROKEN</keyword>
+                    <keyword>AgoraInjectStreamStatusBroken</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LASTMILE_PROBE_RESULT_STATE" href="../API/enum_lastmileproberesultstate.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>LASTMILE_PROBE_RESULT_STATE</keyword>
+                    <keyword>AgoraLastmileProbeResultState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LASTMILE_PROBE_RESULT_COMPLETE">
             <topicmeta>
                 <keywords>
-                    <keyword>LASTMILE_PROBE_RESULT_COMPLETE</keyword>
+                    <keyword>AgoraLastmileProbeResultComplete</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE">
             <topicmeta>
                 <keywords>
-                    <keyword>LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE</keyword>
+                    <keyword>AgoraLastmileProbeResultIncompleteNoBwe</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LASTMILE_PROBE_RESULT_UNAVAILABLE">
             <topicmeta>
                 <keywords>
-                    <keyword>LASTMILE_PROBE_RESULT_UNAVAILABLE</keyword>
+                    <keyword>AgoraLastmileProbeResultUnavailable</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LIGHTENING_CONTRAST_LEVEL" href="../API/enum_lighteningcontrastlevel.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>LIGHTENING_CONTRAST_LEVEL</keyword>
+                    <keyword>AgoraLighteningContrastLevel</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LIGHTENING_CONTRAST_LOW">
             <topicmeta>
                 <keywords>
-                    <keyword>LIGHTENING_CONTRAST_LOW</keyword>
+                    <keyword>AgoraLighteningContrastLow</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LIGHTENING_CONTRAST_NORMAL">
             <topicmeta>
                 <keywords>
-                    <keyword>LIGHTENING_CONTRAST_NORMAL</keyword>
+                    <keyword>AgoraLighteningContrastNormal</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LIGHTENING_CONTRAST_HIGH">
             <topicmeta>
                 <keywords>
-                    <keyword>LIGHTENING_CONTRAST_HIGH</keyword>
+                    <keyword>AgoraLighteningContrastHigh</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_ERROR" href="../API/enum_localaudiostreamerror.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_AUDIO_STREAM_ERROR</keyword>
+                    <keyword>AgoraAudioLocalError</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_ERROR_OK">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_AUDIO_STREAM_ERROR_OK</keyword>
+                    <keyword>AgoraAudioLocalErrorOK</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_ERROR_FAILURE">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_AUDIO_STREAM_ERROR_FAILURE</keyword>
+                    <keyword>AgoraAudioLocalErrorFailure</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION</keyword>
+                    <keyword>AgoraAudioLocalErrorDeviceNoPermission</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_AUDIO_STREAM_ERROR_DEVICE_BUSY</keyword>
+                    <keyword>AgoraAudioLocalErrorDeviceBusy</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_AUDIO_STREAM_ERROR_RECORD_FAILURE</keyword>
+                    <keyword>AgoraAudioLocalErrorRecordFailure</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_AUDIO_STREAM_ERROR_ENCODE_FAILURE</keyword>
+                    <keyword>AgoraAudioLocalErrorEncodeFailure</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_STATE" href="../API/enum_localaudiostreamstate.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_AUDIO_STREAM_STATE</keyword>
+                    <keyword>AgoraAudioLocalState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_STATE_STOPPED">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_AUDIO_STREAM_STATE_STOPPED</keyword>
+                    <keyword>AgoraAudioLocalStateStopped</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_STATE_RECORDING">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_AUDIO_STREAM_STATE_RECORDING</keyword>
+                    <keyword>AgoraAudioLocalStateRecording</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_STATE_ENCODING">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_AUDIO_STREAM_STATE_ENCODING</keyword>
+                    <keyword>AgoraAudioLocalStateEncoding</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_AUDIO_STREAM_STATE_FAILED">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_AUDIO_STREAM_STATE_FAILED</keyword>
+                    <keyword>AgoraAudioLocalStateFailed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_ERROR" href="../API/enum_localvideostreamerror.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_VIDEO_STREAM_ERROR</keyword>
+                    <keyword>AgoraLocalVideoStreamError</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_ERROR_OK">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_VIDEO_STREAM_ERROR_OK</keyword>
+                    <keyword>AgoraLocalVideoStreamErrorOK</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_ERROR_FAILURE">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_VIDEO_STREAM_ERROR_FAILURE</keyword>
+                    <keyword>AgoraLocalVideoStreamErrorFailure</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION</keyword>
+                    <keyword>AgoraLocalVideoStreamErrorDeviceNoPermission</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY</keyword>
+                    <keyword>AgoraLocalVideoStreamErrorDeviceBusy</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE</keyword>
+                    <keyword>AgoraLocalVideoStreamErrorCaptureFailure</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE</keyword>
+                    <keyword>AgoraLocalVideoStreamErrorEncodeFailure</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOCAL_VIDEO_STREAM_ERROR_BACKGROUND">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraLocalVideoStreamErrorBackgroud</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOCAL_VIDEO_STREAM_ERROR_MULTIPLE_FOREGROUND_APPS">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraLocalVideoStreamErrorMultipleForegroundApps</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOCAL_VIDEO_STREAM_ERROR_SYSTEM_PRESSURE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraLocalVideoStreamErrorSystemPressure</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -5140,126 +5175,126 @@
         <keydef keys="LOCAL_VIDEO_STREAM_STATE" href="../API/enum_localvideostreamstate.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_VIDEO_STREAM_STATE</keyword>
+                    <keyword>AgoraVideoLocalState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_STATE_STOPPED">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_VIDEO_STREAM_STATE_STOPPED</keyword>
+                    <keyword>AgoraVideoLocalStateStopped</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_STATE_CAPTURING">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_VIDEO_STREAM_STATE_CAPTURING</keyword>
+                    <keyword>AgoraVideoLocalStateCapturing</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_STATE_ENCODING">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_VIDEO_STREAM_STATE_ENCODING</keyword>
+                    <keyword>AgoraVideoLocalStateEncoding</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_STATE_FAILED">
             <topicmeta>
                 <keywords>
-                    <keyword>LOCAL_VIDEO_STREAM_STATE_FAILED</keyword>
+                    <keyword>AgoraVideoLocalStateFailed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_FILTER_TYPE" href="../API/enum_logfiltertype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_FILTER_TYPE</keyword>
+                    <keyword>AgoraLogFilter</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_FILTER_OFF">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_FILTER_OFF</keyword>
+                    <keyword>AgoraLogFilterOff</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_FILTER_DEBUG">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_FILTER_DEBUG</keyword>
+                    <keyword>AgoraLogFilterDebug</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_FILTER_INFO">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_FILTER_INFO</keyword>
+                    <keyword>AgoraLogFilterInfo</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_FILTER_WARN">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_FILTER_WARN</keyword>
+                    <keyword>AgoraLogFilterWarning</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_FILTER_ERROR">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_FILTER_ERROR</keyword>
+                    <keyword>AgoraLogFilterError</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_FILTER_CRITICAL">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_FILTER_CRITICAL</keyword>
+                    <keyword>AgoraLogFilterCritical</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_LEVEL" href="../API/enum_loglevel.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_LEVEL</keyword>
+                    <keyword>AgoraLogLevel</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_LEVEL_NONE">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_LEVEL_NONE</keyword>
+                    <keyword>AgoraLogLevelNone</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_LEVEL_INFO">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_LEVEL_INFO</keyword>
+                    <keyword>AgoraLogLevelInfo</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_LEVEL_WARN">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_LEVEL_WARN</keyword>
+                    <keyword>AgoraLogLevelWarn</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_LEVEL_ERROR">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_LEVEL_ERROR</keyword>
+                    <keyword>AgoraLogLevelError</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="LOG_LEVEL_FATAL">
             <topicmeta>
                 <keywords>
-                    <keyword>LOG_LEVEL_FATAL</keyword>
+                    <keyword>AgoraLogLevelFatal</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -5350,42 +5385,42 @@
         <keydef keys="MEDIA_DEVICE_TYPE" href="../API/enum_mediadevicetype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>MEDIA_DEVICE_TYPE</keyword>
+                    <keyword>AgoraMediaDeviceType</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="UNKNOWN_AUDIO_DEVICE">
             <topicmeta>
                 <keywords>
-                    <keyword>UNKNOWN_AUDIO_DEVICE</keyword>
+                    <keyword>AgoraMediaDeviceTypeAudioUnknown</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="AUDIO_PLAYOUT_DEVICE">
             <topicmeta>
                 <keywords>
-                    <keyword>AUDIO_PLAYOUT_DEVICE</keyword>
+                    <keyword>AgoraMediaDeviceTypeAudioPlayout</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="AUDIO_RECORDING_DEVICE">
             <topicmeta>
                 <keywords>
-                    <keyword>AUDIO_RECORDING_DEVICE</keyword>
+                    <keyword>AgoraMediaDeviceTypeAudioRecording</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="VIDEO_RENDER_DEVICE">
             <topicmeta>
                 <keywords>
-                    <keyword>VIDEO_RENDER_DEVICE</keyword>
+                    <keyword>AgoraMediaDeviceTypeVideoRender</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="VIDEO_CAPTURE_DEVICE">
             <topicmeta>
                 <keywords>
-                    <keyword>VIDEO_CAPTURE_DEVICE</keyword>
+                    <keyword>AgoraMediaDeviceTypeVideoCapture</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -5399,98 +5434,98 @@
         <keydef keys="MEDIA_PLAYER_ERROR" href="../API/enum_mediaplayererror.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>MediaPlayerError</keyword>
+                    <keyword>AgoraMediaPlayerError</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_NONE">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_NONE</keyword>
+                    <keyword>AgoraMediaPlayerErrorNone</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_INVALID_ARGUMENTS">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_INVALID_ARGUMENTS</keyword>
+                    <keyword>AgoraMediaPlayerErrorInvalidArguments</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_INTERNAL">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_INTERNAL</keyword>
+                    <keyword>AgoraMediaPlayerErrorInternal</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_NO_RESOURCE">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_NO_RESOURCE</keyword>
+                    <keyword>AgoraMediaPlayerErrorNoSource</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_INVALID_MEDIA_SOURCE">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_INVALID_MEDIA_SOURCE</keyword>
+                    <keyword>AgoraMediaPlayerErrorInvalidMediaSource</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_UNKNOWN_STREAM_TYPE">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_UNKNOWN_STREAM_TYPE</keyword>
+                    <keyword>AgoraMediaPlayerErrorUnknowStreamType</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_OBJ_NOT_INITIALIZED">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_OBJ_NOT_INITIALIZED</keyword>
+                    <keyword>AgoraMediaPlayerErrorObjNotInitialized</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_CODEC_NOT_SUPPORTED">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_CODEC_NOT_SUPPORTED</keyword>
+                    <keyword>AgoraMediaPlayerErrorCodecNotSupported</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_VIDEO_RENDER_FAILED">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_VIDEO_RENDER_FAILED</keyword>
+                    <keyword>AgoraMediaPlayerErrorVideoRenderFailed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_INVALID_STATE">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_INVALID_STATE</keyword>
+                    <keyword>AgoraMediaPlayerErrorInvalidState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_URL_NOT_FOUND">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_URL_NOT_FOUND</keyword>
+                    <keyword>AgoraMediaPlayerErrorUrlNotFound</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_INVALID_CONNECTION_STATE">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_INVALID_CONNECTION_STATE</keyword>
+                    <keyword>AgoraMediaPlayerErrorInvalidConnectState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_ERROR_SRC_BUFFER_UNDERFLOW">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_ERROR_SRC_BUFFER_UNDERFLOW</keyword>
+                    <keyword>AgoraMediaPlayerErrorSrcBufferUnderflow</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -5504,28 +5539,28 @@
         <keydef keys="MEDIA_PLAYER_EVENT" href="../API/enum_mediaplayerevent.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>MEDIA_PLAYER_EVENT</keyword>
+                    <keyword>AgoraMediaPlayerEvent</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_EVENT_SEEK_BEGIN">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_EVENT_SEEK_BEGIN</keyword>
+                    <keyword>AgoraMediaPlayerEventSeekBegin</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_EVENT_SEEK_COMPLETE">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_EVENT_SEEK_COMPLETE</keyword>
+                    <keyword>AgoraMediaPlayerEventSeekComplete</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_EVENT_SEEK_ERROR">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_EVENT_SEEK_ERROR</keyword>
+                    <keyword>AgoraMediaPlayerEventSeekError</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -5539,119 +5574,161 @@
         <keydef keys="MEDIA_PLAYER_PLAYBACK_SPEED" href="../API/enum_mediaplayerplaybackspeed.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>MEDIA_PLAYER_PLAYBACK_SPEED</keyword>
+                    <keyword>AgoraMediaPlayBackSpeed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYBACK_SPEED_ORIGINAL">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYBACK_SPEED_ORIGINAL</keyword>
+                    <keyword>AgoraMediaPlayBackSpeedOriginal</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYBACK_SPEED_50_PERCENT">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYBACK_SPEED_50_PERCENT</keyword>
+                    <keyword>AgoraMediaPlayBackSpeed50Percent</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYBACK_SPEED_75_PERCENT">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYBACK_SPEED_75_PERCENT</keyword>
+                    <keyword>AgoraMediaPlayBackSpeed75Percent</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYBACK_SPEED_125_PERCENT">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYBACK_SPEED_125_PERCENT</keyword>
+                    <keyword>AgoraMediaPlayBackSpeed125Percent</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYBACK_SPEED_150_PERCENT">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYBACK_SPEED_150_PERCENT</keyword>
+                    <keyword>AgoraMediaPlayBackSpeed150Percent</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYBACK_SPEED_200_PERCENT">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYBACK_SPEED_200_PERCENT</keyword>
+                    <keyword>AgoraMediaPlayBackSpeed200Percent</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="MEDIA_PLAYER_STATE" href="../API/enum_mediaplayerstate.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>MEDIA_PLAYER_STATE</keyword>
+                    <keyword>AgoraMediaPlayerState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_STATE_IDLE">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_STATE_IDLE</keyword>
+                    <keyword>AgoraMediaPlayerStateIdle</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_STATE_OPENING">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_STATE_OPENING</keyword>
+                    <keyword>AgoraMediaPlayerStateOpening</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_STATE_OPEN_COMPLETED">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_STATE_OPEN_COMPLETED</keyword>
+                    <keyword>AgoraMediaPlayerStateOpenCompleted</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_STATE_PLAYING">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_STATE_PLAYING</keyword>
+                    <keyword>AgoraMediaPlayerStatePlaying</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_STATE_PAUSED">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_STATE_PAUSED</keyword>
+                    <keyword>AgoraMediaPlayerStatePaused</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_STATE_PLAYBACK_COMPLETED">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_STATE_PLAYBACK_COMPLETED</keyword>
+                    <keyword>AgoraMediaPlayerStatePlayBackCompleted</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED</keyword>
+                    <keyword>AgoraMediaPlayerStatePlayBackAllLoopsCompleted</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PLAYER_STATE_STOPPED">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_STATE_STOPPED</keyword>
+                    <keyword>AgoraMediaPlayerStateStopped</keyword>
                 </keywords>
             </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_STATE_PAUSING_INTERNAL">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraMediaPlayerStatePausingInternal</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_STATE_STOPPING_INTERNAL">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraMediaPlayerStateStoppingInternal</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_STATE_SEEKING_INTERNAL">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraMediaPlayerStateSeekingInternal</keyword>
+                </keywords>
+            </topicmeta>        
+        </keydef>
+        <keydef keys="PLAYER_STATE_GETTING_INTERNAL">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraMediaPlayerStateGettingInternal</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_STATE_NONE_INTERNAL">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraMediaPlayerStateNoneInternal</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_STATE_DO_NOTHING_INTERNAL">
+           <topicmeta>
+               <keywords>
+                   <keyword>AgoraMediaPlayerStateDoNothingInternal</keyword>
+               </keywords>
+           </topicmeta> 
         </keydef>
         <keydef keys="PLAYER_STATE_FAILED">
             <topicmeta>
                 <keywords>
-                    <keyword>PLAYER_STATE_FAILED</keyword>
+                    <keyword>AgoraMediaPlayerStateFailed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -5679,161 +5756,161 @@
         <keydef keys="MEDIA_STREAM_TYPE" href="../API/enum_mediastreamtype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>MEDIA_STREAM_TYPE</keyword>
+                    <keyword>AgoraMediaStreamType</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="STREAM_TYPE_UNKNOWN">
             <topicmeta>
                 <keywords>
-                    <keyword>STREAM_TYPE_UNKNOWN</keyword>
+                    <keyword>AgoraMediaStreamTypeUnknow</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="STREAM_TYPE_VIDEO">
             <topicmeta>
                 <keywords>
-                    <keyword>STREAM_TYPE_VIDEO</keyword>
+                    <keyword>AgoraMediaStreamTypeVideo</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="STREAM_TYPE_AUDIO">
             <topicmeta>
                 <keywords>
-                    <keyword>STREAM_TYPE_AUDIO</keyword>
+                    <keyword>AgoraMediaStreamTypeAudio</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="STREAM_TYPE_SUBTITLE">
             <topicmeta>
                 <keywords>
-                    <keyword>STREAM_TYPE_SUBTITLE</keyword>
+                    <keyword>AgoraMediaStreamTypeSubtitle</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="METADATA_TYPE" href="../API/enum_metadatatype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>METADATA_TYPE</keyword>
+                    <keyword>AgoraMetadataType</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="UNKNOWN_METADATA">
             <topicmeta>
                 <keywords>
-                    <keyword>UNKNOWN_METADATA</keyword>
+                    <keyword>AgoraMetadataTypeUnknown</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="VIDEO_METADATA">
             <topicmeta>
                 <keywords>
-                    <keyword>VIDEO_METADATA</keyword>
+                    <keyword>AgoraMetadataTypeVideo</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="NETWORK_TYPE" href="../API/enum_networktype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>NETWORK_TYPE</keyword>
+                    <keyword>AgoraNetworkType</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="NETWORK_TYPE_UNKNOWN">
             <topicmeta>
                 <keywords>
-                    <keyword>NETWORK_TYPE_UNKNOWN</keyword>
+                    <keyword>AgoraNetworkTypeUnknown</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="NETWORK_TYPE_DISCONNECTED">
             <topicmeta>
                 <keywords>
-                    <keyword>NETWORK_TYPE_DISCONNECTED</keyword>
+                    <keyword>AgoraNetworkTypeDisconnected</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="NETWORK_TYPE_LAN">
             <topicmeta>
                 <keywords>
-                    <keyword>NETWORK_TYPE_LAN</keyword>
+                    <keyword>AgoraNetworkTypeLAN</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="NETWORK_TYPE_WIFI">
             <topicmeta>
                 <keywords>
-                    <keyword>NETWORK_TYPE_WIFI</keyword>
+                    <keyword>AgoraNetworkTypeWIFI</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="NETWORK_TYPE_MOBILE_2G">
             <topicmeta>
                 <keywords>
-                    <keyword>NETWORK_TYPE_MOBILE_2G</keyword>
+                    <keyword>AgoraNetworkType2G</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="NETWORK_TYPE_MOBILE_3G">
             <topicmeta>
                 <keywords>
-                    <keyword>NETWORK_TYPE_MOBILE_3G</keyword>
+                    <keyword>AgoraNetworkType3G</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="NETWORK_TYPE_MOBILE_4G">
             <topicmeta>
                 <keywords>
-                    <keyword>NETWORK_TYPE_MOBILE_4G</keyword>
+                    <keyword>AgoraNetworkType4G</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="ORIENTATION_MODE" href="../API/enum_orientationmode.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>ORIENTATION_MODE</keyword>
+                    <keyword>AgoraVideoOutputOrientationMode</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="ORIENTATION_MODE_ADAPTIVE">
             <topicmeta>
                 <keywords>
-                    <keyword>ORIENTATION_MODE_ADAPTIVE</keyword>
+                    <keyword>AgoraVideoOutputOrientationModeAdaptative</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="ORIENTATION_MODE_FIXED_LANDSCAPE">
             <topicmeta>
                 <keywords>
-                    <keyword>ORIENTATION_FIXED_LANDSCAPE</keyword>
+                    <keyword>AgoraVideoOutputOrientationModeFixedLandscape</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="ORIENTATION_MODE_FIXED_PORTRAIT">
             <topicmeta>
                 <keywords>
-                    <keyword>ORIENTATION_FIXED_PORTRAIT</keyword>
+                    <keyword>AgoraVideoOutputOrientationModeFixedPortrait</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PERMISSION_TYPE" href="../API/enum_permissiontype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>PERMISSION_TYPE</keyword>
+                    <keyword>AgoraPermissionType</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RECORD_AUDIO">
             <topicmeta>
                 <keywords>
-                    <keyword>RECORD_AUDIO</keyword>
+                    <keyword>AgoraPermissionTypeRecordAudio</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="CAMERA">
             <topicmeta>
                 <keywords>
-                    <keyword>CAMERA</keyword>
+                    <keyword>AgoraPermissionTypeCamera</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -5910,56 +5987,56 @@
         <keydef keys="QUALITY_TYPE" href="../API/enum_qualitytype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>QUALITY_TYPE</keyword>
+                    <keyword>AgoraNetworkQuality</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="QUALITY_UNKNOWN">
             <topicmeta>
                 <keywords>
-                    <keyword>QUALITY_UNKNOWN</keyword>
+                    <keyword>AgoraNetworkQualityUnknown</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="QUALITY_EXCELLENT">
             <topicmeta>
                 <keywords>
-                    <keyword>QUALITY_EXCELLENT</keyword>
+                    <keyword>AgoraNetworkQualityExcellent</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="QUALITY_GOOD">
             <topicmeta>
                 <keywords>
-                    <keyword>QUALITY_GOOD</keyword>
+                    <keyword>AgoraNetworkQualityGood</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="QUALITY_POOR">
             <topicmeta>
                 <keywords>
-                    <keyword>QUALITY_POOR</keyword>
+                    <keyword>AgoraNetworkQualityPoor</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="QUALITY_BAD">
             <topicmeta>
                 <keywords>
-                    <keyword>QUALITY_BAD</keyword>
+                    <keyword>AgoraNetworkQualityBad</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="QUALITY_VBAD">
             <topicmeta>
                 <keywords>
-                    <keyword>QUALITY_VBAD</keyword>
+                    <keyword>AgoraNetworkQualityVBad</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="QUALITY_DOWN">
             <topicmeta>
                 <keywords>
-                    <keyword>QUALITY_DOWN</keyword>
+                    <keyword>AgoraNetworkQualityDown</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -5980,322 +6057,336 @@
         <keydef keys="RAW_AUDIO_FRAME_OP_MODE_TYPE" href="../API/enum_rawaudioframeopmodetype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>RAW_AUDIO_FRAME_OP_MODE_TYPE</keyword>
+                    <keyword>AgoraAudioRawFrameOperationMode</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY">
             <topicmeta>
                 <keywords>
-                    <keyword>RAW_AUDIO_FRAME_OP_MODE_READ_ONLY</keyword>
+                    <keyword>AgoraAudioRawFrameOperationModeReadOnly</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraAudioRawFrameOperationModeWriteOnly</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE">
             <topicmeta>
                 <keywords>
-                    <keyword>RAW_AUDIO_FRAME_OP_MODE_READ_WRITE</keyword>
+                    <keyword>AgoraAudioRawFrameOperationModeReadWrite</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE" href="../API/enum_remoteaudiostate.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE</keyword>
+                    <keyword>AgoraAudioRemoteState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_STOPPED">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_STOPPED</keyword>
+                    <keyword>AgoraAudioRemoteStateStopped</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_STARTING">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_STARTING</keyword>
+                    <keyword>AgoraAudioRemoteStateStarting</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_DECODING">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_DECODING</keyword>
+                    <keyword>AgoraAudioRemoteStateDecoding</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_FROZEN">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_FROZEN</keyword>
+                    <keyword>AgoraAudioRemoteStateFrozen</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_FAILED">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_FAILED</keyword>
+                    <keyword>AgoraAudioRemoteStateFailed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE" href="../API/enum_remotevideostate.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE</keyword>
+                    <keyword>AgoraVideoRemoteState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_STOPPED">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_STOPPED</keyword>
+                    <keyword>AgoraVideoRemoteStateStopped</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_STARTING">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_STARTING</keyword>
+                    <keyword>AgoraVideoRemoteStateStarting</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_DECODING">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_DECODING</keyword>
+                    <keyword>AgoraVideoRemoteStateDecoding</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_FROZEN">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_FROZEN</keyword>
+                    <keyword>AgoraVideoRemoteStateFrozen</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_FAILED">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_FAILED</keyword>
+                    <keyword>AgoraVideoRemoteStateFailed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_REASON" href="../API/enum_remoteaudiostatereason.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_REASON</keyword>
+                    <keyword>AgoraAudioRemoteReason</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_REASON_INTERNAL">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_REASON_INTERNAL</keyword>
+                    <keyword>AgoraAudioRemoteReasonInternal</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_REASON_NETWORK_CONGESTION">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_REASON_NETWORK_CONGESTION</keyword>
+                    <keyword>AgoraAudioRemoteReasonNetworkCongestion</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_REASON_NETWORK_RECOVERY">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_REASON_NETWORK_RECOVERY</keyword>
+                    <keyword>AgoraAudioRemoteReasonNetworkRecovery</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_REASON_LOCAL_MUTED">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_REASON_LOCAL_MUTED</keyword>
+                    <keyword>AgoraAudioRemoteReasonLocalMuted</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_REASON_LOCAL_UNMUTED">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_REASON_LOCAL_UNMUTED</keyword>
+                    <keyword>AgoraAudioRemoteReasonLocalUnmuted</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_REASON_REMOTE_MUTED">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_REASON_REMOTE_MUTED</keyword>
+                    <keyword>AgoraAudioRemoteReasonRemoteMuted</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_REASON_REMOTE_UNMUTED">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_REASON_REMOTE_UNMUTED</keyword>
+                    <keyword>AgoraAudioRemoteReasonRemoteUnmuted</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_AUDIO_STATE_REASON_REMOTE_OFFLINE">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_AUDIO_STATE_REASON_REMOTE_OFFLINE</keyword>
+                    <keyword>AgoraAudioRemoteReasonRemoteOffline</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_REASON" href="../API/enum_remotevideostatereason.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_REASON</keyword>
+                    <keyword>AgoraVideoRemoteReason</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_REASON_INTERNAL">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_REASON_INTERNAL</keyword>
+                    <keyword>AgoraVideoRemoteReasonInternal</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION</keyword>
+                    <keyword>AgoraVideoRemoteReasonCongestion</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY</keyword>
+                    <keyword>AgoraVideoRemoteReasonRecovery</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED</keyword>
+                    <keyword>AgoraVideoRemoteReasonLocalMuted</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED</keyword>
+                    <keyword>AgoraVideoRemoteReasonLocalUnmuted</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED</keyword>
+                    <keyword>AgoraVideoRemoteReasonRemoteMuted</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED</keyword>
+                    <keyword>AgoraVideoRemoteReasonRemoteUnmuted</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE</keyword>
+                    <keyword>AgoraVideoRemoteReasonRemoteOffline</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK</keyword>
+                    <keyword>AgoraVideoRemoteReasonAudioFallback</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY</keyword>
+                    <keyword>AgoraVideoRemoteReasonAudioFallbackRecovery</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STREAM_TYPE" href="../API/enum_remotevideostreamtype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STREAM_TYPE</keyword>
+                    <keyword>AgoraVideoStreamType</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STREAM_HIGH">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STREAM_HIGH</keyword>
+                    <keyword>AgoraVideoStreamTypeHigh</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="REMOTE_VIDEO_STREAM_LOW">
             <topicmeta>
                 <keywords>
-                    <keyword>REMOTE_VIDEO_STREAM_LOW</keyword>
+                    <keyword>AgoraVideoStreamTypeLow</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RENDER_MODE_TYPE" href="../API/enum_rendermodetype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>RENDER_MODE_TYPE</keyword>
+                    <keyword>AgoraVideoRenderMode</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RENDER_MODE_HIDDEN">
             <topicmeta>
                 <keywords>
-                    <keyword>RENDER_MODE_HIDDEN</keyword>
+                    <keyword>AgoraVideoRenderModeHidden</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RENDER_MODE_FIT">
             <topicmeta>
                 <keywords>
-                    <keyword>RENDER_MODE_FIT</keyword>
+                    <keyword>AgoraVideoRenderModeFit</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RENDER_MODE_ADAPTIVE">
             <topicmeta>
                 <keywords>
-                    <keyword>RENDER_MODE_ADAPTIVE</keyword>
+                    <keyword>AgoraVideoRenderModeAdaptive</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_LIFE_CYCLE_TYPE" href="../API/enum_rtmpstreamlifecycletype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_LIFE_CYCLE_TYPE</keyword>
+                    <keyword>AgoraRtmpStreamLifeCycle</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_LIFE_CYCLE_BIND2CHANNEL">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_LIFE_CYCLE_BIND2CHANNEL</keyword>
+                    <keyword>AgoraRtmpStreamLifeCycleBindToChannel</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_LIFE_CYCLE_BIND2OWNER">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_LIFE_CYCLE_BIND2OWNER</keyword>
+                    <keyword>AgoraRtmpStreamLifeCycleBindToOwner</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR" href="../API/enum_rtmpstreampublisherror.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR</keyword>
+                    <keyword>AgoraRtmpStreamPublishError</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RTMP_STREAM_PUBLISH_ERROR_FAILED">
+            <topicmeta>
+                <keywords>
+                    <keyword>RTMP_STREAM_PUBLISH_ERROR_FAILED</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -6376,10 +6467,24 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="RTMP_STREAM_PUBLISH_ERROR_CDN_ERROR">
+            <topicmeta>
+                <keywords>
+                    <keyword>RTMP_STREAM_PUBLISH_ERROR_CDN_ERROR</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RTMP_STREAM_PUBLISH_ERROR_ALREADY_IN_USE">
+            <topicmeta>
+                <keywords>
+                    <keyword>RTMP_STREAM_PUBLISH_ERROR_ALREADY_IN_USE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_STATE" href="../API/enum_rtmpstreampublishstate.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_STATE</keyword>
+                    <keyword>goraRtmpStreamPublishState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -6435,112 +6540,119 @@
         <keydef keys="STREAM_PUBLISH_STATE" href="../API/enum_streampublishstate.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>STREAM_PUBLISH_STATE</keyword>
+                    <keyword>AgoraStreamPublishState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PUB_STATE_IDLE">
             <topicmeta>
                 <keywords>
-                    <keyword>PUB_STATE_IDLE</keyword>
+                    <keyword>AgoraStreamPublishStateIdle</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PUB_STATE_NO_PUBLISHED">
             <topicmeta>
                 <keywords>
-                    <keyword>PUB_STATE_NO_PUBLISHED</keyword>
+                    <keyword>AgoraStreamPublishStateNoPublished</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PUB_STATE_PUBLISHING">
             <topicmeta>
                 <keywords>
-                    <keyword>PUB_STATE_PUBLISHING</keyword>
+                    <keyword>AgoraStreamPublishStatePublishing</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="PUB_STATE_PUBLISHED">
             <topicmeta>
                 <keywords>
-                    <keyword>PUB_STATE_PUBLISHED</keyword>
+                    <keyword>AgoraStreamPublishStatePublished</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="STREAM_SUBSCRIBE_STATE" href="../API/enum_streamsubscribestate.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>STREAM_SUBSCRIBE_STATE</keyword>
+                    <keyword>AgoraStreamSubscribeState</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="SUB_STATE_IDLE">
             <topicmeta>
                 <keywords>
-                    <keyword>SUB_STATE_IDLE</keyword>
+                    <keyword>AgoraStreamSubscribeStateIdle</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="SUB_STATE_NO_SUBSCRIBED">
             <topicmeta>
                 <keywords>
-                    <keyword>SUB_STATE_NO_SUBSCRIBED</keyword>
+                    <keyword>AgoraStreamSubscribeStateNoSubscribed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="SUB_STATE_SUBSCRIBING">
             <topicmeta>
                 <keywords>
-                    <keyword>SUB_STATE_SUBSCRIBING</keyword>
+                    <keyword>AgoraStreamSubscribeStateSubscribing</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="SUB_STATE_SUBSCRIBED">
             <topicmeta>
                 <keywords>
-                    <keyword>SUB_STATE_SUBSCRIBED</keyword>
+                    <keyword>AgoraStreamSubscribeStateSubscribed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="USER_OFFLINE_REASON_TYPE" href="../API/enum_userofflinereasontype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>USER_OFFLINE_REASON_TYPE</keyword>
+                    <keyword>AgoraUserOfflineReason</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="USER_OFFLINE_QUIT">
             <topicmeta>
                 <keywords>
-                    <keyword>USER_OFFLINE_QUIT</keyword>
+                    <keyword>AgoraUserOfflineReasonQuit</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="USER_OFFLINE_DROPPED">
             <topicmeta>
                 <keywords>
-                    <keyword>USER_OFFLINE_DROPPED</keyword>
+                    <keyword>AgoraUserOfflineReasonDropped</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="USER_OFFLINE_BECOME_AUDIENCE">
             <topicmeta>
                 <keywords>
-                    <keyword>USER_OFFLINE_BECOME_AUDIENCE</keyword>
+                    <keyword>AgoraUserOfflineReasonBecomeAudience</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="VIDEO_BUFFER_TYPE" href="../API/enum_videobuffertype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>VIDEO_BUFFER_TYPE</keyword>
+                    <keyword>AgoraVideoBufferType</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_BUFFER_PIXEL_BUFFER">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoBufferTypePixelBuffer</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="VIDEO_BUFFER_RAW_DATA">
             <topicmeta>
                 <keywords>
-                    <keyword>VIDEO_BUFFER_RAW_DATA</keyword>
+                    <keyword>AgoraVideoBufferTypeRawData</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -6578,7 +6690,7 @@
                     <keyword>VIDEO_CAPTURE_SCREEN</keyword>
                 </keywords>
             </topicmeta>
-        </keydef>
+        </keydef>    
         <keydef keys="VIDEO_CODEC_PROFILE_TYPE" href="../API/enum_videocodecprofiletype.dita">
             <topicmeta>
                 <keywords>
