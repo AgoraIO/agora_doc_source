@@ -14,7 +14,7 @@ To use an extension in your Agora project, implement the following steps in your
 
 1. Add the extension to your app: Call `addExtension` when you initialize `RtcEngine`.
 2. Enable the extension: Call `enableExtension` before joining a channel.
-3. Use an extension feature: Call `setExtensionProperty` set parameters for the feature.
+3. Use an extension feature: Call `setExtensionProperty` to pass in necessary parameters.
 
 When you call these APIs, you need the following information that you can find in the Extensions Gallery:
 
@@ -41,7 +41,7 @@ To create the environment necessary to integrate the extension into your app, do
    ```java
    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
    ```
-- Shared Library (.so)
+- Shared Library (`.so`)
 	Save the `.so` file to the following paths in your project folder:
 	
 	- `/app/src/main/jniLibs/arm64-v8a`
@@ -49,9 +49,7 @@ To create the environment necessary to integrate the extension into your app, do
 
 ## Implement the extension in your project
 
-This section shows how to implement the features of an extension in your Agora project.
-
-For demonstration purposes, a simple watermark extension is used to explain the procedure. The watermark extension adds a watermark for local video.
+For demonstration purposes, a simple watermark extension is used to explain the procedure. The watermark extension adds a watermark for local video. This section shows you how to implement the watermark extension in your Agora project.
 
 To follow the procedure in this section, download the [watermark extension](TBD) first. 
 
@@ -123,9 +121,13 @@ private void initializeAndJoinChannel() {
         // Pass in the key-value pairs defined by the extension provider to configure the feature you want to use.
         o.put("plugin.watermark.wmStr", "123456");
         o.put("plugin.watermark.wmEffectEnabled", true);
- 
-        // Call setExtensionProperty to use the feature.
-mRtcEngine.setExtensionProperty(ExtensionManager.EXTENSION_VENDOR_NAME, ExtensionManager.EXTENSION_VIDEO_FILTER_NAME, "key", o.toString());
+
+   // Call setExtensionProperty to pass in the apiKey.
+   mRtcEngine.setExtensionProperty(ExtensionManager.EXTENSION_VENDOR_NAME, ExtensionManager.EXTENSION_VIDEO_FILTER_NAME, "API_KEY", API_KEY);
+   // Call setExtensionProperty to pass in the apiSecret.
+   mRtcEngine.setExtensionProperty(ExtensionManager.EXTENSION_VENDOR_NAME, ExtensionManager.EXTENSION_VIDEO_FILTER_NAME, "SECRET_KEY", SECRET_KEY);
+   // Call setExtensionProperty to use the watermark feature.
+   mRtcEngine.setExtensionProperty(ExtensionManager.EXTENSION_VENDOR_NAME, ExtensionManager.EXTENSION_VIDEO_FILTER_NAME, "key", o.toString());
     } catch (JSONException e) {
         e.printStackTrace();
     }
