@@ -4,20 +4,23 @@ This page shows the minimum code you need to add video call into your app by usi
 
 ## Understand the tech
 
-The following figure shows the workflow of a video call implemented by the Agora SDK.
+The following figure shows the workflow of a video call implemented using the Video SDK.
 
 ![](https://web-cdn.agora.io/docs-files/1627550978702)
 
 To start a video call, you implement the following steps in your app:
 
-**1. Retrieve a token**
-The token is a credential for authenticating the identity of the user when your app client joins a channel. The app client requests a token from your app server. This token authenticates the user when the app client joins a channel.
+1. Retrieve a token
 
-**2. Join a channel**
-Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+   The token is a credential for authenticating the identity of the user when your app client joins a channel. The app client requests a token from your app server. This token authenticates the user when the app client joins a channel.
 
-**3. Publish and subscribe to audio and video in the channel**
-After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+2. Join a channel
+
+   Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+
+3. Publish and subscribe to audio and video in the channel
+	
+	After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
@@ -39,17 +42,21 @@ Before proceeding, ensure that your development environment meets the following 
 
 In Xcode, follow the steps to create the environment necessary to add live streaming into your app.
 
-1. [Create a new project](https://help.apple.com/xcode/mac/current/#/dev07db0e578) for an iOS app using the **Single View App** template. Make sure you select **Storyboard** as the user interface.
+1. Create a new iOS app and configure the following settings:
    
-   <div class="alert note">If you have not added any team information, you can see an **Add account...** button. Click it, input your Apple ID, and click **Next** to add your team.</div>
+   - Product Name: Any name you like.
+   - Team: If you have added a team, choose it from the pop-up menu. If not, you can see the **Add account** button. Click it, input your Apple ID, and click **Next** to add your team.
+   - Organization Identifier: The identifier of your organization. If you do not belong to an organization, use any identifier you like.
+   - Interface: Choose **Storyboard**.
+   - Language: Choose **Swift**.
    
 2. Integrate the Video SDK into your project.
 
-   Go to **File** > **Swift Packages** > **Add Package Dependencies...**, and paste the following link:
+   Go to **File** > **Swift Packages** > **Add Package Dependencies...**, and paste the following URL:
 
    `https://github.com/AgoraIO/AgoraRtcEngine_iOS`
-   
-   In the next sheet, [specify version requirements](https://help.apple.com/xcode/mac/current/#/devb83d64851) according to your needs.
+
+   In **Choose Package Options**, [specify version requirements](https://help.apple.com/xcode/mac/current/#/devb83d64851) according to your needs.
 
 <div class="alert note"><li>Each SDK version has a corresponding Swift Package with the same version number. For the Video SDK, Agora provides Swift Packages for 3.4.3 and later versions.</li><li>If you have issues installing this Swift Package, try going to <b>File</b> > <b>Swift Packages</b> > <b>Reset Package Caches</b>.</li><li>For more integration methods, see <a href="#othermethods">Other approaches to integrating the SDK</a></li></div>
 
@@ -63,8 +70,6 @@ In Xcode, follow the steps to create the environment necessary to add live strea
 ## Implement a client for Video Call
 
 This section shows how to use the Agora Video SDK to implement Video Call in your app step by step.
-
-<div class="alert note">The code samples in this section are written in Swift. If you prefer programming with Objective-C, see <a href="#oc">Objective-C code sample</a></div>
 
 ### Create the UI
 
@@ -238,7 +243,7 @@ In addition to integrating the Agora Video SDK for iOS through Swift Package, yo
    
    <div class="alert note">Certain files and subfolders under the <code>libs</code> folder are optional. See <a href="https://docs.agora.io/en/Video/faq/reduce_app_size_rtc?platform=iOS#extension_libraries">extension libraries</a> for details.</div>
    
-3. In Xcode, [link your target to the frameworks or libraries](https://help.apple.com/xcode/mac/current/#/dev51a648b07) you have copied. Be sure to choose **Embed & Sign**from the pop-up menu in the Embed column.
+3. In Xcode, [link your target to the frameworks or libraries](https://help.apple.com/xcode/mac/current/#/dev51a648b07) you have copied. Be sure to choose **Embed & Sign** from the pop-up menu in the Embed column.
 
    <div class="alert note"><ul><li>Apple does not allow an app extension to contain any dynamic library. If you are integrating the Agora SDK to an app extension, choose <b>Do Not Embed</b> in the Embed column.</li><li>The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</li></ul></div>
 
