@@ -11,6 +11,9 @@ In real-time scenarios requiring high quality, conducting tests before joining a
 
 The `startLastmileProbeTest` method that probes the last-mile network before joining a channel and returns statistics about the network quality, including round-trip latency, packet loss rate, and network bandwidth.
 
+The API call sequence is as follows:
+
+![](https://web-cdn.agora.io/docs-files/1603946038258)
 ### Device test
 
 The `startEchoTestWithInterval` method that tests whether the network connection and the audio devices, such as the microphone and the speakers, are working properly.
@@ -83,21 +86,6 @@ Refer to the following steps to implement the network probe test.
 // You can call stopLastmileProbeTest either within the lastmileProbeResult callback, or at other time before joining a channel.
 agoraKit.stopLastmileProbeTest()
 ```
-
-The API call sequence is as follows:
-
-![](https://web-cdn.agora.io/docs-files/1603946038258)
-
-
-### API reference
-
-- [`startLastmileProbeTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startLastmileProbeTest:)
-- [`stopLastmileProbeTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopLastmileProbeTest)
-- [`lastmileQuality`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:lastmileQuality:)
-- [`lastmileProbeResult`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:lastmileProbeTestResult:)
-
-
-
 ### Device test
 
 Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](start_call_ios) or [Start Live Interactive Streaming](start_live_ios).
@@ -131,6 +119,10 @@ Agora provides an open-source iOS sample project on GitHub that implements pre-c
 
 - [`startEchoTestWithInterval`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startEchoTestWithInterval:successBlock:)
 - [`stopEchoTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopEchoTest)
+- [`startLastmileProbeTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startLastmileProbeTest:)
+- [`stopLastmileProbeTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopLastmileProbeTest)
+- [`lastmileQuality`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:lastmileQuality:)
+- [`lastmileProbeResult`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:lastmileProbeTestResult:)
 
 ### Considerations
 
