@@ -1,10 +1,10 @@
 # Adjust the Volume
 
-The Agora RTC SDK enables you to manage the volume of the recorded audio or of the audio playback according to your actual scenario. For example, to mute a remote user in a one-to-one call, you can set the audio playback volume as 0.
-
 This article provides the APIs and additional information relating to audio recording, audio mixing, audio playback and in-ear monitoring volume settings.
 
 ## Understand the tech
+
+The Agora RTC SDK enables you to manage the volume of the recorded audio or of the audio playback according to your actual scenario. For example, to mute a remote user in a one-to-one call, you can set the audio playback volume as 0.
 
 The following diagram shows the workflow of audio volume settings.
 
@@ -24,7 +24,7 @@ The following diagram shows the workflow of audio volume settings.
 
 ### In-ear monitoring
 
-In-ear monitoring is the process of playing the audio from the recording device.
+**In-ear monitoring** is the process of playing the audio from the recording device.
 
 ![](https://web-cdn.agora.io/docs-files/1578560373700)
 ## Implementation
@@ -52,9 +52,6 @@ Call `adjustPlaybackSignalVolume` or `adjustUserPlaybackSignalVolume` to set the
 
 
 ```java
-ChannelMediaOptions options = new ChannelMediaOptions();
-options.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER;
-mRtcEngine.joinChannel(token, channelName, 1234, options);
 int volume = 50;
 int uid = 123456;
 // Sets the playback audio level of all remote users.
@@ -68,9 +65,6 @@ mRtcEngine.adjustUserPlaybackSignalVolume(uid, volume);
 In audio recording, mixing and playing, you can call `setInEarMonitoringVolume` to adjust the volume of the in-ear monitoring.
 
 ```java
-ChannelMediaOptions options = new ChannelMediaOptions();
-options.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER;
-mRtcEngine.joinChannel(token, channelName, 1234, options);
 // Enables in-ear monitoring.
 rtcEngine.enableInEarMonitoring(true);
 int volume = 50;
@@ -102,9 +96,6 @@ When recording, mixing, or playing audio, you can use the following methods to g
 
   ...
 
-  ChannelMediaOptions options = new ChannelMediaOptions();
-  options.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER;
-  mRtcEngine.joinChannel(token, channelName, 1234, options);
   // Enables the onAudioVolumeIndication callback
   mRtcEngine.enableAudioVolumeIndication(true);
   ```
@@ -128,9 +119,6 @@ When recording, mixing, or playing audio, you can use the following methods to g
 
   ...
 
-  ChannelMediaOptions options = new ChannelMediaOptions();
-  options.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER;
-  mRtcEngine.joinChannel(token, channelName, 1234, options);
   // Enables the onAudioVolumeIndication callback
   mRtcEngine.enableAudioVolumeIndication(true);
   ```

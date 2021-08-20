@@ -1,3 +1,5 @@
+This article describes how to implement these tests.
+
 ## Understand the tech
 
 In real-time scenarios requiring high quality, conducting tests before joining a channel helps troubleshoot in advance and improve the overall user experience. You can perform the following pre-call tests:
@@ -5,17 +7,22 @@ In real-time scenarios requiring high quality, conducting tests before joining a
 - Network test: Detects the network quality by probing the uplink and downlink last-mile network quality.
 - Device test: Checks if the local audio recording and playback devices work properly.
 
-This article describes how to implement these tests.
+### Network probe test
 
-## Sample project
+The `startLastmileProbeTest` method probes the last-mile network before joining a channel and returns statistics about the network quality, including round-trip latency, packet loss rate, and network bandwidth.
 
-Agora provides an open-source sample project that implements [pre-call tests](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/PreCallTest.java) on GitHub. You can download the sample project to try it out or refer to the source code.
+The API call sequence is as follows:
 
-## Network probe test
+![](https://web-cdn.agora.io/docs-files/1569464757177)
 
-As of v2.4.0, the Agora RTC Native SDK provides the `startLastmileProbeTest` method that probes the last-mile network before joining a channel and returns statistics about the network quality, including round-trip latency, packet loss rate, and network bandwidth.
+### Device test
 
-### Implementation
+The SDK provides the `startEchoTest` method that tests whether the network connection and the audio devices, such as the microphone and the speakers, are working properly.
+
+## Implementation
+
+### Network probe test
+
 
 Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](./start_call_android?platform=Android) or [Start Interactive Live Streaming](./start_live_android?platform=Android).
 
@@ -27,11 +34,6 @@ Refer to the following steps to implement the network probe test:
 - `onLastmileProbeResult`: Triggered 30 seconds after the `startLastmileProbeTest` method is called. This callback returns the real-time statistics of the network conditions and is more objective.
 3. After getting the network quality statistics, call the `stopLastmileProbeTest` method to stop the last-mile network probe test.
 
-The API call sequence is as follows:
-
-![](https://web-cdn.agora.io/docs-files/1569464757177)
-
-### Sample code
 
 Refer to the following code to implement the last-mile test in your project.
 
@@ -70,19 +72,7 @@ public void onLastmileProbeResult(LastmileProbeResult) {
 rtcEngine.stopLastmileProbeTest();
 ```
 
-
-### API Reference
-
-- [`startLastmileProbeTest`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81c6541685b1c4437d9779a095a0f871)
-- [`stopLastmileProbeTest`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae21243b8da8bda9ee5f3a00621cbf959)
-- [`onLastmileQuality`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2887941e3c105c21309bd2643372e7f5)
-- [`onLastmileProbeResult`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad74a9120325bfeccdec4af4611110281)
-
-## Device test
-
-The SDK provides the `startEchoTest` method that tests whether the network connection and the audio devices, such as the microphone and the speakers, are working properly.
-
-## Implementation
+### Device test
 
 Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](./start_call_android?platform=Android) or [Start Interactive Live Streaming](./start_live_android?platform=Android).
 
@@ -92,7 +82,7 @@ Before proceeding, ensure that you have implemented basic real-time functions in
 
 3. Once you get the test result, call `stopEchoTest` to stop the current test before joining a channel using `joinChannel`.
 
-### Sample code
+Refer to the following code to implement the device test in your project.
 
 ```java
 // Start the echo test.
@@ -105,12 +95,22 @@ rtcEngine.startEchoTest(10);
 rtcEngine.stopEchoTest();
 ```
 
+## Reference
+
+### Sample project
+
+Agora provides an open-source sample project that implements [pre-call tests](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/PreCallTest.java) on GitHub. You can download the sample project to try it out or refer to the source code.
+
 ### API Reference
 
-- [startEchoTest]()
-- [stopEchoTest]()
+- [`startLastmileProbeTest`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a81c6541685b1c4437d9779a095a0f871)
+- [`stopLastmileProbeTest`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae21243b8da8bda9ee5f3a00621cbf959)
+- [`onLastmileQuality`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a2887941e3c105c21309bd2643372e7f5)
+- [`onLastmileProbeResult`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad74a9120325bfeccdec4af4611110281)
+- [`startEchoTest`]()
+- [`stopEchoTest`]()
 
-## Considerations
+### Considerations
 
 - Calling `startLastmileProbeTest` for pre-call network quality detection consumes network traffic. Therefore, after calling this method, Agora recommends not calling any other method until you receive the `onLastmileProbeResult` callback.
 - The `onLastmileQuality` callback may return `UNKNOWN` the first time it is triggered. Subsequent callbacks will return the test results.
