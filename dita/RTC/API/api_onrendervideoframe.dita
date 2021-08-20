@@ -12,8 +12,10 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">@CalledByNative
+boolean onRenderVideoFrame(int uid, RtcConnection connection, VideoFrame videoFrame);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRenderVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame uid:(NSUInteger)uid connectionId:(NSUInteger)connectionId;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual bool onRenderVideoFrame(unsigned int uid, VideoFrame&amp; videoFrame) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
