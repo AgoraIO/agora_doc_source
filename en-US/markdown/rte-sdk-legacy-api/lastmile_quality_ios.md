@@ -119,6 +119,7 @@ agoraKit.stopEchoTest
 ### Sample project
 
 Agora provides an open-source iOS sample project on GitHub that implements pre-call detection in the [PrecallTest.swift](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/iOS/APIExample/Examples/Advanced/PrecallTest/PrecallTest.swift) file. You can download the sample project to try it out or refer to the source code.
+
 ### API reference
 
 - [`startEchoTestWithInterval`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startEchoTestWithInterval:successBlock:)
