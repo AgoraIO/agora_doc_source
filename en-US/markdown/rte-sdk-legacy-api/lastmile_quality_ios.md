@@ -14,13 +14,16 @@ The `startLastmileProbeTest` method that probes the last-mile network before joi
 The API call sequence is as follows:
 
 ![](https://web-cdn.agora.io/docs-files/1603946038258)
+
 ### Device test
 
 The `startEchoTestWithInterval` method that tests whether the network connection and the audio devices, such as the microphone and the speakers, are working properly.
 
 ## Implementation
 
-Before proceeding, ensure that you have implemented basic real-time functions in your project.
+### Prerequisites
+
+Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
 
 ### Network probe test
 

@@ -21,10 +21,12 @@ The SDK provides the `startEchoTest` method that tests whether the network conne
 
 ## Implementation
 
-### Network probe test
-
+### Prerequisites
 
 Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](./start_call_android?platform=Android) or [Start Interactive Live Streaming](./start_live_android?platform=Android).
+
+### Network probe test
+
 
 Refer to the following steps to implement the network probe test:
 

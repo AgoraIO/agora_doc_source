@@ -25,6 +25,8 @@ The Agora RTC SDK enables you to manage the volume of the recorded audio or of t
 
 ## Implementation
 
+### Prerequisites
+
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
 
 ### Adjust the recording volume

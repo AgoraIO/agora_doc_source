@@ -27,7 +27,10 @@ The following diagram shows the workflow of audio volume settings.
 **In-ear monitoring** is the process of playing the audio from the recording device.
 
 ![](https://web-cdn.agora.io/docs-files/1578560373700)
+
 ## Implementation
+
+### Prerequisites
 
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_android) or [Start Interactive Live Streaming](start_live_android).
 

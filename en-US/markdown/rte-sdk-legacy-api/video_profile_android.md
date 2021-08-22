@@ -160,7 +160,11 @@ If your scenario has special requirements for video sharpness or smoothness, you
 
 ## Implementation
 
-Before proceeding, ensure that you have implemented real-time audio and video functions in your project.
+### Prerequisites
+
+Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_android) or [Start Interactive Live Streaming](start_live_android).
+
+### Implement the workflow
 
 The Agora SDK provides the [`setVideoEncoderConfiguration`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af5f4de754e2c1f493096641c5c5c1d8f) method to set the video profile. After you initialize the `RtcEngine` object, you can call `setVideoEncoderConfiguration` either before or after joining a channel.
 
