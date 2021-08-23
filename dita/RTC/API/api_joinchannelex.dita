@@ -13,8 +13,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract int joinChannelEx(String token, String channelId, int uid,
-      ChannelMediaOptions options, IRtcEngineEventHandler eventHandler, RtcConnection connection);</codeblock>
+                <codeblock props="android" outputclass="language-java">public abstract int joinChannelEx(String token, RtcConnection connection,
+      ChannelMediaOptions options, IRtcEngineEventHandler eventHandler);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelExByToken:(NSString* _Nullable)token
                  connection:(AgoraRtcConnection * _Nonnull)connection
                    delegate:(id&lt;AgoraRtcEngineDelegate> _Nullable)delegate
@@ -64,7 +64,7 @@
                     <pd><xref keyref="IRtcEngine"/> 的事件 handler，详见 <xref
                             keyref="IRtcEngineEventHandler"/>。</pd>
                 </plentry>
-                <plentry id="connectionId">
+                <plentry id="connection">
                     <pt>connection</pt>
                     <pd>
                         <p>Connection 信息。详见 <xref keyref="RtcConnection"/>。</p>
