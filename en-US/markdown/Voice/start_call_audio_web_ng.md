@@ -2,7 +2,7 @@ Real-time chatting immerses people in the sounds of human connections, keeping t
 
 This page shows the minimum code you need to integrate crystal-clear voice chat functionality into your app using the Voice SDK for Web.
 
-# Understand the tech
+## Understand the tech
 
 The following figure shows the workflow of Voice Call implemented by the Agora SDK.
 
