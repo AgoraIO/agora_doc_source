@@ -20,19 +20,18 @@ To start video call, implement the following steps in your app:
 
 3. **Publish and subscribe to audio and video in the channel**
 
-   After joining a channel,  both hosts can publish video and audio stream to the channel and subscribe to each other.
+   After joining a channel, both hosts can publish video and audio stream to the channel and subscribe to each other.
 
 ## Prerequisites
 
 - Xcode 9.0 or later.
 - Two iOS devices running iOS 8.0 or later
-- A computer that can access the Internet. Ensure that no firewall is deployed in your network environment, otherwise the project will fail.
+- A computer that can access the Internet. Ensure that no firewall is deployed in your network environment, otherwise the project fails.
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project, please refer to [Start using the Agora platform](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms) and get the following information from Agora Console:
-  - The App ID: A randomly generated string provided by Agora for identifying your app. 
-  - A temporary  token: A token is the credential that authenticates a user when your app client joins a channel. A  temporary token is valid for 24 hours.
-  - The channel name: A string that identifies the channel. 
+  - The App ID: A randomly generated string provided by Agora for identifying your app.
+  - A temporary token: A token is the credential that authenticates a user when your app client joins a channel. A temporary token is valid for 24 hours.
+  - The channel name: A string that identifies the channel.
 - Apple developer account.
-
 
 ## Project setup
 
@@ -50,10 +49,10 @@ In order to create the environment necessary to integrate Video Call into your a
 
    Open the `info.plist ` file in the project navigation panel, and [edit the property list](https://help.apple.com/xcode/mac/current/#/dev3f399a2a6) to add the following properties:
 
-   | key                                  | type   | value                                                        |
-   | :----------------------------------- | :----- | :----------------------------------------------------------- |
+   | key                                  | type   | value                                                                                       |
+   | :----------------------------------- | :----- | :------------------------------------------------------------------------------------------ |
    | Privacy-Microphone Usage Description | String | The purpose for accessing the microphone, such as for a call or live interactive streaming. |
-   | Privacy-Camera Usage Description     | String | To access the camera, such as for a call or live interactive streaming. |
+   | Privacy-Camera Usage Description     | String | To access the camera, such as for a call or live interactive streaming.                     |
 
 5. Integrate the Video SDK into your project.
 
@@ -74,7 +73,6 @@ This section shows how to use the Agora Video SDK to implement Video Call into y
 When creating the user interface for basic Video Call, Agora recommends adding the video view of the host on both the local and remote clients. Refer to the following code samples to create a basic UI from scratch:
 
 ```swift
-// ViewController.swift
 import UIKit
 class ViewController: UIViewController{
     ...
@@ -84,28 +82,28 @@ class ViewController: UIViewController{
     var remoteView: UIView!
     // Defines agoraKit
     var agoraKit: AgoraRtcEngineKit!
-  
+
     // Sets the video view layout
     override func viewDidLayoutSubviews(){
       super.viewDidLayoutSubviews()
       remoteView.frame = self.view.bounds
       localView.frame = CGRect(x: self.view.bounds.width - 90, y: 0, width: 90, height: 160)
       }
-      
+
     func initView(){
-        // Initializes the remote video view. This view displays video when a remote host joins the channel.
-        remoteView = UIView()
-        self.view.addSubview(remoteView)
-        // Initializes the local video window. This view displays video when the local user is a host.
-        localView = UIView()
-        self.view.addSubview(localView)
+      // Initializes the remote video view. This view displays video when a remote host joins the channel.
+      remoteView = UIView()
+      self.view.addSubview(remoteView)
+      // Initializes the local video window. This view displays video when the local user is a host.
+      localView = UIView()
+      self.view.addSubview(localView)
     }
 }
 ```
 
 ### Implement the Video Call logic
 
-The following figure and steps show the API call sequence of implementing Video Call. 
+The following figure and steps show the API call sequence of implementing Video Call.
 
 ![](https://web-cdn.agora.io/docs-files/1629361200930)
 
@@ -167,7 +165,7 @@ To implement this logic, take the following steps:
        }
    ```
 
-4. Join the channel with a temp token, channel name, and uid of your project. Channel profile and client role type will also be configured.
+4. Join the channel with a temp token, channel name, and uid of your project. Configure channel profile and client role type at the same time.
 
    In `ViewController.swift`, add the following lines after the `setupLocalVideo` function:
 
@@ -178,8 +176,8 @@ To implement this logic, take the following steps:
            option.channelProfile = .of((Int32)(AgoraChannelProfile.liveBroadcasting.rawValue))
            // Set the client role as broadcaster.
            option.clientRoleType = .of((Int32)(AgoraClientRole.broadcaster.rawValue))
-           
-           // Join the channel with a temp token. Pass in your token and channel name here   
+
+           // Join the channel with a temp token. Pass in your token and channel name here
            agoraKit.joinChannel(byToken: <#Your token#>, channelId: <#Your channel name#>, uid: 0, mediaOptions: option)
        }
    ```
@@ -188,17 +186,17 @@ To implement this logic, take the following steps:
 
    In `ViewController.swift`, add the following lines after the `ViewController` class:
 
-    ```swift
+   ```swift
    extension ViewController: AgoraRtcEngineDelegate{
-       func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int){
-           let videoCanvas = AgoraRtcVideoCanvas()
-           videoCanvas.uid = uid
-           videoCanvas.renderMode = .hidden
-           videoCanvas.view = remoteView
-           agoraKit.setupRemoteVideo(videoCanvas)
-       }
+      func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int){
+          let videoCanvas = AgoraRtcVideoCanvas()
+          videoCanvas.uid = uid
+          videoCanvas.renderMode = .hidden
+          videoCanvas.view = remoteView
+          agoraKit.setupRemoteVideo(videoCanvas)
+      }
    }
-    ```
+   ```
 
 ### Start and stop your app
 
@@ -208,26 +206,26 @@ Now you have created the Video Call functionality. In this implementation, a vid
 
    In `ViewController.swift`, add the `viewDidLoad` function inside the `UIViewController` function:
 
-    ```swift
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            // Do any additional setup after loading the view.
-            // Initializes the video view
-            initView()
-            // The following functions are used when calling Agora APIs
-            initializeAgoraEngine()
-            setupLocalVideo()
-            joinChannel()
-        }
-    ```
+   ```swift
+       override func viewDidLoad() {
+           super.viewDidLoad()
+           // Do any additional setup after loading the view.
+           // Initializes the video view
+           initView()
+           // The following functions are used when calling Agora APIs
+           initializeAgoraEngine()
+           setupLocalVideo()
+           joinChannel()
+       }
+   ```
 
-2. Leave channel in order to clean up all the resources used by your app. 
+2. Leave channel in order to clean up all the resources used by your app.
 
    In `ViewController.swift`, add `viewDidDisappear` after the `joinChannel` function:
 
    ```swift
        override func viewDidDisappear(_ animated: Bool) {
-           super.viewDidDisappear(true)
+           super.viewDidDisappear(animated)
            agoraKit.stopPreview()
            agoraKit.leaveChannel(nil)
            AgoraRtcEngineKit.destroy()
@@ -248,7 +246,7 @@ Please follow the test procedure as shown in the example.
 
 5. Ask a friend to use a second device to join the channel with the same App ID, token, and channel name.
 
-   You will see and hear each other.
+   You can see and hear each other.
 
 ## Next steps
 
@@ -281,9 +279,9 @@ Ensure that you have installed CocoaPods before the following steps. If it is no
    end
    ```
 
-3. Run the `pod install` command in the *Terminal* to install the Agora SDK. Once you successfully install the **SDK**, it shows `Pod installation complete!`
+3. Run the `pod install` command in the _Terminal_ to install the Agora SDK. Once you successfully install the **SDK**, it shows `Pod installation complete!`
 
-4. A new file with a suffix of .xcworkspace will be generated under the project folder. Use Xcode to open it for subsequent operations.
+4. A new file with a suffix of .xcworkspace is generated under the project folder. Use Xcode to open it for subsequent operations.
 
 #### Integrate the SDK manually
 

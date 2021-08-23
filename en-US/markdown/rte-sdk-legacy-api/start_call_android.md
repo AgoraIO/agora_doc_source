@@ -27,7 +27,7 @@ To start Video Call, implement the following steps in your app:
 - Android Studio 4.1 or later.
 - Android SDK API Level 16 or higher.
 - Two mobile devices that run Android 4.1 or later.
-- A computer that can access the Internet. Ensure that no firewall is deployed in your network environment, otherwise the project will fail.
+- A computer that can access the Internet. Ensure that no firewall is deployed in your network environment, otherwise the project fails.
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project, please refer to [Start using the Agora platform](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms) and get the following information from Agora Console:
   - The App ID: A randomly generated string provided by Agora for identifying your app.
   - A temporary token: A token is the credential that authenticates a user when your app client joins a channel. A temporary token is valid for 24 hours.
@@ -320,7 +320,7 @@ Please follow the test procedure as shown in the example.
 
 1. Connect the Android devices to the computer.
 
-2. Click `Run 'app'` on your Android Studio. A moment later you will see the project installed on your device.
+2. Click `Run 'app'` on your Android Studio. A moment later you can see the project installed on your device.
 
 3. Grant microphone and camera access to your app.
 
@@ -328,7 +328,7 @@ Please follow the test procedure as shown in the example.
 
 5. Ask a friend to use a second device to join the channel with the same App ID, token, and channel name.
 
-   You will see and hear each other.
+   You can see and hear each other.
 
 ## Next steps
 
