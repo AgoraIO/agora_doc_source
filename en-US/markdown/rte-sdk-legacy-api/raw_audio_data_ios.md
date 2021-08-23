@@ -42,7 +42,7 @@ Before adjusting the audio volume, ensure that you have implemented the basic r
 
 1. Call `setAudioFrameDelegate` to set the audio frame delegate before joining the channel.
 
-2. Call the `setRecordingAudioFrameParametersWithSampleRate`, `setPlaybackAudioFrameParametersWithSampleRate` and `setMixedAudioFrameParametersWithSampleRate` methods to set the format of the audio frames.
+2. Call the `setRecordingAudioFrameParametersWithSampleRate`, `setPlaybackAudioFrameParametersWithSampleRate`, `setMixedAudioFrameParametersWithSampleRate`, or `setPlaybackAudioFrameBeforeMixingParametersWithSampleRate` methods to set the format of the audio frames.
 
 3. Implement the `onRecordAudioFrame`, `onPlaybackAudioFrame`, `onPlaybackAudioFrameBeforeMixing`, and `onMixedAudioFrame` callbacks. These callbacks capture and process the audio frames.
 
@@ -57,7 +57,7 @@ Before adjusting the audio volume, ensure that you have implemented the basic r
 class RawAudioDataMain: BaseViewController {
     var localVideo = Bundle.loadVideoView(type: .local, audioOnly: true)
     var remoteVideo = Bundle.loadVideoView(type: .remote, audioOnly: true)
-    
+
     @IBOutlet weak var container: AGEVideoContainer!
     // Define the agoraKit variable
     var agoraKit: AgoraRtcEngineKit!
@@ -68,18 +68,18 @@ class RawAudioDataMain: BaseViewController {
 
     // Call setAudioFrameDelegate to set the audio frame delegate. You need to implement an AgoraAudioFrameDelegate protocol in this method
     agoraKit.setAudioFrameDelegate (self)
-    
+
     // Call the set methods to set the format of the audio frames captured by each callback
     agoraKit.setRecordingAudioFrameParametersWithSampleRate(44100, channel: 1, mode: .readWrite, samplesPerCall: 4410)
     agoraKit.setMixedAudioFrameParametersWithSampleRate (44100, samplesPerCall: 4410)
     agoraKit.setPlaybackAudioFrameParametersWithSampleRate(44100, channel: 1, mode: .readWrite, samplesPerCall: 4410)
-    
+
     ...
-    
+
     // Implement an extension of the AgoraAudioFrameDelegate protocol in the current class
     extension RawAudioDataMain: AgoraAudioFrameDelegate {
-    
-    
+
+
     // Implement the onRecordAudioFrame callback
         func onRecordAudioFrame(_ frame: AgoraAudioFrame) -> Bool {
                return true;
@@ -144,7 +144,7 @@ The Agora SDK provides only C++ methods and callbacks for implementing the raw a
 // Import the C++ header file
 #import <AgoraRtcKit/IAgoraMediaEngine.h>
 #import <AgoraRtcKit/IAgoraRtcEngine.h>
-  
+
 - (void)registerAudioRawDataObserver:(ObserverAudioType)observerType {
     // Gets the C++ event handler of the RTC Native SDK
     agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)self.agoraKit.getNativeHandle;
@@ -152,10 +152,10 @@ The Agora SDK provides only C++ methods and callbacks for implementing the raw a
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
     // Ensure that you call queryInterface in IMediaEngine to set the agora::AGORA_IID_MEDIA_ENGINE interface, or you cannot implement registerAudioFrameObserver
     mediaEngine.queryInterface(rtc_engine, agora::AGORA_IID_MEDIA_ENGINE);
-      
+
     NSInteger oldValue = self.observerAudioType;
     self.observerAudioType |= observerType;
-      
+
     if (mediaEngine && oldValue == 0)
     {
         // Register an audio frame observer
@@ -198,17 +198,17 @@ After joining a channel, you can receive the captured audio data from the callba
 func mediaDataPlugin(_mediaDataPlugin: AgoraMediaDataPlugin, didRecord audioRawData: AgoraAudioRawDate) -> AgoraAudioRawData {
   return audioRawData
 }
-  
+
 // Gets the raw audio data of all remote users, and sends the data back to the SDK after processing
 func mediaDataPlugin(_mediaDataPlugin: AgoraMediaDataPlugin, willPlaybackAudioRawData audioRawData: AgoraRawData) -> AgoraAudioRawData {
   return audioRawData
 }
-  
+
 // Gets the raw audio data of a specified remote user, and sends the data back to the SDK after processing
 func mediaDataPlugin(_mediaDataPlugin: AgoraMediaDataPlugin, willPlaybackBeforeMixing audioRawData: AgoraAudioRawData, ofUid uid: uint) -> AgoraAudioRawData {
   return audioRawData
 }
-  
+
 // Gets the raw audio data of the local user and all remote users, and sends the data back to the SDK after processing
 func mediaDataPlugin(_mediaDataPlugin: AgoraMediaDataPlugin, didMixedAudioRawData audioRawData: AgoraAudioRawData) -> AgoraAudioRawData {
   return audioRawData
@@ -223,7 +223,7 @@ class AgoraMediaDataPluginAudioFrameObserver : public agora::media::IAudioFrameO
 {
 public:
     AgoraMediaDataPlugin *mediaDataPlugin;
-  
+
     // Defines the format of the raw audio data
     AgoraAudioRawData* getAudioRawDataWithAudioFrame(AudioFrame& audioFrame)
     {
@@ -237,7 +237,7 @@ public:
         data.bufferSize = audioFrame.samples * audioFrame.bytesPerSample;
         return data;
     }
-      
+
     // Defines the format of the processed audio data
     void modifiedAudioFrameWithNewAudioRawData(AudioFrame& audioFrame, AgoraAudioRawData *audioRawData)
     {
@@ -247,11 +247,11 @@ public:
         audioFrame.samplesPerSec = audioRawData.samplesPerSec;
         audioFrame.renderTimeMs = audioRawData.renderTimeMs;
     }
-      
+
     // Receives the raw audio data of the local user from onRecordAudioFrame
     virtual bool onRecordAudioFrame(AudioFrame& audioFrame) override
     {
-          
+
         if (!mediaDataPlugin && ((mediaDataPlugin.observerAudioType >> 0) == 0)) return true;
         @autoreleasepool {
             if ([mediaDataPlugin.audioDelegate respondsToSelector:@selector(mediaDataPlugin:didRecordAudioRawData:)]) {
@@ -260,15 +260,15 @@ public:
                 modifiedAudioFrameWithNewAudioRawData(audioFrame, newData);
             }
         }
-  
+
         // Sets the return value as true, meaning to send the data back to the SDK
         return true;
     }
-      
+
     // Receives the raw audio data of all remote users from onPlaybackAudioFrame
     virtual bool onPlaybackAudioFrame(AudioFrame& audioFrame) override
     {
-          
+
         if (!mediaDataPlugin && ((mediaDataPlugin.observerAudioType >> 1) == 0)) return true;
         @autoreleasepool {
             if ([mediaDataPlugin.audioDelegate respondsToSelector:@selector(mediaDataPlugin:willPlaybackAudioRawData:)]) {
@@ -280,11 +280,11 @@ public:
         // Sets the return value as true, meaning to send the data back to the SDK
         return true;
     }
-  
-    // Receives the raw audio data of all remote users from onPlaybackAudioFrameBeforeMixing  
+
+    // Receives the raw audio data of all remote users from onPlaybackAudioFrameBeforeMixing
     virtual bool onPlaybackAudioFrameBeforeMixing(unsigned int uid, AudioFrame& audioFrame) override
     {
-          
+
         if (!mediaDataPlugin && ((mediaDataPlugin.observerAudioType >> 2) == 0)) return true;
         @autoreleasepool {
             if ([mediaDataPlugin.audioDelegate respondsToSelector:@selector(mediaDataPlugin:willPlaybackBeforeMixingAudioRawData:ofUid:)]) {
@@ -296,11 +296,11 @@ public:
         // Sets the return value as true, meaning to send the data back to the SDK
         return true;
     }
-      
+
     // Receives the raw audio data of the local user and all remote users from onMixedAudioFrame
     virtual bool onMixedAudioFrame(AudioFrame& audioFrame) override
     {
-          
+
         if (!mediaDataPlugin && ((mediaDataPlugin.observerAudioType >> 3) == 0)) return true;
         @autoreleasepool {
             if ([mediaDataPlugin.audioDelegate respondsToSelector:@selector(mediaDataPlugin:didMixedAudioRawData:)]) {
@@ -326,9 +326,9 @@ Call `registerAudioFrameObserver(NULL)` to stop registering the audio frame obse
     agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)self.agoraKit.getNativeHandle;
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
     mediaEngine.queryInterface(rtc_engine, agora::AGORA_IID_MEDIA_ENGINE);
-  
+
     self.observerAudioType ^= observerType;
-  
+
     if (mediaEngine && self.observerAudioType == 0)
     {
         mediaEngine->registerAudioFrameObserver(NULL);
