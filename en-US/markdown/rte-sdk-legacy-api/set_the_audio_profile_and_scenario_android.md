@@ -20,7 +20,7 @@ The higher the bitrate in the audio profile, the higher the audio quality. If th
 
 | Audio profile (with the prefix `AUDIO_PROFILE_`)                              | Description                                                           |
 | :-------------------------------------- | ------------------------------------------------------------ |
-| `DEFAULT`                   | 0: Default audio profile:<li>For the interactive streaming profile: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps.</li><li>For the communication profile: A sample rate of 32 kHz, music encoding, mono, and a bitrate of up to 18 Kbps.</li> |
+| `DEFAULT`                   | 0: Default audio profile:<li>For the interactive streaming profile: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps.</li><li>For the communication profile: A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps.</li> |
 | `SPEECH_STANDARD`           | 1: A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps. |
 | `MUSIC_STANDARD`            | 2: A sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps. |
 | `MUSIC_STANDARD_STEREO`     | 3: A sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 80 Kbps. |
