@@ -173,12 +173,11 @@ Before adjusting the audio volume, ensure that you have implemented the basic r
 
 ## Implementation
 
-### Implement the workflow
+
 
 The Agora SDK provides the [`setVideoEncoderConfiguration`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVideoEncoderConfiguration:) method to set the video profile. After you initialize the `AgoraRtcEngineKit` object, you can call `setVideoEncoderConfiguration` either before or after joining a channel.
 
 If you do not intend to update the video profile after joining a channel, Agora recommends calling `setVideoEncoderConfiguration` before `enableVideo`, which reduces the time to render the first local video frame.
-
 
 You can refer to the following code sample when setting the parameters of `setVideoEncoderConfiguration`:
 

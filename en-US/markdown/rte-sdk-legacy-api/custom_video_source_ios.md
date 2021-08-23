@@ -26,7 +26,7 @@ Video frames captured by the SDK or a custom video source, or received from a re
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
 ## Implementation
 
-### Implement the workflow
+
 
 The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setExternalVideoSource:useTexture:pushMode:) and [`pushExternalVideoFrame`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalVideoFrame:) methods to customize the video source. The API call sequence is as follows:
 

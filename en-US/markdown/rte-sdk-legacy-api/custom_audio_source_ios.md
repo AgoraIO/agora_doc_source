@@ -18,7 +18,7 @@ The API call sequence is as follows:
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
 
 ## Implementation
-### Implement the workflow
+
 
 Use the following steps to implement the custom audio source:
 

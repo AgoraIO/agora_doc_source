@@ -36,7 +36,7 @@ The following diagram shows how the video data is transferred when you customize
 Before proceeding, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Video Call](https://docs.agora.io/en/Interactive%20Broadcast/start_call_android) or [Start Live Interactive Video Streaming](https://docs.agora.io/en/Interactive%20Broadcast/start_live_android).
 ## Implementation
 
-### Implement the workflow
+
 
 Refer to the following steps to customize the video source in your project:
 
