@@ -55,24 +55,15 @@ In order to create the environment necessary to integrate Video Call into your a
    | Privacy-Microphone Usage Description | String | The purpose for accessing the microphone, such as for a call or live interactive streaming. |
    | Privacy-Camera Usage Description     | String | To access the camera, such as for a call or live interactive streaming. |
 
-5. Integrate the video SDK into your Xcode project through Cocoapods.
+5. Integrate the Video SDK into your project.
 
-   Ensure that you have installed CocoaPods before the following steps. If it is not installed, you can refer to [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) to install Cocoapods to this machine.
+   Go to **File** > **Swift Packages** > **Add Package Dependencies...**, and paste the following link:
 
-   1. Enter the project root directory in **Terminal** and run the `pod init` command. after which you can find the **Podfile** under the project directory.
+   `https://github.com/AgoraIO/AgoraRtcEngine_iOS`
 
-   2. Open the **Podfile** and modify it by referring to the code below. Remember to change`Your App` to the target name of your project.
+   In the next sheet, [specify version requirements](https://help.apple.com/xcode/mac/current/#/devb83d64851) according to your needs.
 
-      ```
-      platform :ios, '9.0'
-      target 'Your App' do
-      pod'AgoraRtcEngine_Special_iOS'
-      end
-      ```
-
-   3. Run the `pod install` command in the *Terminal* to install the Agora SDK. Once you successfully install the **SDK**, it shows `Pod installation complete!`
-
-   4. A new file with a suffix of .xcworkspace will be generated under the project folder. Use Xcode to open it for subsequent operations.
+   <div class="alert note"><ul><li>Each SDK version has a corresponding Swift Package with the same version number. For the Video SDK, Agora provides Swift Packages for 3.4.3 or later versions.</li><li>If you have issues installing this Swift Package, try going to <b>File</b> > <b>Swift Packages</b> > <b>Reset Package Caches</b>.</li><li>For more integration methods, see <a href="#othermethods">Other approaches to integrating the SDK</a></li></ul></div>
 
 ## Implement a client for Video Call
 
@@ -85,7 +76,7 @@ When creating the user interface for basic Video Call, Agora recommends adding t
 ```swift
 // ViewController.swift
 import UIKit
-class ViewController: UIViewController {
+class ViewController: UIViewController{
     ...
      // Defines localView
     var localView: UIView!
@@ -96,10 +87,10 @@ class ViewController: UIViewController {
   
     // Sets the video view layout
     override func viewDidLayoutSubviews(){
-        super.viewDidLayoutSubviews()
-        remoteView.frame = self.view.bounds
-        localView.frame = CGRect(x: self.view.bounds.width - 90, y: 0, width: 90, height: 160)
-        }
+      super.viewDidLayoutSubviews()
+      remoteView.frame = self.view.bounds
+      localView.frame = CGRect(x: self.view.bounds.width - 90, y: 0, width: 90, height: 160)
+      }
       
     func initView(){
         // Initializes the remote video view. This view displays video when a remote host joins the channel.
@@ -109,6 +100,7 @@ class ViewController: UIViewController {
         localView = UIView()
         self.view.addSubview(localView)
     }
+}
 ```
 
 ### Implement the Video Call logic
@@ -150,7 +142,8 @@ To implement this logic, take the following steps:
        func initializeAgoraEngine(){
            let config = AgoraRtcEngineConfig()
            // Pass in your App ID here.
-           config.appId = "Your app Id"
+           config.appId = <#Your app Id#>
+           // Use AgoraRtcEngineDelegate for the following delegate parameter.
            agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
        }
    ```
@@ -187,7 +180,7 @@ To implement this logic, take the following steps:
            option.clientRoleType = .of((Int32)(AgoraClientRole.broadcaster.rawValue))
            
            // Join the channel with a temp token. Pass in your token and channel name here   
-           agoraKit.joinChannel(byToken: "Your token", channelId: "Your channel name", uid:0, mediaOptions: option)
+           agoraKit.joinChannel(byToken: <#Your token#>, channelId: <#Your channel name#>, uid: 0, mediaOptions: option)
        }
    ```
 
@@ -241,7 +234,7 @@ Now you have created the Video Call functionality. In this implementation, a vid
        }
    ```
 
-## Test your  app
+## Test your app
 
 Please follow the test procedure as shown in the example.
 
@@ -259,7 +252,7 @@ Please follow the test procedure as shown in the example.
 
 ## Next steps
 
-In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms) for details.
+In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) for details.
 
 ## See also
 
@@ -269,9 +262,30 @@ This section provides additional information for your reference.
 
 Agora provides an open source video call example project [JoinChannelVideo](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/iOS/APIExample/Examples/Basic/JoinChannelVideo) on GitHub for your reference.
 
-### Manually integrate the SDK
+<a name="othermethods"></a>
 
-In addition to integrating the Agora Video SDK for through Cocoapods, you can also import the SDK into your project by manually copying the SDK files.
+### Other approaches to integrate the SDK
+
+#### Integrate the SDK through Cocoapods
+
+Ensure that you have installed CocoaPods before the following steps. If it is not installed, you can refer to [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) to install Cocoapods to this machine.
+
+1. Enter the project root directory in **Terminal** and run the `pod init` command. after which you can find the **Podfile** under the project directory.
+
+2. Open the **Podfile** and modify it by referring to the code below. Remember to change`Your App` to the target name of your project.
+
+   ```
+   platform :ios, '9.0'
+   target 'Your App' do
+   	pod 'AgoraRtcEngine_Special_iOS'
+   end
+   ```
+
+3. Run the `pod install` command in the *Terminal* to install the Agora SDK. Once you successfully install the **SDK**, it shows `Pod installation complete!`
+
+4. A new file with a suffix of .xcworkspace will be generated under the project folder. Use Xcode to open it for subsequent operations.
+
+#### Integrate the SDK manually
 
 1. Go to [SDK Downloads](https://docs.agora.io/en/Video/downloads?platform=iOS), download the latest version of the Agora Video SDK, and extract the files from the downloaded SDK package.
 

@@ -18,9 +18,9 @@ To start Video Call, implement the following steps in your app:
 
    Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
-5. **Publish and subscribe to audio and video in the channel**
+3. **Publish and subscribe to audio and video in the channel**
 
-   After joining a channel,  both hosts can publish video and audio stream to the channel and subscribe to each other.
+   After joining a channel, both hosts can publish video and audio stream to the channel and subscribe to each other.
 
 ## Prerequisites
 
@@ -29,9 +29,9 @@ To start Video Call, implement the following steps in your app:
 - Two mobile devices that run Android 4.1 or later.
 - A computer that can access the Internet. Ensure that no firewall is deployed in your network environment, otherwise the project will fail.
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project, please refer to [Start using the Agora platform](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms) and get the following information from Agora Console:
-  - The App ID: A randomly generated string provided by Agora for identifying your app. 
-  - A temporary  token: A token is the credential that authenticates a user when your app client joins a channel. A  temporary token is valid for 24 hours.
-  - The channel name: A string that identifies the channel. 
+  - The App ID: A randomly generated string provided by Agora for identifying your app.
+  - A temporary token: A token is the credential that authenticates a user when your app client joins a channel. A temporary token is valid for 24 hours.
+  - The channel name: A string that identifies the channel.
 
 ## Project setup
 
@@ -43,7 +43,7 @@ In order to create the environment necessary to integrate Video Call into your a
 
 2. Integrate the Video SDK into your project.
 
-   1. Go to [SDK Downloads](https://docs.agora.io/en/Interactive Broadcast/downloads?platform=Android), download the latest version of the Agora Video SDK, and extract the files from the downloaded SDK package.
+   1. Go to [SDK Downloads](https://docs.agora.io/en/Interactive%20Broadcast/downloads?platform=Android), download the latest version of the Agora Video SDK, and extract the files from the downloaded SDK package.
 
    2. Copy the necessary files and folders from the unzipped SDK package to your project, as shown in the following table.
 
@@ -55,19 +55,19 @@ In order to create the environment necessary to integrate Video Call into your a
       | `x86` folder                         | `/app/src/main/jniLibs/` |
       | `x86_64` folder                      | `/app/src/main/jniLibs/` |
       | `include` folder in `high_level_api` | `/app/src/main/jniLibs/` |
-      
+
    3. In `/Gradle Scripts/build.gradle(Module: )`, add dependencies to local Jar packages as the code shown below.
-   
+
       ```
       dependencies {
       implementation fileTree(dir: 'libs', include: [ '*.jar'])
       }
       ```
-   
+
    4. Add permissions for network and device access.
-   
+
       In `/app/Manifests/AndroidManifest.xml`, add the following permissions after `</application>`:
-   
+
       ```
        <uses-permission android:name="android.permission.INTERNET" />
        <uses-permission android:name="android.permission.CAMERA" />
@@ -77,9 +77,9 @@ In order to create the environment necessary to integrate Video Call into your a
        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
        <uses-permission android:name="android.permission.BLUETOOTH" />
       ```
-   
+
    5. To prevent obfuscating the code in the SDK, add the following line in `/Gradle Scripts/proguard-rules.pro` file:
-   
+
       ```
        -keep class io.agora.**{*;}
       ```
@@ -143,7 +143,7 @@ Import the necessary Android classes and handle the Android permissions.
    import androidx.appcompat.app.AppCompatActivity;
    import androidx.core.app.ActivityCompat;
    import androidx.core.content.ContextCompat;
-   
+
    import android.Manifest;
    import android.content.pm.PackageManager;
    import android.view.SurfaceView;
@@ -174,7 +174,7 @@ Import the necessary Android classes and handle the Android permissions.
 
 ### Implement the Video Call logic
 
-The following figure and steps show the API call sequence of implementing Video Call. 
+The following figure and steps show the API call sequence of implementing Video Call.
 
 ![](https://web-cdn.agora.io/docs-files/1629344983794)
 
@@ -188,6 +188,7 @@ To implement this logic, take the following steps:
    import io.agora.rtc2.Constants;
    import io.agora.rtc2.IRtcEngineEventHandler;
    import io.agora.rtc2.RtcEngine;
+   import io.agora.rtc2.RtcEngineConfig;
    import io.agora.rtc2.video.VideoCanvas;
    import io.agora.rtc2.ChannelMediaOptions;
    ```
@@ -203,9 +204,9 @@ To implement this logic, take the following steps:
        private String channelName = "";
        // Fill the temp token generated on Agora Console.
        private String token = "";
-   
+
        private RtcEngine mRtcEngine;
-   
+
        private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
            @Override
            // Listen for the remote host joining the channel to get the uid of the host.
@@ -230,7 +231,11 @@ To implement this logic, take the following steps:
    ```java
      private void initializeAndJoinChannel() {
            try {
-               mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
+               RtcEngineConfig config = new RtcEngineConfig();
+               config.mContext = getBaseContext();
+               config.mAppId = appId;
+               config.mEventHandler = mRtcEventHandler;
+               mRtcEngine = RtcEngine.create(config);
            } catch (Exception e) {
                throw new RuntimeException("Check the error.");
            }
@@ -238,7 +243,7 @@ To implement this logic, take the following steps:
            mRtcEngine.enableVideo();
            // Start local preview
            mRtcEngine.startPreview();
-   
+
            FrameLayout container = findViewById(R.id.local_video_view_container);
            // Call CreateRendererView to create a SurfaceView object and add it as a child to the FrameLayout.
            // SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
@@ -246,13 +251,13 @@ To implement this logic, take the following steps:
            container.addView(surfaceView);
            // Pass the SurfaceView object to Agora so that it renders the local video.
            mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
-         
+
            ChannelMediaOptions options = new ChannelMediaOptions();
            // Set both clients as the BROADCASTER.
            option.clientRoleType = CLIENT_ROLE_BROADCASTER;
            // For a video call scenario, set the channel profile as BROADCASTING.
            option.channelProfile = CHANNEL_PROFILE_LIVE_BROADCASTING;
-           
+
          // Join the channel with a temp token.
            // You need to specify the user ID yourself, and ensure that it is unique in the channel.
            mRtcEngine.joinChannel(token, channelName, 0, options);
@@ -286,14 +291,14 @@ Now you have created the Interactive Live Streaming Premium functionality, start
        protected void onCreate(Bundle savedInstanceState) {
            super.onCreate(savedInstanceState);
            setContentView(R.layout.activity_main);
-   
+
            // If all the permissions are granted, initialize the RtcEngine object and join a channel.
            if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
                    checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID)) {
                initializeAndJoinChannel();
            }
        }
-   
+
    ```
 
 2. When the user closes this app, use `onDestroy` to clean up all the resources you created in `initializeAndJoinChannel`.
@@ -309,7 +314,7 @@ Now you have created the Interactive Live Streaming Premium functionality, start
        }
    ```
 
-## Test your  app
+## Test your app
 
 Please follow the test procedure as shown in the example.
 
@@ -325,12 +330,10 @@ Please follow the test procedure as shown in the example.
 
    You will see and hear each other.
 
-
 ## Next steps
 
-In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive Broadcast/token_server?platform=All Platforms) for details.
+In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) for details.
 
 ## See also
 
 Agora provides an open source Video Call example project [JoinChannelVideo](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/basic) on GitHub for your reference.
-
