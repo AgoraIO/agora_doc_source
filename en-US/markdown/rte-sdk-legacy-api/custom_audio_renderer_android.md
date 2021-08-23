@@ -26,13 +26,11 @@ The following diagram shows how the audio data is transferred when you customize
 - You need to implement the rendering module yourself using methods from outside the SDK.
 - Call `pullPlaybackAudioFrame` to retrieve the audio data sent by a remote user.
 
-
-## Implementation
-
-### Prerequisites
+## Prerequisites
 
 Before proceeding, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Voice Call](https://docs.agora.io/en/Voice/start_call_audio_android?platform=Android) or [Start Interactive Live Audio Streaming](https://docs.agora.io/en/Interactive%20Broadcast/start_live_audio_android?platform=Android).
 
+## Implementation
 ### Implement the workflow
 
 Refer to the following steps to implement a custom audio renderer in your project:

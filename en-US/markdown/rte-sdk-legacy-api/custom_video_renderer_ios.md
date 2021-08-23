@@ -9,11 +9,10 @@ However, these modules might not meet your development requirements, such as in 
 - You want to use a pre-processing library for the video data.
 - You need flexible device resource allocation to avoid conflicts with other services.
 
-## Implementation
-
-### Prerequisites
+## Prerequisites
 
 Before implementing custom video rendering, ensure that you have implemented the raw video data function in your project. For details, see [Raw video Data](raw_audio_data_android).
+## Implementation
 
 ### Implement the workflow
 

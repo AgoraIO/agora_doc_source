@@ -9,12 +9,10 @@ However, these modules might not meet your development requirements, such as in 
 - You want to use a pre-processing library for the audio data.
 - You need flexible device resource allocation to avoid conflicts with other services.
 
-## Implementation
-
-### Prerequisites
+## Prerequisites
 
 Before implementing custom audio rendering, ensure that you have implemented the raw audio data function in your project. For details, see [Raw Audio Data](raw_audio_data_ios).
-
+## Implementation
 ### Implement the workflow
 
 1. Get the audio data to play from `onRecordAudioFrame`, `onPlaybackAudioFrame`, `onMixedAudioFrame`, or `onPlaybackAudioFrameBeforeMixing`.

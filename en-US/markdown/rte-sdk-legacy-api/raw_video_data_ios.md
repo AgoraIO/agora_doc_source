@@ -4,11 +4,11 @@ During real-time communications, you can pre- and post-process the video data an
 
 The Native SDK uses the `IVideoFrameObserver` class to provide raw video data functions. You can pre-process the data before sending it to the encoder and modify the captured video frames. You can also post-process the data after sending it to the decoder and modify the received video frames.
 
-## Implementation
-
-### Prerequisites
+## Prerequisites
 
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
+
+## Implementation
 
 ### Process raw video data using Objective-C APIs
 
@@ -38,7 +38,7 @@ In addition to the API call sequence diagram, you can refer to the following cod
    // Initialize AgoraRtcEngineKit
    let config = AgoraRtcEngineConfig()
    agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
-    
+
    // Enable the vide module
    agoraKit.enableVideo()
    ```
@@ -85,7 +85,7 @@ In addition to the API call sequence diagram, you can refer to the following cod
    func mediaDataPlugin(_ mediaDataPlugin: AgoraMediaDataPlugin, didCapturedVideoRawData videoRawData: AgoraVideoRawData) -> AgoraVideoRawData {
      return videoRawData
    }
-    
+
    // Get the video frame sent by the remote user.
    func mediaDataPlugin(_ mediaDataPlugin: AgoraMediaDataPlugin, willRenderVideoRawData videoRawData: AgoraVideoRawData, ofUid uid: uint) -> AgoraVideoRawData {
      return videoRawData
@@ -109,7 +109,7 @@ In addition to the API call sequence diagram, you can refer to the following cod
        }
      return true;
    }
-    
+
    // Get the video frame sent by the remote user through the  onRenderVideoFrame callback
    virtual bool onRenderVideoFrame(unsigned int uid, VideoFrame& videoFrame) override
    {
@@ -158,11 +158,11 @@ Agora provides the following open-source sample projects on GitHub that implemen
 
 ### API reference
 
-- setVideoFrameDelegate 	
+- setVideoFrameDelegate
 
-- onCaptureVideoFrame 
-- onScreenCaptureVideoFrame 	
-- onRenderVideoFrame 	
+- onCaptureVideoFrame
+- onScreenCaptureVideoFrame
+- onRenderVideoFrame
 - onMediaPlayerVideoFrame
 
 - [`getNativeHandle`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getNativeHandle)

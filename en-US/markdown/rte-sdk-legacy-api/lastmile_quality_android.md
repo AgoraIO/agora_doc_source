@@ -19,11 +19,11 @@ The API call sequence is as follows:
 
 The SDK provides the `startEchoTest` method that tests whether the network connection and the audio devices, such as the microphone and the speakers, are working properly.
 
-## Implementation
 
-### Prerequisites
+## Prerequisites
 
 Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](./start_call_android?platform=Android) or [Start Interactive Live Streaming](./start_live_android?platform=Android).
+## Implementation
 
 ### Network probe test
 

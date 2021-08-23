@@ -1,4 +1,4 @@
-This article describes how to use the Agora Native SDK to customize the video source. 
+This article describes how to use the Agora Native SDK to customize the video source.
 
 ## Understand the tech
 
@@ -30,11 +30,11 @@ The following diagram shows how the video data is transferred when you customize
 - You need to implement the capture module yourself using methods from outside the SDK.
 - Captured video frames are sent to the SDK via the `pushExternalVideoFrame` method.
 
-## Implementation
 
-### Prerequisites
+## Prerequisites
 
 Before proceeding, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Video Call](https://docs.agora.io/en/Interactive%20Broadcast/start_call_android) or [Start Live Interactive Video Streaming](https://docs.agora.io/en/Interactive%20Broadcast/start_live_android).
+## Implementation
 
 ### Implement the workflow
 
@@ -50,7 +50,7 @@ Refer to the following steps to customize the video source in your project:
     // Adds TextureView to local video layout
     fl_local.addView(textureView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
     ViewGroup.LayoutParams.MATCH_PARENT));
-    
+
     // Specifies the custom video source
     ChannelMediaOptions option = new ChannelMediaOptions();
     option.autoSubscribeAudio = true;
@@ -119,7 +119,7 @@ Refer to the following steps to customize the video source in your project:
             if (mTextureDestroyed) {
                 return;
             }
-    
+
             if (!mEglCore.isCurrent(mDrawSurface)) {
                 mEglCore.makeCurrent(mDrawSurface);
             }
@@ -139,7 +139,7 @@ Refer to the following steps to customize the video source in your project:
                 float frameRatio = DEFAULT_CAPTURE_HEIGHT / (float) DEFAULT_CAPTURE_WIDTH;
                 float surfaceRatio = mSurfaceWidth / (float) mSurfaceHeight;
                 Matrix.setIdentityM(mMVPMatrix, 0);
-    
+
                 if (frameRatio >= surfaceRatio) {
                     float w = DEFAULT_CAPTURE_WIDTH * surfaceRatio;
                     float scaleW = DEFAULT_CAPTURE_HEIGHT / w;
@@ -157,7 +157,7 @@ Refer to the following steps to customize the video source in your project:
             mProgram.drawFrame(mPreviewTexture, mTransform, mMVPMatrix);
             // Sends the buffer of EGL image to EGL Surface for local playback and preview. mDrawSurface is an object of the EGLSurface class.
             mEglCore.swapBuffers(mDrawSurface);
-    
+
             // If the user has joined the channel, configures the external video frames and sends them to the SDK.
             if (joined) {
                 // Configures external video frames

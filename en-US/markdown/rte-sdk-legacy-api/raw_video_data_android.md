@@ -4,11 +4,10 @@ During the video transmission process, you can pre- and post-process the capture
 
 Agora provides the raw data function for you to process the video data per your application scenario. This function enables you to pre-process the captured video frames before sending it to the encoder, or to post-process the decoded video frames.
 
-## Implementation
-
-### Prerequisites
+## Prerequisites
 
 Before using the raw data function, ensure that you have implemented the basic real-time communication functions in your project. See [Start a Video Call](https://docs.agora.io/en/Interactive%20Broadcast/start_call_android) or [Start Interactive Live Video Streaming](https://docs.agora.io/en/Interactive%20Broadcast/start_live_android) for details.
+## Implementation
 
 ### Process raw video data using Java APIs
 
@@ -577,18 +576,18 @@ public void onPreEncodeVideoFrame(byte[] data, int frameType, int width, int hei
 
 ### Sample project
 
-Agora provides an open-source sample project [Raw Video Data](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/ProcessRawData.java) on GitHub. 
+Agora provides an open-source sample project [Raw Video Data](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/ProcessRawData.java) on GitHub.
 
 ### API reference
 
-- registerVideoFrameObserver 
-- registerVideoEncodedImageReceiver 
+- registerVideoFrameObserver
+- registerVideoEncodedImageReceiver
 
-- onCaptureVideoFrame 	
-- onRenderVideoFrame 	
-- onScreenCaptureVideoFrame 
-- getVideoFrameProcessMode 	
-- OnEncodedVideoImageReceived 	
+- onCaptureVideoFrame
+- onRenderVideoFrame
+- onScreenCaptureVideoFrame
+- getVideoFrameProcessMode
+- OnEncodedVideoImageReceived
 
 - [`registerVideoFrameObserver`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html#a5eee4dfd1fd46e4a865feba163f3c5de)
 - [`onCaptureVideoFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1media_1_1_i_video_frame_observer.html#a915c673aec879dcc2b08246bb2fcf49a)

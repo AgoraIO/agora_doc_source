@@ -4,8 +4,6 @@ During the audio transmission process, you can pre- and post-process the capture
 
 Agora provides the raw data function for you to process the audio data according to your scenarios. This function enables you to pre-process the captured audio signal before sending it to the encoder, or to post-process the decoded audio signal.
 
-## Implementation
-
 ### Process raw audio data using Java APIs
 
 #### API call sequence
@@ -25,12 +23,10 @@ The following diagram shows how to implement the raw audio data function in your
 ![](https://web-cdn.agora.io/docs-files/1607913459953)
 
 
-## Implementation
-
-### Prerequisites
+## Prerequisites
 
 Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](./start_call_android?platform=Android) or [Start Interactive Live Streaming](./start_live_android?platform=Android).
-
+## Implementation
 ### Process raw audio data using Java APIs
 
 1. Before joining a channel, create an `IAudioFrameObserver` object and then call `registerAudioFrameObserver` to register an audio frame observer.
@@ -40,14 +36,14 @@ Before proceeding, ensure that you have implemented basic real-time functions in
 ```java
 // Call registerAudioFrameObserver to register the audio frame observer and pass in an IAudioFrameObserver object.
 engine.registerAudioFrameObserver(new IAudioFrameObserver() {
-    
+
     // Implement the onRecordFrame callback by playing the captured audio frame.
     @Override
     public boolean onRecordFrame(byte[] samples, int numOfSamples, int bytesPerSample, int channels, int samplesPerSec) {
         if(isEnableLoopBack){
             mAudioPlayer.play(samples, 0, numOfSamples * bytesPerSample);
         }
-        
+
         return false;
     }
     // Implement the onPlaybackFrame callback
@@ -67,7 +63,7 @@ engine.registerAudioFrameObserver(new IAudioFrameObserver() {
     public boolean onMixedFrame(byte[] samples, int numOfSamples, int bytesPerSample, int channels, int samplesPerSec) {
         return false;
     }
-    
+
     // Call the set methods to configure the format of the audio frame captured by each callback.
     engine.setRecordingAudioFrameParameters(SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, Constants.RAW_AUDIO_FRAME_OP_MODE_READ_WRITE,SAMPLES_PER_CALL);
     engine.setMixedAudioFrameParameters(SAMPLE_RATE, SAMPLES_PER_CALL);

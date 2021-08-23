@@ -13,12 +13,11 @@ The API call sequence is as follows:
 
 ![custom audio source api sequence](https://web-cdn.agora.io/docs-files/1605766083489)
 
-## Implementation
-
-### Prerequisites
+## Prerequisites
 
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
 
+## Implementation
 ### Implement the workflow
 
 Use the following steps to implement the custom audio source:
@@ -50,8 +49,8 @@ Agora provides an open-sourced API-Example iOS sample project on GitHub that inc
 ### API reference
 
 - [setExternalAudioSource1]()
-- [setExternalAudioSource2]() 	
-- [pushExternalAudioFrameRawData]() 	
+- [setExternalAudioSource2]()
+- [pushExternalAudioFrameRawData]()
 - [pushExternalAudioFrameSampleBuffer]()
 
 ### Considerations

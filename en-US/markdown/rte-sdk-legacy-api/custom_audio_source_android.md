@@ -25,19 +25,16 @@ The following diagram shows how the audio data is transferred when you customize
 - You need to implement the capture module yourself using methods from outside the SDK.
 - Call `pushExternalAudioFrame` to send the captured audio frames to the SDK.
 
-
-## Implementation
-
-### Prerequisites
+## Prerequisites
 
 Before proceeding, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Voice Call](https://docs.agora.io/en/Voice/start_call_audio_android?platform=Android) or [Start Interactive Live Audio Streaming](https://docs.agora.io/en/Interactive%20Broadcast/start_live_audio_android?platform=Android).
 
-
+## Implementation
 ### Implement the workflow
 
 Refer to the following steps to implement a custom audio source in your project:
 
-1. Before calling `joinChannel`, call `setExternalAudioSource` to specify the custom audio source. 
+1. Before calling `joinChannel`, call `setExternalAudioSource` to specify the custom audio source.
 
     ```java
     // Specifies the custom audio source
@@ -49,7 +46,7 @@ Refer to the following steps to implement a custom audio source in your project:
 2. Implement audio capture and processing yourself using methods from outside the SDK.
 
 3. Call `pushExternalAudioFrame` to send the audio frames to the SDK for later use.
-    
+
     ```java
     public class RecordThread extends Thread
         {

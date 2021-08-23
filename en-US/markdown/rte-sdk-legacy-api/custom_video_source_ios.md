@@ -1,4 +1,4 @@
-This article describes how to use the Agora Native SDK to customize the video source. 
+This article describes how to use the Agora Native SDK to customize the video source.
 
 ## Understand the tech
 
@@ -21,11 +21,10 @@ The following diagram shows how the video data is transferred when you customize
 
 Video frames captured by the SDK or a custom video source, or received from a remote user, can be rendered by either the SDK or a custom video renderer. You must implement the custom video source yourself using methods from outside the SDK.
 
-## Implementation
-
-### Prerequisites
+## Prerequisites
 
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
+## Implementation
 
 ### Implement the workflow
 
@@ -47,10 +46,10 @@ The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Clas
     ```swift
     // Swift
     class AgoraCameraSourcePush: NSObject {
-        
+
         fileprivate var delegate: AgoraCameraSourcePushDelegate?
         private var videoView: CustomVideoSourcePreview
-        
+
         private var currentCamera = Camera.defaultCamera()
         private let captureSession: AVCaptureSession
         private let captureQueue: DispatchQueue
@@ -61,42 +60,42 @@ The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Clas
                 return nil
             }
         }
-        
+
         // Initializes the custom video source
         init(delegate: AgoraCameraSourcePushDelegate?, videoView: CustomVideoSourcePreview) {
             self.delegate = delegate
             self.videoView = videoView
-            
+
             captureSession = AVCaptureSession()
             captureSession.usesApplicationAudioSession = false
-            
+
             let captureOutput = AVCaptureVideoDataOutput()
             captureOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_420YpCbCr8BiPlanarFullRange]
             if captureSession.canAddOutput(captureOutput) {
                 captureSession.addOutput(captureOutput)
             }
-            
+
             captureQueue = DispatchQueue(label: "MyCaptureQueue")
-            
+
             // Displays the captured video frames on the view
             let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             videoView.insertCaptureVideoPreviewLayer(previewLayer: previewLayer)
         }
-        
+
         deinit {
             captureSession.stopRunning()
         }
-        
+
         // Starts capturing video frames
         func startCapture(ofCamera camera: Camera) {
             guard let currentOutput = currentOutput else {
                 return
             }
-            
+
             // Sets the camera as the capturing device
             currentCamera = camera
             currentOutput.setSampleBufferDelegate(self, queue: captureQueue)
-            
+
             captureQueue.async { [weak self] in
                 guard let strongSelf = self else {
                     return
@@ -110,7 +109,7 @@ The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Clas
                 strongSelf.captureSession.startRunning()
             }
         }
-        
+
         // Stops capturing video frames
         func stopCapture() {
             currentOutput?.setSampleBufferDelegate(nil, queue: nil)
@@ -118,7 +117,7 @@ The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Clas
                 self?.captureSession.stopRunning()
             }
         }
-        
+
         // Switches the camera
         func switchCamera() {
             stopCapture()
@@ -143,19 +142,19 @@ The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Clas
     // Swift
     // Initializes localVideo
     var localVideo = CustomVideoSourcePreview(frame: CGRect.zero)
-    
+
     // Defines the CustomVideoSourcePreview class
     class CustomVideoSourcePreview : UIView {
-    
+
         private var previewLayer: AVCaptureVideoPreviewLayer?
         func insertCaptureVideoPreviewLayer(previewLayer: AVCaptureVideoPreviewLayer) {
             self.previewLayer?.removeFromSuperlayer()
-    
+
             previewLayer.frame = bounds
             layer.insertSublayer(previewLayer, below: layer.sublayers?.first)
             self.previewLayer = previewLayer
         }
-    
+
         override func layoutSublayers(of layer: CALayer) {
             super.layoutSublayers(of: layer)
             previewLayer?.frame = bounds
@@ -169,7 +168,7 @@ The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Clas
     // Swift
     // Initializes the AgoraCameraSourcePush class and sets the camera as the capturing device
     customCamera = AgoraCameraSourcePush(delegate: self, videoView:localVideo)
-    
+
     // Calls startCapture of the AgoraCameraSourcePush class to start capturing video frames
     customCamera?.startCapture(ofCamera: .defaultCamera())
     ```
@@ -186,11 +185,11 @@ The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Clas
             videoFrame.textureBuf = pixelBuffer
             videoFrame.time = timeStamp
             videoFrame.rotation = Int32(rotation)
-            
+
             // Pushes the captured video frames to the SDK
             agoraKit?.pushExternalVideoFrame(videoFrame)
         }
-        
+
     }
     ```
 

@@ -19,12 +19,11 @@ The API call sequence is as follows:
 
 The `startEchoTestWithInterval` method that tests whether the network connection and the audio devices, such as the microphone and the speakers, are working properly.
 
-## Implementation
-
-### Prerequisites
+## Prerequisites
 
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
 
+## Implementation
 ### Network probe test
 
 Refer to the following steps to implement the network probe test.
@@ -89,7 +88,7 @@ Refer to the following steps to implement the network probe test.
   // You can call stopLastmileProbeTest either within the lastmileProbeResult callback, or at other time before joining a channel.
   agoraKit.stopLastmileProbeTest()
   ```
-  
+
 ### Device test
 
 Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](start_call_ios) or [Start Live Interactive Streaming](start_live_ios).

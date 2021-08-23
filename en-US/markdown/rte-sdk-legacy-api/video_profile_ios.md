@@ -167,13 +167,11 @@ If your scenario has special requirements on video sharpness or smoothness, you 
 
 <div class="alert note">The default values of <code>minFrameRate</code> and <code>minBitrate</code> can meet the requirements of most real-time scenarios. Unless you have special requirements , Agora recommends not changing these default values.</div>
 
-
-
-## Implementation
-
-### Prerequisites
+## Prerequisites
 
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
+
+## Implementation
 
 ### Implement the workflow
 
