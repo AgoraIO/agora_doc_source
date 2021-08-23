@@ -17,7 +17,7 @@ Before implementing custom audio rendering, ensure that you have implemented th
 
 ### Implement the workflow
 
-1. Get the audio data to play from `onPlaybackAudioFrame`.
+1. Get the audio data to play from `onRecordAudioFrame`, `onPlaybackAudioFrame`, `onMixedAudioFrame`, or `onPlaybackAudioFrameBeforeMixing`.
 2. Render and play the remote audio data on your own.
 
 ## Reference
