@@ -19,7 +19,6 @@ Before adjusting the audio volume, ensure that you have implemented the basic r
 
 ## Implementation
 
-
 Use the following steps to implement the custom audio source:
 
 1. Before joining a channel, call `setExternalAudioSource` to notify the SDK to use the external audio source.
@@ -29,10 +28,10 @@ Use the following steps to implement the custom audio source:
     ```
 
 2. Record and process the audio data on your own.
-3. Send the audio data back to the SDK using `pushExternalAudioFrame`.
+3. Send the audio data back to the SDK using `pushExternalAudioFrameRawData` or `pushExternalAudioFrameSampleBuffer`.
 
     ```swift
-    agoraKit.pushExternalAudioFrameNSData(data, sourceId: 1, timestamp: 0)
+    agoraKit.pushExternalAudioFrameRawData(data, sourceId: 1, timestamp: 0)
     ```
 
 ## Reference
