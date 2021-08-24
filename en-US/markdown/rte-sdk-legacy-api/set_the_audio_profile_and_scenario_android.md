@@ -70,7 +70,7 @@ The following table shows the recommended audio profile and scenario in common a
 
 ### Sample project
 
-Agora provides an open-source demo project that implements [setting audio profile](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/SetAudioProfile.java) on GitHub. You can try the demo and view the source code.
+Agora provides an open-source sample project that implements [setting audio profile](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/SetAudioProfile.java) on GitHub. You can try the sample project and view the source code.
 
 ### API reference
 
