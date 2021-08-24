@@ -50,11 +50,20 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values" props="android apple windows">
+        <section id="return_values">
    <title>返回值</title>
-   <ul>
+   <ul props="windows">
        <li><codeph><ph keyref="true"/></codeph>: 发送</li>
        <li><codeph><ph keyref="false"/></codeph>: 不发送</li>
    </ul>
+            <p props="ios mac">指定想要发送的 metadata ，格式为 NSData，由如下字段组成：
+                <ul>
+                    <li><codeph>uid</codeph>：发送该 metadata 的远端用户的 ID。</li>
+                    <li><codeph>size</codeph>：metadata 的大小。</li>
+                    <li><codeph>buffer</codeph>：metadata 数据。</li>
+                    <li><codeph>timeStampMs</codeph>：metadata 发送时的 NTP 时间戳（ms）。</li>
+                </ul>
+            </p>
+            <p props="android">指定想要发送的 metadata，格式为 byte[]。请确保在该返回值中进行传参。</p>
         </section></refbody>
 </reference>
