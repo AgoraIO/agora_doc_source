@@ -1,18 +1,18 @@
-# Adjust the volume
+# Adjust the Volume
 
-This article provides the APIs and additional information relating to audio recording, audio mixing, and audio playback volume settings.
+This article shows you how to set audio recording, audio mixing, audio playback and in-ear monitoring volume.
 
 ## Understand the tech
 
-The Agora RTC SDK enables you to manage the volume of the recorded audio or of the audio playback according to your actual scenario. For example, to mute a remote user in a one-to-one call, you can set the audio playback volume as 0.
+The Agora RTC SDK enables you to manage the volume of the recorded audio or of the audio playback according to your actual scenario. For example, you can set the audio playback volume as 0 to mute a remote user in a one-to-one call.
+
+The following diagram shows the workflow for audio volume settings.
 
 ![](https://web-cdn.agora.io/docs-files/1578885967798)
 
-**Recording** is the process of sampling audio by a recording device and transmitting the recorded signal to the sender. To adjust the recording volume, you can **set the volume of the recorded signal**.
+### Playback
 
-![](https://web-cdn.agora.io/docs-files/1578020909500)
-
-**Playback** is the process of playing the received audio signal on the local playback device. To adjust the playback volume, you can **set the volume of the audio signal**.
+**Playback** is the process of playing the received audio signal on the local playback device.
 
 ![](https://web-cdn.agora.io/docs-files/1578887639765)
 
@@ -22,36 +22,21 @@ The Agora RTC SDK enables you to manage the volume of the recorded audio or of t
 
 ![](https://web-cdn.agora.io/docs-files/1578887697061)
 
+### Recording
 
-## Implementation
 
-### Prerequisites
+**Recording** is the process of sampling audio by a recording device and transmitting the recorded signal to the sender.
+
+![](https://web-cdn.agora.io/docs-files/1578559122611)
+
+## Prerequisites
 
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
 
-### Adjust the recording volume
-
-Call `adjustRecordingSignalVolume` to set the volume of the recorded signal.
-The `volume` parameter represents the audio level of the recorded signal, ranging between 0 and 100:
-- 0: Mute.
-- 100: (Default) The original volume.
-
-
-```swift
-// Swift
-// Sets the volume of the recorded signal as 50.
-agoraKit.adjustRecordingSignalVolume(50)
-```
-
-```objective-c
-// Objective-C
-// Sets the volume of the recording signal as 50.
-[agoraKit adjustRecordingSignalVolume: 50];
-```
-
+## Implementation
 ### Adjust the playback volume
 
-You can use `adjustPlaybackSignalVolume` or `adjustUserPlaybackSignalVolume` to set the volume of the audio signal.
+To set the volume of the audio signal, call `adjustPlaybackSignalVolume` or `adjustUserPlaybackSignalVolume`.
 
 
 ```swift
@@ -72,7 +57,7 @@ agoraKit.adjustUserPlaybackSignalVolume(uid, volume: 50)
 
 ### Adjust the in-ear monitor volume
 
-In audio recording, mixing, and playback, you can call `setInEarMonitoringVolume` to adjust the volume of the in-ear monitor.
+In audio recording, mixing, and playback, to adjust the volume of the in-ear monitor, call `setInEarMonitoringVolume` .
 
 <div class="alert note">Call enableInEarMonitoring(true) before calling this method.</div>
 
@@ -93,7 +78,7 @@ agoraKit.setInEarMonitoringVolume(50)
 [agoraKit setInEarMonitoringVolume: 50];
 ```
 
-### Get the information of the loudest speaker (callback)
+### Balance the volume by getting the information of the loudest speaker (callback)
 
 When recording, mixing, or playing audio, you can use the following methods to get the data of the loudest speaker in the channel.
 
@@ -135,7 +120,26 @@ func rtcEngine(_ engine: AgoraRtcEngineKit, activeSpeaker speakerUid: UInt) {
 }
 ```
 
+### Adjust the recording volume
+
+Call `adjustRecordingSignalVolume` to set the volume of the recorded signal.
+
+
+```swift
+// Swift
+// Sets the volume of the recorded signal as 50.
+agoraKit.adjustRecordingSignalVolume(50)
+```
+
+```objective-c
+// Objective-C
+// Sets the volume of the recording signal as 50.
+[agoraKit adjustRecordingSignalVolume: 50];
+```
+
 ## Reference
+
+
 
 ### Sample project
 
@@ -160,3 +164,4 @@ When adjusting the audio volume, you can also refer to the following articles:
 ### Considerations
 
 Setting the audio level too high may cause audio distortion on some devices.
+

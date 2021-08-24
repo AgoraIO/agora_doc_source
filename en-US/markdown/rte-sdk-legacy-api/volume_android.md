@@ -1,20 +1,14 @@
 # Adjust the Volume
 
-This article provides the APIs and additional information relating to audio recording, audio mixing, audio playback and in-ear monitoring volume settings.
+This article shows you how to set audio recording, audio mixing, audio playback and in-ear monitoring volume.
 
 ## Understand the tech
 
-The Agora RTC SDK enables you to manage the volume of the recorded audio or of the audio playback according to your actual scenario. For example, to mute a remote user in a one-to-one call, you can set the audio playback volume as 0.
+The Agora RTC SDK enables you to manage the volume of the recorded audio or of the audio playback according to your actual scenario. For example, you can set the audio playback volume as 0 to mute a remote user in a one-to-one call.
 
-The following diagram shows the workflow of audio volume settings.
+The following diagram shows the workflow for audio volume settings.
 
 ![](https://web-cdn.agora.io/docs-files/1578559042677)
-
-### Recording
-
-**Recording** is the process of sampling audio by a recording device and transmitting the recorded signal to the sender.
-
-![](https://web-cdn.agora.io/docs-files/1578559122611)
 
 ### Playback
 
@@ -29,28 +23,21 @@ The following diagram shows the workflow of audio volume settings.
 ![](https://web-cdn.agora.io/docs-files/1578560373700)
 
 
+### Recording
+
+**Recording** is the process of sampling audio by a recording device and transmitting the recorded signal to the sender.
+
+![](https://web-cdn.agora.io/docs-files/1578559122611)
+
 ## Prerequisites
 
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_android) or [Start Interactive Live Streaming](start_live_android).
+
 ## Implementation
-### Adjust the recording volume
-
-Call `adjustRecordingSignalVolume` to set the volume of the recorded signal.
-
-```java
-ChannelMediaOptions options = new ChannelMediaOptions();
-options.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER;
-mRtcEngine.joinChannel(token, channelName, 1234, options);
-int volume = 50;
-// Sets the volume of the recorded signal.
-rtcEngine.adjustRecordingSignalVolume(volume);
-```
 
 ### Adjust the playback volume
 
-Call `adjustPlaybackSignalVolume` or `adjustUserPlaybackSignalVolume` to set the volume of the audio signal.
-
-<div class="alert note"><li>To mute the local audio playback, you must call both <code>adjustPlaybackSignalVolume</code> and <code>adjustAudioMixingVolume</code>, and set the volume parameter as 0.<li>Call <code>adjustUserPlaybackSignalVolume</code> after joining a channel.</li></div>
+To set the volume of the audio signal, call `adjustPlaybackSignalVolume` or `adjustUserPlaybackSignalVolume`.
 
 
 ```java
@@ -64,7 +51,7 @@ mRtcEngine.adjustUserPlaybackSignalVolume(uid, volume);
 
 ### Adjust the in-ear monitoring volume
 
-In audio recording, mixing and playing, you can call `setInEarMonitoringVolume` to adjust the volume of the in-ear monitoring.
+In audio recording, mixing and playback, to adjust the volume of the in-ear monitor, call `setInEarMonitoringVolume`.
 
 ```java
 // Enables in-ear monitoring.
@@ -74,7 +61,9 @@ int volume = 50;
 rtcEngine.setInEarMonitoringVolume(volume);
 ```
 
-### Get the data of the loudest speaker (callback)
+
+
+### Balance the volume by getting the data of the loudest speaker (callback)
 
 When recording, mixing, or playing audio, you can use the following methods to get the data of the loudest speaker in the channel.
 
@@ -84,7 +73,6 @@ When recording, mixing, or playing audio, you can use the following methods to g
 
 
   ```java
-
   private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
 
         ...
@@ -125,11 +113,21 @@ When recording, mixing, or playing audio, you can use the following methods to g
   mRtcEngine.enableAudioVolumeIndication(true);
   ```
 
-## Considerations
+### Adjust the recording volume
 
-Setting the audio level too high may cause audio distortion on some devices.
+To set the volume of the recorded signal, call `adjustRecordingSignalVolume`.
+
+```java
+ChannelMediaOptions options = new ChannelMediaOptions();
+options.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER;
+mRtcEngine.joinChannel(token, channelName, 1234, options);
+int volume = 50;
+// Sets the volume of the recorded signal.
+rtcEngine.adjustRecordingSignalVolume(volume);
+```
 
 ## Reference
+
 
 ### Sample project
 
@@ -144,3 +142,7 @@ We provide an open-source [AdjustVolume](https://github.com/AgoraIO/API-Examples
 - [`setInEarMonitoringVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af71afdf140660b10c4fb0c40029c432d)
 - [`onAudioVolumeIndication`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a4d37f2b4d569fa787bb8c0e3ae8cd424)
 - [`onActiveSpeaker`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a895e965178d808f9d33b387ab3e50300)
+
+### Considerations
+
+Setting the audio level too high may cause audio distortion on some devices.
