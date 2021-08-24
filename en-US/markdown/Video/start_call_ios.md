@@ -1,4 +1,4 @@
-The Agora SDK enables you to develop rapidly to enhance your social, work, education, and IoT apps with real-time engagements.
+The Agora Video SDK for iOS makes it easy to embed real-time Video Call into iOS apps. It enables you to develop rapidly and easily to enhance your social, work, education and IoT apps with face-to-face interaction.
 
 This page shows the minimum code you need to add video call into your app by using the Agora Video SDK for iOS.
 
@@ -25,7 +25,7 @@ To start a video call, you implement the following steps in your app:
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
-- A token: In a test or production environment, your app client retrieves tokens from your server. For rapid testing, you can use a temporary token with a validity period of 24 hours.
+- A token: In a test or production environment, your app client retrieves tokens from your server. For the procedure on this page, you use a temporary token that you get from Agora Console, which has a validity period of 24 hours.
 - The channel name: A string that identifies the channel for live streaming. 
 
 ## Prerequisites
@@ -44,11 +44,11 @@ In Xcode, follow the steps to create the environment necessary to add live strea
 
 1. Create a new iOS app and configure the following settings:
    
-   - Product Name: Any name you like.
-   - Team: If you have added a team, choose it from the pop-up menu. If not, you can see the **Add account** button. Click it, input your Apple ID, and click **Next** to add your team.
-   - Organization Identifier: The identifier of your organization. If you do not belong to an organization, use any identifier you like.
-   - Interface: Choose **Storyboard**.
-   - Language: Choose **Swift**.
+   - **Product Name**: Any name you like.
+   - **Team**: If you have added a team, choose it from the pop-up menu. If not, you can see the **Add account** button. Click it, input your Apple ID, and click **Next** to add your team.
+   - **Organization Identifier**: The identifier of your organization. If you do not belong to an organization, use any identifier you like.
+   - **Interface**: Choose **Storyboard**.
+   - **Language**: Choose **Swift**.
    
 2. Integrate the Video SDK into your project.
 
@@ -56,14 +56,16 @@ In Xcode, follow the steps to create the environment necessary to add live strea
 
    `https://github.com/AgoraIO/AgoraRtcEngine_iOS`
 
-   In **Choose Package Options**, [specify version requirements](https://help.apple.com/xcode/mac/current/#/devb83d64851) according to your needs.
+   In **Choose Package Options**, specify the Video Call SDK version you want to use.
 
-<div class="alert note"><li>Each SDK version has a corresponding Swift Package with the same version number. For the Video SDK, Agora provides Swift Packages for 3.4.3 and later versions.</li><li>If you have issues installing this Swift Package, try going to <b>File</b> > <b>Swift Packages</b> > <b>Reset Package Caches</b>.</li><li>For more integration methods, see <a href="#othermethods">Other approaches to integrating the SDK</a></li></div>
+<div class="alert note"><li>For the Video SDK, Agora provides Swift Packages for 3.4.3 and later versions.</li><li>If you have issues installing this Swift Package, try going to <b>File</b> > <b>Swift Packages</b> > <b>Reset Package Caches</b>.</li><li>For more integration methods, see <a href="#othermethods">Other approaches to integrating the SDK</a></li></div>
 
 3. [Enable automatic signing](https://help.apple.com/xcode/mac/current/#/dev23aab79b4) for your project.
-4. [Set the target devices](https://help.apple.com/xcode/mac/current/#/deve69552ee5) to deploy your iOS app.
+4. Set the deployment target for your app:
+   1. In the [project editor](https://help.apple.com/xcode/mac/current/#/devdab46c612), choose your target and click **General**.
+   2. In the **Deployment Info** settings, choose the operating system version for your iOS app from the pop-up menu.
 5. Add permissions for microphone and camera usage.
-   Open the `info.plist` file in the project navigation panel, and [edit the property list](https://help.apple.com/xcode/mac/current/#/dev3f399a2a6) to add the following properties:
+   In the [Project navigator](https://help.apple.com/xcode/mac/current/#/dev7d7220fbb), open the `info.plist` file of your project and [add the following properties](https://help.apple.com/xcode/mac/current/#/dev3f399a2a6):
    - Privacy - Microphone Usage Description
    - Privacy - Camera Usage Description
 
@@ -111,30 +113,31 @@ The following figure shows the API call sequence of implementing Video Call.
 
 To implement this logic, take the following steps:
 
-1. Import the Agora kit.
+1. Import the Agora kit and add the `agoraKit` variable.
 
-   In `ViewController.swift`, add the following line after `import UIKit`:
-
-   ```swift
-    import AgoraRtcKit
-   ```
-
-   And add the `agoraKit` variable in the `ViewController` class:
+   Modify your  `ViewController.swift` as follows:
 
    ```swift
+   import UIKit
+   // Add this line to import the Agora kit
+   import AgoraRtcKit
    class ViewController: UIViewController {
        var localView: UIView!
        var remoteView: UIView!
-       // Add agoraKit here
+       // Add this linke to add the agoraKit variable
        var agoraKit: AgoraRtcEngineKit?
-   }
+     
+       override func viewDidLoad() {
+           super.viewDidLoad()
+           initView()
+        }
    ```
 
 2. Initialize the app and join the channel.
 
-   Call the core methods for initializing the app and joining a channel. In the following sample code, we use an `initializeAndJoinChannel` function to encapsulate these core methods.
+   Call the core methods to initialize the app and join a channel. In this example app, this functionality is encapsulated in the `initializeAndJoinChannel` function.
 
-   In `ViewController.swift`, add the following lines after the `initView` function:
+   In `ViewController.swift`, add the following lines after the `initView` function, and fill in your App ID, temporary token, and channel name:
 
    ```swift
     func initializeAndJoinChannel() {
@@ -154,7 +157,7 @@ To implement this logic, take the following steps:
            })
        }
    ```
-   
+
 3. Add the remote interface when a remote user joins the channel.
 
    In `ViewController.swift`, add the following lines after the `ViewController` class:
@@ -174,7 +177,9 @@ To implement this logic, take the following steps:
 
 ### Start and stop your app
 
-Now you have created the Video Call functionality, start and stop the app. In this implementation, a video call starts when the user opens your app. The call ends when the user closes your app.
+Now you have created the Video Call functionality, add the functionality of starting and stopping the app. In this implementation, a video call starts when the user opens your app. The call ends when the user closes your app.
+
+To implement the functionality of starting and stopping the app:
 
 1. When the view is loaded, call `initializeAndJoinChannel` to join a video call channel.
 
@@ -202,12 +207,19 @@ Now you have created the Video Call functionality, start and stop the app. In th
 
 ## Test your app
 
-Connect an iOS device to your computer, and click the Run button on your Xcode to [build and run your app](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca) on the device. A moment later you will see the project installed on your device. Take the following steps to test the video call app:
+To test your app on a physical device, do the following:
 
-1. Grant microphone and camera access to your app.
-2. When the app launches, you should be able to see yourself on the local view.
-3. Ask a friend to join the video call with you on the [demo app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicLive/index.html). Enter the same App ID and channel name.
-4. If your friend joins the channel, you should be able to see and hear each other.
+1. Connect an iOS device to your computer.
+
+2. In Xcode, choose the device from the scheme menu in the [toolbar](https://help.apple.com/xcode/mac/current/#/devf0d1df47a), and click the Run button.
+
+3. On your device, launch the app and grant microphone and camera access.
+
+   You can see yourself on the local view.
+
+4. Ask a friend to join the video call with you on the [demo app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicLive/index.html). Your friend needs to enter the same App ID and channel name.
+
+   When your friend joins the channel, you can see and hear each other.
 
 ## Next steps
 
