@@ -1,20 +1,18 @@
-Agora 在 npm 上提供完整的 [Agora Classroom SDK](https://www.npmjs.com/package/agora-classroom-sdk) 供你集成。但是，如果 Agora Classroom SDK 中默认的 UI 无法满足你的需求，你也可以获取 Agora Classroom SDK 的源码自定义课堂 UI，例如修改颜色、布局或安丘，增加 logo 等。
+## 概述
 
-## 技术原理
+Agora 在 npm 上提供完整的 [Agora Classroom SDK](https://www.npmjs.com/package/agora-classroom-sdk) 供你集成。但是，如果 Agora Classroom SDK 中默认的 UI 无法满足你的需求，你也可以获取 Agora Classroom SDK 的源码，自行开发、调试和编译。Agora Classroom SDK for Desktop 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/master) 仓库（release/apaas/1.1.0 分支）。在 Agora Classroom SDK 中，灵动课堂的 UI 代码和核心业务逻辑相隔离，独立成 UIKit 和 EduCore 两个库，两者通过 [Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_web_overview?platform=Web) 产生关联。举例来说，对于灵动课堂中的文字聊天功能，需要通过一个按钮发送消息，同时需要接收其他用户发送的消息。这种情况下，我们在 UIKit 中可以调用 Chat Context 中的发送消息方法，并监听 Chat Context 中消息接收相关事件。
 
-在 Agora Classroom SDK 中，灵动课堂的 UI 代码和核心业务逻辑相隔离，独立成 UIKit 和 EduCore 两个库，两者通过 [Agora Edu Context](https://docs.agora.io/cn/agora-class/edu_context_api_ref_web_overview?platform=Web) 产生关联。举例来说，对于灵动课堂中的文字聊天功能，需要通过一个按钮发送消息，同时需要接收其他用户发送的消息。这种情况下，我们在 UIKit 中可以调用 Chat Context 中的发送消息方法，并监听 Chat Context 中消息接收相关事件。
+![](https://web-cdn.agora.io/docs-files/1619696813295)
 
-![](https://web-cdn.agora.io/docs-files/1623761240753)
+UIKit 中提供灵动课堂的 UI 组件代码，并引入开源工具 [Storybook](https://storybook.js.org/docs/react/get-started/introduction) 来开发和管理 UI 组件。UIKit 的源码位于 GitHub 上 CloudClass-Desktop 仓库（release/apaas/1.1.0 分支）中 `packages/agora-classroom-sdk/src/ui-kit` 目录下，项目结构介绍如下：
 
-UIKit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/master) 仓库（release/apaas/1.1.2 分支），主要包含以下两部分：
-
-- `packages/agora-scenario-ui-kit/src/components` ：灵动课堂使用的基础 UI 组件的源码。你可以通过开源工具 [Storybook](https://storybook.js.org/docs/react/get-started/introduction) 来独立开发和管理基础 UI 组件。一个基础 UI 组件通常包含以下文件：
-  - `.css`: 定义组件的样式。
-  - `.stories.tsx`: 定义组件在 Storybook 中的展示。
-  - `.tsx`: 定义组件的具体设计。
-- `packages/agora-classroom-sdk/src/ui-kit` ：
-  - `containers`: 基于基础 UI 组件搭建的高阶 UI 组件的源码。
-  - `scenarios`: 灵动课堂使用的场景层 UI 组件的源码。
+| 文件夹         | 描述                                                         |
+| :------------- | :----------------------------------------------------------- |
+| `components`   | 灵动课堂使用的基础 UI 组件的源码。一个 UI 组件一般包含以下文件：<li>`.css`: 定义组件的样式。</li><li>`.stories.tsx`: 定义组件在 Storybook 中的展示。</li><li>`.tsx`: 定义组件的具体设计。</li> |
+| `capabilities` | <li>`containers`: 灵动课堂使用的高阶 UI 组件的源码。</li><li>`scenarios`: 灵动课堂使用的场景 UI 组件的源码。</li> |
+| `scaffold`     | 场景 UI 组件，可作为脚手架查看基础 UI 组件在各教学场景中的组装效果。 |
+| `styles`       | 定义全局样式。                                               |
+| `utilities`    | 工具函数，如国际化、自定义 hooks 等。                        |
 
 ## 实现方法
 
@@ -44,7 +42,7 @@ UIKit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO
 
 参考以下步骤修改灵动课堂的 UI：
 
-1. 进入 CloudClass-Desktop 项目根目录，检出 release/apaas/1.1.2 分支，然后运行以下命令安装依赖。
+1. 进入 CloudClass-Desktop 项目根目录，检出 release/apaas/1.1.0 分支，然后运行以下命令安装依赖。
 
    ```shell
    # Install global dev dependencies
@@ -64,7 +62,7 @@ UIKit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO
 
    ![storybook-example](https://web-cdn.agora.io/docs-files/1617714921810)
 
-   你可以通过直接修改 `packages/agora-scenario-ui-kit/src/components` 目录下基础 UI 组件的源码文件来修改样式，保存代码后即可在 Storybook 中实时看到效果。如果灵动课堂的基础 UI 组件无法满足你的需求，你可以自行在`packages/agora-scenario-ui-kit/src/components` 目录下新增基础 UI 组件，然后在 `packages/agora-classroom-sdk/src/ui-kit/capabilities` 目录下修改基础 UI 组件的组合规则调整灵动课堂布局。详见[修改示例](#example)。
+   你可以通过直接修改 `packages/agora-classroom-sdk/src/ui-kit/components` 目录下基础 UI 组件的源码文件来修改样式，保存代码后即可在 Storybook 中实时看到效果。如果灵动课堂的基础 UI 组件无法满足你的需求，你可以自行在 `packages/agora-classroom-sdk/src/ui-kit/components` 目录下新增基础 UI 组件，然后在 `packages/agora-classroom-sdk/src/ui-kit/capabilities` 目录下修改基础 UI 组件的组合规则调整灵动课堂布局。详见[修改示例](#example)。
 
 3. Storybook 中的 UI 调整均基于 Mock 数据，能够帮助你根据组件属性快速查看 UI 展示。如果需要针对真实场景调整 UI，建议参考以下步骤通过 Agora Classroom SDK 开发模式调整 UI。
 
@@ -85,7 +83,7 @@ UIKit 的源码位于 GitHub 上 [CloudClass-Desktop](https://github.com/AgoraIO
 
 ### 修改导航栏颜色
 
-以下示例演示了如何通过修改 `packages/agora-scenario-ui-kit/src/components/biz-header/index.css` 文件将导航栏组件 BizHeader 的背景颜色从白色修改为红色。
+以下示例演示了如何通过修改 `packages/agora-classroom-sdk/src/ui-kit/components/biz-header/index.css` 文件将导航栏组件 BizHeader 的背景颜色从白色修改为红色。
 
 #### 修改前
 
@@ -188,7 +186,7 @@ export const OneToOneScenario = observer(() => {
 
 以下示例演示了如何自定义一个基础 UI 组件并在灵动课堂的 1 对 1 互动教学场景中使用：
 
-1. 在 `packages/agora-scenario-ui-kit/src/components` 目录下创建 `custom` 文件夹并新建以下文件：
+1. 在 `packages/agora-classroom-sdk/src/ui-kit/components` 目录下创建 `custom` 文件夹并新建以下文件：
 
    `index.css` 文件
 
@@ -285,7 +283,7 @@ export const OneToOneScenario = observer(() => {
 
    ![](https://web-cdn.agora.io/docs-files/1617715392109)
 
-2. 在 `packages/agora-scenario-ui-kit/src/components/index.ts` 文件中添加以下代码，导出 Custom 组件。
+2. 在 `packages/agora-classroom-sdk/src/ui-kit/components/index.ts` 文件中添加以下代码，导出 Custom 组件。
 
    ```ts
    export * from './custom'

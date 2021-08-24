@@ -1,4 +1,10 @@
-This page lists all the functions and events provided by `ChatContext` for the real-time text chat feature of Flexible Classroom.
+# useChatContext
+
+`useChatContext()` enables developers to implement the chat function in the flexible classroom.
+
+You can import `useChatContext` by `import { useChatContext } from 'agora-edu-core';` and then use `const {...} = useChatContext()` to implement the functions and events related to classroom management.
+
+This page lists all the functions and events provided by `useChatContext()`.
 
 ## isHost
 
@@ -11,10 +17,10 @@ Whether the role is the teacher or teaching assistant.
 ## getHistoryChatMessage
 
 ```typescript
-getHistoryChatMessage: (data: {
-    nextId: string;
-    sort: number;
-})=>Promise<any>,
+async getHistoryChatMessage(data: {
+    nextId: string,
+    sort: number
+}): array
 ```
 
 Fetch the message history.
@@ -36,15 +42,15 @@ The message list.
 ## sendMessage
 
 ```typescript
-sendMessage: (message: any) => Promise<{
-    id: string,
-    ts: number,
-    text: any,
-    account: string,
-    sender: boolean,
-    messageId: string,
-    fromRoomName: string,
-}>,
+async sendMessage(message: any): {
+    id,
+    ts,
+    text,
+    account,
+    sender,
+    messageId,
+    fromRoomName
+}
 ```
 Send a message.
 
@@ -57,14 +63,14 @@ Send a message.
 ## muteChat
 
 ```typescript
-muteChat: () => void,
+async muteChat(): void
 ```
 Disable the chat function.
 
 ## unmuteChat
 
 ```typescript
-unmuteChat: () => void,
+async unmuteChat(): void
 ```
 
 Enable the chat function.
@@ -104,7 +110,7 @@ Whether the chat function is enabled.
 ## addChatMessage
 
 ```typescript
-addChatMessage: (args: any) => void
+addChatMessage(args: any): void
 ```
 
 Add a message to the message list.

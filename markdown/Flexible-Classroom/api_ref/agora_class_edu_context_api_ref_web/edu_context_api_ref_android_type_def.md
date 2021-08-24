@@ -40,14 +40,7 @@ data class WhiteboardDrawingConfig(
 }
 ```
 
-白板基础工具属性配置类。
-
-| 参数              | 描述         |
-| :---------------- | :----------- |
-| `activeAppliance` | 可用的白板基础工具。   |
-| `color`           | 颜色。       |
-| `fontsize`        | 字体大小。   |
-| `thick`           | 画笔粗细度。 |
+白板工具属性配置类。
 
 ## EduContextNetworkState
 
@@ -126,6 +119,7 @@ enum class EduContextUserRole(val value: Int) {
 ## EduContextUserInfo
 
 ```kotlin
+// 用户信息
 data class EduContextUserInfo(
         val userUuid: String,
         val userName: String,
@@ -145,32 +139,35 @@ data class EduContextUserInfo(
 ## EduContextUserDetailInfo
 
 ```kotlin
+// user: 用户信息
+// streamUuid: 流Id
 data class EduContextUserDetailInfo(val user: EduContextUserInfo, val streamUuid: String) {
+    // 是否是本地用户
     var isSelf: Boolean = true
+    // 是否在线
     var onLine: Boolean = false
+    // 是否在台上
     var coHost: Boolean = false
+    // 是否拥有白板权限
     var boardGranted: Boolean = false
+    // 摄像头可用状态
     var cameraState: DeviceState = DeviceState.UnAvailable
+    // 麦克风可用状态
     var microState: DeviceState = DeviceState.UnAvailable
+    // 是否打开视频
     var enableVideo: Boolean = false
+    // 是否打开音频
     var enableAudio: Boolean = false
+    // 奖励数量
     var rewardCount: Int = -1
 }
 ```
 
 用户详细信息。
 
-| 参数           | 描述                                 |
-| :------------- | :----------------------------------- |
-| `isSelf`       | 是否为本地用户。                     |
-| `onLine`       | 是否在线。                           |
-| `coHots`       | 是否在台上。                         |
-| `boardGranted` | 是否拥有白板权限。                   |
-| `cameraState`  | 摄像头可用状态，详见 `DeviceState`。 |
-| `microState`   | 麦克风可用状态，详见 `DeviceState`。 |
-| `enableVideo`  | 是否开启视频。                       |
-| `enableAudio`  | 是否开启音频。                       |
-| `rewardCount`  | 奖励数量。                           |
+| 参数 | 描述 |
+| :--- | :--- |
+|      |      |
 
 ## DeviceState
 
@@ -193,30 +190,39 @@ enum class DeviceState(val value: Int) {
 ## EduContextChatItem
 
 ```kotlin
+// 聊天信息
 data class EduContextChatItem(
+        // 信息发送者姓名
         var name: String = "",
+        // 信息发送者id
         var uid: String = "",
+        // 内容
         var message: String = "",
+        // 信息Id
         var messageId: Int = 0,
+        // 信息类型
         var type: EduContextChatItemType = EduContextChatItemType.Text,
+        // 信息来源
         var source: EduContextChatSource = EduContextChatSource.Remote,
+        // 信息发送状态
         var state: EduContextChatState = EduContextChatState.Default,
+        // 时间戳
         var timestamp: Long = 0) {
 }
 ```
 
 聊天消息具体信息。
 
-| 参数        | 描述                                       |
-| :---------- | :----------------------------------------- |
-| `name`      | 消息发送者名称。                           |
-| `uid`       | 消息发送者 ID。                            |
-| `message`   | 消息内容。                                 |
-| `messageId` | 消息 ID。                                  |
-| `type`      | 消息类型，详见 `EduContextChatItemType`。  |
-| `source`    | 消息来源，详见 `EduContextChatSource`。    |
-| `state`     | 消息发送状态，详见 `EduContextChatState`。 |
-| `timestamp` | 消息发送时间戳。                           |
+| 参数 | 描述 |
+| :--- | :--- |
+| ``   |      |
+| ``   |      |
+| ``   |      |
+| ``   |      |
+| ``   |      |
+| ``   |      |
+| ``   |      |
+| ``   |      |
 
 ## EduContextChatItemType
 
