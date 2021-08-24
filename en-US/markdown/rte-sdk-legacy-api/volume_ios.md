@@ -6,6 +6,8 @@ This article shows you how to set audio recording, audio mixing, audio playback 
 
 The Agora RTC SDK enables you to manage the volume of the recorded audio or of the audio playback according to your actual scenario. For example, you can set the audio playback volume as 0 to mute a remote user in a one-to-one call.
 
+<div class="alert note">Setting the audio level too high may cause audio distortion on some devices.</div>
+
 The following diagram shows the workflow for audio volume settings.
 
 ![](https://web-cdn.agora.io/docs-files/1578885967798)
@@ -161,7 +163,5 @@ When adjusting the audio volume, you can also refer to the following articles:
 - [`reportAudioVolumeIndicationOfSpeakers`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportAudioVolumeIndicationOfSpeakers:totalVolume:4)
 - [`activeSpeaker`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:activeSpeaker:)
 
-### Considerations
 
-Setting the audio level too high may cause audio distortion on some devices.
 
