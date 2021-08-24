@@ -27,28 +27,21 @@
         <keydef keys="IRtcEngine" href="../API/class_irtcengine.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>RtcEngine</keyword>
+                    <keyword>AgoraRtcEngineKit</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="IRtcEngineEx" href="../API/class_irtcengineex.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>RtcEngineEx</keyword>
+                    <keyword>AgoraRtcEngineKit(Ex)</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="IRtcEngineEventHandler" href="../API/class_irtcengineeventhandler.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>IRtcEngineEventHandler</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="IRtcEngineEventHandlerEx" href="../API/class_irtcengineeventhandlerex.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>IRtcEngineEventHandlerEx</keyword>
+                    <keyword>AgoraRtcEngineDelegate</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -56,28 +49,35 @@
             href="../API/class_iaudioencodedframeobserver.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>IAudioEncodedFrameObserver</keyword>
+                    <keyword>AgoraAudioEncodedFrameDelegate</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="IAudioFrameObserver" href="../API/class_iaudioframeobserver.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>IAudioFrameObserver</keyword>
+                    <keyword>AgoraAudioFrameDelegate</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="IMediaExtensionObserver" href="../API/class_imediaextensionobserver.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>IMediaExtensionObserver</keyword>
+                    <keyword>AgoraMediaFilterEventDelegate</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AgoraMediaFilterExtensionDelegate">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraMediaFilterExtensionDelegate</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="IMediaPlayer" href="../API/class_imediaplayer.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>IMediaPlayer</keyword>
+                    <keyword>AgoraRtcMediaPlayerProtocol</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -85,36 +85,35 @@
             href="../API/class_imediaplayersourceobserver.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>IMediaPlayerObserver</keyword>
+                    <keyword>AgoraRtcMediaPlayerDelegate</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="IMetadataObserver" href="../API/class_imetadataobserver.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>IMetadataObserver</keyword>
+                    <keyword>AgoraMediaMetadataDelegate</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="IVideoEncodedImageReceiver"
-            href="../API/class_ivideoencodedimagereceiver.dita">
+        <keydef keys="AgoraMediaMetadataDataSource">
             <topicmeta>
                 <keywords>
-                    <keyword>IVideoEncodedImageReceiver</keyword>
+                    <keyword>AgoraMediaMetadataDataSource</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="IVideoFrameObserver" href="../API/class_ivideoframeobserver.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>IVideoFrameObserver</keyword>
+                    <keyword>AgoraVideoFrameDelegate</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="IAudioSpectrumObserver" href="../API/class_iaudiospectrumobserver.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>IAudioSpectrumObserver</keyword>
+                    <keyword>AgoraAudioSpectrumDelegate</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -1110,13 +1109,6 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="setVoiceConversionParameters">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setVoiceConversionParameters</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
         </topichead>
         <topichead navtitle="听声辨位">
             <keydef keys="enableSoundPositionIndication" href="../API/api_enablesoundpositionindication.dita">
@@ -1468,15 +1460,6 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="视频编码数据">
-            <keydef keys="registerVideoFrameObserver" href="../API/api_registervideoframeobserver.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>setVideoFrameDelegate</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-        </topichead>
         <topichead navtitle="原始音频数据">
             <keydef keys="registerAudioFrameObserver" href="../API/api_registeraudioframeobserver.dita">
                 <topicmeta>
@@ -1515,6 +1498,13 @@
             </keydef>
         </topichead>
         <topichead navtitle="原始视频数据">
+            <keydef keys="registerVideoFrameObserver" href="../API/api_registervideoframeobserver.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setVideoFrameDelegate</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
         </topichead>
         <topichead navtitle="Extension">
             <keydef keys="enableExtension" href="../API/api_enableextension.dita">
@@ -2287,7 +2277,6 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="多频道事件"/>
         <topichead navtitle="加密事件">
             <keydef keys="onEncryptionError" href="../API/api_onencryptionerror.dita">
                 <topicmeta>
@@ -2359,29 +2348,11 @@
                 </topicmeta>
             </keydef>
         </topichead>
-        <topichead navtitle="人脸检测事件">
-        </topichead>
         <topichead navtitle="音频播放路由">
             <keydef keys="onAudioRouteChanged" href="../API/api_onaudioroutechanged.dita">
                 <topicmeta>
                     <keywords>
                         <keyword>didAudioRouteChanged</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-        </topichead>
-        <topichead navtitle="音视频回退事件">
-            <keydef keys="onLocalPublishFallbackToAudioOnly" href="../API/api_onlocalpublishfallbacktoaudioonly.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>didLocalPublishFallbackToAudioOnly</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="onRemoteSubscribeFallbackToAudioOnly" href="../API/api_onremotesubscribefallbacktoaudioonly.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>didRemoteSubscribeFallbackToAudioOnly</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -2625,6 +2596,13 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="AudioFrame" href="../API/class_audioframe.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraAudioFrame</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="AudioSpectrumData" href="../API/class_audiospectrumdata.dita">
             <topicmeta>
                 <keywords>
@@ -2705,7 +2683,7 @@
         <keydef keys="ExternalVideoFrame" href="../API/class_externalvideoframe.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>AgoraExtVideoFrame</keyword>
+                    <keyword>AgoraVideoFrame</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3545,7 +3523,7 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="AUDIO_RECORDING_POSITION">
+        <keydef keys="AUDIO_RECORDING_POSITION" href="../API/enum_audiorecordingposition.dita">
             <topicmeta>
                 <keywords>
                     <keyword>AgoraAudioFileRecordingType</keyword>
