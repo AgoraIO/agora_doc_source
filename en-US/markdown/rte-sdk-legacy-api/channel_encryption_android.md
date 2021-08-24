@@ -1,6 +1,6 @@
-Media encryption encrypts your app’s audio and video streams with a unique key and salt controlled by the app developer. While not every use case requires media encryption, Agora provides the option to guarantee data confidentiality during transmission. Agora’s built-in encryption engine makes this much easier.
+Media encryption encrypts your app’s audio and video streams with a unique key and salt controlled by the app developer. While not every use case requires media encryption, Agora provides the option to guarantee data confidentiality during transmission. 
 
-This page shows you how to add the media stream encryption to your app.
+This page shows you how to add Agora's built-in media stream encryption to your app.
 
 ## Understand the tech
 
@@ -35,13 +35,16 @@ Add the built-in media stream encryption to your app, as follows:
 3. The client logic you need to implement is:
 
    1. Get the key in the string format and the salt in the Base64 format from your server.
+   
    2. Convert the salt from Base64 to uint8_t.
-   3. Before joining a channel, call [enableEncryption]() to set the encryption mode and pass the key and salt to the SDK. You can set the encryption mode as `AES_128_GCM2` or `AES_256_GCM2`.
 
-   > All users in a channel must use the same encryption mode, key, and salt.
+   3. Before joining a channel, call [enableEncryption]() to choose an encryption mode and pass the key and salt to the SDK. You can set the encryption mode as `AES_128_GCM2` or `AES_256_GCM2`.
 
-   The following sample code shows this logic.
-
+      > - All users in a channel must use the same encryption mode, key, and salt; otherwise, undefined behaviors such as a black screen or audio loss occur.
+      > - To enhance security, Agora recommends using a new key and salt every time you enable media stream encryption.
+   
+   The following sample code shows this logic:
+   
    ```java
    import java.util.Base64;
    import io.agora.rtc2.RtcEngine;
@@ -77,10 +80,4 @@ Add the built-in media stream encryption to your app, as follows:
 
 ### Sample project
 
-Agora provides an open-source sample project that implements [built-in encryption](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/ChannelEncryption.java) on GitHub. You can try the demo and view the source code.
-
-### Considerations
-
-- Both the communication and interactive live streaming scenarios support encryption, but Agora does not support pushing encrypted streams to the CDN during live streaming.
-- To use media-stream encryption, you need to enable encryption before joining a channel. Ensure that both the receivers and senders use the same encryption mode, key, and salt; otherwise, undefined behaviors such as a black screen or audio loss occur.
-- To enhance security, Agora recommends using a new key and salt every time you enable media-stream encryption.
+Agora provides an open-source sample project that implements the [built-in media encryption](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/ChannelEncryption.java) on GitHub. You can try the demo and view the source code.

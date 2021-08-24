@@ -1,6 +1,6 @@
 Media encryption encrypts your app’s audio and video streams with a unique key and salt controlled by the app developer. While not every use case requires media encryption, Agora provides the option to guarantee data confidentiality during transmission. 
 
-This page shows you how to add the media stream encryption to your app.
+This page shows you how to add Agora's built-in media stream encryption to your app.
 
 ## Understand the tech
 
@@ -52,14 +52,16 @@ Add the media stream encryption to your app, as follows:
 
    3. Convert the salt from Base64 to uint8_t.
 
-   4. Before joining a channel, call [enableEncryption]() to set the encryption mode and pass the key and salt to the SDK. You can set the encryption mode as `AES_128_GCM2` or `AES_256_GCM2`.
-   
-      > All users in a channel must use the same encryption mode, key, and salt.
-   
-      The following sample code shows this logic.
-   
+   4. Before joining a channel, call [enableEncryption]() to choose an encryption mode and pass the key and salt to the SDK. You can set the encryption mode as `AES_128_GCM2` or `AES_256_GCM2`.
+
+      > - All users in a channel must use the same encryption mode, key, and salt; otherwise, undefined behaviors such as a black screen or audio loss occur.
+      > - To enhance security, Agora recommends using a new key and salt every time you enable media stream encryption.
+
+      The following sample code shows this logic:
+
       ```swift
       func getEncryptionSaltFromServer() -> Data {
+        // Converts the salt from Base64 to uint8_t
         return "EncryptionKdfSaltInBase64Strings".data(using: .utf8)!
       }
       
@@ -76,13 +78,13 @@ Add the media stream encryption to your app, as follows:
         self.showAlert(title: "Error", message: "enableEncryption call failed: \(ret), please check your params")
       }
       ```
-   
+
 
 ## Reference
 
 ### Sample project
 
-Agora provides an open-source sample project that implements [built-in encryption](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/iOS/APIExample/Examples/Advanced/StreamEncryption/StreamEncryption.swift) on GitHub. You can try the demo and view the source code.
+Agora provides an open-source sample project that implements the [built-in media encryption](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/iOS/APIExample/Examples/Advanced/StreamEncryption/StreamEncryption.swift) on GitHub. You can try the demo and view the source code.
 
 <a name="othermethods"></a>
 
@@ -106,9 +108,3 @@ Integrate the encryption library through Cocoapods, as follows:
 4. Go back to Terminal, and run the `pod install` command to install the Agora SDK. Once you successfully install the SDK, it shows `Pod installation complete!` in Terminal, and you can see an `xcworkspace` file in the project folder.
 
 5. Open the generated `xcworkspace` file in Xcode.
-
-### Considerations
-
-- Both the communication and interactive live streaming scenarios support encryption, but Agora does not support pushing encrypted streams to the CDN during live streaming.
-- To use media-stream encryption, you need to enable encryption before joining a channel. Ensure that both the receivers and senders use the same encryption mode, key, and salt; otherwise, undefined behaviors such as a black screen or audio loss occur.
-- To enhance security, Agora recommends using a new key and salt every time you enable media-stream encryption.
