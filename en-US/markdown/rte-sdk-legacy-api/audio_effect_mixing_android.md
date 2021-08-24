@@ -38,61 +38,70 @@ The callflow for the Audio Effect APIs is as follows:
 
 ![](images/audio_effect.png)
 
+1. Add app privileges
+For Android projects with `targetSdkVersion` >= 20, add the following lines in the AndroidManifest.xml file of your project:
+
+    ```xml
+    <application>
+       android:usesCleartextTraffic="true"
+       android:requestLegacyExternalStorage="true"
+    </application>
+    ```
+
+2. Implement the audio effect logic
 In your Agora project, open the file used to manage audio effect playback and add the following code.
 
-```java
-// Import the IAudioEffectManger class.
-import io.agora.rtc.IAudioEffectManager;
+    ```java
+    // Import the IAudioEffectManger class.
+    import io.agora.rtc.IAudioEffectManager;
 
-// Call getAudioEffectManager to get the IAudioEffectManager class.
-private IAudioEffectManager audioEffectManager;
-audioEffectManager = mRtcEngine.getAudioEffectManager();
+    // Call getAudioEffectManager to get the IAudioEffectManager class.
+    private IAudioEffectManager audioEffectManager;
+    audioEffectManager = mRtcEngine.getAudioEffectManager();
 
-// Specified the ID of the audio effect file that you want to play.
-int id = 0;
-// Preloads the specified audio effect file into the memory.
-// You can only preload local audio effect files.
-audioEffectManager.preloadEffect(id++, "Your file path");
+    // Specify the audio effect ID. This is the unique identifier of the audio effect file.
+    int id = 0;
+    // Preload an audio effect file into the memory if you want to play the audio effect repeatedly. Do not preload an audio effect file if the file size is large.
+    // You can only preload local audio effect files.
+    audioEffectManager.preloadEffect(id++, "Your file path");
 
-// Call playEffect to play the specified audio effect file.
-// Call playEffect multiples and set different effect IDs to play multiple audio effect files at the same time.
-audioEffectManager.playEffect(
-    0,   // The ID of the audio effect file/
-    "Your file path",   // The path of the audio effect file.
-    -1,  // The number of audio effect loops. -1 means an inifinite loops.
-    1,   // The pitch of the audio effect. 1 represents the original pitch.
-    0.0, // The spatial positition of the audio effect. 0.0 represents that the audio effect plays in the front
-    100, // The volume of the audio effect. 100 represents the original volume
-    true,// Whether to publish the audio effect to remote users.
-    0    // The playback position of the audio effect file. 0 represents that the playback starts ar the 0 ms of the audio effect file.
-);
+    // Call playEffect to play the specified audio effect file.
+    // Call playEffect multiple times and set different audio effect IDs to play multiple audio effect files at the same time.
+    audioEffectManager.playEffect(
+        0,   // The ID of the audio effect file.
+        "Your file path",   // The path of the audio effect file.
+        -1,  // The number of audio effect loops. -1 means an inifinite loops.
+        1,   // The pitch of the audio effect. 1 represents the original pitch.
+        0.0, // The spatial positition of the audio effect. 0.0 represents that the audio effect plays in the front.
+        100, // The volume of the audio effect. 100 represents the original volume.
+        true,// Whether to publish the audio effect to remote users.
+        0    // The playback position of the audio effect file. 0 represents that the playback starts ar the 0 ms of the audio effect file.
+    );
 
-// Pause and resume playing a specified audio file.
-audioEffectManager.pauseEffect(id);
-audioEffectManager.resumeEffect(id);
+    // Pause and resume playing a specified audio file.
+    audioEffectManager.pauseEffect(id);
+    audioEffectManager.resumeEffect(id);
 
-// Get the duration of a specified local audio file.
-audioEffectManager.getEffectDuration("Your file path");
-// Set the playback position of a specified local audio file.
-audioEffectManager.setEffectPosition(id, 500);
+    // Set the playback position of a specified local audio file.
+    audioEffectManager.setEffectPosition(id, 500);
 
-// Set the playback volume of all audio effect files.
-audioEffectManager.setEffectsVolume(50.0);
-// Set the playback volume of a specified audio effect file.
-audioEffectManager.setVolumeOfEffect(id, 50.0);
+    // Set the playback volume of all audio effect files.
+    audioEffectManager.setEffectsVolume(50.0);
+    // Set the playback volume of a specified audio effect file.
+    audioEffectManager.setVolumeOfEffect(id, 50.0);
 
-// Unload the preloaded audio effect file.
-audioEffectManager.unloadEffect(id);
-// Stop playing all audio effect files.
-audioEffectManager.stopAllEffects;
+    // Unload the preloaded audio effect file.
+    audioEffectManager.unloadEffect(id);
+    // Stop playing all audio effect files.
+    audioEffectManager.stopAllEffects;
 
 
-@Override
-// Occurs when the audio effect playback finishes.
-public void onAudioEffectFinished(int soundId) {
-    super.onAudioEffectFinished(soundId);
-}
-```
+    @Override
+    // Occurs when the audio effect playback finishes.
+    public void onAudioEffectFinished(int soundId) {
+        super.onAudioEffectFinished(soundId);
+    }
+    ```
 
 ### Implement audio mixing
 
@@ -119,6 +128,13 @@ In your Agora project, open the file used to manage audio effect playback and ad
         -1                 // The number of times to loop the music file. -1 means an infinite loop.
     );
 
+    @Override
+    // Occurs when the state of the music file playback changes.
+    // Agora reconmmends calling other Audio Mixing APIs, for example, pauseAudioMixing or getAudioMixingDuration, after receiving the onAudioMixingStateChanged callback.
+    public void onAudioMixingStateChanged(int state, int reason) {
+        super.onAudioMixingStateChanged(state, reason);
+    }
+
     // Pause and resume playing the audio file.
     rtcEngine.pauseAudioMixing();
     rtcEngine.resumeAudioMixing();
@@ -131,13 +147,7 @@ In your Agora project, open the file used to manage audio effect playback and ad
     // Adjust the playback volume of the current music file for the remote user.
     rtcEngine.adjustAudioMixingPublishVolume(50);
     // Adjust the playabck volume of the current music file for the local user.
-    rtcEngine.adjustAudioMixingPublishVolume(50);
-
-    @Override
-    // Occurs when the state of the music file playback changes.
-    public void onAudioMixingStateChanged(int state, int reason) {
-        super.onAudioMixingStateChanged(state, reason);
-    }
+    rtcEngine.adjustAudioMixingPlayoutVolume(50);
     ```
 
 ## Reference
@@ -146,4 +156,4 @@ In your Agora project, open the file used to manage audio effect playback and ad
 - [playEffect]()
 - [onAudioEffectFinished]()
 - [startAudioMixing]()
-- [onAudioMixingEffectFinished]()
+- [onAudioMixingStateChanged]()
