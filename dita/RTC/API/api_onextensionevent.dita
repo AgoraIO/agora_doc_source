@@ -13,9 +13,13 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">void onEvent(String vendor, String extension, String key, String value);
-</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">void onEvent(String vendor, String extension, String key, String value);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">@protocol AgoraMediaFilterEventDelegate &lt;NSObject>
+- (void)onEvent:(NSString * __nullable)vendor
+      extension:(NSString * __nullable)extension
+            key:(NSString * __nullable)key
+     json_value:(NSString * __nullable)json_value;
+@end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onExtensionEvent(const char* provider_name, const char* ext_name, const char* key, const char* json_value) {</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -29,16 +33,21 @@
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
-                    <pt>id</pt>
-                    <pd>标志服务商扩展服务的 ID，如 agora.beauty。</pd>
+                    <pt>vendor</pt>
+                    <pd>提供扩展服务的厂商名称。</pd>
+                </plentry>
+                <plentry>
+                    <pt>extension</pt>
+                    <pd>扩展服务的名称，如 <codeph>agora.beauty</codeph>。</pd>
                 </plentry>
                 <plentry>
                     <pt>key</pt>
-                    <pd>事件的 key。</pd>
+                    <pd>扩展事件的 key。</pd>
                 </plentry>
                 <plentry>
-                    <pt>json_value</pt>
-                    <pd>事件的 value。</pd>
+                    <pt props="android">value</pt>
+                    <pt props="apple">json_value</pt>
+                    <pd>扩展事件 Key 对应的值。</pd>
                 </plentry>
             </parml>
         </section>
