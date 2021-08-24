@@ -11,9 +11,31 @@ However, these modules might not meet your development requirements, such as in 
 
 ## Prerequisites
 
-Before implementing custom audio rendering, ensure that you have implemented the raw audio data function in your project. For details, see [Raw Audio Data](raw_audio_data_ios).
+Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
+
 ## Implementation
 
+### Use custom audio renderer APIs
+
+1. Before calling `joinChannel`, call `enableExternalAudioSink` to enable and configure the external audio renderer.
+
+    ```swift
+    agoraKit.enableExternalAudioSink(8000, channels:2)
+    ```
+
+2. After joining the channel, call `pullPlaybackAudioFrame` to retrieve the audio data sent by a remote user.
+
+    ```swift
+    agoraKit.pullPlaybackAudioFrameRawData(data, lengthInByte:lengthInByte)
+    ```
+
+3. Use your own audio renderer to process the audio data, then play the rendered data.
+
+### Use raw audio data APIs
+
+#### Prerequisites
+
+Before implementing custom audio rendering, ensure that you have implemented the raw audio data function in your project. For details, see [Raw Audio Data](raw_audio_data_ios).
 
 1. Get the audio data to play from `onRecordAudioFrame`, `onPlaybackAudioFrame`, `onMixedAudioFrame`, or `onPlaybackAudioFrameBeforeMixing`.
 2. Render and play the remote audio data on your own.

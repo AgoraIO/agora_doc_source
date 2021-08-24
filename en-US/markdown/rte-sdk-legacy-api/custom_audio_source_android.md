@@ -31,7 +31,6 @@ Before proceeding, ensure that you have implemented the basic real-time communic
 
 ## Implementation
 
-
 Refer to the following steps to implement a custom audio source in your project:
 
 1. Before calling `joinChannel`, call `setExternalAudioSource` to specify the custom audio source.

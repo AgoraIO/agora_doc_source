@@ -14,8 +14,6 @@ However, these modules might not meet your development requirements, such as in 
 Before implementing custom video rendering, ensure that you have implemented the raw video data function in your project. For details, see [Raw video Data](raw_audio_data_android).
 ## Implementation
 
-
-
 1. Get the video data to play from `onCaptureVideoFrame`, `onScreenCaptureVideoFrame`, or `onRenderVideoFrame`.
 2. Render and play the video data on your own.
 

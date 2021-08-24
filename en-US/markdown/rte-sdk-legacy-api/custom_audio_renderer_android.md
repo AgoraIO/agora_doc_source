@@ -10,7 +10,6 @@ However, these default modules might not meet your development requirements, suc
 - You need to process the captured audio with a pre-processing library.
 - You need flexible device resource allocation to avoid conflicts with other services.
 
-
 ### API call sequence
 
 Refer to the following diagram to implement the custom audio renderer in your project:
@@ -32,8 +31,7 @@ Before proceeding, ensure that you have implemented the basic real-time communic
 
 ## Implementation
 
-
-Refer to the following steps to implement a custom audio renderer in your project:
+### Use custom audio renderer APIs
 
 1. Before calling `joinChannel`, call `setExternalAudioSink` to enable and configure the external audio renderer.
 
@@ -44,6 +42,7 @@ Refer to the following steps to implement a custom audio renderer in your projec
         44100,     // Sampling rate (Hz). You can set this value as 8000, 16000, 32000, 441000, or 48000
         1          // The number of channels of the external audio source. This value must not exceed 2
     );
+    ```
 
 2. After joining the channel, call `pullPlaybackAudioFrame` to retrieve the audio data sent by a remote user.
 
@@ -57,6 +56,15 @@ Refer to the following steps to implement a custom audio renderer in your projec
 
 3. Use your own audio renderer to process the audio data, then play the rendered data.
 
+
+### Use raw audio data APIs
+
+#### Prerequisites
+
+Ensure that you have implemented the raw audio data function in your project. For details, see [Raw Audio Data](raw_audio_data_android).
+
+1. Get the audio data to play from `onRecordAudioFrame`, `onPlaybackAudioFrame`, `onMixedAudioFrame`, or `onPlaybackAudioFrameBeforeMixing`.
+2. Render and play the remote audio data on your own.
 
 ## Reference
 
