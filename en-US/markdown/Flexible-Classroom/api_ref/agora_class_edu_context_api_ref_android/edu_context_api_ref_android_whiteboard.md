@@ -1,6 +1,6 @@
 ## WhiteboardContext
 
-`WhiteboardContext` provides the methods that can be called by your app for the whiteboard.
+`WhiteboardContext` provides the methods that can be called by your app for the interactive whiteboard feature.
 
 ### selectAppliance
 
