@@ -80,6 +80,10 @@
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
+       <plentry props="android ios mac">
+           <pt>uid</pt>
+           <pd>本地用户的 ID。</pd>
+       </plentry>
        <plentry>
   <pt>sentBitrate</pt>
   <pd>
@@ -106,7 +110,7 @@
   <pt>targetFrameRate</pt>
   <pd>当前编码器的目标编码帧率 (fps)。</pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>qualityAdaptIndication</pt>
   <pd>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。详见 <xref keyref="QUALITY_ADAPT_INDICATION"
       />。</pd>
@@ -131,17 +135,24 @@
        </plentry>
        <plentry>
   <pt>codecType</pt>
-  <pd>视频的编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+           <pd><p props="ios mac windows">视频的编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</p>
+           <p props="android">
+               <ul>
+                   <li><ph keyref="VIDEO_CODEC_VP8"/> (1): VP8。</li>
+                   <li><ph keyref="VIDEO_CODEC_H264"/> (2): （默认值） H.264。</li>
+               </ul>
+           </p>
+           </pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>txPacketLossRate</pt>
   <pd>弱网对抗前本端到 Agora 边缘服务器的视频丢包率 (%)。</pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>captureFrameRate</pt>
   <pd>本地视频采集帧率 (fps)。</pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>captureBrightnessLevel</pt>
   <pd>
       <dl outputclass="since">

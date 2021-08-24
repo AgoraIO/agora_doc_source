@@ -80,7 +80,8 @@
                     <pd>媒体流的索引值。</pd>
                 </plentry>
                 <plentry>
-                    <pt>streamType</pt>
+                    <pt props="ios mac windows">streamType</pt>
+                    <pt props="android">mediaStreamType</pt>
                     <pd>此条媒体流的类型，详见 <xref keyref="MEDIA_STREAM_TYPE"/>。</pd>
                 </plentry>
                 <plentry>
@@ -107,8 +108,9 @@
                     <pt>videoHeight</pt>
                     <pd>如果此条媒体流是视频流，获取它的视频高度 (pixel)。</pd>
                 </plentry>
-                <plentry>
-                    <pt>videoRotation</pt>
+                <plentry props="android ios mac">
+                    <pt props="android">videoRotation</pt>
+                    <pt props="ios mac">rotation</pt>
                     <pd>如果此条媒体流是视频流，获取它的旋转角度。</pd>
                 </plentry>
                 <plentry>
@@ -119,7 +121,7 @@
                     <pt>audioChannels</pt>
                     <pd>如果此条媒体流是音频流，获取它的声道数。</pd>
                 </plentry>
-                <plentry>
+                <plentry props="android windows">
                     <pt>audioBitsPerSample</pt>
                     <pd>如果此条媒体流是音频流，获取每个音频采样点的位数 (bit)。</pd>
                 </plentry>
