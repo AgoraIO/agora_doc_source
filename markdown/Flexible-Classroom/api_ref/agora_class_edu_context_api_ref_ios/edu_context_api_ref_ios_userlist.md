@@ -1,24 +1,6 @@
 ## AgoraEduUserContext
 
-`AgoraEduUserContext` 类提供可供 App 调用的用户相关方法。
-
-### updateFlexUserProperties
-
-```swift
-func updateFlexUserProperties(_ userUuid: String,
-                              properties: [String: String],
-                              cause:[String: String]?)
-```
-
-新增或更新自定义用户属性。支持整体修改和根据路径查找并修改某个属性的值。
-
-属性成功更新后，会触发 `onFlexUserPropertiesChanged` 回调。
-
-| 参数         | 描述                                                         |
-| :----------- | :----------------------------------------------------------- |
-| `userUuid`   | 用户 ID。                                                    |
-| `properties` | 用户属性。可设为 `{"key.subkey":"1"}`  或 `{"key":{"subkey":"1"}}`。 |
-| `cause`      | 更新原因。                                                   |
+`AgoraEduUserContext` 类提供可供 App 调用的用户列表相关方法。
 
 ### muteVideo
 
@@ -71,7 +53,7 @@ func registerEventHandler(_ handler: AgoraEduUserHandler)
 
 ## AgoraEduUserHandler
 
-`AgoraEduUserHandler` 类用于向 App 报告用户相关的事件回调。
+`AgoraEduUserHandler` 类用于向 App 报告用户列表相关的事件回调。
 
 ### onUpdateUserList
 
@@ -148,23 +130,3 @@ func registerEventHandler(_ handler: AgoraEduUserHandler)
 | 参数      | 描述       |
 | :-------- | :--------- |
 | `message` | 提示信息。 |
-
-### onFlexUserPropertiesChanged
-
-```swift
-@objc optional func onFlexUserPropertiesChanged(_ changedProperties:[String : Any],
-                                                properties: [String: Any],
-                                                cause:[String : Any]?,
-                                                fromUser:AgoraEduContextUserDetailInfo,
-                                                operator:AgoraEduContextUserInfo?)
-```
-
-自定义用户属性更新回调。
-
-| 参数                | 描述                                                         |
-| :------------------ | :----------------------------------------------------------- |
-| `changedProperties` | 已更新的用户属性。                                           |
-| `properties`        | 全部用户属性。                                               |
-| `cause`             | 更新原因。                                                   |
-| `fromUser`          | 属性被更新的用户的相关信息，详见 `AgoraEduContextUserDetailInfo`。 |
-| `operator`          | 操作者，详见 `AgoraEduContextUserInfo`。`operator` 为空表示是由服务端更新。 |
