@@ -12,8 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public void onFirstLocalAudioFramePublished(int elapsed) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine firstLocalAudioFramePublished:(NSInteger)elapsed;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onFirstLocalAudioFramePublished(int elapsed) { (void)elapsed; }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_LOCAL_AUDIO_FRAME_PUBLISHED, cb: ( elapsed: number ) => void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -29,20 +29,24 @@
                 </dlentry>
             </dl>
             <p>The SDK triggers this callback under one of the following circumstances:<ul>
-                    <li>The local client enables the audio module and calls <apiname keyref="joinChannel2"/> successfully.</li>
-                    <li>The local client calls <xref keyref="muteLocalAudioStream"/>(<codeph><ph keyref="true"/></codeph>) and <apiname
-                            keyref="muteLocalAudioStream"/>(<codeph><ph keyref="false"/></codeph>) in sequence.</li>
-                    <li>The local client calls <xref keyref="disableAudio"/> and <xref keyref="enableAudio"/> in sequence.</li>
-                    <li props="windows android ios mac">The local client calls <codeph><apiname keyref="pushAudioFrame2"/></codeph> to successfully push the audio frame to the SDK.</li>
+                    <li>The local client enables the audio<apiname keyref="joinChannel2"/> module and calls successfully.</li>
+                    <li>The local client calls () and () in sequence.<xref keyref="muteLocalAudioStream"/><codeph><ph keyref="true"/></codeph><apiname
+                            keyref="muteLocalAudioStream"/><codeph><ph keyref="false"/></codeph></li>
+                    <li>The local client calls<xref keyref="disableAudio"/> and in <xref keyref="enableAudio"/>sequence.</li>
+                    <li props="windows android ios mac">The<xref keyref="pushAudioFrame"/> local client calls to successfully push the audio frame to the SDK.</li>
                 </ul>
             </p>
         </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                  <pt/>
+                  <pd/>
+              </plentry>
                 <plentry>
                     <pt>elapsed</pt>
-                    <pd>The time elapsed (ms) from the local client calling <apiname keyref="joinChannel2" /> until the SDK triggers this callback.</pd>
+                    <pd>The time elapsed<apiname keyref="joinChannel2" /> (ms) from the local client calling until the SDK triggers this callback.</pd>
                 </plentry>
             </parml>
         </section>
