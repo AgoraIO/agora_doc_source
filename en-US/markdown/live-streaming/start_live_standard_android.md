@@ -1,32 +1,36 @@
-The Agora SDK enabels you to develop rapidly to enhance your social, work, education, and IoT apps with real-time engagements.
+People engage longer when they see, hear, and interact with each other. The Agora SDK enables you to embed real-time voice and video interaction in any app, on any device, anywhere.
 
-This page shows the minimum code you need to add Interactive Live Streaming Standard into your app by using the Agora Video SDK for Android.
+This page shows the minimum code you need to integrate high-quality, low-latency live streaming experience into your app using the Agora Video SDK for Android.
 
 ## Understand the tech
 
-The following figure shows the workflow to integrate Interactive Live Streaming Standard into your app.
+The following figure shows the workflow you need to integrate into your app in order to add Interactive Live Streaming Standard functionality.
 
 ![](images/live_streaming_standard_tech.png)
 
-To start Interactive Live Streaming Standard, you implement the following steps in your app:
+As shown in the figure, the workflow for adding Interactive Live Streaming Standard in your project is as follows:
 
 1. **Set the client role and latency level**
-   Users in an Interactive Live Streaming Standard channel are either a host or an audience member. The host publishes streams to the channel, and the audience subscribes to the streams. When the user role is audience, the app client can set the latency level as ultra-low or low. 
+
+   Each user in an Interactive Live Streaming Standard channel is either a host or an audience member. Hosts publish streams to the channel, and the audience subscribe to the streams. When a user is an audience member, you can control the delay the user receives host streams using `ClientRoleOptions`. 
 
 2. **Retrieve a token**
-   The token is a credential for authenticating the identity of the user when your app client joins a channel. The app client requests a token from your app server. This token authenticates the user when the app client joins a channel.
+
+   A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this section, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
 
 3. **Join a channel**
+
    Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
 4. **Publish and subscribe to audio and video in the channel**
-   After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+
+   After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, call `setClientRole` to switch the client role. 
 
 For an app client to join a channel, you need the following information:
 
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
-- A token: In a test or production environment, your app client retrieves tokens from your server. For rapid testing, you can use a temporary token with a validity period of 24 hours.
+- A token: In a test or production environment, your app client retrieves tokens from a server in your security infrastructure. For this section, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
 - The channel name: A string that identifies the channel for the live stream.
 
 ## Prerequisites
@@ -42,33 +46,44 @@ Before proceeding, ensure that you have the following:
 
 ## Project setup
 
-Follow the steps to create the environment necessary to add live streaming into your app.
+Follow the steps to create the environment necessary to add Interactive Live Streaming Standard into your app.
 
-1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**. After creating the project, **Android Studio** automatically starts gradle sync. Ensure that the sync succeeds before you continue.
+1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**. 
+After creating the project, **Android Studio** automatically starts gradle sync. Ensure that the sync succeeds before you continue.
 
 2. Integrate the Video SDK into your project.
+For Agora SDK v3.5.0 or later, you can intergrate the SDK with `mavenCentral` with the following steps. For how to integrate SDKs earlier than v3.5.0, see [Other approaches to intergrate the SDK](#integrate).
 
-   a. In `/Grale Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the JitPack dependency.
+   a. In `/Gradle Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the mavenCentral dependency:
 
     ```xml
-    all projects {
-    repositories {
+    buildscript {
+        repositories {
+            ...
+            mavenCentral()
+        }
         ...
-        maven { url 'https://www.jitpack.io' }
     }
+
+    allprojects {
+        repositories {
+            ...
+            mavenCentral()
+        }
     }
     ```
 
-    b. In `/Gradle Scripts/build.gradle(Module: <projectname>)`, add the following lines to integrate the Agora Video SDK into your Android project.
+   b. In `/Gradle Scripts/build.gradle(Module: <projectname>.app)`, integrate the Agora Video SDK by adding the following lines:
 
     ```xml
-    ...
     dependencies {
     ...
-    // For x.y.z, fill in a specific SDK version number. For example, 3.4.0
-    implementation 'com.github.agorabuilder:native-full-sdk:x.y.z'
+    // For x.y.z, fill in a specific SDK version number. For example, 3.5.0.
+    // Get the latest version number through the release notes.
+    implementation 'io.agora.rtc:full-sdk:x.y.z'
     }
     ```
+
 
 3. Add permissions for network and device access.
 
@@ -86,7 +101,7 @@ Follow the steps to create the environment necessary to add live streaming into 
 
 4. Prevent code obfuscation.
 
-   In `/Gradle Scripts/proguard-rules.pro`, add the following line to prevent obfuscating the code of the SDK:
+   In `/Gradle Scripts/proguard-rules.pro`, add the following line:
 
     ```
     -keep class io.agora.**{*;}
@@ -131,9 +146,9 @@ In the interface, you have one frame for local video and another for remote vide
 ```
 ### Handle the Android system logic
 
-In this section, we import the necassary Android classes and handle the Android permissions.
+Refer to the folllwing steps to import the necassary Android classes and handle the Android permissions.
 
-1. Import Android classes
+1. Import the Android UI classes
 
    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after package `com.example.<projectname>`:
 
@@ -149,9 +164,9 @@ In this section, we import the necassary Android classes and handle the Android 
 
 2. Handle the Android permissions
 
-   When your app launches, check if the permissions necessary to insert live streaming functionality into the app are granted. If the permissions are not granted, use the built-in Android functionality to request them; if they are, return `true`.
+   When your app launches, check if the permissions necessary to insert Interactive Live Streaming Standard functionality into the app are granted. If `true`, call `initializeAndJoinChannel` to start Interactive Live Streaming Standard functionality. If `false`, the Android system brings up the permission overlay to request them.
 
-   In `/app/java/com.example.<projectname>/MainActivity`, add the following lines before the `onCreate` function:
+   To impelement the system logic, in `/app/java/com.example.<projectname>/MainActivity`, add the following lines before the `onCreate` function:
 
     ```java
     private static final int PERMISSION_REQ_ID = 22;
@@ -173,7 +188,7 @@ In this section, we import the necassary Android classes and handle the Android 
 
 ### Implement the Interactive Live Streaming Standard logic
 
-When your app opens, you create an `RtcEngine` instance, enable the video, join a chjannel, and if the local user is a host, publish the local video to the ower frame layout in the UI. When another host joins the channel, you app catches the join event and adds the remote video to the top frame layout in the UI.
+When your app opens, you create an `RtcEngine` instance, enable the video, join a channel, and if the local user is a host, publish the local video to the lower frame layout in the UI. When another host joins the channel, you app catches the join event and adds the remote video to the top frame layout in the UI.
 
 The following figure shows the API call sequence of implementing Interactive Live Streaming Standard.
 
@@ -192,7 +207,7 @@ To implement this logic, take the following steps:
     import io.agora.rtc.models.ClientRoleOptions;
     import io.agora.rtc.video.VideoCanvas;
     ```
-2. Create the variables that you use to create and join an Interactive Live Streaming Premium channel.
+2. Create the variables that you use to join an Interactive Live Streaming Premium channel.
 
    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after `AppCompatActivity {`:
 
@@ -223,7 +238,7 @@ To implement this logic, take the following steps:
 
 3. Initialize the app and join the channel.
 
-   Call the core methods for joining a channel to the `MainActivity` class. In the following sample code, we use an `initializeAndJoinChannel` function to encapsulte these core methods.
+   Call the core methods for joining a channel to the `MainActivity` class. In the following sample code, we use an `initializeAndJoinChannel` function to encapsulate these core methods.
 
    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `onCreate` function:
 
@@ -275,6 +290,8 @@ To implement this logic, take the following steps:
 
 Now you have created the Interactive Live Streaming Standard functionality, start and stop the app. In this implementation, a live stream starts when the user opens your app. The live stream ends when the user closes your app.
 
+To implement this functionality, do the following:
+
 1. Check that the app has the correct permissions. If permissions are granted, call `initializeAndJoinChannel` to join a live streaming channel.
 
    In `/app/java/com.example.<projectname>/MainActivity`, replace `onCreate` with the following code in the `MainActivity` class.
@@ -308,11 +325,15 @@ Now you have created the Interactive Live Streaming Standard functionality, star
 
 ## Test your app
 
-Connect an Android device to your computer, and click `Run 'app'` on your Android Studio. A moment later you will see the project installed on your device. Take the following steps to test the live streaming app:
+To test your app, follow the steps:
 
-1. Because we set the client role as audience in this demo project, when the app launches, you will not be able to see yourself on the local view.
-2. Ask a friend to join the live streaming with you on the [demo app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicVideoCall/index.html). Enter the same App ID and channel name.
-3. After your friend joins the channel, you should be able to see and hear your friend, but your friend will not be able to see or hear you.
+1. Fill in the `appId` and `token` parameters with the App ID and temporary token that you retrieve from Agora Console. Fill `channelName` with the channel name that you use to generate the temporary token.
+2. Connect an Android device to your computer, and click `Run 'app'` on your **Android Studio**. 
+A moment later you will see the project installed on your device. 
+3. On your device, launch the app.
+In your app, the client role is set as audience. You do not see yourself on the local view.
+4. Ask a friend to join the live streaming with you on the [demo app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicVideoCall/index.html). Enter the same App ID and channel name.
+After your friend joins the channel, you should be able to see and hear your friend, but your friend will not be able to see or hear you.
 
 
 ## Next steps
@@ -327,41 +348,35 @@ This section provides additional information for your reference:
 
 Agora provides an open source sample project [LiveStreaming](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/LiveStreaming.java) on GitHub that implements interactive live video streaming for your reference.
 
+<a name="integrate"></a>
+
 ### Other approcahes to integrate the SDK
 
 In addition to integrating the Agora Video SDK for Android through JitPack, you can also import the SDK into your project through mavenCentral or by manually copying the SDK files.
 
-**Automatically integrate the SDK with mavenCentral**
+**Automatically integrate the SDK with Jitpack**
 
-For Agora SDK v3.5.0 or later, you can intergrate the SDK with mavenCentral.
+For Agora SDKs earlier than v3.5.0, you can intergrate the SDK with Jitpack.
 
-1. In `/Gradle Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the mavenCentral dependency:
+1. In `/Grale Scripts/build.gradle(Project: <projectname>)`, add JitPack to the list of repositories with the following lines:
 
     ```xml
-    buildscript {
+    all projects {
         repositories {
-            ...
-            mavenCentral()
-        }
         ...
-    }
-
-    allprojects {
-        repositories {
-            ...
-            mavenCentral()
+        maven { url 'https://www.jitpack.io' }
         }
     }
     ```
 
-2. In `/Gradle Scripts/build.gradle(Module: <projectname>.app)`, add the following lines to integrate the Agora Video SDK into your Android project:
+2. In `/Gradle Scripts/build.gradle(Module: <projectname>)`, integrate the Agora Video SDK into your Android project by adding the following lines:
 
     ```xml
-    dependencies {
     ...
-    // For x.y.z, fill in a specific SDK version number. For example, 3.5.0.
-    // Get the latest version number through the release notes.
-    implementation 'io.agora.rtc:full-sdk:x.y.z'
+    dependencies {
+        ...
+        // For x.y.z, fill in a specific SDK version number. For example, 3.4.0
+        implementation 'com.github.agorabuilder:native-full-sdk:x.y.z'
     }
     ```
 
