@@ -13,8 +13,11 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">void onPositionChanged(long position);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
+    didChangedToPosition:(NSInteger)position;
+</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onPositionChanged(int64_t position) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -27,6 +30,10 @@
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
+                <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
                 <plentry>
                     <pt>position</pt>
                     <pd>当前播放进度，单位为 ms。</pd>

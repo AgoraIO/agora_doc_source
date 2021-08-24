@@ -2,24 +2,6 @@
 
 `UserContext` 类提供可供 App 调用的用户列表相关方法。
 
-### updateFlexUserProperties
-
-```kotlin
-abstract fun updateFlexUserProps(userUuid: String, 
-                                 properties: MutableMap<String, String>,
-                                 cause: MutableMap<String, String>?)
-```
-
-新增或更新自定义用户属性。支持整体修改和根据路径查找并修改某个属性的值。
-
-属性成功更新后，会触发 `onFlexUserPropertiesChanged` 回调。
-
-| 参数         | 描述       |
-| :----------- | :--------- |
-| `userUuid`   | 用户 ID。  |
-| `properties` | 用户属性。 |
-| `cause`      | 更新原因。 |
-
 ### muteVideo
 
 ```kotlin
@@ -151,22 +133,3 @@ fun onRoster(context: Context, anchor: View, type: Int?)
 | `anchor`  | 用户列表 Icon-View。                                         |
 | `type`    | 用户列表有两种：<li>`RosterType.SmallClass`: 互动小班课的用户列表。<li>`RosterType.LargeClass`: 直播大班课的用户列表。 |
 
-### onFlexUserPropertiesChanged
-
-```kotlin
-fun onFlexUserPropsChanged(changedProperties: MutableMap<String, Any>,
-                           properties: MutableMap<String, Any>,
-                           cause: MutableMap<String, Any>?,
-                           fromUser: EduContextUserDetailInfo,
-                           operator: EduContextUserInfo?)
-```
-
-自定义用户属性更新回调。
-
-| 参数                | 描述                                                         |
-| :------------------ | :----------------------------------------------------------- |
-| `changedProperties` | 已更新的用户属性。                                           |
-| `properties`        | 全部用户属性。                                               |
-| `cause`             | 更新原因。                                                   |
-| `fromUser`          | 属性被更新的用户的相关信息，详见 `EduContextUserDetailInfo`。 |
-| `operator`          | 操作者，详见 `EduContextUserInfo`。`operator` 为空表示是由服务端更新。 |

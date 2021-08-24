@@ -1,6 +1,10 @@
-# RecordingContext
+# useRecordingContext
 
-`RecordingContext` 提供录制相关能力。
+`useRecordingContext()` 提供录制相关能力。
+
+你可以通过 `import { useRecordingContext } from 'agora-edu-core';  ` 引入 `useRecordingContext`，然后使用 `const {...} = useRecordingContext()` 获取灵动课堂中录制相关能力。
+
+以下具体列出`useRecordingContext()` 提供的能力。
 
 ## isRecording
 
@@ -13,7 +17,7 @@ isRecording: boolean,
 ## startRecording
 
 ```typescript
-startRecording: () => Promise<void>,
+async startRecording(): void
 ```
 
 开始录制。
@@ -21,7 +25,7 @@ startRecording: () => Promise<void>,
 ## stopRecording
 
 ```typescript
-stopRecording: () => Promise<void>,
+async stopRecording(): void
 ```
 
 停止录制。
