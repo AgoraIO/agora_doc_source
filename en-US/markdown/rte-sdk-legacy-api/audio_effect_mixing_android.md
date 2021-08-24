@@ -1,23 +1,23 @@
 # Play audio effect or music file
 
-In real-time audio and video sessions, playing the audio effect or background music adds more fun and is widely applied in use cases such as online gaming or karaoke. 
+In real-time audio and video sessions, playing an audio effect or adding background music adds more fun to use cases such as online gaming or karaoke. 
 
-This page shows how to implement playing audio effects or music files in your project.
+This page shows how to implement audio effects or play music files in your project.
 
 ## Understand the tech
 
-Agora provides the following two sets of APIs that help you implement playing audio effects or music files:
+Agora provides the following APIs that help you implement playing audio effects or music files:
 
-- Audio effect APIs: Plays ambient sounds with a short duration, such as applause, cheers, fighting sounds, and gunshots. You can play **multiple audio effect files** at the same time. Supported functions include the following:
+- Audio Effect APIs: Play ambient sounds with a short duration. For example, applause, cheers, fighting sounds, and gunshots. You can play **multiple audio effect files** at the same time. 
 
-- Audio mixing APIs: Plays a relatively long music file, such as the accompaniment and background music. You can play **only one music file** at a time.
+- Audio Mixing API: Plays a relatively long music file, such as the accompaniment and background music. You can play **only one music file** at a time.
 
-Both sets support the following functions:
+These methods support the following functions:
 
-| Function | Audio effect APIs | Audio mixing APIs |
+| Function | Audio Effect APIs | Audio Mixing APIs |
 | -- | -- | -- |
 | Play and stop playing the specified audio file | <ul><li>`playEffect`</li><li>`stopEffect`</li><li>`stopAllEffects`</li></ul> | <ul><li>`startAudioMixing`</li><li>`stopAudioMixing`</li></ul> |
-| Pause, resume playing the audio file | <ul><li>`pauseEffect`</li><li>`pauseAllEffects`</li><li>`resumeEffect`</li><li>`resumeAllEffects`</li></ul> |<ul><li>`pauseAudioMixing`</li><li>`resumeAudioMixing`</li></ul> | 
+| Pause and resume playing the audio file | <ul><li>`pauseEffect`</li><li>`pauseAllEffects`</li><li>`resumeEffect`</li><li>`resumeAllEffects`</li></ul> |<ul><li>`pauseAudioMixing`</li><li>`resumeAudioMixing`</li></ul> | 
 | Get and set the playback position and volume | <ul><li>`setEffectPosition`</li><li>`getEffectCurrentPosition`</li><li>`getEffectsVolume`</li><li>`setEffectsVolume`</li><li>`setVolumeOfEffect`</li></ul> | <ul><li>`getAudioMixingCurrentPosition`</li><li>`setAudioMixingPosition`</li><li>`getAudioMixingPublishVolume`</li><li>`adjustAudioMixingPublishVolume`</li><li>`getAudioMixingPlayoutVolume`</li><li>`adjustAudioMixingPlayoutVolume`</li></ul> |
 | Report the playback state of the audio file | `onAudioEffectFinished` | `onAudioMixingStateChanged` |
 
@@ -34,7 +34,7 @@ This section explains how to use the audio effect APIs and audio mixing APIs to 
 
 ### Implement playing audio effects
 
-The callflow for the audio effect APIs are as follows:
+The callflow for the Audio Effect APIs is as follows:
 
 ![](images/audio_effect.png)
 
@@ -96,7 +96,7 @@ public void onAudioEffectFinished(int soundId) {
 
 ### Implement audio mixing
 
-Call the `startAudioMixing` method to play a music file before or after joining a channel. After a successful method call, the SDK triggers `onAudioMixingStateChanged` callback to report the playback state of the music file.
+Call the `startAudioMixing` method to play a music file before or after joining a channel. After a successful method call, the SDK triggers `onAudioMixingStateChanged` callback when the audio mixing state changes. This callback also contains why the audio mixing state changes.
 
 1. Add app privileges
 For Android projects with `targetSdkVersion` >= 20, add the following lines in the AndroidManifest.xml file of your project:

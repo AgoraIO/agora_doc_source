@@ -10,16 +10,6 @@ When the connection state changes, Agora sends the `onConnectionStateChanged` ca
 
 ![](images/connection_tech.png)
 
-As shown in the diagram, an app can have the following five connection states before and after the app joins and leaves the channel:
-
-| Connection state | Description |
-| --- | --- |
-| Disconnected | The initial connection state. It usually occurs under the following circumstances:<ul><li>Before calling `joinChannel`.</li><li>After calling `leaveChannel`.</li></ul> |
-| Connecting | This is the instantaneous state after calling the `joinChannel` method. |
-| Connected | This state occurs after the app successfully joins the channel. The SDK also triggers `onJoinChannelSuccess` to report that the local client has joined the channel. Users can now publish or subcribe to audio and video in the channel. |
-| Reconnecting | This state occurs when the connection is interrupted. The SDK automatically tries to reconnect after the interruption.<ul><li>If it successfully rejoins the channel, the SDK trigger the `onRejoinChannelSuccess` callback.</li><li>If is does not join the channel in 10 seconds, the SDK triggers `onConnectionStateChanged(Reconnecting, Lost)` while keeping rejoining the channel.</li></ul> |
-| Failed | The connection fails. This state occurs when the SDK cannot join the channel in 20 minutes, and the SDK stops reconnecting to the channel. When this state occurs, call `leaveChannel` to leave the current channel, and `joinChannel` to join the channel again. |
-
 When the network connection is interrupted, the SDK automatically tries to reconnect to the server. The following diagram shows the callbacks received by the local user (UID1) and the remote user (UID2) when the local user joins the channel, gets a network exception, lises connection, and rejoins the channal. 
 
 ![](images/reconnection_tech_android.png)
@@ -62,6 +52,18 @@ To help you troubleshoot network interruption, `connectionChangedToState` also h
 ## Reference
 
 This section provides reference information you may need when managing the channel connection state.
+
+### Connection states
+
+As shown in the diagram above, an app can have the following five connection states before and after the app joins and leaves the channel:
+
+| Connection state | Description |
+| --- | --- |
+| Disconnected | The initial connection state. It usually occurs under the following circumstances:<ul><li>Before calling `joinChannel`.</li><li>After calling `leaveChannel`.</li></ul> |
+| Connecting | This is the instantaneous state after calling the `joinChannel` method. |
+| Connected | This state occurs after the app successfully joins the channel. The SDK also triggers `onJoinChannelSuccess` to report that the local client has joined the channel. Users can now publish or subcribe to audio and video in the channel. |
+| Reconnecting | This state occurs when the connection is interrupted. The SDK automatically tries to reconnect after the interruption.<ul><li>If it successfully rejoins the channel, the SDK trigger the `onRejoinChannelSuccess` callback.</li><li>If is does not join the channel in 10 seconds, the SDK triggers `onConnectionStateChanged(Reconnecting, Lost)` while keeping rejoining the channel.</li></ul> |
+| Failed | The connection fails. This state occurs when the SDK cannot join the channel in 20 minutes, and the SDK stops reconnecting to the channel. When this state occurs, call `leaveChannel` to leave the current channel, and `joinChannel` to join the channel again. |
 
 <a name="connection_reason"></a>
 ### Connection state change reasons
