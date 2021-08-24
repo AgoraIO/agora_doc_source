@@ -1,33 +1,84 @@
-根据本文指导在你的 iOS 项目中快速集成 Agora Classroom SDK 并调用 API 启动灵动课堂。
+根据本文指导通过 Agora Classroom SDK 快速启动并体验灵动课堂。
 
-<div class="alert note"><li>开始前请确保满足接入灵动课堂的<a href="./agora_class_prep">前提条件</a>。<li>iOS 仅支持学生。</div>
+## 技术原理
 
-## 示例项目
-Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-Community/CloudClass-iOS)，演示了如何集成 Agora Classroom SDK 并调用 API 启动灵动课堂。你可以下载并查看源代码。
+下图展示了启动灵动课堂的基本流程。
 
-## 准备开发环境
+![](https://web-cdn.agora.io/docs-files/1626925692656)
 
+当你的 app 客户端请求加入灵动课堂时：
+
+1. 你的 app 客户端向 app 服务端申请 RTM Token。
+2. 你的 app 服务端使用 Agora App ID、App 证书和用户 ID 生成一个 RTM Token，返回给 app 客户端。详见[生成 RTM Token](/cn/Real-time-Messaging/token_server_rtm)。
+3. 你的 app 客户端调用 API 并传入用户 ID、房间 ID 和 RTM Token 启动灵动课堂。灵动课堂云服务会根据你传入的房间 ID 为该课题自动创建一个房间。
+
+<a name="prerequisites"></a>
+
+## 前提条件
+
+- 已在 Agora 控制台创建 Agora 项目，获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id)、[App 证书](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6)并[配置 aPaaS 服务](/cn/agora-class/agora_class_prep?platform=Web)。
 - Xcode 10.0 或以上版本。
 - CocoaPods 1.10 或以上版本。参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
 - iOS 10 或以上版本。
-- 如果你使用 Swift 开发，请确保使用 Swift 5.3.2 或以上版本。
-- 一台 iOS 真机（iPhone 或 iPad）。
-- 物理音视频采集设备，如内置摄像头和麦克风。
+- 如果你使用 Swift 开发，使用 Swift 5.0 或以上版本。
+- 一个有效的 Apple 开发者账号。
+- 一台 iOS 设备（iPhone 或 iPad）。模拟机可能出现功能缺失或者性能问题，所以推荐使用真机。
 
-## 集成 Agora Classroom SDK
+## 启动灵动课堂
 
-你可以参考以下步骤，通过 CocoaPods 获取 Agora Classroom SDK。
+参照以下步骤启动灵动课堂：
+
+1. 运行以下命令将 Agora 提供的灵动课堂项目 CloudClass-iOS 克隆至本地：
+
+   ```
+   git clone https://github.com/AgoraIO-Community/CloudClass-iOS
+   ```
+
+2. 将 `keycenter.m` 文件中的 `Agora App ID` 和 `Agora App Certificate` 替换成[你的 App ID 和 App 证书](#prerequisites)。
+
+   ```swift
+   + (NSString *)appId {
+       return <#Your Agora App Id#>;
+   }
+   
+   + (NSString *)appCertificate {
+       return <#Your Agora Certificate#>;
+   }
+   ```
+
+   为方便你快速测试，CloudClass-iOS 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
+
+   你可在 `AgoraEducation/Main/Controllers/LoginViewController.swift` 文件中查看启动课堂的具体逻辑：
+
+   1. 调用 [AgoraEduSDK.setConfig](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#setconfig) 方法全局配置 SDK。
+   2. 调用 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#launch) 方法启动灵动课堂。
+
+3. 连接上 iOS 设备后，用 Xcode 打开示例项目，然后编译并运行项目。
+
+4. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
+
+   ![](https://web-cdn.agora.io/docs-files/1619164553801)
+
+## 后续步骤
+
+如果 Agora Classroom SDK 中默认的 UI 无法满足你的需求，你可以参考[自定义课堂 UI 文档](/cn/agora-class/agora_class_custom_ui_ios?platform=iOS)，获取 Agora Classroom SDK 的源码，自行修改灵动课堂的 UI，如更换颜色、调整布局。
+
+## 更多信息
+
+### 集成 Agora Classroom SDK
+
+你可以参考以下步骤，通过 CocoaPods 将 Agora Classroom SDK 集成到你自己的 iOS 项目中：
 
 1. 在终端里进入你的项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
 
 2. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
 
-  ```
-  # platform :ios, '10.0' use_frameworks!
-  target 'Your App' do
-      pod 'AgoraClassroomSDK'
-  end
-  ```
+   ```
+   # platform :ios, '10.0' use_frameworks!
+   target 'Your App' do
+       pod 'AgoraClassroomSDK'
+   end
+   ```
 
  <div class="alert info">1.0.0 版本请使用 <code>pod 'AgoraEduSDK'</code>。</div>
 
@@ -38,69 +89,3 @@ Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-
 
 1. 在 Xcode 中打开 `ios/ProjectName.xcworkspace` 文件夹。
 2. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Next** > **Create**，新建一个空的 `File.swift` 文件。
-
-## 进行全局配置
-
-首先，创建 `AgoraEduSDKConfig` 实例进行全局配置，然后调用 `setConfig` 方法传入该实例。`AgoraEduSDKConfig` 包含以下参数：
-
-| 参数      | 描述                                                         |
-| :-------- | :----------------------------------------------------------- |
-| `appId`   | Agora App ID，详见[前提条件中获取 Agora App ID](./agora_class_prep#step1)。 |
-| `eyeCare` | 是否开启护眼模式：<li>NO:（默认）关闭护眼模式。<li>YES: 开启护眼模式。 |
-
-示例代码：
-```swift
-/** 全局配置 **/
-@interface AgoraEduSDKConfig : NSObject
-// Agora App ID
-@property (nonatomic, copy) NSString *appId;
-// 是否开启护眼模式
-@property (nonatomic, assign) BOOL eyeCare;
-@end
-AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
-[AgoraEduSDK setConfig:defaultConfig];
-```
-
-## 启动课堂
-
-初始化完成后，创建 `AgoraEduLaunchConfig` 实例进行课堂启动配置，然后调用 `launch` 方法传入该实例。`AgoraEduLaunchConfig` 包含以下参数：
-
-| 参数        | 描述                                                         |
-| :---------- | :----------------------------------------------------------- |
-| `userName`  | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
-| `userUuid`  | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType`  | 用户在课堂中的角色，可设为：<li>`AgoraEduRoleTypeStudent`: 学生 |
-| `roomName`  | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
-| `roomUuid`  | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roomType`  | 课堂类型，可设为：<li>`AgoraEduRoomType1V1`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。<li>`AgoraEduRoomTypeSmall`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。<li>`AgoraEduRoomTypeBig`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。 |
-| `rtmToken`  | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](./agora_class_prep#step5)。 |
-| `startTime` | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
-| `duration`  | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
-
-```swift
-/** 课堂启动配置 */
-// 用户名
-NSString *userName = @"XXX";
-// 用户 ID，需要与你生成 RTM Token 时使用的用户 ID 一致
-NSString *userUUid = @"XXX";
-// 教室名称
-NSString *roomName = @"XXX";
-// 教室 ID
-NSString *roomUuid = @"XXX";
-// 用户角色
-AgoraEduRoleType roleType = AgoraEduRoleTypeStudent;
-// 课堂类型
-AgoraEduRoomType roomType = AgoraEduRoomType1V1;
-// RTM Token
-NSString *rtmToken = "";
-// 课堂开始时间，单位为毫秒，以第一个进入教室的用户传入的参数为准
-NSNumber *startTime = @(XXX);
-// 课堂持续时间，单位为秒，以第一个进入教室的用户传入的参数为准
-NSNumber *duration = @(1800);
-
-AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration];
-[AgoraEduSDK launch:config delegate:self];
-```
-
-成功启动课堂后，你可以看到如下画面：
-![](https://web-cdn.agora.io/docs-files/1619164553801)
