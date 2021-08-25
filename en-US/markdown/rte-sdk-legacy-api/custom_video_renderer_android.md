@@ -1,20 +1,19 @@
-This page introduces how to use the methods provided by the Agora SDK to implement custom video rendering to meet your needs.
+The default Agora video module interacts seamlessly with the devices your app runs on. SDK enable you to add specialized video features to your app using custom video renderers.
 
 ## Understand the tech
 
-The Agora SDK uses default video modules for rendering in real-time communications.
-However, these modules might not meet your development requirements, such as in the following scenarios:
+By default, SDK integrates the default video modules on the device your app runs on for real-time communication. However, there are scenarios where you may want to use a custom video source. For example:
 
 - Your app has its own video module.
 - You want to use a pre-processing library for the video data.
 - You need flexible device resource allocation to avoid conflicts with other services.
 
+To manage the processing and display of video frames when using a custom video renderer, use methods from outside the Agora SDK.
+
 ## Prerequisites
 
-Before implementing custom video rendering, ensure that you have implemented the raw video data function in your project. For details, see [Raw video Data](raw_audio_data_ios).
+Before implementing custom video rendering, ensure that you have implemented the raw video data function in your project. For details, see [Raw video Data](raw_audio_data_android).
 ## Implementation
-
-
 
 1. Get the video data to play from `onCaptureVideoFrame`, `onRenderVideoFrame`, or `onScreenCaptureVideoFrame`.
 2. Render and play the video data on your own.

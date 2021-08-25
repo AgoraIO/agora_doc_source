@@ -1,25 +1,25 @@
-This page describes how to use the Agora Native SDK to customize the video source.
+The default Agora video module interacts seamlessly with the devices your app runs on. SDK enable you to add specialized video features to your app using a custom video source.
 
 ## Understand the tech
 
-The Agora SDK uses default audio and video modules for capturing in real-time communications.
-
-However, these default modules might not meet your development requirements, such as in the following scenarios:
+By default, SDK integrates the default video modules on the device your app runs on for real-time communication. However, there are scenarios where you may want to integrate a custom video capturer. For example:
 
 - Your app has its own video module.
 - You want to use a non-camera source, such as recorded screen data.
 - You need to process the captured video with a pre-processing library for functions such as image enhancement.
 - You need flexible device resource allocation to avoid conflicts with other services.
 
-Agora provides a solution to enable a custom video source in the above scenarios.
+To manage the capture and processing of video frames when using a custom video source, use methods outside the SDK.
+
+If the format of the custom captured video is Texture and the remote user sees anomalies (such as flickering and distortion) in the local custom captured video, Agora recommends that you make a copy of the video data before sending the custom video data back to the SDK, and then send both the original video data and the copied video data back to the SDK. This eliminates the anomalies during the internal data encoding.
 
 ### API call sequence
 
 Refer to The following figure to implement the custom video source.
 
-<div class="alert note">If you are not sure whether your custom video source supports Texture encoding, call <code>isTextureEncodeSupported</code> to find out. Then use the returned result to set the <code>useTexture</code> parameter in the <code>setExternalVideoSource</code> method.</div>
-
 ![img](https://web-cdn.agora.io/docs-files/1569392881143)
+
+If you are not sure whether your custom video source supports Texture encoding, call `isTextureEncodeSupported` to find out. Then use the returned result to set the `useTexture` parameter in the `setExternalVideoSource` method.
 
 ### Video data transfer
 
@@ -30,13 +30,10 @@ The following figure shows how the video data is transferred when you customize 
 - You need to implement the capture module yourself using methods from outside the SDK.
 - Captured video frames are sent to the SDK via the `pushExternalVideoFrame` method.
 
-
 ## Prerequisites
 
 Before proceeding, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Video Call](https://docs.agora.io/en/Interactive%20Broadcast/start_call_android) or [Start Live Interactive Video Streaming](https://docs.agora.io/en/Interactive%20Broadcast/start_live_android).
 ## Implementation
-
-
 
 Refer to the following steps to customize the video source in your project:
 
@@ -60,7 +57,7 @@ Refer to the following steps to customize the video source in your project:
     int res = engine.joinChannel(accessToken, channelId, 0, option);
     ```
 
-2. Implement video capture and processing yourself using methods from outside the SDK. According to your app scenario, you can call `AgoraVideoFrame` before sending the captured video frames to the SDK. For example, you can set `rotation` as `180` to rotate the video frames by 180 degrees clockwise.
+2. Implement video capture and processing. Agora SDKs do not supply the APIs for custom video processing. Use system SDKs for the devices your app supports to create custom video modules. To integrate your video module, call `AgoraVideoFrame` before sending the captured video frames to the SDK. For example, you can set `rotation` as `180` to rotate the video frames by 180 degrees clockwise.
 
     ```java
     // Triggers this callback if SurfaceTexture in TextureView is available
@@ -191,11 +188,3 @@ Agora provides the following open-source sample projects on GitHub:
 - [`isTextureEncodeSupported`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a60c16364ab588a38f5155d9c94eaf800)
 - [`setExternalVideoSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a2d9966c52798ab62ed941fa865e926cd)
 - [`pushExternalVideoFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a6e7327f4449800a2c2ddc200eb2c0386)
-
-### Considerations
-
-- Performing the following operations requires you to use methods from outside the Agora SDK:
-  - Manage the capture and processing of video frames when using a custom video source.
-  - Manage the processing and display of video frames when using a custom video renderer.
-
-- If the format of the custom captured video is Texture and the remote user sees anomalies (such as flickering and distortion) in the local custom captured video, Agora recommends that you make a copy of the video data before sending the custom video data back to the SDK, and then send both the original video data and the copied video data back to the SDK. This eliminates the anomalies during the internal data encoding.

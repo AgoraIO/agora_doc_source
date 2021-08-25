@@ -1,13 +1,15 @@
-This page introduces how to use the methods provided by the Agora SDK to implement custom audio capture to meet your needs.
+The default Agora audio module interacts seamlessly with the devices your app runs on. SDK enable you to add specialized audio features to your app using a custom audio source.
+
 
 ## Understand the tech
 
-The Agora SDK uses default audio modules for capturing in real-time communications.
-However, these modules might not meet your development requirements, such as in the following scenarios:
+By default, SDK integrates the default audio modules on the device your app runs on for real-time communication. However, there are scenarios where you may want to integrate a custom audio capturer. For example:
 
 - Your app has its own audio module.
 - You want to use a pre-processing library for the audio data.
 - You need flexible device resource allocation to avoid conflicts with other services.
+
+To manage the capture and processing of audio frames when using a custom audio source, use methods from outside the Agora SDK.
 
 The API call sequence is as follows:
 

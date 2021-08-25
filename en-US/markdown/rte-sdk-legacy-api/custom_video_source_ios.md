@@ -1,17 +1,15 @@
-This page describes how to use the Agora Native SDK to customize the video source.
+The default Agora video module interacts seamlessly with the devices your app runs on. SDK enable you to add specialized video features to your app using a custom video source.
 
 ## Understand the tech
 
-The Agora SDK uses default audio and video modules for capturing in real-time communications.
-
-However, these default modules might not meet your development requirements, such as in the following scenarios:
+By default, SDK integrates the default video modules on the device your app runs on for real-time communication. However, there are scenarios where you may want to integrate a custom video capturer. For example:
 
 - Your app has its own video module.
 - You want to use a non-camera source, such as recorded screen data.
 - You need to process the captured video with a pre-processing library for functions such as image enhancement.
 - You need flexible device resource allocation to avoid conflicts with other services.
 
-Agora provides a solution to enable a custom video source in the above scenarios.
+To manage the capture and processing of video frames when using a custom video source, use methods outside the SDK.
 
 ### Video data transfer
 
@@ -24,9 +22,8 @@ Video frames captured by the SDK or a custom video source, or received from a re
 ## Prerequisites
 
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
+
 ## Implementation
-
-
 
 The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setExternalVideoSource:useTexture:pushMode:) and [`pushExternalVideoFrame`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalVideoFrame:) methods to customize the video source. The API call sequence is as follows:
 
@@ -200,9 +197,3 @@ The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Clas
 Agora provides open-source demo projects on GitHub that implement the custom video source and renderer function. You can download the projects to try them out or view the source code:
 
   - Customize the video source (Push mode): [CustomVideoSourcePush](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/iOS/APIExample/Examples/Advanced/CustomVideoSourcePush)
-
-### Considerations
-
-- Customizing the video source and renderer requires you to manage video capturing and rendering on your own.
-	- When customizing the video source, you need to capture and process the video frames on your own.
-- In scenarios involving the custom video renderer, the rotation parameter of the video frames in `renderPixelBuffer` or `renderRawData` may not be 0. This is probably due to the settings of video capturing, and you need to process the rotation information yourself.

@@ -1,14 +1,14 @@
-This page describes how to enable a custom audio source in the above scenarios.
+The default Agora audio module interacts seamlessly with the devices your app runs on. SDK enable you to add specialized audio features to your app using a custom audio source.
 
 ## Understand the tech
 
-Generally, Agora SDKs use default audio modules for capturing in real-time communications.
-
-However, these default modules might not meet your development requirements, such as in the following scenarios:
+By default, SDK integrates the default audio modules on the device your app runs on for real-time communication. However, there are scenarios where you may want to integrate a custom audio capturer. For example:
 
 - Your app has its own audio module.
 - You need to process the captured audio with a pre-processing library.
 - You need flexible device resource allocation to avoid conflicts with other services.
+
+To manage the capture and processing of audio frames when using a custom audio source, use methods from outside the Agora SDK.
 
 #### API call sequence
 
@@ -108,9 +108,3 @@ Agora provides an open-source [demo project](https://github.com/AgoraIO/API-Exam
 - [`setExternalAudioSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5e5630afd7104ee7be8b246ae004efb3)
 - [`pushExternalAudioFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9e219a679d066cfc2544b5e8f9d4d69f)
 
-
-### Considerations
-
-Performing the following operations requires you to use methods from outside the Agora SDK:
-
-- Manage the capture and processing of audio frames when using a custom audio source.

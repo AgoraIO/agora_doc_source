@@ -10,6 +10,8 @@ By default, SDK integrates the default audio modules on the device your app runs
 - You need to process the captured audio with a pre-processing library.
 - You need flexible device resource allocation to avoid conflicts with other services.
 
+To manage the processing and playback of audio frames when using a custom audio renderer, use methods from outside the Agora SDK.
+
 ### API call sequence
 
 The following figure shows the call flow you need to implement when you integrate a custom audio rendered:
@@ -31,7 +33,11 @@ Before proceeding, ensure that you have implemented the basic real-time communic
 
 ## Implementation
 
+This section shows you how to use custom audio renderers.
+
 ### Use custom audio renderer APIs
+
+Take the following steps to use custom audio renderer APIs for custom audio rendering.
 
 1. Enable audio sink during SDK initialization.
 
@@ -80,6 +86,8 @@ Before proceeding, ensure that you have implemented the basic real-time communic
 
 ### Use raw audio data APIs
 
+Take the following steps to use raw audio data APIs for custom audio rendering.
+
 #### Prerequisites
 
 Ensure that you have implemented the raw audio data function in your project. For details, see [Raw Audio Data](raw_audio_data_android).
@@ -98,9 +106,3 @@ Agora provides an open-source [demo project](https://github.com/AgoraIO/API-Exam
 - [`setExternalAudioSink`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a270c0607d443790e92cdbd0d45ba1732)
 - [`pullPlaybackAudioFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ae15064944870692e9a0a59fdc87654c4)
 
-
-### Considerations
-
-Performing the following operations requires you to use methods from outside the Agora SDK:
-
-- Manage the processing and playback of audio frames when using a custom audio renderer.
