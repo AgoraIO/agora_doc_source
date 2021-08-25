@@ -24,7 +24,7 @@ The audio route can be changed in any of the following approaches:
 
 Any change to the audio route, regardless of the approach, triggers the `onAudioRouteChanged` (Android) or `didAudioRouteChanged` (iOS) callback. You can use this callback to get the current audio route.
 
-Followings are principles of how the previously-metioned approaches affect the audio route.
+The following sections explain how these approaches affect the audio route.
 
 ### Audio route changes when the user plugs or unplugs a device
 
@@ -51,7 +51,7 @@ See the following steps and how the audio route changes accordingly:
 The audio route is the headphones.
 2. The user unplugs the headphones.
 The audio route changes to the default audio route of the mobile deivce, depending on your use case.
-3. The all calls `setDefaultAudioRoutetoSpeakerphone(true)`.
+3. The app calls `setDefaultAudioRoutetoSpeakerphone(true)`.
 The audio route changes to the speakerphone.
 4. The user plugs in headphones.
 The audio route changes to the headphones.
