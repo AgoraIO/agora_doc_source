@@ -176,10 +176,9 @@
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
        <plentry>
-  <pt>duration</pt>
-  <pd>
-      <p>本地用户通话时长（秒），累计值。</p>
-      </pd>
+  <pt props="android windows">duration</pt>
+           <pt props="ios mac">totalDuration</pt>
+  <pd>本地用户通话时长（秒），累计值。</pd>
        </plentry>
        <plentry>
   <pt>txBytes</pt>
@@ -242,7 +241,8 @@
   <pd>使用抗丢包技术前，服务器下行发送到客户端丢包率 (%)。</pd>
        </plentry>
        <plentry>
-  <pt>userCount</pt>
+  <pt props="ios mac windows">userCount</pt>
+           <pt props="android">users</pt>
   <pd><p>当前频道内的用户人数。
   <ul>
       <li>通信场景下，当前频道内的用户人数。</li>
@@ -265,25 +265,29 @@
       <p>在多核环境中，该成员指多核 CPU 的平均使用率。 计算方式为 100 - 任务管理中显示的系统空闲进程 CPU（）。</p>
   </pd>
        </plentry>
-       <plentry>
+       <plentry props="android ios mac">
+           <pt>connectTimeMs</pt>
+           <pd>从开始建立连接到成功连接的时间（毫秒）。如报告 0，则表示无效。</pd>
+       </plentry>
+       <plentry props="windows">
   <pt>gatewayRtt</pt>
   <pd>客户端到本地路由器的往返时延 (ms)。</pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>memoryAppUsageRatio</pt>
   <pd>
       <p>当前 App 的内存占比 (%)。</p>
       <note type="attention">该值仅作参考。受系统限制可能无法获取。</note>
   </pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>memoryTotalUsageRatio</pt>
   <pd>
       <p>当前系统的内存占比 (%)。</p>
       <note type="attention">该值仅作参考。受系统限制可能无法获取。</note>
   </pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>memoryAppUsageInKbytes</pt>
   <pd>
       <p>当前 App 的内存大小 (KB)。</p>
