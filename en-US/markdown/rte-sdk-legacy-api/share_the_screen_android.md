@@ -1,30 +1,66 @@
 # Share the Screen
 
-Screen sharing enables a host of an interactive live streaming broadcast or a user in a video call to display what is on their screen to other users in the channel. This technology has many obvious advantages for communicating information, particularly in the following scenarios:
+Screen sharing enables a host of an interactive live streaming broadcast or a user in a video call to display what is on their screen to other users in the channel. This technology has many advantages for communicating information. For example:
 
 - During video conferencing, the speaker can share a local image, web page, or full presentation with other participants.
 - For online instruction, the teacher can share slides or notes with students.
 
 ## Understand the tech
 
-To share the screen in your project, implement the following steps in your app:
+To share the screen on Android, you need to use Android native APIs and `startScreenCapture` provided by Agora. The following diagram shows how data is transferred during screen sharing:
 
-1. Get the screen data: Listen for `onActivityResult` (Android native callback) and get the value of the `data` parameter.
-2. Start the screen sharing: Call `startScreenCapture` and pass in the screen data to share the entire screen through [`MediaProjection`](https://developer.android.google.cn/reference/android/media/projection/MediaProjection) (Android native class).
-3. Join a channel and publish video streams:
- - If you only need to send the video stream from the screen sharing, call `joinChannel` with the `options` parameter and set `publishCameraTrack = false` and `publishScreenTrack = true`.
- - If you need to send video streams from both the screen sharing and the local camera, call `joinChannel` with the `options` parameter and use the default setting (`publishCameraTrack = true` and `publishScreenTrack = false`), and then call `joinChannelEx` to join the same channel and set `publishCameraTrack = false` and `publishScreenTrack = true`.
-4. Stop the screen sharing: Call `stopScreenCapture`.
-
-<div class="alert note">If the user shares the screen on Android 10 or later, to avoid the Android system from triggering <a href="https://developer.android.google.cn/reference/java/lang/SecurityException?hl=en"><code>SecurityException</code></a > (Android native callback), you need to call <a href="https://developer.android.google.cn/guide/components/foreground-services?hl=en#start"><code>startForeground</code></a > (Android native method) before calling <code>MediaProjection</code> (Android native class) to notify the user that the current device starts screen sharing.</div>
+![](https://web-cdn.agora.io/docs-files/1629887176967)
 
 ## Prerequisites
 
-Before proceeding, ensure that you have a project that has implemented the basic real-time engagement functionality.
+Before proceeding, ensure that you have the following:
+- A project that has implemented the [basic real-time engagement functionality](https://docs-preprod.agora.io/en/live-streaming-4.x-preview/start_live_android_ng?platform=Android).
+- To use [`MediaProjection`](https://developer.android.google.cn/reference/android/media/projection/MediaProjection) (Android native class), you need to ues Android API level 21 or higher.
 
 ## Implementation
 
-To send the video stream from the screen sharing, see the following sample code:
+This section shows you how to implement the screen sharing. Add code in the following steps in `/app/java/com.example.<projectname>/MainActivity`.
+
+
+### 1. Send the screen-sharing notification
+
+If the user shares the screen on Android 10 or later, to avoid the Android system from triggering [`SecurityException`](https://developer.android.google.cn/reference/java/lang/SecurityException?hl=en) (Android native callback), you need to call [startForeground](https://developer.android.google.cn/guide/components/foreground-services?hl=en#start) (Android native method) before calling `MediaProjection` to notify the user that the current device starts screen sharing.
+
+```java
+if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+    if(b){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            getActivity().startForegroundService(fgServiceIntent);
+        }
+    }
+    }
+```
+
+### 2. Start capturing screen data
+
+Create an intent based on `MediaProjection`, and pass the intent to the `startActivityForResult` (Android native method) to start capturing screen data.
+
+```java
+// Starts capturing screen data. Ensure that your Android version must be Lollipop or higher.
+if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+    if(b){
+
+        ...
+
+        // Instantiates a MediaProjectionManager object
+        MediaProjectionManager mpm = (MediaProjectionManager)
+                getContext().getSystemService(Context.MEDIA_PROJECTION_SERVICE);
+        // Creates an intent
+        Intent intent = mpm.createScreenCaptureIntent();
+        // Starts screen capturing
+        startActivityForResult(intent, PROJECTION_REQ_CODE);
+    }
+    }
+```
+
+### 3. Start the screen sharing
+
+Get the screen data from the activity result, and pass the screen data in the `mediaProjectionPermissionResultData` parameter of `startScreenCapture` to start the screen sharing.
 
 ```java
 @Override
@@ -40,33 +76,22 @@ public void onActivityResult(int requestCode, int resultCode, @Nullable Intent d
         engine.startScreenCapture(data, parameters);
     }
 }
+```
 
+### 4. Join a channel and publish video streams
+
+- To send video streams showing the user's entire screen, add the following code to your project:
+
+```java
 // Join a channel and publish the video stream from the screen sharing.
 options.publishCameraTrack = false;
 options.publishScreenTrack = true;
 engine.joinChannel(accessToken, channelId, 0, options);
-
-// Stop the screen sharing.
-engine.stopScreenCapture();
 ```
 
-To send video streams from both the screen sharing and the local camera, see the following sample code:
+- To send video streams from both the user's entire screen and local camera, add the following code to your project:
 
 ```java
-@Override
-// Listen for onActivityResult.
-public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == PROJECTION_REQ_CODE && resultCode == RESULT_OK) {
-        DisplayMetrics metrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        ScreenCaptureParameters parameters = new ScreenCaptureParameters();
-        parameters.setFrameRate(DEFAULT_SHARE_FRAME_RATE);
-        // Start the screen sharing.
-        engine.startScreenCapture(data, parameters);
-    }
-}
-
 // Join a channel and publish the video stream from the screen sharing.
 options.publishCameraTrack = true;
 options.publishScreenTrack = false;
@@ -78,12 +103,20 @@ mediaOptions.publishCameraTrack = false;
 mediaOptions.publishScreenTrack = true;
 String channelId = et_channel.getText().toString();
 engine.joinChannelEx(null, channelId, 0, mediaOptions, iRtcEngineEventHandler, rtcConnection2);
+```
 
+### 5. Stop the screen sharing
+
+When the user finish the screen sharing, call `stopScreenCapture` to stop the screen sharing.
+
+```java
 // Stop the screen sharing.
 engine.stopScreenCapture();
 ```
 
 ## Reference
+
+This section provides reference information you may need when sharing the screen.
 
 ### Sample project
 

@@ -2,7 +2,7 @@
 
 An audio profile includes the audio sample rate, encoding scheme, number of channels, and bitrate for the encoding audio stream; an audio scenario determines the audio processing module.
 
-Different applications require different audio profiles or scenarios. This page introduces how to call Agora APIs to set an appropriate audio profile and scenario according to your application.
+Different applications require different audio profiles or scenarios. This page shows you how to set the appropriate audio profile and scenario in your app using Agora SDKs.
 
 ## Understand the tech
 
@@ -41,32 +41,25 @@ The audio scenario also affects the volume type. For details, see [Volume type](
 
 ## Prerequisites
 
-Before proceeding, ensure that you have a project that has implemented the basic real-time engagement functionality.
+Before proceeding, ensure that you have a project that has implemented the [basic real-time engagement functionality](https://docs-preprod.agora.io/en/live-streaming-4.x-preview/start_live_android_ng?platform=Android).
 
 ## Implementation
 
-To set the audio profile and scenario, see the following sample code:
+This section shows you how to set the audio scenario when you create the `RtcEngine` instance and set the audio profile either before or after joining a channel. In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
 
 ```java
-// Set the audio scenario as AUDIO_SCENARIO_HIGH_DEFINITION when creating the `RtcEngine` instance.
-RtcEngineConfig config = new RtcEngineConfig();
+// Add the following line ahead of "engine = RtcEngine.create(config);" to set the audio scenario.
 config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.HIGH_DEFINITION);
-engine = RtcEngine.create(config);
-// Set the audio profile as AUDIO_PROFILE_MUSIC_HIGH_QUALITY.
+
+// Add the following line in the initializeAndJoinChannel function to set the audio profile.
 RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY);
 ```
 
-The following table shows the recommended audio profile and scenario in common applications:
-
-| Application           | Audio profile (with the prefix `AUDIO_PROFILE_`)                    | Audio scenario (with the prefix `AUDIO_SCENARIO_`)                |
-| :--------------------- | :------------------------- | :---------------------- |
-| One-to-one classroom:<p>Requires the call quality with smooth transmission.</p>   | `DEFAULT`                    | `DEFAULT`                 |
-| Battle royale game:<p>Transmits the voice of group talk. Requires noise reduction and low transmission bitrate.</p>     | `SPEECH_STANDARD`            | `CHATROOM`         |
-| Murder mystery game:<p>Requires standard audio quality and smooth audio expirence when a user frequently switchs the user role or mute and unmute the microphone.</p>    | `MUSIC_STANDARD`             | `CHATROOM` |
-| KTV: <p>Requires high-fidelity audio and a high performance to music or singing voice.</p>                    | `MUSIC_HIGH_QUALITY`        | `HIGH_DEFINITION`          |
-| Podcast: <p>Uses professional audio hardware devices. Requires high-fidelity audio and stereo channels.</p>                | `MUSIC_HIGH_QUALITY_STEREO` | `HIGH_DEFINITION`                |
+To know the recommended audio profile and scenario in common applications, see [Common applications](#common_applications).
 
 ## Reference
+
+This section provides reference information you may need when setting the audio profile and scenario.
 
 ### Sample project
 
@@ -97,24 +90,36 @@ The following tables show the volume type according to different audio scenarios
 
 - In the `AUDIO_SCENARIO_DEFAULT` scenario:
 
-| User role \ Audio route                                     | Wired earphones | Speakerphone or earpiece | Bluetooth devices |
-| ------------------------------------------------------------ | --------------- | ------------------------- | ----------------- |
-| <li>Hosts in the interactive live streaming profile</li><li>Users in the communication profile</li> | Media volume    | In-call volume            | In-call volume    |
-| Single host in the interactive live  streaming profile       | Media volume    | Media volume              | In-call volume    |
-| Audience in the interactive live  streaming profile          | Media volume    | Media volume              | Media volume      |
+  | User role \ Audio route                                     | Wired earphones | Speakerphone or earpiece | Bluetooth devices |
+  | ------------------------------------------------------------ | --------------- | ------------------------- | ----------------- |
+  | <li>Hosts in the interactive live streaming profile</li><li>Users in the communication profile</li> | Media volume    | In-call volume            | In-call volume    |
+  | Single host in the interactive live  streaming profile       | Media volume    | Media volume              | In-call volume    |
+  | Audience in the interactive live  streaming profile          | Media volume    | Media volume              | Media volume      |
 
 - In the `AUDIO_SCENARIO_HIGH_DEFINITION` or `AUDIO_SCENARIO_GAME_STREAMING` scenario:
 
-| User role \ Audio route                                     | Wired earphones | Speakerphone or earpiece | Bluetooth devices |
-| ------------------------------------------------------------ | --------------- | ------------------------- | ----------------- |
-| <li>Hosts in the interactive live streaming profile</li><li>Users in the communication profile</li> | Media volume    | Media volume            | Media volume    |
-| Single host in the interactive live  streaming profile       | Media volume    | Media volume              | Media volume    |
-| Audience in the interactive live  streaming profile          | Media volume    | Media volume              | Media volume      |
+  | User role \ Audio route                                     | Wired earphones | Speakerphone or earpiece | Bluetooth devices |
+  | ------------------------------------------------------------ | --------------- | ------------------------- | ----------------- |
+  | <li>Hosts in the interactive live streaming profile</li><li>Users in the communication profile</li> | Media volume    | Media volume            | Media volume    |
+  | Single host in the interactive live  streaming profile       | Media volume    | Media volume              | Media volume    |
+  | Audience in the interactive live  streaming profile          | Media volume    | Media volume              | Media volume      |
 
 - In the `AUDIO_SCENARIO_CHATROOM` scenario:
 
-| User role \ Audio route                                     | Wired earphones | Speakerphone or earpiece | Bluetooth devices |
-| ------------------------------------------------------------ | --------------- | ------------------------- | ----------------- |
-| <li>Hosts in the interactive live streaming profile</li><li>Users in the communication profile</li> | Media volume    | In-call volume            | In-call volume    |
-| Single host in the interactive live  streaming profile       | Media volume    | In-call volume              | In-call volume    |
-| Audience in the interactive live  streaming profile          | Media volume    | In-call volume              | In-call volume      |
+  | User role \ Audio route                                     | Wired earphones | Speakerphone or earpiece | Bluetooth devices |
+  | ------------------------------------------------------------ | --------------- | ------------------------- | ----------------- |
+  | <li>Hosts in the interactive live streaming profile</li><li>Users in the communication profile</li> | Media volume    | In-call volume            | In-call volume    |
+  | Single host in the interactive live  streaming profile       | Media volume    | In-call volume              | In-call volume    |
+  | Audience in the interactive live  streaming profile          | Media volume    | In-call volume              | In-call volume      |
+
+<a name="common_applications"></a>
+
+## Common applications
+
+| Application           | Audio profile (with the prefix `AUDIO_PROFILE_`)                    | Audio scenario (with the prefix `AUDIO_SCENARIO_`)                |
+| :--------------------- | :------------------------- | :---------------------- |
+| One-to-one classroom:<p>Requires the call quality with smooth transmission.</p>   | `DEFAULT`                    | `DEFAULT`                 |
+| Battle royale game:<p>Transmits the voice of group talk. Requires noise reduction and low transmission bitrate.</p>     | `SPEECH_STANDARD`            | `CHATROOM`         |
+| Murder mystery game:<p>Requires standard audio quality and smooth audio expirence when a user frequently switchs the user role or mute and unmute the microphone.</p>    | `MUSIC_STANDARD`             | `CHATROOM` |
+| KTV: <p>Requires high-fidelity audio and a high performance to music or singing voice.</p>                    | `MUSIC_HIGH_QUALITY`        | `HIGH_DEFINITION`          |
+| Podcast: <p>Uses professional audio hardware devices. Requires high-fidelity audio and stereo channels.</p>                | `MUSIC_HIGH_QUALITY_STEREO` | `HIGH_DEFINITION`                |

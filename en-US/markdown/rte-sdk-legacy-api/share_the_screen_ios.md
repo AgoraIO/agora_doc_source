@@ -1,13 +1,13 @@
 # Share the Screen
 
-Screen sharing enables a host of an interactive live streaming broadcast or a user in a video call to display what is on their screen to other users in the channel. This technology has many obvious advantages for communicating information, particularly in the following scenarios:
+Screen sharing enables a host of an interactive live streaming broadcast or a user in a video call to display what is on their screen to other users in the channel. This technology has many advantages for communicating information. For example:
 
 - During video conferencing, the speaker can share a local image, web page, or full presentation with other participants.
 - For online instruction, the teacher can share slides or notes with students.
 
 ## Understand the tech
 
-Screen sharing on iOS is implemented by using the native iOS ReplayKit framework in an Extension to record the screen, and treating the screen-sharing stream as a user joining the channel. As Apple does not support the communication between an Extension process and the main app process, you need to create a separate process for the screen-sharing stream.
+To implement screen sharing on iOS, use the native iOS ReplayKit framework in an Extension to record the screen, and treat the screen-sharing stream as a user joining the channel. As Apple does not support the communication between an Extension process and the main app process, you need to create a separate process for the screen-sharing stream.
 
 ![](https://web-cdn.agora.io/docs-files/1606371600705)
 
@@ -16,12 +16,6 @@ Screen sharing on iOS is implemented by using the native iOS ReplayKit framework
 Before proceeding, ensure that you have a project that has implemented the basic real-time engagement functionality.
 
 ## Implementation
-
-Refer to the following steps to implement screen sharing:
-
-- Create a process for screen sharing with a Broadcast Upload Extension.
-- Record the screen with Apple ReplayKit.
-- Send screen-recording data as a custom video source to the Agora SDK, and use the Agora SDK to publish the video stream.
 
 <div class="alert note">The implementation method introduced in this article applies to iOS 12.0 or later.</div>
 
@@ -202,8 +196,6 @@ Use Apple's native ReplayKit framework for screen recording.
    ```
 
 ## Reference
-
-### Sample project
 
 Agora provides an open-source sample project that implements [sharing the screen](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/iOS) on GitHub. You can try the sample project and view the source code.
 
