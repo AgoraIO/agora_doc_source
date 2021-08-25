@@ -1,4 +1,4 @@
-This article describes how to implement these tests.
+This page describes how to implement these tests.
 
 ## Understand the tech
 

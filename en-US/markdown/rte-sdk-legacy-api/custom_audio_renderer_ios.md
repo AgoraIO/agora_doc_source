@@ -1,41 +1,20 @@
-This article introduces how to use the methods provided by the Agora SDK to implement custom audio rendering to meet your needs.
+The default Agora audio module interacts seamlessly with the devices your app runs on. SDK enable you to add specialized audio features to your app using custom audio renderers.
+
+This page shows you how to integrate your custom audio renderer in your app.
 
 ## Understand the tech
 
-The Agora SDK uses default audio modules for rendering in real-time communications.
-However, these modules might not meet your development requirements, such as in the following scenarios:
+By default, SDK integrates the default audio modules on the device your app runs on for real-time communication. However, there are scenarios where you may want to integrate a custom audio renderer. For example:
 
 - Your app has its own audio module.
-- You want to use a pre-processing library for the audio data.
+- You need to process the captured audio with a pre-processing library.
 - You need flexible device resource allocation to avoid conflicts with other services.
 
 ## Prerequisites
 
-Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
+Before implementing custom audio rendering, ensure that you have implemented the raw audio data function in your project. For details, see [Raw Audio Data](raw_audio_data_ios).
 
 ## Implementation
-
-### Use custom audio renderer APIs
-
-1. Before calling `joinChannel`, call `enableExternalAudioSink` to enable and configure the external audio renderer.
-
-    ```swift
-    agoraKit.enableExternalAudioSink(8000, channels:2)
-    ```
-
-2. After joining the channel, call `pullPlaybackAudioFrame` to retrieve the audio data sent by a remote user.
-
-    ```swift
-    agoraKit.pullPlaybackAudioFrameRawData(data, lengthInByte:lengthInByte)
-    ```
-
-3. Use your own audio renderer to process the audio data, then play the rendered data.
-
-### Use raw audio data APIs
-
-#### Prerequisites
-
-Before implementing custom audio rendering, ensure that you have implemented the raw audio data function in your project. For details, see [Raw Audio Data](raw_audio_data_ios).
 
 1. Get the audio data to play from `onRecordAudioFrame`, `onPlaybackAudioFrame`, `onMixedAudioFrame`, or `onPlaybackAudioFrameBeforeMixing`.
 2. Render and play the remote audio data on your own.

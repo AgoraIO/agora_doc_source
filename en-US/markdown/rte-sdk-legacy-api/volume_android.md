@@ -1,6 +1,6 @@
 # Adjust the Volume
 
-This article shows you how to set audio recording, audio mixing, audio playback and in-ear monitoring volume.
+This page shows you how to set audio recording, audio mixing, audio playback and in-ear monitoring volume.
 
 ## Understand the tech
 
@@ -8,7 +8,7 @@ The Agora RTC SDK enables you to manage the volume of the recorded audio or of t
 
 <div class="alert note">Setting the audio level too high may cause audio distortion on some devices.</div>
 
-The following diagram shows the workflow for audio volume settings.
+The following figure shows the workflow for audio volume settings.
 
 ![](https://web-cdn.agora.io/docs-files/1578559042677)
 

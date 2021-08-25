@@ -6,7 +6,7 @@ Agora provides the raw data function for you to process the audio data according
 
 ### Data transfer
 
-The following diagram shows the data transfer while pre- or post-processing raw audio data.
+The following figure shows the data transfer while pre- or post-processing raw audio data.
 
 ![](https://web-cdn.agora.io/docs-files/1604635727525)
 
@@ -19,7 +19,7 @@ With `onRecordAudioFrame`, `onPlaybackAudioFrame`, `onPlaybackAudioFrameBeforeMi
 
 #### API call sequence
 
-The following diagram shows how to implement the raw audio data function in your project:
+The following figure shows how to implement the raw audio data function in your project:
 
 ![](https://web-cdn.agora.io/docs-files/1618545452564)
 
@@ -27,7 +27,7 @@ The following diagram shows how to implement the raw audio data function in your
 
 #### API call sequence
 
-The following diagram shows how to implement the raw data functions in your project:
+The following figure shows how to implement the raw data functions in your project:
 
 ![](https://web-cdn.agora.io/docs-files/1569210004744)
 

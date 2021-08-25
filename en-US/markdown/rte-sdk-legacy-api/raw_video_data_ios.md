@@ -23,7 +23,7 @@ Before adjusting the audio volume, ensure that you have implemented the basic r
 
 #### API call sequence
 
-The following diagram shows how to implement the raw data function in your project:
+The following figure shows how to implement the raw data function in your project:
 
 ![img](https://web-cdn.agora.io/docs-files/1578466906009)
 

@@ -8,7 +8,7 @@ Agora provides the raw data function for you to process the audio data according
 
 #### API call sequence
 
-The following diagram shows how to implement the raw audio data function in your project:
+The following figure shows how to implement the raw audio data function in your project:
 
 ![](https://web-cdn.agora.io/docs-files/1615535771289)
 
@@ -16,7 +16,7 @@ The following diagram shows how to implement the raw audio data function in your
 
 #### API call sequence
 
-The following diagram shows how to implement the raw audio data function in your project:
+The following figure shows how to implement the raw audio data function in your project:
 
 <div class="alert note">The <code>registerAudioFrameObserver</code>, <code>onRecordAudioFrame</code>, <code>onPlaybackAudioFrame</code>, <code>onMixedAudioFrame</code>, and <code>onPlaybackAudioFrameBeforeMixing</code> are all C++ methods and callbacks.</div>
 
@@ -86,7 +86,7 @@ Follow these steps to implement the raw audio data function in your project:
 
 #### Call the Agora C++ API in a Java project
 
-The following diagram shows the basic flow of calling the Agora C++ API in a Java project:
+The following figure shows the basic flow of calling the Agora C++ API in a Java project:
 
 ![](https://web-cdn.agora.io/docs-files/1607913364400)
 

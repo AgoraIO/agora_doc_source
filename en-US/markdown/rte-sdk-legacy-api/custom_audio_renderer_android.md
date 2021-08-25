@@ -1,10 +1,10 @@
-This article describes how to enable a custom audio renderer in the above scenarios.
+The default Agora audio module interacts seamlessly with the devices your app runs on. SDK enable you to add specialized audio features to your app using custom audio renderers.
+
+This page shows you how to integrate your custom audio renderer in your app.
 
 ## Understand the tech
 
-Generally, Agora SDKs use default audio modules for rendering in real-time communications.
-
-However, these default modules might not meet your development requirements, such as in the following scenarios:
+By default, SDK integrates the default audio modules on the device your app runs on for real-time communication. However, there are scenarios where you may want to integrate a custom audio renderer. For example:
 
 - Your app has its own audio module.
 - You need to process the captured audio with a pre-processing library.
@@ -12,13 +12,13 @@ However, these default modules might not meet your development requirements, suc
 
 ### API call sequence
 
-Refer to the following diagram to implement the custom audio renderer in your project:
+The following figure shows the call flow you need to implement when you integrate a custom audio rendered:
 
 ![](https://web-cdn.agora.io/docs-files/1569378513078)
 
 ### Audio data transfer
 
-The following diagram shows how the audio data is transferred when you customize the audio renderer:
+The following figure shows how the audio data is transferred when you customize the audio renderer:
 
 ![](https://web-cdn.agora.io/docs-files/1607672594828)
 
@@ -33,7 +33,15 @@ Before proceeding, ensure that you have implemented the basic real-time communic
 
 ### Use custom audio renderer APIs
 
-1. Before calling `joinChannel`, call `setExternalAudioSink` to enable and configure the external audio renderer.
+1. Enable audio sink during SDK initialization.
+
+    ```java
+    // Enable audio sink
+    config.mEnableAudioDevice = false;
+    engine = RtcEngine.create(config);
+    ```
+
+2. Before calling `joinChannel`, call `setExternalAudioSink` to enable and configure the external audio renderer.
 
     ```java
     // Enables the custom audio renderer
@@ -44,18 +52,31 @@ Before proceeding, ensure that you have implemented the basic real-time communic
     );
     ```
 
-2. After joining the channel, call `pullPlaybackAudioFrame` to retrieve the audio data sent by a remote user.
+3. After joining the channel, call `pullPlaybackAudioFrame` to retrieve the audio data sent by a remote user. Use your own audio renderer to process the audio data, then play the rendered data.
 
     ```java
-    // Retrieves remote audio frames for playback
-    rtcEngine.pullPlaybackAudioFrame(
-        data,             // The data type is byte[]
-        lengthInByte      // The size of the audio data (byte)
-    );
+    private class FileThread implements Runnable {
+
+        @Override
+        public void run() {
+            while (mPull) {
+                int lengthInByte = 48000 / 1000 * 2 * 1 * 10;
+                ByteBuffer frame = ByteBuffer.allocateDirect(lengthInByte);
+                int ret = engine.pullPlaybackAudioFrame(frame, lengthInByte);
+                byte[] data = new byte[frame.remaining()];
+                frame.get(data, 0, data.length);
+                // Write to local file or render by player
+                FileIOUtils.writeFileFromBytesByChannel("/sdcard/agora/pull_48k.pcm", data, true, true);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
     ```
-
-3. Use your own audio renderer to process the audio data, then play the rendered data.
-
 
 ### Use raw audio data APIs
 

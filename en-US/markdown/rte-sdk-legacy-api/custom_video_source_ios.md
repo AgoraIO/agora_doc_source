@@ -1,4 +1,4 @@
-This article describes how to use the Agora Native SDK to customize the video source.
+This page describes how to use the Agora Native SDK to customize the video source.
 
 ## Understand the tech
 
@@ -15,7 +15,7 @@ Agora provides a solution to enable a custom video source in the above scenarios
 
 ### Video data transfer
 
-The following diagram shows how the video data is transferred when you customize the video source or video renderer:
+The following figure shows how the video data is transferred when you customize the video source or video renderer:
 
 ![](https://web-cdn.agora.io/docs-files/1606791683644)
 

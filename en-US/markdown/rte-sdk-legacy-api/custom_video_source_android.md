@@ -1,4 +1,4 @@
-This article describes how to use the Agora Native SDK to customize the video source.
+This page describes how to use the Agora Native SDK to customize the video source.
 
 ## Understand the tech
 
@@ -15,7 +15,7 @@ Agora provides a solution to enable a custom video source in the above scenarios
 
 ### API call sequence
 
-Refer to the following diagram to implement the custom video source.
+Refer to The following figure to implement the custom video source.
 
 <div class="alert note">If you are not sure whether your custom video source supports Texture encoding, call <code>isTextureEncodeSupported</code> to find out. Then use the returned result to set the <code>useTexture</code> parameter in the <code>setExternalVideoSource</code> method.</div>
 
@@ -23,7 +23,7 @@ Refer to the following diagram to implement the custom video source.
 
 ### Video data transfer
 
-The following diagram shows how the video data is transferred when you customize the video source in Push mode:
+The following figure shows how the video data is transferred when you customize the video source in Push mode:
 
 ![](https://web-cdn.agora.io/docs-files/1607670382235)
 

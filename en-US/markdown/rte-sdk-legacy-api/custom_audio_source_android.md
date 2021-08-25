@@ -1,4 +1,4 @@
-This article describes how to enable a custom audio source in the above scenarios.
+This page describes how to enable a custom audio source in the above scenarios.
 
 ## Understand the tech
 
@@ -12,13 +12,13 @@ However, these default modules might not meet your development requirements, suc
 
 #### API call sequence
 
-Refer to the following diagram to implement the custom audio source:
+Refer to The following figure to implement the custom audio source:
 
 ![](https://web-cdn.agora.io/docs-files/1568968141511)
 
 #### Audio data transfer
 
-The following diagram shows how the audio data is transferred when you customize the audio source:
+The following figure shows how the audio data is transferred when you customize the audio source:
 
 ![](https://web-cdn.agora.io/docs-files/1607671910645)
 

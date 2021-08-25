@@ -1,4 +1,4 @@
-This article introduces how to use the methods provided by the Agora SDK to implement custom video rendering to meet your needs.
+This page introduces how to use the methods provided by the Agora SDK to implement custom video rendering to meet your needs.
 
 ## Understand the tech
 

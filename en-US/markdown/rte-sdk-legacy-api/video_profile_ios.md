@@ -1,4 +1,4 @@
-This article shows how to call the API provided by Agora to set video profiles.
+This page shows how to call the API provided by Agora to set video profiles.
 
 ## Understand the tech
 

@@ -93,7 +93,7 @@ int ret = engine.registerVideoFrameObserver(iVideoFrameObserver);
 
 #### Call the Agora C++ API in a Java project
 
-The following diagram shows the basic flow of calling the Agora C++ API in a Java project:
+The following figure shows the basic flow of calling the Agora C++ API in a Java project:
 
 ![](https://web-cdn.agora.io/docs-files/1607912602385)
 
@@ -103,7 +103,7 @@ The following diagram shows the basic flow of calling the Agora C++ API in a Jav
 
 #### API call sequence
 
-The following diagram shows how to implement the raw video data function in your project:
+The following figure shows how to implement the raw video data function in your project:
 
 ![](https://web-cdn.agora.io/docs-files/1607915730887)
 
