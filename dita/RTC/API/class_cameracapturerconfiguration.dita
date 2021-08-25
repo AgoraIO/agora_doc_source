@@ -63,11 +63,11 @@
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
-       <plentry>
+       <plentry props="windows">
   <pt>preference</pt>
   <pd>摄像头采集偏好。详见 <xref keyref="CAPTURER_OUTPUT_PREFERENCE"/>。</pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
                     <pt>captureWidth</pt>
                     <pd>
                         <dl outputclass="since">
@@ -81,7 +81,7 @@
                                 <parmname>captureWidth</parmname> 设置采集的视频宽度。</p>
                     </pd>
                 </plentry>
-       <plentry>
+       <plentry props="windows">
                     <pt>captureHeight</pt>
                     <pd>
                         <dl outputclass="since">
@@ -95,11 +95,24 @@
                                 <parmname>captureHeight</parmname> 设置采集的视频高度。</p>
                     </pd>
                 </plentry>
+       <plentry props="android">
+           <pt>captureFormat</pt>
+           <pd>本地采集的视频格式：<ul id="ul_pjv_5jg_sqb">
+               <li><codeph>width</codeph>: 本地采集的视频宽度 (px)。</li>
+               <li><codeph>height</codeph>: 本地采集的视频高度 (px)。</li>
+               <li><codeph>fps</codeph>: 本地采集的视频帧率 (fps)。</li>
+                        </ul></pd>
+       </plentry>
        <plentry props="android ios windows">
   <pt>cameraDirection</pt>
   <pd>
       <p props="windows">该参数仅适用于 Android 和 iOS 平台。</p>
-      <p>摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。</p>
+      <p props="ios windows">摄像头方向。详见 <xref keyref="CAMERA_DIRECTION"/>。</p>
+      <p props="android">摄像头方向：
+      <ul>
+          <li><ph keyref="CAMERA_REAR"/> (0)：使用后置摄像头。</li>
+          <li><ph keyref="CAMERA_FRONT"/> (1)：使用前置摄像头。</li>
+      </ul></p>
   </pd>
        </plentry>
    </parml>
