@@ -57,7 +57,18 @@
    <parml>
        <plentry>
   <pt>encryptionMode</pt>
-  <pd>内置加密模式，默认为 <codeph>AES_128_XTS</codeph> 加密模式。详见 <xref keyref="ENCRYPTION_MODE"/>。</pd>
+  <pd><p props="ios mac windows">内置加密模式。详见 <xref keyref="ENCRYPTION_MODE"/>。</p>
+      <p props="android">内置加密模式。Agora 推荐使用 <ph keyref="AES_128_GCM2"/> 或
+          <ph keyref="AES_256_GCM2"/> 加密模式。这两种模式支持使用盐，安全性更高。<ul
+                                id="ul_urr_tlz_rqb">
+                                <li><ph keyref="SM4_128_ECB"/> (4): 128 位 SM4 加密，ECB 模式。</li>
+                                <li><ph keyref="AES_128_GCM2"/> (7):（默认）128 位 AES 加密，GCM
+                                        模式。该加密模式需要设置盐（<codeph>encryptionKdfSalt</codeph>）。</li>
+                                <li><ph keyref="AES_256_GCM2"/> (8)：256 位 AES 加密，GCM
+                                        模式。该加密模式需要设置盐（<codeph>encryptionKdfSalt</codeph>）。</li>
+                                <li><ph keyref="MODE_END"/> (9)：枚举值边界。</li>
+                            </ul></p>
+  </pd>
        </plentry>
        <plentry>
   <pt>encryptionKey</pt>
