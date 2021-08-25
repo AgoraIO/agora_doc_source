@@ -68,7 +68,7 @@ In order to create the environment necessary to integrate Interactive Live Strea
 
    <div class="alert note"><ul><li>Each SDK version has a corresponding Swift Package with the same version number. For the Video SDK, Agora provides Swift Packages for 3.4.3 or later versions.</li><li>If you have issues installing this Swift Package, try going to <b>File</b> > <b>Swift Packages</b> > <b>Reset Package Caches</b>.</li><li>For more integration methods, see <a href="#othermethods">Other approaches to integrating the SDK</a></li></ul></div>
 
-## Implement a client for Video Call
+## Implement a client for Interactive Live Streaming Premium
 
 This section shows how to use the Agora Video SDK to implement Interactive Live Streaming Premium into your app step by step.
 
