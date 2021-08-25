@@ -31,17 +31,25 @@
                 </plentry>
        <plentry>
   <pt>renderMode</pt>
-  <pd>The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+           <pd><p props="ios mac windows">The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE"/>.</p>
+           <p props="android">
+               <ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul>
+           </p>
+           </pd>
        </plentry>
        <plentry>
   <pt>mirrorMode</pt>
   <pd>
-      <p>The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.<note type="note">
+      <p props="ios mac windows">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
+          <p props="android">
+              <ul conkeyref="setLocalRenderMode2/videomirrormodetype"><li/></ul>
+          </p>
+          <note type="attention">
                                 <ul>
                                     <li>For the mirror mode of the local video view: If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
                                     <li>For the remote user: The mirror mode is disabled by default.</li>
                                 </ul>
-                            </note></p>
+                            </note>
   </pd>
        </plentry>
                 <plentry>
@@ -51,6 +59,10 @@
                 <plentry>
                     <pt>sourceType</pt>
                     <pd>The type of the video frame<xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
+                <plentry props="android ios mac">
+                    <pt>sourceId</pt>
+                    <pd>视频源 ID。</pd>
                 </plentry>
        
    </parml>
