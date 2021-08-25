@@ -10,13 +10,13 @@ Agora provides the following APIs that help you implement playing audio effects 
 
 - Audio Effect APIs: Play ambient sounds with a short duration. For example, applause, cheers, fighting sounds, and gunshots. You can play **multiple audio effect files** at the same time. 
 
-- Audio Mixing API: Plays a relatively long music file, such as the accompaniment and background music. You can play **only one music file** at a time.
+- Audio Mixing APIs: Play a relatively long music file, such as the accompaniment and background music. You can play **only one music file** at a time.
 
 These methods support the following functions:
 
 | Function | Audio Effect APIs | Audio Mixing APIs |
 | -- | -- | -- |
-| Play and stop playing the specified audio file | <ul><li>`playEffect`</li><li>`stopEffect`</li><li>`stopAllEffects`</li></ul> | <ul><li>`startAudioMixing`</li><li>`stopAudioMixing`</li></ul> |
+| Play and stop playing the specified audio file | <ul><li>`preloadEffect`</li><li>`unloadEffect`</li><li>`playEffect`</li><li>`stopEffect`</li><li>`stopAllEffects`</li></ul> | <ul><li>`startAudioMixing`</li><li>`stopAudioMixing`</li></ul> |
 | Pause and resume playing the audio file | <ul><li>`pauseEffect`</li><li>`pauseAllEffects`</li><li>`resumeEffect`</li><li>`resumeAllEffects`</li></ul> |<ul><li>`pauseAudioMixing`</li><li>`resumeAudioMixing`</li></ul> | 
 | Get and set the playback position and volume | <ul><li>`setEffectPosition`</li><li>`getEffectCurrentPosition`</li><li>`getEffectsVolume`</li><li>`setEffectsVolume`</li><li>`setVolumeOfEffect`</li></ul> | <ul><li>`getAudioMixingCurrentPosition`</li><li>`setAudioMixingPosition`</li><li>`getAudioMixingPublishVolume`</li><li>`adjustAudioMixingPublishVolume`</li><li>`getAudioMixingPlayoutVolume`</li><li>`adjustAudioMixingPlayoutVolume`</li></ul> |
 | Report the playback state of the audio file | `onAudioEffectFinished` | `onAudioMixingStateChanged` |
@@ -61,7 +61,7 @@ In your Agora project, open the file used to manage audio effect playback and ad
 
     // Specify the audio effect ID. This is the unique identifier of the audio effect file.
     int id = 0;
-    // Preload an audio effect file into the memory if you want to play the audio effect repeatedly. Do not preload an audio effect file if the file size is large.
+    // Preload an audio effect file into the memory   if you want to play the audio effect repeatedly. Do not preload an audio effect file if the file size is large.
     // You can only preload local audio effect files.
     audioEffectManager.preloadEffect(id++, "Your file path");
 
@@ -70,7 +70,7 @@ In your Agora project, open the file used to manage audio effect playback and ad
     audioEffectManager.playEffect(
         0,   // The ID of the audio effect file.
         "Your file path",   // The path of the audio effect file.
-        -1,  // The number of audio effect loops. -1 means an inifinite loops.
+        -1,  // The number of audio effect loops. -1 means an inifinite loop.
         1,   // The pitch of the audio effect. 1 represents the original pitch.
         0.0, // The spatial positition of the audio effect. 0.0 represents that the audio effect plays in the front.
         100, // The volume of the audio effect. 100 represents the original volume.
@@ -131,8 +131,8 @@ In your Agora project, open the file used to manage audio effect playback and ad
     @Override
     // Occurs when the state of the music file playback changes.
     // Agora reconmmends calling other Audio Mixing APIs, for example, pauseAudioMixing or getAudioMixingDuration, after receiving the onAudioMixingStateChanged callback.
-    public void onAudioMixingStateChanged(int state, int reason) {
-        super.onAudioMixingStateChanged(state, reason);
+    public void onAudioMixingStateChanged(int state, int errorCode) {
+        super.onAudioMixingStateChanged(state, errorCode);
     }
 
     // Pause and resume playing the audio file.
@@ -152,7 +152,7 @@ In your Agora project, open the file used to manage audio effect playback and ad
 
 ## Reference
 
-- Agora provides an open-source [PlayAudioFiles](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/PlayAudioFiles.java) sample project on Github for your reference. You can download the project to try it or view the source code.
+- Agora provides an open-source [PlayAudioFiles](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/PlayAudioFiles.java) sample project on Github for your reference. You can download the project to try it or view the source code.
 - [playEffect]()
 - [onAudioEffectFinished]()
 - [startAudioMixing]()
