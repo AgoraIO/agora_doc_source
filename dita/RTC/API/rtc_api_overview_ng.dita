@@ -188,10 +188,6 @@
                     <stentry><ph conkeyref="setDefaultMuteAllRemoteAudioStreams/shortdesc"
                         /></stentry>
                 </strow>
-                <strow>
-                    <stentry><xref keyref="muteRemoteAudioStreamEx"/></stentry>
-                    <stentry><ph conkeyref="muteRemoteAudioStreamEx/shortdesc"/></stentry>
-                </strow>
             </simpletable>
         </section>
         <section id="section_gxr_pjb_jqb">
@@ -435,7 +431,7 @@
         </section>
         <section id="in-ear_monitoring" props="android ios windows">
             <title>耳返</title>
-            <note id="note_f3y_42w_jqb" type="attention">
+            <note props="windows" type="attention">
                 <p>本组方法仅适用于 Android 和 iOS。</p>
             </note>
             <simpletable id="simpletable_xq2_m4b_jqb">
@@ -642,10 +638,6 @@
                     <stentry><ph conkeyref="startEchoTest2/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry><xref keyref="stopEchoTest"/></stentry>
-                    <stentry><ph conkeyref="stopEchoTest/shortdesc"/></stentry>
-                </strow>
-                <strow>
                     <stentry><xref keyref="startLastmileProbeTest"/></stentry>
                     <stentry><ph conkeyref="startLastmileProbeTest/shortdesc"/></stentry>
                 </strow>
@@ -810,7 +802,6 @@
         </section>
         <section id="CDN_publisher">
             <title>CDN 推流</title>
-            <p><note type="attention">该组方法仅适用于互动直播。</note></p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -1051,7 +1042,7 @@
                 </strow>
             </simpletable>
         </section>
-        <section id="external_video_data" props="windows android">
+        <section id="external_video_data">
             <title>外部视频数据</title>
             <simpletable>
                 <sthead>
@@ -1070,13 +1061,13 @@
                     <stentry><xref keyref="pushVideoFrame2"/></stentry>
                     <stentry><ph conkeyref="pushVideoFrame2/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows android">
                     <stentry><xref keyref="pushEncodedVideoImage"/></stentry>
                     <stentry><ph conkeyref="pushEncodedVideoImage/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section id="raw_video_data" props="windows android">
+        <section id="raw_video_data">
             <title>原始视频数据</title>
             <simpletable>
                 <sthead>
@@ -1087,7 +1078,7 @@
                     <stentry><xref keyref="registerVideoFrameObserver"/></stentry>
                     <stentry><ph conkeyref="registerVideoFrameObserver/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows android">
                     <stentry><xref keyref="registerVideoEncodedImageReceiver"/></stentry>
                     <stentry><ph conkeyref="registerVideoEncodedImageReceiver/shortdesc"/></stentry>
                 </strow>
@@ -1100,7 +1091,7 @@
                     <stentry><xref keyref="onCaptureVideoFrame"/></stentry>
                     <stentry><ph conkeyref="onCaptureVideoFrame/shortdesc"/></stentry>
                 </strow>
-                <strow props="windows">
+                <strow>
                     <stentry><xref keyref="onScreenCaptureVideoFrame"/></stentry>
                     <stentry><ph conkeyref="onScreenCaptureVideoFrame/shortdesc"/></stentry>
                 </strow>
@@ -1116,7 +1107,7 @@
                     <stentry><xref keyref="getVideoFrameProcessMode"/></stentry>
                     <stentry><ph conkeyref="getVideoFrameProcessMode/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows android">
                     <stentry><xref keyref="onEncodedVideoImageReceived"/></stentry>
                     <stentry><ph conkeyref="onEncodedVideoImageReceived/shortdesc"/></stentry>
                 </strow>
@@ -1151,10 +1142,6 @@
         </section>
         <section id="media_metadata">
             <title>媒体附属信息</title>
-            <p><note id="note_v4k_1fc_jqb" type="attention">请不要在 <xref
-                        keyref="IRtcEngineEventHandler"/> 中实现 <xref keyref="getMaxMetadataSize"
-                        />，<xref keyref="onReadyToSendMetadata"/> 和 <xref
-                        keyref="onMetadataReceived"/> 回调。</note>该组方法仅适用于互动直播。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -1211,7 +1198,7 @@
         </section>
         <section id="camera_control">
             <title>摄像头管理</title>
-            <note id="note_yht_vmv_jqb" type="attention">本组方法仅适用于 Android 和 iOS。</note>
+            <note props="windows" type="attention">本组方法仅适用于 Android 和 iOS。</note>
             <simpletable props="android ios windows">
                 <sthead>
                     <stentry>方法</stentry>
@@ -1324,6 +1311,10 @@
                 <strow>
                     <stentry><xref keyref="leaveChannelEx"/></stentry>
                     <stentry><ph conkeyref="leaveChannelEx/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="muteRemoteAudioStreamEx"/></stentry>
+                    <stentry><ph conkeyref="muteRemoteAudioStreamEx/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="muteRemoteVideoStreamEx"/></stentry>
