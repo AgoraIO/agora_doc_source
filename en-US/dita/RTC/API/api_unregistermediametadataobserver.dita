@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_unregistermediametadataobserver">
     <title><ph keyref="unregisterMediaMetadataObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Metadata observer.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Unregisters the specified metadata observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int unregisterMediaMetadataObserver(IMetadataObserver observer, int type);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int unregisterMediaMetadataObserver(IMetadataObserver* observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">unregisterMediaMetadataObserver(type: METADATA_TYPE = 0): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -26,11 +26,11 @@
             <parml>
                 <plentry props="android windows ios mac">
                     <pt>observer</pt>
-                    <pd>Metadata observer<xref keyref="IMetadataObserver"/>.</pd>
+                    <pd>The metadata observer. See <xref keyref="IMetadataObserver"/>.</pd>
                 </plentry>
                 <plentry>
                     <pt>type</pt>
-                    <pd>Metadata type of the observer. The SDK currently only supports<apiname keyref="VIDEO_METADATA"/> . For details, see <xref keyref="METADATA_TYPE"/>.</pd>
+                    <pd>The metadata type. The SDK currently only supports <apiname keyref="VIDEO_METADATA"/>. For details, see <xref keyref="METADATA_TYPE"/>.</pd>
                 </plentry>
             </parml>
         </section>
