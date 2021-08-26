@@ -15,6 +15,7 @@ The API call sequence is as follows:
 
 ![custom audio source api sequence](https://web-cdn.agora.io/docs-files/1605766083489)
 
+When customizing the audio source, you need to record and process the audio data on your own.
 ## Prerequisites
 
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
@@ -55,9 +56,3 @@ Agora provides an open-sourced API-Example iOS sample project on GitHub that inc
 - [setExternalAudioSource2]()
 - [pushExternalAudioFrameRawData]()
 - [pushExternalAudioFrameSampleBuffer]()
-
-### Considerations
-
-Customizing the audio source and sink requires you to manage audio data recording and playback on your own.
-
-- When customizing the audio source, you need to record and process the audio data on your own.
