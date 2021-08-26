@@ -31,11 +31,11 @@
                 </plentry>
                 <plentry>
                     <pt>mode</pt>
-                    <pd><p props="windows">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</p>
-                        <p props="android" id="mode">音频帧的使用模式：<ul>
-                            <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"/> (0): 只读模式。 For example, when users acquire the data with the Agora SDK, then push the RTMP or RTMPS streams.</li>
-                            <li props="rtc"><ph keyref="RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY"/> (1): 只写模式，例如: 若用户自行采集数据，可选择该模式。</li>
-                            <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"/> (2): 读写模式。 For example, when users have their own sound-effect processing module and perform some voice pre-processing, such as a voice change.</li>
+                    <pd><p props="windows">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</p>
+                        <p props="android" id="mode">The use mode of the audio frame:<ul>
+                            <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"/> (0): Read-only mode. Users only read the&#13; audio data without modifying anything. For example, when users acquire the data with the Agora SDK, then push the RTMP or RTMPS streams.</li>
+                            <li props="rtc"><ph keyref="RAW_AUDIO_FRAME_OP_MODE_WRITE_ONLY"/> (1): Write-only mode: Users replace the audio data with their own data and pass the data to the SDK for encoding. For example, when users acquire the data.</li>
+                            <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"/> (2): Read and write mode: Users read the&#13; data from AudioFrame, modify it, and then play it. For example, when users have their own sound-effect processing module and perform some voice pre-processing, such as a voice change.</li>
                         </ul>
                     </p>
                     </pd>
