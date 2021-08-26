@@ -23,22 +23,22 @@
         </section>
         <section id="detailed_desc">
    
-   <dl outputclass="since">
+   <dl outputclass="since" props="rtc">
        <dlentry>
   <dt>Since</dt>
   <dd>v2.8.0</dd>
        </dlentry>
    </dl>
    <p>Once registered, the user account can be used to identify the local user when the user joins the channel. After the registration is successful, the user account can identify the identity of the local user, and the user can use it to join the channel.</p>
-   <p>After the user successfully registers a user account, the SDK triggers the<xref keyref="onLocalUserRegistered"/> callback on the local client, reporting the user ID and user account of the local user.</p>
+   <p>After the user successfully registers a user account, the SDK triggers the <xref keyref="onLocalUserRegistered"/> callback on the local client, reporting the user ID and user account of the local user.</p>
    <p>This method is optional. To join a channel with a user account, you can choose either of the following ways:<ul>
-       <li>First call<apiname keyref="registerLocalUserAccount"/> to register the Account, and then call<apiname keyref="joinChannelWithUserAccount2"/> to join the channel.</li>
-       <li>Call the<apiname keyref="joinChannelWithUserAccount2"/> method to join the channel.</li>
+       <li>Call <apiname keyref="registerLocalUserAccount"/> to to create a user account, and then call <apiname keyref="joinChannelWithUserAccount2"/> to join the channel.</li>
+       <li>Call the <apiname keyref="joinChannelWithUserAccount2"/> method to join the channel.</li>
    </ul></p>
-   <p>The difference between the two ways is that the time elapsed between calling<apiname keyref="registerLocalUserAccount"/> the method and<apiname keyref="joinChannelWithUserAccount2"/> joining the channel is shorter than directly calling .</p>
+   <p>The difference between the two ways is that the time elapsed between calling the <apiname keyref="registerLocalUserAccount"/> method and joining the channel is shorter than directly calling <apiname keyref="joinChannelWithUserAccount2"/>.</p>
    <note type="attention">
        <ul>
-  <li>Ensure that you set the<parmname> userAccount</parmname> parameter. Otherwise, this method does not take effect.</li>
+  <li>Ensure that you set the <parmname>userAccount</parmname> parameter. Otherwise, this method does not take effect.</li>
   <li>Ensure that the user account is unique in the channel.</li>
   <li>To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the uid of the user is set to the same parameter type.</li>
        </ul>
@@ -48,7 +48,7 @@
    <parml>
        <plentry>
   <pt props="android windows">appId</pt>
-           <pt props="ios mac">appId</pt>
+           <pt props="ios mac">appID</pt>
   <pd>The App ID of your project on Agora Console.</pd>
        </plentry>
        <plentry>
