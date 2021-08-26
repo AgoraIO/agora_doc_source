@@ -12,8 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public abstract int registerAudioFrameObserver(IAudioFrameObserver observer);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setAudioFrameDelegate:(id&lt;AgoraAudioFrameDelegate> _Nullable)delegate;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int registerAudioFrameObserver(IAudioFrameObserver* observer) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -26,12 +26,13 @@
    <p>Call this method to register an audio frame observer object (register a callback). When you need the SDK to trigger <xref keyref="onRecordAudioFrame"/> or <xref keyref="onPlaybackAudioFrame"/> callback, you need to use this method to register the callbacks.</p>
    <note type="attention">Ensure that you call this method before joining a channel.</note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt>observer</pt>
+           <pt props="android windows">observer</pt>
+           <pt props="ios mac">delegate</pt>
   <pd>
-      <p>The observer object instance. See <xref keyref="IAudioFrameObserver"/>. Set the value as <ph keyref="NULL"/> to release the observer object. Agora recommends releasing the observer object after receiving the <xref keyref="onLeaveChannel"/> callback.</p>
+      <p>The observer object instance. For details, see <xref keyref="IAudioFrameObserver"/>. Set the value as <ph keyref="NULL"/> to release the observer object. Agora recommends releasing the observer object after receiving the <xref keyref="onLeaveChannel"/> callback.</p>
   </pd>
        </plentry>
    </parml>
@@ -39,7 +40,7 @@
         <section>
    <title>Returns</title>
    <ul id="ul_wtk_phz_r4b">
-       <li>0: Success.</li>
+       <li>Success.</li>
        <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
