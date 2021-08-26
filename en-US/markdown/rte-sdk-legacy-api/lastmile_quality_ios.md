@@ -36,6 +36,8 @@ Before adjusting the audio volume, ensure that you have implemented the basic r
 
 ## Implement pre-call testing
 
+Agora recommends that you start device test before starting network probe test.
+
 ### Device test
 
 To start an echo test, refer to the following steps.
