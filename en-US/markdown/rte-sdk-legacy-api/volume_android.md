@@ -130,7 +130,7 @@ rtcEngine.adjustRecordingSignalVolume(volume);
 
 ## Reference
 
-This section includes reference information about the function.
+This section includes in depth information about the methods you used in this page, and links to related pages.
 
 
 ### Sample project

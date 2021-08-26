@@ -90,7 +90,7 @@ To implement the raw video data function in your project, refer to the following
 
 ## Reference
 
-This section includes reference information about the function.
+This section includes in depth information about the methods you used in this page, and links to related pages.
 
 ### Sample project
 

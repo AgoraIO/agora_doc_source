@@ -22,7 +22,7 @@ To implement a custom video renderer in your project, refer to the following ste
 
 ## Reference
 
-This section includes reference information about the function.
+This section includes in depth information about the methods you used in this page, and links to related pages.
 
 ### Sample project
 
