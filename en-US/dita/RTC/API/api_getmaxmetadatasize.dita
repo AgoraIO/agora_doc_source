@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getmaxmetadatasize">
     <title><ph keyref="getMaxMetadataSize"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK requests the maximum size of <xref keyref="Metadata"/>.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK requests the maximum size of the metadata.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -12,8 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public abstract int getMaxMetadataSize();</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)metadataMaxSize;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int getMaxMetadataSize() = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -23,10 +23,10 @@
         </section>
         <section id="detailed_desc">
    
-   <p>The SDK triggers this callback after you successfully call the <xref keyref="registerMediaMetadataObserver"/> method. You need to specify the maximum size of the <xref keyref="Metadata"/> in the return value of this callback.</p>
+   <p>TheSDK triggers this callback after you successfully call <xref keyref="registerMediaMetadataObserver"/>. You need to specify the maximum size of the metadata in the return value of this callback.</p>
         </section>
         <section id="return_values">
    <title>Returns</title>
-   <p>The maximum size of the <parmname>buffer</parmname> of the <apiname keyref="Metadata"/> that you want to use. The highest value is 1024 bytes. Ensure that you set the return value.</p>
+   <p>The maximum size of the <parmname>buffer</parmname> of the metadata that you want to use. The highest value is 1024 bytes. Ensure that you set the return value.</p>
         </section></refbody>
 </reference>
