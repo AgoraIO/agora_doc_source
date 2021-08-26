@@ -1,3 +1,5 @@
+This page shows you how to get raw video data for pre- and post-processing.
+
 ## Understand the tech
 
 During the video transmission process, you can pre- and post-process the captured video data to achieve the desired playback effect.

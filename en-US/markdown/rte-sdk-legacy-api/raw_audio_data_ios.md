@@ -1,3 +1,5 @@
+This page shows you how to get raw audio data for pre- and post-processing.
+
 ## Understand the tech
 
 During real-time communications, you can pre- and post-process the audio and video data and modify them for desired playback effects.

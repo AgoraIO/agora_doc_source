@@ -1,3 +1,5 @@
+This page shows you how to get raw video data for pre- and post-processing.
+
 ## Understand the tech
 
 During real-time communications, you can pre- and post-process the video data and modify it for desired playback effects.
