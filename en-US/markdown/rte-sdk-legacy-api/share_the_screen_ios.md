@@ -9,7 +9,7 @@ Screen sharing enables a host of an interactive live streaming broadcast or a us
 
 To implement screen sharing on iOS, use the native iOS ReplayKit framework in an Extension to record the screen, and treat the screen-sharing stream as a user joining the channel. As Apple does not support the communication between an Extension process and the main app process, you need to create a separate process for the screen-sharing stream.
 
-![](https://web-cdn.agora.io/docs-files/1606371600705)
+![](https://web-cdn.agora.io/docs-files/1629949906835)
 
 ## Prerequisites
 
@@ -26,10 +26,12 @@ Create a Broadcast Upload Extension with the following steps:
 1. Open the project file with Xcode, and select **Editor > Add Target...** in the menu bar.
 
 2. In the pop-up window, choose **Broadcast Upload Extension** on the iOS page, and click **Next**.
+
    ![](https://web-cdn.agora.io/docs-files/1606371630501)
 
 3. In the **Product Name** field, enter a name for the Extension, for example, Agora-ScreenShare, and click **Finish**.
    You should now see a folder for the Extension in your project; this folder holds the code for implementing screen sharing.
+
    ![](https://web-cdn.agora.io/docs-files/1606371653521)
 
 4. Open the Podfile in the project, and add dependencies to the Extension.
@@ -51,7 +53,7 @@ Create a Broadcast Upload Extension with the following steps:
 
 ### 2. Use the Extension for screen sharing in the project
 
-Add `RPSystemBroadcastPickerView` to the view of the app as a button to start screen recording.
+Add `RPSystemBroadcastPickerView` (iOS native class) to the view of the app as a button to start screen recording.
 
 ```swift
 // Swift
@@ -103,7 +105,7 @@ Use Apple's native ReplayKit framework for screen recording.
 
 1. In the `Info.plist` file in the Extension for screen sharing, set the `RPBroadcastProcessMode` as `RPBroadcastProcessModeSampleBuffer.`
 
-2. Start screen recording in the `broadcastStarted` callback.
+2. Start screen recording in `broadcastStarted(withSetupInfo:)` (iOS native method).
 
     <div class="alert note"> The channel name in the code example is set as <code>ScreenShare</code>. If you want the user to enter the channel name, you must use App Group to pass the parameter value of the main process to the Extension.</div>
 
@@ -197,6 +199,10 @@ Use Apple's native ReplayKit framework for screen recording.
 
 ## Reference
 
+This section provides reference information you may need when sharing the screen.
+
+### Sample project
+
 Agora provides an open-source sample project that implements [sharing the screen](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/iOS) on GitHub. You can try the sample project and view the source code.
 
 The following table lists the main code files for the sample project:
@@ -205,3 +211,19 @@ The following table lists the main code files for the sample project:
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | [Agora-ScreenShare-Extension](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/iOS/Agora-ScreenShare-Extension) | The Extension for the screen-sharing process. The main code files are as follows: <ul><li> [SampleHandler.swift](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/iOS/Agora-ScreenShare-Extension/SampleHandler.swift)：Records the screen with Apple ReplayKit. </li><li> [AgoraUploader.swift](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/iOS/Agora-ScreenShare-Extension/AgoraUploader.swift)：Uses the custom source function of the SDK to capture the screen recording data and send it to other users in the channel. </li></ul>|
 | [ScreenShare.swift](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/iOS/APIExample/Examples/Advanced/ScreenShare/ScreenShare.swift) | The main code of the screen-sharing app, which allows the local user to join a channel and enable screen sharing. |
+
+
+### API reference
+
+- iOS native APIs
+  - [RPSystemBroadcastPickerView](https://developer.apple.com/documentation/replaykit/rpsystembroadcastpickerview)
+  - [broadcastStarted(withSetupInfo:)](https://developer.apple.com/documentation/replaykit/rpbroadcastsamplehandler/2143170-broadcaststarted/)
+  - [processSampleBuffer(_:with:)](https://developer.apple.com/documentation/replaykit/rpbroadcastsamplehandler/2123045-processsamplebuffer/)
+
+- Agora APIs
+  - [enableVideo](https://docs-preview.agoralab.co/en/trinity/API%20Reference/oc_high_level/interface_agora_rtc_engine_kit.html#a41b1e02f0aa8eaf1ad051dc1f320f174)
+  - [setExternalVideoSource](https://docs-preview.agoralab.co/en/trinity/API%20Reference/oc_high_level/interface_agora_rtc_engine_kit.html#a625dc5ca2a4a7bd34e30167a71ff7570)
+  - [muteAllRemoteVideoStreams](https://docs-preview.agoralab.co/en/trinity/API%20Reference/oc_high_level/interface_agora_rtc_engine_kit.html#a9d8aa9fb317e4ee5a58b6a80afe78c91)
+  - [muteAllRemoteAudioStreams](https://docs-preview.agoralab.co/en/trinity/API%20Reference/oc_high_level/interface_agora_rtc_engine_kit.html#ac1746e4c1ca1d4db2f744a7371ee174e)
+  - [pushExternalVideoFrame](https://docs-preview.agoralab.co/en/trinity/API%20Reference/oc_high_level/interface_agora_rtc_engine_kit.html#a82ee4b9264ade337410baae99622e10a)
+  - [joinChannelByToken](https://docs-preview.agoralab.co/en/trinity/API%20Reference/oc_high_level/interface_agora_rtc_engine_kit.html#adfa8aea841fdf1ac6c00ad1bfd0b705f)

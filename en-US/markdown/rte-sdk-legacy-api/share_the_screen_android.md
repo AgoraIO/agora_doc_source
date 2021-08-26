@@ -7,26 +7,27 @@ Screen sharing enables a host of an interactive live streaming broadcast or a us
 
 ## Understand the tech
 
-To share the screen on Android, you need to use Android native APIs and `startScreenCapture` provided by Agora. The following diagram shows how data is transferred during screen sharing:
+To share the screen on Android, you need to use Android native APIs and Agora APIs together. The following diagram shows how data is transferred during screen sharing:
 
-![](https://web-cdn.agora.io/docs-files/1629887176967)
+![](https://web-cdn.agora.io/docs-files/1629947832958)
 
 ## Prerequisites
 
 Before proceeding, ensure that you have the following:
 - A project that has implemented the [basic real-time engagement functionality](https://docs-preprod.agora.io/en/live-streaming-4.x-preview/start_live_android_ng?platform=Android).
-- To use [`MediaProjection`](https://developer.android.google.cn/reference/android/media/projection/MediaProjection) (Android native class), you need to ues Android API level 21 or higher.
+- To use `MediaProjection` (Android native class), you need to use Android API level 21 or higher.
 
 ## Implementation
 
-This section shows you how to implement the screen sharing. Add code in the following steps in `/app/java/com.example.<projectname>/MainActivity`.
+This section shows you how to implement screen sharing. Add code in the following steps in `/app/java/com.example.<projectname>/MainActivity`.
 
 
 ### 1. Send the screen-sharing notification
 
-If the user shares the screen on Android 10 or later, to avoid the Android system from triggering [`SecurityException`](https://developer.android.google.cn/reference/java/lang/SecurityException?hl=en) (Android native callback), you need to call [startForeground](https://developer.android.google.cn/guide/components/foreground-services?hl=en#start) (Android native method) before calling `MediaProjection` to notify the user that the current device starts screen sharing.
+If the user shares the screen on Android 10 or later, to avoid the Android system from triggering `SecurityException` (Android native callback), you need to call `startForeground` (Android native method) before calling `MediaProjection` to notify the user that the current device starts screen sharing.
 
 ```java
+// Start capturing screen data. Ensure that your Android version must be Lollipop or higher.
 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
     if(b){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -41,18 +42,17 @@ if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
 Create an intent based on `MediaProjection`, and pass the intent to the `startActivityForResult` (Android native method) to start capturing screen data.
 
 ```java
-// Starts capturing screen data. Ensure that your Android version must be Lollipop or higher.
 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
     if(b){
 
         ...
 
-        // Instantiates a MediaProjectionManager object
+        // Instantiate a MediaProjectionManager object
         MediaProjectionManager mpm = (MediaProjectionManager)
                 getContext().getSystemService(Context.MEDIA_PROJECTION_SERVICE);
-        // Creates an intent
+        // Create an intent
         Intent intent = mpm.createScreenCaptureIntent();
-        // Starts screen capturing
+        // Start screen capturing
         startActivityForResult(intent, PROJECTION_REQ_CODE);
     }
     }
@@ -107,7 +107,7 @@ engine.joinChannelEx(null, channelId, 0, mediaOptions, iRtcEngineEventHandler, r
 
 ### 5. Stop the screen sharing
 
-When the user finish the screen sharing, call `stopScreenCapture` to stop the screen sharing.
+When the user finishes the screen sharing, call `stopScreenCapture` to stop the screen sharing.
 
 ```java
 // Stop the screen sharing.
@@ -124,5 +124,11 @@ Agora provides an open-source sample project that implements [sharing the screen
 
 ### API reference
 
-- [startScreenCapture](https://docs-preview.agoralab.co/cn/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#a16a83b985493c445408da46ab7f01258)
-- [stopScreenCapture](https://docs-preview.agoralab.co/cn/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#aaa8a6ef8909cebd023c5c229d35fb472)
+- Android native APIs
+  - [MediaProjection](https://developer.android.google.cn/reference/android/media/projection/MediaProjection)
+  - [SecurityException](https://developer.android.google.cn/reference/java/lang/SecurityException?hl=en)
+  - [startForeground](https://developer.android.google.cn/guide/components/foreground-services?hl=en#start)
+
+- Agora APIs
+  - [startScreenCapture](https://docs-preview.agoralab.co/cn/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#a16a83b985493c445408da46ab7f01258)
+  - [stopScreenCapture](https://docs-preview.agoralab.co/cn/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#aaa8a6ef8909cebd023c5c229d35fb472)
