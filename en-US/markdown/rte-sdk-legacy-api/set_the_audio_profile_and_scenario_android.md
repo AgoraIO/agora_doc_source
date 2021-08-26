@@ -93,7 +93,7 @@ The following tables show the volume type according to different audio scenarios
 
   | User role \ Audio route                                     | Wired earphones | Speakerphone or earpiece | Bluetooth devices |
   | ------------------------------------------------------------ | --------------- | ------------------------- | ----------------- |
-  | <li>Hosts in the interactive live streaming profile</li><li>Users in the communication profile</li> | Media volume    | In-call volume            | In-call volume    |
+  | <ul><li>Hosts in the interactive live streaming profile</li><li>Users in the communication profile</li></ul> | Media volume    | In-call volume            | In-call volume    |
   | Single host in the interactive live  streaming profile       | Media volume    | Media volume              | In-call volume    |
   | Audience in the interactive live  streaming profile          | Media volume    | Media volume              | Media volume      |
 
@@ -101,7 +101,7 @@ The following tables show the volume type according to different audio scenarios
 
   | User role \ Audio route                                     | Wired earphones | Speakerphone or earpiece | Bluetooth devices |
   | ------------------------------------------------------------ | --------------- | ------------------------- | ----------------- |
-  | <li>Hosts in the interactive live streaming profile</li><li>Users in the communication profile</li> | Media volume    | Media volume            | Media volume    |
+  | <ul><li>Hosts in the interactive live streaming profile</li><li>Users in the communication profile</li></ul> | Media volume    | Media volume            | Media volume    |
   | Single host in the interactive live  streaming profile       | Media volume    | Media volume              | Media volume    |
   | Audience in the interactive live  streaming profile          | Media volume    | Media volume              | Media volume      |
 
@@ -109,13 +109,15 @@ The following tables show the volume type according to different audio scenarios
 
   | User role \ Audio route                                     | Wired earphones | Speakerphone or earpiece | Bluetooth devices |
   | ------------------------------------------------------------ | --------------- | ------------------------- | ----------------- |
-  | <li>Hosts in the interactive live streaming profile</li><li>Users in the communication profile</li> | Media volume    | In-call volume            | In-call volume    |
+  | <ul><li>Hosts in the interactive live streaming profile</li><li>Users in the communication profile</li></ul> | Media volume    | In-call volume            | In-call volume    |
   | Single host in the interactive live  streaming profile       | Media volume    | In-call volume              | In-call volume    |
   | Audience in the interactive live  streaming profile          | Media volume    | In-call volume              | In-call volume      |
 
 <a name="common_applications"></a>
 
 ## Common applications
+
+The following table shows the recommended audio profile and scenario in common applications:
 
 | Application           | Audio profile (with the prefix `AUDIO_PROFILE_`)                    | Audio scenario (with the prefix `AUDIO_SCENARIO_`)                |
 | :--------------------- | :------------------------- | :---------------------- |

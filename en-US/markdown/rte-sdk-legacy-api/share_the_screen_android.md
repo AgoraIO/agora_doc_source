@@ -34,7 +34,7 @@ if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
             getActivity().startForegroundService(fgServiceIntent);
         }
     }
-    }
+}
 ```
 
 ### 2. Start capturing screen data
@@ -55,7 +55,7 @@ if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
         // Start screen capturing
         startActivityForResult(intent, PROJECTION_REQ_CODE);
     }
-    }
+}
 ```
 
 ### 3. Start the screen sharing
@@ -82,28 +82,28 @@ public void onActivityResult(int requestCode, int resultCode, @Nullable Intent d
 
 - To send video streams showing the user's entire screen, add the following code to your project:
 
-```java
-// Join a channel and publish the video stream from the screen sharing.
-options.publishCameraTrack = false;
-options.publishScreenTrack = true;
-engine.joinChannel(accessToken, channelId, 0, options);
-```
+  ```java
+  // Join a channel and publish the video stream from the screen sharing.
+  options.publishCameraTrack = false;
+  options.publishScreenTrack = true;
+  engine.joinChannel(accessToken, channelId, 0, options);
+  ```
 
 - To send video streams from both the user's entire screen and local camera, add the following code to your project:
 
-```java
-// Join a channel and publish the video stream from the screen sharing.
-options.publishCameraTrack = true;
-options.publishScreenTrack = false;
-engine.joinChannel(accessToken, channelId, 0, options);
+  ```java
+  // Join a channel and publish the video stream from the screen sharing.
+  options.publishCameraTrack = true;
+  options.publishScreenTrack = false;
+  engine.joinChannel(accessToken, channelId, 0, options);
 
-// Join the same channel and publish the video stream from the local camera.
-ChannelMediaOptions mediaOptions = new ChannelMediaOptions();
-mediaOptions.publishCameraTrack = false;
-mediaOptions.publishScreenTrack = true;
-String channelId = et_channel.getText().toString();
-engine.joinChannelEx(null, channelId, 0, mediaOptions, iRtcEngineEventHandler, rtcConnection2);
-```
+  // Join the same channel and publish the video stream from the local camera.
+  ChannelMediaOptions mediaOptions = new ChannelMediaOptions();
+  mediaOptions.publishCameraTrack = false;
+  mediaOptions.publishScreenTrack = true;
+  String channelId = et_channel.getText().toString();
+  engine.joinChannelEx(null, channelId, 0, mediaOptions, iRtcEngineEventHandler, rtcConnection2);
+  ```
 
 ### 5. Stop the screen sharing
 
