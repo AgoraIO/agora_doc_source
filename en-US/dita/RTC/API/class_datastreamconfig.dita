@@ -6,13 +6,10 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public class DataStreamConfig { public boolean syncWithAudio = false; public boolean ordered = false; }</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility(&quot;default&quot;))) @interface AgoraDataStreamConfig: NSObject @property (assign, nonatomic) BOOL ordered; @property (assign, nonatomic) BOOL syncWithAudio; @end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">struct DataStreamConfig { bool syncWithAudio; bool ordered; };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export interface DataStreamConfig {
-  syncWithAudio: boolean;
-  ordered: boolean;
-}</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">export interface DataStreamConfig { syncWithAudio: boolean; ordered: boolean; }</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
@@ -37,12 +34,12 @@
       <row>
  <entry><codeph><ph keyref="false"/></codeph></entry>
  <entry><codeph><ph keyref="false"/></codeph></entry>
- <entry>The SDK triggers the <xref keyref="onStreamMessage"/> callback immediately after the receiver receives a data packet.</entry>
+ <entry>The SDK triggers the callback immediately after the receiver receives a data packet<xref keyref="onStreamMessage"/>.</entry>
       </row>
       <row>
  <entry><codeph><ph keyref="true"/></codeph></entry>
  <entry><codeph><ph keyref="false"/></codeph></entry>
- <entry>If the data packet delay is within the audio delay, the SDK triggers the <ph keyref="onStreamMessage"/> callback when the synchronized audio packet is played out. If the data packet delay exceeds the audio delay, the SDK triggers the <ph keyref="onStreamMessage"/> callback as soon as the data packet is received.</entry>
+ <entry>If the data packet delay is within the audio delay, the SDK triggers the callback when the synchronized audio packet is played out<ph keyref="onStreamMessage"/>. If the data packet delay exceeds the audio delay, the SDK triggers the callback as soon as the<ph keyref="onStreamMessage"/> data packet is received.</entry>
       </row>
       <row>
  <entry><codeph><ph keyref="false"/></codeph></entry>
@@ -66,25 +63,20 @@
   <pt>syncWithAudio</pt>
   <pd>
                         <p>Whether to synchronize the data packet with the published audio packet.<ul>
-                                <li><codeph><ph keyref="true"/></codeph>: Synchronize the data packet with the audio
-                                    packet.</li>
-                                <li><codeph><ph keyref="false"/></codeph>: Do not synchronize the data packet with
-                                    the audio packet.</li>
-                            </ul>When you set the data packet to synchronize with the audio, then if
-                            the data packet delay is within the audio delay, the SDK triggers the
-                                <xref keyref="onStreamMessage"/> callback when the synchronized
-                            audio packet is played out. Do not set this parameter as <codeph><ph keyref="true"/></codeph> if you need the receiver to receive the data packet
-                            immediately. Agora recommends that you set this parameter to <codeph><ph keyref="true"/></codeph> only when you need to implement specific functions,
-                            for example lyric synchronization.</p>
+                                <li><codeph>: Synchronize the data packet with the audio packet.</codeph><ph keyref="true"/></li>
+                                <li><codeph>: Do not synchronize the data packet with the audio packet.</codeph><ph keyref="false"/></li>
+                            </ul>When you set the data packet to synchronize with the audio, then if the data packet delay is within the audio delay, the SDK triggers the callback when the synchronized audio packet is played out<xref
+                                keyref="onStreamMessage"/>. Do not set this parameter as if you need the receiver to receive the data packet immediately<ph
+                                keyref="true"/>. Agora recommends that you set this parameter to `true` only when you need to implement specific functions, for example lyric synchronization.</p>
                     </pd>
        </plentry>
        <plentry>
   <pt>ordered</pt>
   <pd>
                         <p>Whether the SDK guarantees that the receiver receives the data in the sent order.<ul>
-                                <li><codeph><ph keyref="true"/></codeph>: Guarantee that the receiver receives the data in the sent order.</li>
-                                <li><codeph><ph keyref="false"/></codeph>: Do not guarantee that the receiver receives the data in the sent order.</li>
-                            </ul>Do not set this parameter as <codeph><ph keyref="true"/></codeph> if you need the receiver to receive the data packet immediately.</p>
+                                <li><codeph>: Guarantee that the receiver receives the data in the sent order.</codeph><ph keyref="true"/></li>
+                                <li><codeph>: Do not guarantee that the receiver receives the data in the sent order.</codeph><ph keyref="false"/></li>
+                            </ul>Do not set this parameter as if you need the receiver to receive the data packet immediately.<codeph><ph keyref="true"/></codeph></p>
                     </pd>
        </plentry>
    </parml>
