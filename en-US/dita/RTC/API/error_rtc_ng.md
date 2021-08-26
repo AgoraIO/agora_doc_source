@@ -9,7 +9,7 @@ This article provides descriptions and troubleshooting tips for common Agora SDK
 The error and warning codes may be returned in the following ways:
 
 - The return value of a method call, represented by a negative number. In such a case, it should be read as if it were positive.
-- An [onError] or [onWarning] callback.
+
 
 ## General errors
 
