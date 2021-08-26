@@ -8,16 +8,11 @@ After a user successfully joins the channel, the SDK sends the monitored real-ti
 
 ### Network quality report
 
-The `onNetworkQuality` callback reports the uplink and downlink last-mile network quality of each user in the `COMMUNICATION` profile or each host in the `LIVE_BROADCASTING` profile in the current call, see [quality rating table](#rate) for details. The last mile refers to the network from your device to the Agora edge server. The uplink last mile quality rating is based on the actual transmission bitrate, the uplink network packet loss rate, the average round-trip delay, and the uplink network jitter; while the downlink last mile quality rating is based on the downlink network packet loss rate, the average round-trip delay, and the downlink network jitter.
-
-> - In the <code>COMMUNICATION</code> profile, you receive network quality reports of all the users (including yours) in the channel once every two seconds.
-> - In the <code>LIVE_BROADCASTING</code> profile, if you are the host, you receive network quality reports of all hosts (including yours) in the channel once every two seconds; if you are the audience, you receive the report of all hosts and yourself once every two seconds.
-> - The higher the ratio of the actual transmission bitrate to the target transmission bitrate, the better the call quality and the higher the network quality.
-> - <a name="RTT"></a>**The average round-trip delay** refers to the average value of multiple round-trip delays in the reported interval.
+The `onNetworkQuality` callback reports the uplink and downlink last-mile network quality of each user in the `COMMUNICATION` profile or each host in the `LIVE_BROADCASTING` profile in the current call, see [quality rating table](#rate) for details. The last mile is the network from your device to the Agora edge server. The uplink last mile quality rating is based on the actual transmission bitrate, the uplink network packet loss rate, the average round-trip delay, and the uplink network jitter; while the downlink last mile quality rating is based on the downlink network packet loss rate, the average round-trip delay, and the downlink network jitter. The higher the ratio of the actual transmission bitrate to the target transmission bitrate, the better the call quality and the higher the network quality. The average round-trip delay refers to the average value of multiple round-trip delays in the reported interval.
 
 ### Statistics report
 
-The `onRtcStats` callback reports call statistics. You can see the duration, the number of users in the channel, the system CPU usage, the application CPU usage, and the following parameters of the current call.
+The `onRtcStats` callback reports call statistics. You can see the duration, the number of users in the channel, the system CPU usage, the application CPU usage, and the following important parameters of the current call.
 
 | Parameter                           | Description                                                  | Comment                                                      |
 | :---------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
@@ -28,60 +23,62 @@ The `onRtcStats` callback reports call statistics. You can see the duration, the
 | `txAudioKBitRate`/`rxAudioKBitRate` | The bitrate sent/received of the audio packet.               | The actual bitrate sent/received in the reported interval.   |
 | `txVideoKBitRate`/`rxVideoKBitRate` | The bitrate sent/received of the video packet.               | The actual bitrate sent/received in the reported interval.   |
 | `lastmileDelay`                     | The network delay from the local client to the Agora edge server. | <li>This parameter refers to half of [the average round-trip delay](#RTT), not the **one-way** network delay from the client to the Agora edge server or vice versa. <li>The network delay here does not distinguish between the audio and video delay and is the data obtained by the UDP packet. |
-| `txPacketLossRate`                  | The packet loss rate from the local client to the Agora edge server. | <li>The larger value between audio and video uplink packet loss rate. <li>The packet loss rate before using the **anti-packet-loss** method. |
 | `rxPacketLossRate`                  | The packet loss rate from the Agora edge server to the local client. | <li>The larger value between audio and video downlink packet loss rate.  <li>The packet loss rate before using the **anti-packet-loss** method. |
+
 
 ### Audio quality report
 
+This section describes the user's audio quality report, including local audio stream statistics, local audio stream state change, remote audio stream statistics, and remote audio stream state change.
+
 #### Statistics of local audio streams
 
-The `onLocalAudioStats` callback reports the statistics of the audio streams sent. You can see the number of channels (mono or dual), the sample rate, and the **average** sending bitrate in the reported interval.
+The `onLocalAudioStats` callback, which is triggered once every two seconds, reports the statistics of the audio streams sent. You can learn about the following important statistics:
 
-> The SDK triggers this callback once every two seconds. The sample rate refers to the actual sample rate of the audio streams sent in the reported interval.
+- The number of audio channels.
+- The actual sample rate of the audio streams sent in the reported interval.
+- The average sending bitrate in the reported interval.
 
 #### State changes of local audio streams
 
-When the state of the local audio stream changes (including the state of the audio recording and encoding), the SDK triggers the `onLocalAudioStateChanged` callback to report the current state. You can troubleshoot with the error code when exceptions occur.
+When the state of local audio changes, such as the state of audio recording or audio encoding changes, the SDK triggers the `onLocalAudioStateChanged` callback to report the current state. You can troubleshoot with the error code when exceptions occur.
 
 #### Statistics of remote audio streams
 
+The following figure shows the transmission process between app clients.
+
 ![](https://web-cdn.agora.io/docs-files/1565945275984)
 
-The `onRemoteAudioStats` callback reports the audio statistics of each remote user in the `COMMUNICATION` profile or remote host in the `LIVE_BROADCASTING` profile in the current call. You can see the quality of the audio stream sent by each remote user in the `COMMUNICATION` profile or remote host in the `LIVE_BROADCASTING` profile (see [quality rating table](#rate)), the number of channels (mono or dual), and the following parameters.
+The `onRemoteAudioStats` callback reports the audio statistics of each remote user in the `COMMUNICATION` profile or remote host in the `LIVE_BROADCASTING` profile in the current call. You can learn about the quality of the audio stream sent by each remote user in the `COMMUNICATION` profile or remote host in the `LIVE_BROADCASTING` profile (see [quality rating table](#rate)), the number of audio channels, and the following important parameters.
 
 | Parameter               | Description                                                  | Comment                                                      |
 | :---------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `networkTransportDelay` | The network delay from the sender to the receiver.           | Stages 2 + 3 + 4 in the figure above                         |
-| `jitterBufferDelay`     | The network delay from the receiver to the network jitter buffer. | Stage 5 in the figure above                                  |
-| `audioLossRate`         | The frame loss rate of the received remote audio streams in the reported interval. | <li>Stages 2 + 3 + 4 + 5 in the figure above<li>In a reported interval, audio **freeze** occurs when the audio frame loss rate reaches 4%. |
+| `networkTransportDelay` | The network delay from the sender to the receiver.           | Stages 2, 3, and 4 in the previous figure                         |
+| `jitterBufferDelay`     | The network delay from the receiver to the network jitter buffer. | Stage 5 in the previous figure                                  |
+| `audioLossRate`         | The frame loss rate of the received remote audio streams in the reported interval. | <li>Stages 2, 3, 4, and 5 in the previous figure<li>In a reported interval, audio **freeze** occurs when the audio frame loss rate reaches 4%. |
 | `receivedSampleRate`    | The sample rate of the received remote audio streams in the reported interval. |                N/A                                              |
 | `receivedBitrate`       | The **average** bitrate of the received remote audio streams in the reported interval. |                    N/A                                          |
 | `totalFrozenTime`       | The total **freeze** time (ms) of the remote audio streams after the remote user joins the channel. | <li>Agora defines `totalFrozenTime` = The number of times the audio freezes × 2 × 1000 (ms).<li>The total time is the cumulative duration after the remote user joins the channel. |
-| `frozenRate`            | The total audio freeze time is a percentage of the total time when the audio is available. | When the remote user in the `COMMUNICATION` profile or remote host in the `LIVE_BROADCASTING` profile neither stops sending the audio stream nor disables the audio module after joining the channel, the audio is **available**. |
-| `qoeQuality`     |   Quality of experience (QoE) of the local user when receiving a remote audio stream.              |            N/A                    |
-| `qualityChangedReason`     |   The reason for poor QoE of the local user when receiving a remote audio stream.       |              N/A                  |
+| `frozenRate`            | The total audio freeze time is a percentage of the total time when the audio is available. | When the remote user in the `COMMUNICATION` profile or remote host in the `LIVE_BROADCASTING` profile neither stops sending the audio stream nor disables the audio module after joining the channel, the audio is **available**. Note that the audio module refers to the audio processing, not the physical module in the SDK. When sending an audio stream, the audio module refers to the audio sampling, pre-processing, encoding and other processing; when receiving an audio stream, the audio module refers to the audio decoding, post-processing, playback and other processing. Users can only enable or disable their own audio modules. |
 | `mosValue`     |   The quality of the remote audio stream as determined by the Agora real-time audio MOS (Mean Opinion Score) measurement system in the reported interval.      |              N/A                  |
 
-The `onRemoteAudioStats` callback reports statistics more closely linked to the real-user experience of the audio transmission quality. Even if network packet loss occurs, users might find the overall audio quality acceptable because the audio frame loss rate of the received audio streams might not be high due to the **anti-packet-loss** and congestion control methods, such as forward error correction (FEC), retransmissions and bandwidth estimation.
 
-> - In the <code>COMMUNICATION</code> profile, you receive the audio stream statistics of all the remote users (excluding yours) in the channel once every two seconds.
-> - In the <code>LIVE_BROADCASTING</code> profile, if you are the host, you receive the audio stream statistics of all remote hosts (excluding yours) in the channel once every two seconds; if you are the audience, you receive the statistics of all hosts in the channel once every two seconds.
-> - Agora **audio module** refers to the audio processing process, and not the actual module in the SDK. When sending audio streams, the audio module refers to the processes of audio sampling, pre-processing, and encoding; when receiving audio streams, the audio module refers to the processes of audio decoding, post-processing, and playback.
-> - Users can only enable/disable their own audio modules.
-> - By default, the audio freezes at most once in each reported interval.
+> Agora defaults to no more than one audio freeze in each reported interval.
+
+To analyse statistics more closely linked to the user's experience and audio transmission quality, call `onRemoteAudioStats`. Even if network packet loss occurs, users might find the overall audio quality acceptable because the audio frame loss rate of the received audio streams might not be high due to the **anti-packet-loss** and congestion control methods, such as forward error correction (FEC), retransmissions and bandwidth estimation.
+
 
 #### State changes of remote audio streams
 
-When the state of **remote** audio stream changes, the SDK triggers the `onRemoteAudioStateChanged` callback to report the current state and the reason for the state change.
-
-> - In the <code>COMMUNICATION</code> profile, this callback reports to you the audio stream state information of all the remote users (excluding yours) in the channel once every two seconds.
-> - In the <code>LIVE_BROADCASTING</code> profile, if you are the host, this callback reports to you the audio stream state information of all the remote hosts(excluding yours) in the channel once every two seconds; if you are the audience, this callback reports to you the audio stream state information of all the remote hosts in the channel once every two seconds.
+When the audio state of a remote user in the `COMMUNICATION` profile or remote host in the `LIVE_BROADCASTING` profile changes, the SDK triggers the `onRemoteAudioStateChanged` callback to report the current state and the reason for the state change.
 
 ### Video quality report
 
+This section describes the user's video quality report, including local video stream statistics, local video stream state change, remote video stream statistics, and remote video stream state change.
+
+
 #### Statistics of local video streams
 
-The `onLocalVideoStats` callback reports the statistics of the video streams sent. You can see the dimensions of the encoding frame and the following parameters.
+The `onLocalVideoStats` callback reports the statistics of the video streams sent. You can see the dimensions of the encoding frame and the following important parameters.
 
 > If you have called the `enableDualStreamMode` method to enable [dual-stream mode](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-dualadual-stream-mode), this callback reports the statistics of the high-video streams sent.
 
@@ -96,7 +93,8 @@ The `onLocalVideoStats` callback reports the statistics of the video streams sen
 | `sentFrameRate`           | The frame rate of the video sent in the reported interval.   | Does not include the frame rate of the retransmission videos. |
 | `encodedFrameCount`       | The total frames of the video sent.                          | The number of frames accumulated since joining the channel.  |
 | `codecType`               | The codec type of the local video.                           | <li>`VIDEO_CODEC_VP8 = 1`: VP8<li>`VIDEO_CODEC_H264 = 2`: (Default) H.264 |
-| `qualityAdaptIndication`  | The local video quality change in terms of `targetBitrate` and `targetFrameRate` in this reported interval. | Compared to the video quality in the last statistics (two seconds ago), the video quality change in this reported interval:<li>The quality stays the same.<li>The quality improves.<li>The quality deteriorates. |
+
+<!-- | `qualityAdaptIndication`  | The local video quality change in terms of `targetBitrate` and `targetFrameRate` in this reported interval. | Compared to the video quality in the last statistics (two seconds ago), the video quality change in this reported interval:<li>The quality stays the same.<li>The quality improves.<li>The quality deteriorates. | -->
 
 #### State changes of local video streams
 
@@ -104,50 +102,44 @@ When the state of the local video changes, the SDK triggers the `onLocalVideoSta
 
 #### Statistics of remote video streams
 
+The following figure shows the transmission process between app clients.
+
 ![](https://web-cdn.agora.io/docs-files/1565945292345)
 
-The `onRemoteVideoStats` callback reports the video statistics of each remote user in the `COMMUNICATION` profile or remote host in the `LIVE_BROADCASTING` profile in the current call. You can see their video dimensions and the following parameters.
+The `onRemoteVideoStats` callback reports the video statistics of each remote user in the `COMMUNICATION` profile or remote host in the `LIVE_BROADCASTING` profile in the current call. You can see their video dimensions and the following important parameters.
 
 | Parameter                 | Description                                                  | Comment                                                      |
 | :------------------------ | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | `rxStreamType`            | The type of video streams.                                   | High-video streams or low-video streams, see [dual-stream mode](https://docs.agora.io/en/Agora%20Platform/terms?platform=All%20Platforms#a-name-dualadual-stream-mode). |
 | `receivedBitrate`         | The bitrate of the video received in the reported interval.  |                              N/A                                |
-| `packetLossRate`          | The packet loss rate of the video received in the reported interval. | <li>Stages 2 + 3 + 4 in the figure above<li>The packet loss rate after using the **anti-packet-loss** method, which is lower than before. |
+| `packetLossRate`          | The packet loss rate of the video received in the reported interval. | <li>Stages 2 + 3 + 4 in the previous figure<li>The packet loss rate after using the **anti-packet-loss** method, which is lower than before. |
 | `decoderOutputFrameRate`  | The output frame rate of the remote video decoder.           |                               N/A                               |
 | `rendererOutputFrameRate` | The output frame rate of the remote video renderer.          |                           N/A                                   |
 | `totalFrozenTime`         | The total **freeze** time (ms) of the remote video stream after the remote user joins the channel. | In a video call or interactive video streaming session where the frame rate is set to no less than 5 fps, video **freeze** occurs when the time interval between two adjacent renderable video frames is more than 500 ms. |
-| `frozenRate`              | The total video freeze time is a percentage of the total time when the video is available. | When the remote user in the `COMMUNICATION` profile or remote host in the `LIVE_BROADCASTING` profile neither stops sending the video stream nor disables the video module after joining the channel, the video is **available**. |
+| `frozenRate`              | The total video freeze time is a percentage of the total time when the video is available. | When the remote user in the `COMMUNICATION` profile or remote host in the `LIVE_BROADCASTING` profile neither stops sending the video stream nor disables the video module after joining the channel, the video is **available**. Note that the video module refers to the video processing, not the physical module in the SDK. When sending a video stream, the video module refers to the video capturing, pre-processing, encoding and other processing; when receiving a video stream, the video module refers to the video decoding, post-processing, rendering, and other processing. Users can only enable or disable their own video modules.|
 
-> - In the <code>COMMUNICATION</code> profile, you receive video stream statistics of all the remote users (excluding yours) in the channel once every two seconds.
-> - In the <code>LIVE_BROADCASTING</code> profile, if you are the host, you receive video stream statistics of all the remote hosts (excluding yours) in the channel once every two seconds; if you are the audience, you receive the statistics for all the hosts in the channel once every two seconds.
-> - Agora **video module** refers to the video processing process, and not the actual module in the SDK. When sending video streams, the video module refers to the processes of video capturing, pre-processing, and encoding; when receiving video streams, the video module refers to the processes of video decoding, post-processing, and rendering/playing.
-> - Users can only enable/disable their own video modules.
 
 #### State changes of remote video streams
 
-When the state of remote video streams changes, the SDK triggers the `onRemoteVideoStateChanged` callback to report the current state and the reason for the state change.
+When the video state of a remote user in the `COMMUNICATION` profile or remote host in the `LIVE_BROADCASTING` profile changes, the SDK triggers the `onRemoteVideoStateChanged` callback to report the current state and the reason for the state change.
 
-> - In the <code>COMMUNICATION</code> profile, this callback reports to you the video stream state information of all the remote users (excluding yours) in the channel once every two seconds.
-> - In the <code>LIVE_BROADCASTING</code> profile, if you are the host, this callback reports to you the video stream state information of all the remote hosts (excluding yours) in the channel once every two seconds; if you are the audience, this callback reports to you the video stream state information of all the remote hosts in the channel once every two seconds.
-
-## Prerequisites
-
-Before proceeding, ensure that you have a project that has implemented the basic real-time engagement functionality. For details, see [Start a Call](start_call_android) or [Start Interactive Live Streaming](start_live_android).
 
 ## Implementation
 
-Implement the following real-time interaction quality statistic callbacks and audio or video state callbacks in `IRtcEngineEventHandler` to monitor user interaction experience.
+1. Ensure that you have a project that has implemented the basic real-time engagement functionality. For details, see [Start a Call](start_call_android) or [Start Interactive Live Streaming](start_live_android).
 
-- `onNetworkQuality`: Reports the quality of uplink and downlink last-mile network.
-- `onRtcStats`: Reports real-time interaction statistics.
-- `onLocalAudioStats`: Reports statistics of the audio stream sent.
-- `onLocalAudioStateChanged`: Reports the local audio stream state changes.
-- `onRemoteAudioStats`: Reports statistics of a remote audio stream received.
-- `onRemoteAudioStateChanged`: Reports the remote audio stream state changes.
-- `onLocalVideoStats`: Reports statistics of the video stream sent.
-- `onLocalVideoStateChanged`: Reports the local video stream state changes.
-- `onRemoteVideoStats`: Reports statistics of a remote video stream received.
-- `onRemoteVideoStateChanged`:Reports the remote video stream state changes.
+2. Implement the following real-time interaction quality statistic callbacks and audio or video state callbacks in `IRtcEngineEventHandler` to monitor user interaction experience.
+
+    - `onNetworkQuality`: Reports the quality of uplink and downlink last-mile network.
+    - `onRtcStats`: Reports real-time interaction statistics.
+    - `onLocalAudioStats`: Reports statistics of the audio stream sent.
+    - `onLocalAudioStateChanged`: Reports the local audio stream state changes.
+    - `onRemoteAudioStats`: Reports statistics of a remote audio stream received.
+    - `onRemoteAudioStateChanged`: Reports the remote audio stream state changes.
+    - `onLocalVideoStats`: Reports statistics of the video stream sent.
+    - `onLocalVideoStateChanged`: Reports the local video stream state changes.
+    - `onRemoteVideoStats`: Reports statistics of a remote video stream received.
+    - `onRemoteVideoStateChanged`: Reports the remote video stream state changes.
 
 ```java
 private final IRtcEngineEventHandler iRtcEngineEventHandler = new IRtcEngineEventHandler()
@@ -198,7 +190,7 @@ private final IRtcEngineEventHandler iRtcEngineEventHandler = new IRtcEngineEven
 };
 ```
 
-## API reference
+## API Reference
 
 - [`onNetworkQuality`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a76be982389183c5fe3f6e4b03eaa3bd4)
 - [`onRtcStats`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ada7aa10b092a6de23b598a9f77d4deee)
@@ -223,8 +215,3 @@ private final IRtcEngineEventHandler iRtcEngineEventHandler = new IRtcEngineEven
 | `QUALITY_BAD (4)`         | The user can barely communicate, but the communication is not smooth. |
 | `QUALITY_VBAD (5)`       | The network quality is so poor and the communication is basically impossible. |
 | `QUALITY_DOWN (6)`        | Users cannot communicate with each other at all.  |
-| `QUALITY_DETECTING (8)`   | The SDK is detecting the network quality.                |
-
-## Considerations
-
-The SDK does not trigger the `onLocalAudioStateChanged`, `onRemoteAudioStateChanged`, `onLocalVideoStateChanged`, and `onRemoteVideoStateChanged` callbacks once every two seconds. See their respective trigger conditions on this page.
