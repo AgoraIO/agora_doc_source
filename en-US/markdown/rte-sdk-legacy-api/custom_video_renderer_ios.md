@@ -18,6 +18,8 @@ Before implementing custom video rendering, ensure that you have implemented th
 
 ## Implementation
 
+To implement a custom video renderer in your project, refer to the following steps.
+
 1. Get the video data to play from `onCaptureVideoFrame`, `onScreenCaptureVideoFrame`, or `onRenderVideoFrame`.
 2. Render and play the video data on your own.
 

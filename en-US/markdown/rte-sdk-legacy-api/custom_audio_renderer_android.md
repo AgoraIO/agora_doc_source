@@ -92,6 +92,10 @@ Take the following steps to use raw audio data APIs for custom audio rendering.
 
 Ensure that you have implemented the raw audio data function in your project. For details, see [Raw Audio Data](raw_audio_data_android).
 
+##### Implementation
+
+To implement a custom audio renderer in your project, refer to the following steps.
+
 1. Get the audio data to play from `onRecordAudioFrame`, `onPlaybackAudioFrame`, `onMixedAudioFrame`, or `onPlaybackAudioFrameBeforeMixing`.
 2. Render and play the remote audio data on your own.
 

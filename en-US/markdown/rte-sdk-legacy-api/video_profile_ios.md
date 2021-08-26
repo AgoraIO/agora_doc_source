@@ -6,6 +6,10 @@ User experience in real-time engagement scenarios involving video is closely rel
 
 Video profiles are preset configurations of resolution, frame rate, and bitrate. Developers can implement video profiles to control how video streams will appear to users under ideal network conditions.
 
+The Agora SDK provides the [`setVideoEncoderConfiguration`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVideoEncoderConfiguration:) method to set the video profile. After you initialize the `AgoraRtcEngineKit` object, you can call `setVideoEncoderConfiguration` either before or after joining a channel.
+
+If you do not intend to update the video profile after joining a channel, Agora recommends calling `setVideoEncoderConfiguration` before `enableVideo`, which reduces the time to render the first local video frame.
+
 ### Resolution, frame rate and bitrate
 
 You can set the video resolution, frame rate, and bitrate with the following parameters:
@@ -25,44 +29,11 @@ You can set the video resolution, frame rate, and bitrate with the following par
 
 The Agora SDK provides selections of video dimensions, frame rate, and bitrate for you to choose from. You can also customize the values according to the table below.
 
-#### Video profile table
+#### Recommended video settings
 
-<div class="alert note">Whether 720 × 960 or higher can be supported depends on the terminal device.</div>
+The recommended video settings vary by scenario. For example, in a one-to-one online class, the video windows of the teacher and student are both large, which calls for higher resolutions, frame rates, and bitrates. In a one-to-four online class, however, the video windows of the teacher and students are smaller, so lower resolutions, frame rates, and bitrates are used to accommodate bandwidth limitations.
 
-| Resolution (width × height) | Frame rate (fps) | Live bitrate (Kbps) |
-| :-------------------------- | :--------------- | :---------------------------------------- |
-| 160 × 120                   | 15               | 130                                       |
-| 120 × 120                   | 15               | 100                                       |
-| 320 × 180                   | 15               | 280                                       |
-| 180 × 180                   | 15               | 200                                       |
-| 240 × 180                   | 15               | 240                                       |
-| 320 × 240                   | 15               | 400                                       |
-| 240 × 240                   | 15               | 280                                       |
-| 424 × 240                   | 15               | 440                                       |
-| 640 × 360                   | 15               | 800                                       |
-| 360 × 360                   | 15               | 520                                       |
-| 640 × 360                   | 30               | 1200                                      |
-| 360 × 360                   | 30               | 800                                       |
-| 480 × 360                   | 15               | 640                                       |
-| 480 × 360                   | 30               | 980                                       |
-| 640 × 480                   | 15               | 1000                                      |
-| 480 × 480                   | 15               | 800                                       |
-| 640 × 480                   | 30               | 1500                                      |
-| 480 × 480                   | 30               | 1200                                      |
-| 848 × 480                   | 15               | 1220                                      |
-| 848 × 480                   | 30               | 1860                                      |
-| 640 × 480                   | 10               | 800                                       |
-| 1280 × 720                  | 15               | 2260                                      |
-| 1280 × 720                  | 30               | 3420                                      |
-| 960 × 720                   | 15               | 1820                                      |
-| 960 × 720                   | 30               | 2760                                      |
-
-
-#### Recommended video profiles
-
-The recommended video profiles vary by scenario. For example, in a one-to-one online class, the video windows of the teacher and student are both large, which calls for higher resolutions, frame rates, and bitrates. In a one-to-four online class, however, the video windows of the teacher and students are smaller, so lower resolutions, frame rates, and bitrates are used to accommodate bandwidth limitations.
-
-The following profiles for different scenarios are recommended:
+The following settings for different scenarios are recommended:
 
 - One-to-one video call:
   - Resolution: 320 × 240; frame rate: 15 fps; bitrate: 200 Kbps.
@@ -78,14 +49,14 @@ The following profiles for different scenarios are recommended:
 
 Video rotation involves the video capturer and the video player, where:
 
-- The video capturer captures the video and outputs the relevant video information, namely, the relative position of the video and the status bar.
+- The video capturer captures the video and outputs the relevant video information. That is, the relative position of the video and the status bar.
 - The video player renders the received video and rotates the video according to the rotation information.
 
 To avoid issues such as video scaling and cropping caused by video rotation, the Agora SDK provides the [`orientationMode`](./API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/orientationMode) parameter in the `setVideoEncoderConfiguration` method. You can use this parameter to set the video orientation mode according to your scenario to get the video you want.
 
 The orientationMode parameter provides three modes to suit different user needs: `Adaptive`, `FixedLandscape`, and `FixedPortrait`.
 
-<div class="alert note">Regardless of the mode, the relative position of the video and the status bar on both the video capturer and the player remain the same.</div>
+Regardless of the mode, the relative position of the video and the status bar on both the video capturer and the player remain the same.
 
 #### Adaptive
 
@@ -93,9 +64,8 @@ In the Adaptive mode, the output video always follows the orientation of the cap
 
 The following figures show the video orientations at the video capturer and player when a rear camera is used as the video capturer. Note that the video orientation differs depending on whether or not the UI is locked.
 
-<div class="alert note">On macOS, the status bar of the app remains horizontal regardless of the orientation of the screen. UI locked applies to iOS only.</div>
 
-**UI locked (or UI unlocked with the app disabling the screen auto-rotation)**
+##### UI locked (or UI unlocked with the app disabling the screen auto-rotation)
 
 The relative position of the status bar remains the same as the screen and not according to the phone tilt (for example, in WeChat). Therefore, the relative positions of the video and the screen remain the same for the video capturer and the player.
 
@@ -107,7 +77,7 @@ The relative position of the status bar remains the same as the screen and not a
 
 	<img alt="../_images/rotation_adaptive_uilock_portrait.jpg" src="https://web-cdn.agora.io/docs-files/en/rotation_adaptive_uilock_portrait.jpg" />
 
-**UI unlocked with the app enabling the screen auto-rotation**
+##### UI unlocked with the app enabling the screen auto-rotation
 
 The status bar of the app remains horizontal, regardless of the orientation of the screen (for example, in Facetime). Therefore, the relative positions of the video and the phone tilt remain the same for the video capturer and the player.
 
@@ -173,13 +143,7 @@ Before adjusting the audio volume, ensure that you have implemented the basic r
 
 ## Implementation
 
-
-
-The Agora SDK provides the [`setVideoEncoderConfiguration`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVideoEncoderConfiguration:) method to set the video profile. After you initialize the `AgoraRtcEngineKit` object, you can call `setVideoEncoderConfiguration` either before or after joining a channel.
-
-If you do not intend to update the video profile after joining a channel, Agora recommends calling `setVideoEncoderConfiguration` before `enableVideo`, which reduces the time to render the first local video frame.
-
-You can refer to the following code sample when setting the parameters of `setVideoEncoderConfiguration`:
+To set the video profile in your project, refer to the following sample code.
 
 ```swift
 // Swift
@@ -208,3 +172,36 @@ Agora provides an open-source sample project on GitHub that implements setting t
 
 - The parameters specified in `setVideoEncoderConfiguration` are the maximum values under ideal network conditions. The SDK adapts (most often downwards) these parameters according to the network conditions in real-time.
 - Setting parameters in `setVideoEncoderConfiguration` affects your bill. In case network adaptation occurs, the unit price is calculated based on the actual video dimensions. For more information, see [Billing for Real-time Communication](billing_rtc).
+
+### Video profile table
+
+
+| Resolution (width × height) | Frame rate (fps) | Live bitrate (Kbps) |
+| :-------------------------- | :--------------- | :---------------------------------------- |
+| 160 × 120                   | 15               | 130                                       |
+| 120 × 120                   | 15               | 100                                       |
+| 320 × 180                   | 15               | 280                                       |
+| 180 × 180                   | 15               | 200                                       |
+| 240 × 180                   | 15               | 240                                       |
+| 320 × 240                   | 15               | 400                                       |
+| 240 × 240                   | 15               | 280                                       |
+| 424 × 240                   | 15               | 440                                       |
+| 640 × 360                   | 15               | 800                                       |
+| 360 × 360                   | 15               | 520                                       |
+| 640 × 360                   | 30               | 1200                                      |
+| 360 × 360                   | 30               | 800                                       |
+| 480 × 360                   | 15               | 640                                       |
+| 480 × 360                   | 30               | 980                                       |
+| 640 × 480                   | 15               | 1000                                      |
+| 480 × 480                   | 15               | 800                                       |
+| 640 × 480                   | 30               | 1500                                      |
+| 480 × 480                   | 30               | 1200                                      |
+| 848 × 480                   | 15               | 1220                                      |
+| 848 × 480                   | 30               | 1860                                      |
+| 640 × 480                   | 10               | 800                                       |
+| 1280 × 720                  | 15               | 2260                                      |
+| 1280 × 720                  | 30               | 3420                                      |
+| 960 × 720                   | 15               | 1820                                      |
+| 960 × 720                   | 30               | 2760                                      |
+
+Whether 720 × 960 or higher can be supported depends on the terminal device.

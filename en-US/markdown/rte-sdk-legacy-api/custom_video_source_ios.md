@@ -11,6 +11,10 @@ By default, SDK integrates the default video modules on the device your app runs
 
 To manage the capture and processing of video frames when using a custom video source, use methods outside the SDK.
 
+The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setExternalVideoSource:useTexture:pushMode:) and [`pushExternalVideoFrame`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalVideoFrame:) methods to customize the video source. The API call sequence is as follows:
+
+![](https://web-cdn.agora.io/docs-files/1569400609106)
+
 ### Video data transfer
 
 The following figure shows how the video data is transferred when you customize the video source or video renderer:
@@ -25,10 +29,7 @@ Before adjusting the audio volume, ensure that you have implemented the basic r
 
 ## Implementation
 
-The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setExternalVideoSource:useTexture:pushMode:) and [`pushExternalVideoFrame`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalVideoFrame:) methods to customize the video source. The API call sequence is as follows:
-
-![](https://web-cdn.agora.io/docs-files/1569400609106)
-
+To implement a custom video source in your project, refer to the following steps.
 
 1. Before joining a channel, call `setExternalVideoSource` to enable the custom video source. Once you enable it, you cannot use the methods of the SDK to capture video frames.
 

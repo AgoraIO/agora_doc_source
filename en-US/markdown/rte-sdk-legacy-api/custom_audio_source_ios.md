@@ -21,7 +21,7 @@ Before adjusting the audio volume, ensure that you have implemented the basic r
 
 ## Implementation
 
-Use the following steps to implement the custom audio source:
+To implement a custom audio source in your project, refer to the following steps.
 
 1. Before joining a channel, call `setExternalAudioSource` to notify the SDK to use the external audio source.
 

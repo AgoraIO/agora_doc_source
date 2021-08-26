@@ -15,6 +15,8 @@ To manage the processing and display of video frames when using a custom video r
 Before implementing custom video rendering, ensure that you have implemented the raw video data function in your project. For details, see [Raw video Data](raw_audio_data_android).
 ## Implementation
 
+To implement a custom video renderer in your project, refer to the following steps.
+
 1. Get the video data to play from `onCaptureVideoFrame`, `onRenderVideoFrame`, or `onScreenCaptureVideoFrame`.
 2. Render and play the video data on your own.
 

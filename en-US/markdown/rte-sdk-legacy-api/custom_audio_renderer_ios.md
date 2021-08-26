@@ -18,6 +18,8 @@ Before implementing custom audio rendering, ensure that you have implemented th
 
 ## Implementation
 
+To implement a custom audio renderer in your project, refer to the following steps.
+
 1. Get the audio data to play from `onRecordAudioFrame`, `onPlaybackAudioFrame`, `onMixedAudioFrame`, or `onPlaybackAudioFrameBeforeMixing`.
 2. Render and play the remote audio data on your own.
 
