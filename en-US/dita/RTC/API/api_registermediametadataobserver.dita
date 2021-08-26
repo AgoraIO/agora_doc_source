@@ -12,10 +12,10 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="android" outputclass="language-java">public abstract int registerMediaMetadataObserver(IMetadataObserver observer, int type);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp"/>
-                <codeblock props="electron" outputclass="language-typescript">registerMediaMetadataObserver(type: METADATA_TYPE = 0): number </codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">registerMediaMetadataObserver(type: METADATA_TYPE = 0): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
@@ -28,32 +28,33 @@
                     <dd>v2.4.1</dd>
                 </dlentry>
             </dl>
+            <p>你需要自行实现 <xref keyref="IMetadataObserver"/> 类并在本方法中指定 metadata 类型。 本方法允许你为视频流添加同步的 metadata，用于多样化的直播互动，如发送购物链接、电子优惠券和在线测试。</p>
+            <p>After a successful method call, the SDK triggers the<xref keyref="getMaxMetadataSize"/> callback.</p>
    <p>
        <note type="attention">
   <ul id="ul_bmd_btz_r4b">
-      <li>Call this method before <apiname keyref="joinChannel2"/>.</li>
+      <li>Call<apiname keyref="joinChannel2"/> this method before .</li>
       <li>This method applies only to interactive live streaming.</li>
   </ul>
        </note>
    </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
-       <plentry props="windows android apple">
+       <plentry props="windows android ios mac">
   <pt>observer</pt>
-  <pd>Pointers to the registered metadata observer. See <xref keyref="IMetadataObserver"/>.</pd>
+  <pd>Metadata observer. For details, see <xref keyref="IMetadataObserver"/>.</pd>
        </plentry>
        <plentry id="metadatatype">
   <pt>type</pt>
-  <pd>The type of the metadata. The SDK currently only supports <apiname keyref="VIDEO_METADATA"/>.
-                        For details, see <xref keyref="METADATA_TYPE"/>.</pd>
+  <pd>The type of the metadata. The SDK currently only supports<apiname keyref="VIDEO_METADATA"/> . For details, see <xref href="enum_metadatatype.dita"/>.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li>0: Success.</li>
+       <li>Success.</li>
        <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
