@@ -12,8 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public abstract int setPlaybackAudioFrameParameters( int sampleRate, int channel, int mode, int samplesPerCall);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setPlaybackAudioFrameParametersWithSampleRate:(NSInteger)sampleRate channel:(NSInteger)channel mode:(AgoraAudioRawFrameOperationMode)mode samplesPerCall:(NSInteger)samplesPerCall;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int setPlaybackAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -23,24 +23,24 @@
         </section>
         <section id="detailed_desc">
    
-   <p>Sets the mixed audio format for the <xref keyref="onPlaybackAudioFrame"/> callback.</p>
+   <p>Sets the<xref keyref="onPlaybackAudioFrame"/> mixed audio format for the callback.</p>
    <note type="attention">
        <ul id="ul_t13_lnz_r4b">
   <li>Ensure that you call this method before joining a channel.</li>
-  <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = samplePerCall/(sampleRate × channel)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the <apiname keyref="onPlaybackAudioFrame"/> callback according to the sampling interval.</li>
+  <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = samplePerCall/(sampleRate × channel)</equation-inline>。 Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the callback according to the sampling interval<apiname keyref="onPlaybackAudioFrame"/>.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>sampleRate</pt>
-  <pd>The sample rate returned in the <apiname keyref="onPlaybackAudioFrame"/> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+  <pd><apiname keyref="onPlaybackAudioFrame"/> The sample rate returned in the callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
        </plentry>
        <plentry>
   <pt>channel</pt>
   <pd>
-      <p>The number of channels (channels) returned in the <apiname keyref="onPlaybackAudioFrame"/> callback:<ul
+      <p><apiname keyref="onPlaybackAudioFrame"/> The number of channels (channels) returned in the callback:<ul
      id="ul_xg2_cnz_r4b">
      <li>1: Mono.</li>
      <li>2: Stereo.</li>
@@ -49,19 +49,20 @@
        </plentry>
        <plentry>
   <pt>mode</pt>
-  <pd>The use mode (see <xref
- keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>) of the <apiname keyref="onPlaybackAudioFrame"/> callback.</pd>
+           <pd><p props="ios mac windows">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</p>
+               <p conkeyref="registerAudioFrameObserver2/mode" props="android"/>
+                    </pd>
        </plentry>
        <plentry>
   <pt>samplesPerCall</pt>
-  <pd>The number of samples returned in the <apiname keyref="onPlaybackAudioFrame"/> callback. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
+  <pd><apiname keyref="onPlaybackAudioFrame"/> The number of samples returned in the callback. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li>0: Success.</li>
+       <li>Success.</li>
        <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
