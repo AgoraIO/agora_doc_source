@@ -16,7 +16,6 @@
     <topichead navtitle="iOS API Reference">
         <topicref href="API/rtc_api_overview_ng.dita"/>
         <topicref keyref="IRtcEngine" chunk="to-content">
-            <topicref keyref="addInjectStreamUrl" toc="no"/>
             <topicref keyref="addPublishStreamUrl" toc="no"/>
             <topicref keyref="addVideoWatermark1" toc="no"/>
             <topicref keyref="addVideoWatermark2" toc="no"/>
@@ -33,6 +32,7 @@
             <topicref keyref="createDataStream1" toc="no"/>
             <topicref keyref="createDataStream2" toc="no"/>
             <topicref keyref="createMediaPlayer" toc="no"/>
+            <topicref keyref="delegate" toc="no"/>
             <topicref keyref="release" toc="no"/>
             <topicref keyref="disableAudio" toc="no"/>
             <topicref keyref="disableAudioSpectrumMonitor" toc="no"/>
@@ -45,8 +45,8 @@
             <topicref keyref="enableDualStreamMode3" toc="no"/>
             <topicref keyref="enableEncryption" toc="no"/>
             <topicref keyref="enableExtension" toc="no"/>
-            <topicref keyref="enableExternalAudioSourceLocalPlayback" toc="no"/>
             <topicref keyref="enableInEarMonitoring" toc="no"/>
+            <topicref keyref="enableInEarMonitoring2" toc="no"/>
             <topicref keyref="enableLocalAudio" toc="no"/>
             <topicref keyref="enableLocalVideo" toc="no"/>
             <topicref keyref="enableSoundPositionIndication" toc="no"/>
@@ -88,14 +88,12 @@
             <topicref keyref="pauseAudioMixing" toc="no"/>
             <topicref keyref="pauseAllEffects" toc="no"/>
             <topicref keyref="pauseEffect" toc="no"/>
+            <topicref keyref="playEffect1" toc="no"/>
             <topicref keyref="playEffect2" toc="no"/>
             <topicref keyref="preloadEffect" toc="no"/>
-            <topicref keyref="pullAudioFrame" toc="no"/>
-            <topicref keyref="pullAudioFrame2" toc="no"/>
             <topicref keyref="pushAudioFrame1" toc="no"/>
             <topicref keyref="pushAudioFrame2" toc="no"/>
             <topicref keyref="pushVideoFrame" toc="no"/>
-            <topicref keyref="pushVideoFrame2" toc="no"/>
             <topicref keyref="rate" toc="no"/>
             <topicref keyref="registerAudioEncodedFrameObserver" toc="no"/>
             <topicref keyref="registerAudioFrameObserver" toc="no"/>
@@ -110,7 +108,6 @@
             <topicref keyref="stopAllEffects" toc="no"/>
             <topicref keyref="stopEffect" toc="no"/>
             <topicref keyref="unloadEffect" toc="no"/>
-            <topicref keyref="removeInjectStreamUrl" toc="no"/>
             <topicref keyref="removePublishStreamUrl" toc="no"/>
             <topicref keyref="renewToken" toc="no"/>
             <topicref keyref="resumeAudioMixing" toc="no"/>
@@ -121,6 +118,7 @@
             <topicref keyref="setAudioMixingPosition" toc="no"/>
             <topicref keyref="setAudioProfile" toc="no"/>
             <topicref keyref="setAudioProfile2" toc="no"/>
+            <topicref keyref="setBeautyEffectOptions" toc="no"/>
             <topicref keyref="setCameraAutoFocusFaceModeEnabled" toc="no"/>
             <topicref keyref="setCameraCapturerConfiguration" toc="no"/>
             <topicref keyref="setCameraExposurePosition" toc="no"/>
@@ -136,13 +134,11 @@
             <topicref keyref="setEncryptionMode" toc="no"/>
             <topicref keyref="setEncryptionSecret" toc="no"/>
             <topicref keyref="setExtensionProperty" toc="no"/>
-            <topicref keyref="setExternalAudioSink" toc="no"/>
             <topicref keyref="setExternalAudioSource" toc="no"/>
             <topicref keyref="setExternalAudioSource2" toc="no"/>
             <topicref keyref="setExternalVideoSource" toc="no"/>
             <topicref keyref="setInEarMonitoringVolume" toc="no"/>
             <topicref keyref="setLiveTranscoding" toc="no"/>
-            <topicref keyref="setLocalPublishFallbackOption" toc="no"/>
             <topicref keyref="setLocalRenderMode1" toc="no"/>
             <topicref keyref="setLocalRenderMode2" toc="no"/>
             <topicref keyref="setLocalVideoMirrorMode" toc="no"/>
@@ -155,6 +151,7 @@
             <topicref keyref="setLogFileSize" toc="no"/>
             <topicref keyref="setLogFilter" toc="no"/>
             <topicref keyref="setLogLevel" toc="no"/>
+            <topicref keyref="setMediaMetadataDataSource" toc="no"/>
             <topicref keyref="setMixedAudioFrameParameters" toc="no"/>
             <topicref keyref="setPlaybackAudioFrameBeforeMixingParameters" toc="no"/>
             <topicref keyref="setPlaybackAudioFrameParameters" toc="no"/>
@@ -162,8 +159,6 @@
             <topicref keyref="setRemoteDefaultVideoStreamType" toc="no"/>
             <topicref keyref="setRemoteRenderMode1" toc="no"/>
             <topicref keyref="setRemoteRenderMode2" toc="no"/>
-            <topicref keyref="setRemoteSubscribeFallbackOption" toc="no"/>
-            <topicref keyref="setRemoteUserPriority" toc="no"/>
             <topicref keyref="setRemoteVideoStreamType" toc="no"/>
             <topicref keyref="setRemoteVoicePosition" toc="no"/>
             <topicref keyref="setupLocalVideo" toc="no"/>
@@ -183,14 +178,12 @@
             <topicref keyref="startEchoTest2" toc="no"/>
             <topicref keyref="startLastmileProbeTest" toc="no"/>
             <topicref keyref="startPreview" toc="no"/>
-            <topicref keyref="startScreenCapture" toc="no"/>
             <topicref keyref="stopAudioMixing" toc="no"/>
             <topicref keyref="stopAudioRecording" toc="no"/>
             <topicref keyref="stopChannelMediaRelay" toc="no"/>
             <topicref keyref="stopEchoTest" toc="no"/>
             <topicref keyref="stopLastmileProbeTest" toc="no"/>
             <topicref keyref="stopPreview" toc="no"/>
-            <topicref keyref="stopScreenCapture" toc="no"/>
             <topicref keyref="switchCamera" toc="no"/>
             <topicref keyref="unregisterAudioSpectrumObserver" toc="no"/>
             <topicref keyref="updateChannelMediaOptions" toc="no"/>
@@ -199,9 +192,6 @@
         <topicref keyref="IRtcEngineEx" chunk="to-content">
             <topicref keyref="addVideoWatermarkEx" toc="no"/>
             <topicref keyref="clearVideoWatermarkEx" toc="no"/>
-            <topicref keyref="createDataStreamEx1" toc="no"/>
-            <topicref keyref="createDataStreamEx2" toc="no"/>
-            <topicref keyref="getConnectionStateEx" toc="no"/>
             <topicref keyref="getUserInfoByUidEx" toc="no"/>
             <topicref keyref="getUserInfoByUserAccountEx" toc="no"/>
             <topicref keyref="joinChannelEx" toc="no"/>
@@ -211,9 +201,7 @@
             <topicref keyref="muteRemoteVideoStreamEx" toc="no"/>
             <topicref keyref="pushAudioFrameEx" toc="no"/>
             <topicref keyref="pushVideoFrameEx" toc="no"/>
-            <topicref keyref="pushVideoFrameEx2" toc="no"/>
             <topicref keyref="sendCustomReportMessageEx" toc="no"/>
-            <topicref keyref="sendStreamMessageEx" toc="no"/>
             <topicref keyref="setRemoteRenderModeEx2" toc="no"/>
             <topicref keyref="setRemoteVoicePositionEx" toc="no"/>
             <topicref keyref="setupRemoteVideoEx" toc="no"/>
@@ -241,10 +229,8 @@
             <topicref keyref="onConnectionInterrupted" toc="no"/>
             <topicref keyref="onConnectionLost" toc="no"/>
             <topicref keyref="onConnectionStateChanged" toc="no"/>
-            <topicref keyref="onDownlinkNetworkInfoUpdated" toc="no"/>
             <topicref keyref="onEncryptionError" toc="no"/>
             <topicref keyref="onFirstLocalAudioFramePublished" toc="no"/>
-            <topicref keyref="onFirstLocalVideoFrame" toc="no"/>
             <topicref keyref="onFirstLocalVideoFramePublished" toc="no"/>
             <topicref keyref="onFirstRemoteVideoDecoded" toc="no"/>
             <topicref keyref="onFirstRemoteVideoFrame" toc="no"/>
@@ -256,7 +242,6 @@
             <topicref keyref="onLocalAudioStats" toc="no"/>
             <topicref keyref="onLocalUserRegistered" toc="no"/>
             <topicref keyref="onLocalVideoStateChanged" toc="no"/>
-            <topicref keyref="onLocalVideoStat" toc="no"/>
             <topicref keyref="onLocalVideoStats" toc="no"/>
             <topicref keyref="onMediaEngineLoadSuccess" toc="no"/>
             <topicref keyref="onMediaEngineStartCallSuccess" toc="no"/>
@@ -273,7 +258,6 @@
             <topicref keyref="onRequestToken" toc="no"/>
             <topicref keyref="onRtcStats" toc="no"/>
             <topicref keyref="onRtmpStreamingStateChanged" toc="no"/>
-            <topicref keyref="onStreamInjectedStatus" toc="no"/>
             <topicref keyref="onStreamMessage" toc="no"/>
             <topicref keyref="onStreamMessageError" toc="no"/>
             <topicref keyref="onStreamPublished" toc="no"/>
@@ -295,7 +279,6 @@
         <topicref keyref="IAudioEncodedFrameObserver" chunk="to-content">
             <topicref keyref="onMixedAudioEncodedFrame" toc="no"/>
             <topicref keyref="onPlaybackAudioEncodedFrame" toc="no"/>
-            <topicref keyref="onPlaybackAudioEncodedFrame" toc="no"/>
             <topicref keyref="onRecordAudioEncodedFrame" toc="no"/>
         </topicref>
         <topicref keyref="IMediaExtensionObserver" chunk="to-content">
@@ -311,7 +294,6 @@
             <topicref keyref="getMediaPlayerId" toc="no"/>
             <topicref keyref="getPlayoutVolume" toc="no"/>
             <topicref keyref="getPlayPosition" toc="no"/>
-            <topicref keyref="getPlaySrc" toc="no"/>
             <topicref keyref="getPublishSignalVolume" toc="no"/>
             <topicref keyref="getState" toc="no"/>
             <topicref keyref="getStreamCount" toc="no"/>
@@ -321,7 +303,6 @@
             <topicref keyref="open" toc="no"/>
             <topicref keyref="pause" toc="no"/>
             <topicref keyref="play" toc="no"/>
-            <topicref keyref="registerAudioFrameObserver2" toc="no"/>
             <topicref keyref="resume" toc="no"/>
             <topicref keyref="seek" toc="no"/>
             <topicref keyref="selectAudioTrack" toc="no"/>
@@ -357,7 +338,6 @@
         <topicref keyref="IVideoFrameObserver" chunk="to-content">
             <topicref keyref="getMirrorApplied" toc="no"/>
             <topicref keyref="getRotationApplied" toc="no"/>
-            <topicref keyref="getVideoFormatPreference" toc="no"/>
             <topicref keyref="getVideoFrameProcessMode" toc="no"/>
             <topicref keyref="onCaptureVideoFrame" toc="no"/>
             <topicref keyref="onMediaPlayerVideoFrame" toc="no"/>
@@ -366,7 +346,6 @@
         </topicref>
         <topicref href="API/rtc_api_data_type.dita" chunk="to-content">
             <topicref keyref="AREA_CODE" toc="no"/>
-            <topicref keyref="AUDIENCE_LATENCY_LEVEL_TYPE" toc="no"/>
             <topicref keyref="AUDIO_CODEC_PROFILE_TYPE" toc="no"/>
             <topicref keyref="AUDIO_CODEC_TYPE" toc="no"/>
             <topicref keyref="AUDIO_EFFECT_PRESET" toc="no"/>
@@ -393,11 +372,10 @@
             <topicref keyref="CONNECTION_CHANGED_REASON_TYPE" toc="no"/>
             <topicref keyref="CONNECTION_STATE_TYPE" toc="no"/>
             <topicref keyref="DEGRADATION_PREFERENCE" toc="no"/>
+            <topicref keyref="EAR_MONITORING_FILTER_TYPE" toc="no"/>
             <topicref keyref="ENCRYPTION_ERROR_TYPE" toc="no"/>
             <topicref keyref="ENCRYPTION_MODE" toc="no"/>
-            <topicref keyref="AudioFrame" toc="no"/>
             <topicref keyref="FRAME_RATE" toc="no"/>
-            <topicref keyref="INJECT_STREAM_STATUS" toc="no"/>
             <topicref keyref="LASTMILE_PROBE_RESULT_STATE" toc="no"/>
             <topicref keyref="LIGHTENING_CONTRAST_LEVEL" toc="no"/>
             <topicref keyref="LOCAL_AUDIO_STREAM_ERROR" toc="no"/>
@@ -410,6 +388,7 @@
             <topicref keyref="MEDIA_PLAYER_PLAYBACK_SPEED" toc="no"/>
             <topicref keyref="MEDIA_PLAYER_ERROR" toc="no"/>
             <topicref keyref="MEDIA_PLAYER_EVENT" toc="no"/>
+            <topicref keyref="AgoraMediaPlayerRenderMode" toc="no"/>
             <topicref keyref="MEDIA_PLAYER_STATE" toc="no"/>
             <topicref keyref="MEDIA_SOURCE_TYPE" toc="no"/>
             <topicref keyref="MEDIA_STREAM_TYPE" toc="no"/>
@@ -434,6 +413,7 @@
             <topicref keyref="VIDEO_BUFFER_TYPE" toc="no"/>
             <topicref keyref="VIDEO_CODEC_PROFILE_TYPE" toc="no"/>
             <topicref keyref="VIDEO_CODEC_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_FRAME_PROCESS_MODE" toc="no"/>
             <topicref keyref="VIDEO_MIRROR_MODE_TYPE" toc="no"/>
             <topicref keyref="VIDEO_ORIENTATION" toc="no"/>
             <topicref keyref="VIDEO_PIXEL_FORMAT" toc="no"/>
@@ -443,6 +423,7 @@
             <topicref keyref="VOICE_CHANGER_PRESET" toc="no"/>
             <topicref keyref="VOICE_CONVERSION_PRESET" toc="no"/>
             <topicref keyref="AudioEncodedFrameObserverConfig" toc="no"/>
+            <topicref keyref="AudioFrame" toc="no"/>
             <topicref keyref="AudioRecordingConfiguration" toc="no"/>
             <topicref keyref="AudioSpectrumData" toc="no"/>
             <topicref keyref="AudioVolumeInfo" toc="no"/>
@@ -451,12 +432,10 @@
             <topicref keyref="ChannelMediaInfo" toc="no"/>
             <topicref keyref="ChannelMediaOptions" toc="no"/>
             <topicref keyref="ChannelMediaRelayConfiguration" toc="no"/>
-            <topicref keyref="ClientRoleOptions" toc="no"/>
             <topicref keyref="DataStreamConfig" toc="no"/>
             <topicref keyref="EncodedAudioFrameInfo" toc="no"/>
             <topicref keyref="EncryptionConfig" toc="no"/>
             <topicref keyref="ExternalVideoFrame" toc="no"/>
-            <topicref keyref="InjectStreamConfig" toc="no"/>
             <topicref keyref="LastmileProbeConfig" toc="no"/>
             <topicref keyref="LastmileProbeOneWayResult" toc="no"/>
             <topicref keyref="LastmileProbeResult" toc="no"/>
@@ -468,10 +447,10 @@
             <topicref keyref="PlayerStreamInfo" toc="no"/>
             <topicref keyref="RemoteAudioStats" toc="no"/>
             <topicref keyref="RemoteVideoStats" toc="no"/>
+            <topicref keyref="RtcConnection" toc="no"/>
             <topicref keyref="RtcEngineConfig" toc="no"/>
             <topicref keyref="RtcImage" toc="no"/>
             <topicref keyref="RtcStats" toc="no"/>
-            <topicref keyref="ScreenCaptureParameters" toc="no"/>
             <topicref keyref="SimulcastStreamConfig" toc="no"/>
             <topicref keyref="TranscodingUser" toc="no"/>
             <topicref keyref="UplinkNetworkInfo" toc="no"/>
