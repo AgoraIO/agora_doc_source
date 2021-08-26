@@ -1,4 +1,4 @@
-The default Agora video module interacts seamlessly with the devices your app runs on. SDK enable you to add specialized video features to your app using a custom video source.
+The default Agora video module interacts seamlessly with the devices your app runs on. The SDK enables you to add specialized video features to your app using a custom video source.
 
 ## Understand the tech
 

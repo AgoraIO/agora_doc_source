@@ -1,4 +1,4 @@
-The default Agora audio module interacts seamlessly with the devices your app runs on. SDK enable you to add specialized audio features to your app using a custom audio source.
+The default Agora audio module interacts seamlessly with the devices your app runs on. The SDK enables you to add specialized audio features to your app using a custom audio source.
 
 ## Understand the tech
 
