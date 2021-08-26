@@ -16,6 +16,8 @@ The following measures are important:
 
 A device test checks if audio captured from a device can be played back after the it has passed through a network. The Agora tests captures audio from the device microphone, sends it to Agora Platform with a defined wait time. For example, five seconds. After the wait time Agora Platform sends the audio back to the device and it is played to the device loudspeaker. You can then judge if the audio is of adequate quality.
 
+Agora recommends that you start device test before starting network probe test.
+
 ### Device test
 
 The SDK provides the `startEchoTest` method that tests whether the network connection and the audio devices, such as the microphone and the speakers, are working properly.
@@ -34,8 +36,7 @@ Before proceeding, ensure that you have implemented basic real-time functions in
 
 ## Implement pre-call testing
 
-To implement pre-call testing in your project, refer to the following steps. Agora recommends that you start device test before starting network probe test.
-
+To implement pre-call testing in your project, refer to the following steps.
 ### Device test
 
 To start an echo test, refer to the following steps.
