@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_release">
     <title><ph keyref="release"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Releases the <apiname keyref="IRtcEngine" /> instance.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Releases the instance<apiname keyref="IRtcEngine" />.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -12,8 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public static synchronized void destroy()</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">+ (void)destroy;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">AGORA_CPP_API static void release (bool sync = false);</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">release(sync: boolean = false): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -25,18 +25,18 @@
         <section id="detailed_desc">
    
    <p>This method releases all resources used by the Agora SDK. Use this method for apps in which users occasionally make voice or video calls. When users do not make calls, you can free up resources for other operations.</p>
-   <p props="windows">After a successful method call, you can no longer use any method or callback in the SDK anymore. If you want to use the real-time communication functions again, you must call <xref keyref="createAgoraRtcEngine"/> and <xref keyref="create2"/> to create a new <apiname keyref="IRtcEngine" /> instance.</p>
-   <p props="android ios mac">After a successful method call, you can no longer use any method or callback in the SDK anymore. If you want to use the real-time communication functions again, you must call <xref keyref="create2"/> to create a new <apiname keyref="IRtcEngine" /> instance.</p>
-   <note type="attention">If you want to create a new <apiname keyref="IRtcEngine"/> instance after destroying the current one, ensure that you wait till the <apiname keyref="release"/> method execution to complete.</note>
+   <p props="windows">After a successful method call, you can no longer use any method or callback in the SDK anymore. If you want to use the real-time communication functions again, you must call<xref keyref="createAgoraRtcEngine"/> and<xref keyref="create2"/> to create a new<apiname keyref="IRtcEngine" /> instance.</p>
+   <p props="android ios mac">After a successful method call, you can no longer use any method or callback in the SDK anymore. If you want to use the real-time communication functions again, you must<xref keyref="create2"/> call to create a new<apiname keyref="IRtcEngine" /> instance.</p>
+   <note type="attention">If you want to create a new instance after destroying<apiname keyref="IRtcEngine"/> the current one, ensure that you wait<apiname keyref="release"/> till the method execution to complete.</note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters" props="windows"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>sync</pt>
   <pd>
       <ul>
- <li><codeph><ph keyref="true"/></codeph>: Synchronous call. Agora suggests calling this method in a sub-thread to avoid congestion in the main thread because the synchronous call and the app cannot move on to another task until the resources used by <apiname keyref="IRtcEngine"/> are released. Besides, you cannot call <apiname keyref="release"/> in any method or callback of the SDK. Otherwise, the SDK cannot release the resources until the callbacks return results, which may result in a deadlock. The SDK automatically detects the deadlock and converts this method into an asynchronous call, causing the test to take additional time.</li>
-          <li><codeph><ph keyref="false"/></codeph>: Asynchronous call. The app can move on to another task, no matter the resources used by <apiname keyref="IRtcEngine"/> are released or not. Do not immediately uninstall the SDK&apos;s dynamic library after the call, or it may cause a crash due to the SDK clean-up thread not quitting.</li>
+ <li><codeph>: Synchronous call. </codeph><ph keyref="true"/>Agora suggests calling<apiname keyref="IRtcEngine"/> this method in a sub-thread to avoid congestion in the main thread because the synchronous call and the app cannot move on to another task until the resources used by are released. Besides, you cannot call in any method or callback of the SDK<apiname keyref="release"/>. Otherwise, the SDK cannot release the resources until the callbacks return results, which may result in a deadlock. The SDK automatically detects the deadlock and converts this method into an asynchronous call, causing the test to take additional time.</li>
+          <li><codeph>: Asynchronous call. </codeph><ph keyref="false"/>The app can move on to<apiname keyref="IRtcEngine"/> another task, no matter the resources used by are released or not. Do not immediately uninstall the SDK&apos;s dynamic library after the call, or it may cause a crash due to the SDK clean-up thread not quitting.</li>
       </ul>
   </pd>
        </plentry>
