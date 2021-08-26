@@ -97,6 +97,8 @@ Ensure that you have implemented the raw audio data function in your project. Fo
 
 ## Reference
 
+This section includes reference information about the function.
+
 ### Sample project
 
 Agora provides an open-source [demo project](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/customaudio) on GitHub. You can view the source code on Github or download the project to try it out.

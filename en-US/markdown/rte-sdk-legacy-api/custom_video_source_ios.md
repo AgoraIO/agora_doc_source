@@ -192,6 +192,8 @@ The Agora SDK provides the  [`setExternalVideoSource`](./API%20Reference/oc/Clas
 
 ## Reference
 
+This section includes reference information about the function.
+
 ### Sample project
 
 Agora provides open-source demo projects on GitHub that implement the custom video source and renderer function. You can download the projects to try them out or view the source code:

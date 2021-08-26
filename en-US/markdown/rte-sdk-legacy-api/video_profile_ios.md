@@ -196,6 +196,8 @@ agoraKit.setVideoEncoderConfiguration(AgoraVideoEncoderConfiguration(size: resol
 
 ## Reference
 
+This section includes reference information about the function.
+
 ### Sample project
 
 Agora provides an open-source sample project on GitHub that implements setting the video profile. You can download the sample project to try it out or view the source code:

@@ -150,6 +150,8 @@ In addition to the API call sequence diagram, you can refer to the following cod
 
 ## Reference
 
+This section includes reference information about the function.
+
 ### Sample project
 
 Agora provides the following open-source sample projects on GitHub that implement the raw video data function:

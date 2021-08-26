@@ -339,6 +339,8 @@ Call `registerAudioFrameObserver(NULL)` to stop registering the audio frame obse
 
 ## Reference
 
+This section includes reference information about the function.
+
 ### Sample project
 
 Agora provides the following open-source sample projects on GitHub that implement the raw audio data function:

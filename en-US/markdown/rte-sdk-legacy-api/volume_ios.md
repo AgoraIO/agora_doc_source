@@ -141,6 +141,8 @@ agoraKit.adjustRecordingSignalVolume(50)
 
 ## Reference
 
+This section includes reference information about the function.
+
 
 
 ### Sample project

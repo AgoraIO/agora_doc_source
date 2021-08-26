@@ -178,6 +178,8 @@ Refer to the following steps to customize the video source in your project:
 
 ## Reference
 
+This section includes reference information about the function.
+
 ### Sample project
 
 Agora provides the following open-source sample projects on GitHub:

@@ -551,6 +551,8 @@ Create a Java interface file and a C++ interface file separately via the JNI int
 
 ## Reference
 
+This section includes reference information about the function.
+
 ### Sample project
 
 Agora provides the following open-source sample projects on GitHub:

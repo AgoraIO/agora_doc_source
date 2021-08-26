@@ -1,11 +1,24 @@
-This page describes how to implement these tests.
+For calls and events that require high quality audio and video, best practice is to ensure that the hardware your app is running on and the last mile between the device and Agora Platform are good enough to assure the quality you require. This improves the user experience and helps you troubleshoot.
+
+This page shows you how to implement device and network tests in your app.
 
 ## Understand the tech
 
-In real-time scenarios requiring high quality, conducting tests before joining a channel helps troubleshoot in advance and improve the overall user experience. You can perform the following pre-call tests:
+In telecommunications, a probe is an action taken or an object used for the purpose of learning something about the state of the network. For example, an empty message can be sent simply to see whether the destination actually exists.
 
-- Network test: Detects the network quality by probing the uplink and downlink last-mile network quality.
-- Device test: Checks if the local audio recording and playback devices work properly.
+The following measures are important:
+
+- Bandwidth - commonly measured in bits/second is the maximum rate that information can be transferred
+- Throughput - the actual rate that information is transferred
+- Latency - the delay between the sender and the receiver decoding it, this is mainly a function of the signals travel time, and processing time at any nodes the information traverses
+- Jitter - variation in packet delay at the receiver of the information
+- Error rate - the number of corrupted bits expressed as a percentage or fraction of the total sent
+
+A device test checks if audio captured from a device can be played back after the it has passed through a network. The Agora tests captures audio from the device microphone, sends it to Agora Platform with a defined wait time. For example, five seconds. After the wait time Agora Platform sends the audio back to the device and it is played to the device loudspeaker. You can then judge if the audio is of adequate quality.
+
+### Device test
+
+The `startEchoTestWithInterval` method that tests whether the network connection and the audio devices, such as the microphone and the speakers, are working properly.
 
 ### Network probe test
 
@@ -15,18 +28,40 @@ The API call sequence is as follows:
 
 ![](https://web-cdn.agora.io/docs-files/1603946038258)
 
-### Device test
-
-The `startEchoTestWithInterval` method that tests whether the network connection and the audio devices, such as the microphone and the speakers, are working properly.
+When conducting the last-mile probe test, the voice SDK uses a fixed bitrate of 48 Kbps. The video SDK adjusts the actual bitrate according to the video profile.
 
 ## Prerequisites
 
 Before adjusting the audio volume, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
 
-## Implementation
+## Implement pre-call testing
+
+### Device test
+
+To start an echo test, refer to the following steps.
+
+1. Call `startEchoTestWithInterval` before joining a channel. You need to set the `interval` parameter in this method to notify the SDK when to report the result of this test. The value range is [2,10], and the default value is 10 (in seconds).
+2. When the echo test starts, let the user speak for a while. If the recording plays back within the set time interval, the audio devices and the network connection are working properly.
+3. Once you get the test result, call `stopEchoTest` to stop the current test before joining a channel using `joinChannelByToken`.
+
+Refer to the following sample code to implement this function.
+
+```swift
+// Swift
+// Starts the echo test.
+// Only a broadcaster can call `startEchoTestWithInterval`.
+agoraKit.startEchoTestWithInterval(10)
+
+// Wait and check if the user can hear the recorded audio.
+
+// Stops the echo test.
+// Once the echo test ends, you must call `stopEchoTest` to stop it. Otherwise, you cannot conduct another echo test or join a channel using `joinChannelByToken`.
+agoraKit.stopEchoTest
+```
+
 ### Network probe test
 
-Refer to the following steps to implement the network probe test.
+To implement the network probe test, refer to the following steps.
 
 1. Call `startLastmileProbeTest` to start the network probe test before joining a channel or switching the user role. You need to specify the expected upstream and downstream bitrate in this method.
 
@@ -43,6 +78,7 @@ Refer to the following steps to implement the network probe test.
   config.expectedDownlinkBitrate = 100000;
 
   // Call startLastmileProbeTest to start the network probe test
+  // Calling `startLastmileProbeTest` for pre-call network quality detection consumes network traffic. Therefore, after calling this method, Agora recommends not calling any other method until you receive the `lastmileProbeTest` callback.
   agoraKit.startLastmileProbeTest(config)
   ```
 
@@ -53,6 +89,7 @@ Refer to the following steps to implement the network probe test.
   ```swift
   // Swift
   // Receives the lastmileQuality callback two seconds after calling startLastmileProbeTest. This callback is triggered once every 2 seconds.
+  // The `lastmileQuality` callback may return `Unknown` the first time it is triggered. Subsequent callbacks will return the test results.
   func rtcEngine(_ engine: AgoraRtcEngineKit, lastmileQuality quality: AgoraNetworkQuality) {
       lastmileResultLabel.text = "Quality: \(quality.description())"
   }
@@ -89,31 +126,9 @@ Refer to the following steps to implement the network probe test.
   agoraKit.stopLastmileProbeTest()
   ```
 
-### Device test
-
-Before proceeding, ensure that you have implemented basic real-time functions in your project. See [Start a Call](start_call_ios) or [Start Live Interactive Streaming](start_live_ios).
-
-Refer to the following steps to start an echo test.
-
-1. Call `startEchoTestWithInterval` before joining a channel. You need to set the `interval` parameter in this method to notify the SDK when to report the result of this test. The value range is [2,10], and the default value is 10 (in seconds).
-2. When the echo test starts, let the user speak for a while. If the recording plays back within the set time interval, the audio devices and the network connection are working properly.
-3. Once you get the test result, call `stopEchoTest` to stop the current test before joining a channel using `joinChannelByToken`.
-
-
-Refer to the following sample code to implement this function.
-
-```swift
-// Swift
-// Starts the echo test.
-agoraKit.startEchoTestWithInterval(10)
-
-// Wait and check if the user can hear the recorded audio.
-
-// Stops the echo test.
-agoraKit.stopEchoTest
-```
-
 ## Reference
+
+This section includes reference information about the function.
 
 ### Sample project
 
@@ -127,11 +142,3 @@ Agora provides an open-source iOS sample project on GitHub that implements pre-c
 - [`stopLastmileProbeTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopLastmileProbeTest)
 - [`lastmileQuality`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:lastmileQuality:)
 - [`lastmileProbeResult`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:lastmileProbeTestResult:)
-
-### Considerations
-
-- Calling `startLastmileProbeTest` for pre-call network quality detection consumes network traffic. Therefore, after calling this method, Agora recommends not calling any other method until you receive the `lastmileProbeTest` callback.
-- The `lastmileQuality` callback may return `Unknown` the first time it is triggered. Subsequent callbacks will return the test results.
-- When conducting the last-mile probe test, the voice SDK uses a fixed bitrate of 48 Kbps. The video SDK adjusts the actual bitrate according to the video profile.
-- Only a broadcaster can call `startEchoTestWithInterval`.
-- Once the echo test ends, you must call `stopEchoTest` to stop it. Otherwise, you cannot conduct another echo test or join a channel using `joinChannelByToken`.

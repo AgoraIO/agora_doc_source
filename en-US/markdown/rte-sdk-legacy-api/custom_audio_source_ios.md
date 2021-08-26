@@ -38,6 +38,8 @@ Use the following steps to implement the custom audio source:
 
 ## Reference
 
+This section includes reference information about the function.
+
 ### Sample project
 
 Agora provides an open-sourced API-Example iOS sample project on GitHub that includes the following files that implement custom audio source functions:

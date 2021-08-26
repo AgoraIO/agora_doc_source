@@ -2,7 +2,7 @@ The default Agora video module interacts seamlessly with the devices your app ru
 
 ## Understand the tech
 
-By default, SDK integrates the default video modules on the device your app runs on for real-time communication. However, there are scenarios where you may want to use a custom video source. For example:
+By default, SDK integrates the default video modules on the device your app runs on for real-time communication. However, there are scenarios where you may want to integrate a custom video renderer. For example:
 
 - Your app has its own video module.
 - You want to use a pre-processing library for the video data.
@@ -19,6 +19,8 @@ Before implementing custom video rendering, ensure that you have implemented th
 2. Render and play the video data on your own.
 
 ## Reference
+
+This section includes reference information about the function.
 
 ### Sample project
 

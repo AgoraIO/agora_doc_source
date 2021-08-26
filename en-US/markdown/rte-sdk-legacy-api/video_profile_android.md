@@ -195,6 +195,8 @@ engine.setVideoEncoderConfiguration(new VideoEncoderConfiguration(
 
 ## Reference
 
+This section includes reference information about the function.
+
 ### Sample project
 
 Agora provides an open-source sample project on GitHub that implements [setting the video profile](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/SetVideoProfile.java). You can download the sample project to try it out or view the source code.

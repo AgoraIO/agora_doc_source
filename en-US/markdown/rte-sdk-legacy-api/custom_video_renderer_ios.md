@@ -23,6 +23,8 @@ Before implementing custom video rendering, ensure that you have implemented th
 
 ## Reference
 
+This section includes reference information about the function.
+
 ### Sample project
 
 Agora provides the following open-source sample project on GitHub:

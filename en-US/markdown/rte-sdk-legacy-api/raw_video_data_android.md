@@ -574,6 +574,8 @@ public void onPreEncodeVideoFrame(byte[] data, int frameType, int width, int hei
 
 ## Reference
 
+This section includes reference information about the function.
+
 ### Sample project
 
 Agora provides an open-source sample project [Raw Video Data](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/ProcessRawData.java) on GitHub.

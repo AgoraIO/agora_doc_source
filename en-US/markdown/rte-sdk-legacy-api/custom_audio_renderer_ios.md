@@ -23,6 +23,8 @@ Before implementing custom audio rendering, ensure that you have implemented th
 
 ## Reference
 
+This section includes reference information about the function.
+
 ### Sample project
 
 Agora provides an open-sourced API-Example iOS sample project on GitHub that includes the following files that implement custom audio renderer functions:
