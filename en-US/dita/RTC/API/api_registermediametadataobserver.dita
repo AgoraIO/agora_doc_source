@@ -22,18 +22,18 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
+            <dl outputclass="since" props="rtc">
                 <dlentry>
                     <dt>Since</dt>
                     <dd>v2.4.1</dd>
                 </dlentry>
             </dl>
-            <p>你需要自行实现 <xref keyref="IMetadataObserver"/> 类并在本方法中指定 metadata 类型。 本方法允许你为视频流添加同步的 metadata，用于多样化的直播互动，如发送购物链接、电子优惠券和在线测试。</p>
-            <p>After a successful method call, the SDK triggers the<xref keyref="getMaxMetadataSize"/> callback.</p>
+            <p>You need to implement the <xref keyref="IMetadataObserver"/> class and specify the metadata type in this method. This method enables you to add synchronized metadata in the video stream for more diversified&#13; live interactive streaming, such as sending shopping links, digital coupons, and online quizzes.</p>
+            <p>A successful call of this method triggers the <xref keyref="getMaxMetadataSize"/> callback.</p>
    <p>
        <note type="attention">
   <ul id="ul_bmd_btz_r4b">
-      <li>Call<apiname keyref="joinChannel2"/> this method before .</li>
+      <li>Call this method before <apiname keyref="joinChannel2"/>.</li>
       <li>This method applies only to interactive live streaming.</li>
   </ul>
        </note>
@@ -43,11 +43,11 @@
    <parml>
        <plentry props="windows android ios mac">
   <pt>observer</pt>
-  <pd>Metadata observer. For details, see <xref keyref="IMetadataObserver"/>.</pd>
+  <pd>The metadata observer. For details, see <xref keyref="IMetadataObserver"/>.</pd>
        </plentry>
        <plentry id="metadatatype">
   <pt>type</pt>
-  <pd>The type of the metadata. The SDK currently only supports<apiname keyref="VIDEO_METADATA"/> . For details, see <xref href="enum_metadatatype.dita"/>.</pd>
+  <pd>The metadata type. The SDK currently only supports <apiname keyref="VIDEO_METADATA"/>. For details, see <xref href="enum_metadatatype.dita"/>.</pd>
        </plentry>
    </parml>
         </section>
