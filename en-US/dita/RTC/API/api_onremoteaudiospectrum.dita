@@ -23,7 +23,7 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用 <xref keyref="registerAudioSpectrumObserver"/> 实现 <xref keyref="IAudioSpectrumObserver"/> 中的 <apiname keyref="onRemoteAudioSpectrum"/> 回调并调用 <xref keyref="enableAudioSpectrumMonitor"/> 开启音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告接收到的远端音频数据的频谱。</p>
+            <p>After successfully calling <xref keyref="registerAudioSpectrumObserver"/> to implement the <apiname keyref="onRemoteAudioSpectrum"/> callback and calling <xref keyref="enableAudioSpectrumMonitor"/> to enable audio spectrum monitoring, the SDK will trigger the callback as the time interval you set to report the received remote audio data spectrum.<xref keyref="IAudioSpectrumObserver"/></p>
         </section>
         <section id="parameters"><title>Parameter</title>
             <parml>
@@ -32,22 +32,22 @@
                     <pt props="ios mac">AudioSpectrumInfo</pt>
                     <pt props="windows">spectrums</pt>
                     <pd>
-                        <p>Audio spectrum information of the remote user<xref keyref="UserAudioSpectrumInfo"/>. The number of arrays is the number of remote users monitored by the SDK. If the array is null, it means that no audio spectrum of remote users is detected.</p>
+                        <p>The audio spectrum information of the remote user, see <xref keyref="UserAudioSpectrumInfo"/>. The number of arrays is the number of remote users monitored by the SDK. If the array is null, it means that no audio spectrum of remote users is detected.</p>
                     </pd>
                 </plentry>
                 <plentry props="android windows">
                     <pt>spectrumNumber</pt>
                     <pd>
-                        <p>远端用户的数量。</p>
+                        <p>The number of remote users.</p>
                     </pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>Returns</title>
-            <p>Whether you have received the spectrum data.<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 接收。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 不接收。</li>
+            <p>Whether you have received the spectrum data:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Spectrum data is received.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: No spectrum data is received.</li>
                 </ul></p>
         </section>
     </refbody>
