@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onreadytosendmetadata">
     <title><ph keyref="onReadyToSendMetadata"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK is ready to send <xref keyref="Metadata"/>.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK is ready to receive and send metadata.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -28,20 +28,20 @@
         </section>
         <section id="detailed_desc">
    
-   <p>This callback is triggered when the SDK is ready to receive and send<apiname keyref="Metadata"/> .</p>
+   <p>当 SDK 准备好发送 metadata 时，会触发该回调。</p>
    <p props="electron">After receiving this callback, you can call to<xref keyref="sendMetadata"/> send the media metadata.</p>
-   <note props="android apple windows" type="attention">Ensure that the size of the<apiname keyref="Metadata"/> does not exceed the<xref keyref="getMaxMetadataSize"/> value set in the callback.</note>
+   <note props="android ios mac windows" type="attention">Ensure that the size of the does not exceed the<xref keyref="getMaxMetadataSize"/> value set in the callback.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry props="rtc-ng">
            <pt props="android">timeStampMs</pt>
-           <pt props="apple">timestamp</pt>
+           <pt props="ios mac">timestamp</pt>
            <pd>时间戳。</pd>
        </plentry>
        <plentry props="rtc-ng">
            <pt>sourceType</pt>
-           <pd>视频数据类型。 详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+           <pd>视频数据类型。 For details, see <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
        </plentry>
        <plentry props="windows"> 
   <pt>metadata</pt>
