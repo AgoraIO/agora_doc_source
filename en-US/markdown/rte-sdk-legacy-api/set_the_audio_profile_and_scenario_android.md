@@ -1,6 +1,6 @@
 # Set the Audio Profile and Scenario
 
-An audio profile includes the audio sample rate, encoding scheme, number of channels, and bitrate for the encoding audio stream; an audio scenario determines the audio processing module.
+An audio profile includes the audio sample rate, encoding scheme, number of channels, and bitrate for the encoding audio stream; an audio scenario determines the audio performance.
 
 Different applications require different audio profiles or scenarios. This page shows you how to set the appropriate audio profile and scenario in your app using Agora SDKs.
 
@@ -33,9 +33,9 @@ If the default audio scenario (`AUDIO_SCENARIO_HIGH_DEFINITION`) does not meet y
 
 | Audio scenario (with the prefix `AUDIO_SCENARIO_`)                                          | Description                                                  |
 | :---------------------------------------------- | :----------------------------------------------------------- |
-| `DEFAULT`         | The scenario uses the audio processing module that is automatically changed according to the user role and the audio route. |
-| `HIGH_DEFINITION`/`GAME_STREAMING`         | High audio quality. The scenario uses the audio processing module of the Agora SDK that has a high performance to music or singing voice. Agora recommends this scenario if users mainly play music. |
-| `CHATROOM`         | Low audio quality. The scenario uses the audio processing module of the user's device that has a high performance to talk voice. Agora recommends this scenario if users frequently switches the roles or mute and unmute microphones. |
+| `DEFAULT`         | Automatic scenario match, where the SDK chooses the appropriate audio quality according to the user role and audio route. |
+| `HIGH_DEFINITION`/`GAME_STREAMING`         | High-quality audio scenario, where users mainly play music. |
+| `CHATROOM`         | Chatroom scenario, where users need to frequently switch the user role or mute and unmute the microphone. |
 
 The audio scenario also affects the volume type. For details, see [Volume type](#volume_type).
 
@@ -48,10 +48,11 @@ Before proceeding, ensure that you have a project that has implemented the [basi
 This section shows you how to set the audio scenario when you create the `RtcEngine` instance and set the audio profile either before or after joining a channel. In `/app/java/com.example.<projectname>/MainActivity`, add the following lines:
 
 ```java
-// Add the following line ahead of "engine = RtcEngine.create(config);" to set the audio scenario.
+// Set the audio scenario when you create the `RtcEngine` instance
 config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.HIGH_DEFINITION);
+engine = RtcEngine.create(config);
 
-// Add the following line in the initializeAndJoinChannel function to set the audio profile.
+// Set the audio profile
 RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY);
 ```
 
@@ -78,11 +79,11 @@ Agora provides an open-source sample project that implements [setting audio prof
 The volume type includes the in-call volume and media volume. See the difference between them as follows:
 
 - The in-call volume:
-  - Has low audio quality, using the audio processing module of the user's device.
+  - Low audio quality.
   - Cancels all echoes that are produced by the user's device, but might cause the loss of music or singing voice.
   - Cannot be adjusted to 0.
 - The media volume:
-  - Has high audio quality, using the audio processing module of the Agora SDK.
+  - High audio quality.
   - Has a high performance to music or singing voice, but might not completely cancel echoes that are produced by the user's device.
   - Can be adjusted to 0.
 
