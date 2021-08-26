@@ -92,7 +92,7 @@ The `onLocalVideoStats` callback reports the statistics of the video streams sen
 | `sentBitrate`             | The bitrate of the video sent in the reported interval.      | Does not include the bitrate of the retransmission videos.   |
 | `sentFrameRate`           | The frame rate of the video sent in the reported interval.   | Does not include the frame rate of the retransmission videos. |
 | `encodedFrameCount`       | The total frames of the video sent.                          | The number of frames accumulated since joining the channel.  |
-| `codecType`               | The codec type of the local video.                           | <li>`VIDEO_CODEC_VP8 = 1`: VP8<li>`VIDEO_CODEC_H264 = 2`: (Default) H.264 |
+| `codecType`               | The codec type of the local video.                           | <li>`VIDEO_CODEC_VP8 (1)`: VP8<li>`VIDEO_CODEC_H264 (2)`: (Default) H.264 |
 
 #### State changes of local video streams
 
@@ -143,8 +143,7 @@ When the video state of a remote user in the `COMMUNICATION` profile or remote h
 private final IRtcEngineEventHandler iRtcEngineEventHandler = new IRtcEngineEventHandler()
 {
 
-    @Override
-    public void onRemoteAudioStateChanged(int uid, int state, int reason, int elapsed)
+    public void onRemoteAudioStateChanged(int uid, IRtcEngineEventHandler.REMOTE_AUDIO_STATE state, IRtcEngineEventHandler.REMOTE_AUDIO_STATE_REASON reason, int elapsed)
     {
         super.onRemoteAudioStateChanged(uid, state, reason, elapsed);
         Log.i(TAG, "onRemoteAudioStateChanged->" + uid + ", state->" + state + ", reason->" + reason);
