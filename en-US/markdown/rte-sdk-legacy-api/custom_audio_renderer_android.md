@@ -14,7 +14,7 @@ To manage the processing and playback of audio frames when using a custom audio 
 
 ### API call sequence
 
-The following figure shows the call flow you need to implement when you integrate a custom audio rendered:
+The following figure shows the call sequence you need to implement in your app for custom audio renderer:
 
 ![](https://web-cdn.agora.io/docs-files/1569378513078)
 

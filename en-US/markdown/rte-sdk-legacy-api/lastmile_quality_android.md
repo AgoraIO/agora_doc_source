@@ -34,7 +34,7 @@ Before proceeding, ensure that you have implemented basic real-time functions in
 
 ## Implement pre-call testing
 
-Agora recommends that you start device test before starting network probe test.
+To implement pre-call testing in your project, refer to the following steps. Agora recommends that you start device test before starting network probe test.
 
 ### Device test
 

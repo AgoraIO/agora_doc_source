@@ -12,7 +12,7 @@ To manage the capture and processing of audio frames when using a custom audio s
 
 #### API call sequence
 
-Refer to The following figure to implement the custom audio source:
+The following figure shows the call sequence you need to implement in your app for custom audio source:
 
 ![](https://web-cdn.agora.io/docs-files/1568968141511)
 

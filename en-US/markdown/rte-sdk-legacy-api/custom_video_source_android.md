@@ -11,11 +11,11 @@ By default, SDK integrates the default video modules on the device your app runs
 
 To manage the capture and processing of video frames when using a custom video source, use methods outside the SDK.
 
-If the format of the custom captured video is Texture and the remote user sees anomalies (such as flickering and distortion) in the local custom captured video, Agora recommends that you make a copy of the video data before sending the custom video data back to the SDK, and then send both the original video data and the copied video data back to the SDK. This eliminates the anomalies during the internal data encoding.
+If the format of the custom captured video is Texture and the remote user sees anomalies such as flickering and distortion in the local custom captured video, the best practice is to make a copy of the video data before sending the custom video data back to the SDK, and then send both the original video data and the copied video data back to the SDK. This eliminates the anomalies during the internal data encoding.
 
 ### API call sequence
 
-Refer to The following figure to implement the custom video source.
+The following figure shows the call sequence you need to implement in your app for custom video source:
 
 ![img](https://web-cdn.agora.io/docs-files/1569392881143)
 

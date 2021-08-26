@@ -8,7 +8,7 @@ Agora provides the raw data function for you to process the audio data according
 
 ### API call sequence
 
-The following figure shows how to implement the raw audio data function in your project:
+The following figure shows the call sequence you need to implement in your app for raw audio data:
 
 ![](https://web-cdn.agora.io/docs-files/1615535771289)
 

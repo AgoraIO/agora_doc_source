@@ -39,7 +39,7 @@ To implement a custom video source in your project, refer to the following steps
     agoraKit.setExternalVideoSource(true, useTexture: true, encodedFrame: true)
     ```
 
-2. Implement the custom video source. Once the custom video source is enabled, you need to implement video capturing using APIs from outside the SDK. In the sample project, we define a class called `AgoraCameraSourcePush` class that captures video frames using the native methods of the system.
+2. Implement the custom video source. Once the custom video source is enabled, you need to implement video capturing using APIs from outside the SDK. For example, the [sample project](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/iOS/APIExample/Examples/Advanced/CustomVideoSourcePush) defines the `AgoraCameraSourcePush` class that captures video frames using the native methods of the system.
 
     ```swift
     // Swift
