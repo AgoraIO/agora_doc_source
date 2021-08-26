@@ -1,9 +1,9 @@
 # Use an Extension
 
-Extensions are add-ons designed to extend the functionality of the Agora SDK. The [Extensions Gallery](https://agora/) is home to extensions that make your app more fun. These extensions provide features such as:
+Extensions are add-ons designed to extend the functionality of the Agora SDK. The [Extensions Gallery]() is home to extensions that make your app more fun. These extensions provide features such as:
 
 - Audio effects and voice changing.
-- Image enhancement and face filters.
+- Face filters and background removal.
 - Live transcription and captioning.
 
 This page shows you how to integrate and use an extension from the [Agora Extensions Marketplace](TBD).
@@ -28,7 +28,7 @@ When you call these APIs, you need the following information that you can find i
 To follow the procedure on this page, you must have:
 
 - An Agora project that has successfully started [Video Call](TBD) or [Interactive Live Streaming Premium](TBD).
-- An extension package (`.aar` or `.so`) and details about the extension. See [Get an extension](TBD).
+- An extension package (`.aar` or `.so`) and details about the extension. See [Get an extension](https://docs.agora.io/en/extension_customer/get_extension?platform=All%20Platforms).
 
 ## Project setup
 
@@ -49,22 +49,23 @@ To create the environment necessary to integrate the extension into your app, do
 
 ## Implement the extension in your project
 
-For demonstration purposes, a simple watermark extension is used to explain the procedure. The watermark extension adds a watermark for local video. This section shows you how to implement the watermark extension in your Agora project.
+For demonstration purposes, a simple watermark extension is used to explain the procedure.
 
-To follow the procedure in this section, download the [watermark extension](TBD) first. 
+The watermark extension adds a watermark on video streamed to your local client. This section shows you how to implement the watermark extension in your Agora project.
 
 ### Import necessary classes
 
-In `app/src/main/java/com.example.<projectname>/MainActivity`:
+1. Download the [watermark extension](TBD) and follow the steps for `.aar` files in [Project setup](#projectsetup). 
 
-1. Add the following lines to import the Android classes used by the extension:
+2. In `app/src/main/java/com.example.<projectname>/MainActivity`:
+   1. Add the following lines to import the Android classes used by the extension:
 
-   ```java
-   import org.json.JSONException;
-   import org.json.JSONObject;
-   ```
+      ```java
+      import org.json.JSONException;
+      import org.json.JSONObject;
+      ```
 
-2. Add the following lines to import the Agora classes used by the extension:
+   2. Add the following lines to import the Agora classes used by the extension:
 
    ```java
    // ExtensionManager is used to pass in basic information about the extension
