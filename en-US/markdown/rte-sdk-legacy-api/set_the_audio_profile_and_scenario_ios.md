@@ -6,81 +6,100 @@ Different applications require different audio profiles or scenarios. This page 
 
 ## Understand the tech
 
-The SDK uses the `AUDIO_PROFILE_DEFAULT` profile and the `AUDIO_SCENARIO_HIGH_DEFINITION` scenario by default. If the default setting does not meet your requirements, you can call the following APIs to set another audio profile or scenario:
+The SDK uses the `AgoraAudioProfileDefault` profile and the `AgoraAudioScenarioHighDefinition` scenario by default. If the default setting does not meet your requirements, you can call the following APIs to set another audio profile or scenario:
 
 | API                                          | Description                                                  |
 | :---------------------------------------------- | :----------------------------------------------------------- |
-| `create(config.mAudioScenario)`        | Sets the audio scenario when you create the `RtcEngine` instance. The default value is `AUDIO_SCENARIO_HIGH_DEFINITION`. |
+| `sharedEngineWithConfig(config.audioScenario)`        | Sets the audio scenario when you create the `AgoraRtcEngineKit` instance. The default value is `AgoraAudioScenarioHighDefinition`. |
 | `setAudioProfile(profile)` | Sets the audio profile either before or after joining a channel. |
 | `setAudioProfile(profile, scenario)` | Sets the audio profile and scenario either before or after joining a channel. |
 
 ## Prerequisites
 
-Before proceeding, ensure that you have a project that has implemented the [basic real-time engagement functionality](https://docs-preprod.agora.io/en/video-call-4.x-preview/start_call_android_ng?platform=Android).
+Before proceeding, ensure that you have a project that has implemented the [basic real-time engagement functionality](https://docs-preprod.agora.io/en/null/start_call_ios_ng?platform=iOS).
 
 ## Implementation
 
-This section shows you how to set the audio profile and scenario in common applications. You can add the sample code in `/app/java/com.example.<projectname>/MainActivity` of your project.
+This section shows you how to set the audio profile and scenario in common applications. You can add the sample code in `ViewController.swift` of your project.
 
 ### One-to-one classroom
 
 For the one-to-one classroom that requires the call quality with smooth transmission, add the following code to your project:
 
-```java
-// Set the audio scenario when you create the `RtcEngine` instance
-config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.DEFAULT);
-engine = RtcEngine.create(config);
+```swift
+// Swift
+// Set the audio scenario when you create the `AgoraRtcEngineKit` instance
+var audioScenario:AgoraAudioScenario = .default
+config.audioScenario = audioScenario
+agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
 
 // Set the audio profile
-RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_DEFAULT);
+var audioProfile:AgoraAudioProfile = .default
+agoraKit.setAudioProfile(audioProfile)
 ```
+
 ### Battle royale game
 
 For the battle royale game that transmits the voice of group talk, and requires noise reduction and low transmission bitrate, add the following code to your project:
 
-```java
-// Set the audio scenario when you create the `RtcEngine` instance
-config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.CHATROOM);
-engine = RtcEngine.create(config);
+```swift
+// Swift
+// Set the audio scenario when you create the `AgoraRtcEngineKit` instance
+var audioScenario:AgoraAudioScenario = .chatroom
+config.audioScenario = audioScenario
+agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
 
 // Set the audio profile
-RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_SPEECH_STANDARD);
+var audioProfile:AgoraAudioProfile = .speechstandard
+agoraKit.setAudioProfile(audioProfile)
 ```
+
 ### Murder mystery game
 
 For the murder mystery game that requires standard audio quality and smooth audio experience when a user frequently switches the user role or mute and unmute the microphone, add the following code to your project:
 
-```java
-// Set the audio scenario when you create the `RtcEngine` instance
-config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.CHATROOM);
-engine = RtcEngine.create(config);
+```swift
+// Swift
+// Set the audio scenario when you create the `AgoraRtcEngineKit` instance
+var audioScenario:AgoraAudioScenario = .chatroom
+config.audioScenario = audioScenario
+agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
 
 // Set the audio profile
-RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_STANDARD);
+var audioProfile:AgoraAudioProfile = .musicstandard
+agoraKit.setAudioProfile(audioProfile)
 ```
+
 ### KTV
 
 For the KTV that requires high-fidelity audio and a high performance to music or singing voice, add the following code to your project:
 
-```java
-// Set the audio scenario when you create the `RtcEngine` instance
-config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.HIGH_DEFINITION);
-engine = RtcEngine.create(config);
+```swift
+// Swift
+// Set the audio scenario when you create the `AgoraRtcEngineKit` instance
+var audioScenario:AgoraAudioScenario = .highdefinition
+config.audioScenario = audioScenario
+agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
 
 // Set the audio profile
-RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY);
+var audioProfile:AgoraAudioProfile = .musichighquality
+agoraKit.setAudioProfile(audioProfile)
 ```
+
 ### Podcast
 
 For the podcast that uses professional audio hardware devices, and requires high-fidelity audio and stereo audio channels, add the following code to your project:
 
-```java
-// Set the audio scenario when you create the `RtcEngine` instance
-config.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.HIGH_DEFINITION);
-engine = RtcEngine.create(config);
+```swift
+// Swift
+// Set the audio scenario when you create the `AgoraRtcEngineKit` instance
+var audioScenario:AgoraAudioScenario = .highdefinition
+config.audioScenario = audioScenario
+agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
 
 // Set the audio profile
-RtcEngine.setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO);
+var audioProfile:AgoraAudioProfile = .musichighqualitystereo
+agoraKit.setAudioProfile(audioProfile)
 ```
 
 ## Reference
@@ -89,13 +108,13 @@ This section provides reference information you may need when setting the audio 
 
 ### Sample project
 
-Agora provides an open-source sample project that implements [setting audio profile](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/SetAudioProfile.java) on GitHub. You can try the sample project and view the source code.
+Agora provides an open-source sample project that implements [setting audio profile](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/iOS/APIExample/Examples/Basic/JoinChannelAudio/JoinChannelAudio.swift) on GitHub. You can try the sample project and view the source code.
 
 ### API reference
 
-- [create](https://docs-preview.agoralab.co/en/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#afffd4c0d9b799631ed407c5167b6e09a) [2/2]
-- [setAudioProfile](https://docs-preview.agoralab.co/en/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#ac4d4cabacd4c45dcbb7439ba9d86136e) [1/2]
-- [setAudioProfile](https://docs-preview.agoralab.co/en/trinity/API%20Reference/java_high_level/classio_1_1agora_1_1rtc2_1_1_rtc_engine.html#abb4b63716fda137ecd5254137c79547f) [2/2]
+- [sharedEngineWithConfig](https://docs-preview.agoralab.co/en/trinity/API%20Reference/oc_high_level/interface_agora_rtc_engine_kit.html#a7b846b533c9144396668b7ce9d90cb8b)
+- [setAudioProfile](https://docs-preview.agoralab.co/en/trinity/API%20Reference/oc_high_level/interface_agora_rtc_engine_kit.html#a420dff42a101a418c796c537969a1db1) [1/2]
+- [setAudioProfile](https://docs-preview.agoralab.co/en/trinity/API%20Reference/oc_high_level/interface_agora_rtc_engine_kit.html#a417eef3a3746c4e68488269fef41b2af) [2/2]
 
 ### Volume type
 
@@ -112,7 +131,7 @@ The audio scenario affects the volume type. See the difference between two kinds
 
 The following tables show the volume type according to different audio scenarios, user roles, and audio routes.
 
-- In the `AUDIO_SCENARIO_DEFAULT` scenario:
+- In the `AgoraAudioScenarioDefault` scenario:
 
   | User role \ Audio route                                     | Wired earphones | Speakerphone or earpiece | Bluetooth devices |
   | ------------------------------------------------------------ | --------------- | ------------------------- | ----------------- |
@@ -120,7 +139,7 @@ The following tables show the volume type according to different audio scenarios
   | Single host in the interactive live  streaming profile       | Media volume    | Media volume              | In-call volume    |
   | Audience in the interactive live  streaming profile          | Media volume    | Media volume              | Media volume      |
 
-- In the `AUDIO_SCENARIO_HIGH_DEFINITION` or `AUDIO_SCENARIO_GAME_STREAMING` scenario:
+- In the `AgoraAudioScenarioHighDefinition` or `AgoraAudioScenarioGameStreaming` scenario:
 
   | User role \ Audio route                                     | Wired earphones | Speakerphone or earpiece | Bluetooth devices |
   | ------------------------------------------------------------ | --------------- | ------------------------- | ----------------- |
@@ -128,7 +147,7 @@ The following tables show the volume type according to different audio scenarios
   | Single host in the interactive live  streaming profile       | Media volume    | Media volume              | Media volume    |
   | Audience in the interactive live  streaming profile          | Media volume    | Media volume              | Media volume      |
 
-- In the `AUDIO_SCENARIO_CHATROOM` scenario:
+- In the `AgoraAudioScenarioChatRoom` scenario:
 
   | User role \ Audio route                                     | Wired earphones | Speakerphone or earpiece | Bluetooth devices |
   | ------------------------------------------------------------ | --------------- | ------------------------- | ----------------- |
