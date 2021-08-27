@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcengineconfig">
     <title><ph keyref="RtcEngineConfig"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="RtcEngineConfig"/>定义。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Configurations for the <apiname keyref="RtcEngineConfig"/> instance.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -27,29 +27,29 @@
                 <plentry>
                     <pt props="windows ios mac">appId</pt>
                     <pt props="android">mAppId</pt>
-                    <pd id="appid">Agora 为 app 开发者签发的 App ID，详见获取 App ID。 Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one instance<apiname keyref="IRtcEngine"/>. 如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <apiname keyref="IRtcEngine"/> 再重新创建 。</pd>
+                    <pd id="appid">The App ID issued to you by Agora. See How to get the App ID Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <apiname keyref="IRtcEngine"/>instance. To change your App ID, call <xref keyref="release"/> to destroy the current <apiname keyref="IRtcEngine"/> instance and then create a new one.</pd>
                 </plentry>
                 <plentry props="android windows">
                     <pt props="windows">context</pt>
-                    <pt props="android">context</pt>
+                    <pt props="android">Context</pt>
                     <pd id="context">
                         <ul props="windows">
-                            <li>Windows 平台上，context 是视窗句柄。 Once set, this parameter enables you to plug or unplug the video devices while they are powered.</li>
-                            <li>Android 平台上，context 是安卓活动上下文。</li>
+                            <li>For Windows, it is the window handle of the app. Once set, this parameter enables you to plug or unplug the video devices while they are powered.</li>
+                            <li>For Android, it is the context of Android Activity.</li>
                         </ul>
-                        <p props="android">安卓活动上下文。</p>
+                        <p props="android">The context of Android Activity.</p>
                     </pd>
                 </plentry>
                 <plentry props="android windows">
                     <pt props="windows">enableAudioDevice</pt>
                     <pt props="android">mEnableAudioDevice</pt>
-                    <pd>Whether to allow the SDK to use audio devices:<ul>
-                            <li><codeph><ph keyref="true"/></codeph>:（默认）允许。</li>
-                            <li><codeph>1: Prohibited.</codeph><ph keyref="false"/></li>
+                    <pd>Sets whether to allow the SDK to use audio devices:<ul>
+                            <li><codeph><ph keyref="true"/></codeph>: (Default) Allow the SDK to use audio devices.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not allow theSDK to use audio devices.</li>
                         </ul></pd>
                     <pd>
                         <note type="attention">
-                            <p>如需通过 <xref keyref="pullAudioFrame"/> 获取混音后的远端音频数据，请确保将该参数设为 <codeph><ph keyref="false"/></codeph>。</p>
+                            <p>If you need to get the mixed remote audio data through <xref keyref="pullAudioFrame"/>, ensure that you set this parameter as <codeph><ph keyref="false"/></codeph>.</p>
                         </note>
                     </pd>
                 </plentry>
@@ -61,12 +61,12 @@
                 <plentry>
                     <pt props="windows ios mac">audioScenario</pt>
                     <pt props="android">mAudioScenario</pt>
-                    <pd>Audio application scenarios. For details, see <xref keyref="AUDIO_SCENARIO_TYPE"/>.</pd>
+                    <pd>The audio application scenarios. For details, see <xref keyref="AUDIO_SCENARIO_TYPE"/>.</pd>
                     <pd>
-                        <note type="attention">Agora 推荐你使用以下场景：<ul>
-                                    <li><ph keyref="AUDIO_SCENARIO_DEFAULT"/>(0)</li>
-                                    <li><ph keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3)</li>
-                                    <li><ph keyref="AUDIO_SCENARIO_HIGH_DEFINITION"/>(6)</li>
+                        <note type="attention">Agora recommends that you use the following scenarios.<ul>
+                                    <li><ph keyref="AUDIO_SCENARIO_DEFAULT"/>(0).</li>
+                                    <li><ph keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3).</li>
+                                    <li><ph keyref="AUDIO_SCENARIO_HIGH_DEFINITION"/>(6).</li>
                                 </ul>
                         </note>
                     </pd>
@@ -74,30 +74,30 @@
                 <plentry>
                     <pt props="windows ios mac">areaCode</pt>
                     <pt props="android">mAreaCode</pt>
-                    <pd>The region for connection. This advanced feature applies to scenarios that have regional restrictions. See for details about supported regions<xref keyref="AREA_CODE"
-                            />.<p>After specifying the region, the SDK connects to the Agora servers within that region.</p></pd>
+                    <pd>The region for connection. This advanced feature applies to scenarios that have regional restrictions. See <xref keyref="AREA_CODE"
+                            /> for details about supported regions.<p>After specifying the region, the app integrated with the Agora SDK connects to the Agora servers within that region.</p></pd>
                 </plentry>
                 <plentry>
                     <pt props="windows ios mac">logConfig</pt>
                     <pt props="android">mLogConfig</pt>
                     <pd>
                         <p>Sets the log files that the SDK outputs. For details, see <xref keyref="LogConfig"/>.</p>
-                        <p>By default, the SDK outputs five log files: <codeph>agorasdk.log, agorasdk_1</codeph><codeph>.log, agorasdk_2.log, agorasdk_3</codeph>.<codeph>log</codeph>, and <codeph>agorasdk_4.log</codeph>. <codeph>agorasdk.log</codeph> 和 <codeph>agorasdk1.log</codeph> 默认大小为 1,024 KB；<codeph>agoraapi.log</codeph> 和 <codeph>agoraapi1.log</codeph> 默认大小为 2,048 KB。 These log files are encoded in UTF-8.</p>
-                        <p>最新的日志永远写在 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 中。 当 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 写满后， SDK 会删除 <codeph>agorasdk1.log</codeph> 和 <codeph>agoraapi1.log</codeph>，将 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 重命名为 <codeph>agorasdk1.log</codeph> 和 <codeph>agorasapi1.log</codeph>，并创建新的 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 写入最新的日志。</p>
+                        <p>By default, the SDK outputs four log files: <codeph>agorasdk.log</codeph>, <codeph>agorasdk1.log</codeph>, <codeph>agoraapi.log</codeph>, and <codeph>agoraapi1.log</codeph>. The <codeph>agorasdk.log</codeph> and <codeph>agorasdk1.log</codeph> files each have a default size of 1024 KB, and the <codeph>agoraapi.log</codeph> and <codeph>agoraapi1.log</codeph> files each have a default size of 2,048 KB. These log files are encoded in UTF-8.</p>
+                        <p>The SDK writes the latest logs in <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>. When <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> is full, the SDK deletes <codeph>agorasdk1.log</codeph> or <codeph>agoraapi1.log</codeph>, renames <codeph>agorasdk.log</codeph> to <codeph>agorasdk1.log</codeph> and <codeph>agoraapi.log</codeph> to <codeph>agoraapi1.log</codeph>, and creates a new <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> to record the latest logs.</p>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mExtensionList</pt>
-                    <pd>扩展服务插件列表。</pd>
+                    <pd>The list of extensions.</pd>
                 </plentry>
                 <plentry>
                     <pt props="android">mExtensionObserver</pt>
                     <pt props="ios mac">eventDelegate</pt>
-                    <pd>扩展服务事件句柄。 For details, see <xref keyref="IMediaExtensionObserver"/>.</pd>
+                    <pd>The event handler of the extension. For details, see <xref keyref="IMediaExtensionObserver"/>.</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>mediaFilterExtensions</pt>
-                    <pd>媒体插件扩展。 For details, see <xref keyref="AgoraMediaFilterExtensionDelegate"/>.</pd>
+                    <pd>The extension delegate. For details, see <xref keyref="AgoraMediaFilterExtensionDelegate"/>.</pd>
                 </plentry>
             </parml>
         </section>
