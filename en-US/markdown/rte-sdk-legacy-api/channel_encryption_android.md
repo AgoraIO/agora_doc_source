@@ -80,6 +80,8 @@ Add the built-in media stream encryption to your app, as follows:
 
 ## Reference
 
+This section provides reference information you may need when implementing the built-in encryption.
+
 ### Sample project
 
 Agora provides an open-source sample project that implements the [built-in media encryption](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/ChannelEncryption.java) on GitHub. You can try the demo and view the source code.
