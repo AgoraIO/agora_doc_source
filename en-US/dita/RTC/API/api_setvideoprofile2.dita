@@ -29,31 +29,31 @@
                     <dd>This method is deprecated as of v2.3. Please use <xref keyref="setVideoEncoderConfiguration" /> instead.</dd>
                 </dlentry>
             </dl>
-            <p>This method sets the video encoder configuration. You can call this method either before or after joining a channel. If the user does not need to reset the video encoding properties after joining the channel, Agora recommends<xref
-                    keyref="enableVideo"/> calling this method before to reduce the time to render the first video frame.</p>
+            <p>This method sets the video encoder configuration. You can call this method either before or after joining a channel. If the user does not need to reset the video encoding properties after joining the channel, Agora recommends calling this method before <xref
+                    keyref="enableVideo"/> to reduce the time to render the first video frame.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>width</pt>
-                    <pd>你想要设置的视频宽度，宽 × 高的最大值不超过 1280 × 720。</pd>
+                    <pd>The width of the video. The maximum value of width × height is 1280 × 720.</pd>
                 </plentry>
                 <plentry>
                     <pt>height</pt>
-                    <pd>你想要设置的视频高度，宽 × 高的最大值不超过 1280 × 720。</pd>
+                    <pd>The height of the video. The maximum value of width × height is 1280 × 720.</pd>
                 </plentry>
                 <plentry>
                     <pt>frameRate</pt>
-                    <pd>你想要设置的视频帧率，最高值不超过 30，如： 5、10、15、24、30 等。</pd>
+                    <pd>The frame rate of the video. The highest value is 30. You can set the parameter as 5, 10, 15, 24, and 30.</pd>
                 </plentry>
                 <plentry>
                     <pt>bitrate</pt>
-                    <pd>你想要设置的视频码率，需要开发者根据想要设置的视频的宽、高和帧率，根据 Bitrate 中的码率参考表，手动推算出合适值。 When the resolution is fixed, the bitrate increases as the frame rate increases.<ul>
-                            <li>如选取的帧率为 5 FPS，则推算码率为上表推荐码率除以 2。</li>
-                            <li>如选取的帧率为 15 FPS，则推算码率为上表推荐码率。</li>
-                            <li>如选取的帧率为 30 FPS，则推算码率为上表码率乘以 1.5。</li>
-                            <li>如选取其余帧率，等比例推算即可。</li>
-                            <li>If the bitrate you set is beyond a reasonable range, the SDK sets it within a reasonable range.</li>
+                    <pd>The bitrate of the video. You need to manually work out the bitrate according to the width, height, and frame rate. With the same width and height, the bitrate varies with the frame rate:<ul>
+                            <li>If the frame rate is 5 fps, divide the recommended bitrate by 2.</li>
+                            <li>If the frame rate is 15 fps, use the recommended bitrate.</li>
+                            <li>If the frame rate is 30 fps, multiply the recommended bitrate by 1.5.</li>
+                            <li>Calculate the bitrate according to the ratio if you choose other frame rates.</li>
+                            <li>If you set a bitrate beyond the proper range, the SDK automatically adjusts the bitrate to a value within the proper range.</li>
                         </ul></pd>
                 </plentry>
             </parml>
