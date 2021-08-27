@@ -8,13 +8,14 @@ Agora Classroom SDK 通过 Edu Context 为 App 开发者提供实现灵动课堂
 
 Agora Classroom SDK 提供以下 Context：
 
-- `usePretestContext()`：课前检测。
-- `useBoardContext()`：白板。
-- `useChatContext()` ：消息聊天。
-- `useRoomContext()` ：课堂管理。
-- `useHandsUpContext`：举手上台。
-- `useScreenShareContext()`：屏幕共享。
-- `useUserListContext()`：用户列表。
-- `useRecordingContext()`：课堂录制。
-
-举例来说，`useRoomContext()` 提供课堂管理相关能力。你可以通过 `import { useRoomContext } from 'agora-edu-core';  ` 引入 `useRoomContext`，然后使用 `const {...} = useRoomContext()` 获取灵动课堂中课堂管理相关能力。假设你需要获取聊天消息列表以及确认本地是否为主播，可以通过 `const { messageList, isHost } = useChatConxt();` 获取这个能力。
+- `PretestContext`：课前检测。
+- `BoardContext`：白板。
+- `ChatContext` ：消息聊天。
+- `RoomContext` ：课堂管理。
+- `HandsUpContext`：举手上台。
+- `ScreenShareContext`：屏幕共享。
+- `UserListContext`：用户列表。
+- `RecordingContext`：课堂录制。
+- `CloudDriveContext` : 课件。
+- `StreamListContext`: 媒体流和数据流。
+- `MediaContext` : 本地媒体设备控制相关能力。
