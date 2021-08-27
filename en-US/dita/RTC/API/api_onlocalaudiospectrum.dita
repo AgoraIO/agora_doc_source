@@ -23,15 +23,15 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用 <xref keyref="registerAudioSpectrumObserver"/> 实现 <xref keyref="IAudioSpectrumObserver"/> 中的 <apiname keyref="onLocalAudioSpectrum"/> 回调并调用 <xref keyref="enableAudioSpectrumMonitor"/> 开启音频频谱监测后，SDK 会按照你设置的时间间隔触发该回调，报告编码后的本地音频数据的频谱。</p>
+            <p>After successfully calling <xref keyref="registerAudioSpectrumObserver"/> to implement the <apiname keyref="onLocalAudioSpectrum"/> callback in <xref keyref="IAudioSpectrumObserver"/> and calling <xref keyref="enableAudioSpectrumMonitor"/> to enable audio spectrum monitoring, the SDK will trigger the callback as the time interval you set to report the received remote audio data spectrum.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt props="android windows">data</pt>
                     <pt props="ios mac">AudioSpectrumData</pt>
-                    <pd props="android windows">本地用户的音频频谱数据。 For details, see <xref keyref="AudioSpectrumData"/>.</pd>
-                    <pd props="ios mac">本地用户的音频频谱数据。 Agora divides the audio frequency into 160 frequency domains, and reports the energy value of each frequency domain through this parameter. The value range of each energy type is 0, 1.</pd>
+                    <pd props="android windows">The audio spectrum data of the local user. For details, see <xref keyref="AudioSpectrumData"/>.</pd>
+                    <pd props="ios mac">The audio spectrum data of the local user. Agora divides the audio frequency into 160 frequency domains, and reports the energy value of each frequency domain through this parameter. The value range of each energy type is [0, 1].</pd>
                 </plentry>
             </parml>
         </section>
