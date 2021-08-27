@@ -44,15 +44,15 @@ Add the built-in media stream encryption to your app, as follows:
       3. Click **+** and  **Add Other...**  to add `AgoraRtcCryptoLoader.framework`.
       4. To ensure that the signature of the dynamic library is the same as the signature of the app, set the **Embed** attribute of the dynamic library to **Embed & Sign**.
 
+      <div class="alert note">According to the requirement of Apple, the <b>Extension</b> of app cannot contain the dynamic library. If you need to integrate the SDK with the dynamic library in the <b>Extension</b>, change the file status as <b>Do Not Embed</b>.</div>
+
+      <div class="alert info">For more integration methods, see <a href="#othermethods">Other approaches to integrate the encryption library</a></div>
+
    2. Import the `AgoraRtcCryptoLoader` library. To do this, add the following code to the `ViewController` file:
 
       ```swift
       import AgoraRtcCryptoLoader
       ```
-
-      <div class="alert note">According to the requirement of Apple, the <b>Extension</b> of app cannot contain the dynamic library. If you need to integrate the SDK with the dynamic library in the <b>Extension</b>, change the file status as <b>Do Not Embed</b>.</div>
-
-      <div class="alert info">For more integration methods, see <a href="#othermethods">Other approaches to integrate the encryption library</a></div>
 
    3. Get the key in the string format and the salt in the Base64 format from your server.
 
