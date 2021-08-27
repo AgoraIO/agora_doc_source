@@ -34,7 +34,7 @@ Create a Broadcast Upload Extension with the following steps:
 
    ![](https://web-cdn.agora.io/docs-files/1606371653521)
 
-4. Open the Podfile in the project, and add dependencies to the Extension.
+4. Open the Podfile in the project, and add dependencies to the Extension. // TODO
 
    ```
    target 'Agora-ScreenShare-Extension' do
