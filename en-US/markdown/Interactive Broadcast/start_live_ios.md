@@ -1,31 +1,32 @@
-The Agora SDK enables you to develop rapidly to enhance your social, work, education, and IoT apps with real-time engagements.
+The Agora Video SDK for iOS makes it easy to embed real-time Video Call into iOS apps. It enables you to develop rapidly and easily to enhance your social, work, education and IoT apps with face-to-face interaction.
 
 This page shows the minimum code you need to add interactive live streaming into your app by using the Agora Video SDK for iOS.
 
 ## Understand the tech
 
-The following figure shows the workflow to integrate Interactive Live Streaming Premium into your app.
+The following figure shows the workflow of a video call implemented using the Video SDK.
 
 ![](https://web-cdn.agora.io/docs-files/1625465916613)
 
 To start Interactive Live Streaming Premium, you implement the following steps in your app:
 
-**1. Set the role**
-Users in an Interactive Live Streaming Premium channel are either a host or an audience member. The host publishes streams to the channel, and the audience subscribes to the streams. 
+1. Set the role
 
-**2. Retrieve a token**
+   Users in an Interactive Live Streaming Premium channel are either a host or an audience member. The host publishes streams to the channel, and the audience subscribes to the streams. 
+
+2. Retrieve a token
 The token is a credential for authenticating the identity of the user when your app client joins a channel. The app client requests a token from your app server. This token authenticates the user when the app client joins a channel.
 
-**3. Join a channel**
-Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+3. Join a channel
+Call  `joinChannel`  to create and join a channel. App clients that pass the same channel name join the same channel.
 
-**4. Publish and subscribe to audio and video in the channel**
+4. Publish and subscribe to audio and video in the channel
 After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
-- A token: In a test or production environment, your app client retrieves tokens from your server. For rapid testing, you can use a temporary token with a validity period of 24 hours.
+- A token: In a test or production environment, your app client retrieves tokens from your server. For the procedure on this page, you use a temporary token that you get from Agora Console, which has a validity period of 24 hours.
 - The channel name: A string that identifies the channel for live streaming. 
 
 ## Prerequisites
@@ -42,32 +43,36 @@ Before proceeding, ensure that your development environment meets the following 
 
 In Xcode, follow the steps to create the environment necessary to add live streaming into your app.
 
-1. [Create a new project](https://help.apple.com/xcode/mac/current/#/dev07db0e578) for an iOS app using the **Single View App** template. Make sure you select **Storyboard** as the user interface.
-   
-   <div class="alert note">If you have not added any team information, you can see an **Add account...** button. Click it, input your Apple ID, and click **Next** to add your team.</div>
-   
+1. Create a new iOS app and configure the following settings:
+
+   - **Product Name**: Any name you like.
+   - **Team**: If you have added a team, choose it from the pop-up menu. If not, you can see the **Add account** button. Click it, input your Apple ID, and click **Next** to add your team.
+   - **Organization Identifier**: The identifier of your organization. If you do not belong to an organization, use any identifier you like.
+   - **Interface**: Choose **Storyboard**.
+   - **Language**: Choose **Swift**.
+
 2. Integrate the Video SDK into your project.
 
-   Go to **File** > **Swift Packages** > **Add Package Dependencies...**, and paste the following link:
+   Go to **File** > **Swift Packages** > **Add Package Dependencies...**, and paste the following URL:
 
    `https://github.com/AgoraIO/AgoraRtcEngine_iOS`
    
-   In the next sheet, [specify version requirements](https://help.apple.com/xcode/mac/current/#/devb83d64851) according to your needs.
+   In **Choose Package Options**, specify the Video SDK version you want to use.
 
-<div class="alert note"><li>Each SDK version has a corresponding Swift Package with the same version number. For the Video SDK, Agora provides Swift Packages for 3.4.3 or later versions.</li><li>If you have issues installing this Swift Package, try going to <b>File</b> > <b>Swift Packages</b> > <b>Reset Package Caches</b>.</li><li>For more integration methods, see <a href="#othermethods">Other approaches to integrating the SDK</a></li></div>
+<div class="alert note"><li>For the Video SDK, Agora provides Swift Packages for 3.4.3 or later versions.</li><li>If you have issues installing this Swift Package, try going to <b>File</b> > <b>Swift Packages</b> > <b>Reset Package Caches</b>.</li><li>For more integration methods, see <a href="#othermethods">Other approaches to integrating the SDK</a></li></div>
 
 3. [Enable automatic signing](https://help.apple.com/xcode/mac/current/#/dev23aab79b4) for your project.
-4. [Set the target devices](https://help.apple.com/xcode/mac/current/#/deve69552ee5) to deploy your iOS app.
+4. Set the deployment target for your app:
+   1. In the [project editor](https://help.apple.com/xcode/mac/current/#/devdab46c612), choose your target and click **General**.
+   2. In the **Deployment Info** settings, choose the operating system version for your iOS app from the pop-up menu.
 5. Add permissions for microphone and camera usage.
-   Open the `info.plist` file in the project navigation panel, and [edit the property list](https://help.apple.com/xcode/mac/current/#/dev3f399a2a6) to add the following properties:
+   In the [Project navigator](https://help.apple.com/xcode/mac/current/#/dev7d7220fbb), open the `info.plist` file of your project and [add the following properties](https://help.apple.com/xcode/mac/current/#/dev3f399a2a6):
    - Privacy - Microphone Usage Description
    - Privacy - Camera Usage Description
 
 ## Implement a client for Interactive Live Streaming Premium
 
 This section shows how to use the Agora Video SDK to implement live streaming in your app step by step.
-
-<div class="alert note">The code samples in this section are written in Swift. If you prefer programming with Objective-C, see <a href="#oc">Objective-C code sample</a></div>
 
 ### Create the UI
 
@@ -110,30 +115,32 @@ The following figure shows the API call sequence of implementing Interactive Liv
 
 To implement this logic, take the following steps:
 
-1. Import the Agora kit.
+1. Import the Agora kit and add the `agoraKit` variable.
 
-   In `ViewController.swift`, add the following line after `import UIKit`:
-
-   ```swift
-    import AgoraRtcKit
-   ```
-
-   And add the `agoraKit` variable in the `ViewController` class:
+   Modify your  `ViewController.swift` as follows:
 
    ```swift
+   import UIKit
+   // Add this line to import the Agora kit 
+   import AgoraRtcKit
    class ViewController: UIViewController {
        var localView: UIView!
        var remoteView: UIView!
-       // Add agoraKit here
+       // Add this linke to add the agoraKit variable
        var agoraKit: AgoraRtcEngineKit?
    }
+   
+   override func viewDidLoad() {
+              super.viewDidLoad()
+              initView()
+           }
    ```
 
 2. Initialize the app and join the channel.
 
-   Call the core methods for initializing the app and joining a channel. In the following sample code, we use an `initializeAndJoinChannel` function to encapsulate these core methods.
+   Call the core methods to initialize the app and join a channel. In this example app, this functionality is encapsulated in the `initializeAndJoinChannel` function.
 
-   In `ViewController.swift`, add the following lines after the `initView` function:
+   In `ViewController.swift`, add the following lines after the `initView` function, and fill in your App ID, temporary token, and channel name:
 
    ```swift
     func initializeAndJoinChannel() {
@@ -177,7 +184,9 @@ To implement this logic, take the following steps:
 
 ### Start and stop your app
 
-Now you have created the Interactive Live Streaming Premium functionality, start and stop the app. In this implementation, a live stream starts when the user opens your app. The live stream ends when the user closes your app.
+Now you have created the Video Call functionality, add the functionality of starting and stopping the app. In this implementation, a video call starts when the user opens your app. The call ends when the user closes your app.
+
+To implement the functionality of starting and stopping the app:
 
 1. When the view is loaded, call `initializeAndJoinChannel` to join a live streaming channel.
 
@@ -205,12 +214,19 @@ Now you have created the Interactive Live Streaming Premium functionality, start
 
 ## Test your app
 
-Connect an iOS device to your computer, and click the Run button on your Xcode to [build and run your app](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca) on the device. A moment later you will see the project installed on your device. Take the following steps to test the live streaming app:
+To test your app on a physical device, do the following:
 
-1. Grant microphone and camera access to your app.
-2. When the app launches, you should be able to see yourself on the local view if you set the client role as `broadcaster`.
-3. Ask a friend to join the live streaming with you on the [demo app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicLive/index.html). Enter the same App ID and channel name.
-4. If your friend joins as a host, you should be able to see and hear each other; if as an audience member, you should only be able to see yourself while your friend can see and hear you.
+1. Connect an iOS device to your computer.
+
+2. In Xcode, choose the device from the scheme menu in the [toolbar](https://help.apple.com/xcode/mac/current/#/devf0d1df47a), and click the Run button.
+
+3. On your device, launch the app and grant microphone and camera access.
+
+   You can see yourself on the local view.
+
+4. Ask a friend to join the video call with you on the [demo app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicLive/index.html). Your friend needs to enter the same App ID and channel name.
+
+   If your friend joins as a host, you should be able to see and hear each other; if as an audience member, you should only be able to see yourself while your friend can see and hear you.
 
 ## Next steps
 
@@ -246,7 +262,7 @@ In addition to integrating the Agora Video SDK for iOS through Swift Package, yo
    
    <div class="alert note">Certain files and subfolders under the <code>libs</code> folder are optional. See <a href="https://docs.agora.io/en/Video/faq/reduce_app_size_rtc?platform=iOS#extension_libraries">extension libraries</a> for details.</div>
    
-3. In Xcode, [link your target to the frameworks or libraries](https://help.apple.com/xcode/mac/current/#/dev51a648b07) you have copied. Be sure to choose **Embed & Sign **from the pop-up menu in the Embed column.
+3. In Xcode, [link your target to the frameworks or libraries](https://help.apple.com/xcode/mac/current/#/dev51a648b07) you have copied. Be sure to choose **Embed & Sign ** from the pop-up menu in the Embed column.
 
    <div class="alert note"><ul><li>Apple does not allow an app extension to contain any dynamic library. If you are integrating the Agora SDK to an app extension, choose <b>Do Not Embed</b> in the Embed column.</li><li>The Agora SDK uses libc++ (LLVM) by default. Contact support@agora.io if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio/video real devices.</li></ul></div>
 
