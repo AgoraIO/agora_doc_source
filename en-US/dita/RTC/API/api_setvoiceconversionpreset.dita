@@ -12,17 +12,17 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public abstract int setVoiceConversionPreset(int preset);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setVoiceConversionPreset:(AgoraVoiceConversionPreset)preset;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int setVoiceConversionPreset(VOICE_CONVERSION_PRESET preset) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">setVoiceConversionPreset(preset: VOICE_CONVERSION_PRESET): number</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">setVoiceBeautifierPreset(preset: VOICE_BEAUTIFIER_PRESET): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
         </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
+            <dl outputclass="since" props="rtc">
                 <dlentry>
                     <dt>Since</dt>
                     <dd>v3.3.1</dd>
@@ -33,9 +33,9 @@
             <note type="attention">
                 <ul>
                     <li>You can call this method either before or after joining a channel.</li>
-                    <li>Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile"/> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="windows"> or <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>, or the method does not take effect.</li>
+                    <li>Do not set<apiname keyref="setAudioProfile"/> the <parmname>profile</parmname> parameter in to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)<ph props="windows"> or <apiname keyref="AUDIO_PROFILE_IOT"/>(6)</ph>, or the method does not take effect.</li>
                     <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
-                    <li>After calling <apiname keyref="setVoiceConversionPreset"/>, Agora recommends not calling the following methods, because they can override <apiname keyref="setVoiceConversionPreset"/>:<ul>
+                    <li>After calling <apiname keyref="setVoiceConversionPreset"/>, Agora recommends not calling the following methods, or the settings in <apiname keyref="setVoiceConversionPreset"/> are overridden :<ul>
                             <li><xref keyref="setAudioEffectPreset"/></li>
                             <li><xref keyref="setAudioEffectParameters"/></li>
                             <li><xref keyref="setVoiceBeautifierPreset"/></li>
@@ -50,18 +50,27 @@
                 </ul>
             </note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>preset</pt>
-                    <pd>The options for the preset voice beautifier effects: <xref keyref="VOICE_CONVERSION_PRESET"/>.</pd>
+                    <pd><p props="ios mac windows">The options for the preset voice beautifier effects: <xref keyref="VOICE_CONVERSION_PRESET"/>.</p>
+                        <p props="android">The options for SDK preset voice conversion effects.<ul>
+                                <li><ph keyref="VOICE_CONVERSION_OFF"/>: Turn off voice conversion effects and use the original voice.</li>
+                                <li><ph keyref="VOICE_CHANGER_NEUTRAL"/>: A gender-neutral voice. To avoid audio distortion, ensure that you use this enumerator to process a female-sounding voice.</li>
+                                <li><ph keyref="VOICE_CHANGER_SWEET"/>: A sweet voice. To avoid audio distortion, ensure that you use this enumerator to process a female-sounding voice.</li>
+                                <li><ph keyref="VOICE_CHANGER_SOLID"/>: A steady voice. To avoid audio distortion, ensure that you use this enumerator to process a male-sounding voice.</li>
+                                <li><ph keyref="VOICE_CHANGER_BASS"/>: A deep voice. To avoid audio distortion, ensure that you use this enumerator to process a male-sounding voice.</li>
+                            </ul>
+                        </p>
+                    </pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
+                <li>Success.</li>
                 <li>&lt; 0: Failure.</li>
             </ul>
         </section></refbody>

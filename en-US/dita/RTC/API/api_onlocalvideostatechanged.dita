@@ -12,8 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public void onLocalVideoStateChanged(int state, int error) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localVideoStateChangedOfState:(AgoraVideoLocalState)state error:(AgoraLocalVideoStreamError)error;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState, LOCAL_VIDEO_STREAM_ERROR error) { (void)localVideoState; (void)error; }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_VIDEO_STATE_CHANGED, cb: ( localVideoState: number, error: number ) => void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -22,7 +22,7 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
+            <dl outputclass="since" props="rtc">
                 <dlentry>
                     <dt>Since</dt>
                     <dd>v2.4.1</dd>
@@ -36,19 +36,57 @@
                     <li>The camera starts normally, but does not output video for four consecutive seconds.</li>
                 </ul>
             </p>
-            <p>When the camera outputs the captured video frames, if the video frames are the same for 15 consecutive frames, the SDK triggers the <apiname keyref="onLocalVideoStateChanged" /> callback with the state code <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph> and error code <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/></codeph>. Note that the video frame duplication detection is only available for video frames with a resolution greater than 200 × 200, a frame rate greater than or equal to 10 fps, and a bitrate less than 20 Kbps.</p>
+            <p>When the camera outputs the captured video frames, if the video frames are the same for 15 consecutive frames, the SDK triggers the <apiname keyref="onLocalVideoStateChanged" /> callback with the state code <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/></codeph> and error code <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph>. Note that the video frame duplication detection is only available for video frames with a resolution greater than 200 × 200, a frame rate greater than or equal to 10 fps, and a bitrate less than 20 Kbps.</p>
             <note id="note" type="attention">For some device models, the SDK does not trigger this callback when the state of the local video changes while the local video capturing device is in use, so you have to make your own timeout judgment.</note>
         </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                  <pt/>
+                  <pd/>
+              </plentry>
                 <plentry>
-                    <pt>localVideoState</pt>
-                    <pd>The state of the local video, see <xref keyref="LOCAL_VIDEO_STREAM_STATE" />.</pd>
+                    <pt props="android ios mac">state</pt>
+                    <pt props="windows">localVideoState</pt>
+                    <pd>
+                        <p props="ios mac windows">The state of the local video, see <xref keyref="LOCAL_VIDEO_STREAM_STATE" />.</p>
+                        <p props="android">
+                            <ul>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_STOPPED"/> (0): The local video is in the initial state.</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1): The local video capturing device starts successfully.</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_ENCODING"/> (2): The first video frame is successfully encoded.</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/> (3): Fails to start the local video.</li>
+                            </ul>
+                        </p>
+                    </pd>
                 </plentry>
                 <plentry>
                     <pt>error</pt>
-                    <pd>The detailed error information, see <xref keyref="LOCAL_VIDEO_STREAM_ERROR" />.</pd>
+                    <pd>
+                        <p props="ios mac windows">The detailed error information, see <xref keyref="LOCAL_VIDEO_STREAM_ERROR" />.</p>
+                        <p props="android">
+                            <ul>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/> (0): The local video is normal.</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_FAILURE"/> (1): No specified reason for the local video failure.</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION"
+                                /> (2): No permission to use the local video capturing device.</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/> (3): The local video capturing device is in use.</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/> (4): The local video capture fails. Check whether the capturing device is working properly.<ul id="ul_ygj_tdx_qqb">
+                                            <li>If your app runs in the background on a device running Android 9 or later, you cannot access the camera.</li>
+                                        <li>If your app runs on a device running Android 6 or later, this error is reported if the camera is occupied by a third-party app and not property released. Once the camera is released, the SDK triggers this callback again, reporting <codeph>state</codeph> <codeph>CAPTURING</codeph>, and <codeph>error</codeph> <codeph>ERROR_OK</codeph>.</li>
+                                    </ul></li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE"/> (5): The local video encoding fails.</li>
+                                <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND"/> 8: Fails to find a local video capture device.</li>
+                                <li><ph
+                                        keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED"
+                                /> 11: When calling <xref keyref="startScreenCaptureByWindowId"/> to share the window, the shared window is in a minimized state.</li>
+                                <li><ph
+                                        keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED"
+                                /> 12: The error code indicates that a window shared by the window ID has been closed, or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</li>
+                            </ul>
+                        </p>
+                    </pd>
                 </plentry>
             </parml>
         </section>

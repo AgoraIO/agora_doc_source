@@ -12,8 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java">public void onConnectionInterrupted() {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineConnectionDidInterrupted:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
             <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionInterrupted() {}</codeblock>
             <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CONNECTION_INTERRUPTED, cb: () => void): this;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
@@ -33,6 +33,15 @@
        <li>The SDK triggers the <apiname keyref="onConnectionInterrupted"/> callback when it loses connection with the server for more than four seconds after it successfully joins the channel.</li>
        <li>The SDK triggers the <apiname keyref="onConnectionLost"/> callback when it loses connection with the server for more than 10 seconds, whether or not it joins the channel.</li>
    </ul>If the SDK fails to rejoin the channel 20 minutes after being disconnected from Agora&apos;s edge server, the SDK stops rejoining the channel.</p>
+        </section>
+        <section id="parameters" props="ios mac">
+            <title>Parameter</title>
+            <parml>
+              <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                  <pt/>
+                  <pd/>
+              </plentry>
+            </parml>
         </section>
         </refbody>
 </reference>
