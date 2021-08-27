@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encodedvideoframeinfo">
     <title><ph keyref="EncodedVideoFrameInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">外部编码视频帧的信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Information about externally encoded video frames.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -19,12 +19,12 @@
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt>CodecType: Encoding type of the sent audio.</pt>
-                    <pd props="windows">The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>. 默认值为 <codeph><ph keyref="VIDEO_CODEC_H264"/> (2)</codeph>。</pd>
-                    <pd props="android">视频编解码类型：<ul id="ul_hkm_4qy_4qb">
-                        <li>1：VP8。</li>
-                        <li>2：（默认）H264。</li>
-                        <li>5：VP9。</li>
+                    <pt>codecType</pt>
+                    <pd props="windows">The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>. The default value is <codeph><ph keyref="VIDEO_CODEC_H264"/>(2)</codeph>.</pd>
+                    <pd props="android">The codec type of the video:<ul id="ul_hkm_4qy_4qb">
+                        <li>1: VP8</li>
+                        <li>2: (Default) H264</li>
+                        <li>5: VP9.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
@@ -38,44 +38,44 @@
                 <plentry>
                     <pt>framesPerSecond</pt>
                     <pd>
-                        <p>每秒的视频帧数。</p>
-                        <p>当该参数不为 <codeph>0</codeph> 时，你可以用它计算外部编码视频帧的 Unix 时间戳。</p>
+                        <p>The number of video frames per second.</p>
+                        <p>When this parameter is not <codeph>0</codeph>, you can use it to calculate the Unix timestamp of externally encoded video frames.</p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>frameType</pt>
-                    <pd props="windows">The type of the video frame<xref keyref="VIDEO_FRAME_TYPE"/>.</pd>
-                    <pd props="android">该帧的类型：<ul id="ul_djl_sqy_4qb">
-                        <li>0：（默认）空白帧。</li>
-                        <li>3：关键帧。</li>
-                        <li>4：Delta 帧。</li>
-                        <li>5：B 帧。</li>
-                        <li>6：未知。</li>
+                    <pd props="windows">The type of the video frame, see <xref keyref="VIDEO_FRAME_TYPE"/>.</pd>
+                    <pd props="android">Type of the frame.<ul id="ul_djl_sqy_4qb">
+                        <li>0: (Default) blank frame</li>
+                        <li>3: Keyframe</li>
+                        <li>4: Delta frame.</li>
+                        <li>5: The B frame</li>
+                        <li>6: Unknown frame</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>rotation</pt>
-                    <pd props="windows">视频帧的旋转信息，详见 <xref keyref="VIDEO_ORIENTATION"/>。</pd>
-                    <pd props="android">视频帧的旋转信息，取值如下：<ul>
-                            <li>: (Default) Do not rotate.</li>
-                            <li>90：顺时针旋转 90 度。</li>
-                            <li>180：顺时针旋转 180 度。</li>
-                            <li>270：顺时针旋转 270 度。</li>
+                    <pd props="windows">The rotation information of the video frames, see <xref keyref="VIDEO_ORIENTATION"/>.</pd>
+                    <pd props="android">Rotation information of the video frame, as the following:<ul>
+                            <li>0: (Default) 0 degree.</li>
+                            <li>90: 90 degrees.</li>
+                            <li>180: 80 degrees.</li>
+                            <li>270: 270 degrees.</li>
                         </ul>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>trackId</pt>
                     <pd>Reserved for future use.</pd>
-                    <pd props="android">轨道 ID。 适用于频道中有多个视频轨道的场景。</pd>
+                    <pd props="android">Track ID. Used in scenarios with multiple video tracks in the channel.</pd>
                 </plentry>
                 <plentry>
                     <pt>renderTimeMs</pt>
-                    <pd>渲染外部编码视频帧的的 Unix 时间戳 (ms)。</pd>
+                    <pd>The Unix timestamp (ms) for rendering externally encoded video frames.</pd>
                 </plentry>
                 <plentry>
                     <pt>uid</pt>
-                    <pd>推送外部编码视频帧的用户 ID。</pd>
+                    <pd>The user ID to push the externally encoded video frame.</pd>
                 </plentry>
             </parml>
         </section>
