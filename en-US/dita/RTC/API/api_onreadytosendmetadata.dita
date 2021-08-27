@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onreadytosendmetadata">
     <title><ph keyref="onReadyToSendMetadata"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK is ready to receive and send metadata.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK is ready to send metadata.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -28,24 +28,24 @@
         </section>
         <section id="detailed_desc">
    
-   <p>当 SDK 准备好发送 metadata 时，会触发该回调。</p>
-   <p props="electron">After receiving this callback, you can call to<xref keyref="sendMetadata"/> send the media metadata.</p>
-   <note props="android ios mac windows" type="attention">Ensure that the size of the does not exceed the<xref keyref="getMaxMetadataSize"/> value set in the callback.</note>
+   <p>This callback is triggered when the SDK is ready to send metadata.</p>
+   <p props="electron">After receiving this callback, you can call to <xref keyref="sendMetadata"/> send the media metadata.</p>
+   <note props="android ios mac windows" type="attention">Ensure that the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry props="rtc-ng">
            <pt props="android">timeStampMs</pt>
            <pt props="ios mac">timestamp</pt>
-           <pd>时间戳。</pd>
+           <pd>Timestamp.</pd>
        </plentry>
        <plentry props="rtc-ng">
            <pt>sourceType</pt>
-           <pd>视频数据类型。 For details, see <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+           <pd>Video data type. For details, see <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
        </plentry>
        <plentry props="windows"> 
   <pt>metadata</pt>
-  <pd>用户想要发送的 metadata。</pd>
+  <pd>The metadata that the user wants to send.</pd>
        </plentry>
    </parml>
         </section>
@@ -55,13 +55,13 @@
        <li><codeph><ph keyref="true"/></codeph>: Send</li>
        <li><codeph><ph keyref="false"/></codeph>: Do not send</li>
    </ul>
-            <p props="ios mac">指定想要发送的 metadata ，格式为 NSData，由如下字段组成：<ul>
-                    <li><codeph>For</codeph> the receiver: the ID of the user who sent the metadata.</li>
-                    <li><codeph>size</codeph>：metadata 的大小。</li>
-                    <li><codeph>buffer</codeph>：metadata 数据。</li>
-                    <li><codeph>timeStampMs</codeph>：metadata 发送时的 NTP 时间戳（ms）。</li>
+            <p props="ios mac">The metadata that you want to send in the format of NSData, which includes the following parameters:<ul>
+                    <li><codeph>uid</codeph>: the ID of the remote user who sends the metadata.</li>
+                    <li><codeph>size</codeph>: the size of the metadata.</li>
+                    <li><codeph>buffer</codeph>: metadata data.</li>
+                    <li><codeph>timeStampMs</codeph>: The NTP timestamp (ms) when the metadata is sent.</li>
                 </ul>
             </p>
-            <p props="android">指定想要发送的 metadata，格式为 byte[]。 Ensure that you set the return value.</p>
+            <p props="android">The metadata that you want to send in the format of byte. Ensure that you set the return value.</p>
         </section></refbody>
 </reference>
