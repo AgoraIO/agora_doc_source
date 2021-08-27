@@ -27,23 +27,23 @@
        <plentry>
   <pt>format</pt>
            <pd props="windows">The pixel format. For details, see <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
-           <pd props="ios mac">传入的视频帧的格式，必须指定为下面的某一个值：<ul>
-                   <li>1: The format is I420.</li>
-                   <li>2: The format is BGRA.</li>
-                   <li>3: The format is NV21.</li>
-                   <li>2: RGBA.</li>
-                   <li>5: The format is IMC2.</li>
-                   <li>7: The format is ARGB.</li>
-                   <li>8: The format is NV12.</li>
-                   <li>12: iOS 纹理 (CVPixelBufferRef)。</li>
+           <pd props="ios mac">The format of the incoming video frame must be specified as one of the following values:<ul>
+                   <li>1: I420</li>
+                   <li>2: BGRA</li>
+                   <li>3: NV21</li>
+                   <li>2: RGBA</li>
+                   <li>5: IMC2</li>
+                   <li>7: ARGB</li>
+                   <li>8: NV12</li>
+                   <li>12: iOS texture (CVPixelBufferRef).</li>
                </ul>
            </pd>
-           <pd props="android">视频数据的格式：<ul>
-                   <li>10：TEXTURE_2D。</li>
-                   <li>11：TEXTURE_OES，通常摄像头采集的数据为这种格式。</li>
-                   <li>1：I420。</li>
-                   <li>3：NV21。</li>
-                   <li>4：RGBA。</li>
+           <pd props="android">The format of the video data:<ul>
+                   <li>10: TEXTURE_2D</li>
+                   <li>11: TEXTURE_OES, usually the data collected by the camera is in this format.</li>
+                   <li>1: I420</li>
+                   <li>3: NV21</li>
+                   <li>2: RGBA</li>
                </ul>
                </pd>
        </plentry>
@@ -51,11 +51,11 @@
   <pt props="windows">buffer</pt>
   <pt props="android">buf</pt>
   <pd>The video buffer.</pd>
-  <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+  <pd props="android">This parameter only applies to video data in non-Texture format.</pd>
        </plentry>
        <plentry props="ios mac">
            <pt>textureBuf</pt>
-           <pd>iOS 纹理的 Buffer。</pd>
+           <pd>Buffer of iOS texture.</pd>
        </plentry>
        <plentry>
   <pt>stride</pt>
@@ -63,7 +63,7 @@
           <dl outputclass="deprecated">
               <dlentry>
                   <dt>Deprecated:</dt>
-                  <dd>用 strideInPixels 代替。</dd>
+                  <dd>Replaced with strideInPixels.</dd>
               </dlentry>
           </dl>
       </p>       
@@ -71,11 +71,11 @@
        </plentry>
        <plentry props="ios mac">
            <pt>strideInPixels</pt>
-           <pd>该帧的行跨度，即相邻两行视频帧之间的像素点数。<note type="attention">
+           <pd>The line span of the frame, that is, the number of pixels between two adjacent lines of video frames.<note type="attention">
                <ul>
-                   <li>该参数单位为像素，不是字节数。</li>
-                   <li>如果视频为 Texture 格式，则将该参数设为 Texture 的宽度。</li>
-                   <li>如果视频帧格式设为 12，则不使用该字段。</li>
+                   <li>The unit of this parameter is pixels, not bytes.</li>
+                   <li>If the video is in Texture format, set this parameter to the width of Texture.</li>
+                   <li>If the video frame format is set to 12, do not use this field.</li>
                </ul>
            </note></pd>
        </plentry>
@@ -85,47 +85,47 @@
        </plentry>
                 <plentry props="android">
                     <pt>textureID</pt>
-                    <pd>该帧的 Texture ID。 该参数仅适用于 Texture 格式的视频数据。</pd>
+                    <pd>Texture ID of the frame. This parameter only applies to video data in Texture format.</pd>
                 </plentry>
                 <plentry props="android">
                     <pt>syncMode</pt>
-                    <pd>设置是否开启同步模式，开启后 SDK 会在 Texture 处理时进行等待。 该参数仅适用于 Texture 格式的视频数据。<ul
+                    <pd>Set whether to enable the synchronization mode. After enabling, the SDK waits while Texture processing. This parameter only applies to video data in Texture format.<ul
                             id="ul_oxx_wmy_4qb">
-                        <li><codeph><ph keyref="true"/></codeph>：开启同步模式。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：不开启同步模式。</li>
+                        <li><codeph><ph keyref="true"/></codeph>: Turn on sync mode.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not turn on sync mode.</li>
                         </ul></pd>
                 </plentry>
        <plentry props="android">
                     <pt>transform</pt>
-           <pd>Texture 帧额外的转换。 该参数仅适用于 Texture 格式的视频数据。</pd>
+           <pd>Additional transform of Texture frames. This parameter only applies to video data in Texture format.</pd>
                 </plentry>
        <plentry props="android">
                     <pt>eglContext11</pt>
-           <pd>EGLContext11。 该参数仅适用于 Texture 格式的视频数据。</pd>
+           <pd>EGLContext11. This parameter only applies to video data in Texture format.</pd>
                 </plentry>
        <plentry props="android">
                     <pt>eglContext14</pt>
-           <pd>EGLContext14。 该参数仅适用于 Texture 格式的视频数据。</pd>
+           <pd>EGLContext14. This parameter only applies to video data in Texture format.</pd>
                 </plentry>
        <plentry>
   <pt>cropLeft</pt>
   <pd>Raw data related parameter. The number of pixels trimmed from the left. The default value is 0.</pd>
-           <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+           <pd props="android">This parameter only applies to video data in non-Texture format.</pd>
        </plentry>
        <plentry>
   <pt>cropTop</pt>
   <pd>Raw data related parameter. The number of pixels trimmed from the top. The default value is 0.</pd>
-           <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+           <pd props="android">This parameter only applies to video data in non-Texture format.</pd>
        </plentry>
        <plentry>
   <pt>cropRight</pt>
   <pd>Raw data related parameter. The number of pixels trimmed from the right. The default value is 0.</pd>
-           <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+           <pd props="android">This parameter only applies to video data in non-Texture format.</pd>
        </plentry>
        <plentry>
   <pt>cropBottom</pt>
   <pd>Raw data related parameter. The number of pixels trimmed from the bottom. The default value is 0.</pd>
-           <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+           <pd props="android">This parameter only applies to video data in non-Texture format.</pd>
        </plentry>
        <plentry>
   <pt>rotation</pt>
