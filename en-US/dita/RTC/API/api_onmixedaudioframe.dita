@@ -32,13 +32,13 @@
        <plentry>
   <pt props="windows">audioFrame</pt>
                     <pt props="ios mac">frame</pt>
-  <pd>音频原始数据。 For details, see <xref keyref="AudioFrame"/>.</pd>
+  <pd>playback audio frame. For details, see <xref keyref="AudioFrame"/>.</pd>
        </plentry>
    </parml>
             <parml props="android">
                 <plentry id="type">
                     <pt>type</pt>
-                    <pd>音频数据的类型。</pd>
+                    <pd>The audio frame type.</pd>
                 </plentry>
                 <plentry id="samplesPerChannel">
                     <pt>samplesPerChannel</pt>
@@ -46,27 +46,27 @@
                 </plentry>
                 <plentry id="bytesPerSample">
                     <pt>bytesPerSample</pt>
-                    <pd>每个采样点的字节数（byte）。 对于 PCM 音频数据，一般是两个字节。</pd>
+                    <pd>The number of bytes per audio sample. For example, each PCM audio sample usually takes up 16 bits (2 bytes).</pd>
                 </plentry>
                 <plentry id="channels">
                     <pt>channels</pt>
                     <pd><p>The number of channels.<ul>
                             <li>1: Mono.</li>
-                            <li>2: Stereo. 双声道的音频数据是交叉存储的。</li>
+                            <li>2: Stereo. If the channel uses stereo, the data is interleaved.</li>
                         </ul></p>
                     </pd>
                 </plentry>
                 <plentry id="samplesPerSec">
                     <pt>samplesPerSec</pt>
-                    <pd>音频采样率（Hz）。</pd>
+                    <pd>Recording sample rate (Hz).</pd>
                 </plentry>
                 <plentry id="buffer">
                     <pt>buffer</pt>
-                    <pd>The video buffer. buffer 大小为 samplesPerChannel x channels x bytesPerSample。</pd>
+                    <pd>The audio buffer. The buffer size = samplesPerChannel x channels x bytesPerSample.</pd>
                 </plentry>
                 <plentry id="renderTimeMs">
                     <pt>renderTimeMs</pt>
-                    <pd>The timestamp (ms) of the external audio frame. You can use this parameter for the following purposes: Restore the order of the captured audio frame. Synchronize audio and video frames in video-related scenarios, including where external video sources are used.</pd>
+                    <pd>The timestamp (ms) of the external audio frame. You can use this parameter for the following purpose: Synchronize audio and video frames in video or audio related scenarios, including where external video sources are used.</pd>
                 </plentry>
                 <plentry id="avsync">
                     <pt>avsync_type</pt>
@@ -77,8 +77,8 @@
         <section id="return_values">
    <title>Returns</title>
    <ul>
-       <li><codeph><ph keyref="true"/></codeph>: 音频帧数据有效，数据会被发送。</li>
-       <li><codeph><ph keyref="false"/></codeph>: 音频帧数据无效，数据会被舍弃。</li>
+       <li><codeph><ph keyref="true"/></codeph>: The mixed audio data is valid and is encoded and sent.</li>
+       <li><codeph><ph keyref="false"/></codeph>: The mixed audio data is invalid and is not encoded or sent.</li>
    </ul>
         </section></refbody>
 </reference>
