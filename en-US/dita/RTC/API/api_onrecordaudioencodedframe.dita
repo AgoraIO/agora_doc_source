@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onrecordaudioencodedframe">
     <title><ph keyref="onRecordAudioEncodedFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取本地用户的音频编码数据。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the encoded audio data of the local user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,8 +23,8 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <xref keyref="registerAudioEncodedFrameObserver"/> 并将音频编码内容设为 <ph
-                    keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD"/> 后，你可以通过该回调获取本地用户的音频编码数据。</p>
+            <p>After calling <xref keyref="registerAudioEncodedFrameObserver"/> and setting the encoded audio as <ph
+                    keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD"/>, you can get the encoded audio data of the local user from this callback.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
             <parml>
@@ -32,7 +32,7 @@
                     <pt props="android">buffer</pt>
                     <pt props="ios mac">frameData</pt>
                     <pt props="windows">frameBuffer</pt>
-                    <pd>The video buffer.</pd>
+                    <pd>The audio buffer.</pd>
                 </plentry>
                 <plentry props="windows">
                     <pt>length</pt>
@@ -58,10 +58,10 @@
                 <plentry props="android" id="codecType">
                     <pt>codecType</pt>
                     <pd>Audio encoding type.<ul>
-                            <li><ph keyref="AUDIO_CODEC_OPUS"/>(1): OPUS 编码格式。</li>
-                            <li><ph keyref="AUDIO_CODEC_AACLC"/>(8): LC-AAC 编码格式。</li>
-                            <li><ph keyref="AUDIO_CODEC_HEAAC"/>(9): HE-AAC 编码格式。</li>
-                            <li><ph keyref="AUDIO_CODEC_HEAAC2"/>(11): HE-AAC v2 编码格式。</li>
+                            <li><ph keyref="AUDIO_CODEC_OPUS"/>1: OPUS.</li>
+                            <li><ph keyref="AUDIO_CODEC_AACLC"/>8: LC-AAC.</li>
+                            <li><ph keyref="AUDIO_CODEC_HEAAC"/>9: HE-AAC.</li>
+                            <li><ph keyref="AUDIO_CODEC_HEAAC2"/>11: HE-AAC v2.</li>
                         </ul></pd>
                 </plentry>
             </parml>
