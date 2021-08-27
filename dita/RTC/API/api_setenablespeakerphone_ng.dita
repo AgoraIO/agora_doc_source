@@ -29,6 +29,7 @@
             <note type="attention" id="note_nvp_trf_3qb">
                 <p>该方法设置的是暂时的音频路由。任何音频路由的相关行为，如用户插拔耳机，或者在部分 Audio scenario 中重启 ADM
                     音频模块来调整媒体音量，都会导致音频路由发生改变。详细的路由变化规律请参考 <xref keyref="guide-audio-route">音频路由</xref>。</p>
+                <p props="ios windows">由于系统限制，在 iOS 设备上，如果用户使用了蓝牙耳机、有线耳机等外接音频播放设备，则该方法无法将音频路由设置为扬声器。</p>
             </note>
         </section>
         <section id="parameters"><title>参数</title>
@@ -38,9 +39,8 @@
                     <pt props="ios mac">enableSpeaker</pt>
                     <pt props="windows">speakerOn</pt>
                     <pd><p>是否使用扬声器作为当前音频路由：
-                        <ul><li><codeph><ph keyref="true"/></codeph>: 暂时设置扬声器为音频路由。（对 iOS 设备：由于系统限制，如果设备连接了耳机或蓝牙，则 setEnableSpeakerphone(true) 无法将音频路由设置到扬声器。）</li>
-                            <li><codeph><ph keyref="false"/></codeph>: 不将当前音频路由设为扬声器。音频路由会根据 <xref keyref="guide-audio-route"/>
-                                    来决定。</li></ul></p></pd>
+                        <ul><li><codeph><ph keyref="true"/></codeph>: 暂时设置扬声器为音频路由。</li>
+                            <li><codeph><ph keyref="false"/></codeph>: 不将当前音频路由设为扬声器。</li></ul></p></pd>
                 </plentry>
             </parml>
         </section>
