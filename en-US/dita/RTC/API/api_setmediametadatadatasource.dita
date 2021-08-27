@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setmediametadatasource">
     <title><ph keyref="setMediaMetadataDataSource"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 metadata 的 Data source。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the data source of the metadata.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,8 +20,8 @@
         <codeblock props="flutter" outputclass="language-dart"></codeblock>
     </section>
         <section id="detailed_desc">
-            <p>你需要在该方法中实现一个 <xref keyref="AgoraMediaMetadataDataSource"/> 协议，并指定 metadata 的数据类型。 After a successful method call, the SDK triggers the <xref keyref="getMaxMetadataSize"/> callback.</p>
-            <p>该接口可以与 <xref keyref="registerMediaMetadataObserver"/> 接口搭配使用，在直播场景中实现发送商品链接、分发优惠券、发送答题等功能，构建更为丰富的直播互动方式。</p>
+            <p>You need to implement the <xref keyref="AgoraMediaMetadataDataSource"/> protocol in this method and specify the data format of the metadata. After a successful method call, the SDK triggers the <xref keyref="getMaxMetadataSize"/> callback.</p>
+            <p>This method can be used with <xref keyref="registerMediaMetadataObserver"/> to add synchronized metadata in the video stream for more diversified live interactions, such as sending shopping links, digital coupons, and online quizzes.</p>
             <p>
                 <note type="attention">
                     <ul>
@@ -35,19 +35,19 @@
             <parml>
                 <plentry>
                     <pt>metadataDataSource</pt>
-                    <pd><xref keyref="AgoraMediaMetadataDataSource"/> 协议。</pd>
+                    <pd>The <xref keyref="AgoraMediaMetadataDataSource"/> protocal.</pd>
                 </plentry>
                 <plentry>
                     <pt>type</pt>
-                    <pd>metadata 的数据类型，详见 <xref keyref="METADATA_TYPE"/>。 We only support video metadata for now.</pd>
+                    <pd>The data type of the metadata. See <xref keyref="METADATA_TYPE"/>. We only support video metadata for now.</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-                <li><ph keyref="true"/>Success.</li>
-                <li><ph keyref="false"/>&lt;Failure.</li>
+                <li><ph keyref="true"/>: Success.</li>
+                <li><ph keyref="false"/>: Failure.</li>
             </ul>
         </section></refbody>
 </reference>
