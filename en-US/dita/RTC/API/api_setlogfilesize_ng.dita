@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlogfilesize">
     <title><ph keyref="setLogFileSize"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 SDK 输出的日志文件的大小。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the log file size.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,14 +26,14 @@
             <dl outputclass="deprecated">
                 <dlentry>
                     <dt>Deprecated:</dt>
-                    <dd>Use the <xref keyref="create2"/><codeph>mLogConfig</codeph> parameter in instead.</dd>
+                    <dd>Use the <codeph>logConfig</codeph> parameter in <xref keyref="create2"/> instead.</dd>
                 </dlentry>
             </dl>
-            <p>By default, the SDK outputs five log files: <codeph>agorasdk.log, agorasdk_1</codeph><codeph>.log, agorasdk_2.log, agorasdk_3</codeph>.<codeph>log</codeph>, and <codeph>agorasdk_4.log</codeph>. <codeph>agorasdk.log</codeph> 和 <codeph>agorasdk1.log</codeph> 默认大小为 1,024 KB；<codeph>agoraapi.log</codeph> 和 <codeph>agoraapi1.log</codeph> 默认大小为 2,048 KB。 These log files are encoded in UTF-8.</p>
-             <p>最新的日志永远写在 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 中。</p>
-            <p>当 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 写满后， SDK 会删除 <codeph>agorasdk1.log </codeph> 和 <codeph>agoraapi1.log</codeph>，将 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 重命名为 <codeph>agorasdk1.log </codeph> 和 <codeph>agoraapi1.log</codeph>， 并创建新的 <codeph>agorasdk.log</codeph> 和 <codeph>agoraapi.log</codeph> 写入最新的日志。</p>
+            <p>By default, the SDK outputs four log files: <codeph>agorasdk.log</codeph>, <codeph>agorasdk1.log</codeph>, <codeph>agoraapi.log</codeph>, and <codeph>agoraapi1.log</codeph>. The <codeph>agorasdk.log</codeph> and <codeph>agorasdk1.log</codeph> files each have a default size of 1024 KB, and the <codeph>agoraapi.log</codeph> and <codeph>agoraapi1.log</codeph> files each have a default size of 2,048 KB. These log files are encoded in UTF-8.</p>
+             <p>The SDK writes the latest logs in <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>.</p>
+            <p>When <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> is full, the SDK deletes <codeph>agorasdk1.log</codeph> or <codeph>agoraapi1.log</codeph>, renames <codeph>agorasdk.log</codeph> to <codeph>agorasdk1.log</codeph> and <codeph>agoraapi.log</codeph> to <codeph>agoraapi1.log</codeph>, and creates a new <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> to record the latest<codeph> logs</codeph>.</p>
             <note id="note_qwq_w2g_3qb">
-                <p>该方法仅用于设置 <codeph>agorasdk.log</codeph> 文件的大小，对<codeph>agoraapi.log</codeph>不生效。</p>
+                <p>This method applies to the <codeph>agorasdk.log</codeph> file only and does not take effect for the <codeph>agoraapi.log</codeph> file.</p>
             </note>
         </section>
         <section id="parameters"><title>Parameter</title>
