@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audioprofiletype">
     <title><ph keyref="AUDIO_PROFILE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The audio profile, including the sampling rate, bitrate, encoding mode, and the number of channels.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The audio profile.</ph></shortdesc>
     <refbody>
         <section id="parameters">
    <title>Enumerator</title>
@@ -11,14 +11,14 @@
   <pt><ph keyref="AUDIO_PROFILE_DEFAULT"/></pt>
   <pd>
       <p>0: The default audio profile.<ul>
- <li>For the LIVE_BROADCASTING profile: A sampling rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps.</li>
- <li props="windows electron">For the COMMUNICATION profile:<ul>
-<li props="windows electron">Windows: A sampling rate of 16 kHz, music encoding, mono, and a bitrate of up to 16 Kbps.</li>
-<li props="windows">Android/macOS/iOS: A sampling rate of 32 kHz, music encoding, mono, and a bitrate of up to 18 Kbps.</li>
-     <li props="electron">macOS: A sampling rate of 32 kHz, music encoding, mono, and a bitrate of up to 18 Kbps.</li>
-     </ul></li>
-          <li props="android mac ios">For the COMMUNICATION profile: A sampling rate of 32 kHz, music encoding, mono, and a bitrate of up to 18 Kbps.</li>
-      </ul></p>
+                                <li>For the LIVE_BROADCASTING profile: A sampling rate of 48 kHz, music encoding, mono, and a bitrate of up to 64 Kbps.</li>
+                                <li>For the COMMUNICATION profile: <ph props="android ios mac">A sample rate of 32 kHz, audio encoding, mono, and a bitrate of up to 18 Kbps.</ph><ul props="windows electron">
+                                        <li>Windows: A sampling rate of 16 kHz, music encoding, mono, and a bitrate of up to 16 Kbps.</li>
+                                        <li><ph props="windows">Android/macOS/iOS:</ph><ph props="electron">macOS:</ph> A sampling rate of 32 kHz, music encoding, mono, and a bitrate of up to 18 Kbps.</li>
+                                    </ul>
+                                </li>
+      </ul>
+      </p>
   </pd>
        </plentry>
        <plentry id="1">
@@ -41,13 +41,13 @@
   <pt><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/></pt>
   <pd>5: A sampling rate of 48 kHz, music encoding, stereo, and a bitrate of up to 128 Kbps.</pd>
        </plentry>
-       <plentry id="6" props="windows">
+       <plentry id="6" props="windows ios mac">
   <pt><ph keyref="AUDIO_PROFILE_IOT"/></pt>
   <pd>
       <p>6: A sample rate of 16 kHz, audio encoding, mono, and Acoustic Echo Cancellation (AES) enabled.</p>
   </pd>
        </plentry>
-       <plentry>
+       <plentry props="rtc">
   <pt><ph keyref="AUDIO_PROFILE_NUM"/></pt>
   <pd>Enumerator boundary.</pd>
        </plentry>
