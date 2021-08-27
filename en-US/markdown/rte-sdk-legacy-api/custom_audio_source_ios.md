@@ -27,14 +27,18 @@ To implement a custom audio source in your project, refer to the following steps
 1. Before joining a channel, call `setExternalAudioSource` to notify the SDK to use the external audio source.
 
     ```swift
-    agoraKit.setExternalAudioSource(true, sampleRate: Int(sampleRate), channels: Int(channel))
+    agoraKit.setExternalAudioSource(true, sampleRate: Int(sampleRate), channels: Int(channel), sourceNumber: 1, localPlayback: true, publish: true)
     ```
 
 2. Record and process the audio data on your own.
-3. Send the audio data back to the SDK using `pushExternalAudioFrameRawData` or `pushExternalAudioFrameSampleBuffer`.
+3. Send the audio data back to the SDK using `pushExternalAudioFrameRawData`, `pushExternalAudioFrameSampleBuffer`, or `pushExternalAudioFrameNSData`.
 
     ```swift
-    agoraKit.pushExternalAudioFrameRawData(data, sourceId: 1, timestamp: 0)
+    extension CustomPcmAudioSourceMain: AgoraPcmSourcePushDelegate {
+        func onAudioFrame(data: Data) {
+            agoraKit.pushExternalAudioFrameNSData(data, sourceId: 0, timestamp: 0)
+        }
+    }
     ```
 
 ## Reference
@@ -56,3 +60,4 @@ Agora provides an open-sourced API-Example iOS sample project on GitHub that inc
 - [setExternalAudioSource2]()
 - [pushExternalAudioFrameRawData]()
 - [pushExternalAudioFrameSampleBuffer]()
+- [pushExternalAudioFrameNSData]()
