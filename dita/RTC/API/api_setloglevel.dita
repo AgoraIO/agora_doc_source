@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int setLogLevel(int level);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLogLevel:(AgoraLogLevel)level;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp"/>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -26,7 +26,7 @@
             <dl outputclass="deprecated">
                 <dlentry>
                     <dt>弃用：</dt>
-                    <dd>该方法已经废弃。请改用 <xref keyref="create2"/> 中的 <codeph>mLogConfig</codeph> 参数设置日志文件路径。</dd>
+                    <dd>该方法已经废弃。请改用 <xref keyref="RtcEngineConfig"/> 设置日志输出级别。</dd>
                 </dlentry>
             </dl>
             <p>选择一个级别，你就可以看到该级别的日志信息。</p>
@@ -35,7 +35,7 @@
             <parml>
                 <plentry>
                     <pt>level</pt>
-                    <pd>日志级别: <xref keyref="LOG_LEVEL"/>.</pd>
+                    <pd>日志级别: <xref keyref="LOG_LEVEL"/>。</pd>
                 </plentry>
             </parml>
         </section>
