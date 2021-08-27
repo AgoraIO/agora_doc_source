@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_muterecordingsignal">
     <title><ph keyref="muteRecordingSignal"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this API."?>是否将录音信号音量静音。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this API."?>Mutes or unmutes the recording signal volume.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int muteRecordingSignal(boolean muted);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">-(int)muteRecordingSignal:(BOOL)muted;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int getRecordingDeviceMute(bool *mute) = 0;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int muteRecordingSignal(bool mute) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -29,8 +29,8 @@
                     <pt props="windows">mute</pt>
                     <pd>
                         <ul id="ul_vfc_dn2_3qb">
-                            <li>true: 静音。</li>
-                            <li>false: （Default) Do not rotate.</li>
+                            <li>true: Mutes the recording signal volume.</li>
+                            <li>false: (Default) Unmutes the recording signal volume.</li>
                         </ul>
                     </pd>
                 </plentry>
