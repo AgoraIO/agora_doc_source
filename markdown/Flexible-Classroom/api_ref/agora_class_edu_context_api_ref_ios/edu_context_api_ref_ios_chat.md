@@ -62,11 +62,90 @@ func registerEventHandler(_ handler: AgoraEduMessageHandler)
 @objc optional func onAddRoomMessage(_ info: AgoraEduContextChatInfo)
 ```
 
-收到房间聊天消息。
+收到课堂聊天消息。
 
-| 参数   | 描述                                           |
-| :----- | :--------------------------------------------- |
-| `Info` | 聊天消息对象，详见 `AgoraEduContextChatInfo`。 |
+| 参数   | 描述                                       |
+| :----- | :----------------------------------------- |
+| `Info` | 消息对象，详见 `AgoraEduContextChatInfo`。 |
+
+### onAddConversationMessage
+
+```swift
+@objc optional func onAddConversationMessage(_ info: AgoraEduContextChatInfo)
+```
+
+收到提问消息。
+
+| 参数   | 描述                                       |
+| :----- | :----------------------------------------- |
+| `Info` | 消息对象，详见 `AgoraEduContextChatInfo`。 |
+
+### onUpdateChatPermission
+
+```swift
+@objc optional func onUpdateChatPermission(_ allow: Bool)
+```
+
+课堂内全体用户的聊天权限发生变化。
+
+- `allow` 为 `true` 时，UI 层提示：禁言模式开启。
+- `allow` 为 `false` 时，UI 层提示：禁言模式关闭。
+
+| 参数    | 描述                     |
+| :------ | :----------------------- |
+| `allow` | 是否有权限进行消息聊天。 |
+
+### onUpdateLocalChatPermission
+
+```swift
+@objc optional func onUpdateLocalChatPermission(_ allow: Bool,
+                                                 toUser: AgoraEduContextUserInfo,
+                                           operatorUser: AgoraEduContextUserInfo)
+```
+
+本地用户的聊天权限发生变化。
+
+- `allow` 为 `true` 时，UI 层提示：你被xx禁言了。
+- `allow` 为 `false` 时，UI 层提示：你被xx解除了禁言。
+
+| 参数           | 描述                     |
+| :------------- | :----------------------- |
+| `allow`        | 是否有权限进行消息聊天。 |
+| `toUser`       | 被禁言的用户。           |
+| `operatorUser` | 进行禁言操作的用户。     |
+
+### onUpdateChatPermission
+
+```swift
+@objc optional func onUpdateRemoteChatPermission(_ allow: Bool,
+                                                  toUser: AgoraEduContextUserInfo,
+                                            operatorUser: AgoraEduContextUserInfo)
+```
+
+远端用户的聊天权限发生变化。
+
+- `allow` 为 `true` 时，UI 层提示：xx被xx禁言了。
+- `allow` 为 `false` 时，UI 层提示：xx被xx解除了禁言。
+
+| 参数           | 描述                     |
+| :------------- | :----------------------- |
+| `allow`        | 是否有权限进行消息聊天。 |
+| `toUser`       | 被禁言的用户。           |
+| `operatorUser` | 进行禁言操作的用户。     |
+
+### onSendRoomMessageResult
+
+```swift
+@objc optional func onSendRoomMessageResult(_ error: AgoraEduContextError?,
+                                               info: AgoraEduContextChatInfo?)
+```
+
+课堂消息发送结果（包含首次发送和重发）。
+
+| 参数    | 描述                                           |
+| :------ | :--------------------------------------------- |
+| `error` | 错误码。 `error` 不为空表示发送失败。          |
+| `info`  | 聊天消息对象，详见 `AgoraEduContextChatInfo`。 |
 
 ### onFetchHistoryMessagesResult
 
@@ -81,31 +160,54 @@ func registerEventHandler(_ handler: AgoraEduMessageHandler)
 | `error` | 错误码。如 `error` 不为空，表示获取失败。                 |
 | `list`  | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |
 
-### onUpdateChatPermission
+### onFetchHistoryMessagesResult
 
 ```swift
-@objc optional func onUpdateChatPermission(_ allow: Bool)
+@objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?, list: [AgoraEduContextChatInfo]?)
 ```
 
-聊天权限发生变化
+获取历史聊天消息结果。
 
-| 参数    | 描述                               |
-| :------ | :--------------------------------- |
-| `allow` | 是否有权限进行消息聊天（被禁言）。 |
+| 参数    | 描述                                                      |
+| :------ | :-------------------------------------------------------- |
+| `error` | 错误码。如 `error` 不为空，表示获取失败。                 |
+| `list`  | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |
 
-### onShowChatTips
+### onFetchHistoryMessagesResult
 
 ```swift
-@objc optional func onShowChatTips(_ message: String)
+@objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?, list: [AgoraEduContextChatInfo]?)
 ```
 
-显示聊天过程中的提示信息。
+获取历史聊天消息结果。
 
-有以下提示：
+| 参数    | 描述                                                      |
+| :------ | :-------------------------------------------------------- |
+| `error` | 错误码。如 `error` 不为空，表示获取失败。                 |
+| `list`  | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |
 
-- 禁言模式开启。
-- 禁言模式关闭。
+### onFetchHistoryMessagesResult
 
-| 参数      | 描述       |
-| :-------- | :--------- |
-| `message` | 提示信息。 |
+```swift
+@objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?, list: [AgoraEduContextChatInfo]?)
+```
+
+获取历史聊天消息结果。
+
+| 参数    | 描述                                                      |
+| :------ | :-------------------------------------------------------- |
+| `error` | 错误码。如 `error` 不为空，表示获取失败。                 |
+| `list`  | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |
+
+### onFetchHistoryMessagesResult
+
+```swift
+@objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?, list: [AgoraEduContextChatInfo]?)
+```
+
+获取历史聊天消息结果。
+
+| 参数    | 描述                                                      |
+| :------ | :-------------------------------------------------------- |
+| `error` | 错误码。如 `error` 不为空，表示获取失败。                 |
+| `list`  | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |

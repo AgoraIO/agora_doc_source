@@ -86,6 +86,8 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 @objc optional func onBoardContentView(_ view: UIView)
 ```
 
+> 自 v1.1.5 起新增。
+
 返回白板容器 View。
 
 | 参数   | 描述            |
@@ -97,6 +99,8 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 ```swift
 @objc optional func onDrawingEnabled(_ enabled: Bool)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告本地是否有权限操作白板。
 
@@ -117,6 +121,8 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 @objc optional func onLoadingVisible(_ visible: Bool)
 ```
 
+> 自 v1.1.5 起新增。
+
 报告白板加载状态是否可见。
 
 | 参数      | 描述                   |
@@ -129,6 +135,8 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 @objc optional func onDownloadProgress(_ url: String,
                                     progress: Float)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告当前课件下载进度。
 
@@ -143,6 +151,8 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 @objc optional func onDownloadTimeOut(_ url: String)
 ```
 
+> 自 v1.1.5 起新增。
+
 报告课件下载超时。当一次课件下载所花的时间超过了 15 秒，就会触发该回调。
 
 | 参数  | 描述           |
@@ -155,6 +165,8 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 ```swift
 @objc optional func onDownloadComplete(_ url: String)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告课件下载完成。
 
@@ -288,6 +300,8 @@ func registerPageControlEventHandler(_ handler: AgoraEduWhiteBoardPageControlHan
                                   pageCount: NSInteger)
 ```
 
+> 自 v1.1.5 起新增。
+
 报告白板当前页数和总页数。
 
 | 参数        | 描述       |
@@ -301,6 +315,8 @@ func registerPageControlEventHandler(_ handler: AgoraEduWhiteBoardPageControlHan
 ```swift
 @objc optional func onPagingEnable(_ enable: Bool)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告本地是否有权限翻页。
 
@@ -316,6 +332,8 @@ func registerPageControlEventHandler(_ handler: AgoraEduWhiteBoardPageControlHan
                                     zoomInEnable: Bool)
 ```
 
+> 自 v1.1.5 起新增。
+
 报告本地是否有权限放大或缩小白板。
 
 | 参数            | 描述         |
@@ -329,6 +347,8 @@ func registerPageControlEventHandler(_ handler: AgoraEduWhiteBoardPageControlHan
 @objc optional func onResizeFullScreenEnable(_ enable: Bool)
 ```
 
+> 自 v1.1.5 起新增。
+
 报告本地是否有权限全屏白板。
 
 | 参数     | 描述             |
@@ -340,6 +360,8 @@ func registerPageControlEventHandler(_ handler: AgoraEduWhiteBoardPageControlHan
 ```swift
 @objc optional func onFullScreen(_ fullScreen: Bool)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告当前白板是否全屏。
 
