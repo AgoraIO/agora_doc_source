@@ -61,17 +61,25 @@
                 </plentry>
        <plentry>
   <pt>renderMode</pt>
-  <pd>视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+           <pd><p props="ios mac windows">视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
+           <p props="android">
+               <ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul>
+           </p>
+           </pd>
        </plentry>
        <plentry>
   <pt>mirrorMode</pt>
   <pd>
-      <p>视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。 <note type="note">
+      <p props="ios mac windows">视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。 </p>
+          <p props="android">
+              <ul conkeyref="setLocalRenderMode2/videomirrormodetype"><li/></ul>
+          </p>
+          <note type="attention">
                                 <ul>
                                     <li>本地视图镜像模式：如果你使用前置摄像头，默认启动本地视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。 </li>
                                     <li>远端用户视图镜像模式：默认关闭远端用户的镜像模式。 </li>
                                 </ul>
-                            </note></p>
+                            </note>
   </pd>
        </plentry>
                 <plentry>
@@ -81,6 +89,10 @@
                 <plentry>
                     <pt>sourceType</pt>
                     <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                </plentry>
+                <plentry props="android ios mac">
+                    <pt>sourceId</pt>
+                    <pd>视频源 ID。</pd>
                 </plentry>
        
    </parml>
