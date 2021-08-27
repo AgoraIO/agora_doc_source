@@ -1,4 +1,4 @@
-Media encryption encrypts your app’s audio and video streams with a unique key and salt controlled by the app developer. While not every use case requires media encryption, Agora provides the option to guarantee data confidentiality during transmission. 
+Media encryption encrypts your app’s audio and video streams with a unique key and [salt](https://en.wikipedia.org/wiki/Salt_(cryptography)) controlled by the app developer. While not every use case requires media encryption, Agora provides the option to guarantee data confidentiality during transmission. 
 
 This page shows you how to add Agora's built-in media stream encryption to your app.
 
@@ -6,7 +6,7 @@ This page shows you how to add Agora's built-in media stream encryption to your 
 
 The following figure shows the encrypted data transmission process after you enable the built-in encryption:
 
-![](https://web-cdn.agora.io/docs-files/1629718238345)
+![](https://web-cdn.agora.io/docs-files/1630050188692)
 
 ## Prerequisites
 
@@ -16,35 +16,37 @@ Before implementing media stream encryption, ensure that you have implemented th
 
 Add the built-in media stream encryption to your app, as follows:
 
-1. To generate a random 32-byte key in the string format through OpenSSL on your server, run the following command:
+1. Generate a key and salt on your server:
 
-   ```bash
-   // Generate a random 32-byte key in the string format
-   openssl rand -hex 32
-   dba643c8ba6b6dc738df43d9fd624293b4b12d87a60f518253bd10ba98c48453
-   ```
+   - To generate a random 32-byte key in the string format through OpenSSL on your server, run the following command:
 
-2. To generate a random Base64-encoded, 32-byte salt through OpenSSL on your server, run the following command:
+     ```bash
+     // Generate a random 32-byte key in the string format
+     openssl rand -hex 32
+     dba643c8ba6b6dc738df43d9fd624293b4b12d87a60f518253bd10ba98c48453
+     ```
 
-   ```bash
-   // Generate a random 32-byte salt in the Base64 format
-   openssl rand -base64 32
-   X5w9T+50kzxVOnkJKiY/lUk82/bES2kATOt3vBuGEDw=
-   ```
+   - To generate a random Base64-encoded, 32-byte salt through OpenSSL on your server, run the following command:
 
-3. The client logic you need to implement is:
+     ```bash
+     // Generate a random 32-byte salt in the Base64 format
+     openssl rand -base64 32
+     X5w9T+50kzxVOnkJKiY/lUk82/bES2kATOt3vBuGEDw=
+     ```
+
+2. Implement the client logic:
 
    1. Get the key in the string format and the salt in the Base64 format from your server.
-   
+
    2. Convert the salt from Base64 to uint8_t.
 
    3. Before joining a channel, call [enableEncryption]() to choose an encryption mode and pass the key and salt to the SDK. You can set the encryption mode as `AES_128_GCM2` or `AES_256_GCM2`.
 
       > - All users in a channel must use the same encryption mode, key, and salt; otherwise, undefined behaviors such as a black screen or audio loss occur.
       > - To enhance security, Agora recommends using a new key and salt every time you enable media stream encryption.
-   
+
    The following sample code shows this logic:
-   
+
    ```java
    import java.util.Base64;
    import io.agora.rtc2.RtcEngine;

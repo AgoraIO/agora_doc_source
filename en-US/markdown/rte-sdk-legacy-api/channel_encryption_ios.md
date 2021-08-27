@@ -1,4 +1,4 @@
-Media encryption encrypts your app’s audio and video streams with a unique key and salt controlled by the app developer. While not every use case requires media encryption, Agora provides the option to guarantee data confidentiality during transmission. 
+Media encryption encrypts your app’s audio and video streams with a unique key and [salt](https://en.wikipedia.org/wiki/Salt_(cryptography)) controlled by the app developer. While not every use case requires media encryption, Agora provides the option to guarantee data confidentiality during transmission. 
 
 This page shows you how to add Agora's built-in media stream encryption to your app.
 
@@ -6,7 +6,7 @@ This page shows you how to add Agora's built-in media stream encryption to your 
 
 The following figure shows the encrypted data transmission process after you enable the built-in encryption:
 
-![](https://web-cdn.agora.io/docs-files/1629718238345)
+![](https://web-cdn.agora.io/docs-files/1630050188692)
 
 ## Prerequisites
 
