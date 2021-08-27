@@ -29,7 +29,7 @@
   <dd>v3.0.0</dd>
        </dlentry>
    </dl>
-   <p>This method is deprecated, please use instead<xref keyref="onRtmpStreamingStateChanged"/>.</p>
+   <p>This method is deprecated, please use <xref keyref="onRtmpStreamingStateChanged"/> instead.</p>
    <p>Reports the result of publishing an RTMP or RTMPS stream.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
@@ -49,18 +49,18 @@
       <p>Error codes of the RTMP or RTMPS streaming.<ul>
                                 <li><codeph>ERR_OK</codeph> (0): The publishing succeeds.</li>
                                 <li><codeph>ERR_FAILED</codeph> (1): The publishing fails.</li>
-                                <li>ERR_INVALID_ARGUMENT (-2): <codeph>Invalid argument</codeph> used. If you do not call<xref
-                                        keyref="addPublishStreamUrl"/> to configure before calling<xref
-                                        keyref="setLiveTranscoding"/><xref
-                                        keyref="LiveTranscoding"/> , the SDK reports <codeph>ERR_INVALID_ARGUMENT</codeph>.</li>
-                                <li><codeph>ERR_TIMEDOUT</codeph> (10): The publishing<codeph> timed</codeph> out.</li>
-                                <li>ERR_ALREADY_IN_USE (19): The chosen URL address is <codeph>alreadyin usefor</codeph> CDN live streaming.</li>
-                                <li>ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH (130): You cannot <codeph>publish an encrypted stream</codeph>.</li>
-                                <li><codeph>ERR_PUBLISH_STREAM_CDN_ERROR</codeph> (151): CDN related<codeph> error</codeph>. <xref keyref="removePublishStreamUrl"/>Remove the original URL address and add a new one by<xref keyref="addPublishStreamUrl"/> calling the and methods.</li>
+                                <li><codeph>ERR_INVALID_ARGUMENT</codeph> (-2): Invalid argument used. If you do not call <xref
+                                        keyref="setLiveTranscoding"/> to configure <xref
+                                        keyref="LiveTranscoding"/> before calling <xref
+                                        keyref="addPublishStreamUrl"/>, the SDK reports <codeph>ERR_INVALID_ARGUMENT</codeph>.</li>
+                                <li><codeph>ERR_TIMEDOUT</codeph> (10): The publishing timed out.</li>
+                                <li><codeph>ERR_ALREADY_IN_USE</codeph> (19): The chosen URL address is already in use for CDN live streaming.</li>
+                                <li><codeph>ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH</codeph> (130): You cannot publish an encrypted stream.</li>
+                                <li><codeph>ERR_PUBLISH_STREAM_CDN_ERROR</codeph> (151): CDN related error. Remove the original URL address and add a new one by calling the <xref keyref="removePublishStreamUrl"/> and <xref keyref="addPublishStreamUrl"/> methods.</li>
                                 <li><codeph>ERR_PUBLISH_STREAM_NUM_REACH_LIMIT</codeph> (152): The host manipulates more than 10 URLs. Delete the unnecessary URLs before adding new ones.</li>
                                 <li><codeph>ERR_PUBLISH_STREAM_NOT_AUTHORIZED</codeph> (153): The host manipulates other hosts&apos; URLs. Please check your app logic.</li>
-                                <li><codeph>ERR_PUBLISH_STREAM_INTERNAL_SERVER_ERROR</codeph>: An<codeph> error</codeph> occurs in Agora&apos;s streaming<codeph> server</codeph>. Call the<xref keyref="removePublishStreamUrl"/> method to publish the streaming again.</li>
-                                <li>ERR_PUBLISH_STREAM_FORMAT_NOT_SUPPORTED (156): The format of the CDN streaming URL is <codeph>not supported</codeph>. Check whether the URL format is correct.</li>
+                                <li><codeph>ERR_PUBLISH_STREAM_INTERNAL_SERVER_ERROR</codeph> (154): An error occurs in Agora&apos;s streaming server. Call the <xref keyref="removePublishStreamUrl"/> method to publish the streaming again.</li>
+                                <li><codeph>ERR_PUBLISH_STREAM_FORMAT_NOT_SUPPORTED</codeph> (156): The format of the CDN streaming URL is not supported. Check whether the URL format is correct.</li>
                             </ul>
                         </p>
   </pd>
