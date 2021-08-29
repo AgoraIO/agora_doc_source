@@ -37,9 +37,12 @@ To implement a custom audio source in your project, refer to the following steps
 
     ```java
     // Specifies the custom audio source
-    engine.setExternalAudioSource(true, DEFAULT_SAMPLE_RATE, DEFAULT_CHANNEL_COUNT);
+    engine.setExternalAudioSource(true, DEFAULT_SAMPLE_RATE, DEFAULT_CHANNEL_COUNT, 1, true, true);
     // The local user joins the channel
-    int res = engine.joinChannel(accessToken, channelId, "Extra Optional Data", 0);
+    ChannelMediaOptions option = new ChannelMediaOptions();
+    option.autoSubscribeAudio = true;
+    option.autoSubscribeVideo = true;
+    int res = engine.joinChannel(accessToken, channelId, 0, option);
     ```
 
 2. Implement audio capture and processing yourself using methods from outside the SDK.
@@ -47,53 +50,7 @@ To implement a custom audio source in your project, refer to the following steps
 3. Call `pushExternalAudioFrame` to send the audio frames to the SDK for later use.
 
     ```java
-    public class RecordThread extends Thread
-        {
-            private AudioRecord audioRecord;
-            public static final int DEFAULT_SAMPLE_RATE = 16000;
-            public static final int DEFAULT_CHANNEL_COUNT = 1, DEFAULT_CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_MONO;
-            private byte[] buffer;
-
-            RecordThread()
-            {
-                int bufferSize = AudioRecord.getMinBufferSize(DEFAULT_SAMPLE_RATE, DEFAULT_CHANNEL_CONFIG,
-                        AudioFormat.ENCODING_PCM_16BIT);
-                audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC, DEFAULT_SAMPLE_RATE, DEFAULT_CHANNEL_COUNT,
-                        AudioFormat.ENCODING_PCM_16BIT, bufferSize);
-                buffer = new byte[bufferSize];
-            }
-            // Starts audio capture. Reads and sends the captured frames until audio capture stops.
-            @Override
-            public void run()
-            {
-                try
-                {
-                    // Start audio recording
-                    audioRecord.startRecording();
-                    while (!stopped)
-                    {
-                        // Reads the captured audio frames
-                        int result = audioRecord.read(buffer, 0, buffer.length);
-                        if (result >= 0)
-                        {
-                            // Sends the captured audio frames to the SDK
-                            CustomAudioSource.engine.pushExternalAudioFrame(
-                                    buffer, System.currentTimeMillis());
-                        }
-                        else
-                        {
-                            logRecordError(result);
-                        }
-                        Log.e(TAG, "Data size:" + result);
-                    }
-                    release();
-                }
-                catch (Exception e)
-                {e.printStackTrace();}
-            }
-
-            ...
-        }
+    engine.pushExternalAudioFrame(ByteBuffer.wrap(buffer), 0, 0);
     ```
 
 
@@ -107,6 +64,7 @@ Agora provides an open-source [demo project](https://github.com/AgoraIO/API-Exam
 
 ###  API reference
 
-- [`setExternalAudioSource`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5e5630afd7104ee7be8b246ae004efb3)
-- [`pushExternalAudioFrame`](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9e219a679d066cfc2544b5e8f9d4d69f)
-
+- [`setExternalAudioSource1`]()
+- [`setExternalAudioSource2`]()
+- [`pushExternalAudioFrame1`]()
+- [`pushExternalAudioFrame2`]()
