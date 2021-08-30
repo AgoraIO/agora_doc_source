@@ -16,10 +16,11 @@ You can create multiple `RtcConnection` objects with different channel names and
 To join multiple channels, call `joinChannelEx` in the `RtcEngineEx` class multiple times with different `RtcConnection` objects.
 
 <div class="alert note">
-<li>Ensure that each <code>RtcConnection</code> object has a unique user ID.</li>
+<li>Ensure that each <code>RtcConnection</code> object has a unique user ID that is not <code>0</code>.</li>
 <li>You can configure the publishing and subscribing options for the <code>RtcConnection</code> object in <code>joinChannelEx</code>.</li>
   <li>Each <code>RtcConnection</code> can publish mutiple audio streams and a unique video stream independently.</li>
 </div>
+
 
 ## Prerequisites
 
@@ -29,7 +30,7 @@ Before proceeding, ensure that you have implemented the basic real-time communi
 
 To implement the multi-channel function, refer to the following steps.
 
-1. Define an `RtcConnection` object.
+1. In your Agora project, define an `RtcConnection` object in the file used to manage the multi-channel function.
 
    ```java
    private RtcConnection rtcConnection2 = new RtcConnection();
@@ -37,14 +38,11 @@ To implement the multi-channel function, refer to the following steps.
 
 2. Join a channel with the channel name `channel2` and a random user ID.
 
-   <div class="alert note">Pay attention to the publishing options for the RtcConnection. If the camera track has been published to another channel, ensure that you set <code>publishCameraTrack</code> as <code>false</code>.</div>
-
    ```java
    private boolean joinSecondChannel() {
        ChannelMediaOptions mediaOptions = new ChannelMediaOptions();
        mediaOptions.autoSubscribeAudio = true;
        mediaOptions.autoSubscribeVideo = true;
-       mediaOptions.publishCameraTrack = false;
        rtcConnection2.channelId = channel2;
        rtcConnection2.localUid = new Random().nextInt(512)+512;
        int ret = engine.joinChannelEx("your token",rtcConnection2,mediaOptions,iRtcEngineEventHandler2);
@@ -100,9 +98,9 @@ This section provides the reference information you might need when implementing
 
 
 ### API reference
-- RtcEngineEx
-- joinChannelEx
-- setupRemoteVideoEx
+- [RtcEngineEx](./API%20Reference/java_ng/API/class_irtcengineex.html)
+- [joinChannelEx](./API%20Reference/java_ng/API/class_irtcengineex.html#api_joinchannelex)
+- [setupRemoteVideoEx](./API%20Reference/java_ng/API/class_irtcengineex.html#api_setupremotevideoex)
 
 ### Sample project
 
