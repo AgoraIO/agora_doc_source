@@ -206,5 +206,3 @@ To check that your code works, host an Interactive Live Streaming event from you
 5. In your browser on another machine, navigate to https://agora-scalableui-android-test.netlify.app/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
 
    The user in the browser is a member of the audience in the event.
-
-
