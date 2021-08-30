@@ -20,7 +20,7 @@ To start a call using UIKit, you implement the following steps in your app:
    The `join` command joins the channel, publishes the local audio and video streams to Agora and handles audio and video for anyone else who joins the call in a default UI. 
 
 
-Yes, you read that right. After inializing an `AgoraVideoViewer` instance, you manage a call with one line of code. 
+Yes, you read that right. After initializing an `AgoraVideoViewer` instance, you manage a call with one line of code. 
 
 
 ## Prerequisites
