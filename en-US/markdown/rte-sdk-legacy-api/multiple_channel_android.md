@@ -23,7 +23,7 @@ To join multiple channels, call `joinChannelEx` in the `RtcEngineEx` class multi
 
 ## Prerequisites
 
-Before proceeding, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_ios) or [Start Interactive Live Streaming](start_live_ios).
+Before proceeding, ensure that you have implemented the basic real-time communication functions in your project. For details, see [Start a Call](start_call_android) or [Start Interactive Live Streaming](start_live_android).
 
 ## Implementation
 
