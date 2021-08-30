@@ -88,6 +88,10 @@ To integrate real-time video in a ready-made user interface into your app:
 
     // Fill the channel name.
     let channelName = ""
+   
+    // Create the view object.
+    var agoraView: AgoraVideoViewer!
+
    ```
 
 3. Create a function that initializes an `AgoraVideoViewer` instance and joins a channel: 
@@ -95,20 +99,20 @@ To integrate real-time video in a ready-made user interface into your app:
    In `ViewController.swift`, add the following line after ` let channelName = ""`:
 
    ```swift
-   func initializeAndJoinChannel(){
+    func initializeAndJoinChannel(){
 
-      let agoraKit = AgoraVideoViewer(
-         connectionData: AgoraConnectionData(
-            appId: appId
-         ),
-         style: .grid
-      )
-        
-      agoraKit.join(
-        channel: channelName,
-        with: token,
-        as: .broadcaster
-      )
+        agoraView = AgoraVideoViewer(
+            connectionData: AgoraConnectionData(
+                appId: appId
+            )
+        )
+        self.agoraView.fills(view: self.view)
+
+        agoraView.join(
+          channel: channelName,
+          with: token,
+          as: .broadcaster
+        )
     }
    ```
    
@@ -129,7 +133,8 @@ To check that your code works, use an online demo to make a video call to your a
 
 1. [Generate a temporary token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All#generate-a-temporary-token) in Agora Console.
 
-2. In your browser, navigate to https://agora-scalableui-android-test.netlify.app/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
+2. In your browser on another machine, navigate to https://agora-scalableui-android-test.netlify.app/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
 
-3. In XCode, in `ViewController.swift`, update `appId`, `channelName` and `token` with the values for your temporary token. 
+3. In XCode, in `ViewController.swift`, update `appId`, `channelName` and `token` with the values for your temporary token.
+
 4. Run your app.
