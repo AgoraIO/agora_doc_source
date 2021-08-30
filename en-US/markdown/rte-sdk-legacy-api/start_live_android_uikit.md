@@ -130,8 +130,7 @@ To integrate real-time video in a ready-made user interface:
    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the variables:
 
    ```kotlin
-    private fun initializeAndJoinChannel(){
-
+        private fun initializeAndJoinChannel(){
         // Create AgoraVideoViewer instance
         try {
             agView = AgoraVideoViewer(
@@ -146,35 +145,13 @@ To integrate real-time video in a ready-made user interface:
         this.addContentView(
             agView,
             FrameLayout.LayoutParams(
-                        FrameLayout.LayoutParams.MATCH_PARENT,
-                        FrameLayout.LayoutParams.MATCH_PARENT
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
             )
         )
-
-        // Check that the camera and mic permissions are accepted before attempting to join
-        if (AgoraVideoViewer.requestPermissions(this)) {
-
-
-            agView!!.join(channelName, role = Constants.CLIENT_ROLE_BROADCASTER)
-
-
-        } else {
-
-            val joinButton = Button(this)
-            joinButton.text = "Allow Camera and Microphone, then click here"
-            joinButton.setOnClickListener(View.OnClickListener {
-                // When the button is clicked, check permissions again and join channel
-                // if permissions are granted.
-                if (AgoraVideoViewer.requestPermissions(this)) {
-                    (joinButton.parent as ViewGroup).removeView(joinButton)
-                    agView!!.join("test", role= Constants.CLIENT_ROLE_BROADCASTER)
-                }
-            })
-            joinButton.setBackgroundColor(Color.GREEN)
-            joinButton.setTextColor(Color.RED)
-
-            this.addContentView(joinButton, FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, 300))
-        }
+        // Join a channel by passing a channel name and a client role
+        agView!!.join(channelName, role = Constants.CLIENT_ROLE_BROADCASTER)
+    }
    ```
 
 1. Start your app
