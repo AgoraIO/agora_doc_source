@@ -129,39 +129,43 @@ This section introduces how to implement the various audio effects in your proje
      // Sets the local voice equalization.
      // The first parameter sets the band frequency. The value ranges between 0 and 9. Each value represents the center frequency of the band: 31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, and 16k Hz.
      // The second parameter sets the gain of each band. The value ranges between -15 and 15 dB. The default value is 0.
-     mRtcEngine.setLocalVoiceEqualization(0, -15);
-     mRtcEngine.setLocalVoiceEqualization(1, 3);
-     mRtcEngine.setLocalVoiceEqualization(2, -9);
-     mRtcEngine.setLocalVoiceEqualization(3, -8);
-     mRtcEngine.setLocalVoiceEqualization(4, -6);
-     mRtcEngine.setLocalVoiceEqualization(5, -4);
-     mRtcEngine.setLocalVoiceEqualization(6, -3);
-     mRtcEngine.setLocalVoiceEqualization(7, -2);
-     mRtcEngine.setLocalVoiceEqualization(8, -1);
-     mRtcEngine.setLocalVoiceEqualization(9, 1);
+     mRtcEngine.setLocalVoiceEqualization(Constants.AUDIO_EQUALIZATION_BAND_FREQUENCY.fromInt(0), -15);
+     mRtcEngine.setLocalVoiceEqualization(Constants.AUDIO_EQUALIZATION_BAND_FREQUENCY.fromInt(1), 3);
+     mRtcEngine.setLocalVoiceEqualization(Constants.AUDIO_EQUALIZATION_BAND_FREQUENCY.fromInt(2), -9);
+     mRtcEngine.setLocalVoiceEqualization(Constants.AUDIO_EQUALIZATION_BAND_FREQUENCY.fromInt(3), -8);
+     mRtcEngine.setLocalVoiceEqualization(Constants.AUDIO_EQUALIZATION_BAND_FREQUENCY.fromInt(4), -6);
+     mRtcEngine.setLocalVoiceEqualization(Constants.AUDIO_EQUALIZATION_BAND_FREQUENCY.fromInt(5), -4);
+     mRtcEngine.setLocalVoiceEqualization(Constants.AUDIO_EQUALIZATION_BAND_FREQUENCY.fromInt(6), -3);
+     mRtcEngine.setLocalVoiceEqualization(Constants.AUDIO_EQUALIZATION_BAND_FREQUENCY.fromInt(7), -2);
+     mRtcEngine.setLocalVoiceEqualization(Constants.AUDIO_EQUALIZATION_BAND_FREQUENCY.fromInt(8), -1);
+     mRtcEngine.setLocalVoiceEqualization(Constants.AUDIO_EQUALIZATION_BAND_FREQUENCY.fromInt(9), 1);
 
      // The level of the dry signal in dB. The value ranges between -20 and 10.
-     mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_DRY_LEVEL, 10);
+     mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_TYPE.fromInt(0), 10);
 
      // The level of the early reflection signal (wet signal) in dB. The value ranges between -20 and 10.
-     mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_WET_LEVEL, 7);
+     mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_TYPE.fromInt(1), 7);
 
      // The room size of the reverberation. A larger room size means a stronger reverberation. The value ranges between 0 and 100.
-     mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_ROOM_SIZE, 6);
+     mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_TYPE.fromInt(2), 6);
 
      // The length of the initial delay of the wet signal (ms). The value ranges between 0 and 200.
-     mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_WET_DELAY, 124);
+     mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_TYPE.fromInt(3), 124);
 
      // The reverberation strength. The value ranges between 0 and 100. The higher the value, the stronger the reverberation.
-     mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_STRENGTH, 78);
+     mRtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_TYPE.fromInt(4), 78);
      ``` 
 
 ## Reference
 
-Some enumertors in `setVoiceBeautifierPreset`, `setAudioEffectPreset`, and `setVoiceConversionPreset` are gender specific and apply to one gender only. Using them on the other gender can lead to voice distortion. For details, see the API Reference of the following methods:
+This section provides reference knowledge you need to know when implementing voice effects.
 
-- [setVoiceBeautifierPreset]()
-- [setAudioEffectPreset]()
-- [setVoiceConversionPreset]()
-- [setAudioEffectParameters]()
-- [setVoiceBeautifierParameters]()
+- Agora provides an open source [Voice Effects](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/VoiceEffects.java) sample project on GitHub. You can download the sample project to try it out or view the souce code.
+
+- Some enumertors in `setVoiceBeautifierPreset`, `setAudioEffectPreset`, and `setVoiceConversionPreset` are gender specific and apply to one gender only. Using them on the other gender can lead to voice distortion. For details, see the API Reference of the following methods:
+
+  - [setVoiceBeautifierPreset]()
+  - [setAudioEffectPreset]()
+  - [setVoiceConversionPreset]()
+  - [setAudioEffectParameters]()
+  - [setVoiceBeautifierParameters]()

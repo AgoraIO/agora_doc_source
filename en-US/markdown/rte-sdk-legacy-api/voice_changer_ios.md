@@ -158,10 +158,14 @@ This section introduces how to implement the various audio effects in your proje
 
 ## Reference
 
-Some enumertors in `setVoiceBeautifierPreset`, `setAudioEffectPreset`, and `setVoiceConversionPreset` are gender specific and apply to one gender only. Using them on the other gender can lead to voice distortion. For details, see the API Reference of the following methods:
+This section provides reference knowledge you need to know when implementing voice effects.
 
-- [setVoiceBeautifierPreset]()
-- [setAudioEffectPreset]()
-- [setVoiceConversionPreset]()
-- [setAudioEffectParameters]()
-- [setVoiceBeautifierParameters]()
+- Agora provides an open source [Voice Changer](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/iOS/APIExample/Examples/Advanced/VoiceChanger) sample project on GitHub. You can download the sample project to try it out or view the souce code.
+
+- Some enumertors in `setVoiceBeautifierPreset`, `setAudioEffectPreset`, and `setVoiceConversionPreset` are gender specific and apply to one gender only. Using them on the other gender can lead to voice distortion. For details, see the API Reference of the following methods:
+
+  - [setVoiceBeautifierPreset]()
+  - [setAudioEffectPreset]()
+  - [setVoiceConversionPreset]()
+  - [setAudioEffectParameters]()
+  - [setVoiceBeautifierParameters]()
