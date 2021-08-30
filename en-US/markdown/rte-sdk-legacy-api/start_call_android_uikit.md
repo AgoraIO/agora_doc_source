@@ -15,7 +15,7 @@ The following figure shows the workflow UIKit integrates into your app in order 
 
 To start a call using UIKit, you implement the following steps in your app:
 
-1. **Join a channel**
+1. **Join a channel**:
 
    The `join` command joins the channel, publishes the local audio and video streams to Agora and handles audio and video for anyone else who joins the call in a default UI. 
 
@@ -31,6 +31,7 @@ Yes, you read that right. After inializing an `AgoraVideoViewer` instance, you m
 
     Ensure that no firewall is deployed in your network environment, otherwise the project fails.
 
+- A physical Android device to run your app on.  
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project.
 
 ## Project setup
