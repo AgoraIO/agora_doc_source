@@ -1,15 +1,18 @@
 
-# Get started with Video Call using UIKit
+# Get started with Interactive Live Streaming using UIKit
 
-Real-time video chatting immerses people in the sights and sounds of human connections. This keeps your users engaged for longer with your app. Agora Video SDK makes it easy for you to manage video calls and interactive live streaming events in an app. UIKit is a library that combines Agora real-time engagement functionality into a customizable user interface. Have another coffee, we have done all the work for you. 
+
+Agora’s Interactive Live Streaming makes it easy for you to build apps with audio and video streaming in order to can host large-scale live audio and video streaming events with real-time interactivity.
+
+Real-time video chatting immerses people in the sights and sounds of human connections. This keeps your users engaged for longer with your app. Agora Video SDK makes it easy for you to manage Interactive Live Streaming events in an app. UIKit is a library that combines Agora real-time engagement functionality into a customizable user interface. Have another coffee, we have done all the work for you. 
 
 ![](images/uikit-ui.png)
 
-This page shows the minimum code you need to add a real-time engagement interface into your app using UIKit.
+This page shows the minimum code you need to host an Interactive Live Streaming event from your app using UIKit.
 
 ## Understand the tech
 
-The following figure shows the workflow UIKit integrates into your app in order to achieve Video Call functionality.
+The following figure shows the workflow UIKit integrates into your app in order to achieve Interactive Live Streaming functionality.
 
 ![](https://web-cdn.agora.io/docs-files/1629250175461)
 
@@ -36,7 +39,7 @@ Yes, you read that right. After initializing an `AgoraVideoViewer` instance, you
 
 ## Project setup
 
-In order to create the environment necessary to integrate Video Call into your app, do the following:
+In order to create the environment necessary to integrate Interactive Live Streaming into your app, do the following:
 
 1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity** using Kotlin.
 
@@ -90,9 +93,9 @@ In order to create the environment necessary to integrate Video Call into your a
        <uses-permission android:name="android.permission.BLUETOOTH" />
       ```
    
-## Implement a client for Video Call
+## Implement a client for Interactive Live Streaming
 
-This section shows how to use UIKit to implement Video Call into your app step-by-step.
+This section shows how to use UIKit to implement Interactive Live Streaming into your app step-by-step.
 
 To integrate real-time video in a ready-made user interface:
 
@@ -189,23 +192,19 @@ To integrate real-time video in a ready-made user interface:
 
 ## Test your app
 
-To check that your code works, use an online demo to make a video call to your app. to do this:
+To check that your code works, host an Interactive Live Streaming event from your app and connect to it as the audience from a web demo. to do this:
 
 1. [Generate a temporary token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All#generate-a-temporary-token) in Agora Console.
 
-1. In your browser, navigate to https://agora-scalableui-android-test.netlify.app/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
+2. In your browser, navigate to https://agora-scalableui-android-test.netlify.app/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
 
-1. In Android Studio, in `/app/java/com.example.<projectname>/MainActivity`, update `appId`, `channelName` and `token` with the values for your temporary token.
+3. In Android Studio, in `/app/java/com.example.<projectname>/MainActivity`, update `appId`, `channelName` and `token` with the values for your temporary token.
 
-1. Run your app.
+4. Run your app.
+   The app is now the host of the Interactive Live Streaming event.
 
-Your App opens in an Android Virtual Machine and connects to the `channelName` you opened in the Web app. You now have the golden opportunity of talking to yourself using Video Call in a complete UI created using UIKit.
+5. In your browser on another machine, navigate to https://agora-scalableui-android-test.netlify.app/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
+
+   The user in the browser is a member of the audience in the event.
 
 
-## Next steps
-
-In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) for details.
-
-## See also
-
-Agora provides an open source Video Call example project [JoinChannelVideo](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/basic) on GitHub for your reference.

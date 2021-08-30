@@ -1,15 +1,17 @@
 
-# Get started with Video Call using UIKit
+# Get started with Interactive Live Streaming using UIKit
 
-Real-time video chatting immerses people in the sights and sounds of human connections. This keeps your users engaged for longer with your app. Agora Video SDK makes it easy for you to manage video calls and interactive live streaming events in an app. UIKit is a library that combines Agora real-time engagement functionality into a customizable user interface. Have another coffee, we have done all the work for you.
+Agora’s Interactive Live Streaming makes it easy for you to build apps with audio and video streaming in order to can host large-scale live audio and video streaming events with real-time interactivity.
+
+Real-time video chatting immerses people in the sights and sounds of human connections. This keeps your users engaged for longer with your app. Agora Video SDK makes it easy for you to manage Interactive Live Streaming events in an app. UIKit is a library that combines Agora real-time engagement functionality into a customizable user interface. Have another coffee, we have done all the work for you.
 
 ![](images/uikit-ui.png)
 
-This page shows the minimum code you need to add a real-time engagement interface into your app using UIKit.
+This page shows the minimum code you need to host an Interactive Live Streaming event from your app using UIKit.
 
 ## Understand the tech
 
-The following figure shows the workflow UIKit integrates into your app in order to create Video Call functionality.
+The following figure shows the workflow UIKit integrates into your app in order to create Interactive Live Streaming functionality.
 
 ![](https://web-cdn.agora.io/docs-files/1629250175461)
 
@@ -37,7 +39,7 @@ Yes, you read that right. After inializing an `AgoraVideoViewer` instance, you m
 
 ## Project setup
 
-In order to create the environment necessary to integrate Video Call into your app using UIKit, do the following:
+In order to create the environment necessary to integrate Interactive Live Streaming into your app using UIKit, do the following:
 
 
 1. [Create a new project](https://help.apple.com/xcode/mac/current/#/dev07db0e578) for an iOS app using the **Single View App** template. Make sure you select **Storyboard** as the user interface.
@@ -54,8 +56,8 @@ In order to create the environment necessary to integrate Video Call into your a
 
    | key                                  | type   | value                                                                                       |
       | :----------------------------------- | :----- | :------------------------------------------------------------------------------------------ |
-   | NSMicrophoneUsageDescription | String | Access the microphone for Agora Video Calls or Interactive Live Streaming events.      |
-   | NSCameraUsageDescription    | String | Access the camera for Agora Video Calls or Interactive Live Streaming events.                     |
+   | NSMicrophoneUsageDescription | String | Access the microphone for Agora Interactive Live Streaming events.      |
+   | NSCameraUsageDescription    | String | Access the camera for Agora Interactive Live Streaming events.                     |
 
 5. Integrate the UIKit into your project.
 
@@ -65,9 +67,9 @@ In order to create the environment necessary to integrate Video Call into your a
 
    2. In the next sheet, [specify the latest version](https://help.apple.com/xcode/mac/current/#/devb83d64851) and click **Next**, then click **Finish** when you see **AgoraUIKit_iOS**. 
 
-## Implement a client for Video Call
+## Implement a client for Interactive Live Streaming
 
-This section shows how to use UIKit to implement Video Call into your app step-by-step.
+This section shows how to use UIKit to implement Interactive Live Streaming into your app step-by-step.
 
 To integrate real-time video in a ready-made user interface into your app:
 
@@ -130,12 +132,14 @@ To integrate real-time video in a ready-made user interface into your app:
 
 ## Test your app
 
-To check that your code works, use an online demo to make a video call to your app. to do this:
+To check that your code works, host an Interactive Live Streaming event from your app and connect to it as the audience from a web demo. to do this:
 
 1. [Generate a temporary token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All#generate-a-temporary-token) in Agora Console.
 
-2. In your browser on another machine, navigate to https://agora-scalableui-android-test.netlify.app/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
+2. In XCode, in `ViewController.swift`, update `appId`, `channelName` and `token` with the values for your temporary token.
 
-3. In XCode, in `ViewController.swift`, update `appId`, `channelName` and `token` with the values for your temporary token.
+3. Run your app.
+    The app is now the host of the Interactive Live Streaming event. 
 
-4. Run your app.
+4. In your browser on another machine, navigate to https://agora-scalableui-android-test.netlify.app/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
+   The user in the browser is a member of the audience in the event.
