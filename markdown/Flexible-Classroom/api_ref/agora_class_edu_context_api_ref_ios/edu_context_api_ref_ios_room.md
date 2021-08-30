@@ -41,7 +41,7 @@ func updateFlexRoomProperties(_ properties:[String: String],
                                      cause:[String: String]?)
 ```
 
-新增或更新自定义教室属性。详见[如何设置自定义教室属性](/cn/agora-class/faq/agora_class_custom_properties)。
+新增或更新自定义教室属性。详见[如何设置自定义教室属性？](/cn/agora-class/faq/agora_class_custom_properties)
 
 属性成功更新后，会触发 `onFlexRoomPropertiesChanged` 回调。
 

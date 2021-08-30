@@ -1,16 +1,16 @@
 ## AgoraEduUserContext
 
-`AgoraEduUserContext` 类提供可供 App 调用的用户相关方法。
+`AgoraEduUserContext` 类提供可供 App 调用的用户列表相关方法。
 
 ### updateFlexUserProperties
 
 ```swift
 func updateFlexUserProperties(_ userUuid: String,
                               properties: [String: String],
-                              cause:[String: String]?)
+                                   cause:[String: String]?)
 ```
 
-新增或更新自定义用户属性。支持整体修改和根据路径查找并修改某个属性的值。
+新增或更新自定义用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)
 
 属性成功更新后，会触发 `onFlexUserPropertiesChanged` 回调。
 
@@ -20,42 +20,15 @@ func updateFlexUserProperties(_ userUuid: String,
 | `properties` | 用户属性。可设为 `{"key.subkey":"1"}`  或 `{"key":{"subkey":"1"}}`。 |
 | `cause`      | 更新原因。                                                   |
 
-### muteVideo
+### getLocalUserInfo
 
 ```swift
-func muteVideo(_ mute: Bool)
+func getLocalUserInfo() -> AgoraEduContextUserInfo
 ```
 
-开启或关闭本地视频。
+> 自 v1.1.5 起新增。
 
-| 参数   | 描述               |
-| :----- | :----------------- |
-| `mute` | 是否关闭本地视频。 |
-
-### muteAudio
-
-```swift
-func muteAudio(_ mute: Bool)
-```
-
-开启或关闭本地音频。
-
-| 参数   | 描述               |
-| :----- | :----------------- |
-| `mute` | 是否关闭本地音频。 |
-
-### renderView
-
-```swift
-func renderView(_ view: UIView?, streamUuid: String)
-```
-
-开始或停止渲染本地视频流。
-
-| 参数         | 描述                                             |
-| :----------- | :----------------------------------------------- |
-| `view`       | 视频 Container。`view` 为 `nil` 代表关闭流渲染。 |
-| `streamUuid` | 流 ID。                                          |
+获取本地用户信息。
 
 ### registerEventHandler
 
@@ -71,7 +44,7 @@ func registerEventHandler(_ handler: AgoraEduUserHandler)
 
 ## AgoraEduUserHandler
 
-`AgoraEduUserHandler` 类用于向 App 报告用户相关的事件回调。
+`AgoraEduUserHandler` 类用于向 App 报告用户列表相关的事件回调。
 
 ### onUpdateUserList
 
@@ -91,7 +64,7 @@ func registerEventHandler(_ handler: AgoraEduUserHandler)
 @objc optional func onUpdateCoHostList(_ list: [AgoraEduContextUserDetailInfo])
 ```
 
-提示上台用户列表已更新。只显示台上状态的用户的信息，包含不在线的用户。
+提示上台用户列表已更新。只显示状态为“在台上”的用户信息，包含不在线的用户。
 
 | 参数   | 描述                                                         |
 | :----- | :----------------------------------------------------------- |
@@ -115,7 +88,7 @@ func registerEventHandler(_ handler: AgoraEduUserHandler)
 @objc optional func onKickedOut()
 ```
 
-本地客户端被提出课堂。
+本地用户被提出课堂。
 
 ### onUpdateAudioVolumeIndication
 
@@ -130,33 +103,14 @@ func registerEventHandler(_ handler: AgoraEduUserHandler)
 | `volume`     | 音量。  |
 | `streamUuid` | 流 ID。 |
 
-### onShowUserTips
-
-```swift
-@objc optional func onShowUserTips(_ message: String)
-```
-
-报告用户相关的提示信息。
-
-有以下提示：
-
-- 你的摄像头被关闭了。
-- 你的摄像头被打开了。
-- 你的麦克风被关闭了。
-- 你的麦克风被打开了。
-
-| 参数      | 描述       |
-| :-------- | :--------- |
-| `message` | 提示信息。 |
-
 ### onFlexUserPropertiesChanged
 
 ```swift
 @objc optional func onFlexUserPropertiesChanged(_ changedProperties:[String : Any],
-                                                properties: [String: Any],
-                                                cause:[String : Any]?,
-                                                fromUser:AgoraEduContextUserDetailInfo,
-                                                operator:AgoraEduContextUserInfo?)
+                                                         properties: [String: Any],
+                                                              cause:[String : Any]?,
+                                                           fromUser:AgoraEduContextUserDetailInfo,
+                                                           operator:AgoraEduContextUserInfo?)
 ```
 
 自定义用户属性更新回调。

@@ -22,32 +22,18 @@ func registerEventHandler(_ handler: AgoraEduScreenShareHandler)
 
 ```swift
 @objc optional func onUpdateScreenShareState(_ state: AgoraEduContextScreenShareState,
-                                               streamUuid: String)
+                                          streamUuid: String)
 ```
 
-报告屏幕共享开启或关闭。
+屏幕共享状态已更新。
+
+- `state`  为 `start` 时，UI 层提示”老师发起了屏幕共享“。
+- `state` 为 `stop` 时，UI 层提示“老师停止了屏幕共享”。
 
 | 参数         | 描述                                                   |
 | :----------- | :----------------------------------------------------- |
-| `sharing`    | 屏幕共享状态，详见 `AgoraEduContextScreenShareState`。 |
+| `state`      | 屏幕共享状态，详见 `AgoraEduContextScreenShareState`。 |
 | `streamUuid` | 屏幕共享流 ID。                                        |
-
-### onScreenShareTip
-
-```swift
-@objc optional func onShowScreenShareTips(_ message: String)
-```
-
-显示屏幕共享相关提示。
-
-有以下提示：
-
-- XXX 开启了屏幕分享。
-- XXX 关闭了屏幕分享。
-
-| 参数      | 描述       |
-| :-------- | :--------- |
-| `message` | 提示信息。 |
 
 ### onSelectScreenShare
 
@@ -55,7 +41,7 @@ func registerEventHandler(_ handler: AgoraEduScreenShareHandler)
 @objc optional func onSelectScreenShare(_ selected: Bool)
 ```
 
-提示是否选中屏幕共享标签。
+提示屏幕共享标签是否被选中。
 
 | 参数       | 描述                     |
 | :--------- | :----------------------- |

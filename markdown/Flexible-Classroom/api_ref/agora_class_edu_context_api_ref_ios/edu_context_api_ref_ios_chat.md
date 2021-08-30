@@ -8,7 +8,19 @@
 func sendRoomMessage(_ message: String)
 ```
 
-发送房间消息。
+发送课堂消息。
+
+| 参数      | 描述       |
+| :-------- | :--------- |
+| `message` | 消息内容。 |
+
+### sendConversationMessage
+
+```swift
+func sendConversationMessage(_ message: String)
+```
+
+发送提问消息。
 
 | 参数      | 描述       |
 | :-------- | :--------- |
@@ -17,10 +29,25 @@ func sendRoomMessage(_ message: String)
 ### resendRoomMessage
 
 ```swift
-func resendRoomMessage(_ message: String, messageId: Int)
+func resendRoomMessage(_ message: String,
+                       messageId: String)
 ```
 
-重发房间信息。
+重发课堂消息。
+
+| 参数        | 描述       |
+| :---------- | :--------- |
+| `message`   | 消息内容。 |
+| `messageId` | 消息 ID。  |
+
+### resendConversationMessage
+
+```swift
+func resendConversationMessage(_ message: String,
+                               messageId: String)
+```
+
+重发提问消息。
 
 | 参数        | 描述       |
 | :---------- | :--------- |
@@ -30,10 +57,25 @@ func resendRoomMessage(_ message: String, messageId: Int)
 ### fetchHistoryMessages
 
 ```swift
-func fetchHistoryMessages(_ startId: Int, count: Int)
+func fetchHistoryMessages(_ startId: String,
+                              count: Int)
 ```
 
-获取历史消息。
+获取历史课堂消息。
+
+| 参数      | 描述                                       |
+| :-------- | :----------------------------------------- |
+| `startId` | 传入 `messageId`，表示从哪条消息开始获取。 |
+| `count`   | 想要获取的消息条数。                       |
+
+### fetchConversationHistoryMessages
+
+```swift
+func fetchConversationHistoryMessages(_ startId: String,
+                                          count: Int)
+```
+
+获取历史提问消息。
 
 | 参数      | 描述                                       |
 | :-------- | :----------------------------------------- |
@@ -140,74 +182,77 @@ func registerEventHandler(_ handler: AgoraEduMessageHandler)
                                                info: AgoraEduContextChatInfo?)
 ```
 
-课堂消息发送结果（包含首次发送和重发）。
+本地用户发送课堂消息结果（包含首次发送和重发）。
 
-| 参数    | 描述                                           |
-| :------ | :--------------------------------------------- |
-| `error` | 错误码。 `error` 不为空表示发送失败。          |
-| `info`  | 聊天消息对象，详见 `AgoraEduContextChatInfo`。 |
+| 参数    | 描述                                       |
+| :------ | :----------------------------------------- |
+| `error` | 错误码。 `error` 不为空表示发送失败。      |
+| `info`  | 消息对象，详见 `AgoraEduContextChatInfo`。 |
+
+### onSendConversationMessageResult
+
+```swift
+@objc optional func onSendConversationMessageResult(_ error: AgoraEduContextError?,
+                                                       info: AgoraEduContextChatInfo?)
+```
+
+本地用户发送提问消息结果（包含首次和后面重发）。
+
+| 参数    | 描述                                       |
+| :------ | :----------------------------------------- |
+| `error` | 错误码。 `error` 不为空表示发送失败。      |
+| `info`  | 消息对象，详见 `AgoraEduContextChatInfo`。 |
 
 ### onFetchHistoryMessagesResult
 
 ```swift
-@objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?, list: [AgoraEduContextChatInfo]?)
+@objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?,
+                                                    list: [AgoraEduContextChatInfo]?)
 ```
 
-获取历史聊天消息结果。
+本地用户获取历史课堂消息结果。
 
-| 参数    | 描述                                                      |
-| :------ | :-------------------------------------------------------- |
-| `error` | 错误码。如 `error` 不为空，表示获取失败。                 |
-| `list`  | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |
+| 参数    | 描述                                                       |
+| :------ | :--------------------------------------------------------- |
+| `error` | 错误码。 `error` 不为空表示发送失败。                      |
+| `info`  | 由多个消息对象组成的数组，详见 `AgoraEduContextChatInfo`。 |
 
-### onFetchHistoryMessagesResult
+### onFetchConversationHistoryMessagesResult
 
 ```swift
-@objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?, list: [AgoraEduContextChatInfo]?)
+@objc optional func onFetchConversationHistoryMessagesResult(_ error: AgoraEduContextError?,
+                                                                list: [AgoraEduContextChatInfo]?)
 ```
 
-获取历史聊天消息结果。
+本地用户获取历史提问消息结果。
 
-| 参数    | 描述                                                      |
-| :------ | :-------------------------------------------------------- |
-| `error` | 错误码。如 `error` 不为空，表示获取失败。                 |
-| `list`  | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |
+| 参数    | 描述                                                       |
+| :------ | :--------------------------------------------------------- |
+| `error` | 错误码。 `error` 不为空表示发送失败。                      |
+| `info`  | 由多个消息对象组成的数组，详见 `AgoraEduContextChatInfo`。 |
 
-### onFetchHistoryMessagesResult
+### onUpdateRoomMessageList
 
 ```swift
-@objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?, list: [AgoraEduContextChatInfo]?)
+ @objc optional func onUpdateRoomMessageList(_ list: [AgoraEduContextChatInfo])
 ```
 
-获取历史聊天消息结果。
+课堂消息已更新。
 
-| 参数    | 描述                                                      |
-| :------ | :-------------------------------------------------------- |
-| `error` | 错误码。如 `error` 不为空，表示获取失败。                 |
-| `list`  | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |
+| 参数    | 描述                                                       |
+| :------ | :--------------------------------------------------------- |
+| `error` | 错误码。如 `error` 不为空，表示获取失败。                  |
+| `list`  | 由多个消息对象组成的数组，详见 `AgoraEduContextChatInfo`。 |
 
-### onFetchHistoryMessagesResult
+### onUpdateConversationMessageList
 
 ```swift
-@objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?, list: [AgoraEduContextChatInfo]?)
+@objc optional func onUpdateConversationMessageList(_ list: [AgoraEduContextChatInfo])
 ```
 
-获取历史聊天消息结果。
+提问消息已更新。
 
-| 参数    | 描述                                                      |
-| :------ | :-------------------------------------------------------- |
-| `error` | 错误码。如 `error` 不为空，表示获取失败。                 |
-| `list`  | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |
-
-### onFetchHistoryMessagesResult
-
-```swift
-@objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?, list: [AgoraEduContextChatInfo]?)
-```
-
-获取历史聊天消息结果。
-
-| 参数    | 描述                                                      |
-| :------ | :-------------------------------------------------------- |
-| `error` | 错误码。如 `error` 不为空，表示获取失败。                 |
-| `list`  | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |
+| 参数    | 描述                                                  |
+| :------ | :---------------------------------------------------- |
+| `error` | 错误码。如 `error` 不为空，表示获取失败。             |
+| `list`  | 由多个消息对象组成的数组，详见 `EduContextChatItem`。 |
