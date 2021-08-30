@@ -37,7 +37,7 @@ To implement the multi-channel function, refer to the following steps.
 
 2. Join a channel with the channel name `channel2` and a random user ID.
 
-   <div class="alert note">Pay attention to the publishing options for the RtcConnection. If the camera track has been published to another channel, ensure that you set <code>publishCameraTrack</code> as false.</div>
+   <div class="alert note">Pay attention to the publishing options for the RtcConnection. If the camera track has been published to another channel, ensure that you set <code>publishCameraTrack</code> as <code>false</code>.</div>
 
    ```java
    private boolean joinSecondChannel() {
