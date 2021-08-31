@@ -56,7 +56,7 @@ func closeMicrophone()
 func publishStream(type: EduContextMediaStreamType)
 ```
 
-开始推流。
+将流发布到远端，包括当前摄像头采集的视频流和麦克风采集的音频流。
 
 ### unpublishStream
 
@@ -64,7 +64,7 @@ func publishStream(type: EduContextMediaStreamType)
 func unpublishStream(type: EduContextMediaStreamType)
 ```
 
-停止推流。
+取消发布流。
 
 ### renderRemoteView
 

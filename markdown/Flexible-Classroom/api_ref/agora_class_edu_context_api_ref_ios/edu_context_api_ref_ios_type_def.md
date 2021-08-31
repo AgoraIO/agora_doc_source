@@ -383,13 +383,13 @@ RTM 连接状态。
 
 是否开启镜像模式。
 
-| 参数       | 描述           |
-| :--------- | :------------- |
-| `auto`     | 自动。         |
-| `enabled`  | 开启镜像模式。 |
-| `disabled` | 关闭镜像模式。 |
+| 参数       | 描述                   |
+| :--------- | :--------------------- |
+| `auto`     | SDK 默认关闭镜像模式。 |
+| `enabled`  | 开启镜像模式。         |
+| `disabled` | 关闭镜像模式。         |
 
-## AgoraEduContextVideoMirrorMode
+## AgoraEduContextVideoConfig
 
 ```swift
 @objcMembers public class AgoraEduContextVideoConfig: NSObject {

@@ -153,10 +153,10 @@ func registerEventHandler(_ handler: AgoraEduMessageHandler)
 | 参数           | 描述                     |
 | :------------- | :----------------------- |
 | `allow`        | 是否有权限进行消息聊天。 |
-| `toUser`       | 被禁言的用户。           |
-| `operatorUser` | 进行禁言操作的用户。     |
+| `toUser`       | 聊天权限发生变化的用户。 |
+| `operatorUser` | 操作聊天权限变更的用户。 |
 
-### onUpdateChatPermission
+### onUpdateRemoteChatPermission
 
 ```swift
 @objc optional func onUpdateRemoteChatPermission(_ allow: Bool,
@@ -172,8 +172,8 @@ func registerEventHandler(_ handler: AgoraEduMessageHandler)
 | 参数           | 描述                     |
 | :------------- | :----------------------- |
 | `allow`        | 是否有权限进行消息聊天。 |
-| `toUser`       | 被禁言的用户。           |
-| `operatorUser` | 进行禁言操作的用户。     |
+| `toUser`       | 聊天权限发生变化的用户。 |
+| `operatorUser` | 操作聊天权限变更的用户。 |
 
 ### onSendRoomMessageResult
 

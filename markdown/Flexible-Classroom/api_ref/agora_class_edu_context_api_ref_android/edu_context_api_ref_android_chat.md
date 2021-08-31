@@ -2,13 +2,14 @@
 
 `ChatContext` 类提供可供 App 调用的消息聊天相关方法。
 
-### sendLocalMessage
+### sendLocalChannelMessage
 
 ```kotlin
-abstract fun sendLocalMessage(message: String, timestamp: Long, callback: EduContextCallback<EduContextChatItemSendResult>) : EduContextChatItem
+abstract fun sendLocalChannelMessage(message: String, timestamp: Long,
+                                     callback: EduContextCallback<EduContextChatItemSendResult>): EduContextChatItem
 ```
 
-发送聊天消息。
+发送课堂消息。
 
 | 参数        | 描述                                              |
 | :---------- | :------------------------------------------------ |
@@ -16,18 +17,46 @@ abstract fun sendLocalMessage(message: String, timestamp: Long, callback: EduCon
 | `timestamp` | 发送消息的时间戳。                                |
 | `callback`  | 通过 `EduContextCallback ` 异步获取消息发送结果。 |
 
-### fetchHistory
+### fetchChannelHistory
 
 ```kotlin
-abstract fun fetchHistory(startId: Int?, count: Int? = 50, callback: EduContextCallback<List<EduContextChatItem>>)
+abstract fun fetchChannelHistory(startId: String?, count: Int? = 50, callback: EduContextCallback<List<EduContextChatItem>>)
 ```
 
-获取历史消息。
+获取历史课堂消息。
 
 | 参数       | 描述                                          |
 | :--------- | :-------------------------------------------- |
 | `startId`  | 传入 `messageId`，表示从哪条消息开始获取。    |
 | `count`    | 想要获取的消息条数。                          |
+| `callback` | 通过 `EduContextCallback ` 异步获取历史消息。 |
+
+### sendConversationMessage
+
+```kotlin
+abstract fun sendConversationMessage(message: String, timestamp: Long,
+                                     callback: EduContextCallback<EduContextChatItemSendResult>): EduContextChatItem
+```
+
+发送提问消息。
+
+| 参数        | 描述                                              |
+| :---------- | :------------------------------------------------ |
+| `message`   | 消息内容。                                        |
+| `timestamp` | 发送消息的时间戳。                                |
+| `callback`  | 通过 `EduContextCallback ` 异步获取消息发送结果。 |
+
+### fetchConversationHistory
+
+```kotlin
+abstract fun fetchConversationHistory(startId: String?, callback: EduContextCallback<List<EduContextChatItem>>)
+```
+
+获取历史提问消息。
+
+| 参数       | 描述                                          |
+| :--------- | :-------------------------------------------- |
+| `startId`  | 传入 `messageId`，表示从哪条消息开始获取。    |
 | `callback` | 通过 `EduContextCallback ` 异步获取历史消息。 |
 
 ## IChatHandler
@@ -40,7 +69,7 @@ abstract fun fetchHistory(startId: Int?, count: Int? = 50, callback: EduContextC
 fun onReceiveMessage(item: EduContextChatItem)
 ```
 
-收到聊天消息。
+收到课堂消息。
 
 | 参数   | 描述                                      |
 | :----- | :---------------------------------------- |
@@ -52,7 +81,31 @@ fun onReceiveMessage(item: EduContextChatItem)
 fun onReceiveChatHistory(history: List<EduContextChatItem>)
 ```
 
-获取历史聊天消息。
+历史课堂消息已更新。
+
+| 参数      | 描述                                                      |
+| :-------- | :-------------------------------------------------------- |
+| `history` | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |
+
+### onReceiveConversationMessage
+
+```kotlin
+fun onReceiveConversationMessage(item: EduContextChatItem)
+```
+
+收到提问消息。
+
+| 参数   | 描述                                      |
+| :----- | :---------------------------------------- |
+| `item` | 聊天消息对象，详见 `EduContextChatItem`。 |
+
+### onReceiveChatHistory
+
+```kotlin
+fun onReceiveConversationHistory(history: List<EduContextChatItem>)
+```
+
+历史提问消息已更新。
 
 | 参数      | 描述                                                      |
 | :-------- | :-------------------------------------------------------- |
@@ -61,14 +114,17 @@ fun onReceiveChatHistory(history: List<EduContextChatItem>)
 ### onChatAllowed
 
 ```kotlin
-fun onChatAllowed(allowed: Boolean)
+fun onChatAllowed(allowed: Boolean, userInfo: EduContextUserInfo, operator: EduContextUserInfo?, local: Boolean)
 ```
 
-聊天权限发生变化
+用户的聊天权限发生变化。
 
-| 参数      | 描述                               |
-| :-------- | :--------------------------------- |
-| `allowed` | 是否有权限进行消息聊天（被禁言）。 |
+| 参数       | 描述                                                |
+| :--------- | :-------------------------------------------------- |
+| `allowed`  | 是否有权限进行消息聊天。                            |
+| `userInfo` | 聊天权限发生变化的用户，详见 `EduContextUserInfo`。 |
+| `operator` | 操作聊天权限变更的用户，详见 `EduContextUserInfo`。 |
+| `local`    | 是否为本地用户。                                    |
 
 ### onChatTips
 

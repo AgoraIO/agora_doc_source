@@ -88,7 +88,7 @@ func registerEventHandler(_ handler: AgoraEduUserHandler)
 @objc optional func onKickedOut()
 ```
 
-本地用户被提出课堂。
+本地用户被踢出课堂。
 
 ### onUpdateAudioVolumeIndication
 

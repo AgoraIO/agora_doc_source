@@ -12,7 +12,7 @@ Agora Classroom SDK 提供以下 Context：
 - Hands-up Context：举手上台。
 - Screenshare Context：屏幕共享。
 - User List Context：用户列表。
-- Media Context
+- Media Context：课前预览。
 
 ## AgoraEduContextPool
 

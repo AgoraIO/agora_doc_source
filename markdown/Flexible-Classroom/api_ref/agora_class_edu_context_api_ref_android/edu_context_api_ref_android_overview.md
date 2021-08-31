@@ -2,17 +2,23 @@
 
 Agora Classroom SDK 通过 Edu Context 为 App 开发者提供实现灵动课堂业务功能的能力。
 
+![](https://web-cdn.agora.io/docs-files/1619696813295)
+
 不同的 Context 代表灵动课堂中不同的业务功能模块，每个 Context 既包含供 App 调用的方法，也会向 App 报告事件回调。
 
-Agora Classroom SDK 提供以下 Context：
+Agora 提供以下 Context：
 
-- Whiteboard Context：白板。
-- Chat Context：消息聊天。
-- Room Context：课堂管理。
-- Hands-up Context：举手上台。
-- Screenshare Context：屏幕共享。
-- User List Context：用户列表。
-- Video Context：媒体控制。
+- [Chat Context](/cn/agora-class/edu_context_api_ref_android_chat?platform=Android): 消息聊天。
+- [Device Context](/cn/agora-class/edu_context_api_ref_android_device?platform=Android): 课中音视频设备控制。
+- [Extension App Context](): 扩展应用。
+- [Hands-up Context](/cn/agora-class/edu_context_api_ref_android_handsup?platform=Android): 举手上台。
+- [Media Context](): 课前本地预览。
+
+- [Room Context](/cn/agora-class/edu_context_api_ref_android_room?platform=Android): 教室管理。
+- [Screen Sharing Context](/cn/agora-class/edu_context_api_ref_android_screensharing?platform=Android): 屏幕共享。
+- [User Context](/cn/agora-class/edu_context_api_ref_android_userlist?platform=Android): 用户列表。
+- [Video Context](/cn/agora-class/edu_context_api_ref_android_video?platform=Android): 课中媒体控制，主要用于控制一对一课堂中的老师和学生的音视频以及小班课和大班课中老师的音视频。
+- [Whiteboard Context](/cn/agora-class/edu_context_api_ref_android_whiteboard?platform=Android): 白板，包含白板基础工具和页面控制工具。
 
 ## EduContextPool
 
@@ -20,31 +26,13 @@ Agora Classroom SDK 提供以下 Context：
 
 ```kotlin
 interface EduContextPool {
-    // 聊天功能
     fun chatContext(): ChatContext?
- 
-    // 举手上台
     fun handsUpContext(): HandsUpContext?
- 
-    // 课堂管理
     fun roomContext(): RoomContext?
- 
-    // 屏幕共享
     fun screenShareContext(): ScreenShareContext?
- 
-    // 用户列表
     fun userContext(): UserContext?
- 
-    // 媒体控制，主要控制一对一中的老师和学生的音视频，以及小班课、大班课中老师的音视频
     fun videoContext(): VideoContext?
- 
-    // 白板，包含白板基础工具和页面控制工具
     fun whiteboardContext(): WhiteboardContext?
- 
-    // 私密语音：目前只支持个人对个人
-    fun privateChatContext(): PrivateChatContext?
- 
-    // 扩展容器：该应用容器提供了生命周期、扩展
     fun extAppContext(): ExtAppContext?
 }
 ```
@@ -57,7 +45,7 @@ interface EduContextPool {
 interface IHandlerPool<T> {
     // 注册对应 Context 的回调监听
     fun addHandler(handler: T?)
-     
+  
     // 移除对应 Context 的回调监听
     fun removeHandler(handler: T?)
  

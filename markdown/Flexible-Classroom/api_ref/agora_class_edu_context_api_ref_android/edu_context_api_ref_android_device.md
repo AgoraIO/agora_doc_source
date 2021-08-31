@@ -1,6 +1,6 @@
 ## DeviceContext
 
-`DeviceContext` 类提供可供 App 调用的设备相关方法。
+`DeviceContext` 类提供可供 App 调用的课中设备控制相关方法。
 
 ### getDeviceConfig
 
@@ -56,7 +56,7 @@ abstract fun setSpeakerEnable(enable: Boolean)
 
 ## IDeviceHandler
 
-`IDeviceHandler` 类用于向 App 报告设备相关的事件回调。
+`IDeviceHandler` 类用于向 App 报告课中设备控制相关的事件回调。
 
 ### onCameraDeviceEnableChanged
 
