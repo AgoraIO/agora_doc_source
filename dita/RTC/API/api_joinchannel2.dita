@@ -86,6 +86,11 @@
   <pt>options</pt>
   <pd>频道媒体设置选项。详见 <xref keyref="ChannelMediaOptions"/>。</pd>
        </plentry>
+       <plentry props="ios mac" id="joinsuccessblock">
+           <pt>joinSuccess</pt>
+           <pd>成功加入频道回调。<codeph>joinSuccessBlock</codeph> 优先级高于 <xref keyref="onJoinChannelSuccess"/>，如果两种回调都实现了，只有 <codeph>block</codeph> 会触发。我们建议你将
+               <codeph>joinSuccessBlock</codeph> 设置为 <codeph>nil</codeph>，使用 <xref keyref="IRtcEngineEventHandler"/> 回调。</pd>
+       </plentry>
    </parml>
         </section>
         <section id="return_values">

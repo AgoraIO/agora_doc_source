@@ -15,20 +15,17 @@
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct EncodedAudioFrameInfo {
   EncodedAudioFrameInfo()
-      : speech(true),
-        codec(AUDIO_CODEC_AACLC),
+      : codec(AUDIO_CODEC_AACLC),
         sampleRateHz(0),
         samplesPerChannel(0),
-        sendEvenIfEmpty(true),
         numberOfChannels(0) {}
 
   EncodedAudioFrameInfo(const EncodedAudioFrameInfo&amp; rhs)
-      : speech(rhs.speech),
-        codec(rhs.codec),
+      : codec(rhs.codec),
         sampleRateHz(rhs.sampleRateHz),
         samplesPerChannel(rhs.samplesPerChannel),
-        sendEvenIfEmpty(rhs.sendEvenIfEmpty),
         numberOfChannels(rhs.numberOfChannels) {}
+        advancedSettings(rhs.advancedSettings) {}
   
   AUDIO_CODEC_TYPE codec;
   int sampleRateHz;
@@ -46,11 +43,13 @@
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt>codec</pt>
+                    <pt props="windows">codec</pt>
+                    <pt props="ios mac">codecType</pt>
                     <pd>音频编码规格: <xref keyref="AUDIO_CODEC_TYPE"/>。</pd>
                 </plentry>
                 <plentry>
-                    <pt>sampleRateHz</pt>
+                    <pt props="windows">sampleRateHz</pt>
+                    <pt props="ios mac">samplesPerSec</pt>
                     <pd>音频采样率 (Hz)。</pd>
                 </plentry>
                 <plentry>
@@ -58,10 +57,11 @@
                     <pd>每个声道的音频采样数。</pd>
                 </plentry>
                 <plentry>
-                    <pt>numberOfChannels</pt>
+                    <pt props="windows">numberOfChannels</pt>
+                    <pt props="ios mac">channels</pt>
                     <pd>声道数。</pd>
                 </plentry>
-                <plentry>
+                <plentry props="windows">
                     <pt>advancedSettings</pt>
                     <pd>该功能暂不支持。</pd>
                 </plentry>

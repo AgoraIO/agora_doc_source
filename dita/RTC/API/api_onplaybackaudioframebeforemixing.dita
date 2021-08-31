@@ -16,8 +16,7 @@
       int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer,
       long renderTimeMs, int avsync_type);
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrameBeforeMixing:(AgoraAudioFrame* _Nonnull)frame userId:(NSString * _Nullable)userId;
-</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrameBeforeMixing:(AgoraAudioFrame* _Nonnull)frame uid:(NSUInteger)uid;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(unsigned int uid, AudioFrame&amp; audioFrame) = 0;</codeblock> 
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -34,7 +33,7 @@
        <plentry>
   <pt props="windows">audioFrame</pt>
                     <pt props="ios mac">frame</pt>
-  <pd>音频裸数据。详见 <xref keyref="AudioFrame"/>。</pd>
+  <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
        </plentry>
    </parml>
            <parml props="android">

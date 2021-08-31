@@ -57,19 +57,19 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
-                <plentry>
+                <plentry props="windows android">
                     <pt props="windows">eventHandler</pt>
                     <pt props="android">mEventHandler</pt>
                     <pd id="eventhandler"><xref keyref="IRtcEngine"/> 的事件句柄，详见 <xref keyref="IRtcEngineEventHandler"
                         />。</pd>
                 </plentry>
                 <plentry>
-                    <pt props="windows">appId</pt>
+                    <pt props="windows ios mac">appId</pt>
                     <pt props="android">mAppId</pt>
-                    <pd id="appid">Agora 为 app 开发者签发的 App ID，详见获取 App ID。 使用同一个 App ID 的 app
-                        才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <apiname keyref="IRtcEngine"/> 。如需更换 App
-                        ID，必须先调用 <xref keyref="release"/> 销毁当前 <apiname keyref="IRtcEngine"/> 再重新创建
-                        。</pd>
+                    <pd id="appid">Agora 为 app 开发者签发的 App ID，详见<xref keyref="get-an-app-id">获取 App
+                            ID</xref>。 使用同一个 App ID 的 app 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个
+                            <apiname keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"
+                        /> 销毁当前 <apiname keyref="IRtcEngine"/> 再重新创建 。</pd>
                 </plentry>
                 <plentry props="android windows">
                     <pt props="windows">context</pt>
@@ -82,7 +82,7 @@
                         <p props="android">安卓活动上下文。</p>
                     </pd>
                 </plentry>
-                <plentry>
+                <plentry props="android windows">
                     <pt props="windows">enableAudioDevice</pt>
                     <pt props="android">mEnableAudioDevice</pt>
                     <pd>设置是否允许 SDK 使用音频设备： <ul>
@@ -97,31 +97,31 @@
                     </pd>
                 </plentry>
                 <plentry>
-                    <pt props="windows">channelProfile</pt>
+                    <pt props="windows ios mac">channelProfile</pt>
                     <pt props="android">mChannelProfile</pt>
-                    <pd>频道模式，详见 <xref keyref="CHANNEL_PROFILE_TYPE"/>。</pd>
+                        <pd conkeyref="setChannelProfile/channelprofiletype"/>
                 </plentry>
                 <plentry>
-                    <pt props="windows">audioScenario</pt>
+                    <pt props="windows ios mac">audioScenario</pt>
                     <pt props="android">mAudioScenario</pt>
                     <pd>音频应用场景。详见 <xref keyref="AUDIO_SCENARIO_TYPE"/>。</pd>
                     <pd>
-                        <note>Agora 推荐你使用以下场景： <ul>
-                                    <li><ph keyref="AUDIO_SCENARIO_DEFAULT"/>(0)</li>
-                                    <li><ph keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3)</li>
-                                    <li><ph keyref="AUDIO_SCENARIO_HIGH_DEFINITION"/>(6)</li>
+                        <note type="attention">Agora 推荐你使用以下场景： <ul>
+                                    <li><ph keyref="AUDIO_SCENARIO_DEFAULT"/>(0)。</li>
+                                    <li><ph keyref="AUDIO_SCENARIO_GAME_STREAMING"/>(3)。</li>
+                                    <li><ph keyref="AUDIO_SCENARIO_HIGH_DEFINITION"/>(6)。</li>
                                 </ul>
                         </note>
                     </pd>
                 </plentry>
                 <plentry>
-                    <pt props="windows">areaCode</pt>
+                    <pt props="windows ios mac">areaCode</pt>
                     <pt props="android">mAreaCode</pt>
                     <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"
                             />。<p>指定访问区域后，集成了 Agora SDK 的 app 会连接指定区域内的 Agora 服务器。</p></pd>
                 </plentry>
                 <plentry>
-                    <pt props="windows">logConfig</pt>
+                    <pt props="windows ios mac">logConfig</pt>
                     <pt props="android">mLogConfig</pt>
                     <pd>
                         <p>设置 Agora SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。</p>
@@ -140,18 +140,18 @@
                             和 <codeph>agoraapi.log</codeph> 写入最新的日志。</p>
                     </pd>
                 </plentry>
-                <plentry>
-                    <pt props="android">mExtensionList</pt>
+                <plentry props="android">
+                    <pt>mExtensionList</pt>
                     <pd>扩展服务插件列表。</pd>
                 </plentry>
                 <plentry>
                     <pt props="android">mExtensionObserver</pt>
-                    <pt props="apple">eventDelegate</pt>
+                    <pt props="ios mac">eventDelegate</pt>
                     <pd>扩展服务事件句柄。详见 <xref keyref="IMediaExtensionObserver"/>。</pd>
                 </plentry>
-                <plentry props="apple">
+                <plentry props="ios mac">
                     <pt>mediaFilterExtensions</pt>
-                    <pd>媒体插件扩展。详见 <xref keyref="AgoraMediaFilterExtensionDelegate"/>。</pd>
+                    <pd>扩展服务 delegate。详见 <xref keyref="AgoraMediaFilterExtensionDelegate"/>。</pd>
                 </plentry>
             </parml>
         </section>
