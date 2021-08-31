@@ -109,7 +109,7 @@ To integrate real-time video in a ready-made user interface into your app:
                 appId: appId
             )
         )
-        self.agoraView.fills(view: self.view)
+        agoraView.fills(view: self.view)
 
         agoraView.join(
           channel: channelName,
