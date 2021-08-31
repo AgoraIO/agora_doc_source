@@ -1,7 +1,7 @@
 
 # Get started with Interactive Live Streaming using UIKit
 
-Agora’s Interactive Live Streaming makes it easy for you to build apps with audio and video streaming in order to can host large-scale live audio and video streaming events with real-time interactivity.
+Agora’s Interactive Live Streaming makes it easy for you to build apps with audio and video streaming in order to host large-scale live audio and video streaming events with real-time interactivity.
 
 Real-time video chatting immerses people in the sights and sounds of human connections. This keeps your users engaged for longer with your app. Agora Video SDK makes it easy for you to manage Interactive Live Streaming events in an app. UIKit is a library that combines Agora real-time engagement functionality into a customizable user interface. Have another coffee, we have done all the work for you.
 
