@@ -1,6 +1,6 @@
 ## Join Multiple Channels
 
-The Agora Video SDK enables users to join an unlimited number of channels at a time and to receive the audio and video streams of all the channels.
+The Agora Video SDK enables users to join an unlimited number of channels at the same time and  receive the audio and video streams of all the channels.
 
 ## Understand the tech
 
