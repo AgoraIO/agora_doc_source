@@ -11,7 +11,7 @@ An `RtcConnection` object contains the following information to identify a conne
 - The channel name
 - The ID of the local user
 
-You can create multiple `RtcConnection` objects at the same time. Each object must have a different channel name and user ID.
+You can create multiple `RtcConnection` objects, each with a different channel name and user ID.
 
 To join multiple channels, call `joinChannelEx` in the `RtcEngineEx` class multiple times with different `RtcConnection` objects.
 
@@ -26,7 +26,7 @@ Before proceeding, ensure that you have implemented the basic real-time communi
 
 ## Implementation
 
-To implement the multi-channel functionality, do the following:
+To implement the multi-channel functionality, do the following for each channel:
 
 1. In your Agora project, define an `RtcConnection` object in the main file.
 
@@ -34,7 +34,7 @@ To implement the multi-channel functionality, do the following:
    private RtcConnection rtcConnection2 = new RtcConnection();
    ```
 
-2. Join a channel with the channel name `channel2` and a random user ID.
+2. Join a channel with a random user ID.
 
    ```java
    private boolean joinSecondChannel() {
