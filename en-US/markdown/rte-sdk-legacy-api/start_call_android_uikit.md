@@ -102,6 +102,7 @@ To integrate real-time video in a ready-made user interface:
 
    ```kotlin
    import android.widget.FrameLayout
+   import io.agora.rtc.Constants
    import io.agora.agorauikit_android.*
    ```
 
