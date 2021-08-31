@@ -99,4 +99,4 @@ This section provides the reference information you might need when implementing
 
 ### Sample project
 
-Agora provides an open-source sample project [JoinMultipleChannel](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/JoinMultipleChannel.java) on GitHub. You can download it and refer to the source code.
+Agora provides an open-source sample project [JoinMultipleChannel](https://github.com/AgoraIO/API-Examples/blob/4.0.0-preview/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/JoinMultipleChannel.java) on GitHub. You can download it and refer to the source code.
