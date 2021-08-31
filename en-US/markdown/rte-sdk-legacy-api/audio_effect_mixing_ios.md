@@ -205,8 +205,11 @@ agoraKit.adjustAudioMixingPlayoutVolume(volume: 50)
 
 ## Reference
 
+This section provides reference information that you need to know when playing audio effects or implementing audio mixing.
+
 - Agora provides an open-source [AudioMixing](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/iOS/APIExample/Examples/Advanced/AudioMixing) sample project on Github for your reference. You can download the project to try it or view the source code.
-- [playEffect]()
-- [rtcEngineDidAudioEffectFinished]()
-- [startAudioMixing]()
-- [audioMixingStateChanged]()
+- API Reference:
+  - [playEffect]()
+  - [rtcEngineDidAudioEffectFinished]()
+  - [startAudioMixing]()
+  - [audioMixingStateChanged]()

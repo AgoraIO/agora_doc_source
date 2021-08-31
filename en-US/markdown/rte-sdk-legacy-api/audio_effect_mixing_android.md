@@ -152,8 +152,11 @@ In your Agora project, open the file used to manage audio effect playback and ad
 
 ## Reference
 
+This section provides reference information that you need to know when playing audio effects or implementing audio mixing.
+
 - Agora provides an open-source [PlayAudioFiles](https://github.com/AgoraIO/API-Examples/blob/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/PlayAudioFiles.java) sample project on Github for your reference. You can download the project to try it or view the source code.
-- [playEffect]()
-- [onAudioEffectFinished]()
-- [startAudioMixing]()
-- [onAudioMixingStateChanged]()
+- API Reference:
+  - [playEffect]()
+  - [onAudioEffectFinished]()
+  - [startAudioMixing]()
+  - [onAudioMixingStateChanged]()
