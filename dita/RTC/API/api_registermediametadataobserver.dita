@@ -13,7 +13,7 @@
     <refbody><section id="prototype">
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int registerMediaMetadataObserver(IMetadataObserver observer, int type);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setMediaMetadataDelegate:(id&lt;AgoraMediaMetadataDelegate> _Nullable)metadataDelegate withType:(AgoraMetadataType)type;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int registerMediaMetadataObserver(IMetadataObserver *observer, IMetadataObserver::METADATA_TYPE type) = 0;
 </codeblock>
                 <codeblock props="electron" outputclass="language-typescript">registerMediaMetadataObserver(type: METADATA_TYPE = 0): number </codeblock>
@@ -45,7 +45,7 @@
    <parml>
        <plentry props="windows android ios mac">
   <pt>observer</pt>
-  <pd> metadata 观测器。详见 <xref keyref="IMetadataObserver"/>。 </pd>
+  <pd>metadata 观测器。详见 <xref keyref="IMetadataObserver"/>。 </pd>
        </plentry>
        <plentry id="metadatatype">
   <pt>type</pt>
