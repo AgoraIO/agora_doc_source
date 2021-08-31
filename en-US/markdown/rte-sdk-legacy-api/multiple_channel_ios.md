@@ -53,16 +53,16 @@ To implement the multi-channel functionality, do the following for each channel:
 3. Set up the remote video in the `didJoinedOfUid` callback.
 
    ```swift
-   func rtcEngine(_ engine: AgoraRtcEngineKit, channelId: String, didOfflineOfUid uid: UInt, reason: AgoraUserOfflineReason) {
-       LogUtils.log(message: "remote user left: \(uid) reason \(reason)", level: .info)
+   func rtcEngine(_ engine: AgoraRtcEngineKit, channelId: String, didJoinedOfUid uid: UInt, elapsed: Int) {
+       LogUtils.log(message: "remote user join: \(uid) \(elapsed)ms", level: .info)
    
-       // to unlink your view from sdk, so that your view reference will be released
-       // note the video will stay at its last frame, to completely remove it
-       // you will need to remove the EAGL sublayer from your binded view
+       // Only one remote video view is available for this
+       // tutorial. Here we check if there exists a surface
+       // view tagged as this uid.
        let videoCanvas = AgoraRtcVideoCanvas()
        videoCanvas.uid = uid
        // the view to be binded
-       videoCanvas.view = nil
+       videoCanvas.view = channelId == channelName1 ? channel1RemoteVideo.videoView : channel2RemoteVideo.videoView
        videoCanvas.renderMode = .hidden
        let connection = AgoraRtcConnection()
        agoraKit.setupRemoteVideoEx(videoCanvas, connection: connection)
