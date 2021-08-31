@@ -1,25 +1,23 @@
 ## Join Multiple Channels
 
-The Agora RTC SDK enables users to join an unlimited number of channels at a time and to receive the audio and video streams of all the channels.
+The Agora Video SDK enables users to join an unlimited number of channels at a time and to receive the audio and video streams of all the channels.
 
 ## Understand the tech
 
-The SDK uses the `RtcConnection` and  `RtcEngineEx` classes to support the multi-channel function. The `RtcEngineEx` class provides methods that apply to a specific `RtcConnection` object.
+The SDK uses the `RtcConnection` and  `RtcEngineEx` classes to support the multi-channel functionality. `RtcEngineEx`  provides methods that apply to a specific `RtcConnection` object.
 
 An `RtcConnection` object contains the following information to identify a connection:
 
-- A channel name
-- A user ID of the local user
+- The channel name
+- The ID of the local user
 
-You can create multiple `RtcConnection` objects with different channel names and user IDs.
+You can create multiple `RtcConnection` objects at the same time. Each object must have a different channel name and user ID.
 
 To join multiple channels, call `joinChannelEx` in the `RtcEngineEx` class multiple times with different `RtcConnection` objects.
 
-<div class="alert note">
-<li>Ensure that each <code>RtcConnection</code> object has a unique user ID that is not <code>0</code>.</li>
-<li>You can configure the publishing and subscribing options for the <code>RtcConnection</code> object in <code>joinChannelEx</code>.</li>
-  <li>Each <code>RtcConnection</code> can publish mutiple audio streams and a unique video stream independently.</li>
-</div>
+- Ensure that each `RtcConnection` object has a unique user ID that is not `0`.
+- You can configure the publishing and subscribing options for the `RtcConnection` object in `joinChannelEx`.
+- Each `RtcConnection` can publish mutiple audio streams and a unique video stream independently.
 
 
 ## Prerequisites
@@ -28,9 +26,9 @@ Before proceeding, ensure that you have implemented the basic real-time communi
 
 ## Implementation
 
-To implement the multi-channel function, refer to the following steps.
+To implement the multi-channel functionality, do the following:
 
-1. In your Agora project, define an `RtcConnection` object in the file used to manage the multi-channel function.
+1. In your Agora project, define an `RtcConnection` object in the main file.
 
    ```java
    private RtcConnection rtcConnection2 = new RtcConnection();
@@ -89,12 +87,9 @@ To implement the multi-channel function, refer to the following steps.
    };
    ```
 
-
-Repeat the above steps to join more channels.
-
 ## Reference
 
-This section provides the reference information you might need when implementing the multi-channel function.
+This section provides the reference information you might need when implementing the multi-channel functionality.
 
 
 ### API reference
