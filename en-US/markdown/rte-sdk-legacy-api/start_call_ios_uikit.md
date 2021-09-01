@@ -130,11 +130,11 @@ To integrate real-time video in a ready-made user interface into your app:
 
 ## Test your app
 
-To check that your code works, use an online demo to make a video call to your app. to do this:
+To check that your code works, use an online demo to make a video call to your app. To do this:
 
 1. [Generate a temporary token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All#generate-a-temporary-token) in Agora Console.
 
-2. In your browser on another machine, navigate to https://agora-scalableui-android-test.netlify.app/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
+2. In your browser on another device, navigate to https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
 
 3. In XCode, in `ViewController.swift`, update `appId`, `channelName` and `token` with the values for your temporary token.
 

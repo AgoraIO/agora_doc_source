@@ -167,7 +167,7 @@ To integrate real-time video in a ready-made user interface:
 
 ## Test your app
 
-To check that your code works, use an online demo to make a video call to your app. to do this:
+To check that your code works, use an online demo to make a video call to your app. To do this:
 
 1. [Generate a temporary token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All#generate-a-temporary-token) in Agora Console.
 
