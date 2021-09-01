@@ -62,8 +62,9 @@ In order to create the environment necessary to integrate Video Call into your a
    1. Go to **File** > **Swift Packages** > **Add Package Dependencies...**, and paste the following link:
 
       `https://github.com/AgoraIO-Community/iOS-UIKit`
+   https://github.com/AgoraIO-Community/iOS-UIKit/tree/ngsdk-update
 
-   2. In the next sheet, [specify the latest version](https://help.apple.com/xcode/mac/current/#/devb83d64851) and click **Next**, then click **Finish** when you see **AgoraUIKit_iOS**. 
+   2. In the next sheet, [specify a 4.x.x version](https://help.apple.com/xcode/mac/current/#/devb83d64851) and click **Next**, then click **Finish** when you see **AgoraUIKit_iOS**.
 
 ## Implement a client for Video Call
 
@@ -130,12 +131,16 @@ To integrate real-time video in a ready-made user interface into your app:
 
 ## Test your app
 
-To check that your code works, use an online demo to make a video call to your app. To do this:
+To check that your code works, use an online demo to make a video call to your app. To test real-time engagement with your app:
 
 1. [Generate a temporary token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All#generate-a-temporary-token) in Agora Console.
 
-2. In your browser on another device, navigate to https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
+5. In your browser on another device, navigate to the [Basic Communication sample app](https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/), update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
 
 3. In XCode, in `ViewController.swift`, update `appId`, `channelName` and `token` with the values for your temporary token.
 
 4. Run your app.
+
+## Next steps
+
+In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) for details.

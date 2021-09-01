@@ -65,7 +65,7 @@ In order to create the environment necessary to integrate Interactive Live Strea
 
       `https://github.com/AgoraIO-Community/iOS-UIKit`
 
-   2. In the next sheet, [specify the latest version](https://help.apple.com/xcode/mac/current/#/devb83d64851) and click **Next**, then click **Finish** when you see **AgoraUIKit_iOS**. 
+   2. In the next sheet, [specify a 4.x.x version](https://help.apple.com/xcode/mac/current/#/devb83d64851) and click **Next**, then click **Finish** when you see **AgoraUIKit_iOS**. 
 
 ## Implement a client for Interactive Live Streaming
 
@@ -141,6 +141,8 @@ To check that your code works, host an Interactive Live Streaming event from you
 3. Run your app.
     The app is now the host of the Interactive Live Streaming event. 
 
-4. In your browser on another machine, navigate to https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
-   The user in the browser is a member of the audience in the event.
+5. In your browser on another device, navigate to the [Basic Communication sample app](https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/), update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
 
+## Next steps
+
+In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) for details.

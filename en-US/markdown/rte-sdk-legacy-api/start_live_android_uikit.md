@@ -34,7 +34,7 @@ Yes, you read that right. After initializing an `AgoraVideoViewer` instance, you
 
     Ensure that no firewall is deployed in your network environment, otherwise the project fails.
 
-- A physical Android device or an emulator to run your app on.  
+- A physical Android device to run your app on.  
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project.
 
 ## Project setup
@@ -72,9 +72,9 @@ In order to create the environment necessary to integrate Interactive Live Strea
 
       ```
 
-   3. Find the [Latest version of UIKit](https://jitpack.io/#com.github.AgoraIO-Community/Android-UIKit) and replace `version` with the one you want to use. For example: `2.0.6`. 
+   3. Find the [Latest version of UIKit](https://jitpack.io/#com.github.AgoraIO-Community/Android-UIKit) and replace `version` with the one you want to use. For example: `4.0.0`. 
       ```json
-        implementation 'com.github.AgoraIO-Community.Android-UIKit:final:2.0.6'
+        implementation 'com.github.AgoraIO-Community.Android-UIKit:final:4.0.0'
       ```
    5. Sync Gradle and import UIKit. 
 
@@ -106,7 +106,7 @@ To integrate real-time video in a ready-made user interface:
 
    ```kotlin
    import android.widget.FrameLayout
-   import io.agora.rtc.Constants
+   import io.agora.rtc2.Constants
    import io.agora.agorauikit_android.*
    ```
 
@@ -171,15 +171,22 @@ To integrate real-time video in a ready-made user interface:
 
 ## Test your app
 
-To check that your code works, host an Interactive Live Streaming event from your app and connect to it as the audience from a web demo. To do this:
+To check that your code works, host an Interactive Live Streaming event from your app and connect to it as the audience from a web demo. To test real-time engagement with your app:
+
 
 1. [Generate a temporary token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All#generate-a-temporary-token) in Agora Console.
 
-3. In Android Studio, in `/app/java/com.example.<projectname>/MainActivity`, update `appId`, `channelName` and `token` with the values for your temporary token.
+2. In Android Studio, in `/app/java/com.example.<projectname>/MainActivity`, update `appId`, `channelName` and `token` with the values for your temporary token.
 
-4. Run your app.
+3. Run your app on a device.
+
    The app is now the host of the Interactive Live Streaming event.
 
-5. In your browser on another machine, navigate to https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
+5. In your browser on another device, navigate to the [Basic Communication sample app](https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/), update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
 
    The user in the browser is a member of the audience in the event.
+
+## Next steps
+
+In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) for details.
+

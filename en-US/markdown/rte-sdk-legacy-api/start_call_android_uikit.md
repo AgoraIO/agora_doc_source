@@ -31,7 +31,7 @@ Yes, you read that right. After initializing an `AgoraVideoViewer` instance, you
 
     Ensure that no firewall is deployed in your network environment, otherwise the project fails.
 
-- A physical Android device or an emulator to run your app on.  
+- A physical Android device to run your app on.  
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project.
 
 ## Project setup
@@ -68,9 +68,9 @@ In order to create the environment necessary to integrate Video Call into your a
         }
       ```
 
-   3. Find the [Latest version of UIKit](https://jitpack.io/#com.github.AgoraIO-Community/Android-UIKit) and replace `version` with the one you want to use. For example: `2.0.6`. 
+   3. Find the [Latest version of UIKit](https://jitpack.io/#com.github.AgoraIO-Community/Android-UIKit) and replace `version` with the one you want to use. For example: `4.0.0`. 
       ```json
-        implementation 'com.github.AgoraIO-Community.Android-UIKit:final:2.0.6'
+        implementation 'com.github.AgoraIO-Community.Android-UIKit:final:4.0.0'
       ```
    5. Sync Gradle and import UIKit. 
 
@@ -102,7 +102,7 @@ To integrate real-time video in a ready-made user interface:
 
    ```kotlin
    import android.widget.FrameLayout
-   import io.agora.rtc.Constants
+   import io.agora.rtc2.Constants
    import io.agora.agorauikit_android.*
    ```
 
@@ -148,7 +148,7 @@ To integrate real-time video in a ready-made user interface:
             )
         )
         // Join a channel by passing a channel name and a client role
-        agView!!.join(channelName, role = Constants.CLIENT_ROLE_BROADCASTER)
+        agView!!.join(channelName)
     }
    ```
 
@@ -167,15 +167,15 @@ To integrate real-time video in a ready-made user interface:
 
 ## Test your app
 
-To check that your code works, use an online demo to make a video call to your app. To do this:
+To check that your code works, use an online demo to make a video call to your app. To test real-time engagement with your app:
 
 1. [Generate a temporary token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All#generate-a-temporary-token) in Agora Console.
 
-1. In your browser, navigate to https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
+2. In your browser on another device, navigate to the [Basic Communication sample app](https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/), update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
 
-1. In Android Studio, in `/app/java/com.example.<projectname>/MainActivity`, update `appId`, `channelName` and `token` with the values for your temporary token.
+3. In Android Studio, in `/app/java/com.example.<projectname>/MainActivity`, update `appId`, `channelName` and `token` with the values for your temporary token.
 
-1. Run your app.
+4. Run your app on a device.
 
 Your App opens in an Android Virtual Machine and connects to the `channelName` you opened in the Web app. You now have the golden opportunity of talking to yourself using Video Call in a complete UI created using UIKit.
 
@@ -184,6 +184,3 @@ Your App opens in an Android Virtual Machine and connects to the `channelName` y
 
 In a test or production environment, use a token server to generate token is recommended to ensure communication security, see [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) for details.
 
-## See also
-
-Agora provides an open source Video Call example project [JoinChannelVideo](https://github.com/AgoraIO/API-Examples/tree/dev/3.6.200/Android/APIExample/app/src/main/java/io/agora/api/example/examples/basic) on GitHub for your reference.
