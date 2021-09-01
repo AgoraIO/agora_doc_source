@@ -6,7 +6,7 @@ Agora’s Interactive Live Streaming makes it easy for you to build apps with au
 
 Real-time video chatting immerses people in the sights and sounds of human connections. This keeps your users engaged for longer with your app. Agora Video SDK makes it easy for you to manage Interactive Live Streaming events in an app. UIKit is a library that combines Agora real-time engagement functionality into a customizable user interface. Have another coffee, we have done all the work for you. 
 
-![](images/uikit-ui.png)
+![](images/uikit-ui-android.png)
 
 This page shows the minimum code you need to host an Interactive Live Streaming event from your app using UIKit.
 
@@ -34,7 +34,7 @@ Yes, you read that right. After initializing an `AgoraVideoViewer` instance, you
 
     Ensure that no firewall is deployed in your network environment, otherwise the project fails.
 
-- A physical Android device to run your app on.  
+- A physical Android device or an emulator to run your app on.  
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project.
 
 ## Project setup
@@ -47,7 +47,7 @@ In order to create the environment necessary to integrate Interactive Live Strea
 
 1. Integrate UIKit into your project:
 
-   1. In `Gradle Scripts/settings.gradle( Project Settings )`, add the jitpack repository. For example:
+   1. In `Gradle Scripts/settings.gradle(Project: <Project name>)`, add the jitpack repository. For example:
        ```
       repositories {
          google()
@@ -61,19 +61,20 @@ In order to create the environment necessary to integrate Interactive Live Strea
         android {
         defaultConfig {
             ...
-            minSdk 24
+            minSdkVersion 24
             ...
         }
         dependencies {
             ...
-            implementation 'com.github.AgoraIO-Community:Android-UIKit:final:<version>'
+            implementation 'com.github.AgoraIO-Community/Android-UIKit:2.0.6'<version>'
             ...
         }
+
       ```
 
    3. Find the [Latest version of UIKit](https://jitpack.io/#com.github.AgoraIO-Community/Android-UIKit) and replace `version` with the one you want to use. For example: `2.0.6`. 
       ```json
-       implementation 'com.github.AgoraIO-Community:Android-UIKit:final:2.0.6'
+        implementation 'com.github.AgoraIO-Community:Android-UIKit:2.0.6'
       ```
    5. Sync Gradle and import UIKit. 
 
@@ -173,8 +174,6 @@ To integrate real-time video in a ready-made user interface:
 To check that your code works, host an Interactive Live Streaming event from your app and connect to it as the audience from a web demo. to do this:
 
 1. [Generate a temporary token](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All#generate-a-temporary-token) in Agora Console.
-
-2. In your browser, navigate to https://agora-scalableui-android-test.netlify.app/ and update _App ID_, _Channel_ and _Token_ with the values for your temporary token, then click *JOIN*.
 
 3. In Android Studio, in `/app/java/com.example.<projectname>/MainActivity`, update `appId`, `channelName` and `token` with the values for your temporary token.
 

@@ -5,7 +5,7 @@ Agora’s Interactive Live Streaming makes it easy for you to build apps with au
 
 Real-time video chatting immerses people in the sights and sounds of human connections. This keeps your users engaged for longer with your app. Agora Video SDK makes it easy for you to manage Interactive Live Streaming events in an app. UIKit is a library that combines Agora real-time engagement functionality into a customizable user interface. Have another coffee, we have done all the work for you.
 
-![](images/uikit-ui.png)
+![](images/uikit-ui-ios.png)
 
 This page shows the minimum code you need to host an Interactive Live Streaming event from your app using UIKit.
 
@@ -63,7 +63,7 @@ In order to create the environment necessary to integrate Interactive Live Strea
 
    1. Go to **File** > **Swift Packages** > **Add Package Dependencies...**, and paste the following link:
 
-      `https://github.com/AgoraIO/AgoraRtcEngine_iOS`
+      `https://github.com/AgoraIO-Community/iOS-UIKit`
 
    2. In the next sheet, [specify the latest version](https://help.apple.com/xcode/mac/current/#/devb83d64851) and click **Next**, then click **Finish** when you see **AgoraUIKit_iOS**. 
 
@@ -81,7 +81,7 @@ To integrate real-time video in a ready-made user interface into your app:
    ```
 2. Create the variables that you use to initiate and join a channel:
 
-    In `ViewController.swift`, add the following line after `class ViewController: UIViewController {`:
+    In `ViewController.swift`, add the following lines in the `ViewController` class:
    ```swift
     // Fill the App ID of your project generated on Agora Console.
     let appId = ""
