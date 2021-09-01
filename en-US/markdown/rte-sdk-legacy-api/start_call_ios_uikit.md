@@ -27,7 +27,7 @@ Yes, you read that right. After inializing an `AgoraVideoViewer` instance, you m
 
 - Xcode 9.0 or later.
 - Two iOS devices running iOS 8.0 or later.
-- - A computer that can access the Internet.
+- A computer that can access the Internet.
 
     Ensure that no firewall is deployed in your network environment, otherwise the project fails.
 
