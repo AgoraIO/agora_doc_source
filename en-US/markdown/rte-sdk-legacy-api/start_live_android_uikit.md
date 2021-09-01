@@ -66,7 +66,7 @@ In order to create the environment necessary to integrate Interactive Live Strea
         }
         dependencies {
             ...
-            implementation 'com.github.AgoraIO-Community/Android-UIKit:2.0.6'<version>'
+            implementation 'com.github.AgoraIO-Community.Android-UIKit:final:<version>'
             ...
         }
 
@@ -74,7 +74,7 @@ In order to create the environment necessary to integrate Interactive Live Strea
 
    3. Find the [Latest version of UIKit](https://jitpack.io/#com.github.AgoraIO-Community/Android-UIKit) and replace `version` with the one you want to use. For example: `2.0.6`. 
       ```json
-        implementation 'com.github.AgoraIO-Community:Android-UIKit:2.0.6'
+        implementation 'com.github.AgoraIO-Community.Android-UIKit:final:2.0.6'
       ```
    5. Sync Gradle and import UIKit. 
 
