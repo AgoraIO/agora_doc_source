@@ -23,7 +23,7 @@
         </section>
         <section id="detailed_desc">
    
-   <dl outputclass="since">
+   <dl outputclass="since" props="rtc">
        <dlentry>
   <dt>Since</dt>
   <dd>v3.0.1</dd>
@@ -38,10 +38,10 @@
    <p>The distance between the human face and the screen is based on the fitting calculation of the local video size and the position of the human face captured by the camera.</p>
    <note type="attention">
        <ul>
-           <li>This callback is for Android and iOS only.</li>
+           <li props="windows">This callback is for Android and iOS only.</li>
   <li>If the SDK does not detect a face, it reduces the frequency of this callback to reduce power consumption on the local device.</li>
   <li>The SDK stops triggering this callback when a human face is in close proximity to the screen.</li>
-  <li>On Android, the value of <parmname>distance</parmname> reported in this callback may be slightly different from the actual distance. Therefore, Agora does not recommend using it for accurate calculation.</li>
+  <li props="windows android">On Android, the value of <parmname>distance</parmname> reported in this callback may be slightly different from the actual distance. Therefore, Agora does not recommend using it for accurate calculation.</li>
        </ul>
    </note>
         </section>
@@ -59,7 +59,12 @@
   <pt>imageHeight</pt>
   <pd>The height (px) of the video image captured by the local camera.</pd>
        </plentry>
-       <plentry>
+       <plentry props="android">
+            <pt>faceRectArr</pt>
+            <pd>The information of detected human face, see <xref keyref="AgoraFacePositionInfo"/>. The number of the <apiname keyref="AgoraFacePositionInfo"/> array depends on the number of human faces detected. If the array length is 0, it means that no human face is detected.
+</pd>
+        </plentry>
+        <plentry props="windows">
   <pt>vecRectangle</pt>
   <pd>
       <p>The position and size of the human face on the local video:<ul>
@@ -71,11 +76,11 @@
       </p>
   </pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>vecDistance</pt>
   <pd>The distance between the human face and the device screen (cm).</pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>numFaces</pt>
   <pd>The number of faces detected. If the value is 0, it means that no human face is detected.</pd>
        </plentry>

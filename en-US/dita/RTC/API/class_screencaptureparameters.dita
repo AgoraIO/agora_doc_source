@@ -50,7 +50,8 @@
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt>dimensions</pt>
+                    <pt props="ios mac windows electron">dimensions</pt>
+                    <pt props="android">videoDimensions</pt>
                     <pd><p>The maximum dimensions of encoding the shared region. See <xref keyref="VideoDimensions"/>. The default value is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
                         <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <codeph>dimensions</codeph> are set to 1920 x 1080:<ul>
                                 <li>If the value of the screen dimensions is lower than that of <codeph>dimensions</codeph>, for example, 1000 x 1000 pixels, the SDK uses 1000 x 1000 pixels for encoding.</li>
@@ -66,7 +67,7 @@
                     <pt>bitrate</pt>
                     <pd>The bitrate (Kbps) of the shared region. The default value is 0, which represents that the SDK works out a bitrate according to the dimensions of the current screen.</pd>
                 </plentry>
-                <plentry>
+                <plentry props="windows electron">
                     <pt>captureMouseCursor</pt>
                     <pd>
                         <dl outputclass="since">
@@ -80,7 +81,7 @@
                                 <li><codeph><ph keyref="false"/></codeph>: Do not capture the mouse.</li>
                             </ul></p></pd>
                 </plentry>
-                <plentry>
+                <plentry props="windows electron">
                     <pt>windowFocus</pt>
                     <pd><dl outputclass="since">
                         <dlentry>
@@ -92,9 +93,9 @@
                             <li><codeph><ph keyref="false"/></codeph>: (Default) Do not bring the window to the front.</li>
                         </ul></p></pd>
                 </plentry>
-                <plentry>
+                <plentry props="windows mac">
                     <pt>excludeWindowList</pt>
-                    <pd props="windows"><dl outputclass="since">
+                    <pd props="windows"><dl outputclass="since" props="rtc">
                         <dlentry>
                             <dt>Since</dt>
                             <dd>v3.1.0</dd>
@@ -103,7 +104,7 @@
                         <p>The ID list of the windows to be blocked. When calling <xref
                                 keyref="startScreenCaptureByScreenRect"/> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters"/> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</p></pd>
                     <pd props="mac">
-                        <dl outputclass="since">
+                        <dl outputclass="since" props="rtc">
                             <dlentry>
                                 <dt>Since</dt>
                                 <dd>v3.1.0</dd>
@@ -115,7 +116,7 @@
                 <plentry props="windows">
                     <pt>excludeWindowCount</pt>
                     <pd>
-                        <dl outputclass="since">
+                        <dl outputclass="since" props="rtc">
                         <dlentry>
                             <dt>Since</dt>
                             <dd>v3.1.0</dd>
