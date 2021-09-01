@@ -238,7 +238,7 @@ To implement this logic, take the following steps:
 
 3. Initialize the app and join the channel.
 
-   Call the core methods for joining a channel to the `MainActivity` class. In the following sample code, we use an `initializeAndJoinChannel` function to encapsulate these core methods.
+   Call the following core methods to join a channel in the `MainActivity` class. In the following sample code the `initializeAndJoinChannel` function encapsulates the core methods.
 
    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `onCreate` function:
 
