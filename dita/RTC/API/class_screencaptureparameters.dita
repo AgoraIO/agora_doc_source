@@ -50,7 +50,8 @@
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt>dimensions</pt>
+                    <pt props="ios mac windows electron">dimensions</pt>
+                    <pt props="android">videoDimensions</pt>
                     <pd><p>编码共享视频的最大像素值。详见 <xref keyref="VideoDimensions"/>。默认值为 1920 × 1080，即
                             2073600 像素。该像素值为计费标准。</p>
                         <p>当共享的屏幕分辨率宽高比与该值设置不一致时，SDK 按如下策略进行编码。假设 <codeph>dimensions</codeph> 设为 1920 × 1080：<ul>
@@ -69,10 +70,10 @@
                     <pt>bitrate</pt>
                     <pd>共享视频的码率，单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
                 </plentry>
-                <plentry>
+                <plentry props="windows electron">
                     <pt>captureMouseCursor</pt>
                     <pd>
-                        <dl outputclass="since">
+                        <dl outputclass="since" props="rtc">
                             <dlentry>
                                 <dt>自从</dt>
                                 <dd>v2.4.1</dd>
@@ -83,9 +84,9 @@
                                 <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
                             </ul></p></pd>
                 </plentry>
-                <plentry>
+                <plentry props="windows electron">
                     <pt>windowFocus</pt>
-                    <pd><dl outputclass="since">
+                    <pd><dl outputclass="since" props="rtc">
                         <dlentry>
                             <dt>自从</dt>
                             <dd>v3.1.0</dd>
