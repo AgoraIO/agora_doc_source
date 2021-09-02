@@ -63,7 +63,6 @@ In order to create the environment necessary to integrate Video Call into your a
    1. Go to **File** > **Swift Packages** > **Add Package Dependencies...**, and paste the following link:
 
       `https://github.com/AgoraIO-Community/iOS-UIKit`
-   https://github.com/AgoraIO-Community/iOS-UIKit/tree/ngsdk-update
 
    2. In the next sheet, [specify a 4.x.x version](https://help.apple.com/xcode/mac/current/#/devb83d64851) and click **Next**, then click **Finish** when you see **AgoraUIKit_iOS**.
 
