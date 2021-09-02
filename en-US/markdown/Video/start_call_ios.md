@@ -242,9 +242,20 @@ In addition to integrating the Agora Video SDK for iOS through Swift Package, yo
 **Automatically integrate the SDK with CocoaPods**
 
 1. Install CocoaPods if you have not. See [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started).
+
 2. In Terminal, navigate to the root of your project folder, and run the `pod init` command to create a `Podfile` in the project folder.
+
 3. Open the `Podfile`, and replace all contents with the following code. Remember to replace `Your App` with the target name of your project.
+
+   ```
+   # platform :ios, '9.0'
+   target 'Your App' do
+       pod 'AgoraRtcEngine_iOS'
+   end
+   ```
+
 4. In Terminal, run the `pod install` command to install the Agora Video SDK for iOS. When the SDK is installed successfully, you can see  `Pod installation complete!` in Terminal and an `xcworkspace` file in the project folder.
+
 5. Open the `xcworkspace` file for any further steps.
 
 **Manually copy the SDK files**
