@@ -33,7 +33,6 @@ Yes, you read that right. After inializing an `AgoraVideoViewer` instance, you m
 
     Ensure that no firewall is deployed in your network environment, otherwise the project fails.
 
-- A physical device to run your app on.
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up) and an Agora project.
 
 
