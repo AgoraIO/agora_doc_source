@@ -11,9 +11,9 @@ This page shows the minimum code you need to host an Interactive Live Streaming 
 
 ## Understand the tech
 
-The following figure shows the workflow UIKit integrates into your app in order to create Interactive Live Streaming functionality.
+The following figure shows the workflow you integrate into your app in order to host an Interactive Live Streaming event from your app using UIKit.
 
-![](https://web-cdn.agora.io/docs-files/1629250175461)
+![](images/uikit-start-call.png)
 
 To start a call using UIKit, you implement the following steps in your app:
 

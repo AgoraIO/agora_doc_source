@@ -9,9 +9,10 @@ This page shows the minimum code you need to add a real-time engagement interfac
 
 ## Understand the tech
 
-The following figure shows the workflow UIKit integrates into your app in order to create Video Call functionality.
 
-![](https://web-cdn.agora.io/docs-files/1629250175461)
+The following figure shows the workflow you integrate into your app in order to achieve Video Call functionality using UIKit.
+
+![](images/uikit-start-call.png)
 
 To start a call using UIKit, you implement the following steps in your app:
 
