@@ -20,13 +20,13 @@ To start a video call, you implement the following steps in your app:
 
 3. Publish and subscribe to audio and video in the channel
 	
-	After joining a channel, app clients with the role of the host can publish audio and video. For an auidence memeber to send audio and video, you can call `setClientRole` to switch the client role. 
+	After joining a channel, app clients with the role of the host can publish audio and video. For an audience member to send audio and video, you can call `setClientRole` to switch the client role. 
 
 For an app client to join a channel, you need the following information:
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
 - A token: In a test or production environment, your app client retrieves tokens from your server. For the procedure on this page, you use a temporary token that you get from Agora Console, which has a validity period of 24 hours.
-- The channel name: A string that identifies the channel for live streaming. 
+- The channel name: A string that identifies the channel for the video call. 
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ Before proceeding, ensure that your development environment meets the following 
 
 ## Project setup
 
-In Xcode, follow the steps to create the environment necessary to add live streaming into your app.
+In Xcode, follow the steps to create the environment necessary to add live Video Call into your app.
 
 1. Create a new iOS app and configure the following settings:
    
@@ -183,7 +183,7 @@ To implement the functionality of starting and stopping the app:
 
 1. When the view is loaded, call `initializeAndJoinChannel` to join a video call channel.
 
-   In `ViewController.swift`, add the `initializeAndJoinChannel` function inside the `viewDidLoad` function:.
+   In `ViewController.swift`, add the `initializeAndJoinChannel` function inside the `viewDidLoad` function:
 
     ```swift
    override func viewDidLoad() {
@@ -223,7 +223,7 @@ To test your app on a physical device, do the following:
 
 ## Next steps
 
-Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) shows you how to start live streaming with a token that you retrieve from your server.
+Generating a token by hand is not helpful in a production context. [Authenticate Your Users with Tokens](https://docs.agora.io/en/Interactive%20Broadcast/token_server?platform=All%20Platforms) shows you how to start Video Call with a token that you retrieve from your server.
 
 ## See also
 
