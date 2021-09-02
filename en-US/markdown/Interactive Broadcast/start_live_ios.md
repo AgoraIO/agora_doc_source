@@ -1,10 +1,10 @@
-The Agora Video SDK for iOS makes it easy to embed real-time Video Call into iOS apps. It enables you to develop rapidly and easily to enhance your social, work, education and IoT apps with face-to-face interaction.
+The Agora Video SDK for iOS makes it easy to embed interactive live streaming into iOS apps. It enables you to develop rapidly and easily to enhance your social, work, education and IoT apps with face-to-face interaction.
 
 This page shows the minimum code you need to add interactive live streaming into your app by using the Agora Video SDK for iOS.
 
 ## Understand the tech
 
-The following figure shows the workflow of a video call implemented using the Video SDK.
+The following figure shows the workflow of live streaming implemented using the Video SDK.
 
 ![](https://web-cdn.agora.io/docs-files/1625465916613)
 
@@ -79,7 +79,6 @@ This section shows how to use the Agora Video SDK to implement live streaming in
 In the interface, you should have one frame for local video and another for remote video. In `ViewController.swift`, replace any existing content with the following:
 
 ```swift
-// Swift
 import UIKit
 class ViewController: UIViewController {
     var localView: UIView!
@@ -184,7 +183,7 @@ To implement this logic, take the following steps:
 
 ### Start and stop your app
 
-Now you have created the Video Call functionality, add the functionality of starting and stopping the app. In this implementation, a video call starts when the user opens your app. The call ends when the user closes your app.
+Now you have created the live streaming functionality, add the functionality of starting and stopping the app. In this implementation, a live stream starts when the user opens your app and ends when the user closes your app.
 
 To implement the functionality of starting and stopping the app:
 
@@ -224,7 +223,7 @@ To test your app on a physical device, do the following:
 
    You can see yourself on the local view.
 
-4. Ask a friend to join the video call with you on the [demo app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicLive/index.html). Your friend needs to enter the same App ID and channel name.
+4. Ask a friend to join the live stream with you on the [demo app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicLive/index.html). Your friend needs to enter the same App ID and channel name.
 
    If your friend joins as a host, you should be able to see and hear each other; if as an audience member, you should only be able to see yourself while your friend can see and hear you.
 
