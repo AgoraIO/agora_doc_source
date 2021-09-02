@@ -190,7 +190,7 @@ To implement the functionality of starting and stopping the app:
 
 1. When the view is loaded, call `initializeAndJoinChannel` to join a live streaming channel.
 
-   In `ViewController.swift`, add the `initializeAndJoinChannel` function inside the `viewDidLoad` function:.
+   In `ViewController.swift`, add the `initializeAndJoinChannel` function inside the `viewDidLoad` function:
 
     ```swift
    override func viewDidLoad() {
