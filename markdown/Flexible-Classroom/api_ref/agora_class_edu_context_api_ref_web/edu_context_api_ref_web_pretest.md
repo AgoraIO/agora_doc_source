@@ -1,15 +1,11 @@
-# usePretestContext
+# PretestContext
 
-`usePretestContext()` 提供课前检测相关能力，用于检测摄像头、麦克风和扬声器是否正常工作。
-
-你可以通过 `import { usePretestContext } from 'agora-edu-core';  ` 引入 `usePretestContext`，然后使用 `const {...} = usePretestContext()` 获取灵动课堂中课堂管理相关能力。
-
-以下具体列出 `usePretestContext()` 提供的能力。
+`PretestContext` 提供课前检测相关能力，用于检测摄像头、麦克风和扬声器是否正常工作。
 
 ## cameraList
 
 ```typescript
-cameraList: array,
+cameraList: any[],
 ```
 
 摄像头列表。
@@ -17,7 +13,7 @@ cameraList: array,
 ## microphoneList
 
 ```typescript
-microphoneList: array,
+microphoneList: any[],
 ```
 
 麦克风列表。
@@ -25,7 +21,7 @@ microphoneList: array,
 ## speakerList
 
 ```typescript
-speakerList: array,
+speakerList: any[],
 ```
 
 扬声器列表。
@@ -93,12 +89,14 @@ setMirror(mirror: boolean): void
 microphoneLevel: number,
 ```
 
+> 自 v1.1.2 起废弃。Agora 建议使用 `VolumeContext` 中的 `microphoneLevel`。
+
 当前麦克风音量。取值范围为 0 到 20。
 
 ## changeTestSpeakerVolume
 
 ```typescript
-async changeTestSpeakerVolume(value: any): void
+changeTestSpeakerVolume: (value: any) => Promise<void>
 ```
 
 调整扬声器的音量。
@@ -106,7 +104,7 @@ async changeTestSpeakerVolume(value: any): void
 ## changeTestMicrophoneVolume
 
 ```typescript
-async changeTestMicrophoneVolume(value: any): void
+changeTestMicrophoneVolume: (deviceId: string) => Promise<void>,
 ```
 
 调整麦克风的音量。
@@ -114,7 +112,7 @@ async changeTestMicrophoneVolume(value: any): void
 ## changeTestCamera
 
 ```typescript
-async changeTestCamera(deviceId: string): void
+changeTestCamera: (deviceId: string) => Promise<void>,
 ```
 
 切换摄像头。
@@ -122,7 +120,7 @@ async changeTestCamera(deviceId: string): void
 ## changeTestMicrophone
 
 ```typescript
-async changeTestMicrophone(deviceId: string): void
+changeTestMicrophone: (deviceId: string) => Promise<void>,
 ```
 
 切换麦克风。
@@ -130,7 +128,7 @@ async changeTestMicrophone(deviceId: string): void
 ## startPretestCamera
 
 ```typescript
-async startPretestCamera(): void
+startPretestCamera: () => Promise<void>,
 ```
 
 开启摄像头。
@@ -138,7 +136,7 @@ async startPretestCamera(): void
 ## startPretestMicrophone
 
 ```typescript
-async startPretestMicrophone(): void
+startPretestMicrophone: (payload: { enableRecording: boolean; }) => Promise<void>,
 ```
 
 开启麦克风。
@@ -146,7 +144,7 @@ async startPretestMicrophone(): void
 ## stopPretestCamera
 
 ```typescript
-async stopPretestCamera(): void
+stopPretestCamera: () => void,
 ```
 
 关闭摄像头。
@@ -154,7 +152,25 @@ async stopPretestCamera(): void
 ## stopPretestMicrophone
 
 ```typescript
-async stopPretestMicrophone():void
+stopPretestMicrophone: () => void,
 ```
 
 关闭麦克风。
+
+## pretestCameraRenderer
+
+```typescript
+pretestCameraRenderer: LocalUserRenderer | undefined,
+```
+
+课前检测阶段的摄像头渲染器。
+
+## pretestNoticeChannel
+
+```typescript
+pretestNoticeChannel: Subject<any>;
+```
+
+> 自 v1.1.2 起新增。
+
+设备检测频道通知。

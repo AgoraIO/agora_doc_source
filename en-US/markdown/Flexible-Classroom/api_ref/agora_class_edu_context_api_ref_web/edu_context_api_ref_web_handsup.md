@@ -1,10 +1,4 @@
-# useHandsUpContext
-
-`useHandsUpContext()` enables developers to implement the hand-raising function in the flexible classroom.
-
-You can import `useHandsUpContext` by `import { useHandsUpContext } from 'agora-edu-core';` and then use `const {...} = useHandsUpContext()` to implement the functions and events related to classroom management.
-
-This page lists all the functions and events provided by `useHandsUpContext()`.
+This page lists all the functions and events provided by `HandsUpContext` for the hand-raising feature of Flexible Classroom.
 
 ## teacherUuid
 
@@ -17,7 +11,7 @@ The ID of the teacher.
 ## handsUpState
 
 ```typescript
-handsUpState: string,
+handsUpState: "forbidden" | "actived" | "default",
 ```
 
 The student's hand state.
@@ -25,7 +19,7 @@ The student's hand state.
 ## teacherHandsUpState
 
 ```typescript
-teacherHandsUpState: string,
+teacherHandsUpState: "actived" | "default",
 ```
 
 The teacher's hand state.
@@ -33,7 +27,7 @@ The teacher's hand state.
 ## studentHandsUp
 
 ```typescript
-async studentHandsUp(teacherUuid: string): void
+studentHandsUp: (teacherUuid: string) => Promise<void>,
 ```
 
 The student raises a hand to apply for speaking up.
@@ -47,7 +41,7 @@ The student raises a hand to apply for speaking up.
 ## studentCancelHandsUp
 
 ```typescript
-async studentCancelHandsUp(): void
+studentCancelHandsUp: () => Promise<void>,
 ```
 
 The student lowers the hand to cancel the application for speaking up.
@@ -55,7 +49,11 @@ The student lowers the hand to cancel the application for speaking up.
 ## handsUpStudentList
 
 ```typescript
-handsUpStudentList: array<{userUuid, userName, coVideo}>,
+handsUpStudentList: {
+    userUuid: string;
+    userName: string;
+    coVideo: boolean;
+}[],
 ```
 
 The list of students who raise their hand to apply for speaking up.
@@ -87,7 +85,7 @@ The total number of users who are sending video streams.
 ## teacherAcceptHandsUp
 
 ```typescript
-async teacherAcceptHandsUp(userUuid: string): void
+teacherAcceptHandsUp: (userUuid: string) => Promise<void>,
 ```
 
 The teacher accepts the student's application for speaking up.
@@ -99,7 +97,7 @@ The teacher accepts the student's application for speaking up.
 ## teacherRejectHandsUp
 
 ```typescript
-async teacherRejectHandsUp(userUuid: string): void
+teacherRejectHandsUp: (userUuid: string) => Promise<void>,
 ```
 
 The teacher approves the student's application for speaking up.

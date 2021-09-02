@@ -320,7 +320,7 @@ Now you have created the Interactive Live Streaming Premium functionality, start
 
 ## Test your app
 
-Please follow the test procedure as shown in the example.
+To check that your code works, use an online demo to make a video call to your app. To test real-time engagement with your app:
 
 1. Connect the Android devices to the computer.
 

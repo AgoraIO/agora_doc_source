@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_pushaudioframe">
+    <title><ph keyref="pushAudioFrame"/></title>
+    <shortdesc id="short"><ph id="shortdesc">推送外部音频帧。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="pushAudioFrame"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(MEDIA_SOURCE_TYPE type, IAudioFrameObserver::AudioFrame* frame, bool wrap = false, int sourceId = 0, int connectionId = agora::rtc::DEFAULT_CONNECTION_ID) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>type</pt>
+                    <pd>
+                        <p>音频采集设备类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>frame</pt>
+                    <pd>音频帧指针。详见 <xref keyref="AudioFrame"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>wrap</pt>
+                    <pd>
+                        <p>设置是否占位使用。声网建议用户使用默认值即可。<ul id="ul_ajt_j1t_r4b">
+                            <li><codeph><ph keyref="true"/></codeph>: 占位使用。</li>
+                            <li><codeph><ph keyref="false"/></codeph>:（默认）不占位使用。</li>
+                        </ul></p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>sourceId</pt>
+                    <pd>
+                        <p>外部音频源的 ID。</p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>connectionId</pt>
+                    <pd>
+                        <p>频道连接 ID。</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul id="ul_uns_l2y_hqb">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

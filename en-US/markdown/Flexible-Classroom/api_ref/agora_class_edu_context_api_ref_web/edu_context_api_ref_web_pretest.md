@@ -1,15 +1,9 @@
-# usePretestContext
-
-`usePretestContext()` enables developers to implement the pre-class test module in the flexible classroom, such as check whether the camera, microphone, and speaker are working properly.
-
-You can import `usePretestContext` by `import { usePretestContext } from 'agora-edu-core'; ` and then use `const {...} = usePretestContext()` to implement the functions and events related to classroom management.
-
-This page lists all the functions and events provided by `usePretestContext()`.
+This page lists all the functions and events provided by `PretestContext` for the device test module before a class begins, such as check whether the camera, microphone, and speaker are working properly.
 
 ## cameraList
 
 ```typescript
-cameraList: array,
+cameraList: any[],
 ```
 
 The camera list.
@@ -17,7 +11,7 @@ The camera list.
 ## microphoneList
 
 ```typescript
-microphoneList: array,
+microphoneList: any[],
 ```
 
 The microphone list.
@@ -25,7 +19,7 @@ The microphone list.
 ## speakerList
 
 ```typescript
-speakerList: array,
+speakerList: any[],
 ```
 
 The speaker list.
@@ -98,7 +92,7 @@ The current volume of the microphone. The value range is 0 to 20.
 ## changeTestSpeakerVolume
 
 ```typescript
-async changeTestSpeakerVolume(value: any): void
+changeTestSpeakerVolume: (value: any) => Promise<void>
 ```
 
 Adjust the volume of the speaker.
@@ -114,7 +108,7 @@ Adjust the volume of the microphone.
 ## changeTestCamera
 
 ```typescript
-async changeTestCamera(deviceId: string): void
+changeTestCamera: (deviceId: string) => Promise<void>,
 ```
 
 Switch the camera.
@@ -122,7 +116,7 @@ Switch the camera.
 ## changeTestMicrophone
 
 ```typescript
-async changeTestMicrophone(deviceId: string): void
+changeTestMicrophone: (deviceId: string) => Promise<void>,
 ```
 
 Switch the microphone.
@@ -130,7 +124,7 @@ Switch the microphone.
 ## startPretestCamera
 
 ```typescript
-async startPretestCamera(): void
+startPretestCamera: () => Promise<void>,
 ```
 
 Turn on the camera.
@@ -138,7 +132,7 @@ Turn on the camera.
 ## startPretestMicrophone
 
 ```typescript
-async startPretestMicrophone(): void
+startPretestMicrophone: (payload: { enableRecording: boolean; }) => Promise<void>,
 ```
 
 Turn on the microphone.
@@ -146,7 +140,7 @@ Turn on the microphone.
 ## stopPretestCamera
 
 ```typescript
-async stopPretestCamera(): void
+stopPretestCamera: () => void,
 ```
 
 Turn off the camera.
@@ -154,7 +148,7 @@ Turn off the camera.
 ## stopPretestMicrophone
 
 ```typescript
-async stopPretestMicrophone():void
+stopPretestMicrophone: () => void,
 ```
 
 Turn off the microphone.

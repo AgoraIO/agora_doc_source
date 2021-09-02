@@ -1,8 +1,8 @@
-## Overview
+## Introduction
 
 ExtApp enables developers to develop a custom plugin, such as a countdown plugin or a dice, and embed the plugin in the flexible classroom. Plugins implemented by ExtApp can be regarded as an independent application with its own life cycle and data management, but they also connect with the Agora Classroom SDK. Developers can customize the user interfaces of the plugins, pass custom data to the Agora Classroom SDK, and also listen for data change from the Agora Classroom SDK. 
 
-The source code of ExtApp is in the `extapp` directory in the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) repository on GitHub.
+The source code of ExtApp is in the `extapp` directory the [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android/tree/release/apaas%2F1.1.0.1_region) repository on GitHub (Branch release/apaas/1.1.0.1_region).
 
 This page introduces the procedure of using ExtApp to develop and embed a custom plugin in the flexible classroom.
 

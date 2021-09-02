@@ -9,6 +9,7 @@
 | ----------- | ------- | ------------------------------------------------------------ |
 | `startTime` | Number | 课堂开始时间，Unix 时间戳（毫秒），UTC 时间。课堂开始后此字段有值。 |
 | `state`     | Integer | 当前课堂状态：<ul><li>`0`: 未开始。</li><li>`1`: 进行中。</li><li>`2`: 已结束，新用户无法进入。</li></ul> |
+| `endTime`  | Number | 课堂结束时间，Unix 时间戳（毫秒），UTC 时间。`state` 为 `2` 时此字段有值。 |
 
 **示例**
 
@@ -48,7 +49,7 @@
 
 | 参数           | 类型        | 描述                                                         |
 | -------------- | ----------- | ------------------------------------------------------------ |
-| `total`        | Integer     | 进入和退出课堂的用户总数。                                   |
+| `total`        | Integer     | 当前课堂内的用户总数。                                   |
 | `onlineUsers`  | Object 数组 | 进入课堂的用户，包含以下字段：<ul><li>`userName`: String 型，用户名称。</li><li>`userUuid`: String 型，用户 uuid。</li><li>`role`: Integer 型，用户在课堂中的角色：<ul><li>`1`: 老师</li><li>`2`: 学生</li></ul></li><li>`userProperties`: Object 型，用户属性。</li><li>`streamUuid`: String 型，用户流的 uuid，也是加入 RTC 频道时用的 UID。</li><li>`type`: Integer 型，用户进入类型：<ul><li>`1`: 正常进入</li><li>`2`: 重连</li></ul></li><li>`updateTime`: Number 型，用户进入课堂时间，Unix 时间戳（毫秒），UTC 时间。</li></ul> |
 | `offlineUsers` | Object 数组 | 退出课堂的用户，包含以下字段：<ul><li>`userName`: String 型，用户名称。</li><li>`userUuid`: String 型，用户 uuid。</li><li>`role`: Integer 型，用户在课堂中的角色：<ul><li>`1`: 老师</li><li>`2`: 学生</li></ul></li><li>`userProperties`: Object 型，用户属性。</li><li>`streamUuid`: String 型，用户流的 uuid，也是加入 RTC 频道时用的 UID。</li><li>`type`: Integer 型，用户退出类型：<ul><li>`1`: 由于客户端原因退出课堂，例如正常离开课堂、应用被强制关闭或由于网络状况不佳而断线。</li><li>`2`: 被踢出课堂。</li></ul></li><li>`updateTime`: Number 型，用户退出课堂时间，Unix 时间戳（毫秒），UTC 时间。</li></ul> |
 
@@ -61,7 +62,7 @@
             "userName":"",
             "userUuid":"",
             "role":"0",
-            "userProperties":{  },
+            "userProperties":{},
             "streamUuid":"",
             "type":1,
             "updateTime":1611561776588
@@ -91,17 +92,24 @@
 | `recordId`   | String  | 一次录制的的唯一标识符。调用设置录制状态 API 开始录制然后结束录制视为一次录制。仅当 `state` 为 `1` 时有此字段。 |
 | `sid`        | String  | Agora 云端录制服务的 `sid`。仅当 `state` 为 `1` 时有此字段。 |
 | `resourceId` | String  | Agora 云端录制服务的 `resourceId`。仅当 `state` 为 `1` 时有此字段。 |
-| `state`      | Integer | 当前录制状态：<ul><li>`1`: 录制中</li><li>`2`: 录制已结束</li></ul> |
+| `state`      | Integer | 当前录制状态：<ul><li>`0`: 录制已结束</li><li>`1`: 录制中</li></ul> |
 | `startTime`  | Number | 录制开始时间，Unix 时间戳（毫秒），UTC 时间。录制开始后此字段有值。 |
+| `endTime` | Number | 录制结束时间，Unix 时间戳（毫秒），UTC 时间。录制结束后此字段有值。 |
+| `retryTimes` | Integer | 重试次数。默认最多重试 3 次。 |
+| `reason` | Interger | 状态变更原因：<ul><li>`1`: 正常开始录制。</li><li>`2`: 正常停止录制。</li><li>`3`: 重试后正常开始录制。</li><li>`4`: 超时待重试。</li><li>`5`: 重试次数达到上限后仍未成功，退出录制。</li></ul> |
 
 **示例**
+
 ```json
 {
     "recordId":"xxx",
     "sid":"xxx",
     "resourceId":"xxx",
-    "state":1,
-    "startTime":1611564500488
+    "state":0,
+    "startTime":1611564500488,
+    "endTime":1611564500488,
+    "retryTimes":3,
+    "reason": 5
 }
 ```
 
@@ -136,7 +144,7 @@
 | 参数        | 类型        | 描述                                                         |
 | `resources` | Object 数组 | 一个 Object 代表一个资源的变更情况，包含以下字段：<li>`resourceUuid`: String 型，资源 uuid。</li><li>`resourceName`: String 型，资源名称。</li><li>`size`: Number 型，资源大小，单位为字节。</li><li>`url`: String 型，资源的访问地址。</li><li>`taskUuid`: String 型，文件转换任务的 uuid。</li><li>`taskToken`: String 型，文件转换任务使用的 Token。</li><li>`taskProgress`: Object 型，文件转换任务进度。</li> |
 | `operator`  | Object      | 操作人，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li><li>`userName`: String 型，用户名称。</li><li>`role`: Integer 型，用户角色。</li> |
-| `action`    | Integer     | 资源变更类型：<li>`1`: 资源新增或更新。</li><li>`2`: 资源被删除。</li> |
+| `action`    | Integer     | 资源变更类型：<li>`1`: 资源新增或更新。</li><li>`2`: 资源被删除。</li>         |
 
 **示例**：
 
