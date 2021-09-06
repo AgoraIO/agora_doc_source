@@ -17,7 +17,12 @@
     String channelName, 
     String optionalInfo, 
     int optionalUid);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
+                channelId:(NSString * _Nonnull)channelId
+                     info:(NSString * _Nullable)info
+                      uid:(NSUInteger)uid
+              joinSuccess:(void(^ _Nullable)
+              (NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int joinChannel(const char* token, 
     const char* channelId, 
     const char* info, 
@@ -46,12 +51,17 @@
   <pd/>
        </plentry>
        <plentry>
-  <pt>info</pt>
+  <pt props="ios mac windows">info</pt>
+           <pt props="android">optionalInfo</pt>
   <pd>(非必选项) 预留参数。</pd>
        </plentry>
        <plentry conkeyref="joinChannel2/uid">
   <pt/>
   <pd/>
+       </plentry>
+       <plentry conkeyref="joinChannel2/joinsuccessblock" props="ios mac">
+           <pt/>
+           <pd/>
        </plentry>
    </parml>
         </section>

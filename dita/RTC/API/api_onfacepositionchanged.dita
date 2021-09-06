@@ -12,7 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(
+      int imageWidth, int imageHeight, AgoraFacePositionInfo[] faceRectArr) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, 
      int imageHeight, 
@@ -33,7 +34,7 @@
         </section>
         <section id="detailed_desc">
    
-   <dl outputclass="since">
+   <dl outputclass="since" props="rtc">
        <dlentry>
   <dt>自从</dt>
   <dd>v3.0.1</dd>
@@ -49,15 +50,19 @@
    <p>其中，人脸距设备屏幕的距离由 SDK 通过摄像头采集的画面大小和人脸在画面中的位置拟合计算得出。</p>
    <note type="attention">
        <ul>
-           <li>该回调仅适用于 Android 和 iOS 平台。</li>
+           <li props="windows">该回调仅适用于 Android 和 iOS 平台。</li>
   <li>当检测到摄像头前没有人脸时，该回调触发频率会降低，以节省设备耗能。</li>
   <li>当人脸距离设备屏幕过近时，SDK 不会触发该回调。</li>
-  <li>Android 平台上，人脸距设备屏幕的距离（<parmname>distance</parmname>）值有一定误差，请不要用它进行精确计算。</li>
+  <li props="windows android">Android 平台上，人脸距设备屏幕的距离（<parmname>distance</parmname>）值有一定误差，请不要用它进行精确计算。</li>
        </ul>
    </note>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
+       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                  <pt/>
+                  <pd/>
+              </plentry>
        <plentry>
   <pt>imageWidth</pt>
   <pd>摄像头采集画面的宽度 (px)。</pd>
@@ -66,7 +71,11 @@
   <pt>imageHeight</pt>
   <pd>摄像头采集画面的高度 (px)。</pd>
        </plentry>
-       <plentry>
+       <plentry props="android">
+           <pt>faceRectArr</pt>
+           <pd>检测到的人脸信息，详见 <xref keyref="AgoraFacePositionInfo"/>。检测到几张人脸，就会报告几个 <apiname keyref="AgoraFacePositionInfo"/> 数组。数组长度可以为 0，表示没有检测到摄像头前出现人脸。</pd>
+       </plentry>
+       <plentry props="windows">
   <pt>vecRectangle</pt>
   <pd>
       <p>检测到的人脸信息：
@@ -81,11 +90,11 @@
       </p>
   </pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>vecDistance</pt>
   <pd>人脸距设备屏幕的距离 (cm)。</pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>numFaces</pt>
   <pd>检测的人脸数量。如果为 0，则表示没有检测到人脸。</pd>
        </plentry>

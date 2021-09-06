@@ -27,21 +27,20 @@
 
 ```swift
 @objc public enum AgoraEduContextApplianceType: Int {
-    case select, pen, rect, circle, line, eraser, clicker
+    case select, pen, rect, circle, line, eraser
 }
 ```
 
 白板基础工具类型。
 
-| 参数      | 描述                                          |
-| :-------- | :-------------------------------------------- |
-| `select`  | 选择工具。                                    |
-| `pen`     | 画笔。                                        |
-| `rect`    | 矩形。                                        |
-| `circle`  | 圆形。                                        |
-| `line`    | 线条。                                        |
-| `eraser`  | 橡皮擦。                                      |
-| `clicker` | 点选工具。用于点击和选择 HTML5 课件中的内容。 |
+| 参数     | 描述     |
+| :------- | :------- |
+| `select` | 选择器。 |
+| `pen`    | 画笔。   |
+| `rect`   | 矩形。   |
+| `circle` | 圆形。   |
+| `line`   | 线条。   |
+| `eraser` | 橡皮擦。 |
 
 
 ## AgoraEduContextRoomInfo
@@ -87,7 +86,7 @@
 
 ```swift
 @objc public enum AgoraEduContextAppType: Int {
-    case oneToOne = 0, lecture = 2, small = 4
+    case oneToOne = 0, small = 4
 }
 ```
 
@@ -96,7 +95,6 @@
 | 参数        | 描述               |
 | :---------- | :----------------- |
 | `oneToOne`      | 1 对 1 互动教学。 |
-| `lecture` | 互动直播大班课。 |
 | `small`     | 在线直播小班课。       |
 
 ## AgoraEduContextNetworkQuality
@@ -173,7 +171,7 @@ RTM 连接状态。
 
 ```swift
 @objcMembers public class AgoraEduContextUserDetailInfo: NSObject {
-    public var user: AgoraEduContextUserInfo
+    public var user: AgoraEduContextUserInfo?
     public var isSelf: Bool = true
     public var streamUuid: String = ""
     public var onLine: Bool = false
@@ -207,7 +205,7 @@ RTM 连接状态。
 
 ```swift
 @objc public enum AgoraEduContextDeviceState: Int {
-    case notAvailable, available, close
+    case notAvailable, available
 }
 ```
 
@@ -217,13 +215,12 @@ RTM 连接状态。
 | :------------ | :------------- |
 | `notAvailable` | 设备不可用。   |
 | `available`   | 设备可用。     |
-| `close` | 设备被关闭。 |
 
 ## AgoraEduContextChatInfo
 
 ```swift
 @objcMembers public class AgoraEduContextChatInfo: NSObject {
-    public var id: String = ""
+    public var id: Int = 0
     public var message: String = ""
     public var user: AgoraEduContextUserInfo?
     public var sendState: AgoraEduContextChatState = .default
@@ -308,62 +305,3 @@ RTM 连接状态。
 | `default`      | 初始状态。 |
 | `dandsUp`   | 举手中。   |
 | `dandsDown` | 手放下。   |
-
-## AgoraEduContextScreenShareState
-
-```swift
-@objc public enum AgoraEduContextScreenShareState : Int {
-    case start, pause, stop
-}
-```
-
-屏幕共享状态。
-
-| 参数    | 描述             |
-| :------ | :--------------- |
-| `start` | 屏幕共享已开始。 |
-| `pause` | 屏幕共享已暂停。 |
-| `stop`  | 屏幕共享已结束。 |
-
-## EduContextCameraFacing
-
-```swift
-@objc public enum EduContextCameraFacing : Int {
-    case front, back
-}
-```
-
-摄像头方向。
-
-| 参数    | 描述         |
-| :------ | :----------- |
-| `front` | 前置摄像头。 |
-| `back`  | 后置摄像头。 |
-
-## AgoraEduContextDeviceConfig
-
-```swift
-@objcMembers public class AgoraEduContextDeviceConfig: NSObject {
-    public var cameraEnabled: Bool = true
-    public var cameraFacing: EduContextCameraFacing = .front
-    public var micEnabled: Bool = true
-    public var speakerEnabled: Bool = true
-    public init(cameraEnabled: Bool, cameraFacing: EduContextCameraFacing, micEnabled: Bool, speakerEnabled: Bool) {
-        super.init()
-        self.cameraEnabled = cameraEnabled
-        self.cameraFacing = cameraFacing
-        self.micEnabled = micEnabled
-        self.speakerEnabled = speakerEnabled
-    }
-}
-```
-
-设备配置。
-
-| 参数             | 描述             |
-| :--------------- | :--------------- |
-| `cameraEnabled`  | 摄像头是否开启。 |
-| `cameraFacing`   | 摄像头方向。     |
-| `micEnabled`     | 麦克风是否开启。 |
-| `speakerEnabled` | 扬声器是否开启。 |
-

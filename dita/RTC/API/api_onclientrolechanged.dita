@@ -20,18 +20,31 @@
         </p>
         </section>
         <section id="detailed_desc">
-   <p>该回调是由本地用户在加入频道后调用 <xref keyref="setClientRole2"/> 改变用户角色触发的。</p>
+   <p props="rtc">该回调是由本地用户在加入频道后调用 <xref keyref="setClientRole2"/> 改变用户角色触发的。</p>
+            <p props="rtc-ng">该回调是由本地用户在加入频道后调用 <xref keyref="setClientRole1"/> 改变用户角色触发的。</p>
         </section>
     <section id="parameters">
         <title>参数</title>
         <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                  <pt/>
+                  <pd/>
+              </plentry>
    <plentry id="oldRole">
        <pt>oldRole</pt>
-       <pd>切换前的角色: <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+       <pd>切换前的角色。<ph props="windows ios mac electron">详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
+           <ul conkeyref="setClientRole1/clientroletype" props="android">
+               <li/>
+           </ul>
+       </pd>
    </plentry>
    <plentry id="newRole">
        <pt>newRole</pt>
-       <pd>切换后的角色: <apiname keyref="CLIENT_ROLE_TYPE"/>。</pd>
+       <pd>切换后的角色。<ph props="windows ios mac electron">详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
+       <ul conkeyref="setClientRole1/clientroletype" props="android">
+               <li/>
+           </ul>
+       </pd>
    </plentry>
         </parml>
     </section>

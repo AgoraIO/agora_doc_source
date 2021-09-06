@@ -2,38 +2,6 @@
 
 `RoomContext` 类提供可供 App 调用的课堂管理相关方法。
 
-### roomInfo
-
-```kotlin
-abstract fun roomInfo(): EduContextRoomInfo
-```
-
-获取课堂相关信息。
-
-### uploadLog
-
-```kotlin
-abstract fun uploadLog()
-```
-
-上传日志。
-
-### updateFlexRoomProps
-
-```kotlin
-abstract fun updateFlexRoomProps(properties: MutableMap<String, String>, 
-                                 cause: MutableMap<String, String>?)
-```
-
-新增或更新自定义课堂属性。支持整体修改和根据路径查找并修改某个属性的值。
-
-属性成功更新后，会触发 `onFlexRoomPropertiesChanged` 回调。
-
-| 参数         | 描述       |
-| :----------- | :--------- |
-| `properties` | 课堂属性。 |
-| `cause`      | 更新原因。 |
-
 ### leave
 
 ```kotlin
@@ -99,18 +67,6 @@ fun onNetworkStateChanged(state: EduContextNetworkState)
 | :------ | :---------------------------------------- |
 | `state` | 网络状态，详见 `EduContextNetworkState`。 |
 
-### onLogUploaded
-
-```kotlin
-fun onLogUploaded(logData: String)
-```
-
-日志上传成功。
-
-| 参数      | 描述       |
-| :-------- | :--------- |
-| `logData` | 日志信息。 |
-
 ### onConnectionStateChanged
 
 ```kotlin
@@ -152,34 +108,3 @@ fun onError(error: EduContextError)
 | 参数    | 描述                               |
 | :------ | :--------------------------------- |
 | `error` | 错误信息，详见 `EduContextError`。 |
-
-### onFlexRoomPropsInitialized
-
-```kotlin
-fun onFlexRoomPropsInitialized(properties: MutableMap<String, Any>)
-```
-
-报告初始化的自定义课堂属性。
-
-| 参数         | 描述           |
-| :----------- | :------------- |
-| `properties` | 全部课堂属性。 |
-
-### onFlexRoomPropertiesChanged
-
-```kotlin
-fun onFlexRoomPropsChanged(changedProperties: MutableMap<String, Any>,
-                           properties: MutableMap<String, Any>,
-                           cause: MutableMap<String, Any>?, 
-                           operator: EduContextUserInfo?)
-```
-
-自定义课堂属性更新回调。
-
-| 参数                | 描述                                                         |
-| :------------------ | :----------------------------------------------------------- |
-| `changedProperties` | 已更新的课堂属性。                                           |
-| `properties`        | 全部课堂属性。                                               |
-| `cause`             | 更新原因。                                                   |
-| `operator`          | 操作者，详见 `EduContextUserInfo`。`operator` 为空表示是由服务端更新。 |
-

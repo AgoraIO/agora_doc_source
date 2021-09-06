@@ -1,6 +1,10 @@
-# HandsUpContext
+# useHandsUpContext
 
-`HandsUpContext` 提供举手上台相关能力。
+`useHandsUpContext()` 提供举手上台相关能力。
+
+你可以通过 `import { useHandsUpContext } from 'agora-edu-core';  ` 引入 `useHandsUpContext`，然后使用 `const {...} = useHandsUpContext()` 获取灵动课堂中举手上台相关能力。
+
+以下具体列出 `useHandsUpContext()` 提供的能力。
 
 ## teacherUuid
 
@@ -13,7 +17,7 @@ teacherUuid: string,
 ## handsUpState
 
 ```typescript
-handsUpState: "forbidden" | "actived" | "default",
+handsUpState: string,
 ```
 
 学生的举手状态。
@@ -21,7 +25,7 @@ handsUpState: "forbidden" | "actived" | "default",
 ## teacherHandsUpState
 
 ```typescript
-teacherHandsUpState: "actived" | "default",
+teacherHandsUpState: string,
 ```
 
 老师的举手状态。
@@ -29,7 +33,7 @@ teacherHandsUpState: "actived" | "default",
 ## studentHandsUp
 
 ```typescript
-studentHandsUp: (teacherUuid: string) => Promise<void>,
+async studentHandsUp(teacherUuid: string): void
 ```
 
 学生举手向老师请求发言。
@@ -43,7 +47,7 @@ studentHandsUp: (teacherUuid: string) => Promise<void>,
 ## studentCancelHandsUp
 
 ```typescript
-studentCancelHandsUp: () => Promise<void>,
+async studentCancelHandsUp(): void
 ```
 
 学生取消举手请求。
@@ -51,11 +55,7 @@ studentCancelHandsUp: () => Promise<void>,
 ## handsUpStudentList
 
 ```typescript
-handsUpStudentList: {
-    userUuid: string;
-    userName: string;
-    coVideo: boolean;
-}[],
+handsUpStudentList: array<{userUuid, userName, coVideo}>,
 ```
 
 举手学生列表。
@@ -66,7 +66,7 @@ handsUpStudentList: {
 coVideoUsers: array, 
 ```
 
-已上台用户列表。
+当前发送视频流的用户列表。
 
 ## onlineUserCount
 
@@ -74,7 +74,7 @@ coVideoUsers: array,
 onlineUserCount: number,
 ```
 
-已上台用户总数。
+在线用户总数（不包含角色为观众的用户）。
 
 ## processUserCount
 
@@ -82,12 +82,12 @@ onlineUserCount: number,
 processUserCount: number,
 ```
 
-申请上台的用户总数。
+当前发送视频流的用户总数。
 
 ## teacherAcceptHandsUp
 
 ```typescript
-teacherAcceptHandsUp: (userUuid: string) => Promise<void>,
+async teacherAcceptHandsUp(userUuid: string): void
 ```
 
 老师接受学生举手请求。
@@ -99,7 +99,7 @@ teacherAcceptHandsUp: (userUuid: string) => Promise<void>,
 ## teacherRejectHandsUp
 
 ```typescript
-teacherRejectHandsUp: (userUuid: string) => Promise<void>,
+async teacherRejectHandsUp(userUuid: string): void
 ```
 
 老师拒绝学生举手请求。
@@ -107,27 +107,3 @@ teacherRejectHandsUp: (userUuid: string) => Promise<void>,
 | 参数       | 描述      |
 | :--------- | :-------- |
 | `userUuid` | 学生 ID。 |
-
-## teacherRevokeCoVideo
-
-```typescript
-teacherRevokeCoVideo: (userUuid: string) => Promise<void>,
-```
-
-> 自 v1.1.2 起新增。
-
-老师让指定用户下台。
-
-| 参数       | 描述      |
-| :--------- | :-------- |
-| `userUuid` | 用户 ID。 |
-
-## studentExitCoVideo
-
-```typescript
-studentExitCoVideo: () => Promise<void>,
-```
-
-> 自 v1.1.2 起新增。
-
-学生主动下台。

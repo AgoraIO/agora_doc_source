@@ -12,8 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public abstract int setLocalVoiceChanger(int voiceChanger);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int) setLocalVoiceChanger:(AgoraAudioVoiceChanger)voiceChanger;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceChanger(VOICE_CHANGER_PRESET voiceChanger) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">setLocalVoiceChanger(voiceChanger: VOICE_CHANGER_PRESET): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -55,7 +55,35 @@
    <parml>
        <plentry>
   <pt>voiceChanger</pt>
-  <pd>预设本地语音变声、美音或语聊美声效果选项，默认值为 <apiname keyref="VOICE_CHANGER_OFF"/> ，即原声。详见 <xref keyref="VOICE_CHANGER_PRESET"/> 。设置语聊美声效果时，Agora 推荐使用 <apiname keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC"/> 处理男声，使用 <apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH"/> 或 <apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY"/> 处理女声，否则音频可能会产生失真。</pd>
+  <pd>
+      <p props="ios mac windows">预设本地语音变声、美音或语聊美声效果选项，默认值为 <apiname keyref="VOICE_CHANGER_OFF"/> ，即原声。详见 <xref keyref="VOICE_CHANGER_PRESET"/> 。设置语聊美声效果时，Agora 推荐使用 <apiname keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC"/> 处理男声，使用 <apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH"/> 或 <apiname keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY"/> 处理女声，否则音频可能会产生失真。</p>
+      <p props="android">本地语音的变声、美音或语聊美声效果选项： <ul>
+                                <li><ph keyref="VOICE_CHANGER_OFF"/>:
+                                    （默认）原声，即关闭本地语音的变声、美音或语聊美声效果。</li>
+                                <li><ph keyref="VOICE_CHANGER_OLDMAN"/>: 变声：老男孩。</li>
+                                <li><ph keyref="VOICE_CHANGER_BABYBOY"/>: 变声：小男孩。</li>
+                                <li><ph keyref="VOICE_CHANGER_BABYGIRL"/>: 变声：小女孩。</li>
+                                <li><ph keyref="VOICE_CHANGER_ZHUBAJIE"/>: 变声：猪八戒。</li>
+                                <li><ph keyref="VOICE_CHANGER_ETHEREAL"/>: 变声：空灵。</li>
+                                <li><ph keyref="VOICE_CHANGER_HULK"/>: 变声：绿巨人。</li>
+                                <li><ph keyref="VOICE_BEAUTY_VIGOROUS"/>: 美音：浑厚。</li>
+                                <li><ph keyref="VOICE_BEAUTY_DEEP"/>: 美音：低沉。</li>
+                                <li><ph keyref="VOICE_BEAUTY_MELLOW"/>: 美音：圆润。</li>
+                                <li><ph keyref="VOICE_BEAUTY_FALSETTO"/>: 美音：假音。</li>
+                                <li><ph keyref="VOICE_BEAUTY_FULL"/>: 美音：饱满。</li>
+                                <li><ph keyref="VOICE_BEAUTY_CLEAR"/>: 美音：清澈。</li>
+                                <li><ph keyref="VOICE_BEAUTY_RESOUNDING"/>: 美音：高亢。</li>
+                                <li><ph keyref="VOICE_BEAUTY_RINGING"/>: 美音：嘹亮。</li>
+                                <li><ph keyref="VOICE_BEAUTY_SPACIAL"/>: 美音：空旷。</li>
+                                <li><ph keyref="GENERAL_BEAUTY_VOICE_MALE_MAGNETIC"/>:
+                                    语聊美声：磁性（男）。此枚举为男声定制化效果，不适用于女声。若女声使用此音效设置，则音频可能会产生失真。</li>
+                                <li><ph keyref="GENERAL_BEAUTY_VOICE_FEMALE_FRESH"/>:
+                                    语聊美声：清新（女）。此枚举为女声定制化效果，不适用于男声。若男声使用此音效设置，则音频可能会产生失真。</li>
+                                <li><ph keyref="GENERAL_BEAUTY_VOICE_FEMALE_VITALITY"/>:
+                                    语聊美声：活力（女）。此枚举为女声定制化效果，不适用于男声。若男声使用此音效设置，则音频可能会产生失真。</li>
+                            </ul>
+                        </p>
+  </pd>
        </plentry>
    </parml>
         </section>

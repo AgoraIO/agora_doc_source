@@ -12,8 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public void onAudioEffectFinished(int soundId) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineDidAudioEffectFinish:(AgoraRtcEngineKit * _Nonnull)engine soundId:(int)soundId;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onAudioEffectFinished(int soundId) {
     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_EFFECT_FINISHED, cb: (soundId: number) => void): this;</codeblock>
@@ -29,6 +29,10 @@
         <section id="parameters">
    <title>参数</title>
    <parml>
+       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+              <pt/>
+              <pd/>
+          </plentry>
        <plentry>
   <pt>soundId</pt>
   <pd>指定音效的 ID。每个音效均有唯一的 ID。</pd>

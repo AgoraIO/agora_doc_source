@@ -12,8 +12,9 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public abstract int enableAudioVolumeIndication(int interval, int smooth);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableAudioVolumeIndication:(NSInteger)interval
+                            smooth:(NSInteger)smooth;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool report_vad) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">enableAudioVolumeIndication(interval: number, smooth: number, report_vad: boolean = false): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -42,7 +43,7 @@ keyref="onAudioVolumeIndication"/> 回调。</li>
   <pt>smooth</pt>
   <pd>平滑系数，指定音量提示的灵敏度。取值范围为 [0,10]，建议值为 3。数字越大，波动越灵敏；数字越小，波动越平滑。</pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>report_vad</pt>
   <pd>
       <ul>

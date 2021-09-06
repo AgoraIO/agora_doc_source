@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setclientrole1">
     <title><ph keyref="setClientRole1"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置直播场景下的用户角色。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置用户角色。</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -25,16 +25,23 @@
         <section id="detailed_desc">
    <p id="desc">在加入频道前和加入频道后均可调用该方法设置用户角色。</p>
    <p>如果你在加入频道后调用该方法切换用户角色，调用成功后：<ul><li>本地会触发 <xref keyref="onClientRoleChanged"/> 回调。</li><li>远端会触发 <xref keyref="onUserJoined"/> 或 <xref keyref="onUserOffline"/>(USER_OFFLINE_BECOME_AUDIENCE) 回调。</li></ul></p>
-   <note type="attention">该方法仅在频道场景为直播（<xref keyref="setChannelProfile"/> 中 <parmname>profile</parmname> 设为 <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"/>）时生效。</note>
+   <note type="attention" props="rtc">该方法仅在频道场景为直播（<xref keyref="setChannelProfile"/> 中
+                    <parmname>profile</parmname> 设为 <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING"
+                />）时生效。</note>
         </section>
         <section id="parameters">
    <title>参数</title>
    <parml>
        <plentry>
   <pt>role</pt>
-  <pd>
-      <p>直播场景里的用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE" />。</p>
-  </pd>
+  <pd id="clientrole">
+      <p props="ios mac windows electron">用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</p>
+      <p props="android">用户的角色： <ul id="clientroletype">
+                                <li><ph keyref="CLIENT_ROLE_BROADCASTER"/> (1)：主播。</li>
+                                <li><ph keyref="CLIENT_ROLE_AUDIENCE"/> (2)：观众。</li>
+                            </ul>
+                        </p>
+                    </pd>
        </plentry>
    </parml>
         </section>

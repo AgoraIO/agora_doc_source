@@ -12,8 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public void onLastmileQuality(int quality) {}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine lastmileQuality:(AgoraNetworkQuality)quality;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onLastmileQuality(int quality) {
     (void)quality;
     }</codeblock>
@@ -30,9 +30,17 @@
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
+       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                  <pt/>
+                  <pd/>
+              </plentry>
        <plentry>
   <pt>quality</pt>
-  <pd>Last mile 网络质量，详见 <xref keyref="QUALITY_TYPE"/> 。</pd>
+  <pd>Last mile 网络质量。<ph props="windows ios mac electron">详见 <xref keyref="QUALITY_TYPE"/> 。</ph>
+  <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
+      <li></li>
+  </ul>
+  </pd>
        </plentry>
    </parml>
         </section>

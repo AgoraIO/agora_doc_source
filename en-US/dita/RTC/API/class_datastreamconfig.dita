@@ -6,13 +6,10 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public class DataStreamConfig { public boolean syncWithAudio = false; public boolean ordered = false; }</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility(&quot;default&quot;))) @interface AgoraDataStreamConfig: NSObject @property (assign, nonatomic) BOOL ordered; @property (assign, nonatomic) BOOL syncWithAudio; @end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">struct DataStreamConfig { bool syncWithAudio; bool ordered; };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export interface DataStreamConfig {
-  syncWithAudio: boolean;
-  ordered: boolean;
-}</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">export interface DataStreamConfig { syncWithAudio: boolean; ordered: boolean; }</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
@@ -47,12 +44,12 @@
       <row>
  <entry><codeph><ph keyref="false"/></codeph></entry>
  <entry><codeph><ph keyref="true"/></codeph></entry>
- <entry>In this case, the data packet is not synchronized with the audio packet. If the delay of a data packet is within five seconds, the SDK corrects the order of the data packet.</entry>
+ <entry>If the delay of a data packet is less than five seconds, the SDK corrects the order of the data packet. If the delay of a data packet exceeds five seconds, the SDK discards the data packet.</entry>
       </row>
       <row>
  <entry><codeph><ph keyref="true"/></codeph></entry>
  <entry><codeph><ph keyref="true"/></codeph></entry>
- <entry>If the delay of a data packet exceeds five seconds, the SDK discards the data packet. If the delay of a data packet exceeds the audio delay, the SDK discards this data packet.</entry>
+ <entry>If the delay of the data packet is within the range of the audio delay, the SDK corrects the order of the data packet. If the delay of a data packet exceeds the audio delay, the SDK discards this data packet.</entry>
       </row>
   </tbody>
        </tgroup>
@@ -66,16 +63,11 @@
   <pt>syncWithAudio</pt>
   <pd>
                         <p>Whether to synchronize the data packet with the published audio packet.<ul>
-                                <li><codeph><ph keyref="true"/></codeph>: Synchronize the data packet with the audio
-                                    packet.</li>
-                                <li><codeph><ph keyref="false"/></codeph>: Do not synchronize the data packet with
-                                    the audio packet.</li>
-                            </ul>When you set the data packet to synchronize with the audio, then if
-                            the data packet delay is within the audio delay, the SDK triggers the
-                                <xref keyref="onStreamMessage"/> callback when the synchronized
-                            audio packet is played out. Do not set this parameter as <codeph><ph keyref="true"/></codeph> if you need the receiver to receive the data packet
-                            immediately. Agora recommends that you set this parameter to <codeph><ph keyref="true"/></codeph> only when you need to implement specific functions,
-                            for example lyric synchronization.</p>
+                                <li><codeph><ph keyref="true"/></codeph>: Synchronize the data packet with the audio packet.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: Do not synchronize the data packet with the audio packet.</li>
+                            </ul>When you set the data packet to synchronize with the audio, then if the data packet delay is within the audio delay, the SDK triggers the <xref
+                                keyref="onStreamMessage"/> callback when the synchronized audio packet is played out. Do not set this parameter as <ph
+                                keyref="true"/> if you need the receiver to receive the data packet immediately. Agora recommends that you set this parameter to `true` only when you need to implement specific functions, for example lyric synchronization.</p>
                     </pd>
        </plentry>
        <plentry>
