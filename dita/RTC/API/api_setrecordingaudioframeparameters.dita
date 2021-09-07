@@ -29,7 +29,8 @@
     mode: RAW_AUDIO_FRAME_OP_MODE_TYPE,
     samplesPerCall: number
     ): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRecordingAudioFrameParameters(int sampleRate, int channel,
+            RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>
@@ -53,13 +54,13 @@
             <parml>
                 <plentry>
                     <pt>sampleRate</pt>
-                    <pd props="android ios mac windows"><apiname keyref="onRecordAudioFrame"/> 中返回数据的采样率，可设置为 8000、 16000、 32000、
+                    <pd props="android ios mac windows unity"><apiname keyref="onRecordAudioFrame"/> 中返回数据的采样率，可设置为 8000、 16000、 32000、
                         44100 或 48000。</pd>
                     <pd props="electron">SDK 返回数据的采样率 (Hz)，可设置为 8000、 16000、 32000、 44100 或 48000。</pd>
                 </plentry>
                 <plentry>
                     <pt>channel</pt>
-                    <pd props="android ios mac windows">
+                    <pd props="android ios mac windows unity">
                         <p><apiname keyref="onRecordAudioFrame"/> 中返回数据的通道数，可设置为 1 或 2:<ul>
                                 <li>1: 单声道。</li>
                                 <li>2: 双声道。</li>
@@ -72,8 +73,9 @@
                 </plentry>
                 <plentry>
                     <pt>mode</pt>
-                    <pd props="android ios mac windows">
-                        <p props="ios mac windows">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</p>
+                    <pd props="android ios mac windows unity">
+                        <p props="ios mac windows unity">音频帧的使用模式，详见 <xref
+                                keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</p>
                         <p conkeyref="registerAudioFrameObserver2/mode" props="android"/>
                     </pd>
                     <pd props="electron">SDK 返回数据的使用模式，详见 <xref
@@ -81,7 +83,7 @@
                 </plentry>
                 <plentry>
                     <pt>samplesPerCall</pt>
-                    <pd props="android ios mac windows"><apiname keyref="onRecordAudioFrame"/> 中返回数据的采样点数，如 RTMP/RTMPS 推流应用中通常为 1024。</pd>
+                    <pd props="android ios mac windows unity"><apiname keyref="onRecordAudioFrame"/> 中返回数据的采样点数，如 RTMP/RTMPS 推流应用中通常为 1024。</pd>
                     <pd props="electron">SDK 返回数据的采样点数，如 RTMP/RTMPS 推流应用中通常为 1024。</pd>
                 </plentry>
             </parml>

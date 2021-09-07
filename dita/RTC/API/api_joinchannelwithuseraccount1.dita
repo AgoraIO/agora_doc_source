@@ -23,7 +23,7 @@
     const char* channelId,
     const char* userAccount) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string channelId, string userAccount);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
        </p>
@@ -46,22 +46,31 @@
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
-       <plentry conkeyref="joinChannel2/token"><pt/><pd/></plentry>
-       <plentry conkeyref="joinChannel2/channelID">
-           <pt/>
-           <pd/>
-       </plentry>
-       <plentry>
-  <pt>userAccount</pt>
-  <pd><p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。
-      该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL"/>。以下为支持的字符集范围（共 89 个字符）：<ul conkeyref="joinChannel2/char_support"><li/></ul>
-      </p></pd>
-       </plentry>
-       <plentry conkeyref="joinChannel2/joinsuccessblock" props="ios mac">
-           <pt/>
-           <pd/>
-       </plentry>
-   </parml>
+                <plentry conkeyref="joinChannel2/token">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry conkeyref="joinChannel2/channelID">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>userAccount</pt>
+                    <pd>
+                        <p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User
+                            Account，并确保同一频道中每个用户的 User Account 是唯一的。 该参数为必填，最大不超过 255 字节，不可填 <ph
+                                keyref="NULL"/>。以下为支持的字符集范围（共 89 个字符）：<ul
+                                conkeyref="joinChannel2/char_support">
+                                <li/>
+                            </ul>
+                        </p>
+                    </pd>
+                </plentry>
+                <plentry conkeyref="joinChannel2/joinsuccessblock" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values">
    <title>返回值</title>
