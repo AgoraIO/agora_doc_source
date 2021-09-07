@@ -1,8 +1,8 @@
 # Get Started with Voice Call
 
-The Agora Voice SDK enables you to rapidly enhance your social, work, education, and IoT apps with real-time engagements.
+People engage longer when they see, hear, and interact with each other. The Agora SDK enables you to embed real-time voice and video interaction in any app, on any device, anywhere.
 
-This page shows the munimum code you need to add voice call into your app by using the Agora Voice SDK for Android.
+This page shows the minimum code you need to add voice call into your app by using the Agora Voice SDK for Android.
 
 ## Understand the tech
 
@@ -10,25 +10,25 @@ The following figure shows the workflow of a voice call implemented by the Agora
 
 ![](/images/voice_call_tech.png)
 
-To start a voice call, you implement the following steps in your app:
+As shown in the figure, the workflow for adding Voice Call in your project is as follows:
 
-**1. Retrieve a token**
+1. Retrieve a token
 
-The token is a credential for authenticating the identity of the user when your app client joins a channel. The app client requests a token from your app server. This token authenticates the user when the app client joins a channel.
+   A token is the credential that authenticates a user when your app client joins a channel. In a test or production environment, your app client retrieves tokens from a server in your security infrastructure.
 
-**2. Join a channel**
+2. Join a channel
 
-Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
+   Call `joinChannel` to create and join a channel. App clients that pass the same channel name join the same channel.
 
-**3. Publish and subscribe to audio in the channel**
+3. Publish and subscribe to audio in the channel
 
-After joining a channel, the app client automatically publishes and subscribes to audio in the channel.
+   After joining a channel, the app client automatically publishes and subscribes to audio in the channel.
 
 For an app client to join a channel, you need the following information:
 
 - The App ID: A randomly generated string provided by Agora for identifying your app. You can get the App ID from [Agora Console](https://console.agora.io/).
 - The user ID: The unique identifier of a user. You need to specify the user ID yourself, and ensure that it is unique in the channel.
-- A token: In a test or production environment, your app client retrieves tokens from your server. For rapid testing, you can use a temporary token with a validity period of 24 hours.
+- A token: In a test or production environment, your app client retrieves tokens from your server. For this page, you use a temporary token with a validity period of 24 hours that you retrieve from Agora Console.
 - The channel name: A string that identifies the channel for the voice call.
 
 ## Prerequisites
@@ -44,33 +44,42 @@ Before proceeding, ensure that your development environment meets the following 
 
 ## Project setup
 
-Follow the steps to set up your Android project.
+Follow the steps to create the environment necessary to add voice call into your app.
 
-1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**. After creating the project, **Android Studio** automatically starts gradle sync. Ensure that the sync succeeds before you continue.
+1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**. 
+   > After creating the project, **Android Studio** automatically starts gradle sync. Ensure that the sync succeeds before you continue.
 
-2. Integrate the Voice SDK into your project.
+2. Integrate the Voice SDK into your project. For Agora SDK v3.5.0 or later, you can intergrate the SDK with mavenCentral with the following steps. For how to integrate SDKs earlier than v3.5.0, see [Other approches to intergrate the SDK](#integrate).
 
    a. In `/Gradle Scripts/build.gradle(Project: <projectname>)`, add the following lines to add the JitPack dependency.
 
-    ```xml
-    allprojects {
-        repositories {
-            ...
-            maven { url 'https://www.jitpack.io' }
-        }
-    }
-    ```
+   ```xml
+   buildscript {
+       repositories {
+           ...
+           mavenCentral()
+       }
+       ...
+   }
 
-   b. In `/Gradle Scripts/build.gradle(Module: <projectname>.app)`, add the following lines to integrate the Agora Video SDK into your Android project.
+   allprojects {
+       repositories {
+           ...
+           mavenCentral()
+       }
+   }
+   ```
 
-    ```xml
-    ...
-    dependencies {
-    ...
-    // For x.y.z, please fill in a specific SDK version number. For example, 3.4.0
-    implementation 'com.github.agorabuilder:native-voice-sdk:x.y.z'
-    }
-    ```
+   b. In `/Gradle Scripts/build.gradle(Module: <projectname>.app)`, add the following lines to integrate the Agora Voice SDK into your Android project.
+
+   ```xml
+   ...
+   dependencies {
+       // For x.y.z, fill in a specific SDK version number. For example, 3.5.0.
+       // Get the latest version number through the release notes.
+       implementation 'io.agora.rtc:voice-sdk:x.y.z'
+   }
+   ```
 
 3. Add permissions for network and device access.
 
@@ -87,13 +96,11 @@ Follow the steps to set up your Android project.
 
 4. Prevent code obfuscation.
 
-   In `/Gradle Scripts/proguard-rules.pro`, add the following line to prevent obfuscating the code of the SDK:
+   In `/Gradle Scripts/proguard-rules.pro`, add the following line:
 
     ```xml
     -keep class io.agora.**{*;}
     ```
-
-5. Sync the Android project by clicking **Sync Project with Gradle Files**.
 
 ## Implement a client for Voice Call
 
@@ -133,7 +140,7 @@ In `/app/res/layout/activity_main.xml`, replace the content with the following:
 
 ### Handle the Android system logic
 
-In this section, we import the necessary Android classes and handle the Android permissions.
+Refer to the following steps to import the necessary Android classes and handle the Android permissions.
 
 1. Import Android classes
 
@@ -202,7 +209,7 @@ When your app opens, you create an `RtEngine` instance, join a channel, and publ
 
 The following figure shows the API call sequence of implementing Voice Call.
 
-![](/images/voice_call_sequence.png)
+![](/images/sequence_voice_android.png)
 
 To implement this logic, take the following steps:
 
@@ -217,12 +224,15 @@ To implement this logic, take the following steps:
 
 2. Create the variables that you use to create and join a voice call channel.
 
-    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines before the `onCreate` function:
+    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `AppCompatActivity {`:
 
     ```java
     // Java
-    private String appId = "bf702ed04f9a44dfb80f84537122e619";
-    private String channelName = "demoChannel01";
+    // Fill the App ID of your project generated on Agora Console.
+    private String appId = "";
+    // Fill the channel name.
+    private String channelName = "";
+    // Fill the temp token generated on Agora Console.
     private String token = "";
     private RtcEngine mRtcEngine;
     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
@@ -231,21 +241,22 @@ To implement this logic, take the following steps:
 
     ```kotlin
     // Kotlin
-    private val APP_ID = "b140a2ba6e3545bd9e1b38f884caa1c1"
-    private val CHANNEL = "demoChannel01"
+    // Fill the App ID of your project generated on Agora Console.
+    private val APP_ID = ""
+    // Fill the channel name.
+    private val CHANNEL = ""
+    // Fill the temp token generated on Agora Console.
     private val TOKEN = ""
-
     private var mRtcEngine: RtcEngine ?= null
-
     private val mRtcEventHandler = object : IRtcEngineEventHandler() {
     }
     ```
 
 3. Initialize the app and join the channel.
 
-    Call the core methods for joining a channel. In the following sample code, we use an `initializeAndJoinChannel` function to encapsulate these core methods.
+    Call the following core methods to join a channel in the `MainActicity` class. In the following sample code, the `initializeAndJoinChannel` function encapsulates these core methods.
 
-    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `checkSelfPermission` function:
+    In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `onCreate` function:
 
     ```java
     // Java
@@ -332,12 +343,13 @@ Now you have created the Voice Call functionality, start and stop the app. In th
 
 ## Test your app
 
-Connect an Android device to your computer, and click `Run 'app'` on your **Android Studio**. A moment later you will see the project installed on your device. Take the following steps to test the voice call app:
+To test your app, follow the steps:
 
-1. Grant microphone access to your app.
-2. When the app lauches, you should be able to see the user interface we created.
-3. Ask a friend to join the voice call with you on the [demo app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicVideoCall/index.html). Enter the same App ID and channel name.
-4. After your friend joins the channel, you should be able to hear each other.
+1. Fill in the `appId` and `token` parameters with the App ID and temporary token that you retrieve from Agora Console. Fill `channelName` with the channel name that you use to generate the temporary token.
+2. Connect an Android device to your computer, and click `Run 'app'` on your **Android Studio**. A moment later you will see the project installed on your device. 
+3. When the app lauches, you should be able to see the user interface.
+4. Ask a friend to join the voice call with you on the [demo app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicVideoCall/index.html). Enter the same App ID and channel name.
+After your friend joins the channel, you should be able to hear each other.
 
 ## Next steps
 
