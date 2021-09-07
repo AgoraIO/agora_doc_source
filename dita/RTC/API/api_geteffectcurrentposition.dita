@@ -17,7 +17,7 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)getEffectCurrentPosition:(int)soundId;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int getEffectCurrentPosition(int soundId) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">getEffectCurrentPosition(soundId: number): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int GetEffectCurrentPosition(int soundId);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>
@@ -34,7 +34,8 @@
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
-                    <pt>sound</pt>
+                    <pt props="windows">sound</pt>
+                    <pt props="unity">soundId</pt>
                     <pd>音效 ID。请确保与 <apiname>playEffect</apiname> 中设置的 <parmname>soundId</parmname> 一致。</pd>
                 </plentry>
             </parml>

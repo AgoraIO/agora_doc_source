@@ -17,7 +17,7 @@
                         mute:(BOOL)mute;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">muteRemoteVideoStream(userId: number, mute: boolean): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int MuteRemoteVideoStream(uint userId, bool mute);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
         </p>
@@ -37,7 +37,7 @@
    <title>参数</title>
    <parml>
        <plentry>
-           <pt props="android windows">userId</pt>
+           <pt props="android windows unity">userId</pt>
            <pt props="ios mac">uid</pt>
   <pd>
       <p>指定用户的用户 ID。</p>
@@ -45,7 +45,7 @@
        </plentry>
        <plentry>
            <pt props="android">muted</pt>
-           <pt props="ios mac windows">mute</pt>
+           <pt props="ios mac windows unity">mute</pt>
            <pd><p>是否取消订阅指定远端用户的视频流。</p><ul>
       <li><codeph><ph keyref="true"/></codeph>: 取消订阅指定用户的视频流。</li>
       <li><codeph><ph keyref="false"/></codeph>: （默认）订阅指定用户的视频流。</li>
