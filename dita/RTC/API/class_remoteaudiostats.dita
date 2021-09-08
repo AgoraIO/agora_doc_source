@@ -37,7 +37,7 @@
             <p props="rtc" outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">struct RemoteAudioStats {
+                <codeblock props="windows unity" outputclass="language-cpp">struct RemoteAudioStats {
     uid_t uid;
     int quality;
     int networkTransportDelay;
@@ -71,7 +71,6 @@
     qualityChangedReason: number;
     mosValue: number;
     }</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>
@@ -85,7 +84,7 @@
        </plentry>
        <plentry>
   <pt>quality</pt>
-  <pd><p props="ios mac windows">远端用户发送的音频流质量，详见 <xref keyref="QUALITY_TYPE"/>。</p>
+  <pd><p props="ios mac windows unity">远端用户发送的音频流质量，详见 <xref keyref="QUALITY_TYPE"/>。</p>
   <p props="android">
       <ul id="qualitytype">
           <li><ph keyref="QUALITY_UNKNOWN"/> (0)：质量未知。</li>
@@ -134,15 +133,15 @@ keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> 为 1 时，该参数不生效。</note><
   <pt>frozenRate</pt>
   <pd>音频卡顿的累计时长占音频总有效时长的百分比 (%)。音频有效时长是指远端用户加入频道后音频未被停止发送或禁用的时长。</pd>
        </plentry>
-       <plentry props="windows">
+       <plentry props="windows unity">
   <pt>totalActiveTime</pt>
   <pd>音频有效时长（毫秒），即远端用户加入频道后，既没有停止发送音频流，也没有禁用音频模块的通话时长。</pd>
        </plentry>
-       <plentry props="windows">
+       <plentry props="windows unity">
   <pt>publishDuration</pt>
   <pd>远端音频流的累计发布时长（毫秒）。</pd>
        </plentry>
-       <plentry props="windows">
+       <plentry props="windows unity">
   <pt>qoeQuality</pt>
   <pd>
       <dl outputclass="since" props="rtc">
@@ -154,7 +153,7 @@ keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> 为 1 时，该参数不生效。</note><
       <p>接收远端音频时，本地用户的主观体验质量，详见 <xref keyref="EXPERIENCE_QUALITY_TYPE"/>。</p>
   </pd>
        </plentry>
-       <plentry props="windows">
+       <plentry props="windows unity">
   <pt>qualityChangedReason</pt>
   <pd>
       <dl outputclass="since" props="rtc">

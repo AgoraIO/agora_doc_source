@@ -34,7 +34,7 @@
      height: number, 
      elapsed: number) => void
      ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteVideoFrame(uint uid, int width, int height, int elapsed)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
         </p>
@@ -47,12 +47,11 @@
           <section id="parameters">
                <title>参数</title>
                <parml>
-                    
                     <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt/>
-                  <pd/>
-              </plentry>
-                    <plentry props="android windows">
+                         <pt/>
+                         <pd/>
+                    </plentry>
+                    <plentry props="android windows unity">
                          <pt>uid</pt>
                          <pd>用户 ID，指定是哪个用户的视频流。</pd>
                     </plentry>
@@ -60,19 +59,17 @@
                          <pt>size</pt>
                          <pd>视频流尺寸。</pd>
                     </plentry>
-                    <plentry props="android windows">
+                    <plentry props="android windows unity">
                          <pt>width</pt>
                          <pd>视频流宽（px）。</pd>
                     </plentry>
-                    <plentry props="android windows">
+                    <plentry props="android windows unity">
                          <pt>height</pt>
                          <pd>视频流高（px）。</pd>
                     </plentry>
                     <plentry>
                          <pt>elapsed</pt>
-                         <pd>
-                              从本地调用 <apiname keyref="joinChannel2" /> 到发生此事件过去的时间（毫秒)。
-                         </pd>
+                         <pd> 从本地调用 <apiname keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒)。 </pd>
                     </plentry>
                </parml>
           </section>
