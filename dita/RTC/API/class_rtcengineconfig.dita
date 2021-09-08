@@ -8,7 +8,7 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java"/>
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">struct RtcEngineContext {
+                <codeblock props="windows unity" outputclass="language-cpp">struct RtcEngineContext {
     IRtcEngineEventHandler* eventHandler;
     const char* appId;
     void* context;
@@ -26,7 +26,6 @@
   areaCode?: AREA_CODE;
   logConfig?: LogConfig;
 }</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>
@@ -34,12 +33,12 @@
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
-       <plentry props="windows">
+       <plentry props="windows unity">
   <pt>eventHandler</pt>
   <pd>Agora SDK 回调句柄。详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
        </plentry>
        <plentry>
-  <pt props="windows electron">appId</pt>
+  <pt props="windows electron unity">appId</pt>
   <pt props="android">mAppId</pt>
   <pd id="appid"><p>Agora 为 app 开发项目签发的 App ID。使用同一个 App ID 的用户才能进入同一个频道进行通话或直播。</p>
       <p props="windows">一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/>。如果需要更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 IRtcEngine，
@@ -47,7 +46,7 @@
       <p props="android ios mac electron">一个 App ID 只能用于创建一个 <xref keyref="IRtcEngine"/>。如果需要更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 IRtcEngine，再调用 <xref keyref="create2"/> 重新创建 <apiname keyref="IRtcEngine"></apiname>。</p>
   </pd>
        </plentry>
-       <plentry props="windows">
+       <plentry props="windows unity">
   <pt>context</pt>
   <pd>视频窗口句柄。如设值，则表示支持设备热插拔。</pd>
        </plentry>

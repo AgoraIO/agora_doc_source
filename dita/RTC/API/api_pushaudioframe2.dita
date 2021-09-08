@@ -18,33 +18,33 @@
                           timestamp:(NSTimeInterval)timestamp;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int PushAudioFrame(AudioFrame frame);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
         </p>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
-       <plentry props="windows">
-  <pt>frame</pt>
-  <pd>
-      <p>音频帧指针。详见 <xref keyref="AudioFrame"/>。</p>
-  </pd>
-       </plentry>
-       <plentry props="android ios mac" conkeyref="pushAudioFrame1/data">
-           <pt/>
-           <pd/>
-       </plentry>
-       <plentry props="android ios mac">
-           <pt>sourceId</pt>
-           <pd>外部音频源的 ID。可以设置为 0 到 <xref keyref="setExternalAudioSource2"/> 中
+                <plentry props="windows unity">
+                    <pt>frame</pt>
+                    <pd>
+                        <p>音频帧指针。详见 <xref keyref="AudioFrame"/>。</p>
+                    </pd>
+                </plentry>
+                <plentry props="android ios mac" conkeyref="pushAudioFrame1/data">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry props="android ios mac">
+                    <pt>sourceId</pt>
+                    <pd>外部音频源的 ID。可以设置为 0 到 <xref keyref="setExternalAudioSource2"/> 中
                             <parmname>sourceNumber</parmname> 参数的值-1 之间的整数。</pd>
-       </plentry>
-       <plentry props="android ios mac" conkeyref="pushAudioFrame1/time">
-           <pt/>
-           <pd/>
-       </plentry>
-   </parml>
+                </plentry>
+                <plentry props="android ios mac" conkeyref="pushAudioFrame1/time">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values">
    <title>返回值</title>

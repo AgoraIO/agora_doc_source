@@ -16,7 +16,10 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onCaptureVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual bool onCaptureVideoFrame(VideoFrame&amp; videoFrame) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnCaptureVideoFrame(VideoFrame videoFrame)
+        {
+            return true;
+        }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
         </p>
@@ -36,7 +39,7 @@
    <parml>
        <plentry id="videoframe">
            <pt>videoFrame</pt>
-  <pd>视频帧数据<ph props="windows ios mac">，详见 <xref keyref="VideoFrame"/></ph>。</pd>
+  <pd>视频帧数据<ph props="windows ios mac unity">，详见 <xref keyref="VideoFrame"/></ph>。</pd>
        </plentry>
    </parml>
         </section>

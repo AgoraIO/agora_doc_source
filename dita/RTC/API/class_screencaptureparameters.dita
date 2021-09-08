@@ -22,7 +22,7 @@
 @property (assign, nonatomic) NSInteger bitrate;
 
 @end</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">struct ScreenCaptureParameters {
+                <codeblock props="windows unity" outputclass="language-cpp">struct ScreenCaptureParameters {
     VideoDimensions dimensions;
     int frameRate;
     int bitrate;
@@ -41,7 +41,6 @@
     excludeWindowList: Array&lt;number&gt;;
     excludeWindowCount: number;
     }</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>
@@ -50,7 +49,7 @@
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt props="ios mac windows electron">dimensions</pt>
+                    <pt props="ios mac windows electron unity">dimensions</pt>
                     <pt props="android">videoDimensions</pt>
                     <pd><p>编码共享视频的最大像素值。详见 <xref keyref="VideoDimensions"/>。默认值为 1920 × 1080，即
                             2073600 像素。该像素值为计费标准。</p>
@@ -70,7 +69,7 @@
                     <pt>bitrate</pt>
                     <pd>共享视频的码率，单位为 Kbps；默认值为 0，表示 SDK 根据当前共享屏幕的分辨率计算出一个合理的值。</pd>
                 </plentry>
-                <plentry props="windows electron">
+                <plentry props="windows electron unity">
                     <pt>captureMouseCursor</pt>
                     <pd>
                         <dl outputclass="since" props="rtc">
@@ -84,7 +83,7 @@
                                 <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
                             </ul></p></pd>
                 </plentry>
-                <plentry props="windows electron">
+                <plentry props="windows electron unity">
                     <pt>windowFocus</pt>
                     <pd><dl outputclass="since" props="rtc">
                         <dlentry>
@@ -96,9 +95,9 @@
                             <li><codeph><ph keyref="false"/></codeph>:（默认）不前置窗口。</li>
                         </ul></p></pd>
                 </plentry>
-                <plentry props="windows mac">
+                <plentry props="windows mac unity">
                     <pt>excludeWindowList</pt>
-                    <pd props="windows"><dl outputclass="since" props="rtc">
+                    <pd props="windows unity"><dl outputclass="since" props="rtc">
                         <dlentry>
                             <dt>自从</dt>
                             <dd>v3.1.0</dd>
@@ -120,7 +119,7 @@
                             你可以在调用 <xref keyref="updateScreenCaptureParameters"/>
                             更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</p></pd>
                 </plentry>
-                <plentry props="windows">
+                <plentry props="windows unity">
                     <pt>excludeWindowCount</pt>
                     <pd>
                         <dl outputclass="since" props="rtc">
