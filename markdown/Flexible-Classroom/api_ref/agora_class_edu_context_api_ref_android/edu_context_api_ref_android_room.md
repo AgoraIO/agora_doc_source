@@ -13,16 +13,20 @@ abstract fun roomInfo(): EduContextRoomInfo
 ### uploadLog
 
 ```kotlin
-abstract fun uploadLog()
+abstract fun uploadLog(quiet: Boolean = false)
 ```
 
 上传日志。
+
+| 参数    | 描述           |
+| :------ | :------------- |
+| `quiet` | 是否静默上传。 |
 
 ### updateFlexRoomProps
 
 ```kotlin
 abstract fun updateFlexRoomProps(properties: MutableMap<String, String>, 
-                                 cause: MutableMap<String, String>?)
+                                      cause: MutableMap<String, String>?)
 ```
 
 新增或更新自定义教室属性。详见[如何设置自定义教室属性？](/cn/agora-class/faq/agora_class_custom_properties)
@@ -37,10 +41,14 @@ abstract fun updateFlexRoomProps(properties: MutableMap<String, String>,
 ### leave
 
 ```kotlin
-abstract fun leave()
+abstract fun leave(exit: Boolean = true)
 ```
 
 离开教室。
+
+| 参数   | 描述           |
+| :----- | :------------- |
+| `exit` | 是否退出页面。 |
 
 ### joinClassroom
 
@@ -113,11 +121,11 @@ fun onNetworkStateChanged(state: EduContextNetworkState)
 fun onLogUploaded(logData: String)
 ```
 
-日志上传成功。
+日志上传完成。
 
-| 参数      | 描述       |
-| :-------- | :--------- |
-| `logData` | 日志信息。 |
+| 参数      | 描述                                                       |
+| :-------- | :--------------------------------------------------------- |
+| `logData` | 本次上传的日志所对应的 `serialNum`，用于精确查询线上日志。 |
 
 ### onConnectionStateChanged
 
@@ -223,9 +231,10 @@ fun onClassroomJoinFail(roomUuid: String, code: Int?, msg: String?, timestamp: L
 fun onClassroomLeft(roomUuid: String, timestamp: Long, exit: Boolean = true)
 ```
 
-提示本地用户成功离开教室。
+提示本地用户离开教室。
 
-| 参数        | 描述             |
-| :---------- | :--------------- |
-| `roomUuid`  | 教室 ID。        |
-| `timestamp` | 离开教室的时间。 |
+| 参数        | 描述                                                     |
+| :---------- | :------------------------------------------------------- |
+| `roomUuid`  | 教室 ID。                                                |
+| `timestamp` | 离开教室的时间。                                         |
+| `exit`      | 是否退出页面。课堂结束不主动退出，被踢或被挤会主动退出。 |

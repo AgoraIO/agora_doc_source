@@ -89,6 +89,28 @@ RTM 连接状态。
 | `Reconnecting` | 重连中。     |
 | `Aborted`      | 被踢出。     |
 
+## EduBoardRoomPhase
+
+```kotlin
+enum class EduBoardRoomPhase(val value: Int) {
+    connecting(0),
+    connected(1),
+    reconnecting(2),
+    disconnecting(3),
+    disconnected(4);
+}
+```
+
+白板连接状态。
+
+| 参数            | 描述         |
+| :-------------- | :----------- |
+| `connecting`    | 连接中。     |
+| `connected`     | 已连接。     |
+| `reconnecting`  | 重连中。     |
+| `disconnecting` | 断开连接中。 |
+| `disconnected`  | 连接已断开。 |
+
 ## EduContextClassState
 
 ```kotlin

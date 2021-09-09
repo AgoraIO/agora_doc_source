@@ -338,17 +338,17 @@ fun onInteractionEnabled(enabled: Boolean)
 | `enabled`     |  白板页面控制工具是否可用。     |
 
 
-### onLoadingVisible
+### onBoardPhaseChanged
 
 ```kotlin
-fun onLoadingVisible(visible: Boolean)
+fun onBoardPhaseChanged(phase: EduBoardRoomPhase)
 ```
 
-报告白板加载状态是否可见。
+白板连接状态发生变化。
 
 | 参数 | 描述 |
 | :--- | :--- |
-|  `visible`    |  白板加载状态是否可见。    |
+|  `phase`  |  白板连接状态。  |
 
 
 ### onDownloadProgress

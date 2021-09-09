@@ -2,6 +2,124 @@
 
 `PretestContext` 提供课前检测相关能力，用于检测摄像头、麦克风和扬声器是否正常工作。
 
+## isBeauty
+
+```typescript
+isBeauty: boolean;
+```
+
+> 自 v1.1.5 起新增。
+
+当前是否开启基础美颜。
+
+## setBeauty
+
+```typescript
+setBeauty: (isBeauty: boolean) => void;
+```
+
+> 自 v1.1.5 起新增。
+
+开启/关闭基础美颜功能。
+
+| 参数       | 描述               |
+| :--------- | :----------------- |
+| `isBeauty` | 是否开启美颜功能。 |
+
+## whitening
+
+```typescript
+whitening: number;
+```
+
+> 自 v1.1.5 起新增。
+
+当前美白数值。
+
+## buffing
+
+```typescript
+buffing: number;
+```
+
+> 自 v1.1.5 起新增。
+
+当前磨皮数值。
+
+## ruddy
+
+```typescript
+ruddy: number;
+```
+
+> 自 v1.1.5 起新增。
+
+当前红润数值。
+
+## setWhitening
+
+```typescript
+setWhitening: (whitening: number) => void;
+```
+
+> 自 v1.1.5 起新增。
+
+设置美白数值。
+
+| 参数        | 描述                                         |
+| :---------- | :------------------------------------------- |
+| `whitening` | 美白数值。取值范围为 0 到 100，默认值为 70。 |
+
+## setBuffing
+
+```typescript
+setBuffing: (buffing: number) => void;
+```
+
+> 自 v1.1.5 起新增。
+
+设置磨皮数值。
+
+| 参数      | 描述                                         |
+| :-------- | :------------------------------------------- |
+| `buffing` | 磨皮数值。取值范围为 0 到 100，默认值为 50。 |
+
+## setRuddy
+
+```typescript
+setRuddy: (ruddy: number) => void;
+```
+
+> 自 v1.1.5 起新增。
+
+设置红润数值。
+
+| 参数    | 描述                                         |
+| :------ | :------------------------------------------- |
+| `ruddy` | 红润数值。取值范围为 0 到 100，默认值为 10。 |
+
+## setBeautyEffectOptions
+
+```typescript
+setBeautyEffectOptions: any;
+```
+
+> 自 v1.1.5 起新增。
+
+## changeTestSpeaker
+
+```typescript
+changeTestSpeaker: (deviceId: string) => Promise<void>;
+```
+
+> 自 v1.1.5 起新增。
+
+切换扬声器。
+
+| 参数       | 描述      |
+| :--------- | :-------- |
+| `deviceId` | 设备 ID。 |
+
 ## cameraList
 
 ```typescript

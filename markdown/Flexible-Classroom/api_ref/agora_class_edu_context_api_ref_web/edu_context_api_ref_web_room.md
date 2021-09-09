@@ -2,6 +2,50 @@
 
 `RoomContext` 提供课堂管理相关能力。
 
+## joined
+
+```typescript
+joined: boolean;
+```
+
+> 自 v1.1.5 起新增。
+
+是否成功加入课堂。
+
+## startCarousel
+
+```typescript
+startCarousel: ({
+    range,
+    type,
+    interval,
+}: {
+    range: number;
+    type: number;
+    interval: number;
+    }) => Promise<any>;
+```
+
+> 自 v1.1.5 起新增。
+
+开启学生自动分批上台功能。老师或助教开启此功能后，学生按照一个指定的周期分批轮流自动上台。一批默认为 6 人。仅适用于在线互动小班课。
+
+| 参数       | 描述                                                         |
+| :--------- | :----------------------------------------------------------- |
+| `range`    | 自动上台的学生范围：<li>`1`: 课堂内全部学生。 </li><li>`2`: 全部摄像头非禁用的学生。</li> |
+| `type`     | 学生上台顺序：<li>学生按照顺序轮流上台。</li><li>学生随机上台。</li> |
+| `interval` | 学生分批上台的时间间隔。默认值为 30，单位为秒。取值范围？    |
+
+## stopCarousel
+
+```typescript
+stopCarousel: () => Promise<any>;
+```
+
+> 自 v1.1.5 起新增。
+
+停止学生自动分批上台功能。
+
 ## sceneType
 
 ```typescript
@@ -52,7 +96,7 @@ isCourseStart: boolean,
 kickOutBan: (userUuid: string, roomUuid: string) => Promise<void>,
 ```
 
-将学生踢出课堂。后续学生还能够再进入课堂。
+将学生踢出课堂并禁止学生再进入该课堂。
 
 | 参数       | 描述      |
 | :--------- | :-------- |
@@ -65,7 +109,7 @@ kickOutBan: (userUuid: string, roomUuid: string) => Promise<void>,
 kickOutOnce: (userUuid: string, roomUuid: string) => Promise<void>,
 ```
 
-将学生踢出课堂并禁止学生再进入该课堂。
+将学生踢出课堂。后续学生还能够再进入课堂。
 
 | 参数       | 描述      |
 | :--------- | :-------- |
@@ -80,6 +124,8 @@ liveClassStatus: {
     duration: number;
 },
 ```
+
+> 自 v1.1.5 起废弃。Agora 建议改用 `LiveRoomStatsContext` 中的 `liveClassStatus`。
 
 当前课堂状态。
 

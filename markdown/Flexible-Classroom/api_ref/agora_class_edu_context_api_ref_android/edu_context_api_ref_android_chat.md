@@ -114,10 +114,22 @@ fun onReceiveConversationHistory(history: List<EduContextChatItem>)
 ### onChatAllowed
 
 ```kotlin
+fun onChatAllowed(allowed: Boolean)
+```
+
+全局聊天权限发生变化。
+
+| 参数      | 描述                     |
+| :-------- | :----------------------- |
+| `allowed` | 是否有权限进行消息聊天。 |
+
+### onChatAllowed
+
+```kotlin
 fun onChatAllowed(allowed: Boolean, userInfo: EduContextUserInfo, operator: EduContextUserInfo?, local: Boolean)
 ```
 
-用户的聊天权限发生变化。
+单个用户的聊天权限发生变化。
 
 | 参数       | 描述                                                |
 | :--------- | :-------------------------------------------------- |

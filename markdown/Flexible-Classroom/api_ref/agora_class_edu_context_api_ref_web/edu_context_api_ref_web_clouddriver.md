@@ -2,6 +2,60 @@
 
 `CloudDriveContext` 提供课件相关能力。
 
+## upsertResources
+
+```typescript
+upsertResources(items: CourseWareItem[]): void;
+```
+
+> 自 v1.1.5 起新增。
+
+更新课件。
+
+| 参数    | 描述       |
+| :------ | :--------- |
+| `items` | 课件对象。 |
+
+## allResources
+
+```typescript
+allResources: MaterialDataResource[];
+```
+
+> 自 v1.1.5 起新增。
+
+所有课件。
+
+## initCourseWareProgress
+
+```typescript
+initCourseWareProgress: number;
+```
+
+> 自 v1.1.5 起新增。
+
+初始课件加载进度。
+
+## initCourseWareLoading
+
+```typescript
+initCourseWareLoading: boolean;
+```
+
+> 自 v1.1.5 起新增。
+
+是否正在加载初始课件。
+
+## initCourseWare
+
+```typescript
+initCourseWare: MaterialDataResource
+```
+
+> 自 v1.1.5 起新增。
+
+初识课件。
+
 ## downloadList
 
 ```typescript

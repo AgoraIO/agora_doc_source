@@ -2,6 +2,36 @@
 
 `BoardContext` 提供白板相关能力。
 
+## boardConnectionState
+
+```typescript
+boardConnectionState: string;
+```
+
+> 自 v1.1.5 起新增。
+
+白板连接状态。
+
+## joinBoard
+
+```typescript
+joinBoard: () => Promise<any>;
+```
+
+> 自 v1.1.5 起新增。
+
+加入白板房间。
+
+## leaveBoard
+
+```typescript
+leaveBoard: () => Promise<any>;
+```
+
+> 自 v1.1.5 起新增。
+
+离开白板房间。
+
 ## room
 
 ```typescript

@@ -2,6 +2,36 @@
 
 `MediaContext` 提供本地媒体设备控制相关能力。
 
+## enableMediaEncryption
+
+```typescript
+enableMediaEncryption(enabled: boolean, config: any): number;
+```
+
+> 自 v1.1.5 起新增。
+
+启用媒体流加密。
+
+## getAudioRecordingVolume
+
+```typescript
+getAudioRecordingVolume: () => number;
+```
+
+> 自 v1.1.5 起新增。
+
+获取麦克风采集的声音的音量。
+
+## getAudioPlaybackVolume
+
+```typescript
+getAudioPlaybackVolume: () => number;ng) => Promise<void>;
+```
+
+> 自 v1.1.5 起新增。
+
+获取扬声器播放的声音的音量。
+
 ## isNative
 
 ```typescript
@@ -16,6 +46,8 @@ isNative: boolean,
 cpuUsage: number,
 ```
 
+> 自 v1.1.5 起废弃。Agora 建议改用 `ClassroomStatsContext` 中的 `cpuUsage`。
+
 CPU 使用情况。
 
 ## networkQuality
@@ -23,6 +55,8 @@ CPU 使用情况。
 ```typescript
 networkQuality: string,
 ```
+
+> 自 v1.1.5 起废弃。Agora 建议改用 `ClassroomStatsContext` 中的 `networkQuality`。
 
 网络质量。
 
@@ -32,6 +66,8 @@ networkQuality: string,
 networkLatency: number,
 ```
 
+> 自 v1.1.5 起废弃。Agora 建议改用 `ClassroomStatsContext` 中的 `networkLatency`。
+
 网络延时（毫秒）。
 
 ## packetLostRate
@@ -39,6 +75,8 @@ networkLatency: number,
 ```typescript
 packetLostRate: number,
 ```
+
+> 自 v1.1.5 起废弃。Agora 建议改用 `ClassroomStatsContext` 中的 `packetLostRate`。
 
 网络丢包率（百分比）。
 
