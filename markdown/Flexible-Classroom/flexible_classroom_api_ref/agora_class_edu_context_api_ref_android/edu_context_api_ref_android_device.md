@@ -54,6 +54,18 @@ abstract fun setSpeakerEnable(enable: Boolean)
 | :------- | :--------------- |
 | `enable` | 扬声器是否开启。 |
 
+### setDeviceLifecycle
+
+```kotlin
+abstract fun setDeviceLifecycle(lifecycle: EduContextDeviceLifecycle)
+```
+
+根据宿主的生命周期设置设备的生命周期状态，例如可在应用退到后台时调用此方法关闭设备采集。
+
+| 参数        | 描述                                                   |
+| :---------- | :----------------------------------------------------- |
+| `lifecycle` | 设备的生命周期状态，详见 `EduContextDeviceLifecycle`。 |
+
 ## IDeviceHandler
 
 `IDeviceHandler` 类用于向 App 报告课中设备控制相关的事件回调。

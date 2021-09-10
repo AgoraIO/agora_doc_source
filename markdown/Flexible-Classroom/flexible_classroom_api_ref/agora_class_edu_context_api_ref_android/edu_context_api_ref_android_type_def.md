@@ -533,3 +533,19 @@ data class EduContextRenderConfig(
 | :----------- | :----------------------------------------------------------- |
 | `renderMode` | 视频渲染模式，详见 `EduContextRenderMode`。默认为 `HIDDEN`。 |
 | `mirrorMode` | 镜像模式，详见 `AgoraEduContextVideoMirrorMode`。默认为 `AUTO`。 |
+
+## EduContextDeviceLifecycle
+
+```kotlin
+enum class EduContextDeviceLifecycle(val value: Int) {
+    Stop(0),
+    Resume(1)
+}
+```
+
+设备的生命周期状态。
+
+| 参数     | 描述                                 |
+| :------- | :----------------------------------- |
+| `Stop`   | 停止设备采集，释放资源。             |
+| `Resume` | 将设备状态恢复至 `Stop` 之前的状态。 |

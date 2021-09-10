@@ -8,7 +8,8 @@
 isBeauty: boolean;
 ```
 
-> 自 v1.1.5 起新增。
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
 
 当前是否开启基础美颜。
 
@@ -18,7 +19,8 @@ isBeauty: boolean;
 setBeauty: (isBeauty: boolean) => void;
 ```
 
-> 自 v1.1.5 起新增。
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
 
 开启/关闭基础美颜功能。
 
@@ -32,7 +34,8 @@ setBeauty: (isBeauty: boolean) => void;
 whitening: number;
 ```
 
-> 自 v1.1.5 起新增。
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
 
 当前美白数值。
 
@@ -42,7 +45,8 @@ whitening: number;
 buffing: number;
 ```
 
-> 自 v1.1.5 起新增。
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
 
 当前磨皮数值。
 
@@ -52,7 +56,8 @@ buffing: number;
 ruddy: number;
 ```
 
-> 自 v1.1.5 起新增。
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
 
 当前红润数值。
 
@@ -62,7 +67,8 @@ ruddy: number;
 setWhitening: (whitening: number) => void;
 ```
 
-> 自 v1.1.5 起新增。
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
 
 设置美白数值。
 
@@ -76,7 +82,8 @@ setWhitening: (whitening: number) => void;
 setBuffing: (buffing: number) => void;
 ```
 
-> 自 v1.1.5 起新增。
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
 
 设置磨皮数值。
 
@@ -90,21 +97,14 @@ setBuffing: (buffing: number) => void;
 setRuddy: (ruddy: number) => void;
 ```
 
-> 自 v1.1.5 起新增。
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
 
 设置红润数值。
 
 | 参数    | 描述                                         |
 | :------ | :------------------------------------------- |
 | `ruddy` | 红润数值。取值范围为 0 到 100，默认值为 10。 |
-
-## setBeautyEffectOptions
-
-```typescript
-setBeautyEffectOptions: any;
-```
-
-> 自 v1.1.5 起新增。
 
 ## changeTestSpeaker
 
