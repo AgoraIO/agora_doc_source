@@ -1,5 +1,3 @@
-# PretestContext
-
 `PretestContext` 提供课前检测相关能力，用于检测摄像头、麦克风和扬声器是否正常工作。
 
 ## isBeauty

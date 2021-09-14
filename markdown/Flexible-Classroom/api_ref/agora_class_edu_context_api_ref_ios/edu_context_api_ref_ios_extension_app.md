@@ -1,4 +1,4 @@
-# Extion App Context
+# Extension App Context
 
 ### launchExtApp
 

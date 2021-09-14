@@ -1,5 +1,3 @@
-# GlobalContext
-
 `GlobalContext` 提供全局控制相关能力。
 
 ## region

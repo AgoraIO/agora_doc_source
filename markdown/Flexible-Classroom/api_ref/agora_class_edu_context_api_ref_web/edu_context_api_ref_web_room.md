@@ -1,5 +1,3 @@
-# RoomContext
-
 `RoomContext` 提供课堂管理相关能力。
 
 ## joined

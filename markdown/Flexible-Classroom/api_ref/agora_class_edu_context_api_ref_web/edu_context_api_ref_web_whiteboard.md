@@ -1,5 +1,3 @@
-# BoardContext
-
 `BoardContext` 提供白板相关能力。
 
 ## boardConnectionState

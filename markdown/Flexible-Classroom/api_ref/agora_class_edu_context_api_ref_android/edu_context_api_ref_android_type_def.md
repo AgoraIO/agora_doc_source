@@ -1,5 +1,3 @@
-# 类型定义
-
 本页列出 Edu Context 所使用的类型定义。
 
 ## WhiteboardApplianceType

@@ -1,5 +1,3 @@
-# ScreenShareContext
-
 `ScreenShareContext` 提供屏幕共享相关能力。
 
 ## nativeAppWindowItems
