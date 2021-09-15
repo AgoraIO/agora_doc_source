@@ -160,7 +160,7 @@
                     <stentry><xref keyref="adjustPlaybackSignalVolume"/></stentry>
                     <stentry><ph conkeyref="adjustPlaybackSignalVolume/shortdesc"/></stentry>
                 </strow>
-                <strow props="windows">
+                <strow props="windows mac">
                     <stentry><xref keyref="adjustLoopbackRecordingVolume"/></stentry>
                     <stentry><ph conkeyref="adjustLoopbackRecordingVolume/shortdesc"/></stentry>
                 </strow>
@@ -441,8 +441,8 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry><xref keyref="enableInEarMonitoring"/></stentry>
-                    <stentry><ph conkeyref="enableInEarMonitoring/shortdesc"/></stentry>
+                    <stentry><xref keyref="enableInEarMonitoring2"/></stentry>
+                    <stentry><ph conkeyref="enableInEarMonitoring2/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="setInEarMonitoringVolume"/></stentry>
@@ -1209,10 +1209,10 @@
                 </strow>
             </simpletable>
         </section>
-        <section id="camera_control">
+        <section id="camera_control" props="android ios windows">
             <title>摄像头管理</title>
             <note props="windows" type="attention">本组方法仅适用于 Android 和 iOS。</note>
-            <simpletable props="android ios windows">
+            <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -1245,7 +1245,7 @@
                     <stentry><xref keyref="setCameraTorchOn"/></stentry>
                     <stentry><ph conkeyref="setCameraTorchOn/shortdesc"/></stentry>
                 </strow>
-                <strow props="android windows">
+                <strow>
                     <stentry><xref keyref="isCameraFaceDetectSupported"/></stentry>
                     <stentry><ph conkeyref="isCameraFaceDetectSupported/shortdesc"/></stentry>
                 </strow>
@@ -1313,7 +1313,7 @@
                     <stentry><xref keyref="createDataStreamEx2"/></stentry>
                     <stentry><ph conkeyref="createDataStreamEx2/shortdesc"/></stentry>
                 </strow>
-                <strow props="windows">
+                <strow props="windows mac">
                     <stentry><xref keyref="enableLoopbackRecordingEx"/></stentry>
                     <stentry><ph conkeyref="enableLoopbackRecordingEx/shortdesc"/></stentry>
                 </strow>
@@ -1371,10 +1371,10 @@
                 </strow>
             </simpletable>
         </section>
-        <section id="audio_routing_control" props="android ios windows">
+        <section id="audio_routing_control">
             <title>音频路由</title>
             <p props="windows">该组方法仅适用于 Android 和 iOS 平台。</p>
-            <simpletable id="simpletable_ns1_shw_jqb">
+            <simpletable id="simpletable_ns1_shw_jqb" props="android ios windows">
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -1458,24 +1458,60 @@
                 </strow>
             </simpletable>
         </section>
-        <section props="mac" id="section_ts1_shw_jqb">
+        <section props="mac">
             <title>设备管理</title>
-            <simpletable id="simpletable_us1_shw_jqb">
+            <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
+                    <stentry><xref keyref="enumerateDevices"/></stentry>
+                    <stentry><ph conkeyref="enumerateDevices/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getDeviceInfo"/></stentry>
+                    <stentry><ph conkeyref="getDeviceInfo/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getDeviceVolume"/></stentry>
+                    <stentry><ph conkeyref="getDeviceVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
                     <stentry><xref keyref="monitorDeviceChange"/></stentry>
                     <stentry><ph conkeyref="monitorDeviceChange/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry><xref keyref=""/></stentry>
-                    <stentry><ph conkeyref="/shortdesc"/></stentry>
+                    <stentry><xref keyref="setDevice_IVideoDeviceCollection"/></stentry>
+                    <stentry><ph conkeyref="setDevice_IVideoDeviceCollection/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry><xref keyref=""/></stentry>
-                    <stentry><ph conkeyref="/shortdesc"/></stentry>
+                    <stentry><xref keyref="setDeviceVolume"/></stentry>
+                    <stentry><ph conkeyref="setDeviceVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="startAudioDeviceLoopbackTest"/></stentry>
+                    <stentry><ph conkeyref="startAudioDeviceLoopbackTest/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="startPlaybackDeviceTest"/></stentry>
+                    <stentry><ph conkeyref="startPlaybackDeviceTest/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="startRecordingDeviceTest"/></stentry>
+                    <stentry><ph conkeyref="startRecordingDeviceTest/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopAudioDeviceLoopbackTest"/></stentry>
+                    <stentry><ph conkeyref="stopAudioDeviceLoopbackTest/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopPlaybackDeviceTest"/></stentry>
+                    <stentry><ph conkeyref="stopPlaybackDeviceTest/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopRecordingDeviceTest"/></stentry>
+                    <stentry><ph conkeyref="stopRecordingDeviceTest/shortdesc"/></stentry>
                 </strow>
             </simpletable>
             <simpletable id="simpletable_vs1_shw_jqb">
@@ -1484,8 +1520,8 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry><xref keyref=""/></stentry>
-                    <stentry><ph conkeyref="/shortdesc"/></stentry>
+                    <stentry><xref keyref="stateChanged"/></stentry>
+                    <stentry><ph conkeyref="stateChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -1509,7 +1545,7 @@
                     <stentry><ph conkeyref="release_IVideoDeviceManager/shortdesc"/></stentry>
                 </strow>
             </simpletable>
-            <simpletable id="simpletable_vs1_shw_jqb">
+            <simpletable>
                 <sthead>
                     <stentry>事件</stentry>
                     <stentry>描述</stentry>
@@ -1707,7 +1743,7 @@
                 </strow>
             </simpletable>
         </section>
-        <section props="windows" id="miscellaneous_audio_control">
+        <section props="windows mac" id="miscellaneous_audio_control">
             <title>其他音频控制</title>
             <simpletable id="simpletable_ct1_shw_jqb">
                 <sthead>
