@@ -1,8 +1,8 @@
 本页提供 Agora Classroom SDK for Android 的 Kotlin API 参考。
 
-## AgoraEduSDK
+## AgoraClassSdk
 
-`AgoraEduSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
+`AgoraClassSdk` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
 
 ### version
 
@@ -19,7 +19,7 @@ SDK 版本号。
 ### setConfig 
 
 ```java
-public static void setConfig(AgoraEduSDKConfig agoraEduSDKConfig);
+public static void setConfig(AgoraClassSdkConfig);
 ```
 
 全局配置 SDK。
@@ -32,7 +32,7 @@ public static void setConfig(AgoraEduSDKConfig agoraEduSDKConfig);
 String appId = "XXX";
 // 是否开启护眼模式
 boolean eyeCare = false;
-AgoraEduSDK.setConfig(new AgoraEduSDKConfig(appId, eyeCare));
+AgoraClassSdk.setConfig(new AgoraClassSdkConfig(appId, eyeCare));
 ```
 
 **参数**
@@ -74,10 +74,14 @@ long startTime = System.currentTimeMillis() + 100;
 // 课堂持续时间，单位为秒，以第一个进入教室的用户传入的参数为准
 long duration = 310L;
 // 课堂所在区域，各客户端的区域必须一致，否则无法互通。
-String region = AgoraEduRegionStr.cn;
-AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfig(
-        userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration, region);
-AgoraEduClassRoom classRoom = AgoraEduSDK.launch(getApplicationContext(), agoraEduLaunchConfig, (state) -> {
+String region = AgoraEduRegion.cn;
+ 
+AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfignew AgoraEduLaunchConfig(
+    userName, userUuid, roomName, roomUuid, roleType,
+    roomType, rtmToken, startTime, duration, region, null, null,
+    AgoraBoardFitMode.Retain, streamState, AgoraEduLatencyLevel.AgoraEduLatencyLevelUltraLow,
+    null, null);
+AgoraClassSdk.launch(MainActivity2.this, agoraEduLaunchConfig, (state) -> {
     Log.e(TAG, "launch-课堂状态:" + state.name());
 });
 ```
@@ -94,10 +98,10 @@ AgoraEduClassRoom classRoom = AgoraEduSDK.launch(getApplicationContext(), agoraE
 
 `AgoraEduClassRoom` 类。
 
-### configCoursewares
+### configCourseWare
 
 ```java
-public static void configCoursewares(@NotNull List<AgoraEduCourseware> wares);
+public static void configCourseWare(@NotNull List<AgoraEduCourseware> coursewares);
 ```
 
 配置课件预加载。
@@ -135,10 +139,10 @@ configCoursewares(wares);
 | :------ | :----------------------------------------------------------- |
 | `wares` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
 
-### downloadCoursewares
+### downloadCourseWare
 
 ```java
-public static void downloadCoursewares(@NotNull Context context, @Nullable AgoraEduCoursewarePreloadListener listener)
+public static void downloadCourseWare(@NotNull Context context, @Nullable AgoraEduCoursewarePreloadListener listener)
         throws Exception;
 ```
 
@@ -171,10 +175,10 @@ downloadCoursewares(activityContext, new AgoraEduCoursewarePreloadListener() {
 | `context`  | App 的上下文环境。                                           |
 | `listener` | SDK 通过 [`AgoraEduCoursewarePreloadListener`](#agoraeducoursewarepreloadlistener) 类向 App 报告课件预加载相关的事件。 |
 
-### registerExtApps
+### registerExtensionApp
 
 ```java
-public static void registerExtApps(List<AgoraExtAppConfiguration> apps);
+public static void registerExtensionApp(List<AgoraExtAppConfiguration> apps);
 ```
 
 注册扩展应用 ExtApp。ExtApp 是灵动课堂 UIKit 的补充插件。详见[通过 ExtApp 自定义插件](./agora_class_ext_app_android?platform=Android)。
@@ -250,10 +254,10 @@ void onFailed(@NotNull AgoraEduCourseware ware);
 
 ## 类型定义
 
-### AgoraEduSDKConfig
+### AgoraClassSdkConfig
 
 ```java
-public class AgoraEduSDKConfig {
+public class AgoraClassSdkConfig {
     @NotNull
     private String appId;
     private int eyeCare;
@@ -521,7 +525,7 @@ public class Ppt {
 | `width`  | 页面宽度（pixel）。             |
 | `height` | 页面高度（pixel）。             |
 
-### AgoraEduRegionStr
+### AgoraEduRegion
 
 ```java
 object AgoraEduRegion {

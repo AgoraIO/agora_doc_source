@@ -14,14 +14,14 @@
 
 - 注册[环信即时通讯云](https://console.easemob.com/user/register)，并在环信开发者管理后台[创建应用](https://docs-im.easemob.com/im/quickstart/guide/experience#创建应用)。
 
-  <div class="altert info">如无环信即时通讯云账号，你仍可加入灵动课堂，但无法使用课堂中的消息聊天功能。</div>
+  <div class="alert info">如无环信即时通讯云账号，你仍可加入灵动课堂，但无法使用课堂中的消息聊天功能。</div>
 
 - 第三方云存储账号。灵动课堂中的以下功能需要使用第三方云存储：
 
   - 互动白板功能需要第三方云存储用于储存课堂文件。当前仅支持[阿里云 OSS](https://www.aliyun.com/product/oss)。
   - 录制功能需要第三方云存储录制文件。当前支持[阿里云 OSS](https://www.aliyun.com/product/oss)、[七牛云](https://www.qiniu.com/products/kodo)、[Amazon S3](https://aws.amazon.com/cn/s3/?nc2=h_m1)、[腾讯云](https://cloud.tencent.com/product/cos)、[金山云](https://www.ksyun.com/post/product/KS3.html)以及 [Microsoft Azure](https://azure.microsoft.com/zh-cn/)。
 
-  <div class="altert info">如无第三方云存储，你仍可加入课堂，但无法使用课堂白板中的课件上传功能。</div>
+  <div class="alert info">如无第三方云存储，你仍可加入课堂，但无法使用课堂白板中的课件上传功能。</div>
 
 ## 配置 aPaaS 服务
 
@@ -65,9 +65,9 @@
      }
      ```
 
-    **环信 IM JSON 示例**
+   **环信 IM JSON 示例**
 
-    <div class="alert note">点击<a href="#im">此处</a>查看字段详细介绍。</div>
+   <div class="alert note">点击<a href="#im">此处</a>查看字段详细介绍。</div>
    
      ```json
    {

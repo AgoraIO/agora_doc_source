@@ -2,15 +2,7 @@
 
 ## 技术原理
 
-下图展示了启动灵动课堂的基本流程。
-
-![](https://web-cdn.agora.io/docs-files/1626925692656)
-
-当你的 app 客户端请求加入灵动课堂时：
-
-1. 你的 app 客户端向 app 服务端申请 RTM Token。
-2. 你的 app 服务端使用 Agora App ID、App 证书和用户 ID 生成一个 RTM Token，返回给 app 客户端。详见[生成 RTM Token](/cn/Real-time-Messaging/token_server_rtm)。
-3. 你的 app 客户端调用 API 并传入用户 ID、房间 ID 和 RTM Token 启动灵动课堂。灵动课堂云服务会根据你传入的房间 ID 为该课题自动创建一个房间。
+~96d9aaf0-eb84-11eb-b768-51ffcd29c763~
 
 <a name="prerequisites"></a>
 ## 前提条件
@@ -56,9 +48,9 @@
 
    ![](https://web-cdn.agora.io/docs-files/1623315354864)
 
-   5. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
+5. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
 
-      ![](https://web-cdn.agora.io/docs-files/1622431132516)
+   ![](https://web-cdn.agora.io/docs-files/1622431132516)
 
 ## 后续步骤
 
@@ -66,9 +58,100 @@
 
 ## 更多信息
 
+<a name="sdk"></a>
+
+### 集成灵动课堂
+
+本节详细介绍如何将灵动课堂集成到你自己的 iOS 项目中。
+
+灵动课堂可分为 AgoraClassroomSDK、AgoraEduCore、AgoraEduUI、AgoraEduContext 四个 SDK，如下图所示。其中 AgoraClassroomSDK、AgoraEduUI、AgoraEduContext 在 Github 与 Cocoapods 上开源发布；AgoraEduCore 闭源，以二进制包在 Cocoapods 上发布。
+
+
+
+![edu-apaas-structure](/Users/lyy/github-repos/doc_source/markdown/Flexible-Classroom/images/edu-apaas-structure.png)
+
+#### 使用灵动课堂的默认 UI
+
+如果你无需修改灵动课堂的默认 UI，在你自己项目的 `Podfile` 文件中添加如下引用即可集成灵动课堂：
+
+```
+# Open source libs
+pod 'AgoraClassroomSDK_iOS', "1.1.5"
+pod 'AgoraEduContext', "1.1.5"
+pod 'AgoraEduUI', "1.1.5"
+pod 'AgoraUIEduBaseViews', "1.1.5"
+ 
+# Close source libs
+pod 'AgoraEduCore', "1.1.5.4"
+ 
+# Common libs
+pod 'AgoraUIBaseViews', '1.0.1'
+pod 'AgoraExtApp', '1.0.0'
+pod 'AgoraWidget', '1.0.0'
+ 
+# Widgets
+pod 'AgoraWidgets', "1.0.0"
+   
+# Third-party libs
+pod 'Protobuf', '3.17.0'
+pod "AFNetworking", "4.0.1"
+pod "CocoaLumberjack", "3.6.1"
+pod "AliyunOSSiOS", "2.10.8"
+pod "Whiteboard", "2.13.19"
+pod "AgoraRtcEngine_iOS", "3.4.6"
+pod "AgoraRtm_iOS", "1.4.8"
+```
+
+#### 需要自定义课堂 UI
+
+如果灵动课堂的默认 UI 无法满足你的需求，你需要自定义课堂 UI，则参考以下步骤将灵动课堂集成到你自己的项目中：
+
+1. 运行以下命令将 CloudClass-iOS 仓库克隆至本地：
+
+   ```bash
+   git clone https://github.com/AgoraIO-Community/CloudClass-iOS
+   ```
+
+3. 通过 `git remote add` 命令， 为 CloudClass-iOS 仓库添加一个远端仓库，指向你自己的仓库。
+
+3. 基于 release/apaas/1.1.5 分支创建一个你自己的分支，如 `edu_apaas_ui`，推向你自己的仓库。
+
+4. 在你自己项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 仓库中的 `AgoraClassroomSDK.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec`、`AgoraUIEduBaseViews.podspec` 以及其它依赖的库。
+
+   ```
+   # Open source libs
+   pod 'AgoraClassroomSDK', :path => '../SDKs/AgoraClassroomSDK/AgoraClassroomSDK.podspec'
+   pod 'AgoraEduContext', :path => '../SDKs/AgoraEduContext/AgoraEduContext.podspec'
+   pod 'AgoraEduUI', :path => '../SDKs/AgoraEduUI/AgoraEduUI.podspec'
+   pod 'AgoraUIEduBaseViews', :path => '../SDKs/Modules/AgoraUIEduBaseViews/AgoraUIEduBaseViews_Local.podspec'
+    
+   # Close source libs
+   pod 'AgoraEduCore', "1.1.5.4"
+   
+   # Common libs
+   pod 'AgoraUIBaseViews', '1.0.1'
+   pod 'AgoraExtApp', '1.0.0'
+   pod 'AgoraWidget', '1.0.0'
+    
+   # Widgets
+   pod 'AgoraWidgets', :path => '../Widgets/AgoraWidgets/AgoraWidgets.podspec'
+   pod 'ChatWidget', :path => '../Widgets/ChatWidget/ChatWidget.podspec', :subspecs => ['SOURCE']
+    
+   # Third-party libs
+   pod 'Protobuf', '3.17.0'
+   pod "AFNetworking", "4.0.1"
+   pod "CocoaLumberjack", "3.6.1"
+   pod "AliyunOSSiOS", "2.10.8"
+   pod "Whiteboard", "2.13.19"
+   pod "AgoraRtcEngine_iOS", "3.4.6"
+   pod "AgoraRtm_iOS", "1.4.8"
+   ```
+
+5. 后续你可在 `edu_apaas_ui`分支，参考[自定义课堂 UI 文档](/cn/agora-class/agora_class_custom_ui_ios?platform=iOS)自行修改灵动课堂的 UI，如更换颜色、调整布局。
+
 ### 集成 Agora Classroom SDK
 
-你可以参考以下步骤，通过 Gradle 将 Agora Classroom SDK 集成到你自己的 Android 项目中：
+你可以参考以下步骤，通过 [JitPack](https://jitpack.io/#AgoraIO-Community/CloudClass-Android) 将 Agora Classroom SDK 集成到你自己的 Android 项目中：
 
 1. 在项目的 **build.gradle** 文件中添加以下库：
 

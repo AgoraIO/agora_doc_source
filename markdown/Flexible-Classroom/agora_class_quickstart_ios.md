@@ -2,15 +2,7 @@
 
 ## 技术原理
 
-下图展示了启动灵动课堂的基本流程。
-
-![](https://web-cdn.agora.io/docs-files/1626925692656)
-
-当你的 app 客户端请求加入灵动课堂时：
-
-1. 你的 app 客户端向 app 服务端申请 RTM Token。
-2. 你的 app 服务端使用 Agora App ID、App 证书和用户 ID 生成一个 RTM Token，返回给 app 客户端。详见[生成 RTM Token](/cn/Real-time-Messaging/token_server_rtm)。
-3. 你的 app 客户端调用 API 并传入用户 ID、房间 ID 和 RTM Token 启动灵动课堂。灵动课堂云服务会根据你传入的房间 ID 为该课题自动创建一个房间。
+~96d9aaf0-eb84-11eb-b768-51ffcd29c763~
 
 <a name="prerequisites"></a>
 
@@ -59,33 +51,102 @@
 
    ![](https://web-cdn.agora.io/docs-files/1619164553801)
 
-## 后续步骤
-
-如果 Agora Classroom SDK 中默认的 UI 无法满足你的需求，你可以参考[自定义课堂 UI 文档](/cn/agora-class/agora_class_custom_ui_ios?platform=iOS)，获取 Agora Classroom SDK 的源码，自行修改灵动课堂的 UI，如更换颜色、调整布局。
-
 ## 更多信息
 
-### 集成 Agora Classroom SDK
+<a name="integrate"></a>
 
-你可以参考以下步骤，通过 CocoaPods 将 Agora Classroom SDK 集成到你自己的 iOS 项目中：
+### 集成灵动课堂
 
-1. 在终端里进入你的项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
+本节详细介绍如何将灵动课堂集成到你自己的 iOS 项目中。
 
-2. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
+灵动课堂可分为 AgoraClassroomSDK、AgoraEduCore、AgoraEduUI、AgoraEduContext 四个 SDK，如下图所示。其中 AgoraClassroomSDK、AgoraEduUI、AgoraEduContext 在 Github 与 Cocoapods 上开源发布；AgoraEduCore 闭源，以二进制包在 Cocoapods 上发布。
+
+![](https://web-cdn.agora.io/docs-files/1631700669140)
+
+<a name="default_ui"></a>
+
+#### 使用灵动课堂的默认 UI
+
+如果你无需修改灵动课堂的默认 UI，在你自己项目的 `Podfile` 文件中添加如下引用即可集成灵动课堂：
+
+```
+# Open source libs
+pod 'AgoraClassroomSDK_iOS', "1.1.5.1"
+pod 'AgoraEduContext', "1.1.5"
+pod 'AgoraEduUI', "1.1.5"
+pod 'AgoraUIEduBaseViews', "1.1.5"
+ 
+# Close source libs
+pod 'AgoraEduCore', "1.1.5.4"
+ 
+# Common libs
+pod 'AgoraUIBaseViews', '1.0.1'
+pod 'AgoraExtApp', '1.0.0'
+pod 'AgoraWidget', '1.0.0'
+ 
+# Widgets
+pod 'AgoraWidgets', "1.0.0"
+   
+# Third-party libs
+pod 'Protobuf', '3.17.0'
+pod "AFNetworking", "4.0.1"
+pod "CocoaLumberjack", "3.6.1"
+pod "AliyunOSSiOS", "2.10.8"
+pod "Whiteboard", "2.13.19"
+pod "AgoraRtcEngine_iOS", "3.4.6"
+pod "AgoraRtm_iOS", "1.4.8"
+```
+
+<a name="custom_ui"></a>
+
+#### 需要自定义课堂 UI
+
+如果灵动课堂的默认 UI 无法满足你的需求，你需要自定义课堂 UI，则参考以下步骤将灵动课堂集成到你自己的项目中：
+
+1. 运行以下命令将 CloudClass-iOS 仓库克隆至本地：
+
+   ```bash
+   git clone https://github.com/AgoraIO-Community/CloudClass-iOS
+   ```
+
+2. 通过 `git remote add` 命令， 为 CloudClass-iOS 仓库添加一个远端仓库，指向你自己项目的仓库。
+
+3. 基于 release/apaas/1.1.5 分支创建一个你自己的分支，如 `edu_apaas_ui`，推向你自己项目的仓库。
+
+4. 在你自己项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 仓库中的 `AgoraClassroomSDK.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec`、`AgoraUIEduBaseViews.podspec` 以及其它依赖的库。
 
    ```
-   # platform :ios, '10.0' use_frameworks!
-   target 'Your App' do
-       pod 'AgoraClassroomSDK'
-   end
+   # Open source libs
+   pod 'AgoraClassroomSDK_iOS', :path => '../SDKs/AgoraClassroomSDK/AgoraClassroomSDK_iOS.podspec'
+   pod 'AgoraEduContext', :path => '../SDKs/AgoraEduContext/AgoraEduContext.podspec'
+   pod 'AgoraEduUI', :path => '../SDKs/AgoraEduUI/AgoraEduUI.podspec'
+   pod 'AgoraUIEduBaseViews', :path => '../SDKs/Modules/AgoraUIEduBaseViews/AgoraUIEduBaseViews_Local.podspec'
+    
+   # Close source libs
+   pod 'AgoraEduCore', "1.1.5.4"
+   
+   # Common libs
+   pod 'AgoraUIBaseViews', '1.0.1'
+   pod 'AgoraExtApp', '1.0.0'
+   pod 'AgoraWidget', '1.0.0'
+    
+   # Widgets
+   pod 'AgoraWidgets', :path => '../Widgets/AgoraWidgets/AgoraWidgets.podspec'
+   pod 'ChatWidget', :path => '../Widgets/ChatWidget/ChatWidget.podspec', :subspecs => ['SOURCE']
+    
+   # Third-party libs
+   pod 'Protobuf', '3.17.0'
+   pod "AFNetworking", "4.0.1"
+   pod "CocoaLumberjack", "3.6.1"
+   pod "AliyunOSSiOS", "2.10.8"
+   pod "Whiteboard", "2.13.19"
+   pod "AgoraRtcEngine_iOS", "3.4.6"
+   pod "AgoraRtm_iOS", "1.4.8"
    ```
 
- <div class="alert info">1.0.0 版本请使用 <code>pod 'AgoraEduSDK'</code>。</div>
+5. 后续你可在 `edu_apaas_ui `分支，参考[自定义课堂 UI 文档](/cn/agora-class/agora_class_custom_ui_ios?platform=iOS)自行修改灵动课堂的 UI，如更换颜色、调整布局。
 
-3. 在终端内运行 `pod install` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。
-4. 打开新生成的 `xcworkspace` 文件。
-
-自 v1.1.0 起，灵动课堂 iOS 端基于 Swift 语言进行开发。如果开发者基于 Object-C 语言开发，需要参考以下步骤在项目中创建一个 Swift 文件，生成 Swift 环境。
-
-1. 在 Xcode 中打开 `ios/ProjectName.xcworkspace` 文件夹。
-2. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Next** > **Create**，新建一个空的 `File.swift` 文件。
+> 自 v1.1.0 起，灵动课堂 iOS 端基于 Swift 语言进行开发。如果开发者基于 Object-C 语言开发，需要参考以下步骤在项目中创建一个 Swift 文件，生成 Swift 环境。
+>
+> 1. 在 Xcode 中打开 `ios/ProjectName.xcworkspace` 文件夹。
+> 2. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Next** > **Create**，新建一个空的 `File.swift` 文件。

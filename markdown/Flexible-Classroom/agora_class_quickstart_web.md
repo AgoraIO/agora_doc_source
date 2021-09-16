@@ -101,15 +101,17 @@
 
 ![](https://web-cdn.agora.io/docs-files/1621308595366)
 
-## 后续步骤
 
-如果 Agora Classroom SDK 中默认的用户界面无法满足你的需求，你可以参考[自定义课堂 UI 文档]()，获取 Agora Classroom SDK 的源码，自行开发、调试和编译。
 
 ## 更多信息
 
-### 集成 Agora Classroom SDK
+### 集成灵动课堂
 
-你可选择以下任意一种方法将 Agora Classroom SDK 集成到你自己的 Web 项目中：
+本节详细介绍如何将灵动课堂集成到你自己的 Web 项目中。
+
+#### 使用灵动课堂的默认 UI
+
+如果你无需修改灵动课堂的默认 UI，可选择以下任意一种方法将完整的 Agora Classroom SDK 集成到你自己的 Web 项目中：
 
 - 使用 [npm](https://www.npmjs.com/package/agora-classroom-sdk) 集成 SDK：
 
@@ -128,5 +130,66 @@
 - 使用 CDN 获取 SDK。在你的项目的 HTML 文件中，添加以下代码：
 
   ```html
-  <script src="https://download.agora.io/edu-apaas/edu_sdk_1.1.2.js"></script>
+  <script src="https://download.agora.io/edu-apaas/release/edu_sdk_1.1.5.js"></script>
   ```
+
+#### 需要自定义课堂 UI
+
+如果灵动课堂的默认 UI 无法满足你的需求，你需要自定义课堂 UI，则参考以下步骤将灵动课堂集成到你自己的项目中：
+
+1. 运行以下命令将 Agora 提供的灵动课堂项目 CloudClass-Desktop 克隆至本地：
+
+   ```
+   git clone https://github.com/AgoraIO-Community/CloudClass-Desktop.git
+   ```
+
+2. 切换至 运行以下命令安装依赖：
+
+   ```
+   # Install all dependencies via lerna and npm
+   yarn bootstrap
+   ```
+
+3. 将 `.env.example` 拷贝至 `packages/agora-classroom-sdk` 目录下，并填写 Agora App ID 和 App 证书。
+
+   ```
+   # Copy config template to agora-classroom-sdk project
+   cp .env.example packages/agora-classroom-sdk/.env
+   ```
+
+4. 
+
+5. 参考[自定义课堂 UI 文档]()，。
+
+   ```
+   yarn dev
+   yarn build:ui-kit
+   yarn build:classroom:sdk
+   ```
+
+   
+
+
+
+## config
+
+```
+
+
+
+# fill the config with your agora.io development environment
+```
+
+## run
+
+```
+
+```
+
+## build classroom sdk
+
+```
+
+```
+
+如果 Agora Classroom SDK 中默认的用户界面无法满足你的需求，你可以
