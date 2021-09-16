@@ -12,8 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public abstract int pushExternalAudioFrame(ByteBuffer data, long timestamp, int sourceId);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameNSData:(NSData * _Nonnull)data sourceId:(NSInteger)sourceId timestamp:(NSTimeInterval)timestamp;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -21,13 +21,25 @@
                 <codeblock props="flutter" outputclass="language-dart"/>
         </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
-       <plentry>
+       <plentry props="windows">
   <pt>frame</pt>
   <pd>
-      <p>Pointers to the audio frame. See <xref keyref="AudioFrame"/>.</p>
+      <p>Pointers to the audio frame. For details, see <xref keyref="AudioFrame"/>.</p>
   </pd>
+       </plentry>
+       <plentry props="android ios mac" conkeyref="pushAudioFrame1/data">
+           <pt/>
+           <pd/>
+       </plentry>
+       <plentry props="android ios mac">
+           <pt>sourceId</pt>
+           <pd>The audio track ID. You can set it as an integer between 0 and the value of <parmname>sourceNumber</parmname> in <xref keyref="setExternalAudioSource2"/>-1.</pd>
+       </plentry>
+       <plentry props="android ios mac" conkeyref="pushAudioFrame1/time">
+           <pt/>
+           <pd/>
        </plentry>
    </parml>
         </section>

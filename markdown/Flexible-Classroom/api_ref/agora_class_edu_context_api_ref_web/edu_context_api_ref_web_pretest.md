@@ -121,7 +121,7 @@ changeTestSpeaker: (deviceId: string) => Promise<void>;
 ## cameraList
 
 ```typescript
-cameraList: any[],
+cameraList: array,
 ```
 
 摄像头列表。
@@ -129,7 +129,7 @@ cameraList: any[],
 ## microphoneList
 
 ```typescript
-microphoneList: any[],
+microphoneList: array,
 ```
 
 麦克风列表。
@@ -137,7 +137,7 @@ microphoneList: any[],
 ## speakerList
 
 ```typescript
-speakerList: any[],
+speakerList: array,
 ```
 
 扬声器列表。
@@ -205,14 +205,12 @@ setMirror(mirror: boolean): void
 microphoneLevel: number,
 ```
 
-> 自 v1.1.2 起废弃。Agora 建议使用 `VolumeContext` 中的 `microphoneLevel`。
-
 当前麦克风音量。取值范围为 0 到 20。
 
 ## changeTestSpeakerVolume
 
 ```typescript
-changeTestSpeakerVolume: (value: any) => Promise<void>
+async changeTestSpeakerVolume(value: any): void
 ```
 
 调整扬声器的音量。
@@ -220,7 +218,7 @@ changeTestSpeakerVolume: (value: any) => Promise<void>
 ## changeTestMicrophoneVolume
 
 ```typescript
-changeTestMicrophoneVolume: (deviceId: string) => Promise<void>,
+async changeTestMicrophoneVolume(value: any): void
 ```
 
 调整麦克风的音量。
@@ -228,7 +226,7 @@ changeTestMicrophoneVolume: (deviceId: string) => Promise<void>,
 ## changeTestCamera
 
 ```typescript
-changeTestCamera: (deviceId: string) => Promise<void>,
+async changeTestCamera(deviceId: string): void
 ```
 
 切换摄像头。
@@ -236,7 +234,7 @@ changeTestCamera: (deviceId: string) => Promise<void>,
 ## changeTestMicrophone
 
 ```typescript
-changeTestMicrophone: (deviceId: string) => Promise<void>,
+async changeTestMicrophone(deviceId: string): void
 ```
 
 切换麦克风。
@@ -244,7 +242,7 @@ changeTestMicrophone: (deviceId: string) => Promise<void>,
 ## startPretestCamera
 
 ```typescript
-startPretestCamera: () => Promise<void>,
+async startPretestCamera(): void
 ```
 
 开启摄像头。
@@ -252,7 +250,7 @@ startPretestCamera: () => Promise<void>,
 ## startPretestMicrophone
 
 ```typescript
-startPretestMicrophone: (payload: { enableRecording: boolean; }) => Promise<void>,
+async startPretestMicrophone(): void
 ```
 
 开启麦克风。
@@ -260,7 +258,7 @@ startPretestMicrophone: (payload: { enableRecording: boolean; }) => Promise<void
 ## stopPretestCamera
 
 ```typescript
-stopPretestCamera: () => void,
+async stopPretestCamera(): void
 ```
 
 关闭摄像头。
@@ -268,25 +266,7 @@ stopPretestCamera: () => void,
 ## stopPretestMicrophone
 
 ```typescript
-stopPretestMicrophone: () => void,
+async stopPretestMicrophone():void
 ```
 
 关闭麦克风。
-
-## pretestCameraRenderer
-
-```typescript
-pretestCameraRenderer: LocalUserRenderer | undefined,
-```
-
-课前检测阶段的摄像头渲染器。
-
-## pretestNoticeChannel
-
-```typescript
-pretestNoticeChannel: Subject<any>;
-```
-
-> 自 v1.1.2 起新增。
-
-设备检测频道通知。

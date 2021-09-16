@@ -2,18 +2,9 @@
 
 ## 技术原理
 
-下图展示了启动灵动课堂的基本流程。
-
-![](https://web-cdn.agora.io/docs-files/1626925692656)
-
-当你的 app 客户端请求加入灵动课堂时：
-
-1. 你的 app 客户端向 app 服务端申请 RTM Token。
-2. 你的 app 服务端使用 Agora App ID、App 证书和用户 ID 生成一个 RTM Token，返回给 app 客户端。详见[生成 RTM Token](/cn/Real-time-Messaging/token_server_rtm)。
-3. 你的 app 客户端调用 API 并传入用户 ID、房间 ID 和 RTM Token 启动灵动课堂。灵动课堂云服务会根据你传入的房间 ID 为该课题自动创建一个房间。
+~96d9aaf0-eb84-11eb-b768-51ffcd29c763~
 
 <a name="prerequisites"></a>
-
 ## 前提条件
 
 - 已在 Agora 控制台创建 Agora 项目，获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id)、[App 证书](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6)并[配置 aPaaS 服务](/cn/agora-class/agora_class_prep?platform=Web)。
@@ -39,8 +30,8 @@
 在你的 Web 项目里启动灵动课堂，需进行以下步骤：
 
 1. 通过 CDN 链接将 Agora Classroom SDK 集成到你的项目中。
-2. 调用 [AgoraEduSDK.config]() 方法全局配置 SDK。
-3. 调用 [AgoraEduSDK.launch]() 方法启动灵动课堂。
+2. 调用 [AgoraEduSDK.config](/cn/agora-class/agora_class_api_ref_web?platform=Web#config) 方法全局配置 SDK。
+3. 调用 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法启动灵动课堂。
 
 你可以将以下代码复制到 `index.html` 文件，实现以上 API 的调用逻辑。复制时需要将 `launch` 方法中传的 `appID`  和 `rtmToken  ` 分别替换为[你的 App ID 和临时 RTM Token](#prerequisites)，并确保 `userUuid` 和你在生成临时 RTM Token 时使用的用户 ID 保持一致。
 
@@ -53,7 +44,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AgoraFlexibleClassroomDemo</title>
   <!-- 此处集成 Agora Classroom SDK -->
-  <script src="https://download.agora.io/edu-apaas/edu_sdk_1.1.2.js"></script>
+  <script src="https://download.agora.io/edu-apaas/release/edu_sdk_1.1.2.3.js"></script>
 </head>
 
 <body>
@@ -101,17 +92,16 @@
 
 ![](https://web-cdn.agora.io/docs-files/1621308595366)
 
+## 后续步骤
 
+如果 Agora Classroom SDK 中默认的用户界面无法满足你的需求，你可以参考[自定义课堂 UI 文档](/cn/agora-class/agora_class_custom_ui_web?platform=Web)，获取 Agora Classroom SDK 的源码，自行开发、调试和编译。
 
 ## 更多信息
 
-### 集成灵动课堂
+<a name="sdk"></a>
+### 集成 Agora Classroom SDK
 
-本节详细介绍如何将灵动课堂集成到你自己的 Web 项目中。
-
-#### 使用灵动课堂的默认 UI
-
-如果你无需修改灵动课堂的默认 UI，可选择以下任意一种方法将完整的 Agora Classroom SDK 集成到你自己的 Web 项目中：
+你可选择以下任意一种方法将 Agora Classroom SDK 集成到你自己的 Web 项目中：
 
 - 使用 [npm](https://www.npmjs.com/package/agora-classroom-sdk) 集成 SDK：
 
@@ -132,64 +122,3 @@
   ```html
   <script src="https://download.agora.io/edu-apaas/release/edu_sdk_1.1.5.js"></script>
   ```
-
-#### 需要自定义课堂 UI
-
-如果灵动课堂的默认 UI 无法满足你的需求，你需要自定义课堂 UI，则参考以下步骤将灵动课堂集成到你自己的项目中：
-
-1. 运行以下命令将 Agora 提供的灵动课堂项目 CloudClass-Desktop 克隆至本地：
-
-   ```
-   git clone https://github.com/AgoraIO-Community/CloudClass-Desktop.git
-   ```
-
-2. 切换至 运行以下命令安装依赖：
-
-   ```
-   # Install all dependencies via lerna and npm
-   yarn bootstrap
-   ```
-
-3. 将 `.env.example` 拷贝至 `packages/agora-classroom-sdk` 目录下，并填写 Agora App ID 和 App 证书。
-
-   ```
-   # Copy config template to agora-classroom-sdk project
-   cp .env.example packages/agora-classroom-sdk/.env
-   ```
-
-4. 
-
-5. 参考[自定义课堂 UI 文档]()，。
-
-   ```
-   yarn dev
-   yarn build:ui-kit
-   yarn build:classroom:sdk
-   ```
-
-   
-
-
-
-## config
-
-```
-
-
-
-# fill the config with your agora.io development environment
-```
-
-## run
-
-```
-
-```
-
-## build classroom sdk
-
-```
-
-```
-
-如果 Agora Classroom SDK 中默认的用户界面无法满足你的需求，你可以

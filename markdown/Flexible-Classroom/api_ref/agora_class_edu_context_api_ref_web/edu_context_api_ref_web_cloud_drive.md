@@ -167,4 +167,3 @@ closeMaterial: (resourceUuid: string) => void,
 ```
 
 关闭课件。
-

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_channelmediaoptions">
+    <title><ph keyref="ChannelMediaOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc">频道媒体设置选项。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class ChannelMediaOptions {
+  public Boolean publishCameraTrack;
+  public Boolean publishScreenTrack;
+  public Boolean publishCustomAudioTrack;
+  public Boolean publishCustomAudioTrackEnableAec;
+  public Boolean publishCustomVideoTrack;
+  public Boolean publishEncodedVideoTrack;
+  public Boolean publishMediaPlayerAudioTrack;
+  public Boolean publishMediaPlayerVideoTrack;
+  public Integer publishMediaPlayerId;
+  public Boolean publishAudioTrack;
+  public Boolean autoSubscribeAudio;
+  public Boolean autoSubscribeVideo;
+  public Boolean enableAudioRecordingOrPlayout;
+  public Integer clientRoleType;
+  public Integer defaultVideoStreamType;
+  public Integer channelProfile;
+  public Integer audioDelayMs;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
+
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCameraTrack;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenTrack;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrack;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrackEnableAec;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomVideoTrack;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishEncodedVideoTrack;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerAudioTrack;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerVideoTrack;
+@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishMediaPlayerId;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishAudioTrack;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeAudio;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeVideo;
+@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable enableAudioRecordingOrPlayout;
+@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable clientRoleType;
+@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable defaultVideoStreamType;
+@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable channelProfile;
+@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable audioDelayMs;
+@end</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">struct ChannelMediaOptions {
+  Optional&lt;bool> publishCameraTrack;
+  Optional&lt;bool> publishAudioTrack;
+  Optional&lt;bool> publishScreenTrack;
+  Optional&lt;bool> publishCustomAudioTrack;
+  Optional&lt;bool> publishCustomVideoTrack;
+  Optional&lt;bool> publishEncodedVideoTrack;
+  Optional&lt;bool> publishMediaPlayerAudioTrack;
+  Optional&lt;bool> publishMediaPlayerVideoTrack;
+  Optional&lt;bool> autoSubscribeAudio;
+  Optional&lt;bool> autoSubscribeVideo;
+  Optional&lt;bool> enableAudioRecordingOrPlayout;
+  Optional&lt;int> publishMediaPlayerId;
+  Optional&lt;CLIENT_ROLE_TYPE> clientRoleType;
+  Optional&lt;VIDEO_STREAM_TYPE> defaultVideoStreamType;
+  Optional&lt;CHANNEL_PROFILE_TYPE> channelProfile;
+  Optional&lt;int> audioDelayMs;
+  ChannelMediaOptions() {}
+  ~ChannelMediaOptions() {}
+...
+};
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            </p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+                <plentry>
+                    <pt>publishCameraTrack</pt>
+                    <pd>设置是否发布摄像头采集的视频：<ul id="ul_vx5_np5_3qb">
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）发布摄像头采集的视频</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布摄像头采集的视频</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>publishAudioTrack</pt>
+                    <pd>设置是否发布采集到的音频：<ul>
+                            <li><codeph><ph keyref="true"/></codeph>：（默认）发布采集到的音频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布采集到的音频。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>publishScreenTrack</pt>
+                    <pd>
+                        <p>设置是否发布屏幕采集的视频：<ul>
+                                <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
+                                <li><codeph><ph keyref="false"/></codeph>：（默认）不发布屏幕采集到的视频。</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>publishCustomAudioTrack</pt>
+                    <pd>设置是否发布自定义采集的音频：<ul>
+                            <li><codeph><ph keyref="true"/></codeph>：发布自定义采集到的音频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不发布自定义采集到的音频。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>publishCustomVideoTrack</pt>
+                    <pd>设置是否发布自定义采集的视频：<ul>
+                            <li><codeph><ph keyref="true"/></codeph>：发布自定义采集的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不发布自定义采集到的视频。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>publishEncodedVideoTrack</pt>
+                    <pd>设置是否发布编码后的视频：<ul id="ul_ljg_4q5_3qb">
+                            <li><codeph><ph keyref="true"/></codeph>：发布编码后的视频 。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不发布编码后的视频。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>publishMediaPlayerAudioTrack</pt>
+                    <pd>设置是否发布媒体播放器的音频： <ul id="ul_gr3_rq5_3qb">
+                            <li><codeph><ph keyref="true"/></codeph>：发布媒体播放器的音频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不发布媒体播放器的音频。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>publishMediaPlayerVideoTrack</pt>
+                    <pd>设置是否发布媒体播放器的视频： <ul id="ul_gtd_tq5_3qb">
+                            <li><codeph><ph keyref="true"/></codeph>：发布媒体播放器的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不发布媒体播放器的视频。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>autoSubscribeAudio</pt>
+                    <pd>设置是否自动订阅所有音频流：  <ul id="ul_gxf_vq5_3qb">
+                            <li><codeph><ph keyref="true"/></codeph>：（默认）自动订阅所有音频流。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不自动订阅任何音频流。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>autoSubscribeVideo</pt>
+                    <pd>设置是否自动订阅所有视频流：  <ul id="ul_gfh_xq5_3qb">
+                            <li><codeph><ph keyref="true"/></codeph>：自动订阅所有视频流。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不自动订阅任何视频流。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>publishMediaPlayerId</pt>
+                    <pd>待发布的媒体播放器的 ID。默认值为 0。</pd>
+                </plentry>
+                <plentry>
+                    <pt>clientRoleType</pt>
+                    <pd conkeyref="setClientRole1/clientrole"/>
+                </plentry>
+                <plentry>
+                    <pt>defaultVideoStreamType</pt>
+                    <pd conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype"/>
+                </plentry>
+                <plentry>
+                    <pt>channelProfile</pt>
+                    <pd conkeyref="setChannelProfile/channelprofiletype"/>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

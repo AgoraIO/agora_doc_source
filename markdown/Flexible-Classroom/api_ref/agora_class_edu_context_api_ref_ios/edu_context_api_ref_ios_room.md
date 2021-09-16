@@ -62,6 +62,7 @@ func registerEventHandler(_ handler: AgoraEduRoomHandler)
 | :-------- | :------------------------------ |
 | `handler` | 详见 `AgoraEduRoomHandler` 类。 |
 
+
 ## AgoraEduRoomHandler
 
 `AgoraEduRoomHandler` 类用于向 App 报告教室相关的事件回调。
@@ -168,7 +169,7 @@ func registerEventHandler(_ handler: AgoraEduRoomHandler)
 @objc optional func onShowErrorInfo(_ error: AgoraEduContextError)
 ```
 
-报告上课过程中的错误信息。
+上课过程中的错误信息。
 
 | 参数    | 描述                                    |
 | :------ | :-------------------------------------- |

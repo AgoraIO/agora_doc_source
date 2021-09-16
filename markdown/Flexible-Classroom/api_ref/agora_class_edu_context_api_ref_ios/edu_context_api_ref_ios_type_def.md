@@ -20,21 +20,20 @@
 
 ```swift
 @objc public enum AgoraEduContextApplianceType: Int {
-    case select, pen, rect, circle, line, eraser, clicker
+    case select, pen, rect, circle, line, eraser
 }
 ```
 
 白板基础工具类型。
 
-| 参数      | 描述                                          |
-| :-------- | :-------------------------------------------- |
-| `select`  | 选择工具。                                    |
-| `pen`     | 画笔。                                        |
-| `rect`    | 矩形。                                        |
-| `circle`  | 圆形。                                        |
-| `line`    | 线条。                                        |
-| `eraser`  | 橡皮擦。                                      |
-| `clicker` | 点选工具。用于点击和选择 HTML5 课件中的内容。 |
+| 参数     | 描述     |
+| :------- | :------- |
+| `select` | 选择器。 |
+| `pen`    | 画笔。   |
+| `rect`   | 矩形。   |
+| `circle` | 圆形。   |
+| `line`   | 线条。   |
+| `eraser` | 橡皮擦。 |
 
 
 ## AgoraEduContextRoomInfo
@@ -76,7 +75,7 @@
 
 ```swift
 @objc public enum AgoraEduContextAppType: Int {
-    case oneToOne = 0, lecture = 2, small = 4
+    case oneToOne = 0, small = 4
 }
 ```
 
@@ -164,7 +163,7 @@ RTM 连接状态。
 
 ```swift
 @objcMembers public class AgoraEduContextUserDetailInfo: NSObject {
-    public var user: AgoraEduContextUserInfo
+    public var user: AgoraEduContextUserInfo?
     public var isSelf: Bool = true
     public var streamUuid: String = ""
     public var onLine: Bool = false
@@ -200,7 +199,7 @@ RTM 连接状态。
 
 ```swift
 @objc public enum AgoraEduContextDeviceState: Int {
-    case notAvailable, available, close
+    case notAvailable, available
 }
 ```
 
@@ -210,7 +209,6 @@ RTM 连接状态。
 | :------------ | :------------- |
 | `notAvailable` | 设备不可用。   |
 | `available`   | 设备可用。     |
-| `close` | 设备被关闭。 |
 
 ## AgoraEduContextChatInfo
 

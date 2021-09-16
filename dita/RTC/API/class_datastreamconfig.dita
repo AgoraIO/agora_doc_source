@@ -6,9 +6,15 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">struct DataStreamConfig {
+                <codeblock props="android" outputclass="language-java">public class DataStreamConfig {
+  public boolean syncWithAudio = false;
+  public boolean ordered = false;
+}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraDataStreamConfig: NSObject
+@property (assign, nonatomic) BOOL ordered;
+@property (assign, nonatomic) BOOL syncWithAudio;
+@end</codeblock>
+                <codeblock props="windows unity" outputclass="language-cpp">struct DataStreamConfig {
     bool syncWithAudio;
     bool ordered;
     };</codeblock>
@@ -16,7 +22,6 @@
   syncWithAudio: boolean;
   ordered: boolean;
 }</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>

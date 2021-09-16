@@ -12,8 +12,8 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">virtual int setLocalVoiceReverb(AUDIO_REVERB_TYPE reverbKey, int value) = 0;</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalVoiceReverbOfType:(AgoraAudioReverbType)reverbType withValue:(NSInteger)value;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoiceReverb(AUDIO_REVERB_TYPE reverbKey, int value) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">setLocalVoiceReverb(reverbKey: AUDIO_REVERB_TYPE, value: number): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -24,10 +24,11 @@
         <section id="detailed_desc">
    <p>You can call this method either before or after joining a channel.</p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt>reverbKey</pt>
+           <pt props="android windows">reverbKey</pt>
+           <pt props="ios mac">reverbType</pt>
   <pd>The reverberation key. Agora provides 5 reverberation keys: <xref keyref="AUDIO_REVERB_TYPE"/>.</pd>
        </plentry>
        <plentry>

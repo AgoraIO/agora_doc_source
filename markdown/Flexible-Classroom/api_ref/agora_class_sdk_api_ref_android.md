@@ -585,4 +585,3 @@ enum class EduMirrorMode(val value: Int) {
 | `AUTO`     | SDK 默认关闭镜像模式。 |
 | `ENABLED`  | 开启镜像模式。         |
 | `DISABLED` | 关闭镜像模式。         |
-

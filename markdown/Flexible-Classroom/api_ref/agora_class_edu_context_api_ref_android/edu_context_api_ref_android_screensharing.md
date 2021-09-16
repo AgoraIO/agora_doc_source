@@ -5,14 +5,14 @@
 ### setScreenShareState
 
 ```kotlin
-abstract fun setScreenShareState(state: AgoraScreenShareState)
+abstract fun setScreenShareState(sharing: Boolean)
 ```
 
 开启或关闭屏幕共享。
 
-| 参数    | 描述                                         |
-| :------ | :------------------------------------------- |
-| `state` | 屏幕共享状态，详见 `AgoraScreenShareState`。 |
+| 参数      | 描述               |
+| :-------- | :----------------- |
+| `sharing` | 是否开启屏幕共享。 |
 
 ### renderScreenShare
 
@@ -60,16 +60,4 @@ fun onScreenShareTip(tips: String)
 | 参数   | 描述       |
 | :----- | :--------- |
 | `tips` | 提示信息。 |
-
-### onSelectScreenShare
-
-```kotlin
-fun onSelectScreenShare(select: Boolean)
-```
-
-提示屏幕共享标签是否被选中。
-
-| 参数     | 描述                     |
-| :------- | :----------------------- |
-| `select` | 屏幕共享标签是否被选中。 |
 

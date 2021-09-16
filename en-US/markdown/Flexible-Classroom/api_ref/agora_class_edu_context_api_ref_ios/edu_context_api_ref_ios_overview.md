@@ -1,21 +1,17 @@
 ## Overview
 
-Agora Edu Context provides methods and callbacks for developers to implement the modular features in Flexible Classroom.
+Agora Edu Context enables developers to implement the functions in the Flexible Classroom.
 
-![](https://web-cdn.agora.io/docs-files/1623761240753)
+Different contexts represent different function modules in the Flexible Classroom. Each context contains methods for the app to call and also reports event callbacks to the app.
 
-Agora provides the following contexts:
+The Agora Classroom SDK provides the following contexts:
 
-- Whiteboard Context, including:
-  - General control over the whiteboard
-  - The whiteboard basic editing tools
-  - The whiteboard page controller
-- Chat Context: Real-time text chat
-- Room Context: Classroom management
-- Hands-up Context: The feature of students "raise their hands" for permission to speak
-- Screenshare Context: Screen sharing
-- User List Context: User management
-- Video Context: Real-time audio and video interaction
+- Whiteboard Context: Whiteboard.
+- Chat Context: Chat.
+- Room Context: Classroom management.
+- Hands-up Context: Hand raising.
+- Screenshare Context: Screen sharing.
+- User List Context: User list.
 
 ## AgoraEduContextPool
 
@@ -23,13 +19,23 @@ The edu context pool interface. Use this interface to implement all the function
 
 ```swift
 public protocol AgoraEduContextPool {
+    // General control over the whiteboard
     var whiteBoard: AgoraEduWhiteBoardContext { get }
+    // The whiteboard basic editing tools
     var whiteBoardTool: AgoraEduWhiteBoardToolContext { get }
+    // The whiteboard page controller
     var whiteBoardPageControl: AgoraEduWhiteBoardPageControlContext { get }
+    // Classroom management
     var room: AgoraEduRoomContext {get
+    // Chat
     var chat: AgoraEduMessageContext { get }
+    // User list
     var user: AgoraEduUserContext { get }
+    // Hand raising
     var handsUp: AgoraEduHandsUpContext {get}
+    // Screen sharing
     var shareScreen: AgoraEduScreenShareContext { get }
+    // Extension application
+    var extApp: AgoraEduExtAppContext { get }
 }
 ```

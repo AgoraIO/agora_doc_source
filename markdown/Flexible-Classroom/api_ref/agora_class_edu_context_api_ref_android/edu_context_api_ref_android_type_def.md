@@ -4,33 +4,32 @@
 
 ```kotlin
 enum class WhiteboardApplianceType {
-    Select, Pen, Rect, Circle, Line, Eraser, Text, Clicker;
+    Select, Pen, Rect, Circle, Line, Eraser, Text;
 }
 ```
 
 白板基础工具类型。
 
-| 参数      | 描述                                          |
-| :-------- | :-------------------------------------------- |
-| `Select`  | 选择工具。                                    |
-| `Pen`     | 画笔。                                        |
-| `Rect`    | 矩形。                                        |
-| `Circle`  | 圆形。                                        |
-| `Line`    | 线条。                                        |
-| `Eraser`  | 橡皮擦。                                      |
-| `Text`    | 文本框。                                      |
-| `Clicker` | 点选工具。用于点击和选择 HTML5 课件中的内容。 |
+| 参数     | 描述     |
+| :------- | :------- |
+| `Select` | 选择器。 |
+| `Pen`    | 画笔。   |
+| `Rect`   | 矩形。   |
+| `Circle` | 圆形。   |
+| `Line`   | 线条。   |
+| `Eraser` | 橡皮擦。 |
+| `Text`   | 文本框。 |
 
 ## WhiteboardDrawingConfig
 
 ```kotlin
 data class WhiteboardDrawingConfig(
-        var activeAppliance: WhiteboardApplianceType = WhiteboardApplianceType.Clicker,
+        var activeAppliance: AgoraUIApplianceType = AgoraUIApplianceType.Select,
         var color: Int = Color.WHITE,
         var fontSize: Int = 22,
-        var thick: Int = 4) {
-
-    fun set(config: WhiteboardDrawingConfig) {
+        var thick: Int = 0) {
+ 
+    fun set(config: AgoraUIDrawingConfig) {
         this.activeAppliance = config.activeAppliance
         this.color = config.color
         this.fontSize = config.fontSize
@@ -69,11 +68,11 @@ enum class EduContextNetworkState {
 
 ```kotlin
 enum class EduContextConnectionState {
-    Disconnected(1),
-    Connecting(2),
-    Connected(3),
-    Reconnecting(4),
-    Aborted(5);
+    Disconnected,
+    Connecting,
+    Connected,
+    Reconnecting,
+    Aborted
 }
 ```
 
@@ -155,7 +154,7 @@ data class EduContextUserInfo(
 )
 ```
 
-用户基本信息。
+用户信息。
 
 | 参数         | 描述                                  |
 | :----------- | :------------------------------------ |
@@ -172,11 +171,10 @@ data class EduContextUserDetailInfo(val user: EduContextUserInfo, val streamUuid
     var onLine: Boolean = false
     var coHost: Boolean = false
     var boardGranted: Boolean = false
-    var cameraState: EduContextDeviceState = EduContextDeviceState.UnAvailable
-    var microState: EduContextDeviceState = EduContextDeviceState.UnAvailable
+    var cameraState: DeviceState = DeviceState.UnAvailable
+    var microState: DeviceState = DeviceState.UnAvailable
     var enableVideo: Boolean = false
     var enableAudio: Boolean = false
-    var silence: Boolean = false
     var rewardCount: Int = -1
 }
 ```
@@ -196,13 +194,13 @@ data class EduContextUserDetailInfo(val user: EduContextUserInfo, val streamUuid
 | `silence`      | 是否拥有消息聊天的权限。                       |
 | `rewardCount`  | 奖励数量。                                     |
 
-## EduContextDeviceState
+## DeviceState
 
 ```kotlin
-enum class EduContextDeviceState(val value: Int) {
+enum class DeviceState(val value: Int) {
     UnAvailable(0),
     Available(1),
-    Closed(2),
+    Closed(2)
 }
 ```
 
@@ -222,7 +220,7 @@ data class EduContextChatItem(
         var uid: String = "",
         var role: Int = EduContextUserRole.Student.value,
         var message: String = "",
-        var messageId: String = "",
+        var messageId: Int = 0,
         var type: EduContextChatItemType = EduContextChatItemType.Text,
         var source: EduContextChatSource = EduContextChatSource.Remote,
         var state: EduContextChatState = EduContextChatState.Default,

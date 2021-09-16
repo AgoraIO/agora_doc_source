@@ -1,5 +1,7 @@
 # Extension App Context
 
+## AgoraExtAppProtocol
+
 ### launchExtApp
 
 ```kotlin

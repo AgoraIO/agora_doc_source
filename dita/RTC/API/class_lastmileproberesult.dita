@@ -6,9 +6,27 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeResult {
+                <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
+    
+    public static class LastmileProbeOneWayResult {
+      public int packetLossRate;
+      public int jitter;
+      public int availableBandwidth;
+    }
+
+    public short state;
+    public int rtt;
+    public LastmileProbeOneWayResult uplinkReport = new LastmileProbeOneWayResult();
+    public LastmileProbeOneWayResult downlinkReport = new LastmileProbeOneWayResult();
+  }</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeResult : NSObject
+
+@property (assign, nonatomic) AgoraLastmileProbeResultState state;
+@property (assign, nonatomic) NSUInteger rtt;
+@property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull uplinkReport;
+@property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull downlinkReport;
+@end</codeblock>
+                <codeblock props="windows unity" outputclass="language-cpp">struct LastmileProbeResult {
     LASTMILE_PROBE_RESULT_STATE state;
     LastmileProbeOneWayResult uplinkReport;
     LastmileProbeOneWayResult downlinkReport;
@@ -20,7 +38,6 @@
     downlinkReport: LastmileProbeOneWayResult;
     rtt: number;
     }</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>
@@ -30,7 +47,17 @@
    <parml>
        <plentry>
   <pt>state</pt>
-  <pd>Last mile 质量探测结果的状态。详见: <xref keyref="LASTMILE_PROBE_RESULT_STATE"/> 。</pd>
+           <pd><p props="ios mac windows unity">Last mile 质量探测结果的状态。详见: <xref keyref="LASTMILE_PROBE_RESULT_STATE"/> 。</p>
+               <p props="android">Last-mile 质量探测结果的状态，有如下几种： <ul>
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE"/> (1)：表示本次 Last-mile
+                                    质量探测是完整的。</li>
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE"/> (2)：表示本次
+                                    Last-mile 质量探测未进行带宽预测，因此结果不完整。一个可能的原因是测试资源暂时受限。</li>
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE"/> (3)：未进行
+                                    Last-mile 质量探测。一个可能的原因是网络连接中断。</li>
+                            </ul>
+                        </p>
+           </pd>
        </plentry>
        <plentry>
   <pt>uplinkReport</pt>
