@@ -34,15 +34,15 @@ abstract fun renderScreenShare(container: ViewGroup?, streamUuid: String)
 ### onScreenShareStateUpdated
 
 ```kotlin
-fun onScreenShareStateUpdated(sharing: Boolean, streamUuid: String)
+fun onScreenShareStateUpdated(state: EduContextScreenShareState, streamUuid: String)
 ```
 
-报告屏幕共享开启或关闭。
+屏幕共享状态发生改变。
 
-| 参数         | 描述               |
-| :----------- | :----------------- |
-| `sharing`    | 是否正在屏幕共享。 |
-| `streamUuid` | 流 ID。            |
+| 参数         | 描述                                              |
+| :----------- | :------------------------------------------------ |
+| `state`      | 屏幕共享状态，详见 `EduContextScreenShareState`。 |
+| `streamUuid` | 流 ID。                                           |
 
 ### onScreenShareTip
 

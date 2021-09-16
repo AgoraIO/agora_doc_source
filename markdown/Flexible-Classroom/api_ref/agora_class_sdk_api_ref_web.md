@@ -114,23 +114,27 @@ export type AgoraEduSDKConfigParams = {
 
 ```typescript
 export type LaunchOption = {
-  userUuid: string,
-  userName: string,
-  roomUuid: string,
-  roleType: EduRoleTypeEnum,
-  roomType: EduRoomTypeEnum,
-  roomName: string,
-  listener: ListenerCallback,
-  pretest: boolean,
-  rtmUid: string,
-  rtmToken: string,
-  language: LanguageEnum,
-  startTime: number,
-  duration: number,
-  courseWareList: CourseWareList,
-  personalCourseWareList?: CourseWareList,
-  recordUrl?: string,
-  extApps?: IAgoraExtApp[]
+  userUuid: string;
+  userName: string;
+  roomUuid: string;
+  roleType: EduRoleTypeEnum;
+  roomType: EduRoomTypeEnum;
+  roomName: string;
+  listener: ListenerCallback;
+  pretest: boolean;
+  rtmToken: string;
+  language: LanguageEnum;
+  startTime: number;
+  duration: number;
+  courseWareList: CourseWareList;
+  personalCourseWareList?: CourseWareList;
+  recordUrl?: string;
+  extApps?: IAgoraExtApp[];
+  region?: AgoraRegion;
+  widgets?: { [key: string]: IAgoraWidget };
+  userFlexProperties?: { [key: string]: any };
+  mediaOptions?: MediaOptions;
+  latencyLevel?: 1 | 2;
 }
 ```
 
@@ -145,13 +149,93 @@ export type LaunchOption = {
 | `roomType`               | 课堂类型，详见 [`EduRoomTypeEnum`](#eduroomtypeenum)。       |
 | `listener`               | 课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li> |
 | `pretest`                | 是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
-| `language`               | 界面语言，详见 [`LanguageEnum`](#languageenum)。             |
+| `language`               | 课堂界面的语言，详见 [`LanguageEnum`](#languageenum)。       |
 | `startTime`              | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
 | `duration`               | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
 | `recordUrl`              | 待录制 URL 地址，开发者需传入自己部署的网页地址，用于页面录制，例如 `https://cn.bing.com/recordUrl`。 |
 | `courseWareList`         | 教育机构指派的课件配置，客户端无法编辑。详见 [`CourseWareList`](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
 | `personalCourseWareList` | 老师端自行上传的课件配置，详见 [`CourseWareList`](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
 | `extApps`                | 注册扩展应用 ExtApp。ExtApp 是灵动课堂 UIKit 的补充插件。详见[通过 ExtApp 自定义插件](./agora_class_ext_app_web?platform=Web)。 |
+| `region`                 | 课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。灵动课堂支持以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
+| `userFlexProperties`     | 由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties) |
+| `mediaOptions`           | 媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 `MediaOptions`。 |
+| `latencyLevel`           | 观众端延时级别：<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li> |
+
+### MediaOptions
+
+```typescript
+export type MediaOptions = {
+  cameraEncoderConfiguration?: EduVideoEncoderConfiguration;
+  screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
+  encryptionConfig?: MediaEncryptionConfig;
+};
+```
+
+媒体流相关设置。
+
+| 参数                              | 描述                                                         |
+| :-------------------------------- | :----------------------------------------------------------- |
+| `cameraEncoderConfiguration`      | 摄像头采集视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。 |
+| `screenShareEncoderConfiguration` | 屏幕共享视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。 |
+| `encryptionConfig`                | 媒体流加密配置，详见 [MediaEncryptionConfig](#mediaencryptionconfig)。 |
+
+### EduVideoEncoderConfiguration
+
+```typescript
+export interface EduVideoEncoderConfiguration {
+  width: number;
+  height: number;
+  frameRate: number;
+  bitrate: number;
+}
+```
+
+视频编码参数配置。
+
+| 参数        | 描述                 |
+| :---------- | :------------------- |
+| `width`     | 视频帧宽度(pixel)。  |
+| `height`    | 视频帧高度 (pixel)。 |
+| `frameRate` | 视频帧率 (fps)。     |
+| `bitrate`   | 视频码率 (Kbps)。    |
+
+### MediaEncryptionConfig
+
+```typescript
+export declare interface MediaEncryptionConfig {
+  mode: MediaEncryptionMode,
+  key: string
+}
+```
+
+媒体流加密配置，用于 [MediaOptions](#mediaoptions)。
+
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
+| `mode` | 媒体流加密模式，详见 [MediaEncryptionMode](#mediaencryptionmode)。同一教室内所有老师和学生必须使用相同的加密模式和密钥。 |
+| `key`  | 加密密钥。                                                   |
+
+### MediaEncryptionMode
+
+```swift
+export enum MediaEncryptionMode {
+  AES_128_XTS = 1,
+  AES_128_ECB = 2,
+  AES_256_XTS = 3,
+  AES_128_GCM = 5,
+  AES_256_GCM = 6
+}
+```
+
+媒体流加密模式，用于 [MediaEncryptionConfig](#mediaencryptionconfig)。
+
+| 参数          | 描述                        |
+| :------------ | :-------------------------- |
+| `AES_128_XTS` | 128 位 AES 加密，XTS 模式。 |
+| `AES_128_ECB` | 128 位 AES 加密，ECB 模式。 |
+| `AES_256_XTS` | 256 位 AES 加密，XTS 模式。 |
+| `AES_128_GCM` | 128 位 AES 加密，GCM 模式。 |
+| `AES_256_GCM` | 256 位 AES 加密，GCM 模式。 |
 
 ### CourseWareList
 

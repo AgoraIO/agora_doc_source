@@ -1,4 +1,4 @@
-# Extion App Context
+# Extension App Context
 
 ## AgoraExtAppProtocol
 
@@ -8,7 +8,7 @@
 - (NSInteger)willLaunchExtApp:(NSString *)appIdentifier;
 ```
 
-启动一个扩展应用。
+启动扩展应用。
 
 | 参数            | 描述            |
 | :-------------- | :-------------- |

@@ -1,10 +1,48 @@
-# useRoomContext
+`RoomContext` 提供课堂管理相关能力。
 
-`useRoomContext()` 提供课堂管理相关能力。
+## joined
 
-你可以通过 `import { useRoomContext } from 'agora-edu-core';  ` 引入 `useRoomContext`，然后使用 `const {...} = useRoomContext()` 获取灵动课堂中课堂管理相关能力。
+```typescript
+joined: boolean;
+```
 
-以下具体列出 `useChatContext()` 提供的能力。
+> 自 v1.1.5 起新增。
+
+是否成功加入课堂。
+
+## startCarousel
+
+```typescript
+startCarousel: ({
+    range,
+    type,
+    interval,
+}: {
+    range: number;
+    type: number;
+    interval: number;
+    }) => Promise<any>;
+```
+
+> 自 v1.1.5 起新增。
+
+开启学生轮播功能。老师或助教开启此功能后，学生按照指定的时间间隔轮流上台。仅适用于在线互动小班课。如果教室内学生人数小于等于 6，调用该方法后，`interval`  后，全部学生都会上台但无法轮播。
+
+| 参数       | 描述                                                         |
+| :--------- | :----------------------------------------------------------- |
+| `range`    | 自动上台的学生范围：<li>`1`: 课堂内全部学生。 </li><li>`2`: 全部摄像头非禁用的学生。</li> |
+| `type`     | 学生上台顺序：<li>学生按照加入房间顺序轮流上台。</li><li>学生随机上台。</li> |
+| `interval` | 学生上台的时间间隔。默认值为 60，单位为秒。取值范围为 10 到 99。 |
+
+## stopCarousel
+
+```typescript
+stopCarousel: () => Promise<any>;
+```
+
+> 自 v1.1.5 起新增。
+
+停止学生自动分批上台功能。
 
 ## sceneType
 
@@ -54,7 +92,7 @@ async startNativeScreenShareBy(windowId: number): void
 async teacherAcceptHandsUp(userUuid: string): void
 ```
 
-老师接受学生举手请求。
+将学生踢出课堂并禁止学生再进入该课堂。
 
 | 参数       | 描述      |
 | :--------- | :-------- |
@@ -66,11 +104,51 @@ async teacherAcceptHandsUp(userUuid: string): void
 async teacherRejectHandsUp(userUuid: string): void
 ```
 
-老师拒绝学生举手请求。
+将学生踢出课堂。后续学生还能够再进入课堂。
 
 | 参数       | 描述      |
 | :--------- | :-------- |
 | `userUuid` | 学生 ID。 |
+| `roomUuid` | 课堂 ID。 |
+
+## liveClassStatus
+
+```typescript
+liveClassStatus: {
+    classState: string;
+    duration: number;
+},
+```
+
+> 自 v1.1.5 起废弃。Agora 建议改用 `LiveRoomStatsContext` 中的 `liveClassStatus`。
+
+当前课堂状态。
+
+## queryCameraDeviceState
+
+```typescript
+queryCameraDeviceState: (userList: EduUser[], userUuid: string, streamUuid: string) => any;
+```
+
+> 自 v1.1.2 起新增。
+
+查询摄像头状态。
+
+## queryMicrophoneDeviceState
+
+```typescript
+queryMicrophoneDeviceState: (userList: EduUser[], userUuid: string, streamUuid: string) => any;
+```
+
+> 自 v1.1.2 起新增。
+
+查询麦克风状态。
+
+## isJoiningRoom
+
+```typescript
+isJoiningRoom: boolean,
+```
 
 ## handsUpStudentList
 

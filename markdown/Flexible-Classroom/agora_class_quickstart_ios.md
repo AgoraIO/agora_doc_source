@@ -1,106 +1,152 @@
-根据本文指导在你的 iOS 项目中快速集成 Agora Classroom SDK 并调用 API 启动灵动课堂。
+根据本文指导通过 Agora Classroom SDK 快速启动并体验灵动课堂。
 
-<div class="alert note"><li>开始前请确保满足接入灵动课堂的<a href="./agora_class_prep">前提条件</a>。<li>iOS 仅支持学生。</div>
+## 技术原理
 
-## 示例项目
-Agora 在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO-Community/CloudClass-iOS)，演示了如何集成 Agora Classroom SDK 并调用 API 启动灵动课堂。你可以下载并查看源代码。
+~96d9aaf0-eb84-11eb-b768-51ffcd29c763~
 
-## 准备开发环境
+<a name="prerequisites"></a>
 
+## 前提条件
+
+- 已在 Agora 控制台创建 Agora 项目，获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id)、[App 证书](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6)并[配置 aPaaS 服务](/cn/agora-class/agora_class_prep?platform=Web)。
 - Xcode 10.0 或以上版本。
 - CocoaPods 1.10 或以上版本。参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
 - iOS 10 或以上版本。
-- 如果你使用 Swift 开发，请确保使用 Swift 5.3.2 或以上版本。
-- 一台 iOS 真机（iPhone 或 iPad）。
-- 物理音视频采集设备，如内置摄像头和麦克风。
+- 如果你使用 Swift 开发，使用 Swift 5.0 或以上版本。
+- 一个有效的 Apple 开发者账号。
+- 一台 iOS 设备（iPhone 或 iPad）。模拟机可能出现功能缺失或者性能问题，所以推荐使用真机。
 
-## 集成 Agora Classroom SDK
+## 启动灵动课堂
 
-你可以参考以下步骤，通过 CocoaPods 获取 Agora Classroom SDK。
+参照以下步骤启动灵动课堂：
 
-1. 在终端里进入你的项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
+1. 运行以下命令将 Agora 提供的灵动课堂项目 CloudClass-iOS 克隆至本地：
 
-2. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
+   ```
+   git clone https://github.com/AgoraIO-Community/CloudClass-iOS
+   ```
 
-  ```
-  # platform :ios, '10.0' use_frameworks!
-  target 'Your App' do
-      pod 'AgoraClassroomSDK'
-  end
-  ```
+2. 将 `keycenter.m` 文件中的 `Agora App ID` 和 `Agora App Certificate` 替换成[你的 App ID 和 App 证书](#prerequisites)。
 
- <div class="alert info">1.0.0 版本请使用 <code>pod 'AgoraEduSDK'</code>。</div>
+   ```swift
+   + (NSString *)appId {
+       return <#Your Agora App Id#>;
+   }
+   
+   + (NSString *)appCertificate {
+       return <#Your Agora Certificate#>;
+   }
+   ```
 
-3. 在终端内运行 `pod install` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。
-4. 打开新生成的 `xcworkspace` 文件。
+   为方便你快速测试，CloudClass-iOS 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
 
-自 v1.1.0 起，灵动课堂 iOS 端基于 Swift 语言进行开发。如果开发者基于 Object-C 语言开发，需要参考以下步骤在项目中创建一个 Swift 文件，生成 Swift 环境。
+   你可在 `AgoraEducation/Main/Controllers/LoginViewController.swift` 文件中查看启动课堂的具体逻辑：
 
-1. 在 Xcode 中打开 `ios/ProjectName.xcworkspace` 文件夹。
-2. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Next** > **Create**，新建一个空的 `File.swift` 文件。
+   1. 调用 [AgoraEduSDK.setConfig](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#setconfig) 方法全局配置 SDK。
+   2. 调用 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#launch) 方法启动灵动课堂。
 
-## 进行全局配置
+3. 连接上 iOS 设备后，用 Xcode 打开示例项目，然后编译并运行项目。
 
-首先，创建 `AgoraEduSDKConfig` 实例进行全局配置，然后调用 `setConfig` 方法传入该实例。`AgoraEduSDKConfig` 包含以下参数：
+4. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
 
-| 参数      | 描述                                                         |
-| :-------- | :----------------------------------------------------------- |
-| `appId`   | Agora App ID，详见[前提条件中获取 Agora App ID](./agora_class_prep#step1)。 |
-| `eyeCare` | 是否开启护眼模式：<li>NO:（默认）关闭护眼模式。<li>YES: 开启护眼模式。 |
+   ![](https://web-cdn.agora.io/docs-files/1619164553801)
 
-示例代码：
-```swift
-/** 全局配置 **/
-@interface AgoraEduSDKConfig : NSObject
-// Agora App ID
-@property (nonatomic, copy) NSString *appId;
-// 是否开启护眼模式
-@property (nonatomic, assign) BOOL eyeCare;
-@end
-AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
-[AgoraEduSDK setConfig:defaultConfig];
+## 更多信息
+
+<a name="integrate"></a>
+
+### 集成灵动课堂
+
+本节详细介绍如何将灵动课堂集成到你自己的 iOS 项目中。
+
+灵动课堂可分为 AgoraClassroomSDK、AgoraEduCore、AgoraEduUI、AgoraEduContext 四个 SDK，如下图所示。其中 AgoraClassroomSDK、AgoraEduUI、AgoraEduContext 在 Github 与 Cocoapods 上开源发布；AgoraEduCore 闭源，以二进制包在 Cocoapods 上发布。
+
+![](https://web-cdn.agora.io/docs-files/1631700669140)
+
+<a name="default_ui"></a>
+
+#### 使用灵动课堂的默认 UI
+
+如果你无需修改灵动课堂的默认 UI，在你自己项目的 `Podfile` 文件中添加如下引用即可集成灵动课堂：
+
+```
+# Open source libs
+pod 'AgoraClassroomSDK_iOS', "1.1.5.1"
+pod 'AgoraEduContext', "1.1.5"
+pod 'AgoraEduUI', "1.1.5"
+pod 'AgoraUIEduBaseViews', "1.1.5"
+ 
+# Close source libs
+pod 'AgoraEduCore', "1.1.5.4"
+ 
+# Common libs
+pod 'AgoraUIBaseViews', '1.0.1'
+pod 'AgoraExtApp', '1.0.0'
+pod 'AgoraWidget', '1.0.0'
+ 
+# Widgets
+pod 'AgoraWidgets', "1.0.0"
+   
+# Third-party libs
+pod 'Protobuf', '3.17.0'
+pod "AFNetworking", "4.0.1"
+pod "CocoaLumberjack", "3.6.1"
+pod "AliyunOSSiOS", "2.10.8"
+pod "Whiteboard", "2.13.19"
+pod "AgoraRtcEngine_iOS", "3.4.6"
+pod "AgoraRtm_iOS", "1.4.8"
 ```
 
-## 启动课堂
+<a name="custom_ui"></a>
 
-初始化完成后，创建 `AgoraEduLaunchConfig` 实例进行课堂启动配置，然后调用 `launch` 方法传入该实例。`AgoraEduLaunchConfig` 包含以下参数：
+#### 需要自定义课堂 UI
 
-| 参数        | 描述                                                         |
-| :---------- | :----------------------------------------------------------- |
-| `userName`  | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
-| `userUuid`  | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType`  | 用户在课堂中的角色，可设为：<li>`AgoraEduRoleTypeStudent`: 学生 |
-| `roomName`  | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
-| `roomUuid`  | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roomType`  | 课堂类型，可设为：<li>`AgoraEduRoomType1V1`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。<li>`AgoraEduRoomTypeSmall`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。<li>`AgoraEduRoomTypeBig`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。 |
-| `rtmToken`  | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](./agora_class_prep#step5)。 |
-| `startTime` | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
-| `duration`  | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
+如果灵动课堂的默认 UI 无法满足你的需求，你需要自定义课堂 UI，则参考以下步骤将灵动课堂集成到你自己的项目中：
 
-```swift
-/** 课堂启动配置 */
-// 用户名
-NSString *userName = @"XXX";
-// 用户 ID，需要与你生成 RTM Token 时使用的用户 ID 一致
-NSString *userUUid = @"XXX";
-// 教室名称
-NSString *roomName = @"XXX";
-// 教室 ID
-NSString *roomUuid = @"XXX";
-// 用户角色
-AgoraEduRoleType roleType = AgoraEduRoleTypeStudent;
-// 课堂类型
-AgoraEduRoomType roomType = AgoraEduRoomType1V1;
-// RTM Token
-NSString *rtmToken = "";
-// 课堂开始时间，单位为毫秒，以第一个进入教室的用户传入的参数为准
-NSNumber *startTime = @(XXX);
-// 课堂持续时间，单位为秒，以第一个进入教室的用户传入的参数为准
-NSNumber *duration = @(1800);
+1. 运行以下命令将 CloudClass-iOS 仓库克隆至本地：
 
-AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration];
-[AgoraEduSDK launch:config delegate:self];
-```
+   ```bash
+   git clone https://github.com/AgoraIO-Community/CloudClass-iOS
+   ```
 
-成功启动课堂后，你可以看到如下画面：
-![](https://web-cdn.agora.io/docs-files/1619164553801)
+2. 通过 `git remote add` 命令， 为 CloudClass-iOS 仓库添加一个远端仓库，指向你自己项目的仓库。
+
+3. 基于 release/apaas/1.1.5 分支创建一个你自己的分支，如 `edu_apaas_ui`，推向你自己项目的仓库。
+
+4. 在你自己项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 仓库中的 `AgoraClassroomSDK.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec`、`AgoraUIEduBaseViews.podspec` 以及其它依赖的库。
+
+   ```
+   # Open source libs
+   pod 'AgoraClassroomSDK_iOS', :path => '../SDKs/AgoraClassroomSDK/AgoraClassroomSDK_iOS.podspec'
+   pod 'AgoraEduContext', :path => '../SDKs/AgoraEduContext/AgoraEduContext.podspec'
+   pod 'AgoraEduUI', :path => '../SDKs/AgoraEduUI/AgoraEduUI.podspec'
+   pod 'AgoraUIEduBaseViews', :path => '../SDKs/Modules/AgoraUIEduBaseViews/AgoraUIEduBaseViews_Local.podspec'
+    
+   # Close source libs
+   pod 'AgoraEduCore', "1.1.5.4"
+   
+   # Common libs
+   pod 'AgoraUIBaseViews', '1.0.1'
+   pod 'AgoraExtApp', '1.0.0'
+   pod 'AgoraWidget', '1.0.0'
+    
+   # Widgets
+   pod 'AgoraWidgets', :path => '../Widgets/AgoraWidgets/AgoraWidgets.podspec'
+   pod 'ChatWidget', :path => '../Widgets/ChatWidget/ChatWidget.podspec', :subspecs => ['SOURCE']
+    
+   # Third-party libs
+   pod 'Protobuf', '3.17.0'
+   pod "AFNetworking", "4.0.1"
+   pod "CocoaLumberjack", "3.6.1"
+   pod "AliyunOSSiOS", "2.10.8"
+   pod "Whiteboard", "2.13.19"
+   pod "AgoraRtcEngine_iOS", "3.4.6"
+   pod "AgoraRtm_iOS", "1.4.8"
+   ```
+
+5. 后续你可在 `edu_apaas_ui `分支，参考[自定义课堂 UI 文档](/cn/agora-class/agora_class_custom_ui_ios?platform=iOS)自行修改灵动课堂的 UI，如更换颜色、调整布局。
+
+> 自 v1.1.0 起，灵动课堂 iOS 端基于 Swift 语言进行开发。如果开发者基于 Object-C 语言开发，需要参考以下步骤在项目中创建一个 Swift 文件，生成 Swift 环境。
+>
+> 1. 在 Xcode 中打开 `ios/ProjectName.xcworkspace` 文件夹。
+> 2. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Next** > **Create**，新建一个空的 `File.swift` 文件。
