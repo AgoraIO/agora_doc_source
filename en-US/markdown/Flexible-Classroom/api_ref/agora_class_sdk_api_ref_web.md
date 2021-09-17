@@ -25,7 +25,7 @@ AgoraEduSDK.config({
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `params` | The SDK global configuration. See [`AgoraEduSDKConfigParams`](#agoraedusdkconfigparams) for details. |
+| `params` | 全局配置参数，详见 [`AgoraEduSDKConfigParams`](#agoraedusdkconfigparams)。 |
 
 ### launch
 
@@ -89,14 +89,14 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `dom` | See [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document). |
-| `option` | The classroom launching configuration. See [`LaunchOption`](#launchoption) for details. |
+| `dom` | 详见 [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document)。 |
+| `option` | 课堂启动配置，详见 [`LaunchOption`](#launchoption)。 |
 
 ## Type definition
 
 ### AgoraEduSDKConfigParams
 
-The SDK global configuration. Used when calling [`AgoraEduSDK.config`](#config).
+The SDK global configuration. Used when calling [`AgoraEduSDK.config`]()[](.
 
 ```typescript
 export type AgoraEduSDKConfigParams = {
@@ -106,11 +106,11 @@ export type AgoraEduSDKConfigParams = {
 
 | Attributes | Description |
 | :------ | :----------------------------------------------------------- |
-| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | Agora App ID，详见[前提条件中获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
 
 ### LaunchOption
 
-The classroom launching configuration. Used when calling [`AgoraEduSDK.launch`](#launch).
+The classroom launching configuration. Used when calling [`AgoraEduSDK.launch`]()[](.
 
 ```typescript
 export type LaunchOption = {
@@ -122,40 +122,124 @@ export type LaunchOption = {
   roomName: string,
   listener: ListenerCallback,
   pretest: boolean,
-  rtmUid: string
   rtmToken: string,
   language: LanguageEnum,
   startTime: number,
   duration: number,
   courseWareList: CourseWareList,
-  personalCourseWareList?: CourseWareList,
+  personalCourseWareList?: CourseWareList
   recordUrl?: string,
   extApps?: IAgoraExtApp[]
+  region?: AgoraRegion;
+  widgets?: { [key: string]: IAgoraWidget };
+  userFlexProperties?: { [key: string]: any };
+  mediaOptions?: MediaOptions;
+  latencyLevel?: 1 | 2;
 }
 ```
 
 | Parameter | Description |
 | :----------------------- | :----------------------------------------------------------- |
-| `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
-| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `rtmToken` | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
+| `userUuid` | The user ID. This is the globally unique identifier of a user.** Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
-| `roleType` | The user role in the classroom. See [`EduRoleTypeEnum`](#eduroletypeenum) for details. |
-| `roomType` | The classroom type. See [`EduRoomTypeEnum`](#eduroomtypeenum) for details. |
-| `listener` | The state of classroom launching.<li>`ready`: The classroom is ready.</li><li>`destroyed`: The classroom has been destroyed.</li> |
+| `roleType` | 用户在课堂中的角色，详见 [`EduRoleTypeEnum`](#eduroletypeenum)。 |
+| `roomType` | 课堂类型，详见 [`EduRoomTypeEnum`](#eduroomtypeenum)。 |
+| `listener` | The state of classroom launching.<li>`ready`: The classroom is` ready`.</li><li>`destroyed`: The classroom has been` destroyed`.</li> |
 | `pretest` | Whether to enable the pre-class device test:<li>`true`: Enable the pre-class device test. After this function is enabled, end users can see a page for the device test before entering the classroom. They can check whether their camera, microphone, and speaker can work properly.</li><li>`false`: Disable the pre-class device test.</li> |
-| `language` | The language of the user interface. See [`LanguageEnum`](#languageenum) for details. |
+| `language` | 课堂界面的语言，详见 [`LanguageEnum`](#languageenum)。 |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
 | `recordUrl` | The URL address to be recorded. Developers need to pass in the URL of the web page deployed by themselves for page recording, such as `https://cn.bing.com/recordUrl`. |
-| `courseWareList` | The configuration of courseware assigned by the educational institution, which cannot be edited by the client. See [`courseWareList`](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
-| `personalCourseWareList` | The configuration of courseware uploaded by a teacher. See [`CourseWareList`](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
-| `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](./agora_class_ext_app_web?platform=Web). |
+| `courseWareList` | The configuration of courseware assigned by the educational institution, which cannot be edited by the client. 详见 [`CourseWareList`](#coursewarelist)。 After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
+| `personalCourseWareList` | 老师端自行上传的课件配置，详见 [`CourseWareList`](#coursewarelist)。 After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
+| `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. 详见[通过 ExtApp 自定义插件](./agora_class_ext_app_web?platform=Web)。 |
+| `region` | The area where the classrooms is located. 所有客户端必须设置相同的区域，否则无法互通。 Flexible Classroom supports the following features:<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
+| `userFlexProperties` | 由开发者自定义的用户属性。 详见[如何设置自定义用户属性？ ](/cn/agora-class/faq/agora_class_custom_properties) |
+| `mediaOptions` | 媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 `MediaOptions`。 |
+| `latencyLevel` | The latency level of an audience member in interactive live streaming.<li>`1`: Low latency. Low latency: The latency from the sender to the receiver is 1500 ms - 2000 ms.</li><li>(Default) Ultra low latency. Ultra-low latency: The latency from the sender to the receiver is 400 ms - 800 ms.</li> |
+
+### mediaOptions
+
+```typescript
+export type LaunchOption = {
+  cameraEncoderConfiguration?: EduVideoEncoderConfiguration;
+  screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
+  encryptionConfig?: MediaEncryptionConfig;
+};
+```
+
+媒体流相关设置。
+
+| Parameter | Description |
+| :-------------------------------- | :----------------------------------------------------------- |
+| `cameraEncoderConfiguration` | 摄像头采集视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。 |
+| `screenShareEncoderConfiguration` | 屏幕共享视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。 |
+| See `EncryptionConfig`. | 媒体流加密配置，详见 [MediaEncryptionConfig](#mediaencryptionconfig)。 |
+
+### EduVideoEncoderConfiguration
+
+```typescript
+export interface EduVideoEncoderConfiguration {
+  width: number;
+  height: number;
+  frameRate: Number type field.
+  bitrate: Number type field.
+}
+```
+
+Video profile.
+
+| Parameter | Description |
+| :---------- | :------------------- |
+| `width` | Width (pixel) of the video frame. The default value is 360. |
+| `height` | Height (pixel) of the video frame. The default value is 640. |
+| `frameRate` | The capture frame rate (fps) of the local video. |
+| `bitrate` | Video receive bitrate (Kbps), represented by an instantaneous value. |
+
+### MediaEncryptionConfig
+
+```typescript
+export declare interface MediaEncryptionConfig {
+  mode: MediaEncryptionMode,
+  key: string
+}
+```
+
+媒体流加密配置，用于 [MediaOptions](#mediaoptions)。
+
+| Parameter | Description |
+| :----- | :----------------------------------------------------------- |
+| `mode` | 媒体流加密模式，详见 [MediaEncryptionMode](#mediaencryptionmode)。 All users in the same channel must use the same encryption mode and encryption key. |
+| `key` | 加密密钥。 |
+
+### MediaEncryptionMode
+
+```swift
+export enum MediaEncryptionMode {
+  AES_128_XTS = 1,
+  AES_128_ECB = 2,
+  AES_256_XTS = 3,
+  AES_128_GCM = 5,
+  AES_256_GCM = 6
+}
+```
+
+媒体流加密模式，用于 [MediaEncryptionConfig](#mediaencryptionconfig)。
+
+| Parameter | Description |
+| :------------ | :-------------------------- |
+| `AES_128_XTS` | (Default) 128-bit AES encryption, XTS mode. |
+| `AES_128_ECB` | 128-bit AES encryption, ECB mode. |
+| `AES_256_XTS` | 256-bit AES encryption, XTS mode. |
+| `AES_128_GCM` | 5: 128-bit AES encryption, GCM mode. |
+| `AES_256_GCM` | 6: 256-bit AES encryption, GCM mode. |
 
 ### CourseWareList
 
-The courseware pre-download configuration. Used when calling [`AgoraEduSDK.launch`](#launch).
+The courseware pre-download configuration. Used when calling [`AgoraEduSDK.launch`]()[](.
 
 ```typescript
 export type CourseWareItem = {
@@ -174,7 +258,7 @@ export type CourseWareItem = {
   taskToken?: string,
   taskProgress?: NetlessTaskProgress
 }
- 
+
 export type CourseWareList = CourseWareItem[]
 ```
 
@@ -182,11 +266,11 @@ export type CourseWareList = CourseWareItem[]
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | The file name for display in the classroom. The string length must be less than 64 bytes. |
 | `resourceUuid` | The file ID. This is the unique identifier of a file. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `ext` | The file suffix. |
+| `ext` | 课件后缀。 |
 | `size` | The file size (bytes). |
 | `updateTime` | The latest modified time of the file. |
-| `conversion` | The file conversion configuration object, which contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>`"dynamic"`: Convert the file to a static picture.</li><li>`"static"`: Convert the file to dynamic HTML.</li></ul></ul> |
-| `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom. If the suffix name is not listed above, you must set `url` and leave `scenes` empty. |
+| `conversion` | The file conversion configuration object, which contains the following fields:<ul><li>`type`: The conversion` type`:</li><ul><li>`"dynamic"`: Convert the file to a static picture.</li><li>`"static"`: Convert the file to dynamic HTML.</li></ul></ul> |
+| `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. If the suffix name is not listed above, you must set `url `and leave` scenes` empty. |
 | `scenes` | The download configuration of the converted file. When the file suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, you must set scenes for downloading the converted file``. |
 | `taskUuid` | The unique identifier of the file conversion task. |
 | `taskToken` | The token used by the file conversion task. |
@@ -203,7 +287,7 @@ export enum EduRoleTypeEnum {
 }
 ```
 
-The role of the user in the classroom. Set in [`LaunchOption`](#launchoption).
+The role of the user in the classroom. 在 [`LaunchOption`](#launchoption) 中设置。
 
 | Parameter | Description |
 | :---------- | :------------------------ |
@@ -222,7 +306,7 @@ export enum EduRoomTypeEnum {
 }
 ```
 
-The classroom type. Set in [`LaunchOption`](#launchoption).
+The classroom type. 在 [`LaunchOption`](#launchoption) 中设置。
 
 | Parameter | Description |
 | :--------------- | :----------------------------------------------------------- |
@@ -236,7 +320,7 @@ The classroom type. Set in [`LaunchOption`](#launchoption).
 export type LanguageEnum = "en" | "zh"
 ```
 
-The language of the user interface. Set in [`LaunchOption`](#launchoption).
+The language of the user interface. 在 [`LaunchOption`](#launchoption) 中设置。
 
 | Parameter | Description |
 | :----- | :----- |
