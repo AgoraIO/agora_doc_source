@@ -1,6 +1,6 @@
 This page provides the Kotlin API reference of the Agora Classroom SDK for Android.
 
-## AgoraEduSDK
+## AgoraClassSdk
 
 `AgoraEduSDK` is the basic interface of the Agora Classroom SDK and provides the main methods that can be invoked by your app.
 
@@ -39,12 +39,12 @@ AgoraEduSDK.setConfig(new AgoraEduSDKConfig(appId, eyeCare));
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
-| `agoraEduSDKConfig` | The SDK global configuration. See [`AgoraEduSDKConfig`](#agoraedusdkconfig). |
+| `agoraEduSDKConfig` | 全局配置参数，详见 [`AgoraEduSDKConfig`](#agoraedusdkconfig)。 |
 
 ### launch
 
 ```java
-public static AgoraEduClassRoom launch(@NotNull Context context, 
+public static AgoraEduClassRoom launch(@NotNull Context context,
                                        @NotNull AgoraEduLaunchConfig config,
                                        @NotNull AgoraEduLaunchCallback callback);
 ```
@@ -73,11 +73,15 @@ String rtmToken = "";
 long startTime = System.currentTimeMillis() + 100;
 // The duration (ms) of the class, determined by the first user joining the classroom.
 long duration = 310L;
-// The area where the classroom is located. 
+// The area where the classroom is located.
 String region = AgoraEduRegionStr.cn;
+
 AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfig(
-        userName, userUuid, roomName, roomUuid, roleType, roomType, rtmToken, startTime, duration, region);
-AgoraEduClassRoom classRoom = AgoraEduSDK.launch(getApplicationContext(), agoraEduLaunchConfig, (state) -> {
+    userName, userUuid, roomName, roomUuid, roleType,
+    roomType, rtmToken, startTime, duration, region, null, null,
+    AgoraBoardFitMode.Retain, streamState, AgoraEduLatencyLevel.AgoraEduLatencyLevelUltraLow,
+    null, null);
+AgoraClassSdk.launch(MainActivity2.this, agoraEduLaunchConfig, (state) -> {
     Log.e(TAG, "launch-classroom-state:" + state.name());
 });
 ```
@@ -87,14 +91,14 @@ AgoraEduClassRoom classRoom = AgoraEduSDK.launch(getApplicationContext(), agoraE
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
 | `context` | The context of the app. |
-| `config` | The classroom launching configuration. See [`AgoraEduLaunchConfig`](#agoraedulaunchconfig). |
-| `callback` | The SDK uses the [`  AgoraEduLaunchCallback`](#agoraedulaunchcallback) class to report events related to classroom launching to the app. |
+| `config` | 课堂启动配置，详见 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig)。 |
+| `callback` | SDK 通过 [`AgoraEduLaunchCallback  `](#agoraedulaunchcallback) 类向 App 报告课堂启动相关的事件。 |
 
 **Returns**
 
 `AgoraEduClassRoom`
 
-### configCoursewares
+### configCourseWare
 
 ```java
 public static void configCoursewares(@NotNull List<AgoraEduCourseware> wares);
@@ -133,9 +137,9 @@ configCoursewares(wares);
 
 | Parameter | Description |
 | :------ | :----------------------------------------------------------- |
-| `wares` | The courseware pre-downloading configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `wares` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
 
-### downloadCoursewares
+### downloadCourseWare
 
 ```java
 public static void downloadCoursewares(@NotNull Context context, @Nullable AgoraEduCoursewarePreloadListener listener)
@@ -169,15 +173,15 @@ downloadCoursewares(activityContext, new AgoraEduCoursewarePreloadListener() {
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
 | `context` | The context of the app. |
-| `listener` | The SDK reports events related to courseware preloading to the app through the [`AgoraEduCoursewarePreloadListener`](#agoraeducoursewarepreloadlistener) class. |
+| `listener` | SDK 通过 [`AgoraEduCoursewarePreloadListener`](#agoraeducoursewarepreloadlistener) 类向 App 报告课件预加载相关的事件。 |
 
-### registerExtApps
+### registerExtensionApp
 
 ```java
 public static void registerExtApps(List<AgoraExtAppConfiguration> apps);
 ```
 
-Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](./agora_class_ext_app_android?platform=Android).
+Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. 详见[通过 ExtApp 自定义插件](./agora_class_ext_app_android?platform=Android)。
 
 ## AgoraEduLaunchCallback
 
@@ -193,7 +197,7 @@ Reports classroom events.
 
 | Parameter | Description |
 | :------ | :------------------------------------------------- |
-| `state` | The classroom events. See [`AgoraEduEven`](#agoraeduevent). |
+| `state` | 课堂事件，详见 [`AgoraEduEvent`](#agoraeduevent)。 |
 
 ## AgoraEduCoursewarePreloadListener
 
@@ -209,7 +213,7 @@ Start preloading the courseware.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `ware` | The courseware pre-downloading configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `ware` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
 
 ### onProgress
 
@@ -221,7 +225,7 @@ Indicates the progress of courseware pre-downloading.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `ware` | The courseware pre-downloading configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `ware` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
 | `progress` | Indicates the progress of courseware pre-downloading. |
 
 ### onComplete
@@ -234,7 +238,7 @@ The courseware pre-downloading completes.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `ware` | The courseware pre-downloading configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `ware` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
 
 ### onFailed
 
@@ -246,9 +250,69 @@ The courseware pre-downloading fails.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `ware` | The courseware pre-downloading configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `ware` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
 
 ## Type definition
+
+### AgoraClassSdkConfig
+
+```java
+public class AgoraEduSDKConfig {
+    @NotNull
+    private String appId;
+    private int eyeCare;
+}
+```
+
+The SDK global configuration. 用于 [`setConfig`](#setconfig) 方法。
+
+| Attributes | Description |
+| :-------- | :----------------------------------------------------------- |
+| `appId` | Agora App ID，详见[前提条件中获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
+| `eyeCare` | Whether to enable eye care mode:<li>`0`: (Default) Disable eye care mode.</li><li>`1`: Enable eye care mode.</li> |
+
+### AgoraEduLaunchConfig
+
+```kotlin
+class AgoraEduLaunchConfig(val userName: String,
+                           val userUuid: String,
+                           roomName: string,
+                           roomUuid: string,
+                           int roleType = AgoraEduRoleType.AgoraEduRoleTypeStudent.getValue();
+                           val roomType: Int,
+                           rtmToken: string,
+                           val startTime: Long?,
+                           val duration: Long?,
+                           val region: String,
+                           var videoEncoderConfig: EduVideoEncoderConfig? = null,
+                           val mediaOptions: AgoraEduMediaOptions?,
+                           val boardFitMode: AgoraBoardFitMode,
+                           val streamState: StreamState?,
+                           val latencyLevel: AgoraEduLatencyLevel? = AgoraEduLatencyLevel.AgoraEduLatencyLevelUltraLow,
+                           val userProperties: MutableMap<String, String>? = null,
+                           val widgetConfigs: MutableList<UiWidgetConfig>? = null) : Parcelable
+```
+
+The classroom launching configuration. 用于 [`launch`](#launch) 方法。
+
+| Attributes | Description |
+| :------------------- | :----------------------------------------------------------- |
+| `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
+| `userUuid` | The user ID. This is the globally unique identifier of a user.** Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
+| `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roleType` | 用户在课堂中的角色，详见 [`AgoraEduRoleType`](#agoraeduroletype)。 |
+| `roomType` | 课堂类型，详见 [`AgoraEduRoomType`](#agoraeduroomtype)。 |
+| `rtmToken` | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
+| `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
+| `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
+| `region` | The area where the classrooms is located. 所有客户端必须设置相同的区域，否则无法互通。 详见 [`AgoraEduRegionStr`](#agoraeduregionstr)。 |
+| `videoEncoderConfig` | 视频编码参数配置，包含视频宽高、帧率、码率，详见 [`EduVideoEncoderConfig`](#eduvideoencoderconfig) |
+| `mediaOptions` | 媒体流相关设置，包含媒体流加密，详见 [`AgoraEduMediaOptions`](#agoraedumediaoptions)。 |
+| `boardFitMode` | 白板的显示模式，详见 [`AgoraBoardFitMode`](#agoraboardfitmode)。 |
+| `streamState` | 用于控制学生上台后是否发音视频流，详见 [`StreamState`](#streamstate)。 |
+| `latencyLevel` | 观众端延时级别，详见 [`AgoraEduLatencyLevel`](#agoraedulatencylevel)。 |
+| `userProperties` | 由开发者自定义的用户属性。 详见[如何设置自定义用户属性？ ](/cn/agora-class/faq/agora_class_custom_properties) |
 
 ### AgoraEduEvent
 
@@ -261,7 +325,7 @@ public enum AgoraEduEvent {
 }
 ```
 
-Classroom events. Reported in the [`onCallback`](#oncallback) callback.
+Classroom events. 在 [`onCallback`](#oncallback) 回调中报告。
 
 | Attributes | Description |
 | :----------------------- | :------------------------ |
@@ -278,7 +342,7 @@ public enum AgoraEduRoleType {
 }
 ```
 
-The role of the user in the classroom. You need to set the user role in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The role of the user in the classroom. 在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
 
 | Attributes | Description |
 | :------------------------ | :---------- |
@@ -294,7 +358,7 @@ public enum AgoraEduRoomType {
 }
 ```
 
-The classroom type. You need to set the user role in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The classroom type. 在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
 
 | Attributes | Description |
 | :---------------------- | :----------------------------------------------------------- |
@@ -302,62 +366,107 @@ The classroom type. You need to set the user role in [`AgoraEduLaunchConfig`](#a
 | `AgoraEduRoomTypeBig` | `2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
 | `AgoraEduRoomTypeSmall` | `4`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. |
 
-### AgoraEduSDKConfig
+### AgoraBoardFitMode
 
 ```java
-public class AgoraEduSDKConfig {
-    @NotNull
-    private String appId;
-    private int eyeCare;
+public enum AgoraBoardFitMode {
+    Auto,
+    Retain;
 }
 ```
 
-The SDK global configuration. Used when calling [`setConfig`](#setconfig).
+学生获取白板授权后，当老师切换白板和课件时学生白板内容的显示模式。 用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
-| Attributes | Description |
-| :-------- | :----------------------------------------------------------- |
-| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
-| `eyeCare` | Whether to enable eye care mode:<li>`0`: (Default) Disable eye care mode.</li><li>`1`: Enable eye care mode.</li> |
+| Parameter | Description |
+| :------- | :----------------------------------------------------------- |
+| `Auto` | （默认）以 fit 模式显示，等比缩放 PPT 以保证完整显示 PPT 的内容。 |
+| `Retain` | 以本地记录的上一次学生手动调整的大小为准。 |
 
-### AgoraEduLaunchConfig
+### StreamState
 
 ```java
-public class AgoraEduLaunchConfig implements Parcelable {
-    @NotNull
-    private String userName;
-    @NotNull
-    private String userUuid;
-    @NotNull
-    private String roomName;
-    @NotNull
-    private String roomUuid;
-    private int roleType = EduUserRole.STUDENT.getValue();
-    private int roomType;
-    @NotNull
-    private String rtmToken;
-    @Nullable
-    private Long startTime;
-    @Nullable
-    private Long duration;
-    @Nullable
-    private String boardRegion;
+data class StreamState (
+        var videoState:Int,
+        var audioState:Int
+)
+```
+
+用于控制学生上台后是否发音视流。 用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+
+| Parameter | Description |
+| :----------- | :----------------------------------------------------------- |
+| `videoState` | 是否发视频流：<li>`0`: （默认）不发视频流。</li><li>`1`: Low-stream video.</li> |
+| `audioState` | 是否发音频流：<li>`0`: （默认）不发音频流。</li><li>`1`: 发音频流。</li> |
+
+### AgoraEduLatencyLevel
+
+```java
+enum class AgoraEduLatencyLevel(val value: Int) {
+    AgoraEduLatencyLevelLow(1),
+    AgoraEduLatencyLevelUltraLow(2);
 }
 ```
 
-The classroom launching configuration. Used when calling [`launch`](#launch).
+观众端延时级别，只对台下学生有效。 用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
-| Attributes | Description |
-| :------------ | :----------------------------------------------------------- |
-| `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
-| `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType` | The user's role in the classroom. See [`AgoraEduRoleType`](#agoraeduroletype). |
-| `roomType` | The classroom type. See [`AgoraEduRoomType`](#agoraeduroomtype). |
-| `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
-| `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
-| `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `boardRegion` | The area where the classrooms is located. All clients must set the same area, otherwise, they may fail to communicate with each other. See [](). |
+| Parameter | Description |
+| :----------------------------- | :--------------------------------------------------------- |
+| `AgoraEduLatencyLevelLow` | Low latency. Low latency: The latency from the sender to the receiver is 1500 ms - 2000 ms. |
+| `AgoraEduLatencyLevelUltraLow` | (Default) Ultra low latency. Ultra-low latency: The latency from the sender to the receiver is 400 ms - 800 ms. |
+
+### AgoraEduMediaOptions
+
+```kotlin
+class AgoraEduMediaOptions(val encryptionConfigs: AgoraEduMediaEncryptionConfigs?)
+```
+
+媒体流相关设置。 用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+
+| Parameter | 描述 |
+| :----------------- | :----------------------------------------------------------- |
+| See `EncryptionConfig`. | 媒体流加密配置，详见  [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig)。 |
+
+### AgoraEduMediaEncryptionConfig
+
+```kotlin
+data class AgoraEduMediaEncryptionConfigs(
+        val encryptionKey: String?,
+        val encryptionMode: Int
+)
+```
+
+媒体流加密配置，用于 [AgoraEduMediaOptions](#agoraedumediaoptions)。
+
+| Parameter | Description |
+| :----- | :------------------------------------- |
+| `mode` | 加密模式，详见 `AgoraEduEncryptMode`。 |
+| `key` | 加密密钥。 |
+
+### AgoraEduEncryptMode
+
+```kotlin
+enum class AgoraEduEncryptMode(val value: Int) {
+    NONE(0),
+    AES_128_XTS(1),
+    AES_128_ECB(2),
+    AES_256_XTS(3),
+    SM4_128_ECB(4),
+    AES_128_GCM(5),
+    AES_256_GCM(6);
+}
+```
+
+Encryption mode.
+
+| Parameter | Description |
+| :------------ | :-------------------------- |
+| `NONE` |                             |
+| `AES_128_XTS` | (Default) 128-bit AES encryption, XTS mode. |
+| `AES_128_ECB` | 128-bit AES encryption, ECB mode. |
+| `AES_256_XTS` | 256-bit AES encryption, XTS mode. |
+| `SM4_128_ECB` | 128 位 ECB 加密，SM4 模式。 |
+| `AES_128_GCM` | 5: 128-bit AES encryption, GCM mode. |
+| `AES_256_GCM` | 6: 256-bit AES encryption, GCM mode. |
 
 ### AgoraEduCourseware
 
@@ -371,12 +480,12 @@ data class AgoraEduCourseware(
 }
 ```
 
-The courseware pre-loaded configuration.  Used when calling [`configCoursewares`](#configcoursewares).
+课件预加载配置，用于 [`configCoursewares`](#configcoursewares) 方法。
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | The file name. |
-| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of `resourceName` and `name` of the first `SceneInfo` object in `scenes`, such as, `resourceName + "/" + sceneInfos.get(0).name`. |
+| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of `resourceName` and `name `of the first `SceneInfo` object in `scenes`, such as,` resourceName + "/" + sceneInfos.get(0).name`. |
 | `scenes` | A list of converted file pages, an array of `SceneInfo` objects. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom and then display the file on the whiteboard in pages. Each `SceneInfo` object represents one page. |
 | `resourceUrl` | The URL address of the file, such as `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`. |
 
@@ -390,12 +499,12 @@ public class SceneInfo {
 }
 ```
 
-The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducourseware).
+The detailed information of a page. 在 [`AgoraEduCourseware`](#agoraeducourseware) 中设置。
 
 | Attributes | Description |
 | :--------------- | :-------------------------------------------------------- |
 | `componentCount` | The number of pages. |
-| `ppt` | The detailed information of a converted page. See [`Ppt`](#ppt). |
+| `ppt` | The detailed information of a converted page. See [`Ppt`]()[](. |
 | `name` | The page name. |
 
 ### Ppt
@@ -408,7 +517,7 @@ public class Ppt {
 }
 ```
 
-The detailed information of a page displayed on the whiteboard. Set in [`SceneInfo`](#sceneinfo).
+The detailed information of a page displayed on the whiteboard. 在 [`SceneInfo`](#sceneinfo) 中设置。
 
 | Attributes | Description |
 | :------- | :------------------------------ |
@@ -416,22 +525,63 @@ The detailed information of a page displayed on the whiteboard. Set in [`SceneIn
 | `width` | The width (pixel) of the page. |
 | `height` | The height (pixel) of the page. |
 
-### AgoraEduRegionStr
+### AgoraEduRegion
 
 ```java
 object AgoraEduRegionStr {
-    val cn = "cn-hz"
-    val na = "us-sv"
-    val eu = "gb-lon"
-    val ap = "sg"
+    const val default = "CN"
+    const val cn = "CN"
+    const val na = "NA"
+    const val eu = "EU"
+    const val ap = "AP"
 }
 ```
 
-The area where the classrooms is located.
+区域。
 
 | Attributes | Description |
-| :--- | :--------- |
-| `cn` | Mainland China. |
+| :--- | :----------------- |
+| `cn` | （默认）中国大陆。 |
 | `na` | North America. |
-| `eu` | Europe. |
+| `eu` | 欧洲。 |
 | `ap` | Asia Pacific. |
+
+### EduVideoEncoderConfig
+
+```java
+data class EduVideoEncoderConfig(
+        var videoDimensionWidth: Int = 320,
+        var videoDimensionHeight: Int = 240,
+        var frameRate: Int = 15,
+        var bitrate: Int = 200,
+        var mirrorMode: Int = EduMirrorMode.AUTO.value
+)
+```
+
+视频编码参数配置类，用于 `AgoraEduLaunchConfig`。
+
+| Parameter | Description |
+| :----------- | :----------------------------------- |
+| `width` | Width (pixel) of the video frame. The default value is 360. The default value is 0. |
+| `height` | Height (pixel) of the video frame. The default value is 640. The default value is 1.0. |
+| `frameRate` | The capture frame rate (fps) of the local video. The default value is 15. |
+| `bitrate` | Video receive bitrate (Kbps), represented by an instantaneous value. The value ranges between 0 and 100 (default). |
+| `mirrorMode` | 视频镜像模式，详见 `EduMirrorMode`。 |
+
+### EduMirrorMode
+
+```kotlin
+enum class DeviceState(val value: Int) {
+    AUTO(0),
+    ENABLED(1),
+    DISABLED(2)
+}
+```
+
+是否开启镜像模式。
+
+| Parameter | Description |
+| :--------- | :--------------------- |
+| `AUTO` | SDK 默认关闭镜像模式。 |
+| `enabled` | 开启镜像模式。 |
+| `DISABLED` | Disable mirror mode. |
