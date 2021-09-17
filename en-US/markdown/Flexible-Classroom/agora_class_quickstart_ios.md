@@ -55,11 +55,11 @@
 
 <a name="integrate"></a>
 
-### 集成灵动课堂
+### Add Flexible Classroom into your app
 
 本节详细介绍如何将灵动课堂集成到你自己的 iOS 项目中。
 
-灵动课堂可分为 AgoraClassroomSDK、AgoraEduCore、AgoraEduUI、AgoraEduContext 四个 SDK，如下图所示。 Among them, AgoraClassroomSDK, AgoraEduUI, and AgoraEduContext are open sourced on Github and Cocoapods; AgoraEduCore is closed source and is released on Cocoapods as a binary package.
+灵动课堂可分为 AgoraClassroomSDK、AgoraEduCore、AgoraEduUI、AgoraEduContext 四个 SDK，如下图所示。 AgoraClassroomSDK, AgoraEduUI, and AgoraEduContext are open-source libraries and released on Github and CocoaPods. AgoraEduCore is a closed-source library and released on CocoaPods as a binary package.
 
 ![](https://web-cdn.agora.io/docs-files/1620822526000)
 
