@@ -1,105 +1,152 @@
-Use this guide to integrate the Agora Classroom SDK into your iOS project and call APIs to launch a flexible classroom.
+根据本文指导通过 Agora Classroom SDK 快速启动并体验灵动课堂。
 
-<div class="alert note"><li>Before proceeding, ensure that you make the <a href="./agora_class_prep">preparations</a> required for using Flexible Classroom.<li>The iOS client only supports students.</div>
+## Understand the tech
 
-## Sample project
-Agora provides an open-source [sample project](https://github.com/AgoraIO-Community/CloudClass-iOS) on GitHub, which demonstrates how to integrate the Agora Classroom SDK and call APIs to launch a flexible classroom. You can download and read the source code.
+~96d9aaf0-eb84-11eb-b768-51ffcd29c763~
 
-## Set up the development environment
+<a name="prerequisites"></a>
 
+## Prerequisites
+
+- 已在 Agora 控制台创建 Agora 项目，获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id)、[App 证书](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6)并[配置 aPaaS 服务](/cn/agora-class/agora_class_prep?platform=Web)。
 - Xcode 10.0 or later.
-- CocoaPods 1.10 or later. See the installation guide in [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started).
+- CocoaPods 1.10 or later. 参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
 - iOS 10 or later.
 - If you use Swift, use Swift 5.3.2 or later.
-- A physical iOS device (iPhone or iPad).
-- Physical media input devices, such as a built-in camera and a built-in microphone.
+- A valid Agora account. (Sign up for free)
+- A physical iOS device (iPhone or iPad). A physical Android device.
 
-## Integrate the Agora Classroom SDK
+## Launches a flexible classroom.
 
-Get the Agora Classroom SDK through CocoaPods, as follows:
+参照以下步骤启动灵动课堂：
 
-1. In Terminal, run the `pod init` command to create a Podfile in the root directory of your project. after which you can find the `Podfile `under the project directory.
+1. 运行以下命令将 Agora 提供的灵动课堂项目 CloudClass-iOS 克隆至本地：
 
-2. Open `Podfile`, delete all contents, and input the following contents. Remember to change `Your App` to the target name of your project.
+   ```
+   git clone https://github.com/AgoraIO-Community/CloudClass-iOS
+   ```
+
+2. 将 `keycenter.m` 文件中的 `Agora App ID` 和 `Agora App Certificate` 替换成[你的 App ID 和 App 证书](#prerequisites)。
+
+   ```swift
+   + (NSString *)appId {
+       return <#Your Agora App Id#>;
+   }
+
+   + (NSString *)appCertificate {
+       return <#Your Agora Certificate#>;
+   }
+   ```
+
+   为方便你快速测试，CloudClass-iOS 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。 但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
+
+   你可在 `AgoraEducation/Main/Controllers/LoginViewController.swift` 文件中查看启动课堂的具体逻辑：
+
+   1. 调用 [AgoraEduSDK.setConfig](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#setconfig) 方法全局配置 SDK。
+   2. 调用 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#launch) 方法启动灵动课堂。
+
+3. 连接上 iOS 设备后，用 Xcode 打开示例项目，然后编译并运行项目。
+
+4. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
+
+   ![](https://web-cdn.agora.io/docs-files/1620822526000)
+
+## Additional
+
+<a name="integrate"></a>
+
+### 集成灵动课堂
+
+本节详细介绍如何将灵动课堂集成到你自己的 iOS 项目中。
+
+灵动课堂可分为 AgoraClassroomSDK、AgoraEduCore、AgoraEduUI、AgoraEduContext 四个 SDK，如下图所示。 其中 AgoraClassroomSDK、AgoraEduUI、AgoraEduContext 在 Github 与 Cocoapods 上开源发布；AgoraEduCore 闭源，以二进制包在 Cocoapods 上发布。
+
+![](https://web-cdn.agora.io/docs-files/1620822526000)
+
+<a name="default_ui"></a>
+
+#### 使用灵动课堂的默认 UI
+
+如果你无需修改灵动课堂的默认 UI，在你自己项目的 `Podfile` 文件中添加如下引用即可集成灵动课堂：
 
 ```
-# platform :ios, '10.0' use_frameworks!
-target 'Your App' do
-    pod 'AgoraClassroomSDK'
-end
+# Open source libs
+pod 'AgoraClassroomSDK_iOS', "1.1.5.1"
+pod 'AgoraEduContext', "1.1.5"
+pod 'AgoraEduUI', "1.1.5"
+pod 'AgoraUIEduBaseViews', "1.1.5"
+
+# Close source libs
+pod 'AgoraEduCore', "1.1.5.4"
+
+# Common libs
+pod 'AgoraUIBaseViews', '1.0.1'
+pod 'AgoraExtApp', '1.0.0'
+pod 'AgoraWidget', '1.0.0'
+
+# Widgets
+pod 'AgoraWidgets', "1.0.0"
+
+# Third-party libs
+pod 'Protobuf', '3.17.0'
+pod "AFNetworking", "4.0.1"
+pod "CocoaLumberjack", "3.6.1"
+pod "AliyunOSSiOS", "2.10.8"
+pod "Whiteboard", "2.13.19"
+pod "AgoraRtcEngine_iOS", "3.4.6"
+pod "AgoraRtm_iOS", "1.4.8"
 ```
 
-<div class="alert info">For v1.0.0, use <code>pod 'AgoraEduSDK'</code>.</div>
+<a name="custom_ui"></a>
 
-3. Run `pod install` to install the SDK. Once you successfully install the SDK, it shows `Pod installation complete!` in Terminal, and you can see an `xcworkspace` file in the project folder.
-4. Open the generated `xcworkspace` file in Xcode.
+#### Customizing the UI of classrooms
 
-As of v1.1.0,  the Agora Classroom SDK for iOS is developed in Swift. If your project uses Object-C, see the following steps to create a Swift file in the project to generate the Swift environment.
+如果灵动课堂的默认 UI 无法满足你的需求，你需要自定义课堂 UI，则参考以下步骤将灵动课堂集成到你自己的项目中：
 
-1. Open the `ios/ProjectName.xcworkspace` folder in Xcode.
-2. Click **File> New> File**, select **iOS**>** Swift File**, and click **Next**> **Create** to create an empty `File.swift` file.
+1. 运行以下命令将 CloudClass-iOS 仓库克隆至本地：
 
-## Global configuration
+   ```bash
+   git clone https://github.com/AgoraIO-Community/CloudClass-iOS
+   ```
 
-First, create an `AgoraEduSDKConfig` instance for global configuration, and then call the `setConfig` method and pass in this instance. `AgoraEduSDKConfig` includes the following parameters:
+2. 通过 `git remote add` 命令， 为 CloudClass-iOS 仓库添加一个远端仓库，指向你自己项目的仓库。
 
-| Parameter | Description |
-| :-------- | :----------------------------------------------------------- |
-| `appId` | The Agora App ID. See [Get the Agora App ID](./agora_class_prep#step1). |
-| `eyeCare` | Whether to enable eye care mode:<li>NO: (Default) Disable eye care mode.<li>YES: Enable eye care mode. |
+3. 基于 release/apaas/1.1.5 分支创建一个你自己的分支，如 `edu_apaas_ui`，推向你自己项目的仓库。
 
-Sample code:
-```swift
-/** Global configuration **/
-@interface AgoraEduSDKConfig : NSObject
-// Agora App ID
-@property (nonatomic, copy) NSString *appId;
-// Whether to enable eye care mode
-@property (nonatomic, assign) BOOL eyeCare;
-@end
-AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
-[AgoraEduSDK setConfig:defaultConfig];
-```
+4. 在你自己项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 仓库中的 `AgoraClassroomSDK.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec`、`AgoraUIEduBaseViews.podspec` 以及其它依赖的库。
 
-## Launch a classroom
+   ```
+   # Open source libs
+   pod 'AgoraClassroomSDK_iOS', :path => '../SDKs/AgoraClassroomSDK/AgoraClassroomSDK_iOS.podspec'
+   pod 'AgoraEduContext', :path => '../SDKs/AgoraEduContext/AgoraEduContext.podspec'
+   pod 'AgoraEduUI', :path => '../SDKs/AgoraEduUI/AgoraEduUI.podspec'
+   pod 'AgoraUIEduBaseViews', :path => '../SDKs/Modules/AgoraUIEduBaseViews/AgoraUIEduBaseViews_Local.podspec'
 
-After initialization, create an `AgoraEduLaunchConfig` instance for the classroom launching configuration and then call `launch` to pass in the instance. `AgoraEduLaunchConfig` includes the following parameters:
+   # Close source libs
+   pod 'AgoraEduCore', "1.1.5.4"
 
-| Parameter | Description |
-| :---------- | :----------------------------------------------------------- |
-| `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType` | The role of the user in the classroom:<li>`AgoraEduRoleTypeStudent`: Student. |
-| `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
-| `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roomType` | The room type:<li>`AgoraEduRoomType1V1`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student.<li>`AgoraEduRoomTypeSmall`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher.<li>`AgoraEduRoomTypeBig`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
-| `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](./agora_class_prep#step5). |
-| `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
-| `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
+   # Common libs
+   pod 'AgoraUIBaseViews', '1.0.1'
+   pod 'AgoraExtApp', '1.0.0'
+   pod 'AgoraWidget', '1.0.0'
 
-```swift
-/** Classroom launching configuration */
-// The user name
-NSString *userName = @"XXX";
-// The user ID. Must be the same as the user ID that you use for generating an RTM token.
-NSString *userUUid = @"XXX";
-// The classroom name
-NSString *roomName = @"XXX";
-// The classroom ID
-NSString *roomUuid = @"XXX";
-// The user role
-AgoraEduRoleType roleType = AgoraEduRoleTypeStudent;
-// The classroom type
-AgoraEduRoomType roomType = AgoraEduRoomType1V1;
-// The RTM token
-NSString *rtmToken = "";
-// The start time (ms) of the class, determined by the first user joining the classroom.
-NSNumber *startTime = @(XXX);
-// The duration (ms) of the class, determined by the first user joining the classroom.
-NSNumber *duration = @(1800);
- 
-AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration];
-[AgoraEduSDK launch:config delegate:self];
-```
+   # Widgets
+   pod 'AgoraWidgets', :path => '../Widgets/AgoraWidgets/AgoraWidgets.podspec'
+   pod 'ChatWidget', :path => '../Widgets/ChatWidget/ChatWidget.podspec', :subspecs => ['SOURCE']
 
-After successfully launching a classroom, you can see the following page:![](https://web-cdn.agora.io/docs-files/1619164553801)
+   # Third-party libs
+   pod 'Protobuf', '3.17.0'
+   pod "AFNetworking", "4.0.1"
+   pod "CocoaLumberjack", "3.6.1"
+   pod "AliyunOSSiOS", "2.10.8"
+   pod "Whiteboard", "2.13.19"
+   pod "AgoraRtcEngine_iOS", "3.4.6"
+   pod "AgoraRtm_iOS", "1.4.8"
+   ```
+
+5. 后续你可在 `edu_apaas_ui `分支，参考[自定义课堂 UI 文档](/cn/agora-class/agora_class_custom_ui_ios?platform=iOS)自行修改灵动课堂的 UI，如更换颜色、调整布局。
+
+> As of v1.1.0,  the Agora Classroom SDK for iOS is developed in Swift. If your project uses Object-C, see the following steps to create a Swift file in the project to generate the Swift environment.
+>
+> 1. Open the `ios/ProjectName.xcworkspace` folder in Xcode.
+> 2. Click** File> New> File**, select **iOS**>** Swift File**, and click **Next**> **Create** to** create** an empty `File.swift file`.
