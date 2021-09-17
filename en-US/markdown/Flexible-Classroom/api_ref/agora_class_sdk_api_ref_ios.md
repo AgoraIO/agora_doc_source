@@ -42,7 +42,7 @@ AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appI
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `config` | The SDK global configuration. See [`AgoraEduSDKConfig`](#agoraedusdkconfig). |
+| `config` | 全局配置参数，详见 [`AgoraEduSDKConfig`](#agoraedusdkconfig)。 |
 
 ### launch
 
@@ -75,7 +75,7 @@ NSString *rtmToken = "";
 NSNumber *startTime = @(XXX);
 // The duration (ms) of the class, determined by the first user joining the classroom.
 NSNumber *duration = @(1800);
- 
+
 AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration];
 [AgoraEduSDK launch:config delegate:self];
 ```
@@ -84,8 +84,8 @@ AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:us
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `config` | The classroom launching configuration. See [`AgoraEduLaunchConfig`](#agoraedulaunchconfig). |
-| `delegate` | The SDK uses the [`AgoraEduClassroomDelegate`](#agoraeduclassroomdelegate) class to report events related to classroom launching to the app. |
+| `config` | 课堂启动配置，详见 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig)。 |
+| `delegate` | SDK 通过 [`AgoraEduClassroomDelegate`](#agoraeduclassroomdelegate) 类向 App 报告课堂启动相关的事件。 |
 
 **Returns**
 
@@ -124,7 +124,7 @@ AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceNam
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `config` | The courseware pre-downloading configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `config` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
 
 ### downloadCoursewares
 
@@ -145,7 +145,7 @@ Pre-download the courseware.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `delegate` | The SDK reports events related to courseware preloading to the app through the [`AgoraEduCoursewareDelegate`](#agoraeducoursewaredelegate) class. |
+| `delegate` | SDK 通过 [`AgoraEduCoursewareDelegate`](#agoraeducoursewaredelegate) 类向 App 报告课件预加载相关的事件。 |
 
 ### registerExtApps
 
@@ -153,7 +153,7 @@ Pre-download the courseware.
 + (void)registerExtApps:(NSArray<AgoraExtAppConfiguration *> *)apps;
 ```
 
-Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](./agora_class_ext_app_ios?platform=iOS).
+Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. 详见[通过 ExtApp 自定义插件](./agora_class_ext_app_ios?platform=iOS)。
 
 ## AgoraEduClassroom
 
@@ -163,7 +163,7 @@ Register an extension application by using the ExtApp tool. ExtApp is a tool for
 - (void)destroy;
 ```
 
-Release the resources occupied by the `AgoraEduClassroom` object.
+Release the resources occupied by the` AgoraEduClassroom` object.
 
 ## AgoraEduClassroomDelegate
 
@@ -181,7 +181,7 @@ Reports classroom events.
 
 | Parameter | Description |
 | :------ | :------------------------------------------------- |
-| `event` | The classroom events. See [`AgoraEduEven`](#agoraeduevent). |
+| `event` | 课堂事件，详见 [`AgoraEduEvent`](#agoraeduevent)。 |
 
 ## AgoraEduCoursewareDelegate
 
@@ -223,7 +223,7 @@ typedef NS_ENUM(NSInteger, AgoraEduEvent) {
 };
 ```
 
-Classroom events. Reported in the [`didReceivedEvent`](#didreceivedevent) callback.
+Classroom events. 在 [`didReceivedEvent`](#didreceivedevent) 回调中报告。
 
 | Attributes | Description |
 | :----------------------- | :------------------ |
@@ -239,7 +239,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoleType) {
 };
 ```
 
-The role of the user in the classroom. You need to set the user role in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The role of the user in the classroom. 在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
 
 | Attributes | Description |
 | :------------------------ | :---------- |
@@ -255,7 +255,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 };
 ```
 
-The classroom type. You need to set the user role in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The classroom type. 在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
 
 | Attributes | Description |
 | :---------------------- | :----------------------------------------------------------- |
@@ -275,11 +275,11 @@ The classroom type. You need to set the user role in [`AgoraEduLaunchConfig`](#a
 @end
 ```
 
-The SDK global configuration. Used when calling [`setConfig`](#setConfig).
+The SDK global configuration. 用于 [`setConfig`](#setConfig) 方法。
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
-| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | Agora App ID，详见[前提条件中获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
 | `eyeCare` | Whether to enable eye care mode:<li>`false`: (Default) Disable eye care mode.</li><li>`true`: Enable eye care mode.</li> |
 
 ### AgoraEduLaunchConfig
@@ -293,18 +293,17 @@ The SDK global configuration. Used when calling [`setConfig`](#setConfig).
 @property (nonatomic, copy) NSString *roomUuid;
 @property (nonatomic, assign) AgoraEduRoomType roomType;
 @property (nonatomic, copy) NSString *token;
-@property (nonatomic, strong, nullable) NSNumber *startTime;
+@property (nonatomic, copy) NSString *userName;
 @property (nonatomic, strong, nullable) NSNumber *duration;
-@property (nonatomic, copy) NSString *boardRegion;
- 
-- (instancetype)initWithUserName:(NSString *)userName
-                        userUuid:(NSString *)userUuid
-                        roleType:(AgoraEduRoleType)roleType
-                        roomName:(NSString *)roomName
-                        roomUuid:(NSString *)roomUuid
-                        roomType:(AgoraEduRoomType)roomType
-                           token:(NSString *)token;
- 
+@property (nonatomic, copy) NSString *appId;
+@property (nonatomic, strong, nullable) AgoraEduMediaOptions *mediaOptions;
+@property (nonatomic, copy, nullable) NSDictionary<NSString *, NSString *> * userProperties;
+@property (nonatomic, assign) AgoraEduStreamState videoState;
+@property (nonatomic, assign) AgoraEduStreamState audioState;
+@property (nonatomic, strong, nullable) AgoraEduVideoEncoderConfiguration *cameraEncoderConfiguration;
+@property (nonatomic, assign) AgoraEduLatencyLevel latencyLevel;
+@property (nonatomic, assign) AgoraBoardFitMode boardFitMode;
+
 - (instancetype)initWithUserName:(NSString *)userName
                         userUuid:(NSString *)userUuid
                         roleType:(AgoraEduRoleType)roleType
@@ -314,24 +313,133 @@ The SDK global configuration. Used when calling [`setConfig`](#setConfig).
                            token:(NSString *)token
                        startTime:(NSNumber *)startTime
                         duration:(NSNumber *)duration;
-                     boardRegion:(NSString *_Nullable)boardRegion;
+                  userProperties:(NSDictionary<NSString *, NSString *> * _Nullable)userProperties;
 @end
 ```
 
-The classroom launching configuration. Used when calling [`launch`](#launch).
+The classroom launching configuration. 用于 [`launch`](#launch) 方法。
 
 | Attributes | Description |
-| :------------ | :----------------------------------------------------------- |
+| :--------------------------- | :----------------------------------------------------------- |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `userUuid` | The user ID. This is the globally unique identifier of a user.** Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roleType` | The user's role in the classroom. See `AgoraEduRoleType`. |
 | `roomType` | The classroom type. See `AgoraEduRoomType`. |
-| `token` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
+| `token` | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `boardRegion` | The area where the classrooms is located. All clients must set the same area, otherwise, they may fail to communicate with each other. |
+| `region` | The area where the classrooms is located. 所有客户端必须设置相同的区域，否则无法互通。 可设为以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
+| `mediaOptions` | 媒体流相关设置，包含媒体流加密，详见 `AgoraEduMediaOptions`。 |
+| `userProperties` | 由开发者自定义的用户属性。 详见[如何设置自定义用户属性？ ](/cn/agora-class/faq/agora_class_custom_properties) |
+| `videoState` | 用于控制学生上台后是否发视频流，详见 `AgoraEduStreamState`。 |
+| `audioState` | 用于控制学生上台后是否发音频流，详见 `AgoraEduStreamState`。 |
+| `cameraEncoderConfiguration` | 摄像头采集视频流的编码参数配置，包含视频宽高、帧率、码率，详见 `AgoraEduVideoEncoderConfiguration`。 |
+| `latencyLevel` | 观众端延时级别，详见 `AgoraEduLatencyLevel`。 |
+| `boardFitMode` | 白板内容的显示模式，详见 `AgoraBoardFitMode`。 |
+
+### AgoraBoardFitMode
+
+```swift
+@objc public enum AgoraBoardFitMode: Int {
+    case auto, retain
+}
+```
+
+学生获取白板授权后，当老师切换白板和课件时学生白板内容的显示模式。 用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+
+| Parameter | Description |
+| :------- | :----------------------------------------------------------- |
+| `auto` | （默认）以 fit 模式显示，等比缩放 PPT 以保证完整显示 PPT 的内容。 |
+| `retain` | 以本地记录的上一次学生手动调整的大小为准。 |
+
+### StreamState
+
+```swift
+@objc public enum AgoraEduContextAppType: Int {
+    case off = 0, on, `default`
+}
+```
+
+用于控制学生上台后是否发音视流。 用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+
+| Parameter | Description |
+| :---- | :--------------- |
+| `off` | （默认）不发流。 |
+| `on` | 发流。 |
+
+### AgoraEduLatencyLevel
+
+```java
+@objc public enum AgoraEduContextUserRole: Int {
+    case low = 0
+    case ultraLow
+}
+```
+
+观众端延时级别，只对台下学生有效。 用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+
+| Parameter | Description |
+| :--------- | :--------------------------------------------------------- |
+| `low` | Low latency. Low latency: The latency from the sender to the receiver is 1500 ms - 2000 ms. |
+| `ultraLow` | (Default) Ultra low latency. Ultra-low latency: The latency from the sender to the receiver is 400 ms - 800 ms. |
+
+### AgoraEduMediaOptions
+
+```swift
+@interface AgoraEduSDKConfig : NSObject
+@property (nonatomic, strong) AgoraEduMediaEncryptionConfig *encryptionConfig;
+
+- (instancetype)initWithConfig:(AgoraEduMediaEncryptionConfig *)encryptionConfig;
+@end
+```
+
+媒体流相关设置。 用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+
+| Parameter | Description |
+| :----------------- | :----------------------------------------------------------- |
+| See `EncryptionConfig`. | 媒体流加密配置，详见 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig). |
+
+### AgoraEduMediaEncryptionConfig
+
+```swift
+@interface AgoraEduLaunchConfig : NSObject
+@property (nonatomic, assign) AgoraEduMediaEncryptionMode mode;
+@property (nonatomic, copy) NSString *token;
+
+- (instancetype)initWithMode:(AgoraEduMediaEncryptionMode)mode key:(NSString *)key;
+@end
+```
+
+媒体流加密配置，用于 [AgoraEduMediaOptions](#agoraedumediaoptions)。
+
+| Parameter | Description |
+| :----- | :----------------------------------------------------------- |
+| `mode` | 加密模式，详见 [AgoraEduMediaEncryptionMode](#agoraedumediaencryptionmode)。 |
+| `key` | 加密密钥。 |
+
+### AgoraEduMediaEncryptionMode
+
+```swift
+typedef NS_ENUM(NSInteger, AgoraEduEvent) {
+    AgoraEduMediaEncryptionModeAES128XTS = 1,
+    AgoraEduMediaEncryptionModeAES128ECB = 2,
+    AgoraEduMediaEncryptionModeAES256XTS = 3,
+    AgoraEduMediaEncryptionModeAES128GCM = 5,
+    AgoraEduMediaEncryptionModeAES256GCM = 6,
+};
+```
+
+媒体流加密模式。 用于 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfigs)。
+
+| Parameter | Description |
+| :------------------------------------- | :-------------------------- |
+| `AgoraEduMediaEncryptionModeAES128XTS` | (Default) 128-bit AES encryption, XTS mode. |
+| `AgoraEduMediaEncryptionModeAES128ECB` | 128-bit AES encryption, ECB mode. |
+| `AgoraEduMediaEncryptionModeAES256XTS` | 256-bit AES encryption, XTS mode. |
+| `AgoraEduMediaEncryptionModeAES128GCM` | 5: 128-bit AES encryption, GCM mode. |
+| `AgoraEduMediaEncryptionModeAES256GCM` | 6: 256-bit AES encryption, GCM mode. |
 
 ### AgoraEduCourseware
 
@@ -348,12 +456,12 @@ The classroom launching configuration. Used when calling [`launch`](#launch).
 @end
 ```
 
-The courseware pre-download configuration. The courseware pre-loading configuration. Used when calling [`configCoursewares`](#configcoursewares).
+The courseware pre-download configuration. 用于 [`configCoursewares`](#configcoursewares) 方法。
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | The file name. |
-| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of `resourceName` and the `name` of the first `SceneInfo` object in `scenes`. |
+| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of` resourceName` and the `name` of the first `SceneInfo` object in `scenes`. |
 | `resourceUrl` | The URL address of the file, such as `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip".` |
 | `scenes` | A list of converted file pages, an array of `WhiteScene` objects. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom and then display the file on the whiteboard in pages. Each `WhiteScene` object represents one page. |
 
@@ -371,7 +479,7 @@ The courseware pre-download configuration. The courseware pre-loading configurat
 @end
 ```
 
-The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducourseware).
+The detailed information of a page. 在 [`AgoraEduCourseware`](#agoraeducourseware) 中设置。
 
 | Attributes | Description |
 | :---------------- | :--------------------------------------------------------- |
@@ -395,7 +503,7 @@ The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducours
 @end
 ```
 
-The detailed information of a converted page. Set in [`SceneInfo`](#sceneinfo).
+The detailed information of a converted page. 在 [`SceneInfo`](#sceneinfo) 中设置。
 
 | Attributes | Description |
 | :----------- | :------------------------------------------ |
