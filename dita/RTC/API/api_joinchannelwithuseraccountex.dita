@@ -20,7 +20,10 @@
                    delegate:(id&lt;AgoraRtcEngineDelegate> _Nullable)delegate
                mediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions
                 joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int joinChannelWithUserAccountEx(const char* token, const char* channelId,
+                                           const char* userAccount, const ChannelMediaOptions&amp; options,
+                                           IRtcEngineEventHandler* eventHandler) = 0;
+</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -52,11 +55,7 @@
                     <pt/>
                     <pd/>
                 </plentry>
-                <plentry conkeyref="joinChannelEx/connection">
-                    <pt/>
-                    <pd/>
-                </plentry>
-   </parml>
+                 </parml>
         </section>
         <section id="return_values">
    <title>返回值</title>
