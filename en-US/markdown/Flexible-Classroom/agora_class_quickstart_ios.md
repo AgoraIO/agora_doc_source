@@ -59,7 +59,7 @@
 
 本节详细介绍如何将灵动课堂集成到你自己的 iOS 项目中。
 
-灵动课堂可分为 AgoraClassroomSDK、AgoraEduCore、AgoraEduUI、AgoraEduContext 四个 SDK，如下图所示。 其中 AgoraClassroomSDK、AgoraEduUI、AgoraEduContext 在 Github 与 Cocoapods 上开源发布；AgoraEduCore 闭源，以二进制包在 Cocoapods 上发布。
+灵动课堂可分为 AgoraClassroomSDK、AgoraEduCore、AgoraEduUI、AgoraEduContext 四个 SDK，如下图所示。 Among them, AgoraClassroomSDK, AgoraEduUI, and AgoraEduContext are open sourced on Github and Cocoapods; AgoraEduCore is closed source and is released on Cocoapods as a binary package.
 
 ![](https://web-cdn.agora.io/docs-files/1620822526000)
 
