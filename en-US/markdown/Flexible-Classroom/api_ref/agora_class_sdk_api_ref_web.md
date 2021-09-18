@@ -231,11 +231,11 @@ export enum MediaEncryptionMode {
 
 | Parameter | Description |
 | :------------ | :-------------------------- |
-| `AES_128_XTS` | (Default) 128-bit AES encryption, XTS mode. |
+| `AES_128_XTS` | 128-bit AES encryption, XTS mode. |
 | `AES_128_ECB` | 128-bit AES encryption, ECB mode. |
 | `AES_256_XTS` | 256-bit AES encryption, XTS mode. |
-| `AES_128_GCM` | 5: 128-bit AES encryption, GCM mode. |
-| `AES_256_GCM` | 6: 256-bit AES encryption, GCM mode. |
+| `AES_128_GCM` | 128-bit AES encryption, GCM mode. |
+| `AES_256_GCM` | 256-bit AES encryption, GCM mode. |
 
 ### CourseWareList
 
