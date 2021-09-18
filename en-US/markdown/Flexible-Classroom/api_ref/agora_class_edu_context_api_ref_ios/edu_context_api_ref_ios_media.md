@@ -1,6 +1,6 @@
 ## AgoraEduMediaContext
 
-`AgoraEduUserContext` provides user-list-related methods that can be called by your app.
+`AgoraEduMediaContext` provides the methods that can be called by your app for pre-class audio and video preview.
 
 ### openCamera
 
@@ -56,7 +56,7 @@ Turn off the microphone.
 func publishStream(type: EduContextMediaStreamType)
 ```
 
-将流发布到远端，包括当前摄像头采集的视频流和麦克风采集的音频流。
+Publish local streams to the remote clients, including the video stream captured by the camera and the audio stream sampled by the microphone.
 
 ### unpublishStream
 
@@ -64,15 +64,15 @@ func publishStream(type: EduContextMediaStreamType)
 func unpublishStream(type: EduContextMediaStreamType)
 ```
 
-取消发布流。
+Unpublish local streams.
 
 ### renderRemoteView
 
 ```swift
-func renderView(_ view: UIView?, streamUuid: String)
+func renderRemoteView(_ view: UIView?, streamUuid: String)
 ```
 
-开始或停止渲染远端流。 Setting `view` as `nil` means stopping rendering the video stream.
+Starts or stops rendering the remote video stream. Setting `view` as `nil` means stopping rendering the video stream.
 
 ### setVideoConfig
 
@@ -84,4 +84,4 @@ Sets the video encoder configuration.
 
 | Parameter | Description |
 | :------------ | :------------------------------------------------ |
-| `videoConfig` | 视频编码配置，详见 `AgoraEduContextVideoConfig`。 |
+| `videoConfig` | The video encoding configuration. See `AgoraEduContextVideoConfig`. |
