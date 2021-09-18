@@ -24,7 +24,7 @@ Turn off the camera.
 func startPreview(_ view: UIView)
 ```
 
-Starts the local video preview before joining a channel.
+Starts the local video preview.
 
 ### stopPreview
 
@@ -32,7 +32,7 @@ Starts the local video preview before joining a channel.
 func stopPreview()
 ```
 
-Stops the local video preview and disables video.
+Stops the local video preview.
 
 ### openMicrophone
 
