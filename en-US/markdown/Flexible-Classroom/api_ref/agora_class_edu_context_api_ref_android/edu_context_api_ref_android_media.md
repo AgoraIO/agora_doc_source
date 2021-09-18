@@ -1,11 +1,11 @@
 ## MediaContext
 
-`RoomContext` provides the methods that can be called by your app for classroom management.
+`MediaContext` provides the methods that can be called by your app for pre-class audio and video preview.
 
 ### openCamera
 
 ```kotlin
-abstract fun leave()
+abstract fun openCamera()
 ```
 
 Turn on the camera.
@@ -13,7 +13,7 @@ Turn on the camera.
 ### closeCamera
 
 ```kotlin
-abstract fun leave()
+abstract fun closeCamera()
 ```
 
 Turn off the camera.
@@ -24,15 +24,15 @@ Turn off the camera.
 abstract fun startPreview(container: ViewGroup)
 ```
 
-Starts the local video preview before joining a channel.
+Starts the local video preview.
 
 ### stopPreview
 
 ```kotlin
-abstract fun setPrevPage()
+abstract fun stopPreview()
 ```
 
-Stops the local video preview and disables video.
+Stops the local video preview.
 
 ### openMicrophone
 
