@@ -2,7 +2,7 @@ This page provides the Kotlin API reference of the Agora Classroom SDK for Andro
 
 ## AgoraClassSdk
 
-`AgoraEduSDK` is the basic interface of the Agora Classroom SDK and provides the main methods that can be invoked by your app.
+`AgoraClassSdk` is the basic interface of the Agora Classroom SDK and provides the main methods that can be invoked by your app.
 
 ### version
 
@@ -32,14 +32,14 @@ Globally configures the SDK.
 String appId = "XXX";
 // Whether to enable eye care mode
 boolean eyeCare = false;
-AgoraEduSDK.setConfig(new AgoraEduSDKConfig(appId, eyeCare));
+AgoraClassSdk.setConfig(new AgoraClassSdkConfig(appId, eyeCare));
 ```
 
 **Parameter**
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
-| `agoraEduSDKConfig` | 全局配置参数，详见 [`AgoraEduSDKConfig`](#agoraedusdkconfig)。 |
+| `agoraEduSDKConfig` | The SDK global configuration. See [`AgoraEduSDKConfig`](#agoraedusdkconfig). |
 
 ### launch
 
@@ -73,10 +73,10 @@ String rtmToken = "";
 long startTime = System.currentTimeMillis() + 100;
 // The duration (ms) of the class, determined by the first user joining the classroom.
 long duration = 310L;
-// The area where the classroom is located.
-String region = AgoraEduRegionStr.cn;
+// The region where the classroom is located. All clients must set the same region, otherwise, they may fail to communicate with each other.
+String region = AgoraEduRegion.cn;
 
-AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfig(
+AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfignew AgoraEduLaunchConfig(
     userName, userUuid, roomName, roomUuid, roleType,
     roomType, rtmToken, startTime, duration, region, null, null,
     AgoraBoardFitMode.Retain, streamState, AgoraEduLatencyLevel.AgoraEduLatencyLevelUltraLow,
@@ -276,11 +276,11 @@ The SDK global configuration. 用于 [`setConfig`](#setconfig) 方法。
 ```kotlin
 class AgoraEduLaunchConfig(val userName: String,
                            val userUuid: String,
-                           roomName: string,
-                           roomUuid: string,
-                           int roleType = AgoraEduRoleType.AgoraEduRoleTypeStudent.getValue();
+                           val roomName: String,
+                           val roomUuid: String,
+                           val roleType: Int = AgoraEduRoleType.AgoraEduRoleTypeStudent.value,
                            val roomType: Int,
-                           rtmToken: string,
+                           val rtmToken: String,
                            val startTime: Long?,
                            val duration: Long?,
                            val region: String,
@@ -461,12 +461,12 @@ Encryption mode.
 | Parameter | Description |
 | :------------ | :-------------------------- |
 | `NONE` |                             |
-| `AES_128_XTS` | (Default) 128-bit AES encryption, XTS mode. |
+| `AES_128_XTS` | 128-bit AES encryption, XTS mode. |
 | `AES_128_ECB` | 128-bit AES encryption, ECB mode. |
 | `AES_256_XTS` | 256-bit AES encryption, XTS mode. |
-| `SM4_128_ECB` | 128 位 ECB 加密，SM4 模式。 |
-| `AES_128_GCM` | 5: 128-bit AES encryption, GCM mode. |
-| `AES_256_GCM` | 6: 256-bit AES encryption, GCM mode. |
+| `` | 128 位 ECB 加密，SM4 模式。 |
+| `AES_128_GCM` | 128-bit AES encryption, GCM mode. |
+| `AES_256_GCM` | 256-bit AES encryption, GCM mode. |
 
 ### AgoraEduCourseware
 
@@ -528,7 +528,7 @@ The detailed information of a page displayed on the whiteboard. 在 [`SceneInfo`
 ### AgoraEduRegion
 
 ```java
-object AgoraEduRegionStr {
+object AgoraEduRegion {
     const val default = "CN"
     const val cn = "CN"
     const val na = "NA"
@@ -543,7 +543,7 @@ object AgoraEduRegionStr {
 | :--- | :----------------- |
 | `cn` | （默认）中国大陆。 |
 | `na` | North America. |
-| `eu` | 欧洲。 |
+| `eu` | Europe. |
 | `ap` | Asia Pacific. |
 
 ### EduVideoEncoderConfig
@@ -558,7 +558,7 @@ data class EduVideoEncoderConfig(
 )
 ```
 
-视频编码参数配置类，用于 `AgoraEduLaunchConfig`。
+The classroom launching configuration. See AgoraEduLaunchConfig.``
 
 | Parameter | Description |
 | :----------- | :----------------------------------- |
@@ -571,17 +571,17 @@ data class EduVideoEncoderConfig(
 ### EduMirrorMode
 
 ```kotlin
-enum class DeviceState(val value: Int) {
+enum class EduMirrorMode(val value: Int) {
     AUTO(0),
     ENABLED(1),
     DISABLED(2)
 }
 ```
 
-是否开启镜像模式。
+Whether to enable mirror mode.
 
 | Parameter | Description |
 | :--------- | :--------------------- |
-| `AUTO` | SDK 默认关闭镜像模式。 |
-| `enabled` | 开启镜像模式。 |
+| `AUTO` | The SDK disables mirror mode by default. |
+| `ENABLED` | Enable mirror mode. |
 | `DISABLED` | Disable mirror mode. |
