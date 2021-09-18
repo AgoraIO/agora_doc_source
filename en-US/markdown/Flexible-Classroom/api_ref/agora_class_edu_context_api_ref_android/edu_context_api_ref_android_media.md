@@ -56,7 +56,7 @@ Turn off the microphone.
 abstract fun publishStream(type: EduContextMediaStreamType)
 ```
 
-将流发布到远端，包括当前摄像头采集的视频流和麦克风采集的音频流。
+Publish local streams to the remote clients, including the video stream captured by the camera and the audio stream sampled by the microphone.
 
 ### unpublishStream
 
@@ -64,15 +64,15 @@ abstract fun publishStream(type: EduContextMediaStreamType)
 abstract fun unPublishStream(type: EduContextMediaStreamType)
 ```
 
-取消发布流。
+Unpublish local streams.
 
 ### renderRemoteView
 
 ```kotlin
-abstract fun renderVideo(container: ViewGroup?, streamUuid: String)
+abstract fun renderRemoteView(container: ViewGroup?, streamUuid: String)
 ```
 
-Start or stop rendering the local video stream.
+Starts or stops rendering the remote video stream.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------- |
@@ -89,4 +89,4 @@ Sets the video encoder configuration.
 
 | Parameter | Description |
 | :------------------- | :-------------------------------------------------- |
-| `videoEncoderConfig` | 视频编码配置，详见 `EduContextVideoEncoderConfig`。 |
+| `videoEncoderConfig` | The video encoding configuration. See `EduContextVideoEncoderConfig`. |
