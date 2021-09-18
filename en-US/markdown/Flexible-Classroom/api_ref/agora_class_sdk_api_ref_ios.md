@@ -42,7 +42,7 @@ AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appI
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `config` | 全局配置参数，详见 [`AgoraEduSDKConfig`](#agoraedusdkconfig)。 |
+| `config` | The SDK global configuration. See [`AgoraEduSDKConfig`](#agoraedusdkconfig). |
 
 ### launch
 
@@ -435,11 +435,11 @@ typedef NS_ENUM(NSInteger, AgoraEduEvent) {
 
 | Parameter | Description |
 | :------------------------------------- | :-------------------------- |
-| `AgoraEduMediaEncryptionModeAES128XTS` | (Default) 128-bit AES encryption, XTS mode. |
+| `AgoraEduMediaEncryptionModeAES128XTS` | 128-bit AES encryption, XTS mode. |
 | `AgoraEduMediaEncryptionModeAES128ECB` | 128-bit AES encryption, ECB mode. |
 | `AgoraEduMediaEncryptionModeAES256XTS` | 256-bit AES encryption, XTS mode. |
-| `AgoraEduMediaEncryptionModeAES128GCM` | 5: 128-bit AES encryption, GCM mode. |
-| `AgoraEduMediaEncryptionModeAES256GCM` | 6: 256-bit AES encryption, GCM mode. |
+| `AgoraEduMediaEncryptionModeAES128GCM` | 128-bit AES encryption, GCM mode. |
+| `AgoraEduMediaEncryptionModeAES256GCM` | 256-bit AES encryption, GCM mode. |
 
 ### AgoraEduCourseware
 
