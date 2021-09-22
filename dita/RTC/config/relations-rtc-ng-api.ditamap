@@ -206,14 +206,14 @@
         </relrow>
         <relrow props="mac windows">
             <relcell>
-                <topicref keyref="startScreenCaptureByDisplayId" props="mac windows"/>
-                <topicref keyref="startScreenCaptureByScreenRect"/>
-                <topicref keyref="startScreenCaptureByWindowId"/>
+                <topicref keyref="startScreenCaptureByDisplayId" props="mac"/>
+                <topicref keyref="startScreenCaptureByScreenRect" props="windows"/>
+                <topicref keyref="startScreenCaptureByWindowId" props="mac windows"/>
             </relcell>
             <relcell>
-                <topicref keyref="Rectangle"/>
-                <topicref keyref="ScreenCaptureParameters"/>
-                <topicref keyref="VideoDimensions"/>
+                <topicref keyref="Rectangle" props="windows"/>
+                <topicref keyref="ScreenCaptureParameters" props="mac windows"/>
+                <topicref keyref="VideoDimensions" props="windows"/>
             </relcell>
         </relrow>
         <relrow props="windows">
@@ -441,7 +441,7 @@
                 <topicref keyref="VIDEO_MIRROR_MODE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="ios windows">
             <relcell>
                 <topicref keyref="setCameraCapturerConfiguration"/>
             </relcell>
@@ -511,6 +511,19 @@
             </relcell>
             <relcell>
                 <topicref keyref="PluginInfo"/>
+            </relcell>
+        </relrow>
+        <relrow props="mac">
+            <relcell>
+                <topicref keyref="enumerateDevices"/>
+                <topicref keyref="getDeviceInfo"/>
+                <topicref keyref="setDevice_IVideoDeviceCollection"/>
+                <topicref keyref="getDeviceVolume"/>
+                <topicref keyref="setDeviceVolume"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="MEDIA_DEVICE_TYPE"/>
+                <topicref keyref="AgoraRtcDeviceInfo"/>
             </relcell>
         </relrow>
         <relrow>
@@ -728,7 +741,7 @@
                 <topicref keyref="LastmileProbeOneWayResult"/>
             </relcell>
         </relrow>
-        <relrow props="windows mac electron">
+        <relrow props="windows electron">
             <relcell>
                 <topicref keyref="onAudioDeviceStateChanged"/>
                 <topicref keyref="onVideoDeviceStateChanged"/>
@@ -738,7 +751,7 @@
                 <topicref keyref="MEDIA_DEVICE_STATE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow props="windows mac electron">
+        <relrow props="windows electron">
             <relcell>
                 <topicref keyref="onAudioDeviceVolumeChanged"/>
             </relcell>
@@ -795,7 +808,7 @@
                 <topicref keyref="AudioEncodedFrameObserverConfig"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android windows">
             <relcell>
                 <topicref keyref="onLocalAudioSpectrum"/>
             </relcell>
@@ -911,22 +924,6 @@
             </relcell>
             <relcell>
                 <topicref keyref="RENDER_MODE_TYPE"/>
-            </relcell>
-        </relrow>
-        <relrow>
-            <relcell>
-                <topicref keyref="onLocalAudioSpectrum"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="AudioSpectrumData"/>
-            </relcell>
-        </relrow>
-        <relrow>
-            <relcell>
-                <topicref keyref="onRemoteAudioSpectrum"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="UserAudioSpectrumInfo"/>
             </relcell>
         </relrow>
         <relrow>
@@ -1323,7 +1320,7 @@
                 <topicref keyref="onAudioVolumeIndication"/>
             </relcell>
         </relrow>
-        <relrow props="android ios mac windows">
+        <relrow props="android ios windows">
             <relcell>
                 <topicref keyref="setEnableSpeakerphone"/>
             </relcell>
@@ -1454,7 +1451,7 @@
                 <topicref keyref="getMaxMetadataSize"/>
              </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios windows">
             <relcell>
                 <topicref keyref="setDefaultAudioRouteToSpeakerphone"/>
                 <topicref keyref="setEnableSpeakerphone"/>
