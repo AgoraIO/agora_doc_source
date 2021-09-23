@@ -332,7 +332,7 @@ The classroom launching configuration. Used in [`launch`](#launch).
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
 | `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. 可设为以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
 | `mediaOptions` | 媒体流相关设置，包含媒体流加密，详见 `AgoraEduMediaOptions`。 |
-| `userProperties` | 由开发者自定义的用户属性。 详见[如何设置自定义用户属性？ ](/cn/agora-class/faq/agora_class_custom_properties) |
+| `userProperties` | 由开发者自定义的用户属性。 详见[如何设置自定义用户属性？ ](/en/agora-class/faq/agora_class_custom_properties) |
 | `videoState` | 用于控制学生上台后是否发视频流，详见 `AgoraEduStreamState`。 |
 | `audioState` | 用于控制学生上台后是否发音频流，详见 `AgoraEduStreamState`。 |
 | `cameraEncoderConfiguration` | 摄像头采集视频流的编码参数配置，包含视频宽高、帧率、码率，详见 `AgoraEduVideoEncoderConfiguration`。 |
