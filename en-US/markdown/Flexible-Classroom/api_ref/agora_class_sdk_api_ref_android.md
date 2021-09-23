@@ -101,7 +101,7 @@ AgoraClassSdk.launch(MainActivity2.this, agoraEduLaunchConfig, (state) -> {
 ### configCourseWare
 
 ```java
-public static void configCoursewares(@NotNull List<AgoraEduCourseware> wares);
+public static void configCourseWare(@NotNull List<AgoraEduCourseware> coursewares);
 ```
 
 Configures courseware downloading.
@@ -113,7 +113,7 @@ Configures courseware downloading.
 // Configure the courseware
 String taskUuid = "xxxxx";
 // The courseware download address
-String resourceUrl = String.formate ("https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip", taskUuid);
+String resourceUrl = String.formate("https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip", taskUuid);
 // The courseware name
 String resourceName = "xxxxxxx"
 // The list of courseware pages
@@ -142,7 +142,7 @@ configCoursewares(wares);
 ### downloadCourseWare
 
 ```java
-public static void downloadCoursewares(@NotNull Context context, @Nullable AgoraEduCoursewarePreloadListener listener)
+public static void downloadCourseWare(@NotNull Context context, @Nullable AgoraEduCoursewarePreloadListener listener)
         throws Exception;
 ```
 
