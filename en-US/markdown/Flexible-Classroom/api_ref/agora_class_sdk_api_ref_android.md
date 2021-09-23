@@ -91,12 +91,12 @@ AgoraClassSdk.launch(MainActivity2.this, agoraEduLaunchConfig, (state) -> {
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
 | `context` | The context of the app. |
-| `config` | 课堂启动配置，详见 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig)。 |
-| `callback` | SDK 通过 [`AgoraEduLaunchCallback  `](#agoraedulaunchcallback) 类向 App 报告课堂启动相关的事件。 |
+| `config` | The classroom launching configuration. See [`AgoraEduLaunchConfig`](#agoraedulaunchconfig). |
+| `callback` | The SDK uses the [`AgoraEduLaunchCallback`](#agoraedulaunchcallback) class to report events related to classroom launching to the app. |
 
 **Returns**
 
-`AgoraEduClassRoom`
+The `AgoraEduClassRoom` class.
 
 ### configCourseWare
 
@@ -123,7 +123,7 @@ String src = "http://xxxxxxx";
 Ppt ppt = new Ppt(src, 360, 640);
 SceneInfo sceneInfo = new SceneInfo(1, ppt, "ppt-file-name");
 List<SceneInfo> sceneInfos = new ArrayList();
-sceneInfos.push(sceneInfo)
+sceneInfos.add(sceneInfo);
 // The path for storing the courseware
 String scenePath = resourceName + "/" + sceneInfos.get(0).name;
 AgoraEduCourseware courseware = new AgoraEduCourseware(resourceName, scenePath, sceneInfos, resourceUrl);
@@ -137,7 +137,7 @@ configCoursewares(wares);
 
 | Parameter | Description |
 | :------ | :----------------------------------------------------------- |
-| `wares` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
+| `wares` | The courseware pre-download configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
 
 ### downloadCourseWare
 
@@ -173,19 +173,19 @@ downloadCoursewares(activityContext, new AgoraEduCoursewarePreloadListener() {
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
 | `context` | The context of the app. |
-| `listener` | SDK 通过 [`AgoraEduCoursewarePreloadListener`](#agoraeducoursewarepreloadlistener) 类向 App 报告课件预加载相关的事件。 |
+| `listener` | The SDK reports events related to courseware preloading to the app through the [`AgoraEduCoursewarePreloadListener`](#agoraeducoursewarepreloadlistener) class. |
 
 ### registerExtensionApp
 
 ```java
-public static void registerExtApps(List<AgoraExtAppConfiguration> apps);
+public static void registerExtensionApp(List<AgoraExtAppConfiguration> apps);
 ```
 
-Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. 详见[通过 ExtApp 自定义插件](./agora_class_ext_app_android?platform=Android)。
+Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](./agora_class_ext_app_android?platform=Android).
 
 ## AgoraEduLaunchCallback
 
-`AgoraEduLaunchCallback` reports events related to classroom launching to the app.
+The `AgoraEduLaunchCallback` class reports events related to classroom launching to the app.
 
 ### onCallback
 
@@ -197,11 +197,11 @@ Reports classroom events.
 
 | Parameter | Description |
 | :------ | :------------------------------------------------- |
-| `state` | 课堂事件，详见 [`AgoraEduEvent`](#agoraeduevent)。 |
+| `state` | The classroom events. See [`AgoraEduEvent`](#agoraeduevent). |
 
 ## AgoraEduCoursewarePreloadListener
 
-`AgoraEduCoursewarePreloadListener` reports events related to courseware preloading to the app.
+The `AgoraEduCoursewarePreloadListener` class reports events related to courseware preloading to the app.
 
 ### onStartDownload
 
@@ -213,7 +213,7 @@ Start preloading the courseware.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `ware` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
+| `ware` | The courseware pre-download configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
 
 ### onProgress
 
@@ -225,7 +225,7 @@ Indicates the progress of courseware pre-downloading.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `ware` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
+| `ware` | The courseware pre-download configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
 | `progress` | Indicates the progress of courseware pre-downloading. |
 
 ### onComplete
@@ -238,7 +238,7 @@ The courseware pre-downloading completes.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `ware` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
+| `ware` | The courseware pre-download configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
 
 ### onFailed
 
@@ -250,25 +250,25 @@ The courseware pre-downloading fails.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `ware` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
+| `ware` | The courseware pre-download configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
 
 ## Type definition
 
 ### AgoraClassSdkConfig
 
 ```java
-public class AgoraEduSDKConfig {
+public class AgoraClassSdkConfig {
     @NotNull
     private String appId;
     private int eyeCare;
 }
 ```
 
-The SDK global configuration. 用于 [`setConfig`](#setconfig) 方法。
+The SDK global configuration. Used in [`setConfig`](#setconfig).
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
-| `appId` | Agora App ID，详见[前提条件中获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
+| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
 | `eyeCare` | Whether to enable eye care mode:<li>`0`: (Default) Disable eye care mode.</li><li>`1`: Enable eye care mode.</li> |
 
 ### AgoraEduLaunchConfig
@@ -293,22 +293,22 @@ class AgoraEduLaunchConfig(val userName: String,
                            val widgetConfigs: MutableList<UiWidgetConfig>? = null) : Parcelable
 ```
 
-The classroom launching configuration. 用于 [`launch`](#launch) 方法。
+The classroom launching configuration. Used in [`launch`](#launch).
 
 | Attributes | Description |
 | :------------------- | :----------------------------------------------------------- |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `userUuid` | The user ID. This is the globally unique identifier of a user.** Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType` | 用户在课堂中的角色，详见 [`AgoraEduRoleType`](#agoraeduroletype)。 |
-| `roomType` | 课堂类型，详见 [`AgoraEduRoomType`](#agoraeduroomtype)。 |
-| `rtmToken` | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
+| `roleType` | The role of the user in the classroom. See  [`AgoraEduRoleType`](#agoraeduroletype). |
+| `roomType` | The classroom type. See [`AgoraEduRoomType`](#agoraeduroomtype). |
+| `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `region` | The area where the classrooms is located. 所有客户端必须设置相同的区域，否则无法互通。 详见 [`AgoraEduRegionStr`](#agoraeduregionstr)。 |
-| `videoEncoderConfig` | 视频编码参数配置，包含视频宽高、帧率、码率，详见 [`EduVideoEncoderConfig`](#eduvideoencoderconfig) |
-| `mediaOptions` | 媒体流相关设置，包含媒体流加密，详见 [`AgoraEduMediaOptions`](#agoraedumediaoptions)。 |
+| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. See [`AgoraEduRegionStr`](#agoraeduregionstr). |
+| `videoEncoderConfig` | Video encoding configurations, including the width and height, frame rate, and bitrate. See [`EduVideoEncoderConfig`](#eduvideoencoderconfig.) |
+| `mediaOptions` | The media options, including media encryption configurations. See [`AgoraEduMediaOptions`](#agoraedumediaoptions). |
 | `boardFitMode` | 白板的显示模式，详见 [`AgoraBoardFitMode`](#agoraboardfitmode)。 |
 | `streamState` | 用于控制学生上台后是否发音视频流，详见 [`StreamState`](#streamstate)。 |
 | `latencyLevel` | 观众端延时级别，详见 [`AgoraEduLatencyLevel`](#agoraedulatencylevel)。 |
@@ -325,7 +325,7 @@ public enum AgoraEduEvent {
 }
 ```
 
-Classroom events. 在 [`onCallback`](#oncallback) 回调中报告。
+Classroom events. Reported in [`onCallback`](#oncallback).
 
 | Attributes | Description |
 | :----------------------- | :------------------------ |
@@ -342,7 +342,7 @@ public enum AgoraEduRoleType {
 }
 ```
 
-The role of the user in the classroom. 在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
+The role of the user in the classroom. The classroom launching configuration. See AgoraEduLaunchConfig#agoraedulaunchconfig.[``](
 
 | Attributes | Description |
 | :------------------------ | :---------- |
@@ -358,7 +358,7 @@ public enum AgoraEduRoomType {
 }
 ```
 
-The classroom type. 在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
+The classroom type. The classroom launching configuration. See AgoraEduLaunchConfig#agoraedulaunchconfig.[``](
 
 | Attributes | Description |
 | :---------------------- | :----------------------------------------------------------- |
