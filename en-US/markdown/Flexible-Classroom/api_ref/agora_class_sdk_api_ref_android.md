@@ -312,7 +312,7 @@ The classroom launching configuration. Used in [`launch`](#launch).
 | `boardFitMode` | 白板的显示模式，详见 [`AgoraBoardFitMode`](#agoraboardfitmode)。 |
 | `streamState` | 用于控制学生上台后是否发音视频流，详见 [`StreamState`](#streamstate)。 |
 | `latencyLevel` | 观众端延时级别，详见 [`AgoraEduLatencyLevel`](#agoraedulatencylevel)。 |
-| `userProperties` | 由开发者自定义的用户属性。 详见[如何设置自定义用户属性？ ](/cn/agora-class/faq/agora_class_custom_properties) |
+| `userProperties` | 由开发者自定义的用户属性。 详见[如何设置自定义用户属性？ ](/en/agora-class/faq/agora_class_custom_properties) |
 
 ### AgoraEduEvent
 
