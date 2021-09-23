@@ -84,7 +84,7 @@ AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:us
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `config` | 课堂启动配置，详见 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig)。 |
+| `config` | The classroom launching configuration. See [`AgoraEduLaunchConfig`](#agoraedulaunchconfig). |
 | `delegate` | SDK 通过 [`AgoraEduClassroomDelegate`](#agoraeduclassroomdelegate) 类向 App 报告课堂启动相关的事件。 |
 
 **Returns**
@@ -124,7 +124,7 @@ AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceNam
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `config` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
+| `config` | The courseware pre-download configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
 
 ### downloadCoursewares
 
@@ -181,7 +181,7 @@ Reports classroom events.
 
 | Parameter | Description |
 | :------ | :------------------------------------------------- |
-| `event` | 课堂事件，详见 [`AgoraEduEvent`](#agoraeduevent)。 |
+| `event` | The classroom events. See [`AgoraEduEvent`](#agoraeduevent). |
 
 ## AgoraEduCoursewareDelegate
 
@@ -239,7 +239,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoleType) {
 };
 ```
 
-The role of the user in the classroom. 在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
+The role of the user in the classroom. The classroom launching configuration. See AgoraEduLaunchConfig#agoraedulaunchconfig.[``](
 
 | Attributes | Description |
 | :------------------------ | :---------- |
@@ -255,7 +255,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 };
 ```
 
-The classroom type. 在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
+The classroom type. The classroom launching configuration. See AgoraEduLaunchConfig#agoraedulaunchconfig.[``](
 
 | Attributes | Description |
 | :---------------------- | :----------------------------------------------------------- |
@@ -279,7 +279,7 @@ The SDK global configuration. 用于 [`setConfig`](#setConfig) 方法。
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
-| `appId` | Agora App ID，详见[前提条件中获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
+| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
 | `eyeCare` | Whether to enable eye care mode:<li>`false`: (Default) Disable eye care mode.</li><li>`true`: Enable eye care mode.</li> |
 
 ### AgoraEduLaunchConfig
@@ -317,20 +317,20 @@ The SDK global configuration. 用于 [`setConfig`](#setConfig) 方法。
 @end
 ```
 
-The classroom launching configuration. 用于 [`launch`](#launch) 方法。
+The classroom launching configuration. Used in [`launch`](#launch).
 
 | Attributes | Description |
 | :--------------------------- | :----------------------------------------------------------- |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `userUuid` | The user ID. This is the globally unique identifier of a user.** Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roleType` | The user's role in the classroom. See `AgoraEduRoleType`. |
 | `roomType` | The classroom type. See `AgoraEduRoomType`. |
-| `token` | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
+| `token` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `region` | The area where the classrooms is located. 所有客户端必须设置相同的区域，否则无法互通。 可设为以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
+| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. 可设为以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
 | `mediaOptions` | 媒体流相关设置，包含媒体流加密，详见 `AgoraEduMediaOptions`。 |
 | `userProperties` | 由开发者自定义的用户属性。 详见[如何设置自定义用户属性？ ](/cn/agora-class/faq/agora_class_custom_properties) |
 | `videoState` | 用于控制学生上台后是否发视频流，详见 `AgoraEduStreamState`。 |
