@@ -157,9 +157,9 @@ export type LaunchOption = {
 | `personalCourseWareList` | 老师端自行上传的课件配置，详见 [`CourseWareList`](#coursewarelist)。 After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 | `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. 详见[通过 ExtApp 自定义插件](./agora_class_ext_app_web?platform=Web)。 |
 | `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following features:<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
-| `userFlexProperties` | 由开发者自定义的用户属性。 详见[如何设置自定义用户属性？ ](/en/agora-class/faq/agora_class_custom_properties) |
+| `userFlexProperties` | User attributes customized by the developer. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties) |
 | `mediaOptions` | 媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 `MediaOptions`。 |
-| `latencyLevel` | The latency level of an audience member in interactive live streaming.<li>`1`: Low latency. Low latency: The latency from the sender to the receiver is 1500 ms - 2000 ms.</li><li>(Default) Ultra low latency. Ultra-low latency: The latency from the sender to the receiver is 400 ms - 800 ms.</li> |
+| `latencyLevel` | The latency level of an audience member in interactive live streaming.<li>`1`: Low latency. Low latency: The latency from the sender to the receiver is 1500 ms to 2000 ms.</li><li>(Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms.</li> |
 
 ### mediaOptions
 
