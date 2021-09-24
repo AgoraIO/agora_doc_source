@@ -309,10 +309,10 @@ The classroom launching configuration. Used in [`launch`](#launch).
 | `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. See [`AgoraEduRegionStr`](#agoraeduregionstr). |
 | `videoEncoderConfig` | Video encoding configurations, including the width and height, frame rate, and bitrate. See [`EduVideoEncoderConfig`](#eduvideoencoderconfig.) |
 | `mediaOptions` | The media options, including media encryption configurations. See [`AgoraEduMediaOptions`](#agoraedumediaoptions). |
-| `boardFitMode` | 白板的显示模式，详见 [`AgoraBoardFitMode`](#agoraboardfitmode)。 |
-| `streamState` | 用于控制学生上台后是否发音视频流，详见 [`StreamState`](#streamstate)。 |
-| `latencyLevel` | 观众端延时级别，详见 [`AgoraEduLatencyLevel`](#agoraedulatencylevel)。 |
-| `userProperties` | 由开发者自定义的用户属性。 详见[如何设置自定义用户属性？ ](/en/agora-class/faq/agora_class_custom_properties) |
+| `boardFitMode` | The PPT display mode. See [`AgoraBoardFitMode`](#agoraboardfitmode). |
+| `streamState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See  [`StreamState`](#streamstate). |
+| `latencyLevel` | The latency level of an audience member. See [`AgoraEduLatencyLevel`](#agoraedulatencylevel). |
+| `userProperties` | User attributes customized by the developer. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties) |
 
 ### AgoraEduEvent
 
@@ -342,7 +342,7 @@ public enum AgoraEduRoleType {
 }
 ```
 
-The role of the user in the classroom. The classroom launching configuration. See AgoraEduLaunchConfig#agoraedulaunchconfig.[``](
+The role of the user in the classroom. Set in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :------------------------ | :---------- |
@@ -358,7 +358,7 @@ public enum AgoraEduRoomType {
 }
 ```
 
-The classroom type. The classroom launching configuration. See AgoraEduLaunchConfig#agoraedulaunchconfig.[``](
+The classroom type. Set in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :---------------------- | :----------------------------------------------------------- |
@@ -411,8 +411,8 @@ enum class AgoraEduLatencyLevel(val value: Int) {
 
 | Parameter | Description |
 | :----------------------------- | :--------------------------------------------------------- |
-| `AgoraEduLatencyLevelLow` | Low latency. Low latency: The latency from the sender to the receiver is 1500 ms - 2000 ms. |
-| `AgoraEduLatencyLevelUltraLow` | (Default) Ultra low latency. Ultra-low latency: The latency from the sender to the receiver is 400 ms - 800 ms. |
+| `AgoraEduLatencyLevelLow` | Low latency. Low latency: The latency from the sender to the receiver is 1500 ms to 2000 ms. |
+| `AgoraEduLatencyLevelUltraLow` | (Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms. |
 
 ### AgoraEduMediaOptions
 
@@ -435,7 +435,7 @@ data class AgoraEduMediaEncryptionConfigs(
 )
 ```
 
-媒体流加密配置，用于 [AgoraEduMediaOptions](#agoraedumediaoptions)。
+The media options, including media encryption configurations. See AgoraEduMediaOptions#agoraedumediaoptions.[](
 
 | Parameter | Description |
 | :----- | :------------------------------------- |
@@ -456,7 +456,7 @@ enum class AgoraEduEncryptMode(val value: Int) {
 }
 ```
 
-Encryption mode.
+The encryption mode.
 
 | Parameter | Description |
 | :------------ | :-------------------------- |
@@ -464,7 +464,7 @@ Encryption mode.
 | `AES_128_XTS` | 128-bit AES encryption, XTS mode. |
 | `AES_128_ECB` | 128-bit AES encryption, ECB mode. |
 | `AES_256_XTS` | 256-bit AES encryption, XTS mode. |
-| `` | 128 位 ECB 加密，SM4 模式。 |
+| `SM4_128_ECB` | 128-bit ECB encryption, SM4 mode. |
 | `AES_128_GCM` | 128-bit AES encryption, GCM mode. |
 | `AES_256_GCM` | 256-bit AES encryption, GCM mode. |
 
@@ -499,7 +499,7 @@ public class SceneInfo {
 }
 ```
 
-The detailed information of a page. 在 [`AgoraEduCourseware`](#agoraeducourseware) 中设置。
+The detailed information of a page. The courseware pre-download configuration. See AgoraEduCourseware#agoraeducourseware.[``](
 
 | Attributes | Description |
 | :--------------- | :-------------------------------------------------------- |
