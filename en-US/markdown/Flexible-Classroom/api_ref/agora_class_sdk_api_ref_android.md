@@ -375,12 +375,12 @@ public enum AgoraBoardFitMode {
 }
 ```
 
-学生获取白板授权后，当老师切换白板和课件时学生白板内容的显示模式。 用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+The whiteboard PPT display mode. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `Auto` | （默认）以 fit 模式显示，等比缩放 PPT 以保证完整显示 PPT 的内容。 |
-| `Retain` | 以本地记录的上一次学生手动调整的大小为准。 |
+| `Auto` | (Default) The PPT display mode is fit, which means uniformly scaling the PPT until one of its dimensions fits the boundary. |
+| `Retain` | In this mode, if the student manually adjusts the PPT size, the client maintains this size no matter what class the student joins. |
 
 ### StreamState
 
@@ -391,12 +391,12 @@ data class StreamState (
 )
 ```
 
-用于控制学生上台后是否发音视流。 用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+Controls whether students automatically send audio or video streams after they go onto the "stage". Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------------- |
-| `videoState` | 是否发视频流：<li>`0`: （默认）不发视频流。</li><li>`1`: Low-stream video.</li> |
-| `audioState` | 是否发音频流：<li>`0`: （默认）不发音频流。</li><li>`1`: 发音频流。</li> |
+| `videoState` | Whether send the video stream:<li>`0`: (Default) Do not send the video stream.</li><li>`1`: Send the video stream.</li> |
+| `audioState` | Whether send the audio stream:<li>`0`: (Default) Do not send the audio stream.</li><li>`1`: Send the audio stream.</li> |
 
 ### AgoraEduLatencyLevel
 
@@ -407,7 +407,7 @@ enum class AgoraEduLatencyLevel(val value: Int) {
 }
 ```
 
-观众端延时级别，只对台下学生有效。 用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+观众端延时级别，只对台下学生有效。 Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
 | :----------------------------- | :--------------------------------------------------------- |
@@ -420,7 +420,7 @@ enum class AgoraEduLatencyLevel(val value: Int) {
 class AgoraEduMediaOptions(val encryptionConfigs: AgoraEduMediaEncryptionConfigs?)
 ```
 
-媒体流相关设置。 用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+媒体流相关设置。 Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | 描述 |
 | :----------------- | :----------------------------------------------------------- |
