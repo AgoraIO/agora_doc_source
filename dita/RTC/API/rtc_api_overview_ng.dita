@@ -494,8 +494,8 @@
                     <stentry><ph conkeyref="getAudioMixingPublishVolume/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry><xref keyref="getAudioMixingDuration2"/></stentry>
-                    <stentry><ph conkeyref="getAudioMixingDuration2/shortdesc"/></stentry>
+                    <stentry><xref keyref="getAudioMixingDuration"/></stentry>
+                    <stentry><ph conkeyref="getAudioMixingDuration/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="getAudioMixingCurrentPosition"/></stentry>
@@ -848,7 +848,7 @@
                 </strow>
             </simpletable>
         </section>
-        <section props="windows" id="section_slv_yb1_jqb">
+        <section props="hide" id="section_slv_yb1_jqb">
             <title>本地合图</title>
             <simpletable>
                 <sthead>
@@ -913,12 +913,16 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry><xref keyref="setExternalAudioSource"/></stentry>
-                    <stentry><ph conkeyref="setExternalAudioSource/shortdesc"/></stentry>
+                    <stentry><xref keyref="setExternalAudioSource2"/></stentry>
+                    <stentry><ph conkeyref="setExternalAudioSource2/shortdesc"/></stentry>
                 </strow>
-                <strow>
-                    <stentry><xref keyref="pushAudioFrame1"/></stentry>
-                    <stentry><ph conkeyref="pushAudioFrame1/shortdesc"/></stentry>
+                <strow props="windows">
+                    <stentry><xref keyref="pushAudioFrame"/></stentry>
+                    <stentry><ph conkeyref="pushAudioFrame/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios">
+                    <stentry><xref keyref="pushAudioFrame2"/></stentry>
+                    <stentry><ph conkeyref="pushAudioFrame2/shortdesc"/></stentry>
                 </strow>
                 <strow props="android windows">
                     <stentry><xref keyref="setExternalAudioSink"/></stentry>
@@ -928,7 +932,7 @@
                     <stentry><xref keyref="pullAudioFrame"/></stentry>
                     <stentry><ph conkeyref="pullAudioFrame/shortdesc"/></stentry>
                 </strow>
-                <strow props="android windows">
+                <strow props="android">
                     <stentry><xref keyref="pullAudioFrame2"/></stentry>
                     <stentry><ph conkeyref="pullAudioFrame2/shortdesc"/></stentry>
                 </strow>
@@ -1345,7 +1349,7 @@
                     <stentry><xref keyref="sendStreamMessageEx"/></stentry>
                     <stentry><ph conkeyref="sendStreamMessageEx/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android ios mac">
                     <stentry><xref keyref="setRemoteRenderModeEx2"/></stentry>
                     <stentry><ph conkeyref="setRemoteRenderModeEx2/shortdesc"/></stentry>
                 </strow>
@@ -1353,11 +1357,7 @@
                     <stentry><xref keyref="setRemoteVoicePositionEx"/></stentry>
                     <stentry><ph conkeyref="setRemoteVoicePositionEx/shortdesc"/></stentry>
                 </strow>
-                <strow>
-                    <stentry><xref keyref="setupRemoteVideoEx"/></stentry>
-                    <stentry><ph conkeyref="setupRemoteVideoEx/shortdesc"/></stentry>
-                </strow>
-                <strow>
+                <strow props="android ios mac">
                     <stentry><xref keyref="setupRemoteVideoEx"/></stentry>
                     <stentry><ph conkeyref="setupRemoteVideoEx/shortdesc"/></stentry>
                 </strow>
@@ -1545,7 +1545,7 @@
                     <stentry><ph conkeyref="release_IVideoDeviceManager/shortdesc"/></stentry>
                 </strow>
             </simpletable>
-            <simpletable>
+            <simpletable props="hide">
                 <sthead>
                     <stentry>事件</stentry>
                     <stentry>描述</stentry>
@@ -1608,11 +1608,11 @@
                     <stentry><xref keyref="getPlaybackDeviceInfo"/></stentry>
                     <stentry><ph conkeyref="getPlaybackDeviceInfo/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="hide">
                     <stentry><xref keyref="setPlaybackDeviceVolume"/></stentry>
                     <stentry><ph conkeyref="setPlaybackDeviceVolume/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="hide">
                     <stentry><xref keyref="getPlaybackDeviceVolume"/></stentry>
                     <stentry><ph conkeyref="getPlaybackDeviceVolume/shortdesc"/></stentry>
                 </strow>
@@ -1628,27 +1628,27 @@
                     <stentry><xref keyref="getRecordingDeviceInfo"/></stentry>
                     <stentry><ph conkeyref="getRecordingDeviceInfo/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="hide">
                     <stentry><xref keyref="setRecordingDeviceVolume"/></stentry>
                     <stentry><ph conkeyref="setRecordingDeviceVolume/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="hide">
                     <stentry><xref keyref="getRecordingDeviceVolume"/></stentry>
                     <stentry><ph conkeyref="getRecordingDeviceVolume/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="hide">
                     <stentry><xref keyref="setPlaybackDeviceMute"/></stentry>
                     <stentry><ph conkeyref="setPlaybackDeviceMute/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="hide">
                     <stentry><xref keyref="getPlaybackDeviceMute"/></stentry>
                     <stentry><ph conkeyref="getPlaybackDeviceMute/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="hide">
                     <stentry><xref keyref="setRecordingDeviceMute"/></stentry>
                     <stentry><ph conkeyref="setRecordingDeviceMute/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="hide">
                     <stentry><xref keyref="getRecordingDeviceMute"/></stentry>
                     <stentry><ph conkeyref="getRecordingDeviceMute/shortdesc"/></stentry>
                 </strow>
@@ -1687,7 +1687,7 @@
                     <stentry><ph conkeyref="release_IAudioDeviceManager/shortdesc"/></stentry>
                 </strow>
             </simpletable>
-            <simpletable id="simpletable_zs1_shw_jqb">
+            <simpletable id="simpletable_zs1_shw_jqb" props="hide">
                 <sthead>
                     <stentry>事件</stentry>
                     <stentry>描述</stentry>
