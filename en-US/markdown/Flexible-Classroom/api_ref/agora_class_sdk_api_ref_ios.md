@@ -239,7 +239,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoleType) {
 };
 ```
 
-The role of the user in the classroom. The classroom launching configuration. See AgoraEduLaunchConfig#agoraedulaunchconfig.[``](
+The role of the user in the classroom. Set in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :------------------------ | :---------- |
@@ -255,7 +255,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 };
 ```
 
-The classroom type. The classroom launching configuration. See AgoraEduLaunchConfig#agoraedulaunchconfig.[``](
+The classroom type. Set in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :---------------------- | :----------------------------------------------------------- |
@@ -332,7 +332,7 @@ The classroom launching configuration. Used in [`launch`](#launch).
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
 | `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. 可设为以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
 | `mediaOptions` | 媒体流相关设置，包含媒体流加密，详见 `AgoraEduMediaOptions`。 |
-| `userProperties` | 由开发者自定义的用户属性。 详见[如何设置自定义用户属性？ ](/en/agora-class/faq/agora_class_custom_properties) |
+| `userProperties` | User attributes customized by the developer. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties) |
 | `videoState` | 用于控制学生上台后是否发视频流，详见 `AgoraEduStreamState`。 |
 | `audioState` | 用于控制学生上台后是否发音频流，详见 `AgoraEduStreamState`。 |
 | `cameraEncoderConfiguration` | 摄像头采集视频流的编码参数配置，包含视频宽高、帧率、码率，详见 `AgoraEduVideoEncoderConfiguration`。 |
@@ -382,8 +382,8 @@ The classroom launching configuration. Used in [`launch`](#launch).
 
 | Parameter | Description |
 | :--------- | :--------------------------------------------------------- |
-| `low` | Low latency. Low latency: The latency from the sender to the receiver is 1500 ms - 2000 ms. |
-| `ultraLow` | (Default) Ultra low latency. Ultra-low latency: The latency from the sender to the receiver is 400 ms - 800 ms. |
+| `low` | Low latency. Low latency: The latency from the sender to the receiver is 1500 ms to 2000 ms. |
+| `ultraLow` | (Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms. |
 
 ### AgoraEduMediaOptions
 
@@ -412,7 +412,7 @@ The classroom launching configuration. Used in [`launch`](#launch).
 @end
 ```
 
-媒体流加密配置，用于 [AgoraEduMediaOptions](#agoraedumediaoptions)。
+The media options, including media encryption configurations. See AgoraEduMediaOptions#agoraedumediaoptions.[](
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
@@ -479,7 +479,7 @@ The courseware pre-download configuration. 用于 [`configCoursewares`](#configc
 @end
 ```
 
-The detailed information of a page. 在 [`AgoraEduCourseware`](#agoraeducourseware) 中设置。
+The detailed information of a page. The courseware pre-download configuration. See AgoraEduCourseware#agoraeducourseware.[``](
 
 | Attributes | Description |
 | :---------------- | :--------------------------------------------------------- |
