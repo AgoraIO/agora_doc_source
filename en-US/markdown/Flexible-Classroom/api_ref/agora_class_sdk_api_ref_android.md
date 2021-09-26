@@ -375,7 +375,7 @@ public enum AgoraBoardFitMode {
 }
 ```
 
-The whiteboard PPT display mode. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
+The PPT display mode on the whiteboard. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
@@ -541,7 +541,7 @@ Regions.
 
 | Attributes | Description |
 | :--- | :----------------- |
-| `CN` | （默认）中国大陆。 |
+| `CN` | Mainland China. |
 | `NA` | North America. |
 | `EU` | Europe. |
 | `AP` | Asia Pacific. |
@@ -560,13 +560,16 @@ data class EduVideoEncoderConfig(
 
 The classroom launching configuration. See `AgoraEduLaunchConfig`.
 
+> - In the Small Classroom scenario, the default resolution is 120p (160*120).
+> - In the One-to-one Classroom and Lecture Hall scenarios, the default resolution is 240p (320*240).
+
 | Parameter | Description |
 | :----------- | :----------------------------------- |
-| `width` | Width (pixel) of the video frame. The default value is 320. |
-| `height` | Height (pixel) of the video frame. The default value is 640. The default value is 1.0. |
-| `frameRate` | The capture frame rate (fps) of the local video. The default value is 15. |
-| `bitrate` | Video receive bitrate (Kbps), represented by an instantaneous value. The value ranges between 0 and 100 (default). |
-| `mirrorMode` | 视频镜像模式，详见 `EduMirrorMode`。 |
+| `width` | Width (pixel) of the video frame. |
+| `height` | Height (pixel) of the video frame. |
+| `frameRate` | The frame rate (fps) of the video. The default value is 15. |
+| `bitrate` | The bitrate (Kbps) of the video. The default value is 200. |
+| `mirrorMode` | Video mirror modes. See `EduMirrorMode`. |
 
 ### EduMirrorMode
 
