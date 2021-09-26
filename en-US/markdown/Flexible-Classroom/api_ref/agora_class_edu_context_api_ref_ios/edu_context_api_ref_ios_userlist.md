@@ -2,42 +2,33 @@
 
 `AgoraEduUserContext` provides user-list-related methods that can be called by your app.
 
-### muteVideo
+### updateFlexUserProperties
 
 ```swift
-func muteVideo(_ mute: Bool)
+func updateFlexUserProperties(_ userUuid: String,
+                              properties: [String: String],
+                                   cause:[String: String]?)
 ```
 
-Enable or disable the local video.
+新增或更新自定义用户属性。 For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
+
+The remote client receives the `onFlexUserPropertiesChanged` callback.
 
 | Parameter | Description |
-| :----- | :----------------- |
-| `mute` | Whether to disable the local video. |
+| :----------- | :----------------------------------------------------------- |
+| `userUuid` | The user ID. |
+| `properties` | user attribute 可设为 `{"key.subkey":"1"}`  或 `{"key":{"subkey":"1"}}`。 |
+| `cause` | 更新原因。 |
 
-### muteAudio
+### getLocalUserInfo
 
 ```swift
-func muteAudio(_ mute: Bool)
+func getLocalUserInfo() -> AgoraEduContextUserInfo
 ```
 
-Enable or disable the local audio.
+> 自 v1.1.5 起新增。
 
-| Parameter | Description |
-| :----- | :----------------- |
-| `mute` | Whether to close the local audio. |
-
-### renderView
-
-```swift
-func renderView(_ view: UIView?, streamUuid: String)
-```
-
-Start or stop rendering the local video stream.
-
-| Parameter | Description |
-| :----------- | :----------------------------------------------- |
-| `view` | The video container. `Setting view` as `nil` means stopping rendering the video stream. |
-| `streamUuid` | The stream ID. |
+获取本地用户信息。
 
 ### registerEventHandler
 
@@ -73,7 +64,7 @@ Occurs when the user list is updated. Only display the information of online use
 @objc optional func onUpdateCoHostList(_ list: [AgoraEduContextUserDetailInfo])
 ```
 
-Occurs when the list of on-stage users is updated. Only display the information of users who are on the stage, including the offline users.
+Occurs when the list of on-stage users is updated. 只显示状态为“在台上”的用户信息，包含不在线的用户。
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
@@ -89,7 +80,7 @@ Occurs when the local user receives a reward.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------- |
-| `userInfo` | The user information. See `AgoraEduContextUserInfo` for details. |
+| `userInfo` | The user information. See AgoraEduContextUserInfo for details``. |
 
 ### onKickedOut
 
@@ -97,7 +88,7 @@ Occurs when the local user receives a reward.
 @objc optional func onKickedOut()
 ```
 
-Occurs when the local user is kicked out of the classroom.
+本地用户被踢出课堂。
 
 ### onUpdateAudioVolumeIndication
 
@@ -112,21 +103,22 @@ Occurs when the volume of the local user is updated.
 | `volume` | The volume. |
 | `streamUuid` | The stream ID. |
 
-### onShowUserTips
+### onFlexUserPropertiesChanged
 
 ```swift
-@objc optional func onShowUserTips(_ message: String)
+@objc optional func onFlexUserPropertiesChanged(_ changedProperties:[String : Any],
+                                                         properties: [String: Any],
+                                                              cause:[String : Any]?,
+                                                           fromUser:AgoraEduContextUserDetailInfo,
+                                                           operator:AgoraEduContextUserInfo?)
 ```
 
-Reports the tips related to the user.
-
-There are the following tips:
-
-- Your camera has been turned off.
-- Your camera has been turned on.
-- Your microphone has been turned off.
-- Your microphone has been turned on.
+自定义用户属性更新回调。
 
 | Parameter | Description |
-| :-------- | :--------- |
-| `message` | The tip. |
+| :------------------ | :----------------------------------------------------------- |
+| `changedProperties` | 已更新的用户属性。 |
+| `properties` | 全部用户属性。 |
+| `cause` | 更新原因。 |
+| `fromUser` | 属性被更新的用户的相关信息，详见 `AgoraEduContextUserDetailInfo`。 |
+| `operator` | The user information. See AgoraEduContextUserInfo for details``. `operator` 为空表示是由服务端更新。 |
