@@ -85,11 +85,11 @@ AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:us
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
 | `config` | The classroom launching configuration. See [`AgoraEduLaunchConfig`](#agoraedulaunchconfig). |
-| `delegate` | SDK 通过 [`AgoraEduClassroomDelegate`](#agoraeduclassroomdelegate) 类向 App 报告课堂启动相关的事件。 |
+| `delegate` | The SDK uses the [`AgoraEduClassroomDelegate`](#agoraeduclassroomdelegate) class to report events related to classroom launching to the app. |
 
 **Returns**
 
-`AgoraEduClassroom`.
+The `AgoraEduClassroom` class.
 
 ### configCoursewares
 
@@ -145,7 +145,7 @@ Pre-download the courseware.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `delegate` | The SDK reports events related to courseware preloading to the app through the AgoraEduCoursewarePreloadListener#agoraeducoursewarepreloadlistener class.[``]( |
+| `delegate` | The SDK reports events related to courseware preloading to the app through the [`AgoraEduCoursewareDelegate`](#agoraeducoursewaredelegate) class. |
 
 ### registerExtApps
 
@@ -153,7 +153,7 @@ Pre-download the courseware.
 + (void)registerExtApps:(NSArray<AgoraExtAppConfiguration *> *)apps;
 ```
 
-Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see Customize Flexible Classroom with ExtApp./agora_class_ext_app_android?platform=Android.[](
+Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom]( with ExtApp./agora_class_ext_app_android?platform=iOS).
 
 ## AgoraEduClassroom
 
@@ -167,7 +167,7 @@ Release the resources occupied by the` AgoraEduClassroom` object.
 
 ## AgoraEduClassroomDelegate
 
-`AgoraEduLaunchCallback` reports events related to classroom launching to your app.
+The `AgoraEduLaunchCallback` class reports events related to classroom launching to your app.
 
 ### didReceivedEvent
 
@@ -185,7 +185,7 @@ Reports classroom events.
 
 ## AgoraEduCoursewareDelegate
 
-`AgoraEduCoursewareDelegate` reports events related to courseware preloading to your app.
+The `AgoraEduCoursewareDelegate` class reports events related to courseware preloading to your app.
 
 ### didProcessChanged
 
@@ -223,7 +223,7 @@ typedef NS_ENUM(NSInteger, AgoraEduEvent) {
 };
 ```
 
-Classroom events. 在 [`didReceivedEvent`](#didreceivedevent) 回调中报告。
+Classroom events. Reported in the [`didReceivedEvent`](#didreceivedevent) callback.
 
 | Attributes | Description |
 | :----------------------- | :------------------ |
@@ -275,7 +275,7 @@ The classroom type. Set in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
 @end
 ```
 
-The SDK global configuration. Used in setConfig#setconfig.[``](
+The SDK global configuration. Used in [`setConfig`](#setconfig).
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
@@ -293,9 +293,9 @@ The SDK global configuration. Used in setConfig#setconfig.[``](
 @property (nonatomic, copy) NSString *roomUuid;
 @property (nonatomic, assign) AgoraEduRoomType roomType;
 @property (nonatomic, copy) NSString *token;
-@property (nonatomic, copy) NSString *userName;
-@property (nonatomic, strong, nullable) NSNumber *duration;
-@property (nonatomic, copy) NSString *appId;
+@property (nonatomic, copy) NSNumber *startTime;
+@property (nonatomic, copy, nullable) NSNumber *duration;
+@property (nonatomic, copy) NSString *region;
 @property (nonatomic, strong, nullable) AgoraEduMediaOptions *mediaOptions;
 @property (nonatomic, copy, nullable) NSDictionary<NSString *, NSString *> * userProperties;
 @property (nonatomic, assign) AgoraEduStreamState videoState;
@@ -311,8 +311,8 @@ The SDK global configuration. Used in setConfig#setconfig.[``](
                         roomUuid:(NSString *)roomUuid
                         roomType:(AgoraEduRoomType)roomType
                            token:(NSString *)token
-                       startTime:(NSNumber *)startTime
-                        duration:(NSNumber *)duration;
+                       startTime:(NSNumber * _Nullable)startTime
+                        duration:(NSNumber * _Nullable)duration
                   userProperties:(NSDictionary<NSString *, NSString *> * _Nullable)userProperties;
 @end
 ```
@@ -327,16 +327,16 @@ The classroom launching configuration. Used in [`launch`](#launch).
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roleType` | The user's role in the classroom. See `AgoraEduRoleType`. |
 | `roomType` | The classroom type. See `AgoraEduRoomType`. |
-| `token` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
+| `token` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/en/agora-class/agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. 可设为以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
-| `mediaOptions` | 媒体流相关设置，包含媒体流加密，详见 `AgoraEduMediaOptions`。 |
+| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Supported regions are:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
+| `mediaOptions` | Media options, including the media stream encryption configuration. See `AgoraEduMediaOptions` for details. |
 | `userProperties` | User attributes customized by the developer. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties) |
-| `videoState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See  StreamState#streamstate.`` |
-| `audioState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See  StreamState#streamstate.`` |
+| `videoState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See  `AgoraEduStreamState`. |
+| `audioState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See  `AgoraEduStreamState`. |
 | `cameraEncoderConfiguration` | 摄像头采集视频流的编码参数配置，包含视频宽高、帧率、码率，详见 `AgoraEduVideoEncoderConfiguration`。 |
-| `latencyLevel` | 观众端延时级别，详见 `AgoraEduLatencyLevel`。 |
+| `latencyLevel` | The latency level of an audience member. See `AgoraEduLatencyLevel`. |
 | `boardFitMode` | 白板内容的显示模式，详见 `AgoraBoardFitMode`。 |
 
 ### AgoraBoardFitMode
@@ -351,13 +351,13 @@ After the student obtains the whiteboard authorization, the display mode of the 
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| AUTO`` | (Default) The PPT display mode is fit, which means uniformly scaling the PPT until one of its dimensions fits the boundary. |
-| Retain`` | In this mode, if the student manually adjusts the PPT size, the client maintains this size no matter what class the student joins. |
+| `auto` | (Default) The PPT display mode is fit, which means uniformly scaling the PPT until one of its dimensions fits the boundary. |
+| `retain` | In this mode, if the student manually adjusts the PPT size, the client maintains this size no matter what class the student joins. |
 
 ### StreamState
 
 ```swift
-@objc public enum AgoraEduContextAppType: Int {
+@objc public enum AgoraEduStreamState: Int {
     case off = 0, on, `default`
 }
 ```
@@ -372,7 +372,7 @@ Controls whether students automatically send audio or video streams after they g
 ### AgoraEduLatencyLevel
 
 ```java
-@objc public enum AgoraEduContextUserRole: Int {
+@objc public enum AgoraEduLatencyLevel: Int {
     case low = 0
     case ultraLow
 }
@@ -388,7 +388,7 @@ The latency level of an audience member. Set in [AgoraEduLaunchConfig](#agoraedu
 ### AgoraEduMediaOptions
 
 ```swift
-@interface AgoraEduSDKConfig : NSObject
+@interface AgoraEduMediaOptions : NSObject
 @property (nonatomic, strong) AgoraEduMediaEncryptionConfig *encryptionConfig;
 
 - (instancetype)initWithConfig:(AgoraEduMediaEncryptionConfig *)encryptionConfig;
@@ -405,8 +405,8 @@ Media options. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 ```swift
 @interface AgoraEduVideoEncoderConfiguration : NSObject
-@property (nonatomic, assign) CGFloat width;
-@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) NSUInteger width;
+@property (nonatomic, assign) NSUInteger height;
 @property (nonatomic, assign) NSUInteger frameRate;
 @property (nonatomic, assign) NSUInteger bitrate;
 @property (nonatomic, assign) AgoraEduCoreMirrorMode mirrorMode;
@@ -421,7 +421,7 @@ Media options. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 The classroom launching configuration. See `AgoraEduLaunchConfig`.
 
-> - 在小班课中，分辨率的默认值为 120p（160✖️120）。
+> - In the Small Classroom scenario, the default resolution is 120p (160*120).
 > - 在一对一和大班课中，分辨率的默认值为 240p（320✖️240）。
 
 | Parameter | Description |
@@ -435,9 +435,9 @@ The classroom launching configuration. See `AgoraEduLaunchConfig`.
 ### AgoraEduMediaEncryptionConfig
 
 ```swift
-@interface AgoraEduLaunchConfig : NSObject
+@interface AgoraEduMediaEncryptionConfig : NSObject
 @property (nonatomic, assign) AgoraEduMediaEncryptionMode mode;
-@property (nonatomic, copy) NSString *token;
+@property (nonatomic, copy) NSString *key;
 
 - (instancetype)initWithMode:(AgoraEduMediaEncryptionMode)mode key:(NSString *)key;
 @end
@@ -453,7 +453,7 @@ The media stream encryption configuration. Used in [AgoraEduMediaOptions](#agora
 ### AgoraEduMediaEncryptionMode
 
 ```swift
-typedef NS_ENUM(NSInteger, AgoraEduEvent) {
+typedef NS_ENUM(NSInteger, AgoraEduMediaEncryptionMode) {
     AgoraEduMediaEncryptionModeAES128XTS = 1,
     AgoraEduMediaEncryptionModeAES128ECB = 2,
     AgoraEduMediaEncryptionModeAES256XTS = 3,
@@ -484,8 +484,8 @@ Whether to enable mirror mode.
 
 | Parameter | Description |
 | :--------- | :--------------------- |
-| AUTO`` | The SDK disables mirror mode by default. |
-| enabled`` | Enable mirror mode. |
+| `auto` | The SDK disables mirror mode by default. |
+| `enabled` | Enable mirror mode. |
 | DISABLED`` | Disable mirror mode. |
 
 ### AgoraEduCourseware
