@@ -73,7 +73,7 @@ Register the event listener.
 @objc optional func onClassroomName(_ name: String)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 Indicates the classroom name.
 
@@ -87,7 +87,7 @@ Indicates the classroom name.
 @objc optional func onClassState(_ state: AgoraEduContextClassState)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 Indicates the classroom state.
 
@@ -104,7 +104,7 @@ Indicates the classroom state.
                                     closeDelay: Int64)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 Reports the class time.
 
@@ -121,7 +121,7 @@ Reports the class time.
 @objc optional func onNetworkQuality(_ quality: AgoraEduContextNetworkQuality)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 Reports the network state.
 
@@ -135,7 +135,7 @@ Reports the network state.
 @objc optional func onConnectionState(_ state: AgoraEduContextConnectionState)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 Indicates the connection state.
 
