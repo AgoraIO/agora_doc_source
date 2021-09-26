@@ -378,7 +378,7 @@ Controls whether students automatically send audio or video streams after they g
 }
 ```
 
-观众端延时级别，只对台下学生有效。 Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
+The latency level of an audience member. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
 | :--------- | :--------------------------------------------------------- |
@@ -395,11 +395,11 @@ Controls whether students automatically send audio or video streams after they g
 @end
 ```
 
-媒体流相关设置。 Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
+Media options. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
 | :----------------- | :----------------------------------------------------------- |
-| See `EncryptionConfig`. | 媒体流加密配置，详见 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig). |
+| `encryptionConfig` | 媒体流加密配置，详见 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig). |
 
 ### AgoraEduMediaEncryptionConfig
 
@@ -412,12 +412,12 @@ Controls whether students automatically send audio or video streams after they g
 @end
 ```
 
-The media options, including media encryption configurations. See AgoraEduMediaOptions#agoraedumediaoptions.[](
+The media stream encryption configuration. Used in [AgoraEduMediaOptions](#agoraedumediaoptions).
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
 | `mode` | 加密模式，详见 [AgoraEduMediaEncryptionMode](#agoraedumediaencryptionmode)。 |
-| `key` | 加密密钥。 |
+| `key` | The encryption key. |
 
 ### AgoraEduMediaEncryptionMode
 
@@ -479,7 +479,7 @@ The courseware pre-download configuration. 用于 [`configCoursewares`](#configc
 @end
 ```
 
-The detailed information of a page. The courseware pre-download configuration. See AgoraEduCourseware#agoraeducourseware.[``](
+The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducourseware.
 
 | Attributes | Description |
 | :---------------- | :--------------------------------------------------------- |
@@ -503,7 +503,7 @@ The detailed information of a page. The courseware pre-download configuration. S
 @end
 ```
 
-The detailed information of a converted page. 在 [`SceneInfo`](#sceneinfo) 中设置。
+The detailed information of a converted page. Set in [`SceneInfo`](#sceneinfo).
 
 | Attributes | Description |
 | :----------- | :------------------------------------------ |
