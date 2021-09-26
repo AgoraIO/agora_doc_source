@@ -364,10 +364,10 @@ The camera direction.
 
 | Parameter | Description |
 | :--------------- | :--------------- |
-| `cameraEnabled` | 摄像头是否开启。 |
+| `cameraEnabled` | Whether to turn on the camera. |
 | `cameraFacing` | The camera direction. |
-| `micEnabled` | 麦克风是否开启。 |
-| `speakerEnabled` | 扬声器是否开启。 |
+| `micEnabled` | Whether to turn on the microphone. |
+| `speakerEnabled` | Whether to turn on the speaker. |
 
 ## AgoraEduContextVideoMirrorMode
 
@@ -381,7 +381,7 @@ Whether to enable mirror mode.
 
 | Parameter | Description |
 | :--------- | :--------------------- |
-| `AUTO` | The SDK disables mirror mode by default. |
+| `auto` | The SDK disables mirror mode by default. |
 | `enabled` | Enable mirror mode. |
 | `DISABLED` | Disable mirror mode. |
 
