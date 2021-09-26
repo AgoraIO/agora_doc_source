@@ -1,5 +1,3 @@
-# Type definition
-
 This page lists the type definitions used by Agora Edu Context.
 
 ## AgoraEduContextError
@@ -8,11 +6,6 @@ This page lists the type definitions used by Agora Edu Context.
 @objcMembers public class AgoraEduContextError: NSObject {
     public var code: Int = 0
     public var message: String = ""
-    public init(code: Int,
-                message: String?) {
-        self.code = code
-        self.message = message ?? ""
-    }
 }
 ```
 
@@ -49,12 +42,7 @@ The whiteboard editing tool.
 @objcMembers public class AgoraEduContextRoomInfo: NSObject {
     public var roomUuid: String
     public var roomName: String
-     
-        public init(roomUuid: String,
-                roomName: String) {
-        self.roomUuid = roomUuid
-        self.roomName = roomName
-    }
+    public var roomType: AgoraEduContextRoomType
 }
 ```
 
@@ -64,6 +52,7 @@ The classroom information.
 | :---------------- | :----------- |
 | `roomUuid` | The room ID. |
 | `roomName` | The classroom name. |
+| `roomType` | The classroom type. See `AgoraEduRoomType`. |
 
 ## AgoraEduContextClassState
 
@@ -95,7 +84,8 @@ The classroom type.
 | Parameter | Description |
 | :---------- | :----------------- |
 | `oneToOne` | One-to-one Classroom. |
-| `small` | Small Classroom. |
+| `lecture` | Lecture Hall |
+| `small` | Small Classroom |
 
 ## AgoraEduContextNetworkQuality
 
@@ -153,9 +143,10 @@ The user role.
 
 ```swift
 @objcMembers public class AgoraEduContextUserInfo: NSObject {
-    public var userUuid: String = ""
-    public var userName: String = ""
-    public var role: AgoraEduContextUserRole = .student
+    public var userUuid: String
+    public var userName: String
+    public var role: AgoraEduContextUserRole
+    public var userProperties: [String : Any]?
 }
 ```
 
@@ -165,7 +156,8 @@ The basic user information.
 | :--------- | :------------------------------------ |
 | `userUuid` | The user ID. |
 | `userName` | The user name. |
-| `role` | The user role. See `AgoraEduContextUserRole` for details. |
+| `role` | The user role. See AgoraEduContextUserRole for details``. |
+| `userProperties` | 自定义用户属性。 |
 
 ## AgoraEduContextUserDetailInfo
 
@@ -181,6 +173,7 @@ The basic user information.
     public var microState: AgoraEduContextDeviceState = .notAvailable
     public var enableVideo: Bool = false
     public var enableAudio: Bool = false
+    public var enableChat: Bool = true
     public var rewardCount: Int = 0
 }
 ```
@@ -197,8 +190,9 @@ The detailed user information.
 | `boardGranted` | Whether the user has permission of drawing on the whiteboard. |
 | `cameraState` | The camera state of the user. See `AgoraEduContextDeviceState`. |
 | `microState` | The microphone state of the user. See `AgoraEduContextDeviceState`. |
-| `enableVideo` | Whether the user enables the video. |
-| `enableAudio` | Whether the user enables the audio. |
+| `enableVideo` | Whether send the video stream: |
+| `enableAudio` | Whether send the audio stream: |
+| `enableChat` | 是否拥有消息聊天的权限。 |
 | `rewardCount` | The number of rewards. |
 
 ## AgoraEduContextDeviceState
@@ -220,13 +214,13 @@ The device state.
 
 ```swift
 @objcMembers public class AgoraEduContextChatInfo: NSObject {
-    public var id: Int = 0
-    public var message: String = ""
-    public var user: AgoraEduContextUserInfo?
+    public var id: String
+    public let message: String
+    public let user: AgoraEduContextUserInfo
     public var sendState: AgoraEduContextChatState = .default
-    public var type: AgoraEduContextChatType = .text
-    public var time: Int64 = 0
-    public var from: AgoraEduContextChatFrom = .local
+    public let type: AgoraEduContextChatType
+    public let time: Int64
+    public let from: AgoraEduContextChatFrom
 }
 ```
 
@@ -236,11 +230,11 @@ The information of the message.
 | :---------- | :----------------------------------------- |
 | `id` | The message ID. |
 | `message` | The message. |
-| `user` | The user who sends the message. See `AgoraEduContextUserInfo` for details. |
-| `sendState` | The sending state of the message. See `AgoraEduContextChatState` for details. |
-| `type` | The message type. See `AgoraEduContextChatType` for details. |
-| `time` | The timestamp when the message is sent. |
-| `source` | The source of the message. See `AgoraEduContextChatFrom` for details. |
+| `user` | The user who sends the message. See AgoraEduContextUserInfo for details``. |
+| `sendState` | The sending state of the message. See AgoraEduContextChatState for details``. |
+| `type` | The message type. See AgoraEduContextChatType for details``. |
+| `time` | 消息发送时间戳（毫秒）。 |
+| `source` | The source of the message. See AgoraEduContextChatFrom for details``. |
 
 ## AgoraEduContextChatType
 
@@ -303,5 +297,112 @@ The hand state.
 | Parameter | Description |
 | :---------- | :--------- |
 | `default` | The initial state. |
-| `dandsUp` | Hand raised. |
-| `dandsDown` | Hand lowered. |
+| `HandsUp` | Hand raised. |
+| `HandsDown` | Hand lowered. |
+
+## AgoraEduContextHandsUpResult
+
+```swift
+@objc public enum AgoraEduContextHandsUpResult: Int {
+    case rejected
+    case accepted
+    case timeout
+}
+```
+
+举手上台请求结果。
+
+| Parameter | Description |
+| :--------- | :--------------- |
+| `rejected` | 举手请求被拒绝。 |
+| `accepted` | 举手请求被接受。 |
+| `timeout` | A timeout occurs. |
+
+## AgoraEduContextScreenShareState
+
+```swift
+@objc public enum AgoraEduContextScreenShareState : Int {
+    case start, pause, stop
+}
+```
+
+屏幕共享状态。
+
+| Parameter | Description |
+| :------ | :--------------- |
+| `start` | 屏幕共享已开始。 |
+| `pause` | 屏幕共享已暂停。 |
+| `stop` | 屏幕共享已结束。 |
+
+## EduContextCameraFacing
+
+```swift
+@objc public enum EduContextCameraFacing : Int {
+    case front, back
+}
+```
+
+The camera direction.
+
+| Parameter | Description |
+| :------ | :----------- |
+| `front` | The front camera. |
+| `back` | The rear camera. |
+
+## AgoraEduContextDeviceConfig
+
+```swift
+@objcMembers public class AgoraEduContextDeviceConfig: NSObject {
+    public var cameraEnabled: Bool = true
+    public var cameraFacing: EduContextCameraFacing = .front
+    public var micEnabled: Bool = true
+    public var speakerEnabled: Bool = true
+}
+```
+
+设备配置。
+
+| Parameter | Description |
+| :--------------- | :--------------- |
+| `cameraEnabled` | 摄像头是否开启。 |
+| `cameraFacing` | The camera direction. |
+| `micEnabled` | 麦克风是否开启。 |
+| `speakerEnabled` | 扬声器是否开启。 |
+
+## AgoraEduContextVideoMirrorMode
+
+```swift
+@objc public enum AgoraEduContextVideoMirrorMode: Int {
+    case auto, enabled, disabled
+}
+```
+
+Whether to enable mirror mode.
+
+| Parameter | Description |
+| :--------- | :--------------------- |
+| `AUTO` | The SDK disables mirror mode by default. |
+| `enabled` | Enable mirror mode. |
+| `DISABLED` | Disable mirror mode. |
+
+## AgoraEduContextVideoConfig
+
+```swift
+@objcMembers public class AgoraEduContextVideoConfig: NSObject {
+    public var videoDimensionWidth: UInt = 320
+    public var videoDimensionHeight: UInt = 240
+    public var frameRate: UInt = 15
+    public var bitrate: UInt = 200
+    public var mirrorMode: AgoraEduContextVideoMirrorMode = .auto
+}
+```
+
+Video profile
+
+| Parameter | Description |
+| :--------------------- | :----------------------------------------------------------- |
+| `videoDimensionWidth` | The page height (pixel). The default value is 320. |
+| `videoDimensionHeight` | The page height (pixel). The default value is 200. |
+| `frameRate` | 视频帧率，单位为 fps，默认值为 15。 |
+| `bitrate` | 视频码率，单位为 Kbps，默认值为 200。 |
+| `mirrorMode` | 镜像模式，详见 `AgoraEduContextVideoMirrorMode`。 默认为 `auto`。 |
