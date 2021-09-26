@@ -64,7 +64,7 @@ Refresh the whiteboard size. You need to call this method when the size of the w
 func getContentView() -> UIView?
 ```
 
-Gets the whiteboard container view. 如果白板没有初始化成功，返回值为 `nil`。
+Gets the whiteboard container view. If the whiteboard is not initialized successfully, this method returns `nil`.
 
 ### registerBoardEventHandler
 
@@ -76,7 +76,7 @@ Register the event listener.
 
 | Parameter | Description |
 | :-------- | :--------------------------------- |
-| `handler` | See AgoraEduWhiteBoardHandler for details``. |
+| `handler` | See `AgoraEduWhiteBoardHandler` for details. |
 
 ## AgoraEduWhiteBoardHandler
 
@@ -86,13 +86,13 @@ Register the event listener.
 @objc optional func onBoardContentView(_ view: UIView)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
-Gets the whiteboard container view.
+Returns the whiteboard container view.
 
 | Parameter | Description |
 | :----- | :-------------- |
-| `view` | Gets the whiteboard container view. |
+| `view` | The whiteboard container view. |
 
 ### onDrawingEnabled
 
@@ -100,9 +100,9 @@ Gets the whiteboard container view.
 @objc optional func onDrawingEnabled(_ enabled: Bool)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
-报告本地是否有权限操作白板。
+Reports whether the local client has permission to make drawings on the whiteboard.
 
 - `enabled` 为 `true` 时，UI 层会提示：
    - 中文：你可以使用白板了
@@ -121,7 +121,7 @@ Gets the whiteboard container view.
 @objc optional func onLoadingVisible(_ visible: Bool)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 Indicates whether the whiteboard loading status is visible.
 
@@ -136,7 +136,7 @@ Indicates whether the whiteboard loading status is visible.
                                     progress: Float)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 Indicates the progress of the current courseware download.
 
@@ -151,7 +151,7 @@ Indicates the progress of the current courseware download.
 @objc optional func onDownloadTimeOut(_ url: String)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 Occurs when the courseware download task times out. When a courseware download task takes more than 15 seconds, the SDK triggers this callback.
 
@@ -166,7 +166,7 @@ Occurs when the courseware download task times out. When a courseware download t
 @objc optional func onDownloadComplete(_ url: String)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 Occurs when the courseware download task completes.
 
@@ -300,7 +300,7 @@ Register the event listener.
                                   pageCount: NSInteger)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 Indicates the current page number and total page number of the whiteboard.
 
@@ -316,7 +316,7 @@ Indicates the current page number and total page number of the whiteboard.
 @objc optional func onPagingEnable(_ enable: Bool)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 报告本地是否有权限翻页。
 
@@ -332,7 +332,7 @@ Indicates the current page number and total page number of the whiteboard.
                                     zoomInEnable: Bool)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 报告本地是否有权限放大或缩小白板。
 
@@ -347,7 +347,7 @@ Indicates the current page number and total page number of the whiteboard.
 @objc optional func onResizeFullScreenEnable(_ enable: Bool)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 报告本地是否有权限全屏白板。
 
@@ -361,7 +361,7 @@ Indicates the current page number and total page number of the whiteboard.
 @objc optional func onFullScreen(_ fullScreen: Bool)
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 Indicates whether the whiteboard is full screen.
 
