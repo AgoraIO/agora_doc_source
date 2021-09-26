@@ -26,7 +26,7 @@ The remote client receives the `onFlexUserPropertiesChanged` callback.
 func getLocalUserInfo() -> AgoraEduContextUserInfo
 ```
 
-> 自 v1.1.5 起新增。
+> Since v1.1.5.
 
 获取本地用户信息。
 
