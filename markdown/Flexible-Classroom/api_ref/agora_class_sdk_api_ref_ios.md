@@ -401,6 +401,37 @@ SDK 全局配置。用于 [`setConfig`](#setConfig) 方法。
 | :----------------- | :----------------------------------------------------------- |
 | `encryptionConfig` | 媒体流加密配置，详见 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig). |
 
+### AgoraEduVideoEncoderConfiguration
+
+```swift
+@interface AgoraEduVideoEncoderConfiguration : NSObject
+@property (nonatomic, assign) NSUInteger width;
+@property (nonatomic, assign) NSUInteger height;
+@property (nonatomic, assign) NSUInteger frameRate;
+@property (nonatomic, assign) NSUInteger bitrate;
+@property (nonatomic, assign) AgoraEduCoreMirrorMode mirrorMode;
+
+- (instancetype)initWithWidth:(NSUInteger)width
+                       height:(NSUInteger)height
+                    frameRate:(NSUInteger)frameRate
+                      bitrate:(NSUInteger)bitrate
+                   mirrorMode:(AgoraEduCoreMirrorMode)mirrorMode;
+@end
+```
+
+视频编码参数配置类，用于 `AgoraEduLaunchConfig`。
+
+> - 在小班课中，分辨率的默认值为 120p（160✖️120）。
+> - 在一对一和大班课中，分辨率的默认值为 240p（320✖️240）。
+
+| 参数         | 描述                                          |
+| :----------- | :-------------------------------------------- |
+| `width`      | 视频帧宽度 (pixel)。                          |
+| `height`     | 视频帧高度 (pixel)。                          |
+| `frameRate`  | 视频帧率 (fps)。默认值为 15。                 |
+| `bitrate`    | 视频码率 (Kbps)。默认值为 200。               |
+| `mirrorMode` | 视频镜像模式，详见 `AgoraEduCoreMirrorMode`。 |
+
 ### AgoraEduMediaEncryptionConfig
 
 ```swift
@@ -440,6 +471,22 @@ typedef NS_ENUM(NSInteger, AgoraEduMediaEncryptionMode) {
 | `AgoraEduMediaEncryptionModeAES256XTS` | 256 位 AES 加密，XTS 模式。 |
 | `AgoraEduMediaEncryptionModeAES128GCM` | 128 位 AES 加密，GCM 模式。 |
 | `AgoraEduMediaEncryptionModeAES256GCM` | 256 位 AES 加密，GCM 模式。 |
+
+### AgoraEduCoreMirrorMode
+
+```swift
+@objc public enum AgoraEduCoreMirrorMode: Int {
+    case auto = 0, enabled, disabled
+}
+```
+
+是否开启镜像模式。
+
+| 参数       | 描述                   |
+| :--------- | :--------------------- |
+| `auto`     | SDK 默认关闭镜像模式。 |
+| `enabled`  | 开启镜像模式。         |
+| `disabled` | 关闭镜像模式。         |
 
 ### AgoraEduCourseware
 

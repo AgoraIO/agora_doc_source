@@ -40,18 +40,19 @@
 	 <div class="alert note">你需要将 <code>appId</code> 替换成你的白板 App Identifier，将 <code>token</code> 替换成你的白板 SDK Token。点击<a href="#whiteboard">此处</a>查看字段详细介绍。</div>
 
     ```json
-    {
-             "appId": "<your_whiteboard_app_id>",
-             "token": "<your_whiteboard_sdk_token>",
-             "oss": {
-                 "region": "oss-cn-shanghai",
-                 "bucket": "your-bucket-name",
-                 "folder": "whiteboard",
-                 "accessKey": "your-access-key",
-                 "secretKey": "your-secret-key",
-                 "endpoint": "oss-cn-shanghai.aliyuncs.com"
-             }
-     }
+   {       
+	  "enabled": true,
+     "appId": "<your_whiteboard_app_id>",
+     "token": "<your_whiteboard_sdk_token>",
+     "oss": {
+       "region": "oss-cn-shanghai",
+       "bucket": "your-bucket-name",
+       "folder": "whiteboard",
+       "accessKey": "your-access-key",
+       "secretKey": "your-secret-key",
+       "endpoint": "oss-cn-shanghai.aliyuncs.com"
+       }
+   }
     ```
 
    **录制 JSON 示例**
@@ -59,10 +60,11 @@
 	 <div class="alert note">点击<a href="#recording">此处</a>查看字段详细介绍。</div>
 
      ```json
-     {
-             "recordingConfig": {},
-             "storageConfig": {}
-     }
+   {       
+	  "enabled": true,
+     "recordingConfig": {},
+     "storageConfig": {}
+   }
      ```
 
    **环信 IM JSON 示例**
@@ -70,20 +72,24 @@
    <div class="alert note">点击<a href="#im">此处</a>查看字段详细介绍。</div>
    
      ```json
-   {
-           "apiHost": "",
-           "orgName": "",
-           "appName": "",
-           "superAdmin": "",
-           "appKey": "",
-           "clientId": "",
-           "clientSecret": ""
-   }
+     {
+       "enabled": true,
+       "vendor": 1,
+       "huanxin": {
+         "apiHost": "a1.easemob.com",
+         "orgName": "",
+         "appName": "",
+         "superAdmin": "",
+         "appKey": "",
+         "clientId": "",
+         "clientSecret": ""
+       }
+     }
      ```
    
    配置成功后，你可以看到以下页面：
    
-    ![](https://web-cdn.agora.io/docs-files/1626856694762)
+   ![](https://web-cdn.agora.io/docs-files/1632470916770)
 
 ## 后续步骤
 
