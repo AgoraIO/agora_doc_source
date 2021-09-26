@@ -171,13 +171,13 @@ export type LaunchOption = {
 };
 ```
 
-媒体流相关设置。
+Media options.
 
 | Parameter | Description |
 | :-------------------------------- | :----------------------------------------------------------- |
 | `cameraEncoderConfiguration` | 摄像头采集视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。 |
 | `screenShareEncoderConfiguration` | 屏幕共享视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。 |
-| See `EncryptionConfig`. | 媒体流加密配置，详见 [MediaEncryptionConfig](#mediaencryptionconfig)。 |
+| `encryptionConfig` | 媒体流加密配置，详见 [MediaEncryptionConfig](#mediaencryptionconfig)。 |
 
 ### EduVideoEncoderConfiguration
 
@@ -194,7 +194,7 @@ Video profile.
 
 | Parameter | Description |
 | :---------- | :------------------- |
-| `width` | Width (pixel) of the video frame. The default value is 360. |
+| `width` | Width (pixel) of the video frame. |
 | `height` | Height (pixel) of the video frame. The default value is 640. |
 | `frameRate` | The capture frame rate (fps) of the local video. |
 | `bitrate` | Video receive bitrate (Kbps), represented by an instantaneous value. |
@@ -213,7 +213,7 @@ export declare interface MediaEncryptionConfig {
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
 | `mode` | 媒体流加密模式，详见 [MediaEncryptionMode](#mediaencryptionmode)。 All users in the same channel must use the same encryption mode and encryption key. |
-| `key` | 加密密钥。 |
+| `key` | The encryption key. |
 
 ### MediaEncryptionMode
 
