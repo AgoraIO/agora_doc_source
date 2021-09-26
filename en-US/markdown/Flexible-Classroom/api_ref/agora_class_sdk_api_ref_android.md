@@ -407,7 +407,7 @@ enum class AgoraEduLatencyLevel(val value: Int) {
 }
 ```
 
-观众端延时级别，只对台下学生有效。 Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
+The latency level of an audience member. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
 | :----------------------------- | :--------------------------------------------------------- |
@@ -420,11 +420,11 @@ enum class AgoraEduLatencyLevel(val value: Int) {
 class AgoraEduMediaOptions(val encryptionConfigs: AgoraEduMediaEncryptionConfigs?)
 ```
 
-媒体流相关设置。 Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
+Media options. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
-| Parameter | 描述 |
+| Parameter | Description |
 | :----------------- | :----------------------------------------------------------- |
-| See `EncryptionConfig`. | 媒体流加密配置，详见  [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig)。 |
+| `encryptionConfig` | The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig) for details. |
 
 ### AgoraEduMediaEncryptionConfig
 
@@ -435,12 +435,12 @@ data class AgoraEduMediaEncryptionConfigs(
 )
 ```
 
-The media options, including media encryption configurations. See AgoraEduMediaOptions#agoraedumediaoptions.[](
+The media stream encryption configuration. Used in [AgoraEduMediaOptions](#agoraedumediaoptions).
 
 | Parameter | Description |
 | :----- | :------------------------------------- |
-| `mode` | 加密模式，详见 `AgoraEduEncryptMode`。 |
-| `key` | 加密密钥。 |
+| `mode` | The encryption mode. See `AgoraEduEncryptMode`. |
+| `key` | The encryption key. |
 
 ### AgoraEduEncryptMode
 
@@ -480,12 +480,12 @@ data class AgoraEduCourseware(
 }
 ```
 
-课件预加载配置，用于 [`configCoursewares`](#configcoursewares) 方法。
+The courseware pre-download configuration. Used in [`configCoursewares`](#configcoursewares).
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | The file name. |
-| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of `resourceName` and `name `of the first `SceneInfo` object in `scenes`, such as,` resourceName + "/" + sceneInfos.get(0).name`. |
+| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of `resourceName` and `name` of the first `SceneInfo` object in `scenes`, such as, `resourceName + "/" + sceneInfos.get(0).name`. |
 | `scenes` | A list of converted file pages, an array of `SceneInfo` objects. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom and then display the file on the whiteboard in pages. Each `SceneInfo` object represents one page. |
 | `resourceUrl` | The URL address of the file, such as `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`. |
 
@@ -499,12 +499,12 @@ public class SceneInfo {
 }
 ```
 
-The detailed information of a page. The courseware pre-download configuration. See AgoraEduCourseware#agoraeducourseware.[``](
+The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducourseware.
 
 | Attributes | Description |
 | :--------------- | :-------------------------------------------------------- |
 | `componentCount` | The number of pages. |
-| `ppt` | The detailed information of a converted page. See [`Ppt`]()[](. |
+| `ppt` | The detailed information of a converted page. See [`Ppt`](#ppt). |
 | `name` | The page name. |
 
 ### Ppt
@@ -517,7 +517,7 @@ public class Ppt {
 }
 ```
 
-The detailed information of a page displayed on the whiteboard. 在 [`SceneInfo`](#sceneinfo) 中设置。
+The detailed information of a page displayed on the whiteboard. Set in [`SceneInfo`](#sceneinfo).
 
 | Attributes | Description |
 | :------- | :------------------------------ |
@@ -537,14 +537,14 @@ object AgoraEduRegion {
 }
 ```
 
-区域。
+Regions.
 
 | Attributes | Description |
 | :--- | :----------------- |
-| `cn` | （默认）中国大陆。 |
-| `na` | North America. |
-| `eu` | Europe. |
-| `ap` | Asia Pacific. |
+| `CN` | （默认）中国大陆。 |
+| `NA` | North America. |
+| `EU` | Europe. |
+| `AP` | Asia Pacific. |
 
 ### EduVideoEncoderConfig
 
@@ -558,11 +558,11 @@ data class EduVideoEncoderConfig(
 )
 ```
 
-The classroom launching configuration. See AgoraEduLaunchConfig.``
+The classroom launching configuration. See `AgoraEduLaunchConfig`.
 
 | Parameter | Description |
 | :----------- | :----------------------------------- |
-| `width` | Width (pixel) of the video frame. The default value is 360. The default value is 0. |
+| `width` | Width (pixel) of the video frame. The default value is 320. |
 | `height` | Height (pixel) of the video frame. The default value is 640. The default value is 1.0. |
 | `frameRate` | The capture frame rate (fps) of the local video. The default value is 15. |
 | `bitrate` | Video receive bitrate (Kbps), represented by an instantaneous value. The value ranges between 0 and 100 (default). |
