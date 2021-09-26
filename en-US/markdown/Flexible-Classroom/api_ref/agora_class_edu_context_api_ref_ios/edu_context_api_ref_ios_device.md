@@ -1,6 +1,6 @@
 ## AgoraEduDeviceContext
 
-`AgoraEduWhiteBoardContext` provides whiteboard-related methods that can be called by your app.
+`AgoraEduDeviceContext` provides methods that can be called by your app for device control.
 
 ### setCameraDeviceEnable
 
@@ -8,11 +8,11 @@
 func setCameraDeviceEnable(enable: Bool)
 ```
 
-Enable or disable the local video.
+Turn on or off the camera.
 
 | Parameter | Description |
 | :------- | :--------------- |
-| `enable` | 摄像头是否开启。 |
+| `enable` | Whether to turn on the camera. |
 
 ### switchCameraFacing
 
@@ -28,11 +28,11 @@ Switches between front and rear cameras.
 func setMicDeviceEnable(enable: Bool)
 ```
 
-Enable or disable the local video.
+Turn on or off the microphone.
 
 | Parameter | Description |
 | :------- | :--------------- |
-| `enable` | 麦克风是否开启。 |
+| `enable` | Whether to turn on the microphone. |
 
 ### setSpeakerEnable
 
@@ -40,11 +40,11 @@ Enable or disable the local video.
 func setSpeakerEnable(enable: Bool)
 ```
 
-Enable or disable the local video.
+Turn on or off the speaker.
 
 | Parameter | Description |
 | :------- | :--------------- |
-| `enable` | 扬声器是否开启。 |
+| `enable` | Whether to turn on the speaker. |
 
 ### registerEventHandler
 
@@ -56,11 +56,11 @@ Register the event listener.
 
 | Parameter | Description |
 | :-------- | :-------------------------------- |
-| `handler` | See the `AgoraEduMessageHandler` class for details. |
+| `handler` | See the `AgoraEduDeviceHandler` class for details. |
 
 ## AgoraEduDeviceHandler
 
-`AgoraEduRoomHandler` reports the classroom-related event callbacks to your app.
+`AgoraEduDeviceHandler` reports the device-related events to your app.
 
 ### onCameraDeviceEnableChanged
 
@@ -68,14 +68,14 @@ Register the event listener.
 @objc optional func onCameraDeviceEnableChanged(enabled: Bool)
 ```
 
-提示本地摄像头是否开启。
+Indicates whether the camera is on.
 
-- `enabled` 为 `true` 时，UI 层提示“你的摄像头被打开了”。
-- `enabled` 为 `false` 时，UI 层提示“你的摄像头被关闭了”。
+- When `enabled` is `true`, the UI layer prompts "your camera is turned on".
+- When `enabled` is `false`, the UI layer prompts "your camera is turned off".
 
 | Parameter | Description |
 | :-------- | :--------------- |
-| `enabled` | 摄像头是否开启。 |
+| `enabled` | Whether to turn on the camera. |
 
 ### onCameraFacingChanged
 
@@ -83,11 +83,11 @@ Register the event listener.
 @objc optional func onCameraFacingChanged(facing: EduContextCameraFacing)
 ```
 
-提示前置和后置摄像头的切换。
+Indicates the switch between front and rear cameras.
 
 | Parameter | Description |
 | :------- | :------------------------------------------ |
-| `facing` | 摄像头方向，详见 `EduContextCameraFacing`。 |
+| `facing` | The camera facing.`` |
 
 ### onMicDeviceEnabledChanged
 
@@ -97,12 +97,12 @@ Register the event listener.
 
 提示本地麦克风是否开启。
 
-- `enabled` 为 `true` 时，UI 层提示“你可以发言了”。
+- When enabled is true, the UI layer prompts "your camera is turned on".````
 - `enabled` 为 `false` 时，UI 层提示“你暂时不能发言了”。
 
 | Parameter | Description |
 | :-------- | :--------------- |
-| `enabled` | 麦克风是否开启。 |
+| `enabled` | Whether to turn on the microphone. |
 
 ### onSpeakerEnabledChanged
 
@@ -110,8 +110,8 @@ Register the event listener.
 @objc optional func onSpeakerEnabledChanged(enabled: Bool)
 ```
 
-提示本地扬声器是否开启。
+Indicates whether the speaker is on.
 
 | Parameter | Description |
 | :-------- | :--------------- |
-| `enabled` | 扬声器是否开启。 |
+| `enabled` | Whether to turn on the speaker. |
