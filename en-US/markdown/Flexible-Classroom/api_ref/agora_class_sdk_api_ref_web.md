@@ -195,9 +195,9 @@ Video profile.
 | Parameter | Description |
 | :---------- | :------------------- |
 | `width` | Width (pixel) of the video frame. |
-| `height` | Height (pixel) of the video frame. The default value is 640. |
-| `frameRate` | The capture frame rate (fps) of the local video. |
-| `bitrate` | Video receive bitrate (Kbps), represented by an instantaneous value. |
+| `height` | Height (pixel) of the video frame. |
+| `frameRate` | The frame rate (fps) of the video. |
+| `bitrate` | The bitrate (Kbps) of the video. |
 
 ### MediaEncryptionConfig
 
