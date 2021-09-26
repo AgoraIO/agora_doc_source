@@ -145,7 +145,7 @@ Pre-download the courseware.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `delegate` | SDK 通过 [`AgoraEduCoursewareDelegate`](#agoraeducoursewaredelegate) 类向 App 报告课件预加载相关的事件。 |
+| `delegate` | The SDK reports events related to courseware preloading to the app through the AgoraEduCoursewarePreloadListener#agoraeducoursewarepreloadlistener class.[``]( |
 
 ### registerExtApps
 
@@ -153,7 +153,7 @@ Pre-download the courseware.
 + (void)registerExtApps:(NSArray<AgoraExtAppConfiguration *> *)apps;
 ```
 
-Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. 详见[通过 ExtApp 自定义插件](./agora_class_ext_app_ios?platform=iOS)。
+Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see Customize Flexible Classroom with ExtApp./agora_class_ext_app_android?platform=Android.[](
 
 ## AgoraEduClassroom
 
@@ -275,7 +275,7 @@ The classroom type. Set in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
 @end
 ```
 
-The SDK global configuration. 用于 [`setConfig`](#setConfig) 方法。
+The SDK global configuration. Used in setConfig#setconfig.[``](
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
@@ -333,8 +333,8 @@ The classroom launching configuration. Used in [`launch`](#launch).
 | `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. 可设为以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
 | `mediaOptions` | 媒体流相关设置，包含媒体流加密，详见 `AgoraEduMediaOptions`。 |
 | `userProperties` | User attributes customized by the developer. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties) |
-| `videoState` | 用于控制学生上台后是否发视频流，详见 `AgoraEduStreamState`。 |
-| `audioState` | 用于控制学生上台后是否发音频流，详见 `AgoraEduStreamState`。 |
+| `videoState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See  StreamState#streamstate.`` |
+| `audioState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See  StreamState#streamstate.`` |
 | `cameraEncoderConfiguration` | 摄像头采集视频流的编码参数配置，包含视频宽高、帧率、码率，详见 `AgoraEduVideoEncoderConfiguration`。 |
 | `latencyLevel` | 观众端延时级别，详见 `AgoraEduLatencyLevel`。 |
 | `boardFitMode` | 白板内容的显示模式，详见 `AgoraBoardFitMode`。 |
@@ -351,8 +351,8 @@ After the student obtains the whiteboard authorization, the display mode of the 
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `auto` | (Default) The PPT display mode is fit, which means uniformly scaling the PPT until one of its dimensions fits the boundary. |
-| `retain` | In this mode, if the student manually adjusts the PPT size, the client maintains this size no matter what class the student joins. |
+| AUTO`` | (Default) The PPT display mode is fit, which means uniformly scaling the PPT until one of its dimensions fits the boundary. |
+| Retain`` | In this mode, if the student manually adjusts the PPT size, the client maintains this size no matter what class the student joins. |
 
 ### StreamState
 
@@ -399,7 +399,38 @@ Media options. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
 | :----------------- | :----------------------------------------------------------- |
-| `encryptionConfig` | 媒体流加密配置，详见 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig). |
+| `encryptionConfig` | The media stream encryption configuration. See AgoraEduMediaEncryptionConfig#agoraedumediaencryptionconfig for details.[]( |
+
+### AgoraEduVideoEncoderConfiguration
+
+```swift
+@interface AgoraEduVideoEncoderConfiguration : NSObject
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) NSUInteger frameRate;
+@property (nonatomic, assign) NSUInteger bitrate;
+@property (nonatomic, assign) AgoraEduCoreMirrorMode mirrorMode;
+
+- (instancetype)initWithWidth:(NSUInteger)width
+                       height:(NSUInteger)height
+                    frameRate:(NSUInteger)frameRate
+                      bitrate:(NSUInteger)bitrate
+                   mirrorMode:(AgoraEduCoreMirrorMode)mirrorMode;
+@end
+```
+
+The classroom launching configuration. See `AgoraEduLaunchConfig`.
+
+> - 在小班课中，分辨率的默认值为 120p（160✖️120）。
+> - 在一对一和大班课中，分辨率的默认值为 240p（320✖️240）。
+
+| Parameter | Description |
+| :----------- | :-------------------------------------------- |
+| `width` | Width (pixel) of the video frame. |
+| `height` | Height (pixel) of the video frame. |
+| `frameRate` | The frame rate (fps) of the video. The default value is 15. |
+| `bitrate` | The bitrate (Kbps) of the video. The default value is 200. |
+| `mirrorMode` | 视频镜像模式，详见 `AgoraEduCoreMirrorMode`。 |
 
 ### AgoraEduMediaEncryptionConfig
 
@@ -416,7 +447,7 @@ The media stream encryption configuration. Used in [AgoraEduMediaOptions](#agora
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `mode` | 加密模式，详见 [AgoraEduMediaEncryptionMode](#agoraedumediaencryptionmode)。 |
+| `mode` | The media stream encryption configuration. See AgoraEduMediaEncryptionConfig#agoraedumediaencryptionconfig for details.[]( |
 | `key` | The encryption key. |
 
 ### AgoraEduMediaEncryptionMode
@@ -441,6 +472,22 @@ typedef NS_ENUM(NSInteger, AgoraEduEvent) {
 | `AgoraEduMediaEncryptionModeAES128GCM` | 128-bit AES encryption, GCM mode. |
 | `AgoraEduMediaEncryptionModeAES256GCM` | 256-bit AES encryption, GCM mode. |
 
+### AgoraEduCoreMirrorMode
+
+```swift
+@objc public enum AgoraEduContextChatType: Int {
+    case auto = 0, enabled, disabled
+}
+```
+
+Whether to enable mirror mode.
+
+| Parameter | Description |
+| :--------- | :--------------------- |
+| AUTO`` | The SDK disables mirror mode by default. |
+| enabled`` | Enable mirror mode. |
+| DISABLED`` | Disable mirror mode. |
+
 ### AgoraEduCourseware
 
 ```swift
@@ -456,7 +503,7 @@ typedef NS_ENUM(NSInteger, AgoraEduEvent) {
 @end
 ```
 
-The courseware pre-download configuration. 用于 [`configCoursewares`](#configcoursewares) 方法。
+The courseware pre-download configuration. The courseware pre-download configuration. Used in configCoursewares#configcoursewares.[``](
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
@@ -476,6 +523,7 @@ The courseware pre-download configuration. 用于 [`configCoursewares`](#configc
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, assign, readonly) NSInteger componentsCount;
 @property (nonatomic, strong, readonly, nullable) WhitePptPage *ppt;
+
 @end
 ```
 
@@ -499,7 +547,6 @@ The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducours
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
 @property (nonatomic, copy, readonly) NSString *previewURL;
-
 @end
 ```
 
