@@ -2,7 +2,7 @@
 
 `AgoraEduHandsUpContext` provides the methods that can be called by your app for the hand-raising function.
 
-### performHandsUp
+### updateHandsUpState
 
 ```swift
 func updateHandsUpState(_ state: AgoraEduContextHandsUpState)
@@ -12,7 +12,7 @@ Raise or lower the hand.
 
 | Parameter | Description |
 | :------ | :---------------------------------------- |
-| `state` | Whether the hand is raised. See `EduContextHandsUpState` for details. |
+| `state` | Whether the hand is raised. See EduContextHandsUpState for details``. |
 
 ### registerEventHandler
 
@@ -30,62 +30,44 @@ Register the event listener.
 
 `AgoraEduHandsUpHandler` reports event callbacks related to the hand-raising function to your app.
 
-### onSetHandsUpEnable
+### onHandsUpEnable
 
 ```swift
-@objc optional func onSetHandsUpEnable(_ enable: Bool)
+@objc optional func onHandsUpEnable(_ enable: Bool)
 ```
 
 Indicates whether the hand-raising function is enabled.
+
+- `enabled` 为 `true  `时，UI 层提示”老师开启了举手功能“。
+- `enabled` 为 `false` 时，UI 层提示”老师关闭了举手功能“。
 
 | Parameter | Description |
 | :------- | :------------- |
 | `enable` | Whether the hand-raising function is enabled. |
 
-### onHandsUpStateUpdated
+### onHandsUpState
 
 ```swift
-@objc optional func onSetHandsUpState(_ state: AgoraEduContextHandsUpState)
+@objc optional func onHandsUpState(_ state: AgoraEduContextHandsUpState)
 ```
 
 Indicate the current hand state.
 
+- `state` 为 `handsUp ` 时，UI 层提示”举手成功“。
+- `state` 为 `handsDown` 时，UI 层提示”取消举手成功“。
+
 | Parameter | Description |
 | :------ | :------------------------------------------------- |
-| `state` | The current hand state. See `AgoraEduContextHandsUpState` for details. |
+| `state` | The current hand state. See AgoraEduContextHandsUpState for details``. |
 
-### onHandsUpStateResultUpdated
+### onHandsUpError
 
 ```swift
-@objc optional func onUpdateHandsUpStateResult(_ error: AgoraEduContextError?)
+@objc optional func onHandsUpError(_ error: AgoraEduContextError?)
 ```
 
-Reports the result of raise the hand. ` If error` is not empty, it means the local client fails to raise the hand.
+Reports the result of raise the hand.  If` error` is not empty, it means the local client fails to raise the hand.
 
 | Parameter | Description |
 | :------ | :------------------------------------ |
 | `error` | Error code, see `AgoraEduContextError `for details. |
-
-### onHandsUpTips
-
-```swift
-@objc optional func onShowHandsUpTips(_ message: String)
-```
-
-Displays tips related to hand-raising.
-
-There are the following tips:
-
-- A timeout occurs.
-- The teacher has rejected your application for a talk.
-- The teacher has approved your application for a talk.
-- You have been removed from the "stage" by the teacher.
-- You have raise your hand.
-- You have lowered your hand.
-- The teacher has disabled the raise hand function.
-- The teacher has enabled the raise hand function.
-
-| Parameter | Description |
-| :-------- | :--------- |
-| `message` | The tip. |
-
