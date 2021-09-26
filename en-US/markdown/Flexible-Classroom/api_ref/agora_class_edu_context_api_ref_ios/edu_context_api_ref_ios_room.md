@@ -2,13 +2,53 @@
 
 `AgoraEduRoomContext` provides the methods that can be called by your app for classroom management.
 
+### getRoomInfo
+
+```swift
+func getRoomInfo() -> AgoraEduContextRoomInfo
+```
+
+Gets the classroom information.
+
+### joinClassroom
+
+```swift
+func joinClassroom()
+```
+
+加入教室。
+
 ### leaveRoom
 
 ```swift
 func leaveRoom()
 ```
 
-Leave the classroom.
+离开教室。
+
+### uploadLog
+
+```swift
+func uploadLog()
+```
+
+上传日志。
+
+### updateFlexRoomProperties
+
+```swift
+func updateFlexRoomProperties(_ properties:[String: String],
+                                     cause:[String: String]?)
+```
+
+新增或更新自定义教室属性。 For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
+
+The remote client receives the `onFlexRoomPropertiesChanged` callback.
+
+| Parameter | Description |
+| :----------- | :--------- |
+| `properties` | 教室属性。 |
+| `cause` | 更新原因。 |
 
 ### registerEventHandler
 
@@ -25,89 +65,103 @@ Register the event listener.
 
 ## AgoraEduRoomHandler
 
-`AgoraEduRoomHandler` reports the classroom-related event callbacks to your app.
+`AgoraEduRoomHandler` reports the` classroom`-related event callbacks to your app.
 
-### onSetClassroomName
+### onClassroomName
 
 ```swift
-@objc optional func onSetClassroomName(_ name: String)
+@objc optional func onClassroomName(_ name: String)
 ```
+
+> 自 v1.1.5 起新增。
 
 Indicates the classroom name.
 
 | Parameter | Description |
 | :----- | :--------- |
-| `name` | The classroom name. |
+| `name` | 教室名称。 |
 
-### onSetClassState
+### onClassState
 
 ```swift
-@objc optional func onSetClassState(_ state: AgoraEduContextClassState)
+@objc optional func onClassState(_ state: AgoraEduContextClassState)
 ```
+
+> 自 v1.1.5 起新增。
 
 Indicates the classroom state.
 
 | Parameter | Description |
 | :------ | :------------------------------------------- |
-| `state` | The classroom state. See `AgoraEduContextClassState` for details. |
+| `state` | The classroom state. See AgoraEduContextClassState for details``. |
 
-### onSetClassTime
+### onClassTimeInfo
 
 ```swift
-@objc optional func onSetClassTime(_ time: String)
+@objc optional func onClassTimeInfo(startTime: Int64,
+                                    differTime: Int64,
+                                    duration: Int64,
+                                    closeDelay: Int64)
 ```
+
+> 自 v1.1.5 起新增。
 
 Reports the class time.
 
-- When the classroom state is `Init`, `time` indicates how many seconds are left before the class begins.
-- When the classroom state is `Start`, `time` indicates how many seconds the class has lasted.
-- When the classroom state is `End`, `time` means how many seconds the class has gone over time.
-
 | Parameter | Description |
-| :----- | :--------- |
-| `time` | The class time. |
+| :----------- | :--------------------------------------- |
+| `startTime` | 课堂开始时间（毫秒）。 |
+| `differTime` | 客户端跟服务端的时间误差（毫秒）。 |
+| `duration` | 课堂持续时间（秒）。 |
+| `closeDelay` | 课堂结束后距离教室关闭所剩的时间（秒）。 |
 
-### onSetNetworkQuality
+### onNetworkQuality
 
 ```swift
-@objc optional func onSetNetworkQuality(_ quality: AgoraEduContextNetworkQuality)
+@objc optional func onNetworkQuality(_ quality: AgoraEduContextNetworkQuality)
 ```
+
+> 自 v1.1.5 起新增。
 
 Reports the network state.
 
 | Parameter | Description |
 | :-------- | :----------------------------------------------- |
-| `quality` | The network state. See `AgoraEduContextNetworkQuality` for details. |
+| `quality` | The network state. See AgoraEduContextNetworkQuality for details``. |
 
-### onSetConnectionState
+### onConnectionState
 
 ```swift
-@objc optional func onSetConnectionState(_ state: AgoraEduContextConnectionState)
+@objc optional func onConnectionState(_ state: AgoraEduContextConnectionState)
 ```
+
+> 自 v1.1.5 起新增。
 
 Indicates the connection state.
 
 | Parameter | Description |
 | :------ | :------------------------------------------------ |
-| `state` | The connection state. See `AgoraEduContextConnectionState` for details. |
+| `state` | The connection state. See AgoraEduContextConnectionState for details``. |
 
-### onShowClassTips
+### onUploadLogSuccess
 
 ```swift
-@objc optional func onShowClassTips(_ message: String)
+@objc optional func onUploadLogSuccess(_ logId: String)
 ```
 
-Class notifications.
-
-There are the following tips:
-
-- The class ends in five minutes.
-- The class is over and the classroom closes in five minutes.
-- The classroom closes in one minute.
+成功上传日志。
 
 | Parameter | Description |
-| :-------- | :------- |
-| `message` | The notification. |
+| :------ | :-------- |
+| `logId` | 日志 ID。 |
+
+### onClassroomJoined
+
+```swift
+@objc optional func onClassroomJoined()
+```
+
+The SDK has joined the channel successfully.
 
 ### onShowErrorInfo
 
@@ -119,4 +173,35 @@ Reports the error message during the class.
 
 | Parameter | Description |
 | :------ | :-------------------------------------- |
-| `error` | The error message. See `AgoraEduContextError` for details. |
+| `error` | The error message. See AgoraEduContextError for details``. |
+
+### onFlexRoomPropertiesInitialize
+
+```swift
+@objc optional func onFlexRoomPropertiesInitialize(_ properties: [String: Any])
+```
+
+报告初始化的自定义教室属性。
+
+| Parameter | Description |
+| :----------- | :------------------- |
+| `properties` | 当前教室的全部属性。 |
+
+### onFlexRoomPropertiesChanged
+
+```swift
+@objc optional func onFlexRoomPropertiesChanged(_ changedProperties: [String: Any],
+                                                  properties: [String: Any],
+                                                  cause: [String: Any]?,
+                                                  operator:AgoraEduContextUserInfo?)
+```
+
+自定义教室属性更新回调。
+
+| Parameter | Description |
+| :------------------ | :----------------------------------------------------------- |
+| `changedProperties` | 已更新的教室属性。 |
+| `properties` | 全部教室属性。 |
+| `cause` | 更新原因。 |
+| `operator` | The user information. See AgoraEduContextUserInfo for details``. `operator` 为空表示是由服务端更新。 |
+
