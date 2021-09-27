@@ -16,7 +16,7 @@ Gets the classroom information.
 func joinClassroom()
 ```
 
-加入教室。
+Join the classroom.
 
 ### leaveRoom
 
@@ -24,7 +24,7 @@ func joinClassroom()
 func leaveRoom()
 ```
 
-离开教室。
+Leave the classroom.
 
 ### uploadLog
 
@@ -32,7 +32,7 @@ func leaveRoom()
 func uploadLog()
 ```
 
-上传日志。
+Upload the log.
 
 ### updateFlexRoomProperties
 
@@ -41,14 +41,14 @@ func updateFlexRoomProperties(_ properties:[String: String],
                                      cause:[String: String]?)
 ```
 
-新增或更新自定义教室属性。 For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
+Add or update custom classroom attributes. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
 
 The remote client receives the `onFlexRoomPropertiesChanged` callback.
 
 | Parameter | Description |
 | :----------- | :--------- |
-| `properties` | 教室属性。 |
-| `cause` | 更新原因。 |
+| `properties` | Classroom attributes. |
+| `cause` | Reason for update. |
 
 ### registerEventHandler
 
@@ -79,7 +79,7 @@ Indicates the classroom name.
 
 | Parameter | Description |
 | :----- | :--------- |
-| `name` | 教室名称。 |
+| `name` | Classroom name. |
 
 ### onClassState
 
@@ -110,10 +110,10 @@ Reports the class time.
 
 | Parameter | Description |
 | :----------- | :--------------------------------------- |
-| `startTime` | 课堂开始时间（毫秒）。 |
-| `differTime` | 客户端跟服务端的时间误差（毫秒）。 |
-| `duration` | 课堂持续时间（秒）。 |
-| `closeDelay` | 课堂结束后距离教室关闭所剩的时间（秒）。 |
+| `startTime` | Class start time (milliseconds). |
+| `differTime` | The time difference between the client and the server (milliseconds). |
+| `duration` | Class duration (seconds). |
+| `closeDelay` | The time (in seconds) remaining before the classroom is closed after the class is over. |
 
 ### onNetworkQuality
 
@@ -149,11 +149,11 @@ Indicates the connection state.
 @objc optional func onUploadLogSuccess(_ logId: String)
 ```
 
-成功上传日志。
+The log was uploaded successfully.
 
 | Parameter | Description |
 | :------ | :-------- |
-| `logId` | 日志 ID。 |
+| `logId` | Log ID. |
 
 ### onClassroomJoined
 
@@ -181,11 +181,11 @@ Reports the error message during the class.
 @objc optional func onFlexRoomPropertiesInitialize(_ properties: [String: Any])
 ```
 
-报告初始化的自定义教室属性。
+Report initialized custom classroom properties.
 
 | Parameter | Description |
 | :----------- | :------------------- |
-| `properties` | 当前教室的全部属性。 |
+| `properties` | All attributes of the current classroom. |
 
 ### onFlexRoomPropertiesChanged
 
@@ -196,12 +196,12 @@ Reports the error message during the class.
                                                   operator:AgoraEduContextUserInfo?)
 ```
 
-自定义教室属性更新回调。
+Custom classroom attribute update callback.
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
-| `changedProperties` | 已更新的教室属性。 |
-| `properties` | 全部教室属性。 |
-| `cause` | 更新原因。 |
-| `operator` | The user information. See AgoraEduContextUserInfo for details``. `operator` 为空表示是由服务端更新。 |
+| `changedProperties` | The updated classroom properties. |
+| `properties` | All classroom attributes. |
+| `cause` | Reason for update. |
+| `operator` | The user information. See AgoraEduContextUserInfo for details``. An empty` operator` means that it is updated by the server. |
 
