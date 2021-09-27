@@ -38,8 +38,8 @@ Register the event listener.
 
 Indicates whether the hand-raising function is enabled.
 
-- `enabled` 为 `true  `时，UI 层提示”老师开启了举手功能“。
-- `enabled` 为 `false` 时，UI 层提示”老师关闭了举手功能“。
+- When `enabled` is` true`, the UI layer prompts "the teacher has turned on the raise hand function".
+- When `enabled` is `false`, the UI layer prompts "The teacher has turned off the raise hand function".
 
 | Parameter | Description |
 | :------- | :------------- |
@@ -53,8 +53,8 @@ Indicates whether the hand-raising function is enabled.
 
 Indicate the current hand state.
 
-- `state` 为 `handsUp ` 时，UI 层提示”举手成功“。
-- `state` 为 `handsDown` 时，UI 层提示”取消举手成功“。
+- When the `state` is` handsUp`, the UI layer prompts "hands up successfully".
+- When the `state` is `handsDown`, the UI layer prompts "Cancel raise of hand successfully".
 
 | Parameter | Description |
 | :------ | :------------------------------------------------- |
