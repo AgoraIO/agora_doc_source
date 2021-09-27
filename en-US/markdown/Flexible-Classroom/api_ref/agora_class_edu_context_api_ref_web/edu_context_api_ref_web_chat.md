@@ -2,7 +2,7 @@
 
 `useChatContext()` enables developers to implement the chat function in the flexible classroom.
 
-You can import `useChatContext` by `import { useChatContext } from 'agora-edu-core';` and then use `const {...} = useChatContext()` to implement the functions and events related to classroom management.
+You can` import useChatContext by import { useChatContext } from 'agora-edu-core';``` and then` use const {...} = useChatContext()` to implement the functions and events related to classroom management.
 
 This page lists all the functions and events provided by `useChatContext()`.
 
