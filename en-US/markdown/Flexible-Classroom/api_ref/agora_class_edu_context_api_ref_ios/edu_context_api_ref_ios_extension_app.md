@@ -1,4 +1,4 @@
-# Ext App Context
+# Extension App Context
 
 ## AgoraExtAppProtocol
 
@@ -8,11 +8,11 @@
 - (NSInteger)willLaunchExtApp:(NSString *)appIdentifier;
 ```
 
-启动扩展应用。
+Launches an extension application.
 
 | Parameter | Description |
 | :-------------- | :-------------- |
-| `GetAppIdentifier` | 扩展应用的 ID。 |
+| `appIdentifier` | The ID of the extension application. |
 
 ### getRegisteredExtApps
 
@@ -20,4 +20,4 @@
 fun getRegisteredExtApps(): List<AgoraExtAppInfo>
 ```
 
-获取当前注册的所有扩展应用的信息。
+Gets the information of all registered extension applications.
