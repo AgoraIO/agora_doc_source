@@ -8,7 +8,7 @@
 abstract fun initWhiteboard(container: ViewGroup)
 ```
 
-初始化白板。
+Initialize the whiteboard.
 
 ### joinWhiteboard
 
@@ -16,7 +16,7 @@ abstract fun initWhiteboard(container: ViewGroup)
 abstract fun joinWhiteboard()
 ```
 
-加入白板房间。
+Joins a whiteboard room.
 
 ### isGranted
 
@@ -24,7 +24,7 @@ abstract fun joinWhiteboard()
 abstract fun isGranted(): Boolean
 ```
 
-设置是否有权限操作白板。
+Set whether you have permission to operate the whiteboard.
 
 ### leave
 
@@ -32,7 +32,7 @@ abstract fun isGranted(): Boolean
 abstract fun leave()
 ```
 
-离开白板房间。
+Leaves a whiteboard room.
 
 ### selectAppliance
 
@@ -194,7 +194,7 @@ Go to the next page.
 fun onWhiteboardJoinSuccess(config: WhiteboardDrawingConfig)
 ```
 
-提示成功加入白板房间。
+Prompt to successfully join the whiteboard room.
 
 | Parameter | Description |
 | :------- | :--------------------------------------------- |
@@ -206,7 +206,7 @@ fun onWhiteboardJoinSuccess(config: WhiteboardDrawingConfig)
 fun onWhiteboardJoinFail(msg: String)
 ```
 
-提示加入白板房间失败。
+Prompt to join the whiteboard room failed.
 
 | Parameter | Description |
 | :---- | :--------- |
@@ -218,12 +218,12 @@ fun onWhiteboardJoinFail(msg: String)
 fun onWhiteboardLeft(boardId: String, timestamp: Long)
 ```
 
-提示成功离开白板房间。
+Prompt to leave the whiteboard room successfully.
 
 | Parameter | Description |
 | :---------- | :------------------- |
-| `boardId` | 白板 ID。 |
-| `timestamp` | 离开白板房间的时间。 |
+| `boardId` | whiteboard ID. |
+| `timestamp` | Time to leave the whiteboard room. |
 
 ### getBoardContainer
 
@@ -344,11 +344,11 @@ Indicates whether the whiteboard page controller is enabled.
 fun onBoardPhaseChanged(phase: EduBoardRoomPhase)
 ```
 
-白板连接状态发生变化。
+The connection status of whiteboard changes.
 
 | Parameter | Description |
 | :--- | :--- |
-| `phase` | 白板连接状态。 |
+| `phase` | The connection state of the whiteboard. |
 
 
 ### onDownloadProgress
