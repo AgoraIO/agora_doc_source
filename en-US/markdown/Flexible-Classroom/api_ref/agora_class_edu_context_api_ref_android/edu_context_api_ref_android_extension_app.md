@@ -1,8 +1,16 @@
-# Extion App Context
+# Ext App Context
 
 ## ExtAppContext
 
-The` ExtAppContext` class provides extended application-related methods that can be called by App.
+`HandsUpContext` provides the methods that can be called by your app for the hand-raising function.
+
+### Init
+
+```kotlin
+fun init(container: RelativeLayout)
+```
+
+初始化扩展应用。
 
 ### launchExtApp
 
@@ -10,11 +18,11 @@ The` ExtAppContext` class provides extended application-related methods that can
 fun launchExtApp(appIdentifier: String): Int
 ```
 
-Start an extended application.
+启动扩展应用。
 
 | Parameter | Description |
 | :-------------- | :-------------- |
-| `GetAppIdentifier` | The ID of the extension application. |
+| `GetAppIdentifier` | 扩展应用的 ID。 |
 
 ### getRegisteredExtApps
 
@@ -22,11 +30,11 @@ Start an extended application.
 fun getRegisteredExtApps(): List<AgoraExtAppInfo>
 ```
 
-Get information about all currently registered extension applications.
+获取当前注册的所有扩展应用的信息。
 
 ## IAgoraExtApp
 
-The` IAgoraExtApp` class contains the necessary operations and life cycle callbacks for extended applications.
+`IAgoraExtApp` 类包含扩展应用必须的操作和生命周期回调。
 
 ### onExtAppLoaded
 
@@ -34,7 +42,7 @@ The` IAgoraExtApp` class contains the necessary operations and life cycle callba
 fun onExtAppLoaded(context: Context)
 ```
 
-The instance of the extended application is initialized.
+扩展应用的实例被初始化。
 
 | Parameter | Description |
 | :-------- | :--------------- |
@@ -46,7 +54,7 @@ The instance of the extended application is initialized.
 fun onCreateView(content: Context): View
 ```
 
-The view of the extended application has been created.
+已创建扩展应用的视图。
 
 | Parameter | Description |
 | :-------- | :--------------- |
@@ -58,12 +66,12 @@ The view of the extended application has been created.
 fun onPropertyUpdated(properties: MutableMap<String, Any>?, cause: MutableMap<String, Any?>?)
 ```
 
-It prompts that the data of the current extended application is updated.
+提示当前扩展应用的数据有更新。
 
 | Parameter | Description |
 | :----------- | :----------- |
-| `properties` | Property Map |
-| `cause` | Update reason Map |
+| `properties` | The property map. |
+| `cause` | The reason map. |
 
 ### onExtAppUnloaded
 
@@ -71,9 +79,4 @@ It prompts that the data of the current extended application is updated.
 fun onExtAppUnloaded()
 ```
 
-The extended application has been closed and the instance has been released.
-
-| Parameter | Description |
-| :--- | :--- |
-|  |  |
-
+扩展应用已被关闭，实例被释放。
