@@ -1,6 +1,6 @@
 # CloudDriveContext
 
-`CloudDriveContext` 提供课件相关能力。
+`CloudDriveContext` provides courseware-related capabilities.
 
 ## upsertResources
 
@@ -14,7 +14,7 @@ Update the courseware list.
 
 | Parameter | Description |
 | :------ | :--------- |
-| `items` | 课件对象。 |
+| `items` | Courseware object. |
 
 ## allResources
 
@@ -24,7 +24,7 @@ allResources: MaterialDataResource[];
 
 > Since v1.1.5.
 
-所有课件。
+All courseware.
 
 ## initCourseWareProgress
 
@@ -34,7 +34,7 @@ initCourseWareProgress: number;
 
 > Since v1.1.5.
 
-初始课件加载进度。
+Initial courseware loading progress.
 
 ## initCourseWareLoading
 
@@ -44,7 +44,7 @@ initCourseWareLoading: boolean;
 
 > Since v1.1.5.
 
-是否正在加载初始课件。
+Whether the initial courseware is being loaded.
 
 ## initCourseWare
 
@@ -54,7 +54,7 @@ initCourseWare: MaterialDataResource
 
 > Since v1.1.5.
 
-初识课件。
+Get to know the courseware for the first time.
 
 ## downloadList
 
@@ -62,7 +62,7 @@ initCourseWare: MaterialDataResource
 downloadList: StorageCourseWareItem[],
 ```
 
-可下载的课件列表。
+List of downloadable courseware.
 
 ## openCloudResource
 
@@ -70,7 +70,7 @@ downloadList: StorageCourseWareItem[],
 openCloudResource: (uuid: string) => Promise<void>,
 ```
 
-打开课件。
+Open the courseware.
 
 | Parameter | Description |
 | :----- | :-------- |
@@ -86,7 +86,7 @@ Start downloading the courseware.
 
 | Parameter | Description |
 | :--------- | :---------------- |
-| `taskUuid` | 课件转换任务 ID。 |
+| `taskUuid` | Courseware conversion task ID. |
 
 ## deleteSingle
 
@@ -94,11 +94,11 @@ Start downloading the courseware.
 deleteSingle: (taskUuid: string) => Promise<void>,
 ```
 
-删除课件。
+Delete the courseware.
 
 | Parameter | Description |
 | :--------- | :---------------- |
-| `taskUuid` | 课件转换任务 ID。 |
+| `taskUuid` | Courseware conversion task ID. |
 
 ## personalResources
 
@@ -138,7 +138,7 @@ Update the courseware list.
 removeMaterialList: (resourceUuids: string[]) => Promise<void>,
 ```
 
-删除课件。
+Delete the courseware.
 
 | Parameter | Description |
 | :-------------- | :-------- |
