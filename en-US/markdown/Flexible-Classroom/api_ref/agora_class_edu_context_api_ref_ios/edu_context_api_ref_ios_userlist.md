@@ -10,15 +10,15 @@ func updateFlexUserProperties(_ userUuid: String,
                                    cause:[String: String]?)
 ```
 
-新增或更新自定义用户属性。 For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
+Add or update custom user attributes. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
 
 The remote client receives the `onFlexUserPropertiesChanged` callback.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------------- |
 | `userUuid` | The user ID. |
-| `properties` | user attribute 可设为 `{"key.subkey":"1"}`  或 `{"key":{"subkey":"1"}}`。 |
-| `cause` | 更新原因。 |
+| `properties` | user attribute Can be set to `{"key.subkey":"1"}` or `{"key":{"subkey":"1"}}`. |
+| `cause` | Reason for update. |
 
 ### getLocalUserInfo
 
@@ -28,7 +28,7 @@ func getLocalUserInfo() -> AgoraEduContextUserInfo
 
 > Since v1.1.5.
 
-获取本地用户信息。
+Get local user information.
 
 ### registerEventHandler
 
@@ -64,7 +64,7 @@ Occurs when the user list is updated. Only display the information of online use
 @objc optional func onUpdateCoHostList(_ list: [AgoraEduContextUserDetailInfo])
 ```
 
-Occurs when the list of on-stage users is updated. 只显示状态为“在台上”的用户信息，包含不在线的用户。
+Occurs when the list of on-stage users is updated. Only display the information of users whose status is "on stage", including users who are not online.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
@@ -88,7 +88,7 @@ Occurs when the local user receives a reward.
 @objc optional func onKickedOut()
 ```
 
-本地用户被踢出课堂。
+Local users were kicked out of the classroom.
 
 ### onUpdateAudioVolumeIndication
 
@@ -113,12 +113,12 @@ Occurs when the volume of the local user is updated.
                                                            operator:AgoraEduContextUserInfo?)
 ```
 
-自定义用户属性更新回调。
+Custom user attribute update callback.
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
-| `changedProperties` | 已更新的用户属性。 |
-| `properties` | 全部用户属性。 |
-| `cause` | 更新原因。 |
-| `fromUser` | 属性被更新的用户的相关信息，详见 `AgoraEduContextUserDetailInfo`。 |
-| `operator` | The user information. See AgoraEduContextUserInfo for details``. `operator` 为空表示是由服务端更新。 |
+| `changedProperties` | The updated user attributes. |
+| `properties` | All user attributes. |
+| `cause` | Reason for update. |
+| `fromUser` | For information about the user whose attributes are updated, see `AgoraEduContextUserDetailInfo `for details. |
+| `operator` | The user information. See AgoraEduContextUserInfo for details``. An empty` operator` means that it is updated by the server. |
