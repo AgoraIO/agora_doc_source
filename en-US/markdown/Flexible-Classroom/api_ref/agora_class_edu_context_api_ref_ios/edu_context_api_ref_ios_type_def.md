@@ -157,7 +157,7 @@ The basic user information.
 | `userUuid` | The user ID. |
 | `userName` | The user name. |
 | `role` | The user role. See AgoraEduContextUserRole for details``. |
-| `userProperties` | 自定义用户属性。 |
+| `userProperties` | Custom user attributes. |
 
 ## AgoraEduContextUserDetailInfo
 
@@ -192,7 +192,7 @@ The detailed user information.
 | `microState` | The microphone state of the user. See `AgoraEduContextDeviceState`. |
 | `enableVideo` | Whether send the video stream: |
 | `enableAudio` | Whether send the audio stream: |
-| `enableChat` | 是否拥有消息聊天的权限。 |
+| `enableChat` | Whether you have the permission to chat with messages. |
 | `rewardCount` | The number of rewards. |
 
 ## AgoraEduContextDeviceState
@@ -233,7 +233,7 @@ The information of the message.
 | `user` | The user who sends the message. See AgoraEduContextUserInfo for details``. |
 | `sendState` | The sending state of the message. See AgoraEduContextChatState for details``. |
 | `type` | The message type. See AgoraEduContextChatType for details``. |
-| `time` | 消息发送时间戳（毫秒）。 |
+| `time` | The message sending timestamp (in milliseconds). |
 | `source` | The source of the message. See AgoraEduContextChatFrom for details``. |
 
 ## AgoraEduContextChatType
@@ -310,12 +310,12 @@ The hand state.
 }
 ```
 
-举手上台请求结果。
+Raise your hands to request results.
 
 | Parameter | Description |
 | :--------- | :--------------- |
-| `rejected` | 举手请求被拒绝。 |
-| `accepted` | 举手请求被接受。 |
+| `rejected` | The request to raise a hand was denied. |
+| `accepted` | The request to raise a hand was accepted. |
 | `timeout` | A timeout occurs. |
 
 ## AgoraEduContextScreenShareState
@@ -326,13 +326,13 @@ The hand state.
 }
 ```
 
-屏幕共享状态。
+Screen sharing status.
 
 | Parameter | Description |
 | :------ | :--------------- |
-| `start` | 屏幕共享已开始。 |
-| `pause` | 屏幕共享已暂停。 |
-| `stop` | 屏幕共享已结束。 |
+| `start` | Screen sharing has started. |
+| `pause` | Screen sharing has been suspended. |
+| `stop` | Screen sharing has ended. |
 
 ## EduContextCameraFacing
 
@@ -360,7 +360,7 @@ The camera direction.
 }
 ```
 
-设备配置。
+Device Configuration.
 
 | Parameter | Description |
 | :--------------- | :--------------- |
@@ -403,6 +403,6 @@ Video profile
 | :--------------------- | :----------------------------------------------------------- |
 | `videoDimensionWidth` | The page height (pixel). The default value is 320. |
 | `videoDimensionHeight` | The page height (pixel). The default value is 200. |
-| `frameRate` | 视频帧率，单位为 fps，默认值为 15。 |
-| `bitrate` | 视频码率，单位为 Kbps，默认值为 200。 |
-| `mirrorMode` | 镜像模式，详见 `AgoraEduContextVideoMirrorMode`。 默认为 `auto`。 |
+| `frameRate` | Video frame rate, the unit is fps, the default value is 15. |
+| `bitrate` | Video bit rate, the unit is Kbps, and the default value is 200. |
+| `mirrorMode` | Mirror mode, see AgoraEduContextVideoMirrorMode for details``. The default is `auto`. |
