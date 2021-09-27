@@ -375,7 +375,7 @@ public enum AgoraBoardFitMode {
 }
 ```
 
-学生获取白板授权后，当老师切换白板和课件时学生白板内容的显示模式。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+白板内容显示模式。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
 | 参数     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
@@ -407,7 +407,7 @@ enum class AgoraEduLatencyLevel(val value: Int) {
 }
 ```
 
-观众端延时级别，只对台下学生有效。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+观众端延时级别。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
 | 参数                           | 描述                                                       |
 | :----------------------------- | :--------------------------------------------------------- |
@@ -422,7 +422,7 @@ class AgoraEduMediaOptions(val encryptionConfigs: AgoraEduMediaEncryptionConfigs
 
 媒体流相关设置。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
-| 参数               | Description                                                  |
+| 参数               | 描述                                                         |
 | :----------------- | :----------------------------------------------------------- |
 | `encryptionConfig` | 媒体流加密配置，详见  [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig)。 |
 
@@ -560,10 +560,13 @@ data class EduVideoEncoderConfig(
 
 视频编码参数配置类，用于 `AgoraEduLaunchConfig`。
 
+> - 在小班课中，分辨率的默认值为 120p（160*120）。
+> - 在一对一和大班课中，分辨率的默认值为 240p（320*240）。
+
 | 参数         | 描述                                 |
 | :----------- | :----------------------------------- |
-| `width`      | 视频帧宽度(pixel)。默认值为 320。    |
-| `height`     | 视频帧高度 (pixel)。默认值为 240。   |
+| `width`      | 视频帧宽度 (pixel)。                 |
+| `height`     | 视频帧高度 (pixel)。                 |
 | `frameRate`  | 视频帧率 (fps)。默认值为 15。        |
 | `bitrate`    | 视频码率 (Kbps)。默认值为 200。      |
 | `mirrorMode` | 视频镜像模式，详见 `EduMirrorMode`。 |
