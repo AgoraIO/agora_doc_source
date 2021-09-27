@@ -7,19 +7,19 @@ Agora Edu Context enables developers to implement the functions in the Flexible 
 
 Different contexts represent different function modules in the Flexible Classroom. Each context contains methods for the app to call and also reports event callbacks to the app.
 
-Agora 提供以下 Context：
+Agora provides the following Context:
 
-- [Chat Context](/cn/agora-class/edu_context_api_ref_android_chat?platform=Android): 消息聊天。
-- [Device Context](/cn/agora-class/edu_context_api_ref_android_device?platform=Android): 课中音视频设备控制。
-- [Extension App Context](): 扩展应用。
-- [Hands-up Context](/cn/agora-class/edu_context_api_ref_android_handsup?platform=Android): 举手上台。
-- [Media Context](): 课前本地预览。
+- [Chat Context](/cn/agora-class/edu_context_api_ref_android_chat?platform=Android): Message chat.
+- [Device Context](/cn/agora-class/edu_context_api_ref_android_device?platform=Android): Audio and video device control in class.
+- [Extension App Context: Extension]() application.
+- [Hands-up Context](/cn/agora-class/edu_context_api_ref_android_handsup?platform=Android): Raise your hands on the stage.
+- [Media Context](): Local preview before class.
 
-- [Room Context](/cn/agora-class/edu_context_api_ref_android_room?platform=Android): 教室管理。
-- [Screen Sharing Context](/cn/agora-class/edu_context_api_ref_android_screensharing?platform=Android): 屏幕共享。
-- [User Context](/cn/agora-class/edu_context_api_ref_android_userlist?platform=Android): 用户列表。
-- [Video Context](/cn/agora-class/edu_context_api_ref_android_video?platform=Android): 课中媒体控制，主要用于控制一对一课堂中的老师和学生的音视频以及小班课和大班课中老师的音视频。
-- [Whiteboard Context](/cn/agora-class/edu_context_api_ref_android_whiteboard?platform=Android): 白板，包含白板基础工具和页面控制工具。
+- [Room Context](/cn/agora-class/edu_context_api_ref_android_room?platform=Android: classroom) management.
+- [Screen Sharing Context](/cn/agora-class/edu_context_api_ref_android_screensharing?platform=Android: Screen sharing).
+- [User Context](/cn/agora-class/edu_context_api_ref_android_userlist?platform=Android: User) list.
+- [Video Context](/cn/agora-class/edu_context_api_ref_android_video?platform=Android): In-class media control, mainly used to control the audio and video of teachers and students in one-to-one classrooms and the audio and video of teachers in small and large classes.
+- [Whiteboard Context](/cn/agora-class/edu_context_api_ref_android_whiteboard?platform=Android: Whiteboard), including whiteboard basic tools and page control tools.
 
 ## EduContextPool
 
