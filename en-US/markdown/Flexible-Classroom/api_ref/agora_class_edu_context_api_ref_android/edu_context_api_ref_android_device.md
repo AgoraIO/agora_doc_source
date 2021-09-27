@@ -8,7 +8,7 @@
 abstract fun getDeviceConfig(): EduContextDeviceConfig
 ```
 
-获取设备配置。 该方法返回 `EduContextDeviceConfig`。
+Get the device configuration. This method returns `EduContextDeviceConfig`.
 
 ### setCameraDeviceEnable
 
@@ -60,11 +60,11 @@ Turn on or off the speaker.
 abstract fun setDeviceLifecycle(lifecycle: EduContextDeviceLifecycle)
 ```
 
-根据宿主的生命周期设置设备的生命周期状态，例如可在应用退到后台时调用此方法关闭设备采集。
+Set the life cycle state of the device according to the life cycle of the host. For example, you can call this method to close the device collection when the application returns to the background.
 
 | Parameter | Description |
 | :---------- | :----------------------------------------------------- |
-| `lifecycle` | 设备的生命周期状态，详见 `EduContextDeviceLifecycle`。 |
+| `lifecycle` | For the life cycle status of the device, see `EduContextDeviceLifecycle `for details. |
 
 ## IDeviceHandler
 
@@ -124,7 +124,7 @@ Indicates whether the speaker is on.
 fun onDeviceTips(tips: String)
 ```
 
-设备相关提示回调。
+Device related prompt callback.
 
 | Parameter | Description |
 | :----- | :--------- |
