@@ -8,7 +8,7 @@ cpuUsage: number,
 
 > Since v1.1.5.
 
-CPU 使用情况。
+CPU usage.
 
 ## networkQuality
 
@@ -28,7 +28,7 @@ networkLatency: number,
 
 > Since v1.1.5.
 
-网络延时（毫秒）。
+Network delay (milliseconds).
 
 ## packetLostRate
 
@@ -38,7 +38,7 @@ packetLostRate: number,
 
 > Since v1.1.5.
 
-网络丢包率（百分比）。
+Network packet loss rate (percentage).
 
 ## rxPacketLossRate
 
@@ -48,7 +48,7 @@ rxPacketLossRate: number;
 
 > Since v1.1.5.
 
-音视频下行丢包率。
+Audio and video downstream packet loss rate.
 
 ## txPacketLossRate
 
@@ -98,4 +98,4 @@ The classroom state.
 | Parameter | Description |
 | ------------ | -------------------- |
 | `classState` | The classroom state. |
-| `duration` | 课堂持续时间（秒）。 |
+| `duration` | Class duration (seconds). |
