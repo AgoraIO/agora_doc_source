@@ -98,14 +98,14 @@ enum class EduBoardRoomPhase(val value: Int) {
 }
 ```
 
-白板连接状态。
+The connection state of the whiteboard.
 
 | Parameter | Description |
 | :-------------- | :----------- |
 | `connecting` | The SDK is connecting to the RTM system. |
 | `connected` | The SDK is connected to the RTM system. |
 | `reconnecting` | The SDK is reconnecting to the RTM system. |
-| `disconnecting` | 断开连接中。 |
+| `disconnecting` | Disconnecting. |
 | `disconnected` | The SDK disconnects from the RTM system. |
 
 ## EduContextClassState
@@ -161,7 +161,7 @@ The volume information of users.
 | `userUuid` | The user ID. |
 | `userName` | The user name. |
 | `role` | The user role. See EduContextUserRole for details``. |
-| `properties` | 自定义用户属性。 |
+| `properties` | Custom user attributes. |
 
 ## EduContextUserDetailInfo
 
@@ -186,12 +186,12 @@ The detailed user information.
 | `isSelf` | Whether the user is the local user. |
 | `onLine` | Whether the user is online. |
 | `coHots` | Whether the user is on stage. |
-| `boardGranted` | Whether the user has permission of drawing on the whiteboard. |
+| `boardGranted` | Whether the user has the permission of drawing on the whiteboard. |
 | `cameraState` | The camera state of the user. See `AgoraEduContextDeviceState`. |
 | `microState` | The microphone state of the user. See `AgoraEduContextDeviceState`. |
 | `enableVideo` | Whether the user enables the video. |
 | `enableAudio` | Whether the user enables the audio. |
-| `silence` | 是否拥有消息聊天的权限。 |
+| `silence` | Whether you have the permission to chat with messages. |
 | `rewardCount` | The number of rewards. |
 
 ## DeviceState
@@ -252,7 +252,7 @@ data class EduContextChatItemSendResult(
 )
 ```
 
-聊天消息发送结果。
+Chat message sending result.
 
 | Parameter | Description |
 | :----------- | :--------------- |
@@ -335,13 +335,13 @@ enum class EduContextScreenShareState(val value: Int) {
 }
 ```
 
-屏幕共享状态。
+Screen sharing status.
 
 | Parameter | Description |
 | :------ | :--------------- |
-| `Start` | 屏幕共享已开始。 |
-| `Pause` | 屏幕共享已暂停。 |
-| `Stop` | 屏幕共享已结束。 |
+| `Start` | Screen sharing has started. |
+| `Pause` | Screen sharing has been suspended. |
+| `Stop` | Screen sharing has ended. |
 
 ## EduContextCameraFacing
 
@@ -369,7 +369,7 @@ data class EduContextDeviceConfig(
         var speakerEnabled: Boolean = true)
 ```
 
-设备配置。
+Device Configuration.
 
 | Parameter | Description |
 | :--------------- | :--------------- |
@@ -394,7 +394,7 @@ The basic user information.
 | :--------- | :------------------------------------ |
 | `roomUuid` | The room ID. |
 | `roomName` | The classroom name. |
-| `roomType` | 课堂类型，详见 `EduContextRoomType`。 |
+| `roomType` | Classroom type, see EduContextRoomType for details``. |
 
 ## EduContextRoomType
 
@@ -410,7 +410,7 @@ The classroom type.
 
 | Parameter | Description |
 | :----------- | :--------------- |
-| `oneToOne` | 一对一互动教学。 |
+| `oneToOne` | One-to-one interactive teaching. |
 | `LargeClass` | Lecture Hall |
 | `SmallClass` | Small Classroom |
 
@@ -426,14 +426,14 @@ enum class EduContextConnectionState {
 }
 ```
 
-白板房间连接状态。
+whiteboard room connection status.
 
 | Parameter | Description |
 | :-------------- | :----------- |
 | `connecting` | The SDK is connecting to the RTM system. |
 | `connected` | The SDK is connected to the RTM system. |
 | `reconnecting` | The SDK is reconnecting to the RTM system. |
-| `disconnecting` | 断开连接中。 |
+| `disconnecting` | Disconnecting. |
 | `disconnected` | The SDK disconnects from the RTM system. |
 
 ## EduContextMediaStreamType
@@ -451,8 +451,8 @@ The type of the media stream.
 | Parameter | Description |
 | :------ | :--------- |
 | `Audio` | Audio-only streams. |
-| `Video` | 视频流 |
-| `All` | 音视频流。 |
+| `Video` | Video streaming |
+| `All` | Audio and video streaming. |
 
 ## EduContextRenderMode
 
@@ -511,9 +511,9 @@ Video profile
 | :--------------------- | :----------------------------------------------------------- |
 | `videoDimensionWidth` | The page height (pixel). The default value is 320. |
 | `videoDimensionHeight` | The page height (pixel). The default value is 200. |
-| `frameRate` | 视频帧率，单位为 fps，默认值为 15。 |
-| `bitrate` | 视频码率，单位为 Kbps，默认值为 200。 |
-| `mirrorMode` | 镜像模式，详见 `AgoraEduContextVideoMirrorMode`。 默认为 `AUTO`。 |
+| `frameRate` | Video frame rate, the unit is fps, the default value is 15. |
+| `bitrate` | Video bit rate, the unit is Kbps, and the default value is 200. |
+| `mirrorMode` | Mirror mode, see AgoraEduContextVideoMirrorMode for details``. The default is `AUTO`. |
 
 ## EduContextRenderConfig
 
@@ -527,8 +527,8 @@ Video profile
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------------- |
-| `renderMode` | 视频渲染模式，详见 `EduContextRenderMode`。 默认为 `HIDDEN`。 |
-| `mirrorMode` | 镜像模式，详见 `AgoraEduContextVideoMirrorMode`。 默认为 `AUTO`。 |
+| `renderMode` | Video rendering mode, see EduContextRenderMode for details``. The default is `HIDDEN`. |
+| `mirrorMode` | Mirror mode, see AgoraEduContextVideoMirrorMode for details``. The default is `AUTO`. |
 
 ## EduContextDeviceLifecycle
 
@@ -539,9 +539,9 @@ enum class EduContextDeviceLifecycle(val value: Int) {
 }
 ```
 
-设备的生命周期状态。
+The life cycle status of the device.
 
 | Parameter | Description |
 | :------- | :----------------------------------- |
-| `Stop` | 停止设备采集，释放资源。 |
-| `Resume` | 将设备状态恢复至 `Stop` 之前的状态。 |
+| `Stop` | Stop device collection and release resources. |
+| `Resume` | Restore the device state to the state before` Stop`. |
