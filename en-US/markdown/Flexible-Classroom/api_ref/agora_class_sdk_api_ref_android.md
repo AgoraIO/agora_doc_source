@@ -499,7 +499,7 @@ public class SceneInfo {
 }
 ```
 
-The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducourseware.
+The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducourseware).
 
 | Attributes | Description |
 | :--------------- | :-------------------------------------------------------- |
