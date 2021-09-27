@@ -1,4 +1,4 @@
-`useRoomContext`() enables developers to implement the classroom management.
+`RoomContext` enables developers to implement classroom management.
 
 ## joined
 
@@ -8,7 +8,7 @@ joined: boolean;
 
 > Since v1.1.5.
 
-是否成功加入课堂。
+Whether the local client successfully joins the class.
 
 ## startCarousel
 
@@ -26,13 +26,13 @@ startCarousel: ({
 
 > Since v1.1.5.
 
-开启学生轮播功能。 Once the teacher or TA enables this feature, students go onto the "stage" at specified intervals. 仅适用于在线互动小班课。 如果教室内学生人数小于等于 6，调用该方法后，`interval`  后，全部学生都会上台但无法轮播。
+Enables the feature of students automatically going onto the "stage". Once the teacher or TA enables this feature, students go onto the "stage" at specified intervals. This feature is only applicable to the Small Classroom scenario. If the number of students in the classroom is less than or equal to 6, after calling this method, all students go onto the "stage" after an `interval`, but cannot be rotated.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `range` | 自动上台的学生范围：<li>`1`: 课堂内全部学生。 </li><li>`2`: 全部摄像头非禁用的学生。</li> |
-| `type` | 学生上台顺序：<li>学生按照加入房间顺序轮流上台。</li><li>学生随机上台。</li> |
-| `interval` | 学生上台的时间间隔。 默认值为 60，单位为秒。 The value range is 0 to 20. |
+| `range` | Scope of students who automatically go onto the "stage":<li>`1`: All students in the classroom.</li><li>`2`: All students whose cameras are not disabled.</li> |
+| `type` | Order of students going onto the "stage":<li>Students go onto the "stage" in the order of joining the room.</li><li>Students go onto the "stage" randomly.</li> |
+| `interval` | The interval (seconds) for students going onto the "stage". The default value is 60. The value range is 10 to 99. |
 
 ## stopCarousel
 
@@ -42,7 +42,7 @@ stopCarousel: () => Promise<any>;
 
 > Since v1.1.5.
 
-停止学生自动分批上台功能。
+Disables the feature of students automatically going onto the "stage".
 
 ## sceneType
 
@@ -92,7 +92,7 @@ Start screen sharing by the window ID.
 async teacherAcceptHandsUp(userUuid: string): void
 ```
 
-Kick a student out of the classroom and prohibit the student from re-joining the classroom.
+Kicks a student out of the classroom and prohibits the student from re-joining the classroom.
 
 | Parameter | Description |
 | :--------- | :-------- |
@@ -104,7 +104,7 @@ Kick a student out of the classroom and prohibit the student from re-joining the
 async teacherRejectHandsUp(userUuid: string): void
 ```
 
-Kick a student out of the classroom. The student who is kicked out of the classroom can re-join the classroom.
+Kicks a student out of the classroom. The student who is kicked out of the classroom can re-join the classroom.
 
 | Parameter | Description |
 | :--------- | :-------- |
@@ -120,7 +120,7 @@ liveClassStatus: {
 },
 ```
 
-> Since v1.1.5. Agora 建议改用 `LiveRoomStatsContext` 中的 `liveClassStatus`。
+> Deprecated as of v1.1.5. Use `liveClassStatus` in `LiveRoomStatsContext` instead.
 
 The current state of the classroom.
 
@@ -132,7 +132,7 @@ queryCameraDeviceState: (userList: EduUser[], userUuid: string, streamUuid: stri
 
 > Since v1.1.5.
 
-查询摄像头状态。
+Gets the camera state.
 
 ## queryMicrophoneDeviceState
 
@@ -142,7 +142,7 @@ queryMicrophoneDeviceState: (userList: EduUser[], userUuid: string, streamUuid: 
 
 > Since v1.1.5.
 
-查询麦克风状态。
+Gets the microphone status.
 
 ## isJoiningRoom
 
@@ -188,7 +188,7 @@ Whether the class has started.
 async kickOutOnce(userUuid: string, roomUuid: string): void
 ```
 
-Kick a student out of the classroom. The student who is kicked out of the classroom can re-join the classroom.
+Kicks a student out of the classroom. The student who is kicked out of the classroom can re-join the classroom.
 
 | Parameter | Description |
 | :--------- | :-------- |
@@ -201,7 +201,7 @@ Kick a student out of the classroom. The student who is kicked out of the classr
 async kickOutBan(userUuid: string, roomUuid: string): void
 ```
 
-Kick a student out of the classroom and prohibit the student from re-joining the classroom.
+Kicks a student out of the classroom and prohibits the student from re-joining the classroom.
 
 | Parameter | Description |
 | :--------- | :-------- |
