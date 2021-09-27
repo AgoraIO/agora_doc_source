@@ -12,12 +12,12 @@ Raise or lower the hand.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------- |
-| `state` | Whether the hand is raised. See `EduContextHandsUpState` for details. |
-| `callback` | Get the result of hand raising asynchronously through `EduContextCallback`. |
+| `state` | Whether the hand is raised. See EduContextHandsUpState for details``. |
+| `callback` | Get the result of hand raising asynchronously through` EduContextCallback`. |
 
 ## IHandsUpHandler
 
-`IHandsUpHandler reports event callbacks related to the hand-raising function to your app.`
+`IHandsUpHandler` reports event callbacks related to the hand-raising function to your app.
 
 ### onHandsUpEnabled
 
@@ -41,7 +41,7 @@ Occurs when the hand state updates.
 
 | Parameter | Description |
 | :------- | :-------------------------------------------- |
-| `state` | The current hand state. See `EduContextHandsUpState` for details. |
+| `state` | The current hand state. See EduContextHandsUpState for details``. |
 | `coHost` | Whether the local client is on "stage". The on-stage students cannot raise their hands. |
 
 ### onHandsUpStateResultUpdated
@@ -50,16 +50,16 @@ Occurs when the hand state updates.
 fun onHandsUpStateResultUpdated(error: EduContextError?)
 ```
 
-Reports the result of raise the hand. ` If error` is not empty, it means the local client fails to raise the hand.
+Reports the result of raise the hand.  If` error` is not empty, it means the local client fails to raise the hand.
 
 | Parameter | Description |
 | :------ | :------------------------------- |
-| `error` | The error code. See `EduContextError` for details. |
+| `error` | The error code. See EduContextError for details``. |
 
 ### onHandsUpTips
 
 ```kotlin
-fun onHandsUpTips (tips: String)
+fun onHandsUpTips(tips: String)
 ```
 
 Displays tips related to hand-raising.
