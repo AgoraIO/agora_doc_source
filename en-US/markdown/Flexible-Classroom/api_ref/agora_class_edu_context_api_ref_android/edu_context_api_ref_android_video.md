@@ -1,6 +1,6 @@
 ## VideoContext
 
-`VideoContext` provides the methods that can be called by your app for media control. 主要用于控制一对一课堂中的老师和学生的音视频以及小班课和大班课中老师的音视频。
+`VideoContext` provides the methods that can be called by your app for media control. It is mainly used to control the audio and video of teachers and students in one-to-one classrooms and the audio and video of teachers in small and large classes.
 
 ### updateVideo
 
