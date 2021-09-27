@@ -1,4 +1,4 @@
-`useBoardContext`() provides whiteboard-related capabilities.
+`BoardContext` provides whiteboard-related capabilities.
 
 ## boardConnectionState
 
@@ -8,7 +8,7 @@ boardConnectionState: string;
 
 > Since v1.1.5.
 
-白板连接状态。
+The connection state of the whiteboard.
 
 ## joinBoard
 
@@ -18,7 +18,7 @@ joinBoard: () => Promise<any>;
 
 > Since v1.1.5.
 
-加入白板房间。
+Joins a whiteboard room.
 
 ## leaveBoard
 
@@ -28,7 +28,7 @@ leaveBoard: () => Promise<any>;
 
 > Since v1.1.5.
 
-离开白板房间。
+Leaves a whiteboard room.
 
 ## room
 
@@ -92,7 +92,7 @@ The line thickness.
 hasPermission: boolean,
 ```
 
-Whether the user has permission of drawing on the whiteboard.
+Whether the user has the permission of drawing on the whiteboard.
 
 ## currentSelector
 
