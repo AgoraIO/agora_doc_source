@@ -38,7 +38,7 @@ Start or stop rendering the local video stream.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------- |
-| `container` | The video container. `Setting viewGroup` as `null` means stopping rendering the video stream. |
+| `container` | The video container. Setting `viewGroup` as `null` means stopping rendering the video stream. |
 | `streamUuid` | The stream ID. |
 
 ## IVideoHandler
@@ -48,14 +48,14 @@ Start or stop rendering the local video stream.
 ### onUserDetailInfoUpdated
 
 ```kotlin
-fun onUserDetailInfoUpdated (info: EduContextUserDetailInfo)
+fun onUserDetailInfoUpdated(info: EduContextUserDetailInfo)
 ```
 
 Occurs when the user info updates.
 
 | Parameter | Description |
 | :----- | :------------------------------------------ |
-| `info` | The user information. See `EduContextUserDetailInfo` for details. |
+| `info` | The user information. See EduContextUserDetailInfo for details``. |
 
 ### onVolumeUpdated
 
