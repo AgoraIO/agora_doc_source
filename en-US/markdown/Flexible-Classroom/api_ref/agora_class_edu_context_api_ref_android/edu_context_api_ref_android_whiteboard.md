@@ -2,6 +2,38 @@
 
 `WhiteboardContext` provides the methods that can be called by your app for the whiteboard.
 
+### initWhiteboard
+
+```kotlin
+abstract fun initWhiteboard(container: ViewGroup)
+```
+
+初始化白板。
+
+### joinWhiteboard
+
+```kotlin
+abstract fun joinWhiteboard()
+```
+
+加入白板房间。
+
+### isGranted
+
+```kotlin
+abstract fun isGranted(): Boolean
+```
+
+设置是否有权限操作白板。
+
+### leave
+
+```kotlin
+abstract fun leave()
+```
+
+离开白板房间。
+
 ### selectAppliance
 
 ```kotlin
@@ -154,7 +186,44 @@ Go to the next page.
 
 ## WhiteboardHandler
 
-`WhiteboardContext` reports whiteboard-related event callbacks to the app.
+`WhiteboardContext` reports` whiteboard`-related event callbacks to the app.
+
+### onWhiteboardJoinSuccess
+
+```kotlin
+fun onWhiteboardJoinSuccess(config: WhiteboardDrawingConfig)
+```
+
+提示成功加入白板房间。
+
+| Parameter | Description |
+| :------- | :--------------------------------------------- |
+| `config` | The initial configuration of the whiteboard. See `WhiteboardDrawingConfig`. |
+
+### onWhiteboardJoinFail
+
+```kotlin
+fun onWhiteboardJoinFail(msg: String)
+```
+
+提示加入白板房间失败。
+
+| Parameter | Description |
+| :---- | :--------- |
+| `msg` | The error message. |
+
+### onWhiteboardLeft
+
+```kotlin
+fun onWhiteboardLeft(boardId: String, timestamp: Long)
+```
+
+提示成功离开白板房间。
+
+| Parameter | Description |
+| :---------- | :------------------- |
+| `boardId` | 白板 ID。 |
+| `timestamp` | 离开白板房间的时间。 |
 
 ### getBoardContainer
 
@@ -269,17 +338,17 @@ Indicates whether the whiteboard page controller is enabled.
 | `enabled` | Indicates whether the whiteboard page controller is enabled. |
 
 
-### onLoadingVisible
+### onBoardPhaseChanged
 
 ```kotlin
-fun onLoadingVisible(visible: Boolean)
+fun onBoardPhaseChanged(phase: EduBoardRoomPhase)
 ```
 
-Indicates whether the whiteboard loading status is visible.
+白板连接状态发生变化。
 
 | Parameter | Description |
 | :--- | :--- |
-| `visible` | Whether the whiteboard loading status is visible. |
+| `phase` | 白板连接状态。 |
 
 
 ### onDownloadProgress
