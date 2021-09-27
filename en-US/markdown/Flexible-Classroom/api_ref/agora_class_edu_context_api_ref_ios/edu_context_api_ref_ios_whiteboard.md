@@ -104,16 +104,16 @@ Returns the whiteboard container view.
 
 Reports whether the local client has permission to make drawings on the whiteboard.
 
-- `enabled` 为 `true` 时，UI 层会提示：
-   - 中文：你可以使用白板了
-   - 英文：You can now use the whiteboard tools.
-- `enabled` 为 `false` 时，UI 层会提示：
-   - 中文：你现在无权使用白板了
-   - 英文：Your cannot use the whiteboard tools.
+- When `enabled` is `true`, the UI layer will prompt:
+   - Chinese: You can use the whiteboard
+   - English: You can now use the whiteboard tools.
+- When `enabled` is `false`, the UI layer will prompt:
+   - Chinese: You don’t have the right to use the whiteboard now
+   - English: Your cannot use the whiteboard tools.
 
 | Parameter | Description |
 | :-------- | :----------------- |
-| `enabled` | 本地是否有权限操作白板。 |
+| `enabled` | Whether the local authority has the authority to operate whiteboard. |
 
 ### onLoadingVisible
 
@@ -318,7 +318,7 @@ Indicates the current page number and total page number of the whiteboard.
 
 > Since v1.1.5.
 
-报告本地是否有权限翻页。
+Report whether there is permission to turn pages locally.
 
 | Parameter | Description |
 | :------- | :----------- |
@@ -334,7 +334,7 @@ Indicates the current page number and total page number of the whiteboard.
 
 > Since v1.1.5.
 
-报告本地是否有权限放大或缩小白板。
+Report whether the local authority has the authority to zoom in or zoom out the whiteboard.
 
 | Parameter | Description |
 | :-------------- | :----------- |
@@ -349,7 +349,7 @@ Indicates the current page number and total page number of the whiteboard.
 
 > Since v1.1.5.
 
-报告本地是否有权限全屏白板。
+Report whether the local full-screen whiteboard is authorized.
 
 | Parameter | Description |
 | :------- | :--------------- |
