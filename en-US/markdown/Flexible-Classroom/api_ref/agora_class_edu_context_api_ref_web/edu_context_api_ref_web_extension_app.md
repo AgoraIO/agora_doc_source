@@ -8,7 +8,7 @@
 properties: any;
 ```
 
-扩展应用的属性。
+Extend the properties of the application.
 
 ### dependencies {
 
@@ -17,7 +17,7 @@ properties: any;
 dependencies: Map<string, any>;
 ```
 
-扩展应用的依赖。
+Extend the dependency of the application.
 
 ### localUserInfo
 
@@ -25,11 +25,11 @@ dependencies: Map<string, any>;
 localUserInfo: AgoraExtAppUserInfo;
 ```
 
-当前课堂的用户相关信息，包含：
+User-related information in the current classroom, including:
 
 - `userUuid`: The UUID of the` user`.
 - `userName`: The name of the` user`.
-- `roleType`: 用户角色。
+- `roleType`: User` role`.
 
 ### roomInfo
 
@@ -37,7 +37,7 @@ localUserInfo: AgoraExtAppUserInfo;
 roomInfo: AgoraExtAppRoomInfo;
 ```
 
-当前课堂相关信息，包含：
+Current classroom related information, including:
 
 - `roomUuid`: The classroom ID.
 - `roomName`: The name of the` room`.
@@ -49,7 +49,7 @@ roomInfo: AgoraExtAppRoomInfo;
 language: string;
 ```
 
-扩展应用的语言。
+Extend the language of the application.
 
 ## AgoraExtAppHandle
 
@@ -59,12 +59,12 @@ language: string;
 updateRoomProperty: (properties: any, cause: any) => Promise<void>;
 ```
 
-更新课堂属性。
+Update class attributes.
 
 | Parameter | Description |
 | :----------- | :--------- |
-| `properties` | 属性。 |
-| `cause` | 更新原因。 |
+| `properties` | Attributes. |
+| `cause` | Reason for update. |
 
 ### deleteRoomProperties
 
@@ -76,5 +76,5 @@ Delete properties.
 
 | Parameter | Description |
 | :----------- | :--------- |
-| `properties` | 属性。 |
-| `cause` | 更新原因。 |
+| `properties` | Attributes. |
+| `cause` | Reason for update. |
