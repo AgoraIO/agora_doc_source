@@ -8,7 +8,7 @@
 abstract fun localUserInfo(): EduContextUserInfo
 ```
 
-获取本地用户信息。
+Get local user information.
 
 ### updateFlexUserProps
 
@@ -18,7 +18,7 @@ abstract fun updateFlexUserProps(userUuid: String,
                                  cause: MutableMap<String, String>?)
 ```
 
-新增或更新自定义用户属性。 For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
+Add or update custom user attributes. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
 
 The remote client receives the `onFlexUserPropertiesChanged` callback.
 
@@ -26,7 +26,7 @@ The remote client receives the `onFlexUserPropertiesChanged` callback.
 | :----------- | :--------- |
 | `userUuid` | The user ID. |
 | `properties` | user attribute |
-| `cause` | 更新原因。 |
+| `cause` | Reason for update. |
 
 ### muteVideo
 
@@ -99,7 +99,7 @@ Occurs when the user list is updated. Only display the information of online use
 fun onCoHostListUpdated(list: MutableList<EduContextUserDetailInfo>)
 ```
 
-Occurs when the list of on-stage users is updated. 只显示状态为“在台上”的用户信息，包含不在线的用户。
+Occurs when the list of on-stage users is updated. Only display the information of users whose status is "on stage", including users who are not online.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
@@ -123,7 +123,7 @@ Occurs when the local user receives a reward.
 fun onKickOut()
 ```
 
-本地用户被踢出课堂。
+Local users were kicked out of the classroom.
 
 ### onVolumeUpdated
 
@@ -148,7 +148,7 @@ Display the user list.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `type` | 花名册分为小班花名册 (RosterType.SmallClass) 和大班花名册 (RosterType.LargeClass)。 |
+| `type` | The roster is divided into a small class roster (RosterType.SmallClass) and a large class roster (RosterType.LargeClass). |
 
 ### onUserTip
 
@@ -193,12 +193,12 @@ fun onFlexUserPropsChanged(changedProperties: MutableMap<String, Any>,
                            operator: EduContextUserInfo?)
 ```
 
-自定义用户属性更新回调。
+Custom user attribute update callback.
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
-| `changedProperties` | 已更新的用户属性。 |
-| `properties` | 全部用户属性。 |
-| `cause` | 更新原因。 |
+| `changedProperties` | The updated user attributes. |
+| `properties` | All user attributes. |
+| `cause` | Reason for update. |
 | `fromUser` | The user information. See `EduContextUserDetailInfo `for details. |
-| `operator` | The user information. See `EduContextUserInfo`. `operator` 为空表示是由服务端更新。 |
+| `operator` | The user information. See `EduContextUserInfo`. An empty` operator` means that it is updated by the server. |
