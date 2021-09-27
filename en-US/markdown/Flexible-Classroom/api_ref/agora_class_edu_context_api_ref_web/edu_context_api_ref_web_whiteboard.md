@@ -1,10 +1,34 @@
-# useBoardContext
+`useBoardContext`() provides whiteboard-related capabilities.
 
-`useBoardContext()` provides whiteboard-related capabilities.
+## boardConnectionState
 
-You can import `useBoardContext` by `import {useBoardContext} from'agora-edu-core';`, and then use `const {...} = useBoardContext()` to get the whiteboard-related ability in the flexible classroom.
+```typescript
+boardConnectionState: string;
+```
 
-This page lists all the functions and events provided by `useBoardContext()`.
+> Since v1.1.5.
+
+白板连接状态。
+
+## joinBoard
+
+```typescript
+joinBoard: () => Promise<any>;
+```
+
+> Since v1.1.5.
+
+加入白板房间。
+
+## leaveBoard
+
+```typescript
+leaveBoard: () => Promise<any>;
+```
+
+> Since v1.1.5.
+
+离开白板房间。
 
 ## room
 
@@ -25,7 +49,7 @@ The value of zooming in or out the whiteboard.
 ## currentPage
 
 ```typescript
-currentPage: number,
+currentPage: number,  
 ```
 
 The current number of the whiteboard page.
@@ -41,8 +65,7 @@ The total number of whiteboard pages.
 ## courseWareList
 
 ```typescript
-courseWareList: [],
-
+courseWareList: array,
 ```
 
 The list of the courseware.
@@ -186,7 +209,7 @@ Display the courseware on the whiteboard.
 ## startDownload
 
 ```typescript
-async startDownload (taskUuid: string): void
+async startDownload(taskUuid: string): void
 ```
 
 Start downloading the courseware.
