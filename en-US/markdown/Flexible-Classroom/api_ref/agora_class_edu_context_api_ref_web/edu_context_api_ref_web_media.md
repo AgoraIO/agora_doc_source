@@ -46,7 +46,7 @@ isNative: boolean,
 cpuUsage: number,
 ```
 
-> Since v1.1.5. Agora 建议改用 `ClassroomStatsContext` 中的 `cpuUsage`。
+> Deprecated as of v1.1.5. Agora 建议改用 `ClassroomStatsContext` 中的 `cpuUsage`。
 
 CPU 使用情况。
 
@@ -56,7 +56,7 @@ CPU 使用情况。
 networkQuality: string,
 ```
 
-> Since v1.1.5. Agora 建议改用 `ClassroomStatsContext` 中的 `networkQuality`。
+> Deprecated as of v1.1.5. Agora 建议改用 `ClassroomStatsContext` 中的 `networkQuality`。
 
 Network quality types.
 
@@ -66,7 +66,7 @@ Network quality types.
 networkLatency: number,
 ```
 
-> Since v1.1.5. Agora 建议改用 `ClassroomStatsContext` 中的 `networkLatency`。
+> Deprecated as of v1.1.5. Agora 建议改用 `ClassroomStatsContext` 中的 `networkLatency`。
 
 网络延时（毫秒）。
 
@@ -76,7 +76,7 @@ networkLatency: number,
 packetLostRate: number,
 ```
 
-> Since v1.1.5. Agora 建议改用 `ClassroomStatsContext` 中的 `packetLostRate`。
+> Deprecated as of v1.1.5. Agora 建议改用 `ClassroomStatsContext` 中的 `packetLostRate`。
 
 网络丢包率（百分比）。
 
