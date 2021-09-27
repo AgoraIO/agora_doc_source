@@ -25,15 +25,15 @@ Register the event listener.
                                           streamUuid: String)
 ```
 
-屏幕共享状态已更新。
+The screen sharing status has been updated.
 
-- `state`  为 `start` 时，UI 层提示”老师发起了屏幕共享“。
-- `state` 为 `stop` 时，UI 层提示“老师停止了屏幕共享”。
+- When the `state` is `start`, the UI layer prompts "Teacher initiated screen sharing".
+- When the `state` is `stop`, the UI layer prompts "The teacher has stopped screen sharing".
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------- |
-| `state` | 屏幕共享状态，详见 `AgoraEduContextScreenShareState`。 |
-| `streamUuid` | 屏幕共享流 ID。 |
+| `state` | Screen sharing status, see AgoraEduContextScreenShareState for details``. |
+| `streamUuid` | Screen sharing stream ID. |
 
 ### onSelectScreenShare
 
@@ -41,9 +41,9 @@ Register the event listener.
 @objc optional func onSelectScreenShare(_ selected: Bool)
 ```
 
-提示屏幕共享标签是否被选中。
+Prompt whether the screen sharing tab is selected.
 
 | Parameter | Description |
 | :--------- | :----------------------- |
-| `selected` | 屏幕共享标签是否被选中。 |
+| `selected` | Whether the screen sharing tab is selected. |
 
