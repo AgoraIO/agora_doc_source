@@ -1,4 +1,4 @@
-`GlobalContext` 提供全局控制相关能力。
+`GlobalContext` provides` global` control related capabilities.
 
 ## region
 
@@ -8,7 +8,7 @@ region: string;
 
 > Since v1.1.5.
 
-当前设置的区域。
+The currently set area.
 
 ## loading
 
@@ -16,9 +16,9 @@ region: string;
 loading: boolean,
 ```
 
-> Deprecated as of v2.3.2. Agora 建议改用 `RoomContext` 的 `isJoiningRoom`。
+> Deprecated as of v2.3.2. Agora recommends using `isJoiningRoom` of `RoomContext `instead.
 
-正在加载中。
+Loading.
 
 ## isFullScreen
 
@@ -34,7 +34,7 @@ Whether the whiteboard is full screen.
 params: AppStoreInitParams,
 ```
 
-课堂初始化参数。
+Class initialization parameters.
 
 ## mainPath
 
@@ -42,7 +42,7 @@ params: AppStoreInitParams,
 mainPath: string | undefined,
 ```
 
-主路由。
+Main route.
 
 ## language
 
@@ -50,7 +50,7 @@ mainPath: string | undefined,
 language: LanguageEnum,
 ```
 
-当前语言。
+Current language.
 
 ## isJoined
 
@@ -60,7 +60,7 @@ isJoined: boolean;
 
 > Since v1.1.5.
 
-是否成功加入课堂。
+Whether the local client successfully joins the class.
 
 ## sequenceEventObserver
 
@@ -70,7 +70,7 @@ sequenceEventObserver: Subject<any>,
 
 > Since v1.1.5.
 
-灵动课堂事件序列观察器。
+Flexible Classroom event sequence observer.
 
 ## toastEventObserver
 
@@ -78,7 +78,7 @@ sequenceEventObserver: Subject<any>,
 toastEventObserver: Subject<any>,
 ```
 
-Toast 观察器。
+Toast observer.
 
 ## dialogEventObserver
 
@@ -86,4 +86,4 @@ Toast 观察器。
 dialogEventObserver: Subject<any>,
 ```
 
-Dialogue 观察器。
+Dialogue viewer.
