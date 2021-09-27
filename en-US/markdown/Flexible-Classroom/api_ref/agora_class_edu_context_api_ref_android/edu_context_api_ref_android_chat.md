@@ -9,7 +9,7 @@ abstract fun sendLocalChannelMessage(message: String, timestamp: Long,
                                      callback: EduContextCallback<EduContextChatItemSendResult>): EduContextChatItem
 ```
 
-发送课堂消息。
+Send class messages.
 
 | Parameter | Description |
 | :---------- | :------------------------------------------------ |
@@ -38,7 +38,7 @@ abstract fun sendConversationMessage(message: String, timestamp: Long,
                                      callback: EduContextCallback<EduContextChatItemSendResult>): EduContextChatItem
 ```
 
-发送提问消息。
+Send a question message.
 
 | Parameter | Description |
 | :---------- | :------------------------------------------------ |
@@ -81,7 +81,7 @@ Occurs when the local client receives a message.
 fun onReceiveChatHistory(history: List<EduContextChatItem>)
 ```
 
-历史课堂消息已更新。
+The historical classroom news has been updated.
 
 | Parameter | Description |
 | :-------- | :-------------------------------------------------------- |
@@ -105,7 +105,7 @@ Occurs when the local client receives a message.
 fun onReceiveConversationHistory(history: List<EduContextChatItem>)
 ```
 
-历史提问消息已更新。
+The historical question message has been updated.
 
 | Parameter | Description |
 | :-------- | :-------------------------------------------------------- |
@@ -121,7 +121,7 @@ Occurs when the chat permission changes.
 
 | Parameter | Description |
 | :-------- | :----------------------- |
-| `allowed` | 是否有权限进行消息聊天。 |
+| `allowed` | Do you have permission to chat with messages. |
 
 ### onChatAllowed
 
@@ -129,13 +129,13 @@ Occurs when the chat permission changes.
 fun onChatAllowed(allowed: Boolean, userInfo: EduContextUserInfo, operator: EduContextUserInfo?, local: Boolean)
 ```
 
-单个用户的聊天权限发生变化。
+The chat permissions of a single user have changed.
 
 | Parameter | Description |
 | :--------- | :-------------------------------------------------- |
-| `allowed` | 是否有权限进行消息聊天。 |
-| `userInfo` | 聊天权限发生变化的用户，详见 `EduContextUserInfo`。 |
-| `operator` | 操作聊天权限变更的用户，详见 `EduContextUserInfo`。 |
+| `allowed` | Do you have permission to chat with messages. |
+| `userInfo` | For users whose chat permissions have changed, see EduContextUserInfo for details``. |
+| `operator` | For the user who has changed the permission to operate the chat, see EduContextUserInfo for details``. |
 | `local` | Whether the user is the local user. |
 
 ### onChatTips
