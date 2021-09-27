@@ -8,7 +8,7 @@
 func sendRoomMessage(_ message: String)
 ```
 
-发送课堂消息。
+Send class messages.
 
 | Parameter | Description |
 | :-------- | :--------- |
@@ -20,7 +20,7 @@ func sendRoomMessage(_ message: String)
 func sendConversationMessage(_ message: String)
 ```
 
-发送提问消息。
+Send a question message.
 
 | Parameter | Description |
 | :-------- | :--------- |
@@ -33,7 +33,7 @@ func resendRoomMessage(_ message: String,
                        messageId: String)
 ```
 
-重发课堂消息。
+Resend the class message.
 
 | Parameter | Description |
 | :---------- | :--------- |
@@ -47,7 +47,7 @@ func resendConversationMessage(_ message: String,
                                messageId: String)
 ```
 
-重发提问消息。
+Resend the question message.
 
 | Parameter | Description |
 | :---------- | :--------- |
@@ -128,14 +128,14 @@ Occurs when the local client receives a message.
 @objc optional func onUpdateChatPermission(_ allow: Bool)
 ```
 
-课堂内全体用户的聊天权限发生变化。
+The chat permissions of all users in the classroom have changed.
 
-- `allow` 为 `true` 时，UI 层提示：禁言模式开启。
-- `allow` 为 `false` 时，UI 层提示：禁言模式关闭。
+- When `allow` is `true`, the UI layer prompts: the muted mode is turned on.
+- When `allow` is `false`, the UI layer prompts: muting mode is off.
 
 | Parameter | Description |
 | :------ | :----------------------- |
-| `allow` | 是否有权限进行消息聊天。 |
+| `allow` | Do you have permission to chat with messages. |
 
 ### onUpdateLocalChatPermission
 
@@ -145,16 +145,16 @@ Occurs when the local client receives a message.
                                            operatorUser: AgoraEduContextUserInfo)
 ```
 
-本地用户的聊天权限发生变化。
+The chat permissions of local users have changed.
 
-- `allow` 为 `true` 时，UI 层提示：你被xx禁言了。
-- `allow` 为 `false` 时，UI 层提示：你被xx解除了禁言。
+- ``When `allow` is `true`, the UI layer prompts: You are banned by xx.
+- When `allow` is `false`, the UI layer prompts: You are unbanned by xx.
 
 | Parameter | Description |
 | :------------- | :----------------------- |
-| `allow` | 是否有权限进行消息聊天。 |
-| `toUser` | 聊天权限发生变化的用户。 |
-| `operatorUser` | 操作聊天权限变更的用户。 |
+| `allow` | Do you have permission to chat with messages. |
+| `toUser` | Users whose chat permissions have changed. |
+| `operatorUser` | The user who has changed the permission to operate the chat. |
 
 ### onUpdateRemoteChatPermission
 
@@ -164,16 +164,16 @@ Occurs when the local client receives a message.
                                             operatorUser: AgoraEduContextUserInfo)
 ```
 
-远端用户的聊天权限发生变化。
+The chat permission of the remote user has changed.
 
-- `allow` 为 `true` 时，UI 层提示：xx被xx禁言了。
-- `allow` 为 `false` 时，UI 层提示：xx被xx解除了禁言。
+- When `allow` is `true`, the UI layer prompts: xx is forbidden by xx.
+- When `allow` is `false`, the UI layer prompts: xx is unbanned by xx.
 
 | Parameter | Description |
 | :------------- | :----------------------- |
-| `allow` | 是否有权限进行消息聊天。 |
-| `toUser` | 聊天权限发生变化的用户。 |
-| `operatorUser` | 操作聊天权限变更的用户。 |
+| `allow` | Do you have permission to chat with messages. |
+| `toUser` | Users whose chat permissions have changed. |
+| `operatorUser` | The user who has changed the permission to operate the chat. |
 
 ### onSendRoomMessageResult
 
@@ -182,7 +182,7 @@ Occurs when the local client receives a message.
                                                info: AgoraEduContextChatInfo?)
 ```
 
-本地用户发送课堂消息结果（包含首次发送和重发）。
+Local users send the results of class messages (including first sending and re-sending).
 
 | Parameter | Description |
 | :------ | :----------------------------------------- |
@@ -196,7 +196,7 @@ Occurs when the local client receives a message.
                                                        info: AgoraEduContextChatInfo?)
 ```
 
-本地用户发送提问消息结果（包含首次和后面重发）。
+The local user sends the result of the question message (including the first and subsequent retransmissions).
 
 | Parameter | Description |
 | :------ | :----------------------------------------- |
@@ -210,7 +210,7 @@ Occurs when the local client receives a message.
                                                     list: [AgoraEduContextChatInfo]?)
 ```
 
-本地用户获取历史课堂消息结果。
+Local users get the results of historical classroom news.
 
 | Parameter | Description |
 | :------ | :--------------------------------------------------------- |
@@ -224,7 +224,7 @@ Occurs when the local client receives a message.
                                                                 list: [AgoraEduContextChatInfo]?)
 ```
 
-本地用户获取历史提问消息结果。
+The local user obtains the result of the historical question message.
 
 | Parameter | Description |
 | :------ | :--------------------------------------------------------- |
@@ -237,7 +237,7 @@ Occurs when the local client receives a message.
  @objc optional func onUpdateRoomMessageList(_ list: [AgoraEduContextChatInfo])
 ```
 
-课堂消息已更新。
+The class news has been updated.
 
 | Parameter | Description |
 | :------ | :--------------------------------------------------------- |
@@ -250,7 +250,7 @@ Occurs when the local client receives a message.
 @objc optional func onUpdateConversationMessageList(_ list: [AgoraEduContextChatInfo])
 ```
 
-提问消息已更新。
+The question message has been updated.
 
 | Parameter | Description |
 | :------ | :---------------------------------------------------- |
