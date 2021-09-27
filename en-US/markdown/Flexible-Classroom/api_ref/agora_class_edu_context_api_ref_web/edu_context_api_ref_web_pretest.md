@@ -1,10 +1,122 @@
-# usePretestContext
+`usePretestContext`() enables developers to implement the pre-class test module in the flexible classroom, such as check whether the camera, microphone, and speaker are working properly.
 
-`usePretestContext()` enables developers to implement the pre-class test module in the flexible classroom, such as check whether the camera, microphone, and speaker are working properly.
+## isBeauty
 
-You can import `usePretestContext` by `import { usePretestContext } from 'agora-edu-core'; ` and then use `const {...} = usePretestContext()` to implement the functions and events related to classroom management.
+```typescript
+isBeauty: boolean;
+```
 
-This page lists all the functions and events provided by `usePretestContext()`.
+> - Since v1.1.5.
+> - 仅适用于 Electron。
+
+当前是否开启基础美颜。
+
+## setBeauty
+
+```typescript
+setBeauty: (isBeauty: boolean) => void;
+```
+
+> - Since v1.1.5.
+> - 仅适用于 Electron。
+
+开启/关闭基础美颜功能。
+
+| Parameter | Description |
+| :--------- | :----------------- |
+| `isBeauty` | Whether to enable the image enhancement function: |
+
+## whitening
+
+```typescript
+whitening: number;
+```
+
+> - Since v1.1.5.
+> - 仅适用于 Electron。
+
+当前美白数值。
+
+## buffing
+
+```typescript
+buffing: number;
+```
+
+> - Since v1.1.5.
+> - 仅适用于 Electron。
+
+当前磨皮数值。
+
+## ruddy
+
+```typescript
+ruddy: number;
+```
+
+> - Since v1.1.5.
+> - 仅适用于 Electron。
+
+当前红润数值。
+
+## setWhitening
+
+```typescript
+setWhitening: (whitening: number) => void;
+```
+
+> - Since v1.1.5.
+> - 仅适用于 Electron。
+
+设置美白数值。
+
+| Parameter | Description |
+| :---------- | :------------------------------------------- |
+| `whitening` | 美白数值。 取值范围为 0 到 100，默认值为 70。 |
+
+## setBuffing
+
+```typescript
+setBuffing: (buffing: number) => void;
+```
+
+> - Since v1.1.5.
+> - 仅适用于 Electron。
+
+设置磨皮数值。
+
+| Parameter | Description |
+| :-------- | :------------------------------------------- |
+| `buffing` | 磨皮数值。 取值范围为 0 到 100，默认值为 50。 |
+
+## setRuddy
+
+```typescript
+setRuddy: (ruddy: number) => void;
+```
+
+> - Since v1.1.5.
+> - 仅适用于 Electron。
+
+设置红润数值。
+
+| Parameter | Description |
+| :------ | :------------------------------------------- |
+| `ruddy` | 红润数值。 取值范围为 0 到 100，默认值为 10。 |
+
+## changeTestSpeaker
+
+```typescript
+changeTestSpeaker: (deviceId: string) => Promise<void>;
+```
+
+> Since v1.1.5.
+
+切换扬声器。
+
+| Parameter | Description |
+| :--------- | :-------- |
+| `deviceId` | 设备 ID。 |
 
 ## cameraList
 
