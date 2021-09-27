@@ -399,7 +399,7 @@ Media options. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
 | :----------------- | :----------------------------------------------------------- |
-| `encryptionConfig` | The media stream encryption configuration. See AgoraEduMediaEncryptionConfig#agoraedumediaencryptionconfig for details.[]( |
+| `encryptionConfig` | The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig )for details. |
 
 ### AgoraEduVideoEncoderConfiguration
 
@@ -422,7 +422,7 @@ Media options. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 The classroom launching configuration. See `AgoraEduLaunchConfig`.
 
 > - In the Small Classroom scenario, the default resolution is 120p (160*120).
-> - 在一对一和大班课中，分辨率的默认值为 240p（320✖️240）。
+> - In the One-to-one Classroom and Lecture Hall scenarios, the default resolution is 240p (320*240).
 
 | Parameter | Description |
 | :----------- | :-------------------------------------------- |
@@ -430,7 +430,7 @@ The classroom launching configuration. See `AgoraEduLaunchConfig`.
 | `height` | Height (pixel) of the video frame. |
 | `frameRate` | The frame rate (fps) of the video. The default value is 15. |
 | `bitrate` | The bitrate (Kbps) of the video. The default value is 200. |
-| `mirrorMode` | 视频镜像模式，详见 `AgoraEduCoreMirrorMode`。 |
+| `mirrorMode` | Video mirror modes. See `EduMirrorMode`. |
 
 ### AgoraEduMediaEncryptionConfig
 
@@ -447,7 +447,7 @@ The media stream encryption configuration. Used in [AgoraEduMediaOptions](#agora
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `mode` | The media stream encryption configuration. See AgoraEduMediaEncryptionConfig#agoraedumediaencryptionconfig for details.[]( |
+| `mode` | The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig )for details. |
 | `key` | The encryption key. |
 
 ### AgoraEduMediaEncryptionMode
@@ -486,7 +486,7 @@ Whether to enable mirror mode.
 | :--------- | :--------------------- |
 | `auto` | The SDK disables mirror mode by default. |
 | `enabled` | Enable mirror mode. |
-| DISABLED`` | Disable mirror mode. |
+| `DISABLED` | Disable mirror mode. |
 
 ### AgoraEduCourseware
 
@@ -503,7 +503,7 @@ Whether to enable mirror mode.
 @end
 ```
 
-The courseware pre-download configuration. The courseware pre-download configuration. Used in configCoursewares#configcoursewares.[``](
+The courseware pre-download configuration. The courseware pre-download configuration. Used in [`configCoursewares`](#configcoursewares).
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
@@ -527,7 +527,7 @@ The courseware pre-download configuration. The courseware pre-download configura
 @end
 ```
 
-The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducourseware.
+The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducourseware).
 
 | Attributes | Description |
 | :---------------- | :--------------------------------------------------------- |
