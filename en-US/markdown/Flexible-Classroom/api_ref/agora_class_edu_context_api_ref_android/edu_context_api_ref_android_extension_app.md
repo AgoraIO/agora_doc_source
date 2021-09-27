@@ -1,4 +1,4 @@
-# Ext App Context
+# Extension App Context
 
 ## ExtAppContext
 
@@ -10,7 +10,7 @@
 fun init(container: RelativeLayout)
 ```
 
-初始化扩展应用。
+Initialize the extended application.
 
 ### launchExtApp
 
@@ -18,11 +18,11 @@ fun init(container: RelativeLayout)
 fun launchExtApp(appIdentifier: String): Int
 ```
 
-启动扩展应用。
+Launches an extension application.
 
 | Parameter | Description |
 | :-------------- | :-------------- |
-| `GetAppIdentifier` | 扩展应用的 ID。 |
+| `appIdentifier` | The ID of the extension application. |
 
 ### getRegisteredExtApps
 
@@ -30,11 +30,11 @@ fun launchExtApp(appIdentifier: String): Int
 fun getRegisteredExtApps(): List<AgoraExtAppInfo>
 ```
 
-获取当前注册的所有扩展应用的信息。
+Gets the information of all registered extension applications.
 
 ## IAgoraExtApp
 
-`IAgoraExtApp` 类包含扩展应用必须的操作和生命周期回调。
+The` IAgoraExtApp` class contains the necessary operations and life cycle callbacks for extended applications.
 
 ### onExtAppLoaded
 
@@ -42,7 +42,7 @@ fun getRegisteredExtApps(): List<AgoraExtAppInfo>
 fun onExtAppLoaded(context: Context)
 ```
 
-扩展应用的实例被初始化。
+The instance of the extended application is initialized.
 
 | Parameter | Description |
 | :-------- | :--------------- |
@@ -54,7 +54,7 @@ fun onExtAppLoaded(context: Context)
 fun onCreateView(content: Context): View
 ```
 
-已创建扩展应用的视图。
+The view of the extended application has been created.
 
 | Parameter | Description |
 | :-------- | :--------------- |
@@ -66,7 +66,7 @@ fun onCreateView(content: Context): View
 fun onPropertyUpdated(properties: MutableMap<String, Any>?, cause: MutableMap<String, Any?>?)
 ```
 
-提示当前扩展应用的数据有更新。
+It prompts that the data of the current extended application has been updated.
 
 | Parameter | Description |
 | :----------- | :----------- |
@@ -79,4 +79,4 @@ fun onPropertyUpdated(properties: MutableMap<String, Any>?, cause: MutableMap<St
 fun onExtAppUnloaded()
 ```
 
-扩展应用已被关闭，实例被释放。
+The extended application has been closed and the instance has been released.
