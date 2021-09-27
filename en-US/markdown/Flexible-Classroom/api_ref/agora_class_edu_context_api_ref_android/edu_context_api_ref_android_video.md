@@ -1,6 +1,6 @@
 ## VideoContext
 
-`VideoContext` provides the methods that can be called by your app for media control.
+`VideoContext` provides the methods that can be called by your app for media control. 主要用于控制一对一课堂中的老师和学生的音视频以及小班课和大班课中老师的音视频。
 
 ### updateVideo
 
@@ -29,15 +29,31 @@ Enable or disable the local audio.
 ### renderVideo
 
 ```kotlin
-abstract fun renderVideo(viewGroup: ViewGroup?, streamUuid: String)
+abstract fun renderVideo(viewGroup: ViewGroup?,
+                         streamUuid: String,
+                         renderConfig: EduContextRenderConfig = EduContextRenderConfig()
+)
 ```
 
 Start or stop rendering the local video stream.
 
 | Parameter | Description |
-| :----------- | :----------------------------------------------------- |
-| `container` | The video container. `Setting viewGroup` as `null` means stopping rendering the video stream. |
+| :------------- | :----------------------------------------------------- |
+| `container` | The video container. Setting `viewGroup` as `null` means stopping rendering the video stream. |
 | `streamUuid` | The stream ID. |
+| `renderConfig` | Configurations for the video renderer. |
+
+### setVideoEncoderConfig
+
+```kotlin
+abstract fun setVideoEncoderConfig(config: EduContextVideoEncoderConfig)
+```
+
+Sets the video encoder configuration.
+
+| Parameter | Description |
+| :------- | :-------------------------------------------------- |
+| `config` | The video encoding configuration. See `EduContextVideoEncoderConfig`. |
 
 ## IVideoHandler
 
@@ -46,14 +62,14 @@ Start or stop rendering the local video stream.
 ### onUserDetailInfoUpdated
 
 ```kotlin
-fun onUserDetailInfoUpdated (info: EduContextUserDetailInfo)
+fun onUserDetailInfoUpdated(info: EduContextUserDetailInfo)
 ```
 
 Occurs when the user info updates.
 
 | Parameter | Description |
 | :----- | :------------------------------------------ |
-| `info` | The user information. See `EduContextUserDetailInfo` for details. |
+| `info` | The user information. See EduContextUserDetailInfo for details``. |
 
 ### onVolumeUpdated
 
