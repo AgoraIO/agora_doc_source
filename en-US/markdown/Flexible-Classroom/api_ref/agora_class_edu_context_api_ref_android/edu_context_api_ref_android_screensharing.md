@@ -37,11 +37,11 @@ Start or stop rendering the screen-sharing stream.
 fun onScreenShareStateUpdated(state: EduContextScreenShareState, streamUuid: String)
 ```
 
-屏幕共享状态发生改变。
+The screen sharing status has changed.
 
 | Parameter | Description |
 | :----------- | :------------------------------------------------ |
-| `state` | 屏幕共享状态，详见 `EduContextScreenShareState`。 |
+| `state` | Screen sharing state, see EduContextScreenShareState for details``. |
 | `streamUuid` | The stream ID. |
 
 ### onScreenShareTip
