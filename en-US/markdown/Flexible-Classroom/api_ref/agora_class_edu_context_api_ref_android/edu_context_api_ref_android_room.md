@@ -16,11 +16,11 @@ Gets the classroom information.
 abstract fun uploadLog(quiet: Boolean = false)
 ```
 
-上传日志。
+Upload the log.
 
 | Parameter | Description |
 | :------ | :----------------------------------------------------------- |
-| `quiet` | 是否静默上传：<li>静默上传：默认十分钟会自动上传日志。</li><li>通过按钮引导终端用户上传日志。 用于课堂出现问题时进行求救。</li> |
+| `quiet` | Whether to upload silently:<li>Silent upload: The log will be uploaded automatically in ten minutes by default.</li><li>Use buttons to guide end users to upload logs. Used to call for help when there is a problem in the classroom.</li> |
 
 ### updateFlexRoomProps
 
@@ -29,14 +29,14 @@ abstract fun updateFlexRoomProps(properties: MutableMap<String, String>,
                                       cause: MutableMap<String, String>?)
 ```
 
-新增或更新自定义教室属性。 For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
+Add or update custom classroom attributes. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
 
 The remote client receives the `onFlexRoomPropertiesChanged` callback.
 
 | Parameter | Description |
 | :----------- | :--------- |
-| `properties` | 教室属性。 |
-| `cause` | 更新原因。 |
+| `properties` | Classroom attributes. |
+| `cause` | Reason for update. |
 
 ### leave
 
@@ -44,11 +44,11 @@ The remote client receives the `onFlexRoomPropertiesChanged` callback.
 abstract fun leave(exit: Boolean = true)
 ```
 
-离开教室。
+Leave the classroom.
 
 | Parameter | Description |
 | :----- | :------------- |
-| `exit` | 是否退出页面。 |
+| `exit` | Whether to exit the page. |
 
 ### joinClassroom
 
@@ -56,7 +56,7 @@ abstract fun leave(exit: Boolean = true)
 abstract fun joinClassroom()
 ```
 
-加入教室。
+Join the classroom.
 
 
 ## IRoomHandler
@@ -73,7 +73,7 @@ Indicates the classroom name.
 
 | Parameter | Description |
 | :----- | :--------- |
-| `name` | 教室名称。 |
+| `name` | Classroom name. |
 
 ### onClassState
 
@@ -121,11 +121,11 @@ Reports the network state.
 fun onLogUploaded(logData: String)
 ```
 
-日志上传完成。
+The log upload is complete.
 
 | Parameter | Description |
 | :-------- | :--------------------------------------------------------- |
-| `logData` | 本次上传的日志所对应的 `serialNum`，用于精确查询线上日志。 |
+| `logData` | The serialNum corresponding to the uploaded log ``this time is used to accurately query the online log. |
 
 ### onConnectionStateChanged
 
@@ -175,11 +175,11 @@ Reports the error message during the class.
 fun onFlexRoomPropsInitialized(properties: MutableMap<String, Any>)
 ```
 
-报告初始化的自定义教室属性。
+Report initialized custom classroom properties.
 
 | Parameter | Description |
 | :----------- | :------------- |
-| `properties` | 全部教室属性。 |
+| `properties` | All classroom attributes. |
 
 ### onFlexRoomPropsChanged
 
@@ -190,14 +190,14 @@ fun onFlexRoomPropsChanged(changedProperties: MutableMap<String, Any>,
                            operator: EduContextUserInfo?)
 ```
 
-自定义教室属性更新回调。
+Custom classroom attribute update callback.
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
-| `changedProperties` | 已更新的教室属性。 |
-| `properties` | 全部教室属性。 |
-| `cause` | 更新原因。 |
-| `operator` | The user information. See `EduContextUserInfo`. `operator` 为空表示是由服务端更新。 |
+| `changedProperties` | The updated classroom properties. |
+| `properties` | All classroom attributes. |
+| `cause` | Reason for update. |
+| `operator` | The user information. See `EduContextUserInfo`. An empty` operator` means that it is updated by the server. |
 
 ### onClassroomJoinSuccess
 
@@ -205,12 +205,12 @@ fun onFlexRoomPropsChanged(changedProperties: MutableMap<String, Any>,
 fun onClassroomJoinSuccess(roomUuid: String, timestamp: Long)
 ```
 
-提示本地用户成功加入教室。
+Prompt local users to successfully join the classroom.
 
 | Parameter | Description |
 | :---------- | :--------------- |
-| `roomUuid` | 教室 ID。 |
-| `timestamp` | 加入教室的时间。 |
+| `roomUuid` | Classroom ID. |
+| `timestamp` | Time to join the classroom. |
 
 ### onClassroomJoinFail
 
@@ -218,12 +218,12 @@ fun onClassroomJoinSuccess(roomUuid: String, timestamp: Long)
 fun onClassroomJoinFail(roomUuid: String, code: Int?, msg: String?, timestamp: Long)
 ```
 
-提示本地用户加入教室失败。
+Prompt that the local user failed to join the classroom.
 
 | Parameter | Description |
 | :---------- | :------------------- |
-| `roomUuid` | 教室 ID。 |
-| `timestamp` | 加入教室失败的时间。 |
+| `roomUuid` | Classroom ID. |
+| `timestamp` | Time when joining the classroom failed. |
 
 ### onClassroomLeft
 
@@ -231,10 +231,10 @@ fun onClassroomJoinFail(roomUuid: String, code: Int?, msg: String?, timestamp: L
 fun onClassroomLeft(roomUuid: String, timestamp: Long, exit: Boolean = true)
 ```
 
-提示本地用户离开教室。
+Prompt local users to leave the classroom.
 
 | Parameter | Description |
 | :---------- | :----------------------------------------------------------- |
-| `roomUuid` | 教室 ID。 |
-| `timestamp` | 离开教室的时间。 |
-| `exit` | 是否退出页面。 课堂结束时，用户不自动退出页面，开发者需要通过弹窗提示用户退出页面；用户被踢出课堂或被挤出课堂时，会自动退出页面。 |
+| `roomUuid` | Classroom ID. |
+| `timestamp` | Time to leave the classroom. |
+| `exit` | Whether to exit the page. At the end of the class, the user does not automatically exit the page, the developer needs to prompt the user to exit the page through a pop-up window; when the user is kicked out of the class or is pushed out of the class, the user will automatically exit the page. |
