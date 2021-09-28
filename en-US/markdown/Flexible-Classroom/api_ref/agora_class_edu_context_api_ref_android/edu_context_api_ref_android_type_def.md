@@ -105,7 +105,7 @@ The connection state of the whiteboard.
 | `connecting` | The SDK is connecting to the RTM system. |
 | `connected` | The SDK is connected to the RTM system. |
 | `reconnecting` | The SDK is reconnecting to the RTM system. |
-| `disconnecting` | Disconnecting. |
+| `disconnecting` | The whiteboard is disconnecting. |
 | `disconnected` | The SDK disconnects from the RTM system. |
 
 ## EduContextClassState
@@ -160,8 +160,8 @@ The volume information of users.
 | :----------- | :------------------------------------ |
 | `userUuid` | The user ID. |
 | `userName` | The user name. |
-| `role` | The user role. See EduContextUserRole for details``. |
-| `properties` | Custom user attributes. |
+| `role` | The user role. See `EduContextUserRole` for details. |
+| `properties` | Custom user properties. |
 
 ## EduContextUserDetailInfo
 
@@ -187,11 +187,11 @@ The detailed user information.
 | `onLine` | Whether the user is online. |
 | `coHots` | Whether the user is on stage. |
 | `boardGranted` | Whether the user has the permission of drawing on the whiteboard. |
-| `cameraState` | The camera state of the user. See `AgoraEduContextDeviceState`. |
-| `microState` | The microphone state of the user. See `AgoraEduContextDeviceState`. |
+| `cameraState` | The camera state of the user. See `EduContextDeviceState`. |
+| `microState` | The microphone state of the user. See `EduContextDeviceState`. |
 | `enableVideo` | Whether the user enables the video. |
 | `enableAudio` | Whether the user enables the audio. |
-| `silence` | Whether you have the permission to chat with messages. |
+| `silence` | Whether the local client has the permission to send messages. |
 | `rewardCount` | The number of rewards. |
 
 ## DeviceState
@@ -234,12 +234,12 @@ The information of the message.
 | :---------- | :----------------------------------------- |
 | `name` | The name of the message sender. |
 | `uid` | The ID of the message sender. |
-| `role` | The name of the message sender. |
+| `role` | The role of the message sender. |
 | `message` | The message. |
 | `messageId` | The message ID. |
-| `type` | The message type. See EduContextChatItemType for details``. |
-| `source` | The source of the message. See EduContextChatSource for details``. |
-| `state` | The sending state of the message. See EduContextChatState for details``. |
+| `type` | The message type. See `EduContextChatItemType` for details. |
+| `source` | The source of the message. See `EduContextChatSource` for details. |
+| `state` | The sending state of the message. See `EduContextChatState` for details. |
 | `timestamp` | The timestamp when the message is sent. |
 
 ## EduContextChatItemSendResult
@@ -252,7 +252,7 @@ data class EduContextChatItemSendResult(
 )
 ```
 
-Chat message sending result.
+The result of sending chat messages.
 
 | Parameter | Description |
 | :----------- | :--------------- |
@@ -335,12 +335,12 @@ enum class EduContextScreenShareState(val value: Int) {
 }
 ```
 
-Screen sharing status.
+The state of screen sharing.
 
 | Parameter | Description |
 | :------ | :--------------- |
-| `Start` | Screen sharing has started. |
-| `Pause` | Screen sharing has been suspended. |
+| `Start` | Screen sharing has been started. |
+| `Pause` | Screen sharing has been paused. |
 | `Stop` | Screen sharing has ended. |
 
 ## EduContextCameraFacing
@@ -369,14 +369,14 @@ data class EduContextDeviceConfig(
         var speakerEnabled: Boolean = true)
 ```
 
-Device Configuration.
+Device configurations.
 
 | Parameter | Description |
 | :--------------- | :--------------- |
-| `cameraEnabled` | Whether to turn on the camera. |
+| `cameraEnabled` | Whether the camera is turned on. |
 | `cameraFacing` | The camera direction. |
-| `micEnabled` | Whether to turn on the microphone. |
-| `speakerEnabled` | Whether to turn on the speaker. |
+| `micEnabled` | Whether to the microphone is turned on. |
+| `speakerEnabled` | Whether to the speaker is turned on. |
 
 ## EduContextRoomInfo
 
@@ -388,13 +388,13 @@ data class EduContextRoomInfo(
 )
 ```
 
-The basic user information.
+The basic classroom information.
 
 | Parameter | Description |
 | :--------- | :------------------------------------ |
 | `roomUuid` | The room ID. |
 | `roomName` | The classroom name. |
-| `roomType` | Classroom type, see EduContextRoomType for details``. |
+| `roomType` | Classroom type. See `EduContextRoomType` for details. |
 
 ## EduContextRoomType
 
@@ -410,9 +410,9 @@ The classroom type.
 
 | Parameter | Description |
 | :----------- | :--------------- |
-| `oneToOne` | One-to-one interactive teaching. |
-| `LargeClass` | Lecture Hall |
-| `SmallClass` | Small Classroom |
+| `oneToOne` | One-to-one Classroom. |
+| `LargeClass` | Lecture Hall. |
+| `SmallClass` | Small Classroom. |
 
 ## EduContextConnectionState
 
@@ -426,14 +426,14 @@ enum class EduContextConnectionState {
 }
 ```
 
-whiteboard room connection status.
+The connection state of the whiteboard room.
 
 | Parameter | Description |
 | :-------------- | :----------- |
 | `connecting` | The SDK is connecting to the RTM system. |
 | `connected` | The SDK is connected to the RTM system. |
 | `reconnecting` | The SDK is reconnecting to the RTM system. |
-| `disconnecting` | Disconnecting. |
+| `disconnecting` | The whiteboard is disconnecting. |
 | `disconnected` | The SDK disconnects from the RTM system. |
 
 ## EduContextMediaStreamType
@@ -450,9 +450,9 @@ The type of the media stream.
 
 | Parameter | Description |
 | :------ | :--------- |
-| `Audio` | Audio-only streams. |
-| `Video` | Video streaming |
-| `All` | Audio and video streaming. |
+| `Audio` | An audio stream. |
+| `Video` | A video stream. |
+| `All` | Audio and video streams. |
 
 ## EduContextRenderMode
 
@@ -488,7 +488,7 @@ Whether to enable mirror mode.
 | `ENABLED` | Enable mirror mode. |
 | `DISABLED` | Disable mirror mode. |
 
-## The video encoding configuration. See EduContextVideoEncoderConfig.
+## EduContextVideoEncoderConfig
 
 ```kotlin
 data class EduContextVideoEncoderConfig(
@@ -505,15 +505,15 @@ data class EduContextVideoEncoderConfig(
 }
 ```
 
-Video profile
+Video encoder configurations.
 
 | Parameter | Description |
 | :--------------------- | :----------------------------------------------------------- |
-| `videoDimensionWidth` | The page height (pixel). The default value is 320. |
-| `videoDimensionHeight` | The page height (pixel). The default value is 200. |
-| `frameRate` | Video frame rate, the unit is fps, the default value is 15. |
-| `bitrate` | Video bit rate, the unit is Kbps, and the default value is 200. |
-| `mirrorMode` | Mirror mode, see AgoraEduContextVideoMirrorMode for details``. The default is `AUTO`. |
+| `videoDimensionWidth` | The video width (pixel). The default value is 320. |
+| `videoDimensionHeight` | The video height (pixel). The default value is 240. |
+| `frameRate` | Frame rate (fps). The default value is 15. |
+| `bitrate` | Birate (Kbps). The default value is 200. |
+| `mirrorMode` | Mirror mode. See `AgoraEduContextVideoMirrorMode` for details. The default value is `AUTO`. |
 
 ## EduContextRenderConfig
 
@@ -523,12 +523,12 @@ data class EduContextRenderConfig(
         val mirrorMode: EduContextMirrorMode = EduContextMirrorMode.AUTO)
 ```
 
-Video profile
+Video encoder configurations.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------------- |
-| `renderMode` | Video rendering mode, see EduContextRenderMode for details``. The default is `HIDDEN`. |
-| `mirrorMode` | Mirror mode, see AgoraEduContextVideoMirrorMode for details``. The default is `AUTO`. |
+| `renderMode` | Video rendering mode. See `EduContextRenderMode` for details. The default value is `HIDDEN`. |
+| `mirrorMode` | Mirror mode. See `AgoraEduContextVideoMirrorMode` for details. The default value is `AUTO`. |
 
 ## EduContextDeviceLifecycle
 
@@ -539,9 +539,9 @@ enum class EduContextDeviceLifecycle(val value: Int) {
 }
 ```
 
-The life cycle status of the device.
+The state in the life cycle of a device.
 
 | Parameter | Description |
 | :------- | :----------------------------------- |
-| `Stop` | Stop device collection and release resources. |
-| `Resume` | Restore the device state to the state before` Stop`. |
+| `Stop` | The device stops capturing and releases resources. |
+| `Resume` | The device returns to the state before ` Stop`. |
