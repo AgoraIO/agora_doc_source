@@ -4,7 +4,7 @@ Agora Edu Context enables developers to implement the functions in the Flexible 
 
 Different contexts represent different function modules in the Flexible Classroom. Each context contains methods for the app to call and also reports event callbacks to the app.
 
-Agora provides the following Context:
+Agora provides the following contexts:
 
 - [Chat Context](/cn/agora-class/edu_context_api_ref_ios_chat?platform=iOS): Message chat.
 - [Device Context](/cn/agora-class/edu_context_api_ref_ios_device?platform=iOS): Audio and video device control in class.
