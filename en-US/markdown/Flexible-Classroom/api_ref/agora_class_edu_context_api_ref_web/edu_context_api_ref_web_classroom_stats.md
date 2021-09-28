@@ -8,7 +8,7 @@ cpuUsage: number,
 
 > Since v1.1.5.
 
-CPU usage.
+The CPU usage.
 
 ## networkQuality
 
@@ -28,7 +28,7 @@ networkLatency: number,
 
 > Since v1.1.5.
 
-Network delay (milliseconds).
+Network delay (ms).
 
 ## packetLostRate
 
@@ -38,7 +38,7 @@ packetLostRate: number,
 
 > Since v1.1.5.
 
-Network packet loss rate (percentage).
+Packet loss rate (%).
 
 ## rxPacketLossRate
 
@@ -48,7 +48,7 @@ rxPacketLossRate: number;
 
 > Since v1.1.5.
 
-Audio and video downstream packet loss rate.
+The downlink audio and video packet loss rate.
 
 ## txPacketLossRate
 
@@ -58,7 +58,7 @@ txPacketLossRate: number;
 
 > Since v1.1.5.
 
-The upstream packet loss rate of the sent audio.
+The uplink audio and video packet loss rate.
 
 ## rxNetworkQuality
 
@@ -68,7 +68,7 @@ rxNetworkQuality: string;
 
 > Since v1.1.5.
 
-The downlink last-mile network probe test result.
+The downlink network quality.
 
 ## txNetworkQuality
 
@@ -78,7 +78,7 @@ txNetworkQuality: string;
 
 > Since v1.1.5.
 
-The uplink last-mile network probe test result.
+The uplink network quality.
 
 # LiveRoomStatsContext
 
