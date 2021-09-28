@@ -9,13 +9,13 @@ abstract fun sendLocalChannelMessage(message: String, timestamp: Long,
                                      callback: EduContextCallback<EduContextChatItemSendResult>): EduContextChatItem
 ```
 
-Send class messages.
+Sends a classroom message.
 
 | Parameter | Description |
 | :---------- | :------------------------------------------------ |
 | `message` | The message. |
 | `timestamp` | The timestamp when the message is sent. |
-| `callback` | Get the result of sending the message asynchronously through` EduContextCallback`. |
+| `callback` | Gets the result of sending the message asynchronously through ` EduContextCallback`. |
 
 ### fetchChannelHistory
 
@@ -23,13 +23,13 @@ Send class messages.
 abstract fun fetchChannelHistory(startId: String?, count: Int? = 50, callback: EduContextCallback<List<EduContextChatItem>>)
 ```
 
-Fetch the message history.
+Fetches the history of classroom messages.
 
 | Parameter | Description |
 | :--------- | :-------------------------------------------- |
-| `startId` | You need to pass in a `messageId`, which indicates you need to get this `message `and messages sent before this `message`. |
+| `startId` | You need to pass in a `messageId`, which indicates you need to get this message and messages sent before this message. |
 | `count` | The number of messages you want to get. |
-| `callback` | Get the result of fetching the message history asynchronously through` EduContextCallback`. |
+| `callback` | Get the result of fetching the message history asynchronously through ` EduContextCallback`. |
 
 ### sendConversationMessage
 
@@ -38,13 +38,13 @@ abstract fun sendConversationMessage(message: String, timestamp: Long,
                                      callback: EduContextCallback<EduContextChatItemSendResult>): EduContextChatItem
 ```
 
-Send a question message.
+Sends a peer-to-peer message to a remote user.
 
 | Parameter | Description |
 | :---------- | :------------------------------------------------ |
 | `message` | The message. |
 | `timestamp` | The timestamp when the message is sent. |
-| `callback` | Get the result of sending the message asynchronously through` EduContextCallback`. |
+| `callback` | Gets the result of sending the message asynchronously through ` EduContextCallback`. |
 
 ### fetchConversationHistory
 
@@ -52,12 +52,12 @@ Send a question message.
 abstract fun fetchConversationHistory(startId: String?, callback: EduContextCallback<List<EduContextChatItem>>)
 ```
 
-Fetch the message history.
+Fetches the history of peer-to-peer messages.
 
 | Parameter | Description |
 | :--------- | :-------------------------------------------- |
-| `startId` | You need to pass in a `messageId`, which indicates you need to get this `message `and messages sent before this `message`. |
-| `callback` | Get the result of fetching the message history asynchronously through` EduContextCallback`. |
+| `startId` | You need to pass in a `messageId`, which indicates you need to get this message and messages sent before this message. |
+| `callback` | Get the result of fetching the message history asynchronously through ` EduContextCallback`. |
 
 ## IChatHandler
 
@@ -69,11 +69,11 @@ Fetch the message history.
 fun onReceiveMessage(item: EduContextChatItem)
 ```
 
-Occurs when the local client receives a message.
+Occurs when the local client receives a classroom message.
 
 | Parameter | Description |
 | :----- | :---------------------------------------- |
-| `item` | The message object. See EduContextChatItem for details``. |
+| `item` | The message object. See `EduContextChatItem` for details. |
 
 ### onReceiveChatHistory
 
@@ -81,11 +81,11 @@ Occurs when the local client receives a message.
 fun onReceiveChatHistory(history: List<EduContextChatItem>)
 ```
 
-The historical classroom news has been updated.
+Occurs when the history of classroom messages is updated.
 
 | Parameter | Description |
 | :-------- | :-------------------------------------------------------- |
-| `history` | An array of message objects. See EduContextChatItem for details``. |
+| `history` | An array of message objects. See `EduContextChatItem` for details. |
 
 ### onReceiveConversationMessage
 
@@ -93,11 +93,11 @@ The historical classroom news has been updated.
 fun onReceiveConversationMessage(item: EduContextChatItem)
 ```
 
-Occurs when the local client receives a message.
+Occurs when the local client receives a peer-to-peer message from a remote user.
 
 | Parameter | Description |
 | :----- | :---------------------------------------- |
-| `item` | The message object. See EduContextChatItem for details``. |
+| `item` | The message object. See `EduContextChatItem` for details. |
 
 ### onReceiveChatHistory
 
@@ -105,11 +105,11 @@ Occurs when the local client receives a message.
 fun onReceiveConversationHistory(history: List<EduContextChatItem>)
 ```
 
-The historical question message has been updated.
+Occurs when the history of peer-to-peer messages is updated.
 
 | Parameter | Description |
 | :-------- | :-------------------------------------------------------- |
-| `history` | An array of message objects. See EduContextChatItem for details``. |
+| `history` | An array of message objects. See `EduContextChatItem` for details. |
 
 ### onChatAllowed
 
@@ -117,11 +117,11 @@ The historical question message has been updated.
 fun onChatAllowed(allowed: Boolean)
 ```
 
-Occurs when the chat permission changes.
+Occurs when the global chat permission changes.
 
 | Parameter | Description |
 | :-------- | :----------------------- |
-| `allowed` | Do you have permission to chat with messages. |
+| `allowed` | Whether the local client has the permission to chat. |
 
 ### onChatAllowed
 
@@ -129,13 +129,13 @@ Occurs when the chat permission changes.
 fun onChatAllowed(allowed: Boolean, userInfo: EduContextUserInfo, operator: EduContextUserInfo?, local: Boolean)
 ```
 
-The chat permissions of a single user have changed.
+Occurs when the chat permissions of a single user changes.
 
 | Parameter | Description |
 | :--------- | :-------------------------------------------------- |
-| `allowed` | Do you have permission to chat with messages. |
-| `userInfo` | For users whose chat permissions have changed, see EduContextUserInfo for details``. |
-| `operator` | For the user who has changed the permission to operate the chat, see EduContextUserInfo for details``. |
+| `allowed` | Whether the local client has the permission to chat. |
+| `userInfo` | The information of the user whose chat permission has changed. See `EduContextUserInfo`. |
+| `operator` | The information of the operator. See `EduContextUserInfo`. |
 | `local` | Whether the user is the local user. |
 
 ### onChatTips
