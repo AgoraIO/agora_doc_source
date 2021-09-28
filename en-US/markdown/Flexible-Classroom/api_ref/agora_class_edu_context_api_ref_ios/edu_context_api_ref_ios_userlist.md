@@ -10,15 +10,15 @@ func updateFlexUserProperties(_ userUuid: String,
                                    cause:[String: String]?)
 ```
 
-Add or update custom user attributes. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
+Adds or updates custom user properties. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
 
-The remote client receives the `onFlexUserPropertiesChanged` callback.
+After you successfully update the properties, the remote client receives the `onFlexUserPropertiesChanged` callback.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------------- |
 | `userUuid` | The user ID. |
-| `properties` | user attribute Can be set to `{"key.subkey":"1"}` or `{"key":{"subkey":"1"}}`. |
-| `cause` | Reason for update. |
+| `properties` | The user properties. Can be set to `{"key.subkey":"1"}` or `{"key":{"subkey":"1"}}`. |
+| `cause` | The update reason. |
 
 ### getLocalUserInfo
 
@@ -28,7 +28,7 @@ func getLocalUserInfo() -> AgoraEduContextUserInfo
 
 > Since v1.1.5.
 
-Get local user information.
+Gets the information of the local client.
 
 ### registerEventHandler
 
@@ -88,7 +88,7 @@ Occurs when the local user receives a reward.
 @objc optional func onKickedOut()
 ```
 
-Local users were kicked out of the classroom.
+Occurs when the local user is kicked out of the classroom.
 
 ### onUpdateAudioVolumeIndication
 
@@ -113,12 +113,12 @@ Occurs when the volume of the local user is updated.
                                                            operator:AgoraEduContextUserInfo?)
 ```
 
-Custom user attribute update callback.
+Occurs when the custom user properties are updated.
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
-| `changedProperties` | The updated user attributes. |
-| `properties` | All user attributes. |
-| `cause` | Reason for update. |
+| `changedProperties` | The updated user properties. |
+| `properties` | All user properties. |
+| `cause` | The update reason. |
 | `fromUser` | For information about the user whose attributes are updated, see `AgoraEduContextUserDetailInfo `for details. |
-| `operator` | The user information. See AgoraEduContextUserInfo for details``. An empty` operator` means that it is updated by the server. |
+| `operator` | The user information. See AgoraEduContextUserInfo for details``. `operator` being empty means that properties are updated by the server. |
