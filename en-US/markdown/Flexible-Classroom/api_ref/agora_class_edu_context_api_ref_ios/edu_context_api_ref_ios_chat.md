@@ -8,7 +8,7 @@
 func sendRoomMessage(_ message: String)
 ```
 
-Send class messages.
+Sends a classroom message.
 
 | Parameter | Description |
 | :-------- | :--------- |
@@ -20,7 +20,7 @@ Send class messages.
 func sendConversationMessage(_ message: String)
 ```
 
-Send a question message.
+Sends a peer-to-peer message to a remote user.
 
 | Parameter | Description |
 | :-------- | :--------- |
@@ -33,7 +33,7 @@ func resendRoomMessage(_ message: String,
                        messageId: String)
 ```
 
-Resend the class message.
+Resends the classroom message.
 
 | Parameter | Description |
 | :---------- | :--------- |
@@ -47,7 +47,7 @@ func resendConversationMessage(_ message: String,
                                messageId: String)
 ```
 
-Resend the question message.
+Resends the peer-to-peer message.
 
 | Parameter | Description |
 | :---------- | :--------- |
@@ -61,11 +61,11 @@ func fetchHistoryMessages(_ startId: String,
                               count: Int)
 ```
 
-Fetch the message history.
+Fetches the history of classroom messages.
 
 | Parameter | Description |
 | :-------- | :----------------------------------------- |
-| `startId` | You need to pass in a `messageId`, which indicates you need to get this `message `and messages sent before this `message`. |
+| `startId` | You need to pass in a `messageId`, which indicates you need to get this message and messages sent before this message. |
 | `count` | The number of messages you want to get. |
 
 ### fetchConversationHistoryMessages
@@ -75,11 +75,11 @@ func fetchConversationHistoryMessages(_ startId: String,
                                           count: Int)
 ```
 
-Fetch the message history.
+Fetches the history of peer-to-peer messages.
 
 | Parameter | Description |
 | :-------- | :----------------------------------------- |
-| `startId` | You need to pass in a `messageId`, which indicates you need to get this `message `and messages sent before this `message`. |
+| `startId` | You need to pass in a `messageId`, which indicates you need to get this message and messages sent before this message. |
 | `count` | The number of messages you want to get. |
 
 ### registerEventHandler
@@ -104,11 +104,11 @@ Register the event listener.
 @objc optional func onAddRoomMessage(_ info: AgoraEduContextChatInfo)
 ```
 
-Occurs when the local client receives a message.
+Occurs when the local client receives a classroom message.
 
 | Parameter | Description |
 | :----- | :----------------------------------------- |
-| `Info` | The message object. See AgoraEduContextChatInfo for details``. |
+| `Info` | The message object. See `AgoraEduContextChatInfo` for details. |
 
 ### onAddConversationMessage
 
@@ -116,11 +116,11 @@ Occurs when the local client receives a message.
 @objc optional func onAddConversationMessage(_ info: AgoraEduContextChatInfo)
 ```
 
-Occurs when the local client receives a message.
+Occurs when the local client receives a peer-to-peer message from a remote user.
 
 | Parameter | Description |
 | :----- | :----------------------------------------- |
-| `Info` | The message object. See AgoraEduContextChatInfo for details``. |
+| `Info` | The message object. See `AgoraEduContextChatInfo` for details. |
 
 ### onUpdateChatPermission
 
@@ -128,14 +128,14 @@ Occurs when the local client receives a message.
 @objc optional func onUpdateChatPermission(_ allow: Bool)
 ```
 
-The chat permissions of all users in the classroom have changed.
+Occurs when the chat permission of all users in the classroom changes.
 
-- When `allow` is `true`, the UI layer prompts: the muted mode is turned on.
-- When `allow` is `false`, the UI layer prompts: muting mode is off.
+- When `allow` is `true`, the UI layer prompts: The mute mode is on.
+- When `allow` is `false`, the UI layer prompts: The mute mode is off.
 
 | Parameter | Description |
 | :------ | :----------------------- |
-| `allow` | Do you have permission to chat with messages. |
+| `allow` | Whether the local client has the permission to chat. |
 
 ### onUpdateLocalChatPermission
 
@@ -145,16 +145,16 @@ The chat permissions of all users in the classroom have changed.
                                            operatorUser: AgoraEduContextUserInfo)
 ```
 
-The chat permissions of local users have changed.
+Occurs when the chat permission of the local user changes.
 
-- ``When `allow` is `true`, the UI layer prompts: You are banned by xx.
-- When `allow` is `false`, the UI layer prompts: You are unbanned by xx.
+- When `allow` is `true`, the UI layer prompts: You are muted by xx.
+- When `allow` is `false`, the UI layer prompts: You are unmuted by xx.
 
 | Parameter | Description |
 | :------------- | :----------------------- |
-| `allow` | Do you have permission to chat with messages. |
-| `toUser` | Users whose chat permissions have changed. |
-| `operatorUser` | The user who has changed the permission to operate the chat. |
+| `allow` | Whether the local client has the permission to chat. |
+| `toUser` | The information of the user whose chat permission has changed. |
+| `operatorUser` | The information of the operator. |
 
 ### onUpdateRemoteChatPermission
 
@@ -164,16 +164,16 @@ The chat permissions of local users have changed.
                                             operatorUser: AgoraEduContextUserInfo)
 ```
 
-The chat permission of the remote user has changed.
+Occurs when the chat permission of a remote user changes.
 
-- When `allow` is `true`, the UI layer prompts: xx is forbidden by xx.
-- When `allow` is `false`, the UI layer prompts: xx is unbanned by xx.
+- When `allow` is `true`, the UI layer prompts: xx is muted by xx.
+- When `allow` is `false`, the UI layer prompts: xx is unmuted by xx.
 
 | Parameter | Description |
 | :------------- | :----------------------- |
-| `allow` | Do you have permission to chat with messages. |
-| `toUser` | Users whose chat permissions have changed. |
-| `operatorUser` | The user who has changed the permission to operate the chat. |
+| `allow` | Whether the local client has the permission to chat. |
+| `toUser` | The information of the user whose chat permission has changed. |
+| `operatorUser` | The information of the operator. |
 
 ### onSendRoomMessageResult
 
@@ -182,12 +182,12 @@ The chat permission of the remote user has changed.
                                                info: AgoraEduContextChatInfo?)
 ```
 
-Local users send the results of class messages (including first sending and re-sending).
+The result of the local user sending the classroom messages (including sending for the first time and re-sending).
 
 | Parameter | Description |
 | :------ | :----------------------------------------- |
-| `error` | The error code.  If` error` is not empty, it means the local client fails to raise the hand. |
-| `info` | The message object. See AgoraEduContextChatInfo for details``. |
+| `error` | The error code. ` error` not being empty means failure. |
+| `info` | The message object. See `AgoraEduContextChatInfo` for details. |
 
 ### onSendConversationMessageResult
 
@@ -200,8 +200,8 @@ The local user sends the result of the question message (including the first and
 
 | Parameter | Description |
 | :------ | :----------------------------------------- |
-| `error` | The error code.  If` error` is not empty, it means the local client fails to raise the hand. |
-| `info` | The message object. See AgoraEduContextChatInfo for details``. |
+| `error` | The error code. ` error` not being empty means failure. |
+| `info` | The message object. See `AgoraEduContextChatInfo` for details. |
 
 ### onFetchHistoryMessagesResult
 
@@ -214,7 +214,7 @@ Local users get the results of historical classroom news.
 
 | Parameter | Description |
 | :------ | :--------------------------------------------------------- |
-| `error` | The error code.  If` error` is not empty, it means the local client fails to raise the hand. |
+| `error` | The error code. ` error` not being empty means failure. |
 | `info` | The message object. See AgoraEduContextChatInfo for details``. |
 
 ### onFetchConversationHistoryMessagesResult
@@ -228,7 +228,7 @@ The local user obtains the result of the historical question message.
 
 | Parameter | Description |
 | :------ | :--------------------------------------------------------- |
-| `error` | The error code.  If` error` is not empty, it means the local client fails to raise the hand. |
+| `error` | The error code. ` error` not being empty means failure. |
 | `info` | The message object. See AgoraEduContextChatInfo for details``. |
 
 ### onUpdateRoomMessageList
