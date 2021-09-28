@@ -486,7 +486,7 @@ Whether to enable mirror mode.
 | :--------- | :--------------------- |
 | `auto` | The SDK disables mirror mode by default. |
 | `enabled` | Enable mirror mode. |
-| `DISABLED` | Disable mirror mode. |
+| `disabled` | Disable mirror mode. |
 
 ### AgoraEduCourseware
 
