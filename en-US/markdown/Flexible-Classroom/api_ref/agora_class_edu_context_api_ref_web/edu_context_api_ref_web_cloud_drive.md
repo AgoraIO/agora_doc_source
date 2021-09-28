@@ -1,6 +1,6 @@
 # CloudDriveContext
 
-`CloudDriveContext` provides courseware-related capabilities.
+`CloudDriveContext` provides capabilities for class files.
 
 ## upsertResources
 
@@ -10,11 +10,11 @@ upsertResources(items: CourseWareItem[]): void;
 
 > Since v1.1.5.
 
-Update the courseware list.
+Updates a file.
 
 | Parameter | Description |
 | :------ | :--------- |
-| `items` | Courseware object. |
+| `items` | The file object. |
 
 ## allResources
 
@@ -24,7 +24,7 @@ allResources: MaterialDataResource[];
 
 > Since v1.1.5.
 
-All courseware.
+All class files.
 
 ## initCourseWareProgress
 
@@ -34,7 +34,7 @@ initCourseWareProgress: number;
 
 > Since v1.1.5.
 
-Initial courseware loading progress.
+The loading progress of the initial class file.
 
 ## initCourseWareLoading
 
@@ -44,7 +44,7 @@ initCourseWareLoading: boolean;
 
 > Since v1.1.5.
 
-Whether the initial courseware is being loaded.
+Whether the initial class file is being loaded.
 
 ## initCourseWare
 
@@ -54,7 +54,7 @@ initCourseWare: MaterialDataResource
 
 > Since v1.1.5.
 
-Get to know the courseware for the first time.
+初始课件。
 
 ## downloadList
 
@@ -62,7 +62,7 @@ Get to know the courseware for the first time.
 downloadList: StorageCourseWareItem[],
 ```
 
-List of downloadable courseware.
+List of downloadable files.
 
 ## openCloudResource
 
@@ -70,7 +70,7 @@ List of downloadable courseware.
 openCloudResource: (uuid: string) => Promise<void>,
 ```
 
-Open the courseware.
+Opens a file.
 
 | Parameter | Description |
 | :----- | :-------- |
@@ -82,11 +82,11 @@ Open the courseware.
 startDownload: (taskUuid: string) => Promise<void>,
 ```
 
-Start downloading the courseware.
+Starts downloading a file.
 
 | Parameter | Description |
 | :--------- | :---------------- |
-| `taskUuid` | Courseware conversion task ID. |
+| `taskUuid` | File conversion task ID. |
 
 ## deleteSingle
 
@@ -94,11 +94,11 @@ Start downloading the courseware.
 deleteSingle: (taskUuid: string) => Promise<void>,
 ```
 
-Delete the courseware.
+Deletes a file.
 
 | Parameter | Description |
 | :--------- | :---------------- |
-| `taskUuid` | Courseware conversion task ID. |
+| `taskUuid` | File conversion task ID. |
 
 ## personalResources
 
@@ -106,7 +106,7 @@ Delete the courseware.
 personalResources: MaterialDataResource[],
 ```
 
-Update the courseware list.
+Updates the personal file list.
 
 ## publicResources
 
@@ -114,7 +114,7 @@ Update the courseware list.
 publicResources: MaterialDataResource[],
 ```
 
-Update the courseware list.
+Updates the public file list.
 
 ## resourcesList
 
@@ -122,7 +122,7 @@ Update the courseware list.
 resourcesList: Resource[],
 ```
 
-Update the courseware list.
+The list of all files.
 
 ## refreshCloudResources
 
@@ -130,7 +130,7 @@ Update the courseware list.
 refreshCloudResources: () => Promise<void>,
 ```
 
-Update the courseware list.
+Refreshes the file list.
 
 ## removeMaterialList
 
@@ -138,7 +138,7 @@ Update the courseware list.
 removeMaterialList: (resourceUuids: string[]) => Promise<void>,
 ```
 
-Delete the courseware.
+Deletes a file.
 
 | Parameter | Description |
 | :-------------- | :-------- |
@@ -150,7 +150,7 @@ Delete the courseware.
 cancelUpload: () => Promise<void>,
 ```
 
-Cancel uploading a file to the classroom.
+Cancels uploading a file to the classroom.
 
 ## doUpload
 
@@ -158,7 +158,7 @@ Cancel uploading a file to the classroom.
 doUpload: (payload: any) => Promise<void>,
 ```
 
-Upload a file to the classroom.
+Uploads a file to the classroom.
 
 ## closeMaterial
 
@@ -166,4 +166,4 @@ Upload a file to the classroom.
 closeMaterial: (resourceUuid: string) => void,
 ```
 
-Close the file.
+Closes the file.
