@@ -212,7 +212,7 @@ Display the courseware on the whiteboard.
 async startDownload(taskUuid: string): void
 ```
 
-Start downloading the courseware.
+Starts downloading a file.
 
 ## updatePen
 
@@ -276,7 +276,7 @@ Remove the courseware.
 async cancelUpload(): void
 ```
 
-Cancel uploading a file to the classroom.
+Cancels uploading a file to the classroom.
 
 ## doUpload
 
@@ -284,7 +284,7 @@ Cancel uploading a file to the classroom.
 async doUpload(payload: any): void
 ```
 
-Upload a file to the classroom.
+Uploads a file to the classroom.
 
 ## closeMaterial
 
@@ -292,7 +292,7 @@ Upload a file to the classroom.
 async closeMaterial(resourceUuid: string): void
 ```
 
-Close the file.
+Closes the file.
 
 ## installTools
 
