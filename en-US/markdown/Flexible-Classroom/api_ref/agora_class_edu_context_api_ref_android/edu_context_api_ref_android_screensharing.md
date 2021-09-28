@@ -8,7 +8,7 @@
 abstract fun setScreenShareState(sharing: Boolean)
 ```
 
-Start or stop screen sharing.
+Starts or stops screen sharing.
 
 | Parameter | Description |
 | :-------- | :----------------- |
@@ -20,7 +20,7 @@ Start or stop screen sharing.
 abstract fun renderScreenShare(container: ViewGroup?, streamUuid: String)
 ```
 
-Start or stop rendering the screen-sharing stream.
+Starts or stops rendering the screen-sharing stream.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------- |
@@ -37,11 +37,11 @@ Start or stop rendering the screen-sharing stream.
 fun onScreenShareStateUpdated(state: EduContextScreenShareState, streamUuid: String)
 ```
 
-The screen sharing status has changed.
+Occurs when the state of screen sharing changes.
 
 | Parameter | Description |
 | :----------- | :------------------------------------------------ |
-| `state` | Screen sharing state, see EduContextScreenShareState for details``. |
+| `state` | The state of screen sharing. See `EduContextScreenShareState` for details. |
 | `streamUuid` | The stream ID. |
 
 ### onScreenShareTip
