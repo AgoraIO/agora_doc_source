@@ -1,6 +1,6 @@
 ## UserContext
 
-`UserContext` class provides` user`-list-related methods that can be called by your app.
+`UserContext` class provides user-list-related methods that can be called by your app.
 
 ### localUserInfo
 
@@ -8,7 +8,7 @@
 abstract fun localUserInfo(): EduContextUserInfo
 ```
 
-Get local user information.
+Gets the information of the local client.
 
 ### updateFlexUserProps
 
@@ -18,15 +18,15 @@ abstract fun updateFlexUserProps(userUuid: String,
                                  cause: MutableMap<String, String>?)
 ```
 
-Add or update custom user attributes. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
+Adds or updates custom user properties. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
 
-The remote client receives the `onFlexUserPropertiesChanged` callback.
+After you successfully update the properties, the remote client receives the `onFlexUserPropertiesChanged` callback.
 
 | Parameter | Description |
 | :----------- | :--------- |
 | `userUuid` | The user ID. |
-| `properties` | user attribute |
-| `cause` | Reason for update. |
+| `properties` | The user properties. |
+| `cause` | The update reason. |
 
 ### muteVideo
 
@@ -34,7 +34,7 @@ The remote client receives the `onFlexUserPropertiesChanged` callback.
 abstract fun muteVideo(muted: Boolean)
 ```
 
-Enable or disable the local video.
+Enables or disables the local video.
 
 | Parameter | Description |
 | :------ | :----------------- |
@@ -46,11 +46,11 @@ Enable or disable the local video.
 abstract fun muteAudio(muted: Boolean)
 ```
 
-Enable or disable the local audio.
+Enables or disables the local audio.
 
 | Parameter | Description |
 | :------ | :----------------- |
-| `muted` | Whether to close the local audio. |
+| `muted` | Whether to disable the local audio. |
 
 ### renderVideo
 
@@ -58,7 +58,7 @@ Enable or disable the local audio.
 abstract fun renderVideo(container: ViewGroup?, streamUuid: String)
 ```
 
-Start or stop rendering the local video stream.
+Starts or stops rendering the local video stream.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------- |
@@ -123,7 +123,7 @@ Occurs when the local user receives a reward.
 fun onKickOut()
 ```
 
-Local users were kicked out of the classroom.
+Occurs when the local user is kicked out of the classroom.
 
 ### onVolumeUpdated
 
@@ -144,11 +144,11 @@ Occurs when the volume of the local user is updated.
 fun onRoster(context: Context, anchor: View, type: Int?)
 ```
 
-Display the user list.
+Displays the user list.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `type` | The roster is divided into a small class roster (RosterType.SmallClass) and a large class roster (RosterType.LargeClass). |
+| `type` | There are two types of the user list: RosterType.SmallClass and RosterType.LargeClass. |
 
 ### onUserTip
 
@@ -175,13 +175,13 @@ There are the following tips:
 fun onRoster(context: Context, anchor: View, type: Int?)
 ```
 
-Display the user list.
+Displays the user list.
 
 | Parameter | Description |
 | :-------- | :----------------------------------------------------------- |
 | `context` | The context of the app. |
 | `anchor` | The Icon-View of the user list. |
-| `type` | There are two types of user lists:<li>`RosterType.SmallClass`: The user list for` small` classrooms.<li>`RosterType.LargeClass`: The user list for lecture halls. |
+| `type` | There are two types of user lists:<li>`RosterType.SmallClass`: The user list for the Small Classroom scenario.<li>`RosterType.LargeClass`: The user list for the Lecture Hall scenario. |
 
 ### onFlexUserPropsChanged
 
@@ -193,12 +193,12 @@ fun onFlexUserPropsChanged(changedProperties: MutableMap<String, Any>,
                            operator: EduContextUserInfo?)
 ```
 
-Custom user attribute update callback.
+Occurs when the custom user properties are updated.
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
-| `changedProperties` | The updated user attributes. |
-| `properties` | All user attributes. |
-| `cause` | Reason for update. |
-| `fromUser` | The user information. See `EduContextUserDetailInfo `for details. |
-| `operator` | The user information. See `EduContextUserInfo`. An empty` operator` means that it is updated by the server. |
+| `changedProperties` | The updated user properties. |
+| `properties` | All user properties. |
+| `cause` | The update reason. |
+| `fromUser` | The information of users whose properties are updated. See `EduContextUserDetailInfo` for details. |
+| `operator` | The information of the operator. See `EduContextUserInfo`. `operator` being empty means that properties are updated by the server. |
