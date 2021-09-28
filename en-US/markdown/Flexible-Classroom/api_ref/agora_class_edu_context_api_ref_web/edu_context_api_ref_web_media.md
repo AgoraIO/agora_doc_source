@@ -1,6 +1,6 @@
 # MediaContext
 
-`MediaContext` 提供本地媒体设备控制相关能力。
+`MediaContext` provides capabilities for device control.
 
 ## enableMediaEncryption
 
@@ -10,7 +10,7 @@ enableMediaEncryption(enabled: boolean, config: any): number;
 
 > Since v1.1.5.
 
-启用媒体流加密。
+Enables media stream encryption.
 
 ## getAudioRecordingVolume
 
@@ -20,7 +20,7 @@ getAudioRecordingVolume: () => number;
 
 > Since v1.1.5.
 
-获取麦克风采集的声音的音量。
+Gets the volume of the audio collected by the microphone.
 
 ## getAudioPlaybackVolume
 
@@ -30,7 +30,7 @@ getAudioPlaybackVolume: () => number;ng) => Promise<void>;
 
 > Since v1.1.5.
 
-获取扬声器播放的声音的音量。
+Get the volume of the audio played by the speaker.
 
 ## isNative
 
@@ -38,7 +38,7 @@ getAudioPlaybackVolume: () => number;ng) => Promise<void>;
 isNative: boolean,
 ```
 
-本地是否为 Windows 或 macOS 客户端应用。
+Whether the local client is a Windows or macOS application.
 
 ## cpuUsage
 
@@ -46,9 +46,9 @@ isNative: boolean,
 cpuUsage: number,
 ```
 
-> Deprecated as of v1.1.5. Agora 建议改用 `ClassroomStatsContext` 中的 `cpuUsage`。
+> Deprecated as of v1.1.5. Use `cpuUsage` in `ClassroomStatsContext` instead.
 
-CPU 使用情况。
+The CPU usage.
 
 ## networkQuality
 
@@ -56,7 +56,7 @@ CPU 使用情况。
 networkQuality: string,
 ```
 
-> Deprecated as of v1.1.5. Agora 建议改用 `ClassroomStatsContext` 中的 `networkQuality`。
+> Deprecated as of v1.1.5. Use `networkQuality` in `ClassroomStatsContext` instead.
 
 Network quality types.
 
@@ -66,9 +66,9 @@ Network quality types.
 networkLatency: number,
 ```
 
-> Deprecated as of v1.1.5. Agora 建议改用 `ClassroomStatsContext` 中的 `networkLatency`。
+> Deprecated as of v1.1.5. Use `networkLatency` in `ClassroomStatsContext` instead.
 
-网络延时（毫秒）。
+Network delay (ms).
 
 ## packetLostRate
 
@@ -76,9 +76,9 @@ networkLatency: number,
 packetLostRate: number,
 ```
 
-> Deprecated as of v1.1.5. Agora 建议改用 `ClassroomStatsContext` 中的 `packetLostRate`。
+> Deprecated as of v1.1.5. Use `packetLostRate` in `ClassroomStatsContext` instead.
 
-网络丢包率（百分比）。
+Packet loss rate (%).
 
 ## cameraList
 
@@ -134,12 +134,12 @@ The ID of the selected speaker.
 changeDevice: (deviceType: string, value: any) => Promise<void>,
 ```
 
-切换媒体设备（摄像头、麦克风、扬声器）。
+Switches the media device (camera, microphone, or speaker).
 
 | Parameter | Description |
 | ------------ | ------------------------------------------------------ |
-| `deviceType` | 设备类型，可设为 `camera`、`microphone` 或 `speaker`。 |
-| `value` | 设备 ID。 |
+| `deviceType` | The device type. You can set the parameter as `camera`, `microphone` or `speaker`. |
+| `value` | The device ID. |
 
 ## changeAudioVolume
 
@@ -147,12 +147,12 @@ changeDevice: (deviceType: string, value: any) => Promise<void>,
 changeAudioVolume: (deviceType: string, value: any) => Promise<void>,
 ```
 
-调整设备音量。
+Adjusts the device volume.
 
 | Parameter | Description |
 | ------------ | ------------------------------------------- |
-| `deviceType` | 设备类型，可设为`microphone` 或 `speaker`。 |
-| `value` | 音量大小。 |
+| `deviceType` | The device type. You can set the parameter as `microphone` or `speaker`. |
+| `value` | The volume. |
 
 ## changeCamera
 
@@ -162,11 +162,11 @@ changeCamera: (deviceId: string) => Promise<void>
 
 > Since v1.1.5.
 
-Switch the camera.
+Switches the camera.
 
 | Parameter | Description |
 | ---------- | --------- |
-| `deviceId` | 设备 ID。 |
+| `deviceId` | The device ID. |
 
 ## changeMicrophone
 
@@ -176,11 +176,11 @@ changeMicrophone: (deviceId: string) => Promise<void>
 
 > Since v1.1.5.
 
-Switch the microphone.
+Switches the microphone.
 
 | Parameter | Description |
 | ---------- | --------- |
-| `deviceId` | 设备 ID。 |
+| `deviceId` | The device ID. |
 
 ## changeSpeakerVolume
 
@@ -190,7 +190,7 @@ changeSpeakerVolume: (v: number) => Promise<void>
 
 > Since v1.1.5.
 
-Adjust the volume of the speaker.
+Adjusts the volume of the speaker.
 
 ## changeMicrophoneVolume
 
@@ -200,4 +200,4 @@ changeMicrophoneVolume: (v: number) => Promise<void>
 
 > Since v1.1.5.
 
-Adjust the volume of the microphone.
+Adjusts the volume of the microphone.
