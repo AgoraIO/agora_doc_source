@@ -20,7 +20,7 @@ Enable or disable the whiteboard basic editing tools.
 func skipDownload(_ url: String)
 ```
 
-Skip the courseware download.
+Skips the courseware download.
 
 | Parameter | Description |
 | :---- | :------------- |
@@ -32,7 +32,7 @@ Skip the courseware download.
 func cancelDownload(_ url: String)
 ```
 
-Cancel the courseware download.
+Cancels the courseware download.
 
 | Parameter | Description |
 | :---- | :------------- |
@@ -44,7 +44,7 @@ Cancel the courseware download.
 func retryDownload(_ url: String)
 ```
 
-Retry the courseware download.
+Retries the courseware download.
 
 | Parameter | Description |
 | :---- | :------------- |
@@ -217,7 +217,7 @@ Select a whiteboard basic editing tool.
 func colorSelected(_ color: UIColor)
 ```
 
-Select a color.
+Selects a color.
 
 | Parameter | Description |
 | :------ | :----- |
@@ -229,7 +229,7 @@ Select a color.
 func fontSizeSelected(_ size: Int)
 ```
 
-Select a font size.
+Selects a font size.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -241,7 +241,7 @@ Select a font size.
 func thicknessSelected(_ thick: Int)
 ```
 
-Select the line thickness.
+Selects the line thickness.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -257,7 +257,7 @@ Select the line thickness.
 func zoomOut()
 ```
 
-Zoom out the whiteboard. Every time you call this method, the whiteboard is zoomed out by 10%.
+Zooms out the whiteboard. Every time you call this method, the whiteboard is zoomed out by 10%.
 
 ### zoomIn
 
@@ -265,7 +265,7 @@ Zoom out the whiteboard. Every time you call this method, the whiteboard is zoom
 func zoomIn()
 ```
 
-Zoom in the whiteboard. Every time you call this method, the whiteboard is zoomed in by 10%.
+Zooms in the whiteboard. Every time you call this method, the whiteboard is zoomed in by 10%.
 
 ### prevPage
 
@@ -273,7 +273,7 @@ Zoom in the whiteboard. Every time you call this method, the whiteboard is zoome
 func prevPage()
 ```
 
-Go to the previous page.
+Goes to the previous page.
 
 ### nextPage
 
@@ -281,7 +281,7 @@ Go to the previous page.
 func nextPage()
 ```
 
-Go to the next page.
+Goes to the next page.
 
 ### registerPageControlEventHandler
 
