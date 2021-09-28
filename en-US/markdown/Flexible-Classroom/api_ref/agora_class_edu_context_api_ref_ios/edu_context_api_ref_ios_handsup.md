@@ -12,7 +12,7 @@ Raise or lower the hand.
 
 | Parameter | Description |
 | :------ | :---------------------------------------- |
-| `state` | Whether the hand is raised. See EduContextHandsUpState for details``. |
+| `state` | Whether the hand is raised. See `EduContextHandsUpState` for details. |
 
 ### registerEventHandler
 
@@ -66,7 +66,7 @@ Indicate the current hand state.
 @objc optional func onHandsUpError(_ error: AgoraEduContextError?)
 ```
 
-Reports the result of raise the hand.  If` error` is not empty, it means the local client fails to raise the hand.
+Reports the result of raise the hand.  If `error` is not empty, it means the local client fails to raise the hand.
 
 | Parameter | Description |
 | :------ | :------------------------------------ |
