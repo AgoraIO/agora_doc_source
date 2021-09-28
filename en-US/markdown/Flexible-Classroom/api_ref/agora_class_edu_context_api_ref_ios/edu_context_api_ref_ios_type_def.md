@@ -52,7 +52,7 @@ The classroom information.
 | :---------------- | :----------- |
 | `roomUuid` | The room ID. |
 | `roomName` | The classroom name. |
-| `roomType` | The classroom type. See `AgoraEduRoomType`. |
+| `roomType` | The classroom type. See `AgoraEduContextRoomType`. |
 
 ## AgoraEduContextClassState
 
@@ -84,8 +84,8 @@ The classroom type.
 | Parameter | Description |
 | :---------- | :----------------- |
 | `oneToOne` | One-to-one Classroom. |
-| `lecture` | Lecture Hall |
-| `small` | Small Classroom |
+| `lecture` | Lecture Hall. |
+| `small` | Small Classroom. |
 
 ## AgoraEduContextNetworkQuality
 
@@ -156,8 +156,8 @@ The basic user information.
 | :--------- | :------------------------------------ |
 | `userUuid` | The user ID. |
 | `userName` | The user name. |
-| `role` | The user role. See AgoraEduContextUserRole for details``. |
-| `userProperties` | Custom user attributes. |
+| `role` | The user role. See `AgoraEduContextUserRole` for details. |
+| `userProperties` | Custom user properties. |
 
 ## AgoraEduContextUserDetailInfo
 
@@ -187,12 +187,12 @@ The detailed user information.
 | `streamUuid` | The stream ID of the user. |
 | `onLine` | Whether the user is online. |
 | `coHost` | Whether the user is on stage. |
-| `boardGranted` | Whether the user has permission of drawing on the whiteboard. |
+| `boardGranted` | Whether the user has the permission of drawing on the whiteboard. |
 | `cameraState` | The camera state of the user. See `AgoraEduContextDeviceState`. |
 | `microState` | The microphone state of the user. See `AgoraEduContextDeviceState`. |
-| `enableVideo` | Whether send the video stream: |
-| `enableAudio` | Whether send the audio stream: |
-| `enableChat` | Whether you have the permission to chat with messages. |
+| `enableVideo` | Whether the video is enabled. |
+| `enableAudio` | Whether the audio is enabled. |
+| `enableChat` | Whether the local client has the permission to send messages. |
 | `rewardCount` | The number of rewards. |
 
 ## AgoraEduContextDeviceState
@@ -230,11 +230,11 @@ The information of the message.
 | :---------- | :----------------------------------------- |
 | `id` | The message ID. |
 | `message` | The message. |
-| `user` | The user who sends the message. See AgoraEduContextUserInfo for details``. |
-| `sendState` | The sending state of the message. See AgoraEduContextChatState for details``. |
-| `type` | The message type. See AgoraEduContextChatType for details``. |
-| `time` | The message sending timestamp (in milliseconds). |
-| `source` | The source of the message. See AgoraEduContextChatFrom for details``. |
+| `user` | The user who sends the message. See `AgoraEduContextUserInfo` for details. |
+| `sendState` | The sending state of the message. See `AgoraEduContextChatState` for details. |
+| `type` | The message type. See `AgoraEduContextChatType` for details. |
+| `time` | The message sending timestamp (ms). |
+| `source` | The source of the message. See `AgoraEduContextChatFrom` for details. |
 
 ## AgoraEduContextChatType
 
@@ -297,8 +297,8 @@ The hand state.
 | Parameter | Description |
 | :---------- | :--------- |
 | `default` | The initial state. |
-| `HandsUp` | Hand raised. |
-| `HandsDown` | Hand lowered. |
+| `handsUp` | Hand raised. |
+| `handsDown` | Hand lowered. |
 
 ## AgoraEduContextHandsUpResult
 
@@ -310,12 +310,12 @@ The hand state.
 }
 ```
 
-Raise your hands to request results.
+The result of raising hands to request for speak.
 
 | Parameter | Description |
 | :--------- | :--------------- |
-| `rejected` | The request to raise a hand was denied. |
-| `accepted` | The request to raise a hand was accepted. |
+| `rejected` | The request to speak was denied. |
+| `accepted` | The request to speak was accepted. |
 | `timeout` | A timeout occurs. |
 
 ## AgoraEduContextScreenShareState
@@ -326,12 +326,12 @@ Raise your hands to request results.
 }
 ```
 
-Screen sharing status.
+The state of screen sharing.
 
 | Parameter | Description |
 | :------ | :--------------- |
-| `start` | Screen sharing has started. |
-| `pause` | Screen sharing has been suspended. |
+| `start` | Screen sharing has been started. |
+| `pause` | Screen sharing has been paused. |
 | `stop` | Screen sharing has ended. |
 
 ## EduContextCameraFacing
@@ -360,14 +360,14 @@ The camera direction.
 }
 ```
 
-Device Configuration.
+Device configurations.
 
 | Parameter | Description |
 | :--------------- | :--------------- |
-| `cameraEnabled` | Whether to turn on the camera. |
+| `cameraEnabled` | Whether the camera is turned on. |
 | `cameraFacing` | The camera direction. |
-| `micEnabled` | Whether to turn on the microphone. |
-| `speakerEnabled` | Whether to turn on the speaker. |
+| `micEnabled` | Whether to the microphone is turned on. |
+| `speakerEnabled` | Whether to the speaker is turned on. |
 
 ## AgoraEduContextVideoMirrorMode
 
@@ -383,7 +383,7 @@ Whether to enable mirror mode.
 | :--------- | :--------------------- |
 | `auto` | The SDK disables mirror mode by default. |
 | `enabled` | Enable mirror mode. |
-| `DISABLED` | Disable mirror mode. |
+| `disabled` | Disable mirror mode. |
 
 ## AgoraEduContextVideoConfig
 
@@ -397,12 +397,12 @@ Whether to enable mirror mode.
 }
 ```
 
-Video profile
+Video encoder configurations.
 
 | Parameter | Description |
 | :--------------------- | :----------------------------------------------------------- |
-| `videoDimensionWidth` | The page height (pixel). The default value is 320. |
-| `videoDimensionHeight` | The page height (pixel). The default value is 200. |
-| `frameRate` | Video frame rate, the unit is fps, the default value is 15. |
-| `bitrate` | Video bit rate, the unit is Kbps, and the default value is 200. |
-| `mirrorMode` | Mirror mode, see AgoraEduContextVideoMirrorMode for details``. The default is `auto`. |
+| `videoDimensionWidth` | The video width (pixel). The default value is 320. |
+| `videoDimensionHeight` | The video height (pixel). The default value is 240. |
+| `frameRate` | Frame rate (fps). The default value is 15. |
+| `bitrate` | Birate (Kbps). The default value is 200. |
+| `mirrorMode` | Mirror mode. See `AgoraEduContextVideoMirrorMode` for details. The default value is `auto`. |
