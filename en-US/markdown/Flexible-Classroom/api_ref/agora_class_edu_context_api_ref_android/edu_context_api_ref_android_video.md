@@ -1,6 +1,6 @@
 ## VideoContext
 
-`VideoContext` provides the methods that can be called by your app for media control. It is mainly used to control the audio and video of teachers and students in one-to-one classrooms and the audio and video of teachers in small and large classes.
+`VideoContext` provides the methods that can be called by your app for media control. This context is mainly for controlling the audio and video of the teacher and student in the One-to-one Classrooms scenario and the audio and video of the teacher in the Small Classroom and Lecture Hall scenarios.
 
 ### updateVideo
 
@@ -8,7 +8,7 @@
 abstract fun updateVideo(enabled: Boolean)
 ```
 
-Enable or disable the local video.
+Enables or disables the local video.
 
 | Parameter | Description |
 | :-------- | :----------------- |
@@ -20,7 +20,7 @@ Enable or disable the local video.
 abstract fun updateAudio(enabled: Boolean)
 ```
 
-Enable or disable the local audio.
+Enables or disables the local audio.
 
 | Parameter | Description |
 | :-------- | :----------------- |
@@ -35,7 +35,7 @@ abstract fun renderVideo(viewGroup: ViewGroup?,
 )
 ```
 
-Start or stop rendering the local video stream.
+Starts or stops rendering the local video stream.
 
 | Parameter | Description |
 | :------------- | :----------------------------------------------------- |
@@ -69,7 +69,7 @@ Occurs when the user info updates.
 
 | Parameter | Description |
 | :----- | :------------------------------------------ |
-| `info` | The user information. See EduContextUserDetailInfo for details``. |
+| `info` | The user information. See `EduContextUserDetailInfo` for details. |
 
 ### onVolumeUpdated
 
