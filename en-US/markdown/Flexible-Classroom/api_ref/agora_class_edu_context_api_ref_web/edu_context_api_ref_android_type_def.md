@@ -134,7 +134,7 @@ The volume information of users.
 | :--------- | :------------------------------------ |
 | `userUuid` | The user ID. |
 | `userName` | The user name. |
-| `role` | The user role. See EduContextUserRole for details``. |
+| `role` | The user role. See `EduContextUserRole` for details. |
 
 ## EduContextUserDetailInfo
 
