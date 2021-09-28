@@ -8,7 +8,7 @@
 abstract fun initWhiteboard(container: ViewGroup)
 ```
 
-Initialize the whiteboard.
+Initializes the whiteboard.
 
 ### joinWhiteboard
 
@@ -24,7 +24,7 @@ Joins a whiteboard room.
 abstract fun isGranted(): Boolean
 ```
 
-Set whether you have permission to operate the whiteboard.
+Sets whether the local client has permission to operate the whiteboard.
 
 ### leave
 
@@ -40,7 +40,7 @@ Leaves a whiteboard room.
 abstract fun selectAppliance(type: WhiteboardApplianceType)
 ```
 
-Select a whiteboard basic editing tool.
+Selects a whiteboard basic editing tool.
 
 | Parameter | Description |
 | :----- | :------------------------------------------------- |
@@ -52,7 +52,7 @@ Select a whiteboard basic editing tool.
 abstract fun selectColor(color: Int)
 ```
 
-Select a color.
+Selects a color.
 
 | Parameter | Description |
 | :------ | :----- |
@@ -64,7 +64,7 @@ Select a color.
 abstract fun selectFontSize(size: Int)
 ```
 
-Select a font size.
+Selects a font size.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -76,7 +76,7 @@ Select a font size.
 abstract fun selectThickness(thick: Int)
 ```
 
-Select the line thickness.
+Selects the line thickness.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -88,7 +88,7 @@ Select the line thickness.
 abstract fun selectRoster(anchor: View)
 ```
 
-Click the user list.
+Clicks the user list.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -102,7 +102,7 @@ abstract fun setBoardInputEnable(enable: Boolean)
 
 | Parameter | Description |
 | :--- | :--- |
-| `enable` | Enable or disable the whiteboard basic editing tools and page controller. When a whiteboard courseware downloading progress bar or dialog box appears, the whiteboard basic tools and page controller are not available. |
+| `enable` | Enables or disables the whiteboard basic editing tools and page controller. When a whiteboard courseware downloading progress bar or dialog box appears, the whiteboard basic tools and page controller are not available. |
 
 ### skipDownload
 
@@ -110,7 +110,7 @@ abstract fun setBoardInputEnable(enable: Boolean)
 abstract fun skipDownload(url: String?)
 ```
 
-Skip the courseware download.
+Skips the courseware download.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -122,7 +122,7 @@ Skip the courseware download.
 abstract fun cancelDownload(url: String?)
 ```
 
-Cancel the courseware download.
+Cancels the courseware download.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -134,7 +134,7 @@ Cancel the courseware download.
 abstract fun retryDownload(url: String?)
 ```
 
-Retry the courseware download.
+Retries the courseware download.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -146,7 +146,7 @@ Retry the courseware download.
 abstract fun setFullScreen(full: Boolean)
 ```
 
-Make the whiteboard full screen.
+Makes the whiteboard full screen.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -158,7 +158,7 @@ Make the whiteboard full screen.
 abstract fun setZoomOut()
 ```
 
-Zoom out the whiteboard. Every time you call this method, the whiteboard is zoomed out by 20%.
+Zooms out the whiteboard. Every time you call this method, the whiteboard is zoomed out by 20%.
 
 ### setZoomIn
 
@@ -166,7 +166,7 @@ Zoom out the whiteboard. Every time you call this method, the whiteboard is zoom
 abstract fun setZoomIn()
 ```
 
-Zoom in the whiteboard. Every time you call this method, the whiteboard is zoomed in by 20%.
+Zooms in the whiteboard. Every time you call this method, the whiteboard is zoomed in by 20%.
 
 ### setPrevPage
 
@@ -174,7 +174,7 @@ Zoom in the whiteboard. Every time you call this method, the whiteboard is zoome
 abstract fun setPrevPage()
 ```
 
-Go to the previous page.
+Goes to the previous page.
 
 ### setNextPage
 
@@ -182,11 +182,11 @@ Go to the previous page.
 abstract fun setNextPage()
 ```
 
-Go to the next page.
+Goes to the next page.
 
 ## WhiteboardHandler
 
-`WhiteboardContext` reports` whiteboard`-related event callbacks to the app.
+`WhiteboardContext` reports whiteboard-related event callbacks to the app.
 
 ### onWhiteboardJoinSuccess
 
@@ -194,7 +194,7 @@ Go to the next page.
 fun onWhiteboardJoinSuccess(config: WhiteboardDrawingConfig)
 ```
 
-Prompt to successfully join the whiteboard room.
+Occurs when the local cliet successfully joins the whiteboard room.
 
 | Parameter | Description |
 | :------- | :--------------------------------------------- |
@@ -206,7 +206,7 @@ Prompt to successfully join the whiteboard room.
 fun onWhiteboardJoinFail(msg: String)
 ```
 
-Prompt to join the whiteboard room failed.
+Occurs when the local client fails to join the whiteboard room.
 
 | Parameter | Description |
 | :---- | :--------- |
@@ -218,12 +218,12 @@ Prompt to join the whiteboard room failed.
 fun onWhiteboardLeft(boardId: String, timestamp: Long)
 ```
 
-Prompt to leave the whiteboard room successfully.
+Occurs when the local client successfully leaves the whiteboard room.
 
 | Parameter | Description |
 | :---------- | :------------------- |
-| `boardId` | whiteboard ID. |
-| `timestamp` | Time to leave the whiteboard room. |
+| `boardId` | The whiteboard ID. |
+| `timestamp` | The timestamp when the local client leaves the whiteboard room. |
 
 ### getBoardContainer
 
@@ -231,7 +231,7 @@ Prompt to leave the whiteboard room successfully.
 fun getBoardContainer(): ViewGroup?
 ```
 
-Get the whiteboard container ViewGroup.
+Gets the whiteboard container ViewGroup.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -344,7 +344,7 @@ Indicates whether the whiteboard page controller is enabled.
 fun onBoardPhaseChanged(phase: EduBoardRoomPhase)
 ```
 
-The connection status of whiteboard changes.
+Occurs when the whiteboard connection state changes.
 
 | Parameter | Description |
 | :--- | :--- |
