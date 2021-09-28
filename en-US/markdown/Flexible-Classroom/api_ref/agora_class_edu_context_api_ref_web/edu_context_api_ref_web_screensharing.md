@@ -1,4 +1,4 @@
-`useScreenShareContext`() enables developers to implement the` screen` sharing function in the flexible classroom.
+`ScreenShareContext` enables developers to implement the screen sharing function in the flexible classroom.
 
 ## nativeAppWindowItems
 
