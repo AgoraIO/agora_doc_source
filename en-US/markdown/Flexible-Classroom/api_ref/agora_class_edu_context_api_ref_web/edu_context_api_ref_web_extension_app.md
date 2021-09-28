@@ -1,4 +1,4 @@
-# Ext App Context
+# Extion App Context
 
 ## AgoraExtAppContext
 
@@ -8,16 +8,15 @@
 properties: any;
 ```
 
-Extend the properties of the application.
+The properties of the extension application.
 
-### dependencies {
-
+### dependencies
 
 ```JavaScipt
 dependencies: Map<string, any>;
 ```
 
-Extend the dependency of the application.
+The dependencies of the extension application.
 
 ### localUserInfo
 
@@ -25,11 +24,11 @@ Extend the dependency of the application.
 localUserInfo: AgoraExtAppUserInfo;
 ```
 
-User-related information in the current classroom, including:
+Information of the local user:
 
-- `userUuid`: The UUID of the` user`.
-- `userName`: The name of the` user`.
-- `roleType`: User` role`.
+- `userUuid`: The user ID.
+- `userName`: The user name.
+- `roleType`: The user role.
 
 ### roomInfo
 
@@ -37,11 +36,11 @@ User-related information in the current classroom, including:
 roomInfo: AgoraExtAppRoomInfo;
 ```
 
-Current classroom related information, including:
+Information of the current classroom:
 
 - `roomUuid`: The classroom ID.
-- `roomName`: The name of the` room`.
-- `roomType`: The type of the classroom to be recorded.
+- `roomName`: The classroom name.
+- `roomType`: The classroom type.
 
 ### language
 
@@ -49,7 +48,7 @@ Current classroom related information, including:
 language: string;
 ```
 
-Extend the language of the application.
+The language of the extension application.
 
 ## AgoraExtAppHandle
 
@@ -59,12 +58,12 @@ Extend the language of the application.
 updateRoomProperty: (properties: any, cause: any) => Promise<void>;
 ```
 
-Update class attributes.
+Updates custom classroom properties.
 
 | Parameter | Description |
 | :----------- | :--------- |
-| `properties` | Attributes. |
-| `cause` | Reason for update. |
+| `properties` | Properties. |
+| `cause` | The update reason. |
 
 ### deleteRoomProperties
 
@@ -72,9 +71,9 @@ Update class attributes.
 deleteRoomProperties: (properties: string[], cause: any) => Promise<void>;
 ```
 
-Delete properties.
+Delete custom classroom properties.
 
 | Parameter | Description |
 | :----------- | :--------- |
-| `properties` | Attributes. |
-| `cause` | Reason for update. |
+| `properties` | Properties. |
+| `cause` | The update reason. |
