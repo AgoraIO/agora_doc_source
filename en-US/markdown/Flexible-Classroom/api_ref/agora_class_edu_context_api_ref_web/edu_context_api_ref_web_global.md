@@ -1,4 +1,4 @@
-`GlobalContext` provides` global` control related capabilities.
+`GlobalContext` provides capabilities for global control.
 
 ## region
 
@@ -8,7 +8,7 @@ region: string;
 
 > Since v1.1.5.
 
-The currently set area.
+The region set by the user.
 
 ## loading
 
@@ -16,9 +16,9 @@ The currently set area.
 loading: boolean,
 ```
 
-> Deprecated as of v2.3.2. Agora recommends using `isJoiningRoom` of `RoomContext `instead.
+> Deprecated as of v1.1.5. Use `isJoiningRoom` in `RoomContext` instead.
 
-Loading.
+The page is loading.
 
 ## isFullScreen
 
@@ -26,7 +26,7 @@ Loading.
 isFullScreen: boolean,
 ```
 
-Whether the whiteboard is full screen.
+Whether the current page is full screen.
 
 ## params
 
@@ -34,7 +34,7 @@ Whether the whiteboard is full screen.
 params: AppStoreInitParams,
 ```
 
-Class initialization parameters.
+The initial parameters of the classroom.
 
 ## mainPath
 
@@ -42,7 +42,7 @@ Class initialization parameters.
 mainPath: string | undefined,
 ```
 
-Main route.
+Main path.
 
 ## language
 
@@ -50,7 +50,7 @@ Main route.
 language: LanguageEnum,
 ```
 
-Current language.
+The current UI language.
 
 ## isJoined
 
@@ -70,7 +70,7 @@ sequenceEventObserver: Subject<any>,
 
 > Since v1.1.5.
 
-Flexible Classroom event sequence observer.
+The event sequence observer in Flexible Classroom.
 
 ## toastEventObserver
 
@@ -86,4 +86,4 @@ Toast observer.
 dialogEventObserver: Subject<any>,
 ```
 
-Dialogue viewer.
+Dialogue observer.
