@@ -16,11 +16,11 @@ Gets the classroom information.
 abstract fun uploadLog(quiet: Boolean = false)
 ```
 
-Upload the log.
+Uploads the logs.
 
 | Parameter | Description |
 | :------ | :----------------------------------------------------------- |
-| `quiet` | Whether to upload silently:<li>Silent upload: The log will be uploaded automatically in ten minutes by default.</li><li>Use buttons to guide end users to upload logs. Used to call for help when there is a problem in the classroom.</li> |
+| `quiet` | Whether to upload the logs silently:<li>Silent: The logs are uploaded automatically every ten minutes.</li><li>Update logs when the end-user clicks on the Upload button in the classroom. Users can use this button to seek for help when an issue occurs during a class.</li> |
 
 ### updateFlexRoomProps
 
@@ -29,14 +29,14 @@ abstract fun updateFlexRoomProps(properties: MutableMap<String, String>,
                                       cause: MutableMap<String, String>?)
 ```
 
-Add or update custom classroom attributes. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
+Adds or updates custom classroom properties. For details, see [How can I set classroom properties? ](/en/agora-class/faq/agora_class_custom_properties)
 
-The remote client receives the `onFlexRoomPropertiesChanged` callback.
+After you successfully update the properties, the remote client receives the `onFlexRoomPropertiesChanged` callback.
 
 | Parameter | Description |
 | :----------- | :--------- |
-| `properties` | Classroom attributes. |
-| `cause` | Reason for update. |
+| `properties` | Classroom properties. |
+| `cause` | The update reason. |
 
 ### leave
 
@@ -44,11 +44,11 @@ The remote client receives the `onFlexRoomPropertiesChanged` callback.
 abstract fun leave(exit: Boolean = true)
 ```
 
-Leave the classroom.
+Leaves the classroom.
 
 | Parameter | Description |
 | :----- | :------------- |
-| `exit` | Whether to exit the page. |
+| `exit` | Whether to exit the current page. |
 
 ### joinClassroom
 
@@ -56,7 +56,7 @@ Leave the classroom.
 abstract fun joinClassroom()
 ```
 
-Join the classroom.
+Joins a classroom.
 
 
 ## IRoomHandler
@@ -73,7 +73,7 @@ Indicates the classroom name.
 
 | Parameter | Description |
 | :----- | :--------- |
-| `name` | Classroom name. |
+| `name` | The classroom name. |
 
 ### onClassState
 
@@ -85,7 +85,7 @@ Indicates the classroom state.
 
 | Parameter | Description |
 | :------ | :-------------------------------------- |
-| `state` | The classroom state. See EduContextClassState for details``. |
+| `state` | The classroom state. See `EduContextClassState` for details. |
 
 ### onClassTime
 
@@ -97,7 +97,7 @@ Reports the class time.
 
 - When the classroom state is `Init`, `time` indicates how many seconds are left before the class begins.
 - When the classroom state is `Start`, `time` indicates how many seconds the class has lasted.
-- When the classroom state is `End`, `time` means how many seconds the class has gone over` time`.
+- When the classroom state is `End`, `time` means how many seconds the class has gone over time.
 
 | Parameter | Description |
 | :----- | :--------- |
@@ -113,7 +113,7 @@ Reports the network state.
 
 | Parameter | Description |
 | :------ | :---------------------------------------- |
-| `state` | The network state. See EduContextNetworkState for details``. |
+| `state` | The network state. See `EduContextNetworkState` for details. |
 
 ### onLogUploaded
 
@@ -121,11 +121,11 @@ Reports the network state.
 fun onLogUploaded(logData: String)
 ```
 
-The log upload is complete.
+Occurs when the log upload completes.
 
 | Parameter | Description |
 | :-------- | :--------------------------------------------------------- |
-| `logData` | The serialNum corresponding to the uploaded log ``this time is used to accurately query the online log. |
+| `logData` | The `serialNum` of this log upload. |
 
 ### onConnectionStateChanged
 
@@ -137,7 +137,7 @@ Indicates the connection state.
 
 | Parameter | Description |
 | :------ | :------------------------------------------- |
-| `state` | The connection state. See EduContextConnectionState for details``. |
+| `state` | The connection state. See `EduContextConnectionState` for details. |
 
 ### onClassTip
 
@@ -167,7 +167,7 @@ Reports the error message during the class.
 
 | Parameter | Description |
 | :------ | :--------------------------------- |
-| `error` | The error message. See EduContextErro for details``. |
+| `error` | The error message. See `EduContextErro` for details. |
 
 ### onFlexRoomPropsInitialized
 
@@ -175,11 +175,11 @@ Reports the error message during the class.
 fun onFlexRoomPropsInitialized(properties: MutableMap<String, Any>)
 ```
 
-Report initialized custom classroom properties.
+Reports the initial custom classroom properties.
 
 | Parameter | Description |
 | :----------- | :------------- |
-| `properties` | All classroom attributes. |
+| `properties` | All classroom properties. |
 
 ### onFlexRoomPropsChanged
 
@@ -190,14 +190,14 @@ fun onFlexRoomPropsChanged(changedProperties: MutableMap<String, Any>,
                            operator: EduContextUserInfo?)
 ```
 
-Custom classroom attribute update callback.
+Occurs when the custom classroom properties are updated.
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
 | `changedProperties` | The updated classroom properties. |
-| `properties` | All classroom attributes. |
-| `cause` | Reason for update. |
-| `operator` | The user information. See `EduContextUserInfo`. An empty` operator` means that it is updated by the server. |
+| `properties` | All classroom properties. |
+| `cause` | The update reason. |
+| `operator` | The information of the operator. See `EduContextUserInfo`. `operator` being empty means that properties are updated by the server. |
 
 ### onClassroomJoinSuccess
 
@@ -205,12 +205,12 @@ Custom classroom attribute update callback.
 fun onClassroomJoinSuccess(roomUuid: String, timestamp: Long)
 ```
 
-Prompt local users to successfully join the classroom.
+Occurs when the local client successfully joins the classroom.
 
 | Parameter | Description |
 | :---------- | :--------------- |
-| `roomUuid` | Classroom ID. |
-| `timestamp` | Time to join the classroom. |
+| `roomUuid` | The classroom ID. |
+| `timestamp` | Timestamp when the local client joins the classroom. |
 
 ### onClassroomJoinFail
 
@@ -218,12 +218,12 @@ Prompt local users to successfully join the classroom.
 fun onClassroomJoinFail(roomUuid: String, code: Int?, msg: String?, timestamp: Long)
 ```
 
-Prompt that the local user failed to join the classroom.
+Occurs when the local client fails to join the classroom.
 
 | Parameter | Description |
 | :---------- | :------------------- |
-| `roomUuid` | Classroom ID. |
-| `timestamp` | Time when joining the classroom failed. |
+| `roomUuid` | The classroom ID. |
+| `timestamp` | Timestamp when the local client fails to join the classroom. |
 
 ### onClassroomLeft
 
@@ -231,10 +231,10 @@ Prompt that the local user failed to join the classroom.
 fun onClassroomLeft(roomUuid: String, timestamp: Long, exit: Boolean = true)
 ```
 
-Prompt local users to leave the classroom.
+Occurs when the local client successfully leaves the classroom.
 
 | Parameter | Description |
 | :---------- | :----------------------------------------------------------- |
-| `roomUuid` | Classroom ID. |
-| `timestamp` | Time to leave the classroom. |
-| `exit` | Whether to exit the page. At the end of the class, the user does not automatically exit the page, the developer needs to prompt the user to exit the page through a pop-up window; when the user is kicked out of the class or is pushed out of the class, the user will automatically exit the page. |
+| `roomUuid` | The classroom ID. |
+| `timestamp` | Timestamp when the local client leaves the classroom. |
+| `exit` | Whether to exit the current page. When a class ends, the user does not automatically exit the page. Developers need to remind the user of exiting the page through a pop-up window. When the user is kicked out of the class, the user automatically exits the page. |
