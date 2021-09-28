@@ -54,7 +54,7 @@ initCourseWare: MaterialDataResource
 
 > 自 v1.1.5 起新增。
 
-初识课件。
+初始课件。
 
 ## downloadList
 
