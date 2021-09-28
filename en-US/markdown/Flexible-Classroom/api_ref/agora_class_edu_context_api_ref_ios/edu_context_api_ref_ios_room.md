@@ -16,7 +16,7 @@ Gets the classroom information.
 func joinClassroom()
 ```
 
-Join the classroom.
+Joins a classroom.
 
 ### leaveRoom
 
@@ -24,7 +24,7 @@ Join the classroom.
 func leaveRoom()
 ```
 
-Leave the classroom.
+Leaves the classroom.
 
 ### uploadLog
 
@@ -32,7 +32,7 @@ Leave the classroom.
 func uploadLog()
 ```
 
-Upload the log.
+Uploads the logs.
 
 ### updateFlexRoomProperties
 
@@ -41,14 +41,14 @@ func updateFlexRoomProperties(_ properties:[String: String],
                                      cause:[String: String]?)
 ```
 
-Add or update custom classroom attributes. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
+Adds or updates custom classroom properties. For details, see [How can I set classroom properties? ](/en/agora-class/faq/agora_class_custom_properties)
 
-The remote client receives the `onFlexRoomPropertiesChanged` callback.
+After you successfully update the properties, the remote client receives the `onFlexRoomPropertiesChanged` callback.
 
 | Parameter | Description |
 | :----------- | :--------- |
-| `properties` | Classroom attributes. |
-| `cause` | Reason for update. |
+| `properties` | Classroom properties. |
+| `cause` | The update reason. |
 
 ### registerEventHandler
 
@@ -79,7 +79,7 @@ Indicates the classroom name.
 
 | Parameter | Description |
 | :----- | :--------- |
-| `name` | Classroom name. |
+| `name` | The classroom name. |
 
 ### onClassState
 
@@ -181,7 +181,7 @@ Reports the error message during the class.
 @objc optional func onFlexRoomPropertiesInitialize(_ properties: [String: Any])
 ```
 
-Report initialized custom classroom properties.
+Reports the initial custom classroom properties.
 
 | Parameter | Description |
 | :----------- | :------------------- |
@@ -196,12 +196,12 @@ Report initialized custom classroom properties.
                                                   operator:AgoraEduContextUserInfo?)
 ```
 
-Custom classroom attribute update callback.
+Occurs when the custom classroom properties are updated.
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
 | `changedProperties` | The updated classroom properties. |
-| `properties` | All classroom attributes. |
-| `cause` | Reason for update. |
-| `operator` | The user information. See AgoraEduContextUserInfo for details``. An empty` operator` means that it is updated by the server. |
+| `properties` | All classroom properties. |
+| `cause` | The update reason. |
+| `operator` | The user information. See AgoraEduContextUserInfo for details``. `operator` being empty means that properties are updated by the server. |
 
