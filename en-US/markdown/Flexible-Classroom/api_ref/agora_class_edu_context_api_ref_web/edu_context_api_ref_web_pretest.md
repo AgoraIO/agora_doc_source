@@ -1,4 +1,4 @@
-`usePretestContext`() enables developers to implement the pre-class test module in the flexible classroom, such as check whether the camera, microphone, and speaker are working properly.
+`PretestContext` enables developers to implement the pre-class test module in the flexible classroom, such as check whether the camera, microphone and speaker are working properly.
 
 ## isBeauty
 
@@ -7,9 +7,9 @@ isBeauty: boolean;
 ```
 
 > - Since v1.1.5.
-> - 仅适用于 Electron。
+> - Only applicable to Electron.
 
-当前是否开启基础美颜。
+Whether the basic image enhancement is enabled.
 
 ## setBeauty
 
@@ -18,13 +18,13 @@ setBeauty: (isBeauty: boolean) => void;
 ```
 
 > - Since v1.1.5.
-> - 仅适用于 Electron。
+> - Only applicable to Electron.
 
-开启/关闭基础美颜功能。
+Enables/Disables the basic image enhancement.
 
 | Parameter | Description |
 | :--------- | :----------------- |
-| `isBeauty` | Whether to enable the image enhancement function: |
+| `isBeauty` | Whether to enable the image enhancement: |
 
 ## whitening
 
@@ -33,9 +33,9 @@ whitening: number;
 ```
 
 > - Since v1.1.5.
-> - 仅适用于 Electron。
+> - Only applicable to Electron.
 
-当前美白数值。
+The brightness value.
 
 ## buffing
 
@@ -44,9 +44,9 @@ buffing: number;
 ```
 
 > - Since v1.1.5.
-> - 仅适用于 Electron。
+> - Only applicable to Electron.
 
-当前磨皮数值。
+The smoothness value.
 
 ## ruddy
 
@@ -55,9 +55,9 @@ ruddy: number;
 ```
 
 > - Since v1.1.5.
-> - 仅适用于 Electron。
+> - Only applicable to Electron.
 
-当前红润数值。
+The red saturation value.
 
 ## setWhitening
 
@@ -66,13 +66,13 @@ setWhitening: (whitening: number) => void;
 ```
 
 > - Since v1.1.5.
-> - 仅适用于 Electron。
+> - Only applicable to Electron.
 
-设置美白数值。
+Sets the brightness value.
 
 | Parameter | Description |
 | :---------- | :------------------------------------------- |
-| `whitening` | 美白数值。 取值范围为 0 到 100，默认值为 70。 |
+| `whitening` | The brightness value The value range is 0 to 100, and the default value is 70. |
 
 ## setBuffing
 
@@ -81,13 +81,13 @@ setBuffing: (buffing: number) => void;
 ```
 
 > - Since v1.1.5.
-> - 仅适用于 Electron。
+> - Only applicable to Electron.
 
-设置磨皮数值。
+Sets the smoothness value.
 
 | Parameter | Description |
 | :-------- | :------------------------------------------- |
-| `buffing` | 磨皮数值。 取值范围为 0 到 100，默认值为 50。 |
+| `buffing` | The smoothness value. The value range is 0 to 100, and the default value is 50. |
 
 ## setRuddy
 
@@ -96,13 +96,13 @@ setRuddy: (ruddy: number) => void;
 ```
 
 > - Since v1.1.5.
-> - 仅适用于 Electron。
+> - Only applicable to Electron.
 
-设置红润数值。
+Sets the red saturation value.
 
 | Parameter | Description |
 | :------ | :------------------------------------------- |
-| `ruddy` | 红润数值。 取值范围为 0 到 100，默认值为 10。 |
+| `ruddy` | The red saturation value. The value range is 0 to 100, and the default value is 10. |
 
 ## changeTestSpeaker
 
@@ -112,11 +112,11 @@ changeTestSpeaker: (deviceId: string) => Promise<void>;
 
 > Since v1.1.5.
 
-切换扬声器。
+Switches the speaker.
 
 | Parameter | Description |
 | :--------- | :-------- |
-| `deviceId` | 设备 ID。 |
+| `deviceId` | The device ID. |
 
 ## cameraList
 
@@ -213,7 +213,7 @@ The current volume of the microphone. The value range is 0 to 20.
 async changeTestSpeakerVolume(value: any): void
 ```
 
-Adjust the volume of the speaker.
+Adjusts the volume of the speaker.
 
 ## changeTestMicrophoneVolume
 
@@ -221,7 +221,7 @@ Adjust the volume of the speaker.
 async changeTestMicrophoneVolume(value: any): void
 ```
 
-Adjust the volume of the microphone.
+Adjusts the volume of the microphone.
 
 ## changeTestCamera
 
@@ -229,7 +229,7 @@ Adjust the volume of the microphone.
 async changeTestCamera(deviceId: string): void
 ```
 
-Switch the camera.
+Switches the camera.
 
 ## changeTestMicrophone
 
@@ -237,7 +237,7 @@ Switch the camera.
 async changeTestMicrophone(deviceId: string): void
 ```
 
-Switch the microphone.
+Switches the microphone.
 
 ## startPretestCamera
 
