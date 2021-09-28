@@ -8,7 +8,7 @@
 abstract fun getDeviceConfig(): EduContextDeviceConfig
 ```
 
-Get the device configuration. This method returns `EduContextDeviceConfig`.
+Gets the device configuration. This method returns `EduContextDeviceConfig`.
 
 ### setCameraDeviceEnable
 
@@ -16,11 +16,11 @@ Get the device configuration. This method returns `EduContextDeviceConfig`.
 abstract fun setCameraDeviceEnable(enable: Boolean)
 ```
 
-Turn on or off the camera.
+Turns on or off the camera.
 
 | Parameter | Description |
 | :------- | :--------------- |
-| `enable` | Whether to turn on the camera. |
+| `enable` | Whether the camera is turned on. |
 
 ### switchCameraFacing
 
@@ -36,11 +36,11 @@ Switches between front and rear cameras.
 abstract fun setMicDeviceEnable(enable: Boolean)
 ```
 
-Turn on or off the microphone.
+Turns on or off the microphone.
 
 | Parameter | Description |
 | :------- | :--------------- |
-| `enable` | Whether to turn on the microphone. |
+| `enable` | Whether to the microphone is turned on. |
 
 ### setSpeakerEnable
 
@@ -48,11 +48,11 @@ Turn on or off the microphone.
 abstract fun setSpeakerEnable(enable: Boolean)
 ```
 
-Turn on or off the speaker.
+Turns on or off the speaker.
 
 | Parameter | Description |
 | :------- | :--------------- |
-| `enable` | Whether to turn on the speaker. |
+| `enable` | Whether to the speaker is turned on. |
 
 ### setDeviceLifecycle
 
@@ -60,11 +60,11 @@ Turn on or off the speaker.
 abstract fun setDeviceLifecycle(lifecycle: EduContextDeviceLifecycle)
 ```
 
-Set the life cycle state of the device according to the life cycle of the host. For example, you can call this method to close the device collection when the application returns to the background.
+Sets the life cycle state of the device according to the life cycle state of the host. For example, you can call this method to stop media capturing when the application returns to the backend.
 
 | Parameter | Description |
 | :---------- | :----------------------------------------------------- |
-| `lifecycle` | For the life cycle status of the device, see `EduContextDeviceLifecycle `for details. |
+| `lifecycle` | For the life cycle status of the device, see `EduContextDeviceLifecycle` for details. |
 
 ## IDeviceHandler
 
@@ -80,7 +80,7 @@ Indicates whether the camera is on.
 
 | Parameter | Description |
 | :-------- | :--------------- |
-| `enabled` | Whether to turn on the camera. |
+| `enabled` | Whether the camera is turned on. |
 
 ### onCameraFacingChanged
 
@@ -92,7 +92,7 @@ Indicates the switch between front and rear cameras.
 
 | Parameter | Description |
 | :------- | :------------------------------------------ |
-| `facing` | The camera facing``. |
+| `facing` | The camera direction. See `EduContextCameraFacing`. |
 
 ### onMicDeviceEnabledChanged
 
@@ -104,7 +104,7 @@ Whether to turn on the microphone.
 
 | Parameter | Description |
 | :-------- | :--------------- |
-| `enabled` | Whether to turn on the microphone. |
+| `enabled` | Whether to the microphone is turned on. |
 
 ### onSpeakerEnabledChanged
 
@@ -116,7 +116,7 @@ Indicates whether the speaker is on.
 
 | Parameter | Description |
 | :-------- | :--------------- |
-| `enabled` | Whether to turn on the speaker. |
+| `enabled` | Whether to the speaker is turned on. |
 
 ### onDeviceTips
 
