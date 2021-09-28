@@ -12,7 +12,7 @@ Turn on or off the camera.
 
 | Parameter | Description |
 | :------- | :--------------- |
-| `enable` | Whether to turn on the camera. |
+| `enable` | Whether the camera is turned on. |
 
 ### switchCameraFacing
 
@@ -32,7 +32,7 @@ Turn on or off the microphone.
 
 | Parameter | Description |
 | :------- | :--------------- |
-| `enable` | Whether to turn on the microphone. |
+| `enable` | Whether to the microphone is turned on. |
 
 ### setSpeakerEnable
 
@@ -44,7 +44,7 @@ Turn on or off the speaker.
 
 | Parameter | Description |
 | :------- | :--------------- |
-| `enable` | Whether to turn on the speaker. |
+| `enable` | Whether to the speaker is turned on. |
 
 ### registerEventHandler
 
@@ -70,12 +70,12 @@ Register the event listener.
 
 Indicates whether the camera is on.
 
-- When `enabled` is `true`, the UI layer prompts "your camera is turned on".
-- When `enabled` is `false`, the UI layer prompts "your camera is turned off".
+- When `enabled` is `true`, the UI layer prompts "Your camera is turned on".
+- When `enabled` is `false`, the UI layer prompts "Your camera is turned off".
 
 | Parameter | Description |
 | :-------- | :--------------- |
-| `enabled` | Whether to turn on the camera. |
+| `enabled` | Whether the camera is turned on. |
 
 ### onCameraFacingChanged
 
@@ -87,7 +87,7 @@ Indicates the switch between front and rear cameras.
 
 | Parameter | Description |
 | :------- | :------------------------------------------ |
-| `facing` | The camera facing.`` |
+| `facing` | The camera direction. See `EduContextCameraFacing`. |
 
 ### onMicDeviceEnabledChanged
 
@@ -95,14 +95,14 @@ Indicates the switch between front and rear cameras.
 @objc optional func onMicDeviceEnabledChanged(enabled: Bool)
 ```
 
-提示本地麦克风是否开启。
+Indicates whether the camera is on.
 
-- When enabled is true, the UI layer prompts "your camera is turned on".````
-- `enabled` 为 `false` 时，UI 层提示“你暂时不能发言了”。
+- When `enabled` is `true`, the UI layer prompts "Your camera is turned on".
+- When `enabled` is `false`, the UI layer prompts "Your camera is turned off".
 
 | Parameter | Description |
 | :-------- | :--------------- |
-| `enabled` | Whether to turn on the microphone. |
+| `enabled` | Whether to the microphone is turned on. |
 
 ### onSpeakerEnabledChanged
 
@@ -114,4 +114,4 @@ Indicates whether the speaker is on.
 
 | Parameter | Description |
 | :-------- | :--------------- |
-| `enabled` | Whether to turn on the speaker. |
+| `enabled` | Whether to the speaker is turned on. |
