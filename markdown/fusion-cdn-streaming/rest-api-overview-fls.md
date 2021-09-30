@@ -102,5 +102,5 @@ authorization = 'hmac username="{}", algorithm="hmac-sha256", headers="host date
 
 融合 CDN 直播 RESTful API 有以下限制：
 
-- API 调用频率上限为 50 次/秒。如果调用频率超出上限，请参考[如何处理服务端 RESTful API 调用超出频率限制](https://docs.agora.io/cn/fusion-cdn-streaming/faq/restful_api_call_frequency)。
+- API 调用频率上限为 50 次/秒。如果调用频率超出上限，请参考[如何处理服务端 RESTful API 调用超出频率限制](https://docs.agora.io/cn/faq/restful_api_call_frequency)。
 - 一个 App ID 只能添加一个推流域名。

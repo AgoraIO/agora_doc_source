@@ -16,17 +16,17 @@ POST https://api.agora.io/v1/projects/{appid}/fls/domains?id={domain}
 
 #### 路径参数
 
-`appid`：String 型，必填参数。Agora 为每个开发者提供的 **App ID**。在 Agora 控制台创建一个项目后即可得到一个 App ID。一个 App ID 是一个项目的唯一标识。
+`appid`：String 型，必填。Agora 为每个开发者提供的 **App ID**。在 Agora 控制台创建一个项目后即可得到一个 App ID。一个 App ID 是一个项目的唯一标识。
 
 #### Query 参数
 
-`id`：String 型，必填参数。要增加的域名名称，不支持泛域名。
+`id`：String 型，必填。要增加的域名名称，不支持泛域名。
 
 #### 请求包体
 
 请求包体为 JSON Object 类型的 data 字段，包含如下字段：
 
-- `type`：String 型，必填参数。域名类型：
+- `type`：String 型，必填。域名类型：
   - `"publish"`：推流域名。
   - `"play"`：播流域名。
 - `region`：String 型，域名为推流域名时该参数必填，域名为播流域名时该参数选填。域名使用的 Agora 服务器所在区域：
@@ -97,8 +97,8 @@ DELETE https://api.agora.io/v1/projects/{appid}/fls/domains/{domain}
 
 #### 路径参数
 
-- `appid`：String 型，必填参数。要删除的域名对应的 App ID。
-- `domain`：String 型，必填参数。要删除的域名名称。
+- `appid`：String 型，必填。要删除的域名对应的 App ID。
+- `domain`：String 型，必填。要删除的域名名称。
 
 ### HTTP 响应
 
@@ -132,7 +132,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/domains
 
 #### 路径参数
 
-`appid`：String 型，必填参数。你的 Agora 项目的 App ID。
+`appid`：String 型，必填。你的 Agora 项目的 App ID。
 
 ### HTTP 响应
 
@@ -200,8 +200,8 @@ GET https://api.agora.io/v1/projects/{appid}/fls/domains/{domain}
 
 #### 路径参数
 
-- `appid`：String 型，必填参数。要查询的域名对应的 App ID。
-- `domain`：String 型，必填参数。要查询的域名名称。
+- `appid`：String 型，必填。要查询的域名对应的 App ID。
+- `domain`：String 型，必填。要查询的域名名称。
 
 ### HTTP 响应
 
