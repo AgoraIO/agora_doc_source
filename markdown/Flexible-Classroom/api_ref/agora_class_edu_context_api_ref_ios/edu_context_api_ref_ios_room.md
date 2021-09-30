@@ -1,6 +1,22 @@
 ## AgoraEduRoomContext
 
-`AgoraEduRoomContext` 类提供可供 App 调用的课堂管理相关方法。
+`AgoraEduRoomContext` 类提供可供 App 调用的教室管理相关方法。
+
+### getRoomInfo
+
+```swift
+func getRoomInfo() -> AgoraEduContextRoomInfo
+```
+
+获取教室信息。
+
+### joinClassroom
+
+```swift
+func joinClassroom()
+```
+
+加入教室。
 
 ### leaveRoom
 
@@ -8,7 +24,31 @@
 func leaveRoom()
 ```
 
-离开课堂。
+离开教室。
+
+### uploadLog
+
+```swift
+func uploadLog()
+```
+
+上传日志。
+
+### updateFlexRoomProperties
+
+```swift
+func updateFlexRoomProperties(_ properties:[String: String],
+                                     cause:[String: String]?)
+```
+
+新增或更新自定义教室属性。详见[如何设置自定义教室属性？](/cn/agora-class/faq/agora_class_custom_properties)
+
+属性成功更新后，会触发 `onFlexRoomPropertiesChanged` 回调。
+
+| 参数         | 描述       |
+| :----------- | :--------- |
+| `properties` | 教室属性。 |
+| `cause`      | 更新原因。 |
 
 ### registerEventHandler
 
@@ -25,25 +65,29 @@ func registerEventHandler(_ handler: AgoraEduRoomHandler)
 
 ## AgoraEduRoomHandler
 
-`AgoraEduRoomHandler` 类用于向 App 报告课堂相关的事件回调。
+`AgoraEduRoomHandler` 类用于向 App 报告教室相关的事件回调。
 
-### onSetClassroomName
+### onClassroomName
 
 ```swift
-@objc optional func onSetClassroomName(_ name: String)
+@objc optional func onClassroomName(_ name: String)
 ```
 
-报告课堂名称。
+> 自 v1.1.5 起新增。
+
+报告教室名称。
 
 | 参数   | 描述       |
 | :----- | :--------- |
-| `name` | 课堂名称。 |
+| `name` | 教室名称。 |
 
-### onSetClassState
+### onClassState
 
 ```swift
-@objc optional func onSetClassState(_ state: AgoraEduContextClassState)
+@objc optional func onClassState(_ state: AgoraEduContextClassState)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告课堂状态。
 
@@ -51,27 +95,33 @@ func registerEventHandler(_ handler: AgoraEduRoomHandler)
 | :------ | :------------------------------------------- |
 | `state` | 课堂状态，详见 `AgoraEduContextClassState`。 |
 
-### onSetClassTime
+### onClassTimeInfo
 
 ```swift
-@objc optional func onSetClassTime(_ time: String)
+@objc optional func onClassTimeInfo(startTime: Int64,
+                                    differTime: Int64,
+                                    duration: Int64,
+                                    closeDelay: Int64)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告课堂时间。
 
-- 课堂状态为 `Init` 时，`time` 表示距离上课还有几秒。
-- 课堂状态为 `Start` 时，`time` 表示已开始上课几秒。
-- 课堂状态为 `End` 时，`time` 表示课堂已超时几秒。
+| 参数         | 描述                                     |
+| :----------- | :--------------------------------------- |
+| `startTime`  | 课堂开始时间（毫秒）。                   |
+| `differTime` | 客户端跟服务端的时间误差（毫秒）。       |
+| `duration`   | 课堂持续时间（秒）。                     |
+| `closeDelay` | 课堂结束后距离教室关闭所剩的时间（秒）。 |
 
-| 参数   | 描述       |
-| :----- | :--------- |
-| `time` | 课堂时间。 |
-
-### onSetNetworkQuality
+### onNetworkQuality
 
 ```swift
-@objc optional func onSetNetworkQuality(_ quality: AgoraEduContextNetworkQuality)
+@objc optional func onNetworkQuality(_ quality: AgoraEduContextNetworkQuality)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告网络状态。
 
@@ -79,11 +129,13 @@ func registerEventHandler(_ handler: AgoraEduRoomHandler)
 | :-------- | :----------------------------------------------- |
 | `quality` | 网络状态，详见 `AgoraEduContextNetworkQuality`。 |
 
-### onSetConnectionState
+### onConnectionState
 
 ```swift
-@objc optional func onSetConnectionState(_ state: AgoraEduContextConnectionState)
+@objc optional func onConnectionState(_ state: AgoraEduContextConnectionState)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告连接状态。
 
@@ -91,23 +143,25 @@ func registerEventHandler(_ handler: AgoraEduRoomHandler)
 | :------ | :------------------------------------------------ |
 | `state` | 连接状态，详见 `AgoraEduContextConnectionState`。 |
 
-### onShowClassTips
+### onUploadLogSuccess
 
 ```swift
-@objc optional func onShowClassTips(_ message: String)
+@objc optional func onUploadLogSuccess(_ logId: String)
 ```
 
-显示上课期间的提示。
+成功上传日志。
 
-有以下提示：
+| 参数    | 描述      |
+| :------ | :-------- |
+| `logId` | 日志 ID。 |
 
-- 课程还有 5 分钟结束。
-- 课程结束咯，还有 5 分钟关闭教室。
-- 距离教室关闭还有 1 分钟。
+### onClassroomJoined
 
-| 参数      | 描述     |
-| :-------- | :------- |
-| `message` | 提示词。 |
+```swift
+@objc optional func onClassroomJoined()
+```
+
+成功加入教室。
 
 ### onShowErrorInfo
 
@@ -120,3 +174,34 @@ func registerEventHandler(_ handler: AgoraEduRoomHandler)
 | 参数    | 描述                                    |
 | :------ | :-------------------------------------- |
 | `error` | 错误信息，详见 `AgoraEduContextError`。 |
+
+### onFlexRoomPropertiesInitialize
+
+```swift
+@objc optional func onFlexRoomPropertiesInitialize(_ properties: [String: Any])
+```
+
+报告初始化的自定义教室属性。
+
+| 参数         | 描述                 |
+| :----------- | :------------------- |
+| `properties` | 当前教室的全部属性。 |
+
+### onFlexRoomPropertiesChanged
+
+```swift
+@objc optional func onFlexRoomPropertiesChanged(_ changedProperties: [String: Any],
+                                                  properties: [String: Any],
+                                                  cause: [String: Any]?,
+                                                  operator:AgoraEduContextUserInfo?)
+```
+
+自定义教室属性更新回调。
+
+| 参数                | 描述                                                         |
+| :------------------ | :----------------------------------------------------------- |
+| `changedProperties` | 已更新的教室属性。                                           |
+| `properties`        | 全部教室属性。                                               |
+| `cause`             | 更新原因。                                                   |
+| `operator`          | 操作者，详见 `AgoraEduContextUserInfo`。`operator` 为空表示是由服务端更新。 |
+

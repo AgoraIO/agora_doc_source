@@ -1,6 +1,4 @@
-# useUserListContext
-
-`useUserListContext()` 提供用户列表相关能力。
+`UserListContext` 提供用户列表相关能力。
 
 你可以通过 `import { useUserListContext } from 'agora-edu-core';  ` 引入 `useUserListContext`，然后使用 `const {...} = useUserListContext()` 获取灵动课堂中用户列表相关能力。
 

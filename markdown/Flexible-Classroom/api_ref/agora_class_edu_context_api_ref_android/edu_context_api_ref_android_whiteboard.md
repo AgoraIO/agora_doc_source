@@ -2,6 +2,38 @@
 
 `WhiteboardContext` 类提供可供 App 调用的白板相关方法。
 
+### initWhiteboard
+
+```kotlin
+abstract fun initWhiteboard(container: ViewGroup)
+```
+
+初始化白板。
+
+### joinWhiteboard
+
+```kotlin
+abstract fun joinWhiteboard()
+```
+
+加入白板房间。
+
+### isGranted
+
+```kotlin
+abstract fun isGranted(): Boolean
+```
+
+设置是否有权限操作白板。
+
+### leave
+
+```kotlin
+abstract fun leave()
+```
+
+离开白板房间。
+
 ### selectAppliance
 
 ```kotlin
@@ -156,6 +188,43 @@ abstract fun setNextPage()
 
 `WhiteboardContext` 类用于向 App 报告白板相关的事件回调。
 
+### onWhiteboardJoinSuccess
+
+```kotlin
+fun onWhiteboardJoinSuccess(config: WhiteboardDrawingConfig)
+```
+
+提示成功加入白板房间。
+
+| 参数     | 描述                                           |
+| :------- | :--------------------------------------------- |
+| `config` | 白板初始配置，详见 `WhiteboardDrawingConfig`。 |
+
+### onWhiteboardJoinFail
+
+```kotlin
+fun onWhiteboardJoinFail(msg: String)
+```
+
+提示加入白板房间失败。
+
+| 参数  | 描述       |
+| :---- | :--------- |
+| `msg` | 错误描述。 |
+
+### onWhiteboardLeft
+
+```kotlin
+fun onWhiteboardLeft(boardId: String, timestamp: Long)
+```
+
+提示成功离开白板房间。
+
+| 参数        | 描述                 |
+| :---------- | :------------------- |
+| `boardId`   | 白板 ID。            |
+| `timestamp` | 离开白板房间的时间。 |
+
 ### getBoardContainer
 
 ```kotlin 
@@ -269,17 +338,17 @@ fun onInteractionEnabled(enabled: Boolean)
 | `enabled`     |  白板页面控制工具是否可用。     |
 
 
-### onLoadingVisible
+### onBoardPhaseChanged
 
 ```kotlin
-fun onLoadingVisible(visible: Boolean)
+fun onBoardPhaseChanged(phase: EduBoardRoomPhase)
 ```
 
-报告白板加载状态是否可见。
+白板连接状态发生变化。
 
 | 参数 | 描述 |
 | :--- | :--- |
-|  `visible`    |  白板加载状态是否可见。    |
+|  `phase`  |  白板连接状态。  |
 
 
 ### onDownloadProgress
