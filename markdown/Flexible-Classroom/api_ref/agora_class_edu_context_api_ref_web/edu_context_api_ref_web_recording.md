@@ -11,7 +11,7 @@ isRecording: boolean,
 ## startRecording
 
 ```typescript
-startRecording: () => Promise<void>,
+async startRecording(): void
 ```
 
 开始录制。
@@ -19,7 +19,7 @@ startRecording: () => Promise<void>,
 ## stopRecording
 
 ```typescript
-stopRecording: () => Promise<void>,
+async stopRecording(): void
 ```
 
 停止录制。
