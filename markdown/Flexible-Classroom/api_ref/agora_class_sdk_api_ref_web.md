@@ -17,7 +17,7 @@ static config(params: AgoraEduSDKConfigParams):void
 ```typescript
 AgoraEduSDK.config({
   // Agora App ID
-  appId: "<YOUR AGORA APPID>,
+  appId: "<YOUR AGORA APPID>",
   // Region
   region: "CN"
 })
