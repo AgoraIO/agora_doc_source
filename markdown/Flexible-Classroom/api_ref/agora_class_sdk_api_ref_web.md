@@ -17,7 +17,9 @@ static config(params: AgoraEduSDKConfigParams):void
 ```typescript
 AgoraEduSDK.config({
   // Agora App ID
-  appId: '<YOUR AGORA APPID>',
+  appId: "<YOUR AGORA APPID>,
+  // Region
+  region: "CN"
 })
 ```
 
@@ -100,13 +102,15 @@ SDK 全局配置。用于 [`AgoraEduSDK.config`](#config) 方法。
 
 ```typescript
 export type AgoraEduSDKConfigParams = {
-  appId: string
-}
+  appId: string;
+  region?: string;
+};
 ```
 
-| 属性    | 描述                                                         |
-| :------ | :----------------------------------------------------------- |
-| `appId` | Agora App ID，详见[前提条件中获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
+| 属性     | 描述                                                         |
+| :------- | :----------------------------------------------------------- |
+| `appId`  | Agora App ID，详见[前提条件中获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
+| `region` | 课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。灵动课堂支持以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
 
 ### LaunchOption
 
