@@ -335,9 +335,9 @@ The classroom launching configuration. Used in [`launch`](#launch).
 | `userProperties` | User attributes customized by the developer. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties) |
 | `videoState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See  `AgoraEduStreamState`. |
 | `audioState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See  `AgoraEduStreamState`. |
-| `cameraEncoderConfiguration` | 摄像头采集视频流的编码参数配置，包含视频宽高、帧率、码率，详见 `AgoraEduVideoEncoderConfiguration`。 |
+| `cameraEncoderConfiguration` | The encoding configurations of the video stream captured by the camera, including the width and height, frame rate, and bitrate. For details, see `AgoraEduVideoEncoderConfiguration`. |
 | `latencyLevel` | The latency level of an audience member. See `AgoraEduLatencyLevel`. |
-| `boardFitMode` | 白板内容的显示模式，详见 `AgoraBoardFitMode`。 |
+| `boardFitMode` | The PPT display mode on the whiteboard. See `AgoraBoardFitMode`. |
 
 ### AgoraBoardFitMode
 
@@ -347,7 +347,7 @@ The classroom launching configuration. Used in [`launch`](#launch).
 }
 ```
 
-After the student obtains the whiteboard authorization, the display mode of the student's whiteboard content when the teacher switches whiteboard and the courseware. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
+The PPT display mode on the whiteboard. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
@@ -366,8 +366,8 @@ Controls whether students automatically send audio or video streams after they g
 
 | Parameter | Description |
 | :---- | :--------------- |
-| `off` | （默认）不发流。 |
-| `on` | 发流。 |
+| `off` | (Default) Students do not automatically send audio and video streams after they go onto the "stage". |
+| `on` | Students automatically send audio and video streams after they go onto the "stage". |
 
 ### AgoraEduLatencyLevel
 
@@ -383,7 +383,7 @@ The latency level of an audience member. Set in [AgoraEduLaunchConfig](#agoraedu
 | Parameter | Description |
 | :--------- | :--------------------------------------------------------- |
 | `low` | Low latency. Low latency: The latency from the sender to the receiver is 1500 ms to 2000 ms. |
-| `ultraLow` | (Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms. |
+| `ultraLow` | (Default) Ultra-low latency. The latency from the sender to the receiver is 400 ms to 800 ms. |
 
 ### AgoraEduMediaOptions
 
@@ -399,7 +399,7 @@ Media options. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
 | :----------------- | :----------------------------------------------------------- |
-| `encryptionConfig` | The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig )for details. |
+| `encryptionConfig` | The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig) for details. |
 
 ### AgoraEduVideoEncoderConfiguration
 
@@ -447,7 +447,7 @@ The media stream encryption configuration. Used in [AgoraEduMediaOptions](#agora
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `mode` | The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig )for details. |
+| `mode` | Encryption mode. See [AgoraEduMediaEncryptionMode](#agoraedumediaencryptionmode). |
 | `key` | The encryption key. |
 
 ### AgoraEduMediaEncryptionMode
@@ -462,7 +462,7 @@ typedef NS_ENUM(NSInteger, AgoraEduMediaEncryptionMode) {
 };
 ```
 
-媒体流加密模式。 用于 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfigs)。
+Media stream encryption mode. Set in [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfigs).
 
 | Parameter | Description |
 | :------------------------------------- | :-------------------------- |
@@ -475,7 +475,7 @@ typedef NS_ENUM(NSInteger, AgoraEduMediaEncryptionMode) {
 ### AgoraEduCoreMirrorMode
 
 ```swift
-@objc public enum AgoraEduContextChatType: Int {
+@objc public enum AgoraEduCoreMirrorMode: Int {
     case auto = 0, enabled, disabled
 }
 ```
@@ -503,12 +503,12 @@ Whether to enable mirror mode.
 @end
 ```
 
-The courseware pre-download configuration. The courseware pre-download configuration. Used in [`configCoursewares`](#configcoursewares).
+The courseware pre-download configuration. Used in [`configCoursewares`](#configcoursewares).
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | The file name. |
-| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of` resourceName` and the `name` of the first `SceneInfo` object in `scenes`. |
+| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of `resourceName` and the `name` of the first `SceneInfo` object in `scenes`. |
 | `resourceUrl` | The URL address of the file, such as `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip".` |
 | `scenes` | A list of converted file pages, an array of `WhiteScene` objects. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom and then display the file on the whiteboard in pages. Each `WhiteScene` object represents one page. |
 
