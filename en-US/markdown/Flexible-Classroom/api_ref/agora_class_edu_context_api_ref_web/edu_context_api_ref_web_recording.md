@@ -1,4 +1,4 @@
-`useRecordingContext`() enables developers to implement the` recording` function in the flexible classroom.
+`RecordingContext` enables developers to implement the recording function in the flexible classroom.
 
 ## isRecording
 
@@ -11,16 +11,16 @@ Whether the class is being recorded.
 ## startRecording
 
 ```typescript
-startRecording: () => Promise<void>,
+async startRecording(): void
 ```
 
-Start recording.
+Starts recording.
 
 ## stopRecording
 
 ```typescript
-stopRecording: () => Promise<void>,
+async stopRecording(): void
 ```
 
-Stop recording.
+Stops recording.
 
