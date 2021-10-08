@@ -1,4 +1,4 @@
-`useUserListContext(`) enables developers to implement the user list module in the flexible classroom.
+`useUserListContext` enables developers to implement the user list module in the flexible classroom.
 
 ## rosterUserList
 
@@ -32,7 +32,7 @@ localUserInfo: EduUser,
 
 > Since v1.1.5.
 
-Gets the information of the local client.
+The information of the local client.
 
 ## teacherInfo
 
@@ -42,7 +42,7 @@ teacherInfo?: EduUser,
 
 > Since v1.1.5.
 
-当前课堂的老师信息。
+The information of the teacher in the current classroom.
 
 ## toggleWhiteboardPermission
 
@@ -52,12 +52,12 @@ toggleWhiteboardPermission: (userUuid:string, whiteboardGranted: boolean) => Pro
 
 > Since v1.1.5.
 
-设置指定用户的白板权限。
+Grants the permission of drawing on the whiteboard to a specified user.
 
 | Parameter | Description |
 | :------------------ | :------------------------- |
 | `userUuid` | The user ID. |
-| `whiteboardGranted` | 是否授予指定用户白板权限。 |
+| `whiteboardGranted` | Whether to grant the permission of drawing on the whiteboard to the specified user. |
 
 ## toggleCamera
 
@@ -67,7 +67,7 @@ toggleCamera: (userUuid:string, enabled: boolean) => Promise<any>,
 
 > Since v1.1.5.
 
-Turn off the camera of the specified user.
+Turns on or off the camera of a specified user.
 
 | Parameter | Description |
 | :--------- | :--------------- |
@@ -82,7 +82,7 @@ toggleMic: (userUuid:string, enabled: boolean) => Promise<any>,
 
 > Since v1.1.5.
 
-开启或关闭指定用户的麦克风。
+Turns on or off the microphone of a specified user.
 
 | Parameter | Description |
 | :--------- | :--------------- |
@@ -99,7 +99,7 @@ controlTools: ControlTool[],
 
 可用的用户管理工具。
 
-## controlTools
+## isHost
 
 ```javascript
 isHost: boolean
