@@ -1,23 +1,25 @@
-# Extension App Context
+# Extension App Context Extension App Context
 
-## AgoraExtAppProtocol
+## AgoraExtAppProtocol AgoraExtAppProtocol
 
-### launchExtApp
+## AgoraExtAppProtocol AgoraExtAppProtocol
+
+### launchExtApp launchExtApp
 
 ```kotlin
 - (NSInteger)willLaunchExtApp:(NSString *)appIdentifier;
 ```
 
-Launches an extension application.
+Launches an extension application. Launches an extension application.
 
-| Parameter | Description |
+| Parameter Parameter | Description Description |
 | :-------------- | :-------------- |
-| `appIdentifier` | The ID of the extension application. |
+| `appIdentifier ``appIdentifier` | The ID of the extension application. The ID of the extension application. |
 
-### getRegisteredExtApps
+### getRegisteredExtApps getRegisteredExtApps
 
 ```kotlin
 fun getRegisteredExtApps(): List<AgoraExtAppInfo>
 ```
 
-Gets the information of all registered extension applications.
+Gets the information of all registered extension applications. Gets the information of all registered extension applications.
