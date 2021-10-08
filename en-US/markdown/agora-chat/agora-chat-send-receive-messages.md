@@ -87,9 +87,6 @@ String voiceRemoteUrl = voiceBody.getRemoteUrl();
 Uri voiceLocalUri = voiceBody.getLocalUri();
 ```
 
-<div class="alert note">On Android 10 or later devices, call <code>getLocalUri</code> to get local resources. <code>getLocalUrl</code> is deprecated.
-</div>
-
 #### Send an image message
 
 To send an image message, you need to specify the URI of the image file in `createImageSendMessage`.
@@ -121,9 +118,6 @@ ChatClient.getInstance().chatManager().downloadThumbnail(message);
 Uri thumbnailLocalUri = imgBody.thumbnailLocalUri();
 ```
 
-<div class="alert note">On Android 10 or later devices, call <code>getLocalUri</code> to get local resources. <code>getLocalUrl</code> is deprecated.
-</div>
-
 #### Send a file message
 
 To send a file message, you need to specify the URI of the file in `createFileSendMessage`.
@@ -151,7 +145,9 @@ Uri fileLocalUri = fileMessageBody.getLocalUri();
 
 ### Send a location message
 
-To send a location message, you need to integrate a third-party map service and get the latitude and longitude of the location.
+A location message contains the information that locates a specific point on the surface of the earth. It can also include the address information.
+
+To retrieve the latitude and longitude of a specific point, you integrate a third-party map service. 
 
 ```java
 // Set locationAddress as the address of the location.
@@ -180,6 +176,8 @@ cmdMsg.setTo(toUsername);
 cmdMsg.addBody(cmdBody); ChatClient.getInstance().chatManager().sendMessage(cmdMsg);
 ```
 
+<a name="custom"></a>
+
 ### Send a custom message
 
 To meet various business needs, the SDK supports customizing the message type. You can set multiple custom message types.
@@ -204,7 +202,9 @@ ChatClient.getInstance().chatManager().sendMessage(customMessage);
 
 ### Extend a message type
 
-You can add custom attributes to a standard message type to save more information, for example, carrying the original message in a message reply, or sending a graphic message.
+To easily add more information to a message without implementing a [custom message type](#custom), add attributes to a standard message.
+
+For example, to send the original message in a message reply:
 
 ```java
 ChatMessage message = ChatMessage.createTxtSendMessage(content, toChatUsername); 
@@ -213,7 +213,7 @@ message.setAttribute("attribute1","value");
 message.setAttribute("attribute2", true);
 // Send the message
 ChatClient.getInstance().chatManager().sendMessage(message);
-// Get the custom attributes when receivingt the message.
+// Get the custom attributes when receiving the message.
 message.getStringAttribute("attribute1",null);
 message.getBooleanAttribute("attribute2", false)
 ```
@@ -224,7 +224,7 @@ Call `addMessageListener` to register a `MessageListener` for receiving messages
 
 You can add multiple message listeners, and you need to remove a listener when it is not needed, for example when you call `onDestroy()` of `activity`.
 
-When one or more new messages arrives, the SDK triggers the `onMessageReceived` callback. You can traverse the messages in this callback to read and display the received messages.
+When one or more new messages arrives, the SDK triggers the `onMessageReceived` callback. You can traverse the messages in this callback to display the received messages.
 
 Note that when receiving pass-through messages, the SDK triggers the `onCmdMessageReceived` callback.
 
@@ -246,7 +246,7 @@ ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 
 ### Recall a message
 
-Users can recall a sent message within a certain time period. The default time limit is two minutes. To extend the time limit, contact sales-us@agora.io. The maximum time limit is seven days.
+Users can recall a sent message within a certain time period. The default time limit is two minutes. To change the time limit, contact sales-us@agora.io. You can extend the time limit up to seven days.
 
 ```java
 ChatClient.getInstance().chatManager().recallMessage(message);
@@ -254,7 +254,7 @@ ChatClient.getInstance().chatManager().recallMessage(message);
 
 ### Monitor message status
 
-Create an instance of `CallBack` to monitor the status of the message, including whether the message is successfully sent and the progress of uploading an attachment file. In this callback, you can update the message status on the user interface, for example, reporting an error when the message delivery fails.
+To validate that a message is successfully sent, or to track the upload progress of an attachment, override an instance of `io.agora.CallBack` for the message being sent. For example, the following code shows how to display an [Android toast](https://developer.android.com/guide/topics/ui/notifiers/toasts) in the user interface of your app to show message success or failure:
 
 ```java
 message.setMessageStatusCallback(new CallBack() {
@@ -268,7 +268,7 @@ message.setMessageStatusCallback(new CallBack() {
     showToast("Failed to send the message");
   }
   
-  // Status of an attachment message.
+  // Upload status of an attachment message.
   @Override
   public void onProgress(int progress, String status) {
         
@@ -279,7 +279,7 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 
 ## Reference
 
-This section lists the limitations of sending and receiving messages.
+This section lists the message size and expiration limits.
 
 - The maximum size of a message is 5 KB.
 - The maximum size of an attachment is 10 MB.
@@ -287,3 +287,4 @@ This section lists the limitations of sending and receiving messages.
   - Starter package: 7 days.
   - Pro package: 90 days.
   - Enterprise package: 180 days.
+
