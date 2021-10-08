@@ -412,7 +412,7 @@ The latency level of an audience member. Set in [AgoraEduLaunchConfig](#agoraedu
 | Parameter | Description |
 | :----------------------------- | :--------------------------------------------------------- |
 | `AgoraEduLatencyLevelLow` | Low latency. Low latency: The latency from the sender to the receiver is 1500 ms to 2000 ms. |
-| `AgoraEduLatencyLevelUltraLow` | (Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms. |
+| `AgoraEduLatencyLevelUltraLow` | (Default) Ultra-low latency. The latency from the sender to the receiver is 400 ms to 800 ms. |
 
 ### AgoraEduMediaOptions
 
