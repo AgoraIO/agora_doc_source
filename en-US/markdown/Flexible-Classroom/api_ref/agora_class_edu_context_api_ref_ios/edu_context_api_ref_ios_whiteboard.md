@@ -8,7 +8,7 @@
 func boardInputEnable(_ enable: Bool)
 ```
 
-Enable or disable the whiteboard basic editing tools.
+Enables or disables the whiteboard basic editing tools.
 
 | Parameter | Description |
 | :------- | :--------------------- |
@@ -56,7 +56,7 @@ Retries the courseware download.
 func boardRefreshSize()
 ```
 
-Refresh the whiteboard size. You need to call this method when the size of the whiteboard container changes.
+Refreshes the whiteboard size. You need to call this method when the size of the whiteboard container changes.
 
 ### getContentView
 
@@ -72,7 +72,7 @@ Gets the whiteboard container view. If the whiteboard is not initialized success
 func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 | Parameter | Description |
 | :-------- | :--------------------------------- |
@@ -104,12 +104,8 @@ Returns the whiteboard container view.
 
 Reports whether the local client has permission to make drawings on the whiteboard.
 
-- When `enabled` is `true`, the UI layer will prompt:
-   - Chinese: You can use the whiteboard
-   - English: You can now use the whiteboard tools.
-- When `enabled` is `false`, the UI layer will prompt:
-   - Chinese: You don’t have the right to use the whiteboard now
-   - English: Your cannot use the whiteboard tools.
+- When `enabled` is `true`, the UI layer prompts "Your camera is turned on".
+- `enabled` 为 `false` 时，UI 层会提示：你现在无权使用白板了。
 
 | Parameter | Description |
 | :-------- | :----------------- |
@@ -289,7 +285,7 @@ Goes to the next page.
 func registerPageControlEventHandler(_ handler: AgoraEduWhiteBoardPageControlHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 ## AgoraEduWhiteBoardPageControlHandler
 
