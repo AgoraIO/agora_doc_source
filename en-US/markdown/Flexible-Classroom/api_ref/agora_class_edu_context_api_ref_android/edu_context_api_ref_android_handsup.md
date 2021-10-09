@@ -50,7 +50,7 @@ Occurs when the hand state updates.
 fun onHandsUpStateResultUpdated(error: EduContextError?)
 ```
 
-Reports the result of raise the hand.  If `error` is not empty, it means the local client fails to raise the hand.
+Reports the result of raising the hand.  If `error` is not empty, it means the local client fails to raise the hand.
 
 | Parameter | Description |
 | :------ | :------------------------------- |
