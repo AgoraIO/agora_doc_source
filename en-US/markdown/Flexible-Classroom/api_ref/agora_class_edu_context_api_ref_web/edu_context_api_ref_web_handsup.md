@@ -1,4 +1,4 @@
-`useHandsUpContext(`) enables developers to implement the hand-raising function in the flexible classroom.
+`HandsUpContext` enables developers to implement the hand-raising function in the flexible classroom.
 
 ## teacherUuid
 
