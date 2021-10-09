@@ -8,7 +8,7 @@
 func registerEventHandler(_ handler: AgoraEduScreenShareHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 | Parameter | Description |
 | :-------- | :------------------------------------- |
@@ -18,22 +18,22 @@ Register the event listener.
 
 `AgoraEduScreenShareHandler` reports screen-sharing-related event callbacks to your app.
 
-### onScreenShareStateUpdated
+### onUpdateScreenShareState
 
 ```swift
 @objc optional func onUpdateScreenShareState(_ state: AgoraEduContextScreenShareState,
                                           streamUuid: String)
 ```
 
-The screen sharing status has been updated.
+Occurs when the screen sharing state updates.
 
-- When the `state` is `start`, the UI layer prompts "Teacher initiated screen sharing".
-- When the `state` is `stop`, the UI layer prompts "The teacher has stopped screen sharing".
+- When the `state` is `start`, Flexible Classroom triggers a pop-up window saying "The teacher has started screen sharing".
+- When the `state` is `stop`, Flexible Classroom triggers a pop-up window saying "The teacher has stopped screen sharing".
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------- |
-| `state` | Screen sharing status, see AgoraEduContextScreenShareState for details``. |
-| `streamUuid` | Screen sharing stream ID. |
+| `state` | The screen sharing state. See `AgoraEduContextScreenShareState` for details. |
+| `streamUuid` | The ID of the screen-sharing stream. |
 
 ### onSelectScreenShare
 
@@ -41,7 +41,7 @@ The screen sharing status has been updated.
 @objc optional func onSelectScreenShare(_ selected: Bool)
 ```
 
-Prompt whether the screen sharing tab is selected.
+Indicates whether the screen sharing tab is selected.
 
 | Parameter | Description |
 | :--------- | :----------------------- |
