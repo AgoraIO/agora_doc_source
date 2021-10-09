@@ -97,7 +97,7 @@ controlTools: ControlTool[],
 
 > Since v1.1.5.
 
-可用的用户管理工具。
+Available user management tools.
 
 ## isHost
 
@@ -107,7 +107,7 @@ isHost: boolean
 
 > Since v1.1.5.
 
-是否为房主。
+Whether the local user is the host.
 
 ## kick
 
@@ -117,7 +117,7 @@ kick: (userUuid:string) => Promise<any>,
 
 > Since v1.1.5.
 
-将指定用户踢出房间。
+Kicks a specified user out of the classroom.
 
 | Parameter | Description |
 | :--------- | :-------- |
