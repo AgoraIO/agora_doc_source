@@ -6,14 +6,14 @@ Different contexts represent different function modules in the Flexible Classroo
 
 The Agora Classroom SDK provides the following contexts:
 
-- `usePretestContext`(): `Pre`-class test.
-- `BoardContext`：白板。
-- `ChatContext` ：消息聊天。
-- `RoomContext` enables developers to implement classroom management.
-- `useHandsUpContext`: Hand`-`raising.
-- `ScreenShareContext `enables developers to implement the `screen `sharing function in the flexible classroom.
-- `useUserListContext(`): User list.
-- `useRecordingContext`(): `Recording`.
-- `CloudDriveContext` provides capabilities for class files.
-- `StreamListContext`: 媒体流和数据流。
-- `MediaContext` provides capabilities for device control.
+- `PretestContext`: Pre-class test.
+- `BoardContext`: Whiteboard.
+- `Chat Context`: Chat.
+- `RoomContext`: Classroom management.
+- `HandsUpContext`: Hand-raising.
+- `ScreenShareContext`: Screen sharing.
+- `UserListContext`: User list.
+- `RecordingContext`: Recording.
+- `CloudDriveContext`: Class files.
+- `StreamListContext`: Media stream and data stream.
+- `MediaContext`: Local device control.
