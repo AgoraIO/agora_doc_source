@@ -8,7 +8,7 @@
 abstract fun localUserInfo(): EduContextUserInfo
 ```
 
-Gets the information of the local client.
+Gets the information of the local user.
 
 ### updateFlexUserProps
 
@@ -131,7 +131,7 @@ Occurs when the local user is kicked out of the classroom.
 fun onVolumeUpdated(volume: Int, streamUuid: String)
 ```
 
-Occurs when the volume of the local user is updated.
+Occurs when the volume of the local user updates.
 
 | Parameter | Description |
 | :----------- | :------ |
