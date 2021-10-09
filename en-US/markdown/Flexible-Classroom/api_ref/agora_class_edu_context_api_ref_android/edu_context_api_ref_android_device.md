@@ -1,6 +1,6 @@
 ## DeviceContext
 
-`AgoraEduDeviceContext` provides methods that can be called by your app for device control.
+`DeviceContext` provides methods that can be called by your app for device control.
 
 ### getDeviceConfig
 
@@ -64,11 +64,11 @@ Sets the life cycle state of the device according to the life cycle state of the
 
 | Parameter | Description |
 | :---------- | :----------------------------------------------------- |
-| `lifecycle` | For the life cycle status of the device, see `EduContextDeviceLifecycle` for details. |
+| `lifecycle` | For the life cycle status of the device, see `EduContextDeviceLifecycle`. |
 
 ## IDeviceHandler
 
-`AgoraEduDeviceHandler` reports the device-related events to your app.
+`IDeviceHandler` reports the device-related events to your app.
 
 ### onCameraDeviceEnableChanged
 
@@ -100,7 +100,7 @@ Indicates the switch between front and rear cameras.
 fun onMicDeviceEnabledChanged(enabled: Boolean)
 ```
 
-Whether to turn on the microphone.
+Indicates whether the microphone is on.
 
 | Parameter | Description |
 | :-------- | :--------------- |
@@ -124,7 +124,7 @@ Indicates whether the speaker is on.
 fun onDeviceTips(tips: String)
 ```
 
-Device related prompt callback.
+Displays device-related tips.
 
 | Parameter | Description |
 | :----- | :--------- |
