@@ -56,7 +56,7 @@ After you successfully update the properties, the remote client receives the `on
 func registerEventHandler(_ handler: AgoraEduRoomHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 | Parameter | Description |
 | :-------- | :------------------------------ |
@@ -65,7 +65,7 @@ Register the event listener.
 
 ## AgoraEduRoomHandler
 
-`AgoraEduRoomHandler` reports the` classroom`-related event callbacks to your app.
+`AgoraEduRoomHandler` reports the classroom-related event callbacks to your app.
 
 ### onClassroomName
 
@@ -93,7 +93,7 @@ Indicates the classroom state.
 
 | Parameter | Description |
 | :------ | :------------------------------------------- |
-| `state` | The classroom state. See AgoraEduContextClassState for details``. |
+| `state` | The classroom state. See `AgoraEduContextClassState` for details. |
 
 ### onClassTimeInfo
 
@@ -113,7 +113,7 @@ Reports the class time.
 | `startTime` | Class start time (milliseconds). |
 | `differTime` | The time difference between the client and the server (milliseconds). |
 | `duration` | Class duration (seconds). |
-| `closeDelay` | The time (in seconds) remaining before the classroom is closed after the class is over. |
+| `closeDelay` | After the class ends, the time (seconds) left before the classroom is closed. |
 
 ### onNetworkQuality
 
@@ -127,7 +127,7 @@ Reports the network state.
 
 | Parameter | Description |
 | :-------- | :----------------------------------------------- |
-| `quality` | The network state. See AgoraEduContextNetworkQuality for details``. |
+| `quality` | The network state. See `AgoraEduContextNetworkQuality` for details. |
 
 ### onConnectionState
 
@@ -141,7 +141,7 @@ Indicates the connection state.
 
 | Parameter | Description |
 | :------ | :------------------------------------------------ |
-| `state` | The connection state. See AgoraEduContextConnectionState for details``. |
+| `state` | The connection state. See `AgoraEduContextConnectionState` for details. |
 
 ### onUploadLogSuccess
 
@@ -149,7 +149,7 @@ Indicates the connection state.
 @objc optional func onUploadLogSuccess(_ logId: String)
 ```
 
-The log was uploaded successfully.
+Occurs when the log is uploaded successfully.
 
 | Parameter | Description |
 | :------ | :-------- |
@@ -161,7 +161,7 @@ The log was uploaded successfully.
 @objc optional func onClassroomJoined()
 ```
 
-The SDK has joined the channel successfully.
+Occurs when the local user joins the channel successfully.
 
 ### onShowErrorInfo
 
@@ -173,7 +173,7 @@ Reports the error message during the class.
 
 | Parameter | Description |
 | :------ | :-------------------------------------- |
-| `error` | The error message. See AgoraEduContextError for details``. |
+| `error` | The error message. See `AgoraEduContextError` for details. |
 
 ### onFlexRoomPropertiesInitialize
 
@@ -185,7 +185,7 @@ Reports the initial custom classroom properties.
 
 | Parameter | Description |
 | :----------- | :------------------- |
-| `properties` | All attributes of the current classroom. |
+| `properties` | All properties of the current classroom. |
 
 ### onFlexRoomPropertiesChanged
 
@@ -203,5 +203,5 @@ Occurs when the custom classroom properties are updated.
 | `changedProperties` | The updated classroom properties. |
 | `properties` | All classroom properties. |
 | `cause` | The update reason. |
-| `operator` | The user information. See AgoraEduContextUserInfo for details``. `operator` being empty means that properties are updated by the server. |
+| `operator` | The information of the operator. See `AgoraEduContextUserInfo`. `operator` being empty means that properties are updated by the server. |
 
