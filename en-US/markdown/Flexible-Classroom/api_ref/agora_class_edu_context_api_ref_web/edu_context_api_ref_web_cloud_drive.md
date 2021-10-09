@@ -54,7 +54,7 @@ initCourseWare: MaterialDataResource
 
 > Since v1.1.5.
 
-初始课件。
+The initial class files.
 
 ## downloadList
 
