@@ -6,14 +6,14 @@ Different contexts represent different function modules in the Flexible Classroo
 
 Agora provides the following contexts:
 
-- [Chat Context](/cn/agora-class/edu_context_api_ref_ios_chat?platform=iOS): Message chat.
-- [Device Context](/cn/agora-class/edu_context_api_ref_ios_device?platform=iOS): Audio and video device control in class.
-- [Hands-up Context](/cn/agora-class/edu_context_api_ref_ios_handsup?platform=iOS): Raise your hands on the stage.
-- [Media Context](/cn/agora-class/edu_context_api_ref_ios_media?platform=iOS): Local preview before class.
-- [Room Context](/cn/agora-class/edu_context_api_ref_ios_room?platform=iOS): classroom management.
-- [Screen Sharing Context](/cn/agora-class/edu_context_api_ref_ios_screensharing?platform=iOS: Screen sharing).
-- [User Context](/cn/agora-class/edu_context_api_ref_ios_userlist?platform=iOS: User) list.
-- [Whiteboard Context](/cn/agora-class/edu_context_api_ref_ios_whiteboard?platform=iOS: Whiteboard), including whiteboard basic tools and page control tools.
+- [Chat Context](/en/agora-class/edu_context_api_ref_ios_chat?platform=iOS): Chat.
+- [Device Context](/en/agora-class/edu_context_api_ref_ios_device?platform=iOS): Audio and video device control during a class.
+- [Hands-up Context](/en/agora-class/edu_context_api_ref_ios_handsup?platform=iOS): Hand raising.
+- [Media Context](/en/agora-class/edu_context_api_ref_ios_media?platform=iOS): Local preview before a class.
+- [Room Context](en/agora-class/edu_context_api_ref_ios_room?platform=iOS): Classroom management.
+- [Screen Sharing Context](/en/agora-class/edu_context_api_ref_ios_screensharing?platform=iOS): Screen sharing.
+- [User Context](/en/agora-class/edu_context_api_ref_ios_userlist?platform=iOS): User list.
+- [Whiteboard Context](/en/agora-class/edu_context_api_ref_ios_whiteboard?platform=iOS): Whiteboard, including the whiteboard basic editing tools and page controller.
 
 ## AgoraEduContextPool
 
