@@ -88,7 +88,7 @@ Fetches the history of peer-to-peer messages.
 func registerEventHandler(_ handler: AgoraEduMessageHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 | Parameter | Description |
 | :-------- | :--------------------------------- |
@@ -130,8 +130,8 @@ Occurs when the local client receives a peer-to-peer message from a remote user.
 
 Occurs when the chat permission of all users in the classroom changes.
 
-- When `allow` is `true`, the UI layer prompts: The mute mode is on.
-- When `allow` is `false`, the UI layer prompts: The mute mode is off.
+- When `allow` is `true`, Flexible Classroom triggers a pop-up window saying "The mute mode is on".
+- When `allow` is `false`, Flexible Classroom triggers a pop-up window saying "The mute mode is off".
 
 | Parameter | Description |
 | :------ | :----------------------- |
@@ -147,8 +147,8 @@ Occurs when the chat permission of all users in the classroom changes.
 
 Occurs when the chat permission of the local user changes.
 
-- When `allow` is `true`, the UI layer prompts: You are muted by xx.
-- When `allow` is `false`, the UI layer prompts: You are unmuted by xx.
+- When `allow` is `true`, Flexible Classroom triggers a pop-up window saying "You are muted by xx".
+- When `allow` is `false`, Flexible Classroom triggers a pop-up window saying "You are unmuted by xx".
 
 | Parameter | Description |
 | :------------- | :----------------------- |
@@ -166,8 +166,8 @@ Occurs when the chat permission of the local user changes.
 
 Occurs when the chat permission of a remote user changes.
 
-- When `allow` is `true`, the UI layer prompts: xx is muted by xx.
-- When `allow` is `false`, the UI layer prompts: xx is unmuted by xx.
+- When `allow` is `true`, Flexible Classroom triggers a pop-up window saying "xx is muted by xx".
+- When `allow` is `false`, Flexible Classroom triggers a pop-up window saying "xx is unmuted by xx".
 
 | Parameter | Description |
 | :------------- | :----------------------- |
@@ -182,7 +182,7 @@ Occurs when the chat permission of a remote user changes.
                                                info: AgoraEduContextChatInfo?)
 ```
 
-The result of the local user sending the classroom messages (including sending for the first time and re-sending).
+Reports the result of the local user sending the classroom message (including sending for the first time and re-sending).
 
 | Parameter | Description |
 | :------ | :----------------------------------------- |
@@ -196,7 +196,7 @@ The result of the local user sending the classroom messages (including sending f
                                                        info: AgoraEduContextChatInfo?)
 ```
 
-The local user sends the result of the question message (including the first and subsequent retransmissions).
+Reports the result of the local user sending the peer-to-peer message (including sending for the first time and re-sending).
 
 | Parameter | Description |
 | :------ | :----------------------------------------- |
@@ -210,12 +210,12 @@ The local user sends the result of the question message (including the first and
                                                     list: [AgoraEduContextChatInfo]?)
 ```
 
-Local users get the results of historical classroom news.
+Reports the result of the local user fetching the history of classroom messages.
 
 | Parameter | Description |
 | :------ | :--------------------------------------------------------- |
 | `error` | The error code. ` error` not being empty means failure. |
-| `info` | The message object. See AgoraEduContextChatInfo for details``. |
+| `info` | An array of message objects. See `AgoraEduContextChatInfo` for details. |
 
 ### onFetchConversationHistoryMessagesResult
 
@@ -224,12 +224,12 @@ Local users get the results of historical classroom news.
                                                                 list: [AgoraEduContextChatInfo]?)
 ```
 
-The local user obtains the result of the historical question message.
+Reports the result of the local user fetching the history of peer-to-peer messages.
 
 | Parameter | Description |
 | :------ | :--------------------------------------------------------- |
 | `error` | The error code. ` error` not being empty means failure. |
-| `info` | The message object. See AgoraEduContextChatInfo for details``. |
+| `info` | An array of message objects. See `AgoraEduContextChatInfo` for details. |
 
 ### onUpdateRoomMessageList
 
@@ -237,12 +237,12 @@ The local user obtains the result of the historical question message.
  @objc optional func onUpdateRoomMessageList(_ list: [AgoraEduContextChatInfo])
 ```
 
-The class news has been updated.
+Occurs when the classroom message list updates.
 
 | Parameter | Description |
 | :------ | :--------------------------------------------------------- |
 | `error` | The error code. If `error` is not empty, it means the local client fails to fetch the message history. |
-| `list` | The message object. See AgoraEduContextChatInfo for details``. |
+| `list` | An array of message objects. See `AgoraEduContextChatInfo` for details. |
 
 ### onUpdateConversationMessageList
 
@@ -250,9 +250,9 @@ The class news has been updated.
 @objc optional func onUpdateConversationMessageList(_ list: [AgoraEduContextChatInfo])
 ```
 
-The question message has been updated.
+Occurs when the peer-to-peer message list updates.
 
 | Parameter | Description |
 | :------ | :---------------------------------------------------- |
 | `error` | The error code. If `error` is not empty, it means the local client fails to fetch the message history. |
-| `list` | An array of message objects. See EduContextChatItem for details``. |
+| `list` | An array of message objects. See `EduContextChatItem` for details. |
