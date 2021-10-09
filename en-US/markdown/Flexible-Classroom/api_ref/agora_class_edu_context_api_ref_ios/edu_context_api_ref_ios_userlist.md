@@ -17,7 +17,7 @@ After you successfully update the properties, the remote client receives the `on
 | Parameter | Description |
 | :----------- | :----------------------------------------------------------- |
 | `userUuid` | The user ID. |
-| `properties` | The user properties. Can be set to `{"key.subkey":"1"}` or `{"key":{"subkey":"1"}}`. |
+| `properties` | The user properties. You can set this parameter as `{"key.subkey":"1"}` or `{"key":{"subkey":"1"}}`. |
 | `cause` | The update reason. |
 
 ### getLocalUserInfo
@@ -28,7 +28,7 @@ func getLocalUserInfo() -> AgoraEduContextUserInfo
 
 > Since v1.1.5.
 
-Gets the information of the local client.
+Gets the information of the local user.
 
 ### registerEventHandler
 
@@ -36,7 +36,7 @@ Gets the information of the local client.
 func registerEventHandler(_ handler: AgoraEduUserHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 | Parameter | Description |
 | :-------- | :------------------------------ |
@@ -80,7 +80,7 @@ Occurs when the local user receives a reward.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------- |
-| `userInfo` | The user information. See AgoraEduContextUserInfo for details``. |
+| `userInfo` | The user information. See `AgoraEduContextUserInfo` for details. |
 
 ### onKickedOut
 
@@ -96,7 +96,7 @@ Occurs when the local user is kicked out of the classroom.
 @objc optional func onUpdateAudioVolumeIndication(_ value: Int, streamUuid: String)
 ```
 
-Occurs when the volume of the local user is updated.
+Occurs when the volume of the local user updates.
 
 | Parameter | Description |
 | :----------- | :------ |
@@ -120,5 +120,5 @@ Occurs when the custom user properties are updated.
 | `changedProperties` | The updated user properties. |
 | `properties` | All user properties. |
 | `cause` | The update reason. |
-| `fromUser` | For information about the user whose attributes are updated, see `AgoraEduContextUserDetailInfo `for details. |
-| `operator` | The user information. See AgoraEduContextUserInfo for details``. `operator` being empty means that properties are updated by the server. |
+| `fromUser` | The information of the user whose properties are updated. See `AgoraEduContextUserDetailInfo` for details. |
+| `operator` | The information of the operator. See `AgoraEduContextUserInfo`. `operator` being empty means that properties are updated by the server. |
