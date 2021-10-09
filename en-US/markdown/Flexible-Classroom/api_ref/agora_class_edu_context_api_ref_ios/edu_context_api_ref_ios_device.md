@@ -52,7 +52,7 @@ Turn on or off the speaker.
 func registerDeviceEventHandler(_ handler: AgoraEduDeviceHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 | Parameter | Description |
 | :-------- | :-------------------------------- |
