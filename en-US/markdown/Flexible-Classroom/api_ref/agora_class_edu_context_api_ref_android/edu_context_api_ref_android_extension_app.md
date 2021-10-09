@@ -2,7 +2,7 @@
 
 ## ExtAppContext
 
-`HandsUpContext` provides the methods that can be called by your app for the hand-raising function.
+`ExtAppContext` provides the methods that can be called by your app for extension applications.
 
 ### Init
 
@@ -10,7 +10,7 @@
 fun init(container: RelativeLayout)
 ```
 
-Initialize the extended application.
+Initializes the extension application.
 
 ### launchExtApp
 
@@ -34,7 +34,7 @@ Gets the information of all registered extension applications.
 
 ## IAgoraExtApp
 
-The` IAgoraExtApp` class contains the necessary operations and life cycle callbacks for extended applications.
+The `IAgoraExtApp` class contains the necessary operations and life cycle callbacks for extended applications.
 
 ### onExtAppLoaded
 
