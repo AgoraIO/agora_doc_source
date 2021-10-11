@@ -456,11 +456,11 @@ enum class AgoraEduEncryptMode(val value: Int) {
 }
 ```
 
-加密模式。
+加密模式，用于 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig)。
 
 | 参数          | 描述                        |
 | :------------ | :-------------------------- |
-| `NONE`        |                             |
+| `NONE`        | 不加密。                    |
 | `AES_128_XTS` | 128 位 AES 加密，XTS 模式。 |
 | `AES_128_ECB` | 128 位 AES 加密，ECB 模式。 |
 | `AES_256_XTS` | 256 位 AES 加密，XTS 模式。 |
@@ -480,7 +480,7 @@ data class AgoraEduCourseware(
 }
 ```
 
-课件预加载配置，用于 [configCoursewares](#configcoursewares) 方法。
+课件预加载配置，用于 [configCourseware](#configcourseware) 方法。
 
 | 属性           | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
@@ -558,7 +558,7 @@ data class EduVideoEncoderConfig(
 )
 ```
 
-视频编码参数配置类，用于 `AgoraEduLaunchConfig`。
+视频编码参数配置类，用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
 > - 在小班课中，分辨率的默认值为 120p（160*120）。
 > - 在一对一和大班课中，分辨率的默认值为 240p（320*240）。
@@ -581,7 +581,7 @@ enum class EduMirrorMode(val value: Int) {
 }
 ```
 
-是否开启镜像模式。
+是否开启镜像模式。用于 [EduVideoEncoderConfig](#eduvideoencoderconfig)。
 
 | 参数       | 描述                   |
 | :--------- | :--------------------- |

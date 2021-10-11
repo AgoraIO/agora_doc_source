@@ -78,4 +78,3 @@ fun onHandsUpTips(tips: String)
 | 参数   | 描述       |
 | :----- | :--------- |
 | `tips` | 提示信息。 |
-
