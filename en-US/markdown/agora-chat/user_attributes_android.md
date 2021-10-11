@@ -44,7 +44,7 @@ userInfo.setUserId(EMClient.getInstance().getCurrentUser());
 userInfo.setNickName("jian");
 userInfo.setAvatarUrl("url");
 userInfo.setBirth("2000.10.10");
-userInfo.setSignature("坚持就是胜利");
+userInfo.setSignature("Add you signature");
 userInfo.setPhoneNumber("1343444");
 userInfo.setEmail("9892029@qq.com");
 userInfo.setGender(1);
@@ -65,7 +65,7 @@ userInfo.userId = AgoraChatClient.sharedClient.currentUsername;
 userInfo.nickName = @"jian";
 userInfo.avatarUrl = @"url";
 userInfo.birth = @"2000.10.10";
-userInfo.sign = @"坚持就是胜利";
+userInfo.sign = @"Add you signature";
 userInfo.phone = @"13434449999";
 userInfo.mail = @"9892029@qq.com";
 userInfo.gender = 1;
@@ -77,7 +77,7 @@ userInfo.gender = 1;
 ```javascript
 // Javascript
 let options = {
-    nickname: '昵称',
+    nickname: 'Your nickname',
     avatarurl: 'http://avatarurl',
     mail: '123@qq.com',
     phone: '16888888888',
@@ -86,7 +86,7 @@ let options = {
     sign: 'a sign',
     ext: JSON.stringify({
           nationality: 'China',
-          merit: 'Hello，世界！'
+          merit: 'Hello world！'
         })
 }
 WebIM.conn.updateOwnUserInfo(options).then((res) => {
@@ -126,7 +126,7 @@ NSString *url = @"https://download-sdk.oss-cn-beijing.aliyuncs.com/downloads/IMD
 
 ```javascript
 // Javascript
-WebIM.conn.updateOwnUserInfo('nickname', '昵称').then((res) => {
+WebIM.conn.updateOwnUserInfo('nickname', 'Your nickname').then((res) => {
     console.log(res)
 })
 ```
@@ -266,7 +266,7 @@ let id = conn.getUniqueId();
 let msg = new WebIM.message('custom', id); 
 let customEvent = "userCard";
 let customExts = {
-  nickname: '昵称',
+  nickname: 'Your nickname',
   avatarurl: 'http://avatarurl',
   mail: '123@qq.com',
   phone: '16888888888',

@@ -27,7 +27,7 @@ This method sets the attributes of a specified user.
 
 ### Request header
 
-| Parameter | Type | Mandatory | Description |
+| Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `Content-Type` | String | Yes | The data type sent from the app client to the server. Set it as `application/x-www-form-urlencoded`. |
 | `Authorization` | String | Yes | Your token for authentication. For details, see [Generate a token](). |
@@ -35,7 +35,7 @@ This method sets the attributes of a specified user.
 
 ### Request body
 
-| Parameter | Type | Manadatory | Description |
+| Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `nickname` | String | No | The nickname of the user. |
 | `avatarurl` | String | No | The URL address of the avator file. |
@@ -46,7 +46,7 @@ This method sets the attributes of a specified user.
 | `birth` | String | No | The birthday infromation. |
 | `ext` | String | No | Extra information. |
 
-### Request sample
+### Request example
 
 ```json
 curl -X PUT -H 'Content-Type: application/x-www-form-urlencoded' -H 'Authorization: Bearer WMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw12' -d 'avatar=http://www.agorachat.com/avatar.png&ext=ext&nickname=nickname' 'http://a1.agorachat.com/agorachat-demo/testapp/metadata/user/user1'
@@ -140,11 +140,11 @@ This method retrieves the user attributes of the specified user in the key-value
 
 ### Request header
 
-| Parameter | Type | Mandatory | Description |
+| Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `Authorization` | String | Yes | Your token for authentication. For details, see [Generate a token](). |
 
-### Request sample
+### Request example
 
 ```json
 curl -X GET -H 'Content-Type: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' 'http://a1.easemob.com/easemob-demo/testapp/metadata/user/user1'
@@ -215,19 +215,19 @@ This method retrieves the specified user attributes of the specified users. If t
 
 ### Request header
 
-| Parameter | Type | Mandatory | Description |
+| Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `Content-Type` | String | Yes | The data type sent from the app client to the server. Set it as `application/json`. |
 | `Authorization` | String | Yes | Your token for authentication. For details refer to [Generate a token](). |
 
 ### Request body
 
-| Parameter | Type | Mandatory | Description |
+| Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `targets` | list | Yes | The list of usernames. You can specify a maximum of 100 usernames for each request.|
 | `properties` | list | No | The list of the specified attributes. The request returns only the specified attribtues. |
 
-### Request sample
+### Request example
 
 ```json
 curl -X POST -H 'Content-Type:  application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' -d '{
@@ -319,11 +319,11 @@ This method retrieves the total size (Bytes) of all the attributes of all the us
 
 ### Request header
 
-| Parameter | Type | Mandatory | Description |
+| Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `Authorization` | String | Yes | Your token for authentication. Ensure that this is the token with the privilege of an admin. For details, see [Generate a token](). |
 
-### Request sample
+### Request example
 
 ```json
 curl -X GET -H 'Content-Type: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' 'http://a1.easemob.com/easemob-demo/testapp/metadata/user/capacity'
@@ -388,11 +388,11 @@ This method deletes all the attributes of the specified user. If the specified u
 
 ### Request header
 
-| Parameter | Type | Mandatory | Description |
+| Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `Authorization` | String | Yes | Your token for authentication. Ensure that this is the token with the privilege of an admin. For details, see [Generate a token](). |
 
-### Request sample
+### Request example
 
 ```json
 curl -X DELETE -H 'Content-Type: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' 'http://a1.easemob.com/easemob-demo/testapp/metadata/user/user1'
