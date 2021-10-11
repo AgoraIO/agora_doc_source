@@ -71,9 +71,9 @@ fun onReceiveMessage(item: EduContextChatItem)
 
 收到课堂消息。
 
-| 参数   | 描述                                      |
-| :----- | :---------------------------------------- |
-| `item` | 聊天消息对象，详见 `EduContextChatItem`。 |
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
+| `item` | 聊天消息对象，详见 [EduContextChatItem](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextchatitem)。 |
 
 ### onReceiveChatHistory
 
@@ -83,9 +83,9 @@ fun onReceiveChatHistory(history: List<EduContextChatItem>)
 
 历史课堂消息已更新。
 
-| 参数      | 描述                                                      |
-| :-------- | :-------------------------------------------------------- |
-| `history` | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |
+| 参数      | 描述                                                         |
+| :-------- | :----------------------------------------------------------- |
+| `history` | 由多个聊天消息对象组成的数组，详见 [EduContextChatItem](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextchatitem)。 |
 
 ### onReceiveConversationMessage
 
@@ -95,9 +95,9 @@ fun onReceiveConversationMessage(item: EduContextChatItem)
 
 收到提问消息。
 
-| 参数   | 描述                                      |
-| :----- | :---------------------------------------- |
-| `item` | 聊天消息对象，详见 `EduContextChatItem`。 |
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
+| `item` | 聊天消息对象，详见 [EduContextChatItem](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextchatitem)。 |
 
 ### onReceiveChatHistory
 
@@ -107,9 +107,9 @@ fun onReceiveConversationHistory(history: List<EduContextChatItem>)
 
 历史提问消息已更新。
 
-| 参数      | 描述                                                      |
-| :-------- | :-------------------------------------------------------- |
-| `history` | 由多个聊天消息对象组成的数组，详见 `EduContextChatItem`。 |
+| 参数      | 描述                                                         |
+| :-------- | :----------------------------------------------------------- |
+| `history` | 由多个聊天消息对象组成的数组，详见 [EduContextChatItem](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextchatitem)。 |
 
 ### onChatAllowed
 
@@ -131,12 +131,12 @@ fun onChatAllowed(allowed: Boolean, userInfo: EduContextUserInfo, operator: EduC
 
 单个用户的聊天权限发生变化。
 
-| 参数       | 描述                                                |
-| :--------- | :-------------------------------------------------- |
-| `allowed`  | 是否有权限进行消息聊天。                            |
-| `userInfo` | 聊天权限发生变化的用户，详见 `EduContextUserInfo`。 |
-| `operator` | 操作聊天权限变更的用户，详见 `EduContextUserInfo`。 |
-| `local`    | 是否为本地用户。                                    |
+| 参数       | 描述                                                         |
+| :--------- | :----------------------------------------------------------- |
+| `allowed`  | 是否有权限进行消息聊天。                                     |
+| `userInfo` | 聊天权限发生变化的用户，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。 |
+| `operator` | 操作聊天权限变更的用户，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。 |
+| `local`    | 是否为本地用户。                                             |
 
 ### onChatTips
 
