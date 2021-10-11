@@ -39,7 +39,7 @@ AgoraClassSdk.setConfig(new AgoraClassSdkConfig(appId, eyeCare));
 
 | 参数                | 描述                                                         |
 | :------------------ | :----------------------------------------------------------- |
-| `agoraEduSDKConfig` | 全局配置参数，详见 [AgoraEduSDKConfig](#agoraedusdkconfig)。 |
+| `agoraEduSDKConfig` | 全局配置参数，详见 [AgoraClassSdkConfig](#agoraclasssdkconfig)。 |
 
 ### launch
 
