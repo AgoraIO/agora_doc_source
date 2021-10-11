@@ -10,17 +10,23 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/se
 
 #### 路径参数
 
-- `appid`：String 型，必填。Agora 为每个开发者提供的 App ID。在 Agora 控制台创建一个项目后即可得到一个 App ID。一个 App ID 是一个项目的唯一标识。
-- `entry_point`：String 型，必填。发布点名称。
-- `region`：String 型，必填。推流域名所在的区域。
+|参数|类型|描述|
+|:------|:------|:------|
+|`appid`|String|必填。发布点对应的 App ID。|
+|`entry_point`|String|必填。发布点名称。 |
+|`region`|String|必填。推流域名所在的区域。|
+
 
 #### 请求包体
 
-请求包体为 JSON Object 类型，参数如下：
+请求包体为 JSON Object 类型，包含以下字段：
 
-- `mp4Config`：JSON Object 型，选填。MP4 录制文件的配置，详见 [RecordingFileConfig](#recordingfileconfig)。
-- `hlsConfig`：JSON Object 型，选填。HLS 录制文件的配置，详见 [HlsConfig](#hlsconfig)。
-- `storageConfig`：JSON Object 型，选填（首次设置录制选项时必填）。录制文件的存储配置，详见 [StorageConfig](#storageconfig)。
+|字段|类型|描述|
+|:------|:------|:------|
+|`mp4Config`|JSON Object|选填。MP4 录制文件的配置，详见 [RecordingFileConfig](#recordingfileconfig)。|
+|`hlsConfig`|JSON Object|选填。HLS 录制文件的配置，详见 [HlsConfig](#hlsconfig)。|
+|`storageConfig`|JSON Object|选填（首次设置录制选项时必填）。录制文件的存储配置，详见 [StorageConfig](#storageconfig)。|
+
 
 ### HTTP 响应
 
@@ -33,7 +39,7 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/se
 **请求行**
 
 ```http
-PATCH https://api.agora.io/v1/projects/{your appid}/fls/entry_points/live/settings/record/regions/cn HTTP/1.1
+PATCH https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/record/regions/cn HTTP/1.1
 ```
 
 **请求 body**
@@ -74,17 +80,22 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/sett
 
 #### 路径参数
 
-- `appid`：String 型，必填。发布点对应的 App ID。
-- `entry_point`：String 型，必填。发布点名称。
-- `region`：String 型，必填。推流域名所在的区域。
+|参数|类型|描述|
+|:------|:------|:------|
+|`appid`|String|必填。发布点对应的 App ID。|
+|`entry_point`|String|必填。发布点名称。 |
+|`region`|String|必填。推流域名所在的区域。|
 
 ### HTTP 响应
 
 如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
-- `mp4Config`：JSON Object 型，选填。MP4 录制文件的配置，详见 [RecordingFileConfig](#recordingfileconfig)。
-- `hlsConfig`：JSON Object 型，选填。HLS 录制文件的配置，详见 [HlsConfig](#hlsconfig)。
-- `storageConfig`：JSON Object 型，选填。录制文件的存储配置，详见 [StorageConfig](#storageconfig)。
+|字段|类型|描述|
+|:------|:------|:------|
+|`mp4Config`|JSON Object|MP4 录制文件的配置，详见 [RecordingFileConfig](#recordingfileconfig)。|
+|`hlsConfig`|JSON Object|HLS 录制文件的配置，详见 [HlsConfig](#hlsconfig)。|
+|`storageConfig`|JSON Object|录制文件的存储配置，详见 [StorageConfig](#storageconfig)。|
+
 
 如果返回的 HTTP 状态码非 200，表示请求失败。你可以参考 [HTTP 状态码](#http-code)了解可能的原因。
 
@@ -93,7 +104,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/sett
 **请求行**
 
 ```http
-GET https://api.agora.io/v1/projects/{your appid}/fls/entry_points/live/settings/record/regions/cn HTTP/1.1
+GET https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/record/regions/cn HTTP/1.1
 ```
 
 **响应行**
@@ -127,13 +138,13 @@ HTTP/1.1 200 OK
 
 录制文件的配置，包含以下字段：
 
-- `enabled`：Bool 型，选填。是否启用指定格式的录制。
+`enabled`：Bool 型，选填。是否启用指定格式的录制。
 
 ### HlsConfig
 
 HLS 录制文件的配置，包含以下字段：
 
-- `enabled`：Bool 型，选填。是否启用 HLS 格式的录制。
+`enabled`：Bool 型，选填。是否启用 HLS 格式的录制。
 
 ### StorageConfig
 
@@ -242,8 +253,12 @@ HLS 录制文件的配置，包含以下字段：
 
 ## HTTP 状态码
 
-| 状态码 | 可能的原因                                     |
-| :----- | :--------------------------------------------- |
-| 200    | /                                              |
-| 400    | 参数非法，如 `appid` 或者 `entry_point` 为空。 |
-| 500    | 服务器内部错误。                               |
+| 状态码 | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
+| 200    | 请求成功。                                                   |
+| 400    | 参数非法，如 `appid` 或者 `entry_point` 为空，或者 `region` 参数值非法。 |
+| 401    | 未经授权的（客户 ID/客户密钥匹配错误）。                     |
+| 404    | 服务器无法根据请求找到资源，即请求的发布点不存在，或者请求的 URI 路径非法。 |
+| 500    | 服务器内部错误，无法完成请求。                               |
+| 504    | 服务器内部错误。充当网关或代理的服务器未从远端服务器获取请求。 |
+

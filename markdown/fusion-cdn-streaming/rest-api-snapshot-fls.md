@@ -10,22 +10,22 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/se
 
 #### 路径参数
 
-- `appid`：String 型，必填。Agora 为每个开发者提供的 **App ID**。在 Agora 控制台创建一个项目后即可得到一个 App ID。一个 App ID 是一个项目的唯一标识。
-- `entry_point`：String 型，必填。发布点名称。
-- `region`：String 型，必填。推流域名所在区域。
+|参数|类型|描述|
+|:------|:------|:------|
+|`appid`|String|必填。发布点对应的 App ID。|
+|`entry_point`|String|必填。发布点名称。 |
+|`region`|String|必填。推流域名所在的区域。|
 
 #### 请求包体
 
-请求包体为 JSON Object 类型，参数如下：
+请求包体为 JSON Object 类型，包含以下字段：
 
-- `enabled`：Bool 型，必填。是否启用截图功能：
-  - `true`：启用截图。
-  - `false`：关闭截图。
-- `snapshotInterval`：Integer 型，选填。截图的间隔，单位为秒，默认值为 10，取值范围为 [5,300]。
-- `storageConfig`：JSON Object 型，选填。截图文件的存储配置，详见 [StorageConfig](#storageconfig)。
-- `enableModeration`：Bool 型，选填。是否开启内容审核：
-  - `true`:（默认）不开启内容审核。
-  - `false`: 开启内容审核。
+|字段|类型|描述|
+|:------|:------|:------|
+|`enabled`|Bool|必填。是否启用截图功能：<li>`true`：启用截图。</li><li>`false`：关闭截图。</li>|
+|`snapshotInterval`|Integer|选填。截图的间隔，单位为秒，默认值为 10，取值范围为 [5,300]。|
+|`storageConfig`|JSON Object|选填。截图文件的存储配置，详见 [StorageConfig](#storageconfig)。|
+|`enableModeration`|Bool|选填。是否开启内容审核：<li>`true`: 开启内容审核。</li><li>`false`: （默认）不开启内容审核。</li>|
 
 ### HTTP 响应
 
@@ -45,13 +45,14 @@ PATCH https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settin
 
 ```json
 {
+    "enabled": true,
     "enableModeration": true,
     "snapshotInterval": 30,
     "storageConfig": {
-        "accessKey": "{your acesskey}",
+        "accessKey": "{your access key}",
         "bukcet": "{your bucket}",
         "region": 3,
-        "secretKey": "{your secertkey}",
+        "secretKey": "{your secret key}",
         "vendor": 2
     }
 }
@@ -75,22 +76,22 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/sett
 
 #### 路径参数
 
-- `appid`：String 型，必填。发布点对应的 App ID。
-- `entry_point`：String 型，必填。发布点名称。
-- `region`：String 型，必填。推流域名所在区域。
+|参数|类型|描述|
+|:------|:------|:------|
+|`appid`|String|必填。发布点对应的 App ID。|
+|`entry_point`|String|必填。发布点名称。 |
+|`region`|String|必填。推流域名所在的区域。|
 
 ### HTTP 响应
 
 如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
-- `enabled`：Bool 型。是否启用了截图功能：
-  - `true`：已启用截图。
-  - `false`：未启用截图。
-- `snapshotInterval`：Integer 型。截图的间隔，单位为秒，取值范围为 [5,300]。
-- `storageConfig`：JSON Object 型。截图文件的存储配置，详见 [StorageConfig](#storageconfig)。
-- `enableModeration`：Bool 型。是否已开启内容审核：
-  - `true`: 未开启内容审核。
-  - `false`: 已开启内容审核。
+|字段|类型|描述|
+|:------|:------|:------|
+|`enabled`|Bool|是否启用了截图功能：<li>`true`：已启用截图。</li><li>`false`：未启用截图。</li>|
+|`snapshotInterval`|Integer|截图的间隔，单位为秒，取值范围为 [5,300]。|
+|`storageConfig`|JSON Object|截图文件的存储配置，详见 [StorageConfig](#storageconfig)。|
+|`enableModeration`|Bool|是否已开启内容审核：<li>`true`: 已开启内容审核。</li><li>`false`: 未开启内容审核。</li>|
 
 如果返回的 HTTP 状态码非 200，表示请求失败。你可以参考 [HTTP 状态码](#http-code)了解可能的原因。
 
@@ -112,12 +113,13 @@ HTTP/1.1 200 OK
 
 ```json
 {
-    "enableModeration": true,
+  "enabled": true,  
+  "enableModeration": true,
     "snapshotInterval": 30,
     "storageConfig": {
-        "accessKey": "testacceskey",
+        "accessKey": "test acces key",
         "region": 3,
-        "secretKey": "testsecretkey",
+        "secretKey": "test secret key",
         "vendor": 2
     }
 } 
@@ -226,8 +228,11 @@ HTTP/1.1 200 OK
 <a name="http-code"></a>
 ## HTTP 状态码
 
-| 状态码 | 可能的原因                                     |
-| :----- | :--------------------------------------------- |
-| 200    | /                                              |
-| 400    | 参数非法，如 `appid` 或者 `entry_point` 为空。 |
-| 500    | 服务器内部错误。                               |
+| 状态码 | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
+| 200    | 请求成功。                                                   |
+| 400    | 参数非法，如 `appid` 或者 `entry_point` 为空，或者 `region` 参数值非法。 |
+| 401    | 未经授权的（客户 ID/客户密钥匹配错误）。                     |
+| 404    | 服务器无法根据请求找到资源，即请求的发布点不存在，或者请求的 URI 路径非法。 |
+| 500    | 服务器内部错误，无法完成请求。                               |
+| 504    | 服务器内部错误。充当网关或代理的服务器未从远端服务器获取请求。 |

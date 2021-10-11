@@ -18,7 +18,7 @@ POST https://api.agora.io/v1/projects/{appid}/fls/entry_points?id={entry_point}
 
 #### 路径参数
 
-`appid`：String 型，必填。Agora 为每个开发者提供的 **App ID**。在 Agora 控制台创建一个项目后即可得到一个 App ID。一个 App ID 是一个项目的唯一标识。
+`appid`：String 型，必填。Agora 为每个开发者提供的 App ID。在 Agora 控制台创建一个项目后即可得到一个 App ID。一个 App ID 是一个项目的唯一标识。
 
 #### Query 参数
 
@@ -56,8 +56,10 @@ DELETE https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}
 
 #### 路径参数
 
-- `appid`：String 型，必填。要删除的域名对应的 App ID。
-- `entry_point`：String 型，必填。要删除的发布点名称。
+|参数|类型|描述|
+|:------|:------|:------|
+|`appid`|String|必填。要删除的发布点对应的 App ID。|
+|`entry_point`|String|必填。要删除的发布点名称。|
 
 ### HTTP 响应
 
@@ -70,7 +72,7 @@ DELETE https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}
 **请求行**
 
 ```http
-DELETE https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live2
+DELETE https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live2 HTTP/1.1
 ```
 
 **响应行**
@@ -97,10 +99,11 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points
 
 如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
-`entryPointList`：JSON Array 型，由 `EntryPoint` 组成的数组。发布点列表。
+`entryPointList`：JSON Array 型，发布点列表。一个发布点对应一个 JSON Object，包含以下字段：
 
-- `EntryPoint`：JSON Object 型，包含一个发布点的信息。
-  - `name`：String 型，发布点名称。
+|字段|类型|描述|
+|:------|:------|:------|
+|`name`|String|发布点名称。|
 
 如果返回的 HTTP 状态码非 200，表示请求失败。你可以参考 [HTTP 状态码](#http-code)了解可能的原因。
 
@@ -133,9 +136,12 @@ HTTP/1.1 200 OK
 <a name="http-code"></a>
 ## HTTP 状态码
 
-| 状态码 | 可能的原因                                                   |
+| 状态码 | 描述                                                         |
 | :----- | :----------------------------------------------------------- |
-| 200    | /                                                            |
+| 200    | 请求成功。                                                   |
+| 201    | 资源（发布点）创建成功。                                     |
 | 400    | <li>参数非法，如 `appid` 或者 `entry_point` 为空。</li><li>要增加的发布点已经存在。</li><li>发布点数目超出上限。</li> |
-| 404    | 请求的发布点不存在。                                         |
-| 500    | 服务器内部错误。                                             |
+| 401    | 未经授权的（客户 ID/客户密钥匹配错误）。                     |
+| 404    | 服务器无法根据请求找到资源，即请求的发布点不存在或者请求的 URI 路径非法。 |
+| 500    | 服务器内部错误，无法完成请求。                               |
+| 504    | 服务器内部错误，充当网关或代理的服务器未从远端服务器获取请求。 |
