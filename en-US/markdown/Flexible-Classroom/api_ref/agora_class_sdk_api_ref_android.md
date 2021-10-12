@@ -146,7 +146,7 @@ public static void downloadCourseWare(@NotNull Context context, @Nullable AgoraE
         throws Exception;
 ```
 
-Pre-download the courseware.
+Pre-downloads the courseware.
 
 **Sample code**
 
@@ -209,7 +209,7 @@ The `AgoraEduCoursewarePreloadListener` class reports events related to coursewa
 void onStartDownload(@NotNull AgoraEduCourseware ware);
 ```
 
-Start preloading the courseware.
+Indicates that the SDK starts downloading the courseware.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
@@ -234,7 +234,7 @@ Indicates the progress of courseware pre-downloading.
 void onComplete(@NotNull AgoraEduCourseware ware);
 ```
 
-The courseware pre-downloading completes.
+Indicates that the courseware pre-downloading completes.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
@@ -395,8 +395,8 @@ Controls whether students automatically send audio or video streams after they g
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------------- |
-| `videoState` | Whether send the video stream:<li>`0`: (Default) Do not send the video stream.</li><li>`1`: Send the video stream.</li> |
-| `audioState` | Whether send the audio stream:<li>`0`: (Default) Do not send the audio stream.</li><li>`1`: Send the audio stream.</li> |
+| `videoState` | Whether to send the video stream:<li>`0`: (Default) Do not send the video stream.</li><li>`1`: Send the video stream.</li> |
+| `audioState` | Whether to send the audio stream:<li>`0`: (Default) Do not send the audio stream.</li><li>`1`: Send the audio stream.</li> |
 
 ### AgoraEduLatencyLevel
 
@@ -411,7 +411,7 @@ The latency level of an audience member. Set in [AgoraEduLaunchConfig](#agoraedu
 
 | Parameter | Description |
 | :----------------------------- | :--------------------------------------------------------- |
-| `AgoraEduLatencyLevelLow` | Low latency. Low latency: The latency from the sender to the receiver is 1500 ms to 2000 ms. |
+| `AgoraEduLatencyLevelLow` | Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms. |
 | `AgoraEduLatencyLevelUltraLow` | (Default) Ultra-low latency. The latency from the sender to the receiver is 400 ms to 800 ms. |
 
 ### AgoraEduMediaOptions
