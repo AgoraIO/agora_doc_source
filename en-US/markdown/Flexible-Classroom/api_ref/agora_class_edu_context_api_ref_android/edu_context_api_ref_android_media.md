@@ -60,7 +60,7 @@ Publish local streams to the remote clients, including the video stream captured
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `type` | 媒体流类型，详见 [EduContextMediaStreamType](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextmediastreamtype)。 |
+| `type` | The media type. See [EduContextMediaStreamType](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextmediastreamtype). |
 
 ### unpublishStream
 
@@ -72,7 +72,7 @@ Unpublish local streams.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `type` | 媒体流类型，详见 [EduContextMediaStreamType](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextmediastreamtype)。 |
+| `type` | The media type. See [EduContextMediaStreamType](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextmediastreamtype). |
 
 ### renderRemoteView
 
@@ -97,4 +97,4 @@ Sets the video encoder configuration.
 
 | Parameter | Description |
 | :------------------- | :----------------------------------------------------------- |
-| `videoEncoderConfig` | 视频编码配置，详见 [EduContextVideoEncoderConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextvideoencoderconfig)。 |
+| `videoEncoderConfig` | The video encoding configuration. See [EduContextVideoEncoderConfig](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextvideoencoderconfig). |
