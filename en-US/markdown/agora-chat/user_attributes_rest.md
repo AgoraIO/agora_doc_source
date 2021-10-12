@@ -65,7 +65,7 @@ When the request succeeds, the reponse returns 200 with the following parameters
 When the request fails, it returns a state code and the detailed desciption of the error message in `desc`. 
 
 | State Code | Error message in `desc` | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 401 | `unauthorized` | You have no permission to set the user attributes. Only the user themselves and app admin have the privilege to do so. This error also occurs when you try to set the attributes of a user that does not exist. |
 | 403 | `user metadata length exceed the limit` | The user attribtues you set exceeds the data size limit. This can either be the attributes of one user, or the attributes of all the users in the app. |
 | 404 | `Not found` | The user does not exist. |
@@ -163,7 +163,7 @@ When the request succeeds, the reponse returns 200 with the following parameters
 When the request fails, it returns a state code in the and the detailed desciption of the error message in `desc`.
 
 | State Code | Error message in `desc` | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 404 | `Not found` | The user does not exist. |
 | 500 | `org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection` | This is usually an MySQL error. Contact Agora if this error persists. |
 | 429, 503, or 5xx | The request exceeds the QPS limit. | Pause and try again later.|
@@ -257,7 +257,7 @@ When the request succeeds, the reponse returns 200 with the following parameters
 When the request fails, it returns a state code in the and the detailed desciption of the error message in `desc`.
 
 | State Code | Error message in `desc` | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 403 | `user metadata length exceed the limit` | The number of the specified usernames exceeds 100.|
 | 500 | `org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection` | This is usually an MySQL error. Contact Agora if this error persists. |
 | 429, 503, or 5xx | The request exceeds the QPS limit. | Pause and try again later.|
@@ -342,7 +342,7 @@ When the request succeeds, the reponse returns 200 with the following parameters
 When the request fails, it returns a state code and the detailed desciption of the error message in `desc`. 
 
 | State Code | Error message in `desc` | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 401 | `unauthorized` | You have no permission retrieve the size of the user attributes. Only the app admin has the priviledge to do so. |
 | 500 | `org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection` | This is usually an MySQL error. Contact Agora if this error persists. |
 | 429, 503, or 5xx | The request exceeds the QPS limit. | Pause and try again later.|
@@ -411,7 +411,7 @@ When the request succeeds, the reponse returns 200 with the following parameters
 When the request fails, it returns a state code and the detailed desciption of the error message in `desc`. 
 
 | State Code | Error message in `desc` | Description |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 401 | `unauthorized` | You have no permission retrieve the size of the user attributes. Only the app admin has the priviledge to do so. |
 | 500 | `org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection` | This is usually an MySQL error. Contact Agora if this error persists. |
 | 429, 503, or 5xx | The request exceeds the QPS limit. | Pause and try again later.|
