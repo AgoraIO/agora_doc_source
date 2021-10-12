@@ -1,5 +1,3 @@
-# Extension App Context
-
 ## ExtAppContext
 
 `ExtAppContext` provides the methods that can be called by your app for extension applications.
