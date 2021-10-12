@@ -132,7 +132,7 @@ AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceNam
 + (void)downloadCoursewares:(id<AgoraEduCoursewareDelegate> _Nullable)delegate;
 ```
 
-Pre-download the courseware.
+Pre-downloads the courseware.
 
 **Sample code**
 
@@ -205,7 +205,7 @@ Indicates the progress of courseware pre-downloading.
 - (void)courseware:(AgoraEduCourseware *)courseware idCompleted:(NSError * _Nullable)error;
 ```
 
-The courseware pre-downloading completes.
+Indicates that the courseware pre-downloading completes.
 
 | Parameter | Description |
 | :------ | :------- |
@@ -382,7 +382,7 @@ The latency level of an audience member. Set in [AgoraEduLaunchConfig](#agoraedu
 
 | Parameter | Description |
 | :--------- | :--------------------------------------------------------- |
-| `low` | Low latency. Low latency: The latency from the sender to the receiver is 1500 ms to 2000 ms. |
+| `low` | Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms. |
 | `ultraLow` | (Default) Ultra-low latency. The latency from the sender to the receiver is 400 ms to 800 ms. |
 
 ### AgoraEduMediaOptions
