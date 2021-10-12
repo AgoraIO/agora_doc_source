@@ -39,7 +39,7 @@ AgoraClassSdk.setConfig(new AgoraClassSdkConfig(appId, eyeCare));
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
-| `agoraEduSDKConfig` | The SDK global configuration. See [AgoraEduSDKConfig](#agoraedusdkconfig). |
+| `agoraEduSDKConfig` | The SDK global configuration. See [AgoraClassSdkConfig](#agoraclasssdkconfig). |
 
 ### launch
 
@@ -173,7 +173,7 @@ downloadCoursewares(activityContext, new AgoraEduCoursewarePreloadListener() {
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
 | `context` | The context of the app. |
-| `listener` | The SDK reports events related to courseware preloading to the app through the [](AgoraEduCoursewarePreloadListener#agoraeducoursewarepreloadlistener) class. |
+| `listener` | The SDK reports events related to courseware preloading to the app through the [AgoraEduCoursewarePreloadListener](#agoraeducoursewarepreloadlistener) class. |
 
 ### registerExtensionApp
 
@@ -307,10 +307,10 @@ The classroom launching configuration. Used in [launch](#launch).
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
 | `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. See [AgoraEduRegionStr](#agoraeduregionstr). |
-| `videoEncoderConfig` | Video encoding configurations, including the width and height, frame rate, and bitrate. See [EduVideoEncoderConfig](#eduvideoencoderconfig). |
+| `videoEncoderConfig` | Video encoding configurations, including the width and height, frame rate, and bitrate. See [EduVideoEncoderConfig](#eduvideoencoderconfig) |
 | `mediaOptions` | The media options, including media encryption configurations. See [AgoraEduMediaOptions](#agoraedumediaoptions). |
 | `boardFitMode` | The PPT display mode. See [AgoraBoardFitMode](#agoraboardfitmode). |
-| `streamState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See  [StreamState](#streamstate). |
+| `streamState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See [StreamState](#streamstate). |
 | `latencyLevel` | The latency level of an audience member. See [AgoraEduLatencyLevel](#agoraedulatencylevel). |
 | `userProperties` | User attributes customized by the developer. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties) |
 
@@ -456,11 +456,11 @@ enum class AgoraEduEncryptMode(val value: Int) {
 }
 ```
 
-The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig )for details.
+The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig) for details.
 
 | Parameter | Description |
 | :------------ | :-------------------------- |
-| `NONE` | 不加密。 |
+| `NONE` | No encryption. |
 | `AES_128_XTS` | 128-bit AES encryption, XTS mode. |
 | `AES_128_ECB` | 128-bit AES encryption, ECB mode. |
 | `AES_256_XTS` | 256-bit AES encryption, XTS mode. |
@@ -480,7 +480,7 @@ data class AgoraEduCourseware(
 }
 ```
 
-The courseware pre-download configuration. Used in configCoursewares[](#configcoursewares).
+The courseware pre-download configuration. Used in [configCoursewares](#configcoursewares).
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
@@ -558,7 +558,7 @@ data class EduVideoEncoderConfig(
 )
 ```
 
-视频编码参数配置类，用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+The video encoder configuration. Used in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 > - In the Small Classroom scenario, the default resolution is 120p (160*120).
 > - In the One-to-one Classroom and Lecture Hall scenarios, the default resolution is 240p (320*240).
@@ -581,7 +581,7 @@ enum class EduMirrorMode(val value: Int) {
 }
 ```
 
-Whether to enable mirror mode. 用于 [EduVideoEncoderConfig](#eduvideoencoderconfig)。
+Whether to enable mirror mode. Used in [EduVideoEncoderConfig](#eduvideoencoderconfig).
 
 | Parameter | Description |
 | :--------- | :--------------------- |
