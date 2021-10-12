@@ -104,12 +104,12 @@ Returns the whiteboard container view.
 
 Reports whether the local client has permission to make drawings on the whiteboard.
 
-- When `enabled` is `true`, the UI layer prompts "Your camera is turned on".
-- `enabled` 为 `false` 时，UI 层会提示：你现在无权使用白板了。
+- When `enabled` is `true`, Flexible Classroom triggers a pop-up window saying "You can now use the whiteboard tools".
+- When `enabled` is `false`, Flexible Classroom triggers a pop-up window saying "You cannot use the whiteboard tools".
 
 | Parameter | Description |
 | :-------- | :----------------- |
-| `enabled` | Whether the local authority has the authority to operate whiteboard. |
+| `enabled` | Whether the local client has permission to make drawings on the whiteboard. |
 
 ### onLoadingVisible
 
@@ -119,11 +119,11 @@ Reports whether the local client has permission to make drawings on the whiteboa
 
 > Since v1.1.5.
 
-Indicates whether the whiteboard loading status is visible.
+Indicates whether the whiteboard bar status is visible.
 
 | Parameter | Description |
 | :-------- | :--------------------- |
-| `visible` | Whether the whiteboard loading status is visible. |
+| `visible` | Whether the whiteboard loading bar is visible. |
 
 ### onDownloadProgress
 
@@ -201,7 +201,7 @@ Occurs when the current courseware download task is canceled.
 func applianceSelected(_ mode: AgoraEduContextApplianceType)
 ```
 
-Select a whiteboard basic editing tool.
+Selects a whiteboard basic editing tool.
 
 | Parameter | Description |
 | :----- | :-------------------------------------------------- |
@@ -245,7 +245,7 @@ Selects the line thickness.
 
 ## AgoraEduWhiteBoardPageControlContext
 
-`AgoraEduWhiteBoardContext` provides the methods that can be called by your app for whiteboard basic editing tools.
+`AgoraEduWhiteBoardContext` provides the methods that can be called by your app for the whiteboard page controller.
 
 ### zoomOut
 
@@ -314,7 +314,7 @@ Indicates the current page number and total page number of the whiteboard.
 
 > Since v1.1.5.
 
-Report whether there is permission to turn pages locally.
+Reports whether the local user has permission to turn pages.
 
 | Parameter | Description |
 | :------- | :----------- |
@@ -330,12 +330,12 @@ Report whether there is permission to turn pages locally.
 
 > Since v1.1.5.
 
-Report whether the local authority has the authority to zoom in or zoom out the whiteboard.
+Reports whether the local user has permission to zoom in or zoom out the whiteboard.
 
 | Parameter | Description |
 | :-------------- | :----------- |
-| `zoomOutEnable` | Whether the zooming out function is enabled. |
-| `zoomInEnable` | Whether the zooming in function is enabled. |
+| `zoomOutEnable` | Whether the local user has permission to zoom out the whiteboard. |
+| `zoomInEnable` | Whether the local user has permission to zoom in the whiteboard. |
 
 ### onResizeFullScreenEnable
 
@@ -345,7 +345,7 @@ Report whether the local authority has the authority to zoom in or zoom out the 
 
 > Since v1.1.5.
 
-Report whether the local full-screen whiteboard is authorized.
+Reports whether the local user has permission to make the whiteboard full-screen.
 
 | Parameter | Description |
 | :------- | :--------------- |
