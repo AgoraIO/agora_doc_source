@@ -8,7 +8,7 @@
 abstract fun getDeviceConfig(): EduContextDeviceConfig
 ```
 
-Gets the device configuration. 该方法返回 [EduContextDeviceConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextdeviceconfig)。
+Gets the device configuration. This method returns [EduContextDeviceConfig](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextdeviceconfig).
 
 ### setCameraDeviceEnable
 
@@ -64,7 +64,7 @@ Sets the life cycle state of the device according to the life cycle state of the
 
 | Parameter | Description |
 | :---------- | :----------------------------------------------------------- |
-| `lifecycle` | 设备的生命周期状态，详见 [EduContextDeviceLifecycle](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextdevicelifecycle)。 |
+| `lifecycle` | For the life cycle status of the device, see [EduContextDeviceLifecycle](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextdevicelifecycle). |
 
 ## IDeviceHandler
 
@@ -92,7 +92,7 @@ Indicates the switch between front and rear cameras.
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `facing` | 摄像头方向，详见 [EduContextCameraFacing](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextcamerafacing)。 |
+| `facing` | The camera direction. See [EduContextCameraFacing](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextcamerafacing). |
 
 ### onMicDeviceEnabledChanged
 
