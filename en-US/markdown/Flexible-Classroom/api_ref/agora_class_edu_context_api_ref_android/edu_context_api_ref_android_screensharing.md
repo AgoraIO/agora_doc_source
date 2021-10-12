@@ -41,7 +41,7 @@ Occurs when the state of screen sharing changes.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------------- |
-| `state` | 屏幕共享状态，详见 [EduContextScreenShareState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextscreensharestate)。 |
+| `state` | The state of screen sharing. See [EduContextScreenShareState](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextscreensharestate) for details. |
 | `streamUuid` | The stream ID. |
 
 ### onScreenShareTip
