@@ -43,8 +43,8 @@ abstract fun selectAppliance(type: WhiteboardApplianceType)
 Selects a whiteboard basic editing tool.
 
 | Parameter | Description |
-| :----- | :------------------------------------------------- |
-| `type` | The whiteboard editing tool type. See `WhiteboardApplianceType`. |
+| :----- | :----------------------------------------------------------- |
+| `type` | The whiteboard editing tool type. See [WhiteboardApplianceType](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboardappliancetype). |
 
 ### selectColor
 
@@ -197,8 +197,8 @@ fun onWhiteboardJoinSuccess(config: WhiteboardDrawingConfig)
 Occurs when the local cliet successfully joins the whiteboard room.
 
 | Parameter | Description |
-| :------- | :--------------------------------------------- |
-| `config` | The initial configuration of the whiteboard. See `WhiteboardDrawingConfig`. |
+| :------- | :----------------------------------------------------------- |
+| `config` | The initial configuration of the whiteboard. See [WhiteboardDrawingConfig](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboarddrawingconfig). |
 
 ### onWhiteboardJoinFail
 
@@ -248,7 +248,7 @@ Indicates the initial tool configuration of the whiteboard.
 
 | Parameter | Description |
 | :--- | :--- |
-| `config` | The initial configuration of the whiteboard. See `WhiteboardDrawingConfig`. |
+| `config` | The initial configuration of the whiteboard. See [WhiteboardDrawingConfig](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboarddrawingconfig). |
 
 ### onDrawingEnabled
 
@@ -348,7 +348,7 @@ Occurs when the whiteboard connection state changes.
 
 | Parameter | Description |
 | :--- | :--- |
-| `phase` | The connection state of the whiteboard. |
+| `phase` | The connection state of the whiteboard. See [EduBoardRoomPhase](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#eduboardroomphase). |
 
 
 ### onDownloadProgress
