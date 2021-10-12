@@ -8,7 +8,7 @@
 abstract fun roomInfo(): EduContextRoomInfo
 ```
 
-获取教室相关信息，详见[EduContextRoomInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextroominfo)。
+Gets the classroom information. See [EduContextRoomInfo](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextroominfo).
 
 ### uploadLog
 
@@ -85,7 +85,7 @@ Indicates the classroom state.
 
 | Parameter | Description |
 | :------ | :----------------------------------------------------------- |
-| `state` | 课堂状态，详见 [EduContextClassState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextclassstate)。 |
+| `state` | The classroom state. See [EduContextClassState](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextclassstate) for details. |
 
 ### onClassTime
 
@@ -113,7 +113,7 @@ Reports the network state.
 
 | Parameter | Description |
 | :------ | :----------------------------------------------------------- |
-| `state` | 网络状态，详见 [EduContextNetworkState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextnetworkstate)。 |
+| `state` | The network state. See [EduContextNetworkState](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextnetworkstate) for details. |
 
 ### onLogUploaded
 
@@ -137,7 +137,7 @@ Indicates the connection state.
 
 | Parameter | Description |
 | :------ | :----------------------------------------------------------- |
-| `state` | 连接状态，详见 [EduContextConnectionState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextconnectionstate-1)。 |
+| `state` | The connection state. See [EduContextConnectionState](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextconnectionstate-1) for details. |
 
 ### onClassTip
 
@@ -197,7 +197,7 @@ Occurs when the custom classroom properties are updated.
 | `changedProperties` | The updated classroom properties. |
 | `properties` | All classroom properties. |
 | `cause` | The update reason. |
-| `operator` | 操作者，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。 `operator` being empty means that properties are updated by the server. |
+| `operator` | The information of the operator. See [EduContextUserInfo](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo). `operator` being empty means that properties are updated by the server. |
 
 ### onClassroomJoinSuccess
 
