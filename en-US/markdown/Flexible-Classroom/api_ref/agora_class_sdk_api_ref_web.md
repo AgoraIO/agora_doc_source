@@ -102,7 +102,7 @@ The SDK global configuration. Used when calling [`AgoraEduSDK.config`](#config).
 
 ```typescript
 export type AgoraEduSDKConfigParams = {
-  appId: string
+  appId: string;
   region?: string;
 };
 ```
