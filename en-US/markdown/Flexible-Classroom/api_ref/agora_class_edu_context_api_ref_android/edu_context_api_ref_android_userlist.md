@@ -18,7 +18,7 @@ abstract fun updateFlexUserProps(userUuid: String,
                                  cause: MutableMap<String, String>?)
 ```
 
-Adds or updates custom user properties. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties)
+Adds or updates custom user properties. For details, see [How can I set user properties? ](/en/agora-class/faq/agora_class_custom_properties)
 
 After you successfully update the properties, the remote client receives the `onFlexUserPropertiesChanged` callback.
 
