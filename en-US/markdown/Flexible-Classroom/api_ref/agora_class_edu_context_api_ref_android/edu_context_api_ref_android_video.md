@@ -38,10 +38,10 @@ abstract fun renderVideo(viewGroup: ViewGroup?,
 Starts or stops rendering the local video stream.
 
 | Parameter | Description |
-| :------------- | :----------------------------------------------------- |
+| :------------- | :----------------------------------------------------------- |
 | `container` | The video container. Setting `viewGroup` as `null` means stopping rendering the video stream. |
 | `streamUuid` | The stream ID. |
-| `renderConfig` | Configurations for the video renderer. |
+| `renderConfig` | 视频渲染配置，详见 [EduContextRenderConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextrenderconfig)。 |
 
 ### setVideoEncoderConfig
 
@@ -52,8 +52,8 @@ abstract fun setVideoEncoderConfig(config: EduContextVideoEncoderConfig)
 Sets the video encoder configuration.
 
 | Parameter | Description |
-| :------- | :-------------------------------------------------- |
-| `config` | The video encoding configuration. See `EduContextVideoEncoderConfig`. |
+| :------- | :----------------------------------------------------------- |
+| `config` | 视频编码配置，详见 [EduContextVideoEncoderConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextvideoencoderconfig)。 |
 
 ## IVideoHandler
 
@@ -68,8 +68,8 @@ fun onUserDetailInfoUpdated(info: EduContextUserDetailInfo)
 Occurs when the user info updates.
 
 | Parameter | Description |
-| :----- | :------------------------------------------ |
-| `info` | The user information. See `EduContextUserDetailInfo` for details. |
+| :----- | :----------------------------------------------------------- |
+| `info` | 用户信息，详见 [EduContextUserDetailInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo)。 |
 
 ### onVolumeUpdated
 
