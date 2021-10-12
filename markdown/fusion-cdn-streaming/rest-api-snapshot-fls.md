@@ -50,7 +50,7 @@ PATCH https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settin
     "snapshotInterval": 30,
     "storageConfig": {
         "accessKey": "{your access key}",
-        "bukcet": "{your bucket}",
+        "bucket": "{your bucket}",
         "region": 3,
         "secretKey": "{your secret key}",
         "vendor": 2
