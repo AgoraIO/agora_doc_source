@@ -34,7 +34,7 @@ Gets the information of all registered extension applications.
 
 ## IAgoraExtApp
 
-The `IAgoraExtApp` class contains the necessary operations and life cycle callbacks for extended applications.
+The `IAgoraExtApp` class contains the necessary operations and life cycle callbacks for an extension application.
 
 ### onExtAppLoaded
 
@@ -42,7 +42,7 @@ The `IAgoraExtApp` class contains the necessary operations and life cycle callba
 fun onExtAppLoaded(context: Context)
 ```
 
-The instance of the extended application is initialized.
+Occurs when the instance of the extension application is initialized.
 
 | Parameter | Description |
 | :-------- | :--------------- |
@@ -54,7 +54,7 @@ The instance of the extended application is initialized.
 fun onCreateView(content: Context): View
 ```
 
-The view of the extended application has been created.
+The view of the extension application that has been created.
 
 | Parameter | Description |
 | :-------- | :--------------- |
@@ -66,7 +66,7 @@ The view of the extended application has been created.
 fun onPropertyUpdated(properties: MutableMap<String, Any>?, cause: MutableMap<String, Any?>?)
 ```
 
-It prompts that the data of the current extended application has been updated.
+Occurs when that the data of the current extension application is updated.
 
 | Parameter | Description |
 | :----------- | :----------- |
@@ -79,4 +79,4 @@ It prompts that the data of the current extended application has been updated.
 fun onExtAppUnloaded()
 ```
 
-The extended application has been closed and the instance has been released.
+Occurs when the extension application is closed and the instance is released.
