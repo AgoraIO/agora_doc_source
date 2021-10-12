@@ -11,8 +11,8 @@ abstract fun performHandsUp(state: EduContextHandsUpState, callback: EduContextC
 Raise or lower the hand.
 
 | Parameter | Description |
-| :--------- | :----------------------------------------------- |
-| `state` | Whether the hand is raised. See `EduContextHandsUpState` for details. |
+| :--------- | :----------------------------------------------------------- |
+| `state` | 举手状态，详见 [EduContextHandsUpState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontexthandsupstate)。 |
 | `callback` | Get the result of hand raising asynchronously through ` EduContextCallback`. |
 
 ## IHandsUpHandler
@@ -40,8 +40,8 @@ fun onHandsUpStateUpdated(state: EduContextHandsUpState, coHost: Boolean)
 Occurs when the hand state updates.
 
 | Parameter | Description |
-| :------- | :-------------------------------------------- |
-| `state` | The current hand state. See `EduContextHandsUpState` for details. |
+| :------- | :----------------------------------------------------------- |
+| `state` | 当前举手状态，详见 [EduContextHandsUpState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontexthandsupstate)。 |
 | `coHost` | Whether the local client is on "stage". The on-stage students cannot raise their hands. |
 
 ### onHandsUpStateResultUpdated
@@ -78,4 +78,3 @@ There are the following tips:
 | Parameter | Description |
 | :----- | :--------- |
 | `tips` | The tip. |
-
