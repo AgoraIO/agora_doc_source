@@ -8,7 +8,7 @@
 abstract fun localUserInfo(): EduContextUserInfo
 ```
 
-Gets the information of the local user.
+获取本地用户信息，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。
 
 ### updateFlexUserProps
 
@@ -74,8 +74,8 @@ abstract fun setVideoEncoderConfig(config: EduContextVideoEncoderConfig)
 Sets the video encoder configuration.
 
 | Parameter | Description |
-| :------- | :-------------------------------------------------- |
-| `config` | The video encoding configuration. See `EduContextVideoEncoderConfig`. |
+| :------- | :----------------------------------------------------------- |
+| `config` | 视频编码配置，详见 [EduContextVideoEncoderConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextvideoencoderconfig)。 |
 
 ## IUserHandler
 
@@ -91,7 +91,7 @@ Occurs when the user list is updated. Only display the information of online use
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `list` | The list of online users, which is an array of `EduContextUserDetailInfo` objects. |
+| `list` | 在线用户列表，由 [EduContextUserDetailInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo) 对象组成的数组。 |
 
 ### onCoHostListUpdated
 
@@ -103,7 +103,7 @@ Occurs when the list of on-stage users is updated. Only display the information 
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `list` | The list of on-stage users, which is an array of `EduContextUserDetailInfo` objects. |
+| `list` | 上台用户列表，由 [EduContextUserDetailInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo) 对象组成的数组。 |
 
 ### onUserReward
 
@@ -114,8 +114,8 @@ fun onUserReward(userInfo: EduContextUserInfo)
 Occurs when the local user receives a reward.
 
 | Parameter | Description |
-| :--------- | :------------------------------------ |
-| `userInfo` | The user information. See `EduContextUserInfo`. |
+| :--------- | :----------------------------------------------------------- |
+| `userInfo` | 用户信息，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。 |
 
 ### onKickOut
 
@@ -200,5 +200,5 @@ Occurs when the custom user properties are updated.
 | `changedProperties` | The updated user properties. |
 | `properties` | All user properties. |
 | `cause` | The update reason. |
-| `fromUser` | The information of users whose properties are updated. See `EduContextUserDetailInfo` for details. |
-| `operator` | The information of the operator. See `EduContextUserInfo`. `operator` being empty means that properties are updated by the server. |
+| `fromUser` | 属性被更新的用户的相关信息，详见 [EduContextUserDetailInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo)。 |
+| `operator` | 操作者，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。 `operator` being empty means that properties are updated by the server. |
