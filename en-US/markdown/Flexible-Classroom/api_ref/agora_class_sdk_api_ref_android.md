@@ -312,7 +312,7 @@ The classroom launching configuration. Used in [launch](#launch).
 | `boardFitMode` | The PPT display mode. See [AgoraBoardFitMode](#agoraboardfitmode). |
 | `streamState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See [StreamState](#streamstate). |
 | `latencyLevel` | The latency level of an audience member. See [AgoraEduLatencyLevel](#agoraedulatencylevel). |
-| `userProperties` | User attributes customized by the developer. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties) |
+| `userProperties` | User properties customized by the developer. For details, see [How can I set user properties? ](/en/agora-class/faq/agora_class_custom_properties) |
 
 ### AgoraEduEvent
 
