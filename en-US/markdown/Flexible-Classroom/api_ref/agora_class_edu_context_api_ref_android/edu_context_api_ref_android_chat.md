@@ -72,8 +72,8 @@ fun onReceiveMessage(item: EduContextChatItem)
 Occurs when the local client receives a classroom message.
 
 | Parameter | Description |
-| :----- | :---------------------------------------- |
-| `item` | The message object. See `EduContextChatItem` for details. |
+| :----- | :----------------------------------------------------------- |
+| `item` | 聊天消息对象，详见 [EduContextChatItem](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextchatitem)。 |
 
 ### onReceiveChatHistory
 
@@ -84,8 +84,8 @@ fun onReceiveChatHistory(history: List<EduContextChatItem>)
 Occurs when the history of classroom messages is updated.
 
 | Parameter | Description |
-| :-------- | :-------------------------------------------------------- |
-| `history` | An array of message objects. See `EduContextChatItem` for details. |
+| :-------- | :----------------------------------------------------------- |
+| `history` | 由多个聊天消息对象组成的数组，详见 [EduContextChatItem](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextchatitem)。 |
 
 ### onReceiveConversationMessage
 
@@ -96,8 +96,8 @@ fun onReceiveConversationMessage(item: EduContextChatItem)
 Occurs when the local client receives a peer-to-peer message from a remote user.
 
 | Parameter | Description |
-| :----- | :---------------------------------------- |
-| `item` | The message object. See `EduContextChatItem` for details. |
+| :----- | :----------------------------------------------------------- |
+| `item` | 聊天消息对象，详见 [EduContextChatItem](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextchatitem)。 |
 
 ### onReceiveChatHistory
 
@@ -108,8 +108,8 @@ fun onReceiveConversationHistory(history: List<EduContextChatItem>)
 Occurs when the history of peer-to-peer messages is updated.
 
 | Parameter | Description |
-| :-------- | :-------------------------------------------------------- |
-| `history` | An array of message objects. See `EduContextChatItem` for details. |
+| :-------- | :----------------------------------------------------------- |
+| `history` | 由多个聊天消息对象组成的数组，详见 [EduContextChatItem](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextchatitem)。 |
 
 ### onChatAllowed
 
@@ -132,10 +132,10 @@ fun onChatAllowed(allowed: Boolean, userInfo: EduContextUserInfo, operator: EduC
 Occurs when the chat permissions of a single user changes.
 
 | Parameter | Description |
-| :--------- | :-------------------------------------------------- |
+| :--------- | :----------------------------------------------------------- |
 | `allowed` | Whether the local client has the permission to chat. |
-| `userInfo` | The information of the user whose chat permission has changed. See `EduContextUserInfo`. |
-| `operator` | The information of the operator. See `EduContextUserInfo`. |
+| `userInfo` | 聊天权限发生变化的用户，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。 |
+| `operator` | 操作聊天权限变更的用户，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。 |
 | `local` | Whether the user is the local user. |
 
 ### onChatTips
