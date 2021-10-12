@@ -58,6 +58,10 @@ abstract fun publishStream(type: EduContextMediaStreamType)
 
 Publish local streams to the remote clients, including the video stream captured by the camera and the audio stream sampled by the microphone.
 
+| Parameter | Description |
+| :----- | :----------------------------------------------------------- |
+| `type` | 媒体流类型，详见 [EduContextMediaStreamType](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextmediastreamtype)。 |
+
 ### unpublishStream
 
 ```kotlin
@@ -65,6 +69,10 @@ abstract fun unPublishStream(type: EduContextMediaStreamType)
 ```
 
 Unpublish local streams.
+
+| Parameter | Description |
+| :----- | :----------------------------------------------------------- |
+| `type` | 媒体流类型，详见 [EduContextMediaStreamType](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextmediastreamtype)。 |
 
 ### renderRemoteView
 
@@ -88,5 +96,5 @@ abstract fun setVideoEncoderConfig(videoEncoderConfig: EduContextVideoEncoderCon
 Sets the video encoder configuration.
 
 | Parameter | Description |
-| :------------------- | :-------------------------------------------------- |
-| `videoEncoderConfig` | The video encoding configuration. See `EduContextVideoEncoderConfig`. |
+| :------------------- | :----------------------------------------------------------- |
+| `videoEncoderConfig` | 视频编码配置，详见 [EduContextVideoEncoderConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextvideoencoderconfig)。 |
