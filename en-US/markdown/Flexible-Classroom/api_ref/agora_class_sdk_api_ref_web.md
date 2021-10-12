@@ -163,7 +163,7 @@ export type LaunchOption = {
 | `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
 | `userFlexProperties` | User properties customized by the developer. For details, see [How can I set user properties? ](/en/agora-class/faq/agora_class_custom_properties) |
 | `mediaOptions` | Media stream configurations, including the encryption configuration and the encoding configurations of the screen-sharing stream and the video stream captured by the camera. See `MediaOptions` for details. |
-| `latencyLevel` | The latency level of an audience member in interactive live streaming:<li>`1`: Low latency. Low latency: The latency from the sender to the receiver is 1500 ms to 2000 ms.</li><li>(Default) Ultra-low latency. The latency from the sender to the receiver is 400 ms to 800 ms.</li> |
+| `latencyLevel` | The latency level of an audience member in interactive live streaming:<li>`1`: Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms.</li><li>(Default) Ultra-low latency. The latency from the sender to the receiver is 400 ms to 800 ms.</li> |
 
 ### MediaOptions
 
