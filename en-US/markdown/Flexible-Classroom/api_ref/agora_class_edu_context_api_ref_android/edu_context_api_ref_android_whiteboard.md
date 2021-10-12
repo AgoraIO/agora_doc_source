@@ -299,8 +299,8 @@ Indicates whether the page zoom function is enabled.
 
 | Parameter | Description |
 | :--- | :--- |
-| `zoomOutEnabled` | Whether the zooming out function is enabled. |
-| `zoomInEnabled` | Whether the zooming in function is enabled. |
+| `zoomOutEnabled` | Whether the local user has permission to zoom out the whiteboard. |
+| `zoomInEnabled` | Whether the local user has permission to zoom in the whiteboard. |
 
 ### onFullScreenEnabled
 
