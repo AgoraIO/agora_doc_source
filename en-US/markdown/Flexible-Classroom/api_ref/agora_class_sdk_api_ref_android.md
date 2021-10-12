@@ -39,7 +39,7 @@ AgoraClassSdk.setConfig(new AgoraClassSdkConfig(appId, eyeCare));
 
 | Parameter | Description |
 | :------------------ | :----------------------------------------------------------- |
-| `agoraEduSDKConfig` | The SDK global configuration. See [`AgoraEduSDKConfig`](#agoraedusdkconfig). |
+| `agoraEduSDKConfig` | The SDK global configuration. See [AgoraEduSDKConfig](#agoraedusdkconfig). |
 
 ### launch
 
@@ -91,8 +91,8 @@ AgoraClassSdk.launch(MainActivity2.this, agoraEduLaunchConfig, (state) -> {
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
 | `context` | The context of the app. |
-| `config` | The classroom launching configuration. See [`AgoraEduLaunchConfig`](#agoraedulaunchconfig). |
-| `callback` | The SDK uses the [`AgoraEduLaunchCallback`](#agoraedulaunchcallback) class to report events related to classroom launching to the app. |
+| `config` | The classroom launching configuration. See [AgoraEduLaunchConfig](#agoraedulaunchconfig). |
+| `callback` | The SDK uses the [AgoraEduLaunchCallback](#agoraedulaunchcallback) class to report events related to classroom launching to the app. |
 
 **Returns**
 
@@ -137,7 +137,7 @@ configCoursewares(wares);
 
 | Parameter | Description |
 | :------ | :----------------------------------------------------------- |
-| `wares` | The courseware pre-download configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `wares` | The courseware pre-download configuration. See [AgoraEduCourseware](#agoraeducourseware). |
 
 ### downloadCourseWare
 
@@ -173,7 +173,7 @@ downloadCoursewares(activityContext, new AgoraEduCoursewarePreloadListener() {
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
 | `context` | The context of the app. |
-| `listener` | The SDK reports events related to courseware preloading to the app through the [`AgoraEduCoursewarePreloadListener`](#agoraeducoursewarepreloadlistener) class. |
+| `listener` | The SDK reports events related to courseware preloading to the app through the [](AgoraEduCoursewarePreloadListener#agoraeducoursewarepreloadlistener) class. |
 
 ### registerExtensionApp
 
@@ -196,8 +196,8 @@ void onCallback(AgoraEduEvent state);
 Reports classroom events.
 
 | Parameter | Description |
-| :------ | :------------------------------------------------- |
-| `state` | The classroom events. See [`AgoraEduEvent`](#agoraeduevent). |
+| :------ | :----------------------------------------------- |
+| `state` | The classroom events. See [AgoraEduEvent](#agoraeduevent). |
 
 ## AgoraEduCoursewarePreloadListener
 
@@ -213,7 +213,7 @@ Start preloading the courseware.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `ware` | The courseware pre-download configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `ware` | The courseware pre-download configuration. See [AgoraEduCourseware](#agoraeducourseware). |
 
 ### onProgress
 
@@ -225,7 +225,7 @@ Indicates the progress of courseware pre-downloading.
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `ware` | The courseware pre-download configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `ware` | The courseware pre-download configuration. See [AgoraEduCourseware](#agoraeducourseware). |
 | `progress` | Indicates the progress of courseware pre-downloading. |
 
 ### onComplete
@@ -238,7 +238,7 @@ The courseware pre-downloading completes.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `ware` | The courseware pre-download configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `ware` | The courseware pre-download configuration. See [AgoraEduCourseware](#agoraeducourseware). |
 
 ### onFailed
 
@@ -250,7 +250,7 @@ The courseware pre-downloading fails.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
-| `ware` | The courseware pre-download configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `ware` | The courseware pre-download configuration. See [AgoraEduCourseware](#agoraeducourseware). |
 
 ## Type definition
 
@@ -264,7 +264,7 @@ public class AgoraClassSdkConfig {
 }
 ```
 
-The SDK global configuration. Used in [`setConfig`](#setconfig).
+The SDK global configuration. Used in [setConfig](#setconfig).
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
@@ -293,7 +293,7 @@ class AgoraEduLaunchConfig(val userName: String,
                            val widgetConfigs: MutableList<UiWidgetConfig>? = null) : Parcelable
 ```
 
-The classroom launching configuration. Used in [`launch`](#launch).
+The classroom launching configuration. Used in [launch](#launch).
 
 | Attributes | Description |
 | :------------------- | :----------------------------------------------------------- |
@@ -301,17 +301,17 @@ The classroom launching configuration. Used in [`launch`](#launch).
 | `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType` | The role of the user in the classroom. See  [`AgoraEduRoleType`](#agoraeduroletype). |
-| `roomType` | The classroom type. See [`AgoraEduRoomType`](#agoraeduroomtype). |
+| `roleType` | The role of the user in the classroom. See  [AgoraEduRoleType](#agoraeduroletype). |
+| `roomType` | The classroom type. See [AgoraEduRoomType](#agoraeduroomtype). |
 | `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/en/agora-class/agora_class_prep#step5). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. See [`AgoraEduRegionStr`](#agoraeduregionstr). |
-| `videoEncoderConfig` | Video encoding configurations, including the width and height, frame rate, and bitrate. See [`EduVideoEncoderConfig`](#eduvideoencoderconfig.) |
-| `mediaOptions` | The media options, including media encryption configurations. See [`AgoraEduMediaOptions`](#agoraedumediaoptions). |
-| `boardFitMode` | The PPT display mode. See [`AgoraBoardFitMode`](#agoraboardfitmode). |
-| `streamState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See  [`StreamState`](#streamstate). |
-| `latencyLevel` | The latency level of an audience member. See [`AgoraEduLatencyLevel`](#agoraedulatencylevel). |
+| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. See [AgoraEduRegionStr](#agoraeduregionstr). |
+| `videoEncoderConfig` | Video encoding configurations, including the width and height, frame rate, and bitrate. See [EduVideoEncoderConfig](#eduvideoencoderconfig). |
+| `mediaOptions` | The media options, including media encryption configurations. See [AgoraEduMediaOptions](#agoraedumediaoptions). |
+| `boardFitMode` | The PPT display mode. See [AgoraBoardFitMode](#agoraboardfitmode). |
+| `streamState` | Controls whether students automatically send audio or video streams after they go onto the "stage". See  [StreamState](#streamstate). |
+| `latencyLevel` | The latency level of an audience member. See [AgoraEduLatencyLevel](#agoraedulatencylevel). |
 | `userProperties` | User attributes customized by the developer. For details, see [How can I set user attributes? ](/en/agora-class/faq/agora_class_custom_properties) |
 
 ### AgoraEduEvent
@@ -325,7 +325,7 @@ public enum AgoraEduEvent {
 }
 ```
 
-Classroom events. Reported in [`onCallback`](#oncallback).
+Classroom events. Reported in [onCallback](#oncallback).
 
 | Attributes | Description |
 | :----------------------- | :------------------------ |
@@ -342,7 +342,7 @@ public enum AgoraEduRoleType {
 }
 ```
 
-The role of the user in the classroom. Set in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The role of the user in the classroom. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :------------------------ | :---------- |
@@ -358,7 +358,7 @@ public enum AgoraEduRoomType {
 }
 ```
 
-The classroom type. Set in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The classroom type. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :---------------------- | :----------------------------------------------------------- |
@@ -456,11 +456,11 @@ enum class AgoraEduEncryptMode(val value: Int) {
 }
 ```
 
-The encryption mode.
+The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig )for details.
 
 | Parameter | Description |
 | :------------ | :-------------------------- |
-| `NONE` |                             |
+| `NONE` | 不加密。 |
 | `AES_128_XTS` | 128-bit AES encryption, XTS mode. |
 | `AES_128_ECB` | 128-bit AES encryption, ECB mode. |
 | `AES_256_XTS` | 256-bit AES encryption, XTS mode. |
@@ -480,7 +480,7 @@ data class AgoraEduCourseware(
 }
 ```
 
-The courseware pre-download configuration. Used in [`configCoursewares`](#configcoursewares).
+The courseware pre-download configuration. Used in configCoursewares[](#configcoursewares).
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
@@ -499,12 +499,12 @@ public class SceneInfo {
 }
 ```
 
-The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducourseware).
+The detailed information of a page. Set in [AgoraEduCourseware](#agoraeducourseware).
 
 | Attributes | Description |
 | :--------------- | :-------------------------------------------------------- |
 | `componentCount` | The number of pages. |
-| `ppt` | The detailed information of a converted page. See [`Ppt`](#ppt). |
+| `ppt` | The detailed information of a converted page. See [Ppt](#ppt). |
 | `name` | The page name. |
 
 ### Ppt
@@ -517,7 +517,7 @@ public class Ppt {
 }
 ```
 
-The detailed information of a page displayed on the whiteboard. Set in [`SceneInfo`](#sceneinfo).
+The detailed information of a page displayed on the whiteboard. Set in [SceneInfo](#sceneinfo).
 
 | Attributes | Description |
 | :------- | :------------------------------ |
@@ -558,7 +558,7 @@ data class EduVideoEncoderConfig(
 )
 ```
 
-The classroom launching configuration. See `AgoraEduLaunchConfig`.
+视频编码参数配置类，用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
 > - In the Small Classroom scenario, the default resolution is 120p (160*120).
 > - In the One-to-one Classroom and Lecture Hall scenarios, the default resolution is 240p (320*240).
@@ -581,7 +581,7 @@ enum class EduMirrorMode(val value: Int) {
 }
 ```
 
-Whether to enable mirror mode.
+Whether to enable mirror mode. 用于 [EduVideoEncoderConfig](#eduvideoencoderconfig)。
 
 | Parameter | Description |
 | :--------- | :--------------------- |
