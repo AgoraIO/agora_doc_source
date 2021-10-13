@@ -279,7 +279,7 @@ The SDK global configuration. Used in [`setConfig`](#setconfig).
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
-| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/en/agora-class/agora_class_prep#step1). |
 | `eyeCare` | Whether to enable eye care mode:<li>`false`: (Default) Disable eye care mode.</li><li>`true`: Enable eye care mode.</li> |
 
 ### AgoraEduLaunchConfig
