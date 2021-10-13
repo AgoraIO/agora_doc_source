@@ -1,71 +1,12 @@
-# useUserListContext
-
-`useUserListContext()` enables developers to implement the user list module in the flexible classroom.
-
-You can import `useUserListContext` by `import { useUserListContext } from 'agora-edu-core';` and then use `const {...} = useUserListContext()` to implement the functions and events related to the user list.
-
-This page lists all the functions and events provided by `useUserListContext()`.
-
-## localUserUuid
-
-```javascript
-localUserUuid: string,
-```
-
-The ID of the local user.
-
-## myRole
-
-```javascript
-myRole: string,
-```
-
-The role of the local user.
+`useUserListContext` enables developers to implement the user list module in the flexible classroom.
 
 ## rosterUserList
 
 ```javascript
-rosterUserList: array,
+rosterUserList: any[],
 ```
 
 The students displayed in the user list of the classroom.
-
-## handleRosterClick
-
-```javascript
-async handleRosterClick(actionType: string, uid: string): void
-```
-
-Handle the click events on the user list, such as standing on the stage, whiteboard authorization, turning on the camera or microphone.
-
-| Parameter | Description |
-| :----------- | :------------ |
-| `actionType` | The action. |
-| `uid` | The ID of the operator. |
-
-## revokeCoVideo
-
-```javascript
-async revokeCoVideo(userUuid: string): void
-```
-
-Turn off the camera of the specified user.
-
-| Parameter | Description |
-| :--------- | :-------- |
-| `userUuid` | The user ID. |
-
-## teacherAcceptHandsUp
-
-```javascript
-async teacherAcceptHandsUp(userUuid: string): void
-```
-
-The teacher accepts the student's application for speaking up.
-
-| Parameter | Description |
-| :--------- | :-------- |
-| `userUuid` | The user ID. |
 
 ## userList
 
@@ -82,3 +23,102 @@ acceptedUserList: array,
 ```
 
 The list of users whose application for speaking up has been approved by the teacher.
+
+## localUserInfo
+
+```javascript
+localUserInfo: EduUser,
+```
+
+> Since v1.1.5.
+
+The information of the local client.
+
+## teacherInfo
+
+```javascript
+teacherInfo?: EduUser,
+```
+
+> Since v1.1.5.
+
+The information of the teacher in the current classroom.
+
+## toggleWhiteboardPermission
+
+```javascript
+toggleWhiteboardPermission: (userUuid:string, whiteboardGranted: boolean) => Promise<any>,
+```
+
+> Since v1.1.5.
+
+Grants the permission of drawing on the whiteboard to a specified user.
+
+| Parameter | Description |
+| :------------------ | :------------------------- |
+| `userUuid` | The user ID. |
+| `whiteboardGranted` | Whether to grant the permission of drawing on the whiteboard to the specified user. |
+
+## toggleCamera
+
+```javascript
+toggleCamera: (userUuid:string, enabled: boolean) => Promise<any>,
+```
+
+> Since v1.1.5.
+
+Turns on or off the camera of a specified user.
+
+| Parameter | Description |
+| :--------- | :--------------- |
+| `userUuid` | The user ID. |
+| `enabled` | Whether the camera is turned on. |
+
+## toggleMic
+
+```javascript
+toggleMic: (userUuid:string, enabled: boolean) => Promise<any>,
+```
+
+> Since v1.1.5.
+
+Turns on or off the microphone of a specified user.
+
+| Parameter | Description |
+| :--------- | :--------------- |
+| `userUuid` | The user ID. |
+| `enabled` | Whether to the microphone is turned on. |
+
+## controlTools
+
+```javascript
+controlTools: ControlTool[],
+```
+
+> Since v1.1.5.
+
+Available user management tools.
+
+## isHost
+
+```javascript
+isHost: boolean
+```
+
+> Since v1.1.5.
+
+Whether the local user is the host.
+
+## kick
+
+```javascript
+kick: (userUuid:string) => Promise<any>,
+```
+
+> Since v1.1.5.
+
+Kicks a specified user out of the classroom.
+
+| Parameter | Description |
+| :--------- | :-------- |
+| `userUuid` | The user ID. |
