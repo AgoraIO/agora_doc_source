@@ -10,7 +10,7 @@ This page provides the TypeScript API reference of the Agora Classroom SDK for W
 static config(params: AgoraEduSDKConfigParams):void
 ```
 
-Configure the SDK.
+Configures the SDK.
 
 **Sample code**
 
@@ -27,7 +27,7 @@ AgoraEduSDK.config({
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `params` | The SDK global configuration. See [`AgoraEduSDKConfig`](#agoraedusdkconfig). |
+| `params` | The SDK global configuration. See [AgoraEduSDKConfig](#agoraedusdkconfig). |
 
 ### launch
 
@@ -35,7 +35,7 @@ AgoraEduSDK.config({
 static launch(dom: Element, option: LaunchOption):Promise<void>
 ```
 
-Launch a classroom.
+Launches a classroom.
 
 **Sample code**
 
@@ -92,13 +92,13 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
 | `dom` | See [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document) for details. |
-| `option` | The classroom launching configuration. See [`LaunchOption`](#launchoption). |
+| `option` | The classroom launching configuration. See [LaunchOption](#launchoption). |
 
 ## Type definition
 
 ### AgoraEduSDKConfigParams
 
-The SDK global configuration. Used when calling [`AgoraEduSDK.config`](#config).
+The SDK global configuration. Used when calling [AgoraEduSDK.config](#config).
 
 ```typescript
 export type AgoraEduSDKConfigParams = {
@@ -109,12 +109,13 @@ export type AgoraEduSDKConfigParams = {
 
 | Attributes | Description |
 | :------- | :----------------------------------------------------------- |
-| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
+| `appId` | // Agora App ID
+ |
 | `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
 
 ### LaunchOption
 
-The classroom launching configuration. Used when calling [`AgoraEduSDK.launch`](#launch).
+The classroom launching configuration. Used when calling [AgoraEduSDK.launch](#launch).
 
 ```typescript
 export type LaunchOption = {
@@ -144,26 +145,26 @@ export type LaunchOption = {
 
 | Parameter | Description |
 | :----------------------- | :----------------------------------------------------------- |
-| `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/en/agora-class/agora_class_prep#step5). |
+| `rtmToken` | The RTM token used for authentication, see Generate an RTM Token. |
 | `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
 | `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
-| `roleType` | The role of the user in the classroom. See [`EduRoleTypeEnum`](#eduroletypeenum). |
-| `roomType` | The classroom type. See [`EduRoomTypeEnum`](#eduroomtypeenum). |
+| `roleType` | The role of the user in the classroom. See [EduRoleTypeEnum](#eduroletypeenum). |
+| `roomType` | The classroom type. See [EduRoomTypeEnum](#eduroomtypeenum). |
 | `listener` | The state of classroom launching.<li>`ready`: The classroom is ready.</li><li>`destroyed`: The classroom has been destroyed.</li> |
 | `pretest` | Whether to enable the pre-class device test:<li>`true`: Enable the pre-class device test. After this function is enabled, end users can see a page for the device test before entering the classroom. They can check whether their camera, microphone, and speaker can work properly.</li><li>`false`: Disable the pre-class device test.</li> |
-| `language` | The UI language. See [`LanguageEnum`](#languageenum). |
+| `language` | The UI language. See [LanguageEnum](#languageenum). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `recordUrl` | The URL address to be recorded. Developers need to pass in the URL of the web page deployed by themselves for page recording, such as `https://cn.bing.com/recordUrl`. |
-| `courseWareList` | The configuration of courseware assigned by the educational institution, which cannot be edited by the client. See [`CourseWareList`](#coursewarelist) for details. After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
-| `personalCourseWareList` | The configuration of courseware uploaded by a teacher. See [`CourseWareList`](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
-| `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](./agora_class_ext_app_android?platform=Web). |
+| `recordUrl` | The URL address to be recorded. Developers need to pass in the URL of the web page deployed by themselves for page recording, such as `https://bing.com/recordUrl`. |
+| `courseWareList` | The configuration of courseware assigned by the educational institution, which cannot be edited by the client. See [CourseWareList](#coursewarelist) for details. After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
+| `personalCourseWareList` | The configuration of courseware uploaded by a teacher. See [CourseWareList](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
+| `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see[ Customize Flexible Classroom with ExtApp.](/agora_class_ext_app_android?platform=Web). |
 | `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
 | `userFlexProperties` | User properties customized by the developer. For details, see [How can I set user properties? ](/en/agora-class/faq/agora_class_custom_properties) |
 | `mediaOptions` | Media stream configurations, including the encryption configuration and the encoding configurations of the screen-sharing stream and the video stream captured by the camera. See `MediaOptions` for details. |
-| `latencyLevel` | The latency level of an audience member in interactive live streaming:<li>`1`: Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms.</li><li>(Default) Ultra-low latency. The latency from the sender to the receiver is 400 ms to 800 ms.</li> |
+| `latencyLevel` | The latency level of an audience member in interactive live streaming:<li>`1`: Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms.</li><li>`2`: (Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms.</li> |
 
 ### MediaOptions
 
@@ -196,12 +197,15 @@ export interface EduVideoEncoderConfiguration {
 
 Video encoder configurations.
 
+> - In the Small Classroom scenario, the default resolution is 120p (160*120).
+> - In the One-to-one Classroom and Lecture Hall scenarios, the default resolution is 240p (320*240).
+
 | Parameter | Description |
 | :---------- | :------------------- |
 | `width` | Width (pixel) of the video frame. |
 | `height` | Height (pixel) of the video frame. |
-| `frameRate` | The frame rate (fps) of the video. |
-| `bitrate` | The bitrate (Kbps) of the video. |
+| `frameRate` | The frame rate (fps) of the video. The default value is 15. |
+| `bitrate` | The bitrate (Kbps) of the video. The default value is 200. |
 
 ### MediaEncryptionConfig
 
@@ -243,7 +247,7 @@ Encryption modes. Used in [MediaEncryptionConfig](#mediaencryptionconfig).
 
 ### CourseWareList
 
-The courseware pre-download configuration. Used when calling [`AgoraEduSDK.launch`](#launch).
+The courseware pre-download configuration. Used when calling [AgoraEduSDK.launch](#launch).
 
 ```typescript
 export type CourseWareItem = {
@@ -291,7 +295,7 @@ export enum EduRoleTypeEnum {
 }
 ```
 
-The role of the user in the classroom. Set in [`LaunchOption`](#launchoption).
+The role of the user in the classroom. Set in [LaunchOption](#launchoption).
 
 | Parameter | Description |
 | :---------- | :------------------------ |
@@ -310,7 +314,7 @@ export enum EduRoomTypeEnum {
 }
 ```
 
-The classroom type. Set in [`LaunchOption`](#launchoption).
+The classroom type. Set in [LaunchOption](#launchoption).
 
 | Parameter | Description |
 | :--------------- | :----------------------------------------------------------- |
@@ -324,7 +328,7 @@ The classroom type. Set in [`LaunchOption`](#launchoption).
 export type LanguageEnum = "en" | "zh"
 ```
 
-The language of the user interface. Set in [`LaunchOption`](#launchoption).
+The language of the user interface. Set in [LaunchOption](#launchoption).
 
 | Parameter | Description |
 | :----- | :----- |
