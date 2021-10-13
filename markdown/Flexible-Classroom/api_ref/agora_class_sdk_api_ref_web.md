@@ -27,7 +27,7 @@ AgoraEduSDK.config({
 
 | 参数     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
-| `params` | 全局配置参数，详见 [`AgoraEduSDKConfigParams`](#agoraedusdkconfigparams)。 |
+| `params` | 全局配置参数，详见 [AgoraEduSDKConfigParams](#agoraedusdkconfigparams)。 |
 
 ### launch
 
@@ -92,13 +92,13 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
 | 参数     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
 | `dom`    | 详见 [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document)。 |
-| `option` | 课堂启动配置，详见 [`LaunchOption`](#launchoption)。         |
+| `option` | 课堂启动配置，详见 [LaunchOption](#launchoption)。         |
 
 ## 类型定义
 
 ### AgoraEduSDKConfigParams
 
-SDK 全局配置。用于 [`AgoraEduSDK.config`](#config) 方法。
+SDK 全局配置。用于 [AgoraEduSDK.config](#config) 方法。
 
 ```typescript
 export type AgoraEduSDKConfigParams = {
@@ -109,12 +109,12 @@ export type AgoraEduSDKConfigParams = {
 
 | 属性     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
-| `appId`  | Agora App ID，详见[前提条件中获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
+| `appId`  | Agora App ID。                                               |
 | `region` | 课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。灵动课堂支持以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
 
 ### LaunchOption
 
-课堂启动配置。用于 [`AgoraEduSDK.launch`](#launch) 方法。
+课堂启动配置。用于 [AgoraEduSDK.launch](#launch) 方法。
 
 ```typescript
 export type LaunchOption = {
@@ -144,26 +144,26 @@ export type LaunchOption = {
 
 | 参数                     | 描述                                                         |
 | :----------------------- | :----------------------------------------------------------- |
-| `rtmToken`               | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
+| `rtmToken`               | 用于鉴权的 RTM Token。 |
 | `userUuid`               | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `userName`               | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
 | `roomUuid`               | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomName`               | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
-| `roleType`               | 用户在课堂中的角色，详见 [`EduRoleTypeEnum`](#eduroletypeenum)。 |
-| `roomType`               | 课堂类型，详见 [`EduRoomTypeEnum`](#eduroomtypeenum)。       |
+| `roleType`               | 用户在课堂中的角色，详见 [EduRoleTypeEnum](#eduroletypeenum)。 |
+| `roomType`               | 课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。       |
 | `listener`               | 课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li> |
 | `pretest`                | 是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
-| `language`               | 课堂界面的语言，详见 [`LanguageEnum`](#languageenum)。       |
+| `language`               | 课堂界面的语言，详见 [LanguageEnum](#languageenum)。       |
 | `startTime`              | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
 | `duration`               | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
 | `recordUrl`              | 待录制 URL 地址，开发者需传入自己部署的网页地址，用于页面录制，例如 `https://cn.bing.com/recordUrl`。 |
-| `courseWareList`         | 教育机构指派的课件配置，客户端无法编辑。详见 [`CourseWareList`](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
-| `personalCourseWareList` | 老师端自行上传的课件配置，详见 [`CourseWareList`](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
-| `extApps`                | 注册扩展应用 ExtApp。ExtApp 是灵动课堂 UIKit 的补充插件。详见[通过 ExtApp 自定义插件](./agora_class_ext_app_web?platform=Web)。 |
+| `courseWareList`         | 教育机构指派的课件配置，客户端无法编辑。详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
+| `personalCourseWareList` | 老师端自行上传的课件配置，详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
+| `extApps`                | 注册扩展应用 ExtApp。ExtApp 是灵动课堂 UIKit 的补充插件。详见[通过 ExtApp 自定义插件](/cn/agora-class/agora_class_ext_app_web?platform=Web)。 |
 | `region`                 | 课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。灵动课堂支持以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
 | `userFlexProperties`     | 由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties) |
 | `mediaOptions`           | 媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 `MediaOptions`。 |
-| `latencyLevel`           | 观众端延时级别：<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li> |
+| `latencyLevel`           | 观众端延时级别：<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>`2`:（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li> |
 
 ### MediaOptions
 
@@ -196,12 +196,15 @@ export interface EduVideoEncoderConfiguration {
 
 视频编码参数配置。
 
+> - 在小班课中，分辨率的默认值为 120p（160*120）。
+> - 在一对一和大班课中，分辨率的默认值为 240p（320*240）。
+
 | 参数        | 描述                 |
 | :---------- | :------------------- |
 | `width`     | 视频帧宽度(pixel)。  |
 | `height`    | 视频帧高度 (pixel)。 |
-| `frameRate` | 视频帧率 (fps)。     |
-| `bitrate`   | 视频码率 (Kbps)。    |
+| `frameRate` | 视频帧率 (fps)。默认值为 15。     |
+| `bitrate`   | 视频码率 (Kbps)。默认值为 200。    |
 
 ### MediaEncryptionConfig
 
@@ -243,7 +246,7 @@ export enum MediaEncryptionMode {
 
 ### CourseWareList
 
-课件预加载配置。用于 [`AgoraEduSDK.launch`](#launch) 方法。
+课件预加载配置。用于 [AgoraEduSDK.launch](#launch) 方法。
 
 ```typescript
 export type CourseWareItem = {
@@ -291,7 +294,7 @@ export enum EduRoleTypeEnum {
 }
 ```
 
-用户在课堂中的角色。在 [`LaunchOption`](#launchoption) 中设置。
+用户在课堂中的角色。在 [LaunchOption](#launchoption) 中设置。
 
 | 参数        | 描述                      |
 | :---------- | :------------------------ |
@@ -310,7 +313,7 @@ export enum EduRoomTypeEnum {
 }
 ```
 
-课堂类型。在 [`LaunchOption`](#launchoption) 中设置。
+课堂类型。在 [LaunchOption](#launchoption) 中设置。
 
 | 参数             | 描述                                                         |
 | :--------------- | :----------------------------------------------------------- |
@@ -324,7 +327,7 @@ export enum EduRoomTypeEnum {
 export type LanguageEnum = "en" | "zh"
 ```
 
-界面语言。在 [`LaunchOption`](#launchoption) 中设置。
+界面语言。在 [LaunchOption](#launchoption) 中设置。
 
 | 参数   | 描述   |
 | :----- | :----- |
