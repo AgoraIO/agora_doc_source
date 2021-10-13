@@ -153,7 +153,7 @@ Pre-downloads the courseware.
 + (void)registerExtApps:(NSArray<AgoraExtAppConfiguration *> *)apps;
 ```
 
-Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom]( with ExtApp./agora_class_ext_app_android?platform=iOS).
+Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](./agora_class_ext_app_ios?platform=iOS).
 
 ## AgoraEduClassroom
 
