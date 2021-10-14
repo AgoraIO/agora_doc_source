@@ -10,7 +10,7 @@ The Agora Chat SDK supports sending and receiving various types of messages:
 - Extended messages.
 - Custom messages.
 
-This pages shows how to implement the funcionality of sending and receiving messages.
+This pages shows how to implement the functionality of sending and receiving messages.
 
 ## Understand the tech
 
@@ -27,11 +27,12 @@ The process of sending and receiving a message is as follows:
 Before proceeding, ensure that you meet the following requirements:
 
 - You have integrated and initialized the Agora Chat SDK.
+- You have implemented the functionality of registering accounts and login. See [Get Started](link to the quick start).
 - You understand the [API call frequency limits](link to the limitations).
 
 ## Implementation
 
-This section introduces how to send and receive attachment messages. For more message types, refer to the References section.
+This section uses attachment messages as an example to show to send and receive messages. For more message types, refer to [References]().
 
 When you send an attachment message (image, audio, video or file), the attachment is uploaded to the Agora Chat server. 
 
@@ -407,6 +408,8 @@ If you need to display the read receipts in group chats, use the [asyncFetchGrou
 
 This section provides additional information for your reference.
 
+<a name="other"></a>
+
 ### Other message types
 
 #### Location messages
@@ -429,7 +432,7 @@ A CMD is a signalling message. It is not displayed in a conversation, stored in 
 
 CMD messages are applicable to scenarios like updating the avatar and nickname.
 
-You can use the CMD message to send a command and specify an action for the receiver. 
+The following code snippets show how to use the CMD message to send a command and specify an action for the receiver. 
 
 ```java
 ChatMessage cmdMsg = ChatMessage.createSendMessage(ChatMessage.Type.CMD);
