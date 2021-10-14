@@ -1,8 +1,8 @@
 This page provides the Swift API reference of the Agora Classroom SDK for iOS.
 
-## AgoraEduSDK
+## AgoraClassroomSDK
 
-`AgoraEduSDK` is the basic interface of the Agora Classroom SDK and provides the main methods that can be invoked by your app.
+`AgoraClassroomSDK` is the basic interface of the Agora Classroom SDK and provides the main methods that can be invoked by your app.
 
 ### version
 
@@ -19,7 +19,7 @@ The SDK version.
 ### setConfig
 
 ```swift
-+ (void)setConfig:(AgoraEduSDKConfig *)config;
++ (BOOL)setConfig:(AgoraClassroomSDKConfig *)config;
 ```
 
 Globally configures the SDK.
@@ -28,21 +28,21 @@ Globally configures the SDK.
 
 ```swift
 /** Global configuration **/
-@interface AgoraEduSDKConfig : NSObject
+@interface AgoraClassroomSDKConfig : NSObject
 // Agora App ID
 @property (nonatomic, copy) NSString *appId;
 // Whether to enable eye care mode
 @property (nonatomic, assign) BOOL eyeCare;
 @end
-AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
-[AgoraEduSDK setConfig:defaultConfig];
+AgoraClassroomSDKConfig *defaultConfig = [[AgoraClassroomSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
+[AgoraClassroomSDK setConfig:defaultConfig];
 ```
 
 **Parameter**
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `config` | The SDK global configuration. See [`AgoraEduSDKConfig`](#agoraedusdkconfig). |
+| `config` | The SDK global configuration. See [AgoraClassroomSDKConfig](#agoraclassroomsdkconfig). |
 
 ### launch
 
@@ -77,15 +77,15 @@ NSNumber *startTime = @(XXX);
 NSNumber *duration = @(1800);
 
 AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration];
-[AgoraEduSDK launch:config delegate:self];
+[AgoraClassroomSDK launch:config delegate:self];
 ```
 
 **Parameter**
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `config` | The classroom launching configuration. See [`AgoraEduLaunchConfig`](#agoraedulaunchconfig). |
-| `delegate` | The SDK uses the [`AgoraEduClassroomDelegate`](#agoraeduclassroomdelegate) class to report events related to classroom launching to the app. |
+| `config` | The classroom launching configuration. See [AgoraEduLaunchConfig](#agoraedulaunchconfig). |
+| `delegate` | The SDK uses the [AgoraEduClassroomDelegate](#agoraeduclassroomdelegate) class to report events related to classroom launching to the app. |
 
 **Returns**
 
@@ -117,14 +117,14 @@ NSString *scenePath = [NSString stringWithFormat:@"%@/%@", resourceName, [conver
 
 AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceName:resourceName scenePath:scenePath scenes:convertedFileList resourceUrl:resourceUrl];
 // Configure the courseware pre-downloading
-[AgoraEduSDK configCoursewares:@[courseware]];
+[AgoraClassroomSDK configCoursewares:@[courseware]];
 ```
 
 **Parameter**
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `config` | The courseware pre-download configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `config` | The courseware pre-download configuration. See [AgoraEduCourseware](#agoraeducourseware). |
 
 ### downloadCoursewares
 
@@ -138,14 +138,14 @@ Pre-downloads the courseware.
 
 ```swift
 // Download the configured courseware
-[AgoraEduSDK downloadCoursewares:self];
+[AgoraClassroomSDK downloadCoursewares:self];
 ```
 
 **Parameter**
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `delegate` | The SDK reports events related to courseware preloading to the app through the [`AgoraEduCoursewareDelegate`](#agoraeducoursewaredelegate) class. |
+| `delegate` | The SDK reports events related to [courseware]( preloading to the app through the [AgoraEduCoursewareDelegate](#agoraeducoursewaredelegate) class. |
 
 ### registerExtApps
 
@@ -180,8 +180,8 @@ Reports classroom events.
 **Parameter**
 
 | Parameter | Description |
-| :------ | :------------------------------------------------- |
-| `event` | The classroom events. See [`AgoraEduEvent`](#agoraeduevent). |
+| :------ | :----------------------------------------------- |
+| `event` | The classroom events. See [AgoraEduEvent](#agoraeduevent). |
 
 ## AgoraEduCoursewareDelegate
 
@@ -223,7 +223,7 @@ typedef NS_ENUM(NSInteger, AgoraEduEvent) {
 };
 ```
 
-Classroom events. Reported in the [`didReceivedEvent`](#didreceivedevent) callback.
+Classroom events. Reported in the [didReceivedEvent](#didreceivedevent) callback.
 
 | Attributes | Description |
 | :----------------------- | :------------------ |
@@ -239,7 +239,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoleType) {
 };
 ```
 
-The role of the user in the classroom. Set in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The role of the user in the classroom. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :------------------------ | :---------- |
@@ -255,7 +255,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 };
 ```
 
-The classroom type. Set in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The classroom type. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :---------------------- | :----------------------------------------------------------- |
@@ -263,10 +263,10 @@ The classroom type. Set in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
 | `AgoraEduRoomTypeBig` | `2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
 | `AgoraEduRoomTypeSmall` | `4`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. |
 
-### AgoraEduSDKConfig
+### AgoraClassroomSDKConfig
 
 ```swift
-@interface AgoraEduSDKConfig : NSObject
+@interface AgoraClassroomSDKConfig : NSObject
 @property (nonatomic, copy) NSString *appId;
 @property (nonatomic, assign) BOOL eyeCare;
 - (instancetype)initWithAppId:(NSString *)appId;
@@ -275,7 +275,7 @@ The classroom type. Set in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
 @end
 ```
 
-The SDK global configuration. Used in [`setConfig`](#setconfig).
+The SDK global configuration. Used in [setConfig](#setconfig).
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
@@ -317,7 +317,7 @@ The SDK global configuration. Used in [`setConfig`](#setconfig).
 @end
 ```
 
-The classroom launching configuration. Used in [`launch`](#launch).
+The classroom launching configuration. Used in [launch](#launch).
 
 | Attributes | Description |
 | :--------------------------- | :----------------------------------------------------------- |
@@ -503,7 +503,7 @@ Whether to enable mirror mode.
 @end
 ```
 
-The courseware pre-download configuration. Used in [`configCoursewares`](#configcoursewares).
+The courseware pre-download configuration. Used in [configCoursewares](#configcoursewares).
 
 | Attributes | Description |
 | :------------- | :----------------------------------------------------------- |
@@ -527,7 +527,7 @@ The courseware pre-download configuration. Used in [`configCoursewares`](#config
 @end
 ```
 
-The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducourseware).
+The detailed information of a page. Set in [AgoraEduCourseware](#agoraeducourseware).
 
 | Attributes | Description |
 | :---------------- | :--------------------------------------------------------- |
@@ -550,7 +550,7 @@ The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducours
 @end
 ```
 
-The detailed information of a converted page. Set in [`SceneInfo`](#sceneinfo).
+The detailed information of a converted page. Set in [SceneInfo](#sceneinfo).
 
 | Attributes | Description |
 | :----------- | :------------------------------------------ |

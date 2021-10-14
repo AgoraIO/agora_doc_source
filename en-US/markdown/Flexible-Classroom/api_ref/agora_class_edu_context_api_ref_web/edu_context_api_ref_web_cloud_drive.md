@@ -1,5 +1,3 @@
-# CloudDriveContext
-
 `CloudDriveContext` provides capabilities for class files.
 
 ## upsertResources

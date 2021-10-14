@@ -1,5 +1,3 @@
-# MediaContext
-
 `MediaContext` provides capabilities for device control.
 
 ## enableMediaEncryption
