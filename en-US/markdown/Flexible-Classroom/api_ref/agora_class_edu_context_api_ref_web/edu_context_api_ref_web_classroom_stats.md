@@ -1,5 +1,3 @@
-# ClassroomStatsContext
-
 ## cpuUsage
 
 ```typescript
@@ -79,8 +77,6 @@ txNetworkQuality: string;
 > Since v1.1.5.
 
 The uplink network quality.
-
-# LiveRoomStatsContext
 
 ## liveClassStatus
 
