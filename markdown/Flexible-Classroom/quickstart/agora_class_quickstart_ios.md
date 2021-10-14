@@ -42,8 +42,8 @@
 
    你可在 `AgoraEducation/Main/Controllers/LoginViewController.swift` 文件中查看启动课堂的具体逻辑：
 
-   1. 调用 [AgoraEduSDK.setConfig](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#setconfig) 方法全局配置 SDK。
-   2. 调用 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#launch) 方法启动灵动课堂。
+   1. 调用 [AgoraClassroomSDK.setConfig](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#setconfig) 方法全局配置 SDK。
+   2. 调用 [AgoraClassroomSDK.launch](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#launch) 方法启动灵动课堂。
 
 3. 连接上 iOS 设备后，用 Xcode 打开示例项目，然后编译并运行项目。
 

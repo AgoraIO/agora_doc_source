@@ -1,8 +1,8 @@
 本页提供 Agora Classroom SDK for iOS 的 Swift API 参考。
 
-## AgoraEduSDK 
+## AgoraClassroomSDK 
 
-`AgoraEduSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
+`AgoraClassroomSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
 
 ### version
 
@@ -19,7 +19,7 @@ SDK 版本号。
 ### setConfig
 
 ```swift
-+ (void)setConfig:(AgoraEduSDKConfig *)config;
++ (BOOL)setConfig:(AgoraClassroomSDKConfig *)config;
 ```
 
 全局配置 SDK。
@@ -28,21 +28,21 @@ SDK 版本号。
 
 ```swift
 /** 全局配置 **/
-@interface AgoraEduSDKConfig : NSObject
+@interface AgoraClassroomSDKConfig : NSObject
 // Agora App ID
 @property (nonatomic, copy) NSString *appId;
 // 是否开启护眼模式
 @property (nonatomic, assign) BOOL eyeCare;
 @end
-AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
-[AgoraEduSDK setConfig:defaultConfig];
+AgoraClassroomSDKConfig *defaultConfig = [[AgoraClassroomSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
+[AgoraClassroomSDK setConfig:defaultConfig];
 ```
 
 **参数**
 
 | 参数     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
-| `config` | 全局配置参数，详见 [`AgoraEduSDKConfig`](#agoraedusdkconfig)。 |
+| `config` | 全局配置参数，详见 [AgoraClassroomSDKConfig](#agoraclassroomsdkconfig)。 |
 
 ### launch
 
@@ -77,15 +77,15 @@ NSNumber *startTime = @(XXX);
 NSNumber *duration = @(1800);
  
 AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration];
-[AgoraEduSDK launch:config delegate:self];
+[AgoraClassroomSDK launch:config delegate:self];
 ```
 
 **参数**
 
 | 参数       | 描述                                                         |
 | :--------- | :----------------------------------------------------------- |
-| `config`   | 课堂启动配置，详见 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig)。 |
-| `delegate` | SDK 通过 [`AgoraEduClassroomDelegate`](#agoraeduclassroomdelegate) 类向 App 报告课堂启动相关的事件。 |
+| `config`   | 课堂启动配置，详见 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。 |
+| `delegate` | SDK 通过 [AgoraEduClassroomDelegate](#agoraeduclassroomdelegate) 类向 App 报告课堂启动相关的事件。 |
 
 **返回值**
 
@@ -117,14 +117,14 @@ NSString *scenePath = [NSString stringWithFormat:@"%@/%@", resourceName, [conver
 
 AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceName:resourceName scenePath:scenePath scenes:convertedFileList resourceUrl:resourceUrl];
 // 配置课件预加载
-[AgoraEduSDK configCoursewares:@[courseware]];
+[AgoraClassroomSDK configCoursewares:@[courseware]];
 ```
 
 **参数**
 
 | 参数     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
-| `config` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
+| `config` | 课件预加载配置，详见 [AgoraEduCourseware](#agoraeducourseware)。 |
 
 ### downloadCoursewares
 
@@ -138,14 +138,14 @@ AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceNam
 
 ```swift
 // 下载配置好的课件
-[AgoraEduSDK downloadCoursewares:self];
+[AgoraClassroomSDK downloadCoursewares:self];
 ```
 
 **参数**
 
 | 参数       | 描述                                                         |
 | :--------- | :----------------------------------------------------------- |
-| `delegate` | SDK 通过 [`AgoraEduCoursewareDelegate`](#agoraeducoursewaredelegate) 类向 App 报告课件预加载相关的事件。 |
+| `delegate` | SDK 通过 [AgoraEduCoursewareDelegate](#agoraeducoursewaredelegate) 类向 App 报告课件预加载相关的事件。 |
 
 ### registerExtApps
 
@@ -179,9 +179,9 @@ AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceNam
 
 **参数**
 
-| 参数    | 描述                                               |
-| :------ | :------------------------------------------------- |
-| `event` | 课堂事件，详见 [`AgoraEduEvent`](#agoraeduevent)。 |
+| 参数    | 描述                                             |
+| :------ | :----------------------------------------------- |
+| `event` | 课堂事件，详见 [AgoraEduEvent](#agoraeduevent)。 |
 
 ## AgoraEduCoursewareDelegate
 
@@ -223,7 +223,7 @@ typedef NS_ENUM(NSInteger, AgoraEduEvent) {
 };
 ```
 
-课堂事件。在 [`didReceivedEvent`](#didreceivedevent) 回调中报告。
+课堂事件。在 [didReceivedEvent](#didreceivedevent) 回调中报告。
 
 | 属性                     | 描述                |
 | :----------------------- | :------------------ |
@@ -239,7 +239,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoleType) {
 };
 ```
 
-用户在课堂中的角色。在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
+用户在课堂中的角色。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
 
 | 属性                      | 描述        |
 | :------------------------ | :---------- |
@@ -255,7 +255,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 };
 ```
 
-课堂类型。在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
+课堂类型。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
 
 | 属性                    | 描述                                                         |
 | :---------------------- | :----------------------------------------------------------- |
@@ -263,10 +263,10 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 | `AgoraEduRoomTypeBig`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。 |
 | `AgoraEduRoomTypeSmall` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可点名学生“上台”发言，与老师进行实时音视频互动。 |
 
-### AgoraEduSDKConfig
+### AgoraClassroomSDKConfig
 
 ```swift
-@interface AgoraEduSDKConfig : NSObject
+@interface AgoraClassroomSDKConfig : NSObject
 @property (nonatomic, copy) NSString *appId;
 @property (nonatomic, assign) BOOL eyeCare;
 - (instancetype)initWithAppId:(NSString *)appId;
@@ -275,7 +275,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 @end
 ```
 
-SDK 全局配置。用于 [`setConfig`](#setConfig) 方法。
+SDK 全局配置。用于 [setConfig](#setConfig) 方法。
 
 | 属性      | 描述                                                         |
 | :-------- | :----------------------------------------------------------- |
@@ -317,7 +317,7 @@ SDK 全局配置。用于 [`setConfig`](#setConfig) 方法。
 @end
 ```
 
-课堂启动配置。用于 [`launch`](#launch) 方法。
+课堂启动配置。用于 [launch](#launch) 方法。
 
 | 属性                         | 描述                                                         |
 | :--------------------------- | :----------------------------------------------------------- |
@@ -503,7 +503,7 @@ typedef NS_ENUM(NSInteger, AgoraEduMediaEncryptionMode) {
 @end
 ```
 
-课件预加载配置。用于 [`configCoursewares`](#configcoursewares) 方法。
+课件预加载配置。用于 [configCoursewares](#configcoursewares) 方法。
 
 | 属性           | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
@@ -526,7 +526,7 @@ typedef NS_ENUM(NSInteger, AgoraEduMediaEncryptionMode) {
 @end
 ```
 
-一个文件页面的具体信息。在 [`AgoraEduCourseware`](#agoraeducourseware) 中设置。
+一个文件页面的具体信息。在 [AgoraEduCourseware](#agoraeducourseware) 中设置。
 
 | 属性              | 描述                                                       |
 | :---------------- | :--------------------------------------------------------- |
@@ -550,7 +550,7 @@ typedef NS_ENUM(NSInteger, AgoraEduMediaEncryptionMode) {
 @end
 ```
 
-一个完成转换后的页面的具体信息。在 [`SceneInfo`](#sceneinfo) 中设置。
+一个完成转换后的页面的具体信息。在 [SceneInfo](#sceneinfo) 中设置。
 
 | 属性         | 描述                                        |
 | :----------- | :------------------------------------------ |

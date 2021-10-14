@@ -75,7 +75,7 @@ v1.1.5 新增课件设备检测和视频预览能力，开发者可通过新增�
 1. 在 Podfile 文件中，将 AgoraClassroomSDK 版本设置为 1.1.2.3：
   ```
 pod "AgoraClassroomSDK", "1.1.2.3"
-```
+  ```
 
 2. 执行 `pod update` 升级 SDK。
 
