@@ -28,7 +28,7 @@ getAudioPlaybackVolume: () => number;ng) => Promise<void>;
 
 > Since v1.1.5.
 
-Get the volume of the audio played by the speaker.
+Gets the volume of the audio played by the speaker.
 
 ## isNative
 
