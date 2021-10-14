@@ -1,9 +1,8 @@
 This page provides the Swift API reference of the Agora Classroom SDK for iOS.
 
-## pod 'AgoraClassroomSDK'
+## AgoraClassroomSDK
 
-
-`AgoraClassSdk` is the basic interface of the Agora Classroom SDK and provides the main methods that can be invoked by your app.
+`AgoraClassroomSDK` is the basic interface of the Agora Classroom SDK and provides the main methods that can be invoked by your app.
 
 ### version
 
@@ -20,7 +19,7 @@ The SDK version.
 ### setConfig
 
 ```swift
-+ (void)setConfig:(AgoraEduSDKConfig *)config;
++ (BOOL)setConfig:(AgoraClassroomSDKConfig *)config;
 ```
 
 Globally configures the SDK.
@@ -29,21 +28,21 @@ Globally configures the SDK.
 
 ```swift
 /** Global configuration **/
-@interface AgoraEduSDKConfig : NSObject
+@interface AgoraClassroomSDKConfig : NSObject
 // Agora App ID
 @property (nonatomic, copy) NSString *appId;
 // Whether to enable eye care mode
 @property (nonatomic, assign) BOOL eyeCare;
 @end
-AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
-[AgoraEduSDK setConfig:defaultConfig];
+AgoraClassroomSDKConfig *defaultConfig = [[AgoraClassroomSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
+[AgoraClassroomSDK setConfig:defaultConfig];
 ```
 
 **Parameter**
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `config` | The SDK global configuration. See [AgoraClassSdkConfig](#agoraclasssdkconfig). |
+| `config` | The SDK global configuration. See [AgoraClassroomSDKConfig](#agoraclassroomsdkconfig). |
 
 ### launch
 
@@ -78,7 +77,7 @@ NSNumber *startTime = @(XXX);
 NSNumber *duration = @(1800);
 
 AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration];
-[AgoraEduSDK launch:config delegate:self];
+[AgoraClassroomSDK launch:config delegate:self];
 ```
 
 **Parameter**
@@ -118,7 +117,7 @@ NSString *scenePath = [NSString stringWithFormat:@"%@/%@", resourceName, [conver
 
 AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceName:resourceName scenePath:scenePath scenes:convertedFileList resourceUrl:resourceUrl];
 // Configure the courseware pre-downloading
-[AgoraEduSDK configCoursewares:@[courseware]];
+[AgoraClassroomSDK configCoursewares:@[courseware]];
 ```
 
 **Parameter**
@@ -139,7 +138,7 @@ Pre-downloads the courseware.
 
 ```swift
 // Download the configured courseware
-[AgoraEduSDK downloadCoursewares:self];
+[AgoraClassroomSDK downloadCoursewares:self];
 ```
 
 **Parameter**
@@ -267,7 +266,7 @@ The classroom type. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 ### AgoraClassroomSDKConfig
 
 ```swift
-@interface AgoraEduSDKConfig : NSObject
+@interface AgoraClassroomSDKConfig : NSObject
 @property (nonatomic, copy) NSString *appId;
 @property (nonatomic, assign) BOOL eyeCare;
 - (instancetype)initWithAppId:(NSString *)appId;
