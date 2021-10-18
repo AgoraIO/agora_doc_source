@@ -16,7 +16,7 @@
                 <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp">virtual int uploadLogFile(agora::util::AString&amp; requestId) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">uploadLogFile(): string</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract string UploadLogFile();</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
         </p>
@@ -34,7 +34,7 @@
    <p props="android ios mac"><note type="attention">该方法每分钟的调用次数不得超过 1 次，超出后会返回 <ph keyref="NULL"/>。</note></p>
    <p>为了方便排查问题，Agora 推荐你将 <apiname>uploadLogFile</apiname> 方法与应用的 UI 元素绑定，在出现质量问题时提示用户上传日志。</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section props="windows android ios mac" id="parameters"><title>参数</title>
    <parml props="windows">
        <plentry>
   <pt>requestId</pt>
@@ -43,7 +43,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section props="windows android ios mac" id="return_values">
    <title>返回值</title>
    <ul props="windows">
        <li>0: 方法调用成功。</li>
