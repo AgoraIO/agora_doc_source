@@ -1,6 +1,6 @@
 ## VideoContext
 
-`VideoContext` provides the methods that can be called by your app for media control.
+`VideoContext` provides the methods that can be called by your app for media control. This context is mainly for controlling the audio and video of the teacher and student in the One-to-one Classrooms scenario and the audio and video of the teacher in the Small Classroom and Lecture Hall scenarios.
 
 ### updateVideo
 
@@ -8,7 +8,7 @@
 abstract fun updateVideo(enabled: Boolean)
 ```
 
-Enable or disable the local video.
+Enables or disables the local video.
 
 | Parameter | Description |
 | :-------- | :----------------- |
@@ -20,7 +20,7 @@ Enable or disable the local video.
 abstract fun updateAudio(enabled: Boolean)
 ```
 
-Enable or disable the local audio.
+Enables or disables the local audio.
 
 | Parameter | Description |
 | :-------- | :----------------- |
@@ -29,15 +29,31 @@ Enable or disable the local audio.
 ### renderVideo
 
 ```kotlin
-abstract fun renderVideo(viewGroup: ViewGroup?, streamUuid: String)
+abstract fun renderVideo(viewGroup: ViewGroup?,
+                         streamUuid: String,
+                         renderConfig: EduContextRenderConfig = EduContextRenderConfig()
+)
 ```
 
-Start or stop rendering the local video stream.
+Starts or stops rendering the local video stream.
 
 | Parameter | Description |
-| :----------- | :----------------------------------------------------- |
-| `container` | The video container. `Setting viewGroup` as `null` means stopping rendering the video stream. |
+| :------------- | :----------------------------------------------------------- |
+| `container` | The video container. Setting `viewGroup` as `null` means stopping rendering the video stream. |
 | `streamUuid` | The stream ID. |
+| `renderConfig` | The video renderer configuration. See [EduContextRenderConfig](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextrenderconfig). |
+
+### setVideoEncoderConfig
+
+```kotlin
+abstract fun setVideoEncoderConfig(config: EduContextVideoEncoderConfig)
+```
+
+Sets the video encoder configuration.
+
+| Parameter | Description |
+| :------- | :----------------------------------------------------------- |
+| `config` | The video encoding configuration. See [EduContextVideoEncoderConfig](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextvideoencoderconfig). |
 
 ## IVideoHandler
 
@@ -46,14 +62,14 @@ Start or stop rendering the local video stream.
 ### onUserDetailInfoUpdated
 
 ```kotlin
-fun onUserDetailInfoUpdated (info: EduContextUserDetailInfo)
+fun onUserDetailInfoUpdated(info: EduContextUserDetailInfo)
 ```
 
 Occurs when the user info updates.
 
 | Parameter | Description |
-| :----- | :------------------------------------------ |
-| `info` | The user information. See `EduContextUserDetailInfo` for details. |
+| :----- | :----------------------------------------------------------- |
+| `info` | The user information. See [EduContextUserDetailInfo](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo) for details. |
 
 ### onVolumeUpdated
 

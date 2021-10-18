@@ -1,8 +1,14 @@
-# Extion App Context
-
 ## ExtAppContext
 
 `ExtAppContext` 类提供可供 App 调用的扩展应用相关方法。
+
+### init
+
+```kotlin
+fun init(container: RelativeLayout)
+```
+
+初始化扩展应用。
 
 ### launchExtApp
 
@@ -10,7 +16,7 @@
 fun launchExtApp(appIdentifier: String): Int
 ```
 
-启动一个扩展应用。
+启动扩展应用。
 
 | 参数            | 描述            |
 | :-------------- | :-------------- |
@@ -72,8 +78,3 @@ fun onExtAppUnloaded()
 ```
 
 扩展应用已被关闭，实例被释放。
-
-| 参数 | 描述 |
-| :--- | :--- |
-|      |      |
-

@@ -58,6 +58,14 @@ func boardRefreshSize()
 
 刷新白板大小。在白板容器大小发生变化时，需要调用该方法。
 
+### getContentView
+
+```swift
+func getContentView() -> UIView?
+```
+
+获取白板容器 View。如果白板没有初始化成功，返回值为 `nil`。
+
 ### registerBoardEventHandler
 
 ```swift
@@ -72,31 +80,44 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 
 ## AgoraEduWhiteBoardHandler
 
-### onGetBoardContainer
+### onBoardContentView
 
 ```swift 
-@objc optional func onGetBoardContainer() -> UIView
+@objc optional func onBoardContentView(_ view: UIView)
 ```
 
-获取白板容器 View。
+> 自 v1.1.5 起新增。
 
-### onSetDrawingEnabled
+返回白板容器 View。
+
+| 参数   | 描述            |
+| :----- | :-------------- |
+| `view` | 白板容器 View。 |
+
+### onDrawingEnabled
 
 ```swift
-@objc optional func onSetDrawingEnabled(_ enabled: Bool)
+@objc optional func onDrawingEnabled(_ enabled: Bool)
 ```
 
-报告白板基础工具是否可用。
+> 自 v1.1.5 起新增。
+
+报告本地是否有权限操作白板。
+
+- `enabled` 为 `true` 时，UI 层会提示：你可以使用白板了。
+- `enabled` 为 `false` 时，UI 层会提示：你现在无权使用白板了。
 
 | 参数      | 描述               |
 | :-------- | :----------------- |
-| `enabled` | 白板基础工具是否可用。 |
+| `enabled` | 本地是否有权限操作白板。 |
 
-### onSetLoadingVisible
+### onLoadingVisible
 
 ```swift
-@objc optional func onSetLoadingVisible(_ visible: Bool)
+@objc optional func onLoadingVisible(_ visible: Bool)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告白板加载状态是否可见。
 
@@ -104,44 +125,50 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 | :-------- | :--------------------- |
 | `visible` | 白板加载状态是否可见。 |
 
-### onSetDownloadProgress
+### onDownloadProgress
 
 ```swift
-@objc optional func onSetDownloadProgress(_ url: String,
-                                            progress: Float)
+@objc optional func onDownloadProgress(_ url: String,
+                                    progress: Float)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告当前课件下载进度。
 
 | 参数       | 描述                                |
 | :--------- | :---------------------------------- |
-| `url`      | 课件下载 URL 地址。                 |
+| `url`      | 课件下载地址。                      |
 | `progress` | 课件下载进度，取值范围为 0 到 100。 |
 
-### onSetDownloadTimeOut
+### onDownloadTimeOut
 
 ```swift
-@objc optional func onSetDownloadTimeOut(_ url: String)
+@objc optional func onDownloadTimeOut(_ url: String)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告课件下载超时。当一次课件下载所花的时间超过了 15 秒，就会触发该回调。
 
-| 参数  | 描述                |
-| :---- | :------------------ |
-| `url` | 课件下载 URL 地址。 |
+| 参数  | 描述           |
+| :---- | :------------- |
+| `url` | 课件下载地址。 |
 
 
-### onSetDownloadComplete
+### onDownloadComplete
 
 ```swift
-@objc optional func onSetDownloadComplete(_ url: String)
+@objc optional func onDownloadComplete(_ url: String)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告课件下载完成。
 
-| 参数  | 描述                |
-| :---- | :------------------ |
-| `url` | 课件下载 URL 地址。 |
+| 参数  | 描述           |
+| :---- | :------------- |
+| `url` | 课件下载地址。 |
 
 
 ### onDownloadError
@@ -152,9 +179,9 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 
 报告课件下载失败。
 
-| 参数  | 描述                |
-| :---- | :------------------ |
-| `url` | 课件下载 URL 地址。 |
+| 参数  | 描述           |
+| :---- | :------------- |
+| `url` | 课件下载地址。 |
 
 ### onCancelCurDownload
 
@@ -162,23 +189,7 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 @objc optional func onCancelCurDownload()
 ```
 
-报告当前课件下载任务被取消。
-
-| 参数  | 描述                |
-| :---- | :------------------ |
-| `url` | 课件下载 URL 地址。 |
-
-### onShowPermissionTips 
-
-```swift
-@objc optional func onShowPermissionTips(_ granted: Bool)
-```
-
-报告白板权限发生变化。
-
-| 参数      | 描述               |
-| :-------- | :----------------- |
-| `granted` | 是否具有白板权限。 |
+报告课件下载被取消。
 
 ## AgoraEduWhiteBoardToolContext
 
@@ -190,7 +201,7 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 func applianceSelected(_ mode: AgoraEduContextApplianceType)
 ```
 
-选中白板基础工具。
+选择一个白板基础工具。
 
 | 参数   | 描述                                                |
 | :----- | :-------------------------------------------------- |
@@ -234,6 +245,8 @@ func thicknessSelected(_ thick: Int)
 
 ## AgoraEduWhiteBoardPageControlContext
 
+`AgoraEduWhiteBoardPageControlContext` 类提供可供 App 调用的白板页面控制工具相关方法。
+
 ### zoomOut
 
 ```swift
@@ -276,12 +289,14 @@ func registerPageControlEventHandler(_ handler: AgoraEduWhiteBoardPageControlHan
 
 ## AgoraEduWhiteBoardPageControlHandler
 
-### onSetPageIndex
+### onPageIndex
 
 ```swift
-@objc optional func onSetPageIndex(_ pageIndex: NSInteger,
-                                     pageCount: NSInteger)
+@objc optional func onPageIndex(_ pageIndex: NSInteger,
+                                  pageCount: NSInteger)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告白板当前页数和总页数。
 
@@ -291,50 +306,58 @@ func registerPageControlEventHandler(_ handler: AgoraEduWhiteBoardPageControlHan
 | `pageCount` | 总页数。   |
 
 
-### onSetPagingEnable
+### onPagingEnable
 
 ```swift
-@objc optional func onSetPagingEnable(_ enable: Bool)
+@objc optional func onPagingEnable(_ enable: Bool)
 ```
 
-报告是否可翻页。
+> 自 v1.1.5 起新增。
+
+报告本地是否有权限翻页。
 
 | 参数     | 描述         |
 | :------- | :----------- |
 | `enable` | 是否可翻页。 |
 
 
-### onSetZoomEnable
+### onZoomEnable
 
 ```swift
-@objc optional func onSetZoomEnable(_ zoomOutEnable: Bool,
-                                      zoomInEnable: Bool)
+@objc optional func onZoomEnable(_ zoomOutEnable: Bool,
+                                    zoomInEnable: Bool)
 ```
 
-报告是否可放大、缩小。
+> 自 v1.1.5 起新增。
+
+报告本地是否有权限放大或缩小白板。
 
 | 参数            | 描述         |
 | :-------------- | :----------- |
 | `zoomOutEnable` | 是否可缩小。 |
 | `zoomInEnable`  | 是否可放大。 |
 
-### onSetResizeFullScreenEnable
+### onResizeFullScreenEnable
 
 ```swift
-@objc optional func onSetResizeFullScreenEnable(_ enable: Bool)
+@objc optional func onResizeFullScreenEnable(_ enable: Bool)
 ```
 
-报告是否可全屏白板。
+> 自 v1.1.5 起新增。
+
+报告本地是否有权限全屏白板。
 
 | 参数     | 描述             |
 | :------- | :--------------- |
 | `enable` | 是否可全屏白板。 |
 
-### onSetFullScreen
+### onFullScreen
 
 ```swift
-@objc optional func onSetFullScreen(_ fullScreen: Bool)
+@objc optional func onFullScreen(_ fullScreen: Bool)
 ```
+
+> 自 v1.1.5 起新增。
 
 报告当前白板是否全屏。
 

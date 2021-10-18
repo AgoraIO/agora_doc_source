@@ -1,10 +1,34 @@
-# useBoardContext
+`BoardContext` 提供白板相关能力。
 
-`useBoardContext()` 提供白板相关能力。
+## boardConnectionState
 
-你可以通过 `import { useBoardContext } from 'agora-edu-core';  ` 引入 `useBoardContext`，然后使用 `const {...} = useBoardContext()` 获取灵动课堂中消息聊天相关能力。
+```typescript
+boardConnectionState: string;
+```
 
-以下具体列出 `useBoardContext()` 提供的能力。
+> 自 v1.1.5 起新增。
+
+白板连接状态。
+
+## joinBoard
+
+```typescript
+joinBoard: () => Promise<any>;
+```
+
+> 自 v1.1.5 起新增。
+
+加入白板房间。
+
+## leaveBoard
+
+```typescript
+leaveBoard: () => Promise<any>;
+```
+
+> 自 v1.1.5 起新增。
+
+离开白板房间。
 
 ## room
 

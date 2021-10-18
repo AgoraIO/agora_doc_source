@@ -1,8 +1,8 @@
 本页提供 Agora Classroom SDK for iOS 的 Swift API 参考。
 
-## AgoraEduSDK 
+## AgoraClassroomSDK 
 
-`AgoraEduSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
+`AgoraClassroomSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
 
 ### version
 
@@ -19,7 +19,7 @@ SDK 版本号。
 ### setConfig
 
 ```swift
-+ (void)setConfig:(AgoraEduSDKConfig *)config;
++ (BOOL)setConfig:(AgoraClassroomSDKConfig *)config;
 ```
 
 全局配置 SDK。
@@ -28,21 +28,21 @@ SDK 版本号。
 
 ```swift
 /** 全局配置 **/
-@interface AgoraEduSDKConfig : NSObject
+@interface AgoraClassroomSDKConfig : NSObject
 // Agora App ID
 @property (nonatomic, copy) NSString *appId;
 // 是否开启护眼模式
 @property (nonatomic, assign) BOOL eyeCare;
 @end
-AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
-[AgoraEduSDK setConfig:defaultConfig];
+AgoraClassroomSDKConfig *defaultConfig = [[AgoraClassroomSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
+[AgoraClassroomSDK setConfig:defaultConfig];
 ```
 
 **参数**
 
 | 参数     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
-| `config` | 全局配置参数，详见 [`AgoraEduSDKConfig`](#agoraedusdkconfig)。 |
+| `config` | 全局配置参数，详见 [AgoraClassroomSDKConfig](#agoraclassroomsdkconfig)。 |
 
 ### launch
 
@@ -77,15 +77,15 @@ NSNumber *startTime = @(XXX);
 NSNumber *duration = @(1800);
  
 AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration];
-[AgoraEduSDK launch:config delegate:self];
+[AgoraClassroomSDK launch:config delegate:self];
 ```
 
 **参数**
 
 | 参数       | 描述                                                         |
 | :--------- | :----------------------------------------------------------- |
-| `config`   | 课堂启动配置，详见 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig)。 |
-| `delegate` | SDK 通过 [`AgoraEduClassroomDelegate`](#agoraeduclassroomdelegate) 类向 App 报告课堂启动相关的事件。 |
+| `config`   | 课堂启动配置，详见 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。 |
+| `delegate` | SDK 通过 [AgoraEduClassroomDelegate](#agoraeduclassroomdelegate) 类向 App 报告课堂启动相关的事件。 |
 
 **返回值**
 
@@ -117,14 +117,14 @@ NSString *scenePath = [NSString stringWithFormat:@"%@/%@", resourceName, [conver
 
 AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceName:resourceName scenePath:scenePath scenes:convertedFileList resourceUrl:resourceUrl];
 // 配置课件预加载
-[AgoraEduSDK configCoursewares:@[courseware]];
+[AgoraClassroomSDK configCoursewares:@[courseware]];
 ```
 
 **参数**
 
 | 参数     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
-| `config` | 课件预加载配置，详见 [`AgoraEduCourseware`](#agoraeducourseware)。 |
+| `config` | 课件预加载配置，详见 [AgoraEduCourseware](#agoraeducourseware)。 |
 
 ### downloadCoursewares
 
@@ -138,14 +138,14 @@ AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceNam
 
 ```swift
 // 下载配置好的课件
-[AgoraEduSDK downloadCoursewares:self];
+[AgoraClassroomSDK downloadCoursewares:self];
 ```
 
 **参数**
 
 | 参数       | 描述                                                         |
 | :--------- | :----------------------------------------------------------- |
-| `delegate` | SDK 通过 [`AgoraEduCoursewareDelegate`](#agoraeducoursewaredelegate) 类向 App 报告课件预加载相关的事件。 |
+| `delegate` | SDK 通过 [AgoraEduCoursewareDelegate](#agoraeducoursewaredelegate) 类向 App 报告课件预加载相关的事件。 |
 
 ### registerExtApps
 
@@ -179,9 +179,9 @@ AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceNam
 
 **参数**
 
-| 参数    | 描述                                               |
-| :------ | :------------------------------------------------- |
-| `event` | 课堂事件，详见 [`AgoraEduEvent`](#agoraeduevent)。 |
+| 参数    | 描述                                             |
+| :------ | :----------------------------------------------- |
+| `event` | 课堂事件，详见 [AgoraEduEvent](#agoraeduevent)。 |
 
 ## AgoraEduCoursewareDelegate
 
@@ -223,7 +223,7 @@ typedef NS_ENUM(NSInteger, AgoraEduEvent) {
 };
 ```
 
-课堂事件。在 [`didReceivedEvent`](#didreceivedevent) 回调中报告。
+课堂事件。在 [didReceivedEvent](#didreceivedevent) 回调中报告。
 
 | 属性                     | 描述                |
 | :----------------------- | :------------------ |
@@ -239,7 +239,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoleType) {
 };
 ```
 
-用户在课堂中的角色。在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
+用户在课堂中的角色。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
 
 | 属性                      | 描述        |
 | :------------------------ | :---------- |
@@ -255,7 +255,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 };
 ```
 
-课堂类型。在 [`AgoraEduLaunchConfig`](#agoraedulaunchconfig) 中设置。
+课堂类型。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
 
 | 属性                    | 描述                                                         |
 | :---------------------- | :----------------------------------------------------------- |
@@ -263,10 +263,10 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 | `AgoraEduRoomTypeBig`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。 |
 | `AgoraEduRoomTypeSmall` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可点名学生“上台”发言，与老师进行实时音视频互动。 |
 
-### AgoraEduSDKConfig
+### AgoraClassroomSDKConfig
 
 ```swift
-@interface AgoraEduSDKConfig : NSObject
+@interface AgoraClassroomSDKConfig : NSObject
 @property (nonatomic, copy) NSString *appId;
 @property (nonatomic, assign) BOOL eyeCare;
 - (instancetype)initWithAppId:(NSString *)appId;
@@ -275,7 +275,7 @@ typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
 @end
 ```
 
-SDK 全局配置。用于 [`setConfig`](#setConfig) 方法。
+SDK 全局配置。用于 [setConfig](#setConfig) 方法。
 
 | 属性      | 描述                                                         |
 | :-------- | :----------------------------------------------------------- |
@@ -293,18 +293,17 @@ SDK 全局配置。用于 [`setConfig`](#setConfig) 方法。
 @property (nonatomic, copy) NSString *roomUuid;
 @property (nonatomic, assign) AgoraEduRoomType roomType;
 @property (nonatomic, copy) NSString *token;
-@property (nonatomic, strong, nullable) NSNumber *startTime;
-@property (nonatomic, strong, nullable) NSNumber *duration;
-@property (nonatomic, copy) NSString *boardRegion;
- 
-- (instancetype)initWithUserName:(NSString *)userName
-                        userUuid:(NSString *)userUuid
-                        roleType:(AgoraEduRoleType)roleType
-                        roomName:(NSString *)roomName
-                        roomUuid:(NSString *)roomUuid
-                        roomType:(AgoraEduRoomType)roomType
-                           token:(NSString *)token;
- 
+@property (nonatomic, copy) NSNumber *startTime;
+@property (nonatomic, copy, nullable) NSNumber *duration;
+@property (nonatomic, copy) NSString *region;
+@property (nonatomic, strong, nullable) AgoraEduMediaOptions *mediaOptions;
+@property (nonatomic, copy, nullable) NSDictionary<NSString *, NSString *> * userProperties;
+@property (nonatomic, assign) AgoraEduStreamState videoState;
+@property (nonatomic, assign) AgoraEduStreamState audioState;
+@property (nonatomic, strong, nullable) AgoraEduVideoEncoderConfiguration *cameraEncoderConfiguration;
+@property (nonatomic, assign) AgoraEduLatencyLevel latencyLevel;
+@property (nonatomic, assign) AgoraBoardFitMode boardFitMode;
+
 - (instancetype)initWithUserName:(NSString *)userName
                         userUuid:(NSString *)userUuid
                         roleType:(AgoraEduRoleType)roleType
@@ -312,26 +311,182 @@ SDK 全局配置。用于 [`setConfig`](#setConfig) 方法。
                         roomUuid:(NSString *)roomUuid
                         roomType:(AgoraEduRoomType)roomType
                            token:(NSString *)token
-                       startTime:(NSNumber *)startTime
-                        duration:(NSNumber *)duration;
-                     boardRegion:(NSString *_Nullable)boardRegion;
+                       startTime:(NSNumber * _Nullable)startTime
+                        duration:(NSNumber * _Nullable)duration
+                  userProperties:(NSDictionary<NSString *, NSString *> * _Nullable)userProperties;
 @end
 ```
 
-课堂启动配置。用于 [`launch`](#launch) 方法。
+课堂启动配置。用于 [launch](#launch) 方法。
 
-| 属性          | 描述                                                         |
-| :------------ | :----------------------------------------------------------- |
-| `userName`    | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
-| `userUuid`    | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）: <li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roomName`    | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
-| `roomUuid`    | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType`    | 用户在课堂中的角色，详见 `AgoraEduRoleType`。                |
-| `roomType`    | 课堂类型，详见 `AgoraEduRoomType`。                          |
-| `token`       | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
-| `startTime`   | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
-| `duration`    | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
-| `boardRegion` | 课堂所在区域。各客户端的区域必须一致，否则无法互通。         |
+| 属性                         | 描述                                                         |
+| :--------------------------- | :----------------------------------------------------------- |
+| `userName`                   | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
+| `userUuid`                   | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）: <li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomName`                   | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
+| `roomUuid`                   | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roleType`                   | 用户在课堂中的角色，详见 `AgoraEduRoleType`。                |
+| `roomType`                   | 课堂类型，详见 `AgoraEduRoomType`。                          |
+| `token`                      | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
+| `startTime`                  | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
+| `duration`                   | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
+| `region`                     | 课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。可设为以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
+| `mediaOptions`               | 媒体流相关设置，包含媒体流加密，详见 `AgoraEduMediaOptions`。 |
+| `userProperties`             | 由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties) |
+| `videoState`                 | 用于控制学生上台后是否发视频流，详见 `AgoraEduStreamState`。 |
+| `audioState`                 | 用于控制学生上台后是否发音频流，详见 `AgoraEduStreamState`。 |
+| `cameraEncoderConfiguration` | 摄像头采集视频流的编码参数配置，包含视频宽高、帧率、码率，详见 `AgoraEduVideoEncoderConfiguration`。 |
+| `latencyLevel`               | 观众端延时级别，详见 `AgoraEduLatencyLevel`。                |
+| `boardFitMode`               | 白板内容的显示模式，详见 `AgoraBoardFitMode`。               |
+
+### AgoraBoardFitMode
+
+```swift
+@objc public enum AgoraBoardFitMode: Int {
+    case auto, retain
+}
+```
+
+学生获取白板授权后，当老师切换白板和课件时学生白板内容的显示模式。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+
+| 参数     | 描述                                                         |
+| :------- | :----------------------------------------------------------- |
+| `auto`   | （默认）以 fit 模式显示，等比缩放 PPT 以保证完整显示 PPT 的内容。 |
+| `retain` | 以本地记录的上一次学生手动调整的大小为准。                   |
+
+### StreamState
+
+```swift
+@objc public enum AgoraEduStreamState: Int {
+    case off = 0, on, `default`
+}
+```
+
+用于控制学生上台后是否发音视流。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+
+| 参数  | 描述             |
+| :---- | :--------------- |
+| `off` | （默认）不发流。 |
+| `on`  | 发流。           |
+
+### AgoraEduLatencyLevel
+
+```java
+@objc public enum AgoraEduLatencyLevel: Int {
+    case low = 0
+    case ultraLow
+}
+```
+
+观众端延时级别，只对台下学生有效。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+
+| 参数       | 描述                                                       |
+| :--------- | :--------------------------------------------------------- |
+| `low`      | 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。         |
+| `ultraLow` | （默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。 |
+
+### AgoraEduMediaOptions
+
+```swift
+@interface AgoraEduMediaOptions : NSObject
+@property (nonatomic, strong) AgoraEduMediaEncryptionConfig *encryptionConfig;
+
+- (instancetype)initWithConfig:(AgoraEduMediaEncryptionConfig *)encryptionConfig;
+@end
+```
+
+媒体流相关设置。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+
+| 参数               | 描述                                                         |
+| :----------------- | :----------------------------------------------------------- |
+| `encryptionConfig` | 媒体流加密配置，详见 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig). |
+
+### AgoraEduVideoEncoderConfiguration
+
+```swift
+@interface AgoraEduVideoEncoderConfiguration : NSObject
+@property (nonatomic, assign) NSUInteger width;
+@property (nonatomic, assign) NSUInteger height;
+@property (nonatomic, assign) NSUInteger frameRate;
+@property (nonatomic, assign) NSUInteger bitrate;
+@property (nonatomic, assign) AgoraEduCoreMirrorMode mirrorMode;
+
+- (instancetype)initWithWidth:(NSUInteger)width
+                       height:(NSUInteger)height
+                    frameRate:(NSUInteger)frameRate
+                      bitrate:(NSUInteger)bitrate
+                   mirrorMode:(AgoraEduCoreMirrorMode)mirrorMode;
+@end
+```
+
+视频编码参数配置类，用于 `AgoraEduLaunchConfig`。
+
+> - 在小班课中，分辨率的默认值为 120p（160✖️120）。
+> - 在一对一和大班课中，分辨率的默认值为 240p（320✖️240）。
+
+| 参数         | 描述                                          |
+| :----------- | :-------------------------------------------- |
+| `width`      | 视频帧宽度 (pixel)。                          |
+| `height`     | 视频帧高度 (pixel)。                          |
+| `frameRate`  | 视频帧率 (fps)。默认值为 15。                 |
+| `bitrate`    | 视频码率 (Kbps)。默认值为 200。               |
+| `mirrorMode` | 视频镜像模式，详见 `AgoraEduCoreMirrorMode`。 |
+
+### AgoraEduMediaEncryptionConfig
+
+```swift
+@interface AgoraEduMediaEncryptionConfig : NSObject
+@property (nonatomic, assign) AgoraEduMediaEncryptionMode mode;
+@property (nonatomic, copy) NSString *key;
+
+- (instancetype)initWithMode:(AgoraEduMediaEncryptionMode)mode key:(NSString *)key;
+@end
+```
+
+媒体流加密配置，用于 [AgoraEduMediaOptions](#agoraedumediaoptions)。
+
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
+| `mode` | 加密模式，详见 [AgoraEduMediaEncryptionMode](#agoraedumediaencryptionmode)。 |
+| `key`  | 加密密钥。                                                   |
+
+### AgoraEduMediaEncryptionMode
+
+```swift
+typedef NS_ENUM(NSInteger, AgoraEduMediaEncryptionMode) {
+    AgoraEduMediaEncryptionModeAES128XTS = 1,
+    AgoraEduMediaEncryptionModeAES128ECB = 2,
+    AgoraEduMediaEncryptionModeAES256XTS = 3,
+    AgoraEduMediaEncryptionModeAES128GCM = 5,
+    AgoraEduMediaEncryptionModeAES256GCM = 6,
+};
+```
+
+媒体流加密模式。用于 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfigs)。
+
+| 参数                                   | 描述                        |
+| :------------------------------------- | :-------------------------- |
+| `AgoraEduMediaEncryptionModeAES128XTS` | 128 位 AES 加密，XTS 模式。 |
+| `AgoraEduMediaEncryptionModeAES128ECB` | 128 位 AES 加密，ECB 模式。 |
+| `AgoraEduMediaEncryptionModeAES256XTS` | 256 位 AES 加密，XTS 模式。 |
+| `AgoraEduMediaEncryptionModeAES128GCM` | 128 位 AES 加密，GCM 模式。 |
+| `AgoraEduMediaEncryptionModeAES256GCM` | 256 位 AES 加密，GCM 模式。 |
+
+### AgoraEduCoreMirrorMode
+
+```swift
+@objc public enum AgoraEduCoreMirrorMode: Int {
+    case auto = 0, enabled, disabled
+}
+```
+
+是否开启镜像模式。
+
+| 参数       | 描述                   |
+| :--------- | :--------------------- |
+| `auto`     | SDK 默认关闭镜像模式。 |
+| `enabled`  | 开启镜像模式。         |
+| `disabled` | 关闭镜像模式。         |
 
 ### AgoraEduCourseware
 
@@ -348,7 +503,7 @@ SDK 全局配置。用于 [`setConfig`](#setConfig) 方法。
 @end
 ```
 
-课件预加载配置。用于 [`configCoursewares`](#configcoursewares) 方法。
+课件预加载配置。用于 [configCoursewares](#configcoursewares) 方法。
 
 | 属性           | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
@@ -371,7 +526,7 @@ SDK 全局配置。用于 [`setConfig`](#setConfig) 方法。
 @end
 ```
 
-一个文件页面的具体信息。在 [`AgoraEduCourseware`](#agoraeducourseware) 中设置。
+一个文件页面的具体信息。在 [AgoraEduCourseware](#agoraeducourseware) 中设置。
 
 | 属性              | 描述                                                       |
 | :---------------- | :--------------------------------------------------------- |
@@ -395,7 +550,7 @@ SDK 全局配置。用于 [`setConfig`](#setConfig) 方法。
 @end
 ```
 
-一个完成转换后的页面的具体信息。在 [`SceneInfo`](#sceneinfo) 中设置。
+一个完成转换后的页面的具体信息。在 [SceneInfo](#sceneinfo) 中设置。
 
 | 属性         | 描述                                        |
 | :----------- | :------------------------------------------ |
