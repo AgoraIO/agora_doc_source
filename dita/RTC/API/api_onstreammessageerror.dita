@@ -19,17 +19,14 @@
     error:(NSInteger)error 
     missed:(NSInteger)missed 
     cached:(NSInteger)cached;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessageError(uid_t uid, 
-     int streamId, 
-     int code, 
-     int missed, 
-     int cached) {
-     (void)uid;
-     (void)streamId;
-     (void)code;
-     (void)missed;
-     (void)cached;
-     }</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessageError(uid_t userId, int streamId, int code, int missed, int cached) {
+    (void)userId;
+    (void)streamId;
+    (void)code;
+    (void)missed;
+    (void)cached;
+  }
+</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(
   evt: EngineEvents.STREAM_MESSAGE_ERROR,
   cb: (

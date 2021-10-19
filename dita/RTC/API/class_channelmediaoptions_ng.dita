@@ -47,25 +47,30 @@
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct ChannelMediaOptions {
   Optional&lt;bool> publishCameraTrack;
+  Optional&lt;bool> publishSecondaryCameraTrack;
   Optional&lt;bool> publishAudioTrack;
   Optional&lt;bool> publishScreenTrack;
+  Optional&lt;bool> publishSecondaryScreenTrack;
   Optional&lt;bool> publishCustomAudioTrack;
+  Optional&lt;bool> publishCustomAudioTrackEnableAec;
   Optional&lt;bool> publishCustomVideoTrack;
   Optional&lt;bool> publishEncodedVideoTrack;
   Optional&lt;bool> publishMediaPlayerAudioTrack;
   Optional&lt;bool> publishMediaPlayerVideoTrack;
+  Optional&lt;bool> publishTrancodedVideoTrack;
   Optional&lt;bool> autoSubscribeAudio;
   Optional&lt;bool> autoSubscribeVideo;
   Optional&lt;bool> enableAudioRecordingOrPlayout;
   Optional&lt;int> publishMediaPlayerId;
   Optional&lt;CLIENT_ROLE_TYPE> clientRoleType;
+  Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE> audienceLatencyLevel;
   Optional&lt;VIDEO_STREAM_TYPE> defaultVideoStreamType;
   Optional&lt;CHANNEL_PROFILE_TYPE> channelProfile;
   Optional&lt;int> audioDelayMs;
+  Optional&lt;char*> token;
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}
-...
-};
+  void SetAll(const ChannelMediaOptions&amp; change) {
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity" outputclass="language-csharp"></codeblock>
