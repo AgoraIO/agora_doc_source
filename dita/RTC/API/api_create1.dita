@@ -15,7 +15,22 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public static synchronized RtcEngine create(
       Context context, String appId, IRtcEngineEventHandler handler) throws Exception {
-      }</codeblock>
+    if (context == null || !RtcEngineImpl.initializeNativeLibs())
+      return null;
+
+    RtcEngineConfig config = new RtcEngineConfig();
+    config.mContext = context;
+    config.mAppId = appId;
+    config.mEventHandler = handler;
+
+    if (mInstance == null) {
+      mInstance = new RtcEngineImpl(config);
+    } else {
+      mInstance.reinitialize(config);
+    }
+    return mInstance;
+  }
+</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithAppId:(NSString * _Nonnull)appId
                                       delegate:(id&lt;AgoraRtcEngineDelegate> _Nullable)delegate;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp"/>
