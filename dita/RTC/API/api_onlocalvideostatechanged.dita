@@ -34,6 +34,19 @@
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
         </p>
+        <p outputclass="codeblock" props="rtc">
+            <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState, 
+                LOCAL_VIDEO_STREAM_ERROR error) {
+                (void)localVideoState;
+                (void)error;
+                }</codeblock>
+        </p>
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR error) {
+  (void)state;
+  (void)error;
+}</codeblock>
+        </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
@@ -64,7 +77,8 @@
                 </plentry>
                 <plentry>
                     <pt props="android ios mac">state</pt>
-                    <pt props="windows unity">localVideoState</pt>
+                    <pt props="unity">localVideoState</pt>
+                    <pt props="windows"><ph props="rtc">localVideoState</ph><ph props="rtc-ng">state</ph></pt>
                     <pd>
                         <p props="ios mac windows unity">本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"
                             />。</p>
