@@ -1,22 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-    <title><ph keyref="LiveTranscoding"/></title>
+    <title><ph keyref="LiveTranscoding" /></title>
     <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for CDN live streaming.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="android" outputclass="language-java">public LiveTranscoding() { width = 360; height = 640; videoBitrate = 400; videoCodecProfile = VideoCodecProfileType.HIGH; videoGop = 30; videoFramerate = 15; watermark = new AgoraImage(); backgroundImage = new AgoraImage(); lowLatency = false; audioSampleRate = AudioSampleRateType.TYPE_44100; audioBitrate = 48; audioChannels = 1; audioCodecProfile = AudioCodecProfileType.LC_AAC; transcodingUsers = new HashMap&lt;>(); backgroundColor = 0xFF000000; userConfigExtraInfo = null; metadata = null; }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility(&quot;default&quot;))) @interface AgoraLiveTranscoding : NSObject @property(assign, nonatomic) CGSize size; @property(assign, nonatomic) NSInteger videoBitrate; @property(assign, nonatomic) NSInteger videoFramerate; @property(assign, nonatomic) BOOL lowLatency; @property(assign, nonatomic) NSInteger videoGop; @property(assign, nonatomic) AgoraVideoCodecProfileType videoCodecProfile; @property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *> *_Nullable transcodingUsers; @property(copy, nonatomic) NSString *_Nullable transcodingExtraInfo; @property(strong, nonatomic) AgoraImage *_Nullable watermark; @property (copy, nonatomic) NSArray&lt;AgoraImage *> *_Nullable watermarkArray; @property(strong, nonatomic) AgoraImage *_Nullable backgroundImage; @property (copy, nonatomic) NSArray&lt;AgoraImage *> *_Nullable backgroundImageArray; @property(strong, nonatomic) COLOR_CLASS *_Nullable backgroundColor; @property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate; @property(assign, nonatomic) NSInteger audioBitrate; @property(assign, nonatomic) NSInteger audioChannels; @property(assign, nonatomic) AgoraAudioCodecProfileType audioCodecProfile; + (AgoraLiveTranscoding *_Nonnull)defaultTranscoding; - (int)addUser:(AgoraLiveTranscodingUser *_Nonnull)user; - (int)removeUser:(NSUInteger)uid; @end</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">struct LiveTranscoding { int width; int height; int videoBitrate; int videoFramerate; bool lowLatency; int videoGop; VIDEO_CODEC_PROFILE_TYPE videoCodecProfile; unsigned int backgroundColor; unsigned int userCount; TranscodingUser* transcodingUsers; const char* transcodingExtraInfo; const char* metadata; RtcImage* watermark; unsigned int watermarkCount; RtcImage* backgroundImage; unsigned int backgroundImageCount; AUDIO_SAMPLE_RATE_TYPE audioSampleRate; int audioBitrate; int audioChannels; AUDIO_CODEC_PROFILE_TYPE audioCodecProfile; LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC) {} };</codeblock>
+                <codeblock props="android" outputclass="language-java">public LiveTranscoding() {
+    width = 360;
+    height = 640;
+    videoBitrate = 400;
+    videoCodecProfile = VideoCodecProfileType.HIGH;
+    videoGop = 30;
+    videoFramerate = 15;
+    watermark = new AgoraImage();
+    backgroundImage = new AgoraImage();
+
+    lowLatency = false;
+    audioSampleRate = AudioSampleRateType.TYPE_44100;
+    audioBitrate = 48;
+    audioChannels = 1;
+    audioCodecProfile = AudioCodecProfileType.LC_AAC;
+    transcodingUsers = new HashMap&lt;&gt;();
+    backgroundColor = 0xFF000000;
+    userConfigExtraInfo = null;
+    metadata = null;
+  }</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscoding : NSObject
+
+@property(assign, nonatomic) CGSize size;
+@property(assign, nonatomic) NSInteger videoBitrate;
+@property(assign, nonatomic) NSInteger videoFramerate;
+@property(assign, nonatomic) BOOL lowLatency;
+@property(assign, nonatomic) NSInteger videoGop;
+@property(assign, nonatomic) AgoraVideoCodecProfileType videoCodecProfile;
+@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *&gt; *_Nullable transcodingUsers;
+@property(copy, nonatomic) NSString *_Nullable transcodingExtraInfo;
+@property(strong, nonatomic) AgoraImage *_Nullable watermark;
+@property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable watermarkArray;
+@property(strong, nonatomic) AgoraImage *_Nullable backgroundImage;
+@property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable backgroundImageArray;
+@property(strong, nonatomic) COLOR_CLASS *_Nullable backgroundColor;
+@property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;
+@property(assign, nonatomic) NSInteger audioBitrate;
+@property(assign, nonatomic) NSInteger audioChannels;
+@property(assign, nonatomic) AgoraAudioCodecProfileType audioCodecProfile;
++ (AgoraLiveTranscoding *_Nonnull)defaultTranscoding;
+- (int)addUser:(AgoraLiveTranscodingUser *_Nonnull)user;
+- (int)removeUser:(NSUInteger)uid;
+@end</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">struct LiveTranscoding {
+  int width;
+  int height;
+  int videoBitrate;
+  int videoFramerate;
+  bool lowLatency;
+  int videoGop;
+  VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
+  unsigned int backgroundColor;
+  unsigned int userCount;
+  TranscodingUser* transcodingUsers;
+  const char* transcodingExtraInfo;
+  const char* metadata;
+  RtcImage* watermark;
+  unsigned int watermarkCount;
+  RtcImage* backgroundImage;
+  unsigned int backgroundImageCount;
+  AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
+  int audioBitrate;
+  int audioChannels;
+  AUDIO_CODEC_PROFILE_TYPE audioCodecProfile;
+
+  LiveTranscoding()
+      : width(360),
+        height(640),
+        videoBitrate(400),
+        videoFramerate(15),
+        lowLatency(false),
+        videoGop(30),
+        videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH),
+        backgroundColor(0x000000),
+        userCount(0),
+        transcodingUsers(NULL),
+        transcodingExtraInfo(NULL),
+        metadata(NULL),
+        watermark(NULL),
+        watermarkCount(0),
+        backgroundImage(NULL),
+        backgroundImageCount(0),
+        audioSampleRate(AUDIO_SAMPLE_RATE_48000),
+        audioBitrate(48),
+        audioChannels(1),
+        audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC) {}
+};</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
-                <codeblock props="windows" outputclass="language-cpp">typedef struct LiveTranscoding { int width; int height; int videoBitrate; int videoFramerate; bool lowLatency; int videoGop; VIDEO_CODEC_PROFILE_TYPE videoCodecProfile; unsigned int backgroundColor; unsigned int userCount; TranscodingUser *transcodingUsers; const char *transcodingExtraInfo; RtcImage* watermark; AUDIO_SAMPLE_RATE_TYPE audioSampleRate; int audioBitrate; int audioChannels; LiveTranscoding() : width(360) , height(640) , videoBitrate(400) , videoFramerate(15) , lowLatency(false) , backgroundColor(0x000000) , videoGop(30) , videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH) , userCount(0) , transcodingUsers(nullptr) , transcodingExtraInfo(nullptr) , watermark(nullptr) , audioSampleRate(AUDIO_SAMPLE_RATE_48000) , audioBitrate(48) , audioChannels(1) {} } LiveTranscoding;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export interface LiveTranscoding { width: number; height: number; videoBitrate: number; videoFrameRate: number; lowLatency: boolean; videoGop: number; videoCodecProfile: VIDEO_CODEC_PROFILE_TYPE; videoCodecType: VIDEO_CODEC_TYPE_FOR_STREAM; backgroundColor: number; userCount: number; audioSampleRate: number; audioChannels: number; audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE; audioBitrate: number; transcodingExtraInfo: string; metadata?: string; watermark: RtcImage; backgroundImage: RtcImage; transcodingUsers: Array&lt;TranscodingUser> }</codeblock>
+                <codeblock props="windows unity" outputclass="language-cpp">typedef struct LiveTranscoding {
+    int width;
+    int height;
+    int videoBitrate;
+    int videoFramerate;
+    
+    bool lowLatency;
+    
+    int videoGop;
+    VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
+    unsigned int backgroundColor;
+    unsigned int userCount;
+    TranscodingUser *transcodingUsers;
+    const char *transcodingExtraInfo;
+    RtcImage* watermark;
+    
+    AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
+    int audioBitrate;
+    int audioChannels;
+    
+    LiveTranscoding()
+    : width(360)
+    , height(640)
+    , videoBitrate(400)
+    , videoFramerate(15)
+    , lowLatency(false)
+    , backgroundColor(0x000000)
+    , videoGop(30)
+    , videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH)
+    , userCount(0)
+    , transcodingUsers(nullptr)
+    , transcodingExtraInfo(nullptr)
+    , watermark(nullptr)
+    , audioSampleRate(AUDIO_SAMPLE_RATE_48000)
+    , audioBitrate(48)
+    , audioChannels(1)
+    {}
+    } LiveTranscoding;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">export interface LiveTranscoding {
+    width: number;
+    height: number;
+    videoBitrate: number;
+    videoFrameRate: number;
+    lowLatency: boolean;
+    videoGop: number;
+    videoCodecProfile: VIDEO_CODEC_PROFILE_TYPE;
+    videoCodecType: VIDEO_CODEC_TYPE_FOR_STREAM;
+    backgroundColor: number;
+    userCount: number;
+    audioSampleRate: number;
+    audioChannels: number;
+    audioCodecProfile: AUDIO_CODEC_PROFILE_TYPE;
+    audioBitrate: number;
+    transcodingExtraInfo: string;
+    metadata?: string;
+    watermark: RtcImage;
+    backgroundImage: RtcImage;
+    transcodingUsers: Array&lt;TranscodingUser&gt;
+    }</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
                 <plentry props="android windows electron">
                     <pt>width</pt>
@@ -72,25 +213,23 @@
                 <plentry>
                     <pt>videoCodecProfile</pt>
                     <pd>
-                        <p>The video encoding specifications of the output media stream. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.</p>
+                        <p>The video encoding specifications of the output media stream. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE" />.</p>
                         <note type="attention">If you set this parameter to other values, Agora adjusts it to the default value.</note>
                     </pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>videoCodecType</pt>
-                    <pd>The codec type of the output video. For details, see <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
+                    <pd>The codec type of the output video. For details, see <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" />.</pd>
                 </plentry>
                 <plentry>
                     <pt>transcodingUsers</pt>
                     <pd>
-                        <p>Transcoding configurations of each host. One live streaming channel supports up to 17 hosts. For details, see <xref keyref="TranscodingUser"
-                            />.</p>
+                        <p>Transcoding configurations of each host. One live streaming channel supports up to 17 hosts. For details, see <xref keyref="TranscodingUser" />.</p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>transcodingExtraInfo</pt>
-                    <pd>The user SEI information embedded in the output media stream. This parameter is used to send SEI information to the CDN. The maximum length is 4096 bytes. See <xref keyref="faq-sei"
-                            >How to solve SEI-related issues</xref>.</pd>
+                    <pd>The user SEI information embedded in the output media stream. This parameter is used to send SEI information to the CDN. The maximum length is 4096 bytes. See <xref keyref="faq-sei">How to solve SEI-related issues</xref>.</pd>
                 </plentry>
                 <plentry>
                     <pt>backgroundColor</pt>
@@ -112,15 +251,15 @@
                 </plentry>
                 <plentry>
                     <pt>watermark</pt>
-                    <pd>The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. For details, see <xref keyref="RtcImage"/>.</pd>
+                    <pd>The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. For details, see <xref keyref="RtcImage" />.</pd>
                 </plentry>
                 <plentry>
                     <pt>backgroundImage</pt>
-                    <pd>The video background image of the output media stream. For details, see <xref keyref="RtcImage"/>.</pd>
+                    <pd>The video background image of the output media stream. For details, see <xref keyref="RtcImage" />.</pd>
                 </plentry>
                 <plentry>
                     <pt>audioSampleRate</pt>
-                    <pd>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
+                    <pd>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />.</pd>
                 </plentry>
                 <plentry>
                     <pt>audioBitrate</pt>
@@ -139,7 +278,7 @@
                 </plentry>
                 <plentry>
                     <pt>audioCodecProfile</pt>
-                    <pd>The audio codec of the media stream. For details, see <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+                    <pd>The audio codec of the media stream. For details, see <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />.</pd>
                 </plentry>
             </parml>
             <parml props="rtc-ng">

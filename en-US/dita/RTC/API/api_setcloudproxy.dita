@@ -12,13 +12,13 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
                 <codeblock props="windows" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">setCloudProxy(type: CLOUD_PROXY_TYPE): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetCloudProxy(CLOUD_PROXY_TYPE proxyType);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
         </p>
         </section>
         <section id="detailed_desc">
@@ -28,10 +28,10 @@
                     <dd>3.3.0</dd>
                 </dlentry>
             </dl>
-            <p>When the user&apos;s firewall restricts the IP address and port, refer to <xref keyref="guide-cloud-proxy">Use Cloud Proxy</xref> to add the specific IP addresses and ports to the firewall whitelist; then, call this method to enable the cloud proxy and set the cloud <parmname>proxyType</parmname> as <ph keyref="UDP_PROXY"/>.</p>
+            <p>When the user's firewall restricts the IP address and port, refer to <xref keyref="guide-cloud-proxy">Use Cloud Proxy</xref> to add the specific IP addresses and ports to the firewall whitelist; then, call this method to enable the cloud proxy and set the cloud <parmname>proxyType</parmname> as <ph keyref="UDP_PROXY" />.</p>
             <p>After successfully connecting to the cloud proxy, the SDK triggers the<xref keyref="onConnectionStateChanged" /> (<ph keyref="CONNECTION_STATE_CONNECTING" />, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) callback.</p>
             <p>To disable the cloud proxy that has been set, call <apiname>setCloudProxy</apiname>(NONE_PROXY).</p>
-            <p>To change the cloud proxy type, call <apiname keyref="setCloudProxy"/>(NONE_PROXY), and call <apiname keyref="setCloudProxy"/> to set the <parmname>proxyType</parmname> you want.</p>
+            <p>To change the cloud proxy type, call <apiname keyref="setCloudProxy" />(NONE_PROXY), and call <apiname keyref="setCloudProxy" /> to set the <parmname>proxyType</parmname> you want.</p>
             <note type="attention">
                 <ul>
                     <li>Agora recommends that you call this method before joining the channel or after leaving the channel.</li>
