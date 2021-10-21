@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onvideodevicestatechanged">
-    <title><ph keyref="onVideoDeviceStateChanged"/></title>
+    <title><ph keyref="onVideoDeviceStateChanged" /></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the video device state changes.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -12,13 +12,21 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onVideoDeviceStateChanged(const char* deviceId, int deviceType, int deviceState) { (void)deviceId; (void)deviceType; (void)deviceState; }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.VIDEO_DEVICE_STATE_CHANGED, cb: ( deviceId: string, deviceType: number, deviceState: number) => void ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="windows" outputclass="language-cpp">virtual void onVideoDeviceStateChanged(const char* deviceId, int deviceType, int deviceState) {
+     (void)deviceId;
+     (void)deviceType;
+     (void)deviceState;
+     }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.VIDEO_DEVICE_STATE_CHANGED, cb: (
+     deviceId: string, 
+     deviceType: number, 
+     deviceState: number) =&gt; void
+     ): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoDeviceStateChanged(string deviceId, int deviceType, int deviceState)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
         </p>
         </section>
         <section id="detailed_desc">
@@ -33,11 +41,11 @@
        </plentry>
        <plentry>
   <pt>deviceType</pt>
-  <pd>Media device types. For details, see <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+  <pd>Media device types. For details, see <xref keyref="MEDIA_DEVICE_TYPE" />.</pd>
        </plentry>
        <plentry>
   <pt>deviceState</pt>
-  <pd>Media device states. For details, see <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>.</pd>
+  <pd>Media device states. For details, see <xref keyref="MEDIA_DEVICE_STATE_TYPE" />.</pd>
        </plentry>
    </parml>
         </section>

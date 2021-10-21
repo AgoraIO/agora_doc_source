@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onvideosizechanged">
-    <title><ph keyref="onVideoSizeChanged"/></title>
+    <title><ph keyref="onVideoSizeChanged" /></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the video size or rotation of a specified user changes.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -13,19 +13,33 @@
     <refbody><section id="prototype">
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onVideoSizeChanged(int uid, int width, int height, int rotation) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine videoSizeChangedOfUid:(NSUInteger)uid size:(CGSize)size rotation:(NSInteger)rotation;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onVideoSizeChanged(uid_t uid, int width, int height, int rotation) { (void)uid; (void)width; (void)height; (void)rotation; }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on( evt: EngineEvents.VIDEO_SIZE_CHANGED, cb: (uid: number, width: number, height: number, rotation: number) => void ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
+    videoSizeChangedOfUid:(NSUInteger)uid 
+    size:(CGSize)size 
+    rotation:(NSInteger)rotation;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onVideoSizeChanged(uid_t uid, 
+     int width, 
+     int height, 
+     int rotation) {
+     (void)uid;
+     (void)width;
+     (void)height;
+     (void)rotation;
+     }</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(
+  evt: EngineEvents.VIDEO_SIZE_CHANGED,
+  cb: (uid: number, width: number, height: number, rotation: number) =&gt; void
+): this;</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSizeChanged(uint uid, int width, int height, int rotation)</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
         </p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt/>
-                  <pd/>
+                  <pt />
+                  <pd />
               </plentry>
        <plentry id="uid">
   <pt>uid</pt>
@@ -35,11 +49,11 @@
            <pt>size</pt>
            <pd>Video dimensions.</pd>
        </plentry>
-       <plentry props="android windows">
+       <plentry props="android windows unity">
            <pt>width</pt>
            <pd>The width (pixels) of the video stream.</pd>
        </plentry>
-       <plentry props="android windows">
+       <plentry props="android windows unity">
            <pt>height</pt>
            <pd>The height (pixels) of the video stream.</pd>
        </plentry>
