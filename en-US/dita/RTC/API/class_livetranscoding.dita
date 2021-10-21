@@ -159,7 +159,7 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
-                <plentry props="android windows electron">
+                <plentry props="android windows electron unity">
                     <pt>width</pt>
                     <pd>
                         <p>The width of the output media stream in pixels. The default value is 360.</p>
@@ -169,7 +169,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android windows electron">
+                <plentry props="android windows electron unity">
                     <pt>height</pt>
                     <pd>
                         <p>The height of the output media stream in pixels. The default value is 640.</p>
@@ -235,28 +235,14 @@
                     <pt>backgroundColor</pt>
                     <pd>The video background color of the output media stream. The format is a hexadecimal integer defined by RGB without the # symbol. For example, <codeph>0xFFB6C1</codeph> represents light pink. The default value is <codeph>0x000000 </codeph>(black).</pd>
                 </plentry>
-                <plentry props="android windows electron">
+                <plentry props="android windows electron unity">
                     <pt>userCount</pt>
                     <pd>The number of hosts involved in transcoding. The default value is 0.</pd>
-                </plentry>
-                <plentry props="android windows">
-                    <pt>metadata</pt>
-                    <pd>
-                        <dl outputclass="deprecated">
-                            <dlentry>
-                                <dt>Deprecated:</dt>
-                                <dd>This attribute is deprecated.</dd>
-                            </dlentry>
-                        </dl>The metadata sent to the CDN client.</pd>
-                </plentry>
+                </plentry>    
                 <plentry>
                     <pt>watermark</pt>
                     <pd>The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. For details, see <xref keyref="RtcImage" />.</pd>
-                </plentry>
-                <plentry>
-                    <pt>backgroundImage</pt>
-                    <pd>The video background image of the output media stream. For details, see <xref keyref="RtcImage" />.</pd>
-                </plentry>
+                </plentry>      
                 <plentry>
                     <pt>audioSampleRate</pt>
                     <pd>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />.</pd>
@@ -276,12 +262,13 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry>
-                    <pt>audioCodecProfile</pt>
-                    <pd>The audio codec of the media stream. For details, see <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />.</pd>
-                </plentry>
+                
             </parml>
             <parml props="rtc-ng">
+                <plentry>
+                    <pt>backgroundImage</pt>
+                    <pd>The video background image of the output media stream. For details, see <xref keyref="RtcImage" />.</pd>
+                </plentry>
                 <plentry>
                     <pt props="ios mac">watermarkArray</pt>
                     <pt props="windows">watermarkCount</pt>
@@ -301,6 +288,20 @@
                             <li>If you add more than one background image, this parameter is required.</li>
                         </ul>
                     </pd>
+                </plentry>
+                <plentry props="windows">
+                    <pt>audioCodecProfile</pt>
+                    <pd>The audio codec of the media stream. For details, see <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />.</pd>
+                </plentry>
+                <plentry props="android windows">
+                    <pt>metadata</pt>
+                    <pd>
+                        <dl outputclass="deprecated">
+                            <dlentry>
+                                <dt>Deprecated:</dt>
+                                <dd>This attribute is deprecated.</dd>
+                            </dlentry>
+                        </dl>The metadata sent to the CDN client.</pd>
                 </plentry>
             </parml>
         </section>

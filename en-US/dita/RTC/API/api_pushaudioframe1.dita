@@ -32,30 +32,17 @@
         <section id="detailed_desc">
    
    <dl outputclass="deprecated">
-       <dlentry>
+       <dlentry props="windows android ios mac">
   <dt>Deprecated:</dt>
   <dd>Replaced by <xref keyref="pushAudioFrame2" />.</dd>
        </dlentry>
    </dl>
         </section>
         <section id="parameters"><title>Parameter</title>
-   <parml props="windows">
-       <plentry id="type">
-  <pt>type</pt>
-  <pd>The type of the audio capturing device. For details, see <xref keyref="MEDIA_SOURCE_TYPE" />.</pd>
-       </plentry>
+   <parml props="windows unity">
        <plentry id="frame">
   <pt>frame</pt>
-  <pd>Pointers to the audio frame. For details, see <xref keyref="AudioFrame" />.</pd>
-       </plentry>
-       <plentry id="wrap">
-  <pt>wrap</pt>
-  <pd>
-      <p>Whether to use the placeholder. Agora recommends setting the default value.<ul>
-     <li><codeph><ph keyref="true" /></codeph>: Use the placeholder.</li>
-     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not use the placeholder.</li>
- </ul></p>
-  </pd>
+  <pd>The audio frame. For details, see <xref keyref="AudioFrame" />.</pd>
        </plentry>
    </parml>
             <parml props="android ios mac">
@@ -67,15 +54,17 @@
            <pt>samples</pt>
            <pd>Number of samples for the push.</pd>
        </plentry>
-       <plentry props="ios mac" id="sourceId">
-           <pt>sourceId</pt>
-           <pd>The audio track ID. You can set it as an integer between 0 and the value of <parmname>sourceNumber</parmname> in <xref keyref="setExternalAudioSource2" />-1.</pd>
-       </plentry>
        <plentry id="time">
            <pt>timestamp</pt>
            <pd>The timestamp (ms) of the external audio frame. It is mandatory. You can use this parameter for the following purposes: restore the order of the captured audio frame; and synchronize audio and video frames in video-related scenarios, including scenarios where external video sources are used.</pd>
        </plentry>
-   </parml>
+     </parml>
+            <parml props="rtc-ng">
+                <plentry>
+                    <pt>sourceId</pt>
+                    <pd>The audio track ID. You can set it as an integer between 0 and the value of <parmname>sourceNumber</parmname> in <xref keyref="setExternalAudioSource2" />-1.</pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values">
    <title>Returns</title>

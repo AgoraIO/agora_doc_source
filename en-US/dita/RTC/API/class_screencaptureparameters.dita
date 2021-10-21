@@ -50,7 +50,7 @@
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
                 <plentry>
-                    <pt props="ios mac windows electron">dimensions</pt>
+                    <pt props="ios mac windows electron unity">dimensions</pt>
                     <pt props="android">videoDimensions</pt>
                     <pd><p>The maximum dimensions of encoding the shared region. For details, see <xref keyref="VideoDimensions" />. The default value is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
                         <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <codeph>dimensions</codeph> are set to 1920 x 1080:<ul>
@@ -67,11 +67,11 @@
                     <pt>bitrate</pt>
                     <pd>The bitrate (Kbps) of the shared region. The default value is 0, which represents that the SDK works out a bitrate according to the dimensions of the current screen.</pd>
                 </plentry>
-                <plentry props="windows electron">
+                <plentry props="windows electron unity">
                     <pt>captureMouseCursor</pt>
                     <pd>
                         <dl outputclass="since" props="rtc">
-                            <dlentry>
+                            <dlentry props="windows">
                                 <dt>Since</dt>
                                 <dd>v2.4.1</dd>
                             </dlentry>
@@ -81,10 +81,10 @@
                                 <li><codeph><ph keyref="false" /></codeph>: Do not capture the mouse.</li>
                             </ul></p></pd>
                 </plentry>
-                <plentry props="windows electron">
+                <plentry props="windows electron unity">
                     <pt>windowFocus</pt>
                     <pd><dl outputclass="since" props="rtc">
-                        <dlentry>
+                        <dlentry props="windows">
                             <dt>Since</dt>
                             <dd>v3.1.0</dd>
                         </dlentry>
@@ -93,10 +93,10 @@
                             <li><codeph><ph keyref="false" /></codeph>: (Default) Do not bring the window to the front.</li>
                         </ul></p></pd>
                 </plentry>
-                <plentry props="windows mac">
+                <plentry props="windows mac unity">
                     <pt>excludeWindowList</pt>
-                    <pd props="windows"><dl outputclass="since" props="rtc">
-                        <dlentry>
+                    <pd props="windows unity"><dl outputclass="since" props="rtc">
+                        <dlentry props="windows">
                             <dt>Since</dt>
                             <dd>v3.1.0</dd>
                         </dlentry>
@@ -104,18 +104,18 @@
                         <p>The ID list of the windows to be blocked. When calling <xref keyref="startScreenCaptureByScreenRect" /> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters" /> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</p></pd>
                     <pd props="mac">
                         <dl outputclass="since" props="rtc">
-                            <dlentry>
+                            <dlentry props="windows">
                                 <dt>Since</dt>
                                 <dd>v3.1.0</dd>
                             </dlentry>
                         </dl>
                         <p>The ID list of the windows to be blocked. When calling <xref keyref="startScreenCaptureByDisplayId" /> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters" /> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</p></pd>
                 </plentry>
-                <plentry props="windows">
+                <plentry props="windows unity">
                     <pt>excludeWindowCount</pt>
                     <pd>
                         <dl outputclass="since" props="rtc">
-                        <dlentry>
+                        <dlentry props="windows">
                             <dt>Since</dt>
                             <dd>v3.1.0</dd>
                         </dlentry>
