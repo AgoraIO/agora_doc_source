@@ -29,8 +29,8 @@
                     <dd>v3.5.0</dd>
                 </dlentry>
             </dl>
-            <p>After enabling the virtual background feature, you can replace the original background image of the local user with a custom background image. After the replacement, all users in the channel can see the custom background image. You can find out from the <xref keyref="onVirtualBackgroundSourceEnabled"/> callback 
-            whether the virtual background is successfully enabled or the cause of any errors.</p>
+            <p>After enabling the virtual background feature, you can replace the original background image of the local user with a custom background image. After the replacement, all users in the channel can see the custom background image. You can find out from the <xref keyref="onVirtualBackgroundSourceEnabled"/> callback
+            whether virtual background is successfully enabled and the cause of any errors.</p>
             <note type="note"><ul>
                 <li>Before calling this method, ensure that you have integrated the dynamic library.<ul>
                     <li props="android windows unity rn flutter">Android: <ph>libagora_segmentation_extension.so</ph></li>
@@ -47,18 +47,18 @@
                     <li props="android unity windows rn flutter">Kirin 900 series 980 and later</li>
                     <li props="mac windows unity electron">Devices with an i5 CPU and better</li>
                     <li props="ios windows unity rn flutter">Devices with an A9 chip and better, as follows:<ul>
-                        <li>iPhone 6S</li>
-                        <li>iPad Air (3rd generation and later)</li>
-                        <li>iPad (5th generation and later)</li>
-                        <li>iPad Pro (2nd generation and later)</li>
-                        <li>iPad mini (5th generation and later)</li>
+                        <li>iPhone 6S and later</li>
+                        <li>iPad Air 3rd generation and later</li>
+                        <li>iPad 5th generation and later</li>
+                        <li>iPad Pro 2nd generation and later</li>
+                        <li>iPad mini 5th generation and later</li>
                     </ul></li>
                     <li>Agora recommends using one of the following solutions to solve this problem:Agora recommends that you use this function in scenarios that meet the following conditions:<ul>
-                        <li>A high-definition camera device is used, and the environment is uniformly lit.</li>
-                        <li>The captured video image is uncluttered, the user&apos;s portrait is half-length and largely unobstructed, and the background is a single color that differs from the color of the user&apos;s clothing.</li>
+                        <li>A high-definition camera device is used and the environment is uniformly lit.</li>
+                        <li>There are few objects in the captured video. Portraits are half-length and unobstructed. Ensure that the background is a solid color that distinguishes from the color of the user&apos;s clothing.</li>
                     </ul></li>
                 </ul></li>
-                <li>The virtual background feature does not support video in the Texture format or video obtained from custom video capture by the Push method.</li>
+                <li>The virtual background feature does not support video in the texture format or video obtained from custom video capture by the Push method.</li>
             </ul></note>
         </section>
         <section id="parameters"><title>Parameter</title>
@@ -72,7 +72,7 @@
                 </plentry>
                 <plentry>
                     <pt>backgroundSource</pt>
-                    <pd>The custom background image. See <xref keyref="VirtualBackgroundSource"/>.<note type="note">To adapt the resolution of the custom background image to the resolution of the SDK capturing video, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</note></pd>
+                    <pd>The custom background image. See <xref keyref="VirtualBackgroundSource"/>.<note type="note">To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</note></pd>
                 </plentry>
             </parml>
         </section>
