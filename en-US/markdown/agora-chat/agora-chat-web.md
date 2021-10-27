@@ -55,7 +55,7 @@ Follow the steps to create the environment necessary to add peer-to-peer messagi
 
    a. In the `package.json` file, add `agora-chat-sdk` and its version number to the `dependencies` field:
 
-   ```
+   ```json
    {
     "name": "web",
     "version": "1.0.0",
@@ -74,7 +74,7 @@ Follow the steps to create the environment necessary to add peer-to-peer messagi
 
    b. Import `agora-chat-sdk` module. In `index.js` file, add the following line:
 
-   ```
+   ```javascript
    import WebIM from 'agora-chat-sdk'
    ```
 
@@ -88,7 +88,7 @@ Copy the following code to the `index.html` file to implement the UI.
 
 `<script src="./dist/bundle.js"></script>` is used to refer to the `bundle.js` file packaged by webpack. A sample webpack configuration is shown in later steps.
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,7 +147,7 @@ Take the following steps to implement the sending and receiving of peer-to-peer 
 
 Note that to avoid browser-compatibility issues, the sample uses the import command to import the SDK and webpack to package the JS file. 
 
-```
+```javascript
 import WebIM from 'agora-chat-sdk'
 const appKey = "<Your app key>"
 
@@ -236,7 +236,7 @@ To test your app, take the following steps:
 
 1. In the `package.json` file, add `webpack`, `webpack-cli`, and `webpack-dev-server` to the `dependencies` field, and the `build` and `start:dev` commands to the `scripts` field.
 
-   ```
+   ```json
    {
        "name": "web",
        "version": "1.0.0",
@@ -259,7 +259,7 @@ To test your app, take the following steps:
 
 2. Create a file named `webpack.config.js` in the project directory to configure webpack. Copy the following code to the `webpack.config.js` file.
 
-   ```
+   ```javascript
    const path = require('path');
    
    module.exports = {
@@ -288,13 +288,13 @@ To test your app, take the following steps:
 
 3. Run the following command to install dependencies:
 
-   ```
+   ```shell
    npm install
    ```
 
 4. Run the following commands to build and run the project using webpack:
 
-   ```
+   ```shell
    # Use webpack to package the project
    npm run build
    
