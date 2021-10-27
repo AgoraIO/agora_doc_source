@@ -12,17 +12,7 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static synchronized RtcEngine create(RtcEngineConfig config) throws Exception {
-    if (config == null || config.mContext == null
-        || !RtcEngineImpl.initializeNativeLibs(config.mNativeLibPath))
-      return null;
-    if (mInstance == null) {
-      mInstance = new RtcEngineImpl(config);
-    } else {
-      mInstance.reinitialize(config);
-    }
-    return mInstance;
-  }
+            <codeblock props="android" outputclass="language-java">public static synchronized RtcEngine create(RtcEngineConfig config) throws Exception {}
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithConfig:(AgoraRtcEngineConfig * _Nonnull)config
                                        delegate:(id&lt;AgoraRtcEngineDelegate> _Nullable)delegate;</codeblock>
