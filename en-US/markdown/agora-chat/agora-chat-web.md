@@ -8,7 +8,7 @@ This page shows the minimum code you need to add peer-to-peer messaging into you
 
 The following figure shows the workflow to integrate into your app in order to add peer-to-peer messaging functionality.
 
-![](https://web-cdn.agora.io/docs-files/1635300333362)
+![](https://web-cdn.agora.io/docs-files/1635324794917)
 
 As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
