@@ -62,7 +62,7 @@ URL 的有效期不宜设置太短或者太长，Agora 推荐设置在 5 到 10 
 
 ### 第三步：计算防盗链签名
 
-签名（sign）为鉴权密钥、推流/播流 URL 的路径、失效时间戳 ts 这三部分拼接后的字符串计算得到的 MD5 值，即 sign=MD5(鉴权密钥 + URL 路径 + ts)。
+签名（sign）为鉴权密钥、推流/播流 URL 的路径、失效时间戳 ts 这三部分拼接后的字符串计算得到的 MD5 值。
 
 例如，假设 URL 为 `http://domain/live/stream.flv`，鉴权密钥为 `z2tn3uiny0aasebz`，`ts` 为 `1634955000`，则 sign=MD5(z2tn3uiny0aasebz/live/stream.flv1634955000)=f7c1bd88e911b72c。
 
