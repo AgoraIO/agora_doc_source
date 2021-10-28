@@ -305,6 +305,14 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 
 #### 请求示例
 
+示例一：
+
+```html
+https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?null
+```
+
+示例二：
+
 ```html
 https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
 ```
@@ -636,6 +644,14 @@ https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
 #### 请求示例
 
 **请求 URL**
+
+示例一：
+
+```html
+https://api.agora.io/edu/apps/{appId}/v2/rooms/test_class/sequences?null&cmd=1
+```
+
+示例二：
 
 ```html
 https://api.agora.io/edu/apps/{appId}/v2/rooms/test_class/sequences?nextId=50&cmd=1
