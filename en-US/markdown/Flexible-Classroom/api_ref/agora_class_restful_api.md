@@ -762,7 +762,7 @@ Add or update the custom properties of a specified classroom. For details, see [
 #### Prototype
 
 - Method: PUT
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/properties
+- Endpoint: /{region}/edu/apps/{appId}/v2/rooms/{roomUUid}/properties
 
 #### Request parameters
 
@@ -826,7 +826,7 @@ Delete the custom properties of a specified classroom. For details, see [How can
 #### Prototype
 
 - Method: DELETE
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/properties
+- Endpoint: /{region}/edu/apps/{appId}/v2/rooms/{roomUUid}/properties
 
 #### Request parameters
 
@@ -890,7 +890,7 @@ Add or update the custom properties of a specified user. For details, see [How c
 #### Prototype
 
 - Method: PUT
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/users/{userUuid}/properties
+- Endpoint: /{region}/edu/apps/{appId}/v2/rooms/{roomUUid}/users/{userUuid}/properties
 
 #### Request parameters
 
@@ -955,7 +955,7 @@ Delete the custom properties of a specified user. For details, see [How can I se
 #### Prototype
 
 - Method: DELETE
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/users/{userUuid}/properties
+- Endpoint: /{region}/edu/apps/{appId}/v2/rooms/{roomUUid}/users/{userUuid}/properties
 
 #### Request parameters
 
@@ -1020,7 +1020,7 @@ Add or update the properties of the extApp in a specified classroom.
 #### Prototype
 
 - Method: PUT
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/extApps/{extAppUuid}/properties
+- Endpoint: /{region}/edu/apps/{appId}/v2/rooms/{roomUUid}/extApps/{extAppUuid}/properties
 
 #### Request parameters
 
@@ -1086,7 +1086,7 @@ Delete the properties of the extApp in a specified classroom.
 #### Prototype
 
 - Method: DELETE
-- Endpoint: /edu/apps/{appId}/v2/rooms/{roomUUid}/extApps/{extAppUuid}/properties
+- Endpoint: /{region}/edu/apps/{appId}/v2/rooms/{roomUUid}/extApps/{extAppUuid}/properties
 
 #### Request parameters
 
