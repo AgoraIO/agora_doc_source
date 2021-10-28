@@ -22,9 +22,9 @@
             </codeblock>
             </p>
         <p outputclass="codeblock" props="rtc">
-            <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessage(uid_t uid, 
-            int streamId, 
-            const char* data, 
+            <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessage(uid_t uid,
+            int streamId,
+            const char* data,
             size_t length) {
             (void)uid;
             (void)streamId;
@@ -34,9 +34,9 @@
         </p>
         <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onStreamMessage(int uid, int streamId, byte[] data) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
-                receiveStreamMessageFromUid:(NSUInteger)uid 
-                streamId:(NSInteger)streamId 
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+                receiveStreamMessageFromUid:(NSUInteger)uid
+                streamId:(NSInteger)streamId
                 data:(NSData * _Nonnull)data;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">on(
                 evt: EngineEvents.STREAM_MESSAGE,
@@ -48,7 +48,7 @@
         </p>
         </section>
         <section id="detailed_desc">
-   
+
    <p>该回调表示本地用户收到了远端用户调用 <xref keyref="sendStreamMessage"/> 方法发送的流消息。</p>
         </section>
         <section id="parameters"><title>参数</title>
@@ -58,8 +58,8 @@
                     <pd/>
                 </plentry>
                 <plentry id="uid">
-                    <pt props="android ios mac">uid</pt>
-                    <pt props="windows"><ph props="rtc-ng">userid</ph><ph props="rtc">uid</ph></pt>
+                    <pt props="android ios mac unity">uid</pt>
+                    <pt props="windows"><ph props="rtc-ng">userId</ph><ph props="rtc">uid</ph></pt>
                     <pd>发送消息的用户 ID。</pd>
                 </plentry>
                 <plentry id="streamId">
