@@ -56,7 +56,6 @@ Pass in the following parameters in the request body.
 **Request URL**
 
 ```html
-// 将 ID 为 123 的用户从 test_class 里踢出
 https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 ```
 
@@ -116,7 +115,6 @@ Pass the following parameter in the URL.
 #### Request example
 
 ```html
-// 设置 test_class 的课堂状态为开始
 https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 ```
 
@@ -178,7 +176,6 @@ Pass in the following parameters in the request body.
 **Request URL**
 
 ```html
-// 开始录制名称为 test_class 的课堂
 https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 ```
 
@@ -248,7 +245,6 @@ Pass in the following parameters in the request body.
 **Request URL**
 
 ```html
-// 开始录制名称为 test_class 的课堂
 https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 ```
 
@@ -314,8 +310,15 @@ Pass the following parameter in the URL.
 
 #### Request example
 
+Example one:
+
 ```html
-// 获取 test_class 里的录制列表
+https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?null
+```
+
+Example two:
+
+```html
 https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
 ```
 
@@ -407,7 +410,6 @@ Pass in the following parameters in the request body.
 **Request URL**
 
 ```html
-// 在 test_class 里上传一个 ID 为 class_file_1 的公共资源
 https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources/class_file_1
 ```
 
@@ -566,7 +568,6 @@ Pass the following parameters in the URL.
 **Request URL**
 
 ```html
-// 获取 test_class 里 ID 为 class_file_1 的公共资源
 https://api.agora.io/edu/apps/{your_app_Id}/v1/rooms/test_class/resources
 ```
 
@@ -647,14 +648,21 @@ Pass the following parameters in the URL.
 | Parameter | Category | Description |
 | :------- | :------ | :----------------------------------------------------------- |
 | `nextId` | String | (Optional) The starting ID of the next batch of data. When you call this method to get the data for the first time, leave this parameter empty or set it as null. Afterward, you can set this parameter as the `nextId` that you get in the response of the previous method call. |
-| `cmd` | Integer | (Optional) Event type. For details, see [Flexible Classroom Cloud Service Events](https://docs.agora.io/en/agora-class/agora_class_restful_api_event). |
+| `cmd` | Integer | (Optional) Event type. For details, see [Flexible Classroom Cloud Service Events](/en/agora-class/agora_class_restful_api_event). |
 
 #### Request example
 
 **Request URL**
 
+Example one:
+
 ```html
-// 获取 test_class 里的课堂状态变更事件
+https://api.agora.io/edu/apps/{appId}/v2/rooms/test_class/sequences?null&cmd=1
+```
+
+Example two:
+
+```html
 https://api.agora.io/edu/apps/{appId}/v2/rooms/test_class/sequences?nextId=50&cmd=1
 ```
 
@@ -662,10 +670,10 @@ https://api.agora.io/edu/apps/{appId}/v2/rooms/test_class/sequences?nextId=50&cm
 
 | Parameter | Category | Description |
 | :----- | :------ | :----------------------------------------------------------- |
-| `code` | Integer | Business status code: 0: The request succeeds. Non-zero: The request fails. |
+| `code` | Integer | Business status code:<li>0: The request succeeds.</li><li>Non-zero: The request fails.</li> |
 | `msg` | String | The detailed information. |
 | `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
-| `data` | Object | Include the following parameters:<ul><li>`total`: Integer, the total number of pieces of data.</li><li>`count`: Integer, the number of pieces of data in this batch.</li><li>`list`: JSONArray. An array of the recording list. A JSON object includes the following parameters:<ul><li>`roomUuid`: String, the classroom ID.</li><li>`cmd`: Integer, the event type. For details, see [Flexible Classroom Cloud ServiceEvents](https://docs.agora.io/en/agora-class/agora_class_restful_api_event).</li><li>`sequence`: Integer. The event ID. This is the unique identifier of an event, which is automatically generated to ensure the order of events.</li><li>`version`: Integer, the service version.</li><li>`data`: Object, the detailed data of the event. The data varies depending on the event type. For details, see [Flexible Classroom Cloud ServiceEvents](https://docs.agora.io/en/agora-class/agora_class_restful_api_event).</li></ul><li>`nextId`: String, the starting ID of the next batch of data. If it is null, there is no next batch of data. If it is not null, use this `nextId` to continue the query until null is reported.</li></ul> |
+| `data` | Object | Include the following parameters:<ul><li>`total`: Integer, the total number of pieces of data.</li><li>`count`: Integer, the number of pieces of data in this batch.</li><li>`list`: JSONArray. An array of the recording list. A JSON object includes the following parameters:<ul><li>`roomUuid`: String, the classroom ID.</li><li>`cmd`: Integer, the event type. For details, see [Flexible Classroom Cloud ServiceEvents](/en/agora-class/agora_class_restful_api_event).</li><li>`sequence`: Integer. The event ID. This is the unique identifier of an event, which is automatically generated to ensure the order of events.</li><li>`version`: Integer, the service version.</li><li>`data`: Object, the detailed data of the event. The data varies depending on the event type. For details, see [Flexible Classroom Cloud ServiceEvents](/en/agora-class/agora_class_restful_api_event).</li></ul><li>`nextId`: String, the starting ID of the next batch of data. If it is null, there is no next batch of data. If it is not null, use this `nextId` to continue the query until null is reported.</li></ul> |
 
 #### Response example
 
@@ -727,10 +735,10 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 | Parameter | Category | Description |
 | :----- | :------ | :----------------------------------------------------------- |
-| `code` | Integer | Business status code:<li>0: The request succeeds.<li>Non-zero: The request fails. |
+| `code` | Integer | Business status code:<li>0: The request succeeds.</li><li>Non-zero: The request fails.</li> |
 | `msg` | String | The detailed information. |
 | `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
-| `data` | Object | Include the following parameters:<li>`roomUuid`: String, the classroom ID.</li><li>`cmd`: Integer, the event type. See [Flexible Classroom Events](./agora_class_restful_api_event).</li><li>`sequence`: Integer. The event ID. This is the unique identifier of an event, which is automatically generated to ensure the order of events.<li>`version`: Integer, the service version.</li><li>`data`: Object, the detailed data of the event. The data varies depending on the event type. See [Flexible Classroom Events](./agora_class_restful_api_event).</li> |
+| `data` | Object | Include the following parameters:<li>`roomUuid`: String, the classroom ID.</li><li>`cmd`: Integer, the event type. For details, see [Flexible Classroom Cloud ServiceEvents](/en/agora-class/agora_class_restful_api_event).</li><li>`sequence`: Integer. The event ID. This is the unique identifier of an event, which is automatically generated to ensure the order of events.<li>`version`: Integer, the service version.</li><li>`data`: Object, the detailed data of the event. The data varies depending on the event type. For details, see [Flexible Classroom Cloud ServiceEvents](/en/agora-class/agora_class_restful_api_event).</li> |
 
 #### Response example
 
@@ -1148,7 +1156,7 @@ Pass in the following parameters in the request body.
 | :-------------- | :--------- | :----------------------------------------------------------- |
 | 200 | 0 | The request succeeds. |
 | 400 | 400 | The request parameter is incorrect. |
-| 401 | N/A | Possible reasons:<li>The App ID is invalid.<li>Unauthorized. Incorrect `x-agora-uid` or `x-agora-token`. |
+| 401 | N/A | Possible reasons:<li>The App ID is invalid.</li><li>Unauthorized. Incorrect `x-agora-uid` or `x-agora-token`.</li> |
 | 403 | 30403200 | The classroom is muted globally. Users cannot send chat messages. |
 | 404 | N/A | The server cannot find the requested resource. |
 | 404 | 20404100 | The classroom does not exist. |
