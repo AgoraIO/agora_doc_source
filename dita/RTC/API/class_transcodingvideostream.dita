@@ -8,9 +8,8 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"></codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraTranscodingVideoStream: NSObject
-@property (assign, nonatomic) AgoraVideoSourceType sourceType;
+@property (assign, nonatomic) AgoraMediaSourceType sourceType;
 @property (assign, nonatomic) NSUInteger remoteUserUid;
-@property (assign, nonatomic) NSUInteger connectionId;
 @property (copy, nonatomic) NSString * _Nullable imageUrl;
 @property (assign, nonatomic) CGRect rect;
 @property (assign, nonatomic) NSInteger zOrder;
@@ -18,7 +17,7 @@
 
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct TranscodingVideoStream {
-  VIDEO_SOURCE_TYPE sourceType;
+  agora::media::MEDIA_SOURCE_TYPE sourceType;
   uid_t remoteUserUid;
   const char* imageUrl;
   int x;
@@ -28,8 +27,9 @@
   int zOrder;
   double alpha;
   bool mirror;
+
   TranscodingVideoStream()
-      : sourceType(VIDEO_SOURCE_CAMERA_PRIMARY),
+      : sourceType(agora::media::PRIMARY_CAMERA_SOURCE),
         remoteUserUid(0),
         imageUrl(NULL),
         x(0),
@@ -39,8 +39,7 @@
         zOrder(0),
         alpha(1.0),
         mirror(false) {}
-};
-</codeblock>
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity" outputclass="language-csharp"></codeblock>
             <codeblock props="rn" outputclass="language-typescript"></codeblock>

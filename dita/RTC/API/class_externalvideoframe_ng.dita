@@ -5,8 +5,8 @@
     <shortdesc id="short"><ph id="shortdesc">外部视频帧。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock"> 
-                <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {
+            <p outputclass="codeblock" >
+                <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {           
                     public static final int FORMAT_NONE = -1;
                     public static final int FORMAT_TEXTURE_2D = 10;
                     public static final int FORMAT_TEXTURE_OES = 11;
@@ -17,7 +17,7 @@
                     public static final int BUFFER_TYPE_NONE = -1;/
                     public static final int BUFFER_TYPE_BUFFER = 1;
                     public static final int BUFFER_TYPE_ARRAY = 2;
-                    public static final int BUFFER_TYPE_TEXTURE = 3;
+                    public static final int BUFFER_TYPE_TEXTURE = 3;                 
                     public int format;
                     public long timeStamp;
                     public int stride;
@@ -26,71 +26,83 @@
                     public boolean syncMode;
                     public float[] transform;
                     public javax.microedition.khronos.egl.EGLContext eglContext11;
-                    public android.opengl.EGLContext eglContext14;
+                    public android.opengl.EGLContext eglContext14;                 
                     public byte[] buf;
                     public int cropLeft;
                     public int cropTop;
                     public int cropRight;
                     public int cropBottom;
                     public int rotation;
-                    }</codeblock> 
+                    }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
-                    @property(assign, nonatomic) NSInteger format;
-                    @property(assign, nonatomic) CMTime time;
-                    @property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
-                    @property(assign, nonatomic) int strideInPixels;
-                    @property(assign, nonatomic) int height; 
-                    @property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
-                    @property(assign, nonatomic) int cropLeft; 
-                    @property(assign, nonatomic) int cropTop; 
-                    @property(assign, nonatomic) int cropRight; 
-                    @property(assign, nonatomic) int cropBottom;
-                    @property(assign, nonatomic) int rotation;
-                    @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct ExternalVideoFrame {
-                enum VIDEO_BUFFER_TYPE
-                {
-                VIDEO_BUFFER_RAW_DATA = 1,
-                };
-                enum VIDEO_PIXEL_FORMAT
-                {
-                VIDEO_PIXEL_UNKNOWN = 0,
-                VIDEO_PIXEL_I420 = 1,
-                VIDEO_PIXEL_BGRA = 2,
-                VIDEO_PIXEL_NV21 = 3,
-                VIDEO_PIXEL_RGBA = 4,
-                VIDEO_PIXEL_IMC2 = 5,
-                VIDEO_PIXEL_ARGB = 7,
-                VIDEO_PIXEL_NV12 = 8,
-                VIDEO_PIXEL_I422 = 16,
-                };
-                
-                VIDEO_BUFFER_TYPE type;
-                VIDEO_PIXEL_FORMAT format;
-                void* buffer;
-                int stride;
-                int height;
-                int cropLeft;
-                int cropTop;
-                int cropRight;
-                int cropBottom;
-                int rotation;
-                long long timestamp;
-                };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
-                </p>
+@property(assign, nonatomic) NSInteger format;
+@property(assign, nonatomic) CMTime time;
+@property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
+@property(assign, nonatomic) int strideInPixels;
+@property(assign, nonatomic) int height;
+@property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
+@property(strong, nonatomic) NSData *_Nullable dataBuf;
+@property(assign, nonatomic) int cropLeft;
+@property(assign, nonatomic) int cropTop;
+@property(assign, nonatomic) int cropRight;
+@property(assign, nonatomic) int cropBottom;
+@property(assign, nonatomic) int rotation;
+@end</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">struct ExternalVideoFrame {
+                    ExternalVideoFrame()
+                    : type(VIDEO_BUFFER_RAW_DATA),
+                    format(VIDEO_PIXEL_UNKNOWN),
+                    buffer(NULL),
+                    stride(0),
+                    height(0),
+                    cropLeft(0),
+                    cropTop(0),
+                    cropRight(0),
+                    cropBottom(0),
+                    rotation(0),
+                    timestamp(0),
+                    eglContext(NULL),
+                    eglType(EGL_CONTEXT10),
+                    textureId(0),
+                    metadata_buffer(NULL),
+                    metadata_size(0){}
+                    enum EGL_CONTEXT_TYPE {
+                    EGL_CONTEXT10 = 0,
+                    EGL_CONTEXT14 = 1,
+                    };
+                    enum VIDEO_BUFFER_TYPE {
+                    VIDEO_BUFFER_RAW_DATA = 1,
+                    VIDEO_BUFFER_ARRAY = 2,
+                    VIDEO_BUFFER_TEXTURE = 3,
+                    };
+                    VIDEO_BUFFER_TYPE type;
+                    VIDEO_PIXEL_FORMAT format;
+                    void* buffer;
+                    int stride;
+                    int height;
+                    int cropLeft;
+                    int cropTop;
+                    int cropRight;
+                    int cropBottom;
+                    int rotation;
+                    long long timestamp;
+                    void *eglContext;
+                    EGL_CONTEXT_TYPE eglType;
+                    int textureId;
+                    uint8_t* metadata_buffer;
+                    int metadata_size;
+                    };</codeblock>
+            </p> 
         </section>
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
-       <plentry props="windows unity">
-  <pt>type</pt>
-  <pd>
-      <p>视频类型。详见 <xref keyref="VIDEO_BUFFER_TYPE"/>。</p>
-      </pd>
-       </plentry>
+       <plentry props="windows">
+                    <pt>type</pt>
+                    <pd>
+                        <p>视频类型。详见 <xref keyref="VIDEO_BUFFER_TYPE"/>。</p>
+                    </pd>
+                </plentry>
        <plentry>
   <pt>format</pt>
            <pd props="windows unity" id="windows-format">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
@@ -116,12 +128,13 @@
                </ul>
                </pd>
        </plentry>
-       <plentry props="android windows ios mac">
+       <plentry props="android windows">
   <pt props="windows">buffer</pt>
   <pt props="android">buf</pt>
-  <pt props="ios mac">dataBuf</pt>
-  <pd>视频 buffer。</pd>
+                    <pt props="ios mac">dataBuf</pt>
+  <pd props="windows android">视频缓冲区。</pd>
   <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+                    <pd props="ios mac">原始数据缓冲区，该参数不用于 iOS 纹理。</pd>
        </plentry>
        <plentry props="ios mac">
            <pt>textureBuf</pt>
@@ -134,7 +147,7 @@
           <dl outputclass="deprecated">
               <dlentry>
                   <dt>弃用：</dt>
-                  <dd>用 strideInPixels 代替。</dd>
+                  <dd>用 <parmname>strideInPixels</parmname> 代替。</dd>
               </dlentry>
           </dl>
       </p>       
@@ -155,10 +168,10 @@
   <pt>height</pt>
   <pd>传入视频帧的高度。</pd>
        </plentry>
-       <plentry props="android">
-           <pt>textureID</pt>
-           <pd>该帧的 Texture ID。该参数仅适用于 Texture 格式的视频数据。</pd>
-       </plentry>
+                <plentry props="android">
+                    <pt>textureID</pt>
+                    <pd>该帧的 Texture ID。该参数仅适用于 Texture 格式的视频数据。</pd>
+                </plentry>
                 <plentry props="android">
                     <pt>syncMode</pt>
                     <pd>设置是否开启同步模式，开启后 SDK 会在 Texture 处理时进行等待。该参数仅适用于 Texture 格式的视频数据。<ul
@@ -179,25 +192,54 @@
                     <pt>eglContext14</pt>
            <pd>EGLContext14。该参数仅适用于 Texture 格式的视频数据。</pd>
                 </plentry>
+       <plentry props="windows">
+           <pt>eglContext</pt>
+           <pd>该参数仅适用于 Texture 格式的视频数据。<ul id="ul_fsv_shd_krb">
+                            <li>当使用 Khronos 定义的 OpenGL 接口 (javax.microedition.khronos.egl.*)时，需要将
+                                eglContext 设置给这个字段。</li>
+                            <li>当使用 Android 定义的 OpenGL 接口 (android.opengl.*)时，需要将 eglContext
+                                设置给这个字段。</li>
+                        </ul></pd>
+       </plentry>
+       <plentry props="windows">
+           <pt>eglType</pt>
+           <pd>该参数仅适用于 Texture 格式的视频数据。指该视频帧的 Texture ID。</pd>
+       </plentry>
+       <plentry props="windows">
+           <pt>textureId</pt>
+           <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+       </plentry>
+       <plentry props="windows">
+           <pt>metadata_buffer</pt>
+           <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+       </plentry>
+       <plentry props="windows">
+           <pt>metadata_size</pt>
+           <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+       </plentry>
        <plentry>
   <pt>cropLeft</pt>
   <pd>原始数据相关字段。指定左边裁剪掉的像素数量。默认为 0。</pd>
            <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+           <pd props="windows">该参数仅适用于原始视频数据。</pd>
        </plentry>
        <plentry>
   <pt>cropTop</pt>
   <pd>原始数据相关字段。指定顶边裁剪掉的像素数量。默认为 0。</pd>
            <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+           <pd props="windows">该参数仅适用于原始视频数据。</pd>
        </plentry>
        <plentry>
   <pt>cropRight</pt>
   <pd> 原始数据相关字段。指定右边裁剪掉的像素数量。默认为 0。 </pd>
            <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+           <pd props="windows">该参数仅适用于原始视频数据。</pd>
        </plentry>
        <plentry>
   <pt>cropBottom</pt>
   <pd>原始数据相关字段。指定底边裁剪掉的像素数量。默认为 0。</pd>
            <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
+           <pd props="windows">该参数仅适用于原始视频数据。</pd>
        </plentry>
        <plentry>
   <pt>rotation</pt>
