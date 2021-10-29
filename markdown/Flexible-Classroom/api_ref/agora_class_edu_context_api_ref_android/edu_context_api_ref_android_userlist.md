@@ -8,7 +8,7 @@
 abstract fun localUserInfo(): EduContextUserInfo
 ```
 
-获取本地用户信息。
+获取本地用户信息，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。
 
 ### updateFlexUserProps
 
@@ -73,9 +73,9 @@ abstract fun setVideoEncoderConfig(config: EduContextVideoEncoderConfig)
 
 设置视频编码配置。
 
-| 参数     | 描述                                                |
-| :------- | :-------------------------------------------------- |
-| `config` | 视频编码配置，详见 `EduContextVideoEncoderConfig`。 |
+| 参数     | 描述                                                         |
+| :------- | :----------------------------------------------------------- |
+| `config` | 视频编码配置，详见 [EduContextVideoEncoderConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextvideoencoderconfig)。 |
 
 ## IUserHandler
 
@@ -91,7 +91,7 @@ fun onUserListUpdated(list: MutableList<EduContextUserDetailInfo>)
 
 | 参数   | 描述                                                         |
 | :----- | :----------------------------------------------------------- |
-| `list` | 在线用户列表，由 `EduContextUserDetailInfo` 对象组成的数组。 |
+| `list` | 在线用户列表，由 [EduContextUserDetailInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo) 对象组成的数组。 |
 
 ### onCoHostListUpdated
 
@@ -103,7 +103,7 @@ fun onCoHostListUpdated(list: MutableList<EduContextUserDetailInfo>)
 
 | 参数   | 描述                                                         |
 | :----- | :----------------------------------------------------------- |
-| `list` | 上台用户列表，由 `EduContextUserDetailInfo` 对象组成的数组。 |
+| `list` | 上台用户列表，由 [EduContextUserDetailInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo) 对象组成的数组。 |
 
 ### onUserReward
 
@@ -113,9 +113,9 @@ fun onUserReward(userInfo: EduContextUserInfo)
 
 收到奖励。
 
-| 参数       | 描述                                  |
-| :--------- | :------------------------------------ |
-| `userInfo` | 用户信息，详见 `EduContextUserInfo`。 |
+| 参数       | 描述                                                         |
+| :--------- | :----------------------------------------------------------- |
+| `userInfo` | 用户信息，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。 |
 
 ### onKickOut
 
@@ -200,5 +200,5 @@ fun onFlexUserPropsChanged(changedProperties: MutableMap<String, Any>,
 | `changedProperties` | 已更新的用户属性。                                           |
 | `properties`        | 全部用户属性。                                               |
 | `cause`             | 更新原因。                                                   |
-| `fromUser`          | 属性被更新的用户的相关信息，详见 `EduContextUserDetailInfo`。 |
-| `operator`          | 操作者，详见 `EduContextUserInfo`。`operator` 为空表示是由服务端更新。 |
+| `fromUser`          | 属性被更新的用户的相关信息，详见 [EduContextUserDetailInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo)。 |
+| `operator`          | 操作者，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。`operator` 为空表示是由服务端更新。 |

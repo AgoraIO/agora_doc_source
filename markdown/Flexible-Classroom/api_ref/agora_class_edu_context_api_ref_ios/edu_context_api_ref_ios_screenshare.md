@@ -18,7 +18,7 @@ func registerEventHandler(_ handler: AgoraEduScreenShareHandler)
 
 `AgoraEduScreenShareHandler` 类用于向 App 报告屏幕共享相关的事件回调。
 
-### onScreenShareStateUpdated
+### onUpdateScreenShareState
 
 ```swift
 @objc optional func onUpdateScreenShareState(_ state: AgoraEduContextScreenShareState,

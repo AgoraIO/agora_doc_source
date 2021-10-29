@@ -1,5 +1,3 @@
-# ClassroomStatsContext
-
 ## cpuUsage
 
 ```typescript
@@ -79,8 +77,6 @@ txNetworkQuality: string;
 > 自 v1.1.5 起新增。
 
 上行网络质量。
-
-# LiveRoomStatsContext
 
 ## liveClassStatus
 

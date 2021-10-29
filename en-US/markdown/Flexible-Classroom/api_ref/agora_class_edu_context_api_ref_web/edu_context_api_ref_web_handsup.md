@@ -1,10 +1,4 @@
-# useHandsUpContext
-
-`useHandsUpContext()` enables developers to implement the hand-raising function in the flexible classroom.
-
-You can import `useHandsUpContext` by `import { useHandsUpContext } from 'agora-edu-core';` and then use `const {...} = useHandsUpContext()` to implement the functions and events related to classroom management.
-
-This page lists all the functions and events provided by `useHandsUpContext()`.
+`HandsUpContext` enables developers to implement the hand-raising function in the flexible classroom.
 
 ## teacherUuid
 

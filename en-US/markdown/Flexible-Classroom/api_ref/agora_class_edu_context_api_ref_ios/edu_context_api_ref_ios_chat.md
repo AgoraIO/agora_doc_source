@@ -8,7 +8,19 @@
 func sendRoomMessage(_ message: String)
 ```
 
-Send a message.
+Sends a classroom message.
+
+| Parameter | Description |
+| :-------- | :--------- |
+| `message` | The message. |
+
+### sendConversationMessage
+
+```swift
+func sendConversationMessage(_ message: String)
+```
+
+Sends a peer-to-peer message to a remote user.
 
 | Parameter | Description |
 | :-------- | :--------- |
@@ -17,10 +29,25 @@ Send a message.
 ### resendRoomMessage
 
 ```swift
-func resendRoomMessage(_ message: String, messageId: Int)
+func resendRoomMessage(_ message: String,
+                       messageId: String)
 ```
 
-Resend a message.
+Resends the classroom message.
+
+| Parameter | Description |
+| :---------- | :--------- |
+| `message` | The message. |
+| `messageId` | The message ID. |
+
+### resendConversationMessage
+
+```swift
+func resendConversationMessage(_ message: String,
+                               messageId: String)
+```
+
+Resends the peer-to-peer message.
 
 | Parameter | Description |
 | :---------- | :--------- |
@@ -30,10 +57,25 @@ Resend a message.
 ### fetchHistoryMessages
 
 ```swift
-func fetchHistoryMessages(_ startId: Int, count: Int)
+func fetchHistoryMessages(_ startId: String,
+                              count: Int)
 ```
 
-Fetch the message history.
+Fetches the history of classroom messages.
+
+| Parameter | Description |
+| :-------- | :----------------------------------------- |
+| `startId` | You need to pass in a `messageId`, which indicates you need to get this message and messages sent before this message. |
+| `count` | The number of messages you want to get. |
+
+### fetchConversationHistoryMessages
+
+```swift
+func fetchConversationHistoryMessages(_ startId: String,
+                                          count: Int)
+```
+
+Fetches the history of peer-to-peer messages.
 
 | Parameter | Description |
 | :-------- | :----------------------------------------- |
@@ -46,7 +88,7 @@ Fetch the message history.
 func registerEventHandler(_ handler: AgoraEduMessageHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 | Parameter | Description |
 | :-------- | :--------------------------------- |
@@ -54,7 +96,7 @@ Register the event listener.
 
 ## AgoraEduMessageHandler
 
-`AgoraEduMessageHandler` reports the message-related event callbacks to your app. 
+`AgoraEduMessageHandler` reports the message-related event callbacks to your app.
 
 ### onAddRoomMessage
 
@@ -62,24 +104,23 @@ Register the event listener.
 @objc optional func onAddRoomMessage(_ info: AgoraEduContextChatInfo)
 ```
 
-Occurs when the local client receives a message.
+Occurs when the local client receives a classroom message.
 
 | Parameter | Description |
-| :----- | :--------------------------------------------- |
+| :----- | :----------------------------------------- |
 | `Info` | The message object. See `AgoraEduContextChatInfo` for details. |
 
-### onFetchHistoryMessagesResult
+### onAddConversationMessage
 
 ```swift
-@objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?, list: [AgoraEduContextChatInfo]?)
+@objc optional func onAddConversationMessage(_ info: AgoraEduContextChatInfo)
 ```
 
-Get the results of fetching the message history.
+Occurs when the local client receives a peer-to-peer message from a remote user.
 
 | Parameter | Description |
-| :------ | :-------------------------------------------------------- |
-| `error` | The error code. If `error` is not empty, it means the local client fails to fetch the message history. |
-| `list` | An array of message objects. See `EduContextChatItem` for details. |
+| :----- | :----------------------------------------- |
+| `Info` | The message object. See `AgoraEduContextChatInfo` for details. |
 
 ### onUpdateChatPermission
 
@@ -87,25 +128,131 @@ Get the results of fetching the message history.
 @objc optional func onUpdateChatPermission(_ allow: Bool)
 ```
 
-Occurs when the chat permission changes.
+Occurs when the chat permission of all users in the classroom changes.
+
+- When `allow` is `true`, Flexible Classroom triggers a pop-up window saying "The mute mode is on".
+- When `allow` is `false`, Flexible Classroom triggers a pop-up window saying "The mute mode is off".
 
 | Parameter | Description |
-| :------ | :--------------------------------- |
-| `allow` | Whether the local client has the permission of sending chat messages. |
+| :------ | :----------------------- |
+| `allow` | Whether the local client has the permission to chat. |
 
-### onShowChatTips
+### onUpdateLocalChatPermission
 
 ```swift
-@objc optional func onShowChatTips(_ message: String)
+@objc optional func onUpdateLocalChatPermission(_ allow: Bool,
+                                                 toUser: AgoraEduContextUserInfo,
+                                           operatorUser: AgoraEduContextUserInfo)
 ```
 
-Reports the tips related to the chat.
+Occurs when the chat permission of the local user changes.
 
-There are the following tips:
-
-- You have no permission of sending chat messages.
-- You have the permission of sending chat messages.
+- When `allow` is `true`, Flexible Classroom triggers a pop-up window saying "You are muted by xx".
+- When `allow` is `false`, Flexible Classroom triggers a pop-up window saying "You are unmuted by xx".
 
 | Parameter | Description |
-| :-------- | :--------- |
-| `message` | The tip. |
+| :------------- | :----------------------- |
+| `allow` | Whether the local client has the permission to chat. |
+| `toUser` | The information of the user whose chat permission has changed. |
+| `operatorUser` | The information of the operator. |
+
+### onUpdateRemoteChatPermission
+
+```swift
+@objc optional func onUpdateRemoteChatPermission(_ allow: Bool,
+                                                  toUser: AgoraEduContextUserInfo,
+                                            operatorUser: AgoraEduContextUserInfo)
+```
+
+Occurs when the chat permission of a remote user changes.
+
+- When `allow` is `true`, Flexible Classroom triggers a pop-up window saying "xx is muted by xx".
+- When `allow` is `false`, Flexible Classroom triggers a pop-up window saying "xx is unmuted by xx".
+
+| Parameter | Description |
+| :------------- | :----------------------- |
+| `allow` | Whether the local client has the permission to chat. |
+| `toUser` | The information of the user whose chat permission has changed. |
+| `operatorUser` | The information of the operator. |
+
+### onSendRoomMessageResult
+
+```swift
+@objc optional func onSendRoomMessageResult(_ error: AgoraEduContextError?,
+                                               info: AgoraEduContextChatInfo?)
+```
+
+Reports the result of the local user sending the classroom message (including sending for the first time and re-sending).
+
+| Parameter | Description |
+| :------ | :----------------------------------------- |
+| `error` | The error code. ` error` not being empty means failure. |
+| `info` | The message object. See `AgoraEduContextChatInfo` for details. |
+
+### onSendConversationMessageResult
+
+```swift
+@objc optional func onSendConversationMessageResult(_ error: AgoraEduContextError?,
+                                                       info: AgoraEduContextChatInfo?)
+```
+
+Reports the result of the local user sending the peer-to-peer message (including sending for the first time and re-sending).
+
+| Parameter | Description |
+| :------ | :----------------------------------------- |
+| `error` | The error code. ` error` not being empty means failure. |
+| `info` | The message object. See `AgoraEduContextChatInfo` for details. |
+
+### onFetchHistoryMessagesResult
+
+```swift
+@objc optional func onFetchHistoryMessagesResult(_ error: AgoraEduContextError?,
+                                                    list: [AgoraEduContextChatInfo]?)
+```
+
+Reports the result of the local user fetching the history of classroom messages.
+
+| Parameter | Description |
+| :------ | :--------------------------------------------------------- |
+| `error` | The error code. ` error` not being empty means failure. |
+| `info` | An array of message objects. See `AgoraEduContextChatInfo` for details. |
+
+### onFetchConversationHistoryMessagesResult
+
+```swift
+@objc optional func onFetchConversationHistoryMessagesResult(_ error: AgoraEduContextError?,
+                                                                list: [AgoraEduContextChatInfo]?)
+```
+
+Reports the result of the local user fetching the history of peer-to-peer messages.
+
+| Parameter | Description |
+| :------ | :--------------------------------------------------------- |
+| `error` | The error code. ` error` not being empty means failure. |
+| `info` | An array of message objects. See `AgoraEduContextChatInfo` for details. |
+
+### onUpdateRoomMessageList
+
+```swift
+ @objc optional func onUpdateRoomMessageList(_ list: [AgoraEduContextChatInfo])
+```
+
+Occurs when the classroom message list updates.
+
+| Parameter | Description |
+| :------ | :--------------------------------------------------------- |
+| `error` | The error code. If `error` is not empty, it means the local client fails to fetch the message history. |
+| `list` | An array of message objects. See `AgoraEduContextChatInfo` for details. |
+
+### onUpdateConversationMessageList
+
+```swift
+@objc optional func onUpdateConversationMessageList(_ list: [AgoraEduContextChatInfo])
+```
+
+Occurs when the peer-to-peer message list updates.
+
+| Parameter | Description |
+| :------ | :---------------------------------------------------- |
+| `error` | The error code. If `error` is not empty, it means the local client fails to fetch the message history. |
+| `list` | An array of message objects. See `EduContextChatItem` for details. |

@@ -1,5 +1,3 @@
-# MediaContext
-
 `MediaContext` 提供本地媒体设备控制相关能力。
 
 ## enableMediaEncryption

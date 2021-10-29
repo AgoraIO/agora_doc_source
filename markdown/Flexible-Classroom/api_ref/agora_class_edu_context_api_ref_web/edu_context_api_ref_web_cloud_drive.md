@@ -1,5 +1,3 @@
-# CloudDriveContext
-
 `CloudDriveContext` 提供课件相关能力。
 
 ## upsertResources

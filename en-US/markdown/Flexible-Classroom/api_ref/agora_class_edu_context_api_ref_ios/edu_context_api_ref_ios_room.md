@@ -2,13 +2,53 @@
 
 `AgoraEduRoomContext` provides the methods that can be called by your app for classroom management.
 
+### getRoomInfo
+
+```swift
+func getRoomInfo() -> AgoraEduContextRoomInfo
+```
+
+Gets the classroom information.
+
+### joinClassroom
+
+```swift
+func joinClassroom()
+```
+
+Joins a classroom.
+
 ### leaveRoom
 
 ```swift
 func leaveRoom()
 ```
 
-Leave the classroom.
+Leaves the classroom.
+
+### uploadLog
+
+```swift
+func uploadLog()
+```
+
+Uploads the logs.
+
+### updateFlexRoomProperties
+
+```swift
+func updateFlexRoomProperties(_ properties:[String: String],
+                                     cause:[String: String]?)
+```
+
+Adds or updates custom classroom properties. For details, see [How can I set classroom properties? ](/en/agora-class/faq/agora_class_custom_properties)
+
+After you successfully update the properties, the remote client receives the `onFlexRoomPropertiesChanged` callback.
+
+| Parameter | Description |
+| :----------- | :--------- |
+| `properties` | Classroom properties. |
+| `cause` | The update reason. |
 
 ### registerEventHandler
 
@@ -16,7 +56,7 @@ Leave the classroom.
 func registerEventHandler(_ handler: AgoraEduRoomHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 | Parameter | Description |
 | :-------- | :------------------------------ |
@@ -27,11 +67,13 @@ Register the event listener.
 
 `AgoraEduRoomHandler` reports the classroom-related event callbacks to your app.
 
-### onSetClassroomName
+### onClassroomName
 
 ```swift
-@objc optional func onSetClassroomName(_ name: String)
+@objc optional func onClassroomName(_ name: String)
 ```
+
+> Since v1.1.5.
 
 Indicates the classroom name.
 
@@ -39,11 +81,13 @@ Indicates the classroom name.
 | :----- | :--------- |
 | `name` | The classroom name. |
 
-### onSetClassState
+### onClassState
 
 ```swift
-@objc optional func onSetClassState(_ state: AgoraEduContextClassState)
+@objc optional func onClassState(_ state: AgoraEduContextClassState)
 ```
+
+> Since v1.1.5.
 
 Indicates the classroom state.
 
@@ -51,27 +95,33 @@ Indicates the classroom state.
 | :------ | :------------------------------------------- |
 | `state` | The classroom state. See `AgoraEduContextClassState` for details. |
 
-### onSetClassTime
+### onClassTimeInfo
 
 ```swift
-@objc optional func onSetClassTime(_ time: String)
+@objc optional func onClassTimeInfo(startTime: Int64,
+                                    differTime: Int64,
+                                    duration: Int64,
+                                    closeDelay: Int64)
 ```
+
+> Since v1.1.5.
 
 Reports the class time.
 
-- When the classroom state is `Init`, `time` indicates how many seconds are left before the class begins.
-- When the classroom state is `Start`, `time` indicates how many seconds the class has lasted.
-- When the classroom state is `End`, `time` means how many seconds the class has gone over time.
-
 | Parameter | Description |
-| :----- | :--------- |
-| `time` | The class time. |
+| :----------- | :--------------------------------------- |
+| `startTime` | Class start time (milliseconds). |
+| `differTime` | The time difference between the client and the server (milliseconds). |
+| `duration` | Class duration (seconds). |
+| `closeDelay` | After the class ends, the time (seconds) left before the classroom is closed. |
 
-### onSetNetworkQuality
+### onNetworkQuality
 
 ```swift
-@objc optional func onSetNetworkQuality(_ quality: AgoraEduContextNetworkQuality)
+@objc optional func onNetworkQuality(_ quality: AgoraEduContextNetworkQuality)
 ```
+
+> Since v1.1.5.
 
 Reports the network state.
 
@@ -79,11 +129,13 @@ Reports the network state.
 | :-------- | :----------------------------------------------- |
 | `quality` | The network state. See `AgoraEduContextNetworkQuality` for details. |
 
-### onSetConnectionState
+### onConnectionState
 
 ```swift
-@objc optional func onSetConnectionState(_ state: AgoraEduContextConnectionState)
+@objc optional func onConnectionState(_ state: AgoraEduContextConnectionState)
 ```
+
+> Since v1.1.5.
 
 Indicates the connection state.
 
@@ -91,23 +143,25 @@ Indicates the connection state.
 | :------ | :------------------------------------------------ |
 | `state` | The connection state. See `AgoraEduContextConnectionState` for details. |
 
-### onShowClassTips
+### onUploadLogSuccess
 
 ```swift
-@objc optional func onShowClassTips(_ message: String)
+@objc optional func onUploadLogSuccess(_ logId: String)
 ```
 
-Class notifications.
-
-There are the following tips:
-
-- The class ends in five minutes.
-- The class is over and the classroom closes in five minutes.
-- The classroom closes in one minute.
+Occurs when the log is uploaded successfully.
 
 | Parameter | Description |
-| :-------- | :------- |
-| `message` | The notification. |
+| :------ | :-------- |
+| `logId` | Log ID. |
+
+### onClassroomJoined
+
+```swift
+@objc optional func onClassroomJoined()
+```
+
+Occurs when the local user joins the channel successfully.
 
 ### onShowErrorInfo
 
@@ -120,3 +174,34 @@ Reports the error message during the class.
 | Parameter | Description |
 | :------ | :-------------------------------------- |
 | `error` | The error message. See `AgoraEduContextError` for details. |
+
+### onFlexRoomPropertiesInitialize
+
+```swift
+@objc optional func onFlexRoomPropertiesInitialize(_ properties: [String: Any])
+```
+
+Reports the initial custom classroom properties.
+
+| Parameter | Description |
+| :----------- | :------------------- |
+| `properties` | All properties of the current classroom. |
+
+### onFlexRoomPropertiesChanged
+
+```swift
+@objc optional func onFlexRoomPropertiesChanged(_ changedProperties: [String: Any],
+                                                  properties: [String: Any],
+                                                  cause: [String: Any]?,
+                                                  operator:AgoraEduContextUserInfo?)
+```
+
+Occurs when the custom classroom properties are updated.
+
+| Parameter | Description |
+| :------------------ | :----------------------------------------------------------- |
+| `changedProperties` | The updated classroom properties. |
+| `properties` | All classroom properties. |
+| `cause` | The update reason. |
+| `operator` | The information of the operator. See `AgoraEduContextUserInfo`. `operator` being empty means that properties are updated by the server. |
+

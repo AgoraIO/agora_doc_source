@@ -8,7 +8,7 @@
 abstract fun setScreenShareState(sharing: Boolean)
 ```
 
-Start or stop screen sharing.
+Starts or stops screen sharing.
 
 | Parameter | Description |
 | :-------- | :----------------- |
@@ -20,11 +20,11 @@ Start or stop screen sharing.
 abstract fun renderScreenShare(container: ViewGroup?, streamUuid: String)
 ```
 
-Start or stop rendering the screen-sharing stream.
+Starts or stops rendering the screen-sharing stream.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------- |
-| `container` | The video container. `Setting viewGroup` as `null` means stopping rendering the video stream. |
+| `container` | The video container. Setting `viewGroup` as `null` means stopping rendering the video stream. |
 | `streamUuid` | The stream ID. |
 
 ## IScreenShareHandler
@@ -34,14 +34,14 @@ Start or stop rendering the screen-sharing stream.
 ### onScreenShareStateUpdated
 
 ```kotlin
-fun onScreenShareStateUpdated(sharing: Boolean, streamUuid: String)
+fun onScreenShareStateUpdated(state: EduContextScreenShareState, streamUuid: String)
 ```
 
-Occurs when the state of screen sharing is updated.
+Occurs when the state of screen sharing changes.
 
 | Parameter | Description |
-| :----------- | :----------------- |
-| `sharing` | Whether the screen is being shared. |
+| :----------- | :----------------------------------------------------------- |
+| `state` | The state of screen sharing. See [EduContextScreenShareState](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextscreensharestate) for details. |
 | `streamUuid` | The stream ID. |
 
 ### onScreenShareTip
