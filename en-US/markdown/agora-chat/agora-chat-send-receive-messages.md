@@ -239,13 +239,13 @@ Agora Chat provides message devlivery and read receipts so that users can know w
 
 To enable message delivery receipts, do the following:
 
-1. Call `setRequireDeliveryAck(true)`.
+1. On the receiver's client, call `setRequireDeliveryAck(true)`.
 
     ```java
     options.setRequireDeliveryAck(true);
     ```
     
-2. Listen for the `onMessageDelivered` callback. The SDK triggers this callback when a message is delivered.
+2. On the sender's client, listen for the `onMessageDelivered` callback. The SDK triggers this callback when a message is delivered.
 
     ```java
     MessageListener msgListener = new MessageListener() {                  
