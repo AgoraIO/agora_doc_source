@@ -8,14 +8,19 @@ This page shows the minimum code you need to add peer-to-peer messaging into you
 
 The following figure shows the workflow of how clients send and receive peer-to-peer messages.
 
-![](https://web-cdn.agora.io/docs-files/1635324794917)
+![](https://web-cdn.agora.io/docs-files/1635758787617)
 
 As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
-1. Client A and Client B sign in to Agora Chat.
-2. Client A sends a peer message to the Agora Chat server.
-3. The Agora Chat server sends the message to Client B. 
-4. Client B receives the peer message.
+1. The clients retrieve a token from your app server.
+
+2. Client A and Client B sign in to Agora Chat.
+
+3. Client A sends a peer message to the Agora Chat server.
+
+4. The Agora Chat server sends the message to Client B. 
+
+5. Client B receives the peer message.
 
 ## Prerequisites
 
