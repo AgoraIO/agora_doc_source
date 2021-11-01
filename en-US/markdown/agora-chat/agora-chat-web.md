@@ -1,12 +1,12 @@
 # Get Started with Agora Chat
 
-Instant messaging connects people wherever they are and allows people to communicate with others in real time. The Agora Chat SDK enables you to embed peer-to-peer messaging in any app, on any device, anywhere.
+Instant messaging connects people wherever they are and allows them to communicate with others in real time. The Agora Chat SDK enables you to embed peer-to-peer messaging in any app, on any device, anywhere.
 
 This page shows the minimum code you need to add peer-to-peer messaging into your app by using the Agora Chat SDK for Web.
 
 ## Understand the tech
 
-The following figure shows the workflow to integrate into your app in order to add peer-to-peer messaging functionality.
+The following figure shows the workflow of how clients send and receive peer-to-peer messages.
 
 ![](https://web-cdn.agora.io/docs-files/1635324794917)
 
@@ -30,13 +30,14 @@ In order to follow the procedure in this page, you must have:
     - FireFox 10 or later
     - Chrome 54 or later
     - Safari 6 or later
+  - Xcode installed  (macOS only)
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ## Project setup
 
 Follow the steps to create the environment necessary to add peer-to-peer messaging into your app.
 
-1. For a new web project, **create** a new directory and name it  `Agora_quickstart`. Navigate to this directory in terminal and run `npm init`  to create a `package.json` file. Then, create the following files:
+1. For a new web project, create a new directory and name it  `agora_quickstart`. In terminal, navigate to the `agora_quickstart` directory and run `npm init`.  This creates a `package.json` file. You should also create the following files:
 
 - `index.html`
 
@@ -45,18 +46,16 @@ Follow the steps to create the environment necessary to add peer-to-peer messagi
   The project directory now has the following structure:
 
   ```text
-  Agora_quickstart
+  agora_quickstart
   ├─ index.html
   ├─ index.js
   └─ package.json
   ```
 
-2. Integrate the Agora Chat SDK into your project through npm. You can refer to the following steps:
-
-   a. In the `package.json` file, add `agora-chat-sdk` and its version number to the `dependencies` field:
+2. Integrate the Agora Chat SDK into your project through npm. To integrate the SDK, open the `package.json` and add `agora-chat-sdk` and its version number to the `dependencies` field:
 
    ```json
-   {
+{
     "name": "web",
     "version": "1.0.0",
     "description": "",
@@ -71,12 +70,7 @@ Follow the steps to create the environment necessary to add peer-to-peer messagi
     "license": "ISC"
    }
    ```
-
-   b. Import `agora-chat-sdk` module. In `index.js` file, add the following line:
-
-   ```javascript
-   import WebIM from 'agora-chat-sdk'
-   ```
+   
 
 ## Implement peer-to-peer messaging
 
@@ -140,14 +134,12 @@ Copy the following code to the `index.html` file to implement the UI.
 
 ### Implement the sending and receiving of messages
 
-Take the following steps to implement the sending and receiving of peer-to-peer messages:
+To enable your app to send and receive messages between individual users, do the following:
 
 1. Copy the following code to the `index.js` file.
-2. Replace `"<Your app key>"` with the AppKey of your Agora project.
-
-Note that to avoid browser-compatibility issues, the sample uses the import command to import the SDK and webpack to package the JS file. 
 
 ```javascript
+//Note that to avoid browser-compatibility issues, the sample uses the import command to import the SDK and webpack to package the JS file. 
 import WebIM from 'agora-chat-sdk'
 const appKey = "<Your app key>"
 
@@ -228,6 +220,8 @@ window.onload = function () {
 }
 ```
 
+2. Replace `"<Your app key>"` with the AppKey of your Agora project.
+
 ## Test your app
 
 This quickstart uses [webpack](https://webpack.js.org/) to package the project and `webpack-dev-server` to run your project.
@@ -257,7 +251,7 @@ To test your app, take the following steps:
    }
    ```
 
-2. Create a file named `webpack.config.js` in the project directory to configure webpack. Copy the following code to the `webpack.config.js` file.
+2. To configure webpack, create a file named `webpack.config.js` in the project directory and copy the following code into the file:
 
    ```javascript
    const path = require('path');
@@ -279,20 +273,20 @@ To test your app, take the following steps:
    The project directory now has the following structure:
 
    ```text
-    Agora_quickstart
+    agora_quickstart
     ├─ index.html
     ├─ index.js
     ├─ package.json
     └─ webpack.config.js
    ```
 
-3. Run the following command to install dependencies:
+3. To install dependencies, run the following command :
 
    ```shell
    npm install
    ```
 
-4. Run the following commands to build and run the project using webpack:
+4. To build and run the project using webpack, run the following commands :
 
    ```shell
    # Use webpack to package the project
@@ -302,13 +296,19 @@ To test your app, take the following steps:
    npm run start:dev
    ```
 
-If the project runs successfully, you can see the following page.
+The following page opens in your browser.
 
-Create a username and password and click **register**. To send a message to a specific user, click **login** to sign in to Agora Chat with the username you registered, enter the username of the receiver and the message you want to send, and click **send**. 
+![](https://web-cdn.agora.io/docs-files/1635739432791)
+
+5. To start a chat, do the following:
+
+   a. Create a user, and click **register** and **login**.
+
+   b. Open the same page in a new window, create another user, and click **register** and **login**. 
+
+   c. Send messages between the users.
 
 ![](https://web-cdn.agora.io/docs-files/1635240354287)
-
-You can open the same page in a new window and enter the username and password of the receiver to test your app.
 
 ![](https://web-cdn.agora.io/docs-files/1635240394167)
 
