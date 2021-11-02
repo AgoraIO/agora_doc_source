@@ -25,9 +25,9 @@ The request body is in the JSON Object type, and contains the following fields:
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful.
+If the returned HTTP status code is 200, the request is successful.
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
@@ -71,9 +71,9 @@ DELETE https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/a
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful.
+If the returned HTTP status code is 200, the request is successful.
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
@@ -108,7 +108,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/admi
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful. The response body contains the following fields:
+If the returned HTTP status code is 200, the request is successful. The response body contains the following fields:
 
 `bannedStreamList`: JSON Array type, a list of the banned streams. One stream corresponds to a JSON Object, and contains the following fields:
 
@@ -117,7 +117,7 @@ If the returned HTTP status code is 200, it means the request is successful. The
 | `name` | String | The stream name. |
 | `resumeTime` | String | The resume time of the stream. |
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
@@ -169,7 +169,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/repo
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful. The response body contains the following fields:
+If the returned HTTP status code is 200, the request is successful. The response body contains the following fields:
 
 `streamList`: JSON Array type, the online stream list. One stream corresponds to a JSON Object, and contains the following fields:
 
@@ -178,7 +178,7 @@ If the returned HTTP status code is 200, it means the request is successful. The
 | `name` | String | The stream name. |
 | `startTime` | String | The stream pushing time. In the RFC3339 format, for example `"2019-01-07T12:00:00Z"`. |
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
@@ -231,11 +231,11 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/repo
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful. The response body contains the following fields:
+If the returned HTTP status code is 200, the request is successful. The response body contains the following fields:
 
 - `startTime`: String type. The start time of the stream pushing, in the RFC3339 format, for example `"2019-01-07T12:00:00Z"`.
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
@@ -289,7 +289,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/repo
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful. The response body contains the following fields:
+If the returned HTTP status code is 200, the request is successful. The response body contains the following fields:
 
 `publishHistory`: JSON Array type, the information list of the stream pushing history, from the latest to the oldest. One stream corresponds to a JSON Object, and contains the following fields:
 
@@ -300,7 +300,7 @@ If the returned HTTP status code is 200, it means the request is successful. The
 | `endTime` | String | The end time of the stream pushing. In the RFC3339 format, for example `"2019-01-07T12:00:00+08:00"`. |
 | `duration` | Integer | The duration of the stream pushing, in seconds. |
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
