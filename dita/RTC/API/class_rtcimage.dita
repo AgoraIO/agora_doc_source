@@ -4,7 +4,62 @@
     <title><ph keyref="RtcImage"/></title>
     <shortdesc id="short"><ph id="shortdesc">图像属性。</ph></shortdesc>
     <refbody>
-        <section id="prototype">
+      <section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+          <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
+            const char* url;
+            int x;
+            int y;
+            int width;
+            int height;
+            int zOrder;
+            
+            RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0) {}
+            } RtcImage;</codeblock>
+          <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
+            @property(strong, nonatomic) NSURL *_Nonnull url;
+            @property(assign, nonatomic) CGRect rect;
+            @property (assign, nonatomic) NSInteger zOrder;
+            @end</codeblock>
+          <codeblock props="android" outputclass="language-java">public class AgoraImage {
+            public String url;
+            public int x;
+            public int y;
+            public int width;
+            public int height;
+            public int zOrder;
+            
+            @CalledByNative
+            public int getWidth() {
+            return width;
+            }
+            
+            @CalledByNative
+            public int getX() {
+            return x;
+            }
+            
+            @CalledByNative
+            public int getY() {
+            return y;
+            }
+            
+            @CalledByNative
+            public int getzOrder() {
+            return zOrder;
+            }
+            
+            @CalledByNative
+            public int getHeight() {
+            return height;
+            }
+            
+            @CalledByNative
+            public String getUrl() {
+            return url;
+            }
+            }</codeblock>
+        </p>
             <p outputclass="codeblock" props="rtc">
                 <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
   RtcImage() : url(NULL), x(0), y(0), width(0), height(0) {}
@@ -27,61 +82,6 @@
 
     public AgoraImage() {
     }
-}</codeblock>
-            </p>
-            <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
-  const char* url;
-  int x;
-  int y;
-  int width;
-  int height;
-  int zOrder;
-
-  RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0) {}
-  } RtcImage;</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
-@property(strong, nonatomic) NSURL *_Nonnull url;
-@property(assign, nonatomic) CGRect rect;
-@property (assign, nonatomic) NSInteger zOrder;
-@end</codeblock>
-                <codeblock props="android" outputclass="language-java">public class AgoraImage {
-  public String url;
-  public int x;
-  public int y;
-  public int width;
-  public int height;
-  public int zOrder;
-
-  @CalledByNative
-  public int getWidth() {
-    return width;
-  }
-
-  @CalledByNative
-  public int getX() {
-    return x;
-  }
-
-  @CalledByNative
-  public int getY() {
-    return y;
-  }
-
-  @CalledByNative
-  public int getzOrder() {
-    return zOrder;
-  }
-
-  @CalledByNative
-  public int getHeight() {
-    return height;
-  }
-
-  @CalledByNative
-  public String getUrl() {
-    return url;
-  }
 }</codeblock>
             </p>
             <p outputclass="codeblock">
