@@ -30,9 +30,9 @@ The request body is in the JSON Object type, and contains the following fields:
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful.
+If the returned HTTP status code is 200, the request is successful.
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
@@ -88,7 +88,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/sett
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful, and the response body contains the following fields:
+If the returned HTTP status code is 200, the request is successful, and the response body contains the following fields:
 
 | Field | Type | Description |
 |:------|:------|:------|
@@ -97,7 +97,7 @@ If the returned HTTP status code is 200, it means the request is successful, and
 | `storageConfig` | JSON Object | For the storage configuration of the recording files, see [StorageConfig](#storageconfig). |
 
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
