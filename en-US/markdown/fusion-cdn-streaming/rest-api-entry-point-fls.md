@@ -18,7 +18,7 @@ POST https://api.agora.io/v1/projects/{appid}/fls/entry_points?id={entry_point}
 
 #### Path parameter
 
-`appid`: String type, required. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. The App ID is the only identification of a project.
+`appid`: String type, required. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora Console. The App ID is the only identification of a project.
 
 #### Query parameters
 
@@ -28,7 +28,7 @@ POST https://api.agora.io/v1/projects/{appid}/fls/entry_points?id={entry_point}
 
 If the returned HTTP status code is 201, it means the request is successful.
 
-If the returned HTTP status code is not 201, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 201, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
@@ -63,9 +63,9 @@ DELETE https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful.
+If the returned HTTP status code is 200, the request is successful.
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
@@ -97,7 +97,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful, and the response body contains the following fields:
+If the returned HTTP status code is 200, the request is successful, and the response body contains the following fields:
 
 `entryPointList`: JSON Array type, the list of entry points. One entry point corresponds to a JSON Object, and contains the following fields:
 
@@ -105,7 +105,7 @@ If the returned HTTP status code is 200, it means the request is successful, and
 |:------|:------|:------|
 | `name` | String | The entry point name. |
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
