@@ -6,8 +6,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public static class TranscodingUser {
+                <codeblock props="android" outputclass="language-java">  public static class TranscodingUser {
     public int uid;
+    public String userId;
 
     public int x;
     public int y;
@@ -17,6 +18,10 @@
     public int zOrder;
     public float alpha;
     public int audioChannel;
+
+    public TranscodingUser() {
+      alpha = 1;
+    }
   }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscodingUser : NSObject
 
@@ -26,26 +31,25 @@
 @property(assign, nonatomic) double alpha;
 @property(assign, nonatomic) NSInteger audioChannel;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">typedef struct TranscodingUser {
-    uid_t uid;
-    int x;
-    int y;
-    int width;
-    int height;
-    int zOrder;
-    double alpha;
-    int audioChannel;
-    TranscodingUser()
-        : uid(0)
-        , x(0)
-        , y(0)
-        , width(0)
-        , height(0)
-        , zOrder(0)
-        , alpha(1.0)
-        , audioChannel(0)
-    {}
-    } TranscodingUser;</codeblock>
+                <codeblock props="windows unity" outputclass="language-cpp">truct TranscodingUser {
+  uid_t uid;
+  int x;
+  int y;
+  int width;
+  int height;
+  int zOrder;
+  double alpha;
+  int audioChannel;
+  TranscodingUser()
+      : uid(0),
+        x(0),
+        y(0),
+        width(0),
+        height(0),
+        zOrder(0),
+        alpha(1.0),
+        audioChannel(0) {}
+};</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface TranscodingUser {
     uid: number;
     x: number;

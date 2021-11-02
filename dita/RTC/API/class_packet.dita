@@ -5,9 +5,15 @@
     <shortdesc id="short"><ph id="shortdesc"><apiname keyref="Packet"/> 定义。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="windows" outputclass="language-cpp">struct Packet {
+                    const unsigned char* buffer;
+                    unsigned int size;
+                    
+                    Packet() : buffer(NULL), size(0) {}
+                    };</codeblock>
+            </p>
+            <p outputclass="codeblock" props="rtc">
                 <codeblock props="windows unity" outputclass="language-cpp">struct Packet {
 	const unsigned char* buffer;
 	unsigned int size;

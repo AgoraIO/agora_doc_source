@@ -10,6 +10,19 @@
   public VideoEncoderConfiguration.VideoDimensions dimensions;
   public int bitrate;
   public int framerate;
+
+  public SimulcastStreamConfig() {
+    this.dimensions = new VideoEncoderConfiguration.VideoDimensions(-1, -1);
+    this.bitrate = -1;
+    this.framerate = 5;
+  }
+
+  public SimulcastStreamConfig(
+      VideoEncoderConfiguration.VideoDimensions dimensions, int bitrate, int framerate) {
+    this.dimensions = dimensions;
+    this.bitrate = bitrate;
+    this.framerate = framerate;
+  }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSimulcastStreamConfig: NSObject
  @property (assign, nonatomic) int bitrate;
@@ -21,9 +34,10 @@
   int bitrate;
   int framerate;
   SimulcastStreamConfig() : dimensions(160, 120), bitrate(65), framerate(5) {}
+  bool operator==(const SimulcastStreamConfig&amp; rhs) const {
+    return dimensions == rhs.dimensions &amp;&amp; bitrate == rhs.bitrate &amp;&amp; framerate == rhs.framerate;
   }
-};
-</codeblock>
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity" outputclass="language-csharp"></codeblock>
             <codeblock props="rn" outputclass="language-typescript"></codeblock>

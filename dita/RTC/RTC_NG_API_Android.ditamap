@@ -58,7 +58,7 @@
             <topicref keyref="enableWebSdkInteroperability" toc="no"/>
             <topicref keyref="getAudioEffectManager" toc="no"/>
             <topicref keyref="getAudioMixingCurrentPosition" toc="no"/>
-            <topicref keyref="getAudioMixingDuration2" toc="no"/>
+            <topicref keyref="getAudioMixingDuration" toc="no"/>
             <topicref keyref="getAudioMixingPlayoutVolume" toc="no"/>
             <topicref keyref="getAudioMixingPublishVolume" toc="no"/>
             <topicref keyref="getCallId" toc="no"/>
@@ -212,12 +212,13 @@
             <topicref keyref="updateChannelMediaOptionsEx" toc="no"/>
         </topicref>
         <topicref keyref="IRtcEngineEventHandler" chunk="to-content">
-            <topicref keyref="onActiveSpeaker" toc="no"/>
+            <topicref keyref="onActiveSpeaker" toc="no" props="hide"/>
             <topicref keyref="onApiCallExecuted" toc="no"/>
             <topicref keyref="onAudioEffectFinished" toc="no"/>
             <topicref keyref="onAudioMixingFinished" toc="no"/>
             <topicref keyref="onAudioMixingStateChanged" toc="no"/>
             <topicref keyref="onAudioPublishStateChanged" toc="no"/>
+            <topicref keyref="onAudioQuality" toc="no"/>
             <topicref keyref="onAudioRouteChanged" toc="no"/>
             <topicref keyref="onAudioSubscribeStateChanged" toc="no"/>
             <topicref keyref="onAudioVolumeIndication" toc="no"/>
@@ -234,6 +235,7 @@
             <topicref keyref="onEncryptionError" toc="no"/>
             <topicref keyref="onFacePositionChanged" toc="no"/>
             <topicref keyref="onFirstLocalAudioFramePublished" toc="no"/>
+            <topicref keyref="onFirstLocalVideoFrame" toc="no"/>
             <topicref keyref="onFirstLocalVideoFramePublished" toc="no"/>
             <topicref keyref="onFirstRemoteVideoDecoded" toc="no"/>
             <topicref keyref="onFirstRemoteVideoFrame" toc="no"/>
@@ -320,7 +322,7 @@
             <topicref keyref="open" toc="no"/>
             <topicref keyref="pause" toc="no"/>
             <topicref keyref="play" toc="no"/>
-            <topicref keyref="registerAudioFrameObserver2" toc="no"/>
+            <topicref keyref="registerAudioFrameObserver2_IMediaPlayer" toc="no"/>
             <topicref keyref="registerPlayerSourceObserver" toc="no"/>
             <topicref keyref="resume" toc="no"/>
             <topicref keyref="seek" toc="no"/>
@@ -340,7 +342,6 @@
             <topicref keyref="onPositionChanged" toc="no"/>
         </topicref>
         <topicref keyref="IAudioFrameObserver" chunk="to-content">
-            <topicref keyref="AUDIO_FRAME_TYPE" toc="no"/>
             <topicref keyref="onMixedAudioFrame" toc="no"/>
             <topicref keyref="onPlaybackAudioFrame" toc="no"/>
             <topicref keyref="onPlaybackAudioFrameBeforeMixing" toc="no"/>
@@ -352,7 +353,6 @@
         </topicref>
         <topicref keyref="IMetadataObserver" chunk="to-content">
             <topicref keyref="getMaxMetadataSize" toc="no"/>
-            <topicref keyref="METADATA_TYPE" toc="no"/>
             <topicref keyref="onMetadataReceived" toc="no"/>
             <topicref keyref="onReadyToSendMetadata" toc="no"/>
         </topicref>
@@ -403,6 +403,7 @@
             <topicref keyref="MEDIA_PLAYER_STATE" toc="no"/>
             <topicref keyref="MEDIA_SOURCE_TYPE" toc="no"/>
             <topicref keyref="MEDIA_STREAM_TYPE" toc="no"/>
+	    <topicref keyref="METADATA_TYPE" toc="no"/>
             <topicref keyref="ORIENTATION_MODE" toc="no"/>
             <topicref keyref="PERMISSION_TYPE" toc="no"/>
             <topicref keyref="PRIORITY_TYPE" toc="no"/>
@@ -415,7 +416,6 @@
             <topicref keyref="RTMP_STREAMING_EVENT" toc="no"/>
             <topicref keyref="STREAM_PUBLISH_STATE" toc="no"/>
             <topicref keyref="STREAM_SUBSCRIBE_STATE" toc="no"/>
-            <topicref keyref="VIDEO_BUFFER_TYPE" toc="no"/>
             <topicref keyref="VIDEO_CAPTURE_TYPE" toc="no"/>
             <topicref keyref="VIDEO_CODEC_PROFILE_TYPE" toc="no"/>
             <topicref keyref="VIDEO_CODEC_TYPE" toc="no"/>
@@ -451,7 +451,7 @@
             <topicref keyref="RemoteAudioStats" toc="no"/>
             <topicref keyref="RemoteVideoStats" toc="no"/>
             <topicref keyref="RtcEngineConfig" toc="no">
-                <topicref keyref="addExtension" toc="no"/>
+            <topicref keyref="addExtension" toc="no"/>
             </topicref>
             <topicref keyref="RtcConnection" toc="no"/>
             <topicref keyref="RtcImage" toc="no"/>
@@ -465,6 +465,7 @@
             <topicref keyref="VideoCanvas" toc="no"/>
             <topicref keyref="VideoDimensions" toc="no"/>
             <topicref keyref="VideoEncoderConfiguration" toc="no"/>
+            <topicref keyref="VideoFormat" toc="no"/>
             <topicref keyref="WatermarkOptions" toc="no"/>
         </topicref>
     </topichead>
