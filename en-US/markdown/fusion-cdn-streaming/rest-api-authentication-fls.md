@@ -25,9 +25,9 @@ The request body is in the JSON Object type, and contains the following fields:
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful.
+If the returned HTTP status code is 200, the request is successful.
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
