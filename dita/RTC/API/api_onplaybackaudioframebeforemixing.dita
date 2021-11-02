@@ -11,6 +11,13 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="android" outputclass="language-java">@CalledByNative
+                public abstract boolean onPlaybackAudioFrameBeforeMixing(int userId, int type,
+                int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer,
+                long renderTimeMs, int avsync_type);</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(rtc::uid_t uid, AudioFrame&amp; audioFrame) = 0;</codeblock>
+        </p>
         <p outputclass="codeblock">
                 <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrameBeforeMixing:(AgoraAudioFrame* _Nonnull)frame uid:(NSUInteger)uid;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
@@ -28,13 +35,6 @@
             </codeblock>
             <codeblock props="windows" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(unsigned int uid, AudioFrame&amp; audioFrame) = 0;</codeblock> 
         </p>
-        <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="android" outputclass="language-java">@CalledByNative
-public abstract boolean onPlaybackAudioFrameBeforeMixing(int userId, int type,
-    int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer,
-    long renderTimeMs, int avsync_type);</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(rtc::uid_t uid, AudioFrame&amp; audioFrame) = 0;</codeblock>
-        </p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -44,7 +44,7 @@ public abstract boolean onPlaybackAudioFrameBeforeMixing(int userId, int type,
                     <pt props="android">userId</pt>
                     <pd>指定用户的用户 ID。</pd>
                 </plentry>
-                <plentry>
+                <plentry props="windows unity ios mac">
                     <pt props="windows unity">audioFrame</pt>
                     <pt props="ios mac">frame</pt>
                     <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>

@@ -5,6 +5,17 @@
     <shortdesc id="short"><ph id="shortdesc">上下行 Last mile 网络质量探测结果。</ph></shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeResult {
+                    LASTMILE_PROBE_RESULT_STATE state;
+                    LastmileProbeOneWayResult uplinkReport;
+                    LastmileProbeOneWayResult downlinkReport;
+                    unsigned int rtt;
+                    
+                    LastmileProbeResult() : state(LASTMILE_PROBE_RESULT_UNAVAILABLE),
+                    rtt(0) {}
+                    };</codeblock>
+            </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
     
@@ -47,17 +58,6 @@
   LastmileProbeOneWayResult uplinkReport;
   LastmileProbeOneWayResult downlinkReport;
   unsigned int rtt;
-};</codeblock>
-            </p>
-            <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeResult {
-  LASTMILE_PROBE_RESULT_STATE state;
-  LastmileProbeOneWayResult uplinkReport;
-  LastmileProbeOneWayResult downlinkReport;
-  unsigned int rtt;
-
-  LastmileProbeResult() : state(LASTMILE_PROBE_RESULT_UNAVAILABLE),
-                          rtt(0) {}
 };</codeblock>
             </p>
         </section>
