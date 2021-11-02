@@ -1,6 +1,6 @@
 There are two types of domain names: stream-pushing domain names and stream-playing domain names (which mainly affect regional access and the deployment of the streams). The same live stream can be pushed or played through multiple different domain names.
 
-> The domain name management function is in the beta stage, please contact [sales @agora.io]( mailto:sales@agora.io) before using it.
+> The domain name management function is in the beta stage. Contact [sales @agora.io]( mailto:sales@agora.io) before using it.
 
 ## Add domain names
 
@@ -16,11 +16,11 @@ POST https://api.agora.io/v1/projects/{appid}/fls/domains?id={domain}
 
 #### Path parameter
 
-`appid`: String type, required. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. The App ID is the only identification of a project.
+`appid`: String type, required. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora Console. The App ID is the only identification of a project.
 
 #### Query parameters
 
-`id`: String type, required. The domain name to be added and the pan-domain name is not supported.
+`id`: String type, required. The domain name to be added. Pan-domain names are  not supported.
 
 #### Request body
 
@@ -28,24 +28,24 @@ The request body is the `data` field in the JSON Object type, and contains the f
 
 | Field | Type | Description |
 |:------|:------|:------|
-| `type` | String | Required. The domain name type:<li>`"publish"`: The stream pushing domain name.</li><li>`"play"`: The stream playing domain name.</li> |
-| `region` | String | Required when the domain name type is set as `"publish"`. This parameter only applies to stream pushing domain names. The region of the Agora server used for the stream pushing domain name:<li>`"cn"`: China.</li><li>`"ap"`: Asian regions except for China Mainland.</li><li>`"eu"`: Europe.</li><li>`"na"`: North America.</li> |
+| `type` | String | Required. The domain name type:<li>`"publish"`: The stream-pushing domain name.</li><li>`"play"`: The stream-playing domain name.</li> |
+| `region` | String | Required when the domain name type is set as `"publish"`. This parameter only applies to stream-pushing domain names. The region of the Agora server used for the stream pushing domain name:<li>`"cn"`: China.</li><li>`"ap"`: Asian regions except for China Mainland.</li><li>`"eu"`: Europe.</li><li>`"na"`: North America.</li> |
 
 
 ### HTTP response
 
-If the returned HTTP status code is 201, it means the request is successful, and the response body contains the following fields:
+If the returned HTTP status code is 201, the request is successful, and the response body contains the following fields:
 
 | Field | Type | Description |
 |:------|:------|:------|
 | `appid` | String | The App ID of your Agora project. |
-| `type` | String | Set the domain name type:<li>`"publish"`: The stream pushing domain name.</li><li>`"play"`: The stream playing domain name.</li> |
-| `region` | String | Set the region where the Agora server is. Only returned when the `type` is `"publish"`. |
+| `type` | String | Set the domain name type:<li>`"publish"`: The stream-pushing domain name.</li><li>`"play"`: The stream-playing domain name.</li> |
+| `region` | String | Set the region where the Agora server is located. Only returned when the `type` is `"publish"`. |
 | `authKey` | String | The secret hotlink protection. |
 | `cname` | String | The cname corresponds to the domain name, and you need to configure it at your DNS host. |
 
 
-If the returned HTTP status code is not 201, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 201, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
@@ -97,14 +97,14 @@ DELETE https://api.agora.io/v1/projects/{appid}/fls/domains/{domain}
 
 | Parameter | Type | Description |
 |:------|:------|:------|
-| `appid` | String | Required. The App ID corresponding to the domain name to be deleted. |
-| `domain` | String | Required. The domain name to be deleted. |
+| `appid` | String | Required. The App ID corresponding to the domain name being deleted. |
+| `domain` | String | Required. The domain name being deleted. |
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful.
+If the returned HTTP status code is 200, the request is successful.
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
@@ -136,7 +136,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/domains
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful, and the response body contains the following fields:
+If the returned HTTP status code is 200, the request is successful, and the response body contains the following fields:
 
 `domainList`: JSON Array type, the domain name list. One stream corresponds to a JSON Object, and contains the following fields:
 
@@ -144,12 +144,12 @@ If the returned HTTP status code is 200, it means the request is successful, and
 |:------|:------|:------|
 | `appid` | String | The App ID of your Agora project. |
 | `name` | String | The domain name. |
-| `type` | String | The domain name type.<li>`"publish"`: The stream pushing domain name.</li><li>`"play"`: The stream playing domain name.</li> |
+| `type` | String | The domain name type.<li>`"publish"`: The stream-pushing domain name.</li><li>`"play"`: The stream-playing domain name.</li> |
 | `region` | String | The region of the Agora server used for the domain name. Only returned when the `type` is `"publish"`. |
 | `authKey` | String | The secret hotlink protection. |
 
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
@@ -201,23 +201,23 @@ GET https://api.agora.io/v1/projects/{appid}/fls/domains/{domain}
 
 | Parameter | Type | Description |
 |:------|:------|:------|
-| `appid` | String | Required. The App ID corresponding to the domain name to be queried. |
-| `domain` | String | Required. The domain name to be queried. |
+| `appid` | String | Required. The App ID corresponding to the domain name being queried. |
+| `domain` | String | Required. The domain name being queried. |
 
 ### HTTP response
 
-If the returned HTTP status code is 200, it means the request is successful, and the response body contains the following fields:
+If the returned HTTP status code is 200, the request is successful, and the response body contains the following fields:
 
 | Field | Type | Description |
 |:------|:------|:------|
 | `appid` | String | The App ID of your Agora project. |
 | `name` | String | The domain name. |
-| `type` | String | The domain name type.<li>`"publish"`: The stream pushing domain name.</li><li>`"play"`: The stream playing domain name.</li> |
+| `type` | String | The domain name type.<li>`"publish"`: The stream-pushing domain name.</li><li>`"play"`: The stream-playing domain name.</li> |
 | `region` | String | The region of the Agora server used for the domain name. Only returned when the `type` is `"publish"`. |
 | `authKey` | String | The secret hotlink protection. |
 
 
-If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
 ### Example
 
@@ -254,7 +254,7 @@ HTTP/1.1 200 OK
 | 200 | The request succeeds. |
 | 201
  | The resource (domain name) is successfully created. |
-| 400 | <li>The parameter is illegal, such as the `appid` or the `domain` is empty.</li><li>The domain name to be added has already existed.</li> |
+| 400 | <li>The parameter is illegal, such as the `appid` or the `domain` is empty.</li><li>The domain name to be added already exists.</li> |
 | 401 | Unauthorized (the customer ID and the customer secret don't match). |
 | 404 | The server cannot find the resource according to the request, which means the requested domain name does not exist or the requested URI path is illegal. |
 | 500 | There is an internal error in the server, so the server is not able to complete the request. |
