@@ -10,7 +10,7 @@
 
 ## 拼接推流 URL
 
-推流 URL 由四部分组成，如下图所示：
+推流 URL 由四部分组成，如下图的示例 URL 所示：
 
 ![example url of strream pushing](https://web-cdn.agora.io/docs-files/1635229049639)
 
