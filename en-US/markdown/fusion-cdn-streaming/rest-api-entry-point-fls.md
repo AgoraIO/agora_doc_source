@@ -1,0 +1,148 @@
+Entry points are used to categorize the streams. You can configure functions such as recording, transcoding, and snapshot capturing for one entry point, and these configurations apply applied to all the streams under this entry point.
+
+Agora provides a default entry point `live` for your direct use.
+
+> The management function is in the beta stage, please contact sales @agora.io before using it.
+
+## Add entry points
+
+Add an entry point.
+
+When adding an entry point, you need to specify the App ID of your Agora project.
+
+### HTTP request
+
+```http
+POST https://api.agora.io/v1/projects/{appid}/fls/entry_points?id={entry_point}
+```
+
+#### Path parameter
+
+`appid`: String type, required. The App ID provided by Agora for each developer. You can get an App ID after creating a project in the Agora console. The App ID is the only identification of a project.
+
+#### Query parameters
+
+`id`: String type, required. The name of the entry point to be added.
+
+### HTTP response
+
+If the returned HTTP status code is 201, it means the request is successful.
+
+If the returned HTTP status code is not 201, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+
+### Example
+
+**Request line**
+
+```http
+POST https://api.agora.io/v1/projects/{your_appid}/fls/entry_points?id=live2 HTTP/1.1
+```
+
+**Response line**
+
+```http
+HTTP/1.1 201 Created
+```
+
+## Delete entry points
+
+Delete an entry point. The default entry point `live` cannot be deleted.
+
+### HTTP request
+
+```http
+DELETE https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}
+```
+
+#### Path parameter
+
+| Parameter | Type | Description |
+|:------|:------|:------|
+| `appid` | String | Required. The App ID corresponding to the entry point to be deleted. |
+| `entry_point` | String | Required. The name of the entry point to be deleted. |
+
+### HTTP response
+
+If the returned HTTP status code is 200, it means the request is successful.
+
+If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+
+### Example
+
+**Request line**
+
+```http
+DELETE https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live2 HTTP/1.1
+```
+
+**Response line**
+
+```http
+HTTP/1.1 200 OK
+```
+
+## Get the entry point list
+
+Get the list of all entry points under one Agora project.
+
+### HTTP request
+
+```http
+GET https://api.agora.io/v1/projects/{appid}/fls/entry_points
+```
+
+#### Path parameter
+
+`appid`: String type, required. The App ID of your Agora project
+
+### HTTP response
+
+If the returned HTTP status code is 200, it means the request is successful, and the response body contains the following fields:
+
+`entryPointList`: JSON Array type, the list of entry points. One entry point corresponds to a JSON Object, and contains the following fields:
+
+| Field | Type | Description |
+|:------|:------|:------|
+| `name` | String | The entry point name. |
+
+If the returned HTTP status code is not 200, it means the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+
+### Example
+
+**Request line**
+
+```http
+GET https://api.agora.io/v1/projects/{your_appid}/fls/entry_points HTTP/1.1
+```
+
+**Response line**
+
+```http
+HTTP/1.1 200 OK
+```
+
+**Request body**
+
+```json
+{
+    "entryPointList": [
+        {
+            "name": "live"
+        }
+    ]
+}
+```
+
+<a name="http-code"></a>
+## HTTP status code
+
+| Status code | Description |
+| :----- | :----------------------------------------------------------- |
+| 200 | The request succeeds. |
+| 201
+ | The resource (entry point) is successfully created. |
+| 400 | <li>The parameter is illegal, such as the `appid` or the `entry_point` is empty.</li><li>The entry point to be added has already existed.</li><li>The number of the entry points exceeds the limit.</li> |
+| 401 | Unauthorized (the customer ID and the customer secret don't match). |
+| 404 | The server cannot find the resource according to the request, which means the requested entry point does not exist or the requested URI path is illegal. |
+| 500 | There is an internal error in the server, so the server is not able to complete the request. |
+| 504 | There is an internal error in the server, and the gateway or the proxy server did not receive a timely request from the remote server. |
