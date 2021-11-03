@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videodimensions">
-    <title><ph keyref="VideoDimensions"/></title>
+    <title><ph keyref="VideoDimensions" /></title>
     <shortdesc id="short"><ph id="shortdesc">视频尺寸。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -10,7 +10,7 @@
     public int width;
     public int height;
   }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="ios mac" outputclass="language-objectivec" />
                 <codeblock props="windows unity" outputclass="language-cpp">struct VideoDimensions {
     int width;
     int height;
@@ -25,12 +25,28 @@
     width: number,
     height: number
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class VideoDimensions {
+  
+  int? width;
+
+  
+  int? height;
+
+  VideoDimensions({
+    this.width,
+    this.height,
+  });
+
+    factory VideoDimensions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$VideoDimensionsFromJson(json);
+
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoDimensionsToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
   <pt>width</pt>

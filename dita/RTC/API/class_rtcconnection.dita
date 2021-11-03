@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcconnection">
-    <title><ph keyref="RtcConnection"/></title>
+    <title><ph keyref="RtcConnection" /></title>
     <shortdesc id="short"><ph id="shortdesc">包含连接信息的类。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -10,7 +10,7 @@
   public String channelId;
   public int localUid;
 }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcConnection: NSObject &lt;NSCopying>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcConnection: NSObject &lt;NSCopying&gt;
 @property (nonatomic, copy) NSString *_Nonnull channelId;
 @property (nonatomic, assign) NSUInteger localUid;
 @end</codeblock>
@@ -18,14 +18,28 @@
   const char* channelId;
   uid_t localUid;
 };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class RtcConnection {
+                  String? channelId;
+
+    uid_t? localUid;
+
+  RtcConnection({
+    this.channelId,
+    this.localUid,
+  });
+
+    factory RtcConnection.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RtcConnectionFromJson(json);
+
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcConnectionToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
                 <plentry>
                     <pt>channelId</pt>
