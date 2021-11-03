@@ -29,7 +29,7 @@ The request body is the `data` field in the JSON Object type, and contains the f
 | Field | Type | Description |
 |:------|:------|:------|
 | `type` | String | Required. The domain name type:<li>`"publish"`: The stream-pushing domain name.</li><li>`"play"`: The stream-playing domain name.</li> |
-| `region` | String | Required when the domain name type is set as `"publish"`. This parameter only applies to stream-pushing domain names. The region of the Agora server used for the stream pushing domain name:<li>`"cn"`: China.</li><li>`"ap"`: Asian regions except for China Mainland.</li><li>`"eu"`: Europe.</li><li>`"na"`: North America.</li> |
+| `region` | String | Required when the domain name type is set as `"publish"`. This parameter only applies to stream-pushing domain names. The region of the Agora server used for the stream-pushing domain name:<li>`"cn"`: China Mainland.</li><li>`"ap"`: Asian regions except for China Mainland.</li><li>`"eu"`: Europe.</li><li>`"na"`: North America.</li> |
 
 
 ### HTTP response
@@ -254,8 +254,8 @@ HTTP/1.1 200 OK
 | 200 | The request succeeds. |
 | 201
  | The resource (domain name) is successfully created. |
-| 400 | <li>The parameter is illegal, such as the `appid` or the `domain` is empty.</li><li>The domain name to be added already exists.</li> |
-| 401 | Unauthorized (the customer ID and the customer secret don't match). |
+| 400 | <li>The parameter is illegal, for example the `appid` or the `domain` is empty.</li><li>The domain name to be added already exists.</li> |
+| 401 | Unauthorized (the customer ID and the customer secret do not match). |
 | 404 | The server cannot find the resource according to the request, which means the requested domain name does not exist or the requested URI path is illegal. |
 | 500 | There is an internal error in the server, so the server is not able to complete the request. |
 | 504 | There is an internal error in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
