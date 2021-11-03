@@ -9,7 +9,7 @@ The Fusion-CDN Live Streaming RESTful API can perform the following functions:
 ### Domain name and entry-point management
 
 - There are two types of domain names: stream-pushing domain names and stream-playing domain names (which mainly affect regional access and the deployment of the streams). The same live stream can be pushed or played through multiple different domain names.
-- Entry points are used to categorize the streams. You can configure functions such as recording, transcoding, and snapshot capturing for one entry point, and these configurations apply applied to all the streams under this entry point.
+- Entry points are used to categorize the streams. You can configure functions such as recording, transcoding, and snapshot capturing for one entry point, and these configurations apply to all the streams under this entry point.
 
 ### Stream recording
 
