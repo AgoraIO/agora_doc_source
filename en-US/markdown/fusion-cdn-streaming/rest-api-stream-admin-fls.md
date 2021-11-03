@@ -67,7 +67,7 @@ DELETE https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/a
 |:------|:------|:------|
 | `appid` | String | Required. The App ID corresponding to the entry point. |
 | `entry_point` | String | Required. The entry point name. |
-| `stream_name` | String | Required. The name of the stream to be unbanned.  |
+| `stream_name` | String | Required. The name of the stream being unbanned.  |
 
 ### HTTP response
 
@@ -261,7 +261,7 @@ HTTP/1.1 200 OK
 
 ## Get the stream pushing history
 
-You could only query the pushing history of the finished streams under a specified entry point within a specified time range.
+You can only query the pushing history of the finished streams under a specified entry point within a specified time range.
 
 There is a delay of about two hours for the stream pushing history, and you can query a pushing history of 60 days.
 
@@ -282,9 +282,9 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/repo
 
 | Parameter | Type | Description |
 |:------|:------|:------|
-| `start_time` | String | Optional. Query the start time of the stream pushing history, in the URL code format corresponding to the RFC3339 format, for example, `2019-01-07T12%3A00%3A00%2B08%3A00` corresponds to `2019-01-07T12:00:00+08:00`. The start time shall not be set 60 days before the current time. |
-| `end_time` | String | Optional. Query the end time of the stream pushing history, in the URL code format corresponding to the RFC3339 format, for example,  `2019-01-07T12%3A00%3A00%2B08%3A00` corresponds to `2019-01-07T12:00:00+08:00`. The end time shall not be set later than the current time. |
-| `stream_name` | String | Required. The name of the stream to be queried. |
+| `start_time` | String | Optional. Query the start time of the stream pushing history, in the URL code format corresponding to the RFC3339 format, for example, `2019-01-07T12%3A00%3A00%2B08%3A00` corresponds to `2019-01-07T12:00:00+08:00`. The start time cannot be set 60 days before the current time. |
+| `end_time` | String | Optional. Query the end time of the stream pushing history, in the URL code format corresponding to the RFC3339 format, for example,  `2019-01-07T12%3A00%3A00%2B08%3A00` corresponds to `2019-01-07T12:00:00+08:00`. The end time hall cannot be set later than the current time. |
+| `stream_name` | String | Required. The name of the stream being queried. |
 
 
 ### HTTP response
@@ -344,8 +344,8 @@ HTTP/1.1 200 OK
 | Status code | Description |
 | :----- | :----------------------------------------------------------- |
 | 200 | The request succeeds. |
-| 400 | <li>The parameter is illegal, such as the `appid` or the `entry_point` is empty.</li><li>The query time format is incorrect.</li> |
-| 401 | Unauthorized (the customer ID and the customer secret don't match). |
+| 400 | <li>The parameter is illegal, for example the `appid` or the `entry_point` is empty.</li><li>The query time format is incorrect.</li> |
+| 401 | Unauthorized (the customer ID and the customer secret do not match). |
 | 404 | The server cannot find the resource according to the request, which means the requested entry point does not exist or the requested URI path is illegal. |
 | 500 | There is an internal error in the server, so the server is not able to complete the request. |
 | 504 | There is an internal error in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
