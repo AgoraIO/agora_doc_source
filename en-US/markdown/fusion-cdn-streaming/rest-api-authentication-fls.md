@@ -1,4 +1,4 @@
-The authentication function is in the beta stage, please contact sales @agora.io before using it.
+The authentication function is in the beta stage. Contact sales@agora.io before using it.
 
 ## Set authentication secrets
 
@@ -14,7 +14,7 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/domains/{domain}
 
 | Parameter | Type | Description |
 |:------|:------|:------|
-| `appid` | String | Required. App ID corresponding to the domain name to be set. |
+| `appid` | String | Required. App ID corresponding to the domain name being set. |
 | `domain` | String | Required. The domain name. |
 
 #### Request body
@@ -57,8 +57,8 @@ HTTP/1.1 200 OK
 | Status code | Description |
 | :----- | :----------------------------------------------------------- |
 | 200 | The request succeeds. |
-| 400 | The parameter is illegal, such as the `appid` or the `domain` is empty. |
-| 401 | Unauthorized (the customer ID and the customer secret don't match). |
+| 400 | The parameter is illegal, for example the `appid` or the `domain` is empty. |
+| 401 | Unauthorized (the customer ID and the customer secret do not match). |
 | 404 | The server cannot find the resource according to the request, which means the requested domain name does not exist or the requested URI path is illegal. |
 | 500 | There is an internal error in the server, so the server is not able to complete the request. |
 | 504 | There is an internal error in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
