@@ -14,7 +14,7 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/se
 |:------|:------|:------|
 | `appid` | String | Required. The App ID corresponding to the entry point. |
 | `entry_point` | String | Required. The entry point name. |
-| `region` | String | Required. The region where the stream pushing domain name is. |
+| `region` | String | Required. The region where the stream pushing domain name is located. |
 
 
 #### Request body
@@ -84,7 +84,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/sett
 |:------|:------|:------|
 | `appid` | String | Required. The App ID corresponding to the entry point. |
 | `entry_point` | String | Required. The entry point name. |
-| `region` | String | Required. The region where the stream pushing domain name is. |
+| `region` | String | Required. The region where the stream pushing domain name is located. |
 
 ### HTTP response
 
@@ -158,7 +158,7 @@ The configuration of the recording files contains the following fields:
    - `4`: [Kingsoft Cloud]( https://www.ksyun.com/post/product/KS3.html)
    - `5`: [Microsoft Azure](https://azure.microsoft.com/zh-cn/)
 
-- `region`: Integer type, the region information specified by the third-party cloud storage. In order to ensure the success rate and the real-time performance of the recording file upload, if you set the `region` of the stream pushing domain name, you need to ensure that the `region` of the third-party cloud storage and the `region` of the stream pushing domain name are in the same region. For example: the `region` of the stream pushing domain name is set as `CN` (China), and the region of the third-party cloud storage needs to be set as a region within `CN`.
+- `region`: Integer type, the region information specified by the third-party cloud storage. In order to ensure the success rate and the real-time performance of the recording file upload, if you set the `region` of the stream-pushing domain name, you need to ensure that the `region` of the third-party cloud storage and the `region` of the stream-pushing domain name are in the same region. For example: the `region` of the stream pushing domain name is set as `CN` (China), and the region of the third-party cloud storage needs to be set as a region within `CN`.
 
    - When `vendor` = 0, the third-party cloud storage is Qiniu Cloud:
       - `0`: East China
@@ -245,7 +245,7 @@ The configuration of the recording files contains the following fields:
 
 - `bucket`: String type, the bucket of the third-party cloud storage. The bucket name must conform to the naming rules of the corresponding third-party cloud storage service.
 
-- `accessKey`: String type, the access key of the third-party cloud storage. In general, we recommend to offer an access key with write-only permissions. If the latency transcoding is required, the access key must have read and write permissions at the same time.
+- `accessKey`: String type, the access key of the third-party cloud storage. In general, Agora recommends that you offer an access key with write-only permissions. If latency transcoding is required, the access key must have both read and write permissions.
 
 - `accessKey`: String type, the secret key of the third-party cloud storage.
 
@@ -256,8 +256,8 @@ The configuration of the recording files contains the following fields:
 | Status code | Description |
 | :----- | :----------------------------------------------------------- |
 | 200 | The request succeeds. |
-| 400 | The parameter is illegal, such as the `appid` or the `entry_point` is empty, or the `region` parameter value is illegal. |
-| 401 | Unauthorized (the customer ID and the customer secret don't match). |
+| 400 | The parameter is illegal, for example the `appid` or the `entry_point` is empty, or the `region` parameter value is illegal. |
+| 401 | Unauthorized (the customer ID and the customer secret do not match). |
 | 404 | The server cannot find the resource according to the request, which means the requested entry point does not exist or the requested URI path is illegal. |
 | 500 | There is an internal error in the server, so the server is not able to complete the request. |
 | 504 | There is an internal error in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
