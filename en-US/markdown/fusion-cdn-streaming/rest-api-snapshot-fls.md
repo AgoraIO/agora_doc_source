@@ -14,7 +14,7 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/se
 |:------|:------|:------|
 | `appid` | String | Required. The App ID corresponding to the entry point. |
 | `entry_point` | String | Required. The entry point name. |
-| `region` | String | Required. The region where the stream pushing domain name is located. |
+| `region` | String | Required. 添加推流域名时设置的区域。 |
 
 #### Request body
 
@@ -22,10 +22,10 @@ The request body is in the JSON Object type, and contains the following fields:
 
 | Field | Type | Description |
 |:------|:------|:------|
-| `enabled` | Bool | Required. Whether to enable the snapshot capturing function:<li>`true`: Enable the snapshot capturing.</li><li>`false`: Disable the snapshot capturing.</li> |
-| `snapshotInterval` | Integer | Optional. The interval between the snapshot capturings, in seconds, the default value is 10, and the value range is [5,300]. |
+| `enabled` | Bool | Required. Whether to enable the snapshot capturing function:<li>`true`: Enable snapshot capturing.</li><li>`false`: Disable snapshot capturing.</li> |
+| `snapshotInterval` | Integer | Optional. The interval between snapshot capturings, in seconds. The default value is 10, and the value range is [5,300]. |
 | `storageConfig` | JSON Object | Optional. For the storage configuration of the snapshot files, see [StorageConfig](#storageconfig). |
-| `enableModeration` | Bool | Optional. Whether to enable content moderation:<li>`true`: Enable the content moderation.</li><li>`false`: (default) Do not enable the content moderation.</li> |
+| `enableModeration` | Bool | Optional. Whether to enable content moderation:<li>`true`: Enable content moderation.</li><li>`false`: (default) Disable content moderation.</li> |
 
 ### HTTP response
 
@@ -80,7 +80,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/sett
 |:------|:------|:------|
 | `appid` | String | Required. The App ID corresponding to the entry point. |
 | `entry_point` | String | Required. The entry point name. |
-| `region` | String | Required. The region where the stream pushing domain name is located. |
+| `region` | String | Required. 添加推流域名时设置的区域。 |
 
 ### HTTP response
 
@@ -88,8 +88,8 @@ If the returned HTTP status code is 200, the request is successful, and the resp
 
 | Field | Type | Description |
 |:------|:------|:------|
-| `enabled` | Bool | Whether the snapshot capturing function is enabled:<li>`true`: The snapshot capturing is enabled.</li><li>`false`: The snapshot capturing is not enabled.</li> |
-| `snapshotInterval` | Integer | The interval between the snapshot capturings, in seconds, the default value is 10, and the value range is [5,300]. |
+| `enabled` | Bool | Whether the snapshot capturing function is enabled:<li>`true`: Snapshot capturing is enabled.</li><li>`false`: Snapshot capturing is disabled.</li> |
+| `snapshotInterval` | Integer | The interval between snapshot capturings, in seconds. The default value is 10, and the value range is [5,300]. |
 | `storageConfig` | JSON Object | For the storage configuration of the snapshot files, see [StorageConfig](#storageconfig). |
 | `enableModeration` | Bool | Whether content moderation is enabled:<li>`true`: Content moderation is enabled.</li><li>`false`: Content moderation is not enabled.</li> |
 
@@ -138,7 +138,7 @@ The configuration of the snapshot files contains the following fields:
    - `3`: [Tencent Cloud]( https://cloud.tencent.com/product/cos)
    - `4`: [Kingsoft Cloud]( https://www.ksyun.com/post/product/KS3.html)
    - `5`: [Microsoft Azure](https://azure.microsoft.com/zh-cn/)
-- `region`: Integer type, the region information specified by the third-party cloud storage. In order to ensure the success rate and the real-time performance of the recording file upload, if you set the `region` of the stream-pushing domain name, you need to ensure that the `region` of the third-party cloud storage and the `region` of the stream-pushing domain name are in the same region. For example: the `region` of the stream pushing domain name is set as `CN` (China), and the region of the third-party cloud storage needs to be set as a region within `CN`.
+- `region`: Integer type, the region information specified by the third-party cloud storage. In order to ensure the success rate and the real-time performance of the recording file upload, if you set the `region` of the stream-pushing domain name, you need to ensure that the `region` of the third-party cloud storage and the `region` of the stream-pushing domain name are in the same region. For example: the `region` of the stream-pushing domain name is set as `CN` (China), and the region of the third-party cloud storage needs to be set as a region within `CN`.
    - When `vendor` = 0, the third-party cloud storage is Qiniu Cloud, and:
       - `0`: East China
       - `1`: North China
