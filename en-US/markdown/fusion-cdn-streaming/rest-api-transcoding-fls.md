@@ -1,4 +1,4 @@
-## Set pre-set transcoding templates
+## Set preset transcoding templates
 
 Set a pre-set transcoding template for the specified entry point.
 
@@ -34,7 +34,7 @@ The request body is in the JSON Object type, and contains the following fields:
 
 - `enabled`: Bool type, required. Whether to enable the transcoding template.
    - `true`: Enable the transcoding template.
-   - `false`: Do not enable the transcoding template.
+   - `false`: Disable the transcoding template.
 
 ### HTTP response
 
@@ -135,8 +135,8 @@ HTTP/1.1 200 OK
 | Status code | Description |
 | :----- | :----------------------------------------------------------- |
 | 200 | The request succeeds. |
-| 400 | The parameter is illegal, such as the `appid` or the `name` is empty. |
-| 401 | Unauthorized (the customer ID and the customer secret don't match). |
+| 400 | The parameter is illegal, for example the `appid` or the `name` is empty. |
+| 401 | Unauthorized (the customer ID and the customer secret do not match). |
 | 404 | The server cannot find the resource according to the request, which means the requested entry point does not exist or the requested URI path is illegal. |
 | 500 | There is an internal error in the server, so the server is not able to complete the request. |
 | 504 | There is an internal error in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
