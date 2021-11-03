@@ -36,7 +36,7 @@ Example of the request body of message notification callbacks:
 
 <a name="event-type"></a>
 
-## the Event Types of Fusion-CDN Live Streaming
+## The Event Types of Fusion-CDN Live Streaming
 
 The Agora message notification service can notify the following event types in the Fusion-CDN Live Streaming service:
 
@@ -44,9 +44,9 @@ The Agora message notification service can notify the following event types in t
 | :-------- | :---------------------- | :----------------- |
 | [1](#1) | `publish_start` | The stream pushing starts. |
 | [2](#2) | `publish_end` | The stream pushing ends. |
-| [3](#3) | `new_record_file` | The new record file generates. |
-| [4](#4) | `new_snapshot_file` | The new snapshot file generates. |
-| [5](#5) | `new_moderation_result` | The new moderation result notification. |
+| [3](#3) | `new_record_file` | The new record file is generated. |
+| [4](#4) | `new_snapshot_file` | The new snapshot file is generated. |
+| [5](#5) | `new_moderation_result` | The new moderation result notification is sent. |
 
 <a name="1"></a>
 
@@ -57,7 +57,7 @@ The Agora message notification service can notify the following event types in t
 | Field | Data type | Meaning |
 | :----------- | :------- | :------------------------ |
 | `eventName` | String | Event name, publish_start. |
-| `domain` | String | The stream pushing domain name. |
+| `domain` | String | The stream-pushing domain name. |
 | `entryPoint` | String | The entry point name. |
 | `streamName` | String | The stream name. |
 | `clientIp` | String | The client IP. |
@@ -85,7 +85,7 @@ Example of the `payload`:
 | Field | Data type | Meaning |
 | :----------- | :------- | :---------------------- |
 | `eventName` | String | The event name, publish_end. |
-| `domain` | String | The stream pushing domain name. |
+| `domain` | String | The stream-pushing domain name. |
 | `entryPoint` | String | The entry point name. |
 | `streamName` | String | The stream name. |
 | `clientIp` | String | The client IP. |
@@ -108,7 +108,7 @@ Example of the `payload`:
 
 ### 3 new_record_file
 
-`eventType` 3 indicates that the new record file generates, and the `payload` contains the following fields:
+`eventType` 3 indicates that the new record file is generated, and the `payload` contains the following fields:
 
 | Field | Data type | Meaning |
 | :----------- | :------- | :-------------------------------------------- |
@@ -140,7 +140,7 @@ Example of the `payload`:
 
 ### 4 new_snapshot_file
 
-`eventType` 4 indicates that the new snapshot file generates, and the `payload` contains the following fields:
+`eventType` 4 indicates that the new snapshot file is generated, and the `payload` contains the following fields:
 
 | Field | Data type | Meaning |
 | :----------- | :------- | :---------------------------- |
@@ -164,7 +164,7 @@ Example of the `payload`:
 
 ### 5 new_moderation_result
 
-`eventType` 5 indicates the new moderation result notification, and the `payload` contains the following fields:
+`eventType` 5 indicates the new moderation result notification is sent, and the `payload` contains the following fields:
 
 | Field | Data type | Meaning |
 | :----------- | :------- | :----------------------------------------------------------- |
@@ -172,8 +172,8 @@ Example of the `payload`:
 | `entryPoint` | String | The entry point name. |
 | `streamName` | String | The stream name. |
 | `fileName` | String | The file name of the new snapshot. |
-| `results` | JSON | The new moderation result contains the following fields:<br/> `porn`: JSON type. The new moderation result contains the following fields:<ul><li>`outputs`: JSON type. The possibility that the image is neutral, pornographic, or sexually suggestive.<ul><li>`Neutral`: Float type. The possibility that the image does not contain inappropriate content. This result means that there is no inappropriate content contained in the image, but there may be normal or moderate body nudity and body curves.</li><li> `porn`: Float type. The possibility that the image is pornographic. This result means the image contains nudity that includes genitals, sexual behaviors, and cues, or puts excessive emphasis on sexual characteristics.</li><li> `sexy`: Float type. The possibility that the image is sexually suggestive. This result means the image contains substantial nudity or the outline of the male or female sexual features, but no genital exposure.</li></ul></li><li>`scene`: String type, the content moderation result. This result is the RTC video intelligent moderation based on the three floating-point values in the `outputs`. `scene` returns the following values:<ul><li>`"neutral"`: The image does not contain inappropriate elements.</li><li>`"porn"`: The image is pornographic.</li><li>`"sexy"`: The image is sexually suggestive.</li></ul></li></ul> |
-| `suggestion` | String | Suggestions for image processing.<li>`"Pass"`: No action will be taken; the image does not contain inappropriate elements.</li><li>`"block"`: Rejected; the image is pornographic.</li><li>`"review"`: Either approved or in need of human moderation; the image is sexually suggestive. According to your own scenario, you could consider such images to be neutral, requiring no action to be taken, or in need of human moderation.  For example, for social applications with a higher tolerance for sexual suggestiveness, the images might be considered to be neutral; for education applications where this is not appropriate, the images likely need human moderation.</li> |
+| `results` | JSON | The new moderation result contains the following fields:<br/> `porn`: JSON type. The new moderation result contains the following fields:<ul><li>`outputs`: JSON type. The possibility that the image is neutral, pornographic, or sexually suggestive.<ul><li>`Neutral`: Float type. The possibility that the image does not contain inappropriate content. This result means that there is no inappropriate content contained in the image, but there may be proper or moderate body nudity and body curves.</li><li> `porn`: Float type. The possibility that the image is pornographic. This result means the image contains nudity that includes genitals, sexual behaviors, and cues, or puts excessive emphasis on sexual characteristics.</li><li> `sexy`: Float type. The possibility that the image is sexually suggestive. This result means the image contains substantial nudity or the outline of the male or female sexual features, but no genital exposure.</li></ul></li><li>`scene`: String type, the content moderation result. This result is the RTC video intelligent moderation based on the three floating-point values in the `outputs`. `scene` returns the following values:<ul><li>`"neutral"`: The image does not contain inappropriate elements.</li><li>`"porn"`: The image is pornographic.</li><li>`"sexy"`: The image is sexually suggestive.</li></ul></li></ul> |
+| `suggestion` | String | Suggestions for image processing.<li>`"Pass"`: No action is taken; the image does not contain inappropriate elements.</li><li>`"block"`: Rejected; the image is pornographic.</li><li>`"review"`: Either approved or in need of human moderation; the image is sexually suggestive. According to your own scenario, you could consider such images to be neutral, requiring no action to be taken, or in need of human moderation.  For example, for social applications with a higher tolerance for sexual suggestiveness, the images might be considered to be neutral; for education applications where this is not appropriate, the images likely need human moderation.</li> |
 
 Example of the `payload`:
 
