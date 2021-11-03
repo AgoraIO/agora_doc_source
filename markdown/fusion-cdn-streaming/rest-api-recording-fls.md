@@ -53,10 +53,10 @@ PATCH https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settin
         "enabled": true
     },
     "storageConfig": {
-        "accessKey": "{your acesskey}",
-        "bukcet": "{your bucket}",
+        "accessKey": "{your access key}",
+        "bucket": "{your bucket}",
         "region": 3,
-        "secretKey": "{your secertkey}",
+        "secretKey": "{your secret key}",
         "vendor": 2
     }
 }
