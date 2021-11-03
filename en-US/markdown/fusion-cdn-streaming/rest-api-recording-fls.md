@@ -14,7 +14,7 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/se
 |:------|:------|:------|
 | `appid` | String | Required. The App ID corresponding to the entry point. |
 | `entry_point` | String | Required. The entry point name. |
-| `region` | String | Required. The region where the stream pushing domain name is located. |
+| `region` | String | Required. 添加推流域名时设置的区域。 |
 
 
 #### Request body
@@ -53,10 +53,10 @@ PATCH https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settin
         "enabled": true
     },
     "storageConfig": {
-        "accessKey": "{your acesskey}",
-        "bukcet": "{your bucket}",
+        "accessKey": "{your access key}",
+        "bucket": "{your bucket}",
         "region": 3,
-        "secretKey": "{your secertkey}",
+        "secretKey": "{your secret key}",
         "vendor": 2
     }
 }
@@ -84,7 +84,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/sett
 |:------|:------|:------|
 | `appid` | String | Required. The App ID corresponding to the entry point. |
 | `entry_point` | String | Required. The entry point name. |
-| `region` | String | Required. The region where the stream pushing domain name is located. |
+| `region` | String | Required. 添加推流域名时设置的区域。 |
 
 ### HTTP response
 
@@ -158,7 +158,7 @@ The configuration of the recording files contains the following fields:
    - `4`: [Kingsoft Cloud]( https://www.ksyun.com/post/product/KS3.html)
    - `5`: [Microsoft Azure](https://azure.microsoft.com/zh-cn/)
 
-- `region`: Integer type, the region information specified by the third-party cloud storage. In order to ensure the success rate and the real-time performance of the recording file upload, if you set the `region` of the stream-pushing domain name, you need to ensure that the `region` of the third-party cloud storage and the `region` of the stream-pushing domain name are in the same region. For example: the `region` of the stream pushing domain name is set as `CN` (China), and the region of the third-party cloud storage needs to be set as a region within `CN`.
+- `region`: Integer type, the region information specified by the third-party cloud storage. In order to ensure the success rate and the real-time performance of the recording file upload, if you set the `region` of the stream-pushing domain name, you need to ensure that the `region` of the third-party cloud storage and the `region` of the stream-pushing domain name are in the same region. For example: the `region` of the stream-pushing domain name is set as `CN` (China), and the region of the third-party cloud storage needs to be set as a region within `CN`.
 
    - When `vendor` = 0, the third-party cloud storage is Qiniu Cloud:
       - `0`: East China
