@@ -14,7 +14,7 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/se
 |:------|:------|:------|
 | `appid` | String | Required. The App ID corresponding to the entry point. |
 | `entry_point` | String | Required. The entry point name. |
-| `region` | String | Required. The region where the stream pushing domain name is. |
+| `region` | String | Required. The region where the stream pushing domain name is located. |
 
 #### Request body
 
@@ -25,7 +25,7 @@ The request body is in the JSON Object type, and contains the following fields:
 | `enabled` | Bool | Required. Whether to enable the snapshot capturing function:<li>`true`: Enable the snapshot capturing.</li><li>`false`: Disable the snapshot capturing.</li> |
 | `snapshotInterval` | Integer | Optional. The interval between the snapshot capturings, in seconds, the default value is 10, and the value range is [5,300]. |
 | `storageConfig` | JSON Object | Optional. For the storage configuration of the snapshot files, see [StorageConfig](#storageconfig). |
-| `enableModeration` | Bool | Optional. Whether to enable the content moderation:<li>`true`: Enable the content moderation.</li><li>`false`: (default) Do not enable the content moderation.</li> |
+| `enableModeration` | Bool | Optional. Whether to enable content moderation:<li>`true`: Enable the content moderation.</li><li>`false`: (default) Do not enable the content moderation.</li> |
 
 ### HTTP response
 
@@ -80,7 +80,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/sett
 |:------|:------|:------|
 | `appid` | String | Required. The App ID corresponding to the entry point. |
 | `entry_point` | String | Required. The entry point name. |
-| `region` | String | Required. The region where the stream pushing domain name is. |
+| `region` | String | Required. The region where the stream pushing domain name is located. |
 
 ### HTTP response
 
@@ -91,7 +91,7 @@ If the returned HTTP status code is 200, the request is successful, and the resp
 | `enabled` | Bool | Whether the snapshot capturing function is enabled:<li>`true`: The snapshot capturing is enabled.</li><li>`false`: The snapshot capturing is not enabled.</li> |
 | `snapshotInterval` | Integer | The interval between the snapshot capturings, in seconds, the default value is 10, and the value range is [5,300]. |
 | `storageConfig` | JSON Object | For the storage configuration of the snapshot files, see [StorageConfig](#storageconfig). |
-| `enableModeration` | Bool | Whether the content moderation is enabled:<li>`true`: The content moderation is enabled.</li><li>`false`: The content moderation is not enabled.</li> |
+| `enableModeration` | Bool | Whether content moderation is enabled:<li>`true`: Content moderation is enabled.</li><li>`false`: Content moderation is not enabled.</li> |
 
 If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
 
@@ -138,7 +138,7 @@ The configuration of the snapshot files contains the following fields:
    - `3`: [Tencent Cloud]( https://cloud.tencent.com/product/cos)
    - `4`: [Kingsoft Cloud]( https://www.ksyun.com/post/product/KS3.html)
    - `5`: [Microsoft Azure](https://azure.microsoft.com/zh-cn/)
-- `region`: Integer type, the region information specified by the third-party cloud storage. In order to ensure the success rate and the real-time performance of the recording file upload, if you set the `region` of the stream pushing domain name, you need to ensure that the `region` of the third-party cloud storage and the `region` of the stream pushing domain name are in the same region. For example: the `region` of the stream pushing domain name is set as `CN` (China), and the region of the third-party cloud storage needs to be set as a region within `CN`.
+- `region`: Integer type, the region information specified by the third-party cloud storage. In order to ensure the success rate and the real-time performance of the recording file upload, if you set the `region` of the stream-pushing domain name, you need to ensure that the `region` of the third-party cloud storage and the `region` of the stream-pushing domain name are in the same region. For example: the `region` of the stream pushing domain name is set as `CN` (China), and the region of the third-party cloud storage needs to be set as a region within `CN`.
    - When `vendor` = 0, the third-party cloud storage is Qiniu Cloud, and:
       - `0`: East China
       - `1`: North China
@@ -222,7 +222,7 @@ The configuration of the snapshot files contains the following fields:
       - `9`：NA_Singapore_1
    - When `vendor` = 5, the third-party cloud storage is Microsoft Azure: There is no need to set the `region` parameter, and even if the region is set, it does not take effect.
 - `bucket`: String type, the bucket of the third-party cloud storage. The bucket name must conform to the naming rules of the corresponding third-party cloud storage service.
-- `accessKey`: String type, the access key of the third-party cloud storage. In general, we recommend to offer an access key with write-only permissions. If the latency transcoding is required, the access key must have read and write permissions at the same time.
+- `accessKey`: String type, the access key of the third-party cloud storage. In general, Agora recommends that you offer an access key with write-only permissions. If latency transcoding is required, the access key must have both read and write permissions.
 - `accessKey`: String type, the secret key of the third-party cloud storage.
 
 <a name="http-code"></a>
@@ -231,8 +231,8 @@ The configuration of the snapshot files contains the following fields:
 | Status code | Description |
 | :----- | :----------------------------------------------------------- |
 | 200 | The request succeeds. |
-| 400 | The parameter is illegal, such as the `appid` or the `entry_point` is empty, or the `region` parameter value is illegal. |
-| 401 | Unauthorized (the customer ID and the customer secret don't match). |
+| 400 | The parameter is illegal, for example the `appid` or the `entry_point` is empty, or the `region` parameter value is illegal. |
+| 401 | Unauthorized (the customer ID and the customer secret do not match). |
 | 404 | The server cannot find the resource according to the request, which means the requested entry point does not exist or the requested URI path is illegal. |
 | 500 | There is an internal error in the server, so the server is not able to complete the request. |
 | 504 | There is an internal error in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
