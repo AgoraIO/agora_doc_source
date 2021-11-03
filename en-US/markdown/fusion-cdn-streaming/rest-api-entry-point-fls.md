@@ -1,4 +1,4 @@
-Entry points are used to categorize the streams. You can configure functions such as recording, transcoding, and snapshot capturing for one entry point, and these configurations apply applied to all the streams under this entry point.
+Entry points are used to categorize the streams. You can configure functions such as recording, transcoding, and snapshot capturing for one entry point, and these configurations apply to all the streams under this entry point.
 
 Agora provides a default entry point `live` for your direct use.
 
