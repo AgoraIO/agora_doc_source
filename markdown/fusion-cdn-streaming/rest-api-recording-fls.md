@@ -14,7 +14,7 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/se
 |:------|:------|:------|
 |`appid`|String|必填。发布点对应的 App ID。|
 |`entry_point`|String|必填。发布点名称。 |
-|`region`|String|必填。推流域名所在的区域。|
+|`region`|String|必填。添加推流域名时设置的区域。|
 
 
 #### 请求包体
@@ -84,7 +84,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/sett
 |:------|:------|:------|
 |`appid`|String|必填。发布点对应的 App ID。|
 |`entry_point`|String|必填。发布点名称。 |
-|`region`|String|必填。推流域名所在的区域。|
+|`region`|String|必填。添加推流域名时设置的区域。|
 
 ### HTTP 响应
 
