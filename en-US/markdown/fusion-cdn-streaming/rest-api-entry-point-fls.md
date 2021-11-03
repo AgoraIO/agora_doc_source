@@ -2,7 +2,7 @@ Entry points are used to categorize the streams. You can configure functions suc
 
 Agora provides a default entry point `live` for your direct use.
 
-> The management function is in the beta stage, please contact sales @agora.io before using it.
+> The management function is in the beta stage. Contact sales @agora.io before using it.
 
 ## Add entry points
 
@@ -58,8 +58,8 @@ DELETE https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}
 
 | Parameter | Type | Description |
 |:------|:------|:------|
-| `appid` | String | Required. The App ID corresponding to the entry point to be deleted. |
-| `entry_point` | String | Required. The name of the entry point to be deleted. |
+| `appid` | String | Required. The App ID corresponding to the entry point being deleted. |
+| `entry_point` | String | Required. The name of the entry point being deleted. |
 
 ### HTTP response
 
@@ -141,8 +141,8 @@ HTTP/1.1 200 OK
 | 200 | The request succeeds. |
 | 201
  | The resource (entry point) is successfully created. |
-| 400 | <li>The parameter is illegal, such as the `appid` or the `entry_point` is empty.</li><li>The entry point to be added has already existed.</li><li>The number of the entry points exceeds the limit.</li> |
-| 401 | Unauthorized (the customer ID and the customer secret don't match). |
+| 400 | <li>The parameter is illegal, for example the `appid` or the `entry_point` is empty.</li><li>The entry point to be added already exists.</li><li>The number of the entry points exceeds the limit.</li> |
+| 401 | Unauthorized (the customer ID and the customer secret do not match). |
 | 404 | The server cannot find the resource according to the request, which means the requested entry point does not exist or the requested URI path is illegal. |
 | 500 | There is an internal error in the server, so the server is not able to complete the request. |
 | 504 | There is an internal error in the server, and the gateway or the proxy server did not receive a timely request from the remote server. |
