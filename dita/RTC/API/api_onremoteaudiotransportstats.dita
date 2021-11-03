@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onremoteaudiotransportstats">
-    <title><ph keyref="onRemoteAudioTransportStats"/></title>
+    <title><ph keyref="onRemoteAudioTransportStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">通话中远端音频流传输的统计信息回调。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -31,11 +31,12 @@
      uid: number, 
      delay: number, 
      lost: number, 
-     rxKBitRate: number) => void
+     rxKBitRate: number) =&gt; void
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioTransportStats(uint uid, ushort delay, ushort lost, ushort rxKBitRate)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">void onRemoteAudioTransportStats(RtcConnection connection, uid_t remoteUid,
+      int delay, int lost, int rxKBitRate)</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -44,7 +45,7 @@
        <dl outputclass="deprecated">
   <dlentry>
       <dt>弃用：</dt>
-      <dd>该回调已被废弃，请改用 <xref keyref="onRemoteAudioStats"/>。</dd>
+      <dd>该回调已被废弃，请改用 <xref keyref="onRemoteAudioStats" />。</dd>
   </dlentry>
        </dl>
    </p>
@@ -53,8 +54,8 @@
         <section id="parameters"><title>参数</title>
    <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry>
                     <pt>uid</pt>
