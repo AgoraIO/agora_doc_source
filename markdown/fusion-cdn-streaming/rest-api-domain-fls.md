@@ -29,7 +29,7 @@ POST https://api.agora.io/v1/projects/{appid}/fls/domains?id={domain}
 |字段|类型|描述|
 |:------|:------|:------|
 |`type`|String| 必填。域名类型：<li>`"publish"`：推流域名。</li><li>`"play"`：播流域名。</li> |
-|`region`|String| 域名类型设置为 `"publish"` 时必填。该参数仅适用于推流域名。推流域名使用的 Agora 服务器所在区域：<li>`"cn"`：中国。</li><li>`"ap"`：除中国大陆以外的亚洲区域。</li><li>`"eu"`：欧洲。</li><li>`"na"`：北美。</li>|
+|`region`|String| 域名类型设置为 `"publish"` 时必填。该参数仅适用于推流域名。推流域名使用的 Agora 服务器所在区域：<li>`"cn"`：中国大陆。</li><li>`"ap"`：除中国大陆以外的亚洲区域。</li><li>`"eu"`：欧洲。</li><li>`"na"`：北美。</li>|
 
 
 ### HTTP 响应
