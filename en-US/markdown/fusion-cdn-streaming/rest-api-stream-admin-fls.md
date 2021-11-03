@@ -110,7 +110,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/admi
 
 If the returned HTTP status code is 200, the request is successful. The response body contains the following fields:
 
-`bannedStreamList`: JSON Array type, a list of the banned streams. One stream corresponds to a JSON Object, and contains the following fields:
+`bannedStreamList`: JSON Array type, the list of the banned streams. One stream corresponds to a JSON Object, and contains the following fields:
 
 | Field | Type | Description |
 |:------|:------|:------|
@@ -283,7 +283,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/repo
 | Parameter | Type | Description |
 |:------|:------|:------|
 | `start_time` | String | Optional. Query the start time of the stream pushing history, in the URL code format corresponding to the RFC3339 format, for example, `2019-01-07T12%3A00%3A00%2B08%3A00` corresponds to `2019-01-07T12:00:00+08:00`. The start time cannot be set 60 days before the current time. |
-| `end_time` | String | Optional. Query the end time of the stream pushing history, in the URL code format corresponding to the RFC3339 format, for example,  `2019-01-07T12%3A00%3A00%2B08%3A00` corresponds to `2019-01-07T12:00:00+08:00`. The end time hall cannot be set later than the current time. |
+| `end_time` | String | Optional. Query the end time of the stream pushing history, in the URL code format corresponding to the RFC3339 format, for example,  `2019-01-07T12%3A00%3A00%2B08%3A00` corresponds to `2019-01-07T12:00:00+08:00`. The end time cannot be set later than the current time. |
 | `stream_name` | String | Required. The name of the stream being queried. |
 
 
