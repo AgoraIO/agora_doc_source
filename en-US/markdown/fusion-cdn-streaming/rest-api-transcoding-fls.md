@@ -1,6 +1,6 @@
 ## Set preset transcoding templates
 
-Set a pre-set transcoding template for the specified entry point.
+Set a preset transcoding template for the specified entry point.
 
 ### HTTP request
 
