@@ -14,7 +14,7 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/se
 |:------|:------|:------|
 | `appid` | String | Required. The App ID corresponding to the entry point. |
 | `entry_point` | String | Required. The entry point name. |
-| `region` | String | Required. 添加推流域名时设置的区域。 |
+| `region` | String | Required. The configured region when adding the domain. |
 
 #### Request body
 
@@ -80,7 +80,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/sett
 |:------|:------|:------|
 | `appid` | String | Required. The App ID corresponding to the entry point. |
 | `entry_point` | String | Required. The entry point name. |
-| `region` | String | Required. 添加推流域名时设置的区域。 |
+| `region` | String | Required. The configured region when adding the domain. |
 
 ### HTTP response
 
