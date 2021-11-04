@@ -27,7 +27,7 @@ The request body is in the JSON Object type, and contains the following fields:
 
 If the returned HTTP status code is 200, the request is successful.
 
-If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -57,8 +57,8 @@ HTTP/1.1 200 OK
 | Status code | Description |
 | :----- | :----------------------------------------------------------- |
 | 200 | The request succeeds. |
-| 400 | The parameter is illegal, for example the `appid` or the `domain` is empty. |
+| 400 | The parameter is invalid, for example the `appid` or the `domain` is empty. |
 | 401 | Unauthorized (the customer ID and the customer secret do not match). |
-| 404 | The server cannot find the resource according to the request, which means the requested domain name does not exist or the requested URI path is illegal. |
-| 500 | There is an internal error in the server, so the server is not able to complete the request. |
-| 504 | There is an internal error in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
+| 404 | The server cannot find the resource according to the request, which means the requested domain name does not exist or the requested URI path is invalid. |
+| 500 | An internal error occurs in the server, so the server is not able to complete the request. |
+| 504 | An internal error occurs in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
