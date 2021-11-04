@@ -59,7 +59,7 @@ import base64
 import datetime
 from hashlib import sha256
 
-#  The App ID of your Agora project
+# The App ID of your Agora project
 appid = ''
 # Get customer ID in the RESTful API of the Agora Console
 customer_username = ''
