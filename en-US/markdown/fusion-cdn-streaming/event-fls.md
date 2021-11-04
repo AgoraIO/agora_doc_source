@@ -18,9 +18,9 @@ The request body of the message notification callbacks contains the following fi
 | :---------- | :---------- | :----------------------------------------------------------- |
 | `noticeId` | String | Notification ID, identifying the notification for each event that occurs in the Agora server. |
 | `productId` | Number | Service ID. Value 7 indicates the Fusion-CDN Live Streaming service. |
-| `eventType` | Number | The event type of the notification. For more details, see [the Event Types of Fusion-CDN Live Streaming]( #event-type). |
+| `eventType` | Number | The event type of the notification. For more details, see [the Event Types of Fusion-CDN Live Streaming](#event-type). |
 | `notifyMs` | Number | The Agora notification server sends the Unix timestamp (ms) of the notification to your server. This value is updated when **Retry** is notified. |
-| `payload` | JSON Object | The content of the event notification. The `payload` varies with the`eventType`. For more details, see [the Event Types of Fusion-CDN Live Streaming]( #event-type). |
+| `payload` | JSON Object | The content of the event notification. The `payload` varies with the`eventType`. For more details, see [the Event Types of Fusion-CDN Live Streaming](#event-type). |
 
 Example of the request body of message notification callbacks:
 
