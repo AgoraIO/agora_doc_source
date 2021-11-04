@@ -110,11 +110,11 @@
                    <li>1: I420</li>
                    <li>2: BGRA</li>
                    <li>3: NV21</li>
-                   <li>2: RGBA</li>
+                   <li>4: RGBA</li>
                    <li>5: IMC2</li>
                    <li>7: ARGB</li>
                    <li>8: NV12</li>
-                   <li>12: iOS texture (CVPixelBufferRef).</li>
+                   <li>12: iOS texture (CVPixelBufferRef)</li>
                </ul>
            </pd>
            <pd props="android">The format of the video data:<ul>
@@ -132,7 +132,7 @@
                     <pt props="ios mac">dataBuf</pt>
   <pd props="windows android">Video frame buffer.</pd>
   <pd props="android">This parameter only applies to video data in non-Texture format.</pd>
-                    <pd props="ios mac">原始数据缓冲区，该参数不用于 iOS 纹理。</pd>
+                    <pd props="ios mac">Raw data buffer. This parameter does not apply to iOS textures.</pd>
        </plentry>
        <plentry props="ios mac">
            <pt>textureBuf</pt>
@@ -191,8 +191,8 @@
        <plentry props="windows">
            <pt>eglContext</pt>
            <pd>This parameter only applies to video data in Texture format.<ul id="ul_fsv_shd_krb">
-                            <li>当使用 Khronos 定义的 OpenGL 接口 (javax.microedition.khronos.egl.*)时，需要将 eglContext 设置给这个字段。</li>
-                            <li>当使用 Android 定义的 OpenGL 接口 (android.opengl.*)时，需要将 eglContext 设置给这个字段。</li>
+                            <li>When using the OpenGL interface (javax.microedition.khronos.egl.*) defined by Khronos, set eglContext to this field.</li>
+                            <li>When using the OpenGL interface (android.opengl.*) defined by Android, set eglContext to this field.</li>
                         </ul></pd>
        </plentry>
        <plentry props="windows">
@@ -200,40 +200,40 @@
            <pd>This parameter only applies to video data in Texture format. Texture ID of the frame.</pd>
        </plentry>
        <plentry props="windows">
-           <pt>textureID</pt>
-           <pd>This parameter only applies to video data in Texture format. 为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+           <pt>textureId</pt>
+           <pd>This parameter only applies to video data in Texture format. Incoming 4 x 4 transformational matrix. The typical value is a unit matrix.</pd>
        </plentry>
        <plentry props="windows">
            <pt>metadata_buffer</pt>
-           <pd>This parameter only applies to video data in Texture format. 指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+           <pd>This parameter only applies to video data in Texture format. The MetaData buffer. The default value is <codeph>NULL</codeph>.</pd>
        </plentry>
        <plentry props="windows">
            <pt>metadata_size</pt>
-           <pd>This parameter only applies to video data in Texture format. 指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+           <pd>This parameter only applies to video data in Texture format. The MetaData size. The default value is <codeph>0</codeph>.</pd>
        </plentry>
        <plentry>
   <pt>cropLeft</pt>
   <pd>Raw data related parameter. The number of pixels trimmed from the left. The default value is 0.</pd>
            <pd props="android">This parameter only applies to video data in non-Texture format.</pd>
-           <pd props="windows">该参数仅适用于原始视频数据。</pd>
+           <pd props="windows">This parameter only applies to raw video data.</pd>
        </plentry>
        <plentry>
   <pt>cropTop</pt>
   <pd>Raw data related parameter. The number of pixels trimmed from the top. The default value is 0.</pd>
            <pd props="android">This parameter only applies to video data in non-Texture format.</pd>
-           <pd props="windows">该参数仅适用于原始视频数据。</pd>
+           <pd props="windows">This parameter only applies to raw video data.</pd>
        </plentry>
        <plentry>
   <pt>cropRight</pt>
   <pd> Raw data related parameter. The number of pixels trimmed from the right. The default value is 0.</pd>
            <pd props="android">This parameter only applies to video data in non-Texture format.</pd>
-           <pd props="windows">该参数仅适用于原始视频数据。</pd>
+           <pd props="windows">This parameter only applies to raw video data.</pd>
        </plentry>
        <plentry>
   <pt>cropBottom</pt>
   <pd>Raw data related parameter. The number of pixels trimmed from the bottom. The default value is 0.</pd>
            <pd props="android">This parameter only applies to video data in non-Texture format.</pd>
-           <pd props="windows">该参数仅适用于原始视频数据。</pd>
+           <pd props="windows">This parameter only applies to raw video data.</pd>
        </plentry>
        <plentry>
   <pt>rotation</pt>
