@@ -45,7 +45,7 @@ If the returned HTTP status code is 201, the request is successful, and the resp
 | `cname` | String | The cname corresponds to the domain name, and you need to configure it at your DNS host. |
 
 
-If the returned HTTP status code is not 201, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 201, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -104,7 +104,7 @@ DELETE https://api.agora.io/v1/projects/{appid}/fls/domains/{domain}
 
 If the returned HTTP status code is 200, the request is successful.
 
-If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -149,7 +149,7 @@ If the returned HTTP status code is 200, the request is successful, and the resp
 | `authKey` | String | The secret hotlink protection. |
 
 
-If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -217,7 +217,7 @@ If the returned HTTP status code is 200, the request is successful, and the resp
 | `authKey` | String | The secret hotlink protection. |
 
 
-If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -254,8 +254,8 @@ HTTP/1.1 200 OK
 | 200 | The request succeeds. |
 | 201
  | The resource (domain name) is successfully created. |
-| 400 | <li>The parameter is illegal, for example the `appid` or the `domain` is empty.</li><li>The domain name to be added already exists.</li> |
+| 400 | <li>The parameter is invalid, for example the `appid` or the `domain` is empty.</li><li>The domain name to be added already exists.</li> |
 | 401 | Unauthorized (the customer ID and the customer secret do not match). |
-| 404 | The server cannot find the resource according to the request, which means the requested domain name does not exist or the requested URI path is illegal. |
-| 500 | There is an internal error in the server, so the server is not able to complete the request. |
-| 504 | There is an internal error in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
+| 404 | The server cannot find the resource according to the request, which means the requested domain name does not exist or the requested URI path is invalid. |
+| 500 | An internal error occurs in the server, so the server is not able to complete the request. |
+| 504 | An internal error occurs in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
