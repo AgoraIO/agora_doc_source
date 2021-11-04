@@ -27,7 +27,7 @@ The request body is in the JSON Object type, and contains the following fields:
 
 If the returned HTTP status code is 200, the request is successful.
 
-If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -73,7 +73,7 @@ DELETE https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/a
 
 If the returned HTTP status code is 200, the request is successful.
 
-If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -117,7 +117,7 @@ If the returned HTTP status code is 200, the request is successful. The response
 | `name` | String | The stream name. |
 | `resumeTime` | String | The resume time of the stream. |
 
-If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -178,7 +178,7 @@ If the returned HTTP status code is 200, the request is successful. The response
 | `name` | String | The stream name. |
 | `startTime` | String | The stream pushing time. In the RFC3339 format, for example `"2019-01-07T12:00:00Z"`. |
 
-If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -235,7 +235,7 @@ If the returned HTTP status code is 200, the request is successful. The response
 
 - `startTime`: String type. The start time of the stream pushing, in the RFC3339 format, for example `"2019-01-07T12:00:00Z"`.
 
-If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -300,7 +300,7 @@ If the returned HTTP status code is 200, the request is successful. The response
 | `endTime` | String | The end time of the stream pushing. In the RFC3339 format, for example `"2019-01-07T12:00:00+08:00"`. |
 | `duration` | Integer | The duration of the stream pushing, in seconds. |
 
-If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -344,9 +344,9 @@ HTTP/1.1 200 OK
 | Status code | Description |
 | :----- | :----------------------------------------------------------- |
 | 200 | The request succeeds. |
-| 400 | <li>The parameter is illegal, for example the `appid` or the `entry_point` is empty.</li><li>The query time format is incorrect.</li> |
+| 400 | <li>The parameter is invalid, for example the `appid` or the `entry_point` is empty.</li><li>The query time format is incorrect.</li> |
 | 401 | Unauthorized (the customer ID and the customer secret do not match). |
-| 404 | The server cannot find the resource according to the request, which means the requested entry point does not exist or the requested URI path is illegal. |
-| 500 | There is an internal error in the server, so the server is not able to complete the request. |
-| 504 | There is an internal error in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
+| 404 | The server cannot find the resource according to the request, which means the requested entry point does not exist or the requested URI path is invalid. |
+| 500 | An internal error occurs in the server, so the server is not able to complete the request. |
+| 504 | An internal error occurs in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
 
