@@ -32,7 +32,7 @@ The request body is in the JSON Object type, and contains the following fields:
 
 If the returned HTTP status code is 200, the request is successful.
 
-If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -97,7 +97,7 @@ If the returned HTTP status code is 200, the request is successful, and the resp
 | `storageConfig` | JSON Object | For the storage configuration of the recording files, see [StorageConfig](#storageconfig). |
 
 
-If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code]( #http-code) for possible reasons.
+If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
 
 ### Example
 
@@ -198,7 +198,7 @@ The configuration of the recording files contains the following fields:
       - `5`：CN_Huhehaote
       - `6`：CN_Shenzhen
       - `7`：CN_Hongkong
-      - ``8：US_West_1
+      - `8`：US_West_1
       - `9`：US_East_1
       - `10`：AP_Southeast_1
       - `11`：AP_Southeast_2
@@ -247,7 +247,7 @@ The configuration of the recording files contains the following fields:
 
 - `accessKey`: String type, the access key of the third-party cloud storage. In general, Agora recommends that you offer an access key with write-only permissions. If latency transcoding is required, the access key must have both read and write permissions.
 
-- `accessKey`: String type, the secret key of the third-party cloud storage.
+- `secretKey`: String type, the secret key of the third-party cloud storage.
 
 <a name="http-code"></a>
 
@@ -256,9 +256,9 @@ The configuration of the recording files contains the following fields:
 | Status code | Description |
 | :----- | :----------------------------------------------------------- |
 | 200 | The request succeeds. |
-| 400 | The parameter is illegal, for example the `appid` or the `entry_point` is empty, or the `region` parameter value is illegal. |
+| 400 | The parameter is invalid, for example the `appid` or the `entry_point` is empty, or the `region` parameter value is invalid. |
 | 401 | Unauthorized (the customer ID and the customer secret do not match). |
-| 404 | The server cannot find the resource according to the request, which means the requested entry point does not exist or the requested URI path is illegal. |
-| 500 | There is an internal error in the server, so the server is not able to complete the request. |
-| 504 | There is an internal error in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
+| 404 | The server cannot find the resource according to the request, which means the requested entry point does not exist or the requested URI path is invalid. |
+| 500 | An internal error occurs in the server, so the server is not able to complete the request. |
+| 504 | An internal error occurs in the server. The gateway or the proxy server did not receive a timely request from the remote server. |
 
