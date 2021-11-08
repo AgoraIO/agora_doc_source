@@ -17,9 +17,9 @@ The request body of the message notification callbacks contains the following fi
 | Field | Type | Description |
 | :---------- | :---------- | :----------------------------------------------------------- |
 | `noticeId` | String | Notification ID, identifying the notification for each event that occurs in the Agora server. |
-| `productId` | Number | Service ID. Value 7 indicates the Fusion-CDN Live Streaming service. |
-| `eventType` | Number | The event type of the notification. For more details, see [the Event Types of Fusion-CDN Live Streaming](#event-type). |
-| `notifyMs` | Number | The Agora notification server sends the Unix timestamp (ms) of the notification to your server. This value is updated when **Retry** is notified. |
+| `productId` | Integer | Service ID. Value 7 indicates the Fusion-CDN Live Streaming service. |
+| `eventType` | Integer | The event type of the notification. For more details, see [the Event Types of Fusion-CDN Live Streaming](#event-type). |
+| `notifyMs` | Integer | The Agora notification server sends the Unix timestamp (ms) of the notification to your server. This value is updated when **Retry** is notified. |
 | `payload` | JSON Object | The content of the event notification. The `payload` varies with the`eventType`. For more details, see [the Event Types of Fusion-CDN Live Streaming](#event-type). |
 
 Example of the request body of message notification callbacks:
@@ -112,7 +112,7 @@ Example of the `payload`:
 
 | Field | Data type | Meaning |
 | :----------- | :------- | :-------------------------------------------- |
-| `eventName` | String | The event name, new_record_file. |
+| `eventName` | String | The event name, new_custom_record_file. |
 | `entryPoint` | String | The entry point name. |
 | `streamName` | String | The stream name. |
 | `startTime` | Int64 | The start time of the new file recording, the Unix timestamp, in seconds. |
@@ -125,7 +125,7 @@ Example of the `payload`:
 
 ```json
 {
-   "eventName": "new_record_file",
+   "eventName": "new_custom_record_file",
    "entryPoint": "live",
    "streamName": "test_stream",
     "startTime": 1627886487,
@@ -144,7 +144,7 @@ Example of the `payload`:
 
 | Field | Data type | Meaning |
 | :----------- | :------- | :---------------------------- |
-| `eventName` | String | The event name, new_snapshot_file. |
+| `eventName` | String | The event name, new_custom_snapshot_file. |
 | `entryPoint` | String | The entry point name. |
 | `streamName` | String | The stream name. |
 | `fileName` | String | The file name of the new snapshot. |
@@ -153,7 +153,7 @@ Example of the `payload`:
 
 ```json
 {
-   "eventName": "new_snapshot_file",
+   "eventName": "new_custom_snapshot_file",
    "entryPoint": "live",
    "streamName": "test_stream",
    "fileName": "test_filename",
@@ -168,7 +168,7 @@ Example of the `payload`:
 
 | Field | Data type | Meaning |
 | :----------- | :------- | :----------------------------------------------------------- |
-| `eventName` | String | The event name: new_moderation_result. |
+| `eventName` | String | The event name: new_custom_moderation_result. |
 | `entryPoint` | String | The entry point name. |
 | `streamName` | String | The stream name. |
 | `fileName` | String | The file name of the new snapshot. |
