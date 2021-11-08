@@ -5,7 +5,7 @@
 ### HTTP 请求
 
 ```http
-PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/settings/snapshot/regions/{region}
+PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/settings/snapshot/custom/regions/{region}
 ```
 
 #### 路径参数
@@ -38,7 +38,7 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/se
 **请求行**
 
 ```http
-PATCH https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/snapshot/regions/cn HTTP/1.1
+PATCH https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/snapshot/custom/regions/cn HTTP/1.1
 ```
 
 **请求 body**
@@ -71,7 +71,7 @@ HTTP/1.1 200 OK
 ### HTTP 请求
 
 ```http
-GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/settings/snapshot/regions/{region}
+GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/settings/snapshot/custom/regions/{region}
 ```
 
 #### 路径参数
@@ -100,7 +100,7 @@ GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/sett
 **请求行**
 
 ```http
-GET https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/snapshot/regions/cn HTTP/1.1
+GET https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/snapshot/custom/regions/cn HTTP/1.1
 ```
 
 **响应行**

@@ -44,9 +44,9 @@ Agora 消息通知服务可以通知融合 CDN 直播业务中的以下事件类
 | :-------- | :---------------------- | :----------------- |
 | [1](#1)   | `publish_start`         | 推流开始。         |
 | [2](#2)   | `publish_end`           | 推流结束。         |
-| [3](#3)   | `new_record_file`       | 生成录制文件。     |
-| [4](#4)   | `new_snapshot_file`     | 生成截图文件。     |
-| [5](#5)   | `new_moderation_result` | 内容审核结果通知。 |
+| [3](#3)   | `new_custom_record_file`       | 生成录制文件。     |
+| [4](#4)   | `new_custom_snapshot_file`     | 生成截图文件。     |
+| [5](#5)   | `new_custom_moderation_result` | 内容审核结果通知。 |
 
 <a name="1"></a>
 
@@ -106,13 +106,13 @@ Agora 消息通知服务可以通知融合 CDN 直播业务中的以下事件类
 
 <a name="3"></a>
 
-### 3 new_record_file
+### 3 new_custom_record_file
 
 `eventType` 为 3 表示录制文件已生成，`payload` 中包含以下字段：
 
 | 字段         | 数据类型 | 含义                                          |
 | :----------- | :------- | :-------------------------------------------- |
-| `eventName`  | String   | 事件名称，new_record_file。                   |
+| `eventName`  | String   | 事件名称，new_custom_record_file。                   |
 | `entryPoint` | String   | 发布点名称。                                  |
 | `streamName` | String   | 直播流名称。                                  |
 | `startTime`  | Int64    | 该文件的录制开始时间，Unix 时间戳，单位为秒。 |
@@ -125,7 +125,7 @@ Agora 消息通知服务可以通知融合 CDN 直播业务中的以下事件类
 
 ```json
 {
-   "eventName": "new_record_file",
+   "eventName": "new_custom_record_file",
    "entryPoint": "live",
    "streamName": "test_stream",
    "startTime": 1627886487,
@@ -138,13 +138,13 @@ Agora 消息通知服务可以通知融合 CDN 直播业务中的以下事件类
 
 <a name="4"></a>
 
-### 4 new_snapshot_file
+### 4 new_custom_snapshot_file
 
 `eventType` 为 4 表示截图文件已生成，`payload` 中包含以下字段：
 
 | 字段         | 数据类型 | 含义                          |
 | :----------- | :------- | :---------------------------- |
-| `eventName`  | String   | 事件名称，new_snapshot_file。 |
+| `eventName`  | String   | 事件名称，new_custom_snapshot_file。 |
 | `entryPoint` | String   | 发布点名称。                  |
 | `streamName` | String   | 直播流名称。                  |
 | `fileName`   | String   | 截图文件名。                  |
@@ -153,7 +153,7 @@ Agora 消息通知服务可以通知融合 CDN 直播业务中的以下事件类
 
 ```json
 {
-   "eventName": "new_snapshot_file",
+   "eventName": "new_custom_snapshot_file",
    "entryPoint": "live",
    "streamName": "test_stream",
    "fileName": "test_filename",
@@ -162,13 +162,13 @@ Agora 消息通知服务可以通知融合 CDN 直播业务中的以下事件类
 
 <a name="5"></a>
 
-### 5 new_moderation_result
+### 5 new_custom_moderation_result
 
 `eventType` 为 5 表示图片审核结果通知，`payload` 中包含以下字段：
 
 | 字段         | 数据类型 | 含义                                                         |
 | :----------- | :------- | :----------------------------------------------------------- |
-| `eventName`  | String   | 事件名称，new_moderation_result。                            |
+| `eventName`  | String   | 事件名称，new_custom_moderation_result。                       |
 | `entryPoint` | String   | 发布点名称。                                                 |
 | `streamName` | String   | 直播流名称。                                                 |
 | `fileName`   | String   | 截图文件名。                                                 |
@@ -179,7 +179,7 @@ Agora 消息通知服务可以通知融合 CDN 直播业务中的以下事件类
 
 ```json
 {
-    "eventName": "new_moderation_result",
+    "eventName": "new_custom_moderation_result",
     "entryPoint": "live",
     "streamName": "test_stream",
     "results": {
