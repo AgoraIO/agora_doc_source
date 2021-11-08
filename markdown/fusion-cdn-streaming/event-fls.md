@@ -17,9 +17,9 @@ Agora 消息通知服务器以 HTTPS POST 请求方法向你的服务器发送�
 | 字段        | 类型        | 描述                                                         |
 | :---------- | :---------- | :----------------------------------------------------------- |
 | `noticeId`  | String      | 通知 ID，标识来自 Agora 业务服务器的一次事件通知。           |
-| `productId` | Number      | 业务 ID。值为 7 表示融合 CDN 直播业务。                      |
-| `eventType` | Number      | 通知的事件类型。详见[融合 CDN 直播事件类型](#event-type)。   |
-| `notifyMs`  | Number      | Agora 消息服务器向你的服务器发送事件通知的 Unix 时间戳 (ms)。通知**重试**时该值会更新。 |
+| `productId` | Integer      | 业务 ID。值为 7 表示融合 CDN 直播业务。                      |
+| `eventType` | Integer      | 通知的事件类型。详见[融合 CDN 直播事件类型](#event-type)。   |
+| `notifyMs`  | Integer      | Agora 消息服务器向你的服务器发送事件通知的 Unix 时间戳 (ms)。通知**重试**时该值会更新。 |
 | `payload`   | JSON Object | 通知事件的具体内容。`payload` 因 `eventType` 而异，详见[融合 CDN 直播事件类型](#event-type)。 |
 
 消息通知回调的请求包体示例：
