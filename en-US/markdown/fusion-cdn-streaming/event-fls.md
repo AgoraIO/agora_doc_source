@@ -44,9 +44,9 @@ The Agora message notification service can notify the following event types in t
 | :-------- | :---------------------- | :----------------- |
 | [1](#1) | `publish_start` | The stream pushing starts. |
 | [2](#2) | `publish_end` | The stream pushing ends. |
-| [3](#3) | `new_record_file` | The new record file is generated. |
-| [4](#4) | `new_snapshot_file` | The new snapshot file is generated. |
-| [5](#5) | `new_moderation_result` | The new moderation result notification is sent. |
+| [3](#3) | `new_custom_record_file` | The new record file is generated. |
+| [4](#4) | `new_custom_snapshot_file` | The new snapshot file is generated. |
+| [5](#5) | `new_custom_moderation_result` | The new moderation result notification is sent. |
 
 <a name="1"></a>
 
@@ -106,7 +106,7 @@ Example of the `payload`:
 
 <a name="3"></a>
 
-### 3 new_record_file
+### 3 new_custom_record_file
 
 `eventType` 3 indicates that the new record file is generated, and the `payload` contains the following fields:
 
@@ -138,7 +138,7 @@ Example of the `payload`:
 
 <a name="4"></a>
 
-### 4 new_snapshot_file
+### 4 new_custom_snapshot_file
 
 `eventType` 4 indicates that the new snapshot file is generated, and the `payload` contains the following fields:
 
@@ -162,7 +162,7 @@ Example of the `payload`:
 
 <a name="5"></a>
 
-### 5 new_moderation_result
+### 5 new_custom_moderation_result
 
 `eventType` 5 indicates the new moderation result notification is sent, and the `payload` contains the following fields:
 
@@ -179,7 +179,7 @@ Example of the `payload`:
 
 ```json
 {
-    "eventName": "new_moderation_result",
+    "eventName": "new_custom_moderation_result",
     "entryPoint": "live",
     "streamName": "test_stream",
     "results": {
