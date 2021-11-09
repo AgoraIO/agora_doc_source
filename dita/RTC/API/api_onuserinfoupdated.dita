@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onuserinfoupdated">
-    <title><ph keyref="onUserInfoUpdated"/></title>
+    <title><ph keyref="onUserInfoUpdated" /></title>
     <shortdesc id="short"><ph id="shortdesc">远端用户信息已更新回调。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -22,11 +22,11 @@
      }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(
   evt: EngineEvents.USER_INFO_UPDATED,
-  cb: (uid: number, userInfo: UserInfo) => void
+  cb: (uid: number, userInfo: UserInfo) =&gt; void
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserInfoUpdated(uint uid, UserInfo info)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">void onUserInfoUpdated(uid_t uid, UserInfo info)</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -42,8 +42,8 @@
         <section id="parameters"><title>参数</title>
    <parml>
        <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt/>
-                  <pd/>
+                  <pt />
+                  <pd />
               </plentry>
        <plentry>
   <pt>uid</pt>
@@ -51,7 +51,7 @@
        </plentry>
        <plentry>
   <pt>userInfo</pt>
-  <pd>标识用户信息的 UserInfo 对象，包含用户 UID 和 User Account。详见 <xref keyref="UserInfo"/> 类。</pd>
+  <pd>标识用户信息的 UserInfo 对象，包含用户 UID 和 User Account。详见 <xref keyref="UserInfo" /> 类。</pd>
        </plentry>
    </parml>
         </section>

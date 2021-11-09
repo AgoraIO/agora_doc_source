@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onaudioquality">
-    <title><ph keyref="onAudioQuality"/></title>
+    <title><ph keyref="onAudioQuality" /></title>
     <shortdesc id="short"><ph id="shortdesc">远端声音质量回调。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -20,19 +20,20 @@
   (void)delay;
   (void)lost;
 }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioQuality(uint uid, int quality, ushort delay, ushort lost)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">void onAudioQuality(RtcConnection connection, uid_t remoteUid, int quality,
+      int delay, int lost)</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-   
+
    <p>
        <dl outputclass="deprecated">
   <dlentry>
       <dt>弃用：</dt>
-      <dd>该方法<ph props="rtc">自 v2.3.2 起</ph><ph props="rtc-ng">已</ph>废弃。请改用 <xref keyref="onRemoteAudioStats"/> 方法。</dd>
+      <dd>该方法<ph props="rtc">自 v2.3.2 起</ph><ph props="rtc-ng">已</ph>废弃。请改用 <xref keyref="onRemoteAudioStats" /> 方法。</dd>
   </dlentry>
        </dl>
    </p>
@@ -42,8 +43,12 @@
    <title>参数</title>
    <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry id="connection" props="flutter">
+                    <pt>connection</pt>
+                    <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
                 </plentry>
                 <plentry>
                     <pt>uid</pt>
@@ -51,9 +56,9 @@
                 </plentry>
                 <plentry>
                     <pt>quality</pt>
-                    <pd>语音质量。<ph props="ios mac windows unity">详见 <xref keyref="QUALITY_TYPE"/>。</ph>
+                    <pd>语音质量。<ph props="ios mac windows unity">详见 <xref keyref="QUALITY_TYPE" />。</ph>
                         <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
-                        <li/>
+                        <li />
                     </ul>
                     </pd>
                 </plentry>
