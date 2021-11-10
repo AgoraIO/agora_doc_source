@@ -2,92 +2,78 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_connectionchangedreasontype">
     <title><ph keyref="CONNECTION_CHANGED_REASON_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">网络连接状态发生变化的原因。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reasons causing the change of the connection state.</ph></shortdesc>
     <refbody>
         <section id="parameters">
-   <title>枚举值</title>
+   <title>Enumerator</title>
    <parml>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_CONNECTING"/></pt>
-  <pd>0: 建立网络连接中。</pd>
+  <pd>0: The SDK is connecting to the Agora edge server.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS"/></pt>
-  <pd>1: 成功加入频道。</pd>
+  <pd>1: The SDK has joined the channel successfully.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_INTERRUPTED"/></pt>
-  <pd>2: 网络连接中断。</pd>
+  <pd>2: The connection between the SDK and the Agora edge server is interrupted.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER"/></pt>
-  <pd>3: 网络连接被服务器禁止。服务端踢人场景时会报这个错。</pd>
+  <pd>3: The connection between the SDK and the Agora edge server is banned by the Agora edge server. This error occurs when the user is kicked out of the channel by the server.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_JOIN_FAILED"/></pt>
-  <pd>4: 加入频道失败。SDK 在尝试加入频道 20 分钟后还是没能加入频道，会返回该状态，并停止尝试重连。</pd>
+  <pd>4: The SDK fails to join the channel. When the SDK fails to join the channel for more than 20 minutes, this error occurs and the SDK stops reconnecting to the channel.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL"/></pt>
-  <pd>5: 离开频道。</pd>
+  <pd>5: The SDK has left the channel.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID"/></pt>
-  <pd>6: 不是有效的 APP ID。请更换有效的 APP ID 重新加入频道。</pd>
+  <pd>6: The connection failed because the App ID is not valid. Please rejoin the channel with a valid App ID.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME"/></pt>
-  <pd>7: 不是有效的频道名。请更换有效的频道名重新加入频道。</pd>
+  <pd>7: The connection failed since channel name is not valid. Please rejoin the channel with a valid channel name.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN"/></pt>
-  <pd><p>8: 生成的 Token 无效。一般有以下原因：
-  <ul>
-      <li>在控制台上启用了 App Certificate，但加入频道未使用 Token。当启用了 App Certificate，必须使用 Token。</li>
-      <li>在调用 <apiname keyref="joinChannel2"/> 加入频道时指定的用户 ID 与生成 Token 时传入的用户 ID 不一致。</li>
+  <pd><p>8: The connection failed because the token is not valid. Typical reasons include:<ul>
+      <li>The App Certificate for the project is enabled in Agora Console, but you do not use a token when joining the channel. If you enable the App Certificate, you must use a token to join the channel.</li>
+      <li>The uid specified when calling <apiname keyref="joinChannel2"/> to join the channel is inconsistent with the uid passed in when generating the token.</li>
   </ul></p></pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/></pt>
-  <pd>9: 当前使用的 Token 过期，不再有效，需要重新在你的服务端申请生成 Token。</pd>
+  <pd>9: The connection failed since token is expired.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER"/></pt>
-  <pd><p>10: 此用户被服务器禁止。一般有以下原因：
-  <ul>
-      <li>用户已进入频道，再次调用加入频道的 API，例如 <apiname keyref="joinChannel2" />，会返回此状态。停止调用该方法即可。</li>
-      <li>用户在调用 <xref keyref="startEchoTest1"/> 进行通话测试时尝试加入频道。等待通话测试结束后再加入频道即可。</li>
+  <pd><p>10: The connection is rejected by server. Typical reasons include:<ul>
+      <li>The user is already in the channel and still calls a method, for example, <apiname keyref="joinChannel2" />, to join the channel. Stop calling this method to clear this error.</li>
+      <li>The user tries to join the channel when calling <xref keyref="startEchoTest1"/> for a call test. The user needs to call the channel after the call test ends.</li>
   </ul>
   </p></pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/></pt>
-  <pd>11: 由于设置了代理服务器，SDK 尝试重连。</pd>
+  <pd>11: The connection state changed to reconnecting because the SDK has set a proxy server.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_RENEW_TOKEN"/></pt>
-  <pd>12: 更新 Token 引起网络连接状态改变。</pd>
+  <pd>12: The connection state changed because the token is renewed.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED"/></pt>
-  <pd>13: 客户端 IP 地址变更，可能是由于网络类型，或网络运营商的 IP 或端口发生改变引起。</pd>
+  <pd>13: The IP address of the client has changed, possibly because the network type, IP address, or port has been changed.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT"/></pt>
-  <pd>14: SDK 和服务器连接保活超时，进入自动重连状态。</pd>
+  <pd>14: Timeout for the keep-alive of the connection between the SDK and the Agora edge server. The connection state changes to <ph keyref="CONNECTION_STATE_RECONNECTING"/>.</pd>
        </plentry>
-                <plentry>
-                    <pt><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS"/></pt>
-                    <pd>15: 重新加入频道成功。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="CONNECTION_CHANGED_LOST"/></pt>
-                    <pd>16: SDK 和服务器失去连接。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="CONNECTION_CHANGED_ECHO_TEST"/></pt>
-                    <pd>17: 连接状态变化由回声测试引起。</pd>
-                </plentry>
    </parml>
         </section></refbody>
 </reference>

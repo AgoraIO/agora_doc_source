@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_sendstreammessageex">
     <title><ph keyref="sendStreamMessageEx" /></title>
-    <shortdesc id="short"><ph id="shortdesc">发送数据流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sends data stream messages.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -23,33 +23,32 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <xref keyref="createDataStreamEx2" /> 后，你可以调用本方法向频道内所有用户发送数据流消息。</p>
-
-   <p id="desc">SDK 对该方法有如下限制：<ul>
-                    <li>频道内每秒最多能发送 60 个包，且每个包最大为 1 KB。</li>
-                    <li>每个客户端每秒最多能发送 30 KB 数据。</li>
-                    <li>频道内每人最多能同时有 5 个数据通道。</li>
+            <p>After calling <xref keyref="createDataStreamEx2" />, you can call this method to send a data stream to all users in the channel.</p>
+   
+   <p id="desc">The SDK has the following restrictions on this method:<ul>
+                    <li>Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 kB.</li>
+                    <li>Each client can send up to 6 KB of data per second.</li>
+                    <li>Each user can have up to five data streams simultaneously.</li>
                 </ul></p>
-   <p>成功调用该方法后，远端会触发 <xref keyref="onStreamMessage" /> 回调，远端用户可以在该回调中获取接收到的流消息；
-       若调用失败，远端会触发 <xref keyref="onStreamMessageError" /> 回调。</p>
+   <p>A successful method call triggers the <xref keyref="onStreamMessage" /> callback on the remote client, from which the remote user gets the stream message. A failed method call triggers the <xref keyref="onStreamMessageError" /> callback on the remote client.</p>
    <note type="attention"><ul>
-       <li>请确保在调用该方法前，已调用 <apiname keyref="createDataStreamEx2" /> 创建了数据通道。</li>
-       <li>该方法仅适用于通信场景以及直播场景下的主播用户，如果直播场景下的观众调用此方法可能会造成观众变主播。</li>
+       <li>Ensure that you call <apiname keyref="createDataStreamEx2" /> to create a data channel before calling this method.</li>
+       <li>This method applies only to the `COMMUNICATION` profile or to the hosts in the `LIVE_BROADCASTING` profile. If an audience in the `LIVE_BROADCASTING` profile calls this method, the audience may be switched to a host.</li>
    </ul></note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>streamId</pt>
-           <pd>数据流 ID。可以通过 <apiname keyref="createDataStreamEx2" /> 获取。</pd>
+           <pd>The data stream ID. You can get the data stream ID by calling <apiname keyref="createDataStreamEx2" />.</pd>
        </plentry>
        <plentry>
     <pt>data</pt>
-  <pd>待发送的数据。</pd>
+  <pd>The message to be sent.</pd>
        </plentry>
-       <plentry props="windows">
+       <plentry>
   <pt>length</pt>
-  <pd>数据长度。</pd>
+  <pd>The length of the data.</pd>
        </plentry>
                 <plentry conkeyref="joinChannelEx/connection">
                     <pt />
@@ -58,10 +57,10 @@
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

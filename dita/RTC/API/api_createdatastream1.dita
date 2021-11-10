@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_createdatastream1">
     <title><ph keyref="createDataStream1" /></title>
-    <shortdesc id="short"><ph id="shortdesc">创建数据流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -22,42 +22,42 @@
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">Future&lt;int?&gt; createDataStream(bool reliable, bool ordered);</codeblock>
         </p>
-
+        
         </section>
         <section id="detailed_desc">
-
+   
    <dl outputclass="deprecated">
        <dlentry>
-  <dt>弃用：</dt>
-  <dd>该方法从 v3.3.0 起废弃。请改用 <xref keyref="createDataStream2" />。</dd>
+  <dt>Deprecated:</dt>
+  <dd>This method is deprecated as of v2.4.0. Please use <xref keyref="createDataStream2" /> instead.</dd>
        </dlentry>
    </dl>
-   <p id="desc">在 <xref keyref="IRtcEngine" /> 生命周期内，每个用户最多只能创建 5 个数据流。</p>
+   <p id="desc">Each user can create up to five data streams during the lifecycle of <xref keyref="IRtcEngine" />.</p>
    <note type="attention" id="note">
        <ul>
-  <li>该方法需要在加入频道后调用。</li>
-  <li>不可将 <parmname>reliable</parmname> 设为 <codeph><ph keyref="true" /></codeph> 且将 <parmname>ordered</parmname> 设为 <codeph><ph keyref="true" /></codeph>。</li>
+  <li>Call this method after joining a channel.</li>
+  <li>Agora does not support setting <parmname>reliable</parmname> as <codeph><ph keyref="true" /></codeph> and <parmname>ordered</parmname> as <codeph><ph keyref="true" /></codeph>.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry props="windows" id="streamId">
   <pt>streamId</pt>
-  <pd>输出参数，数据流 ID。</pd>
+  <pd>Output parameter. Pointer to the ID of the created data stream.</pd>
        </plentry>
        <plentry>
   <pt>reliable</pt>
-  <pd><p>该数据流是否可靠：<ul>
-      <li><codeph><ph keyref="true" /></codeph>: 接收方 5 秒内会收到发送方所发送的数据，否则会收到 <xref keyref="onStreamMessageError" /> 回调并获得相应报错信息。</li>
-      <li><codeph><ph keyref="false" /></codeph>: 接收方不保证收到，就算数据丢失也不会报错。</li>
+  <pd><p>Whether or not the data stream is reliable:<ul>
+      <li><codeph><ph keyref="true" /></codeph>: The recipients receive the data from the sender within five seconds. If the recipient does not receive the data within five seconds, the SDK triggers the <xref keyref="onStreamMessageError" /> callback and returns an error code.</li>
+      <li><codeph><ph keyref="true" /></codeph>: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.</li>
   </ul></p></pd>
        </plentry>
        <plentry id="ordered">
   <pt>ordered</pt>
-  <pd><p>该数据流是否有序：<ul>
-      <li><codeph><ph keyref="true" /></codeph>: 接收方会按照发送方发送的顺序收到数据包。</li>
-      <li><codeph><ph keyref="false" /></codeph>: 接收方不保证按照发送方发送的顺序收到数据包。</li>
+  <pd><p>Whether or not the recipients receive the data stream in the sent order:<ul>
+      <li><codeph><ph keyref="true" /></codeph>: The recipients receive the data in the sent order.</li>
+      <li><codeph><ph keyref="true" /></codeph>: The recipients do not receive the data in the sent order.</li>
   </ul></p></pd>
        </plentry>
    </parml>

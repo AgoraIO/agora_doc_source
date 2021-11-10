@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlogfile">
     <title><ph keyref="setLogFile" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置日志文件</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Set the log file</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,31 +25,30 @@
         <section id="detailed_desc">
             <dl outputclass="deprecated">
                 <dlentry>
-                    <dt>弃用：</dt>
-                    <dd>此方法已废弃，请改用 <xref keyref="create2" /> 中的 <codeph>logConfig</codeph>
-                        参数设置日志文件路径 。</dd>
+                    <dt>Deprecated:</dt>
+                    <dd>Use the <codeph>mLogConfig</codeph> parameter in <xref keyref="create2" /> method instead.</dd>
                    </dlentry>
                 </dl>
-            <p>设置 SDK 的输出 log 文件。SDK 运行时产生的所有 log 将写入该文件。App 必须保证指定的目录存在而且可写。</p>
+            <p>Specifies an SDK output log file. The log file records all log data for the SDK’s operation. Ensure that the directory for the log file exists and is writable.</p>
             <note id="note_gnw_y1g_3qb">
-                <p>如需调用本方法，请在调用 <apiname keyref="create2" /> 方法初始化 <xref keyref="IRtcEngine" /> 对象后立即调用，否则输出日志可能不完整。</p>
+                <p>Ensure that you call this method immediately after calling the <apiname keyref="create2" /><xref keyref="IRtcEngine" /> method, or the output log may not be complete.</p>
             </note>
              
             
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>filePath</pt>
-                    <pd>日志文件的完整路径。该日志文件为 UTF-8 编码。</pd>
+                    <pd>The absolute path of the log files. These log files are encoded in UTF-8.</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values" props="native electron unity">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul id="ul_ahk_23f_3qb">
-                <li>0: 方法调用成功</li>
-                <li>&lt; 0: 方法调用失败</li>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
             </ul>
         </section>
     </refbody>

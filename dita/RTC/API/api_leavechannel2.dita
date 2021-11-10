@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_leavechannel2">
     <title><ph keyref="leaveChannel2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">离开频道。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Leaves a channel.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -23,31 +23,29 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <p>离开频道，即挂断或退出通话。</p><p>加入频道后，必须调用本方法或 <xref keyref="leaveChannel" /> 结束通话，才能开始下一次通话。 </p><p>不管当前是否在通话中，都可以调用该方法，没有副作用。该方法会把会话相关的所有资源释放掉。</p>
-            <p>该方法是异步操作，调用返回时并没有真正退出频道。在真正退出频道后，SDK 会触发 <xref keyref="onLeaveChannel" /> 回调。
-                    成功调用该方法离开频道后，本地会触发<apiname keyref="onLeaveChannel" /> 回调；
-                通信场景下的用户和直播场景下的主播离开频道后，远端会触发 <xref keyref="onUserOffline" /> 回调。</p>
+            <p>This method lets the user leave the channel, for example, by hanging up or exiting the call.</p><p>After joining the channel, you must call this method or <xref keyref="leaveChannel" /> to end the call, otherwise, the next call cannot be started.</p><p>No matter whether you are currently in a call or not, you can call this method without side effects. This method releases all resources related to the session.</p>
+            <p>This method call is asynchronous, and the user has not left the channel when the method call returns. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel" /> callback. A successful call of this method triggers the following callbacks: The local client: <apiname keyref="onLeaveChannel" />.The remote client: <xref keyref="onUserOffline" />, if the user joining the channel is in the COMMUNICATION profile, or is a host in the LIVE_BROADCASTING profile.</p>
             <note conkeyref="leaveChannel/note" />
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
                 <parml id="parml_jsr_dky_hqb">
                     <plentry>
                         <pt>options</pt>
-                        <pd>离开频道的选项，详见 <xref keyref="LeaveChannelOptions" />。</pd>
+                        <pd>The options for leaving the channel. See <xref keyref="LeaveChannelOptions" />.</pd>
                     </plentry>
                 <plentry props="ios mac" id="leavechannelblock">
                     <pt>leaveChannelBlock</pt>
                     <pd>
-                        <p>成功离开频道的回调，提供通话相关的统计信息，详见 <xref keyref="RtcStats" /> 。</p>
+                        <p>This callback indicates that a user leaves a channel, and provides the statistics of the call in <xref keyref="RtcStats" />.</p>
                     </pd>
                 </plentry>
                      </parml>
            </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

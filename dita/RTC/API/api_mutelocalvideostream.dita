@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_mutelocalvideostream">
-    <title><ph keyref="muteLocalVideoStream" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">取消或恢复发布本地视频流。</ph></shortdesc>
+    <title><ph keyref="muteLocalVideoStream" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Stops or resumes publishing the local video stream.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -23,27 +23,25 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用该方法后，远端会触发 <xref keyref="onUserMuteVideo" /> 回调。</p>
+            <p>A successful call of this method triggers the <xref keyref="onUserMuteVideo" /> callback on the remote client.</p>
             <note type="attention">
                     <ul id="ul_ogk_hwc_f4b">
-                        <li>相比于 <xref keyref="enableLocalVideo" />(<codeph><ph keyref="false" /></codeph>) 用于控制本地视频流发送的方法，该方法响应速度更快。</li>
-                        <li>该方法不影响视频采集状态，没有禁用摄像头。 </li>
-                        <li props="rtc">该方法在加入频道前后都能调用。如果你在该方法后调用 <xref keyref="setChannelProfile" /> 方法，SDK
-                            会根据你设置的频道场景以及用户角色，重新设置是否停止发送本地视频。因此我们建议在 <apiname keyref="setChannelProfile" /> 后调用该方法。</li>
+                        <li>This method executes faster than the <xref keyref="enableLocalVideo" />(<codeph><ph keyref="false" /></codeph>) method, which controls the sending of the local video stream.</li>
+                        <li>This method does not affect any ongoing video recording, because it does not disable the camera.</li>
+                        <li props="rtc">You can call this method either before or after joining a channel. If you call <xref keyref="setChannelProfile" /> after this method, the SDK resets whether or not to stop publishing the local video according to the channel profile and user role. Therefore, Agora recommends calling this method after the <apiname keyref="setChannelProfile" /> method.</li>
                     </ul>
                 </note>
         </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
                 <plentry>
                     <pt props="android">muted</pt>
-                    <pt props="ios mac windows unity flutter">mute</pt>
+                    <pt props="ios mac windows unity">mute</pt>
                     <pd>
-                        <p>是否取消发送本地视频流。
-                        <ul id="ul_xwr_mxc_f4b">
-                            <li><codeph><ph keyref="true" /></codeph>: 取消发送本地视频流。</li>
-                            <li><codeph><ph keyref="false" /></codeph>: （默认）发送本地视频流。</li>
+                        <p>Whether to stop publishing the local video stream.<ul id="ul_xwr_mxc_f4b">
+                            <li><codeph><ph keyref="true" /></codeph>: Stop publishing the local video stream.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: (Default) Publish the local video stream.</li>
                         </ul>
                         </p>
                     </pd>
@@ -51,10 +49,10 @@
             </parml>
         </section>
         <section id="return_values" props="native electron unity">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul id="ul_gkv_dxc_f4b">
-                <li>0: 方法调用成功</li>
-                <li>&lt; 0: 方法调用失败</li>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
             </ul>
         </section>
     </refbody>

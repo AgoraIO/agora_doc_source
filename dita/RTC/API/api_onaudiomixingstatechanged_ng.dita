@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onaudiomixingstatechanged">
     <title><ph keyref="onAudioMixingStateChanged" /></title>
-    <shortdesc id="short"><ph id="shortdesc">音乐文件的播放状态已改变回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the playback state of the music file changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -33,40 +33,32 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>该回调在音乐文件播放状态发生改变时触发，并报告当前的播放状态和错误码。</p>
+            <p>This callback occurs when the playback state of the music file changes, and reports the current state and error code.</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>state</pt>
-                    <pd>音乐文件播放状态。<ph props="ios mac windows">详见 <xref keyref="AUDIO_MIXING_STATE_TYPE" />。</ph>
-                        <p props="android">
-                            <ul>
-                                <li><ph keyref="AUDIO_MIXING_STATE_PLAYING" /> (710): 音乐文件正常播放。</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_PAUSED" /> (711): 音乐文件暂停播放。</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_STOPPED" /> (713): 音乐文件停止播放。</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_FAILED" /> (714): 音乐文件报错。SDK 会在
-                                        <codeph>errorCode</codeph> 参数中返回具体的报错原因。</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_COMPLETED" />(715):
-                                    音乐文件已结束一次播放。</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED" /> (716):
-                                    音乐文件已结束循环播放。</li>
+                    <pd><p props="ios mac windows">The playback state of the music file. See <xref keyref="AUDIO_MIXING_STATE_TYPE" />.</p>
+                        <p props="android">The status code:<ul>
+                                <li><ph keyref="AUDIO_MIXING_STATE_PLAYING" /> (710): The music file is playing.</li>
+                                <li><ph keyref="AUDIO_MIXING_STATE_PAUSED" /> (711): The music file pauses playing.</li>
+                                <li><ph keyref="AUDIO_MIXING_STATE_STOPPED" /> (713): The music file stops playing.</li>
+                                <li><ph keyref="AUDIO_MIXING_STATE_FAILED" /> (714): An exception occurs when playing the audio mixing file. The SDK returns the specific reason for the error in the <codeph>errorCode</codeph> parameter.</li>
+                                <li><ph keyref="AUDIO_MIXING_STATE_COMPLETED" />(715): The music file is played once.</li>
+                                <li><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED" /> (716): The music file is all played out.</li>
                             </ul>
                         </p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>errorCode</pt>
-                    <pd>错误码。<ph props="ios mac windows">详见 <xref keyref="AUDIO_MIXING_ERROR_TYPE" />。</ph>
-                        <p props="android">
-                            <ul>
-                                <li><ph keyref="AUDIO_MIXING_ERROR_OK" />(0): 正常。</li>
-                                <li><ph keyref="AUDIO_MIXING_ERROR_CAN_NOT_OPEN" /> (701):
-                                    音乐文件打开出错。</li>
-                                <li><ph keyref="AUDIO_MIXING_ERROR_TOO_FREQUENT_CALL" /> (702):
-                                    音乐文件打开太频繁。</li>
-                                <li><ph keyref="AUDIO_MIXING_ERROR_INTERRUPTED_EOF" /> (703):
-                                    音乐文件播放异常中断。</li>
+                    <pd><p props="ios mac windows">The error code. See <xref keyref="AUDIO_MIXING_ERROR_TYPE" />.</p>
+                        <p props="android">The error code:<ul>
+                                <li><ph keyref="AUDIO_MIXING_ERROR_OK" />(0): No error.</li>
+                                <li><ph keyref="AUDIO_MIXING_ERROR_CAN_NOT_OPEN" /> 701: The SDK cannot open the music file.</li>
+                                <li><ph keyref="AUDIO_MIXING_ERROR_TOO_FREQUENT_CALL" /> 702: The SDK opens the music file too frequently.</li>
+                                <li><ph keyref="AUDIO_MIXING_ERROR_INTERRUPTED_EOF" /> 703: The music file playback is interrupted.</li>
                             </ul>
                         </p>
                     </pd>

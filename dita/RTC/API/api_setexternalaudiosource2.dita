@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setexternalaudiosource2">
     <title><ph keyref="setExternalAudioSource2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置外部音频采集参数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the external audio source.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -35,58 +35,54 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <note type="attention">请在加入频道前调用该方法。</note>
+            <note type="attention">Call this method before joining a channel.</note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>enabled</pt>
                     <pd>
-                        <p>是否开启使用外部音频源的功能：
-                        <ul>
-                            <li><codeph><ph keyref="true" /></codeph>：开启外部音频源。</li>
-                            <li><codeph><ph keyref="false" /></codeph>：（默认）关闭外部音频源。</li>
+                        <p>Whether to enable the external audio source:<ul>
+                            <li><codeph><ph keyref="true" /></codeph>: Enable the external audio source.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the external audio source.</li>
                         </ul></p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>sampleRate</pt>
-                    <pd>外部音频源的采样率 (Hz)，可设置为
-                            <codeph>8000</codeph>，<codeph>16000</codeph>，<codeph>32000</codeph>，<codeph>44100</codeph>
-                        或 <codeph>48000</codeph>。</pd>
+                    <pd>The sample rate (Hz) of the external audio source, which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000 Hz</codeph>.</pd>
                 </plentry>
                 <plentry>
                     <pt>channels</pt>
-                    <pd>外部音频源的声道数，可设置为 <codeph>1</codeph>（单声道）或 <codeph>2</codeph>（双声道）。</pd>
+                    <pd>The number of channels of the external audio source, which can be set as <codeph>1</codeph> (Mono) or <codeph>2</codeph> (Stereo).</pd>
                 </plentry>
                 <plentry>
                     <pt>sourceNumber</pt>
-                    <pd>外部音频源的数量，取值为正整数。多个音频源会被混音。</pd>
+                    <pd>The number of external audio sources. The value of this parameter should be larger than 0. Multiple audio sources are mixed.</pd>
                 </plentry>
                 <plentry>
                     <pt>localPlayback</pt>
-                    <pd><p>是否在本地播放外部音频源：
-                        <ul>
-                            <li><codeph><ph keyref="true" /></codeph>：在本地播放。</li>
-                            <li><codeph><ph keyref="false" /></codeph>：（默认）不在本地播放。</li>
+                    <pd><p>Whether to play the external audio source:<ul>
+                            <li><codeph><ph keyref="true" /></codeph>: Play the external audio source.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not play the external source.</li>
                         </ul></p></pd>
                 </plentry>
                 <plentry>
                     <pt>publish</pt>
                     <pd>
-                        <p>是否将音频发布到远端： <ul id="ul_agk_dnf_3qb">
-                                <li><codeph><ph keyref="true" /></codeph>：（默认）发布到远端。</li>
-                                <li><codeph><ph keyref="false" /></codeph>：不发布到远端。</li>
+                        <p>Whether to publish audio to the remote users.<ul id="ul_agk_dnf_3qb">
+                                <li><codeph><ph keyref="true" /></codeph>: (Default) Publish audio to the remote users.</li>
+                                <li><codeph><ph keyref="false" /></codeph>: Do not publish audio to the remote users</li>
                             </ul></p>
                     </pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values" props="native electron unity">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul id="ul_cff_fnf_3qb">
-                <li>0：方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。</li>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
             </ul>
         </section>
     </refbody>

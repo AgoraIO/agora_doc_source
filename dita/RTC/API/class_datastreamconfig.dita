@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_datastreamconfig">
     <title><ph keyref="DataStreamConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">数据流设置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The configurations for the data stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -40,7 +40,7 @@
         </section>
         <section id="detailed_desc">
    
-   <p>下表展示不同的参数设置下，SDK 的行为：</p>
+   <p>The following table shows the SDK behaviors under different parameter settings:</p>
    <table id="table_uxz_bjk_t4b">
        <tgroup cols="3">
   <colspec colnum="1" colname="col1" />
@@ -50,34 +50,29 @@
                <row>
                    <entry><codeph>syncWithAudio</codeph></entry>
                    <entry><codeph>ordered</codeph></entry>
-                   <entry>SDK 行为</entry>
+                   <entry>SDK behaviors</entry>
                </row>
            </thead>
            <tbody>
       <row>
  <entry><codeph><ph keyref="false" /></codeph></entry>
  <entry><codeph><ph keyref="false" /></codeph></entry>
- <entry>接收端接收到数据包后，SDK 立刻触发 <xref keyref="onStreamMessage" /> 回调。</entry>
+ <entry>The SDK triggers the <xref keyref="onStreamMessage" /> callback immediately after the receiver receives a data packet.</entry>
       </row>
       <row>
  <entry><codeph><ph keyref="true" /></codeph></entry>
  <entry><codeph><ph keyref="false" /></codeph></entry>
- <entry>如果数据包的延迟在音频延迟的范围内，SDK 会在播放音频的同时触发与该音频包同步的
-<ph keyref="onStreamMessage" /> 回调。如果数据包的延迟超出了音频延迟，SDK
-     会在接收到该数据包时立刻触发 <ph keyref="onStreamMessage" />
-     回调；此情况会造成音频包和数据包的不同步。</entry>
+ <entry>If the data packet delay is within the audio delay, the SDK triggers the <ph keyref="onStreamMessage" /> callback when the synchronized audio packet is played out. If the data packet delay exceeds the audio delay, the SDK triggers the <ph keyref="onStreamMessage" /> callback as soon as the data packet is received.</entry>
       </row>
       <row>
  <entry><codeph><ph keyref="false" /></codeph></entry>
  <entry><codeph><ph keyref="true" /></codeph></entry>
- <entry>如果数据包的延迟在 5 秒以内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出 5 秒，SDK
-     会丢弃该数据包。</entry>
+ <entry>If the delay of a data packet is less than five seconds, the SDK corrects the order of the data packet. If the delay of a data packet exceeds five seconds, the SDK discards the data packet.</entry>
       </row>
       <row>
  <entry><codeph><ph keyref="true" /></codeph></entry>
  <entry><codeph><ph keyref="true" /></codeph></entry>
- <entry>如果数据包的延迟在音频延迟的范围内，SDK 会修正数据包的乱序问题。如果数据包的延迟超出音频延迟，SDK
-     会丢弃该数据包。</entry>
+ <entry>If the delay of the data packet is within the range of the audio delay, the SDK corrects the order of the data packet. If the delay of a data packet exceeds the audio delay, the SDK discards this data packet.</entry>
       </row>
   </tbody>
        </tgroup>
@@ -90,19 +85,19 @@
        <plentry>
   <pt>syncWithAudio</pt>
   <pd>
-                        <p>是否与本地发送的音频流同步。<ul>
-                                <li><codeph><ph keyref="true" /></codeph>: 数据流与音频流同步。</li>
-                                <li><codeph><ph keyref="false" /></codeph>: 数据流与音频流不同步。</li>
-                            </ul> 设置为与音频同步后，如果数据包的延迟在音频延迟的范围内，SDK 会在播放音频的同时触发与该音频包同步的 <xref keyref="onStreamMessage" /> 回调。 当需要数据包立刻到达接收端时，不能将该参数设置为 <ph keyref="true" />。Agora 建议你仅在需要实现特殊场景，例如歌词同步时，设置为与音频同步。</p>
+                        <p>Whether to synchronize the data packet with the published audio packet.<ul>
+                                <li><codeph><ph keyref="true" /></codeph>: Synchronize the data packet with the audio packet.</li>
+                                <li><codeph><ph keyref="false" /></codeph>: Do not synchronize the data packet with the audio packet.</li>
+                            </ul>When you set the data packet to synchronize with the audio, then if the data packet delay is within the audio delay, the SDK triggers the <xref keyref="onStreamMessage" /> callback when the synchronized audio packet is played out. Do not set this parameter as <ph keyref="true" /> if you need the receiver to receive the data packet immediately. Agora recommends that you set this parameter to `true` only when you need to implement specific functions, for example lyric synchronization.</p>
                     </pd>
        </plentry>
        <plentry>
   <pt>ordered</pt>
   <pd>
-                        <p>是否保证接收到的数据按发送的顺序排列。<ul>
-                                <li><codeph><ph keyref="true" /></codeph>: 保证 SDK 按照发送方发送的顺序输出数据包。</li>
-                                <li><codeph><ph keyref="false" /></codeph>: 不保证 SDK 按照发送方发送的顺序输出数据包。</li>
-                            </ul> 当需要数据包立刻到达接收端时，不能将该参数设置为 <codeph><ph keyref="true" /></codeph>。</p>
+                        <p>Whether the SDK guarantees that the receiver receives the data in the sent order.<ul>
+                                <li><codeph><ph keyref="true" /></codeph>: Guarantee that the receiver receives the data in the sent order.</li>
+                                <li><codeph><ph keyref="false" /></codeph>: Do not guarantee that the receiver receives the data in the sent order.</li>
+                            </ul>Do not set this parameter as <codeph><ph keyref="true" /></codeph> if you need the receiver to receive the data packet immediately.</p>
                     </pd>
        </plentry>
    </parml>

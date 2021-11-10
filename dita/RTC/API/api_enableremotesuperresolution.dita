@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enableremotesuperresolution">
     <title><ph keyref="enableRemoteSuperResolution"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开启或关闭远端视频超分辨率。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables/Disables the super-resolution algorithm for a remote user&apos;s video stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,36 +25,35 @@
         <section id="detailed_desc">
             <dl outputclass="since">
                 <dlentry>
-                    <dt>自从</dt>
+                    <dt>Since</dt>
                     <dd>v3.5.1</dd>
                 </dlentry>
             </dl>
-            <p>该功能可以有效提升本地用户看到的远端视频画面的分辨率。例如远端用户视频的原始分辨率为 a &lt; b，开启该功能后，本地设备会以 2a &lt; 2b 的分辨率
-            显示该远端视频。</p>
-            <p>调用该方法后，SDK 会触发 <xref keyref="onUserSuperResolutionEnabled"/> 回调报告超分辨率是否成功开启。</p>
-            <note type="caution">超分辨率功能会额外耗费系统资源。为平衡视觉体验和系统消耗，只可以对一个远端用户开启超分辨率，并且远端用户视频的原始分辨率在 Android 设备上
-                不能超过 640 × 360，在 iOS 设备上不能超过 640 × 480。当超出限制时，SDK 会触发 <xref keyref="onWarning"></xref> 回调，并返回相应的警告码：
-            <ul>
-                <li><ph keyref="WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION"/>: 1610，远端用户的原始视频分辨率超出了可以应用超分辨率的范围。</li>
-                <li><ph keyref="WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION"/>: 1611，已对一个远端用户的视频使用超分辨率。</li>
-                <li><ph keyref="WARN_SUPER_RESOLUTION_DEVICE_NOT_SUPPORTED"/>: 1612，设备不支持使用超分辨率。</li>
+            <p>This feature effectively boosts the resolution of a remote user&apos;s video seen by the local user. If the original resolution of a remote user&apos;s video is a × b, the local user&apos;s device can render the remote video at a resolution of 2a × 2b
+            after you enable this feature.</p>
+            <p>After you call this method, the SDK triggers the <xref keyref="onUserSuperResolutionEnabled"/> callback to report whether you have successfully enabled super resolution.</p>
+            <note type="caution">The super resolution feature requires extra system resources. To balance the visual experience and system usage, the SDK poses the following restrictions: This feature can only be enabled for a single remote user.
+                On Android, the original resolution of the remote video must not exceed 640 × 360 pixels. On iOS, the original resolution of the remote video must not exceed 640 × 480 pixels. If you exceed these limitations, the SDK triggers the <xref keyref="onWarning"></xref> callback and returns the corresponding warning codes:<ul>
+                <li><ph keyref="WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION"/>: 1610. The origin resolution of the remote video is beyond the range where the super resolution can be applied.</li>
+                <li><ph keyref="WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION"/>: 1611. Super resolution is already being used on another remote user&apos;s video.</li>
+                <li><ph keyref="WARN_SUPER_RESOLUTION_DEVICE_NOT_SUPPORTED"/>: 1612. The device does not support using super resolution.</li>
             </ul></note>
             <note type="attention">
                 <ul>
-                    <li props="windows unity flutter rn">该方法仅适用于 Android 和 iOS 平台。</li>
-                    <li>调用该方法前，请确保你已经集成相应的动态库：<ul>
+                    <li props="windows unity flutter rn">This method is for Android and iOS only.</li>
+                    <li>Before calling this method, ensure that you have integrated the following dynamic libraries:<ul>
                         <li props="android windows unity flutter rn">Android: <ph>libagora_super_resolution_extension.so</ph></li>
                         <li props="ios windows unity flutter rn">iOS: <ph>AgoraSuperResolutionExtension.xcframework</ph></li>
                     </ul>
                     </li>
-                    <li>该方法对用户设备具有一定要求，Agora 推荐你使用如下或更好的设备：<ul>
+                    <li>Because this method has certain system performance requirements, Agora recommends that you use the following devices or better:<ul>
                         <li props="android windows unity flutter rn">Android:<ul>
-                            <li>VIVO：V1821A，NEX S，1914A，1916A，1962A，1824BA，X60，X60 Pro</li>
-                            <li>OPPO：PCCM00，Find X3</li>
-                            <li>OnePlus：A6000</li>
-                            <li>Xiaomi：Mi 8，Mi 9，Mi 10，Mi 11，MIX3，Redmi K20 Pro</li>
-                            <li>SAMSUNG：SM-G9600，SM-G9650，SM-N9600，SM-G9708，SM-G960U，SM-G9750，S20，S21</li>
-                            <li>HUAWEI：SEA-AL00，ELE-AL00，VOG-AL00，YAL-AL10，HMA-AL00，EVR-AN00，nova 4，nova 5 Pro，nova 6 5G，nova 7 5G，Mate 30，Mate 30 Pro，Mate 40，Mate 40 Pro，P40，P40 Pro，华为平板 M6，MatePad 10.8</li>
+                            <li>VIVO: V1821A, NEX S, 1914A, 1916A, 1962A, 1824BA, X60, X60 Pro</li>
+                            <li>OPPO: PCCM00, Find X3</li>
+                            <li>OnePlus: A6000</li>
+                            <li>Xiaomi: Mi 8, Mi 9, Mi 10, Mi 11, MIX3, Redmi K20 Pro</li>
+                            <li>SAMSUNG: SM-G9600, SM-G9650, SM-N9600, SM-G9708, SM-G960U, SM-G9750, S20, S21</li>
+                            <li>HUAWEI: SEA-AL00, ELE-AL00, VOG-AL00, YAL-AL10, HMA-AL00, EVR-AN00, nova 4, nova 5 Pro, nova 6 5G, nova 7 5G, Mate 30, Mate 30 Pro, Mate 40, Mate 40 Pro, P40, P40 Pro, Huawei M6, MatePad 10.8</li>
                         </ul></li>
                         <li props="ios windows unity flutter rn">iOS:<ul>
                             <li>iPhone XR</li>
@@ -67,37 +66,37 @@
                             <li>iPhone 12 mini</li>
                             <li>iPhone 12 Pro</li>
                             <li>iPhone 12 Pro Max</li>
-                            <li>iPhone 12 SE（第二代）</li>
-                            <li>iPad Pro 11-inch（第三代）</li>
-                            <li>iPad Pro 12.9-inch（第三代）</li>
-                            <li>iPad Air（第三代）</li>
-                            <li>iPad Air（第四代）</li>
+                            <li>iPhone 12 SE (2nd generation)</li>
+                            <li>iPad Pro 11-inch (3rd generation)</li>
+                            <li>iPad Pro 12.9-inch (3rd generation)</li>
+                            <li>iPad Air 3 (3rd generation)</li>
+                            <li>iPad Air 3 (4th generation)</li>
                         </ul></li>
                     </ul></li>
                 </ul>
             </note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>userId</pt>
-                    <pd>远端用户 ID。</pd>
+                    <pd>The ID of the remote user.</pd>
                 </plentry>
                 <plentry>
                     <pt>enable</pt>
-                    <pd>是否对远端视频开启超分辨率：<ul>
-                        <li><ph keyref="true"/>: 开启。</li>
-                        <li><ph keyref="false"/>: 关闭。</li>
+                    <pd>Whether to enable super resolution for the remote user’s video:<ul>
+                        <li><ph keyref="true"/>: Enable virtual background.</li>
+                        <li><ph keyref="false"/>: Do not enable virtual background.</li>
                     </ul></pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-                <li>0: 方法调用成功</li>
-                <li>&lt; 0: 方法调用失败<ul>
-                    <li>-157(<ph>ERR_MODULE_NOT_FOUND</ph>): 未集成超分辨率动态库。</li>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.<ul>
+                    <li>-157 (<ph>ERR_MODULE_NOT_FOUND</ph>): The dynamic library for super resolution is not integrated.</li>
                 </ul></li>
             </ul>
         </section>

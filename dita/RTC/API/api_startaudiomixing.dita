@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiomixing">
     <title><ph keyref="startAudioMixing" /></title>
-    <shortdesc id="short"><ph id="shortdesc">开始播放音乐文件。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts playing and mixing the music file.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -36,23 +36,23 @@
         <section id="detailed_desc">
             <dl outputclass="deprecated" props="rtc">
                 <dlentry>
-                    <dt>弃用：</dt>
-                    <dd>自 v3.4.0 废弃，请改用 <xref keyref="startAudioMixing2" />。</dd>
+                    <dt>Deprecated:</dt>
+                    <dd>This method is deprecated as of v3.4.0. Please use <xref keyref="startAudioMixing2" /> instead.</dd>
                 </dlentry>
             </dl>
    
-            <p id="audiomixing_detailed">该方法支持将本地或在线音乐文件和麦克风采集的音频进行混音或替换。成功播放音乐文件后，本地会触发 <xref keyref="onAudioMixingStateChanged" /> (<codeph>PLAY</codeph>) 回调。播放结束后，本地会触发 <apiname keyref="onAudioMixingStateChanged" /> (<codeph>STOPPED</codeph>) 回调。</p>
+            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <xref keyref="onAudioMixingStateChanged" /> (<codeph>PLAY</codeph>) callback. When the audio mixing file playback finishes, the SDK triggers the <apiname keyref="onAudioMixingStateChanged" /> (<codeph>STOPPED</codeph>) callback on the local client.</p>
    <note type="attention" id="audiomixing_note">
        <ul>
-           <li>该方法需要在加入频道后调用。如需多次调用 <apiname keyref="startAudioMixing" />，请确保调用间隔大于 500 ms。</li>
-           <li>如果本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL，则 SDK 会报告 <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph> (701)。</li>
-           <li props="android">如需调用该方法，请确保使用 Android 4.2 或以上设备，且 API Level 不低于 16。</li>
-           <li props="android">如果播放的是在线音乐文件，Agora 建议不要使用重定向地址。重定向地址在某些机型上可能无法打开。</li>
-           <li props="android">如果在模拟器上调用该方法，则请确保音乐文件在 /sdcard/ 目录下，且格式为 MP3。</li>
+           <li>Call this method after joining a channel. If you need to call <apiname keyref="startAudioMixing" /> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
+           <li>If the local audio mixing file does not exist, or if the SDK does not support the file format or cannot access the music file URL, the SDK returns <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph> (701).</li>
+           <li props="android">To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>
+           <li props="android">If you need to play an online music file, Agora does not recommend using the redirected URL address. Some Android devices may fail to open a redirected URL address.</li>
+           <li props="android">If you call this method on an emulator, ensure that the music file is in the /sdcard/ directory and the format is MP3.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
            <pt>filePath</pt>
@@ -60,38 +60,35 @@
        </plentry>
        <plentry id="loopback">
   <pt>loopback</pt>
-           <pd><p>是否只在本地播放音乐文件：
-      <ul>
-          <li><codeph><ph keyref="true" /></codeph>: 只在本地播放音乐文件，只有本地用户能听到音乐。</li>
-          <li><codeph><ph keyref="false" /></codeph>: 将本地播放的音乐文件发布至远端，本地用户和远端用户都能听到音乐。</li>
+           <pd><p>Whether to only play music files on the local client:<ul>
+          <li><codeph><ph keyref="true" /></codeph>: Only play music files on the local client so that only the local user can hear the music.</li>
+          <li><codeph><ph keyref="false" /></codeph>: Publish music files to remote clients so that both the local user and remote users can hear the music.</li>
       </ul></p>
   </pd>
        </plentry>
        <plentry id="replace">
   <pt>replace</pt>
-           <pd><p>是否用音乐文件替换麦克风采集的音频：
-      <ul>
-          <li><codeph><ph keyref="true" /></codeph>: 替换。用户只能听到音乐。</li>
-          <li><codeph><ph keyref="false" /></codeph>: 不替换。用户可以听到音乐和麦克风采集的音频。</li>
+           <pd><p>Whether to replace the audio captured by the microphone with a music file:<ul>
+          <li><codeph><ph keyref="true" /></codeph>: Replace the audio captured by the microphone with a music file. Users can only hear the music.</li>
+          <li><codeph><ph keyref="false" /></codeph>: Do not replace the audio captured by the microphone with a music file. Users can hear both music and audio captured by the microphone.</li>
       </ul></p>
   </pd>
        </plentry>
        <plentry id="cycle">
   <pt>cycle</pt>
-           <pd><p>音乐文件的播放次数。
-      <ul>
-          <li>≥ 0: 播放次数。例如，0 表示不播放；1 表示播放 1 次。</li>
-          <li>-1: 无限循环播放。</li>
+           <pd><p>The number of times the music file plays.<ul>
+          <li>≥ 0: The number of playback times. For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.</li>
+          <li>-1: Play the music effect in an infinite loop.</li>
       </ul></p>
   </pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功</li>
-       <li>&lt; 0: 方法调用失败</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

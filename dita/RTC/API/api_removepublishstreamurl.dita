@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_removepublishstreamurl">
     <title><ph keyref="removePublishStreamUrl" /></title>
-    <shortdesc id="short"><ph id="shortdesc">删除旁路推流地址。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Removes an RTMP or RTMPS stream from the CDN.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -23,29 +23,29 @@
         </section>
         <section id="detailed_desc">
    
-   <p>调用该方法后，SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged" /> 回调，报告删除旁路推流地址的状态。</p>
+   <p>After a successful method call, the SDK triggers <xref keyref="onRtmpStreamingStateChanged" /> on the local client to report the result of deleting the address.</p>
    <note type="attention" id="note">
        <ul>
-           <li>调用该方法前，请确保已开通旁路推流的功能，详见<xref keyref="guide-cdn-streaming" format="html" scope="external">推流到 CDN</xref> 中的前提条件。</li>
-           <li>只有直播场景中角色为主播的用户才能调用该方法。</li>
-           <li>该方法需要在加入频道后调用。</li>
-           <li>该方法每次只能删除一路旁路推流地址。若需删除多路流，则需多次调用该方法。</li>
+           <li>Ensure that you enable the RTMP Converter service before using this function. See <xref keyref="guide-cdn-streaming" format="html" scope="external">Push Streams to CDN</xref> in Prerequisites.</li>
+           <li>This method takes effect only when you are a host in live interactive streaming.</li>
+           <li>Call this method after joining a channel.</li>
+           <li>This method removes only one CDN streaming URL each time it is called. To remove multiple URLs, call this method multiple times.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>url</pt>
-  <pd> 待删除的旁路推流地址，格式为 RTMP。该字符长度不能超过 1024 字节。推流地址不支持中文等特殊字符。</pd>
+  <pd>The CDN streaming URL to be removed. The maximum length of this parameter is 1024 bytes. The CDN streaming URL must not contain special characters, such as Chinese characters.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0：方法调用成功。</li>
-       <li>&lt; 0：方法调用失败。</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

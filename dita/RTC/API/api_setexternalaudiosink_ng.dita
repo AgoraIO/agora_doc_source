@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setexternalaudiosink">
     <title><ph keyref="setExternalAudioSink" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置外部音频渲染。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the external audio sink.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,35 +24,34 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>该方法适用于需要自行渲染音频的场景。在 <xref keyref="create2" /> 中设置 <codeph>enableAudioDevice</codeph> 为 <codeph>false</codeph> 后，你可以调用 <xref keyref="setExternalAudioSink" /> 设置外部音频渲染。成功设置后，你可以调用
-                <xref keyref="pullAudioFrame" /> 拉取远端音频数据。 app 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。</p>
+            <p>This method applies to scenarios where you want to use external audio data for playback. Before calling the <xref keyref="setExternalAudioSink" /> to set the external audio sink, you need to set <codeph>enableAudioDevice</codeph> as <codeph>false</codeph> in the <xref keyref="create2" /> method. After the setting is successful, you can call <xref keyref="pullAudioFrame" /> to pull the remote audio data. The app can process the remote audio and play it with the audio effects that you want.</p>
             <note id="note_vwq_vwf_3qb">
                 <ul id="ul_irx_vwf_3qb">
-                    <li>该方法需要在加入频道前调用。</li>
-                    <li>开启外部音频渲染后，app 会无法从 <xref keyref="onPlaybackAudioFrame" /> 回调中获得数据。</li>
+                    <li>Ensure that you call this method before joining a channel.</li>
+                    <li>Once you enable the external audio sink, the app will not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
                 </ul>
             </note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>sampleRate</pt>
                     <pd>
-                        <p>外部音频渲染的采样率 (Hz)，可设置为 16000，32000，44100 或 48000。</p>
+                        <p>The sample rate (Hz) of the external audio sink, which can be set as 16000, 32000, 44100, or 48000.</p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>channels</pt>
-                    <pd>外部音频渲染的声道数，可设置为 1 或 2:<ul><li>1: 单声道</li>
-                        <li>2: 双声道</li></ul></pd>
+                    <pd>The number of audio channels of the external audio sink:<ul><li>1: Mono.</li>
+                        <li>2: Stereo.</li></ul></pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values" props="native electron unity">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul id="ul_ahk_23f_3qb">
-                <li>0: 方法调用成功</li>
-                <li>&lt; 0: 方法调用失败</li>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
             </ul>
         </section>
     </refbody>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enabledualstreamMode2">
     <title><ph keyref="enableDualStreamMode2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">开关双流模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables/Disables dual-stream mode.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,44 +23,36 @@
       [SimulcastStreamConfig? streamConfig]);</codeblock>
             </p>
         </section>
-        <section id="detailed_desc"><p>你可以在发流端调用该方法开启或关闭双流模式。双流指视频大流和视频小流： <ul id="ul_nxc_tdz_hqb">
-                    <li>视频大流：高分辨率、高帧率的视频流。</li>
-                    <li>视频小流：低分辨率、低帧率的视频流。 </li>
-                </ul></p>开启双流模式后，你可以在收流端调用 <xref keyref="setRemoteVideoStreamType" />
-            选择接收视频大流或视频小流。 <note id="note_h53_zdz_hqb" type="note">
-                <p>该方法可以在加入频道前后调用。</p>
+        <section id="detailed_desc"><p>You can call this method to enable or disable the dual-stream mode on the publisher side. Dual streams are a hybrid of a high-quality video stream and a low-quality video stream:<ul id="ul_nxc_tdz_hqb">
+                    <li>High-quality video stream: High bitrate, high resolution.</li>
+                    <li>Low-quality video stream: Low bitrate, low resolution.</li>
+                </ul></p>After you enable the dual-stream mode, you can call <xref keyref="setRemoteVideoStreamType" /> to choose to receive the high-quality video stream or low-quality video stream on the subscriber side.<note id="note_h53_zdz_hqb" type="note">
+                <p>You can call this method either before or after joining a channel.</p>
             </note></section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry id="sourcetype">
                     <pt>sourceType</pt>
                     <pd>
-                        <p>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE" />。</p>
-                    </pd>
+                        <p>The capture type of the custom video source. For details, see <xref keyref="VIDEO_SOURCE_TYPE" />.</p>
+                    </pd>                     
                 </plentry>
                 <plentry id="enabled">
                     <pt>enabled</pt>
                     <pd>
-                        <p>是否开启双流模式。
-                        <ul>
- <li><codeph><ph keyref="true" /></codeph>: 开启双流模式。</li>
- <li><codeph><ph keyref="false" /></codeph>: 关闭双流模式。</li>
+                        <p>Enables dual-stream mode.<ul>
+ <li><codeph><ph keyref="true" /></codeph>: Enables dual-stream mode.</li>
+ <li><codeph><ph keyref="false" /></codeph>: Disables dual-stream mode.</li>
       </ul>
                         </p>
-                    </pd>
-                </plentry>
-                <plentry props="flutter">
-                    <pt>streamConfig</pt>
-                    <pd>
-                        <p>视频小流的配置。详见 <xref keyref="SimulcastStreamConfig" /></p>
                     </pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values" props="native electron unity">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul id="ul_bpp_x2z_hqb">
-                <li>0: 方法调用成功</li><li> 0: 方法调用失败 </li>
+                <li>0: Success.</li><li>&lt; 0: Failure.</li>
             </ul>
         </section>
     </refbody>

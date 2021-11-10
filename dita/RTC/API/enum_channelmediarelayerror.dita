@@ -2,62 +2,62 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_channelmediarelayerror">
     <title><ph keyref="CHANNEL_MEDIA_RELAY_ERROR"/></title>
-    <shortdesc id="short"><ph id="shortdesc">跨频道媒体流转发出错的错误码。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The error code of the channel media replay.</ph></shortdesc>
     <refbody>
         <section id="parameters">
-   <title>枚举值</title>
+   <title>Enumerator</title>
    <parml>
        <plentry>
   <pt><ph keyref="RELAY_OK"/></pt>
-  <pd>0: 一切正常。</pd>
+  <pd>0: No error.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RELAY_ERROR_SERVER_ERROR_RESPONSE"/></pt>
-  <pd>1: 服务器回应出错。</pd>
+  <pd>1: An error occurs in the server response.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RELAY_ERROR_SERVER_NO_RESPONSE"/></pt>
   <pd>
-      <p>2: 服务器无回应。</p>
-      <p>你可以调用 <xref keyref="leaveChannel"/> 方法离开频道。</p>
-      <p>该错误也可能是由于当前的 App ID 未开启连麦鉴权导致的。你可以提交工单申请开通连麦鉴权服务。</p>
+      <p>2: No server response.</p>
+      <p>You can call <xref keyref="leaveChannel"/> to leave the channel.</p>
+      <p>This error can also occur if your project has not enabled co-host token authentication. Contact <xref href="mailto:support@agora.io" format="html" scope="external">support@agora.io</xref> to enable the co-host token authentication service before starting a channel media relay.</p>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RELAY_ERROR_NO_RESOURCE_AVAILABLE"/></pt>
-  <pd>3: SDK 无法获取服务，可能是因为服务器资源有限导致。</pd>
+  <pd>3: The SDK fails to access the service, probably due to limited resources of the server.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RELAY_ERROR_FAILED_JOIN_SRC"/></pt>
-  <pd>4: 发起跨频道转发媒体流请求失败。</pd>
+  <pd>4: Fails to send the relay request.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RELAY_ERROR_FAILED_JOIN_DEST"/></pt>
-  <pd>5: 接受跨频道转发媒体流请求失败。</pd>
+  <pd>5: Fails to accept the relay request.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RELAY_ERROR_FAILED_PACKET_RECEIVED_FROM_SRC"/></pt>
-  <pd>6: 服务器接收跨频道转发媒体流失败。</pd>
+  <pd>6: The server fails to receive the media stream.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RELAY_ERROR_FAILED_PACKET_SENT_TO_DEST"/></pt>
-  <pd>7: 服务器发送跨频道转发媒体流失败。</pd>
+  <pd>7: The server fails to send the media stream.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RELAY_ERROR_SERVER_CONNECTION_LOST"/></pt>
-  <pd>8: SDK 因网络质量不佳与服务器断开。你可以调用 <xref keyref="leaveChannel"/> 方法离开当前频道。</pd>
+  <pd>8: The SDK disconnects from the server due to poor network connections. You can call the <xref keyref="leaveChannel"/> method to leave the channel.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RELAY_ERROR_INTERNAL_ERROR"/></pt>
-  <pd>9: 服务器内部出错。</pd>
+  <pd>9: An internal error occurs in the server.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RELAY_ERROR_SRC_TOKEN_EXPIRED"/></pt>
-  <pd>10: 源频道的 Token 已过期。</pd>
+  <pd>10: The token of the source channel has expired.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="RELAY_ERROR_DEST_TOKEN_EXPIRED"/></pt>
-  <pd>11: 目标频道的 Token 已过期。</pd>
+  <pd>11: The token of the destination channel has expired.</pd>
        </plentry>
    </parml>
         </section></refbody>

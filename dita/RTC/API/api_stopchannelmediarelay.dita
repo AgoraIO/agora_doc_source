@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_stopchannelmediarelay">
     <title><ph keyref="stopChannelMediaRelay" /></title>
-    <shortdesc id="short"><ph id="shortdesc">停止跨频道媒体流转发。一旦停止，主播会退出所有目标频道。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Stops the media stream relay. Once the relay stops, the host quits all the destination channels.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -24,21 +24,19 @@
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
                 <dlentry>
-                    <dt>自从</dt>
+                    <dt>Since</dt>
                     <dd>v2.9.0</dd>
                 </dlentry>
             </dl>
             
-   <p>成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged" /> 回调。如果报告 <apiname keyref="RELAY_STATE_IDLE" /> (0) 和 <apiname keyref="RELAY_OK" /> (0)，则表示已停止转发媒体流。</p>
-   <note type="attention">
-       如果该方法调用不成功，SDK 会触发 <apiname keyref="onChannelMediaRelayStateChanged" /> 回调，并报告状态码 <apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE" /> (2) 或 <apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST" /> (8)。你可以调用 <xref keyref="leaveChannel" /> 方法离开频道，跨频道媒体流转发会自动停止。
-   </note>
+   <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged" /> callback. If the callback reports <apiname keyref="RELAY_STATE_IDLE" /> (0) and <apiname keyref="RELAY_OK" /> (0), the host successfully stops the relay.</p>
+   <note type="attention">If the method call fails, the SDK triggers the <apiname keyref="onChannelMediaRelayStateChanged" /> callback with the <apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE" /> (2) or <apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST" /> (8) status code. You can call the <xref keyref="leaveChannel" /> method to leave the channel, and the media stream relay automatically stops.</note>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0：方法调用成功。</li>
-       <li>&lt; 0：方法调用失败。</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

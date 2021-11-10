@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setclientrole1">
     <title><ph keyref="setClientRole1" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置用户角色。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the client role.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -23,21 +23,20 @@
             </p>
     </section>
         <section id="detailed_desc">
-   <p id="desc">在加入频道前和加入频道后均可调用该方法设置用户角色。</p>
-   <p>如果你在加入频道后调用该方法切换用户角色，调用成功后：<ul><li>本地会触发 <xref keyref="onClientRoleChanged" /> 回调。</li><li>远端会触发 <xref keyref="onUserJoined" /> 或 <xref keyref="onUserOffline" />(USER_OFFLINE_BECOME_AUDIENCE) 回调。</li></ul></p>
-   <note type="attention" props="rtc">该方法仅在频道场景为直播（<xref keyref="setChannelProfile" /> 中
-                    <parmname>profile</parmname> 设为 <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" />）时生效。</note>
+   <p id="desc">You can call this method either before or after joining the channel to set the user role as audience or host.</p>
+   <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:<ul><li>The local client: <xref keyref="onClientRoleChanged" />.</li><li>The remote client: <xref keyref="onUserJoined" /> or <xref keyref="onUserOffline" /> (USER_OFFLINE_BECOME_AUDIENCE).</li></ul></p>
+   <note type="attention" props="rtc">This method only takes effect when the channel profile is live interactive streaming (<xref keyref="setChannelProfile" /> when the <parmname>profile</parmname> parameter in set as <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" />).</note>
         </section>
         <section id="parameters">
-   <title>参数</title>
+   <title>Parameter</title>
    <parml>
        <plentry>
   <pt>role</pt>
   <pd id="clientrole">
-      <p props="ios mac windows electron unity flutter">用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE" />。</p>
-      <p props="android">用户的角色： <ul id="clientroletype">
-                                <li><ph keyref="CLIENT_ROLE_BROADCASTER" /> (1)：主播。</li>
-                                <li><ph keyref="CLIENT_ROLE_AUDIENCE" /> (2)：观众。</li>
+      <p props="ios mac windows electron unity">The user role. For details, see <xref keyref="CLIENT_ROLE_TYPE" />.</p>
+      <p props="android">The user role:<ul id="clientroletype">
+                                <li><ph keyref="CLIENT_ROLE_BROADCASTER" /> (1): Broadcaster.</li>
+                                <li><ph keyref="CLIENT_ROLE_AUDIENCE" /> (2): Audience.</li>
                             </ul>
                         </p>
                     </pd>
@@ -45,14 +44,13 @@
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0(ERR_OK): 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。
-  <ul>
-      <li>-1(ERR_FAILED): 一般性的错误（未明确归类）。</li>
- <li>-2(ERR_INALID_ARGUMENT): 参数无效。</li>
- <li>-7(ERR_NOT_INITIALIZED): SDK 尚未初始化。</li>
+       <li>0(ERR_OK): Success.</li>
+       <li>&lt; 0: Failure.<ul>
+      <li>-1(ERR_FAILED): A general error occurs (no specified reason).</li>
+ <li>-2(ERR_INALID_ARGUMENT): The parameter is invalid.</li>
+ <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
   </ul>
        </li>
    </ul>

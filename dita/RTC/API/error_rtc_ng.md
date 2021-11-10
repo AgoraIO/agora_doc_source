@@ -1,190 +1,190 @@
-# 错误码和警告码
+# Error Codes and Warning Codes
 
-在调用 Agora API 过程中，SDK 可能会返回错误码和警告码。其中**错误码**意味着 SDK 遭遇了不可恢复的错误，需要 app 干预；**警告码**意味着 SDK 遇到问题，但有可能恢复。警告码仅起告知作用，一般情况下 app 可以忽略警告码。
+When you make an API call to access an Agora SDK, the SDK may return error codes or warning codes: **Error codes** are returned when a problem that cannot be recovered without app intervention has occurred. **Warning codes** are returned when a problem that might be resolved automatically has occurred. Warning codes provide information but normally do not require any action.
 
-无论是何种情况，你都可以参考本文，了解这些错误码和警告码的详细含义，及其解决方法。对于未给出解决方法的错误码，Agora 推荐你[提交工单](https://agora-ticket.agora.io/)，我们的技术服务会根据你在实际场景中遇到的问题进行排查。
+This article provides descriptions and troubleshooting tips for common Agora SDK error and warning codes. If you receive a response that is not included here, Agora recommends you [submit a ticket](https://agora-ticket.agora.io/) so that our technical support team can help resolve the issue.
 
-<div class="alert note">SDK 在返回错误码时，可能会返回一个负数。这个负数就对应着错误码或警告码里的正整数。例如返回 <code>-2</code>，则对应错误码或警告码里的 <code>2</code>。</div>
+<div class="alert note">An error code can be a negative number. In such a case, it should be read as if it were positive. For example, if the SDK returns error code <code>-2</code>, you should refer to <code>2</code> in the error code table.</div>
 
-Agora SDK 在运行过程中，可能通过如下方式返回错误码或警告码：
+The error and warning codes may be returned in the following ways:
 
-- 在方法调用失败的返回值中，返回一个负数，这个负数就对应着错误码与警告码里的正数。
+- The return value of a method call, represented by a negative number. In such a case, it should be read as if it were positive.
 
 
-## 基础错误码
+## General errors
 
 <style> table th:first-of-type {     width: 60px; } </style>
 
-| 枚举值 | 说明   |
+| Enumerator | Description |
 | :----- | :----------------------------------------------------------- |
-| `0`      | 没有错误。       |
-| `1`      | 一般性的错误（没有明确归类的错误原因）。请重新调用方法。   |
-| `2`      | 方法中设置了无效的参数。例如指定的频道名中含有非法字符。请重新设置参数。 |
-| `3`      | SDK 尚未准备好。可能的原因有：<ul><li>[IRtcEngine] 初始化失败。请重新初始化 [IRtcEngine]。</li><li>调用方法时用户尚未加入频道。请检查方法的调用逻辑。</li><li>调用 [rate] 或 [complain] 方法时用户尚未离开频道。请检查方法的调用逻辑。</li><li>请检查是否已开启音频模块。 </li><li>请检查程序集完整性。 </li></ul>|
-| `4`      | [IRtcEngine] 当前状态不支持该操作。可能的原因有：<ul><li>Android 平台调用 [setBeautyEffectOptions] 方法时，如果设备版本低于 Android 4.4，会报这个错。请确认 Android 设备版本。</li><li>使用内置加密时，设置的加密模式不正确，或加载外部加密库失败。请检查加密的枚举值是否正确，或重新加载外部加密库。</li></ul> |
-| `5`      | 方法调用被拒绝。可能的原因有：[IRtcEngine] 初始化失败。请重新初始化 [IRtcEngine]。|
-| `6`      | 缓冲区大小不足以存放返回的数据。  |
-| `7`      | 尚未初始化 [IRtcEngine] 就调用方法。请确认在调用该方法前已创建 [IRtcEngine] 对象，并完成初始化。 |
-| `9`      | 没有操作权限。请检查用户是否授予了 app 音视频设备的使用权限。 |
-| `10`     | 方法调用超时。有些方法调用需要 SDK 返回结果，如果 SDK 处理事件过长，超过 10 秒没有返回，会出现此错误。 |
-| `17`     | 加入频道被拒绝。一般有以下原因：<ul><li>用户已经在频道中，再次调用加入频道的方法，如 [joinChannel2] 时，会返回此错误。停止调用该方法即可。</li><li>用户在调用 [startEchoTest2] 进行通话测试时，未结束当前测试就尝试加入频道。开始通话测试后，需要先调用 [stopEchoTest] 结束当前测试，再加入频道。</li></ul> |
-| `18`     | 离开频道失败。一般有以下原因：<ul><li>用户已离开频道，再次调用退出频道的方法，如 [leaveChannel] 时，会返回此错误。停止调用该方法即可。</li><li>用户尚未加入频道，就调用退出频道的方法。这种情况下无需额外操作。</li></ul> |
-| `19`     | 资源已被占用，不能重复使用。        |
-| `20`     | SDK 放弃请求，可能由于请求的次数太多。       |
-| `21`     | Windows 下特定的防火墙设置导致 [IRtcEngine] 初始化失败然后崩溃。  |
-| `22`     | 当 app 占用资源过多或系统资源耗尽时，SDK 分配资源失败，会返回该错误。 |
-| `101`    | 不是有效的 App ID。请更换有效的 App ID 重新加入频道。        |
-| `102`    | 不是有效的频道名。可能的原因是设置的参数数据类型不正确。请更换有效的频道名重新加入频道。  |
-| `103`    | 无法获取当前区域的服务器资源。请在初始化 [IRtcEngine] 时尝试指定其他区域。 |
-| `109`    | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_TOKEN_EXPIRED]\(9)。</br>当前使用的 Token 过期，不再有效。请在服务端申请生成新的 Token，并调用 [renewToken] 更新 Token。 |
-| `110`   | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_INVALID_TOKEN]\(8)。</br>Token 无效。一般有以下原因：<ul><li>在 Agora 控制台中启用了 App 证书，但仍旧在代码里使用了 App ID。当项目启用了 App 证书，就必须使用 Token 鉴权。</li><li>生成 Token 时填入的用户 ID 和用户加入频道时填入的用户 ID 不匹配。</li></ul> |
-| `111`    | 网络连接中断。SDK 在和服务器建立连接后，失去了网络连接超过 4 秒，会报告该错误。     |
-| `112`    | 网络连接丢失。 网络连接中断，且 SDK 无法在 10 秒内连接服务器，会报告fail错误。    |
-| `113`    | 调用方法时用户不在频道内。        |
-| `114`    | 在调用 [sendStreamMessage] 时，当发送的数据长度大于 1024 个字节时，会返回该错误。 |
-| `115`    | 在调用 [sendStreamMessage] 时，当发送数据的频率超过限制（6 KB/s）时，会返回该错误。 |
-| `116`    | 在调用 [createDataStream2] 时，如果创建的数据通道过多（超过 5 个）时，会返回该错误。 |
-| `117`    | 数据流发送超时。|
-| `119`    | 用户切换角色失败。       |
-| `120`    | 解密失败。可能是用户加入频道时使用了错误的密码。请检查用户加入频道时填入的密码，或引导用户尝试重新加入频道。 |
-| `123`    | 此用户被服务器禁止。当用户被服务端踢出时会报这个错。       |
-| `134`    | 无效的用户 user account，可能是因为设置了无效的参数。   |
+| `0` | No error occurs. |
+| `1` | A general error occurs (no specified reason). Try calling the method again. |
+| `2` | An invalid parameter is used. For example, the specified channel name includes illegal characters. Please reset the parameters. |
+| `3` | The SDK is not ready. Possible reasons:<ul><li>[IRtcEngine] fails to initialize. Please re-initialize [IRtcEngine].</li><li>No user has joined the channel when the method is called. Please check your code logic.</li><li>Users have not left the channel when the [rate] and [complain] methods are called. Please check your code logic.</li><li>The audio module is disabled.</li><li>The program is not complete.</li></ul> |
+| `4` | [IRtcEngine] does not support the request. Possible reasons:<ul><li>The [setBeautyEffectOptions] method is called on devices running versions earlier than Android 4.4. Please check the Android version.</li><li>The built-in encryption mode is incorrect or the SDK fails to load the external encryption library. Please check the encryption mode setting or reload the external encryption library.</li></ul> |
+| `5` | The request is rejected. A possible reason: [IRtcEngine] fails to initialize. Please re-initialize [IRtcEngine]. |
+| `6` | The buffer size is insufficient to store the returned data. |
+| `7` | ]IRtcEngine[ is not initialized. Ensure that the [IRtcEngine] instance is created and initialized before calling the method. |
+| `9` | Permission to access is not granted. Check whether your app has access to the audio and video device. |
+| `10` | A timeout occurs. Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 10 seconds) to return the result. |
+| `17` | The request to join the channel is rejected. Typical reasons include:<ul><li>The user is already in the channel and still calls a method (for example, [joinChannel2]) to join the channel. Stop calling this method to clear this error.</li><li>The user tries to join a channel during a call test started by calling [startEchoTest2]. To join a channel, the call test must be ended by calling [stopEchoTest].</li></ul> |
+| `18` | The request to leave the channel is rejected. Typical reasons include:<ul><li>The user has left the channel but still calls a method (for example, [leaveChannel]) to leave the channel. Stop calling this method to clear this error.</li><li>The user is not in the channel and calls a method to leave the channel. In this case, no extra operation is needed.</li></ul> |
+| `19` | Resources are already in use. |
+| `20` | The request is abandoned by the SDK, possibly because the request has been sent too frequently. |
+| `21` | ]IRtcEngine[ fails to initialize and has crashed because of specific Windows firewall settings. |
+| `22` | The SDK fails to allocate resources because your app uses too many system resources or system resources are insufficient. |
+| `101` | The specified App ID is invalid. Please rejoin the channel with a valid App ID. |
+| `102` | The channel name is not valid. A possible reason is that the parameter's data type is incorrect. Please rejoin the channel with a valid channel name. |
+| `103` | Fails to get server resources in the specified region. Try another region when initializing [IRtcEngine]. |
+| `109` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_TOKEN_EXPIRED](9) in the [onConnectionStateChanged] callback instead. </br>The current token has expired. Please apply for a new token on the server and call [renewToken]. |
+| `110` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_INVALID_TOKEN](8) in the [onConnectionStateChanged] callback instead. </br>The token is invalid. Typical reasons include:<ul><li>App Certificate is enabled in Agora Console, but the code still uses App ID for authentication. Once App Certificate is enabled for a project, you must use token-based authentication.</li><li>The user ID used to generate the token is not the same as the one used to join the channel.</li></ul> |
+| `111` | The network connection is interrupted. This error occurs when the SDK has connected to the server but lost connection for more than 4 seconds. |
+| `112` | The network connection is lost.  This error occurs when the connection is interrupted and the SDK cannot reconnect to the server within 10 seconds. |
+| `113` | The user is not in the channel when calling the method. |
+| `114` | The data size exceeds 1024 bytes when calling the [sendStreamMessage] method. |
+| `115` | The data bitrate exceeds 6 Kbps when calling the [sendStreamMessage] method. |
+| `116` | More than five data streams are created when calling the [createDataStream2] method. |
+| `117` | The data stream transmission times out. |
+| `119` | Switching roles fails. |
+| `120` | Decryption fails. The user might have entered an incorrect password to join the channel. Check the entered password or tell the user to try rejoining the channel. |
+| `123` | The user is banned from the server. This error occurs when the user is kicked out of the channel from the server. |
+| `134` | The user account is invalid, possibly because it contains invalid parameters. |
 
 
-## 水印相关错误码
+## Watermark errors
 
-| 枚举值 | 说明   |
+| Enumerator | Description |
 | :----- | :----------------------------------------------------------- |
-| `124`    | 水印文件参数错误。       |
-| `125`    | 水印文件路径错误。       |
-| `126`    | 水印图片文件格式错误。SDK 只支持添加 PNG 格式的水印图片。       |
-| `127`    | 水印文件信息错误。       |
-| `128`    | 水印文件数据格式错误。   |
-| `129`    | 水印文件读取错误。       |
+| `124` | Incorrect watermark file parameter. |
+| `125` | Incorrect watermark file path. |
+| `126` | Incorrect watermark file format. The SDK only supports adding PNG files as the watermark image. |
+| `127` | Incorrect watermark file information. |
+| `128` | Incorrect watermark file data format. |
+| `129` | An error occurs when reading the watermark file. |
 
 
-## 推流相关错误码
+## Streaming errors
 
-| 枚举值 | 说明   |
+| Enumerator | Description |
 | :----- | :----------------------------------------------------------- |
-| `130`    | 如果开启了媒体流加密，则在调用 [addPublishStreamUrl] 时，会返回该错误。SDK 不支持将加密过的流推到 CDN 上。 |
-| `151`    | 推流到 CDN 报错。请调用 [removePublishStreamUrl] 删除当前的推流地址，然后调用 [addPublishStreamUrl] 重新尝试推流。 |
-| `152`    | 单个主播的推流地址数目达到上限 10。请删掉一些不用的推流地址，再增加新的推流地址。 |
-| `153`    | 主播操作不属于自己的流，如更新其他主播的流的参数，或停止其他主播的流。请检查 app 逻辑。 |
-| `154`    | 推流服务器出现错误。请调用 [addPublishStreamUrl] 重新推流。    |
-| `155`    | 服务器无法找到数据流。   |
-| `156`    | 推流地址格式有错误。请检查推流地址格式是否正确。    |
+| `130` | Stream encryption is enabled when the user calls the [addPublishStreamUrl] method. The SDK does not support pushing encrypted streams to CDN. |
+| `151` | An error occurs when pushing streams to CDN. Please remove the current URL address by calling the ]removePublishStreamUrl[ method, and then add a new address by calling the [addPublishStreamUrl] method. |
+| `152` | The host has published more than 10 URLs. Please delete the unnecessary URLs before adding new ones. |
+| `153` | The host is making changes to other hosts' URLs, such as updating parameters and disabling a URL. Please check your app logic. |
+| `154` | An error occurs in Agora's streaming server. Call the [addPublishStreamUrl] method to push the stream again. |
+| `155` | The server fails to find the stream. |
+| `156` | The URL format is incorrect. Check whether the URL format is correct. |
 
-## 音频相关错误码
+## Audio errors
 
-| 枚举值 | 说明   |
+| Enumerator | Description |
 | :----- | :----------------------------------------------------------- |
-| `1005`   | 音频设备出现错误（未指明何种错误）。请检查音频设备是否被其他应用占用，或者尝试重新进入频道。 |
-| `1006`   | 使用 Java 资源出错。请确认设备内存是否够用，或重启设备。     |
-| `1007`   | 设置的采样频率出现错误。     |
-| `1008`   | 初始化播放设备出错。请检查播放设备是否被其他应用占用，或者尝试重新进入频道。 |
-| `1009`   | 启动播放设备出错。请检查播放设备是否正常，或者尝试重新进入频道。 |
-| `1010`   | 停止播放设备出错。       |
-| `1011`   | 初始化录音设备出错。请检查录音设备是否正常，或者尝试重新进入频道。 |
-| `1012`   | 启动录音设备出错。请检查录音设备是否正常，或者尝试重新进入频道。 |
-| `1013`   | 停止录音设备出错。 |
-| `1015`   | 播放出错。请检查播放设备是否正常，或者尝试重新进入频道。|
-| `1017`   | 录音错误。请检查音频采集设备是否正常，或者尝试重新进入频道。|
-| `1018`   | 录音失败。|
-| `1022`   | 初始化 Loopback 设备错误。|
-| `1023`   | 启动 Loopback 设备错误。|
-| `1027`   | 没有录音权限。请检查是否已经打开录音权限，或者录音设备是否被第三方应用占用。|
-| `1033`   | 录音设备被占用。|
-| `1101`   | 使用 Java 资源出现错误。请确认设备内存是否够用，或重启设备。 |
-| `1108`   | 采集频率低于 50，常见为 0，即录音未启动，建议检查录音权限。|
-| `1109`   | 播放频率低于 50，常见为 0，即播放未启动，建议检查是否 AudioTrack 实例过多。|
-| `1111`   | 录音启动失败，系统 ROM 报错，建议重启 app 或重启手机、检查录音权限。|
-| `1112`   | 播放启动失败，系统 ROM 报错，建议重启 app 或重启手机、检查播放权限。|
-| `1115`   | 录音失败。请确认设备权限或网络连接状况。|
-| `1201`   | 当前设备不支持音频输入，可能的原因是 Audio Session 的 category 配置不对或音频输入设备被占用。建议终止后台所有应用的进程，重新加入频道。|
-| `1206`   | Audio Session 启动失败。请检查你的音频采集设置。|
-| `1210`   | 初始化音频设备出错。一般出错是因为音频设备的设置参数错误。|
-| `1213`   | 重新初始化音频设备出错。一般出错是因为音频设备的设置参数错误。|
-| `1214`   | 重新启动音频设备出错。一般出错是因为 Audio Session 的 category 设置与音频设备的设置不兼容。|
-| `1301`   | 音频设备模块初始化失败。请禁用并重新启用音频设备，或者重启机器。|
-| `1303`   | 音频设备模块终止失败。请禁用并重新启用音频设备，或者重启机器。|
-| `1306`   | 播放设备初始化失败。请禁用并重新启用音频设备，或者重启机器。|
-| `1307`   | 无音频播放设备，导致初始化失败。请插入音频设备。|
-| `1309`   | 启动录音失败。请禁用并重新启用音频设备，或者重启机器。|
-| `1311`   | 创建录音线程失败，可能的原因是内存或设备性能不足。请重启机器或者更换机器。|
-| `1314`   | 启动录音失败。请禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。|
-| `1319`   | 创建播放线程失败，可能的原因是内存或设备性能不足。请重启机器或者更换机器。|
-| `1320`   | 启动播放失败。请禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。|
-| `1322`   | 无可用音频采集设备。请连接可用的录音设备。|
-| `1323`   | 无可用音频播放设备。请连接可用的播放设备。|
-| `1351`   | 音频设备模块初始化失败。请禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。|
-| `1353`   | 初始化录音设备失败。请禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。|
-| `1354`   | 初始化麦克风失败。请禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。|
-| `1355`   | 初始化播放设备失败。请禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。|
-| `1356`   | 初始化扬声器失败。请禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。|
-| `1357`   | 启动录音失败。请禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。|
-| `1358`   | 启动播放失败。请禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。|
-| `1359`   | 无录音设备。请检查是否有可用的录音设备或者录音设备是否已经被其他应用占用。|
-| `1360`   | 无播放设备。请检查是否有可用的播放设备或者播放设备是否已经被其他应用占用。|
+| `1005` | A general error occurs (no specified reason). Check whether the audio device is already in use by another app, or try rejoining the channel. |
+| `1006` | An error occurs when using Java resources. Check whether the audio device storage is sufficient, or restart the audio device. |
+| `1007` | The sampling frequency setting is incorrect. |
+| `1008` | An error occurs when initializing the playback device. Check whether the playback device is already in use by another app, or try rejoining the channel. |
+| `1009` | An error occurs when starting the playback device. Check the playback device, or try rejoining the channel. |
+| `1010` | An error occurs when stopping the playback device. |
+| `1011` | An error occurs when initializing the recording device. Check the recording device, or try rejoining the channel. |
+| `1012` | An error occurs when starting the recording device. Check the recording device, or try rejoining the channel. |
+| `1013` | An error occurs when stopping the recording device. |
+| `1015` | A playback error occurs. Check the playback device, or try rejoining the channel. |
+| `1017` | A recording error occurs. Check the recording device, or try rejoining the channel. |
+| `1018` | Recording fails. |
+| `1022` | An error occurs when initializing the loopback device. |
+| `1023` | An error occurs when starting the loopback device. |
+| `1027` | Permission to record is not granted. Check whether permission to record is granted or whether the recording device is already in use by another app. |
+| `1033` | The recording device is already in use. |
+| `1101` | An error occurs when using Java resources. Check whether the audio device storage is sufficient, or restart the audio device. |
+| `1108` | The audio recording frequency is lower than 50 Hz. In this case, the frequency is often 0, which indicates that the recording has not started. Agora recommends that you check whether permission to record is granted. |
+| `1109` | The audio playback frequency is lower than 50 Hz. In this case, the frequency is often 0, which indicates that the playback has not started. Agora recommends that you check whether too many AudioTrack instances have been created. |
+| `1111` | Recording fails to start, and a ROM system error occurs. Possible solutions: Restart your app. Restart the device on which your app is running. Check whether permission to record is granted. |
+| `1112` | Playback fails to start and a ROM system error occurs. Possible solutions: Restart the app. Restart the device on which your app is running. Check whether permission to record is granted. |
+| `1115` | Recording fails. Check whether there is permission to record or whether there is a problem with the network connection. |
+| `1201` | The current device does not support audio input, possibly because the configuration of the Audio Session category is incorrect, or because the device is already in use. Agora recommends terminating all background apps and rejoining the channel. |
+| `1206` | Audio Session fails to launch. Check your recording settings. |
+| `1210` | An error occurs when initializing the playback device. An error occurs when initializing the audio device, usually because some audio device parameters are incorrect. |
+| `1213` | An error occurs when re-initializing the playback device. An error occurs when initializing the audio device, usually because some audio device parameters are incorrect. |
+| `1214` | An error occurs when restarting the playback device. An error occurs when restarting the audio device, usually because the Audio Session category setting is not compatible with the audio device settings. |
+| `1301` | The audio device module fails to initialize. Disable and re-enable the audio device, or restart the device on which your app is running. |
+| `1303` | The audio device module fails to terminate. Disable and re-enable the audio device, or restart the device on which your app is running. |
+| `1306` | The playback device fails to initialize. Disable and re-enable the audio device, or restart the device on which your app is running. |
+| `1307` | Initialization fails because no audio playback device is available. Ensure that a proper audio device is connected. |
+| `1309` | Recording fails to start. Disable and re-enable the audio device, or restart the device on which your app is running. |
+| `1311` | The system fails to create a recording thread, possibly because the device storage or performance is insufficient. Restart the device or use a different one. |
+| `1314` | Recording fails to start. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
+| `1319` | The system fails to create a playback thread, possibly because the device storage or performance is insufficient. Restart the device or use a different one. |
+| `1320` | Audio playback fails to start. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
+| `1322` | No recording device is available. Ensure that a proper audio device is connected. |
+| `1323` | No playback device is available. Ensure that a proper audio device is connected. |
+| `1351` | The audio device module fails to initialize. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
+| `1353` | The recording device fails to initialize. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
+| `1354` | The microphone fails to initialize. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
+| `1355` | The playback device fails to initialize. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
+| `1356` | The speaker fails to initialize. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
+| `1357` | Recording fails to start. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
+| `1358` | Audio playback fails to start. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
+| `1359` | No recording device is available. Check whether the recording device is connected or whether it is already in use by another app. |
+| `1360` | No playback device is available. Check whether the playback device is connected or whether it is already in use by another app. |
 
-## 视频相关错误码
+## Video errors
 
-| 枚举值 | 说明   |
+| Enumerator | Description |
 | :----- | :----------------------------------------------------------- |
-| `1003`   | **弃用**：从 v2.4.1 起废弃。请改用 [onLocalVideoStateChanged] 回调中的 [LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE]\(4)。</br>启动摄像头失败。请检查摄像头是否被其他应用占用，或者尝试重新加入频道。 |
-| `1004`   | 启用视频渲染模块失败。   |
-| `1510`   | 没有摄像头使用权限。请检查是否已经打开摄像头权限。|
-| `1512`   | **弃用**：v2.4.1 起废弃。请改用 [onLocalVideoStateChanged] 回调中的 [LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY]\(3)。</br>摄像头正在使用中。|
-| `1600`  | 未知错误。|
-| `1601`  | 视频编码初始化失败。请尝试重新加入频道。|
-| `1602`  | 视频编码失败。请尝试重新加入频道。|
-| `1603`  | 视频编码参数设置失败。|
+| `1003` | **Note**: This method is deprecated as of v2.4.1. Please use [LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE](4) in the [onLocalVideoStateChanged] callback instead. </br>The camera fails to start. Check whether the camera is already in use by another app, or try rejoining the channel. |
+| `1004` | The video rendering module fails to start. |
+| `1510` | Permission to access the camera is not granted. Check whether permission to access the camera permission is granted. |
+| `1512` | **Note**: This method is deprecated as of v2.4.1. Please use [LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY](3) in the [onLocalVideoStateChanged] callback instead. </br>The camera is already in use. |
+| `1600` | An unknown error occurs. |
+| `1601` | Video encoding initialization fails. Try rejoining the channel. |
+| `1602` | Video encoding fails. Try rejoining the channel. |
+| `1603` | Video encoding settings fail to be applied. |
 
 
-## 其他错误码
+## Other errors
 
-| 枚举值 | 说明   |
+| Enumerator | Description |
 | :----- | :----------------------------------------------------------- |
-| `1001`   | 加载媒体引擎失败。       |
-| `1002`   | 启动媒体引擎后开始通话失败。请尝试重新进入频道。      |
+| `1001` | The SDK fails to load the media engine. |
+| `1002` | The SDK fails to start an audio/video call after launching the media engine. Try rejoining the channel. |
 
 
-## 警告码
+## Warning code
 
-| 枚举值 | 说明   |
+| Enumerator | Description |
 | :----- | :----------------------------------------------------------- |
-| `8`     | 指定的 View 无效，使用视频功能时需要指定 View，如果 View 尚未指定，则返回该警告。|
-| `16`  | 初始化视频功能失败。有可能是视频资源被占用导致的。用户无法看到视频画面，但不影响语音通信。|
-| `20`  | 请求处于待定状态。一般是由于某个模块还没准备好，请求被延迟处理。|
-| `103`  | 没有可用的频道资源。可能是因为服务器没法分配频道资源。|
-| `104`  | 查找频道超时。在加入频道时 SDK 先要查找指定的频道，出现该警告一般是因为网络太差，无法连接服务器。|
-| `105`  | **弃用**：从 v2.4.1 起废弃。请改用 [onConnectionStateChanged] 回调中的 [CONNECTION_CHANGED_REJECTED_BY_SERVER]\(10)。</br>查找频道请求被服务器拒绝。服务器可能没有办法处理这个请求或请求是非法的。|
-| `106`  | 加入频道超时。查找到指定频道后，SDK 接着加入该频道，超时一般是因为网络太差，连接不到服务器。|
-| `107`  | 加入频道请求被服务器拒绝。服务器可能没有办法处理该请求或该请求是非法的。|
-| `111`  | 切换直播视频超时。 |
-| `118`  | 直播场景下设置用户角色超时。|
-| `121`  | TICKET 非法，加入频道失败。|
-| `122`  | 尝试连接另一个服务器。 |
-| `131` | 频道连接不可恢复。|
-| `132` | IP 已改变。|
-| `133` | 端口已改变。|
-| `701` | 打开伴奏文件出错。|
-| `1014` | 运行时播放设备出现警告。|
-| `1016` | 运行时录音设备出现警告。|
-| `1019` | 采集无声音。请确认麦克风是否被占用，录音权限是否给予，采集设备是否正常工作，或者重启设备。|
-| `1020` | 播放频率异常。该异常原因为系统 CPU 占用率高，建议关闭其他可能占用 CPU 的应用。还可以检查 app 是否关闭了音频模块，或尝试重新加入频道。|
-| `1021` | 采集频率异常，该异常原因为系统 CPU 占用率高，建议关闭其他可能占用 CPU 的应用。还可以检查 app 是否关闭了音频模块，或尝试重新加入频道。|
-| `1025` | 播放或录制音频时被系统事件（如来电）干扰。|
-| `1029` | 在通话过程中，Audio Session 的 category 必须设置成 `AVAudioSessionCategoryPlayAndRecord`，[IRtcEngine] 会监控这个属性值。当这个值被修改成其他值的时候会触发这个告警，并强制设置回 `AVAudioSessionCategoryPlayAndRecord`。|
-| `1031` | 采集的音量过小。请确认麦克风是否静音，或者麦克风增强是否打开。|
-| `1032` | 播放的音量过小。请确认对端用户麦克风是否静音，或者其麦克风增强是否打开。|
-| `1033` | 采集设备被占用。请确认音频采集设备的使用权限，或采集设备是否被第三方应用占用。|
-| `1040` | 无音频。禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。|
-| `1051` | 录制音频时监测到啸叫。请检查两个客户端的距离是否足够远。|
-| `1052` | 系统采集和播放音频线程无法完成调度，通常是由于系统 CPU 占用率高。 |
-| `1053` | 检测到残余回声，该回声可能由系统线程调度不及时或信号溢出导致。|
-| `1323` | 无可用音频播放设备。请插入音频设备。|
-| `1324` | 音频采集释放有误。请禁用并重新启用音频设备，或者重启机器，或者更新声卡驱动。|
-| `1610` | 远端用户的原始视频流的分辨率超出了可以应用超分辨率算法的要求。|
-| `1611` | 已指定一个远端用户使用超分辨率算法。|
-| `1612` | 当前设备不支持超分算法。|
+| `8` | The specified view is invalid. The video call function requires a specified view. |
+| `16` | The video module fails to initialize. A possible reason is that the video source is occupied. When this warning occurs, users cannot make a video call, but the voice call function is not affected. |
+| `20` | The request is pending, usually because some modules are not ready, causing the SDK to postpone processing the request. |
+| `103` | 103: No channel resources are available. Maybe because the server cannot allocate any channel resource. |
+| `104` | A timeout occurs when the SDK is searching for a specified channel. When receiving a request to join a channel, the SDK searches for the channel first. This warning usually occurs when the network connection is too poor for the SDK to connect to the server. |
+| `105` | **Note**: This method is deprecated as of v2.4.1. Please use [CONNECTION_CHANGED_REJECTED_BY_SERVER](10) in the [onConnectionStateChanged] callback instead. </br>105: The server rejected the request to look up the channel. The server cannot process this request or the request is illegal. |
+| `106` | A timeout occurs when joining the channel. Once the specified channel is found, the SDK starts joining the channel. This warning usually occurs when the network connection is too poor for the SDK to connect to the server. |
+| `107` | 105: The server rejected the request to look up the channel. The server cannot process this request or the request is illegal. |
+| `111` | A timeout occurs when switching to the live video. |
+| `118` | A timeout occurs when setting user roles in the live-streaming profile. |
+| `121` | The ticket to join the channel is invalid. |
+| `122` | The SDK is trying to connect to another server. |
+| `131` | The channel connection cannot be recovered. |
+| `132` | The IP address has changed. |
+| `133` | The port has changed. |
+| `701` | An error occurs when opening the audio-mixing file. |
+| `1014` | A playback device warning occurs. |
+| `1016` | A recording device warning occurs. |
+| `1019` | No data is recorded. Possible solutions: Check whether the microphone is already in use. Check whether permission to record is granted. Check whether the recording device works properly. Restart the device. |
+| `1020` | The playback frequency is abnormal. The audio playback frequency is abnormal due to high CPU usage. Recommended solutions: Close other apps that are consuming CPU resources. You can also check whether the audio module is enabled in your app or try rejoining the channel. |
+| `1021` | The audio recording frequency is abnormal due to high CPU usage. You can close other apps that are consuming CPU resources. You can also check whether the audio module is enabled in your app or try rejoining the channel. |
+| `1025` | The audio playback or recording is interrupted by system events (such as a phone call). |
+| `1029` | The Audio Session category must be set as AVAudioSessionCategoryPlayAndRecord. During a call, [IRtcEngine] monitors the `Audio Session category`. If the category is modified, this warning occurs, and the SDK automatically sets it back to `AVAudioSessionCategoryPlayAndRecord`. |
+| `1031` | The recording volume is too low. Check whether the user's microphone is muted or whether the user has enabled microphone augmentation. |
+| `1032` | The playback volume is too low. Check whether the user's microphone is muted or whether the user has enabled microphone augmentation. |
+| `1033` | The recording device is already in use. Check whether permission to record is granted or whether another app is using the device. |
+| `1040` | No audio data is available. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
+| `1051` | Audio feedback is detected during recording. Ensure that users in the same channel maintain sufficient physical distance between themselves. |
+| `1052` | The system threads for recording and playback cannot be arranged due to high CPU usage. |
+| `1053` | A residual echo is detected. This may be caused by the delayed scheduling of system threads or a signal overflow. |
+| `1323` | No playback device is available. Ensure that a proper audio device is connected. |
+| `1324` | The recording device is released improperly. Possible solutions: Disable and re-enable the audio device. Restart the device on which your app is running. Update the sound card driver. |
+| `1610` | The original resolution of the remote video is beyond the range (640 × 480) where the super-resolution algorithm can be applied. |
+| `1611` | Another user is using super resolution. |
+| `1612` | The device does not support super resolution. |

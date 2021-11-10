@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_pushaudioframe2">
-    <title><ph keyref="pushAudioFrame2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">推送外部原始音频帧到指定位置。</ph></shortdesc>
+    <title><ph keyref="pushAudioFrame2" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Pushes the external audio frame.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -17,23 +17,27 @@
                                            int bytesPerSample, int sourcePos);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameRawData:(AgoraAudioExternalSourcePos)sourcePos frame:(AgoraAudioFrame* _Nonnull)frame;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(int32_t sourcePos, IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
         </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="native">
                 <dlentry>
-                    <dt>自从</dt>
+                    <dt>Since</dt>
                     <dd>v3.5.1</dd>
                 </dlentry>
             </dl>
-            <p>根据实际需求，你可以将外部音频帧推送到音频采集后、编码前或本地播放前的位置。你可以多次调用该方法，将一个音频帧推送到多个位置或者将多个音频帧推送到不同位置。例如，在 KTV 场景中，你可以将歌声推送到音频采集后的位置，让歌声经过 SDK 音频模块的处理，从而获取优质的音频体验；将伴奏推送到音频编码前的位置，让伴奏不受 SDK 音频模块的影响。</p>
-            <note type="attention">该方法需要在加入频道后调用。</note>
+        <p>According to your needs, you can push the external audio frame to one of three positions: after audio capture, before audio encoding, or before local playback. </p>
+        <p>You can call this method multiple times to push one audio frame to multiple positions or multiple audio frames to different positions. </p>
+        <p>For example, in the KTV scenario, you can push the singing voice to after audio capture, so that the singing voice can be processed by the SDK audio module 
+            and you can obtain a high-quality audio experience; you can also push the accompaniment to before audio encoding, so that the accompaniment is not affected by the audio module of the SDK.</p>
+        <note type="attention">Call this method after joining a channel.</note>
         </section>
-        <section id="parameters"><title>参数</title>
+        
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry props="windows ios mac" conkeyref="pushAudioFrame1/frame">
             <pt/>
@@ -49,34 +53,34 @@
         </plentry>
        <plentry props="android">
            <pt>sampleRate</pt>
-           <pd>采样率，可设置为 8000, 16000, 32000, 44100, 或 48000 Hz。</pd>
+           <pd>The sample rate of the external audio source, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
        </plentry>
        <plentry props="android">
            <pt>channels</pt>
            <pd>
-               <p>声道数量：
+               <p>	The number of audio channels:
                    <ul>
-                       <li><codeph>1</codeph>：单声道</li>
-                       <li><codeph>2</codeph>：双声道（数据是交叉的）</li>
+                       <li><codeph>1</codeph>：Mono</li>
+                       <li><codeph>2</codeph>：Stereo (the data is interleaved)</li>
                    </ul>
                </p>
            </pd>
        </plentry>
        <plentry props="android">
            <pt>bytesPerSample</pt>
-           <pd>每个采样点的字节数。对于 PCM 来说，一般使用 16 bit，即两个字节。</pd>
+           <pd>The number of bytes per audio sample, which is usually 16-bit (2-byte).</pd>
        </plentry>
        <plentry>
            <pt>sourcePos</pt>
-           <pd>外部音频帧的推送位置。详见 <xref keyref="AUDIO_EXTERNAL_SOURCE_POSITION"/>。</pd>
+           <pd>The push position of the external audio frame. See <xref keyref="AUDIO_EXTERNAL_SOURCE_POSITION"/>。</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0：方法调用成功。</li>
-       <li>&lt; 0：方法调用失败。</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

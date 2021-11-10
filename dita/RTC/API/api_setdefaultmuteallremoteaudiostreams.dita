@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setdefaultmuteallremoteaudiostreams">
     <title><ph keyref="setDefaultMuteAllRemoteAudioStreams" /></title>
-    <shortdesc id="short"><ph id="shortdesc">默认取消或恢复订阅远端用户的音频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Stops or resumes subscribing to the audio streams of all remote users by default.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -24,29 +24,27 @@
         <section id="detailed_desc">
             <dl outputclass="deprecated">
        <dlentry>
-  <dt>弃用：</dt>
-  <dd>该方法自 v3.3.0 起废弃。</dd>
+  <dt>Deprecated:</dt>
+  <dd>This method is deprecated as of v3.3.0.</dd>
        </dlentry>
    </dl>
-   <p id="sequence">该方法需要在加入频道后调用。调用成功后，本地用户取消或恢复订阅调用时刻之后加入频道的远端用户。</p>
+   <p id="sequence">Call this method after joining a channel. After successfully calling this method, the local user stops or resumes subscribing to the audio streams of all subsequent users.</p>
    <note type="attention">
-       <p>取消订阅音频流后，如果需要恢复订阅频道内的远端，可以进行如下操作：
-       <ul>
-  <li>如果需要恢复订阅单个用户的音频流，调用 <xref keyref="muteRemoteAudioStream" /> (<codeph><ph keyref="false" /></codeph>)，并指定你想要订阅的远端用户 ID。</li>
-  <li>如果想恢复订阅多个用户的音频流，则需要多次调用 <apiname keyref="muteRemoteAudioStream" /> (<codeph><ph keyref="false" /></codeph>)。</li>
+       <p>If you need to resume subscribing to the audio streams of remote users in the channel after calling this method, do the following:<ul>
+  <li>To resume subscribing to the audio stream of a specified user, call <xref keyref="muteRemoteAudioStream" />(<codeph><ph keyref="false" /></codeph>), and specify the user ID.</li>
+  <li>To resume subscribing to the audio streams of multiple remote users, call <apiname keyref="muteRemoteAudioStream" /> (<codeph><ph keyref="false" /></codeph>)multiple times.</li>
        </ul>
        </p>
    </note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
            <pt props="android">muted</pt>
-           <pt props="ios mac windows unity flutter">mute</pt>
-  <pd><p>是否默认取消订阅远端用户的音频流：
-      <ul>
- <li><codeph><ph keyref="true" /></codeph>：默认取消订阅远端用户的音频流。</li>
- <li><codeph><ph keyref="false" /></codeph>：（默认）默认订阅远端用户的音频流。</li>
+           <pt props="ios mac windows unity">mute</pt>
+  <pd><p>Whether to stop subscribing to the audio streams of all remote users by default.<ul>
+ <li><codeph><ph keyref="true" /></codeph>: Stop subscribing to the audio streams of all remote users by default.</li>
+ <li><codeph><ph keyref="false" /></codeph>: (Default) Subscribe to the audio streams of all remote users by default.</li>
       </ul>
       </p>
   </pd>
@@ -54,10 +52,10 @@
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功。</li>
-       <li> &lt; 0: 方法调用失败。</li>
+       <li>0: Success.</li>
+       <li> &lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

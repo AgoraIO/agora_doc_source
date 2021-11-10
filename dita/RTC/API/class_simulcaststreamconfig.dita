@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_simulcaststreamconfig">
     <title><ph keyref="SimulcastStreamConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">视频小流的配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The configuration of the low-quality video stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -10,19 +10,6 @@
   public VideoEncoderConfiguration.VideoDimensions dimensions;
   public int bitrate;
   public int framerate;
-
-  public SimulcastStreamConfig() {
-    this.dimensions = new VideoEncoderConfiguration.VideoDimensions(-1, -1);
-    this.bitrate = -1;
-    this.framerate = 5;
-  }
-
-  public SimulcastStreamConfig(
-      VideoEncoderConfiguration.VideoDimensions dimensions, int bitrate, int framerate) {
-    this.dimensions = dimensions;
-    this.bitrate = bitrate;
-    this.framerate = framerate;
-  }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSimulcastStreamConfig: NSObject
  @property (assign, nonatomic) int bitrate;
@@ -34,10 +21,9 @@
   int bitrate;
   int framerate;
   SimulcastStreamConfig() : dimensions(160, 120), bitrate(65), framerate(5) {}
-  bool operator==(const SimulcastStreamConfig&amp; rhs) const {
-    return dimensions == rhs.dimensions &amp;&amp; bitrate == rhs.bitrate &amp;&amp; framerate == rhs.framerate;
   }
-};</codeblock>
+};
+</codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript" />
@@ -64,15 +50,15 @@
             <parml>
                 <plentry>
                     <pt>dimensions</pt>
-                    <pd>视频尺寸<ph props="android windows">，详见 <xref keyref="VideoDimensions" /></ph>。默认值为 160 × 120。</pd>
+                    <pd>The video dimensions<ph props="android windows">, see <xref keyref="VideoDimensions" /></ph>. The default value is 160 × 120.</pd>
                 </plentry>
                 <plentry>
                     <pt>bitrate</pt>
-                    <pd>视频码率 (Kbps)。默认值为 65。</pd>
+                    <pd>Video receive bitrate (Kbps), represented by an instantaneous value. The default value of the log level is 5.</pd>
                 </plentry>
                 <plentry>
-                    <pt>framerate</pt>
-                    <pd>视频帧率 (fps)。默认值为 5。</pd>
+                    <pt>frameRate</pt>
+                    <pd>The frame rate (fps) of the video. The default value is 5.</pd>
                 </plentry>
             </parml>
         </section>

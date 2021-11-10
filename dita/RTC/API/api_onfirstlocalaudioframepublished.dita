@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onfirstlocalaudioframepublished">
-    <title>
-        <ph keyref="onFirstLocalAudioFramePublished" />
-    </title>
-    <shortdesc id="short">
-        <ph id="shortdesc">已发布本地音频首帧回调。</ph>
-    </shortdesc>
+    <title><ph keyref="onFirstLocalAudioFramePublished" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the first audio frame is published.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -32,33 +28,28 @@
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
                 <dlentry>
-                    <dt>自从</dt>
+                    <dt>Since</dt>
                     <dd>v3.1.0</dd>
                 </dlentry>
             </dl>
-            <p> SDK 会在以下时机触发该回调： <ul>
-                    <li>开启本地音频的情况下，调用 <apiname keyref="joinChannel2" /> 成功加入频道后。 </li>
-                    <li>调用 <xref keyref="muteLocalAudioStream" />(<codeph><ph keyref="true" /></codeph>)，再调用 <apiname keyref="muteLocalAudioStream" />(<codeph><ph keyref="false" /></codeph>) 后。 </li>
-                    <li>调用 <xref keyref="disableAudio" />，再调用 <xref keyref="enableAudio" /> 后。 </li>
-                    <li props="android ios mac">调用 <xref keyref="pushAudioFrame1" /> 成功向 SDK 推送音频帧后。</li>
-                    <li props="windows">调用 <xref keyref="pushAudioFrame" /> 成功向 SDK 推送音频帧后。</li>
+            <p>The SDK triggers this callback under one of the following circumstances:<ul>
+                    <li>The local client enables the audio module and calls <apiname keyref="joinChannel2" /> successfully.</li>
+                    <li>The local client calls <xref keyref="muteLocalAudioStream" />(<codeph><ph keyref="true" /></codeph>) and <apiname keyref="muteLocalAudioStream" />(<codeph><ph keyref="false" /></codeph>) in sequence.</li>
+                    <li>The local client calls <xref keyref="disableAudio" /> and <xref keyref="enableAudio" /> in sequence.</li>
+                    <li props="windows android ios mac">The local client calls <xref keyref="pushAudioFrame1" /> to successfully push the audio frame to the SDK.</li>
                 </ul>
             </p>
         </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
-                </plentry>
-                <plentry id="connection" props="flutter">
-                    <pt>connection</pt>
-                    <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
-                </plentry>
+                  <pt />
+                  <pd />
+              </plentry>
                 <plentry>
                     <pt>elapsed</pt>
-                    <pd> 从调用 <apiname keyref="joinChannel2" /> 方法到触发该回调的时间间隔（毫秒）。 </pd>
+                    <pd>The time elapsed(ms) from the local client calling <apiname keyref="joinChannel2" /> until the SDK triggers this callback.</pd>
                 </plentry>
             </parml>
         </section>

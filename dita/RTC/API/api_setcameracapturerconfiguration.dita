@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setcameracapturerconfiguration">
     <title><ph keyref="setCameraCapturerConfiguration" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置摄像头采集配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the camera capture configuration.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -23,32 +23,29 @@
         </p>
         </section>
         <section id="detailed_desc">
-
-   <p props="rtc">一般的视频通话或直播中，默认由 SDK 自动控制摄像头的输出参数。在如下特殊场景中，默认的参数无法满足需求或可能引起设备性能问题，我们推荐调用该方法设置摄像头的采集偏好:<ul>
-                    <li>使用原始音视频数据自采集接口时，如果 SDK 输出的分辨率和帧率高于 <xref keyref="setVideoEncoderConfiguration" /> 中指定的参数，在后续处理视频帧的时候，比如美颜功能时，会需要更高的 CPU 及内存，容易导致性能问题。在这种情况下，我们推荐将摄像头采集偏好设置为 <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE" />(1)， 避免性能问题。</li>
-                    <li>如果没有本地预览功能或者对预览质量没有要求，我们推荐将采集偏好设置为 <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE" />(1)，以优化 CPU 和内存的资源分配。</li>
-                    <li>如果用户希望本地预览视频比实际编码发送的视频清晰，可以将采集偏好设置为 <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PREVIEW" />(2)。</li>
-                    <li>如果用户需要自定义本地采集的视频宽高，请将采集偏好设为 <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL" />(3)。</li>
+   
+   <p props="rtc">For a video call or the interactive live video streaming, generally the SDK controls the camera output parameters. When the default camera capturer settings do not meet special requirements or cause performance problems, we recommend using this method to set the camera capturer configuration:<ul>
+                    <li>If the resolution or frame rate of the captured raw video data are higher than those set by <xref keyref="setVideoEncoderConfiguration" />, processing video frames requires extra CPU and RAM usage and degrades performance. Agora recommends setting the camera capture configuration to <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE" />(1) to avoid such problems.</li>
+                    <li>If you do not need a local video preview or are willing to sacrifice preview quality, we recommend setting the preference as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE" />(1) to optimize CPU and RAM usage.</li>
+                    <li>If you want better quality for the local video preview, we recommend setting config as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_PREVIEW" />(2).</li>
+                    <li>To customize the width and height of the video image captured by the local camera, set the camera capture configuration as <ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL" />(3).</li>
                 </ul>
             </p>
-   <note type="attention"><ul>
-       <li props="windows">该方法仅适用于 Android 和 iOS。</li>
-       <li>请在启动摄像头之前调用该方法，如 <xref keyref="joinChannel2" />、<xref keyref="enableVideo" /> 或者 <xref keyref="enableLocalVideo" /> 之前。</li>
-   </ul></note>
+   <note type="attention">Call this method before calling <xref keyref="joinChannel2" />, <xref keyref="enableVideo" />, or <xref keyref="enableLocalVideo" />, depending on which method you use to turn on your local camera.</note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>config</pt>
-  <pd>摄像头采集配置，详见 <xref keyref="CameraCapturerConfiguration" />。</pd>
+  <pd>The camera capturer configuration. See <xref keyref="CameraCapturerConfiguration" />.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enableencryption">
-     <title>
-          <ph keyref="enableEncryption" />
-     </title>
-     <shortdesc id="short">
-          <ph id="shortdesc">开启或关闭内置加密。</ph>
-     </shortdesc>
+     <title><ph keyref="enableEncryption" /></title>
+     <shortdesc id="short"><ph id="shortdesc">Enables/Disables the built-in encryption.</ph></shortdesc>
      <prolog>
           <metadata>
                <keywords>
@@ -29,51 +25,42 @@
           <section id="detailed_desc">
                <dl outputclass="since" props="rtc">
                     <dlentry>
-                         <dt>自从</dt>
+                         <dt>Since</dt>
                          <dd>v3.1.0</dd>
                     </dlentry>
                </dl>
-               <p id="desc1">在安全要求较高的场景下，Agora 建议你在加入频道前，调用本方法开启内置加密。</p>
-               <p id="desc2">同一频道内所有用户必须使用相同的加密模式和密钥。用户离开频道后，SDK 会自动关闭加密。如需重新开启加密，你需要在用户再次加入频道前调用该方法。</p>
-               <note type="attention">如果开启了内置加密，则不能使用 RTMP/RTMPS 推流功能。</note>
+               <p id="desc1">In scenarios requiring high security, Agora recommends calling this method to enable the built-in encryption before joining a channel.</p>
+               <p id="desc2">All users in the same channel must use the same encryption mode and encryption key. After the user leaves the channel, the SDK automatically disables the built-in encryption. To enable the built-in encryption, call this method before the user joins the channel again.</p>
+               <note type="attention">If you enable the built-in encryption, you cannot use the RTMP or RTMPS streaming function.</note>
           </section>
           <section id="parameters">
-               <title>参数</title>
+               <title>Parameter</title>
                <parml>
                     <plentry>
                          <pt>enabled</pt>
                          <pd>
-                              <p>
-                                   是否开启内置加密：
-                                   <ul>
-                                        <li>
-                                             <ph keyref="true" />: 开启内置加密。
-                                        </li>
-                                        <li>
-                                             <ph keyref="false" />: 关闭内置加密。
-                                        </li>
+                              <p>Whether to enable built-in encryption:<ul>
+                                        <li><ph keyref="true" />: Enable the built-in encryption.</li>
+                                        <li><ph keyref="false" />: Disable the built-in encryption.</li>
                                    </ul>
                               </p>
                          </pd>
                     </plentry>
                     <plentry>
                          <pt>config</pt>
-                         <pd>
-                              配置内置加密模式和密钥。详见 <xref keyref="EncryptionConfig" />。
-                         </pd>
+                         <pd>Configurations of built-in encryption. For details, see <xref keyref="EncryptionConfig" />.</pd>
                     </plentry>
                </parml>
           </section>
           <section id="return_values" props="native electron unity">
-               <title>返回值</title>
+               <title>Returns</title>
                <ul>
-                    <li>0: 方法调用成功</li>
+                    <li>0: Success.</li>
                     <li>
-                         &lt; 0: 方法调用失败
-                         <ul>
-                              <li> -2(ERR_INVALID_ARGUMENT): 调用了无效的参数。需重新指定参数。 </li>
-                              <li> -4(ERR_NOT_SUPPORTED): 设置的加密模式不正确或加载外部加密库失败。需检查枚举值是否正确或重新加载外部加密库。 </li>
-                              <li> -7(ERR_NOT_INITIALIZED): SDK 尚未初始化。需在调用 API 之前已创建 <xref keyref="IRtcEngine" /> 对象并完成初始化。 </li>
+                         &lt; 0: Failure.<ul>
+                              <li>-2(ERR_INVALID_ARGUMENT): An invalid parameter is used. Set the parameter with a valid value.</li>
+                              <li>-4(ERR_NOT_SUPPORTED): The encryption mode is incorrect or the SDK fails to load the external encryption library. Check the enumeration or reload the external encryption library.</li>
+                              <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized. Initialize the <xref keyref="IRtcEngine" /> instance before calling this method.</li>
                          </ul>
                     </li>
                </ul>

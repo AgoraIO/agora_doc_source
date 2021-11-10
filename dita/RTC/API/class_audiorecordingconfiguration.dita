@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiorecordingconfiguration">
     <title><ph keyref="AudioRecordingConfiguration" /></title>
-    <shortdesc id="short"><ph id="shortdesc">客户端录音配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The configuration of audio recording on the app client.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -73,7 +73,7 @@
         <section id="detailed_desc">
             <dl outputclass="since" props="android ios mac windows">
                 <dlentry>
-                    <dt>自从</dt>
+                    <dt>Since</dt>
                     <dd>v3.4.0</dd>
                 </dlentry>
             </dl>
@@ -84,29 +84,28 @@
                 <plentry id="filepath">
                     <pt>filePath</pt>
                     <pd>
-                        <p>录音文件在本地保存的绝对路径，需精确到文件名及格式。例如：<codeph><ph keyref="recordingPath-example" /></codeph>。</p>
-                        <note type="note">请确保你指定的路径存在并且可写。</note>
+                        <p>The absolute path (including the filename extensions) of the recording file. For example: <codeph><ph keyref="recordingPath-example" /></codeph>.</p>
+                        <note type="note">Ensure that the directory for the log files exists and is writable.</note>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>recordingQuality</pt>
-                    <pd><p>录音音质。详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />。</p>
-                    <note type="attention">该参数仅适用于 AAC 文件。</note></pd>
+                    <pd><p>Recording quality. For details, see <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />.</p>
+                    <note type="attention">Note: This parameter applies to AAC files only.</note></pd>
                 </plentry>
                 <plentry>
                     <pt>recordingPosition</pt>
-                    <pd>录音内容。详见 <xref keyref="AUDIO_RECORDING_POSITION" />。</pd>
+                    <pd>The recording content. For details, see <xref keyref="AUDIO_RECORDING_POSITION" />.</pd>
                 </plentry>
                 <plentry>
                     <pt>recordingSampleRate</pt>
-                    <pd>录音采样率 (Hz)。<ul>
+                    <pd>Recording sample rate (Hz).<ul>
                         <li>16000</li>
-                        <li>（默认）32000</li>
+                        <li>(Default) 32000</li>
                         <li>44100</li>
                         <li>48000</li>
                     </ul>
-                        <note type="attention">如果把该参数设为 44100 或 48000，为保证录音效果，Agora 推荐录制 WAV 文件 或 <parmname>recordingQuality</parmname> 为
-                        <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" /> 或 <ph keyref="AUDIO_RECORDING_QUALITY_HIGH" /> 的 AAV 文件。</note></pd>
+                        <note type="attention">If you set this parameter as 44100 or 48000, Agora recommends recording WAV files or AAV files whose <parmname>recordingQuality</parmname> is <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" /> or <ph keyref="AUDIO_RECORDING_QUALITY_HIGH" /> for better recording quality.</note></pd>
                 </plentry>
             </parml>
         </section>

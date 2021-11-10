@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startechotest1">
-    <title>
-        <ph keyref="startEchoTest1" />
-    </title>
-    <shortdesc id="short">
-        <ph id="shortdesc">开始语音通话回路测试。</ph>
-    </shortdesc>
+    <title><ph keyref="startEchoTest1" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Starts an audio call test.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,35 +25,33 @@
         <section id="detailed_desc">
             <dl outputclass="deprecated">
                 <dlentry>
-                    <dt>弃用：</dt>
-                    <dd>该方法自 v2.4.0 起废弃，请改用 <xref keyref="startEchoTest2" />。</dd>
+                    <dt>Deprecated:</dt>
+                    <dd>This method is deprecated as of v2.4.0. Use <xref keyref="startEchoTest2" /> instead.</dd>
                 </dlentry>
             </dl>
-            <p>该方法启动语音通话测试，目的是测试系统的音频设备（耳麦、扬声器等）和网络连接是否正常。在测试过程中，用户先说一段话，声音会在 10 秒后回放出来。如果 10 秒后用户能正常听到自己刚才说的话，就表示系统音频设备和网络连接都是正常的。</p>
+            <p>This method starts an audio call test to determine whether the audio devices (for example, headset and speaker) and the network connection are working properly. To conduct the test, the user speaks, and the recording is played back within 10 seconds. If the user can hear the recording within the interval, the audio devices and network connection are working properly.</p>
             <note type="attention">
                 <ul>
-                    <li>请在加入频道前调用该方法。</li>
-                    <li>
-                        调用 <apiname keyref="startEchoTest1" /> 后必须调用 <xref keyref="stopEchoTest" /> 以结束测试，否则不能进行下一次回声测试，也无法加入频道。
-                    </li>
-                    <li>直播场景下，该方法仅能由用户角色为主播的用户调用。</li>
+                    <li>Call this method before joining a channel.</li>
+                    <li>After calling <xref keyref="stopEchoTest" />, you must call <apiname keyref="startEchoTest1" /> to end the test. Otherwise, the app cannot perform the next echo test, and you cannot join the channel.</li>
+                    <li>In the live streaming channels, only a host can call this method.</li>
                 </ul>
             </note>
         </section>
         <section props="ios mac">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>successBlock</pt>
-                    <pd>成功开始语音通话测试回调。</pd>
+                    <pd>The SDK triggers the successBlock callback if this method call is successful.</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values" props="native electron unity">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-                <li>0: 方法调用成功</li>
-                <li>&lt; 0: 方法调用失败</li>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
             </ul>
         </section>
     </refbody>

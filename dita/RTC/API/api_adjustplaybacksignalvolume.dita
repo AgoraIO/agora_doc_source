@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_adjustplaybacksignalvolume">
     <title><ph keyref="adjustPlaybackSignalVolume" /></title>
-    <shortdesc id="short"><ph id="shortdesc">调节本地播放的所有远端用户信号音量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Adjusts the playback signal volume of all remote users.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -25,13 +25,13 @@
    
    <note type="attention">
        <ul>
-  <li>该方法调节的是本地播放的所有远端用户混音后的音量。</li>
-  <li props="rtc">从 v2.3.2 开始，静音本地音频需同时调用 <apiname keyref="adjustPlaybackSignalVolume" /> 和 <xref keyref="adjustAudioMixingPlayoutVolume" /> 方法，并将 <codeph>volume</codeph> 设置为 <codeph>0</codeph>。</li>
-  <li>该方法在加入频道前后都能调用。</li>
+  <li>This method adjusts the playback volume that is the mixed volume of all remote users.</li>
+  <li props="rtc">As of v2.3.2, to mute the local audio, you need to call the <apiname keyref="adjustPlaybackSignalVolume" /> and<xref keyref="adjustAudioMixingPlayoutVolume" /> methods at the same time, and set <codeph>volume</codeph> to <codeph>0</codeph>.</li>
+  <li>You can call this method either before or after joining a channel.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry conkeyref="adjustRecordingSignalVolume/volume">
   <pt />
@@ -40,10 +40,10 @@
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功</li>
-       <li> &lt; 0: 方法调用失败</li>
+       <li>0: Success.</li>
+       <li> &lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

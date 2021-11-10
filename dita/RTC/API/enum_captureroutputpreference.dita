@@ -2,34 +2,33 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_captureroutputpreference">
     <title><ph keyref="CAPTURER_OUTPUT_PREFERENCE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">摄像头采集偏好。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Camera capture preference.</ph></shortdesc>
     <refbody>
         <section id="parameters">
-   <title>枚举值</title>
+   <title>Enumerator</title>
    <parml>
        <plentry>
   <pt><ph keyref="CAPTURER_OUTPUT_PREFERENCE_AUTO"/></pt>
-  <pd>0:（默认）自动调整采集参数。SDK 根据实际的采集设备性能及网络情况，选择合适的摄像头输出参数，在设备性能及视频预览质量之间，维持平衡。</pd>
+  <pd>0: (Default) Automatically adjust the camera capture preference. The SDK adjusts the camera output parameters according to the system performance and network conditions to balance CPU consumption and video preview quality.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CAPTURER_OUTPUT_PREFERENCE_PERFORMANCE"/></pt>
-  <pd>1: 优先保证设备性能。SDK 根据用户在 <xref keyref="setVideoEncoderConfiguration"/>
-      中设置编码器的分辨率和帧率，选择最接近的摄像头输出参数，从而保证设备性能。在这种情况下，预览质量接近于编码器的输出质量。</pd>
+  <pd>1: Prioritizes the system performance. The SDK chooses the dimension and frame rate of the local camera capture closest to those set by <xref keyref="setVideoEncoderConfiguration"/>. In this case, the local preview quality depends on the encoder.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CAPTURER_OUTPUT_PREFERENCE_PREVIEW"/></pt>
-  <pd>2: 优先保证视频预览质量。SDK 选择较高的摄像头输出参数，从而提高预览视频的质量。在这种情况下，会消耗更多的 CPU 及内存做视频前处理。</pd>
+  <pd>2: Prioritizes the local preview quality. The SDK chooses higher camera output parameters to improve the local video preview quality. This option requires extra CPU and RAM usage for video pre-processing.</pd>
        </plentry>
        <plentry>
                     <pt><ph keyref="CAPTURER_OUTPUT_PREFERENCE_MANUAL"/></pt>
                     <pd>
                         <dl outputclass="since" props="rtc">
                             <dlentry>
-                                <dt>自从</dt>
+                                <dt>Since</dt>
                                 <dd>v3.3.0</dd>
                             </dlentry>
                         </dl>
-                        <p>3: 允许用户设置本地摄像头采集的视频宽高。</p>
+                        <p>3: Allows you to customize the width and height of the video image captured by the local camera.</p>
                     </pd>
                 </plentry>
    </parml>

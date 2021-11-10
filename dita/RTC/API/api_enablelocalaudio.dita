@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enablelocalaudio">
     <title><ph keyref="enableLocalAudio" /></title>
-    <shortdesc id="short"><ph id="shortdesc">开关本地音频采集。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables/Disables the local audio capture.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -23,36 +23,34 @@
         </section>
         <section id="detailed_desc">
    
-   <p>当用户加入频道时，音频功能默认是开启的。该方法可以关闭或重新开启本地音频功能，即停止或重新开始本地音频采集。</p>
-   <p>该方法不影响接收或播放远端音频流，<xref keyref="enableLocalAudio" />(<codeph><ph keyref="false" /></codeph>) 适用于只听不发的用户场景。</p>
-   <p>音频功能关闭或重新开启后，会收到 <xref keyref="onLocalAudioStateChanged" /> 回调， 并报告 <apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED" />(0) 或 <apiname keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING" />(1)。
-   <note type="attention"><ul>
-       <li>该方法与 <xref keyref="muteLocalAudioStream" /> 的区别在于：<ul>
-                            <li><apiname keyref="enableLocalVideo" />: 开启或关闭本地音频采集及处理。使用
-                                    <codeph>enableLocalAudio</codeph> 关闭或开启本地采集后，本地听远端播放会有短暂中断。</li>
-                            <li><apiname keyref="muteLocalAudioStream" />: 停止或继续发送本地音频流。</li>
+   <p>The audio function is enabled by default. This method disables or re-enables the local audio function to stop or restart local audio capturing.</p>
+   <p>This method does not affect receiving or playing the remote audio streams, and <xref keyref="enableLocalAudio" />(<codeph><ph keyref="false" /></codeph>) applies to scenarios where the user wants to receive remote audio streams without sending any audio stream to other users in the channel.</p>
+   <p>Once the local audio function is disabled or re-enabled, the SDK triggers the <xref keyref="onLocalAudioStateChanged" /> callback, which reports <apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED" />(0) or <apiname keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING" />(1).<note type="attention"><ul>
+       <li>This method is different from the <xref keyref="muteLocalAudioStream" /> method:<ul>
+                            <li><apiname keyref="enableLocalVideo" />: Disables/Re-enables the local audio capturing and processing. If you disable or re-enable local audio capturing using the <codeph>enableLocalAudio</codeph> method, the local user might hear a pause in the remote audio playback.</li>
+                            <li><apiname keyref="muteLocalAudioStream" />: Sends/Stops sending the local audio streams.</li>
                         </ul>
                     </li>       
-       <li>该方法在加入频道前后都能调用。</li> 
+       <li>You can call this method either before or after joining a channel.</li> 
    </ul></note></p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>enabled</pt>
   <pd><p><ul>
-      <li><codeph><ph keyref="true" /></codeph>: 重新开启本地音频功能，即开启本地音频采集（默认）；</li>
-      <li><codeph><ph keyref="false" /></codeph>: 关闭本地音频功能，即停止本地音频采集。</li>
+      <li><codeph><ph keyref="true" /></codeph>: (Default) Re-enable the local audio function, that is, to start the local audio capturing device (for example, the microphone).</li>
+      <li><codeph><ph keyref="false" /></codeph>: Disable the local audio function, that is, to stop local audio capturing.</li>
   </ul>     
   </p></pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功</li>
-       <li>&lt; 0: 方法调用失败</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

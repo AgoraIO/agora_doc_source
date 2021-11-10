@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enablevideo">
     <title><ph keyref="enableVideo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">启用视频模块。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables the video module.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -22,23 +22,23 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <p>该方法可以在加入频道前或者通话中调用，在加入频道前调用则自动开启视频模块；在通话中调用则由音频模式切换为视频模式。 调用 <xref keyref="disableVideo" /> 方法可关闭视频模式。</p><p>成功调用该方法后，远端会触发 <xref keyref="onRemoteVideoStateChanged" /> 回调。 </p><note type="attention">
+            <p>Call this method either before joining a channel or during a call. If this method is called before joining a channel, the call starts in the video mode. Call <xref keyref="disableVideo" /> to disable the video mode.</p><p>A successful call of this method triggers the <xref keyref="onRemoteVideoStateChanged" /> callback on the remote client.</p><note type="attention">
                 <ul>
-                    <li>该方法设置的是内部引擎为启用状态，在离开频道后仍然有效。</li>
-                    <li>该方法重置整个引擎，响应时间较慢，因此声网建议使用如下方法来控制视频模块：<ul>
-                            <li><xref keyref="enableLocalVideo" />: 是否启动摄像头采集并创建本地视频流。</li>
-                            <li><xref keyref="muteLocalVideoStream" />: 是否发布本地视频流。</li>
-                            <li><xref keyref="muteRemoteVideoStream" />: 是否接收并播放远端视频流。</li>
-                            <li><xref keyref="muteAllRemoteVideoStreams" />: 是否接收并播放所有远端视频流。</li>
+                    <li>This method enables the internal engine and is valid after leaving the channel.</li>
+                    <li>This method resets the internal engine and takes some time to take effect. Agora recommends using the following API methods to control the video engine modules separately:<ul>
+                            <li><xref keyref="enableLocalVideo" />: Whether to enable the camera to create the local video stream.</li>
+                            <li><xref keyref="muteLocalVideoStream" />: Whether to publish the local video stream.</li>
+                            <li><xref keyref="muteRemoteVideoStream" />: Whether to subscribe to and play the remote video stream.</li>
+                            <li><xref keyref="muteAllRemoteVideoStreams" />: Whether to subscribe to and play all remote video streams.</li>
                         </ul></li>
                 </ul>
             </note>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。 </li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

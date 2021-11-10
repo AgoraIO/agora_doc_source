@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="api-title" xml:lang="zh-CN">
-    <title>API 概览</title>
-    <shortdesc id="short"><ph id="shortdesc">声网通过全球部署的虚拟网络，提供可以灵活搭配的 API 组合，为移动端到移动端以及移动端到 Web 端提供质量可靠的实时音视频通信。</ph></shortdesc>
+<topic id="api-title" xml:lang="en-US">
+    <title>API Overview</title>
+    <shortdesc id="short"><ph id="shortdesc">Agora provides ensured quality of experience (QoE) for worldwide Internet-based voice and video communications through a virtual global network optimized for real-time web and mobile-to-mobile applications.</ph></shortdesc>
     <body>
         <note type="note">
             <ul>
-                <li props="windows">自 v3.0.0 开始，Agora 废弃 <codeph>RtcEngineParameters</codeph> 类。该类下所有接口均被 <xref keyref="IRtcEngine"/> 类覆盖，请使用 <apiname keyref="IRtcEngine"/> 类。</li>
-                <li>在调用 API 过程中，SDK 可能会返回错误码和警告码，详见<xref keyref="errorCode">错误码和警告码</xref>。</li>
+                <li props="windows">As of v3.0.0, Agora deprecates the <codeph>RtcEngineParameters</codeph> class. <xref keyref="IRtcEngine"/> class covers all APIs of this class, use the <apiname keyref="IRtcEngine"/> class instead.</li>
+                <li>During API calls, the SDK may returns error codes and warning codes. See <xref keyref="errorCode">Error Codes and Warning Codes</xref>.</li>
             </ul>
         </note>
         <ul>
-            <li><xref keyref="IRtcEngine"/> 类包含应用程序调用的主要方法。</li>
-            <li props="android ios mac windows"><xref keyref="IRtcEngineEventHandler"/> 类用于向应用程序发送回调通知。</li>
-            <li props="electron"><xref keyref="IRtcEngineEventHandler">AgoraRtcEngine.on</xref> 用于向应用程序发送回调通知。</li>
-            <li><xref keyref="IChannel"/> 类在指定频道中实现实时音视频功能。通过创建多个 <apiname keyref="IChannel"/>
-                对象，用户可以同时加入多个频道。</li>
-            <li props="ios mac windows android"><xref keyref="IChannelEventHandler"/>
-                类监听和报告指定频道的事件和数据。</li>
-            <li props="electron"><xref keyref="IChannelEventHandler">AgoraRtcChannel.on</xref> 监听和报告指定频道的事件和数据。</li>
-            <li props="windows"><xref keyref="IAudioDeviceManager"/> 类提供用于测试音频设备的相关接口。</li>
-            <li props="windows"><xref keyref="IVideoDeviceManager"/> 类提供用于测试视频设备的相关接口。</li>
+            <li><xref keyref="IRtcEngine"/> provides the main methods that can be invoked by your application.</li>
+            <li props="android ios mac windows"><xref keyref="IRtcEngineEventHandler"/> reports runtime events to the application.</li>
+            <li props="electron"><xref keyref="IRtcEngineEventHandler">AgoraRtcEngine.on</xref> listens to events during runtime.</li>
+            <li><xref keyref="IChannel"/> provides methods that enable real-time communications in a specified channel. By creating multiple <apiname keyref="IChannel"/> objects, the user can join multiple channels at the same time.</li>
+            <li props="ios mac windows android"><xref keyref="IChannelEventHandler"/> listens to events and statistics of a specified channel.</li>
+            <li props="electron"><xref keyref="IChannelEventHandler">AgoraRtcChannel.on</xref> provides callbacks that report events and statistics of a specified channel.</li>
+            <li props="windows"><xref keyref="IAudioDeviceManager"/> allows for audio device interface testing.</li>
+            <li props="windows"><xref keyref="IVideoDeviceManager"/> allows for video device interface testing.</li>
         </ul>
         <section id="core_methods">
-            <title>核心方法</title>
+            <title>Core methods</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow props="windows">
                     <stentry><xref keyref="createAgoraRtcEngine"/></stentry>
@@ -35,9 +33,9 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="create2"/></stentry>
-                    <stentry><ph props="ios mac android electron unity">创建并初始化 <apiname
-                                keyref="IRtcEngine"/>。</ph><ph props="windows">初始化 <apiname
-                                keyref="IRtcEngine"/>。</ph></stentry>
+                    <stentry><ph props="ios mac android electron unity">Creates and initializes <apiname
+                                keyref="IRtcEngine"/>. </ph><ph props="windows">Initializes <apiname
+                                keyref="IRtcEngine"/>.</ph></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="release"/></stentry>
@@ -86,11 +84,11 @@
             </simpletable>
         </section>
         <section id="core_events">
-            <title>核心事件</title>
+            <title>Core events</title>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onConnectionStateChanged"/></stentry>
@@ -139,11 +137,11 @@
             </simpletable>
         </section>
         <section id="audio_management">
-            <title>音频管理</title>
+            <title>Audio management</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="enableAudio"/></stentry>
@@ -188,11 +186,11 @@
             </simpletable>
         </section>
         <section id="video_management">
-            <title>视频管理</title>
+            <title>Video management</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="enableVideo"/></stentry>
@@ -269,11 +267,11 @@
             </simpletable>
         </section>
         <section id="local_media_events">
-            <title>本地媒体事件</title>
+            <title>Local media events</title>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onLocalAudioStateChanged"/></stentry>
@@ -306,11 +304,11 @@
             </simpletable>
         </section>
         <section id="remote_media_events">
-            <title>远端媒体事件</title>
+            <title>Remote media events</title>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onRemoteAudioStateChanged"/></stentry>
@@ -335,14 +333,14 @@
             </simpletable>
         </section>
         <section id="statistics_events">
-            <title>数据统计事件</title>
-            <p>加入频道后，SDK 每隔 2 秒自动触发本组回调。</p>
-            <p props="ios mac windows android">我们为这些回调提供了详细的功能描述、实现方法文档，详情请参考<xref
-                    keyref="guide-in-call-quality"/>。</p>
+            <title>Statistics events</title>
+            <p>After joining a channel, SDK triggers this group of callbacks once every two seconds.</p>
+            <p props="ios mac windows android">We provide an advanced guide for these callbacks. For details, see <xref
+                    keyref="guide-in-call-quality"/>.</p>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onRtcStats"/></stentry>
@@ -371,11 +369,11 @@
             </simpletable>
         </section>
         <section id="video_pre-process_and_post-process">
-            <title>视频前处理及后处理</title>
+            <title>Video pre-processing and post-processing</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="setBeautyEffectOptions"/></stentry>
@@ -392,8 +390,8 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onVirtualBackgroundSourceEnabled"/></stentry>
@@ -406,13 +404,13 @@
             </simpletable>
         </section>
         <section id="multiple_channels_management">
-            <title>多频道管理</title>
-            <p props="ios mac windows android">我们为该组接口提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref
-                    keyref="guide-multiple-channel"/>。</p>
+            <title>Multiple channels management</title>
+            <p props="ios mac windows android">We provide an advanced guide on the applicable scenarios, implementation, and considerations for this group of methods. For details, see <xref
+                    keyref="guide-multiple-channel"/>.</p>
             <simpletable>
                 <sthead>
                     <stentry>API</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="createChannel"/></stentry>
@@ -429,13 +427,13 @@
             </simpletable>
         </section>
         <section id="screen_capture">
-            <title>屏幕共享</title>
-            <p props="ios mac windows android">我们为该组方法提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref
-                    keyref="guide-screensharing"/>。</p>
+            <title>Screen sharing</title>
+            <p props="ios mac windows android">We provide an advanced guide on the applicable scenarios, implementation, and considerations for this group of methods. For details, see <xref
+                    keyref="guide-screensharing"/>.</p>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow props="windows mac unity">
                     <stentry><xref keyref="startScreenCaptureByDisplayId"/></stentry>
@@ -476,11 +474,11 @@
             </simpletable>
         </section>
         <section id="audio_file_playback_and_mixing">
-            <title>音乐文件播放及混音</title>
+            <title>Music file playback and mixing</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="startAudioMixing2"/></stentry>
@@ -537,8 +535,8 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onAudioMixingStateChanged"/></stentry>
@@ -555,11 +553,11 @@
             </simpletable>
         </section>
         <section id="audio_effect_playback">
-            <title>音效文件播放管理</title>
+            <title>Audio effect file playback</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="getEffectsVolume"/></stentry>
@@ -620,8 +618,8 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onAudioEffectFinished"/></stentry>
@@ -630,11 +628,11 @@
             </simpletable>
         </section>
         <section id="rhythm_player" props="android ios flutter">
-            <title>虚拟节拍器</title>
+            <title>Virtual metronome</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="startRhythmPlayer"/></stentry>
@@ -651,11 +649,11 @@
             </simpletable>
         </section>
         <section id="voice_changer_and_reverberation">
-            <title>人声效果</title>
+            <title>Voice effect</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="setLocalVoicePitch"/></stentry>
@@ -692,11 +690,11 @@
             </simpletable>
         </section>
         <section id="sound_position_indication">
-            <title>听声辨位</title>
+            <title>Sound localization</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="enableSoundPositionIndication"/></stentry>
@@ -709,12 +707,12 @@
             </simpletable>
         </section>
         <section id="CDN_publisher">
-            <title>CDN 推流</title>
-            <p>该组方法仅适用于互动直播。</p>
+            <title>CDN publisher</title>
+            <p>This method applies only to interactive live streaming.</p>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="setLiveTranscoding"/></stentry>
@@ -731,8 +729,8 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onRtmpStreamingStateChanged"/></stentry>
@@ -749,11 +747,11 @@
             </simpletable>
         </section>
         <section id="media_stream_relay_across_channels">
-            <title>跨频道媒体流转发</title>
+            <title>Media stream relay across channels</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="startChannelMediaRelay"/></stentry>
@@ -770,8 +768,8 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onChannelMediaRelayStateChanged"/></stentry>
@@ -784,11 +782,11 @@
             </simpletable>
         </section>
         <section id="audio_volume_indication">
-            <title>音量提示</title>
+            <title>Volume indication</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="enableAudioVolumeIndication"/></stentry>
@@ -797,8 +795,8 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onAudioVolumeIndication"/></stentry>
@@ -810,11 +808,11 @@
                 </strow>
             </simpletable>
         </section>
-        <section id="face_detection" props="android ios windows unity"><title>人脸检测</title><p
-                props="windows unity">该组功能仅适用于 Android 和 iOS 平台。</p><simpletable>
+        <section id="face_detection" props="android ios windows unity"><title>Face detection</title><p
+                props="windows">This method is for Android and iOS only.</p><simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="enableFaceDetection"/></stentry>
@@ -822,19 +820,19 @@
                 </strow>
             </simpletable><simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onFacePositionChanged"/></stentry>
                     <stentry><ph conkeyref="onFacePositionChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="audio_routing_control" props="android ios windows unity"><title>音频播放路由</title><p
-                props="windows unity">该组方法仅适用于 Android 和 iOS 平台。</p><simpletable>
+        <section id="audio_routing_control" props="android ios windows unity"><title>Audio routing control</title><p
+                props="windows unity">This method is for Android and iOS only.</p><simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="setDefaultAudioRouteToSpeakerphone"/></stentry>
@@ -851,19 +849,19 @@
                 </strow>
             </simpletable><simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onAudioRouteChanged"/></stentry>
                     <stentry><ph conkeyref="onAudioRouteChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="in-ear_monitoring" props="android ios windows unity"><title>耳返控制</title><p
-                props="windows unity">该组方法仅适用于 Android 和 iOS 平台。</p><simpletable>
+        <section id="in-ear_monitoring" props="android ios windows unity"><title>In-ear monitoring</title><p
+                props="windows unity">This method is for Android and iOS only.</p><simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="enableInEarMonitoring"/></stentry>
@@ -875,11 +873,11 @@
                 </strow>
             </simpletable></section>
         <section id="dual_video_stream_mode">
-            <title>视频双流模式</title>
+            <title>Dual video stream mode</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="enableDualStreamMode"/></stentry>
@@ -896,13 +894,13 @@
             </simpletable>
         </section>
         <section id="stream_fallback">
-            <title>视频流回退</title>
-            <p props="ios mac windows android">我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref
-                    keyref="guide-fallback"/>。</p>
+            <title>Video stream fallback</title>
+            <p props="ios mac windows android">We provide an advanced guide on the applicable scenarios, implementation, and considerations for this group of methods. For details, see <xref
+                    keyref="guide-fallback"/>.</p>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="setLocalPublishFallbackOption"/></stentry>
@@ -919,8 +917,8 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onLocalPublishFallbackToAudioOnly"/></stentry>
@@ -934,13 +932,13 @@
             </simpletable>
         </section>
         <section id="pre-call_network_test">
-            <title>通话前网络测试</title>
-            <p props="ios mac windows android">我们为该组 API 提供了详细的场景描述、实现方法及开发注意事项文档，详情请参考<xref
-                    keyref="guide-lastmile-quality"/>。</p>
+            <title>Pre-call network test</title>
+            <p props="ios mac windows android">We provide an advanced guide on the applicable scenarios, implementation, and considerations for this group of methods. For details, see <xref
+                    keyref="guide-lastmile-quality"/>.</p>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="startEchoTest2"/></stentry>
@@ -969,8 +967,8 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onLastmileQuality"/></stentry>
@@ -982,20 +980,20 @@
                 </strow>
             </simpletable>
         </section>
-        <section id="custom_video_module" props="windows"><title>自定义视频模块</title><simpletable>
+        <section id="custom_video_module" props="windows"><title>Customizes video module</title><simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="setVideoSource"/></stentry>
                     <stentry><ph conkeyref="setVideoSource/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="external_video_data" props="windows unity"><title>视频自采集（仅 Push 模式）</title><simpletable>
+        <section id="external_video_data" props="windows unity"><title>External video data (push-mode only)</title><simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="setExternalVideoSource"/></stentry>
@@ -1006,28 +1004,24 @@
                     <stentry><ph conkeyref="pushVideoFrame/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="external_audio_data" props="windows android ios mac unity"><title>音频自采集（仅 Push 模式）</title><simpletable>
+        <section id="external_audio_data" props="windows android ios mac unity"><title>External audio data (push-mode only)</title><simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="setExternalAudioSource"/></stentry>
                     <stentry><ph conkeyref="setExternalAudioSource/shortdesc"/></stentry>
                 </strow>
-                <strow props="unity">
-                    <stentry><xref keyref="pushAudioFrame1"/></stentry>
-                    <stentry><ph conkeyref="pushAudioFrame1/shortdesc"/></stentry>
-                </strow>
-                <strow props="windows android ios mac">
-                    <stentry><xref keyref="pushAudioFrame2"></xref></stentry>
+                <strow>
+                    <stentry><xref keyref="pushAudioFrame2"/></stentry>
                     <stentry><ph conkeyref="pushAudioFrame2/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="external_audio_sink" props="windows unity"><title>音频自渲染（仅 Pull 模式）</title><simpletable>
+        <section id="external_audio_sink" props="windows unity"><title>External audio sink (pull-mode only)</title><simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="setExternalAudioSink"/></stentry>
@@ -1038,10 +1032,10 @@
                     <stentry><ph conkeyref="pullAudioFrame/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="raw_audio_data" props="windows unity"><title>原始音频数据</title><simpletable>
+        <section id="raw_audio_data" props="windows unity"><title>Raw audio data</title><simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="registerAudioFrameObserver"/></stentry>
@@ -1065,8 +1059,8 @@
                 </strow>
             </simpletable><simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onRecordAudioFrame"/></stentry>
@@ -1093,10 +1087,10 @@
                     <stentry><ph conkeyref="onPlaybackAudioFrameBeforeMixingEx/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="raw_video_data" props="windows unity"><title>原始视频数据</title><simpletable>
+        <section id="raw_video_data" props="windows unity"><title>Raw video data</title><simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="registerVideoFrameObserver"/></stentry>
@@ -1108,8 +1102,8 @@
                 </strow>
             </simpletable><simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="getObservedFramePosition"/></stentry>
@@ -1153,12 +1147,12 @@
                 </strow>
             </simpletable></section>
         <section id="media_metadata">
-            <title>媒体附属信息</title>
-            <p>该组方法仅适用于互动直播。</p>
+            <title>Media metadata</title>
+            <p>This method applies only to interactive live streaming.</p>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="registerMediaMetadataObserver"/></stentry>
@@ -1179,8 +1173,8 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow props="android ios mac windows">
                     <stentry><xref keyref="getMaxMetadataSize"/></stentry>
@@ -1197,12 +1191,12 @@
             </simpletable>
         </section>
         <section id="watermark">
-            <title>直播水印</title>
-            <p>该组方法仅适用于互动直播。</p>
+            <title>Watermark</title>
+            <p>This method applies only to interactive live streaming.</p>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="addVideoWatermark2"/></stentry>
@@ -1215,11 +1209,11 @@
             </simpletable>
         </section>
         <section id="encryption">
-            <title>加密</title>
+            <title>Encryption</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="enableEncryption"/></stentry>
@@ -1232,11 +1226,11 @@
             </simpletable>
         </section>
         <section id="audio_recorder">
-            <title>音频采集</title>
+            <title>Audio recorder</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="startAudioRecording3"/></stentry>
@@ -1249,11 +1243,11 @@
             </simpletable>
         </section>
         <section id="camera_control">
-            <title>摄像头控制</title>
-            <simpletable props="android ios windows unity">
+            <title>Camera control</title>
+            <simpletable props="android ios windows">
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="switchCamera"/></stentry>
@@ -1262,8 +1256,8 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onCameraFocusAreaChanged"/></stentry>
@@ -1276,12 +1270,12 @@
             </simpletable>
         </section>
         <section id="device_manager">
-            <title>设备管理</title>
-            <p props="windows">该组方法仅适用于 Windows。</p>
+            <title>Device management</title>
+            <p props="windows">This group of methods are for Windows only.</p>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="enumeratePlaybackDevices"/></stentry>
@@ -1386,8 +1380,8 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onAudioDeviceStateChanged"/></stentry>
@@ -1404,11 +1398,11 @@
             </simpletable>
         </section>
         <section id="stream_message">
-            <title>流消息</title>
+            <title>Stream message</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="createDataStream2"/></stentry>
@@ -1421,8 +1415,8 @@
             </simpletable>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onStreamMessage"/></stentry>
@@ -1435,11 +1429,11 @@
             </simpletable>
         </section>
         <section id="miscellaneous_audio_control">
-            <title>其他音频控制</title>
+            <title>Miscellaneous audio control</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="enableLoopbackRecording"/></stentry>
@@ -1453,11 +1447,11 @@
             </simpletable>
         </section>
         <section id="miscellaneous_video_control">
-            <title>其他视频控制</title>
+            <title>Miscellaneous video control</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="setCameraCapturerConfiguration"/></stentry>
@@ -1466,12 +1460,12 @@
             </simpletable>
         </section>
         <section id="video_source" props="electron">
-            <title>双实例</title>
-            <p>Agora Electron SDK 提供双实例的实现方法。第二个实例用以屏幕共享，请调用下表中的方法实现对应功能。</p>
+            <title>APIs for the second instance</title>
+            <p>Agora Electron SDK provides methods for a second instance. The second instance is used for screen sharing. Call the following methods to achieve corresponding functions for the second instance.</p>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="videoSourceInitializeWithContext"/></stentry>
@@ -1595,11 +1589,11 @@
                         /></stentry>
                 </strow>
             </simpletable>
-            <p>下表为以上双实例方法对应的回调。</p>
+            <p>The following table lists the callbacks for the second instance.</p>
             <simpletable>
                 <sthead>
-                    <stentry>回调</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Callbacks</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="videoSourceJoinChannelSuccess"/></stentry>
@@ -1780,11 +1774,11 @@
             </simpletable>
         </section>
         <section id="miscellaneous_methods">
-            <title>其他方法</title>
+            <title>Miscellaneous methods</title>
             <simpletable>
                 <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="setCloudProxy"/></stentry>
@@ -1829,11 +1823,11 @@
             </simpletable>
         </section>
         <section id="miscellaneous_events">
-            <title>其他事件</title>
+            <title>Miscellaneous events</title>
             <simpletable>
                 <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
                 </sthead>
                 <strow>
                     <stentry><xref keyref="onWarning"/></stentry>

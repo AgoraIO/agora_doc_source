@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_geteffectcurrentposition">
-    <title><ph keyref="getEffectCurrentPosition"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取指定音效文件的播放进度。</ph></shortdesc>
+    <title><ph keyref="getEffectCurrentPosition" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Retrieves the playback position of the audio effect file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getEffectCurrentPosition"/>
+                <indexterm keyref="getEffectCurrentPosition" />
             </keywords>
         </metadata>
     </prolog>
@@ -18,32 +18,32 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual int getEffectCurrentPosition(int soundId) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">getEffectCurrentPosition(soundId: number): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int GetEffectCurrentPosition(int soundId);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
             </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="android ios mac windows">
                 <dlentry>
-                    <dt>自从</dt>
+                    <dt>Since</dt>
                     <dd>v3.4.0</dd>
                 </dlentry>
             </dl>
-            <note type="attention">该方法需要在 <apiname keyref="playEffect3"/> 后调用。</note>
+            <note type="attention">Call this method after <apiname keyref="playEffect3" />.</note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>soundId</pt>
-                    <pd>音效 ID。请确保与 <apiname>playEffect</apiname> 中设置的 <parmname>soundId</parmname> 一致。</pd>
+                    <pd>Audio effect ID. Ensure that this parameter matches the <parmname>soundId</parmname> set in <apiname>playEffect</apiname>.</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-                <li>≥ 0：方法调用成功，返回指定音效文件的播放进度（毫秒）。</li>
-                <li>&lt; 0：方法调用失败。</li>
+                <li>≥ 0: A successful method call. Returns the playback position (ms) of the specified audio effect file.</li>
+                <li>&lt; 0: Failure.</li>
             </ul>
         </section>
     </refbody>

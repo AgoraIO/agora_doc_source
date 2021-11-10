@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videocanvas">
-    <title><ph keyref="VideoCanvas"/></title>
-    <shortdesc id="short"><ph id="shortdesc">视频显示设置。</ph></shortdesc>
+    <title><ph keyref="VideoCanvas" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Video display configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
                 <codeblock props="windows unity" outputclass="language-cpp">struct VideoCanvas {
     view_t view;
     int renderMode;
@@ -16,42 +16,41 @@
     void *priv;
     VIDEO_MIRROR_MODE_TYPE mirrorMode;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
             </p>
         </section>
         <section id="detailed_desc">
    
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
   <pt>view</pt>
-  <pd>视频显示窗口 (view)。</pd>
+  <pd>The video display window (view).</pd>
        </plentry>
        <plentry>
   <pt>renderMode</pt>
-  <pd>视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+  <pd>The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE" />.</pd>
        </plentry>
        <plentry>
   <pt>channelId</pt>
   <pd>
       <dl outputclass="since">
  <dlentry>
-     <dt>自从</dt>
+     <dt>Since</dt>
      <dd>v3.0.0</dd>
  </dlentry>
       </dl>
-      <p>频道名，即能够唯一标识频道、长度在 64 字节以内的字符。以下为支持的字符集范围（共 89 个字符）：
- <ul conkeyref="joinChannel2/char_support">
-     <li/>
+      <p>The unique channel name in the string format. Supported characters are (89 in total):<ul conkeyref="joinChannel2/char_support">
+     <li />
  </ul>
  <note type="attention">
      <ul>
-<li>该参数默认值为空字符 ""。如果用户是通过 <xref keyref="IRtcEngine"/> 类的 <xref keyref="joinChannel2"/> 方法加入频道的，则将参数设为默认值。此时 <codeph>VideoCanvas</codeph> 设置的是该用户在频道内的视图。</li>
-<li>如果用户是通过 <xref keyref="IChannel"/> 类的 <apiname keyref="joinChannel2"/> 方法加入频道的，则将该参数设为该 <apiname keyref="IChannel"/> 类对应的 <codeph>channelId</codeph>。此时 <codeph>VideoCanvas</codeph> 设置的是用户在该 <codeph>channelId</codeph> 对应频道内的视图。</li>
+<li>The default value is the empty string "". If the user joins the channel through the <xref keyref="joinChannel2" /> method of the <xref keyref="IRtcEngine" /> class, set this parameter to the default value. In this case, <codeph>VideoCanvas</codeph> sets the user's view in the channel.</li>
+<li>If the user joins the channel using the <apiname keyref="joinChannel2" /> method of the <xref keyref="IChannel" /> class, set this parameter to the <codeph>channelId</codeph> of the <apiname keyref="IChannel" /> object. In this case, <codeph>VideoCanvas</codeph> sets the user's view in the channel corresponding to the <codeph>channelId</codeph>.</li>
      </ul>
  </note>
       </p>
@@ -59,27 +58,25 @@
        </plentry>
        <plentry>
   <pt>uid</pt>
-  <pd>用户 ID。</pd>
+  <pd>User ID.</pd>
        </plentry>
        <plentry>
   <pt>mirrorMode</pt>
   <pd>
       <dl outputclass="since">
  <dlentry>
-     <dt>自从</dt>
+     <dt>Since</dt>
      <dd>v3.0.0</dd>
  </dlentry>
       </dl>
-      <p>视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。
- <note type="attention">
+      <p>The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.<note type="attention">
      <ul>
-<li>对于本地用户：
-    <ul>
-        <li>如果使用前置摄像头，默认启动镜像模式。</li>
-        <li>如果使用后置摄像头，默认关闭镜像模式。</li>
+<li>For the local user:<ul>
+        <li>If the user uses the front camera, the mirror mode is enabled by default.</li>
+        <li>If the user uses the rear camera, the mirror mode is disabled by default.</li>
     </ul>
 </li>
-<li>对于远端用户：默认关闭镜像模式。</li>
+<li>For the remote user: The SDK disables the mirror mode by default.</li>
      </ul>
  </note>
       </p>

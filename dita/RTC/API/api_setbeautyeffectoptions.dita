@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setbeautyeffectoptions">
     <title><ph keyref="setBeautyEffectOptions" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置美颜效果选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the image enhancement options.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -25,36 +25,35 @@
    
    <dl outputclass="since" props="rtc">
        <dlentry>
-  <dt>自从</dt>
+  <dt>Since</dt>
   <dd><ph keyref="since-setbeautyeffect" /></dd>
        </dlentry>
    </dl>
-   <p>开启本地美颜功能，并设置美颜效果选项。</p>
-   <p>该方法需要在 <xref keyref="enableVideo" /> 后调用。</p>
-   <note type="attention" props="android">该方法仅适用于 Android 4.4 及以上版本。</note>
+   <p>Enables or disables image enhancement and sets the options.</p>
+   <p>Call this method after <xref keyref="enableVideo" />.</p>
+   <note type="attention" props="android">This method only applies to Android 4.4 or later.</note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt props="android windows unity">enabled</pt>
            <pt props="ios mac">enable</pt>
-  <pd>是否开启美颜功能：<ul>
-      <li><codeph><ph keyref="true" /></codeph>: 开启。</li>
-      <li><codeph><ph keyref="false" /></codeph>:（默认）关闭。</li>
+  <pd>Whether to enable the image enhancement function:<ul>
+      <li><codeph><ph keyref="true" /></codeph>: Open.</li>
+      <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the image enhancement function.</li>
   </ul></pd>
        </plentry>
        <plentry>
   <pt>options</pt>
-  <pd>美颜选项，详细定义见 <xref keyref="BeautyOptions" />。</pd>
+  <pd>The image enhancement options. See <xref keyref="BeautyOptions" />.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。
-  <ul props="android"><li>ERR_NOT_SUPPORTED(4)：当前设备版本低于 Android 4.4，不支持该操作。</li></ul></li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.<ul props="android"><li>ERR_NOT_SUPPORTED(4): The system version is earlier than Android 4.4, which does not support this function.</li></ul></li>
    </ul>
         </section></refbody>
 </reference>

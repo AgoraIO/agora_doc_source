@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlogfilter">
     <title><ph keyref="setLogFilter" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置日志输出等级。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the log output level of the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -25,27 +25,26 @@
    
    <dl outputclass="deprecated">
        <dlentry>
-  <dt>弃用：</dt>
-  <dd>v3.3.0。请改用 <xref keyref="create2" /> 中的 <parmname>logConfig</parmname>。</dd>
+  <dt>Deprecated:</dt>
+  <dd>v3.3.0. Use <parmname>logConfig</parmname> in <xref keyref="create2" /> instead.</dd>
        </dlentry>
    </dl>
-   <p>该方法设置 Agora SDK 的输出日志输出等级。不同的输出等级可以单独或组合使用。日志级别顺序依次为 OFF、CRITICAL、ERROR、WARNING、INFO 和 DEBUG。
-       选择一个级别，你就可以看到在该级别之前所有级别的日志信息。</p>
-   <p>例如，你选择 WARNING 级别，就可以看到在 CRITICAL、ERROR 和 WARNING 级别上的所有日志信息。</p>
+   <p>This method sets the output log level of the SDK. You can use one or a combination of the log filter levels. The log level follows the sequence of OFF, CRITICAL, ERROR, WARNING, INFO, and DEBUG. Choose a level to see the logs preceding that level.</p>
+   <p>If, for example, you set the log level to WARNING, you see the logs within levels CRITICAL, ERROR, and WARNING.</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>filter</pt>
-  <pd>日志过滤等级。详见 <xref keyref="LOG_FILTER_TYPE" />。</pd>
+  <pd>The output log level of the SDK. For details, see <xref keyref="LOG_FILTER_TYPE" />.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

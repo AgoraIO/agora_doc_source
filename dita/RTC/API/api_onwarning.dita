@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onwarning">
     <title><ph keyref="onWarning" /></title>
-    <shortdesc id="short"><ph id="shortdesc">发生警告回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports a warning during SDK runtime.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -26,18 +26,17 @@
         </section>
         <section id="detailed_desc">
    
-   <p id="desc">该回调方法表示 SDK 运行时出现了（网络或媒体相关的）警告。通常情况下，SDK 上报的警告信息 App 可以忽略，SDK 会自动恢复。比如和服务器失去连接时，SDK
-       可能会上报 <parmname>WARN_OPEN_CHANNEL_TIMEOUT</parmname> 警告，同时自动尝试重连。</p>
+   <p id="desc">Occurs when a warning occurs during SDK runtime. In most cases, the app can ignore the warnings reported by the SDK because the SDK can usually fix the issue and resume running. For example, when losing connection with the server, the SDK may report <parmname>WARN_LOOKUP_CHANNEL_TIMEOUT</parmname> and automatically try to reconnect.</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>warn</pt>
-  <pd>警告代码，详见<xref keyref="errorCode">错误码和警告码</xref>。</pd>
+  <pd>Warning codes. For details, see <xref keyref="errorCode">Error Codes and Warning Codes</xref>.</pd>
        </plentry>
        <plentry>
   <pt>msg</pt>
-  <pd>警告描述。</pd>
+  <pd>Warning description.</pd>
        </plentry>
    </parml>
         </section></refbody>

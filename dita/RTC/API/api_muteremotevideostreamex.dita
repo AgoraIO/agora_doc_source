@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_muteremotevideostreamex">
     <title><ph keyref="muteRemoteVideoStreamEx" /></title>
-    <shortdesc id="short"><ph id="shortdesc">停止/恢复接收指定的视频流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Stops or resumes receiving the video stream of a specified user.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -25,25 +25,24 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <p>该方法停止/恢复接收某一个指定远端用户的视频流。在加入频道前或后都可以调用。该方法的设置在离开频道后失效。</p>
+            <p>This method is used to stops or resumes receiving the video stream of a specified user. You can call this method before or after joining a channel. If a user leaves a channel, the settings in this method become invalid.</p>
         </section>
         <section id="parameters">
-   <title>参数</title>
+   <title>Parameter</title>
    <parml>
        <plentry>
   <pt props="android ios mac">uid</pt>
-           <pt props="windows flutter">remoteUid</pt>
+           <pt props="windows">remoteUid</pt>
   <pd>
-      <p>远端用户的 ID。</p>
+      <p>The ID of the remote user.</p>
   </pd>
        </plentry>
        <plentry>
   <pt props="ios mac windows">mute</pt>
            <pt props="android">muted</pt>
-           <pd><p>是否停止接收某个远端用户的视频：
-               <ul>
-                   <li><codeph><ph keyref="true" /></codeph>: 停止接收。</li>
-                   <li><codeph><ph keyref="false" /></codeph>: （默认）恢复接收。</li>
+           <pd><p>Whether to stop receiving the video stream of the specified user:<ul>
+                   <li><codeph><ph keyref="true" /></codeph>: Stop receiving the video stream of the specified user.</li>
+                   <li><codeph><ph keyref="false" /></codeph>: (Default) Resume receiving the video stream of the specified user.</li>
                </ul></p>
       </pd>
        </plentry>
@@ -54,10 +53,10 @@
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0：方法调用成功。</li>
-       <li>&lt; 0：方法调用失败。 </li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section>
     </refbody>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_complain">
     <title><ph keyref="complain" /></title>
-    <shortdesc id="short"><ph id="shortdesc">投诉通话质量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Allows a user to complain about the call quality after a call ends.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -24,27 +24,27 @@
         </section>
         <section id="detailed_desc">
    
-   <p>该方法允许用户就通话质量进行投诉。需要在离开频道后调用。</p>
+   <p>This method allows users to complain about the quality of the call. Call this method after the user leaves the channel.</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>callId</pt>
-  <pd>通话 ID。你可以通过调用 <xref keyref="getCallId" /> 获取该参数。</pd>
+  <pd>The current call ID. You can get the call ID by calling <xref keyref="getCallId" />.</pd>
        </plentry>
        <plentry>
   <pt>description</pt>
-  <pd>（非必选项）给通话的描述。长度应小于 800 字节。</pd>
+  <pd>(Optional) A description of the call. The string length should be less than 800 bytes.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。<ul>
-  <li>-2(<codeph>ERR_INVALID_ARGUMENT</codeph>)。</li>
-  <li>-3(<codeph>ERR_NOT_READY</codeph>)。</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.<ul>
+  <li>-2 (<codeph>ERR_INVALID_ARGUMENT</codeph>).</li>
+  <li>-3 (<codeph>ERR_NOT_READY</codeph>)。</li>
        </ul></li>
    </ul>
         </section></refbody>

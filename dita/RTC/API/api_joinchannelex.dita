@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_joinchannelex">
     <title><ph keyref="joinChannelEx" /></title>
-    <shortdesc id="short"><ph id="shortdesc">使用连接 ID 加入频道。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Joins a channel with the connection ID.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,18 +31,17 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>调用该方法，你可以同时加入多个频道。</p>
+            <p>You can call this method multiple times to join more than one channels at a time.</p>
             <note id="note_ppw_nh5_3qb" type="attention">
                 <ul id="ul_rjs_4h5_3qb">
-                    <li>如果你已经在一个频道内，你不能用相同的用户 UID 再次加入该频道。</li>
-                    <li>我们推荐你在不同的频道内使用不同的用户 UID。</li>
-                    <li>如果你想在不同的设备上加入相同的频道，请确保你在不同设备上使用的用户 UID 都不同。 </li>
-                    <li>请确保生成 Token 时传入的 app ID 和创建 <xref keyref="IRtcEngine" /> 实例时传入的 app ID
-                        一致。</li>
+                    <li>If you are already in a channel, you cannot rejoin it with the same uid.</li>
+                    <li>We recommend using different user IDs for different channels.</li>
+                    <li>If you want to join the same channel from different devices, ensure that the user IDs in all devices are different.</li>
+                    <li>Ensure that the app ID you use to generate the token is the same with the app ID used when creating the <xref keyref="IRtcEngine" /> instance.</li>
                 </ul>
             </note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry conkeyref="joinChannel2/token">
                     <pt />
@@ -50,7 +49,7 @@
                 </plentry>
                 <plentry id="connection">
                     <pt>connection</pt>
-                    <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
+                    <pd>The connection info. For details, see <xref keyref="RtcConnection" />.</pd>
                 </plentry>
                 <plentry conkeyref="joinChannel2/options">
                     <pt />
@@ -59,7 +58,7 @@
                 <plentry id="event">
                     <pt props="android windows">eventHandler</pt>
                     <pt props="ios mac">delegate</pt>
-                    <pd><xref keyref="IRtcEngineEx" /> 的回调类，详见 <xref keyref="IRtcEngineEventHandler" />。</pd>
+                    <pd>The callback class of <xref keyref="IRtcEngineEx" />. For more details, see <xref keyref="IRtcEngineEventHandler" />.</pd>
                 </plentry>
                 <plentry props="ios mac" conkeyref="joinChannel2/joinsuccessblock">
                     <pt />
@@ -68,10 +67,9 @@
             </parml>
         </section>
         <section id="return_values" props="native electron unity">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul id="ul_vcc_cw5_3qb">
-                <li>0: 方法调用成功。
-                </li><li>&lt; 0: 方法调用失败。</li>
+                <li>0: Success.</li><li>&lt; 0: Failure.</li>
             </ul>
         </section>
     </refbody>

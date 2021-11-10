@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getaudiomixingpublishvolume">
     <title><ph keyref="getAudioMixingPublishVolume" /></title>
-    <shortdesc id="short"><ph id="shortdesc">获取音乐文件的远端播放音量。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Retrieves the audio mixing volume for publishing.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -24,18 +24,18 @@
         <section id="detailed_desc">
             <dl outputclass="since" props="native">
                 <dlentry>
-                    <dt>自从</dt>
+                    <dt>Since</dt>
                     <dd>v2.4.1</dd>
                 </dlentry>
             </dl>
-   <p>该接口可以方便开发者排查音量相关问题。</p>
-            <note type="attention">你需要在调用 <apiname keyref="startAudioMixing2" /> 并收到 <apiname keyref="onAudioMixingStateChanged" />(<codeph>PLAY</codeph>) 回调后调用该方法。</note>
+   <p>This method helps troubleshoot audio volume‑related issues.</p>
+            <note type="attention">You need to call this method after calling <apiname keyref="startAudioMixing2" /> and receiving the <apiname keyref="onAudioMixingStateChanged" />(<codeph>PLAY</codeph>) callback.</note>
         </section>
         <section id="return_values">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>≥ 0: 方法调用成功则返回音量值，范围为 [0,100]。</li>
-       <li>&lt; 0: 方法调用失败。</li>
+       <li>≥ 0: The audio mixing volume, if this method call succeeds. The value range is [0,100].</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

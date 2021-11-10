@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_addpublishstreamurl">
     <title><ph keyref="addPublishStreamUrl" /></title>
-    <shortdesc id="short"><ph id="shortdesc">增加旁路推流地址。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Publishes the local stream to a specified CDN live streaming URL.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -23,42 +23,42 @@
         </section>
         <section id="detailed_desc">
 
-   <p>调用该方法后，你可以向 CDN 推送 RTMP 或 RTMPS 协议的媒体流。SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged" /> 回调，报告增加旁路推流地址的状态。</p>
+   <p>After calling this method, you can push media streams in RTMP or RTMPS protocol to the CDN. The SDK triggers the <xref keyref="onRtmpStreamingStateChanged" /> callback on the local client to report the state of adding a local stream to the CDN.</p>
    <note type="attention" id="note">
        <ul>
-  <li>该方法需要在加入频道后调用。</li>
-           <li>请确保已开通旁路推流的功能。<ph props="ios android windows">详见进阶功能<xref keyref="guide-cdn-streaming">推流到 CDN</xref> 中的前提条件。</ph></li>
-  <li>只有直播场景中角色为主播的用户才能调用该方法。</li>
-  <li>该方法每次只能增加一路旁路推流地址。若需推送多路流，则需多次调用该方法。</li>
-  <li>Agora 目前仅支持转码时向 CDN 推送 RTMPS 协议的媒体流。</li>
+  <li>Call this method after joining a channel.</li>
+  <li>Ensure that you enable the RTMP Converter service before using this function. See the advanced guide<xref keyref="guide-cdn-streaming"> Push Streams to CDN</xref> in Prerequisites.</li>
+  <li>This method takes effect only when you are a host in live interactive streaming.</li>
+  <li>This method adds only one stream CDN streaming URL each time it is called. To push multiple URLs, call this method multiple times.</li>
+  <li>Agora supports pushing media streams in RTMPS protocol to the CDN only when you enable transcoding.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry id="url">
   <pt>url</pt>
-  <pd>CDN 推流地址，格式为 RTMP 或 RTMPS。该字符长度不能超过 1024 字节，不支持中文字符等特殊字符。</pd>
+  <pd>The CDN streaming URL in the RTMP or RTMPS format. The maximum length of this parameter is 1024 bytes. The URL address must not contain special characters, such as Chinese language characters.</pd>
        </plentry>
        <plentry>
   <pt>transcodingEnabled</pt>
   <pd>
-      <p id="transcoding-desc">是否转码。<xref keyref="term-transocding">转码</xref>是指在旁路推流时对音视频流进行转码处理后再推送到其他 CDN 服务器。多适用于频道内有多个主播，需要进行混流、合图的场景。 <ul>
-                                <li><codeph><ph keyref="true" /></codeph>: 转码。</li>
-                                <li><codeph><ph keyref="false" /></codeph>: 不转码。</li>
+      <p id="transcoding-desc">Whether to enable transcoding. <xref keyref="term-transocding">Transcoding</xref> in a CDN live streaming converts the audio and video streams before pushing them to the CDN server. It applies to scenarios where a channel has multiple broadcasters and composite layout is needed<ul>
+                                <li><codeph><ph keyref="true" /></codeph>: Enable transcoding.</li>
+                                <li><codeph><ph keyref="false" /></codeph>: Disable transcoding.</li>
                             </ul></p>
-      <note type="attention">如果该参数设为 <codeph><ph keyref="true" /></codeph>，需先调用 <xref keyref="setLiveTranscoding" /> 方法。</note>
+      <note type="attention">If you set this parameter as <codeph><ph keyref="true" /></codeph>, ensure that you call the <xref keyref="setLiveTranscoding" /> method before this method.</note>
   </pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。<ul>
-                        <li><codeph>ERR_INVALID_ARGUMENT</codeph> (2): 参数无效，一般是 URL 为空或是长度为 0 的字符串。</li>
-                        <li><codeph>ERR_NOT_INITIALIZED</codeph> (7): 推流时未初始化引擎。</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.<ul>
+                        <li><codeph>ERR_INVALID_ARGUMENT(-2)</codeph>: Invalid argument, usually because the URL address is null or the string length is 0.</li>
+                        <li><codeph>ERR_NOT_INITIALIZED(-7)</codeph>: You have not initialized the RTC engine when publishing the stream.</li>
                     </ul>
                 </li>
    </ul>

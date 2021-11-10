@@ -2,8 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_injectstreamconfig">
     <title><ph keyref="InjectStreamConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">输入外部音视频流的配置。
-        </ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Configurations of injecting an external audio or video stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -78,21 +77,21 @@
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">class InjectStreamConfig {
-
+  
   int? width;
-
+  
   int? height;
-
+  
   int? videoGop;
-
+  
   int? videoFramerate;
-
+  
   int? videoBitrate;
-
+  
   AUDIO_SAMPLE_RATE_TYPE? audioSampleRate;
-
+  
   int? audioBitrate;
-
+  
   int? audioChannels;
   InjectStreamConfig({
     this.width,
@@ -116,56 +115,51 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
-                <plentry props="android windows flutter">
+                <plentry>
                     <pt>width</pt>
-                    <pd>外部视频流输入后的宽度。默认值为 0，即保留视频原始宽度。</pd>
+                    <pd>The width of the external video stream after injecting. The default value is 0, which represents the same width as the original.</pd>
                 </plentry>
-                <plentry props="android windows flutter">
+                <plentry>
                     <pt>height</pt>
-                    <pd>外部视频流输入后的高度。默认值为 0，即保留视频原始高度。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>size</pt>
-                    <pd>外部视频流输入后的尺寸。</pd>
+                    <pd>The height of the external video stream after injecting. The default value is 0, which represents the same height as the original.</pd>
                 </plentry>
                 <plentry>
                     <pt>videoGop</pt>
-                    <pd>外部视频流输入的 GOP（帧）。默认值为 30 帧。</pd>
+                    <pd>The GOP (in frames) of injecting the external video stream. The default value is 30 frames.</pd>
                 </plentry>
                 <plentry>
                     <pt>videoFramerate</pt>
-                    <pd>外部视频流输入的帧率（fps）。默认值为 15 fps。</pd>
+                    <pd>The frame rate (fps) of injecting the external video stream. The default rate is 15 fps.</pd>
                 </plentry>
                 <plentry>
                     <pt>videoBitrate</pt>
                     <pd>
-                        <p>外部视频流输入的码率（Kbps）。默认设置为 400 Kbps。</p>
-                        <note type="attention">视频码率的设置与分辨率相关。如果设置的视频码率超出合理范围，SDK
-                            会按照合理区间自动设置码率。</note>
+                        <p>The bitrate (Kbps) of injecting the external video stream. The default value is 400 Kbps.</p>
+                        <note type="attention">The bitrate setting is closely linked to the video resolution. If the bitrate you set is beyond a reasonable range, the SDK sets it within a reasonable range.</note>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>audioSampleRate</pt>
-                    <pd><p>外部音频流输入的采样率。默认值为 48000 Hz。详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />。</p>
-                        <note type="attention"> 声网建议目前采用默认值，不要自行设置。 </note>
+                    <pd><p>The sampling rate (Hz) of injecting the external audio stream. The default value is 48000 Hz. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />.</p>
+                        <note type="attention">Agora recommends using the default value.</note>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>audioBitrate</pt>
                     <pd>
-                        <p>外部音频流输入的码率（Kbps）。默认值为 48 Kbps。</p>
-                        <note type="attention">声网建议目前采用默认值，不要自行设置。</note>
+                        <p>The bitrate (Kbps) of injecting the external audio stream. The default value is 48 Kbps.</p>
+                        <note type="attention">Agora recommends using the default value.</note>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>audioChannels</pt>
                     <pd>
-                        <p>外部音频流输入后的频道数。 <ul>
-                                <li>1: 单声道（默认）</li>
-                                <li>2: 双声道</li>
+                        <p>The number of channels of the external audio stream after injecting.<ul>
+                                <li>1:  (Default) Mono.</li>
+                                <li>2: Stereo.</li>
                             </ul>
                         </p>
-                        <note type="attention">声网建议目前采用默认值，不要自行设置。</note>
+                        <note type="attention">Agora recommends using the default value.</note>
                     </pd>
                 </plentry>
             </parml>

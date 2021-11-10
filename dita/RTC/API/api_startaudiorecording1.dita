@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiorecording1">
-    <title><ph keyref="startAudioRecording1"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开始客户端录音。</ph></shortdesc>
+    <title><ph keyref="startAudioRecording1" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Starts audio recording on the client.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -16,51 +16,50 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)startAudioRecording:(NSString * _Nonnull)filePath 
                    quality:(AgoraAudioRecordingQuality)quality;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioRecording(string filePath, AUDIO_RECORDING_QUALITY_TYPE quality);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
         </p>
         </section>
         <section id="detailed_desc">
    
    <dl outputclass="deprecated">
-       <dlentry >
-  <dt>弃用：</dt>
-  <dd>该方法从 v2.9.1 起废弃，其默认录音采样率为 32 kHz，不可修改。请改用新的 <xref keyref="startAudioRecording3"/> 方法。</dd>
+       <dlentry>
+  <dt>Deprecated:</dt>
+  <dd>This method is deprecated as of v2.9.1. It has a fixed recording sample rate of 32 kHz. Please use the <xref keyref="startAudioRecording3" /> method instead.</dd>
        </dlentry>
    </dl>
-   <p>Agora SDK 支持通话过程中在客户端进行录音。该方法录制频道内所有用户的音频，并生成一个包含所有用户声音的录音文件，录音文件格式可以为:
-       <ul>
-  <li><codeph>.wav</codeph>: 文件大，音质保真度高；</li>
-  <li><codeph>.aac</codeph>: 文件小，有一定的音质保真度损失。</li>
+   <p>The Agora SDK allows recording during a call. This method records the audio of all the users in the channel and generates an audio recording file. Supported formats of the recording file are as follows:<ul>
+  <li><codeph>.wav</codeph>: Large file size with high fidelity.</li>
+  <li><codeph>.aac</codeph>: Small file size with low fidelity.</li>
        </ul>
    </p>
-   <p>请确保 App 里指定的目录存在且可写。该接口需在 <xref keyref="joinChannel1"/> 之后调用。如果调用 <xref keyref="leaveChannel"/> 时还在录音，录音会自动停止。</p>
+   <p>Ensure that the directory for the recording file exists and is writable. This method should be called after the <xref keyref="joinChannel1" /> method. The recording automatically stops when you call the <xref keyref="leaveChannel" /> method.</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry conkeyref="AudioRecordingConfiguration/filepath">
-  <pt/>
-      <pd/>
+  <pt />
+      <pd />
        </plentry>
        <plentry>
   <pt>quality</pt>
-  <pd>录音质量。<ph props="windows ios mac unity">详见 <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/> 。</ph>
-      <ul props="android">
-          <li>0: 低音质。采样率为 32 kHz，录制 10 分钟的文件大小为 1.2 M 左右。</li>
-          <li>1: 中音质。采样率为 32 kHz，录制 10 分钟的文件大小为 2 M 左右。</li>
-          <li>2: 高音质。采样率为 32 kHz，录制 10 分钟的文件大小为 3.75 M 左右。</li>
-      </ul>
+  <pd>Audio recording quality.<ph props="windows ios mac unity"> See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />.</ph>
+  <ul props="android">
+           <li>0: Low quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and 10-minute recording is approximately 1.2 MB.</li>
+           <li>1: Medium quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and 10-minute recording is approximately 2 MB.</li>
+           <li>2: High quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and 10-minute recording is approximately 3.75 MB.</li>
+       </ul>
   </pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功</li>
-       <li>&lt; 0: 方法调用失败</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

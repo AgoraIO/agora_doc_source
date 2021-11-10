@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encodedaudioframeinfo">
     <title><ph keyref="EncodedAudioFrameInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">编码后音频的信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Audio information after encoding.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -19,12 +19,14 @@
         sampleRateHz(0),
         samplesPerChannel(0),
         numberOfChannels(0) {}
+
   EncodedAudioFrameInfo(const EncodedAudioFrameInfo&amp; rhs)
       : codec(rhs.codec),
         sampleRateHz(rhs.sampleRateHz),
         samplesPerChannel(rhs.samplesPerChannel),
-        numberOfChannels(rhs.numberOfChannels),
+        numberOfChannels(rhs.numberOfChannels) {}
         advancedSettings(rhs.advancedSettings) {}
+  
   AUDIO_CODEC_TYPE codec;
   int sampleRateHz;
   int samplesPerChannel;
@@ -64,25 +66,25 @@
                 <plentry>
                     <pt props="windows">codec</pt>
                     <pt props="ios mac">codecType</pt>
-                    <pd>音频编码规格: <xref keyref="AUDIO_CODEC_TYPE" />。</pd>
+                    <pd>Audio Codec type: <xref keyref="AUDIO_CODEC_TYPE" /></pd>
                 </plentry>
                 <plentry>
                     <pt props="windows">sampleRateHz</pt>
                     <pt props="ios mac">samplesPerSec</pt>
-                    <pd>音频采样率 (Hz)。</pd>
+                    <pd>Audio sample rate (Hz).</pd>
                 </plentry>
                 <plentry>
                     <pt>samplesPerChannel</pt>
-                    <pd>每个声道的音频采样数。</pd>
+                    <pd>The number of audio samples per channel.</pd>
                 </plentry>
                 <plentry>
-                    <pt props="windows">numberOfChannels</pt>
+                    <pt props="windows">numberOfChannels:</pt>
                     <pt props="ios mac">channels</pt>
-                    <pd>声道数。</pd>
+                    <pd>The number of audio channels.</pd>
                 </plentry>
                 <plentry props="windows">
                     <pt>advancedSettings</pt>
-                    <pd>该功能暂不支持。</pd>
+                    <pd>This function is currently not supported.</pd>
                 </plentry>
             </parml>
         </section>

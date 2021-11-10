@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onerror">
     <title><ph keyref="onError" /></title>
-    <shortdesc id="short"><ph id="shortdesc">发生错误回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports an error during SDK runtime.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -26,19 +26,18 @@
         </section>
         <section id="detailed_desc">
    
-   <p id="desc">该回调方法表示 SDK 运行时出现了（网络或媒体相关的）错误。通常情况下，SDK 上报的错误意味着 SDK 无法自动恢复，需要 App 干预或提示用户。
-       比如启动通话失败时，SDK 会上报 <parmname>ERR_START_CALL</parmname> 错误。App 可以提示用户启动通话失败，并调用 <xref keyref="leaveChannel" /> 退出频道。</p>
-    <note type="attention" props="electron">该回调仅报告 Native 层发生的错误。如果你想收到 Electron 层发生的错误，请改用 <xref keyref="onApiError" />。</note>
+   <p id="desc">This callback indicates that an error (concerning network or media) occurs during SDK runtime. In most cases, the SDK cannot fix the issue and resume running. The SDK requires the application to take action or informs the user about the issue. For example, the SDK reports an <parmname>ERR_START_CALL </parmname>error when failing to initialize a call. The app informs the user that the call initialization failed and calls <xref keyref="leaveChannel" /> to leave the channel.</p>
+    <note type="attention" props="electron">The callback only reports errors in the C++ layer. If you want to receive errors from the Electron layer, use <xref keyref="onApiError" />.</note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>err</pt>
-  <pd>错误代码，详见 <xref keyref="errorCode">错误码和警告码</xref>。</pd>
+  <pd>The error code. For details, see <xref keyref="errorCode">Error Codes and Warning Codes</xref>.</pd>
        </plentry>
        <plentry>
   <pt>msg</pt>
-  <pd>错误描述。</pd>
+  <pd>The error message.</pd>
        </plentry>
    </parml>
         </section></refbody>

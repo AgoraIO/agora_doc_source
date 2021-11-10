@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getuserinfobyuid">
     <title><ph keyref="getUserInfoByUid" /></title>
-    <shortdesc id="short"><ph id="shortdesc">通过 UID 获取用户信息。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the user information by passing in the user ID.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -22,43 +22,42 @@
        </p>
         </section>
         <section id="detailed_desc">
-
+   
    <dl outputclass="since" props="rtc">
        <dlentry>
-  <dt>自从</dt>
+  <dt>Since</dt>
   <dd>v2.8.0</dd>
        </dlentry>
    </dl>
-   <p>远端用户加入频道后， SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的 Mapping 表，并在本地触发 <xref keyref="onUserInfoUpdated" /> 回调。</p>
-   <p>收到这个回调后，你可以调用该方法，通过传入 UID 获取包含了指定用户 User Account 的 <xref keyref="UserInfo" /> 对象。</p>
+   <p>After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers the <xref keyref="onUserInfoUpdated" /> callback on the local client.</p> 
+   <p>After receiving the callback, you can call this method to get the user account of the remote user from the <xref keyref="UserInfo" /> object by passing in the user ID.</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>uid</pt>
-  <pd>用户 ID。该参数为必填。</pd>
+  <pd>User ID. It is mandatory.</pd>
        </plentry>
        <plentry props="ios mac windows unity">
   <pt>userInfo</pt>
-           <pd>输入和输出参数。标识用户的 <apiname keyref="UserInfo" /> 对象： <ul>
-                            <li>输入值：一个 <apiname keyref="UserInfo" /> 对象</li>
-                            <li>输出值：一个包含了用户 User Account 和 UID 的 <apiname keyref="UserInfo" />
-                                对象</li>
+           <pd>Input and output parameter. The <apiname keyref="UserInfo" /> object that identifies the user information.<ul>
+                            <li>Input: a <apiname keyref="UserInfo" /> object.</li>
+                            <li>Output: A <apiname keyref="UserInfo" /> object that contains the user account and user ID of the user.</li>
                         </ul>
                     </pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
-   <title>返回值</title>
-            <p props="android flutter">包含用户信息的 <apiname keyref="UserInfo" /> 对象。</p>
-            <ul props="android flutter">
-                <li>非空：方法调用成功。</li>
-                <li>空：方法调用失败。</li>
+   <title>Returns</title>
+            <p props="android">The <apiname keyref="UserInfo" /> object that identifies the user information.</p>
+            <ul props="android">
+                <li>Not null: Success.</li>
+                <li>Null: Failure.</li>
             </ul>
             <ul props="ios mac windows">
-                <li>0: 方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。</li>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
             </ul>
         </section></refbody>
 </reference>

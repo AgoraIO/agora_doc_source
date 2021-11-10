@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_createdatastreamex2">
     <title><ph keyref="createDataStreamEx2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">创建数据流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -24,18 +24,18 @@
         </p>
     </section>
         <section id="detailed_desc">
-            <p id="desc">创建数据流。每个用户在每个频道中最多只能创建 5 个数据流。</p>
-            <p id="diff">相比 <xref keyref="createDataStreamEx1" />，本方法不支持数据可靠。接收方会丢弃超出发送时间 5 秒后的数据包。</p>
+            <p id="desc">Creates a data stream. Each user can create up to five data streams in a single channel.</p>
+            <p id="diff">Compared with <xref keyref="createDataStreamEx1" />, this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry id="streamId" props="windows">
   <pt>streamId</pt>
-  <pd>输出参数，数据流 ID。</pd>
+  <pd>Output parameter. Pointer to the ID of the created data stream.</pd>
        </plentry>
        <plentry id="config">
   <pt>config</pt>
-  <pd>数据流设置。详见 <xref keyref="DataStreamConfig" />。</pd>
+  <pd>The configurations for the data stream. For details, see <xref keyref="DataStreamConfig" />.</pd>
        </plentry>
        <plentry conkeyref="joinChannelEx/connection">
            <pt />
@@ -44,11 +44,11 @@
    </parml>
         </section>
         <section id="return_values">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li props="windows">0: 创建数据流成功。</li>
-       <li props="android ios mac electron flutter">创建的数据流的 ID：方法调用成功。</li>
-       <li>&lt; 0：方法调用失败。</li>
+       <li props="windows">0: The data stream is successfully created.</li>
+       <li props="android ios mac electron">ID of the created data stream, if the method call succeeds.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>

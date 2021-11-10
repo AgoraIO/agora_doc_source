@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onstreaminjectedstatus">
-    <title><ph keyref="onStreamInjectedStatus"/></title>
-    <shortdesc id="short"><ph id="shortdesc">输入在线媒体流状态回调。</ph></shortdesc>
+    <title><ph keyref="onStreamInjectedStatus" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a media stream URL address is added to the interactive live streaming.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -23,33 +23,33 @@
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.STREAM_INJECTED_STATUS, cb: (
      url: string, 
      uid: number, 
-     status: INJECT_STREAM_STATUS) => void
+     status: INJECT_STREAM_STATUS) =&gt; void
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamInjectedStatus(string url, uint uid, int status)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
         </p>
         </section>
         <section id="detailed_desc">
-       <note conkeyref="addInjectStreamUrl/inject-sunset-note"/>
+       <note conkeyref="addInjectStreamUrl/inject-sunset-note" />
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt/>
-                  <pd/>
+                  <pt />
+                  <pd />
               </plentry>
        <plentry id="url">
   <pt>url</pt>
-  <pd>在线媒体流的地址。</pd>
+  <pd>The URL address of the externally injected stream.</pd>
        </plentry>
        <plentry id="uid">
   <pt>uid</pt>
-  <pd>用户 ID。</pd>
+  <pd>User ID.</pd>
        </plentry>
        <plentry id="status">
   <pt>status</pt>
-  <pd>输入的在线媒体流状态: <xref keyref="INJECT_STREAM_STATUS"/> 。</pd>
+  <pd>State of the externally injected stream: <xref keyref="INJECT_STREAM_STATUS" />.</pd>
        </plentry>
    </parml>
         </section></refbody>

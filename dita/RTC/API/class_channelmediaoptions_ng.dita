@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediaoptions">
     <title><ph keyref="ChannelMediaOptions" /></title>
-    <shortdesc id="short"><ph id="shortdesc">频道媒体设置选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The channel media options.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -47,17 +47,13 @@
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct ChannelMediaOptions {
   Optional&lt;bool&gt; publishCameraTrack;
-  Optional&lt;bool&gt; publishSecondaryCameraTrack;
   Optional&lt;bool&gt; publishAudioTrack;
   Optional&lt;bool&gt; publishScreenTrack;
-  Optional&lt;bool&gt; publishSecondaryScreenTrack;
   Optional&lt;bool&gt; publishCustomAudioTrack;
-  Optional&lt;bool&gt; publishCustomAudioTrackEnableAec;
   Optional&lt;bool&gt; publishCustomVideoTrack;
   Optional&lt;bool&gt; publishEncodedVideoTrack;
   Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
   Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
-  Optional&lt;bool&gt; publishTrancodedVideoTrack;
   Optional&lt;bool&gt; autoSubscribeAudio;
   Optional&lt;bool&gt; autoSubscribeVideo;
   Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
@@ -68,6 +64,8 @@
   Optional&lt;int&gt; audioDelayMs;
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}
+...
+};
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp" />
@@ -149,118 +147,79 @@
             <parml>
                 <plentry>
                     <pt>publishCameraTrack</pt>
-                    <pd>设置是否发布摄像头采集的视频：<ul id="ul_vx5_np5_3qb">
-                        <li><codeph><ph keyref="true" /></codeph>：发布摄像头采集的视频。</li>
-                        <li><codeph><ph keyref="false" /></codeph>：不发布摄像头采集的视频。</li>
+                    <pd>Whether to publish the video captured by the camera:<ul id="ul_vx5_np5_3qb">
+                        <li><codeph><ph keyref="true" /></codeph>: (Default) Publish the video captured by the camera.</li>
+                        <li><codeph><ph keyref="false" /></codeph>: Do not publish the video captured by the camera.</li>
                         </ul></pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>publishSecondaryCameraTrack</pt>
-                    <pd>设置是否发布第二个摄像头采集的视频：<ul>
-                        <li><codeph><ph keyref="true" /></codeph>：发布第二个摄像头采集的视频。</li>
-                        <li><codeph><ph keyref="false" /></codeph>：不发布第二个摄像头采集的视频。</li>
-                    </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishAudioTrack</pt>
-                    <pd>设置是否发布采集到的音频：<ul>
-                            <li><codeph><ph keyref="true" /></codeph>：发布采集到的音频。</li>
-                            <li><codeph><ph keyref="false" /></codeph>：不发布采集到的音频。</li>
+                    <pd>Whether to publish the captured audio:<ul>
+                            <li><codeph><ph keyref="true" /></codeph>: (Default) Publish the captured audio.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: Do not publish the captured audio.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishScreenTrack</pt>
                     <pd>
-                        <p>设置是否发布屏幕采集的视频：<ul>
-                                <li><codeph><ph keyref="true" /></codeph>：发布屏幕采集到的视频。</li>
-                                <li><codeph><ph keyref="false" /></codeph>：不发布屏幕采集到的视频。</li>
+                        <p>Whether to publish the captured video from the screen:<ul>
+                                <li><codeph><ph keyref="true" /></codeph>: Publish the captured video from the screen.</li>
+                                <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured video from the screen.</li>
                             </ul></p>
-                    </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>publishSecondaryScreenTrack</pt>
-                    <pd>
-                        <p>设置是否发布第二个屏幕采集的视频：<ul>
-                            <li><codeph><ph keyref="true" /></codeph>：发布第二个屏幕采集到的视频。</li>
-                            <li><codeph><ph keyref="false" /></codeph>：不发布第二个屏幕采集到的视频。</li>
-                        </ul></p>
-                    </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>publishTrancodedVideoTrack</pt>
-                    <pd>
-                        <p>设置是否发布本地的转码视频：<ul>
-                            <li><codeph><ph keyref="true" />：发布本地的转码视频。</codeph></li>
-                            <li><codeph><ph keyref="false" />：不发布本地的转码视频。</codeph></li>
-                        </ul></p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>publishCustomAudioTrack</pt>
-                    <pd>设置是否发布自定义采集的音频：<ul>
-                        <li><codeph><ph keyref="true" /></codeph>：发布自定义采集到的音频。</li>
-                        <li><codeph><ph keyref="false" /></codeph>：不发布自定义采集到的音频。</li>
-                    </ul></pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>publishCustomAudioTrackEnableAec</pt>
-                    <pd>设置发布自定义采集的音频时是否启用 AEC：<ul>
-                        <li><codeph><ph keyref="true" /></codeph>：发布自定义采集的音频时启用 AEC。</li>
-                        <li><codeph><ph keyref="false" /></codeph>：发布自定义采集的音频时不启用 AEC。</li>
-                    </ul></pd>
+                    <pd>Whether to publish the captured audio from a custom source:<ul>
+                            <li><codeph><ph keyref="true" /></codeph>: Publish the captured audio from a custom source.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured audio from the custom source.</li>
+                        </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishCustomVideoTrack</pt>
-                    <pd>设置是否发布自定义采集的视频：<ul>
-                            <li><codeph><ph keyref="true" /></codeph>：发布自定义采集的视频。</li>
-                            <li><codeph><ph keyref="false" /></codeph>：不发布自定义采集到的视频。</li>
+                    <pd>Whether to publish the captured video from a custom source:<ul>
+                            <li><codeph><ph keyref="true" /></codeph>: Publish the captured video from a custom source.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured video from the custom source.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishEncodedVideoTrack</pt>
-                    <pd>设置是否发布编码后的视频：<ul id="ul_ljg_4q5_3qb">
-                            <li><codeph><ph keyref="true" /></codeph>：发布编码后的视频 。</li>
-                            <li><codeph><ph keyref="false" /></codeph>：不发布编码后的视频。</li>
+                    <pd>Whether to publish the encoded video:<ul id="ul_ljg_4q5_3qb">
+                            <li><codeph><ph keyref="true" /></codeph>: Publish the encoded video.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the encoded video.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishMediaPlayerAudioTrack</pt>
-                    <pd>设置是否发布媒体播放器的音频： <ul id="ul_gr3_rq5_3qb">
-                            <li><codeph><ph keyref="true" /></codeph>：发布媒体播放器的音频。</li>
-                            <li><codeph><ph keyref="false" /></codeph>：不发布媒体播放器的音频。</li>
+                    <pd>Whether to publish the audio from the media player:<ul id="ul_gr3_rq5_3qb">
+                            <li><codeph><ph keyref="true" /></codeph>: Publish the audio from the media player.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the audio from the media player.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishMediaPlayerVideoTrack</pt>
-                    <pd>设置是否发布媒体播放器的视频： <ul id="ul_gtd_tq5_3qb">
-                            <li><codeph><ph keyref="true" /></codeph>：发布媒体播放器的视频。</li>
-                            <li><codeph><ph keyref="false" /></codeph>：不发布媒体播放器的视频。</li>
+                    <pd>Whether to publish the video from the media player:<ul id="ul_gtd_tq5_3qb">
+                            <li><codeph><ph keyref="true" /></codeph>: Publish the video from the media player.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the video from the media player.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>autoSubscribeAudio</pt>
-                    <pd>设置是否自动订阅所有音频流：  <ul id="ul_gxf_vq5_3qb">
-                            <li><codeph><ph keyref="true" /></codeph>：自动订阅所有音频流。</li>
-                            <li><codeph><ph keyref="false" /></codeph>：不自动订阅任何音频流。</li>
+                    <pd>Whether to automatically subscribe to all remote audio streams when the user joins a channel:<ul id="ul_gxf_vq5_3qb">
+                            <li><codeph><ph keyref="true" /></codeph>: (Default) Subscribe to all remote audio streams.</li>
+                            <li><codeph><ph keyref="false" /></codeph>:Do not subscribe to any remote audio stream.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>autoSubscribeVideo</pt>
-                    <pd>设置是否自动订阅所有视频流：  <ul id="ul_gfh_xq5_3qb">
-                            <li><codeph><ph keyref="true" /></codeph>：自动订阅所有视频流。</li>
-                            <li><codeph><ph keyref="false" /></codeph>：不自动订阅任何视频流。</li>
+                    <pd>Whether to subscribe to all remote video streams when the user joins the channel:<ul id="ul_gfh_xq5_3qb">
+                            <li><codeph><ph keyref="true" /></codeph>: Subscribe to all remote video streams.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not subscribe to any remote video stream.</li>
                         </ul></pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>enableAudioRecordingOrPlayout</pt>
-                    <pd>设置是否开启音频录制或播放：  <ul>
-                        <li><codeph><ph keyref="true" /></codeph>：开启音频录制和播放。</li>
-                        <li><codeph><ph keyref="false" /></codeph>：不开启音频录制或播放。</li>
-                    </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishMediaPlayerId</pt>
-                    <pd>待发布的媒体播放器的 ID。默认值为 0。</pd>
+                    <pd>The ID of the media player to be published. The default value is 0.</pd>
                 </plentry>
                 <plentry>
                     <pt>clientRoleType</pt>
@@ -273,13 +232,6 @@
                 <plentry>
                     <pt>channelProfile</pt>
                     <pd conkeyref="setChannelProfile/channelprofiletype" />
-                </plentry>
-                <plentry props="windows">
-                    <pt>audioDelayMs</pt>
-                    <pd>
-                        <p>发送音频帧的时延（以毫秒为单位），用于控制 A/V 同步。</p>
-                        <p>如果要关闭时延，将此参数值设置为 0。</p>
-                    </pd>
                 </plentry>
             </parml>
         </section>

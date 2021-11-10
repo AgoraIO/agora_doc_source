@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_registerlocaluseraccount">
     <title><ph keyref="registerLocalUserAccount" /></title>
-    <shortdesc id="short"><ph id="shortdesc">注册本地用户 User Account。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Registers a user account.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -26,50 +26,49 @@
    
    <dl outputclass="since" props="rtc">
        <dlentry>
-  <dt>自从</dt>
+  <dt>Since</dt>
   <dd>v2.8.0</dd>
        </dlentry>
    </dl>
-   <p>该方法为本地用户注册一个 User Account。注册成功后，该 User Account 即可标识该本地用户的身份，用户可以使用它加入频道。</p>
-   <p>成功注册 User Account 后，本地会触发 <xref keyref="onLocalUserRegistered" /> 回调，告知本地用户的 UID 和 User Account。</p>
-   <p>该方法为可选。如果你希望用户使用 User Account 加入频道，可以选用以下两种方式：<ul>
-       <li>先调用 <apiname keyref="registerLocalUserAccount" /> 方法注册 Account，再调用 <apiname keyref="joinChannelWithUserAccount2" /> 方法加入频道。</li>
-       <li>直接调用 <apiname keyref="joinChannelWithUserAccount2" /> 方法加入频道。</li>
+   <p>Once registered, the user account can be used to identify the local user when the user joins the channel. After the registration is successful, the user account can identify the identity of the local user, and the user can use it to join the channel.</p>
+   <p>After the user successfully registers a user account, the SDK triggers the <xref keyref="onLocalUserRegistered" /> callback on the local client, reporting the user ID and user account of the local user.</p>
+   <p>This method is optional. To join a channel with a user account, you can choose either of the following ways:<ul>
+       <li>Call <apiname keyref="registerLocalUserAccount" /> to to create a user account, and then call <apiname keyref="joinChannelWithUserAccount2" /> to join the channel.</li>
+       <li>Call the <apiname keyref="joinChannelWithUserAccount2" /> method to join the channel.</li>
    </ul></p>
-   <p>两种方式的区别在于，提前调用 <apiname keyref="registerLocalUserAccount" />，可以缩短使用 <apiname keyref="joinChannelWithUserAccount2" /> 进入频道的时间。</p>
+   <p>The difference between the two ways is that the time elapsed between calling the <apiname keyref="registerLocalUserAccount" /> method and joining the channel is shorter than directly calling <apiname keyref="joinChannelWithUserAccount2" />.</p>
    <note type="attention">
        <ul>
-  <li><parmname>userAccount</parmname> 不能为空，否则该方法不生效。</li>
-  <li>请确保在该方法中设置的 User Account 在频道中的唯一性。</li>
-  <li>为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。 如果有用户通过 Agora Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</li>
+  <li>Ensure that you set the <parmname>userAccount</parmname> parameter. Otherwise, this method does not take effect.</li>
+  <li>Ensure that the user account is unique in the channel.</li>
+  <li>To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the uid of the user is set to the same parameter type.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt props="android windows unity">appId</pt>
            <pt props="ios mac">appID</pt>
-  <pd>你的项目在 Agora 控制台注册的 App ID。</pd>
+  <pd>The App ID of your project on Agora Console.</pd>
        </plentry>
        <plentry>
   <pt>userAccount</pt>
-  <pd><p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User Account，并确保同一频道中每个用户的 User Account 是唯一的。
-      该参数为必填，最大不超过 255 字节，不可填 <ph keyref="NULL" />。以下为支持的字符集范围（共 89 个字符）：<ul>
-      <li>26 个小写英文字母 a-z</li>
-      <li>26 个大写英文字母 A-Z</li>
-      <li>10 个数字 0-9</li>
-      <li>空格</li>
+  <pd><p>The user account. This parameter is used to identify the user in the channel for real-time audio and video engagement. You need to set and manage user accounts yourself and ensure that each user account in the same channel is unique. The maximum length of this parameter is 255 bytes. Ensure that you set this parameter and do not set it as <ph keyref="NULL" />. Supported characters are (89 in total):<ul>
+      <li>The 26 lowercase English letters: a to z.</li>
+      <li>The 26 uppercase English letters: A to Z.</li>
+      <li>All numeric characters: 0 to 9.</li>
+      <li>Space</li>
       <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
   </ul></p></pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>0: 方法调用成功。</li>
-       <li>&lt; 0: 方法调用失败。</li>
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
