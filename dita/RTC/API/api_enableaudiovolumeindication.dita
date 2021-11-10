@@ -12,10 +12,11 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="android" outputclass="language-java">public abstract int enableAudioVolumeIndication(int interval, int smooth);</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract int enableAudioVolumeIndication(int interval, int smooth, boolean reportvad);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableAudioVolumeIndication:(NSInteger)interval
-                smooth:(NSInteger)smooth;</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth) = 0;</codeblock>
+               smooth:(NSInteger)smooth
+               reportvad:(BOOL)reprotvad;</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">virtual int enableAudioVolumeIndication(int interval, int smooth, bool reportvad) = 0;</codeblock>
         </p>
         <p outputclass="codeblock" props="rtc">
                 <codeblock props="android" outputclass="language-java">public abstract int enableAudioVolumeIndication(int interval, int smooth, boolean report_vad);</codeblock>
@@ -48,8 +49,8 @@ keyref="onAudioVolumeIndication"/> 回调。</li>
   <pt>smooth</pt>
   <pd>平滑系数，指定音量提示的灵敏度。取值范围为 [0,10]，建议值为 3。数字越大，波动越灵敏；数字越小，波动越平滑。</pd>
        </plentry>
-       <plentry props="rtc">
-  <pt props="ios mac windows android">report_vad</pt>
+       <plentry>
+           <pt props="ios mac windows android"><ph props="rtc">report_vad</ph><ph props="rtc-ng">reprotvad</ph></pt>
   <pt props="unity">reportVad</pt>
   <pd>
       <ul>
