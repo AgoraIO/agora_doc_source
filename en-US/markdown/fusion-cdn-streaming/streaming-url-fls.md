@@ -1,24 +1,24 @@
-你需要根据 Agora 的规则拼接得到直播推流和播流的 URL。 本文介绍直播流 URL 的拼接规则。
+You need to follow the Agora rules to construct the live streaming and the URL of the stream playing. This page introduces the constructing rules of the live streaming.
 
 ## Understand the tech
 
-因为 URL 中可能包含鉴权信息，Agora 建议在你的业务服务器上实现 URL 拼接，使用流程如下：
+As the URL might contain the authentication information, Agora recommends constructing the URL in your business server. The following diagram shows the process:
 
 ![process of constructing urls](https://web-cdn.agora.io/docs-files/1635838191301)
 
 
 
-## 拼接推流 URL
+## Construct the URL of the stream pushing
 
-推流 URL 由四部分组成，如下图的示例 URL 所示：
+The URL of the stream pushing includes four parts as shown in the following URL example:
 
-![example url of strream pushing](https://web-cdn.agora.io/docs-files/1635229049639)
+![example url of stream pushing](https://web-cdn.agora.io/docs-files/1635229049639)
 
-各部分说明：
+Description of each part:
 
-| URL分段 | 是否必须 | Description |
+| URL分段 | Necessary or not | Description |
 | :--------- | :------- | :----------------------------------------------------------- |
-| 域名 | Yes | 推流使用的域名，必须已备案且 CNAME 配置成功。 |
+| Domain name | Yes | 推流使用的域名，必须已备案且 CNAME 配置成功。 |
 | 发布点 | Yes | 默认发布点为 live，每个发布点都有一套直播流相关的配置。 |
 | 流名 | Yes | 直播流名称，用于标识一路直播流，请确保直播流名称唯一。 |
 | 鉴权字符串 | No | 如果没有设置直播流鉴权，则 URL 地址中无需 "?" 及后面的内容。 <br/>鉴权字符串由以下参数组成：<ul><li>`ts`：URL 失效的 Unix 时间戳，单位为秒。 该值表示鉴权字符串过期的时间，例如，`ts=1635004800` 表示鉴权字符串在 2021 年 10 月 24 日 0 点前有效。</li><li>`sign`：防盗链签名。</li></ul>For more details, see<a href="#key">计算鉴权字符串</a>。 |
@@ -29,7 +29,7 @@
 
 > URL 中的域名必须为播流域名。
 
-| 播放协议 | URL 路径 | URL 示例 |
+| 播放协议 | URL path | URL sample |
 | :------- | :------------------------------------ | :----------------------------------------------------------- |
 | RTMP | /{entry-point}/{stream} | rtmp(s)://domain/live/stream?ts=1635004800&sign=95b0a9970c593819 |
 | HTTP-FLV | /{entry-point}/{stream}.flv | http(s)://domain/live/stream**.flv**?ts=1635004800&sign=337f185b6571cd42 |
