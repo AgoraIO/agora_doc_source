@@ -4,7 +4,7 @@
 
 因为 URL 中可能包含鉴权信息，Agora 建议在你的业务服务器上实现 URL 拼接，使用流程如下：
 
-![process of constructing urls](https://web-cdn.agora.io/docs-files/1635229035690)
+![process of constructing urls](https://web-cdn.agora.io/docs-files/1635838191301)
 
 
 
