@@ -76,7 +76,28 @@
     rednessLevel: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class BeautyOptions {
+  
+  LIGHTENING_CONTRAST_LEVEL? lighteningContrastLevel;
+  
+  double? lighteningLevel;
+  
+  double? smoothnessLevel;
+  
+  double? rednessLevel;
+  
+  double? sharpnessLevel;
+  BeautyOptions({
+    this.lighteningContrastLevel,
+    this.lighteningLevel,
+    this.smoothnessLevel,
+    this.rednessLevel,
+    this.sharpnessLevel,
+  });
+    factory BeautyOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$BeautyOptionsFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$BeautyOptionsToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">

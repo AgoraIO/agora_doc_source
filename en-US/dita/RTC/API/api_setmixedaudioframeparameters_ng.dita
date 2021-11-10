@@ -21,7 +21,8 @@
                 <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="unity" outputclass="language-csharp" />
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setMixedAudioFrameParameters(
+      int sampleRate, int channel, int samplesPerCall);</codeblock>
             </p>
         </section>
         <section id="parameters"><title>Parameter</title>
@@ -53,7 +54,7 @@
                 <p>The SDK triggers the <apiname keyref="onMixedAudioFrame" /> callback according to the sample interval. Sample interval (sec) = <codeph>samplePerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>). Ensure that the value of sample interval ≥ 0.01.</p>
             </note>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul id="ul_ahk_23f_3qb">
                 <li>0: Success.</li>

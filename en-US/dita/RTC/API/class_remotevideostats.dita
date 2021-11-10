@@ -72,7 +72,52 @@
     publishDuration: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class RemoteVideoStats {
+  
+  uid_t uid;
+  
+  int delay;
+  
+  int width;
+  
+  int height;
+  
+  int receivedBitrate;
+  
+  int decoderOutputFrameRate;
+  
+  int rendererOutputFrameRate;
+  
+  int frameLossRate;
+  
+  int packetLossRate;
+  
+  VIDEO_STREAM_TYPE rxStreamType;
+  
+  int totalFrozenTime;
+  
+  int frozenRate;
+  
+  int avSyncTimeMs;
+  RemoteVideoStats(
+    this.uid,
+    this.delay,
+    this.width,
+    this.height,
+    this.receivedBitrate,
+    this.decoderOutputFrameRate,
+    this.rendererOutputFrameRate,
+    this.frameLossRate,
+    this.packetLossRate,
+    this.rxStreamType,
+    this.totalFrozenTime,
+    this.frozenRate,
+    this.avSyncTimeMs,
+  );
+    factory RemoteVideoStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RemoteVideoStatsFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$RemoteVideoStatsToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">

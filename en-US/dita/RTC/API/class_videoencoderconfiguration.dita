@@ -91,7 +91,37 @@
     mirrorMode: VIDEO_MIRROR_MODE_TYPE;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
+  
+  VIDEO_CODEC_TYPE? codecType;
+  
+  VideoDimensions? dimensions;
+  
+  FRAME_RATE? frameRate;
+  
+  int? bitrate;
+  
+  int? minBitrate;
+  
+  ORIENTATION_MODE? orientationMode;
+  
+  DEGRADATION_PREFERENCE? degradationPreference;
+  
+  VIDEO_MIRROR_MODE_TYPE? mirrorMode;
+  VideoEncoderConfiguration({
+    this.codecType,
+    this.dimensions,
+    this.frameRate,
+    this.bitrate,
+    this.minBitrate,
+    this.orientationMode,
+    this.degradationPreference,
+    this.mirrorMode,
+  });
+    factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$VideoEncoderConfigurationFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoEncoderConfigurationToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">

@@ -62,7 +62,28 @@
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
+            <codeblock props="flutter" outputclass="language-dart">class AudioFileRecordingConfig {
+  
+  String? filePath;
+  
+  bool? encode;
+  
+  int? sampleRate;
+  
+  AUDIO_FILE_RECORDING_TYPE? fileRecordingType;
+  
+  AUDIO_RECORDING_QUALITY_TYPE? quality;
+  AudioFileRecordingConfig({
+    required this.filePath,
+    this.encode,
+    this.sampleRate,
+    this.fileRecordingType,
+    this.quality,
+  });
+    factory AudioFileRecordingConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$AudioFileRecordingConfigFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioFileRecordingConfigToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">

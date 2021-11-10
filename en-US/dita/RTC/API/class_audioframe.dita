@@ -32,7 +32,37 @@
     };</codeblock>
                 <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class AudioFrame {
+  
+  AUDIO_FRAME_TYPE? type;
+  
+  int? samplesPerChannel;
+  
+  BYTES_PER_SAMPLE? bytesPerSample;
+  
+  int? channels;
+  
+  int? samplesPerSec;
+  
+  @JsonKey(ignore: true)
+  Uint8List? buffer;
+  
+  int? renderTimeMs;
+  int? avsync_type;
+  AudioFrame({
+    this.type,
+    this.samplesPerChannel,
+    this.bytesPerSample,
+    this.channels,
+    this.samplesPerSec,
+    this.buffer,
+    this.renderTimeMs,
+    this.avsync_type,
+  });
+    factory AudioFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$AudioFrameFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioFrameToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
