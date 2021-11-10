@@ -1,4 +1,4 @@
-Agora recommends referring to this page to record classes in Flexible Classroom to ensure the reliability of the recording and improve the quality of the recorded files.
+To improve application robustness, Agora recommends that you do the following when integrating Cloud Recording RESTful APIs: Agora recommends referring to this page to record classes in Flexible Classroom to ensure the reliability of the recording and improve the quality of the recorded files.
 
 ## Implement whiteboard features
 
