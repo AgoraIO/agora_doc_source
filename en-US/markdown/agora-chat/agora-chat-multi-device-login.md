@@ -6,13 +6,13 @@ Agora Chat supports multi-device login. Users can sync their messages, groups, a
 
 Agora Chat automatically syncs the sent and received messsages for users who log in on multiple devices.
 
-For the users to send messages to their own account on other devices, the SDK automatically assigns an ID that acts as a specical user ID for each logged in device. The logged in devices can send messages to each other using these IDs.
+For the users to send messages to their own account on other devices, the SDK assigns an ID that acts as a specical user ID for each logged in device. The logged in devices can send messages to each other using these IDs.
 
 To sync the group and contact actions, the SDK provides a `MultiDeviceListener` class that listens for group and contact events on other devices.
 
 ## Prerequisites
 
-Before proceeding, ensure that you have a project that has implemented [the basic real-time chat functionalities]().
+Before proceeding, ensure that you have a project that has implemented [the basic real-time chat functionalities](link).
 
 ## Implementation
 
@@ -22,12 +22,12 @@ This section describes how to exchange messages between the logged in devices an
 
 To send messages to other logged in devices, do the following:
 
-1. Call `getSelfIdsOnOtherPlatform` to get the IDs of the other logged in devices.
+1. To get the IDs of the other logged in devices, call `getSelfIdsOnOtherPlatform`.
 
-2. Set the ID of a device as the receiver and send messages. See [Send and receive messages]() for details.
+2. Set the ID of a device as the receiver and send messages. See [Send and receive messages](link) for details.
 
 ```java
-// Get the IDs of the other devices that are logged into with the same account.
+// Get the IDs of the other devices that are logged in with the same account.
 List<String> ids = EMClient.getInstance().contactManager().getSelfIdsOnOtherPlatform();
 // Get the ID of one device.
 String toChatUsername = ids.get(0);
@@ -95,4 +95,4 @@ AgoraChatClient.getInstance().removeMultiDeviceListener(chatMultiDeviceListener)
 
 ## Reference
 
-See [MultiDeviceListener]() for the list of all the group and contact events.
+See [MultiDeviceListener](link) for all the group events and contact events.
