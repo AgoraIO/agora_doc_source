@@ -16,20 +16,20 @@ The URL of the stream pushing includes four parts as shown in the following URL 
 
 Description of each part:
 
-| URL分段 | Necessary or not | Description |
+| URL segment | Necessary or not | Description |
 | :--------- | :------- | :----------------------------------------------------------- |
-| Domain name | Yes | 推流使用的域名，必须已备案且 CNAME 配置成功。 |
-| 发布点 | Yes | 默认发布点为 live，每个发布点都有一套直播流相关的配置。 |
-| 流名 | Yes | 直播流名称，用于标识一路直播流，请确保直播流名称唯一。 |
-| 鉴权字符串 | No | 如果没有设置直播流鉴权，则 URL 地址中无需 "?" 及后面的内容。 <br/>鉴权字符串由以下参数组成：<ul><li>`ts`：URL 失效的 Unix 时间戳，单位为秒。 该值表示鉴权字符串过期的时间，例如，`ts=1635004800` 表示鉴权字符串在 2021 年 10 月 24 日 0 点前有效。</li><li>`sign`：防盗链签名。</li></ul>For more details, see<a href="#key">计算鉴权字符串</a>。 |
+| Domain name | Yes | The domain name of the stream pushing. The domain name must be recorded at China's Ministry of Industry and Information Technology, and have successful CNAME configuration.   |
+| The entry point | Yes | The default entry point is live, and each entry point has its own live streaming configuration. |
+| Stream name | Yes | The name of the live streaming. It identifies one live streaming, so please ensure each live streaming has its unique name. |
+| Authentication string | No | If the live streaming authentication is not set, the "?" and the content behind it are not required in the URL address. <br/>The authentication string consists the following parameters: <ul><li>`ts`: The Unix timestamp (s) when the URL expires. This value shows the time that the authentication string expires. For example, `ts=1635004800` means the authentication string is valid before October, 24th, 2021.</li><li>`sign`: The hotlink protection signature.</li></ul>For more details, see<a href="#key">Calculate the Authentication String.</a> |
 
-## 拼接播流 URL
+## Construct the URL of the stream pushing
 
-播流 URL 的拼接规则和推流 URL 类似，但不同的播流协议对应的 URL 路径略有差异。
+The constructing rules of the stream-playing URL are similar to those of the stream-pushing URL, but the URL paths of different stream-playing protocols vary slightly.
 
-> URL 中的域名必须为播流域名。
+> The domain name in the URL must be the stream-playing domain name.
 
-| 播放协议 | URL path | URL sample |
+| Playback protocol | URL path | URL sample |
 | :------- | :------------------------------------ | :----------------------------------------------------------- |
 | RTMP | /{entry-point}/{stream} | rtmp(s)://domain/live/stream?ts=1635004800&sign=95b0a9970c593819 |
 | HTTP-FLV | /{entry-point}/{stream}.flv | http(s)://domain/live/stream**.flv**?ts=1635004800&sign=337f185b6571cd42 |
@@ -38,11 +38,11 @@ Description of each part:
 
 <a name="key"></a>
 
-## 计算鉴权字符串
+## Calculate the Authentication String
 
-本节介绍如何生成 URL 鉴权字符串。
+This section introduces how to generate URL authentication strings.
 
-### 第一步：提供鉴权密钥
+### Step 1: Provide the authentication secret
 
 鉴权密钥用于在业务服务器生成签名，以及在使用 Agora 融合 CDN 直播服务时进行验证。
 
