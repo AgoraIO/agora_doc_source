@@ -1,14 +1,14 @@
-To improve application robustness, Agora recommends that you do the following when integrating Cloud Recording RESTful APIs: Agora recommends referring to this page to record classes in Flexible Classroom to ensure the reliability of the recording and improve the quality of the recorded files.
+To improve application robustness, Agora recommends that you do the following when integrating Cloud Recording RESTful APIs: Agora recommends referring to this page to record classes in Flexible Classroom to ensure the reliability of the recording and improve the quality of the recorded files.l
 
 ## Implement whiteboard features
 
-The figure below introduces the Flexible Classroom of web recording in Smart Classroom. The steps marked in purple in the figure are the operations you need to perform.
+The following figure introduces the Flexible Classroom of web recording in Smart Classroom. The steps marked in purple in the figure are the operations you need to perform.
 
 ![](https://web-cdn.agora.io/docs-files/1624525158077)
 
 ## Start class recording
 
-Regardless of whether you start classroom recording on the client or server, the essence is to call the Flexible Classroom cloud service to set the [recording status interface ](/cn/agora-class/agora_class_restful_api?platform=RESTful# to set the recording status). When starting recording, you need to pay attention to the following parameters:
+Regardless of whether you start classroom recording on the client or server, the essence is to call [Set the recording status interface ](/en/agora-class/agora_class_restful_api?platform=RESTful# to set the recording status). When starting recording, you need to pay attention to the following parameters:
 
 - Set this parameter as `web `to enable `web `[page ](recording )`mode`/en/Agora%20Platform/webpage_recording.
 - `rootUrl`: The` root` address of the page to be recorded. Flexible Classroom Cloud Service will automatically splice `roomUuid`, `roomType` and other parameters after the URL, and the page to be recorded needs to extract this information when calling the [launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) method.
