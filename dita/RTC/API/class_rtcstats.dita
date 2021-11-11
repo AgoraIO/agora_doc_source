@@ -161,16 +161,85 @@
      memoryTotalUsageRatio: number;
      memoryAppUsageInKbytes: number;
      }</codeblock>
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class RtcStats {
+
+                    int duration;
+                    int txBytes;
+                    int rxBytes;
+                    int txAudioBytes;
+                    int txVideoBytes;
+                    int rxAudioBytes;
+                    int rxVideoBytes;
+                    int txKBitRate;
+                    int rxKBitRate;
+                    int rxAudioKBitRate;
+                    int txAudioKBitRate;
+                    int rxVideoKBitRate;
+                    int txVideoKBitRate;
+                    int lastmileDelay;
+                    int userCount;
+                    double cpuAppUsage;
+                    double cpuTotalUsage;
+                    double memoryAppUsageRatio;
+                    double memoryTotalUsageRatio;
+                    int memoryAppUsageInKbytes;
+                    int connectTimeMs;
+                    int firstAudioPacketDuration;
+                    int firstVideoPacketDuration;
+                    int firstVideoKeyFramePacketDuration;
+                    int packetsBeforeFirstKeyFramePacket;
+                    int firstAudioPacketDurationAfterUnmute;
+                    int firstVideoPacketDurationAfterUnmute;
+                    int firstVideoKeyFramePacketDurationAfterUnmute;
+                    int firstVideoKeyFrameDecodedDurationAfterUnmute;
+                    int firstVideoKeyFrameRenderedDurationAfterUnmute;
+                    int txPacketLossRate;
+                    int rxPacketLossRate;
+
+                    RtcStats(
+                      this.duration,
+                      this.txBytes,
+                      this.rxBytes,
+                      this.txAudioBytes,
+                      this.txVideoBytes,
+                      this.rxAudioBytes,
+                      this.rxVideoBytes,
+                      this.txKBitRate,
+                      this.rxKBitRate,
+                      this.rxAudioKBitRate,
+                      this.txAudioKBitRate,
+                      this.rxVideoKBitRate,
+                      this.txVideoKBitRate,
+                      this.lastmileDelay,
+                      this.userCount,
+                      this.cpuAppUsage,
+                      this.cpuTotalUsage,
+                      this.memoryAppUsageRatio,
+                      this.memoryTotalUsageRatio,
+                      this.memoryAppUsageInKbytes,
+                      this.connectTimeMs,
+                      this.firstAudioPacketDuration,
+                      this.firstVideoPacketDuration,
+                      this.firstVideoKeyFramePacketDuration,
+                      this.packetsBeforeFirstKeyFramePacket,
+                      this.firstAudioPacketDurationAfterUnmute,
+                      this.firstVideoPacketDurationAfterUnmute,
+                      this.firstVideoKeyFramePacketDurationAfterUnmute,
+                      this.firstVideoKeyFrameDecodedDurationAfterUnmute,
+                      this.firstVideoKeyFrameRenderedDurationAfterUnmute,
+                      this.txPacketLossRate,
+                      this.rxPacketLossRate,
+                    );
+                  }</codeblock>
             </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
                 <plentry>
-                    <pt props="android windows electron unity">duration</pt>
-                    <pt props="ios mac">totalDuration</pt>
-                    <pd>Call duration of the local user in seconds, represented by an aggregate value.</pd>
+                    <pt props="ios mac windows electron unity flutter">duration</pt>
+                    <pt props="android">totalDuration</pt>
+                    <pd>本地用户通话时长（秒），累计值。</pd>
                 </plentry>
                 <plentry>
                     <pt>txBytes</pt>
@@ -233,7 +302,7 @@
                     <pd>The packet loss rate (%) from the Agora server to the client before using the anti-packet-loss method.</pd>
                 </plentry>
                 <plentry>
-                    <pt props="ios mac windows electron unity">userCount</pt>
+                    <pt props="ios mac windows electron unity flutter">userCount</pt>
                     <pt props="android">users</pt>
                     <pd>The number of users in the channel.</pd>
                 </plentry>
@@ -245,7 +314,7 @@
                     <pt>cpuTotalUsage</pt>
                     <pd>
                         <p>The system CPU usage (%).</p>
-                        <p props="windows electron">For Windows, in the multi-kernel environment, this member represents the average CPU usage. The value = 100 - System Idle Progress in Task Manager.</p>
+                        <p props="windows electron unity flutter">For Windows, in the multi-kernel environment, this member represents the average CPU usage. The value = 100 - System Idle Progress in Task Manager.</p>
                         <note type="attention">The value of cpuTotalUsage is always reported as 0 in the <xref keyref="onLeaveChannel" /> callback.</note>
                     </pd>
                 </plentry>
