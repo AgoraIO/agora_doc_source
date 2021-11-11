@@ -228,14 +228,83 @@
      memoryTotalUsageRatio: number;
      memoryAppUsageInKbytes: number;
      }</codeblock>
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class RtcStats {
+
+                    int duration;
+                    int txBytes;
+                    int rxBytes;
+                    int txAudioBytes;
+                    int txVideoBytes;
+                    int rxAudioBytes;
+                    int rxVideoBytes;
+                    int txKBitRate;
+                    int rxKBitRate;
+                    int rxAudioKBitRate;
+                    int txAudioKBitRate;
+                    int rxVideoKBitRate;
+                    int txVideoKBitRate;
+                    int lastmileDelay;
+                    int userCount;
+                    double cpuAppUsage;
+                    double cpuTotalUsage;
+                    double memoryAppUsageRatio;
+                    double memoryTotalUsageRatio;
+                    int memoryAppUsageInKbytes;
+                    int connectTimeMs;
+                    int firstAudioPacketDuration;
+                    int firstVideoPacketDuration;
+                    int firstVideoKeyFramePacketDuration;
+                    int packetsBeforeFirstKeyFramePacket;
+                    int firstAudioPacketDurationAfterUnmute;
+                    int firstVideoPacketDurationAfterUnmute;
+                    int firstVideoKeyFramePacketDurationAfterUnmute;
+                    int firstVideoKeyFrameDecodedDurationAfterUnmute;
+                    int firstVideoKeyFrameRenderedDurationAfterUnmute;
+                    int txPacketLossRate;
+                    int rxPacketLossRate;
+
+                    RtcStats(
+                      this.duration,
+                      this.txBytes,
+                      this.rxBytes,
+                      this.txAudioBytes,
+                      this.txVideoBytes,
+                      this.rxAudioBytes,
+                      this.rxVideoBytes,
+                      this.txKBitRate,
+                      this.rxKBitRate,
+                      this.rxAudioKBitRate,
+                      this.txAudioKBitRate,
+                      this.rxVideoKBitRate,
+                      this.txVideoKBitRate,
+                      this.lastmileDelay,
+                      this.userCount,
+                      this.cpuAppUsage,
+                      this.cpuTotalUsage,
+                      this.memoryAppUsageRatio,
+                      this.memoryTotalUsageRatio,
+                      this.memoryAppUsageInKbytes,
+                      this.connectTimeMs,
+                      this.firstAudioPacketDuration,
+                      this.firstVideoPacketDuration,
+                      this.firstVideoKeyFramePacketDuration,
+                      this.packetsBeforeFirstKeyFramePacket,
+                      this.firstAudioPacketDurationAfterUnmute,
+                      this.firstVideoPacketDurationAfterUnmute,
+                      this.firstVideoKeyFramePacketDurationAfterUnmute,
+                      this.firstVideoKeyFrameDecodedDurationAfterUnmute,
+                      this.firstVideoKeyFrameRenderedDurationAfterUnmute,
+                      this.txPacketLossRate,
+                      this.rxPacketLossRate,
+                    );
+                  }</codeblock>
             </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
                 <plentry>
-                    <pt props="ios mac windows electron unity">duration</pt>
+                    <pt props="ios mac windows electron unity flutter">duration</pt>
                     <pt props="android">totalDuration</pt>
                     <pd>本地用户通话时长（秒），累计值。</pd>
                 </plentry>
@@ -300,7 +369,7 @@
                     <pd>使用抗丢包技术前，服务器下行发送到客户端丢包率 (%)。</pd>
                 </plentry>
                 <plentry>
-                    <pt props="ios mac windows electron unity">userCount</pt>
+                    <pt props="ios mac windows electron unity flutter">userCount</pt>
                     <pt props="android">users</pt>
                     <pd>当前频道内的用户人数。</pd>
                 </plentry>
@@ -312,7 +381,7 @@
                     <pt>cpuTotalUsage</pt>
                     <pd>
                         <p>当前系统的 CPU 使用率 (%)。</p>
-                        <p props="windows electron unity">对于 Windows 平台，在多核环境中，该成员指多核 CPU 的平均使用率。 计算方式为
+                        <p props="windows electron unity flutter">对于 Windows 平台，在多核环境中，该成员指多核 CPU 的平均使用率。 计算方式为
                             (100 - 任务管理中显示的系统空闲进程 CPU)/100。</p>
                         <note type="attention"><xref keyref="onLeaveChannel" /> 回调中报告的 cpuTotalUsage 恒为 0。</note>
                     </pd>
