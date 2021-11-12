@@ -106,10 +106,7 @@
                                 <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/> (4):
                                         The local video capture fails. Check whether the capturing device is working properly.<ul id="ul_ygj_tdx_qqb">
                                         <li>If your app runs in the background on a device running Android 9 or later, you cannot access the camera.</li>
-                                        <li>If your app runs on a device running Android 6 or later, this error is reported if the camera is occupied by a third-party app and not property released. 如果一段时间后，相机被释放，则 SDK
-                                            会再次出发该回调，并报告 <codeph>state</codeph> 为
-                                                <codeph>CAPTURING</codeph>，<codeph>error</codeph> 为
-                                                <codeph>ERROR_OK</codeph>。</li>
+                                            <li>If your app runs on a device running Android 6 or later, this error is reported if the camera is occupied by a third-party app and not property released. Once the camera is released, the SDK triggers this callback again, reporting <codeph>state</codeph> <codeph>CAPTURING</codeph>, and <codeph>error</codeph> <codeph>ERROR_OK</codeph>.</li>
                                     </ul></li>
                                 <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE"/> (5):
                                     The local video encoding fails.</li>
