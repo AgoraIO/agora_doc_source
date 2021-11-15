@@ -13,7 +13,7 @@
             int width;
             int height;
             int zOrder;
-            
+
             RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0) {}
             } RtcImage;</codeblock>
           <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
@@ -28,36 +28,75 @@
             public int width;
             public int height;
             public int zOrder;
-            
+
             @CalledByNative
             public int getWidth() {
             return width;
             }
-            
+
             @CalledByNative
             public int getX() {
             return x;
             }
-            
+
             @CalledByNative
             public int getY() {
             return y;
             }
-            
+
             @CalledByNative
             public int getzOrder() {
             return zOrder;
             }
-            
+
             @CalledByNative
             public int getHeight() {
             return height;
             }
-            
+
             @CalledByNative
             public String getUrl() {
             return url;
             }
+            }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export interface RtcImage {
+
+              url?: string;
+
+              x?: number;
+
+              y?: number;
+
+              width?: number;
+
+              height?: number;
+
+              zOrder?: number;
+            }</codeblock>
+                            <codeblock props="flutter" outputclass="language-dart">class RtcImage {
+
+              String? url;
+
+              int? x;
+
+              int? y;
+
+              int? width;
+
+              int? height;
+
+              int? zOrder;
+              RtcImage({
+                this.url,
+                this.x,
+                this.y,
+                this.width,
+                this.height,
+                this.zOrder,
+              });
+                factory RtcImage.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+                  _$RtcImageFromJson(json);
+                Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcImageToJson(this);
             }</codeblock>
         </p>
             <p outputclass="codeblock" props="rtc">
@@ -107,49 +146,11 @@
     height: number,
     url: string
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript">export interface RtcImage {
-  
-  url?: string;
-  
-  x?: number;
-  
-  y?: number;
-  
-  width?: number;
-  
-  height?: number;
-  
-  zOrder?: number;
-}</codeblock>
-                <codeblock props="flutter" outputclass="language-dart">class RtcImage {
-  
-  String? url;
-  
-  int? x;
-  
-  int? y;
-  
-  int? width;
-  
-  int? height;
-  
-  int? zOrder;
-  RtcImage({
-    this.url,
-    this.x,
-    this.y,
-    this.width,
-    this.height,
-    this.zOrder,
-  });
-    factory RtcImage.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
-      _$RtcImageFromJson(json);
-    Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcImageToJson(this);
-}</codeblock>
+
             </p>
         </section>
         <section id="detailed_desc">
-   
+
    <p>用于设置直播视频的水印和背景图片的属性。</p>
         </section>
         <section id="parameters">
