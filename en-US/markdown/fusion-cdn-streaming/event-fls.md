@@ -1,4 +1,4 @@
-The Agora message notification server sends the message notification callbacks of Fusion-CDN Live Streaming as HTTPS POST requests to your server. The data format is JSON, the character encoding is UTF-8, and the signature algorithm is HMAC/SHA1 or HMAC/SHA256.
+The Agora message notification server sends the message notification callbacks of FLS as HTTPS POST requests to your server. The data format is JSON, the character encoding is UTF-8, and the signature algorithm is HMAC/SHA1 or HMAC/SHA256.
 
 ## Request Header
 
@@ -17,10 +17,10 @@ The request body of the message notification callbacks contains the following fi
 | Field | Type | Description |
 | :---------- | :---------- | :----------------------------------------------------------- |
 | `noticeId` | String | Notification ID, identifying the notification for each event that occurs in the Agora server. |
-| `productId` | Integer | Service ID. Value 7 indicates the Fusion-CDN Live Streaming service. |
-| `eventType` | Integer | The event type of the notification. For more details, see [the Event Types of Fusion-CDN Live Streaming](#event-type). |
+| `productId` | Integer | Service ID. Value 7 indicates the FLS service. |
+| `eventType` | Integer | The event type of the notification. For more details, see [the Event Types of FLS](#event-type). |
 | `notifyMs` | Integer | The Agora notification server sends the Unix timestamp (ms) of the notification to your server. This value is updated when **Retry** is notified. |
-| `payload` | JSON Object | The content of the event notification. The `payload` varies with the`eventType`. For more details, see [the Event Types of Fusion-CDN Live Streaming](#event-type). |
+| `payload` | JSON Object | The content of the event notification. The `payload` varies with the`eventType`. For more details, see [the Event Types of FLS](#event-type). |
 
 Example of the request body of message notification callbacks:
 
@@ -36,9 +36,9 @@ Example of the request body of message notification callbacks:
 
 <a name="event-type"></a>
 
-## The Event Types of Fusion-CDN Live Streaming
+## The Event Types of FLS
 
-The Agora message notification service can notify the following event types in the Fusion-CDN Live Streaming service:
+The Agora message notification service can notify the following event types in the FLS service:
 
 | eventType | event_name | Description |
 | :-------- | :---------------------- | :----------------- |
