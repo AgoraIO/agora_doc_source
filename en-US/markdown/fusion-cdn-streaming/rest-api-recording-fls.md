@@ -5,7 +5,7 @@ Set the recording options of the live stream under the specified entry point.
 ### HTTP request
 
 ```http
-PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/settings/record/regions/{region}
+PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/settings/record/custom/regions/{region}
 ```
 
 #### Path parameter
@@ -39,7 +39,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 **Request line**
 
 ```http
-PATCH https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/record/regions/cn HTTP/1.1
+PATCH https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/record/custom/regions/cn HTTP/1.1
 ```
 
 **Request body**
@@ -75,7 +75,7 @@ Get the recording configuration of the specified entry point.
 ### HTTP request
 
 ```http
-GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/settings/record/regions/{region}
+GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/settings/record/custom/regions/{region}
 ```
 
 #### Path parameter
@@ -104,7 +104,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 **Request line**
 
 ```http
-GET https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/record/regions/cn HTTP/1.1
+GET https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/record/custom/regions/cn HTTP/1.1
 ```
 
 **Response line**

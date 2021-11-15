@@ -5,7 +5,7 @@ Set the snapshot capturing options of the stream under the specified entry point
 ### HTTP request
 
 ```http
-PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/settings/snapshot/regions/{region}
+PATCH https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/settings/snapshot/custom/regions/{region}
 ```
 
 #### Path parameter
@@ -38,7 +38,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 **Request line**
 
 ```http
-PATCH https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/snapshot/regions/cn HTTP/1.1
+PATCH https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/snapshot/custom/regions/cn HTTP/1.1
 ```
 
 **Request body**
@@ -71,7 +71,7 @@ Get the snapshot capturing configuration of the specified entry point.
 ### HTTP request
 
 ```http
-GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/settings/snapshot/regions/{region}
+GET https://api.agora.io/v1/projects/{appid}/fls/entry_points/{entry_point}/settings/snapshot/custom/regions/{region}
 ```
 
 #### Path parameter
@@ -100,7 +100,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 **Request line**
 
 ```http
-GET https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/snapshot/regions/cn HTTP/1.1
+GET https://api.agora.io/v1/projects/{your_appid}/fls/entry_points/live/settings/snapshot/custom/regions/cn HTTP/1.1
 ```
 
 **Response line**
