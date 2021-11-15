@@ -1,10 +1,10 @@
-Agora Fusion-CDN Live Streaming contains the RESTful API, which enables you to send your HTTP requests from your server to the Agora server and configure and manage the live streaming at your server.
+Agora FLS contains the RESTful API, which enables you to send your HTTP requests from your server to the Agora server and configure and manage the live streaming at your server.
 
-This page is a basic introduction to the Fusion-CDN Live Streaming RESTful API.
+This page is a basic introduction to the FLS RESTful API.
 
 ## Functions
 
-The Fusion-CDN Live Streaming RESTful API can perform the following functions:
+The FLS RESTful API can perform the following functions:
 
 ### Domain name and entry-point management
 
@@ -30,7 +30,7 @@ You can set the authentication secret key for the stream pushing and playing at 
 
 ## Implementation
 
-Call the Fusion-CDN Live Streaming RESTful API, and perform the following steps:
+Call the FLS RESTful API, and perform the following steps:
 
 1. Add the stream-pushing domain name and the stream-playing domain name.
 2. (Optional) Add the entry point.
@@ -42,7 +42,7 @@ Call the Fusion-CDN Live Streaming RESTful API, and perform the following steps:
 
 ### Authentication
 
-The Fusion-CDN Live Streaming RESTful API uses HTTP HMAC (Hash-based Message Authentication Code) authentication.
+The FLS RESTful API uses HTTP HMAC (Hash-based Message Authentication Code) authentication.
 
 When you send an HTTP request, you need to generate a signature using the HMAC-SHA256 algorithm and pass this signature and its related information to the `authorization` field.
 
@@ -90,7 +90,7 @@ All requests are sent to the following host: `api.agora.io`.
 
 ### Protocol
 
-To ensure communication security, the Fusion-CDN Live Streaming RESTful API only supports the HTTPS protocol.
+To ensure communication security, the FLS RESTful API only supports the HTTPS protocol.
 
 ### Data format
 
@@ -101,4 +101,4 @@ To ensure communication security, the Fusion-CDN Live Streaming RESTful API only
 
 ## API limit
 
-The call frequency limit of the Fusion-CDN Live Streaming RESTful API is 50 times per second. If the call frequency exceeds the limit, refer to [How can I avoid being frequency limited when calling Agora Server RESTful APIs?](https://docs.agora.io/en/Agora%20Platform/faq/restful_api_call_frequency).
+The call frequency limit of the FLS RESTful API is 50 times per second. If the call frequency exceeds the limit, refer to [How can I avoid being frequency limited when calling Agora Server RESTful APIs?](https://docs.agora.io/en/Agora%20Platform/faq/restful_api_call_frequency).
