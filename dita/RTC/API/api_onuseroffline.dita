@@ -25,7 +25,11 @@
   cb: (uid: number, reason: USER_OFFLINE_REASON_TYPE) =&gt; void
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserOffline(uint uid, USER_OFFLINE_REASON_TYPE reason)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript">  onUserOffline?(
+    connection: RtcConnection,
+    remoteUid: uid_t,
+    reason: USER_OFFLINE_REASON_TYPE
+  )</codeblock>
                 <codeblock props="flutter" outputclass="language-dart">void onUserOffline(RtcConnection connection, uid_t remoteUid,
       USER_OFFLINE_REASON_TYPE reason)</codeblock>
         </p>

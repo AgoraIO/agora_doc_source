@@ -129,7 +129,24 @@
     int avsync_type;
     };</codeblock>
                 <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript">export interface AudioFrame {
+  
+  type?: AUDIO_FRAME_TYPE;
+  
+  samplesPerChannel?: number;
+  
+  bytesPerSample?: BYTES_PER_SAMPLE;
+  
+  channels?: number;
+  
+  samplesPerSec?: number;
+  
+  buffer?: any;
+  
+  renderTimeMs?: number;
+  
+  avsync_type?: number;
+}</codeblock>
                 <codeblock props="flutter" outputclass="language-dart">class AudioFrame {
   
   AUDIO_FRAME_TYPE? type;
