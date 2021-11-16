@@ -5,9 +5,40 @@
     <shortdesc id="short"><ph id="shortdesc">Results of the uplink and downlink last-mile network tests.</ph></shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeResult {
+                    LASTMILE_PROBE_RESULT_STATE state;
+                    LastmileProbeOneWayResult uplinkReport;
+                    LastmileProbeOneWayResult downlinkReport;
+                    unsigned int rtt;
+
+                    LastmileProbeResult() : state(LASTMILE_PROBE_RESULT_UNAVAILABLE),
+                    rtt(0) {}
+                    };</codeblock>
+                    <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class LastmileProbeResult {
+
+  LASTMILE_PROBE_RESULT_STATE state;
+
+  LastmileProbeOneWayResult uplinkReport;
+
+  LastmileProbeOneWayResult downlinkReport;
+
+  int rtt;
+  LastmileProbeResult(
+    this.state,
+    this.uplinkReport,
+    this.downlinkReport,
+    this.rtt,
+  );
+    factory LastmileProbeResult.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$LastmileProbeResultFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$LastmileProbeResultToJson(this);
+}</codeblock>
+            </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
-    
+
     public static class LastmileProbeOneWayResult {
       public int packetLossRate;
       public int jitter;
@@ -38,26 +69,7 @@
     downlinkReport: LastmileProbeOneWayResult;
     rtt: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">class LastmileProbeResult {
-  
-  LASTMILE_PROBE_RESULT_STATE state;
-  
-  LastmileProbeOneWayResult uplinkReport;
-  
-  LastmileProbeOneWayResult downlinkReport;
-  
-  int rtt;
-  LastmileProbeResult(
-    this.state,
-    this.uplinkReport,
-    this.downlinkReport,
-    this.rtt,
-  );
-    factory LastmileProbeResult.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
-      _$LastmileProbeResultFromJson(json);
-    Map&lt;String, dynamic&gt; toJson() =&gt; _$LastmileProbeResultToJson(this);
-}</codeblock>
+
             </p>
         </section>
         <section id="parameters">
@@ -66,7 +78,7 @@
        <plentry>
   <pt>state</pt>
   <pd>The status of the last-mile network tests.
-      <ph props="ios mac windows electron unity">See <xref keyref="LASTMILE_PROBE_RESULT_STATE" />.</ph>
+      <ph props="ios mac windows electron unity flutter rn">See <xref keyref="LASTMILE_PROBE_RESULT_STATE" />.</ph>
   <ul props="android">
       <li>1: the last-mile network probe test is complete.</li>
                             <li>2: the last-mile network probe test is incomplete and the bandwidth
@@ -74,7 +86,7 @@
                                 resources.</li>
                             <li>3: the last-mile network probe test is not carried out, probably due
                                 to poor network conditions.</li>
-  </ul>    
+  </ul>
   </pd>
        </plentry>
        <plentry>

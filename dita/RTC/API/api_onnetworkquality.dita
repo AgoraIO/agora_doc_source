@@ -13,9 +13,9 @@
     <refbody><section id="prototype">
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onNetworkQuality(int uid, int txQuality, int rxQuality) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
-    networkQuality:(NSUInteger)uid 
-    txQuality:(AgoraNetworkQuality)txQuality 
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+    networkQuality:(NSUInteger)uid
+    txQuality:(AgoraNetworkQuality)txQuality
     rxQuality:(AgoraNetworkQuality)rxQuality;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onNetworkQuality(uid_t uid, int txQuality, int rxQuality) {
     (void)uid;
@@ -35,7 +35,7 @@
         </p>
         </section>
         <section id="detailed_desc">
-   
+
    <p id="desc1">This callback reports the last mile network conditions of each user in the channel. Last mile refers to the connection between the local device and Agora's edge server.</p>
    <p id="desc2">The SDK triggers this callback once every two seconds. If a channel includes multiple users, the SDK triggers this callback as many times.</p>
         </section>
@@ -46,14 +46,19 @@
                   <pt />
                   <pd />
               </plentry>
+              <plentry conkeyref="joinChannelEx/connection" props="flutter">
+                <pt />
+                <pd />
+     </plentry>
        <plentry id="uid">
-  <pt>uid</pt>
+        <pt props="android ios windows macos unity">uid</pt>
+        <pt props="flutter rn">remoteUid</pt>
            <pd><p>User ID. The network quality of the user with this user ID is reported.</p>
                <p props="rtc">If the uid is 0, the local network quality is reported.</p></pd>
        </plentry>
        <plentry id="txQuality">
   <pt>txQuality</pt>
-  <pd>Uplink network quality rating of the user in terms of the transmission bit rate, packet loss rate, average RTT (Round-Trip Time) and jitter of the uplink network. This parameter is a quality rating helping you understand how well the current uplink network conditions can support the selected video encoder configuration. For example, a 1000 Kbps uplink network may be adequate for video frames with a resolution of 640 × 480 and a frame rate of 15 fps in the LIVE_BROADCASTING profile, but might be inadequate for resolutions higher than 1280 × 720.<ph props="ios mac windows electron unity"> For details, see <xref keyref="QUALITY_TYPE" />.</ph>
+  <pd>Uplink network quality rating of the user in terms of the transmission bit rate, packet loss rate, average RTT (Round-Trip Time) and jitter of the uplink network. This parameter is a quality rating helping you understand how well the current uplink network conditions can support the selected video encoder configuration. For example, a 1000 Kbps uplink network may be adequate for video frames with a resolution of 640 × 480 and a frame rate of 15 fps in the LIVE_BROADCASTING profile, but might be inadequate for resolutions higher than 1280 × 720.<ph props="ios mac windows electron unity flutter rn"> For details, see <xref keyref="QUALITY_TYPE" />.</ph>
   <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
       <li />
   </ul>
@@ -61,12 +66,12 @@
        </plentry>
        <plentry id="rxQuality">
   <pt>rxQuality</pt>
-  <pd>Downlink network quality rating of the user in terms of packet loss rate, average RTT, and jitter of the downlink network.<ph props="ios mac windows electron unity"> For details, see <xref keyref="QUALITY_TYPE" />.</ph>
+  <pd>Downlink network quality rating of the user in terms of packet loss rate, average RTT, and jitter of the downlink network.<ph props="ios mac windows electron unity flutter rn"> For details, see <xref keyref="QUALITY_TYPE" />.</ph>
   <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
       <li />
   </ul>
   </pd>
-       
+
        </plentry>
    </parml>
         </section>

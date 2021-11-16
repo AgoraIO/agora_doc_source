@@ -17,13 +17,13 @@
   public List&lt;String&gt; mExtensionList;
   public IMediaExtensionObserver mExtensionObserver;
   public LogConfig mLogConfig;
- 
+
   public void addExtension(String providerName) {
     mExtensionList.add(providerName);
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcEngineConfig: NSObject
- 
+
  @property (copy, nonatomic) NSString * _Nullable appId;
  @property (assign, nonatomic) AgoraChannelProfile channelProfile;
  @property (assign, nonatomic) AgoraAudioScenario audioScenario;
@@ -52,22 +52,22 @@
             <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">class RtcEngineContext {
-  
+
   @JsonKey(ignore: true)
   IRtcEngineEventHandler? eventHandler;
-  
+
   String? appId;
-  
+
   dynamic? context;
-  
+
   bool? enableAudioDevice;
-  
+
   CHANNEL_PROFILE_TYPE? channelProfile;
-  
+
   AUDIO_SCENARIO_TYPE? audioScenario;
-  
+
   List&lt;AREA_CODE&gt;? areaCode;
-  
+
   LogConfig? logConfig;
   RtcEngineContext({
     this.eventHandler,
@@ -88,18 +88,18 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
-                <plentry props="windows android">
-                    <pt props="windows">eventHandler</pt>
+                <plentry props="windows android flutter rn">
+                    <pt props="windows flutter rn">eventHandler</pt>
                     <pt props="android">mEventHandler</pt>
                     <pd id="eventhandler">The event handler for <xref keyref="IRtcEngine" />. See <xref keyref="IRtcEngineEventHandler" />.</pd>
                 </plentry>
                 <plentry>
-                    <pt props="windows ios mac">appId</pt>
+                    <pt props="windows ios mac flutter rn">appId</pt>
                     <pt props="android">mAppId</pt>
                     <pd id="appid">The App ID issued by Agora for your app development project. Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <apiname keyref="IRtcEngine" /> instance. To change your App ID, call <xref keyref="release" /> to destroy the current <apiname keyref="IRtcEngine" /> instance and then create a new one.</pd>
                 </plentry>
-                <plentry props="android windows">
-                    <pt props="windows">context</pt>
+                <plentry props="android windows flutter rn">
+                    <pt props="windows flutter rn">context</pt>
                     <pt props="android">mContext</pt>
                     <pd id="context">
                         <ul props="windows">
@@ -107,28 +107,29 @@
                             <li>For Android, it is the context of Android Activity.</li>
                         </ul>
                         <p props="android">The context of Android Activity.</p>
+                        <p props="flutter">Reserved parameter.</p>
                     </pd>
                 </plentry>
-                <plentry props="android windows">
-                    <pt props="windows">enableAudioDevice</pt>
+                <plentry props="android windows flutter rn">
+                    <pt props="windows flutter rn">enableAudioDevice</pt>
                     <pt props="android">mEnableAudioDevice</pt>
                     <pd>Sets whether to allow the SDK to use audio devices:<ul>
                             <li><codeph><ph keyref="true" /></codeph>: (Default) Allow the SDK to use audio devices.</li>
                             <li><codeph><ph keyref="false" /></codeph>: Do not allow theSDK to use audio devices.</li>
                         </ul></pd>
                     <pd>
-                        <note type="attention">
+                        <note type="attention" props="android ios windows mac unity">
                             <p>If you need to get the mixed remote audio data through <xref keyref="pullAudioFrame" />, ensure that you set this parameter as <codeph><ph keyref="false" /></codeph>.</p>
                         </note>
                     </pd>
                 </plentry>
                 <plentry>
-                    <pt props="windows ios mac">channelProfile</pt>
+                    <pt props="windows ios mac flutter rn">channelProfile</pt>
                     <pt props="android">mChannelProfile</pt>
                         <pd conkeyref="setChannelProfile/channelprofiletype" />
                 </plentry>
                 <plentry>
-                    <pt props="windows ios mac">audioScenario</pt>
+                    <pt props="windows ios mac flutter rn">audioScenario</pt>
                     <pt props="android">mAudioScenario</pt>
                     <pd>The audio application scenarios. For details, see <xref keyref="AUDIO_SCENARIO_TYPE" />.</pd>
                     <pd>
@@ -141,12 +142,12 @@
                     </pd>
                 </plentry>
                 <plentry>
-                    <pt props="windows ios mac">areaCode</pt>
+                    <pt props="windows ios mac flutter rn">areaCode</pt>
                     <pt props="android">mAreaCode</pt>
                     <pd>The region for connection. This advanced feature applies to scenarios that have regional restrictions. See <xref keyref="AREA_CODE" /> for details about supported regions.<p>After specifying the region, the app integrated with the Agora SDK connects to the Agora servers within that region.</p></pd>
                 </plentry>
                 <plentry>
-                    <pt props="windows ios mac">logConfig</pt>
+                    <pt props="windows ios mac flutter rn">logConfig</pt>
                     <pt props="android">mLogConfig</pt>
                     <pd>
                         <p>Sets the log files that the SDK outputs. For details, see <xref keyref="LogConfig" />.</p>

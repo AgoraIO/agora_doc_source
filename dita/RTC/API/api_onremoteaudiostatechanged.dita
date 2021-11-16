@@ -14,11 +14,11 @@
          <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onRemoteAudioStateChanged(
      int uid, REMOTE_AUDIO_STATE state, REMOTE_AUDIO_STATE_REASON reason, int elapsed) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
      remoteAudioStateChangedOfUid:(NSUInteger)uid state:(AgoraAudioRemoteState)state reason:(AgoraAudioRemoteReason)reason elapsed:(NSInteger)elapsed;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(uid_t uid, 
-     REMOTE_AUDIO_STATE state, 
-     REMOTE_AUDIO_STATE_REASON reason, 
+                <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(uid_t uid,
+     REMOTE_AUDIO_STATE state,
+     REMOTE_AUDIO_STATE_REASON reason,
      int elapsed) {
      (void)uid;
      (void)state;
@@ -60,7 +60,8 @@
                   <pd />
               </plentry>
                     <plentry id="uid">
-                         <pt>uid</pt>
+                         <pt props="android ios mac windows unity">uid</pt>
+                         <pt props="flutter rn">remoteUid</pt>
                          <pd>The ID of the remote user whose audio state changes.</pd>
                     </plentry>
                     <plentry id="state">

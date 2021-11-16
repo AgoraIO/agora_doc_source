@@ -17,12 +17,12 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteAudioStream(uid_t userId, bool mute) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">muteRemoteAudioStream(userId: number, mute: boolean): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int MuteRemoteAudioStream(uint userId, bool mute);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteRemoteAudioStream(uid_t uid, bool mute);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-   
+
    <note type="attention">
        <ul>
   <li>Call this method after joining a channel.</li>
@@ -34,12 +34,12 @@
    <parml>
        <plentry>
   <pt props="windows unity">userId</pt>
-           <pt props="android ios mac">uid</pt>
+           <pt props="android ios mac flutter rn">uid</pt>
   <pd>The ID of the specified user.</pd>
        </plentry>
        <plentry>
            <pt props="android">muted</pt>
-           <pt props="ios mac windows unity">mute</pt>
+           <pt props="ios mac windows unity flutter rn">mute</pt>
   <pd><p>Whether to stop subscribing to the audio stream of the specified user.</p>
       <ul>
  <li><codeph><ph keyref="true" /></codeph>: Stop subscribing to the audio stream of the specified user by default.</li>

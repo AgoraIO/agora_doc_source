@@ -94,15 +94,57 @@
         audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC) {}
 };</codeblock>
             </p>
+            <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
+                int? width;
+                int? height;
+                int? videoBitrate;
+                int? videoFramerate;
+                bool? lowLatency;
+                int? videoGop;
+                VIDEO_CODEC_PROFILE_TYPE? videoCodecProfile;
+                int? backgroundColor;
+                int? userCount;
+                List&lt;TranscodingUser&gt;? transcodingUsers;
+                String? transcodingExtraInfo;
+                String? metadata;
+                List&lt;RtcImage&gt;? watermark;
+                List&lt;RtcImage&gt;? backgroundImage;
+                AUDIO_SAMPLE_RATE_TYPE? audioSampleRate;
+                int? audioBitrate;
+                int? audioChannels;
+                AUDIO_CODEC_PROFILE_TYPE? audioCodecProfile;
+
+                LiveTranscoding({
+                  this.width,
+                  this.height,
+                  this.videoBitrate,
+                  this.videoFramerate,
+                  this.lowLatency,
+                  this.videoGop,
+                  this.videoCodecProfile,
+                  this.backgroundColor,
+                  this.userCount,
+                  this.transcodingUsers,
+                  this.transcodingExtraInfo,
+                  this.metadata,
+                  this.watermark,
+                  this.backgroundImage,
+                  this.audioSampleRate,
+                  this.audioBitrate,
+                  this.audioChannels,
+                  this.audioCodecProfile,
+                });
+              }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
             <p outputclass="codeblock" props="rtc">
                 <codeblock props="windows unity" outputclass="language-cpp">typedef struct LiveTranscoding {
     int width;
     int height;
     int videoBitrate;
     int videoFramerate;
-    
+
     bool lowLatency;
-    
+
     int videoGop;
     VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
     unsigned int backgroundColor;
@@ -110,11 +152,11 @@
     TranscodingUser *transcodingUsers;
     const char *transcodingExtraInfo;
     RtcImage* watermark;
-    
+
     AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
     int audioBitrate;
     int audioChannels;
-    
+
     LiveTranscoding()
     : width(360)
     , height(640)
@@ -159,7 +201,7 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
-                <plentry props="android windows electron unity">
+                <plentry props="android windows electron unity flutter rn">
                     <pt>width</pt>
                     <pd>
                         <p>The width of the output media stream in pixels. The default value is 360.</p>
@@ -169,7 +211,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android windows electron unity">
+                <plentry props="android windows electron unity flutter rn">
                     <pt>height</pt>
                     <pd>
                         <p>The height of the output media stream in pixels. The default value is 640.</p>
@@ -197,7 +239,7 @@
                         <dl outputclass="deprecated">
                             <dlentry>
                                 <dt>Deprecated</dt>
-                                <dd>This attribute is deprecated since v2.8.0, and Agora does not recommend it.</dd>
+                                <dd>This attribute is deprecated <ph props="rtc">since v2.8.0, </ph>and Agora does not recommend it.</dd>
                             </dlentry>
                         </dl>
                         <ul>
@@ -235,14 +277,24 @@
                     <pt>backgroundColor</pt>
                     <pd>The video background color of the output media stream. The format is a hexadecimal integer defined by RGB without the # symbol. For example, <codeph>0xFFB6C1</codeph> represents light pink. The default value is <codeph>0x000000 </codeph>(black).</pd>
                 </plentry>
-                <plentry props="android windows electron unity">
+                <plentry props="android windows electron unity flutter rn">
                     <pt>userCount</pt>
                     <pd>The number of hosts involved in transcoding. The default value is 0.</pd>
-                </plentry>    
+                </plentry>
+                <plentry props="android windows unity flutter rn">
+                    <pt>metadata</pt>
+                    <pd>
+                        <dl outputclass="deprecated">
+                            <dlentry>
+                                <dt>Deprecated:</dt>
+                                <dd>This attribute is deprecated.</dd>
+                            </dlentry>
+                        </dl>Metadata sent to the CDN client. </pd>
+                </plentry>
                 <plentry>
                     <pt>watermark</pt>
                     <pd>The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. For details, see <xref keyref="RtcImage" />.</pd>
-                </plentry>      
+                </plentry>
                 <plentry>
                     <pt>audioSampleRate</pt>
                     <pd>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />.</pd>
@@ -262,7 +314,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                
+
             </parml>
             <parml props="rtc-ng">
                 <plentry>
