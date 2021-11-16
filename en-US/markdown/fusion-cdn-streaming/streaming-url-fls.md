@@ -42,13 +42,13 @@ The constructing rules of the stream-playing URL are similar to those of the str
 
 This section introduces how to generate the URL authentication strings.
 
-### Step 1: Provide the authentication secret
+### Step 1: Provide the authentication key for hotlink protection.
 
-The authentication secret is used to generate the signature in the business server, and to verify the signature during the Agora Fusion CDN Live Streaming.
+The authentication key is used to generate the signature in the business server, and to verify the signature during the Agora Fusion CDN Live Streaming.
 
-The authentication secret is a string of no more than 128 bytes, and you need to set it yourself. For setting the authentication secret respectively for each stream-pushing and -playing domain name, see [Live Streaming Authentication Configuration](https://docs.agora.io/cn/fusion-cdn-streaming/rest-api-%20authentication-fls?platform=RESTful).
+The authentication key is a string of no more than 128 bytes, and you need to set it yourself. For setting the authentication key respectively for each stream-pushing and -playing domain name, see [Stream Authentication Configuration](/en/fusion-cdn-streaming/rest-api-authentication-fls?platform=RESTful).
 
-<div class="alert warning">Do not use the authentication secret on the client side or leak it to any third party, or your hotlink might be in risk.</div>
+<div class="alert warning">Do not use the authentication key on the client side or leak it to any third party, or your URLs might be hotlinked.</div>
 
 ### Step 2: Calculate the expiry timestamp
 
@@ -63,9 +63,9 @@ The valid time of a URL must not be set too short or too long. Agora recommends 
 
 ### Step 3: Calculate the hotlink protection signature
 
-The signature (sign) is the MD5 value calculated by the constructed strings of the authentication, the path of the stream pushing/playing URL and the expiry timestamp (ts).
+The signature (sign) is the MD5 value calculated by the constructed strings of the authentication key, the path of the stream pushing/playing URL and the expiry timestamp (ts).
 
-For example, if the URL is `http://domain/live/stream.flv`, the authentication secret is `z2tn3uiny0aasebz` and `ts` is `1634955000`, the sign = MD5(z2tn3uiny0aasebz/live/stream.flv1634955000)=f7c1bd88e911b72c.
+For example, if the URL is `http://domain/live/stream.flv`, the authentication key is `z2tn3uiny0aasebz` and `ts` is `1634955000`, the sign = MD5(z2tn3uiny0aasebz/live/stream.flv1634955000)=f7c1bd88e911b72c.
 
 ### Sample code
 

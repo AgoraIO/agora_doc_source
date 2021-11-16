@@ -1,6 +1,6 @@
 There are two types of domain names: stream-pushing domain names and stream-playing domain names (which mainly affect regional access and the deployment of the streams). The same live stream can be pushed or played through multiple different domain names.
 
-> The domain name management function is in the beta stage. Contact [sales @agora.io]( mailto:sales@agora.io) before using it.
+> The domain name management function is in the beta stage. Contact [sales@agora.io]( mailto:sales@agora.io) before using it.
 
 ## Add domain names
 
@@ -41,7 +41,7 @@ If the returned HTTP status code is 201, the request is successful, and the resp
 | `appid` | String | The App ID of your Agora project. |
 | `type` | String | Set the domain name type:<li>`"publish"`: The stream-pushing domain name.</li><li>`"play"`: The stream-playing domain name.</li> |
 | `region` | String | Set the region where the Agora server is located. Only returned when the `type` is `"publish"`. |
-| `authKey` | String | The secret hotlink protection. |
+| `authKey` | String | The authentication key for hotlink protection. |
 | `cname` | String | The cname corresponds to the domain name, and you need to configure it at your DNS host. |
 
 
@@ -146,7 +146,7 @@ If the returned HTTP status code is 200, the request is successful, and the resp
 | `name` | String | The domain name. |
 | `type` | String | The domain name type.<li>`"publish"`: The stream-pushing domain name.</li><li>`"play"`: The stream-playing domain name.</li> |
 | `region` | String | The region of the Agora server used for the domain name. Only returned when the `type` is `"publish"`. |
-| `authKey` | String | The secret hotlink protection. |
+| `authKey` | String | The authentication key for hotlink protection. |
 
 
 If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
@@ -172,13 +172,13 @@ HTTP/1.1 200 OK
     "domainList": [
         {
             "appid": "{your appid}",
-            "authKey": "{your authkey}",
+            "authKey": "{your auth key}"
             "name": "{your play domain}",
             "type": "play"
         },
         {
             "appid": "{your appid}",
-            "authKey": "{your authkey}",
+            "authKey": "{your auth key}"
             "name": "{your publish domain}",
             "region": "cn",
             "type": "publish"
@@ -214,7 +214,7 @@ If the returned HTTP status code is 200, the request is successful, and the resp
 | `name` | String | The domain name. |
 | `type` | String | The domain name type.<li>`"publish"`: The stream-pushing domain name.</li><li>`"play"`: The stream-playing domain name.</li> |
 | `region` | String | The region of the Agora server used for the domain name. Only returned when the `type` is `"publish"`. |
-| `authKey` | String | The secret hotlink protection. |
+| `authKey` | String | The authentication key for hotlink protection. |
 
 
 If the returned HTTP status code is not 200, the request fails. You can refer to the [HTTP status code](#http-code) for possible reasons.
@@ -238,7 +238,7 @@ HTTP/1.1 200 OK
 ```json
 {
     "appid": "{your appid}",
-    "authKey": "{your authkey}",
+    "authKey": "{your auth key}"
     "name": "{your domain}",
     "region": "cn",
     "type": "publish"

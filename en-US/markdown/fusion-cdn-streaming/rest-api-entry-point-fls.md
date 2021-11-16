@@ -2,7 +2,7 @@ Entry points are used to categorize the streams. You can configure functions suc
 
 Agora provides a default entry point `live` for your direct use.
 
-> The management function is in the beta stage. Contact sales @agora.io before using it.
+> The entry point management function is in the beta stage. Contact sales@agora.io before using it.
 
 ## Add entry points
 
