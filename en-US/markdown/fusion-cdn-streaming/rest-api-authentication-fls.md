@@ -1,8 +1,8 @@
 The authentication function is in the beta stage. Contact sales@agora.io before using it.
 
-## 设置防盗链密钥
+## Set the authentication key for hotlink protection
 
-Set the authentication secret of the specified domain name.
+Set the authentication key of the specified domain name.
 
 ### HTTP request
 
@@ -21,7 +21,7 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/domains/{domain}
 
 The request body is in the JSON Object type, and contains the following fields:
 
-`authKey`: String type, required, no more than 128 characters. The secret hotlink protection.
+`authKey`: String type, required, no more than 128 characters. The authentication key for hotlink protection.
 
 ### HTTP response
 
