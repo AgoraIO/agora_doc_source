@@ -124,6 +124,101 @@
       txPacketLossRate(0),
       rxPacketLossRate(0) {}
 };</codeblock>
+<codeblock props="rn" outputclass="language-typescript">export interface RtcStats {
+    duration: number;
+    txBytes: number;
+    rxBytes: number;
+    txKBitRate: number;
+    rxKBitRate: number;
+    rxAudioKBitRate: number;
+    txAudioKBitRate: number;
+    rxVideoKBitRate: number;
+    txVideoKBitRate: number;
+    rxAudioKBytes: number;
+    txAudioKBytes: number;
+    rxVideoKBytes: number;
+    txVideoKBytes: number;
+    lastmileDelay: number;
+    txPacketLossRate: number;
+    rxPacketLossRate: number;
+    userCount: number;
+    cpuAppUsage: number;
+    cpuTotalUsage: number;
+    gatewayRtt: number;
+    memoryAppUsageRatio: number;
+    memoryTotalUsageRatio: number;
+    memoryAppUsageInKbytes: number;
+    }</codeblock>
+               <codeblock props="flutter" outputclass="language-dart">class RtcStats {
+
+                   int duration;
+                   int txBytes;
+                   int rxBytes;
+                   int txAudioBytes;
+                   int txVideoBytes;
+                   int rxAudioBytes;
+                   int rxVideoBytes;
+                   int txKBitRate;
+                   int rxKBitRate;
+                   int rxAudioKBitRate;
+                   int txAudioKBitRate;
+                   int rxVideoKBitRate;
+                   int txVideoKBitRate;
+                   int lastmileDelay;
+                   int userCount;
+                   double cpuAppUsage;
+                   double cpuTotalUsage;
+                   double memoryAppUsageRatio;
+                   double memoryTotalUsageRatio;
+                   int memoryAppUsageInKbytes;
+                   int connectTimeMs;
+                   int firstAudioPacketDuration;
+                   int firstVideoPacketDuration;
+                   int firstVideoKeyFramePacketDuration;
+                   int packetsBeforeFirstKeyFramePacket;
+                   int firstAudioPacketDurationAfterUnmute;
+                   int firstVideoPacketDurationAfterUnmute;
+                   int firstVideoKeyFramePacketDurationAfterUnmute;
+                   int firstVideoKeyFrameDecodedDurationAfterUnmute;
+                   int firstVideoKeyFrameRenderedDurationAfterUnmute;
+                   int txPacketLossRate;
+                   int rxPacketLossRate;
+
+                   RtcStats(
+                     this.duration,
+                     this.txBytes,
+                     this.rxBytes,
+                     this.txAudioBytes,
+                     this.txVideoBytes,
+                     this.rxAudioBytes,
+                     this.rxVideoBytes,
+                     this.txKBitRate,
+                     this.rxKBitRate,
+                     this.rxAudioKBitRate,
+                     this.txAudioKBitRate,
+                     this.rxVideoKBitRate,
+                     this.txVideoKBitRate,
+                     this.lastmileDelay,
+                     this.userCount,
+                     this.cpuAppUsage,
+                     this.cpuTotalUsage,
+                     this.memoryAppUsageRatio,
+                     this.memoryTotalUsageRatio,
+                     this.memoryAppUsageInKbytes,
+                     this.connectTimeMs,
+                     this.firstAudioPacketDuration,
+                     this.firstVideoPacketDuration,
+                     this.firstVideoKeyFramePacketDuration,
+                     this.packetsBeforeFirstKeyFramePacket,
+                     this.firstAudioPacketDurationAfterUnmute,
+                     this.firstVideoPacketDurationAfterUnmute,
+                     this.firstVideoKeyFramePacketDurationAfterUnmute,
+                     this.firstVideoKeyFrameDecodedDurationAfterUnmute,
+                     this.firstVideoKeyFrameRenderedDurationAfterUnmute,
+                     this.txPacketLossRate,
+                     this.rxPacketLossRate,
+                   );
+                 }</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
                 <codeblock props="android" outputclass="language-java" />

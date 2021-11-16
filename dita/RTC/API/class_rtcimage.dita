@@ -60,17 +60,17 @@
             }
             }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export interface RtcImage {
-  
+
   url?: string;
-  
+
   x?: number;
-  
+
   y?: number;
-  
+
   width?: number;
-  
+
   height?: number;
-  
+
   zOrder?: number;
 }</codeblock>
                             <codeblock props="flutter" outputclass="language-dart">class RtcImage {
@@ -147,6 +147,40 @@
     url: string
     }</codeblock>
 
+                <codeblock props="rn" outputclass="language-typescript">export interface RtcImage {
+                  url?: string;
+                  x?: number;
+                  y?: number;
+                  width?: number;
+                  height?: number;
+                  zOrder?: number;
+                }
+                </codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class RtcImage {
+
+  String? url;
+
+  int? x;
+
+  int? y;
+
+  int? width;
+
+  int? height;
+
+  int? zOrder;
+  RtcImage({
+    this.url,
+    this.x,
+    this.y,
+    this.width,
+    this.height,
+    this.zOrder,
+  });
+    factory RtcImage.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$RtcImageFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcImageToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
@@ -160,19 +194,19 @@
   <pt>url</pt>
   <pd>直播视频上图片的 HTTP/HTTPS 地址。字符长度不得超过 1024 字节。</pd>
        </plentry>
-       <plentry props="android windows unity">
+       <plentry props="android windows unity flutter rn">
   <pt>x</pt>
   <pd>图片在视频画面上的 x 坐标 (pixel)，以输出视频画面的左上角为原点。</pd>
        </plentry>
-       <plentry props="android windows unity">
+       <plentry props="android windows unity flutter rn">
   <pt>y</pt>
   <pd>图片在视频画面上的 y 坐标 (pixel)，以输出视频画面的左上角为原点。</pd>
        </plentry>
-       <plentry props="android windows unity">
+       <plentry props="android windows unity flutter rn">
   <pt>width</pt>
   <pd>图片在视频画面上的宽度 (pixel)。</pd>
        </plentry>
-       <plentry props="android windows unity">
+       <plentry props="android windows unity flutter rn">
   <pt>height</pt>
   <pd>图片在视频画面上的高度 (pixel)。</pd>
        </plentry>

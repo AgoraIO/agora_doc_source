@@ -27,6 +27,22 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
 @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
 @end</codeblock>
+<codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
+
+  CAMERA_DIRECTION cameraDirection;
+
+  String deviceId;
+  VideoFormat format;
+  CameraCapturerConfiguration(
+    this.cameraDirection,
+    this.deviceId,
+    this.format,
+  );
+    factory CameraCapturerConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$CameraCapturerConfigurationFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$CameraCapturerConfigurationToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
@@ -34,15 +50,19 @@
             <parml>
                 <plentry>
                     <pt>cameraDirection</pt>
-                    <pd><note type="attention" props="windows">该参数仅适用于 Android 和 iOS 平台。</note>摄像头方向设置。<ph props="ios mac windows">详见 <xref keyref="CAMERA_DIRECTION"/>。</ph>
+                    <pd><note type="attention" props="windows">该参数仅适用于 Android 和 iOS 平台。</note>摄像头方向设置。<ph props="ios mac windows flutter rn">详见 <xref keyref="CAMERA_DIRECTION"/>。</ph>
                         <p props="android">摄像头方向：
                             <ul>
                                 <li><ph keyref="CAMERA_REAR"/> (0)：使用后置摄像头。</li>
                                 <li><ph keyref="CAMERA_FRONT"/> (1)：使用前置摄像头。</li>
                             </ul></p></pd>
                 </plentry>
-                <plentry props="windows android">
-                    <pt props="windows">format</pt>
+                <plentry props="flutter">
+                  <pt>deviceId</pt>
+                  <pd>预留参数。</pd>
+                </plentry>
+                <plentry props="windows android flutter rn">
+                    <pt props="windows flutter rn">format</pt>
                     <pt props="android">captureFormat</pt>
                     <pd>详见 <xref keyref="VideoFormat"/>。</pd>
                 </plentry>
