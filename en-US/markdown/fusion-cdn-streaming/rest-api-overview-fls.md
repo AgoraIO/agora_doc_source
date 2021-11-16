@@ -26,7 +26,7 @@ You can ban or unban the stream and query the stream-pushing information.
 
 ### Stream pushing/playing authentication
 
-You can set the authentication secret key for the stream pushing and playing at the specified domain name.
+You can set the authentication key for stream pushing and playing at the specified domain name.
 
 ## Implementation
 
