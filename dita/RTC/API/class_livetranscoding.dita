@@ -94,15 +94,57 @@
         audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC) {}
 };</codeblock>
             </p>
+            <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
+                int? width;
+                int? height;
+                int? videoBitrate;
+                int? videoFramerate;
+                bool? lowLatency;
+                int? videoGop;
+                VIDEO_CODEC_PROFILE_TYPE? videoCodecProfile;
+                int? backgroundColor;
+                int? userCount;
+                List&lt;TranscodingUser&gt;? transcodingUsers;
+                String? transcodingExtraInfo;
+                String? metadata;
+                List&lt;RtcImage&gt;? watermark;
+                List&lt;RtcImage&gt;? backgroundImage;
+                AUDIO_SAMPLE_RATE_TYPE? audioSampleRate;
+                int? audioBitrate;
+                int? audioChannels;
+                AUDIO_CODEC_PROFILE_TYPE? audioCodecProfile;
+
+                LiveTranscoding({
+                  this.width,
+                  this.height,
+                  this.videoBitrate,
+                  this.videoFramerate,
+                  this.lowLatency,
+                  this.videoGop,
+                  this.videoCodecProfile,
+                  this.backgroundColor,
+                  this.userCount,
+                  this.transcodingUsers,
+                  this.transcodingExtraInfo,
+                  this.metadata,
+                  this.watermark,
+                  this.backgroundImage,
+                  this.audioSampleRate,
+                  this.audioBitrate,
+                  this.audioChannels,
+                  this.audioCodecProfile,
+                });
+              }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
             <p outputclass="codeblock" props="rtc">
                 <codeblock props="windows unity" outputclass="language-cpp">typedef struct LiveTranscoding {
     int width;
     int height;
     int videoBitrate;
     int videoFramerate;
-    
+
     bool lowLatency;
-    
+
     int videoGop;
     VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
     unsigned int backgroundColor;
@@ -110,11 +152,11 @@
     TranscodingUser *transcodingUsers;
     const char *transcodingExtraInfo;
     RtcImage* watermark;
-    
+
     AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
     int audioBitrate;
     int audioChannels;
-    
+
     LiveTranscoding()
     : width(360)
     , height(640)
@@ -159,7 +201,7 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
-                <plentry props="android windows electron unity">
+                <plentry props="android windows electron unity flutter rn">
                     <pt>width</pt>
                     <pd>
                         <p>输出媒体流的宽，单位为像素。默认值为 360。</p>
@@ -169,7 +211,7 @@
                         </ul>
                     </pd>
                 </plentry>
-                <plentry props="android windows electron unity">
+                <plentry props="android windows electron unity flutter rn">
                     <pt>height</pt>
                     <pd>
                         <p>输出媒体流的高，单位为像素。默认值为 640。</p>
@@ -199,7 +241,7 @@
                         <dl outputclass="deprecated">
                             <dlentry>
                                 <dt>弃用</dt>
-                                <dd>该属性自 v2.8.0 起废弃，Agora 不推荐使用。</dd>
+                                <dd>该属性已<ph props="rtc">自 v2.8.0 起</ph>废弃，Agora 不推荐使用。</dd>
                             </dlentry>
                         </dl>
                         <ul>
@@ -238,11 +280,11 @@
                     <pd>输出媒体流的视频背景色。格式为 RGB 定义下的十六进制整数，不要带 # 号。如 <codeph>0xFFB6C1</codeph>
                         表示浅粉色。默认值为 <codeph>0x000000</codeph>，表示黑色。</pd>
                 </plentry>
-                <plentry props="android windows electron unity">
+                <plentry props="android windows electron unity flutter rn">
                     <pt>userCount</pt>
                     <pd>参与转码合流的主播数量。默认值为 0。</pd>
                 </plentry>
-                <plentry props="android windows unity">
+                <plentry props="android windows unity flutter rn">
                     <pt>metadata</pt>
                     <pd>
                         <dl outputclass="deprecated">
