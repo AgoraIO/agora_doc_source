@@ -1,6 +1,6 @@
 The authentication function is in the beta stage. Contact sales@agora.io before using it.
 
-## Set authentication secrets
+## 设置防盗链密钥
 
 Set the authentication secret of the specified domain name.
 
@@ -21,7 +21,7 @@ PATCH https://api.agora.io/v1/projects/{appid}/fls/domains/{domain}
 
 The request body is in the JSON Object type, and contains the following fields:
 
-`authKey`: String type, required, no more than 128 characters. The authentication secret.
+`authKey`: String type, required, no more than 128 characters. The secret hotlink protection.
 
 ### HTTP response
 
