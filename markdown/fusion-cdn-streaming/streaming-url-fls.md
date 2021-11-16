@@ -42,13 +42,13 @@
 
 本节介绍如何生成 URL 鉴权字符串。
 
-### 第一步：提供鉴权密钥
+### 第一步：提供防盗链密钥
 
-鉴权密钥用于在业务服务器生成签名，以及在使用 Agora 融合 CDN 直播服务时进行验证。
+防盗链密钥用于在业务服务器生成签名，以及在使用 Agora 融合 CDN 直播服务时进行验证。
 
-鉴权密钥为不超过 128 字节的字符串，你需要自行设置。每个推流域名和播流域名都可以分别设置鉴权密钥，详见[直播流鉴权配置](https://docs.agora.io/cn/fusion-cdn-streaming/rest-api-%20authentication-fls?platform=RESTful)。
+防盗链密钥为不超过 128 字节的字符串，你需要自行设置。每个推流域名和播流域名都可以分别设置防盗链密钥，详见[直播流鉴权配置](https://docs.agora.io/cn/fusion-cdn-streaming/rest-api-authentication-fls?platform=RESTful)。
 
-<div class="alert warning">不要在客户端使用鉴权密钥或者将其泄露给第三方，否则有被盗链风险。</div>
+<div class="alert warning">不要在客户端使用防盗链密钥或者将其泄露给第三方，否则有被盗链风险。</div>
 
 ### 第二步：计算失效时间戳
 
@@ -63,9 +63,9 @@ URL 的有效期不宜设置太短或者太长，Agora 推荐设置在 5 到 10 
 
 ### 第三步：计算防盗链签名
 
-签名（sign）为鉴权密钥、推流/播流 URL 的路径、失效时间戳 ts 这三部分拼接后的字符串计算得到的 MD5 值。
+签名（sign）为防盗链密钥、推流/播流 URL 的路径、失效时间戳 ts 这三部分拼接后的字符串计算得到的 MD5 值。
 
-例如，假设 URL 为 `http://domain/live/stream.flv`，鉴权密钥为 `z2tn3uiny0aasebz`，`ts` 为 `1634955000`，则 sign=MD5(z2tn3uiny0aasebz/live/stream.flv1634955000)=f7c1bd88e911b72c。
+例如，假设 URL 为 `http://domain/live/stream.flv`，防盗链密钥为 `z2tn3uiny0aasebz`，`ts` 为 `1634955000`，则 sign=MD5(z2tn3uiny0aasebz/live/stream.flv1634955000)=f7c1bd88e911b72c。
 
 ### 示例代码
 

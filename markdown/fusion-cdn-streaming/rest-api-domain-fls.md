@@ -172,13 +172,13 @@ HTTP/1.1 200 OK
     "domainList": [
         {
             "appid": "{your appid}",
-            "authKey": "{your authkey}",
+            "authKey": "{your auth key}",
             "name": "{your play domain}",
             "type": "play"
         },
         {
             "appid": "{your appid}",
-            "authKey": "{your authkey}",
+            "authKey": "{your auth key}",
             "name": "{your publish domain}",
             "region": "cn",
             "type": "publish"
@@ -238,7 +238,7 @@ HTTP/1.1 200 OK
 ```json
 {
     "appid": "{your appid}",
-    "authKey": "{your authkey}",
+    "authKey": "{your auth key}",
     "name": "{your domain}",
     "region": "cn",
     "type": "publish"
