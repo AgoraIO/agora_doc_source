@@ -41,37 +41,37 @@
                 <codeblock props="unity" outputclass="language-csharp" />
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">class VideoFrame {
-  
+
   VIDEO_PIXEL_FORMAT? type;
-  
+
   int? width;
-  
+
   int? height;
-  
+
   int? yStride;
-  
+
   int? uStride;
-  
+
   int? vStride;
-  
+
   @JsonKey(ignore: true)
   Uint8List? yBuffer;
-  
+
   @JsonKey(ignore: true)
   Uint8List? uBuffer;
-  
+
   @JsonKey(ignore: true)
   Uint8List? vBuffer;
-  
+
   int? rotation;
-  
+
   int? renderTimeMs;
-  
+
   int? avsync_type;
-  
+
   @JsonKey(ignore: true)
   Uint8List? metadata_buffer;
-  
+
   int? metadata_size;
   VideoFrame({
     this.type,
@@ -97,7 +97,7 @@
             </p>
         </section>
         <section id="detailed_desc">
-   
+
    <p>The video data format is YUV420. Note that the buffer provides a pointer to a pointer. This interface cannot modify the pointer of the buffer but can modify the content of the buffer.</p>
         </section>
         <section id="parameters">
@@ -146,7 +146,7 @@
        </plentry>
        <plentry>
   <pt>renderTimeMs</pt>
-  <pd>The timestamp (ms) of the external audio frame. It is mandatory. You can use it to restore the order of the captured audio frame, or synchronize audio and video frames in video-related scenarios (including scenarios where external video sources are used).</pd>
+  <pd>The timestamp (ms) of the external audio frame. You can use it to restore the order of the captured audio frame, or synchronize audio and video frames in video-related scenarios (including scenarios where external video sources are used).</pd>
        </plentry>
        <plentry>
   <pt>avsync_type</pt>

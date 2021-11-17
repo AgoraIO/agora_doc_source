@@ -23,7 +23,11 @@
                 <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="unity" outputclass="language-csharp" />
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteRenderModeEx(
+                    uid_t remoteUid,
+                    RENDER_MODE_TYPE renderMode,
+                    VIDEO_MIRROR_MODE_TYPE mirrorMode,
+                    RtcConnection connection);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -38,12 +42,12 @@
    <parml>
        <plentry>
   <pt props="android ios mac">uid</pt>
-           <pt props="windows">remoteUid</pt>
+           <pt props="windows flutter rn">remoteUid</pt>
   <pd>The ID of the remote user.</pd>
        </plentry>
        <plentry>
   <pt>renderMode</pt>
-  <pd><p props="ios mac windows">The video display mode of the remote user. For details, see <xref keyref="RENDER_MODE_TYPE" />.</p>
+  <pd><p props="ios mac windows flutter rn">The video display mode of the remote user. For details, see <xref keyref="RENDER_MODE_TYPE" />.</p>
       <p props="android">The video display mode of a specified remote user:<ul conkeyref="setLocalRenderMode2/rendermodetype">
           <li />
       </ul>
@@ -52,11 +56,11 @@
        </plentry>
                 <plentry>
                     <pt>mirrorMode</pt>
-                    <pd><p props="ios mac windows">The mirror mode of the remote user view. For details, see <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+                    <pd><p props="ios mac windows flutter rn">The mirror mode of the remote user view. For details, see <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
                         <p props="android">The mirror mode of the remote user view:<ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                           <li />
                       </ul>
-                  </p>  
+                  </p>
                     </pd>
                 </plentry>
                 <plentry conkeyref="joinChannelEx/connection">
