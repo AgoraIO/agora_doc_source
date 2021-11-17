@@ -26,8 +26,7 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>使用 <xref keyref="openWithCustomSource"
-                /> 打开自定义媒体资源时，SDK 会触发该回调，向你请求定位到媒体资源中的某一指定位置。</p>
+            <p>使用 <xref keyref="openWithCustomSource"/> 打开自定义媒体资源时，SDK 会触发该回调，向你请求定位到媒体资源中的指定位置。</p>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
@@ -37,14 +36,14 @@
                 </plentry>
                 <plentry>
                     <pt>offset</pt>
-                    <pd>数据的偏移量。</pd>
+                    <pd>定位位置相对于起点的偏移量。单位为字节。取值可正可负。</pd>
                 </plentry>
                 <plentry>
                     <pt>whence</pt>
-                    <pd>数据偏移量相对的起点类型：<ul>
-                            <li>0: 起点为数据的头。</li>
-                            <li>1: 起点为当前位置。</li>
-                            <li>2: 起点为数据的尾。</li>
+                    <pd>表示定位位置是由哪个位置作为起点开始偏移。可以为如下值：<ul>
+                            <li>0：起点为数据的头。</li>
+                            <li>1：起点为当前位置。</li>
+                            <li>2：起点为数据的尾。</li>
                         </ul></pd>
                 </plentry>
             </parml>
@@ -52,7 +51,7 @@
         <section id="return_values">
             <title>返回值</title>
             <ul>
-                <li>如果定位位置成功，请在返回值中传入实际定位后的数据偏移量，单位为字节。</li>
+                <li>如果定位位置成功，请在返回值中传入实际定位后的数据偏移量，即定位位置相对于文件头偏移的数据量。单位为字节。</li>
                 <li>如果定位位置失败，请在返回值中传入 -1。</li>
             </ul>
         </section>
