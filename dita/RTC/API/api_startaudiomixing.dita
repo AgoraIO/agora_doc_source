@@ -18,9 +18,9 @@
                loopback:(BOOL)loopback
                 replace:(BOOL)replace
                   cycle:(NSInteger)cycle;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath, 
-    bool loopback, 
-    bool replace, 
+                <codeblock props="windows" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath,
+    bool loopback,
+    bool replace,
     int cycle) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">startAudioMixing(filePath: string,
     loopback: boolean,
@@ -37,10 +37,11 @@
             <dl outputclass="deprecated" props="rtc">
                 <dlentry>
                     <dt>Deprecated:</dt>
-                    <dd>This method is deprecated as of v3.4.0. Please use <xref keyref="startAudioMixing2" /> instead.</dd>
+                    <dd props="rtc">This method is deprecated as of v3.4.0. Please use <xref keyref="startAudioMixing2" /> instead.</dd>
+                    <dd props="rtc-ng">This method is deprecated. Please use <xref keyref="startAudioMixing2" /> instead.</dd>
                 </dlentry>
             </dl>
-   
+
             <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <xref keyref="onAudioMixingStateChanged" /> (<codeph>PLAY</codeph>) callback. When the audio mixing file playback finishes, the SDK triggers the <apiname keyref="onAudioMixingStateChanged" /> (<codeph>STOPPED</codeph>) callback on the local client.</p>
    <note type="attention" id="audiomixing_note">
        <ul>
