@@ -23,7 +23,11 @@
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteRenderModeEx(
+                    uid_t remoteUid,
+                    RENDER_MODE_TYPE renderMode,
+                    VIDEO_MIRROR_MODE_TYPE mirrorMode,
+                    RtcConnection connection);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -39,12 +43,12 @@
    <parml>
        <plentry>
   <pt props="android ios mac">uid</pt>
-           <pt props="windows">remoteUid</pt>
+           <pt props="windows flutter rn">remoteUid</pt>
   <pd>远端用户 ID。</pd>
        </plentry>
        <plentry>
   <pt>renderMode</pt>
-  <pd><p props="ios mac windows">远端视图显示模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
+  <pd><p props="ios mac windows flutter rn">远端视图显示模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</p>
       <p props="android">远端视图显示模式：
       <ul conkeyref="setLocalRenderMode2/rendermodetype">
           <li/>
@@ -54,7 +58,7 @@
        </plentry>
                 <plentry>
                     <pt>mirrorMode</pt>
-                    <pd><p props="ios mac windows">远端用户视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                    <pd><p props="ios mac windows flutter rn">远端用户视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
                         <p props="android">远端用户视图的镜像模式：
                       <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                           <li/>
