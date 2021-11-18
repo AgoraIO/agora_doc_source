@@ -18,7 +18,7 @@ Description of each part:
 
 | URL segment | Necessary or not | Description |
 | :--------- | :------- | :----------------------------------------------------------- |
-| Domain name | Yes | The domain name for pushing the stream. It must be recorded at China's Ministry of Industry and Information Technology and have successful CNAME configuration.   |
+| Domain name | Yes | The domain name for pushing the stream. Ensure that the CNAME records point to the agora domain.   |
 | The entry point | Yes | The default entry point is live, and each entry point has its own live streaming configuration. |
 | Stream name | Yes | The name of the live streaming. One stream name identifies one live streaming, so please ensure each live streaming has a unique stream name. |
 | Authentication string | No | If the live streaming authentication is not set, the "?" and the content behind it are not required in the URL address. <br/>The authentication string consists the following parameters: <ul><li>`ts`: The Unix timestamp (s) when the URL expires. This value shows the time that the authentication string expires. For example, `ts=1635004800` means the authentication string is valid before October 23th, 2021 (CST).</li><li>`sign`: The hotlink protection signature.</li></ul>For more details, see<a href="#key">Calculate the Authentication String</a>. |
@@ -42,7 +42,7 @@ The rules for constructing the URL for playing a live stream are similar to thos
 
 This section introduces how to generate the URL authentication strings.
 
-### Step 1: Provide the authentication key for hotlink protection.
+### Step 1: Provide the authentication key for hotlink protection
 
 The authentication key is used to generate the signature in the business server and to verify the signature during the Agora FLS.
 
@@ -50,7 +50,7 @@ The authentication key is a string of no more than 128 bytes, and you need to se
 
 <div class="alert warning">Do not use the authentication key on the client side or leak it to any third party, or your URLs could be hotlinked.</div>
 
-### Step 2: Calculate the expiry timestamp
+### Step 2: Calculate the expiration timestamp
 
 The `ts` parameter in the stream-pushing or stream-playing URL determines the valid time of the URL.
 
@@ -59,11 +59,11 @@ If the current time is October 23, 2021 10:00:00 CST, its Unix timestamp is 1634
 The valid time of a URL must neither be too short nor too long. Agora recommends setting it between 5 and 10 minutes.
 
 - If the valid time is too short, the client side could fail to push or play the stream when it tries to reconnect to the server.
-- If the valid time is too long, your hotlink could be at  risk.
+- If the valid time is too long, your URL could be at risk.
 
 ### Step 3: Calculate the hotlink protection signature
 
-The signature (sign) is the MD5 value calculated by the constructed strings of the authentication key, the path of the URL pushing or playing the stream,   and the expiry timestamp (ts).
+The signature (sign) is the MD5 value calculated by the constructed strings of the authentication key, the path of the URL pushing or playing the stream, and the expiration timestamp (ts).
 
 For example, if the URL is `http://domain/live/stream.flv`, the authentication key is `z2tn3uiny0aasebz`, and `ts` is `1634955000`, the sign is MD5(z2tn3uiny0aasebz/live/stream.flv1634955000)=f7c1bd88e911b72c.
 
