@@ -27,7 +27,12 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
 @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
 @end</codeblock>
-<codeblock props="rn" outputclass="language-typescript" />
+<codeblock props="rn" outputclass="language-typescript">export interface CameraCapturerConfiguration {
+  cameraDirection?: CAMERA_DIRECTION;
+  deviceId?: string;
+  format?: VideoFormat;
+}
+</codeblock>
                 <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
 
   CAMERA_DIRECTION cameraDirection;
@@ -57,7 +62,7 @@
                                 <li><ph keyref="CAMERA_FRONT"/> (1)：使用前置摄像头。</li>
                             </ul></p></pd>
                 </plentry>
-                <plentry props="flutter">
+                <plentry props="flutter rn">
                   <pt>deviceId</pt>
                   <pd>预留参数。</pd>
                 </plentry>
