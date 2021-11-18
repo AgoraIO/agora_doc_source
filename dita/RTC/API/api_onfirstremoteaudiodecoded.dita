@@ -11,17 +11,26 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) {
+                (void)uid;
+                (void)elapsed;
+                }
+            </codeblock>
+            </p>
+        <p outputclass="codeblock" props="rtc">
+            <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) AGORA_DEPRECATED_ATTRIBUTE {
+    (void)uid;
+    (void)elapsed;
+  }</codeblock>
+        </p>
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onFirstRemoteAudioDecoded(int uid, int elapsed) {
     }
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine firstRemoteAudioFrameDecodedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed NS_SWIFT_NAME(rtcEngine(_:firstRemoteAudioFrameDecodedOfUid:elapsed:));
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine firstRemoteAudioFrameDecodedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed;
 </codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onFirstRemoteAudioDecoded(uid_t uid, int elapsed) AGORA_DEPRECATED_ATTRIBUTE {
-    (void)uid;
-    (void)elapsed;
-  }
-</codeblock>
+                
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_REMOTE_AUDIO_DECODED, cb: (
     uid: number, 
     elapsed: number) => void
@@ -59,11 +68,11 @@
                 </plentry>
        <plentry>
   <pt>uid</pt>
-  <pd>远端用户 ID 。</pd>
+  <pd>远端用户 ID。</pd>
        </plentry>
        <plentry>
   <pt>elapsed</pt>
-  <pd>从本地用户调用 <apiname keyref="joinChannel2"/> 直至该回调触发的延迟，单位为毫秒。</pd>
+           <pd id="elapsed">从本地用户调用 <apiname keyref="joinChannel2"/> 直至该回调触发的延迟，单位为毫秒。</pd>
        </plentry>
    </parml>
         </section>
