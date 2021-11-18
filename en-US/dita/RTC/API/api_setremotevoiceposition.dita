@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotevoiceposition">
-    <title><ph keyref="setRemoteVoicePosition" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the sound position and gain of a remote user.</ph></shortdesc>
+    <title><ph keyref="setRemoteVoicePosition"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置远端用户声音的 2D 位置，即水平面位置。</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -17,8 +17,8 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVoicePosition(uid_t uid, double pan, double gain) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">setRemoteVoicePosition(uid: number, pan: number, gain: number): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteVoicePosition(uint uid, double pan, double gain);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
         </p>
         </section>
         <section id="detailed_desc">
@@ -27,8 +27,8 @@
    <p>When the local user calls this method to set the sound position of a remote user, the sound difference between the left and right channels allows the local user to track the real-time position of the remote user, creating a sense of space. This method applies to massive multiplayer online games, such as Battle Royale games.</p>
    <note type="attention">
        <ul>
-  <li>For this method to work, enable stereo panning for remote users by calling the <xref keyref="enableSoundPositionIndication" /> method before joining a channel.</li>
-  <li>This method requires hardware support. For the best sound positioning, we recommend using a stereo speaker.</li>
+  <li>For this method to work, enable stereo panning for<xref keyref="enableSoundPositionIndication"/> remote users by calling the  method before joining a channel.</li>
+           <li>This method requires hardware support. For the best sound positioning, we recommend using a stereo speaker.</li>
   <li>Call this method after joining a channel.</li>
        </ul>
    </note>
@@ -37,7 +37,7 @@
    <parml>
        <plentry>
   <pt>uid</pt>
-  <pd>The ID of the remote user.</pd>
+  <pd>远端用户的 ID</pd>
        </plentry>
        <plentry>
   <pt>pan</pt>
