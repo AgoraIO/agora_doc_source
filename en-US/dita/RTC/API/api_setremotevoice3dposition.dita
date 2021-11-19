@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotevoice3dposition">
     <title><ph keyref="setRemoteVoice3DPosition"/></title>
-    <shortdesc id="short">Sets the 3D position of the remote user&apos;s voice.<ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the 3D position of the remote user&apos;s voice.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -40,29 +40,29 @@
         </section>
         <section id="parameters"><title>Parameter</title>
             <parml>
-                <plentry>
+                <plentry id="uid">
                     <pt>uid</pt>
                     <pd>The ID of the remote user.</pd>
                 </plentry>
-                <plentry>
+                <plentry id="azimuth">
                     <pt>azimuth</pt>
-                    <pd>Horizontal angle. The value range is [0,360] and the unit is a degree,  where the following occurs:<ul>
-                            <li>0: (default) 0 degrees, which means directly in front of the horizontal plane.</li>
-                            <li>90: 90 degrees, indicating the right side of the horizontal plane.</li>
-                            <li>180: 180 degrees, indicating the right side of the horizontal plane.</li>
+                    <pd>The horizontal angle. The value range is [0,360], and the unit is a degree,  where the following occurs:<ul>
+                            <li>0: (default) 0 degrees, which means directly the front side on the horizontal plane.</li>
+                            <li>90: 90 degrees, which means the left side on horizontal plane.</li>
+                            <li>180: 180 degrees, which means the right side on the horizontal plane.</li>
                         </ul></pd>
                 </plentry>
-                <plentry>
+                <plentry id="elevation">
                     <pt>elevation</pt>
-                    <pd>Vertical angle. The value range is [1,60] and the unit is a second. where the following occurs:<ul>
-                            <li>0: (default) 0 degrees, indicating no rotation of the horizontal plane.</li>
+                    <pd>The vertical angle. The value range is [-90,90], and the unit is a degree,  where the following occurs:<ul>
+                            <li>0: (default) 0 degrees, which means that the horizontal plane is not rotated.</li>
                             <li>-90: -90 degrees, which means that the horizontal plane is rotated 90 degrees downwards.</li>
                             <li>90: 90 degrees, which means that the horizontal plane is rotated 90 degrees upwards.</li>
                         </ul></pd>
                 </plentry>
-                <plentry>
+                <plentry id="distance">
                     <pt>distance</pt>
-                    <pd>Sound source distance. The value cannot be less than 0.5, and the unit is meter. In order to avoid setting the distance too large to cause low sound, Agora recommends the setting range to be [0.5,50].</pd>
+                    <pd>The distance of the voice source. The value cannot be less than 0.5, and the unit is meter. To avoid that the voice sounds too low when setting the distance too large, Agora recommends the setting range to be [0.5,50].</pd>
                 </plentry>
             </parml>
         </section>
