@@ -26,29 +26,29 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>使用 <xref keyref="openWithCustomSource"/> 打开自定义媒体资源时，SDK 会触发该回调向你请求传入媒体资源数据的 Buffer。</p>
+            <p>When you call the <xref keyref="openWithCustomSource"/> method to open a custom media resource, the SDK triggers this callback to request the buffer of the media resource data.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry props="ios mac">
                     <pt>playerKit</pt>
-                    <pd>媒体播放器协议。 For details, see <xref keyref="IMediaPlayer"/>.</pd>
+                    <pd>Media player protocol. For details, see <xref keyref="IMediaPlayer"/>.</pd>
                 </plentry>
                 <plentry>
                     <pt>buffer</pt>
-                    <pd>输入参数，数据 Buffer。 单位为字节。 请将 SDK 报告的 <parmname>bufferSize</parmname> 数据写入到 <parmname>buffer</parmname> 中。</pd>
+                    <pd>An input parameter. Data Buffer. Write the <parmname>bufferSize</parmname> data reported by the SDK into <parmname>buffer</parmname>.</pd>
                 </plentry>
                 <plentry>
                     <pt>bufferSize</pt>
-                    <pd>数据 Buffer 的长度。 单位为字节。</pd>
+                    <pd>数据 Buffer 的长度，单位为字节。</pd>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-                <li>如果读取数据成功，请在返回值中传入你实际读取的数据长度，单位为字节。</li>
-                <li>如果读取数据失败，请在返回值中传入 0。</li>
+                <li>If the data is read successfully, pass in the length of the data (byte) you actually read in the return value.</li>
+                <li>If reading the data fails, pass in 0 in the return value.</li>
             </ul>
         </section>
     </refbody>
