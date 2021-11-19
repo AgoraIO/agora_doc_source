@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotevoice3dposition">
     <title><ph keyref="setRemoteVoice3DPosition"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置远端用户声音的 3D 位置。</ph></shortdesc>
+    <shortdesc id="short">Sets the 3D position of the remote user&apos;s voice.<ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,13 +27,13 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>通过设置远端用户声音的水平角、垂直角和声源距离，让远端用户的声音听起来有方位感。</p>
+            <p>By setting the horizontal angle, vertical angle, and distance of the remote user&apos;s voice, the voice of the remote user can sound directional.</p>
             <p>This method applies to massive multiplayer online games, such as Battle Royale games.</p>
-            <p>该方法和 <xref keyref="setRemoteVoicePosition"/> 的区别是：该方法设置声音的 3D 位置；<apiname keyref="setRemoteVoicePosition"/> 设置声音的 2D 位置，即水平面上的位置。</p>
+            <p>The difference between this method and <xref keyref="setRemoteVoicePosition"/> is: this method sets the 3D position of the voice; <apiname keyref="setRemoteVoicePosition"/> sets the 2D position (the position on the horizontal plane) of the voice.</p>
             <note type="attention">
                 <ul>
-                    <li>For this method to work, enable stereo panning for<xref keyref="enableSoundPositionIndication"/>  remote users by calling the  method before joining a channel.</li>
-                    <li>This method requires hardware support. For the best sound positioning, we recommend using a stereo speaker.</li>
+                    <li>For this method to work, enable stereo panning for remote users by calling the <xref keyref="enableSoundPositionIndication"/> method before joining a channel.</li>
+                    <li>For the best voice positioning, Agora recommends using a wired headset.</li>
                     <li>Call this method after joining a channel.</li>
                 </ul>
             </note>
@@ -42,27 +42,27 @@
             <parml>
                 <plentry>
                     <pt>uid</pt>
-                    <pd>远端用户的 ID。</pd>
+                    <pd>The ID of the remote user.</pd>
                 </plentry>
                 <plentry>
                     <pt>azimuth</pt>
-                    <pd>水平角。 The value range is [1,60] and the unit is a second. where the following occurs:<ul>
-                            <li>0:（默认）0 度，表示水平面的正前方。</li>
-                            <li>90: 90 度，表示水平面的正左方。</li>
-                            <li>180: 180 度，表示水平面的正右方。</li>
+                    <pd>Horizontal angle. The value range is [0,360] and the unit is a degree,  where the following occurs:<ul>
+                            <li>0: (default) 0 degrees, which means directly in front of the horizontal plane.</li>
+                            <li>90: 90 degrees, indicating the right side of the horizontal plane.</li>
+                            <li>180: 180 degrees, indicating the right side of the horizontal plane.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>elevation</pt>
-                    <pd>垂直角。 The value range is [1,60] and the unit is a second. where the following occurs:<ul>
-                            <li>0:（默认）0 度，表示水平面无旋转。</li>
-                            <li>-90: -90 度，表示水平面向下旋转 90 度。</li>
-                            <li>90: 90 度，表示水平面向上旋转 90 度。</li>
+                    <pd>Vertical angle. The value range is [1,60] and the unit is a second. where the following occurs:<ul>
+                            <li>0: (default) 0 degrees, indicating no rotation of the horizontal plane.</li>
+                            <li>-90: -90 degrees, which means that the horizontal plane is rotated 90 degrees downwards.</li>
+                            <li>90: 90 degrees, which means that the horizontal plane is rotated 90 degrees upwards.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>distance</pt>
-                    <pd>声源距离。 取值不能小于 0.5，单位为米。 为避免设置距离过大导致声音较小，Agora 推荐设置范围为 [0.5,50]。</pd>
+                    <pd>Sound source distance. The value cannot be less than 0.5, and the unit is meter. In order to avoid setting the distance too large to cause low sound, Agora recommends the setting range to be [0.5,50].</pd>
                 </plentry>
             </parml>
         </section>
