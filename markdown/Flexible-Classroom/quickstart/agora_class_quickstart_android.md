@@ -17,11 +17,15 @@
 
 参照以下步骤启动灵动课堂：
 
-1. 运行以下命令将 Agora 提供的灵动课堂项目 CloudClass-Android 克隆至本地：
+1. 运行以下命令将 Agora 提供的灵动课堂项目 CloudClass-Android 克隆至本地，并切换至最新发版分支。
 
    ```
    git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
    ```
+   ```
+   git checkout release/apaas/x.y.z
+   ```
+   <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_android?platform=Android">发版说明</a>中获取最新版本号。</div>
 
 2. 在 Android Studio 中打开 CloudClass-Android。
 
@@ -35,7 +39,7 @@
            <string name="agora_api_host" translatable="false">Agora API Host</string>
            <string name="agora_report_host" translatable="false">Report API Host</string>
    </resources>
-   ```
+```
 
    为方便你快速测试，CloudClass-Android 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
 
@@ -65,7 +69,7 @@
 
 1. 在项目的 **build.gradle** 文件中添加以下库：
 
-   ```
+```
    allprojects {
    	repositories {
    		...
@@ -83,4 +87,5 @@
    		// 请访问 https://jitpack.io/#AgoraIO-Community/CloudClass-Android 获取最新 Tag
    		implementation 'com.github.AgoraIO-Community:CloudClass-Android:Tag'
    }
+
    ```
