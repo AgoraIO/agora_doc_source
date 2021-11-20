@@ -109,9 +109,9 @@ export type AgoraEduSDKConfigParams = {
 
 | Attributes | Description |
 | :------- | :----------------------------------------------------------- |
-| `appId` | // Agora App ID
+| `appId` | (Required) Agora App ID.
  |
-| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
+| `region` | （选填）课堂所在区域。 All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
 
 ### LaunchOption
 
@@ -146,25 +146,25 @@ export type LaunchOption = {
 | Parameter | Description |
 | :----------------------- | :----------------------------------------------------------- |
 | `rtmToken` | The RTM token used for authentication. |
-| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `userUuid` | (Required) The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomUuid` | (Required) The classroom ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roleType` | The role of the user in the classroom. See [EduRoleTypeEnum](#eduroletypeenum). |
 | `roomType` | The classroom type. See [EduRoomTypeEnum](#eduroomtypeenum). |
-| `listener` | The state of classroom launching.<li>`ready`: The classroom is ready.</li><li>`destroyed`: The classroom has been destroyed.</li> |
+| `listener` | (Required) The classroom state:<li>`ready`: The classroom is ready.</li><li>`destroyed`: The classroom has been destroyed.</li> |
 | `pretest` | Whether to enable the pre-class device test:<li>`true`: Enable the pre-class device test. After this function is enabled, end users can see a page for the device test before entering the classroom. They can check whether their camera, microphone, and speaker can work properly.</li><li>`false`: Disable the pre-class device test.</li> |
 | `language` | The UI language. See [LanguageEnum](#languageenum). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
-| `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `recordUrl` | The URL address to be recorded. Developers need to pass in the URL of the web page deployed by themselves for page recording, such as `https://bing.com/recordUrl`. |
+| `duration` | The duration (ms) of the class, determined by the first user joining the classroom. 最大值为 86,400 秒，建议根据课堂实际时长设置。 |
+| `recordUrl` | (Optional) The URL address to be recorded. Developers need to pass in the URL of the web page deployed by themselves for page recording, such as `https://cn.bing.com/recordUrl`. |
 | `courseWareList` | The configuration of courseware assigned by the educational institution, which cannot be edited by the client. See [CourseWareList](#coursewarelist) for details. After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 | `personalCourseWareList` | The configuration of courseware uploaded by a teacher. See [CourseWareList](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 | `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](/en/agora-class/agora_class_ext_app_web?platform=Web). |
-| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
+| `region` | （选填）课堂所在区域。 All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
 | `userFlexProperties` | User properties customized by the developer. For details, see [How can I set user properties? ](/en/agora-class/faq/agora_class_custom_properties) |
-| `mediaOptions` | Media stream configurations, including the encryption configuration and the encoding configurations of the screen-sharing stream and the video stream captured by the camera. See `MediaOptions` for details. |
-| `latencyLevel` | The latency level of an audience member in interactive live streaming:<li>`1`: Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms.</li><li>`2`: (Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms.</li> |
+| `mediaOptions` | Media stream configurations, including the encryption configuration and the encoding configurations of the screen-sharing stream and the video stream captured by the camera. See MediaOptions for details``. |
+| `latencyLevel` | （选填）观众端延时级别：<li>`1`: Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms.</li><li>`2`: (Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms.</li> |
 
 ### MediaOptions
 
@@ -197,15 +197,15 @@ export interface EduVideoEncoderConfiguration {
 
 Video encoder configurations.
 
-> - In the Small Classroom scenario, the default resolution is 120p (160*120).
-> - In the One-to-one Classroom and Lecture Hall scenarios, the default resolution is 240p (320*240).
+> - 在小班课中，视频编码参数的默认值为 120p（160×120），200 Kbps，15 fps。
+> - 在一对一和大班课中，视频编码参数的默认值为 240p（320×240），65 Kbps，15 fps。
 
 | Parameter | Description |
 | :---------- | :------------------- |
 | `width` | Width (pixel) of the video frame. |
 | `height` | Height (pixel) of the video frame. |
-| `frameRate` | The frame rate (fps) of the video. The default value is 15. |
-| `bitrate` | The bitrate (Kbps) of the video. The default value is 200. |
+| `frameRate` | The frame rate (fps) of the video. |
+| `bitrate` | The bitrate (Kbps) of the video. |
 
 ### MediaEncryptionConfig
 
@@ -273,7 +273,7 @@ export type CourseWareList = CourseWareItem[]
 | Parameter | Description |
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | The file name for display in the classroom. The string length must be less than 64 bytes. |
-| `resourceUuid` | The file ID. This is the unique identifier of a file. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `resourceUuid` | The file ID. This is the unique identifier of a file. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `ext` | The file suffix. |
 | `size` | The file size (bytes). |
 | `updateTime` | The latest modified time of the file. |
