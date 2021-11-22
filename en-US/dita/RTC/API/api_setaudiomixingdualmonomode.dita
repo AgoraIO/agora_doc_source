@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setaudiomixingdualmonomode">
     <title><ph keyref="setAudioMixingDualMonoMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置当前音频文件的声道模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the channel mode of the current audio file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -34,23 +34,22 @@
                     <dd>v3.5.1</dd>
                 </dlentry>
             </dl>
-            <p>在双声道音频文件中，左声道和右声道可以存储不同的音频数据。 根据实际需要，你可以设置声道模式为原始模式、左声道模式、右声道模式或混合模式。 例如，在 KTV 场景中，音频文件的左声道存储了伴奏，右声道存储了原唱的歌声。 如果你只需听伴奏，调用该方法设置音频文件的声道模式为左声道模式；如果你需要同时听伴奏和原唱，调用该方法设置声道模式为混合模式。</p>
+            <p>In a stereo music file, the left and right channels can store different audio data. According to your needs, you can set the channel mode to original mode, left channel mode, right channel mode, or mixed channel mode. For example, in the KTV scenario, the left channel of the music file stores the musical accompaniment, and the right channel stores the singing voice. If you only need to listen to the accompaniment, call this method to set the channel mode of the music file to left channel mode; if you need to listen to the accompaniment and the singing voice at the same time, call this method to set the channel mode to mixed channel mode.</p>
             <note type="attention" id="note"><ul>
-                <li props="rtc">You need to call this method after calling<xref keyref="startAudioMixing2"/>  and receiving<xref keyref="onAudioMixingStateChanged"/> the (<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>PLAY) callback.</li>
-                <li props="rtc-ng">你需要在调用 <xref keyref="open"/> 后调用该方法。</li>
-                <li>该方法仅适用于双声道的音频文件。</li>
+                <li props="rtc">Call this method after calling <xref keyref="startAudioMixing2"/> and receiving the <xref keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) callback.</li>
+                <li props="rtc-ng">Call this method after calling <xref keyref="open"/>.</li>
+                <li>This method only applies to stereo audio files.</li>
             </ul></note>
         </section>
         <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>mode</pt>
-                    <pd>声道模式。 <ph props="windows mac ios">For details, see <xref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>.</ph><ul props="android">
-                            <li><ph keyref="AUDIO_MIXING_DUAL_MONO_AUTO"/> (0): 原始模式。</li>
-                            <li><ph keyref="AUDIO_MIXING_DUAL_MONO_L"/> (1): 左声道模式。 该模式用左声道的音频替换右声道的音频，即用户只能听到左声道的音频。</li>
-                            <li><ph keyref="AUDIO_MIXING_DUAL_MONO_R"/> (2): Read and write mode: Users read the
- data from AudioFrame, modify it, and then play it. 该模式用右声道的音频替换左声道的音频，即用户只能听到右声道的音频。</li>
-                            <li><ph keyref="AUDIO_MIXING_DUAL_MONO_MIX"/> (3): 混合模式。 该模式将左右声道的数据叠加，即用户能同时听到左声道和右声道的音频。</li>
+                    <pd>The channel mode. <ph props="windows mac ios">For details, see <xref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>.</ph><ul props="android">
+                            <li><ph keyref="AUDIO_MIXING_DUAL_MONO_AUTO"/> (0): Original mode.</li>
+                            <li><ph keyref="AUDIO_MIXING_DUAL_MONO_L"/> (1): Left channel mode. This mode replaces the audio of the right channel with the audio of the left channel, which means the user can only hear the audio of the left channel.</li>
+                            <li><ph keyref="AUDIO_MIXING_DUAL_MONO_R"/> (2): Right channel mode. This mode replaces the audio of the left channel with the audio of the right channel, which means the user can only hear the audio of the right channel.</li>
+                            <li><ph keyref="AUDIO_MIXING_DUAL_MONO_MIX"/> (3): Mixed channel mode. This mode mixes the audio of the left channel and the right channel, which means the user can hear the audio of the left channel and the right channel at the same time.</li>
                         </ul>
                     </pd>
                 </plentry>
