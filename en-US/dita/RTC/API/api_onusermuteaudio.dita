@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onusermuteaudio">
     <title><ph keyref="onUserMuteAudio"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (`COMMUNICATION`)/ host (`LIVE_BROADCASTING`) joins the channel.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (in the communication profile)/ host (in the live streaming profile) joins the channel.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -32,8 +32,8 @@
   <dd>This callback is deprecated as of v3.0.0. Please use <xref keyref="onRemoteAudioStateChanged"/> instead.</dd>
        </dlentry>
    </dl>
-   <p>The SDK triggers this callback when the remote user<xref keyref="muteLocalAudioStream"/> stops or resumes sending the audio stream by calling the  method.</p>
-   <note type="attention">This callback does not work properly when the number of users (in the COMMUNICATION profile) or hosts (in the LIVE_BROADCASTING profile) in the channel exceeds 17.</note>
+   <p>The SDK triggers this callback when the remote user stops or resumes sending the audio stream by calling the <xref keyref="muteLocalAudioStream"/> method.</p>
+   <note type="attention">This callback does not work properly when the number of users (in the communication profile) or hosts (in the live streaming profile) in the channel exceeds 17.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
@@ -44,8 +44,8 @@
        <plentry>
   <pt>muted</pt>
   <pd>Whether the remote user&apos;s audio stream is muted/unmuted:<ul>
-      <li><codeph>: Muted.</codeph><ph keyref="true"/></li>
-      <li><codeph>: Unmuted.</codeph><ph keyref="false"/></li>
+      <li><codeph><ph keyref="true"/></codeph>: Muted.</li>
+      <li><codeph><ph keyref="false"/></codeph>: Unmuted.</li>
   </ul>
   </pd>
        </plentry>
