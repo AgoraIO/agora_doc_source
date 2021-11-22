@@ -1,12 +1,12 @@
 音视频互动环境有助于增加人们的参与时间。 在任何地点，你都可以使用 Agora SDK 将实时音视频互动功能嵌入任何设备上的任何 app 中。
 
-本文介绍如何通过少量代码集成 Agora 音频 SDK，在你的 Android app里实现视频通话。
+本文介绍如何通过少量代码集成 Agora 视频 SDK，在你的 Android app里实现视频通话。
 
 ## 技术原理
 
 下图展示在 app 中集成 Agora 视频通话的基本工作流程：
 
-![img](https://web-cdn.agora.io/docs-files/1623991425414)
+![img](https://web-cdn.agora.io/docs-files/1637569284591)
 
 如图所示，实现视频通话的步骤如下：
 
@@ -415,10 +415,10 @@ App 客户端加入频道需要以下信息：
 按照以下步骤测试你的 app：
 
 1. 在 `appId` 和 `token` 参数中分别填写从 Agora 控制台获取的 App ID 和临时 Token。 在 `channelName` 中填写用于生成临时 token 的频道名称。
-2. 将 Android 设备连接到你的电脑，并在 **Android Studio** 里点击 Run 'app'。 片刻后，项目便会安装到你的设备上。
+2. 将 Android 设备连接到你的电脑，并在 **Android Studio** 里点击 `Run 'app'`。 片刻后，项目便会安装到你的设备上。
 3. 启动 app，你可以在本地视图中看到自己。
 4. 请一位朋友在[演示 app](https://webdemo.agora.io/basicVideoCall/index.html) 中加入你的视频通话。 输入相同的 App ID 和频道名称。
-   如果你的朋友加入频道后，你们会看到彼此，并听到彼此的声音。
+   你的朋友加入频道后，你们可以看到彼此，并听到彼此的声音。
 
 ## 后续步骤
 
