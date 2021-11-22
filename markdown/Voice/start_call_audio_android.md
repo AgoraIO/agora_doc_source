@@ -6,7 +6,7 @@
 
 下图展示在 app 中集成 Agora 语音通话的基本工作流程：
 
-![img](https://web-cdn.agora.io/docs-files/1623991425414)
+![img](https://web-cdn.agora.io/docs-files/1637569394869)
 
 如图所示，实现语音通话的步骤如下：
 
@@ -43,7 +43,7 @@ App 客户端加入 RTC 频道需要以下信息：
 
    创建项目后，**Android Studio** 会自动开始同步 gradle，  请确保同步成功再进行下一步操作。
 
-2. 将语音 SDK 集成到你的项目中。 针对 Agora SDK v3.5.0 或更高版本，可按照以下步骤将 SDK 集成到 mavenCentral。 针对 v3.5.0 之前的各 SDK 版本，请参考[集成 SDK 的其他方法](https://docs.agora.io/en/Voice/start_call_audio_android?platform=Android#othermethods)。
+2. 将音频 SDK 集成到你的项目中。 针对 Agora SDK v3.5.0 或更高版本，可按照以下步骤将 SDK 集成到 mavenCentral。 针对 v3.5.0 之前的各 SDK 版本，请参考[集成 SDK 的其他方法](https://docs.agora.io/en/Voice/start_call_audio_android?platform=Android#othermethods)。
 
    a. 在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码，添加 mavenCentral 依赖：
 
@@ -64,7 +64,7 @@ App 客户端加入 RTC 频道需要以下信息：
    }
    ```
 
-   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将 Agora 语音 SDK 集成到你的 Android 项目中：
+   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将 Agora 音频 SDK 集成到你的 Android 项目中：
 
    ```java
     ...
@@ -99,7 +99,7 @@ App 客户端加入 RTC 频道需要以下信息：
 
 ## 在客户端实现语音通话
 
-本节介绍如何使用 Agora 语音 SDK 在你的 app 里实现语音通话。
+本节介绍如何使用 Agora 音频 SDK 在你的 app 里实现语音通话。
 
 ### 创建用户界面
 
@@ -167,12 +167,12 @@ App 客户端加入 RTC 频道需要以下信息：
    ```java
     // Java
     private static final int PERMISSION_REQ_ID = 22;
-
+   
     private static final String[] REQUESTED_PERMISSIONS = {
              Manifest.permission.RECORD_AUDIO,
              Manifest.permission.CAMERA
     };
-
+   
     private boolean checkSelfPermission(String permission, int requestCode) {
             if (ContextCompat.checkSelfPermission(this, permission) !=
                             PackageManager.PERMISSION_GRANTED) {
@@ -187,7 +187,7 @@ App 客户端加入 RTC 频道需要以下信息：
     // Kotlin
     private val PERMISSION_REQ_ID_RECORD_AUDIO = 22
     private val PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1
-
+   
     private fun checkSelfPermission(permission: String, requestCode: Int): Boolean {
         if (ContextCompat.checkSelfPermission(this, permission) !=
                 PackageManager.PERMISSION_GRANTED) {
@@ -338,14 +338,14 @@ App 客户端加入 RTC 频道需要以下信息：
 按照以下步骤测试你的 app：
 
 1. 在 `appId` 和 `token` 参数中分别填写从 Agora 控制台获取的 App ID 和临时 Token。 在 `channelName` 中填写用于生成临时 token 的频道名称。
-2. 将 Android 设备连接到你的电脑，并在 **Android Studio** 里点击 Run 'app'。 片刻后，项目便会安装到你的设备上。``
+2. 将 Android 设备连接到你的电脑，并在 **Android Studio** 里点击 `Run 'app'`。 片刻后，项目便会安装到你的设备上。
 3. 启动 app，你可以看到我们创建的用户界面。
 4. 请一位朋友在[演示 app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicVideoCall/index.html) 中加入你的语音通话。 输入相同的 App ID 和频道名称。
-   如果你的朋友加入频道后，你们会看到彼此，并听到彼此的声音。
+   在你的朋友加入频道后，你们可以看到彼此，并听到彼此的声音。
 
 ## 后续步骤
 
-Agora 不推荐在生产环境中手动生成 Token。[ 请参考使用 Token 鉴权](https://docs.agora.io/en/Voice/token_server?platform=All Platforms)，了解如何从你的服务器中获取 Token 并开始视频通话。
+Agora 不推荐在生产环境中手动生成 Token。[ 请参考使用 Token 鉴权](https://docs.agora.io/en/Voice/token_server?platform=All Platforms)，了解如何从你的服务器中获取 Token 并开始语音通话。
 
 ## 相关信息
 
@@ -370,7 +370,7 @@ Agora 不推荐在生产环境中手动生成 Token。[ 请参考使用 Token �
     }
    ```
 
-2. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中,添加如下代码，将 Agora 视频 SDK 集成到你的 Android 项目中：
+2. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中,添加如下代码，将 Agora 音频 SDK 集成到你的 Android 项目中：
 
    ```java
     ...
@@ -383,7 +383,7 @@ Agora 不推荐在生产环境中手动生成 Token。[ 请参考使用 Token �
 
 **手动复制 SDK 文件**
 
-1. 在 [SDK 下载](https://docs.agora.io/en/Voice/downloads?platform=Android)页面下载最新版本的 Agora 视频 SDK ，并解压。
+1. 在 [SDK 下载](https://docs.agora.io/en/Voice/downloads?platform=Android)页面下载最新版本的 Agora 音频 SDK ，并解压。
 
 2. 打开 SDK 包 libs 文件夹，将以下文件或子文件夹复制到你的项目路径中。
 
