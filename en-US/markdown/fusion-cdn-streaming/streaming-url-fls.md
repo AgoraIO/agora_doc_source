@@ -4,7 +4,7 @@ Agora has a set of rules for you to use in the construction of URLs for pushing 
 
 As the URL could contain authentication information, Agora recommends constructing the URL in your business server. The following diagram shows the process:
 
-![Process of constructing urls](https://web-cdn.agora.io/docs-files/1636618037332)
+![Process of constructing urls](https://web-cdn.agora.io/docs-files/1637560571665)
 
 
 
@@ -16,18 +16,18 @@ The URL for pushing a live stream includes four parts as shown in the following 
 
 Description of each part:
 
-| URL segment | Necessary or not | Description |
+| URL segment | Required | Description |
 | :--------- | :------- | :----------------------------------------------------------- |
 | Domain name | Yes | The domain name for pushing the stream. Ensure that the CNAME records point to the agora domain.   |
-| The entry point | Yes | The default entry point is live, and each entry point has its own live streaming configuration. |
+| Entry point | Yes | The default entry point is live, and each entry point has its own live streaming configuration. |
 | Stream name | Yes | The name of the live streaming. One stream name identifies one live streaming, so please ensure each live streaming has a unique stream name. |
-| Authentication string | No | If the live streaming authentication is not set, the "?" and the content behind it are not required in the URL address. <br/>The authentication string consists the following parameters: <ul><li>`ts`: The Unix timestamp (s) when the URL expires. This value shows the time that the authentication string expires. For example, `ts=1635004800` means the authentication string is valid before October 23th, 2021 (CST).</li><li>`sign`: The hotlink protection signature.</li></ul>For more details, see<a href="#key">Calculate the Authentication String</a>. |
+| Authentication string | No | If the live streaming authentication is not set, the "?" and the content behind it are not required in the URL address. <br/>The authentication string consists the following parameters: <ul><li>`ts`: The Unix timestamp (s) when the URL expires. This value shows the time that the authentication string expires. For example, `ts=1635004800` means the authentication string is valid before October 23th, 2021 (CST).</li><li>`sign`: The hotlink protection signature.</li></ul>For more details, see <a href="#key">Calculate the Authentication String</a>. |
 
 ## Construct the URL for playing a live stream
 
 The rules for constructing the URL for playing a live stream are similar to those of the stream-pushing URL, but the URL paths of different stream-playing protocols vary slightly.
 
-> The domain name in the URL must be the stream-playing domain name.
+> The domain name in the URL must be a stream-playing domain name.
 
 | Playback protocol | URL path | URL sample |
 | :------- | :------------------------------------ | :----------------------------------------------------------- |
