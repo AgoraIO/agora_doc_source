@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediaoptions">
-    <title><ph keyref="ChannelMediaOptions" /></title>
+    <title><ph keyref="ChannelMediaOptions"/></title>
     <shortdesc id="short"><ph id="shortdesc">The channel media options.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -46,107 +46,148 @@
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable audioDelayMs;
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct ChannelMediaOptions {
-  Optional&lt;bool&gt; publishCameraTrack;
-  Optional&lt;bool&gt; publishAudioTrack;
-  Optional&lt;bool&gt; publishScreenTrack;
-  Optional&lt;bool&gt; publishCustomAudioTrack;
-  Optional&lt;bool&gt; publishCustomVideoTrack;
-  Optional&lt;bool&gt; publishEncodedVideoTrack;
-  Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
-  Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
-  Optional&lt;bool&gt; autoSubscribeAudio;
-  Optional&lt;bool&gt; autoSubscribeVideo;
-  Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
-  Optional&lt;int&gt; publishMediaPlayerId;
-  Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType;
-  Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
-  Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
-  Optional&lt;int&gt; audioDelayMs;
+  Optional&lt;bool> publishCameraTrack;
+  Optional&lt;bool> publishSecondaryCameraTrack;
+  Optional&lt;bool> publishAudioTrack;
+  Optional&lt;bool> publishScreenTrack;
+  Optional&lt;bool> publishSecondaryScreenTrack;
+  Optional&lt;bool> publishCustomAudioTrack;
+  Optional&lt;bool> publishCustomAudioTrackEnableAec;
+  Optional&lt;bool> publishCustomVideoTrack;
+  Optional&lt;bool> publishEncodedVideoTrack;
+  Optional&lt;bool> publishMediaPlayerAudioTrack;
+  Optional&lt;bool> publishMediaPlayerVideoTrack;
+  Optional&lt;bool> publishTrancodedVideoTrack;
+  Optional&lt;bool> autoSubscribeAudio;
+  Optional&lt;bool> autoSubscribeVideo;
+  Optional&lt;bool> enableAudioRecordingOrPlayout;
+  Optional&lt;int> publishMediaPlayerId;
+  Optional&lt;CLIENT_ROLE_TYPE> clientRoleType;
+  Optional&lt;VIDEO_STREAM_TYPE> defaultVideoStreamType;
+  Optional&lt;CHANNEL_PROFILE_TYPE> channelProfile;
+  Optional&lt;int> audioDelayMs;
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}
-...
-};
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
+            <codeblock props="electron" outputclass="language-typescript"></codeblock>
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            <codeblock props="rn" outputclass="language-typescript"></codeblock>
+            <codeblock props="flutter" outputclass="language-dart"></codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
                     <pt>publishCameraTrack</pt>
                     <pd>Whether to publish the video captured by the camera:<ul id="ul_vx5_np5_3qb">
-                        <li><codeph><ph keyref="true" /></codeph>: (Default) Publish the video captured by the camera.</li>
-                        <li><codeph><ph keyref="false" /></codeph>: Do not publish the video captured by the camera.</li>
+                        <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the camera.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the camera.</li>
                         </ul></pd>
+                </plentry>
+                <plentry props="windows">
+                    <pt>publishSecondaryCameraTrack</pt>
+                    <pd>Whether to publish the video captured by the camera:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the secondary camera.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the secondary camera.</li>
+                    </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishAudioTrack</pt>
                     <pd>Whether to publish the captured audio:<ul>
-                            <li><codeph><ph keyref="true" /></codeph>: (Default) Publish the captured audio.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: Do not publish the captured audio.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the captured audio.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured audio.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishScreenTrack</pt>
                     <pd>
                         <p>Whether to publish the captured video from the screen:<ul>
-                                <li><codeph><ph keyref="true" /></codeph>: Publish the captured video from the screen.</li>
-                                <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured video from the screen.</li>
+                                <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the screen.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured video from the screen.</li>
                             </ul></p>
+                    </pd>
+                </plentry>
+                <plentry props="windows">
+                    <pt>publishSecondaryScreenTrack</pt>
+                    <pd>
+                        <p>Whether to publish the captured video from the secondary screen:<ul>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the secondary screen.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured video from the secondary screen.</li>
+                        </ul></p>
+                    </pd>
+                </plentry>
+                <plentry props="windows">
+                    <pt>publishTrancodedVideoTrack</pt>
+                    <pd>
+                        <p>Whether to publish the local transcoded video.<ul>
+                            <li><codeph><ph keyref="true"/>: Publish the local transcoded video.</codeph></li>
+                            <li><codeph><ph keyref="false"/>: Do not publish the local transcoded video.</codeph></li>
+                        </ul></p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>publishCustomAudioTrack</pt>
                     <pd>Whether to publish the captured audio from a custom source:<ul>
-                            <li><codeph><ph keyref="true" /></codeph>: Publish the captured audio from a custom source.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured audio from the custom source.</li>
-                        </ul></pd>
+                        <li><codeph><ph keyref="true"/></codeph>: Publish the captured audio from a custom source.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured audio from a custom source.</li>
+                    </ul></pd>
+                </plentry>
+                <plentry props="windows">
+                    <pt>publishCustomAudioTrackEnableAec</pt>
+                    <pd>Whether to enable AEC when publishing the captured audio from a custom source:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Enable AEC when publishing the captured audio from a custom source.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not enable AEC when publishing the captured audio from a custom source.</li>
+                    </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishCustomVideoTrack</pt>
                     <pd>Whether to publish the captured video from a custom source:<ul>
-                            <li><codeph><ph keyref="true" /></codeph>: Publish the captured video from a custom source.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the captured video from the custom source.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from a custom source.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured video from a custom source.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishEncodedVideoTrack</pt>
                     <pd>Whether to publish the encoded video:<ul id="ul_ljg_4q5_3qb">
-                            <li><codeph><ph keyref="true" /></codeph>: Publish the encoded video.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the encoded video.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the encoded video.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the encoded video.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishMediaPlayerAudioTrack</pt>
                     <pd>Whether to publish the audio from the media player:<ul id="ul_gr3_rq5_3qb">
-                            <li><codeph><ph keyref="true" /></codeph>: Publish the audio from the media player.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the audio from the media player.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the audio from the media player.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio from the media player.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishMediaPlayerVideoTrack</pt>
                     <pd>Whether to publish the video from the media player:<ul id="ul_gtd_tq5_3qb">
-                            <li><codeph><ph keyref="true" /></codeph>: Publish the video from the media player.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the video from the media player.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Publish the video from the media player.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video from the media player.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>autoSubscribeAudio</pt>
                     <pd>Whether to automatically subscribe to all remote audio streams when the user joins a channel:<ul id="ul_gxf_vq5_3qb">
-                            <li><codeph><ph keyref="true" /></codeph>: (Default) Subscribe to all remote audio streams.</li>
-                            <li><codeph><ph keyref="false" /></codeph>:Do not subscribe to any remote audio stream.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Subscribe to all remote audio streams.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: Do not subscribe to any remote audio stream.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>autoSubscribeVideo</pt>
                     <pd>Whether to subscribe to all remote video streams when the user joins the channel:<ul id="ul_gfh_xq5_3qb">
-                            <li><codeph><ph keyref="true" /></codeph>: Subscribe to all remote video streams.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not subscribe to any remote video stream.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Subscribe to all remote video streams.</li>
+                            <li><codeph><ph keyref="false"/></codeph>:Do not subscribe to any remote video stream.</li>
                         </ul></pd>
+                </plentry>
+                <plentry props="windows">
+                    <pt>enableAudioRecordingOrPlayout</pt>
+                    <pd>Whether to enable audio capturing or playback.<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Enable audio capturing and playback.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not enable audio capturing or playback.</li>
+                    </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishMediaPlayerId</pt>
@@ -154,15 +195,22 @@
                 </plentry>
                 <plentry>
                     <pt>clientRoleType</pt>
-                    <pd conkeyref="setClientRole1/clientrole" />
+                    <pd conkeyref="setClientRole1/clientrole"/>
                 </plentry>
                 <plentry>
                     <pt>defaultVideoStreamType</pt>
-                    <pd conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype" />
+                    <pd conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype"/>
                 </plentry>
                 <plentry>
                     <pt>channelProfile</pt>
-                    <pd conkeyref="setChannelProfile/channelprofiletype" />
+                    <pd conkeyref="setChannelProfile/channelprofiletype"/>
+                </plentry>
+                <plentry props="windows">
+                    <pt>audioDelayMs</pt>
+                    <pd>
+                        <p>The delay in ms for sending audio frames. This is used for explicit control of A/V sync.</p>
+                        <p>To switch off the delay, set the value to 0.</p>
+                    </pd>
                 </plentry>
             </parml>
         </section>
