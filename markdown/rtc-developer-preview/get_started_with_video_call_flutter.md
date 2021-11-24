@@ -254,7 +254,7 @@ class MyApp extends StatefulWidget {
                    width: 120,
                    height: 120,
                    child:
-                       // Remote Renderer
+                       // 根据远端用户的 uid 渲染远端视频
                        RtcSurfaceView(canvas: VideoCanvas(uid: e)),
                  ),
                ),
