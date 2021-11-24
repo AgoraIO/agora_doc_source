@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotevoice3dposition">
     <title><ph keyref="setRemoteVoice3DPosition"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the 3D position of the remote user&apos;s voice.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the 3D position of the remote user's voice.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,9 +27,9 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>By setting the horizontal angle, vertical angle, and distance of the remote user&apos;s voice, the voice of the remote user can sound directional.</p>
+            <p>By setting the horizontal angle, vertical angle, and distance of the remote user's voice, the voice of the remote user can sound directional.</p>
             <p>This method applies to massive multiplayer online games, such as Battle Royale games.</p>
-            <p>The difference between this method and <xref keyref="setRemoteVoicePosition"/> is: this method sets the 3D position of the voice; <apiname keyref="setRemoteVoicePosition"/> sets the 2D position (the position on the horizontal plane) of the voice.</p>
+            <p>The difference between this method and <xref keyref="setRemoteVoicePosition"/> is that this method sets a 3D position for the voice, whereas <apiname keyref="setRemoteVoicePosition"/> sets a 2D position that is the position on restricted to the horizontal plane for the voice.</p>
             <note type="attention">
                 <ul>
                     <li>For this method to work, enable stereo panning for remote users by calling the <xref keyref="enableSoundPositionIndication"/> method before joining a channel.</li>
@@ -42,19 +42,19 @@
             <parml>
                 <plentry id="uid">
                     <pt>uid</pt>
-                    <pd>The ID of the remote user.</pd>
+                    <pd>The user ID of the remote user.</pd>
                 </plentry>
                 <plentry id="azimuth">
                     <pt>azimuth</pt>
-                    <pd>The horizontal angle. The value range is [0,360], and the unit is a degree,  where the following occurs:<ul>
-                            <li>0: (default) 0 degrees, which means directly the front side on the horizontal plane.</li>
-                            <li>90: 90 degrees, which means the left side on horizontal plane.</li>
+                    <pd>The horizontal angle. The value range is [0,360], and the unit is degrees,  where the following occurs:<ul>
+                            <li>0: (default) 0 degrees, which means directly to the front on the horizontal plane.</li>
+                            <li>90: 90 degrees, which means the left side on the horizontal plane.</li>
                             <li>180: 180 degrees, which means the right side on the horizontal plane.</li>
                         </ul></pd>
                 </plentry>
                 <plentry id="elevation">
                     <pt>elevation</pt>
-                    <pd>The vertical angle. The value range is [-90,90], and the unit is a degree,  where the following occurs:<ul>
+                    <pd>The vertical angle. The value range is [-90,90], and the unit is degrees,  where the following occurs:<ul>
                             <li>0: (default) 0 degrees, which means that the horizontal plane is not rotated.</li>
                             <li>-90: -90 degrees, which means that the horizontal plane is rotated 90 degrees downwards.</li>
                             <li>90: 90 degrees, which means that the horizontal plane is rotated 90 degrees upwards.</li>
@@ -62,7 +62,7 @@
                 </plentry>
                 <plentry id="distance">
                     <pt>distance</pt>
-                    <pd>The distance of the voice source. The value cannot be less than 0.5, and the unit is meter. To avoid that the voice sounds too low when setting the distance too large, Agora recommends the setting range to be [0.5,50].</pd>
+                    <pd>The distance of the sound source. The value cannot be less than 0.5, and the unit is meters. Setting the distance too far results in low voice volume, so Agora recommends restricting the setting range to [0.5,50].</pd>
                 </plentry>
             </parml>
         </section>
