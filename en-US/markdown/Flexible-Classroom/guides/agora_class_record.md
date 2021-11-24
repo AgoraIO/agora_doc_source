@@ -1,6 +1,6 @@
 This page introduces some best practices that you need to keep in mind when you implement the recording feature in Flexible Classroom. These best practices can help to ensure the reliability of the recording and improve the quality of the recorded files.
 
-## Basic process of implementing the recording feature
+## The basic process of implementing the recording feature
 
 The following figure shows the basic process of implementing the web page recording feature in Flexible Classroom. The steps marked in purple in the figure are the operations you need to perform.
 
@@ -8,7 +8,7 @@ The following figure shows the basic process of implementing the web page record
 
 ## Start the recording
 
-Regardless of whether you start classroom recording on the client or server side, you actually call [Set the recording state](/en/agora-class/agora_class_restful_api?platform=RESTful#set-the-recording-state) of the Flexible Classroom cloud service. When starting the recording, pay attention to the following parameters:
+Regardless of whether you start classroom recording on the client or server, you actually call [Set the recording state](/en/agora-class/agora_class_restful_api?platform=RESTful#set-the-recording-state) of the Flexible Classroom cloud service. When starting the recording, pay attention to the following parameters:
 
 - `mode`: Set this parameter as `web` to enable `web` to enable [web page recording](/en/Agora%20Platform/webpage_recording).
 - `rootUrl`: The root address of the web page to be recorded. The Flexible Classroom cloud service automatically gets the full address of the web page to be recorded by putting `roomUuid`, `roomType` and other parameters after the root address. Then, you need to extract these info from the URL and pass them in when calling the [launch](/en/agora-class/agora_class_api_ref_web?platform=Web#launch) method.
@@ -88,7 +88,7 @@ The clients also receive callbacks which indicate the recording state change in 
 
 It takes a while for the recording server to load the web page, but the file slicing begins before the loading finishes. As a result, there will be a period of white screen at the beginning of the recorded file. To remove the white screen, do the following:
 
-1. Before the class starts, call [Set the recording state](/en/agora-class/agora_class_restful_api?platform=RESTful#Set the recording status) and set `onHold` as `true`. The Flexible Classroom cloud service will pause the recording immediately after the recording task is initiated. The recording server opens and renders the web page, but does not generate a slice file. Request body:
+1. Before the class starts, call [Set the recording state](/en/agora-class/agora_class_restful_api?platform=RESTful#set-the-recording-state) and set `onHold` as `true`. The Flexible Classroom cloud service will pause the recording immediately after the recording task is initiated. The recording server opens and renders the web page, but does not generate a slice file. Request body:
 
    ```json
    {
@@ -111,9 +111,9 @@ It takes a while for the recording server to load the web page, but the file sli
    }
 ```
 
-## Improve the clarity if the recorded content is screen sharing
+## Improve the video clarity when the recorded content is a shared screen
 
-In fact, in the class, the teacher may share courseware and other content through screen sharing. If you have high requirements for the clarity of recordings such as screen sharing, whiteboards, etc., you can set [the following parameters ](when calling [the setting recording status interface ](/cn/agora-class/agora_class_restful_api?platform=RESTful# to set the recording status):
+In class, teachers might share slides or notes with students by screen sharing. If you have high requirements for the clarity of recordings such as screen sharing, whiteboard, you can set the following parameters when calling [Set the recording state](/en/agora-class/agora_class_restful_api?platform=RESTful#set-the-recording-state):
 
 - Set `videoWidth` as 1920.
 - Set `videoHeight` as 1080.
