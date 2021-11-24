@@ -14,6 +14,7 @@
     public int rendererOutputFrameRate;
     public int targetBitrate;
     public int targetFrameRate;
+    public int qualityAdaptIndication;
     public int encodedBitrate;
     public int encodedFrameWidth;
     public int encodedFrameHeight;
@@ -28,6 +29,7 @@
 @property(assign, nonatomic) NSInteger encoderOutputFrameRate;
 @property(assign, nonatomic) NSInteger rendererOutputFrameRate;
 @property(assign, nonatomic) NSInteger targetFrameRate;
+@property(assign, nonatomic) AgoraVideoQualityAdaptIndication qualityAdaptIndication;
 @property(assign, nonatomic) NSInteger targetBitrate;
 @property(assign, nonatomic) NSInteger encodedBitrate;
 @property(assign, nonatomic) NSInteger encodedFrameWidth;
@@ -45,6 +47,7 @@
     int rendererOutputFrameRate;
     int targetBitrate;
     int targetFrameRate;
+    QUALITY_ADAPT_INDICATION qualityAdaptIndication;
     int encodedBitrate;
     int encodedFrameWidth;
     int encodedFrameHeight;
@@ -159,17 +162,23 @@
   <pt>targetFrameRate</pt>
   <pd>The target frame rate (fps) of the current encoder.</pd>
        </plentry>
-       <plentry props="rtc">
+       <plentry>
                     <pt>qualityAdaptIndication</pt>
-           <pd>Quality adaption of the local video stream in the reported interval (based on the target frame rate and target bitrate). <ph props="windows ios mac unity">For details, see <xref keyref="QUALITY_ADAPT_INDICATION"/>.</ph><p props="android">
-                   <ul>
-                       <li><ph keyref="ADAPT_NONE"/> (0): The local video quality stays the same.</li>
-                       <li><ph keyref="ADAPT_UP_BANDWIDTH"/> (1): The local video quality improves because the network bandwidth increases.</li>
-                       <li><ph keyref="ADAPT_DOWN_BANDWIDTH"/> (2): The local video quality deteriorates because the network bandwidth decreases.</li>
-                   </ul>
-               </p>
-           </pd>
-           
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry>
+                                <dt>Since</dt>
+                                <dd>v2.4.0</dd>
+                            </dlentry>
+                        </dl>
+                        Quality change of the local video in terms of target frame rate and target bit rate in this reported interval. <ph props="windows ios mac unity">For details, see <xref keyref="QUALITY_ADAPT_INDICATION"/>.</ph><p props="android">
+                            <ul>
+                                <li><ph keyref="ADAPT_NONE"/> (0): The local video quality stays the same.</li>
+                                <li><ph keyref="ADAPT_UP_BANDWIDTH"/> (1): The local video quality improves because the network bandwidth increases.</li>
+                                <li><ph keyref="ADAPT_DOWN_BANDWIDTH"/> (2): The local video quality deteriorates because the network bandwidth decreases.</li>
+                            </ul>
+                        </p>
+                    </pd>
                 </plentry>
        <plentry>
   <pt>encodedBitrate</pt>

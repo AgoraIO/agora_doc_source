@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setextensionproviderproperty">
+    <title><ph keyref="setExtensionProviderProperty"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the properties of the extension provider.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setExtensionProviderProperty"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setExtensionProviderProperty(String provider, String key, String value);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setExtensionProviderProperty(
+      const char* provider, const char* key, const char* value) = 0;
+</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>You can call this method to set the attributes of the extension provider and initialize the parameters.</p>
+            <p>
+                <note type="attention">The API call sequence requirements of this method are as follows:<ul>
+                    <li>Call this method after <xref keyref="enableExtension"/>.</li>
+                    <li>Call this method before <xref keyref="enableVideo"/>, <xref keyref="enableLocalVideo"/>, <xref
+                        keyref="enableAudio"/>, or <xref keyref="enableLocalAudio"/>.</li>
+                    </ul></note>
+            </p>
+        </section>
+
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>provider</pt>
+                    <pd>The name of the extension provider.</pd>
+                </plentry>
+                <plentry>
+                    <pt>key</pt>
+                    <pd>The name of the key attribute.</pd>
+                </plentry>
+                <plentry>
+                    <pt>value</pt>
+                    <pd>The attribute value.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li></ul>
+        </section>
+    </refbody>
+</reference>
