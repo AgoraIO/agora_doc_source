@@ -1,40 +1,39 @@
-Agora 推荐使用以下任意一种推流软件推流到融合 CDN 直播：
-- [OBS](https://obsproject.com) (Open Broadcaster Software)，支持 macOS、Windows 及 Linux 平台。
-- [XSplit Broadcaster](https://www.xsplit.com/broadcaster)，支持 Windows 平台。
+Agora recommends using one of the following stream-pushing software to push streams to FLS:
+- [OBS](https://obsproject.com) (Open Broadcaster Software), which supports macOS, Windows, and Linux.
+- [XSplit Broadcaster](https://www.xsplit.com/broadcaster), which supports Windows.
 
-本文以使用 OBS 推流为例，介绍推流软件的相关配置。
+This page takes OBS as an example to show the configuration of the stream-pushing software.
 
 ## Prerequisites
 
-- 已安装 OBS。
-- 推流域名和播流域名已配置完成。
-   The authentication function is in the beta stage. Contact sales@agora.io before using it.
+- OBS is installed.
+- The stream-pushing domain name and the stream-playing domain name are configured.
+   The domain name configuration function is in the beta stage. Contact sales@agora.io before using it.
 
-## 设置推流服务
+## Set the stream-pushing service
 
-参考以下步骤设置推流服务：
+To set the stream-pushing service, refer to the following steps:
 
-1. 获取推流 URL，详见[拼接直播 URL](https://docs.agora.io/cn/fusion-cdn-streaming/streaming-url-fls?platform=RESTful)。
-2. 打开 OBS，在右下角的控件菜单中点击**设置**，打开设置窗口。
-   ![open obs setting](https://web-cdn.agora.io/docs-files/1637227546202)
-3. 在设置窗口的左侧导航栏点击**推流**，服务类型选择**自定义...**。
-3. 根据推流 URL 填写服务器和串流密钥，规则如下图所示：
-   ![obs url rule](https://web-cdn.agora.io/docs-files/1637227436146)
-   假设推流 URL 为 rtmp://push.agora.io/live/test?ts=1635004800&sign=95b0a9970c593819，则设置如下：
-   - 服务器：rtmp://push.agora.io/live
-   - 串流密钥：test?ts=1635004800&sign=95b0a9970c593819
-      ![obs example setting](https://web-cdn.agora.io/docs-files/1637227399558)
-5. 点击**确定**，保存设置。
+1. Get the URL for pushing a stream, see [Construct the URL for the Live Streaming](https://docs-preprod.agora.io/en/fusion-cdn-streaming/streaming-url-fls?platform=RESTful).
+2. Open OBS, and click the **Settings** button in the widget list in the bottom right corner. ![open obs setting](https://web-cdn.agora.io/docs-files/1637724707399)
+3. Click **Stream** in the left navigation menu in the Settings window, and choose **Custom...** in Service.
+3. Fill in the Server and Stream key in accordance with the URL for pushing a stream, as shown in the following figure:
+   ![obs url rule](https://web-cdn.agora.io/docs-files/1637724768289)
+   For example, if the URL is rtmp://push.agora.io/live/test?ts=1635004800&sign=95b0a9970c593819, the settings are as follows:
+   - Server: rtmp://push.agora.io/live
+   - Stream key: test?ts=1635004800&sign=95b0a9970c593819
+      ![obs example setting](https://web-cdn.agora.io/docs-files/1637725743125)
+5. Click **OK** to save the settings.
 
-## 推流编码参数配置
+## The stream encoding parameters
 
-下表列出 Agora 推荐的推流编码参数配置供你参考：
+Agora recommends the following stream encoding parameters:
 
-| 编码参数 | 推荐配置 |
+| Encoding parameters | Recommended configuration |
 | :------------- | :----------------------------------------------------------- |
-| Video codec types | H.264，编码器 x264 |
-| 音频编码格式 | AAC |
-| 码率（比特率） | 根据视频的分辨率和帧率进行设置，可以参考 Agora 视频码率参考表中的[直播码率](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_video_encoder_configuration.html#a4b090cd0e9f6d98bcf89cb1c4c2066e8) |
-| 关键帧间隔 | 2 秒 |
+| Video codec types | H.264, encoder x264 |
+| Audio codec types | AAC |
+| Bitrate (kbps)  | Set the video bitrate according to the resolution and frame rate. You can refer to [Live Bitrate](https://docs.agora.io/en/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_video_encoder_configuration.html#a4b090cd0e9f6d98bcf89cb1c4c2066e8 in the Video Bitrate Table.) |
+| Keyframe interval | 2 seconds |
 
-其他编码参数建议使用默认值，或者咨询 Agora 技术支持。
+For the other encoding parameters, Agora recommends using the default values, or consulting Agora technical support.

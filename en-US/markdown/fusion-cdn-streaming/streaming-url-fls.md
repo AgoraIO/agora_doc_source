@@ -4,7 +4,7 @@ Agora has a set of rules for you to use in the construction of URLs for pushing 
 
 As the URL could contain authentication information, Agora recommends constructing the URL in your business server. The following diagram shows the process:
 
-![Process of constructing urls](https://web-cdn.agora.io/docs-files/1637560571665)
+![Process of constructing urls](https://web-cdn.agora.io/docs-files/1637575079936)
 
 
 
