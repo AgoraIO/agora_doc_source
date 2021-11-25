@@ -1,24 +1,24 @@
-Agora recommends using any of the following stream-pushing softwares to push streams to FLS:
-- [OBS](https://obsproject.com) (Open Broadcaster Software), which supports macOS, Windows and Linux.
+Agora recommends using one of the following stream-pushing software to push streams to FLS:
+- [OBS](https://obsproject.com) (Open Broadcaster Software), which supports macOS, Windows, and Linux.
 - [XSplit Broadcaster](https://www.xsplit.com/broadcaster), which supports Windows.
 
-This page takes OBS as an example to show the configurations of the stream-pushing softwares.
+This page takes OBS as an example to show the configuration of the stream-pushing software.
 
 ## Prerequisites
 
-- OBS has been installed.
-- The stream-pushing domain name and the stream-playing domain name have been configured.
+- OBS is installed.
+- The stream-pushing domain name and the stream-playing domain name are configured.
    The domain name configuration function is in the beta stage. Contact sales@agora.io before using it.
 
-## Set the stream pushing service
+## Set the stream-pushing service
 
-To set the stream pushing service, refer to the following steps:
+To set the stream-pushing service, refer to the following steps:
 
 1. Get the URL for pushing a stream, see [Construct the URL for the Live Streaming](https://docs.agora.io/cn/fusion-cdn-streaming/streaming-url-fls?platform=RESTful).
-2. Open OBS, and click the **Settings** button in the widget list in the right bottom corner. ![
+2. Open OBS, and click the **Settings** button in the widget list in the bottom right corner. ![
    open obs setting](https://web-cdn.agora.io/docs-files/1637724707399)
 3. Click **Stream** in the left navigation menu in the Settings window, and choose **Custom...** in Service.
-3. Fill in Server and Stream key in accordance with the URL for pushing a stream, as shown in the following figure:
+3. Fill in the Server and Stream key in accordance with the URL for pushing a stream, as shown in the following figure:
    ![obs url rule](https://web-cdn.agora.io/docs-files/1637724768289)
    For example, if the URL is rtmp://push.agora.io/live/test?ts=1635004800&sign=95b0a9970c593819, the settings are as follows:
    - Server: rtmp://push.agora.io/live
