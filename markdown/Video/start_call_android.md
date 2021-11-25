@@ -271,7 +271,7 @@ App 客户端加入频道需要以下信息：
 
    调用核心方法来加入 `MainActivity` 类中的频道。 在如下示例代码中，我们使用 `initializeAndJoinChannel` 函数来封装这些核心方法。
 
-   在 `/app/java/com.example.<projectname>/MainActivity` 文件中，在 `onCreate` 功能后添加如下代码：
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中，在 `onCreate` 函数后添加如下代码：
 
    ```java
     // Java
