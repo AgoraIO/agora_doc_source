@@ -1,6 +1,6 @@
 音视频互动环境有助于增加人们的参与时间。 在任何地点，你都可以使用 Agora SDK 将实时音视频互动功能嵌入任何设备上的任何 app 中。
 
-本文介绍如何通过少量代码集成 Agora 音频 SDK，在你的 Android app里实现语音通话。
+本文介绍如何通过少量代码集成 Agora 音频 SDK，在你的 Android app 里实现语音通话。
 
 ## 技术原理
 
@@ -41,7 +41,7 @@ App 客户端加入 RTC 频道需要以下信息：
 
 1. 如需创建新项目，在 **Android Studio** 里，依次选择 **Phone and Tablet** > **Empty Activity**，创建 [Android 项目](https://developer.android.com/studio/projects/create-project)。
 
-   创建项目后，**Android Studio** 会自动开始同步 gradle，  请确保同步成功再进行下一步操作。
+   创建项目后，**Android Studio** 会自动开始同步 gradle，请确保同步成功再进行下一步操作。
 
 2. 将音频 SDK 集成到你的项目中。 针对 Agora SDK v3.5.0 或更高版本，可按照以下步骤将 SDK 集成到 mavenCentral。 针对 v3.5.0 之前的各 SDK 版本，请参考[集成 SDK 的其他方法](https://docs.agora.io/en/Voice/start_call_audio_android?platform=Android#othermethods)。
 
@@ -55,7 +55,7 @@ App 客户端加入 RTC 频道需要以下信息：
         }
         ...
    }
-
+   
      allprojects {
         repositories {
             ...
@@ -70,7 +70,7 @@ App 客户端加入 RTC 频道需要以下信息：
     ...
     dependencies {
      ...
-     // x.y.z，请填写具体的 SDK 版本号， 如 3.5.0。
+     // x.y.z，请填写具体的 SDK 版本号，如 3.5.0。
      // 通过发版说明获取最新版本号。
      implementation 'io.agora.rtc:voice-sdk:x.y.z'
     }
@@ -206,7 +206,7 @@ App 客户端加入 RTC 频道需要以下信息：
 
 语音通话的 API 使用时序见下图：
 
-![img](https://web-cdn.agora.io/docs-files/1630576315935)
+![img](https://web-cdn.agora.io/docs-files/1637740486081)
 
 按照以下步骤实现该逻辑：
 
@@ -251,7 +251,7 @@ App 客户端加入 RTC 频道需要以下信息：
 
 3. 初始化 app 并加入频道。
 
-   调用核心方法来加入 `MainActivity` 类中的频道。 在如下示例代码中，我们使用 `initializeAndJoinChannel` 函数来封装这些核心方法。
+   调用核心方法来加入 `MainActivity` 类中的频道。在如下示例代码中，我们使用 `initializeAndJoinChannel` 函数来封装这些核心方法。
 
    在 `/app/java/com.example.<projectname>/MainActivity` 文件中，在 `onCreate` 功能后添加如下代码：
 
@@ -353,48 +353,50 @@ Agora 不推荐在生产环境中手动生成 Token。[ 请参考使用 Token �
 
 ### 集成 SDK 的其他方法
 
-除了通过 mavenCentral 集成 Android 视频 SDK 外，你也可以使用 JitPack 或者手动复制 SDK 文件，将 SDK 导入你的项目。
+除了通过 mavenCentral 集成 Android 音频 SDK 外，你也可以使用 JitPack 或者手动复制 SDK 文件，将 SDK 导入你的项目。
 
-**使用 Jitpack 自动集成 SDK**
+**使用 JCenter 自动集成 SDK**
 
-针对 v3.5.0之前的各 SDK 版本，你可以使用 Jitpack 集成 SDK。
+对于 v3.5.0 之前版本的 Agora SDK，你可以使用 JitPack 集成 SDK。
 
 1. 在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码，将 JitPack 添加到仓库列表中：
 
-   ```java
-    all projects {
-            repositories {
-            ...
-            maven { url 'https://www.jitpack.io' }
-            }
-    }
-   ```
+```java
+ all projects {
+         repositories {
+         ...
+         maven { url 'https://www.jitpack.io' }
+         } 
+ }
+```
 
-2. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中,添加如下代码，将 Agora 音频 SDK 集成到你的 Android 项目中：
+2. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)`文件中添加如下代码，将 Agora 音频 SDK 集成到你的 Android 项目中：
 
-   ```java
-    ...
-    dependencies {
-            ...
-            // x.y.z，请填写具体的 SDK 版本号， 如 3.4.0。
-            implementation 'com.github.agorabuilder:native-full-sdk:x.y.z'
-    }
-   ```
+```java
+ ...
+ dependencies {
+         ...
+         // x.y.z，填写具体的 SDK 版本号，如：3.4.0。
+         // 通过发版说明获取最新版本号。
+         implementation 'io.agora.rtc:voice-sdk:x.y.z'
+ }
+```
 
 **手动复制 SDK 文件**
 
-1. 在 [SDK 下载](https://docs.agora.io/en/Voice/downloads?platform=Android)页面下载最新版本的 Agora 音频 SDK ，并解压。
+1. 在 [SDK 下载](https://docs.agora.io/cn/Voice/downloads?platform=Android)页面下载最新版本的 Agora 音频 SDK ，并解压。
 
 2. 打开 SDK 包 libs 文件夹，将以下文件或子文件夹复制到你的项目路径中。
 
-   | 文件或子文件夹 | 你的项目路径 |
+   | 文件或子文件夹           | 你的项目路径             |
    | :----------------------- | :----------------------- |
-   | `agora-rtc-sdk.jar` 文件 | `/app/libs/` |
-   | `arm-v8a` 文件夹 | `/app/src/main/jniLibs/` |
-   | `armeabi-v7a` 文件夹 | `/app/src/main/jniLibs/` |
-   | `x86` 文件夹 | `/app/src/main/jniLibs/` |
-   | `x86_64` 文件夹 | `/app/src/main/jniLibs/` |
-   | `include` 文件夹 | `/app/src/main/jniLibs/` |
+   | `agora-rtc-sdk.jar` 文件 | `/app/libs/`             |
+   | `arm-v8a` 文件夹         | `/app/src/main/jniLibs/` |
+   | `armeabi-v7a` 文件夹     | `/app/src/main/jniLibs/` |
+   | `x86` 文件夹             | `/app/src/main/jniLibs/` |
+   | `x86_64` 文件夹          | `/app/src/main/jniLibs/` |
+   | `include` 文件夹         | `/app/src/main/jniLibs/` |
 
-   - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。 如果出现不兼容问题，请联系 [support@agora.io]mailto: support@agora.io)。
+   - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。 如果出现不兼容问题，请联系 [support@agora.io](mailto: support@agora.io)。
    - SDK 包中的库不是全部必须。 详情请参考[如何减少集成 RTC Native SDK 的 app 体积](https://docs.agora.io/en/Video/faq/reduce_app_size_rtc)。
+

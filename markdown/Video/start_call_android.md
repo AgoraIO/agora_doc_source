@@ -202,7 +202,7 @@ App 客户端加入频道需要以下信息：
 
 视频通话的 API 使用时序见下图：
 
-![img](https://web-cdn.agora.io/docs-files/1630573668305)
+![img](https://web-cdn.agora.io/docs-files/1637740392911)
 
 按照以下步骤实现该逻辑：
 
@@ -350,7 +350,7 @@ App 客户端加入频道需要以下信息：
 
 ### 启动和关闭 app
 
-添加完互动视频通话功能后，可以添加启动和关闭 app 的逻辑。 App 启动时，用户就开始了视频通话； app 关闭时，调用结束。
+添加完互动视频通话功能后，可以添加启动和关闭 app 的逻辑。 App 启动时，用户就开始了视频通话；app 关闭时，调用结束。
 
 按以下步骤实现该功能：
 
@@ -479,5 +479,5 @@ Agora 不推荐在生产环境中手动生成 Token。 请参考[使用 Token �
    | `x86_64` 文件夹 | `/app/src/main/jniLibs/` |
    | `include` 文件夹 | `/app/src/main/jniLibs/` |
 
-   - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。 如果出现不兼容问题，请联系 [support@agora.io]mailto: support@agora.io)。
+   - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。 如果出现不兼容问题，请联系 [support@agora.io](mailto: support@agora.io)。
    - SDK 包中的库不是全部必须。 详情请参考[如何减少集成 RTC Native SDK 的 app 体积](https://docs.agora.io/en/Video/faq/reduce_app_size_rtc)。
