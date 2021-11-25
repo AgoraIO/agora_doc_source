@@ -46,26 +46,24 @@
 @end
 </codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct ContentInspectConfig {
-      bool enable;
-      bool DeviceWork;
-      bool CloudWork;
-      CONTENT_INSPECT_DEVICE_TYPE DeviceworkType;
-      const char* extraInfo;
-      ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
-      int moduleCount;
-       ContentInspectConfig&amp; operator=(ContentInspectConfig&amp; rth)
-        {
-            enable = rth.enable;
-            DeviceWork = rth.DeviceWork;
-            CloudWork = rth.CloudWork;
-            DeviceworkType = rth.DeviceworkType;
-            extraInfo = rth.extraInfo;
-            moduleCount = rth.moduleCount;
-            memcpy(&amp;modules, &amp;rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
-            return *this;
-        }
-      ContentInspectConfig() : enable(false),DeviceWork(false),CloudWork(true),DeviceworkType(CONTENT_INSPECT_DEVICE_INVALID),extraInfo(NULL), moduleCount(0){}
-    };
+    bool DeviceWork;
+    bool CloudWork;
+    CONTENT_INSPECT_DEVICE_TYPE DeviceworkType;
+    const char* extraInfo;
+    ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
+    int moduleCount;
+     ContentInspectConfig&amp; operator=(ContentInspectConfig&amp; rth)
+      {
+          DeviceWork = rth.DeviceWork;
+          CloudWork = rth.CloudWork;
+          DeviceworkType = rth.DeviceworkType;
+          extraInfo = rth.extraInfo;
+          moduleCount = rth.moduleCount;
+          memcpy(&amp;modules, &amp;rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
+          return *this;
+      }
+    ContentInspectConfig() :DeviceWork(false),CloudWork(true),DeviceworkType(CONTENT_INSPECT_DEVICE_INVALID),extraInfo(NULL), moduleCount(0){}
+  };  
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity" outputclass="language-csharp"></codeblock>
