@@ -18,7 +18,7 @@
                 <codeblock props="electron" outputclass="language-typescript">muteAllRemoteAudioStreams(mute: boolean): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int MuteAllRemoteAudioStreams(bool mute);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> muteAllRemoteAudioStreams(bool muted);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -26,14 +26,14 @@
    <note type="attention" id="note">
        <ul>
   <li>Call this method after joining a channel.</li>
-           <li><ph props="ios android windows">See recommended settings in<xref keyref="guide-set-subscribing-state"> Set the Subscribing State</xref>.</ph></li>
+           <li props="ios android windows"><ph>See recommended settings in<xref keyref="guide-set-subscribing-state"> Set the Subscribing State</xref>.</ph></li>
        </ul>
    </note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt props="android">muted</pt>
+  <pt props="android flutter">muted</pt>
            <pt props="ios mac windows unity">mute</pt>
   <pd><p>Whether to subscribe to the audio streams of all remote users:<ul>
                                 <li><codeph><ph keyref="true"/></codeph>: Do not subscribe to the audio streams of all remote users.</li>

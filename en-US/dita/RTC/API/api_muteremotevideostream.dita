@@ -19,7 +19,7 @@
                 <codeblock props="electron" outputclass="language-typescript">muteRemoteVideoStream(userId: number, mute: boolean): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int MuteRemoteVideoStream(uint userId, bool mute);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> muteRemoteVideoStream(int uid, bool muted);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -37,14 +37,13 @@
    <title>Parameter</title>
    <parml>
        <plentry>
-           <pt props="android windows unity">userId</pt>
-           <pt props="ios mac">uid</pt>
+           <pt props="android flutter">uid</pt>
   <pd>
       <p>The ID of the specified user.</p>
   </pd>
        </plentry>
        <plentry>
-           <pt props="android">muted</pt>
+           <pt props="android flutter">muted</pt>
            <pt props="ios mac windows unity">mute</pt>
            <pd><p>Whether to stop subscribing to the video stream of the specified user.</p><ul>
       <li><codeph><ph keyref="true" /></codeph>: Stop subscribing to the video streams of the specified user.</li>
