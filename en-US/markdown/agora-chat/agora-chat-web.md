@@ -1,8 +1,8 @@
 # Get Started with Agora Chat
 
-Instant messaging connects people wherever they are and allows people to communicate with others in real time. The Agora Chat SDK enables you to embed peer-to-peer messaging in any app, on any device, anywhere.
+Instant messaging connects people wherever they are and allows them to communicate with others in real time. The Agora Chat SDK enables you to embed peer-to-peer messaging in any app, on any device, anywhere.
 
-This page shows a sample code to add peer-to-peer messaging into your app by using the Agora Chat SDK for Web.
+This page shows the sample code to add peer-to-peer messaging into your app by using the Agora Chat SDK for Web.
 
 ## Understand the tech
 
@@ -333,10 +333,10 @@ To build and run your project, take the following steps:
    };
    ```
 
-The project directory now has the following structure:
+   The project directory now has the following structure:
 
    ```text
-    Agora_quickstart
+    agora_quickstart
     ├─ index.html
     ├─ index.js
     ├─ package.json
