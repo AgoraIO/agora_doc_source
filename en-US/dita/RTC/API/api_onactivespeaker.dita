@@ -20,7 +20,7 @@
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.ACTIVE_SPEAKER, cb: (uid: number) => void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnActiveSpeaker(uint uid)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">UidCallback? activeSpeaker;</codeblock>
         </p>
         <p outputclass="codeblock" props="rtc">
             <codeblock props="windows" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t uid) {
@@ -45,7 +45,7 @@
                 </plentry>
                 <plentry id="uid">
                     <pt props="windows"><ph props="rtc">uid</ph><ph props="rtc-ng">userId</ph></pt>
-                    <pt props="android unity electron">uid</pt>
+                    <pt props="android unity electron flutter">uid</pt>
                     <pt props="ios mac">speakerUid</pt>
                     <pd>The user ID of the most active speaker.</pd>
                 </plentry>

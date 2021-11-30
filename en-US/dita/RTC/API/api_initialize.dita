@@ -20,7 +20,12 @@
             <codeblock props="electron" outputclass="language-typescript">initializeWithContext(context: RtcEngineContext): number</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int Initialize(RtcEngineContext context);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> initialize(RtcEngineContext config);</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">static Future&lt;RtcEngine> createWithContext(RtcEngineContext config) async {
+    if (_instance != null) return _instance!;
+    _instance = RtcEngine._(false);
+    await _instance!.initialize(config);
+    return _instance!;
+  }</codeblock>
         </p>
         </section>
         <section id="detailed_desc">

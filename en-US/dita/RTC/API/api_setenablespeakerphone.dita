@@ -18,7 +18,7 @@
                 <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetEnableSpeakerphone(bool speakerOn);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setEnableSpeakerphone(bool enabled);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -32,7 +32,7 @@
             <note type="attention">
                 <ul>
                     <li props="windows">This method is for Android and iOS only.</li>
-                    <li>Ensure that you call <xref keyref="joinChannel1" /> to create a data channel before calling this method.</li>
+                    <li>Ensure that you have joined a channel before calling this method.</li>
                 </ul>
             </note>
         </section>
@@ -40,7 +40,7 @@
             <parml>
                 <plentry>
                     <pt props="windows unity">speakerOn</pt>
-                    <pt props="android">enabled</pt>
+                    <pt props="android flutter">enabled</pt>
                     <pt props="ios mac">enableSpeaker</pt>
                     <pd>Whether the audio is routed to the speakerphone or earpiece.<ul>
                             <li><codeph><ph keyref="true" /></codeph>: Route the audio to the speakerphone. If the device connects to the earpiece or Bluetooth, the audio cannot be routed to the speakerphone.</li>
