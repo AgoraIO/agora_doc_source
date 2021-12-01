@@ -26,27 +26,26 @@
        </p>
         </section>
         <section id="detailed_desc">
-   <p>After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers the <xref keyref="onUserInfoUpdated"/> callback on the local client.</p> 
-   <p>After receiving the callback, you can call this method to get the user account of the remote user from the <xref keyref="UserInfo"/> object by passing in the user ID.</p>
+            <p conkeyref="getUserInfoByUid/getUserInfo_desc"/>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>uid</pt>
-  <pd>User ID. It is required.</pd>
+  <pd>User ID.</pd>
        </plentry>
-       <plentry props="ios mac">
+       <plentry props="ios mac" id="userInfo">
                     <pt>userInfo</pt>
                     <pd>The <xref keyref="UserInfo"/> object that identifies the user information.<ul id="ul_sty_x5s_3qb">
                         <li>Input value: A <apiname keyref="UserInfo"/> object.</li>
                         <li>Output: A <apiname keyref="UserInfo"/> object that contains the user account and user ID of the user.</li>
                         </ul></pd>
                 </plentry>
-                <plentry props="ios mac">
+       <plentry id="channelId">
                     <pt>channelId</pt>
                     <pd><p conkeyref="joinChannel2/channelID_desc"/></pd>
                 </plentry>
-       <plentry props="ios mac android">
+       <plentry id="localUserAccount">
                     <pt>localUserAccount</pt>
                     <pd>The user account of the local user.</pd>
                 </plentry>
@@ -54,7 +53,7 @@
         </section>
         <section id="return_values">
    <title>Returns</title>
-   <ul props="ios mac windows">
+   <ul props="ios mac">
        <li>0: Success.</li>
        <li>&lt; 0: Failure.</li>
    </ul>
