@@ -116,14 +116,31 @@
     excludeWindowCount: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
+  
+  VideoDimensions? dimensions;
+  int? frameRate;
+  int? bitrate;
+  bool? captureMouseCursor;
+  bool? windowFocus;
+  List&lt;int>? excludeWindowList;
+
+  ScreenCaptureParameters({
+    this.dimensions,
+    this.frameRate,
+    this.bitrate,
+    this.captureMouseCursor,
+    this.windowFocus,
+    this.excludeWindowList,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt props="ios mac windows unity">dimensions</pt>
+                    <pt props="ios mac windows unity flutter">dimensions</pt>
                     <pt props="android">videoDimensions</pt>
                     <pd><p>The maximum dimensions of encoding the shared region.<ph props="android windows"> For details, see <xref keyref="VideoDimensions"/>.</ph> The default value is 1,920 × 1,080, that is,
                             2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>

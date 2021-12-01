@@ -23,7 +23,7 @@
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioQuality(uint uid, int quality, ushort delay, ushort lost)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">AudioQualityCallback? audioQuality;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -32,7 +32,7 @@
        <dl outputclass="deprecated">
   <dlentry>
       <dt>Deprecated:</dt>
-      <dd><ph props="rtc-ng">Deprecated.</ph><ph props="rtc">Deprecated as of v2.3.2.</ph> Please use <xref keyref="onRemoteAudioStats"/> instead.</dd>
+      <dd><ph props="rtc-ng">Deprecated.</ph><ph props="rtc">This method is deprecated.</ph> Please use <xref keyref="onRemoteAudioStats"/> instead.</dd>
   </dlentry>
        </dl>
    </p>
@@ -51,18 +51,22 @@
                 </plentry>
                 <plentry>
                     <pt>quality</pt>
-                    <pd>Audio quality of the user. <ph props="ios mac windows unity">For details, see <xref keyref="QUALITY_TYPE"/>.</ph><ul conkeyref="RemoteAudioStats/qualitytype" props="android">
+                    <pd>Audio quality of the user. <ph props="ios mac windows unity">For details,
+                        see <xref keyref="QUALITY_TYPE"/>.</ph><ul
+                        conkeyref="RemoteAudioStats/qualitytype" props="android">
                         <li/>
-                    </ul>
-                    </pd>
+                        </ul> </pd>
                 </plentry>
                 <plentry>
                     <pt>delay</pt>
-                    <pd>The network delay (ms) from the sender to the receiver, including the delay caused by audio sampling pre-processing, network transmission, and network jitter buffering.</pd>
+                    <pd>The network delay (ms) from the sender to the receiver, including the delay
+                        caused by audio sampling pre-processing, network transmission, and network
+                        jitter buffering.</pd>
                 </plentry>
                 <plentry>
                     <pt>lost</pt>
-                    <pd>Packet loss rate (%) of the audio packet sent from the sender to the receiver.</pd>
+                    <pd>Packet loss rate (%) of the audio packet sent from the sender to the
+                        receiver.</pd>
                 </plentry>
             </parml>
         </section>

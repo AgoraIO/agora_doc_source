@@ -29,7 +29,7 @@
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle,
             int[] vecDistance, int numFaces)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">FacePositionCallback? facePositionChanged;</codeblock>
         </p>
         <p outputclass="codeblock" props="rtc">
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*>* _Nullable)faces;</codeblock>
@@ -49,7 +49,7 @@
         <section id="detailed_desc">
    
    <dl outputclass="since" props="rtc">
-       <dlentry>
+       <dlentry props="native">
   <dt>Since</dt>
   <dd>v3.0.1</dd>
        </dlentry>
@@ -84,22 +84,31 @@
                     <pt>imageHeight</pt>
                     <pd>The height (px) of the video image captured by the local camera.</pd>
                 </plentry>
-                <plentry props="android">
-                    <pt>faceRectArr</pt>
-                    <pd>For the information of the detected face, see <xref keyref="AgoraFacePositionInfo"/> for details. If several faces are detected, this callback reports several <apiname
-                            keyref="AgoraFacePositionInfo"/> arrays. The length of the array can be 0, which means that no human face is detected in front of the camera.</pd>
+                <plentry props="android flutter">
+                    <pt props="android">faceRectArr</pt>
+                    <pt props="flutter">faces</pt>
+                    <pd>For the information of the detected face, see <xref
+                        keyref="AgoraFacePositionInfo"/> for details. If several faces are detected,
+                        this callback reports several <apiname keyref="AgoraFacePositionInfo"/>
+                        arrays. The length of the array can be 0, which means that no human face is
+                        detected in front of the camera.</pd>
                 </plentry>
                 <plentry props="windows unity">
                     <pt>vecRectangle</pt>
-                    <pd>
-                        <p>The information of the detected human face.<ul>
-                            <li><codeph>x</codeph>: The x coordinate (px) of the human face in the local video. Taking the top left corner of the captured video as the origin, the x coordinate represents the relative lateral displacement of the top left corner of the human face to the origin.</li>
-                            <li><codeph>y</codeph>: The y coordinate (px) of the human face in the local video. Taking the top left corner of the captured video as the origin, the y coordinate represents the relative longitudinal displacement of the top left corner of the human face to the origin.</li>
-                                <li><codeph>width</codeph>: The <codeph>width</codeph> (px) of the human face in the captured video.</li>
-                                <li><codeph>height</codeph>: The <codeph>height</codeph> (px) of the human face in the captured video.</li>
-                            </ul>
-                        </p>
-                    </pd>
+                    <pd> <p>The information of the detected human face.<ul>
+                        <li><codeph>x</codeph>: The x coordinate (px) of the human face in the local
+                            video. Taking the top left corner of the captured video as the origin,
+                            the x coordinate represents the relative lateral displacement of the top
+                            left corner of the human face to the origin.</li>
+                        <li><codeph>y</codeph>: The y coordinate (px) of the human face in the local
+                            video. Taking the top left corner of the captured video as the origin,
+                            the y coordinate represents the relative longitudinal displacement of
+                            the top left corner of the human face to the origin.</li>
+                        <li><codeph>width</codeph>: The <codeph>width</codeph> (px) of the human
+                            face in the captured video.</li>
+                        <li><codeph>height</codeph>: The <codeph>height</codeph> (px) of the human
+                            face in the captured video.</li>
+                        </ul> </p> </pd>
                 </plentry>
                 <plentry props="windows unity">
                     <pt>vecDistance</pt>
@@ -107,7 +116,8 @@
                 </plentry>
                 <plentry props="windows unity">
                     <pt>numFaces</pt>
-                    <pd>The number of faces detected. If the value is 0, it means that no human face is detected.</pd>
+                    <pd>The number of faces detected. If the value is 0, it means that no human face
+                        is detected.</pd>
                 </plentry>
             </parml>
         </section>

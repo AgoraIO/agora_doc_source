@@ -131,7 +131,42 @@
     mosValue: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">class RemoteAudioStats {
+  
+  int uid;
+  NetworkQuality quality;
+  int networkTransportDelay;
+  int jitterBufferDelay;
+  int audioLossRate;
+  int numChannels;
+  int receivedSampleRate;
+  int receivedBitrate;
+  int totalFrozenTime;
+  int frozenRate;
+  int totalActiveTime;
+  int publishDuration;
+  ExperienceQualityType qoeQuality;
+  ExperiencePoorReason qualityChangedReason;
+  int mosValue;
+
+  RemoteAudioStats(
+    this.uid,
+    this.quality,
+    this.networkTransportDelay,
+    this.jitterBufferDelay,
+    this.audioLossRate,
+    this.numChannels,
+    this.receivedSampleRate,
+    this.receivedBitrate,
+    this.totalFrozenTime,
+    this.frozenRate,
+    this.totalActiveTime,
+    this.publishDuration,
+    this.qoeQuality,
+    this.qualityChangedReason,
+    this.mosValue,
+  );
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
@@ -204,7 +239,7 @@ keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> is 1.</note></p>
   <pt>qoeQuality</pt>
   <pd>
       <dl outputclass="since" props="rtc">
- <dlentry>
+ <dlentry props="native">
      <dt>Since</dt>
      <dd>v3.3.0</dd>
  </dlentry>
@@ -216,7 +251,7 @@ keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> is 1.</note></p>
   <pt>qualityChangedReason</pt>
   <pd>
       <dl outputclass="since" props="rtc">
- <dlentry>
+ <dlentry props="native">
      <dt>Since</dt>
      <dd>v3.3.0</dd>
  </dlentry>
@@ -228,7 +263,7 @@ keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> is 1.</note></p>
            <pt>mosValue</pt>
            <pd>
                <dl outputclass="since" props="rtc">
-                   <dlentry>
+                   <dlentry props="native">
                        <dt>Since</dt>
                        <dd>v3.3.1</dd>
                    </dlentry>

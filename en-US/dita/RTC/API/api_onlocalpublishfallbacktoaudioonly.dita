@@ -21,7 +21,7 @@
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_PUBLISH_FALLBACK_TO_AUDIO_ONLY, cb: (isFallbackOrRecover: boolean) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalPublishFallbackToAudioOnly(bool isFallbackOrRecover)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">FallbackCallback? localPublishFallbackToAudioOnly;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -31,20 +31,22 @@
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
-       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-       <plentry id="isFallbackOrRecover">
-  <pt>isFallbackOrRecover</pt>
-  <pd>
-      <ul>
- <li><codeph><ph keyref="true" /></codeph>: The published stream falls back to audio-only due to poor network conditions.</li>
- <li><codeph><ph keyref="false" /></codeph>: The published stream switches back to the video after the network conditions improve.</li>
-      </ul>
-  </pd>
-       </plentry>
-   </parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry id="isFallbackOrRecover">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>
+                        <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: The published stream falls
+                                back to audio-only due to poor network conditions.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: The published stream switches
+                                back to the video after the network conditions improve.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
         </section>
     </refbody>
 </reference>

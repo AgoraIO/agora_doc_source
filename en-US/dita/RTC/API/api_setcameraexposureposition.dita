@@ -19,28 +19,29 @@
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setCameraExposurePosition(
+      double positionXinView, double positionYinView);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
    
    <dl outputclass="since" props="rtc">
-       <dlentry>
+       <dlentry props="native">
   <dt>Since</dt>
   <dd>v2.3.2</dd>
        </dlentry>
    </dl>
-   <p>This method needs to be called after the camera is started (for example, by calling <xref keyref="startPreview"/> or <xref keyref="joinChannel1"/>).</p>
+   <p>This method needs to be called after the camera is started (for example, by calling <xref keyref="startPreview"/> or <xref keyref="joinChannel2"/>).</p>
    <p>After a successful method call, the SDK triggers the <xref keyref="onCameraExposureAreaChanged"/> callback.</p>
-            <note type="attention" props="windows">This method is for Android and iOS only.</note>
+            <note type="attention" props="windows flutter">This method is for Android and iOS only.</note>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
-       <plentry props="windows android">
+       <plentry props="windows android flutter">
                     <pt>positionXinView</pt>
                     <pd>The horizontal coordinate of the touchpoint in the view.</pd>
                 </plentry>
-       <plentry props="windows android">
+       <plentry props="windows android flutter">
                     <pt>positionYinView</pt>
                     <pd>The vertical coordinate of the touchpoint in the view.</pd>
                 </plentry>

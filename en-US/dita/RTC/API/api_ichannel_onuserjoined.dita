@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ichannel_onuserjoined">
     <title><ph keyref="IChannel_onUserJoined" /></title>
-    <shortdesc conkeyref="onUserJoined/short" />
+    <shortdesc conkeyref="onUserJoined/short"/>
     <prolog>
         <metadata>
    <keywords>
@@ -27,7 +27,7 @@
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserJoined(string channelId, uint uid, int elapsed)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? userJoined;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -37,7 +37,7 @@
    </ul>
    <p>The SDK triggers this callback under one of the following circumstances:<ul>
   <li>A remote user/host joins the channel by calling the <xref keyref="IChannel_joinChannel" /> method.</li>
-  <li>A remote user switches the user role to the host by calling the <xref keyref="IChannel_setClientRole1" /> method after joining the channel.</li>
+  <li>A remote user switches the user role to the host after joining the channel.</li>
   <li>A remote user/host rejoins the channel after a network interruption.</li>
   <li>The host injects an online media stream into the channel by calling the <xref keyref="IChannel_addInjectStreamUrl" /> method.</li>
        </ul>

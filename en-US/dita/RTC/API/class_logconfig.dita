@@ -37,7 +37,18 @@
     level: LOG_LEVEL
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">class LogConfig {
+ 
+  String? filePath;
+  int? fileSize;
+  LogLevel? level;
+
+  LogConfig({
+    this.filePath,
+    this.fileSize,
+    this.level,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
@@ -91,7 +102,7 @@
                     </pd>
        </plentry>
        <plentry>
-  <pt props="windows unity">fileSize</pt>
+  <pt props="windows unity flutter">fileSize</pt>
            <pt props="android ios mac">fileSizeInKB</pt>
   <pd>The size (KB) of a log file. The default value is 2014 KB. If you set <parmname>fileSize</parmname> to 1024 KB, the maximum aggregate size of the log files output by the SDK is 5 MB. If you set <parmname>fileSize</parmname> to less than 1024 KB, the setting is invalid, and the maximum size of a log file is still 1024 KB.</pd>
        </plentry>
