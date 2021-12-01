@@ -1,6 +1,6 @@
-Agora SDK 能让你在任何地点、任何设备、任何应用中集成实时音视频互动，提高用户在线互动的参与度。
+实时视频通话能够拉近人与人之间的距离，为用户提供沉浸式的交流体验，帮助你的 app 提高用户黏性。
 
-本文展示使用 Agora 视频 SDK（Android）在应用中集成视频通话的快速开始。
+本文介绍如何通过少量代码集成 Agora 视频 SDK 并调用 API，在你的 Android 应用中实现高质量、低延迟的视频通话功能。
 
 ## 技术原理
 
@@ -10,18 +10,15 @@ Agora SDK 能让你在任何地点、任何设备、任何应用中集成实时�
 
 如图所示，实现视频通话的步骤如下：
 
-1. 获取 Token：
-   当 app 客户端加入频道时，你需要使用 Token 验证用户身份。在测试或生产环境中，从 app 服务器中获取 Token。
-2. 加入频道：
-   调用 `joinChannel` 创建并加入频道。使用同一频道名称的 app 客户端默认加入同一频道。
-3. 在频道内发布和订阅音视频流：
-   加入频道后，app 客户端均可以在频道内发布和订阅音视频。
+1. 获取 Token：当 app 客户端加入频道时，你需要使用 Token 验证用户身份。在测试或生产环境中，从 app 服务器中获取 Token。
+2. 加入频道：调用 `joinChannel` 创建并加入频道。使用同一频道名称的 app 客户端默认加入同一频道。
+3. 在频道内发布和订阅音视频流：加入频道后，app 客户端均可以在频道内发布和订阅音视频。
 
 App 客户端加入频道需要以下信息：
 
 - App ID：Agora 随机生成的字符串，用于识别你的 app，可从 [Agora 控制台](https://console.agora.io/)获取。
 - 用户 ID：用户的唯一标识。你需要自行设置用户 ID，并确保它在频道内是唯一的。
-- Token：在测试或生产环境中，app 客户端从你的安全基础设施中的服务器中获取 Token。在本文介绍的流程中，你可以从 Agora 控制台获取临时 Token。临时 Token 的有效期为 24 小时。
+- Token：在测试或生产环境中，app 客户端从你的服务器中获取 Token。在本文介绍的流程中，你可以从 Agora 控制台获取临时 Token。临时 Token 的有效期为 24 小时。
 - 频道名称：用于标识视频通话频道的字符串。
 
 ## 前提条件
@@ -43,9 +40,9 @@ App 客户端加入频道需要以下信息：
 
    创建项目后，**Android Studio** 会自动开始同步 gradle。请确保同步成功后再进行下一步操作。
 
-2. 将视频 SDK 集成到你的项目中。对 3.5.0 版或之后的 SDK，请参考以下步骤使用 mavenCentral 集成 SDK。对早于 3.5.0 版之前的 SDK 版本，请参考[集成 SDK 的其他方法](https://docs.agora.io/en/Video/start_call_android?platform=Android#othermethods)。
+2. 将视频 SDK 集成到你的项目中。对 3.5.0 版或之后的 SDK，请参考以下步骤使用 mavenCentral 集成 SDK。对 3.5.0 版之前的 SDK 版本，请参考<a href="https://docs.agora.io/cn/Video/start_call_android?platform=Android#othermethods">集成 SDK 的其他方法</a>。
 
-   a. 添加 mavenCentral 依赖：在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码：
+   a. 在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码，以添加 mavenCentral 依赖：
 
    ```java
     buildscript {
@@ -64,7 +61,7 @@ App 客户端加入频道需要以下信息：
    }
    ```
 
-   b. 在项目中集成 Agora 视频 SDK：在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码：
+   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将 Agora 视频 SDK 集成到你的 Android 项目中：
 
    ```java
     ...
@@ -76,7 +73,7 @@ App 客户端加入频道需要以下信息：
     }
    ```
 
-3. 添加网络及设备权限：在 `/app/Manifests/AndroidManifest.xml` 文件中的 `</application>` 后面添加如下权限：
+3. 在 `/app/Manifests/AndroidManifest.xml` 文件中的 `</application>` 后面添加如下网络和设备权限：
 
    ```xml
     <uses-permission android:name="android.permission.INTERNET" />
@@ -88,7 +85,7 @@ App 客户端加入频道需要以下信息：
     <uses-permission android:name="android.permission.BLUETOOTH" />
    ```
    
-4. 防止代码混淆：在 `/Gradle Scripts/proguard-rules.pro` 文件中添加如下代码：
+4. 为防止代码混淆，在 `/Gradle Scripts/proguard-rules.pro` 文件中添加如下代码：
 
    ```java
     -keep class io.agora.**{*;}
@@ -426,7 +423,7 @@ App 客户端加入频道需要以下信息：
 
  Agora 在 GitHub 上提供了一个开源的[视频通话](https://github.com/AgoraIO/Basic-Video-Call)示例项目供你参考，以实现一对一视频通话和群聊视频通话。
 
-### 集成 SDK 的其他方法
+### <a name="https://docs.agora.io/cn/Video/start_call_android?platform=Android#othermethods">集成 SDK 的其他方法</a>
 
 除了通过 mavenCentral 集成 Android 视频 SDK 外，你也可以使用 JitPack 或者手动复制 SDK 文件，将 SDK 导入你的项目。
 
@@ -472,5 +469,5 @@ App 客户端加入频道需要以下信息：
    | `include` 文件夹 | `/app/src/main/jniLibs/` |
 
    - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。如果出现不兼容问题，请联系[support@agora.io](mailto: support@agora.io)。
-   - SDK 包中的库不是全部必须。详情请参考[如何减少集成 RTC Native SDK 的 app 体积](https://docs.agora.io/en/Video/faq/reduce_app_size_rtc)。
+   - SDK 包中的库不是全部必须。详情请参考[如何减少集成 RTC Native SDK 的 app 体积](https://docs.agora.io/cn/Video/faq/reduce_app_size_rtc)。
 
