@@ -41,7 +41,7 @@
   <pt>uid</pt>
   <pd>用户 ID。</pd>
        </plentry>
-       <plentry props="windows unity electron android" id="userInfo">
+       <plentry props="windows unity android" id="userInfo">
   <pt>userInfo</pt>
            <pd>输入和输出参数。标识用户的 <xref keyref="UserInfo"/> 对象： <ul>
                             <li>输入值：一个 <apiname keyref="UserInfo"/> 对象</li>
@@ -57,20 +57,19 @@
            <pt props="windows">localUserAccount</pt>
            <pd props="windows">本地用户的 User Account。</pd>
        </plentry>
-       <plentry props="ios mac electron" id="error">
-           <pt props="ios mac">error</pt>
-           <pt props="electron">errCode</pt>
+       <plentry props="ios mac" id="error">
+           <pt>error</pt>
            <pd>错误码。</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p props="ios mac">
-                <ul>
+            <ul props="ios mac electron">
                     <li>方法调用成功，返回 <xref keyref="UserInfo"/> 对象。</li>
-                    <li>方法调用失败，则返回 <ph keyref="NULL"/>。</li>
-                </ul></p>
+                    <li props="ios mac">方法调用失败，则返回 <ph keyref="NULL"/>。</li>
+                <li props="electron">方法调用失败，则返回错误码（<parmname>errCode</parmname>）。</li>
+                </ul>
             <ul props="windows unity android">
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。</li>

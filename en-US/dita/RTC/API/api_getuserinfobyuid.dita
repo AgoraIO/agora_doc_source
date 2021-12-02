@@ -42,7 +42,7 @@
   <pt>uid</pt>
   <pd>User ID.</pd>
        </plentry>
-       <plentry props="windows unity electron android" id="userInfo">
+       <plentry props="windows unity android" id="userInfo">
   <pt>userInfo</pt>
            <pd>Input and output parameter. The <xref keyref="UserInfo"/> object that identifies the user information.<ul>
                             <li>Input: A <apiname keyref="UserInfo"/> object.</li>
@@ -58,18 +58,18 @@
            <pt props="windows">localUserAccount</pt>
            <pd props="windows">The user account of the local user.</pd>
        </plentry>
-       <plentry props="ios mac electron" id="error">
-           <pt props="ios mac">error</pt>
-           <pt props="electron">errCode</pt>
+       <plentry props="ios mac" id="error">
+           <pt>error</pt>
            <pd>Error code.</pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values">
             <title>Returns</title>
-            <p props="ios mac"><ul>
-                <li>A pointer to the <xref keyref="UserInfo"/> instance, if the method call succeeds.</li>
-                <li>If the call fails, returns <ph keyref="NULL"/>.</li>
+            <p props="ios mac electron"><ul>
+                <li>The <xref keyref="UserInfo"/> instance, if the method call succeeds.</li>
+                <li props="ios mac">If the call fails, returns <ph keyref="NULL"/>.</li>
+                <li props="electron">If the call fails, returns the error code（<parmname>errCode</parmname>.</li>
                 </ul></p>
             <ul props="unity windows android">
                 <li>0: Success.</li>
