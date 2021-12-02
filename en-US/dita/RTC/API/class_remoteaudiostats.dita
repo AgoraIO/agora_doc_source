@@ -18,9 +18,10 @@
     public int totalFrozenTime;
     public int frozenRate;
     public int mosValue;
+    public long totalActiveTime;
+    public long publishDuration;
   }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteAudioStats : NSObject
-
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger quality;
 @property(assign, nonatomic) NSUInteger networkTransportDelay;
@@ -30,6 +31,8 @@
 @property(assign, nonatomic) NSUInteger receivedSampleRate;
 @property(assign, nonatomic) NSUInteger receivedBitrate;
 @property(assign, nonatomic) NSUInteger totalFrozenTime;
+@property(assign, nonatomic) NSUInteger totalActiveTime;
+@property(assign, nonatomic) NSInteger publishDuration;
 @property(assign, nonatomic) NSUInteger frozenRate;
 @property(assign, nonatomic) NSUInteger mosValue;
 @end</codeblock>
@@ -46,7 +49,8 @@
   int totalFrozenTime;
   int frozenRate;
   int mosValue;
-  
+  int totalActiveTime;
+  int publishDuration;
   RemoteAudioStats() :
     uid(0),
     quality(0),
@@ -58,7 +62,9 @@
     receivedBitrate(0),
     totalFrozenTime(0),
     frozenRate(0),
-    mosValue(0) {}
+    mosValue(0),
+    totalActiveTime(0),
+    publishDuration(0){}
 };</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
@@ -192,14 +198,29 @@ keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> is 1.</note></p>
   <pt>frozenRate</pt>
   <pd>The total audio freeze time as a percentage (%) of the total time when the audio is available. The audio is available means that the remote user neither stops sending the audio stream nor disables the audio module after joining the channel.</pd>
        </plentry>
-       <plentry props="rtc">
-  <pt>totalActiveTime</pt>
-  <pd>The total time (ms) when the remote user neither stops sending the audio stream nor disables the audio module after joining the channel.</pd>
-       </plentry>
-       <plentry props="rtc">
-  <pt>publishDuration</pt>
-  <pd>The total duration (ms) of the remote audio stream.</pd>
-       </plentry>
+       <plentry>
+                    <pt>totalActiveTime</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry>
+                                <dt>Since</dt>
+                                <dd>v3.0.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>The total active time (ms) between the start of the audio call and the callback of the remote user.</p>
+                        <p>The active time refers to the total duration of the remote user without the mute state.</p></pd>
+                </plentry>
+       <plentry>
+                    <pt>publishDuration</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry>
+                                <dt>Since</dt>
+                                <dd>v3.1.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>The total duration (ms) of the remote audio stream.</p></pd>
+                </plentry>
        <plentry props="rtc">
   <pt>qoeQuality</pt>
   <pd>
