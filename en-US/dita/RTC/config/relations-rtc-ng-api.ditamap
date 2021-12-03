@@ -37,7 +37,19 @@
         </relrow>
         <relrow>
             <relcell>
+                <topicref keyref="setClientRole2"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="CLIENT_ROLE_TYPE"/>
+                <topicref keyref="ClientRoleOptions"/>
+                <topicref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
                 <topicref keyref="joinChannel2"/>
+                <topicref keyref="joinChannelWithUserAccount2"/>
+                <topicref keyref="joinChannelWithUserAccountEx"/>
             </relcell>
             <relcell>
                 <topicref keyref="ChannelMediaOptions"/>
@@ -69,7 +81,7 @@
                 <topicref keyref="AUDIO_PROFILE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios">
             <relcell>
                 <topicref keyref="setVideoProfile"/>
             </relcell>
@@ -139,7 +151,7 @@
                 <topicref keyref="VIDEO_MIRROR_MODE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow props="android ios mac windows">
+        <relrow props="android ios mac">
             <relcell>
                 <topicref keyref="setRemoteRenderMode1"/>
             </relcell>
@@ -206,14 +218,14 @@
         </relrow>
         <relrow props="mac windows">
             <relcell>
-                <topicref keyref="startScreenCaptureByDisplayId" props="mac windows"/>
-                <topicref keyref="startScreenCaptureByScreenRect"/>
-                <topicref keyref="startScreenCaptureByWindowId"/>
+                <topicref keyref="startScreenCaptureByDisplayId" props="mac"/>
+                <topicref keyref="startScreenCaptureByScreenRect" props="windows"/>
+                <topicref keyref="startScreenCaptureByWindowId" props="mac windows"/>
             </relcell>
             <relcell>
-                <topicref keyref="Rectangle"/>
-                <topicref keyref="ScreenCaptureParameters"/>
-                <topicref keyref="VideoDimensions"/>
+                <topicref keyref="Rectangle" props="windows"/>
+                <topicref keyref="ScreenCaptureParameters" props="mac windows"/>
+                <topicref keyref="VideoDimensions" props="windows"/>
             </relcell>
         </relrow>
         <relrow props="windows">
@@ -441,7 +453,7 @@
                 <topicref keyref="VIDEO_MIRROR_MODE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="ios windows">
             <relcell>
                 <topicref keyref="setCameraCapturerConfiguration"/>
             </relcell>
@@ -511,6 +523,19 @@
             </relcell>
             <relcell>
                 <topicref keyref="PluginInfo"/>
+            </relcell>
+        </relrow>
+        <relrow props="mac">
+            <relcell>
+                <topicref keyref="enumerateDevices"/>
+                <topicref keyref="getDeviceInfo"/>
+                <topicref keyref="setDevice_IVideoDeviceCollection"/>
+                <topicref keyref="getDeviceVolume"/>
+                <topicref keyref="setDeviceVolume"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="MEDIA_DEVICE_TYPE"/>
+                <topicref keyref="AgoraRtcDeviceInfo"/>
             </relcell>
         </relrow>
         <relrow>
@@ -639,6 +664,7 @@
             <relcell>
                 <topicref keyref="LocalVideoStats"/>
                 <topicref keyref="VIDEO_CODEC_TYPE"/>
+                <topicref keyref="QUALITY_ADAPT_INDICATION" props="windows ios mac"/>
             </relcell>
         </relrow>
         <relrow>
@@ -648,7 +674,6 @@
             <relcell>
                 <topicref keyref="RemoteAudioStats"/>
                 <topicref keyref="QUALITY_TYPE"/>
-                <topicref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>
             </relcell>
         </relrow>
         <relrow>
@@ -795,7 +820,7 @@
                 <topicref keyref="AudioEncodedFrameObserverConfig"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android windows">
             <relcell>
                 <topicref keyref="onLocalAudioSpectrum"/>
             </relcell>
@@ -1002,7 +1027,7 @@
             <relcell>
                 <topicref keyref="registerMediaMetadataObserver"/>
                 <topicref keyref="unregisterMediaMetadataObserver" props="windows android"/>
-                
+
             </relcell>
             <relcell>
                 <topicref keyref="IMetadataObserver"/>
@@ -1102,10 +1127,13 @@
                 <topicref keyref="WatermarkOptions"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios mac">
             <relcell>
+                <topicref keyref="getUserInfoByUid"/>
                 <topicref keyref="getUserInfoByUidEx"/>
+                <topicref keyref="getUserInfoByUserAccount"/>
                 <topicref keyref="getUserInfoByUserAccountEx"/>
+                <topicref keyref="onUserInfoUpdated"/>
             </relcell>
             <relcell>
                 <topicref keyref="UserInfo"/>
@@ -1182,13 +1210,21 @@
             <relcell>
                 <topicref keyref="LOG_LEVEL"/>
             </relcell>
-        </relrow>  
+        </relrow>
         <relrow props="android ios">
             <relcell>
                 <topicref keyref="onFacePositionChanged"/>
             </relcell>
             <relcell>
                 <topicref keyref="AgoraFacePositionInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setAudioMixingDualMonoMode"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>
             </relcell>
         </relrow>
     </reltable>
@@ -1212,6 +1248,7 @@
                 <relrow>
             <relcell>
                 <topicref keyref="setClientRole1"/>
+                <topicref keyref="setClientRole2"/>
             </relcell>
             <relcell>
                 <topicref keyref="onClientRoleChanged"/>
@@ -1323,7 +1360,7 @@
                 <topicref keyref="onAudioVolumeIndication"/>
             </relcell>
         </relrow>
-        <relrow props="android ios mac windows">
+        <relrow props="android ios windows">
             <relcell>
                 <topicref keyref="setEnableSpeakerphone"/>
             </relcell>
@@ -1384,6 +1421,7 @@
         </relrow>
         <relrow>
             <relcell>
+                <topicref keyref="registerLocalUserAccount"/>
                 <topicref keyref="joinChannelWithUserAccount1"/>
                 <topicref keyref="joinChannelWithUserAccount2"/>
                             </relcell>
@@ -1413,12 +1451,22 @@
         <relrow>
             <relcell>
                 <topicref keyref="joinChannelWithUserAccountEx"/>
+                <topicref keyref="joinChannelWithUserAccount1"/>
+                <topicref keyref="joinChannelWithUserAccount2"/>
             </relcell>
             <relcell>
                 <topicref keyref="onLocalUserRegistered"/>
                 <topicref keyref="onJoinChannelSuccess"/>
                 <topicref keyref="onUserJoined"/>
                 <topicref keyref="onUserInfoUpdated"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="muteLocalAudioStream"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onUserMuteAudio"/>
             </relcell>
         </relrow>
         <relrow>
@@ -1454,7 +1502,7 @@
                 <topicref keyref="getMaxMetadataSize"/>
              </relcell>
         </relrow>
-        <relrow>
+        <relrow props="android ios windows">
             <relcell>
                 <topicref keyref="setDefaultAudioRouteToSpeakerphone"/>
                 <topicref keyref="setEnableSpeakerphone"/>
@@ -1494,6 +1542,24 @@
                 </relcell>
             <relcell>
                 <topicref keyref="onPlaybackAudioFrame"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="openWithCustomSource"/>
+                </relcell>
+            <relcell>
+                <topicref keyref="onReadData"/>
+                <topicref keyref="onSeek"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="muteLocalAudioSpectrum"/>
+                <topicref keyref="DisableAudio"/>
+                </relcell>
+            <relcell>
+                <topicref keyref="onFirstRemoteAudioDecoded"/>
             </relcell>
         </relrow>
     </reltable>
