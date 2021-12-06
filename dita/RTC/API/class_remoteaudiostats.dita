@@ -18,9 +18,10 @@
     public int totalFrozenTime;
     public int frozenRate;
     public int mosValue;
+    public long totalActiveTime;
+    public long publishDuration;
   }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteAudioStats : NSObject
-
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger quality;
 @property(assign, nonatomic) NSUInteger networkTransportDelay;
@@ -30,6 +31,8 @@
 @property(assign, nonatomic) NSUInteger receivedSampleRate;
 @property(assign, nonatomic) NSUInteger receivedBitrate;
 @property(assign, nonatomic) NSUInteger totalFrozenTime;
+@property(assign, nonatomic) NSUInteger totalActiveTime;
+@property(assign, nonatomic) NSInteger publishDuration;
 @property(assign, nonatomic) NSUInteger frozenRate;
 @property(assign, nonatomic) NSUInteger mosValue;
 @end</codeblock>
@@ -46,7 +49,8 @@
   int totalFrozenTime;
   int frozenRate;
   int mosValue;
-  
+  int totalActiveTime;
+  int publishDuration;
   RemoteAudioStats() :
     uid(0),
     quality(0),
@@ -58,7 +62,9 @@
     receivedBitrate(0),
     totalFrozenTime(0),
     frozenRate(0),
-    mosValue(0) {}
+    mosValue(0),
+    totalActiveTime(0),
+    publishDuration(0){}
 };</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
@@ -187,20 +193,35 @@ keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/> 为 1 时，该参数不生效。</note><
        </plentry>
        <plentry>
   <pt>totalFrozenTime</pt>
-  <pd>远端用户在加入频道后发生音频卡顿的累计时长（ms）。通话过程中，音频丢帧率达到 4% 即记为一次音频卡顿。</pd>
+  <pd>远端用户在加入频道后发生音频卡顿的累计时长（毫秒）。通话过程中，音频丢帧率达到 4% 即记为一次音频卡顿。</pd>
        </plentry>
        <plentry>
   <pt>frozenRate</pt>
   <pd>音频卡顿的累计时长占音频总有效时长的百分比 (%)。音频有效时长是指远端用户加入频道后音频未被停止发送或禁用的时长。</pd>
        </plentry>
-       <plentry props="rtc">
-  <pt>totalActiveTime</pt>
-  <pd>音频有效时长（毫秒），即远端用户加入频道后，既没有停止发送音频流，也没有禁用音频模块的通话时长。</pd>
-       </plentry>
-       <plentry props="rtc">
-  <pt>publishDuration</pt>
-  <pd>远端音频流的累计发布时长（毫秒）。</pd>
-       </plentry>
+       <plentry>
+                    <pt>totalActiveTime</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry>
+                                <dt>自从</dt>
+                                <dd>v3.0.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>远端用户在音频通话开始到本次回调之间的有效时长（毫秒）。</p>
+                        <p>有效时长是指去除了远端用户进入静音状态的总时长。</p></pd>
+                </plentry>
+       <plentry>
+                    <pt>publishDuration</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry>
+                                <dt>自从</dt>
+                                <dd>v3.1.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>远端音频流的累计发布时长（毫秒）。</p></pd>
+                </plentry>
        <plentry props="rtc">
   <pt>qoeQuality</pt>
   <pd>
