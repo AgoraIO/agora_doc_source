@@ -27,7 +27,7 @@ App 客户端加入频道需要以下信息：
 - Android Studio 3.0 或以上版本。
 - Android SDK API 等级 16 或以上。
 - 有效的 [Agora 账户](https://console.agora.io/)。
-- 带有 App ID 和临时 Token 的 Agora 项目。详见[开始使用 Agora 平台](https://docs.agora.io/en/Agora Platform/get_appid_token?platform=All Platforms)。
+- 带有 App ID 和临时 Token 的 Agora 项目。详见[开始使用 Agora 平台](https://docs.agora.io/cn/Agora Platform/get_appid_token?platform=All Platforms)。
 - 可以访问互联网的计算机。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](https://docs.agora.io/en/Agora Platform/firewall?platform=All Platforms)。
 - 运行 Android 4.1 或更高版本的移动设备。
 
