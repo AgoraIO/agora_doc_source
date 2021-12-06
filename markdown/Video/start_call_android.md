@@ -377,7 +377,7 @@ App 客户端加入频道需要以下信息：
     }
    ```
 
-2. 当用户关闭 app 关闭时，清理你在 `initializeAndJoinChannel` 函数中创建的所有资源。
+2. 当用户关闭 app 时，清理你在 `initializeAndJoinChannel` 函数中创建的所有资源。
 
    在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `onCreate` 函数后添加 `onDestroy`：
 
@@ -405,7 +405,7 @@ App 客户端加入频道需要以下信息：
 
 按照以下步骤测试你的 app：
 
-1. 在 `appId` 和 `token` 参数中分别填写从 Agora 控制台获取的 App ID 和临时 Token。在 `channelName` 中填写用于生成临时 token 的频道名称。
+1. 在 `appId` 和 `token` 参数中分别填写从 Agora 控制台获取的 App ID 和临时 Token。在 `channelName` 中填写用于生成临时 Token 的频道名称。
 2. 将 Android 设备连接到你的电脑，并在 **Android Studio** 里点击 `Run 'app'`。片刻后，项目便会安装到你的设备上。
 3. 启动 app，你可以在本地视图中看到自己。
 4. 请一位朋友在[演示 app](https://webdemo.agora.io/basicVideoCall/index.html) 中加入你的视频通话。输入相同的 App ID 和频道名称。
@@ -442,7 +442,7 @@ App 客户端加入频道需要以下信息：
     }
    ```
 
-2. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中,添加如下代码，将 Agora 视频 SDK 集成到你的 Android 项目中：
+2. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中，添加如下代码，将 Agora 视频 SDK 集成到你的 Android 项目中：
 
    ```java
     ...
