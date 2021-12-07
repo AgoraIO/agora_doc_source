@@ -1,5 +1,3 @@
-# UserListContext
-
 `UserListContext` 提供用户列表相关能力。
 
 ## rosterUserList
@@ -101,7 +99,7 @@ controlTools: ControlTool[],
 
 可用的用户管理工具。
 
-## controlTools
+## isHost
 
 ```javascript
 isHost: boolean

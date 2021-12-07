@@ -1,9 +1,9 @@
-This page lists all the functions and events provided by `ScreenShareContext` for the screen sharing feature of Flexible Classroom.
+`ScreenShareContext` enables developers to implement the screen sharing function in the flexible classroom.
 
 ## nativeAppWindowItems
 
 ```typescript
-nativeAppWindowItems: any[],
+nativeAppWindowItems: array,
 ```
 
 The list of remote screen sharing streams.
@@ -11,7 +11,7 @@ The list of remote screen sharing streams.
 ## screenShareStream
 
 ```typescript
-screenShareStream: EduMediaStream,
+screenShareStream: object,
 ```
 
 The information of the local screen sharing screen.
@@ -19,7 +19,7 @@ The information of the local screen sharing screen.
 ## startOrStopSharing
 
 ```typescript
-startOrStopSharing: (type?:ScreenShareType) => Promise<void>
+async startOrStopSharing(): void
 ```
 
 Start or stop screen sharing.

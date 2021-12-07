@@ -1,38 +1,35 @@
-# 类型定义
-
 本页列出 Edu Context 所使用的类型定义。
 
 ## WhiteboardApplianceType
 
 ```kotlin
 enum class WhiteboardApplianceType {
-    Select, Pen, Rect, Circle, Line, Eraser, Text, Clicker;
+    Select, Pen, Rect, Circle, Line, Eraser, Text;
 }
 ```
 
 白板基础工具类型。
 
-| 参数      | 描述                                          |
-| :-------- | :-------------------------------------------- |
-| `Select`  | 选择工具。                                    |
-| `Pen`     | 画笔。                                        |
-| `Rect`    | 矩形。                                        |
-| `Circle`  | 圆形。                                        |
-| `Line`    | 线条。                                        |
-| `Eraser`  | 橡皮擦。                                      |
-| `Text`    | 文本框。                                      |
-| `Clicker` | 点选工具。用于点击和选择 HTML5 课件中的内容。 |
+| 参数     | 描述     |
+| :------- | :------- |
+| `Select` | 选择器。 |
+| `Pen`    | 画笔。   |
+| `Rect`   | 矩形。   |
+| `Circle` | 圆形。   |
+| `Line`   | 线条。   |
+| `Eraser` | 橡皮擦。 |
+| `Text`   | 文本框。 |
 
 ## WhiteboardDrawingConfig
 
 ```kotlin
 data class WhiteboardDrawingConfig(
-        var activeAppliance: WhiteboardApplianceType = WhiteboardApplianceType.Clicker,
+        var activeAppliance: AgoraUIApplianceType = AgoraUIApplianceType.Select,
         var color: Int = Color.WHITE,
         var fontSize: Int = 22,
-        var thick: Int = 4) {
-
-    fun set(config: WhiteboardDrawingConfig) {
+        var thick: Int = 0) {
+ 
+    fun set(config: AgoraUIDrawingConfig) {
         this.activeAppliance = config.activeAppliance
         this.color = config.color
         this.fontSize = config.fontSize
@@ -71,11 +68,11 @@ enum class EduContextNetworkState {
 
 ```kotlin
 enum class EduContextConnectionState {
-    Disconnected(1),
-    Connecting(2),
-    Connected(3),
-    Reconnecting(4),
-    Aborted(5);
+    Disconnected,
+    Connecting,
+    Connected,
+    Reconnecting,
+    Aborted
 }
 ```
 
@@ -88,6 +85,28 @@ RTM 连接状态。
 | `Connected`    | 已连接。     |
 | `Reconnecting` | 重连中。     |
 | `Aborted`      | 被踢出。     |
+
+## EduBoardRoomPhase
+
+```kotlin
+enum class EduBoardRoomPhase(val value: Int) {
+    connecting(0),
+    connected(1),
+    reconnecting(2),
+    disconnecting(3),
+    disconnected(4);
+}
+```
+
+白板连接状态。
+
+| 参数            | 描述         |
+| :-------------- | :----------- |
+| `connecting`    | 连接中。     |
+| `connected`     | 已连接。     |
+| `reconnecting`  | 重连中。     |
+| `disconnecting` | 断开连接中。 |
+| `disconnected`  | 连接已断开。 |
 
 ## EduContextClassState
 
@@ -130,17 +149,19 @@ enum class EduContextUserRole(val value: Int) {
 data class EduContextUserInfo(
         val userUuid: String,
         val userName: String,
-        val role: EduContextUserRole = EduContextUserRole.Student
+        val role: EduContextUserRole = EduContextUserRole.Student,
+        val properties: MutableMap<String, String>?
 )
 ```
 
-用户基本信息。
+用户信息。
 
-| 参数       | 描述                                  |
-| :--------- | :------------------------------------ |
-| `userUuid` | 用户 ID。                             |
-| `userName` | 用户名称。                            |
-| `role`     | 用户角色，详见 `EduContextUserRole`。 |
+| 参数         | 描述                                  |
+| :----------- | :------------------------------------ |
+| `userUuid`   | 用户 ID。                             |
+| `userName`   | 用户名称。                            |
+| `role`       | 用户角色，详见 `EduContextUserRole`。 |
+| `properties` | 自定义用户属性。                      |
 
 ## EduContextUserDetailInfo
 
@@ -150,11 +171,10 @@ data class EduContextUserDetailInfo(val user: EduContextUserInfo, val streamUuid
     var onLine: Boolean = false
     var coHost: Boolean = false
     var boardGranted: Boolean = false
-    var cameraState: EduContextDeviceState = EduContextDeviceState.UnAvailable
-    var microState: EduContextDeviceState = EduContextDeviceState.UnAvailable
+    var cameraState: DeviceState = DeviceState.UnAvailable
+    var microState: DeviceState = DeviceState.UnAvailable
     var enableVideo: Boolean = false
     var enableAudio: Boolean = false
-    var silence: Boolean = false
     var rewardCount: Int = -1
 }
 ```
@@ -171,15 +191,16 @@ data class EduContextUserDetailInfo(val user: EduContextUserInfo, val streamUuid
 | `microState`   | 麦克风可用状态，详见 `EduContextDeviceState`。 |
 | `enableVideo`  | 是否开启视频。                                 |
 | `enableAudio`  | 是否开启音频。                                 |
+| `silence`      | 是否拥有消息聊天的权限。                       |
 | `rewardCount`  | 奖励数量。                                     |
 
-## EduContextDeviceState
+## DeviceState
 
 ```kotlin
-enum class EduContextDeviceState(val value: Int) {
+enum class DeviceState(val value: Int) {
     UnAvailable(0),
     Available(1),
-    Closed(2),
+    Closed(2)
 }
 ```
 
@@ -197,8 +218,9 @@ enum class EduContextDeviceState(val value: Int) {
 data class EduContextChatItem(
         var name: String = "",
         var uid: String = "",
+        var role: Int = EduContextUserRole.Student.value,
         var message: String = "",
-        var messageId: String = "",
+        var messageId: Int = 0,
         var type: EduContextChatItemType = EduContextChatItemType.Text,
         var source: EduContextChatSource = EduContextChatSource.Remote,
         var state: EduContextChatState = EduContextChatState.Default,
@@ -212,12 +234,31 @@ data class EduContextChatItem(
 | :---------- | :----------------------------------------- |
 | `name`      | 消息发送者名称。                           |
 | `uid`       | 消息发送者 ID。                            |
+| `role`      | 消息发送者角色。                           |
 | `message`   | 消息内容。                                 |
 | `messageId` | 消息 ID。                                  |
 | `type`      | 消息类型，详见 `EduContextChatItemType`。  |
 | `source`    | 消息来源，详见 `EduContextChatSource`。    |
 | `state`     | 消息发送状态，详见 `EduContextChatState`。 |
 | `timestamp` | 消息发送时间戳。                           |
+
+## EduContextChatItemSendResult
+
+```kotlin
+data class EduContextChatItemSendResult(
+        val fromUserId: String,
+        val messageId: String,
+        val timestamp: Long
+)
+```
+
+聊天消息发送结果。
+
+| 参数         | 描述             |
+| :----------- | :--------------- |
+| `fromUserId` | 消息发送者 ID。  |
+| `messageId`  | 消息 ID。        |
+| `timestamp`  | 消息发送时间戳。 |
 
 ## EduContextChatItemType
 
@@ -284,10 +325,10 @@ enum class EduContextHandsUpState(val value: Int) {
 | `HandsUp`   | 举手中。   |
 | `HandsDown` | 手放下。   |
 
-## AgoraScreenShareState
+## EduContextScreenShareState
 
 ```kotlin
-enum class AgoraScreenShareState(val value: Int) {
+enum class EduContextScreenShareState(val value: Int) {
     Start(0),
     Pause(1),
     Stop(2)
@@ -373,3 +414,134 @@ enum class EduContextRoomType(val value: Int) {
 | `LargeClass` | 互动直播大班课。 |
 | `SmallClass` | 在线互动小班课。 |
 
+## EduContextConnectionState
+
+```kotlin
+enum class EduContextConnectionState {
+    connecting(0),
+    connected(1),
+    reconnecting(2),
+    disconnecting(3),
+    disconnected(4);
+}
+```
+
+白板房间连接状态。
+
+| 参数            | 描述         |
+| :-------------- | :----------- |
+| `connecting`    | 连接中。     |
+| `connected`     | 已连接。     |
+| `reconnecting`  | 重连中。     |
+| `disconnecting` | 断开连接中。 |
+| `disconnected`  | 连接已断开。 |
+
+## EduContextMediaStreamType
+
+```kotlin
+enum class EduContextMediaStreamType(val value: Int) {
+    Audio(0),
+    Video(1),
+    All(2)
+}
+```
+
+媒体流类型。
+
+| 参数    | 描述       |
+| :------ | :--------- |
+| `Audio` | 音频流。   |
+| `Video` | 视频流     |
+| `All`   | 音视频流。 |
+
+## EduContextRenderMode
+
+```kotlin
+enum class EduContextRenderMode(val value: Int) {
+    HIDDEN(1),
+    FIT(2)
+}
+```
+
+视频渲染模式。
+
+| 参数     | 描述                                                         |
+| :------- | :----------------------------------------------------------- |
+| `HIDDEN` | 优先保证视窗被填满。视频尺寸等比缩放，直至整个视窗被视频填满。如果视频长宽与显示窗口不同，多出的视频将被截掉。 |
+| `FIT`    | 优先保证视频内容全部显示。视频尺寸等比缩放，直至视频窗口的一边与视窗边框对齐。如果视频长宽与显示窗口不同，视窗上未被填满的区域将被涂黑。 |
+
+## EduContextMirrorMode
+
+```kotlin
+enum class EduContextMirrorMode(val value: Int) {
+    AUTO(0),
+    ENABLED(1),
+    DISABLED(2)
+}
+```
+
+是否开启镜像模式。
+
+| 参数       | 描述                   |
+| :--------- | :--------------------- |
+| `AUTO`     | SDK 默认关闭镜像模式。 |
+| `ENABLED`  | 开启镜像模式。         |
+| `DISABLED` | 关闭镜像模式。         |
+
+## EduContextVideoEncoderConfig
+
+```kotlin
+data class EduContextVideoEncoderConfig(
+        val videoDimensionWidth: Int = VideoDimensions_320X240[0],
+        val videoDimensionHeight: Int = VideoDimensions_320X240[1],
+        val frameRate: Int = 15,
+        val bitRate: Int = 200,
+        val mirrorMode: EduContextMirrorMode = EduContextMirrorMode.AUTO) {
+
+    fun convert(): EduVideoEncoderConfig {
+        return EduVideoEncoderConfig(videoDimensionWidth, videoDimensionHeight, frameRate, bitRate,
+                mirrorMode.value)
+    }
+}
+```
+
+视频编码配置。
+
+| 参数                   | 描述                                                         |
+| :--------------------- | :----------------------------------------------------------- |
+| `videoDimensionWidth`  | 视频宽，单位为 pixel。默认值为 320。                         |
+| `videoDimensionHeight` | 视频高，单位为 pixel。默认值为 240。                         |
+| `frameRate`            | 视频帧率，单位为 fps，默认值为 15。                          |
+| `bitrate`              | 视频码率，单位为 Kbps，默认值为 200。                        |
+| `mirrorMode`           | 镜像模式，详见 `AgoraEduContextVideoMirrorMode`。默认为 `AUTO`。 |
+
+## EduContextRenderConfig
+
+```kotlin
+data class EduContextRenderConfig(
+        val renderMode: EduContextRenderMode = EduContextRenderMode.HIDDEN,
+        val mirrorMode: EduContextMirrorMode = EduContextMirrorMode.AUTO)
+```
+
+视频编码配置。
+
+| 参数         | 描述                                                         |
+| :----------- | :----------------------------------------------------------- |
+| `renderMode` | 视频渲染模式，详见 `EduContextRenderMode`。默认为 `HIDDEN`。 |
+| `mirrorMode` | 镜像模式，详见 `AgoraEduContextVideoMirrorMode`。默认为 `AUTO`。 |
+
+## EduContextDeviceLifecycle
+
+```kotlin
+enum class EduContextDeviceLifecycle(val value: Int) {
+    Stop(0),
+    Resume(1)
+}
+```
+
+设备的生命周期状态。
+
+| 参数     | 描述                                 |
+| :------- | :----------------------------------- |
+| `Stop`   | 停止设备采集，释放资源。             |
+| `Resume` | 将设备状态恢复至 `Stop` 之前的状态。 |

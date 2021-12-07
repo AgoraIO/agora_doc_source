@@ -1,18 +1,19 @@
-Agora Edu Context provides methods and callbacks for developers to implement the modular features in Flexible Classroom.
+Agora Edu Context enables developers to implement the functions in the Flexible Classroom.
 
-![](https://web-cdn.agora.io/docs-files/1623761240753)
+![](https://web-cdn.agora.io/docs-files/1619696813295)
 
-Agora provides the following contexts:
+Different contexts represent different function modules in the Flexible Classroom. Each context contains methods for the app to call and also reports event callbacks to the app.
 
-- `PretestContext`: Pre-class media device tests.
-- `BoardContext`: The interactive whiteboard, including: 
-  - General control over the whiteboard
-  - The whiteboard basic editing tools
-  - The whiteboard page controller
-- `ChatContext`: Real-time text chat 
-- `RoomContext`: Classroom management
-- `HandsUpContext`: The feature of students "raise their hands" for permission to speak
-- `ScreenShareContext`: Screen sharing
-- `UserListContext`: User management
-- `RecordingContext`: Real-time recording
-- `CloudDriveContext`: Coureseware
+The Agora Classroom SDK provides the following contexts:
+
+- `PretestContext`: Pre-class test.
+- `BoardContext`: Whiteboard.
+- `Chat Context`: Chat.
+- `RoomContext`: Classroom management.
+- `HandsUpContext`: Hand-raising.
+- `ScreenShareContext`: Screen sharing.
+- `UserListContext`: User list.
+- `RecordingContext`: Recording.
+- `CloudDriveContext`: Class files.
+- `StreamListContext`: Media stream and data stream.
+- `MediaContext`: Local device control.

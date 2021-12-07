@@ -12,11 +12,11 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public abstract int removePublishStreamUrl(String url);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)removePublishStreamUrl:(NSString * _Nonnull)url;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int removePublishStreamUrl(const char *url) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">removePublishStreamUrl(url: string): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int RemovePublishStreamUrl(string url);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
         </p>
@@ -26,14 +26,14 @@
    <p>After a successful method call, the SDK triggers <xref keyref="onRtmpStreamingStateChanged"/> on the local client to report the result of deleting the address.</p>
    <note type="attention" id="note">
        <ul>
-           <li>Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in Push Streams to CDN.</li>
+           <li>Ensure that you enable the RTMP Converter service before using this function.<ph props="android ios"> See <xref keyref="guide-cdn-streaming" format="html" scope="external">Push Streams to CDN</xref> in Prerequisites.</ph></li>
            <li>This method takes effect only when you are a host in live interactive streaming.</li>
            <li>Call this method after joining a channel.</li>
            <li>This method removes only one CDN streaming URL each time it is called. To remove multiple URLs, call this method multiple times.</li>
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>url</pt>

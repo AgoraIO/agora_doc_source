@@ -1,4 +1,4 @@
-This page lists all the functions and events provided by `UserListContext` for user management.
+`useUserListContext` enables developers to implement the user list module in the flexible classroom.
 
 ## rosterUserList
 
@@ -24,31 +24,101 @@ acceptedUserList: array,
 
 The list of users whose application for speaking up has been approved by the teacher.
 
-## localUserUuid
+## localUserInfo
 
 ```javascript
-localUserUuid: string,
+localUserInfo: EduUser,
 ```
 
-The ID of the local user.
+> Since v1.1.5.
 
-## myRole
+The information of the local client.
+
+## teacherInfo
 
 ```javascript
-myRole: string,
+teacherInfo?: EduUser,
 ```
 
-The role of the local user.
+> Since v1.1.5.
 
-## handleRosterClick
+The information of the teacher in the current classroom.
+
+## toggleWhiteboardPermission
 
 ```javascript
-async handleRosterClick(actionType: string, uid: string): void
+toggleWhiteboardPermission: (userUuid:string, whiteboardGranted: boolean) => Promise<any>,
 ```
 
-Handle the click events on the user list, such as standing on the stage, whiteboard authorization, turning on the camera or microphone.
+> Since v1.1.5.
+
+Grants the permission of drawing on the whiteboard to a specified user.
 
 | Parameter | Description |
-| :----------- | :------------ |
-| `actionType` | The action. |
-| `uid` | The ID of the operator. |
+| :------------------ | :------------------------- |
+| `userUuid` | The user ID. |
+| `whiteboardGranted` | Whether to grant the permission of drawing on the whiteboard to the specified user. |
+
+## toggleCamera
+
+```javascript
+toggleCamera: (userUuid:string, enabled: boolean) => Promise<any>,
+```
+
+> Since v1.1.5.
+
+Turns on or off the camera of a specified user.
+
+| Parameter | Description |
+| :--------- | :--------------- |
+| `userUuid` | The user ID. |
+| `enabled` | Whether the camera is turned on. |
+
+## toggleMic
+
+```javascript
+toggleMic: (userUuid:string, enabled: boolean) => Promise<any>,
+```
+
+> Since v1.1.5.
+
+Turns on or off the microphone of a specified user.
+
+| Parameter | Description |
+| :--------- | :--------------- |
+| `userUuid` | The user ID. |
+| `enabled` | Whether to the microphone is turned on. |
+
+## controlTools
+
+```javascript
+controlTools: ControlTool[],
+```
+
+> Since v1.1.5.
+
+Available user management tools.
+
+## isHost
+
+```javascript
+isHost: boolean
+```
+
+> Since v1.1.5.
+
+Whether the local user is the host.
+
+## kick
+
+```javascript
+kick: (userUuid:string) => Promise<any>,
+```
+
+> Since v1.1.5.
+
+Kicks a specified user out of the classroom.
+
+| Parameter | Description |
+| :--------- | :-------- |
+| `userUuid` | The user ID. |

@@ -16,7 +16,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustRecordingSignalVolume:(NSInteger)volume;</codeblock>
             <codeblock props="windows" outputclass="language-cpp">virtual int adjustRecordingSignalVolume(int volume) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">adjustRecordingSignalVolume(volume: number): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public int AdjustRecordingSignalVolume(int volume)</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int AdjustRecordingSignalVolume(int volume);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">adjustRecordingSignalVolume(volume: number): Promise&lt;void></codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> adjustRecordingSignalVolume(int volume);</codeblock>
         </p>
@@ -29,10 +29,14 @@
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
-       <plentry>
+       <plentry id="volume">
   <pt>volume</pt>
   <pd>
-      <p>麦克风采集信号音量。取值范围为 [0,100]。默认值为 100，表示原始音量。</p>
+      <p>音量，取值范围为 [0,400]。<ul>
+                                <li>0: 静音。</li>
+                                <li>100: （默认）原始音量。</li>
+                                <li>400: 原始音量的 4 倍，自带溢出保护。</li>
+                            </ul></p>
   </pd>
        </plentry>
    </parml>

@@ -1,6 +1,34 @@
-# BoardContext
-
 `BoardContext` 提供白板相关能力。
+
+## boardConnectionState
+
+```typescript
+boardConnectionState: string;
+```
+
+> 自 v1.1.5 起新增。
+
+白板连接状态。
+
+## joinBoard
+
+```typescript
+joinBoard: () => Promise<any>;
+```
+
+> 自 v1.1.5 起新增。
+
+加入白板房间。
+
+## leaveBoard
+
+```typescript
+leaveBoard: () => Promise<any>;
+```
+
+> 自 v1.1.5 起新增。
+
+离开白板房间。
 
 ## room
 
@@ -80,7 +108,7 @@ currentSelector: string,
 lineSelector: string,
 ```
 
-当前白板的画线工具。
+当前白板的线条工具。
 
 ## activeMap
 
@@ -101,7 +129,7 @@ ready: boolean,
 ## tools
 
 ```typescript
-tools: any[],
+tools: array,
 ```
 
 白板基础工具列表。
@@ -109,7 +137,7 @@ tools: any[],
 ## changeStroke
 
 ```typescript
-changeStroke: (value: any) => void,
+async changeStroke(value: any): void
 ```
 
 修改画笔宽度。
@@ -117,7 +145,7 @@ changeStroke: (value: any) => void,
 ## changeHexColor
 
 ```typescript
-changeHexColor: (value: any) => void,
+async changeHexColor(colorHex: string): void
 ```
 
 修改颜色。
@@ -125,7 +153,7 @@ changeHexColor: (value: any) => void,
 ## mountToDOM
 
 ```typescript
-mountToDOM: (dom: HTMLDivElement | null) => void,
+async mountToDOM(dom: HTMLDivElement | null): void
 ```
 
 将白板挂载在 DOM 节点上或者卸载白板。
@@ -133,55 +161,63 @@ mountToDOM: (dom: HTMLDivElement | null) => void,
 ## setTool
 
 ```typescript
-setTool: (tool: string) => void,
+async setTool(tool: string): void
 ```
 
-切换白板工具。
-
-| 参数   | 描述       |
-| :----- | :--------- |
-| `tool` | 工具名称。 |
+切换工具。
 
 ## zoomBoard
 
 ```typescript
-zoomBoard: (type: string) => void,
-```
-
-全屏白板。
-
-| 参数   | 描述                                                         |
-| :----- | :----------------------------------------------------------- |
-| `type` | 可设为：<li> `fullscreen` : 全屏。<li> `fullscreenExit`: 退出全屏。 |
-
-## setZoomScale
-
-```typescript
-setZoomScale: (operation: string) => void,
+async zoomBoard(type: string): void
 ```
 
 放大或缩小白板。
 
-| 参数        | 描述                                                |
-| :---------- | :-------------------------------------------------- |
-| `operation` | 可设为：<li> `out`: 缩小白板。<li> `in`: 放大白板。 |
+## setZoomScale
+
+```typescript
+async setZoomScale(operation: string): void
+```
+
+设置放大或缩小的比例。
 
 ## changeFooterMenu
 
 ```typescript
-changeFooterMenu: (itemName: string) => void,
+async changeFooterMenu(itemName: string): void
 ```
 
 设置白板跳转到哪一页。
 
-| 参数       | 描述                                                         |
-| :--------- | :----------------------------------------------------------- |
-| `itemName` | 可设为：<li>`first_page`: 第一页。<li> `last_page`: 最后一页。<li>`next_page`: 下一页。<li>`prev_page`: 上一页。 |
+## downloadList
+
+```typescript
+downloadList: array,
+```
+
+可下载的云盘资源列表。
+
+## putSceneByResourceUuid
+
+```typescript
+async putSceneByResourceUuid(uuid: string): void
+```
+
+在白板上打开课件。
+
+## startDownload
+
+```typescript
+async startDownload(taskUuid: string): void
+```
+
+开始下载课件。
 
 ## updatePen
 
 ```typescript
-updatePen: (value: any) => void,
+async updatePen(value: any): void
 ```
 
 更新画笔。
@@ -194,13 +230,69 @@ boardPenIsActive: boolean,
 
 当前白板使用的工具是否为画笔。
 
+## startOrStopSharing
+
+```typescript
+async startOrStopSharing(): void
+```
+
+开始或停止屏幕共享。
+
 ## setLaserPoint
 
 ```typescript
-setLaserPoint: () => void,
+setLaserPoint(): void
 ```
 
 设置当前工具为激光笔。
+
+## resourcesList
+
+```typescript
+resourcesList: array,
+```
+
+课件列表。
+
+## refreshCloudResources
+
+```typescript
+async refreshCloudResources(): void
+```
+
+更新课件列表。
+
+## removeMaterialList
+
+```typescript
+async removeMaterialList(resourceUuids: string[]): void
+```
+
+移除课件。
+
+## cancelUpload
+
+```typescript
+async cancelUpload(): void
+```
+
+取消上传课件。
+
+## doUpload
+
+```typescript
+async doUpload(payload: any): void
+```
+
+上传课件。
+
+## closeMaterial
+
+```typescript
+async closeMaterial(resourceUuid: string): void
+```
+
+关闭课件。
 
 ## installTools
 
@@ -208,7 +300,23 @@ setLaserPoint: () => void,
 async installTools(tools: any[]): void
 ```
 
-安装白板工具。
+安装工具。
+
+## personalResources
+
+```typescript
+personalResources: array,
+```
+
+老师通过灵动课堂客户端上传的课件列表。
+
+## publicResources
+
+```typescript
+publicResources: array,
+```
+
+教学机构指派的课件列表。
 
 ## revokeUserPermission
 
@@ -225,23 +333,3 @@ async grantUserPermission(userUuid: string): void
 ```
 
 给予指定学生白板权限。
-
-## showBoardTool
-
-```typescript
-showBoardTool: [boolean, boolean];
-```
-
-> 自 v1.1.2 起新增。
-
-当前是否显示白板基础工具栏和页面控制工具栏。
-
-## startOrStopSharing
-
-```typescript
-startOrStopSharing: () => Promise<void>,
-```
-
-> 自 v1.1.2 起废弃。Agora 建议改用 ScreenShareContext 中的 `startOrStopSharing`。
-
-开始或停止屏幕共享。

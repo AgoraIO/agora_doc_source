@@ -16,7 +16,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)addVideoWatermark:(NSURL* _Nonnull)url options:(WatermarkOptions* _Nonnull)options;</codeblock>
             <codeblock props="windows" outputclass="language-cpp">virtual int addVideoWatermark(const char* watermarkUrl, const WatermarkOptions&amp; options) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">addVideoWatermark(watermarkUrl: string, options: WatermarkOptions): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public int AddVideoWatermark(string watermarkUrl, WatermarkOptions watermarkOptions)</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int AddVideoWatermark(string watermarkUrl, WatermarkOptions options);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">addVideoWatermark(
     watermarkUrl: string,
     options: WatermarkOptions
@@ -26,7 +26,7 @@
         </section>
         <section id="detailed_desc">
    
-   <p>该方法将一张 PNG 图片作为水印添加到本地发布的直播视频流上，同一直播频道中的用户、旁路直播观众和采集设备都能看到或采集到该水印图片。Agora
+   <p id="desc1">该方法将一张 PNG 图片作为水印添加到本地发布的直播视频流上，同一直播频道中的用户、旁路直播观众和采集设备都能看到或采集到该水印图片。Agora
                 当前只支持在直播视频流中添加一个水印，后添加的水印会替换掉之前添加的水印。</p>
    <p>水印坐标和 <xref keyref="setVideoEncoderConfiguration"/> 方法中的设置有依赖关系：<ul>
   <li>如果视频编码方向（<xref keyref="ORIENTATION_MODE"/>）
@@ -50,11 +50,12 @@
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
-       <plentry>
-  <pt>watermarkUrl</pt>
+       <plentry id="url">
+  <pt props="android windows electron unity">watermarkUrl</pt>
+  <pt props="ios mac">url</pt>
   <pd>待添加的水印图片的本地路径。本方法支持从本地绝对/相对路径添加水印图片。</pd>
        </plentry>
-       <plentry>
+       <plentry id="options">
   <pt>options</pt>
   <pd>待添加的水印图片的设置选项，详见 <xref keyref="WatermarkOptions"/> 。</pd>
        </plentry>

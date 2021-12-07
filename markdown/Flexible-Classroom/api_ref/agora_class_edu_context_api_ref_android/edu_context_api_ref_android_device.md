@@ -1,6 +1,6 @@
 ## DeviceContext
 
-`DeviceContext` 类提供可供 App 调用的设备相关方法。
+`DeviceContext` 类提供可供 App 调用的课中设备控制相关方法。
 
 ### getDeviceConfig
 
@@ -8,7 +8,7 @@
 abstract fun getDeviceConfig(): EduContextDeviceConfig
 ```
 
-获取设备配置。该方法返回 `EduContextDeviceConfig`。
+获取设备配置。该方法返回 [EduContextDeviceConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextdeviceconfig)。
 
 ### setCameraDeviceEnable
 
@@ -54,9 +54,21 @@ abstract fun setSpeakerEnable(enable: Boolean)
 | :------- | :--------------- |
 | `enable` | 扬声器是否开启。 |
 
+### setDeviceLifecycle
+
+```kotlin
+abstract fun setDeviceLifecycle(lifecycle: EduContextDeviceLifecycle)
+```
+
+根据宿主的生命周期设置设备的生命周期状态，例如可在应用退到后台时调用此方法关闭设备采集。
+
+| 参数        | 描述                                                         |
+| :---------- | :----------------------------------------------------------- |
+| `lifecycle` | 设备的生命周期状态，详见 [EduContextDeviceLifecycle](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextdevicelifecycle)。 |
+
 ## IDeviceHandler
 
-`IDeviceHandler` 类用于向 App 报告设备相关的事件回调。
+`IDeviceHandler` 类用于向 App 报告课中设备控制相关的事件回调。
 
 ### onCameraDeviceEnableChanged
 
@@ -78,9 +90,9 @@ fun onCameraFacingChanged(facing: EduContextCameraFacing)
 
 提示前置和后置摄像头的切换。
 
-| 参数     | 描述                                        |
-| :------- | :------------------------------------------ |
-| `facing` | 摄像头方向，详见 `EduContextCameraFacing`。 |
+| 参数     | 描述                                                         |
+| :------- | :----------------------------------------------------------- |
+| `facing` | 摄像头方向，详见 [EduContextCameraFacing](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextcamerafacing)。 |
 
 ### onMicDeviceEnabledChanged
 
@@ -117,4 +129,3 @@ fun onDeviceTips(tips: String)
 | 参数   | 描述       |
 | :----- | :--------- |
 | `tips` | 提示信息。 |
-

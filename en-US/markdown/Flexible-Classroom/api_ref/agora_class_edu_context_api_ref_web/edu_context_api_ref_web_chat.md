@@ -1,4 +1,4 @@
-This page lists all the functions and events provided by `ChatContext` for the real-time text chat feature of Flexible Classroom.
+`ChatContext` enables developers to implement the chat function in the flexible classroom.
 
 ## isHost
 
@@ -6,7 +6,7 @@ This page lists all the functions and events provided by `ChatContext` for the r
 isHost: boolean,
 ```
 
-Whether the role is the teacher or teaching assistant.
+Whether the local user is the teacher or teaching assistant.
 
 ## getHistoryChatMessage
 
@@ -17,7 +17,7 @@ getHistoryChatMessage: (data: {
 })=>Promise<any>,
 ```
 
-Fetch the message history.
+Fetches the message history.
 
 Example:` getHistoryChatMeassage({nextId:"idstring", sort: 1})`
 
@@ -46,11 +46,11 @@ sendMessage: (message: any) => Promise<{
     fromRoomName: string,
 }>,
 ```
-Send a message.
+Sends a message.
 
 
 | Parameter | Description |
-| :------- | :----------------------------------------------------------- |
+| :-------- | :--------- |
 | `message` | The message. |
 
 
@@ -59,7 +59,7 @@ Send a message.
 ```typescript
 muteChat: () => void,
 ```
-Disable the chat function.
+Disables the chat function.
 
 ## unmuteChat
 
@@ -67,7 +67,7 @@ Disable the chat function.
 unmuteChat: () => void,
 ```
 
-Enable the chat function.
+Enables the chat function.
 
 ## chatCollapse
 
@@ -75,7 +75,7 @@ Enable the chat function.
 chatCollapse: boolean,
 ```
 
-Whether is the chatbox is folded.
+Whether is the chat box is folded.
 
 ## toggleChatMinimize
 
@@ -83,7 +83,7 @@ Whether is the chatbox is folded.
 toggleChatMinimize(): void
 ```
 
-Fold or expand the chatbox.
+Folds or expands the chat box.
 
 ## unreadMessageCount
 
@@ -107,8 +107,8 @@ Whether the chat function is enabled.
 addChatMessage: (args: any) => void
 ```
 
-Add a message to the message list.
+Adds a message to the message list.
 
 | Parameter | Description |
 | :----- | :--------------------------------- |
-| `args` | Pass in the object returned in the method of sending a message. |
+| `args` | Passes in the object which is returned in the method of sending a message. |

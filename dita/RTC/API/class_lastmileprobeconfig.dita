@@ -6,9 +6,21 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeConfig {
+                <codeblock props="android" outputclass="language-java">public class LastmileProbeConfig {
+  public boolean probeUplink;
+  public boolean probeDownlink;
+  public int expectedUplinkBitrate;
+  public int expectedDownlinkBitrate;
+
+  public LastmileProbeConfig() {}
+}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLastmileProbeConfig : NSObject
+@property (assign, nonatomic) BOOL probeUplink;
+@property (assign, nonatomic) BOOL probeDownlink;
+@property (assign, nonatomic) NSUInteger expectedUplinkBitrate;
+@property (assign, nonatomic) NSUInteger expectedDownlinkBitrate;
+@end</codeblock>
+                <codeblock props="windows unity" outputclass="language-cpp">struct LastmileProbeConfig {
     bool probeUplink;
     bool probeDownlink;
     unsigned int expectedUplinkBitrate;
@@ -20,7 +32,6 @@
     expectedUplinkBitrate: number;
     expectedDownlinkBitrate: number;
     }</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>

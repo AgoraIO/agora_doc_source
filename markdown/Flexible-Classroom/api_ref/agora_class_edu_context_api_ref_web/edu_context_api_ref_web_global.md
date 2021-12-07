@@ -1,6 +1,14 @@
-# GlobalContext
-
 `GlobalContext` 提供全局控制相关能力。
+
+## region
+
+```javascript
+region: string;
+```
+
+> 自 v1.1.2 起新增。
+
+当前设置的区域。
 
 ## loading
 

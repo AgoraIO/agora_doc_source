@@ -1,4 +1,4 @@
-This page lists all the functions and events provided by `HandsUpContext` for the hand-raising feature of Flexible Classroom.
+`HandsUpContext` enables developers to implement the hand-raising function in the flexible classroom.
 
 ## teacherUuid
 
@@ -11,7 +11,7 @@ The ID of the teacher.
 ## handsUpState
 
 ```typescript
-handsUpState: "forbidden" | "actived" | "default",
+handsUpState: string,
 ```
 
 The student's hand state.
@@ -19,7 +19,7 @@ The student's hand state.
 ## teacherHandsUpState
 
 ```typescript
-teacherHandsUpState: "actived" | "default",
+teacherHandsUpState: string,
 ```
 
 The teacher's hand state.
@@ -27,7 +27,7 @@ The teacher's hand state.
 ## studentHandsUp
 
 ```typescript
-studentHandsUp: (teacherUuid: string) => Promise<void>,
+async studentHandsUp(teacherUuid: string): void
 ```
 
 The student raises a hand to apply for speaking up.
@@ -41,7 +41,7 @@ The student raises a hand to apply for speaking up.
 ## studentCancelHandsUp
 
 ```typescript
-studentCancelHandsUp: () => Promise<void>,
+async studentCancelHandsUp(): void
 ```
 
 The student lowers the hand to cancel the application for speaking up.
@@ -49,11 +49,7 @@ The student lowers the hand to cancel the application for speaking up.
 ## handsUpStudentList
 
 ```typescript
-handsUpStudentList: {
-    userUuid: string;
-    userName: string;
-    coVideo: boolean;
-}[],
+handsUpStudentList: array<{userUuid, userName, coVideo}>,
 ```
 
 The list of students who raise their hand to apply for speaking up.
@@ -85,7 +81,7 @@ The total number of users who are sending video streams.
 ## teacherAcceptHandsUp
 
 ```typescript
-teacherAcceptHandsUp: (userUuid: string) => Promise<void>,
+async teacherAcceptHandsUp(userUuid: string): void
 ```
 
 The teacher accepts the student's application for speaking up.
@@ -97,7 +93,7 @@ The teacher accepts the student's application for speaking up.
 ## teacherRejectHandsUp
 
 ```typescript
-teacherRejectHandsUp: (userUuid: string) => Promise<void>,
+async teacherRejectHandsUp(userUuid: string): void
 ```
 
 The teacher approves the student's application for speaking up.

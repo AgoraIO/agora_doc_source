@@ -1,6 +1,6 @@
 ## AgoraEduDeviceContext
 
-`AgoraEduDeviceContext` 类提供可供 App 调用的设备相关方法。
+`AgoraEduDeviceContext` 类提供可供 App 调用的课中设备控制相关方法。
 
 ### setCameraDeviceEnable
 
@@ -8,7 +8,7 @@
 func setCameraDeviceEnable(enable: Bool)
 ```
 
-开启或关闭摄像头。
+开启或关闭本地摄像头。
 
 | 参数     | 描述             |
 | :------- | :--------------- |
@@ -28,7 +28,7 @@ func switchCameraFacing()
 func setMicDeviceEnable(enable: Bool)
 ```
 
-开启或关闭麦克风。
+开启或关闭本地麦克风。
 
 | 参数     | 描述             |
 | :------- | :--------------- |
@@ -40,7 +40,7 @@ func setMicDeviceEnable(enable: Bool)
 func setSpeakerEnable(enable: Bool)
 ```
 
-开启或关闭扬声器。
+开启或关闭本地扬声器。
 
 | 参数     | 描述             |
 | :------- | :--------------- |
@@ -60,7 +60,7 @@ func registerDeviceEventHandler(_ handler: AgoraEduDeviceHandler)
 
 ## AgoraEduDeviceHandler
 
-`AgoraEduDeviceHandler` 类用于向 App 报告设备相关的事件回调。
+`AgoraEduDeviceHandler` 类用于向 App 报告课中设备控制相关的事件回调。
 
 ### onCameraDeviceEnableChanged
 
@@ -68,7 +68,10 @@ func registerDeviceEventHandler(_ handler: AgoraEduDeviceHandler)
 @objc optional func onCameraDeviceEnableChanged(enabled: Bool)
 ```
 
-提示摄像头是否开启。
+提示本地摄像头是否开启。
+
+- `enabled` 为 `true` 时，UI 层提示“你的摄像头被打开了”。
+- `enabled` 为 `false` 时，UI 层提示“你的摄像头被关闭了”。
 
 | 参数      | 描述             |
 | :-------- | :--------------- |
@@ -92,7 +95,10 @@ func registerDeviceEventHandler(_ handler: AgoraEduDeviceHandler)
 @objc optional func onMicDeviceEnabledChanged(enabled: Bool)
 ```
 
-提示麦克风是否开启。
+提示本地麦克风是否开启。
+
+- `enabled` 为 `true` 时，UI 层提示“你可以发言了”。
+- `enabled` 为 `false` 时，UI 层提示“你暂时不能发言了”。
 
 | 参数      | 描述             |
 | :-------- | :--------------- |
@@ -104,21 +110,8 @@ func registerDeviceEventHandler(_ handler: AgoraEduDeviceHandler)
 @objc optional func onSpeakerEnabledChanged(enabled: Bool)
 ```
 
-提示扬声器是否开启。
+提示本地扬声器是否开启。
 
 | 参数      | 描述             |
 | :-------- | :--------------- |
 | `enabled` | 扬声器是否开启。 |
-
-### onDeviceTips
-
-```swift
-@objc optional func onDeviceTips(message: String)
-```
-
-设备相关提示回调。
-
-| 参数      | 描述       |
-| :-------- | :--------- |
-| `message` | 提示信息。 |
-

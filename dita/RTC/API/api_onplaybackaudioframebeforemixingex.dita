@@ -18,7 +18,10 @@
     unsigned int uid, 
     AudioFrame&amp; audioFrame) { return true; }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="unity" outputclass="language-csharp">public virtual bool OnPlaybackAudioFrameBeforeMixingEx(string channelId, uint uid, AudioFrame audioFrame)
+        {
+            return true;
+        }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
         </p>
@@ -40,7 +43,7 @@
        </plentry>
        <plentry>
   <pt>audioFrame</pt>
-  <pd>音频裸数据。详见 <xref keyref="AudioFrame"/>。</pd>
+  <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
        </plentry>
    </parml>
         </section>

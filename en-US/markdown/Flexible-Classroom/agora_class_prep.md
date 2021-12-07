@@ -42,35 +42,35 @@ Configure the aPaaS service in Agora Console, as follows:
                  "accessKey": "",
                  "secretKey": ""
              }  
-         }
-```
-
-     <div class="note alert">For the detaild description of the configuration parameters, see <a href="#reference">Reference</a>.</div>
-
-   - Cloud Recording
-
-     ```json
-     {
-             "recordingConfig": {},
-             "storageConfig": {
-                 "vendor": 1,
-                 "region": 1,
-                 "bucket": "<your_bucket_name>",
-                 "accessKey": "<your_access_key>",
-                 "secretKey": "<your_secret_key>",
-                 "fileNamePrefix": ["directory1","directory2"],
-                 "endpoint": ""
-               }
      }
 ```
-
+     
+     <div class="note alert">For the detaild description of the configuration parameters, see <a href="#reference">Reference</a>.</div>
+   
+   - Cloud Recording
+   
+     ```
+     {
+                  "recordingConfig": {},
+                  "storageConfig": {
+                      "vendor": 1,
+                      "region": 1,
+                      "bucket": "<your_bucket_name>",
+                      "accessKey": "<your_access_key>",
+                      "secretKey": "<your_secret_key>",
+                      "fileNamePrefix": ["directory1","directory2"],
+                      "endpoint": ""
+                    }
+     }
+```
+   
      <div class="note alert">For the detaild description of the configuration parameters, see <a href="#reference">Reference</a>.</div>
 
 4. After returning to the **project management** page, click **Save** to ensure the aPaaS configuration takes effect.
 
 ## Next steps
 
-After configuring the aPaaS service, see the following documents to launch a flexible classroom using the Agora Classroom SDK as it is:
+After configuring the aPaaS service, refer to the following documents to launch a flexible classroom using the Agora Classroom SDK as it is:
 
 - [Launch a flexible classroom (Web)](./agora_class_quickstart_web?platform=Web)
 - [Launch a flexible classroom (Android)](./agora_class_quickstart_android?platform=Android)
@@ -85,7 +85,7 @@ After configuring the aPaaS service, see the following documents to launch a fle
   | :--------- | :----- | :----------------------------------------------------------- |
   | `appId`    | String | (Required) The App Identifier of the Interactive Whiteboard service that you get in the previous step. If you do not set this parameter, you cannot enter a classroom. |
   | `token`    | String | (Required) The SDK Token of the Interactive Whiteboard service that you get in the previous step. If you do not set this parameter, you cannot enter a classroom. |
-  | `oss`      | Object | (Optional) The configuration of Amazon S3 for storing the files you upload in a classroom. If you do not set this parameter, you cannot upload any file in the classroom. The JSON object for the whiteboard contains the following fields:<ul><li>`vendor`: Number. The third-party cloud storage vendor. Set this parameter as `1` to use Amazon S3.</li><li>`region`: String. The location of the data center you specified when creating a bucket.</li><li>`endpoint`: String. The domain name used to access the third-party cloud storage service.</li><li>`bucket`: String. The name of the storage space.</li><li>`folder`: String. The path used to save the resources in the storage space， such as `"whiteboard"`. The default is the root directory.</li><li>`accessKey`: String. The Access Key provided by the third-party cloud storage vendor, which is used by the vendor to identify visitors.</li><li>`secretKey`: String. The Secret Key provided by the third-party cloud storage vendor, which is used to authenticate signatures.</li></ul><p>**Note**: To get the above information about a third-party storage service, see the documentation provided by the vendor. |
+  | `oss`      | Object | (Optional) The configuration of Amazon S3 for storing the files you upload in a classroom. If you do not set this parameter, you cannot upload any file in the classroom. The JSON object for the whiteboard contains the following fields:<ul><li>`vendor`: Number. The third-party cloud storage vendor. Set this parameter as `1` to use Amazon S3.</li><li>`region`: String. The location of the data center you specified when creating a bucket.</li><li>`endpoint`: String. The domain name used to access the Amazon S3 service, such as `s3.us-east-2.amazonaws.com`. For details, see the </li><li>`bucket`: String. The name of the storage space.</li><li>`folder`: String. The path used to save the resources in the storage space,  such as `"whiteboard"`. The default is the root directory.</li><li>`accessKey`: String. The Access Key provided by Amazon S3, which is used to identify visitors.</li><li>`secretKey`: String. The Secret Key provided by Amazon S3, which is used to authenticate signatures.</li></ul><p>**Note**: To get the above information about a third-party storage service, see the [documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) of Amazon S3. |
 
 
 - The JSON object for **Cloud Recording** contains the following fields:

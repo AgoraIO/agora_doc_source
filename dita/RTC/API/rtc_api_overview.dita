@@ -35,7 +35,7 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="create2"/></stentry>
-                    <stentry><ph props="ios mac android electron">创建并初始化 <apiname
+                    <stentry><ph props="ios mac android electron unity">创建并初始化 <apiname
                                 keyref="IRtcEngine"/>。</ph><ph props="windows">初始化 <apiname
                                 keyref="IRtcEngine"/>。</ph></stentry>
                 </strow>
@@ -55,7 +55,7 @@
                     <stentry><xref keyref="setClientRole2"/></stentry>
                     <stentry><ph conkeyref="setClientRole2/shortdesc"/></stentry>
                 </strow>
-                <strow props="android ios mac windows">
+                <strow props="android ios mac windows unity">
                     <stentry><xref keyref="joinChannel1"/></stentry>
                     <stentry><ph conkeyref="joinChannel1/shortdesc"/></stentry>
                 </strow>
@@ -63,7 +63,7 @@
                     <stentry><xref keyref="joinChannel2"/></stentry>
                     <stentry><ph conkeyref="joinChannel2/shortdesc"/></stentry>
                 </strow>
-                <strow props="android ios mac windows">
+                <strow props="android ios mac windows unity">
                     <stentry><xref keyref="switchChannel1"/></stentry>
                     <stentry><ph conkeyref="switchChannel1/shortdesc"/></stentry>
                 </strow>
@@ -226,19 +226,19 @@
                     <stentry><xref keyref="setVideoEncoderConfiguration"/></stentry>
                     <stentry><ph conkeyref="setVideoEncoderConfiguration/shortdesc"/></stentry>
                 </strow>
-                <strow props="windows android ios mac">
+                <strow props="windows android ios mac unity">
                     <stentry><xref keyref="setupLocalVideo"/></stentry>
                     <stentry><ph conkeyref="setupLocalVideo/shortdesc"/></stentry>
                 </strow>
-                <strow props="android ios mac windows">
+                <strow props="android ios mac windows unity">
                     <stentry><xref keyref="setupRemoteVideo"/></stentry>
                     <stentry><ph conkeyref="setupRemoteVideo/shortdesc"/></stentry>
                 </strow>
-                <strow props="android ios mac windows">
+                <strow props="android ios mac windows unity">
                     <stentry><xref keyref="setLocalRenderMode2"/></stentry>
                     <stentry><ph conkeyref="setLocalRenderMode2/shortdesc"/></stentry>
                 </strow>
-                <strow props="android ios mac windows">
+                <strow props="android ios mac windows unity">
                     <stentry><xref keyref="setRemoteRenderMode2"/></stentry>
                     <stentry><ph conkeyref="setRemoteRenderMode2/shortdesc"/></stentry>
                 </strow>
@@ -381,6 +381,28 @@
                     <stentry><xref keyref="setBeautyEffectOptions"/></stentry>
                     <stentry><ph conkeyref="setBeautyEffectOptions/shortdesc"/></stentry>
                 </strow>
+                <strow>
+                    <stentry><xref keyref="enableVirtualBackground"/></stentry>
+                    <stentry><ph conkeyref="enableVirtualBackground/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="enableRemoteSuperResolution"/></stentry>
+                    <stentry><ph conkeyref="enableRemoteSuperResolution/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+            <simpletable>
+                <sthead>
+                    <stentry>事件</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onVirtualBackgroundSourceEnabled"/></stentry>
+                    <stentry><ph conkeyref="onVirtualBackgroundSourceEnabled/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onUserSuperResolutionEnabled"/></stentry>
+                    <stentry><ph conkeyref="onUserSuperResolutionEnabled/shortdesc"/></stentry>
+                </strow>
             </simpletable>
         </section>
         <section id="multiple_channels_management">
@@ -400,7 +422,7 @@
                     <stentry><xref keyref="IChannel"/></stentry>
                     <stentry><ph conkeyref="IChannel/shortdesc"/></stentry>
                 </strow>
-                <strow props="android ios mac windows">
+                <strow props="android ios mac windows unity">
                     <stentry><xref keyref="IChannelEventHandler"/></stentry>
                     <stentry><ph conkeyref="IChannelEventHandler/shortdesc"/></stentry>
                 </strow>
@@ -415,7 +437,7 @@
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
                 </sthead>
-                <strow props="windows mac">
+                <strow props="windows mac unity">
                     <stentry><xref keyref="startScreenCaptureByDisplayId"/></stentry>
                     <stentry><ph conkeyref="startScreenCaptureByDisplayId/shortdesc"/></stentry>
                 </strow>
@@ -500,7 +522,7 @@
                     <stentry><xref keyref="getAudioMixingPublishVolume"/></stentry>
                     <stentry><ph conkeyref="getAudioMixingPublishVolume/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="hide">
                     <stentry><xref keyref="getAudioMixingDuration2"/></stentry>
                     <stentry><ph conkeyref="getAudioMixingDuration2/shortdesc"/></stentry>
                 </strow>
@@ -788,8 +810,8 @@
                 </strow>
             </simpletable>
         </section>
-        <section id="face_detection" props="android ios windows"><title>人脸检测</title><p
-                props="windows">该组功能仅适用于 Android 和 iOS 平台。</p><simpletable>
+        <section id="face_detection" props="android ios windows unity"><title>人脸检测</title><p
+                props="windows unity">该组功能仅适用于 Android 和 iOS 平台。</p><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -808,8 +830,8 @@
                     <stentry><ph conkeyref="onFacePositionChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="audio_routing_control" props="android ios windows"><title>音频播放路由</title><p
-                props="windows">该组方法仅适用于 Android 和 iOS 平台。</p><simpletable>
+        <section id="audio_routing_control" props="android ios windows unity"><title>音频播放路由</title><p
+                props="windows unity">该组方法仅适用于 Android 和 iOS 平台。</p><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -837,8 +859,8 @@
                     <stentry><ph conkeyref="onAudioRouteChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="in-ear_monitoring" props="android ios windows"><title>耳返控制</title><p
-                props="windows">该组方法仅适用于 Android 和 iOS 平台。</p><simpletable>
+        <section id="in-ear_monitoring" props="android ios windows unity"><title>耳返控制</title><p
+                props="windows unity">该组方法仅适用于 Android 和 iOS 平台。</p><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -970,7 +992,7 @@
                     <stentry><ph conkeyref="setVideoSource/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="external_video_data" props="windows"><title>视频自采集（仅 Push 模式）</title><simpletable>
+        <section id="external_video_data" props="windows unity"><title>视频自采集（仅 Push 模式）</title><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -984,7 +1006,7 @@
                     <stentry><ph conkeyref="pushVideoFrame/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="external_audio_data" props="windows"><title>音频自采集（仅 Push 模式）</title><simpletable>
+        <section id="external_audio_data" props="windows android ios mac unity"><title>音频自采集（仅 Push 模式）</title><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -993,12 +1015,16 @@
                     <stentry><xref keyref="setExternalAudioSource"/></stentry>
                     <stentry><ph conkeyref="setExternalAudioSource/shortdesc"/></stentry>
                 </strow>
-                <strow>
-                    <stentry><xref keyref="pushAudioFrame2"/></stentry>
+                <strow props="unity">
+                    <stentry><xref keyref="pushAudioFrame1"/></stentry>
+                    <stentry><ph conkeyref="pushAudioFrame1/shortdesc"/></stentry>
+                </strow>
+                <strow props="windows android ios mac">
+                    <stentry><xref keyref="pushAudioFrame2"></xref></stentry>
                     <stentry><ph conkeyref="pushAudioFrame2/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="external_audio_sink" props="windows"><title>音频自渲染（仅 Pull 模式）</title><simpletable>
+        <section id="external_audio_sink" props="windows unity"><title>音频自渲染（仅 Pull 模式）</title><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -1012,7 +1038,7 @@
                     <stentry><ph conkeyref="pullAudioFrame/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="raw_audio_data" props="windows"><title>原始音频数据</title><simpletable>
+        <section id="raw_audio_data" props="windows unity"><title>原始音频数据</title><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -1020,6 +1046,10 @@
                 <strow>
                     <stentry><xref keyref="registerAudioFrameObserver"/></stentry>
                     <stentry><ph conkeyref="registerAudioFrameObserver/shortdesc"/></stentry>
+                </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="unregisterAudioFrameObserver"/></stentry>
+                    <stentry><ph conkeyref="unregisterAudioFrameObserver/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="setRecordingAudioFrameParameters"/></stentry>
@@ -1054,8 +1084,16 @@
                     <stentry><xref keyref="onMixedAudioFrame"/></stentry>
                     <stentry><ph conkeyref="onMixedAudioFrame/shortdesc"/></stentry>
                 </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="isMultipleChannelFrameWanted_IAudioFrameObserver"/></stentry>
+                    <stentry><ph conkeyref="isMultipleChannelFrameWanted_IAudioFrameObserver/shortdesc"/></stentry>
+                </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="onPlaybackAudioFrameBeforeMixingEx"/></stentry>
+                    <stentry><ph conkeyref="onPlaybackAudioFrameBeforeMixingEx/shortdesc"/></stentry>
+                </strow>
             </simpletable></section>
-        <section id="raw_video_data" props="windows"><title>原始视频数据</title><simpletable>
+        <section id="raw_video_data" props="windows unity"><title>原始视频数据</title><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -1063,6 +1101,10 @@
                 <strow>
                     <stentry><xref keyref="registerVideoFrameObserver"/></stentry>
                     <stentry><ph conkeyref="registerVideoFrameObserver/shortdesc"/></stentry>
+                </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="unregisterVideoFrameObserver"/></stentry>
+                    <stentry><ph conkeyref="unregisterVideoFrameObserver/shortdesc"/></stentry>
                 </strow>
             </simpletable><simpletable>
                 <sthead>
@@ -1081,7 +1123,7 @@
                     <stentry><xref keyref="onPreEncodeVideoFrame"/></stentry>
                     <stentry><ph conkeyref="onPreEncodeVideoFrame/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="getSmoothRenderingEnabled"/></stentry>
                     <stentry><ph conkeyref="getSmoothRenderingEnabled/shortdesc"/></stentry>
                 </strow>
@@ -1093,13 +1135,21 @@
                     <stentry><xref keyref="getVideoFormatPreference"/></stentry>
                     <stentry><ph conkeyref="getVideoFormatPreference/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="getRotationApplied"/></stentry>
                     <stentry><ph conkeyref="getRotationApplied/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="windows">
                     <stentry><xref keyref="getMirrorApplied"/></stentry>
                     <stentry><ph conkeyref="getMirrorApplied/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="isMultipleChannelFrameWanted_IVideoFrameObserver"/></stentry>
+                    <stentry><ph conkeyref="isMultipleChannelFrameWanted_IVideoFrameObserver/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRenderVideoFrameEx"/></stentry>
+                    <stentry><ph conkeyref="onRenderVideoFrameEx/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
         <section id="media_metadata">
@@ -1114,9 +1164,17 @@
                     <stentry><xref keyref="registerMediaMetadataObserver"/></stentry>
                     <stentry><ph conkeyref="registerMediaMetadataObserver/shortdesc"/></stentry>
                 </strow>
-                <strow props="electron">
+                <strow props="unity">
+                    <stentry><xref keyref="unregisterMediaMetadataObserver"/></stentry>
+                    <stentry><ph conkeyref="unregisterMediaMetadataObserver/shortdesc"/></stentry>
+                </strow>
+                <strow props="electron unity">
                     <stentry><xref keyref="setMaxMetadataSize"/></stentry>
                     <stentry><ph conkeyref="setMaxMetadataSize/shortdesc"/></stentry>
+                </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="sendMetadata"/></stentry>
+                    <stentry><ph keyref="sendMetadata/shortdesc"/></stentry>
                 </strow>
             </simpletable>
             <simpletable>
@@ -1192,7 +1250,7 @@
         </section>
         <section id="camera_control">
             <title>摄像头控制</title>
-            <simpletable props="android ios windows">
+            <simpletable props="android ios windows unity">
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -1760,6 +1818,10 @@
                     <stentry><xref keyref="getErrorDescription"/></stentry>
                     <stentry><ph conkeyref="getErrorDescription/shortdesc"/></stentry>
                 </strow>
+                <strow>
+                    <stentry><xref keyref="uploadLogFile"/></stentry>
+                    <stentry><ph conkeyref="uploadLogFile/shortdesc"/></stentry>
+                </strow>
                 <strow props="windows">
                     <stentry><xref keyref="queryInterface"/></stentry>
                     <stentry><ph conkeyref="queryInterface/shortdesc"/></stentry>
@@ -1784,6 +1846,10 @@
                 <strow>
                     <stentry><xref keyref="onApiCallExecuted"/></stentry>
                     <stentry><ph conkeyref="onApiCallExecuted/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onUploadLogResult"/></stentry>
+                    <stentry><ph conkeyref="onUploadLogResult/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>

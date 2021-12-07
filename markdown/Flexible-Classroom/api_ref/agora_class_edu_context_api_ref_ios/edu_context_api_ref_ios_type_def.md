@@ -1,5 +1,3 @@
-# 类型定义
-
 本页列出 Edu Context 所使用的类型定义。
 
 ## AgoraEduContextError
@@ -8,11 +6,6 @@
 @objcMembers public class AgoraEduContextError: NSObject {
     public var code: Int = 0
     public var message: String = ""
-    public init(code: Int,
-                message: String?) {
-        self.code = code
-        self.message = message ?? ""
-    }
 }
 ```
 
@@ -27,21 +20,20 @@
 
 ```swift
 @objc public enum AgoraEduContextApplianceType: Int {
-    case select, pen, rect, circle, line, eraser, clicker
+    case select, pen, rect, circle, line, eraser
 }
 ```
 
 白板基础工具类型。
 
-| 参数      | 描述                                          |
-| :-------- | :-------------------------------------------- |
-| `select`  | 选择工具。                                    |
-| `pen`     | 画笔。                                        |
-| `rect`    | 矩形。                                        |
-| `circle`  | 圆形。                                        |
-| `line`    | 线条。                                        |
-| `eraser`  | 橡皮擦。                                      |
-| `clicker` | 点选工具。用于点击和选择 HTML5 课件中的内容。 |
+| 参数     | 描述     |
+| :------- | :------- |
+| `select` | 选择器。 |
+| `pen`    | 画笔。   |
+| `rect`   | 矩形。   |
+| `circle` | 圆形。   |
+| `line`   | 线条。   |
+| `eraser` | 橡皮擦。 |
 
 
 ## AgoraEduContextRoomInfo
@@ -50,12 +42,7 @@
 @objcMembers public class AgoraEduContextRoomInfo: NSObject {
     public var roomUuid: String
     public var roomName: String
-     
-    public init(roomUuid: String,
-                roomName: String) {
-        self.roomUuid = roomUuid
-        self.roomName = roomName
-    }
+    public var roomType: AgoraEduContextRoomType
 }
 ```
 
@@ -65,6 +52,7 @@
 | :---------------- | :----------- |
 | `roomUuid` | 课堂 ID。   |
 | `roomName`           | 课堂名称。       |
+| `roomType` | 课堂类型，详见 `AgoraEduContextRoomType`。 |
 
 ## AgoraEduContextClassState
 
@@ -87,7 +75,7 @@
 
 ```swift
 @objc public enum AgoraEduContextAppType: Int {
-    case oneToOne = 0, lecture = 2, small = 4
+    case oneToOne = 0, small = 4
 }
 ```
 
@@ -97,7 +85,7 @@
 | :---------- | :----------------- |
 | `oneToOne`      | 1 对 1 互动教学。 |
 | `lecture` | 互动直播大班课。 |
-| `small`     | 在线直播小班课。       |
+| `small`     | 在线互动小班课。     |
 
 ## AgoraEduContextNetworkQuality
 
@@ -155,9 +143,10 @@ RTM 连接状态。
 
 ```swift
 @objcMembers public class AgoraEduContextUserInfo: NSObject {
-    public var userUuid: String = ""
-    public var userName: String = ""
-    public var role: AgoraEduContextUserRole = .student
+    public var userUuid: String
+    public var userName: String
+    public var role: AgoraEduContextUserRole
+    public var userProperties: [String : Any]?
 }
 ```
 
@@ -168,12 +157,13 @@ RTM 连接状态。
 | `userUuid` | 用户 ID。                             |
 | `userName` | 用户名称。                            |
 | `role`     | 用户角色，详见 `AgoraEduContextUserRole`。 |
+| `userProperties` | 自定义用户属性。 |
 
 ## AgoraEduContextUserDetailInfo
 
 ```swift
 @objcMembers public class AgoraEduContextUserDetailInfo: NSObject {
-    public var user: AgoraEduContextUserInfo
+    public var user: AgoraEduContextUserInfo?
     public var isSelf: Bool = true
     public var streamUuid: String = ""
     public var onLine: Bool = false
@@ -183,6 +173,7 @@ RTM 连接状态。
     public var microState: AgoraEduContextDeviceState = .notAvailable
     public var enableVideo: Bool = false
     public var enableAudio: Bool = false
+    public var enableChat: Bool = true
     public var rewardCount: Int = 0
 }
 ```
@@ -196,18 +187,19 @@ RTM 连接状态。
 | `streamUuid`       | 用户的流 ID。                     |
 | `onLine`       | 是否在线。                           |
 | `coHost`       | 是否在台上。                         |
-| `boardGranted` | 是否拥有白板权限。                   |
+| `boardGranted` | 是否拥有操作白板的权限。                |
 | `cameraState`  | 摄像头可用状态，详见 `AgoraEduContextDeviceState`。 |
 | `microState`   | 麦克风可用状态，详见 `AgoraEduContextDeviceState`。 |
-| `enableVideo`  | 是否开启视频。                       |
-| `enableAudio`  | 是否开启音频。                       |
+| `enableVideo`  | 是否有视频流。                     |
+| `enableAudio`  | 是否有音频流。                     |
+| `enableChat` | 是否拥有消息聊天的权限。 |
 | `rewardCount`  | 奖励数量。                           |
 
 ## AgoraEduContextDeviceState
 
 ```swift
 @objc public enum AgoraEduContextDeviceState: Int {
-    case notAvailable, available, close
+    case notAvailable, available
 }
 ```
 
@@ -217,19 +209,18 @@ RTM 连接状态。
 | :------------ | :------------- |
 | `notAvailable` | 设备不可用。   |
 | `available`   | 设备可用。     |
-| `close` | 设备被关闭。 |
 
 ## AgoraEduContextChatInfo
 
 ```swift
 @objcMembers public class AgoraEduContextChatInfo: NSObject {
-    public var id: String = ""
-    public var message: String = ""
-    public var user: AgoraEduContextUserInfo?
+    public var id: String
+    public let message: String
+    public let user: AgoraEduContextUserInfo
     public var sendState: AgoraEduContextChatState = .default
-    public var type: AgoraEduContextChatType = .text
-    public var time: Int64 = 0
-    public var from: AgoraEduContextChatFrom = .local
+    public let type: AgoraEduContextChatType
+    public let time: Int64
+    public let from: AgoraEduContextChatFrom
 }
 ```
 
@@ -242,7 +233,7 @@ RTM 连接状态。
 | `user`      | 消息发送者信息，详见 `AgoraEduContextUserInfo`。                           |
 | `sendState`     | 消息发送状态，详见 `AgoraEduContextChatState`。 |
 | `type`      | 消息类型，详见 `AgoraEduContextChatType`。  |
-| `time` | 消息发送时间戳。                           |
+| `time` | 消息发送时间戳（毫秒）。                     |
 | `source`    | 消息来源，详见 `AgoraEduContextChatFrom`。    |
 
 ## AgoraEduContextChatType
@@ -306,8 +297,26 @@ RTM 连接状态。
 | 参数        | 描述       |
 | :---------- | :--------- |
 | `default`      | 初始状态。 |
-| `dandsUp`   | 举手中。   |
-| `dandsDown` | 手放下。   |
+| `handsUp`  | 举手中。   |
+| `handsDown` | 手放下。   |
+
+## AgoraEduContextHandsUpResult
+
+```swift
+@objc public enum AgoraEduContextHandsUpResult: Int {
+    case rejected
+    case accepted
+    case timeout
+}
+```
+
+举手上台请求结果。
+
+| 参数       | 描述             |
+| :--------- | :--------------- |
+| `rejected` | 举手请求被拒绝。 |
+| `accepted` | 举手请求被接受。 |
+| `timeout`  | 举手请求超时。   |
 
 ## AgoraEduContextScreenShareState
 
@@ -348,13 +357,6 @@ RTM 连接状态。
     public var cameraFacing: EduContextCameraFacing = .front
     public var micEnabled: Bool = true
     public var speakerEnabled: Bool = true
-    public init(cameraEnabled: Bool, cameraFacing: EduContextCameraFacing, micEnabled: Bool, speakerEnabled: Bool) {
-        super.init()
-        self.cameraEnabled = cameraEnabled
-        self.cameraFacing = cameraFacing
-        self.micEnabled = micEnabled
-        self.speakerEnabled = speakerEnabled
-    }
 }
 ```
 
@@ -367,3 +369,40 @@ RTM 连接状态。
 | `micEnabled`     | 麦克风是否开启。 |
 | `speakerEnabled` | 扬声器是否开启。 |
 
+## AgoraEduContextVideoMirrorMode
+
+```swift
+@objc public enum AgoraEduContextVideoMirrorMode: Int {
+    case auto, enabled, disabled
+}
+```
+
+是否开启镜像模式。
+
+| 参数       | 描述                   |
+| :--------- | :--------------------- |
+| `auto`     | SDK 默认关闭镜像模式。 |
+| `enabled`  | 开启镜像模式。         |
+| `disabled` | 关闭镜像模式。         |
+
+## AgoraEduContextVideoConfig
+
+```swift
+@objcMembers public class AgoraEduContextVideoConfig: NSObject {
+    public var videoDimensionWidth: UInt = 320
+    public var videoDimensionHeight: UInt = 240
+    public var frameRate: UInt = 15
+    public var bitrate: UInt = 200
+    public var mirrorMode: AgoraEduContextVideoMirrorMode = .auto
+}
+```
+
+视频编码配置。
+
+| 参数                   | 描述                                                         |
+| :--------------------- | :----------------------------------------------------------- |
+| `videoDimensionWidth`  | 视频宽，单位为 pixel。默认值为 320。                         |
+| `videoDimensionHeight` | 视频高，单位为 pixel。默认值为 240。                         |
+| `frameRate`            | 视频帧率，单位为 fps，默认值为 15。                          |
+| `bitrate`              | 视频码率，单位为 Kbps，默认值为 200。                        |
+| `mirrorMode`           | 镜像模式，详见 `AgoraEduContextVideoMirrorMode`。默认为 `auto`。 |

@@ -1,8 +1,8 @@
 ## AgoraEduHandsUpContext
 
-`AgoraEduHandsUpContext` 类提供可供 App 调用的举手上台相关方法。
+`AgoraEduHandsUpContext` 类提供可供 App 调用的举手上台功能相关方法。
 
-### performHandsUp
+### updateHandsUpState
 
 ```swift
 func updateHandsUpState(_ state: AgoraEduContextHandsUpState)
@@ -30,34 +30,40 @@ func registerEventHandler(_ handler: AgoraEduHandsUpHandler)
 
 `AgoraEduHandsUpHandler` 类用于向 App 报告举手上台相关的事件回调。
 
-### onSetHandsUpEnable
+### onHandsUpEnable
 
 ```swift
-@objc optional func onSetHandsUpEnable(_ enable: Bool)
+@objc optional func onHandsUpEnable(_ enable: Bool)
 ```
 
 报告是否可以举手。
+
+- `enabled` 为 `true  `时，UI 层提示”老师开启了举手功能“。
+- `enabled` 为 `false` 时，UI 层提示”老师关闭了举手功能“。
 
 | 参数     | 描述           |
 | :------- | :------------- |
 | `enable` | 是否可以举手。 |
 
-### onHandsUpStateUpdated
+### onHandsUpState
 
 ```swift
-@objc optional func onSetHandsUpState(_ state: AgoraEduContextHandsUpState)
+@objc optional func onHandsUpState(_ state: AgoraEduContextHandsUpState)
 ```
 
 报告当前举手状态。
+
+- `state` 为 `handsUp ` 时，UI 层提示”举手成功“。
+- `state` 为 `handsDown` 时，UI 层提示”取消举手成功“。
 
 | 参数    | 描述                                               |
 | :------ | :------------------------------------------------- |
 | `state` | 当前举手状态，详见 `AgoraEduContextHandsUpState`。 |
 
-### onHandsUpStateResultUpdated
+### onHandsUpError
 
 ```swift
-@objc optional func onUpdateHandsUpStateResult(_ error: AgoraEduContextError?)
+@objc optional func onHandsUpError(_ error: AgoraEduContextError?)
 ```
 
 报告举手结果。 `error` 不为空表示举手失败。
@@ -65,27 +71,3 @@ func registerEventHandler(_ handler: AgoraEduHandsUpHandler)
 | 参数    | 描述                                  |
 | :------ | :------------------------------------ |
 | `error` | 错误码，详见 `AgoraEduContextError`。 |
-
-### onHandsUpTips
-
-```swift
-@objc optional func onShowHandsUpTips(_ message: String)
-```
-
-显示举手相关提示。
-
-有以下提示：
-
-- 举手超时。
-- 老师拒绝了你的举手申请。
-- 老师同意了你的举手申请。
-- 你被老师下台了。
-- 举手成功。
-- 取消举手成功。
-- 老师关闭了举手功能。
-- 老师开启了举手功能
-
-| 参数      | 描述       |
-| :-------- | :--------- |
-| `message` | 提示信息。 |
-

@@ -1,11 +1,127 @@
-# PretestContext
-
 `PretestContext` 提供课前检测相关能力，用于检测摄像头、麦克风和扬声器是否正常工作。
+
+## isBeauty
+
+```typescript
+isBeauty: boolean;
+```
+
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
+
+当前是否开启基础美颜。
+
+## setBeauty
+
+```typescript
+setBeauty: (isBeauty: boolean) => void;
+```
+
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
+
+开启/关闭基础美颜功能。
+
+| 参数       | 描述               |
+| :--------- | :----------------- |
+| `isBeauty` | 是否开启美颜功能。 |
+
+## whitening
+
+```typescript
+whitening: number;
+```
+
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
+
+当前美白数值。
+
+## buffing
+
+```typescript
+buffing: number;
+```
+
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
+
+当前磨皮数值。
+
+## ruddy
+
+```typescript
+ruddy: number;
+```
+
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
+
+当前红润数值。
+
+## setWhitening
+
+```typescript
+setWhitening: (whitening: number) => void;
+```
+
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
+
+设置美白数值。
+
+| 参数        | 描述                                         |
+| :---------- | :------------------------------------------- |
+| `whitening` | 美白数值。取值范围为 0 到 100，默认值为 70。 |
+
+## setBuffing
+
+```typescript
+setBuffing: (buffing: number) => void;
+```
+
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
+
+设置磨皮数值。
+
+| 参数      | 描述                                         |
+| :-------- | :------------------------------------------- |
+| `buffing` | 磨皮数值。取值范围为 0 到 100，默认值为 50。 |
+
+## setRuddy
+
+```typescript
+setRuddy: (ruddy: number) => void;
+```
+
+> - 自 v1.1.5 起新增。
+> - 仅适用于 Electron。
+
+设置红润数值。
+
+| 参数    | 描述                                         |
+| :------ | :------------------------------------------- |
+| `ruddy` | 红润数值。取值范围为 0 到 100，默认值为 10。 |
+
+## changeTestSpeaker
+
+```typescript
+changeTestSpeaker: (deviceId: string) => Promise<void>;
+```
+
+> 自 v1.1.5 起新增。
+
+切换扬声器。
+
+| 参数       | 描述      |
+| :--------- | :-------- |
+| `deviceId` | 设备 ID。 |
 
 ## cameraList
 
 ```typescript
-cameraList: any[],
+cameraList: array,
 ```
 
 摄像头列表。
@@ -13,7 +129,7 @@ cameraList: any[],
 ## microphoneList
 
 ```typescript
-microphoneList: any[],
+microphoneList: array,
 ```
 
 麦克风列表。
@@ -21,7 +137,7 @@ microphoneList: any[],
 ## speakerList
 
 ```typescript
-speakerList: any[],
+speakerList: array,
 ```
 
 扬声器列表。
@@ -89,14 +205,12 @@ setMirror(mirror: boolean): void
 microphoneLevel: number,
 ```
 
-> 自 v1.1.2 起废弃。Agora 建议使用 `VolumeContext` 中的 `microphoneLevel`。
-
 当前麦克风音量。取值范围为 0 到 20。
 
 ## changeTestSpeakerVolume
 
 ```typescript
-changeTestSpeakerVolume: (value: any) => Promise<void>
+async changeTestSpeakerVolume(value: any): void
 ```
 
 调整扬声器的音量。
@@ -104,7 +218,7 @@ changeTestSpeakerVolume: (value: any) => Promise<void>
 ## changeTestMicrophoneVolume
 
 ```typescript
-changeTestMicrophoneVolume: (deviceId: string) => Promise<void>,
+async changeTestMicrophoneVolume(value: any): void
 ```
 
 调整麦克风的音量。
@@ -112,7 +226,7 @@ changeTestMicrophoneVolume: (deviceId: string) => Promise<void>,
 ## changeTestCamera
 
 ```typescript
-changeTestCamera: (deviceId: string) => Promise<void>,
+async changeTestCamera(deviceId: string): void
 ```
 
 切换摄像头。
@@ -120,7 +234,7 @@ changeTestCamera: (deviceId: string) => Promise<void>,
 ## changeTestMicrophone
 
 ```typescript
-changeTestMicrophone: (deviceId: string) => Promise<void>,
+async changeTestMicrophone(deviceId: string): void
 ```
 
 切换麦克风。
@@ -128,7 +242,7 @@ changeTestMicrophone: (deviceId: string) => Promise<void>,
 ## startPretestCamera
 
 ```typescript
-startPretestCamera: () => Promise<void>,
+async startPretestCamera(): void
 ```
 
 开启摄像头。
@@ -136,7 +250,7 @@ startPretestCamera: () => Promise<void>,
 ## startPretestMicrophone
 
 ```typescript
-startPretestMicrophone: (payload: { enableRecording: boolean; }) => Promise<void>,
+async startPretestMicrophone(): void
 ```
 
 开启麦克风。
@@ -144,7 +258,7 @@ startPretestMicrophone: (payload: { enableRecording: boolean; }) => Promise<void
 ## stopPretestCamera
 
 ```typescript
-stopPretestCamera: () => void,
+async stopPretestCamera(): void
 ```
 
 关闭摄像头。
@@ -152,25 +266,7 @@ stopPretestCamera: () => void,
 ## stopPretestMicrophone
 
 ```typescript
-stopPretestMicrophone: () => void,
+async stopPretestMicrophone():void
 ```
 
 关闭麦克风。
-
-## pretestCameraRenderer
-
-```typescript
-pretestCameraRenderer: LocalUserRenderer | undefined,
-```
-
-课前检测阶段的摄像头渲染器。
-
-## pretestNoticeChannel
-
-```typescript
-pretestNoticeChannel: Subject<any>;
-```
-
-> 自 v1.1.2 起新增。
-
-设备检测频道通知。

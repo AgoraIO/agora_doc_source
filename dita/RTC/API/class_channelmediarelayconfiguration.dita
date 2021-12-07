@@ -6,9 +6,27 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
+                <codeblock props="android" outputclass="language-java">public class ChannelMediaRelayConfiguration {
+  private ChannelMediaInfo srcInfo = null;
+  private Map&lt;String, ChannelMediaInfo> destInfos = null;
+
+  public ChannelMediaRelayConfiguration() {
+    destInfos = new HashMap&lt;String, ChannelMediaInfo>();
+    srcInfo = new ChannelMediaInfo(null, null, 0);
+  }
+  
+  public void setSrcChannelInfo(ChannelMediaInfo srcInfo) {
+    this.srcInfo = srcInfo;
+  }</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
+
+@property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *> *_Nullable destinationInfos;
+@property (strong, nonatomic) AgoraChannelMediaRelayInfo *_Nonnull sourceInfo;
+
+- (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName;
+- (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName;
+@end</codeblock>
+                <codeblock props="windows unity" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
 	ChannelMediaInfo *srcInfo;
 	ChannelMediaInfo *destInfos;
 	int destCount;
@@ -23,7 +41,6 @@
     srcInfo: ChannelMediaInfo;
     destInfos: [ChannelMediaInfo];
     }</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>
@@ -32,7 +49,8 @@
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt>srcInfo</pt>
+                    <pt props="android windows unity">srcInfo</pt>
+                    <pt props="ios mac">sourceInfo</pt>
                     <pd>
                         <p>源频道信息 <xref keyref="ChannelMediaInfo"/>，包含如下成员：<ul>
                                 <li><codeph>channelName</codeph>：源频道名。默认值为 <codeph><ph keyref="NULL"/></codeph>，表示 SDK
@@ -48,14 +66,14 @@
                                                 <codeph>channelName</codeph> 和 <codeph>uid</codeph>
                                             生成的 <codeph>token</codeph>，且其中的 <codeph>uid</codeph> 必须为
                                             0。</li>
-                                    </ul>
-                                </li>
+                                    </ul></li>
                             </ul>
                         </p>
                     </pd>
                 </plentry>
                 <plentry>
-                    <pt>destInfos</pt>
+                    <pt props="android windows unity">destInfos</pt>
+                    <pt props="ios mac">destinationInfos</pt>
                     <pd>
                         <p>目标频道信息 <apiname keyref="ChannelMediaInfo"/>，包含如下成员： <ul>
                                 <li><codeph>channelName</codeph>：目标频道的频道名。</li>
@@ -70,13 +88,12 @@
                                         <li>如已启用 App Certificate，则务必填入使用
                                                 <codeph>channelName</codeph> 和 <codeph>uid</codeph>
                                             生成的 <codeph>token</codeph>。</li>
-                                    </ul>
-                                </li>
+                                    </ul></li>
                             </ul>
                         </p>
                     </pd>
                 </plentry>
-                <plentry>
+                <plentry props="windows unity">
                     <pt>destCount</pt>
                     <pd>目标频道数量，默认值为 0，取值范围为 [0,4]。该参数应与你在 <codeph>destInfo</codeph> 中定义的 <apiname
                             keyref="ChannelMediaInfo"/> 数组的数目一致。</pd>

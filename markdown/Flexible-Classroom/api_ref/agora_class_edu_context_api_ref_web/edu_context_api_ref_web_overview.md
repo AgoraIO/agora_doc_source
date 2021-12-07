@@ -1,5 +1,3 @@
-## 概览
-
 Agora Classroom SDK 通过 Edu Context 为 App 开发者提供实现灵动课堂业务功能的能力。
 
 ![](https://web-cdn.agora.io/docs-files/1619696813295)

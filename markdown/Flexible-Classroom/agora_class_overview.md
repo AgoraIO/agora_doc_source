@@ -6,20 +6,7 @@
 
 ## 教育解决方案区别
 
-Agora 针对在线互动课堂提供 aPaaS 和 PaaS 两种解决方案。下表列出这两种解决方案的详细区别：
-
-| <span style="white-space:nowrap;">&emsp;&emsp;&emsp;&emsp;</span> | aPaaS 教育解决方案                                           | PaaS 教育解决方案                                            |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| 方案介绍                                                     | 使用 Agora 灵动课堂来实现在线互动教学场景。                  | 分别集成 Agora RTC SDK、Agora RTM SDK、Agora 互动白板 SDK 和 Agora 云端录制服务来搭建在线互动教学场景。 |
-| 适用客户                                                     | 适用于开发资源有限、排期紧、需要快速上线在线互动教学场景、有定制化需求的客户。 | 适用于开发资源充足、对定制化需求较高的客户。                 |
-| 开发成本                                                     | 低                                                           | 高                                                           |
-| 上线时间                                                     | 最短 15 分钟                                                 | 1 个月至 3 个月                                              |
-| 实现功能                                                     | 提供课堂内的实时互动体验，支持实时音视频、实时消息、互动白板、实时录制、屏幕共享等核心功能。提供灵动课堂云服务用于课堂和用户管理。支持业务功能的灵活扩展，能够与教学机构的用户系统和排课系统无缝对接。 | 客户自行实现实时音视频、实时消息、互动白板等功能。           |
-| 可拓展性                                                     | 较强                                                         | 强                                                           |
-| 业务数据安全                                                 | Agora 不保存客户的业务数据。                                 | Agora 不保存客户的业务数据。                                 |
-| 前端 UI                                                      | Agora 提供默认的课堂 UI 且支持定制化修改。                   | 客户自行实现所有 UI。                                        |
-| 平台                                                         | <li>Android<li>iOS<li>macOS<li>Windows<li>Web                | 支持超过 20 个平台和框架。                                   |
-| 支持场景                                                     | 1 对 1 互动教学在线互动小班课互动直播大班课                  | 客户自行定义和实现任意在线互动教学场景。                     |
+~a27d6b70-a96d-11eb-b31a-57565fd331e4~
 
 ## 实现场景
 
@@ -39,8 +26,7 @@ Agora 针对在线互动课堂提供 aPaaS 和 PaaS 两种解决方案。下表�
 
 ### 移动端
 
-![](https://web-cdn.agora.io/docs-files/1619757513895)
-
+![](https://web-cdn.agora.io/docs-files/1622431051006)
 
 ## 产品功能
 
@@ -78,7 +64,7 @@ Agora 针对在线互动课堂提供 aPaaS 和 PaaS 两种解决方案。下表�
 
 ### 录制回放
 
-老师可在课堂中开启录制。灵动课堂会通过[页面录制](https://docs.agora.io/cn/cloud-recording/cloud_recording_webpage_mode?platform=RESTful)将指定 URL 的页面内容和音频混合录制为一个 MP4 音视频文件，实现音视频内容、白板内容、课件内容同步录制。录制结束后可提供回放链接供学生课后复习。
+老师可在课堂中开启录制。灵动课堂会通过[页面录制](/cn/cloud-recording/cloud_recording_webpage_mode?platform=RESTful)将指定 URL 的页面内容和音频混合录制为一个 MP4 音视频文件，实现音视频内容、白板内容、课件内容同步录制。录制结束后可提供回放链接供学生课后复习。
 
 ### 自定义课堂 UI
 
@@ -109,15 +95,11 @@ Agora 提供灵动课堂云服务，支持对课堂和用户进行管理，包�
 | :------- | :------- | :--- | :--- | :----- | :------- |
 | 老师端   | <font color="red">✘</font>        | <font color="red">✘</font>    | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        |
 | 学生端   | <font color="green">✔</font>        | <font color="green">✔</font>    | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        |
-| 助教端   | <font color="red">✔</font>        | <font color="red">✔</font>    | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        |
+| 助教端   | <font color="red">✘</font>        | <font color="red">✘</font>    | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        |
 
-说明：
+<div class="alert info">兼容性要求：<ol><li>Android 5.0 或以上版本。</li><li>iOS 10 或以上版本。</li><li>为保证最佳的用户体验，Agora 强烈推荐在桌面端 Google Chrome 浏览器官方最新版本上使用灵动课堂 Web 端。暂不支持移动端浏览器。</li><li>macOS 10.10 或以上版本。</li><li>Windows 7 或以上版本。</li></ol></div>
 
-1. Android 4.4 或以上版本。
-2. iOS 10 或以上版本。
-3. Web 端请使用桌面端 Google Chrome 最新稳定版。
-4. macOS 10.10 或以上版本。
-5. Windows 7 或以上版本。
+<div class="alert info">灵动课堂 macOS 和 Windows 客户端基于 Electron 框架开发。</div>
 
 ## 计费说明
 
@@ -127,3 +109,4 @@ Agora 提供灵动课堂云服务，支持对课堂和用户进行管理，包�
 - [云信令计费说明](https://docs.agora.io/cn/Real-time-Messaging/billing_rtm?platform=All%20Platforms)
 - [云端录制计费说明](https://docs.agora.io/cn/cloud-recording/billing_cloud_recording?platform=RESTful)
 - [互动白板计费说明](https://www.herewhite.com/zh-CN/price)
+- [IM 计费说明](https://www.easemob.com/pricing/im)

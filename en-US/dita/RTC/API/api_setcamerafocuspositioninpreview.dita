@@ -13,8 +13,9 @@
     <refbody><section id="prototype">
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int setCameraFocusPositionInPreview(float positionX, float positionY);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setCameraFocusPositionInPreview:(CGPoint)position;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setCameraFocusPositionInPreview(float positionX, float positionY) = 0;
+</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -22,18 +23,23 @@
         </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>This method needs to be called after the camera is started (for example, by calling <xref keyref="startPreview"/> or <xref keyref="joinChannel1"/>). After a successful method call, the SDK triggers the <xref keyref="onCameraFocusAreaChanged"/> callback.</p>
+   <p>This method needs to be called after the camera is started (for example, by calling <xref keyref="startPreview"/> or <xref keyref="joinChannel1"/>). 
+       After a successful method call, the SDK triggers the <xref keyref="onCameraFocusAreaChanged"/> callback.</p>
+            <note type="attention" props="windows">This method is for Android and iOS only.</note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
-       <plentry>
-  <pt>positionX</pt>
-  <pd>The horizontal coordinate of the touchpoint in the view.</pd>
-       </plentry>
-       <plentry>
-  <pt>positionY</pt>
-  <pd>The vertical coordinate of the touchpoint in the view.</pd>
+       <plentry props="windows android">
+                    <pt>positionX</pt>
+                    <pd>The horizontal coordinate of the touchpoint in the view.</pd>
+                </plentry>
+       <plentry props="windows android">
+                    <pt>positionY</pt>
+                    <pd>The vertical coordinate of the touchpoint in the view.</pd>
+                </plentry>
+       <plentry props="ios mac">
+           <pt>position</pt>
+           <pd>The coordinate of the touchpoint in the view.</pd>
        </plentry>
    </parml>
         </section>
