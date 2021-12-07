@@ -37,7 +37,19 @@
         </relrow>
         <relrow>
             <relcell>
+                <topicref keyref="setClientRole2"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="CLIENT_ROLE_TYPE"/>
+                <topicref keyref="ClientRoleOptions"/>
+                <topicref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
                 <topicref keyref="joinChannel2"/>
+                <topicref keyref="joinChannelWithUserAccount2"/>
+                <topicref keyref="joinChannelWithUserAccountEx"/>
             </relcell>
             <relcell>
                 <topicref keyref="ChannelMediaOptions"/>
@@ -652,6 +664,7 @@
             <relcell>
                 <topicref keyref="LocalVideoStats"/>
                 <topicref keyref="VIDEO_CODEC_TYPE"/>
+                <topicref keyref="QUALITY_ADAPT_INDICATION" props="windows ios mac"/>
             </relcell>
         </relrow>
         <relrow>
@@ -661,7 +674,6 @@
             <relcell>
                 <topicref keyref="RemoteAudioStats"/>
                 <topicref keyref="QUALITY_TYPE"/>
-                <topicref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>
             </relcell>
         </relrow>
         <relrow>
@@ -1015,7 +1027,7 @@
             <relcell>
                 <topicref keyref="registerMediaMetadataObserver"/>
                 <topicref keyref="unregisterMediaMetadataObserver" props="windows android"/>
-                
+
             </relcell>
             <relcell>
                 <topicref keyref="IMetadataObserver"/>
@@ -1115,14 +1127,16 @@
                 <topicref keyref="WatermarkOptions"/>
             </relcell>
         </relrow>
-        <relrow props="android">
+        <relrow props="android ios mac">
             <relcell>
+                <topicref keyref="getUserInfoByUid"/>
                 <topicref keyref="getUserInfoByUidEx"/>
+                <topicref keyref="getUserInfoByUserAccount"/>
                 <topicref keyref="getUserInfoByUserAccountEx"/>
+                <topicref keyref="onUserInfoUpdated"/>
             </relcell>
             <relcell>
                 <topicref keyref="UserInfo"/>
-                <topicref keyref="onUserInfoUpdated"/>
             </relcell>
         </relrow>
         <relrow props="windows" >
@@ -1196,13 +1210,21 @@
             <relcell>
                 <topicref keyref="LOG_LEVEL"/>
             </relcell>
-        </relrow>  
+        </relrow>
         <relrow props="android ios">
             <relcell>
                 <topicref keyref="onFacePositionChanged"/>
             </relcell>
             <relcell>
                 <topicref keyref="AgoraFacePositionInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setAudioMixingDualMonoMode"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>
             </relcell>
         </relrow>
     </reltable>
@@ -1226,6 +1248,7 @@
                 <relrow>
             <relcell>
                 <topicref keyref="setClientRole1"/>
+                <topicref keyref="setClientRole2"/>
             </relcell>
             <relcell>
                 <topicref keyref="onClientRoleChanged"/>
@@ -1398,6 +1421,7 @@
         </relrow>
         <relrow>
             <relcell>
+                <topicref keyref="registerLocalUserAccount"/>
                 <topicref keyref="joinChannelWithUserAccount1"/>
                 <topicref keyref="joinChannelWithUserAccount2"/>
                             </relcell>
@@ -1427,12 +1451,22 @@
         <relrow>
             <relcell>
                 <topicref keyref="joinChannelWithUserAccountEx"/>
+                <topicref keyref="joinChannelWithUserAccount1"/>
+                <topicref keyref="joinChannelWithUserAccount2"/>
             </relcell>
             <relcell>
                 <topicref keyref="onLocalUserRegistered"/>
                 <topicref keyref="onJoinChannelSuccess"/>
                 <topicref keyref="onUserJoined"/>
                 <topicref keyref="onUserInfoUpdated"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="muteLocalAudioStream"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onUserMuteAudio"/>
             </relcell>
         </relrow>
         <relrow>
@@ -1508,6 +1542,24 @@
                 </relcell>
             <relcell>
                 <topicref keyref="onPlaybackAudioFrame"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="openWithCustomSource"/>
+                </relcell>
+            <relcell>
+                <topicref keyref="onReadData"/>
+                <topicref keyref="onSeek"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="muteLocalAudioSpectrum"/>
+                <topicref keyref="DisableAudio"/>
+                </relcell>
+            <relcell>
+                <topicref keyref="onFirstRemoteAudioDecoded"/>
             </relcell>
         </relrow>
     </reltable>
