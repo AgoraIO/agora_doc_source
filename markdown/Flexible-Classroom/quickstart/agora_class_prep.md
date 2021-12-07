@@ -40,17 +40,17 @@
 	 <div class="alert note">你需要将 <code>appId</code> 替换成你的白板 App Identifier，将 <code>token</code> 替换成你的白板 SDK Token。点击<a href="#whiteboard">此处</a>查看字段详细介绍。</div>
 
     ```json
-   {
-	    "enabled": true,
-       "appId": "<your_whiteboard_app_id>",
-       "token": "<your_whiteboard_sdk_token>",
-       "oss": {
-           "region": "oss-cn-shanghai",
-           "bucket": "your-bucket-name",
-           "folder": "whiteboard",
-           "accessKey": "your-access-key",
-           "secretKey": "your-secret-key",
-           "endpoint": "oss-cn-shanghai.aliyuncs.com"
+   {       
+	 "enabled": true,
+     "appId": "<your_whiteboard_app_id>",
+     "token": "<your_whiteboard_sdk_token>",
+     "oss": {
+       "region": "oss-cn-shanghai",
+       "bucket": "your-bucket-name",
+       "folder": "whiteboard",
+       "accessKey": "your-access-key",
+       "secretKey": "your-secret-key",
+       "endpoint": "oss-cn-shanghai.aliyuncs.com"
        }
    }
     ```
@@ -60,10 +60,10 @@
 	 <div class="alert note">点击<a href="#recording">此处</a>查看字段详细介绍。</div>
 
      ```json
-   {
-	    "enabled": true,
-       "recordingConfig": {},
-       "storageConfig": {}
+   {       
+	 "enabled": true,
+     "recordingConfig": {},
+     "storageConfig": {}
    }
      ```
 
@@ -73,17 +73,17 @@
    
      ```json
      {
-         "enabled": true,
-         "vendor": 1,
-         "huanxin": {
-             "apiHost": "",
-             "orgName": "",
-             "appName": "",
-             "superAdmin": "",
-             "appKey": "",
-             "clientId": "",
-             "clientSecret": ""
-         }
+       "enabled": true,
+       "vendor": 1,
+       "huanxin": {
+         "apiHost": "",
+         "orgName": "",
+         "appName": "",
+         "superAdmin": "",
+         "appKey": "",
+         "clientId": "",
+         "clientSecret": ""
+       }
      }
      ```
    
@@ -118,7 +118,7 @@
 | `recordingConfig` | Object | （选填）录制设置。如不设置，则使用[合流录制模式](/cn/Agora%20Platform/composite_recording_mode)且只录制老师的音视频。如需更改录制行为，请参考[云端录制设置](/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#recordingConfig)。 |
 | `storageConfig`   | Object | （选填）云存储设置，用于储存你的录制文件。如不设置，你的录制文件会存储在 Agora 的阿里云 OSS 账号中。如需使用你自己的云存储，请参考[云存储设置](/cn/cloud-recording/cloud_recording_api_rest?platform=RESTful#storageConfig)进行配置。请注意以下字段的设置：<li> `endpoint` : （必填）String 类型，由阿里云 Bucket 名称和[访问域名](https://help.aliyun.com/document_detail/31837.html?spm=a2c4g.11186623.6.625.49002345WzP07l)拼成的完整路径。假设你的 Bucket 名称为 `"agora-recording"`，阿里云 OSS 访问域名为 `"oss-cn-shanghai.aliyuncs.com"`，则 `endpoint` 字段设为 `"https://agora-recording.oss-cn-shanghai.aliyuncs.com"`。</li><li>`fileNamePrefix`: （选填）String 数组，指定录制文件在第三方云存储中的存储位置。你可使用变量来指定一个动态路径。你发起录制时，灵动课堂云服务会用真实的值替换变量。详见[如何指定动态存储路径](/cn/live-streaming/faq/agora_class_dynamic_addr)。</li> |
 
-<a name="recording"></a>
+<a name="im"></a>
 
 ### 环信 IM JSON 配置对象参数介绍
 
