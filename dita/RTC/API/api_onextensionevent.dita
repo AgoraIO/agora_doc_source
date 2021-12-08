@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onextensionevent">
     <title><ph keyref="onExtensionEvent"/></title>
-    <shortdesc id="short"><ph id="shortdesc">扩展服务事件回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">插件事件回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,8 +17,8 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)onEvent:(NSString * __nullable)vendor
       extension:(NSString * __nullable)extension
             key:(NSString * __nullable)key
-     json_value:(NSString * __nullable)json_value;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onExtensionEvent(const char* provider_name, const char* ext_name, const char* key, const char* json_value) {</codeblock>
+     value:(NSString * __nullable)value;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onExtensionEvent(const char* provider, const char* extension, const char* key, const char* value) {</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -26,7 +26,7 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>为监听扩展服务事件，你需要注册该回调。</p>
+            <p>为监听插件事件，你需要注册该回调。</p>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
@@ -43,9 +43,8 @@
                     <pd></pd>
                 </plentry>
                 <plentry>
-                    <pt props="android">value</pt>
-                    <pt props="ios mac windows">json_value</pt>
-                    <pd>扩展事件 Key 对应的值。</pd>
+                    <pt>value</pt>
+                    <pd>插件事件 Key 对应的值。</pd>
                 </plentry>
             </parml>
         </section>

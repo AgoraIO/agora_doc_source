@@ -9,15 +9,18 @@
                 <codeblock props="android" outputclass="language-java">public static class AudioVolumeInfo {
     public int uid;
     public int volume;
+    public int vad;
   }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcAudioVolumeInfo : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger volume;
+@property(assign, nonatomic) NSUInteger vad;
 @end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">struct AudioVolumeInfo {
                     uid_t uid;
                     unsigned int volume;  
-                    AudioVolumeInfo() : uid(0), volume(0) {}
+                    unsigned int vad;
+                    AudioVolumeInfo() : uid(0), volume(0), vad(0) {}
                     };</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
@@ -57,10 +60,10 @@
        <plentry>
                     <pt>uid</pt>
                     <pd>
-                        <p>User ID<ul id="ul_pfj_4dt_rqb">
-                                <li>In the local user&apos;s callback, <parmname>uid</parmname> = 0.</li>
-                                <li>In the remote users&apos; callback, <parmname>uid</parmname> is the ID of a remote user whose instantaneous volume is one of the three highest.
-                                    ID。</li>
+                        <p>User ID.<ul id="ul_pfj_4dt_rqb">
+                                <li>In the local user's callback, <parmname>uid</parmname> = 0.</li>
+                                <li>In the remote users' callback, <parmname>uid</parmname> is the ID of a remote user whose instantaneous volume is one of the three highest.
+                                    ID.</li>
                             </ul></p>
                     </pd>
                 </plentry>
@@ -68,19 +71,18 @@
   <pt>volume</pt>
   <pd>The volume of the user. The value ranges between 0 (lowest volume) and 255 (highest volume). If the user calls <xref keyref="startAudioMixing2"/>, the value of <parmname>volume</parmname> is the volume after audio mixing.</pd>
        </plentry>
-       <plentry props="rtc">
+       <plentry>
                     <pt>vad</pt>
                     <pd>
                         <p>Voice activity status of the local user.<ul>
-                                <li>0: The local user is not speaking.</li>
-                                <li>1: The local user is speaking.</li>
-                            </ul>
-                        </p>
+                            <li>0: The local user is not speaking.</li>
+                            <li>1: The local user is speaking.</li>
+                            </ul> </p>
                         <note type="attention">
                             <ul>
-                                <li><parmname>vad</parmname>
-                                        This parameter cannot report the voice activity status of remote users. In the remote users&apos; callback, the value of <parmname>vad</parmname> is always 0.</li>
-                                <li>如需使用此参数，请在调用 <xref keyref="enableAudioVolumeIndication"/> 时设置 <parmname>report_vad</parmname><codeph><ph keyref="true"/></codeph></li>
+                                <li>The <parmname>vad</parmname> parameter does not report the voice activity status of remote users. In the remote users' callback, the value of <parmname>vad</parmname> is always 0.</li>
+                                <li props="rtc">To use this parameter, you must set <parmname props="ios mac windows android electron">report_vad</parmname><parmname props="unity">reportVad</parmname> to <codeph><ph keyref="true"/></codeph> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
+                                <li props="rtc-ng">To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph keyref="true"/></codeph> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
                             </ul>
                         </note>
                     </pd>

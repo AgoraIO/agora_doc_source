@@ -14,6 +14,7 @@
     public int rendererOutputFrameRate;
     public int targetBitrate;
     public int targetFrameRate;
+    public int qualityAdaptIndication;
     public int encodedBitrate;
     public int encodedFrameWidth;
     public int encodedFrameHeight;
@@ -28,6 +29,7 @@
 @property(assign, nonatomic) NSInteger encoderOutputFrameRate;
 @property(assign, nonatomic) NSInteger rendererOutputFrameRate;
 @property(assign, nonatomic) NSInteger targetFrameRate;
+@property(assign, nonatomic) AgoraVideoQualityAdaptIndication qualityAdaptIndication;
 @property(assign, nonatomic) NSInteger targetBitrate;
 @property(assign, nonatomic) NSInteger encodedBitrate;
 @property(assign, nonatomic) NSInteger encodedFrameWidth;
@@ -45,6 +47,7 @@
     int rendererOutputFrameRate;
     int targetBitrate;
     int targetFrameRate;
+    QUALITY_ADAPT_INDICATION qualityAdaptIndication;
     int encodedBitrate;
     int encodedFrameWidth;
     int encodedFrameHeight;
@@ -159,18 +162,24 @@
   <pt>targetFrameRate</pt>
   <pd>当前编码器的目标编码帧率 (fps)。</pd>
        </plentry>
-       <plentry props="rtc">
+       <plentry>
                     <pt>qualityAdaptIndication</pt>
-           <pd>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。<ph props="windows ios mac unity">详见 <xref keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
-               <p props="android">
-                   <ul>
-                       <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
-                       <li><ph keyref="ADAPT_UP_BANDWIDTH"/> (1): 因网络带宽增加，本地视频质量改善。</li>
-                       <li><ph keyref="ADAPT_DOWN_BANDWIDTH"/> (2): 因网络带宽减少，本地视频质量变差。</li>
-                   </ul>
-               </p>
-           </pd>
-           
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry>
+                                <dt>自从</dt>
+                                <dd>v2.4.0</dd>
+                            </dlentry>
+                        </dl>
+                        统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。<ph props="windows ios mac unity">详见 <xref keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
+                        <p props="android">
+                            <ul>
+                                <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
+                                <li><ph keyref="ADAPT_UP_BANDWIDTH"/> (1): 因网络带宽增加，本地视频质量改善。</li>
+                                <li><ph keyref="ADAPT_DOWN_BANDWIDTH"/> (2): 因网络带宽减少，本地视频质量变差。</li>
+                            </ul>
+                        </p>
+                    </pd>
                 </plentry>
        <plentry>
   <pt>encodedBitrate</pt>

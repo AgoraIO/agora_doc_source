@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getuserinfobyuseraccountex">
-    <title><ph keyref="getUserInfoByUserAccountEx" /></title>
+    <title><ph keyref="getUserInfoByUserAccountEx"/></title>
     <shortdesc id="short"><ph id="shortdesc">Gets the user information by passing in the user account.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -12,49 +12,42 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract UserInfo getUserInfoByUserAccount(String userAccount, RtcConnection connection);</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract UserInfo getUserInfoByUserAccount(String userAccount, String channelId, String localUserAccount);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)getUserInfoWithUserAccount:(NSString * _Nonnull)userAccount
                          userInfo:(AgoraUserInfo *_Nullable* _Nullable)userInfo
-                       connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp" />
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                        channelId:(NSString* _Nonnull)channelId
+                 localUserAccount:(NSString* _Nonnull)localUserAccount;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
          </p>
         </section>
         <section id="detailed_desc">
-   <p>After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers the <xref keyref="onUserInfoUpdated" /> callback on the local client.</p>
-   <p>After receiving the callback, you can call this method to get the user ID of the remote user from the <xref keyref="UserInfo" /> object by passing in the user account.</p>
+            <p conkeyref="getUserInfoByUid/getUserInfo_desc"/>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>userAccount</pt>
-  <pd>The user account. It is mandatory.</pd>
+  <pd>The user account.</pd>
        </plentry>
-                <plentry props="ios mac windows">
-                    <pt>userInfo</pt>
-                    <pd>The <xref keyref="UserInfo" /> object that identifies the user information.<ul id="ul_sty_x5s_3qb">
-                            <li>Input value: an <apiname keyref="UserInfo" /> object.</li>
-                            <li>Output: A <apiname keyref="UserInfo" /> object that contains the user account and user ID of the user.</li>
-                        </ul></pd>
+       <plentry props="ios mac" conkeyref="getUserInfoByUidEx/userInfo">
+                    <pt/>
+                    <pd/>
                 </plentry>
-                <plentry>
-                    <pt>connection</pt>
-                    <pd>The connection info. For details, see <xref keyref="RtcConnection" />.</pd>
-                </plentry>
+       <plentry conkeyref="getUserInfoByUidEx/channelId">
+           <pt/>
+           <pd/>
+       </plentry>
+       <plentry conkeyref="getUserInfoByUidEx/localUserAccount">
+           <pt/>
+           <pd/>
+       </plentry>
    </parml>
         </section>
-        <section id="return_values">
-   <title>Returns</title>
-   <ul props="windows ios mac">
-       <li>0: Success.</li>
-       <li>&lt; 0: Failure.</li>
-   </ul>
-   <ul props="android">
-       <li>A pointer to the <xref keyref="UserInfo" /> instance, if the method call succeeds.</li>
-       <li>If the call fails, returns <ph keyref="NULL" />.</li>
-   </ul>
+        <section conkeyref="getUserInfoByUidEx/return_values">
+            <title/>
         </section></refbody>
 </reference>

@@ -16,7 +16,7 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteRemoteAudioStreamEx:(NSUInteger)uid
                           mute:(BOOL)mute
                     connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteAudioStreamEx(uid_t remoteUid, bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteAudioStreamEx(uid_t uid, bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -27,8 +27,7 @@
         <section id="parameters"><title>参数</title>
    <parml>
        <plentry>
-  <pt props="android ios mac">uid</pt>
-           <pt props="windows">remoteUid</pt>
+  <pt>uid</pt>
   <pd>指定用户的 ID。</pd>
        </plentry>
        <plentry>
