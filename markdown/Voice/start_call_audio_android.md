@@ -1,4 +1,4 @@
-实时视频通话能够拉近人与人之间的距离，为用户提供沉浸式的交流体验，帮助你的 app 提高用户黏性。
+实时语音通话能够拉近人与人之间的距离，为用户提供沉浸式的交流体验，帮助你的 app 提高用户黏性。
 
 本文介绍如何通过少量代码集成 Agora 音频 SDK，在你的 Android 应用里实现语音通话功能。
 
@@ -331,8 +331,7 @@ App 客户端加入 RTC 频道需要以下信息：
 1. 在 `appId` 和 `token` 参数中分别填写从 Agora 控制台获取的 App ID 和临时 Token。在 `channelName` 中填写用于生成临时 token 的频道名称。
 2. 将 Android 设备连接到你的电脑，并在 **Android Studio** 里点击 `Run 'app'`。片刻后，项目便会安装到你的设备上。
 3. 启动 app，你可以看到我们创建的用户界面。
-4. 请一位朋友在[演示 app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicVideoCall/index.html) 中加入你的语音通话。输入相同的 App ID 和频道名称。
-   你的朋友加入频道后，你们可以看到彼此，并听到彼此的声音。
+4. 请一位朋友在[演示 app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicVideoCall/index.html) 中加入你的语音通话。输入相同的 App ID 和频道名称。你的朋友加入频道后，你们可以看到彼此，并听到彼此的声音。
 
 ## 后续步骤
 
@@ -373,6 +372,8 @@ JitPack 的集成方式仅适用于早于 3.5.0 版的 SDK。
 
 **手动复制 SDK 文件**
 
+<div class="alert note">手动的集成方式适用于所有版本 SDK。</div>
+
 1. 在 [SDK 下载](https://docs.agora.io/cn/Voice/downloads?platform=Android)页面下载最新版本的 Agora 音频 SDK ，并解压。
 
 2. 打开 SDK 包 libs 文件夹，将以下文件或子文件夹复制到你的项目路径中。
@@ -386,6 +387,6 @@ JitPack 的集成方式仅适用于早于 3.5.0 版的 SDK。
    | `x86_64` 文件夹          | `/app/src/main/jniLibs/` |
    | `include` 文件夹         | `/app/src/main/jniLibs/` |
 
-   - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。如果出现不兼容问题，请联系 [support@agora.io](mailto: support@agora.io)。
+   - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。如果出现不兼容问题，请[联系我们](https://agora-ticket.agora.io)
    - SDK 包中的库不是全部必须。详情请参考[如何减少集成 RTC Native SDK 的 app 体积](https://docs.agora.io/en/Video/faq/reduce_app_size_rtc)。
 

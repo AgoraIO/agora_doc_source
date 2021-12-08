@@ -1,4 +1,4 @@
-实时视频通话能够拉近人与人之间的距离，为用户提供沉浸式的交流体验，帮助你的 app 提高用户黏性。
+实时音视频互动能够拉近人与人之间的距离，为用户提供沉浸式的交流体验，帮助你的 app 提高用户黏性。
 
 本文介绍如何通过少量代码集成 Agora 视频 SDK，在你的 Android app 里实现高质量、低延迟的直播体验。
 
@@ -20,15 +20,15 @@ App 客户端加入频道需要以下信息：
 - App ID：Agora 随机生成的字符串，用于识别你的 app，可从 [Agora 控制台](https://console.agora.io/)获取。
 - 用户 ID：用户的唯一标识。 你需要自行设置用户 ID，并确保它在频道内是唯一的。
 - Token：在测试或生产环境中，app 客户端从你的的服务器中获取 Token。在本文介绍的流程中，你可以从 Agora 控制台获取临时 Token。临时 Token 的有效期为 24 小时。
-- 频道名称：用于标识视频通话频道的字符串。
+- 频道名称：用于标识极速直播频道的字符串。
 
 ## 前提条件
 
 - Android Studio 3.0 或以上版本。
 - Android SDK API 等级 16 或以上。
 - 有效的 [Agora 账户](https://console.agora.io/)。
-- 带有 App ID 和临时 Token 的 Agora 项目。详见[开始使用 Agora 平台](https://docs.agora.io/cn/Agora Platform/get_appid_token?platform=All Platforms)。
-- 可以访问互联网的计算机。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](https://docs.agora.io/en/Agora Platform/firewall?platform=All Platforms)。
+- 带有 App ID 和临时 Token 的 Agora 项目。详见[开始使用 Agora 平台](https://docs.agora.io/cn/AgoraPlatform/get_appid_token?platform=All%20Platforms)。
+- 可以访问互联网的计算机。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms)。
 - 运行 Android 4.1 或更高版本的移动设备。
 
 ## 项目设置
@@ -316,9 +316,7 @@ App 客户端加入频道需要以下信息：
 
 3. 在你的设备上启动 app。在你的 app 里，用户角色被设置为观众。你无法在本地视图中看到自己。
 
-4. 请一位朋友在[演示 app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicVideoCall/index.html) 中加入你的直播。输入相同的 App ID 和频道名称。 
-
-   你的朋友加入频道后，你们可以看到彼此，并听到彼此的声音。
+4. 请一位朋友在[演示 app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicVideoCall/index.html) 中加入你的直播。输入相同的 App ID 和频道名称。你的朋友加入频道后，你们可以看到彼此，并听到彼此的声音。
 
 ## 后续步骤
 
@@ -364,6 +362,8 @@ Agora 在 GitHub 上提供了一个开源的直播示例项目 [LiveStreaming](h
 
 **手动复制 SDK 文件**
 
+<div class="alert note">手动的集成方式适用于所有版本 SDK。</div>
+
 1. 在 [SDK 下载](https://docs.agora.io/en/live-streaming/downloads?platform=Android)页面下载最新版本的 Agora 视频 SDK，并解压。
 
 2. 打开 SDK 包 libs 文件夹，将以下文件或子文件夹复制到你的项目路径中。
@@ -377,6 +377,6 @@ Agora 在 GitHub 上提供了一个开源的直播示例项目 [LiveStreaming](h
    | `x86_64` 文件夹 | `/app/src/main/jniLibs/` |
    | `include` 文件夹 | `/app/src/main/jniLibs/` |
 
-   - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。如果出现不兼容问题，请联系 [support@agora.io](mailto: support@agora.io)。
+   - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。如果出现不兼容问题，请[联系我们](https://agora-ticket.agora.io)
    - SDK 包中的库不是全部必须。详情请参考[如何减少集成 RTC Native SDK 的 app 体积](https://docs.agora.io/en/Video/faq/reduce_app_size_rtc)。
 
