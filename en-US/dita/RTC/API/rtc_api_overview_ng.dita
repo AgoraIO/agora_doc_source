@@ -22,8 +22,8 @@
                 <strow>
                     <stentry><xref keyref="create2"/></stentry>
                     <stentry><ph props="ios mac android electron">Creates and initializes <apiname
-                                keyref="IRtcEngine"/>. </ph><ph props="windows">Initializes <apiname
-                                keyref="IRtcEngine"/>.</ph></stentry>
+                                keyref="IRtcEngine"/>. </ph><ph props="windows">初始化 <apiname
+                                keyref="IRtcEngine"/>。</ph></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="release"/></stentry>
@@ -60,6 +60,10 @@
                 <strow>
                     <stentry><xref keyref="setClientRole1"/></stentry>
                     <stentry><ph conkeyref="setClientRole1/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setClientRole2"/></stentry>
+                    <stentry><ph conkeyref="setClientRole2/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="getConnectionState"/></stentry>
@@ -278,11 +282,33 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="setDefaultMuteAllRemoteVideoStreams"/></stentry>
-                    <stentry><ph conkeyref="setDefaultMuteAllRemoteVideoStreams/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="setDefaultMuteAllRemoteVideoStreams/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
+        <section>
+            <title>Capture screenshots</title>
+            <simpletable>
+                <sthead>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="takeSnapshot"/></stentry>
+                    <stentry><ph conkeyref="takeSnapshot/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        <simpletable>
+            <sthead>
+                <stentry>Event</stentry>
+                <stentry>Description</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="onSnapshotTaken"/></stentry>
+                <stentry><ph conkeyref="onSnapshotTaken/shortdesc"/></stentry>
+            </strow>
+        </simpletable>
+        </section>    
         <section props="windows" id="section_hj2_ph1_jqb">
             <title>Multi-device capture</title>
             <simpletable>
@@ -325,7 +351,7 @@
             </simpletable>
         </section>
         <section id="section_vw3_mlb_jqb">
-            <title>Media player</title>
+            <title>MediaPlayer Kit</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -343,7 +369,7 @@
                     <stentry><xref keyref="IMediaPlayerSourceObserver"/></stentry>
                     <stentry><ph conkeyref="IMediaPlayerSourceObserver/shortdesc"/></stentry>
                 </strow>
-                </simpletable>
+            </simpletable>
         </section>
         <section id="local_media_events">
             <title>Local media events</title>
@@ -447,6 +473,10 @@
                     <stentry><xref keyref="setBeautyEffectOptions"/></stentry>
                     <stentry><ph conkeyref="setBeautyEffectOptions/shortdesc"/></stentry>
                 </strow>
+                <strow>
+                    <stentry><xref keyref="enableVirtualBackground"/></stentry>
+                    <stentry><ph conkeyref="enableVirtualBackground/shortdesc"/></stentry>
+                </strow>
             </simpletable>
         </section>
         <section id="in-ear_monitoring" props="android ios windows">
@@ -477,8 +507,8 @@
                     <stentry>Description</stentry>
                 </sthead>
                 <strow>
-                    <stentry><xref keyref="startAudioMixing"/></stentry>
-                    <stentry><ph conkeyref="startAudioMixing/shortdesc"/></stentry>
+                    <stentry><xref keyref="startAudioMixing2"/></stentry>
+                    <stentry><ph conkeyref="startAudioMixing2/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="stopAudioMixing"/></stentry>
@@ -519,6 +549,10 @@
                 <strow>
                     <stentry><xref keyref="getAudioMixingCurrentPosition"/></stentry>
                     <stentry><ph conkeyref="getAudioMixingCurrentPosition/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setAudioMixingPitch"/></stentry>
+                    <stentry><ph conkeyref="setAudioMixingPitch/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="setAudioMixingPosition"/></stentry>
@@ -602,6 +636,27 @@
                 <strow props="windows">
                     <stentry><xref keyref="unloadAllEffects"/></stentry>
                     <stentry><ph conkeyref="unloadAllEffects/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
+        <section id="rhythm_player" props="windows android ios">
+            <title>Virtual metronome</title>
+            <simpletable>
+                <sthead>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="startRhythmPlayer"/></stentry>
+                    <stentry><ph conkeyref="startRhythmPlayer/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopRhythmPlayer"/></stentry>
+                    <stentry><ph conkeyref="stopRhythmPlayer/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="configRhythmPlayer"/></stentry>
+                    <stentry><ph conkeyref="configRhythmPlayer/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -789,7 +844,7 @@
             </simpletable>
         </section>
         <section id="encryption">
-            <title>Encryption</title>
+            <title>加密</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -912,6 +967,14 @@
                     <stentry><xref keyref="stopChannelMediaRelay"/></stentry>
                     <stentry><ph conkeyref="stopChannelMediaRelay/shortdesc"/></stentry>
                 </strow>
+                <strow>
+                    <stentry><xref keyref="pauseAllChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="pauseAllChannelMediaRelay/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="resumeAllChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="resumeAllChannelMediaRelay/shortdesc"/></stentry>
+                </strow>
             </simpletable>
             <simpletable>
                 <sthead>
@@ -962,6 +1025,26 @@
                 <strow props="android">
                     <stentry><xref keyref="pullAudioFrame2"/></stentry>
                     <stentry><ph conkeyref="pullAudioFrame2/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="enableEchoCancellationExternal"/></stentry>
+                    <stentry><ph conkeyref="enableEchoCancellationExternal/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="pushCaptureAudioFrame1"/></stentry>
+                    <stentry><ph conkeyref="pushCaptureAudioFrame1/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="pushCaptureAudioFrame2"/></stentry>
+                    <stentry><ph conkeyref="pushCaptureAudioFrame2/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="pushReverseAudioFrame1"/></stentry>
+                    <stentry><ph conkeyref="pushReverseAudioFrame1/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="pushReverseAudioFrame2"/></stentry>
+                    <stentry><ph conkeyref="pushReverseAudioFrame2/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -1154,6 +1237,14 @@
                 <strow props="windows android">
                     <stentry><xref keyref="onEncodedVideoImageReceived"/></stentry>
                     <stentry><ph conkeyref="onEncodedVideoImageReceived/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getMirrorApplied"/></stentry>
+                    <stentry><ph conkeyref="getMirrorApplied/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getRotationApplied"/></stentry>
+                    <stentry><ph conkeyref="getRotationApplied/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -1395,10 +1486,14 @@
                     <stentry><xref keyref="onAudioVolumeIndication"/></stentry>
                     <stentry><ph conkeyref="onAudioVolumeIndication/shortdesc"/></stentry>
                 </strow>
+                <strow>
+                    <stentry><xref keyref="onActiveSpeaker"/></stentry>
+                    <stentry><ph conkeyref="onActiveSpeaker/shortdesc"/></stentry>
+                </strow>
             </simpletable>
         </section>
         <section id="stream_message">
-            <title>Data stream</title>
+            <title>数据流</title>
             <simpletable id="simpletable_rs1_shw_jqb">
                 <sthead>
                     <stentry>Method</stentry>
@@ -1667,6 +1762,31 @@
                 <strow props="hide">
                     <stentry><xref keyref="onAudioDeviceVolumeChanged"/></stentry>
                     <stentry><ph conkeyref="onAudioDeviceVolumeChanged/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
+        <section props="windows">
+            <title>Sets the volume of the application.</title>
+            <simpletable>
+                <sthead>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="setApplicationVolume"/></stentry>
+                    <stentry><ph conkeyref="setApplicationVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getApplicationVolume"/></stentry>
+                    <stentry><ph conkeyref="getApplicationVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setApplicationMute"/></stentry>
+                    <stentry><ph conkeyref="setApplicationMute/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="isApplicationMute"/></stentry>
+                    <stentry><ph conkeyref="isApplicationMute/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
