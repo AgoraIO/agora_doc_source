@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getaudiomixingduration">
     <title><ph keyref="getAudioMixingDuration"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取音乐文件总时长。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Retrieves the duration (ms) of the music file.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -24,19 +24,19 @@
         <section id="detailed_desc">
             <dl>
                 <dlentry outputclass="deprecated" props="rtc">
-                    <dt>弃用：</dt>
-                    <dd>自 v3.4.0 起废弃。 请改用 <xref keyref="getAudioMixingDuration2"/>。</dd>
+                    <dt>Deprecated:</dt>
+                    <dd>Deprecated as of v3.4.0. Please use  instead<xref keyref="getAudioMixingDuration2"/>.</dd>
                 </dlentry>
             </dl>
             
-   <p>该方法获取音乐文件总时长，单位为毫秒。</p>
-            <note type="attention">你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <xref keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) 回调后调用该方法。</note>
+   <p>Retrieves the total duration (ms) of the audio.</p>
+            <note type="attention">You need to call this method after calling<xref keyref="startAudioMixing2"/>  and receiving<xref keyref="onAudioMixingStateChanged"/> the (<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>PLAY) callback.</note>
         </section>
         <section id="return_values">
-   <title>返回值</title>
+   <title>Returns</title>
    <ul>
-       <li>≥ 0: 方法调用成功返回音乐文件时长。</li>
-       <li>&lt; 0: 方法调用失败。</li>
+       <li>≥ 0: The audio mixing duration, if this method call succeeds.</li>
+       <li>&lt; 0: Failure.</li>
    </ul>
         </section></refbody>
 </reference>
