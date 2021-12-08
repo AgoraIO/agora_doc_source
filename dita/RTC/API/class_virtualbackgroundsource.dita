@@ -32,6 +32,13 @@
   }
 }
 </codeblock>
+<codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVirtualBackgroundSource : NSObject
+@property(nonatomic, assign) AgoraVirtualBackgroundSourceType backgroundSourceType NS_SWIFT_NAME(backgroundSourceType);
+@property(nonatomic, assign) NSUInteger color NS_SWIFT_NAME(color);
+@property(nonatomic, copy) NSString* _Nullable source NS_SWIFT_NAME(source);
+@property(nonatomic, assign) AgoraBlurDegree blurDegree;
+@end
+</codeblock>
                 </p>
             <p outputclass="codeblock" props="rtc">
                 <codeblock props="android" outputclass="language-java">public class VirtualBackgroundSource {
@@ -60,18 +67,18 @@
     }
 }
 </codeblock>
+<codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraVirtualBackgroundSource) __attribute__((visibility("default"))) @interface AgoraVirtualBackgroundSource : NSObject
+@property(nonatomic, assign) AgoraVirtualBackgroundSourceType backgroundSourceType NS_SWIFT_NAME(backgroundSourceType);
+@property(nonatomic, assign) NSUInteger color NS_SWIFT_NAME(color);
+@property(nonatomic, copy) NSString* _Nullable source NS_SWIFT_NAME(source);
+@property(nonatomic, assign) AgoraBlurDegree blur_degree;
+@end
+</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
             </p>
             <p outputclass="codeblock">
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVirtualBackgroundSource : NSObject
-                @property(nonatomic, assign) AgoraVirtualBackgroundSourceType backgroundSourceType NS_SWIFT_NAME(backgroundSourceType);
-                @property(nonatomic, assign) NSUInteger color NS_SWIFT_NAME(color);
-                @property(nonatomic, copy) NSString* _Nullable source NS_SWIFT_NAME(source);
-                @property(nonatomic, assign) AgoraBlurDegree blur_degree;
-                @end
-            </codeblock>
                 <codeblock props="windows unity" outputclass="language-cpp">struct VirtualBackgroundSource {
                     enum BACKGROUND_SOURCE_TYPE {
                     BACKGROUND_COLOR = 1,
@@ -113,21 +120,22 @@
                 </plentry>
                 <plentry>
                     <pt>color</pt>
-                    <pd>自定义的背景图颜色。格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。 默认值为 0xFFFFFF，表示白色。 取值范围为 [0x000000，0xffffff]。如果取值非法，SDK 会用白色背景图替换原背景图。 <note type="note">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_COLOR"/> 时生效。</note></pd>
+                    <pd>自定义的背景图颜色。格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。 默认值为 0xFFFFFF，表示白色。 取值范围为 [0x000000，0xffffff]。如果取值非法，SDK 会用白色背景图替换原背景图。
+                        <note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_COLOR"/> 时生效。</note></pd>
                 </plentry>
                 <plentry>
                     <pt>source</pt>
-                    <pd>自定义的背景图的本地绝对路径。支持 PNG 和 JPG 格式。如果路径无效，SDK 会用白色背景图替换原背景图。
-                    <note type="note">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_IMG"/> 时生效。</note></pd>
+                    <pd>自定义的背景图本地绝对路径。支持 PNG 和 JPG 格式。如果路径无效，SDK 会用白色背景图替换原背景图。
+                    <note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_IMG"/> 时生效。</note></pd>
                 </plentry>
                 <plentry>
-                    <pt props="rtc-ng"><ph props="android">blurDegree</ph><ph props="windows ios mac">blur_degree</ph></pt>
+                    <pt props="rtc-ng"><ph props="ios mac android">blurDegree</ph><ph props="windows">blur_degree</ph></pt>
                     <pt props="rtc">blur_degree</pt>
                     <pd>自定义背景图的模糊程度。<ph props="ios mac windows unity">详见 <xref keyref="BACKGROUND_BLUR_DEGREE"/>。</ph> <ul props="android">
                         <li><ph keyref="BLUR_DEGREE_LOW"/>(1)：自定义背景图的虚化程度为低。用户差不多能看清背景。</li>
                         <li><ph keyref="BLUR_DEGREE_MEDIUM"/>(2)：自定义背景图的虚化程度为中。用户较难看清背景。</li>
                         <li><ph keyref="BLUR_DEGREE_HIGH"/>(3)：（默认）自定义背景图的虚化程度为高。用户很难看清背景。</li>
-                        </ul><note type="note">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_BLUR"/> 时生效。</note></pd>
+                        </ul><note type="attention">该参数仅在自定义背景图类型为 <ph keyref="BACKGROUND_BLUR"/> 时生效。</note></pd>
                 </plentry>
             </parml>
         </section>

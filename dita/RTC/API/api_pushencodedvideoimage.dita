@@ -26,23 +26,23 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <codeph>setExternalVideoSource</codeph> 方法，且设置 <codeph>enable</codeph> 参数为
-                    <codeph>true</codeph>，<codeph>encodedFrame</codeph> 参数为 <codeph>true</codeph>
-                后，你可以调用本方法将已编码的外部视频帧推送到 SDK。</p>
+            <p id="desc1">调用 <codeph>setExternalVideoSource</codeph> 方法，且设置 <codeph>enable</codeph> 参数为 <codeph>true</codeph>，<codeph>encodedFrame</codeph> 参数为 <codeph>true</codeph> 后，你可以调用本方法将已编码的外部视频帧推送到 SDK。</p>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
-                <plentry conkeyref="pushEncodedVideoImageEx/data">
-                    <pt></pt>
-                     <pd></pd>
+                <plentry id="data">
+                    <pt props="android">data</pt>
+                    <pt props="windows">imageBuffer</pt>
+                    <pd>外部编码视频帧的 buffer。</pd>
                 </plentry>
-                <plentry conkeyref="pushEncodedVideoImageEx/length" props="windows">
-                    <pt></pt>
-                    <pd></pd>
+                <plentry props="windows" id="length">
+                    <pt>length</pt>
+                    <pd>外部编码视频帧的长度。</pd>
                 </plentry>
-                <plentry conkeyref="pushEncodedVideoImageEx/frameinfo">
-                    <pt></pt>
-                    <pd></pd>
+                <plentry id="frameinfo">
+                    <pt props="android">frameInfo</pt>
+                    <pt props="windows">videoEncodedFrameInfo</pt>
+                    <pd>外部编码视频帧的信息。详见 <xref keyref="EncodedVideoFrameInfo"/>。</pd>
                 </plentry>
             </parml>
         </section>
