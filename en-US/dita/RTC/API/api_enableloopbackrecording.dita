@@ -24,7 +24,7 @@
     ): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int EnableLoopbackRecording(bool enabled, string deviceName);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableLoopbackRecording(bool enabled, String deviceName);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -32,8 +32,8 @@
    <p id="desc">If you enable loopback audio capturing, the output of the sound card is mixed into the audio stream sent to the other end.</p>
        <note type="attention" id="note">
   <ul id="ul_pjq_swq_t4b">
-      <li props="windows">This method applies to macOS and Windows only.</li>
-      <li props="rtc"><ph props="windows mac electron">macOS does not support loopback capturing of the default sound card. To use this method, use a virtual sound card and pass its name
+      <li props="windows flutter">This method applies to macOS and Windows only.</li>
+      <li props="rtc"><ph props="windows mac electron flutter">macOS does not support loopback capturing of the default sound card. To use this method, use a virtual sound card and pass its name
                             to the SDK as the value of the<parmname>deviceName</parmname> parameter.  Based on tests, Agora recommends using soundflower
           as the virtual sound card. </ph></li>
       <li>You can call this method either before or after joining a channel.</li>

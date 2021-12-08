@@ -28,22 +28,26 @@
     metadata: Metadata
     ) => void): this;</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">MetadataCallback? metadataReceived;</codeblock>
         </p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
+       <plentry props="rtc">
+           <pt props="flutter">buffer</pt>
+           <pd>The data received</pd>
+       </plentry>
        <plentry props="rtc-ng">
            <pt props="android">buffer</pt>
            <pt props="ios mac">data</pt>
            <pd>The data received.</pd>
        </plentry>
-       <plentry props="ios mac android">
+       <plentry props="ios mac android flutter">
            <pt>uid</pt>
-           <pd>User ID</pd>
+           <pd>The user ID.</pd>
        </plentry>
        <plentry>
-           <pt props="android">timeStampMs</pt>
+           <pt props="android flutter">timeStampMs</pt>
            <pt props="ios mac">timestamp</pt>
            <pd>The timestamp.</pd>
        </plentry>

@@ -16,12 +16,24 @@
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="rn" outputclass="language-typescript"></codeblock>
-            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class VirtualBackgroundSource {
+
+  VirtualBackgroundSourceType? backgroundSourceType;
+  Color? color;
+  String? source;
+  VirtualBackgroundBlurDegree blurDegree;
+
+  VirtualBackgroundSource({
+    this.backgroundSourceType,
+    this.color,
+    this.source,
+    this.blurDegree = VirtualBackgroundBlurDegree.High,
+  });</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-                <dlentry>
+            <dl outputclass="since" props="rtc">
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v3.5.0</dd>
                 </dlentry>
@@ -32,7 +44,8 @@
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt>background_source_type</pt>
+                    <pt props="windows unity">background_source_type</pt>
+                    <pt props="flutter">backgroundSourceType</pt>
                     <pd>The type of the custom background image. See <xref keyref="BACKGROUND_SOURCE_TYPE"/>.</pd>
                 </plentry>
                 <plentry>
@@ -45,7 +58,8 @@
                     <pd>The local absolute path of the custom background image. PNG and JPG formats are supported. If the path is invalid, the SDK replaces the original background image with a white background image.<note type="note">This parameter takes effect only when the type of the custom background image is <ph keyref="BACKGROUND_IMG"/>.</note></pd>
                 </plentry>
                 <plentry>
-                    <pt>blur_degree</pt>
+                    <pt props="windows unity">blur_degree</pt>
+                    <pt props="flutter">blurDegree</pt>
                     <pd>The degree of blurring applied to the custom background image. See <xref keyref="BACKGROUND_BLUR_DEGREE"/>. The default degree of blurring is <ph keyref="BLUR_DEGREE_HIGH"/>.<note type="note">This parameter takes effect only when the type of the custom background image is <ph keyref="BACKGROUND_BLUR"/>.</note></pd>
                 </plentry>
             </parml>
