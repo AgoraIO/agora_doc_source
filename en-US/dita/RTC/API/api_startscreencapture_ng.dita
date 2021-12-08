@@ -26,25 +26,25 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>After successfully calling this method, you can share the entire screen through <xref keyref="MediaProjection-link">MediaProjectionLink</xref>, an Android native class.<note type="attention">
+            <p>After successfully calling this method, you can share the entire screen through <xref keyref="MediaProjection-link">MediaProjection</xref>, an Android native class.<note type="attention">
                 <ul>
                     <li>This method is for Android only.</li>
                     <li>Call this method after joining a channel.</li>
                     <li>Before calling this method, you need to implement <xref keyref="onActivityResult-link">onActivityResult</xref>, an Android native callback, and obtain the value of the <parmname>data</parmname> parameter in this callback.</li>
-                    <li>When sharing the screen on Android 10 or later, to avoid the Android system from triggering <xref keyref="SecurityException-link">SecurityException</xref>, you need to call <xref keyref="startForeground-link">startForeground</xref> (the Android native method) before calling <apiname keyref="MediaProjection-link" /> to notify the user that the current device starts screen sharing.</li>
+                    <li>When sharing the screen on Android 10 or later, to avoid the Android system from triggering <xref keyref="SecurityException-link">SecurityException</xref>, you need to call <xref keyref="startForeground-link">startForeground</xref> (the Android native method) before calling <apiname keyref="MediaProjection-link">MediaProjection</apiname> to notify the user that the current device starts screen sharing.</li>
                     </ul>
                 </note></p>
         </section>
         <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
-                    <pt><b>mediaProjectionPermissionResultData</b></pt>
+                    <pt>mediaProjectionPermissionResultData</pt>
                     <pd>
                         <p>Pass in the <parmname>data</parmname> parameter of the <apiname>onActivity</apiname> callback.</p>
                     </pd>
                 </plentry>
                 <plentry>
-                    <pt><b>captureParams</b></pt>
+                    <pt>captureParams</pt>
                     <pd>
                         <p>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. For details, see <xref keyref="ScreenCaptureParameters" />.</p>
                     </pd>

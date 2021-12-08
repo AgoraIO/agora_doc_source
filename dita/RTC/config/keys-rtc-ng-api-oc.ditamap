@@ -560,6 +560,13 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="enableVirtualBackground" href="../API/api_enablevirtualbackground.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>enableVirtualBackground</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="disableVideo" href="../API/api_disablevideo.dita">
                 <topicmeta>
                     <keywords>
@@ -1907,6 +1914,29 @@
                 </topicmeta>
             </keydef>
         </topichead>
+        <topichead navtitle="端云融合鉴黄">
+            <keydef keys="takeSnapshot" href="../API/api_takesnapshot.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>takeSnapshot</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="enableContentInspect" href="../API/api_enablecontentinspect.dita" props="hide">
+                <topicmeta>
+                    <keywords>
+                        <keyword>enableContentInspect</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onContentInspectResult" href="../API/api_oncontentinspectresult.dita" props="hide">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onContentInspectResult</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
         <topichead navtitle="其他方法">
             <keydef keys="complain" href="../API/api_complain.dita">
                 <topicmeta>
@@ -2655,8 +2685,8 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-        </topichead>
-        <topichead navtitle="其他事件">
+    </topichead>
+    <topichead navtitle="其他事件">
             <keydef keys="onApiCallExecuted" href="../API/api_onapicallexecuted.dita">
                 <topicmeta>
                     <keywords>
@@ -2682,6 +2712,20 @@
                 <topicmeta>
                     <keywords>
                         <keyword>rtcEngineMediaEngineDidStartCall</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onSnapshotTaken" href="../API/api_onsnapshottaken.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>snapshotTaken</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="OnVirtualBackgroundSourceEnabled" href="../API/api_onvirtualbackgroundsourceenabled.dita" props="hide">
+                <topicmeta>
+                    <keywords>
+                        <keyword>OnVirtualBackgroundSourceEnabled</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -2755,6 +2799,20 @@
             <topicmeta>
                 <keywords>
                     <keyword>ClientRoleOptions</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ContentInspectConfig" href="../API/class_contentinspectconfig.dita" props="hide">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectConfig</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ContentInspectModule" href="../API/class_contentinspectmodule.dita" props="hide">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectModule</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -2951,6 +3009,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraOutputVideoFrame</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VirtualBackgroundSource" href="../API/class_virtualbackgroundsource.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVirtualBackgroundSource</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3236,17 +3301,150 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="AUDIO_EFFECT_PRESET" href="../API/enum_audioeffectpreset.dita">
+        <keydef keys="BACKGROUND_BLUR_DEGREE" href="../API/enum_backgroundblurdegree.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>AgoraAudioEffectPreset</keyword>
+                    <keyword>AgoraBlurDegree</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="AUDIO_EFFECT_OFF">
+        <keydef keys="BLUR_DEGREE_LOW">
             <topicmeta>
                 <keywords>
-                    <keyword>AgoraAudioEffectPresetOff</keyword>
+                    <keyword>AgoraBlurLow</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="BLUR_DEGREE_MEDIUM">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraBlurMedium</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="BLUR_DEGREE_HIGH">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraBlurHigh</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="BACKGROUND_SOURCE_TYPE" href="../API/enum_backgroundsourcetype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVirtualBackgroundSourceType</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="BACKGROUND_COLOR">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVirtualBackgroundColor</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="BACKGROUND_IMG">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVirtualBackgroundImg</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="BACKGROUND_BLUR">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVirtualBackgroundBlur</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_DEVICE_TYPE"  href="../API/enum_contentinspectdevicetype.dita" props="hide">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectDeviceType</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_DEVICE_INVALID">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectDeviceTypeInvalid</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_DEVICE_AGORA">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectDeviceTypeAgora</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_DEVICE_HIVE" props="hide">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectDeviceTypeHive</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_DEVICE_TUPU" props="hide">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectDeviceTypeTupu</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_RESULT"  href="../API/enum_contentinspectresult.dita" props="hide">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectResult</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_NEUTRAL">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectNeutral</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_SEXY">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectSexy</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_PORN">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectPorn</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_TYPE"  href="../API/enum_contentinspecttype.dita" props="hide">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectType</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_INVALID">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectTypeInvalid</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_MODERATION">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectTypeModeration</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_SUPERVISE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraContentInspectTypeSupervise</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3278,10 +3476,24 @@
                 </keywords>
             </topicmeta>
         </keydef>
-<keydef keys="ROOM_ACOUSTICS_KTV ">
+        <keydef keys="ROOM_ACOUSTICS_KTV">
             <topicmeta>
                 <keywords>
                     <keyword>AgoraAudioEffectPresetRoomAcousticsKTV</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AUDIO_EFFECT_PRESET" href="../API/enum_audioeffectpreset.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraAudioEffectPreset</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="AUDIO_EFFECT_OFF">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraAudioEffectPresetOff</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -5149,7 +5361,7 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <topichead navtitle="设备事件" props="mac">
+    <topichead navtitle="设备事件" props="mac">
         <keydef keys="MEDIA_DEVICE_TYPE" href="../API/enum_mediadevicetype.dita">
             <topicmeta>
                 <keywords>
@@ -5998,6 +6210,27 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="EXTERNAL_VIDEO_SOURCE_TYPE" href="../API/enum_externalvideosourcetype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraExternalVideoSourceType</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_FRAME">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraExternalVideoSourceTypeVideoFrame</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="ENCODED_VIDEO_FRAME">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraExternalVideoSourceTypeEncodedVideoFrame</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="RENDER_MODE_TYPE" href="../API/enum_rendermodetype.dita">
             <topicmeta>
                 <keywords>
@@ -6289,6 +6522,20 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraUserOfflineReasonBecomeAudience</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_BUFFER_PIXEL_BUFFER">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoBufferTypePixelBuffer</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_BUFFER_RAW_DATA">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoBufferTypeRawData</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -7430,6 +7677,14 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="imagePath-example">
+            <topicmeta>
+                <keywords>
+                    <keyword props="ios">/AppSandbox/Library/Caches/example.jpg</keyword>
+                    <keyword props="mac">～/Library/Logs/example.jpg</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="STANDARD_BITRATE">
             <topicmeta>
                 <keywords>
@@ -7466,4 +7721,5 @@
             </topicmeta>
         </keydef>
     </topichead>
+
 </map>
