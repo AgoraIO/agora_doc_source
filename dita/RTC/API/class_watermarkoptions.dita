@@ -5,67 +5,30 @@
     <shortdesc id="short"><ph id="shortdesc">水印图片的设置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock" props="rtc-ng">
-                <codeblock props="windows" outputclass="language-cpp">struct WatermarkOptions {
-    bool visibleInPreview;
-    Rectangle positionInLandscapeMode;
-    Rectangle positionInPortraitMode;
-    WatermarkRatio watermarkRatio;
-    WATERMARK_FIT_MODE mode;
-    WatermarkOptions()
-      : visibleInPreview(false),
-        positionInLandscapeMode(0, 0, 0, 0),
-        positionInPortraitMode(0, 0, 0, 0),
-        mode(FIT_MODE_COVER_POSITION) {}
-  };
-</codeblock>
-            </p>
-                <p outputclass="codeblock"  props="rtc">
-                    <codeblock props="windows" outputclass="language-cpp">typedef struct WatermarkOptions {
-    bool visibleInPreview;
-    Rectangle positionInLandscapeMode;
-    Rectangle positionInPortraitMode;
-    
-    WatermarkOptions()
-        : visibleInPreview(true)
-        , positionInLandscapeMode(0, 0, 0, 0)
-        , positionInPortraitMode(0, 0, 0, 0)
-    {}
-    } WatermarkOptions;</codeblock>
-                </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public class WatermarkOptions {
-    public static class Rectangle {
-        public int x = 0;
-        public int y = 0;
-        public int width = 0;
-        public int height = 0;
-        public Rectangle()
-        {
-            x = 0;
-            y = 0;
-            width = 0;
-            height = 0;
-        }
-        public Rectangle(int x_, int y_, int width_, int height_)
-        {
-            x = x_;
-            y = y_;
-            width = width_;
-            height = height_;
-        }
-    };
-    public boolean visibleInPreview = true;
-    public Rectangle positionInLandscapeMode = new Rectangle();
-    public Rectangle positionInPortraitMode = new Rectangle();
-}
-</codeblock>
+  
+  public boolean visibleInPreview = true;
+  public Rectangle positionInLandscapeMode = new Rectangle();
+  public Rectangle positionInPortraitMode = new Rectangle();
+}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface WatermarkOptions : NSObject
 
 @property(assign, nonatomic) BOOL visibleInPreview;
 @property(assign, nonatomic) CGRect positionInLandscapeMode;
 @property(assign, nonatomic) CGRect positionInPortraitMode;
 @end</codeblock>
+                <codeblock props="windows unity" outputclass="language-cpp">typedef struct WatermarkOptions {
+    bool visibleInPreview;
+    Rectangle positionInLandscapeMode;
+    Rectangle positionInPortraitMode;
+
+    WatermarkOptions()
+        : visibleInPreview(true)
+        , positionInLandscapeMode(0, 0, 0, 0)
+        , positionInPortraitMode(0, 0, 0, 0)
+    {}
+    } WatermarkOptions;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface WatermarkOptions {
     visibleInPreview: boolean,
     positionInPortraitMode: Rectangle,
@@ -78,22 +41,15 @@
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
-                <plentry props="android">
-                    <pt>Rectangle</pt>
-                    <pd>显示水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
-                </plentry>
-       <plentry props="windows">
-           <pt>watermarkRatio</pt>
-           <pd></pd>
-       </plentry>
        <plentry>
   <pt>visibleInPreview</pt>
   <pd>
       <p>水印图片在本地视频预览中是否可见：
  <ul>
-     <li><codeph><ph keyref="true"/></codeph>：<ph props="rtc">(默认) </ph>水印图片在本地视频预览中可见；</li>
-     <li><codeph><ph keyref="false"/></codeph>：<ph props="rtc-ng">(默认) </ph>水印图片在本地视频预览中不可见。</li>
- </ul></p>
+     <li><codeph><ph keyref="true"/></codeph>：(默认) 水印图片在本地视频预览中可见；</li>
+     <li><codeph><ph keyref="false"/></codeph>：水印图片在本地视频预览中不可见。</li>
+ </ul>
+      </p>
   </pd>
        </plentry>
        <plentry>
