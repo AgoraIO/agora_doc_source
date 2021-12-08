@@ -10,17 +10,20 @@
     public int uid;
     public int volume;
     public int vad;
+    public double voicePitch;
   }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcAudioVolumeInfo : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger volume;
 @property(assign, nonatomic) NSUInteger vad;
+@property (assign, nonatomic) double voicePitch;
 @end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">struct AudioVolumeInfo {
                     uid_t uid;
-                    unsigned int volume;  
+                    unsigned int volume;
                     unsigned int vad;
-                    AudioVolumeInfo() : uid(0), volume(0), vad(0) {}
+                    double voicePitch;
+                    AudioVolumeInfo() : uid(0), volume(0), vad(0), voicePitch(0.0) {}
                     };</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
@@ -39,7 +42,7 @@
 </codeblock>
                 <codeblock props="windows unity" outputclass="language-cpp">struct AudioVolumeInfo {
     uid_t uid;
-    unsigned int volume; 
+    unsigned int volume;
     unsigned int vad;
     const char * channelId;
     };  </codeblock>
@@ -60,16 +63,15 @@
        <plentry>
                     <pt>uid</pt>
                     <pd>
-                        <p>User ID.<ul id="ul_pfj_4dt_rqb">
+                        <p>User ID<ul id="ul_pfj_4dt_rqb">
                                 <li>In the local user's callback, <parmname>uid</parmname> = 0.</li>
-                                <li>In the remote users' callback, <parmname>uid</parmname> is the ID of a remote user whose instantaneous volume is one of the three highest.
-                                    ID.</li>
+                                <li>In the remote users' callback, <parmname>uid</parmname> is the<parmname>  ID</parmname> of a remote user whose instantaneous volume is one of the three highest.</li>
                             </ul></p>
                     </pd>
                 </plentry>
        <plentry>
   <pt>volume</pt>
-  <pd>The volume of the user. The value ranges between 0 (lowest volume) and 255 (highest volume). If the user calls <xref keyref="startAudioMixing2"/>, the value of <parmname>volume</parmname> is the volume after audio mixing.</pd>
+  <pd>The volume of the user. The value ranges between 0 (lowest volume) and 255 (highest volume). If the user calls<xref keyref="startAudioMixing2"/> , the value of<parmname> volume</parmname> is the<parmname> volume</parmname> after audio mixing.</pd>
        </plentry>
        <plentry>
                     <pt>vad</pt>
@@ -80,9 +82,9 @@
                             </ul> </p>
                         <note type="attention">
                             <ul>
-                                <li>The <parmname>vad</parmname> parameter does not report the voice activity status of remote users. In the remote users' callback, the value of <parmname>vad</parmname> is always 0.</li>
-                                <li props="rtc">To use this parameter, you must set <parmname props="ios mac windows android electron">report_vad</parmname><parmname props="unity">reportVad</parmname> to <codeph><ph keyref="true"/></codeph> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
-                                <li props="rtc-ng">To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph keyref="true"/></codeph> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
+                                <li>The<parmname> vad</parmname> parameter does not report the voice activity status of remote users. In the remote users' callback, the value of<parmname> vad</parmname> is always 0.</li>
+                                <li props="rtc">To use this parameter, you must set report_vadreportVad to  when calling .<xref keyref="enableAudioVolumeIndication"/><parmname props="ios mac windows android electron"></parmname><parmname props="unity"></parmname><codeph><ph keyref="true"/></codeph></li>
+                                <li props="rtc-ng">To use this parameter, you must set reportVad to  when calling .<xref keyref="enableAudioVolumeIndication"/><parmname></parmname><codeph><ph keyref="true"/></codeph></li>
                             </ul>
                         </note>
                     </pd>
@@ -90,7 +92,14 @@
        <plentry props="rtc">
                     <pt>channelId</pt>
                     <pd>The name of the channel where the user is in.</pd>
-                </plentry>
+       </plentry>
+       <plentry props="rtc-ng">
+           <pt>voicePitch</pt>
+           <pd>
+               <p>本地用户的人声音调（Hz）。 The value ranges between 0.0 and 1.0:</p>
+               <note type="attention"><parmname>voicePitch</parmname> 无法报告远端用户的人声音调。 对于远端用户，<parmname>voicePitch</parmname> 的值始终为 0。</note>
+           </pd>
+       </plentry>
    </parml>
         </section></refbody>
 </reference>
