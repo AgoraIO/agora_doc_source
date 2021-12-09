@@ -13,7 +13,7 @@ The following figure shows the workflow to manage user attribtues and contacts i
 
 The Agora Chat SDK provides the following classes:
 - [`UserInfoManager`]() sets and retrieves the various user attributes with a `UserInfo` struct.
-- [`ContactManager`]() enables users to add or delete contacts, accept or decline contact invitations, and add other users to the blacklist.
+- [`ContactManager`]() enables users to add or delete contacts, accept or decline contact invitations, and add other users to the blocklist.
 
 ## Prerequisites
 
@@ -34,10 +34,10 @@ Refer to the code snippets below to see how to set, retrieve, and update user at
 
 ```java
 // Instantiate a UserInfo object
-EMUserInfo userInfo = new EMUserInfo();
+AgoraChatUserInfo userInfo = new AgoraChatUserInfo();
 
 // Call the corresponding method to set the user ID, nickname, avatar...
-userInfo.setUserId(EMClient.getInstance().getCurrentUser());
+userInfo.setUserId(AgoraChatClient.getInstance().getCurrentUser());
 userInfo.setNickName("jian");
 userInfo.setAvatarUrl("url");
 userInfo.setBirth("2000.10.10");
@@ -47,7 +47,7 @@ userInfo.setEmail("9892029@qq.com");
 userInfo.setGender(1);
 
 // Call updateOwnInfo to set all user attributes
-EMClient.getInstance().userInfoManager().updateOwnInfo(userInfo, new EMValueCallBack<String>() {
+AgoraChatClient.getInstance().userInfoManager().updateOwnInfo(userInfo, new EMValueCallBack<String>() {
     @Override
     // Occurs when the method call succeeds
     public void onSuccess(String value) {     
@@ -62,12 +62,12 @@ EMClient.getInstance().userInfoManager().updateOwnInfo(userInfo, new EMValueCall
 String[] userId = new String[1];
 userId[0] = username;
 // Call fetchUserInfoByUserId to retrieve user attributes
-EMClient.getInstance().userInfoManager().fetchUserInfoByUserId(userId, new EMValueCallBack<Map<String, EMUserInfo>>() {}
+AgoraChatClient.getInstance().userInfoManager().fetchUserInfoByUserId(userId, new AgoraChatValueCallBack<Map<String, AgoraChatUserInfo>>() {}
 
 // Update the avatar by specifying the image URL
 String url = "https://download-sdk.oss-cn-beijing.aliyuncs.com/downloads/IMDemo/avatar/Image1.png";
 // Call updateOwnInfoByAttribute to update the specified attribute
-EMClient.getInstance().userInfoManager().updateOwnInfoByAttribute(EMUserInfoType.AVATAR_URL, url, new EMValueCallBack<String>() {
+AgoraChatClient.getInstance().userInfoManager().updateOwnInfoByAttribute(AgoraChatUserInfoType.AVATAR_URL, url, new AgoraChatValueCallBack<String>() {
     @Override
     public void onSuccess(String value) {
                         
@@ -81,14 +81,14 @@ EMClient.getInstance().userInfoManager().updateOwnInfoByAttribute(EMUserInfoType
 
 ### Manage contacts
 
-In a real-time chat, users can add or remove contacts, accept or decline a contact invitation, and add other users to a blacklist. The Agora Chat SDK uses a `ContactManager` class to enable these functionalities in your app. Refer to the following sample code to see how to implement contact management.
+In a real-time chat, users can add or remove contacts, accept or decline a contact invitation, and add other users to a blocklist. The Agora Chat SDK uses a `ContactManager` class to enable these functionalities in your app. Refer to the following sample code to see how to implement contact management.
 
 ```java
 // Call addContact to send a contact invitation
-ChatClient.getInstance().contactManager().addContact(toAddUsername, reason);
+AgoraChatClient.getInstance().contactManager().addContact(toAddUsername, reason);
 
 // Call setContactListener to listen for contact invitation events
-ChatClient.getInstance().contactManager().setContactListener(new ContactListener() {
+AgoraChatClient.getInstance().contactManager().setContactListener(new ContactListener() {
     // Occurs when the contact invitation is accepted
     @Override
     public void onContactAgreed(String username) {}
@@ -117,13 +117,13 @@ ChatClient.getInstance().contactManager().setContactListener(new ContactListener
 ChatClient.getInstance().contactManager().deleteContact(username);
 ```
 
-You can also add a specified user to your blacklist. Once you do that, you can still send chat messages to that user, but not receive messages from them. The following code shows how to add a user into a blacklist.
+You can also add a specified user to your blocklist. Once you do that, you can still send chat messages to that user, but not receive messages from them. The following code shows how to add a user into a blocklist.
 
 ```java
-// Call addUserToBlacklist to add a user, whehter your contact or not, to your blacklist
+// Call addUserToBlacklist to add a user, whehter your contact or not, to your blocklist
 ChatClient.getInstance().contactManager().addUserToBlackList(username,true);
 
-// To remove a user from the blacklist, call removeUserFromBlackList
+// To remove a user from the blocklist, call removeUserFromBlackList
 ChatClient.getInstance().contactManager().removeUserFromBlackList(username);
 ```
 
@@ -152,8 +152,8 @@ Namecard messages are custom messages that include the user ID, nickname, avator
 Followings are the sample code for creating and sending a namecard message:
 
 ```java
-EMMessage message = EMMessage.createSendMessage(EMMessage.Type.CUSTOM);
-    EMCustomMessageBody body = new EMCustomMessageBody(DemoConstant.USER_CARD_EVENT);
+AgoraChatMessage message = AgoraChatMessage.createSendMessage(AgoraChatMessage.Type.CUSTOM);
+    AgoraChatCustomMessageBody body = new AgoraChatCustomMessageBody(DemoConstant.USER_CARD_EVENT);
     Map<String,String> params = new HashMap<>();
     params.put(DemoConstant.USER_CARD_ID,userId);
     params.put(DemoConstant.USER_CARD_NICK,user.getNickName());
@@ -163,12 +163,12 @@ EMMessage message = EMMessage.createSendMessage(EMMessage.Type.CUSTOM);
     body.setParams(params);
     message.getBody(body);
     message.setTp(toUser);
-EMClient.getInstance().chatManager().sendMessage(message);
+AgoraChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
-### Retrieve contact list and blacklist
+### Retrieve contact list and blocklist
 
-To retrieve the contact list or blacklist, call the following methods in the `ContactManager` class:
+To retrieve the contact list or blocklist, call the following methods in the `ContactManager` class:
 - `getAllContactsFromServer` and `getAllContactsFromLocal`
 - `getBlackListFromServer` and `getBlackListUsernames` 
 
