@@ -149,22 +149,22 @@ This sample server is for demonstration purposes only. Do not use it in a produc
    ```
 
 2. Create a `com.agora.chat.token.io.agora` package under `src->main->java`, and add the [chat](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/chat) and [media](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media) packages to the project, as the following figure shows:
-   ![token server project](link)
+   ![token server project](https://web-cdn.agora.io/docs-files/1639043760281)
 
 3. Create a file named `application.properties` to hold the information for generating tokens:
 
-```txt
-## Server port
-server.port=8090
-## Fill the App ID of your Agora project
-appid=""
-## Fill the app certificate of your Agora project
-appcert=""
-## Fill the app key of the Agora Chat service
-appkey=""
-## Set the valid duration (in seconds) for the token
-expire.second=60
-```
+   ```txt
+   ## Server port
+   server.port=8090
+   ## Fill the App ID of your Agora project
+   appid=""
+   ## Fill the app certificate of your Agora project
+   appcert=""
+   ## Fill the app key of the Agora Chat service
+   appkey=""
+   ## Set the valid duration (in seconds) for the token
+   expire.second=60
+   ```
 
 4. Under the `com.agora.chat.token` package, create a file, `AgoraChatTokenController.java`, with the following content:
 
@@ -214,7 +214,7 @@ expire.second=60
    ```
 
 6. To start the server, click the green triangle button, and select **Debug "AgoraChatTokenStarter..."**.
-   ![start-the-server](link)
+   ![start the server](https://web-cdn.agora.io/docs-files/1639043996061)
 
 ## Use tokens for user authentication
 
