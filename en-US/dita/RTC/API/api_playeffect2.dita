@@ -63,24 +63,24 @@
                     <pd>
                         <p props="windows">Agora supports using a URI address, an absolute path, or a path that starts with <codeph>/assets/</codeph>. For example: <codeph><ph keyref="filePath-example"/></codeph>.</p>
                         <p props="android">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example: <codeph><ph keyref="filePath-example"/></codeph>.</p>
-                        <note type="attention">If you have preloaded an audio effect into memory by calling , ensure that this parameter is set to the same value as <apiname keyref="preloadEffect"/><parmname>filePath</parmname> in .<xref keyref="preloadEffect"/></note>
+                        <note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect"/>, ensure that this parameter is set to the same value as <parmname>filePath</parmname> in <apiname keyref="preloadEffect"/>.</note>
                     </pd>
                 </plentry>
                 <plentry id="loopcount">
                     <pt>loopCount</pt>
                     <pd><p>The number of times the audio effect loops:<ul>
                                 <li>≥ 0: The number of playback times. For example, 1 means loop one time, which means play the audio effect two times in total.</li>
-                                <li>-1: Play the music effect in an infinite loop.</li>
+                                <li>-1: Play the audio effect in an infinite loop.</li>
                             </ul></p>
                     </pd>
                 </plentry>
                 <plentry id="pitch">
                     <pt>pitch</pt>
-                    <pd>The pitch of the audio effect. The value range is 0.5 to 2.0. The default value is 1.0, which means the original pitch. The lower the value, the lower the pitch.</pd>
+                    <pd>The pitch of the audio effect. The value range is 0.5 to 2.0. The default value is 1.0, which means the original pitch. The smaller the value, the lower the pitch.</pd>
                 </plentry>
                 <plentry id="pan">
                     <pt>pan</pt>
-                    <pd><p>The spatial position of the audio effect. The value range is 1 to10000.<ul>
+                    <pd><p>The spatial position of the audio effect. The value ranges between -1.0 and 1.0, where:<ul>
                                 <li>-1.0: The audio effect displays to the left.</li>
                                 <li>0.0: The audio effect displays ahead.</li>
                                 <li>1.0: The audio effect displays to the right.</li>
@@ -89,7 +89,7 @@
                 </plentry>
                 <plentry id="gain">
                     <pt>gain</pt>
-                    <pd>The volume of the audio effect. The value range is 1 to10000. The default value is 100.0, which means the original volume. The smaller the value, the lower the volume.</pd>
+                    <pd>The volume of the audio effect. The value range is 0.0 to 100.0. The default value is 100.0, which means the original volume. The smaller the value, the lower the volume.</pd>
                 </plentry>
                 <plentry id="publish">
                     <pt>publish</pt>
