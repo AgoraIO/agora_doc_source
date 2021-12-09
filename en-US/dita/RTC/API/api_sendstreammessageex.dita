@@ -22,17 +22,17 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <p>After calling<xref keyref="createDataStreamEx2"/> , you can call this method to send a data stream to all users in the channel.</p>
+            <p>After calling <xref keyref="createDataStreamEx2"/>, you can call this method to send data stream messages to all users in the channel.</p>
    
    <p id="desc">The SDK has the following restrictions on this method:<ul>
                     <li>Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 kB.</li>
                     <li>Each client can send up to 6 KB of data per second.</li>
                     <li>Each user can have up to five data streams simultaneously.</li>
                 </ul></p>
-   <p>成功调用该方法后，远端会触发 <xref keyref="onStreamMessage"/> 回调，远端用户可以在该回调中获取接收到的流消息；
-       若调用失败，远端会触发 <xref keyref="onStreamMessageError"/> 回调。</p>
+   <p>A successful method call triggers the <xref keyref="onStreamMessage"/> callback on the remote client, from which the remote user gets the stream message.
+       A failed method call triggers the <xref keyref="onStreamMessageError"/> callback on the remote client.</p>
    <note type="attention"><ul>
-       <li>Ensure that you call  to create a<apiname keyref="createDataStreamEx2"/> data channel before calling this method.</li>
+       <li>Ensure that you call <apiname keyref="createDataStreamEx2"/> to create a data channel before calling this method.</li>
        <li>This method applies only to the `COMMUNICATION` profile or to the hosts in the `LIVE_BROADCASTING` profile. If an audience in the `LIVE_BROADCASTING` profile calls this method, the audience may be switched to a host.</li>
    </ul></note>
         </section>
@@ -40,7 +40,7 @@
    <parml>
        <plentry>
   <pt>streamId</pt>
-           <pd>The data stream ID. You can get<apiname keyref="createDataStreamEx2"/> the data stream ID by calling .</pd>
+           <pd>The data stream ID. You can get the data stream ID by calling <apiname keyref="createDataStreamEx2"/>.</pd>
        </plentry>
        <plentry>
                     <pt props="android">message</pt>
