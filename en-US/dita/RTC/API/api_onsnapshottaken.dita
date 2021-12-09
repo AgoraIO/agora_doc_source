@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onsnapshottaken">
     <title><ph keyref="onSnapshotTaken"/></title>
-    <shortdesc id="short"><ph id="shortdesc">视频截图结果回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the result of taking a video snapshot.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -38,7 +38,7 @@
                     <dt>Since</dt>
                     <dd>v3.5.2</dd>
                 </dlentry>
-            </dl>成功调用 <xref keyref="takeSnapshot"/> 后，SDK 触发该回调报告截图是否成功和获取截图的详情。</section>
+            </dl>After a successful <xref keyref="takeSnapshot"/> method call, the SDK triggers this callback to report whether the snapshot is successfully taken as well as the details for the snapshot taken.</section>
         <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
@@ -51,24 +51,24 @@
                 </plentry>
                 <plentry>
                     <pt>uid</pt>
-                    <pd>User ID The returned <parmname>uid</parmname> is 0 for the local user.</pd>
+                    <pd>User ID. A <parmname>uid</parmname> of 0 indicates the local user.</pd>
                 </plentry>
                 <plentry>
                     <pt>filePath</pt>
-                    <pd>截图的本地保存路径。</pd>
+                    <pd>The local path of the snapshot.</pd>
                 </plentry>
                 <plentry>
                     <pt>width</pt>
-                    <pd>图片宽度（px）。</pd>
+                    <pd>The width (px) of the snapshot.</pd>
                 </plentry>
                 <plentry>
                     <pt>height</pt>
-                    <pd>图片高度（px）。</pd>
+                    <pd>The height (px) of the snapshot.</pd>
                 </plentry>
                 <plentry>
                     <pt>errCode</pt>
-                    <pd>截图成功的提示或失败的原因。<ul>
-                            <li>0：截图成功。</li>
+                    <pd>The message that confirms success or the reason why the snapshot is not successfully taken:<ul>
+                            <li>0: Success.</li>
                             <li>&lt; 0: Fails to push external encoded video frame to the SDK.<ul>
                                     <li>-1：写入文件失败或 JPEG 编码失败。</li>
                                     <li>-2：<apiname keyref="takeSnapshot"/> 方法调用成功后 1 秒内没有发现指定用户的视频流。</li>
