@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiomixing">
     <title><ph keyref="startAudioMixing"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Starts playing and mixing the music file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts playing the music file.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -40,10 +40,10 @@
                 </dlentry>
             </dl>
 
-            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the<xref keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) callback. When the audio mixing file playback finishes, the SDK triggers the<apiname keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_STOPPED"/>) callback on the local client.</p>
+            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <xref keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) callback. When the audio mixing file playback finishes, the SDK triggers the <apiname keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_STOPPED"/>) callback on the local client.</p>
    <note type="attention" id="audiomixing_note">
        <ul>
-           <li>Call this method after joining a channel. If you need to call  multiple times<apiname keyref="startAudioMixing"/>, ensure that the time interval between calling this method is more than 500 ms.</li>
+           <li>Call this method after joining a channel. If you need to call <apiname keyref="startAudioMixing"/> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
            <li>If the local audio mixing file does not exist, or if the SDK does not support the file format or cannot access the music file URL, the SDK returns <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph> (701).</li>
            <li props="android">To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>
            <li props="android">If you need to play an online music file, Agora does not recommend using the redirected URL address. Some Android devices may fail to open a redirected URL address.</li>
@@ -60,16 +60,16 @@
        <plentry id="loopback">
   <pt>loopback</pt>
            <pd><p>Whether to only play music files on the local client:<ul>
-          <li><codeph>: Only play music files on the local client so that only the local user can hear the music.</codeph><ph keyref="true"/></li>
-          <li><codeph>: Publish music files to remote clients so that both the local user and remote users can hear the music.</codeph><ph keyref="false"/></li>
+          <li><codeph><ph keyref="true"/></codeph>: Only play music files on the local client so that only the local user can hear the music.</li>
+          <li><codeph><ph keyref="false"/></codeph>: Publish music files to remote clients so that both the local user and remote users can hear the music.</li>
       </ul></p>
   </pd>
        </plentry>
        <plentry id="replace">
   <pt>replace</pt>
            <pd><p>Whether to replace the audio captured by the microphone with a music file: <ul>
-          <li><codeph>: Replace the audio captured by the microphone with a music file. </codeph><ph keyref="true"/>Users can only hear the music.</li>
-          <li><codeph>: Do not replace the audio captured by the microphone with a music file. </codeph><ph keyref="false"/>Users can hear both music and audio captured by the microphone.</li>
+          <li><codeph><ph keyref="true"/></codeph>: Replace the audio captured by the microphone with a music file. Users can only hear the music.</li>
+          <li><codeph><ph keyref="false"/></codeph>: Do not replace the audio captured by the microphone with a music file. Users can hear both music and audio captured by the microphone.</li>
       </ul></p>
   </pd>
        </plentry>
