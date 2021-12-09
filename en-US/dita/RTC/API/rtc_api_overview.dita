@@ -27,14 +27,14 @@
                     <stentry>Method</stentry>
                     <stentry>Description</stentry>
                 </sthead>
-                <strow props="windows">
+                <strow props="windows flutter">
                     <stentry><xref keyref="createAgoraRtcEngine"/></stentry>
                     <stentry><ph conkeyref="createAgoraRtcEngine/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="create2"/></stentry>
                     <stentry><ph props="ios mac android electron unity">Creates and initializes <apiname
-                                keyref="IRtcEngine"/>. </ph><ph props="windows">Initializes <apiname
+                                keyref="IRtcEngine"/>. </ph><ph props="windows flutter">Initializes <apiname
                                 keyref="IRtcEngine"/>.</ph></stentry>
                 </strow>
                 <strow>
@@ -420,7 +420,7 @@
                     <stentry><xref keyref="IChannel"/></stentry>
                     <stentry><ph conkeyref="IChannel/shortdesc"/></stentry>
                 </strow>
-                <strow props="android ios mac windows unity">
+                <strow props="android ios mac windows unity flutter">
                     <stentry><xref keyref="IChannelEventHandler"/></stentry>
                     <stentry><ph conkeyref="IChannelEventHandler/shortdesc"/></stentry>
                 </strow>
@@ -639,6 +639,29 @@
                 </strow>
             </simpletable>
         </section>
+        <section id="audio_file_information" props="android ios windows flutter">
+            <title>Audio file information</title>
+            <simpletable>
+                <sthead>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="getAudioFileInfo"/></stentry>
+                    <stentry><ph conkeyref="getAudioFileInfo/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+            <simpletable>
+                <sthead>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onRequestAudioFileInfo"/></stentry>
+                    <stentry><ph conkeyref="onRequestAudioFileInfo/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
         <section id="rhythm_player" props="android ios flutter">
             <title>Virtual metronome</title>
             <simpletable>
@@ -774,6 +797,14 @@
                     <stentry><ph conkeyref="updateChannelMediaRelay/shortdesc"/></stentry>
                 </strow>
                 <strow>
+                    <stentry><xref keyref="pauseAllChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="pauseAllChannelMediaRelay/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="resumeAllChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="resumeAllChannelMediaRelay/shortdesc"/></stentry>
+                </strow>
+                <strow>
                     <stentry><xref keyref="stopChannelMediaRelay"/></stentry>
                     <stentry><ph conkeyref="stopChannelMediaRelay/shortdesc"/></stentry>
                 </strow>
@@ -820,7 +851,7 @@
                 </strow>
             </simpletable>
         </section>
-        <section id="face_detection" props="android ios windows unity"><title>Face detection</title><p
+        <section id="face_detection" props="android ios windows unity flutter"><title>Face detection</title><p
                 props="windows">This method is for Android and iOS only.</p><simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -840,7 +871,7 @@
                     <stentry><ph conkeyref="onFacePositionChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="audio_routing_control" props="android ios windows unity"><title>Audio routing control</title><p
+        <section id="audio_routing_control" props="android ios windows unity flutter"><title>Audio routing control</title><p
                 props="windows unity">This method is for Android and iOS only.</p><simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -869,7 +900,7 @@
                     <stentry><ph conkeyref="onAudioRouteChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable></section>
-        <section id="in-ear_monitoring" props="android ios windows unity"><title>In-ear monitoring</title><p
+        <section id="in-ear_monitoring" props="android ios windows unity flutter"><title>In-ear monitoring</title><p
                 props="windows unity">This method is for Android and iOS only.</p><simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -955,6 +986,10 @@
                 <strow>
                     <stentry><xref keyref="startEchoTest2"/></stentry>
                     <stentry><ph conkeyref="startEchoTest2/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios mac windows">
+                    <stentry><xref keyref="startEchoTest3"/></stentry>
+                    <stentry><ph conkeyref="startEchoTest3/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="stopEchoTest"/></stentry>
@@ -1170,15 +1205,15 @@
                     <stentry><xref keyref="registerMediaMetadataObserver"/></stentry>
                     <stentry><ph conkeyref="registerMediaMetadataObserver/shortdesc"/></stentry>
                 </strow>
-                <strow props="unity">
+                <strow props="unity flutter">
                     <stentry><xref keyref="unregisterMediaMetadataObserver"/></stentry>
                     <stentry><ph conkeyref="unregisterMediaMetadataObserver/shortdesc"/></stentry>
                 </strow>
-                <strow props="electron unity">
+                <strow props="electron unity flutter">
                     <stentry><xref keyref="setMaxMetadataSize"/></stentry>
                     <stentry><ph conkeyref="setMaxMetadataSize/shortdesc"/></stentry>
                 </strow>
-                <strow props="unity">
+                <strow props="unity flutter">
                     <stentry><xref keyref="sendMetadata"/></stentry>
                     <stentry><ph keyref="sendMetadata/shortdesc"/></stentry>
                 </strow>
@@ -1256,7 +1291,7 @@
         </section>
         <section id="camera_control">
             <title>Camera control</title>
-            <simpletable props="android ios windows">
+            <simpletable props="android ios windows flutter">
                 <sthead>
                     <stentry>Method</stentry>
                     <stentry>Description</stentry>
@@ -1264,6 +1299,42 @@
                 <strow>
                     <stentry><xref keyref="switchCamera"/></stentry>
                     <stentry><ph conkeyref="switchCamera/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="isCameraZoomSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraZoomSupported/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="isCameraTorchSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraTorchSupported/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="isCameraFocusSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraFocusSupported/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="isCameraExposurePositionSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraExposurePositionSupported/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="isCameraAutoFocusFaceModeSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraAutoFocusFaceModeSupported/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="setCameraZoomFactor"/></stentry>
+                    <stentry><ph conkeyref="setCameraZoomFactor/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="getCameraMaxZoomFactor"/></stentry>
+                    <stentry><ph conkeyref="getCameraMaxZoomFactor/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="setCameraFocusPositionInPreview"/></stentry>
+                    <stentry><ph conkeyref="setCameraFocusPositionInPreview/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="setCameraExposurePosition"/></stentry>
+                    <stentry><ph conkeyref="setCameraExposurePosition/shortdesc"/></stentry>
                 </strow>
             </simpletable>
             <simpletable>
@@ -1451,7 +1522,7 @@
                     <stentry><xref keyref="enableLoopbackRecording"/></stentry>
                     <stentry><ph conkeyref="enableLoopbackRecording/shortdesc"/></stentry>
                 </strow>
-                <strow props="ios mac windows">
+                <strow props="ios mac windows flutter">
                     <stentry><xref keyref="setAudioSessionOperationRestriction"/></stentry>
                     <stentry><ph conkeyref="setAudioSessionOperationRestriction/shortdesc"
                         /></stentry>

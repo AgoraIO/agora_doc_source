@@ -51,10 +51,12 @@
             <topicref keyref="enableVideo" toc="no" />
             <topicref keyref="enableVirtualBackground" toc="no" />
             <topicref keyref="enableWebSdkInteroperability" toc="no" />
+            <topicref keyref="getAudioFileInfo" toc="no" />
             <topicref keyref="getAudioMixingCurrentPosition" toc="no" />
             <topicref keyref="getAudioMixingDuration2" toc="no" />
             <topicref keyref="getAudioMixingPlayoutVolume" toc="no" />
             <topicref keyref="getAudioMixingPublishVolume" toc="no" />
+            <topicref keyref="getCameraMaxZoomFactor" toc="no" />
             <topicref keyref="getCallId" toc="no" />
             <topicref keyref="getConnectionState" toc="no" />
             <topicref keyref="getEffectCurrentPosition" toc="no" />
@@ -64,6 +66,11 @@
             <topicref keyref="getUserInfoByUid" toc="no" />
             <topicref keyref="getUserInfoByUserAccount" toc="no" />
             <topicref keyref="getVersion" toc="no" />
+            <topicref keyref="isCameraZoomSupported" toc="no" />
+            <topicref keyref="isCameraTorchSupported" toc="no" />
+            <topicref keyref="isCameraFocusSupported" toc="no" />
+            <topicref keyref="isCameraExposurePositionSupported" toc="no" />
+            <topicref keyref="isCameraAutoFocusFaceModeSupported" toc="no" />
             <topicref keyref="isSpeakerphoneEnabled" toc="no" />
             <topicref keyref="joinChannel2" toc="no" />
             <topicref keyref="joinChannelWithUserAccount2" toc="no" />
@@ -92,9 +99,11 @@
             <topicref keyref="resumeAudioMixing" toc="no" />
             <topicref keyref="resumeEffect" toc="no" />
             <topicref keyref="startRhythmPlayer" toc="no" />
+            <topicref keyref="startRhythmPlayer" toc="no" />
             <topicref keyref="stopRhythmPlayer" toc="no" />
             <topicref keyref="configRhythmPlayer" toc="no" />
             <topicref keyref="sendCustomReportMessage" toc="no" />
+            <topicref keyref="sendMetadata" toc="no" />
             <topicref keyref="sendStreamMessage" toc="no" />
             <topicref keyref="setAudioEffectParameters" toc="no" />
             <topicref keyref="setAudioEffectPreset" toc="no" />
@@ -106,6 +115,7 @@
             <topicref keyref="setCameraCapturerConfiguration" toc="no" />
             <topicref keyref="setCameraExposurePosition" toc="no" />
             <topicref keyref="setCameraFocusPositionInPreview" toc="no" />
+            <topicref keyref="setCameraZoomFactor" toc="no" />
             <topicref keyref="setChannelProfile" toc="no" />
             <topicref keyref="setClientRole2" toc="no" />
             <topicref keyref="setCloudProxy" toc="no" />
@@ -128,6 +138,7 @@
             <topicref keyref="setLogFile" toc="no" />
             <topicref keyref="setLogFileSize" toc="no" />
             <topicref keyref="setLogFilter" toc="no" />
+            <topicref keyref="setMaxMetadataSize" toc="no" />
             <topicref keyref="setRemoteDefaultVideoStreamType" toc="no" />
             <topicref keyref="setRemoteSubscribeFallbackOption" toc="no" />
             <topicref keyref="setRemoteUserPriority" toc="no" />
@@ -162,6 +173,7 @@
             <topicref keyref="switchCamera" toc="no" />
             <topicref keyref="switchChannel2" toc="no" />
             <topicref keyref="unloadEffect" toc="no" />
+            <topicref keyref="unregisterMediaMetadataObserver" toc="no" />
             <topicref keyref="updateChannelMediaRelay" toc="no" />
             <topicref keyref="updateScreenCaptureParameters" toc="no" />
             <topicref keyref="updateScreenCaptureRegion1" toc="no" />
@@ -225,6 +237,7 @@
             <topicref keyref="onRemoteVideoStateChanged" toc="no" />
             <topicref keyref="onRemoteVideoStats" toc="no" />
             <topicref keyref="onRemoteVideoTransportStats" toc="no" />
+            <topicref keyref="onRequestAudioFileInfo" toc="no" />
             <topicref keyref="onRequestToken" toc="no" />
             <topicref keyref="onRtcStats" toc="no" />
             <topicref keyref="onRtmpStreamingEvent" toc="no" />
@@ -281,6 +294,7 @@
             <topicref keyref="IChannel_removePublishStreamUrl" toc="no" />
             <topicref keyref="IChannel_renewToken" toc="no" />
             <topicref keyref="IChannel_resumeAllChannelMediaRelay" toc="no" />
+            <topicref keyref="IChannel_sendMetadata" toc="no" />
             <topicref keyref="IChannel_sendStreamMessage" toc="no" />
             <topicref keyref="IChannel_setChannelEventHandler" toc="no" />
             <topicref keyref="IChannel_setClientRole2" toc="no" />
@@ -289,6 +303,7 @@
             <topicref keyref="IChannel_setEncryptionMode" toc="no" />
             <topicref keyref="IChannel_setEncryptionSecret" toc="no" />
             <topicref keyref="IChannel_setLiveTranscoding" toc="no" />
+            <topicref keyref="IChannel_setMaxMetadataSize" toc="no" />
             <topicref keyref="IChannel_setRemoteDefaultVideoStreamType" toc="no" />
             <topicref keyref="IChannel_setRemoteUserPriority" toc="no" />
             <topicref keyref="IChannel_setRemoteVideoStreamType" toc="no" />
@@ -296,6 +311,7 @@
             <topicref keyref="IChannel_startChannelMediaRelay" toc="no" />
             <topicref keyref="IChannel_stopChannelMediaRelay" toc="no" />
             <topicref keyref="IChannel_unpublish" toc="no" />
+            <topicref keyref="IChannel_unregisterMediaMetadataObserver" toc="no" />
             <topicref keyref="IChannel_updateChannelMediaRelay" toc="no" />
         </topicref>
         <topicref keyref="IChannelEventHandler" chunk="to-content">
@@ -374,6 +390,7 @@
         <topicref href="API/rtc_api_data_type.dita" chunk="to-content">
             <topicref keyref="AREA_CODE" toc="no" />
             <topicref keyref="AUDIENCE_LATENCY_LEVEL_TYPE" toc="no" />
+            <topicref keyref="AUDIO_FILE_INFO_ERROR" toc="no" />
             <topicref keyref="AUDIO_CODEC_PROFILE_TYPE" toc="no" />
             <topicref keyref="AUDIO_EFFECT_PRESET" toc="no" />
             <topicref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY" toc="no" />
@@ -444,6 +461,7 @@
             <topicref keyref="VIDEO_MIRROR_MODE_TYPE" toc="no" />
             <topicref keyref="VOICE_BEAUTIFIER_PRESET" toc="no" />
             <topicref keyref="VOICE_CHANGER_PRESET" toc="no" />
+            <topicref keyref="AudioFileInfo" toc="no" />
             <topicref keyref="AudioVolumeInfo" toc="no" />
             <topicref keyref="BeautyOptions" toc="no" />
             <topicref keyref="AgoraFacePositionInfo" toc="no" />
