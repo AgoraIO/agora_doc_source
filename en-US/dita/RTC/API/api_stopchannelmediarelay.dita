@@ -18,7 +18,7 @@
                 <codeblock props="electron" outputclass="language-typescript">stopChannelMediaRelay(): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int StopChannelMediaRelay();</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> stopChannelMediaRelay();</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopChannelMediaRelay();</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -32,7 +32,7 @@
    <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged" /> callback. If the callback reports <apiname keyref="RELAY_STATE_IDLE" /> (0) and <apiname keyref="RELAY_OK" /> (0), the host successfully stops the relay.</p>
    <note type="attention">If the method call fails, the SDK triggers the <apiname keyref="onChannelMediaRelayStateChanged" /> callback with the <apiname keyref="RELAY_ERROR_SERVER_NO_RESPONSE" /> (2) or <apiname keyref="RELAY_ERROR_SERVER_CONNECTION_LOST" /> (8) status code. You can call the <xref keyref="leaveChannel" /> method to leave the channel, and the media stream relay automatically stops.</note>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>
