@@ -33,7 +33,7 @@
                 </dlentry>
             </dl>
             <p>After enabling the virtual background feature, you can replace the original background image of the local user with a custom background image. After the replacement, all users in the channel can see the custom background image.</p>
-            <p props="rtc">whether<xref keyref="onVirtualBackgroundSourceEnabled"/> virtual background is successfully enabled and the cause of any errors.</p>
+            <p props="rtc">You can find out from the <xref keyref="onVirtualBackgroundSourceEnabled"/> callback whether the virtual background is successfully enabled or the cause of any errors.</p>
             <note type="note"><ul>
                 <li>Before calling this method, ensure that you have integrated the dynamic library.<ul>
                     <li props="android windows unity rn flutter">Android: <ph>libagora_segmentation_extension.so</ph></li>
@@ -41,7 +41,7 @@
                     <li props="mac windows unity electron">macOS: <ph>AgoraVideoSegmentationExtension.framework</ph></li>
                     <li props="windows">Windows: <ph>libagora_segmentation_extension.dll</ph></li>
                 </ul></li>
-                <li>Call this method<xref keyref="enableVideo"/> after  .</li>
+                <li>Call this method after <xref keyref="enableVideo"/>.</li>
                 <li>This function requires a high-performance device. Agora recommends that you use this function on devices with the following chips:<ul>
                     <li props="android unity windows rn flutter">Snapdragon 700 series 750G and later</li>
                     <li props="android unity windows rn flutter">Snapdragon 800 series 835 and later</li>
@@ -69,8 +69,8 @@
                     <pt props="windows android">enabled</pt>
                     <pt props="ios mac">enable</pt>
                     <pd>Whether to enable virtual background:<ul>
-                        <li><ph keyref="true"/>: 开启。</li>
-                        <li><ph keyref="false"/>0: Closed.</li>
+                        <li><ph keyref="true"/>: Enable.</li>
+                        <li><ph keyref="false"/>: Disable.</li>
                     </ul></pd>
                 </plentry>
                 <plentry>
@@ -85,9 +85,9 @@
             <ul>
                 <li>0: Success.</li>
                 <li>&lt; 0: Failure.<ul props="rtc-ng">
-                    <li>1: The custom background image does not exist. Please check<xref keyref="VirtualBackgroundSource"/> the value of<parmname> source</parmname> in .</li>
-                    <li>2: The color format of the custom background image is invalid. Please check<xref keyref="VirtualBackgroundSource"/> the value of<parmname> color</parmname> in .</li>
-                    <li>3: The device does not support using the virtual background.</li>
+                    <li>-1: The custom background image does not exist. Please check the value of <parmname>source</parmname> in <xref keyref="VirtualBackgroundSource"/>.</li>
+                    <li>-2: The color format of the custom background image is invalid. Please check the value of <parmname>color</parmname> in <xref keyref="VirtualBackgroundSource"/>.</li>
+                    <li>-3: The device does not support using the virtual background.</li>
                     </ul></li>
             </ul>
         </section>
