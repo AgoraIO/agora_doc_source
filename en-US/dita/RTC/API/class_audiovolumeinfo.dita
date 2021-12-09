@@ -65,26 +65,26 @@
                     <pd>
                         <p>User ID.<ul id="ul_pfj_4dt_rqb">
                                 <li>In the local user's callback, <parmname>uid</parmname> = 0.</li>
-                                <li>In the remote users' callback, <parmname>uid</parmname> is the<parmname>  ID</parmname> of a remote user whose instantaneous volume is one of the three highest.</li>
+                                <li>In the remote users' callback, <parmname>uid</parmname> is the ID of a remote user whose instantaneous volume is one of the three highest.</li>
                             </ul></p>
                     </pd>
                 </plentry>
        <plentry>
   <pt>volume</pt>
-  <pd>The volume of the user. The value ranges between 0 (lowest volume) and 255 (highest volume). If the user calls<xref keyref="startAudioMixing2"/> , the value of<parmname> volume</parmname> is the<parmname> volume</parmname> after audio mixing.</pd>
+  <pd>The volume of the user. The value ranges between 0 (lowest volume) and 255 (highest volume). If the user calls <xref keyref="startAudioMixing2"/>, the value of <parmname>volume</parmname> is the volume after audio mixing.</pd>
        </plentry>
        <plentry>
                     <pt>vad</pt>
                     <pd>
-                        <p>Voice activity status of the local user.<ul>
+                        <p>The voice activity status of the local user.<ul>
                             <li>0: The local user is not speaking.</li>
                             <li>1: The local user is speaking.</li>
                             </ul> </p>
                         <note type="attention">
                             <ul>
-                                <li>The<parmname> vad</parmname> parameter does not report the voice activity status of remote users. In the remote users' callback, the value of<parmname> vad</parmname> is always 0.</li>
-                                <li props="rtc">To use this parameter, you must set report_vadreportVad to  when calling .<xref keyref="enableAudioVolumeIndication"/><parmname props="ios mac windows android electron"></parmname><parmname props="unity"></parmname><codeph><ph keyref="true"/></codeph></li>
-                                <li props="rtc-ng">To use this parameter, you must set reportVad to  when calling .<xref keyref="enableAudioVolumeIndication"/><parmname></parmname><codeph><ph keyref="true"/></codeph></li>
+                                <li>The <parmname>vad</parmname> parameter does not report the voice activity status of remote users. In the remote users' callback, the value of <parmname>vad</parmname> is always 0.</li>
+                                <li props="rtc">To use this parameter, you must set <parmname props="ios mac windows android electron">report_vad</parmname><parmname props="unity">reportVad</parmname> to <codeph><ph keyref="true"/></codeph> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
+                                <li props="rtc-ng">To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph keyref="true"/></codeph> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
                             </ul>
                         </note>
                     </pd>
@@ -96,8 +96,8 @@
        <plentry props="rtc-ng">
            <pt>voicePitch</pt>
            <pd>
-               <p>本地用户的人声音调（Hz）。 The value ranges between 0.0 and 1.0:</p>
-               <note type="attention"><parmname>voicePitch</parmname> 无法报告远端用户的人声音调。 对于远端用户，<parmname>voicePitch</parmname> 的值始终为 0。</note>
+               <p>The voice pitch of the local user. The value ranges between 0.0 and 4000.0:</p>
+               <note type="attention">The <parmname>voicePitch</parmname> parameter does not report the voice pitch of remote users. In the remote users' callback, the value of <parmname>voicePitch</parmname> is always 0.</note>
            </pd>
        </plentry>
    </parml>
