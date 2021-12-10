@@ -169,7 +169,8 @@ Pass in the following parameters in the request body.
 | Parameter | Type | Description |
 | :---------------- | :----- | :----------------------------------------------------------- |
 | `mode` | String | (Optional) The recording mode:<li>Set this parameter as `web` to enable [web page recording mode](/en/Agora%20Platform/webpage_recording).  The format of recorded files is MP4. When the length of the recorded file reaches around two hours, or when the size of the file exceeds around 2 GB, the recording service automatically creates another MP4 file.</li><li>If you do not set this parameter, Flexible Classroom records the audio and video of the teachers in [composite recording mode](/en/Agora%20Platform/composite_recording_mode) by default.  The format of recorded files is M3U8 and TS.</li> |
-| `webRecordConfig` | Object | (Optional) When the `mode` is set as `web`, you need to set the detailed configuration of the web page recording through `webRecordConfig`, including the following fields:<ul><li>`url`: (Required) String, the address of the web page to record. If you want to record a certain flexible classroom, you need to pass in the parameters required for launching a classroom in the URL. The Agora Cloud Recording service can join the specified classroom as an "invisible user" for recording. See the URL example in the request example. The following parameters are required in the URL:<ul><li>`userUuid`: The user ID used by the Agora Cloud Recording service. Please ensure that the user ID used by the Agora Cloud Recording service is not the same as that of existing users in the classroom, otherwise, the Agora Cloud Recording service will fail to join the classroom.</li><li>`roomUuid`: The ID of the classroom to be recorded.</li><li>`roomType`: The type of the classroom to be recorded.</li><li>`roleType`: The role of the Agora Cloud Recording service in the classroom to be recorded. Set this parameter as 0.</li><li>`pretest`: Whether to enable the pre-class test. Set this parameter as `false`.</li><li>`rtmToken`: The RTM Token used by the Agora Cloud Recording service.</li><li>`language`: The language of the user interface. Set this parameter as `zh` or `en`.</li><li>`appId`: Your Agora App ID.</li></ul></li><li>`rootUrl`: (Required) String, the root address of the web page to be recorded. During the recording, Agora Edu Cloud Service automatically gets the full address of the web page to be recorded by putting `rootUrl`, `roomUuid`, `roomType`,and other parameters together. If you set both `url` and `rootUrl`, `url` overrides `rootUrl`.</li><li>`onHold`: (Required) Boolean. You can set this parameter as:<ul><li>`true`: Pauses recording immediately after the web page recording task is enabled. The recording service opens and renders the web page to be recorded, but does not generate a slice file.</li><li>`false`: (Default) Enables the web page recording task and starts recording.</li></ul></li><li>`videoBitrate`: (Optional) Number. The bitrate of the video (Kbps). The value range is [50, 8000]. The default value of `videoBitrate` varies according to the resolution of the output video:<ul><li>1280 × 720: The default value is 1130.</li><li>960 × 720: The default value is 910.</li><li>848 × 480: The default value is 610.</li><li>640 × 480: The default value is 400.</li><li>For all other resolutions, the default value is 300.</li></ul></li><li>`videoFps`: (Optional) Number. The frame rate of the video (fps). The value range is [5, 60]. The default value is 15.</li><li>`audioProfile`: (Optional) Number. The sample rate, encoding mode, number of audio channels, and bitrate.<ul><li>0: (Default) Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps.</li><li>1: Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 128 Kbps.</li><li>2: Sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 192 Kbps.</li></ul></li><li>`videoWidth`: Number. The width of the video (pixels). The value range is [480, 1280]. The default value is 1280. The product of `videoWidth` and `videoHeight` should not exceed 921,600 (1280 × 720).</li><li>`videoHeight`: Number. The height of the video (pixels). The value range is [480, 1280]. The default value is 720. The product of `videoWidth` and `videoHeight` should not exceed 921,600 (1280 × 720).</li><li>`maxRecordingHour`: Number, the maximum recording length (hours). The value range is [1,720]. If you set the class duration, Agora Edu Cloud Service gets the maximum recording length by rounding up the class duration. For example, if the class duration is 1800 seconds, `maxRecordingHour` is one hour. If you do not set the class duration, the default value of `maxRecordingHour` is two hours. If the limit set by `maxRecordingHour` is exceeded, the recording stops automatically.</li></ul> |
+| `webRecordConfig` | Object | (Optional) When the `mode` is set as `web`, you need to set the detailed configuration of the web page recording through `webRecordConfig`, including the following fields:<ul><li>`url`: (Required) String, the address of the web page to record. If you want to record a certain flexible classroom, you need to pass in the parameters required for launching a classroom in the URL. The Agora Cloud Recording service can join the specified classroom as an "invisible user" for recording. See the URL example in the request example. The following parameters are required in the URL:<ul><li>`userUuid`: The user ID used by the Agora Cloud Recording service. Please ensure that the user ID used by the Agora Cloud Recording service is not the same as that of existing users in the classroom, otherwise, the Agora Cloud Recording service will fail to join the classroom.</li><li>`roomUuid`: The ID of the classroom to be recorded.</li><li>`roomType`: The type of the classroom to be recorded.</li><li>`roleType`: The role of the Agora Cloud Recording service in the classroom to be recorded. Set this parameter as 0.</li><li>`pretest`: Whether to enable the pre-class test. Set this parameter as `false`.</li><li>`rtmToken`: The RTM Token used by the Agora Cloud Recording service.</li><li>`language`: The language of the user interface. Set this parameter as `zh` or `en`.</li><li>`appId`: Your Agora App ID.</li></ul></li><li>`rootUrl`: (Required) String, the root address of the web page to be recorded. During the recording, Agora Edu Cloud Service automatically gets the full address of the web page to be recorded by putting `rootUrl`, `roomUuid`, `roomType`,and other parameters together. If you set both `url` and `rootUrl`, `url` overrides `rootUrl`.</li><li>`onHold`: (Required) Boolean. You can set this parameter as:<ul><li>`true`: Pauses recording immediately after the web page recording task is enabled. The recording service opens and renders the web page to be recorded, but does not generate a slice file.</li><li>`false`: (Default) Enables the web page recording task and starts recording.</li></ul></li><li>`videoBitrate`: (Optional) Number. The bitrate of the video (Kbps). The value range is [50, 8000]. The default value of `videoBitrate` varies according to the resolution of the output video:<ul><li>If the resolution of the output video is less than 1280 × 720, the default value of `videoBitrate` is 1500. </li><li>If the resolution of the output video is greater than or equal to 1280 × 720, the default value of `videoBitrate` is 2000.</li></ul></li><li>`videoFps`: (Optional) Number. The frame rate of the video (fps). The value range is [5, 60]. The default value is 15.</li><li>`audioProfile`: (Optional) Number. The sample rate, encoding mode, number of audio channels, and bitrate.<ul><li>0: (Default) Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 48 Kbps.</li><li>1: Sample rate of 48 kHz, music encoding, mono, and a bitrate of up to 128 Kbps.</li><li>2: Sample rate of 48 kHz, music encoding, stereo, and a bitrate of up to 192 Kbps.</li></ul></li><li>`videoWidth`: Number. The width of the video (pixels). The value range is [480, 1280]. The default value is 1280. The product of `videoWidth` and `videoHeight` should not exceed 921,600 (1280 × 720).</li><li>`videoHeight`: Number. The height of the video (pixels). The value range is [480, 1280]. The default value is 720. The product of `videoWidth` and `videoHeight` should not exceed 921,600 (1280 × 720).</li><li>`maxRecordingHour`: Number, the maximum recording length (hours). The value range is [1,720]. If you set the class duration, Agora Edu Cloud Service gets the maximum recording length by rounding up the class duration. For example, if the class duration is 1800 seconds, `maxRecordingHour` is one hour. If you do not set the class duration, the default value of `maxRecordingHour` is two hours. If the limit set by `maxRecordingHour` is exceeded, the recording stops automatically.</li></ul> |
+| `retryTimeout` | Number | The amount of time (seconds) that the Flexible Classroom cloud service waits between tries. The Flexible Classroom cloud service reties twice at most. |
 
 #### Request example
 
@@ -185,8 +186,10 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 {
     "mode": "web",
     "webRecordConfig": {
-        "url":"https://webdemo.agora.io/xxxxx/?userUuid={recorder_id}&roomUuid={room_id_to_be_recorded}&roleType=0&roomType=4&pretest=false&rtmToken={recorder_token}&language=en&appId={your_app_id}"
-    }
+        "url":"https://webdemo.agora.io/xxxxx/?userUuid={recorder_id}&roomUuid={room_id_to_be_recorded}&roleType=0&roomType=4&pretest=false&rtmToken={recorder_token}&language=en&appId={your_app_id}",
+        "rootUrl":"https://xxx.yyy.zzz"
+    },
+    "retryTimeout": 60
 }
 ```
 
@@ -204,8 +207,8 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 "status": 200,
 "body":
 {
-  "code": 0,
-  "ts": 1610450153520
+    "code": 0,
+    "ts": 1610450153520
 }
 ```
 
@@ -253,7 +256,7 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 ```json
 {
     "webRecordConfig": {
-        "onHold": true
+        "onHold": false
     }
 }
 ```
@@ -272,8 +275,8 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 "status": 200,
 "body":
 {
-  "code": 0,
-  "ts": 1610450153520
+    "code": 0,
+    "ts": 1610450153520
 }
 ```
 
@@ -336,36 +339,37 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
 ```json
 "status": 200,
 "body":
-  {
-  "code": 0,
-  "msg": "Success",
-  "ts": 1610450153520,
-  "data": {
-    "total": 17,
-    "list": [
-      {
-        "recordId": "xxxxxx",
-        "appId": "xxxxxx",
-        "roomUuid": "jason0",
-        "startTime": 1602648426497,
-        "endTime": 1602648430262,
-        "resourceId": "xxxxxx",
-        "sid": "xxxxxx",
-        "recordUid": "xxxxxx",
-        "boardId": "xxxxxx",
-        "boardToken": "xxxxxx",
-        "type": 2,
-        "status": 2,
-        "url": "scenario/recording/xxxxxx/xxxxxx/xxxxxx.m3u8",
-        "recordDetails":[
-            {
-            "url":"xxxx/xxxx.mp4"
-            }
-        ]
-      },
-      {...},
-    ],
-    "count": 17
+{
+    "code": 0,
+    "msg": "Success",
+    "ts": 1610450153520,
+    "data": {
+      "total": 17,
+      "list": [
+          {
+            "recordId": "xxxxxx",
+            "appId": "xxxxxx",
+            "roomUuid": "jason0",
+            "startTime": 1602648426497,
+            "endTime": 1602648430262,
+            "resourceId": "xxxxxx",
+            "sid": "xxxxxx",
+            "recordUid": "xxxxxx",
+            "boardId": "xxxxxx",
+            "boardToken": "xxxxxx",
+            "type": 2,
+            "status": 2,
+            "url": "scenario/recording/xxxxxx/xxxxxx/xxxxxx.m3u8",
+            "recordDetails":[
+                {
+                    "url":"xxxx/xxxx.mp4"
+                }
+            ]
+          },
+          {...},
+      ],
+      "count": 17
+    }
 }
 ```
 
