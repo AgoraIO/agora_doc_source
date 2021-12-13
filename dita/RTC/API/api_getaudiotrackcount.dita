@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="getAudioTrackCount">
+<reference id="api_getaudiotrackcount">
     <title><ph keyref="getAudioTrackCount"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the audio track index of the current music file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取当前音乐文件的音轨索引。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,32 +19,29 @@
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;int?> getAudioTrackCount();</codeblock>
+                <codeblock props="flutter" outputclass="language-dart"/>
             </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
                 <dlentry props="native">
-                    <dt>Since</dt>
+                    <dt>自从</dt>
                     <dd>v3.5.1</dd>
                 </dlentry>
             </dl>
             <note type="note">
                 <ul>
-                    <li props="windows electron unity flutter">This method is for <ph props="windows unity flutter">Android, iOS, and </ph>Windows only.</li>
-                    <li>Call this method after calling <xref keyref="startAudioMixing2"/> and receiving the <xref keyref="onAudioMixingStateChanged"/>(AUDIO_MIXING_STATE_PLAYING)
-                    callback.</li>
+                    <li props="windows electron unity flutter">该方法仅适用于 <ph props="windows unity flutter">Android、iOS 和 </ph>Windows。</li>
+                    <li>你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <xref keyref="onAudioMixingStateChanged"/><ph>(AUDIO_MIXING_STATE_PLAYING)</ph> 回调后调用该方法。</li>
                     <li conkeyref="getAudioFileInfo/audioFormats"/>
                 </ul>
-                
             </note>
         </section>
         <section id="return_values">
-            <title>Returns</title>
+            <title>返回值</title>
             <ul>
-                <li>≥ 0: The audio track index of the current music file, if this method call
-                    succeeds.</li>
-                <li>&lt; 0: Failure.</li>
+                <li>≥ 0: 方法调用成功，返回当前音乐文件的音轨索引。</li>
+                <li>&lt; 0: 方法调用失败。</li>
             </ul>
         </section>
     </refbody>

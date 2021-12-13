@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="setAudioMixingPlaybackSpeed">
+<reference id="api_setaudiomixingplaybackspeed">
     <title><ph keyref="setAudioMixingPlaybackSpeed"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the playback speed of the current music file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置当前音乐文件的播放速度。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,36 +19,35 @@
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setAudioMixingPlaybackSpeed(int speed);</codeblock>
+                <codeblock props="flutter" outputclass="language-dart"/>
             </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
                 <dlentry props="native">
-                    <dt>Since</dt>
+                    <dt>自从</dt>
                     <dd>v3.5.1</dd>
                 </dlentry>
             </dl>
-            <p>Call this method after calling <xref keyref="startAudioMixing2"/> and receiving the <xref keyref="onAudioMixingStateChanged"/>(AUDIO_MIXING_STATE_PLAYING)
-                    callback.</p>
+            <note type="note">你需要在调用 <xref keyref="startAudioMixing2"/> 并收到 <xref keyref="onAudioMixingStateChanged"/><ph>(AUDIO_MIXING_STATE_PLAYING)</ph> 回调后调用该方法。</note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
                     <pt>speed</pt>
-                    <pd>The playback speed. Agora recommends that you limit this value to between 50 and 400, defined as follows:<ul>
-                        <li>50: Half the original speed.</li>
-                        <li>100: The original speed.</li>
-                        <li>400: 4 times the original speed.</li>
+                    <pd>播放速度。推荐取值范围为 [50,400]，其中：<ul>
+                        <li>50: 0.5 倍速。</li>
+                        <li>100: 原始速度。</li>
+                        <li>400: 4 倍速。</li>
                     </ul></pd>
                 </plentry>
             </parml>
         </section>
-        <section id="return_values" props="native electron unity">
-            <title>Returns</title>
+        <section id="return_values">
+            <title>返回值</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
             </ul>
         </section>
     </refbody>

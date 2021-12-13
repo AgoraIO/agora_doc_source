@@ -12,13 +12,14 @@
         </note>
         <ul>
             <li><xref keyref="IRtcEngine"/> provides the main methods that can be invoked by your application.</li>
-            <li props="android ios mac windows"><xref keyref="IRtcEngineEventHandler"/> reports runtime events to the application.</li>
+            <li props="android ios mac windows flutter"><xref keyref="IRtcEngineEventHandler"/> reports runtime events to the application.</li>
             <li props="electron"><xref keyref="IRtcEngineEventHandler">AgoraRtcEngine.on</xref> listens to events during runtime.</li>
             <li><xref keyref="IChannel"/> provides methods that enable real-time communications in a specified channel. By creating multiple <apiname keyref="IChannel"/> objects, the user can join multiple channels at the same time.</li>
-            <li props="ios mac windows android"><xref keyref="IChannelEventHandler"/> listens to events and statistics of a specified channel.</li>
+            <li props="ios mac windows android flutter"><xref keyref="IChannelEventHandler"/> listens to events and statistics of a specified channel.</li>
             <li props="electron"><xref keyref="IChannelEventHandler">AgoraRtcChannel.on</xref> provides callbacks that report events and statistics of a specified channel.</li>
             <li props="windows"><xref keyref="IAudioDeviceManager"/> allows for audio device interface testing.</li>
             <li props="windows"><xref keyref="IVideoDeviceManager"/> allows for video device interface testing.</li>
+            <li props="flutter"><xref keyref="RtcDeviceManager"/> allows for audio and video device interface testing.</li>
         </ul>
         <section id="core_methods">
             <title>Core methods</title>
@@ -886,9 +887,10 @@
                     <stentry><xref keyref="onFacePositionChanged"/></stentry>
                     <stentry><ph conkeyref="onFacePositionChanged/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="audio_routing_control" props="android ios windows unity flutter"><title>Audio routing control</title><p
-                props="windows unity">This method is for Android and iOS only.</p><simpletable>
+                props="windows unity flutter">This method is for Android and iOS only.</p><simpletable>
                 <sthead>
                     <stentry>Method</stentry>
                     <stentry>Description</stentry>
@@ -906,7 +908,8 @@
                     <stentry><xref keyref="isSpeakerphoneEnabled"/></stentry>
                     <stentry><ph conkeyref="isSpeakerphoneEnabled/shortdesc"/></stentry>
                 </strow>
-            </simpletable><simpletable>
+            </simpletable>
+            <simpletable>
                 <sthead>
                     <stentry>Event</stentry>
                     <stentry>Description</stentry>
@@ -915,9 +918,10 @@
                     <stentry><xref keyref="onAudioRouteChanged"/></stentry>
                     <stentry><ph conkeyref="onAudioRouteChanged/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="in-ear_monitoring" props="android ios windows unity flutter"><title>In-ear monitoring</title><p
-                props="windows unity">This method is for Android and iOS only.</p><simpletable>
+                props="windows unity flutter">This method is for Android and iOS only.</p><simpletable>
                 <sthead>
                     <stentry>Method</stentry>
                     <stentry>Description</stentry>
@@ -930,7 +934,8 @@
                     <stentry><xref keyref="setInEarMonitoringVolume"/></stentry>
                     <stentry><ph conkeyref="setInEarMonitoringVolume/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="dual_video_stream_mode">
             <title>Dual video stream mode</title>
             <simpletable>
@@ -1043,7 +1048,7 @@
                 </strow>
             </simpletable>
         </section>
-        <section id="custom_video_module" props="windows"><title>Customizes video module</title><simpletable>
+        <section id="custom_video_module" props="windows unity"><title>Customizes video module</title><simpletable>
                 <sthead>
                     <stentry>Method</stentry>
                     <stentry>Description</stentry>
@@ -1052,7 +1057,8 @@
                     <stentry><xref keyref="setVideoSource"/></stentry>
                     <stentry><ph conkeyref="setVideoSource/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="external_video_data" props="windows unity"><title>External video data (push-mode only)</title><simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1066,7 +1072,8 @@
                     <stentry><xref keyref="pushVideoFrame"/></stentry>
                     <stentry><ph conkeyref="pushVideoFrame/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="external_audio_data" props="windows android ios mac unity"><title>External audio data (push-mode only)</title><simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1076,11 +1083,16 @@
                     <stentry><xref keyref="setExternalAudioSource"/></stentry>
                     <stentry><ph conkeyref="setExternalAudioSource/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="unity">
+                    <stentry><xref keyref="pushAudioFrame1"/></stentry>
+                    <stentry><ph conkeyref="pushAudioFrame1/shortdesc"/></stentry>
+                </strow>
+                <strow props="windows android ios mac">
                     <stentry><xref keyref="pushAudioFrame2"/></stentry>
                     <stentry><ph conkeyref="pushAudioFrame2/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="external_audio_sink" props="windows unity"><title>External audio sink (pull-mode only)</title><simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1094,7 +1106,8 @@
                     <stentry><xref keyref="pullAudioFrame"/></stentry>
                     <stentry><ph conkeyref="pullAudioFrame/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="raw_audio_data" props="windows unity"><title>Raw audio data</title><simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1120,7 +1133,8 @@
                     <stentry><xref keyref="setMixedAudioFrameParameters"/></stentry>
                     <stentry><ph conkeyref="setMixedAudioFrameParameters/shortdesc"/></stentry>
                 </strow>
-            </simpletable><simpletable>
+            </simpletable>
+            <simpletable>
                 <sthead>
                     <stentry>Event</stentry>
                     <stentry>Description</stentry>
@@ -1149,7 +1163,8 @@
                     <stentry><xref keyref="onPlaybackAudioFrameBeforeMixingEx"/></stentry>
                     <stentry><ph conkeyref="onPlaybackAudioFrameBeforeMixingEx/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="raw_video_data" props="windows unity"><title>Raw video data</title><simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1163,7 +1178,8 @@
                     <stentry><xref keyref="unregisterVideoFrameObserver"/></stentry>
                     <stentry><ph conkeyref="unregisterVideoFrameObserver/shortdesc"/></stentry>
                 </strow>
-            </simpletable><simpletable>
+            </simpletable>
+            <simpletable>
                 <sthead>
                     <stentry>Event</stentry>
                     <stentry>Description</stentry>
@@ -1208,7 +1224,8 @@
                     <stentry><xref keyref="onRenderVideoFrameEx"/></stentry>
                     <stentry><ph conkeyref="onRenderVideoFrameEx/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="media_metadata">
             <title>Media metadata</title>
             <p>This method applies only to interactive live streaming.</p>
@@ -1527,6 +1544,19 @@
                 </strow>
             </simpletable>
         </section>
+        <section id="child_process" props="flutter">
+            <title>Child process</title>
+            <simpletable>
+                <sthead>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="getScreenShareHelper"/></stentry>
+                    <stentry><ph conkeyref="getScreenShareHelper/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
         <section id="miscellaneous_audio_control">
             <title>Miscellaneous audio control</title>
             <simpletable>
@@ -1624,8 +1654,7 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceEnableLoopbackRecording"/></stentry>
-                    <stentry><ph conkeyref="videoSourceEnableLoopbackRecording/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableLoopbackRecording/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceEnableVideo"/></stentry>
@@ -1633,13 +1662,11 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceMuteAllRemoteAudioStreams"/></stentry>
-                    <stentry><ph conkeyref="videoSourceMuteAllRemoteAudioStreams/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceMuteAllRemoteAudioStreams/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceMuteAllRemoteVideoStreams"/></stentry>
-                    <stentry><ph conkeyref="videoSourceMuteAllRemoteVideoStreams/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceMuteAllRemoteVideoStreams/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceSetAddonLogFile"/></stentry>
@@ -1647,13 +1674,11 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceSetScreenCaptureContentHint"/></stentry>
-                    <stentry><ph conkeyref="videoSourceSetScreenCaptureContentHint/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceSetScreenCaptureContentHint/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceSetVideoEncoderConfiguration"/></stentry>
-                    <stentry><ph conkeyref="videoSourceSetVideoEncoderConfiguration/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceSetVideoEncoderConfiguration/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceStartPreview"/></stentry>
@@ -1661,13 +1686,11 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceStartScreenCaptureByScreen"/></stentry>
-                    <stentry><ph conkeyref="videoSourceStartScreenCaptureByScreen/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceStartScreenCaptureByScreen/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceStartScreenCaptureByWindow"/></stentry>
-                    <stentry><ph conkeyref="videoSourceStartScreenCaptureByWindow/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceStartScreenCaptureByWindow/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceStopPreview"/></stentry>
@@ -1679,13 +1702,11 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceUpdateScreenCaptureParameters"/></stentry>
-                    <stentry><ph conkeyref="videoSourceUpdateScreenCaptureParameters/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceUpdateScreenCaptureParameters/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceUpdateScreenCaptureRegion"/></stentry>
-                    <stentry><ph conkeyref="videoSourceUpdateScreenCaptureRegion/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceUpdateScreenCaptureRegion/shortdesc"/></stentry>
                 </strow>
             </simpletable>
             <p>The following table lists the callbacks for the second instance.</p>
@@ -1752,23 +1773,19 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceRemoteVideoTransportStats"/></stentry>
-                    <stentry><ph conkeyref="videoSourceRemoteVideoTransportStats/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteVideoTransportStats/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceRemoteAudioTransportStats"/></stentry>
-                    <stentry><ph conkeyref="videoSourceRemoteAudioTransportStats/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteAudioTransportStats/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceAudioDeviceStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceAudioDeviceStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceAudioDeviceStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceVideoDeviceStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceVideoDeviceStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceVideoDeviceStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceNetworkQuality"/></stentry>
@@ -1812,8 +1829,7 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceMediaEngineStartCallSuccess"/></stentry>
-                    <stentry><ph conkeyref="videoSourceMediaEngineStartCallSuccess/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceMediaEngineStartCallSuccess/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceRequestToken"/></stentry>
@@ -1825,13 +1841,11 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceRemoteVideoStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceRemoteVideoStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteVideoStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceTokenPrivilegeWillExpire"/></stentry>
-                    <stentry><ph conkeyref="videoSourceTokenPrivilegeWillExpire/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceTokenPrivilegeWillExpire/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceConnectionStateChanged"/></stentry>
@@ -1847,28 +1861,23 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceRemoteAudioStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceRemoteAudioStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteAudioStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceAudioPublishStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceAudioPublishStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceAudioPublishStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceVideoPublishStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceVideoPublishStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceVideoPublishStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceAudioSubscribeStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceAudioSubscribeStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceAudioSubscribeStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceVideoSubscribeStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceVideoSubscribeStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceVideoSubscribeStateChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
