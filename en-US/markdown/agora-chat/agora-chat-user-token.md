@@ -397,3 +397,7 @@ The Agora Chat SDK triggers the `onTokenExpired` callback only when a token expi
 <div class="alert note">Although you can use the <code>onTokenExpired</code> callback to handle token expiration conditions, Agora recommends that you regularly renew the token (for example every hour) to keep the token valid.</div>
 
 <div class="alert info">The names of methods, callbacks, and enums mentioned above only applies to Java. Refer to the API documentation for names in other platforms.</div>
+
+### Tokens for Agora RTC products
+
+ If you use Agora Chat together with the Agora RTC service, Agora recommends you upgrade to [access token 2](link) for smooth development experience.
