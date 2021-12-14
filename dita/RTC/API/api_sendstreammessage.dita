@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_sendstreammessage">
-    <title><ph keyref="sendStreamMessage"/></title>
+    <title><ph keyref="sendStreamMessage" /></title>
     <shortdesc id="short"><ph id="shortdesc">发送数据流。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -20,17 +20,17 @@
      size_t length) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">sendStreamMessage(streamId: number, data: string): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SendStreamMessage(int streamId, byte[] data);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> sendStreamMessage(int streamId, Uint8List message);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; sendStreamMessage(int streamId, Uint8List message);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
    
    <p id="desc">该方法发送数据流消息到频道内所有用户。SDK 对该方法的实现进行了如下限制：<ul><li>频道内每秒最多能发送 30 个包，且每个包最大为 1 KB。</li><li>每个客户端每秒最多能发送 6 KB 数据。</li><li>频道内每人最多能同时有 5 个数据通道。</li></ul></p>
-   <p>成功调用该方法后，远端会触发 <xref keyref="onStreamMessage"/> 回调，远端用户可以在该回调中获取接收到的流消息；
-       若调用失败，远端会触发 <xref keyref="onStreamMessageError"/> 回调。</p>
+   <p>成功调用该方法后，远端会触发 <xref keyref="onStreamMessage" /> 回调，远端用户可以在该回调中获取接收到的流消息；
+       若调用失败，远端会触发 <xref keyref="onStreamMessageError" /> 回调。</p>
    <note type="attention"><ul>
-       <li>请确保在调用该方法前，已调用 <xref keyref="createDataStream2"/> 创建了数据通道。</li>
+       <li>请确保在调用该方法前，已调用 <xref keyref="createDataStream2" /> 创建了数据通道。</li>
        <li>直播场景下，该方法仅适用于主播用户。</li>
    </ul></note>
         </section>
@@ -38,7 +38,7 @@
    <parml>
        <plentry>
   <pt>streamId</pt>
-  <pd>数据流 ID。可以通过 <apiname keyref="createDataStream2"/> 获取。</pd>
+  <pd>数据流 ID。可以通过 <apiname keyref="createDataStream2" /> 获取。</pd>
        </plentry>
        <plentry>
   <pt props="android flutter">message</pt>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onstreammessageerror">
-    <title><ph keyref="onStreamMessageError"/></title>
+    <title><ph keyref="onStreamMessageError" /></title>
     <shortdesc id="short"><ph id="shortdesc">接收对方数据流消息发生错误的回调。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -37,11 +37,11 @@
                 code: number,
                 missed: number,
                 cached: number
-                ) => void
+                ) =&gt; void
                 ): this;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessageError(uint uid, int streamId, int code, int missed, int cached)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">StreamMessageErrorCallback? streamMessageError;</codeblock>
         </p>
   <p outputclass="codeblock">    
         <codeblock props="android" outputclass="language-java">public void onStreamMessageError(int uid, int streamId, int error, int missed, int cached) {}</codeblock>
@@ -55,13 +55,13 @@
         </section>
         <section id="detailed_desc">
    
-   <p>该回调表示本地用户未收到远端用户调用 <xref keyref="sendStreamMessage"/> 方法发送的流消息。</p>
+   <p>该回调表示本地用户未收到远端用户调用 <xref keyref="sendStreamMessage" /> 方法发送的流消息。</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
+        <section id="parameters"><title><ph keyref="callback-section-title" /></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" />
    <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
        <plentry id="uid">
            <pt props="ios mac android electron unity">uid</pt>

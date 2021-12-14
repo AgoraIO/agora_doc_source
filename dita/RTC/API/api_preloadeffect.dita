@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_preloadeffect">
-    <title><ph keyref="preloadEffect"/></title>
+    <title><ph keyref="preloadEffect" /></title>
     <shortdesc id="short"><ph id="shortdesc">将音效文件加载至内存。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -20,12 +20,12 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual int preloadEffect(int soundId, const char* filePath) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">preloadEffect(soundId: number, filePath: string): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int PreloadEffect(int soundId, string filePath);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> preloadEffect(int soundId, String filePath);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; preloadEffect(int soundId, String filePath);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-            <p>为保证通信畅通，请注意控制预加载音效文件的大小，并在 <apiname keyref="joinChannel2"/> 前就使用该方法完成音效预加载。音频文件支持以下音频格式: mp3、aac、m4a、3gp 和 wav。</p>
+            <p>为保证通信畅通，请注意控制预加载音效文件的大小，并在 <apiname keyref="joinChannel2" /> 前就使用该方法完成音效预加载。音频文件支持以下音频格式: mp3、aac、m4a、3gp 和 wav。</p>
             <note type="attention">该方法不支持在线音频文件。</note>
         </section>
         <section id="parameters"><title>参数</title>
@@ -36,8 +36,7 @@
        </plentry>
        <plentry>
            <pt>filePath</pt>
-           <pd><p id="filePath">播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph
-                                    keyref="filePath-example"/></codeph>。支持的音频格式包括
+           <pd><p id="filePath">播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example" /></codeph>。支持的音频格式包括
                             MP3、AAC、M4A、MP4、WAV、3GP。详见 <xref keyref="filePath-link">支持的媒体格式</xref>。</p></pd>
        </plentry>
    </parml>

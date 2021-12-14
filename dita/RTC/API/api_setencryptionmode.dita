@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setencryptionmode">
-    <title><ph keyref="setEncryptionMode"/></title>
+    <title><ph keyref="setEncryptionMode" /></title>
     <shortdesc id="short"><ph id="shortdesc">启用内置的加密方案。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -17,19 +17,19 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual int setEncryptionMode(const char* encryptionMode) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">setEncryptionMode(encryptionMode: string): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetEncryptionMode(string encryptionMode);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setEncryptionMode(EncryptionMode encryptionMode);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEncryptionMode(EncryptionMode encryptionMode);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
    <dl outputclass="deprecated">
-       <dlentry >
+       <dlentry>
   <dt>弃用：</dt>
-  <dd>该方法自 <ph keyref="deprecate-encryption"/> 起废弃。请改用 <xref keyref="enableEncryption"/> 方法。</dd>
+  <dd>该方法自 <ph keyref="deprecate-encryption" /> 起废弃。请改用 <xref keyref="enableEncryption" /> 方法。</dd>
        </dlentry>
    </dl>
    <p id="desc">Agora Video SDK 支持内置加密方案，默认支持 AES-128-XTS。如需采用其他加密方案，可以调用本方法。同一频道内的所有用户必须设置相同的加密方式和 <parmname>secret</parmname> 才能进行通话。关于这几种加密方式的区别，请参考 AES 加密算法的相关资料。</p>
-   <note type="attention"> 在调用本方法前，请先调用 <xref keyref="setEncryptionSecret"/>
+   <note type="attention"> 在调用本方法前，请先调用 <xref keyref="setEncryptionSecret" />
        启用内置加密功能。</note>
         </section>
         <section id="parameters"><title>参数</title>

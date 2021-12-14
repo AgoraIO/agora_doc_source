@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_playeffect3">
-    <title><ph keyref="playEffect3"/></title>
+    <title><ph keyref="playEffect3" /></title>
     <shortdesc id="short"><ph id="shortdesc">播放指定的本地或在线音效文件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="playEffect3"/>
+                <indexterm keyref="playEffect3" />
             </keywords>
         </metadata>
     </prolog>
@@ -44,8 +44,8 @@
     ): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int PlayEffect(int soundId, string filePath, int loopCount, int startPos, 
     double pitch = 1.0, double pan = 0.0, int gain = 100, bool publish = false);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> playEffect(int soundId, String filePath, int loopCount,
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; playEffect(int soundId, String filePath, int loopCount,
       double pitch, double pan, double gain, bool publish,
       [int? startPos]);</codeblock>
             </p>
@@ -59,24 +59,21 @@
             </dl>
             <p>你可以多次调用该方法，传入不同的 <parmname>soundID</parmname> 和
                     <parmname>filePath</parmname>，同时播放多个音效文件。为获得最佳用户体验，Agora 推荐同时播放的音效文件不超过 3 个。
-                音效文件播放结束后，SDK 会触发 <apiname keyref="onAudioEffectFinished"/> 回调。 <note
-                    type="attention">该方法需要在加入频道后调用。</note></p>
+                音效文件播放结束后，SDK 会触发 <apiname keyref="onAudioEffectFinished" /> 回调。 <note type="attention">该方法需要在加入频道后调用。</note></p>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
                     <pt>soundId</pt>
-                    <pd>音效的 ID。每个音效的 ID 具有唯一性。 <note type="attention">如果你已通过 <xref
-                                keyref="preloadEffect"/> 将音效加载至内存，请确保该参数与 <apiname
-                                keyref="preloadEffect"/> 中设置的 <parmname>soundId</parmname>
+                    <pd>音效的 ID。每个音效的 ID 具有唯一性。 <note type="attention">如果你已通过 <xref keyref="preloadEffect" /> 将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的 <parmname>soundId</parmname>
                             相同。</note>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>filePath</pt>
-                    <pd id="filePath"><p conkeyref="preloadEffect/filePath"/>
-                        <note type="attention">如果你已通过 <xref keyref="preloadEffect"/>
-                            将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect"/> 中设置的
+                    <pd id="filePath"><p conkeyref="preloadEffect/filePath" />
+                        <note type="attention">如果你已通过 <xref keyref="preloadEffect" />
+                            将音效加载至内存，请确保该参数与 <apiname keyref="preloadEffect" /> 中设置的
                                 <parmname>filePath</parmname> 相同。</note>
                     </pd>
                 </plentry>
@@ -105,12 +102,12 @@
                     <pt>gain</pt>
                     <pd>音效的音量。取值范围为 [0.0,100.0]。默认值为 100.0，表示原始音量。取值越小，则音量越低。</pd>
                 </plentry>
-                <plentry >
+                <plentry>
                     <pt>publish</pt>
                     <pd><p>是否将音效发布至远端： <ul>
-                                <li><codeph><ph keyref="true"/></codeph>:
+                                <li><codeph><ph keyref="true" /></codeph>:
                                     将音效发布至远端。本地用户和远端用户都能听到音效。</li>
-                                <li><codeph><ph keyref="false"/></codeph>:
+                                <li><codeph><ph keyref="false" /></codeph>:
                                     不将音效发布至远端。只有本地用户能听到音效。</li>
                             </ul></p>
                     </pd>
