@@ -1,18 +1,16 @@
 
-[COMPANY]: Agora
-[CHAT]: 'AgoraChat'
-[PLATFORM]: "AgoraPlatform"
 
 # Implement the groups lifecycle
 
-[CHAT] supplies complete group and chat room management capabilities. This includes:
+Agora Chat supplies complete group and chat room management capabilities. This includes:
+
 
 - Lifecycle - create and delete groups, update the group name, description and subject. When you create a group you set it to be public or private. You also stipulate if users can request to join the group, or if they can only join on receiving an invitation.  
 - Membership - set a group to be invitation only, or open to everyone. Add and remove users to the group, and stop unwanted users from joining the group. You can also block users who have already joined the group. 
 - Roles - each user in a group is either a member, an administrator, or one of the owners. Permissions are different for each role.
 - Announcements - publishing group announcements.
 
-This BETA documentation shows you how to implement [CHAT] group functionality in your app. 
+This BETA documentation shows you how to implement Agora Chat group functionality in your app. 
 
 ## Understand the tech
 
@@ -56,7 +54,7 @@ In order to manage groups, you need to enable your user to read and input the co
 
 To add this form of UI to your app you need: 
 
-* UI elements in `activity_main.xml`
+* UI elements in `activity_main.xml`. For example:
 
    As you see in this layout, each `Button` is linked to a method using the `android:onClick` element. 
     ```xml
@@ -159,7 +157,7 @@ To add this form of UI to your app you need:
                 android:layout_height="45dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="40dp"
-                android:onClick="deleteGroup"
+                android:onClick="joinGroup"
                 android:text="Join"
                 app:layout_constraintLeft_toRightOf="@id/btn_update_group"
                 app:layout_constraintTop_toBottomOf="@id/et_reason" />
@@ -185,7 +183,7 @@ To add this form of UI to your app you need:
                 tools:layout_editor_absoluteY="541dp" />
    ```
 
-* Packages in `MainActivity`:
+* Packages in `MainActivity`. For example:
 
    The minimum packages you need to implement Agora Chat group functionality are:
    ```java
@@ -195,16 +193,15 @@ To add this form of UI to your app you need:
    import io.agora.GroupChangeListener;
    import io.agora.chat.MucSharedFile;
    ```
-* Variables to hold updates to the UI and retain group information:
+* Variables to hold updates to the UI and retain group information. For example:
    ```java
     private EditText et_group;
     private EditText et_description;
     private EditText et_reason;
     private Switch sw_private_group;
     private Switch sw_group_invite;
-    private RecyclerView rv_group_list;  
   ```
-* Connection between the variables to the UI elements in your `initView()` method:
+* Connection between the variables to the UI elements in your `initView()` method. For example:
    ```java
    // Group UI items
    et_group = findViewById(R.id.et_group);
@@ -212,7 +209,6 @@ To add this form of UI to your app you need:
    et_reason = findViewById(R.id.et_reason);
    sw_private_group = findViewById(R.id.sw_private_group);
    sw_group_invite = findViewById(R.id.sw_group_invite);
-   rv_group_list = findViewById(R.id.group_list);
   ```
 
 With elements such as these in your app, you can create and update group functionality. 
@@ -232,8 +228,13 @@ In order to manage groups, in `MainActivity`, create the methods called when use
         String description = et_group.getText().toString().trim();
         String reason = et_group.getText().toString().trim();
         groupMembers = new ArrayList<String>();
-        groupMembers.add("gnn");
+        //In a production app, you retrieve the possible members from the current users contacts
+        //groupMembers.add("gnn");
 
+        if (TextUtils.isEmpty(groupName) || TextUtils.isEmpty(description) || TextUtils.isEmpty(reason)) {
+            LogUtils.showErrorToast(MainActivity.this, tv_log, getString(R.string.username_or_pwd_miss));
+            return;
+        }
         //Set the group options
         GroupOptions options = new GroupOptions();
         options.maxUsers = 200;
@@ -267,12 +268,25 @@ In order to manage groups, in `MainActivity`, create the methods called when use
 * **Modify**: the group owner only can update the group name and description. No event is sent when group information is updated. 
    ```java
     public void updateGroup(View view) {
+        //If you have not created a group, exit
+        if (myGroup == null) {
+            LogUtils.showErrorToast(MainActivity.this, tv_log, "Create a group first.");
+            return;
+        }
+
         //Retrieve the name and details for the group from the UI.
         String groupName = et_group.getText().toString().trim();
         String description = et_group.getText().toString().trim();
+
         String myGroupId = myGroup.getGroupId();
         String oldGroupName = myGroup.getGroupName();
+
         LogUtils.showErrorLog(tv_log, "Start create update:" + oldGroupName + " to " + myGroup + " and description to " + description);
+        if (TextUtils.isEmpty(groupName) || TextUtils.isEmpty(description) || TextUtils.isEmpty(oldGroupName)) {
+            LogUtils.showErrorToast(MainActivity.this, tv_log, getString(R.string.username_or_pwd_miss));
+            return;
+        }
+
         //Update the group with the new details
         try {
             //Check the current user has owner permissions
@@ -294,6 +308,12 @@ In order to manage groups, in `MainActivity`, create the methods called when use
 * **Disband**: the group owner only can delete the group. When a group is destroyed, an `onGroupDestroyed (String groupId, String groupName)` event is sent to all members of this group. 
    ```java
     public void deleteGroup(View view) {
+
+        //If you have not created a group, exit
+        if (myGroup == null) {
+            LogUtils.showErrorToast(MainActivity.this, tv_log, "Create a group first.");
+            return;
+        }
         //Retrieve the name and details for the group from the UI.
         String myGroupId = myGroup.getGroupId();
         String groupName = myGroup.getGroupName();
@@ -311,7 +331,7 @@ In order to manage groups, in `MainActivity`, create the methods called when use
             LogUtils.showLog(tv_log, "Update failure" + e.getLocalizedMessage());
         }
         LogUtils.showErrorLog(tv_log, "End update group:" + groupName);
-    }  
+    }
    ```
 
 ### Manage group membership
@@ -353,22 +373,22 @@ The workflow for group membership is:
        This is essentially the same procedure as adding a user. Check the current user is the group owner, then remove `userName` from the group.    
 
        ```java
-           public void removeUsers(View view) {
-               //Retrieve the name and details for the group from the UI.
-               String userName = et_group.getText().toString().trim();
-               String myGroupId = myGroup.getGroupId();
-               LogUtils.showErrorLog(tv_log, "Start remove user:" + userName);
-               try {
-                  //Check the current user has owner permissions
-                  if (ChatClient.getInstance().getCurrentUser().equals(myGroup.getOwner())) {
-                       ChatClient.getInstance().groupManager().removeUserFromGroup(myGroupId, userName);
-                  }
-               } catch (final ChatException e) {
-                  e.printStackTrace();
-               LogUtils.showLog(tv_log, "Update failure" + e.getLocalizedMessage());
-               }
-                  LogUtils.showErrorLog(tv_log, "End update group:" + userNames);
-               }
+       public void removeUsers(View view) {
+           //Retrieve the name and details for the group from the UI.
+           String userName = et_group.getText().toString().trim();
+           String myGroupId = myGroup.getGroupId();
+           LogUtils.showErrorLog(tv_log, "Start remove user:" + userName);
+           try {
+              //Check the current user has owner permissions
+              if (ChatClient.getInstance().getCurrentUser().equals(myGroup.getOwner())) {
+                   ChatClient.getInstance().groupManager().removeUserFromGroup(myGroupId, userName);
+              }
+           } catch (final ChatException e) {
+              e.printStackTrace();
+              LogUtils.showLog(tv_log, "Update failure" + e.getLocalizedMessage());
+           }
+           LogUtils.showErrorLog(tv_log, "End update group:" + userNames);
+      }
        ```
 
 - **For public groups**:
@@ -384,9 +404,40 @@ The workflow for group membership is:
           final List<GroupInfo> returnGroups = result.getData();
           ```
     2. In your UI, present the list of groups so the current user can choose one to join. 
-    3. Request access to the group.
-          ```java
-          ChatClient.getInstance().groupManager().joinGroup(groupid);
+       1. Request access to the group.
+             ```java
+             public void joinGroup( View view) {
+               //Retrieve the group ID from the UI.
+               String groupID = et_group.getText().toString().trim();
+               //In a production app you would retrieve a list of groups so the user can choose one in the UI
+               if (TextUtils.isEmpty(groupID) ) {
+                 LogUtils.showErrorToast(MainActivity.this, tv_log, "Add a valid group ID");
+                 return;
+               }
+               try {
+                 //Retrieve the group from Agora Chat
+                 Group group = ChatClient.getInstance()
+                   .groupManager()
+                   .getGroupFromServer(groupID);
+
+                 //If the group exists, ask to join a members only group or join a public group directly.
+                 if (group != null) {
+                   if (group.isMemberOnly()) {
+                       ChatClient.getInstance()
+                               .groupManager()
+                               .applyJoinToGroup(group.getGroupId(), "apply to join");
+                   } else {
+                     ChatClient.getInstance().groupManager().joinGroup(group.getGroupId());
+                   }
+                 }
+                 else
+                   LogUtils.showErrorToast(MainActivity.this, tv_log, "Group does not exist");
+
+               } catch (ChatException e) {
+                 e.printStackTrace();
+                 return;
+               }
+          }
           ```
     4. If a user is not interested in the activity in a group, they can easily leave:
           ```java
