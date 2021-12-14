@@ -404,41 +404,41 @@ The workflow for group membership is:
           final List<GroupInfo> returnGroups = result.getData();
           ```
     2. In your UI, present the list of groups so the current user can choose one to join. 
-       1. Request access to the group.
-             ```java
-             public void joinGroup( View view) {
-               //Retrieve the group ID from the UI.
-               String groupID = et_group.getText().toString().trim();
-               //In a production app you would retrieve a list of groups so the user can choose one in the UI
-               if (TextUtils.isEmpty(groupID) ) {
-                 LogUtils.showErrorToast(MainActivity.this, tv_log, "Add a valid group ID");
-                 return;
-               }
-               try {
-                 //Retrieve the group from Agora Chat
-                 Group group = ChatClient.getInstance()
-                   .groupManager()
-                   .getGroupFromServer(groupID);
+    3. Request access to the group.
+          ```java
+          public void joinGroup( View view) {
+            //Retrieve the group ID from the UI.
+            String groupID = et_group.getText().toString().trim();
+            //In a production app you would retrieve a list of groups so the user can choose one in the UI
+            if (TextUtils.isEmpty(groupID) ) {
+              LogUtils.showErrorToast(MainActivity.this, tv_log, "Add a valid group ID");
+              return;
+            }
+            try {
+              //Retrieve the group from Agora Chat
+              Group group = ChatClient.getInstance()
+                .groupManager()
+                .getGroupFromServer(groupID);
 
-                 //If the group exists, ask to join a members only group or join a public group directly.
-                 if (group != null) {
-                   if (group.isMemberOnly()) {
-                       ChatClient.getInstance()
-                               .groupManager()
-                               .applyJoinToGroup(group.getGroupId(), "apply to join");
-                   } else {
-                     ChatClient.getInstance().groupManager().joinGroup(group.getGroupId());
-                   }
-                 }
-                 else
-                   LogUtils.showErrorToast(MainActivity.this, tv_log, "Group does not exist");
+              //If the group exists, ask to join a members only group or join a public group directly.
+              if (group != null) {
+                if (group.isMemberOnly()) {
+                    ChatClient.getInstance()
+                            .groupManager()
+                            .applyJoinToGroup(group.getGroupId(), "apply to join");
+                } else {
+                  ChatClient.getInstance().groupManager().joinGroup(group.getGroupId());
+                }
+              }
+              else
+                LogUtils.showErrorToast(MainActivity.this, tv_log, "Group does not exist");
 
-               } catch (ChatException e) {
-                 e.printStackTrace();
-                 return;
-               }
-          }
-          ```
+            } catch (ChatException e) {
+              e.printStackTrace();
+              return;
+            }
+       }
+       ```
     4. If a user is not interested in the activity in a group, they can easily leave:
           ```java
           //List the groups the current user is member of.
