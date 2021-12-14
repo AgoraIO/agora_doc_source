@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_logconfig">
-    <title><ph keyref="LogConfig"/></title>
+    <title><ph keyref="LogConfig" /></title>
     <shortdesc id="short"><ph id="shortdesc">Agora SDK 日志文件的配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -19,8 +19,8 @@
 </codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
                 <codeblock props="windows unity" outputclass="language-cpp">struct LogConfig {
     const char* filePath;
     int fileSize;
@@ -36,8 +36,19 @@
     fileSize: number,
     level: LOG_LEVEL
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class LogConfig {
+ 
+  String? filePath;
+  int? fileSize;
+  LogLevel? level;
+
+  LogConfig({
+    this.filePath,
+    this.fileSize,
+    this.level,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
@@ -50,15 +61,14 @@
    </dl>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
   <pt>filePath</pt>
   <pd>
       <p>日志文件的绝对路径或相对路径（以 \ 或 / 结尾）。请确保你指定的目录存在且可写。你可以通过该参数修改日志文件名。</p>
                         <p props="windows electron rn">默认路径为：<ul>
-                                <li props="windows rn">Android: <filepath id="android-path"
-                                        >/storage/emulated/0/Android/data/&lt;package
+                                <li props="windows rn">Android: <filepath id="android-path">/storage/emulated/0/Android/data/&lt;package
                                         name&gt;/files/agorasdk.log/</filepath>。</li>
                                 <li props="windows rn">iOS: <filepath id="ios-path">App
                                         Sandbox/Library/caches/agorasdk.log/</filepath>。</li>
@@ -98,7 +108,7 @@
        </plentry>
        <plentry>
   <pt>level</pt>
-  <pd>Agora SDK 的日志输出等级，详见 <xref keyref="LOG_LEVEL"/>。</pd>
+  <pd>Agora SDK 的日志输出等级，详见 <xref keyref="LOG_LEVEL" />。</pd>
        </plentry>
    </parml>
         </section></refbody>

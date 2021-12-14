@@ -30,22 +30,22 @@
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_LOCAL_VIDEO_FRAME, cb: (
      width: number, 
      height: number, 
-     elapsed: number) => void
+     elapsed: number) =&gt; void
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalVideoFrame(int width, int height, int elapsed)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">VideoFrameCallback? firstLocalVideoFrame;</codeblock>
         </p>
           </section>
           <section id="detailed_desc">
                <p id="desc">本地视频首帧显示在本地视图上时，SDK 会触发此回调。</p>
           </section>
           <section id="parameters">
-               <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
+               <title><ph keyref="callback-section-title" /></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" />
                <parml>
                     <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                         <pt/>
-                         <pd/>
+                         <pt />
+                         <pd />
                     </plentry>
                     <plentry props="ios mac">
                          <pt>size</pt>
@@ -61,9 +61,8 @@
                     </plentry>
                     <plentry>
                          <pt>elapsed</pt>
-                         <pd> 从调用 <apiname keyref="joinChannel2"/> 到发生此事件过去的时间（毫秒）。如果在 <apiname
-                                   keyref="joinChannel2"/> 前调用了 <xref keyref="startPreview"/>，则是从
-                                   <apiname keyref="startPreview"/> 到发生此事件过去的时间。 </pd>
+                         <pd> 从调用 <apiname keyref="joinChannel2" /> 到发生此事件过去的时间（毫秒）。如果在 <apiname keyref="joinChannel2" /> 前调用了 <xref keyref="startPreview" />，则是从
+                                   <apiname keyref="startPreview" /> 到发生此事件过去的时间。 </pd>
                     </plentry>
                </parml>
           </section>

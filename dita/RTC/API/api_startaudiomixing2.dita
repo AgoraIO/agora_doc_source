@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiomixing2">
-    <title><ph keyref="startAudioMixing2"/></title>
+    <title><ph keyref="startAudioMixing2" /></title>
     <shortdesc id="short"><ph id="shortdesc">开始播放音乐文件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startAudioMixing2"/>
+                <indexterm keyref="startAudioMixing2" />
             </keywords>
         </metadata>
     </prolog>
@@ -24,8 +24,10 @@
   startPos?: number,
 ): number </codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioMixing(string filePath, bool loopback, bool replace, int cycle, int startPos);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioMixing(
+      String filePath, bool loopback, bool replace, int cycle,
+      [int? startPos]);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
@@ -35,28 +37,27 @@
                     <dd>v3.4.0</dd>
                 </dlentry>
             </dl>
-            <p conkeyref="startAudioMixing/audiomixing_detailed"/>
+            <p conkeyref="startAudioMixing/audiomixing_detailed" />
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
                     <pt>filePath</pt>
-                    <pd id="filepath"><p>播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph
-                                    keyref="filePath-example"/></codeph>。支持的音频格式包括
+                    <pd id="filepath"><p>播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example" /></codeph>。支持的音频格式包括
                             MP3、AAC、M4A、MP4、WAV、3GP。详见 <xref keyref="filePath-link">支持的媒体格式</xref>。</p>
                     </pd>
                 </plentry>
                 <plentry conkeyref="startAudioMixing/loopback">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry conkeyref="startAudioMixing/replace">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry conkeyref="startAudioMixing/cycle">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry>
                     <pt>startPos</pt>
