@@ -2,7 +2,7 @@
 
 Authentication is the act of validating the identity of each user before they access your system. Agora uses digital tokens to authenticate users and their privileges before they access an Agora service, such as joining an Agora call, or logging into the real-time messaging system.
 
-Agora Chat uses two types of tokens with different privieleges:
+Agora Chat uses two types of tokens with different privileges:
 
 - App token: App tokens provide the most privileges and are required when you call the Agora Chat RESTful APIs to manage your Agora Chat application. For details, see [Generate an App Token for Authentication](link).
 - User token: User tokens are used to authenticate users when they log in to your Agora Chat application.
@@ -18,8 +18,8 @@ A user token is a dynamic key generated on your app server that is valid for a m
 
 - The App ID of your Agora project
 - The App Certificate of your Agora project
-- The [UUID](link) of the user to be authenticated.
-- The Unix timestamp when the token expires.
+- The [UUID](link) of the user to be authenticated
+- The valid duration of the token.
 
 ## Prerequisites
 
@@ -32,57 +32,6 @@ Ensure that you meet the following requirements before proceeding:
 ## Implementation
 
 This section shows you how to supply and consume a token that gives rights to specific functionality to authenticated users using the source code provided by Agora.
-
-<a name="uuid"></a>
-
-### Get the UUID
-
-When a user is registered, Agora automatically assigns a UUID to identify that user.
-
-You can get the UUID from the responses of the [User Account RESTful APIs](link).
-
-The following example sends a request to register a user.
-
-**Request example**
-
-```shell
-# Replace <YourAppToken> with an app token generated on your server.
-curl -X POST -H "Authorization: Bearer <YourAppToken>" -i "https://a1.agora.com/{org-name}/{app-name}/users" -d '[
-   {
-     "username": "user1",
-     "password": "123",
-     "nickname": "testuser"
-   }
- ]'
-```
-
-**Response example**
-
-The UUID is in the response.
-
-```shell
-{
-   "action": "post",
-   "application": "8be024f0-e978-11e8-b697-5d598d5f8402",
-   "path": "/users",
-   "uri": "https://a1.agora.com/{org-name}/{app-name}/users",
-   "entities": [
-       {
-           "uuid": "0ffe************214b",
-           "type": "user",
-           "created": 1542795196504,
-           "modified": 1542795196504,
-           "username": "user1",
-           "activated": true,
-           "nickname": "testuser"
-       }
-   ],
-   "timestamp": 1542795196515,
-   "duration": 0,
-   "organization": "{org-name}",
-   "applicationName": "{app-name}"
-}
-```
 
 ### Deploy a token server
 
@@ -216,7 +165,58 @@ This sample server is for demonstration purposes only. Do not use it in a produc
 6. To start the server, click the green triangle button, and select **Debug "AgoraChatTokenStarter..."**.
    ![start the server](https://web-cdn.agora.io/docs-files/1639043996061)
 
-## Use tokens for user authentication
+<a name="uuid"></a>
+
+### Get the UUID
+
+When a user is registered, Agora automatically assigns a UUID to identify that user.
+
+You can get the UUID through the [User Account RESTful APIs](link).
+
+The following example registers a user with the username "user1" and password "123".
+
+**Request example**
+
+```shell
+# Replace <YourAppToken> with an app token generated on your server.
+curl -X POST -H "Authorization: Bearer <YourAppToken>" -i "https://a1.agora.com/{org-name}/{app-name}/users" -d '[
+   {
+     "username": "user1",
+     "password": "123",
+     "nickname": "testuser"
+   }
+ ]'
+```
+
+**Response example**
+
+The UUID is in the response.
+
+```shell
+{
+   "action": "post",
+   "application": "8be024f0-e978-11e8-b697-5d598d5f8402",
+   "path": "/users",
+   "uri": "https://a1.agora.com/{org-name}/{app-name}/users",
+   "entities": [
+       {
+           "uuid": "0ffe************214b",
+           "type": "user",
+           "created": 1542795196504,
+           "modified": 1542795196504,
+           "username": "user1",
+           "activated": true,
+           "nickname": "testuser"
+       }
+   ],
+   "timestamp": 1542795196515,
+   "duration": 0,
+   "organization": "{org-name}",
+   "applicationName": "{app-name}"
+}
+```
+
+### Use tokens for user authentication
 
 This section uses the Web client as an example to show how to use a token for client-side user authentication.
 
@@ -250,11 +250,11 @@ This sample client is for demonstration purposes only. Do not use it in a produc
         <h1>Token demo</h1>
         <div class="input-field">
             <label>Username</label>
-            <input type="text" placeholder="Username" id="userID">
+            <input type="text" placeholder="Username" id="username">
         </div>
         <div class="input-field">
-            <label>Password</label>
-            <input type="passward" placeholder="Password" id="password">
+            <label>UUID</label>
+            <input type="text" placeholder="UUID" id="uuid">
         </div>
         <div>
             <button type="button" id="login">Login</button>
@@ -267,104 +267,74 @@ This sample client is for demonstration purposes only. Do not use it in a produc
     </html>
    ```
 
-4. Create the app logic by editing `client.js` with the following content. Then replace `<Your App Key>` with your App Key. You also need to replace `<Your Host URL and port>` with the host URL and port of the local Java server you have just deployed, such as `10.53.3.234:8090`.
+4. Create the app logic by editing `client.js` with the following content. Then replace `<Your App Key>` with your App Key.
 
    ```js
    WebIM.conn = new WebIM.connection({
-     appKey: "<Your App Key>",
-     isDebug: true,
+     appKey: "<Your App Key>"
    });
 
-   function postData(url, data) {
-     return fetch(url, {
-       body: JSON.stringify(data),
-       cache: "no-cache",
-       headers: {
-         "content-type": "application/json",
-       },
-       method: "POST",
-       mode: "cors",
-       redirect: "follow",
-       referrer: "no-referrer",
-     }).then((response) => response.json());
-   }
-
-   // Login
+   // Login with username and token
+   let username, uuid;
    document.getElementById("login").onclick = function () {
-     username = document.getElementById("userID").value.toString();
-     password = document.getElementById("password").value.toString();
-     // fetch token with username and password
-     postData("http://<Your Host URL and port>/token", {
-       userAccount: username,
-       userPassword: password,
-     }).then((res) => {
-       let agoraToken = res.accessToken;
-       let chatUserName = res.chatUserName;
+     username = document.getElementById("username").value.toString();
+     uuid = document.getElementById("uuid").value.toString();
+     // fetch token with uuid
+     fetch(`http://localhost:8090/chat/user/uuid/${uuid}/token`)
+         .then((token) => {
        // Login to Agora Chat with username and token
        WebIM.conn.open({
-         user: chatUserName,
-         agoraToken: agoraToken,
+         user: username,
+         agoraToken: token,
        });
      });
    };
 
-   // Add listeners
-   WebIM.conn.listen({
+   // Add an event handler
+   WebIM.conn.addEventHandler('AUTHHANDLER', {
      // Connected to the server
-     onOpened: function (message) {
-       document
-         .getElementById("log")
-         .appendChild(document.createElement("div"))
-         .append("Connect success !");
+     onConnected: () => {
+         document.getElementById("log").appendChild(document.createElement('div')).append("Connect success !")
      },
-     // Received a text message
-     onTextMessage: function (message) {
-       console.log(message);
-       document
-         .getElementById("log")
-         .appendChild(document.createElement("div"))
-         .append("Message from: " + message.from + " Message: " + message.data);
+     // Receive a text message
+     onTextMessage: (message) => {
+         console.log(message)
+         document.getElementById("log").appendChild(document.createElement('div')).append("Message from: " + message.from + " Message: " + message.data)
      },
-     // Renew token when the token is about to expire
-     onTokenWillExpire: function (params) {
-       document
-         .getElementById("log")
-         .appendChild(document.createElement("div"))
-         .append("Token is about to expire");
-       refreshToken(username, password);
+     // Renew the token when the token is about to expire
+     onTokenWillExpire: (params) => {
+         document.getElementById("log").appendChild(document.createElement('div')).append("Token is about to expire")
+         refreshToken(uuid)
      },
-     // Renew token when the token has expired
-     onTokenExpired: function (params) {
-       document
-         .getElementById("log")
-         .appendChild(document.createElement("div"))
-         .append("The token has expired");
-       refreshToken(username, password);
+     // Renew the token when the token has expired
+     onTokenExpired: (params) => {
+         document.getElementById("log").appendChild(document.createElement('div')).append("The token has expired")
+         refreshToken(uuid)
      },
-     onError: function (error) {
-       console.log("on error", error);
-     },
+     onError: (error) => {
+         console.log('on error', error)
+     }
    });
 
-   function refreshToken(username, password) {
-     postData("http://<Your Host URL and port>/token", {
-       userAccount: username,
-       userPassword: password,
-     }).then((res) => {
-       let agoraToken = res.accessToken;
-       WebIM.conn.renewToken(agoraToken);
-     });
+  // Renew token
+  function refreshToken(uuid) {
+     fetch(`http://localhost:8090/chat/user/uuid/${uuid}/token`)
+         .then((token) => {
+              WebIM.conn.renewToken(token)
+         })
    }
    ```
 
    In the code example, you can see that token is related to the following code logic in the client:
 
-   - Call `open` to log in to the RTM system with token and username. You must use the username that is used to register the user and get the UUID.
+   - Call `open` to log in to the Agora Chat system with token and username. You must use the username that is used to register the user and get the UUID.
    - Fetch a new token from the app server and call `renewToken` to update the token of the SDK when the token is about to expire and when the token expires. Agora recommends that you regularly (such as every hour) generate a token from the app server and call `renewToken` to update the token of the SDK to ensure that the token is always valid.
 
 5. Open `index.html` with a supported browser to perform the following actions:
    - Successfully logging in to the Agora Chat system.
    - Renewing a token when it is about to expire.
+   
+To run this sample project, you need to input a username and the corresponding UUID. See [Get the UUID](uuid) for details.
 
 ## Reference
 
@@ -387,9 +357,9 @@ Agora provides an open-source [AgoraDynamicKey](https://github.com/AgoraIO/Tools
 This section introduces the method to generate a user token. Take Java as an example:
 
 ```java
-public String buildUserToken(String appId, String appCertificate, String userId, int expire) {
+public String buildUserToken(String appId, String appCertificate, String uuid, int expire) {
         AccessToken2 accessToken = new AccessToken2(appId, appCertificate, expire);
-        AccessToken2.Service serviceChat = new AccessToken2.ServiceChat(userId);
+        AccessToken2.Service serviceChat = new AccessToken2.ServiceChat(uuid);
 
         serviceChat.addPrivilegeChat(AccessToken2.PrivilegeChat.PRIVILEGE_CHAT_USER, expire);
         accessToken.addService(serviceChat);
@@ -407,7 +377,7 @@ public String buildUserToken(String appId, String appCertificate, String userId,
 | :------------- | :------------------------------------------------------------------------------------------------------------------------------------- |
 | appId          | The App ID of your Agora project.                                                                                                      |
 | appCertificate | The App Certificate of your Agora project.                                                                                             |
-| userId         | The unique identifier (UUID) of a user in the Agora Chat system. You need get the UUID through RESTful APIs. See [Get the UUID](uuid). |
+| uuid         | The unique identifier (UUID) of a user in the Agora Chat system. You need get the UUID through RESTful APIs. See [Get the UUID](uuid). |
 | expire         | The valid duration (in seconds) of the token. The maximum is 86,400, that is, 24 hours.                                                |
 
 ## Considerations
