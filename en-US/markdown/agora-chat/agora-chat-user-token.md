@@ -1,13 +1,13 @@
 # Authenticate Your Users with Tokens
 
-Authentication is the act of validating the identity of each user before they access your system. Agora uses digital tokens to authenticate users and their privileges before they access an Agora service, such as joining an Agora call, or logging into the real-time messaging system.
+Authentication is the process of validating identities. Agora uses digital tokens to authenticate users and their privileges before they access an Agora service, such as joining an Agora call, or logging in to Agora Chat.
 
-Agora Chat uses two types of tokens with different privileges:
+To securely connect to Agora Chat, you use the following token types:
 
-- App token: App tokens provide the most privileges and are required when you call the Agora Chat RESTful APIs to manage your Agora Chat application. For details, see [Generate an App Token for Authentication](link).
-- User token: User tokens are used to authenticate users when they log in to your Agora Chat application.
+- User token: Connect to Agora Chat using the Agora Chat SDK. User tokens are used to authenticate users when they log in to your Agora Chat application. 
+- App token: Connect to Agora Chat using the RESTful API. App tokens grant admin privileges for the app developer to manage the Agora Chat applications. For details, see [Generate an App Token for Authentication](link).
 
-This page shows you how to create an Agora Chat token server and an Agora Chat client app. The client app retrieves a user token from the token server. This token authenticates the current user when the user accesses the Agora Chat service.
+This page shows you how to create an Agora Chat user token server and an Agora Chat client app. The client app retrieves a user token from the token server. This token authenticates the current user when the user accesses the Agora Chat service.
 
 ## Understand the tech
 
