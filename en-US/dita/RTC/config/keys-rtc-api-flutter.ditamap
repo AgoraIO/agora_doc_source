@@ -483,6 +483,13 @@
                          </keywords>
                     </topicmeta>
                </keydef>
+               <keydef keys="IChannel_enableRemoteSuperResolution" href="../API/api_ichannel_enableremotesuperresolution.dita">
+                    <topicmeta>
+                         <keywords>
+                              <keyword>enableRemoteSuperResolution</keyword>
+                         </keywords>
+                    </topicmeta>
+               </keydef>
                <keydef keys="IChannel_registerMediaMetadataObserver" href="../API/api_ichannel_registermediametadataobserver.dita">
                     <topicmeta>
                          <keywords>
@@ -685,14 +692,6 @@
                     <topicmeta>
                          <keywords>
                               <keyword>getConnectionState</keyword>
-                         </keywords>
-                    </topicmeta>
-               </keydef>
-
-               <keydef keys="IChannel_enableRemoteSuperResolution" href="../API/api_ichannel_enableremotesuperresolution.dita">
-                    <topicmeta>
-                         <keywords>
-                              <keyword>enableRemoteSuperResolution</keyword>
                          </keywords>
                     </topicmeta>
                </keydef>
@@ -1434,7 +1433,15 @@
                     </topicmeta>
                </keydef>
           </topichead>
-
+          <topichead navtitle="Video snapshot">
+               <keydef keys="takeSnapshot" href="../API/api_takesnapshot.dita">
+                    <topicmeta>
+                         <keywords>
+                              <keyword>takeSnapshot</keyword>
+                         </keywords>
+                    </topicmeta>
+               </keydef>
+          </topichead>
           <topichead navtitle="Encryption">
                <keydef keys="enableEncryption" href="../API/api_enableencryption.dita">
                     <topicmeta>
@@ -1478,6 +1485,36 @@
                     <topicmeta>
                          <keywords>
                               <keyword>stopAudioRecording</keyword>
+                         </keywords>
+                    </topicmeta>
+               </keydef>
+          </topichead>
+          <topichead navtitle="Media recorder">
+               <keydef keys="getMediaRecorder">
+                    <topicmeta>
+                         <keywords>
+                              <keyword>getMediaRecorder</keyword>
+                         </keywords>
+                    </topicmeta>
+               </keydef>
+               <keydef keys="startRecording">
+                    <topicmeta>
+                         <keywords>
+                              <keyword>startRecording</keyword>
+                         </keywords>
+                    </topicmeta>
+               </keydef>
+               <keydef keys="stopRecording">
+                    <topicmeta>
+                         <keywords>
+                              <keyword>stopRecording</keyword>
+                         </keywords>
+                    </topicmeta>
+               </keydef>
+               <keydef keys="releaseRecorder">
+                    <topicmeta>
+                         <keywords>
+                              <keyword>releaseRecorder</keyword>
                          </keywords>
                     </topicmeta>
                </keydef>
@@ -2634,6 +2671,22 @@
                     </topicmeta>
                </keydef>
           </topichead>
+          <topichead navtitle="Media recorder events">
+               <keydef keys="onRecorderStateChanged">
+                    <topicmeta>
+                         <keywords>
+                              <keyword>onRecorderStateChanged</keyword>
+                         </keywords>
+                    </topicmeta>
+               </keydef>
+               <keydef keys="onRecoderInfoUpdated">
+                    <topicmeta>
+                         <keywords>
+                              <keyword>onRecorderInfoUpdated</keyword>
+                         </keywords>
+                    </topicmeta>
+               </keydef>
+          </topichead>
 
           <topichead navtitle="Channel media relay events">
                <keydef keys="onChannelMediaRelayStateChanged" href="../API/api_onchannelmediarelaystatechanged.dita">
@@ -2722,7 +2775,15 @@
                     </topicmeta>
                </keydef>
           </topichead>
-
+          <topichead navtitle="Video snapshot events">
+               <keydef keys="onSnapshotTaken" href="../API/api_onsnapshottaken.dita">
+                    <topicmeta>
+                         <keywords>
+                              <keyword>snapshotTaken</keyword>
+                         </keywords>
+                    </topicmeta>
+               </keydef>
+          </topichead>
           <topichead navtitle="Media metadata events">
                <keydef keys="onMetadataReceived" href="../API/api_onmetadatareceived.dita">
                     <topicmeta>
@@ -5441,42 +5502,49 @@
           <keydef keys="MEDIA_DEVICE_STATE_TYPE" href="../API/enum_mediadevicestatetype.dita">
                <topicmeta>
                     <keywords>
-                         <keyword>MEDIA_DEVICE_STATE_TYPE</keyword>
+                         <keyword>MediaDeviceStateType</keyword>
+                    </keywords>
+               </topicmeta>
+          </keydef>
+          <keydef keys="MEDIA_DEVICE_STATE_IDLE">
+               <topicmeta>
+                    <keywords>
+                         <keyword>MediaDeviceStateIdle</keyword>
                     </keywords>
                </topicmeta>
           </keydef>
           <keydef keys="MEDIA_DEVICE_STATE_ACTIVE">
                <topicmeta>
                     <keywords>
-                         <keyword>MEDIA_DEVICE_STATE_ACTIVE</keyword>
+                         <keyword>MediaDeviceStateActive</keyword>
                     </keywords>
                </topicmeta>
           </keydef>
           <keydef keys="MEDIA_DEVICE_STATE_DISABLED">
                <topicmeta>
                     <keywords>
-                         <keyword>MEDIA_DEVICE_STATE_DISABLED</keyword>
+                         <keyword>MediaDeviceStateDisabled</keyword>
                     </keywords>
                </topicmeta>
           </keydef>
           <keydef keys="MEDIA_DEVICE_STATE_NOT_PRESENT">
                <topicmeta>
                     <keywords>
-                         <keyword>MEDIA_DEVICE_STATE_NOT_PRESENT</keyword>
+                         <keyword>MediaDeviceStateNotPresent</keyword>
                     </keywords>
                </topicmeta>
           </keydef>
           <keydef keys="MEDIA_DEVICE_STATE_UNPLUGGED">
                <topicmeta>
                     <keywords>
-                         <keyword>MEDIA_DEVICE_STATE_UNPLUGGED</keyword>
+                         <keyword>MediaDeviceStateUnplugged</keyword>
                     </keywords>
                </topicmeta>
           </keydef>
           <keydef keys="MEDIA_DEVICE_STATE_UNRECOMMENDED">
                <topicmeta>
                     <keywords>
-                         <keyword>MEDIA_DEVICE_STATE_UNRECOMMENDED</keyword>
+                         <keyword>MediaDeviceStateUnrecommended</keyword>
                     </keywords>
                </topicmeta>
           </keydef>
@@ -5484,49 +5552,49 @@
           <keydef keys="MEDIA_DEVICE_TYPE" href="../API/enum_mediadevicetype.dita">
                <topicmeta>
                     <keywords>
-                         <keyword>MEDIA_DEVICE_TYPE</keyword>
+                         <keyword>MediaDeviceType</keyword>
                     </keywords>
                </topicmeta>
           </keydef>
           <keydef keys="UNKNOWN_AUDIO_DEVICE">
                <topicmeta>
                     <keywords>
-                         <keyword>UNKNOWN_AUDIO_DEVICE</keyword>
+                         <keyword>UnknownAudioDevice</keyword>
                     </keywords>
                </topicmeta>
           </keydef>
           <keydef keys="AUDIO_PLAYOUT_DEVICE">
                <topicmeta>
                     <keywords>
-                         <keyword>AUDIO_PLAYOUT_DEVICE</keyword>
+                         <keyword>AudioPlayoutDevice</keyword>
                     </keywords>
                </topicmeta>
           </keydef>
           <keydef keys="AUDIO_RECORDING_DEVICE">
                <topicmeta>
                     <keywords>
-                         <keyword>AUDIO_RECORDING_DEVICE</keyword>
+                         <keyword>AudioRecordingDevice</keyword>
                     </keywords>
                </topicmeta>
           </keydef>
           <keydef keys="VIDEO_RENDER_DEVICE">
                <topicmeta>
                     <keywords>
-                         <keyword>VIDEO_RENDER_DEVICE</keyword>
+                         <keyword>VideoRenderDevice</keyword>
                     </keywords>
                </topicmeta>
           </keydef>
           <keydef keys="VIDEO_CAPTURE_DEVICE">
                <topicmeta>
                     <keywords>
-                         <keyword>VIDEO_CAPTURE_DEVICE</keyword>
+                         <keyword>VideoCaptureDevice</keyword>
                     </keywords>
                </topicmeta>
           </keydef>
           <keydef keys="AUDIO_APPLICATION_PLAYOUT_DEVICE">
                <topicmeta>
                     <keywords>
-                         <keyword>AUDIO_APPLICATION_PLAYOUT_DEVICE</keyword>
+                         <keyword>AudioApplicationPlayoutDevice</keyword>
                     </keywords>
                </topicmeta>
           </keydef>

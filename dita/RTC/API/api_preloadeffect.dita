@@ -25,8 +25,11 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <p>为保证通信畅通，请注意控制预加载音效文件的大小，并在 <apiname keyref="joinChannel2" /> 前就使用该方法完成音效预加载。音频文件支持以下音频格式: mp3、aac、m4a、3gp 和 wav。</p>
-            <note type="attention">该方法不支持在线音频文件。</note>
+            <p>为保证通信畅通，请注意控制预加载音效文件的大小，并在 <apiname keyref="joinChannel2" /> 前就使用该方法完成音效预加载。</p>
+            <note type="attention"><ul>
+                <li>该方法不支持在线音频文件。</li>
+                <li conkeyref="getAudioFileInfo/audioFormats"/>
+            </ul></note>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
@@ -34,14 +37,13 @@
   <pt>soundId</pt>
   <pd id="soundId">音效的 ID。每个音效的 ID 具有唯一性。 </pd>
        </plentry>
-       <plentry>
-           <pt>filePath</pt>
-           <pd><p id="filePath">播放文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example" /></codeph>。支持的音频格式包括
-                            MP3、AAC、M4A、MP4、WAV、3GP。详见 <xref keyref="filePath-link">支持的媒体格式</xref>。</p></pd>
+       <plentry conkeyref="getAudioFileInfo/filePath">
+           <pt></pt>
+           <pd/>
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>返回值</title>
        <ul>
   <li>0: 方法调用成功</li>
