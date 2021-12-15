@@ -1,4 +1,4 @@
-# Generate a User Token for Authentication
+# Authenticate Your Users with Tokens
 
 Authentication is the act of validating the identity of each user before they access your system. Agora uses digital tokens to authenticate users and their privileges before they access an Agora service, such as joining an Agora call, or logging into the real-time messaging system.
 
@@ -14,24 +14,25 @@ This page shows you how to create an Agora Chat token server and an Agora Chat c
 The following figure shows the steps in the authentication flow:
 ![agora chat user token workflow](https://web-cdn.agora.io/docs-files/1639043175484)
 
-A user token is a dynamic key generated on your app server that is valid for a maximum of 24 hours. When your users login to Agora Chat from your app client, Agora Platform validates the token and reads the user and project information stored in the token. A user token contains the following information:
+A user token is a dynamic key generated on your app server that is valid for a maximum of 24 hours. When your users login from your app, Agora Chat reads the information stored in the token and uses it to authenticate the user. A user token contains the following information:
 
 - The App ID of your Agora project
 - The App Certificate of your Agora project
-- The [UUID](link) of the user to be authenticated
-- The valid duration of the token.
+- The [UUID](uuid) of the user to be authenticated
+- The valid duration of the token
 
 ## Prerequisites
 
 Ensure that you meet the following requirements before proceeding:
 
 - A valid [Agora Account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
-- An Agora project with the Agora Chat service enabled.
+- An Agora project with the Agora Chat service enabled. 
+  To enable the Agora Chat service, contact support@agora.io.
 - A valid Agora Chat app token. See [Generate an App Token](link) for details.
 
-## Implementation
+## Implement the authentication flow
 
-This section shows you how to supply and consume a token that gives rights to specific functionality to authenticated users using the source code provided by Agora.
+This section shows you how to supply and consume a token that gives rights to specific functionality for authenticated users using the source code provided by Agora.
 
 ### Deploy a token server
 
@@ -41,7 +42,9 @@ To show the authentication workflow, this section shows how to build and run a t
 
 This sample server is for demonstration purposes only. Do not use it in a production environment.
 
-1. Create a Maven project, and replace the content in `pom.xml` with the following code:
+1. Create a Maven project in IntelliJ, set the name of your project, choose the location to save your project, and click **Finish**.
+
+1. In `<Project name>/pom.xml` , add the following dependencies and then [reload the Maven project](https://www.jetbrains.com/help/idea/delegate-build-and-run-actions-to-maven.html#maven_reimport):
 
    ```xml
    <properties>
@@ -97,10 +100,23 @@ This sample server is for demonstration purposes only. Do not use it in a produc
    </build>
    ```
 
-2. Create a `com.agora.chat.token.io.agora` package under `src->main->java`, and add the [chat](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/chat) and [media](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media) packages to the project, as the following figure shows:
-   ![token server project](https://web-cdn.agora.io/docs-files/1639043760281)
+1. Import the token builders to this project provided by Agora.
+    1. Download the [chat](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/chat) and [media](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media) packages.
+    1. In the token server project, create a `com.agora.chat.token.io.agora` package under `<Project name>/src/main/java`.
+    1. Copy the chat and media packages and paste under `com.agora.chat.token.io.agora`. The following figure shows the project structure:
+      ![token server project](https://web-cdn.agora.io/docs-files/1639043760281)
+    1. Fix the import errors in `chat/ChatTokenBuilder2` and `media/AccessToken`.
+      - In `ChatTokenBuilder2`, the import should be `import com.agora.chat.token.io.agora.media.AccessToken2`.
+      - In `AccessToken`, the import should be as follows:
+        ```java
+        import java.io.ByteArrayOutputStream;
+        import java.io.IOException;
+        import java.util.TreeMap;
 
-3. Create a file named `application.properties` to hold the information for generating tokens:
+        import static com.agora.chat.token.io.agora.media.Utils.crc32;
+        ```
+
+1. In `<Project name>/src/main/resource`, create a `application.properties` file to hold the information for generating tokens:
 
    ```txt
    ## Server port
@@ -115,7 +131,7 @@ This sample server is for demonstration purposes only. Do not use it in a produc
    expire.second=60
    ```
 
-4. Under the `com.agora.chat.token` package, create a file, `AgoraChatTokenController.java`, with the following content:
+1. In the `com.agora.chat.token` package, create a Java class named `AgoraChatTokenController`, with the following content:
 
    ```java
    package com.agora.chat.token;
@@ -148,7 +164,7 @@ This sample server is for demonstration purposes only. Do not use it in a produc
    }
    ```
 
-5. Under the `com.agora.chat.token` package, create a file, `AgoraChatTokenStarter.java`, with the following content:
+1. In the `com.agora.chat.token` package, create a Java class named `AgoraChatTokenStarter`, with the following content:
 
    ```java
    package com.agora.chat.token;
@@ -162,16 +178,16 @@ This sample server is for demonstration purposes only. Do not use it in a produc
    }
    ```
 
-6. To start the server, click the green triangle button, and select **Debug "AgoraChatTokenStarter..."**.
+1. To start the server, click the green triangle button, and select **Debug "AgoraChatTokenStarter..."**.
    ![start the server](https://web-cdn.agora.io/docs-files/1639043996061)
 
 <a name="uuid"></a>
 
 ### Get the UUID
 
-When a user is registered, Agora automatically assigns a UUID to identify that user.
+When you create a user in Agora Chat, they are automatically assigned a UUID.
 
-You can get the UUID through the [User Account RESTful APIs](link).
+You can get the UUID through the [User Account RESTful APIs](https://docs-preprod.agora.io/en/test/agora_chat_restful_reg?platform=RESTful).
 
 The following example registers a user with the username "user1" and password "123".
 
@@ -179,7 +195,7 @@ The following example registers a user with the username "user1" and password "1
 
 ```shell
 # Replace <YourAppToken> with an app token generated on your server.
-curl -X POST -H "Authorization: Bearer <YourAppToken>" -i "https://a1.agora.com/{org-name}/{app-name}/users" -d '[
+curl -X POST -H "Authorization: Bearer <YourAppToken>" -i "https://api.agora.com/{org-name}/{app-name}/users" -d '[
    {
      "username": "user1",
      "password": "123",
@@ -197,7 +213,7 @@ The UUID is in the response.
    "action": "post",
    "application": "8be024f0-e978-11e8-b697-5d598d5f8402",
    "path": "/users",
-   "uri": "https://a1.agora.com/{org-name}/{app-name}/users",
+   "uri": "https://api.agora.com/{org-name}/{app-name}/users",
    "entities": [
        {
            "uuid": "0ffe************214b",
@@ -379,8 +395,6 @@ public String buildUserToken(String appId, String appCertificate, String uuid, i
 | appCertificate | The App Certificate of your Agora project.                                                                                             |
 | uuid         | The unique identifier (UUID) of a user in the Agora Chat system. You need get the UUID through RESTful APIs. See [Get the UUID](uuid). |
 | expire         | The valid duration (in seconds) of the token. The maximum is 86,400, that is, 24 hours.                                                |
-
-## Considerations
 
 ### UUID
 
