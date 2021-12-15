@@ -13,8 +13,8 @@
     <refbody><section id="prototype">
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onConnectionStateChanged(int state, int reason) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
-                    connectionStateChanged:(AgoraConnectionState)state 
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+                    connectionStateChanged:(AgoraConnectionState)state
                     reason:(AgoraConnectionChangedReason)reason;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionStateChanged(CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason) {
      (void)state;
@@ -30,7 +30,7 @@
         </p>
         </section>
         <section id="detailed_desc">
-   
+
    <dl outputclass="since" props="rtc">
        <dlentry>
   <dt>Since</dt>
@@ -39,7 +39,7 @@
    </dl>
    <p id="desc">When the network connection state changes, the SDK triggers this callback and reports the current connection state and the reason for the change.</p>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameters</title>
    <parml>
        <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                   <pt />
@@ -48,15 +48,15 @@
        <plentry id="state">
   <pt>state</pt>
   <pd><p id="connectionstate">The current connection state.<ph props="ios mac windows unity"> For details, see <xref keyref="CONNECTION_STATE_TYPE" />.</ph></p>
-      
+
       <ul props="android"><li><ph keyref="CONNECTION_STATE_DISCONNECTED" /> (1): The SDK is disconnected from Agora's edge server.</li><li><ph keyref="CONNECTION_STATE_CONNECTING" /> (2): The SDK is connecting to Agora's edge server.</li><li><ph keyref="CONNECTION_STATE_CONNECTED" /> (3): The SDK is connected to Agora's edge server and has joined a channel.</li><li><ph keyref="CONNECTION_STATE_RECONNECTING" /> (4): The SDK keeps reconnecting to the Agora edge server.</li><li><ph keyref="CONNECTION_STATE_FAILED" /> 5: The SDK fails to connect to Agora's edge server or join the channel.</li></ul>
-                        
+
   </pd>
        </plentry>
        <plentry id="reason">
   <pt>reason</pt>
            <pd><p>The reason for a connection state change.<ph props="ios mac windows unity"> For details, see <xref keyref="CONNECTION_CHANGED_REASON_TYPE" />.</ph></p>
-           
+
                <ul props="android">
                    <li><ph keyref="CONNECTION_CHANGED_CONNECTING" /> (0): The SDK is connecting to Agora's edge server.</li>
                    <li><ph keyref="CONNECTION_CHANGED_JOIN_SUCCESS" /> (1): The SDK has joined the channel successfully.</li>
@@ -81,7 +81,7 @@
                    <li><ph keyref="CONNECTION_CHANGED_LOST" /> (16): The connection between the SDK and the server is lost.</li>
                    <li><ph keyref="CONNECTION_CHANGED_ECHO_TEST" /> (17): The connection state changes due to the echo test.</li>
                </ul>
-           
+
            </pd>
        </plentry>
    </parml>
