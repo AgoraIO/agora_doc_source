@@ -33,13 +33,13 @@
                 LOCAL_VIDEO_STREAM_ERROR error) {
                 (void)localVideoState;
                 (void)error;
-                }</codeblock> 
+                }</codeblock>
         </p>
         <p outputclass="codeblock">
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_VIDEO_STATE_CHANGED, cb: (
     localVideoState: number,
     error: number
-    ) => void)： this;</codeblock>
+    ) => void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState,
             LOCAL_VIDEO_STREAM_ERROR error)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -87,7 +87,7 @@
                 <plentry>
                     <pt>error</pt>
                     <pd>
-                        <p props="ios mac windows unity">The detailed error information, see <xref keyref="LOCAL_VIDEO_STREAM_ERROR"/>.</p>
+                        <p props="ios mac windows unity electron">The detailed error information, see <xref keyref="LOCAL_VIDEO_STREAM_ERROR"/>.</p>
                         <p props="android">
                             <ul>
                                 <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/> (0): The local video is normal.</li>
@@ -96,7 +96,7 @@
                                 <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/> (3): The local video capturing device is in use.</li>
                                 <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/> (4): The local video capture fails. Check whether the capturing device is working properly.<ul id="ul_ygj_tdx_qqb">
                                         <li>If your app runs in the background on a device running Android 9 or later, you cannot access the camera.</li>
-                                        <li>If your app runs on a device running Android 6 or later, this error is reported if the camera is occupied by a third-party app and not property released. Once the camera is released, the SDK triggers this callback again, reporting <codeph>state </codeph> <codeph>CAPTURING</codeph>, and <codeph>error</codeph> <codeph>ERROR_OK</codeph>.</li>
+                                        <li>If your app runs on a device running Android 6 or later, this error is reported if the camera is occupied by a third-party app and not property released. Once the camera is released, the SDK triggers this callback again, reporting <codeph>state</codeph> <codeph>CAPTURING</codeph>, and <codeph>error</codeph> <codeph>ERROR_OK</codeph>.</li>
                                     </ul></li>
                                 <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE"/> (5): The local video encoding fails.</li>
                             </ul>
