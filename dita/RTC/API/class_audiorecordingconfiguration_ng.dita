@@ -33,32 +33,35 @@
   int sampleRate;
   AUDIO_FILE_RECORDING_TYPE fileRecordingType;
   AUDIO_RECORDING_QUALITY_TYPE quality;
+
   AudioFileRecordingConfig()
     : filePath(NULL),
       encode(false),
       sampleRate(32000),
       fileRecordingType(AUDIO_FILE_RECORDING_MIXED),
       quality(AUDIO_RECORDING_QUALITY_LOW) {}
+
   AudioFileRecordingConfig(const char* file_path, int sample_rate, AUDIO_RECORDING_QUALITY_TYPE quality_type)
     : filePath(file_path),
       encode(false),
       sampleRate(sample_rate),
       fileRecordingType(AUDIO_FILE_RECORDING_MIXED),
       quality(quality_type) {}
+
   AudioFileRecordingConfig(const char* file_path, bool enc, int sample_rate, AUDIO_FILE_RECORDING_TYPE type, AUDIO_RECORDING_QUALITY_TYPE quality_type)
     : filePath(file_path),
       encode(enc),
       sampleRate(sample_rate),
       fileRecordingType(type),
       quality(quality_type) {}
+
   AudioFileRecordingConfig(const AudioFileRecordingConfig &amp;rhs)
     : filePath(rhs.filePath),
       encode(rhs.encode),
       sampleRate(rhs.sampleRate),
       fileRecordingType(rhs.fileRecordingType),
       quality(rhs.quality) {}
-};
-</codeblock>
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity" outputclass="language-csharp"></codeblock>
             <codeblock props="rn" outputclass="language-typescript"></codeblock>
@@ -91,10 +94,7 @@
                             <li>44100</li>
                             <li>48000</li>
                         </ul><note type="attention" id="note_gdq_zlz_mqb">
-                            <p>如果把该参数设为 44100 或 48000，为保证录音效果，Agora 推荐录制 WAV 文件 或
-                                    <parmname>quality</parmname> 为 <ph
-                                    keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> 或
-                                <ph keyref="AUDIO_RECORDING_QUALITY_HIGH"/>  的 AAC 文件。</p>
+                            <p>如果把该参数设为 44100 或 48000，为保证录音效果，Agora 推荐录制 WAV 文件或 <parmname>quality</parmname> 为 <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM"/> 或 <ph keyref="AUDIO_RECORDING_QUALITY_HIGH"/> 的 AAC 文件。</p>
                         </note></pd>
                 </plentry>
                 <plentry>
@@ -105,8 +105,7 @@
                         <ul>
                             <li><ph keyref="AUDIO_RECORDING_POSITION_RECORDING"/> (1)：仅录制本地用户的音频。</li>
                             <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK"/> (2)：仅录制所有远端用户的音频。</li>
-                            <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK"
-                            /> (3): （默认）录制本地和所有远端用户混音后的音频。</li>
+                            <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK"/> (3): （默认）录制本地和所有远端用户混音后的音频。</li>
                         </ul>
                     </p>
                     </pd>
