@@ -100,10 +100,11 @@ This sample server is for demonstration purposes only. Do not use it in a produc
    </build>
    ```
 
-1. Import the token builders to this project provided by Agora.
+1. Import the token builders provided by Agora to this project.
     1. Download the [chat](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/chat) and [media](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media) packages.
     1. In the token server project, create a `com.agora.chat.token.io.agora` package under `<Project name>/src/main/java`.
     1. Copy the chat and media packages and paste under `com.agora.chat.token.io.agora`. The following figure shows the project structure:
+      
       ![token server project](https://web-cdn.agora.io/docs-files/1639043760281)
     1. Fix the import errors in `chat/ChatTokenBuilder2` and `media/AccessToken`.
       - In `ChatTokenBuilder2`, the import should be `import com.agora.chat.token.io.agora.media.AccessToken2`.
@@ -179,6 +180,7 @@ This sample server is for demonstration purposes only. Do not use it in a produc
    ```
 
 1. To start the server, click the green triangle button, and select **Debug "AgoraChatTokenStarter..."**.
+   
    ![start the server](https://web-cdn.agora.io/docs-files/1639043996061)
 
 <a name="uuid"></a>
