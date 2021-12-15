@@ -1,9 +1,10 @@
 ---
 title: 如何使用连麦鉴权功能？
-platform: ["Android","iOS","macOS","Web","Windows","Unity","Cocos Creator","Electron","React Native","Flutter"]
+platform: ["Android", "iOS", "macOS", "Web", "Windows", "Unity", "Cocos Creator", "Electron", "React Native", "Flutter"]
 updatedAt: 2021-04-07 08:00:20
-Products: ["Voice","Video","Interactive Broadcast"]
+Products: ["Voice", "Video", "Interactive Broadcast"]
 ---
+
 <div class="alert warning">开通连麦鉴权功能涉及 app 逻辑修改。请确保在开通前阅读本文。</div>
 
 ## 功能介绍
@@ -11,7 +12,6 @@ Products: ["Voice","Video","Interactive Broadcast"]
 连麦鉴权，主要用于控制当前用户是否有发布流的权限，需要开发者通过自己的业务服务端部署并生成 Token、Agora 服务器再对生成的 Token 校验实现。
 
 该功能可以确保频道内的发流用户都经过授权，从而防止黑客通过利用业务漏洞或盗取 Token 进行直播间炸房等行为。
-
 
 ## 前提条件
 
@@ -52,11 +52,11 @@ static std::string buildTokenWithUid(
     uint32_t uid,
     UserRole role,
     uint32_t privilegeExpiredTs = 0);
- 
- 
+
+
 // 示例代码
 int main(int argc, char const *argv[]) {
- 
+
   // 请填入你的项目 App ID
   std::string appID  = "970Cxxxxxxxxxxxxxxxxxxxxxxx1b33";
   // 请填入你的项目 App 证书
@@ -70,17 +70,16 @@ int main(int argc, char const *argv[]) {
   uint32_t currentTimeStamp = time(NULL);
   uint32_t privilegeExpiredTs = currentTimeStamp + expirationTimeInSeconds;
   std::string result;
- 
+
   result = RtcTokenBuilder::buildTokenWithUid(
       appID, appCertificate, channelName, uid, UserRole::Role_Publisher,
       privilegeExpiredTs);
   std::cout << "Token With Int Uid:" << result << std::endl;
 ```
 
-| 参数 | 概述 | 
-| ---------------- | ---------------- |
-| role      | 用户发流权限：<ul><li>Role_Publisher(1):（默认）该用户有发流权限。</li><li>Role_Subriber(2)： 该用户没有发流权限。</li></ul>     |
-
+| 参数 | 概述                                                                                                                         |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| role | 用户发流权限：<ul><li>Role_Publisher(1):（默认）该用户有发流权限。</li><li>Role_Subriber(2)： 该用户没有发流权限。</li></ul> |
 
 ### 3. 修改 app 层实现逻辑
 
@@ -110,4 +109,3 @@ Agora 服务器会在调用 `setClientRole` 方法的同时校验用户权限，
 - `setClientRole` 方法中设置的 role 为 `BROADCASTER`
 
 因此如果观众用户想要上麦说话，需要参考上述修改 App 层实现逻辑的步骤，获取权限为 `Publisher` 的 Token，并调用 `renewToken` 更新 Token，再调用 `setClientRole` 变用户角色为主播。
-	

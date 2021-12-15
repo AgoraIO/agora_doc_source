@@ -3,7 +3,9 @@ title: 初始化 AgoraRtcEngineKit
 platform: iOS
 updatedAt: 2019-10-29 11:00:07
 ---
+
 # 初始化
+
 进入频道之前，调用 `sharedEngineWithAppId` 方法创建一个 AgoraRtcEngine 实例。
 
 在该方法中：

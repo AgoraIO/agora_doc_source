@@ -3,12 +3,12 @@ title: App 体验
 platform: All Platforms
 updatedAt: 2021-01-20 07:42:54
 ---
+
 Agora 为虚拟主播提供如下平台的示例 app，扫描下方二维码下载应用。
 
-| Android | iOS | 
-| ---------------- | ---------------- |
-|[前往下载](./downloads?platform=Android)     | [前往下载](./downloads?platform=iOS)     | 
-
+| Android                                  | iOS                                  |
+| ---------------------------------------- | ------------------------------------ |
+| [前往下载](./downloads?platform=Android) | [前往下载](./downloads?platform=iOS) |
 
 由于虚拟主播涉及到房主与观众连麦，我们建议你准备**两台**设备进行体验。完成下载和安装后，参考如下步骤试用 Agora 的虚拟主播：
 

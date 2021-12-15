@@ -3,7 +3,9 @@ title: 通话后评分
 platform: iOS
 updatedAt: 2019-09-29 16:26:51
 ---
+
 ## 功能描述
+
 通话或直播结束后，让用户对通话/直播进行评分，可以收集用户对通话质量体验的主观评价，帮助改进产品。
 
 Agora SDK 提供接口可以让你的用户为通话打分并提供反馈意见。
@@ -33,7 +35,7 @@ agoraKit.rate(agoraKit.getCallId(), 5, "This is an awesome call!");
 // Objective-C
 // 获取通话 ID，给通话质量评 5 分，并进行描述。
 NSString* callId = [agoraKit getCallId];
-[agoraKit rate:callId rating:5 description:@"This is an awesome call!"]; 
+[agoraKit rate:callId rating:5 description:@"This is an awesome call!"];
 ```
 
 ### API 参考

@@ -3,6 +3,7 @@ title: 学生端实现
 platform: Windows
 updatedAt: 2021-03-02 03:17:21
 ---
+
 本文展示如何实现学生端相关功能。
 
 ## 设备参考
@@ -16,11 +17,11 @@ updatedAt: 2021-03-02 03:17:21
 
 根据下表链接，下载对应的 SDK，参考集成文档的步骤将 SDK 集成到你的项目中。
 
-| 产品                                                         | SDK 下载                                                     | 集成文档                                                     |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [Agora RTC (Real-time Communication) SDK](https://docs.agora.io/cn/Interactive%20Broadcast/product_live?platform=All%20Platforms) | [视频互动直播 SDK](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3.2.0.122_FULL_20210108_2109_38509.zip) | [实现互动直播](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_ios?platform=iOS) |
-| [Agora RTM (Real-time Messaging) SDK](https://docs.agora.io/cn/Real-time-Messaging/product_rtm?platform=All%20Platforms) | [实时消息 SDK](https://docs.agora.io/cn/Real-time-Messaging/downloads?platform=Windows) | [收发点对点消息和频道消息](https://docs.agora.io/cn/Real-time-Messaging/messaging_ios?platform=iOS) |
-| Agora 教育云服务                                             | N/A                                                          | [教育云服务 API 文档](https://agoradoc.github.io/cn/edu-cloud-service/restfulapi) |
+| 产品                                                                                                                              | SDK 下载                                                                                                                       | 集成文档                                                                                            |
+| :-------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------- |
+| [Agora RTC (Real-time Communication) SDK](https://docs.agora.io/cn/Interactive%20Broadcast/product_live?platform=All%20Platforms) | [视频互动直播 SDK](https://download.agora.io/sdk/release/Agora_Native_SDK_for_Windows_v3.2.0.122_FULL_20210108_2109_38509.zip) | [实现互动直播](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_ios?platform=iOS)        |
+| [Agora RTM (Real-time Messaging) SDK](https://docs.agora.io/cn/Real-time-Messaging/product_rtm?platform=All%20Platforms)          | [实时消息 SDK](https://docs.agora.io/cn/Real-time-Messaging/downloads?platform=Windows)                                        | [收发点对点消息和频道消息](https://docs.agora.io/cn/Real-time-Messaging/messaging_ios?platform=iOS) |
+| Agora 教育云服务                                                                                                                  | N/A                                                                                                                            | [教育云服务 API 文档](https://agoradoc.github.io/cn/edu-cloud-service/restfulapi)                   |
 
 ## 核心 API 时序图
 

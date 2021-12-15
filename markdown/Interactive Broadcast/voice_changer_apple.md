@@ -3,6 +3,7 @@ title: 设置人声效果
 platform: iOS
 updatedAt: 2021-03-05 04:58:08
 ---
+
 在社交娱乐应用中，为增加产品的趣味性和互动性，用户常常需要变声和混响效果。Agora 提供多种预置的变声和混响效果，你也可以灵活定制自己想要的声音，比如设置音调、均衡和混响等。
 
 Agora 提供[在线 Demo](https://www.agora.io/cn/audio-demo)，你可以体验变声与混响效果。
@@ -13,8 +14,8 @@ Agora 提供[在线 Demo](https://www.agora.io/cn/audio-demo)，你可以体验�
 
 通过 `setLocalVoiceChanger` 中以下枚举值，你可以实现语聊美声效果：
 
-| 枚举值                               | 描述                                                         |
-| :----------------------------------- | :----------------------------------------------------------- |
+| 枚举值                                       | 描述                                                           |
+| :------------------------------------------- | :------------------------------------------------------------- |
 | `AgoraAudioGeneralBeautyVoiceMaleMagnetic`   | 磁性（男）。请确保使用该枚举美化男声，否则音频可能会产生失真。 |
 | `AgoraAudioGeneralBeautyVoiceFemaleFresh`    | 清新（女）。请确保使用该枚举美化女声，否则音频可能会产生失真。 |
 | `AgoraAudioGeneralBeautyVoiceFemaleVitality` | 活力（女）。请确保使用该枚举美化女声，否则音频可能会产生失真。 |
@@ -41,8 +42,8 @@ agoraKit.setLocalVoiceChanger(.voiceChangerOff)
 
 通过 `setLocalVoiceChanger` 中以下枚举值，你可以实现音色变换效果：
 
-| 枚举值                  | 描述   |
-| :---------------------- | :----- |
+| 枚举值                            | 描述   |
+| :-------------------------------- | :----- |
 | `AgoraAudioVoiceBeautyVigorous`   | 浑厚。 |
 | `AgoraAudioVoiceBeautyDeep`       | 低沉。 |
 | `AgoraAudioVoiceBeautyMellow`     | 圆润。 |
@@ -136,12 +137,12 @@ agoraKit.setLocalVoiceReverbPreset(.voiceChangerOff)
 
 <div class="alert note">为达到更好的人声效果，Agora 推荐使用以 <tt>AgoraAudioReverbPresetFx</tt> 为前缀的枚举值。</div>
 
-| 枚举值                  | 描述           |
-| :---------------------- | :------------- |
-| `AgoraAudioReverbPresetPopular`    | 流行（旧版）。 |
-| `AgoraAudioReverbPresetRnB`        | R&B（旧版）。  |
-| `AgoraAudioReverbPresetRock`       | 摇滚。         |
-| `AgoraAudioReverbPresetHipHop`     | 嘻哈。         |
+| 枚举值                            | 描述           |
+| :-------------------------------- | :------------- |
+| `AgoraAudioReverbPresetPopular`   | 流行（旧版）。 |
+| `AgoraAudioReverbPresetRnB`       | R&B（旧版）。  |
+| `AgoraAudioReverbPresetRock`      | 摇滚。         |
+| `AgoraAudioReverbPresetHipHop`    | 嘻哈。         |
 | `AgoraAudioReverbPresetFxPopular` | 流行。         |
 | `AgoraAudioReverbPresetFxRNB`     | R&B。          |
 
@@ -314,10 +315,12 @@ agoraKit.setLocalVoiceReverbOf(.strength, withValue: 45)
 ## API 参考
 
 **预设的人声效果：**
+
 - [`setLocalVoiceChanger`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoiceChanger:)
 - [`setLocalVoiceReverbPreset`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoiceReverbPreset:)
 
 **自定义人声效果：**
+
 - [`setLocalVoicePitch`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoicePitch:)
 - [`setLocalVoiceEqualizationOfBandFrequency`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoiceEqualizationOfBandFrequency:withGain:)
 - [`setLocalVoiceReverbOfType`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoiceReverbOfType:withValue:)

@@ -3,6 +3,7 @@ title: 错误代码
 platform: All Platforms
 updatedAt: 2021-03-29 10:33:33
 ---
+
 本页列出了 Agora RTSA SDK 运行过程中或 API 调用时可能返回的错误代码，帮助你判断引起错误的原因，然后进行排查。
 
 ## 返回值

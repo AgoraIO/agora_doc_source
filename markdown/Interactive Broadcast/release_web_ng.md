@@ -3,6 +3,7 @@ title: Agora Web SDK 4.x 发版说明
 platform: Web
 updatedAt: 2021-01-27 08:34:20
 ---
+
 本页提供 **Agora Web SDK 4.x** 版本的发版说明。
 
 <div class="alert info">如需查看 Agora Web SDK 3.x 及之前版本的发版说明，请点击<a href="https://docs-staging.agoralab.co/cn/Voice/release_web_video?platform=Web">此处</a>。</div>
@@ -20,6 +21,7 @@ Web SDK 4.x 对浏览器的支持情况详见 [Agora Web SDK 支持哪些浏览�
 ## 4.1.1 版
 
 该版本于 2020 年 10 月 27 日发布。该版本修复了以下问题：
+
 - 提升了 `event_network_quality` 回调的准确性。
 - Safari 上 SDK 无法找到视频采集设备时， `createCameraVideoTrack` 的调用无法结束。
 - 调用 `unsubscribe` 取消订阅某远端用户的一路未发布的轨道后，后续对该用户的订阅和取消订阅操作都失效。
@@ -39,6 +41,7 @@ v4.1.0 新增 `getCurrentFrameData` 方法，用于获取当前渲染的视频�
 **音频播放设备管理**
 
 v4.1.0 新增了以下方法和回调，用于音频播放设备的管理：
+
 - `setPlaybackDevice`: 用于设置音频播放设备，比如扬声器。该方法仅支持 Chrome 浏览器。
 - `getPlaybackDevices`: 用于获取可用的音频播放设备。
 - `onPlaybackDeviceChanged`: 用于提示有音频播放设备被添加或移除。
@@ -62,6 +65,7 @@ v4.1.0 新增了以下方法和回调，用于音频播放设备的管理：
 #### API 变更
 
 **新增**
+
 - `AgoraRTC.getPlaybackDevices`
 - `AgoraRTC.onPlaybackDeviceChanged`
 - `Client.getLocalAudioStats`
@@ -74,7 +78,8 @@ v4.1.0 新增了以下方法和回调，用于音频播放设备的管理：
 - `RemoteAudioTrack.setPlaybackDevice`
 
 **废弃**
-  - 废弃了  `LocalTrack.getStats` 和 `RemoteTrack.getStats`，请使用 `Client.getLocalAudioStats` 等方法来获取本地和远端的媒体质量信息。
+
+- 废弃了 `LocalTrack.getStats` 和 `RemoteTrack.getStats`，请使用 `Client.getLocalAudioStats` 等方法来获取本地和远端的媒体质量信息。
 
 ## 4.0.1 版
 

@@ -3,6 +3,7 @@ title: 连接状态管理
 platform: Linux Java
 updatedAt: 2021-03-17 03:52:10
 ---
+
 ## 概述
 
 当用户登录、登出 Agora RTM 系统，或者网络连接发生变化时，Agora RTM SDK 与 Agora RTM 系统之间的连接会在不同状态之间切换。可能的连接状态如下：
@@ -43,16 +44,14 @@ updatedAt: 2021-03-17 03:52:10
 
 如果一直无法重新登录成功，连接状态会保持在 `CONNECTION_STATE_RECONNECTING`。你可以调用 `logout` 先登出系统再根据实际业务情况调用 `login` 方法重新登录 RTM 系统。
 
-
 根据连接中断到重新自动登录成功的时长不同，RTM 系统的行为也会有区别：
 
 - 如果连接中断 30 秒内用户成功重新登录，连接状态会转换为 `CONNECTION_STATE_CONNECTED`。用户的在线状态不变。
 - 如果连接中断 30 秒时用户仍然不在线，RTM 系统会将对应用户从在线用户列表和频道中移除，同一频道的用户会收到 `onMemberLeft` 回调。如果用户在之后重新成功登录系统，连接状态会转换为 `CONNECTION_STATE_CONNECTED。` SDK 会自动将用户加入之前加入的频道，同频道的用户会收到 `onMemberJoined` 回调。由于此时 RTM 系统已将用户从在线列表中移除， SDK 还会自动同步用户属性到 RTM 系统。
 
-
 在 `CONNECTION_STATE_RECONNECTING` 状态下，由于 SDK 会一直重连 Agora RTM 系统，此时如果 Token 过期，SDK 会返回 `onTokenExpired` 回调。但是该回调不会对连接状态产生影响。
 
-###  用户被踢出 RTM 系统
+### 用户被踢出 RTM 系统
 
 如果相同的用户 ID 从另一个客户端实例登录 RTM 系统，当前客户端实例中正在登录状态的用户会被 RTM 系统踢出，连接状态变为 `CONNECTION_STATE_ABORTED`。你可以调用 `logout` 先登出系统再根据实际业务情况调用 `login` 方法重新登录 RTM 系统。
 

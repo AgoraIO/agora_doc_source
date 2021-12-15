@@ -3,13 +3,12 @@ title: 推流到 CDN
 platform: Windows
 updatedAt: 2019-10-29 11:58:21
 ---
+
 ## 功能描述
 
 将直播流发布到 CDN（Content Delivery Network）的过程称为 CDN 直播推流，用户无需安装 App，可以通过 Web 浏览器观看直播。
 
 在推流到 CDN 过程中，当频道中有多个主播时，通常会涉及到[转码](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#转码)，将多个直播流组合成单个流，并设置这个流的音视频属性和合图布局。
-
-
 
 推流实现原理如下：
 
@@ -18,10 +17,11 @@ updatedAt: 2019-10-29 11:58:21
 ## 前提条件
 
 请确保已开通 CDN 旁路推流功能，步骤如下：
+
 1. 登录[控制台](https://console.agora.io)，点击左侧导航栏 ![img](https://web-cdn.agora.io/docs-files/1551250582235) 按钮进入**产品用量**页面。
 2. 在页面左上角展开下拉列表选择需要开通 CDN 旁路推流的项目，然后点击旁路推流下的**分钟数**。
 ![](https://web-cdn.agora.io/docs-files/1569297956098)
-<div class="alert note"><b>旁路推流服务</b>仅适用于 Native SDK 2.4.1 及以上版本和 Web SDK 2.9.0 及以上版本，若您使用的版本较低，建议升级至新版本。</div>
+ <div class="alert note"><b>旁路推流服务</b>仅适用于 Native SDK 2.4.1 及以上版本和 Web SDK 2.9.0 及以上版本，若您使用的版本较低，建议升级至新版本。</div>
 3. 点击**开启旁路推流服务**。
 4. 点击**应用** 即可开通旁路推流服务，并得到 500 个最大并发频道数。
 
@@ -33,9 +33,9 @@ updatedAt: 2019-10-29 11:58:21
 
 声网提供的 CDN 旁路推流方案主要基于以下 API 进行推流、转码设置：
 
--   [`setLiveTranscoding`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0601e4671357dc1ec942cccc5a6a1dde)：设置直播转码参数
--   [`addPublishStreamUrl`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a5d62a13bd8391af83fb4ce123450f839)：添加推流地址
--   [`removePublishStreamUrl`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a30e6c64cb616fbd78bedd8c516c320e7)：删除推流地址
+- [`setLiveTranscoding`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0601e4671357dc1ec942cccc5a6a1dde)：设置直播转码参数
+- [`addPublishStreamUrl`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a5d62a13bd8391af83fb4ce123450f839)：添加推流地址
+- [`removePublishStreamUrl`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a30e6c64cb616fbd78bedd8c516c320e7)：删除推流地址
 
 其中：
 
@@ -78,7 +78,6 @@ m_rtcEngine->addPublishStreamUrl(url, true);
    }
 ```
 
-
 ```C++
 // 删除推流地址
 m_rtcEngine->removePublishStreamUrl(url);
@@ -87,4 +86,3 @@ m_rtcEngine->removePublishStreamUrl(url);
 ## 开发注意事项
 
 使用该功能需要联系 sales@agora.io 开通旁路推流。
-

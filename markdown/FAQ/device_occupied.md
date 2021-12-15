@@ -1,9 +1,10 @@
 ---
 title: 为什么使用其他 app 后无法发送音视频？
-platform: ["Android","Web"]
+platform: ["Android", "Web"]
 updatedAt: 2020-07-09 21:29:37
-Products: ["Voice","Video","Interactive Broadcast"]
+Products: ["Voice", "Video", "Interactive Broadcast"]
 ---
+
 ### Android 设备使用第三方录音 App 时出现异常
 
 **问题现象**：第三方录音应用使用时，用户加入频道后，无法发送本地音频，也没有收到 SDK 的任何错误信息

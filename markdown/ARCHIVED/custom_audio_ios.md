@@ -3,6 +3,7 @@ title: 自定义音频采集和渲染
 platform: iOS
 updatedAt: 2019-09-20 17:31:30
 ---
+
 ## 功能介绍
 
 实时通信过程中，Agora SDK 通常会启动默认的音频模块进行采集和渲染。如果想要在客户端实现自定义音频采集和渲染，则可以使用自定义的音频源或渲染器，来进行实现。
@@ -40,8 +41,9 @@ agoraKit.pushExternalAudioFrameSampleBuffer("your CMSampleBuffer")
 
 #### API 参考
 
-* [`pushExternalAudioFrameRawData:samples:timestamp:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalAudioFrameRawData:samples:timestamp:)
-* [`pushExternalAudioFrameSampleBuffer:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalAudioFrameSampleBuffer:)
+- [`pushExternalAudioFrameRawData:samples:timestamp:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalAudioFrameRawData:samples:timestamp:)
+- [`pushExternalAudioFrameSampleBuffer:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalAudioFrameSampleBuffer:)
 
 ## 开发注意事项
+
 客户端自定义采集和渲染属于较复杂的功能，开发者自身需要具备音频相关知识，能够自己独立开发完成采集与渲染。

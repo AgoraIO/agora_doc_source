@@ -3,6 +3,7 @@ title: 自定义音频采集
 platform: Web
 updatedAt: 2020-12-30 09:01:55
 ---
+
 ## 功能介绍
 
 实时音视频传输过程中，Agora SDK 通常会启动默认的音视频模块进行采集和渲染。在以下场景中，你可能会发现默认的音视频模块无法满足开发需求：
@@ -18,24 +19,22 @@ updatedAt: 2020-12-30 09:01:55
 
 在开始自定义音频采集前，请确保你已在项目中实现了基本的音视频通话或直播功能，详见[开始音视频通话](start_call_web)或[开始互动直播](start_live_web)。
 
-在创建音频流 `createStream` 时，通过  [`audioSource`](./API%20Reference/web/interfaces/agorartc.streamspec.html#audiosource) 指定自定义的音频源，就可以实现自定义音频采集。例如，你可以通过 `mediaStream` 方法从 `MediaStreamTrack` 获得音频 track，然后指定 `audioSource`：
+在创建音频流 `createStream` 时，通过 [`audioSource`](./API%20Reference/web/interfaces/agorartc.streamspec.html#audiosource) 指定自定义的音频源，就可以实现自定义音频采集。例如，你可以通过 `mediaStream` 方法从 `MediaStreamTrack` 获得音频 track，然后指定 `audioSource`：
 
 ```javascript
-navigator.mediaDevices.getUserMedia(
-    {video: false, audio: true}
-).then(function(mediaStream){
-    var audioSource = mediaStream.getAudioTracks()[0];
-    // After processing audioSource
-    var localStream = AgoraRTC.createStream({
-        video: false,
-        audio: true,
-        audioSource: audioSource
+navigator.mediaDevices.getUserMedia({video: false, audio: true}).then(function (mediaStream) {
+  var audioSource = mediaStream.getAudioTracks()[0];
+  // After processing audioSource
+  var localStream = AgoraRTC.createStream({
+    video: false,
+    audio: true,
+    audioSource: audioSource,
+  });
+  localStream.init(function () {
+    client.publish(localStream, function (e) {
+      //...
     });
-    localStream.init(function(){
-        client.publish(localStream, function(e){
-            //...
-        });
-    });
+  });
 });
 ```
 

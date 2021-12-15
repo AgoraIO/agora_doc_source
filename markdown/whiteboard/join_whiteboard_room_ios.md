@@ -3,6 +3,7 @@ title: 加入实时房间
 platform: iOS
 updatedAt: 2021-03-31 09:04:35
 ---
+
 本文详细介绍如何建立一个简单的项目并使用 Agora 互动白板 SDK 实现基础的白板功能。
 
 ## 前提条件
@@ -29,7 +30,7 @@ updatedAt: 2021-03-31 09:04:35
 
 2. 在生成的 `Podfile` 文件中添加如下内容。
 
-   `platform :ios, ``'9.0'` `target ``'Whiteboard'` `do``  ``pod ``'Whiteboard'``end`
+   ` platform :ios, ``'9.0' ` ` target ``'Whiteboard' ` ` do`` ``pod ``'Whiteboard'``end `
 
 3. 运行以下命令安装 SDK。
 
@@ -42,7 +43,6 @@ updatedAt: 2021-03-31 09:04:35
 ## 基本流程
 
 现在，我们已经将 Agora 互动白板 SDK 集成到项目中了。接下来我们要调用 Agora 互动白板 SDK 提供的核心 API 实现基础的白板功能。
-
 
 ### 1. 创建房间
 
@@ -87,7 +87,7 @@ request(options, function (error, response) {
 }
 ```
 
-###  2. 生成 Room Token
+### 2. 生成 Room Token
 
 创建房间并获取新建房间的 `uuid` 后，你需要在 app 服务端生成 `Room Token` 并下发给 app 客户端。当 app 客户端加入房间时，Agora 互动白板服务端会使用该 Token 对其鉴权。
 
@@ -114,7 +114,7 @@ var options = {
     "Content-Type": "application/json"
   },
   body: JSON.stringify({"lifespan":60,"role":"admin"})
-  
+
 };
 request(options, function (error, response) {
   if (error) throw new Error(error);
@@ -131,7 +131,6 @@ request(options, function (error, response) {
 "NETLESSROOM_YWs9XXXXXXXXXXXZWNhNjk"
 ```
 
-
 ### 3. 初始化 SDK 并加入房间
 
 编辑 `ViewController.m`，实现从添加 View、初始化 SDK 到加入房间的基本操作。你需要传入之前生成的 `App Identifier`、`uuid` 和 `Room token`。
@@ -144,11 +143,11 @@ request(options, function (error, response) {
 //  Created by macoscatalina on 2021/3/16.
 //  Copyright © 2021 macoscatalina. All rights reserved.
 //
- 
- 
+
+
 #import "ViewController.h"
 #import <Whiteboard/Whiteboard.h>
- 
+
 @interface ViewController ()
 @property (nonatomic, strong) WKWebViewConfiguration *config;
 @property (nonatomic, strong) WhiteBoardView *boardView;
@@ -157,22 +156,22 @@ request(options, function (error, response) {
 @property (nonatomic, strong) WhiteMemberState *memberState;
 @property (nonatomic, strong) WhiteRoomConfig *roomConfig;
 @property (nonatomic, strong) WhiteSdkConfiguration *sdkConfig;
- 
+
 @property (nonatomic, weak, nullable) id<WhiteCommonCallbackDelegate> commonDelegate;
 @property (nonatomic, weak, nullable) id<WhiteRoomCallbackDelegate> roomCallbackDelegate;
 @end
- 
+
 @implementation ViewController
- 
+
 // 添加 View
 - (void)setupViews
- 
+
 {
     self.config = [[WKWebViewConfiguration alloc] init];
     // 在此项目中将白板 View 设为全屏
     self.boardView = [[WhiteBoardView alloc] initWithFrame:(CGRectMake(0.0f,0.0f,self.view.bounds.size.width,self.view.bounds.size.height)) configuration:(self.config)];
     [self.view addSubview:(self.boardView)];
-     
+
 }
 // 初始化 SDK
 - (void)initSDK
@@ -196,23 +195,23 @@ request(options, function (error, response) {
                [self.room cleanScene:(NO)];
                [self.room setMemberState:(self.memberState)];
                NSLog(@"Successfully joined the room");
-                
+
            } else {
                NSLog(@"Errors when joining room");
            }
        }];
-     
+
 }
 // 在 viewDidLoad 方法中依次进行 View 添加，SDK 初始化，加入房间操作
 - (void)viewDidLoad {
     [super viewDidLoad];
- 
+
     [self setupViews];
     [self initSDK];
     [self joinRoom];
     }
- 
- 
+
+
 @end
 ```
 

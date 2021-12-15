@@ -3,6 +3,7 @@ title: TCP
 platform: All Platforms
 updatedAt: 2020-09-30 16:53:08
 ---
+
 TCP（Transmission Control Protocol），即传输控制协议，是一种面向连接的、可靠的传输层通信协议。
 
 面向连接是指在传输数据之前必须先在发送端和接收端之间建立连接。TCP 通过三次握手的方式建立连接：

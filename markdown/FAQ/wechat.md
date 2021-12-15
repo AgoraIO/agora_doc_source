@@ -2,8 +2,9 @@
 title: 如何处理小程序 SDK 常见问题？
 platform: ["微信小程序"]
 updatedAt: 2020-09-29 12:22:34
-Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
+Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
 ---
+
 ### 推流/拉流处理
 
 推流/拉流处理可以参考或直接使用 [GitHub 上开源代码](https://github.com/AgoraIO/Agora-Miniapp-Tutorial)。
@@ -23,6 +24,7 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 ### 小程序和 Native 互通有问题？
 
 频道中有小程序 SDK 和 Native SDK 时，可以选择如下一种方式实现互通：
+
 - Native 端在直播模式下，将用户角色设置为 AgoraClientRoleBroadcaster = 1：主播，实现互通
 - Native 端在直播模式下，不设置用户角色为主播，也可以接收到小程序端的流，实现互通
 
@@ -43,15 +45,16 @@ Web 与小程序互通时，Web 端只支持 H264 模式的编码，不支持 VP
 
 调用如下 API 实现保存和打开日志：
 
-* 保存日志：
+- 保存日志：
+
 ```
 AgoraMiniappSDK.LOG.onlog = (text) => {
   Utils.log(text);
 };
 ```
 
-* 打开日志：
-`AgoraMiniappSDK.LOG.setLogLevel(-1)`;
+- 打开日志：
+  `AgoraMiniappSDK.LOG.setLogLevel(-1)`;
 
 ### 出现客户端初始化失败之后，该如何做?
 
@@ -70,7 +73,7 @@ Agora Miniapp SDK for WeChat 在调用 API 或运行时，可能会返回一个�
 
 要在微信小程序中快速实现实时音视频功能，你可以在小程序项目中集成 Agora 微信小程序 SDK。详见[集成微信小程序 SDK](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_wechat?platform=微信小程序)。
 
-###  在某些社交娱乐场景中，小程序会需要播放背景音乐，Agora 微信小程序 SDK 是否支持播放背景音乐？
+### 在某些社交娱乐场景中，小程序会需要播放背景音乐，Agora 微信小程序 SDK 是否支持播放背景音乐？
 
 微信小程序的背景音频需要用微信小程序的原生 API 来集成实现，Agora 微信小程序 SDK 无法建立音频播放器。
 

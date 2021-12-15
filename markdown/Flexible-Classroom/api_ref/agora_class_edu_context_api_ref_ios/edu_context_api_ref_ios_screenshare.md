@@ -27,7 +27,7 @@ func registerEventHandler(_ handler: AgoraEduScreenShareHandler)
 
 屏幕共享状态已更新。
 
-- `state`  为 `start` 时，UI 层提示”老师发起了屏幕共享“。
+- `state` 为 `start` 时，UI 层提示”老师发起了屏幕共享“。
 - `state` 为 `stop` 时，UI 层提示“老师停止了屏幕共享”。
 
 | 参数         | 描述                                                   |
@@ -46,4 +46,3 @@ func registerEventHandler(_ handler: AgoraEduScreenShareHandler)
 | 参数       | 描述                     |
 | :--------- | :----------------------- |
 | `selected` | 屏幕共享标签是否被选中。 |
-

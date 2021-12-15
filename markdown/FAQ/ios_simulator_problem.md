@@ -2,8 +2,9 @@
 title: 为什么在 Xcode 12.3 及之后版本中使用 iOS 模拟器构建项目会失败？
 platform: ["iOS"]
 updatedAt: 2021-01-29 04:02:32
-Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
+Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
 ---
+
 ## 问题描述
 
 在 Xcode 12.3 及之后版本中，集成 Agora SDK 并使用 iOS 模拟器构建项目，你可能会收到如下错误信息：
@@ -32,15 +33,15 @@ Building for iOS Simulator, but the linked and embedded framework 'xxx.framework
 
 1. 新建 `xcframework.sh` 文件，并在文件中添加如下代码：
 
- ```bash
+```bash
 #!/bin/bash
 echo "Start building xcframework..."
 AgoraIosFrameworkDir=$1
 cd $AgoraIosFrameworkDir
 # SDK 路径检测
 if [ ! -d "libs" ]; then
-    echo "SDK path error, please check!"
-    exit 1
+   echo "SDK path error, please check!"
+   exit 1
 fi
 cd libs/
 cur_path=`pwd`
@@ -48,30 +49,30 @@ framework_suffix=".framework"
 frameworks=""
 # 寻找 libs 文件夹下所有的 .framework 文件
 for file in `ls $cur_path`; do
-    echo $file
-    if [[ $file == *$framework_suffix* ]]; then
-        frameworks="$frameworks $file"
-    fi
+   echo $file
+   if [[ $file == *$framework_suffix* ]]; then
+       frameworks="$frameworks $file"
+   fi
 done
 echo "Frameworks found:$frameworks"
 for framework in $frameworks; do
-    binary_name=${framework%.*}
-    echo "framework_name is $binary_name"
-    supported_platforms="\"iPhoneSimulator\""
-    # 在 ALL_ARCHITECTURE/xxx.framework 路径下的 Info.plist 文件中将 CFBundleSupportedPlatforms 修改为只支持 x86-64 或 i386 架构
-    plutil -replace CFBundleSupportedPlatforms -json "[$supported_platforms]" ALL_ARCHITECTURE/$framework/Info.plist || exit 1
-    # 移除 ALL_ARCHITECTURE 文件夹下 .framework 文件包含的 armv7 和 arm64 架构，只保留 x86-64 或 i386 架构
-    lipo -remove armv7 ALL_ARCHITECTURE/$framework/$binary_name -output ALL_ARCHITECTURE/$framework/$binary_name
-    lipo -remove arm64 ALL_ARCHITECTURE/$framework/$binary_name -output ALL_ARCHITECTURE/$framework/$binary_name
-    # 使用 xcodebuild 命令，基于 libs 文件夹下 devices 架构和 ALL_ARCHITECTURE 文件夹下的 .framework 文件，构建 .xcframework 文件
-    xcodebuild -create-xcframework -framework $framework -framework ALL_ARCHITECTURE/$framework -output $binary_name.xcframework
+   binary_name=${framework%.*}
+   echo "framework_name is $binary_name"
+   supported_platforms="\"iPhoneSimulator\""
+   # 在 ALL_ARCHITECTURE/xxx.framework 路径下的 Info.plist 文件中将 CFBundleSupportedPlatforms 修改为只支持 x86-64 或 i386 架构
+   plutil -replace CFBundleSupportedPlatforms -json "[$supported_platforms]" ALL_ARCHITECTURE/$framework/Info.plist || exit 1
+   # 移除 ALL_ARCHITECTURE 文件夹下 .framework 文件包含的 armv7 和 arm64 架构，只保留 x86-64 或 i386 架构
+   lipo -remove armv7 ALL_ARCHITECTURE/$framework/$binary_name -output ALL_ARCHITECTURE/$framework/$binary_name
+   lipo -remove arm64 ALL_ARCHITECTURE/$framework/$binary_name -output ALL_ARCHITECTURE/$framework/$binary_name
+   # 使用 xcodebuild 命令，基于 libs 文件夹下 devices 架构和 ALL_ARCHITECTURE 文件夹下的 .framework 文件，构建 .xcframework 文件
+   xcodebuild -create-xcframework -framework $framework -framework ALL_ARCHITECTURE/$framework -output $binary_name.xcframework
 done
 echo "Build xcframework successfully."
 ```
 
 2. 在终端运行如下命令构建 `.xcframework` 文件：
 
- ```shell
+```shell
 // 将 xcframework_path 替换为 xcframework.sh 文件所在路径
 cd xcframework_path
 // 运行 xcframework.sh 文件
@@ -88,6 +89,6 @@ sh xcframework.sh sdk_path
 
    以 3.2.0 版本的视频 SDK 为例，配置成功后，你会看到如下界面。
 
-  ![](https://web-cdn.agora.io/docs-files/1611565418238)
+![](https://web-cdn.agora.io/docs-files/1611565418238)
 
 参考 [Create an XCFramework](https://help.apple.com/xcode/mac/11.4/#/dev544efab96) 获取更多构建 `.xcframework` 文件的信息。

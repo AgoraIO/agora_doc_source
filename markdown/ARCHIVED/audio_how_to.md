@@ -3,6 +3,7 @@ title: 音频相关
 platform: 音频相关
 updatedAt: 2019-06-14 09:56:58
 ---
+
 ### iOS 端集成 H5 游戏音量低
 
 **背景信息：**iOS SDK 2.2.0 集成 H5 游戏；
@@ -12,12 +13,12 @@ updatedAt: 2019-06-14 09:56:58
 **问题原因：**WKWebView 加载的 H5 是另外一个进程通过 AVAudioSession 播放声音，不是通过 SDK 播放的。
 
 **解决方案：**
-`self.agoraEngine setAudioProfile:(AgoraRtc_AudioProfile_Default) scenario:(AgoraRtc_AudioScenario_GameStreaming);`  //选择 `GameStreaming` 模式。
+`self.agoraEngine setAudioProfile:(AgoraRtc_AudioProfile_Default) scenario:(AgoraRtc_AudioScenario_GameStreaming);` //选择 `GameStreaming` 模式。
 
 **方案缺点：**
 
-* 采用 `GameStreaming` 模式可能会出现一点回声，理论不影响使用，如有必现或大概率复现的情况可联系技术支持。
-* H5 的声音不是通过 SDK 播放的，无法消除回声。
+- 采用 `GameStreaming` 模式可能会出现一点回声，理论不影响使用，如有必现或大概率复现的情况可联系技术支持。
+- H5 的声音不是通过 SDK 播放的，无法消除回声。
 
 ### Android 9 设备上应用退到后台或锁屏后，采集不到声音
 
@@ -29,14 +30,13 @@ updatedAt: 2019-06-14 09:56:58
 
 > **Limited access to sensors in background**
 > Android 9 limits the ability for background apps to access user input and sensor data. If your app is running in the background on a device running Android 9, the system applies the following restrictions to your app:
-> * Your app cannot access the microphone or camera.
-> * Sensors that use the continuous reporting mode, such as accelerometers and gyroscopes, don't receive events.
-> * Sensors that use the on-change or one-shot reporting modes don't receive events.
-> If your app needs to detect sensor events on devices running Android 9, use a foreground service.
-
+>
+> - Your app cannot access the microphone or camera.
+> - Sensors that use the continuous reporting mode, such as accelerometers and gyroscopes, don't receive events.
+> - Sensors that use the on-change or one-shot reporting modes don't receive events.
+>   If your app needs to detect sensor events on devices running Android 9, use a foreground service.
 
 详见 [Android 行为变更](https://developer.android.com/about/versions/pie/android-9.0-changes-all)。
-
 
 **解决方案：** 目前 Android 官网没有明确说明后台采集声音应如何处理，但使用**前台服务**可以让应用正常工作。
 

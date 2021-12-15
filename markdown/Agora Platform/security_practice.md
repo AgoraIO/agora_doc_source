@@ -3,19 +3,21 @@ title: 安全最佳实践
 platform: All Platforms
 updatedAt: 2021-02-14 07:13:57
 ---
+
 安全与合规是实时互动的基本要求。声网 Agora 遵守不同国家和行业的合规性要求，打造安全可靠的云服务，目前已通过 ISO/IEC 27001 认证。详细认证及证书下载请参考 [ISO 证书](iso_cert)。
 
 此外，声网 Agora 产品在设计和构建过程中，根据音视频传输领域常见的攻击类型和安全需求，还集成了多重防护措施，满足客户及终端用户的数据安全要求。
 
-| 防护措施 | 是否默认应用 | 推荐场景 |
-| ---------------- | ---------------- | ---------------- |
-| 资源隔离      | 是      | 所有实时场景。      |
-| 频道隔离 | 是 | 所有实时场景。 |
-| 身份认证 | 否 | Agora 推荐正式生产阶段的 app 均使用该措施。 |
-| 加密 | 否 | 对于有保密需求的实时互动场景，Agora 推荐使用该措施。 |
-| 限定访问区域 | 否 | 适用于将音视频数据及实时消息数据传输限定在某一区域范围内的场景。 |
+| 防护措施     | 是否默认应用 | 推荐场景                                                         |
+| ------------ | ------------ | ---------------------------------------------------------------- |
+| 资源隔离     | 是           | 所有实时场景。                                                   |
+| 频道隔离     | 是           | 所有实时场景。                                                   |
+| 身份认证     | 否           | Agora 推荐正式生产阶段的 app 均使用该措施。                      |
+| 加密         | 否           | 对于有保密需求的实时互动场景，Agora 推荐使用该措施。             |
+| 限定访问区域 | 否           | 适用于将音视频数据及实时消息数据传输限定在某一区域范围内的场景。 |
 
 <a name="project"></a>
+
 ## 资源隔离
 
 客户在使用 Agora SDK 或服务前，需要先在 [Agora 控制台](https://console.agora.io/)新建项目。成功创建后，Agora 会自动为每个项目分配一个用于识别项目的 App ID。不同的项目之间彼此独立，通话无法互通，客户可以通过使用项目对应的 App ID，隔离不同的项目。
@@ -29,6 +31,7 @@ Agora 为每路音频、视频或消息传输建立单独且逻辑隔离的通�
 除上述基本保障外，Agora 还提供动态 Token 对即将加入频道的终端用户进行鉴权。
 
 目前 Agora 提供了如下两种认证方式：
+
 - 基于 App ID 认证
 - 基于 Token 认证。在采用 Token 认证方式后，客户可通过 App ID 和 App 证书生成 Token，并使用该 Token 对终端用户进行身份认证。
 
@@ -57,6 +60,7 @@ Agora 为每路音频、视频或消息传输建立单独且逻辑隔离的通�
 ![](https://web-cdn.agora.io/docs-files/1607585184084)
 
 #### 内置加密
+
 Agora RTC SDK 均内置多种加密算法。客户可以通过该功能对音视频内容进行加密。该加密功能可对所有传输的音视频流进行端到端加密。使用时，客户可以自行配置使用的加密算法。音视频数据在发送端完成加密后，在接收端完成解密，数据以密文形式进行网络传输。客户自行对密钥进行管理，包括密钥的生成、存储、传输和校验等。除涉及 WebRTC 服务外，Agora 不接触密钥，也无法对密文数据进行解密。
 
 在 WebRTC 服务中，Agora 需要在服务端进行数据解密和协议转换。Agora 已实施安全的密钥传输和使用机制，保护客户的密钥不被泄露。
@@ -89,11 +93,11 @@ Agora RTC SDK 均内置多种加密算法。客户可以通过该功能对音视
 具体使用方法，详见：
 
 - RTC SDK:
-	- [Android](region_java_rtc?platfrom=Android)
-	- [iOS](region_oc_rtc?platfrom=iOS)
-	- [macOS](region_oc_rtc?platform=macOS)
-	- [Web](region_web_rtc?platform=Web)
-	- [Windows](region_cpp_rtc?platform=Windows)
+  - [Android](region_java_rtc?platfrom=Android)
+  - [iOS](region_oc_rtc?platfrom=iOS)
+  - [macOS](region_oc_rtc?platform=macOS)
+  - [Web](region_web_rtc?platform=Web)
+  - [Windows](region_cpp_rtc?platform=Windows)
 - RTM SDK:
   - [Android](region_java_rtm?platform=Android)
   - [iOS](region_oc_rtm?platform=iOS)
@@ -102,4 +106,3 @@ Agora RTC SDK 均内置多种加密算法。客户可以通过该功能对音视
   - [Windows](region_cpp_rtm?platfrom=Windows)
   - [Linux C++](region_cpp_rtm?platform=Linux)
   - [Linux Java](region_java_linux_rtm?platform=Linux)
-

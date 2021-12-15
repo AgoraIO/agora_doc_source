@@ -3,17 +3,17 @@ title: 发版说明
 platform: Android
 updatedAt: 2021-01-18 07:54:54
 ---
+
 本文提供 Agora 视频 SDK 的发版说明。
 
 ## **简介**
 
 Android 视频 SDK 支持两种主要场景:
 
--   音视频通话
--   音视频直播
+- 音视频通话
+- 音视频直播
 
 点击 [语音通话产品概述](https://docs.agora.io/cn/Voice/product_voice?platform=All%20Platforms)、[视频通话产品概述](https://docs.agora.io/cn/Video/product_video?platform=All%20Platforms)以及 [互动直播产品概述](https://docs.agora.io/cn/Interactive%20Broadcast/product_live?platform=All%20Platforms) 了解关键特性。
-
 
 ## **2.3.3 版**
 
@@ -32,17 +32,16 @@ Android 视频 SDK 支持两种主要场景:
 
 2.3.2 整体提升直播模式下视频弱网抗丢包能力，提高流畅度，降低卡顿率。升级前，请了解以下版本兼容性:
 
-* Native SDK 版本不能低于 1.11.0
-* Web SDK（若互通）版本不能低于 2.1.0
+- Native SDK 版本不能低于 1.11.0
+- Web SDK（若互通）版本不能低于 2.1.0
 
 ### **新增功能**
 
-#### 控制音乐文件的播放音量 
+#### 控制音乐文件的播放音量
 
 为方便用户控制混音音乐文件在本地及远端的播放音量，该版本在已有 [`adjustAudioMixingVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a13c5737248d5a5abf6e8eb3130aba65a) 的基础上新增 [`adjustAudioMixingPlayoutVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0308c6bc82af433ae8340e0b3cd228c9) 和 [`adjustAudioMixingPublishVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a16c4dc66d9c43eef9bee7afc86762c00) 接口，用于分别控制混音音乐文件在本地和远端的播放音量。
 
 该版本梳理了用户在音频采集到播放过程中可能会需要调整音量的场景，及各场景对应的 API，供用户参考使用。详见官网文档[调整通话音量](./volume_android_audio)。
-
 
 ### **改进**
 
@@ -50,7 +49,7 @@ Android 视频 SDK 支持两种主要场景:
 
 为提升质量透明的用户体验，该版本废弃了原有的 `onAudioQuality` 回调，并新增 `onRemoteAudioStats` 回调进行取代。和原来的接口相比，新接口使用更为综合的算法，通过引入音频丢帧率、端到端的音频延迟、接收端网络抖动的缓冲延迟等参数，使回调结果更贴近用户感受。同时，该版本优化了 `onNetworkQuality` 的算法，对上下行网络质量采用不同的计算方法，使评分更精准。
 
-- [`onRemoteAudioStats`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54)：通话中远端音频流的统计信息回调。用于替换	`onAudioQuality`
+- [`onRemoteAudioStats`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54)：通话中远端音频流的统计信息回调。用于替换 `onAudioQuality`
 - [`onNetworkQuality`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a76be982389183c5fe3f6e4b03eaa3bd4)：通话中每个用户的网络上下行 Last mile 质量报告回调
 
 Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
@@ -70,20 +69,17 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 
 在新的接口下，SDK 共有 5 种连接状态：未连接、正在连接、已连接、正在重新建立连接和连接失败。当连接状态发生改变时，都会触发 `onConnectionStateChanged` 回调。当条件满足时，原有的 `onConnectionInterrupted` 和 `onConnectionBanned` 回调也会触发，但 Agora 不再推荐使用。
 
-
 #### 3. 优化打分反馈机制
 
 为方便用户（开发者）收集最终用户（应用程序使用者）对使用应用进行通话或直播的反馈，该版本将 [`rate`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab7083355af531cc43d455024bd1f7662) 接口中的打分范围缩小为 1 - 5，减少最终用户的打分干扰。Agora 建议在应用程序中集成该接口，方便应用程序收集用户反馈。
 
 #### 4. 其他改进
 
-
 - 提升了推流稳定性
 - 优化了 SDK 在 Android 6.0 以上设备上的性能
 - 优化了 API 的调用线程
 - 增加了重新检测耳机插入和蓝牙设备连接的代码
 - 降低了音频延时
-
 
 ### **问题修复**
 
@@ -101,8 +97,6 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 - 修复了 Pixel 2 设备上出现的回声问题
 - 修复了外放条件下，上下麦、系统电话打断、进退频道等多种场景下，出现的无法调节外放音量的问题
 - 修复了应用从后台切回前台时，出现的出声音慢的问题
-
-
 
 ### **API 整理**
 
@@ -128,18 +122,17 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 
 ### **新增功能**
 
-####  关闭/重新开启本地语音功能
+#### 关闭/重新开启本地语音功能
 
 应用程序在加入频道时，语音功能是默认打开的。为满足用户只接收而不发送音频流的需求，该版本新增 `enableLocalAudio` 接口，方便应用程序在进入频道后关闭或重新开启本地语音功能。关闭本地语音功能后，应用程序会收到 `onMicrophoneEnabled` 回调，并停止采集本地音频流。该方法不影响接收和播放远端音频流。
 
 该功能与 `muteLocalAudioStream` 的区别在于前者不采集不发送，而后者是采集但不发送。
 
-
 ### **问题修复**
 
-* 修复了直播模式下，多次上下麦后某些 Android 设备上偶现的崩溃问题。
-* 修复了直播模式下，观众端因统计有误出现的延迟的问题。
-* 修复了某些 Android 设备上偶现的退出频道时，如果频道内还有人在说话，会听到声音且声音破音的问题。
+- 修复了直播模式下，多次上下麦后某些 Android 设备上偶现的崩溃问题。
+- 修复了直播模式下，观众端因统计有误出现的延迟的问题。
+- 修复了某些 Android 设备上偶现的退出频道时，如果频道内还有人在说话，会听到声音且声音破音的问题。
 
 ## **2.3.0 版**
 
@@ -149,23 +142,22 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 ### **升级必看**
 
--   该版本中 LiveTranscoding Class 从 `io.agora.live `Package 移到了 `io.agora.rtc.live` Package。
--   该版本修改了 API `constants.java` 中的拼写错误。
+- 该版本中 LiveTranscoding Class 从 `io.agora.live `Package 移到了 `io.agora.rtc.live` Package。
+- 该版本修改了 API `constants.java` 中的拼写错误。
 
-    -   修改前：
+  - 修改前：
 
-    ```
-    public static final int SOFEWARE_ENCODER = 1;
-    ```
+  ```
+  public static final int SOFEWARE_ENCODER = 1;
+  ```
 
-    -   修改后：
+  - 修改后：
 
-    ```
-    public static final int SOFTWARE_ENCODER = 1;
-    ```
+  ```
+  public static final int SOFTWARE_ENCODER = 1;
+  ```
 
--   为更好地提升用户体验，Agora SDK 在 v2.1.0 版本中对动态秘钥进行了升级。如果你当前使用的 SDK 是 v2.1.0 之前的版本，并希望升级到 v2.1.0 或更高版本，请务必参考 [动态秘钥升级说明](/cn/Agora%20Platform/token_migration) 。
-
+- 为更好地提升用户体验，Agora SDK 在 v2.1.0 版本中对动态秘钥进行了升级。如果你当前使用的 SDK 是 v2.1.0 之前的版本，并希望升级到 v2.1.0 或更高版本，请务必参考 [动态秘钥升级说明](/cn/Agora%20Platform/token_migration) 。
 
 ### **新增功能**
 
@@ -181,29 +173,27 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 ### **改进功能**
 
--   优化了一对一音视频的质量，在降低延时、防止卡顿方面提升明显。优化效果重点覆盖东南亚、南美、非洲和中东等地区
--   直播场景下，改善了音频编码器的效率，保证通话质量的同时节省用户流量
--   采用深度学习算法，改进了通话及直播中的音频质量
-
+- 优化了一对一音视频的质量，在降低延时、防止卡顿方面提升明显。优化效果重点覆盖东南亚、南美、非洲和中东等地区
+- 直播场景下，改善了音频编码器的效率，保证通话质量的同时节省用户流量
+- 采用深度学习算法，改进了通话及直播中的音频质量
 
 ### **问题修复**
 
--   修复了某些 Android 设备上偶现的崩溃的问题
--   修复了多平台互通时，一段时间后某些 Andorid 设备上偶现的崩溃问题。
--   修复了多人连麦场景下，主播频繁进出频道时，偶现的主播内存异常增长的问题
--   修复了某些 Android 设备上偶现的黑屏的问题
--   修复了特定场景下偶现的主播加入频道、下麦再上麦后，远端用户听不到主播声音的问题
--   修复了频道内其他用户频繁进出频道时，Android 设备上偶现的崩溃问题
--   修复了特定场景下偶现的直播观众无法调节频道内通话音量的问题
--   修复了特定场景下某些 Android 设备上偶现的应用无响应的问题
--   修复了 2 人连麦过程中，一端播放背景音乐时将自己静音或关闭音频后，另一端闪退的问题
--   修复了特定场景下，预加载音效时某些设备上偶现的崩溃问题
--   修复了通信模式下，某些 Android 设备上偶现的服务端无法踢人的问题
--   修复了某些 Andoid 设备上偶现的无法打开硬件编码器的问题
--   修复了直播场景下，开关闪光灯时某些 Android 设备上出现崩溃的问题
--   修复了直播场景下，某些 Android 设备上出现的观众上麦后，主播接收不到上麦观众的音视频流的问题
--   修复了偶现的频繁切换 Token 时，某些 Android 设备上偶现的崩溃的问题
-
+- 修复了某些 Android 设备上偶现的崩溃的问题
+- 修复了多平台互通时，一段时间后某些 Andorid 设备上偶现的崩溃问题。
+- 修复了多人连麦场景下，主播频繁进出频道时，偶现的主播内存异常增长的问题
+- 修复了某些 Android 设备上偶现的黑屏的问题
+- 修复了特定场景下偶现的主播加入频道、下麦再上麦后，远端用户听不到主播声音的问题
+- 修复了频道内其他用户频繁进出频道时，Android 设备上偶现的崩溃问题
+- 修复了特定场景下偶现的直播观众无法调节频道内通话音量的问题
+- 修复了特定场景下某些 Android 设备上偶现的应用无响应的问题
+- 修复了 2 人连麦过程中，一端播放背景音乐时将自己静音或关闭音频后，另一端闪退的问题
+- 修复了特定场景下，预加载音效时某些设备上偶现的崩溃问题
+- 修复了通信模式下，某些 Android 设备上偶现的服务端无法踢人的问题
+- 修复了某些 Andoid 设备上偶现的无法打开硬件编码器的问题
+- 修复了直播场景下，开关闪光灯时某些 Android 设备上出现崩溃的问题
+- 修复了直播场景下，某些 Android 设备上出现的观众上麦后，主播接收不到上麦观众的音视频流的问题
+- 修复了偶现的频繁切换 Token 时，某些 Android 设备上偶现的崩溃的问题
 
 ### **API 整理**
 
@@ -211,25 +201,22 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 为避免在直播转码推流中添加多个相同 User，以下接口在 v2.3.0 版本中进行删除，并将 `addUser` 返回类型由 void 变更为 int。
 
--   `setUser`
-
+- `setUser`
 
 以下接口与录制相关，在 v2.3.0 版本后不再支持。Agora 提供专门的 Recording SDK 用于更好的录制服务，详见 [Agora Recording SDK 发版说明](/cn/Product%20Overview/release_recording)。
 
--   `startRecordingService`
--   `stopRecordingService`
--   `refreshRecordingServiceStatus`
--   `onRefreshRecordingServiceStatus`
-
+- `startRecordingService`
+- `stopRecordingService`
+- `refreshRecordingServiceStatus`
+- `onRefreshRecordingServiceStatus`
 
 以下接口长期处于弃用状态，现进行删除，v2.3.0 版本后不再支持：
 
--   `monitorConnectionEvent`
--   `monitorBluetoothHeadsetEvent`
--   `monitorHeadsetEvent`
--   `setPreferHeadset`
--   `setSpeakerphoneVolume`
-
+- `monitorConnectionEvent`
+- `monitorBluetoothHeadsetEvent`
+- `monitorHeadsetEvent`
+- `setPreferHeadset`
+- `setSpeakerphoneVolume`
 
 ## **2.2.3 版**
 
@@ -241,14 +228,13 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 ### **问题修复**
 
--   修复了特定场景下偶发的线上统计崩溃的问题。
--   修复了直播时部分设备上主播声音变音的问题。
--   修复了直播时特定场景下偶发的崩溃的问题。
--   修复了多人直播连麦时，SDK 内存增长的问题。
--   修复了部分设备上偶发的离开频道后，收到 `onLeaveChannel` 回调偏慢的问题。
--   修复了偶发的无法正常反馈频道内谁在说话以及说话者音量的问题。
--   修复了直播时偶发的观众听到主播声忽大忽小的问题。
-
+- 修复了特定场景下偶发的线上统计崩溃的问题。
+- 修复了直播时部分设备上主播声音变音的问题。
+- 修复了直播时特定场景下偶发的崩溃的问题。
+- 修复了多人直播连麦时，SDK 内存增长的问题。
+- 修复了部分设备上偶发的离开频道后，收到 `onLeaveChannel` 回调偏慢的问题。
+- 修复了偶发的无法正常反馈频道内谁在说话以及说话者音量的问题。
+- 修复了直播时偶发的观众听到主播声忽大忽小的问题。
 
 ## **2.2.2 版**
 
@@ -262,18 +248,16 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 - 修复了偶发的无法正常反馈频道内谁在说话以及说话者的音量的问题
 - 修复了部分安卓设备上偶现的离开频道后，收到 `onLeaveChannel` 回调偏慢的问题
 
-
 ## **2.2.1 版**
 
 该版本于 2018 年 5 月 30 日发布。新增特性与修复问题列表详见下文。
 
 ### **问题修复**
 
--   修复了部分设备上偶现的游戏过程中 Crash 的问题
--   修复了部分设备上无法获取声道指针的问题
--   修复了部分设备上偶现的 Crash 问题
--   修复了部分设备上插入耳机后无法调节音量的问题
-
+- 修复了部分设备上偶现的游戏过程中 Crash 的问题
+- 修复了部分设备上无法获取声道指针的问题
+- 修复了部分设备上偶现的 Crash 问题
+- 修复了部分设备上插入耳机后无法调节音量的问题
 
 ## **2.2.0 版**
 
@@ -292,7 +276,6 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 #### 2. 服务端部署代理服务器
 
 通过部署 Agora 提供的代理服务器安装包，设有企业防火墙的用户可以设置代理服务器，使用 Agora 的服务。详见 [企业部署代理服务器](/cn/Quickstart%20Guide/proxy) 中的描述。
-
 
 ### **改进功能**
 
@@ -313,7 +296,6 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 #### 4. 提升音乐场景下的音质
 
 提升了用户在播放音乐等场景下的音乐音质。
-
 
 ## **2.1.3 版**
 
@@ -357,14 +339,12 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 新增 RESTful API 查询用户在频道中的状态信息，查询指定频道内的分角色用户列表，查询厂商频道列表，查询用户是否为连麦用户等。详见:
 
--   通话场景, 详见 [Dashboard RESTful API](/cn/API%20Reference/dashboard_restful_communication)
--   互动直播场景, 详见 [Dashboard RESTful API](/cn/API%20Reference/dashboard_restful_live)
-
+- 通话场景, 详见 [Dashboard RESTful API](/cn/API%20Reference/dashboard_restful_communication)
+- 互动直播场景, 详见 [Dashboard RESTful API](/cn/API%20Reference/dashboard_restful_live)
 
 #### 4. 直播优化方案
 
 提供一套全新的 API，直播场景优化 API，将原来 API 封装在底层，更快集成，更多功能扩展性。升级到 SDK 2.1 的用户可以选择使用新 API 或者老 API，两套方案均可以使用。
-
 
 ### **改进**
 
@@ -391,14 +371,12 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 </tbody>
 </table>
 
-
 ### **问题修复**
 
--   修复了华为 Nexus 6p 播放杂音的问题。
--   修复了一加手机上的破音问题。
--   修复了自采集声音不正常问题。
--   修复了偶现的崩溃问题。
-
+- 修复了华为 Nexus 6p 播放杂音的问题。
+- 修复了一加手机上的破音问题。
+- 修复了自采集声音不正常问题。
+- 修复了偶现的崩溃问题。
 
 ## **2.0.2 版**
 
@@ -416,37 +394,34 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### **新增功能**
 
+- 通信和直播场景下支持音频自采集功能，新增以下 API:
 
--   通信和直播场景下支持音频自采集功能，新增以下 API:
+      <table>
 
-    <table>
-<colgroup>
-<col/>
-<col/>
-</colgroup>
-<tbody>
-<tr><td><strong>名称</strong></td>
-<td><strong>描述</strong></td>
-</tr>
-<tr><td><code>setExternalAudioSource</code></td>
-<td>设置外部音频采集参数: 采样率，通道数等</td>
-</tr>
-<tr><td><code>pushExternalAudioFrame</code></td>
-<td>推送外部音频帧</td>
-</tr>
-</tbody>
-</table>
+  <colgroup>
+  <col/>
+  <col/>
+  </colgroup>
+  <tbody>
+  <tr><td><strong>名称</strong></td>
+  <td><strong>描述</strong></td>
+  </tr>
+  <tr><td><code>setExternalAudioSource</code></td>
+  <td>设置外部音频采集参数: 采样率，通道数等</td>
+  </tr>
+  <tr><td><code>pushExternalAudioFrame</code></td>
+  <td>推送外部音频帧</td>
+  </tr>
+  </tbody>
+  </table>
 
--   通信和直播场景下支持服务端踢人功能。
--   新增以下 Android 模拟器支持: 夜神、雷电、逍遥。
-
-
+- 通信和直播场景下支持服务端踢人功能。
+- 新增以下 Android 模拟器支持: 夜神、雷电、逍遥。
 
 #### **问题修复**
 
--   修复了音频路由和蓝牙相关的若干问题。
--   优化了音量均衡控制。
-
+- 修复了音频路由和蓝牙相关的若干问题。
+- 优化了音量均衡控制。
 
 ### **1.14 版**
 
@@ -454,25 +429,23 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### **新增功能**
 
--   新增 API `setAudioProfile 设`置音频参数和应用场景。
+- 新增 API `setAudioProfile 设`置音频参数和应用场景。
 
--   新增 API `setLocalVoicePitch` 提供基础变声功能。
+- 新增 API `setLocalVoicePitch` 提供基础变声功能。
 
--   直播场景: 新增 API `setInEarMonitoringVolume`提供调节耳返音量功能。
-
+- 直播场景: 新增 API `setInEarMonitoringVolume`提供调节耳返音量功能。
 
 #### **改进**
 
--   优化了在高码率下的音频体验。
+- 优化了在高码率下的音频体验。
 
--   秒开: 直播场景下，单流模式时观众加入频道 1 秒内看见主播图像 (均值为 226 ms, 网络状态良好时可达 204 ms)。
+- 秒开: 直播场景下，单流模式时观众加入频道 1 秒内看见主播图像 (均值为 226 ms, 网络状态良好时可达 204 ms)。
 
--   节省带宽:
+- 节省带宽:
 
-    -   1.14 以前: 如果你选择不听某人的音频或不看某人的视频，音视频流会照发。
+  - 1.14 以前: 如果你选择不听某人的音频或不看某人的视频，音视频流会照发。
 
-    -   1.14 开始: 如果你选择不听或不看某人的流，则不会下发，从而节省带宽。
-
+  - 1.14 开始: 如果你选择不听或不看某人的流，则不会下发，从而节省带宽。
 
 ### **1.13.1 版**
 
@@ -488,14 +461,13 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### **新增功能**
 
--   新增 API `onClientRoleChanged` 用于提醒直播场景下主播、观众上下麦的回调。
+- 新增 API `onClientRoleChanged` 用于提醒直播场景下主播、观众上下麦的回调。
 
--   新增支持 Android 模拟器。
+- 新增支持 Android 模拟器。
 
--   新增单独关闭语音播放的功能。
+- 新增单独关闭语音播放的功能。
 
--   新增功能支持服务端推流失败回调。
-
+- 新增功能支持服务端推流失败回调。
 
 #### **修复问题**
 
@@ -507,14 +479,11 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### **新增功能**
 
--   在 API 方法 `setEncryptionMode`里新增了加密模式 `aes-128-ecb`。
--   在 API 方法 `startAudioRecording` 里新增了参数 `quality` 用于设置录音音质。
--   新增了一系列 API 管理音效。
-
+- 在 API 方法 `setEncryptionMode`里新增了加密模式 `aes-128-ecb`。
+- 在 API 方法 `startAudioRecording` 里新增了参数 `quality` 用于设置录音音质。
+- 新增了一系列 API 管理音效。
 
 #### **修复问题**
 
--   修复了部分机型上蓝牙相关的语音路由问题。
--   修复了部分机型上偶现的崩溃问题。
-
-
+- 修复了部分机型上蓝牙相关的语音路由问题。
+- 修复了部分机型上偶现的崩溃问题。

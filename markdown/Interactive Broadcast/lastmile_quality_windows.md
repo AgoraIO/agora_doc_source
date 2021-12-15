@@ -3,6 +3,7 @@ title: 通话前网络和设备检测
 platform: Windows
 updatedAt: 2021-03-04 09:10:14
 ---
+
 ## 功能描述
 
 在对质量要求高的场景下，进行通话前检测可以帮助提前识别并排查问题，保证实时通信体验。通话前检测通常可以从如下两个角度开展：
@@ -28,11 +29,13 @@ Agora 在 GitHub 上提供已实现[通话前检测](https://github.com/AgoraIO/
 
 1. 在用户加入频道或上麦前，调用 `startLastmileProbeTest` 进行网络质量探测，向用户反馈上下行网络的带宽、丢包、网络抖动和往返时延。
 2. 启用该方法后，SDK 会依次返回如下 2 个回调：
+
 - `onLastmileQuality`：约 2 秒内返回。该回调通过打分反馈上下行网络质量，更贴近主观感受
 - `onLastmileProbeResult`：约 30 秒内返回。该回调通过客观数据反馈上下行网络质量，更客观
+
 3. 获取到网络质量数据后，调用 `stopLastmileProbeTest` 停止通话前网络质量探测。
 
-各 API 的调用时序如下图所示： 
+各 API 的调用时序如下图所示：
 
 ![](https://web-cdn.agora.io/docs-files/1569465803488)
 
@@ -69,13 +72,12 @@ lpAgoraEngine->startLastmileProbeTest(config);
 lpAgoraEngine->stopLastmileProbeTest();
 ```
 
-
 ### API 参考
-* [`startLastmileProbeTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#adb3ab7a20afca02f5a5ab6fafe026f2b)
-* [`stopLastmileProbeTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a94f3494035429684a750e1dee7ef1593)
-* [`onLastmileQuality`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ac7e14d1a26eb35ef236a0662d28d2b33)
-* [`onLastmileProbeResult`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a44134dfda5d412831fa8e44fa533fca5)
 
+- [`startLastmileProbeTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#adb3ab7a20afca02f5a5ab6fafe026f2b)
+- [`stopLastmileProbeTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a94f3494035429684a750e1dee7ef1593)
+- [`onLastmileQuality`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ac7e14d1a26eb35ef236a0662d28d2b33)
+- [`onLastmileProbeResult`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a44134dfda5d412831fa8e44fa533fca5)
 
 ## 设备质量检测
 
@@ -88,9 +90,9 @@ lpAgoraEngine->stopLastmileProbeTest();
 参考以下步骤测试音视频设备：
 
 - 选择以下一种方式测试音频设备：
-	- 调用 `startEchoTest` 测试系统的音频设备（耳麦、扬声器等）和网络连接。
-	- 调用 `startRecordingDeviceTest` 测试录音设备，调用 `startPlaybackDeviceTest` 测试音频播放设备。
-	- 调用 `startAudioDeviceLoopbackTest` 测试音频设备回路（包括录音设备和音频播放设备）。
+  - 调用 `startEchoTest` 测试系统的音频设备（耳麦、扬声器等）和网络连接。
+  - 调用 `startRecordingDeviceTest` 测试录音设备，调用 `startPlaybackDeviceTest` 测试音频播放设备。
+  - 调用 `startAudioDeviceLoopbackTest` 测试音频设备回路（包括录音设备和音频播放设备）。
 - 调用 `startDeviceTest` 方法测试视频采集设备。
 
 <div class="alert note">所有测试设备的方法都必须在加入频道之前调用。</div>
@@ -151,8 +153,6 @@ rtcEngine.enableAudioVolumeIndication(1000, // 回调间隔，以毫秒为单位
 // 停止音频采集设备测试
 (*lpDeviceManager)->stopRecordingDeviceTest();
 ```
-
-
 
 ### 音频播放设备测试
 
@@ -224,24 +224,22 @@ lpDeviceManager->setDevice(strDeviceID); // device ID chosen
 (*lpDeviceManager)->stopDeviceTest();
 ```
 
-
-
 ### API 参考
 
-* [`startEchoTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a842ed126b6e21a39059adaa4caa6d021)
-* [`stopEchoTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ae779da1c3fe153d73e8dfb2eb59ba9e4)
-* [`enableAudioVolumeIndication`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4b30a8ff1ae50c4c114ae4f909c4ebcb)
-* [`enumerateRecordingDevices`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a1ea4f53d60dc91ea83960885f9ab77ee)
-* [`setRecordingDevice`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a723941355030636cd7d183d53cc7ace7)
-* [`enumeratePlaybackDevices`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#aa13c99d575d89e7ceeeb139be723b18a)
-* [`setPlaybackDevice`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a1ee23eae83165a27bcbd88d80158b4f1)
-* [`startRecordingDeviceTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a9e732d31f179a90d388998f5b86ebf06)
-* [`stopRecordingDeviceTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a796e7b8a58eb303f18f04e1e9d12a94b)
-* [`startAudioDeviceLoopbackTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac78c08f3212dc3efa000e197207dec53)
-* [`stopAudioDeviceLoopbackTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#aad01da1e0bacd3f2fd355483f9e3befb)
-* [`enumerateVideoDevices`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_video_device_manager.html#aef51744162ec544abf2aaf0488ca062d)
-* [`startDeviceTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_video_device_manager.html#ac148cafcb191841fd4aa7f5b6166b16d)
-* [`stopDeviceTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_video_device_manager.html#ae3fe9f7ad1ddf4d5cda5e30d14b9d321)
+- [`startEchoTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a842ed126b6e21a39059adaa4caa6d021)
+- [`stopEchoTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ae779da1c3fe153d73e8dfb2eb59ba9e4)
+- [`enableAudioVolumeIndication`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4b30a8ff1ae50c4c114ae4f909c4ebcb)
+- [`enumerateRecordingDevices`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a1ea4f53d60dc91ea83960885f9ab77ee)
+- [`setRecordingDevice`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a723941355030636cd7d183d53cc7ace7)
+- [`enumeratePlaybackDevices`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#aa13c99d575d89e7ceeeb139be723b18a)
+- [`setPlaybackDevice`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a1ee23eae83165a27bcbd88d80158b4f1)
+- [`startRecordingDeviceTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a9e732d31f179a90d388998f5b86ebf06)
+- [`stopRecordingDeviceTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a796e7b8a58eb303f18f04e1e9d12a94b)
+- [`startAudioDeviceLoopbackTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#ac78c08f3212dc3efa000e197207dec53)
+- [`stopAudioDeviceLoopbackTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#aad01da1e0bacd3f2fd355483f9e3befb)
+- [`enumerateVideoDevices`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_video_device_manager.html#aef51744162ec544abf2aaf0488ca062d)
+- [`startDeviceTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_video_device_manager.html#ac148cafcb191841fd4aa7f5b6166b16d)
+- [`stopDeviceTest`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_video_device_manager.html#ae3fe9f7ad1ddf4d5cda5e30d14b9d321)
 
 ## 开发注意事项
 

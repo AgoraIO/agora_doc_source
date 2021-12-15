@@ -49,7 +49,7 @@ zoomValue: number,
 ## currentPage
 
 ```typescript
-currentPage: number,  
+currentPage: number,
 ```
 
 当前白板页数。

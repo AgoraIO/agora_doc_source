@@ -3,6 +3,7 @@ title: 媒体流回退
 platform: Web
 updatedAt: 2020-12-30 09:08:26
 ---
+
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 Web SDK 3.x 或更早版本，请查看<a href="./fallback_web?platform=Web">媒体流回退</a>。</li></div>
 
 ## 功能描述
@@ -14,6 +15,7 @@ updatedAt: 2020-12-30 09:08:26
 开始前，请确保你已参考快速开始在你的项目中实现基本的实时音视频功能。
 
 参考如下步骤，在你的项目中实现媒体流回退功能：
+
 1. 在发布之前，发送端调用 `AgoraRTCClient.enableDualStream` 方法开启[双流模式](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#dual-stream)。
 2. 接收端调用 `AgoraRTCClient.setStreamFallbackOption` 方法设置弱网环境下接收媒体流的回退选项。
    - `fallbackType` 设为 `1`，则下行网络较弱时，只接收主播的视频小流。
@@ -29,32 +31,38 @@ updatedAt: 2020-12-30 09:08:26
 
 ```js
 // 开启双流模式
-client.enableDualStream().then(() => {
-  console.log("Enable dual stream success!")
-}).catch(err => {
-  console,log(err)
-});
+client
+  .enableDualStream()
+  .then(() => {
+    console.log("Enable dual stream success!");
+  })
+  .catch(err => {
+    console, log(err);
+  });
 
 // 接收端的配置。弱网环境下先尝试接收小流；若当前网络环境无法显示视频，则只接收音频流。
-client.setStreamFallbackOption(remoteStream, 2)
+client.setStreamFallbackOption(remoteStream, 2);
 
 // 接收端的配置。弱网情况下为保证通话质量，将订阅的视频大流手动切换成视频小流。
 client.setRemoteVideoStreamType(remoteStream, 1);
 ```
 
 ### API 参考
+
 - [AgoraRTCClient.enableDualStreamMode](./API%20Reference/web/v4.2.1/interfaces/iagorartcclient.html#enabledualstream)
 - [AgoraRTCClient.setStreamFallbackOption](./API%20Reference/web/v4.2.1/interfaces/iagorartcclient.html#setstreamfallbackoption)
 - [AgoraRTCClient.setRemoteVideoStreamType](./API%20Reference/web/v4.2.1/interfaces/iagorartcclient.html#setremotevideostreamtype)
 
 ## 开发注意事项
--  `enableDualStream` 方法对以下场景无效：
-   - 通过 `createCustomVideoTrack` 创建的视频轨道。
-   - 纯音频通话。
-   - iOS 上的 Safari 浏览器。
-   - 共享屏幕场景。
+
+- `enableDualStream` 方法对以下场景无效：
+
+  - 通过 `createCustomVideoTrack` 创建的视频轨道。
+  - 纯音频通话。
+  - iOS 上的 Safari 浏览器。
+  - 共享屏幕场景。
 
 - 调用 `setRemoteVideoStreamType` 方法时，某些浏览器对双流模式不完全适配。目前发现的适配问题有：
-   - macOS Safari：大小流帧率、分辨率一致。
-   - iOS Safari：Safari 11 当前不支持大小流切换。
-   - Firefox：小流帧率固定为 30 fps。
+  - macOS Safari：大小流帧率、分辨率一致。
+  - iOS Safari：Safari 11 当前不支持大小流切换。
+  - Firefox：小流帧率固定为 30 fps。

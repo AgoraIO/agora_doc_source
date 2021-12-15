@@ -3,6 +3,7 @@ title: 实现音频直播
 platform: Unity
 updatedAt: 2021-01-06 08:58:18
 ---
+
 本文介绍如何使用 Agora Unity SDK 快速实现音频互动直播。
 
 ## 前提条件
@@ -11,17 +12,16 @@ updatedAt: 2021-01-06 08:58:18
 
 - 操作系统与编译器要求：
 
-  | 开发平台 | 操作系统版本          | 编译器版本                |
-  | :------- | :-------------------- | :------------------------ |
-  | Android  | Android 4.1 或以上    | Android Studio 3.0 或以上 |
-  | iOS      | iOS 8.0 或以上        | Xcode 9.0 或以上          |
-  | macOS    | macOS 10.0 或以上     | Xcode 9.0 或以上          |
-  | Windows  | Windows 7 或以上 | Microsoft Visual Studio 2017 或以上 |
+  | 开发平台 | 操作系统版本       | 编译器版本                          |
+  | :------- | :----------------- | :---------------------------------- |
+  | Android  | Android 4.1 或以上 | Android Studio 3.0 或以上           |
+  | iOS      | iOS 8.0 或以上     | Xcode 9.0 或以上                    |
+  | macOS    | macOS 10.0 或以上  | Xcode 9.0 或以上                    |
+  | Windows  | Windows 7 或以上   | Microsoft Visual Studio 2017 或以上 |
 
 - 有效的 [Agora 账户](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up) 和 [App ID](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#getappid)
 
 <div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms#agora-rtc-sdk">应用企业防火墙限制</a >打开相关端口。</div>
-
 
 ## 准备开发环境
 
@@ -45,8 +45,8 @@ updatedAt: 2021-01-06 08:58:18
 	 - **Template**：项目类型。选择 **3D**。
 </details>
 
-
 <a name="Integrate"></a>
+
 ### 集成 SDK
 
 选择如下任意一种方式将 Agora Unity SDK 集成到你的项目中。
@@ -54,7 +54,7 @@ updatedAt: 2021-01-06 08:58:18
 **方法一：使用 Unity Asset Store 自动集成**
 
 1. 在 **Unity** 中点击 **Asset Store** 栏，输入 **Agora** 搜索并选择 **Agora Voice SDK for Unity**。
-  ![](https://web-cdn.agora.io/docs-files/1576206914656)
+   ![](https://web-cdn.agora.io/docs-files/1576206914656)
 2. 在 SDK 详情页中，点击页面右侧的 **Download** 按钮下载 SDK。
    ![](https://web-cdn.agora.io/docs-files/1576223167334)
 3. 下载成功后，会出现 **Import** 按钮，点击查看可导入的内容。
@@ -69,7 +69,6 @@ updatedAt: 2021-01-06 08:58:18
 2. 将 SDK 包内 `samples/Hello-Unity3D-Agora/Assets/AgoraEngine` 路径下的 `Plugins` 文件夹拷贝到项目的 `Assets` 文件夹下。
 
  <div class="alert note"><ul><li>对于开发 Android 或 iOS 应用的用户，如需在 macOS 或 Windows 设备中使用 Unity Editor 调试，请确保拷贝 macOS 或 X86/X86_64 文件夹。<li>iOS 平台集成时，还需要拷贝 <code>samples/Hello-Unity3D-Agora/Assets/AgoraEngine/Editor</code> 路径下的 <code>BL_BuildPostProcess.cs</code> 脚本。</div>
-
 
 ## 实现音频互动直播
 
@@ -87,47 +86,49 @@ updatedAt: 2021-01-06 08:58:18
 - 退出频道按钮
 
 <a name="permission"></a>
+
 ### 2. 获取设备权限（仅 Android 平台）
 
 仅 Android 平台需要设置此步骤，其他平台可以直接查看[初始化 IRtcEngine](#initialize)。
 
-在 **UNITY_2018_3_OR_NEWER** 或以上版本中，Unity 不会主动向用户获取麦克风权限，需要用户调用 `CheckPermission` 方法获取权限。 
+在 **UNITY_2018_3_OR_NEWER** 或以上版本中，Unity 不会主动向用户获取麦克风权限，需要用户调用 `CheckPermission` 方法获取权限。
 
 ```C#
-#if(UNITY_2018_3_OR_NEWER) 
-using UnityEngine.Android; 
-#endif 
-void Start () 
-{  
-#if(UNITY_2018_3_OR_NEWER) 
-permissionList.Add(Permission.Microphone);  
-#endif  
-} 
+#if(UNITY_2018_3_OR_NEWER)
+using UnityEngine.Android;
+#endif
+void Start ()
+{
+#if(UNITY_2018_3_OR_NEWER)
+permissionList.Add(Permission.Microphone);
+#endif
+}
 private void CheckPermission()
-{ 
-#if(UNITY_2018_3_OR_NEWER) 
-foreach(string permission in permissionList) 
-{ 
-if (Permission.HasUserAuthorizedPermission(permission)) 
-{ 
-} 
-else 
-{  
-Permission.RequestUserPermission(permission); 
-} 
-} 
-#endif 
-} 
-void Update () 
-{  
-#if(UNITY_2018_3_OR_NEWER) 
-// 获取设备权限。 
-CheckPermission(); 
-#endif  
+{
+#if(UNITY_2018_3_OR_NEWER)
+foreach(string permission in permissionList)
+{
+if (Permission.HasUserAuthorizedPermission(permission))
+{
+}
+else
+{
+Permission.RequestUserPermission(permission);
+}
+}
+#endif
+}
+void Update ()
+{
+#if(UNITY_2018_3_OR_NEWER)
+// 获取设备权限。
+CheckPermission();
+#endif
 }
 ```
 
 <a name="initialize"></a>
+
 ### 3. 初始化 IRtcEngine
 
 在调用其他 Agora API 前，需要初始化 `IRtcEngine` 对象。
@@ -139,15 +140,15 @@ CheckPermission();
 你还可以根据场景需要，在初始化时注册想要监听的回调事件，如本地用户加入频道，及解码远端用户音频首帧等。
 
 ```C#
-// 填入 App ID 并初始化 IRtcEngine。 
-mRtcEngine = IRtcEngine.GetEngine (appId); 
-// 注册 OnJoinChannelSuccessHandler 回调。 
+// 填入 App ID 并初始化 IRtcEngine。
+mRtcEngine = IRtcEngine.GetEngine (appId);
+// 注册 OnJoinChannelSuccessHandler 回调。
 // 本地用户成功加入频道时，会触发该回调。
-mRtcEngine.OnJoinChannelSuccessHandler = OnJoinChannelSuccessHandler; 
+mRtcEngine.OnJoinChannelSuccessHandler = OnJoinChannelSuccessHandler;
 // 注册 OnUserJoinedHandler 回调。
 // SDK 接收到第一帧远端音频并成功解码时，会触发该回调。
-mRtcEngine.OnUserJoinedHandler = OnUserJoinedHandler; 
-// 注册 OnUserOfflineHandler 回调。 
+mRtcEngine.OnUserJoinedHandler = OnUserJoinedHandler;
+// 注册 OnUserOfflineHandler 回调。
 // 远端用户离开频道或掉线时，会触发该回调。
 mRtcEngine.OnUserOfflineHandler = OnUserOfflineHandler;
 ```
@@ -158,10 +159,10 @@ mRtcEngine.OnUserOfflineHandler = OnUserOfflineHandler;
 
 一个 `IRtcEngine` 只能使用一种频道场景。如果想切换为其他模式，需要先调用 `Destroy` 方法销毁当前的 `IRtcEngine` 实例，然后使用 `GetEngine` 方法创建一个新实例，再调用 `SetChannelProfile` 设置新的频道场景。
 
- ```C#
- // 设置频道场景为直播场景。
+```C#
+// 设置频道场景为直播场景。
 mRtcEngine.SetChannelProfile(CHANNEL_PROFILE.CHANNEL_PROFILE_LIVE_BROADCASTING);
- ```
+```
 
 ### 5. 设置用户角色
 
@@ -172,10 +173,10 @@ mRtcEngine.SetChannelProfile(CHANNEL_PROFILE.CHANNEL_PROFILE_LIVE_BROADCASTING);
 
 注意，直播频道内的用户，只能听到主播的声音。加入频道后，如果你想切换用户角色，也可以调用 `SetClientRole` 方法。
 
- ```C#
+```C#
 // 设置用户角色为主播
 mRtcEngine.SetClientRole(CLIENT_ROLE.BROADCASTER);
- ```
+```
 
 ### 6. 加入频道
 
@@ -198,7 +199,7 @@ mRtcEngine.SetClientRole(CLIENT_ROLE.BROADCASTER);
 ```C#
 // 如果频道中有 Web SDK，调用该方法开启 Native SDK 和 Web SDK 互通。
 mRtcEngine.EnableWebSdkInteroperability(true);
-// 加入频道。 
+// 加入频道。
 mRtcEngine.JoinChannelByKey(null, channel, null, 0);
 ```
 
@@ -218,6 +219,7 @@ public void leave()
 ```
 
 <a name="destroy"></a>
+
 ### 8. 销毁 IRtcEngine
 
 离开频道后，如果你想退出应用或者释放 `IRtcEngine` 内存，需调用 `Destroy` 方法销毁 `IRtcEngine`。

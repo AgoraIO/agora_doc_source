@@ -4,6 +4,7 @@ platform: ["All Platforms"]
 updatedAt: 2021-03-19 07:07:33
 Products: ["Agora Platform"]
 ---
+
 当你在 [Agora 控制台](https://console.agora.io/#onboarding)进行以下操作时，Agora 会向你的邮箱或项目成员的邮箱发送验证邮件：
 
 - 验证邮箱

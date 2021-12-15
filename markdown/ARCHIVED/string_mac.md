@@ -3,6 +3,7 @@ title: 使用 String 型的用户名
 platform: iOS
 updatedAt: 2020-04-02 14:03:47
 ---
+
 ## 场景描述
 
 很多 App 使用 String 类型的用户账号。为降低开发成本，Agora 新增支持 String 型的用户 ID，方便用户使用 App 账号直接加入 Agora 频道。
@@ -16,6 +17,7 @@ Agora 的其他接口仍使用 UID 作为参数。Agora 维护一个 String 型 
 请确保你已完成环境准备、安装包获取等步骤，详见[集成客户端](mac_video)。
 
 从 v2.8.0 起，Native SDK 新增如下接口，支持使用 User Account 来标识用户在频道中的身份
+
 - `registerLocalUserAccount`：注册本地用户 User Account
 - `joinChannelByUserAccount`：使用 User Account 加入频道
 

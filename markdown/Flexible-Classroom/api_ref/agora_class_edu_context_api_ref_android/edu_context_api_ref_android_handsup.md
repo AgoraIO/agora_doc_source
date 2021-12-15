@@ -10,10 +10,10 @@ abstract fun performHandsUp(state: EduContextHandsUpState, callback: EduContextC
 
 更新举手状态。
 
-| 参数       | 描述                                                         |
-| :--------- | :----------------------------------------------------------- |
+| 参数       | 描述                                                                                                                                    |
+| :--------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
 | `state`    | 举手状态，详见 [EduContextHandsUpState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontexthandsupstate)。 |
-| `callback` | 通过 `EduContextCallback` 异步获取接口调用结果。             |
+| `callback` | 通过 `EduContextCallback` 异步获取接口调用结果。                                                                                        |
 
 ## IHandsUpHandler
 
@@ -39,10 +39,10 @@ fun onHandsUpStateUpdated(state: EduContextHandsUpState, coHost: Boolean)
 
 举手状态已更新。
 
-| 参数     | 描述                                                         |
-| :------- | :----------------------------------------------------------- |
+| 参数     | 描述                                                                                                                                        |
+| :------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
 | `state`  | 当前举手状态，详见 [EduContextHandsUpState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontexthandsupstate)。 |
-| `coHost` | 当前学生是否在台上。在台上的学生不能举手。                   |
+| `coHost` | 当前学生是否在台上。在台上的学生不能举手。                                                                                                  |
 
 ### onHandsUpStateResultUpdated
 

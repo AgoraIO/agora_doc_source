@@ -3,6 +3,7 @@ title: 发版说明
 platform: React Native
 updatedAt: 2021-03-12 05:30:51
 ---
+
 本文提供 Agora React Native SDK 的发版说明。
 
 ## 3.3.1 版
@@ -109,7 +110,7 @@ updatedAt: 2021-03-12 05:30:51
 - [`setVoiceBeautifierParameters`](./API%20Reference/react_native/classes/rtcengine.html#setvoicebeautifierparameters)
 - [`VoiceBeautifierPreset`](./API%20Reference/react_native/enums/voicebeautifierpreset.html)中新增 `SingingBeautifier`
 - [`enableDeepLearningDenoise`](./API%20Reference/react_native/classes/rtcengine.html#enabledeeplearningdenoise)
-- [`joinChannel`](./API%20Reference/react_native/classes/rtcengine.html#joinchannel)  新增 `options` 参数
+- [`joinChannel`](./API%20Reference/react_native/classes/rtcengine.html#joinchannel) 新增 `options` 参数
 - [`switchChannel`](./API%20Reference/react_native/classes/rtcengine.html#switchchannel) 新增 `options` 参数
 - [`createDataStreamWithConfig`](./API%20Reference/react_native/classes/rtcengine.html#createdatastreamwithconfig)
 - [`RemoteAudioStats`](./API%20Reference/react_native/interfaces/rtcengineevents.html#remoteaudiostats) 中新增 `qoeQuality` 和 `qualityChangedReason` 属性
@@ -120,7 +121,6 @@ updatedAt: 2021-03-12 05:30:51
 - [`LocalVideoStreamError`](./API%20Reference/react_native/enums/localvideostreamerror.html) 中新增 `CaptureInBackGround(6)` 和 `CaptureMultipleForegroundApps(7)`
 - 错误码: [`ModuleNotFound(157)`](./API%20Reference/react_native/enums/errorcode.html)
 
-
 **废弃**
 
 - `createWithAreaCode`
@@ -130,7 +130,6 @@ updatedAt: 2021-03-12 05:30:51
 - `setLogFileSize`
 - `setLogFilter`
 - `createDataStream`
-
 
 ## 3.2.1 版
 
@@ -148,8 +147,7 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 
 同时，为支持传输层加密，该版本新增 TLS（Transport Layer Security）加密和 UDP（User Datagram Protocol）加密方式。
 
-
-####  新增特性
+#### 新增特性
 
 **极速直播**
 
@@ -296,14 +294,14 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 
 为提升音频性能，该版本对音频编码码率最大值进行如下优化：
 
-| Profile                  | 3.1.2 版本                         | 3.1.2 版本之前                     |
-| :----------------------- | :--------------------------------- | :--------------------------------- |
+| Profile                  | 3.1.2 版本                              | 3.1.2 版本之前                          |
+| :----------------------- | :-------------------------------------- | :-------------------------------------- |
 | `Default`                | 直播场景: 64 Kbps</br>通信场景: 18 Kbps | 直播场景: 52 Kbps</br>通信场景: 18 Kbps |
-| `SpeechStandard`         | 18 Kbps                            | 18 Kbps                            |
-| `MusicStandard`          | 64 Kbps                            | 48 Kbps                            |
-| `MusicStandardStereo`    | 80 Kbps                            | 56 Kbps                            |
-| `MusicHighQuality`       | 96 Kbps                            | 128 Kbps                           |
-| `MusicHighQualityStereo` | 128 Kbps                           | 192 Kbps                           |
+| `SpeechStandard`         | 18 Kbps                                 | 18 Kbps                                 |
+| `MusicStandard`          | 64 Kbps                                 | 48 Kbps                                 |
+| `MusicStandardStereo`    | 80 Kbps                                 | 56 Kbps                                 |
+| `MusicHighQuality`       | 96 Kbps                                 | 128 Kbps                                |
+| `MusicHighQualityStereo` | 128 Kbps                                | 192 Kbps                                |
 
 #### 5. 日志扩容
 
@@ -368,7 +366,8 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 #### 删除
 
 - 警告码：`AdmImproperSettings(1053)`
-- 
+-
+
 ## 3.0.1 版
 
 该版本于 2020 年 9 月 4 日发布。功能特性及相关文档详见下文。
@@ -385,10 +384,10 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 你可以参考以下文档集成 SDK，实现相应的实时音视频功能：
 
 - 快速开始：
- - [实现语音通话](./start_call_audio_react_native)
- - [实现视频通话](./start_call_react_native)
- - [实现视频互动直播](./start_live_react_native)
- - [实现音频互动直播](./start_live_audio_react_native)
+- [实现语音通话](./start_call_audio_react_native)
+- [实现视频通话](./start_call_react_native)
+- [实现视频互动直播](./start_live_react_native)
+- [实现音频互动直播](./start_live_audio_react_native)
 - [API 参考](./API%20Reference/react_native/index.html)
 
 Agora 在 GitHub 提供一个开源的 [Agora React Native Quickstart](https://github.com/AgoraIO-Community/Agora-RN-Quickstart) 示例项目。你也可以前往下载并体验。

@@ -3,6 +3,7 @@ title: 播放音效与混音文件
 platform: Web
 updatedAt: 2020-12-30 09:08:16
 ---
+
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 Web SDK 3.x 或更早版本，请查看<a href="./audio_effect_mixing_web?platform=Web">播放音效与混音文件</a>。</li></div>
 
 ## 功能描述
@@ -52,7 +53,7 @@ console.log("create audio file track success");
 - 采集一旦开始就无法暂停，因为我们永远只能采集到最新的音频数据。
 - 文件读取可以灵活地控制。暂停读取文件可以暂停播放，跳转读取的位置可以跳转播放，循环读取文件可以循环播放等等，这些控制音频文件读取的操作是 `BufferSourceAudioTrack` 提供的核心功能，详见[控制音频文件的播放](#控制音频文件的播放)。
 
-使用音频文件创建音频轨道后，SDK 默认不读取音频文件，因此需要先调用 `BufferSourceAudioTrack.startProcessAudioBuffer` 开始读取音频文件以及音频数据的处理流程，再分别调用 `play`  和  `publish`  方法，本地和远端就能听到音频文件的声音了。
+使用音频文件创建音频轨道后，SDK 默认不读取音频文件，因此需要先调用 `BufferSourceAudioTrack.startProcessAudioBuffer` 开始读取音频文件以及音频数据的处理流程，再分别调用 `play` 和 `publish` 方法，本地和远端就能听到音频文件的声音了。
 
 ### 发布多个音频轨道以实现混音
 
@@ -93,7 +94,7 @@ audioFileTrack.resumeProcessAudioBuffer();
 // 停止处理音频数据。
 audioFileTrack.stopProcessAudioBuffer();
 // 以循环播放的模式开始处理音频数据。
-audioFileTrack.startProcessAudioBuffer({ loop: true });
+audioFileTrack.startProcessAudioBuffer({loop: true});
 
 // 获取当前播放进度（秒）。
 audioFileTrack.getCurrentTime();

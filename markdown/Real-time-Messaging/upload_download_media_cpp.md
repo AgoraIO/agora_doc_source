@@ -3,6 +3,7 @@ title: 发送和接收图片或文件消息
 platform: Windows
 updatedAt: 2020-10-19 14:58:33
 ---
+
 v1.3.0 支持上传下载大小不超过 30 MB 的任意文件格式的非空图片或文件，支持随时取消正在进行中的上传或下载任务。每份上传到 Agora 服务器的图片都对应一个 media ID，在服务端默认保存 7 天。你可以通过 media ID 在 7 天有效期内从 Agora 服务器下载对应的图片或文件。
 
 v1.3.0 引入了 `IImageMessage` 类和 `IFileMessage` 类用于保存和传递系统生成的 media ID。`IImageMessage` 类和 `IFileMessage` 类继承自 `IMessage` 类，所以你可以通过已有的点对点消息或频道消息发送方法传递 `IImageMessage` 实例和 `IFileMessage` 实例。
@@ -19,7 +20,6 @@ v1.3.0 引入了 `IImageMessage` 类和 `IFileMessage` 类用于保存和传递�
 - 设置相应的上传文件的显示文件名和显示缩略图。
 - 获取相应的上传文件的大小。
 
-
 ### 发送和接收图片消息
 
 <div class="alert note">开始前请确保你已集成最新版的 Agora RTM SDK 到你的项目中，已实现点对点消息和频道消息功能。</div>
@@ -30,32 +30,32 @@ v1.3.0 引入了 `IImageMessage` 类和 `IFileMessage` 类用于保存和传递�
 
    上传图片到文件服务器示例代码：
 
-    ```cpp
-    m_rtmService->createImageMessageByUploading(filePath.c_str(), requestId);
-    ```
+   ```cpp
+   m_rtmService->createImageMessageByUploading(filePath.c_str(), requestId);
+   ```
 
-    如果你存有一个已上传图片对应的 media ID 且 media ID 仍然处于 7 天有效期内，可通过如下代码直接创建一个 `IImageMessage` 实例:
+   如果你存有一个已上传图片对应的 media ID 且 media ID 仍然处于 7 天有效期内，可通过如下代码直接创建一个 `IImageMessage` 实例:
 
-    ```cpp
-    m_rtmService->createImageMessageByMediaId(mediaId.c_str());
-    ```
+   ```cpp
+   m_rtmService->createImageMessageByMediaId(mediaId.c_str());
+   ```
 
 2. (可选)通过获取的实例设置图片的长宽或缩略图。
 
-    设置图片长宽示例代码：
+   设置图片长宽示例代码：
 
-    ```cpp
-    imageMessage->setWidth(imageWidth);
-    imageMessage->setWidth(imageHeight);
-    ```
+   ```cpp
+   imageMessage->setWidth(imageWidth);
+   imageMessage->setWidth(imageHeight);
+   ```
 
-    设置图片缩略图示例代码：
+   设置图片缩略图示例代码：
 
-    ```cpp
-    imageMessage->setThumbnailWidth(thumbWidth);
-    imageMessage->setThumbnailHeight(thumbHeight);
-    ```
-  
+   ```cpp
+   imageMessage->setThumbnailWidth(thumbWidth);
+   imageMessage->setThumbnailHeight(thumbHeight);
+   ```
+
 3. 将 `IImageMessage` 实例通过点对点消息或频道消息的方式将消息发送给指定用户或指定频道。
 
    `IImageMessage` 继承自 `IMessage` 类，所以你可以使用已有的点对点消息或频道消息方法发送 `IImageMessage` 实例。
@@ -76,28 +76,28 @@ v1.3.0 引入了 `IImageMessage` 类和 `IFileMessage` 类用于保存和传递�
 
    接收图片频道消息示例代码：
 
-    ```cpp
-    // CRTMCallBack extend from IChannelEventHandler
-    void CRTMCallBack::onImageMessageReceived(const char *userId, const IImageMessage* message)
-    {
-        if(message){
-            //deal with message
-        }
-    }
-    ```
+   ```cpp
+   // CRTMCallBack extend from IChannelEventHandler
+   void CRTMCallBack::onImageMessageReceived(const char *userId, const IImageMessage* message)
+   {
+       if(message){
+           //deal with message
+       }
+   }
+   ```
 
-    接收图片点对点消息示例代码：
+   接收图片点对点消息示例代码：
 
-    ```cpp
-    // CRTMCallBack extend from IRtmServiceEventHandler
-    void CRTMCallBack::onImageMessageReceivedFromPeer(const char *peerId, const IImageMessage* message)
-    {
-        if(message){
-            //deal with message
-        }
-    }
-    ```
-   
+   ```cpp
+   // CRTMCallBack extend from IRtmServiceEventHandler
+   void CRTMCallBack::onImageMessageReceivedFromPeer(const char *peerId, const IImageMessage* message)
+   {
+       if(message){
+           //deal with message
+       }
+   }
+   ```
+
    一般情况下，你可以通过 media ID 直接将图片下载至本地存储：
 
    ```cpp
@@ -131,24 +131,24 @@ v1.3.0 引入了 `IImageMessage` 类和 `IFileMessage` 类用于保存和传递�
 一般情况下的文件上传下载流程如下：
 
 1. 上传文件到文件服务器。文件上传成功时，SDK 会通过回调返回一个 `IFileMessage` 实例。
-   
+
    上传文件到文件服务器示例代码：
 
-    ```cpp
-    m_rtmService->createFileMessageByUploading(filePath.c_str(), requestId);
-    ```
+   ```cpp
+   m_rtmService->createFileMessageByUploading(filePath.c_str(), requestId);
+   ```
 
-    如果你存有一个已上传文件对应的 media ID 且 media ID 仍然处于 7 天有效期内，可通过如下代码直接创建一个 `IFileMessage` 实例:
+   如果你存有一个已上传文件对应的 media ID 且 media ID 仍然处于 7 天有效期内，可通过如下代码直接创建一个 `IFileMessage` 实例:
 
-    ```cpp
-    m_rtmService->createFileMessageByMediaId(mediaId.c_str());
-    ```
+   ```cpp
+   m_rtmService->createFileMessageByMediaId(mediaId.c_str());
+   ```
 
 2. (可选)通过获取的实例设置文件的缩略图。
 
-    ```cpp
-    imageMessage->setThumbnail(imageData, imageSize);
-    ```
+   ```cpp
+   imageMessage->setThumbnail(imageData, imageSize);
+   ```
 
 3. 将 `IFileMessage` 实例通过点对点消息或频道消息的方式将消息发送给指定用户或指定频道。
 
@@ -156,42 +156,42 @@ v1.3.0 引入了 `IImageMessage` 类和 `IFileMessage` 类用于保存和传递�
 
    发送文件频道消息示例代码：
 
-    ```cpp
-    m_Channel->sendMessage(fileMessage, options);
-    ```
+   ```cpp
+   m_Channel->sendMessage(fileMessage, options);
+   ```
 
    发送文件点对点消息示例代码：
 
-    ```cpp
-    m_rtmService->sendMessageToPeer(account.c_str(), fileMessage, options);
-    ```
+   ```cpp
+   m_rtmService->sendMessageToPeer(account.c_str(), fileMessage, options);
+   ```
 
 4. 收到文件消息的用户会收到相应回调，通过获取 `IFileMessage` 实例携带的 media ID 信息并通过 media ID 将相应文件保存至本地。
 
    接收文件频道消息示例代码：
 
-    ```cpp
-    // CRTMCallBack extend from IChannelEventHandler
-    void CRTMCallBack::onFileMessageReceived(const char *userId, const IFileMessage* message)
-    {
-        if(message){
-            //deal with message
-        }
-    }
-    ```
+   ```cpp
+   // CRTMCallBack extend from IChannelEventHandler
+   void CRTMCallBack::onFileMessageReceived(const char *userId, const IFileMessage* message)
+   {
+       if(message){
+           //deal with message
+       }
+   }
+   ```
 
-    接收文件点对点消息示例代码：
+   接收文件点对点消息示例代码：
 
-    ```cpp
-    // CRTMCallBack extend from IRtmServiceEventHandler
-    void CRTMCallBack::onFileMessageReceivedFromPeer(const char *peerId, const IFileMessage* message)
-    {
-        if(message){
-            //deal with message
-        }
-    }
-    ```
-   
+   ```cpp
+   // CRTMCallBack extend from IRtmServiceEventHandler
+   void CRTMCallBack::onFileMessageReceivedFromPeer(const char *peerId, const IFileMessage* message)
+   {
+       if(message){
+           //deal with message
+       }
+   }
+   ```
+
    一般情况下，你可以通过 media ID 直接将文件下载至本地存储：
 
    ```cpp
@@ -217,7 +217,6 @@ v1.3.0 引入了 `IImageMessage` 类和 `IFileMessage` 类用于保存和传递�
 2. (可选)通过获取的实例设置文件的缩略图。
 
 3. 将 `IFileMessage` 实例通过点对点消息或频道消息的方式将消息发送给指定用户或指定频道。收到文件消息的用户会收到相应回调，通过获取 `IFileMessage` 实例携带的 media ID 信息并通过 media ID 将相应文件保存至本地。
-
 
 ## 注意事项
 

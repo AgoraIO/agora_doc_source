@@ -1,9 +1,10 @@
 ---
 title: 如何在通话应用中实现呼叫邀请通知功能？
-platform: ["Android","iOS","macOS","Web","Windows","Linux"]
+platform: ["Android", "iOS", "macOS", "Web", "Windows", "Linux"]
 updatedAt: 2021-01-08 03:16:10
 Products: ["Real-time-Messaging"]
 ---
+
 ## 场景描述
 
 为了在通话应用中实现呼叫邀请通知功能，你需要集成 Agora RTC SDK、Agora RTM SDK 和应用对应平台的原生呼叫 API，例如 Android 平台的 ConnectionService、iOS 平台的 CallKit、Flutter 和 React Native 平台的 CallKeep。由于 RTM SDK 只能在应用正常运行时实现呼叫邀请通知功能，集成原生呼叫 API 可以保证当应用进程处于后台或者被关闭时，用户仍可以收到呼叫邀请通知。

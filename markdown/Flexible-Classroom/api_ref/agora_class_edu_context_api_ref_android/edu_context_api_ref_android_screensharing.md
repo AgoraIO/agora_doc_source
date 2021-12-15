@@ -39,10 +39,10 @@ fun onScreenShareStateUpdated(state: EduContextScreenShareState, streamUuid: Str
 
 屏幕共享状态发生改变。
 
-| 参数         | 描述                                                         |
-| :----------- | :----------------------------------------------------------- |
+| 参数         | 描述                                                                                                                                                |
+| :----------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `state`      | 屏幕共享状态，详见 [EduContextScreenShareState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextscreensharestate)。 |
-| `streamUuid` | 流 ID。                                                      |
+| `streamUuid` | 流 ID。                                                                                                                                             |
 
 ### onScreenShareTip
 
@@ -60,4 +60,3 @@ fun onScreenShareTip(tips: String)
 | 参数   | 描述       |
 | :----- | :--------- |
 | `tips` | 提示信息。 |
-

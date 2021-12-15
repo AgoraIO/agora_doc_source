@@ -3,6 +3,7 @@ title: 限定访问区域
 platform: Web
 updatedAt: 2021-02-25 08:26:53
 ---
+
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 Web SDK 3.x 或更早版本，请查看<a href="./region_web_rtc?platform=Web">限定访问区域</a>。</li></div>
 
 ## 功能描述

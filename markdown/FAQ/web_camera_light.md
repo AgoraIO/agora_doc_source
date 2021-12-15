@@ -2,8 +2,9 @@
 title: 为什么网页端禁用自己的视频后摄像头灯还是亮着？
 platform: ["Web"]
 updatedAt: 2020-04-09 10:51:26
-Products: ["Voice","Video","Interactive Broadcast"]
+Products: ["Voice", "Video", "Interactive Broadcast"]
 ---
+
 ## 问题描述
 
 使用 Agora RTC Web SDK 时，调用 `muteVideo` 禁用本地视频成功后，摄像头的指示灯仍然亮着。

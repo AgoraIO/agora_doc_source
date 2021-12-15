@@ -1,9 +1,10 @@
 ---
 title: 如何使用云信令（原实时消息）SDK 实现直播间礼物发送功能？
-platform: ["Android","iOS","macOS","Web","Windows","Linux","RESTful"]
+platform: ["Android", "iOS", "macOS", "Web", "Windows", "Linux", "RESTful"]
 updatedAt: 2021-03-02 04:29:15
 Products: ["Real-time-Messaging"]
 ---
+
 ## 简介
 
 为增添实时音视频互动的趣味性，你可以结合云信令（RTM）SDK 实现虚拟礼物发送功能。观众可以向主播发送虚拟礼物，且直播间中所有用户都可以看到礼物。
@@ -29,9 +30,9 @@ Products: ["Real-time-Messaging"]
 
 本文提及的方法名均为 Java 语言。其他语言对应的方法名如下表所示：
 
-| Java   |    C++       | Objective-C       | JavaScript        |
-| :----------|:-------- | :---------------- | :---------------- |
-| `sendMessageToPeer` | `sendMessageToPeer` | `sendMessage`     | `sendMessageToPeer`     |
-| `sendMessage`  |   `sendMessage`  |  `sendMessage` |  `sendMessage`  |
-|   `onSuccess`  |   `onSendMessageResult`  |   `AgoraRtmSendPeerMessageBlock`  |     `PeerMessageSendResult`   |
-| `onMessageReceived` | `onMessageReceivedFromPeer`   | `messageReceived` | `MessageFromPeer` | 
+| Java                | C++                         | Objective-C                    | JavaScript              |
+| :------------------ | :-------------------------- | :----------------------------- | :---------------------- |
+| `sendMessageToPeer` | `sendMessageToPeer`         | `sendMessage`                  | `sendMessageToPeer`     |
+| `sendMessage`       | `sendMessage`               | `sendMessage`                  | `sendMessage`           |
+| `onSuccess`         | `onSendMessageResult`       | `AgoraRtmSendPeerMessageBlock` | `PeerMessageSendResult` |
+| `onMessageReceived` | `onMessageReceivedFromPeer` | `messageReceived`              | `MessageFromPeer`       |

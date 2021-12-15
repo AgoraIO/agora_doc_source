@@ -2,8 +2,9 @@
 title: 如何处理常见的 Web 浏览器控制台报错？
 platform: ["Web"]
 updatedAt: 2020-07-09 21:22:31
-Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
+Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
 ---
+
 将 Agora Web SDK 集成到你的 Web 应用后，遇到问题时可以通过浏览器控制台打印的日志进行调试。本文列出控制台日志中常见的错误和原因。
 
 ## Cannot read property "appendChild" of null
@@ -30,19 +31,19 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 
 错误原因和解决方法同 [Failed to load resource](#resource)。
 
-## DTLS failed<a name="DTLS"></a> 
+## DTLS failed<a name="DTLS"></a>
 
 下表列出了常见的错误原因和相应的解决办法。
 
-| 错误原因                                                     | 解决办法                                                     |
-| :----------------------------------------------------------- | :----------------------------------------------------------- |
-| 使用的浏览器不完全支持 WebRTC。                              | 使用 Agora Web SDK [支持的浏览器](https://docs.agora.io/cn/faq/browser_support)。 |
-| 使用了某些浏览器插件，导致 WebRTC 无法获取本地 Candidate。   | 关闭浏览器插件。                                             |
-| 用户的网关防火墙禁用了 UDP 协议或者禁用了 10000 以上的 UDP 端口。 | 关闭防火墙或者[使用云代理服务](https://docs.agora.io/cn/Interactive%20Broadcast/cloud_proxy_web?platform=Web)。 |
-| 用户使用了 VPN。                                             | 关闭 VPN。                                                   |
-| 浏览器使用的编解码格式为 VP8，但用户使用的 Safari 浏览器不支持 VP8。 | 建议用户将 Safari 升级到 12.1 以上版本，或者使用 Chrome 浏览器。 |
-| 浏览器使用的编解码格式为 H.264， 但设备硬件不支持 H.264。    | 将编解码格式设为 VP8。                                       |
-| 网络运营商连接问题。                                         | 建议用户尝试更换网络，例如使用手机蜂窝数据连接。             |
+| 错误原因                                                             | 解决办法                                                                                                        |
+| :------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
+| 使用的浏览器不完全支持 WebRTC。                                      | 使用 Agora Web SDK [支持的浏览器](https://docs.agora.io/cn/faq/browser_support)。                               |
+| 使用了某些浏览器插件，导致 WebRTC 无法获取本地 Candidate。           | 关闭浏览器插件。                                                                                                |
+| 用户的网关防火墙禁用了 UDP 协议或者禁用了 10000 以上的 UDP 端口。    | 关闭防火墙或者[使用云代理服务](https://docs.agora.io/cn/Interactive%20Broadcast/cloud_proxy_web?platform=Web)。 |
+| 用户使用了 VPN。                                                     | 关闭 VPN。                                                                                                      |
+| 浏览器使用的编解码格式为 VP8，但用户使用的 Safari 浏览器不支持 VP8。 | 建议用户将 Safari 升级到 12.1 以上版本，或者使用 Chrome 浏览器。                                                |
+| 浏览器使用的编解码格式为 H.264， 但设备硬件不支持 H.264。            | 将编解码格式设为 VP8。                                                                                          |
+| 网络运营商连接问题。                                                 | 建议用户尝试更换网络，例如使用手机蜂窝数据连接。                                                                |
 
 如果按照以上方法排查后仍然报错，请联系 Agora 技术支持。
 
@@ -56,7 +57,7 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 
 在 `Stream.init` 成功的回调中调用 `publish` 方法。
 
-## Failed to load resource<a name="resource"></a> 
+## Failed to load resource<a name="resource"></a>
 
 ### 错误原因
 
@@ -65,6 +66,7 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 ### 解决办法
 
 建议用户根据所在区域修改 DNS 服务器的地址后重新加入频道：
+
 - 中国大陆用户将 DNS 服务器设为 `114.114.114.114`。
 - 中国大陆之外的用户将 DNS 服务器设为 `8.8.8.8`。
 
@@ -82,11 +84,11 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 
 ### 错误原因
 
- `Stream.play` 中指定的 `HTMLElementID` 不合法。
+`Stream.play` 中指定的 `HTMLElementID` 不合法。
 
 ### 解决办法
 
-确保 `HTMLElementID` 字符串仅包含 ASCII 字符集中的字母和数字，或 "_"、"-"、"."，且字符串长度大于 0 小于 256 字节。
+确保 `HTMLElementID` 字符串仅包含 ASCII 字符集中的字母和数字，或 "\_"、"-"、"."，且字符串长度大于 0 小于 256 字节。
 
 ## INVALID_VENDOR_KEY
 
@@ -119,7 +121,7 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 
 错误原因和解决方法同 [None Ice Candidate not allowed](#candidate)。
 
-## None Ice Candidate not allowed<a name="candidate"></a> 
+## None Ice Candidate not allowed<a name="candidate"></a>
 
 ### 错误原因
 
@@ -144,7 +146,7 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 
 ### 错误原因
 
- 一个频道中有多个相同的 `uid`。
+一个频道中有多个相同的 `uid`。
 
 ### 解决办法
 

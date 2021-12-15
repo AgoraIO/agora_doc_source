@@ -3,11 +3,13 @@ title: 播放音频文件
 platform: iOS
 updatedAt: 2020-12-03 11:26:40
 ---
+
 ## 功能描述
 
 在通话或直播过程中，除了用户自己说话的声音，有时候需要播放自定义的声音或者音乐文件并且让频道内的其他人也听到，比如需要给游戏添加音效，或者需要播放背景音乐等，Agora 提供以下两组方法可以满足播放音效和音乐文件的需求。
 
 开始前请确保已在你的项目中实现基本的实时音视频功能。详见快速开始文档：
+
 - iOS: [实现音视频通话](start_call_ios)/[实现互动直播](start_live_ios)
 - macOS: [实现音视频通话](start_call_mac)/[实现互动直播](start_live_mac)
 
@@ -30,7 +32,7 @@ let filePath = "your filepath"
 agoraKit.preloadEffect(soundId, filePath: filePath)
 
 // 播放音效
-let soundId = 1                 // 要播放的音效 id 
+let soundId = 1                 // 要播放的音效 id
 let filePath = "your filepath"  // 播放文件的路径
 let loopCount = 1               // 播放次数，-1 代表无限循环
 let pitch = 1                   // 音效的音调
@@ -127,9 +129,9 @@ Agora 混音功能支持如下设置：
 // cycle 为 -1 代表永久循环；其它 >0 的整数表示预设混音播放的循环次数
 let filePath = "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3"
 let loopback = false
-let replace = false 
-let cycle = 1 
-  
+let replace = false
+let cycle = 1
+
 // 开始播放混音
 agoraKit.startAudioMixing(filePath, loopback: loopback, replace: replace, cycle: cycle)
 ```

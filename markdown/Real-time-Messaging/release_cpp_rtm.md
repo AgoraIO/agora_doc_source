@@ -3,9 +3,10 @@ title: 发版说明
 platform: All Platforms
 updatedAt: 2021-03-02 03:11:56
 ---
+
 ## 简介
 
-Agora RTM SDK 提供了稳定可靠、低延时、高并发的全球消息云服务，帮助你快速构建实时通信场景,  可实现消息通道、呼叫、聊天、状态同步等功能。点击 [实时消息产品概述](/cn/Real-time-Messaging/RTM_product?platform=All%20Platforms) 了解更多详情。
+Agora RTM SDK 提供了稳定可靠、低延时、高并发的全球消息云服务，帮助你快速构建实时通信场景, 可实现消息通道、呼叫、聊天、状态同步等功能。点击 [实时消息产品概述](/cn/Real-time-Messaging/RTM_product?platform=All%20Platforms) 了解更多详情。
 
 ## 0.9.3 版
 
@@ -23,13 +24,12 @@ Agora RTM SDK 提供了稳定可靠、低延时、高并发的全球消息云服
 
 本版本支持设置和查询用户属性。每个用户属性为 key 和 value 的键值对。每个属性的 key 为 32 字节可见字符，每个属性的 value 的字符串长度不得超过 8 KB。单个用户的全部属性长度不得超过 16 KB。以下为本版本支持内容：
 
-   - 全量替换本地用户属性
-   - 增加或更新本地用户属性
-   - 删除本地用户指定属性
-   - 清空本地用户属性
-   - 全量获取指定用户属性
-   - 获取指定用户指定属性。
-
+- 全量替换本地用户属性
+- 增加或更新本地用户属性
+- 删除本地用户指定属性
+- 清空本地用户属性
+- 全量获取指定用户属性
+- 获取指定用户指定属性。
 
 > - 用户属性的相关操作必须在登录 Agora RTM 系统成功后才能进行，否则 SDK 会返回错误码：`ATTRIBUTE_OPERATION_ERR_NOT_READY`
 > - 设置的用户属性会在用户登出 Agora RTM 系统后自动失效。
@@ -41,7 +41,7 @@ Agora RTM SDK 提供了稳定可靠、低延时、高并发的全球消息云服
 
 #### 新增：
 
-- [sendMessageToPeer()](/cn/Video/API%20Reference/RTM_cpp/v0.9.3/classagora_1_1rtm_1_1_i_rtm_service.html?transId=0.9.3#a08c1b3d444af5a2778ede48e4c677a52):  发送（离线）点对点消息给指定用户。
+- [sendMessageToPeer()](/cn/Video/API%20Reference/RTM_cpp/v0.9.3/classagora_1_1rtm_1_1_i_rtm_service.html?transId=0.9.3#a08c1b3d444af5a2778ede48e4c677a52): 发送（离线）点对点消息给指定用户。
 - [getServerReceivedTs()](/cn/Video/API%20Reference/RTM_cpp/v0.9.3/classagora_1_1rtm_1_1_i_message.html?transId=0.9.3#ac7427e3a49bd44e53b2809e0b39511b6)： 消息接收者查询服务器的接收消息时间。
 - [isOfflineMessage()](/cn/Video/API%20Reference/RTM_cpp/v0.9.3/classagora_1_1rtm_1_1_i_message.html?transId=0.9.3#a191d3073625f002018359ee3e7cba33a)：消息接收者查询消息是否为离线消息。
 - [PEER_MESSAGE_ERR_CACHED_BY_SERVER](/cn/Video/API%20Reference/RTM_cpp/v0.9.3/namespaceagora_1_1rtm.html?transId=0.9.3#ac7c591aac4ca6867e239c8bcccc1fc5caeccb9896a862a86fa1965705e2d394fd)：对端用户不在线，离线消息会被消息服务器存储。

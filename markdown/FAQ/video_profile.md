@@ -1,9 +1,10 @@
 ---
 title: 如何选择视频分辨率、帧率、码率？
-platform: ["Android","iOS","macOS","Web","Windows","Unity","Electron","React Native","Flutter"]
+platform: ["Android", "iOS", "macOS", "Web", "Windows", "Unity", "Electron", "React Native", "Flutter"]
 updatedAt: 2020-07-09 12:03:02
-Products: ["Video","Interactive Broadcast","live-streaming"]
+Products: ["Video", "Interactive Broadcast", "live-streaming"]
 ---
+
 通常来讲，视频参数的选择要根据产品实际情况来确定，比如，如果是 1 对 1，老师和学生的窗口比较大，要求分辨率会高一点，随之帧率和码率也要高一点；如果是 1 对 4， 老师和学生的窗口都比较小，分辨率可以低一点，对应的码率帧率也会低一点，以减少编解码的资源消耗和缓解下行带宽压力。一般可按下列场景中的推荐值进行设置。
 
 - 2 人视频通话场景：

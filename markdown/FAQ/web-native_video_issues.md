@@ -2,8 +2,9 @@
 title: 如何解决 Web 端和 Native 端互通时出现的黑屏、绿屏、花屏等画面异常问题？
 platform: ["Web"]
 updatedAt: 2021-03-30 03:26:24
-Products: ["Video","Interactive Broadcast","live-streaming"]
+Products: ["Video", "Interactive Broadcast", "live-streaming"]
 ---
+
 ## 问题描述
 
 Web 端用户接收 Native 端用户的视频，或者 Native 端用户接收 Web 端用户的视频，接收端看到的画面为黑屏、绿屏、花屏等。
@@ -23,8 +24,8 @@ Web 端用户接收 Native 端用户的视频，或者 Native 端用户接收 We
    1. 在浏览器地址栏输入 `chrome://flags`。
    2. 将 **Hardware-accelerated video decode** 和 **Hardware-accelerated video encode** 均设置为 **Disabled。**
    3. 点击 **Relaunch** 重启浏览器，如下图所示：
-       ![](https://web-cdn.agora.io/docs-files/1616748192326)
-      
+      ![](https://web-cdn.agora.io/docs-files/1616748192326)
+
 3. 将 Native SDK 升级至最新版本。
 
 4. 如果发送视频流的用户为 Web 桌面端，可以建议用户尝试使用以下命令行启动 Chrome 浏览器。

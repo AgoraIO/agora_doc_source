@@ -3,6 +3,7 @@ title: 实现视频直播
 platform: Web
 updatedAt: 2021-01-26 02:42:35
 ---
+
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 3.x 或之前版本，请查看以下文档：<li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/run_demo_live_web?platform=Web">跑通视频直播示例项目</a></li><li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/start_live_audio_web?platform=Web">实现音频直播</a></li><li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/start_live_web?platform=Web">实现视频直播</a></li></div>
 
 根据本文指导快速集成 Agora Web SDK 并在你自己的 app 里实现实时音视频直播。
@@ -10,6 +11,7 @@ updatedAt: 2021-01-26 02:42:35
 > 由于浏览器的安全策略对除 127.0.0.1 以外的 HTTP 地址作了限制，Agora Web SDK 仅支持 HTTPS 协议或者 `http://localhost`（`http://127.0.0.1`）。请勿使用 HTTP 协议在 `http://localhost`（`http://127.0.0.1`） 之外访问你的项目。
 
 ## 开源示例项目
+
 我们在 GitHub 上提供一个开源的[示例项目](https://github.com/AgoraIO-Community/AgoraWebSDK-NG/tree/master/Demo)供你参考。
 
 同时，你可以通过我们的[在线 Web 应用](https://webdemo.agora.io/agora-websdk-api-example-4.x/)快速体验 Agora 实现的音视频相关功能。
@@ -27,42 +29,46 @@ updatedAt: 2021-01-26 02:42:35
 选择如下任意一种方法获取 Agora Web SDK：
 
 ### 方法 1. 使用 npm 获取 SDK
+
 使用该方法需要先安装 npm，详见 [npm 快速入门](https://www.npmjs.com.cn/getting-started/installing-node/)。
 
 1. 运行安装命令：
- ```shell
+
+```shell
 npm install agora-rtc-sdk-ng --save
 ```
 
 2. 在你的项目的 JavaScript 代码中加入以下代码，引入这个模块：
- ```js
-import AgoraRTC from "agora-rtc-sdk-ng"
-const client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+
+```js
+import AgoraRTC from "agora-rtc-sdk-ng";
+const client = AgoraRTC.createClient({mode: "rtc", codec: "vp8"});
 ```
 
- 如果你使用 TypeScript, 还可以引入 SDK 中的类型对象：
+如果你使用 TypeScript, 还可以引入 SDK 中的类型对象：
 
- ```typescript
-import AgoraRTC, { IAgoraRTCClient } from "agora-rtc-sdk-ng"
-const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+```typescript
+import AgoraRTC, {IAgoraRTCClient} from "agora-rtc-sdk-ng";
+const client: IAgoraRTCClient = AgoraRTC.createClient({mode: "rtc", codec: "vp8"});
 ```
 
 ### 方法 2. 使用 CDN 方法获取 SDK
+
 该方法无需下载安装包。在项目 HTML 文件中，添加如下代码：
 
 ```html
 <script src="https://download.agora.io/sdk/release/AgoraRTC_N-4.3.0.js"></script>
 ```
 
-
 ### 方法 3. 手动下载 SDK
+
 1. [下载](./downloads?platform=Web) Agora Web SDK 4.x 版本 SDK 包。
 
 2. 将下载下来的 `.js` 文件保存到项目文件所在的目录下。
 
 3. 在项目文件中，将如下代码添加到 HTML 中：
 
- ```html
+```html
 <script src="./AgoraRTC_N-4.3.0.js"></script>
 ```
 
@@ -72,6 +78,7 @@ const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8
 现在，我们已经将 Agora Web SDK 集成到项目中了。下一步我们要调用 Agora Web SDK 提供的核心 API。
 
 ## 常用对象
+
 在使用 Agora Web SDK 时，你会经常用到以下三种对象：
 
 - [AgoraRTCClient](./API%20Reference/web/v4.2.0/interfaces/iagorartcclient.html) 对象，代表一个本地客户端。`AgoraRTCClient` 类的方法提供了音视频通话的主要功能，例如加入频道、发布音视频轨道等。
@@ -80,13 +87,16 @@ const client: IAgoraRTCClient = AgoraRTC.createClient({ mode: "rtc", codec: "vp8
 > 音视频流由音视频轨道构成。在 Agora Web SDK 中，我们通过操作音视频轨道对象来控制音视频流的行为。
 
 ## 基本流程
+
 一次简单的音视频直播的步骤一般如下：
+
 1. 根据项目的 App ID 创建一个本地客户端 `AgoraRTCClient` 对象。
 2. 通过 `AgoraRTCClient.join` 加入到一个指定的频道中。
 3. 通过麦克风采集的音频创建一个 `MicrophoneAudioTrack` 对象（本地音频轨道对象）；通过摄像头采集的视频创建一个 `CameraVideoTrack` 对象（本地视频轨道对象）。
 4. 通过 `AgoraRTCClient.publish` 将创建的本地音视频轨道对象发布到频道中。
 
 当有其他用户加入频道并且也发布音视频轨道时：
+
 1. SDK 会触发 `client.on("user-published")` 事件，在这个事件回调函数的参数中你可以拿到远端用户对象 `AgoraRTCRemoteUser`，表示这个用户刚刚发布了音视频轨道。
 2. 通过 `AgoraRTCClient.subscribe` 订阅获取到的 `AgoraRTCRemoteUser`。
 3. 订阅完成后，访问 `AgoraRTCRemoteUser.audioTrack` 和 `AgoraRTCRemoteUser.videoTrack` 即可获取到 `RemoteAudioTrack`（远端音频轨道对象）和 `RemoteVideoTrack`（远端视频轨道对象）。
@@ -109,8 +119,8 @@ var options = {
   channel: "demo_channel_name",
   // 如果你的项目开启了 App 证书进行 Token 鉴权，这里填写生成的 Token 值。
   token: null,
-	// 设置频道内的用户角色，可设为 "audience" 或 "host"
-  role: "audience"
+  // 设置频道内的用户角色，可设为 "audience" 或 "host"
+  role: "audience",
 };
 
 async function startBasicCall() {
@@ -125,16 +135,18 @@ startBasicCall();
 ### 1. 创建本地客户端
 
 ```js
-rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
+rtc.client = AgoraRTC.createClient({mode: "live", codec: "vp8"});
 ```
 
 调用 `createClient` 方法创建本地客户端对象。需注意 `mode` 和 `codec` 这两个参数的设置：
+
 - `mode` 用于设置[频道场景](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#channel-profile)。Agora Web SDK 会根据使用场景的不同实行不同的优化策略。
   - 一对一或多人通话中，建议设为 `"rtc"`，使用通信场景。
   - 互动直播中，建议设为 `"live"`，使用直播场景。
 - `codec` 用于设置浏览器使用的编解码格式。如果你需要使用 Safari 12.1 及之前版本，将该参数设为 `"h264"`；其他情况我们推荐使用 `"vp8"`。
 
 ### 2. 设置用户角色
+
 直播频道有两种用户角色：主播和观众，默认的角色为观众。直播频道内的用户，只能看到主播的画面、听到主播的声音。
 
 设置频道场景为直播后，你可以调用 `setClientRole` 方法设置用户角色。
@@ -155,12 +167,13 @@ const uid = await rtc.client.join(options.appId, options.channel, options.token,
 调用 `join` 加入目标频道。该方法返回一个 `Promise`，当返回 `resolve` 时表示加入频道成功，返回 `reject` 时表示加入频道出现错误。我们可以利用 `async/await` 极大地简化我们的代码。
 
 调用 `join` 方法时你需要注意以下参数：
+
 - `appid`: 你的 App ID。详见[创建 Agora 项目](./run_demo_video_call_web?platform=Web##1-创建-agora-项目)和[获取 App ID](./run_demo_video_call_web?platform=Web#appid)。
 - `channel`: 频道名，长度在 64 字节以内的字符串。在我们的示例项目中，`channel` 的值设为 `demo_channel_name`。
 - `token`: （可选）如果你的 Agora 项目开启了 App 证书，你需要在该参数中传入一个 Token，详见[使用 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#%E4%BD%BF%E7%94%A8-token)。
   - 在测试环境，我们推荐使用控制台生成临时 Token，详见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms%23get-a-temporary-token#%E8%8E%B7%E5%8F%96%E4%B8%B4%E6%97%B6-token)。
   - 在生产环境，我们推荐你在自己的服务端生成 Token，详见[生成 Token](https://docs.agora.io/cn/Interactive%20Broadcast/token_server)。
-> 在我们的示例项目中，为了叙述方便，没有开启 App 证书，所以不需要校验 Token，`token` 的值为 `null`。如果你启用了 App 证书，请确保上面传入的 `channel` 值和生成 Token 时传入的 `channel` 值保持一致。
+    > 在我们的示例项目中，为了叙述方便，没有开启 App 证书，所以不需要校验 Token，`token` 的值为 `null`。如果你启用了 App 证书，请确保上面传入的 `channel` 值和生成 Token 时传入的 `channel` 值保持一致。
 - `uid`：用户 ID，频道内每个用户的 UID 必须是唯一的。你可以填 `null`，Agora 会自动分配一个 UID 并在 `join` 的结果中返回。
 
 更多的 API 介绍和注意事项请参考 [AgoraRTCClient.join](./API%20Reference/web/v4.2.0/interfaces/iagorartcclient.html#join) 接口中的参数描述。
@@ -186,6 +199,7 @@ console.log("publish success!");
 > - 由于加入频道和创建本地音视频轨道没有依赖关系，你可以利用 `Promise.all` 同时执行这些异步操作。
 
 详细的参数设置（如采集设备和编码参数）请参考相关 API 文档：
+
 - [createMicrophoneAudioTrack](./API%20Reference/web/v4.2.0/interfaces/iagorartc.html#createmicrophoneaudiotrack)
 - [createCameraVideoTrack](./API%20Reference/web/v4.2.0/interfaces/iagorartc.html#createcameravideotrack)
 - [publish](./API%20Reference/web/v4.2.0/interfaces/iagorartcclient.html#publish)
@@ -235,6 +249,7 @@ rtc.client.on("user-published", async (user, mediaType) => {
 ```
 
 你需要注意 `user-published` 事件的第二个参数 `mediaType`, 代表远端用户当前发布的媒体类型：
+
 - `audio`: 远端用户发布了音频轨道。
 - `video`: 远端用户发布了视频轨道。
 
@@ -254,7 +269,9 @@ rtc.client.on("user-unpublished", (user, mediaType) => {
 ```
 
 ### 6. 离开频道
+
 通过以下步骤离开频道：
+
 1. 销毁创建的本地音视频轨道，解除网页对摄像头和麦克风的访问。
 2. 手动销毁之前动态创建的 DIV 节点。
 3. 调用 `leave` 离开频道。

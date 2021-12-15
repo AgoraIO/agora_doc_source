@@ -3,6 +3,7 @@ title: 发送和接收点对点消息及频道消息
 platform: Android
 updatedAt: 2021-03-02 02:30:48
 ---
+
 本文介绍在正式使用 Agora RTM C++ SDK for Windows 进行实时消息通讯前，需要准备的开发环境要求及 SDK 集成方法等内容。
 
 ## Demo 体验
@@ -10,12 +11,12 @@ updatedAt: 2021-03-02 02:30:48
 你可以到 GitHub 下载最新版的 [Agora-RTM-Tutorial-Windows](https://github.com/AgoraIO/RTM/tree/master/Agora-RTM-Tutorial-Windows) 查看完整的源码和代码逻辑：
 
 ## 开发环境要求
+
 - Microsoft Visual Studio 2017 或以上版本
 - 支持 Windows 7 或以上版本的 Windows 设备
 - 一个有效的 [Agora 开发者账号](https://sso.agora.io/login/)。
 
 <div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a>打开相关端口。</div>
-
 
 ## 准备开发环境
 
@@ -26,12 +27,10 @@ updatedAt: 2021-03-02 02:30:48
 - [添加权限](#permission)
 - [防止混淆代码](#obfuscated)
 
-
-
 ### <a name="appid"></a> 获取 App ID
 
+参考以下步骤获取一个 App ID。若已有 App ID，可以直接查看[快速集成 SDK](#sdk)。
 
-参考以下步骤获取一个 App ID。若已有App ID，可以直接查看[快速集成 SDK](#sdk)。
 <details>
 	<summary><font color="#3ab7f8">获取 App ID</font></summary>
 
@@ -49,11 +48,10 @@ updatedAt: 2021-03-02 02:30:48
 
 ![](https://web-cdn.agora.io/docs-files/1574921811175)
 
-
-
 </details>
 
 ### 创建项目
+
 参考以下步骤创建一个 Windows 项目。若已有 Windows 项目，直接查看[集成 SDK](#inte)。
 
 <details>
@@ -62,9 +60,8 @@ updatedAt: 2021-03-02 02:30:48
 1. 打开 <b>Microsoft Visual Studio</b> 并点击新建项目。
 2. 进入<b>新建项目</b>窗口，选择项目类型为 <b>MFC 应用程序</b>，输入项目名称，选择项目存储路径，并点击<b>确认</b>。
 3. 进入<b>MFC 应用程序</b>窗口，选择应用程序类型为<b>基于对话框</b>，并点击完成。
-	
-</details>
 
+</details>
 
 ### <a name="sdk"></a>快速集成 SDK
 
@@ -88,14 +85,14 @@ updatedAt: 2021-03-02 02:30:48
 
 ## 初始化
 
-1. 根据需求继承实现 `agora::rtm::IRtmServiceEventHandler`  `agora::rtm::IChannelEventHandler`
+1. 根据需求继承实现 `agora::rtm::IRtmServiceEventHandler` `agora::rtm::IChannelEventHandler`
 
-2. 创建 `agora::base::IAgoraService` `agora::base::AgoraServiceContext` 实例 `agoraInstance_` ， `context_`  并初始化 `agoraInstance_` ；
+2. 创建 `agora::base::IAgoraService` `agora::base::AgoraServiceContext` 实例 `agoraInstance_` ， `context_` 并初始化 `agoraInstance_` ；
 
 3. 创建 `agora::rtm::IRtmService` `agora::rtm::IRtmServiceEventHandler` `agora::rtm::IChannelEventHandler` 实例 `rtmInstance_` 初始化；
 
 ```cpp
-#include "IAgoraService.h" 
+#include "IAgoraService.h"
 #include "IAgoraRtmService.h"
 
 std::unique_ptr<agora::base::IAgoraService> agoraInstance_;
@@ -134,8 +131,6 @@ void Init() {
   }
 }
 ```
-
-
 
 ## 登录
 
@@ -196,15 +191,13 @@ void sendMessageToPeer(std::string peerID, std::string msg) {
 - 通过 `message->getText()` 方法可以获取到消息文本内容。
 - `peerId` 是消息发送方的用户 ID。
 
-
-
 ## 频道消息
 
 App 在成功登录 RTM 服务器 之后，可以开始使用 RTM 的频道消息功能。
 
 ### 创建加入频道实例
 
-- 传入能标识每个频道的 ID。ID 为字符串，必须是可见字符（可以带空格），不能为空或者多于 64 个字符，也不能是字符串 `"null"`。  
+- 传入能标识每个频道的 ID。ID 为字符串，必须是可见字符（可以带空格），不能为空或者多于 64 个字符，也不能是字符串 `"null"`。
 - 指定实例 `channelEventCallback_` SDK 通过回调通知应用程序频道的状态变化和运行事件等，如: 接收到频道消息、用户加入和退出频道等。
 
 ```cpp
@@ -243,7 +236,7 @@ void sendGroupMessage (const std::string& msg) {
 
 ### 获取频道成员列表
 
-调用实例的 `getMembers()` 方法可以获取到当前在该频道内的用户列表。 
+调用实例的 `getMembers()` 方法可以获取到当前在该频道内的用户列表。
 
 实例 `channelEventCallback_` 回调 `void onGetMembers(agora::rtm::IChannelMember **members, int userCount, agora::rtm::GET_MEMBERS_ERR errorCode)` 得到结果
 

@@ -3,6 +3,7 @@ title: 自定义音频采集和渲染
 platform: Android
 updatedAt: 2021-01-13 03:49:21
 ---
+
 ## 功能介绍
 
 实时音频传输过程中，Agora SDK 通常会启动默认的音频模块进行采集和渲染。在以下场景中，你可能会发现默认的音频模块无法满足开发需求：
@@ -89,14 +90,14 @@ public void run()
             // 开启音频采集，如果音频采集未停止，则读取并推送音频帧
             try
             {
-                 
+
                 audioRecord.startRecording();
                 while (!stopped)
                 {
                     // 读取采集的音频帧
                     int result = audioRecord.read(buffer, 0, buffer.length);
                     if (result >= 0)
-                    {  
+                    {
                         // 将音频帧推送给 SDK
                         CustomAudioSource.engine.pushExternalAudioFrame(
                                 buffer, System.currentTimeMillis());
@@ -142,7 +143,6 @@ public void run()
 - 你必须自行开发渲染模块
 - 使用 `pullPlaybackAudioFrame` 拉取远端发送的音频数据
 
-
 #### 示例代码
 
 参考下文代码在你的项目中实现自定义音频渲染。
@@ -154,14 +154,13 @@ rtcEngine.setExternalAudioSink(
     44100,     // 采样率，可以有8 k，16 k，32 k，44.1 k 和 48 kHz 等模式
     1          // 外部音源的通道数，最多 2 个
 );
- 
+
 // 主动拉取远端音频帧进行播放
 rtcEngine.pullPlaybackAudioFrame(
     data,             // byte[] 类型的音频数据
     lengthInByte      // 拉取的音频数据的字节数，单位为 byte
 );
 ```
-
 
 #### API 参考
 

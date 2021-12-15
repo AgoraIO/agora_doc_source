@@ -5,6 +5,7 @@
 ~96d9aaf0-eb84-11eb-b768-51ffcd29c763~
 
 <a name="prerequisites"></a>
+
 ## 前提条件
 
 - 已在 Agora 控制台创建 Agora 项目，获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id)、[App 证书](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6)并[配置 aPaaS 服务](/cn/agora-class/agora_class_prep?platform=Web)。
@@ -22,9 +23,11 @@
    ```
    git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
    ```
+
    ```
    git checkout release/apaas/x.y.z
    ```
+
    <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_android?platform=Android">发版说明</a>中获取最新版本号。</div>
 
 2. 在 Android Studio 中打开 CloudClass-Android。
@@ -39,6 +42,8 @@
            <string name="agora_api_host" translatable="false">Agora API Host</string>
            <string name="agora_report_host" translatable="false">Report API Host</string>
    </resources>
+   ```
+
 ```
 
    为方便你快速测试，CloudClass-Android 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
@@ -70,22 +75,27 @@
 1. 在项目的 **build.gradle** 文件中添加以下库：
 
 ```
-   allprojects {
-   	repositories {
-   		...
-   		maven { url'http://maven.aliyun.com/nexus/content/groups/public' }
-   		maven { url 'https://jitpack.io' }
-   	}
-   }
-   ```
+
+allprojects {
+repositories {
+...
+maven { url'http://maven.aliyun.com/nexus/content/groups/public' }
+maven { url 'https://jitpack.io' }
+}
+}
+
+```
 
 2. 在项目的 **build.gradle** 文件中添加以下依赖：
 
-   ```
-   dependencies {
-           ...
-   		// 请访问 https://jitpack.io/#AgoraIO-Community/CloudClass-Android 获取最新 Tag
-   		implementation 'com.github.AgoraIO-Community:CloudClass-Android:Tag'
-   }
+```
 
-   ```
+dependencies {
+...
+// 请访问 https://jitpack.io/#AgoraIO-Community/CloudClass-Android 获取最新 Tag
+implementation 'com.github.AgoraIO-Community:CloudClass-Android:Tag'
+}
+
+```
+
+```

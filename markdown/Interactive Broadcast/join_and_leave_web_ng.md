@@ -3,6 +3,7 @@ title: 加入和离开频道
 platform: Web
 updatedAt: 2021-01-25 09:04:24
 ---
+
 <div class="alert note">本文仅适用于 Web 4.x 版本。</div>
 
 Agora Web SDK 使用 [AgoraRTCClient](./API%20Reference/web/v4.2.0/interfaces/iagorartcclient.html) 对象来管理一个本地用户在目标频道内的行为。在加入目标频道之前，你需要先创建一个 `AgoraRTCClient` 对象。
@@ -26,13 +27,13 @@ const client = AgoraRTC.createClient({
 
 不同浏览器和不同设备对这两种编解码格式支持都不同。下表列出不同浏览器所支持的编解码格式作为参考：
 
-|浏览器|VP8|H.264|
-|---|---|---|
-|桌面端 Chrome 58+|✔|✔|
-|Firefox 56+|✔|✔*|
-|Safari 12.1+|✔|✔|
-|Safari < 12.1|✘|✔|
-|Android Chrome 58+|✔|?*|
+| 浏览器             | VP8 | H.264 |
+| ------------------ | --- | ----- |
+| 桌面端 Chrome 58+  | ✔   | ✔     |
+| Firefox 56+        | ✔   | ✔\*   |
+| Safari 12.1+       | ✔   | ✔     |
+| Safari < 12.1      | ✘   | ✔     |
+| Android Chrome 58+ | ✔   | ?\*   |
 
 > - Firefox 对 H.264 的支持依赖 **OpenH264 Video Codec provided by Cisco Systems, Inc.** 插件。Firefox 安装成功后会自动在后台下载该插件并默认启用，但是如果通话时插件没有下载完成，Firefox 就无法支持 H.264。
 > - Android 设备上 Chrome 58 及以后版本对 H.264 的支持取决于设备。因为 Chrome 在 Android 设备上对 H.264 强制使用硬件编解码，即使 Chrome 支持 H.264，如果 Android 设备的芯片不支持 H.264 的硬件编解码，H.264 实际上也是不可用的。

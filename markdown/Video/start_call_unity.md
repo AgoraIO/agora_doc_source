@@ -3,8 +3,8 @@ title: 实现视频通话
 platform: Unity
 updatedAt: 2021-01-06 08:58:40
 ---
-本文介绍如何使用 Agora Unity SDK 快速实现视频通话。
 
+本文介绍如何使用 Agora Unity SDK 快速实现视频通话。
 
 如果你是第一次使用声网的服务，我们推荐观看下面的视频，了解关于声网服务的基本信息以及如何快速跑通示例项目。
 
@@ -22,17 +22,16 @@ Agora 在 Github 上提供开源的实时视频通话示例项目 [Hello-Video-U
 
 - 操作系统与编译器要求：
 
-  | 开发平台 | 操作系统版本          | 编译器版本                |
-  | :------- | :-------------------- | :------------------------ |
-  | Android  | Android 4.1 或以上    | Android Studio 3.0 或以上 |
-  | iOS      | iOS 8.0 或以上        | Xcode 9.0 或以上          |
-  | macOS    | macOS 10.0 或以上     | Xcode 9.0 或以上          |
-  | Windows  | Windows 7 或以上 | Microsoft Visual Studio 2017 或以上 |
+  | 开发平台 | 操作系统版本       | 编译器版本                          |
+  | :------- | :----------------- | :---------------------------------- |
+  | Android  | Android 4.1 或以上 | Android Studio 3.0 或以上           |
+  | iOS      | iOS 8.0 或以上     | Xcode 9.0 或以上                    |
+  | macOS    | macOS 10.0 或以上  | Xcode 9.0 或以上                    |
+  | Windows  | Windows 7 或以上   | Microsoft Visual Studio 2017 或以上 |
 
 - 有效的 [Agora 账户](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up) 和 [App ID](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#getappid)
 
 <div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms#agora-rtc-sdk">应用企业防火墙限制</a >打开相关端口。</div>
-
 
 ## 准备开发环境
 
@@ -56,8 +55,8 @@ Agora 在 Github 上提供开源的实时视频通话示例项目 [Hello-Video-U
 	 - **Template**：项目类型。选择 **3D**。
 </details>
 
-
 <a name="Integrate"></a>
+
 ### 集成 SDK
 
 选择如下任意一种方式将 Agora Unity SDK 集成到你的项目中。
@@ -65,7 +64,7 @@ Agora 在 Github 上提供开源的实时视频通话示例项目 [Hello-Video-U
 **方法一：使用 Unity Asset Store 自动集成**
 
 1. 在 **Unity** 中点击 **Asset Store** 栏，输入 **Agora** 搜索并选择 **Agora Video SDK for Unity**。
-  ![](https://web-cdn.agora.io/docs-files/1576206914656)
+   ![](https://web-cdn.agora.io/docs-files/1576206914656)
 2. 在 SDK 详情页中，点击页面右侧的 **Download** 按钮下载 SDK。
    ![](https://web-cdn.agora.io/docs-files/1576206963608)
 3. 下载成功后，会出现 **Import** 按钮，点击查看可导入的内容。
@@ -102,52 +101,53 @@ Agora 在 Github 上提供开源的实时视频通话示例项目 [Hello-Video-U
 ![](https://web-cdn.agora.io/docs-files/1576208172189)
 
 <a name="permission"></a>
+
 ### 2. 获取设备权限（仅 Android 平台）
 
 仅 Android 平台需要设置此步骤，其他平台可以直接查看[初始化 IRtcEngine](#initialize)。
 
-在 **UNITY_2018_3_OR_NEWER** 或以上版本中，Unity 不会主动向用户获取麦克风和相机权限，需要用户调用 `CheckPermission` 方法获取权限。 
+在 **UNITY_2018_3_OR_NEWER** 或以上版本中，Unity 不会主动向用户获取麦克风和相机权限，需要用户调用 `CheckPermission` 方法获取权限。
 
 ```C#
-#if(UNITY_2018_3_OR_NEWER) 
-using UnityEngine.Android; 
-#endif 
-void Start () 
-{  
-#if(UNITY_2018_3_OR_NEWER) 
-permissionList.Add(Permission.Microphone);  
-permissionList.Add(Permission.Camera);  
-#endif  
-} 
+#if(UNITY_2018_3_OR_NEWER)
+using UnityEngine.Android;
+#endif
+void Start ()
+{
+#if(UNITY_2018_3_OR_NEWER)
+permissionList.Add(Permission.Microphone);
+permissionList.Add(Permission.Camera);
+#endif
+}
 private void CheckPermission()
-{ 
-#if(UNITY_2018_3_OR_NEWER) 
-foreach(string permission in permissionList) 
-{ 
-if (Permission.HasUserAuthorizedPermission(permission)) 
-{ 
-} 
-else 
-{  
-Permission.RequestUserPermission(permission); 
-} 
-} 
-#endif 
-} 
-void Update () 
-{  
-#if(UNITY_2018_3_OR_NEWER) 
-// 获取设备权限。 
-CheckPermission(); 
-#endif  
+{
+#if(UNITY_2018_3_OR_NEWER)
+foreach(string permission in permissionList)
+{
+if (Permission.HasUserAuthorizedPermission(permission))
+{
+}
+else
+{
+Permission.RequestUserPermission(permission);
+}
+}
+#endif
+}
+void Update ()
+{
+#if(UNITY_2018_3_OR_NEWER)
+// 获取设备权限。
+CheckPermission();
+#endif
 }
 ```
 
 <a name="initialize"></a>
+
 ### 3. 初始化 IRtcEngine
 
-
-你需要在该步骤中填入项目的 App ID。请参考如下步骤在控制台[创建 Agora 项目](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms)并获取 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id )。
+你需要在该步骤中填入项目的 App ID。请参考如下步骤在控制台[创建 Agora 项目](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms)并获取 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id)。
 
 1. 登录[控制台](https://console.agora.io/)，点击左侧导航栏的**[项目管理](https://console.agora.io/projects)**图标 ![](https://web-cdn.agora.io/docs-files/1551254998344)。
 2. 点击**创建**，按照屏幕提示设置项目名，选择一种鉴权机制，然后点击**提交**。
@@ -158,16 +158,16 @@ CheckPermission();
 <div class="alert note">如果你想退出应用或者释放 <tt>IRtcEngine</tt> 内存，需调用 <tt>Destroy</tt> 方法销毁 <tt>IRtcEngine</tt>。详见<a href="#destroy">销毁 IRtcEngine</a >。</div>
 
 ```C#
-// 填入 App ID 并初始化 IRtcEngine。 
-mRtcEngine = IRtcEngine.GetEngine (appId); 
-// 注册 OnJoinChannelSuccessHandler 回调。 
+// 填入 App ID 并初始化 IRtcEngine。
+mRtcEngine = IRtcEngine.GetEngine (appId);
+// 注册 OnJoinChannelSuccessHandler 回调。
 // 本地用户成功加入频道时，会触发该回调。
-mRtcEngine.OnJoinChannelSuccessHandler = OnJoinChannelSuccessHandler; 
+mRtcEngine.OnJoinChannelSuccessHandler = OnJoinChannelSuccessHandler;
 // 注册 OnUserJoinedHandler 回调。
 // SDK 接收到第一帧远端视频并成功解码时，会触发该回调。
 // 可以在该回调中调用 SetForUser 方法设置远端视图。
-mRtcEngine.OnUserJoinedHandler = OnUserJoinedHandler; 
-// 注册 OnUserOfflineHandler 回调。 
+mRtcEngine.OnUserJoinedHandler = OnUserJoinedHandler;
+// 注册 OnUserOfflineHandler 回调。
 // 远端用户离开频道或掉线时，会触发该回调。
 mRtcEngine.OnUserOfflineHandler = OnUserOfflineHandler;
 ```
@@ -181,24 +181,24 @@ mRtcEngine.OnUserOfflineHandler = OnUserOfflineHandler;
 - 调用 `EnableVideoObserver` 方法启用本地视频显示。
 
   ```C#
-	// 启用视频模块。 
-	mRtcEngine.EnableVideo();
-	// 获取本地视频显示，并传递到 Unity 层。
-	mRtcEngine.EnableVideoObserver();`
-	```
+  // 启用视频模块。
+  mRtcEngine.EnableVideo();
+  // 获取本地视频显示，并传递到 Unity 层。
+  mRtcEngine.EnableVideoObserver();`
+  ```
 
-- 选择显示本地视频的物体，将视频渲染脚本 **VideoSurface.cs** 拖动至该物体的 **Script** 进行绑定，即可看到本地图像。Unity 中默认渲染器可以渲染 3D 物体，例如：Cube，Cylinder，Plane等。若需渲染其他类型的物体，需修改 **VideoSurface.cs** 文件中的渲染器。
+- 选择显示本地视频的物体，将视频渲染脚本 **VideoSurface.cs** 拖动至该物体的 **Script** 进行绑定，即可看到本地图像。Unity 中默认渲染器可以渲染 3D 物体，例如：Cube，Cylinder，Plane 等。若需渲染其他类型的物体，需修改 **VideoSurface.cs** 文件中的渲染器。
 
   ![](https://web-cdn.agora.io/docs-files/1576208681884)
-  ```C#
-    // 默认渲染器为 Renderer。 
-	Renderer rend = GetComponent(); 
-	rend.material.mainTexture = nativeTexture; 
-	// 将渲染器修改为 RawImage。 
-	RawImage rend = GetComponent(); 
-	rend.texture = nativeTexture;`
-	```
 
+  ```C#
+    // 默认渲染器为 Renderer。
+  Renderer rend = GetComponent();
+  rend.material.mainTexture = nativeTexture;
+  // 将渲染器修改为 RawImage。
+  RawImage rend = GetComponent();
+  rend.texture = nativeTexture;`
+  ```
 
 ### 5. 加入频道
 
@@ -217,7 +217,7 @@ mRtcEngine.OnUserOfflineHandler = OnUserOfflineHandler;
 - `uid`: 本地用户的 ID。数据类型为整型，且频道内每个用户的 `uid` 必须是唯一的。若将 `uid` 设为 0，则 SDK 会自动分配一个 `uid`，并在 `OnJoinChannelSuccessHandler` 回调中报告。
 
 ```C#
-// 加入频道。 
+// 加入频道。
 mRtcEngine.JoinChannelByKey(null, channel, null, 0);
 ```
 
@@ -225,7 +225,7 @@ mRtcEngine.JoinChannelByKey(null, channel, null, 0);
 
 视频通话中，通常你也需要看到其他用户。在加入频道后，可通过调用 **VideoSurface.cs** 文件中的 `SetForUser` 方法设置远端视频显示。远端用户成功加入频道后，SDK 会触发 `OnUserJoinedHandler` 回调，该回调中会包含这个远端用户的 `uid` 信息。
 
-- 在** VideoSurface.cs** 文件，通过  `OnUserJoinedHandler` 回调来调用 `SetForUser` 方法，传入获取到的 `uid`，设置远端视频显示。
+- 在** VideoSurface.cs** 文件，通过 `OnUserJoinedHandler` 回调来调用 `SetForUser` 方法，传入获取到的 `uid`，设置远端视频显示。
 - 选择显示远端视频的物体，将视频渲染脚本 **VideoSurface.cs** 拖动至该物体的 **Script** 进行绑定，即可看到远端图像。
 - Agora Unity SDK 默认的视频采集和渲染帧率是 15 fps，根据场景，调用 **VideoSurface.cs** 文件中的 `SetGameFps` 方法调节视频刷新帧率。
 
@@ -239,7 +239,7 @@ private void OnUserJoinedHandler(uint uid, int elapsed)
 		Debug.Log ("OnUserJoinedHandler: uid = " + uid)
 		GameObject go = GameObject.Find (uid.ToString ());
 		if (!ReferenceEquals (go, null)) {
-			return; 
+			return;
 		}
 		go = GameObject.CreatePrimitive (PrimitiveType.Plane);
 		if (!ReferenceEquals (go, null)) {
@@ -270,7 +270,6 @@ private void OnUserOfflineHandler(uint uid, USER_OFFLINE_REASON reason)
     }
 ```
 
-
 ### 7. 离开频道
 
 根据场景需要，如结束通话或关闭 App 时，调用 `LeaveChannel` 离开当前通话频道，并调用 `DisableVideoObserver` 关闭视频显示。
@@ -289,7 +288,8 @@ public void leave()
 ```
 
 <a name="destroy"></a>
-###  8. 销毁 IRtcEngine
+
+### 8. 销毁 IRtcEngine
 
 离开频道后，如果你想退出应用或者释放 `IRtcEngine` 内存，需调用 `Destroy` 方法销毁 `IRtcEngine`。
 
@@ -305,7 +305,7 @@ void OnApplicationQuit()
 }
 ```
 
-###  示例代码
+### 示例代码
 
 你可以在 [Hello-Video-Unity-Agora](https://github.com/AgoraIO/Agora-Unity-Quickstart/tree/master/video/Hello-Video-Unity-Agora) 示例项目的 [TestHelloUnityVideo.cs](https://github.com/AgoraIO/Agora-Unity-Quickstart/blob/master/video/Hello-Video-Unity-Agora/Assets/TestHelloUnityVideo.cs) 文件中查看完整的源码和代码逻辑。
 

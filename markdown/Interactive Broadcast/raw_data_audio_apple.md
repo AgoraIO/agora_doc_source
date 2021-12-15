@@ -3,6 +3,7 @@ title: 原始音频数据
 platform: iOS
 updatedAt: 2020-12-07 04:54:11
 ---
+
 ## 功能描述
 
 音视频传输过程中，我们可以对采集到的音视频数据进行前处理和后处理，获取想要的播放效果。
@@ -20,8 +21,8 @@ Agora 在 GitHub 上提供以下实现了原始音频数据功能的开源示例
 
 你可以下载体验并参考源代码。
 
-
 ## 实现方法
+
 在使用原始数据功能前，请确保你已在项目中完成基本的实时音视频功能。
 
 参考如下步骤，在你的项目中实现原始音频数据功能：
@@ -43,7 +44,6 @@ Agora 在 GitHub 上提供以下实现了原始音频数据功能的开源示例
 
 - 获取原始音频数据。
 - 对原始音频数据进行处理并返回到 SDK。
-
 
 ### API 时序图
 
@@ -76,8 +76,8 @@ agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
 // 引入 C++ 头文件
 #import <AgoraRtcKit/IAgoraMediaEngine.h>
 #import <AgoraRtcKit/IAgoraRtcEngine.h>
- 
- 
+
+
 - (void)registerAudioRawDataObserver:(ObserverAudioType)observerType {
     // 获取 Native SDK 的 C++ 句柄
     agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)self.agoraKit.getNativeHandle;
@@ -85,10 +85,10 @@ agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
     // 必须使用 IMediaEngine 实例调用 queryInterface 设置 agora::AGORA_IID_MEDIA_ENGINE 接口，否则无法使用 mediaEngine 执行 registerAudioFrameObserver
     mediaEngine.queryInterface(rtc_engine, agora::AGORA_IID_MEDIA_ENGINE);
-     
+
     NSInteger oldValue = self.observerAudioType;
     self.observerAudioType |= observerType;
-     
+
     if (mediaEngine && oldValue == 0)
     {
         // 注册音频帧观测器
@@ -131,17 +131,17 @@ agoraKit.joinChannel(byToken: nil, channelId: channelName, info: nil, uid: 0) {[
 func mediaDataPlugin(_mediaDataPlugin: AgoraMediaDataPlugin, didRecord audioRawData: AgoraAudioRawDate) -> AgoraAudioRawData {
   return audioRawData
 }
- 
+
 // 获取所有远端用户的原始音频数据，处理后再发送回 SDK
 func mediaDataPlugin(_mediaDataPlugin: AgoraMediaDataPlugin, willPlaybackAudioRawData audioRawData: AgoraRawData) -> AgoraAudioRawData {
   return audioRawData
 }
- 
+
 // 获取特定远端用户的原始音频数据，处理后再发送回 SDK
 func mediaDataPlugin(_mediaDataPlugin: AgoraMediaDataPlugin, willPlaybackBeforeMixing audioRawData: AgoraAudioRawData, ofUid uid: uint) -> AgoraAudioRawData {
   return audioRawData
 }
- 
+
 // 获取本地用户和所有远端用户的原始音频数据，处理后再发送回 SDK
 func mediaDataPlugin(_mediaDataPlugin: AgoraMediaDataPlugin, didMixedAudioRawData audioRawData: AgoraAudioRawData) -> AgoraAudioRawData {
   return audioRawData
@@ -156,7 +156,7 @@ class AgoraMediaDataPluginAudioFrameObserver : public agora::media::IAudioFrameO
 {
 public:
     AgoraMediaDataPlugin *mediaDataPlugin;
- 
+
     // 定义原始音频数据的格式
     AgoraAudioRawData* getAudioRawDataWithAudioFrame(AudioFrame& audioFrame)
     {
@@ -170,7 +170,7 @@ public:
         data.bufferSize = audioFrame.samples * audioFrame.bytesPerSample;
         return data;
     }
-     
+
     // 定义处理原始音频数据的格式
     void modifiedAudioFrameWithNewAudioRawData(AudioFrame& audioFrame, AgoraAudioRawData *audioRawData)
     {
@@ -180,11 +180,11 @@ public:
         audioFrame.samplesPerSec = audioRawData.samplesPerSec;
         audioFrame.renderTimeMs = audioRawData.renderTimeMs;
     }
-     
+
     // 通过 onRecordAudioFrame 回调获取本地用户的原始音频数据
     virtual bool onRecordAudioFrame(AudioFrame& audioFrame) override
     {
-         
+
         if (!mediaDataPlugin && ((mediaDataPlugin.observerAudioType >> 0) == 0)) return true;
         @autoreleasepool {
             if ([mediaDataPlugin.audioDelegate respondsToSelector:@selector(mediaDataPlugin:didRecordAudioRawData:)]) {
@@ -193,15 +193,15 @@ public:
                 modifiedAudioFrameWithNewAudioRawData(audioFrame, newData);
             }
         }
- 
+
         // 返回值设为 true，表示将音频数据发送回 SDK
         return true;
     }
-     
+
     // 通过 onPlaybackAudioFrame 回调获取所有远端用户的原始音频数据
     virtual bool onPlaybackAudioFrame(AudioFrame& audioFrame) override
     {
-         
+
         if (!mediaDataPlugin && ((mediaDataPlugin.observerAudioType >> 1) == 0)) return true;
         @autoreleasepool {
             if ([mediaDataPlugin.audioDelegate respondsToSelector:@selector(mediaDataPlugin:willPlaybackAudioRawData:)]) {
@@ -213,11 +213,11 @@ public:
         // 返回值设为 true，表示将音频数据发送回 SDK
         return true;
     }
- 
-    // 通过 onPlaybackAudioFrameBeforeMixing 回调获取特定远端用户的原始音频数据   
+
+    // 通过 onPlaybackAudioFrameBeforeMixing 回调获取特定远端用户的原始音频数据
     virtual bool onPlaybackAudioFrameBeforeMixing(unsigned int uid, AudioFrame& audioFrame) override
     {
-         
+
         if (!mediaDataPlugin && ((mediaDataPlugin.observerAudioType >> 2) == 0)) return true;
         @autoreleasepool {
             if ([mediaDataPlugin.audioDelegate respondsToSelector:@selector(mediaDataPlugin:willPlaybackBeforeMixingAudioRawData:ofUid:)]) {
@@ -229,11 +229,11 @@ public:
         // 返回值设为 true，表示将音频数据发送回 SDK
         return true;
     }
-     
+
     // 通过 onMixedAudioFrame 回调获取本地和远端所有远端用户的原始音频数据
     virtual bool onMixedAudioFrame(AudioFrame& audioFrame) override
     {
-         
+
         if (!mediaDataPlugin && ((mediaDataPlugin.observerAudioType >> 3) == 0)) return true;
         @autoreleasepool {
             if ([mediaDataPlugin.audioDelegate respondsToSelector:@selector(mediaDataPlugin:didMixedAudioRawData:)]) {
@@ -259,9 +259,9 @@ public:
     agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)self.agoraKit.getNativeHandle;
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
     mediaEngine.queryInterface(rtc_engine, agora::AGORA_IID_MEDIA_ENGINE);
- 
+
     self.observerAudioType ^= observerType;
- 
+
     if (mediaEngine && self.observerAudioType == 0)
     {
         mediaEngine->registerAudioFrameObserver(NULL);
@@ -269,7 +269,6 @@ public:
     }
 }
 ```
-
 
 ### API 参考
 
@@ -281,11 +280,6 @@ public:
 - [`onPlaybackAudioFrame`](./API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#aefc7f9cb0d1fcbc787775588bc849bac)
 - [`onPlaybackAudioFrameBeforeMixing`](./API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#ae04d85a65eefec5e7c1e0477bcaa067c)
 - [`onMixedAudioFrame`](./API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#a78d095cbd0b8ee04f657430bb6de8100)
-
-
-
-
-
 
 ## 开发注意事项
 
@@ -306,5 +300,3 @@ agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)self.agoraKit.getN
 ```
 
 在 iOS 或 macOS 上调用 C++ 方法的完整代码可以参考 [AgoraMediaDataPlugin.mm](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Common/RawDataApi/AgoraMediaDataPlugin.mm)。
-
-

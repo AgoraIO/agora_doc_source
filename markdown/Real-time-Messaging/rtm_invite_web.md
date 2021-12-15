@@ -3,6 +3,7 @@ title: 呼叫邀请
 platform: Web
 updatedAt: 2020-11-26 08:48:37
 ---
+
 ## 概述
 
 Agora RTM SDK 支持呼叫邀请功能，包含通用呼叫场景中的以下行为：
@@ -11,7 +12,6 @@ Agora RTM SDK 支持呼叫邀请功能，包含通用呼叫场景中的以下行
 - 被叫接受或拒绝呼叫邀请
 
 ![](https://web-cdn.agora.io/docs-files/1602313430536)
-
 
 Agora RTM SDK 提供的呼叫邀请功能仅实现了呼叫邀请的基本控制逻辑，即发送、取消、接受和拒绝呼叫邀请。Agora RTM SDK 不会处理邀请接通之后的动作，也不会管理整个会话的生命周期。你需要根据自己的业务逻辑自行实现。
 
@@ -28,11 +28,9 @@ Agora RTM SDK 提供的呼叫邀请功能仅实现了呼叫邀请的基本控制
 
 ![](https://web-cdn.agora.io/docs-files/1602313442227)
 
-
 ### 发送呼叫邀请
 
 发送呼叫邀请的步骤如下：
-
 
 1. 主叫通过调用 `createLocalInvitation` 创建 `LocalInvitation`。此时 `LocalInvitation` 生命周期开始。
 2. 主叫调用 `send` 发送呼叫邀请。被叫收到 `RemoteInvitationReceived` 回调，此时 `RemoteInvitation` 生命周期开始。主叫收到 `LocalInvitationReceivedByPeer` 回调。
@@ -45,7 +43,6 @@ localInvitation = Client.createLocalInvitation(calleeId);
 // 发送呼叫邀请
 localInvitation.send();
 ```
-
 
 ### 取消呼叫邀请
 
@@ -62,8 +59,6 @@ cancelCall() {
   }
 ```
 
-
-
 ### 接受呼叫邀请
 
 被叫从 `RemoteInvitationReceived` 回调获取 `RemoteInvitation` 并调用 `accept` 接受呼叫邀请。主叫收到 `RemoteInvitationAccepted` 回调，此时 `RemoteInvitation` 生命周期结束。主叫收到 `LocalInvitationAccepted` 回调，此时 `LocalInvitation` 生命周期结束。
@@ -79,7 +74,7 @@ acceptCall() {
   }
 ```
 
-###  拒绝呼叫邀请
+### 拒绝呼叫邀请
 
 被叫从 `RemoteInvitationReceived` 回调获取 `RemoteInvitation` 并调用 `refuseRemoteInvitation` 拒绝呼叫邀请。主叫收到 `RemoteInvitationRefused` 回调，此时 `RemoteInvitation` 生命周期结束。主叫收到 `LocalInvitationRefused` 回调，此时 `LocalInvitation` 生命周期结束。
 
@@ -94,7 +89,7 @@ refuseCall() {
   }
 ```
 
-##  API 参考
+## API 参考
 
 API 详见[呼叫邀请 API 文档](/cn/Real-time-Messaging/API%20Reference/RTM_web/index.html#呼叫邀请管理)。
 

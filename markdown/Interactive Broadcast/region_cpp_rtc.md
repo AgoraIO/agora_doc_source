@@ -3,6 +3,7 @@ title: 限定访问区域
 platform: iOS
 updatedAt: 2021-03-24 02:17:25
 ---
+
 ## 功能描述
 
 为适应不同国家或地区的法律法规，声网支持限定访问区域功能，实现 SDK 只访问指定区域内的声网服务器，希望将音视频和消息数据传输限定在某一区域范围内。
@@ -47,7 +48,7 @@ v3.1.0 在上述区域码的基础上新增了：
 ```C++
 IRtcEngine  *m_lpAgoraEngine = NULL;
 RtcEngineContext ctx;
- 
+
 if(m_lpAgoraEngine == NULL)
     m_lpAgoraEngine = createAgoraRtcEngine();
 ctx.eventHandler = &m_EngineEventHandler;

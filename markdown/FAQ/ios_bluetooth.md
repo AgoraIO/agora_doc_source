@@ -1,9 +1,10 @@
 ---
 title: 为什么 iOS 或 Android 设备连接蓝牙设备后不能通过蓝牙设备接电话？
-platform: ["iOS","Android"]
+platform: ["iOS", "Android"]
 updatedAt: 2020-09-02 15:33:29
-Products: ["Voice","Video","Interactive Broadcast"]
+Products: ["Voice", "Video", "Interactive Broadcast"]
 ---
+
 ## 问题描述
 
 iOS 或 Android 设备连接蓝牙设备后，通话时出现不能通过蓝牙设备出声的现象。具体现象如下：
@@ -22,7 +23,7 @@ iOS 或 Android 设备连接蓝牙设备后，通话时出现不能通过蓝牙�
    **系统通话的系统默认设置**
 
    连接蓝牙设备后：
-	 
+
    - 如果用户在 iPhone 设备上按接听键，则默认使用 iPhone 听筒接听电话；
    - 如果用户在蓝牙设备上按接听键，则默认使用蓝牙设备接听电话。
 
@@ -45,17 +46,17 @@ iOS 或 Android 设备连接蓝牙设备后，通话时出现不能通过蓝牙�
 
 - 在开始系统通话前，在 iPhone 的**设置**中修改音频通话方式：向下滑动以显示搜索栏，搜索**音频通话方式**，并将**音频通话方式**设为**蓝牙耳机**。这样系统来电时即使按手机上的接听键，也会默认使用蓝牙耳机接听电话。
 
- ![](https://web-cdn.agora.io/docs-files/1599030147631) ![](https://web-cdn.agora.io/docs-files/1599030217188)
+![](https://web-cdn.agora.io/docs-files/1599030147631) ![](https://web-cdn.agora.io/docs-files/1599030217188)
 
 - 在进行系统通话过程中，用户也可以通过通话界面的外放按钮自行切换蓝牙、听筒或外放。
 - 如果通话时连接的蓝牙设备为蓝牙音箱，请确保 app 使用 CallKit 框架，方可使用上述方法设置语音播放路由。
 
 **VoIP 通话**
 
-- 在开始 VoIP 通话前，用户可以通过系统控制中心自行切换音频路由为蓝牙设备。app 则可以调用 iOS 原生 API  `setPreferredInput` 方法切换音频路由为蓝牙设备。
+- 在开始 VoIP 通话前，用户可以通过系统控制中心自行切换音频路由为蓝牙设备。app 则可以调用 iOS 原生 API `setPreferredInput` 方法切换音频路由为蓝牙设备。
 - 当使用蓝牙耳机进行 VoIP 通话时，收到了系统来电，则点蓝牙耳机上的接听按钮接听系统来电，系统通话结束后再切回 app 就能保持使用蓝牙耳机进行通话。
 
-## Android 设备 
+## Android 设备
 
 ### 问题原因
 
@@ -67,11 +68,11 @@ iOS 或 Android 设备连接蓝牙设备后，通话时出现不能通过蓝牙�
 
 1. 在 `AndroidManifest.xml` 文件中添加如下行，获取使用蓝牙设备的权限：
 
-    ```
-    <uses-permission android:name="android.permission.BLUETOOTH" /> 
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    ```
-		
+   ```
+   <uses-permission android:name="android.permission.BLUETOOTH" />
+   <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+   ```
+
 2. 确认蓝牙设备是否支持 SCO 协议。如果不支持，切换支持 SCO 协议的蓝牙设备。
 
 3. 调用 Android 原生 API `AudioManmager.isBlluetoothScoAvailableOffCall` 方法判断该 Android 设备是否支持在没有系统通话时使用蓝牙 SCO。如果设备不支持该功能，则无法将音频路由切换为蓝牙设备，只能使用系统默认的路由接听电话。

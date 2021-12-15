@@ -3,6 +3,7 @@ title: 云端录制 RESTful API 快速开始
 platform: All Platforms
 updatedAt: 2020-11-11 06:08:07
 ---
+
 Agora 云端录制 1.1.0 及以后版本支持 RESTful API，无需集成 SDK，直接通过网络请求开启和控制云录制，在自己的网页或应用中灵活使用。
 
 通过 RESTful API，你可以发送网络请求控制云端录制：
@@ -17,14 +18,13 @@ Agora 云端录制 1.1.0 及以后版本支持 RESTful API，无需集成 SDK，
 
 同时云端录制 RESTful API 还提供回调服务，开通后你可以收到云端录制的事件通知，下表列出回调服务和使用 RESTful API 查询录制状态的区别，你可以根据自己的需要选择是否开通回调服务。
 
-| 查询状态                                                     | 回调服务                                         |
-| ------------------------------------------------------------ | ------------------------------------------------ |
+| 查询状态                                                                                                                      | 回调服务                                         |
+| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | 调用 [`query`](https://docs.agora.io/cn/cloud-recording/restfulapi/#/%E4%BA%91%E7%AB%AF%E5%BD%95%E5%88%B6/query) 方法即可查询 | 需配置用于接收回调的 HTTP 服务器，并单独开通服务 |
-| 需主动查询，无法保证及时性                                   | 事件发生时及时通知                               |
-| 仅提供 M3U8 文件名和录制的状态                               | 提供云端录制所有的事件通知和具体信息             |
+| 需主动查询，无法保证及时性                                                                                                    | 事件发生时及时通知                               |
+| 仅提供 M3U8 文件名和录制的状态                                                                                                | 提供云端录制所有的事件通知和具体信息             |
 
 如需使用回调服务，请参考 [RESTful API 回调](./cloud_recording_callback_rest)。
-
 
 ## 前提条件
 
@@ -38,7 +38,7 @@ Agora 云端录制 1.1.0 及以后版本支持 RESTful API，无需集成 SDK，
 
 1. 登录 [控制台](https://console.agora.io)，点击左侧导航栏 ![img](https://web-cdn.agora.io/docs-files/1551250582235) 按钮进入**产品用量**页面。
 2. 在页面左上角展开下拉列表选择需要开通云端录制的项目，然后点击云端录制下的**分钟数**。
- ![](https://web-cdn.agora.io/docs-files/1566385129523)
+   ![](https://web-cdn.agora.io/docs-files/1566385129523)
 3. 点击**开启云端录制支持**。
 4. 点击**应用**。
 
@@ -46,7 +46,7 @@ Agora 云端录制 1.1.0 及以后版本支持 RESTful API，无需集成 SDK，
 
 ## 通过 Basic HTTP 认证
 
-Agora RESTful API 要求 Basic HTTP 认证。每次发送 HTTP 请求时，都必须在请求头部填入 `Authorization`  字段。关于如何生成该字段的值，请参考 [RESTful API 认证](https://docs.agora.io/cn/faq/restful_authentication)。
+Agora RESTful API 要求 Basic HTTP 认证。每次发送 HTTP 请求时，都必须在请求头部填入 `Authorization` 字段。关于如何生成该字段的值，请参考 [RESTful API 认证](https://docs.agora.io/cn/faq/restful_authentication)。
 
 ## 实现云端录制
 
@@ -66,10 +66,9 @@ Agora RESTful API 要求 Basic HTTP 认证。每次发送 HTTP 请求时，都�
 
 > 一个 resource ID 仅可用于一次录制。
 
-
 **加入频道**
 
-获得 resource ID 后，在五分钟內调用 [`start`](https://docs.agora.io/cn/cloud-recording/restfulapi/#/%E4%BA%91%E7%AB%AF%E5%BD%95%E5%88%B6/start) 方法加入频道开始录制。 
+获得 resource ID 后，在五分钟內调用 [`start`](https://docs.agora.io/cn/cloud-recording/restfulapi/#/%E4%BA%91%E7%AB%AF%E5%BD%95%E5%88%B6/start) 方法加入频道开始录制。
 
 <div class="alert warning">云端录制不支持 String 用户 ID（User Account）。请确保频道内所有用户均使用整型 UID。同时，在调用 <code>start</code> 方法时，请确保 <code>uid</code> 字段引号内为整型 UID。</div>
 
@@ -81,20 +80,17 @@ Agora RESTful API 要求 Basic HTTP 认证。每次发送 HTTP 请求时，都�
 
 调用该方法成功后，你可以从 HTTP 响应包体中获得录制生成的[索引文件](#m3u8)和当前录制的状态。
 
-
 ### 更新合流布局
 
 录制过程中，你可以多次调用 [`updateLayout`](https://docs.agora.io/cn/cloud-recording/restfulapi/#/%E4%BA%91%E7%AB%AF%E5%BD%95%E5%88%B6/updateLayout) 方法设置或更新合流布局。详见[设置合流布局](https://docs.agora.io/cn/cloud-recording/cloud_recording_layout?platform=Linux)。
 
-
 ### 停止录制
 
-调用  [`stop`](https://docs.agora.io/cn/cloud-recording/restfulapi/#/%E4%BA%91%E7%AB%AF%E5%BD%95%E5%88%B6/stop) 方法停止录制。
+调用 [`stop`](https://docs.agora.io/cn/cloud-recording/restfulapi/#/%E4%BA%91%E7%AB%AF%E5%BD%95%E5%88%B6/stop) 方法停止录制。
 
 > 当频道空闲（无用户）超过预设时间（默认为 30 秒） 后，云端录制也会自动退出频道停止录制。
 
 调用该方法成功后，你可以从 HTTP 响应包体中获得录制生成的[索引文件](#m3u8)和当前录制上传的状态。
-
 
 ## 上传和管理录制文件
 
@@ -108,14 +104,14 @@ Agora RESTful API 要求 Basic HTTP 认证。每次发送 HTTP 请求时，都�
 
 ### <a name="m3u8"></a>录制文件索引
 
-在单流录制模式下，如只录制音频或视频，则每次录制每个 UID 均会生成一个 M3U8 文件；如同时录制音视频，则每次录制每个 UID 会生成两个 M3U8 文件。M3U8文件用于索引该次录制所有的 TS/WebM 文件。你可以通过 M3U8 文件播放和管理录制文件。单流模式下 M3U8 文件以及 TS/WebM 文件的命名规则详见[管理录制文件](/cn/null/cloud_recording_manage_files)。
+在单流录制模式下，如只录制音频或视频，则每次录制每个 UID 均会生成一个 M3U8 文件；如同时录制音视频，则每次录制每个 UID 会生成两个 M3U8 文件。M3U8 文件用于索引该次录制所有的 TS/WebM 文件。你可以通过 M3U8 文件播放和管理录制文件。单流模式下 M3U8 文件以及 TS/WebM 文件的命名规则详见[管理录制文件](/cn/null/cloud_recording_manage_files)。
 
 在合流录制模式下，每次录制均会生成一个 M3U8 文件。合流模式下的 M3U8 文件名由录制 ID 和频道名组成，即 `sid_cname.m3u8`。详情见[管理录制文件](/cn/null/cloud_recording_manage_files)。
-
 
 ### 上传录制文件
 
 录制文件的上传由 Agora 服务器自动完成，你需要关注下面的回调。
+
 > RESTful API 回调服务需单独开通，详见[云端录制 RESTful API 回调服务](https://docs.agora.io/cn/cloud-recording/cloud_recording_callback_rest?platform=All%20Platforms)。
 
 - 录制过程中
@@ -125,7 +121,7 @@ Agora RESTful API 要求 Basic HTTP 认证。每次发送 HTTP 请求时，都�
   - [`backuped`](./cloud_recording_callback_rest?platform=All%20Platforms#32)：如果有录制文件未能成功上传至第三方云存储，Agora 服务器会将这部分文件自动上传至 Agora 云备份，当录制结束后会触发该回调。Agora 云备份会继续尝试将这部分文件上传至设定的第三方云存储。如果等待五分钟后仍然不能正常[播放录制文件](./cloud_recording_onlineplay)，请联系 Agora 技术支持。
 
 如果上传比较耗时，会在 `stop` 的响应中收到 HTTP 状态码 206，表示录制已经停止，但是上传状态未知，需要结合回调事件了解上传状态。
- 
+
 ## 开发注意事项
 
 - 调用 `start` 之前必须调用 `acquire` 获取一个 resource ID。
@@ -168,15 +164,12 @@ Agora RESTful API 要求 Basic HTTP 认证。每次发送 HTTP 请求时，都�
 - [为什么第三方云存储中没有录制文件？](https://docs.agora.io/cn/faq/fail_to_upload)
 - [云存储 bucket 区域选择及跨区解决方案](https://docs.agora.io/cn/faq/bucket_region)
 
-
-
 ## 示例请求
 
 Agora 在 GitHub 上提供一个 [Postman collection](https://github.com/AgoraIO/Agora-RESTful-Service/blob/master/cloud-recording/README.md)，包含了云端录制 RESTful API 的示例请求。你只需将该 collection 导入 Postman，并设置环境变量，便可快速体验云端录制 RESTful API 的基本功能。
 
 你还可以使用 Postman 自动生成各种语言的代码片段。选择某一请求，点击 **Code**，在 **GENERATE CODE SNIPPETS** 窗口选择你需要的语言，即可生成该语言的示例代码。
 ![](https://web-cdn.agora.io/docs-files/1588737379230)
-
 
 ## <a name="demo-rest"></a>示例代码
 
@@ -296,5 +289,3 @@ def start_record():
 
 start_record()
 ```
-
-

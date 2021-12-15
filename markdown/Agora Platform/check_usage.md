@@ -3,6 +3,7 @@ title: 查看用量
 platform: All Platforms
 updatedAt: 2020-10-26 13:10:55
 ---
+
 角色为管理员/财务的账户可在 Agora Dashboard 查看各个项目的用量。
 
 登录 [Agora Dashboard](https://dashboard.agora.io/)，点击左侧导航栏 ![](https://web-cdn.agora.io/docs-files/1551250582235) 按钮进入**用量统计**页面。在页面左上角选择项目后，你可查看该项目在特定时间段内**音视频用量**和**录制用量**的相关数据。
@@ -21,9 +22,8 @@ updatedAt: 2020-10-26 13:10:55
 > - 计费方式详见[计费](https://docs.agora.io/cn/Agora%20Platform/billing_faq)。
 >
 > - 视频清晰度分类标准：
-> 	- 高清：视频分辨率介于 360p 和 720p 之间
-> 	- 超清：视频分辨率大于 720p 
-
+>   - 高清：视频分辨率介于 360p 和 720p 之间
+>   - 超清：视频分辨率大于 720p
 
 ## 查看录制用量
 

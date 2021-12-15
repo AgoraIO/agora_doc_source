@@ -3,6 +3,7 @@ title: 处理浏览器的自动播放策略
 platform: Web
 updatedAt: 2021-02-03 11:19:57
 ---
+
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 Web SDK 3.x 或更早版本，请查看<a href="./autoplay_policy_web?platform=Web">处理浏览器的自动播放策略</a>。</li></div>
 
 ## 概览
@@ -30,9 +31,9 @@ updatedAt: 2021-02-03 11:19:57
 
 ```js
 let isAudioAutoplayFailed = false;
- AgoraRTC.onAudioAutoplayFailed = () => {
+AgoraRTC.onAudioAutoplayFailed = () => {
   if (isAudioAutoplayFailed) return;
- 
+
   isAudioAutoplayFailed = true;
   const btn = document.createElement("button");
   btn.innerText = "Click me to resume the audio playback";
@@ -66,13 +67,13 @@ iOS Safari 只允许通过用户交互来**触发**有声媒体的播放，而�
 
 ```js
 // JavaScript
-document.getElementById("user1-audio").onClick = (e) => {
-    if (user1.audioTrack.isPlaying) {
-        user1.audioTrack.stop();
-        e.target.innerHTML = "已静音";
-        return;
-    }
-    user1.audioTrack.play();
-    e.target.innerHTML = "播放中";
-}
+document.getElementById("user1-audio").onClick = e => {
+  if (user1.audioTrack.isPlaying) {
+    user1.audioTrack.stop();
+    e.target.innerHTML = "已静音";
+    return;
+  }
+  user1.audioTrack.play();
+  e.target.innerHTML = "播放中";
+};
 ```

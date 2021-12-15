@@ -3,6 +3,7 @@ title: 开通消息通知服务
 platform: RESTful
 updatedAt: 2021-03-31 08:25:57
 ---
+
 ## 概述
 
 Agora 提供频道事件消息通知服务，用于实时同步实时通信（RTC）业务中的频道状态。
@@ -23,13 +24,13 @@ Agora 提供频道事件消息通知服务，用于实时同步实时通信（RT
 
 2. 希望监听的频道事件，详见[实时音视频通信频道事件类型](https://confluence.agoralab.co/pages/viewpage.action?pageId=713706534)。
 
-   <div class="alert note">如需配置 QPS (Query Per Second) 较高的事件，如实时通信中观众加入或离开直播频道，请确保你的服务器有足够的处理能力。</div>
+<div class="alert note">如需配置 QPS (Query Per Second) 较高的事件，如实时通信中观众加入或离开直播频道，请确保你的服务器有足够的处理能力。</div>
 
 3. 接收消息通知的 HTTPS 服务器地址。
-   
-    <div class="alert note">为降低消息投递的延时，Agora 建议你的服务器支持 HTTP 连接重用，即 kepp-alive 模式，并进行如下设置：<ul>
-   <li><code>MaxKeepAliveRequests</code>：大于等于 100。</li>
-   <li><code>KeepAliveTimeout</code>：大于等于 10 秒。</li></ul></div>
+
+ <div class="alert note">为降低消息投递的延时，Agora 建议你的服务器支持 HTTP 连接重用，即 kepp-alive 模式，并进行如下设置：<ul>
+<li><code>MaxKeepAliveRequests</code>：大于等于 100。</li>
+<li><code>KeepAliveTimeout</code>：大于等于 10 秒。</li></ul></div>
 
 4. 你的消息通知接收服务器所在区域。
 

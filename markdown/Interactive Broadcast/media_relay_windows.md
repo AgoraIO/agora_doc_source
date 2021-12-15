@@ -3,7 +3,9 @@ title: 跨直播间连麦
 platform: Windows
 updatedAt: 2021-03-05 09:10:06
 ---
+
 ## 场景描述
+
 跨直播间连麦，指主播的媒体流可以同时转发进多个直播频道，实现主播跨频道与其他主播实时互动的场景。其中：
 
 - 频道中的所有主播可以看见彼此，并听到彼此的声音。
@@ -23,14 +25,14 @@ Agora Native SDK 在 v2.9.0 中新增如下跨频道媒体流转发接口，支�
 
 在跨频道媒体流转发过程中，SDK 会通过 onChannelMediaRelayStateChanged 和 onChannelMediaRelayEvent 回调报告媒体流转发的状态和事件，你可以参考如下状态码或事件码的含义实现相关的业务逻辑：
 
-
-| 状态码 | 事件码 | 媒体流转发状态 |
-| ---------------- | ---------------- | ---------------- |
-| RELAY_STATE_RUNNING(2) 和 RELAY_OK(0)     | RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL(4)      | 源频道开始向目标频道传输数据      |
-| RELAY_STATE_FAILURE(3)     | /      | 跨频道媒体流转发出现异常。可以参考 error 参数中报告的出错原因进行问题排查      |
-| RELAY_STATE_IDLE(0) 和 RELAY_OK(0)     | /      | 已停止媒体流转发      |
+| 状态码                                | 事件码                                     | 媒体流转发状态                                                            |
+| ------------------------------------- | ------------------------------------------ | ------------------------------------------------------------------------- |
+| RELAY_STATE_RUNNING(2) 和 RELAY_OK(0) | RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL(4) | 源频道开始向目标频道传输数据                                              |
+| RELAY_STATE_FAILURE(3)                | /                                          | 跨频道媒体流转发出现异常。可以参考 error 参数中报告的出错原因进行问题排查 |
+| RELAY_STATE_IDLE(0) 和 RELAY_OK(0)    | /                                          | 已停止媒体流转发                                                          |
 
 **Note**：
+
 - 一个频道内可以有多个主播转发媒体流。哪个主播调用 startChannelMediaRelay 方法，SDK 就转发哪个主播的流。
 - 跨频道连麦中，如果目标频道的主播掉线或离开频道，源频道的主播会收到 onUserOffline 回调。
 
@@ -48,7 +50,7 @@ lpSrcinfo->channelName = nullptr;
 lpSrcinfo->token = nullptr;
 lpSrcinfo->uid = 0;
 ChannelMediaInfo  *lpDestInfos = NULL;
-int nDestCount = arrayDestInfos.size();	
+int nDestCount = arrayDestInfos.size();
 for(int nIndex = 0; nIndex < nDestCount; nIndex++) {
 		std::string strChannelName = arrayDestInfos[nIndex]["channelName"].asString();
 		std::string strtoken  = arrayDestInfos[nIndex]["token"].asString();
@@ -76,7 +78,7 @@ lpUpdateDestInfos->uid = 0;
 cmrc.destInfos = lpUpdateDestInfos;
 cmrc.destCount = 1;
 // 设置要更新的远端频道信息
-ret = m_lpAgoraEngine->startChannelMediaRelay(cmrc);	
+ret = m_lpAgoraEngine->startChannelMediaRelay(cmrc);
 ```
 
 **Note**：
@@ -97,9 +99,9 @@ ret = m_lpAgoraEngine->startChannelMediaRelay(cmrc);
 
 <% if (platform == "Web") { %>
 
-- 在设置源频道信息（`setSrcChannelInfo`）时，请确保 `uid` 设置与当前主播的 UID 不同。我们建议将这里的 `uid` 设置为  0，由服务器随机分配。<% } %>
+- 在设置源频道信息（`setSrcChannelInfo`）时，请确保 `uid` 设置与当前主播的 UID 不同。我们建议将这里的 `uid` 设置为 0，由服务器随机分配。<% } %>
 
-<% if (platform == "Android" || platform == "iOS" || platform == "macOS" || platform == "Windows")  { %>
+<% if (platform == "Android" || platform == "iOS" || platform == "macOS" || platform == "Windows") { %>
 
 - 在设置源频道信息时，请确保 `uid` 必须为 0，且用于生成 token 的 `uid` 也必须为 0。<% } %>
 

@@ -3,6 +3,7 @@ title: 生成 Token
 platform: 服务端
 updatedAt: 2021-03-02 03:06:27
 ---
+
 Token，也称动态密钥，是 app 用户在加入频道或登录服务系统时采用的一种鉴权方式。
 
 Token 在你的业务服务端生成。用户加入频道或登录服务时，客户端需要向服务端申请 Token；服务器生成 Token 后，再将其传给客户端。
@@ -23,13 +24,13 @@ Token 在你的业务服务端生成。用户加入频道或登录服务时，�
 - 你的 Agora 项目在控制台已开启 App 证书。
 - 你所使用的 Agora 产品，满足如下版本要求：
 
-	| 产品 | 支持 Token 的版本 |
-	| ---------------- | ---------------- |
-	| RTC SDK      | <ul><li>Native SDK: v2.1.0 及以上</li><li>Web SDK: v2.4.0 及以上</li><li>Electron SDK: 所有版本</li><li>Unity SDK: 所有版本</li></ul>      |
-	| 本地服务端录制 SDK | v2.1.0 及以上 |
-	| 云端录制  | 无版本要求 |
-	| 实时码流  | 所有版本 |
-	| 互动游戏 SDK  | v2.2.0 及以上 |
+  | 产品               | 支持 Token 的版本                                                                                                                     |
+  | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+  | RTC SDK            | <ul><li>Native SDK: v2.1.0 及以上</li><li>Web SDK: v2.4.0 及以上</li><li>Electron SDK: 所有版本</li><li>Unity SDK: 所有版本</li></ul> |
+  | 本地服务端录制 SDK | v2.1.0 及以上                                                                                                                         |
+  | 云端录制           | 无版本要求                                                                                                                            |
+  | 实时码流           | 所有版本                                                                                                                              |
+  | 互动游戏 SDK       | v2.2.0 及以上                                                                                                                         |
 
 ## Token 代码说明
 
@@ -48,7 +49,7 @@ Agora 在各语言的 sample 文件夹下提供了生成 Token 的示例代码�
 
 ```C++
 int main(int argc, char const *argv[]) {
- 
+
   // 请填入你的项目 App ID
   std::string appID  = "970Cxxxxxxxxxxxxxxxxxxxxxxx1b33";
   // 请填入你的项目 App 证书
@@ -62,7 +63,7 @@ int main(int argc, char const *argv[]) {
   uint32_t currentTimeStamp = time(NULL);
   uint32_t privilegeExpiredTs = currentTimeStamp + expirationTimeInSeconds;
   std::string result;
- 
+
   result = RtcTokenBuilder::buildTokenWithUid(
       appID, appCertificate, channelName, uid, UserRole::Role_Publisher,
       privilegeExpiredTs);
@@ -75,15 +76,15 @@ int main(int argc, char const *argv[]) {
 2. 打开 `AgoraDynamicKey/cpp/sample/RtcTokenBuilderSample.cpp` 文件，使用自己的 App ID、App 证书、用户 ID 以及频道名替换示例代码中的值，并注释掉示例代码中的 `buildTokenWithUserAccount` 代码片段。
 3. 进入 `RtcTokenBuilderSample.cpp` 所在路径，然后运行如下命令行。运行结束后，相同文件夹下会生成一个可执行文件 `RtcTokenBuilderSample`。
 
-	```
-	g++ -std=c++0x -O0 -I../../ -L. RtcTokenBuilderSample.cpp -lz -lcrypto -o RtcTokenBuilderSample
-	```
+   ```
+   g++ -std=c++0x -O0 -I../../ -L. RtcTokenBuilderSample.cpp -lz -lcrypto -o RtcTokenBuilderSample
+   ```
 
 4. 运行如下命令行生成 Token。生成的 Token 会显示在 Terminal 中。
 
-	```
-	./RtcTokenBuilderSample
-	```
+   ```
+   ./RtcTokenBuilderSample
+   ```
 
 使用其他语言的示例代码在本地生成 Token 的步骤如下：
 
@@ -97,7 +98,6 @@ int main(int argc, char const *argv[]) {
 		<li>在你的 Java IDE 中运行项目。生成的 Token 会显示在 IDE 中。</li>
 	</ol>
 </details>
-
 
 <details>
 	<summary><font color="#3ab7f8">Python</font></summary>
@@ -194,15 +194,15 @@ static std::string buildTokenWithUid(
     uint32_t privilegeExpiredTs = 0);
 ```
 
-| 参数 | 描述 | 
-| ---------------- | ---------------- | 
-| `appId`      | 你在 Agora 控制台创建项目时生成的 App ID。      | 
-| `appCertificate` | 你的 App 证书。|
-| `channelName` | 标识通话的频道名称，长度在 64 字节以内。以下为支持的字符集范围：</br><ul><li>26 个小写英文字母 a-z；</li><li>26 个大写应为字母 A-Z；</li><li>10 个数字 0-9；</li><li>空格；</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","。</li></ul>|
-| `uid` | 用户 ID，32 位无符号整数。建议设置范围：1 到 (2<sup>32</sup>-1)，并保证唯一性。如果不需要校验 uid，即客户端使用任何 uid 都可以加入频道或登录服务，请把 `uid` 设为 0。|
-| `role` | 用户发流权限：<ul><li>`Role_Publisher`(1)：（默认）用户有发流权限。<li>`Role_Subscriber`(2)：用户没有发流权限。</ul>在需要连麦鉴权的场景中，该参数的设置与用户在 `setClientRole` 中的角色共同决定用户是否能发流。详见 FAQ：<a href="https://docs.agora.io/cn/faq/token_cohost">如何使用连麦鉴权功能</a>。|
-| `privilegeExpiredTs` | Token 过期的 Unix 时间戳，单位为秒。该值为当前之间戳和 Token 有效期的总和。比如，如果你将 `privilegeExpiredTs` 设为当前时间戳再加 600 秒，那么 Token 会在生成 10 分钟后过期。Token 的最大有效期为 24 小时。如果你设为 0，或超过 24 小时，则 Token 有效期依然是 24 小时。|
-	
+| 参数                 | 描述                                                                                                                                                                                                                                                                                                                                |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `appId`              | 你在 Agora 控制台创建项目时生成的 App ID。                                                                                                                                                                                                                                                                                          |
+| `appCertificate`     | 你的 App 证书。                                                                                                                                                                                                                                                                                                                     |
+| `channelName`        | 标识通话的频道名称，长度在 64 字节以内。以下为支持的字符集范围：</br><ul><li>26 个小写英文字母 a-z；</li><li>26 个大写应为字母 A-Z；</li><li>10 个数字 0-9；</li><li>空格；</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", ","。</li></ul> |
+| `uid`                | 用户 ID，32 位无符号整数。建议设置范围：1 到 (2<sup>32</sup>-1)，并保证唯一性。如果不需要校验 uid，即客户端使用任何 uid 都可以加入频道或登录服务，请把 `uid` 设为 0。                                                                                                                                                               |
+| `role`               | 用户发流权限：<ul><li>`Role_Publisher`(1)：（默认）用户有发流权限。<li>`Role_Subscriber`(2)：用户没有发流权限。</ul>在需要连麦鉴权的场景中，该参数的设置与用户在 `setClientRole` 中的角色共同决定用户是否能发流。详见 FAQ：<a href="https://docs.agora.io/cn/faq/token_cohost">如何使用连麦鉴权功能</a>。                           |
+| `privilegeExpiredTs` | Token 过期的 Unix 时间戳，单位为秒。该值为当前之间戳和 Token 有效期的总和。比如，如果你将 `privilegeExpiredTs` 设为当前时间戳再加 600 秒，那么 Token 会在生成 10 分钟后过期。Token 的最大有效期为 24 小时。如果你设为 0，或超过 24 小时，则 Token 有效期依然是 24 小时。                                                            |
+
 <div class="note alert">Agora 还提供了一个通过 String 型用户名生成 Token 的方法 <code>buildTokenWithUserAccount</code>，但不推荐使用。</div>
 	
 ## 开发注意事项
@@ -229,8 +229,3 @@ Token 的最大有效期为 24 小时。为保证通信体验，Agora 会在 Tok
 - [如何处理 Token 相关错误码](https://docs.agora.io/cn/faq/token_error)
 - [如何处理云端录制 101 错误码](https://docs.agora.io/cn/faq/101_error)
 - [如何使用连麦鉴权功能](https://docs.agora.io/cn/faq/token_cohost)
-
-
-
-
-

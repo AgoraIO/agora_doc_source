@@ -4,6 +4,7 @@ platform: ["RESTful"]
 updatedAt: 2020-07-09 21:21:57
 Products: ["cloud-recording"]
 ---
+
 日志文件中报错 `"ErrorUint32":101`，一般为 Token 错误引起，可能有以下几种原因：
 
 - Token 填写错误

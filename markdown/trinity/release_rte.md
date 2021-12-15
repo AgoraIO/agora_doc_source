@@ -3,6 +3,7 @@ title: 发版说明
 platform: All Platforms
 updatedAt: 2020-11-30 07:57:44
 ---
+
 本页提供 Agora 下一代 RTC SDK 的发版说明。
 
 ## v3.xx
@@ -20,7 +21,7 @@ updatedAt: 2020-11-30 07:57:44
 #### 2. 支持多路媒体流
 
 - 支持发布多条外部视频流进入“相同”/“不同”频道 ，包括 摄像头采集，屏幕采集和自渲染。
-- 支持发布多路外部音频PCM 流进入“相同”/“不同”的频道 ，包括麦克风和自采集。
+- 支持发布多路外部音频 PCM 流进入“相同”/“不同”的频道 ，包括麦克风和自采集。
 - 支持多路音频流自动混音。
 
 #### 3. 其他功能
@@ -69,7 +70,7 @@ updatedAt: 2020-11-30 07:57:44
 为方便开发者了解本地和远端的视频质量和状态，该版本新增如下 API：
 
 - `onLocalVideoStats`: 通话中，每 2 秒报告一次本地用户视频流的质量信息，如编码和发送时的码率、帧率和分辨率。
-- `onRemoteVideoStats`: 通话中，每 2 秒报告一次接收到的远端视频流的质量信息，如视频码率、丢包率和卡顿时长。
+- `onRemoteVideoStats`: 通话中，每 2 秒报告一次接收到  的远端视频流的质量信息，如视频码率、丢包率和卡顿时长。
 - `onLocalVideoStateChanged`: 本地视频状态改变回调。状态为 `FAILED(3)` 时，请根据错误码排查问题。
 - `onRemoteVideoStateChanged`: 远端视频状态改变回调。
 
@@ -83,9 +84,9 @@ updatedAt: 2020-11-30 07:57:44
 
 - `createDataStream`: 创建数据流。
 - `sendStreamMessage`: 发送数据流。Agora SDK 对发送数据流消息有以下限制：
-    - 消息频率：每秒最多可以发送 60 条消息。
-    - 消息大小：每条消息不能超过 1 KB。
-    - 消息吞吐量：每秒最多可以发送 30 KB 大小的消息。
+  - 消息频率：每秒最多可以发送 60 条消息。
+  - 消息大小：每条消息不能超过 1 KB。
+  - 消息吞吐量：每秒最多可以发送 30 KB 大小的消息。
 - `onStreamMessage`: 接收到对方数据流回调。
 - `onStreamMessageError`: 接收对方数据流发生错误回调。
 
@@ -106,7 +107,6 @@ updatedAt: 2020-11-30 07:57:44
 #### 8. 视频原始数据（Android）
 
 为方便开发者拿到视频裸数据，该版本新增 `registerVideoFrameObserver` 方法供你注册视频观测器，成功注册后，你可以从 `onCaptureVideoFrame` 中拿到本地采集到的视频裸数据，也可以从 `onRenderVideoFrame` 中拿到接收到的远端用户的视频裸数据。
-
 
 **改进**
 
@@ -130,20 +130,20 @@ updatedAt: 2020-11-30 07:57:44
 - `scenario`: 新增 `AUDIO_SCENARIO_HIGH_DEFINITION(6)` 类型，代表高音质场景。Agora 推荐你在 `AUDIO_SCENARIO_DEFAULT(0)`、`AUDIO_SCENARIO_GAME_STREAMING(3)` 和 `AUDIO_SCENARIO_HIGH_DEFINITION(6)` 三种类型中选择一种使用。
 - `profile`: 该版本调整了一些 profile 使用的编码码率最大值。
 
-    |profile|旧版本码率 (Kbps)| 当前版本码率 (Kbps)|
-    |------|-------|--------|
-    |`DEFAULT(0)`|52（直播场景）| 64（直播场景）|
-    |`MUSIC_STANDARD(2)`|48|64|
-    |`MUSIC_STANDARD_STEREO(3)`|64|80|
-    |`MUSIC_HIGH_QUALITY(4)`|128|96|
-    |`MUSIC_HIGH_QUALITY_STEREO(5)`|192|128|
+  | profile                        | 旧版本码率 (Kbps) | 当前版本码率 (Kbps) |
+  | ------------------------------ | ----------------- | ------------------- |
+  | `DEFAULT(0)`                   | 52（直播场景）    | 64（直播场景）      |
+  | `MUSIC_STANDARD(2)`            | 48                | 64                  |
+  | `MUSIC_STANDARD_STEREO(3)`     | 64                | 80                  |
+  | `MUSIC_HIGH_QUALITY(4)`        | 128               | 96                  |
+  | `MUSIC_HIGH_QUALITY_STEREO(5)` | 192               | 128                 |
 
 **已知问题**
 
 - VQC 算法的问题：当前策略为帧率优先，不能画质优先，因此，在相同弱网下，画质可能不如主版。
 - 弱网多人场景的问题：
-    - 缺乏端到端反馈，卡顿率高于主版。
-    - 观众端没有默认 1s 延迟，导致弱网下卡顿较大。遇到该问题时请联系我们处理。
+  - 缺乏端到端反馈，卡顿率高于主版。
+  - 观众端没有默认 1s 延迟，导致弱网下卡顿较大。遇到该问题时请联系我们处理。
 
 **相关链接**
 
@@ -157,6 +157,7 @@ updatedAt: 2020-11-30 07:57:44
 该版本于 2020 年 7 月 24 日发布。
 
 优化和问题修复如下：
+
 - 优化了压测下 SDK 的稳定性。
 - 修复了 iOS 平台上加入频道较慢的问题。
 
@@ -218,7 +219,6 @@ updatedAt: 2020-11-30 07:57:44
 - 优化了 SDK 在 iOS 平台上的 CPU 占用率。对比上一个版本，该版本 CPU 占用减少了 19%。
 - 新增支持 Android x64 架构。
 - 修复了特定场景下音频路由无法从外放切换到听筒的问题。
-
 
 ## v3.0.0.20
 
@@ -346,12 +346,12 @@ updatedAt: 2020-11-30 07:57:44
 该版本于 2020 年 7 月 31 日发布。
 
 新增特性和问题修复如下：
+
 - 新增支持 Windows 平台上耳麦动态插拔。
 - 修复了 Windows 和 Android 平台上的一些 crash，提高了 SDK 稳定性。
 - 修复了 iOS 和 macOS 平台上 bundle ID 重复问题。
 - 修复了 iOS 平台上 MediaPlayer Kit 播放视频模糊问题。
 - 修复了 iOS 平台上少量内存泄漏问题。
-
 
 ## v2.6.3.2
 
@@ -366,11 +366,11 @@ updatedAt: 2020-11-30 07:57:44
 
 该版本于 2020 年 5 月 13 日发布。
 
-**支持功能** 
+**支持功能**
 
-- 为对互动场景进行更有针对性的优化，该版本梳理了 Agora  的频道场景：
-	- 增加 CHANNEL_PROFILE_COMMUNICATION_1v1 为 1 v 1 场景优化。
-	- 默认 CHANNEL_PROFILE_LIVE_BROADCASTING 作为多人视频场景 。
+- 为对互动场景进行更有针对性的优化，该版本梳理了 Agora 的频道场景：
+  - 增加 CHANNEL_PROFILE_COMMUNICATION_1v1 为 1 v 1 场景优化。
+  - 默认 CHANNEL_PROFILE_LIVE_BROADCASTING 作为多人视频场景 。
 - 优化了 Android 平台多频道相关 API。
 - 提供 registerAudioFrameObserver 方法，支持从当前所有频道中获取 PCM 格式的音频数据。
 - iOS 版本支持提升到 9.0。
@@ -382,8 +382,8 @@ updatedAt: 2020-11-30 07:57:44
 - 优化了弱网对抗策略，可以增加有效编码码率约 5%。
 - 优化了发送 PCM 音频原始数据场景下的的 CPU 消耗。
 
-
 **问题修复**
+
 - 修复偶现的崩溃，提升了 SDK 整体的稳定性。
 - 修复了特定场景下在使用 registerVideoEncodedImageReceiver 接口接受 H264 编码的数据时， SDK 和其他版本的互通问题。
 - 修复了在使用 registerVideoEncodedImageReceiver 场景下，进入频道后，无法订阅远端用户的问题。

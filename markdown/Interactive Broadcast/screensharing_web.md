@@ -3,6 +3,7 @@ title: 屏幕共享
 platform: Web
 updatedAt: 2020-12-26 14:42:28
 ---
+
 ## 功能简介
 
 在视频通话或互动直播中进行屏幕共享，可以将说话人或主播的屏幕内容，以视频画面的方式分享给其他说话人或观众观看，以提高沟通效率。
@@ -18,7 +19,6 @@ Web 端屏幕共享，实际上是通过创建一个屏幕共享的流来实现�
 
 - 如果只使用屏幕共享，则在新建流的时候，把 `video` 字段设为 `false`， `screen` 字段设为 `true` 即可。
 - 如果在使用屏幕共享的同时，还开启本地视频，则需要创建两个 Client 对象，一路发送屏幕共享流，一路发送视频流。新建流的时候，屏幕共享流的 `video` 字段设为 false， `screen` 字段设为 `true`；本地视频流的 `video` 字段设为 `true`，`screen` 字段设为 `false`。由于共享流也是一路流，因此也会占用一个 UID。
-
 
 ## 实现方法
 
@@ -39,7 +39,7 @@ screenStream = AgoraRTC.createStream({
   video: false,
   screen: true,
   //chrome extension ID
-  extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'
+  extensionId: "minllpmhdgpndnkomcoccfekfegnlikg",
 });
 ```
 
@@ -50,20 +50,19 @@ Agora Web SDK 从 2.6.0 版本起，支持在 Chrome 72 及以上版本不安装
 ```javascript
 // Check if the browser supports screen sharing without an extension
 Number.tem = ua.match(/(Chrome(?=\/))\/?(\d+)/i);
-if(parseInt(tem[2]) >= 72  && navigator.mediaDevices.getDisplayMedia ) {
- // Create the stream for screensharing
-	screenStream = AgoraRTC.createStream({
-		streamID: uid,
-		audio: false,
-		video: false,
-		screen: true,
-	});
+if (parseInt(tem[2]) >= 72 && navigator.mediaDevices.getDisplayMedia) {
+  // Create the stream for screensharing
+  screenStream = AgoraRTC.createStream({
+    streamID: uid,
+    audio: false,
+    video: false,
+    screen: true,
+  });
 }
 ```
 
 > - 因为一个 Stream 只能有一路视频流，所以 `video` 和 `screen` 属性不能同时为 `true`。
 > - `audio` 属性建议设置为 `false`，避免订阅端收到的两路流中都有音频，导致回声。
-
 
 ### Electron 屏幕共享
 
@@ -71,15 +70,15 @@ Electron 屏幕共享不需要安装插件，但选择界面需要你自行绘�
 
 Electron 屏幕共享主要通过如下步骤实现：
 
-1. 调用 SDK 提供的  `AgoraRTC.getScreenSources` 方法获取可共享的屏幕信息。
+1. 调用 SDK 提供的 `AgoraRTC.getScreenSources` 方法获取可共享的屏幕信息。
 
    ```javascript
-   AgoraRTC.getScreenSources(function(err, sources) {
-   	console.log(sources)
-   })
+   AgoraRTC.getScreenSources(function (err, sources) {
+     console.log(sources);
+   });
    ```
 
-    `sources` 是一个 `source` 对象的列表，`source` 里包含了分享源的信息和 `sourceId`，`source` 的属性如下：
+   `sources` 是一个 `source` 对象的列表，`source` 里包含了分享源的信息和 `sourceId`，`source` 的属性如下：
 
    ![](https://web-cdn.agora.io/docs-files/1547455349613)
 
@@ -99,13 +98,13 @@ Electron 屏幕共享主要通过如下步骤实现：
 
    ```javascript
    localStream = AgoraRTC.createStream({
-       streamID: UID,
-       audio: false,
-       video: false,
-       screen: true,
-       sourceId: sourceId
+     streamID: UID,
+     audio: false,
+     video: false,
+     screen: true,
+     sourceId: sourceId,
    });
-   localStream.init(function(stream) {})
+   localStream.init(function (stream) {});
    ```
 
    如果未填写 `sourceId`，在调用 `localStream.init` 时，SDK 会提供自带的默认界面。默认的选择界面与 Chrome 的选择界面类似，如下图所示：
@@ -129,7 +128,7 @@ screenStream = AgoraRTC.createStream({
   audio: false,
   video: false,
   screen: true,
-  mediaSource: 'screen' // 'screen', 'application', 'window'
+  mediaSource: "screen", // 'screen', 'application', 'window'
 });
 ```
 
@@ -193,7 +192,7 @@ screenClient.on('stream-added', function(evt) {
 
 ### 示例代码
 
-下面的示例代码实现了同时共享屏幕和发送本地视频流，同时，我们在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO/Advanced-Video/tree/master/Screensharing/Agora-Screen-Sharing-Web-Webpack)，你可以[在线体验](https://webdemo.agora.io/agora-web-showcase/examples/Agora-Screen-Sharing-Web/)或者下载参考  [`rtc-client.js`](https://github.com/AgoraIO/Advanced-Video/blob/master/Screensharing/Agora-Screen-Sharing-Web-Webpack/src/rtc-client.js) 和 [`index.js`](https://github.com/AgoraIO/Advanced-Video/blob/master/Screensharing/Agora-Screen-Sharing-Web-Webpack/src/index.js) 文件的源代码。
+下面的示例代码实现了同时共享屏幕和发送本地视频流，同时，我们在 GitHub 提供一个开源的[示例项目](https://github.com/AgoraIO/Advanced-Video/tree/master/Screensharing/Agora-Screen-Sharing-Web-Webpack)，你可以[在线体验](https://webdemo.agora.io/agora-web-showcase/examples/Agora-Screen-Sharing-Web/)或者下载参考 [`rtc-client.js`](https://github.com/AgoraIO/Advanced-Video/blob/master/Screensharing/Agora-Screen-Sharing-Web-Webpack/src/rtc-client.js) 和 [`index.js`](https://github.com/AgoraIO/Advanced-Video/blob/master/Screensharing/Agora-Screen-Sharing-Web-Webpack/src/index.js) 文件的源代码。
 
 <div class="alert note">下面的代码用了 <code>isFirefox</code> 和 <code>isCompatibleChrome</code> 来判断浏览器类型，你需要自己实现，也可以参考 <a href="https://github.com/AgoraIO/Advanced-Video/blob/master/Screensharing/Agora-Screen-Sharing-Web-Webpack/src/common.js#L28"><code>common.js</code></a> 中的代码。</div>
 
@@ -208,99 +207,114 @@ AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.INFO);
 var localStreams = [];
 
 var screenClient = AgoraRTC.createClient({
-    mode: 'rtc',
-    codec: 'vp8'
+  mode: "rtc",
+  codec: "vp8",
 });
-screenClient.init(appID, function() {
-    screenClient.join(channelKey, channel, null, function(uid) {
-        // 保存本地流的uid
-        localStreams.push(uid);
-        // 创建屏幕共享流
-        const streamSpec = {
-            streamID: uid,
-            audio: false,
-            video: false,
-            screen: true
-          }
-          // 根据浏览器类型设置相关属性
-          // 注意你需要自己实现判断浏览器的功能
-          if (isFirefox()) {
-            streamSpec.mediaSource = 'window';
-          } else if (!isCompatibleChrome()) {
-            streamSpec.extensionId = 'minllpmhdgpndnkomcoccfekfegnlikg';
-          }
-        screenStream = AgoraRTC.createStream(streamSpec);
-        // 初始化流
-        screenStream.init(function() {
-            // 播放流
-            screenStream.play('Screen');
-            // 发布流
-            screenClient.publish(screenStream);
+screenClient.init(appID, function () {
+  screenClient.join(
+    channelKey,
+    channel,
+    null,
+    function (uid) {
+      // 保存本地流的uid
+      localStreams.push(uid);
+      // 创建屏幕共享流
+      const streamSpec = {
+        streamID: uid,
+        audio: false,
+        video: false,
+        screen: true,
+      };
+      // 根据浏览器类型设置相关属性
+      // 注意你需要自己实现判断浏览器的功能
+      if (isFirefox()) {
+        streamSpec.mediaSource = "window";
+      } else if (!isCompatibleChrome()) {
+        streamSpec.extensionId = "minllpmhdgpndnkomcoccfekfegnlikg";
+      }
+      screenStream = AgoraRTC.createStream(streamSpec);
+      // 初始化流
+      screenStream.init(
+        function () {
+          // 播放流
+          screenStream.play("Screen");
+          // 发布流
+          screenClient.publish(screenStream);
 
-            // 监听流（用户）加入频道事件
-            screenClient.on('stream-added', function(evt) {
-                var stream = evt.stream;
-                var uid = stream.getId()
+          // 监听流（用户）加入频道事件
+          screenClient.on("stream-added", function (evt) {
+            var stream = evt.stream;
+            var uid = stream.getId();
 
-                // 收到流加入频道的事件后，先判定是不是本地的uid
-                if (!localStreams.includes(uid)) {
-                    console.log('subscribe stream:' + uid);
-                    // 订阅流
-                    screenClient.subscribe(stream);
-                }
-            })
-
-        }, function(err) {
-            console.log(err);
-        });
-
-    }, function(err) {
-        console.log(err);
-    })
+            // 收到流加入频道的事件后，先判定是不是本地的uid
+            if (!localStreams.includes(uid)) {
+              console.log("subscribe stream:" + uid);
+              // 订阅流
+              screenClient.subscribe(stream);
+            }
+          });
+        },
+        function (err) {
+          console.log(err);
+        },
+      );
+    },
+    function (err) {
+      console.log(err);
+    },
+  );
 });
 
 var videoClient = AgoraRTC.createClient({
-    mode: 'rtc',
-    codec: 'vp8'
+  mode: "rtc",
+  codec: "vp8",
 });
-videoClient.init(appID, function() {
-    videoClient.join(channelKey, channel, null, function(uid) {
-        // 保存本地流的uid
-        localStreams.push(uid);
+videoClient.init(appID, function () {
+  videoClient.join(
+    channelKey,
+    channel,
+    null,
+    function (uid) {
+      // 保存本地流的uid
+      localStreams.push(uid);
 
-        // 创建视频流
-        videoStream = AgoraRTC.createStream({
-            streamID: uid,
-            audio: true,
-            video: true,
-            screen: false
-        });
-        return;
+      // 创建视频流
+      videoStream = AgoraRTC.createStream({
+        streamID: uid,
+        audio: true,
+        video: true,
+        screen: false,
+      });
+      return;
 
-        // 初始化流
-        videoStream.init(function() {
-            // 播放流
-            videoStream.play('Video');
-            // 推流
-            videoClient.publish(videoStream);
-            //监听流（用户）加入频道事件
-            videoClient.on('stream-added', function(evt) {
-                var stream = evt.stream;
-                var uid = stream.getId();
-                // 收到流加入频道的事件后，先判定是不是本地的uid
-                if (!localStreams.includes(uid)) {
-                    console.log('subscribe stream:' + uid);
-                    // 订阅流
-                    screenClient.subscribe(stream);
-                }
-            })
-        }, function(err) {
-            console.log(err);
-        });
-
-    }, function(err) {
-        console.log(err);
-    })
+      // 初始化流
+      videoStream.init(
+        function () {
+          // 播放流
+          videoStream.play("Video");
+          // 推流
+          videoClient.publish(videoStream);
+          //监听流（用户）加入频道事件
+          videoClient.on("stream-added", function (evt) {
+            var stream = evt.stream;
+            var uid = stream.getId();
+            // 收到流加入频道的事件后，先判定是不是本地的uid
+            if (!localStreams.includes(uid)) {
+              console.log("subscribe stream:" + uid);
+              // 订阅流
+              screenClient.subscribe(stream);
+            }
+          });
+        },
+        function (err) {
+          console.log(err);
+        },
+      );
+    },
+    function (err) {
+      console.log(err);
+    },
+  );
 });
 ```
 
@@ -310,4 +324,3 @@ videoClient.init(appID, function() {
 - 在本地共享的时候，本地流的 Client **不要订阅本地的分享流**，否则会增加计费。
 - 创建屏幕共享流的时候，`video`/`audio` 必须设置为 `false`。
 - 在 Windows 平台上进行屏幕共享时，如果共享的是 QQ 聊天窗口会导致黑屏。
-

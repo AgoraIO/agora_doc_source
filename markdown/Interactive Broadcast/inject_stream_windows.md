@@ -3,6 +3,7 @@ title: 输入在线媒体流
 platform: Windows
 updatedAt: 2021-02-23 06:02:41
 ---
+
 ## 简介
 
 **输入在线媒体流**功能可以将媒体流作为一个发送端接入正在进行的直播房间。通过将正在播放的视频添加到直播中，主播和观众可以在一起收听/观看媒体流的同时，实时互动。
@@ -41,28 +42,28 @@ Agora SDK 从 v2.1.0 版本开始，新增 `addInjectStreamUrl` 接口，通过�
 
 - 输入在线媒体流：
 
-	直播频道的主播可以使用 `addInjectStreamUrl` ，指定一个在线媒体流作为连麦端接入房间。
-	
-	```cpp
-	// cpp
-	const char* urlPath = "Some online RTMP/HLS url path";
-	InjectStreamConfig config;
-	rtcEngine->addInjectStreamUrl(urlPath, config);
-	```
+  直播频道的主播可以使用 `addInjectStreamUrl` ，指定一个在线媒体流作为连麦端接入房间。
 
-	你可以通过修改 `config` 的参数值控制接入媒体流的分辨率、码率、帧率、音频采样率等参数。详见 [AgoraLiveInjectStreamConfig 参数说明](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/cpp/structagora_1_1rtc_1_1_inject_stream_config.html)。
-	
+  ```cpp
+  // cpp
+  const char* urlPath = "Some online RTMP/HLS url path";
+  InjectStreamConfig config;
+  rtcEngine->addInjectStreamUrl(urlPath, config);
+  ```
+
+  你可以通过修改 `config` 的参数值控制接入媒体流的分辨率、码率、帧率、音频采样率等参数。详见 [AgoraLiveInjectStreamConfig 参数说明](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/cpp/structagora_1_1rtc_1_1_inject_stream_config.html)。
+
 - 移除在线媒体流：
 
-	频道内的主播可以使用 `removeInjectStreamUrl` 接口，移除一个已经接入的在线媒体流。
+  频道内的主播可以使用 `removeInjectStreamUrl` 接口，移除一个已经接入的在线媒体流。
 
-	```cpp
-	//CPP
-	const char* urlPath = "The same online RTMP/HLS url path added before";
-	rtcEngine->removeInjectStreamUrl(urlPath)
-	```
+  ```cpp
+  //CPP
+  const char* urlPath = "The same online RTMP/HLS url path added before";
+  rtcEngine->removeInjectStreamUrl(urlPath)
+  ```
 
-	> 主播退出频道后，无需再调用 `removeInjectStreamUrl` 接口。
+  > 主播退出频道后，无需再调用 `removeInjectStreamUrl` 接口。
 
 ## 工作原理
 

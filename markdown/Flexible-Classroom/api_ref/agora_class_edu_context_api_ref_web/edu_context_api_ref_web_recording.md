@@ -23,4 +23,3 @@ async stopRecording(): void
 ```
 
 停止录制。
-

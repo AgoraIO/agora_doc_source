@@ -3,6 +3,7 @@ title: 跑通示例项目
 platform: iOS
 updatedAt: 2021-01-25 09:30:38
 ---
+
 Agora 在 GitHub 上提供一个开源的音频互动直播示例项目 [OpenLive-Voice-Only-iOS](https://github.com/AgoraIO/Basic-Audio-Broadcasting/tree/master/OpenLive-Voice-Only-iOS)。本文介绍如何快速跑通该示例项目，体验 Agora 音频直播效果。你也可以直接观看我们的视频教程。
 
 ## 前提条件
@@ -14,20 +15,23 @@ Agora 在 GitHub 上提供一个开源的音频互动直播示例项目 [OpenLiv
 <div class="alert note">如果你的网络环境部署了防火墙，请参考<a href=“https://docs.agora.io/cn/Agora Platform/firewall?platform=All Platforms”>应用企业防火墙限制</a>以正常使用 Agora 服务。</div>
 
 ## 操作步骤
+
 ### 1. 创建 Agora 项目
+
 按照以下步骤，在控制台创建一个 Agora 项目。
 
 1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏 ![img](https://web-cdn.agora.io/docs-files/1594283671161) **项目管理**按钮进入**[项目管理](https://console.agora.io/projects)**页面**。**
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
- ![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
+![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
 
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID + Token。**
 
 4. 点击**提交**，新建的项目就会显示在**项目管理**页中。
 
 ### 2. 获取 App ID
+
 Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 在 [Agora 控制台](https://console.agora.io/)的**项目管理**页面，找到你的项目，点击 App ID 右侧的眼睛图标就可以直接复制项目的 App ID。
@@ -35,23 +39,26 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 ![获取appid](https://web-cdn.agora.io/docs-files/1603974707121)
 
 ### 3. 生成临时 Token
+
 为提高项目的安全性，Agora 使用 Token（动态密钥）对即将加入频道的用户进行鉴权。
 
 为了方便测试，Agora 控制台提供生成临时 Token 的功能，具体步骤如下：
 
 1. 在控制台的[项目管理](https://console.agora.io/projects)页面，点击已创建项目的 ![](https://web-cdn.agora.io/docs-files/1574923151660) 图标，打开 **Token** 页面。
 
-	![](https://web-cdn.agora.io/docs-files/1574922827899)
+   ![](https://web-cdn.agora.io/docs-files/1574922827899)
 
-2. 输入一个频道名，例如 test，然后点击**生成临时Token**。临时 Token 的有效期为 24 小时。加入频道时，请确保填入的频道名与生成临时 Token 时填入的频道名一致。
+2. 输入一个频道名，例如 test，然后点击**生成临时 Token**。临时 Token 的有效期为 24 小时。加入频道时，请确保填入的频道名与生成临时 Token 时填入的频道名一致。
 
-	![](https://web-cdn.agora.io/docs-files/1574928082984)
+   ![](https://web-cdn.agora.io/docs-files/1574928082984)
 
 <div class="alert note">临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见<a href="token_server">生成 Token</a >。</div>
 
 ### 4. 配置示例项目
+
 1. 克隆 [Basic-Audio-Broadcasting](https://github.com/AgoraIO/Basic-Audio-Broadcasting) 仓库至本地，找到 `OpenLive-Voice-Only-iOS` 示例项目文件夹.
 2. 在 `OpenLiveVoice/KeyCenter.swift` 文件中填写你从声网控制台获取到的 App ID 和临时 Token。
+
 ```swift
 struct KeyCenter {
     // 把 <#Your App Id#> 替换成你的 App ID，并加引号，如 "xxxxxx"
@@ -61,20 +68,23 @@ struct KeyCenter {
 ```
 
 ### 5. 集成 Agora SDK
+
 按照以下步骤将 Agora iOS SDK 集成到示例项目中。
 
 1. 下载最新版的 [Agora iOS SDK](./downloads?platform=iOS) 软件包并解压。
 2. 将 `libs` 文件夹内的 `AgoraRtcKit.framework `复制到 `OpenLiveVoice` 文件夹下。
 
 ### 6. 编译并运行示例项目
+
 1. 连接上 iOS 设备后，用 Xcode 打开示例项目，然后编译并运行项目。
 2. 输入你之前生成 Token 时使用的频道名，如 `test`，并点击 `Start Live Broadcast`。你会在 iOS 设备上看到如下画面。
-![](https://web-cdn.agora.io/docs-files/1605669546120)
-4. 选择你的身份，如主播。
+   ![](https://web-cdn.agora.io/docs-files/1605669546120)
+3. 选择你的身份，如主播。
 
 现在你就可以开始体验音频互动直播了。你可以通过声网的 [Web 端示例应用](https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/)，输入相同的 App ID、频道名和临时 Token，加入同一频道与 iOS 端互通。
 
 ## Sample project structure
+
 下表列出示例项目的代码结构，你可以参考示例项目的代码，根据自己的需求进行调整。
 
 | 文件/文件夹              | 描述                             |

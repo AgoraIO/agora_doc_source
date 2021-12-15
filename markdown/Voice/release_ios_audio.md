@@ -3,6 +3,7 @@ title: 发版说明
 platform: iOS
 updatedAt: 2021-03-29 03:48:52
 ---
+
 # 发版说明
 
 本文提供 Agora 语音包的发版说明。
@@ -11,10 +12,9 @@ updatedAt: 2021-03-29 03:48:52
 
 iOS 语音包支持两种主要场景:
 
--   语音通话
+- 语音通话
 
--   语音直播
-
+- 语音直播
 
 ## **2.3.0**
 
@@ -22,10 +22,9 @@ iOS 语音包支持两种主要场景:
 
 **升级必看**
 
--   该版本新增了一个系统库依赖：`Accelerate.framework`。该系统库可以进行大规模的数学计算和图像计算，并针对高性能进行了优化。
+- 该版本新增了一个系统库依赖：`Accelerate.framework`。该系统库可以进行大规模的数学计算和图像计算，并针对高性能进行了优化。
 
--   为更好地提升用户体验，Agora SDK 在 v2.1.0 版本中对动态秘钥进行了升级。如果你当前使用的 SDK 是 v2.1.0 之前的版本，并希望升级到 v2.1.0 或更高版本，请务必参考 [动态秘钥升级说明](/cn/Agora%20Platform/token_migration) 。
-
+- 为更好地提升用户体验，Agora SDK 在 v2.1.0 版本中对动态秘钥进行了升级。如果你当前使用的 SDK 是 v2.1.0 之前的版本，并希望升级到 v2.1.0 或更高版本，请务必参考 [动态秘钥升级说明](/cn/Agora%20Platform/token_migration) 。
 
 **新增功能**
 
@@ -45,47 +44,45 @@ iOS 语音包支持两种主要场景:
 
 **改进功能**
 
--   优化了一对一音视频的质量，在降低延时、防止卡顿方面提升明显。优化效果重点覆盖东南亚、南美、非洲和中东等地区
+- 优化了一对一音视频的质量，在降低延时、防止卡顿方面提升明显。优化效果重点覆盖东南亚、南美、非洲和中东等地区
 
--   直播场景下，改善了音频编码器的效率，保证通话质量的同时节省用户流量
+- 直播场景下，改善了音频编码器的效率，保证通话质量的同时节省用户流量
 
--   采用深度学习算法，改进了通话及直播中的音频质量
-
+- 采用深度学习算法，改进了通话及直播中的音频质量
 
 **问题修复**
 
--   修复了特定场景下某些 iOS 设备上推流后出现的崩溃问题
+- 修复了特定场景下某些 iOS 设备上推流后出现的崩溃问题
 
--   修复了某些 iOS 设备上偶现的崩溃的问题
+- 修复了某些 iOS 设备上偶现的崩溃的问题
 
--   修复了某些 iOS 设备上频繁暂停、恢复播放所有音效时出现的崩溃的问题
+- 修复了某些 iOS 设备上频繁暂停、恢复播放所有音效时出现的崩溃的问题
 
--   修复了多人连麦场景下，主播频繁进出频道时，偶现的主播内存异常增长的问题
+- 修复了多人连麦场景下，主播频繁进出频道时，偶现的主播内存异常增长的问题
 
--   修复了特定场景下偶现的主播加入频道、下麦再上麦后，远端用户听不到主播声音的问题
+- 修复了特定场景下偶现的主播加入频道、下麦再上麦后，远端用户听不到主播声音的问题
 
--   修复了特定场景下某些 iOS 设备上偶现的接听系统电话再回到频道后，听不到声音的问题
+- 修复了特定场景下某些 iOS 设备上偶现的接听系统电话再回到频道后，听不到声音的问题
 
--   修复了特定场景下偶现的直播观众无法调节频道内通话音量的问题
+- 修复了特定场景下偶现的直播观众无法调节频道内通话音量的问题
 
--   修复了频繁进出频道时，某些 iOS 设备上出现的崩溃的问题
+- 修复了频繁进出频道时，某些 iOS 设备上出现的崩溃的问题
 
--   修复了 2 人连麦过程中，一端播放背景音乐时将自己静音或关闭音频后，另一端闪退的问题
+- 修复了 2 人连麦过程中，一端播放背景音乐时将自己静音或关闭音频后，另一端闪退的问题
 
--   修复了特定场景下，iOS 端和 Web 端互通时，Web 频繁进出频道后，iOS 设备上出现的崩溃的问题
+- 修复了特定场景下，iOS 端和 Web 端互通时，Web 频繁进出频道后，iOS 设备上出现的崩溃的问题
 
--   修复了特定场景下，预加载音效时某些设备上偶现的崩溃问题
+- 修复了特定场景下，预加载音效时某些设备上偶现的崩溃问题
 
--   修复了偶现的 iOS 与 macOS 设备 无法进入频道互通的问题
+- 修复了偶现的 iOS 与 macOS 设备 无法进入频道互通的问题
 
--   修复了直播模式下，使用第三方应用播放音乐时，某些 iOS 设备上出现的退出频道时崩溃的问题
+- 修复了直播模式下，使用第三方应用播放音乐时，某些 iOS 设备上出现的退出频道时崩溃的问题
 
--   修复了特定场景下，某些 iOS 设备上出现的退出频道时崩溃的问题
+- 修复了特定场景下，某些 iOS 设备上出现的退出频道时崩溃的问题
 
--   修复了部分设备上偶现的使用声卡时回声的问题
+- 修复了部分设备上偶现的使用声卡时回声的问题
 
--   修复了特定场景下，某些 iOS 设备上无法调节音量的问题
-
+- 修复了特定场景下，某些 iOS 设备上无法调节音量的问题
 
 **API 整理**
 
@@ -93,26 +90,23 @@ iOS 语音包支持两种主要场景:
 
 为避免在直播转码推流中添加多个相同 User，v2.3.0 版本中新增如下接口：
 
--   [addUser](/cn/API%20Reference/live_video_ios)
+- [addUser](/cn/API%20Reference/live_video_ios)
 
--   [removeUser](/cn/API%20Reference/live_video_ios)
-
+- [removeUser](/cn/API%20Reference/live_video_ios)
 
 以下接口与录制相关，在 v2.3.0 版本后不再支持。Agora 提供专门的 Recording SDK 用于更好的录制服务，详见 [Agora Recording SDK 发版说明](/cn/Product%20Overview/release_recording)。
 
--   `startRecordingService`
+- `startRecordingService`
 
--   `stopRecordingService`
+- `stopRecordingService`
 
--   `refreshRecordingServiceStatus`
+- `refreshRecordingServiceStatus`
 
--   `didRefreshRecordingServiceStatus`
-
+- `didRefreshRecordingServiceStatus`
 
 以下接口长期处于弃用状态，现进行删除，v2.3.0 版本后不再支持：
 
--   `setSpeakerphoneVolume`
-
+- `setSpeakerphoneVolume`
 
 ## **2.2.3 版**
 
@@ -124,16 +118,15 @@ iOS 语音包支持两种主要场景:
 
 **问题修复**
 
--   修复了特定场景下偶发的线上统计崩溃的问题。
+- 修复了特定场景下偶发的线上统计崩溃的问题。
 
--   修复了直播时特定场景下偶发的崩溃的问题。
+- 修复了直播时特定场景下偶发的崩溃的问题。
 
--   修复了多人直播连麦时，SDK 内存增长的问题。
+- 修复了多人直播连麦时，SDK 内存增长的问题。
 
--   复了偶发的无法正常反馈频道内谁在说话以及说话者音量的问题。
+- 复了偶发的无法正常反馈频道内谁在说话以及说话者音量的问题。
 
--   修复了直播时偶发的观众听到主播声忽大忽小的问题。
-
+- 修复了直播时偶发的观众听到主播声忽大忽小的问题。
 
 ## **2.2.1 版**
 
@@ -141,12 +134,11 @@ iOS 语音包支持两种主要场景:
 
 **问题修复**
 
--   修复了部分设备上偶现的 Crash 问题。
+- 修复了部分设备上偶现的 Crash 问题。
 
--   修复了部分设备上内存泄漏的问题。
+- 修复了部分设备上内存泄漏的问题。
 
--   修复了部分设备上播放网络伴奏时某些 App 闪退的问题。
-
+- 修复了部分设备上播放网络伴奏时某些 App 闪退的问题。
 
 ## **2.2.0 版**
 
@@ -160,7 +152,7 @@ iOS 语音包支持两种主要场景:
 
 播放音效 `playEffect`接口新增了一个 `publish` 参数，用于在播放音效时，远端用户可以听到本地播放的音效。详见 [语音通话 API](/cn/API%20Reference/communication_ios_audio) 中 `playEffect` 接口的描述。
 
-**Note:** 
+**Note:**
 
 如果你的 SDK 是由之前版本升级到 v2.2 版本，请务必关注该接口功能的变动。
 
@@ -178,7 +170,7 @@ iOS 语音包支持两种主要场景:
 
 #### 2. 频道内网络质量监测
 
-根据用户对频道内实时网络质量监测的需求，在 onNetworkQuality* 中改进了返回数据的准确度。详见 [语音通话 API](/cn/API%20Reference/communication_ios_audio) 中 *onNetworkQuality* 的接口描述。
+根据用户对频道内实时网络质量监测的需求，在 onNetworkQuality* 中改进了返回数据的准确度。详见 [语音通话 API](/cn/API%20Reference/communication_ios_audio) 中 *onNetworkQuality\* 的接口描述。
 
 #### 3. 进入频道前网络条件监测
 
@@ -186,7 +178,7 @@ iOS 语音包支持两种主要场景:
 
 #### 4. 提升音乐场景下的音质
 
-提升了用户在播放音乐等场景下的音乐音质。用户可以通过设置 `setAudioProfile` 中的 Scenario：AgoraAudioScenarioGameStreaming = 3 来实现高保真的音乐传输。详见 [语音通话 API](/cn/API%20Reference/communication_ios_audio) 中 *setAudioProfile* 的接口描述。
+提升了用户在播放音乐等场景下的音乐音质。用户可以通过设置 `setAudioProfile` 中的 Scenario：AgoraAudioScenarioGameStreaming = 3 来实现高保真的音乐传输。详见 [语音通话 API](/cn/API%20Reference/communication_ios_audio) 中 _setAudioProfile_ 的接口描述。
 
 #### 5. 支持 Bitcode
 
@@ -194,10 +186,9 @@ iOS 语音包支持两种主要场景:
 
 **问题修复**
 
--   修复了某些 iOS 设备导致频道内其他端的回音问题。
+- 修复了某些 iOS 设备导致频道内其他端的回音问题。
 
--   修复了大量用户同时直播连麦时，偶发的抖屏现象。
-
+- 修复了大量用户同时直播连麦时，偶发的抖屏现象。
 
 ## **2.1.3 版**
 
@@ -205,14 +196,13 @@ iOS 语音包支持两种主要场景:
 
 **问题修复**
 
--   修复了 SDK 没有设置 Delegate 时，偶尔收不到 Block 回调的问题。
+- 修复了 SDK 没有设置 Delegate 时，偶尔收不到 Block 回调的问题。
 
--   修复了 SDK 的外链符号里，有 NSAssertionHandler 的问题。
+- 修复了 SDK 的外链符号里，有 NSAssertionHandler 的问题。
 
--   修复了部分手机上，用户离开频道后，开启自带的录音设备时，偶现录音出错的问题。
+- 修复了部分手机上，用户离开频道后，开启自带的录音设备时，偶现录音出错的问题。
 
--   修复了通信或直播过程中偶现 Crash 的问题。
-
+- 修复了通信或直播过程中偶现 Crash 的问题。
 
 ## **2.1.2 版**
 
@@ -248,10 +238,9 @@ iOS 语音包支持两种主要场景:
 
 新增 Restful API 查询用户在频道中的状态信息，查询指定频道内的分角色用户列表，查询厂商频道列表，查询用户是否为连麦用户等。详见:
 
--   通话场景, 详见 [Dashboard RESTful API](/cn/API%20Reference/dashboard_restful_communication)
+- 通话场景, 详见 [Dashboard RESTful API](/cn/API%20Reference/dashboard_restful_communication)
 
--   互动直播场景, 详见 [Dashboard RESTful API](/cn/API%20Reference/dashboard_restful_live)
-
+- 互动直播场景, 详见 [Dashboard RESTful API](/cn/API%20Reference/dashboard_restful_live)
 
 **改进**
 
@@ -278,16 +267,13 @@ iOS 语音包支持两种主要场景:
 </tbody>
 </table>
 
-
-
 **问题修复**
 
--   修复了自采集方案退出频道后 App 录不到声音的问题;
+- 修复了自采集方案退出频道后 App 录不到声音的问题;
 
--   修复了偶现的崩溃;
+- 修复了偶现的崩溃;
 
--   修复了偶现的关闭麦克风无法听到声音的问题;
-
+- 修复了偶现的关闭麦克风无法听到声音的问题;
 
 ## **2.0.2 版**
 
@@ -303,61 +289,58 @@ iOS 语音包支持两种主要场景:
 
 **新增功能**
 
--   伴奏和音效回调更新如下:
+- 伴奏和音效回调更新如下:
 
-    <table>
-<colgroup>
-<col/>
-<col/>
-</colgroup>
-<tbody>
-<tr><td><strong>名称</strong></td>
-<td><strong>描述</strong></td>
-</tr>
-<tr><td><code>rtcEngineMediaEngineDidAudioMixingFinish</code></td>
-<td>废弃，已经被 <code>rtcEngineLocalAudioMixingDidFinish</code> 替代</td>
-</tr>
-<tr><td><code>rtcEngineDidAudioEffectFinish</code></td>
-<td>新增，当本地结束音效播放时触发该回调</td>
-</tr>
-<tr><td><code>rtcEngineRemoteAudioMixingDidStart</code></td>
-<td>新增，当远端开始伴奏播放时触发该回调</td>
-</tr>
-<tr><td><code>rtcEngineRemoteAudioMixingDidFinish</code></td>
-<td>新增，当远端结束音效播放时触发该回调</td>
-</tr>
-</tbody>
-</table>
+      <table>
 
+  <colgroup>
+  <col/>
+  <col/>
+  </colgroup>
+  <tbody>
+  <tr><td><strong>名称</strong></td>
+  <td><strong>描述</strong></td>
+  </tr>
+  <tr><td><code>rtcEngineMediaEngineDidAudioMixingFinish</code></td>
+  <td>废弃，已经被 <code>rtcEngineLocalAudioMixingDidFinish</code> 替代</td>
+  </tr>
+  <tr><td><code>rtcEngineDidAudioEffectFinish</code></td>
+  <td>新增，当本地结束音效播放时触发该回调</td>
+  </tr>
+  <tr><td><code>rtcEngineRemoteAudioMixingDidStart</code></td>
+  <td>新增，当远端开始伴奏播放时触发该回调</td>
+  </tr>
+  <tr><td><code>rtcEngineRemoteAudioMixingDidFinish</code></td>
+  <td>新增，当远端结束音效播放时触发该回调</td>
+  </tr>
+  </tbody>
+  </table>
 
+- 通信和直播场景下支持音频自采集功能，新增以下 API:
 
--   通信和直播场景下支持音频自采集功能，新增以下 API:
+      <table>
 
-    <table>
-<colgroup>
-<col/>
-<col/>
-</colgroup>
-<tbody>
-<tr><td><strong>名称</strong></td>
-<td><strong>描述</strong></td>
-</tr>
-<tr><td><code>enableExternalAudioSourceWithSampleRate</code></td>
-<td>开启外部音频采集</td>
-</tr>
-<tr><td><code>disableExternalAudioSource</code></td>
-<td>关闭外部音频采集</td>
-</tr>
-<tr><td><code>pushExternalAudioFrameRawData</code></td>
-<td>推送外部音频帧</td>
-</tr>
-</tbody>
-</table>
+  <colgroup>
+  <col/>
+  <col/>
+  </colgroup>
+  <tbody>
+  <tr><td><strong>名称</strong></td>
+  <td><strong>描述</strong></td>
+  </tr>
+  <tr><td><code>enableExternalAudioSourceWithSampleRate</code></td>
+  <td>开启外部音频采集</td>
+  </tr>
+  <tr><td><code>disableExternalAudioSource</code></td>
+  <td>关闭外部音频采集</td>
+  </tr>
+  <tr><td><code>pushExternalAudioFrameRawData</code></td>
+  <td>推送外部音频帧</td>
+  </tr>
+  </tbody>
+  </table>
 
-
-
--   通信和直播场景下支持服务端踢人功能。如有需要，请联系 [sales@agora.io](mailto:sales@agora.io) 开通该功能。
-
+- 通信和直播场景下支持服务端踢人功能。如有需要，请联系 [sales@agora.io](mailto:sales@agora.io) 开通该功能。
 
 **问题修复**
 
@@ -369,25 +352,23 @@ iOS 语音包支持两种主要场景:
 
 **新增功能**
 
--   新增 API `setAudioProfile` 设置音频参数和应用场景。
+- 新增 API `setAudioProfile` 设置音频参数和应用场景。
 
--   新增 API `setLocalVoicePitch`提供基础变声功能。
+- 新增 API `setLocalVoicePitch`提供基础变声功能。
 
--   直播场景: 新增 API `setInEarMonitoringVolume` 提供调节耳返音量功能。
-
+- 直播场景: 新增 API `setInEarMonitoringVolume` 提供调节耳返音量功能。
 
 **改进**
 
--   优化了在高码率下的音频体验。
+- 优化了在高码率下的音频体验。
 
--   秒开: 直播场景下，单流模式时观众加入频道 1 秒内看见主播图像\(均值为 938 ms, 网络状态良好时可达 734 ms\)。
+- 秒开: 直播场景下，单流模式时观众加入频道 1 秒内看见主播图像\(均值为 938 ms, 网络状态良好时可达 734 ms\)。
 
--   节省带宽:
+- 节省带宽:
 
-    -   1.14 以前: 如果你选择不听某人的音频，音频流会照发。
+  - 1.14 以前: 如果你选择不听某人的音频，音频流会照发。
 
-    -   1.14 开始: 如果你选择不听某人的音频，则不会下发音频流，从而节省带宽。
-
+  - 1.14 开始: 如果你选择不听某人的音频，则不会下发音频流，从而节省带宽。
 
 **问题修复**
 
@@ -395,10 +376,9 @@ iOS 语音包支持两种主要场景:
 
 **改进**
 
--   优化了在高码率下的音频体验。
+- 优化了在高码率下的音频体验。
 
--   节省带宽: 1.14 以前如果你选择不听某人的音频，音频流会照发。从 1.14 开始，如果你选择不听某人的音频，则不会下发流，从而节省带宽。
-
+- 节省带宽: 1.14 以前如果你选择不听某人的音频，音频流会照发。从 1.14 开始，如果你选择不听某人的音频，则不会下发流，从而节省带宽。
 
 **修复问题**
 
@@ -410,19 +390,17 @@ iOS 语音包支持两种主要场景:
 
 **修复问题**
 
--   解决了 iOS 11 在 iPhone 7\(及以上版本\) 手机外放下无法调节音量的问题。
+- 解决了 iOS 11 在 iPhone 7\(及以上版本\) 手机外放下无法调节音量的问题。
 
--   优化了特定场景下出现的回声问题。
-
+- 优化了特定场景下出现的回声问题。
 
 ## **1.13 版**
 
 该版本于 2017 年 9 月 4 日发布。新增特性与修复问题列表详见下文。
 
--   新增 API `didClientRoleChanged` 用于提醒直播场景下主播、观众上下麦的回调。
+- 新增 API `didClientRoleChanged` 用于提醒直播场景下主播、观众上下麦的回调。
 
--   修复了部分机型上偶现的崩溃。
-
+- 修复了部分机型上偶现的崩溃。
 
 ## **1.12 版**
 
@@ -430,14 +408,12 @@ iOS 语音包支持两种主要场景:
 
 **新增功能**
 
--   在 API 方法 `setEncryptionMode` 里新增加密模式 `aes-128-ecb`。
+- 在 API 方法 `setEncryptionMode` 里新增加密模式 `aes-128-ecb`。
 
--   在 API 方法 `startAudioRecording` 里新增参数 `quality` 用于设置录音音质。
+- 在 API 方法 `startAudioRecording` 里新增参数 `quality` 用于设置录音音质。
 
--   新增了一系列 API 管理音效。
-
+- 新增了一系列 API 管理音效。
 
 **修复问题**
 
 修复了部分机型上偶现的崩溃问题。
-

@@ -3,6 +3,7 @@ title: 加入多频道
 platform: Windows
 updatedAt: 2020-11-16 07:11:12
 ---
+
 ## 功能描述
 
 为方便用户同时加入多个频道，接收多个频道的音视频流，Agora RTC Native SDK 3.0 及以上版本支持多频道管理，且频道数量无限制。
@@ -10,7 +11,6 @@ updatedAt: 2020-11-16 07:11:12
 该功能可应用于类似超级小班课的场景：将一个互动大班里的学生分到不同的小班，学生可以在小班内进行实时音视频互动。根据场景需要，你还可以给每个小班可以配备一名助教老师。
 
 <div class="alert note">多频道功能适用于直播场景，通信场景下不建议使用此功能。</div>
-
 
 ## 示例项目
 
@@ -59,8 +59,8 @@ SDK 提供 `IChannel` 类和 `IChannelEventHandler` 类实现多频道控制。
 
 1. 创建并初始化 `IRtcEngine` 对象。
 
- ```cpp
-m_rtcEngine = createAgoraRtcEngine(); 
+```cpp
+m_rtcEngine = createAgoraRtcEngine();
 RtcEngineContext context;
 std::string strAppID = GET_APP_ID;
 context.appId = strAppID.c_str();
@@ -71,28 +71,31 @@ int ret = m_rtcEngine->initialize(context);
 
 2. 启用视频模块。
 
- ```cpp
+```cpp
 m_rtcEngine->enableVideo();
 ```
 
 3. 将频道场景设置为直播场景。
 
- ```cpp
+```cpp
 m_rtcEngine->setChannelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING);
 ```
 
 4. 设置用户角色为主播。
- ```cpp
+
+```cpp
 m_rtcEngine->setClientRole(CLIENT_ROLE_BROADCASTER);
 ```
 
 5. 传入 `token` 和 `channelId`, 加入 `IRtcEngine` 对象的频道。加入 `IRtcEngine` 类的频道后，SDK 会自动发布本地流。
- ```cpp
+
+```cpp
 m_rtcEngine->joinChannel(APP_TOKEN, ChannelId, "", 0)；
 ```
 
 6. 创建并获取一个 `IChannel` 对象，并监听该频道的回调通知。
- ```cpp
+
+```cpp
 IChannel * pChannel = static_cast<IRtcEngine2 *>(m_rtcEngine)->createChannel(szChannelId.c_str());
 ChannelEventHandler* pEvt = new ChannelEventHandler;
 pEvt->setMsgHandler(GetSafeHwnd());
@@ -101,18 +104,21 @@ pChannel->setChannelEventHandler(pEvt);
 ```
 
 7. 加入 `IChannel` 对象对应的频道。加入频道后，SDK 会自动订阅音视频流。
- ```cpp
+
+```cpp
 pChannel->joinChannel(APP_TOKEN, "", 0, options);
 ```
 
 8. 离开并销毁 `IChannel` 对象的频道。
- ```cpp
+
+```cpp
 pChannel->leaveChannel();
 pChannel->release();
 ```
 
 9. 离开 `IRtcEngine` 对象的频道，并销毁 `IRtcEngine` 对象。
- ```cpp
+
+```cpp
 m_rtcEngine->leaveChannel();
 m_rtcEngine->release(true);
 ```
@@ -161,5 +167,3 @@ SDK 仅支持用户同一时间在一个频道内发布媒体流。因此只要�
   - 通过 `IRtcEngine` 类加入频道一，然后通过 `IChannel` 类加入频道二后，试图调用 `IChannel` 类的 `publish` 方法。
   - 加入多个频道后，试图以观众身份调用 `IChannel` 类的 `publish` 方法。
   - 调用 `IChannel` 类的 `publish` 方法后，未调用对应 `IChannel` 类的 `unpublish` 方法，就试图通过 `IRtcEngine` 类的 `joinChannel` 方法加入频道。
-
-

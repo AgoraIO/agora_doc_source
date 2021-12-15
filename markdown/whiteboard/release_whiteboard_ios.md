@@ -3,6 +3,7 @@ title: 发版说明
 platform: iOS
 updatedAt: 2021-04-01 02:52:23
 ---
+
 本文提供 Agora 互动白板 SDK 的发版说明。
 
 ## 2.12.8 版

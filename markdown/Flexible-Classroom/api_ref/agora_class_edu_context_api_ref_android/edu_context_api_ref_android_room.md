@@ -18,14 +18,14 @@ abstract fun uploadLog(quiet: Boolean = false)
 
 上传日志。
 
-| 参数    | 描述                                                         |
-| :------ | :----------------------------------------------------------- |
+| 参数    | 描述                                                                                                                           |
+| :------ | :----------------------------------------------------------------------------------------------------------------------------- |
 | `quiet` | 是否静默上传：<li>静默上传：默认十分钟会自动上传日志。</li><li>通过按钮引导终端用户上传日志。用于课堂出现问题时进行求救。</li> |
 
 ### updateFlexRoomProps
 
 ```kotlin
-abstract fun updateFlexRoomProps(properties: MutableMap<String, String>, 
+abstract fun updateFlexRoomProps(properties: MutableMap<String, String>,
                                       cause: MutableMap<String, String>?)
 ```
 
@@ -58,7 +58,6 @@ abstract fun joinClassroom()
 
 加入教室。
 
-
 ## IRoomHandler
 
 `IRoomHandler` 类用于向 App 报告教室相关的事件回调。
@@ -83,8 +82,8 @@ fun onClassState(state: EduContextClassState)
 
 报告课堂状态。
 
-| 参数    | 描述                                                         |
-| :------ | :----------------------------------------------------------- |
+| 参数    | 描述                                                                                                                                |
+| :------ | :---------------------------------------------------------------------------------------------------------------------------------- |
 | `state` | 课堂状态，详见 [EduContextClassState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextclassstate)。 |
 
 ### onClassTime
@@ -111,8 +110,8 @@ fun onNetworkStateChanged(state: EduContextNetworkState)
 
 报告网络状态。
 
-| 参数    | 描述                                                         |
-| :------ | :----------------------------------------------------------- |
+| 参数    | 描述                                                                                                                                    |
+| :------ | :-------------------------------------------------------------------------------------------------------------------------------------- |
 | `state` | 网络状态，详见 [EduContextNetworkState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextnetworkstate)。 |
 
 ### onLogUploaded
@@ -135,8 +134,8 @@ fun onConnectionStateChanged(state: EduContextConnectionState)
 
 报告连接状态。
 
-| 参数    | 描述                                                         |
-| :------ | :----------------------------------------------------------- |
+| 参数    | 描述                                                                                                                                            |
+| :------ | :---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `state` | 连接状态，详见 [EduContextConnectionState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextconnectionstate-1)。 |
 
 ### onClassTip
@@ -186,17 +185,17 @@ fun onFlexRoomPropsInitialized(properties: MutableMap<String, Any>)
 ```kotlin
 fun onFlexRoomPropsChanged(changedProperties: MutableMap<String, Any>,
                            properties: MutableMap<String, Any>,
-                           cause: MutableMap<String, Any>?, 
+                           cause: MutableMap<String, Any>?,
                            operator: EduContextUserInfo?)
 ```
 
 自定义教室属性更新回调。
 
-| 参数                | 描述                                                         |
-| :------------------ | :----------------------------------------------------------- |
-| `changedProperties` | 已更新的教室属性。                                           |
-| `properties`        | 全部教室属性。                                               |
-| `cause`             | 更新原因。                                                   |
+| 参数                | 描述                                                                                                                                                             |
+| :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `changedProperties` | 已更新的教室属性。                                                                                                                                               |
+| `properties`        | 全部教室属性。                                                                                                                                                   |
+| `cause`             | 更新原因。                                                                                                                                                       |
 | `operator`          | 操作者，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。`operator` 为空表示是由服务端更新。 |
 
 ### onClassroomJoinSuccess
@@ -233,8 +232,8 @@ fun onClassroomLeft(roomUuid: String, timestamp: Long, exit: Boolean = true)
 
 提示本地用户离开教室。
 
-| 参数        | 描述                                                         |
-| :---------- | :----------------------------------------------------------- |
-| `roomUuid`  | 教室 ID。                                                    |
-| `timestamp` | 离开教室的时间。                                             |
+| 参数        | 描述                                                                                                                             |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| `roomUuid`  | 教室 ID。                                                                                                                        |
+| `timestamp` | 离开教室的时间。                                                                                                                 |
 | `exit`      | 是否退出页面。课堂结束时，用户不自动退出页面，开发者需要通过弹窗提示用户退出页面；用户被踢出课堂或被挤出课堂时，会自动退出页面。 |

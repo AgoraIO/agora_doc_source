@@ -3,17 +3,17 @@ title: 调整通话音量
 platform: Windows
 updatedAt: 2020-12-03 11:38:56
 ---
+
 ## 功能描述
 
- 在使用我们 SDK 时，开发者可以对 SDK 采集到的声音及 SDK 播放到声卡的声音音量进行调整，以满足产品在声音上的个性化需求。比如进行双人通话时，想实现静音操作，可以通过调整播放音量的接口将音量设置为 0。
-
-
+在使用我们 SDK 时，开发者可以对 SDK 采集到的声音及 SDK 播放到声卡的声音音量进行调整，以满足产品在声音上的个性化需求。比如进行双人通话时，想实现静音操作，可以通过调整播放音量的接口将音量设置为 0。
 
 本文梳理了在使用 SDK 从音频采集到播放各阶段中，用户可能需要调整音量的场景、各场景对应的 API 及其使用注意事项。
 
 ![](https://web-cdn.agora.io/docs-files/1545991278347)
 
 ## 实现方法
+
 开始前请确保你已完成环境准备、安装包获取等步骤，详见[集成客户端](./windows_video)。
 
 ### 设置采集音量
@@ -41,7 +41,7 @@ int setRecordingDeviceVolume(int volume);
 ```cpp
 // 初始化参数对象
 RtcEngineParameters rep(*lpAgoraEngine);
-  
+
 // 将录音音量设置为 200
 int ret = rep.adjustRecordingSignalVolume(200);
 ```
@@ -98,7 +98,7 @@ RtcEngineParameters rep(*lpAgoraEngine);
 
 // 设置远端用户听到的音乐文件音量
 int ret = rep.adjustAudioMixingPublishVolume(50);
-// 设置本地用户听到的音乐文件音量 
+// 设置本地用户听到的音乐文件音量
 int ret = rep.adjustAudioMixingPlayoutVolume(50);
 ```
 

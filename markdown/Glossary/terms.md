@@ -3,7 +3,9 @@ title: 术语库
 platform: All Platforms
 updatedAt: 2021-01-28 10:42:55
 ---
+
 ## A
+
 #### <a name="agora-rtc-sdk"></a>[**<u>Agora RTC SDK</u>**](./term_agora_rtc_sdk)
 
 Agora RTC (Real-Time Communication) SDK 是声网提供的用于实现音视频实时通信的 SDK。
@@ -11,7 +13,7 @@ Agora RTC (Real-Time Communication) SDK 是声网提供的用于实现音视频�
 #### <a name="agora-rtm-sdk"></a>[**<u>Agora RTM SDK</u>**](./term_agora_rtm_sdk)
 
 Agora RTM (Real-time Messaging) SDK 是声网提供的用于实现消息通道、呼叫、聊天、状态同步等功能的 SDK。
-	
+
 #### <a name="rtm-native-sdk"></a>**Agora RTM Native SDK**
 
 Android、iOS、macOS、Linux Java、Linux C++ 和 Windows C++ 平台的 Agora RTM SDK 通常被统称为 Agora RTM Native SDK。
@@ -41,7 +43,9 @@ App 证书是 Agora 控制台为注册项目生成的字符串，用于开启 To
 <div class="alert info">相关链接：<a href="https://docs.agora.io/cn/Recording/product_recording?platform=Linux">本地服务端录制产品概述</a></div>
 
 ## C
+
 #### <a name="cdn-streaming"></a>**CDN 直播推流 (CDN live streaming)**
+
 将直播流发布到 CDN（Content Delivery Network）的过程称为 CDN 直播推流，用户可以通过 Web 浏览器观看直播。
 
 ## D
@@ -67,6 +71,7 @@ App 证书是 Agora 控制台为注册项目生成的字符串，用于开启 To
  <li><a href="#pub">发布</a></li></div>
 
 ## F
+
 #### <a name="pub"></a>**发布 (publish)**
 
 发布是指频道中的用户将音视频数据发送到频道的操作。通常发布的对象是由用户的麦克风和摄像头采集的音视频数据创建的流，开发者也可以发布由其他来源（如在线音乐文件和用户的屏幕画面）创建的音视频流等。
@@ -78,11 +83,13 @@ App 证书是 Agora 控制台为注册项目生成的字符串，用于开启 To
 	<li><a href="#sub">订阅</a></li></div>
 
 ## G
+
 #### <a name="audience"></a>**观众 (audience)**
 
 直播场景中，只能接收流、不能发送流的用户为观众。
 
 ## H
+
 #### <a name="layout"></a>**合流布局 (video layout)**
 
 合流布局，指将多个用户的音视频流混合为一路音视频流时，频道内各用户画面的大小及其在视频画布上的位置。有时也称作**合图布局**。推流到 CDN 中的合流转码，以及云端录制和本地服务端录制的合流录制，都涉及到多个视频流混合为一路视频流的过程。
@@ -110,6 +117,7 @@ App 证书是 Agora 控制台为注册项目生成的字符串，用于开启 To
 <div class="alert info">相关链接：<li><a href="https://docs.agora.io/cn/cloud-recording/cloud_recording_composite_mode">合流录制</a>（云端录制）</li><li><a href="https://docs.agora.io/cn/Recording/recording_composite_mode">合流录制</a>（本地服务端录制）</li></div>
 
 #### <a name="audio-mixing"></a>**混音 (audio mixing)**
+
 混音是指将两路以上的音频流混合成一路音频流的过程。常见的混音场景如下：
 
 - 音视频通话时，用户在频道内同时播放自己说话的声音和音乐文件的声音，则频道内所有用户都能听到该用户混音后的声音。
@@ -119,7 +127,9 @@ App 证书是 Agora 控制台为注册项目生成的字符串，用于开启 To
 <div class="alert info">相关链接：<li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/audio_effect_mixing_android?platform=Android">播放音效/音乐混音</a></li><li><a href="https://docs.agora.io/cn/cloud-recording/cloud_recording_composite_mode?platform=All%20Platforms">合流录制</a></li></div>
 
 ## K
+
 #### <a name="console"></a>**控制台 (Agora Console)**
+
 控制台是声网提供给开发者管理声网各项服务的工具。
 
 控制台提供直观的界面，方便开发者在使用声网各项服务时进行充值、查询、管理等操作。注册账号之后，开发者可以通过控制台实现以下主要功能：
@@ -136,6 +146,7 @@ App 证书是 Agora 控制台为注册项目生成的字符串，用于开启 To
 <div class="alert info">相关链接：<li><a href="https://docs.agora.io/cn/Agora%20Platform/console_overview?platform=All%20Platforms">控制台概览</a></li><li><a href="https://docs.agora.io/cn/Agora%20Platform/dashboard_restful_communication?platform=All%20Platforms">控制台 RESTful API</a></li></div>
 
 ## L
+
 #### <a name="co-hosting"></a>**连麦 (co-hosting)**
 
 连麦指在直播场景中，两个及以上主播进行互动的过程。频道内的观众可以看到这些主播并听到他们的声音。
@@ -167,8 +178,8 @@ App 证书是 Agora 控制台为注册项目生成的字符串，用于开启 To
 
 <div class="alert info">相关链接：<li><a href="#dual-stream">双流模式</a></li><li><a href="#high-stream">大流</a></li><li><a href="#low-stream">小流</a></li><li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/fallback_android?platform=Android">视频流回退</a></li></div>
 
-	
 ## M
+
 #### <a name="media-player"></a>**媒体播放器组件 (MediaPlayer Kit)**
 
 媒体播放器组件是 Agora RTC SDK 的一个组件，适用于直播场景下播放本地或在线媒体资源，并将主播播放的媒体流发送给其他用户。此外，该组件支持解析媒体附属信息，提供媒体资源的原始音视频数据接口，开发者可以自行实现更多功能。
@@ -178,6 +189,7 @@ App 证书是 Agora 控制台为注册项目生成的字符串，用于开启 To
 </div>
 
 ## P
+
 #### <a name="channel"></a>**频道 (channel)**
 
 频道是由开发者调用 Agora 提供的 API 创建的用于传输实时数据的通道。
@@ -200,15 +212,16 @@ App ID 一致的前提下，Agora 使用频道名来标识频道。使用相同�
 
 Agora 目前支持以下三种频道场景，并根据频道场景进行不同的优化。
 
-| 频道场景 | 描述                                                         |
-| -------- | ------------------------------------------------------------ |
-| 通信     | 用于一对一通话或群组通话，频道中的所有用户都可以自由通话。   |
+| 频道场景 | 描述                                                                                               |
+| -------- | -------------------------------------------------------------------------------------------------- |
+| 通信     | 用于一对一通话或群组通话，频道中的所有用户都可以自由通话。                                         |
 | 直播     | 在直播场景中，用户有两种角色：主播和观众。主播能够发送和接收音视频，观众不能发送，只能接收音视频。 |
-| 游戏     | 频道中的任何用户都可以自由通话。 此场景默认使用具有低功耗和低码率的编解码器。 |
+| 游戏     | 频道中的任何用户都可以自由通话。 此场景默认使用具有低功耗和低码率的编解码器。                      |
 
 <div class="alert note">游戏场景仅可用于 Agora Gaming SDK 。</div>
 
 ## S
+
 #### <a name="sd-rtn"></a>**SD-RTN™**
 
 SD-RTN™ 是 Software Defined Real-time Network 的缩写，即软件定义实时网，这是声网自建的底层实时传输网络。
@@ -242,7 +255,6 @@ SD-RTN™ 是 Software Defined Real-time Network 的缩写，即软件定义实�
 <li><a href="#sd-rtn">SD-RTN™</a></li>
 </div>
 
-	
 #### <a name="video-profile"></a>**视频属性 (video profile)**
 
 视频属性指本地编码视频的分辨率、码率、帧率等属性，又称为 “视频编码属性”。声网提供接口供开发者设置理想网络状态下本地视频编码时的分辨率、码率、帧率、视频方向模式等属性。本地视频流在编码后即会发送给频道内远端用户，故开发者对本地视频属性的设置会影响远端用户所见。
@@ -259,7 +271,7 @@ SD-RTN™ 是 Software Defined Real-time Network 的缩写，即软件定义实�
 - 远端视频首帧出图：接收的远端用户视频的第一帧显示在本地设备的远端视图上。
 
 首帧出图时间指本地或远端视频首帧出图距本地或远端用户加入频道的时间推移。首帧出图时间与开发者的硬件和软件都有关系，声网的工程师致力于不断降低首帧出图时间，使开发者的 app 达到视频秒开的水平。
-	
+
 #### <a name="dual-stream"></a>**双流模式 (dual-stream mode)**
 
 实时音视频互动过程中，Agora 需要将发布的视频流传输给订阅了这路视频流的用户。发布一路视频流，就会传输一路视频流。
@@ -279,7 +291,6 @@ SD-RTN™ 是 Software Defined Real-time Network 的缩写，即软件定义实�
 <li><a href="#low-stream">小流</a></li>
 </div>
 
-	
 #### <a name="inject-stream"></a>**输入在线媒体流 (Inject Online Media Stream)**
 
 输入在线媒体流指直播场景下，输入在线音视频流至 Agora 频道内供所有用户欣赏。Agora RTC SDK 为开发者提供接口允许主播输入一路在线音视频流或纯音频流至 Agora 频道。
@@ -298,16 +309,15 @@ SD-RTN™ 是 Software Defined Real-time Network 的缩写，即软件定义实�
 <div class="alert info">相关链接：<li><a href="https://docs.agora.io/cn/Agora%20Platform/aa_guide?platform=All%20Platforms">水晶球概览</a></li><li><a href="https://docs.agora.io/cn/Agora%20Platform/aa_api?platform=All%20Platforms">水晶球 RESTful API</a></li></div>
 
 ## T
+
 #### <a name="token"></a>**Token**
 
 Token 也称为动态密钥，用于在生产环境等安全要求更高的环境下对 app 用户在加入 RTC 频道或登录 RTM 系统时进行动态鉴权。
 
-
-
 - 对于 RTC 产品、本地录制和云录制产品，Token 用于在用户加入频道时检查 App ID、用户加入频道权限、用户发流权限，和用户权限有效期；
 - 对于 RTM 产品， Token 用于在用户登录 RTM 系统时检查 App ID、用户角色，和用户权限有效期。
 
-正式生产环境下， Token 需要由客户自行在业务服务端生成并在加入RTC 频道或登录 RTM 系统时回传给客户端。处于测试阶段的 RTC 产品客户如果不想自己的业务服务端搭建 Token 生成器，也可以在[控制台](https://console.agora.io/)创建项目后选择由控制台生成临时 Token。临时 Token 的功能与正式 Token 完全一致。
+正式生产环境下， Token 需要由客户自行在业务服务端生成并在加入 RTC 频道或登录 RTM 系统时回传给客户端。处于测试阶段的 RTC 产品客户如果不想自己的业务服务端搭建 Token 生成器，也可以在[控制台](https://console.agora.io/)创建项目后选择由控制台生成临时 Token。临时 Token 的功能与正式 Token 完全一致。
 
 所有 Token 都有授权有效期和服务有效期两种有效期。授权有效期是在用户生成 Token 时设置的权限的有效时间；Token 的服务有效期指的是每个 Token 在生成后的过期时间，默认设为 24 小时。
 
@@ -317,6 +327,7 @@ RTC 产品、本地录制和云录制产品的用户的 Token 有效期（无论
 </div>
 
 ## X
+
 #### <a name="become-audience"></a>**下麦 (becoming an audience)**
 
 下麦指直播场景中的主播切换用户角色成为观众这一行为。主播成功下麦后，停止发布音视频流，频道内其他用户不再听到并看到该主播。
@@ -334,11 +345,13 @@ RTC 产品、本地录制和云录制产品的用户的 Token 有效期（无论
 开启双流模式后，发送端发送的视频双流中，分辨率跟小、码率更低的那路视频流就是视频小流。详见[双流模式](#dual-stream)。
 
 ## Y
+
 #### <a name="username"></a>**用户 ID (user ID)**
 
 在加入 RTC [频道](#channel)或者登录 [RTM](#agora-rtm-sdk) 系统时需要传入用户 ID 用于标识频道中的用户。同一频道中的每个用户都应具有唯一的用户 ID。
 
 #### <a name="raw-data"></a>**原始音视频数据 (raw data)**
+
 原始音视频数据，又称音视频裸数据，是指音视频传输过程中获取到的纯音视频数据。
 
 - 从发送端获取的原始音视频数据，是指直接从数据源（麦克风、摄像头等）采集且未经过处理的数据。
@@ -359,10 +372,13 @@ RTC 产品、本地录制和云录制产品的用户的 Token 有效期（无论
 <div class="alert info">相关链接：<a href="https://docs.agora.io/cn/cloud-recording/product_cloud_recording">云端录制产品概述</a></div>
 
 ## Z
+
 #### <a name="host"></a>**主播 (host/broadcaster)**
+
 直播场景中，可以发送和接收流的用户为主播。
 
 #### <a name="transcoding"></a>**转码 (transcoding)**
+
 在推流到 CDN 过程中，当频道中有多个主播时，通常会涉及到转码。
 
 在推流到 CDN 过程中，发送到 SD-RTN™ 的音视频流从 UDP 协议被转换成 RTMP（Real-Time Messaging Protocol）协议。如果有多个主播，就需要通过转码在协议转换之前将多个直播流组合成单个流，并设置这个流的音视频属性和合图布局。
@@ -370,6 +386,7 @@ RTC 产品、本地录制和云录制产品的用户的 Token 有效期（无论
 <div class="alert note">声网建议不要在单主播的情况下使用转码。</div>
 
 #### <a name="custom-rendering "></a>**自渲染 (custom rendering)**
+
 自渲染，又称自定义渲染，是指开发者从 SDK 获取原始音视频数据后自行渲染的过程。
 
 当默认的音视频模块无法满足开发需求时，开发者可以使用外部渲染器对音视频数据进行渲染。例如：

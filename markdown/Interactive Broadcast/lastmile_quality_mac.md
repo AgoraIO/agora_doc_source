@@ -3,6 +3,7 @@ title: 通话前网络和设备检测
 platform: iOS
 updatedAt: 2021-02-03 06:27:15
 ---
+
 ## 功能描述
 
 在对质量要求高的场景下，进行通话前检测可以帮助提前识别并排查问题，保证实时通信体验。通话前检测通常可以从如下两个角度开展：
@@ -28,8 +29,8 @@ Agora 在 GitHub 提供了一个开源的 API-Examples maOS 示例项目，其�
 
 1. 在用户加入频道或上麦前，调用 `startLastmileProbeTest` 进行网络质量探测。调用该方法时，你需要指定期望的最大上下行码率。
 2. 启用该方法后，SDK 会依次返回如下两个回调：
-	- `lastmileQuality`：约两秒内返回，且每两秒触发一次。该回调通过打分反馈上下行网络质量，更贴近主观感受。
-	- `lastmileProbeResult`：约 30 秒内返回。该回调通过客观数据反馈上下行网络质量，更客观。
+   - `lastmileQuality`：约两秒内返回，且每两秒触发一次。该回调通过打分反馈上下行网络质量，更贴近主观感受。
+   - `lastmileProbeResult`：约 30 秒内返回。该回调通过客观数据反馈上下行网络质量，更客观。
 3. 获取到网络质量数据后，调用 `stopLastmileProbeTest` 停止通话前网络质量探测。
 
 各 API 的调用时序如下图所示：
@@ -108,9 +109,9 @@ agoraKit.stopLastmileProbeTest()
 参考以下步骤测试音视频设备：
 
 - 选择以下一种方式测试音频设备：
-	- 调用 `startEchoTestWithInterval` 测试系统的音频设备（耳麦、扬声器等）和网络连接。
-	- 调用 `startRecordingDeviceTest` 测试录音设备，调用 `startPlaybackDeviceTest` 测试音频播放设备。
-	- 调用 `startAudioDeviceLoopbackTest` 测试音频设备回路（包括录音设备和音频播放设备）。
+  - 调用 `startEchoTestWithInterval` 测试系统的音频设备（耳麦、扬声器等）和网络连接。
+  - 调用 `startRecordingDeviceTest` 测试录音设备，调用 `startPlaybackDeviceTest` 测试音频播放设备。
+  - 调用 `startAudioDeviceLoopbackTest` 测试音频设备回路（包括录音设备和音频播放设备）。
 - 调用 `startCaptureDeviceTest` 方法测试视频采集设备。
 
 <div class="alert note">所有测试设备的方法都必须在加入频道之前调用。</div>
@@ -185,16 +186,16 @@ agoraKit.stopCaptureDeviceTest()
 
 ### API 参考
 
-* [`startEchoTestWithInterval`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startEchoTestWithInterval:successBlock:)
-* [`stopEchoTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopEchoTest)
-* [`startRecordingDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRecordingDeviceTest:)
-* [`stopRecordingDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopRecordingDeviceTest.)
-* [`startPlaybackDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startPlaybackDeviceTest:)
-* [`stopPlaybackDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopPlaybackDeviceTest)
-* [`startCaptureDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startCaptureDeviceTest:)
-* [`stopCaptureDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopCaptureDeviceTest)
-* [`startAudioDeviceLoopbackTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startAudioDeviceLoopbackTest:)
-* [`stopAudioDeviceLoopbackTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopAudioDeviceLoopbackTest)
+- [`startEchoTestWithInterval`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startEchoTestWithInterval:successBlock:)
+- [`stopEchoTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopEchoTest)
+- [`startRecordingDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRecordingDeviceTest:)
+- [`stopRecordingDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopRecordingDeviceTest.)
+- [`startPlaybackDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startPlaybackDeviceTest:)
+- [`stopPlaybackDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopPlaybackDeviceTest)
+- [`startCaptureDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startCaptureDeviceTest:)
+- [`stopCaptureDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopCaptureDeviceTest)
+- [`startAudioDeviceLoopbackTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startAudioDeviceLoopbackTest:)
+- [`stopAudioDeviceLoopbackTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopAudioDeviceLoopbackTest)
 
 ## 开发注意事项
 
@@ -203,5 +204,3 @@ agoraKit.stopCaptureDeviceTest()
 - 开启网络测试后，音频 SDK 使用 48 Kbps 的固定探测码率；视频 SDK 则会根据当前选定的视频属性调整探测码率。
 - 直播场景下，只有角色为主播的用户才能调用 `startEchoTestWithInterval`。
 - 调用 `startEchoTestWithInterval` 开始通话测试后，必须调用对应的 `stop` 方法以结束测试，否则无法进行下一次测试，也不能加入频道。
-
-

@@ -3,10 +3,10 @@ title: 发版说明
 platform: Web
 updatedAt: 2021-03-02 12:16:20
 ---
+
 ## 简介
 
-Agora RTM SDK 提供了稳定可靠、低延时、高并发的全球消息云服务，帮助你快速构建实时通信场景,  可实现消息通道、呼叫、聊天、状态同步等功能。点击 [实时消息产品概述](/cn/Real-time-Messaging/RTM_product?platform=All%20Platforms) 了解更多详情。
-
+Agora RTM SDK 提供了稳定可靠、低延时、高并发的全球消息云服务，帮助你快速构建实时通信场景, 可实现消息通道、呼叫、聊天、状态同步等功能。点击 [实时消息产品概述](/cn/Real-time-Messaging/RTM_product?platform=All%20Platforms) 了解更多详情。
 
 ## 1.0.0 版
 
@@ -51,12 +51,12 @@ Agora RTM SDK 提供了稳定可靠、低延时、高并发的全球消息云服
 
 本版本支持设置和查询用户属性。每个用户属性为 key 和 value 的键值对。每个属性的 key 为 32 字节可见字符，每个属性的 value 的字符串长度不得超过 8 KB。单个用户的全部属性长度不得超过 16 KB。以下为本版本支持内容：
 
-   - 全量设置本地用户属性
-   - 增加或更新本地用户属性
-   - 删除本地用户指定属性
-   - 清空本地用户属性
-   - 全量获取指定用户属性
-   - 获取指定用户指定属性。
+- 全量设置本地用户属性
+- 增加或更新本地用户属性
+- 删除本地用户指定属性
+- 清空本地用户属性
+- 全量获取指定用户属性
+- 获取指定用户指定属性。
 
 > - 设置的用户属性会在用户登出 Agora RTM 系统后自动失效。
 
@@ -97,8 +97,8 @@ Agora RTM SDK 提供了稳定可靠、低延时、高并发的全球消息云服
 
 ### 性能改进
 
--   本地用户发送的频道消息/点对点消息/进频道通知均不出现在当前用户的 API 回调中。
--   用户名 `uid` 允许以空格开头。
+- 本地用户发送的频道消息/点对点消息/进频道通知均不出现在当前用户的 API 回调中。
+- 用户名 `uid` 允许以空格开头。
 
 ### API 变更
 
@@ -110,20 +110,18 @@ Agora RTM SDK 提供了稳定可靠、低延时、高并发的全球消息云服
 - [LocalInvitationState](/cn/Real-time-Messaging/API%20Reference/RTM_web/enums/localinvitationstate.html)：返回给主叫的呼叫邀请状态码
 - [LocalInvitationFailureReason](/cn/Real-time-Messaging/API%20Reference/RTM_web/enums/localinvitationfailurereason.html)：返回给主叫的呼叫邀请失败原因。
 - [RemoteInvitationReceived](/cn/Real-time-Messaging/API%20Reference/RTM_web/interfaces/rtmclientevents.html#remoteinvitationreceived): 收到来自对端的呼叫邀请回调
-- [RemoteInvitation.accept](/cn/Real-time-Messaging/API%20Reference/RTM_web/classes/remoteinvitation.html#accept):  （被叫）接受呼叫邀请
+- [RemoteInvitation.accept](/cn/Real-time-Messaging/API%20Reference/RTM_web/classes/remoteinvitation.html#accept): （被叫）接受呼叫邀请
 - [RemoteInvitation.refuse](/cn/Real-time-Messaging/API%20Reference/RTM_web/classes/remoteinvitation.html#refuse)：（被叫）拒绝呼叫邀请
 - [RemoteInvitationState](/cn/Real-time-Messaging/API%20Reference/RTM_web/enums/remoteinvitationstate.html)：返回给被叫的呼叫邀请状态码
 - [RemoteInvitationFailureReason](/cn/Real-time-Messaging/API%20Reference/RTM_web/enums/remoteinvitationfailurereason.html)：返回给被叫的呼叫邀请失败原因。
 
-
 #### 重命名
 
--   `RtmClient` 的事件 `ConnectionStateChange` 更名为 [ConnectionStateChanged](/cn/Real-time-Messaging/API%20Reference/RTM_web/interfaces/rtmclientevents.html#connectionstatechanged) 。
+- `RtmClient` 的事件 `ConnectionStateChange` 更名为 [ConnectionStateChanged](/cn/Real-time-Messaging/API%20Reference/RTM_web/interfaces/rtmclientevents.html#connectionstatechanged) 。
 
 #### 删除
 
--   `RtmChannel`  `getId` 方法，改用 [channelId](/cn/Real-time-Messaging/API%20Reference/RTM_web/classes/rtmchannel.html#channelid) 代替。
-
+- `RtmChannel` `getId` 方法，改用 [channelId](/cn/Real-time-Messaging/API%20Reference/RTM_web/classes/rtmchannel.html#channelid) 代替。
 
 ## 0.9.0 版
 

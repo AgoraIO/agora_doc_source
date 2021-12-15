@@ -3,28 +3,28 @@ title: 集成客户端
 platform: 微信小程序
 updatedAt: 2019-11-25 18:14:10
 ---
+
 ## 前提条件
 
 请确保满足以下开发环境要求：
 
--   请确保已安装 [微信开发者工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/devtools.html?t=2018323)。
+- 请确保已安装 [微信开发者工具](https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/devtools.html?t=2018323)。
 
--   请确保你的微信小程序基础库支持 `live-pusher` 及 `live-player` 组件，且这两个组件在微信开发者工具中打开。
+- 请确保你的微信小程序基础库支持 `live-pusher` 及 `live-player` 组件，且这两个组件在微信开发者工具中打开。
 
--   请确保在微信公众平台账号的开发设置中，给予以下域名请求权限：
+- 请确保在微信公众平台账号的开发设置中，给予以下域名请求权限：
 
-	```
-	https://miniapp.agoraio.cn
-	https://miniapp-1.agoraio.cn
-	https://miniapp-2.agoraio.cn
-	https://miniapp-3.agoraio.cn
-	https://miniapp-4.agoraio.cn
-	https://uni-webcollector.agora.io
-	wss://miniapp.agoraio.cn
-	```
+  ```
+  https://miniapp.agoraio.cn
+  https://miniapp-1.agoraio.cn
+  https://miniapp-2.agoraio.cn
+  https://miniapp-3.agoraio.cn
+  https://miniapp-4.agoraio.cn
+  https://uni-webcollector.agora.io
+  wss://miniapp.agoraio.cn
+  ```
 
--   请确保在使用 Agora 相关功能及服务前，已打开特定端口，详见 [防火墙说明](/cn/Agora%20Platform/firewall)。
-
+- 请确保在使用 Agora 相关功能及服务前，已打开特定端口，详见 [防火墙说明](/cn/Agora%20Platform/firewall)。
 
 > 在集成微信小程序组件之前，Agora 建议你先阅读 [微信小程序开发官方文档](https://mp.weixin.qq.com/debug/wxadoc/dev/)。
 
@@ -34,22 +34,22 @@ updatedAt: 2019-11-25 18:14:10
 
 2.  登录 Dashboard 页面，点击 **添加新项目**。
 
-	<img alt="../_images/appid_1.jpg" src="https://web-cdn.agora.io/docs-files/cn/appid_1.jpg" />
+<img alt="../_images/appid_1.jpg" src="https://web-cdn.agora.io/docs-files/cn/appid_1.jpg" />
 
 3.  填写 **项目名**，然后点击 **提交**。
 
 4.  在你创建的项目下，查看并获取该项目对应的 **App ID**。
 
-	<img alt="../_images/appid_2.jpg" src="https://web-cdn.agora.io/docs-files/cn/appid_2.jpg" />
+<img alt="../_images/appid_2.jpg" src="https://web-cdn.agora.io/docs-files/cn/appid_2.jpg" />
 
 5.  联系 [sales@agora.io](mailto:sales@agora.io) 为该 App ID 开通小程序权限。
-
 
 ## 创建微信小程序组件
 
 在微信小程序中实现音视频功能，需要使用微信的 [live-player 组件](#live_player) 和 [live-pusher 组件](#live_pusher)。
 
 <a name = "live_player"></a>
+
 ### live-player 组件
 
 该组件用于实现微信小程序的实时音视频播放功能。开发者在创建该组件后，还需要在 js 文件中调用 API 接口对应的组件来实现该功能。详见 [微信小程序 API 说明](https://mp.weixin.qq.com/debug/wxadoc/dev/api/api-live-player.html)。
@@ -66,6 +66,7 @@ updatedAt: 2019-11-25 18:14:10
 ```
 
 <a name = "live_pusher"></a>
+
 ### live-pusher 组件
 
 该组件用于实现微信小程序的实时音视频录制功能。开发者在创建该组件后，还需要在 js 文件中调用 API 接口对应的组件来实现该功能。详见 [微信小程序 API 说明](https://mp.weixin.qq.com/debug/wxadoc/dev/api/api-live-pusher.html)。
@@ -86,7 +87,6 @@ updatedAt: 2019-11-25 18:14:10
 2.  将 SDK 包中到的 mini-app-sdk-production 文件复制到你的小程序项目文件夹中。
 
 3.  使用 `require` 将小程序 SDK 集成到项目中：
-
 
 ```
 const AgoraMiniappSDK = require('../../lib/mini-app-sdk-production.js');

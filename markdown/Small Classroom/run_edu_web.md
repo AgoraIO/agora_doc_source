@@ -3,6 +3,7 @@ title: 快速跑通 eEducation 示例项目
 platform: All Platforms
 updatedAt: 2021-04-01 08:21:39
 ---
+
 ## 概览
 
 Agora 在 GitHub 上提供一个开源的 [eEducation 示例项目](https://github.com/AgoraIO-Usecase/eEducation)，演示了如何通过 Agora 教育云服务，并配合 Agora RTC SDK、Agora RTM SDK、Agora 云端录制和第三方 Netless 白板 SDK，实现基本的在线互动教学场景。
@@ -20,7 +21,7 @@ Agora 在 GitHub 上提供一个开源的 [eEducation 示例项目](https://gith
 
 ## 操作步骤
 
-### 1. 创建 Agora 项目 
+### 1. 创建 Agora 项目
 
 按照以下步骤，在控制台创建一个 Agora 项目。
 
@@ -28,7 +29,7 @@ Agora 在 GitHub 上提供一个开源的 [eEducation 示例项目](https://gith
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
- ![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
+![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
 
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID + Token。**
 
@@ -51,22 +52,22 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 ### 4. 获取 Netless 的 AppIdentifier 和 sdkToken
 
-
 参考以下步骤步骤获取第三方白板 Netless 的 AppIdentifier 和 sdkToken：
 
-1. 登录 [Netless 控制台](https://console.netless.link/)，点击左侧导航栏**应用管理**按钮，保存此 AppIdentifier。 
+1. 登录 [Netless 控制台](https://console.netless.link/)，点击左侧导航栏**应用管理**按钮，保存此 AppIdentifier。
 
- ![获取 AppIdentifier](https://web-cdn.agora.io/docs-files/1603975237931)
+![获取 AppIdentifier](https://web-cdn.agora.io/docs-files/1603975237931)
 
 2. 点击对应应用的**配置**按钮，点击**生成 sdkToken**，然后复制此 sdkToken。
 
- ![获取 sdktoken](https://web-cdn.agora.io/docs-files/1603975258941)
+![获取 sdktoken](https://web-cdn.agora.io/docs-files/1603975258941)
 
 ### 5. 在示例项目中配置相关字段
 
 按照以下步骤，在示例项目中配置相关字段。
 
 1. 打开终端，克隆 [eEducation 项目](https://github.com/AgoraIO-Usecase/eEducation)仓库至本地。
+
 ```
 git clone https://github.com/AgoraIO-Usecase/eEducation.git
 ```
@@ -76,7 +77,7 @@ git clone https://github.com/AgoraIO-Usecase/eEducation.git
    - Agora 的客户 ID 和客户密钥
    - Netless 的 AppIdentifier
 
-  ```ts
+```ts
 REACT_APP_AGORA_APP_ID=agora appId
 REACT_APP_AGORA_CUSTOMER_ID=customer_id
 REACT_APP_AGORA_CUSTOMER_CERTIFICATE=customer_certificate
@@ -88,15 +89,18 @@ REACT_APP_NETLESS_APP_ID=netless appId
 参考下列步骤编译并运行示例项目：
 
 1. 在命令行中进入 eEducation/education_web 目录，然后安装依赖环境。
+
 ```
 cd eEducation/education_web
 npm install
 ```
 
 2. 运行以下命令启动示例应用。
+
 ```
 npm run dev
 ```
+
 运行命令后示例应用的页面会自动在你的默认浏览器打开，如下图所示。如果页面没有自动打开，你可以打开浏览器，通过访问 `http://localhost:3000` 打开示例应用。你需要输入房间名和用户名，并选择房间类型，然后加入课堂。
 
- ![](https://web-cdn.agora.io/docs-files/1604042695033)
+![](https://web-cdn.agora.io/docs-files/1604042695033)

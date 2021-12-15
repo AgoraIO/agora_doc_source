@@ -3,6 +3,7 @@ title: 单流录制
 platform: All Platforms
 updatedAt: 2021-02-26 08:02:27
 ---
+
 本文介绍使用云端录制 RESTful API 进行单流录制的重点步骤。建议你同时参考[云端录制 RESTful API 快速开始](https://docs.agora.io/cn/cloud-recording/cloud_recording_rest)了解云端录制的基础流程。
 
 ## 功能描述
@@ -24,7 +25,9 @@ updatedAt: 2021-02-26 08:02:27
 <div class="alert note">如果你想直接获得 MP4 文件，可以使用延时转码。开启后，录制服务会在录制结束后 24 小时内将录制文件转码生成 MP4 文件，并将 MP4 文件上传至你指定的第三方云存储（不支持七牛云）。该场景仅适用于单流录制模式。</div>
 
 ## <a name="test"></a>testheader
+
 [testtext](https://docs.agora.io/cn/cloud-recording/cloud_recording_individual_mode?platform=RESTful#test)
+
 ## 实现方法
 
 ### 获取 resource ID
@@ -58,13 +61,11 @@ updatedAt: 2021-02-26 08:02:27
 
 单流录制支持的 `clientRequest` 参数包括：
 
-
-
 | 参数                  | 配置内容                         | 是否选填                     |
 | :-------------------- | :------------------------------- | :--------------------------- |
 | `token`               | 动态密钥                         | 如频道使用了 token，则为必填 |
-| `appsCollection`     | 	应用组合  | 如需使用延时转码，则为必填                         |
-| `recordingConfig`     | 媒体流订阅、转码、输出音视频属性 |   必填                       |
+| `appsCollection`      | 应用组合                         | 如需使用延时转码，则为必填   |
+| `recordingConfig`     | 媒体流订阅、转码、输出音视频属性 | 必填                         |
 | `recordingFileConfig` | 录制文件                         | 选填                         |
 | `storageConfig`       | 第三方云存储                     | 必填                         |
 
@@ -84,28 +85,28 @@ https://api.agora.io/v1/apps/<yourappid>/cloud_recording/resourceid/<resourceid>
 
 ```json
 {
-    "uid": "527841",
-    "cname": "httpClient463224",
-    "clientRequest": {
-        "token": "<token if any>",
-        "recordingConfig": {
-            "maxIdleTime": 30,
-            "streamTypes": 2,
-            "channelType": 0, 
-            "videoStreamType": 1, 
-            "subscribeVideoUids": ["123","456"], 
-            "subscribeAudioUids": ["123","456"],
-            "subscribeUidGroup": 0
-        }, 
-        "storageConfig": {
-            "accessKey": "xxxxxxf",
-            "region": 3,
-            "bucket": "xxxxx",
-            "secretKey": "xxxxx",
-            "vendor": 2,
-            "fileNamePrefix": ["directory1","directory2"]
-       }
-   }
+  "uid": "527841",
+  "cname": "httpClient463224",
+  "clientRequest": {
+    "token": "<token if any>",
+    "recordingConfig": {
+      "maxIdleTime": 30,
+      "streamTypes": 2,
+      "channelType": 0,
+      "videoStreamType": 1,
+      "subscribeVideoUids": ["123", "456"],
+      "subscribeAudioUids": ["123", "456"],
+      "subscribeUidGroup": 0
+    },
+    "storageConfig": {
+      "accessKey": "xxxxxxf",
+      "region": 3,
+      "bucket": "xxxxx",
+      "secretKey": "xxxxx",
+      "vendor": 2,
+      "fileNamePrefix": ["directory1", "directory2"]
+    }
+  }
 }
 ```
 
@@ -113,31 +114,31 @@ https://api.agora.io/v1/apps/<yourappid>/cloud_recording/resourceid/<resourceid>
 
 ```json
 {
-    "uid": "527841",
-    "cname": "httpClient463224",
-    "clientRequest": {
-        "token": "<token if any>",
-        "appsCollection": {
-            "combinationPolicy": "postpone_transcoding"
-        }, 
-        "recordingConfig": {
-            "maxIdleTime": 30,
-            "streamTypes": 2,
-            "channelType": 0, 
-            "videoStreamType": 1, 
-            "subscribeVideoUids": ["123","456"], 
-            "subscribeAudioUids": ["123","456"],
-            "subscribeUidGroup": 0
-        }, 
-        "storageConfig": {
-            "accessKey": "xxxxxxf",
-            "region": 3,
-            "bucket": "xxxxx",
-            "secretKey": "xxxxx",
-            "vendor": 2,
-            "fileNamePrefix": ["directory1","directory2"]
-       }
-   }
+  "uid": "527841",
+  "cname": "httpClient463224",
+  "clientRequest": {
+    "token": "<token if any>",
+    "appsCollection": {
+      "combinationPolicy": "postpone_transcoding"
+    },
+    "recordingConfig": {
+      "maxIdleTime": 30,
+      "streamTypes": 2,
+      "channelType": 0,
+      "videoStreamType": 1,
+      "subscribeVideoUids": ["123", "456"],
+      "subscribeAudioUids": ["123", "456"],
+      "subscribeUidGroup": 0
+    },
+    "storageConfig": {
+      "accessKey": "xxxxxxf",
+      "region": 3,
+      "bucket": "xxxxx",
+      "secretKey": "xxxxx",
+      "vendor": 2,
+      "fileNamePrefix": ["directory1", "directory2"]
+    }
+  }
 }
 ```
 
@@ -150,10 +151,10 @@ https://api.agora.io/v1/apps/<yourappid>/cloud_recording/resourceid/<resourceid>
 
 根据录制内容的不同，录制生成的文件如下表所示：
 
-| 录制内容       | 参数设置                            | 录制生成文件                                                 |
-| :------------- | :---------------------------------- | :----------------------------------------------------------- |
-| 仅录制音频     | `streamTypes` 设为 `0`              | 每个 UID 生成一个 M3U8 文件和多个 TS/WebM 文件，TS/WebM 文件内仅存储该 UID 的音频数据。 |
-| 仅录制视频     | `streamTypes` 设为 `1`              | 每个 UID 生成一个 M3U8 文件和多个 TS/WebM 文件，TS/WebM 文件内仅存储该 UID 的视频数据。 |
+| 录制内容       | 参数设置                            | 录制生成文件                                                                                    |
+| :------------- | :---------------------------------- | :---------------------------------------------------------------------------------------------- |
+| 仅录制音频     | `streamTypes` 设为 `0`              | 每个 UID 生成一个 M3U8 文件和多个 TS/WebM 文件，TS/WebM 文件内仅存储该 UID 的音频数据。         |
+| 仅录制视频     | `streamTypes` 设为 `1`              | 每个 UID 生成一个 M3U8 文件和多个 TS/WebM 文件，TS/WebM 文件内仅存储该 UID 的视频数据。         |
 | 同时录制音视频 | （默认设置） `streamTypes` 设为 `2` | 每个 UID 生成两个 M3U8 文件和多个 TS/WebM 文件，TS/WebM 文件分开存储 UID 的音频数据及视频数据。 |
 
 > 单流模式下，Web 端选择 VP8 编码时，云端录制生成的切片文件为 WebM 文件。其他情况下生成的切片文件均为 TS 文件。

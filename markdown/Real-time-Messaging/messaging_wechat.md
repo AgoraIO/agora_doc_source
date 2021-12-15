@@ -3,6 +3,7 @@ title: 发送和接收点对点消息及频道消息
 platform: 微信小程序
 updatedAt: 2021-02-07 02:29:34
 ---
+
 本文介绍如何使用 Agora 微信小程序 SDK 快速实现视频直播。
 
 ## 开发环境要求
@@ -27,10 +28,10 @@ updatedAt: 2021-02-07 02:29:34
 2. 将 SDK 包中到的 `rtm.miniapp.js` 文件复制到你的小程序项目文件夹中。
 3. 使用 `require` 将 RTM 微信小程序 SDK 集成到项目中：
 
-    ```JavaScript
-    // ../../lib/.js 为你的 js 文件本地路径
-    const AgoraRTM = require('../../lib/rtm.miniapp.js');
-    ```
+   ```JavaScript
+   // ../../lib/.js 为你的 js 文件本地路径
+   const AgoraRTM = require('../../lib/rtm.miniapp.js');
+   ```
 
 ## 发送和接收点对点消息及频道消息
 

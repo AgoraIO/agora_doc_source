@@ -3,6 +3,7 @@ title: 云端录制 RESTful API
 platform: All Platforms
 updatedAt: 2021-04-01 04:22:05
 ---
+
 Agora 云端录制服务提供 RESTful API，可以让你直接通过网络请求开启和控制云录制，在自己的网页或应用中灵活使用。
 
 通过 RESTful API，你可以发送网络请求控制云端录制：
@@ -30,7 +31,7 @@ Agora 云端录制服务提供 RESTful API，可以让你直接通过网络请�
 
 在开始云端录制之前，你需要调用该方法获取一个 resource ID。
 
->  一个 resource ID 只能用于一次云端录制服务。
+> 一个 resource ID 只能用于一次云端录制服务。
 
 - 方法：POST
 - 接入点：/v1/apps/\<appid\>/cloud_recording/acquire
@@ -43,18 +44,18 @@ Agora 云端录制服务提供 RESTful API，可以让你直接通过网络请�
 
 该 API 需要在 URL 中传入以下参数。
 
-| 参数    | 类型   | 描述                                                         |
-| :------ | :----- | :----------------------------------------------------------- |
+| 参数    | 类型   | 描述                                                                                                                                                           |
+| :------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `appid` | String | 你的项目使用的 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-name-appid-a-app-id)。必须使用和待录制的频道相同的 App ID。 |
 
 该 API 需要在请求主体中传入以下参数。
 
-| 参数            | 类型   | 描述                                                         |
-| :-------------- | :----- | :----------------------------------------------------------- |
-| `cname`         | String | 待录制的频道名。                                             |
+| 参数            | 类型   | 描述                                                                                     |
+| :-------------- | :----- | :--------------------------------------------------------------------------------------- |
+| `cname`         | String | 待录制的频道名。                                                                         |
 | `uid`           | String | 云端录制使用的用户 ID，32 位无符号整数，取值范围 1 到 (2<sup>32</sup>-1)，需保证唯一性。 |
-| `requestId`     | Number | 该请求的唯一 ID，32 位无符号整数，取值范围 1 到 (2<sup>32</sup>-1)，需保证唯一性。 |
-| `clientRequest` | JSON   | 特定的客户请求参数，对于该方法无需填入任何内容，为一个空的 JSON。 |
+| `requestId`     | Number | 该请求的唯一 ID，32 位无符号整数，取值范围 1 到 (2<sup>32</sup>-1)，需保证唯一性。       |
+| `clientRequest` | JSON   | 特定的客户请求参数，对于该方法无需填入任何内容，为一个空的 JSON。                        |
 
 ### HTTP 请求示例
 
@@ -101,19 +102,19 @@ Body:
 
 该 API 需要在 URL 中传入以下参数。
 
-| 参数         | 类型   | 描述                                                         |
-| :----------- | :----- | :----------------------------------------------------------- |
+| 参数         | 类型   | 描述                                                                                                                                                           |
+| :----------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `appid`      | String | 你的项目使用的 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-name-appid-a-app-id)。必须使用和待录制的频道相同的 App ID。 |
-| `resourceid` | String | 通过 `acquire` 请求获取的 resource ID。                      |
-| `mode`       | String | 录制模式，目前只支持合流模式 `"mix"`。                       |
+| `resourceid` | String | 通过 `acquire` 请求获取的 resource ID。                                                                                                                        |
+| `mode`       | String | 录制模式，目前只支持合流模式 `"mix"`。                                                                                                                         |
 
 该 API 需要在请求主体中传入以下参数。
 
-| 参数            | 类型   | 描述                                                         |
-| :-------------- | :----- | :----------------------------------------------------------- |
-| `cname`         | String | 待录制的频道名。                                             |
+| 参数            | 类型   | 描述                                                                                     |
+| :-------------- | :----- | :--------------------------------------------------------------------------------------- |
+| `cname`         | String | 待录制的频道名。                                                                         |
 | `uid`           | String | 云端录制使用的用户 ID，32 位无符号整数，取值范围 1 到 (2<sup>32</sup>-1)，需保证唯一性。 |
-| `clientRequest` | JSON   | 特定的客户请求参数，对于该请求请参考下面的列表设置。         |
+| `clientRequest` | JSON   | 特定的客户请求参数，对于该请求请参考下面的列表设置。                                     |
 
 `clientRequest` 中需要填写的内容如下：
 
@@ -147,60 +148,63 @@ Body:
       - 0：（默认）悬浮布局。第一个加入频道的用户在屏幕上会显示为大视窗，铺满整个画布，其他用户的视频画面会显示为小视窗，从下到上水平排列，最多 4 行，每行 4 个画面，最多支持共 17 个录制画面。
       - 1：自适应布局。根据用户的数量自动调整每个画面的大小，每个用户的画面大小一致，最多支持 17 个录制画面。
     - 2：垂直布局。指定一个用户在屏幕左侧显示大视窗画面，其他用户的小视窗画面在右侧垂直排列，最多两列，一列 8 个画面，最多支持共 17 个录制画面。
-  
 - `storageConfig`：JSON 类型，第三方云存储的详细设置。
-  - `vendor`：Number 类型，第三方云存储供应商。    
+
+  - `vendor`：Number 类型，第三方云存储供应商。
     - 0：七牛云
     - 1：Amazon S3
   - 2：阿里云
   - `region`：Number 类型，第三方云存储指定的地区信息。
-    当 `vendor` = 0，即第三方云存储为七牛云时：  
-    - 0：Huadong 
-    - 1：Huabei 
-    - 2：Huanan 
-    - 3：Beimei  
+    当 `vendor` = 0，即第三方云存储为七牛云时：
+
+    - 0：Huadong
+    - 1：Huabei
+    - 2：Huanan
+    - 3：Beimei
 
     当 `vendor` = 1，即第三方云存储为 Amazon S3 时：
-    - 0：US_EAST_1 
-    - 1：US_EAST_2 
-    - 2：US_WEST_1 
-    - 3：US_WEST_2 
-    - 4：EU_WEST_1 
-    - 5：EU_WEST_2 
-    - 6：EU_WEST_3 
-    - 7：EU_CENTRAL_1 
-    - 8：AP_SOUTHEAST_1 
-    - 9：AP_SOUTHEAST_2 
-    - 10：AP_NORTHEAST_1 
-    - 11：AP_NORTHEAST_2 
-    - 12：SA_EAST_1 
-    - 13：CA_CENTRAL_1 
-    - 14：AP_SOUTH_1 
-    - 15：CN_NORTH_1 
-    - 16：CN_NORTHWEST_1 
-    - 17：US_GOV_WEST_1 
 
-    当 `vendor` = 2，即第三方云存储为阿里云时： 
-    - 0：CN_Hangzhou 
-    - 1：CN_Shanghai 
-    - 2：CN_Qingdao 
-    - 3：CN_Beijin 
-    - 4：CN_Zhangjiakou 
-    - 5：CN_Huhehaote 
-    - 6：CN_Shenzhen 
-    - 7：CN_Hongkong 
-    - 8：US_West_1 
-    - 9：US_East_1 
-    - 10：AP_Southeast_1 
-    - 11：AP_Southeast_2 
-    - 12：AP_Southeast_3 
-    - 13：AP_Southeast_5 
-    - 14：AP_Northeast_1 
-    - 15：AP_South_1 
-    - 16：EU_Central_1 
-    - 17：EU_West_1 
+    - 0：US_EAST_1
+    - 1：US_EAST_2
+    - 2：US_WEST_1
+    - 3：US_WEST_2
+    - 4：EU_WEST_1
+    - 5：EU_WEST_2
+    - 6：EU_WEST_3
+    - 7：EU_CENTRAL_1
+    - 8：AP_SOUTHEAST_1
+    - 9：AP_SOUTHEAST_2
+    - 10：AP_NORTHEAST_1
+    - 11：AP_NORTHEAST_2
+    - 12：SA_EAST_1
+    - 13：CA_CENTRAL_1
+    - 14：AP_SOUTH_1
+    - 15：CN_NORTH_1
+    - 16：CN_NORTHWEST_1
+    - 17：US_GOV_WEST_1
+
+    当 `vendor` = 2，即第三方云存储为阿里云时：
+
+    - 0：CN_Hangzhou
+    - 1：CN_Shanghai
+    - 2：CN_Qingdao
+    - 3：CN_Beijin
+    - 4：CN_Zhangjiakou
+    - 5：CN_Huhehaote
+    - 6：CN_Shenzhen
+    - 7：CN_Hongkong
+    - 8：US_West_1
+    - 9：US_East_1
+    - 10：AP_Southeast_1
+    - 11：AP_Southeast_2
+    - 12：AP_Southeast_3
+    - 13：AP_Southeast_5
+    - 14：AP_Northeast_1
+    - 15：AP_South_1
+    - 16：EU_Central_1
+    - 17：EU_West_1
     - 18：EU_East_1
-  
+
   - `bucket`：String 类型，第三方云存储的 bucket。
   - `access_key`：String 类型，第三方云存储的 access key。
   - `secret_key`：String 类型，第三方云存储的 secret key。
@@ -226,19 +230,19 @@ Body:
             "videoStreamType":<videoStreamType>,
             "maxIdleTime":<maxIdleTime>,
             "transcodingConfig": {
-                "width": <width>, 
-                "fps": <fps>, 
-                "height": <height>, 
+                "width": <width>,
+                "fps": <fps>,
+                "height": <height>,
                 "bitrate": <bitrate>,
                 "mixedVideoLayout":<mixedVideoLayout>,
                 "maxResolutionUid": "<maxResolutionUid>"
             }
-        }, 
+        },
         "storageConfig": {
-            "bucket":"<bucket>", 
-            "region":<region>, 
-            "accessKey":"<accessKey>", 
-            "secretKey":"<secretKey>", 
+            "bucket":"<bucket>",
+            "region":<region>,
+            "accessKey":"<accessKey>",
+            "secretKey":"<secretKey>",
             "vendor":<vendor>
         }
     }
@@ -273,12 +277,12 @@ Body:
 
 该 API 需要在 URL 中传入以下参数。
 
-| 参数       | 类型   | 描述                                                         |
-| :--------- | :----- | :----------------------------------------------------------- |
+| 参数       | 类型   | 描述                                                                                                                                                           |
+| :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | appid      | String | 你的项目使用的 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-name-appid-a-app-id)。必须使用和待录制的频道相同的 App ID。 |
-| resourceid | String | 通过 `acquire` 请求获取的 resource ID。                      |
-| sid        | String | 通过 `start` 请求获取的录制 ID。                             |
-| mode       | String | 录制模式，目前只支持合流模式 `"mix"`。                       |
+| resourceid | String | 通过 `acquire` 请求获取的 resource ID。                                                                                                                        |
+| sid        | String | 通过 `start` 请求获取的录制 ID。                                                                                                                               |
+| mode       | String | 录制模式，目前只支持合流模式 `"mix"`。                                                                                                                         |
 
 ### HTTP 请求示例
 
@@ -302,7 +306,7 @@ Authorization: Basic ZGJhZDMyNmFkMzQ0NDk2NGEzYzAwNjZiZmYwNTZmNjo2ZjIyMmZhMTkzNWE
   "serverResponse":{
     "fileList": "<fileList>",
     "status": "<status>"
-    }    
+    }
 }
 }
 ```
@@ -336,12 +340,12 @@ Authorization: Basic ZGJhZDMyNmFkMzQ0NDk2NGEzYzAwNjZiZmYwNTZmNjo2ZjIyMmZhMTkzNWE
 
 该 API 需要在 URL 中传入以下参数。
 
-| 参数         | 类型   | 描述                                                         |
-| :----------- | :----- | :----------------------------------------------------------- |
+| 参数         | 类型   | 描述                                                                                                                                                           |
+| :----------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `appid`      | String | 你的项目使用的 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-name-appid-a-app-id)。必须使用和待录制的频道相同的 App ID。 |
-| `resourceid` | String | 通过 `acquire` 请求获取的 resource ID。                      |
-| `sid`        | String | 通过 `start` 请求获取的录制 ID。                             |
-| `mode`       | String | 录制模式，目前只支持合流模式 `"mix"`。                       |
+| `resourceid` | String | 通过 `acquire` 请求获取的 resource ID。                                                                                                                        |
+| `sid`        | String | 通过 `start` 请求获取的录制 ID。                                                                                                                               |
+| `mode`       | String | 录制模式，目前只支持合流模式 `"mix"`。                                                                                                                         |
 
 ### HTTP 请求示例
 

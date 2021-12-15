@@ -3,6 +3,7 @@ title: 原始视频数据
 platform: iOS
 updatedAt: 2020-12-07 04:54:12
 ---
+
 ## 功能描述
 
 音视频传输过程中，我们可以对采集到的音视频数据进行前处理和后处理，获取想要的播放效果。
@@ -14,6 +15,7 @@ Native SDK 通过提供 `IVideoFrameObserver` 类，实现采集、修改原始�
 ## 实现方法
 
 在使用原始数据功能前，请确保你已在项目中完成基本的实时音视频功能，详见如下文档：
+
 - iOS：[一对一通话](start_call_ios)或[互动直播](start_live_ios)
 - macOS：[一对一通话](start_call_ios)或[互动直播](start_live_ios)
 
@@ -42,19 +44,19 @@ public:
     {
         int width = videoFrame.width;
         int height = videoFrame.height;
- 
+
         memset(videoFrame.uBuffer, 128, videoFrame.uStride * height / 2);
         memset(videoFrame.vBuffer, 128, videoFrame.vStride * height / 2);
- 
+
         return true;
     }
-     
+
     // 获取远端用户发送的视频帧
     virtual bool onRenderVideoFrame(unsigned int uid, VideoFrame& videoFrame) override
     {
         return true;
     }
-		
+
 	// 获取本地视频编码前的视频帧
     virtual bool onPreEncodeVideoFrame(VideoFrame& videoFrame) override
     {
@@ -87,15 +89,15 @@ class IVideoFrameObserver
 		 virtual bool onPreEncodeVideoFrame(VideoFrame& videoFrame) { return true; }
 };
 ```
- 
+
 同时，我们在 GitHub 提供一个开源的 [Agora-Plugin-Raw-Data-API-Objective-C](https://github.com/AgoraIO/Advanced-Video/tree/master/Capture-Raw-Video-Data/Agora-Plugin-Raw-Data-API-iOS-Objective-C) 示例项目。你可以前往下载，或参考 [VideoChatViewController.m](https://github.com/AgoraIO/Advanced-Video/blob/master/Capture-Raw-Video-Data/Agora-Plugin-Raw-Data-API-iOS-Objective-C/Agora-Plugin-Raw-Data-API-iOS-Objective-C/VideoChat/VideoChatViewController.m) 文件的源代码。
- 
- ### API 参考
- 
- - [`registerVideoFrameObserver`](./API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html#a5eee4dfd1fd46e4a865feba163f3c5de)
- - [`onCaptureVideoFrame`](./API%20Reference/cpp/classagora_1_1media_1_1_i_video_frame_observer.html#a915c673aec879dcc2b08246bb2fcf49a)
- - [`onRenderVideoFrame`](./API%20Reference/cpp/classagora_1_1media_1_1_i_video_frame_observer.html#a966ed2459b6887c52112af638bc27c14)
- - [`onPreEncodeVideoFrame`](./API%20Reference/cpp/classagora_1_1media_1_1_i_video_frame_observer.html#a2be41cdde19fcc0f365d4eb14a963e1c)
+
+### API 参考
+
+- [`registerVideoFrameObserver`](./API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html#a5eee4dfd1fd46e4a865feba163f3c5de)
+- [`onCaptureVideoFrame`](./API%20Reference/cpp/classagora_1_1media_1_1_i_video_frame_observer.html#a915c673aec879dcc2b08246bb2fcf49a)
+- [`onRenderVideoFrame`](./API%20Reference/cpp/classagora_1_1media_1_1_i_video_frame_observer.html#a966ed2459b6887c52112af638bc27c14)
+- [`onPreEncodeVideoFrame`](./API%20Reference/cpp/classagora_1_1media_1_1_i_video_frame_observer.html#a2be41cdde19fcc0f365d4eb14a963e1c)
 
 ## 开发注意事项
 
@@ -104,18 +106,18 @@ class IVideoFrameObserver
 ```objective-c
 static AgoraVideoFrameObserver* s_videoFrameObserver;
 - (void)addRegiset:(AgoraRtcEngineKit *)agoraKit {
- 
+
     // Agora Engine of C++
     agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)agoraKit.getNativeHandle;
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
     mediaEngine.queryInterface(rtc_engine, agora::AGORA_IID_MEDIA_ENGINE);
- 
+
     if (mediaEngine) {
         s_videoFrameObserver = new AgoraVideoFrameObserver();
         mediaEngine->registerVideoFrameObserver(s_videoFrameObserver);
     }
 }
- 
+
 - (void)cancelRegiset {
     agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)self.agoraKit.getNativeHandle;
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;

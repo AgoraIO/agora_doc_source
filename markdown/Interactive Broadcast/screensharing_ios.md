@@ -3,6 +3,7 @@ title: 屏幕共享
 platform: iOS
 updatedAt: 2020-12-07 04:54:10
 ---
+
 ## 功能描述
 
 在视频通话或互动直播中进行屏幕共享，可以将说话人或主播的屏幕内容，以视频的方式分享给其他说话人或观众观看，以提高沟通效率。
@@ -18,12 +19,10 @@ Agora 在 GitHub 提供一个开源的 iOS 屏幕共享[示例项目](https://gi
 
 以下是示例项目的主要代码文件：
 
-| 文件/文件夹                                                  | 描述                                                         |
-| :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [Agora-ScreenShare-Extension](https://github.com/AgoraIO/API-Examples/tree/master/iOS/Agora-ScreenShare-Extension) | 用于屏幕共享进程的 Extension，主要的代码文件如下：[SampleHandler.swift](https://github.com/AgoraIO/API-Examples/blob/master/iOS/Agora-ScreenShare-Extension/SampleHandler.swift)：使用 Apple ReplayKit 进行屏幕录制。[AgoraUploader.swift](https://github.com/AgoraIO/API-Examples/blob/master/iOS/Agora-ScreenShare-Extension/AgoraUploader.swift)：使用 SDK 自采集功能获取系统录屏数据，发送给频道中其他用户。 |
-| [ScreenShare.swift](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Examples/Advanced/ScreenShare/ScreenShare.swift) | 屏幕共享 app 的主要代码，实现本地用户加入频道和开启屏幕共享的功能。 |
-
-
+| 文件/文件夹                                                                                                                             | 描述                                                                                                                                                                                                                                                                                                                                                                                                             |
+| :-------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Agora-ScreenShare-Extension](https://github.com/AgoraIO/API-Examples/tree/master/iOS/Agora-ScreenShare-Extension)                      | 用于屏幕共享进程的 Extension，主要的代码文件如下：[SampleHandler.swift](https://github.com/AgoraIO/API-Examples/blob/master/iOS/Agora-ScreenShare-Extension/SampleHandler.swift)：使用 Apple ReplayKit 进行屏幕录制。[AgoraUploader.swift](https://github.com/AgoraIO/API-Examples/blob/master/iOS/Agora-ScreenShare-Extension/AgoraUploader.swift)：使用 SDK 自采集功能获取系统录屏数据，发送给频道中其他用户。 |
+| [ScreenShare.swift](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Examples/Advanced/ScreenShare/ScreenShare.swift) | 屏幕共享 app 的主要代码，实现本地用户加入频道和开启屏幕共享的功能。                                                                                                                                                                                                                                                                                                                                              |
 
 ## 实现方法
 
@@ -48,31 +47,28 @@ iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit �
 1. 用 Xcode 打开项目的工程文件，在菜单栏中选择 **Editor > Add Target...。**
 
 2. 在弹出窗口中，选择 iOS 页的 **Broadcast Upload Extension**，点击 **Next**。
-   
+
    ![](https://web-cdn.agora.io/docs-files/1606368184836)
 
 3. 在 **Product Name** 一栏输入 Extension 的名字，如 Agora-ScreenShare，然后点击 **Finish**。
    创建完成后，你会在项目中看到该 Extension 的文件夹，用于存放屏幕共享功能的实现代码。
-   
+
    ![](https://web-cdn.agora.io/docs-files/1606368200676)
-   
 
 4. 打开项目中的 Podfile，为 Extension 添加依赖项：
 
    ```
    target 'Agora-ScreenShare-Extension' do
-   
+
      use_frameworks!
-   
+
      pod 'AgoraRtcEngine_iOS', '~> 3.1.1'
-   
-     # 如果需要媒体流加密功能，使用下面的代码 
+
+     # 如果需要媒体流加密功能，使用下面的代码
      # pod 'AgoraRtcEngine_iOS_Crypto', '~> 3.1.1'
-   
+
    end
    ```
-
-   
 
 5. 在项目根目录下运行 `pod install` 命令，安装依赖项。
 
@@ -96,7 +92,7 @@ func prepareSystemBroadcaster() {
     } else {
         self.showAlert(message: "Minimum support iOS version is 12.0")
     }
-    
+
 }
 ```
 
@@ -104,9 +100,7 @@ func prepareSystemBroadcaster() {
 
 通过 SDK 自定义视频采集的功能，实现将系统录制的屏幕数据发送给远端用户，进行屏幕共享。
 
-为屏幕共享流创建一个 `AgoraRtcEngineKit` 实例，并设置自定义视频采集。 
-
-
+为屏幕共享流创建一个 `AgoraRtcEngineKit` 实例，并设置自定义视频采集。
 
 ```
 // Swift
@@ -125,8 +119,6 @@ private static let sharedAgoraEngine: AgoraRtcEngineKit = {
 }()
 ```
 
-
-
 ### 4. 获取屏幕数据
 
 使用 Apple 原生的 ReplayKit 框架实现屏幕录制。
@@ -137,49 +129,49 @@ private static let sharedAgoraEngine: AgoraRtcEngineKit = {
 
   <div class="alert note"> 示例代码中将频道名固定设置为 ScreenShare；如果你需要让用户输入频道名，必须使用 App Group 将主进程的参数值传递给 Extension。</div>
 
-   ```
-   // Swift
-   override func broadcastStarted(withSetupInfo setupInfo: [String : NSObject]?) {
-       AgoraUploader.startBroadcast(to: "ScreenShare")
-   
-       DispatchQueue.main.async {
-           Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) {[weak self] (timer:Timer) in
-               guard let weakSelf = self else {return}
-               let elapse = Int64(Date().timeIntervalSince1970 * 1000) - weakSelf.lastSendTs
-               print("elapse: \(elapse)")
-               // 视频帧间隔过长时，重新发送上一帧。
-               if(elapse > 300) {
-                   if let buffer = weakSelf.bufferCopy {
-                       weakSelf.processSampleBuffer(buffer, with: .video)
-                   }
-               }
-           }
-       }
-   }
-   ```
+```
+// Swift
+override func broadcastStarted(withSetupInfo setupInfo: [String : NSObject]?) {
+    AgoraUploader.startBroadcast(to: "ScreenShare")
 
-   
+    DispatchQueue.main.async {
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) {[weak self] (timer:Timer) in
+            guard let weakSelf = self else {return}
+            let elapse = Int64(Date().timeIntervalSince1970 * 1000) - weakSelf.lastSendTs
+            print("elapse: \(elapse)")
+            // 视频帧间隔过长时，重新发送上一帧。
+            if(elapse > 300) {
+                if let buffer = weakSelf.bufferCopy {
+                    weakSelf.processSampleBuffer(buffer, with: .video)
+                }
+            }
+        }
+    }
+}
+```
 
 3. 系统采集到数据后发送给 SDK。
-      ```
+
+   ```
    // Swift
    override func processSampleBuffer(_ sampleBuffer: CMSampleBuffer, with sampleBufferType: RPSampleBufferType) {
-       DispatchQueue.main.async {[weak self] in
-           switch sampleBufferType {
-           case .video:
-               if let weakSelf = self {
-                   weakSelf.bufferCopy = sampleBuffer
-                   weakSelf.lastSendTs = Int64(Date().timeIntervalSince1970 * 1000)
-               }
-               // 发送视频 buffer
-               AgoraUploader.sendVideoBuffer(sampleBuffer)
-           @unknown default:
-               break
-           }
-       }
+    DispatchQueue.main.async {[weak self] in
+        switch sampleBufferType {
+        case .video:
+            if let weakSelf = self {
+                weakSelf.bufferCopy = sampleBuffer
+                weakSelf.lastSendTs = Int64(Date().timeIntervalSince1970 * 1000)
+            }
+            // 发送视频 buffer
+            AgoraUploader.sendVideoBuffer(sampleBuffer)
+        @unknown default:
+            break
+        }
+    }
    }
    ```
-    通过 `pushExternalVideoFrame` 实现 `sendVideoBuffer`。
+
+   通过 `pushExternalVideoFrame` 实现 `sendVideoBuffer`。
 
    ```
    // Swift
@@ -188,7 +180,7 @@ private static let sharedAgoraEngine: AgoraRtcEngineKit = {
                else {
            return
        }
-   
+
        var rotation : Int32 = 0
        if let orientationAttachment = CMGetAttachment(sampleBuffer, key: RPVideoSampleOrientationKey as CFString, attachmentModeOut: nil) as? NSNumber {
            if let orientation = CGImagePropertyOrientation(rawValue: orientationAttachment.uint32Value) {
@@ -201,9 +193,9 @@ private static let sharedAgoraEngine: AgoraRtcEngineKit = {
                }
            }
        }
-   
+
        let time = CMTime(seconds: CACurrentMediaTime(), preferredTimescale: 1000)
-   
+
        let frame = AgoraVideoFrame()
        frame.format = 12
        frame.time = time
@@ -223,8 +215,6 @@ private static let sharedAgoraEngine: AgoraRtcEngineKit = {
    }
    ```
 
-   
-
 ### 开发注意事项
 
 - Broadcast Upload Extension 的内存使用限制为 50 MB，请确保屏幕共享的 Extension 内存使用不超过 50 MB。
@@ -232,24 +222,24 @@ private static let sharedAgoraEngine: AgoraRtcEngineKit = {
 - 屏幕共享的进程中，需要调用 `muteAllRemoteVideoStreams` 和 `muteAllRemoteAudioStreams` 方法取消接收远端用户的流，避免重复订阅。
 - 对于主进程来说，屏幕共享流在频道中相当于一个远端用户。为避免不必要的费用，在设置远端用户视图时可以将屏幕共享流除外。
 
- ```
+```
 // Swift
 // 判断是否为屏幕共享流的 uid
 func isScreenShareUid(uid: UInt) -> Bool {
-    return uid >= SCREEN_SHARE_UID_MIN && uid <= SCREEN_SHARE_UID_MAX
+   return uid >= SCREEN_SHARE_UID_MIN && uid <= SCREEN_SHARE_UID_MAX
 }
 
- // 远端用户加入频道回调
+// 远端用户加入频道回调
 func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinedOfUid uid: UInt, elapsed: Int) {
-    LogUtils.log(message: "remote user join: \(uid) \(elapsed)ms", level: .info)
-    
-    // 如果是屏幕共享的 uid，忽略
-    if(isScreenShareUid(uid: uid)) {
-        LogUtils.log(message: "Ignore screen share uid", level: .info)
-        return
-    }
-    
-    // 设置远端用户视图
-    ......
+   LogUtils.log(message: "remote user join: \(uid) \(elapsed)ms", level: .info)
+
+   // 如果是屏幕共享的 uid，忽略
+   if(isScreenShareUid(uid: uid)) {
+       LogUtils.log(message: "Ignore screen share uid", level: .info)
+       return
+   }
+
+   // 设置远端用户视图
+   ......
 }
- ```
+```

@@ -3,6 +3,7 @@ title: 首帧出图 (render the first video frame)
 platform: All Platforms
 updatedAt: 2020-07-03 18:29:42
 ---
+
 首帧出图指视频的第一帧在本地设备上渲染显示。有以下两种情况：
 
 - 本地视频首帧出图：本地摄像头采集视频的第一帧显示在本地设备的本地视图上。

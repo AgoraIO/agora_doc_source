@@ -2,8 +2,9 @@
 title: 为什么 Android 10 无法使用 startAudioMixing 播放背景音乐？
 platform: ["Android"]
 updatedAt: 2020-05-18 17:10:43
-Products: ["Voice","Video","Interactive Broadcast"]
+Products: ["Voice", "Video", "Interactive Broadcast"]
 ---
+
 ## 问题描述
 
 Android 10 手机上，调用 `startAudioMixing` 方法无法播放音乐。无法播放的音乐文件格式有 mp3、mp4 等。

@@ -3,6 +3,7 @@ title: 设置人声效果
 platform: Android
 updatedAt: 2021-03-05 04:57:55
 ---
+
 在社交娱乐应用中，为增加产品的趣味性和互动性，用户常常需要变声和混响效果。Agora 提供多种预置的变声和混响效果，你也可以灵活定制自己想要的声音，比如设置音调、均衡和混响等。
 
 Agora 提供[在线 Demo](https://www.agora.io/cn/audio-demo)，你可以体验变声与混响效果。
@@ -13,8 +14,8 @@ Agora 提供[在线 Demo](https://www.agora.io/cn/audio-demo)，你可以体验�
 
 通过 `setLocalVoiceChanger` 中以下枚举值，你可以实现语聊美声效果：
 
-| 枚举值                               | 描述                                                         |
-| :----------------------------------- | :----------------------------------------------------------- |
+| 枚举值                                 | 描述                                                           |
+| :------------------------------------- | :------------------------------------------------------------- |
 | `GENERAL_BEAUTY_VOICE_MALE_MAGNETIC`   | 磁性（男）。请确保使用该枚举美化男声，否则音频可能会产生失真。 |
 | `GENERAL_BEAUTY_VOICE_FEMALE_FRESH`    | 清新（女）。请确保使用该枚举美化女声，否则音频可能会产生失真。 |
 | `GENERAL_BEAUTY_VOICE_FEMALE_VITALITY` | 活力（女）。请确保使用该枚举美化女声，否则音频可能会产生失真。 |
@@ -35,8 +36,8 @@ rtcEngine.setLocalVoiceChanger(voiceChanger);
 
 通过 `setLocalVoiceChanger` 中以下枚举值，你可以实现音色变换效果：
 
-| 枚举值                  | 描述   |
-| :---------------------- | :----- |
+| 枚举值                    | 描述   |
+| :------------------------ | :----- |
 | `VOICE_BEAUTY_VIGOROUS`   | 浑厚。 |
 | `VOICE_BEAUTY_DEEP`       | 低沉。 |
 | `VOICE_BEAUTY_MELLOW`     | 圆润。 |
@@ -128,8 +129,8 @@ rtcEngine.setLocalVoiceReverbPreset(reverbPreset);
 
 <div class="alert note">为达到更好的人声效果，Agora 推荐使用以 <tt>AUDIO_REVERB_FX</tt> 为前缀的枚举值。</div>
 
-| 枚举值                  | 描述           |
-| :---------------------- | :------------- |
+| 枚举值                    | 描述           |
+| :------------------------ | :------------- |
 | `AUDIO_REVERB_POPULAR`    | 流行（旧版）。 |
 | `AUDIO_REVERB_RNB`        | R&B（旧版）。  |
 | `AUDIO_REVERB_ROCK`       | 摇滚。         |
@@ -235,7 +236,7 @@ rtcEngine.setLocalVoiceReverbPreset(reverbPreset);
 // 设置音调。可以在 [0.5,2.0] 范围内设置。取值越小，则音调越低。默认值为 1.0，表示原始音调
 double pitch = 0.5;
 rtcEngine.setLocalVoicePitch(pitch);
- 
+
 // 设置本地人声均衡波段的中心频率
 // 第 1 个参数为频谱子带索引，取值范围 [0,9]，分别代表 10 个频带，对应的中心频率是 [31,62,125,250,500,1000,2000,4000,8000,16000] Hz
 // 第 2 个参数为每个频率区间的增益值，取值范围 [-15,15]，单位 dB, 默认值为 0
@@ -249,19 +250,19 @@ rtcEngine.setLocalVoiceEqualization(6, -3);
 rtcEngine.setLocalVoiceEqualization(7, -2);
 rtcEngine.setLocalVoiceEqualization(8, -1);
 rtcEngine.setLocalVoiceEqualization(9, 1);
- 
+
 // 原始人声强度，即所谓的 dry signal，取值范围 [-20,10]，单位为 dB
 rtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_DRY_LEVEL, 10);
- 
+
 // 早期反射信号强度，即所谓的 wet signal，取值范围 [-20,10]，单位为 dB
 rtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_WET_LEVEL, 7);
- 
+
 // 所需混响效果的房间尺寸，一般房间越大，混响效果越强。取值范围 [0,100]
 rtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_ROOM_SIZE, 6);
- 
+
 // Wet signal 的初始延迟长度，取值范围 [0,200]，单位为 ms
 rtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_WET_DELAY, 124);
- 
+
 // 混响效果持续的强度，取值范围为 [0,100]，值越大，混响效果越强
 rtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_STRENGTH, 78);
 ```
@@ -269,10 +270,12 @@ rtcEngine.setLocalVoiceReverb(Constants.AUDIO_REVERB_STRENGTH, 78);
 ## API 参考
 
 **预设的人声效果：**
+
 - [`setLocalVoiceChanger`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ade6883c7878b7a596d5b2563462597dd)
 - [`setLocalVoiceReverbPreset`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a10dd25bc8e129512cd6727133b7fc42f)
 
 **自定义人声效果：**
+
 - [`setLocalVoicePitch`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a41b525f9cbf2911594bcda9b20a728c9)
 - [`setLocalVoiceEqualization`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9e3aa79f0d6d8f2ea81907543506d960)
 - [`setLocalVoiceReverb`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4afc32ba68e997e90ba3f128317827fa)

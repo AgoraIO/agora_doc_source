@@ -1,9 +1,23 @@
 ---
 title: 如何处理音视频互动直播中的炸房捣乱现象或行为？
-platform: ["Android","iOS","macOS","Web","Windows","Unity","Cocos Creator","React Native","Flutter","Electron","Wechat"]
+platform:
+  [
+    "Android",
+    "iOS",
+    "macOS",
+    "Web",
+    "Windows",
+    "Unity",
+    "Cocos Creator",
+    "React Native",
+    "Flutter",
+    "Electron",
+    "Wechat",
+  ]
 updatedAt: 2021-02-05 07:08:19
-Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
+Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
 ---
+
 炸房捣乱指业务漏洞导致的房间麦位信息混乱或非法用户利用业务漏洞故意扰乱房间聊天秩序。
 
 炸房捣乱现象或行为常出现在以下场景：
@@ -35,8 +49,8 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 - **方法三**：
 
   开通 Agora [消息通知服务](https://docs-preview.agoralab.co/cn/Agora%20Platform/ncs)并订阅[实时通信事件](https://docs-preview.agoralab.co/cn/Agora%20Platform/rtc_eventtype?platform=All%20Platforms#实时通信)。当收到主播加入频道或用户角色切换为主播事件时，查询业务服务器上维护的上麦用户列表，判断新加入的主播是否合法。
-	
-	<div class="alert note">Agora 消息通知服务目前处于 Beta 阶段，不建议你的核心业务依赖该服务。</div>
+
+  <div class="alert note">Agora 消息通知服务目前处于 Beta 阶段，不建议你的核心业务依赖该服务。</div>
 
 - **方法四：**
 
@@ -74,12 +88,13 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 你可以采取以下措施，加强安全防范，避免业务漏洞，不给非法用户可乘之机：
 
 - 优化 Token 管理。
+
   - 根据频道内用户平均在线时间设置 Token 的有效时间戳 [`privilegeExpiredTs`](https://docs.agora.io/cn/Interactive%20Broadcast/token_server?platform=Android#api-参考) 参数。Token 过期后，所有用户都会被移出频道，非法用户就无法使用该 Token 反复登录频道了。
   - 注册 [`onTokenPrivilegeWillExpire`](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0ecee4bcca9b98dda251a57cfe92adb5) 回调，监听 Token 即将过期事件。当收到该回调时，在服务端生成新的 Token，然后调用 [`renewToken`](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af1428905e5778a9ca209f64592b5bf80) 将新生成的 Token 传给 SDK。
 
 - 防止 [App ID 和 App 证书](https://docs.agora.io/cn/Video/token?platform=All%20Platforms)泄露。
   建议将 App ID 和 App 证书存放在服务端，不要对外公开。如果疑似泄密，你可以更新 App 证书。
-  
+
  <div class="alert info">建议在频道内在线人数处于低峰时更新 App 证书，以避免大规模的用户登录失败。</div>
   
 - 为避免服务端下发的信令消息被劫持，可以建立超时机制，在确认客户端收到消息后，再进行下一步操作。

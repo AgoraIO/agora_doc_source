@@ -2,8 +2,9 @@
 title: 为什么在 Android 设备上切换到其他 app 会改变音频路由？
 platform: ["Android"]
 updatedAt: 2021-02-05 05:16:33
-Products: ["Voice","Video","Interactive Broadcast","live-streaming","Audio Broadcast"]
+Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming", "Audio Broadcast"]
 ---
+
 ## 问题描述
 
 在 Android 设备上使用集成了 Agora RTC SDK 的 app （以下简称 SDK app）进行实时音视频互动，切换到其他有音频输入或输出的 app，再切换回 SDK app 之后 SDK 的音频路由发生改变。
@@ -20,7 +21,7 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming","Audio Broad
 
 ```
 @Override
- 
+
     protected void onResume() {
         super.onResume();
         AudioManager am = getAudioManager();
@@ -36,16 +37,17 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming","Audio Broad
             // 在此处调用 setEnableSpeakerphone 方法，设置音频路由为听筒或扬声器
         }
     }
- 
+
     public AudioManager getAudioManager() {
         Context context = this.getApplicationContext();
         if (context == null) {
             return null;
         }
- 
+
         return (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     }
 ```
 
 ## 相关链接
+
 [为什么 iOS 或 Android 设备连接蓝牙设备后不能通过蓝牙设备接电话？](https://docs.agora.io/cn/Interactive%20Broadcast/faq/ios_bluetooth)

@@ -3,6 +3,7 @@ title: 历史消息
 platform: All Platforms
 updatedAt: 2020-07-03 19:05:03
 ---
+
 历史消息是指用户已发送的点对点消息或频道消息。Agora RTM 服务器会保存历史消息以供查询。你可以使用历史消息 RESTful API 查询历史消息。
 
 ## 相关链接

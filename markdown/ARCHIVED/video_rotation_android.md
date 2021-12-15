@@ -3,6 +3,7 @@ title: 视频采集旋转
 platform: Android
 updatedAt: 2019-09-20 12:07:40
 ---
+
 ## 功能描述
 
 Agora 的视频采集、渲染和输出的流程大致如下：
@@ -10,6 +11,7 @@ Agora 的视频采集、渲染和输出的流程大致如下：
 <img alt="../_images/rotation_encoding_decoding.jpg" src="https://web-cdn.agora.io/docs-files/cn/rotation_encoding_decoding.jpg" style="width: 840px; "/>
 
 因此在视频旋转场景中，我们主要关注两个端：采集端和播放端 。其中：
+
 - 采集端采集并输出视频图像，以及视频相对于 Status Bar 的位置，即旋转信息。
 - 播放端渲染接收到的视频图像，并根据接收到的旋转信息，结合自身 Status Bar 的相对位置，旋转视频。
 
@@ -59,14 +61,13 @@ Status Bar 总是处于垂直地面方向的正上方，和屏幕的朝向无关
 
 下图演示了后置摄像头采集下，FIXED_LANDSCAPE 模式在采集端处于不同角度时的行为：
 
--  采集到的视频是横屏模式：（采集端未对硬件采集的视频进行裁剪处理）
+- 采集到的视频是横屏模式：（采集端未对硬件采集的视频进行裁剪处理）
 
-    <img alt="../_images/rotation_fixed_landscape.jpg" src="https://web-cdn.agora.io/docs-files/cn/rotation_fixed_landscape.jpg" />
+   <img alt="../_images/rotation_fixed_landscape.jpg" src="https://web-cdn.agora.io/docs-files/cn/rotation_fixed_landscape.jpg" />
 
+- 采集到的视频是竖屏模式：（采集端对硬件采集的视频进行裁剪处理，使其成为横屏画面。图中红色虚线部分演示 SDK 对采集到的图像裁剪后留下的部分）
 
--   采集到的视频是竖屏模式：（采集端对硬件采集的视频进行裁剪处理，使其成为横屏画面。图中红色虚线部分演示 SDK 对采集到的图像裁剪后留下的部分）
-
-    <img alt="../_images/rotation_fixed_landscape_cut.jpg" src="https://web-cdn.agora.io/docs-files/cn/rotation_fixed_landscape_cut.jpg" />
+  <img alt="../_images/rotation_fixed_landscape_cut.jpg" src="https://web-cdn.agora.io/docs-files/cn/rotation_fixed_landscape_cut.jpg" />
 
 ### FIXED_PORTRAIT 模式
 
@@ -74,20 +75,19 @@ Status Bar 总是处于垂直地面方向的正上方，和屏幕的朝向无关
 
 下图演示了后置摄像头采集下，FIXED_PORTRAIT 模式在采集端处于不同角度时的行为：
 
--   采集到的视频是竖屏模式：（采集端未对硬件采集的视频进行裁剪处理）
+- 采集到的视频是竖屏模式：（采集端未对硬件采集的视频进行裁剪处理）
 
-    <img alt="../_images/rotation_fixed_portrait.jpg" src="https://web-cdn.agora.io/docs-files/cn/rotation_fixed_portrait.jpg" />
+  <img alt="../_images/rotation_fixed_portrait.jpg" src="https://web-cdn.agora.io/docs-files/cn/rotation_fixed_portrait.jpg" />
 
+- 采集到的视频是横屏模式：（采集端对硬件采集的视频进行裁剪处理，使其成为竖屏画面。图中红色虚线部分演示 SDK 对采集到的图像裁剪后留下的部分）
 
--   采集到的视频是横屏模式：（采集端对硬件采集的视频进行裁剪处理，使其成为竖屏画面。图中红色虚线部分演示 SDK 对采集到的图像裁剪后留下的部分）
+  <img alt="../_images/rotation_fixed_portrait_cut.jpg" src="https://web-cdn.agora.io/docs-files/cn/rotation_fixed_portrait_cut.jpg" />
 
-    <img alt="../_images/rotation_fixed_portrait_cut.jpg" src="https://web-cdn.agora.io/docs-files/cn/rotation_fixed_portrait_cut.jpg" />
-		
 ### API 参考
 
 - [setVideoEncoderConfiguration](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af5f4de754e2c1f493096641c5c5c1d8f)
 - [orientationMode](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_video_encoder_configuration.html#a50e755074e254026b51dfaa2e3dc91d9)
-		
+
 ## 开发注意事项
 
 视频的方向模式通过设置视频属性 `setVideoEncoderConfiguration` 方法实现。该方法的调用时序和示例代码请参考[设置视频属性](video_profile_android)。

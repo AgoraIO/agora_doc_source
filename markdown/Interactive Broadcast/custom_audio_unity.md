@@ -3,6 +3,7 @@ title: 自定义音频采集和渲染
 platform: Unity
 updatedAt: 2020-04-23 11:31:03
 ---
+
 ## 功能介绍
 
 实时音视频传输过程中，Agora SDK 通常会启动默认的音视频模块进行采集和渲染。在以下场景中，你可能会发现默认的音视频模块无法满足开发需求：
@@ -43,23 +44,23 @@ public int PushAudioFrame(AudioFrame audioFrame)
     mRtcEngine.PushAudioFrame(audioFrame);
 }
 
-public struct AudioFrame 
+public struct AudioFrame
 {
     // 音频帧类型。详见 #AUDIO_FRAME_TYPE。
     public AUDIO_FRAME_TYPE type;
     // 每个声道的采样点数。
-    public int samples;  
+    public int samples;
     // 每个采样点的字节数。通常为十六位，即两个字节。
-    public int bytesPerSample;  
+    public int bytesPerSample;
     // 声道数量（如果是立体声，数据是交叉的）
     // - 1: 单声道。
     // - 2: 双声道。
-    public int channels;  
+    public int channels;
     // 采样率。
-    public int samplesPerSec;  
+    public int samplesPerSec;
     // 声音数据缓存区（如果是立体声，数据是交叉存储的）。
     // 缓存区数据大小：buffer = samples × channels × bytesPerSample。
-    public byte[] buffer;  
+    public byte[] buffer;
     // 外部音频帧的渲染时间戳。你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以用于实现音视频同步。
     public long renderTimeMs;
     // 预留参数。
@@ -102,9 +103,10 @@ public int PullAudioFrame(IntPtr audioBuffer, int type, int samples, int bytesPe
 - [`PullAudioFrame`](./API%20Reference/unity/classagora__gaming__rtc_1_1_audio_raw_data_manager.html#a6aa04f6b4cf488d46bc64b39a11d891e)
 
 ## 注意事项
-* 回调函数里处理音频数据要尽量高效，且保证算法稳定，避免影响整个客户端或产生崩溃。
-* 需要设置 `RAW_AUDIO_FRAME_OF_MODE_READ_WRITE` 才可以读写和操作数据。
-* 自定义音频采集和渲染场景中，需要开发者具有采集或渲染音频数据的能力：
 
-	- 自定义音频采集场景中，你需要自行管理音频数据的采集和处理。
-	- 自定义音频渲染场景中，你需要自行管理音频数据的处理和播放。
+- 回调函数里处理音频数据要尽量高效，且保证算法稳定，避免影响整个客户端或产生崩溃。
+- 需要设置 `RAW_AUDIO_FRAME_OF_MODE_READ_WRITE` 才可以读写和操作数据。
+- 自定义音频采集和渲染场景中，需要开发者具有采集或渲染音频数据的能力：
+
+  - 自定义音频采集场景中，你需要自行管理音频数据的采集和处理。
+  - 自定义音频渲染场景中，你需要自行管理音频数据的处理和播放。

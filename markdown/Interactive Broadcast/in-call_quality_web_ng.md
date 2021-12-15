@@ -3,10 +3,13 @@ title: 通话中质量监测
 platform: Web
 updatedAt: 2021-03-10 04:00:48
 ---
+
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 Web SDK 3.x 或更早版本，请查看<a href="./in-call_quality_web?platform=Web">通话中质量监测</a>。</li></div>
 
 ## 功能描述
+
 Agora Web SDK 支持获取以下统计数据来检测通话质量：
+
 - Last mile 上下行网络质量
 - 当前通话的统计数据
 - 本地轨道的统计数据
@@ -40,9 +43,9 @@ Last mile 是指你的设备到 Agora 边缘服务器的网络。
 | 6    | 完全无法沟通。                                   |
 
 ```js
-client.on("network-quality", (stats) => {
-    console.log("downlinkNetworkQuality", stats.downlinkNetworkQuality);
-    console.log("uplinkNetworkQuality", stats.uplinkNetworkQuality);
+client.on("network-quality", stats => {
+  console.log("downlinkNetworkQuality", stats.downlinkNetworkQuality);
+  console.log("uplinkNetworkQuality", stats.uplinkNetworkQuality);
 });
 ```
 
@@ -71,15 +74,15 @@ const localStats = {
 
 ### 获取远端音视频轨道的统计数据
 
-调用 [AgoraRTCClient.getRemoteAudioStats](./API%20Reference/web_ng/interfaces/iagorartcclient.html#getremoteaudiostats) 和 [AgoraRTCClient.getRemoteVideoStats](./API%20Reference/web_ng/interfaces/iagorartcclient.html#getremotevideostats) 方法获取订阅的远端音频轨道和远端视频轨道的统计数据。其中，你可参考下图理解 `end2EndDelay`、`receiveDelay 和 ``transportDelay` 字段，其他数据说明详见 [RemoteAudioTrackStats](./API%20Reference/web_ng/interfaces/remoteaudiotrackstats.html) 和 [RemoteVideoTrackStats](./API%20Reference/web_ng/interfaces/remotevideotrackstats.html)。
+调用 [AgoraRTCClient.getRemoteAudioStats](./API%20Reference/web_ng/interfaces/iagorartcclient.html#getremoteaudiostats) 和 [AgoraRTCClient.getRemoteVideoStats](./API%20Reference/web_ng/interfaces/iagorartcclient.html#getremotevideostats) 方法获取订阅的远端音频轨道和远端视频轨道的统计数据。其中，你可参考下图理解 `end2EndDelay`、` receiveDelay 和 ``transportDelay ` 字段，其他数据说明详见 [RemoteAudioTrackStats](./API%20Reference/web_ng/interfaces/remoteaudiotrackstats.html) 和 [RemoteVideoTrackStats](./API%20Reference/web_ng/interfaces/remotevideotrackstats.html)。
 
 ![](https://web-cdn.agora.io/docs-files/1615347404333)
 
-| 字段             | 描述                                                         |
-| :--------------- | :----------------------------------------------------------- |
+| 字段             | 描述                                                                                                 |
+| :--------------- | :--------------------------------------------------------------------------------------------------- |
 | `end2EndDelay`   | 端到端延时（毫秒），从远端采集音频或视频到本地播放音频或视频的延时。图中阶段 1 + 2 + 3 + 4 + 5 + 6。 |
-| `receiveDelay`   | 接收音频延时（毫秒），从远端发送音频或视频到本地播放音频或视频的延时，图中阶段 2 + 3 + 4 + 5 + 6。 |
-| `transportDelay` | 传输延时（毫秒），从远端发送音频或视频到本地接收音频或视频的延时。图中阶段 2 + 3 + 4。 |
+| `receiveDelay`   | 接收音频延时（毫秒），从远端发送音频或视频到本地播放音频或视频的延时，图中阶段 2 + 3 + 4 + 5 + 6。   |
+| `transportDelay` | 传输延时（毫秒），从远端发送音频或视频到本地接收音频或视频的延时。图中阶段 2 + 3 + 4。               |
 
 ```
 const remoteTracksStats = {

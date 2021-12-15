@@ -3,6 +3,7 @@ title: 跨直播间连麦
 platform: Web
 updatedAt: 2021-03-05 09:07:09
 ---
+
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 Web SDK 3.x 或更早版本，请查看<a href="./media_relay_web?platform=Web">跨直播间连麦</a>。</li></div>
 
 ## 功能描述
@@ -27,17 +28,20 @@ Agora Web SDK 提供如下跨频道媒体流转发接口，支持将源频道中
 - `stopChannelMediaRelay`
 
 > API 调用顺序要求：
+>
 > - `startChannelMediaRelay` 方法必须在调用 `AgoraRTCClient.publish` 发布之后调用。
 > - `updateChannelMediaRelay` 方法必须在 `startChannelMediaRelay` 后调用。
 
 在跨频道媒体流转发过程中，SDK 会通过 `AgoraRTCClient.on("channel-media-relay-state")` 回调报告媒体流转发的状态码 `state` 和错误码 `code`， 通过 `AgoraRTCClient.on("channel-media-relay-event")` 回调报告媒体流转发的事件码。
 
 > 注意：
+>
 > - 一个频道内可以有多个主播转发媒体流。哪个主播调用 `startChannelMediaRelay` 方法，SDK 就转发哪个主播的流。
 > - 调用 `startChannelMediaRelay` 或 `updateChannelMediaRelay` 成功跨频道连麦后，目标频道的用户会收到 `AgoraRTCClient.on("user-published")` 回调。
 > - 跨频道连麦中，如果目标频道的主播掉线或离开频道，源频道的主播会收到 `AgoraRTCClient.on("user-left")` 回调。
 
 ### 示例代码
+
 以下示例代码中的 `client` 是指通过 `AgoraRTC.createClient` 创建的本地客户端对象。
 
 **配置跨频道媒体流转发**
@@ -46,51 +50,62 @@ Agora Web SDK 提供如下跨频道媒体流转发接口，支持将源频道中
 const channelMediaConfig = new AgoraRTC.ChannelMediaRelayConfiguration();
 // 设置源频道信息。
 channelMediaConfig.setSrcChannelInfo({
- channelName: "srcChannel",
- uid: 0,
- token: "yourSrcToken",
-})
+  channelName: "srcChannel",
+  uid: 0,
+  token: "yourSrcToken",
+});
 // 设置目标频道信息，可多次调用，最多设置 4 个目标频道。
 channelMediaConfig.addDestChannelInfo({
- channelName: "destChannel1",
- uid: 123,
- token: "yourDestToken",
-})
+  channelName: "destChannel1",
+  uid: 123,
+  token: "yourDestToken",
+});
 ```
 
 **开始跨频道媒体流转发**
 
 ```js
-client.startChannelMediaRelay(channelMediaConfig).then(() => {
-  console.log(`startChannelMediaRelay success`);
-}).catch(e => {
-  console.log(`startChannelMediaRelay failed`, e);
-})
+client
+  .startChannelMediaRelay(channelMediaConfig)
+  .then(() => {
+    console.log(`startChannelMediaRelay success`);
+  })
+  .catch(e => {
+    console.log(`startChannelMediaRelay failed`, e);
+  });
 ```
 
 **更新媒体流转发频道**
 
 ```js
 // 删除一个目标频道。
-channelMediaConfig.removeDestChannelInfo("destChannel1")
+channelMediaConfig.removeDestChannelInfo("destChannel1");
 // 更新跨频道媒体流转发设置。
-client.updateChannelMediaRelay(channelMediaConfig).then(() => {
-  console.log("updateChannelMediaRelay success");
-}).catch(e => {
-  console.log("updateChannelMediaRelay failed", e);
-})
+client
+  .updateChannelMediaRelay(channelMediaConfig)
+  .then(() => {
+    console.log("updateChannelMediaRelay success");
+  })
+  .catch(e => {
+    console.log("updateChannelMediaRelay failed", e);
+  });
 ```
 
 **停止跨频道媒体流转发**
+
 ```js
-client.stopChannelMediaRelay().then(() => {
-  console.log("stop media relay success");
-}).catch(e => {
-  console.log("stop media relay failed", e);
-})
+client
+  .stopChannelMediaRelay()
+  .then(() => {
+    console.log("stop media relay success");
+  })
+  .catch(e => {
+    console.log("stop media relay failed", e);
+  });
 ```
 
 ### API 参考
+
 - [startChannelMediaRelay](./API%20Reference/web/v4.2.1/interfaces/iagorartcclient.html#startchannelmediarelay)
 - [updateChannelMediaRelay](./API%20Reference/web/v4.2.1/interfaces/iagorartcclient.html#updatechannelmediarelay)
 - [stopChannelMediaRelay](./API%20Reference/web/v4.2.1/interfaces/iagorartcclient.html#stopchannelmediarelay)
@@ -98,6 +113,7 @@ client.stopChannelMediaRelay().then(() => {
 - [`AgoraRTCClient.on("channel-media-relay-event")`](./API%20Reference/web/v4.2.1/interfaces/iagorartcclient.html#event_channel_media_relay_event)
 
 ## 开发注意事项
+
 - 该功能最多支持将媒体流转发至 4 个目标频道。转发过程中，如果想添加或删除目标频道，可以调用 `updateChannelMediaRelay` 方法。
 - 该功能不支持 String 型用户名。
 - 在设置源频道信息（`setSrcChannelInfo`）时，请确保 `uid` 设置与当前主播的 UID 不同。我们建议将这里的 `uid` 设置为 `0`，由服务器随机分配。

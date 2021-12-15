@@ -2,15 +2,16 @@
 title: 如何处理音频或视频轨道停止导致的无声或黑屏？
 platform: ["Web"]
 updatedAt: 2021-03-19 06:20:32
-Products: ["Voice","Video","live-streaming","Interactive Broadcast"]
+Products: ["Voice", "Video", "live-streaming", "Interactive Broadcast"]
 ---
+
 ## 问题描述
 
 通话或直播过程中，Web 发送端突然无声或黑屏。查阅日志发现是由音频或视频轨道停止 (Audio Track Ended/Video Track Ended) 导致的。
 
 ## 问题原因
 
-轨道停止很可能是由于设备松动、接触不良或拔出。 
+轨道停止很可能是由于设备松动、接触不良或拔出。
 
 ## 解决方案
 

@@ -1,9 +1,10 @@
 ---
 title: Offline-如何检测通话质量？
-platform: ["Android","iOS","macOS","Windows","Unity","electron"]
+platform: ["Android", "iOS", "macOS", "Windows", "Unity", "electron"]
 updatedAt: 2020-07-09 21:25:37
-Products: ["Voice","Video","Interactive Broadcast","Audio Broadcast"]
+Products: ["Voice", "Video", "Interactive Broadcast", "Audio Broadcast"]
 ---
+
 通话质量检测可以从通话前和通话中两个维度来梳理。
 
 ## 通话前
@@ -28,6 +29,7 @@ Products: ["Voice","Video","Interactive Broadcast","Audio Broadcast"]
 测试过程中，用户先说一段话，声音会在设置的时间间隔后放出来。如果用户能正常听到自己刚才说的话，就表示系统音频设备和网络连接都是正常的。
 
 ## 通话中
+
 通话过程中，SDK 会每 2 秒触发以下回调。如果是反应远端用户的网络质量，则如果远端有多个用户或主播，则每 2 秒触发多个相应的回调。
 
 ### 网络及传输质量透明

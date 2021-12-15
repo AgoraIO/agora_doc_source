@@ -3,6 +3,7 @@ title: 媒体播放器组件
 platform: iOS
 updatedAt: 2021-03-18 04:04:20
 ---
+
 ## 功能描述
 
 媒体播放器组件（MediaPlayer Kit）是一款功能强大的播放器，支持播放本地或在线的媒体资源。通过该播放器，你可以本地播放媒体资源，或将媒体资源同步分享给 Agora 频道内的远端用户观看/收听。
@@ -40,49 +41,49 @@ updatedAt: 2021-03-18 04:04:20
 6. 进入 **TARGETS > Project Name > Signing & Capabilities** 菜单，选择 **Automatically manage signing**，并在弹出菜单中点击 **Enable Automatic**。
 </details>
 
-
 ### 集成 MediaPlayer Kit
 
-1. 前往 [SDK 下载页面](https://docs.agora.io/cn/AgoraPlatform/downloads)，获取最新版 MediaPlayer Kit，然后解压。
+1.  前往 [SDK 下载页面](https://docs.agora.io/cn/AgoraPlatform/downloads)，获取最新版 MediaPlayer Kit，然后解压。
 
-2. 将 libs 文件夹内的 `AgoraMediaPlayer.framework` 文件复制到项目文件夹下。
-3. 在 **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** 菜单中，将 `AgoraMediaPlayer.framework` 的状态修改为 **Embed & Sign**。
+2.  将 libs 文件夹内的 `AgoraMediaPlayer.framework` 文件复制到项目文件夹下。
+3.  在 **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** 菜单中，将 `AgoraMediaPlayer.framework` 的状态修改为 **Embed & Sign**。
 
-4. 打开 Xcode，进入 **TARGETS > Project Name > Build Phases > Link Binary with Libraries** 菜单，点击 + 添加如下库。在添加 `AgoraMediaPlayer.framework` 文件时，还需在点击 **+** 后点击 Add Other…，找到本地文件并打开。
+4.  打开 Xcode，进入 **TARGETS > Project Name > Build Phases > Link Binary with Libraries** 菜单，点击 + 添加如下库。在添加 `AgoraMediaPlayer.framework` 文件时，还需在点击 **+** 后点击 Add Other…，找到本地文件并打开。
 
-   - AgoraMediaPlayer.framework
+    - AgoraMediaPlayer.framework
 
-   - Accelerate.framework
+    - Accelerate.framework
 
-   - AudioToolbox.framework
+    - AudioToolbox.framework
 
-   - AVFoundation.framework
+    - AVFoundation.framework
 
-   - CoreMedia.framework
+    - CoreMedia.framework
 
-   - CoreML.framework
+    - CoreML.framework
 
-   - CoreTelephony.framework
+    - CoreTelephony.framework
 
-   - libc++.tbd
+    - libc++.tbd
 
-   - libresolv.tbd
+    - libresolv.tbd
 
-   - SystemConfiguration.framework
+    - SystemConfiguration.framework
 
-   - VideoToolbox.framework
+    - VideoToolbox.framework
 
-	添加后：
-![](https://web-cdn.agora.io/docs-files/1583119068826)
+      添加后：
 
-	> 如需支持 iOS 11 或更低版本的设备，请在 Xcode 中将对 **CoreML.framework** 的依赖设为 **Optional**。
+    ![](https://web-cdn.agora.io/docs-files/1583119068826)
 
-5. 根据场景需要，在 **info.plist** 文件中，点击 **+** 图标开始添加如下内容，获取相应的设备权限：
+        > 如需支持 iOS 11 或更低版本的设备，请在 Xcode 中将对 **CoreML.framework** 的依赖设为 **Optional**。
 
-| Key | Type | Value |
-| ---------------- | ---------------- | ---------------- |
-| Privacy - Microphone Usage Description      | String      | 使用麦克风的目的，例如：for a video call。      |
-| Privacy - Camera Usage Description      | String      | 使用摄像头的目的，例如：for a video call。      |
+5.  根据场景需要，在 **info.plist** 文件中，点击 **+** 图标开始添加如下内容，获取相应的设备权限：
+
+| Key                                    | Type   | Value                                      |
+| -------------------------------------- | ------ | ------------------------------------------ |
+| Privacy - Microphone Usage Description | String | 使用麦克风的目的，例如：for a video call。 |
+| Privacy - Camera Usage Description     | String | 使用摄像头的目的，例如：for a video call。 |
 
 ### 集成 Native SDK
 
@@ -98,6 +99,7 @@ updatedAt: 2021-03-18 04:04:20
 ## 实现方法
 
 <a name="local"></a>
+
 ### 本地播放媒体资源
 
 集成 MediaPlayer Kit 后，参考如下步骤实现本地播放功能。
@@ -156,7 +158,7 @@ _mediaPlayerKit = [[AgoraMediaPlayer alloc] initWithDelegate:self];
 [_mediaPlayerKit stop];
 [_mediaPlayerKit seekToPosition:value];
 [_mediaPlayerKitadjustVolume:volume];
-  
+
  //重写代理方法 获得播放器的事件回调
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
        didChangedToState:(AgoraMediaPlayerState)state
@@ -164,36 +166,36 @@ _mediaPlayerKit = [[AgoraMediaPlayer alloc] initWithDelegate:self];
 {
      //todo
 }
- 
- 
+
+
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
     didChangedToPosition:(NSInteger)position;
 {
 }
- 
- 
+
+
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
           didOccurEvent:(AgoraMediaPlayerEvent)event;
 {
      //todo
 }
- 
- 
+
+
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
           didReceiveData:(NSString *)data
                   length:(NSInteger)length;
 {
      //todo
 }
- 
- 
+
+
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
     didReceiveVideoFrame:(CVPixelBufferRef
 {
     //todo
 }
- 
- 
+
+
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
     didReceiveAudioFrame:(CMSampleBufferRef)
 {
@@ -265,7 +267,9 @@ if(!_defaultCamera)
 ```
 
 ## 获取日志文件
+
 日志文件包含媒体播放器组件运行时产生的所有日志。日志文件的输出地址为 `App Sandbox/Library/caches/agoraplayer.log`。
 
 ## API 文档
+
 详见 [API 文档](./API%20Reference/mediaplayer_oc/docs/headers/MediaPlayer-Kit-Objective-C-API-Overview.html)

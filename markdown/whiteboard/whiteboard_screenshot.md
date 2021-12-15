@@ -3,6 +3,7 @@ title: 截图管理
 platform: Android
 updatedAt: 2021-03-31 09:02:03
 ---
+
 互动白板服务端可以对指定场景或指定场景组下的所有场景进行截图，生成 PNG 格式的图片并上传至你提供的第三方云存储空间中。
 
 在调用截图管理 API 之前，请确保：
@@ -26,25 +27,25 @@ updatedAt: 2021-03-31 09:02:03
 
 该 API 需要在 HTTP 请求头部填入以下参数：
 
-| 参数     | 类型   | 是否必需 | 描述                                                         |
-| :------- | :----- | :------- | :----------------------------------------------------------- |
-| `token`    | string | 必需     | 拥有 `write` 或 `admin` 权限的 SDK Token 或 Room Token。</br>SDK Token 可通过以下方式获取：<li>在 Agora 控制台生成，详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token)。</li><li>调用服务端 RESTful API， 详见[生成 SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）)。</li><li>在 app 服务端用代码生成，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li>Room Token 可以通过以下方式获取：<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>在 app 服务端用代码生成 Token，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li>  |
-| `region` | string | 可选     | 指定处理该请求的数据中心，取值如下：<li>（默认值）`cn-hz`：中国杭州，服务区覆盖东亚、东南亚、以及其他数据中心未覆盖的地区。</li><li>`us-sv`：美国硅谷，服务区覆盖北美洲、南美洲。</li> 详见[数据中心与全球化](https://developer.netless.link/javascript-zh/home/region-and-global)。|
+| 参数     | 类型   | 是否必需 | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| :------- | :----- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `token`  | string | 必需     | 拥有 `write` 或 `admin` 权限的 SDK Token 或 Room Token。</br>SDK Token 可通过以下方式获取：<li>在 Agora 控制台生成，详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token)。</li><li>调用服务端 RESTful API， 详见[生成 SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）)。</li><li>在 app 服务端用代码生成，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li>Room Token 可以通过以下方式获取：<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>在 app 服务端用代码生成 Token，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li> |
+| `region` | string | 可选     | 指定处理该请求的数据中心，取值如下：<li>（默认值）`cn-hz`：中国杭州，服务区覆盖东亚、东南亚、以及其他数据中心未覆盖的地区。</li><li>`us-sv`：美国硅谷，服务区覆盖北美洲、南美洲。</li> 详见[数据中心与全球化](https://developer.netless.link/javascript-zh/home/region-and-global)。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ### 请求路径
 
 该 API 需要在 URL 中传入以下参数：
 
-| 参数   | 类型   | 是否必需 | 描述                                                         |
-| :----- | :----- | :------- | :----------------------------------------------------------- |
+| 参数   | 类型   | 是否必需 | 描述                                                                                                                                                                                                                                                   |
+| :----- | :----- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `uuid` | string | 必需     | 房间的 UUID, 即房间的全局唯一标识符，可通过调用[创建房间 API](/cn/whiteboard/whiteboard_room_management?platform=RESTful#创建房间（post）) 或[获取房间信息 API](/cn/whiteboard/whiteboard_room_management?platform=RESTful#获取房间信息（get）) 获取。 |
 
 ### 请求包体
 
-| 参数     | 类型   | 是否必需 | 描述                                                         |
-| :------- | :----- | :------- | :----------------------------------------------------------- |
-| `width`  | number | 必需     | 获取截图的宽度，单位为像素。                                 |
-| `height` | number | 必需     | 获取截图的高度，单位为像素。                                 |
+| 参数     | 类型   | 是否必需 | 描述                                                                     |
+| :------- | :----- | :------- | :----------------------------------------------------------------------- |
+| `width`  | number | 必需     | 获取截图的宽度，单位为像素。                                             |
+| `height` | number | 必需     | 获取截图的高度，单位为像素。                                             |
 | `path`   | string | 可选     | 需要截图的场景路径，以 `/` 开头。如果不传，默认获取 `/init` 场景的截图。 |
 
 ### 请求示例
@@ -54,7 +55,7 @@ POST /v5/rooms/a7e04xxxxx7d1eca69/screenshots
 Host: api.netless.link
 Content-Type: application/json
 token: NETLESSSDK_YWs9xxxxxxzA5ZGM2MjRi
- 
+
 {
     "width": 640,
     "height": 480
@@ -104,25 +105,25 @@ token: NETLESSSDK_YWs9xxxxxxzA5ZGM2MjRi
 
 该 API 需要在 HTTP 请求头部填入以下参数：
 
-| 参数     | 类型   | 是否必需 | 描述                                                         |
-| :------- | :----- | :------- | :----------------------------------------------------------- |
-| `token`    | string | 必需     | 拥有 `write` 或 `admin` 权限的 SDK Token 或 Room Token。</br>SDK Token 可通过以下方式获取：<li>在 Agora 控制台生成，详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token)。</li><li>调用服务端 RESTful API， 详见[生成 SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）)。</li><li>在 app 服务端用代码生成，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li>Room Token 可以通过以下方式获取：<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>在 app 服务端用代码生成 Token，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li>  |
-| `region` | string | 可选     | 指定处理该请求的数据中心，取值如下：<li>（默认值）`cn-hz`：中国杭州，服务区覆盖东亚、东南亚、以及其他数据中心未覆盖的地区。</li><li>`us-sv`：美国硅谷，服务区覆盖北美洲、南美洲。</li>详见[数据中心与全球化](https://developer.netless.link/javascript-zh/home/region-and-global)。 |
+| 参数     | 类型   | 是否必需 | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| :------- | :----- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `token`  | string | 必需     | 拥有 `write` 或 `admin` 权限的 SDK Token 或 Room Token。</br>SDK Token 可通过以下方式获取：<li>在 Agora 控制台生成，详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token)。</li><li>调用服务端 RESTful API， 详见[生成 SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）)。</li><li>在 app 服务端用代码生成，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li>Room Token 可以通过以下方式获取：<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>在 app 服务端用代码生成 Token，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li> |
+| `region` | string | 可选     | 指定处理该请求的数据中心，取值如下：<li>（默认值）`cn-hz`：中国杭州，服务区覆盖东亚、东南亚、以及其他数据中心未覆盖的地区。</li><li>`us-sv`：美国硅谷，服务区覆盖北美洲、南美洲。</li>详见[数据中心与全球化](https://developer.netless.link/javascript-zh/home/region-and-global)。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 ### 请求路径
 
 该 API 需要在 URL 中传入以下参数：
 
-| 参数   | 类型   | 是否必需 | 描述                                                         |
-| :----- | :----- | :------- | :----------------------------------------------------------- |
+| 参数   | 类型   | 是否必需 | 描述                                                                                                                                                                                                                                                   |
+| :----- | :----- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `uuid` | string | 必需     | 房间的 UUID, 即房间的全局唯一标识符，可通过调用[创建房间 API](/cn/whiteboard/whiteboard_room_management?platform=RESTful#创建房间（post）) 或[获取房间信息 API](/cn/whiteboard/whiteboard_room_management?platform=RESTful#获取房间信息（get）) 获取。 |
 
 #### 请求包体
 
-| 参数     | 类型   | 是否必需 | 描述                                                         |
-| :------- | :----- | :------- | :----------------------------------------------------------- |
-| `width`  | number | 必需     | 截图的宽度，单位为像素。                                     |
-| `height` | number | 必需     | 截图的高度，单位为像素。                                     |
+| 参数     | 类型   | 是否必需 | 描述                                                                  |
+| :------- | :----- | :------- | :-------------------------------------------------------------------- |
+| `width`  | number | 必需     | 截图的宽度，单位为像素。                                              |
+| `height` | number | 必需     | 截图的高度，单位为像素。                                              |
 | `path`   | string | 必需     | 场景组的路径地址，以 `/` 开头。如果不传，则对当前所在场景组进行截图。 |
 
 #### 请求示例
@@ -132,7 +133,7 @@ POST /v5/rooms/faed3130727911ebaea37759ee91947c/screenshot-list
 Host: api.netless.link
 token: NETLESSSDK_YWsxxxxxxYjc0
 Content-Type: application/json
- 
+
 {
     "width": 640,
     "height": 480,

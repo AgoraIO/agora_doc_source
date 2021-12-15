@@ -3,6 +3,7 @@ title: 收集崩溃日志
 platform: Linux
 updatedAt: 2019-12-24 14:04:06
 ---
+
 ## 概述
 
 Agora 建议你在集成本地服务端录制前，使用我们提供的 `create_core.sh` 脚本开启系统 core dump 功能，以便在后续录制出现问题时，能够快速调查和定位问题，提高问题解决效率。
@@ -21,20 +22,20 @@ Agora 建议你在集成本地服务端录制前，使用我们提供的 `create
 
 打开终端，运行以下命令执行 `create_core.sh` 脚本打开 core dump：
 
-~~~
+```
 sudo ./create_core.sh
-~~~
+```
 
-生成的 core 文件将位于 `/var/corefile` 目录下，文件名格式为 “core-程序文件名-生成core文件时收到的信号-进程用户ID-进程用户组ID-进程号-生成core文件的时间戳”
+生成的 core 文件将位于 `/var/corefile` 目录下，文件名格式为 “core-程序文件名-生成 core 文件时收到的信号-进程用户 ID-进程用户组 ID-进程号-生成 core 文件的时间戳”
 
 如果你是在 docker 中跑录制进程，则运行以下命令：
 
-~~~
+```
 docker run --ulimit core=-1 --security-opt seccomp=unconfined --privileged=true
-~~~
+```
 
-| 参数                              | 描述                         |
-|-----------------------------------|------------------------------|
+| 参数                                | 描述                         |
+| ----------------------------------- | ---------------------------- |
 | `--ulimit core=-1`                  | 不限制 coredump 大小         |
 | `--security-opt seccomp=unconfined` | 允许容器执行全部系统调用     |
 | `--privileged=true`                 | 允许 createdump 访问其他进程 |

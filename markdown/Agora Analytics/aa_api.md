@@ -3,6 +3,7 @@ title: 水晶球 RESTful API (Beta)
 platform: All Platforms
 updatedAt: 2021-03-11 08:31:23
 ---
+
 水晶球现在提供 RESTful API，可以让你直接通过网络请求获取水晶球里的数据，在自己的网页或应用中灵活使用。
 
 在阅读本文之前，我们推荐你先在 [Dashboard](https://dashboard.agora.io) 中试用水晶球的界面，以便对各项参数和数据指标有更直观的了解，详情可参考[水晶球](./aa_guide)。
@@ -65,11 +66,11 @@ updatedAt: 2021-03-11 08:31:23
 
 该 API 需要在 URL 中传入以下参数指定搜索通话的条件。
 
-| 参数       | 类型   | 描述                                                         |
-| ---------- | ------ | ------------------------------------------------------------ |
-| `start_ts` | Number | 搜索的时间范围起点。Unix 时间戳 （秒）。                     |
-| `end_ts`   | Number | 搜索的时间范围终点。Unix 时间戳（秒）。                      |
-| `cname`    | String | （可选）频道名称。                                           |
+| 参数       | 类型   | 描述                                                                                                                      |
+| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------- |
+| `start_ts` | Number | 搜索的时间范围起点。Unix 时间戳 （秒）。                                                                                  |
+| `end_ts`   | Number | 搜索的时间范围终点。Unix 时间戳（秒）。                                                                                   |
+| `cname`    | String | （可选）频道名称。                                                                                                        |
 | `appid`    | String | 你的项目使用的 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-name-appid-a-app-id)。 |
 
 #### HTTP 请求示例
@@ -85,19 +86,18 @@ Authorization: Basic ZGJhZDMyNmFkMzQ0NDk2NGEzYzAwNjZiZmYwNTZmNjo2ZjIyMmZhMTkzNWE
 
 ```json
 {
-"code": 200,
-"message": "",
-"has_more": false,
-"call_lists": 
-[
-  {
-  "call_id": "cxxxxxxxxxxxxxxxxxxxx",
-  "cname":   "cname1",
-  "created_ts": 1547448383,
-  "destroyed_ts": 1547448483,
-  "finished": true
-  }
-]
+  "code": 200,
+  "message": "",
+  "has_more": false,
+  "call_lists": [
+    {
+      "call_id": "cxxxxxxxxxxxxxxxxxxxx",
+      "cname": "cname1",
+      "created_ts": 1547448383,
+      "destroyed_ts": 1547448483,
+      "finished": true
+    }
+  ]
 }
 ```
 
@@ -108,7 +108,7 @@ Authorization: Basic ZGJhZDMyNmFkMzQ0NDk2NGEzYzAwNjZiZmYwNTZmNjo2ZjIyMmZhMTkzNWE
   - `call_id`: String 类型，通话的唯一标识。
   - `cname`: String 类型，频道名称。
   - `created_ts`: Number 类型，通话开始的时间。Unix 时间戳（秒）。
-  - `destroyed_ts`: Number类型，通话结束的时间。Unix 时间戳（秒）。
+  - `destroyed_ts`: Number 类型，通话结束的时间。Unix 时间戳（秒）。
   - `finished`: Boolean 类型，通话是否已结束。
 
 ### 获取通话指标
@@ -124,13 +124,13 @@ Authorization: Basic ZGJhZDMyNmFkMzQ0NDk2NGEzYzAwNjZiZmYwNTZmNjo2ZjIyMmZhMTkzNWE
 
 该 API 需要在 URL 中传入以下参数指定要查看的通话。
 
-| 参数                  | 类型    | 描述                                                         |
-| --------------------- | ------- | ------------------------------------------------------------ |
-| `start_ts`            | Number  | 通话开始的时间。Unix 时间戳（秒）。                          |
-| `end_ts`              | Number  | 通话结束的时间。Unix 时间戳（秒）。                          |
+| 参数                  | 类型    | 描述                                                                                                                      |
+| --------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `start_ts`            | Number  | 通话开始的时间。Unix 时间戳（秒）。                                                                                       |
+| `end_ts`              | Number  | 通话结束的时间。Unix 时间戳（秒）。                                                                                       |
 | `appid`               | String  | 你的项目使用的 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-name-appid-a-app-id)。 |
-| `call_id`             | String  | 通话的唯一标识。                                             |
-| `exclude_server_user` | Boolean | （可选）是否排除 Linux 用户，默认为 `true` 。                |
+| `call_id`             | String  | 通话的唯一标识。                                                                                                          |
+| `exclude_server_user` | Boolean | （可选）是否排除 Linux 用户，默认为 `true` 。                                                                             |
 
 #### HTTP 请求示例
 
@@ -234,11 +234,11 @@ Authorization: Basic ZGJhZDMyNmFkMzQ0NDk2NGEzYzAwNjZiZmYwNTZmNjo2ZjIyMmZhMTkzNWE
 
 该 API 需要在 URL 中传入以下参数。
 
-| 参数       | 类型   | 描述                                                         |
-| ---------- | ------ | ------------------------------------------------------------ |
-| `start_ts` | Number | 查询的时间范围起点，Unix 时间戳 （秒）。                     |
-| `end_ts`   | Number | 查询的时间范围终点，Unix 时间戳 （秒）。                     |
-| `appid`    | String | 你的项目使用的 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All Platforms#a-name-appid-a-app-id)。 |
+| 参数       | 类型   | 描述                                                                                                                                                                                                                                                                                            |
+| ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `start_ts` | Number | 查询的时间范围起点，Unix 时间戳 （秒）。                                                                                                                                                                                                                                                        |
+| `end_ts`   | Number | 查询的时间范围终点，Unix 时间戳 （秒）。                                                                                                                                                                                                                                                        |
+| `appid`    | String | 你的项目使用的 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All Platforms#a-name-appid-a-app-id)。                                                                                                                                                                         |
 | `metric`   | String | 要查询的指标，支持同时查询多个指标，用逗号分隔，如 `userCount,sessionCount`<li>userCount：通话人数，不同频道中的相同用户名计为多人。</li><li>sessionCount：通话人次，用户每次加入频道计为一个通话人次。</li><li>channelCount：频道数，从有用户加入频道到所有用户离开频道计为一个通话频道。</li> |
 
 ### HTTP 请求示例
@@ -287,13 +287,13 @@ Authorization: Basic ZGJhZDMyNmFkMzQ0NDk2NGEzYzAwNjZiZmYwNTZmNjo2ZjIyMmZhMTkzNWE
 
 该 API 需要在请求包体中传入以下参数。
 
-| 参数          | 类型   | 描述                                                         |
-| :------------ | :----- | :----------------------------------------------------------- |
-| `cname`       | String | 频道名称。                                                   |
-| `teacher_uid` | Number | 老师的 ID。                                                  |
-| `action_uid`  | Number | （可选）操作者的 ID。                                        |
-| `ts`          | Number | （可选）问题发生时间，UNIX 时间戳，单位为秒。                |
-| `comments`    | String | （可选）备注。可以简单描述问题。                             |
+| 参数          | 类型   | 描述                                                                           |
+| :------------ | :----- | :----------------------------------------------------------------------------- |
+| `cname`       | String | 频道名称。                                                                     |
+| `teacher_uid` | Number | 老师的 ID。                                                                    |
+| `action_uid`  | Number | （可选）操作者的 ID。                                                          |
+| `ts`          | Number | （可选）问题发生时间，UNIX 时间戳，单位为秒。                                  |
+| `comments`    | String | （可选）备注。可以简单描述问题。                                               |
 | `type`        | Number | 问题类型：<li>1: 切课</li><li>2: 求助</li><li>3: 投诉</li><li>4: 问题反馈</li> |
 
 ### HTTP 请求示例
@@ -305,7 +305,7 @@ Content-type: application/json
 Authorization: Basic ZGJhZDMyNmFkMzQ0NDk2NGEzYzAwNjZiZmYwNTZmNjo2ZjIyMmZhMTkzNWE0MWQzYTczNzg2ODdiMmNiYjRh
 Cache-Control: no-cache
 
-{ 
+{
 	"cname":"android_video_engine_1561704454355",
 	"teacher_uid":111,
 	"comments":"bad network",
@@ -318,8 +318,8 @@ Cache-Control: no-cache
 
 ```json
 {
-"code": 200,
-"message": "",
+  "code": 200,
+  "message": ""
 }
 ```
 

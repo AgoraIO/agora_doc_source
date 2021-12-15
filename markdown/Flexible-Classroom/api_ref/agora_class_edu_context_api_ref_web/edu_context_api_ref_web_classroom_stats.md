@@ -82,9 +82,9 @@ txNetworkQuality: string;
 
 ```typescript
 liveClassStatus: {
-    classState: string;
-    duration: number;
-};
+  classState: string;
+  duration: number;
+}
 ```
 
 > 自 v1.1.5 起新增。

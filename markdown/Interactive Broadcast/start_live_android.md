@@ -3,6 +3,7 @@ title: 实现视频直播
 platform: Android
 updatedAt: 2021-03-26 06:46:48
 ---
+
 本文介绍如何使用 Agora SDK 快速实现视频直播。
 
 视频直播和视频通话的区别就在于，直播频道的用户有角色之分。你可以将角色设置为主播或者观众，其中主播可以收、发流，观众只能收流。
@@ -19,14 +20,15 @@ Agora 在 GitHub 上提供一个开源的视频直播示例项目 [OpenLive-Andr
 
 ## 前提条件
 
-* Android Studio 3.0 或以上版本
-* Android SDK API 等级 16 或以上
-* 支持 Android 4.1 或以上版本的移动设备
-* 有效的 [Agora 账户](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up) 和 [App ID](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#getappid)
+- Android Studio 3.0 或以上版本
+- Android SDK API 等级 16 或以上
+- 支持 Android 4.1 或以上版本的移动设备
+- 有效的 [Agora 账户](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up) 和 [App ID](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#getappid)
 
 <div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a>打开相关端口。</div>
 
 ## 准备开发环境
+
 本节介绍如何创建项目，将 Agora 视频 SDK 集成进你的项目中，并添加相应的设备权限。
 
 ### 创建 Android 项目
@@ -39,19 +41,20 @@ Agora 在 GitHub 上提供一个开源的视频直播示例项目 [OpenLive-Andr
 1. 打开 <b>Android Studio</b>，点击 <b>Start a new Android Studio project</b>。
 2. 在 <b>Select a Project Template</b> 界面，选择 <b>Phone and Tablet</b> > <b>Empty Activity</b>，然后点击 <b>Next</b>。
 3. 在 <b>Configure Your Project</b> 界面，依次填入以下内容：
-	* <b>Name</b>：你的 Android 项目名称，如 HelloAgora
-	* <b>Package name</b>：你的项目包的名称，如 io.agora.helloagora
-	* <b>Save location</b>：项目的存储路径
-	* <b>Language</b>：项目的编程语言，如 Java
-	* <b>Minimum API level</b>：项目的最低 API 等级
+   - <b>Name</b>：你的 Android 项目名称，如 HelloAgora
+   - <b>Package name</b>：你的项目包的名称，如 io.agora.helloagora
+   - <b>Save location</b>：项目的存储路径
+   - <b>Language</b>：项目的编程语言，如 Java
+   - <b>Minimum API level</b>：项目的最低 API 等级
 
 然后点击 <b>Finish</b>。根据屏幕提示，安装可能需要的插件。
-	
+
 <div class="alert info">上述步骤使用 <b>Android Studio 3.6.2</b> 示例。你也可以直接参考 Android Studio 官网文档<a href="https://developer.android.com/training/basics/firstapp">创建首个应用</a>。</div>
 	
 </details>
 
 <a name="integrate_sdk"></a>
+
 ### 集成 SDK
 
 选择如下任意一种方式将 Agora 视频 SDK 集成到你的项目中。
@@ -65,7 +68,7 @@ Agora 在 GitHub 上提供一个开源的视频直播示例项目 [OpenLive-Andr
 dependencies {
     ...
     // x.y.z 请填写具体版本号，如 3.0.0
-    // 可通过 SDK 发版说明获取最新版本号 
+    // 可通过 SDK 发版说明获取最新版本号
     implementation 'io.agora.rtc:full-sdk:x.y.z'
 }
 ```
@@ -77,15 +80,14 @@ dependencies {
 1. 前往 [SDK 下载](./downloads?platform=Android)页面，获取最新版的 Agora 视频 SDK，然后解压。
 2. 将 SDK 包内 libs 路径下的如下文件，拷贝到你的项目路径下：
 
-
-| 文件或文件夹                   | 项目路径                               | 
-| ---------------------------- | ------------------------------------ | 
-| **agora-rtc-sdk.jar** 文件    | **/app/libs/**                       | 
-| **arm64-v8a** 文件夹            | **/app/src/main/jniLibs/**           | 
-| **armeabi-v7a** 文件夹        | **/app/src/main/jniLibs/**           | 
-| **include** 文件夹   | **/app/src/main/jniLibs/**           | 
-| **x86** 文件夹                | **/app/src/main/jniLibs/**           | 
-| **x86_64** 文件夹             | **/app/src/main/jniLibs/**           | 
+| 文件或文件夹               | 项目路径                   |
+| -------------------------- | -------------------------- |
+| **agora-rtc-sdk.jar** 文件 | **/app/libs/**             |
+| **arm64-v8a** 文件夹       | **/app/src/main/jniLibs/** |
+| **armeabi-v7a** 文件夹     | **/app/src/main/jniLibs/** |
+| **include** 文件夹         | **/app/src/main/jniLibs/** |
+| **x86** 文件夹             | **/app/src/main/jniLibs/** |
+| **x86_64** 文件夹          | **/app/src/main/jniLibs/** |
 
 <div class="alert note">
 	<ul>
@@ -97,17 +99,16 @@ dependencies {
 
 ### 添加项目权限
 
-根据场景需要，在  **/app/src/main/AndroidManifest.xml** 文件中添加如下行，获取相应的设备权限：
+根据场景需要，在 **/app/src/main/AndroidManifest.xml** 文件中添加如下行，获取相应的设备权限：
 
 ```xml
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-   package="io.agora.tutorials1v1acall">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="io.agora.tutorials1v1acall">
 
-   <uses-permission android:name="android.permission.INTERNET" />
-   <uses-permission android:name="android.permission.RECORD_AUDIO" />
-   <uses-permission android:name="android.permission.CAMERA" />
-   <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+   <uses-permission android:name="android.permission.INTERNET"/>
+   <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+   <uses-permission android:name="android.permission.CAMERA"/>
+   <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 ...
 </manifest>
 ```
@@ -115,8 +116,7 @@ dependencies {
 如果你的 `targetSdkVersion` &ge; 29，还需要在 **AndroidManifest.xml** 文件的 `<application>` 区域添加如下行：
 
 ```xml
-   <application
-      android:requestLegacyExternalStorage="true">
+<application android:requestLegacyExternalStorage="true">
 	  ...
    </application>
 ```
@@ -141,8 +141,8 @@ dependencies {
 
 如果你想实现一个视频直播，我们推荐你添加如下 UI 元素：
 
-* 主播视频窗口
-* 退出频道按钮
+- 主播视频窗口
+- 退出频道按钮
 
 你也可以参考 [OpenLive-Android](https://github.com/AgoraIO/Basic-Video-Broadcasting/tree/master/OpenLive-Android) 示例项目的 [layout](https://github.com/AgoraIO/Basic-Video-Broadcasting/tree/master/OpenLive-Android/app/src/main/res/layout) 文件中的代码。
 
@@ -151,110 +151,119 @@ dependencies {
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_video_chat_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="io.agora.tutorials1v1vcall.VideoChatViewActivity">
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/activity_video_chat_view"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="io.agora.tutorials1v1vcall.VideoChatViewActivity">
  
     <RelativeLayout
-        android:id="@+id/remote_video_view_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/remoteBackground">
+    android:id="@+id/remote_video_view_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/remoteBackground">
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/icon_padding">
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_above="@id/icon_padding">
             <ImageView
-                android:layout_width="@dimen/remote_back_icon_size"
-                android:layout_height="@dimen/remote_back_icon_size"
-                android:layout_centerInParent="true"
-                android:src="@drawable/icon_agora_largest"/>
+        android:layout_width="@dimen/remote_back_icon_size"
+        android:layout_height="@dimen/remote_back_icon_size"
+        android:layout_centerInParent="true"
+        android:src="@drawable/icon_agora_largest"
+      />
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/icon_padding"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/remote_back_icon_margin_bottom"
-            android:layout_alignParentBottom="true"/>
+      android:id="@+id/icon_padding"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/remote_back_icon_margin_bottom"
+      android:layout_alignParentBottom="true"
+    />
     </RelativeLayout>
  
     <FrameLayout
-        android:id="@+id/local_video_view_container"
-        android:layout_width="@dimen/local_preview_width"
-        android:layout_height="@dimen/local_preview_height"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="@dimen/local_preview_margin_right"
-        android:layout_marginRight="@dimen/local_preview_margin_right"
-        android:layout_marginTop="@dimen/local_preview_margin_top"
-        android:background="@color/localBackground">
+    android:id="@+id/local_video_view_container"
+    android:layout_width="@dimen/local_preview_width"
+    android:layout_height="@dimen/local_preview_height"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginEnd="@dimen/local_preview_margin_right"
+    android:layout_marginRight="@dimen/local_preview_margin_right"
+    android:layout_marginTop="@dimen/local_preview_margin_top"
+    android:background="@color/localBackground">
  
         <ImageView
-            android:layout_width="@dimen/local_back_icon_size"
-            android:layout_height="@dimen/local_back_icon_size"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_agora_large" />
+      android:layout_width="@dimen/local_back_icon_size"
+      android:layout_height="@dimen/local_back_icon_size"
+      android:layout_gravity="center"
+      android:scaleType="centerCrop"
+      android:src="@drawable/icon_agora_large"
+    />
     </FrameLayout>
  
     <RelativeLayout
-        android:id="@+id/control_panel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/control_bottom_margin">
+    android:id="@+id/control_panel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="@dimen/control_bottom_margin">
  
         <ImageView
-            android:id="@+id/btn_call"
-            android:layout_width="@dimen/call_button_size"
-            android:layout_height="@dimen/call_button_size"
-            android:layout_centerInParent="true"
-            android:onClick="onCallClicked"
-            android:src="@drawable/btn_endcall"
-            android:scaleType="centerCrop"/>
+      android:id="@+id/btn_call"
+      android:layout_width="@dimen/call_button_size"
+      android:layout_height="@dimen/call_button_size"
+      android:layout_centerInParent="true"
+      android:onClick="onCallClicked"
+      android:src="@drawable/btn_endcall"
+      android:scaleType="centerCrop"
+    />
  
         <ImageView
-            android:id="@+id/btn_switch_camera"
-            android:layout_width="@dimen/other_button_size"
-            android:layout_height="@dimen/other_button_size"
-            android:layout_toRightOf="@id/btn_call"
-            android:layout_toEndOf="@id/btn_call"
-            android:layout_marginLeft="@dimen/control_bottom_horizontal_margin"
-            android:layout_centerVertical="true"
-            android:onClick="onSwitchCameraClicked"
-            android:src="@drawable/btn_switch_camera"
-            android:scaleType="centerCrop"/>
+      android:id="@+id/btn_switch_camera"
+      android:layout_width="@dimen/other_button_size"
+      android:layout_height="@dimen/other_button_size"
+      android:layout_toRightOf="@id/btn_call"
+      android:layout_toEndOf="@id/btn_call"
+      android:layout_marginLeft="@dimen/control_bottom_horizontal_margin"
+      android:layout_centerVertical="true"
+      android:onClick="onSwitchCameraClicked"
+      android:src="@drawable/btn_switch_camera"
+      android:scaleType="centerCrop"
+    />
  
         <ImageView
-            android:id="@+id/btn_mute"
-            android:layout_width="@dimen/other_button_size"
-            android:layout_height="@dimen/other_button_size"
-            android:layout_toLeftOf="@id/btn_call"
-            android:layout_toStartOf="@id/btn_call"
-            android:layout_marginRight="@dimen/control_bottom_horizontal_margin"
-            android:layout_centerVertical="true"
-            android:onClick="onLocalAudioMuteClicked"
-            android:src="@drawable/btn_unmute"
-            android:scaleType="centerCrop"/>
+      android:id="@+id/btn_mute"
+      android:layout_width="@dimen/other_button_size"
+      android:layout_height="@dimen/other_button_size"
+      android:layout_toLeftOf="@id/btn_call"
+      android:layout_toStartOf="@id/btn_call"
+      android:layout_marginRight="@dimen/control_bottom_horizontal_margin"
+      android:layout_centerVertical="true"
+      android:onClick="onLocalAudioMuteClicked"
+      android:src="@drawable/btn_unmute"
+      android:scaleType="centerCrop"
+    />
     </RelativeLayout>
  
 </RelativeLayout>
 ```
+
 </details>
 
 <a name="import_class"></a>
+
 ### 2. 导入类
-		
+
 在项目的 Activity 文件中添加如下行：
 
 ```java
 import io.agora.rtc.IRtcEngineEventHandler;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtc.video.VideoCanvas;
-  
+
 import io.agora.rtc.video.VideoEncoderConfiguration;
 ```
 
@@ -264,19 +273,19 @@ import io.agora.rtc.video.VideoEncoderConfiguration;
 
 ```java
 private static final int PERMISSION_REQ_ID = 22;
-    
+
 // App 运行时确认麦克风和摄像头设备的使用权限。
 private static final String[] REQUESTED_PERMISSIONS = {
         Manifest.permission.RECORD_AUDIO,
         Manifest.permission.CAMERA,
         Manifest.permission.WRITE_EXTERNAL_STORAGE
 };
-  
+
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_video_chat_view);
-  
+
     // 获取权限后，初始化 RtcEngine，并加入频道。
     if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
             checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID) &&
@@ -284,14 +293,14 @@ protected void onCreate(Bundle savedInstanceState) {
         initEngineAndJoinChannel();
     }
 }
-  
+
 private boolean checkSelfPermission(String permission, int requestCode) {
     if (ContextCompat.checkSelfPermission(this, permission) !=
             PackageManager.PERMISSION_GRANTED) {
         ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, requestCode);
         return false;
     }
-  
+
     return true;
 }
 ```
@@ -318,7 +327,7 @@ private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandl
             }
         });
     }
-   
+
     @Override
     // 注册 onFirstRemoteVideoDecoded 回调。
     // SDK 接收到第一帧远端视频并成功解码时，会触发该回调。
@@ -332,7 +341,7 @@ private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandl
             }
         });
     }
-   
+
     @Override
     // 注册 onUserOffline 回调。
     // 远端主播离开频道或掉线时，会触发该回调。
@@ -346,9 +355,9 @@ private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandl
         });
     }
 };
-     
+
 ...
-   
+
 // 初始化 RtcEngine 对象。
 private void initializeEngine() {
     try {
@@ -399,27 +408,27 @@ public void onClickJoin(View view) {
         }
     });
     AlertDialog dialog = builder.create();
- 
+
     dialog.show();
 }
- 
+
 // 获取用户设置的角色和频道名。
 // 其中，频道名需要在加入频道时使用。
 public void forwardToLiveRoom(int cRole) {
     final EditText v_room = (EditText) findViewById(R.id.room_name);
     String room = v_room.getText().toString();
- 
+
     Intent i = new Intent(MainActivity.this, LiveRoomActivity.class);
     i.putExtra("CRole", cRole);
     i.putExtra("CName", room);
- 
+
     startActivity(i);
 }
- 
+
 // 传入用户设置的角色。
 private int mRole;
 mRole = getIntent().getIntExtra("CRole", 0);
- 
+
 private void setClientRole() {
     mRtcEngine.setClientRole(mRole);
 }
@@ -435,14 +444,14 @@ private void setClientRole() {
 
 ```java
 private void setupLocalVideo() {
-   
+
     // 启用视频模块。
     mRtcEngine.enableVideo();
-   
+
     // 创建 SurfaceView 对象。
     private FrameLayout mLocalContainer;
     private SurfaceView mLocalView;
-   
+
     mLocalView = RtcEngine.CreateRendererView(getBaseContext());
     mLocalView.setZOrderMediaOverlay(true);
     mLocalContainer.addView(mLocalView);
@@ -456,23 +465,23 @@ private void setupLocalVideo() {
 
 完成设置角色和本地视图后，你就可以调用 `joinChannel` 方法加入频道。你需要在该方法中传入如下参数：
 
-* `token`：传入用于鉴权的 Token，可设为如下一个值：
-   * 临时 Token。你可以在控制台里生成一个临时 Token，详见[获取临时 Token](token#get-a-temporary-token)。加入频道时，请确保填入的频道名和生成临时 Token 时填入的频道名一致。
-   * 在你的服务器端生成的 Token。在安全要求高的场景下，我们推荐你使用此种方式生成的 Token，详见[从服务端生成 Token](./token_server)。加入频道时，请确保填入的频道名和 uid 与生成 Token 时填入的频道名和 uid 一致。
+- `token`：传入用于鉴权的 Token，可设为如下一个值：
+  - 临时 Token。你可以在控制台里生成一个临时 Token，详见[获取临时 Token](token#get-a-temporary-token)。加入频道时，请确保填入的频道名和生成临时 Token 时填入的频道名一致。
+  - 在你的服务器端生成的 Token。在安全要求高的场景下，我们推荐你使用此种方式生成的 Token，详见[从服务端生成 Token](./token_server)。加入频道时，请确保填入的频道名和 uid 与生成 Token 时填入的频道名和 uid 一致。
 
  <div class="alert note"><ul><li>若项目已启用 App 证书，请使用 Token。</li><li>请勿将 <code>token</code> 设为 ""。</li></div>
 
-* channelName：传入能标识频道的频道 ID。App ID 相同、频道 ID 相同的用户会进入同一个频道。
-* uid: 本地用户的 ID。数据类型为整型，且频道内每个用户的 uid 必须是唯一的。若将 uid 设为 0，则 SDK 会自动分配一个 uid，并在 `onJoinChannelSuccess` 回调中报告。
+- channelName：传入能标识频道的频道 ID。App ID 相同、频道 ID 相同的用户会进入同一个频道。
+- uid: 本地用户的 ID。数据类型为整型，且频道内每个用户的 uid 必须是唯一的。若将 uid 设为 0，则 SDK 会自动分配一个 uid，并在 `onJoinChannelSuccess` 回调中报告。
 
 更多的参数设置注意事项请参考 [`joinChannel`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8b308c9102c08cb8dafb4672af1a3b4c) 接口中的参数描述。
 
 ```java
 private void joinChannel() {
- 
+
     // 对于 v3.0.0 之前的 SDK，如果频道中有 Web SDK，需要调用该方法开启 Native SDK 和 Web SDK 互通。v3.0.0 及之后的 SDK 在通信和直播场景下均自动开启了与 Web SDK 的互通。
     rtcEngine.enableWebSdkInteroperability(true);
- 
+
     // 使用 Token 加入频道。
     private String mRoomName;
     mRoomName = getIntent().getStringExtra("CName");
@@ -500,18 +509,18 @@ private void joinChannel() {
             }
         });
     }
-  
+
 private void setupRemoteVideo(int uid) {
-  
+
     // 创建一个 SurfaceView 对象。
     private RelativeLayout mRemoteContainer;
     private SurfaceView mRemoteView;
-    
+
     mRemoteView = RtcEngine.CreateRendererView(getBaseContext());
     mRemoteContainer.addView(mRemoteView);
     // 设置远端视图。
     mRtcEngine.setupRemoteVideo(new VideoCanvas(mRemoteView, VideoCanvas.RENDER_MODE_HIDDEN, uid));
-  
+
 }
 ```
 
@@ -530,6 +539,7 @@ public void onLocalAudioMuteClicked(View view) {
     mRtcEngine.muteLocalAudioStream(mMuted);
 }
 ```
+
 </details>
 
 <details>
@@ -542,6 +552,7 @@ public void onSwitchCameraClicked(View view) {
     mRtcEngine.switchCamera();
 }
 ```
+
 </details>
 
 ### 11. 离开频道
@@ -558,7 +569,7 @@ protected void onDestroy() {
     }
     RtcEngine.destroy();
 }
- 
+
 private void leaveChannel() {
     // 离开当前频道。
     mRtcEngine.leaveChannel();

@@ -3,6 +3,7 @@ title: 推流组件
 platform: iOS
 updatedAt: 2021-01-31 11:12:43
 ---
+
 ## 简介
 
 Agora 为 CDN 直播推流场景研发 Streaming Kit（推流组件），支持将单个主播音视频流推送到 CDN。如果你同时集成 Streaming Kit 和 Agora RTC SDK，你还可以在观众无感知的情况下实现单主播和多主播画面的动态切换。
@@ -12,6 +13,7 @@ Agora 为 CDN 直播推流场景研发 Streaming Kit（推流组件），支持�
 ## 示例项目
 
 Agora 在 GitHub 上提供开源的 [Agora-Extensions](https://github.com/AgoraIO/Agora-Extensions) 示例项目供你参考：
+
 - [RtmpStreaming](https://github.com/AgoraIO/Agora-Extensions/tree/master/RtmpStreaming)：适用于无需美颜的开发者参考。
 - [RtmpSteramingWithBeauty](https://github.com/AgoraIO/Agora-Extensions/tree/master/RtmpStreamingWithBeauty)：适用于需要美颜功能的开发者参考。
 
@@ -35,7 +37,8 @@ Agora 在 GitHub 上提供开源的 [Agora-Extensions](https://github.com/AgoraI
 2. 选择项目类型为 **Single View App**，并点击 **Next**。
 3. 输入项目信息，如项目名称、开发团队信息、组织名称和语言，并点击 **Next**。
 
-	**Note**：如果你没有添加过开发团队信息，会看到 **Add account…** 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的账户作为开发团队。
+   **Note**：如果你没有添加过开发团队信息，会看到 **Add account…** 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的账户作为开发团队。
+
 4. 选择项目存储路径，并点击 **Create**。
 5. 将你的 iOS 设备连接至电脑。
 6. 进入 **TARGETS > Project Name > Signing & Capabilities** 菜单，选择 **Automatically manage signing**，并在弹出菜单中点击 **Enable Automatic**。
@@ -49,11 +52,11 @@ Agora 在 GitHub 上提供开源的 [Agora-Extensions](https://github.com/AgoraI
 2. 在 **Terminal** 里进入项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 **Podfile** 文本文件。
 3. 打开 **Podfile** 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
 
-    ```
-    target 'Your App' do
-        pod 'AgoraStreamingKit_iOS'
-    end
-    ```
+   ```
+   target 'Your App' do
+       pod 'AgoraStreamingKit_iOS'
+   end
+   ```
 
 4. 在 **Terminal** 内运行 `pod update` 命令更新本地库版本。
 5. 运行 `pod install` 命令安装 Streaming Kit。成功安装后，**Terminal** 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。
@@ -90,17 +93,17 @@ Agora 在 GitHub 上提供开源的 [Agora-Extensions](https://github.com/AgoraI
 
    - VideoToolbox.framework
 
-	添加后：
-    ![](https://web-cdn.agora.io/docs-files/1597407353344)
+   添加后：
+   ![](https://web-cdn.agora.io/docs-files/1597407353344)
 
-	> 如需支持 iOS 11 或更低版本的设备，请在 Xcode 中将对 **CoreML.framework** 的依赖设为 **Optional**。
+   > 如需支持 iOS 11 或更低版本的设备，请在 Xcode 中将对 **CoreML.framework** 的依赖设为 **Optional**。
 
 5. 根据场景需要，在 **info.plist** 文件中，点击 **+** 图标开始添加如下内容，获取相应的设备权限：
 
-	| Key | Type | Value |
-	| ---------------- | ---------------- | ---------------- |
-	| Privacy - Microphone Usage Description      | String      | 使用麦克风的目的，例如：`for live streaming`      |
-	| Privacy - Camera Usage Description      | String      | 使用摄像头的目的，例如：`for live streaming`    |
+   | Key                                    | Type   | Value                                        |
+   | -------------------------------------- | ------ | -------------------------------------------- |
+   | Privacy - Microphone Usage Description | String | 使用麦克风的目的，例如：`for live streaming` |
+   | Privacy - Camera Usage Description     | String | 使用摄像头的目的，例如：`for live streaming` |
 
 ## 实现方法
 
@@ -115,10 +118,11 @@ Agora 在 GitHub 上提供开源的 [Agora-Extensions](https://github.com/AgoraI
 #### 1. 创建 Streaming Kit
 
 创建一个 `AgoraStreamingKit` 实例，并设置 `AgoraStreamingContext` 的如下参数：
+
 - `appId`: 你的 App ID。
 - `delegate`: 详见 `AgoraStreamingDelegate`。
 - `audioStreamConfiguration`: 音频编码属性。推荐使用默认的音频编码属性：采样率 44.1 kHz，码率 48 Kbps，16 bits，单声道，LC-AAC。
-- `videoStreamConfiguration`: 视频编码属性，推荐使用默认的视频编码属性：分辨率 640 * 360，帧率 15 fps，码率 800 Kbps，方向模式为 `OrientationModeFixedPortrait (2)`。
+- `videoStreamConfiguration`: 视频编码属性，推荐使用默认的视频编码属性：分辨率 640 \* 360，帧率 15 fps，码率 800 Kbps，方向模式为 `OrientationModeFixedPortrait (2)`。
 
 ```objective-c
 - (void)createStreamingKit {
@@ -211,7 +215,6 @@ Streaming Kit 通过 `process` 方法的 `inputPixelBuffer` 参数向你输出�
 > - Streaming Kit 在 iOS 设备上默认使用前置摄像头。
 > - Streaming Kit 不支持在 `startStreaming` 后调用 `enableAudioRecording` 和 `enableVideoCapturing`。
 
-
 #### 7. 销毁 Streaming Kit
 
 销毁 Streaming Kit 后，请确保不再使用 Streaming Kit 提供的 API。
@@ -251,7 +254,6 @@ Streaming Kit 通过 `process` 方法的 `inputPixelBuffer` 参数向你输出�
 - [自定义音频采集](https://docs.agora.io/cn/Interactive%20Broadcast/custom_audio_apple?platform=iOS#自定义音频采集)
 - [自定义视频采集(Push)](https://docs.agora.io/cn/Interactive%20Broadcast/custom_video_apple?platform=iOS#自定义视频采集)
 - [使用 RTC SDK 推流到 CDN](https://docs.agora.io/cn/Interactive%20Broadcast/cdn_streaming_apple?platform=iOS#前提条件)
-
 
 #### 多主播切换为单主播
 

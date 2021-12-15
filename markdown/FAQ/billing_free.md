@@ -2,10 +2,10 @@
 title: 每月一万分钟免费说明
 platform: ["All Platforms"]
 updatedAt: 2021-01-13 13:06:56
-Products: ["Voice","Video","Interactive Broadcast","Recording","cloud-recording"]
+Products: ["Voice", "Video", "Interactive Broadcast", "Recording", "cloud-recording"]
 ---
 
-声网会给予每个 [Agora 开发者账号](https://console.agora.io/)每个月1 万分钟的免费时长，按照以下顺序从总分钟数扣除：
+声网会给予每个 [Agora 开发者账号](https://console.agora.io/)每个月 1 万分钟的免费时长，按照以下顺序从总分钟数扣除：
 
 1. 极速直播音频分钟数
 2. 语音通话、视频通话、互动直播音频分钟数

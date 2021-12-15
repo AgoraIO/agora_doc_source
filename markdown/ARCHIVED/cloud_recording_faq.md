@@ -3,6 +3,7 @@ title: 集成常见问题
 platform: Linux
 updatedAt: 2019-06-06 18:55:04
 ---
+
 ## Java 集成问题
 
 ### Java SDK 集成中常见的错误及解决方法
@@ -13,17 +14,23 @@ updatedAt: 2019-06-06 18:55:04
 
   解决方法：
 
-  1. 打印  `java.library.path`，查看 Linux 环境变量 `LD_LIBRARY_PATH` 是否配置了该库文件：
-  
-	```bash
-System.out.println(System.getProperty("java.library.path"))
+  1. 打印 `java.library.path`，查看 Linux 环境变量 `LD_LIBRARY_PATH` 是否配置了该库文件：
+
+     ```bash
+
+     ```
+
+  System.out.println(System.getProperty("java.library.path"))
+
   ```
 
- 2. 建议在 Linux 系统变量 `LD_LIBRARY_PATH` 中添加 `java.library.path`，可以在 **/etc/profile** 里面添加 `LD_LIBRARY_PATH` 或者把 `libagora-cloud-recording-java.so` 直接放在Linux 系统目录 **/usr/lib** 下面。
+  ```
+
+2.  建议在 Linux 系统变量 `LD_LIBRARY_PATH` 中添加 `java.library.path`，可以在 **/etc/profile** 里面添加 `LD_LIBRARY_PATH` 或者把 `libagora-cloud-recording-java.so` 直接放在 Linux 系统目录 **/usr/lib** 下面。
 
 - java.land.NoClassDefFoundError: Could not initialize class io.agora.cloud_recording.CloudRecorder
 
-  报错原因：`classpath` 里面没有加载 `agora-cloud-recording-sdk.jar`。集成 Java SDK 时，需要加载 `agora-cloud-recording-sdk.jar` 和  `libagora-cloud-recording-java.so` ，jar 文件放在 Linux 环境变量 `classpath` 下，库文件放在 Linux 环境变量 `LD_LIBRARY_PATH` 下。
+  报错原因：`classpath` 里面没有加载 `agora-cloud-recording-sdk.jar`。集成 Java SDK 时，需要加载 `agora-cloud-recording-sdk.jar` 和 `libagora-cloud-recording-java.so` ，jar 文件放在 Linux 环境变量 `classpath` 下，库文件放在 Linux 环境变量 `LD_LIBRARY_PATH` 下。
 
   解决方法：
 
@@ -33,8 +40,7 @@ System.out.println(System.getProperty("java.library.path"))
      System.out.println("类所在的路径：" + System.getProperty("java.class.path"));
      ```
 
-  2.  如果没有，就在 `classpath` 环境变量中添加 jar 路径。
-
+  2. 如果没有，就在 `classpath` 环境变量中添加 jar 路径。
 
 ## 上传到第三方云存储失败
 
@@ -48,7 +54,7 @@ System.out.println(System.getProperty("java.library.path"))
 
 完整的 M3U8 文件地址由云存储空间外链域名和 M3U8 文件名组成，一般在你的第三方云存储里可以直接复制。
 
- ![img](https://confluence.agora.io/download/attachments/632306307/image2019-3-27_1-38-3.png?version=1&modificationDate=1553621886116&api=v2)
+![img](https://confluence.agora.io/download/attachments/632306307/image2019-3-27_1-38-3.png?version=1&modificationDate=1553621886116&api=v2)
 
 以下回调中均包含 M3U8 文件名信息：
 

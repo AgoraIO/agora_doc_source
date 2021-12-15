@@ -30,30 +30,31 @@ Agora 消息通知服务可以将**云端播放器（输入在线媒体流）** 
   # !-*- coding: utf-8 -*-
   import hashlib
   import hmac
-    
+
   # 拿到消息通知的 raw request body 并对其计算签名，也就是说下面代码中的 request_body 是反序列化之前的 binary byte array，不是反序列化之后的 dictionary
   request_body = '{"eventMs":1560408533119,"eventType":10,"noticeId":"4eb720f0-8da7-11e9-a43e-53f411c2761f","notifyMs":1560408533119,"payload":{"a":"1","b":2},"productId":1}'
-    
+
   secret = 'secret'
-    
+
   signature = hmac.new(secret, request_body, hashlib.sha1).hexdigest()
-    
+
   print(signature) # 033c62f40f687675f17f0f41f91a40c71c0f134c
   ```
 
 - Node.js
 
   ```javascript
-  const crypto = require('crypto')
-    
+  const crypto = require("crypto");
+
   // 拿到消息通知的 raw request body 并对其计算签名，也就是说下面代码中的 requestBody 是反序列化之前的 binary byte array，不是反序列化之后的 object
-  const requestBody = '{"eventMs":1560408533119,"eventType":10,"noticeId":"4eb720f0-8da7-11e9-a43e-53f411c2761f","notifyMs":1560408533119,"payload":{"a":"1","b":2},"productId":1}'
-    
-  const secret = 'secret'
-    
-  const signature = crypto.createHmac('sha1', secret).update(requestBody, 'utf8').digest('hex')
-    
-  console.log(signature) // 033c62f40f687675f17f0f41f91a40c71c0f134c
+  const requestBody =
+    '{"eventMs":1560408533119,"eventType":10,"noticeId":"4eb720f0-8da7-11e9-a43e-53f411c2761f","notifyMs":1560408533119,"payload":{"a":"1","b":2},"productId":1}';
+
+  const secret = "secret";
+
+  const signature = crypto.createHmac("sha1", secret).update(requestBody, "utf8").digest("hex");
+
+  console.log(signature); // 033c62f40f687675f17f0f41f91a40c71c0f134c
   ```
 
 - Java
@@ -62,25 +63,25 @@ Agora 消息通知服务可以将**云端播放器（输入在线媒体流）** 
   import javax.crypto.Mac;
   import javax.crypto.SecretKey;
   import javax.crypto.spec.SecretKeySpec;
-   
+
   public class HmacSha {
       // 将加密后的字节数组转换成字符串
       public static String bytesToHex(byte[] bytes) {
           StringBuffer sb = new StringBuffer();
-   
+
           for (int i = 0; i < bytes.length; i++) {
               String hex = Integer.toHexString(bytes[i] & 0xFF);
-   
+
               if (hex.length() < 2) {
                   sb.append(0);
               }
-   
+
               sb.append(hex);
           }
-   
+
           return sb.toString();
       }
-   
+
       //HMAC/SHA1 加密，返回加密后的字符串
       public static String hmacSha1(String message, String secret) {
           try {
@@ -88,15 +89,15 @@ Agora 消息通知服务可以将**云端播放器（输入在线媒体流）** 
                           "utf-8"), "HmacSHA1");
               Mac mac = Mac.getInstance("HmacSHA1");
               mac.init(signingKey);
-   
+
               byte[] rawHmac = mac.doFinal(message.getBytes("utf-8"));
-   
+
               return bytesToHex(rawHmac);
           } catch (Exception e) {
               throw new RuntimeException(e);
           }
       }
-   
+
       public static void main(String[] args) {
           //拿到消息通知的 raw request body 并对其计算签名，也就是说下面代码中的 request_body 是反序列化之前的 binary byte array，不是反序列化之后的 object
           String request_body = "{\"eventMs\":1560408533119,\"eventType\":10,\"noticeId\":\"4eb720f0-8da7-11e9-a43e-53f411c2761f\",\"notifyMs\":1560408533119,\"payload\":{\"a\":\"1\",\"b\":2},\"productId\":1}";
@@ -108,21 +109,20 @@ Agora 消息通知服务可以将**云端播放器（输入在线媒体流）** 
 
 **请求的 Body**
 
-| 字段        | 类型        | 描述                                                         |
-| ----------- | ----------- | ------------------------------------------------------------ |
-| `noticeId`  | String      | 通知 ID。标识来自业务服务器的一次事件通知。                  |
-| `productId` | Number      | 业务 ID。`4`: **Cloud Player**，云端播放器（输入在线媒体流）。 |
-| `eventType` | Number      | 通知的事件类型。                                             |
-| `notifyMs`  | Number      | 向你的服务发出请求的 Unix 时间戳 (ms)。通知**重试**时该值会更新。 |
-| `payload`   | JSON Object | 通知事件的具体内容。                                         |
+| 字段        | 类型        | 描述                                                                                                                          |
+| ----------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `noticeId`  | String      | 通知 ID。标识来自业务服务器的一次事件通知。                                                                                   |
+| `productId` | Number      | 业务 ID。`4`: **Cloud Player**，云端播放器（输入在线媒体流）。                                                                |
+| `eventType` | Number      | 通知的事件类型。                                                                                                              |
+| `notifyMs`  | Number      | 向你的服务发出请求的 Unix 时间戳 (ms)。通知**重试**时该值会更新。                                                             |
+| `payload`   | JSON Object | 通知事件的具体内容。                                                                                                          |
 | `appId`     | String      | Agora 为每个开发者提供的 App ID。在 Agora 控制台创建一个**项目**后即可得到一个 **App ID**。一个 App ID 是一个项目的唯一标识。 |
-
 
 **云端播放器事件**
 
 消息通知服务器可以通知该业务下的三种事件：
 
-****云端播放器创建成功****
+\***\*云端播放器创建成功\*\***
 
 当你调用 `Create` 成功创建一个云端播放器时，消息通知服务器会向你的服务器通知该事件。
 
@@ -162,7 +162,7 @@ Agora 消息通知服务可以将**云端播放器（输入在线媒体流）** 
 - `lts`：Number 型字段，该事件在业务服务器上发生的的 Unix 时间戳 (ms)。
 - `xRequestId`：String 型字段，标识本次请求的 UUID（通用唯一识别码）。该值为本次请求 header 中 `X-Request-ID`。
 
-****云端播放器销毁成功****
+\***\*云端播放器销毁成功\*\***
 
 当一个云端播放器被销毁时，消息通知服务器会向你的服务器通知该事件。
 
@@ -196,7 +196,7 @@ Agora 消息通知服务可以将**云端播放器（输入在线媒体流）** 
   - `Idle Timeout`：在你设置的 `idleTimeout` 时间内，业务服务器无法连接你指定的媒体流地址或该媒体流无法播放。
 - `fields`： JSON 编码方式的字段掩码，详见[谷歌 protobuf FieldMask 文档](https://googleapis.dev/nodejs/pubsub/latest/google.protobuf.html#.FieldMask)。用于指定返回 `player` 字段的子集。在此示例中表示 Agora 服务器返回 `player` 字段中的 `name`、`channelName` 和 `id` 字段子集。
 
-****云端播放器运行状态改变****
+\***\*云端播放器运行状态改变\*\***
 
 成功创建一个云端播放器后，当云端播放器运行状态改变时，消息通知服务器会向你的服务器通知该事件。
 

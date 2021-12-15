@@ -1,9 +1,10 @@
 ---
 title: 如何判断一个通话是语音通话还是视频通话？
-platform: ["Android","iOS","macOS","Web","Windows","Linux"]
+platform: ["Android", "iOS", "macOS", "Web", "Windows", "Linux"]
 updatedAt: 2020-05-12 17:15:38
-Products: ["Real-time-Messaging","Video","Voice"]
+Products: ["Real-time-Messaging", "Video", "Voice"]
 ---
+
 在实时音视频通话场景中，你可以通过 Agora RTM SDK 或 Agora RTC SDK 判断一个即将开始或正在进行的通话是语音通话还是视频通话。
 
 ## 通话前判断
@@ -33,8 +34,8 @@ Products: ["Real-time-Messaging","Video","Voice"]
 
 本文提及的方法和回调名均为 Java 语言。其他语言对应的方法名如下表所示：
 
-| Java/C++ | Objective-C | JavaScript |
-| ---------------- | ---------------- | ---------------- |
-| `sendMessageToPeer`      | `sendMessage:toPeer:sendMessageOptions:completion:`     | `sendMessage`|
-|  `onRemoteAudioStateChanged`  |  `remoteAudioStateChangedOfUid` |  `getRemoteAudioStats`       |
-|  `onRemoteVideoStateChanged`  |  `remoteVideoStateChangedOfUid` |     `getRemoteVideoStats`    |
+| Java/C++                    | Objective-C                                         | JavaScript            |
+| --------------------------- | --------------------------------------------------- | --------------------- |
+| `sendMessageToPeer`         | `sendMessage:toPeer:sendMessageOptions:completion:` | `sendMessage`         |
+| `onRemoteAudioStateChanged` | `remoteAudioStateChangedOfUid`                      | `getRemoteAudioStats` |
+| `onRemoteVideoStateChanged` | `remoteVideoStateChangedOfUid`                      | `getRemoteVideoStats` |

@@ -3,6 +3,7 @@ title: 加入实时房间
 platform: Android
 updatedAt: 2021-03-31 09:00:59
 ---
+
 本文详细介绍如何建立一个简单的项目并使用 Agora 互动白板 SDK 实现基础的白板功能。
 
 ## 前提条件
@@ -29,9 +30,9 @@ updatedAt: 2021-03-31 09:00:59
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.whiteboard">
- 
+
     <uses-permission android:name="android.permission.INTERNET" />
- 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -47,8 +48,6 @@ updatedAt: 2021-03-31 09:00:59
         </activity>
     </application>
 ```
-
-
 
 ## 获取 SDK
 
@@ -66,7 +65,6 @@ allprojects {
 }
 ```
 
-
 然后打开 app 目录下的 `build.gradle` 进行如下配置：
 
 ```java
@@ -76,7 +74,7 @@ dependencies {
 }
 ```
 
-## 防止代码混淆 
+## 防止代码混淆
 
 在 `proguard-rules.pro` 文件中添加以下语句，防止代码混淆：
 
@@ -102,12 +100,12 @@ dependencies {
 ```javascript
 var request = require("request");
 var options = {
-  "method": "POST",
-  "url": "https://api.netless.link/v5/rooms",
-  "headers": {
-    "token": "你的 SDK Token",
-    "Content-Type": "application/json"
-  }
+  method: "POST",
+  url: "https://api.netless.link/v5/rooms",
+  headers: {
+    token: "你的 SDK Token",
+    "Content-Type": "application/json",
+  },
 };
 request(options, function (error, response) {
   if (error) throw new Error(error);
@@ -132,7 +130,7 @@ request(options, function (error, response) {
 }
 ```
 
-###  2. 生成 Room Token
+### 2. 生成 Room Token
 
 创建房间并获取新建房间的 `uuid` 后，你需要在 app 服务端生成 Room Token 并下发给 app 客户端。当 app 客户端加入房间时，Agora 互动白板服务端会使用该 Token 对其鉴权。
 
@@ -150,16 +148,15 @@ request(options, function (error, response) {
  <div class="alert info">使用 Node.js 发送 HTTP 请求前安装 <code>request</code> 模块。你可以运行 <code>npm install request</code> 安装</div>
 
 ```javascript
-var request = require('request');
+var request = require("request");
 var options = {
-  "method": "POST",
-  "url": "https://api.netless.link/v5/tokens/rooms/4a50xxxxxx796b",
-  "headers": {
-    "token": "你的 SDK Token",
-    "Content-Type": "application/json"
+  method: "POST",
+  url: "https://api.netless.link/v5/tokens/rooms/4a50xxxxxx796b",
+  headers: {
+    token: "你的 SDK Token",
+    "Content-Type": "application/json",
   },
-  body: JSON.stringify({"lifespan":60,"role":"admin"})
-  
+  body: JSON.stringify({lifespan: 60, role: "admin"}),
 };
 request(options, function (error, response) {
   if (error) throw new Error(error);
@@ -170,8 +167,9 @@ request(options, function (error, response) {
 如果方法调用成功，Agora 互动白板服务端将返回生成的 Room Token。
 
 **响应示例**
+
 ```javascript
-"NETLESSROOM_YWs9XXXXXXXXXXXZWNhNjk" // Room Token
+"NETLESSROOM_YWs9XXXXXXXXXXXZWNhNjk"; // Room Token
 ```
 
 ### 3. 创建 UI
@@ -187,21 +185,20 @@ request(options, function (error, response) {
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
- 
+
     <com.herewhite.sdk.WhiteboardView
         android:id="@+id/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible" />
- 
+
 </LinearLayout>
 ```
-
-
 
 ### 4. 初始化 SDK 并加入房间
 
 编辑 `MainActivity.java` ，实现从初始化 SDK 到加入房间的基本操作。你需要传入以下参数：
+
 - `appId`：互动白板项目的 App Identifier。详见[获取 App Identifier](https://docs-preprod.agora.io/cn/whiteboard/enable_whiteboard?platform=Android#获取-app-identifier)。
 - `uuid`：房间的 UUID。详见<a href="#miao">创建房间</a>。// TODO 修改链接
 - `roomToken`：用于鉴权的 Room Token。生成该 Room Token 使用的房间 UUID 必须和上面的房间 UUID 一致。详见<a href="#roomtoken">生成 Room Token</a>。// TODO 修改链接
@@ -209,38 +206,38 @@ request(options, function (error, response) {
 ```java
 package com.example.whiteboard;
 import androidx.appcompat.app.AppCompatActivity;
- 
+
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
- 
+
 import com.herewhite.sdk.RoomParams;
 import com.herewhite.sdk.WhiteboardView;
 import com.herewhite.sdk.WhiteSdk;
 import com.herewhite.sdk.WhiteSdkConfiguration;
 import com.herewhite.sdk.Room;
 import com.herewhite.sdk.domain.Promise;
- 
+
 import com.herewhite.sdk.domain.SDKError;
 import com.herewhite.sdk.domain.MemberState;
- 
- 
+
+
 public class MainActivity extends AppCompatActivity {
- 
+
     // 你的互动白板 App Identifier
     final String appId = "Your App Identifier";
     // 你的房间 UUID
     final String uuid = "房间 UUID";
     // 你的 Room Token
     final String roomToken = "Room Token";
- 
+
     // 创建 WhiteboardView 对象，实现白板 view
     WhiteboardView whiteboardView;
     // 创建 WhiteSdkConfiguration 对象，设置白板的 App Identifier 和日志参数
     WhiteSdkConfiguration sdkConfiguration = new WhiteSdkConfiguration(appId, true);
     // 创建 RoomParams 对象，设置房间参数，用于加入房间
     RoomParams roomParams = new RoomParams(uuid, roomToken);
- 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -261,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
                 // 设置当前用户教具
                 wRoom.setMemberState(memberState);
             }
- 
+
             @Override
             public void catchEx(SDKError t) {
                 Object o = t.getMessage();
@@ -269,17 +266,17 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, o.toString(), Toast.LENGTH_SHORT).show();
             }
         });
- 
+
     }
- 
- 
+
+
     @Override
     protected void onDestroy() {
             super.onDestroy();
             whiteboardView.removeAllViews();
             whiteboardView.destroy();
         }
- 
+
     }
 ```
 

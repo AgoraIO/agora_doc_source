@@ -3,6 +3,7 @@ title: 集成客户端
 platform: Web
 updatedAt: 2020-09-11 15:18:59
 ---
+
 本文介绍在正式使用 Agora Web SDK 进行音视频通话前，需要准备的开发环境，包含前提条件及 SDK 集成方法等内容。
 
 ## 前提条件
@@ -93,10 +94,6 @@ updatedAt: 2020-09-11 15:18:59
 
 ![](https://web-cdn.agora.io/docs-files/1574921811175)
 
-
-
-
-
 ## 获取 Agora Web SDK 安装包并保存到项目下
 
 选择如下任意一种方法获取 Agora Web SDK，并保存在你所工作的项目下：
@@ -106,20 +103,18 @@ updatedAt: 2020-09-11 15:18:59
 使用该方法需要先安装 npm，详见[ npm 快速入门](https://www.npmjs.com.cn/getting-started/installing-node/)。
 
 1. 运行安装命令
-  `npm install agora-rtc-sdk`
-
-	
+   `npm install agora-rtc-sdk`
 2. 在你的项目文件开头添加以下代码
 
-	```javascript
-	import AgoraRTC from 'agora-rtc-sdk'
-	```
+   ```javascript
+   import AgoraRTC from "agora-rtc-sdk";
+   ```
 
 ### 方法 2. 使用 CDN 方法获取安装包
 
 该方法无需在官网下载安装包。在项目相应的前端页面文件中，将如下代码添加到 `</body>` 上一行：
 
- ```javascript
+````javascript
 <script src="http://cdn.agora.io/sdk/web/AgoraRTCSDK-2.5-latest.js"></script>
 	```
 
@@ -143,3 +138,4 @@ updatedAt: 2020-09-11 15:18:59
 3. 在网页服务器上用浏览器打开示例程序页面或者你自己创建的页面。
 
 你已经完成了客户端集成，可以开始使用 Agora SDK 了。
+````

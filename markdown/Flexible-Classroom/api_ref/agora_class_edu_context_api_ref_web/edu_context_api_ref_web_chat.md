@@ -21,16 +21,17 @@ getHistoryChatMessage: (data: {
 
 调用示例：`getHistoryChatMeassage({nextId:"idstring", sort: 1})`
 
-| 参数     | 描述                                                         |
-| :------- | :----------------------------------------------------------- |
+| 参数     | 描述                                                                                     |
+| :------- | :--------------------------------------------------------------------------------------- |
 | `nextId` | 用于分批获取消息。第一次传空字符串。返回结果里有一个 `nextId` 字段，下一批获取传入该值。 |
-| `sort`   | <li>`0`: 正序获取历史聊天消息。 <li>`1` : 倒序获取历史聊天消息。 |
+| `sort`   | <li>`0`: 正序获取历史聊天消息。 <li>`1` : 倒序获取历史聊天消息。                         |
 
 ## messageList
 
 ```typescript
 messageList: array,
 ```
+
 聊天消息列表。
 
 ## sendMessage
@@ -46,19 +47,19 @@ sendMessage: (message: any) => Promise<{
     fromRoomName: string,
 }>,
 ```
-发送聊天消息。
 
+发送聊天消息。
 
 | 参数      | 描述       |
 | :-------- | :--------- |
 | `message` | 聊天消息。 |
-
 
 ## muteChat
 
 ```typescript
 muteChat: () => void,
 ```
+
 禁止聊天。
 
 ## unmuteChat

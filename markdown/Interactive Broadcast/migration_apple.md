@@ -3,18 +3,18 @@ title: 升级至 3.0.1 版本 (iOS/macOS)
 platform: iOS
 updatedAt: 2021-02-03 06:25:43
 ---
+
 本文描述 Agora iOS SDK 和 Agora macOS SDK 从旧版本升级到 3.0.1 版本时，用户需要注意的集成方法变更。
 
 ## 重要变更
 
 自 3.0.1 版本起，下载的 SDK 内仅包含动态库 **AgoraRtcKit.framework**。各版本库文件区别如下：
 
-
-| SDK 版本 | 库名 | 库类型 |
-| ---------------- | ---------------- | ---------------- |
-| 3.0.1 及以上      | AgoraRtcKit      | 动态库      |
-| 3.0.0      | AgoraRtcKit      | 动态库、静态库      |
-| 3.0.0 以下      | AgoraRtcEngineKit      | 静态库      |
+| SDK 版本     | 库名              | 库类型         |
+| ------------ | ----------------- | -------------- |
+| 3.0.1 及以上 | AgoraRtcKit       | 动态库         |
+| 3.0.0        | AgoraRtcKit       | 动态库、静态库 |
+| 3.0.0 以下   | AgoraRtcEngineKit | 静态库         |
 
 ## 从 3.0.0 静态库版本升级到 3.0.1 版本
 

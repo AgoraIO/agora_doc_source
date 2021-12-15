@@ -42,8 +42,8 @@ abstract fun selectAppliance(type: WhiteboardApplianceType)
 
 选中白板基础工具。
 
-| 参数   | 描述                                                         |
-| :----- | :----------------------------------------------------------- |
+| 参数   | 描述                                                                                                                                              |
+| :----- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `type` | 白板基础工具类型，详见 [WhiteboardApplianceType](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboardappliancetype)。 |
 
 ### selectColor
@@ -66,9 +66,9 @@ abstract fun selectFontSize(size: Int)
 
 选择字体大小。
 
-| 参数 | 描述 |
-| :--- | :--- |
-| `size`   |   字体大小。   |
+| 参数   | 描述       |
+| :----- | :--------- |
+| `size` | 字体大小。 |
 
 ### selectThickness
 
@@ -78,9 +78,9 @@ abstract fun selectThickness(thick: Int)
 
 选择画笔粗细。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `thick`   |  画笔粗细。   |
+| 参数    | 描述       |
+| :------ | :--------- |
+| `thick` | 画笔粗细。 |
 
 ### selectRoster
 
@@ -90,9 +90,9 @@ abstract fun selectRoster(anchor: View)
 
 选中用户列表。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `anchor`    |  用户列表的 Icon-View。  |
+| 参数     | 描述                   |
+| :------- | :--------------------- |
+| `anchor` | 用户列表的 Icon-View。 |
 
 ### setBoardInputEnable
 
@@ -100,9 +100,9 @@ abstract fun selectRoster(anchor: View)
 abstract fun setBoardInputEnable(enable: Boolean)
 ```
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `enable`    | 是否可以使用白板基础工具和白板页面控制工具。白板弹出进度框或下载失败框的时候，白板基础工具和白板页面控制工具不可使用。 |
+| 参数     | 描述                                                                                                                   |
+| :------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `enable` | 是否可以使用白板基础工具和白板页面控制工具。白板弹出进度框或下载失败框的时候，白板基础工具和白板页面控制工具不可使用。 |
 
 ### skipDownload
 
@@ -112,9 +112,9 @@ abstract fun skipDownload(url: String?)
 
 跳过课件下载。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `url`    |   课件下载地址。   |
+| 参数  | 描述           |
+| :---- | :------------- |
+| `url` | 课件下载地址。 |
 
 ### cancelDownload
 
@@ -124,9 +124,9 @@ abstract fun cancelDownload(url: String?)
 
 取消课件下载。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `url`    |   课件下载地址。   |
+| 参数  | 描述           |
+| :---- | :------------- |
+| `url` | 课件下载地址。 |
 
 ### retryDownload
 
@@ -136,9 +136,9 @@ abstract fun retryDownload(url: String?)
 
 课件下载重试。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `url`    |   课件下载地址。   |
+| 参数  | 描述           |
+| :---- | :------------- |
+| `url` | 课件下载地址。 |
 
 ### setFullScreen
 
@@ -148,9 +148,9 @@ abstract fun setFullScreen(full: Boolean)
 
 设置白板是否全屏。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `full`    |  白板是否全屏。    |
+| 参数   | 描述           |
+| :----- | :------------- |
+| `full` | 白板是否全屏。 |
 
 ### setZoomOut
 
@@ -196,8 +196,8 @@ fun onWhiteboardJoinSuccess(config: WhiteboardDrawingConfig)
 
 提示成功加入白板房间。
 
-| 参数     | 描述                                                         |
-| :------- | :----------------------------------------------------------- |
+| 参数     | 描述                                                                                                                                          |
+| :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
 | `config` | 白板初始配置，详见 [WhiteboardDrawingConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboarddrawingconfig)。 |
 
 ### onWhiteboardJoinFail
@@ -227,16 +227,15 @@ fun onWhiteboardLeft(boardId: String, timestamp: Long)
 
 ### getBoardContainer
 
-```kotlin 
+```kotlin
 fun getBoardContainer(): ViewGroup?
 ```
 
 获取白板容器 ViewGroup。
 
-| 参数 | 描述 |
-| :--- | :--- |
-| `ViewGroup`     | 白板容器 ViewGroup。    |
-
+| 参数        | 描述                 |
+| :---------- | :------------------- |
+| `ViewGroup` | 白板容器 ViewGroup。 |
 
 ### onDrawingConfig
 
@@ -246,9 +245,9 @@ fun onDrawingConfig(config: WhiteboardDrawingConfig)
 
 返回白板初始工具配置。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `config`    |  白板初始配置，详见 [WhiteboardDrawingConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboarddrawingconfig)。  |
+| 参数     | 描述                                                                                                                                          |
+| :------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `config` | 白板初始配置，详见 [WhiteboardDrawingConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboarddrawingconfig)。 |
 
 ### onDrawingEnabled
 
@@ -258,10 +257,9 @@ fun onDrawingEnabled(enabled: Boolean)
 
 报告白板基础工具是否可用。
 
-| 参数 | 描述 |
-| :--- | :--- |
-| `enabled`     |  白板基础工具是否可用。  |
-
+| 参数      | 描述                   |
+| :-------- | :--------------------- |
+| `enabled` | 白板基础工具是否可用。 |
 
 ### onPageNo
 
@@ -271,11 +269,10 @@ fun onPageNo(no: Int, count: Int)
 
 报告白板当前页数和总页数。
 
-| 参数 | 描述 |
-| :--- | :--- |
-| `no`     |  当前页数。    |
-| `count`     |  总页数。    |
-
+| 参数    | 描述       |
+| :------ | :--------- |
+| `no`    | 当前页数。 |
+| `count` | 总页数。   |
 
 ### onPagingEnabled
 
@@ -285,45 +282,46 @@ fun onPagingEnabled(enabled: Boolean)
 
 报告是否可翻页。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `enabled`    |   是否可翻页。   |
-
+| 参数      | 描述         |
+| :-------- | :----------- |
+| `enabled` | 是否可翻页。 |
 
 ### onZoomEnabled
 
 ```kotlin
 fun onZoomEnabled(zoomOutEnabled: Boolean?, zoomInEnabled: Boolean?)
 ```
+
 报告是否可放大、缩小。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `zoomOutEnabled`    |  是否可缩小。    |
-|  `zoomInEnabled`    |  是否可放大。    |
+| 参数             | 描述         |
+| :--------------- | :----------- |
+| `zoomOutEnabled` | 是否可缩小。 |
+| `zoomInEnabled`  | 是否可放大。 |
 
 ### onFullScreenEnabled
 
 ```kotlin
 fun onFullScreenEnabled(enabled: Boolean)
 ```
+
 报告是否可全屏白板。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `enabled`    | 是否可全屏白板。     |
+| 参数      | 描述             |
+| :-------- | :--------------- |
+| `enabled` | 是否可全屏白板。 |
 
 ### onFullScreenChanged
 
 ```kotlin
 fun onFullScreenChanged(isFullScreen: Boolean)
 ```
+
 报告当前白板是否全屏。
 
-| 参数 | 描述 |
-| :--- | :--- |
-| `isFullScreen`     | 当前白板是否全屏。     |
-
+| 参数           | 描述               |
+| :------------- | :----------------- |
+| `isFullScreen` | 当前白板是否全屏。 |
 
 ### onInteractionEnabled
 
@@ -333,10 +331,9 @@ fun onInteractionEnabled(enabled: Boolean)
 
 报告白板页面控制工具是否可用。
 
-| 参数 | 描述 |
-| :--- | :--- |
-| `enabled`     |  白板页面控制工具是否可用。     |
-
+| 参数      | 描述                       |
+| :-------- | :------------------------- |
+| `enabled` | 白板页面控制工具是否可用。 |
 
 ### onBoardPhaseChanged
 
@@ -346,34 +343,34 @@ fun onBoardPhaseChanged(phase: EduBoardRoomPhase)
 
 白板连接状态发生变化。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `phase`  |  白板连接状态，详见 [EduBoardRoomPhase](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#eduboardroomphase)。  |
-
+| 参数    | 描述                                                                                                                              |
+| :------ | :-------------------------------------------------------------------------------------------------------------------------------- |
+| `phase` | 白板连接状态，详见 [EduBoardRoomPhase](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#eduboardroomphase)。 |
 
 ### onDownloadProgress
 
 ```kotlin
 fun onDownloadProgress(url: String, progress: Float)
 ```
+
 报告当前课件下载进度。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `url`    |  课件下载 URL 地址。    |
-|  `progress`    | 课件下载进度，取值范围为 0 到 1。   |
+| 参数       | 描述                              |
+| :--------- | :-------------------------------- |
+| `url`      | 课件下载 URL 地址。               |
+| `progress` | 课件下载进度，取值范围为 0 到 1。 |
 
 ### onDownloadTimeout
 
 ```kotlin
 fun onDownloadTimeout(url: String)
 ```
+
 报告课件下载超时。当一次课件下载所花的时间超过了 15 秒，就会触发该回调。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `url`    |  课件下载 URL 地址。    |
-
+| 参数  | 描述                |
+| :---- | :------------------ |
+| `url` | 课件下载 URL 地址。 |
 
 ### onDownloadCompleted
 
@@ -383,10 +380,9 @@ fun onDownloadCompleted(url: String)
 
 报告课件下载完成。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `url`    |  课件下载 URL 地址。    |
-
+| 参数  | 描述                |
+| :---- | :------------------ |
+| `url` | 课件下载 URL 地址。 |
 
 ### onDownloadError
 
@@ -396,9 +392,9 @@ fun onDownloadError(url: String)
 
 报告课件下载失败。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `url`    |  课件下载 URL 地址。    |
+| 参数  | 描述                |
+| :---- | :------------------ |
+| `url` | 课件下载 URL 地址。 |
 
 ### onDownloadCanceled
 
@@ -408,11 +404,11 @@ fun onDownloadCanceled(url: String)
 
 报告当前课件下载任务被取消。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `url`    |  课件下载 URL 地址。    |
+| 参数  | 描述                |
+| :---- | :------------------ |
+| `url` | 课件下载 URL 地址。 |
 
-### onPermissionGranted 
+### onPermissionGranted
 
 ```kotlin
 fun onPermissionGranted(granted: Boolean)
@@ -420,7 +416,6 @@ fun onPermissionGranted(granted: Boolean)
 
 报告白板权限发生变化。
 
-| 参数 | 描述 |
-| :--- | :--- |
-|  `granted`    |  是否具有白板权限。    |
-
+| 参数      | 描述               |
+| :-------- | :----------------- |
+| `granted` | 是否具有白板权限。 |

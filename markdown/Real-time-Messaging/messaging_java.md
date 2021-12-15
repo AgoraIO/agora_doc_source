@@ -3,6 +3,7 @@ title: 发送和接收点对点消息及频道消息
 platform: Android
 updatedAt: 2021-03-02 02:30:45
 ---
+
 # 01 集成客户端
 
 本文介绍在正式使用 Agora RTM SDK for Java 进行实时消息通讯前，需要准备的开发环境，包含前提条件及 SDK 集成方法等内容。
@@ -15,13 +16,12 @@ updatedAt: 2021-03-02 02:30:45
 
 下载的文件包括 libs 文件和 sample 文件，其中 libs 文件包括：
 
-
 ### 创建 Agora 账号并获取 App ID
 
 1. 进入 <https://dashboard.agora.io/> ，按照屏幕提示创建一个开发者账号。
 2. 登录 Dashboard 页面，点击添加新项目。
 3. 填写项目名， 然后点击提交 。
-4. 在你创建的项目下，查看并获取该项目对应的App ID。
+4. 在你创建的项目下，查看并获取该项目对应的 App ID。
 
 ### 添加 SDK
 
@@ -31,23 +31,22 @@ updatedAt: 2021-03-02 02:30:45
 public static final String APP_ID = "<#YOUR APP ID#>";
 ```
 
-- 第1步: 在 Agora.io SDK 下载 RTM SDK，解压后将其中的 libs 文件夹下的 *.jar, *.so 复制到本项目的 lib/ 下
-- 第2步: 如果没有maven环境，需要安装apache-maven-3.6.0
-- 第2步: 将demo依赖的jar包安装到本地maven仓库, mvn install:install-file -Dfile=lib/agora_rtm.jar -DgroupId=io.agora.rtm -DartifactId=agora-rtm-sdk -Dversion=1.0 -Dpackaging=jar
-- 第3步: 使用maven编译打包, 在pom.xml所在目录运行 “mvn package”
+- 第 1 步: 在 Agora.io SDK 下载 RTM SDK，解压后将其中的 libs 文件夹下的 _.jar, _.so 复制到本项目的 lib/ 下
+- 第 2 步: 如果没有 maven 环境，需要安装 apache-maven-3.6.0
+- 第 2 步: 将 demo 依赖的 jar 包安装到本地 maven 仓库, mvn install:install-file -Dfile=lib/agora_rtm.jar -DgroupId=io.agora.rtm -DartifactId=agora-rtm-sdk -Dversion=1.0 -Dpackaging=jar
+- 第 3 步: 使用 maven 编译打包, 在 pom.xml 所在目录运行 “mvn package”
 
-## 运行Demo
+## 运行 Demo
 
-第4步: 运行Demo, “java -cp target/RTM-Client-Demo-1.0-SNAPSHOT.jar -Dsun.boot.library.path=lib/ io.agora.mainClass.RtmJavaDemo”
+第 4 步: 运行 Demo, “java -cp target/RTM-Client-Demo-1.0-SNAPSHOT.jar -Dsun.boot.library.path=lib/ io.agora.mainClass.RtmJavaDemo”
 
 # 02 初始化
 
 在创建实例前，请确保你已完成环境准备，安装包获取等步骤。
 
-创建实例需要填入准备好的APP_ID, 只有APP_ID相同的应用才能互通。
+创建实例需要填入准备好的 APP_ID, 只有 APP_ID 相同的应用才能互通。
 
-
-指定一个事件回调，SDK通过回调通知应用程序SDK 的状态变化和运行事件等，如连接状态变化，消息接收等。
+指定一个事件回调，SDK 通过回调通知应用程序 SDK 的状态变化和运行事件等，如连接状态变化，消息接收等。
 
 ```java
 import io.agora.rtm.ErrorInfo;
@@ -59,7 +58,7 @@ import io.agora.rtm.RtmClient;
 import io.agora.rtm.RtmClientListener;
 import io.agora.rtm.RtmMessage;
 ...
-    
+
 class ChannelListener implements RtmChannelListener {
     private String channel_;
     public ChannelListener(String channel) {
@@ -102,7 +101,7 @@ class ChannelListener implements RtmChannelListener {
                 @Override
                 public void onMessageReceived(RtmMessage rtmMessage, String peerId) {
                     String msg = rtmMessage.getText();
-                    System.out.println("Receive message: " + msg 
+                    System.out.println("Receive message: " + msg
                                 + " from " + peerId);
                 }
             });
@@ -113,23 +112,20 @@ class ChannelListener implements RtmChannelListener {
     }
 ```
 
-
-
 ### 注意事项
 
-RTM 支持多实例， 每个实例独立工作互不干扰，多个实例创建时可以用相同的context，事件回调须是不同的实例。
+RTM 支持多实例， 每个实例独立工作互不干扰，多个实例创建时可以用相同的 context，事件回调须是不同的实例。
 
-
-当实例不再使用的时，可以调用实例的release()方法释放资源。
+当实例不再使用的时，可以调用实例的 release()方法释放资源。
 
 # 03 登录
 
-APP 必须在登录RTM服务器之后，才可以使用RTM的点对点消息和群聊功能，在此之前，请确保RTM client初始化完成。
+APP 必须在登录 RTM 服务器之后，才可以使用 RTM 的点对点消息和群聊功能，在此之前，请确保 RTM client 初始化完成。
 
 登录实现方法
 
 - 传入能标识用户角色和权限的 Token。如果安全要求不高，也可以将值设为 null。Token 需要在应用程序的服务器端生成，具体生成办法，详见密钥说明。
-- 传入能标识每个用户账号的 ID。ID 为字符串，必须是可见字符（可以带空格），不能为空或者多于64个字符，也不能是字符串 “null“。
+- 传入能标识每个用户账号的 ID。ID 为字符串，必须是可见字符（可以带空格），不能为空或者多于 64 个字符，也不能是字符串 “null“。
 - 传入结果回调，用于接收登录 RTM 服务器成功或者失败的结果回调。
 
 ```java
@@ -157,7 +153,6 @@ mRtmClient.logout(null);
 # 04 点对点消息
 
 pp 在成功登录 RTM 服务器之后，可以开始使用 RTM 的点对点消息功能。
-
 
 ### 实现方法
 
@@ -197,22 +192,20 @@ pp 在成功登录 RTM 服务器之后，可以开始使用 RTM 的点对点消�
 - 通过 message.getText() 方法可以获取到消息文本内容。
 - peerId 是消息发送方的用户账号 ID。
 
-
 ### 注意事项
 
 - 接收到的 RtmMessage 消息对象不能重复利用再用于发送。
 
 # 05 群聊
 
-App 在成功登录RTM服务器 之后，可以开始使用 RTM 的群聊功能。
+App 在成功登录 RTM 服务器 之后，可以开始使用 RTM 的群聊功能。
 
 ## 实现方法
 
 ### 创建加入频道实例
 
-- 传入能标识每个频道的 ID。ID 为字符串，必须是可见字符（可以带空格），不能为空或者多于64个字符，也不能是字符串 “null“。  
+- 传入能标识每个频道的 ID。ID 为字符串，必须是可见字符（可以带空格），不能为空或者多于 64 个字符，也不能是字符串 “null“。
 - 指定一个事件回调。SDK 通过回调通知应用程序频道的状态变化和运行事件等，如: 接收到频道消息、用户加入和退出频道等。
-
 
 ```java
         mRtmChannel = mRtmClient.createChannel(channel,
@@ -244,7 +237,6 @@ App 在成功登录RTM服务器 之后，可以开始使用 RTM 的群聊功能�
 - 传入 RtmMessage 对象实例。该消息对象由 RtmClient 类的 createMessage 实例方法创建，并使用消息实例的 setText 方法设置消息内容。
 - 传入消息发送结果监听器，用于接收消息发送结果回调，如：服务器已接收，发送超时等。
 
-
 ```java
     public void sendChannelMessage(String msg) {
         RtmMessage message = mRtmClient.createMessage();
@@ -268,8 +260,7 @@ App 在成功登录RTM服务器 之后，可以开始使用 RTM 的群聊功能�
 
 ### 获取频道成员列表
 
-调用实例的 getMembers 方法可以获取到当前在该频道内的用户列表。 
-
+调用实例的 getMembers 方法可以获取到当前在该频道内的用户列表。
 
 ```java
     public void getChannelMemberList() {
@@ -290,7 +281,7 @@ App 在成功登录RTM服务器 之后，可以开始使用 RTM 的群聊功能�
 
 ## 注意事项
 
-- 每个客户端都需要首先调用创建channel方法创建频道实例才能使用群聊功能，该实例只是本地的一个类对象实例。
+- 每个客户端都需要首先调用创建 channel 方法创建频道实例才能使用群聊功能，该实例只是本地的一个类对象实例。
 - RTM 支持同时创建多个不同的频道实例并加入到多个频道中，但是每个频道实例必须使用不同的频道 ID 以及不同的回调。
 - 如果频道 ID 非法，或者具有相同 ID 的频道实例已经在本地创建，createChannel 将返回 null。
 - 接收到的 RtmMessage 消息对象不能重复利用再用于发送。
@@ -298,6 +289,7 @@ App 在成功登录RTM服务器 之后，可以开始使用 RTM 的群聊功能�
 - 所有回调如无特别说明，除了基本的参数合法性检查失败触发的回调，均为异步调用。
 
 # 06 发送和接受呼叫邀请
+
 在登陆 Agora RTM 系统后可以发送和接收呼叫邀请
 
 ## 获取 RtmCallManager

@@ -3,6 +3,7 @@ title: 播放音效与混音文件
 platform: Web
 updatedAt: 2020-12-30 09:02:02
 ---
+
 <div class="alert note">本文仅适用于 Agora Web SDK 3.x 及之前版本。如果你使用 Web SDK 4.x，请查看<a href="./audio_mixing_web_ng?platform=Web">播放音效与混音文件</a>。</div>
 
 ## 功能描述
@@ -10,7 +11,6 @@ updatedAt: 2020-12-30 09:02:02
 在通话或直播过程中，除了用户自己说话的声音，有时候需要播放自定义的声音或者音乐文件并且让频道内的其他人也听到，比如需要给游戏添加音效，或者需要播放背景音乐等，Agora 提供以下两组方法可以满足播放音效和音乐文件的需求。
 
 开始前请确保已在你的项目中实现基本的实时音视频功能。 详见[开始音视频通话](start_call_web)或[开始互动直播](start_live_web)。
-
 
 <div class="alert info">点击<a href="https://webdemo.agora.io/agora-web-showcase/examples/AgoraAudioIO-Web/">在线体验</a>试用播放音效和混音功能。</div>
 
@@ -23,66 +23,69 @@ updatedAt: 2020-12-30 09:02:02
 
 ```javascript
 // 预加载音效，需注意音效文件的大小
-stream.preloadEffect(1, "https://web-demos-static.agora.io/agora/smlt.flac", function(err){
-    if (err){
-        console.error("Failed to preload effect, reason: ", err);
-    }else{
-        console.log("Effect is preloaded successfully");
-    }
+stream.preloadEffect(1, "https://web-demos-static.agora.io/agora/smlt.flac", function (err) {
+  if (err) {
+    console.error("Failed to preload effect, reason: ", err);
+  } else {
+    console.log("Effect is preloaded successfully");
+  }
 });
 
 // 播放音效
-stream.playEffect({
+stream.playEffect(
+  {
     soundId: 1,
-    filePath: "https://web-demos-static.agora.io/agora/smlt.flac"
-}, function(error) {
+    filePath: "https://web-demos-static.agora.io/agora/smlt.flac",
+  },
+  function (error) {
     if (error) {
-        // 错误处理
-        return;
+      // 错误处理
+      return;
     }
     // 播放成功后的流程
-});
+  },
+);
 
 // 获取所有音效播放的音量
 var volumes = stream.getEffectsVolume();
-volumes.forEach(function({soundId, volume}){
-    console.log("SoundId", soundId, "Volume", volume);
+volumes.forEach(function ({soundId, volume}) {
+  console.log("SoundId", soundId, "Volume", volume);
 });
 
 // 暂停播放所有音效
-stream.pauseAllEffects(function(err){
-    if (err){
-        console.error("Failed to pause effects, reason: ", err);
-    }else{
-        console.log("Effects are paused successfully");
-    }
+stream.pauseAllEffects(function (err) {
+  if (err) {
+    console.error("Failed to pause effects, reason: ", err);
+  } else {
+    console.log("Effects are paused successfully");
+  }
 });
 
 // 继续播放暂停的音效
-stream.resumeAllEffects(function(err){
-    if (err){
-        console.error("Failed to resume effects, reason: ", err);
-    }else{
-        console.log("Effects are resumed successfully");
-    }
+stream.resumeAllEffects(function (err) {
+  if (err) {
+    console.error("Failed to resume effects, reason: ", err);
+  } else {
+    console.log("Effects are resumed successfully");
+  }
 });
 
 // 停止所有音效
-stream.stopAllEffects(function(err){
-    if (err){
-        console.error("Failed to stop effects, reason: ", err);
-    }else{
-        console.log("Effects are stopped successfully");
-    }
+stream.stopAllEffects(function (err) {
+  if (err) {
+    console.error("Failed to stop effects, reason: ", err);
+  } else {
+    console.log("Effects are stopped successfully");
+  }
 });
 
 // 释放预加载的音效文件
-stream.unloadEffect(1, function(err){
-    if (err){
-        console.error("Failed to unload effect, reason: ", err);
-    }else{
-        console.log("Effect is unloaded successfully");
-    }
+stream.unloadEffect(1, function (err) {
+  if (err) {
+    console.error("Failed to unload effect, reason: ", err);
+  } else {
+    console.log("Effect is unloaded successfully");
+  }
 });
 ```
 
@@ -122,22 +125,22 @@ Agora 混音功能支持如下设置：
 // 设置混音选项
 // cacheResource 选填，设置是否缓存音乐文件，默认为 true。
 // filePath 必填，设置混音文件路径，仅支持在线文件。
-// cycle 选填，设置音频文件循环播放的次数，仅支持 Chrome 65+。如不设置则默认播放一次。 
+// cycle 选填，设置音频文件循环播放的次数，仅支持 Chrome 65+。如不设置则默认播放一次。
 // replace 选填，设置是否用音频文件内容替换本地麦克风采集的音频流。默认为 false。
-// playTime 必填，设置音频文件开始播放的位置，单位为 ms。设为 0 即从头开始播放。 
+// playTime 必填，设置音频文件开始播放的位置，单位为 ms。设为 0 即从头开始播放。
 var options = {
-      cacheResource: false,
-      filePath: "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3", 
-      cycle: 1, 
-      replace: false, 
-      playTime:0 
-}
+  cacheResource: false,
+  filePath: "http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3",
+  cycle: 1,
+  replace: false,
+  playTime: 0,
+};
 
 // 开始混音
-localStream.startAudioMixing(options, function(err){
-     if (err){
-             console.log("Failed to start audio mixing. " + err);
-      }
+localStream.startAudioMixing(options, function (err) {
+  if (err) {
+    console.log("Failed to start audio mixing. " + err);
+  }
 });
 
 // 调整混音的音量。取值为 [0, 100]，100 代表维持原来混音的音量（默认）。

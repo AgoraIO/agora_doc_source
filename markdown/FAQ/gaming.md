@@ -1,9 +1,10 @@
 ---
 title: 如何处理游戏场景的声音问题？
-platform: ["Android","iOS"]
+platform: ["Android", "iOS"]
 updatedAt: 2021-02-05 02:48:32
-Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
+Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
 ---
+
 **加入频道之前，游戏音效是静音状态，但是指挥模式下进入语音频道之后，为什么游戏音效自动打开？**
 
 进入通话后，音效播放的音量为通话音量，而通话音量无法设置为 0。
@@ -40,12 +41,12 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 
 在语音连麦过程中，手机系统会开启回声消除以保证人声体验，因此会压低声音，也会压低背景音效。你可以选择如下一种方法解决该问题：
 
-* 确保声音都走外放。你可以调用 `setEnableSpeakerphone` 方法设置语音路由为外放。
-* 调用 `startAudioMixing` 或 `playEffect` 方法来播放音效文件。
+- 确保声音都走外放。你可以调用 `setEnableSpeakerphone` 方法设置语音路由为外放。
+- 调用 `startAudioMixing` 或 `playEffect` 方法来播放音效文件。
 
 **`onAudioVolumeIndication` 获得的音量是 0~255, 有没有什么合适的经验阈值界定说话和没说话？**
 
-根据经验，阈值为 40～50 较合适。音量小于该阈值为没说话，大于该阈值为说话。考虑到不同的人对说话、没说话的定义不一，我们建议你基于该阈值稍作调整。
+根据经验，阈值为 40 ～ 50 较合适。音量小于该阈值为没说话，大于该阈值为说话。考虑到不同的人对说话、没说话的定义不一，我们建议你基于该阈值稍作调整。
 
 **游戏 SDK 中媒体音量系统，在连麦后进入通话音量系统时，如何实现静音？**
 
@@ -72,5 +73,5 @@ Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 
 因为蓝牙要开通话模式，即 SCO，才能实现播放和录音双向功能。 而在 SCO 模式下，蓝牙只能单声道播放；在 A2DP 模式下蓝牙才可以双声道播放，但如果蓝牙音箱只支持 A2DP 不支持 SCO，又无法进行语音通话。
 
-* A2DP：是一种单向的高品质音频数据传输链路，通常用于播放立体声音乐。
-* SCO： 则是一种双向的音频数据的传输链路，该链路只支持 8K 及 16K 单声道的音频数据，只能用于普通语音的传输。
+- A2DP：是一种单向的高品质音频数据传输链路，通常用于播放立体声音乐。
+- SCO： 则是一种双向的音频数据的传输链路，该链路只支持 8K 及 16K 单声道的音频数据，只能用于普通语音的传输。

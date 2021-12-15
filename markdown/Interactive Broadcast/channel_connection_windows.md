@@ -3,6 +3,7 @@ title: 频道连接状态管理
 platform: Windows
 updatedAt: 2020-09-22 11:37:50
 ---
+
 当用户使用 Agora SDK 进行音视频通话或互动直播时，他会有多个 Agora 频道连接状态。本文介绍 Agora 频道如何判断用户在通信的各个阶段处于什么连接状态以及各状态的转变过程。
 
 ## 连接状态
@@ -43,6 +44,7 @@ updatedAt: 2020-09-22 11:37:50
 - T7：如果 UID 1 连续 20 分钟无法重新加入频道，SDK 不再继续尝试。UID 1 收到 `onConnectionStateChanged(connection_state_failed, connection_changed_join_failed)` 回调；用户需要退出当前频道，然后重新加入频道。
 
 ## API 参考
+
 - [getConnectionState](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a512b149d4dc249c04f9e30bd31767362)
 - [onConnectionStateChanged](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af409b2e721d345a65a2c600cea2f5eb4)
 - [onConnectionLost](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ab5c110382a2ef7eb92cd069c22884727)

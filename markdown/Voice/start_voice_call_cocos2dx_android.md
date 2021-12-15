@@ -3,22 +3,19 @@ title: 实现语音通话
 platform: Cocos2d-x
 updatedAt: 2020-12-11 12:10:45
 ---
+
 本文介绍如何建立一个简单的 Cocos2d-x 项目并集成 Agora 音频 SDK 实现基础的语音通话。
 
 ## 前提条件
 
- 
 ### 开发环境要求
+
 - Cocos2d-x 3.0 或以上。
 - Python 2.7.5 或以上 (Cocos2d-x 不支持 Python 3 或以上）。
 - Android Studio 3.0 或以上。
 - Android 4.1 或以上设备。部分模拟机可能存在功能缺失或者性能问题，所以推荐使用真机。
 - NDK r18b 或以上。
 - cmake。
- 
-
-
-
 
 <div class="alert info">本文以 Cocos2d-x 3.17.2 为例。关于搭建开发环境的更多信息，详见<a href="https://docs.cocos.com/cocos2d-x/v4/manual/zh/installation/">环境搭建</a >。如果你使用 Cocos2d-x 4.0 或以上版本，请参考 <a href="https://docs.cocos.com/cocos2d-x/v4/manual/zh/upgradeGuide/migration.html">Cocos 官方指南从 v3 升级至 v4</a >。</div>
 
@@ -37,18 +34,18 @@ updatedAt: 2020-12-11 12:10:45
 2. 解压后，运行根目录下的 `setup.py` 脚本文件，将 `cocos` 命令添加到环境变量。
 
    你可以在终端运行 `cocos -v`，检查 `cocos` 命令行工具是否已经成功添加到环境变量。若配置成功，会出现如下输出：
-   
+
    ```
    cocos2d-x-3.17.2
    Cocos Console 2.3
    ```
 
-3. 使用  `cocos new` 命令创建新项目，命令格式如下：
+3. 使用 `cocos new` 命令创建新项目，命令格式如下：
 
    ```
    cocos new <game name> -p <package identifier> -l <language> -d <location>
    ```
-   
+
    其中：
 
    - `<game name>`：设置项目名称。
@@ -59,7 +56,7 @@ updatedAt: 2020-12-11 12:10:45
 
    - `-d <location>`：设置项目存放路径。
 
-   <div class="alert note">为缩短项目路径，建议你将项目存放路径设置为工作磁盘的根目录。否则，编译 Android 项目时可能会因项目路径过长而失败。</div> 
+   <div class="alert note">为缩短项目路径，建议你将项目存放路径设置为工作磁盘的根目录。否则，编译 Android 项目时可能会因项目路径过长而失败。</div>
 
  <div class="alert info">关于使用 <code>cocos</code> 命令工具创建项目的更多信息，详见 <a href="https://docs.cocos.com/cocos2d-x/v4/manual/zh/editors_and_tools/cocosCLTool.html">cocos 命令</a >。</div>
 
@@ -68,6 +65,7 @@ updatedAt: 2020-12-11 12:10:45
 1. 前往 [Agora Android 平台的下载页面](./downloads?platform=Android)，下载最新版的 Agora 音频 SDK 并解压。
 
 2. 在项目根目录下创建 `sdk` 文件夹，用于存放 Agora 语音 SDK。你可以按照如下结构创建文件夹：
+
 ```
 └─sdk
     ├─android
@@ -76,121 +74,115 @@ updatedAt: 2020-12-11 12:10:45
     └─ios
         └─agora
 ```
+
 <div class="alert note">你也可以将 Agora SDK 文件放置到项目的其他路径中，但需要注意将所有配置文件中 <code>./sdk/android/agora</code> 路径替换成你的 Agora SDK 存放路径。</div>
 
-3. 将 SDK 包中 `libs` 文件夹下如下文件拷贝到你的项目文件夹中：
+3.  将 SDK 包中 `libs` 文件夹下如下文件拷贝到你的项目文件夹中：
 
-   | 文件或文件夹             | 项目路径              |
-   | :----------------------- | :-------------------- |
-   | `agora-rtc-sdk.jar` 文件 | `./sdk/android/lib`   |
-   | `arm-v8a` 文件夹         | `./sdk/android/agora` |
-   | `armeabi-v7a` 文件夹     | `./sdk/android/agora` |
-   | `include` 文件夹         | `./sdk/android/agora` |
-   | `x86 文件夹`             | `./sdk/android/agora` |
-   | `x86_64` 文件夹          | `./sdk/android/agora` |
+    | 文件或文件夹             | 项目路径              |
+    | :----------------------- | :-------------------- |
+    | `agora-rtc-sdk.jar` 文件 | `./sdk/android/lib`   |
+    | `arm-v8a` 文件夹         | `./sdk/android/agora` |
+    | `armeabi-v7a` 文件夹     | `./sdk/android/agora` |
+    | `include` 文件夹         | `./sdk/android/agora` |
+    | `x86 文件夹`             | `./sdk/android/agora` |
+    | `x86_64` 文件夹          | `./sdk/android/agora` |
 
+4.  在构建文件中添加 `.so` 库的配置。你可以选择以下任意一种方式：
 
-4. 在构建文件中添加 `.so` 库的配置。你可以选择以下任意一种方式：
+        -   方法一：如果你使用的构建工具是 cmake, 即 `./proj.android/gradle.properties` 中设置 `PROP_BUILD_TYPE=cmake`，你需要进行如下操作：
+            a. 在项目根目录下的 `CMakeLists.txt` 文件中添加如下代码：
 
-   - 方法一：如果你使用的构建工具是 cmake, 即 `./proj.android/gradle.properties` 中设置 `PROP_BUILD_TYPE=cmake`，你需要进行如下操作：
-     a. 在项目根目录下的 `CMakeLists.txt` 文件中添加如下代码：
+                   ```
 
-        ```
-  else()
-         add_library(${APP_NAME} SHARED ${all_code_files})
-         add_subdirectory(${COCOS2DX_ROOT_PATH}/cocos/platform/android ${ENGINE_BINARY_PATH}/cocos/platform)
-         target_link_libraries(${APP_NAME} -Wl,--whole-archive cpp_android_spec -Wl,--no-whole-archive)
-         // 添加如下四行代码：
-         add_library(agora-rtc-sdk SHARED IMPORTED)
-         set_target_properties(agora-rtc-sdk PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/sdk/android/agora/${ANDROID_ABI}/libagora-rtc-sdk.so)
-         include_directories(${CMAKE_CURRENT_SOURCE_DIR}/sdk/android/agora/include/)
-         target_link_libraries(${APP_NAME} agora-rtc-sdk)
-   endif()
-        ```
+            else()
+            add_library(${APP_NAME} SHARED ${all_code_files})
+             add_subdirectory(${COCOS2DX_ROOT_PATH}/cocos/platform/android ${ENGINE_BINARY_PATH}/cocos/platform)
+             target_link_libraries(${APP_NAME} -Wl,--whole-archive cpp_android_spec -Wl,--no-whole-archive)
+            // 添加如下四行代码：
+            add_library(agora-rtc-sdk SHARED IMPORTED)
+            set_target_properties(agora-rtc-sdk PROPERTIES IMPORTED_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/sdk/android/agora/${ANDROID_ABI}/libagora-rtc-sdk.so)
+            include_directories(${CMAKE_CURRENT_SOURCE_DIR}/sdk/android/agora/include/)
+             target_link_libraries(${APP_NAME} agora-rtc-sdk)
+            endif()
+            ```
 
-     b. 在 `proj.android/app/build.gradle` 文件 `assets.srcDir "../../Resources"` 后增加如下代码， 添加 `.so` 库的引用：
-     
-        ```groovy
- sourceSets.main {
-        java.srcDir "src"
-        res.srcDir "res"
-        manifest.srcFile "AndroidManifest.xml"
-        assets.srcDir "../../Resources"
-        // 添加如下两行代码，引用 so 库。
-        if (PROP_BUILD_TYPE == 'cmake') {
+                b. 在 `proj.android/app/build.gradle` 文件 `assets.srcDir "../../Resources"` 后增加如下代码， 添加 `.so` 库的引用：
+
+                   ```groovy
+
+            sourceSets.main {
+            java.srcDir "src"
+            res.srcDir "res"
+            manifest.srcFile "AndroidManifest.xml"
+            assets.srcDir "../../Resources"
+            // 添加如下两行代码，引用 so 库。
+            if (PROP_BUILD_TYPE == 'cmake') {
             jniLibs.srcDirs "../../sdk/android/agora"
-        }
-    }
-        ```
-     
-   - 方法二：如果你使用的构建工具是 ndk-build，即 `./proj.android/gradle.properties` 中设置 `PROP_BUILD_TYPE=ndk-build`，在 `./proj.android/app/jni/Android.mk` 文件中添加如下代码：
+            }
+            }
+            ```
 
-    ```	makefile
-    LOCAL_PATH := $(call my-dir)
-// 添加如下 4 行代码，指定将 ./sdk/android/agora 路径下的源文件编译为动态库。
-include $(CLEAR_VARS)
-LOCAL_MODULE := agora-rtc-sdk
-LOCAL_SRC_FILES := $(LOCAL_PATH)/../../../sdk/android/agora/$(TARGET_ARCH_ABI)/libagora-rtc-sdk.so
-include $(PREBUILT_SHARED_LIBRARY)
-include $(CLEAR_VARS)
-LOCAL_MODULE := MyGame_shared
-LOCAL_MODULE_FILENAME := libMyGame
-LOCAL_SRC_FILES := $(LOCAL_PATH)/hellocpp/main.cpp \
-                   $(LOCAL_PATH)/../../../Classes/AppDelegate.cpp \
-                   $(LOCAL_PATH)/../../../Classes/HelloWorldScene.cpp \
-                   $(LOCAL_PATH)/../../../Classes/TextBox/TextBox.cpp \
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes \
-                    // 添加如下行，将 ./sdk/android/agora/include 添加到 include 搜索路径中。
-                    $(LOCAL_PATH)/../../../sdk/android/agora/include
-	# _COCOS_HEADER_ANDROID_BEGIN
-	# _COCOS_HEADER_ANDROID_END
-LOCAL_STATIC_LIBRARIES := cc_static
-                 // 添加如下行，链接 agora-rtc-sdk 动态库。
-				 LOCAL_SHARED_LIBRARIES := agora-rtc-sdk
-	# _COCOS_LIB_ANDROID_BEGIN
-	# _COCOS_LIB_ANDROID_END
-	include $(BUILD_SHARED_LIBRARY)	
-	$(call import-module, cocos)
-	# _COCOS_LIB_IMPORT_ANDROID_BEGIN
-	# _COCOS_LIB_IMPORT_ANDROID_END
-		```
-		
+        -   方法二：如果你使用的构建工具是 ndk-build，即 `./proj.android/gradle.properties` 中设置 `PROP_BUILD_TYPE=ndk-build`，在 `./proj.android/app/jni/Android.mk` 文件中添加如下代码：
+
+
+            ```	makefile
+            LOCAL_PATH := $(call my-dir)
+
+        // 添加如下 4 行代码，指定将 ./sdk/android/agora 路径下的源文件编译为动态库。
+        include $(CLEAR_VARS)
+
+    LOCAL_MODULE := agora-rtc-sdk
+    LOCAL_SRC_FILES := $(LOCAL_PATH)/../../../sdk/android/agora/$(TARGET_ARCH_ABI)/libagora-rtc-sdk.so
+    include $(PREBUILT_SHARED_LIBRARY)
+    include $(CLEAR_VARS)
+    LOCAL_MODULE := MyGame_shared
+    LOCAL_MODULE_FILENAME := libMyGame
+    LOCAL_SRC_FILES := $(LOCAL_PATH)/hellocpp/main.cpp \
+     $(LOCAL_PATH)/../../../Classes/AppDelegate.cpp \
+     $(LOCAL_PATH)/../../../Classes/HelloWorldScene.cpp \
+     $(LOCAL_PATH)/../../../Classes/TextBox/TextBox.cpp \
+     LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../../Classes \
+     // 添加如下行，将 ./sdk/android/agora/include 添加到 include 搜索路径中。
+    $(LOCAL_PATH)/../../../sdk/android/agora/include # \_COCOS_HEADER_ANDROID_BEGIN # \_COCOS_HEADER_ANDROID_END
+    LOCAL_STATIC_LIBRARIES := cc_static
+    // 添加如下行，链接 agora-rtc-sdk 动态库。
+    LOCAL_SHARED_LIBRARIES := agora-rtc-sdk # \_COCOS_LIB_ANDROID_BEGIN # \_COCOS_LIB_ANDROID_END
+    include $(BUILD_SHARED_LIBRARY)
+    $(call import-module, cocos) # \_COCOS_LIB_IMPORT_ANDROID_BEGIN # \_COCOS_LIB_IMPORT_ANDROID_END
+
+    ```
     <div class="alert note">如果使用 ndk-build 作为构建工具，不需要配置 <code>jniLibs.srcDirs</code>，ndk-build 会自动引用 <code>.so</code> 库。</div>
-		
-		
-		 
-		 
-        
-
-
+    ```
 
 ## 添加项目权限
 
 根据场景需要，在 `./proj.android/app/AndroidManifest.xml` 文件中添加如下行，获取相应的设备权限：
+
 ```xml
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.agora.gaming.cocos2d"
-    android:installLocation="auto">
+<manifest
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  package="io.agora.gaming.cocos2d"
+  android:installLocation="auto">
  
  
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <!--如果你的场景中涉及读取外部存储，需添加如下权限：-->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!--如果你使用的是 Android 10.0 及以上设备，还需要添加如下权限：-->
-    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
  
 ...
 </manifest>
 ```
-
 
 ## 获取设备权限
 
@@ -201,15 +193,15 @@ public class AppActivity extends Cocos2dxActivity {
     static {
         System.loadLibrary("agora-rtc-sdk");
     }
- 
- 
+
+
     private final static int REQUEST_CODE = 200;
- 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.setEnableVirtualButton(false);
         super.onCreate(savedInstanceState);
-         
+
         // App 运行时确认麦克风的使用权限。
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED)) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -218,7 +210,7 @@ public class AppActivity extends Cocos2dxActivity {
                                 Manifest.permission.RECORD_AUDIO,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE
                         }, REQUEST_CODE);
- 
+
             } else {
                 ActivityCompat.requestPermissions(this,
                         new String[]{
@@ -234,7 +226,7 @@ public class AppActivity extends Cocos2dxActivity {
             }
         }
     }
- 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == REQUEST_CODE) {
@@ -254,18 +246,18 @@ public class AppActivity extends Cocos2dxActivity {
 
 现在，你可以在调用 Agora Voice SDK 提供的核心 API 实现基础的语音通话。
 
-
 ### 1. 导入类和添加声明
 
 在 `HelloWorldScene.h` 文件中导入类，并添加变量与函数的声明。
 
 1. 导入类 `AgoraRtcKit` 和 `IAgoraRtcEngine` 类。
+
    ```c++
-#ifdef __APPLE__
-#include "AgoraRtcKit.h"
-#elif __ANDROID__
-#include "IAgoraRtcEngine.h"
-#endif
+   #ifdef __APPLE__
+   #include "AgoraRtcKit.h"
+   #elif __ANDROID__
+   #include "IAgoraRtcEngine.h"
+   #endif
    ```
 
 2. 定义 App ID 和 Token。
@@ -283,42 +275,40 @@ public class AppActivity extends Cocos2dxActivity {
    ```
 
 3. 添加函数声明。
-   
- ```c++
-   class HelloWorld : public cocos2d::Scene {
-   public:
-  static cocos2d::Scene *createScene();
-   
-    bool init() override;
-    // 进入 HelloWorld 场景的回调。
-    void onEnter() override;
-    // 离开 HelloWorld 场景的回调。
-    void onExit() override;
-    ...
-     
+
+```c++
+  class HelloWorld : public cocos2d::Scene {
   public:
-    void updateMsgContent(const std::string &msg);
-   
-  private:
-    // 点击加入频道按钮的回调。
-    void onJoinChannelClicked();
-    // 点击离开频道按钮的回调。
-    void onLeaveChannelClicked();
-   
-  private:
-    TextBox *textBox;
-    cocos2d::ui::EditBox *editBox;
-    agora::rtc::IRtcEngine *engine;
-    agora::rtc::IRtcEngineEventHandler *eventHandler;
-    std::map<uid_t, bool> users;
-  };
+ static cocos2d::Scene *createScene();
+
+   bool init() override;
+   // 进入 HelloWorld 场景的回调。
+   void onEnter() override;
+   // 离开 HelloWorld 场景的回调。
+   void onExit() override;
+   ...
+
+ public:
+   void updateMsgContent(const std::string &msg);
+
+ private:
+   // 点击加入频道按钮的回调。
+   void onJoinChannelClicked();
+   // 点击离开频道按钮的回调。
+   void onLeaveChannelClicked();
+
+ private:
+   TextBox *textBox;
+   cocos2d::ui::EditBox *editBox;
+   agora::rtc::IRtcEngine *engine;
+   agora::rtc::IRtcEngineEventHandler *eventHandler;
+   std::map<uid_t, bool> users;
+ };
 ```
 
-###  2. 创建用户界面
+### 2. 创建用户界面
 
- 根据场景需要，为你的项目创建语音通话的用户界面。
-
-
+根据场景需要，为你的项目创建语音通话的用户界面。
 
 Agora 推荐你添加如下用户界面元素：
 
@@ -335,11 +325,11 @@ Agora 推荐你添加如下用户界面元素：
   auto editBox = cocos2d::ui::EditBox::create(Size(120, 30), "TextBox.png");
   if (editBox==nullptr) {
       problemLoading("'TextBox.png'");
-  } else {   
-    editBox->setPlaceHolder("Channel ID");   
-    editBox->setPosition(Vec2(origin.x + leftPadding + editBox->getContentSize().width/2,                          
-                              origin.y + visibleSize.height                                
-                                  - editBox->getContentSize().height*1.5f)); 
+  } else {
+    editBox->setPlaceHolder("Channel ID");
+    editBox->setPosition(Vec2(origin.x + leftPadding + editBox->getContentSize().width/2,
+                              origin.y + visibleSize.height
+                                  - editBox->getContentSize().height*1.5f));
       this->addChild(editBox, 0);
   }
   ```
@@ -354,12 +344,12 @@ Agora 推荐你添加如下用户界面元素：
       problemLoading("'Button.png' and 'ButtonPressed.png'");
     } else {
       joinButton->setTitleText("Join Channel");
-   
+
       joinButton->setPosition(Vec2(origin.x + leftPadding + joinButton->getContentSize().width/2,
                                    origin.y + visibleSize.height
                                        - 1*joinButton->getContentSize().height
                                        - 2*editBox->getContentSize().height));
-   
+
       joinButton->addTouchEventListener([&](cocos2d::Ref *sender, ui::Widget::TouchEventType type) {
         switch (type) {
         case ui::Widget::TouchEventType::BEGAN:break;
@@ -368,7 +358,7 @@ Agora 推荐你添加如下用户界面元素：
         default:break;
         }
       });
-   
+
       this->addChild(joinButton, 0);
     }
   ```
@@ -382,12 +372,12 @@ Agora 推荐你添加如下用户界面元素：
       problemLoading("'Button.png' and 'ButtonPressed.png'");
     } else {
       leaveButton->setTitleText("Leave Channel");
-   
+
       leaveButton->setPosition(Vec2(origin.x + leftPadding + leaveButton->getContentSize().width/2,
                                     origin.y + visibleSize.height
                                         - 2*leaveButton->getContentSize().height
                                         - 2*editBox->getContentSize().height));
-   
+
       leaveButton->addTouchEventListener([&](cocos2d::Ref *sender, ui::Widget::TouchEventType type) {
         switch (type) {
         case ui::Widget::TouchEventType::BEGAN:break;
@@ -396,7 +386,7 @@ Agora 推荐你添加如下用户界面元素：
         default:break;
         }
       });
-   
+
       this->addChild(leaveButton, 0);
     }
   ```
@@ -409,8 +399,8 @@ Agora 推荐你添加如下用户界面元素：
 class MyIGamingRtcEngineEventHandler : public agora::rtc::IRtcEngineEventHandler {
 private:
   HelloWorld *mUi;
- 
- 
+
+
 public:
   explicit MyIGamingRtcEngineEventHandler(HelloWorld *ui) : mUi(ui) {}
   // 注册 onJoinChannelSuccess 回调。
@@ -430,9 +420,9 @@ public:
     mUi->updateMsgContent(rawMsg.str());
   }
 };
- 
+
 ...
- 
+
 void HelloWorld::onEnter() {
   cocos2d::Scene::onEnter();
   eventHandler = new MyIGamingRtcEngineEventHandler(this);
@@ -449,7 +439,6 @@ void HelloWorld::onEnter() {
 
 ### 4.加入频道
 
- 
 完成初始化后，你就可以调用 `joinChannel` 方法加入频道。
 
 ```c++
@@ -461,9 +450,6 @@ void HelloWorld::onJoinChannelClicked() {
   engine->joinChannel(AGORA_TOKEN, editBox->getText(), "Cocos2d", 0);
 }
 ```
-
-
-
 
 <div class="alert note">用户成功加入频道后，会默认订阅频道内其他所有用户的音频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <code>mute</code> 方法实现。</div>
 
@@ -477,7 +463,8 @@ void HelloWorld::onLeaveChannelClicked() { engine->leaveChannel(); }
 
 ## 运行项目
 
-$$ 58e813c0-2cd6-11eb-a7cb-b3073a891fdd
+$$
+58e813c0-2cd6-11eb-a7cb-b3073a891fdd
 {
 	"platform": "android"
 	"product": "voice"

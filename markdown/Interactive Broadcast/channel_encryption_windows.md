@@ -3,6 +3,7 @@ title: 媒体流加密
 platform: Windows
 updatedAt: 2021-02-20 10:43:04
 ---
+
 ## 功能描述
 
 在实时音视频互动过程中，开发者需要对媒体流加密，从而保障用户的数据安全。Agora 提供内置加密方案和自定义加密方案，区别如下：
@@ -61,8 +62,8 @@ Agora 在各平台上提供了 C++ 的 `registerPacketObserver` 方法及 `IPack
 1. 在加入频道前，调用 `registerPacketObserver` 注册数据包观测器，从而在语音或视频数据包传输时接收事件。
 
    ```c++
-	 virtual int registerPacketObserver(IPacketObserver* observer);
-	 ```
+    virtual int registerPacketObserver(IPacketObserver* observer);
+   ```
 
 2. 实现一个 `IPacketObserver` 类:
 
@@ -70,7 +71,7 @@ Agora 在各平台上提供了 C++ 的 `registerPacketObserver` 方法及 `IPack
     class IPacketObserver
     {
     public:
-    
+
     struct Packet
     {
     // 需要发送或接收的数据的缓存地址。
@@ -78,7 +79,7 @@ Agora 在各平台上提供了 C++ 的 `registerPacketObserver` 方法及 `IPack
     // 需要发送或接收的数据的缓存大小。
     unsigned int size;
     };
-    
+
     // 已发送音频包回调。
     // 在音频包被发送给远端用户前触发。
     // @param packet 详见: Packet。
@@ -86,7 +87,7 @@ Agora 在各平台上提供了 C++ 的 `registerPacketObserver` 方法及 `IPack
     // - true: 发送音频包。
     // - false: 丢弃音频包。
     virtual bool onSendAudioPacket(Packet& packet) = 0;
-    
+
     // 已发送视频包回调。
     // 在视频包被发送给远端用户前触发。
     // @param packet 详见: Packet。
@@ -94,7 +95,7 @@ Agora 在各平台上提供了 C++ 的 `registerPacketObserver` 方法及 `IPack
     // - true: 发送视频包。
     // - false: 丢弃视频包。
     virtual bool onSendVideoPacket(Packet& packet) = 0;
-    
+
     // 收到音频包回调。
     // 在收到远端用户的音频包前触发。
     // @param packet 详见: Packet。
@@ -102,7 +103,7 @@ Agora 在各平台上提供了 C++ 的 `registerPacketObserver` 方法及 `IPack
     // - true: 发送音频包。
     // - false: 丢弃音频包。
     virtual bool onReceiveAudioPacket(Packet& packet) = 0;
-    
+
     // 收到视频包回调。
     // 在收到远端用户的视频包前触发。
     // @param packet 详见: Packet。
@@ -111,7 +112,9 @@ Agora 在各平台上提供了 C++ 的 `registerPacketObserver` 方法及 `IPack
     // - false: 丢弃视频包。
     virtual bool onReceiveVideoPacket(Packet& packet) = 0;
     };
-```
+   ```
+
+````
 
 3. 继承 `IPacketObserver`，并在你的 app 上使用你自定义的数据加密算法。
 
@@ -132,7 +135,7 @@ Agora 在各平台上提供了 C++ 的 `registerPacketObserver` 方法及 `IPack
             // 加密数据包。
             const unsigned char* p = packet.buffer;
             const unsigned char* pe = packet.buffer+packet.size;
-   
+
             for (i = 0; p < pe && i < m_txAudioBuffer.size(); ++p, ++i)
             {
                 m_txAudioBuffer[i] = *p ^ 0x55;
@@ -142,7 +145,7 @@ Agora 在各平台上提供了 C++ 的 `registerPacketObserver` 方法及 `IPack
             packet.size = i;
             return true;
         }
-   
+
         virtual bool onSendVideoPacket(Packet& packet)
         {
             int i;
@@ -158,7 +161,7 @@ Agora 在各平台上提供了 C++ 的 `registerPacketObserver` 方法及 `IPack
             packet.size = i;
             return true;
         }
-   
+
         virtual bool onReceiveAudioPacket(Packet& packet)
         {
             int i = 0;
@@ -174,14 +177,14 @@ Agora 在各平台上提供了 C++ 的 `registerPacketObserver` 方法及 `IPack
             packet.size = i;
             return true;
         }
-   
+
         virtual bool onReceiveVideoPacket(Packet& packet)
         {
             int i = 0;
             // 解密数据包。
             const unsigned char* p = packet.buffer;
             const unsigned char* pe = packet.buffer+packet.size;
-   
+
             for (i = 0; p < pe && i < m_rxVideoBuffer.size(); ++p, ++i)
             {
                 m_rxVideoBuffer[i] = *p ^ 0x55;
@@ -191,15 +194,15 @@ Agora 在各平台上提供了 C++ 的 `registerPacketObserver` 方法及 `IPack
             packet.size = i;
             return true;
         }
-   
+
     private:
         std::vector<unsigned char> m_txAudioBuffer; // 发送音频数据 buffer。
         std::vector<unsigned char> m_txVideoBuffer; // 发送视频数据 buffer。
-   
+
         std::vector<unsigned char> m_rxAudioBuffer; // 接收音频数据 buffer。
         std::vector<unsigned char> m_rxVideoBuffer; // 接收视频数据 buffer。
     };
-```
+````
 
 4. 调用 `registerPacketObserver` 为 `IPacketObserver` 类注册一个实例。
 

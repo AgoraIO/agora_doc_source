@@ -3,6 +3,7 @@ title: 实现视频直播
 platform: macOS
 updatedAt: 2020-12-16 02:56:18
 ---
+
 本文介绍如何使用 Agora SDK 快速实现音视频直播。
 
 ## 前提条件
@@ -21,7 +22,7 @@ updatedAt: 2020-12-16 02:56:18
 
 3. 输入项目名称（Product Name）、开发团队信息（Team）、组织名称（Organization Name）和语言（Language）等项目信息，并点击 **Next**。
 
-   <div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
+<div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
 
 4. 选择项目存储路径，并点击 **Create**。
 
@@ -63,7 +64,7 @@ end
 4. 点击 **+** > **Add Other…** > **Add Files** 添加对应动态库，并确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。
    添加完成后，项目会自动链接所需系统库
 
-   <div class="alert note"><ul><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>Agora SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></ul></div>
+    <div class="alert note"><ul><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>Agora SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></ul></div>
 
 ## 实现音视频直播
 
@@ -79,7 +80,7 @@ end
 
 - 主播视频窗口
 - 退出频道按钮
-	
+
 当你使用示例项目中的 UI 设计时，你将会看到如下界面：
 
 ![](https://web-cdn.agora.io/docs-files/1568802427977)
@@ -166,11 +167,13 @@ agoraKit.setChannelProfile(.liveBroadcasting)
 <div class="alert note"><li>如果观众级别从 <code>AgoraAudienceLatencyLevelLowLatency</code>（低延时）切换为 <code>AgoraAudienceLatencyLevelUltraLowLatency</code>（超低延时），会从极速直播产品切换为互动直播产品，延时会变为 400 ms - 800 ms。</li><li>如果用户角色从 <code>AgoraClientRoleAudience</code>（观众）切换为 <code>AgoraClientRoleBroadcaster</code>（主播），会从极速直播产品切换为互动直播产品，延时会低于 400 ms。</li><li>当接收端为观众且用户级别为 <code>AgoraAudienceLatencyLevelLowLatency</code> 时，<code>RemoteAudioStats</code> 中的 <code>jitterBufferDelay</code> 字段（接收端到网络抖动缓冲的网络延迟）不生效。</li></div>
 
 主播：
+
 ```swift
 agoraKit.setClientRole(.broadcaster, options: nil)
 ```
 
 观众：
+
 ```swift
 let options: AgoraClientRoleOptions = AgoraClientRoleOptions()
 options.audienceLatencyLevel = AgoraAudienceLatencyLevelType.lowLatency
@@ -206,7 +209,7 @@ func addLocalSession() {
     let localSession = VideoSession.localSession()
     videoSessions.append(localSession)
     // 设置本地视图。
-    agoraKit.setupLocalVideo(localSession.canvas) 
+    agoraKit.setupLocalVideo(localSession.canvas)
     let mediaInfo = MediaInfo(dimension: settings.dimension,
                                   fps: settings.frameRate.rawValue)
     localSession.mediaInfo = mediaInfo
@@ -221,9 +224,9 @@ func addLocalSession() {
 
 - token：传入能标识用户角色和权限的 Token。可设为如下一个值：
 
-	- `nil`
-	-  临时 Token。临时 Token 服务有效期为 24 小时。你可以在控制台里生成一个临时 Token，详见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#get-a-temporary-token)。
-	-  在你的服务器端生成的 Token。在安全要求高的场景下，我们推荐你使用此种方式生成的 Token，详见[生成 Token](./token_server)。
+  - `nil`
+  - 临时 Token。临时 Token 服务有效期为 24 小时。你可以在控制台里生成一个临时 Token，详见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#get-a-temporary-token)。
+  - 在你的服务器端生成的 Token。在安全要求高的场景下，我们推荐你使用此种方式生成的 Token，详见[生成 Token](./token_server)。
 
  <div class="alert note">若项目已启用 App 证书，请使用 Token。</div>
 
@@ -305,7 +308,7 @@ func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoDecodedOfUid uid: UI
 
 ```swift
 // Swift
-func leaveChannel() {       
+func leaveChannel() {
     setIdleTimerActive(true)
     agoraKit.setupLocalVideo(nil)
     // 离开频道。
@@ -333,18 +336,16 @@ func leaveChannel() {
 
 2. 在终端里进入项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
 
- <% if (product == "audio") { %>
-3. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称，并将 `version` 替换为你需集成的 SDK 版本。如需了解 SDK 版本信息，查看[发版说明](./release_mac_audio?platform=macOS)。
+<% if (product == "audio") { %> 3. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称，并将 `version` 替换为你需集成的 SDK 版本。如需了解 SDK 版本信息，查看[发版说明](./release_mac_audio?platform=macOS)。
 
-<% } if (product == "video") { %>
-3. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称，并将 `version` 替换为你需集成的 SDK 版本。如需了解 SDK 版本信息，查看[发版说明](./release_mac_video?platform=macOS)。
+<% } if (product == "video") { %> 3. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称，并将 `version` 替换为你需集成的 SDK 版本。如需了解 SDK 版本信息，查看[发版说明](./release_mac_video?platform=macOS)。
 
- <% } %>
+<% } %>
 
- ```
+```
 # platform :macOS, '10.11' use_frameworks!
 target 'Your App' do
-  pod 'AgoraRtcEngine_macOS', 'version'
+ pod 'AgoraRtcEngine_macOS', 'version'
 end
 ```
 
@@ -360,19 +361,18 @@ end
 	<summary><font color="#3ab7f8">集成 3.2.0 至 3.2.1 版本 SDK</font></summary>
 
 <% if (product == "audio") { %>
+
 1. 复制 SDK 包中的 `AgoraRtcKit.framework`、`Agorafdkaac.framework` 和 `AgoraSoundTouch.framework` 动态库到项目的 `./project_name` 文件夹下（`project_name` 为你的项目名称）。
-<% } if (product == "video") { %>
+   <% } if (product == "video") { %>
 1. 复制 SDK 包中的 `AgoraRtcKit.framework`、`Agorafdkaac.framework`、`Agoraffmpeg.framework` 和 `AgoraSoundTouch.framework` 动态库到项目的 `./project_name` 文件夹下（`project_name` 为你的项目名称）。
-<% } %>
+   <% } %>
 
-2. 打开 Xcode，进入 **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** 菜单。
+1. 打开 Xcode，进入 **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** 菜单。
 
-<% if (product == "audio") { %>
-3. 点击 **+** > **Add Other…** > **Add Files** 添加 `AgoraRtcKit.framework`、`Agorafdkaac.framework` 和 `AgoraSoundTouch.framework` 动态库，并确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。
-   添加完成后，项目会自动链接所需系统库。
-<% } if (product == "video") { %>
-3. 点击 **+** > **Add Other…** > **Add Files** 添加 `AgoraRtcKit.framework`、`Agorafdkaac.framework`、`Agoraffmpeg.framework` 和 `AgoraSoundTouch.framework` 动态库，并确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。
-   添加完成后，项目会自动链接所需系统库。
+<% if (product == "audio") { %> 3. 点击 **+** > **Add Other…** > **Add Files** 添加 `AgoraRtcKit.framework`、`Agorafdkaac.framework` 和 `AgoraSoundTouch.framework` 动态库，并确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。
+添加完成后，项目会自动链接所需系统库。
+<% } if (product == "video") { %> 3. 点击 **+** > **Add Other…** > **Add Files** 添加 `AgoraRtcKit.framework`、`Agorafdkaac.framework`、`Agoraffmpeg.framework` 和 `AgoraSoundTouch.framework` 动态库，并确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。
+添加完成后，项目会自动链接所需系统库。
 <% } %>
 
    <div class="alert note"><ul><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>Agora SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></ul></div>
@@ -382,9 +382,9 @@ end
 <details>
 	<summary><font color="#3ab7f8">集成 3.0.1 至 3.1.2 版本 SDK</font></summary>
 
- 1. 复制 SDK 包中的 `AgoraRtcKit.framework` 动态库到项目的 `./project_name` 文件夹下（`project_name` 为你的项目名称）。
- 2. 打开 Xcode，进入 **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** 菜单。
- 3. 点击 **+** > **Add Other…** > **Add Files** 添加 `AgoraRtcKit.framework` 动态库，并确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。添加完成后，项目会自动链接所需系统库。
+1.  复制 SDK 包中的 `AgoraRtcKit.framework` 动态库到项目的 `./project_name` 文件夹下（`project_name` 为你的项目名称）。
+2.  打开 Xcode，进入 **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** 菜单。
+3.  点击 **+** > **Add Other…** > **Add Files** 添加 `AgoraRtcKit.framework` 动态库，并确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。添加完成后，项目会自动链接所需系统库。
 
   <div class="alert note"><ul><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>Agora SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></ul></div>
 
@@ -396,26 +396,29 @@ end
 3.0.0 版 SDK 中包含一个 `AgoraRtcKit.framework` 动态库和一个 `AgoraRtcKit.framework` 静态库，你可以根据需要选择其中一个库添加。
 
 两个库在 SDK 包中的路径如下：
+
 - 动态库的路径为 `./Agora_Native_SDK_for_macOS_..._Dynamic/libs`。
 - 静态库的路径为 `./Agora_Native_SDK_for_macOS_.../libs`。
 
 <div class="alert info">你也可以在终端运行 <tt>file /path/library_name.framework/library_name</tt> 命令，查看库类型。其中 <tt>library_name</tt> 为库名。<li>如果终端返回 <tt>dynamically linked shared library</tt>，表示该库为动态库。</li><li>如果终端返回 <tt>current ar archive random library</tt>，表示该库为静态库。</li></div>
 
 **动态库集成：**
+
 1. 将 SDK 包中的 `AgoraRtcKit.framework` 动态库复制到项目的 `./project_name` 文件夹下（`project_name` 为你的项目名称）。
 2. 打开 Xcode，进入 **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** 菜单。
 3. 点击 **+** > **Add Other…** > **Add Files** 添加 `AgoraRtcKit.framework` 动态库，并确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。
- 添加完成后，项目会自动链接所需系统库。
+   添加完成后，项目会自动链接所需系统库。
 
 <div class="alert note">根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</div>
 
 **静态库集成：**
+
 1. 将 SDK 包中的 `AgoraRtcKit.framework` 静态库复制到项目的 `./project_name` 文件夹下（`project_name` 为你的项目名称）。
 2. 打开 **Xcode**，进入 **TARGETS > Project Name > Build Phases > Link Binary with Libraries** 菜单，点击 **+** 添加如下库。在添加 `AgoraRtcKit.framework` 时，还需在点击 **+** 后点击 **Add Other…** > **Add Files**，找到本地文件并打开。
 
-| SDK | 库 |
-| ---------------- | ---------------- |
-| 音频 SDK      |<li>`AgoraRtcKit.framework`</li><li>`Accelerate.framework`</li><li>`CoreWLAN.framework`</li><li>`libc++.tbd`</li><li>`libresolv.9.tbd`</li><li>`SystemConfiguration.framework`</li>|
+| SDK      | 库                                                                                                                                                                                                                   |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 音频 SDK | <li>`AgoraRtcKit.framework`</li><li>`Accelerate.framework`</li><li>`CoreWLAN.framework`</li><li>`libc++.tbd`</li><li>`libresolv.9.tbd`</li><li>`SystemConfiguration.framework`</li>                                  |
 | 视频 SDK | <li>`AgoraRtcKit.framework`</li><li>`Accelerate.framework`</li><li>`CoreWLAN.framework`</li><li>`libc++.tbd`</li><li>`libresolv.9.tbd`</li><li>`SystemConfiguration.framework`</li><li>`VideoToolbox.framework`</li> |
 
 <div class="alert note">Agora SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</div>
@@ -428,9 +431,9 @@ end
 1. 将 SDK 包中的 `AgoraRtcEngineKit.framework` 静态库复制到项目的 `./project_name` 文件夹下（`project_name` 为你的项目名称）。
 2. 打开 **Xcode**，进入 **TARGETS > Project Name > Build Phases > Link Binary with Libraries** 菜单，点击 **+** 添加如下库。在添加 `AgoraRtcEngineKit.framework` 时，还需在点击 **+** 后点击 **Add Other…** > **Add Files**，找到本地文件并打开。
 
-| SDK | 库 |
-| ---------------- | ---------------- |
-| 音频 SDK      |<li>`AgoraRtcEngineKit.framework`</li><li>`Accelerate.framework`</li><li>`CoreWLAN.framework`</li><li>`libc++.tbd`</li><li>`libresolv.9.tbd`</li><li>`SystemConfiguration.framework`</li>|
+| SDK      | 库                                                                                                                                                                                                                         |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 音频 SDK | <li>`AgoraRtcEngineKit.framework`</li><li>`Accelerate.framework`</li><li>`CoreWLAN.framework`</li><li>`libc++.tbd`</li><li>`libresolv.9.tbd`</li><li>`SystemConfiguration.framework`</li>                                  |
 | 视频 SDK | <li>`AgoraRtcEngineKit.framework`</li><li>`Accelerate.framework`</li><li>`CoreWLAN.framework`</li><li>`libc++.tbd`</li><li>`libresolv.9.tbd`</li><li>`SystemConfiguration.framework`</li><li>`VideoToolbox.framework`</li> |
 
 <div class="alert note">Agora SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</div>

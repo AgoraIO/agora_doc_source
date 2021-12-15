@@ -25,38 +25,41 @@
 
 在 `AgoraEduUI.swift` 中，进行以下修改：
 
-1. 将 `AgoraEduContextAppType` 更名为 `AgoraEduContextRoomType`。
-2. 将 `var chat: AgoraEduWidget` 改为 `var chat: AgoraBaseWidget`。
-3. 参考下图，添加以下代码新增 `initWidgets` 方法。
+1.  将 `AgoraEduContextAppType` 更名为 `AgoraEduContextRoomType`。
+2.  将 `var chat: AgoraEduWidget` 改为 `var chat: AgoraBaseWidget`。
+3.  参考下图，添加以下代码新增 `initWidgets` 方法。
 
-    ![](https://web-cdn.agora.io/docs-files/1631956034236)
+        ![](https://web-cdn.agora.io/docs-files/1631956034236)
 
-      ```swift
-func initWidgets() {
-        guard let widgetInfos = contextPool.widget.getWidgetInfos() else {
-            return
-        }
-         
-        for info in widgetInfos {
-            switch info.widgetId {
-            case "AgoraChatWidget":
-                info.properties = ["contextPool": contextPool]
-                let chat = contextPool.widget.create(with: info)
-                chat.addMessageObserver(self)
-                 
-                let hasConversation = (viewType == .oneToOne ? 0 : 1)
-                if let message = ["hasConversation": hasConversation].jsonString() {
-                    chat.widgetDidReceiveMessage(message)
+          ```swift
+
+    func initWidgets() {
+    guard let widgetInfos = contextPool.widget.getWidgetInfos() else {
+    return
+    }
+
+            for info in widgetInfos {
+                switch info.widgetId {
+                case "AgoraChatWidget":
+                    info.properties = ["contextPool": contextPool]
+                    let chat = contextPool.widget.create(with: info)
+                    chat.addMessageObserver(self)
+
+                    let hasConversation = (viewType == .oneToOne ? 0 : 1)
+                    if let message = ["hasConversation": hasConversation].jsonString() {
+                        chat.widgetDidReceiveMessage(message)
+                    }
+
+                    self.chat = chat
+                default:
+                    break
                 }
-                 
-                self.chat = chat
-            default:
-                break
             }
-        }
-}
- ```
-	
+
+    }
+
+````
+
 ## 步骤四：替换 SDKs/Modules/AgraUIEduBaseViews 目录下的文件
 
 用原先 AgoraEduSDK/Modules/AgraUIEduBaseViews 目录下的文件替换 SDKs/Modules/AgraUIEduBaseViews 目录下的文件，具体如下：
@@ -76,9 +79,9 @@ func initWidgets() {
 - 用 AgoraEduSDK/Modules/AgraUIEduBaseViews/AgoraUIChatView 替换 Widgets/AgoraWidgets/Chat。
 
 <details>
- <summary><font color="#3ab7f8">查看截图</font></summary>
+<summary><font color="#3ab7f8">查看截图</font></summary>
 1.1.5 之前版本的目录结构：<img src="https://web-cdn.agora.io/docs-files/1631956127330" />1.1.5 的目录结构：<img src="https://web-cdn.agora.io/docs-files/1631956146556" />
-</details>   
+</details>
 
 ## 步骤五：修改 `AgoraChatWidget.swift` 文件
 
@@ -86,32 +89,32 @@ func initWidgets() {
 
 1. 将初始化方法更改为下面的新的初始化方法：
 
-   ```swift
-   public required init(widgetId: String,
-                        contextPool: AgoraEduContextPool,
-                        properties: [AnyHashable : Any]?) {
-       super.init(widgetId: widgetId,
-                  contextPool: contextPool,
-                  properties: properties)
-       initViews()
-       initLayout()
-       initData()
-   }
-   ```
+  ```swift
+  public required init(widgetId: String,
+                       contextPool: AgoraEduContextPool,
+                       properties: [AnyHashable : Any]?) {
+      super.init(widgetId: widgetId,
+                 contextPool: contextPool,
+                 properties: properties)
+      initViews()
+      initLayout()
+      initData()
+  }
+````
 
 2. 增加 `AgoraEduMessageContext` 属性：
 
    ```swift
    private weak var context: AgoraEduMessageContext?
-    
+
    public required override init(widgetId: String,
                                  properties: [AnyHashable: Any]?) {
        super.init(widgetId: widgetId,
                   properties: properties)
-        
+
        initViews()
        initLayout()
-        
+
        if let contextPool = properties?["contextPool"] as? AgoraEduContextPool {
            context = contextPool.chat
            initData()

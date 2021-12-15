@@ -23,7 +23,8 @@ RTM Token 在 app 服务器上生成，其有效期为 24 小时。当用户从�
 - 已开启 [App 证书](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms#manage-your-app-certificates)的 Agora 项目。
 - [Golang](https://golang.org/) 1.14 以上版本，GO111MODULE 设置为开启。
 
-   > 如果你使用的是 Go 1.16 以上版本，GO111MODULE 已默认开启。详情请参考 [New module changes in Go 1.16](https://blog.golang.org/go116-module-changes)。
+  > 如果你使用的是 Go 1.16 以上版本，GO111MODULE 已默认开启。详情请参考 [New module changes in Go 1.16](https://blog.golang.org/go116-module-changes)。
+
 - [npm](https://www.npmjs.com/get-npm) 以及[支持的浏览器](https://docs.agora.io/cn/All/faq/browser_support)。
 
 ## 实现鉴权流程
@@ -42,9 +43,9 @@ Agora 自动为每一个项目分配一个 App ID 作为该项目的唯一标识
 
 ![获取 App ID](https://web-cdn.agora.io/docs-files/1602646621028)
 
-#### 2.  获取 App 证书
+#### 2. 获取 App 证书
 
-点击 **Edit**，进入 **Edit Project** 页面。  点击“眼睛”图标即可复制 App 证书。
+点击 **Edit**，进入 **Edit Project** 页面。 点击“眼睛”图标即可复制 App 证书。
 
 ![获取 App 证书](https://web-cdn.agora.io/docs-files/1592535534341)
 
@@ -189,8 +190,10 @@ func main(){
 <div class="alert warning">此示例仅用于演示，请勿用于生产环境中。</div>
 
 1. 创建一个项目文件夹，其中包含如下文件：
+
    - `index.html`：用户界面
    - `client.js`：使用 RTM SDK 的 app 逻辑
+
    ```text
    |
    |-- index.html
@@ -200,108 +203,109 @@ func main(){
 2. 下载 [Agora RTM SDK for Web](https://docs.agora.io/cn/Real-time-Messaging/downloads?platform=Web)。将 `libs` 中的 JS 文件保存到你的项目下。
 
 3. 在 `index.html` 中加入以下代码，创建用户界面。
-    - 你需要将 `<path to the JS file>` 替换为 JS 文件的路径。
+
+   - 你需要将 `<path to the JS file>` 替换为 JS 文件的路径。
 
    ```html
    <html>
-   <head>
-      <title>RTM Token demo</title>
-   </head>
-   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-   <body>
-      <h1>Token demo</h1>
-      <script src="<path to the JS file>"></script>
-    <script src="./client.js"></script>
-
-   </body>
+     <head>
+       <title>RTM Token demo</title>
+     </head>
+     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+     <body>
+       <h1>Token demo</h1>
+       <script src="<path to the JS file>"></script>
+       <script src="./client.js"></script>
+     </body>
    </html>
    ```
 
 4. 将如下代码贴入 `client.js` 文件中，实现客户端鉴权逻辑。
-    - 将 `<Your App ID>` 替换为你的 App ID。该 App ID 必须与 Token 生成代码中的 App ID 一致。
-    - 将 `<Your Host URL and port>` 替换为你部署好的本地 Golang 服务器的主机 URL 和端口，如 `10.53.3.234:8082` 。
 
-    ```js
-    // login 方法参数
-    let options = {
-        token: "",
-        uid: ""
-    }
+   - 将 `<Your App ID>` 替换为你的 App ID。该 App ID 必须与 Token 生成代码中的 App ID 一致。
+   - 将 `<Your Host URL and port>` 替换为你部署好的本地 Golang 服务器的主机 URL 和端口，如 `10.53.3.234:8082` 。
 
-    // 是否开启 Token 更新循环
-    let stopped = false
+   ```js
+   // login 方法参数
+   let options = {
+     token: "",
+     uid: "",
+   };
 
-    function sleep (time) {
-        return new Promise((resolve) => setTimeout(resolve, time));
-    }
+   // 是否开启 Token 更新循环
+   let stopped = false;
 
-    function fetchToken(uid) {
+   function sleep(time) {
+     return new Promise(resolve => setTimeout(resolve, time));
+   }
 
-        return new Promise(function (resolve) {
-            axios.post('http://<Your Host URL and port>/fetch_rtm_token', {
-                uid: uid,
-            }, {
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
-                }
-            })
-                .then(function (response) {
-                    const token = response.data.token;
-                    resolve(token);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        })
-    }
+   function fetchToken(uid) {
+     return new Promise(function (resolve) {
+       axios
+         .post(
+           "http://<Your Host URL and port>/fetch_rtm_token",
+           {
+             uid: uid,
+           },
+           {
+             headers: {
+               "Content-Type": "application/json; charset=UTF-8",
+             },
+           },
+         )
+         .then(function (response) {
+           const token = response.data.token;
+           resolve(token);
+         })
+         .catch(function (error) {
+           console.log(error);
+         });
+     });
+   }
 
-    async function loginRTM()
-    {
+   async function loginRTM() {
+     // 你的 app ID
+     const appID = "<Your App ID>";
 
-        // 你的 app ID
-        const appID = "<Your App ID>"
+     // 初始化客户端
+     const client = AgoraRTM.createInstance(appID);
 
-        // 初始化客户端
-        const client = AgoraRTM.createInstance(appID)
+     // 显示连接状态变化
+     client.on("ConnectionStateChanged", function (state, reason) {
+       console.log("State changed To: " + state + " Reason: " + reason);
+     });
 
-        // 显示连接状态变化
-        client.on('ConnectionStateChanged', function (state, reason) {
-            console.log("State changed To: " + state + " Reason: " + reason)
-        })
+     // 设置 RTM 用户 ID
+     options.uid = "1234";
+     // 获取 Token
+     options.token = await fetchToken(options.uid);
+     // 登录 RTM 系统
+     await client.login(options);
 
-        // 设置 RTM 用户 ID
-        options.uid = "1234"
-        // 获取 Token
-        options.token = await fetchToken(options.uid)
-        // 登录 RTM 系统
-        await client.login(options)
+     while (!stopped) {
+       // 每 30 秒更新一次 Token
+       await sleep(30000);
+       options.token = await fetchToken(options.uid);
+       client.renewToken(options.token);
 
-        while (!stopped)
-        {
-            // 每 30 秒更新一次 Token
-            await sleep(30000)
-            options.token = await fetchToken(options.uid)
-            client.renewToken(options.token)
+       let currentDate = new Date();
+       let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
 
-            let currentDate = new Date();
-            let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+       console.log("Renew RTM token at " + time);
+     }
+   }
 
-            console.log("Renew RTM token at " + time)
-        }
-
-    }
-
-    loginRTM()
-    ```
+   loginRTM();
+   ```
 
    在上述代码示例中，你可以看到 Token 与客户端的以下代码逻辑有关：
+
    - 调用 `login` 方法，使用 Token 和用户 ID 登录 RTM 系统。用户 ID 必须和用于生成 Token 的用户 ID 一致。
    - 定时从服务端获取新的 Token 并调用 `renewToken` 方法更新 SDK 的 Token。Agora 建议你定时（例如每小时）从服务端生成 Token 并调用 `renewToken` 方法更新 SDK 的 Token，保证 SDK 的 Token 一直处于有效状态。
 
-4. 用支持的浏览器打开 `index.html` 文件，进入开发者模式。在控制台可以看到客户端执行以下操作：
+5. 用支持的浏览器打开 `index.html` 文件，进入开发者模式。在控制台可以看到客户端执行以下操作：
    - 成功登录 RTM 系统。
    - 每隔 30 秒调用 `renewToken` 方法更新 Token。
-
 
 ## 参考
 
@@ -311,15 +315,15 @@ func main(){
 
 Agora 在 GitHub 上提供一个开源的 [AgoraDynamicKey](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) 仓库，支持使用 C++、Java、Go 等语言在你自己的服务器上生成 Token。
 
-| 语言 | 算法 | 核心方法 | 示例代码 |
-| -------- | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| C++ | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/RtmTokenBuilder.h) | [RtmTokenBuilderSample.cpp](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/sample/RtmTokenBuilderSample.cpp) |
-| Go | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/src/RtmTokenBuilder/RtmTokenBuilder.go) | [sample.go](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/sample/RtmTokenBuilder/sample.go) |
-| Java | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media/RtmTokenBuilder.java) | [RtmTokenBuilderSample.java](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/sample/RtmTokenBuilderSample.java) |
-| Node.js | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/src/RtmTokenBuilder.js) | [RtmTokenBuilderSample.js](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/sample/RtmTokenBuilderSample.js) |
-| PHP | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/src/RtmTokenBuilder.php) | [RtmTokenBuilderSample.php](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/sample/RtmTokenBuilderSample.php) |
-| Python 2 | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/src/RtmTokenBuilder.py) | [RtmTokenBuilderSample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/sample/RtmTokenBuilderSample.py) |
-| Python 3 | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/src/RtmTokenBuilder.py) | [RtmTokenBuilderSample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/sample/RtmTokenBuilderSample.py) |
+| 语言     | 算法        | 核心方法                                                                                                                                            | 示例代码                                                                                                                                                            |
+| -------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| C++      | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/RtmTokenBuilder.h)                              | [RtmTokenBuilderSample.cpp](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/sample/RtmTokenBuilderSample.cpp)                           |
+| Go       | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/src/RtmTokenBuilder/RtmTokenBuilder.go)              | [sample.go](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/sample/RtmTokenBuilder/sample.go)                                            |
+| Java     | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media/RtmTokenBuilder.java) | [RtmTokenBuilderSample.java](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/sample/RtmTokenBuilderSample.java) |
+| Node.js  | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/src/RtmTokenBuilder.js)                          | [RtmTokenBuilderSample.js](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/sample/RtmTokenBuilderSample.js)                          |
+| PHP      | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/src/RtmTokenBuilder.php)                            | [RtmTokenBuilderSample.php](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/sample/RtmTokenBuilderSample.php)                           |
+| Python 2 | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/src/RtmTokenBuilder.py)                          | [RtmTokenBuilderSample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/sample/RtmTokenBuilderSample.py)                          |
+| Python 3 | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/src/RtmTokenBuilder.py)                         | [RtmTokenBuilderSample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/sample/RtmTokenBuilderSample.py)                         |
 
 ### API 参考
 
@@ -333,14 +337,13 @@ static std::string buildToken(const std::string& appId,
 								uint32_t privilegeExpiredTs = 0);
 ```
 
-| 参数               | 描述                                                         |
-| :----------------- | :----------------------------------------------------------- |
-| appId              | 你在 Agora 控制台创建项目时生成的 App ID。                   |
-| appCertificate     | 你的 App 证书。                                              |
-| userAccount        | 用于登录 RTM 系统的用户 ID。你需要自行设定。支持的字符参考 [login 方法中的 userId 参数](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_service.html#a2433a0babbed76ab87084d131227346b)。                                            |
-| userRole           | 用户角色。暂时只支持一种角色，请使用默认值 `Rtm_User`。      |
-| privilegeExpiredTs | 此参数暂不生效。你无需设置此参数。每个 RTM Token 的有效期都是 24 小时。 |
-
+| 参数               | 描述                                                                                                                                                                                                                  |
+| :----------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| appId              | 你在 Agora 控制台创建项目时生成的 App ID。                                                                                                                                                                            |
+| appCertificate     | 你的 App 证书。                                                                                                                                                                                                       |
+| userAccount        | 用于登录 RTM 系统的用户 ID。你需要自行设定。支持的字符参考 [login 方法中的 userId 参数](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_service.html#a2433a0babbed76ab87084d131227346b)。 |
+| userRole           | 用户角色。暂时只支持一种角色，请使用默认值 `Rtm_User`。                                                                                                                                                               |
+| privilegeExpiredTs | 此参数暂不生效。你无需设置此参数。每个 RTM Token 的有效期都是 24 小时。                                                                                                                                               |
 
 ## 开发注意事项
 

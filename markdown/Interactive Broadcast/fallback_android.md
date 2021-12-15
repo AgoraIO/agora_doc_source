@@ -3,6 +3,7 @@ title: 视频流回退
 platform: Android
 updatedAt: 2020-07-17 16:51:00
 ---
+
 ## 功能描述
 
 网络不理想的环境下，直播音视频的质量都会下降。为提升直播效率，Agora 新增了 `setLocalPublishFallbackOption` 和 `setRemoteSubscribeFallbackOption` 两个接口。用户设置这两个接口后，在网络条件差、无法同时保证音视频质量的情况下，SDK 会自动将视频流从大流切换为小流，或将媒体流回退为音频流，从而保证或提高音频质量。
@@ -48,5 +49,3 @@ updatedAt: 2020-07-17 16:51:00
 - `onLocalPublishFallbackToAudioOnly`
 - `onRemoteSubscribeFallbackToAudioOnly`
 - `onRemoteVideoStats`
-
-

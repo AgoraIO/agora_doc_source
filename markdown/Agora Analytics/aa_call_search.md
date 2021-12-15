@@ -3,9 +3,11 @@ title: 通话调查
 platform: All Platforms
 updatedAt: 2020-09-15 18:18:46
 ---
+
 水晶球的[**通话调查**](https://dashboard.agora.io/analytics/call/search)功能以图表的形式展示每一通通话全链路质量数据，可以极大提高解决通话问题的效率。
 
 **通话调查**中提供的数据包括：
+
 - 设备状态，包括系统 CPU 的使用率，以及 App 的 CPU 使用率
 - 本地采集和远端播放音量
 - 音视频发送和接收码率
@@ -27,6 +29,7 @@ updatedAt: 2020-09-15 18:18:46
 ![](https://web-cdn.agora.io/docs-files/1599819697428)
 
 搜索通话步骤：
+
 1. 点击左上角选择你要查询的项目。
 2. 指定需要查询的时间范围。
 3. 选择按照**频道名称**或者 **User** （[用户名](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#username)）查询。
@@ -34,7 +37,6 @@ updatedAt: 2020-09-15 18:18:46
 5. 点击**搜索通话**，即可显示符合搜索条件的所有通话。
 
 <div class="alert note">通话调查默认使用本地时间，如果你需要以本地时区查看通话，点击页面顶部菜单栏的时钟 <img src="https://web-cdn.agora.io/docs-files/1545894297187"/> 切换时区。</div>
-
 
 ## 查看通话质量
 
@@ -96,6 +98,7 @@ updatedAt: 2020-09-15 18:18:46
 通过分析这些指标，你可以找到通话质量问题出在哪个环节。以下为各项指标的具体含义：
 
 <a name="device"></a>
+
 ### 设备状态
 
 App 和系统的 CPU 占用率。如果用户使用的设备性能较差，CPU 占用率可能会过高，造成音视频卡顿。
@@ -103,6 +106,7 @@ App 和系统的 CPU 占用率。如果用户使用的设备性能较差，CPU �
 <div class="alert note"> Android 8.0 及以上版本无法获取 CPU 占用率信息，将用新指标 <b>SDK 任务调度延迟</b>代替。这个指标是 SDK 的工作线程任务调度的时间间隔，可以间接反映系统的性能。</div>
 
 <a name="event"></a>
+
 ### 用户行为
 
 用户行为会反映在**通话体验质量面板**和**端对端详情页面**的事件轴上。事件轴上有红色、黄色和绿色的箭头，分别代表着**严重事件**、**一般事件**和**正常事件**。
@@ -158,11 +162,13 @@ App 和系统的 CPU 占用率。如果用户使用的设备性能较差，CPU �
 通话中的每个用户都有唯一的[用户 ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#username)用于标识身份。**通话调查**中以发送和接收数据的角度来展示和分析用户的通话体验质量。
 
 <a name="rec"></a>
+
 #### 接收端
 
 通话体验概览页面展示的是每个用户作为接收数据的对象，也就是接收端的通话体验质量。通话中的每个用户都有作为接收端的通话体验质量。
 
 <a name="send"></a>
+
 #### 发送端
 
 发送端是指用户作为发送数据的对象。如果用户在通话中发送数据持续一定的时间，会被视为一个发送端，在用户列表中发送端的[用户 ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#username)后面会有一个喇叭![](https://web-cdn.agora.io/docs-files/1545894315028)的图案标识。

@@ -3,7 +3,9 @@ title: 输入在线媒体流
 platform: Web
 updatedAt: 2021-02-26 08:19:57
 ---
+
 ## 功能描述
+
 输入在线媒体流功能可以将音视频流作为一个发送端输入正在进行的直播房间。通过将正在播放的音视频输入到直播频道中，主播和观众可以一起收听/观看该媒体流并实时互动。
 
 ### 常用场景
@@ -42,11 +44,9 @@ updatedAt: 2021-02-26 08:19:57
 
 2. 频道内主播调用 `removeInjectStreamUrl` 方法从直播频道内删除指定的已导入在线媒体流。
 
-   删除媒体流成功后，频道内所有用户都会收到  `Client.on("peer-leave")` 和 `Client.on("stream-removed")` 回调。
+   删除媒体流成功后，频道内所有用户都会收到 `Client.on("peer-leave")` 和 `Client.on("stream-removed")` 回调。
 
    > 主播退出频道后，无需再调用 `removeInjectStreamUrl` 接口。
-
-
 
 ### 示例代码
 
@@ -72,6 +72,7 @@ Client.removeInjectStreamUrl(url);
 同时，我们在 Github 提供一个开源的 [Live-Streaming-Injection](https://github.com/AgoraIO/Advanced-Interactive-Broadcasting/tree/master/Live-Streaming-Injection) 示例项目。
 
 <a name="api"></a>
+
 ### API 参考
 
 - [`addInjectStreamUrl`](./API%20Reference/web/interfaces/agorartc.client.html#addinjectstreamurl)

@@ -3,6 +3,7 @@ title: 实现视频直播
 platform: iOS
 updatedAt: 2021-01-20 03:16:42
 ---
+
 本文介绍如何使用 Agora SDK 快速实现互动直播。
 
 互动直播和实时通话的区别就在于，直播频道的用户有角色之分。你可以将角色设置为主播，或者观众，其中主播可以收、发流，观众只能收流。
@@ -37,7 +38,7 @@ Agora 在 Github 上提供开源的互动直播示例项目 [OpenLive-iOS-Object
 
 3. 输入项目名称（Product Name）、开发团队信息（Team）、组织名称（Organization Name）和语言（Language）等项目信息，并点击 **Next**。
 
-   <div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
+<div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
 
 4. 选择项目存储路径，并点击 **Create**。
 
@@ -56,19 +57,23 @@ Agora 在 Github 上提供开源的互动直播示例项目 [OpenLive-iOS-Object
 3. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
 
 <% if (product == "audio") { %>
+
 ```
 # platform :ios, '9.0' use_frameworks!
 target 'Your App' do
     pod 'AgoraAudio_iOS'
 end
 ```
+
 <% } if (product == "video") { %>
+
 ```
 # platform :ios, '9.0' use_frameworks!
 target 'Your App' do
     pod 'AgoraRtcEngine_iOS'
 end
 ```
+
 <% } %>
 
 4. 在终端内运行 `pod install` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。
@@ -86,9 +91,9 @@ end
 3. 打开 Xcode，进入 **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content** 菜单。
 
 4. 点击 **+** > **Add Other…** > **Add Files** 添加对应动态库，并确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。
-  添加完成后，项目会自动链接所需系统库。
+   添加完成后，项目会自动链接所需系统库。
 
-   <div class="alert note"><ul><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>Agora SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></ul></div>
+  <div class="alert note"><ul><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>Agora SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></ul></div>
 
 ## 实现互动直播
 
@@ -105,7 +110,6 @@ end
 - 主播视频窗口
 - 退出频道按钮
 
-	
 ### <a name="ImportClass"></a>2. 导入类
 
 在项目中导入 `AgoraRtcEngineKit` 类：
@@ -126,7 +130,7 @@ import AgoraRtcEngineKit
 
 在调用其他 Agora API 前，需要创建并初始化 `AgoraRtcEngineKit` 对象。
 
-你需要在该步骤中填入项目的 App ID。请参考如下步骤在控制台[创建 Agora 项目](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms)并获取 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id )。
+你需要在该步骤中填入项目的 App ID。请参考如下步骤在控制台[创建 Agora 项目](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms)并获取 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id)。
 
 1. 登录[控制台](https://console.agora.io/)，点击左侧导航栏的**[项目管理](https://console.agora.io/projects)**图标 ![](https://web-cdn.agora.io/docs-files/1551254998344)。
 2. 点击**创建**，按照屏幕提示设置项目名，选择一种鉴权机制，然后点击**提交**。
@@ -231,7 +235,7 @@ func addLocalSession() {
     let localSession = VideoSession.localSession()
     videoSessions.append(localSession)
     // 设置本地视图。
-    agoraKit.setupLocalVideo(localSession.canvas) 
+    agoraKit.setupLocalVideo(localSession.canvas)
     let mediaInfo = MediaInfo(dimension: settings.dimension,
                                   fps: settings.frameRate.rawValue)
     localSession.mediaInfo = mediaInfo
@@ -244,9 +248,9 @@ func addLocalSession() {
 
 - channelId: 传入能标识频道的频道 ID。输入频道 ID 相同的用户会进入同一个频道。
 - token: 传入能标识用户角色和权限的 Token。你可以设置如下值：
-	- `nil`。
-	- Dashboard 中生成的临时 Token。一个临时 Token 的有效期为 24 小时，详情见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#%E8%8E%B7%E5%8F%96%E4%B8%B4%E6%97%B6-token)。
-	- 你的服务器端生成的正式 Token。适用于对安全要求较高的生产环境，详情见[生成 Token](./token_server)。
+  - `nil`。
+  - Dashboard 中生成的临时 Token。一个临时 Token 的有效期为 24 小时，详情见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#%E8%8E%B7%E5%8F%96%E4%B8%B4%E6%97%B6-token)。
+  - 你的服务器端生成的正式 Token。适用于对安全要求较高的生产环境，详情见[生成 Token](./token_server)。
 
 <div class="alert note">若项目已启用 App 证书，请使用 Token。</div>
 
@@ -324,7 +328,7 @@ func rtcEngine(_ engine: AgoraRtcEngineKit, firstRemoteVideoDecodedOfUid uid: UI
 
 ```swift
 // Swift
-func leaveChannel() {       
+func leaveChannel() {
     setIdleTimerActive(true)
     agoraKit.setupLocalVideo(nil)
     // 离开频道。

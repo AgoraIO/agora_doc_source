@@ -3,6 +3,7 @@ title: 快速跑通示例项目
 platform: Linux
 updatedAt: 2021-03-31 06:39:39
 ---
+
 声网提供了一个简单的示例项目 `hello_rtsa.c` 用于演示推流和拉流的基本功能。该示例项目位于 RTSA Lite SDK 包 example 目录中。
 
 你可以先编译并运行 `hello_rtsa.c` 体验推拉流，初步了解 RTSA Lite 的 API 调用，以便后续能够更高效地将 RTSA Lite 集成到你自己的应用程序中。
@@ -55,17 +56,19 @@ cd example
 在运行 `hello_rtsa` 之前，你需要通过以下步骤激活 License，生成对应的证书。
 
 1. 修改当前目录下的 License 配置文件 `license.cfg`。
- ```
- $ vim license.cfg
+
+```
+$ vim license.cfg
 {
-    "appId":                "YOUR_OWN_APPID",           // 修改成你创建的 App ID 或从 Agora 销售渠道申请的商用 App ID
-    "customerKey":          "YOUR_CUSTOMER_KEY",        // 修改成 `key_and_secret.txt` 里的 key
-    "customerSecret":       "YOUR_CUSTOMER_SECRET",     // 修改成 `key_and_secret.txt` 里的 secret
-    "licenseKey":           "YOUR_LICENSE_KEY"          // 修改成你的 License 序列号
+   "appId":                "YOUR_OWN_APPID",           // 修改成你创建的 App ID 或从 Agora 销售渠道申请的商用 App ID
+   "customerKey":          "YOUR_CUSTOMER_KEY",        // 修改成 `key_and_secret.txt` 里的 key
+   "customerSecret":       "YOUR_CUSTOMER_SECRET",     // 修改成 `key_and_secret.txt` 里的 secret
+   "licenseKey":           "YOUR_LICENSE_KEY"          // 修改成你的 License 序列号
 }
- ```
+```
 
 2. 根据修改后的 `license.cfg` 配置来激活 License，并生成对应的证书。
+
 ```
 $ ./license_activator --configFile ./license.cfg
 ```
@@ -82,22 +85,22 @@ $ ./hello_rtsa -i YOUR_APP_ID -c hello_channel
 
 如你想进行更多体验，可参考下列参数介绍自行调试。
 
-| 参数                  | 示例                                                         |
-| :-------------------- | :----------------------------------------------------------- |
-| -h, --help            | 打印帮助信息。                                               |
-| -i, --appId           | 你的 App ID。无默认值，必填。                                |
-| -t, --token           | 你的 token。默认值为空字符串。                               |
-| -c, --channelId       | 频道名。无默认值，必填。                                     |
-| -u, --userId          | 用户 ID。默认值为 0，代表 SDK 随机指定。                     |
-| -r, --credentialFile  | 设备标识文件。默认值为 ./deviceID.bin。                      |
-| -C, --certificateFile | 证书文件路径。默认值为 ./certificate.bin。                   |
-| -a, --audioFile       | 待推流的音频文件路径。默认值为 ./send_audio.aac。            |
-| -v, --videoFile       | 待推流的视频文件路径。默认值为 ./send_video.h264。           |
+| 参数                  | 示例                                                                           |
+| :-------------------- | :----------------------------------------------------------------------------- |
+| -h, --help            | 打印帮助信息。                                                                 |
+| -i, --appId           | 你的 App ID。无默认值，必填。                                                  |
+| -t, --token           | 你的 token。默认值为空字符串。                                                 |
+| -c, --channelId       | 频道名。无默认值，必填。                                                       |
+| -u, --userId          | 用户 ID。默认值为 0，代表 SDK 随机指定。                                       |
+| -r, --credentialFile  | 设备标识文件。默认值为 ./deviceID.bin。                                        |
+| -C, --certificateFile | 证书文件路径。默认值为 ./certificate.bin。                                     |
+| -a, --audioFile       | 待推流的音频文件路径。默认值为 ./send_audio.aac。                              |
+| -v, --videoFile       | 待推流的视频文件路径。默认值为 ./send_video.h264。                             |
 | -A, --audioCodec      | 推流的音频编码格式，默认值为 8。<li>1: OPUS<li>5: G722<li>8: AACLC<li>9: HEAAC |
-| -V, --videoCodec      | 推流的视频编码格式, 默认值为 2。<li>2: H.264<li>6: GENERIC            |
-| -f --fps              | 推流的视频帧率，默认值为 30。                                |
-| -l, --sdkLogDir       | 存放 SDK 日志的目录，默认值为当前目录。                      |
-	
+| -V, --videoCodec      | 推流的视频编码格式, 默认值为 2。<li>2: H.264<li>6: GENERIC                     |
+| -f --fps              | 推流的视频帧率，默认值为 30。                                                  |
+| -l, --sdkLogDir       | 存放 SDK 日志的目录，默认值为当前目录。                                        |
+
 ### 7. 运行 OpenLive 拉流播放
 
 如需体验完整的推拉流效果，你可以在 Android 真机上安装一个 Agora 提供的 OpenLive 应用，作为收流端来实时观看效果。

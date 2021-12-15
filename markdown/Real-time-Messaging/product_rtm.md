@@ -4,12 +4,11 @@ platform: All_Platforms|全平台
 updatedAt: 2021-03-02 02:41:30
 ---
 
-
 Agora 实时消息（Real-time Messaging，RTM）SDK 提供了稳定可靠、低延时、高并发的全球消息云服务，帮助你快速构建实时场景。
 
 ## 功能概述
 
-实时消息 SDK 能够实现以下功能: 
+实时消息 SDK 能够实现以下功能:
 
 - **点对点消息与频道消息**：发送和接收文字、图片、文件、表情、自定义格式等消息类型。可以实现单聊、群聊、状态同步等功能。
 - **离线消息**：缓存离线的点对点消息。
@@ -18,7 +17,6 @@ Agora 实时消息（Real-time Messaging，RTM）SDK 提供了稳定可靠、低
 - **频道人数与成员列表**：获取单个或多个频道的成员人数。获取频道内用户列表。
 - **查询或订阅用户在线状态**：获取或订阅指定用户的在线状态。
 - **呼叫邀请**：发送和接收呼叫邀请。
-
 
 ## 适用场景
 
@@ -86,12 +84,10 @@ Agora 实时消息（Real-time Messaging，RTM）SDK 提供了稳定可靠、低
     <td>多平台</td>
     <td>支持 iOS、Android（arm64、armv7、x86）、macOS、Windows、Linux、Web、小程序、RESTful API 等平台</td>
   </tr>
-</table>	
-
+</table>
 
 ## 相关链接
 
 使用 Agora 实时消息 SDK 开发过程中，你还可以参考如下文档：
 
 - [Agora RTM SDK 对同时在线人数有限制吗？](https://docs.agora.io/cn/faq/rtm_concurrency)
-

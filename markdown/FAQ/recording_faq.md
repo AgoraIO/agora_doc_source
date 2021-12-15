@@ -4,6 +4,7 @@ platform: ["Linux"]
 updatedAt: 2020-08-19 18:00:46
 Products: ["Recording"]
 ---
+
 ### Java SDK 集成时报错 java.land.UnsatisfiedLinkError: no recording in java.library.path
 
 报错原因：系统环境找不到 `librecording.so` 库文件。
@@ -15,7 +16,6 @@ Products: ["Recording"]
 ```
 LD_LIBRARY_PATH=/home/user/Desktop/tool/Agora_Recording/samples/java/bin/io/agora/recording/librecording.so
 ```
-
 
 ### 如何知道录制程序是正常退出频道，还是异常退出频道?
 

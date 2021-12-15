@@ -4,6 +4,7 @@ platform: ["RESTful"]
 updatedAt: 2020-07-09 21:12:30
 Products: ["cloud-recording"]
 ---
+
 完整的 M3U8 文件地址由云存储空间外链域名和 M3U8 文件名组成，一般在你的第三方云存储里可以直接复制。
 
 ![](https://web-cdn.agora.io/docs-files/1561621201492)

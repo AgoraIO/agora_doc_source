@@ -3,6 +3,7 @@ title: REST
 platform: All Platforms
 updatedAt: 2020-11-06 17:30:13
 ---
+
 REST，全称 Representational State Transfer，是一种软件架构风格，规定了创建 Web 服务时所需要遵循的一系列约束条件。凡是符合 REST 架构风格的 API，均可称为 RESTful API。
 
 RESTful API 主要用于客户端和服务器的交互。REST 架构的特点包括：

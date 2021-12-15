@@ -3,6 +3,7 @@ title: 实现视频通话
 platform: Web
 updatedAt: 2021-03-26 08:35:41
 ---
+
 根据本文指导快速集成 Agora Web SDK 并在你自己的 app 里实现实时音视频通话。
 
 本文会详细介绍如何建立一个简单的项目并使用 Agora Web SDK 实现基础的一对一视频通话。我们建议你阅读本文以快速了解 Agora 的核心方法。
@@ -10,6 +11,7 @@ updatedAt: 2021-03-26 08:35:41
 <div class="alert warning">由于浏览器的安全策略对除 127.0.0.1 以外的 HTTP 地址作了限制，Agora Web SDK 仅支持 HTTPS 协议或者 http://localhost（http://127.0.0.1），请勿使用 HTTP 协议部署你的项目。</div>
 
 ## 示例项目
+
 我们在 GitHub 上提供一个开源的基础一对一视频通话[示例项目](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Web-Tutorial-1to1)供你参考。
 
 同时，你可以通过我们的[在线 demo](https://webdemo.agora.io/agora-web-showcase/examples/Agora-Web-Tutorial-1to1-Web/) 快速体验 Agora 实现的音视频通话效果。
@@ -40,7 +42,7 @@ updatedAt: 2021-03-26 08:35:41
 <div class="alert note">我们提供的示例代码使用了一些第三方的库文件来实现页面的样式和布局，你可以点击以下链接获得文件，或者使用其他方式实现。<li><a href="https://github.com/AgoraIO/Basic-Video-Call/blob/master/One-to-One-Video/Agora-Web-Tutorial-1to1/assets/common.css">common.css</a></li>
 	<li><a href="https://github.com/AgoraIO/Basic-Video-Call/blob/master/One-to-One-Video/Agora-Web-Tutorial-1to1/vendor/jquery.min.js">jquery.min.js</a></li>
 	<li><a href="https://github.com/AgoraIO/Basic-Video-Call/blob/master/One-to-One-Video/Agora-Web-Tutorial-1to1/vendor/materialize.min.js">materialize.min.js</a></li>
-	</div>	
+	</div>
 
 <details>
 	<summary><font color="#3ab7f8">点击查看示例代码</font></summary>
@@ -131,7 +133,7 @@ updatedAt: 2021-03-26 08:35:41
 2. 在你的项目的 Javascript 代码中添加一行：
 
    ```javascript
-   import AgoraRTC from 'agora-rtc-sdk'
+   import AgoraRTC from "agora-rtc-sdk";
    ```
 
 #### 方法 2. 使用 CDN 方法获取 SDK
@@ -183,19 +185,17 @@ var rtc = {
   published: false,
   localStream: null,
   remoteStreams: [],
-  params: {}
+  params: {},
 };
- 
+
 // Options for joining a channel
 var option = {
   appID: "Your App ID",
   channel: "Channel name",
   uid: null,
-  token: "Your token"
-}
+  token: "Your token",
+};
 ```
-
-
 
 ### 加入频道
 
@@ -204,49 +204,59 @@ var option = {
    ```javascript
    // Create a client
    rtc.client = AgoraRTC.createClient({mode: "rtc", codec: "h264"});
-   
+
    // Initialize the client
-   rtc.client.init(option.appID, function () {
-     console.log("init success");
-     }, (err) => {
-     console.error(err);
-   });
+   rtc.client.init(
+     option.appID,
+     function () {
+       console.log("init success");
+     },
+     err => {
+       console.error(err);
+     },
+   );
    ```
 
    在 `AgoraRTC.createClient` 方法中，需注意 `mode` 和 `codec` 这两个参数的设置：
 
    - `mode` 用于设置[频道模式](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms%23live-broadcast-core-concepts#频道模式)。一对一或多人通话中，建议设为 `"rtc"` ，使用通信模式；[互动直播](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms%23live-broadcast-core-concepts#a-name-livea直播核心概念)中，建议设为 `"live"`，使用直播模式。
    - `codec` 用于设置浏览器使用的编解码格式。如果你需要使用 Safari 12.1 及之前版本，将该参数设为 `"h264"`；如果你需要在手机上使用 Agora Web SDK，请参考[移动端使用 Web SDK](https://docs.agora.io/cn/faq/web_on_mobile)。
-   
-你需要在该步骤中填入项目的 App ID。请参考如下步骤在控制台[创建 Agora 项目](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms)并获取 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id )。
+
+你需要在该步骤中填入项目的 App ID。请参考如下步骤在控制台[创建 Agora 项目](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms)并获取 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id)。
 
 1. 登录[控制台](https://console.agora.io/)，点击左侧导航栏的**[项目管理](https://console.agora.io/projects)**图标 ![](https://web-cdn.agora.io/docs-files/1551254998344)。
 2. 点击**创建**，按照屏幕提示设置项目名，选择一种鉴权机制，然后点击**提交**。
 3. 在**项目管理**页面，你可以获取该项目的 **App ID**。
-	 
-<div class="alert note">为方便演示，我们的示例项目在网页上设置了一个文本框用于输入 App ID。在实际的应用中，App ID 应该是在代码中填写的。</div> 
+
+<div class="alert note">为方便演示，我们的示例项目在网页上设置了一个文本框用于输入 App ID。在实际的应用中，App ID 应该是在代码中填写的。</div>
 
 2. 在 `Client.init` 的 `onSuccess` 回调中调用 `Client.join` 加入频道。
 
    ```javascript
    // Join a channel
-   rtc.client.join(option.token ? option.token : null, option.channel, option.uid ? +option.uid : null, function (uid) {
+   rtc.client.join(
+     option.token ? option.token : null,
+     option.channel,
+     option.uid ? +option.uid : null,
+     function (uid) {
        console.log("join channel: " + option.channel + " success, uid: " + uid);
        rtc.params.uid = uid;
-     }, function(err) {
-       console.error("client join failed", err)
-   })
+     },
+     function (err) {
+       console.error("client join failed", err);
+     },
+   );
    ```
 
-	在 `Client.join` 中注意以下参数的设置：
+   在 `Client.join` 中注意以下参数的设置：
 
-	- `token`: 该参数为可选。如果你的 Agora 项目开启了 App 证书，你需要在该参数中传入一个 Token，详见 [使用 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#使用-token)。
-		- 在测试环境，我们推荐使用控制台生成临时 Token，详见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms%23get-a-temporary-token#获取临时-token)。
-		- 在生产环境，我们推荐你在自己的服务端生成 Token，详见 [生成 Token](./token_server).
-	- `channel`: 频道名，长度在 64 字节以内的字符串。
-	- `uid`: 用户 ID，频道内每个用户的 UID 必须是唯一的。如果你将 `uid` 设为 `null`，Agora 会自动分配一个 UID 并在 `onSuccess` 回调中返回。
+   - `token`: 该参数为可选。如果你的 Agora 项目开启了 App 证书，你需要在该参数中传入一个 Token，详见 [使用 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#使用-token)。
+     - 在测试环境，我们推荐使用控制台生成临时 Token，详见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms%23get-a-temporary-token#获取临时-token)。
+     - 在生产环境，我们推荐你在自己的服务端生成 Token，详见 [生成 Token](./token_server).
+   - `channel`: 频道名，长度在 64 字节以内的字符串。
+   - `uid`: 用户 ID，频道内每个用户的 UID 必须是唯一的。如果你将 `uid` 设为 `null`，Agora 会自动分配一个 UID 并在 `onSuccess` 回调中返回。
 
-  更多的参数设置注意事项请参考 [`Client.join`](./API%20Reference/web/interfaces/agorartc.client.html#join) 接口中的参数描述。
+更多的参数设置注意事项请参考 [`Client.join`](./API%20Reference/web/interfaces/agorartc.client.html#join) 接口中的参数描述。
 
 ### 发布本地流
 
@@ -261,18 +271,21 @@ var option = {
      audio: true,
      video: true,
      screen: false,
-   })
+   });
    ```
 
 2. 调用 `Stream.init` 方法初始化创建的流。
 
    ```javascript
    // Initialize the local stream
-   rtc.localStream.init(function () {
-     console.log("init local stream success");
-   }, function (err) {
-     console.error("init local stream failed ", err);
-   })
+   rtc.localStream.init(
+     function () {
+       console.log("init local stream success");
+     },
+     function (err) {
+       console.error("init local stream failed ", err);
+     },
+   );
    ```
 
    在初始化流时，浏览器会跳出弹窗要求摄像头和麦克风权限，请确保授权。
@@ -284,7 +297,7 @@ var option = {
    rtc.client.publish(rtc.localStream, function (err) {
      console.log("publish failed");
      console.error(err);
-   })
+   });
    ```
 
 ### 订阅远端流
@@ -296,15 +309,15 @@ var option = {
 1. 监听 `"stream-added"` 事件，当有远端流加入时订阅该流。
 
    ```javascript
-   rtc.client.on("stream-added", function (evt) {  
+   rtc.client.on("stream-added", function (evt) {
      var remoteStream = evt.stream;
      var id = remoteStream.getId();
      if (id !== rtc.params.uid) {
        rtc.client.subscribe(remoteStream, function (err) {
          console.log("stream subscribe failed", err);
-       })
+       });
      }
-     console.log('stream-added remote-uid: ', id);
+     console.log("stream-added remote-uid: ", id);
    });
    ```
 
@@ -318,10 +331,12 @@ var option = {
      addView(id);
      // Play the remote stream.
      remoteStream.play("remote_video_" + id);
-     console.log('stream-subscribed remote-uid: ', id);
-   })
+     console.log("stream-subscribed remote-uid: ", id);
+   });
    ```
-<div class="alert note">受浏览器策略影响，在 Chrome 70+ 和 Safari 浏览器上，<code>Stream.play</code> 方法必须由用户手势触发，详情请参考 <a href="autoplay_policy_web">处理浏览器的自动播放策略</a>。</div>
+
+   <div class="alert note">受浏览器策略影响，在 Chrome 70+ 和 Safari 浏览器上，<code>Stream.play</code> 方法必须由用户手势触发，详情请参考 <a href="autoplay_policy_web">处理浏览器的自动播放策略</a>。</div>
+
 3. 监听 `"stream-removed"` 事件，当远端流被移除时（例如远端用户调用了 `Stream.unpublish`）， 停止播放该流并移除它的画面。
 
    ```javascript
@@ -330,10 +345,10 @@ var option = {
      var id = remoteStream.getId();
      // Stop playing the remote stream.
      remoteStream.stop("remote_video_" + id);
-     // Remove the view of the remote stream. 
+     // Remove the view of the remote stream.
      removeView(id);
-     console.log('stream-removed remote-uid: ', id);
-   })
+     console.log("stream-removed remote-uid: ", id);
+   });
    ```
 
 我们建议在创建客户端对象之后立即监听事件。
@@ -346,23 +361,26 @@ var option = {
 
 ```javascript
 // Leave the channel
-rtc.client.leave(function () {
-  // Stop playing the local stream
-  rtc.localStream.stop();
-  // Close the local stream
-  rtc.localStream.close();
-  // Stop playing the remote streams and remove the views
-  while (rtc.remoteStreams.length > 0) {
-    var stream = rtc.remoteStreams.shift();
-    var id = stream.getId();
-    stream.stop();
-    removeView(id);
-  }
-  console.log("client leaves channel success");
-}, function (err) {
-  console.log("channel leave failed");
-  console.error(err);
-})
+rtc.client.leave(
+  function () {
+    // Stop playing the local stream
+    rtc.localStream.stop();
+    // Close the local stream
+    rtc.localStream.close();
+    // Stop playing the remote streams and remove the views
+    while (rtc.remoteStreams.length > 0) {
+      var stream = rtc.remoteStreams.shift();
+      var id = stream.getId();
+      stream.stop();
+      removeView(id);
+    }
+    console.log("client leaves channel success");
+  },
+  function (err) {
+    console.log("channel leave failed");
+    console.error(err);
+  },
+);
 ```
 
 ## 运行你的 app
@@ -370,19 +388,24 @@ rtc.client.leave(function () {
 本节以我们的示例项目为例说明如何运行和测试你的 web app。
 
 我们建议在本地 Web 服务器上测试你的 app。这里我们用 npm 的 live-server 设置一个本地 服务器。
+
 <div class="alert note">在本地服务器（localhost）运行 web app 仅作为测试用途。部署生产环境时，请确保使用 HTTPS 协议。</div>
 
 1. 安装 live-server。
-   ```bash
-npm i live-server -g
-	 ```
+   ````bash
+   npm i live-server -g
+   	 ```
+   ````
 2. 在命令行中进入你的项目所在的目录。对于我们的示例项目，该目录位于 **/Basic-Video-Call/One-to-One-Video/Agora-Web-Tutorial-1to1**。
 3. 运行 app。
-   ```bash
-live-server .
-	 ```
+
+   ````bash
+   live-server .
+   	 ```
 
    现在你的浏览器应该会自动打开你的 web app 页面。
+
+   ````
 
 4. 输入你的 App ID，频道名，token，点击 **JOIN** 开始通话。
    你可能需要给浏览器摄像头和麦克风权限。如果在创建本地流时打开了视频，你现在应该可以看到自己的视频画面。
@@ -390,10 +413,10 @@ live-server .
 5. 在浏览器中打开另一个页面，输入相同的 URL 地址。点击 **JOIN** 按钮。现在你应该可以看到两个视频画面。
 
 如果页面没有正常工作，可以打开浏览器的控制台查看错误信息进行排查。常见的错误信息包括：
+
 - `INVALID_VENDOR_KEY`：App ID 错误，检查你填写的 App ID。
 - `ERR_DYNAMIC_USE_STATIC_KE`：你的 Agora 项目启用了 App 证书，需要在加入频道时填写 Token。
 - `Media access:NotFoundError`：检查你的摄像头和麦克风是否正常工作。
 - `MEDIA_NOT_SUPPORT`：请使用 HTTPS 协议 或者 localhost。
 
 <div class="alert warning">Agora Web SDK 不支持在浏览器上模拟移动设备调试。</div>
-

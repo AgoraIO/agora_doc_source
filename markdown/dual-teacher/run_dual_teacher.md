@@ -3,6 +3,7 @@ title: 快速跑通示例项目
 platform: Windows
 updatedAt: 2021-02-07 08:34:55
 ---
+
 ## 概览
 
 Agora 在 GitHub 上提供一个开源的[双师课堂示例项目](https://github.com/AgoraIO-Usecase/AgoraDualTeacher)，演示了如何通过 Agora RTC SDK、Agora RTM SDK 和 Agora 房间管理服务实现基本的双师课堂教学场景。
@@ -27,7 +28,7 @@ Agora 在 GitHub 上提供一个开源的[双师课堂示例项目](https://gith
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
- ![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
+![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
 
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID + Token。**
 
@@ -56,25 +57,27 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 1. 登录 [Agora 控制台](https://console.agora.io/)，进入**项目管理**页面，找到你刚刚创建的项目，点击该项目的**编辑**按钮进入**项目编辑**页面，然后点击 **aPaaS 配置**按钮。
 
-  ![apaas配置](https://web-cdn.agora.io/docs-files/1611024994160)
-	
-2. 进入 aPaaS 配置页面，直接点击**更新**按钮。
+![apaas配置](https://web-cdn.agora.io/docs-files/1611024994160) 2. 进入 aPaaS 配置页面，直接点击**更新**按钮。
 
- ![](https://web-cdn.agora.io/docs-files/1612685504363)
+![](https://web-cdn.agora.io/docs-files/1612685504363)
 
 ### 5. 在示例项目中配置相关字段
 
 按照以下步骤，在示例项目中配置相关字段。
 
-1. 克隆[双师课堂示例项目](https://github.com/AgoraIO-Usecase/AgoraDualTeacher)代码至本地。
-2. 打开 Visual Studio 2017， 选择 Open an existing Visual Studio project，打开 `AgoraEduSDK.sln` 解决方案。
-3. 选择 **agora_edu_demo** 项目，在 `agora_edu_demo\util.h` 文件中填写以下字段：
-   - Agora 的 App ID
-   - Agora 的客户 ID 和客户密钥
-	```
-#define APP_ID "Your_app_id"
-#define CUSTOMER_ID "Your_customer_id"
-#define CUSTOMER_CERTIFICATE "Your_customer_certificate"
+1.  克隆[双师课堂示例项目](https://github.com/AgoraIO-Usecase/AgoraDualTeacher)代码至本地。
+2.  打开 Visual Studio 2017， 选择 Open an existing Visual Studio project，打开 `AgoraEduSDK.sln` 解决方案。
+3.  选择 **agora_edu_demo** 项目，在 `agora_edu_demo\util.h` 文件中填写以下字段：
+
+    - Agora 的 App ID
+    - Agora 的客户 ID 和客户密钥
+
+          ```
+
+      #define APP_ID "Your_app_id"
+      #define CUSTOMER_ID "Your_customer_id"
+      #define CUSTOMER_CERTIFICATE "Your_customer_certificate"
+
 ```
 
 ### 6. 编译并运行示例项目
@@ -86,3 +89,4 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 编译成功后，你将会看到如下界面。
 
 ![](https://web-cdn.agora.io/docs-files/1610692654204)
+```

@@ -3,13 +3,14 @@ title: 云端录制 RESTful API
 platform: All Platforms
 updatedAt: 2020-06-12 13:00:28
 ---
+
 本文列出了云端录制 RESTful API 的方法名和参数名。详细介绍见互动式文档：[云端录制 RESTful API](https://agoradoc.github.io/cloud-recording-cn)![](https://web-cdn.agora.io/docs-files/1582509015530)。该文档包含各方法和参数的详细介绍，以及认证方式、数据格式和 API 调用步骤。你可以通过 **Example Value** 和 **Schema** 标签页查看示例请求、示例响应，以及各参数的详细介绍。
 
 ## acquire
 
 `POST /v1/apps/{appid}/cloud_recording/acquire`
 
-*获取云端录制资源*
+_获取云端录制资源_
 
 <h3 id="acquire-parameters">Parameters</h3>
 
@@ -31,7 +32,7 @@ updatedAt: 2020-06-12 13:00:28
 
 `POST /v1/apps/{appid}/cloud_recording/resourceid/{resourceid}/mode/{mode}/start`
 
-*开始云端录制*
+_开始云端录制_
 
 <h3 id="start-parameters">Parameters</h3>
 
@@ -89,7 +90,7 @@ updatedAt: 2020-06-12 13:00:28
 
 `POST /v1/apps/{appid}/cloud_recording/resourceid/{resourceid}/sid/{sid}/mode/{mode}/updateLayout`
 
-*更新合流布局*
+_更新合流布局_
 
 <h3 id="updatelayout-parameters">Parameters</h3>
 
@@ -125,7 +126,7 @@ updatedAt: 2020-06-12 13:00:28
 
 `POST /v1/apps/{appid}/cloud_recording/resourceid/{resourceid}/sid/{sid}/mode/{mode}/query`
 
-*查询云端录制状态*
+_查询云端录制状态_
 
 <h3 id="query-parameters">Parameters</h3>
 
@@ -158,7 +159,7 @@ updatedAt: 2020-06-12 13:00:28
 
 `POST /v1/apps/{appid}/cloud_recording/resourceid/{resourceid}/sid/{sid}/mode/{mode}/stop`
 
-*停止云端录制*
+_停止云端录制_
 
 <h3 id="stop-parameters">Parameters</h3>
 

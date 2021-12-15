@@ -3,6 +3,7 @@ title: 云端录制快速开始 (Deprecated)
 platform: All Platforms
 updatedAt: 2019-11-25 18:12:44
 ---
+
 本文介绍如何集成 Agora Cloud Recording SDK 进行通话或直播录制。
 
 > 当云端录制 SDK 加入频道时，相当于一个哑客户端加入频道，因此需要跟 Agora Native/Web SDK 加入相同的频道，并使用相同的 App ID 和频道模式。
@@ -29,6 +30,7 @@ updatedAt: 2019-11-25 18:12:44
 完成集成后，你可以参照下文进行云端录制。
 
 ## 实现云端录制
+
 一个完整的云端录制过程主要包括以下步骤：
 
 1. [创建实例](#create)
@@ -124,11 +126,12 @@ M3U8 文件名由录制 ID 和频道名组成，如 `recording_id_channel_name.M
 录制文件的上传由 Agora 服务器自动完成，你需要关注下面的回调。
 
 - 录制过程中
+
   - [`OnRecordingUploadingProgress`](./cloud_recording_api#OnRecordingUploadingProgress)：录制开始后约每分钟触发一次，该回调中的 `progress` 参数表示已上传文件占已录制文件的百分比。
 
 - 停止录制后，根据上传情况，SDK 会触发以下回调之一：
   - [`OnRecordingUploaded`](./cloud_recording_api#OnRecordingUploaded)：如果录制文件全部成功上传至预先设定的云存储，最后一个录制切片文件上传完成时触发该回调，通知应用程序上传完成。
-  -  [`OnRecordingBackedUp`](./cloud_recording_api/#OnRecordingBackedUp)：如果有录制文件未能成功上传至第三方云存储，Agora 服务器会将这部分文件自动上传至 Agora 云备份，当录制结束后会触发该回调。Agora 云备份会继续尝试将这部分文件上传至设定的第三方云存储。如果等待五分钟后仍然不能正常[播放录制文件](./cloud_recording_onlineplay)，请联系 Agora 技术支持。
+  - [`OnRecordingBackedUp`](./cloud_recording_api/#OnRecordingBackedUp)：如果有录制文件未能成功上传至第三方云存储，Agora 服务器会将这部分文件自动上传至 Agora 云备份，当录制结束后会触发该回调。Agora 云备份会继续尝试将这部分文件上传至设定的第三方云存储。如果等待五分钟后仍然不能正常[播放录制文件](./cloud_recording_onlineplay)，请联系 Agora 技术支持。
 
 以上回调中均包含 M3U8 文件名信息。
 

@@ -3,6 +3,7 @@ title: 实时码流加速 (RTSA, Real-Time Streaming Acceleration)
 platform: All Platforms
 updatedAt: 2020-07-03 18:28:24
 ---
+
 实时码流加速是声网提供的用于实现自定义音视频码流在互联网上的实时传输的产品。
 
 实时码流加速提供 API，充分利用声网自建的底层实时传输网络 SD-RTN™，实现高连通性、高实时性、高稳定性的码流传输云服务。

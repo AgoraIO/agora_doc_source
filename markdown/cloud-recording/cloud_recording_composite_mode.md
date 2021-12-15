@@ -3,6 +3,7 @@ title: 合流录制
 platform: All Platforms
 updatedAt: 2021-04-01 04:07:22
 ---
+
 ## 功能描述
 
 云端录制支持两种录制模式：
@@ -22,11 +23,11 @@ updatedAt: 2021-04-01 04:07:22
 
 根据录制内容的不同，录制生成的文件如下表所示：
 
-| 录制内容       | 参数设置                           | 录制生成文件                                                 |
-| :------------- | :--------------------------------- | :----------------------------------------------------------- |
-| 仅录制音频     | `streamTypes 设为 0`               | 生成一个 M3U8 文件和多个 TS 文件，TS 文件内仅存储该频道的音频数据。 |
-| 仅录制视频     | `streamTypes 设为 1`               | 生成一个 M3U8 文件和多个 TS 文件，TS 文件内仅存储该频道的视频数据。 |
-| 同时录制音视频 | `（默认设置）streamTypes 设为 ``2` | 生成一个 M3U8 文件和多个 TS 文件，TS 文件内存储该频道的音视频数据。 |
+| 录制内容       | 参数设置                             | 录制生成文件                                                        |
+| :------------- | :----------------------------------- | :------------------------------------------------------------------ |
+| 仅录制音频     | `streamTypes 设为 0`                 | 生成一个 M3U8 文件和多个 TS 文件，TS 文件内仅存储该频道的音频数据。 |
+| 仅录制视频     | `streamTypes 设为 1`                 | 生成一个 M3U8 文件和多个 TS 文件，TS 文件内仅存储该频道的视频数据。 |
+| 同时录制音视频 | ` （默认设置）streamTypes 设为 ``2 ` | 生成一个 M3U8 文件和多个 TS 文件，TS 文件内存储该频道的音视频数据。 |
 
 录制文件的命名规则如下：
 
@@ -56,20 +57,20 @@ updatedAt: 2021-04-01 04:07:22
             "maxIdleTime": 30,
             "streamTypes": 2,
             "audioProfile": 1,
-            "channelType": 0, 
-            "videoStreamType": 1, 
+            "channelType": 0,
+            "videoStreamType": 1,
             "transcodingConfig": {
-                "height": 640, 
+                "height": 640,
                 "width": 360,
-                "bitrate": 500, 
-                "fps": 15, 
+                "bitrate": 500,
+                "fps": 15,
                 "mixedVideoLayout": 1,
                 "backgroundColor": "#FF0000",
-            "subscribeVideoUids": ["123","456"], 
+            "subscribeVideoUids": ["123","456"],
             "subscribeAudioUids": ["123","456"],
             "subscribeUidGroup": 0
            }
-       }, 
+       },
         "storageConfig": {
             "accessKey": "xxxxxxf",
             "region": 3,

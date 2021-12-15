@@ -3,6 +3,7 @@ title: 设置日志文件
 platform: macOS
 updatedAt: 2019-07-05 15:06:53
 ---
+
 ## 功能描述
 
 Agora Native SDK 提供设置 SDK 的输出日志文件的功能，SDK 运行时产生的所有 log 将写入该文件。
@@ -12,6 +13,5 @@ Agora Native SDK 提供设置 SDK 的输出日志文件的功能，SDK 运行时
 ## 实现方法
 
 开始前请确保你已完成环境准备、安装包获取等步骤，详见[集成客户端](./mac_video)。
-
 
 ## API 参考

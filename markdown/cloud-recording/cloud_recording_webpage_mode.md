@@ -3,11 +3,13 @@ title: 页面录制
 platform: RESTful
 updatedAt: 2021-03-05 08:21:13
 ---
+
 本文介绍使用云端录制 RESTful API 进行页面录制的重点步骤。建议你同时参考[云端录制 RESTful API 快速开始](https://docs.agora.io/cn/cloud-recording/cloud_recording_rest)了解云端录制的基础流程。
 
 页面录制为收费功能，会按照最终生成的录制文件时长收费。根据所生成录制文件的分辨率，区分 HD（1280 × 720 及以下）、HDP（1280 × 720 以上, 1920 × 1080 及以下）两个档级，不同档级对应不同单价。详情可咨询 [sales@agora.io](mailto:sales@agora.io)。
 
 该功能目前处于公测期。公测期间，你可以免费使用。
+
 <div class="alert info">如果被录制的 Web 页面中集成了 Agora SDK，该部分用量会产生计费</div>
 
 ## 功能描述
@@ -46,6 +48,7 @@ updatedAt: 2021-03-05 08:21:13
 #### 请求示例
 
 - 请求 URL：
+
 ```
 https://api.agora.io/v1/apps/<yourappid>/cloud_recording/acquire
 ```
@@ -82,6 +85,7 @@ https://api.agora.io/v1/apps/<yourappid>/cloud_recording/acquire
 请求示例
 
 - 请求 URL：
+
 ```
 https://api.agora.io/v1/apps/<yourappid>/cloud_recording/resourceid/<resourceid>/mode/web/start
 ```
@@ -132,13 +136,14 @@ https://api.agora.io/v1/apps/<yourappid>/cloud_recording/resourceid/<resourceid>
 }
 ```
 
-
 ## 录制生成文件
 
 录制后共生成一个 M3U8 文件和多个 TS 文件。根据 `avFileType` 参数的设置，还有可能生成一个或多个 MP4 文件。录制文件的命名规则详见[管理录制文件](https://docs.agora.io/cn/cloud-recording/cloud_recording_manage_files)。
 
 ## 开发注意事项
+
 ### 针对 Web 应用的限制
+
 - 待录制页面中不得包含超过 1280 x 720 分辨率的视频源。
 - 待录制页面不得使用 WebGL 功能。
 - 待录制页面的下行带宽不得超过 10 Mbps，上行带宽不得超过 2 Mbps。
@@ -146,13 +151,14 @@ https://api.agora.io/v1/apps/<yourappid>/cloud_recording/resourceid/<resourceid>
 - 页面录制支持 video 元素启用了 autoplay 属性后在无用户交互状态下自动播放。但如果待录制页面中的 video 元素未启用 autoplay 属性，其内容将不会自动播放，这将会导致页面录制无法录制到该视频。
 - 主页面加载失败的情况下，页面录制会报错并退出。如果你需要在某个子 iframe 加载失败时也停止录制，需要自行实现该逻辑。 例如，你可以在子 iframe 加载失败后调用 Windows.close 方法。调用该方法后，页面录制会自动停止并退出。
 
-
 ### RESTful API 请求
+
 - 从发起请求到开始页面录制，有 5s 左右的延时。建议提前发起录制请求，以保证录制内容完整。
 - 页面录制不支持 `update` 和 `updateLayout` 方法。
 - 如果你在 `start` 方法中填入的 URL 无法正常打开，录制服务会在 `start` 成功后自动退出。你可以参考<a name="确认录制服务已成功启动"></a>[云端录制集成最佳实践](https://docs.agora.io/cn/cloud-recording/integration_best_practices?platform=RESTful#a-namestart_successa确认录制服务已成功启动)，使用退避策略多次调用 `query`，来确认录制服务正常启动。
 
 ### 其他
+
 - 进行页面录制时，录制服务相当于一个使用 Web 应用的客户端，因此：
   - 如你在 `start` 方法中填入的 URL 会自动触发客户端发布音视频流，录制服务器所启动的浏览器引擎也会成为一个发流端，因此你的应用中可能会出现一个无视频内容的用户画面。
   - 如你的 Web 应用包含用户列表，建议你在用户列表中隐藏该客户端，避免终端用户产生疑惑。

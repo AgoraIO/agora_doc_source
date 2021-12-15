@@ -1,9 +1,10 @@
 ---
 title: 如何获取用户的通话时长？
-platform: ["Android","iOS","macOS","Web","Windows","Unity","Cocos Creator","Electron","React Native","Flutter"]
+platform: ["Android", "iOS", "macOS", "Web", "Windows", "Unity", "Cocos Creator", "Electron", "React Native", "Flutter"]
 updatedAt: 2020-06-17 23:17:36
-Products: ["Voice","Video","Interactive Broadcast","Agora Analytics"]
+Products: ["Voice", "Video", "Interactive Broadcast", "Agora Analytics"]
 ---
+
 ## 介绍
 
 在一个通话中，某个用户可能多次加入和离开 RTC 频道，该用户累计在频道内的时间为该用户的通话时长，你可以将用户的通话时长作为计费等业务的计量标准之一。通过 Agora RTC SDK 或水晶球，你可以获取用户的通话时长。

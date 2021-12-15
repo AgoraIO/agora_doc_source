@@ -3,6 +3,7 @@ title: 实现音频直播
 platform: Flutter
 updatedAt: 2020-11-13 06:52:37
 ---
+
 Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart)。本文分以下两个部分：
 
 - [快速跑通示例项目](#快速跑通示例项目)介绍如何快速跑通该示例项目，体验 Agora 视频直播效果。
@@ -53,14 +54,11 @@ Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](htt
 
 4. 点击**提交**，新建的项目就会显示在**项目管理**页中。Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
-
-####  步骤二：获取 App ID
+#### 步骤二：获取 App ID
 
 在控制台的**项目管理**页面，找到你的项目，点击 App ID 右侧的眼睛图标就可以直接复制项目的 App ID。
 
-
 #### 步骤三：生成临时 Token
-
 
 为提高项目的安全性，Agora 使用 Token（动态密钥）对即将加入频道的用户进行鉴权。
 
@@ -68,31 +66,33 @@ Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](htt
 
 在控制台的项目管理页面，点击已创建项目的![](https://web-cdn.agora.io/docs-files/1602840930382)图标，打开 Token 页面。
 
-1. 输入一个频道名，例如 test，然后点击生成临时Token。临时 Token 的有效期为 24 小时。![](https://web-cdn.agora.io/docs-files/1602840948519)
+1. 输入一个频道名，例如 test，然后点击生成临时 Token。临时 Token 的有效期为 24 小时。![](https://web-cdn.agora.io/docs-files/1602840948519)
 2. 临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见[生成 Token](/cn/Video/token_server?platform=CPP)。![](https://web-cdn.agora.io/docs-files/1602840954561)
-
 
 #### 步骤四：运行示例项目
 
-1. 下载 [Agora-Flutter-Quickstart](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart) 仓库。打开 `settings.dart` (`lib/src/utils/settings.dart`)文件并添加 App ID 和 Token。
+1.  下载 [Agora-Flutter-Quickstart](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart) 仓库。打开 `settings.dart` (`lib/src/utils/settings.dart`)文件并添加 App ID 和 Token。
 
-	```
-const APP_ID = Your_App_ID;
-const Token = Your_Token;
-	```
+        ```
 
-2. 在仓库根目录运行以下命令安装依赖项。
-   
-	 ```bash
-   flutter packages get
-	 ```
+    const APP_ID = Your_App_ID;
+    const Token = Your_Token;
 
-3. 启动示例项目。
+    ```
 
-   ```bash
-   flutter run
-   ```
+    ```
 
+2.  在仓库根目录运行以下命令安装依赖项。
+
+    ```bash
+    flutter packages get
+    ```
+
+3.  启动示例项目。
+
+    ```bash
+    flutter run
+    ```
 
 ## 实现音频直播
 
@@ -113,13 +113,13 @@ const Token = Your_Token;
 ```
 environment:
   sdk: ">=2.7.0 <3.0.0"
- 
+
 // 依赖项
 dependencies:
   flutter:
     sdk: flutter
- 
- 
+
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
@@ -149,7 +149,6 @@ const APP_ID = '<Your App ID>';
 const Token = '<Your Token>';
 ```
 
-
 #### 步骤二：定义 Flutter 应用类
 
 定义 MyApp 应用类：
@@ -157,7 +156,7 @@ const Token = '<Your Token>';
 ```
 /// MyApp 类扩展 StatelessWidget 类
 class MyApp extends StatelessWidget {
- 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -177,7 +176,7 @@ class MyApp extends StatelessWidget {
 
 ```
 import 'dart:async';
- 
+
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -196,7 +195,7 @@ class IndexState extends State<IndexPage> {
   final _channelController = TextEditingController();
   bool _validateError = false;
   ClientRole _role = ClientRole.Broadcaster;
- 
+
   @override
   void dispose() {
     // dispose input controller
@@ -204,7 +203,6 @@ class IndexState extends State<IndexPage> {
     super.dispose();
   }
 ```
-
 
 3. 设置登录页面 UI 布局：
 
@@ -314,8 +312,8 @@ Widget build(BuildContext context) {
       );
     }
   }
- 
- 
+
+
   // 设置权限管理逻辑
   Future<void> _handleMic() async {
     await PermissionHandler().requestPermissions(
@@ -334,7 +332,6 @@ import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
 import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
 ```
 
-
 2. 定义直播页面的类 `CallPage` ：
 
 ```
@@ -343,8 +340,8 @@ class CallPage extends StatefulWidget {
   final String channelName;
   final ClientRole role;
   const CallPage({Key key, this.channelName, this.role}) : super(key: key);
- 
- 
+
+
   @override
   _CallPageState createState() => _CallPageState();
 }
@@ -359,9 +356,9 @@ class _CallPageState extends State<CallPage> {
   final _infoStrings = <String>[];
   bool muted = false;
   RtcEngine _engine;
- 
- 
- 
+
+
+
   @override
   void dispose() {
     _users.clear();
@@ -369,13 +366,13 @@ class _CallPageState extends State<CallPage> {
     _engine.destroy();
     super.dispose();
   }
- 
+
   @override
   void initState() {
     super.initState();
     initialize();
   }
- 
+
   Future<void> initialize() async {
     if (APP_ID.isEmpty) {
       setState(() {
@@ -386,7 +383,7 @@ class _CallPageState extends State<CallPage> {
       });
       return;
     }
- 
+
     await _initAgoraRtcEngine();
     _addAgoraEventHandlers();
     await _engine.enableWebSdkInteroperability(true);
@@ -493,8 +490,8 @@ Future<void> _initAgoraRtcEngine() async {
       ),
     );
   }
- 
- 
+
+
  // 信息栏，显示日志信息
   Widget _panel() {
     return Container(
@@ -544,12 +541,12 @@ Future<void> _initAgoraRtcEngine() async {
       ),
     );
   }
- 
+
 /// 结束直播
 void _onCallEnd(BuildContext context) {
     Navigator.pop(context);
   }
- 
+
   /// 静音
   void _onToggleMute() {
     setState(() {
@@ -557,7 +554,7 @@ void _onCallEnd(BuildContext context) {
     });
     _engine.muteLocalAudioStream(muted);
   }
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -578,21 +575,20 @@ void _onCallEnd(BuildContext context) {
 }
 ```
 
-
-### 运行项目 
+### 运行项目
 
 1. 在项目根目录运行以下命令安装依赖项。
 
    ```bash
-	 flutter packages get
+    flutter packages get
    ```
-	 
+
 2. 运行项目。
-   
-	 ```bash
+
+   ```bash
    flutter run
    ```
-	 
+
 ### 常见问题
 
 如果运行环境为 Android，对于中国大陆用户，运行 `flutter run` 时可能会卡在 `Running Gradle task 'assembleDebug'...` 或出现以下错误：
@@ -601,7 +597,6 @@ void _onCallEnd(BuildContext context) {
 Running Gradle task 'assembleDebug'...
 Exception in thread "main" java.net.ConnectException: Connection timed out: connect
 ```
-
 
 解决方案如下：
 
@@ -616,9 +611,9 @@ buildscript {
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/public' }
     }
- 
+
 ...
- 
+
 allprojects {
     repositories {
         // google()

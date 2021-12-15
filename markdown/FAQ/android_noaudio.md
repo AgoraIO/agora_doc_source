@@ -2,8 +2,9 @@
 title: 为什么 Android 设备进入频道后耳机无声？
 platform: ["Android"]
 updatedAt: 2020-07-09 21:52:25
-Products: ["Voice","Video","Interactive Broadcast"]
+Products: ["Voice", "Video", "Interactive Broadcast"]
 ---
+
 **问题现象**：进频道后安卓设备上耳机无声，路由功能不正常等。
 
 **问题原因**：

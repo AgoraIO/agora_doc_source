@@ -3,6 +3,7 @@ title: 发版说明
 platform: Unity
 updatedAt: 2021-03-12 08:40:05
 ---
+
 本文提供 Agora Unity SDK 的发版说明。
 
 ## 3.2.0 版
@@ -21,11 +22,11 @@ updatedAt: 2021-03-12 08:40:05
 
 各平台对应新增的文件如下：
 
-| 平台    | 文件                                                         |
-| :------ | :----------------------------------------------------------- |
-| Android | <li>`libagora-fdkaac.so`</li><li>`libagora-mpg123.so`</li><li>`libagora-soundtouch.so`</li> |
-| iOS     | <li>`Agorafdkaac.framework`</li><li>`AgoraSoundTouch.framework`</li>|
-| macOS   | <li>`Agorafdkaac.framework`</li><li>`AgoraSoundTouch.framework`</li> |
+| 平台    | 文件                                                                                           |
+| :------ | :--------------------------------------------------------------------------------------------- |
+| Android | <li>`libagora-fdkaac.so`</li><li>`libagora-mpg123.so`</li><li>`libagora-soundtouch.so`</li>    |
+| iOS     | <li>`Agorafdkaac.framework`</li><li>`AgoraSoundTouch.framework`</li>                           |
+| macOS   | <li>`Agorafdkaac.framework`</li><li>`AgoraSoundTouch.framework`</li>                           |
 | Windows | <li>`libagora-fdkaac.dll`</li><li>`libagora-mpg123.dll`</li><li>`libagora-soundtouch.dll`</li> |
 
 如果你将 SDK 升级到 v3.2.0，请务必参考[快速开始](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_unity?platform=Unity#集成-sdk)在你的项目中添加上述文件。
@@ -116,14 +117,14 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 
 为提升音频性能，该版本对音频编码码率最大值进行如下优化：
 
-| Profile                                   | 3.2.0 版本                                                   | 3.2.0 版本之前                                               |
-| :---------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `AUDIO_PROFILE_DEFAULT`                   | 直播场景: 64 Kbps通信场景: Windows: 16 KbpsAndroid/iOS/macOS: 18 Kbps | 直播场景: 52 Kbps通信场景:Windows: 16 KbpsAndroid/iOS/macOS: 18 Kbps |
-| `AUDIO_PROFILE_SPEECH_STANDARD`           | 18 Kbps                                                      | 18 Kbps                                                      |
-| `AUDIO_PROFILE_MUSIC_STANDARD`            | 64 Kbps                                                      | 48 Kbps                                                      |
-| `AUDIO_PROFILE_MUSIC_STANDARD_STEREO`     | 80 Kbps                                                      | 56 Kbps                                                      |
-| `AUDIO_PROFILE_MUSIC_HIGH_QUALITY`        | 96 Kbps                                                      | 128 Kbps                                                     |
-| `AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO` | 128 Kbps                                                     | 192 Kbps                                                     |
+| Profile                                   | 3.2.0 版本                                                             | 3.2.0 版本之前                                                        |
+| :---------------------------------------- | :--------------------------------------------------------------------- | :-------------------------------------------------------------------- |
+| `AUDIO_PROFILE_DEFAULT`                   | 直播场景: 64 Kbps 通信场景: Windows: 16 KbpsAndroid/iOS/macOS: 18 Kbps | 直播场景: 52 Kbps 通信场景:Windows: 16 KbpsAndroid/iOS/macOS: 18 Kbps |
+| `AUDIO_PROFILE_SPEECH_STANDARD`           | 18 Kbps                                                                | 18 Kbps                                                               |
+| `AUDIO_PROFILE_MUSIC_STANDARD`            | 64 Kbps                                                                | 48 Kbps                                                               |
+| `AUDIO_PROFILE_MUSIC_STANDARD_STEREO`     | 80 Kbps                                                                | 56 Kbps                                                               |
+| `AUDIO_PROFILE_MUSIC_HIGH_QUALITY`        | 96 Kbps                                                                | 128 Kbps                                                              |
+| `AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO` | 128 Kbps                                                               | 192 Kbps                                                              |
 
 **7. 日志扩容**
 
@@ -171,7 +172,7 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 - [`LocalAudioStats`](./API%20Reference/unity/structagora__gaming__rtc_1_1_local_audio_stats.html) 类中新增 `txPacketLossRate`
 - [`RemoteAudioStats`](./API%20Reference/unity/structagora__gaming__rtc_1_1_remote_audio_stats.html) 和 `RemoteVideoStats` 类中新增 `publishDuration`
 - [`AUDIO_SCENARIO_TYPE`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a7630f2ee913986430344d4aad26098a3) enum 中新增 `AUDIO_SCENARIO_MEETING`(8)
-- [`AUDIO_ROUTE`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#aca310af5a1412fa7a7475b245994b3ae) enum 中新增 `AUDIO_ROUTE_USB`、`AUDIO_ROUTE_HDMI`、`AUDIO_ROUTE_DISPLAYPORT 和 ``AUDIO_ROUTE_AIRPLAY`
+- [`AUDIO_ROUTE`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#aca310af5a1412fa7a7475b245994b3ae) enum 中新增 `AUDIO_ROUTE_USB`、`AUDIO_ROUTE_HDMI`、` AUDIO_ROUTE_DISPLAYPORT 和 ``AUDIO_ROUTE_AIRPLAY `
 
 **废弃**
 
@@ -245,7 +246,7 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 
 为满足更高音质需求，该版本调整了直播场景下 `AUDIO_PROFILE_DEFAULT(0)` 对应的音频编码属性，详见下表：
 
-| SDK 版本   | `AUDIO_PROFILE_DEFAULT(0)`                                   |
+| SDK 版本   | `AUDIO_PROFILE_DEFAULT(0)`                                  |
 | :--------- | :---------------------------------------------------------- |
 | 3.0.1      | 48 KHz 采样率，音乐编码，单声道，编码码率最大值为 52 Kbps。 |
 | 3.0.1 之前 | 32 KHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。 |
@@ -283,7 +284,7 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 - [`AdjustUserPlaybackSignalVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a6ae88c74d0dc4e80837cd0a351f81c00)
 - [`VOICE_CHANGER_PRESET`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a710b9754965ccb92ed968a562968df2c) 枚举类型中新增 `VOICE_BEAUTY_VIGOROUS` 等 12 个枚举值
 - [`AUDIO_REVERB_PRESET`](./API%20Reference/unity/namespaceagora__gaming__rtc.html#a1e681589411dd2f5df62dab5c1fca7b9) 枚举类型中新增 `AUDIO_REVERB_FX_KTV` 等 9 个枚举值
-- `RtcStats` 类中新增 [`gatewayRtt`](./API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#aef762b5910ca3a7a06a4e37869c34fed)、[`memoryAppUsageRatio`](./API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#a5b7d328a6f8e6aca9e1b8b6c8ce16e02、[`memoryTotalUsageRatio`](./API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#a232d695be9b723df8dae4ca219c6745f) 和 [`memoryAppUsageInKbytes`](./API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#aeb37b39c64362e3954b279c6dfc5e774) 成员
+- `RtcStats` 类中新增 [`gatewayRtt`](./API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#aef762b5910ca3a7a06a4e37869c34fed)、[`memoryAppUsageRatio`](./API%20Reference/unity/structagora**gaming**rtc_1_1_rtc_stats.html#a5b7d328a6f8e6aca9e1b8b6c8ce16e02、[`memoryTotalUsageRatio`](./API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#a232d695be9b723df8dae4ca219c6745f) 和 [`memoryAppUsageInKbytes`](./API%20Reference/unity/structagora__gaming__rtc_1_1_rtc_stats.html#aeb37b39c64362e3954b279c6dfc5e774) 成员
 - `RemoteAudioStats` 结构体中新增 [`totalActiveTime`](./API%20Reference/unity/structagora__gaming__rtc_1_1_remote_audio_stats.html#a7453a27b08439186f35b3b7bb9eafd3b) 成员
 - `AudioVolumeInfo` 结构体新增 [`channelId`](./API%20Reference/unity/structagora__gaming__rtc_1_1_audio_volume_info.html#a0b95567512ed7c6642671e805207a8e1) 成员
 
@@ -304,7 +305,7 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 - 该版本修复了 Android 设备上的部分异常。
 - 该版本修复了 Windows 平台下，使用 Editor 调试模式时偶现的卡死问题。
 
- ## 2.9.1 版
+## 2.9.1 版
 
 Agora Unity SDK 广泛应用于游戏、教育、AR、VR 等场景。
 
@@ -332,10 +333,10 @@ Agora Unity SDK 广泛应用于游戏、教育、AR、VR 等场景。
 
 该版本支持加密功能，你可以对音频流进行加密。下表展示移动端的加密库信息，若希望减小 SDK 体积且不使用加密功能，你可以把加密库移除。
 
-   | 平台    | 加密库                                     |
-   | :------ | :----------------------------------------- |
-   | Android | libagora-crypto.so                         |
-   | iOS     | <ul><li>AgoraRtcCryptoLoader.framework <li>libcrypto.a</li></ul> |
+| 平台    | 加密库                                                           |
+| :------ | :--------------------------------------------------------------- |
+| Android | libagora-crypto.so                                               |
+| iOS     | <ul><li>AgoraRtcCryptoLoader.framework <li>libcrypto.a</li></ul> |
 
 **6. 云代理服务**
 

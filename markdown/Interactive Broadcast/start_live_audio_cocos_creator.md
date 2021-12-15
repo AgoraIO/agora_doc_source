@@ -3,6 +3,7 @@ title: 实现音频直播
 platform: Cocos Creator
 updatedAt: 2020-12-15 09:58:39
 ---
+
 本文详细介绍如何快速集成 Agora Cocos Creator SDK，并在你自己的 app 里实现基础的音频互动直播。
 
 ## 前提条件
@@ -11,10 +12,10 @@ updatedAt: 2020-12-15 09:58:39
 - [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started)
 - 操作系统与集成开发环境要求：
 
-  | 目标平台 | 操作系统版本       | 集成开发环境版本                                             |
-  | :------- | :----------------- | :----------------------------------------------------------- |
+  | 目标平台 | 操作系统版本       | 集成开发环境版本                                                                                            |
+  | :------- | :----------------- | :---------------------------------------------------------------------------------------------------------- |
   | Android  | Android 4.1 或以上 | <ul><li>Android Studio 3.0 或以上</li><li>Android SDK API 16 或以上</li><li>Android NDK 17 或以上</li></ul> |
-  | iOS      | iOS 8.0 或以上     | Xcode 9.0 或以上                                             |
+  | iOS      | iOS 8.0 或以上     | Xcode 9.0 或以上                                                                                            |
 
 - 有效的 [Cocos 账户](https://account.cocos.com/)和 [Cocos App ID](https://docs.cocos.com/creator/manual/zh/cocos-service/user-guide.html)。
 
@@ -32,15 +33,15 @@ updatedAt: 2020-12-15 09:58:39
 
 1. 打开 Cocos Creator 项目，点击界面右侧的**服务**打开服务面板。
 2. 点击 **AppID** 后的 ![](https://web-cdn.agora.io/docs-files/1603983326448) 按钮并点击**设定 Cocos AppID**。
- ![](https://web-cdn.agora.io/docs-files/1603984502139)
+   ![](https://web-cdn.agora.io/docs-files/1603984502139)
 3. 点击下拉框，选择一个游戏，并点击**关联**，将该游戏与你的项目关联。
 4. 向下滚动**服务**面板，找到并点击 **Agora RTC**。
 5. 点击 **Agora RTC** 后的开通服务按钮 ![](https://web-cdn.agora.io/docs-files/1603983397604)，仔细阅读弹窗内容，并点击**确认开通**。
-<% if (product == "audio") { %>
+   <% if (product == "audio") { %>
 6. 在 **Agora RTC** 面板底部，选择 SDK 类型为 **Audio**，并点击**保存**，即可获取 Agora Cocos Creator SDK。
-<% } if (product == "video") { %>
-6. 在 **Agora RTC** 面板底部，选择 SDK 类型为 **Video**，并点击**保存**，即可获取 Agora Cocos Creator SDK。你可以在 Cocos Creator 的**控件库** > **云组件**中看到 **AgoraVideoRender**。
-<% } %>
+   <% } if (product == "video") { %>
+7. 在 **Agora RTC** 面板底部，选择 SDK 类型为 **Video**，并点击**保存**，即可获取 Agora Cocos Creator SDK。你可以在 Cocos Creator 的**控件库** > **云组件**中看到 **AgoraVideoRender**。
+   <% } %>
 
 成功获取 SDK 后，Cocos Creator 会在你的 Cocos Creator 项目中自动添加获取设备权限的代码，你无需另行配置。
 Cocos Creator 也会使用你的 Cocos Creator 账户为你自动注册 Agora 账户并创建 Agora 项目。你可以点击 **Agora RTC** 面板上的**前往控制台**，打开 Agora 控制台。
@@ -54,8 +55,8 @@ Cocos Creator 也会使用你的 Cocos Creator 账户为你自动注册 Agora �
 1. 在 Agora 控制台的**项目管理**页面，找到你的项目，点击右侧的**编辑**按钮进入**编辑项目**页面。
    ![](https://web-cdn.agora.io/docs-files/1606295923430)
 2. 在**安全**模块，点击**启用**开启主要证书，并点击**删除**移除无证书。
-3. 在**功能**模块，点击**音视频临时token** 后的**生成临时token**。
-4. 在 **Token** 页面，输入一个频道名，例如 test，然后点击**生成临时Token**。你可以在该页面复制 Agora App ID，用于[初始化 Agora 引擎](#initialize)；复制临时 Token，用于在[加入频道](#join)时鉴权。
+3. 在**功能**模块，点击**音视频临时 token** 后的**生成临时 token**。
+4. 在 **Token** 页面，输入一个频道名，例如 test，然后点击**生成临时 Token**。你可以在该页面复制 Agora App ID，用于[初始化 Agora 引擎](#initialize)；复制临时 Token，用于在[加入频道](#join)时鉴权。
 
 <div class="alert note"><li>临时 Token 的有效期为 24 小时。<li>在生产环境，我们推荐你在自己的服务端生成 Token，详见<a href="https://docs.agora.io/cn/Interactive%20Broadcast/token_server?platform=Cocos%20Creator">在服务端生成 Token</a >。</div>
 

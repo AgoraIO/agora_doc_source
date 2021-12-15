@@ -6,7 +6,6 @@ updatedAt: 2021-03-31 08:46:36
 
 Agora 在 GitHub 上提供开源的互动播客示例项目 [Livecast](https://github.com/AgoraIO-Usecase/InteractivePodcast)。本文介绍如何快速跑通该示例项目，体验 Agora 互动播客。
 
-
 ## 前提条件
 
 - Android Studio 4.0.0 或以上版本。
@@ -15,7 +14,6 @@ Agora 在 GitHub 上提供开源的互动播客示例项目 [Livecast](https://g
 <div class="alert note">如果你的网络环境部署了防火墙，请参考<a href="https://docs.agora.io/cn/AgoraPlatform/firewall?platform=iOS">应用企业防火墙限制</a>以正常使用 Agora 服务。</div>
 
 ## 操作步骤
-
 
 ### 1. 创建 Agora 项目
 
@@ -30,7 +28,6 @@ Agora 在 GitHub 上提供开源的互动播客示例项目 [Livecast](https://g
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID。**
 
 4. 点击**提交**，新建的项目就会显示在**项目管理**页中。
-
 
 ### 2. 获取 App ID
 
@@ -52,6 +49,7 @@ Agora 提供的互动播客示例项目使用了第三方云存储服务，因�
 ### 4. 运行示例项目
 
 按照以下步骤运行示例项目，体验互动播客：
+
 1. 进入你的示例项目文件夹，打开 `strings_config.xml` 文件。
 2. 将 `Your App ID` 替换为在第 2 步获取的 Agora App ID。
 3. 将 `Your LeanCloud App ID`、`Your LeanCloud App Key`、`Your LeanCloud Server Url` 分别替换为在第 3 步获取的 AppID、AppKey、REST API 服务器地址。

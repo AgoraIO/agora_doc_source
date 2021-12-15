@@ -3,6 +3,7 @@ title: 通话前探测网络质量
 platform: Unity
 updatedAt: 2020-02-28 11:00:23
 ---
+
 ## 功能描述
 
 在加入频道或切换角色为主播前，进行网络质量探测，可以判断或预测用户当前的网络状况是否良好，可以满足音频码率或者当前选定的视频属性的目标码率。
@@ -16,7 +17,6 @@ updatedAt: 2020-02-28 11:00:23
 - [实现语音通话](start_call_audio_unity)或[实现音频互动直播](start_live_audio_unity)
 - [实现视频通话](start_call_unity)或[实现视频互动直播](start_live_unity)
 
-
 1. 在用户加入频道或上麦前，调用 `StartLastmileProbeTest` 进行网络质量探测，向用户反馈上下行网络的带宽、丢包、网络抖动和往返时延。
 
 2. 启用该方法后，SDK 会依次返回如下 2 个回调：
@@ -26,7 +26,7 @@ updatedAt: 2020-02-28 11:00:23
 
 3. 获取到网络质量数据后，调用 `StopLastmileProbeTest` 停止通话前网络质量探测。
 
-   <div class="alert note">在测试结束前，Agora 建议不要调用其他 API 方法。</div>
+<div class="alert note">在测试结束前，Agora 建议不要调用其他 API 方法。</div>
 
 ### API 调用时序
 
@@ -43,16 +43,16 @@ updatedAt: 2020-02-28 11:00:23
 // 开始 Last-mile 网络探测后，约 2 秒后发生该回调。
 void OnLastmileQualityHandler(int quality)
 {
- 
+
 }
- 
+
 // 开始 Last-mile 网络探测后，约 30 秒后发生该回调。
 void OnLastmileProbeResultHandler(LastmileProbeResult result)
-{  
+{
     //（1）可以选择在回调内部结束 Last-mile 网络探测。在测试结束前，Agora 建议不要调用其他 API 方法。
     mRtcEngine.StopLastmileProbeTest();
 }
- 
+
 mRtcEngine.OnLastmileQuality = OnLastmileQualityHandler;
 mRtcEngine.OnLastmileProbeResult = OnLastmileProbeResultHandler;
 // 配置一个 LastmileProbeConfig 实例。
@@ -70,8 +70,6 @@ mRtcEngine.StartLastmileProbeTest(config);
 // （2）也可以选择其他时候结束 Last-mile 网络探测。在测试结束前，Agora 建议不要调用其他 API 方法。
 mRtcEngine.StopLastmileProbeTest();
 ```
-
-
 
 ### API 参考
 

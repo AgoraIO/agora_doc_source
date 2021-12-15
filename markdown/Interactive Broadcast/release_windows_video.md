@@ -10,26 +10,22 @@ updatedAt: 2021-03-29 03:36:07
 
 Windows 视频 SDK 支持两种主要场景:
 
--   音视频通话
--   音视频直播
+- 音视频通话
+- 音视频直播
 
 点击 [语音通话产品概述](https://docs.agora.io/cn/Voice/product_voice?platform=All%20Platforms)、[视频通话产品概述](https://docs.agora.io/cn/Video/product_video?platform=All%20Platforms) 以及[互动直播产品概述](https://docs.agora.io/cn/Interactive%20Broadcast/product_live?platform=All%20Platforms)了解关键特性。
-
 
 将下载的 Windows 软件包解压后, 你会看见两个包，根据实际情况选择使用 x64 或 x86 包:
 
 <img alt="../_images/windows_package.png" src="https://web-cdn.agora.io/docs-files/cn/windows_package.png" style="width: 300px; "/>
 
-
 解压 x64 或 x86 后，包内的 examples 文件夹下有两个示例代码供你演示功能使用: AgoraOpenLive 和 OpenVideoCall 。 在编译示例代码时须确保编译环境选对。例如，x64 编译环境选择 x64:
 
 <img alt="../_images/x64.png" src="https://web-cdn.agora.io/docs-files/cn/x64.png" style="width: 300px; "/>
 
-
 x86 的编译环境选择 Win32:
 
 <img alt="../_images/x86.png" src="https://web-cdn.agora.io/docs-files/cn/x86.png" style="width: 300px; "/>
-
 
 ## **2.3.2 版**
 
@@ -39,7 +35,7 @@ x86 的编译环境选择 Win32:
 
 #### 1. 视频自采集 (Push 模式）
 
-为方便用户在通话或直播中使用外部视频数据，该版本新增如下接口，支持使用 Push 方式进行视频自采集。启用后，应用程序需要将外部的视频帧封装成  `AgoraVideoFrame` 格式后，推送给 Agora SDK 进行编码和传输。
+为方便用户在通话或直播中使用外部视频数据，该版本新增如下接口，支持使用 Push 方式进行视频自采集。启用后，应用程序需要将外部的视频帧封装成 `AgoraVideoFrame` 格式后，推送给 Agora SDK 进行编码和传输。
 
 - [`setExternalVideoSource`](./API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html?transId=b7517240-029d-11e9-bbd0-251679929d6b#a6716908edc14317f2f6f14ee4b1c01b7)：配置外部视频源
 - [`pushVideoFrame`](./API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html?transId=b7517240-029d-11e9-bbd0-251679929d6b#ae064aedfdb6ac63a981ca77a6b315985)：推送外部视频帧
@@ -78,7 +74,7 @@ x86 的编译环境选择 Win32:
 
 为提升质量透明的用户体验，该版本废弃了原有的 `onAudioQuality` 回调，并新增 `onRemoteAudioStats` 回调进行取代。和原来的接口相比，新接口使用更为综合的算法，通过引入音频丢帧率、端到端的音频延迟、接收端网络抖动的缓冲延迟等参数，使回调结果更贴近用户感受。同时，该版本优化了 `onNetworkQuality` 的算法，对上下行网络质量采用不同的计算方法，使评分更精准。
 
-- [`onRemoteAudioStats`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html?transId=b7517240-029d-11e9-bbd0-251679929d6b#af8a59626a9265264fb4638e048091d3a)：通话中远端音频流的统计信息回调。用于替换	`onAudioQuality`
+- [`onRemoteAudioStats`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html?transId=b7517240-029d-11e9-bbd0-251679929d6b#af8a59626a9265264fb4638e048091d3a)：通话中远端音频流的统计信息回调。用于替换 `onAudioQuality`
 - [`onNetworkQuality`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html?transId=b7517240-029d-11e9-bbd0-251679929d6b#a80003ae8cce02039f3aa0e8ffad7deed)：通话中每个用户的网络上下行 Last mile 质量报告回调。
 
 Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
@@ -182,7 +178,6 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 - [`onConnectionInterrupted`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html?transId=b7517240-029d-11e9-bbd0-251679929d6b#a9927b5cd2a67c1f48f17b5ed2303f483)
 - [`onConnectionBanned`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html?transId=b7517240-029d-11e9-bbd0-251679929d6b#a38e9d403ae4732dff71110b454149404)
 
-
 ## **2.2.1 版**
 
 该版本于 2018 年 5 月 30 日发布。内部代码优化。
@@ -241,10 +236,9 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 
 ### **修复问题**
 
--   修复了大量用户同时直播连麦时，偶发的抖屏现象
+- 修复了大量用户同时直播连麦时，偶发的抖屏现象
 
--   修复了 Windows 设备在直播模式下偶发的音频卡顿问题
-
+- 修复了 Windows 设备在直播模式下偶发的音频卡顿问题
 
 ## **2.1.3 版**
 
@@ -272,10 +266,9 @@ SDK 升级至 2.1.2 的直播模式后，相同分辨率下，视频更清晰，
 
 ### **问题修复**
 
--   修复了连麦后退出频道后再进入频道连麦对端看不到自己的问题。
+- 修复了连麦后退出频道后再进入频道连麦对端看不到自己的问题。
 
--   修复了通信模式的屏幕共享清晰度小于直播模式的问题。
-
+- 修复了通信模式的屏幕共享清晰度小于直播模式的问题。
 
 ## **2.1.1 版**
 
@@ -307,22 +300,19 @@ SDK 升级至 2.1.2 的直播模式后，相同分辨率下，视频更清晰，
 
 在直播场景下，同一频道内支持 17 位主播同时进行视频直播和连麦，详见:
 
--   [实现视频直播](/cn/Quickstart%20Guide/broadcast_video_windows)
+- [实现视频直播](/cn/Quickstart%20Guide/broadcast_video_windows)
 
--   [实现七人以上视频通话](/cn/Quickstart%20Guide/seventeen_people_windows)
-
+- [实现七人以上视频通话](/cn/Quickstart%20Guide/seventeen_people_windows)
 
 #### 5. 插入外部视频源
 
 直播场景下，可以将采集到的视频添加到正在进行的直播中，直播室里的主播和观众可以一起边看电影、比赛或演出，边进行点评、互动等功能，会让现有的直播话题更广、体验更好。 仅支持拉入一路流，格式包括: RTMP, HLS, FLV。赛事直播最多同时支持 5 人连麦直播。详见 [外部输入直播视频源](/cn/Quickstart%20Guide/inject_stream_windows) 。
 
-
 #### 6. 新增直播场景下的屏幕共享功能
 
--   在 2.1.0 以前: Agora SDK 仅支持视频通话场景下的屏幕共享功能;
+- 在 2.1.0 以前: Agora SDK 仅支持视频通话场景下的屏幕共享功能;
 
--   从 2.1.0 开始: Agora SDK 正式支持直播场景下的屏幕共享功能;
-
+- 从 2.1.0 开始: Agora SDK 正式支持直播场景下的屏幕共享功能;
 
 #### 7. 声卡采集
 
@@ -356,16 +346,13 @@ SDK 升级至 2.1.2 的直播模式后，相同分辨率下，视频更清晰，
 </tbody>
 </table>
 
-
-
 ### **问题修复**
 
--   修复了摄像头采集失败问题;
+- 修复了摄像头采集失败问题;
 
--   修复了偶现的崩溃;
+- 修复了偶现的崩溃;
 
--   修复了偶现的视频卡顿问题;
-
+- 修复了偶现的视频卡顿问题;
 
 **2.0 预告**
 
@@ -375,10 +362,9 @@ SDK 升级至 2.1.2 的直播模式后，相同分辨率下，视频更清晰，
 
 #### 受影响范围
 
--   使用 Windows SDK 并且使用 Agora Recording Server（<= version 1.8.2）的用户
+- 使用 Windows SDK 并且使用 Agora Recording Server（<= version 1.8.2）的用户
 
--   涉及到的 API 为 `startRecordingService`，`stopRecordingService` 以及 `refreshRecordingServiceStatus`，将在后续版本中不再支持。
-
+- 涉及到的 API 为 `startRecordingService`，`stopRecordingService` 以及 `refreshRecordingServiceStatus`，将在后续版本中不再支持。
 
 #### 解决方案
 
@@ -388,14 +374,13 @@ SDK 升级至 2.1.2 的直播模式后，相同分辨率下，视频更清晰，
 
 附上 Agora Recording SDK 的使用方法:
 
--   [录制快速开始](/cn/Quickstart%20Guide/recording_cpp-1)
+- [录制快速开始](/cn/Quickstart%20Guide/recording_cpp-1)
 
--   [录制音视频](/cn/Quickstart%20Guide/recording_voice_video)
+- [录制音视频](/cn/Quickstart%20Guide/recording_voice_video)
 
--   [录制 API](/cn/API%20Reference/recording_cpp)
+- [录制 API](/cn/API%20Reference/recording_cpp)
 
-
-**方案二**：如果你希望继续使用 Agora Recording Server，维持 Windows SDK 版本不变（<=v1.14），将不影响您继续使用 Windows SDK的 API 触发录制。
+**方案二**：如果你希望继续使用 Agora Recording Server，维持 Windows SDK 版本不变（<=v1.14），将不影响您继续使用 Windows SDK 的 API 触发录制。
 
 若您有任何疑问，可以通过以下方式获得技术支持:
 
@@ -405,17 +390,17 @@ SDK 升级至 2.1.2 的直播模式后，相同分辨率下，视频更清晰，
 
 3.  您还可以随时联系技术支持群里的同事或商务
 
-
 ## **2.0 版及之前**
+
 ### **2.0 版**
 
 该版本于 2017 年 12 月 6 日发布。新增特性与修复问题列表详见下文。
 
 #### **新增功能**
 
--   通信场景支持视频大小流功能，新增 API `setRemoteVideoStreamType` 和 `enableDualStreamMode` ;
+- 通信场景支持视频大小流功能，新增 API `setRemoteVideoStreamType` 和 `enableDualStreamMode` ;
 
--   通信和直播场景下支持音频自采集功能，新增以下 API:
+- 通信和直播场景下支持音频自采集功能，新增以下 API:
 
  <table>
 <colgroup>
@@ -435,54 +420,51 @@ SDK 升级至 2.1.2 的直播模式后，相同分辨率下，视频更清晰，
 </tbody>
 </table>
 
+- 通信和直播场景下支持服务端踢人功能。如有需要，请联系 [sales@agora.io](mailto:sales@agora.io) 开通该功能。
 
--   通信和直播场景下支持服务端踢人功能。如有需要，请联系 [sales@agora.io](mailto:sales@agora.io) 开通该功能。
+- 支持 Windows 64 位;
 
--   支持 Windows 64 位;
+- 增加音量、静音设置/获取接口以及系统音量、静音同步引擎事件接口, 详见:
 
--   增加音量、静音设置/获取接口以及系统音量、静音同步引擎事件接口, 详见:
+      <table>
 
-    <table>
-<colgroup>
-<col/>
-<col/>
-</colgroup>
-<tbody>
-<tr><td><strong>名称</strong></td>
-<td><strong>描述</strong></td>
-</tr>
-<tr><td><code>setPlaybackDeviceVolume</code></td>
-<td>设置播放设备音量</td>
-</tr>
-<tr><td><code>getPlaybackDeviceVolume</code></td>
-<td>获取播放设备音量</td>
-</tr>
-<tr><td><code>setRecordingDeviceVolume</code></td>
-<td>设置麦克风音量</td>
-</tr>
-<tr><td><code>getRecordingDeviceVolume</code></td>
-<td>获取麦克风音量</td>
-</tr>
-<tr><td><code>setPlaybackDeviceMute</code></td>
-<td>静音播放设备</td>
-</tr>
-<tr><td><code>getPlaybackDeviceMute</code></td>
-<td>获取播放设备静音状态</td>
-</tr>
-<tr><td><code>setRecordingDeviceMute</code></td>
-<td>静音麦克风</td>
-</tr>
-<tr><td><code>getRecordingDeviceMute</code></td>
-<td>获取麦克风静音状态</td>
-</tr>
-<tr><td><code>onAudioDeviceVolumeChanged</code></td>
-<td>当放音、录音、应用程序音量发生变化时触发该回调</td>
-</tr>
-</tbody>
-</table>
-
-
-
+  <colgroup>
+  <col/>
+  <col/>
+  </colgroup>
+  <tbody>
+  <tr><td><strong>名称</strong></td>
+  <td><strong>描述</strong></td>
+  </tr>
+  <tr><td><code>setPlaybackDeviceVolume</code></td>
+  <td>设置播放设备音量</td>
+  </tr>
+  <tr><td><code>getPlaybackDeviceVolume</code></td>
+  <td>获取播放设备音量</td>
+  </tr>
+  <tr><td><code>setRecordingDeviceVolume</code></td>
+  <td>设置麦克风音量</td>
+  </tr>
+  <tr><td><code>getRecordingDeviceVolume</code></td>
+  <td>获取麦克风音量</td>
+  </tr>
+  <tr><td><code>setPlaybackDeviceMute</code></td>
+  <td>静音播放设备</td>
+  </tr>
+  <tr><td><code>getPlaybackDeviceMute</code></td>
+  <td>获取播放设备静音状态</td>
+  </tr>
+  <tr><td><code>setRecordingDeviceMute</code></td>
+  <td>静音麦克风</td>
+  </tr>
+  <tr><td><code>getRecordingDeviceMute</code></td>
+  <td>获取麦克风静音状态</td>
+  </tr>
+  <tr><td><code>onAudioDeviceVolumeChanged</code></td>
+  <td>当放音、录音、应用程序音量发生变化时触发该回调</td>
+  </tr>
+  </tbody>
+  </table>
 
 #### **问题修复**
 
@@ -494,38 +476,35 @@ SDK 升级至 2.1.2 的直播模式后，相同分辨率下，视频更清晰，
 
 #### **新增功能**
 
--   新增 API `setAudioProfile `设置音频参数和应用场景。
+- 新增 API `setAudioProfile `设置音频参数和应用场景。
 
--   新增 API `setLocalVoicePitch` 提供基础变声功能。
+- 新增 API `setLocalVoicePitch` 提供基础变声功能。
 
--   直播场景: 新增 API `setInEarMonitoringVolume` 提供调节耳返音量功能。
-
+- 直播场景: 新增 API `setInEarMonitoringVolume` 提供调节耳返音量功能。
 
 #### **改进**
 
--   优化了在高码率下的音频体验。
+- 优化了在高码率下的音频体验。
 
--   秒开: 直播场景下，单流模式时观众加入频道 1 秒内看见主播图像\(均值为 885 ms, 网络状态良好时可达 788 ms\)。
+- 秒开: 直播场景下，单流模式时观众加入频道 1 秒内看见主播图像\(均值为 885 ms, 网络状态良好时可达 788 ms\)。
 
--   节省带宽:
+- 节省带宽:
 
-    -   1.14 以前: 如果你选择不听某人的音频或不看某人的视频，音视频流会照发。
+  - 1.14 以前: 如果你选择不听某人的音频或不看某人的视频，音视频流会照发。
 
-    -   1.14 开始: 如果你选择不听或不看某人的流，则不会下发，从而节省带宽。
+  - 1.14 开始: 如果你选择不听或不看某人的流，则不会下发，从而节省带宽。
 
--   精准的码率控制:
+- 精准的码率控制:
 
-    -   1.14 以前: 码率控制不够精准，上下波动幅度较大。波动过大容易造成网络拥塞，增加丢包、丢帧的概率，影响了带宽估计模块的精度，特别是在弱网低码率情况下尤为明显。
+  - 1.14 以前: 码率控制不够精准，上下波动幅度较大。波动过大容易造成网络拥塞，增加丢包、丢帧的概率，影响了带宽估计模块的精度，特别是在弱网低码率情况下尤为明显。
 
-    -   1.14 开始: 精准的码率控制，要多少给多少，不多给也不少给，避免波动过大造成的网络拥塞，减少传输延时，有助于减少网络卡顿。
-
+  - 1.14 开始: 精准的码率控制，要多少给多少，不多给也不少给，避免波动过大造成的网络拥塞，减少传输延时，有助于减少网络卡顿。
 
 #### **问题修复**
 
--   修复了部分 Windows 机器上无声音的问题。
+- 修复了部分 Windows 机器上无声音的问题。
 
--   修复了部分 Windows 机器上的摄像头问题。
-
+- 修复了部分 Windows 机器上的摄像头问题。
 
 ### **1.13.1 版**
 
@@ -541,25 +520,23 @@ SDK 升级至 2.1.2 的直播模式后，相同分辨率下，视频更清晰，
 
 #### **新增功能**
 
--   新增 API `onClientRoleChanged` 用于提醒直播场景下主播、观众上下麦的回调。
+- 新增 API `onClientRoleChanged` 用于提醒直播场景下主播、观众上下麦的回调。
 
--   新增单独关闭语音播放的功能。
+- 新增单独关闭语音播放的功能。
 
--   新增功能支持服务端推流失败回调。
+- 新增功能支持服务端推流失败回调。
 
--   屏幕共享直播场景下采集声卡选项动态开启和关闭。
-
+- 屏幕共享直播场景下采集声卡选项动态开启和关闭。
 
 #### **改进**
 
--   软编情况下，视频属性可控。
+- 软编情况下，视频属性可控。
 
--   可以在客户端设置推流的 Profile。
+- 可以在客户端设置推流的 Profile。
 
--   屏幕共享: 提升了画质清晰度和流畅度。
+- 屏幕共享: 提升了画质清晰度和流畅度。
 
--   屏幕共享: 通信场景下新增动态更新截图区域。
-
+- 屏幕共享: 通信场景下新增动态更新截图区域。
 
 #### **修复问题**
 
@@ -571,29 +548,26 @@ SDK 升级至 2.1.2 的直播模式后，相同分辨率下，视频更清晰，
 
 #### **新增功能**
 
--   直播场景下， 新增 API 方法 `injectStream` 在当前频道内插入一条 RTMP 流。该功能目前为 beta 版
+- 直播场景下， 新增 API 方法 `injectStream` 在当前频道内插入一条 RTMP 流。该功能目前为 beta 版
 
--   在 API 方法 `setEncryptionMode` 里新增加密模式 `aes-128-ecb` 。
+- 在 API 方法 `setEncryptionMode` 里新增加密模式 `aes-128-ecb` 。
 
--   在 API 方法 `startAudioRecording` 里新增参数 `quality`用于设置录音音质。
+- 在 API 方法 `startAudioRecording` 里新增参数 `quality`用于设置录音音质。
 
--   新增 API `onActiveSpeaker` 提示当前频道内谁在说话。
+- 新增 API `onActiveSpeaker` 提示当前频道内谁在说话。
 
--   通信场景下，删除了原有的 API 方法 `setScreenCaptureWindow`，更新 API 方法 `startScreenCapture` 共享整个屏幕、指定窗口或指定区域
+- 通信场景下，删除了原有的 API 方法 `setScreenCaptureWindow`，更新 API 方法 `startScreenCapture` 共享整个屏幕、指定窗口或指定区域
 
--   通信场景下，启用屏幕共享功能后，在屏幕共享过程中可以显示鼠标
-
+- 通信场景下，启用屏幕共享功能后，在屏幕共享过程中可以显示鼠标
 
 #### **改进**
 
 通信场景下针对 320 x 180 分辨率提供了以下改进方案:
 
--   网络和设备状态较差的情况下仍能保证画质流畅度。
+- 网络和设备状态较差的情况下仍能保证画质流畅度。
 
--   网络和设备状态良好的情况下可以做到比 180P 更好的画质清晰度。
-
+- 网络和设备状态良好的情况下可以做到比 180P 更好的画质清晰度。
 
 #### **修复问题**
 
 修复了部分机型上偶现的崩溃问题。
-

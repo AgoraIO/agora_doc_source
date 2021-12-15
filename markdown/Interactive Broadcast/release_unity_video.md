@@ -3,15 +3,16 @@ title: 发版说明
 platform: Unity
 updatedAt: 2021-03-12 08:40:40
 ---
+
 本文提供 Agora Unity SDK 的发版说明。
 
 ## 简介
- 
+
 Agora Unity SDK 主要支持两种场景：
- 
+
 - 音视频通话
 - 音视频直播
- 
+
 点击[语音通话产品概述](product_voice)、[视频通话产品概述](product_video)、[音频互动直播产品概述](product_live_audio)及[视频互动直播](product_live)了解关键特性。
 
 ## 3.0.1 版
@@ -86,12 +87,12 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 
 为满足更高音质需求，该版本调整了直播场景下 `AUDIO_PROFILE_DEFAULT(0)` 对应的音频编码属性，详见下表：
 
-| SDK 版本   | `AUDIO_PROFILE_DEFAULT(0)`                                   |
+| SDK 版本   | `AUDIO_PROFILE_DEFAULT(0)`                                  |
 | :--------- | :---------------------------------------------------------- |
 | 3.0.1      | 48 KHz 采样率，音乐编码，单声道，编码码率最大值为 52 Kbps。 |
 | 3.0.1 之前 | 32 KHz 采样率，音乐编码，单声道，编码码率最大值为 64 Kbps。 |
 
-####  2. 质量透明
+#### 2. 质量透明
 
 为方便开发者获取更多通话统计信息，该版本在 `RtcStats` 类中新增如下成员，方便更好地监控通话的质量和通话过程中的内存变动：
 
@@ -200,10 +201,10 @@ Agora Unity SDK 广泛应用于游戏、教育、AR、VR 等场景。
 
 该版本支持加密功能，你可以对音视频流进行加密。下表展示移动端的加密库信息，若希望减小 SDK 体积且不使用加密功能，你可以把加密库移除。
 
-   | 平台    | 加密库                                     |
-   | :------ | :----------------------------------------- |
-   | Android | libagora-crypto.so                         |
-   | iOS     | <ul><li>AgoraRtcCryptoLoader.framework <li>libcrypto.a</li></ul> |
+| 平台    | 加密库                                                           |
+| :------ | :--------------------------------------------------------------- |
+| Android | libagora-crypto.so                                               |
+| iOS     | <ul><li>AgoraRtcCryptoLoader.framework <li>libcrypto.a</li></ul> |
 
 #### 8. 云代理服务
 

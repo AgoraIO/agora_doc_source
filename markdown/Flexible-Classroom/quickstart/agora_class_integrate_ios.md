@@ -26,18 +26,18 @@ pod 'AgoraClassroomSDK_iOS', "1.1.5.3"
 pod 'AgoraEduContext', "1.1.5.1"
 pod 'AgoraEduUI', "1.1.5.2"
 pod 'AgoraUIEduBaseViews', "1.1.5.2"
- 
+
 # Closed-source libs
 pod 'AgoraEduCore', "1.1.5.7"
- 
+
 # Common libs
 pod 'AgoraUIBaseViews', '1.0.1'
 pod 'AgoraExtApp', '1.0.0'
 pod 'AgoraWidget', '1.0.0'
- 
+
 # Widgets
 pod 'AgoraWidgets', "1.0.1"
-   
+
 # Third-party libs
 pod 'Protobuf', '3.17.0'
 pod "AFNetworking", "4.0.1"
@@ -57,18 +57,18 @@ pod "AgoraRtm_iOS", "1.4.8"
 ```
 # Open-source libs
 pod 'AgoraEduContext', "1.1.5.1"
- 
+
 # Closed-source libs
 pod 'AgoraEduCore', "1.1.5.7"
- 
+
 # Common libs
 pod 'AgoraUIBaseViews', '1.0.1'
 pod 'AgoraExtApp', '1.0.0'
 pod 'AgoraWidget', '1.0.0'
- 
+
 # Widgets
 pod 'AgoraWidgets', "1.0.1"
-   
+
 # Third-party libs
 pod 'Protobuf', '3.17.0'
 pod "AFNetworking", "4.0.1"
@@ -95,7 +95,7 @@ pod "AgoraRtm_iOS", "1.4.8"
 
 3. 基于最新的发版分支创建一个你自己的分支，推向你的项目仓库。
 
-   <div class="alert info">你可在<a href="/cn/agora-class/release_agora_class_ios?platform=iOS">发版说明</a>中查看最新版本号 x.y.z，发版分支为 release/apaas/x.y.z。</div>
+<div class="alert info">你可在<a href="/cn/agora-class/release_agora_class_ios?platform=iOS">发版说明</a>中查看最新版本号 x.y.z，发版分支为 release/apaas/x.y.z。</div>
 
 4. 在你的项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 仓库中的 `AgoraClassroomSDK.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec`、`AgoraUIEduBaseViews.podspec` 以及其它依赖的库。
 
@@ -105,19 +105,19 @@ pod "AgoraRtm_iOS", "1.4.8"
    pod 'AgoraEduContext', :path => '../SDKs/AgoraEduContext/AgoraEduContext.podspec'
    pod 'AgoraEduUI', :path => '../SDKs/AgoraEduUI/AgoraEduUI.podspec'
    pod 'AgoraUIEduBaseViews', :path => '../SDKs/Modules/AgoraUIEduBaseViews/AgoraUIEduBaseViews_Local.podspec'
-    
+
    # Closed-source libs
    pod 'AgoraEduCore', "1.1.5.7"
-    
+
    # Common libs
    pod 'AgoraUIBaseViews', '1.0.1'
    pod 'AgoraExtApp', '1.0.0'
    pod 'AgoraWidget', '1.0.0'
-    
+
    # Widgets
    pod 'AgoraWidgets', :path => '../Widgets/AgoraWidgets/AgoraWidgets.podspec'
    pod 'ChatWidget', :path => '../Widgets/ChatWidget/ChatWidget.podspec', :subspecs => ['SOURCE']
-    
+
    # Third-party libs
    pod 'Protobuf', '3.17.0'
    pod "AFNetworking", "4.0.1"
@@ -144,4 +144,3 @@ pod "Whiteboard", "2.13.19"
 pod "AgoraRtcEngine_iOS", "3.4.6"
 pod "AgoraRtm_iOS", "1.4.8"
 ```
-

@@ -38,7 +38,7 @@
    + (NSString *)appId {
        return <#Your Agora App Id#>;
    }
-   
+
    + (NSString *)appCertificate {
        return <#Your Agora Certificate#>;
    }

@@ -1,9 +1,10 @@
 ---
 title: 如何处理无声问题？
-platform: ["Android","iOS","macOS","Windows","Unity","Electron","React Native","Flutter"]
+platform: ["Android", "iOS", "macOS", "Windows", "Unity", "Electron", "React Native", "Flutter"]
 updatedAt: 2021-02-21 13:38:45
-Products: ["Voice","Video","Interactive Broadcast"]
+Products: ["Voice", "Video", "Interactive Broadcast"]
 ---
+
 ## 问题描述
 
 在实时音视频互动过程中，可能会出现如下音频无声问题：

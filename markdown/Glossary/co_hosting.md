@@ -3,6 +3,7 @@ title: 连麦 (co-hosting)
 platform: All Platforms
 updatedAt: 2020-11-12 08:13:13
 ---
+
 连麦指在直播场景中，两个及以上主播进行互动的过程。频道内的观众可以看到这些主播并听到他们的声音。
 
 有以下两种情况：

@@ -3,6 +3,7 @@ title: 实现视频直播
 platform: Flutter
 updatedAt: 2020-11-13 06:53:25
 ---
+
 Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart)。本文分以下两个部分：
 
 - [快速跑通示例项目](#快速跑通示例项目)介绍如何快速跑通该示例项目，体验 Agora 视频直播效果。
@@ -53,13 +54,9 @@ Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](htt
 
 4. 点击**提交**，新建的项目就会显示在**项目管理**页中。Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
-
 #### 2. 获取 App ID
 
 在控制台的**项目管理**页面，找到你的项目，点击 App ID 右侧的眼睛图标就可以直接复制项目的 App ID。
-
-
-
 
 #### 3. 生成临时 Token
 
@@ -71,27 +68,26 @@ Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](htt
 
 ![](https://web-cdn.agora.io/docs-files/1601361015326)
 
-2. 输入一个频道名，例如 `test`，然后点击**生成临时Token**。临时 Token 的有效期为 24 小时。
+2. 输入一个频道名，例如 `test`，然后点击**生成临时 Token**。临时 Token 的有效期为 24 小时。
 
 ![](https://web-cdn.agora.io/docs-files/1601361025891)
 
  <div class="alert note">临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见<a href="https://docs.agora.io/cn/Audio%20Broadcast/token_server">生成 Token</a></div>
 
-
 #### 4. 运行示例项目
 
 1. 下载 [Agora-Flutter-Quickstart](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart) 仓库。打开 `settings.dart` (`lib/src/utils/settings.dart`)文件并添加 App ID 和 Token。
 
-	```dart
-  const APP_ID ="";
-  const Token ="";
-	```
+   ```dart
+   const APP_ID ="";
+   const Token ="";
+   ```
 
 2. 在仓库根目录运行以下命令安装依赖项。
-   
-	 ```bash
+
+   ```bash
    flutter packages get
-	 ```
+   ```
 
 3. 启动示例项目。
 
@@ -118,13 +114,13 @@ Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](htt
 ```yaml
 environment:
   sdk: ">=2.7.0 <3.0.0"
- 
+
 // 依赖项
 dependencies:
   flutter:
     sdk: flutter
- 
- 
+
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
@@ -136,7 +132,7 @@ dependencies:
 
 ### 基本流程
 
-打开 `main.dart`，删除 `void main() => runApp(MyApp``());` 语句下方的全部代码。并按照步骤增加以下代码：
+打开 `main.dart`，删除 ` void main() => runApp(MyApp``()); ` 语句下方的全部代码。并按照步骤增加以下代码：
 
 #### 步骤一：定义 App ID 和 Token
 
@@ -148,7 +144,6 @@ const APP_ID = '<Your App ID>';
 const Token = '<Your Token>';
 ```
 
-
 #### 步骤二：定义 Flutter 应用类
 
 定义 MyApp 应用类：
@@ -156,7 +151,7 @@ const Token = '<Your Token>';
 ```dart
 /// MyApp 类扩展 StatelessWidget 类
 class MyApp extends StatelessWidget {
- 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -176,7 +171,7 @@ class MyApp extends StatelessWidget {
 
 ```dart
 import 'dart:async';
- 
+
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -195,7 +190,7 @@ class IndexState extends State<IndexPage> {
   final _channelController = TextEditingController();
   bool _validateError = false;
   ClientRole _role = ClientRole.Broadcaster;
- 
+
   @override
   void dispose() {
     // dispose input controller
@@ -203,7 +198,6 @@ class IndexState extends State<IndexPage> {
     super.dispose();
   }
 ```
-
 
 3. 设置登录页面 UI 布局：
 
@@ -290,35 +284,23 @@ Widget build(BuildContext context) {
 
 4. 设置加入频道的逻辑和权限管理逻辑：
 
-
-
 #### 步骤四：定义 Flutter 应用直播页面的 UI 布局和基本逻辑
 
 1. 除步骤二已导入的 package 之外，确保你已经在文件头部导入以下 package：
 
-   `import` `'package:agora_rtc_engine/rtc_local_view.dart'` `as RtcLocalView;``import` `'package:agora_rtc_engine/rtc_remote_view.dart'` `as RtcRemoteView;`
+   `import` `'package:agora_rtc_engine/rtc_local_view.dart'` ` as RtcLocalView;``import ` `'package:agora_rtc_engine/rtc_remote_view.dart'` `as RtcRemoteView;`
 
 2. 定义视频页面的类 `CallPage` ：
 
-
-
 3. 定义视频页面的状态类 `CallPageState`：
-
-
 
 4. 创建 SDK 客户端实例，开启视频，设置频道属性和用户角色：
 
-
-
 5. 定义事件处理回调：
-
-
 
 6. 设置呼叫页面 UI：
 
-
-
-### 运行项目 
+### 运行项目
 
 1. 在项目根目录运行以下命令安装依赖项。
 
@@ -340,8 +322,8 @@ Running Gradle task ``'assembleDebug'``...``Exception in thread ``"main"` `java.
 
 1. 在相应 Android 项目的 `build.gradle` 文件中，对于 `google` 和 `jcenter` 使用国内镜像源。下面的示例代码使用了阿里镜像源。
 
-   `buildscript {``  ``ext.kotlin_version = ``'1.3.50'``  ``repositories {``    ``// google()``    ``// jcenter()``    ``maven { url ``'https://maven.aliyun.com/repository/google'` `}``    ``maven { url ``'https://maven.aliyun.com/repository/public'` `}``  ``}` `...` `allprojects {``  ``repositories {``    ``// google()``    ``// jcenter()``    ``maven { url ``'https://maven.aliyun.com/repository/google'` `}``    ``maven { url ``'https://maven.aliyun.com/repository/public'` `}``  ``}``}`
+   ` buildscript {`` ``ext.kotlin_version = ``'1.3.50'`` ``repositories {`` ``// google()`` ``// jcenter()`` ``maven { url ``'https://maven.aliyun.com/repository/google' ` ` }`` ``maven { url ``'https://maven.aliyun.com/repository/public' ` ` }`` ``} ` `...` ` allprojects {`` ``repositories {`` ``// google()`` ``// jcenter()`` ``maven { url ``'https://maven.aliyun.com/repository/google' ` ` }`` ``maven { url ``'https://maven.aliyun.com/repository/public' ` ` }`` ``}``} `
 
 2. 在相应 Android 项目的 `gradle-wrapper.properties` 文件中，将 `distributionUrl` 设为本地路径。以 gradle 5.6.4 为例，你可以将 `gradle-5.6.4-all.zip` 文件复制到 `gradle/wrapper` 目录，然后 `distributionUrl` 设置为：
 
-   `distributionUrl=gradle-``5.6``.``4``-all.zip`
+   ` distributionUrl=gradle-``5.6``.``4``-all.zip `

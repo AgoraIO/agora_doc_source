@@ -10,8 +10,8 @@ updatedAt: 2021-03-29 03:37:10
 
 Windows 语音 SDK 支持两种主要场景:
 
--   音频通话
--   音频直播
+- 音频通话
+- 音频直播
 
 点击 [语音通话产品概述](https://docs.agora.io/cn/Voice/product_voice?platform=All%20Platforms) 以及 [音频互动直播产品概述](https://docs.agora.io/cn/Audio%20Broadcast/product_live_audio?platform=All%20Platforms)了解关键特性。
 
@@ -35,7 +35,6 @@ Windows 语音 SDK 支持 X86 和 X64 架构。
 - [`addPublishStreamUrl`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a5d62a13bd8391af83fb4ce123450f839)
 - [`removePublishStreamUrl`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a30e6c64cb616fbd78bedd8c516c320e7)
 - [`onRtmpStreamingStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a29754dc9d527cbff57dbc55067e3287d)
-
 
 **新增特性**
 
@@ -73,7 +72,6 @@ Windows 语音 SDK 支持 X86 和 X64 架构。
 该版本进一步扩充了 `RtcStats` 类的成员。新增成员如下：
 
 - [`RtcStats`](./API%20Reference/cpp/structagora_1_1rtc_1_1_rtc_stats.html) 类：累计发送音频字节数及累计接收音频字节数
-
 
 #### 2. 其他改进
 
@@ -116,11 +114,9 @@ Windows 语音 SDK 支持 X86 和 X64 架构。
 - `onMicrophoneEnabled`，请改用 [`onLocalAudioStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9296c329331eb83b3af1315c52e7f91a) 的 LOCAL_AUDIO_STREAM_STATE_CHANGED(0) 或 LOCAL_AUDIO_STREAM_STATE_RECORDING(1)
 - `onRemoteAudioTransportStats`，请改用 [`onRemoteAudioStats`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#af8a59626a9265264fb4638e048091d3a)
 
-
 #### 删除
 
 - `configPublisher`
-
 
 ## **2.8.0 版**
 
@@ -143,10 +139,11 @@ Windows 语音 SDK 支持 X86 和 X64 架构。
 
 - 同一频道内，Int 型的 User ID 和 String 型的 User account 不可混用。目前支持 String 型 User account 的 SDK 如下：
 
-	- Native SDK：v2.8.0 及之后版本
-	- Web SDK：v2.5.0 及之后版本
+  - Native SDK：v2.8.0 及之后版本
+  - Web SDK：v2.5.0 及之后版本
 
- 如果你的频道内有不支持 String 型 User account 的用户，则只能使用 Int 型的 User ID。
+如果你的频道内有不支持 String 型 User account 的用户，则只能使用 Int 型的 User ID。
+
 - 如果你使用该版本的 Native SDK 将用户名升级至 String 型 User account，请确保所有终端用户同步升级。
 - 如果使用 String 型的 User account，请确保你的服务端用户生成 Token 的脚本已升级至最新版本。如果使用 String 型 User account 加入频道，请确保使用该 User account 或其对应的 Int 型 UID 来生成 Token。你可以调用 `getUserInfoByUserAccount` 来获取 User account 所对应的 UID。
 

@@ -2,8 +2,9 @@
 title: 如何处理 v3.0.1 及之前的 Unity SDK 崩溃问题
 platform: ["Unity"]
 updatedAt: 2021-01-05 03:18:26
-Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
+Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
 ---
+
 ## 问题描述
 
 使用 v3.0.1 及之前的 Unity SDK 时，如果不授予摄像头或麦克风权限，app 会出现白屏甚至崩溃。这个问题在 macOS 上出现频繁，在 Android 上也有偶现。

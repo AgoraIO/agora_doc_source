@@ -2,8 +2,23 @@
 title: 如何处理 Agora 账号问题？
 platform: ["All Platforms"]
 updatedAt: 2021-01-25 02:44:09
-Products: ["Agora Analytics","Agora Platform","Voice","Video","Interactive Broadcast","Recording","Real-time-Messaging","RTSA","cloud-recording","Aliyun Audio Moderation","Kingsoft Audio Moderation","Volcengine AI Vision"]
+Products:
+  [
+    "Agora Analytics",
+    "Agora Platform",
+    "Voice",
+    "Video",
+    "Interactive Broadcast",
+    "Recording",
+    "Real-time-Messaging",
+    "RTSA",
+    "cloud-recording",
+    "Aliyun Audio Moderation",
+    "Kingsoft Audio Moderation",
+    "Volcengine AI Vision",
+  ]
 ---
+
 本文介绍如何处理控制台使用过程中的常见问题。
 
 ## 为什么用第三方账号注册控制台后无法使用邮箱和密码登录？

@@ -4,6 +4,7 @@ platform: ["RESTful"]
 updatedAt: 2020-09-01 18:47:07
 Products: ["cloud-recording"]
 ---
+
 你可以通过云端录制的 `query` 方法或消息通知服务来监视云端录制服务的状态，在状态异常时及时采取措施，以保证服务可用性。两种方法各有优劣：
 
 ## 云端录制 `query` 方法

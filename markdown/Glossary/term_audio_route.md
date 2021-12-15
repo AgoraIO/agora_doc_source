@@ -3,6 +3,7 @@ title: 音频路由 (audio route)
 platform: All Platforms
 updatedAt: 2020-07-03 18:35:30
 ---
+
 音频路由是指 app 在播放音频时使用的音频输出设备。常见的音频路由有：有线耳机、听筒、扬声器、蓝牙耳机等。
 
 移动端 app 在集成了 Agora SDK 后，在不同的场景下会有不同的默认音频路由：

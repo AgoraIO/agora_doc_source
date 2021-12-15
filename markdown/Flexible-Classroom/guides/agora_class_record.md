@@ -24,7 +24,7 @@ Agora 建议参照本页面在灵动课堂中进行录制，以保障录制的�
     },
     ...
     "retryTimeout": 60
-} 
+}
 ```
 
 设置 `retryTimeout` 后，你需要在录制⻚面调用 [launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法设置 `listener` 参数监听枚举值为 `1` 的事件，`1` 代表⻚面加载完成。监听到该事件后，你需要调用以下接口，告知灵动课堂云服务待录制⻚面已经加载完成。如果灵动课堂云服务没有在 `retryTimeout` 内收到这个请求，则会重试录制。
@@ -43,7 +43,9 @@ Agora 建议参照本页面在灵动课堂中进行录制，以保障录制的�
       "code": 0,
       "ts": 1610167740309
   }
-```
+  ```
+
+````
 
 上述逻辑的示例代码如下：
 
@@ -56,7 +58,7 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
         }
     }
 })
-```
+````
 
 如果你使用灵动课堂 1.1.5 之前的版本，你需要额外监听 `params` 以监听白板加载状态。示例代码如下：
 
@@ -91,13 +93,15 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
 
    ```json
    {
-       "mode": "web",
-       "webRecordConfig": {
-           "url": "https://xxx.yyy.zzz",
-           "onHold": true
-       }
+     "mode": "web",
+     "webRecordConfig": {
+       "url": "https://xxx.yyy.zzz",
+       "onHold": true
+     }
    }
-```
+   ```
+
+````
 
 2. 调用设置录制状态接口至少 60 秒后，再调用[更新录制设置接口](/cn/agora-class/agora_class_restful_api?platform=RESTful#更新录制设置)，将 `onHold` 参数设置为 `false` 来正式开始录制，进行录制切片。示例包体如下：
 
@@ -107,7 +111,7 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
            "onHold": false
        }
    }
-```
+````
 
 ## 提高屏幕共享清晰度
 
@@ -121,12 +125,12 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
 
 ```json
 {
-    "mode": "web",
-    "webRecordConfig": {
-        "url": "https://xxx.yyy.zzz",
-        "videoWidth": 1920,
-        "videoHeight": 1080,
-        "videoBitrate": 2000
-    }
+  "mode": "web",
+  "webRecordConfig": {
+    "url": "https://xxx.yyy.zzz",
+    "videoWidth": 1920,
+    "videoHeight": 1080,
+    "videoBitrate": 2000
+  }
 }
 ```

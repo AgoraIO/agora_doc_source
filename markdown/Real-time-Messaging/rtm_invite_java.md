@@ -3,6 +3,7 @@ title: 呼叫邀请
 platform: Linux Java
 updatedAt: 2020-11-26 08:49:29
 ---
+
 ## 概述
 
 Agora RTM SDK 提供的呼叫邀请功能是基于 RTM 点对点消息的功能封装的类似 SIP 的协议，用于呼叫控制。呼叫邀请功能覆盖了通用呼叫场景中的以下行为：
@@ -65,30 +66,30 @@ RemoteInvitation 的生命周期在被叫收到以下回调时结束，并由 SD
 > - 二次握手：被叫调用 [acceptRemoteinvitation](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/classio_1_1agora_1_1rtm_1_1_rtm_call_manager.html#a5f6f97c84e426e2fbd8a5dda71e2fc6c) 方法接受呼叫邀请，主叫收到被叫已接受呼叫邀请的信息；
 > - 三次握手：被叫确认主叫已经收到了被叫接受邀请的信息，呼叫邀请成功。
 
-## 通用行为限定 
+## 通用行为限定
 
 了解了呼叫邀请生命周期定义后，我们就能够理解 Agora RTM SDK 对于呼叫邀请的行为限定：所有的呼叫邀请操作都应在呼叫邀请的生命周期内进行。
 
 在主叫显式调用 [sendLocalInvitation](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/classio_1_1agora_1_1rtm_1_1_rtm_call_manager.html#af899697061305ca840e829b92c78e353) 或 [cancelLocalInvitation](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/classio_1_1agora_1_1rtm_1_1_rtm_call_manager.html#a5f03bfe1cfd6987fbc7b5a4dc484f564) 方法发送或取消呼叫邀请时，或当被叫显式调用 [acceptRemoteinvitation](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/classio_1_1agora_1_1rtm_1_1_rtm_call_manager.html#a5f6f97c84e426e2fbd8a5dda71e2fc6c) 或 [refuseRemoteInvitation](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/classio_1_1agora_1_1rtm_1_1_rtm_call_manager.html#a2ce4af944183976d18c055816f756bf6) 方法接受或拒绝呼叫邀请时，SDK 会对 APP 行为进行检查并通过 [onFailure](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_result_callback.html#a1f9145a3eb119e32cfc0afa938062396) 回调返回相应的 [InvitationApiCallError](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_rtm_status_code_1_1_invitation_api_call_error.html) 错误码：
 
-| 回调                                                         | 描述                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [INVITATION_API_CALL_ERR_NOT_STARTED](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_rtm_status_code_1_1_invitation_api_call_error.html#a0ee97849175f73c3122a44757162ad28) | 呼叫邀请未开始。错误情况包括：在 sendLocalInvitation 之前调用了 cancelLocalInvitation。 |
-| [INVITATION_API_CALL_ERR_ALREADY_END](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_rtm_status_code_1_1_invitation_api_call_error.html#a3f7e4c72d1e3bf66ccba197e4ac9b9f5) | 呼叫邀请结束后又调用了 send、cancel、accept，或 refuse。     |
-| [INVITATION_API_CALL_ERR_ALREADY_ACCEPT](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_rtm_status_code_1_1_invitation_api_call_error.html#a5b164917865f9524cd57ea5182ef55a1) | 被叫重复调用 accept 方法。                                   |
-| [INVITATION_API_CALL_ERR_ALREADY_SENT](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_rtm_status_code_1_1_invitation_api_call_error.html#ae17aea35c9bd9241f62c35cc91fa8369) | 主叫重复调用 send 方法发送呼叫邀请。                         |
+| 回调                                                                                                                                                                                                                                       | 描述                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| [INVITATION_API_CALL_ERR_NOT_STARTED](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_rtm_status_code_1_1_invitation_api_call_error.html#a0ee97849175f73c3122a44757162ad28)    | 呼叫邀请未开始。错误情况包括：在 sendLocalInvitation 之前调用了 cancelLocalInvitation。 |
+| [INVITATION_API_CALL_ERR_ALREADY_END](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_rtm_status_code_1_1_invitation_api_call_error.html#a3f7e4c72d1e3bf66ccba197e4ac9b9f5)    | 呼叫邀请结束后又调用了 send、cancel、accept，或 refuse。                                |
+| [INVITATION_API_CALL_ERR_ALREADY_ACCEPT](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_rtm_status_code_1_1_invitation_api_call_error.html#a5b164917865f9524cd57ea5182ef55a1) | 被叫重复调用 accept 方法。                                                              |
+| [INVITATION_API_CALL_ERR_ALREADY_SENT](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_rtm_status_code_1_1_invitation_api_call_error.html#ae17aea35c9bd9241f62c35cc91fa8369)   | 主叫重复调用 send 方法发送呼叫邀请。                                                    |
 
 ## 状态流转图
 
 呼叫邀请中，主叫可以通过 [LocalInvitation](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_local_invitation.html) 对象提供的 [getState](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_local_invitation.html#a59608fbac8050f17ec0f855f28598d20) 方法查询当前呼叫邀请的有关状态；被叫可以通过 SDK 返回的 [RemoteInvitation](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_remote_invitation.html) 对象的 [getState](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java_linux/interfaceio_1_1agora_1_1rtm_1_1_remote_invitation.html#af77a4afabb19ff1468edf29720361a0f) 方法查询当前呼叫邀请的相关状态。
 
-### LocalInvitationState 
+### LocalInvitationState
 
 下图描述了与主叫相关的呼叫邀请状态流转图：
 
 ![](https://web-cdn.agora.io/docs-files/1582270646018)
 
-### RemoteInvitationState 
+### RemoteInvitationState
 
 下图描述了与被叫相关的呼叫邀请状态流转图：
 
@@ -109,8 +110,6 @@ RemoteInvitation 的生命周期在被叫收到以下回调时结束，并由 SD
 - 主叫设置的呼叫邀请 content 的字符串长度：8 KB，格式为 UTF-8。
 - 被叫设置的呼叫邀请响应 response 的字符串长度：8 KB，格式为 UTF-8。
 - 呼叫邀请的 channel ID 仅用于与老信令互通时设置。设置的 channel ID 必须与老信令 SDK 设置相同才能实现互通。字符串长度：64 字节，格式为 UTF-8。
-
-
 
 ## API 参考
 

@@ -3,6 +3,7 @@ title: 实现音频直播
 platform: macOS
 updatedAt: 2020-12-17 15:20:45
 ---
+
 本文介绍如何使用 Agora 音频互动直播 SDK 快速实现音频互动直播。
 
 互动直播和实时通话的区别就在于，直播频道的用户有角色之分。你可以将角色设置为主播 Broadcaster，或者观众 Audience，其中主播可以收、发流，观众只能收流。
@@ -27,7 +28,7 @@ Agora 在 GitHub 上提供开源的互动直播示例项目 [OpenLive-macOS-Obje
 
 3. 输入项目名称（Product Name）、开发团队信息（Team）、组织名称（Organization Name）和语言（Language）等项目信息，并点击 **Next**。
 
-   <div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
+<div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
 
 4. 选择项目存储路径，并点击 **Create**。
 
@@ -69,7 +70,7 @@ end
 4. 点击 **+** > **Add Other…** > **Add Files** 添加对应动态库，并确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。
    添加完成后，项目会自动链接所需系统库
 
-   <div class="alert note"><ul><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>Agora SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></ul></div>
+    <div class="alert note"><ul><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>Agora SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></ul></div>
 
 ## 实现音频互动直播
 
@@ -85,7 +86,7 @@ end
 
 - 音频直播窗口
 - 退出频道按钮
-	
+
 当你使用示例项目中的 UI 设计时，你将会看到如下界面：
 
 ![](https://web-cdn.agora.io/docs-files/1568802427977)
@@ -192,9 +193,9 @@ agoraKit.setClientRole(.broadcaster)
 
 - token：传入能标识用户角色和权限的 Token。可设为如下一个值：
 
-	- `nil`
-	-  临时 Token。临时 Token 服务有效期为 24 小时。你可以在控制台里生成一个临时 Token，详见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#%E8%8E%B7%E5%8F%96%E4%B8%B4%E6%97%B6-token)。
-	-  在你的服务器端生成的 Token。在安全要求高的场景下，我们推荐你使用此种方式生成的 Token，详见[生成 Token](./token_server)。
+  - `nil`
+  - 临时 Token。临时 Token 服务有效期为 24 小时。你可以在控制台里生成一个临时 Token，详见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#%E8%8E%B7%E5%8F%96%E4%B8%B4%E6%97%B6-token)。
+  - 在你的服务器端生成的 Token。在安全要求高的场景下，我们推荐你使用此种方式生成的 Token，详见[生成 Token](./token_server)。
 
  <div class="alert note">若项目已启用 App 证书，请使用 Token。</div>
 
@@ -235,7 +236,7 @@ agoraKit.joinChannel(byToken: KeyCenter.Token, channelId: channelId, info: nil, 
 
 ```swift
 // Swift
-func leaveChannel() {       
+func leaveChannel() {
     setIdleTimerActive(true)
     // 离开频道。
     agoraKit.leaveChannel(nil)

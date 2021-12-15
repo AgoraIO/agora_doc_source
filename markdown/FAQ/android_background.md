@@ -2,8 +2,9 @@
 title: 为什么 Android 9 应用锁屏或切后台后采集音视频无效？
 platform: ["Android"]
 updatedAt: 2020-04-28 18:05:05
-Products: ["Voice","Video","Interactive Broadcast"]
+Products: ["Voice", "Video", "Interactive Broadcast"]
 ---
+
 **问题现象**：Android 9 设备锁屏 1 分钟内，音频无声或看不到视频。
 
 **问题原因**：从 Android 官网来看，这是系统强制限制。原文如下：

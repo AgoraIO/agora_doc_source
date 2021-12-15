@@ -3,6 +3,7 @@ title: 实现语音通话
 platform: Flutter
 updatedAt: 2020-11-13 06:50:51
 ---
+
 Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart)。本文分以下两个部分：
 
 - [快速跑通示例项目](#快速跑通示例项目)介绍如何快速跑通该示例项目，体验 Agora 视频直播效果。
@@ -53,14 +54,11 @@ Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](htt
 
 4. 点击**提交**，新建的项目就会显示在**项目管理**页中。Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
-
-####  步骤二：获取 App ID
+#### 步骤二：获取 App ID
 
 在控制台的**项目管理**页面，找到你的项目，点击 App ID 右侧的眼睛图标就可以直接复制项目的 App ID。
 
-
 #### 步骤三：生成临时 Token
-
 
 为提高项目的安全性，Agora 使用 Token（动态密钥）对即将加入频道的用户进行鉴权。
 
@@ -68,31 +66,33 @@ Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](htt
 
 在控制台的项目管理页面，点击已创建项目的![](https://web-cdn.agora.io/docs-files/1602840930382)图标，打开 Token 页面。
 
-1. 输入一个频道名，例如 test，然后点击生成临时Token。临时 Token 的有效期为 24 小时。![](https://web-cdn.agora.io/docs-files/1602840948519)
+1. 输入一个频道名，例如 test，然后点击生成临时 Token。临时 Token 的有效期为 24 小时。![](https://web-cdn.agora.io/docs-files/1602840948519)
 2. 临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见[生成 Token](/cn/Video/token_server?platform=CPP)。![](https://web-cdn.agora.io/docs-files/1602840954561)
-
 
 #### 步骤四：运行示例项目
 
-1. 下载 [Agora-Flutter-Quickstart](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart) 仓库。打开 `settings.dart` (`lib/src/utils/settings.dart`)文件并添加 App ID 和 Token。
+1.  下载 [Agora-Flutter-Quickstart](https://github.com/AgoraIO-Community/Agora-Flutter-Quickstart) 仓库。打开 `settings.dart` (`lib/src/utils/settings.dart`)文件并添加 App ID 和 Token。
 
-	```
-const APP_ID = Your_App_ID;
-const Token = Your_Token;
-	```
+        ```
 
-2. 在仓库根目录运行以下命令安装依赖项。
-   
-	 ```bash
-   flutter packages get
-	 ```
+    const APP_ID = Your_App_ID;
+    const Token = Your_Token;
 
-3. 启动示例项目。
+    ```
 
-   ```bash
-   flutter run
-   ```
+    ```
 
+2.  在仓库根目录运行以下命令安装依赖项。
+
+    ```bash
+    flutter packages get
+    ```
+
+3.  启动示例项目。
+
+    ```bash
+    flutter run
+    ```
 
 ## 实现音频通话
 
@@ -113,13 +113,13 @@ const Token = Your_Token;
 ```
 environment:
   sdk: ">=2.7.0 <3.0.0"
- 
+
 // 依赖项
 dependencies:
   flutter:
     sdk: flutter
- 
- 
+
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
@@ -145,7 +145,7 @@ void main() => runApp(MyApp());
 
 ```
 import 'dart:async';
- 
+
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -189,20 +189,20 @@ class _MyAppState extends State<MyApp> {
   bool _joined = false;
   int _remoteUid = null;
   bool _switch = false;
- 
+
   @override
   void initState() {
     super.initState();
     initPlatformState();
   }
- 
+
   // 初始化应用
   Future<void> initPlatformState() async {
     // 获取麦克风权限
     await PermissionHandler().requestPermissions(
       [PermissionGroup.microphone],
     );
-     
+
     // 创建 RTC 客户端实例
     var engine = await RtcEngine.create(APP_ID);
     // 定义事件处理逻辑
@@ -226,7 +226,7 @@ class _MyAppState extends State<MyApp> {
     // 加入频道,频道名为 123
     await engine.joinChannel(Token, '123', null, 0);
   }
- 
+
   // 构建 UI，显示远端用户和本地用户
   @override
   Widget build(BuildContext context) {
@@ -264,7 +264,7 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
- 
+
   // 视图：本地用户未加入频道
   Widget _localCaller() {
     if (_joined) {
@@ -304,20 +304,19 @@ class _MyAppState extends State<MyApp> {
 }
 ```
 
-### 运行项目 
+### 运行项目
 
 1. 在项目根目录运行以下命令安装依赖项。
 
    ```bash
-	 flutter packages get
+    flutter packages get
    ```
-	 
+
 2. 运行项目。
-   
-	 ```bash
+
+   ```bash
    flutter run
    ```
-	 
 
 ### 常见问题
 
@@ -327,7 +326,6 @@ class _MyAppState extends State<MyApp> {
 Running Gradle task 'assembleDebug'...
 Exception in thread "main" java.net.ConnectException: Connection timed out: connect
 ```
-
 
 解决方案如下：
 
@@ -342,9 +340,9 @@ buildscript {
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/public' }
     }
- 
+
 ...
- 
+
 allprojects {
     repositories {
         // google()

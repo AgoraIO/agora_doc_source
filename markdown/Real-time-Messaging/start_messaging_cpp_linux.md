@@ -3,6 +3,7 @@ title: 快速实现消息发送和接收
 platform: Linux
 updatedAt: 2021-03-29 04:05:24
 ---
+
 本文详细介绍如何建立一个简单的项目并使用 Agora RTM SDK 实现消息发送与接收。
 
 ## 前提条件
@@ -74,7 +75,7 @@ RTM_quickstart/
 
    add_executable(${TARGET_NAME} ${SOURCES} ${HEADERS})
    target_link_libraries(${TARGET_NAME} agora_rtm_sdk pthread)
-    ```
+   ```
 
 ### 3. 实现消息发送和接收的基本逻辑
 
@@ -105,7 +106,7 @@ RTM_quickstart/
    ```c++
    string APP_ID = "";
    string Token = "";
-	 ```
+   ```
 
 3. 重载 `IRtmServiceEventHandler` 类，自定义以下用户事件的通知消息并返回至命令行：
 
@@ -144,6 +145,7 @@ RTM_quickstart/
       }
     };
 
+   ```
 
 4. 重载 `IChannelEventHandler` 类，自定义以下频道事件的通知消息并返回至命令行：
 
@@ -201,7 +203,7 @@ RTM_quickstart/
         private:
             string channel_;
     };
-    ```
+   ```
 
 5. 定义主方法类，包含以下成员方法：
 
@@ -318,115 +320,113 @@ RTM_quickstart/
                 std::unique_ptr<ChannelEventHandler> channelEvent_;
                 std::shared_ptr<agora::rtm::IRtmService> rtmService_;
         };
-        ```
-
+     ```
 
 6. 定义 main 函数，包含客户端实例创建数、功能选择（单聊、群聊、退出登录）、退出参数。
 
-    ```c++
-    int main(int argc, const char * argv[]) {
-    // 选择实例创建数
-    int count;
-    while(true) {
-        cout << "Please input the number which indicates how many RTM instances "
-             << "will be created... Limit 3 instances for this demo" << endl;
-        string input;
-        getline(std::cin, input);
-        try {
-            count = std::stoi(input);
-        } catch (...) {
-            cout << "invalid input" << endl;
-            continue;
-        }
-        if (count <= 0 || count > 3) {
-            cout << "valid range: 1~3" << endl;
-            continue;
-        }
-        break;
-    }
-    // 定义功能列表，可以通过在命令行输入数字选择功能
-    std::vector<std::unique_ptr<Quickstart>> FunctionList;
-    std::vector<bool> loginStatus;
-    for (int i = 0; i < count; i++) {
-        std::unique_ptr<Quickstart> tmp;
-        tmp.reset(new Quickstart());
-        FunctionList.push_back(std::move(tmp));
-        loginStatus.push_back(false);
-    }
-    int index;
+   ```c++
+   int main(int argc, const char * argv[]) {
+   // 选择实例创建数
+   int count;
+   while(true) {
+       cout << "Please input the number which indicates how many RTM instances "
+            << "will be created... Limit 3 instances for this demo" << endl;
+       string input;
+       getline(std::cin, input);
+       try {
+           count = std::stoi(input);
+       } catch (...) {
+           cout << "invalid input" << endl;
+           continue;
+       }
+       if (count <= 0 || count > 3) {
+           cout << "valid range: 1~3" << endl;
+           continue;
+       }
+       break;
+   }
+   // 定义功能列表，可以通过在命令行输入数字选择功能
+   std::vector<std::unique_ptr<Quickstart>> FunctionList;
+   std::vector<bool> loginStatus;
+   for (int i = 0; i < count; i++) {
+       std::unique_ptr<Quickstart> tmp;
+       tmp.reset(new Quickstart());
+       FunctionList.push_back(std::move(tmp));
+       loginStatus.push_back(false);
+   }
+   int index;
 
-    // 选择已创建的 RTM 实例
-    while(true) {
-        cout << "Please input which RTM instance you want to use range[1,3]"
-             << endl;
-        string input_idx;
-        getline(std::cin, input_idx);
-        try {
-            index = std::stoi(input_idx);
-        } catch (...) {
-            cout << "invalid input" << endl;
-            continue;
-        }
-        if (index < 1 || index > count) {
-            cout << "invalid index range" << endl;
-            continue;
-        }
+   // 选择已创建的 RTM 实例
+   while(true) {
+       cout << "Please input which RTM instance you want to use range[1,3]"
+            << endl;
+       string input_idx;
+       getline(std::cin, input_idx);
+       try {
+           index = std::stoi(input_idx);
+       } catch (...) {
+           cout << "invalid input" << endl;
+           continue;
+       }
+       if (index < 1 || index > count) {
+           cout << "invalid index range" << endl;
+           continue;
+       }
 
-        // 选择单聊、群聊、或登出 RTM 系统
-        while(true) {
-            if (!loginStatus[index-1]) {
-                if (!FunctionList[index-1]->login())
-                    continue;
-                loginStatus[index-1] = true;
-            }
-            cout << "1: peer to peer chat\n"
-                 << "2: group chat\n"
-                 << "3: logout"
-                 << endl;
-            cout << "please input your choice: " << endl;
-            string input_choice;
-            getline(std::cin, input_choice);
-            int choice = 0;
-            try {
-                choice = std::stoi(input_choice);
-            } catch (...) {
-                cout << "invalid input" << endl;
-                continue;
-            }
-            if (choice == 1) {
-                cout << "please input your destination user id" << endl;
-                string dst;
-                getline(std::cin, dst);
-                FunctionList[index-1]->p2pChat(dst);
-                continue;
-            } else if (choice == 2) {
-                cout << "please input your channel id" << endl;
-                string channel;
-                getline(std::cin, channel);
-                FunctionList[index-1]->groupChat(channel);
-                continue;
-            } else if (choice == 3) {
-                FunctionList[index-1]->logout();
-                loginStatus[index-1] = false;
-                break;
-            } else {
-                continue;
-            }
-        }
+       // 选择单聊、群聊、或登出 RTM 系统
+       while(true) {
+           if (!loginStatus[index-1]) {
+               if (!FunctionList[index-1]->login())
+                   continue;
+               loginStatus[index-1] = true;
+           }
+           cout << "1: peer to peer chat\n"
+                << "2: group chat\n"
+                << "3: logout"
+                << endl;
+           cout << "please input your choice: " << endl;
+           string input_choice;
+           getline(std::cin, input_choice);
+           int choice = 0;
+           try {
+               choice = std::stoi(input_choice);
+           } catch (...) {
+               cout << "invalid input" << endl;
+               continue;
+           }
+           if (choice == 1) {
+               cout << "please input your destination user id" << endl;
+               string dst;
+               getline(std::cin, dst);
+               FunctionList[index-1]->p2pChat(dst);
+               continue;
+           } else if (choice == 2) {
+               cout << "please input your channel id" << endl;
+               string channel;
+               getline(std::cin, channel);
+               FunctionList[index-1]->groupChat(channel);
+               continue;
+           } else if (choice == 3) {
+               FunctionList[index-1]->logout();
+               loginStatus[index-1] = false;
+               break;
+           } else {
+               continue;
+           }
+       }
 
-        // 退出程序
-        cout << "Quit the program? yes/no" << endl;
-        string input_quit;
-        getline(std::cin, input_quit);
-        if (input_quit.compare("yes") == 0) {
-            break;
-        }
-    }
+       // 退出程序
+       cout << "Quit the program? yes/no" << endl;
+       string input_quit;
+       getline(std::cin, input_quit);
+       if (input_quit.compare("yes") == 0) {
+           break;
+       }
+   }
 
-    exit(0);
-    }
-    ```
-
+   exit(0);
+   }
+   ```
 
 ## 编译并运行项目
 
@@ -446,6 +446,6 @@ RTM_quickstart/
 
 3. 编译完成后，运行编译完成的可执行文件：
 
-	 ```shell
+   ```shell
    ./ rtmQuickstart
    ```

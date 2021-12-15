@@ -1,9 +1,10 @@
 ---
 title: 如何开启耳返？
-platform: ["Android","iOS","Unity"]
+platform: ["Android", "iOS", "Unity"]
 updatedAt: 2020-12-16 06:52:03
-Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
+Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
 ---
+
 耳返主要实现监听的功能，在低延时的情况下可以给主播一个比较真实的反馈，在演唱会等专业场景里比较常用。Agora RTC SDK 支持耳返功能，同时支持调节耳返的音量。
 
 ## 实现方法
@@ -23,6 +24,7 @@ rtcEngine.enableInEarMonitoring(true);
 int volume = 80;
 rtcEngine.setInEarMonitoringVolume(volume);
 ```
+
 ```swift
 // Swift
 // 设置开启耳返监听功能，默认为 false
@@ -53,16 +55,18 @@ int ret = mRtcEngine.SetInEarMonitoringVolume(50);
 ### API 参考
 
 - Java
-    - [`enableInEarMonitoring`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aeb014fcf7ec84291b9b39621e09772ea)
-    - [`setInEarMonitoringVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af71afdf140660b10c4fb0c40029c432d)
+
+  - [`enableInEarMonitoring`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aeb014fcf7ec84291b9b39621e09772ea)
+  - [`setInEarMonitoringVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af71afdf140660b10c4fb0c40029c432d)
 
 - Objective-C
-    - [`enableInEarMonitoring`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableInEarMonitoring:)
-    - [`setInEarMonitoringVolume`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setInEarMonitoringVolume:)
+
+  - [`enableInEarMonitoring`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableInEarMonitoring:)
+  - [`setInEarMonitoringVolume`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setInEarMonitoringVolume:)
 
 - C#
-    - [`EnableInEarMonitoring`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ab5e3a1ccf03508f96af241cc25aefecd)
-    - [`SetInEarMonitoringVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a0236c42fc3b664eb9e66f99e6209afc8)
+  - [`EnableInEarMonitoring`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ab5e3a1ccf03508f96af241cc25aefecd)
+  - [`SetInEarMonitoringVolume`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a0236c42fc3b664eb9e66f99e6209afc8)
 
 ## 开发注意事项
 

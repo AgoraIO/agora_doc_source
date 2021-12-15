@@ -38,7 +38,7 @@ func registerEventHandler(_ handler: AgoraEduHandsUpHandler)
 
 报告是否可以举手。
 
-- `enabled` 为 `true  `时，UI 层提示”老师开启了举手功能“。
+- `enabled` 为 `true `时，UI 层提示”老师开启了举手功能“。
 - `enabled` 为 `false` 时，UI 层提示”老师关闭了举手功能“。
 
 | 参数     | 描述           |

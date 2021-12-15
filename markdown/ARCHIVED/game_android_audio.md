@@ -3,23 +3,25 @@ title: 游戏 API
 platform: Android
 updatedAt: 2019-11-25 18:14:18
 ---
+
 游戏 API 由 **Java 接口** 和 **C++ 接口** 部分组成，提供游戏 SDK 在 Android 平台上的主要方法和回调。
 
 - Java 接口：
 
-  * [主要方法](#rtcengine)
-  * [音效管理方法](#iaudioeffectmanager)
-  * [主回调事件](#irtcengineeventhandler)
+  - [主要方法](#rtcengine)
+  - [音效管理方法](#iaudioeffectmanager)
+  - [主回调事件](#irtcengineeventhandler)
 
 - C++ 接口：
 
-  * [主要方法](#irtcengine)
-  * [参数方法](#rtcengineparameters)
-  * [主回调事件](#irtcengineeventhandler2)
+  - [主要方法](#irtcengine)
+  - [参数方法](#rtcengineparameters)
+  - [主回调事件](#irtcengineeventhandler2)
 
 ## Java 接口
 
 <a id = "rtcengine"></a>
+
 ### 主要方法 (RtcEngine)
 
 `RtcEngine` 类包含应用程序调用的主要方法，调用 `RtcEngine` 的接口最好在同一个线程进行，不建议在不同的线程同时调用。
@@ -60,7 +62,6 @@ public static synchronized RtcEngine create(Context context,
 </tbody>
 </table>
 
-
 #### 设置频道属性 (setChannelProfile)
 
 ```
@@ -92,11 +93,9 @@ public abstract int setChannelProfile(int profile);
 </tbody>
 </table>
 
-
-> -   同一频道内只能同时设置一种模式。如果想要切换模式，则需要先调用 destroy 销毁当前引擎，然后在 `create` 方法中传入 **不同** 的 App ID 重新创建引擎，再调用该方法切换频道模式。
-> -   不同的频道模式必须使用不同的 App ID。
-> -   该方法必须在加入频道前调用和进行设置，进入频道后无法再设置。
-
+> - 同一频道内只能同时设置一种模式。如果想要切换模式，则需要先调用 destroy 销毁当前引擎，然后在 `create` 方法中传入 **不同** 的 App ID 重新创建引擎，再调用该方法切换频道模式。
+> - 不同的频道模式必须使用不同的 App ID。
+> - 该方法必须在加入频道前调用和进行设置，进入频道后无法再设置。
 
 <table>
 <colgroup>
@@ -125,8 +124,6 @@ public abstract int setChannelProfile(int profile);
 </tr>
 </tbody>
 </table>
-
-
 
 #### 设置用户角色 (setClientRole)
 
@@ -164,8 +161,6 @@ public abstract int setClientRole(int role);
 </tbody>
 </table>
 
-
-
 #### 打开音频 (enableAudio)
 
 ```
@@ -194,7 +189,6 @@ public abstract int enableAudio();
 </tbody>
 </table>
 
-
 > 该方法设置内部引擎为启用状态，在 `leaveChannel` 后仍然有效。
 
 #### 关闭/重新开启本地语音功能 (enableLocalAudio)
@@ -209,8 +203,8 @@ public abstract int enableLocalAudio(boolean enabled);
 
 > - 该方法需要在 `joinChannel` 之后调用才能生效。
 > - 该方法与 `muteLocalAudioStream` 的区别在于：
->    *  `enableLocalAudio`：开启或关闭本地语音采集及处理
->    *  `muteLocalAudioStream`：停止或继续发送本地音频流
+>   - `enableLocalAudio`：开启或关闭本地语音采集及处理
+>   - `muteLocalAudioStream`：停止或继续发送本地音频流
 
 <table>
 <colgroup>
@@ -267,10 +261,7 @@ public abstract int disableAudio();
 </tbody>
 </table>
 
-
 > 该方法设置内部引擎为禁用状态，在 `leaveChannel` 后仍然有效。
-
-
 
 #### 加入频道 (joinChannel)
 
@@ -282,7 +273,6 @@ public abstract int joinChannel(String token,
 ```
 
 该方法让用户加入通话频道，在同一个频道内的用户可以互相通话，多个用户加入同一个频道，可以群聊。 使用不同 App ID 的应用程序是不能互通的。如果已在通话中，用户必须调用 `leaveChannel()` 退出当前通话，才能进入下一个频道。
-
 
 > 同一个频道里不能出现两个相同的 UID。如果你的 App 支持多设备同时登录，即同一个用户账号可以在不同的设备上同时登录(例如微信支持在 PC 端和移动端同时登录)，请保证传入的 UID 不相同。 例如你之前都是用同一个用户标识作为 UID, 建议从现在开始加上设备 ID, 以保证传入的 UID 不相同 。如果你的 App 不支持多设备同时登录，例如在电脑上登录时，手机上会自动退出，这种情况下就不需要在 UID 上添加设备 ID。
 
@@ -324,8 +314,6 @@ public abstract int joinChannel(String token,
 </tr>
 </tbody>
 </table>
-
-
 
 #### 离开频道 (leaveChannel)
 
@@ -387,7 +375,6 @@ public abstract int setLocalVoicePitch(double pitch);
 </tr>
 </tbody>
 </table>
-
 
 #### 设置远端用户的语音位置 (setRemoteVoicePosition)
 
@@ -469,7 +456,6 @@ public int setVoiceOnlyMode(boolean enable);
 </tbody>
 </table>
 
-
 #### 设置本地语音音效均衡 (setLocalVoiceEqualization)
 
 ```
@@ -495,8 +481,6 @@ public abstract int setLocalVoiceEqualization(int bandFrequency, int bandGain);
 </tr>
 </tbody>
 </table>
-
-
 
 #### 设置本地音效混响 (setLocalVoiceReverb)
 
@@ -531,7 +515,6 @@ public abstract int setLocalVoiceReverb(int reverbKey, int value);
 </tr>
 </tbody>
 </table>
-
 
 #### 打开与 Web SDK 的互通 (enableWebSdkInteroperability)
 
@@ -569,16 +552,14 @@ public abstract int enableWebSdkInteroperability(boolean enabled);
 </tbody>
 </table>
 
-
 #### 修改默认的语音路由 (setDefaultAudioRouteToSpeakerphone)
 
 ```
 public abstract int setDefaultAudioRoutetoSpeakerphone(boolean defaultToSpeaker);
 ```
 
-> -  该方法只在纯音频模式下工作，在有视频的模式下不工作。
-> -  该方法需要在 `joinChannel` 前设置，否则不生效。
-
+> - 该方法只在纯音频模式下工作，在有视频的模式下不工作。
+> - 该方法需要在 `joinChannel` 前设置，否则不生效。
 
 如有必要，调用该方法修改默认的语音路由。默认的语音路由如下:
 
@@ -609,8 +590,6 @@ public abstract int setDefaultAudioRoutetoSpeakerphone(boolean defaultToSpeaker)
 </tr>
 </tbody>
 </table>
-
-
 
 > [2] 已调用 disableVideo 或 已调用 muteLocalVideoStream/muteAllRemoteVideoStreams
 
@@ -646,8 +625,6 @@ public abstract int setDefaultAudioRoutetoSpeakerphone(boolean defaultToSpeaker)
 </tbody>
 </table>
 
-
-
 #### 打开扬声器 (setEnableSpeakerphone)
 
 ```
@@ -655,7 +632,6 @@ public abstract int setEnableSpeakerphone(boolean enabled);
 ```
 
 该方法将语音路由强制设置为扬声器（外放）。调用该方法后，SDK 将返回 `onAudioRouteChanged` 回调提示状态已更改。
-
 
 > 在调用该方法前，请先阅读 `setDefaultAudioRouteToSpeakerphone` 里关于默认语音路由的说明，确认是否需要调用该方法。
 
@@ -696,8 +672,6 @@ public abstract int setEnableSpeakerphone(boolean enabled);
 </tbody>
 </table>
 
-
-
 #### 是否是扬声器状态 (isSpeakerphoneEnabled)
 
 ```
@@ -724,8 +698,6 @@ public abstract boolean isSpeakerphoneEnabled();
 </tr>
 </tbody>
 </table>
-
-
 
 #### 启用耳返监听 (enableInEarMonitoring)
 
@@ -760,7 +732,6 @@ public abstract int enableInEarMonitoring(boolean enabled);
 </tr>
 </tbody>
 </table>
-
 
 #### 启用说话者音量提示 (enableAudioVolumeIndication)
 
@@ -800,8 +771,6 @@ public abstract int enableAudioVolumeIndication(int interval, int smooth);
 </tbody>
 </table>
 
-
-
 #### 设置耳返音量 (setInEarMonitoringVolume)
 
 ```
@@ -824,7 +793,6 @@ public abstract int setInEarMonitoringVolume(int volume);
 </tr>
 </tbody>
 </table>
-
 
 #### 将自己静音 (muteLocalAudioStream)
 
@@ -864,8 +832,6 @@ public abstract int muteLocalAudioStream(boolean muted);
 </tbody>
 </table>
 
-
-
 #### 静音所有远端音频 (muteAllRemoteAudioStreams)
 
 ```
@@ -900,8 +866,6 @@ public abstract int muteAllRemoteAudioStreams(boolean muted);
 </tbody>
 </table>
 
-
-
 #### 静音指定用户音频 (muteRemoteAudioStream)
 
 ```
@@ -909,7 +873,6 @@ public abstract int muteRemoteAudioStream(int uid, boolean muted);
 ```
 
 静音指定远端用户/对指定远端用户取消静音。
-
 
 > 如果之前有调用过 muteAllRemoteAudioStreams (true) 对所有远端音频进行静音，在调用本 API 之前请确保你已调用 muteAllRemoteAudioStreams (false) 。 muteAllRemoteAudioStreams 是全局控制，muteRemoteAudioStream 是精细控制。
 
@@ -953,11 +916,9 @@ public abstract int startAudioMixing(String filePath,
 
 指定本地音频文件来和麦克风采集的音频流进行混音和替换(用音频文件替换麦克风采集的音频流)， 可以通过参数选择是否让对方听到本地播放的音频和指定循环播放的次数。该 API 也支持播放在线音乐。
 
-
-> -   如需调用该方法，请确保使用 Android 4.2 或以上设备，且 API Level >=16。
-> -   请在频道内调用该方法，如果在频道外调用该方法可能会出现问题。
-> -   如果在模拟器上使用该 API，暂时只支持存放在 /sdcard/ 中的 mp3 文件。
-
+> - 如需调用该方法，请确保使用 Android 4.2 或以上设备，且 API Level >=16。
+> - 请在频道内调用该方法，如果在频道外调用该方法可能会出现问题。
+> - 如果在模拟器上使用该 API，暂时只支持存放在 /sdcard/ 中的 mp3 文件。
 
 <table>
 <colgroup>
@@ -1017,8 +978,6 @@ public abstract int startAudioMixing(String filePath,
 </tbody>
 </table>
 
-
-
 #### 停止播放伴奏 (stopAudioMixing)
 
 ```
@@ -1046,8 +1005,6 @@ public abstract int stopAudioMixing();
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 暂停播放伴奏 (pauseAudioMixing)
 
@@ -1077,8 +1034,6 @@ public abstract int pauseAudioMixing();
 </tbody>
 </table>
 
-
-
 #### 恢复播放伴奏 (resumeAudioMixing)
 
 ```
@@ -1106,8 +1061,6 @@ public abstract int resumeAudioMixing();
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 调节伴奏音量 (adjustAudioMixingVolume)
 
@@ -1139,8 +1092,6 @@ public abstract int adjustAudioMixingVolume(int volume);
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 获取伴奏时长 (getAudioMixingDuration)
 
@@ -1181,7 +1132,6 @@ public abstract int setAudioMixingPosition(int pos);
 </tbody>
 </table>
 
-
 #### 开始客户端录音 (startAudioRecording)
 
 ```
@@ -1190,10 +1140,9 @@ public abstract int startAudioRecording(String filePath, int quality);
 
 Agora SDK 支持通话过程中在客户端进行录音。该方法录制频道内所有用户的音频，并生成一个包含所有用户声音的录音文件，录音文件格式可以为:
 
--   wav : 文件大，音质保真度高
+- wav : 文件大，音质保真度高
 
--   aac : 文件小，有一定的音质保真度损失
-
+- aac : 文件小，有一定的音质保真度损失
 
 请确保应用程序里指定的目录存在且可写。该接口需在加入频道之后调用。如果调用 `leaveChannel()` 时还在录音，录音会自动停止。
 
@@ -1228,8 +1177,6 @@ Agora SDK 支持通话过程中在客户端进行录音。该方法录制频道�
 </tbody>
 </table>
 
-
-
 #### 停止客户端录音 (stopAudioRecording)
 
 ```
@@ -1257,8 +1204,6 @@ public abstract int stopAudioRecording();
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 调节录音信号音量 (adjustRecordingSignalVolume)
 
@@ -1300,8 +1245,6 @@ public abstract int adjustRecordingSignalVolume(int volume);
 </tbody>
 </table>
 
-
-
 #### 调节播放信号音量 (adjustPlaybackSignalVolume)
 
 ```
@@ -1342,7 +1285,6 @@ public abstract int adjustPlaybackSignalVolume(int volume);
 </tbody>
 </table>
 
-
 #### 启用内置加密，并设置数据加密密码 (setEncryptionSecret)
 
 ```
@@ -1377,8 +1319,6 @@ public abstract int setEncryptionSecret(String secret);
 </tbody>
 </table>
 
-
-
 #### 设置内置的加密方案 (setEncryptionMode)
 
 ```
@@ -1388,7 +1328,6 @@ public abstract int setEncryptionMode(String encryptionMode);
 Agora Native SDK 支持内置加密功能，默认使用 AES-128-XTS 加密方式。如需使用其他加密方式，可以调用该 API 设置。
 
 同一频道内的所有用户必须设置相同的加密方式和 secret 才能进行通话。关于这几种加密方式的区别，请参考 AES 加密算法的相关资料。
-
 
 > 在调用本方法前，请先调用 `setEncryptionSecret()` 启用内置加密功能。
 
@@ -1425,7 +1364,6 @@ Agora Native SDK 支持内置加密功能，默认使用 AES-128-XTS 加密方�
 <tr/>
 </tbody>
 </table>
-
 
 #### 创建数据流 (createDataStream)
 
@@ -1469,8 +1407,6 @@ public abstract int createDataStream(boolean reliable, boolean ordered);
 </tr>
 </tbody>
 </table>
-
-
 
 > [4] 返回的错误码是负数，对应错误代码和警告代码里的正整数。例如返回的错误码为-2，则对应错误代码和警告代码里的 2: ERR_INVALID_ARGUMENT 。
 
@@ -1525,10 +1461,8 @@ public abstract int startEchoTest();
 
 该方法启动语音通话测试，目的是测试系统的音频设备（耳麦、扬声器等）和网络连接是否正常。 在测试过程中，用户先说一段话，在 10 秒后，声音会回放出来。如果 10 秒后用户能正常听到自己刚才说的话，就表示系统音频设备和网络连接都是正常的。
 
-
-> -   调用 startEchoTest 后必须调用 stopEchoTest 以结束测试，否则不能进行下一次回声测试，或者调用 `joinChannel()` 进行通话。
-> -   直播模式下，只有主播用户才能调用。如果用户由通信模式切换到直播模式，请务必调用 `setClientRole()` 方法将用户的橘色设置为。
-
+> - 调用 startEchoTest 后必须调用 stopEchoTest 以结束测试，否则不能进行下一次回声测试，或者调用 `joinChannel()` 进行通话。
+> - 直播模式下，只有主播用户才能调用。如果用户由通信模式切换到直播模式，请务必调用 `setClientRole()` 方法将用户的橘色设置为。
 
 <table>
 <colgroup>
@@ -1551,8 +1485,6 @@ public abstract int startEchoTest();
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 停止语音通话测试 (stopEchoTest)
 
@@ -1584,8 +1516,6 @@ public abstract int stopEchoTest();
 </tbody>
 </table>
 
-
-
 #### 启动网络测试 (enableLastmileTest)
 
 ```
@@ -1616,8 +1546,6 @@ public abstract int enableLastmileTest();
 </tbody>
 </table>
 
-
-
 #### 禁用网络测试 (disableLastmileTest)
 
 ```
@@ -1646,8 +1574,6 @@ public abstract int disableLastmileTest();
 </tbody>
 </table>
 
-
-
 #### 获取通话 ID (getCallId)
 
 ```
@@ -1656,7 +1582,7 @@ public abstract String getCallId();
 
 获取当前的通话 ID。
 
-客户端在每次 `joinChannel()` 后会生成一个对应的 CallId，标识该客户端的此次通话。有些方法如rate, complain需要在通话结束后调用，向SDK提交反馈，这些方法必须指定CallId参数。使用这些反馈方法，需要在通话过程中调用getCallId方法获取CallId，在通话结束后在反馈方法中作为参数传入。
+客户端在每次 `joinChannel()` 后会生成一个对应的 CallId，标识该客户端的此次通话。有些方法如 rate, complain 需要在通话结束后调用，向 SDK 提交反馈，这些方法必须指定 CallId 参数。使用这些反馈方法，需要在通话过程中调用 getCallId 方法获取 CallId，在通话结束后在反馈方法中作为参数传入。
 
 <table>
 <colgroup>
@@ -1672,8 +1598,6 @@ public abstract String getCallId();
 </tr>
 </tbody>
 </table>
-
-
 
 #### 给通话评分 (rate)
 
@@ -1718,8 +1642,6 @@ public abstract int rate(String callId,
 </tbody>
 </table>
 
-
-
 #### 投诉通话质量 (complain)
 
 ```
@@ -1759,7 +1681,6 @@ public abstract int complain(String callId,
 </tbody>
 </table>
 
-
 #### 更新 Token (renewToken)
 
 ```
@@ -1770,10 +1691,9 @@ public abstract int renewToken(String token);
 
 当：
 
--   `onError` 回调报告 ERR_TOKEN_EXPIRED(109) 时，
+- `onError` 回调报告 ERR_TOKEN_EXPIRED(109) 时，
 
--   `onRequestToken` 回调报告 ERR_TOKEN_EXPIRED(109) 时，
-
+- `onRequestToken` 回调报告 ERR_TOKEN_EXPIRED(109) 时，
 
 应用程序应重新获取 Token，然后调用该 API 更新 Token，否则 SDK 无法和服务器建立连接。
 
@@ -1798,8 +1718,6 @@ public abstract int renewToken(String token);
 </tr>
 </tbody>
 </table>
-
-
 
 #### 设置日志文件 (setLogFile)
 
@@ -1832,7 +1750,6 @@ public abstract int setLogFile(String filePath);
 </tbody>
 </table>
 
-
 Android 平台下日志文件的默认地址为：sdcard/<appname\>/agorasdk.log。appname 为应用名称。
 
 #### 设置日志过滤器 (setLogFilter)
@@ -1843,9 +1760,9 @@ public abstract int setLogFilter(int filter);
 
 设置 SDK 的输出日志过滤等级。不同的过滤等级可以单独或组合使用。
 
-日志级别顺序依次为 *OFF*、*CRITICAL*、*ERROR*、*WARNING*、*INFO* 和 *DEBUG*。选择一个级别，你就可以看到在该级别之前所有级别的日志信息。
+日志级别顺序依次为 _OFF_、_CRITICAL_、_ERROR_、_WARNING_、_INFO_ 和 _DEBUG_。选择一个级别，你就可以看到在该级别之前所有级别的日志信息。
 
-例如，你选择 *WARNING* 级别，就可以看到在 *CRITICAL*、*ERROR* 和 *WARNING* 级别上的所有日志信息。
+例如，你选择 _WARNING_ 级别，就可以看到在 _CRITICAL_、_ERROR_ 和 _WARNING_ 级别上的所有日志信息。
 
 <table>
 <colgroup>
@@ -1879,8 +1796,6 @@ public abstract int setLogFilter(int filter);
 </tbody>
 </table>
 
-
-
 #### 销毁引擎实例 (destroy)
 
 ```
@@ -1889,10 +1804,8 @@ public static synchronized void destroy();
 
 该方法释放 Agora SDK 使用的所有资源。有些应用程序只在用户需要时才进行语音通话，不需要时则将资源释放出来用于其他操作，该方法对这类程序可能比较有用。 只要调用了 `destroy()`, 用户将无法再使用和回调该 SDK 内的其它方法。如需再次使用通信功能，必须重新初始化 sharedEngineWithappId 来新建一个 AgoraRtcEngineKit 实例（instance）。
 
-
-> -   该方法需要在子线程中操作。
-> -   该方法为同步调用。在等待 IRtcEngine 对象资源释放后再返回。APP 不应该在 SDK 产生的回调中调用该接口，否则由于 SDK 要等待回调返回才能回收相关的对象资源，会造成死锁。
-
+> - 该方法需要在子线程中操作。
+> - 该方法为同步调用。在等待 IRtcEngine 对象资源释放后再返回。APP 不应该在 SDK 产生的回调中调用该接口，否则由于 SDK 要等待回调返回才能回收相关的对象资源，会造成死锁。
 
 #### 查询 SDK 版本号 (getSdkVersion)
 
@@ -1945,8 +1858,6 @@ public int setEffectsVolume(double volume);
 </tbody>
 </table>
 
-
-
 #### 实时调整音效音量 (setVolumeOfEffect)
 
 ```
@@ -1980,8 +1891,6 @@ public int setVolumeOfEffect(int soundId, double volume);
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 播放指定音效 (playEffect)
 
@@ -2052,8 +1961,6 @@ public int playEffect(int soundId, String filePath, int loopCount, double pitch,
 </tbody>
 </table>
 
-
-
 > [5] 如果你已通过 `preloadEffect` 将音效加载至内存，确保这里设置的 `soundId` 与 `preloadEffect` 设置的 `soundId` 相同。
 
 > 该接口在 v2.1.x 及之前的版本中如下所示，不推荐使用。
@@ -2093,8 +2000,6 @@ public int stopEffect(int soundId);
 </tbody>
 </table>
 
-
-
 #### 停止播放所有音效 (stopAllEffects)
 
 ```
@@ -2110,7 +2015,6 @@ public int preloadEffect(int soundId, String filePath);
 ```
 
 该方法将指定音效文件(压缩的语音文件)预加载至内存。
-
 
 > 为保证通信畅通，请注意预加载音效文件的大小，并在 `joinChannel` 前就使用该方法完成音效预加载。
 
@@ -2139,8 +2043,6 @@ public int preloadEffect(int soundId, String filePath);
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 释放音效 (unloadEffect)
 
@@ -2173,8 +2075,6 @@ public int unloadEffect(int soundId);
 </tbody>
 </table>
 
-
-
 #### 暂停音效播放 (pauseEffect)
 
 ```
@@ -2206,8 +2106,6 @@ public int pauseEffect(int soundId);
 </tbody>
 </table>
 
-
-
 #### 暂停所有音效播放 (pauseAllEffects)
 
 ```
@@ -2235,8 +2133,6 @@ public int pauseAllEffects();
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 恢复播放指定音效 (resumeEffect)
 
@@ -2269,8 +2165,6 @@ public int resumeEffect(int soundId);
 </tbody>
 </table>
 
-
-
 #### 恢复播放所有音效 (resumeAllEffects)
 
 ```
@@ -2279,13 +2173,13 @@ public int resumeAllEffects();
 
 该方法恢复播放所有音效。
 
-
 <a id = "irtcengineeventhandler"></a>
+
 ### 主回调事件 (IRtcEngineEventHandler)
 
 **软件包: io.agora.rtc**
 
-`IRtcEngineEventHandler` 接口类用于SDK向应用程序发送回调事件通知，应用程序通过继承该接口类的方法获取 SDK 的事件通知。
+`IRtcEngineEventHandler` 接口类用于 SDK 向应用程序发送回调事件通知，应用程序通过继承该接口类的方法获取 SDK 的事件通知。
 
 接口类的所有方法都有缺省（空）实现，应用程序可以根据需要只继承关心的事件。在回调方法中，应用程序不应该做耗时或者调用可能会引起阻塞的 API（如 SendMessage），否则可能影响 SDK 的运行。
 
@@ -2320,8 +2214,6 @@ public void onJoinChannelSuccess(String channel,
 </tbody>
 </table>
 
-
-
 #### 重新加入频道回调 (onRejoinChannelSuccess)
 
 ```
@@ -2352,8 +2244,6 @@ public void onRejoinChannelSuccess(String channel,
 </tr>
 </tbody>
 </table>
-
-
 
 #### 发生警告回调 (onWarning)
 
@@ -2401,7 +2291,6 @@ public void onError(int err);
 </tbody>
 </table>
 
-
 #### API 已执行回调 (onApiCallExecuted)
 
 ```
@@ -2430,8 +2319,6 @@ public void onApiCallExecuted(int error, String api, String result)
 </tr>
 </tbody>
 </table>
-
-
 
 #### 离开频道回调 (onLeaveChannel)
 
@@ -2493,8 +2380,6 @@ public static class RtcStats {
 </tbody>
 </table>
 
-
-
 #### 语音路由已变更回调 (onAudioRouteChanged)
 
 ```
@@ -2535,7 +2420,6 @@ public static final int AUDIO_ROUTE_HEADSETBLUETOOTH = 5;
 </tr>
 </tbody>
 </table>
-
 
 #### 麦克风状态已改变回调 (onMicrophoneEnabled)
 
@@ -2608,8 +2492,6 @@ public void onAudioQuality(int uid,
 </tbody>
 </table>
 
-
-
 #### 说话声音音量提示回调 (onAudioVolumeIndication)
 
 ```
@@ -2641,16 +2523,13 @@ public void onAudioVolumeIndication(AudioVolumeInfo[] speakers, int totalVolume)
 </tbody>
 </table>
 
-
-
 在返回的 speakers 数组中：
 
--   如果返回的 uid 为 0，即当频道内的说话者为本地用户时，说话者的音量 `volume` 为 `totalVolume`，即频道内的总音量。
+- 如果返回的 uid 为 0，即当频道内的说话者为本地用户时，说话者的音量 `volume` 为 `totalVolume`，即频道内的总音量。
 
--   如果返回的 uid 不是 0，且 volume 为 0，则默认该 uid 对应的远端用户没有说话。
+- 如果返回的 uid 不是 0，且 volume 为 0，则默认该 uid 对应的远端用户没有说话。
 
--   如果有 uid 出现在上次返回的数组中，但不在本次返回的数组中，则默认该 uid 对应的远端用户没有说话。
-
+- 如果有 uid 出现在上次返回的数组中，但不在本次返回的数组中，则默认该 uid 对应的远端用户没有说话。
 
 #### 主播加入频道回调 (onUserJoined)
 
@@ -2661,10 +2540,10 @@ public void onUserJoined(int uid, int elapsed);
 该回调提示有主播加入了频道，并返回该主播的 ID。如果在加入之前，已经有主播在频道中了，新加入的用户也会收到已有主播加入频道的回调。Agora 建议连麦主播不超过 17 人。
 
 > 直播场景下:
-> -   主播间能相互收到新主播加入频道的回调，并能获得该主播的 uid
-> -   观众也能收到新主播加入频道的回调，并能获得该主播的 uid
-> -   当 Web 端加入直播频道时，只要 Web 端有推流，SDK 会默认该 Web 端为主播，并触发该回调
-
+>
+> - 主播间能相互收到新主播加入频道的回调，并能获得该主播的 uid
+> - 观众也能收到新主播加入频道的回调，并能获得该主播的 uid
+> - 当 Web 端加入直播频道时，只要 Web 端有推流，SDK 会默认该 Web 端为主播，并触发该回调
 
 <table>
 <colgroup>
@@ -2683,8 +2562,6 @@ public void onUserJoined(int uid, int elapsed);
 </tr>
 </tbody>
 </table>
-
-
 
 #### 主播离开频道回调 (onUserOffline)
 
@@ -2721,8 +2598,6 @@ public void onUserOffline(int uid, int reason);
 </tbody>
 </table>
 
-
-
 #### 用户静音回调 (onUserMuteAudio)
 
 ```
@@ -2754,9 +2629,7 @@ public void onUserMuteAudio(int uid, boolean muted);
 </tbody>
 </table>
 
-
-
-#### Rtc Engine统计数据回调 (onRtcStats)
+#### Rtc Engine 统计数据回调 (onRtcStats)
 
 ```
 public void onRtcStats(RtcStats stats);
@@ -2778,8 +2651,6 @@ public void onRtcStats(RtcStats stats);
 </tr>
 </tbody>
 </table>
-
-
 
 #### 网络质量报告回调 (onLastmileQuality)
 
@@ -2814,8 +2685,6 @@ public void onLastmileQuality(int quality);
 </tr>
 </tbody>
 </table>
-
-
 
 #### 频道内网络质量报告回调 (onNetworkQuality)
 
@@ -2865,8 +2734,6 @@ public void onNetworkQuality(int uid, int txQuality, int rxQuality);
 </tr>
 </tbody>
 </table>
-
-
 
 #### 连接中断回调 (onConnectionInterrupted)
 
@@ -2949,8 +2816,6 @@ public void onStreamMessage(int uid, int streamId, byte[] data);
 </tbody>
 </table>
 
-
-
 #### 接收对方数据流消息错误的回调 (onStreamMessageError)
 
 ```
@@ -2993,9 +2858,6 @@ public void onStreamMessageError(int uid, int streamId, int error, int missed, i
 </tbody>
 </table>
 
-
-
-
 #### 监测到活跃用户回调 (onActiveSpeaker)
 
 ```
@@ -3019,10 +2881,8 @@ public void onActiveSpeaker(int uid);
 </tbody>
 </table>
 
-
-> -   你需要开启 `enableAudioVolumeIndication` 方法才能收到该回调。
-> -   uid 返回的是当前时间段内声音最大的用户 uid，而不是瞬时声音最大的用户 uid。
-
+> - 你需要开启 `enableAudioVolumeIndication` 方法才能收到该回调。
+> - uid 返回的是当前时间段内声音最大的用户 uid，而不是瞬时声音最大的用户 uid。
 
 #### Token 已过期回调 (onRequestToken)
 
@@ -3038,7 +2898,7 @@ public void onRequestToken();
 public void onAudioMixingFinished();
 ```
 
-当调用 `startAudioMixing()` 播放伴奏音乐结束后，会触发该回调。 如果调用 `startAudioMixing()` 失败，会在 `onError` 回调里，返回错误码 *WARN_AUDIO_MIXING_OPEN_ERROR* 。
+当调用 `startAudioMixing()` 播放伴奏音乐结束后，会触发该回调。 如果调用 `startAudioMixing()` 失败，会在 `onError` 回调里，返回错误码 _WARN_AUDIO_MIXING_OPEN_ERROR_ 。
 
 #### 音效播放已结束回调 (onAudioEffectFinished)
 
@@ -3062,8 +2922,6 @@ public void onAudioEffectFinished(int soundId)
 </tr>
 </tbody>
 </table>
-
-
 
 #### 上下麦回调 (onClientRoleChanged)
 
@@ -3091,9 +2949,10 @@ public void onClientRoleChanged(int oldRole, int newRole);
 </tbody>
 </table>
 
-##  C++ 接口
+## C++ 接口
 
 <a id = "irtcengine"></a>
+
 ### 主要方法 (IRtcEngine)
 
 #### 创建 agora::IRtcEngine 对象 (create)
@@ -3154,7 +3013,6 @@ struct RtcEngineContext
 </tbody>
 </table>
 
-
 #### 设置频道属性 (setChannelProfile)
 
 ```
@@ -3186,10 +3044,9 @@ virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;
 </tbody>
 </table>
 
-> -   同一频道内只能同时设置一种模式。如果想要切换模式，则需要先调用 release 销毁当前引擎，然后重新调用 `create`、并在 `initialize` 方法中传入 **不同** 的 App ID，再调用该方法切换频道模式。
-> -   不同的频道模式必须使用不同的 App ID。
-> -   该方法必须在加入频道前调用和进行设置，进入频道后无法再设置。
-
+> - 同一频道内只能同时设置一种模式。如果想要切换模式，则需要先调用 release 销毁当前引擎，然后重新调用 `create`、并在 `initialize` 方法中传入 **不同** 的 App ID，再调用该方法切换频道模式。
+> - 不同的频道模式必须使用不同的 App ID。
+> - 该方法必须在加入频道前调用和进行设置，进入频道后无法再设置。
 
 <table>
 <colgroup>
@@ -3218,8 +3075,6 @@ virtual int setChannelProfile(CHANNEL_PROFILE_TYPE profile) = 0;
 </tr>
 </tbody>
 </table>
-
-
 
 #### 设置用户角色 (setClientRole)
 
@@ -3256,8 +3111,6 @@ virtual int setClientRole(CLIENT_ROLE_TYPE role) = 0;
 </tbody>
 </table>
 
-
-
 #### 打开音频 (enableAudio)
 
 ```
@@ -3266,9 +3119,9 @@ virtual int enableAudio() = 0;
 
 打开音频(默认为开启状态)。返回值:
 
--   0: 方法调用成功
+- 0: 方法调用成功
 
--   <0: 方法调用失败
+- <0: 方法调用失败
 
 > 该方法设置内部引擎为启用状态，在 `leaveChannel` 后仍然有效。
 
@@ -3284,8 +3137,8 @@ virtual int enableLocalAudio(bool enabled) = 0;
 
 > - 该方法需要在 `joinChannel` 之后调用才能生效。
 > - 该方法与 `muteLocalAudioStream` 的区别在于：
->    *  `enableLocalAudio`：开启或关闭本地语音采集及处理
->    *  `muteLocalAudioStream`：停止或继续发送本地音频流
+>   - `enableLocalAudio`：开启或关闭本地语音采集及处理
+>   - `muteLocalAudioStream`：停止或继续发送本地音频流
 
 <table>
 <colgroup>
@@ -3322,14 +3175,11 @@ virtual int disableAudio() = 0;
 
 关闭音频。返回值:
 
--   0: 方法调用成功
+- 0: 方法调用成功
 
--   <0: 方法调用失败
-
+- <0: 方法调用失败
 
 > 该方法设置内部引擎为禁用状态，在 `leaveChannel` 后仍然有效。
-
-
 
 #### 加入频道 (joinChannel)
 
@@ -3338,7 +3188,6 @@ virtual int joinChannel(const char* token, const char* channelId, const char* in
 ```
 
 该方法让用户加入通话频道，在同一个频道内的用户可以互相通话，多个用户加入同一个频道，可以群聊。 使用不同 App ID 的应用程序是不能互通的。如果已在通话中，用户必须调用 `leaveChannel()` 退出当前通话，才能进入下一个频道。
-
 
 > 同一个频道里不能出现两个相同的 UID。如果你的 App 支持多设备同时登录，即同一个用户账号可以在不同的设备上同时登录(例如微信支持在 PC 端和移动端同时登录)，请保证传入的 UID 不相同。 例如你之前都是用同一个用户标识作为 UID, 建议从现在开始加上设备 ID, 以保证传入的 UID 不相同 。如果你的 App 不支持多设备同时登录，例如在电脑上登录时，手机上会自动退出，这种情况下就不需要在 UID 上添加设备 ID。
 
@@ -3380,8 +3229,6 @@ uid 在 SDK 内部用 32 位无符号整数表示，由于 Java 不支持无符�
 </tbody>
 </table>
 
-
-
 > 在 `joinChannel()` 时，SDK 调用 `setCategoryAVAudioSessionCategoryPlayAndRecord` 将 `AVAudioSession` 设置到 `PlayAndRecord` 模式，应用程序不应将其设置到其他模式。设置该模式时，正在播放的声音会被打断（比如正在播放的响铃声）。
 
 #### 离开频道 (leaveChannel)
@@ -3390,7 +3237,7 @@ uid 在 SDK 内部用 32 位无符号整数表示，由于 Java 不支持无符�
 virtual int leaveChannel() = 0;
 ```
 
-离开频道，即挂断或退出通话。joinChannel后，必须调用 leaveChannel 以结束通话，否则不能进行下一次通话。 不管当前是否在通话中，都可以调用 leaveChannel，没有副作用。如果成功，则返回值为0。leaveChannel 会把会话相关的所有资源释放掉。
+离开频道，即挂断或退出通话。joinChannel 后，必须调用 leaveChannel 以结束通话，否则不能进行下一次通话。 不管当前是否在通话中，都可以调用 leaveChannel，没有副作用。如果成功，则返回值为 0。leaveChannel 会把会话相关的所有资源释放掉。
 
 leaveChannel 是异步操作，调用返回时并没有真正退出频道。在真正退出频道后，SDK 会触发 onLeaveChannel 回调。
 
@@ -3415,7 +3262,6 @@ leaveChannel 是异步操作，调用返回时并没有真正退出频道。在�
 </tr>
 </tbody>
 </table>
-
 
 #### 设置本地语音音调 (setLocalVoicePitch)
 
@@ -3527,7 +3373,6 @@ virtual int setVoiceOnlyMode(bool enable) = 0;
 </tbody>
 </table>
 
-
 #### 设置本地语音音效均衡 (setLocalVoiceEqualization)
 
 ```
@@ -3553,8 +3398,6 @@ int setLocalVoiceEqualization(AUDIO_EQUALIZATION_BAND_FREQUENCY bandFrequency, i
 </tr>
 </tbody>
 </table>
-
-
 
 #### 设置本地音效混响 (setLocalVoiceReverb)
 
@@ -3590,7 +3433,6 @@ int setLocalVoiceReverb(AUDIO_REVERB_TYPE reverbKey, int value);
 </tr>
 </tbody>
 </table>
-
 
 #### 获取音效音量 (getEffectsVolume)
 
@@ -3631,8 +3473,6 @@ int setEffectsVolume(int volume);
 </tbody>
 </table>
 
-
-
 #### 实时调整音效音量 (setVolumeOfEffect)
 
 ```
@@ -3666,8 +3506,6 @@ int setVolumeOfEffect(int soundId, int volume);
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 播放指定音效 (playEffect)
 
@@ -3738,8 +3576,6 @@ int playEffect(int soundId, const char* filePath, int loopCount, double pitch, d
 </tbody>
 </table>
 
-
-
 > [1] 如果你已通过 `preloadEffect` 将音效加载至内存，确保这里设置的 `soundId` 与 `preloadEffect` 设置的 `soundId` 相同。
 
 #### 停止播放指定音效 (stopEffect)
@@ -3770,8 +3606,6 @@ int stopEffect(int soundId);
 </tbody>
 </table>
 
-
-
 #### 停止播放所有音效 (stopAllEffects)
 
 ```
@@ -3787,7 +3621,6 @@ int preloadEffect(int soundId, char* filePath);
 ```
 
 该方法将指定音效文件（压缩的语音文件）预加载至内存。
-
 
 > 为保证通信畅通，请注意预加载音效文件的大小，并在 `joinChannel` 前就使用该方法完成音效预加载。
 
@@ -3815,8 +3648,6 @@ int preloadEffect(int soundId, char* filePath);
 </tr>
 </tbody>
 </table>
-
-
 
 #### 释放音效 (unloadEffect)
 
@@ -3848,8 +3679,6 @@ int unloadEffect(int soundId);
 </tbody>
 </table>
 
-
-
 #### 暂停音效播放 (pauseEffect)
 
 ```
@@ -3880,8 +3709,6 @@ int pauseEffect(int soundId);
 </tbody>
 </table>
 
-
-
 #### 暂停所有音效播放 (pauseAllEffects)
 
 ```
@@ -3908,8 +3735,6 @@ int pauseAllEffects();
 </tr>
 </tbody>
 </table>
-
-
 
 #### 恢复播放指定音效 (resumeEffect)
 
@@ -3940,8 +3765,6 @@ int resumeEffect(int soundId);
 </tr>
 </tbody>
 </table>
-
-
 
 #### 恢复播放所有音效 (resumeAllEffects)
 
@@ -3987,7 +3810,6 @@ int enableWebSdkInteroperability(bool enabled);
 </tbody>
 </table>
 
-
 #### 启用内置加密，并设置数据加密密码 (setEncryptionSecret)
 
 ```
@@ -4018,8 +3840,6 @@ virtual int setEncryptionSecret(const char* secret) = 0;
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 设置内置的加密方案 (setEncryptionMode)
 
@@ -4067,7 +3887,6 @@ Agora Native SDK 支持内置加密功能，默认使用 AES-128-XTS 加密方�
 </tbody>
 </table>
 
-
 #### 创建数据流 (createDataStream)
 
 ```
@@ -4075,7 +3894,6 @@ virtual int createDataStream(int* streamId, bool reliable, bool ordered) = 0;
 ```
 
 该方法用于创建数据流。频道内每人最多只能创建 5 个数据流。频道内数据通道最多允许数据延迟 5 秒，若超过 5 秒接收方尚未收到数据流，则数据通道会向应用程序报错。
-
 
 > 请将 `reliable` 和 `ordered` 同时设置为 true 或 false, 暂不支持交叉设置。
 
@@ -4111,8 +3929,6 @@ virtual int createDataStream(int* streamId, bool reliable, bool ordered) = 0;
 </tr>
 </tbody>
 </table>
-
-
 
 > [3] 返回的错误码是负数，对应错误代码和警告代码里的正整数。例如返回的错误码为 -2，则对应错误代码和警告代码里的 2: ERR_INVALID_ARGUMENT 。
 
@@ -4167,10 +3983,8 @@ virtual int startEchoTest() = 0;
 
 该方法启动语音直播测试，目的是测试系统的音频设备（耳麦、扬声器等）和网络连接是否正常。 在测试过程中，用户先说一段话，在 10 秒后，声音会回放出来。如果 10 秒后用户能正常听到自己刚才说的话，就表示系统音频设备和网络连接都是正常的。
 
-
-> -   调用 startEchoTest 后必须调用 stopEchoTest 以结束测试，否则不能进行下一次回声测试，或者调用 `joinChannel()` 进行通话。
->-   直播模式下，只有主播用户才能调用。如果用户由通信模式切换到直播模式，请务必调用 `setClientRole()` 方法将用户的橘色设置为。
-
+> - 调用 startEchoTest 后必须调用 stopEchoTest 以结束测试，否则不能进行下一次回声测试，或者调用 `joinChannel()` 进行通话。
+> - 直播模式下，只有主播用户才能调用。如果用户由通信模式切换到直播模式，请务必调用 `setClientRole()` 方法将用户的橘色设置为。
 
 <table>
 <colgroup>
@@ -4193,8 +4007,6 @@ virtual int startEchoTest() = 0;
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 停止语音直播测试 (stopEchoTest)
 
@@ -4226,8 +4038,6 @@ virtual int stopEchoTest() = 0;
 </tbody>
 </table>
 
-
-
 #### 启动网络测试 (enableLastmileTest)
 
 ```
@@ -4236,13 +4046,11 @@ virtual int enableLastmileTest() = 0;
 
 该方法启用网络连接质量测试，用于检测用户网络接入质量。默认该功能为关闭状态。该方法主要用于以下场景:
 
--   用户加入频道前，可以调用该方法判断和预测目前的上行网络质量是否足够好。
+- 用户加入频道前，可以调用该方法判断和预测目前的上行网络质量是否足够好。
 
--   观众切换为主播进行连麦前，可以调用该方法判断和预测目前的上行网络质量是否足够好。
-
+- 观众切换为主播进行连麦前，可以调用该方法判断和预测目前的上行网络质量是否足够好。
 
 在这两种场景下，启用该方法均会消耗一定的网络流量，影响通话质量。用户必须在收到 onLastmileQuality 回调后立即调用 disableLastmileTest 停止测试，再加入频道或切换用户角色。
-
 
 > 当前频道内的主播(包括已切换为主播角色的高级观众)，请勿调用该方法。
 
@@ -4265,8 +4073,6 @@ virtual int enableLastmileTest() = 0;
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 禁用网络测试 (disableLastmileTest)
 
@@ -4296,7 +4102,6 @@ virtual int disableLastmileTest() = 0;
 </tbody>
 </table>
 
-
 #### 获取通话 ID (getCallId)
 
 ```
@@ -4305,7 +4110,7 @@ virtual int getCallId(agora::util::AString& callId) = 0;
 
 获取当前的通话 ID。
 
-客户端在每次 `joinChannel()` 后会生成一个对应的 CallId，标识该客户端的此次通话。有些方法如rate, complain需要在通话结束后调用，向SDK提交反馈，这些方法必须指定CallId参数。使用这些反馈方法，需要在通话过程中调用getCallId方法获取CallId，在通话结束后在反馈方法中作为参数传入。
+客户端在每次 `joinChannel()` 后会生成一个对应的 CallId，标识该客户端的此次通话。有些方法如 rate, complain 需要在通话结束后调用，向 SDK 提交反馈，这些方法必须指定 CallId 参数。使用这些反馈方法，需要在通话过程中调用 getCallId 方法获取 CallId，在通话结束后在反馈方法中作为参数传入。
 
 <table>
 <colgroup>
@@ -4328,8 +4133,6 @@ virtual int getCallId(agora::util::AString& callId) = 0;
 </tr>
 </tbody>
 </table>
-
-
 
 #### 给通话评分 (rate)
 
@@ -4372,8 +4175,6 @@ virtual int rate(const char* callId, int rating, const char* description) = 0;
 </tbody>
 </table>
 
-
-
 #### 投诉通话质量 (complain)
 
 ```
@@ -4412,7 +4213,6 @@ virtual int complain(const char* callId, const char* description) = 0;
 </tbody>
 </table>
 
-
 #### 更新 Token (renewToken)
 
 ```
@@ -4423,11 +4223,9 @@ virtual int renewToken(const char* token) = 0;
 
 当：
 
+- `onError` 回调报告 ERR_TOKEN_EXPIRED(109) 时，
 
--   `onError` 回调报告 ERR_TOKEN_EXPIRED(109) 时，
-
--   `onRequestToken` 回调报告 ERR_TOKEN_EXPIRED(109) 时，
-
+- `onRequestToken` 回调报告 ERR_TOKEN_EXPIRED(109) 时，
 
 应用程序应重新获取 Token，然后调用该 API 更新 Token，否则 SDK 无法和服务器建立连接。
 
@@ -4452,8 +4250,6 @@ virtual int renewToken(const char* token) = 0;
 </tr>
 </tbody>
 </table>
-
-
 
 #### 设置日志文件 (setLogFile)
 
@@ -4486,11 +4282,7 @@ int setLogFile(const char* filePath);
 </tbody>
 </table>
 
-
-
 > Android 平台下日志文件的默认地址为：sdcard/<appname>/agorasdk.log。appname 为应用名称。
-
-
 
 #### 设置日志过滤器 (setLogFilter)
 
@@ -4500,9 +4292,9 @@ int setLogFilter(unsigned int filter);
 
 设置 SDK 的输出日志过滤等级。不同的过滤等级可以单独或组合使用。
 
-日志级别顺序依次为 *OFF*、*CRITICAL*、*ERROR*、*WARNING*、*INFO* 和 *DEBUG*。选择一个级别，你就可以看到在该级别之前所有级别的日志信息。
+日志级别顺序依次为 _OFF_、_CRITICAL_、_ERROR_、_WARNING_、_INFO_ 和 _DEBUG_。选择一个级别，你就可以看到在该级别之前所有级别的日志信息。
 
-例如，你选择 *WARNING* 级别，就可以看到在 *CRITICAL*、*ERROR* 和 *WARNING* 级别上的所有日志信息。
+例如，你选择 _WARNING_ 级别，就可以看到在 _CRITICAL_、_ERROR_ 和 _WARNING_ 级别上的所有日志信息。
 
 <table>
 <colgroup>
@@ -4536,9 +4328,7 @@ int setLogFilter(unsigned int filter);
 </tbody>
 </table>
 
-
-
-#### 销毁IRtcEngine对象 (release)
+#### 销毁 IRtcEngine 对象 (release)
 
 ```
 virtual void release(bool sync=false) = 0;
@@ -4576,8 +4366,6 @@ virtual void release(bool sync=false) = 0;
 </tbody>
 </table>
 
-
-
 #### 查询 SDK 版本号 (getVersion)
 
 ```
@@ -4586,12 +4374,11 @@ virtual const char* getVersion(int* build) = 0;
 
 该方法返回 SDK 版本号的字符串。
 
-
 <a id = "rtcengineparameters"></a>
+
 ### 参数方法 (RtcEngineParameters)
 
 该辅助类用于对 SDK 进行参数设置，如下为该类的具体方法说明。
-
 
 #### 将自己静音 (muteLocalAudioStream)
 
@@ -4600,7 +4387,6 @@ int muteLocalAudioStream(bool mute);
 ```
 
 静音/取消静音。该方法用于允许/禁止往网络发送本地音频流。
-
 
 > 该方法不影响录音状态，并没有禁用麦克风。
 
@@ -4629,8 +4415,6 @@ int muteLocalAudioStream(bool mute);
 </tr>
 </tbody>
 </table>
-
-
 
 #### 静音所有远端音频 (muteAllRemoteAudioStreams)
 
@@ -4666,8 +4450,6 @@ int muteAllRemoteAudioStreams(bool mute);
 </tbody>
 </table>
 
-
-
 #### 静音指定用户音频 (muteRemoteAudioStream)
 
 ```
@@ -4675,7 +4457,6 @@ int muteRemoteAudioStream(uid_t uid, bool mute);
 ```
 
 静音指定远端用户/对指定远端用户取消静音。
-
 
 > 如果之前有调用过 muteAllRemoteAudioStreams (true) 对所有远端音频进行静音，在调用本 API 之前请确保你已调用 muteAllRemoteAudioStreams (false) 。 muteAllRemoteAudioStreams 是全局控制，muteRemoteAudioStream 是精细控制。
 
@@ -4711,7 +4492,6 @@ int muteRemoteAudioStream(uid_t uid, bool mute);
 </tr>
 </tbody>
 </table>
-
 
 #### 启用说话者音量提示 (enableAudioVolumeIndication)
 
@@ -4751,8 +4531,6 @@ int enableAudioVolumeIndication(int interval, int smooth);
 </tbody>
 </table>
 
-
-
 ### 播放伴奏
 
 #### 开始播放伴奏 (startAudioMixing)
@@ -4762,7 +4540,6 @@ int startAudioMixing(const char* filePath, bool loopback, bool replace, int cycl
 ```
 
 指定本地音频文件来和麦克风采集的音频流进行混音和替换(用音频文件替换麦克风采集的音频流)， 可以通过参数选择是否让对方听到本地播放的音频和指定循环播放的次数。
-
 
 > 请在频道内调用该方法，如果在频道外调用该方法可能会出现问题。
 
@@ -4794,8 +4571,6 @@ int stopAudioMixing();
 </tbody>
 </table>
 
-
-
 #### 暂停播放伴奏 (pauseAudioMixing)
 
 ```
@@ -4824,8 +4599,6 @@ int pauseAudioMixing();
 </tbody>
 </table>
 
-
-
 #### 恢复播放伴奏 (resumeAudioMixing)
 
 ```
@@ -4853,8 +4626,6 @@ int resumeAudioMixing();
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 调节伴奏音量 (adjustAudioMixingVolume)
 
@@ -4886,8 +4657,6 @@ int adjustAudioMixingVolume(int volume);
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 获取伴奏时长 (getAudioMixingDuration)
 
@@ -4928,7 +4697,6 @@ int setAudioMixingPosition(int pos /*in ms*/);
 </tbody>
 </table>
 
-
 #### 开始客户端录音 (startAudioRecording)
 
 ```
@@ -4937,10 +4705,9 @@ int startAudioRecording(const char* filePath, AUDIO_RECORDING_QUALITY_TYPE quali
 
 Agora SDK 支持通话过程中在客户端进行录音。该方法录制频道内所有用户的音频，并生成一个包含所有用户声音的录音文件，录音文件格式可以为:
 
--   wav : 文件大，音质保真度高
+- wav : 文件大，音质保真度高
 
--   aac : 文件小，有一定的音质保真度损失
-
+- aac : 文件小，有一定的音质保真度损失
 
 请确保应用程序里指定的目录存在且可写。该接口需在加入频道之后调用。如果调用 `leaveChannel()` 时还在录音，录音会自动停止。
 
@@ -4975,8 +4742,6 @@ Agora SDK 支持通话过程中在客户端进行录音。该方法录制频道�
 </tbody>
 </table>
 
-
-
 #### 停止客户端录音 (stopAudioRecording)
 
 ```
@@ -5004,8 +4769,6 @@ int stopAudioRecording();
 <tr/>
 </tbody>
 </table>
-
-
 
 #### 调节录音信号音量 (adjustRecordingSignalVolume)
 
@@ -5047,8 +4810,6 @@ int adjustRecordingSignalVolume(int volume);
 </tbody>
 </table>
 
-
-
 #### 调节播放信号音量 (adjustPlaybackSignalVolume)
 
 ```
@@ -5089,7 +4850,6 @@ int adjustPlaybackSignalVolume(int volume);
 </tbody>
 </table>
 
-
 ### 主回调事件 (IRtcEngineEventHandler)
 
 agora::IRtcEngineEventHandler 接口类用于 SDK 向应用程序发送回调事件通知，应用程序通过继承该接口类的方法获取 SDK 的事件通知。接口类的所有方法都有缺省（空）实现，应用程序可以根据需要只继承关心的事件。
@@ -5123,15 +4883,13 @@ virtual void onJoinChannelSuccess(const char* channel, uid_t uid, int elapsed);
 </tbody>
 </table>
 
-
-
 #### 重新加入频道回调 (onRejoinChannelSuccess)
 
 ```
 virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed);
 ```
 
-有时候由于网络原因，客户端可能会和服务器失去连接，SDK会进行自动重连，自动重连成功后触发此回调方法。
+有时候由于网络原因，客户端可能会和服务器失去连接，SDK 会进行自动重连，自动重连成功后触发此回调方法。
 
 <table>
 <colgroup>
@@ -5154,15 +4912,13 @@ virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed)
 </tbody>
 </table>
 
-
-
 #### 发生警告回调 (onWarning)
 
 ```
 virtual void onWarning(int warn, const char* msg);
 ```
 
-该回调方法表示SDK运行时出现了（网络或媒体相关的）警告。通常情况下，SDK上报的警告信息应用程序可以忽略，SDK会自动恢复。比如和服务器失去连接时，SDK可能会上报ERR_OPEN_CHANNEL_TIMEOUT警告，同时自动尝试重连。
+该回调方法表示 SDK 运行时出现了（网络或媒体相关的）警告。通常情况下，SDK 上报的警告信息应用程序可以忽略，SDK 会自动恢复。比如和服务器失去连接时，SDK 可能会上报 ERR_OPEN_CHANNEL_TIMEOUT 警告，同时自动尝试重连。
 
 <table>
 <colgroup>
@@ -5188,7 +4944,7 @@ virtual void onWarning(int warn, const char* msg);
 virtual void onError(int err, const char* msg);
 ```
 
-该回调方法表示 SDK 运行时出现了（网络或媒体相关的）错误。通常情况下，SDK上报的错误意味着SDK无法自动恢复，需要应用程序干预或提示用户。 比如启动通话失败时，SDK 会上报 ERR_START_CALL 错误。应用程序可以提示用户启动通话失败，并调用 leaveChannel 退出频道。
+该回调方法表示 SDK 运行时出现了（网络或媒体相关的）错误。通常情况下，SDK 上报的错误意味着 SDK 无法自动恢复，需要应用程序干预或提示用户。 比如启动通话失败时，SDK 会上报 ERR_START_CALL 错误。应用程序可以提示用户启动通话失败，并调用 leaveChannel 退出频道。
 
 <table>
 <colgroup>
@@ -5305,8 +5061,6 @@ virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsign
 </tbody>
 </table>
 
-
-
 #### 说话声音音量提示回调 (onAudioVolumeIndication)
 
 ```
@@ -5342,16 +5096,13 @@ virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers, unsigned i
 </tbody>
 </table>
 
-
-
 在返回的 speakers 数组中：
 
--   如果返回的 uid 为 0，即当频道内的说话者为本地用户时，说话者的音量 `volume` 为 `totalVolume`，即频道内的总音量。
+- 如果返回的 uid 为 0，即当频道内的说话者为本地用户时，说话者的音量 `volume` 为 `totalVolume`，即频道内的总音量。
 
--   如果返回的 uid 不是 0，且 volume 为 0，则默认该 uid 对应的远端用户没有说话。
+- 如果返回的 uid 不是 0，且 volume 为 0，则默认该 uid 对应的远端用户没有说话。
 
--   如果有 uid 出现在上次返回的数组中，但不在本次返回的数组中，则默认该 uid 对应的远端用户没有说话。
-
+- 如果有 uid 出现在上次返回的数组中，但不在本次返回的数组中，则默认该 uid 对应的远端用户没有说话。
 
 #### 离开频道回调 (onLeaveChannel)
 
@@ -5359,7 +5110,7 @@ virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers, unsigned i
 virtual void onLeaveChannel(const RtcStats& stat);
 ```
 
-应用程序调用 leaveChannel()方法时，SDK提示应用程序离开频道成功。在该回调方法中，应用程序可以得到此次通话的总通话时长、SDK收发数据的流量等信息。
+应用程序调用 leaveChannel()方法时，SDK 提示应用程序离开频道成功。在该回调方法中，应用程序可以得到此次通话的总通话时长、SDK 收发数据的流量等信息。
 
 **RtcStats 定义**
 
@@ -5414,8 +5165,6 @@ struct RtcStats
 </tbody>
 </table>
 
-
-
 #### 其他用户加入当前频道回调 (onUserJoined)
 
 ```
@@ -5425,10 +5174,10 @@ virtual void onUserJoined(uid_t uid, int elapsed);
 该回调提示有主播加入了频道，并返回该主播的 ID。如果在加入之前，已经有主播在频道中了，新加入的用户也会收到已有主播加入频道的回调。Agora 建议连麦主播不超过 17 人。
 
 > 直播场景下:
-> -   主播间能相互收到新主播加入频道的回调，并能获得该主播的 uid
-> -   观众也能收到新主播加入频道的回调，并能获得该主播的 uid
-> -   当 Web 端加入直播频道时，只要 Web 端有推流，SDK 会默认该 Web 端为主播，并触发该回调
-
+>
+> - 主播间能相互收到新主播加入频道的回调，并能获得该主播的 uid
+> - 观众也能收到新主播加入频道的回调，并能获得该主播的 uid
+> - 当 Web 端加入直播频道时，只要 Web 端有推流，SDK 会默认该 Web 端为主播，并触发该回调
 
 <table>
 <colgroup>
@@ -5448,15 +5197,13 @@ virtual void onUserJoined(uid_t uid, int elapsed);
 </tbody>
 </table>
 
-
-
 #### 其他用户离开当前频道回调 (onUserOffline)
 
 ```
 virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason);
 ```
 
-提示有主播离开了频道（或掉线）。SDK 判断用户离开频道（或掉线）的依据是超时：在一定时间内（15秒）没有收到对方的任何数据包，判定为对方掉线。 在网络较差的情况下，可能会有误报。建议可靠的掉线检测应该由信令来做。
+提示有主播离开了频道（或掉线）。SDK 判断用户离开频道（或掉线）的依据是超时：在一定时间内（15 秒）没有收到对方的任何数据包，判定为对方掉线。 在网络较差的情况下，可能会有误报。建议可靠的掉线检测应该由信令来做。
 
 <table>
 <colgroup>
@@ -5485,15 +5232,13 @@ virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason);
 </tbody>
 </table>
 
-
-
 #### 当前通话统计回调 (onRtcStats)
 
 ```
 virtual void onRtcStats(const RtcStats& stats);
 ```
 
-SDK定期向应用程序报告当前通话的统计信息，每两秒触发一次。
+SDK 定期向应用程序报告当前通话的统计信息，每两秒触发一次。
 
 <table>
 <colgroup>
@@ -5509,8 +5254,6 @@ SDK定期向应用程序报告当前通话的统计信息，每两秒触发一�
 </tr>
 </tbody>
 </table>
-
-
 
 #### 收到远端音频回调 (onFirstRemoteAudioFrame)
 
@@ -5537,9 +5280,6 @@ virtual void onFirstRemoteAudioFrame(uid_t uid, int elapsed)
 </tr>
 </tbody>
 </table>
-
-
-
 
 #### 网络质量报告回调 (onLastmileQuality)
 
@@ -5575,15 +5315,13 @@ virtual void onLastmileQuality(int quality);
 </tbody>
 </table>
 
-
-
 #### 频道内网络质量报告回调 (onNetworkQuality)
 
 ```
 virtual void onNetworkQuality(uid_t uid, int txQuality, int rxQuality);
 ```
 
-该回调每 2 秒触发，向APP报告频道内所有用户当前的上行、下行网络质量。
+该回调每 2 秒触发，向 APP 报告频道内所有用户当前的上行、下行网络质量。
 
 <table>
 <colgroup>
@@ -5626,8 +5364,6 @@ virtual void onNetworkQuality(uid_t uid, int txQuality, int rxQuality);
 </tbody>
 </table>
 
-
-
 #### 用户静音回调 (onUserMuteAudio)
 
 ```
@@ -5635,7 +5371,6 @@ virtual void onUserMuteAudio(uid_t uid, bool muted);
 ```
 
 提示有其他用户已将其音频流静音（或取消静音）。
-
 
 > 现阶段，当频道内主播数超过 20 人，该回调会失效。后续会改进。
 
@@ -5660,7 +5395,6 @@ virtual void onUserMuteAudio(uid_t uid, bool muted);
 </tr>
 </tbody>
 </table>
-
 
 #### 网络中断回调 (onConnectionInterrupted)
 
@@ -5720,8 +5454,6 @@ virtual void onStreamMessage(uid_t uid, int streamId, const char* data, size_t l
 </tbody>
 </table>
 
-
-
 #### 接收对方数据流消息错误的回调 (onStreamMessageError)
 
 ```
@@ -5761,8 +5493,6 @@ virtual void onStreamMessageError(uid_t uid, int streamId, int code, int missed,
 </tr>
 </tbody>
 </table>
-
-
 
 #### Token 过期回调 (onRequestToken)
 
@@ -5805,8 +5535,6 @@ virtual void onAudioEffectFinished(int soundId)
 </tbody>
 </table>
 
-
-
 #### 监测到活跃用户回调 (onActiveSpeaker)
 
 ```
@@ -5830,10 +5558,8 @@ virtual void onActiveSpeaker(uid_t uid);
 </tbody>
 </table>
 
-
-> -   你需要开启 `enableAudioVolumeIndication` 方法才能收到该回调。
-> -   uid 返回的是当前时间段内声音最大的用户 uid，而不是瞬时声音最大的用户 uid。
-
+> - 你需要开启 `enableAudioVolumeIndication` 方法才能收到该回调。
+> - uid 返回的是当前时间段内声音最大的用户 uid，而不是瞬时声音最大的用户 uid。
 
 #### 上下麦回调 (onClientRoleChanged)
 
@@ -5861,10 +5587,6 @@ virtual void onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newR
 </tbody>
 </table>
 
-
-
-
 ### 错误代码和警告代码 - Agora Native SDK
 
 详见 [错误代码和警告代码](/cn/API%20Reference/the_error_native)。
-

@@ -3,6 +3,7 @@ title: 跑通示例项目
 platform: Cocos2d-x
 updatedAt: 2021-02-18 02:41:54
 ---
+
 Agrora 在 GitHub 上提供一个开源的示例项目 [Cocos2d-x](https://github.com/AgoraIO-Community/Agora-Cocos-Quickstart/tree/master/Cocos2d-x)，展示如何在 Cocos2d-x 游戏中集成 Agora SDK，实现基础的音视频通话。
 
 本文介绍如何快速跑通该示例项目，体验 Agora 语音通话效果。
@@ -30,7 +31,6 @@ Agrora 在 GitHub 上提供一个开源的示例项目 [Cocos2d-x](https://githu
 
   <div class="alert note">如果你的网络环境部署了防火墙，请参考<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a >以正常使用 Agora 服务。</div>
 
-
 ## 操作步骤
 
 ### 1. 创建 Agora 项目
@@ -41,7 +41,7 @@ Agrora 在 GitHub 上提供一个开源的示例项目 [Cocos2d-x](https://githu
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
- ![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
+![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
 
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID + Token。**
 
@@ -63,11 +63,11 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 1. 在控制台的[项目管理](https://console.agora.io/projects)页面，点击已创建项目的 ![](https://web-cdn.agora.io/docs-files/1574923151660) 图标，打开 **Token** 页面。
 
-	![](https://web-cdn.agora.io/docs-files/1574922827899)
+   ![](https://web-cdn.agora.io/docs-files/1574922827899)
 
-2. 输入一个频道名，例如 test，然后点击**生成临时Token**。临时 Token 的有效期为 24 小时。
+2. 输入一个频道名，例如 test，然后点击**生成临时 Token**。临时 Token 的有效期为 24 小时。
 
-	![](https://web-cdn.agora.io/docs-files/1574928082984)
+   ![](https://web-cdn.agora.io/docs-files/1574928082984)
 
 <div class="alert note">临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见<a href="token_server">生成 Token</a >。</div>
 
@@ -109,8 +109,7 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 2. 将 `libs` 文件夹下的 `AgoraRtcKit.framework` 和 `AgoraRtcCryptoLoader.framework` 文件夹复制到 `Cocos2d-x/sdk/ios/agora` 文件夹下。
 
-  <div class="alert note">如果你需要支持模拟器，则需要将 <code>libs/ALL_ARCHITECTURE</code> 文件夹下的 <code>AgoraRtcKit.framework</code> 和 <code>AgoraRtcCryptoLoader.framework</code> 文件夹复制到 <code>Cocos2d-x/sdk/ios/agora</code> 文件夹下。该路径下的动态库包含 x86_64 架构，会影响 app 在 App Store 的发布，你需要在将 app 发布至 App Store 前移除 x86_64 架构。</div> 
-
+  <div class="alert note">如果你需要支持模拟器，则需要将 <code>libs/ALL_ARCHITECTURE</code> 文件夹下的 <code>AgoraRtcKit.framework</code> 和 <code>AgoraRtcCryptoLoader.framework</code> 文件夹复制到 <code>Cocos2d-x/sdk/ios/agora</code> 文件夹下。该路径下的动态库包含 x86_64 架构，会影响 app 在 App Store 的发布，你需要在将 app 发布至 App Store 前移除 x86_64 架构。</div>
 
 ### 6. 集成 Cocos2d-x 引擎
 
@@ -137,9 +136,7 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 <div class="alert note">确保此处填入的频道名，和生成临时 Token 时填入的频道名是一致的。</div>
 
-
 ![](https://web-cdn.agora.io/docs-files/1606017122027)
-
 
 ## 常见问题
 

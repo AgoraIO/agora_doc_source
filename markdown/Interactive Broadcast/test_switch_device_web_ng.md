@@ -3,6 +3,7 @@ title: 测试和切换音视频设备
 platform: Web
 updatedAt: 2021-03-15 08:28:13
 ---
+
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 Web SDK 3.x 或更早版本，请查看<a href="./test_switch_device_web?platform=Web">测试音视频设备</a>。</li></div>
 
 ## 功能描述
@@ -57,6 +58,7 @@ AgoraRTC.getDevices()
 ### 测试音频播放设备
 
 Agora Web SDK 不提供 API 用于音频播放设备的测试。你可以通过以下方法测试音频播放设备：
+
 - 使用 HTML5 的 `<audio>` 元素在页面上创建一个音频播放器，让用户播放在线音频文件并确认是否有声音。
 - 采集完麦克风后，调用 `MicrophoneAudioTrack.play` 来播放麦克风声音，让用户主观确认是否可以听到麦克风声音。
 
@@ -68,11 +70,14 @@ Agora Web SDK 不提供 API 用于音频播放设备的测试。你可以通过�
 
 ```js
 // 切换摄像头。
-videoTrack.setDevice("<NEW_DEVICE_ID>").then(() => {
-  console.log("set device success");
-}).catch(e => {
-  console.log("set device error", e);
-});
+videoTrack
+  .setDevice("<NEW_DEVICE_ID>")
+  .then(() => {
+    console.log("set device success");
+  })
+  .catch(e => {
+    console.log("set device error", e);
+  });
 ```
 
 > 支持在发布后调用，在部分移动设备上该方法可能不生效。
@@ -84,19 +89,20 @@ Agora Web SDK 提供 `AgoraRTC.onMicrophoneChanged` 和 `AgoraRTC.onCameraChange
 > 如果终端用户使用了虚拟设备或故障设备，在进行设备拔插操作时，热拔插的逻辑可能会导致无画面或者无声。
 
 ```js
-AgoraRTC.onMicrophoneChanged = async (changedDevice) => {
+AgoraRTC.onMicrophoneChanged = async changedDevice => {
   // 插入设备时，切换到新插入的设备。
   if (changedDevice.state === "ACTIVE") {
     microphoneTrack.setDevice(changedDevice.device.deviceId);
-  // 拔出设备为当前设备时，切换到一个已有的设备。
+    // 拔出设备为当前设备时，切换到一个已有的设备。
   } else if (changedDevice.device.label === microphoneTrack.getTrackLabel()) {
     const oldMicrophones = await AgoraRTC.getMicrophones();
     oldMicrophones[0] && microphoneTrack.setDevice(oldMicrophones[0].deviceId);
   }
-}
+};
 ```
 
 ### API 参考
+
 - [getDevices](./API%20Reference/web/v4.2.1/interfaces/iagorartc.html#getdevices)
 - [getCameras](./API%20Reference/web/v4.2.1/interfaces/iagorartc.html#getcameras)
 - [getMicrophones](./API%20Reference/web/v4.2.1/interfaces/iagorartc.html#getmicrophones)
