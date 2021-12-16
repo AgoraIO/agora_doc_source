@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remoteaudiostats">
-    <title><ph keyref="RemoteAudioStats"/></title>
+    <title><ph keyref="RemoteAudioStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">Audio statistics of the remote user.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -136,12 +136,47 @@
     qualityChangedReason: number;
     mosValue: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class RemoteAudioStats {
+
+  int uid;
+  NetworkQuality quality;
+  int networkTransportDelay;
+  int jitterBufferDelay;
+  int audioLossRate;
+  int numChannels;
+  int receivedSampleRate;
+  int receivedBitrate;
+  int totalFrozenTime;
+  int frozenRate;
+  int totalActiveTime;
+  int publishDuration;
+  ExperienceQualityType qoeQuality;
+  ExperiencePoorReason qualityChangedReason;
+  int mosValue;
+
+  RemoteAudioStats(
+    this.uid,
+    this.quality,
+    this.networkTransportDelay,
+    this.jitterBufferDelay,
+    this.audioLossRate,
+    this.numChannels,
+    this.receivedSampleRate,
+    this.receivedBitrate,
+    this.totalFrozenTime,
+    this.frozenRate,
+    this.totalActiveTime,
+    this.publishDuration,
+    this.qoeQuality,
+    this.qualityChangedReason,
+    this.mosValue,
+  );
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
   <pt>uid</pt>
@@ -149,16 +184,15 @@
        </plentry>
        <plentry>
   <pt>quality</pt>
-           <pd>The quality of the audio stream sent by the user.  <ph props="ios mac windows electron unity">See <xref
-                                keyref="QUALITY_TYPE"/>.</ph><p props="android">
+           <pd>The quality of the audio stream sent by the user.  <ph props="ios mac windows electron unity">See <xref keyref="QUALITY_TYPE" />.</ph><p props="android">
                             <ul id="qualitytype">
-                                <li><ph keyref="QUALITY_UNKNOWN"/> (0): The quality is unknown.</li>
-                                <li><ph keyref="QUALITY_EXCELLENT"/> (1): The quality is excellent.</li>
-                                <li><ph keyref="QUALITY_GOOD"/> (2): The network quality seems excellent, but the bitrate can be slightly lower than excellent.</li>
-                                <li><ph keyref="QUALITY_POOR"/> (3): Users can feel the communication is slightly impaired.</li>
-                                <li><ph keyref="QUALITY_BAD"/> (4): Users cannot communicate smoothly.</li>
-                                <li><ph keyref="QUALITY_VBAD"/> (5): The quality is so bad that users can barely communicate.</li>
-                                <li><ph keyref="QUALITY_DOWN"/> (6): The network is down, and users cannot communicate at all.</li>
+                                <li><ph keyref="QUALITY_UNKNOWN" /> (0): The quality is unknown.</li>
+                                <li><ph keyref="QUALITY_EXCELLENT" /> (1): The quality is excellent.</li>
+                                <li><ph keyref="QUALITY_GOOD" /> (2): The network quality seems excellent, but the bitrate can be slightly lower than excellent.</li>
+                                <li><ph keyref="QUALITY_POOR" /> (3): Users can feel the communication is slightly impaired.</li>
+                                <li><ph keyref="QUALITY_BAD" /> (4): Users cannot communicate smoothly.</li>
+                                <li><ph keyref="QUALITY_VBAD" /> (5): The quality is so bad that users can barely communicate.</li>
+                                <li><ph keyref="QUALITY_DOWN" /> (6): The network is down, and users cannot communicate at all.</li>
                             </ul>
                         </p>
                     </pd>
@@ -229,7 +263,7 @@
      <dd>v3.3.0</dd>
  </dlentry>
       </dl>
-      <p>Quality of experience (QoE) of the local user when receiving the remote audio stream. See <xref keyref="EXPERIENCE_QUALITY_TYPE"/>.</p>
+      <p>Quality of experience (QoE) of the local user when receiving the remote audio stream. See <xref keyref="EXPERIENCE_QUALITY_TYPE" />.</p>
   </pd>
        </plentry>
        <plentry props="rtc">
@@ -241,7 +275,7 @@
      <dd>v3.3.0</dd>
  </dlentry>
       </dl>
-      <p>The reason for poor QoE of the local user when receiving the remote audio stream. See <xref keyref="EXPERIENCE_POOR_REASON"/>.</p>
+      <p>The reason for poor QoE of the local user when receiving the remote audio stream. See <xref keyref="EXPERIENCE_POOR_REASON" />.</p>
   </pd>
        </plentry>
        <plentry>
@@ -254,7 +288,7 @@
                    </dlentry>
                </dl>
                <p>The quality of the remote audio stream in the reported interval. The quality is determined by the Agora real-time audio MOS (Mean Opinion Score) measurement method. The return value range is [0, 500]. Dividing the return value by 100 gets the MOS score, which ranges from 0 to 5. The higher the score, the better the audio quality.</p>
-               
+
                <p> The subjective perception of audio quality corresponding to the Agora real-time audio MOS scores is as follows:<simpletable>
                                 <sthead>
                                     <stentry>MOS score</stentry>
