@@ -24,17 +24,17 @@
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioMixingPlaybackSpeed(int speed);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry>
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v3.5.1</dd>
                 </dlentry>
             </dl>
-            <note type="attention" id="note">Call this method after calling <xref keyref="open"/>.</note>
+            <note type="attention" id="note"><ph props="rtc-ng">Call<xref keyref="open"/> this method after calling . <ph props="rtc">You need to call this method after calling<xref keyref="startAudioMixing2" />  and receiving <xref keyref="onAudioMixingStateChanged" /></ph>the <ph props="rtc"><ph>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>)</ph> callback.</ph></note>
         </section>
         <section id="parameters"><title>Parameter</title>
             <parml>
@@ -44,11 +44,11 @@
                         <li>50: Half the original speed.</li>
                         <li>100: The original speed.</li>
                         <li>400: 4 times the original speed.</li>
-                        </ul></pd>
+                    </ul></pd>
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul>
                 <li>0: Success.</li>
