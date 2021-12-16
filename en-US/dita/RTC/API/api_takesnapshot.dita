@@ -26,12 +26,12 @@
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> takeSnapshot(String channel, int uid, String filePath);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry>
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v3.5.2</dd>
                 </dlentry>
@@ -39,7 +39,7 @@
             <p>This method takes a snapshot of a video stream from the specified user, generates a JPG image, and saves it to the specified path.</p>
             <p>The method is asynchronous, and the SDK has not taken the snapshot when the method call returns.  After a successful method call, the SDK triggers <xref keyref="onSnapshotTaken"/> callback to report whether the snapshot is successfully taken as well as the details for the snapshot taken.<note type="attention"><ul>
                         <li>Call this method after joining a channel.</li>
-                        <li>If the video of the specified user is pre-processed, for example, added with watermarks or image enhancement effects, the generated snapshot also includes the pre-processing effects.</li>
+                        <li>如果用户的视频经过前处理，例如，添加了水印或美颜，生成的截图会包含前处理效果。</li>
                     </ul></note>
                 </p>
         </section>
@@ -51,16 +51,22 @@
                 </plentry>
                 <plentry>
                     <pt>uid</pt>
-                    <pd>The user ID. Set <parmname>uid</parmname> as 0 if you want to take a snapshot of the local user's video.</pd>
+                    <pd>The user ID. Set <codeph>uid</codeph> as 0 if you want to take a snapshot of the local user's video.</pd>
                 </plentry>
                 <plentry>
                     <pt>filePath</pt>
-                    <pd>The local path (including the filename extensions) of the snapshot. For example: <codeph><ph keyref="imagePath-example"/></codeph>. Ensure that the path you specify exists and is writable.</pd>
+                    <pd><p>The local path (including the filename extensions) of the snapshot. For example: .<ul>
+                        <li props="windows unity electron flutter">Windows: <ph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\agorasdk.log。</ph></li>
+                        <li props="windows ios unity flutter">iOS:<ph> App Sandbox/Library/caches/agorasdk.log</ph></li>
+                        <li props="windows mac unity flutter electron">macOS: <ph>～/Library/Logs/example.jpg</ph></li>
+                        <li props="windows android unity flutter">Android:<ph> /storage/emulated/0/Android/data/&lt;package name>/files/agorasdk.log</ph></li>
+                    </ul>Ensure that the path you specify exists and is writable.</p></pd>
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
-            <title>Returns</title><ul>
+        <section id="return_values" props="native electron unity">
+            <title>Returns</title>
+            <ul>
                 <li>0: Success.</li>
                 <li>&lt; 0: Failure.</li>
             </ul>
