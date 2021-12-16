@@ -24,12 +24,12 @@
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setAudioMixingDualMonoMode(AudioMixingDualMonoMode mode);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry>
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v3.5.1</dd>
                 </dlentry>
@@ -41,11 +41,11 @@
                 <li>This method only applies to stereo audio files.</li>
             </ul></note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameters</title>
             <parml>
                 <plentry>
                     <pt>mode</pt>
-                    <pd>The channel mode. <ph props="windows mac ios">For details, see <xref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>.</ph><ul props="android">
+                    <pd>The channel mode. <ph props="windows mac ios flutter">For details, see <xref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>.</ph><ul props="android">
                             <li><ph keyref="AUDIO_MIXING_DUAL_MONO_AUTO"/> (0): Original mode.</li>
                             <li><ph keyref="AUDIO_MIXING_DUAL_MONO_L"/> (1): Left channel mode. This mode replaces the audio of the right channel with the audio of the left channel, which means the user can only hear the audio of the left channel.</li>
                             <li><ph keyref="AUDIO_MIXING_DUAL_MONO_R"/> (2): Right channel mode. This mode replaces the audio of the left channel with the audio of the right channel, which means the user can only hear the audio of the right channel.</li>
@@ -55,7 +55,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity electron">
             <title>Returns</title>
             <ul>
                 <li>0: Success.</li>

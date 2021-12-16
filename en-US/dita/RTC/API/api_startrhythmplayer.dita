@@ -19,12 +19,13 @@
                 <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="unity" outputclass="language-csharp" />
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRhythmPlayer(
+      String sound1, String sound2, RhythmPlayerConfig config);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-                <dlentry>
+            <dl outputclass="since" props="rtc">
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v3.4.0</dd>
                 </dlentry>
@@ -38,8 +39,8 @@
                 <plentry>
                     <pt>sound1</pt>
                     <pd id="rhythm_sound"><p props="android">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <codeph>/sdcard/emulated/0/audio.mp4</codeph>. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. For more information, see <xref href="https://developer.android.com/guide/topics/media/media-formats?hl=zh-cn" format="html" scope="external">Media Formats Supported by Android</xref>.</p>
-                        <p props="ios">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. iOS/macOS: For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. For more information, see <xref href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/MultimediaPG/UsingAudio/UsingAudio.html#//apple_ref/doc/uid/TP40009767-CH2-SW28" format="html" scope="external">Best Practices for iOS Audio</xref>.</p>
-                        <p props="flutter rn">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: Android: <codeph>/sdcard/emulated/0/audio.mp4</codeph>, iOS: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref href="https://developer.android.com/guide/topics/media/media-formats?hl=zh-cn" format="html" scope="external">Media Formats Supported by Android</xref> or <xref href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/MultimediaPG/UsingAudio/UsingAudio.html#//apple_ref/doc/uid/TP40009767-CH2-SW28" format="html" scope="external">Best Practices for iOS Audio</xref>.</p>
+                        <p props="ios">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. iOS/macOS: For example: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. For more information, see <xref href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/MultimediaPG/UsingAudio/UsingAudio.html#//apple_ref/doc/uid/TP40009767-CH2-SW28" format="html" scope="external">Media Playback Programming Guide</xref>.</p>
+                        <p props="flutter rn">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: Android: <codeph>/sdcard/emulated/0/audio.mp4</codeph>, iOS: <codeph>/var/mobile/Containers/Data/audio.mp4</codeph>. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref href="https://developer.android.com/guide/topics/media/media-formats?hl=zh-cn" format="html" scope="external">Media Formats Supported by Android</xref> or <xref href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/MultimediaPG/UsingAudio/UsingAudio.html#//apple_ref/doc/uid/TP40009767-CH2-SW28" format="html" scope="external">Media Playback Programming Guide</xref>.</p>
                     </pd>
                 </plentry>
                 <plentry>
@@ -52,7 +53,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul>
                 <li>0: Success.</li>

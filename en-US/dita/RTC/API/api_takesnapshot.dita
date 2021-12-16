@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="takeSnapshot">
+    <title><ph keyref="takeSnapshot"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Takes a snapshot of a video stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="takeSnapshot"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> takeSnapshot(String channel, int uid, String filePath);</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since" props="rtc">
+                <dlentry props="native">
+                    <dt>Since</dt>
+                    <dd>v3.5.2</dd>
+                </dlentry>
+            </dl>
+            <p>This method takes a snapshot of a video stream from the specified user, generates a JPG image, and saves it to the specified path.</p>
+            <p>The method is asynchronous, and the SDK has not taken the snapshot when the method call returns. After a successful method call, 
+                the SDK triggers the <xref keyref="onSnapshotTaken"/> callback to report whether the snapshot is successfully taken as well as the details of the snapshot taken.</p>
+            <note type="note">
+                <ul>
+                    <li>Call this method after joining a channel.</li>
+                    <li>If the video of the specified user is pre-processed, for example, added with watermarks or image enhancement effects, the generated snapshot
+                        also includes the pre-processing effects.</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>channel</pt>
+                    <pd>The channel name.</pd>
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>The user ID of the user. Set it as 0 if you want to take a snapshot of the local user's video.</pd>
+                </plentry>
+                <plentry>
+                    <pt>filePath</pt>
+                    <pd><p>The local path (including the filename extensions) of the snapshot. For example,
+                    <ul>
+                        <li props="unity electron flutter windows">Windows: <ph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.jpg</ph></li>
+                        <li props="unity flutter windows ios">iOS: <ph>/App Sandbox/Library/Caches/example.jpg</ph></li>
+                        <li props="unity flutter windows mac electron">macOS: <ph>～/Library/Logs/example.jpg</ph></li>
+                        <li props="unity flutter windows android">Android: <ph>/storage/emulated/0/Android/data/&lt;package name>/files/example.jpg</ph></li>
+                    </ul>Ensure that the path you specify exists and is writable.</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="native unity electron">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

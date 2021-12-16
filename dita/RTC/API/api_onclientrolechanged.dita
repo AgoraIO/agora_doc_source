@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onclientrolechanged">
-    <title><ph keyref="onClientRoleChanged"/></title>
+    <title><ph keyref="onClientRoleChanged" /></title>
     <shortdesc id="short"><ph id="shortdesc">直播场景下用户角色已切换回调。</ph></shortdesc>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
@@ -13,37 +13,37 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual void onClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CLIENT_ROLE_CHANGED, cb: (
     oldRole: CLIENT_ROLE_TYPE, 
-    newRole: CLIENT_ROLE_TYPE) => void
+    newRole: CLIENT_ROLE_TYPE) =&gt; void
     ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnClientRoleChanged(CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">ClientRoleCallback? clientRoleChanged;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-   <p props="rtc">该回调是由本地用户在加入频道后调用 <xref keyref="setClientRole2"/> 改变用户角色触发的。</p>
-            <p props="rtc-ng">该回调是由本地用户在加入频道后调用 <xref keyref="setClientRole1"/> 改变用户角色触发的。</p>
+   <p props="rtc">该回调是由本地用户在加入频道后调用 <xref keyref="setClientRole2" /> 改变用户角色触发的。</p>
+            <p props="rtc-ng">该回调是由本地用户在加入频道后调用 <xref keyref="setClientRole1" /> 改变用户角色触发的。</p>
         </section>
     <section id="parameters">
-        <title>参数</title>
+        <title><ph keyref="callback-section-title" /></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" />
         <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry id="oldRole">
                     <pt>oldRole</pt>
-                    <pd>切换前的角色：<ph props="windows ios mac electron unity"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
+                    <pd>切换前的角色：<ph props="windows ios mac electron unity flutter"><xref keyref="CLIENT_ROLE_TYPE" />。</ph>
                         <ul conkeyref="setClientRole1/clientroletype" props="android">
-                            <li/>
+                            <li />
                         </ul>
                     </pd>
                 </plentry>
                 <plentry id="newRole">
                     <pt>newRole</pt>
-                    <pd>切换后的角色：<ph props="windows ios mac electron unity"><xref keyref="CLIENT_ROLE_TYPE"/>。</ph>
+                    <pd>切换后的角色：<ph props="windows ios mac electron unity flutter"><xref keyref="CLIENT_ROLE_TYPE" />。</ph>
                         <ul conkeyref="setClientRole1/clientroletype" props="android">
-                            <li/>
+                            <li />
                         </ul>
                     </pd>
                 </plentry>

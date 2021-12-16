@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onaudiosubscribestatechanged">
-    <title><ph keyref="onAudioSubscribeStateChanged"/></title>
+    <title><ph keyref="onAudioSubscribeStateChanged" /></title>
     <shortdesc id="short"><ph id="shortdesc">音频订阅状态发生改变回调。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -37,31 +37,31 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
      oldState: STREAM_SUBSCRIBE_STATE,
      newState: STREAM_SUBSCRIBE_STATE,
      elapseSinceLastState: number
-     ) => void): this;</codeblock>
+     ) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioSubscribeStateChanged(string channel, uint uid, STREAM_SUBSCRIBE_STATE oldState,
             STREAM_SUBSCRIBE_STATE newState, int elapseSinceLastState)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">StreamSubscribeStateCallback? audioSubscribeStateChanged;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
    
    <dl outputclass="since" props="rtc">
-       <dlentry>
+       <dlentry props="native">
   <dt>自从</dt>
   <dd>v3.1.0</dd>
        </dlentry>
    </dl>
         </section>
         <section id="parameters">
-   <title>参数</title>
+   <title><ph keyref="callback-section-title" /></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" />
    <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry>
-                    <pt props="android windows unity">channel</pt>
+                    <pt props="android windows unity flutter">channel</pt>
                     <pt props="ios mac">channelId</pt>
                     <pd>频道名。</pd>
                 </plentry>
@@ -71,11 +71,11 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
                 </plentry>
                 <plentry id="oldState">
                     <pt>oldState</pt>
-                    <pd>之前的订阅状态，详见 <xref keyref="STREAM_SUBSCRIBE_STATE"/>。</pd>
+                    <pd>之前的订阅状态，详见 <xref keyref="STREAM_SUBSCRIBE_STATE" />。</pd>
                 </plentry>
                 <plentry id="newState">
                     <pt>newState</pt>
-                    <pd>当前的订阅状态，详见 <apiname keyref="STREAM_SUBSCRIBE_STATE"/>。</pd>
+                    <pd>当前的订阅状态，详见 <apiname keyref="STREAM_SUBSCRIBE_STATE" />。</pd>
                 </plentry>
                 <plentry id="elapseSinceLastState">
                     <pt>elapseSinceLastState</pt>
