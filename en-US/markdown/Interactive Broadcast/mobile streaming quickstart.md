@@ -1,10 +1,11 @@
-This page shows how to start the mobile streaming with the Agora SDK. In a live streaming channel, a user joins the channel either as the host or an audience member. 
+This page shows how to start mobile streaming with the Agora SDK. In a live streaming channel, a user joins a live streaming channel as either the host or an audience member. 
 
 Agora also provides an open-source [sample project](https://github.com/AgoraIO/API-Examples/tree/dev/rsk/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/CDNStreaming) for your reference.
 
 <div class="alert note">
-The domain name used in the sample project is for demonstration purpose only. In a production context, ensure you use domain names appropriate for production.
+The domain name used in the sample project is for demonstration purposes only. In a production context, ensure you use domain names appropriate for production.
 </div>
+
 
 ## Prerequisites
 
@@ -13,15 +14,15 @@ The domain name used in the sample project is for demonstration purpose only. In
 - A mobile device that runs Android 4.1 or later.
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up?platform=All%20Platforms) and [App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id).
 
-<div class="alert note">If your network has a firewall, follow the instructions in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms">Firewall Requirements</a> so that you can have a better experience when using Agora's services. </div>
+<div class="alert note">If your network has a firewall, follow the instructions in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms">Firewall Requirements</a> to avoid difficulties when using Agora products and services.</div>
 
 ## Project setup
 
 ### Create an Android project
 
-To create a new Android project, follow these steps:
+To create a new Android project, follow these steps.
 
- If you have already created a project, see [Integrate the Agora SDK into your project](#integrate_sdk) for the next step.
+ <div class="alert note"> If you have already created a project, see [Integrate the Agora SDK into your project](#integrate_sdk) for the next step.</div>
 
 <details>
 	<summary><font color="#3ab7f8">Create an Android project</font></summary>
@@ -29,15 +30,15 @@ To create a new Android project, follow these steps:
 1. In **Android Studio**, click **Start a new Android Studio project**.
 2. In the **Select a Project Template** page, select **Phone and Tablet** > **Empty Activity** and click **Next**.
 3. In the <b>Configure Your Project</b> page, you need to fill in the following information：
-  *  <b>Name</b>: Set the name of your project. For example, HelloAgora.
-  * <b>Package name</b>: Set the package name of your project. For example, io.agora.helloagora.
+  *  <b>Name</b>: Set the name of your project. For example, *HelloAgora*.
+  * <b>Package name</b>: Set the package name of your project. For example, *io.agora.helloagora*.
   * <b>Save location</b>：Select the directory where your project is saved.
   * <b>Language</b>：Select the programming language. For example,  Java.
   * <b>Minimum API level</b>: The minimum API level for your project.
 
 4. Click <b>Finish</b>. 
 
-<div class="alert info">This quickstart uses <b>Android Studio 3.6.2</b> for demonstration. You can also refer to the Android Studio documentation<a href="https://developer.android.com/training/basics/firstapp"> to build your first app</a>.</div>
+<div class="alert info">This quickstart uses <b>Android Studio 3.6.2.</b> for demonstration. You can also refer to the Android Studio documentation<a href="https://developer.android.com/training/basics/firstapp"> to build your first app</a>.</div>
 
 </details>
 
@@ -59,7 +60,7 @@ To Integrate the SDK into your project, take the following steps:
    | `x86` folder             | `/app/src/main/jniLibs/`  |
    | `x86_64` folder          | `/app/src/main/jniLibs/`  |
 
-   > If you use the armeabi architecture, copy files from the `armeabi-v7a` folder to the `armeabi` file of your project. Contact [support@agora.io](mailto: support@agora.io) if you encounter any incompability issue.
+   > If you use the armeabi architecture, copy files from the `armeabi-v7a` folder to the `armeabi` file of your project. Contact [support@agora.io](mailto: support@agora.io) if you encounter any compatibility issues.
 
 ### Add permissions
 
@@ -84,16 +85,17 @@ In `/app/src/main/AndroidManifest.xml`, add the following permissions according 
 
 This section shows how to implement the following functions on the host's client:
 
-1. In the single host scenario, the host pushes streams to the CDN directly.
-2. The host switches between pushing streams to the CDN to co-hosting across channels. 
+- In the single host scenario, the host pushes streams to the CDN directly.
+
+- The host switches between pushing streams to the CDN to co-hosting across channels. 
 
 ### Create the UI
 
 To create the UI for the host's client, Agora recommends adding the following UI elements:
 
-- The video view of the host
+- The video view of the host.
 - A button to start and end the streaming.
-- A button to switch to co-hosting across channels.
+- A button to switch to cohosting across channels.
 
 You can also refer to the `fragment_cdn_host.xml` file in the sample project.
 
@@ -250,15 +252,15 @@ public void onDestroy() {
 
 ### Switch between scenarios
 
-The following figure shows the API call sequence of the host switching from pushing streams to the CDN directly to co-hosting across channels.
+The following figure shows the API call sequence of the host switching from pushing streams to the CDN directly to cohosting across channels.
 
 ![](https://web-cdn.agora.io/docs-files/1638435980075)
 
-The following figure shows the API call sequence of the host switching from co-hosting across channels to pushing streams to the CDN directly.
+The following figure shows the API call sequence of the host switching from cohosting across channels to pushing streams to the CDN directly.
 
 ![](https://web-cdn.agora.io/docs-files/1638437800143)
 
-#### Logic for switching between single host and co-hosting scenarios
+#### Logic for switching between single host and cohosting scenarios
 
 ```java
 private void stopStreaming(){
@@ -272,7 +274,7 @@ private void stopStreaming(){
 private final View.OnClickListener streamingOnCLickListener = new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        // In this sample code, rtcStreaming is defined as co-hosting across channels.
+        // In this sample code, rtcStreaming is defined as cohosting across channels.
         if (rtcStreaming){
             engine.removePublishStreamUrl(getUrl());
             engine.leaveChannel();
@@ -314,7 +316,7 @@ public void onDirectCdnStreamingStateChanged(DirectCdnStreamingState directCdnSt
                 case STOPPED:
                     if(rtcStreaming){
                         // Set the video profile of the host in the channel.
-                        // This step is optional in the single host scenario, and is necessary if you need to swtich from single host scenario to co-hosting across channels.
+                        // This step is optional in a single host scenario, but it is necessary if you need to swtich from a single host scenario to cohosting across channels.
                         VideoEncoderConfiguration.VideoDimensions videoDimensions = ((MainApplication) getActivity().getApplication()).getGlobalSettings().getVideoEncodingDimensionObject();
                         canvas_height = Math.min(videoDimensions.height, videoDimensions.width);
                         canvas_width = Math.max(videoDimensions.height, videoDimensions.width);
@@ -357,7 +359,7 @@ public void onDirectCdnStreamingStateChanged(DirectCdnStreamingState directCdnSt
 }
 ```
 
-#### Start co-hosting across channels
+#### Start cohosting across channels
 
 ```java
 @Override
@@ -443,18 +445,19 @@ private void updateTranscodeLayout() {
 
 ## Implement the audience's client for mobile streaming
 
-This section shows how to implement the following functions on the audience's client:
+This section shows how to implement the following functions on an audience member's client:
 
-1. Users join a channel as an audience member and watch the live stream.
-2. Users join a channel as an audience member and become a co-host during the live streaming.
+- Users join a channel as an audience member and watch the live stream.
+
+- Users join a channel as an audience member and become a cohost during the live streaming.
 
 ### Create the UI
 
-To create the UI for the audience's client, Agora recommends adding the following UI elements：
+To create the UI for an audience member's client, Agora recommends adding the following UI elements：
 
 - The video view.
 - A button to switch the CDN route to watch live streaming.
-- A button to start co-hosting.
+- A button to start cohosting.
 
 You can also see the `fragment_cdn_audience.xml` file in the sample project for reference. 
 
@@ -520,7 +523,7 @@ private boolean checkSelfPermission(String permission, int requestCode) {
 
 #### Open the media streams
 
-Refer to the following codes to open the media streams of CDN live streaming:
+Refer to the following sample codes to open the media streams of CDN live streaming:
 
 ```java
 @Override
@@ -561,7 +564,7 @@ public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
 #### Play the media streams
 
-Refer to the following codes to play the media streams of CDN live streaming:
+Refer to the following sample codes to play the media streams of CDN live streaming:
 
 ```java
 @Override
@@ -592,7 +595,7 @@ public void onPlayerStateChanged(io.agora.mediaplayer.Constants.MediaPlayerState
 
 #### Switch the CDN routes
 
-Refer to the following codes to switch CDN routes to watch the live stream according to your scenarios:
+Refer to the following sample codes to switch CDN routes to watch the live stream according to your scenarios:
 
 ```java
 private void loadAgoraChannels() {
@@ -618,7 +621,7 @@ private final AdapterView.OnItemSelectedListener itemSelectedListener = new Adap
 
 #### Stop watching the live stream
 
-Refer to the following codes to stops watching the live stream:
+Refer to the following sample codes to stops watching the live stream:
 
 ```java
 @Override
@@ -640,9 +643,11 @@ public void onDestroy() {
 
 #### Set the local video view
 
+Refer to the following sample codes to set the local video view:
+
 ```java
 // Enable the video module and start local video preview.
-// Starts the local video preview.
+// Start the local video preview.
 SurfaceView surfaceView = new SurfaceView(this.getActivity());
 surfaceView.setZOrderMediaOverlay(false);
 if (fl_local.getChildCount() > 0) {
@@ -654,7 +659,7 @@ VideoCanvas videoCanvas = new VideoCanvas(surfaceView, Constants.RENDER_MODE_HID
 engine.setupLocalVideo(videoCanvas);
 engine.startPreview();
 engine.enableVideo();
-// Set the video profile of the co-host.
+// Set the video profile of the cohost.
 engine.setVideoEncoderConfiguration(new VideoEncoderConfiguration(
         ((MainApplication) getActivity().getApplication()).getGlobalSettings().getVideoEncodingDimensionObject(),
         VideoEncoderConfiguration.FRAME_RATE.valueOf(((MainApplication) getActivity().getApplication()).getGlobalSettings().getVideoEncodingFrameRate()),
@@ -666,6 +671,8 @@ engine.setDefaultAudioRoutetoSpeakerphone(true);
 ```
 
 #### Join a channel
+
+Refer to the following sample codes to join a channel:
 
 ```java
 private final CompoundButton.OnCheckedChangeListener checkedChangeListener = new CompoundButton.OnCheckedChangeListener() {
@@ -700,6 +707,8 @@ private final CompoundButton.OnCheckedChangeListener checkedChangeListener = new
 ```
 
 #### Set the remote video view
+
+Refer to the following sample codes to set the remote video view:
 
 ```java
 @Override
