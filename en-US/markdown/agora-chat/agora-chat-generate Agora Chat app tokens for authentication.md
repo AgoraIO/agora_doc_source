@@ -1,27 +1,34 @@
-# Generate Agora Chat App Tokens for Authentication
+# Implement an app token server for Agora Chat
 
-Authentication is the process of validating identities. To ensure your app security, Agora Chat provides two types of tokens for authentication: user token and app token. A user token is used to validate the identities of your app users, which gives users the privilege to use some functions of your app. An app token is used to authenticate users assigned with the highest privilege, the admin privileges.
+Authentication is the process of validating identities. Agora uses digital tokens to authenticate users and their privileges before they access an Agora service, such as joining an Agora call, or logging in to Agora Chat.
 
-If you need to call Agora Chat RESTful APIs, you need to obtain an app token and convert this token to an Agora Chat app token. This page shows how to create an app token server and how to convert the app token you obtained to call Agora Chat RESTful APIs. 
+To securely connect to Agora Chat, you use the following token types:
+
+- User token: User level access to Agora Chat from your app using Agora Chat SDK. For details, see [Implement an user token server for Agora Chat]().
+- App token: Admin level access to Agora Chat using the REST API. With admin level access, you can manage your Agora Chat application.
+
+You use Agora Chat app tokens to make authenticated REST calls to Agora Chat. To obtain an Agora Chat app token, you retrieve an app token from your app token server and convert it using the app token obtained.
 
 ## Understand the tech
 
 The following figure shows the workflow of authenticating with Agora Chat app tokens:
 
-![](https://web-cdn.agora.io/docs-files/1639378092974)
+![](https://web-cdn.agora.io/docs-files/1639623639353)
 
-An Agora Chat app token is valid for a maximum of **24 hours**. When you call Agora Chat RESTful APIs on the server side, the Agora Chat server authenticate your identity by reading and validating the information stored in the token. An Agora Chat app token contains the following information:
+An Agora Chat app token is valid for a maximum of **24 hours**. When you call Agora Chat REST APIs, the Agora Chat server reads the information stored in the token and uses it for authentication. An Agora Chat app token contains the following information:
 
 - The App ID of your Agora project
 - The App Certificate of your Agora project
-- The Unix timestamp when the app token expires
+- The Unix timestamp when the Agora Chat app token expires
 
 ## Preprequisites
 
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-account)
-- An [Agora project](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-project) with the [App Certificate](https://docs.agora.io/en/Agora Platform/manage_projects?platform=All Platforms#manage-your-app-certificates) enabled
+- An [Agora project](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-project) with the [App Certificate](https://docs.agora.io/en/Agora Platform/manage_projects?platform=All Platforms#manage-your-app-certificates) and Agora Chat service enabled
+
+> Note: Please contact support@agora.io to enable the Agora Chat service.
+
 - The [App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id)  your Agora project
-- The [org_name]() and [app_name]() of your Agora project
 
 > Note: If your network environment has a firewall, Agora provides firewall whitelists so that you can use Agora Chat with restricted network access. You can contact support@agora.io for more information about the firewall whitelists.
 
@@ -29,17 +36,17 @@ An Agora Chat app token is valid for a maximum of **24 hours**. When you call Ag
 
 This section shows how to implement autentication with an Agora Chat app token step by step.
 
-### Deploy an app token server
+### Create an app token server
 
-Token generators create the tokens requested by your app client to enable secure access to Agora Chat. To serve these tokens you deploy a token generator on your app server.
+Token generators create the tokens requested by your app client to enable secure access to Agora Chat. To serve these tokens you create an app token server.
 
 The following example shows how to build and run an app token server written in Java on your local machine.
 
 > Warning: This sample server is for demonstration purposes only. Do not use it in a production environment.
 
-1. Create a Maven project in IntelliJ, set the name of your project, choose the location to save your project, and click **Finish**.
+1. Create a Maven project in IntelliJ, set the name of your project, choose the location to save your project, then click **Finish**.
 
-2. In `<Project name>/pom.xml` , add the following dependencies:
+2. In `<Project name>/pom.xml` , add the following dependencies and then [reload the Maven project](https://www.jetbrains.com/help/idea/delegate-build-and-run-actions-to-maven.html#maven_reimport):
 
    ```xml
    <properties>
@@ -99,21 +106,39 @@ The following example shows how to build and run an app token server written in 
    </build>
    ```
 
-3. In `<Project name>/src/main/java`, create a package and name it `com/agora/chat/token/io/agora`. To generate an Agora Chat app token, in `com/agora/chat/token/io/agora`, create a folder named **chat** and a folder named **media**, and add the files in [chat](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/chat) and [media](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media) to these two folders accordingly.
+3. Import the token builders provided by Agora to this project.
+
+   1. Download the [chat](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/chat) and [media](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media) packages.
+   1. In the token server project, create a `com.agora.chat.token.io.agora` package under `<Project name>/src/main/java`.
+   1. Copy the chat and media packages and paste under `com.agora.chat.token.io.agora`. The following figure shows the project structure:
 
    ![](https://web-cdn.agora.io/docs-files/1638864182234)
 
-4. In `<Project name>/src/main/resource`, create a `application.properties` file. You need to fill in the App ID and App Certificate your Agora project and set the validity period (in seconds) of the app token you request. 
+   4. Fix the import errors in `chat/ChatTokenBuilder2` and `media/AccessToken`.
+
+      - In `ChatTokenBuilder2`, the import should be `import com.agora.chat.token.io.agora.media.AccessToken2`.
+
+      - In `AccessToken`, the import should be as follows:
+
+        ```java
+        import java.io.ByteArrayOutputStream;
+        import java.io.IOException;
+        import java.util.TreeMap;
+        
+        import static com.agora.chat.token.io.agora.media.Utils.crc32;
+        ```
+
+4. In `<Project name>/src/main/resource`, create a `application.properties` file. You need to fill in the App ID and App Certificate your Agora project and set the validity period of the app token you request. 
 
    ```shell
    ## server port
    server.port=8090
-   ## agora appid
-   appid=xxx
-   ## agora appcert
-   appcert=xxx
-   ## The validity period of the token
-   expire.second=xxx
+   ## Fill the App ID of your Agora project
+   appid=""
+   ## Fill the app certificate of your Agora project
+   appcert=""
+   ## Set the valid period (in seconds) for the app token
+   expire.second=""
    ```
 
 5. In `com.agora.chat.token`, create a file named `AgoraChatTokenController.java` and copy the following codes into the file:
@@ -176,7 +201,7 @@ The following example shows how to build and run an app token server written in 
    ```
 
 
-7. Click **Build Project** to build your project. Click **Run** and select **Debug "AgoraChatTokenStarter..."** to run your server.
+7. To start the server, click the green triangle button, and select **Debug "AgoraChatTokenStarter..."**.
 
    ![](https://web-cdn.agora.io/docs-files/1638868741690)
 
@@ -186,7 +211,7 @@ The following example shows how to build and run an app token server written in 
 
 ### Convert an app token
 
-Before you call Agora Chat RESTful APIs, you need to convert the app token to an Agora Chat app token in order to use Agora Chat.
+Before you call Agora Chat REST APIs, you need to convert the app token to an Agora Chat app token in order to use Agora Chat.
 
 > Note: The validity period of an Agora Chat app token is subject to that of the app token generated by your token server. 
 >
@@ -230,9 +255,9 @@ The following is a response example for a successful request:
 } 
 ```
 
-### Call the Agora Chat RESTful APIs with an Agora Chat app token
+### Call the Agora Chat REST APIs with an Agora Chat app token
 
-The following is an example of calling the Agora Chat RESTful API with the converted Agora Chat app token to register a user:
+The following is an example of calling the Agora Chat REST API with the converted Agora Chat app token to register a user:
 
 #### Request example:
 
@@ -303,4 +328,4 @@ The possible response status codes are listed below:
 
 ### Other Considerations
 
-If you also enable the Agora RTC service, Agora recommends you updating your token to the [access token 2]() for smooth development experience.
+If you use Agora Chat together with the Agora RTC service, Agora recommends you update to the [access token 2]() for smooth development experience.
