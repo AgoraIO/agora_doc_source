@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startrhythmplayer">
-    <title><ph keyref="startRhythmPlayer"/></title>
+    <title><ph keyref="startRhythmPlayer" /></title>
     <shortdesc id="short"><ph id="shortdesc">Enables the virtual metronome.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startRhythmPlayer"/>
+                <indexterm keyref="startRhythmPlayer" />
             </keywords>
         </metadata>
     </prolog>
@@ -25,18 +25,19 @@
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRhythmPlayer(
+      String sound1, String sound2, RhythmPlayerConfig config);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry>
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v3.4.0</dd>
                 </dlentry>
             </dl>
             <p>In music education, physical education and other scenarios, teachers usually need to use a metronome so that students can practice with the correct beat.  The meter is composed of a downbeat and upbeats. The first beat of each measure is called a downbeat, and the rest are called upbeats.</p>
-            <p>In this method, you need to set the paths of the upbeat and downbeat files, the number of beats per measure, the tempo, and whether to send the sound of the metronome to remote users.</p>
+            <p>In this method, you need to set the file path of the upbeat and downbeat, the number of beats per measure, the beat speed, and whether to send the sound of the metronome to remote users.</p>
             <note type="attention" id="rhythm_play"><ul>
                 <li props="windows">This method is for Android and iOS only.</li>
                 <li>After enabling the virtual metronome, the SDK plays the specified audio effect file from the beginning, and controls the playback duration of each file according to <parmname>beatsPerMinute</parmname> you set in <xref keyref="AgoraRhythmPlayerConfig"/>. For example, if you set <parmname>beatsPerMinute</parmname> as <codeph>60</codeph>, the SDK plays one beat every second. If the file duration exceeds the beat duration, the SDK only plays the audio within the beat duration.</li>
@@ -54,11 +55,11 @@
                 </plentry>
                 <plentry>
                     <pt>config</pt>
-                    <pd>The metronome configuration. See <xref keyref="AgoraRhythmPlayerConfig"/>.</pd>
+                    <pd>The metronome configuration. See <xref keyref="AgoraRhythmPlayerConfig" />.</pd>
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul>
                 <li>0: Success.</li>
