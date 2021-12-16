@@ -39,16 +39,16 @@
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_VIDEO_STATE_CHANGED, cb: (
     localVideoState: number,
     error: number
-    ) => void): this;</codeblock>
+    ) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState,
             LOCAL_VIDEO_STREAM_ERROR error)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">LocalVideoStateCallback? localVideoStateChanged;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry>
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v2.4.1</dd>
                 </dlentry>
@@ -62,18 +62,18 @@
             <note id="note" type="attention">For some device models, the SDK does not trigger this callback when the state of the local video changes while the local video capturing device is in use, so you have to make your own timeout judgment.</note>
         </section>
         <section id="parameters">
-            <title>Parameter</title>
+            <title><ph keyref="callback-section-title" /></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" />
             <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry>
                     <pt props="ios mac">state</pt>
-                    <pt props="unity electron">localVideoState</pt>
+                    <pt props="unity electron flutter">localVideoState</pt>
                     <pt props="windows android"><ph props="rtc">localVideoStatestate</ph><ph props="rtc-ng">state</ph></pt>
                     <pd>
-                        <p props="ios mac windows unity electron">The state of the local video, see <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>.</p>
+                        <p props="ios mac windows unity electron flutter">The state of the local video, see <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>.</p>
                         <p props="android">
                             <ul>
                                 <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_STOPPED"/> (0): The local video is in the initial state.</li>
@@ -87,7 +87,7 @@
                 <plentry>
                     <pt>error</pt>
                     <pd>
-                        <p props="ios mac windows unity electron">The detailed error information, see <xref keyref="LOCAL_VIDEO_STREAM_ERROR"/>.</p>
+                        <p props="ios mac windows unity electron flutter">The detailed error information, see <xref keyref="LOCAL_VIDEO_STREAM_ERROR"/>.</p>
                         <p props="android">
                             <ul>
                                 <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/> (0): The local video is normal.</li>
