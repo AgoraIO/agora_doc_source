@@ -84,7 +84,7 @@ App 客户端加入频道需要以下信息：
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
    ```
-
+   
 4. 为防止代码混淆，在 `/Gradle Scripts/proguard-rules.pro` 文件中添加如下代码：
 
    ```java
@@ -101,33 +101,30 @@ App 客户端加入频道需要以下信息：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<RelativeLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/activity_main"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  tools:context=".MainActivity">
-
-      <FrameLayout
-    android:id="@+id/local_video_view_container"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-  />
+    tools:context=".MainActivity">
 
       <FrameLayout
-    android:id="@+id/remote_video_view_container"
-    android:layout_width="160dp"
-    android:layout_height="160dp"
-    android:layout_alignParentEnd="true"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentTop="true"
-    android:layout_marginEnd="16dp"
-    android:layout_marginRight="16dp"
-    android:layout_marginTop="16dp"
-    android:background="@android:color/darker_gray"
-  />
+        android:id="@+id/local_video_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white" />
+
+      <FrameLayout
+        android:id="@+id/remote_video_view_container"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray" />
 
 </RelativeLayout>
 ```
@@ -159,12 +156,12 @@ App 客户端加入频道需要以下信息：
    ```java
    // Java
    private static final int PERMISSION_REQ_ID = 22;
-
+   
    private static final String[] REQUESTED_PERMISSIONS = {
         Manifest.permission.RECORD_AUDIO,
         Manifest.permission.CAMERA
    };
-
+   
    private boolean checkSelfPermission(String permission, int requestCode) {
        if (ContextCompat.checkSelfPermission(this, permission) !=
                PackageManager.PERMISSION_GRANTED) {
@@ -179,7 +176,7 @@ App 客户端加入频道需要以下信息：
    // Kotlin
    private val PERMISSION_REQ_ID_RECORD_AUDIO = 22
    private val PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1
-
+   
    private fun checkSelfPermission(permission: String, requestCode: Int): Boolean {
      if (ContextCompat.checkSelfPermission(this, permission) !=
          PackageManager.PERMISSION_GRANTED) {
@@ -221,7 +218,7 @@ App 客户端加入频道需要以下信息：
     // 填写从 Agora 控制台获取的项目的 App ID。
     private String appId = "";
     // 填写频道名称。
-    private String channelName = "";
+    private String channelName = "";  
     // 填写 Agora 控制台中生成的临时 Token。
     private String token = "";
     private RtcEngine mRtcEngine;
@@ -290,7 +287,7 @@ App 客户端加入频道需要以下信息：
 
         // 使用 Token 加入频道。
         mRtcEngine.joinChannel(token, channelName, "", 0);
-    }
+    }    
    ```
 
    ```kotlin
@@ -336,7 +333,7 @@ App 客户端加入频道需要以下信息：
     // Kotlin
     private fun setupRemoteVideo(uid: Int) {
         val remoteContainer = findViewById(R.id.remote_video_view_container) as FrameLayout
-
+   
          val remoteFrame = RtcEngine.CreateRendererView(baseContext)
         remoteFrame.setZOrderMediaOverlay(true)
         remoteContainer.addView(remoteFrame)
@@ -388,7 +385,7 @@ App 客户端加入频道需要以下信息：
     // Java
     protected void onDestroy() {
         super.onDestroy();
-
+   
         mRtcEngine.leaveChannel();
         mRtcEngine.destroy();
     }
@@ -398,7 +395,7 @@ App 客户端加入频道需要以下信息：
     // Kotlin
     override fun onDestroy() {
         super.onDestroy()
-
+   
         mRtcEngine?.leaveChannel()
         RtcEngine.destroy()
     }
@@ -423,7 +420,7 @@ App 客户端加入频道需要以下信息：
 
 ### 示例项目
 
-Agora 在 GitHub 上提供了一个开源的[视频通话](https://github.com/AgoraIO/Basic-Video-Call)示例项目供你参考，以实现一对一视频通话和群聊视频通话。
+ Agora 在 GitHub 上提供了一个开源的[视频通话](https://github.com/AgoraIO/Basic-Video-Call)示例项目供你参考，以实现一对一视频通话和群聊视频通话。
 
 ### <a name="https://docs.agora.io/cn/Video/start_call_android?platform=Android#othermethods">集成 SDK 的其他方法</a>
 
@@ -463,14 +460,15 @@ Agora 在 GitHub 上提供了一个开源的[视频通话](https://github.com/Ag
 
 2. 打开 SDK 包 libs 文件夹，将以下文件或子文件夹复制到你的项目路径中。
 
-   | 文件或子文件夹           | 你的项目路径             |
+   | 文件或子文件夹 | 你的项目路径 |
    | :----------------------- | :----------------------- |
-   | `agora-rtc-sdk.jar` 文件 | `/app/libs/`             |
-   | `arm-v8a` 文件夹         | `/app/src/main/jniLibs/` |
-   | `armeabi-v7a` 文件夹     | `/app/src/main/jniLibs/` |
-   | `x86` 文件夹             | `/app/src/main/jniLibs/` |
-   | `x86_64` 文件夹          | `/app/src/main/jniLibs/` |
-   | `include` 文件夹         | `/app/src/main/jniLibs/` |
+   | `agora-rtc-sdk.jar` 文件 | `/app/libs/` |
+   | `arm-v8a` 文件夹 | `/app/src/main/jniLibs/` |
+   | `armeabi-v7a` 文件夹 | `/app/src/main/jniLibs/` |
+   | `x86` 文件夹 | `/app/src/main/jniLibs/` |
+   | `x86_64` 文件夹 | `/app/src/main/jniLibs/` |
+   | `include` 文件夹 | `/app/src/main/jniLibs/` |
 
    - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。如果出现不兼容问题，请[联系我们](https://agora-ticket.agora.io)
    - SDK 包中的库不是全部必须。详情请参考[如何减少集成 RTC Native SDK 的 app 体积](https://docs.agora.io/cn/Video/faq/reduce_app_size_rtc)。
+

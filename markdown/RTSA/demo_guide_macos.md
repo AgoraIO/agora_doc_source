@@ -3,23 +3,20 @@ title: 快速跑通示例项目
 platform: macOS
 updatedAt: 2020-11-24 07:39:12
 ---
-
 本文指导开发者在正式将 RTSA SDK 集成到项目中之前，编译并运行模拟数据 Demo 对进行初步了解。
 
 ## 前提条件
-
 请确保开发环境满足以下要求:
 
-- Xcode 9.0 及以上。
-- OS X 10.0 及以上真机（MacBook）。
+* Xcode 9.0 及以上。
+* OS X 10.0 及以上真机（MacBook）。
 
 请下载以下文件：
 
-- 最新版本的 Agora RTSA SDK for macOS。
-- 模拟数据 Demo。
+* 最新版本的 Agora RTSA SDK for macOS。
+* 模拟数据 Demo。
 
 ## 创建 Agora 账号并获取 App ID
-
 1. 进入[控制台](https://console.agora.io/)，并按照屏幕提示注册账号并登录控制台。详见[创建新账号](sign_in_and_sign_up)。
 
 2. 点击左侧导航栏的 ![](https://web-cdn.agora.io/docs-files/1551254998344) 图标进入[项目管理](https://console.agora.io/projects)页面，点击**创建**按钮。
@@ -34,41 +31,43 @@ updatedAt: 2020-11-24 07:39:12
 
 ![](https://web-cdn.agora.io/docs-files/1574921811175)
 
-## 编译运行模拟数据 Demo
 
+
+
+## 编译运行模拟数据 Demo
 步骤如下：
 
 1. 打开终端 Terminal，进入 RTD_DATA_DEMO/bin 目录，将 bin/PLACEHOLDER 重命名为 bin/app_id_and_cert.h。
 
-```shell
+ ~~~shell
 cd RTD_DATA_DEMO/bin
 mv PLACEHOLDER app_id_and_cert.h
-```
+~~~
 
-2. 在 bin/app_id_and_cert.h 文件中填写你的 App ID。
+2. 在 bin/app_id_and_cert.h 文件中填写你的 App ID。  
 
-   > 如果启用了 Agora License 机制，还需要填写 Certificate，用于绑定设备。详见 [Agora License 机制文档](https://docs-preview.agoralab.co/cn/Agora%20Platform/license_mechanism_v3?platform=All%20Platforms)。
+	>如果启用了 Agora License 机制，还需要填写 Certificate，用于绑定设备。详见  [Agora License 机制文档](https://docs-preview.agoralab.co/cn/Agora%20Platform/license_mechanism_v3?platform=All%20Platforms)。
 
 3. 将 SDK 包中的 AgoraRtcSDK.framework 复制至 lib 文件夹下。
 
 4. 进行编译：
 
-```shell
+ ~~~shell
 mkdir build && cd build
 cmake ..
 make -j8
-```
+~~~
 
 5. 编译成功后，在 bin 文件夹中会生成一个可执行程序 demo。你可以输入以下命令获取帮助：
 
-```shell
+ ~~~shell
 ./bin/demo --help
-```
+~~~
 
-可设置的运行参数列表如下：
+ 可设置的运行参数列表如下：
 
-| 参数                        | 描述                                                       |
-| --------------------------- | ---------------------------------------------------------- |
+ | 参数                        | 描述                                                       |
+|-----------------------------|------------------------------------------------------------|
 | app_id                      | App ID，项目的唯一标识。                                   |
 | cert [Optional]             | Certificate for License，用于绑定 IoT 设备。               |
 | audio_bps [Optional]        | 音频码率，int32 类型。                                     |
@@ -83,6 +82,7 @@ make -j8
 
 6. 设置参数并运行：
 
-```shell
+ ~~~shell
 ./bin/demo --channel hello_world_opps
-```
+~~~
+

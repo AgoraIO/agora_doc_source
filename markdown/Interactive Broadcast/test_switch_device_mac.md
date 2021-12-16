@@ -3,7 +3,6 @@ title: 音视频设备测试
 platform: macOS
 updatedAt: 2020-03-06 16:35:22
 ---
-
 ## 功能描述
 
 为保证通话或直播质量，我们推荐在进入频道前进行音视频设备测试，检测麦克风、摄像头等音视频设备能否正常工作。该功能对于有高质量要求的场景，如在线教育等，尤为适用。
@@ -15,8 +14,8 @@ updatedAt: 2020-03-06 16:35:22
 参考以下步骤测试音视频设备：
 
 - 选择以下一种方式测试音频设备：
-  - 调用 `startRecordingDeviceTest` 测试录音设备，调用 `startPlaybackDeviceTest` 测试音频播放设备。
-  - 调用 `startAudioDeviceLoopbackTest` 测试音频设备回路（包括录音设备和音频播放设备）。
+	- 调用 `startRecordingDeviceTest` 测试录音设备，调用 `startPlaybackDeviceTest` 测试音频播放设备。
+	- 调用 `startAudioDeviceLoopbackTest` 测试音频设备回路（包括录音设备和音频播放设备）。
 - 调用 `startCaptureDeviceTest` 方法测试视频采集设备。
 
 <div class="alert note">所有测试设备的方法都必须在加入频道之前调用。</div>
@@ -26,11 +25,11 @@ updatedAt: 2020-03-06 16:35:22
 - 用途：测试本地音频录制设备，如麦克风，是否正常工作。
 - 测试方法和原理：调用 `startRecordingDeviceTest`；用户说话，SDK 在 `reportAudioVolumeIndication` 回调中报告音量信息。UID 为 0 表示本地音量。完成测试后，需调用 `stopRecordingDeviceTest` 停止录制设备测试。
 
-```swift
+```swift	
 // swift
 // 开始录制设备测试
 agoraKit.startRecordingDeviceTest(1000)
-
+	
 // 停止录制设备测试
 agoraKit.stopRecordingDeviceTest()
 ```
@@ -44,6 +43,7 @@ agoraKit.stopRecordingDeviceTest()
 [agoraKit stopRecordingDeviceTest];
 ```
 
+
 ### 音频播放设备测试
 
 - 用途：测试本地音频播放设备，如外放设备，是否正常工作。
@@ -53,7 +53,7 @@ agoraKit.stopRecordingDeviceTest()
 // swift
 // 开始播放设备测试
 agoraKit.startPlaybackDeviceTest("audio file path")
-
+	
 // 停止播放设备测试
 agoraKit.stopPlaybackDeviceTest()
 ```
@@ -95,16 +95,17 @@ agoraKit.stopCaptureDeviceTest
 [agoraKit stopCaptureDeviceTest];
 ```
 
+
 ### API 参考
 
-- [`startRecordingDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRecordingDeviceTest:)
-- [`stopRecordingDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopRecordingDeviceTest.)
-- [`startPlaybackDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startPlaybackDeviceTest:)
-- [`stopPlaybackDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopPlaybackDeviceTest)
-- [`startCaptureDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startCaptureDeviceTest:)
-- [`stopCaptureDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopCaptureDeviceTest)
-- [`startAudioDeviceLoopbackTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startAudioDeviceLoopbackTest:)
-- [`stopAudioDeviceLoopbackTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopAudioDeviceLoopbackTest)
+* [`startRecordingDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startRecordingDeviceTest:)
+* [`stopRecordingDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopRecordingDeviceTest.)
+* [`startPlaybackDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startPlaybackDeviceTest:)
+* [`stopPlaybackDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopPlaybackDeviceTest)
+* [`startCaptureDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startCaptureDeviceTest:)
+* [`stopCaptureDeviceTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopCaptureDeviceTest)
+* [`startAudioDeviceLoopbackTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startAudioDeviceLoopbackTest:)
+* [`stopAudioDeviceLoopbackTest`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopAudioDeviceLoopbackTest)
 
 ## 开发注意事项
 

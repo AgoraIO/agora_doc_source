@@ -16,7 +16,7 @@ public static String version();
 
 SDK 版本号。
 
-### setConfig
+### setConfig 
 
 ```java
 public static void setConfig(AgoraClassSdkConfig);
@@ -37,14 +37,14 @@ AgoraClassSdk.setConfig(new AgoraClassSdkConfig(appId, eyeCare));
 
 **参数**
 
-| 参数                | 描述                                                             |
-| :------------------ | :--------------------------------------------------------------- |
+| 参数                | 描述                                                         |
+| :------------------ | :----------------------------------------------------------- |
 | `agoraEduSDKConfig` | 全局配置参数，详见 [AgoraClassSdkConfig](#agoraclasssdkconfig)。 |
 
 ### launch
 
 ```java
-public static AgoraEduClassRoom launch(@NotNull Context context,
+public static AgoraEduClassRoom launch(@NotNull Context context, 
                                        @NotNull AgoraEduLaunchConfig config,
                                        @NotNull AgoraEduLaunchCallback callback);
 ```
@@ -75,7 +75,7 @@ long startTime = System.currentTimeMillis() + 100;
 long duration = 310L;
 // 课堂所在区域，各客户端的区域必须一致，否则无法互通。
 String region = AgoraEduRegion.cn;
-
+ 
 AgoraEduLaunchConfig agoraEduLaunchConfig = new AgoraEduLaunchConfignew AgoraEduLaunchConfig(
     userName, userUuid, roomName, roomUuid, roleType,
     roomType, rtmToken, startTime, duration, region, null, null,
@@ -88,10 +88,10 @@ AgoraClassSdk.launch(MainActivity2.this, agoraEduLaunchConfig, (state) -> {
 
 **参数**
 
-| 参数       | 描述                                                                                         |
-| :--------- | :------------------------------------------------------------------------------------------- |
-| `context`  | App 的上下文环境。                                                                           |
-| `config`   | 课堂启动配置，详见 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。                           |
+| 参数       | 描述                                                         |
+| :--------- | :----------------------------------------------------------- |
+| `context`  | App 的上下文环境。                                           |
+| `config`   | 课堂启动配置，详见 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。 |
 | `callback` | SDK 通过 [AgoraEduLaunchCallback](#agoraedulaunchcallback) 类向 App 报告课堂启动相关的事件。 |
 
 **返回值**
@@ -135,8 +135,8 @@ configCoursewares(wares);
 
 **参数**
 
-| 参数    | 描述                                                             |
-| :------ | :--------------------------------------------------------------- |
+| 参数    | 描述                                                         |
+| :------ | :----------------------------------------------------------- |
 | `wares` | 课件预加载配置，详见 [AgoraEduCourseware](#agoraeducourseware)。 |
 
 ### downloadCourseWare
@@ -170,9 +170,9 @@ downloadCoursewares(activityContext, new AgoraEduCoursewarePreloadListener() {
 
 **参数**
 
-| 参数       | 描述                                                                                                                 |
-| :--------- | :------------------------------------------------------------------------------------------------------------------- |
-| `context`  | App 的上下文环境。                                                                                                   |
+| 参数       | 描述                                                         |
+| :--------- | :----------------------------------------------------------- |
+| `context`  | App 的上下文环境。                                           |
 | `listener` | SDK 通过 [AgoraEduCoursewarePreloadListener](#agoraeducoursewarepreloadlistener) 类向 App 报告课件预加载相关的事件。 |
 
 ### registerExtensionApp
@@ -211,8 +211,8 @@ void onStartDownload(@NotNull AgoraEduCourseware ware);
 
 开始预加载课件。
 
-| 参数   | 描述                                                             |
-| :----- | :--------------------------------------------------------------- |
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
 | `ware` | 课件预加载配置，详见 [AgoraEduCourseware](#agoraeducourseware)。 |
 
 ### onProgress
@@ -223,10 +223,10 @@ void onProgress(@NotNull AgoraEduCourseware ware, double progress);
 
 课件预加载进度。
 
-| 参数       | 描述                                                             |
-| :--------- | :--------------------------------------------------------------- |
+| 参数       | 描述                                                         |
+| :--------- | :----------------------------------------------------------- |
 | `ware`     | 课件预加载配置，详见 [AgoraEduCourseware](#agoraeducourseware)。 |
-| `progress` | 课件预加载进度。                                                 |
+| `progress` | 课件预加载进度。                                             |
 
 ### onComplete
 
@@ -236,8 +236,8 @@ void onComplete(@NotNull AgoraEduCourseware ware);
 
 课件预加载完成。
 
-| 参数   | 描述                                                             |
-| :----- | :--------------------------------------------------------------- |
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
 | `ware` | 课件预加载配置，详见 [AgoraEduCourseware](#agoraeducourseware)。 |
 
 ### onFailed
@@ -248,8 +248,8 @@ void onFailed(@NotNull AgoraEduCourseware ware);
 
 课件预加载失败。
 
-| 参数   | 描述                                                             |
-| :----- | :--------------------------------------------------------------- |
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
 | `ware` | 课件预加载配置，详见 [AgoraEduCourseware](#agoraeducourseware)。 |
 
 ## 类型定义
@@ -266,10 +266,10 @@ public class AgoraClassSdkConfig {
 
 SDK 全局配置。用于 [setConfig](#setconfig) 方法。
 
-| 属性      | 描述                                                                                                           |
-| :-------- | :------------------------------------------------------------------------------------------------------------- |
+| 属性      | 描述                                                         |
+| :-------- | :----------------------------------------------------------- |
 | `appId`   | Agora App ID，详见[前提条件中获取 Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1)。 |
-| `eyeCare` | 是否开启护眼模式：<li>`0`:（默认）关闭护眼模式。</li><li>`1`: 开启护眼模式。</li>                              |
+| `eyeCare` | 是否开启护眼模式：<li>`0`:（默认）关闭护眼模式。</li><li>`1`: 开启护眼模式。</li> |
 
 ### AgoraEduLaunchConfig
 
@@ -295,24 +295,24 @@ class AgoraEduLaunchConfig(val userName: String,
 
 课堂启动配置。用于 [launch](#launch) 方法。
 
-| 属性                 | 描述                                                                                                                                                                                                                                                                                                                                                             |
-| :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `userName`           | 用户名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                                                                                                                                                                                     |
-| `userUuid`           | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", "," |
-| `roomName`           | 课堂名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                                                                                                                                                                                     |
-| `roomUuid`           | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", ","                                               |
-| `roleType`           | 用户在课堂中的角色，详见 [AgoraEduRoleType](#agoraeduroletype)。                                                                                                                                                                                                                                                                                                 |
-| `roomType`           | 课堂类型，详见 [AgoraEduRoomType](#agoraeduroomtype)。                                                                                                                                                                                                                                                                                                           |
-| `rtmToken`           | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。                                                                                                                                                                                                                                              |
-| `startTime`          | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。                                                                                                                                                                                                                                                                                                 |
-| `duration`           | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。                                                                                                                                                                                                                                                                                                   |
-| `region`             | 课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。详见 [AgoraEduRegionStr](#agoraeduregionstr)。                                                                                                                                                                                                                                                         |
-| `videoEncoderConfig` | 视频编码参数配置，包含视频宽高、帧率、码率，详见 [EduVideoEncoderConfig](#eduvideoencoderconfig)                                                                                                                                                                                                                                                                 |
-| `mediaOptions`       | 媒体流相关设置，包含媒体流加密，详见 [AgoraEduMediaOptions](#agoraedumediaoptions)。                                                                                                                                                                                                                                                                             |
-| `boardFitMode`       | 白板的显示模式，详见 [AgoraBoardFitMode](#agoraboardfitmode)。                                                                                                                                                                                                                                                                                                   |
-| `streamState`        | 用于控制学生上台后是否发音视频流，详见 [StreamState](#streamstate)。                                                                                                                                                                                                                                                                                             |
-| `latencyLevel`       | 观众端延时级别，详见 [AgoraEduLatencyLevel](#agoraedulatencylevel)。                                                                                                                                                                                                                                                                                             |
-| `userProperties`     | 由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)                                                                                                                                                                                                                                                      |
+| 属性                 | 描述                                                         |
+| :------------------- | :----------------------------------------------------------- |
+| `userName`           | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
+| `userUuid`           | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomName`           | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
+| `roomUuid`           | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roleType`           | 用户在课堂中的角色，详见 [AgoraEduRoleType](#agoraeduroletype)。 |
+| `roomType`           | 课堂类型，详见 [AgoraEduRoomType](#agoraeduroomtype)。     |
+| `rtmToken`           | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
+| `startTime`          | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
+| `duration`           | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
+| `region`             | 课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。详见 [AgoraEduRegionStr](#agoraeduregionstr)。 |
+| `videoEncoderConfig` | 视频编码参数配置，包含视频宽高、帧率、码率，详见 [EduVideoEncoderConfig](#eduvideoencoderconfig) |
+| `mediaOptions`       | 媒体流相关设置，包含媒体流加密，详见 [AgoraEduMediaOptions](#agoraedumediaoptions)。 |
+| `boardFitMode`       | 白板的显示模式，详见 [AgoraBoardFitMode](#agoraboardfitmode)。 |
+| `streamState`        | 用于控制学生上台后是否发音视频流，详见 [StreamState](#streamstate)。 |
+| `latencyLevel`       | 观众端延时级别，详见 [AgoraEduLatencyLevel](#agoraedulatencylevel)。 |
+| `userProperties`     | 由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties) |
 
 ### AgoraEduEvent
 
@@ -360,10 +360,10 @@ public enum AgoraEduRoomType {
 
 课堂类型。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
 
-| 属性                    | 描述                                                                                                                                                    |
-| :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `AgoraEduRoomType1V1`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。                                                                                         |
-| `AgoraEduRoomTypeBig`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。         |
+| 属性                    | 描述                                                         |
+| :---------------------- | :----------------------------------------------------------- |
+| `AgoraEduRoomType1V1`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。 |
+| `AgoraEduRoomTypeBig`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。 |
 | `AgoraEduRoomTypeSmall` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。 |
 
 ### AgoraBoardFitMode
@@ -377,10 +377,10 @@ public enum AgoraBoardFitMode {
 
 白板内容显示模式。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
-| 参数     | 描述                                                              |
-| :------- | :---------------------------------------------------------------- |
+| 参数     | 描述                                                         |
+| :------- | :----------------------------------------------------------- |
 | `Auto`   | （默认）以 fit 模式显示，等比缩放 PPT 以保证完整显示 PPT 的内容。 |
-| `Retain` | 以本地记录的上一次学生手动调整的大小为准。                        |
+| `Retain` | 以本地记录的上一次学生手动调整的大小为准。                   |
 
 ### StreamState
 
@@ -393,8 +393,8 @@ data class StreamState (
 
 用于控制学生上台后是否发音视流。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
-| 参数         | 描述                                                                     |
-| :----------- | :----------------------------------------------------------------------- |
+| 参数         | 描述                                                         |
+| :----------- | :----------------------------------------------------------- |
 | `videoState` | 是否发视频流：<li>`0`: （默认）不发视频流。</li><li>`1`: 发视频流。</li> |
 | `audioState` | 是否发音频流：<li>`0`: （默认）不发音频流。</li><li>`1`: 发音频流。</li> |
 
@@ -422,9 +422,9 @@ class AgoraEduMediaOptions(val encryptionConfigs: AgoraEduMediaEncryptionConfigs
 
 媒体流相关设置。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
-| 参数               | 描述                                                                                   |
-| :----------------- | :------------------------------------------------------------------------------------- |
-| `encryptionConfig` | 媒体流加密配置，详见 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig)。 |
+| 参数               | 描述                                                         |
+| :----------------- | :----------------------------------------------------------- |
+| `encryptionConfig` | 媒体流加密配置，详见  [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig)。 |
 
 ### AgoraEduMediaEncryptionConfig
 
@@ -482,12 +482,12 @@ data class AgoraEduCourseware(
 
 课件预加载配置，用于 [configCourseware](#configcourseware) 方法。
 
-| 属性           | 描述                                                                                                                                                                                                                        |
-| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `resourceName` | 文件名称。                                                                                                                                                                                                                  |
-| `scenePath`    | 文件的本地存储路径。建议由 `resourceName` 和 `scenes` 中第一个 `SceneInfo` 对象的 `name` 拼接而成，例如 `resourceName + "/" + sceneInfos.get(0).name`。                                                                     |
+| 属性           | 描述                                                         |
+| :------------- | :----------------------------------------------------------- |
+| `resourceName` | 文件名称。                                                   |
+| `scenePath`    | 文件的本地存储路径。建议由 `resourceName` 和  `scenes` 中第一个 `SceneInfo` 对象的 `name` 拼接而成，例如 `resourceName + "/" + sceneInfos.get(0).name`。 |
 | `scenes`       | 完成转换的文件页面列表，由 `SceneInfo` 对象组成的数组。灵动课堂客户端会对后缀名 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以在课堂内的白板上分页展示该文件。每个 `SceneInfo` 对象对应一个页面。 |
-| `resourceUrl`  | 文件的 URL 下载地址，例如 `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`。                                                                                                                               |
+| `resourceUrl`  | 文件的 URL 下载地址，例如 `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip"`。 |
 
 ### SceneInfo
 
@@ -501,11 +501,11 @@ public class SceneInfo {
 
 单个文件页面的具体信息。在 [AgoraEduCourseware](#agoraeducourseware) 中设置。
 
-| 属性             | 描述                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `componentCount` | 页面数量。                                              |
+| 属性             | 描述                                                      |
+| :--------------- | :-------------------------------------------------------- |
+| `componentCount` | 页面数量。                                                |
 | `ppt`            | 完成转换后的一个页面的具体信息，详见 [Ppt](#ppt) 对象。 |
-| `name`           | 页面名称。                                              |
+| `name`           | 页面名称。                                                |
 
 ### Ppt
 
@@ -560,8 +560,8 @@ data class EduVideoEncoderConfig(
 
 视频编码参数配置类，用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
-> - 在小班课中，分辨率的默认值为 120p（160\*120）。
-> - 在一对一和大班课中，分辨率的默认值为 240p（320\*240）。
+> - 在小班课中，分辨率的默认值为 120p（160*120）。
+> - 在一对一和大班课中，分辨率的默认值为 240p（320*240）。
 
 | 参数         | 描述                                 |
 | :----------- | :----------------------------------- |

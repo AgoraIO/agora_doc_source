@@ -2,9 +2,8 @@
 title: 为什么用 Unity 组件播放背景音乐会无声？
 platform: ["Unity"]
 updatedAt: 2020-03-09 10:12:26
-Products: ["Voice", "Video", "Interactive Broadcast"]
+Products: ["Voice","Video","Interactive Broadcast"]
 ---
-
 ## 问题描述
 
 在 iOS 设备中，用 Unity 组件（AudioSource 和 AudioClip）播放背景音乐，你可能会遇到以下问题：

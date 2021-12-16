@@ -2,9 +2,8 @@
 title: 如何切换屏幕共享流和摄像头视频流？
 platform: ["Web"]
 updatedAt: 2020-12-23 08:20:54
-Products: ["Interactive Broadcast", "Video"]
+Products: ["Interactive Broadcast","Video"]
 ---
-
 <div class="alert note">本文仅适用于 Agora Web SDK 3.x 及之前版本。</div>
 
 本文介绍在使用 Agora Web SDK 实现[屏幕共享](https://docs.agora.io/cn/Interactive%20Broadcast/screensharing_web?platform=Web)的场景中，如何在发布的屏幕共享流和摄像头采集的视频流之间进行切换。

@@ -3,13 +3,13 @@ title: 互动白板 Token 概述
 platform: Android
 updatedAt: 2021-04-01 03:12:41
 ---
-
 为提高通信安全，Agora 互动白板使用 Token 对用户进行鉴权。
+
+
 
 本文介绍 Agora 互动白板 Token 的类型与权限、生成方式和使用方法。
 
 <a name="tokenoverview"></a>
-
 ## Token 类型与权限
 
 Agora 互动白板 Token 按照级别由高至低分为 SDK Token、Room Token 和 Task Token，每个级别的 Token 均可设置 `admin`、`writer` 或 `reader` 角色。Token 的级别越高，包含的权限越多。你需要在 app 服务端签发 Token。
@@ -18,22 +18,23 @@ Agora 互动白板 Token 按照级别由高至低分为 SDK Token、Room Token �
 
 SDK Token 与特定的互动白板项目绑定，是级别最高的 Token。持有 SDK Token 用户可操作绑定的项目下的所有房间和文档转换任务。不同角色的 SDK Token 具有的权限如下：
 
-| 权限                                                                                                                     | admin（管理员）              | writer（读写）               | reader（只读）               |
-| :----------------------------------------------------------------------------------------------------------------------- | :--------------------------- | :--------------------------- | :--------------------------- |
-| 创建房间                                                                                                                 | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 以互动模式加入房间                                                                                                       | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 以只读模式加入房间                                                                                                       | <font color="red">✘</font>   | <font color="red">✘</font>   | <font color="green">✔</font> |
-| 获取房间列表                                                                                                             | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 获取房间信息                                                                                                             | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 封禁房间                                                                                                                 | <font color="green">✔</font> | <font color="red">✘</font>   | <font color="red">✘</font>   |
-| 对指定场景进行截图                                                                                                       | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 对场景组下的所有场景进行截图                                                                                             | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 获取房间的场景地址列表                                                                                                   | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 插入新场景                                                                                                               | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 场景跳转                                                                                                                 | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 发起文档转换任务                                                                                                         | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 生成同等或以下角色的 Room Token（例如，admin 角色的 SDK Token 可以生成 `admin`、`writer` 或 `reader` 角色的 Room Token） | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
-| 生成同等或以下角色的 Task Token（例如，admin 角色的 SDK Token 可以生成 `admin`、`writer` 或 `reader` 角色的 Task Token） | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
+| 权限                                                         | admin（管理员） | writer（读写） | reader（只读） |
+| :----------------------------------------------------------- | :-------------- | :------------- | :------------- |
+| 创建房间                                                     | <font color="green">✔</font>            | <font color="green">✔</font>              | <font color="red">✘</font>               |
+| 以互动模式加入房间                                           | <font color="green">✔</font>               | <font color="green">✔</font>              | <font color="red">✘</font>               |
+| 以只读模式加入房间                                           | <font color="red">✘</font>                | <font color="red">✘</font>               | <font color="green">✔</font>              |
+| 获取房间列表                                                 | <font color="green">✔</font>               | <font color="green">✔</font>              | <font color="red">✘</font>               |
+| 获取房间信息                                                 | <font color="green">✔</font>               |<font color="green">✔</font>              | <font color="red">✘</font>               |
+| 封禁房间                                                     | <font color="green">✔</font>             | <font color="red">✘</font>               | <font color="red">✘</font>               |
+| 对指定场景进行截图                                           | <font color="green">✔</font>               | <font color="green">✔</font>             | <font color="red">✘</font>               |
+| 对场景组下的所有场景进行截图                                 | <font color="green">✔</font>            | <font color="green">✔</font>              | <font color="red">✘</font>               |
+| 获取房间的场景地址列表                                       |<font color="green">✔</font>              | <font color="green">✔</font>              |<font color="red">✘</font>               |
+| 插入新场景                                                   | <font color="green">✔</font>               | <font color="green">✔</font>              | <font color="red">✘</font>               |
+| 场景跳转                                                     | <font color="green">✔</font>               | <font color="green">✔</font>             | <font color="red">✘</font>              |
+| 发起文档转换任务                                             | <font color="green">✔</font>               | <font color="green">✔</font>              | <font color="red">✘</font>               |
+| 生成同等或以下角色的 Room Token（例如，admin 角色的 SDK Token 可以生成 `admin`、`writer` 或 `reader` 角色的 Room Token） | <font color="green">✔</font>                | <font color="green">✔</font>               | <font color="green">✔</font>               |
+| 生成同等或以下角色的 Task Token（例如，admin 角色的 SDK Token 可以生成 `admin`、`writer` 或 `reader` 角色的 Task Token） |<font color="green">✔</font>                | <font color="green">✔</font>            | <font color="green">✔</font>            |
+
 
 <div class="alert note">SDK Token 的权限级别很高，如果泄漏，会危害你的业务安全。因此，Agora 建议：
 <ul>
@@ -46,32 +47,32 @@ SDK Token 与特定的互动白板项目绑定，是级别最高的 Token。持�
 
 Room Token 与特定互动白板项目下的特定房间绑定。持有 Room Token 的用户可操作绑定的房间。不同角色的 Room Token 具有的权限如下：
 
-| 权限                         | admin（管理员）              | writer（读写）               | reader（只读）               |
-| :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- |
-| 以互动模式加入特定房间       | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 以只读模式加入特定房间       | <font color="red">✘</font>   | <font color="red">✘</font>   | <font color="green">✔</font> |
-| 获取特定房间信息             | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 封禁特定房间                 | <font color="green">✔</font> | <font color="red">✘</font>   | <font color="red">✘</font>   |
-| 对指定场景进行截图           | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 对场景组下的所有场景进行截图 | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 获取特定房间的场景地址列表   | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 在特定房间内插入新场景       | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
-| 特定房间内的场景跳转         | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   |
+| 权限                         | admin（管理员） | writer（读写） | reader（只读） |
+| :--------------------------- | :-------------- | :------------- | :------------- |
+| 以互动模式加入特定房间       |  <font color="green">✔</font>               |  <font color="green">✔</font>             |<font color="red">✘</font>               |
+| 以只读模式加入特定房间       | <font color="red">✘</font>                | <font color="red">✘</font>              |  <font color="green">✔</font>              |
+| 获取特定房间信息             |  <font color="green">✔</font>             |  <font color="green">✔</font>              | <font color="red">✘</font>               |
+| 封禁特定房间                 |  <font color="green">✔</font>              | <font color="red">✘</font>               | <font color="red">✘</font>               |
+| 对指定场景进行截图           |  <font color="green">✔</font>           |  <font color="green">✔</font>              | <font color="red">✘</font>               |
+| 对场景组下的所有场景进行截图 | <font color="green">✔</font>              |  <font color="green">✔</font>              | <font color="red">✘</font>               |
+| 获取特定房间的场景地址列表   |  <font color="green">✔</font>              |  <font color="green">✔</font>             | <font color="red">✘</font>              |
+| 在特定房间内插入新场景       |  <font color="green">✔</font>               | <font color="green">✔</font>              | <font color="red">✘</font>               |
+| 特定房间内的场景跳转         | <font color="green">✔</font>              |  <font color="green">✔</font>              | <font color="red">✘</font>               |
 
 ### Task Token
 
 Task Token 与特定项目下的特定文档转换任务绑定。持有 Task Token 的用户可操作绑定的文档转换任务。不同角色的 Task Token 具有的权限如下：
 
-| 权限                       | admin（管理员）              | writer（读写）               | reader（只读）               |
-| :------------------------- | :--------------------------- | :--------------------------- | :--------------------------- |
-| 查询特定文档转换任务的进度 | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
+| 权限                       | admin（管理员） | writer（读写） | reader（只读） |
+| :------------------------- | :-------------- | :------------- | :------------- |
+| 查询特定文档转换任务的进度 | <font color="green">✔</font>                | <font color="green">✔</font>             | <font color="green">✔</font>             |
 
 ## 生成 Token
 
 你可以通过以下方式在业务服务端生成 Agora 互动白板 Token：
 
 - 在 [Agora 控制台](https://console.netless.link/zh-CN/)生成 SDK Token。详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard)。
-
+  
  <div class="alert note">该方法只能生成 <code>admin</code> 角色的永久 SDK Token。请勿将该 Token 下发给客户端，否则会有泄露的风险。</div>
 
 - 在 app 服务端调用互动白板服务端 RESTful API，详见[使用 RESTful API 生成 Token](/cn/whiteboard/generate_whiteboard_token)。
@@ -93,7 +94,7 @@ Agora 互动白板的访问密钥对包括 AK (Access Key）和 SK（Secret Key�
 1. 在 Agora 控制台的[项目管理](https://console.agora.io/projects)页面，选择已开启互动白板服务的项目，点击**编辑**。
 2. 在**编辑项目**页面，找到**白板**，点击**配置**。
 3. 在**白板配置**页面，找到 **AK** 和 **SK**，点击其右侧的眼睛图标，复制并自行保存白板项目的 **AK** 和 **SK**。
-   ![](https://web-cdn.agora.io/docs-files/1616656748111)
+ ![](https://web-cdn.agora.io/docs-files/1616656748111)
 
 <div class="alert note">访问密钥对一旦泄露，会造成严重的安全问题。为提高项目的安全性，Agora 建议：
 <ul>
@@ -103,6 +104,7 @@ Agora 互动白板的访问密钥对包括 AK (Access Key）和 SK（Secret Key�
 ### 设置 Token 的角色
 
 Agora 支持对 Token 设置 `admin`、`writer` 或 `reader` 角色，每种角色的 Token 具有的权限详见 <a href="#tokenoverview">Token 的类型与权限</a>。
+
 
 <div class="alert note">为提高业务安全，Agora 建议：
 <ul>
@@ -132,7 +134,6 @@ Agora 支持对 Token 设置有效时长，取值为正整数，单位为毫秒�
 如果你调用互动白板 RESTful API 生成 Room Token，请求头中的 SDK Token 必须和创建房间时使用的 SDK Token 相同。</br>
 
 如果你在 app 服务端用代码生成 Room Token，传入的访问密钥对必须和创建房间时使用的 SDK Token 的访问密钥对相同。
-
 </div>
 
 ### 获取转换任务的 UUID
@@ -171,6 +172,7 @@ Agora 支持对 Token 设置有效时长，取值为正整数，单位为毫秒�
 
 6. Agora 互动白板服务端收到 app 服务端的请求后，会根据 Task Token 等信息校验用户权限。如果验证通过且请求成功，会向 app 服务端返回文档转换任务的进度。
 
+  
 ## Token 失效
 
 Agora 互动白板 Token 在下列情形会失效：
@@ -184,13 +186,13 @@ Agora 互动白板 Token 在下列情形会失效：
 
 在使用 Token 访问互动白板服务时，你可能会遇到以下报错：
 
-| 错误信息                                                       | 说明                                                                                                                                                                                                                                                                                    |
-| :------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `invalid format of token`                                      | Token 的数据格式错误。请检查 Token 数据格式是否有效：<li>Token 是否为 String 型。<li>Token 前后是否有多余空格或字符。<li>Token 的前缀是否正确：<ul><li>SDK Token 的前缀为 `NETLESSSDK_`</li><li>Room Token 的前缀为 `NETLESSROOM_`</li><li>Task Token 的前缀为 `NETLESSTASK_`</li></ul> |
-| `expired token`                                                | Token 已过期。请在 app 服务端调用互动白板 RESTful API 或用代码重新生成 Token。                                                                                                                                                                                                          |
-| `invalid signature of token`                                   | Token 的签名无效。当你使用在 app 服务端用代码生成的 Token 时，可能会遇到该报错。请确保使用正确的生成 Token 算法和代码。                                                                                                                                                                 |
-| `unknow error`                                                 | 未知错误。                                                                                                                                                                                                                                                                              |
-| `token access role$`</br>`{发送过来的 token 的权限} forbidden` | Token 的权限过低，例如，使用 `reader` 角色的 Token 请求 `writer` 角色的 Token 才能访问的服务。请确保发起的请求与使用的 Token 权限一致。                                                                                                                                                 |
-| `token access task forbidden`                                  | 禁止使用该 Task Token 访问 Task UUID 对应的文档转换任务。请确保请求中传入的 Task UUID 和 Task UUID 相匹配，即传入的 Task UUID 和生成该 Task Token 的 Task UUID 一致。                                                                                                                   |
-| `token access room forbidden`                                  | 禁止使用该 Room Token 访问 Room UUID 对应的互动白板房间。请确保请求中传入的 Room UUID 和 Room UUID 相匹配，即传入的 Room UUID 和生成该 Room Token 的 Room UUID 一致。                                                                                                                   |
-| `token access team forbidden`                                  | 项目被删除或禁用，导致 Token 失效。                                                                                                                                                                                                                                                     |
+| 错误信息                                               | 说明                                                         |
+| :----------------------------------------------------- | :----------------------------------------------------------- |
+| `invalid format of token`                                | Token 的数据格式错误。请检查 Token 数据格式是否有效：<li>Token 是否为 String 型。<li>Token 前后是否有多余空格或字符。<li>Token 的前缀是否正确：<ul><li>SDK Token 的前缀为 `NETLESSSDK_`</li><li>Room Token 的前缀为 `NETLESSROOM_`</li><li>Task Token 的前缀为 `NETLESSTASK_`</li></ul> |
+| `expired token`                                          | Token 已过期。请在 app 服务端调用互动白板 RESTful API 或用代码重新生成 Token。 |
+| `invalid signature of token`                             | Token 的签名无效。当你使用在 app 服务端用代码生成的 Token 时，可能会遇到该报错。请确保使用正确的生成 Token 算法和代码。 |
+| `unknow error`                                          | 未知错误。                                                   |
+| `token access role$`</br>`{发送过来的 token 的权限} forbidden` | Token 的权限过低，例如，使用 `reader` 角色的 Token 请求 `writer` 角色的 Token 才能访问的服务。请确保发起的请求与使用的 Token 权限一致。 |
+| `token access task forbidden`                         | 禁止使用该 Task Token 访问 Task UUID 对应的文档转换任务。请确保请求中传入的 Task UUID 和 Task UUID 相匹配，即传入的 Task UUID 和生成该 Task Token 的 Task UUID 一致。 |
+| `token access room forbidden`                            | 禁止使用该 Room Token 访问 Room UUID 对应的互动白板房间。请确保请求中传入的 Room UUID 和 Room UUID 相匹配，即传入的 Room UUID 和生成该 Room Token 的 Room UUID 一致。 |
+| `token access team forbidden`                            | 项目被删除或禁用，导致 Token 失效。                          |

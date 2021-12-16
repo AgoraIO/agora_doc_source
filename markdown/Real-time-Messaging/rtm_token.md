@@ -3,7 +3,6 @@ title: 校验用户权限
 platform: 全平台
 updatedAt: 2021-02-07 10:16:40
 ---
-
 ## 简介
 
 Agora RTM SDK 提供两种鉴权机制：App ID 和 Token 。这两种鉴权机制的关系以及适用场景详见下图：
@@ -31,6 +30,7 @@ Agora RTM SDK 提供两种鉴权机制：App ID 和 Token 。这两种鉴权机�
 
 你需要在初始化客户端时，需要填写 `appId` 参数。
 
+
 ## 获取和使用 RTM Token
 
 登录 Agora RTM 系统时，你需要传入 RTM Token 参数。获取和使用 RTM Token 的步骤如下：
@@ -48,13 +48,13 @@ Agora RTM SDK 提供两种鉴权机制：App ID 和 Token 。这两种鉴权机�
 3.  点击 App 证书右方的**启用**按钮。仔细阅读关于 App 证书介绍后，根据屏幕提示，确认启用 App 证书。
 4.  点击 App 证书右方的 ![](https://web-cdn.agora.io/docs-files/1551773294761) 图标，显示完整的 App 证书。如需隐藏 App 证书，再次点击 ![](https://web-cdn.agora.io/docs-files/1551773306258) 图标。
 
-> - App 证书仅用于生成 RTM Token，不可单独使用。
-> - 将你的 App 证书保存在服务器端，且对任何客户端均不可见。
-> - 通常 App 证书在启用一小时后生效。
-> - 当项目的 App 证书被启用后，你必须使用 Token 作为鉴权方式。
-> - **信令 Token 调试开关**暂不影响 RTM 项目，无需设置。
+> -   App 证书仅用于生成 RTM Token，不可单独使用。
+> -   将你的 App 证书保存在服务器端，且对任何客户端均不可见。
+> -   通常 App 证书在启用一小时后生效。
+> -   当项目的 App 证书被启用后，你必须使用 Token 作为鉴权方式。
+> -   **信令 Token 调试开关**暂不影响 RTM 项目，无需设置。
 
-### 部署 RTM Token Generator
+### 部署 RTM Token Generator 
 
 Agora 的 Token 方案基于请求—响应机制，流程如下：
 
@@ -64,19 +64,22 @@ Agora 的 Token 方案基于请求—响应机制，流程如下：
 
 因此，在使用 Token 之前，你需要先在你的 Server 端部署一个 Token Generator 用来生成 Token。Agora 提供以下平台 Token Generator 的示例代码。
 
-- [RTM Token Builder for C++](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/sample/RtmTokenBuilderSample.cpp)
-- [RTM Token Builder for Java](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/io/agora/sample/RtmTokenBuilderSample.java)
-- [RTM Token Builder for Python](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/sample/RtmTokenBuilderSample.py)
-- [RTM Token Builder for PHP](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/sample/RtmTokenBuilderSample.php)
-- [RTM Token Builder for Node.js](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/sample/RtmTokenBuilderSample.js)
+-   [RTM Token Builder for C++](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/sample/RtmTokenBuilderSample.cpp)
+-   [RTM Token Builder for Java](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/io/agora/sample/RtmTokenBuilderSample.java)
+-   [RTM Token Builder for Python](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/sample/RtmTokenBuilderSample.py)
+-   [RTM Token Builder for PHP](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/sample/RtmTokenBuilderSample.php )
+-   [RTM Token Builder for Node.js](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/sample/RtmTokenBuilderSample.js)
+
+
+
 
 ### 发送获取 RTM Token 的请求
 
 当你需要 RTM Token 时，向 Server 端发送获取 Token 的请求。
 
-生成 RTM Token 时，需要传入下列参数：
+生成 RTM Token时，需要传入下列参数：
 
-- `appID`：项目的 App ID，详见 <a href="#getting-an-app-id">获取  App ID</a>。
+- `appID`：项目的 App ID，详见 <a href="#getting-an-app-id">获取 App ID</a>。
 - `userId`：申请登录 Agora RTM 系统的用户 ID。
 
 > 将你的 App 证书保存在服务器端，且对任何客户端均不可见。

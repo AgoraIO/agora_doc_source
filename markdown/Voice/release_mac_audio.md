@@ -10,13 +10,12 @@ updatedAt: 2021-03-29 03:48:11
 
 macOS 语音 SDK 支持两种主要场景:
 
-- 音频通话
-- 音频直播
+-   音频通话
+-   音频直播
 
 点击 [语音通话产品概述](https://docs.agora.io/cn/Voice/product_voice?platform=All%20Platforms) 以及 [音频互动直播产品概述](https://docs.agora.io/cn/Audio%20Broadcast/product_live_audio?platform=All%20Platforms)了解关键特性。
 
 ## **3.1.0 版**
-
 该版本于 8 月 6 日发布。
 
 **新增特性**
@@ -65,14 +64,14 @@ macOS 语音 SDK 支持两种主要场景:
 
 为提升音频性能，该版本对音频编码码率最大值进行如下优化：
 
-| Profile                                   | 3.1.0 版本                                           | 3.1.0 版本之前                                       |
-| :---------------------------------------- | :--------------------------------------------------- | :--------------------------------------------------- |
-| `AgoraAudioProfileDefault`                | <li>直播场景: 64 Kbps</li><li>通信场景: 18 Kbps</li> | <li>直播场景: 52 Kbps</li><li>通信场景: 18 Kbps</li> |
-| `AgoraAudioProfileSpeechStandard`         | 18 Kbps                                              | 18 Kbps                                              |
-| `AgoraAudioProfileMusicStandard`          | 64 Kbps                                              | 48 Kbps                                              |
-| `AgoraAudioProfileMusicStandardStereo`    | 80 Kbps                                              | 56 Kbps                                              |
-| `AgoraAudioProfileMusicHighQuality`       | 96 Kbps                                              | 128 Kbps                                             |
-| `AgoraAudioProfileMusicHighQualityStereo` | 128 Kbps                                             | 192 Kbps                                             |
+| Profile                                 | 3.1.0 版本                                                   | 3.1.0 版本之前                                               |
+| :-------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| `AgoraAudioProfileDefault`                   | <li>直播场景: 64 Kbps</li><li>通信场景: 18 Kbps</li> | <li>直播场景: 52 Kbps</li><li>通信场景: 18 Kbps</li> |
+| `AgoraAudioProfileSpeechStandard`           | 18 Kbps                                                      | 18 Kbps                                                      |
+| `AgoraAudioProfileMusicStandard`            | 64 Kbps                                                      | 48 Kbps                                                      |
+| `AgoraAudioProfileMusicStandardStereo`     | 80 Kbps                                                      | 56 Kbps                                                      |
+| `AgoraAudioProfileMusicHighQuality`        | 96 Kbps                                                      | 128 Kbps                                                     |
+| `AgoraAudioProfileMusicHighQualityStereo` | 128 Kbps                                                     | 192 Kbps                                                     |
 
 #### 5. 日志扩容
 
@@ -181,7 +180,6 @@ macOS 语音 SDK 支持两种主要场景:
 [`sharedEngineWithConfig`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/sharedEngineWithConfig:delegate:)
 
 ## **3.0.0 版**
-
 该版本于 2020 年 3 月 4 日发布。
 
 在该版本对通信场景采用了全新的系统架构，并升级了通信和直播场景下的 last mile 网络策略。在带宽不足时，新的网络策略能充分利用上下行有限带宽提升有效码率，从而增强弱网对抗能力，极大提升了弱网情况下通信和直播场景的终端用户体验。
@@ -193,7 +191,6 @@ macOS 语音 SDK 支持两种主要场景:
 新增特性、改进与问题修复详见下文。
 
 **升级必看**
-
 #### 1. 静态库更名与新增动态库
 
 为与其他平台保持一致，该版本将 SDK 的库名由 AgoraRtcEngineKit 变更为 AgoraRtcKit。如果你由老版本的 SDK 升级至该版本，请务必重新导入类。详细步骤见《快速开始》中的[导入类](https://docs.agora.io/cn/Voice/start_call_mac?platform=macOS#a-nameimportclassa2-%E5%AF%BC%E5%85%A5%E7%B1%BB)章节。
@@ -251,7 +248,7 @@ macOS 语音 SDK 支持两种主要场景:
 
 为满足更高音质需求，该版本调整了直播场景下 `AgoraAudioProfileDefault(0)` 对应的音频编码属性，详见下表：
 
-| SDK 版本   | `AgoraAudioProfileDefault(0)`                               |
+| SDK 版本   | `AgoraAudioProfileDefault(0)`                                  |
 | :--------- | :---------------------------------------------------------- |
 | 3.0.0      | 48 KHz 采样率，音乐编码，单声道，编码码率最大值为 52 Kbps。 |
 | 3.0.0 之前 | 32 KHz 采样率，音乐编码，单声道，编码码率最大值为 44 Kbps。 |
@@ -290,7 +287,6 @@ macOS 语音 SDK 支持两种主要场景:
 - `streamPublishedWithUrl` 和 `streamUnpublishedWithUrl`，使用 [`rtmpStreamingChangedToState`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingChangedToState:state:errorCode:) 取代
 
 ## **2.9.1 版**
-
 该版本于 2019 年 9 月 19 日发布。新增特性与修复问题列表详见下文。
 
 **新增特性**
@@ -320,7 +316,6 @@ macOS 语音 SDK 支持两种主要场景:
 - `startAudioRecording`
 
 ## **2.9.0 版**
-
 该版本于 2019 年 8 月 16 日发布。新增特性与修复问题列表详见下文。
 
 **升级必看**
@@ -353,7 +348,6 @@ macOS 语音 SDK 支持两种主要场景:
 #### 2. 跨频道媒体流转发
 
 跨频道媒体流转发，指将主播的媒体流转发至其他直播频道，实现主播跨频道与其他主播实时互动的场景。该版本新增如下接口，通过将源频道中的媒体流转发至目标频道，实现跨直播间连麦功能：
-
 - [`startChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startChannelMediaRelay:)
 - [`updateChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateChannelMediaRelay:)
 - [`stopChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopChannelMediaRelay)
@@ -376,7 +370,6 @@ macOS 语音 SDK 支持两种主要场景:
 #### 5. 远端音频帧拉取
 
 为提升音频播放体验，该版本新增如下接口，支持使用拉取的方式获取远端音频数据。App 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。
-
 - [`enableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSink:channels:)
 - [`disableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSink)
 - [`pullPlaybackAudioFrameRawData`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameRawData:lengthInByte:)
@@ -392,8 +385,8 @@ macOS 语音 SDK 支持两种主要场景:
 #### 1. 通话中质量透明
 
 该版本进一步扩充了 [`AgoraChannelStats`](./API%20Reference/oc/Classes/AgoraChannelStats.html) 类的成员：
-
 - `AgoraChannelStats` 类：累计发送音频/视频字节数及累计接收音频/视频字节数
+
 
 #### 2. 其他改进
 
@@ -401,6 +394,7 @@ macOS 语音 SDK 支持两种主要场景:
 - 优化了通信场景下用户关闭麦克风后听到的音质。
 
 **问题修复**
+
 
 #### 音频
 
@@ -416,7 +410,6 @@ macOS 语音 SDK 支持两种主要场景:
 为提升用户体验，Agora SDK 在该版本中对 API 进行了如下变动：
 
 #### 新增
-
 - [`enableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSink:channels:)
 - [`disableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSink)
 - [`pullPlaybackAudioFrameRawData`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameRawData:lengthInByte:)
@@ -424,7 +417,7 @@ macOS 语音 SDK 支持两种主要场景:
 - [`localAudioStateChange`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStateChange:error:)
 - [`remoteAudioStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:)
 - [`localAudioStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStats:)
-- [`switchChannelByToken`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:joinSuccess:)
+- [`switchChannelByToken`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:joinSuccess:) 
 - [`startChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startChannelMediaRelay:)
 - [`updateChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateChannelMediaRelay:)
 - [`stopChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopChannelMediaRelay)
@@ -456,18 +449,17 @@ macOS 语音 SDK 支持两种主要场景:
 
 对于其他接口，Agora 沿用 Int 型的 UID。Agora Engine 会维护 UID 和 User account 映射表，你可以随时通过 String user account 获取 UID，或者通过 UID 获取 String user account，无需自己维护映射表。
 
-为保证通信质量，频道内所有用户需使用同一数据类型的用户 ID，即频道内的所有用户 ID 应同为 Int 型或同为 String 型。
+为保证通信质量，频道内所有用户需使用同一数据类型的用户 ID，即频道内的所有用户 ID应同为 Int 型或同为 String 型。
 
 **Note**：
 
 - 同一频道内，Int 型的 User ID 和 String 型的 User account 不可混用。目前支持 String 型 User account 的 SDK 如下：
 
-  - Native SDK：v2.8.0 及之后版本
-  - Web SDK：v2.5.0 及之后版本
+	- Native SDK：v2.8.0 及之后版本
+	- Web SDK：v2.5.0 及之后版本
 
-如果你的频道内有不支持 String 型 User account 的用户，则只能使用 Int 型的 User ID。
-
-- 如果你使用该版本的 Native SDK 将用户 ID 升级至 String 型 User account，请确保所有终端用户同步升级。
+ 如果你的频道内有不支持 String 型 User account 的用户，则只能使用 Int 型的 User ID。
+- 如果你使用该版本的 Native SDK 将用户 ID升级至 String 型 User account，请确保所有终端用户同步升级。
 - 如果使用 String 型的 User account，请确保你的服务端用户生成 Token 的脚本已升级至最新版本。如果使用 String 型 User account 加入频道，请确保使用该 User account 或其对应的 Int 型 UID 来生成 Token。你可以调用 `getUserInfoByUserAccount` 来获取 User account 所对应的 UID。
 
 #### 2. 音频卡顿回调
@@ -501,6 +493,7 @@ macOS 语音 SDK 支持两种主要场景:
 #### 废弃
 
 - [AgoraLiveTranscoding](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html) 类中的 `lowLatency` 成员
+
 
 ## **2.4.1 版**
 

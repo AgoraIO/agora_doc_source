@@ -3,7 +3,6 @@ title: 实现语音通话
 platform: Cocos Creator
 updatedAt: 2020-12-15 09:58:53
 ---
-
 本文详细介绍如何快速集成 Agora Cocos Creator SDK，并在你自己的 app 里实现基础的语音通话。
 
 ## 前提条件
@@ -12,13 +11,13 @@ updatedAt: 2020-12-15 09:58:53
 - [Cocoapods](https://guides.cocoapods.org/using/getting-started.html#getting-started)
 - 操作系统与集成开发环境（IDE）要求：
 
-  | 开发平台 | 操作系统版本       | 集成开发环境版本          |
+  | 开发平台 | 操作系统版本       | 集成开发环境版本                |
   | :------- | :----------------- | :------------------------ |
   | Android  | Android 4.1 或以上 | Android Studio 3.0 或以上 |
   | iOS      | iOS 8.0 或以上     | Xcode 9.0 或以上          |
 
 - 有效的 [Cocos 账户](https://account.cocos.com/)和 [Cocos App ID](https://docs.cocos.com/creator/manual/zh/cocos-service/user-guide.html)。
-<div class="alert note">如果你的网络环境部署了防火墙，请参考<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a >以正常使用 Agora 服务。</div>
+ <div class="alert note">如果你的网络环境部署了防火墙，请参考<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a >以正常使用 Agora 服务。</div>
 
 ## 创建 Cocos Creator 项目
 
@@ -33,7 +32,7 @@ updatedAt: 2020-12-15 09:58:53
 1. 打开 Cocos Creator 项目，点击界面右侧的**服务**栏打开服务面板。
 
 2. 点击 **AppID** 后的 ![](https://web-cdn.agora.io/docs-files/1603983326448) 按钮并点击**设定 Cocos AppID**，以关联你的项目与你的游戏。
-   ![](https://web-cdn.agora.io/docs-files/1603984502139)
+  ![](https://web-cdn.agora.io/docs-files/1603984502139)
 
 3. 向下滚动**服务**面板，选择 **Agora Voice**。
 

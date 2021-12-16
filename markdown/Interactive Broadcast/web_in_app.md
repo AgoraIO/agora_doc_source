@@ -3,7 +3,6 @@ title: H5 实时直播
 platform: Web
 updatedAt: 2021-01-04 06:53:37
 ---
-
 ## 功能简介
 
 Agora Web SDK 新增 RTS 插件，支持在移动端网页播放音视频流。该功能可以实现通过在社交 app 内（如微信群）分享网页链接，让用户在微信中打开链接就能直接观看实时视频，降低了分享门槛，方便扩大目标受众范围。
@@ -44,8 +43,7 @@ Android 平台支持自定义 WebView，Android 微信使用的是自研的 WebV
   </tr>
 </table>
 
-##
-
+## 
 ## 实现方法
 
 ### 下载并集成 SDK
@@ -57,7 +55,7 @@ Android 平台支持自定义 WebView，Android 微信使用的是自研的 WebV
 检查系统是否支持移动端网页观看视频：
 
 ```javascript
-AgoraRTS.checkSystemRequirements();
+AgoraRTS.checkSystemRequirements()
 ```
 
 调用该方法返回 `true` 表示支持，返回 `false` 表示不支持。
@@ -67,7 +65,7 @@ AgoraRTS.checkSystemRequirements();
 在创建 Client 后，需要加上两行代码：
 
 ```javascript
-var client = AgoraRTC.createClient({mode: "live", codec: "h264"});
+var client = AgoraRTC.createClient({ mode: "live", codec: "h264"});
 AgoraRTS.init(AgoraRTC);
 AgoraRTS.proxy(client);
 ```
@@ -82,24 +80,24 @@ AgoraRTS.proxy(client);
 
 - 新增远端流
 
-```javascript
-client.on("stream-added", function (e) {
-  var stream = e.stream; // 该 stream 为 rtsStream
-  client.subscribe(stream, {video: true, audio: true});
+ ```javascript
+client.on("stream-added", function(e) {
+    var stream = e.stream; // 该 stream 为 rtsStream
+    client.subscribe(stream, { video: true, audio: true});
 });
 ```
 
 - 已订阅远端流
 
-```javascript
+ ```javascript
 client.on("stream-subscribed", function (e) {
-  var stream = e.stream; // 该 stream 为 rtsStream
+    var stream = e.stream; // 该 stream 为 rtsStream
 });
 ```
 
 rtsStream 对象是一个特殊的用于接收和播放软解码流的对象，与 SDK 原有的 Stream 对象完全不同。
 
-- 原有 SDK 中的 Stream 对象实际是封装了 WebRTC 的 [MediaStream](https://developer.mozilla.org/zh-CN/docs/Web/API/MediaStream) 音视频流。
+- 原有 SDK 中的 Stream 对象实际是封装了 WebRTC 的 [MediaStream](https://developer.mozilla.org/zh-CN/docs/Web/API/MediaStream) 音视频流。 
 - rtsStream 通过我们实现的软件解码器输出音视频流，不支持 MediaStream 相关的方法和功能。
 
 rtsStream 对象中的 API 是完全对照 SDK 原有 Stream 的 API 实现的，但是只实现了与订阅流相关的方法，详见[开发注意事项](#audience)。
@@ -109,7 +107,7 @@ rtsStream 对象中的 API 是完全对照 SDK 原有 Stream 的 API 实现的�
 在订阅 rtsStream 对象时，必须设置 [`subscribe`](https://docs.agora.io/cn/Voice/API%20Reference/web/interfaces/agorartc.client.html#subscribe) 方法的 `options` 参数，例如：
 
 ```javascript
-client.subscribe(stream, {video: true, audio: true}, console.log);
+client.subscribe(stream, { video: true, audio: true }, console.log);
 ```
 
 ## 工作原理
@@ -138,11 +136,10 @@ Agora Web SDK 是基于 WebRTC 实现音视频通信的，因此依赖于微信�
 - 请确保使用直播模式。
 - 如果发送端也使用 Agora Web SDK，请确保 `createClient` 中的 `codec` 设置为 `"h264"`。
 - 如果使用 Agora Native SDK 2.3.2 或以后版本，必须在加入频道前调用 `setParameters` 进行以下设置：
-  ````cpp
-  setParameters("{\"che.hardware_encoding\":0}")
-  setParameters("{\"che.video.h264Profile\":66}")
-  	```
-  ````
+  ```cpp
+setParameters("{\"che.hardware_encoding\":0}")
+setParameters("{\"che.video.h264Profile\":66}")
+	```
 - 发送的视频分辨率设置不要超过 480P。
 
 ### <a name="audience"></a>接收端
@@ -151,10 +148,8 @@ Agora Web SDK 是基于 WebRTC 实现音视频通信的，因此依赖于微信�
 - 在代理 Client 以后，Client 的事件中，没有 `"active-speaker"`。
 - 使用 RTS 插件时，不要调用会长时间阻塞主线程的方法，如 `Window.alert()`。
 - rtsStream 对象不同于 Agora Web SDK 原有的 Stream 对象：
-
   - rtsStream 没有事件抛出。
   - rtsStream 支持的方法如下：
-
     - `init`
     - `play`
     - `stop`

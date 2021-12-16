@@ -2,21 +2,8 @@
 title: 什么是账单、扣费与账户冻结？
 platform: ["All Platforms"]
 updatedAt: 2020-12-18 02:56:22
-Products:
-  [
-    "Voice",
-    "Video",
-    "Interactive Broadcast",
-    "Recording",
-    "Real-time-Messaging",
-    "RTSA",
-    "cloud-recording",
-    "Aliyun Audio Moderation",
-    "Kingsoft Audio Moderation",
-    "Volcengine AI Vision",
-  ]
+Products: ["Voice","Video","Interactive Broadcast","Recording","Real-time-Messaging","RTSA","cloud-recording","Aliyun Audio Moderation","Kingsoft Audio Moderation","Volcengine AI Vision"]
 ---
-
 Agora 控制台根据你的付费情况提供相应的账单发布、扣费和账号冻结服务。
 
 <div class="alert note">如果你已和我们的销售签约，账单/单价/冻结等财务相关信息请以合同为准。</div>
@@ -49,10 +36,14 @@ Agora 控制台根据你的付费情况提供相应的账单发布、扣费和�
 为避免账号冻结，你可以在缴费宽限期内参考[线上充值](https://docs.agora.io/cn/Agora%20Platform/online_payment?platform=All%20Platforms)文档在控制台自助充值。充值后，Agora 会自动扣款。
 各类账号的最低余额要求和缴费宽限期如下表所示：
 
+
+
 | 账号类型 | 账号最低余额 | 缴费宽限期                           |
 | :------- | :----------- | :----------------------------------- |
 | 个人     | 0 元         | 自扣费日起的 5 个自然日（含扣费日）  |
 | 企业     | 2000 元      | 自扣费日起的 30 个自然日（含扣费日） |
+
+
 
 ### 账号冻结与解冻
 
@@ -75,18 +66,22 @@ Agora 控制台根据你的付费情况提供相应的账单发布、扣费和�
 ### 扣费
 
 账单发布后，Agora 会在每月 6 日从你的账号余额自动扣费。
-
 - 如果你上月的 RTC 产品实际用量未超过一万分钟，上月 RTM 产品的最高日活跃用户数未超过 1,000，且没有使用其他收费产品或服务时，则该月免费，Agora 不会扣取任何费用。
 - 如果有未付账单金额，Agora 会发送充值提醒。
+
 
 ### 账号冻结与解冻
 
 当出现以下任意一种情况时，Agora 会在第二天冻结你的账号并发送邮件通知：
-
 - RTC 产品的实际用量超过了一万分钟的免费时长。
 - 使用了不包含在一万分钟免费时长中的产品或服务时，且用量超出了该产品或服务的免费额度。
 - RTM 产品的最高日活跃用户数超过 1,000。
 
 <div class="alert warning">冻结后，你账号下的所有项目都无法使用 Agora 服务。</div>
 
+
 Agora 建议你在账户冻结后及时充值。一旦充值，你的账户会即刻解冻，且自动升级为付费账号。
+
+
+
+

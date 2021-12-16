@@ -3,7 +3,6 @@ title: Agora RTM SDK
 platform: All Platforms
 updatedAt: 2021-03-02 03:55:03
 ---
-
 Agora RTM (Real-time Messaging) SDK 是声网提供的用于实现消息通道、呼叫、聊天、状态同步等功能的 SDK。
 
 声网为 Agora RTM SDK 提供了稳定可靠、低延时、高并发的全球消息云服务，帮助开发者快速构建实时通信场景。

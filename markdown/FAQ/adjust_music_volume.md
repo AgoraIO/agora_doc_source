@@ -1,10 +1,9 @@
 ---
 title: 为什么通过系统音量无法调节背景音乐？
-platform: ["iOS", "Android"]
+platform: ["iOS","Android"]
 updatedAt: 2021-01-27 12:27:03
-Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
+Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 ---
-
 ## 问题描述
 
 在移动设备中，用户在后台播放背景音乐，加入 RTC 频道后，用户无法通过调节系统音量去改变背景音乐的音量。

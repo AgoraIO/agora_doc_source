@@ -1,10 +1,9 @@
 ---
 title: 如何处理音画不同步问题？
-platform: ["Android", "iOS", "macOS", "Web", "Windows", "Unity", "Electron", "React Native", "Flutter"]
+platform: ["Android","iOS","macOS","Web","Windows","Unity","Electron","React Native","Flutter"]
 updatedAt: 2020-07-07 20:34:51
-Products: ["Video", "Interactive Broadcast"]
+Products: ["Video","Interactive Broadcast"]
 ---
-
 音画不同步问题一般由网络、设备性能、自采集、自渲染或第三方美颜 SDK 等原因造成。你可以参考以下步骤解决音画不同步问题。
 
 ## 步骤 1：自检

@@ -3,7 +3,6 @@ title: 媒体流加密
 platform: Web
 updatedAt: 2021-02-08 03:02:12
 ---
-
 ## 功能描述
 
 如果你需要启用加密功能，Agora 提供加密方案与设置加密密码的方法。
@@ -33,3 +32,4 @@ client.setEncryptionSecret(password);
 ## 开发注意事项
 
 请确保在调用 [`join`](./API%20Reference/web/interfaces/agorartc.client.html#join) 加入频道之前设置加密。
+

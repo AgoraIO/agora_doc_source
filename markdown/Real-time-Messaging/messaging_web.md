@@ -18,27 +18,37 @@ updatedAt: 2021-03-02 02:30:46
 
 ## Demo 体验
 
+
 <div class="alert info">点击<a href="https://webdemo.agora.io/agora-web-showcase/examples/Agora-RTM-Tutorial-Web/">在线体验</a>试用Agora RTM Tutorial for Web功能。</div>
 
 你可以到 GitHub 下载最新版的 [Agora-RTM-Tutorial-for-Web](https://github.com/AgoraIO/RTM/tree/master/Agora-RTM-Tutorial-Web) 查看完整的源码和代码逻辑
 
+
 ## 开发环境要求
 
+
+ 
 - 安装一款 Agora RTM Web SDK 支持的浏览器，如下表所示：
 
-| 平台                   | 兼容性 |
-| :--------------------- | :----- |
-| Chrome 49+             | ✔      |
-| Android Browser 4.4.3+ | ✔      |
-| Safari 9+              | ✔      |
-| Internet Explorer 11+  | ✔      |
-| Firefox 52+            | ✔      |
-| 微信浏览器             | ✔      |
-| QQ 浏览器 10.5+        | ✔      |
+
+
+| 平台             | 兼容性 |
+| :------------------- | :----------------- |
+| Chrome 49+ | ✔                  |
+| Android Browser 4.4.3+ | ✔     |
+| Safari 9+   | ✔                  |
+| Internet Explorer 11+  | ✔                  |
+| Firefox 52+ |  ✔                  |
+| 微信浏览器 |  ✔                  |
+| QQ 浏览器 10.5+ |  ✔                  |
+
+
+
 
 - 一个有效的 [Agora 开发者账号](https://sso.agora.io/en/signup)。
 
-<div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a >打开相关端口并设置域名白名单。</div>
+<div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a >打开相关端口并设置域名白名单。</div> 
+
 
 ## 设置开发环境
 
@@ -46,7 +56,8 @@ updatedAt: 2021-03-02 02:30:46
 
 ### <a name="appid"></a> 获取 App ID
 
-参考以下步骤获取一个 App ID。若已有 App ID，可以直接查看[集成客户端](#integrate)。
+
+参考以下步骤获取一个 App ID。若已有App ID，可以直接查看[集成客户端](#integrate)。
 
 <details>
 	<summary><font color="#3ab7f8">获取 App ID</font></summary>
@@ -65,6 +76,9 @@ updatedAt: 2021-03-02 02:30:46
 
 ![](https://web-cdn.agora.io/docs-files/1574921811175)
 
+
+
+
 </details>
 
 ### <a name="integrate"></a>集成客户端
@@ -73,13 +87,15 @@ updatedAt: 2021-03-02 02:30:46
 
 使用 \<script\> 方法引入的 SDK 会在 <code>window</code> 上生成名为 <code>AgoraRTM</code> 的全局变量。
 
+
+
 1. 从 Agora 官方网站下载最新版 [Agora RTM SDK for Web](/cn/Real-time-Messaging/downloads) 压缩包。
 2. 将下载下来的压缩包中路径为 `libs/agora-rtm-sdk-1.2.2.js` 的文件保存到你所操作的项目下。
 3. 在项目相应的前端页面文件中，对刚才保存的 SDK 文件进行引用（其中 `/path/to/agora-rtm-sdk-1.2.2.js` 替换为可访问的 SDK 公开网址）：
 
-   ```html
-   <script src="/path/to/agora-rtm-sdk-1.2.2.js"></script>
-   ```
+    ```html
+    <script src="/path/to/agora-rtm-sdk-1.2.2.js"></script>
+    ```
 
 <details>
 	<summary><font color="#3ab7f8">（可选）开启智能提示和类型检查</font></summary>
@@ -94,7 +110,6 @@ updatedAt: 2021-03-02 02:30:46
 ```JavaScript
 /// <reference path="path/to/agora-rtm-sdk.d.ts" />
 ```
-
 </details>
 	
 #### 方法 2：通过 npm 引入
@@ -102,9 +117,9 @@ updatedAt: 2021-03-02 02:30:46
 该方法需要安装 npm。详见 [Install npm](https://www.npmjs.com/get-npm)。
 
 1. 安装最新版的 SDK：
-   `npm i agora-rtm-sdk`
+`npm i agora-rtm-sdk`
 2. 导出 AgoraRTM 模块：
-   `import AgoraRTM from 'agora-rtm-sdk'`
+`import AgoraRTM from 'agora-rtm-sdk'`
 
 ## 实时消息和基本频道操作
 
@@ -115,7 +130,6 @@ updatedAt: 2021-03-02 02:30:46
 登入 RTM 之前，调用 `AgoraRTM.createInstance` 方法创建一个 `RtmClient` 实例。
 
 创建实例需要填⼊准备好的 App ID, 只有 App ID 相同的应⽤才能互通。
-
 > 示例代码中的 `client` 变量为 RtmClient 实例，下同。
 
 ```JavaScript
@@ -133,15 +147,15 @@ client.on('ConnectionStateChanged', (newState, reason) => {
 ```
 
 ### 登录
-
+	
 ![](https://web-cdn.agora.io/docs-files/1583998779687)
 
 Web 应用必须在登录 RTM 服务器之后，才可以使用 RTM 的点对点消息和群聊功能。
 
 在 `client.login` 方法中传入一个有如下属性的对象：
 
-- `token`: 如果安全要求不高，不填或将参数值设为 null；如果安全要求高，传入从你的服务端获得的 token 值。Token 需要在应用程序的服务器端生成，具体生成办法，详见 [校验用户权限](/cn/Real-time-Messaging/rtm_token?platform=All%20Platforms)。
-- `uid`: User ID 为字符串，必须是可见字符（可以带空格），不能为空或者多于 64 个字符，也不能是字符串 “null”。
+* `token`: 如果安全要求不高，不填或将参数值设为 null；如果安全要求高，传入从你的服务端获得的 token 值。Token 需要在应用程序的服务器端生成，具体生成办法，详见 [校验用户权限](/cn/Real-time-Messaging/rtm_token?platform=All%20Platforms)。
+* `uid`: User ID 为字符串，必须是可见字符（可以带空格），不能为空或者多于64个字符，也不能是字符串 “null”。
 
 该方法的返回值为 Promise。使用该 Promise 上的 `then` 方法传入回调；使用 `catch` 方法捕获异常并处理。也可以使用 ES7 的 `async/await` 语法来进行 SDK 异步方法的调用，这样就可以使用同步 `try/catch` 块来捕获异常（其他返回 Promise 的异步 API 也均如此）。
 
@@ -171,8 +185,8 @@ App 在成功登录 RTM 服务器之后，可以开始使用 RTM 的点对点消
 
 调用 `client` 上的 `sendMessageToPeer` 方法发送点对点消息。在该方法中：
 
-- 传入目标消息接收方的用户账号 ID。
-- 传入符合 `RtmMessage` 接口的参数对象。
+* 传入目标消息接收方的用户账号 ID。
+* 传入符合 `RtmMessage` 接口的参数对象。
 
 该方法返回一个 Promise：  
 该 Promise 执行（resolve）的值指示消息接收方是否已收到该消息。  
@@ -206,7 +220,7 @@ client.on('MessageFromPeer', ({ text }, peerId) => { // text 为消息文本，p
 ### 频道消息
 
 #### 创建并加入频道
-
+	
 ![](https://web-cdn.agora.io/docs-files/1583942850227)
 
 创建频道：
@@ -226,7 +240,7 @@ channel.join().then(() => {
 ```
 
 #### 发送频道消息
-
+	
 ![](https://web-cdn.agora.io/docs-files/1583942885608)
 
 加入频道成功后可发送频道消息。
@@ -249,6 +263,7 @@ channel.on('ChannelMessage', ({ text }, senderId) => { // text 为收到的频�
 });
 ```
 
+
 #### 退出频道
 
 调用实例的 leave 方法可以退出该频道。退出频道之后可以调用 join 方法再重新加入频道。
@@ -256,8 +271,8 @@ channel.on('ChannelMessage', ({ text }, senderId) => { // text 为收到的频�
 ```JavaScript
 channel.leave();
 ```
-
 ## 开发注意事项
+	
 
 - RTM 支持多个相互独立的 [RtmClient](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_web/classes/rtmclient.html) 实例。
 
@@ -266,6 +281,10 @@ channel.leave();
 - 使用频道核心功能前必须通过调用 [createChannel](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_web/classes/rtmclient.html#createchannel) 方法创建频道实例。
 - 你可以创建多个 [RtmClient](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_web/classes/rtmclient.html) 客户端实例，但是每个客户端实例最多只能同时加入 20 个频道。每个频道都应有不同的 `channelId` 参数。
 
-- 当你不再使用某个实例时，可以通过调用继承的 `removeAllListeners` 方法删除它的所有监听函数。
+- 当你不再使用某个实例时，可以通过调用继承的 `removeAllListeners` 方法删除它的所有监听函数。 
 
 - 接收到的 [RtmMessage](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_web/interfaces/rtmmessage.html) 消息对象不能重复利用再用于发送。
+
+
+	
+	

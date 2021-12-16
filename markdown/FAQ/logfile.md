@@ -1,10 +1,9 @@
 ---
 title: 如何设置日志文件？
-platform: ["Android", "iOS", "macOS", "Windows"]
+platform: ["Android","iOS","macOS","Windows"]
 updatedAt: 2021-03-22 09:18:54
-Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
+Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 ---
-
 Agora SDK 提供设置 SDK 的输出日志文件的功能，SDK 运行时产生的所有 log 将写入该文件。
 
 ## Native 平台
@@ -187,7 +186,7 @@ let config = AgoraRtcEngineConfig()
 config.appId = KeyCenter.AppId
 config.areaCode = GlobalSettings.shared.area.rawValue
 config.logConfig = logConfig
-agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
+agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)    
 ```
 
 ```c++
@@ -215,6 +214,8 @@ context.eventHandler = &m_eventHandler;
 int ret = m_rtcEngine->initialize(context);
 ```
 
+
+
 **API 参考**
 
 - Android
@@ -224,12 +225,14 @@ int ret = m_rtcEngine->initialize(context);
 - Windows
   - [initialize](https://docs.agora.io/cn/Video/API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#ac71db65e66942e4e0a0550e95c16890f)
 
+
+
 ### 获取堆栈信息
 
 发生 crash 时会告知产生 crash 的堆栈信息。各平台获取堆栈信息的方法如下：
 
 - Android 平台：运行 `adb bugreport` 命令
-  iOS：**XCode** → **window** → **Devices→** 选中相关设备 → 选中相应应用 → 应用列表下方设置按键 → **Download Container** → 已下载文件右键选择显示包内容 → **AppData** → **Library** → **Caches** → **agorasdk.log**
+iOS：**XCode** → **window** → **Devices→** 选中相关设备 → 选中相应应用 → 应用列表下方设置按键 → **Download Container** → 已下载文件右键选择显示包内容 → **AppData** → **Library** → **Caches** → **agorasdk.log**
 - macOS：`~/Library/Logs/DiagnosticReports/`
 - Windows: 需要抓取 dump 文件。可参考：
   - [WinDbg 抓取程序报错 dump 文件的方法](https://www.cnblogs.com/jinjiangongzuoshi/p/4268467.html)

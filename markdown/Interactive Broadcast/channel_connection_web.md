@@ -3,7 +3,6 @@ title: 频道连接状态管理
 platform: Web
 updatedAt: 2021-01-25 08:59:31
 ---
-
 <div class="alert note">本文仅适用于 Agora Web SDK 3.x 及之前版本。</div>
 
 当用户使用 Agora SDK 进行音视频通话或互动直播时，他会有多个 Agora 频道连接状态。本文介绍 Agora 频道如何判断用户在通信的各个阶段处于什么连接状态以及各状态的转变过程。

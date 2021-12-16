@@ -3,7 +3,6 @@ title: 发送和接收点对点消息及频道消息
 platform: macOS
 updatedAt: 2021-03-02 02:30:47
 ---
-
 ## 集成客户端
 
 ### 前提条件
@@ -39,18 +38,19 @@ updatedAt: 2021-03-02 02:30:47
 
 1. 请确保已在本机安装 Cocoapods。具体方法详见 [Getting Started with Cocoapods](https://guides.cocoapods.org/using/getting-started.html#getting-started)。
 2. 在你的电脑 Terminal 终端 cd 进入你的项目所在目录，利用 vim 创建 Podfile：
-   `vim Podfile`
+`vim Podfile`
 3. 在 Podfile 文件中输入以下内容：
-
 ```
 target '<YOUR APP>' do
     pod 'AgoraRtm_macOS'
 end
 ```
-
-> 请以你的项目名称替换 \<YOUR APP\> 。 4. 保存 Podfile 并退出：
-> `:wq` 6. 导入 Agora RTM SDK：
-> `pod install` 7. 在 Xcode 中打开生成的 **.xcworkspace** 文件。
+> 请以你的项目名称替换 \<YOUR APP\> 。
+4. 保存 Podfile 并退出：
+`:wq`
+6. 导入 Agora RTM SDK：
+`pod install`
+7. 在 Xcode 中打开生成的 **.xcworkspace** 文件。
 
 ### 方法 2：手动添加 SDK 到项目中
 
@@ -99,7 +99,7 @@ import AgoraRtmKit
 @implementation ViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // 创建一个 AgoraRtmKit 实例
     _kit = [[AgoraRtmKit alloc] initWithAppId:YOUR_APP_ID delegate:self];
 
@@ -114,7 +114,7 @@ import AgoraRtmKit
 
 App 必须在登录 RTM 服务器之后，才可以使用 RTM 的点对点消息和群聊功能，在此之前，请确保你已完成初始化。
 
-调用 `loginByToken` 方法[登录 RTM 服务器](#login)。在该方法中:
+调用 `loginByToken` 方法[登录RTM服务器](#login)。在该方法中:
 
 - 传入能标识用户角色和权限的 `token`。如果安全要求不高，也可以将值设为 `"nil"`。`token` 需要在应用程序的服务器端生成。详见：[校验用户权限](/cn/Real-time-Messaging/RTM_key)。
 - 传入能标识每个用户 ID。`usedId` 为字符串，必须是可见字符（可以带空格），不能为空或者多于 64 个字符，也不能是字符串 `nil`。
@@ -190,6 +190,8 @@ App 在成功[登录 RTM 服务器](#login)之后，可以开始使用 RTM 的�
     NSLog(@"Message received from %@: %@", message.text, peerId);
 }
 ```
+
+
 
 ### 注意事项
 
@@ -272,9 +274,11 @@ App 在成功[登录 RTM 服务器](#login)之后，可以开始使用 RTM 的�
 }
 ```
 
+
+
 ### 获取频道成员列表
 
-调用 `AgoraRtmChannel` 实例的 `getMembersWithCompletion` 方法可以获取到当前在该频道内的用户列表。
+调用 `AgoraRtmChannel` 实例的 `getMembersWithCompletion` 方法可以获取到当前在该频道内的用户列表。 
 
 ### 退出频道
 

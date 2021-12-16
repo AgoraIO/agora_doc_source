@@ -3,12 +3,11 @@ title: 输入在线媒体流
 platform: Web
 updatedAt: 2021-02-26 08:21:14
 ---
-
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 Web SDK 3.x 或更早版本，请查看<a href="./inject_stream_web?platform=Web">输入在线媒体流</a>。</li></div>
 
 ## 功能描述
-
 输入在线媒体流功能可以将音视频流作为一个发送端输入正在进行的直播房间。通过将正在播放的音视频输入到直播频道中，主播和观众可以一起收听和观看该媒体流并实时互动。
+
 
 ### 适用场景
 
@@ -40,16 +39,15 @@ updatedAt: 2021-02-26 08:21:14
 
 1. 频道内主播调用 `AgoraRTCClient.addInjectStreamUrl` 方法向直播频道内输入指定在线媒体流。你也可以修改 `config` 的参数设置媒体流输入的分辨率、码率和帧率等参数，详见 [InjectStreamConfig](./API%20Reference/web/v4.2.1/interfaces/injectstreamconfig.html)。
 
-> - 频道内同一时间只允许输入一路在线媒体流。
+ > - 频道内同一时间只允许输入一路在线媒体流。
 > - 输入媒体流成功后，该媒体流会在直播频道内自动播放，频道内所有用户都会收到 `AgoraRTCClient.on("user-joined")` 和 `AgoraRTCClient.on("user-published")` 回调。
 
 2. 频道内主播调用 `AgoraRTCClient.removeInjectStreamUrl` 方法从直播频道内删除指定的已输入在线媒体流。
 
-> - 删除媒体流成功后，频道内所有用户都会收到 `AgoraRTCClient.on("user-unpublished")` 和 `AgoraRTCClient.on("user-left")` 回调。
+ > - 删除媒体流成功后，频道内所有用户都会收到 `AgoraRTCClient.on("user-unpublished")` 和 `AgoraRTCClient.on("user-left")` 回调。
 > - 主播退出频道后，无需再调用 `removeInjectStreamUrl` 接口。
 
 ### 示例代码
-
 以下示例代码中的 `client` 是指通过 `AgoraRTC.createClient` 创建的本地客户端对象。
 
 ```js
@@ -64,30 +62,23 @@ const injectStreamConfig = {
 };
 
 // 开始输入在线媒体流。
-client
-  .addInjectStreamUrl("<YOUR URL>", injectStreamConfig)
-  .then(() => {
-    console.log("add inject stream url success");
-  })
-  .catch(e => {
-    console.log("add inject stream failed", e);
-  });
+client.addInjectStreamUrl("<YOUR URL>", injectStreamConfig).then(() => {
+  console.log("add inject stream url success");
+}).catch(e => {
+  console.log("add inject stream failed", e);
+});
 
-client
-  .removeInjectStreamUrl()
-  .then(() => {
-    console.log("remove inject stream url success");
-  })
-  .catch(e => {
-    console.log("remove inject stream failed", e);
-  });
+client.removeInjectStreamUrl().then(() => {
+  console.log("remove inject stream url success");
+}).catch(e => {
+  console.log("remove inject stream failed", e);
+});
 ```
 
 ### API 参考
-
 - [AgoraRTCClient.addInjectStreamUrl](./API%20Reference/web/v4.2.1/interfaces/iagorartcclient.html#addinjectstreamurl)
 - [AgoraRTCClient.removeInjectStreamUrl](./API%20Reference/web/v4.2.1/interfaces/iagorartcclient.html#removeinjectstreamurl)
 
 ## 开发注意事项
-
 主播在直播过程中启用输入在线媒体流时，观众需要订阅主播才能观看外部视频。
+

@@ -8,9 +8,12 @@ updatedAt: 2021-03-02 02:30:46
 
 ## Demo 体验
 
+
 Agora 在 GitHub 上提供一个开源的实时消息示例项目 [Agora-RTM-Tutorial-Android](https://github.com/AgoraIO/RTM/tree/master/Agora-RTM-Tutorial-Android) 供你参考。
 
 ## 开发环境要求
+
+
 
 - Android SDK API Level ≥ 16
 - 如果你的 App 以 Android 9 及以上为目标平台，请关注 [Android 隐私权变更](https://developer.android.com/about/versions/pie/android-9.0-changes-28#privacy-changes-p)。
@@ -18,7 +21,8 @@ Agora 在 GitHub 上提供一个开源的实时消息示例项目 [Agora-RTM-Tut
 
 - 一个有效的 [Agora 开发者账号](https://sso.agora.io/en/signup)。
 
-<div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a >打开相关端口并设置域名白名单。</div>
+<div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a >打开相关端口并设置域名白名单。</div> 
+
 
 ## 准备开发环境
 
@@ -29,10 +33,12 @@ Agora 在 GitHub 上提供一个开源的实时消息示例项目 [Agora-RTM-Tut
 - [添加权限](#permission)
 - [防止混淆代码](#obfuscated)
 
+
+
 ### <a name="appid"></a> 获取 App ID
 
-参考以下步骤获取一个 App ID。若已有 App ID，可以直接查看[快速集成 SDK](#sdk)。
 
+参考以下步骤获取一个 App ID。若已有App ID，可以直接查看[快速集成 SDK](#sdk)。
 <details>
 	<summary><font color="#3ab7f8">获取 App ID</font></summary>
 
@@ -50,7 +56,11 @@ Agora 在 GitHub 上提供一个开源的实时消息示例项目 [Agora-RTM-Tut
 
 ![](https://web-cdn.agora.io/docs-files/1574921811175)
 
+
+
 </details>
+
+
 
 ### <a name="sdk"></a> 快速集成 SDK
 
@@ -133,6 +143,8 @@ dependencies {
 
 ### ![](https://web-cdn.agora.io/docs-files/1562566639888)
 
+
+
 ### 初始化
 
 在创建实例前，请确保你已完成环境准备，安装包获取等步骤。
@@ -169,7 +181,7 @@ public void init() {
 						@Override
 						public void onMessageReceived(RtmMessage rtmMessage, String peerId) {
 								String msg = rtmMessage.getText();
-								Log.d(TAG, "Message received " + " from " + peerId + msg
+								Log.d(TAG, "Message received " + " from " + peerId + msg 
 														);
 						}
 				});
@@ -179,6 +191,7 @@ public void init() {
 		}
 }
 ```
+
 
 ### 登录
 
@@ -224,7 +237,7 @@ mRtmClient.logout(null);
 
 ```java
 public void sendPeerMessage(String dst, String content) {
-
+        
         final RtmMessage message = mRtmClient.createMessage();
         message.setText(content);
 
@@ -263,7 +276,7 @@ App 在成功登录 RTM 服务器 之后，可以开始使用 RTM 的频道消�
 
 #### 创建 、加入频道实例
 
-- 传入能标识每个频道的 ID。ID 为字符串，不能为空或者多于 64 个字符，也不能是字符串 `"null"`。
+- 传入能标识每个频道的 ID。ID 为字符串，不能为空或者多于 64 个字符，也不能是字符串 `"null"`。  
 - 指定一个频道监听器。SDK 通过回调通知应用程序频道的状态变化和运行事件等，如: 接收到频道消息、用户加入和退出频道等。
 
 ```java
@@ -273,15 +286,15 @@ private RtmChannelListener mRtmChannelListener = new RtmChannelListener() {
         String text = message.getText();
         String fromUser = fromMember.getUserId();
     }
-
+ 
     @Override
     public void onMemberJoined(RtmChannelMember member) {
-
+ 
     }
-
+ 
     @Override
     public void onMemberLeft(RtmChannelMember member) {
-
+ 
     }
 };
 ```
@@ -334,9 +347,15 @@ public void sendChannelMessage(String msg) {
 }
 ```
 
+
+
+
+
 #### 退出频道
 
 调用实例的 `leave()` 方法可以退出该频道。退出频道之后可以调用 `join()` 方法再重新加入频道。
+
+
 
 ## 注意事项
 
@@ -348,3 +367,4 @@ public void sendChannelMessage(String msg) {
 - 接收到的 `RtmMessage` 消息对象不能重复利用再用于发送。
 - 当离开了频道且不再加入该频道时，可以调用 `RtmChannel` 实例的 `release()` 方法及时释放频道实例所占用的资源。
 - 所有回调如无特别说明，除了基本的参数合法性检查失败触发的回调，均为异步调用。
+

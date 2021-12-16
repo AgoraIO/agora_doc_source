@@ -3,17 +3,15 @@ title: 自定义视频采集和渲染
 platform: Windows
 updatedAt: 2021-01-12 10:03:39
 ---
-
 ## 功能介绍
-
 实时通信过程中，Agora SDK 通常会启动默认的音视频模块进行采集和渲染。如果想要在客户端实现自定义音视频采集和渲染，则可以使用自定义的音视频源或渲染器，来进行实现。
 
 **自定义采集和渲染**主要适用于以下场景：
 
-- 当 SDK 内置的音视频源不能满足开发者需求时，比如需要使用自定义的美颜库或前处理库
-- 开发者的 App 中已有自己的音频或视频模块，为了复用代码，也可以自定义音视频源
-- 开发者希望使用非 Camera 采集的视频源，如录屏数据
-- 有些系统独占的视频采集设备，为避免与其他业务产生冲突，需要灵活的设备管理策略
+* 当 SDK 内置的音视频源不能满足开发者需求时，比如需要使用自定义的美颜库或前处理库
+* 开发者的 App 中已有自己的音频或视频模块，为了复用代码，也可以自定义音视频源
+* 开发者希望使用非 Camera 采集的视频源，如录屏数据
+* 有些系统独占的视频采集设备，为避免与其他业务产生冲突，需要灵活的设备管理策略
 
 ## 实现方法
 
@@ -246,9 +244,9 @@ BOOL CVideoPackageQueue::PushVideoPackage(LPCVOID lpVideoPackage, SIZE_T nPackag
 {
   if (m_bufQueue.GetFreeCount() == 0)
     m_bufQueue.FreeBusyHead(NULL, 0);
-
+    
   LPVOID lpBuffer = m_bufQueue.AllocBuffer(FALSE);
-  if (lpBuffer == NULL)
+  if (lpBuffer == NULL) 
     return FALSE;
 
   _ASSERT(m_bufQueue.GetBytesPreUnit() >= nPackageLen);
@@ -304,7 +302,7 @@ bool CExternalVideoFrameObserver::onCaptureVideoFrame(VideoFrame& videoFrame)
 
   memcpy_s(videoFrame.yBuffer, videoFrame.height*videoFrame.width, m_lpY, videoFrame.height*videoFrame.width);
   videoFrame.yStride = videoFrame.width;
-
+	
   memcpy_s(videoFrame.uBuffer, videoFrame.height*videoFrame.width / 4, m_lpU, videoFrame.height*videoFrame.width / 4);
   videoFrame.uStride = videoFrame.width/2;
 
@@ -326,7 +324,7 @@ bool CExternalVideoFrameObserver::onRenderVideoFrame(unsigned int uid, VideoFram
 agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
 mediaEngine.queryInterface(lpAgoraEngine, agora::AGORA_IID_MEDIA_ENGINE);
 
-int mRet = apm->setParameters("{\"che.video.local.camera_index\":1024}");
+int mRet = apm->setParameters("{\"che.video.local.camera_index\":1024}"); 
 nRet = mediaEngine->registerVideoFrameObserver(lpVideoFrameObserver);
 
 // 开始往引擎推送数据以及从引擎获取数据，通常需要自己维护一个线程循环
@@ -341,8 +339,7 @@ mediaEngine->registerVideoFrameObserver(NULL);
 ```
 
 ## 注意事项
-
-- 回调函数里处理音视频数据要尽量高效，且保证算法稳定，避免影响整个客户端或产生崩溃。
-- 音频部分需要设置 `RAW_AUDIO_FRAME_OF_MODE_READ_WRITE` 才可以读写和操作数据。
-- 自定义渲染实现，也是使用裸数据接口，不调用 `setupRemoteVideo` 就可以不使用 SDK 渲染。自定义渲染要注意 Windows 平台的兼容性。
-- 客户端自定义采集和渲染属于较复杂的功能，开发者自身需要具备音视频相关知识，能够自己独立开发完成采集与渲染。
+* 回调函数里处理音视频数据要尽量高效，且保证算法稳定，避免影响整个客户端或产生崩溃。
+* 音频部分需要设置 `RAW_AUDIO_FRAME_OF_MODE_READ_WRITE` 才可以读写和操作数据。
+* 自定义渲染实现，也是使用裸数据接口，不调用 `setupRemoteVideo` 就可以不使用 SDK 渲染。自定义渲染要注意 Windows 平台的兼容性。
+* 客户端自定义采集和渲染属于较复杂的功能，开发者自身需要具备音视频相关知识，能够自己独立开发完成采集与渲染。

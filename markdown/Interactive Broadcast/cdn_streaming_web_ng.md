@@ -3,7 +3,6 @@ title: 推流到 CDN
 platform: Web
 updatedAt: 2021-03-23 10:03:03
 ---
-
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 Web SDK 3.x 或更早版本，请查看<a href="./cdn_streaming_web?platform=Web">推流到 CDN</a>。</li></div>
 
 ## 功能描述
@@ -19,11 +18,10 @@ updatedAt: 2021-03-23 10:03:03
 ## 前提条件
 
 请确保已开通 CDN 旁路推流功能，步骤如下：
-
 1. 登录[控制台](https://console.agora.io)，点击左侧导航栏 ![img](https://web-cdn.agora.io/docs-files/1551250582235) 按钮进入**产品用量**页面。
 2. 在页面左上角展开下拉列表选择需要开通 CDN 旁路推流的项目，然后点击旁路推流下的**分钟数**。
 ![](https://web-cdn.agora.io/docs-files/1569297956098)
- <div class="alert note"><b>旁路推流服务</b>仅适用于 Native SDK 2.4.1 及以上版本和 Web SDK 2.9.0 及以上版本，若您使用的版本较低，建议升级至新版本。</div>
+<div class="alert note"><b>旁路推流服务</b>仅适用于 Native SDK 2.4.1 及以上版本和 Web SDK 2.9.0 及以上版本，若您使用的版本较低，建议升级至新版本。</div>
 3. 点击**开启旁路推流服务**。
 4. 点击**应用** 即可开通旁路推流服务，并得到 500 个最大并发频道数。
 
@@ -46,7 +44,6 @@ updatedAt: 2021-03-23 10:03:03
 4. 通过监听 `AgoraRTCClient.on("live-streaming-error")`/`AgoraRTCClient.on("live-streaming-warning")` 来感知推流中途出现的异常情况
 
 ### 示例代码
-
 `client` 是指通过 `AgoraRTC.createClient` 创建的本地客户端对象。
 
 ```js
@@ -71,25 +68,23 @@ const LiveTranscoding = {
   backgroundColor: 0x000000,
   // 设置水印图片（仅支持在线 PNG 文件），只支持一个水印。
   watermark: {
-    url: "http://www.com/watermark.png",
-    x: 0,
-    y: 0,
-    width: 160,
-    height: 160,
-  },
+          url: "http://www.com/watermark.png",
+          x: 0,
+          y: 0,
+          width: 160,
+          height: 160,
+      },
   // 分配用户视窗的合图布局。
-  transcodingUsers: [
-    {
-      x: 0,
-      y: 0,
-      width: 640,
-      height: 360,
-      zOrder: 0,
-      alpha: 1.0,
-      // 下面的 uid 应和 AgoraRTCClient.join 输入的 uid 保持一致。
-      uid: 1232,
-    },
-  ],
+  transcodingUsers: [{
+          x: 0,
+          y: 0,
+          width: 640,
+          height: 360,
+          zOrder: 0,
+          alpha: 1.0,
+          // 下面的 uid 应和 AgoraRTCClient.join 输入的 uid 保持一致。
+          uid: 1232,
+        }],
 };
 
 // 注意这是一个异步方法，请确保异步操作完成后再进行下一步操作。
@@ -101,13 +96,13 @@ client.setLiveTranscoding(LiveTranscoding).then(() => {
 // 注意这是一个异步方法，请确保异步操作完成后再进行下一步操作。
 client.startLiveStreaming("your RTMP URL", true).then(() => {
   console.log("start live streaming success");
-});
+})
 
 // 删除一个推流地址，停止推流。
 // 注意这是一个异步方法，请确保异步操作完成后再进行下一步操作。
 client.stopLiveStreaming("your RTMP URL").then(() => {
   console.log("stop live streaming success");
-});
+})
 
 // 监听推流中途的错误, 错误码列表可以参考 API 文档
 client.on("live-streaming-error", (url, err) => {
@@ -116,7 +111,6 @@ client.on("live-streaming-error", (url, err) => {
 ```
 
 ### API 参考
-
 - [AgoraRTCClient.setLiveTranscoding](./API%20Reference/web_ng/interfaces/iagorartcclient.html#setlivetranscoding)
 - [AgoraRTCClient.startLiveStreaming](./API%20Reference/web_ng/interfaces/iagorartcclient.html#startlivestreaming)
 - [AgoraRTCClient.stopLiveStreaming](./API%20Reference/web_ng/interfaces/iagorartcclient.html#stoplivestreaming)

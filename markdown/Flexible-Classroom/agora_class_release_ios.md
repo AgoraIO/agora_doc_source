@@ -71,19 +71,16 @@ v1.1.5 新增课件设备检测和视频预览能力，开发者可通过新增�
 为优化学生端的 PPT 展示，v1.1.5 在 `AgoraEduLaunchConfig` 中新增 `boardFitMode` 用于设置 PPT 显示模式。默认情况下，白板内容显示模式为 fit，等比缩放 PPT 以保证内容的完整显示。你可在调用 `launch` 接口时将 `boardFitMode` 更换为 `retain`，PPT 尺寸会以本地记录的上一次学生手动调整的大小为准。
 
 ## v1.1.2.3
-
 灵动课堂 v1.1.2.3 于 2021 年 7 月 27 日发布。该版本对 iOS 15 beta 进行了兼容性适配。可参考以下步骤将 Agora Classroom SDK 升级至最新版本：
-
 1. 在 Podfile 文件中，将 AgoraClassroomSDK 版本设置为 1.1.2.3：
-
-```
+  ```
 pod "AgoraClassroomSDK", "1.1.2.3"
-```
+  ```
 
 2. 执行 `pod update` 升级 SDK。
 
-## v1.1.2
 
+## v1.1.2
 灵动课堂 v1.1.2 于 2021 年 6 月 17 日发布。
 
 ### 新增特性

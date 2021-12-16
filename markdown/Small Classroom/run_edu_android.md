@@ -3,12 +3,11 @@ title: 快速跑通 eEducation 示例项目
 platform: All Platforms
 updatedAt: 2021-04-01 08:21:13
 ---
-
 ## 概览
 
 Agora 在 GitHub 上提供一个开源的 [eEducation 示例项目](https://github.com/AgoraIO-Usecase/eEducation)，演示了如何通过 Agora 房间管理服务，并配合 Agora RTC SDK、Agora RTM SDK、Agora 云端录制和第三方 Netless 白板 SDK，实现基本的在线互动教学场景。
 
-你可参考本文编译并运行 Android 的 eEducation 示例项目，体验在线互动教学。在此基础上，你可以基于我们提供的示例项目进行修改适配，快速上线项目。
+你可参考本文编译并运行Android的 eEducation 示例项目，体验在线互动教学。在此基础上，你可以基于我们提供的示例项目进行修改适配，快速上线项目。
 
 ## 前提条件
 
@@ -22,7 +21,7 @@ Agora 在 GitHub 上提供一个开源的 [eEducation 示例项目](https://gith
 
 ## 操作步骤
 
-### 1. 创建 Agora 项目
+### 1. 创建 Agora 项目 
 
 按照以下步骤，在控制台创建一个 Agora 项目。
 
@@ -30,7 +29,7 @@ Agora 在 GitHub 上提供一个开源的 [eEducation 示例项目](https://gith
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
-![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
+ ![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
 
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID + Token。**
 
@@ -64,20 +63,18 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 按照以下步骤，在示例项目中配置相关字段。
 
 1. 打开终端，克隆 [eEducation 项目](https://github.com/AgoraIO-Usecase/eEducation)仓库至本地。
-
-```
+ ```
 git clone https://github.com/AgoraIO-Usecase/eEducation.git
 ```
 
 2. 打开 Android Studio， 选择 Open an existing Android Studio project，打开 eEducation/education_Android/AgoraEducation 文件夹。打开后，Gradle 会自动开始构建。
 
 3. 选择 **Project** 视图，在 `app/src/normal/res/values/string_configs.xml` 文件中填写以下字段：
+  - Agora 的 App ID
+  - Agora 的客户 ID 和客户密钥
+  - Netless 的 AppIdentifier
 
-- Agora 的 App ID
-- Agora 的客户 ID 和客户密钥
-- Netless 的 AppIdentifier
-
-```java
+ ```java
 <string name="agora_app_id" translatable="false">Your AppId</string>
 <string name="agora_customer_id" translatable="false">Your customerId</string>
 <string name="agora_customer_cer" translatable="false">Your customerCer</string>

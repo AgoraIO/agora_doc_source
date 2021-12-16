@@ -3,7 +3,6 @@ title: 跑通示例项目
 platform: 小程序
 updatedAt: 2020-12-21 09:03:01
 ---
-
 ## 前提条件
 
 开始前，请确保你的开发环境满足如下条件：
@@ -44,7 +43,7 @@ https://miniapp-4.agoraio.cn
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
-![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
+ ![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
 
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID + Token。**
 
@@ -66,11 +65,11 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 1. 在控制台的[项目管理](https://console.agora.io/projects)页面，点击已创建项目的 ![](https://web-cdn.agora.io/docs-files/1574923151660) 图标，打开 **Token** 页面。
 
-   ![](https://web-cdn.agora.io/docs-files/1574922827899)
+	![](https://web-cdn.agora.io/docs-files/1574922827899)
 
-2. 输入一个频道名，例如 test，然后点击**生成临时 Token**。临时 Token 的有效期为 24 小时。加入频道时，请确保填入的频道名与生成临时 Token 时填入的频道名一致。
+2. 输入一个频道名，例如 test，然后点击**生成临时Token**。临时 Token 的有效期为 24 小时。加入频道时，请确保填入的频道名与生成临时 Token 时填入的频道名一致。
 
-   ![](https://web-cdn.agora.io/docs-files/1574928082984)
+	![](https://web-cdn.agora.io/docs-files/1574928082984)
 
 <div class="alert note">临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见<a href="token_server">生成 Token</a >。</div>
 
@@ -81,8 +80,8 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 1. 登录 Agora [控制台](https://console.agora.io/)，点击左侧导航栏的用量图标 ![](https://web-cdn.agora.io/docs-files/1605069788924)，进入用量页面。
 2. 点击页面左上角的**聚合用量**，选择需要开通小程序支持的项目名称，然后点击小程序下的**分钟数**。
 
-   ![](https://web-cdn.agora.io/docs-files/1605069848737)
-
+	![](https://web-cdn.agora.io/docs-files/1605069848737)
+	
 3. 点击开启**小程序服务**，然后点击**应用**。
 
 ### 7. 获取示例项目并集成小程序 SDK
@@ -102,12 +101,12 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 1. 打开**微信开发者工具**，点击小程序界面的 **+**。
 2. 在弹出的界面中选择导入项目页签，然后在目录一栏中选中小程序示例项目在本地的存储路径，填入你**微信小程序的 App ID**，然后点击**导入**。
 
-   ![](https://web-cdn.agora.io/docs-files/1605070114544)
-
+	![](https://web-cdn.agora.io/docs-files/1605070114544)
+	
 3. 加载成功后，微信开发者工具上会出现小程序示例项目的界面。为保证体验效果，我们建议选择**真机调试**。点击右上角的真机调试，工具界面会出现一个真机调试的二维码。
 
-   ![](https://web-cdn.agora.io/docs-files/1605070164900)
-
+	![](https://web-cdn.agora.io/docs-files/1605070164900)
+	
 4. 使用移动端微信 App 扫描二维码，进入手机调试界面。填入**房间名**，然后点击**加入房间**。在弹出的对话框中点击**确定**，表示作为主播加入频道。稍等片刻，就可以在小程序的界面看到本地的视频画面。请确保此处填入的房间名，和生成临时 Token 时填入的频道名是一致的。
 
 ## 常见问题

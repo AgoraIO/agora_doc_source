@@ -1,10 +1,9 @@
 ---
 title: 如何区分媒体音量和通话音量？
-platform: ["Android", "iOS", "macOS", "Windows", "Unity", "Cocos Creator", "Electron", "React Native", "Flutter"]
+platform: ["Android","iOS","macOS","Windows","Unity","Cocos Creator","Electron","React Native","Flutter"]
 updatedAt: 2020-07-09 12:02:43
-Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
+Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 ---
-
 一般而言，通话音量指的是进行语音、视频通话时的音量；媒体音量指的是播放音乐、视频或游戏的音效、背景音的音量。在实际使用中，两者的差异在于，通话音量有较好的回声消除，媒体音量有较好的声音表现力。媒体音量可以调整到 0，而通话音量不可以。因此需要区分系统音量走的是通话音量还是媒体音量。
 
 系统音量走通话音量，是指当你在设备上调整音量时，调整的是通话音量。媒体音量同理。

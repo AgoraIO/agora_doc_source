@@ -40,7 +40,7 @@ App 客户端加入 RTC 频道需要以下信息：
 
    创建项目后，**Android Studio** 会自动开始同步 gradle。请确保同步成功再进行下一步操作。
 
-2. 将音频 SDK 集成到你的项目中。 对 3.5.0 版或之后的 SDK，请参考以下步骤使用 mavenCentral 集成 SDK。 对 3.5.0 版之前的 SDK 版本，请参考<a href="https://docs.agora.io/cn/Voice/start_call_audio_android?platform=Android#othermethods">集成 SDK 的其他方法</a>。
+2. 将音频 SDK 集成到你的项目中。 对 3.5.0版或之后的 SDK，请参考以下步骤使用 mavenCentral 集成 SDK。 对 3.5.0 版之前的 SDK 版本，请参考<a href="https://docs.agora.io/cn/Voice/start_call_audio_android?platform=Android#othermethods">集成 SDK 的其他方法</a>。
 
    a. 在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码，以添加 mavenCentral 依赖：
 
@@ -52,7 +52,7 @@ App 客户端加入 RTC 频道需要以下信息：
         }
         ...
    }
-
+   
      allprojects {
         repositories {
             ...
@@ -83,7 +83,7 @@ App 客户端加入 RTC 频道需要以下信息：
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
    ```
-
+   
 4. 为防止代码混淆，在 `/Gradle Scripts/proguard-rules.pro` 文件中添加如下代码：
 
    ```
@@ -160,12 +160,12 @@ App 客户端加入 RTC 频道需要以下信息：
    ```java
     // Java
     private static final int PERMISSION_REQ_ID = 22;
-
+   
     private static final String[] REQUESTED_PERMISSIONS = {
              Manifest.permission.RECORD_AUDIO,
              Manifest.permission.CAMERA
     };
-
+   
     private boolean checkSelfPermission(String permission, int requestCode) {
             if (ContextCompat.checkSelfPermission(this, permission) !=
                             PackageManager.PERMISSION_GRANTED) {
@@ -180,7 +180,7 @@ App 客户端加入 RTC 频道需要以下信息：
     // Kotlin
     private val PERMISSION_REQ_ID_RECORD_AUDIO = 22
     private val PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1
-
+   
     private fun checkSelfPermission(permission: String, requestCode: Int): Boolean {
         if (ContextCompat.checkSelfPermission(this, permission) !=
                 PackageManager.PERMISSION_GRANTED) {
@@ -221,7 +221,7 @@ App 客户端加入 RTC 频道需要以下信息：
     // 填写你的项目在 Agora 控制台中生成的 App ID。
     private String appId = "";
     // 填写频道名称。
-    private String channelName = "";
+    private String channelName = "";  
     // 填写 Agora 控制台中生成的临时 Token。
     private String token = "";
     private RtcEngine mRtcEngine;
@@ -354,7 +354,7 @@ JitPack 的集成方式仅适用于早于 3.5.0 版的 SDK。
          repositories {
          ...
          maven { url 'https://www.jitpack.io' }
-         }
+         } 
  }
 ```
 
@@ -389,3 +389,4 @@ JitPack 的集成方式仅适用于早于 3.5.0 版的 SDK。
 
    - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。如果出现不兼容问题，请[联系我们](https://agora-ticket.agora.io)
    - SDK 包中的库不是全部必须。详情请参考[如何减少集成 RTC Native SDK 的 app 体积](https://docs.agora.io/en/Video/faq/reduce_app_size_rtc)。
+

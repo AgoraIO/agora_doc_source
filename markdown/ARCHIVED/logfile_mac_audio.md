@@ -3,7 +3,6 @@ title: 设置日志文件
 platform: macOS
 updatedAt: 2019-04-15 18:08:35
 ---
-
 ## 功能描述
 
 Agora Native SDK 提供设置 SDK 的输出日志文件的功能，SDK 运行时产生的所有 log 将写入该文件。
@@ -32,7 +31,6 @@ NSString *logFilePath = [NSString stringWithFormat:@"%@/%@.log", [paths objectAt
 ```
 
 ## API 参考
-
 - [`setLogFile`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html?transId=9fa366f0-01e7-11e9-a659-33e4b5b761ac#//api/name/setLogFile:)
 - [`setLogFilter`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html?transId=9fa366f0-01e7-11e9-a659-33e4b5b761ac#//api/name/setLogFilter:)
 

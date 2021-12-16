@@ -3,20 +3,16 @@ title: 设置音频属性
 platform: Web
 updatedAt: 2020-12-30 09:08:15
 ---
-
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 Web SDK 3.x 或更早版本，请查看<a href="./audio_profile_web?platform=Web">设置音频属性</a>。</li></div>
 
 ## 功能描述
-
 在一些比较专业的场景里，用户对声音的效果尤为敏感，比如语音电台，此时就需要对双声道和高音质的支持。
 所谓的高音质指的是我们提供采样率为 48 kHz、码率 192 Kbps 的能力实现高逼真的音乐场景，这种能力在语音电台、唱歌比赛类直播场景中应用较多。
 
 ## 实现方法
-
 开始前，请确保你已参考快速开始在你的项目中实现基本的实时音视频功能。
 
 Agora Web SDK 提供以下三种方法创建本地音频轨道：
-
 - `createMicrophoneAudioTrack`
 - `createBufferSourceAudioTrack`
 - `createCustomAudioTrack`
@@ -49,6 +45,7 @@ AgoraRTC.createMicrophoneAudioTrack({
   },
 }).then(/**...**/);
 ```
+
 
 ### API 参考
 

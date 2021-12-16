@@ -3,7 +3,6 @@ title: 集成最佳实践
 platform: All Platforms
 updatedAt: 2020-10-22 10:34:22
 ---
-
 为了保障审核服务的可靠性，Agora 建议你在集成阿里语音智能审核 RESTful API 时注意以下几点：
 
 ## 使用双域名

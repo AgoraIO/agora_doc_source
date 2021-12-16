@@ -5,3 +5,4 @@ App 证书是 Agora 控制台为注册项目生成的字符串，用于开启 Ag
 <div class="alert info">相关链接：<a href="https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms#管理-app-证书">管理 App 证书</a></div>
 
 <a href="./terms"><button>返回术语库</button></a>
+

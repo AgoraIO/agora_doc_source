@@ -3,20 +3,21 @@ title: 教师端实现
 platform: Web
 updatedAt: 2020-10-30 21:01:10
 ---
-
 本文展示如何在 Web 平台实现教师端相关功能。
 
 ## 集成指引
 
 根据下表链接，下载对应的 SDK，参考集成文档的步骤将 SDK 集成到你的项目中。
 
-| 产品                                                                                                                              | SDK 下载                                                                               | 集成文档                                                                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| [Agora RTC (Real-time Communication) SDK](https://docs.agora.io/cn/Interactive%20Broadcast/product_live?platform=All%20Platforms) | [ Web 视频互动直播 SDK](https://docs.agora.io/cn/Interactive%20Broadcast/downloads)    | [实现互动直播](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_web?platform=Web)                         |
-| [Agora RTM (Real-time Messaging) SDK](https://docs.agora.io/cn/Real-time-Messaging/product_rtm?platform=All%20Platforms)          | [Web 云信令（原实时消息） SDK](https://docs.agora.io/cn/Real-time-Messaging/downloads) | [收发点对点消息和频道消息](https://docs.agora.io/cn/Real-time-Messaging/messaging_web?platform=Web)                  |
-| [云端录制](https://docs.agora.io/cn/cloud-recording/product_cloud_recording?platform=All%20Platforms)                             | /                                                                                      | [使用 RESTful API 录制](https://docs.agora.io/cn/cloud-recording/cloud_recording_rest?platform=All%20Platforms)      |
-| Agora Edu 云服务                                                                                                                  | /                                                                                      | [Agora Edu 云服务快速开始](https://github.com/AgoraIO-Usecase/eEducation/wiki/Agora-Edu-%E4%BA%91%E6%9C%8D%E5%8A%A1) |
-| [白板](https://developer.netless.link/docs/javascript/overview/js-outline/)                                                       | [SDK 集成](https://developer.netless.link/docs/javascript/guide/js-sdk/)               | [白板快速开始](https://developer.netless.link/javascript-zh/home/install)                                            |
+
+| 产品 | SDK 下载 | 集成文档 |
+| ---------------- | ---------------- | ---------------- | 
+| [Agora RTC (Real-time Communication) SDK](https://docs.agora.io/cn/Interactive%20Broadcast/product_live?platform=All%20Platforms)      | [ Web 视频互动直播 SDK](https://docs.agora.io/cn/Interactive%20Broadcast/downloads)      | [实现互动直播](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_web?platform=Web) |
+| [Agora RTM (Real-time Messaging) SDK](https://docs.agora.io/cn/Real-time-Messaging/product_rtm?platform=All%20Platforms) | [Web 云信令（原实时消息） SDK](https://docs.agora.io/cn/Real-time-Messaging/downloads) | [收发点对点消息和频道消息](https://docs.agora.io/cn/Real-time-Messaging/messaging_web?platform=Web) |
+| [云端录制](https://docs.agora.io/cn/cloud-recording/product_cloud_recording?platform=All%20Platforms) | / | [使用 RESTful API 录制](https://docs.agora.io/cn/cloud-recording/cloud_recording_rest?platform=All%20Platforms) |
+| Agora Edu 云服务 | / | [Agora Edu 云服务快速开始](https://github.com/AgoraIO-Usecase/eEducation/wiki/Agora-Edu-%E4%BA%91%E6%9C%8D%E5%8A%A1) |
+| [白板](https://developer.netless.link/docs/javascript/overview/js-outline/) | [SDK 集成](https://developer.netless.link/docs/javascript/guide/js-sdk/) | [白板快速开始](https://developer.netless.link/javascript-zh/home/install) |
+
 
 ## 核心 API 流程图
 
@@ -35,6 +36,7 @@ updatedAt: 2020-10-30 21:01:10
 ## 附加功能
 
 你还可以参考下列文档或示例代码，在你的项目中实现更多教育场景的附加功能。
+
 
 <details>
 <summary>网络质量监测</summary>

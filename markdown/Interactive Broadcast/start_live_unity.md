@@ -3,7 +3,6 @@ title: 实现视频直播
 platform: Unity
 updatedAt: 2021-01-06 08:57:56
 ---
-
 本文介绍如何使用 Agora Unity SDK 快速实现视频互动直播。
 
 ## 前提条件
@@ -12,16 +11,17 @@ updatedAt: 2021-01-06 08:57:56
 
 - 操作系统与编译器要求：
 
-  | 开发平台 | 操作系统版本       | 编译器版本                          |
-  | :------- | :----------------- | :---------------------------------- |
-  | Android  | Android 4.1 或以上 | Android Studio 3.0 或以上           |
-  | iOS      | iOS 8.0 或以上     | Xcode 9.0 或以上                    |
-  | macOS    | macOS 10.0 或以上  | Xcode 9.0 或以上                    |
-  | Windows  | Windows 7 或以上   | Microsoft Visual Studio 2017 或以上 |
+  | 开发平台 | 操作系统版本          | 编译器版本                |
+  | :------- | :-------------------- | :------------------------ |
+  | Android  | Android 4.1 或以上    | Android Studio 3.0 或以上 |
+  | iOS      | iOS 8.0 或以上        | Xcode 9.0 或以上          |
+  | macOS    | macOS 10.0 或以上     | Xcode 9.0 或以上          |
+  | Windows  | Windows 7 或以上 | Microsoft Visual Studio 2017 或以上 |
 
 - 有效的 [Agora 账户](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up) 和 [App ID](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#getappid)
 
 <div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms#agora-rtc-sdk">应用企业防火墙限制</a >打开相关端口。</div>
+
 
 ## 准备开发环境
 
@@ -45,8 +45,8 @@ updatedAt: 2021-01-06 08:57:56
 	 - **Template**：项目类型。选择 **3D**。
 </details>
 
-<a name="Integrate"></a>
 
+<a name="Integrate"></a>
 ### 集成 SDK
 
 选择如下任意一种方式将 Agora Unity SDK 集成到你的项目中。
@@ -54,7 +54,7 @@ updatedAt: 2021-01-06 08:57:56
 **方法一：使用 Unity Asset Store 自动集成**
 
 1. 在 **Unity** 中点击 **Asset Store** 栏，输入 **Agora** 搜索并选择 **Agora Video SDK for Unity**。
-   ![](https://web-cdn.agora.io/docs-files/1576206914656)
+  ![](https://web-cdn.agora.io/docs-files/1576206914656)
 2. 在 SDK 详情页中，点击页面右侧的 **Download** 按钮下载 SDK。
    ![](https://web-cdn.agora.io/docs-files/1576206963608)
 3. 下载成功后，会出现 **Import** 按钮，点击查看可导入的内容。
@@ -88,53 +88,52 @@ updatedAt: 2021-01-06 08:57:56
 当你使用 **Unity Editor** 创建 UI 时，请确保你将 **VideoSurface.cs** 与显示本地或远端视频的物体绑定。
 
 <a name="permission"></a>
-
 ### 2. 获取设备权限（仅 Android 平台）
 
 仅 Android 平台需要设置此步骤，其他平台可以直接查看[初始化 IRtcEngine](#initialize)。
 
-在 **UNITY_2018_3_OR_NEWER** 或以上版本中，Unity 不会主动向用户获取麦克风和相机权限，需要用户调用 `CheckPermission` 方法获取权限。
+在 **UNITY_2018_3_OR_NEWER** 或以上版本中，Unity 不会主动向用户获取麦克风和相机权限，需要用户调用 `CheckPermission` 方法获取权限。 
 
 ```C#
-#if(UNITY_2018_3_OR_NEWER)
-using UnityEngine.Android;
-#endif
-void Start ()
-{
-#if(UNITY_2018_3_OR_NEWER)
-permissionList.Add(Permission.Microphone);
-permissionList.Add(Permission.Camera);
-#endif
-}
+#if(UNITY_2018_3_OR_NEWER) 
+using UnityEngine.Android; 
+#endif 
+void Start () 
+{  
+#if(UNITY_2018_3_OR_NEWER) 
+permissionList.Add(Permission.Microphone);  
+permissionList.Add(Permission.Camera);  
+#endif  
+} 
 private void CheckPermission()
-{
-#if(UNITY_2018_3_OR_NEWER)
-foreach(string permission in permissionList)
-{
-if (Permission.HasUserAuthorizedPermission(permission))
-{
-}
-else
-{
-Permission.RequestUserPermission(permission);
-}
-}
-#endif
-}
-void Update ()
-{
-#if(UNITY_2018_3_OR_NEWER)
-// 获取设备权限。
-CheckPermission();
-#endif
+{ 
+#if(UNITY_2018_3_OR_NEWER) 
+foreach(string permission in permissionList) 
+{ 
+if (Permission.HasUserAuthorizedPermission(permission)) 
+{ 
+} 
+else 
+{  
+Permission.RequestUserPermission(permission); 
+} 
+} 
+#endif 
+} 
+void Update () 
+{  
+#if(UNITY_2018_3_OR_NEWER) 
+// 获取设备权限。 
+CheckPermission(); 
+#endif  
 }
 ```
 
 <a name="initialize"></a>
-
 ### 3. 初始化 IRtcEngine
 
-你需要在该步骤中填入项目的 App ID。请参考如下步骤在控制台[创建 Agora 项目](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms)并获取 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id)。
+
+你需要在该步骤中填入项目的 App ID。请参考如下步骤在控制台[创建 Agora 项目](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms)并获取 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id )。
 
 1. 登录[控制台](https://console.agora.io/)，点击左侧导航栏的**[项目管理](https://console.agora.io/projects)**图标 ![](https://web-cdn.agora.io/docs-files/1551254998344)。
 2. 点击**创建**，按照屏幕提示设置项目名，选择一种鉴权机制，然后点击**提交**。
@@ -143,16 +142,16 @@ CheckPermission();
 你还可以根据场景需要，在初始化时注册想要监听的回调事件，如本地用户加入频道，及解码远端用户视频首帧等。
 
 ```C#
-// 填入 App ID 并初始化 IRtcEngine。
-mRtcEngine = IRtcEngine.GetEngine (appId);
-// 注册 OnJoinChannelSuccessHandler 回调。
+// 填入 App ID 并初始化 IRtcEngine。 
+mRtcEngine = IRtcEngine.GetEngine (appId); 
+// 注册 OnJoinChannelSuccessHandler 回调。 
 // 本地用户成功加入频道时，会触发该回调。
-mRtcEngine.OnJoinChannelSuccessHandler = OnJoinChannelSuccessHandler;
+mRtcEngine.OnJoinChannelSuccessHandler = OnJoinChannelSuccessHandler; 
 // 注册 OnUserJoinedHandler 回调。
 // SDK 接收到第一帧远端视频并成功解码时，会触发该回调。
 // 可以在该回调中调用 SetForUser 方法设置远端视图。
-mRtcEngine.OnUserJoinedHandler = OnUserJoinedHandler;
-// 注册 OnUserOfflineHandler 回调。
+mRtcEngine.OnUserJoinedHandler = OnUserJoinedHandler; 
+// 注册 OnUserOfflineHandler 回调。 
 // 远端用户离开频道或掉线时，会触发该回调。
 mRtcEngine.OnUserOfflineHandler = OnUserOfflineHandler;
 ```
@@ -163,10 +162,10 @@ mRtcEngine.OnUserOfflineHandler = OnUserOfflineHandler;
 
 一个 `IRtcEngine` 只能使用一种频道场景。如果想切换为其他模式，需要先调用 `Destroy` 方法销毁当前的 `IRtcEngine` 实例，然后使用 `GetEngine` 方法创建一个新实例，再调用 `SetChannelProfile` 设置新的频道场景。
 
-```C#
-// 设置频道场景为直播场景。
+ ```C#
+ // 设置频道场景为直播场景。
 mRtcEngine.SetChannelProfile(CHANNEL_PROFILE.CHANNEL_PROFILE_LIVE_BROADCASTING);
-```
+ ```
 
 ### 5. 设置用户角色
 
@@ -177,10 +176,10 @@ mRtcEngine.SetChannelProfile(CHANNEL_PROFILE.CHANNEL_PROFILE_LIVE_BROADCASTING);
 
 注意，直播频道内的用户，只能看到主播的画面、听到主播的声音。加入频道后，如果你想切换用户角色，也可以调用 `SetClientRole` 方法。
 
-```C#
+ ```C#
 // 设置用户角色为主播
 mRtcEngine.SetClientRole(CLIENT_ROLE.BROADCASTER);
-```
+ ```
 
 ### 6. 设置本地视频显示
 
@@ -191,24 +190,24 @@ mRtcEngine.SetClientRole(CLIENT_ROLE.BROADCASTER);
 - 调用 `EnableVideoObserver` 方法启用本地视频显示。
 
   ```C#
-  // 启用视频模块。
-  mRtcEngine.EnableVideo();
-  // 获取本地视频显示，并传递到 Unity 层。
-  mRtcEngine.EnableVideoObserver();`
-  ```
+	// 启用视频模块。 
+	mRtcEngine.EnableVideo();
+	// 获取本地视频显示，并传递到 Unity 层。
+	mRtcEngine.EnableVideoObserver();`
+	```
 
-- 选择显示本地视频的物体，将视频渲染脚本 **VideoSurface.cs** 拖动至该物体的 **Script** 进行绑定，即可看到本地图像。Unity 中默认渲染器可以渲染 3D 物体，例如：Cube，Cylinder，Plane 等。若需渲染其他类型的物体，需修改 **VideoSurface.cs** 文件中的渲染器。
+- 选择显示本地视频的物体，将视频渲染脚本 **VideoSurface.cs** 拖动至该物体的 **Script** 进行绑定，即可看到本地图像。Unity 中默认渲染器可以渲染 3D 物体，例如：Cube，Cylinder，Plane等。若需渲染其他类型的物体，需修改 **VideoSurface.cs** 文件中的渲染器。
 
   ![](https://web-cdn.agora.io/docs-files/1576208681884)
-
   ```C#
-    // 默认渲染器为 Renderer。
-  Renderer rend = GetComponent();
-  rend.material.mainTexture = nativeTexture;
-  // 将渲染器修改为 RawImage。
-  RawImage rend = GetComponent();
-  rend.texture = nativeTexture;`
-  ```
+    // 默认渲染器为 Renderer。 
+	Renderer rend = GetComponent(); 
+	rend.material.mainTexture = nativeTexture; 
+	// 将渲染器修改为 RawImage。 
+	RawImage rend = GetComponent(); 
+	rend.texture = nativeTexture;`
+	```
+
 
 ### 7. 加入频道
 
@@ -231,17 +230,17 @@ mRtcEngine.SetClientRole(CLIENT_ROLE.BROADCASTER);
 ```C#
 // 如果频道中有 Web SDK，调用该方法开启 Native SDK 和 Web SDK 互通。
 mRtcEngine.EnableWebSdkInteroperability(true);
-// 加入频道。
+// 加入频道。 
 mRtcEngine.JoinChannelByKey(null, channel, null, 0);
 ```
 
 ### 8. 设置远端视频显示
 
-视频互动直播中，不论你是主播还是观众，都应该看到频道中的所有主播。在加入频道后，可通过调用 **VideoSurface.cs** 文件中的 `SetForUser` 方法设置远端主播的视图。
+视频互动直播中，不论你是主播还是观众，都应该看到频道中的所有主播。在加入频道后，可通过调用 **VideoSurface.cs** 文件中的 `SetForUser` 方法设置远端主播的视图。 
 
 远端主播成功加入频道后，SDK 会触发 `OnUserJoinedHandler` 回调，该回调中会包含这个主播的 `uid` 信息。
 
-- 在 **VideoSurface.cs** 文件，通过 `OnUserJoinedHandler` 回调来调用 `SetForUser` 方法，传入获取到的 `uid`，设置远端视频显示。
+- 在 **VideoSurface.cs** 文件，通过  `OnUserJoinedHandler` 回调来调用 `SetForUser` 方法，传入获取到的 `uid`，设置远端视频显示。
 - 选择显示远端视频的物体，将视频渲染脚本 **VideoSurface.cs** 拖动至该物体的 **Script** 进行绑定，即可看到远端图像。
 - Agora Unity SDK 默认的视频采集和渲染帧率是 15 fps，根据场景，调用 **VideoSurface.cs** 文件中的 `SetGameFps` 方法调节视频刷新帧率。
 
@@ -255,7 +254,7 @@ private void OnUserJoinedHandler(uint uid, int elapsed)
 		Debug.Log ("OnUserJoinedHandler: uid = " + uid)
 		GameObject go = GameObject.Find (uid.ToString ());
 		if (!ReferenceEquals (go, null)) {
-			return;
+			return; 
 		}
 		go = GameObject.CreatePrimitive (PrimitiveType.Plane);
 		if (!ReferenceEquals (go, null)) {
@@ -286,6 +285,7 @@ private void OnUserOfflineHandler(uint uid, USER_OFFLINE_REASON reason)
     }
 ```
 
+
 ### 9. 离开频道
 
 根据场景需要，如结束直播或关闭 App 时，调用 `LeaveChannel` 离开当前直播频道，并调用 `DisableVideoObserver` 关闭视频显示。
@@ -303,7 +303,7 @@ public void leave()
 	}
 ```
 
-### 10. 销毁 IRtcEngine
+###  10. 销毁 IRtcEngine
 
 离开频道后，如果你想退出应用或者释放内存，需调用 `Destroy` 方法销毁 `IRtcEngine`。
 

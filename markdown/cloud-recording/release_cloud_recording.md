@@ -3,7 +3,6 @@ title: 云端录制更新历史
 platform: Linux
 updatedAt: 2021-03-31 07:25:48
 ---
-
 ## 简介
 
 Agora 云端录制，可为 Agora 实时音视频提供录制服务。同 Agora 本地服务端录制相比，Agora 云端录制无需部署 Linux 服务器，减轻了研发和运维的压力，更轻量便捷。点击[云端录制产品概述](./product_cloud_recording)了解关键特性。
@@ -12,14 +11,15 @@ Agora 云端录制，可为 Agora 实时音视频提供录制服务。同 Agora 
 
 Agora 云端录制与以下 Agora SDK 兼容:
 
-| SDK              | 描述                                                                                                                                |
-| :--------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| SDK              | 描述                                                         |
+| :--------------- | :----------------------------------------------------------- |
 | Agora Native SDK | 云端录制与全平台 Agora Native SDK 1.7.0 或更高版本兼容，如果频道内有任何人使用了 1.6 版本的 Agora Native SDK， 则整个频道无法录制。 |
-| Agora Web SDK    | 云端录制 与 Agora Web SDK 1.12.0 或更高版本兼容。                                                                                   |
+| Agora Web SDK    | 云端录制 与 Agora Web SDK 1.12.0 或更高版本兼容。            |
 
 ## 1.4.0 版
 
 该版本于 2019 年 10 月 25 日发布，新增了对腾讯云存储的支持。
+
 
 ## 1.3.0 版
 
@@ -106,7 +106,7 @@ RESTful API 优化了对 `resourceId` 和 `cname` 以及 `uid` 是否对应的�
 - [云端录制 RESTful API](./cloud_recording_api_rest?platform=All%20Platforms)：RESTful API 参考
 - [云端录制 RESTful API 回调服务](./cloud_recording_callback_rest?platform=All%20Platforms)：开通回调服务接收云端录制事件通知
 
-## 1.0.0 版
+##  1.0.0 版
 
 该版本于 2019 年 4 月 29 日发布。本次发版为云端录制的第一次发版，主要包括以下功能:
 

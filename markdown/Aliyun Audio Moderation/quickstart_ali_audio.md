@@ -3,7 +3,6 @@ title: 审核频道内的音频
 platform: All Platforms
 updatedAt: 2020-11-25 05:43:54
 ---
-
 本文介绍如何使用阿里语音智能审核 RESTful API 对频道内的音频进行实时审核。
 
 ## 前提条件
@@ -18,6 +17,7 @@ updatedAt: 2020-11-25 05:43:54
 要对频道内的音频进行实时审核，你需要通过应用程序服务器调用阿里语音智能审核 RESTful API，发送 HTTP 请求。阿里语音智能审核会将审核结果以 HTTP 请求的形式发送到你指定的地址。
 
 ![](https://web-cdn.agora.io/docs-files/1579162816843)
+
 
 下图为实现音频审核需要调用的 API 时序图。
 

@@ -147,8 +147,8 @@ func registerEventHandler(_ handler: AgoraEduMessageHandler)
 
 本地用户的聊天权限发生变化。
 
-- `allow` 为 `true` 时，UI 层提示：你被 xx 禁言了。
-- `allow` 为 `false` 时，UI 层提示：你被 xx 解除了禁言。
+- `allow` 为 `true` 时，UI 层提示：你被xx禁言了。
+- `allow` 为 `false` 时，UI 层提示：你被xx解除了禁言。
 
 | 参数           | 描述                     |
 | :------------- | :----------------------- |
@@ -166,8 +166,8 @@ func registerEventHandler(_ handler: AgoraEduMessageHandler)
 
 远端用户的聊天权限发生变化。
 
-- `allow` 为 `true` 时，UI 层提示：xx 被 xx 禁言了。
-- `allow` 为 `false` 时，UI 层提示：xx 被 xx 解除了禁言。
+- `allow` 为 `true` 时，UI 层提示：xx被xx禁言了。
+- `allow` 为 `false` 时，UI 层提示：xx被xx解除了禁言。
 
 | 参数           | 描述                     |
 | :------------- | :----------------------- |

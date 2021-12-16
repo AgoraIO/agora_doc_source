@@ -45,10 +45,10 @@ interface EduContextPool {
 interface IHandlerPool<T> {
     // 注册对应 Context 的回调监听
     fun addHandler(handler: T?)
-
+  
     // 移除对应 Context 的回调监听
     fun removeHandler(handler: T?)
-
+ 
     // 获取对应 Context 的所有回调监听
     fun getHandlers(): List<T>?
 }

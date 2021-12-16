@@ -3,7 +3,6 @@ title: UDP
 platform: All Platforms
 updatedAt: 2020-09-30 16:53:03
 ---
-
 UDP（User Datagram Protocol），即用户数据报协议，是一种面向无连接的、不可靠的传输层通信协议。
 
 面向无连接是指在传输数据之前发送端和接收端无需建立连接。UDP 不需要握手，想发送数据就可以发送，只会给数据增加一个 UDP 头进行标识。

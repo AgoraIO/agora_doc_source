@@ -3,7 +3,6 @@ title: 云端录制 RESTful API 回调服务
 platform: All Platforms
 updatedAt: 2021-02-08 08:52:19
 ---
-
 云端录制 RESTful API 提供回调消息通知服务，你可以配置一个接收回调的 HTTP/HTTPS 服务器地址来接收云端录制的事件通知。当事件发生时，Agora 云端录制服务会将事件消息发送给 Agora 消息通知服务器，然后 Agroa 消息通知服务器会通过 HTTP/HTTPS 请求将事件投递给你的服务器。
 
 > 本文适用于使用云端录制 RESTful API 1.2.0 或之前版本时开通回调服务的用户。
@@ -18,11 +17,11 @@ updatedAt: 2021-02-08 08:52:19
 
 下表列出升级前后通知消息 Body 中的公共字段变化。
 
-| 升级前         | 升级后    | 变化                                                                       |
-| :------------- | :-------- | :------------------------------------------------------------------------- |
-| notificationId | noticeId  | 修改字段名。                                                               |
+| 升级前         | 升级后    | 变化                                                         |
+| :------------- | :-------- | :----------------------------------------------------------- |
+| notificationId | noticeId  | 修改字段名。                                                 |
 | -              | productId | 新增字段，用于标识开通回调服务的 Agora 产品。云端录制的 `productId` 为 3。 |
-| eventMs        | -         | 删除该字段，使用 `payload` 中的 `sendts` 即可。                            |
+| eventMs        | -         | 删除该字段，使用 `payload` 中的 `sendts` 即可。              |
 
 ### payload 中的字段更新
 
@@ -147,7 +146,7 @@ POST 请求头部的 `Content-type` 为 `application/json`。
 
 `eventType` 为 4 表示已生成录制索引文件并上传。每次录制均会生成一个 M3U8 文件，用于索引该次录制所有的切片 TS 文件。你可以通过 M3U8 文件播放和管理录制文件。
 
-`details` 中包含以下字段：
+ `details` 中包含以下字段：
 
 - `msgName`：String 类型，消息名称，即 `cloud_recording_file_infos`。
 - `fileList`：String 类型，生成的 M3U8 文件名。
@@ -207,46 +206,48 @@ POST 请求头部的 `Content-type` 为 `application/json`。
 - `startUtcMs`：Number 类型，录制开始时间（即第一个录制切片的开始时间），UTC 时间，精确到毫秒。
 - `discontinueUtcMs`：Number 类型，UTC 时间，精确到毫秒，正常情况下该字段值与 `startUtcMs` 一致。当录制发生异常中断时， Agora 云端录制会自动恢复录制，此时也会收到该事件通知，且该字段表示上一个正常的录制切片结束的时间。
 
+
 举例来说，某次录制生成第一个切片文件时，会收到回调通知该事件，其中`startUtcMS` 为第一个切片文件开始的时间。假设第 2 个 到第 N 个切片文件都是正常的，不会收到该事件通知，到第 N + 1 个切片时发生故障，导致该切片文件丢失且录制中断，此时重新开始录制后生成第 N + 2 个切片，会再次收到回调通知该事件，其中 `startUtcMs` 为第 N + 2 个切片开始的时间， `discontinueUtcMs` 为第 N 个切片结束的时间。
+
 
 ## 参考
 
 ### <a name="uploaderr"></a>上传错误码
 
-| 错误码 | 描述                   |
-| :----- | :--------------------- |
-| 32     | 第三方云存储信息错误   |
-| 47     | 文件上传失败           |
-| 51     | 上传时文件操作发生错误 |
+| 错误码 | 描述                 |
+| :----- | :------------------- |
+| 32     | 第三方云存储信息错误 |
+| 47     | 文件上传失败         |
+| 51     | 上传时文件操作发生错误     |
 
 ### <a name="uploadwarn"></a>上传警告码
 
-| 警告码 | 描述                |
-| :----- | :------------------ |
-| 31     | 重传到指定的云存储  |
-| 32     | 重传到 Agora 备份云 |
+| 警告码 | 描述               |
+| :--- | :------------------ |
+| 31   | 重传到指定的云存储    |
+| 32   | 重传到 Agora 备份云 |
 
 ### <a name="clouderr"></a>云端录制平台错误码
 
-| 错误码 | 描述                 |
-| :----- | :------------------- |
-| 50     | 上传超时             |
-| 52     | 云端录制服务启动超时 |
+| 错误码 | 描述              |
+| :--- | :------------------- |
+| 50   | 上传超时             |
+| 52   | 云端录制服务启动超时 |
 
 ### <a name="state"></a>云端录制服务状态码
 
-| 状态码 | 描述                 |
-| :----- | :------------------- |
-| 0      | 没有开始云端录制     |
-| 1      | 云端录制初始化完成   |
-| 2      | 录制组件开始启动     |
-| 3      | 上传组件已启动       |
-| 4      | 录制组件启动完成     |
-| 5      | 已成功上传第一个文件 |
-| 6      | 已经停止录制         |
-| 7      | 云端录制服务全部停止 |
-| 8      | 云端录制准备退出     |
-| 20     | 云端录制异常退出     |
+| 状态码 | 描述                   |
+| :--- | :----------------------- |
+| 0    | 没有开始云端录制           |
+| 1    | 云端录制初始化完成        |
+| 2    | 录制组件开始启动           |
+| 3    | 上传组件已启动       |
+| 4    |录制组件启动完成           |
+| 5    | 已成功上传第一个文件  |
+| 6    | 已经停止录制       |
+| 7    | 云端录制服务全部停止     |
+| 8    | 云端录制准备退出         |
+| 20   | 云端录制异常退出           |
 
 ### <a name="signature"></a> 验证签名
 
@@ -273,15 +274,14 @@ print(signature) # 033c62f40f687675f17f0f41f91a40c71c0f134c
 - 如果你使用 Node.js
 
 ```javascript
-const crypto = require("crypto");
+const crypto = require('crypto')
 
 // 拿到事件通知的 request body, 注意这是一个字符串，不是 JSON object
-const requestBody =
-  '{"eventMs":1560408533119,"eventType":10,"noticeId":"4eb720f0-8da7-11e9-a43e-53f411c2761f","notifyMs":1560408533119,"payload":{"a":"1","b":2},"productId":1}';
+const requestBody = '{"eventMs":1560408533119,"eventType":10,"noticeId":"4eb720f0-8da7-11e9-a43e-53f411c2761f","notifyMs":1560408533119,"payload":{"a":"1","b":2},"productId":1}'
 
-const secret = "secret";
+const secret = 'secret'
 
-const signature = crypto.createHmac("sha1", secret).update(requestBody, "utf8").digest("hex");
+const signature = crypto.createHmac('sha1', secret).update(requestBody, 'utf8').digest('hex')
 
-console.log(signature); // 033c62f40f687675f17f0f41f91a40c71c0f134c
+console.log(signature) // 033c62f40f687675f17f0f41f91a40c71c0f134c
 ```

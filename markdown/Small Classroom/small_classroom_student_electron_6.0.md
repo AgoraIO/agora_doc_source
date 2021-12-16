@@ -3,17 +3,18 @@ title: 学生端实现
 platform: Electron
 updatedAt: 2020-12-23 11:15:24
 ---
-
 本文展示如何基于 Electron 框架实现学生端相关功能。
 
 ## 集成指引
 
 根据下表链接，下载对应的 SDK，参考集成文档的步骤将 SDK 集成到你的项目中。
 
-| 产品                                                                                                                       | SDK 下载                                                                                                  | 集成文档                                                                                               |
-| -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| [Agora RTC (Real-time Communication) SDK](https://docs.agora.io/cn/Interactive%20Broadcast/product_live?platform=Electron) | [Electron 视频互动直播 SDK](https://docs.agora.io/cn/Interactive%20Broadcast/downloads?platform=Electron) | [实现互动直播](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_electron?platform=Electron) |
-| Agora 房间管理服务                                                                                                         | N/A                                                                                                       | [房间管理服务 API 文档](https://agoradoc.github.io/cn/edu-cloud-service/restfulapi)                    |
+
+| 产品 | SDK 下载 | 集成文档 |
+| ---------------- | ---------------- | ---------------- | 
+| [Agora RTC (Real-time Communication) SDK](https://docs.agora.io/cn/Interactive%20Broadcast/product_live?platform=Electron)      | [Electron 视频互动直播 SDK](https://docs.agora.io/cn/Interactive%20Broadcast/downloads?platform=Electron)      | [实现互动直播](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_electron?platform=Electron) |
+| Agora 房间管理服务 | N/A | [房间管理服务 API 文档](https://agoradoc.github.io/cn/edu-cloud-service/restfulapi) |
+
 
 ## 核心 API 时序图
 

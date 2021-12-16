@@ -3,7 +3,6 @@ title: 发版说明
 platform: Web
 updatedAt: 2021-01-27 07:10:23
 ---
-
 本文提供 Agora Web SDK 的发版说明。
 
 ## 概览
@@ -115,6 +114,7 @@ Chrome 72 及以上版本无需插件即可使用屏幕共享功能，详见[进
 ### 改进
 
 该版本优化了弱网下的音视频流回退体验，同时在 Client.on 中新增 "stream-fallback" 回调，在开启音视频流回退（setStreamFallbackOption）的情况下，当订阅的流从音视频流回退为音频流或者从音频流恢复为音视频流时可以收到回调通知。
+
 
 ### 修复问题
 
@@ -359,14 +359,14 @@ Chrome 72 及以上版本无需插件即可使用屏幕共享功能，详见[进
 
 - 支持两种视频显示模式，可以在 `Stream.play` 方法中设置播放流的显示模式。
 - 新增 `Client.enableAudioVolumeIndicator` 方法，允许 SDK 定期向应用程序反馈当前谁在说话，以及说话者的音量。
-- 新增 `Stream.setAudioVolume` 方法，支持设置订阅流的音量。
+- 新增 `Stream.setAudioVolume`  方法，支持设置订阅流的音量。
 - 新增 `networkTypeChanged` 事件，通知应用程序网络类型已改变。
 - 新增 `streamTypeChange` 事件，通知应用程序视频流类型已由大流变为小流，或小流变为大流。
 - `Client.join` 方法中，在原来支持整型 `uid` 的基础上，新增对字符串类型的支持。
 - 支持 360 安全浏览器 9.1.0.432 及以上版本。
 - 支持 Windows XP 平台的 Chrome 49 浏览器。
 
-### 问题修复
+### 问题修复 
 
 - 修复了手机端使用 Safari 或 Chrome 浏览器进入频道后，在仅有音频通话的情况下对 video codec 的依赖。
 - 修复了使用 Safari 浏览器推流后调用 `Stream.close` 关闭流，对端 10 秒后无法收到 `stream-removed` 回调的问题。
@@ -445,7 +445,7 @@ Chrome 72 及以上版本无需插件即可使用屏幕共享功能，详见[进
 
 #### 1. 新通信模式
 
-为增加 Web SDK 的适用场景，提升与 Native SDK 在通信和直播下的互通质量，在 `createClient` 方法中新增 `mode` 和 `codec` 参数，其中 `mode` 参数支持 rtc 和 live 两种场景，`codec` 参数支持 vp8 和 264 两种编解码方式。
+为增加 Web SDK 的适用场景，提升与 Native SDK 在通信和直播下的互通质量，在 `createClient` 方法中新增 `mode` 和 `codec` 参数，其中 `mode` 参数支持 rtc 和 live 两种场景，`codec` 参数支持 vp8 和 264 两种编解码方式。 
 
 #### 2. 支持语音自动增益控制
 
@@ -535,6 +535,8 @@ Chrome 72 及以上版本无需插件即可使用屏幕共享功能，详见[进
 </tbody>
 </table>
 
+
+
 **改进**
 
 本次发版改进如下功能：
@@ -556,6 +558,8 @@ Chrome 72 及以上版本无需插件即可使用屏幕共享功能，详见[进
 </tr>
 </tbody>
 </table>
+
+
 
 **问题修复**
 
@@ -638,5 +642,7 @@ Chrome 72 及以上版本无需插件即可使用屏幕共享功能，详见[进
 </tr>
 </tbody>
 </table>
+
+
 
 更新了错误代码和解释。

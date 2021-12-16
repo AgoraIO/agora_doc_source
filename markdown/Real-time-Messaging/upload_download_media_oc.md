@@ -3,7 +3,6 @@ title: 发送和接收图片或文件消息
 platform: iOS
 updatedAt: 2020-10-19 14:57:07
 ---
-
 ## 功能描述
 
 你可以使用 Agora RTM SDK 发送和接收图片或文件消息。Agora RTM SDK 支持上传下载大小不超过 30 MB 的任意文件格式的非空图片或文件。每份上传到 Agora 服务器的图片或文件都对应一个 media ID，在服务端保存 7 天。你可以通过 media ID 在 7 天有效期内从 Agora 服务器下载对应的图片或文件。Agora RTM SDK 引入了 `AgoraRtmImageMessage` 接口类和 `AgoraRtmFileMessage` 接口类用于保存和传递系统生成的 media ID。`AgoraRtmImageMessage` 接口类和 `AgoraRtmFileMessage` 接口类继承自 `AgoraRtmMessage` 接口类，所以你可以通过已有的点对点消息或频道消息发送方法传递 `AgoraRtmImageMessage` 实例和 `AgoraRtmFileMessage` 实例，从而实现图片或文件消息的发送和接收。
@@ -45,7 +44,7 @@ updatedAt: 2020-10-19 14:57:07
    ```
 
 2. (可选)通过获取的实例设置图片的长宽或缩略图。
-
+   
    设置图片长宽示例代码：
 
    ```objectivec
@@ -110,6 +109,7 @@ updatedAt: 2020-10-19 14:57:07
    [AgoraRtm.kit cancelMediaUpload:&requestId completion:^(long long requestId, AgoraRtmCancelMediaErrorCode errorCode) {}];
    ```
 
+
 如果你存有一个已上传图片对应的 media ID 且 media ID 仍然处于 7 天有效期内，则无需再次上传图片至服务端。流程如下：
 
 1. 通过 media ID 在本地创建一个图片消息实例。创建成功时，SDK 会立刻返回一个 `AgoraRtmImageMessage` 实例。
@@ -150,9 +150,9 @@ updatedAt: 2020-10-19 14:57:07
    ```
 
 3. 将 `AgoraRtmFileMessage` 实例通过点对点消息或频道消息的方式发送给指定用户或指定频道。
-
+   
    `AgoraRtmFileMessage` 继承自 `AgoraRtmMessage` 接口类，所以你可以使用已有的点对点消息或频道消息方法发送 `AgoraRtmFileMessage` 实例。
-
+   
    发送文件点对点消息示例代码：
 
    ```objectivec
@@ -166,7 +166,7 @@ updatedAt: 2020-10-19 14:57:07
    ```
 
 4. 收到文件消息的用户会收到相应回调，你可以通过获取 `AgoraRtmFileMessage` 实例携带的 media ID 信息并通过 media ID 将相应文件保存至本地。
-
+   
    接收文件点对点消息示例代码：
 
    ```objectivec
@@ -242,3 +242,4 @@ updatedAt: 2020-10-19 14:57:07
 - [rtmKit:imageMessageReceived:fromPeer:](/cn/Real-time-Messaging/API%20Reference/RTM_oc/v1.3.0/Protocols/AgoraRtmDelegate.html#//api/name/rtmKit:imageMessageReceived:fromPeer:): 收到点对点图片消息回调。
 - [channel:fileMessageReceived:fromMember:](/cn/Real-time-Messaging/API%20Reference/RTM_oc/v1.3.0/Protocols/AgoraRtmChannelDelegate.html#//api/name/channel:fileMessageReceived:fromMember:): 收到频道文件消息回调。
 - [channel:imageMessageReceived:fromMember:](/cn/Real-time-Messaging/API%20Reference/RTM_oc/v1.3.0/Protocols/AgoraRtmChannelDelegate.html#//api/name/channel:imageMessageReceived:fromMember:): 收到频道图片消息回调。
+

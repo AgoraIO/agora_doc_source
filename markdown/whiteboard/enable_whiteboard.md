@@ -3,8 +3,8 @@ title: 开启和配置互动白板服务
 platform: Android
 updatedAt: 2021-03-31 09:00:54
 ---
-
 使用 Agora 互动白板服务前，你需要先在 [Agora 控制台](https://console.agora.io/#onboarding)开启并配置互动白板服务。
+
 
 ## 前提条件
 
@@ -12,11 +12,11 @@ updatedAt: 2021-03-31 09:00:54
 
 你可根据自身情况，参考下表完成 Agora 账号注册。
 
-| 账号拥有情况                                                         | 操作                                                                                                                      |
-| :------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------ |
-| 无 Netless 账号，也无 Agora 开发者账号                               | 参考[注册与登录](https://docs.agora.io/cn/AgoraPlatform/sign_in_and_sign_up?platform=AllPlatforms)注册 Agora 开发者账号。 |
-| 已有 Netless 账号，无 Agora 开发者账号                               | 你可以使用 Netless 账号登录 Agora 控制台，点击**发送邮件**，然后通过邮件重置密码。                                        |
-| 已有 Netless 账号和 Agora 开发者账号，且与两个账号绑定的验证邮箱一致 | 你可以登录 Agora 控制台，根据弹窗提示，点击**迁移**，Agora 会自动完成 Netless 账号和项目的迁移。                          |
+| 账号拥有情况                                                 | 操作                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| 无 Netless 账号，也无 Agora 开发者账号                       | 参考[注册与登录](https://docs.agora.io/cn/AgoraPlatform/sign_in_and_sign_up?platform=AllPlatforms)注册 Agora 开发者账号。 |
+| 已有 Netless 账号，无 Agora 开发者账号                       | 你可以使用 Netless 账号登录 Agora 控制台，点击**发送邮件**，然后通过邮件重置密码。 |
+| 已有 Netless 账号和 Agora 开发者账号，且与两个账号绑定的验证邮箱一致 | 你可以登录 Agora 控制台，根据弹窗提示，点击**迁移**，Agora 会自动完成 Netless 账号和项目的迁移。 |
 
 ## 开启互动白板服务
 
@@ -25,7 +25,7 @@ updatedAt: 2021-03-31 09:00:54
 1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏的**项目管理**。
 
 2. 在**项目管理**页面，选择需要开通互动白板服务的项目，点击**编辑**。
-   > 如果尚未创建项目，你可以参考[创建和管理项目](https://docs.agora.io/cn/AgoraPlatform/manage_projects?platform=AllPlatforms)创建新项目。
+> 如果尚未创建项目，你可以参考[创建和管理项目](https://docs.agora.io/cn/AgoraPlatform/manage_projects?platform=AllPlatforms)创建新项目。
 3. 在**编辑项目**页面，找到**白板**，点击**开启**。
 4. 仔细阅读弹窗提示，点击**确认**。
    成功开启互动白板后，**开启**按钮会切换为**配置**按钮，你可以点击配置白板服务。
@@ -44,6 +44,7 @@ Agora 会给每个开启了互动白板服务的项目分配一个 `App Identifi
 
 3. 在**白板配置**页面，找到 **AppIdentifier**，点击其右侧的眼睛图标，复制并自行保存白板项目的 `App Identifier`。
    ![img](https://confluence.agoralab.co/download/attachments/724799345/%E8%8E%B7%E5%8F%96%20App%20Identifier.png?version=1&modificationDate=1616479142269&api=v2)
+
 
 ### 获取 AK 和 SK
 
@@ -76,6 +77,7 @@ Agora 会给每个互动白板项目分配一组访问密钥对 `AK （Access Ke
 
 4. 仔细阅读弹窗提示，点击**复制 sdkToken** 并妥善保管。
 
+   
 <div class="alert note">该方法生成的 SDK Token 权限级别很高，请勿将该 Token 下发给客户端，否则会有泄露的风险。</div>
 
 在生产环境中，你需要在 app 服务端通过以下方式生成 `SDK Token`：
@@ -83,7 +85,7 @@ Agora 会给每个互动白板项目分配一组访问密钥对 `AK （Access Ke
 - 在 app 服务端用代码生成 SDK Token，详见[服务端生成 Token](https://confluence.agoralab.co/pages/viewpage.action?pageId=713688237)。（推荐）// TODO 加链接
 - 调用互动白板服务端 RESTful API 生成 SDK Token，详见[生成 SDK Token （POST）](https://confluence.agoralab.co/pages/viewpage.action?pageId=711052694#id-4.1互动白板服务端RESTfulAPI-生成SDKToken（POST）postsdktoken)。// TODO 加链接
 
-## 开启互动白板配套服务
+## 开启互动白板配套服务 
 
 Agora 互动白板服务端提供以下配套服务：
 
@@ -118,6 +120,7 @@ Agora 互动白板服务端提供以下配套服务：
    - **bucket**：（必填）存储空间名称。
    - **存储路径**：资源在存储空间中的存放路径，默认为根目录。
    - **外链域名**：OSS 对外服务的访问域名。如果使用七牛云 OSS，该字段为必填，否则 Agora 将无法访问该存储服务内的资源。
+
 
   <div class="alert note">
 	 <li>关于如何获取存储空间的配置信息，详见你所使用的 OSS 供应商的官方文档。</li>

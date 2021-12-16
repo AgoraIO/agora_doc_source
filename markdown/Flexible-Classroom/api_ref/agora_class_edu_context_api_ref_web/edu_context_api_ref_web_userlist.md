@@ -102,7 +102,7 @@ controlTools: ControlTool[],
 ## isHost
 
 ```javascript
-isHost: boolean;
+isHost: boolean
 ```
 
 > 自 v1.1.2 起新增。

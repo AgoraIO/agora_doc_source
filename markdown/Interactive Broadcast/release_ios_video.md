@@ -3,15 +3,14 @@ title: 发版说明
 platform: iOS
 updatedAt: 2021-03-29 03:52:12
 ---
-
 本文提供 Agora 视频 SDK 的发版说明。
 
 ## **简介**
 
 iOS 视频 SDK 支持两种主要场景:
 
-- 音视频通话
-- 音视频直播
+-   音视频通话
+-   音视频直播
 
 点击 [语音通话产品概述](https://docs.agora.io/cn/Voice/product_voice?platform=All%20Platforms)、[视频通话产品概述](https://docs.agora.io/cn/Video/product_video?platform=All%20Platforms)、[音频互动直播产品概述](https://docs.agora.io/cn/Audio%20Broadcast/product_live_audio?platform=All%20Platforms)以及 [视频互动直播产品概述](https://docs.agora.io/cn/Interactive%20Broadcast/product_live?platform=All%20Platforms) 了解关键特性。
 
@@ -78,7 +77,7 @@ iOS 视频 SDK 支持两种主要场景:
 
 #### 设置视频观测位置 (C++)
 
-成功注册视频观测器后，你可以在视频处理的各节点观测并获取想要的视频数据，如本地采集的视频数据，接收的远端视频数据等。为降低设备耗能，该版本允许自定义视频观测位置。你可以通过修改 [`getObservedFramePosition`](./API%20Reference/cpp/classagora_1_1media_1_1_i_video_frame_observer.html#ad4c174389264630ffb1b2d24c6030013) 的返回值，设置只观测以下某个或多个位置的视频数据：
+成功注册视频观测器后，你可以在视频处理的各节点观测并获取想要的视频数据，如本地采集的视频数据，接收的远端视频数据等。为降低设备耗能，该版本允许自定义视频观测位置。你可以通过修改 [`getObservedFramePosition`](./API%20Reference/cpp/classagora_1_1media_1_1_i_video_frame_observer.html#ad4c174389264630ffb1b2d24c6030013)  的返回值，设置只观测以下某个或多个位置的视频数据：
 
 - 本地采集的视频数据
 - 接收远端发送的视频数据
@@ -98,7 +97,7 @@ iOS 视频 SDK 支持两种主要场景:
 
 该版本新增以下 API：
 
-- [`setAudioMixingPitch`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioMixingPitch:)
+-  [`setAudioMixingPitch`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setAudioMixingPitch:)
 - [`AgoraAudioVoiceChanger`](./API%20Reference/oc/Constants/AgoraAudioVoiceChanger.html) 枚举中新增以 `AgoraAudioVoiceBeauty` 为前缀和以 `AgoraAudioGeneralBeautyVoice` 为前缀的枚举值
 - [`AgoraAudioReverbPreset`](./API%20Reference/oc/Constants/AgoraAudioReverbPreset.html) 枚举中新增以 `AgoraAudioReverbPresetFx` 为前缀的枚举值，以及 `AgoraAudioReverbPresetVirtualStereo` 枚举值
 - [`enableFaceDetection`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableFaceDetection:)
@@ -131,7 +130,6 @@ iOS 视频 SDK 支持两种主要场景:
 [`sharedEngineWithConfig`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/sharedEngineWithConfig:delegate:)
 
 ## **3.0.0 版**
-
 该版本于 2020 年 3 月 4 日发布。并于 2020 年 3 月 24 日修复了偶现的音频无声、混音、`didClientRoleChanged` 回调多次、崩溃等问题。
 
 在该版本对通信场景采用了全新的系统架构，并升级了通信和直播场景下的 last mile 网络策略。在带宽不足时，新的网络策略能充分利用上下行有限带宽提升有效码率，从而增强弱网对抗能力，极大提升了弱网情况下通信和直播场景的终端用户体验。
@@ -143,7 +141,6 @@ iOS 视频 SDK 支持两种主要场景:
 新增特性、改进与问题修复详见下文。
 
 **升级必看**
-
 #### 1. 静态库更名与新增动态库
 
 为与其他平台保持一致，该版本将 SDK 的库名由 AgoraRtcEngineKit 变更为 AgoraRtcKit。如果你由老版本的 SDK 升级至该版本，请务必重新导入类。详细步骤见《快速开始》中的[导入类](https://docs.agora.io/cn/Interactive%20Broadcast/start_live_ios?platform=iOS#a-nameimportclassa2-%E5%AF%BC%E5%85%A5%E7%B1%BB)章节。
@@ -216,7 +213,7 @@ iOS 视频 SDK 支持两种主要场景:
 
 为满足更高音质需求，该版本调整了直播场景下 `AgoraAudioProfileDefault(0)` 对应的音频编码属性，详见下表：
 
-| SDK 版本   | `AgoraAudioProfileDefault(0)`                               |
+| SDK 版本   | `AgoraAudioProfileDefault(0)`                                  |
 | :--------- | :---------------------------------------------------------- |
 | 3.0.0      | 48 KHz 采样率，音乐编码，单声道，编码码率最大值为 52 Kbps。 |
 | 3.0.0 之前 | 32 KHz 采样率，音乐编码，单声道，编码码率最大值为 52 Kbps。 |
@@ -224,7 +221,6 @@ iOS 视频 SDK 支持两种主要场景:
 #### 2. 镜像模式
 
 为提升视频镜像的使用体验，该版本增加了视频编码镜像和视频渲染镜像的功能：
-
 - 视频编码镜像：在 [`AgoraVideoEncoderConfiguration`](./API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html) 结构体中，新增 `mirrorMode` 成员，方便设置本地视频编码的镜像模式，即远端看本地是否镜像。
 - 视频渲染镜像：在 [`AgoraRtcVideoCanvas`](./API%20Reference/oc/Classes/AgoraRtcVideoCanvas.html) 结构体中，新增 `mirrorMode` 成员，方便用户在调用 [`setupLocalVideo`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setupLocalVideo:) 方法初始化本地视图时，设置本地看本地是否镜像，以及调用 [`setupRemoteVideo`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setupRemoteVideo:) 方法初始化远端视图时，设置本地看远端是否镜像；同时在 [`setLocalRenderMode`](./API%20Reference/oc/v3.0.0/Classes/AgoraRtcEngineKit.html#//api/name/setLocalRenderMode:mirrorMode:) 和 [`setRemoteRenderMode`](./API%20Reference/oc/v3.0.0/Classes/AgoraRtcEngineKit.html#//api/name/setRemoteRenderMode:renderMode:mirrorMode:) 方法中新增 `mirrorMode` 参数，支持在通话中更新本地看本地，或本地看远端的镜像模式。
 
@@ -251,7 +247,7 @@ iOS 视频 SDK 支持两种主要场景:
 #### 新增
 
 - [`setLocalRenderMode`](./API%20Reference/oc/v3.0.0/Classes/AgoraRtcEngineKit.html#//api/name/setLocalRenderMode:mirrorMode:)
-- [`setRemoteRenderMode`](./API%20Reference/oc/v3.0.0/Classes/AgoraRtcEngineKit.html#//api/name/setRemoteRenderMode:renderMode:mirrorMode:)
+- [`setRemoteRenderMode`](./API%20Reference/oc/v3.0.0/Classes/AgoraRtcEngineKit.html#//api/name/setRemoteRenderMode:renderMode:mirrorMode:) 
 - [`AgoraVideoEncoderConfiguration`](./API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html) 结构体新增 `mirrorMode` 成员
 - [`AgoraRtcVideoCanvas`](./API%20Reference/oc/Classes/AgoraRtcVideoCanvas.html) 结构体新增 `channelId`、`mirrorMode` 成员
 - [`AgoraRtcAudioVolumeInfo`](./API%20Reference/oc/Classes/AgoraRtcAudioVolumeInfo.html) 结构体新增 `channelId` 成员
@@ -272,7 +268,7 @@ iOS 视频 SDK 支持两种主要场景:
 
 ## **2.9.3 版**
 
-该版本于 2020 年 2 月 10 日发布。
+该版本于 2020 年 2 月10 日发布。
 
 该版本修复了如下问题：
 
@@ -281,7 +277,6 @@ iOS 视频 SDK 支持两种主要场景:
 - 视频自采集场景下，接收到的视频分辨率在 app 切换前后台时发生改变。
 
 ## **2.9.1 版**
-
 该版本于 2019 年 9 月 19 日发布。新增特性与修复问题列表详见下文。
 
 **新增特性**
@@ -317,6 +312,7 @@ iOS 视频 SDK 支持两种主要场景:
 
 **问题修复**
 
+
 #### 音频
 
 - 偶现音频卡顿。
@@ -349,7 +345,6 @@ iOS 视频 SDK 支持两种主要场景:
 - `addVideoWatermark`
 
 ## **2.9.0 版**
-
 该版本于 2019 年 8 月 16 日发布。新增特性与修复问题列表详见下文。
 
 **升级必看**
@@ -396,7 +391,6 @@ iOS 视频 SDK 支持两种主要场景:
 #### 2. 跨频道媒体流转发
 
 跨频道媒体流转发，指将主播的媒体流转发至其他直播频道，实现主播跨频道与其他主播实时互动的场景。该版本新增如下接口，通过将源频道中的媒体流转发至目标频道，实现跨直播间连麦功能：
-
 - [`startChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startChannelMediaRelay:)
 - [`updateChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateChannelMediaRelay:)
 - [`stopChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopChannelMediaRelay)
@@ -419,7 +413,6 @@ iOS 视频 SDK 支持两种主要场景:
 #### 5. 远端音频帧拉取
 
 为提升音频播放体验，该版本新增如下接口，支持使用拉取的方式获取远端音频数据。App 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。
-
 - [`enableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSink:channels:)
 - [`disableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSink)
 - [`pullPlaybackAudioFrameRawData`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameRawData:lengthInByte:)
@@ -435,7 +428,6 @@ iOS 视频 SDK 支持两种主要场景:
 #### 1. 通话中质量透明
 
 该版本进一步扩充了 [`AgoraChannelStats`](./API%20Reference/oc/Classes/AgoraChannelStats.html)、[`AgoraRtcLocalVideoStats`](./API%20Reference/oc/Classes/AgoraRtcLocalVideoStats.html) 和 [`AgoraRtcRemoteVideoStats`](./API%20Reference/oc/Classes/AgoraRtcRemoteVideoStats.html) 类的成员。各类新增成员如下：
-
 - `AgoraChannelStats` 类：累计发送音频/视频字节数及累计接收音频/视频字节数
 - `AgoraRtcLocalVideoStats` 类：本地视频的编码码率、宽高、发送帧数及编码类型
 - `AgoraRtcRemoteVideoStats` 类：远端视频在网络对抗后的丢包率
@@ -450,6 +442,7 @@ iOS 视频 SDK 支持两种主要场景:
 - 优化了通信场景下用户关闭麦克风后听到的音质。
 
 **问题修复**
+
 
 #### 音频
 
@@ -472,7 +465,6 @@ iOS 视频 SDK 支持两种主要场景:
 为提升用户体验，Agora SDK 在该版本中对 API 进行了如下变动：
 
 #### 新增
-
 - [`enableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSink:channels:)
 - [`disableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSink)
 - [`pullPlaybackAudioFrameRawData`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameRawData:lengthInByte:)
@@ -481,7 +473,7 @@ iOS 视频 SDK 支持两种主要场景:
 - [`remoteAudioStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:)
 - [`remoteVideoStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStateChangedOfUid:state:reason:elapsed:)
 - [`localAudioStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStats:)
-- [`switchChannelByToken`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:joinSuccess:)
+- [`switchChannelByToken`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:joinSuccess:) 
 - [`startChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startChannelMediaRelay:)
 - [`updateChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateChannelMediaRelay:)
 - [`stopChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopChannelMediaRelay)
@@ -497,11 +489,11 @@ iOS 视频 SDK 支持两种主要场景:
 - [`audioTransportStatsOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:audioTransportStatsOfUid:delay:lost:rxKBitRate:)，请改用 [`remoteAudioStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:) 回调。
 - [`videoTransportStatsOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:videoTransportStatsOfUid:delay:lost:rxKBitRate:)，请改用 [`remoteVideoStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStats:) 回调。
 - [`didVideoEnabled`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didVideoEnabled:byUid:)，请改用 [`remoteVideoStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStateChangedOfUid:state:reason:elapsed:) 回调的：
-  - AgoraVideoRemoteStateStopped(0) 和 AgoraVideoRemoteStateReasonRemoteMuted(5)。
-  - AgoraVideoRemoteStateDecoding(2) 和 AgoraVideoRemoteStateReasonRemoteUnmuted(6)。
+	- AgoraVideoRemoteStateStopped(0) 和 AgoraVideoRemoteStateReasonRemoteMuted(5)。
+	- AgoraVideoRemoteStateDecoding(2) 和 AgoraVideoRemoteStateReasonRemoteUnmuted(6)。
 - [`didLocalVideoEnabled`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didLocalVideoEnabled:byUid:)，请改用 [`remoteVideoStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStateChangedOfUid:state:reason:elapsed:) 回调的：
-  - AgoraVideoRemoteStateStopped(0) 和 AgoraVideoRemoteStateReasonRemoteMuted(5)。
-  - AgoraVideoRemoteStateDecoding(2) 和 AgoraVideoRemoteStateReasonRemoteUnmuted(6)。
+	- AgoraVideoRemoteStateStopped(0) 和 AgoraVideoRemoteStateReasonRemoteMuted(5)。
+	- AgoraVideoRemoteStateDecoding(2) 和 AgoraVideoRemoteStateReasonRemoteUnmuted(6)。
 - [`firstRemoteVideoDecodedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:firstRemoteVideoDecodedOfUid:size:elapsed:)，请改用 [`remoteVideoStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStateChangedOfUid:state:reason:elapsed:) 回调的 AgoraVideoRemoteStateStarting(1) 和 AgoraVideoRemoteStateDecoding(2)。
 
 #### 删除
@@ -526,18 +518,17 @@ iOS 视频 SDK 支持两种主要场景:
 
 对于其他接口，Agora 沿用 Int 型的 UID。Agora Engine 会维护 UID 和 User account 映射表，你可以随时通过 String user account 获取 UID，或者通过 UID 获取 String user account，无需自己维护映射表。
 
-为保证通信质量，频道内所有用户需使用同一数据类型的用户 ID，即频道内的所有用户 ID 应同为 Int 型或同为 String 型。
+为保证通信质量，频道内所有用户需使用同一数据类型的用户 ID，即频道内的所有用户 ID应同为 Int 型或同为 String 型。
 
 **Note**：
 
 - 同一频道内，Int 型的 User ID 和 String 型的 User account 不可混用。目前支持 String 型 User account 的 SDK 如下：
 
-  - Native SDK：v2.8.0 及之后版本
-  - Web SDK：v2.5.0 及之后版本
+	- Native SDK：v2.8.0 及之后版本
+	- Web SDK：v2.5.0 及之后版本
 
-如果你的频道内有不支持 String 型 User account 的用户，则只能使用 Int 型的 User ID。
-
-- 如果你使用该版本的 Native SDK 将用户 ID 升级至 String 型 User account，请确保所有终端用户同步升级。
+ 如果你的频道内有不支持 String 型 User account 的用户，则只能使用 Int 型的 User ID。
+- 如果你使用该版本的 Native SDK 将用户 ID升级至 String 型 User account，请确保所有终端用户同步升级。
 - 如果使用 String 型的 User account，请确保你的服务端用户生成 Token 的脚本已升级至最新版本。如果使用 String 型 User account 加入频道，请确保使用该 User account 或其对应的 Int 型 UID 来生成 Token。你可以调用 `getUserInfoByUserAccount` 来获取 User account 所对应的 UID。
 
 #### 2. 音视频卡顿回调
@@ -586,12 +577,12 @@ iOS 视频 SDK 支持两种主要场景:
 
 为提高推流服务的易用性，该版本对推流接口的参数设置进行了如下限制：
 
-| 类**/**接口                                                                                                                   | 参数限制                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [AgoraLiveTranscoding](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html) 类                                             | <li>[videoFrameRate](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/videoFramerate)：设置转码推流的帧率，单位为 fps，取值范围为 [0, 30]，默认值为 15。如果设值超过 30，Agora 服务端会自动调整为 30<li>[videoBitrate](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/videoBitrate)：设置转码推流的码率，单位为 Kbps，默认值为 400。用户可以根据 [Video Profile 参考表](./API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/bitrate)中的码率值进行设置。如果设置的码率超出合理范围，服务端会在合理区间内对码率值进行自适应<li>[videoCodecProfile](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/videoCodecProfile)：设置转码推流的视频编码规格，可设为 **BASELINE**、**MAIN** 或 **HIGH**。若设为其他值，服务端会改为默认值 **HIGH**<li>[size](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/size)：设置转码推流的视频分辨率。size 的最小值不低于 16 x 16</li> |
-| [AgoraImage](./API%20Reference/oc/Classes/AgoraImage.html) 类                                                                 | `url`：字符长度不得超过 **1024** 字节                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| [addPublishStreamUrl](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/addPublishStreamUrl:transcodingEnabled:) | `url`：字符长度不得超过 **1024** 字节                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| [removePublishStreamUrl](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/removePublishStreamUrl:)              | `url`：字符长度不得超过 **1024** 字节                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| 类**/**接口                 | 参数限制                                                     |
+| --------------------------- | ------------------------------------------------------------ |
+| [AgoraLiveTranscoding](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html) 类 | <li>[videoFrameRate](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/videoFramerate)：设置转码推流的帧率，单位为 fps，取值范围为 [0, 30]，默认值为 15。如果设值超过 30，Agora 服务端会自动调整为 30<li>[videoBitrate](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/videoBitrate)：设置转码推流的码率，单位为 Kbps，默认值为 400。用户可以根据 [Video Profile 参考表](./API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/bitrate)中的码率值进行设置。如果设置的码率超出合理范围，服务端会在合理区间内对码率值进行自适应<li>[videoCodecProfile](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/videoCodecProfile)：设置转码推流的视频编码规格，可设为 **BASELINE**、**MAIN** 或 **HIGH**。若设为其他值，服务端会改为默认值 **HIGH**<li>[size](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/size)：设置转码推流的视频分辨率。size 的最小值不低于 16 x 16</li> |
+| [AgoraImage](./API%20Reference/oc/Classes/AgoraImage.html) 类           | `url`：字符长度不得超过 **1024** 字节                        |
+| [addPublishStreamUrl](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/addPublishStreamUrl:transcodingEnabled:)     | `url`：字符长度不得超过 **1024** 字节                        |
+| [removePublishStreamUrl](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/removePublishStreamUrl:)  | `url`：字符长度不得超过 **1024** 字节                        |
 
 同时，该版本在 `LiveTranscoding` 类中新增 [audioCodecProfile](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/audioCodecProfile) 参数，支持设置音频编码的规格。默认规格为 LC-AAC。
 
@@ -639,7 +630,7 @@ iOS 视频 SDK 支持两种主要场景:
 
 #### 2、质量透明
 
-- 该版本在通话相关的统计信息 [AgoraChannelStats](./API%20Reference/oc/Classes/AgoraChannelStats.html) 类中，新增 [txPacketLossRate](./API%20Reference/oc/Classes/AgoraChannelStats.html#//api/name/txPacketLossRate) 和 [rxPacketLossRate](./API%20Reference/oc/Classes/AgoraChannelStats.html#//api/name/rxPacketLossRate) 参数，分别返回本地客户端到服务器和服务器到本地客户端的丢包率。
+- 该版本在通话相关的统计信息 [AgoraChannelStats](./API%20Reference/oc/Classes/AgoraChannelStats.html) 类中，新增 [txPacketLossRate](./API%20Reference/oc/Classes/AgoraChannelStats.html#//api/name/txPacketLossRate) 和  [rxPacketLossRate](./API%20Reference/oc/Classes/AgoraChannelStats.html#//api/name/rxPacketLossRate) 参数，分别返回本地客户端到服务器和服务器到本地客户端的丢包率。
 - 该版本对 AgoraLocalVideoStats 和 AgoraRemoteVideoStats 类作了如下变动，方便用户更精准地获取本地和远端视频流的统计信息：
   - [AgoraRtcLocalVideoStats](./API%20Reference/oc/Classes/AgoraRtcLocalVideoStats.html)：新增 [encoderOutputFrameRate](./API%20Reference/oc/Classes/AgoraRtcLocalVideoStats.html#//api/name/encoderOutputFrameRate) 和 [rendererOutputFrameRate](./API%20Reference/oc/Classes/AgoraRtcLocalVideoStats.html#//api/name/rendererOutputFrameRate) 参数
   - [AgoraRtcRemoteVideoStats](./API%20Reference/oc/Classes/AgoraRtcRemoteVideoStats.html)：新增 [decoderOutputFrameRate](./API%20Reference/oc/Classes/AgoraRtcRemoteVideoStats.html#//api/name/decoderOutputFrameRate) 参数，并将原有的 receivedFrameRate 参数更名为 [rendererOutputFrameRate](./API%20Reference/oc/Classes/AgoraRtcRemoteVideoStats.html#//api/name/rendererOutputFrameRate)
@@ -690,9 +681,9 @@ iOS 视频 SDK 支持两种主要场景:
 - [localVideoStateChange](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localVideoStateChange:error:)
 - [networkTypeChangedToType](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:networkTypeChangedToType:)
 - [rtmpStreamingChangedToStats](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingChangedToState:state:errorCode:)
-- [setMediaMetadataSource](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setMediaMetadataDataSource:withType:)
-- [setMediaMetadataDelegate](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setMediaMetadataDelegate:withType:)
-- [AgoraMediaMetadataSource](./API%20Reference/oc/Protocols/AgoraMediaMetadataDataSource.html)
+- [setMediaMetadataSource](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setMediaMetadataDataSource:withType:) 
+- [setMediaMetadataDelegate](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setMediaMetadataDelegate:withType:) 
+-  [AgoraMediaMetadataSource](./API%20Reference/oc/Protocols/AgoraMediaMetadataDataSource.html) 
 - [AgoraMediaMetadataDelegate](./API%20Reference/oc/Protocols/AgoraMediaMetadataDelegate.html)
 - `AgoraLiveTranscoding` 类新增参数 [audioCodecProfile](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/audioCodecProfile)
 - `AgoraChannelStats` 类新增参数 [txPacketLossRate](./API%20Reference/oc/Classes/AgoraChannelStats.html#//api/name/txPacketLossRate) 和 [rxPacketLossRate](./API%20Reference/oc/Classes/AgoraChannelStats.html#//api/name/rxPacketLossRate)
@@ -708,6 +699,8 @@ iOS 视频 SDK 支持两种主要场景:
 - 错误码 `AgoraErrorCodeTokenExpired(109)`，请改用 [connectionChangedToState](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:connectionChangedToState:reason:) 回调中的 AgoraConnectionChangedTokenExpired(9)
 - 错误码 `AgoraErrorCodeInvalidToken(110)`，请改用 [connectionChangedToState](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:connectionChangedToState:reason:) 回调中的 AgoraConnectionChangedInvalidToken(8)
 - 错误码 `AgoraErrorCodeStartCamera(1003)`，请改用 [localVideoStateChange](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localVideoStateChange:error:) 回调中的 AgoraLocalVideoStreamErrorCaptureFailure(4)
+
+
 
 ## 2.4.0 版及之前
 
@@ -806,7 +799,7 @@ Agora SDK 有 2 个日志文件，每个文件默认大小为 512 KB。为解决
 - [`setLocalVoiceChanger`](./API%20Reference/oc/v2.4/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoiceChanger:)
 - [`setLocalVoiceReverbPreset`](./API%20Reference/oc/v2.4/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVoiceReverbPreset:)
 - [`enableSoundPositionIndication`](./API%20Reference/oc/v2.4/Classes/AgoraRtcEngineKit.html#//api/name/enableSoundPositionIndication:)
-- [`setRemoteVoicePosition`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setRemoteVoicePosition:pan:gain:)
+- [`setRemoteVoicePosition`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setRemoteVoicePosition:pan:gain:) 
 - [`startLastmileProbeTest`](./API%20Reference/oc/v2.4/Classes/AgoraRtcEngineKit.html#//api/name/startLastmileProbeTest:)
 - [`stopLastmileProbeTest`](./API%20Reference/oc/v2.4/Classes/AgoraRtcEngineKit.html#//api/name/stopLastmileProbeTest)
 - [`setRemoteUserPriority`](./API%20Reference/oc/v2.4/Classes/AgoraRtcEngineKit.html#//api/name/setRemoteUserPriority:type:)
@@ -824,6 +817,7 @@ Agora SDK 有 2 个日志文件，每个文件默认大小为 512 KB。为解决
 ##### 其他
 
 [`AgoraVideoEncoderConfiguration`](./API%20Reference/oc/v2.4/Classes/AgoraVideoEncoderConfiguration.html) 类中的 [`frameRate`](./API%20Reference/oc/v2.4/Classes/AgoraVideoEncoderConfiguration.html#//api/name/frameRate) 参数由 `enum` 型修改为 `int` 型。
+
 
 **2.3.3 版**
 
@@ -847,7 +841,7 @@ Agora SDK 有 2 个日志文件，每个文件默认大小为 512 KB。为解决
 
 ##### 1. 摄像头曝光
 
-为提升视频采集质量，该版本新增如下接口，支持摄像头曝光功能。开发者可以将需要自动曝光的区域位置发送给 Agora SDK，摄像头会基于该区域自动曝光。
+为提升视频采集质量，该版本新增如下接口，支持摄像头曝光功能。开发者可以将需要自动曝光的区域位置发送给  Agora SDK，摄像头会基于该区域自动曝光。
 
 - [`isCameraExposurePositionSupported`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/isCameraExposurePositionSupported)：检查设备是否支持摄像头曝光
 - [`setCameraExposurePosition`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setCameraExposurePosition:)：设置摄像头曝光区域
@@ -871,7 +865,7 @@ Agora SDK 会根据网络条件进行码率自适应。为满足用户在直播�
 
 为提升质量透明的用户体验，该版本废弃了原有的 `audioQualityOfUid` 回调，并新增 `remoteAudioStats` 回调进行取代。和原来的接口相比，新接口使用更为综合的算法，通过引入音频丢帧率、端到端的音频延迟、接收端网络抖动的缓冲延迟等参数，使回调结果更贴近用户感受。同时，该版本优化了 `networkQuality` 的算法，对上下行网络质量采用不同的计算方法，使评分更精准。
 
-- [`remoteAudioStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:)：通话中远端音频流的统计信息回调。用于替换 `audioQualityOfUid`
+- [`remoteAudioStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:)：通话中远端音频流的统计信息回调。用于替换	`audioQualityOfUid`
 - [`networkQuality`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:networkQuality:txQuality:rxQuality:)：通话中每个用户的网络上下行 Last mile 质量报告回调。
 
 Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
@@ -909,6 +903,7 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 - 增加了重新检测耳机插入和蓝牙设备连接的代码
 - 降低了音频延时
 
+
 #### **问题修复**
 
 ##### 音频相关：
@@ -923,6 +918,7 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 
 - 修复了视频自采集时的偶现问题
 - 修复了屏幕共享时出现的本地和远端鼠标位置不一致的问题
+
 
 #### **API 整理**
 
@@ -951,7 +947,7 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 
 #### **新增功能**
 
-##### 关闭/重新开启本地语音功能
+#####  关闭/重新开启本地语音功能
 
 应用程序在加入频道时，语音功能是默认打开的。为满足用户只接收而不发送音频流的需求，该版本新增 `enableLocalAudio` 接口，方便应用程序在进入频道后关闭或重新开启本地语音功能。关闭本地语音功能后，应用程序会收到 `didMicrophoneEnabled` 回调，并停止采集本地音频流。该方法不影响接收和播放远端音频流。
 
@@ -981,15 +977,16 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### **升级必看**
 
-- 为满足场景中视频旋转的需要，提升自定义视频源画质，该版本引入 `setVideoEncoderConfiguration` 替换原 `setVideoProfile` 接口。 `setVideoProfile` 接口仍可用，但不再推荐。
+-   为满足场景中视频旋转的需要，提升自定义视频源画质，该版本引入 `setVideoEncoderConfiguration` 替换原 `setVideoProfile` 接口。 `setVideoProfile` 接口仍可用，但不再推荐。
 
-  - 直播场景下支持 Adaptive Mode，当发送端画面旋转时不再剪切画面，避免播放端画面出现“大头”或缩放模糊的现象。
+    -   直播场景下支持 Adaptive Mode，当发送端画面旋转时不再剪切画面，避免播放端画面出现“大头”或缩放模糊的现象。
 
-  - 自采集场景中，可以根据输入视频帧的宽和高，动态调整输出视频帧的宽和高，尽可能避免剪切，并提供更多的图像信息给到播放端。
+    -   自采集场景中，可以根据输入视频帧的宽和高，动态调整输出视频帧的宽和高，尽可能避免剪切，并提供更多的图像信息给到播放端。
 
-- 该版本新增了一个系统库依赖：`Accelerate.framework`。该系统库可以进行大规模的数学计算和图像计算，并针对高性能进行了优化。
+-   该版本新增了一个系统库依赖：`Accelerate.framework`。该系统库可以进行大规模的数学计算和图像计算，并针对高性能进行了优化。
 
-- 为更好地提升用户体验，Agora SDK 在 v2.1.0 版本中对动态秘钥进行了升级。如果你当前使用的 SDK 是 v2.1.0 之前的版本，并希望升级到 v2.1.0 或更高版本，请务必参考 [动态秘钥升级说明](/cn/Agora%20Platform/token_migration) 。
+-   为更好地提升用户体验，Agora SDK 在 v2.1.0 版本中对动态秘钥进行了升级。如果你当前使用的 SDK 是 v2.1.0 之前的版本，并希望升级到 v2.1.0 或更高版本，请务必参考 [动态秘钥升级说明](/cn/Agora%20Platform/token_migration) 。
+
 
 #### **新增功能**
 
@@ -1021,105 +1018,107 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### **改进功能**
 
-- 优化了一对一音视频的质量，在降低延时、防止卡顿方面提升明显。优化效果重点覆盖东南亚、南美、非洲和中东等地区
+-   优化了一对一音视频的质量，在降低延时、防止卡顿方面提升明显。优化效果重点覆盖东南亚、南美、非洲和中东等地区
 
-- 直播场景下，改善了音频编码器的效率，保证通话质量的同时节省用户流量
+-   直播场景下，改善了音频编码器的效率，保证通话质量的同时节省用户流量
 
-- 采用深度学习算法，改进了通话及直播中的音频质量
+-   采用深度学习算法，改进了通话及直播中的音频质量
+
 
 #### **问题修复**
 
-- 修复了因视频编码问题引起的 Native 设备与 Web 端互通时，Web 端看不到 Native 端视频画面的问题
+-   修复了因视频编码问题引起的 Native 设备与 Web 端互通时，Web 端看不到 Native 端视频画面的问题
 
-- 修复了多人视频直播连麦场景下，SDK 内存异常增长的问题
+-   修复了多人视频直播连麦场景下，SDK 内存异常增长的问题
 
-- 修复了某些 iOS 设备上 App 切换至后台后偶发的视频渲染崩溃的问题
+-   修复了某些 iOS 设备上 App 切换至后台后偶发的视频渲染崩溃的问题
 
-- 修复了某些 iOS 设备上 App 偶发的闪退的问题
+-   修复了某些 iOS 设备上 App 偶发的闪退的问题
 
-- 修复了特定场景下某些设备上偶发的无法看到远端视图的问题
+-   修复了特定场景下某些设备上偶发的无法看到远端视图的问题
 
-- 修复了特定场景下偶发的 iOS 设备黑屏的问题
+-   修复了特定场景下偶发的 iOS 设备黑屏的问题
 
-- 修复了特定场景下偶现的视频重影的问题
+-   修复了特定场景下偶现的视频重影的问题
 
-- 修复了通信场景下，由小流切换到大流时，偶现的视频画面下方出现绿边的问题。
+-   修复了通信场景下，由小流切换到大流时，偶现的视频画面下方出现绿边的问题。
 
-- 修复了特定场景下某些 iOS 设备上推流后出现的崩溃问题
+-   修复了特定场景下某些 iOS 设备上推流后出现的崩溃问题
 
-- 修复了某些 iOS 设备上偶现的崩溃的问题
+-   修复了某些 iOS 设备上偶现的崩溃的问题
 
-- 修复了某些 iOS 设备上频繁暂停、恢复播放所有音效时出现的崩溃的问题
+-   修复了某些 iOS 设备上频繁暂停、恢复播放所有音效时出现的崩溃的问题
 
-- 修复了多人连麦场景下，主播频繁进出频道时，偶现的主播内存异常增长的问题
+-   修复了多人连麦场景下，主播频繁进出频道时，偶现的主播内存异常增长的问题
 
-- 修复了特定场景下偶现的主播加入频道、下麦再上麦后，远端用户听不到主播声音的问题
+-   修复了特定场景下偶现的主播加入频道、下麦再上麦后，远端用户听不到主播声音的问题
 
-- 修复了偶现的设置推流背景图无效的问题
+-   修复了偶现的设置推流背景图无效的问题
 
-- 修复了通信场景下，某些设备上偶现的视频画面长宽和设置的长宽颠倒的问题
+-   修复了通信场景下，某些设备上偶现的视频画面长宽和设置的长宽颠倒的问题
 
-- 修复了某些设备上偶现的开启视频模式加入频道后，调用 destroy 方法无响应的问题
+-   修复了某些设备上偶现的开启视频模式加入频道后，调用 destroy 方法无响应的问题
 
-- 修复了特定场景下某些 iOS 设备上偶现的接听系统电话再回到频道后，听不到声音的问题
+-   修复了特定场景下某些 iOS 设备上偶现的接听系统电话再回到频道后，听不到声音的问题
 
-- 修复了特定场景下偶现的直播观众无法调节频道内通话音量的问题
+-   修复了特定场景下偶现的直播观众无法调节频道内通话音量的问题
 
-- 修复了频繁进出频道时，某些 iOS 设备上出现的崩溃的问题
+-   修复了频繁进出频道时，某些 iOS 设备上出现的崩溃的问题
 
-- 修复了通信场景下偶现的其他端看不到 iOS 端视频画面的问题
+-   修复了通信场景下偶现的其他端看不到 iOS 端视频画面的问题
 
-- 修复了直播场景下，主播和观众频繁切换角色时，观众切主播后偶现的采集不到画面的问题
+-   修复了直播场景下，主播和观众频繁切换角色时，观众切主播后偶现的采集不到画面的问题
 
-- 修复了某些 iOS 设备上偶现的不开启双流模式，Web 端也能订阅 iOS 端小流的问题
+-   修复了某些 iOS 设备上偶现的不开启双流模式，Web 端也能订阅 iOS 端小流的问题
 
-- 修复了设置手动对焦位置并触发对焦时，某些设备上偶现的崩溃的问题
+-   修复了设置手动对焦位置并触发对焦时，某些设备上偶现的崩溃的问题
 
-- 修复了 2 人连麦过程中，一端播放背景音乐时将自己静音或关闭音频后，另一端闪退的问题
+-   修复了 2 人连麦过程中，一端播放背景音乐时将自己静音或关闭音频后，另一端闪退的问题
 
-- 修复了特定场景下，iOS 端和 Web 端互通时，Web 频繁进出频道后，iOS 设备上出现的崩溃的问题
+-   修复了特定场景下，iOS 端和 Web 端互通时，Web 频繁进出频道后，iOS 设备上出现的崩溃的问题
 
-- 修复了通信场景下，反复设置不同的视频编码属性后，无法进入频道的问题
+-   修复了通信场景下，反复设置不同的视频编码属性后，无法进入频道的问题
 
-- 修复了特定场景下，预加载音效时某些设备上偶现的崩溃问题
+-   修复了特定场景下，预加载音效时某些设备上偶现的崩溃问题
 
-- 修复了直播场景下，主播端编码与解码端渲染的分辨率不一致的问题
+-   修复了直播场景下，主播端编码与解码端渲染的分辨率不一致的问题
 
-- 修复了通信和直播场景下偶发的视频画面卡住的问题
+-   修复了通信和直播场景下偶发的视频画面卡住的问题
 
-- 修复了进入频道前暂停指定用户视频流后，某些设备上偶现的崩溃的问题
+-   修复了进入频道前暂停指定用户视频流后，某些设备上偶现的崩溃的问题
 
-- 修复了特定场景下，某些 iOS 设备上出现的未开启弱网下视频自动回退，也能收到相关回调的问题
+-   修复了特定场景下，某些 iOS 设备上出现的未开启弱网下视频自动回退，也能收到相关回调的问题
 
-- 修复了直播场景下，对某些外部视频源设置编码属性时，某些 iOS 设备上出现的输出视频方向不正确的问题
+-   修复了直播场景下，对某些外部视频源设置编码属性时，某些 iOS 设备上出现的输出视频方向不正确的问题
 
-- 修复了某些 iOS 设备上手动设置视频属性异常的问题
+-   修复了某些 iOS 设备上手动设置视频属性异常的问题
 
-- 修复了偶现的 iOS 与 macOS 设备 无法进入频道互通的问题
+-   修复了偶现的 iOS 与 macOS 设备 无法进入频道互通的问题
 
-- 修复了直播场景下，使用第三方应用播放音乐时，某些 iOS 设备上出现的退出频道时崩溃的问题
+-   修复了直播场景下，使用第三方应用播放音乐时，某些 iOS 设备上出现的退出频道时崩溃的问题
 
-- 修复了特定场景下，某些 iOS 设备上出现的退出频道时崩溃的问题
+-   修复了特定场景下，某些 iOS 设备上出现的退出频道时崩溃的问题
 
-- 修复了直播场景下，某些 iOS 设备上出现的拉流过程中，其他用户拉流也能成功的问题
+-   修复了直播场景下，某些 iOS 设备上出现的拉流过程中，其他用户拉流也能成功的问题
 
-- 修复了频繁开关摄像头时，某些 iOS 设备上出现的崩溃的问题
+-   修复了频繁开关摄像头时，某些 iOS 设备上出现的崩溃的问题
 
-- 修复了直播场景下，由连麦切换回单主播时偶现的画面卡顿的问题
+-   修复了直播场景下，由连麦切换回单主播时偶现的画面卡顿的问题
 
-- 修复了特定场景下偶现的 SIP 设备和 SDK 视频不互通的问题
+-   修复了特定场景下偶现的 SIP 设备和 SDK 视频不互通的问题
 
-- 修复了小米 8 上出现的本地预览黑屏、远端也看不到它的问题
+-   修复了小米 8 上出现的本地预览黑屏、远端也看不到它的问题
 
-- 修复了部分设备上偶现的使用声卡时回声的问题
+-   修复了部分设备上偶现的使用声卡时回声的问题
 
-- 修复了部分 iOS 设备出现的视频画面由小到大跳变的问题
+-   修复了部分 iOS 设备出现的视频画面由小到大跳变的问题
 
-- 修复了特定场景下，部分 iOS 设备上出现的摄像头晃动时，频道内画面卡糊的问题
+-   修复了特定场景下，部分 iOS 设备上出现的摄像头晃动时，频道内画面卡糊的问题
 
-- 修复了部分 iOS 设备上偶现的视频延迟的问题
+-   修复了部分 iOS 设备上偶现的视频延迟的问题
 
-- 修复了特定场景下，某些 iOS 设备上无法调节音量的问题
+-   修复了特定场景下，某些 iOS 设备上无法调节音量的问题
+
 
 #### **API 整理**
 
@@ -1127,25 +1126,28 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 为避免在直播转码推流中添加多个相同 User，v2.3.0 版本中新增如下接口：
 
-- `addUser`
+-   `addUser`
 
-- `removeUser`
+-   `removeUser`
+
 
 以下接口与录制相关，在 v2.3.0 版本后不再支持。Agora 提供专门的 Recording SDK 用于更好的录制服务，详见 [Agora Recording SDK 发版说明](/cn/Product%20Overview/release_recording)。
 
-- `startRecordingService`
+-   `startRecordingService`
 
-- `stopRecordingService`
+-   `stopRecordingService`
 
-- `refreshRecordingServiceStatus`
+-   `refreshRecordingServiceStatus`
 
-- `didRefreshRecordingServiceStatus`
+-   `didRefreshRecordingServiceStatus`
+
 
 以下接口长期处于弃用状态，现进行删除，v2.3.0 版本后不再支持：
 
-- `switchView`
+-   `switchView`
 
-- `setSpeakerphoneVolume`
+-   `setSpeakerphoneVolume`
+
 
 **2.2.3 版**
 
@@ -1157,17 +1159,17 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### **问题修复**
 
-- 修复了特定场景下偶发的线上统计崩溃的问题。
+-   修复了特定场景下偶发的线上统计崩溃的问题。
 
-- 修复了直播时特定场景下偶发的崩溃的问题。
+-   修复了直播时特定场景下偶发的崩溃的问题。
 
-- 修复了多人直播连麦时，SDK 内存增长的问题。
+-   修复了多人直播连麦时，SDK 内存增长的问题。
 
-- 复了偶发的无法正常反馈频道内谁在说话以及说话者音量的问题。
+-   复了偶发的无法正常反馈频道内谁在说话以及说话者音量的问题。
 
-- 修复了直播时偶发的观众听到主播声忽大忽小的问题。
+-   修复了直播时偶发的观众听到主播声忽大忽小的问题。
 
-- 修复了特定场景偶发的视频尺寸变化后，视频卡住的问题。
+-   修复了特定场景偶发的视频尺寸变化后，视频卡住的问题。
 
 **2.2.2 版**
 
@@ -1186,11 +1188,12 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### **问题修复**
 
-- 修复了部分设备上偶现的 Crash 问题。
+-   修复了部分设备上偶现的 Crash 问题。
 
-- 修复了部分设备上内存泄漏的问题。
+-   修复了部分设备上内存泄漏的问题。
 
-- 修复了部分设备上播放网络伴奏时某些 App 闪退的问题。
+-   修复了部分设备上播放网络伴奏时某些 App 闪退的问题。
+
 
 **2.2.0 版**
 
@@ -1244,11 +1247,12 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### **问题修复**
 
-- 修复了某些 iOS 设备横屏时，偶现的其他用户看 iOS 设备画面异常的问题。
+-   修复了某些 iOS 设备横屏时，偶现的其他用户看 iOS 设备画面异常的问题。
 
-- 修复了大量用户同时直播连麦时，偶发的抖屏现象。
+-   修复了大量用户同时直播连麦时，偶发的抖屏现象。
 
-- 修复了某些 iOS 设备导致频道内其他端的回音问题。
+-   修复了某些 iOS 设备导致频道内其他端的回音问题。
+
 
 **2.1.3 版**
 
@@ -1260,17 +1264,18 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### **问题修复**
 
-- 修复了 SDK 没有设置 Delegate 时，偶尔收不到 Block 回调的问题。
+-   修复了 SDK 没有设置 Delegate 时，偶尔收不到 Block 回调的问题。
 
-- 修复了 SDK 的外链符号里，有 NSAssertionHandler 的问题。
+-   修复了 SDK 的外链符号里，有 NSAssertionHandler 的问题。
 
-- 修复了部分手机上，用户离开频道后，开启自带的录音设备时，偶现录音出错的问题。
+-   修复了部分手机上，用户离开频道后，开启自带的录音设备时，偶现录音出错的问题。
 
-- 修复了直播场景下，调用 `enableWebSdkInteroperability `接口后，iOS 端偶尔看不到 Win 10 系统 Web 端视频画面的问题。
+-   修复了直播场景下，调用 `enableWebSdkInteroperability `接口后，iOS 端偶尔看不到 Win 10 系统 Web 端视频画面的问题。
 
-- 修复了使用 UIImagePickerController 调用系统相机后再回到直播中，偶现分辨率改变的问题。
+-   修复了使用 UIImagePickerController 调用系统相机后再回到直播中，偶现分辨率改变的问题。
 
-- 修复了通信或直播过程中偶现 Crash 的问题。
+-   修复了通信或直播过程中偶现 Crash 的问题。
+
 
 #### **改进**
 
@@ -1290,9 +1295,10 @@ SDK 升级至 2.1.2 的直播场景后，相同分辨率下，视频更清晰，
 
 #### **问题修复**
 
-- 修复了之前版本 SDK 在 iOS 11 平台上崩溃的问题。
+-   修复了之前版本 SDK 在 iOS 11 平台上崩溃的问题。
 
-- 修复了之前版本 SDK 在 dtx+aac 模式下会视频卡顿的问题。
+-   修复了之前版本 SDK 在 dtx+aac 模式下会视频卡顿的问题。
+
 
 **2.1.1 版**
 
@@ -1320,18 +1326,19 @@ SDK 升级至 2.1.2 的直播场景后，相同分辨率下，视频更清晰，
 
 新增 RESTful API 查询用户在频道中的状态信息，查询指定频道内的分角色用户列表，查询厂商频道列表，查询用户是否为连麦用户等。详见 [控制台 RESTful API](console_overview)
 
+
 ##### 4. 17 人视频
 
 在直播场景下，同一频道内支持 17 位主播同时进行视频直播和连麦，详见文档:
 
-- [实现视频直播](start_live_ios)
+-   [实现视频直播](start_live_ios)
 
-- [实现七人以上视频通话](./multi_user_video_apple)
+-   [实现七人以上视频通话](./multi_user_video_apple)
+
 
 ##### 5. 自定义视频源
 
 Agora SDK 提供了摄像头采集的默认实现，同时允许开发者使用自定义视频源。
-
 ##### 6. 自定义渲染器
 
 Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和对端视频图像。使用默认的渲染器就能满足大部分开发者需求，复杂的业务场景下，Agora 也开放了自定义渲染器接口。
@@ -1339,6 +1346,7 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 ##### 7. 插入外部视频源
 
 直播场景下，可以将采集到的视频添加到正在进行的直播中，直播室里的主播和观众可以一起边看电影、比赛或演出，边进行点评、互动等功能，会让现有的直播话题更广、体验更好。 仅支持拉入一路流，格式包括: RTMP, HLS, FLV。赛事直播最多同时支持 5 人连麦直播。详见 [外部输入直播视频源](inject_stream_apple) 。
+
 
 ##### 8. 提示相机对焦区域
 
@@ -1378,15 +1386,18 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 </tbody>
 </table>
 
+
+
 #### **问题修复**
 
-- 修复了自采集方案退出频道后 app 录不到声音的问题;
+-   修复了自采集方案退出频道后 app 录不到声音的问题;
 
-- 修复了偶现的崩溃;
+-   修复了偶现的崩溃;
 
-- 修复了偶现的关闭麦克风无法听到声音的问题;
+-   修复了偶现的关闭麦克风无法听到声音的问题;
 
-- 修复了偶现的黑屏问题;
+-   修复了偶现的黑屏问题;
+
 
 **2.0.2 版**
 
@@ -1402,99 +1413,103 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### **新增功能**
 
-- 通信场景支持视频大小流功能，新增 API `setRemoteVideoStreamType()`和 `enableDualStreamMode()` 。
+-   通信场景支持视频大小流功能，新增 API `setRemoteVideoStreamType()`和 `enableDualStreamMode()` 。
 
-- 伴奏和音效回调更新如下:
+-   伴奏和音效回调更新如下:
 
-      <table>
+    <table>
+<colgroup>
+<col/>
+<col/>
+</colgroup>
+<tbody>
+<tr><td><strong>名称</strong></td>
+<td><strong>描述</strong></td>
+</tr>
+<tr><td><code>rtcEngineMediaEngineDidAudioMixingFinish</code></td>
+<td>废弃，已经被 <code>rtcEngineLocalAudioMixingDidFinish</code> 替代</td>
+</tr>
+<tr><td><code>rtcEngineDidAudioEffectFinish</code></td>
+<td>新增，当本地结束音效播放时触发该回调</td>
+</tr>
+<tr><td><code>rtcEngineRemoteAudioMixingDidStart</code></td>
+<td>新增，当远端开始伴奏播放时触发该回调</td>
+</tr>
+<tr><td><code>rtcEngineRemoteAudioMixingDidFinish</code></td>
+<td>新增，当远端结束音效播放时触发该回调</td>
+</tr>
+</tbody>
+</table>
 
-  <colgroup>
-  <col/>
-  <col/>
-  </colgroup>
-  <tbody>
-  <tr><td><strong>名称</strong></td>
-  <td><strong>描述</strong></td>
-  </tr>
-  <tr><td><code>rtcEngineMediaEngineDidAudioMixingFinish</code></td>
-  <td>废弃，已经被 <code>rtcEngineLocalAudioMixingDidFinish</code> 替代</td>
-  </tr>
-  <tr><td><code>rtcEngineDidAudioEffectFinish</code></td>
-  <td>新增，当本地结束音效播放时触发该回调</td>
-  </tr>
-  <tr><td><code>rtcEngineRemoteAudioMixingDidStart</code></td>
-  <td>新增，当远端开始伴奏播放时触发该回调</td>
-  </tr>
-  <tr><td><code>rtcEngineRemoteAudioMixingDidFinish</code></td>
-  <td>新增，当远端结束音效播放时触发该回调</td>
-  </tr>
-  </tbody>
-  </table>
 
-- 通信和直播场景下支持摄像头管理功能，新增以下 API:
 
-      <table>
+-   通信和直播场景下支持摄像头管理功能，新增以下 API:
 
-  <colgroup>
-  <col/>
-  <col/>
-  </colgroup>
-  <tbody>
-  <tr><td><strong>名称</strong></td>
-  <td><strong>描述</strong></td>
-  </tr>
-  <tr><td><code>isCameraZoomSupported</code></td>
-  <td>检测设备是否支持相机缩放功能</td>
-  </tr>
-  <tr><td><code>isCameraTorchSupported</code></td>
-  <td>检测设备是否支持闪光灯常开</td>
-  </tr>
-  <tr><td><code>isCameraFocusPositionInPreviewSupported</code></td>
-  <td>检测设备是否支持手动对焦功能</td>
-  </tr>
-  <tr><td><code>isCameraAutoFocusFaceModeSupported</code></td>
-  <td>检测设备是否支持人脸对焦功能</td>
-  </tr>
-  <tr><td><code>setCameraZoomFactor</code></td>
-  <td>设置相机缩放因子</td>
-  </tr>
-  <tr><td><code>setCameraFocusPositionInPreview</code></td>
-  <td>设置手动对焦位置，并触发对焦</td>
-  </tr>
-  <tr><td><code>setCameraTorchOn</code></td>
-  <td>设置是否打开闪光灯</td>
-  </tr>
-  <tr><td><code>setCameraAutoFocusFaceModeEnabled</code></td>
-  <td>设置是否开启人脸对焦功能</td>
-  </tr>
-  </tbody>
-  </table>
+    <table>
+<colgroup>
+<col/>
+<col/>
+</colgroup>
+<tbody>
+<tr><td><strong>名称</strong></td>
+<td><strong>描述</strong></td>
+</tr>
+<tr><td><code>isCameraZoomSupported</code></td>
+<td>检测设备是否支持相机缩放功能</td>
+</tr>
+<tr><td><code>isCameraTorchSupported</code></td>
+<td>检测设备是否支持闪光灯常开</td>
+</tr>
+<tr><td><code>isCameraFocusPositionInPreviewSupported</code></td>
+<td>检测设备是否支持手动对焦功能</td>
+</tr>
+<tr><td><code>isCameraAutoFocusFaceModeSupported</code></td>
+<td>检测设备是否支持人脸对焦功能</td>
+</tr>
+<tr><td><code>setCameraZoomFactor</code></td>
+<td>设置相机缩放因子</td>
+</tr>
+<tr><td><code>setCameraFocusPositionInPreview</code></td>
+<td>设置手动对焦位置，并触发对焦</td>
+</tr>
+<tr><td><code>setCameraTorchOn</code></td>
+<td>设置是否打开闪光灯</td>
+</tr>
+<tr><td><code>setCameraAutoFocusFaceModeEnabled</code></td>
+<td>设置是否开启人脸对焦功能</td>
+</tr>
+</tbody>
+</table>
 
-- 通信和直播场景下支持音频自采集功能，新增以下 API:
 
-      <table>
 
-  <colgroup>
-  <col/>
-  <col/>
-  </colgroup>
-  <tbody>
-  <tr><td><strong>名称</strong></td>
-  <td><strong>描述</strong></td>
-  </tr>
-  <tr><td><code>enableExternalAudioSourceWithSampleRate</code></td>
-  <td>开启外部音频采集</td>
-  </tr>
-  <tr><td><code>disableExternalAudioSource</code></td>
-  <td>关闭外部音频采集</td>
-  </tr>
-  <tr><td><code>pushExternalAudioFrameRawData</code></td>
-  <td>推送外部音频帧</td>
-  </tr>
-  </tbody>
-  </table>
+-   通信和直播场景下支持音频自采集功能，新增以下 API:
 
-- 通信和直播场景下支持服务端踢人功能。如有需要，请联系 [sales@agora.io](mailto:sales@agora.io) 开通该功能。
+    <table>
+<colgroup>
+<col/>
+<col/>
+</colgroup>
+<tbody>
+<tr><td><strong>名称</strong></td>
+<td><strong>描述</strong></td>
+</tr>
+<tr><td><code>enableExternalAudioSourceWithSampleRate</code></td>
+<td>开启外部音频采集</td>
+</tr>
+<tr><td><code>disableExternalAudioSource</code></td>
+<td>关闭外部音频采集</td>
+</tr>
+<tr><td><code>pushExternalAudioFrameRawData</code></td>
+<td>推送外部音频帧</td>
+</tr>
+</tbody>
+</table>
+
+
+
+-   通信和直播场景下支持服务端踢人功能。如有需要，请联系 [sales@agora.io](mailto:sales@agora.io) 开通该功能。
+
 
 #### **问题修复**
 
@@ -1506,33 +1521,36 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### **新增功能**
 
-- 新增 API `setAudioProfile` 设置音频参数和应用场景。
+-   新增 API `setAudioProfile` 设置音频参数和应用场景。
 
-- 新增 API `setLocalVoicePitch` 提供基础变声功能。
+-   新增 API `setLocalVoicePitch` 提供基础变声功能。
 
-- 直播场景: 新增 API `setInEarMonitoringVolume` 提供调节耳返音量功能。
+-   直播场景: 新增 API `setInEarMonitoringVolume` 提供调节耳返音量功能。
+
 
 #### **改进**
 
-- 优化了在高码率下的音频体验。
+-   优化了在高码率下的音频体验。
 
-- 秒开: 直播场景下，单流模式时观众加入频道 1 秒内看见主播图像\(均值为 938 ms, 网络状态良好时可达 734 ms\)。
+-   秒开: 直播场景下，单流模式时观众加入频道 1 秒内看见主播图像\(均值为 938 ms, 网络状态良好时可达 734 ms\)。
 
-- 节省带宽:
+-   节省带宽:
 
-  - 1.14 以前: 如果你选择不听某人的音频或不看某人的视频，音视频流会照发。
+    -   1.14 以前: 如果你选择不听某人的音频或不看某人的视频，音视频流会照发。
 
-  - 1.14 开始: 如果你选择不听或不看某人的流，则不会下发，从而节省带宽。
+    -   1.14 开始: 如果你选择不听或不看某人的流，则不会下发，从而节省带宽。
 
-- 精准的码率控制:
+-   精准的码率控制:
 
-  - 1.14 以前: 码率控制不够精准，上下波动幅度较大。波动过大容易造成网络拥塞，增加丢包、丢帧的概率，影响了带宽估计模块的精度，特别是在弱网低码率情况下尤为明显。
+    -   1.14 以前: 码率控制不够精准，上下波动幅度较大。波动过大容易造成网络拥塞，增加丢包、丢帧的概率，影响了带宽估计模块的精度，特别是在弱网低码率情况下尤为明显。
 
-  - 1.14 开始: 精准的码率控制，要多少给多少，不多给也不少给，避免波动过大造成的网络拥塞，减少传输延时，有助于减少网络卡顿。
+    -   1.14 开始: 精准的码率控制，要多少给多少，不多给也不少给，避免波动过大造成的网络拥塞，减少传输延时，有助于减少网络卡顿。
+
 
 #### **问题修复**
 
 修复了部分 iOS 机器上偶现的崩溃。
+
 
 **1.13.1 版**
 
@@ -1540,9 +1558,10 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### **问题修复**
 
-- 解决了 iOS 11 在 iPhone 7\(及以上版本\) 手机外放下无法调节音量的问题。
+-   解决了 iOS 11 在 iPhone 7\(及以上版本\) 手机外放下无法调节音量的问题。
 
-- 优化了特定场景下出现的回声问题。
+-   优化了特定场景下出现的回声问题。
+
 
 **1.13 版**
 
@@ -1550,19 +1569,21 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### **新增功能**
 
-- 新增 API `didClientRoleChanged` 用于提醒直播场景下主播、观众上下麦的回调。
+-   新增 API `didClientRoleChanged` 用于提醒直播场景下主播、观众上下麦的回调。
 
-- 新增单独关闭语音播放的功能。
+-   新增单独关闭语音播放的功能。
 
-- 新增功能支持服务端推流失败回调。
+-   新增功能支持服务端推流失败回调。
 
-- 为 SDK 新增了 module map, 意味着 Swift 项目以后不需要添加桥接文件才能使用。
+-   为 SDK 新增了 module map, 意味着 Swift 项目以后不需要添加桥接文件才能使用。
+
 
 #### **改进**
 
-- 软编情况下，视频属性可控
+-   软编情况下，视频属性可控
 
-- 可以在客户端设置推流的 profile
+-   可以在客户端设置推流的 profile
+
 
 #### **修复问题**
 
@@ -1574,22 +1595,25 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### **新增功能**
 
-- 在 API 方法 `setEncryptionMode` 里新增了加密模式 `aes-128-ecb`。
+-   在 API 方法 `setEncryptionMode` 里新增了加密模式 `aes-128-ecb`。
 
-- 在 API 方法 `startAudioRecording`里新增了参数 `quality` 用于设置录音音质。
+-   在 API 方法 `startAudioRecording`里新增了参数 `quality` 用于设置录音音质。
 
-- 新增了一系列 API 管理音效。
+-   新增了一系列 API 管理音效。
 
-- 直播场景下， 新增了 API 方法 `injectStream`在当前频道内插入一条 RTMP 流。该功能目前为 beta 版。
+-   直播场景下， 新增了 API 方法 `injectStream`在当前频道内插入一条 RTMP 流。该功能目前为 beta 版。
+
 
 #### **改进**
 
 通信场景下针对 320 x 180 分辨率提供了以下改进方案:
 
-- 网络和设备状态较差的情况下仍能保证画质流畅度。
+-   网络和设备状态较差的情况下仍能保证画质流畅度。
 
-- 网络和设备状态良好的情况下可以做到比 180P 更好的画质清晰度。
+-   网络和设备状态良好的情况下可以做到比 180P 更好的画质清晰度。
+
 
 #### **修复问题**
 
 修复了部分机型上偶现的崩溃问题。
+

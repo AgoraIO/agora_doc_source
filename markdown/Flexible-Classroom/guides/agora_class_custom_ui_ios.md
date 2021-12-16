@@ -54,7 +54,7 @@ func initLayout() {
         signalImgView.agora_width = 20
         signalImgView.agora_height = 20
         signalImgView.agora_center_y = 0
-
+         
         leaveButton.agora_safe_right = 10
         leaveButton.agora_width = 24
         leaveButton.agora_height = 24
@@ -73,7 +73,7 @@ func initLayout() {
         signalImgView.agora_width = 20
         signalImgView.agora_height = 20
         signalImgView.agora_center_y = 0
-
+         
         leaveButton.agora_safe_x = 10
         leaveButton.agora_width = 24
         leaveButton.agora_height = 24
@@ -88,9 +88,9 @@ func initLayout() {
 
 以下示例演示了如何自定义一个 UI 组件并在灵动课堂中的 1 对 1 互动教学场景中使用。
 
-假设该 UI 组件的属性如下：
+ 假设该 UI 组件的属性如下：
 
-- 大小：100\*100
+- 大小：100*100
 - 位置：居中
 - 背景色：#BFBFBF
 - 文字：“离开”/“Leave”
@@ -110,7 +110,6 @@ func initLayout() {
     */
    DemoLeave = "离开";
    ```
-
    `AgoraUIEduBaseViews/AgoraUIEduBaseViews/AgoraResources/en.lproj/Localizable.strings`
 
    ```
@@ -121,8 +120,9 @@ func initLayout() {
    DemoLeave = "Leave";
    ```
 
-   ```
 
+   ```
+   
    ```
 
 2. 在 `/AgoraUIEduAppViews/AgoraUIEduAppViews/AgoraUIManager.swift` 文件中添加属性。
@@ -136,7 +136,7 @@ func initLayout() {
    ```
 
    ```
-
+   
    ```
 
 3. 在 `/AgoraUIEduAppViews/AgoraUIEduAppViews/AgoraUIManager.swift` 文件中添加如下代码。
@@ -161,7 +161,7 @@ func initLayout() {
    self.demoButton = demoBtn
    self.appView.addSubview(demoBtn)
    }
-
+ 
    /*
     * Function:
     *          initLayout

@@ -1,10 +1,9 @@
 ---
 title: 如何给通话评分？
-platform: ["Android", "iOS", "macOS", "Windows", "Unity"]
+platform: ["Android","iOS","macOS","Windows","Unity"]
 updatedAt: 2020-11-10 06:01:33
-Products: ["Interactive Broadcast", "Video", "Voice"]
+Products: ["Interactive Broadcast","Video","Voice"]
 ---
-
 通话结束后，你可以收集用户对通话质量体验的主观评价，以改进产品。Agora RTC SDK 提供相关方法支持用户为通话评分并提供反馈意见。
 
 实现评分功能后，你可以在[水晶球](https://docs.agora.io/cn/Agora%20Platform/aa_guide?platform=All%20Platforms)的**通话调查**里看到用户对通话的评分，如下图所示：
@@ -61,19 +60,17 @@ mRtcEngine.Rate(callId, 5, "This is an awesome call!");
 
 - Java
 
-  - [`getCallId`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa4d80e8de0e8ae4d2fd3f153945d289f)
-  - [`rate`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab7083355af531cc43d455024bd1f7662)
+    - [`getCallId`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa4d80e8de0e8ae4d2fd3f153945d289f)
+    - [`rate`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab7083355af531cc43d455024bd1f7662)
 
 - Objective-C
-
-  - [`getCallId`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getCallId)
-  - [`rate`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/rate:rating:description:)
+    - [`getCallId`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getCallId)
+    - [`rate`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/rate:rating:description:)
 
 - C++
-
-  - [`getCallId`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#af67688d89526926718edb26938d65541)
-  - [`rate`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a748c30a6339ec9798daa0d1b21585411)
+    - [`getCallId`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#af67688d89526926718edb26938d65541)
+    - [`rate`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a748c30a6339ec9798daa0d1b21585411)
 
 - C#
-  - [`GetCallId`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ab6b0ec1b64c5c9ec417819af0c70385a)
-  - [`Rate`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a2de30387e035e21f20f5bf5aebc001f5)
+    - [`GetCallId`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#ab6b0ec1b64c5c9ec417819af0c70385a)
+    - [`Rate`](./API%20Reference/unity/classagora__gaming__rtc_1_1_i_rtc_engine.html#a2de30387e035e21f20f5bf5aebc001f5)

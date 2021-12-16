@@ -3,12 +3,12 @@ title: App 体验
 platform: All Platforms
 updatedAt: 2021-01-20 07:42:11
 ---
-
 Agora 为多人连麦直播提供如下平台的示例 app：
 
-| Android                                  | iOS                                  |
-| ---------------------------------------- | ------------------------------------ |
-| [前往下载](./downloads?platform=Android) | [前往下载](./downloads?platform=iOS) |
+| Android | iOS | 
+| ---------------- | ---------------- |
+|[前往下载](./downloads?platform=Android)     | [前往下载](./downloads?platform=iOS)     | 
+
 
 由于多人连麦直播涉及多个用户，我们建议你至少准备**两台**设备进行体验。完成下载和安装后，参考如下步骤试用 Agora 的多人连麦直播间：
 
@@ -18,4 +18,4 @@ Agora 为多人连麦直播提供如下平台的示例 app：
 4. 房主端点击观众的头像，邀请观众上麦；观众端也可以点击麦位，申请上麦。
 5. 在连麦过程中，房主可以点击麦位，依次体验下麦、禁麦、解禁、封麦等功能。
 ![](https://web-cdn.agora.io/docs-files/1594288620769)
- <div class="alert note">在试用过程中，Demo app 会提示授权拍照、录像和录音的权限。根据需求授权即可。</div>
+<div class="alert note">在试用过程中，Demo app 会提示授权拍照、录像和录音的权限。根据需求授权即可。</div>

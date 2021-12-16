@@ -3,7 +3,6 @@ title: 调用 API 录制
 platform: Linux
 updatedAt: 2020-04-29 16:42:58
 ---
-
 本文介绍如何调用 API 进行通话或直播录制。
 
 开始前请确保你已经完成[集成录制 SDK](/cn/Recording/recording_integrate_cpp)。
@@ -72,7 +71,6 @@ engine->release()
 ```
 
 待录制完成后，你需要调用 [`release`](./API%20Reference/recording_cpp/classagora_1_1recording_1_1_i_recording_engine.html#af4d33159ed8ed249991470e6833d0fd5) 方法销毁录制实例，释放 SDK 使用的资源，释放资源后将无法再次使用和回调 SDK 内的其它方法。如需再次使用本地服务端录制，必须重新创建实例。
-
 > `release` 方法不能在回调线程中调用。
 
 ## 相关文档

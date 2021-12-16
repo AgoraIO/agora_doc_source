@@ -3,7 +3,6 @@ title: 跑通 Livecast 示例项目
 platform: iOS
 updatedAt: 2021-03-31 08:46:40
 ---
-
 Agora 在 GitHub 上提供开源的互动播客示例项目 [Livecast](https://github.com/AgoraIO-Usecase/InteractivePodcast)。本文介绍如何快速跑通该示例项目，体验 Agora 互动播客。
 
 ## 前提条件
@@ -14,11 +13,13 @@ Agora 在 GitHub 上提供开源的互动播客示例项目 [Livecast](https://g
 - 有效的 [Agora 开发者账号](https://docs.agora.io/cn/AgoraPlatform/sign_in_and_sign_up)。
 <div class="alert note">如果你的网络环境部署了防火墙，请参考<a href="https://docs.agora.io/cn/AgoraPlatform/firewall?platform=iOS">应用企业防火墙限制</a>以正常使用 Agora 服务。</div>
 
+
 ## 操作步骤
 
 ### 1. 创建 Agora 项目
 
 按照以下步骤，在控制台创建一个 Agora 项目。
+
 
 1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏 ![img](https://web-cdn.agora.io/docs-files/1594283671161) **项目管理**按钮进入**[项目管理](https://dashboard.agora.io/projects)**页面**。 **
 
@@ -29,6 +30,7 @@ Agora 在 GitHub 上提供开源的互动播客示例项目 [Livecast](https://g
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID。**
 
 4. 点击**提交**，新建的项目就会显示在**项目管理**页中。
+
 
 ### <a name="step2"></a>2. 获取 App ID
 

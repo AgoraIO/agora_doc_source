@@ -3,7 +3,6 @@ title: 多人视频场景
 platform: Web
 updatedAt: 2021-01-04 07:50:11
 ---
-
 <div class="alert note">本文仅适用于 Agora Web SDK 3.x 及之前版本。</div>
 
 ## 概述
@@ -33,21 +32,22 @@ updatedAt: 2021-01-04 07:50:11
 如果你不想要使用默认的小流视频属性，还可以调用` Client.setLowStreamParameter` 自定义小流参数，防止因小流码率过高而造成带宽压力。
 
 ```javascript
-switchStream = function () {
+switchStream = function (){
   if (highOrLow === 0) {
-    highOrLow = 1;
+    highOrLow = 1
     console.log("Set to low");
-  } else {
-    highOrLow = 0;
+  }
+  else {
+    highOrLow = 0
     console.log("Set to high");
   }
 
   client.setRemoteVideoStreamType(stream, highOrLow);
-};
+}
 ```
 
-- 从 v3.1.0 版本开始，手动设置的小流的宽高比如果和大流不一致，SDK 会自动修改小流的高，以保持宽高比一致。
-- 由于不同的浏览器对于视频属性有不同的限制，通过该接口设置的视频参数不一定都会生效。目前发现的未能充分适配的浏览器有 Firefox：在 Firefox 浏览器上，设置帧率不生效。浏览器本身会将帧率固定在 30 fps。
+* 从 v3.1.0 版本开始，手动设置的小流的宽高比如果和大流不一致，SDK 会自动修改小流的高，以保持宽高比一致。
+* 由于不同的浏览器对于视频属性有不同的限制，通过该接口设置的视频参数不一定都会生效。目前发现的未能充分适配的浏览器有 Firefox：在 Firefox 浏览器上，设置帧率不生效。浏览器本身会将帧率固定在 30 fps。
 
 ### 4. 发布和订阅流
 
@@ -59,13 +59,13 @@ switchStream = function () {
 
 对于 v3.1.0 之前的版本，SDK 会根据大流的视频属性自动设置小流的视频属性。参考下表了解不同的大流视频属性下对应的小流视频属性。
 
-| 大流视频参数                                                                           | 小流视频参数 |
-| :------------------------------------------------------------------------------------- | :----------- |
-| <ul><li>360P_1</li><li>360P_4</li><li>360P_9</li><li>360P_10</li><li>360P_11</li></ul> | 90P_1        |
-| <ul><li>360P_3</li><li>360P_6</li></ul>                                                | 120P_3       |
-| <ul><li>360P_7</li><li>360P_8</li></ul>                                                | 120P_1       |
-| <ul><li> 480P_1</li><li>480P_2</li><li>480P_4</li><li>480P_10</li></ul>                | 120P_1       |
-| <ul><li> 480P_3</li><li>480P_6</li></ul>                                               | 120P_3       |
+| 大流视频参数                     | 小流视频参数 |
+| :-------------------------------------- | :----------- |
+| <ul><li>360P_1</li><li>360P_4</li><li>360P_9</li><li>360P_10</li><li>360P_11</li></ul> | 90P_1     |
+|<ul><li>360P_3</li><li>360P_6</li></ul>   | 120P_3   |
+|<ul><li>360P_7</li><li>360P_8</li></ul>   | 120P_1     |
+|<ul><li> 480P_1</li><li>480P_2</li><li>480P_4</li><li>480P_10</li></ul>    | 120P_1    |
+| <ul><li> 480P_3</li><li>480P_6</li></ul>                   | 120P_3      |
 
 各视频属性对应的视频分辨率、帧率和码率请参考 [API 文档](./API%20Reference/web/interfaces/agorartc.stream.html#setvideoprofile)。
 

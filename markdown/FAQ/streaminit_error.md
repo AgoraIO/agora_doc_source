@@ -2,9 +2,8 @@
 title: 为什么在调用 Stream.init 时设备会报错？
 platform: ["Web"]
 updatedAt: 2020-12-23 08:07:05
-Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
+Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 ---
-
 以下为初始化音视频流时常见的设备错误：
 
 - `NotAllowedError`: 用户拒绝授予对应的摄像头或麦克风权限。

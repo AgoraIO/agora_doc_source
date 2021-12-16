@@ -3,7 +3,6 @@ title: 跨直播间连麦
 platform: Web
 updatedAt: 2021-03-05 09:08:11
 ---
-
 ## 功能描述
 
 跨直播间连麦，指主播的媒体流可以同时转发进多个直播频道，实现主播跨频道与其他主播实时互动的场景。其中：
@@ -29,11 +28,12 @@ Agora Web SDK 在 v3.0.0 中新增如下跨频道媒体流转发接口，支持�
 
 在跨频道媒体流转发过程中，SDK 会通过 `Client.on("channel-media-relay-state")` 回调报告媒体流转发的状态码（`state`）和错误码（`code`）， `Client.on("channel-media-relay-event")` 回调报告媒体流转发的事件码，你可以参考如下状态码或事件码的含义实现相关的业务逻辑：
 
-| <span style="white-space:nowrap;">状态码</span> | 错误码                                                                  | <span style="white-space:nowrap;">事件码</span> | 媒体流转发状态                                                                                                                                         |
-| ----------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 2                                               | 0                                                                       | 4                                               | 源频道开始向目标频道传输数据。                                                                                                                         |
+
+| <span style="white-space:nowrap;">状态码</span> | 错误码                                                       | <span style="white-space:nowrap;">事件码</span> | 媒体流转发状态                                               |
+| ----------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------- | ------------------------------------------------------------ |
+| 2                                               | 0                                                            | 4                                               | 源频道开始向目标频道传输数据。                               |
 | 3                                               | [错误码](./API%20Reference/web/classes/agorartc.channelmediaerror.html) | /                                               | 跨频道媒体流转发出现异常，可以参考错误码进行问题排查。出现此状态后，如果你还希望继续进行跨频道媒体流转发，必须重新调用 `startChannelMediaRelay` 方法。 |
-| 0                                               | 0                                                                       | /                                               | 已停止媒体流转发。                                                                                                                                     |
+| 0                                               | 0                                                            | /                                               | 已停止媒体流转发。                                           |
 
 **Note**：
 
@@ -49,23 +49,23 @@ Agora Web SDK 在 v3.0.0 中新增如下跨频道媒体流转发接口，支持�
   var channelMediaConfig = new AgoraRTC.ChannelMediaRelayConfiguration();
   // 设置源频道信息
   channelMediaConfig.setSrcChannelInfo({
-    channelName: "srcChannel",
-    uid: 0,
-    token: "yourSrcToken",
-  });
+   channelName: "srcChannel",
+   uid: 0,
+   token: "yourSrcToken",
+  })
   // 设置目标频道信息，可多次调用，最多设置 4 个目标频道
   channelMediaConfig.setDestChannelInfo("destChannel1", {
-    channelName: "destChannel1",
-    uid: 123,
-    token: "yourDestToken",
-  });
+   channelName: "destChannel1",
+   uid: 123,
+   token: "yourDestToken",
+  })
   ```
 
 - 开始跨频道媒体流转发
 
   ```javascript
-  client.startChannelMediaRelay(channelMediaConfig, function (e) {
-    if (e) {
+  client.startChannelMediaRelay(channelMediaConfig, function(e) {
+    if(e) {
       utils.notification(`startChannelMediaRelay failed: ${JSON.stringify(e)}`);
     } else {
       utils.notification(`startChannelMediaRelay success`);
@@ -77,10 +77,10 @@ Agora Web SDK 在 v3.0.0 中新增如下跨频道媒体流转发接口，支持�
 
   ```javascript
   // 删除一个目标频道
-  channelMediaConfig.removeDestChannelInfo("destChannel1");
+  channelMediaConfig.removeDestChannelInfo("destChannel1")
   // 更新跨频道媒体流转发设置
-  client.updateChannelMediaRelay(channelMediaConfig, function (e) {
-    if (e) {
+  client.updateChannelMediaRelay(channelMediaConfig, function(e) {
+    if(e) {
       utils.notification(`updateChannelMediaRelay failed: ${JSON.stringify(e)}`);
     } else {
       utils.notification(`updateChannelMediaRelay success`);
@@ -110,14 +110,15 @@ Agora Web SDK 在 v3.0.0 中新增如下跨频道媒体流转发接口，支持�
 
 ## 开发注意事项
 
+
 - 该功能最多支持将媒体流转发至 4 个目标频道。转发过程中，如果想添加或删除目标频道，可以调用 `updateChannelMediaRelay` 方法。
 - 该功能不支持 String 型用户 ID。
 
 <% if (platform == "Web") { %>
 
-- 在设置源频道信息（`setSrcChannelInfo`）时，请确保 `uid` 设置与当前主播的 UID 不同。我们建议将这里的 `uid` 设置为 0，由服务器随机分配。<% } %>
+- 在设置源频道信息（`setSrcChannelInfo`）时，请确保 `uid` 设置与当前主播的 UID 不同。我们建议将这里的 `uid` 设置为  0，由服务器随机分配。<% } %>
 
-<% if (platform == "Android" || platform == "iOS" || platform == "macOS" || platform == "Windows") { %>
+<% if (platform == "Android" || platform == "iOS" || platform == "macOS" || platform == "Windows")  { %>
 
 - 在设置源频道信息时，请确保 `uid` 必须为 0，且用于生成 token 的 `uid` 也必须为 0。<% } %>
 

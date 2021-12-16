@@ -13,7 +13,7 @@
 以 PluginGallery 的 countdown 倒计时插件为例，你需要引入相关 Agora Edu Context。
 
 ```javascript
-import type {IAgoraExtApp, AgoraExtAppContext, AgoraExtAppHandle} from "agora-edu-core";
+import type {IAgoraExtApp, AgoraExtAppContext, AgoraExtAppHandle} from 'agora-edu-core'
 ```
 
 你需要创建一个实现 IAgoraExtApp 的类，参考以下代码实现一个插件。

@@ -3,7 +3,6 @@ title: 发送和接收图片或文件消息
 platform: Web
 updatedAt: 2021-03-03 06:32:40
 ---
-
 ## 功能描述
 
 你可以通过 `createMediaMessageByUploading` 方法将不超过 30 MB 的文件或图片上传到 Agora 服务器。每个上传成功的文件或图片保存七天，SDK 会返回一个 media ID 作为此文件或图片的唯一标识。你可以使用 `RtmFileMessage` 接口和 `RtmImageMessage` 接口用于保存和传递 SDK 返回的 media ID。`RtmFileMessage` 接口和 `RtmImageMessage` 接口都属于 `RtmMessage` 接口的类型别名，因此你可以通过这两个接口发送和接收文件或图片消息。你可以使用 `downloadMedia` 方法下载接收到的文件或图片。
@@ -20,16 +19,16 @@ updatedAt: 2021-03-03 06:32:40
 
    将本地图片转换为 Blob 对象：
 
-   ```JavaScript
-   //将本地图片转换为blob 对象
+    ```JavaScript
+	//将本地图片转换为blob 对象
 
-   // html 文件中加入上传 input 的标签
-   <input type="file" class="file-input" />
+    // html 文件中加入上传 input 的标签
+    <input type="file" class="file-input" />
 
-   // JavaScript 中获取该标签中选择的文件 blob 对象
-   const fileBlob = document.querySelector('.file-input').files[0]
-   const fileName = fileBlob.name
-   ```
+    // JavaScript 中获取该标签中选择的文件 blob 对象
+    const fileBlob = document.querySelector('.file-input').files[0]
+    const fileName = fileBlob.name
+	```
 
    将网络图片转换为 Blob 对象：
 
@@ -264,6 +263,7 @@ updatedAt: 2021-03-03 06:32:40
     })
    ```
 
+
    下载 blob 对象并将其转换为文件：
 
    ```JavaScript
@@ -291,41 +291,42 @@ updatedAt: 2021-03-03 06:32:40
 
 取消上传任务：
 
-```JavaScript
- //取消上传任务
+   ```JavaScript
+    //取消上传任务
 
- // 使用 AbortController 接口。IE 浏览器需要 polyfill 才能使用 AbortController 接口。
- const controller = new AbortController()
+    // 使用 AbortController 接口。IE 浏览器需要 polyfill 才能使用 AbortController 接口。
+    const controller = new AbortController()
 
- // 上传超时触发取消操作
- setTimeout(() => controller.abort(), 1000)
+    // 上传超时触发取消操作
+    setTimeout(() => controller.abort(), 1000)
 
- await client.createMediaMessageByUploading(blob, {
- cancelSignal: controller.signal,
- onOperationProgress: ({currentSize, totalSize}) => {
-     console.log(currentSize, totalSize)
- },
- })
-```
+    await client.createMediaMessageByUploading(blob, {
+    cancelSignal: controller.signal,
+    onOperationProgress: ({currentSize, totalSize}) => {
+        console.log(currentSize, totalSize)
+    },
+    })
+   ```
 
 取消下载任务：
 
-```JavaScript
- //取消下载任务
+   ```JavaScript
+    //取消下载任务
 
- // 使用 AbortController 接口。IE 浏览器需要 polyfill 才能使用 AbortController 接口。
- const controller = new AbortController()
+    // 使用 AbortController 接口。IE 浏览器需要 polyfill 才能使用 AbortController 接口。
+    const controller = new AbortController()
 
- // 下载超时触发取消操作
- setTimeout(() => controller.abort(), 1000)
+    // 下载超时触发取消操作
+    setTimeout(() => controller.abort(), 1000)
 
- await client.downloadMedia(message.mediaId, {
- cancelSignal: controller.signal,
- onOperationProgress: ({currentSize, totalSize}) => {
-     console.log(currentSize, totalSize)
- },
- })
-```
+    await client.downloadMedia(message.mediaId, {
+    cancelSignal: controller.signal,
+    onOperationProgress: ({currentSize, totalSize}) => {
+        console.log(currentSize, totalSize)
+    },
+    })
+   ```
+
 
 ## 注意事项
 

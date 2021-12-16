@@ -14,11 +14,11 @@ func updateFlexUserProperties(_ userUuid: String,
 
 属性成功更新后，会触发 `onFlexUserPropertiesChanged` 回调。
 
-| 参数         | 描述                                                                |
-| :----------- | :------------------------------------------------------------------ |
-| `userUuid`   | 用户 ID。                                                           |
-| `properties` | 用户属性。可设为 `{"key.subkey":"1"}` 或 `{"key":{"subkey":"1"}}`。 |
-| `cause`      | 更新原因。                                                          |
+| 参数         | 描述                                                         |
+| :----------- | :----------------------------------------------------------- |
+| `userUuid`   | 用户 ID。                                                    |
+| `properties` | 用户属性。可设为 `{"key.subkey":"1"}`  或 `{"key":{"subkey":"1"}}`。 |
+| `cause`      | 更新原因。                                                   |
 
 ### getLocalUserInfo
 
@@ -54,8 +54,8 @@ func registerEventHandler(_ handler: AgoraEduUserHandler)
 
 提示用户列表已更新。只显示在线用户的信息。
 
-| 参数   | 描述                                                              |
-| :----- | :---------------------------------------------------------------- |
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
 | `list` | 在线用户列表，由 `AgoraEduContextUserDetailInfo` 对象组成的数组。 |
 
 ### onUpdateCoHostList
@@ -66,8 +66,8 @@ func registerEventHandler(_ handler: AgoraEduUserHandler)
 
 提示上台用户列表已更新。只显示状态为“在台上”的用户信息，包含不在线的用户。
 
-| 参数   | 描述                                                              |
-| :----- | :---------------------------------------------------------------- |
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
 | `list` | 上台用户列表，由 `AgoraEduContextUserDetailInfo` 对象组成的数组。 |
 
 ### onShowUserReward
@@ -115,10 +115,10 @@ func registerEventHandler(_ handler: AgoraEduUserHandler)
 
 自定义用户属性更新回调。
 
-| 参数                | 描述                                                                        |
-| :------------------ | :-------------------------------------------------------------------------- |
-| `changedProperties` | 已更新的用户属性。                                                          |
-| `properties`        | 全部用户属性。                                                              |
-| `cause`             | 更新原因。                                                                  |
-| `fromUser`          | 属性被更新的用户的相关信息，详见 `AgoraEduContextUserDetailInfo`。          |
+| 参数                | 描述                                                         |
+| :------------------ | :----------------------------------------------------------- |
+| `changedProperties` | 已更新的用户属性。                                           |
+| `properties`        | 全部用户属性。                                               |
+| `cause`             | 更新原因。                                                   |
+| `fromUser`          | 属性被更新的用户的相关信息，详见 `AgoraEduContextUserDetailInfo`。 |
 | `operator`          | 操作者，详见 `AgoraEduContextUserInfo`。`operator` 为空表示是由服务端更新。 |

@@ -1,24 +1,9 @@
 ---
 title: 如何监听频道内用户的麦克风和摄像头状态？
-platform:
-  [
-    "Android",
-    "iOS",
-    "macOS",
-    "Web",
-    "Windows",
-    "Linux",
-    "Unity",
-    "微信小程序",
-    "Cocos Creator",
-    "Electron",
-    "React Native",
-    "Flutter",
-  ]
+platform: ["Android","iOS","macOS","Web","Windows","Linux","Unity","微信小程序","Cocos Creator","Electron","React Native","Flutter"]
 updatedAt: 2020-05-11 14:28:42
-Products: ["Voice", "Video", "Interactive Broadcast", "Real-time-Messaging"]
+Products: ["Voice","Video","Interactive Broadcast","Real-time-Messaging"]
 ---
-
 ## 简介
 
 使用 Agora RTC SDK 实现音视频通话或直播时，若需监听频道内用户的麦克风和摄像头状态，你还需要使用 Agora RTM SDK。
@@ -26,7 +11,6 @@ Products: ["Voice", "Video", "Interactive Broadcast", "Real-time-Messaging"]
 ## 实现方法
 
 你可以使用 Agora RTM SDK 的如下功能进行监听：
-
 - 用户属性：监听频道内指定用户的麦克风和摄像头状态
 - 频道属性：监听频道内所有用户的麦克风和摄像头状态
 

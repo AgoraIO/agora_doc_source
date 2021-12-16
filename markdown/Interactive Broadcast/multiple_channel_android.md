@@ -3,7 +3,6 @@ title: 加入多频道
 platform: Android
 updatedAt: 2020-11-16 07:12:42
 ---
-
 ## 功能描述
 
 为方便用户同时加入多个频道，接收多个频道的音视频流，Agora Native SDK 自 v3.0 起新增支持多频道管理，且频道数量无限制。
@@ -11,7 +10,6 @@ updatedAt: 2020-11-16 07:12:42
 该功能可应用于类似超级小班课的场景：将一个互动大班里的学生分到不同的小班，学生可以在小班内进行实时音视频互动。根据场景需要，你还可以给每个小班可以配备一名助教老师。
 
 ## 实现方法
-
 Native SDK 通过一个 `RtcChannel` 类和 `IRtcChannelEventHandler` 类实现多频道控制。你可以从如下任一种方法实现该功能：
 
 ### 方法一：仅使用 RtcChannel 类实现
@@ -107,7 +105,7 @@ Native SDK 通过一个 `RtcChannel` 类和 `IRtcChannelEventHandler` 类实现�
 
 ### 设置远端视图
 
-在视频场景中，如果远端用户是通过 `RtcChannel` 加入频道的，那么在设置远端视图时，还需要在 [VideoCanvas](./API%20Reference/java/v3.0.0/classio_1_1agora_1_1rtc_1_1video_1_1_video_canvas.html) 中指定该远端用户所在频道的 channel ID，否则会无法渲染出远端视频画面。
+在视频场景中，如果远端用户是通过 `RtcChannel` 加入频道的，那么在设置远端视图时，还需要在 [VideoCanvas](./API%20Reference/java/v3.0.0/classio_1_1agora_1_1rtc_1_1video_1_1_video_canvas.html)  中指定该远端用户所在频道的 channel ID，否则会无法渲染出远端视频画面。
 
 ### 多频道发流限制
 
@@ -127,3 +125,5 @@ SDK 仅支持用户同一时间在一个频道内发布音、视频流。因此�
   - 直播场景下，以主播身份通过 `RtcEngine` 类加入频道一，然后通过 `RtcChannel` 类加入频道二后，试图调用 `RtcChannel` 类的 `publish` 方法；
   - 直播场景下，加入多个频道后，试图以观众身份调用 `RtcChannel` 类的 `publish` 方法；
   - 调用 `RtcChannel` 类的 `publish` 方法后，未调用对应 `RtcChannel` 类的 `unpublish` 方法，就试图通过 `RtcEngine` 类的 `joinChannel` 方法加入频道。
+
+

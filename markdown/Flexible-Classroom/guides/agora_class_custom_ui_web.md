@@ -6,13 +6,13 @@ Agora 在 npm 上提供完整的 [Agora Classroom SDK](https://www.npmjs.com/pac
 
 UIKit 中提供灵动课堂的 UI 组件代码，并引入开源工具 [Storybook](https://storybook.js.org/docs/react/get-started/introduction) 来开发和管理 UI 组件。UIKit 的源码位于 GitHub 上 CloudClass-Desktop 仓库（release/apaas/1.1.0 分支）中 `packages/agora-classroom-sdk/src/ui-kit` 目录下，项目结构介绍如下：
 
-| 文件夹         | 描述                                                                                                                                                                                           |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 文件夹         | 描述                                                         |
+| :------------- | :----------------------------------------------------------- |
 | `components`   | 灵动课堂使用的基础 UI 组件的源码。一个 UI 组件一般包含以下文件：<li>`.css`: 定义组件的样式。</li><li>`.stories.tsx`: 定义组件在 Storybook 中的展示。</li><li>`.tsx`: 定义组件的具体设计。</li> |
-| `capabilities` | <li>`containers`: 灵动课堂使用的高阶 UI 组件的源码。</li><li>`scenarios`: 灵动课堂使用的场景 UI 组件的源码。</li>                                                                              |
-| `scaffold`     | 场景 UI 组件，可作为脚手架查看基础 UI 组件在各教学场景中的组装效果。                                                                                                                           |
-| `styles`       | 定义全局样式。                                                                                                                                                                                 |
-| `utilities`    | 工具函数，如国际化、自定义 hooks 等。                                                                                                                                                          |
+| `capabilities` | <li>`containers`: 灵动课堂使用的高阶 UI 组件的源码。</li><li>`scenarios`: 灵动课堂使用的场景 UI 组件的源码。</li> |
+| `scaffold`     | 场景 UI 组件，可作为脚手架查看基础 UI 组件在各教学场景中的组装效果。 |
+| `styles`       | 定义全局样式。                                               |
+| `utilities`    | 工具函数，如国际化、自定义 hooks 等。                        |
 
 ## 实现方法
 
@@ -73,6 +73,7 @@ UIKit 中提供灵动课堂的 UI 组件代码，并引入开源工具 [Storyboo
       ```shell
       yarn dev
       ```
+
 
 <a name="example"></a>
 
@@ -194,8 +195,8 @@ export const OneToOneScenario = observer(() => {
      display: inline-block;
      padding: 10px;
      background: #efebe9;
-     border: 5px solid #b4a078;
-     outline: #b4a078 dashed 1px;
+     border: 5px solid #B4A078;
+     outline: #B4A078 dashed 1px;
      outline-offset: -10px;
    }
    ```
@@ -203,68 +204,78 @@ export const OneToOneScenario = observer(() => {
    `index.tsx` 文件
 
    ```tsx
-   import React, {FC} from "react";
-   import classnames from "classnames";
-   import {BaseProps} from "~components/interface/base-props";
-   import "./index.css";
-
+   import React, { FC } from 'react';
+   import classnames from 'classnames';
+   import { BaseProps } from '~components/interface/base-props';
+   import './index.css';
+ 
    export interface CustomProps extends BaseProps {
-     width?: number;
-     height?: number;
-     children?: React.ReactNode;
+       width?: number;
+       height?: number;
+       children?: React.ReactNode;
    }
-
-   export const Custom: FC<CustomProps> = ({width = 90, height = 90, children, className, ...restProps}) => {
-     const cls = classnames({
-       [`custom`]: 1,
-       [`${className}`]: !!className,
-     });
-     return (
-       <div
-         className={cls}
-         style={{
-           width,
-           height,
-         }}
-         {...restProps}>
-         {children}
-       </div>
-     );
-   };
+ 
+   export const Custom: FC<CustomProps> = ({
+       width = 90,
+       height = 90,
+       children,
+       className,
+       ...restProps
+   }) => {
+       const cls = classnames({
+           [`custom`]: 1,
+           [`${className}`]: !!className,
+       });
+       return (
+           <div
+               className={cls}
+               style={{
+                   width,
+                   height,
+               }}
+               {...restProps}
+           >
+               {children}
+           </div>
+       )
+   }
    ```
 
    `index.stories.tsx` 文件
 
    ```tsx
-   import React from "react";
-   import {Meta} from "@storybook/react";
-   import {Custom} from "~components/custom";
-
+   import React from 'react'
+   import { Meta } from '@storybook/react';
+   import { Custom } from '~components/custom'
+ 
    const meta: Meta = {
-     title: "Components/Custom",
-     component: Custom,
-   };
-
+       title: 'Components/Custom',
+       component: Custom,
+   }
+ 
    type DocsProps = {
-     width: number;
-     height: number;
-   };
+       width: number;
+       height: number;
+   }
 
    export const Docs = ({width, height}: DocsProps) => (
-     <>
-       <div className="mt-4">
-         <Custom width={width} height={height}>
-           <h3>我是自定义组件</h3>
-         </Custom>
-       </div>
-     </>
-   );
-
+       <>
+           <div className="mt-4">
+               <Custom
+                   width={width}
+                   height={height}
+               >
+                   <h3>我是自定义组件</h3>
+               </Custom>
+           </div>
+       </>
+   )
+ 
    Docs.args = {
-     width: 250,
-     height: 200,
-   };
-
+       width: 250,
+       height: 200,
+   }
+ 
    export default meta;
    ```
 
@@ -275,7 +286,7 @@ export const OneToOneScenario = observer(() => {
 2. 在 `packages/agora-classroom-sdk/src/ui-kit/components/index.ts` 文件中添加以下代码，导出 Custom 组件。
 
    ```ts
-   export * from "./custom";
+   export * from './custom'
    ```
 
 3. 参考以下步骤，在 1 对 1 互动场景的白板区域中使用 Custom 组件：
@@ -283,7 +294,7 @@ export const OneToOneScenario = observer(() => {
    1. 在 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx` 文件中引入 Custom 组件：
 
       ```ts
-      import {Custom} from "~ui-kit";
+      import { Custom } from '~ui-kit'
       ```
 
    2. 在 `WhiteboardContainer` 中使用 Custom 组件：
@@ -292,23 +303,21 @@ export const OneToOneScenario = observer(() => {
       export const WhiteboardContainer = observer(() => {
         return (
           <div className="whiteboard">
-            ......
-            {showZoomControl ? (
-              <ZoomController
-                className="zoom-position"
-                zoomValue={zoomValue}
-                currentPage={currentPage}
-                totalPage={totalPage}
-                maximum={!isFullScreen}
-                clickHandler={handleZoomControllerChange}
-              />
-            ) : null}
-            <Custom className="custom-position" width={200} height={200}>
+            ...... 
+            {showZoomControl ? <ZoomController
+            className='zoom-position'
+            zoomValue={zoomValue}
+            currentPage={currentPage}
+            totalPage={totalPage}
+            maximum={!isFullScreen}
+            clickHandler={handleZoomControllerChange}
+            /> : null}
+            <Custom className='custom-position' width={200} height={200}>
               <div>使用Custom组件</div>
             </Custom>
-          </div>
-        );
-      });
+            </div>
+        )
+      })
       ```
 
    3. 在 `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/1v1/style.css` 文件中定义 `custom-position` 的样式：
@@ -334,38 +343,46 @@ export const OneToOneScenario = observer(() => {
 1. 修改 Custom 组件的 `index.tsx` 文件，使 Custom 组件支持显示时间的属性。
 
    ```tsx
-   import React, {FC} from "react";
-   import classnames from "classnames";
-   import {BaseProps} from "~components/interface/base-props";
-   import "./index.css";
-
+   import React, { FC } from 'react';
+   import classnames from 'classnames';
+   import { BaseProps } from '~components/interface/base-props';
+   import './index.css';
+   
    /** 新增 time 属性。*/
    export interface CustomProps extends BaseProps {
-     width?: number;
-     height?: number;
-     children?: React.ReactNode;
-     time: number;
+       width?: number;
+       height?: number;
+       children?: React.ReactNode;
+       time: number;
    }
-
+   
    /** 添加 time 的渲染。*/
-   export const Custom: FC<CustomProps> = ({width = 90, height = 90, children, className, time, ...restProps}) => {
-     const cls = classnames({
-       [`custom`]: 1,
-       [`${className}`]: !!className,
-     });
-     return (
-       <div
-         className={cls}
-         style={{
-           width,
-           height,
-         }}
-         {...restProps}>
-         {time}
-         {children}
-       </div>
-     );
-   };
+   export const Custom: FC<CustomProps> = ({
+       width = 90,
+       height = 90,
+       children,
+       className,
+       time,
+       ...restProps
+   }) => {
+       const cls = classnames({
+           [`custom`]: 1,
+           [`${className}`]: !!className,
+       })
+       return (
+           <div
+               className={cls}
+               style={{
+                   width,
+                   height,
+               }}
+               {...restProps}
+           >
+               {time}
+               {children}
+           </div>
+       )
+   }
    ```
 
 2. 在 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx` 文件中
@@ -401,10 +418,10 @@ export const OneToOneScenario = observer(() => {
    ```
 
    修改完后运行灵动课堂，可以看到时间属性被显示在了 Custom 组件上。
+	
+	 ![](https://web-cdn.agora.io/docs-files/1620289134349)
 
-   ![](https://web-cdn.agora.io/docs-files/1620289134349)
-
-3. 接下来，我们要引入真实的课堂时间数据。你可以在 UI 高阶组件中通过 hooks 方法通过 Agora Edu Context 获取你需要的 Context。在这个示例中，我们通过 Agora Edu Context 中的 RoomContext 的 [liveClassStatus](https://docs.agora.io/cn/agora-class/edu_context_api_ref_wev_room?platform=Web#liveclassstatus) 来获取课堂时间。你可以修改 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx`，获取课堂时间并作为属性设入 Custom 组件。
+3. 接下来，我们要引入真实的课堂时间数据。你可以在 UI 高阶组件中通过 hooks 方法通过 Agora Edu Context 获取你需要的 Context。在这个示例中，我们通过 Agora Edu Context 中的 RoomContext 的 [liveClassStatus](https://docs.agora.io/cn/agora-class/edu_context_api_ref_wev_room?platform=Web#liveclassstatus) 来获取课堂时间。你可以修改 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.tsx`，获取课堂时间并作为属性设入Custom 组件。
 
    <div class="alter note">Agora 不建议直接在基础 UI 组件中引用 Context，因为基础 UI 组件可能在不同场景下被复用。</div>
 
@@ -415,7 +432,7 @@ export const OneToOneScenario = observer(() => {
      const {
        liveClassStatus
      } = useRoomContext()
-
+    
      return (
        <div className="whiteboard">
          {
@@ -487,14 +504,14 @@ export const OneToOneScenario = observer(() => {
 
    ```css
    .fixed-container {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex: 1;
-     height: 100%;
-     position: fixed;
-     width: 100%;
-     z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
    }
    ```
 
@@ -502,15 +519,17 @@ export const OneToOneScenario = observer(() => {
 
    ```ts
    export const DialogContainer: React.FC<any> = observer(() => {
-     const {dialogQueue} = useDialogContext();
+     const { dialogQueue } = useDialogContext()
      return (
        <div>
-         {dialogQueue.map(({id, component: Component, props}: DialogType) => (
-           <div key={id} className="fixed-container">
-             <Component {...props} id={id} />
-           </div>
-         ))}
+        {
+           dialogQueue.map(({ id, component: Component, props }: DialogType) => (
+             <div key={id} className="fixed-container">
+               <Component {...props} id={id} />
+             </div>
+          ))
+        }
        </div>
-     );
-   });
+    )
+   })
    ```

@@ -3,7 +3,6 @@ title: 跑通示例项目
 platform: macOS
 updatedAt: 2021-01-25 09:30:42
 ---
-
 ## 概览
 
 Agora 在 GitHub 上提供一个开源的视频通话示例项目 [Agora-macOS-Tutorial-Swift-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-macOS-Tutorial-Swift-1to1)。本文介绍如何快速跑通该示例项目，体验 Agora 视频通话效果。你也可以直接观看下面的视频教程。
@@ -30,7 +29,7 @@ Agora 在 GitHub 上提供一个开源的视频通话示例项目 [Agora-macOS-T
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
-![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
+ ![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
 
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID + Token。**
 
@@ -43,7 +42,6 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 在 [Agora 控制台](https://console.agora.io/)的**项目管理**页面，找到你的项目，点击 App ID 右侧的眼睛图标就可以直接复制项目的 App ID。
 
 ![获取appid](https://web-cdn.agora.io/docs-files/1603974707121)
-
 <div class="alert info">你需要在运行示例项目时填写 App ID。</div>
 
 ### <a name="temptoken"></a>3. 生成临时 Token
@@ -54,11 +52,11 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 1. 在控制台的[项目管理](https://console.agora.io/projects)页面，点击已创建项目的 ![](https://web-cdn.agora.io/docs-files/1574923151660) 图标，打开 **Token** 页面。
 
-   ![](https://web-cdn.agora.io/docs-files/1574922827899)
+	![](https://web-cdn.agora.io/docs-files/1574922827899)
 
-2. 输入一个频道名，例如 test，然后点击**生成临时 Token**。临时 Token 的有效期为 24 小时。加入频道时，请确保填入的频道名与生成临时 Token 时填入的频道名一致。
+2. 输入一个频道名，例如 test，然后点击**生成临时Token**。临时 Token 的有效期为 24 小时。加入频道时，请确保填入的频道名与生成临时 Token 时填入的频道名一致。
 
-   ![](https://web-cdn.agora.io/docs-files/1574928082984)
+	![](https://web-cdn.agora.io/docs-files/1574928082984)
 
 <div class="alert note">临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见<a href="token_server">生成 Token</a >。</div>
 
@@ -69,8 +67,8 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 1. 克隆 [Basic-Video-Call](https://github.com/AgoraIO/Basic-Video-Call) 仓库至本地，进入 `Basic-Video-Call/One-to-One-Video/Agora-macOS-Tutorial-Swift-1to1/Agora-Mac-Tutorial-Swift` 文件夹。
 2. 打开 `AppID.swift` 文件，填入 App ID 和临时 Token。
 
-```swift
-// 将 <#Your App ID#> 替换为你的 Agora 项目的 App ID，并加引号，如 "xxxxxx"
+ ```swift
+ // 将 <#Your App ID#> 替换为你的 Agora 项目的 App ID，并加引号，如 "xxxxxx"
 let AppID: String = <#Your App ID#>
 // 将 <#Temp Token#> 替换为你在控制台生成的临时 Token，并加引号，如 "xxxxxx"
 let Token: String? = <#Temp Token#>
@@ -78,14 +76,14 @@ let Token: String? = <#Temp Token#>
 
 3. 打开 `VideoChatViewController.swift` 文件，将 `demoChannel1`替换为你生成临时 Token 时使用的频道名。
 
-```swift
+ ```swift
 func joinChannel() {
-       AgoraKit.joinChannel(byToken: Token, channelId: "demoChannel1", info:nil, uid:0) { (sid, uid, elapsed) -> Void in
-       }
-   }
+        AgoraKit.joinChannel(byToken: Token, channelId: "demoChannel1", info:nil, uid:0) { (sid, uid, elapsed) -> Void in
+        }
+    }
 ```
 
-### 5. 集成 Agora SDK
+###  5. 集成 Agora SDK
 
 按照以下步骤将 Agora macOS SDK 集成到示例项目中。
 

@@ -3,7 +3,6 @@ title: 下麦 (becoming an audience)
 platform: All Platforms
 updatedAt: 2020-07-03 20:24:24
 ---
-
 下麦指直播场景中的主播切换用户角色成为观众这一行为。主播成功下麦后，停止发布音视频流，频道内其他用户不再听到并看到该主播。
 
 <div class="alert info">相关链接：

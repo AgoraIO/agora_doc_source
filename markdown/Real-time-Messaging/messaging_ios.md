@@ -3,7 +3,6 @@ title: 发送和接收点对点消息及频道消息
 platform: iOS
 updatedAt: 2021-03-02 02:30:44
 ---
-
 本章介绍在正式使用 Agora RTM SDK for iOS 进行实时消息通讯前，需要准备的开发环境要求及 SDK 集成方法等内容。
 
 ## Demo 体验
@@ -19,6 +18,7 @@ updatedAt: 2021-03-02 02:30:44
 - iOS 8.0+ 真机（iPhone 或 iPad）。
 - 一个有效的 Agora 开发者账号。
 
+
 <div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a>打开相关端口并设置域名白名单。</div>
 
 ## 准备开发环境
@@ -27,34 +27,33 @@ updatedAt: 2021-03-02 02:30:44
 
 ### <a name="appid"></a> 获取 App ID
 
-参考以下步骤获取一个 App ID。若已有 App ID，可以直接查看[创建项目](#create)。
 
+参考以下步骤获取一个 App ID。若已有App ID，可以直接查看[创建项目](#create)。
 <details>
 	<summary><font color="#3ab7f8">获取 App ID</font></summary>
 
 1. 进入 [Agora Dashboard](https://dashboard.agora.io/) ，并按照屏幕提示注册账号并登录 Dashboard。详见[创建新账号](sign_in_and_sign_up)。
 2. 点击**项目列表**处的**新手指引**。
 
-   ![](https://web-cdn.agora.io/docs-files/1563521764570)
+	![](https://web-cdn.agora.io/docs-files/1563521764570)
 
 3. 在弹出的窗口中输入你的第一个项目名称，然后点击**创建项目**。你可以参考屏幕提示，了解实现一个视频通话的基本步骤。
 
-   ![](https://web-cdn.agora.io/docs-files/1563521821078)
+	![](https://web-cdn.agora.io/docs-files/1563521821078)
 
 4. 项目创建成功后，你会在**项目列表**下看到刚刚创建的项目。点击项目名后的**编辑**按钮，进入项目页。你也可以直接点击左边栏的**项目管理**图标，进入项目页面。
 
-   ![](https://web-cdn.agora.io/docs-files/1563522909895)
+	![](https://web-cdn.agora.io/docs-files/1563522909895)
 
 5. 在**项目管理**页，你可以查看你的 **App ID**。
 
-   ![](https://web-cdn.agora.io/docs-files/1563522556558)
+	![](https://web-cdn.agora.io/docs-files/1563522556558)
 
 </details>
 
 ### <a name="create"></a>创建项目
 
 参考以下步骤创建一个 iOS 项目。若已有 iOS 项目，可以直接查看[集成 SDK](#IntegrateSDK)。
-
 <details>
 	<summary><font color="#3ab7f8">创建 iOS 项目</font></summary>
 
@@ -70,7 +69,6 @@ updatedAt: 2021-03-02 02:30:44
 将你的 iOS 设备连接至电脑。选中当前项目 **Target** ，在 **General** 标签页上找到 **Signing**，勾选 **Automatically manage signing**，在弹窗中点击 **Enable Automatic**。
 
 ![](https://web-cdn.agora.io/docs-files/1568803609379)
-
 </details>
 
 ### <a name="IntegrateSDK"></a> 集成 SDK
@@ -79,18 +77,19 @@ updatedAt: 2021-03-02 02:30:44
 
 1. 请确保已在本机安装 Cocoapods。具体方法详见 [Getting Started with Cocoapods](https://guides.cocoapods.org/using/getting-started.html#getting-started)。
 2. 在你的电脑 Terminal 终端 cd 进入你的项目所在目录，利用 vim 创建 Podfile：
-   `vim Podfile`
+`vim Podfile`
 3. 在 Podfile 文件中输入以下内容：
-
 ```
 target '<YOUR APP>' do
     pod 'AgoraRtm_iOS'
 end
 ```
-
-> 请以你的项目名称替换 \<YOUR APP\> 。 4. 保存 Podfile 并退出：
-> `:wq` 6. 导入 Agora RTM SDK：
-> `pod install` 7. 在 Xcode 中打开生成的 **.xcworkspace** 文件。
+> 请以你的项目名称替换 \<YOUR APP\> 。
+4. 保存 Podfile 并退出：
+`:wq`
+6. 导入 Agora RTM SDK：
+`pod install`
+7. 在 Xcode 中打开生成的 **.xcworkspace** 文件。
 
 #### 方法 2：手动添加 SDK 到项目中
 
@@ -160,12 +159,13 @@ import AgoraRtmKit
 @implementation ViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     // 创建一个 AgoraRtmKit 实例
     _kit = [[AgoraRtmKit alloc] initWithAppId:YOUR_APP_ID delegate:self];
 
 }
 ```
+
 
 > `AgoraRtmKit` 支持多实例，每个实例独立工作互不干扰，多个实例创建时可以用相同的 `context`，但是事件回调 `AgoraRtmDelegate` 必须是不同的实例。
 
@@ -173,7 +173,7 @@ import AgoraRtmKit
 
 App 必须在登录 RTM 服务器之后，才可以使用 RTM 的点对点消息和群聊功能，在此之前，请确保你已完成初始化。
 
-调用 `loginByToken` 方法[登录 RTM 服务器](#login)。在该方法中:
+调用 `loginByToken` 方法[登录RTM服务器](#login)。在该方法中:
 
 - 传入能标识用户角色和权限的 `token`。如果安全要求不高，也可以将值设为 `"nil"`。`token` 需要在应用程序的服务器端生成。详见：[校验用户权限](/cn/Real-time-Messaging/RTM_key)。
 - 传入能标识每个用户 ID。`usedId` 为字符串，必须是可见字符（可以带空格），不能为空或者多于 64 个字符，也不能是字符串 `nil`。
@@ -249,6 +249,7 @@ App 在成功[登录 RTM 服务器](#login)之后，可以开始使用 RTM 的�
     NSLog(@"Message received from %@: %@", message.text, peerId);
 }
 ```
+
 
 > 接收到的 `AgoraRtmMessage` 消息对象不能重复利用再用于发送。
 
@@ -329,6 +330,8 @@ App 在成功[登录 RTM 服务器](#login)之后，可以开始使用 RTM 的�
 }
 ```
 
+
+
 #### 退出频道
 
 调用 `AgoraRtmChannel` 实例的 `leaveWithCompletion` 方法可以退出该频道。
@@ -352,10 +355,10 @@ App 在成功[登录 RTM 服务器](#login)之后，可以开始使用 RTM 的�
 - 当离开了频道且不再加入该频道时，可以调用 `AgoraRtmChannel` 实例的 `destroyChannelWithId` 方法及时释放频道实例所占用的资源。
 - 所有回调如无特别说明，除了基本的参数合法性检查失败触发的回调，均为异步调用。
 
+
 ## 示例代码
 
 - [Agora-RTM-Tutorial-iOS-Objective-C](https://github.com/AgoraIO/RTM/tree/master/Agora-RTM-Tutorial-iOS-Objective-C)
-
   - [MainViewController.m](https://github.com/AgoraIO/RTM/blob/master/Agora-RTM-Tutorial-iOS-Objective-C/Agora-RTM-Tutorial/MainViewController.m)
   - [ChatViewController.m](https://github.com/AgoraIO/RTM/blob/master/Agora-RTM-Tutorial-iOS-Objective-C/Agora-RTM-Tutorial/ChatViewController.m)
 

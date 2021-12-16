@@ -3,7 +3,6 @@ title: 设置人声效果
 platform: Windows
 updatedAt: 2021-03-05 04:58:20
 ---
-
 ## 功能描述
 
 ## 功能描述
@@ -12,7 +11,7 @@ updatedAt: 2021-03-05 04:58:20
 
 ## 示例项目
 
-<%
+<% 
 if (os == "android") { %>
 Agora 在 GitHub 上提供实现了美声与音效功能的开源示例项目 [VoiceEffects.java](https://github.com/AgoraIO/API-Examples/tree/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/VoiceEffects.java)，你可以前往下载体验或参考源代码。
 <% }
@@ -26,8 +25,8 @@ Agora 在 GitHub 上提供以下实现了美声与音效功能的开源示例项
 
 - iOS：[VoiceChanger](https://github.com/AgoraIO/API-Examples/tree/master/iOS/APIExample/Examples/Advanced/VoiceChanger)
 - macOS：[VoiceChanger](https://github.com/AgoraIO/API-Examples/tree/master/macOS/APIExample/Examples/Advanced/VoiceChanger)
-  <% }
-  %>
+<% }
+%>
 
 ## 使用预设的人声效果
 

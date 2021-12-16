@@ -3,7 +3,6 @@ title: 加入多频道
 platform: iOS
 updatedAt: 2020-11-18 07:21:15
 ---
-
 ## 功能描述
 
 为方便用户同时加入多个频道，接收多个频道的音视频流，AAgora RTC Native SDK 3.0 及以上版本支持多频道管理，且频道数量无限制。
@@ -61,12 +60,12 @@ SDK 提供 `AgoraRtcChannel` 类和 `AgoraRtcChannelDelegate` 类实现多频道
 
 1. 初始化 AgoraRtcEngineKit。
 
-```swift
-// Swift
-let config = AgoraRtcEngineConfig()
-config.appId = KeyCenter.AppId
-agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
-```
+  ```swift
+  // Swift
+  let config = AgoraRtcEngineConfig()
+  config.appId = KeyCenter.AppId
+  agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
+  ```
 
 2. 设置频道场景为直播。
 
@@ -148,14 +147,14 @@ agoraKit = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
 
 ### 设置远端视图
 
-在视频场景中，如果远端用户是通过 `AgoraRtcChannel` 加入频道的，那么在设置远端视图时，还需要在 [`AgoraRtcVideoCanvas`](./API%20Reference/oc/v3.0.0/Classes/AgoraRtcVideoCanvas.html) 中指定该远端用户所在频道的 channel ID，否则会无法渲染出远端视频画面。
+在视频场景中，如果远端用户是通过 `AgoraRtcChannel` 加入频道的，那么在设置远端视图时，还需要在 [`AgoraRtcVideoCanvas`](./API%20Reference/oc/v3.0.0/Classes/AgoraRtcVideoCanvas.html)  中指定该远端用户所在频道的 channel ID，否则会无法渲染出远端视频画面。
 
 ```swift
 // Swift
 // 在远端用户加入频道的回调中设置用户视图
 func rtcChannel(_ rtcChannel: AgoraRtcChannel, didJoinedOfUid uid: UInt, elapsed: Int) {
   LogUtils.log(message: "remote user join: \(uid) \(elapsed)ms", level: .info)
-
+ 
   let videoCanvas = AgoraRtcVideoCanvas()
   videoCanvas.uid = uid
   // 待绑定的视图

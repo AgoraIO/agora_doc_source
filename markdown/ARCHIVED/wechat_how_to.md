@@ -3,7 +3,6 @@ title: 小程序 SDK 相关
 platform: 小程序 SDK 相关
 updatedAt: 2019-12-10 12:21:13
 ---
-
 ### 推流/拉流处理
 
 推流/拉流处理可以参考或直接使用 [GitHub 上开源代码](https://github.com/AgoraIO/Agora-Miniapp-Tutorial)。
@@ -34,21 +33,20 @@ Web 与小程序互通时，Web 端只支持 H264 模式的编码，不支持 VP
 
 调用如下 API 实现保存和打开日志：
 
-- 保存日志：
-
+* 保存日志：
 ```
 AgoraMiniappSDK.LOG.onlog = (text) => {
   Utils.log(text);
 };
 ```
 
-- 打开日志：
-  `AgoraMiniappSDK.LOG.setLogLevel(-1)`;
+* 打开日志：
+`AgoraMiniappSDK.LOG.setLogLevel(-1)`;
 
 ### 出现客户端初始化失败之后，该如何做?
 
 1. 退出后重新加入频道；
-2. 如果步骤 1 无法生效，请换台设备试试；
+2.  如果步骤 1 无法生效，请换台设备试试；
 3. 如果步骤 2 仍旧无效，请联系客户支持。
 
 ### 出现错误码

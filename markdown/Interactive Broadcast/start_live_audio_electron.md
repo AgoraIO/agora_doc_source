@@ -3,7 +3,6 @@ title: 实现音频直播
 platform: Electron
 updatedAt: 2020-11-16 03:30:17
 ---
-
 本文介绍如何使用 Agora Electron SDK 快速实现音频直播。
 
 ## 示例项目
@@ -12,8 +11,8 @@ Agora 在 GitHub 提供一个开源的 [Agora Electron Quickstart](https://githu
 
 ## 开发环境要求
 
-- Node.js 6.9.1 及以上
-- Electron 1.8.3 及以上
+* Node.js 6.9.1 及以上
+* Electron 1.8.3 及以上
 
 <div class="alert note">使用 Windows 平台进行开发时，请运行 <code>npm install -D —arch = ia32 electron</code> 安装 32 位的 Electron。</div>
 <div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a>打开相关端口。</div>
@@ -27,8 +26,7 @@ Agora 在 GitHub 提供一个开源的 [Agora Electron Quickstart](https://githu
 参考 [Writing Your First Electron App](https://electronjs.org/docs/tutorial/first-app) 创建一个 Electron 项目。若已有 Electron 项目，可以直接参考 [集成 SDK](#integrate_sdk)。
 
 <a name="integrate_sdk"></a>
-
-### 集成 SDK
+### 集成 SDK 
 
 选择如下任意一种方式将 Agora SDK 集成到你的项目中。
 
@@ -36,12 +34,12 @@ Agora 在 GitHub 提供一个开源的 [Agora Electron Quickstart](https://githu
 
 1. 在你的项目文件路径，运行如下命令行安装最新版的 Agora SDK for Electron：
 
-   `npm install agora-electron-sdk`
+	`npm install agora-electron-sdk`
 
 2. 然后通过如下代码将 SDK 引入至你的项目中
 
-   `import AgoraRtcEngine from 'agora-electron-sdk'`
-
+	`import AgoraRtcEngine from 'agora-electron-sdk'`
+	
 **方法二：官网下载 SDK 并引入**
 
 <div class="alert note">如果你选择官网下载并引入的方式，请务必使用 Eletron 3.0.6。</div>
@@ -50,7 +48,7 @@ Agora 在 GitHub 提供一个开源的 [Agora Electron Quickstart](https://githu
 2. 将下载下来的 SDK 拷贝至你的项目根目录下
 3. 通过如下代码将 SDK 引入至你的项目中
 
-   `import AgoraRtcEngine from './agora-electron-sdk/AgoraSdk.js'`
+	`import AgoraRtcEngine from './agora-electron-sdk/AgoraSdk.js'`
 
 ### 修改 .npmrc 文件切换预编译版本
 

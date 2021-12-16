@@ -3,7 +3,6 @@ title: 媒体播放器组件
 platform: macOS
 updatedAt: 2021-03-18 04:03:55
 ---
-
 ## 功能描述
 
 媒体播放器组件（MediaPlayer Kit）是一款功能强大的播放器，支持播放本地或在线的媒体资源。通过该播放器，你可以本地播放媒体资源，或将媒体资源同步分享给 Agora 频道内的远端用户观看/收听。
@@ -36,11 +35,11 @@ updatedAt: 2021-03-18 04:03:55
 2. 选择项目类型为 **App**，并点击 **Next**。
 3. 输入项目信息，如项目名称、开发团队信息、组织名称和语言，并点击 **Next**。
 
-   **Note**：如果你没有添加过开发团队信息，会看到 **Add account…** 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的账户作为开发团队。
-
+	**Note**：如果你没有添加过开发团队信息，会看到 **Add account…** 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的账户作为开发团队。
 4. 选择项目存储路径，并点击 **Create**。
 5. 进入 **TARGETS > Project Name > Signing & Capabilities** 菜单，选择 **Automatically manage signing**，并在弹出菜单中点击 **Enable Automatic**。
 </details>
+
 
 ### 集成 MediaPlayer Kit
 
@@ -72,10 +71,10 @@ updatedAt: 2021-03-18 04:03:55
 
 5. 根据场景需要，在 **info.plist** 文件中，点击 **+** 图标开始添加如下内容，获取相应的设备权限：
 
-   | Key                                    | Type   | Value                                               |
-   | -------------------------------------- | ------ | --------------------------------------------------- |
-   | Privacy - Microphone Usage Description | String | 使用麦克风的目的，例如：for a video or audio call。 |
-   | Privacy - Camera Usage Description     | String | 使用摄像头的目的，例如：for a video call。          |
+	| Key                                    | Type   | Value                                      |
+	| -------------------------------------- | ------ | ------------------------------------------ |
+	| Privacy - Microphone Usage Description | String | 使用麦克风的目的，例如：for a video or audio call。 |
+	| Privacy - Camera Usage Description     | String | 使用摄像头的目的，例如：for a video call。 |
 
 ### 集成 Native SDK
 
@@ -91,7 +90,6 @@ updatedAt: 2021-03-18 04:03:55
 ## 实现方法
 
 <a name="local"></a>
-
 ### 本地播放媒体资源
 
 集成 MediaPlayer Kit 后，参考如下步骤实现本地播放功能。
@@ -137,7 +135,8 @@ updatedAt: 2021-03-18 04:03:55
 **结束播放**
 
 1. 调用 `AgoraMediaPlayer` 接口的 `stop` 方法停止播放。
-2. 将 `setView` 方法中 `view` 赋值为 NULL，释放 view。 3. 使用 ARC 内存管理机制释放 `AgoraMediaPlayer` 实例。
+2. 将 `setView` 方法中 `view` 赋值为 NULL，释放 view。
+	3. 使用 ARC 内存管理机制释放 `AgoraMediaPlayer` 实例。
 
 **示例代码**
 
@@ -149,7 +148,7 @@ _mediaPlayerKit = [[AgoraMediaPlayer alloc] initWithDelegate:self];
 [_mediaPlayerKit stop];
 [_mediaPlayerKit seekToPosition:value];
 [_mediaPlayerKitadjustVolume:volume];
-
+  
  //重写代理方法 获得播放器的事件回调
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
        didChangedToState:(AgoraMediaPlayerState)state
@@ -157,36 +156,36 @@ _mediaPlayerKit = [[AgoraMediaPlayer alloc] initWithDelegate:self];
 {
      //todo
 }
-
-
+ 
+ 
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
     didChangedToPosition:(NSInteger)position;
 {
 }
-
-
+ 
+ 
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
           didOccurEvent:(AgoraMediaPlayerEvent)event;
 {
      //todo
 }
-
-
+ 
+ 
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
           didReceiveData:(NSString *)data
                   length:(NSInteger)length;
 {
      //todo
 }
-
-
+ 
+ 
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
     didReceiveVideoFrame:(CVPixelBufferRef
 {
     //todo
 }
-
-
+ 
+ 
 - (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
     didReceiveAudioFrame:(CMSampleBufferRef)
 {
@@ -239,6 +238,7 @@ _mediaPlayerKit = [[AgoraMediaPlayer alloc] initWithDelegate:self];
 	<li>之前停止分享的媒体流会自动发送给频道内远端用户。</li>
 	<li>播放媒体资源时，音画不同步。</li></div>
 
+
 **示例代码**
 
 ```objective-c
@@ -267,11 +267,9 @@ if(!_defaultCamera)
 ## 注意事项
 
 常见的语音路由有蓝牙设备、普通耳机和设备的扬声器。为避免播放过程中，本地用户切换语音路由后，新的语音路由无声的问题，Agora 建议你进行如下操作：
-
-- 在本地播放媒体资源的场景下， Agora 建议本地用户在 `open` 前切换语音路由。
+* 在本地播放媒体资源的场景下， Agora 建议本地用户在 `open` 前切换语音路由。
   > 如果本地用户在 `open` 后切换语音路由，新的语音路由将无声，你需要重新调用 `open` 和 `play` 方法重新播放。
-- 在分享媒体资源到远端的场景下，Agora 建议你使用 3.0.0 版本的 Native SDK，并在 `mute` 后再进行语音路由切换。
+* 在分享媒体资源到远端的场景下，Agora 建议你使用 3.0.0 版本的 Native SDK，并在 `mute` 后再进行语音路由切换。
 
 ## API 文档
-
 详见 [API 文档](./API%20Reference/mediaplayer_oc/docs/headers/MediaPlayer-Kit-Objective-C-API-Overview.html)

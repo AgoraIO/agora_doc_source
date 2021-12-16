@@ -3,19 +3,20 @@ title: 学生端实现
 platform: iOS
 updatedAt: 2020-11-02 19:50:09
 ---
-
 本文展示如何在 Web 平台实现学生端相关功能。
 
 ## 集成指引
 
 根据下表链接，下载对应的 SDK，参考集成文档的步骤将 SDK 集成到你的项目中。
 
-| 产品                                                                                                                     | SDK 下载                                                                                            | 集成文档                                                                                            |
-| ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| [Agora RTC (Real-time Communication) SDK](https://docs.agora.io/cn/Video/product_video?platform=Web)                     | [ Web 视频通话 SDK](https://docs.agora.io/cn/Video/downloads?platform=Web)                          | [实现视频通话](https://docs.agora.io/cn/Video/start_call_web?platform=Web)                          |
+ 
+| 产品 | SDK 下载 | 集成文档 |
+| ---------------- | ---------------- | ---------------- | 
+| [Agora RTC (Real-time Communication) SDK](https://docs.agora.io/cn/Video/product_video?platform=Web)      | [ Web 视频通话 SDK](https://docs.agora.io/cn/Video/downloads?platform=Web)      | [实现视频通话](https://docs.agora.io/cn/Video/start_call_web?platform=Web) |
 | [Agora RTM (Real-time Messaging) SDK](https://docs.agora.io/cn/Real-time-Messaging/product_rtm?platform=All%20Platforms) | [Web 云信令（原实时消息） SDK](https://docs.agora.io/cn/Real-time-Messaging/downloads?platform=Web) | [收发点对点消息和频道消息](https://docs.agora.io/cn/Real-time-Messaging/messaging_web?platform=Web) |
-| Agora 房间管理服务                                                                                                       | N/A                                                                                                 | [房间管理服务 API 文档](https://agoradoc.github.io/cn/edu-cloud-service/restfulapi)                 |
-| [白板](https://developer.herewhite.com/javascript-zh/home)                                                               | [SDK 集成](https://developer.herewhite.com/javascript-zh/home/install)                              | N/A                                                                                                 |
+| Agora 房间管理服务 | N/A | [房间管理服务 API 文档](https://agoradoc.github.io/cn/edu-cloud-service/restfulapi) |
+| [白板](https://developer.herewhite.com/javascript-zh/home) | [SDK 集成](https://developer.herewhite.com/javascript-zh/home/install) | N/A |
+
 
 ## 核心 API 时序图
 
@@ -28,6 +29,7 @@ updatedAt: 2020-11-02 19:50:09
 ## 附加功能
 
 除基础的实时音视频和实时消息功能外，你还可以参考下文，在项目中实现更多教育场景的附加功能。
+
 
 <details>
 <summary>网络质量监测</summary>

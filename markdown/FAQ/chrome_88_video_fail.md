@@ -2,9 +2,8 @@
 title: 在 Chrome 88 浏览器上无法正常发送视频流时如何处理？
 platform: ["Web"]
 updatedAt: 2021-02-02 11:16:07
-Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming", "Audio Broadcast"]
+Products: ["Voice","Video","Interactive Broadcast","live-streaming","Audio Broadcast"]
 ---
-
 ## 问题描述
 
 在 macOS 的 Chrome 88 浏览器上使用 Agora Web SDK 时无法正常发送视频流。

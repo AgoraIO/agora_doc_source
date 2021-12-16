@@ -3,7 +3,6 @@ title: 自定义视频采集和渲染
 platform: iOS
 updatedAt: 2019-12-10 12:21:09
 ---
-
 ## 功能介绍
 
 实时通信过程中，Agora SDK 通常会启动默认的音视频模块进行采集和渲染。如果想要在客户端实现自定义音视频采集和渲染，则可以使用自定义的音视频源或渲染器，来进行实现。
@@ -42,16 +41,16 @@ agoraKit.pushExternalAudioFrameSampleBuffer("your CMSampleBuffer")
 ```
 
 **相关 API 及链接**
+* [`pushExternalAudioFrameRawData:samples:timestamp:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalAudioFrameRawData:samples:timestamp:)
+* [`pushExternalAudioFrameSampleBuffer:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalAudioFrameSampleBuffer:)
 
-- [`pushExternalAudioFrameRawData:samples:timestamp:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalAudioFrameRawData:samples:timestamp:)
-- [`pushExternalAudioFrameSampleBuffer:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalAudioFrameSampleBuffer:)
 
 ### 自定义视频源
 
 Agora SDK 目前提供两种自定义视频源的方法：
 
-- 通过 MediaIO 接口实现（推荐）。
-- 通过 Push 方法实现。和自定义音频源一样，该方法略过了 SDK 对视频帧的优化处理，因此适合客户端有能力对帧进行优化的用户。
+* 通过 MediaIO 接口实现（推荐）。
+* 通过 Push 方法实现。和自定义音频源一样，该方法略过了 SDK 对视频帧的优化处理，因此适合客户端有能力对帧进行优化的用户。
 
 #### 使用 MediaIO 接口自定义视频源
 
@@ -59,93 +58,93 @@ Agora SDK 目前提供两种自定义视频源的方法：
 
 1. 遵守 AgoraVideoSourceProtocol 协议， 并实现接口，构建自定义的 Video Source 类。
 
-   ```swift
-   // swift
-   // 协议中的变量
-   	 var consumer: AgoraVideoFrameConsumer?
-   // 调用 consumer 的方法，将视频数据推入Agora SDK:
+	```swift
+	// swift
+	// 协议中的变量
+		 var consumer: AgoraVideoFrameConsumer?
+	// 调用 consumer 的方法，将视频数据推入Agora SDK:
 
-   	 // 推入rawData类型
-   	 consumer.consumeRawData("your rawData", withTimestamp: CMTimeMake(1, 15), format: "your data format", size: size, rotation: rotation)
+		 // 推入rawData类型
+		 consumer.consumeRawData("your rawData", withTimestamp: CMTimeMake(1, 15), format: "your data format", size: size, rotation: rotation)
 
-   	 // 推入CVPixelBuffer
-   	 consumer.consumePixelBuffer("your pixelBuffer", withTimestamp: CMTimeMake(1, 15), rotation: rotation)
+		 // 推入CVPixelBuffer
+		 consumer.consumePixelBuffer("your pixelBuffer", withTimestamp: CMTimeMake(1, 15), rotation: rotation)
 
-   // 协议中的方法
-   1. 视频采集使用的 Buffer 类型
-   	func bufferType() -> AgoraVideoBufferType {
-   			return bufferType
-   	}
+	// 协议中的方法
+	1. 视频采集使用的 Buffer 类型
+		func bufferType() -> AgoraVideoBufferType {
+				return bufferType
+		}
 
-   2. 在初始化视频源 (shouldInitialize) 中, 初始化自定义的 Video Source
-   	func shouldInitialize() -> Bool {
-   	}
+	2. 在初始化视频源 (shouldInitialize) 中, 初始化自定义的 Video Source
+		func shouldInitialize() -> Bool {
+		}
 
-   3. 自定义视频源开始采集视频数据，并通过 consumer 推入视频数据
-   	func shouldStart() {
-   	}
+	3. 自定义视频源开始采集视频数据，并通过 consumer 推入视频数据
+		func shouldStart() {
+		}
 
-   4. 自定义视频源停止采集视频数据
-   	func shouldStop() {
-   	}
+	4. 自定义视频源停止采集视频数据
+		func shouldStop() { 
+		}
 
-   5. 在释放自定义视频源
-   	func shouldDispose() {
-   	}
-   ```
+	5. 在释放自定义视频源
+		func shouldDispose() {
+		}
+	```
 
-   ```objective-c
-   // objective-c
-   // 协议中的变量
-   @synthesize consumer;
-   // 调用 consumer 的方法，将视频数据推入Agora SDK:
+	```objective-c
+	// objective-c
+	// 协议中的变量
+	@synthesize consumer;
+	// 调用 consumer 的方法，将视频数据推入Agora SDK:
 
-   	// 推入rawData类型
-   	[consumer consumeRawData: "your rawData" withTimestamp: CMTimeMake(1, 15) format: "your data format" size: size rotation: rotation];
+		// 推入rawData类型
+		[consumer consumeRawData: "your rawData" withTimestamp: CMTimeMake(1, 15) format: "your data format" size: size rotation: rotation];
 
-   	// 推入CVPixelBuffer
-   	[consumer consumePixelBuffer: "your pixelBuffer" withTimestamp: CMTimeMake(1, 15) rotation: rotation];
+		// 推入CVPixelBuffer
+		[consumer consumePixelBuffer: "your pixelBuffer" withTimestamp: CMTimeMake(1, 15) rotation: rotation];
 
-   // 协议中的方法
-   1. 视频采集使用的 Buffer 类型
-   	- (AgoraVideoBufferType)bufferType {
-   			return AgoraVideoBufferTypePixelBuffer;
-   	}
+	// 协议中的方法
+	1. 视频采集使用的 Buffer 类型
+		- (AgoraVideoBufferType)bufferType {
+				return AgoraVideoBufferTypePixelBuffer;
+		}
 
-   2. 在初始化视频源 (shouldInitialize) 中, 初始化自定义的 Video Source
-   	- (BOOL)shouldInitialize {
-   			return YES;
-   	}
+	2. 在初始化视频源 (shouldInitialize) 中, 初始化自定义的 Video Source
+		- (BOOL)shouldInitialize {
+				return YES;
+		}
 
-   3. 自定义视频源开始采集视频数据，并通过 consumer 推入视频数据
-   	- (void)shouldStart {
-   	}
+	3. 自定义视频源开始采集视频数据，并通过 consumer 推入视频数据
+		- (void)shouldStart {
+		}
 
-   4. 自定义视频源停止采集视频数据
-   	- (void)shouldStop {
-   	}
+	4. 自定义视频源停止采集视频数据
+		- (void)shouldStop {
+		}
 
-   5. 在释放自定义视频源
-   	- (void)shouldDispose {
-   	}
-   ```
+	5. 在释放自定义视频源
+		- (void)shouldDispose {
+		}
+	```
+
 
 2. 将遵守了 AgoraVideoSourceProtocol 协议的自定义 VideoSource 对象设给 AgoraRtcEngineKit。
 
-   ```swift
-   // swift
-   agoraKit.setVideoSource(videoSource)
-   ```
+	```swift
+	// swift
+	agoraKit.setVideoSource(videoSource)
+	```
 
-   ```objective-c
-   // objective-c
-   [agoraKit setVideoSource: videoSource];
-   ```
-
+	```objective-c
+	// objective-c
+	[agoraKit setVideoSource: videoSource];
+	```
+	
 ##### API 参考
-
-- [`setVideoSource:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVideoSource:)
-- [`AgoraVideoSourceProtocal`](./API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html)
+* [`setVideoSource:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVideoSource:)
+* [`AgoraVideoSourceProtocal`](./API%20Reference/oc/Protocols/AgoraVideoSourceProtocol.html)
 
 #### 使用 Push 方法自定义视频源
 
@@ -196,8 +195,7 @@ videoFrame.ratation = 0;
 ```
 
 #### API 参考
-
-- [`pushExternalVideoFrame:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalVideoFrame:)
+* [`pushExternalVideoFrame:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pushExternalVideoFrame:)
 
 ### 自定义渲染器
 
@@ -205,110 +203,108 @@ videoFrame.ratation = 0;
 
 1. 遵守 AgoraVideoSinkProtocol 协议， 并实现接口，构建自定义的 Video Renderer 类。
 
-   ```swift
-   // swift
-   // 协议中的方法
-   1. 希望 Agora SDK 抛出的视频 Buffer 类型
-   	func bufferType() -> AgoraVideoBufferType {
-   			return bufferType
-   	}
+	```swift
+	// swift
+	// 协议中的方法
+	1. 希望 Agora SDK 抛出的视频 Buffer 类型
+		func bufferType() -> AgoraVideoBufferType {
+				return bufferType
+		}
 
-   	希望 Agora SDK 抛出的视频数据格式
-   	func pixelFormat() -> AgoraVideoPixelFormat {
-   			return pixelFormat
-   	}
+		希望 Agora SDK 抛出的视频数据格式
+		func pixelFormat() -> AgoraVideoPixelFormat {
+				return pixelFormat
+		}
 
-   2. 初始化自定义的 Video Renderer
-   	func shouldInitialize() -> Bool {
-   			return true
-   	}
+	2. 初始化自定义的 Video Renderer
+		func shouldInitialize() -> Bool {
+				return true
+		}
 
-   3. 启动自定义的 Video Renderer
-   	func shouldStart() {
+	3. 启动自定义的 Video Renderer   
+		func shouldStart() {
 
-   	}
+		}
 
-   4. Agora SDK 停止抛出视频数据
-   	func shouldStop() {
+	4. Agora SDK 停止抛出视频数据
+		func shouldStop() {
 
-   	}
+		}
 
-   5. 自定义的 Video Renderer 可以被释放
-   	func shouldDispose() {
+	5. 自定义的 Video Renderer 可以被释放   
+		func shouldDispose() {
 
-   	}
+		}
 
-   6. Agora SDK 通过该接口抛出 CVPixelBuffer 类型的视频数据, 自定义 Video Renderer 可以获取数据进行渲染
-   	func renderPixelBuffer(_ pixelBuffer: CVPixelBuffer, rotation: AgoraVideoRotation) {
-   	}
+	6. Agora SDK 通过该接口抛出 CVPixelBuffer 类型的视频数据, 自定义 Video Renderer 可以获取数据进行渲染
+		func renderPixelBuffer(_ pixelBuffer: CVPixelBuffer, rotation: AgoraVideoRotation) {
+		}
 
-   	Agora SDK 通过该接口抛出 rawData 类型的视频数据, 自定义 Video Renderer 可以获取数据进行渲染
-   	func renderRawData(_ rawData: UnsafeMutableRawPointer, size: CGSize, rotation: AgoraVideoRotation) {
-   	}
-   }
-   ```
+		Agora SDK 通过该接口抛出 rawData 类型的视频数据, 自定义 Video Renderer 可以获取数据进行渲染
+		func renderRawData(_ rawData: UnsafeMutableRawPointer, size: CGSize, rotation: AgoraVideoRotation) {
+		}
+	}
+	```
 
-   ```objective-c
-   // objective-c
-   // 协议中的方法
-   1. 希望 Agora SDK 抛出的视频 Buffer 类型
-   	- (AgoraVideoBufferType)bufferType {
-   			return AgoraVideoBufferTypePixelBuffer;
-   	}
+	```objective-c
+	// objective-c
+	// 协议中的方法
+	1. 希望 Agora SDK 抛出的视频 Buffer 类型
+		- (AgoraVideoBufferType)bufferType {
+				return AgoraVideoBufferTypePixelBuffer;
+		}
 
-   	希望 Agora SDK 抛出的视频数据格式
-   	- (AgoraVideoPixelFormat)pixelFormat {
-   		 return AgoraVideoPixelFormatI420;
-   	}
+		希望 Agora SDK 抛出的视频数据格式
+		- (AgoraVideoPixelFormat)pixelFormat {
+			 return AgoraVideoPixelFormatI420;
+		}
 
-   2. 初始化自定义的 Video Renderer
-   	- (BOOL)shouldInitialize {
-   		return YES;
-   	}
+	2. 初始化自定义的 Video Renderer
+		- (BOOL)shouldInitialize {
+			return YES;
+		}
 
-   3. 启动自定义的 Video Renderer
-   	- (void)shouldStart {
-   	}
+	3. 启动自定义的 Video Renderer 
+		- (void)shouldStart {
+		}
 
-   4. Agora SDK 停止抛出视频数据
-   	- (void)shouldStop {
-   	}
+	4. Agora SDK 停止抛出视频数据
+		- (void)shouldStop {
+		}
 
-   5. 自定义的 Video Renderer 可以被释放
-   	- (void)shouldDispose {
-   	}
+	5. 自定义的 Video Renderer 可以被释放   
+		- (void)shouldDispose {
+		}
 
-   6. Agora SDK 通过该接口抛出 CVPixelBuffer 类型的视频数据, 自定义 Video Renderer 可以获取数据进行渲染
-   	- (void)renderPixelBuffer:(CVPixelBufferRef _Nonnull)pixelBuffer rotation:(AgoraVideoRotation)rotation {
-   	}
+	6. Agora SDK 通过该接口抛出 CVPixelBuffer 类型的视频数据, 自定义 Video Renderer 可以获取数据进行渲染
+		- (void)renderPixelBuffer:(CVPixelBufferRef _Nonnull)pixelBuffer rotation:(AgoraVideoRotation)rotation {
+		}
 
-   	Agora SDK 通过该接口抛出 rawData 类型的视频数据, 自定义 Video Renderer 可以获取数据进行渲染
-   	- (void)renderRawData:(void * _Nonnull)rawData size:(CGSize)size rotation:(AgoraVideoRotation)rotation {
-   	}
-   ```
+		Agora SDK 通过该接口抛出 rawData 类型的视频数据, 自定义 Video Renderer 可以获取数据进行渲染
+		- (void)renderRawData:(void * _Nonnull)rawData size:(CGSize)size rotation:(AgoraVideoRotation)rotation {
+		}
+	```
 
-2. 将遵守了 AgoraVideoSourceProtocol 协议的自定义 VideoRenderer 对象设给 AgoraRtcEngineKit。
+2. 将遵守了  AgoraVideoSourceProtocol 协议的自定义 VideoRenderer 对象设给 AgoraRtcEngineKit。
 
-   ```swift
-   // swift
-   agoraKit.setLocalVideoRenderer(videoRenderer)
-   agoraKit.setRemoteVideoRenderer(videoRenderer, forUserId: uid)
-   ```
-
-   ```objective-c
-   // objective-c
-   [agoraKit setLocalVideoRenderer: videoRenderer];
-   [agoraKit setRemoteVideoRenderer: videoRenderer, uid];
-   ```
-
+	```swift
+	// swift
+	agoraKit.setLocalVideoRenderer(videoRenderer)
+	agoraKit.setRemoteVideoRenderer(videoRenderer, forUserId: uid)
+	```
+	
+	```objective-c
+	// objective-c
+	[agoraKit setLocalVideoRenderer: videoRenderer];
+	[agoraKit setRemoteVideoRenderer: videoRenderer, uid];
+	```
+	
 ### API 参考
-
-- [`setLocalVideoRenderer:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVideoRenderer:)
-- [`setRemoteVideoRenderer:forUserId:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setRemoteVideoRenderer:forUserId:)
-- [`AgoraVideoSinkProtocal`](./API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html)
+* [`setLocalVideoRenderer:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setLocalVideoRenderer:)
+* [`setRemoteVideoRenderer:forUserId:`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setRemoteVideoRenderer:forUserId:)
+* [`AgoraVideoSinkProtocal`](./API%20Reference/oc/Protocols/AgoraVideoSinkProtocol.html)
 
 Agora 目前提供自定义视频源和渲染器的示例程序，请前往 Github 下载 [Agora Custom Media Device](https://github.com/AgoraIO/Advanced-Video/tree/master/Custom-Media-Device/Agora-Custom-Media-Device-iOS) 并体验。
 
 ## 开发注意事项
-
 客户端自定义采集和渲染属于较复杂的功能，开发者自身需要具备音视频相关知识，能够自己独立开发完成采集与渲染。

@@ -47,7 +47,7 @@ initCourseWareLoading: boolean;
 ## initCourseWare
 
 ```typescript
-initCourseWare: MaterialDataResource;
+initCourseWare: MaterialDataResource
 ```
 
 > 自 v1.1.5 起新增。

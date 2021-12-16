@@ -3,7 +3,6 @@ title: 原始音频数据
 platform: Unity
 updatedAt: 2020-02-18 22:12:25
 ---
-
 ## 功能描述
 
 音频传输过程中，我们可以获取采集到的音频原始数据。
@@ -22,7 +21,7 @@ Agora Unity SDK 通过提供 `AudioRawDataManager` 类，实现采集原始音�
 
    - 调用 `SetOnRecordAudioFrameCallback` 监听 `OnRecordAudioFrameHandler` 回调。SDK 会通过 `OnRecordAudioFrameHandler` 回调向用户发送采集到的原始音频数据。
    - 调用 `SetOnPlaybackAudioFrameCallback` 监听 `OnPlaybackAudioFrameHandler` 回调。SDK 会通过 `OnPlaybackAudioFrameHandler` 回调向用户发送播放的原始音频数据，即所有远端用户混音后的音频数据。
-   - 调用 `SetOnMixedAudioFrameCallback` 监听 `OnMixedAudioFrameHandler` 回调。SDK 会通过 `OnMixedAudioFrameHandler` 回调向用户发送混音后的采集和播放的原始音频数据，即所有本地和远端用户混音后的音频数据。
+   - 调用 `SetOnMixedAudioFrameCallback` 监听 `OnMixedAudioFrameHandler` 回调。SDK 会通过 `OnMixedAudioFrameHandler` 回调向用户发送混音后的采集和播放的原始音频数据，即所有本地和远端用户混音后的音频数据。 
    - 调用 `SetOnPlaybackAudioFrameBeforeMixingCallback` 监听 `OnPlaybackAudioFrameBeforeMixingHandler` 回调。SDK 会通过 `OnPlaybackAudioFrameBeforeMixingHandler` 回调向用户发送指定远端用户混音前的原始音频数据。
 
 3. 用户拿到音频数据后，根据场景需要自行进行处理。以通过 Unity `AudioSource` 组件播放音频原始数据为例，大致流程如下：
@@ -62,53 +61,53 @@ void Start()
    // 监听 OnPlaybackAudioFrameBeforeMixingHandler delegate。
    AudioRawDataManager.SetOnPlaybackAudioFrameBeforeMixingCallback(OnPlaybackAudioFrameBeforeMixingHandler);
 }
-
+ 
 // 获取本地采集到的原始音频数据。
 void OnRecordAudioFrameHandler(AudioFrame audioFrame);
 {
    Debug.Log("OnRecordAudioFrameHandler");
 }
-
+ 
 // 获取从远端接收到的原始音频数据。
 void OnPlaybackAudioFrameHandler(AudioFrame audioFrame);
 {
    Debug.Log("OnPlaybackAudioFrameHandler");
 }
-
+ 
 // 获取本地和远端混音后的原始音频数据。
 void OnMixedAudioFrameHandler(AudioFrame audioFrame);
 {
    Debug.Log("OnMixedAudioFrameHandler");
 }
-
+ 
 // 获取指定本地或远端用户混音前的原始音频数据。
 void OnPlaybackAudioFrameBeforeMixingHandler(AudioFrame audioFrame);
 {
    Debug.Log("OnPlaybackAudioFrameBeforeMixingHandler");
 }
-
-public enum AUDIO_FRAME_TYPE
+ 
+public enum AUDIO_FRAME_TYPE 
 {
    // 0: PCM16
    FRAME_TYPE_PCM16 = 0,
 };
-
-public struct AudioFrame
+ 
+public struct AudioFrame 
 {
    // 音频帧类型。详见 #AUDIO_FRAME_TYPE 。
    public AUDIO_FRAME_TYPE type;
    // 每个声道的采样点数。
-   public int samples;
+   public int samples; 
    // 每个采样点的字节数。通常为十六位，即两个字节。
-   public int bytesPerSample;
+   public int bytesPerSample; 
    // 声道数量（如果是立体声，数据是交叉的）
    // - 1: 单声道。
    // - 2: 双声道。
-   public int channels;
+   public int channels; 
    // 采样率。
-   public int samplesPerSec;
+   public int samplesPerSec; 
    // 声音数据缓存区（如果是立体声，数据是交叉存储的）。缓存区数据大小：buffer = samples × channels × bytesPerSample。
-   public byte[] buffer;
+   public byte[] buffer; 
    // 外部音频帧的渲染时间戳。你可以使用该时间戳还原音频帧顺序；在有视频的场景中（包含使用外部视频源的场景），该参数可以用于实现音视频同步。
    public long renderTimeMs;
    // 预留参数。
@@ -137,5 +136,5 @@ public struct AudioFrame
 
 ## 开发注意事项
 
-- Agora 推荐在频道外调用 `RegisterAudioRawDataObserver` 和 `UnRegisterAudioRawDataObserver` 方法。
+- Agora 推荐在频道外调用  `RegisterAudioRawDataObserver` 和 `UnRegisterAudioRawDataObserver` 方法。
 - Agora Unity SDK 提供四种监听回调的方法，你可以独立使用各回调，无需全部调用。为避免浪费设备性能，请根据实际需求调用回调。

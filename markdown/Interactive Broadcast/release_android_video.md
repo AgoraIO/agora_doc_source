@@ -3,7 +3,6 @@ title: 发版说明
 platform: Android
 updatedAt: 2021-03-29 03:54:03
 ---
-
 本文提供 Agora 视频 SDK 的发版说明。
 
 ## 已知问题和局限性
@@ -24,7 +23,6 @@ updatedAt: 2021-03-29 03:54:03
 详情请参考 [Android 隐私权变更](https://developer.android.com/about/versions/pie/android-9.0-changes-28?hl=zh-CN#privacy-changes-p)。
 
 ## 3.3.0 版
-
 该版本于 2021 年 1 月 22 日发布。
 
 #### 升级必看
@@ -46,7 +44,7 @@ updatedAt: 2021-03-29 03:54:03
 
 **1. 频道媒体选项**
 
-为方便开发者更灵活地控制媒体流订阅，该版本新增 `joinChannel`[2/2] 和 `switchChannel`[2/2] 方法，支持设置用户加入频道和切换频道时是否订阅频道内所有的远端音频流或视频流。
+为方便开发者更灵活地控制媒体流订阅，该版本新增 `joinChannel`[2/2] 和 `switchChannel`[2/2]  方法，支持设置用户加入频道和切换频道时是否订阅频道内所有的远端音频流或视频流。
 
 **2. 云代理**
 
@@ -57,6 +55,7 @@ updatedAt: 2021-03-29 03:54:03
 为在传统降噪模式的基础上消除非平稳噪声，该版本新增 `enableDeepLearningDenoise`，用于开启 AI 降噪模式。
 
 <div class="alert note">开启 AI 降噪前，请将 <code>libagora_ai_denoise_extension.so</code> 动态库集成到你的项目文件中。</div>
+
 
 **4. 歌唱美声**
 
@@ -96,7 +95,7 @@ updatedAt: 2021-03-29 03:54:03
 - `onMixedFrame`
 - `isMultipleChannelFrameWanted`
 - `onPlaybackFrameBeforeMixingEx`
-
+  
 **2. 远端音频统计**
 
 为方便监测通话中与音频有关的主观体验，该版本在 `onRemoteAudioStats` 中增加 `qoeQuality` 和 `qualityChangedReason`，报告接收远端音频时的体验质量以及体验质量较差的原因。
@@ -131,6 +130,7 @@ updatedAt: 2021-03-29 03:54:03
 - `CAPTURER_OUTPUT_PREFERENCE` enum 中新增 [`CAPTURER_OUTPUT_PREFERENCE_MANUAL(3)`](./API%20Reference/java/enumio_1_1agora_1_1rtc_1_1video_1_1_camera_capturer_configuration_1_1_c_a_p_t_u_r_e_r___o_u_t_p_u_t___p_r_e_f_e_r_e_n_c_e.html#aeebd07224559669e412eb34d6e9a4a53)
 - 错误码：[`ERR_MODULE_NOT_FOUND(157)`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#ad638ac3c7ccbc3620eaed68ddfd49efe)
 
+
 **废弃**
 
 - `setDefaultMuteAllRemoteVideoStreams`
@@ -140,6 +140,7 @@ updatedAt: 2021-03-29 03:54:03
 - `setLogFilter`
 - `createDataStream`
 
+
 ## 3.2.1 版
 
 该版本于 2020 年 12 月 17 日发布，修复了如下问题：
@@ -148,7 +149,6 @@ updatedAt: 2021-03-29 03:54:03
 - 调用 `enableEncryption` 后，`onFirstLocalVideoFramePublished` 回调无法被触发。
 
 ## 3.2.0 版
-
 该版本于 2020 年 11 月 30 日发布。
 
 #### 升级必看
@@ -166,7 +166,7 @@ updatedAt: 2021-03-29 03:54:03
 
 如果你将 SDK 升级到 v3.2.0 或更高版本，请务必将上述文件拷贝至 `libagora-rtc-sdk.so` 所在文件夹中。
 
-此外，该版本将 SDK 包中的 `libagora-crypto.so` 文件合并入 `libagora-rtc-sdk.so` 文件中。集成 `libagora-rtc-sdk.so` 后，你可以直接使用内置加密功能。
+此外，该版本将 SDK 包中的 `libagora-crypto.so` 文件合并入 `libagora-rtc-sdk.so` 文件中。集成 `libagora-rtc-sdk.so` 后，你可以直接使用内置加密功能。 
 
 **拼写更正**
 
@@ -183,6 +183,7 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 同时，为支持传输层加密，该版本新增 TLS（Transport Layer Security）加密和 UDP（User Datagram Protocol）加密方式。
 
 <div class="alert note">传输层加密导致以下指标受到影响：<li>SDK 包体积大小：数据详见《产品概述》。</li><li>首帧出图时长：首帧出图时长（中位数）相比 v3.1.0 增加 0 ~ 70 ms。</li></div>
+
 
 #### 新增特性
 
@@ -250,6 +251,7 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 - 使用 MediaIO 方式切换视频源时画面会卡住。
 - `onFirstLocalVideoFrame` 和 `onFirstRemoteVideoFrame` 回调的触发时机不准确。
 
+
 ## 3.1.1 版
 
 该版本于 2020 年 8 月 27 日发布。该版本修改了区域访问限制的区域码 `AreaCode`，最新区域码如下：
@@ -257,7 +259,7 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 - `AREA_CODE_CN`: 中国大陆。
 - `AREA_CODE_NA`: 北美区域。
 - `AREA_CODE_EU`: 欧洲区域。
-- `AREA_CODE_AS`: 除中国大陆以外的亚洲区域。
+- `AREA_CODE_AS`: 除中国大陆以外的亚洲区域。 
 - `AREA_CODE_JP`: 日本。
 - `AREA_CODE_IN`: 印度。
 - `AREA_CODE_GLOB`:（默认）全球。
@@ -265,7 +267,6 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 如你此前调用 [`create`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a45832a91b1051bc7641ccd8958288dba) 方法时指定了访问区域，在由之前版本升级至该版本时，请确保使用正确的区域码。
 
 ## 3.1.0 版
-
 该版本于 2020 年 8 月 11 日发布。
 
 #### 新增特性
@@ -306,7 +307,6 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 **2. 屏幕共享**
 
 为提升屏幕共享的用户体验，该版本在 `IVideoSource` 类中新增以下回调：
-
 - `getCaptureType`: 指定自采集的视频源类型。
 - `getContentHint`: 指定自采集屏幕共享视频的内容类型。
 
@@ -337,14 +337,14 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 
 为提升音频性能，该版本对音频编码码率最大值进行如下优化：
 
-| Profile                                 | 3.1.0 版本                                           | 3.1.0 版本之前                                       |
-| :-------------------------------------- | :--------------------------------------------------- | :--------------------------------------------------- |
+| Profile                                 | 3.1.0 版本                                                   | 3.1.0 版本之前                                               |
+| :-------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | AUDIO_PROFILE_DEFAULT                   | <li>直播场景: 64 Kbps</li><li>通信场景: 18 Kbps</li> | <li>直播场景: 52 Kbps</li><li>通信场景: 18 Kbps</li> |
-| AUDIO_PROFILE_SPEECH_STANDARD           | 18 Kbps                                              | 18 Kbps                                              |
-| AUDIO_PROFILE_MUSIC_STANDARD            | 64 Kbps                                              | 48 Kbps                                              |
-| AUDIO_PROFILE_MUSIC_STANDARD_STEREO     | 80 Kbps                                              | 56 Kbps                                              |
-| AUDIO_PROFILE_MUSIC_HIGH_QUALITY        | 96 Kbps                                              | 128 Kbps                                             |
-| AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO | 128 Kbps                                             | 192 Kbps                                             |
+| AUDIO_PROFILE_SPEECH_STANDARD           | 18 Kbps                                                      | 18 Kbps                                                      |
+| AUDIO_PROFILE_MUSIC_STANDARD            | 64 Kbps                                                      | 48 Kbps                                                      |
+| AUDIO_PROFILE_MUSIC_STANDARD_STEREO     | 80 Kbps                                                      | 56 Kbps                                                      |
+| AUDIO_PROFILE_MUSIC_HIGH_QUALITY        | 96 Kbps                                                      | 128 Kbps                                                     |
+| AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO | 128 Kbps                                                     | 192 Kbps                                                     |
 
 **7. 日志扩容**
 
@@ -355,12 +355,13 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 该版本在 OPPO 如下机型上降低了耳返延时：
 
 - Reno4 Pro 5G
-- Reno4 5G
+- Reno4 5G 
 
 **9. 优化弱网环境下的视频体验**
 
 - 自该版本起，弱网环境下会自动降低视频分辨率，以进一步优化视频流畅度。
 - 优化了网络状态变化过程中的视频画质，保证画质不模糊。
+
 
 **10. 其他改进**
 
@@ -406,7 +407,6 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 - `onFirstLocalAudioFrame`
 
 ## 3.0.1.1 版
-
 该版本于 2020 年 6 月 18 日发布。主要修复如下问题：
 
 - Android 6 及以上且 CPU 为 x86 架构的手机出现崩溃。
@@ -469,7 +469,7 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 
 **设置视频观测位置 (C++)**
 
-成功注册视频观测器后，你可以在视频处理的各节点观测并获取想要的视频数据，如本地采集的视频数据，接收的远端视频数据等。为降低设备耗能，该版本允许自定义视频观测位置。你可以通过修改 [`getObservedFramePosition`](./API%20Reference/cpp/v3.0.1/classagora_1_1media_1_1_i_video_frame_observer.html#ad4c174389264630ffb1b2d24c6030013) 的返回值，设置只观测以下某个或多个位置的视频数据：
+成功注册视频观测器后，你可以在视频处理的各节点观测并获取想要的视频数据，如本地采集的视频数据，接收的远端视频数据等。为降低设备耗能，该版本允许自定义视频观测位置。你可以通过修改 [`getObservedFramePosition`](./API%20Reference/cpp/v3.0.1/classagora_1_1media_1_1_i_video_frame_observer.html#ad4c174389264630ffb1b2d24c6030013)  的返回值，设置只观测以下某个或多个位置的视频数据：
 
 - 本地采集的视频数据
 - 接收远端发送的视频数据
@@ -491,7 +491,7 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 
 **新增**
 
-- [`setAudioMixingPitch`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1ffa38f7445ff0ba71515c931f2f4f6a)
+-  [`setAudioMixingPitch`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a1ffa38f7445ff0ba71515c931f2f4f6a)
 - 以 [`VOICE_BEAUTY`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a6e16001b5e0f252460d584131fc11750) 为前缀、以 [`GENERAL_BEAUTY_VOICE`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#ab77b264331a44b104e5d1b333fc39ed8) 为前缀和以 [`AUDIO_REVERB_FX`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a238965ba87ce04aaaa50c45f57c8727d) 为前缀的枚举值，以及 [`AUDIO_VIRTUAL_STEREO`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_constants.html#a4488f5ef2274a3e2e0dff5721f3bb708) 枚举值
 - [`enableFaceDetection`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a20ee30231265a5f898384a7974e3f2b1)
 - [`onFacePositionChanged`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a629081c0db3ecf7dfc057d5f04598c77)
@@ -532,11 +532,12 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 
 同时，我们对本地服务端录制进行了升级发布。为确保享受全新架构和网络策略优化带来的好处，使用本地服务端录制的客户，请务必同步升级[本地服务端录制 SDK](https://docs.agora.io/cn/Recording/release_recording?platform=Linux#300-%E7%89%88) 至 3.0.0 版本。
 
+
 #### 升级必看
 
 **1. 通信场景默认不开启视频双流**
 
-从该版本起，Agora 在通信频道场景下，默认不开启视频[双流](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-name-duala%E5%8F%8C%E6%B5%81%E6%A8%A1%E5%BC%8F)。如需启用，请在成功加入频道后，调用 [`enableDualStreamMode (true)`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a645cb7d0f3a59dda27b157cf130c8c9a) 方法。在多人视频通信场景下，我们建议你开启视频双流模式。
+从该版本起，Agora 在通信频道场景下，默认不开启视频[双流](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-name-duala%E5%8F%8C%E6%B5%81%E6%A8%A1%E5%BC%8F)。如需启用，请在成功加入频道后，调用 [`enableDualStreamMode (true)`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a645cb7d0f3a59dda27b157cf130c8c9a)  方法。在多人视频通信场景下，我们建议你开启视频双流模式。
 
 **2. 日志默认保存路径改变**
 
@@ -571,10 +572,10 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 
 为满足更高音质需求，该版本调整了直播场景下 `AUDIO_PROFILE_DEFAULT (0)` 对应的音频编码属性，详见下表：
 
-| SDK 版本   | AUDIO_PROFILE_DEFAULT (0)                                   |
-| ---------- | ----------------------------------------------------------- |
-| 3.0.0      | 48 KHz 采样率，音乐编码，单声道，编码码率最大值为 52 Kbps。 |
-| 3.0.0 之前 | 32 KHz 采样率，音乐编码，单声道，编码码率最大值为 44 Kbps。 |
+| SDK 版本 | AUDIO_PROFILE_DEFAULT (0) |
+| ---------------- | ---------------- | 
+| 3.0.0    | 48 KHz 采样率，音乐编码，单声道，编码码率最大值为 52 Kbps。      |
+| 3.0.0 之前 | 32 KHz 采样率，音乐编码，单声道，编码码率最大值为 44 Kbps。|
 
 **2. 镜像模式**
 
@@ -601,7 +602,7 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 
 **行为变更**
 
-- 该版本在调用 `enableLocalAudio` (false) 后，不会引起通话音量切换为媒体音量。
+- 该版本在调用 `enableLocalAudio` (false) 后，不会引起通话音量切换为媒体音量。 
 - 当设备连接耳机或蓝牙时，调用` setEnableSpeakerPhone` (true)，不会将语音路由切换到外放。
 
 **新增**
@@ -610,7 +611,7 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 - [`setRemoteRenderMode`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a5a8498025206a5680ef391c4e812f45f)
 - [`VideoEncoderConfiguration`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_video_encoder_configuration.html) 结构体新增 `mirrorMode` 成员
 - [`VideoCanvas`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_video_canvas.html) 结构体新增 `channelId`、`mirrorMode` 成员
-- [`AudioVolumeInfo`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_audio_volume_info.html) 结构体新增 `channelId` 成员
+- [`AudioVolumeInfo`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_audio_volume_info.html) 结构体新增 `channelId`  成员
 - [`RtcStats`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html) 结构体新增 `gatewayRtt`, `memoryAppUsageRatio`, `memoryTotalUsageRatio`, and `memoryAppUsageInKbytes` 成员
 - [`createRtcChannel`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9eb0770851a8ba489564f72f9b280bca)
 - [`RtcChannel`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_channel.html) 类
@@ -634,17 +635,17 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 
 ## 2.9.3 版
 
-该版本于 2020 年 2 月 10 日发布。
+该版本于 2020 年 2 月10 日发布。
 
 该版本修复了如下问题：
 
 - 通信场景下，调用 `setRemoteSubscribeFallbackOption` 方法也生效。
-- 一对一通信场景下，下行音视频弱网下会回退为纯音频。
+-  一对一通信场景下，下行音视频弱网下会回退为纯音频。
 - 部分设备升级系统后，摄像头采集不到视频画面。
 
 ## 2.9.2 版
 
-该版本于 2019 年 10 月 18 日发布。
+该版本于 2019 年 10  月 18 日发布。
 
 该版本修复了部分 Android 设备上的崩溃问题。
 
@@ -733,6 +734,7 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 
 - `startAudioRecording`
 - `addVideoWatermark`
+
 
 ## 2.9.0 版
 
@@ -884,14 +886,12 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 - `onRemoteVideoTransportStats`，请改用 [`onRemoteVideoStats`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#abb7af6e2827bbd03c6ab8338a0f616ca)。
 
 - `onUserEnableVideo`，请改用 [`onRemoteVideoStateChanged`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a93ebe88d2544253bf4b13faf34873131) 的如下参数搭配：
-
-  - REMOTE_VIDEO_STATE_STOPPED(0) 和 REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)。
-  - REMOTE_VIDEO_STATE_DECODING(2) 和 REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)。
+	- REMOTE_VIDEO_STATE_STOPPED(0) 和 REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)。
+	- REMOTE_VIDEO_STATE_DECODING(2) 和 REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)。
 
 - `onUserEnableLocalVideo`，请改用 [`onRemoteVideoStateChanged`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a93ebe88d2544253bf4b13faf34873131) 的如下参数搭配：
-
-  - REMOTE_VIDEO_STATE_STOPPED(0) 和 REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)。
-  - REMOTE_VIDEO_STATE_DECODING(2) 和 REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)。
+	- REMOTE_VIDEO_STATE_STOPPED(0) 和 REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)。
+	- REMOTE_VIDEO_STATE_DECODING(2) 和 REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)。
 
 - `onFirstRemoteVideoDecoded`，请改用 [`onRemoteVideoStateChanged`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a93ebe88d2544253bf4b13faf34873131) 的 REMOTE_VIDEO_STATE_STARTING(1) 或 REMOTE_VIDEO_STATE_DECODING(2)。
 
@@ -901,6 +901,7 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 - `setVideoCompositingLayout`
 - `clearVideoCompositingLayout`
 - `onRemoteVideoStateChanged`
+
 
 ## 2.8.2 版
 
@@ -930,18 +931,17 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 
 对于其他接口，Agora 沿用 Int 型的 UID。Agora Engine 会维护 UID 和 User account 映射表，你可以随时通过 String user account 获取 UID，或者通过 UID 获取 String user account，无需自己维护映射表。
 
-为保证通信质量，频道内所有用户需使用同一数据类型的用户 ID，即频道内的所有用户 ID 应同为 Int 型或同为 String 型。
+为保证通信质量，频道内所有用户需使用同一数据类型的用户 ID，即频道内的所有用户 ID应同为 Int 型或同为 String 型。
 
 **Note**：
 
 - 同一频道内，Int 型的 User ID 和 String 型的 User account 不可混用。目前支持 String 型 User account 的 SDK 如下：
 
-  - Native SDK：v2.8.0 及之后版本
-  - Web SDK：v2.5.0 及之后版本
+	- Native SDK：v2.8.0 及之后版本
+	- Web SDK：v2.5.0 及之后版本
 
-如果你的频道内有不支持 String 型 User account 的用户，则只能使用 Int 型的 User ID。
-
-- 如果你使用该版本的 Native SDK 将用户 ID 切换至 String 型 User account，请确保所有终端用户同步升级。
+ 如果你的频道内有不支持 String 型 User account 的用户，则只能使用 Int 型的 User ID。
+- 如果你使用该版本的 Native SDK 将用户 ID切换至 String 型 User account，请确保所有终端用户同步升级。
 - 如果使用 String 型的 User account，请确保你的服务端用户生成 Token 的脚本已升级至最新版本。如果使用 String 型 User account 加入频道，请确保使用该 User account 或其对应的 Int 型 UID 来生成 Token。你可以调用 `getUserInfoByUserAccount` 来获取 User account 所对应的 UID。
 
 **2. 音视频卡顿回调**
@@ -999,12 +999,12 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 
 为提高推流服务的易用性，该版本对推流接口的参数设置进行了如下限制：
 
-| 类/接口                                                                                                                        | 参数限制                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [LiveTranscoding](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html) 类                         | <li>[videoFrameRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6)：设置转码推流的帧率，单位为 fps，取值范围为 [0, 30]，默认值为 15。如果设值超过 30，Agora 服务端会自动调整为 30<li>[videoBitrate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6)：设置转码推流的码率，单位为 Kbps，默认值为 400。用户可以根据 [Video Profile 参考表](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_video_encoder_configuration.html#a4b090cd0e9f6d98bcf89cb1c4c2066e8)中的码率值进行设置。如果设置的码率超出合理范围，服务端会在合理区间内对码率值进行自适应<li>[videoCodecProfile](./API%20Reference/java/enumio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding_1_1_video_codec_profile_type.html)：设置转码推流的视频编码规格，可设为 **BASELINE**、**MAIN** 或 **HIGH**。若设为其他值，服务端会改为默认值 **HIGH**<li>[width](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6) 和 [height](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a80960c1a972e9b3851fd16d921f8a75c)：设置转码推流的视频分辨率。**width x height** 的最小值不低于 **16 x 16**</li> |
-| [AgoraImage](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_agora_image.html) 类                                  | `url`：字符长度不得超过 **1024** 字节                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| [addPublishStreamUrl](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f)    | `url`：字符长度不得超过 **1024** 字节                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| [removePublishStreamUrl](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f) | `url`：字符长度不得超过 **1024** 字节                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| 类/接口            | 参数限制                                                     |
+| ---------------------- | ------------------------------------------------------------ |
+| [LiveTranscoding](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html) 类      | <li>[videoFrameRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6)：设置转码推流的帧率，单位为 fps，取值范围为 [0, 30]，默认值为 15。如果设值超过 30，Agora 服务端会自动调整为 30<li>[videoBitrate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6)：设置转码推流的码率，单位为 Kbps，默认值为 400。用户可以根据 [Video Profile 参考表](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_video_encoder_configuration.html#a4b090cd0e9f6d98bcf89cb1c4c2066e8)中的码率值进行设置。如果设置的码率超出合理范围，服务端会在合理区间内对码率值进行自适应<li>[videoCodecProfile](./API%20Reference/java/enumio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding_1_1_video_codec_profile_type.html)：设置转码推流的视频编码规格，可设为 **BASELINE**、**MAIN** 或 **HIGH**。若设为其他值，服务端会改为默认值 **HIGH**<li>[width](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a514340a98a537fdc4f91003aed2068a6) 和 [height](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#a80960c1a972e9b3851fd16d921f8a75c)：设置转码推流的视频分辨率。**width x height** 的最小值不低于 **16 x 16**</li> |
+| [AgoraImage](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_agora_image.html) 类          | `url`：字符长度不得超过 **1024** 字节                          |
+| [addPublishStreamUrl](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f)    | `url`：字符长度不得超过 **1024** 字节                          |
+| [removePublishStreamUrl](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a4445b4ca9509cc4e2966b6d308a8f08f) | `url`：字符长度不得超过 **1024** 字节                          |
 
 同时，该版本在 `LiveTranscoding` 类中新增 [audioCodecProfile](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#ac7d4a839af2994e68d8f14544d323ae9) 参数，支持设置音频编码的规格。默认规格为 LC-AAC。
 
@@ -1052,7 +1052,7 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 
 **2、质量透明**
 
-- 该版本在通话相关的统计信息 [RtcStats](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html) 类中，新增 [txPacketLossRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a6b0c3798427c6bf07b829896e29ace5e) 和 [rxPacketLossRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a72df02822bfcc37dfcdb543fd2ba46af) 参数，分别返回本地客户端到服务器和服务器到本地客户端的丢包率。
+- 该版本在通话相关的统计信息 [RtcStats](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html) 类中，新增 [txPacketLossRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a6b0c3798427c6bf07b829896e29ace5e) 和  [rxPacketLossRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a72df02822bfcc37dfcdb543fd2ba46af) 参数，分别返回本地客户端到服务器和服务器到本地客户端的丢包率。
 - 该版本对 `LocalVideoStats` 和 `RemoteVideoStats` 类作了如下变动，方便用户更精准地获取本地和远端视频流的统计信息：
 
   - [LocalVideoStats](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html)：新增 [encoderOutputFrameRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#af6350acef5578bf0501a234fc36d86a3) 和 [rendererOutputFrameRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#aa754035a384b502a45c6fed6f17038da) 参数
@@ -1064,13 +1064,14 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 
 **4、其他改进**
 
-- 优化了 AudioScenario 为 [GAME_STREAMING](./API%20Reference/java/enumio_1_1agora_1_1rtc_1_1_constants_1_1_audio_scenario.html#aedcb78447298f4794ba8df7a72d71909) 时的音质效果
+- 优化了AudioScenario 为 [GAME_STREAMING](./API%20Reference/java/enumio_1_1agora_1_1rtc_1_1_constants_1_1_audio_scenario.html#aedcb78447298f4794ba8df7a72d71909) 时的音质效果
 - 优化了部分场景下语音和视频的延时
 - SDK 包大小降低约 0.5 M
 - 提高了用户修改视频属性的码率后，网络质量打分的准确性
 - 默认启用音频质量通知回调。开发者无需调用 `enableAudioQualityIndication` 方法，也可以收到 [onRemoteAudioStats](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54) 回调
 - 提升了视频服务的稳定性
 - 提升了推流服务的稳定性
+
 
 #### 问题修复
 
@@ -1110,7 +1111,7 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 - [IMetadataObserver](./API%20Reference/java/interfaceio_1_1agora_1_1rtc_1_1_i_metadata_observer.html) 类
 - `LiveTranscoding` 类新增参数 [audioCodecProfile](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1live_1_1_live_transcoding.html#ac7d4a839af2994e68d8f14544d323ae9)
 - `RtcStats` 类新增参数 [txPacketLossRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a6b0c3798427c6bf07b829896e29ace5e) 和 [rxPacketLossRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_rtc_stats.html#a72df02822bfcc37dfcdb543fd2ba46af)
-- `LocalVideoStats` 类新增参数 [encoderOutputFrameRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#af6350acef5578bf0501a234fc36d86a3) 和 [rendererOutputFrameRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#aa754035a384b502a45c6fed6f17038da)
+- `LocalVideoStats` 类新增参数 [encoderOutputFrameRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#af6350acef5578bf0501a234fc36d86a3) 和 [rendererOutputFrameRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_local_video_stats.html#aa754035a384b502a45c6fed6f17038da) 
 - `RemoteVideoStats` 类新增参数 [decoderOutputFrameRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_video_stats.html#aafc03c6a890c36dc9810537c47ce0cd9) 和 [rendererOutputFrameRate](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler_1_1_remote_video_stats.html#aa09441cb1b9a0f4318cd59b0ca5b3ffb)（替换 `receivedFrameRate`）
 
 **废弃**
@@ -1122,6 +1123,7 @@ Agora 在该版本对通信场景采用了全新的系统架构，并升级了�
 - 错误码 `ERR_TOKEN_EXPIRED(109)`，请改用 [onConnectionStateChanged](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e) 回调中的 CONNECTION_CHANGED_TOKEN_EXPIRED(9)
 - 错误码 `ERR_INVALID_TOKEN(110)`，请改用 [onConnectionStateChanged](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a31b2974a574ec45e62bb768e17d1f49e) 回调中的 CONNECTION_CHANGED_INVALID_TOKEN(8)
 - 错误码 `ERR_START_CAMERA(1003)`，请改用 [onLocalVideoStateChanged](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aface271c0606ab99bb08a0d00267306c) 回调中的 LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE(4)
+
 
 ## 2.4.0 版及之前
 
@@ -1252,8 +1254,8 @@ Agora SDK 有 2 个日志文件，每个文件默认大小为 512 KB。为解决
 
 2.3.2 整体提升直播场景下视频弱网抗丢包能力，提高流畅度，降低卡顿率。升级前，请了解以下版本兼容性:
 
-- Native SDK 版本不能低于 1.11.0
-- Web SDK（若互通）版本不能低于 2.1.0
+* Native SDK 版本不能低于 1.11.0
+* Web SDK（若互通）版本不能低于 2.1.0
 
 #### 新增功能
 
@@ -1269,7 +1271,7 @@ Agora SDK 有 2 个日志文件，每个文件默认大小为 512 KB。为解决
 
 Agora SDK 会根据网络条件进行码率自适应。为满足用户在直播场景下对视频清晰度的要求，该版本在 [`setVideoEncoderConfiguration`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#af5f4de754e2c1f493096641c5c5c1d8f) 接口中新增 [`minBitrate`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1video_1_1_video_encoder_configuration.html#a9cd44566bc19eca4006fda264ea96dc7) 参数，强制视频编码器输出高质量图片。如果将参数设为高于默认值，在网络状况不佳情况下可能会导致网络丢包，并影响视频播放的流畅度。因此如非对画质有特殊需求，Agora 建议不要修改该参数的值。
 
-##### 3. 控制音乐文件的播放音量
+##### 3. 控制音乐文件的播放音量 
 
 为方便用户控制混音音乐文件在本地及远端的播放音量，该版本在已有 [`adjustAudioMixingVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a13c5737248d5a5abf6e8eb3130aba65a) 的基础上新增 [`adjustAudioMixingPlayoutVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a0308c6bc82af433ae8340e0b3cd228c9) 和 [`adjustAudioMixingPublishVolume`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a16c4dc66d9c43eef9bee7afc86762c00) 接口，用于分别控制混音音乐文件在本地和远端的播放音量。
 
@@ -1277,13 +1279,14 @@ Agora SDK 会根据网络条件进行码率自适应。为满足用户在直播�
 
 该版本梳理了用户在音频采集到播放过程中可能会需要调整音量的场景，及各场景对应的 API，供用户参考使用。详见官网文档[调整通话音量](./volume_android)。
 
+
 #### 改进
 
 ##### 1. 提供更透明的质量数据统计
 
 为提升质量透明的用户体验，该版本废弃了原有的 `onAudioQuality` 回调，并新增 `onRemoteAudioStats` 回调进行取代。和原来的接口相比，新接口使用更为综合的算法，通过引入音频丢帧率、端到端的音频延迟、接收端网络抖动的缓冲延迟等参数，使回调结果更贴近用户感受。同时，该版本优化了 `onNetworkQuality` 的算法，对上下行网络质量采用不同的计算方法，使评分更精准。
 
-- [`onRemoteAudioStats`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54)：通话中远端音频流的统计信息回调。用于替换 `onAudioQuality`
+- [`onRemoteAudioStats`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a9eaf8021d6f0c97d056e400b50e02d54)：通话中远端音频流的统计信息回调。用于替换	`onAudioQuality`
 - [`onNetworkQuality`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a76be982389183c5fe3f6e4b03eaa3bd4)：通话中每个用户的网络上下行 Last mile 质量报告回调
 
 Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
@@ -1303,6 +1306,7 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 
 在新的接口下，SDK 共有 5 种连接状态：未连接、正在连接、已连接、正在重新建立连接和连接失败。当连接状态发生改变时，都会触发 `onConnectionStateChanged` 回调。当条件满足时，原有的 `onConnectionInterrupted` 和 `onConnectionBanned` 回调也会触发，但 Agora 不再推荐使用。
 
+
 ##### 3. 优化打分反馈机制
 
 为方便用户（开发者）收集最终用户（应用程序使用者）对使用应用进行通话或直播的反馈，该版本将 [`rate`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#ab7083355af531cc43d455024bd1f7662) 接口中的打分范围缩小为 1 - 5，减少最终用户的打分干扰。Agora 建议在应用程序中集成该接口，方便应用程序收集用户反馈。
@@ -1317,6 +1321,7 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 - 增加了重新检测耳机插入和蓝牙设备连接的代码
 - 降低了音频延时
 - 新增了对锤子手机摄像头的适配
+
 
 #### 问题修复
 
@@ -1367,7 +1372,7 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 
 #### 新增功能
 
-##### 关闭/重新开启本地语音功能
+#####  关闭/重新开启本地语音功能
 
 应用程序在加入频道时，语音功能是默认打开的。为满足用户只接收而不发送音频流的需求，该版本新增 `enableLocalAudio` 接口，方便应用程序在进入频道后关闭或重新开启本地语音功能。关闭本地语音功能后，应用程序会收到 `onMicrophoneEnabled` 回调，并停止采集本地音频流。该方法不影响接收和播放远端音频流。
 
@@ -1375,18 +1380,18 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 
 #### 改进
 
-- 提升了 SDK 与 Android 设备上视频编码器的适配度。
+* 提升了 SDK 与 Android 设备上视频编码器的适配度。
 
 #### 问题修复
 
-- 修复了直播场景下，多次上下麦后某些 Android 设备上偶现的崩溃问题。
-- 修复了切换前后摄像头过程中偶现的崩溃问题。
-- 修复了通信场景下，一对一通话过程中，一端关闭视频后再打开，另一端出图较慢的问题。
-- 修复了直播场景下，观众端因统计有误出现的延迟的问题。
-- 修复了某些 Android 设备上偶现的无法渲染视频的问题。
-- 修复了某些 Android 设备上偶现的视频卡顿的问题。
-- 修复了某些 Android 设备上偶现的退出频道时，如果频道内还有人在说话，会听到声音且声音破音的问题。
-- 修复了采集到的视频裸数据中，视频帧的时间戳不按帧更新的问题。
+* 修复了直播场景下，多次上下麦后某些 Android 设备上偶现的崩溃问题。
+* 修复了切换前后摄像头过程中偶现的崩溃问题。
+* 修复了通信场景下，一对一通话过程中，一端关闭视频后再打开，另一端出图较慢的问题。
+* 修复了直播场景下，观众端因统计有误出现的延迟的问题。
+* 修复了某些 Android 设备上偶现的无法渲染视频的问题。
+* 修复了某些 Android 设备上偶现的视频卡顿的问题。
+* 修复了某些 Android 设备上偶现的退出频道时，如果频道内还有人在说话，会听到声音且声音破音的问题。
+* 修复了采集到的视频裸数据中，视频帧的时间戳不按帧更新的问题。
 
 **2.3.0 版**
 
@@ -1396,29 +1401,29 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### 升级必看
 
-- 为满足场景中视频旋转的需要，提升自定义视频源画质，该版本引入 `setVideoEncoderConfiguration` 替换原 `setVideoProfile` 接口。 `setVideoProfile` 接口仍可用，但不再推荐。
+-   为满足场景中视频旋转的需要，提升自定义视频源画质，该版本引入 `setVideoEncoderConfiguration` 替换原 `setVideoProfile` 接口。 `setVideoProfile` 接口仍可用，但不再推荐。
 
-  - 直播场景下支持 Adaptive Mode，当发送端画面旋转时不再剪切画面，避免播放端画面出现“大头”或缩放模糊的现象。
+    -   直播场景下支持 Adaptive Mode，当发送端画面旋转时不再剪切画面，避免播放端画面出现“大头”或缩放模糊的现象。
 
-  - 自采集场景中，可以根据输入视频帧的宽和高，动态调整输出视频帧的宽和高，尽可能避免剪切，并提供更多的图像信息给到播放端。
+    -   自采集场景中，可以根据输入视频帧的宽和高，动态调整输出视频帧的宽和高，尽可能避免剪切，并提供更多的图像信息给到播放端。
 
-- 该版本中 LiveTranscoding Class 从 `io.agora.live `Package 移到了 `io.agora.rtc.live` Package。
+-   该版本中 LiveTranscoding Class 从 `io.agora.live `Package 移到了 `io.agora.rtc.live` Package。
 
-- 该版本修改了 API `constants.java` 中的拼写错误。
+-   该版本修改了 API `constants.java` 中的拼写错误。
 
-  - 修改前：
+    -   修改前：
 
-  ```
-  public static final int SOFEWARE_ENCODER = 1;
-  ```
+    ```
+    public static final int SOFEWARE_ENCODER = 1;
+    ```
 
-  - 修改后：
+    -   修改后：
 
-  ```
-  public static final int SOFTWARE_ENCODER = 1;
-  ```
+    ```
+    public static final int SOFTWARE_ENCODER = 1;
+    ```
 
-- 为更好地提升用户体验，Agora SDK 在 v2.1.0 版本中对动态密钥进行了升级。如果你当前使用的 SDK 是 v2.1.0 之前的版本，并希望升级到 v2.1.0 或更高版本，请务必参考 [动态密钥升级说明](./token_migration) 。
+-   为更好地提升用户体验，Agora SDK 在 v2.1.0 版本中对动态密钥进行了升级。如果你当前使用的 SDK 是 v2.1.0 之前的版本，并希望升级到 v2.1.0 或更高版本，请务必参考 [动态密钥升级说明](./token_migration) 。
 
 #### 新增功能
 
@@ -1446,113 +1451,113 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### 改进功能
 
-- 优化了一对一音视频的质量，在降低延时、防止卡顿方面提升明显。优化效果重点覆盖东南亚、南美、非洲和中东等地区
+-   优化了一对一音视频的质量，在降低延时、防止卡顿方面提升明显。优化效果重点覆盖东南亚、南美、非洲和中东等地区
 
-- 直播场景下，改善了音频编码器的效率，保证通话质量的同时节省用户流量
+-   直播场景下，改善了音频编码器的效率，保证通话质量的同时节省用户流量
 
-- 采用深度学习算法，改进了通话及直播中的音频质量
+-   采用深度学习算法，改进了通话及直播中的音频质量
 
 #### 问题修复
 
-- 修复了因视频编码问题引起的 Native 设备与 Web 端互通时，Web 端看不到 Native 端视频画面的问题
+-   修复了因视频编码问题引起的 Native 设备与 Web 端互通时，Web 端看不到 Native 端视频画面的问题
 
-- 修复了多人视频直播连麦场景下，SDK 内存异常增长的问题
+-   修复了多人视频直播连麦场景下，SDK 内存异常增长的问题
 
-- 修复了某些 Android 设备上偶现的崩溃的问题
+-   修复了某些 Android 设备上偶现的崩溃的问题
 
-- 修复了特定场景下某些设备上偶发的无法看到远端视图的问题
+-   修复了特定场景下某些设备上偶发的无法看到远端视图的问题
 
-- 修复了特定场景下部分 Android 设备上无法开启本地视频的问题
+-   修复了特定场景下部分 Android 设备上无法开启本地视频的问题
 
-- 修复了特定场景下偶现的视频重影的问题
+-   修复了特定场景下偶现的视频重影的问题
 
-- 修复了小米 8 上出现的本地预览黑屏、远端也看不到它的问题
+-   修复了小米 8 上出现的本地预览黑屏、远端也看不到它的问题
 
-- 修复了通信场景下，由小流切换到大流时，偶现的视频画面下方出现绿边的问题。
+-   修复了通信场景下，由小流切换到大流时，偶现的视频画面下方出现绿边的问题。
 
-- 修复了多平台互通时，一段时间后某些 Andorid 设备上偶现的崩溃问题。
+-   修复了多平台互通时，一段时间后某些 Andorid 设备上偶现的崩溃问题。
 
-- 修复了多人连麦场景下，主播频繁进出频道时，偶现的主播内存异常增长的问题
+-   修复了多人连麦场景下，主播频繁进出频道时，偶现的主播内存异常增长的问题
 
-- 修复了某些 Android 设备上偶现的黑屏的问题
+-   修复了某些 Android 设备上偶现的黑屏的问题
 
-- 修复了特定场景下偶现的主播加入频道、下麦再上麦后，远端用户听不到主播声音的问题
+-   修复了特定场景下偶现的主播加入频道、下麦再上麦后，远端用户听不到主播声音的问题
 
-- 修复了偶现的设置推流背景图无效的问题
+-   修复了偶现的设置推流背景图无效的问题
 
-- 修复了通信场景下，某些设备上偶现的视频画面长宽和设置的长宽颠倒的问题
+-   修复了通信场景下，某些设备上偶现的视频画面长宽和设置的长宽颠倒的问题
 
-- 修复了某些设备上偶现的开启视频模式加入频道后，调用 `destroy` 方法无响应的问题
+-   修复了某些设备上偶现的开启视频模式加入频道后，调用 `destroy` 方法无响应的问题
 
-- 修复了频道内其他用户频繁进出频道时，Android 设备上偶现的崩溃问题
+-   修复了频道内其他用户频繁进出频道时，Android 设备上偶现的崩溃问题
 
-- 修复了特定场景下某些 Android 设备上无法渲染远端视频，一直黑屏的问题
+-   修复了特定场景下某些 Android 设备上无法渲染远端视频，一直黑屏的问题
 
-- 修复了特定场景下偶现的直播观众无法调节频道内通话音量的问题
+-   修复了特定场景下偶现的直播观众无法调节频道内通话音量的问题
 
-- 修复了特定场景下某些 Android 设备上偶现的应用无响应的问题
+-   修复了特定场景下某些 Android 设备上偶现的应用无响应的问题
 
-- 修复了直播场景下，动态切换分辨率时，某些 Android 设备上偶现的崩溃的问题
+-   修复了直播场景下，动态切换分辨率时，某些 Android 设备上偶现的崩溃的问题
 
-- 修复了直播场景下，某些 Android 设备上出现的以观众身份加入频道，上麦后无法看到主播图像的问题
+-   修复了直播场景下，某些 Android 设备上出现的以观众身份加入频道，上麦后无法看到主播图像的问题
 
-- 修复了通信场景下，反复设置不同的视频编码属性进出频道后，某些 Android 设备上出现码率爬升不上的问题
+-   修复了通信场景下，反复设置不同的视频编码属性进出频道后，某些 Android 设备上出现码率爬升不上的问题
 
-- 修复了直播场景下，主播和观众频繁切换角色时，观众切主播后偶现的采集不到画面的问题
+-   修复了直播场景下，主播和观众频繁切换角色时，观众切主播后偶现的采集不到画面的问题
 
-- 修复了通信场景下，反复设置不同的视频编码属性进出频道后，某些 Android 设备上偶现的采集不到画面也不发流的问题
+-   修复了通信场景下，反复设置不同的视频编码属性进出频道后，某些 Android 设备上偶现的采集不到画面也不发流的问题
 
-- 修复了设置手动对焦位置并触发对焦时，某些设备上偶现的崩溃的问题
+-   修复了设置手动对焦位置并触发对焦时，某些设备上偶现的崩溃的问题
 
-- 修复了通信过程中，特定场景下某些 Android 设备上偶现的无法打开应用摄像头和系统摄像头的问题
+-   修复了通信过程中，特定场景下某些 Android 设备上偶现的无法打开应用摄像头和系统摄像头的问题
 
-- 修复了通信和直播场景下，某些 Android 设备上出现的加入频道一段时候后，视频卡住不再发流的问题
+-   修复了通信和直播场景下，某些 Android 设备上出现的加入频道一段时候后，视频卡住不再发流的问题
 
-- 修复了 2 人连麦过程中，一端播放背景音乐时将自己静音或关闭音频后，另一端闪退的问题
+-   修复了 2 人连麦过程中，一端播放背景音乐时将自己静音或关闭音频后，另一端闪退的问题
 
-- 修复了通信场景下，反复设置不同的视频编码属性后，无法进入频道的问题
+-   修复了通信场景下，反复设置不同的视频编码属性后，无法进入频道的问题
 
-- 修复了特定场景下，预加载音效时某些设备上偶现的崩溃问题
+-   修复了特定场景下，预加载音效时某些设备上偶现的崩溃问题
 
-- 修复了特定场景下，某些 Android 设备上无法输出小分辨率视频的问题
+-   修复了特定场景下，某些 Android 设备上无法输出小分辨率视频的问题
 
-- 修复了通信场景下，某些 Android 设备上偶现的服务端无法踢人的问题
+-   修复了通信场景下，某些 Android 设备上偶现的服务端无法踢人的问题
 
-- 修复了直播场景下，主播端编码与解码端渲染的分辨率不一致的问题
+-   修复了直播场景下，主播端编码与解码端渲染的分辨率不一致的问题
 
-- 修复了某些 Andoid 设备上偶现的无法打开硬件编码器的问题
+-   修复了某些 Andoid 设备上偶现的无法打开硬件编码器的问题
 
-- 修复了通信和直播场景下偶发的视频画面卡住的问题
+-   修复了通信和直播场景下偶发的视频画面卡住的问题
 
-- 修复了进入频道前暂停指定用户视频流后，某些设备上偶现的崩溃的问题
+-   修复了进入频道前暂停指定用户视频流后，某些设备上偶现的崩溃的问题
 
-- 修复了特定场景下，视频通话切到视频直播时，某些 Android 设备上出现的卡住的问题
+-   修复了特定场景下，视频通话切到视频直播时，某些 Android 设备上出现的卡住的问题
 
-- 修复了直播场景下，开关闪光灯时某些 Android 设备上出现崩溃的问题
+-   修复了直播场景下，开关闪光灯时某些 Android 设备上出现崩溃的问题
 
-- 修复了直播场景下，某些 Android 设备上出现的观众上麦后，主播接收不到上麦观众的音视频流的问题
+-   修复了直播场景下，某些 Android 设备上出现的观众上麦后，主播接收不到上麦观众的音视频流的问题
 
-- 修复了直播场景下，对某些外部视频源设置编码属性时，某些 Android 设备上出现的崩溃的问题
+-   修复了直播场景下，对某些外部视频源设置编码属性时，某些 Android 设备上出现的崩溃的问题
 
-- 修复了直播场景下，对某些外部视频源设置编码属性时，某些 Android 设备上出现的输出视频方向不正确的问题
+-   修复了直播场景下，对某些外部视频源设置编码属性时，某些 Android 设备上出现的输出视频方向不正确的问题
 
-- 修复了特定场景下，某些 Android 设备上偶发的设置弱网下视频自动回退为 Audio-only 不生效的问题
+-   修复了特定场景下，某些 Android 设备上偶发的设置弱网下视频自动回退为 Audio-only 不生效的问题
 
-- 修复了偶现的频繁切换 Token 时，某些 Android 设备上偶现的崩溃的问题
+-   修复了偶现的频繁切换 Token 时，某些 Android 设备上偶现的崩溃的问题
 
-- 修复了特定场景下，某些 Android 设备上出现的分屏异常的问题
+-   修复了特定场景下，某些 Android 设备上出现的分屏异常的问题
 
-- 修复了直播场景下，旁路推流时部分 Android 设备上偶现的旁路观众看不到拉流画面的问题
+-   修复了直播场景下，旁路推流时部分 Android 设备上偶现的旁路观众看不到拉流画面的问题
 
-- 修复了直播场景下，由连麦切换回单主播时偶现的画面卡顿的问题
+-   修复了直播场景下，由连麦切换回单主播时偶现的画面卡顿的问题
 
-- 修复了特殊场景下偶现的 SIP 设备和 SDK 视频不互通的问题
+-   修复了特殊场景下偶现的 SIP 设备和 SDK 视频不互通的问题
 
-- 修复了某些 Android 设备上偶现的无法看到对方的问题
+-   修复了某些 Android 设备上偶现的无法看到对方的问题
 
-- 修复了部分 Android 设备上偶现的视频延迟的问题
+-   修复了部分 Android 设备上偶现的视频延迟的问题
 
-- 修复了特定场景下某些 Android 设备上出现的传视频过程中出现的崩溃的问题
+-   修复了特定场景下某些 Android 设备上出现的传视频过程中出现的崩溃的问题
 
 #### API 整理
 
@@ -1560,31 +1565,34 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 为避免在直播转码推流中添加多个相同 User，以下接口在 v2.3.0 版本中进行删除，并将 `addUser` 返回类型由 void 变更为 int。
 
-- setUser
+-   setUser
+
 
 以下接口与录制相关，在 v2.3.0 版本后不再支持。Agora 提供专门的 Recording SDK 用于更好的录制服务，详见 [Agora Recording SDK 发版说明](https://docs.agora.io/cn/Recording/release_recording?platform=Linux)。
 
-- `startRecordingService`
+-   `startRecordingService`
 
-- `stopRecordingService`
+-   `stopRecordingService`
 
-- `refreshRecordingServiceStatus`
+-   `refreshRecordingServiceStatus`
 
-- `onRefreshRecordingServiceStatus`
+-   `onRefreshRecordingServiceStatus`
+
 
 以下接口长期处于弃用状态，现进行删除，v2.3.0 版本后不再支持：
 
-- `monitorConnectionEvent`
+-   `monitorConnectionEvent`
 
-- `monitorBluetoothHeadsetEvent`
+-   `monitorBluetoothHeadsetEvent`
 
-- `monitorHeadsetEvent`
+-   `monitorHeadsetEvent`
 
-- `setPreferHeadset`
+-   `setPreferHeadset`
 
-- `switchView`
+-   `switchView`
 
-- `setSpeakerphoneVolume`
+-   `setSpeakerphoneVolume`
+
 
 **2.2.3 版**
 
@@ -1596,25 +1604,25 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### 问题修复
 
-- 修复了特定场景下偶发的线上统计崩溃的问题。
+-   修复了特定场景下偶发的线上统计崩溃的问题。
 
-- 修复了直播时部分设备上主播声音变音的问题。
+-   修复了直播时部分设备上主播声音变音的问题。
 
-- 修复了直播时特定场景下偶发的崩溃的问题。
+-   修复了直播时特定场景下偶发的崩溃的问题。
 
-- 修复了多人直播连麦时，SDK 内存增长的问题。
+-   修复了多人直播连麦时，SDK 内存增长的问题。
 
-- 修复了部分设备上偶发的离开频道后，收到 `onLeaveChannel` 回调偏慢的问题。
+-   修复了部分设备上偶发的离开频道后，收到 `onLeaveChannel` 回调偏慢的问题。
 
-- 修复了偶发的无法正常反馈频道内谁在说话以及说话者音量的问题。
+-   修复了偶发的无法正常反馈频道内谁在说话以及说话者音量的问题。
 
-- 修复了直播时偶发的观众听到主播声忽大忽小的问题。
+-   修复了直播时偶发的观众听到主播声忽大忽小的问题。
 
-- 修复了直播时部分设备上偶发的视频卡住的问题。
+-   修复了直播时部分设备上偶发的视频卡住的问题。
 
-- 修复了部分设备上偶发的关闭摄像头结束通话时，程序界面无响应的问题。
+-   修复了部分设备上偶发的关闭摄像头结束通话时，程序界面无响应的问题。
 
-- 修复了特定场景下偶发的视频窗口尺寸变化后，视频卡住的问题。
+-   修复了特定场景下偶发的视频窗口尺寸变化后，视频卡住的问题。
 
 **2.2.2 版**
 
@@ -1636,13 +1644,14 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### 问题修复
 
-- 修复了部分设备上偶现的游戏过程中 Crash 的问题。
+-   修复了部分设备上偶现的游戏过程中 Crash 的问题。
 
-- 修复了部分设备上无法获取声道指针的问题。
+-   修复了部分设备上无法获取声道指针的问题。
 
-- 修复了部分设备上偶现的 Crash 问题。
+-   修复了部分设备上偶现的 Crash 问题。
 
-- 修复了部分设备上插入耳机后无法调节音量的问题。
+-   修复了部分设备上插入耳机后无法调节音量的问题。
+
 
 **2.2.0 版**
 
@@ -1692,9 +1701,10 @@ Agora SDK 在 v2.3.0 版本中，全面提升了视频功能的稳定性及可�
 
 #### 问题修复
 
-- 修复了大量用户同时直播连麦时，偶发的抖屏现象
+-   修复了大量用户同时直播连麦时，偶发的抖屏现象
 
-- 修复了某些 App 在直播过程中退到后台后，旁路推流显示异常的问题
+-   修复了某些 App 在直播过程中退到后台后，旁路推流显示异常的问题
+
 
 **2.1.3 版**
 
@@ -1754,9 +1764,11 @@ SDK 升级至 2.1.2 的直播场景后，相同分辨率下，视频更清晰，
 
 新增 RESTful API 查询用户在频道中的状态信息，查询指定频道内的分角色用户列表，查询厂商频道列表，查询用户是否为连麦用户等。详见[控制台 RESTful API](console_overview)。
 
+
 ##### 4. 17 人视频
 
 在直播场景下，同一频道内支持 17 位主播同时进行视频直播和连麦，详见[七人以上视频通话](./multi_user_video_android)。
+
 
 ##### 5. 自定义视频源
 
@@ -1814,13 +1826,14 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### 问题修复
 
-- 修复了华为 Nexus 6p 播放杂音的问题。
+-   修复了华为 Nexus 6p 播放杂音的问题。
 
-- 修复了一加手机上的破音问题。
+-   修复了一加手机上的破音问题。
 
-- 修复了自采集声音不正常问题。
+-   修复了自采集声音不正常问题。
 
-- 修复了偶现的崩溃问题。
+-   修复了偶现的崩溃问题。
+
 
 **2.0.2 版**
 
@@ -1836,74 +1849,77 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### 新增功能
 
-- 通信场景支持视频大小流功能，新增 API `setRemoteVideoStreamType` 和 `enableDualStreamMode`
+-   通信场景支持视频大小流功能，新增 API `setRemoteVideoStreamType` 和 `enableDualStreamMode`
 
-- 通信和直播场景下支持摄像头管理功能，新增以下 API:
+-   通信和直播场景下支持摄像头管理功能，新增以下 API:
 
-      <table>
+    <table>
+<colgroup>
+<col/>
+<col/>
+</colgroup>
+<tbody>
+<tr><td><strong>名称</strong></td>
+<td><strong>描述</strong></td>
+</tr>
+<tr><td><code>isCameraZoomSupported</code></td>
+<td>检测设备是否支持相机缩放功能</td>
+</tr>
+<tr><td><code>isCameraTorchSupported</code></td>
+<td>检测设备是否支持闪光灯常开</td>
+</tr>
+<tr><td><code>isCameraFocusSupported</code></td>
+<td>检测设备是否支持手动对焦功能</td>
+</tr>
+<tr><td><code>isCameraAutoFocusFaceModeSupported</code></td>
+<td>检测设备是否支持人脸对焦功能</td>
+</tr>
+<tr><td><code>setCameraZoomFactor</code></td>
+<td>设置相机缩放因子</td>
+</tr>
+<tr><td><code>getCameraMaxZoomFactor</code></td>
+<td>获取相机支持最大缩放比例</td>
+</tr>
+<tr><td><code>setCameraFocusPositionInPreview</code></td>
+<td>设置手动对焦位置，并触发对焦</td>
+</tr>
+<tr><td><code>setCameraTorchOn</code></td>
+<td>设置是否打开闪光灯</td>
+</tr>
+<tr><td><code>setCameraAutoFocusFaceModeEnabled</code></td>
+<td>设置是否开启人脸对焦功能</td>
+</tr>
+</tbody>
+</table>
 
-  <colgroup>
-  <col/>
-  <col/>
-  </colgroup>
-  <tbody>
-  <tr><td><strong>名称</strong></td>
-  <td><strong>描述</strong></td>
-  </tr>
-  <tr><td><code>isCameraZoomSupported</code></td>
-  <td>检测设备是否支持相机缩放功能</td>
-  </tr>
-  <tr><td><code>isCameraTorchSupported</code></td>
-  <td>检测设备是否支持闪光灯常开</td>
-  </tr>
-  <tr><td><code>isCameraFocusSupported</code></td>
-  <td>检测设备是否支持手动对焦功能</td>
-  </tr>
-  <tr><td><code>isCameraAutoFocusFaceModeSupported</code></td>
-  <td>检测设备是否支持人脸对焦功能</td>
-  </tr>
-  <tr><td><code>setCameraZoomFactor</code></td>
-  <td>设置相机缩放因子</td>
-  </tr>
-  <tr><td><code>getCameraMaxZoomFactor</code></td>
-  <td>获取相机支持最大缩放比例</td>
-  </tr>
-  <tr><td><code>setCameraFocusPositionInPreview</code></td>
-  <td>设置手动对焦位置，并触发对焦</td>
-  </tr>
-  <tr><td><code>setCameraTorchOn</code></td>
-  <td>设置是否打开闪光灯</td>
-  </tr>
-  <tr><td><code>setCameraAutoFocusFaceModeEnabled</code></td>
-  <td>设置是否开启人脸对焦功能</td>
-  </tr>
-  </tbody>
-  </table>
 
-- 通信和直播场景下支持音频自采集功能，新增以下 API:
 
-      <table>
+-   通信和直播场景下支持音频自采集功能，新增以下 API:
 
-  <colgroup>
-  <col/>
-  <col/>
-  </colgroup>
-  <tbody>
-  <tr><td><strong>名称</strong></td>
-  <td><strong>描述</strong></td>
-  </tr>
-  <tr><td><code>setExternalAudioSource</code></td>
-  <td>设置外部音频采集参数: 采样率，通道数等</td>
-  </tr>
-  <tr><td><code>pushExternalAudioFrame</code></td>
-  <td>推送外部音频帧</td>
-  </tr>
-  </tbody>
-  </table>
+    <table>
+<colgroup>
+<col/>
+<col/>
+</colgroup>
+<tbody>
+<tr><td><strong>名称</strong></td>
+<td><strong>描述</strong></td>
+</tr>
+<tr><td><code>setExternalAudioSource</code></td>
+<td>设置外部音频采集参数: 采样率，通道数等</td>
+</tr>
+<tr><td><code>pushExternalAudioFrame</code></td>
+<td>推送外部音频帧</td>
+</tr>
+</tbody>
+</table>
 
-- 通信和直播场景下支持服务端踢人功能。
 
-- 新增以下 Android 模拟器支持: 夜神、雷电、逍遥。
+
+-   通信和直播场景下支持服务端踢人功能。
+
+-   新增以下 Android 模拟器支持: 夜神、雷电、逍遥。
+
 
 #### 改进
 
@@ -1911,9 +1927,10 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### 问题修复
 
-- 修复了音频路由和蓝牙相关的若干问题。
+-   修复了音频路由和蓝牙相关的若干问题。
 
-- 优化了音量均衡控制。
+-   优化了音量均衡控制。
+
 
 **1.14 版**
 
@@ -1921,29 +1938,31 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### 新增功能
 
-- 新增 API `setAudioProfile 设`置音频参数和应用场景。
+-   新增 API `setAudioProfile 设`置音频参数和应用场景。
 
-- 新增 API `setLocalVoicePitch` 提供基础变声功能。
+-   新增 API `setLocalVoicePitch` 提供基础变声功能。
 
-- 直播场景: 新增 API `setInEarMonitoringVolume`提供调节耳返音量功能。
+-   直播场景: 新增 API `setInEarMonitoringVolume`提供调节耳返音量功能。
+
 
 #### 改进
 
-- 优化了在高码率下的音频体验。
+-   优化了在高码率下的音频体验。
 
-- 秒开: 直播场景下，单流模式时观众加入频道 1 秒内看见主播图像 (均值为 226 ms, 网络状态良好时可达 204 ms)。
+-   秒开: 直播场景下，单流模式时观众加入频道 1 秒内看见主播图像 (均值为 226 ms, 网络状态良好时可达 204 ms)。
 
-- 节省带宽:
+-   节省带宽:
 
-  - 1.14 以前: 如果你选择不听某人的音频或不看某人的视频，音视频流会照发。
+    -   1.14 以前: 如果你选择不听某人的音频或不看某人的视频，音视频流会照发。
 
-  - 1.14 开始: 如果你选择不听或不看某人的流，则不会下发，从而节省带宽。
+    -   1.14 开始: 如果你选择不听或不看某人的流，则不会下发，从而节省带宽。
 
-- 精准的码率控制:
+-   精准的码率控制:
 
-  - 1.14 以前: 码率控制不够精准，上下波动幅度较大。波动过大容易造成网络拥塞，增加丢包、丢帧的概率，影响了带宽估计模块的精度，特别是在弱网低码率情况下尤为明显。
+    -   1.14 以前: 码率控制不够精准，上下波动幅度较大。波动过大容易造成网络拥塞，增加丢包、丢帧的概率，影响了带宽估计模块的精度，特别是在弱网低码率情况下尤为明显。
 
-  - 1.14 开始: 精准的码率控制，要多少给多少，不多给也不少给，避免波动过大造成的网络拥塞，减少传输延时，有助于减少网络卡顿。
+    -   1.14 开始: 精准的码率控制，要多少给多少，不多给也不少给，避免波动过大造成的网络拥塞，减少传输延时，有助于减少网络卡顿。
+
 
 #### 问题修复
 
@@ -1963,19 +1982,21 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### 新增功能
 
-- 新增 API `onClientRoleChanged` 用于提醒直播场景下主播、观众上下麦的回调。
+-   新增 API `onClientRoleChanged` 用于提醒直播场景下主播、观众上下麦的回调。
 
-- 新增功能 Android 模拟器。
+-   新增功能 Android 模拟器。
 
-- 新增单独关闭语音播放的功能。
+-   新增单独关闭语音播放的功能。
 
-- 新增功能支持服务端推流失败回调。
+-   新增功能支持服务端推流失败回调。
+
 
 #### 改进
 
-- 软编情况下，视频属性可控。
+-   软编情况下，视频属性可控。
 
-- 可以在客户端设置推流的 Profile。
+-   可以在客户端设置推流的 Profile。
+
 
 #### 修复问题
 
@@ -1987,24 +2008,26 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### 新增功能
 
-- 在 API 方法 `setEncryptionMode`里新增了加密模式 `aes-128-ecb`。
+-   在 API 方法 `setEncryptionMode`里新增了加密模式 `aes-128-ecb`。
 
-- 在 API 方法 `startAudioRecording` 里新增了参数 `quality` 用于设置录音音质。
+-   在 API 方法 `startAudioRecording` 里新增了参数 `quality` 用于设置录音音质。
 
-- 新增了一系列 API 管理音效。
+-   新增了一系列 API 管理音效。
 
-- 直播场景下， 新增了 API 方法 `injectStream`在当前频道内插入一条 RTMP 流。该功能目前为 beta 版。
+-   直播场景下， 新增了 API 方法 `injectStream`在当前频道内插入一条 RTMP 流。该功能目前为 beta 版。
+
 
 #### 改进
 
 通信场景下针对 320 x 180 分辨率提供了以下改进方案:
 
-- 网络和设备状态较差的情况下仍能保证画质流畅度。
+-   网络和设备状态较差的情况下仍能保证画质流畅度。
 
-- 网络和设备状态良好的情况下可以做到比 180P 更好的画质清晰度。
+-   网络和设备状态良好的情况下可以做到比 180P 更好的画质清晰度。
+
 
 #### 修复问题
 
-- 修复了部分机型上蓝牙相关的语音路由问题。
+-   修复了部分机型上蓝牙相关的语音路由问题。
 
-- 修复了部分机型上偶现的崩溃问题。
+-   修复了部分机型上偶现的崩溃问题。

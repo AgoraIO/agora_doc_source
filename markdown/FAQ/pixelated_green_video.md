@@ -1,10 +1,9 @@
 ---
 title: 为什么我的视频会出现花屏或绿屏？
-platform: ["Android", "iOS", "macOS", "Windows", "Unity", "Electron", "React Native", "Flutter"]
+platform: ["Android","iOS","macOS","Windows","Unity","Electron","React Native","Flutter"]
 updatedAt: 2020-07-06 15:19:36
-Products: ["Video", "Interactive Broadcast"]
+Products: ["Video","Interactive Broadcast"]
 ---
-
 花屏指视频画面中出现颜色错误的不规则像素块，导致视频无法正常显示。
 
 <div class="alert note">花屏与视频模糊不同。视频模糊一般由于分辨率或码率过低导致。在模糊的视频中画面依然是完整的。</div>
@@ -24,10 +23,10 @@ Products: ["Video", "Interactive Broadcast"]
    2. 检查第三方美颜 SDK。如果你使用了第三方美颜 SDK，尝试关闭美颜功能并检查是否花屏。如果花屏现象消失，那么可能是第三方美颜 SDK 的问题，请联系第三方美颜 SDK 的技术支持。
    3. 检查视频分辨率是否是 Agora [推荐的分辨率](https://docs.agora.io/cn/Voice/API%20Reference/cpp/structagora_1_1rtc_1_1_video_encoder_configuration.html#af10ca07d888e2f33b34feb431300da69)。如果不是，尝试改变视频分辨率。
 2. 排查采集和渲染模块的问题：
-   1. 如果发送端使用自采集、自渲染，你需要自行排查自采集模块的问题。如果自采集模块没有问题，再自行排查自渲染模块的问题。你可以参考 Agora 提供的[自采集](https://github.com/AgoraIO/Advanced-Video/blob/dev/backup/Custom-Media-Device/Agora-Custom-Media-Device-Android/README.zh.md)和[自渲染](https://github.com/AgoraIO/Advanced-Video/tree/master/Android/sample-custom-render)的示例项目。
-   2. 如果发送端使用自采集、Agora RTC SDK 渲染，你需要自行排查自采集模块的问题。你可以参考 Agora 提供的[自采集](https://github.com/AgoraIO/Advanced-Video/blob/dev/backup/Custom-Media-Device/Agora-Custom-Media-Device-Android/README.zh.md)的示例项目。
-   3. 如果发送端使用 Agora RTC SDK 采集、自渲染，你需要自行排查自渲染模块的问题。你可以参考 Agora 提供的[自渲染](https://github.com/AgoraIO/Advanced-Video/tree/master/Android/sample-custom-render)的示例项目。
-   4. 如果发送端使用 Agora RTC SDK 采集、Agora RTC SDK 渲染，请[提交工单](https://agora-ticket.agora.io/)联系 Agora 技术支持。
+    1. 如果发送端使用自采集、自渲染，你需要自行排查自采集模块的问题。如果自采集模块没有问题，再自行排查自渲染模块的问题。你可以参考 Agora 提供的[自采集](https://github.com/AgoraIO/Advanced-Video/blob/dev/backup/Custom-Media-Device/Agora-Custom-Media-Device-Android/README.zh.md)和[自渲染](https://github.com/AgoraIO/Advanced-Video/tree/master/Android/sample-custom-render)的示例项目。
+    2. 如果发送端使用自采集、Agora RTC SDK 渲染，你需要自行排查自采集模块的问题。你可以参考 Agora 提供的[自采集](https://github.com/AgoraIO/Advanced-Video/blob/dev/backup/Custom-Media-Device/Agora-Custom-Media-Device-Android/README.zh.md)的示例项目。
+    3. 如果发送端使用 Agora RTC SDK 采集、自渲染，你需要自行排查自渲染模块的问题。你可以参考 Agora 提供的[自渲染](https://github.com/AgoraIO/Advanced-Video/tree/master/Android/sample-custom-render)的示例项目。
+    4. 如果发送端使用 Agora RTC SDK 采集、Agora RTC SDK 渲染，请[提交工单](https://agora-ticket.agora.io/)联系 Agora 技术支持。
 
 <div class="alert note">发送端使用 YUV 数据自渲染时，检查 <code><a href="/cn/Interactive%20Broadcast/API%20Reference/cpp/structagora_1_1media_1_1_i_video_frame_observer_1_1_video_frame.html">VideoFrame</a></code> 中 <code>Stride</code> 参数和 <code>width</code> 参数的使用是否混淆。</div>
 
@@ -73,6 +72,7 @@ Products: ["Video", "Interactive Broadcast"]
 ## 联系技术支持
 
 如果上述的自查无法帮助你解决问题，请[提交工单](https://agora-ticket.agora.io/)联系 Agora 技术支持。为了更好地帮助您快速解决问题，请提供以下信息。
+
 
 ### 必要信息
 

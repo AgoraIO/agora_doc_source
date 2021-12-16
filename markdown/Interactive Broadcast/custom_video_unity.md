@@ -3,7 +3,6 @@ title: 自定义视频采集和渲染
 platform: Unity
 updatedAt: 2020-07-20 11:57:54
 ---
-
 ## 功能简介
 
 实时视频传输过程中，Agora Unity SDK 通常会启动默认的视频模块进行采集和渲染。在以下场景中，你可能会发现默认的视频模块无法满足开发需求：
@@ -29,24 +28,24 @@ updatedAt: 2020-07-20 11:57:54
 
 1. 在 `JoinChannelByKey` 前通过调用 `SetExternalVideoSource` 指定外部视频采集。
 
-   ```C#
-   mRtcEngine.SetExternalVideoSource(true, false);
-   ```
+      ```C#
+	 mRtcEngine.SetExternalVideoSource(true, false);
+	 ```
 
 2. 定义 Texture2D，用 Texture2D 读取屏幕像素，作为外部视频源。
 
    ```C#
-    mRect = new Rect(0, 0, Screen.width, Screen.height);
+ 	 mRect = new Rect(0, 0, Screen.width, Screen.height);
    mTexture = new Texture2D((int)mRect.width, (int)mRect.height, TextureFormat.RGBA32, false);
    mTexture.ReadPixels(mRect, 0, 0);
    mTexture.Apply();
-   ```
+	 ```
 
 3. 通过 `PushVideoFrame` 发送给 SDK，实现屏幕共享。
 
    ```C#
-    int a = rtc.PushVideoFrame(externalVideoFrame);
-   ```
+	 int a = rtc.PushVideoFrame(externalVideoFrame);
+	 ```
 
 ### API 调用时序
 
@@ -58,7 +57,7 @@ updatedAt: 2020-07-20 11:57:54
 
 参考下文代码在你的项目中自定义视频采集，例如实现屏幕共享。
 
-````C#
+```C#
 ```C#
 using System.Collections;
 using System.Collections.Generic;
@@ -146,7 +145,7 @@ int a = rtc.PushVideoFrame(externalVideoFrame);
 }
 }
 }
-````
+```
 
 ### API 参考
 

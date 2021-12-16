@@ -3,7 +3,6 @@ title: 媒体流加密
 platform: iOS
 updatedAt: 2021-02-20 10:42:49
 ---
-
 ## 功能描述
 
 在实时音视频互动过程中，开发者需要对媒体流加密，从而保障用户的数据安全。Agora 提供内置加密方案和自定义加密方案，区别如下：
@@ -65,17 +64,18 @@ iOS SDK 包中有一个独立的动态加密库 `AgoraRtcCryptoLoader.framework`
 	 <div class="alert warning">根据 Apple 官方要求，app 的 <b>Extension</b> 不允许包含动态库。如果工程中的 <b>Extension</b> 需要集成 SDK，则集成动态库时需将文件状态改为 <b>Do Not Embed</b>。 </div>
 </details>
 
+
 2. 在项目中导入 `AgoraRtcCryptoLoader` 类：
 
-```swift
-// Swift
+ ```swift
+// Swift 
 import AgoraRtcCryptoLoader
-```
+ ```
 
-```objective-c
+ ```objective-c
 // Objective-C
 #import <AgoraRtcCryptoLoader/AgoraRtcCryptoLoader.h>
-```
+ ```
 
 **2. 开启内置加密**
 
@@ -147,7 +147,7 @@ Agora 提供 C++ 的 `registerPacketObserver` 方法及 `IPacketObserver` 类，
             // 加密数据包
             const unsigned char* p = packet.buffer;
             const unsigned char* pe = packet.buffer+packet.size;
-
+    
             for (i = 0; p < pe && i < m_txAudioBuffer.size(); ++p, ++i)
             {
                 m_txAudioBuffer[i] = *p ^ 0x55;
@@ -157,7 +157,7 @@ Agora 提供 C++ 的 `registerPacketObserver` 方法及 `IPacketObserver` 类，
             packet.size = i;
             return true;
         }
-
+    
         virtual bool onSendVideoPacket(Packet& packet) {
             int i;
             // 加密数据包
@@ -172,7 +172,7 @@ Agora 提供 C++ 的 `registerPacketObserver` 方法及 `IPacketObserver` 类，
             packet.size = i;
             return true;
         }
-
+    
         virtual bool onReceiveAudioPacket(Packet& packet) {
             int i = 0;
             // 解密数据包
@@ -187,13 +187,13 @@ Agora 提供 C++ 的 `registerPacketObserver` 方法及 `IPacketObserver` 类，
             packet.size = i;
             return true;
         }
-
+    
         virtual bool onReceiveVideoPacket(Packet& packet) {
             int i = 0;
             // 解密数据包
             const unsigned char* p = packet.buffer;
             const unsigned char* pe = packet.buffer+packet.size;
-
+    
             for (i = 0; p < pe && i < m_rxVideoBuffer.size(); ++p, ++i)
             {
                 m_rxVideoBuffer[i] = *p ^ 0x55;
@@ -203,7 +203,7 @@ Agora 提供 C++ 的 `registerPacketObserver` 方法及 `IPacketObserver` 类，
             packet.size = i;
             return true;
         }
-
+    
     private:
         // 发送音频数据 buffer
         std::vector<unsigned char> m_txAudioBuffer;

@@ -3,7 +3,6 @@ title: 自定义音频采集和渲染
 platform: iOS
 updatedAt: 2021-01-21 03:45:10
 ---
-
 ## 功能介绍
 
 实时音频传输过程中，Agora SDK 通常会启动默认的音频模块进行采集和渲染。在以下场景中，你可能会发现默认的音频模块无法满足开发需求：
@@ -20,13 +19,14 @@ Agora 在 GitHub 提供了一个开源的 [API-Examples](https://github.com/Agor
 
 下表列出示例项目中主要的代码文件：
 
-| 文件                                                                                                                                                      | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [CustomAudioSource.swift](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Examples/Advanced/CustomAudioSource/CustomAudioSource.swift) | 自定义音频采集功能的示例，相关的主要方法如下：<ul><li>`setExternalAudioWithAgoraKit`: 设置自定义音频。</li><li>`enableExternalAudioSourceWithSampleRate`: 开启自定义音频采集。</li><li>`joinChannelWithToken`: 加入频道。</li><li>`willMove`: 停止自定义音频采集并离开频道。</li></ul>                                                                                                                                                                          |
-| [CustomAudioRender.swift](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Examples/Advanced/CustomAudioRender/CustomAudioRender.swift) | 自定义音频渲染功能的示例，相关的主要方法如下：<ul><li>`setupExternalAudioWithAgoraKit`: 设置自定义音频。</li><li>`setParameters`: 关闭 SDK 的音频渲染。</li><li>`joinChannelWithToken`: 加入频道。</li><li>`willMove`: 停止自定义音频渲染并离开频道。</li></ul>                                                                                                                                                                                                 |
-| [AudioController.h](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Common/ExternalAudio/AudioController.h)                            | 定义 `AudioControllerDelegate` 类。实现这个类后，app 会在接收到采集或者待渲染的音频数据时，触发相关回调。                                                                                                                                                                                                                                                                                                                                                       |
-| [AudioController.m](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Common/ExternalAudio/AudioController.m)                            | 实现了 AudioController.h 文件中的类和方法。                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| [ExternalAudio.mm](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Common/ExternalAudio/ExternalAudio.mm)                              | 包含设置自定义音频采集和渲染的具体实现，并在接收到采集的音频数据后，将音频数据推送给 SDK：<ul><li>`setupExternalAudioWithAgoraKit`: 设置自定义音频。该方法用于设置自定义音频的采样率、声道数、音频的采集渲染模式（自定义或者 SDK）。</li><li>`didCaptureData`: 接收到采集的音频数据。在该回调中调用 `pushExternalAudioFrameRawData` 将音频数据推送给 SDK。</li><li>`didRenderData`: 接收到待渲染的音频数据。在该回调中调用 `readAudioData` 进行渲染。</li></ul> |
+| 文件 | 描述 |
+| ---------------- | ---------------- |
+| [CustomAudioSource.swift](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Examples/Advanced/CustomAudioSource/CustomAudioSource.swift)      | 自定义音频采集功能的示例，相关的主要方法如下：<ul><li>`setExternalAudioWithAgoraKit`: 设置自定义音频。</li><li>`enableExternalAudioSourceWithSampleRate`: 开启自定义音频采集。</li><li>`joinChannelWithToken`: 加入频道。</li><li>`willMove`: 停止自定义音频采集并离开频道。</li></ul>      |
+| [CustomAudioRender.swift](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Examples/Advanced/CustomAudioRender/CustomAudioRender.swift) | 自定义音频渲染功能的示例，相关的主要方法如下：<ul><li>`setupExternalAudioWithAgoraKit`: 设置自定义音频。</li><li>`setParameters`: 关闭 SDK 的音频渲染。</li><li>`joinChannelWithToken`: 加入频道。</li><li>`willMove`: 停止自定义音频渲染并离开频道。</li></ul>  |
+| [AudioController.h](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Common/ExternalAudio/AudioController.h)  | 定义 `AudioControllerDelegate` 类。实现这个类后，app 会在接收到采集或者待渲染的音频数据时，触发相关回调。|
+| [AudioController.m](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Common/ExternalAudio/AudioController.m) | 实现了 AudioController.h 文件中的类和方法。 |
+| [ExternalAudio.mm](https://github.com/AgoraIO/API-Examples/blob/master/iOS/APIExample/Common/ExternalAudio/ExternalAudio.mm)  | 包含设置自定义音频采集和渲染的具体实现，并在接收到采集的音频数据后，将音频数据推送给 SDK：<ul><li>`setupExternalAudioWithAgoraKit`: 设置自定义音频。该方法用于设置自定义音频的采样率、声道数、音频的采集渲染模式（自定义或者 SDK）。</li><li>`didCaptureData`: 接收到采集的音频数据。在该回调中调用 `pushExternalAudioFrameRawData` 将音频数据推送给 SDK。</li><li>`didRenderData`: 接收到待渲染的音频数据。在该回调中调用 `readAudioData` 进行渲染。</li></ul> |
+
 
 ## 自定义音频采集
 
@@ -78,11 +78,11 @@ agoraKit.enableExternalAudioSource(withSampleRate: sampleRate, channelsPerFrame:
 let result = agoraKit.joinChannel(byToken: nil, channelId: channelName, info: nil, uid: 0) {[unowned self] (channel, uid, elapsed) -> Void in
         self.isJoined = true
         LogUtils.log(message: "Join \(channel) with uid \(uid) elapsed \(elapsed)ms", level: .info)
-
+         
         // 调用 startWork 方法开启音频采集
         self.exAudio.startWork()
         try? AVAudioSession.sharedInstance().setPreferredSampleRate(Double(sampleRate))
-
+             
     }
     if result != 0 {
         // 常见的报错原因是填入的参数无效
@@ -103,7 +103,7 @@ let result = agoraKit.joinChannel(byToken: nil, channelId: channelName, info: ni
     if (self.audioCRMode != AudioCRModeExterCaptureSDKRender) {
         // 调用 SDK 的 pushExternalAudioFrameRawData 方法推送采集到的数据给 SDK
         [self.agoraKit pushExternalAudioFrameRawData:data samples:bytesLength / 2 timestamp:0];
-    }
+    } 
 }
 ```
 
@@ -170,22 +170,22 @@ API 调用时序如下图所示：
 ```swift
 // 定义一个 setupExternalAudioWithAgoraKit 方法来设置自定义音频。
 - (void)setupExternalAudioWithAgoraKit:(AgoraRtcEngineKit *)agoraKit sampleRate:(uint)sampleRate channels:(uint)channels audioCRMode:(AudioCRMode)audioCRMode IOType:(IOUnitType)ioType {
-
+   
   // 实现一个 AudioController 类。在合适的时候触发回调
   self.audioController = [AudioController audioController];
   self.audioController.delegate = self;
-
+   
     // 调用 C++ 的方法，注册音频帧观测器
     agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)agoraKit.getNativeHandle;
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
-    mediaEngine.queryInterface(rtc_engine, agora::AGORA_IID_MEDIA_ENGINE);
-
+    mediaEngine.queryInterface(rtc_engine, agora::AGORA_IID_MEDIA_ENGINE); 
+ 
     if (mediaEngine) {
         s_audioFrameObserver = new ExternalAudioFrameObserver();
         s_audioFrameObserver -> sampleRate = sampleRate;
         s_audioFrameObserver -> sampleRate_play = channels;
         mediaEngine->registerAudioFrameObserver(s_audioFrameObserver);
-    }
+    }   
 }
 ```
 
@@ -223,10 +223,10 @@ virtual bool onPlaybackAudioFrame(AudioFrame& audioFrame) override
 let result = agoraKit.joinChannel(byToken: nil, channelId: channelName, info: nil, uid: 0) {[unowned self] (channel, uid, elapsed) -> Void in
         self.isJoined = true
         LogUtils.log(message: "Join \(channel) with uid \(uid) elapsed \(elapsed)ms", level: .info)
-
+         
         // 调用 startWork 方法开启音频渲染
         self.exAudio.startWork()
-
+             
     }
     if result != 0 {
         // 常见的报错原因是填入的参数无效
@@ -243,7 +243,7 @@ let result = agoraKit.joinChannel(byToken: nil, channelId: channelName, info: ni
     [self.audioController stopWork];
     [self cancelRegister];
 }
-
+ 
 - (void)cancelRegister {
     agora::rtc::IRtcEngine* rtc_engine = (agora::rtc::IRtcEngine*)self.agoraKit.getNativeHandle;
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
@@ -276,11 +276,12 @@ if isJoined {
 - [`registerAudioFrameObserver`](./API%20Reference/cpp/classagora_1_1media_1_1_i_media_engine.html#ae46ca0d20789787aaab2fb268a524100)
 - [`onPlaybackAudioFrame`](./API%20Reference/cpp/classagora_1_1media_1_1_i_audio_frame_observer.html#aefc7f9cb0d1fcbc787775588bc849bac)
 
+
 ## 开发注意事项
 
 - 自定义音频采集和渲染场景中，需要开发者具有采集或渲染音频数据的能力：
 
-  - 自定义音频采集场景中，你需要自行管理音频数据的采集和处理。
-  - 自定义音频渲染场景中，你需要自行管理音频数据的处理和播放。
+	- 自定义音频采集场景中，你需要自行管理音频数据的采集和处理。
+	- 自定义音频渲染场景中，你需要自行管理音频数据的处理和播放。
 
 - 如果使用 `onPlaybackAudioFrame` 回调来获取原始音频数据进行渲染，必须要调用 `setParameters` 方法关闭 SDK 的音频渲染。

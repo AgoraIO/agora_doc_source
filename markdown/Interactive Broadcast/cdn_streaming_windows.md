@@ -3,9 +3,7 @@ title: 推流到 CDN
 platform: Windows
 updatedAt: 2021-01-07 08:30:15
 ---
-
 ## 功能描述
-
 将直播媒体流发布到 CDN (Content Delivery Network) 的过程称为 CDN 直播推流。用户无需安装 App 即可通过 Web 浏览器观看直播。
 
 在推流到 CDN 过程中，当频道中有多个主播时，通常会涉及到[转码](terms#transcoding)，将多个直播流组合成单个流，并设置这个流的音视频属性和合图布局。
@@ -17,11 +15,10 @@ updatedAt: 2021-01-07 08:30:15
 ## 前提条件
 
 请确保已开通 CDN 旁路推流功能，步骤如下：
-
 1. 登录[控制台](https://console.agora.io)，点击左侧导航栏 ![img](https://web-cdn.agora.io/docs-files/1551250582235) 按钮进入**产品用量**页面。
 2. 在页面左上角展开下拉列表选择需要开通 CDN 旁路推流的项目，然后点击旁路推流下的**分钟数**。
 ![](https://web-cdn.agora.io/docs-files/1569297956098)
- <div class="alert note"><b>旁路推流服务</b>仅适用于 Native SDK 2.4.1 及以上版本和 Web SDK 2.9.0 及以上版本，若您使用的版本较低，建议升级至新版本。</div>
+<div class="alert note"><b>旁路推流服务</b>仅适用于 Native SDK 2.4.1 及以上版本和 Web SDK 2.9.0 及以上版本，若您使用的版本较低，建议升级至新版本。</div>
 3. 点击**开启旁路推流服务**。
 4. 点击**应用** 即可开通旁路推流服务，并得到 500 个最大并发频道数。
 
@@ -34,8 +31,8 @@ updatedAt: 2021-01-07 08:30:15
 在实现推流到 CDN 功能前，请确保你已在项目中完成基本的音视频功能。详见[开始互动直播](start_live_windows)。
 
 参考如下步骤，在你的项目中实现推流到 CDN：
+	
 <a name="single"></a>
-
 1. 频道内主播可以调用 `setLiveTranscoding` 方法设置音视频流的直播参数 （`LiveTranscoding`），如分辨率、码率、帧率、水印和背景色位置。如果你需要多主播转码合图，请在 `TranscodingUser` 类中设置每个主播的参数，详见[示例代码](#trans)。
 2. 频道内主播可以调用 `addPublishStreamUrl` 方法向 CDN 推流直播中增加指定的一路媒体流。推流地址可以在推流后动态增删。
 
@@ -43,14 +40,13 @@ updatedAt: 2021-01-07 08:30:15
 
 3. （可选）频道内主播再次调用 `setLiveTranscoding` 方法更新音视频流的直播参数 （`LiveTranscoding`）。
 
-   > 直播参数（`LiveTranscoding`）更新时，`onTranscodingUpdated` 回调会被触发并向主播报告更新信息。
+	> 直播参数（`LiveTranscoding`）更新时，`onTranscodingUpdated` 回调会被触发并向主播报告更新信息。
 
 4. 频道内主播可以调用 `removePublishStreamUrl` 方法向 CDN 推流直播中删除指定的一路媒体流。
 
 推流状态改变时，SDK 会触发 `onRtmpStreamingStateChanged` 回调向主播报告当前推流状态。请确保收到该回调后再调用 API 进行下一步操作。如果增加或删除一个推流地址失败，请通过错误码排查问题。更多问题请参考[注意事项](#consideration)。
 
 <a name="trans"></a>
-
 ### 示例代码
 
 ```c++
@@ -69,14 +65,14 @@ cofig.videoBitrate = 400;
 // 用于旁路推流的输出视频的帧率 (fps)。默认值为 15。取值范围为 [1,30]，Agora 服务器会将高于 30 的帧率设置改为 30。
 config.videoFramerate = 15;
 // 如果 userCount > 1，则需要为每个 transcodingUser 分别设置布局。
-config.userCount = 1;
+config.userCount = 1; 
 // 推流输出视频的编码规格。可以设置为 Baseline (66)、Main (77) 或 High (100)。如果设置其他值，Agora 会统一设为默认值 High (100)。
 config.videoCodecProfile = HIGH;
 
 // 分配用户视窗的合图布局。
 config.transcodingUser = new TranscodingUser[config.userCount];
 // 下面的 uid 应和 joinChannel() 输入的 uid 保持一致。
-config.transcodingUser[0].uid = 123456;
+config.transcodingUser[0].uid = 123456; 
 config.transcodingUser[0].x = 0;
 config.transcodingUser[0].audioChannel = 0;
 config.transcodingUser[0].y = 0;
@@ -98,7 +94,7 @@ m_rtcEngine->addPublishStreamUrl(url, true);
 m_rtcEngine->removePublishStreamUrl(url);
 ```
 
-**合图示例 1：两人横向平铺**
+**合图示例1：两人横向平铺**
 
 <img alt="../_images/sei_2host.png" src="https://web-cdn.agora.io/docs-files/cn/sei_2host.png" style="width: 500px;"/>
 
@@ -127,7 +123,7 @@ User1:
       alpha: 1.0
 ```
 
-**合图示例 2：三人纵向平铺**
+**合图示例2：三人纵向平铺**
 
 <img alt="../_images/sei_3host.png" src="https://web-cdn.agora.io/docs-files/cn/sei_3host.png" style="width: 370px;"/>
 
@@ -165,7 +161,7 @@ Canvas:
        alpha: 1.0
 ```
 
-**合图示例 3：1 人全屏 + N 人悬浮小窗**
+**合图示例3：1 人全屏 + N 人悬浮小窗**
 
 <img alt="../_images/sei_random.png" src="https://web-cdn.agora.io/docs-files/cn/sei_random.png" style="width: 370px;"/>
 
@@ -213,8 +209,8 @@ User2:
 - [`onTranscodingUpdated`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a0583fb2aecbd4c51bba1af97ce1aa318)
 - [`onRtmpStreamingStateChanged`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a29754dc9d527cbff57dbc55067e3287d)
 
-<a name="consideration"></a>
 
+<a name="consideration"></a>
 ## 注意事项
 
 - 同一频道内最多支持 17 位主播。
@@ -222,3 +218,4 @@ User2:
 - 如果对单主播不经过转码直接推流，请略过[步骤 1](#single)，直接调用 `addPublishStreamUrl` 方法并将 `transcodingEnabled` 参数设置为 `false`。
 - 你可以参考[视频分辨率表格](./API%20Reference/cpp/structagora_1_1rtc_1_1_video_encoder_configuration.html#af10ca07d888e2f33b34feb431300da69)设置 `videoBitrate` 的值。如果设置的码率超出合理范围，Agora 服务器会在合理区间内自动调整码率值。
 - 请确保转码推流和非转码推流中使用的流地址不同。
+

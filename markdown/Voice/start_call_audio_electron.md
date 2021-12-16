@@ -3,7 +3,6 @@ title: 实现语音通话
 platform: electron
 updatedAt: 2020-11-16 03:23:21
 ---
-
 本文介绍如何使用 Agora Electron SDK 快速实现语音通话。
 
 ## 示例项目
@@ -12,8 +11,8 @@ Agora 在 GitHub 提供一个开源的 [Agora Electron Quickstart](https://githu
 
 ## 开发环境要求
 
-- Node.js 6.9.1 及以上
-- Electron 1.8.3 及以上
+* Node.js 6.9.1 及以上
+* Electron 1.8.3 及以上
 
 <div class="alert note">在 Windows 平台使用 Agora Electron SDK 时，请先安装 32 位的 Electron：<code>npm install -D --arch = ia32 electron</code>。否则你会收到报错：<code>Not a valid win32 application</code>。</div>
 
@@ -29,7 +28,7 @@ Agora 在 GitHub 提供一个开源的 [Agora Electron Quickstart](https://githu
 
 <a name="integrate_sdk"></a>
 
-### 集成 SDK
+### 集成 SDK 
 
 选择如下任意一种方式将 Agora SDK 集成到你的项目中。
 
@@ -37,15 +36,15 @@ Agora 在 GitHub 提供一个开源的 [Agora Electron Quickstart](https://githu
 
 1. 在你的项目文件路径，运行如下命令行安装最新版的 Agora SDK for Electron：
 
-   ```javascript
-   npm install agora-electron-sdk
-   ```
+	```javascript
+	npm install agora-electron-sdk
+	```
 
 2. 然后通过如下代码将 SDK 引入至你的项目中
 
-   ```javascript
-   import AgoraRtcEngine from "agora-electron-sdk";
-   ```
+	```javascript
+	import AgoraRtcEngine from 'agora-electron-sdk'
+	```
 
 **方法二：官网下载 SDK 并引入**
 
@@ -55,10 +54,9 @@ Agora 在 GitHub 提供一个开源的 [Agora Electron Quickstart](https://githu
 2. 将下载下来的 SDK 拷贝至你的项目根目录下
 3. 通过如下代码将 SDK 引入至你的项目中
 
-   ````javascript
-   import AgoraRtcEngine from './agora-electron-sdk/AgoraSdk.js'
-   ```
-   ````
+	````javascript
+	import AgoraRtcEngine from './agora-electron-sdk/AgoraSdk.js'
+	```
 
 ### 修改 .npmrc 文件切换预编译版本
 

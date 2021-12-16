@@ -91,11 +91,11 @@ Agora 提供灵动课堂云服务，支持对课堂和用户进行管理，包�
 
 ## 平台支持
 
-| 课堂角色 | Android<sup>1</sup>          | iOS<sup>2</sup>              | Web<sup>3</sup>              | macOS<sup>4</sup>            | Windows<sup>5</sup>          |
-| :------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- |
-| 老师端   | <font color="red">✘</font>   | <font color="red">✘</font>   | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
-| 学生端   | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
-| 助教端   | <font color="red">✘</font>   | <font color="red">✘</font>   | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
+| 课堂角色 | Android<sup>1</sup> | iOS<sup>2</sup> | Web<sup>3</sup> | macOS<sup>4</sup> | Windows<sup>5</sup> |
+| :------- | :------- | :--- | :--- | :----- | :------- |
+| 老师端   | <font color="red">✘</font>        | <font color="red">✘</font>    | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        |
+| 学生端   | <font color="green">✔</font>        | <font color="green">✔</font>    | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        |
+| 助教端   | <font color="red">✘</font>        | <font color="red">✘</font>    | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        |
 
 <div class="alert info">兼容性要求：<ol><li>Android 5.0 或以上版本。</li><li>iOS 10 或以上版本。</li><li>为保证最佳的用户体验，Agora 强烈推荐在桌面端 Google Chrome 浏览器官方最新版本上使用灵动课堂 Web 端。暂不支持移动端浏览器。</li><li>macOS 10.10 或以上版本。</li><li>Windows 7 或以上版本。</li></ol></div>
 

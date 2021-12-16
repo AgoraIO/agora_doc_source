@@ -3,7 +3,6 @@ title: 发版说明
 platform: Flutter
 updatedAt: 2021-03-12 05:24:43
 ---
-
 本文提供 Agora Flutter SDK 的发版说明。
 
 ## 3.3.1 版
@@ -110,7 +109,7 @@ updatedAt: 2021-03-12 05:24:43
 - [`setVoiceBeautifierParameters`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVoiceBeautifierParameters:param1:param2:)
 - [`AgoraVoiceBeautifierPreset`](./API%20Reference/oc/Constants/AgoraVoiceBeautifierPreset.html) 常量中新增 `SingingBeautifier`
 - [`enableDeepLearningDenoise`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableDeepLearningDenoise:)
-- [`joinChannel`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByToken:channelId:info:uid:options:) 新增 `options` 参数
+- [`joinChannel`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByToken:channelId:info:uid:options:)  新增 `options` 参数
 - [`switchChannel`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:options:) 新增 `options` 参数
 - [`createDataStreamWithConfig`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/createDataStream:config:)
 - [`RemoteAudioStats`](./API%20Reference/oc/Classes/AgoraRtcRemoteAudioStats.html) 类中新增 `qoeQuality` 和 `qualityChangedReason` 属性
@@ -121,6 +120,7 @@ updatedAt: 2021-03-12 05:24:43
 - [`LocalVideoStreamError`](./API%20Reference/oc/Constants/AgoraLocalVideoStreamError.html) 常量中新增 `CaptureInBackGround(6)` 和 `CaptureMultipleForegroundApps(7)`
 - 错误码: [`ModuleNotFound(157)`](./API%20Reference/oc/Constants/AgoraErrorCode.html)
 
+
 **废弃**
 
 - `createWithAreaCode`
@@ -130,6 +130,7 @@ updatedAt: 2021-03-12 05:24:43
 - `setLogFileSize`
 - `setLogFilter`
 - `createDataStream`
+
 
 ## 3.2.1 版
 
@@ -147,7 +148,8 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 
 同时，为支持传输层加密，该版本新增 TLS（Transport Layer Security）加密和 UDP（User Datagram Protocol）加密方式。
 
-#### 新增特性
+
+####  新增特性
 
 **极速直播**
 
@@ -223,6 +225,7 @@ Agora 已通过 ISO 27001、ISO 27017、ISO 27018 国际认证，为全球用户
 ## 3.1.2 版
 
 该版本于 2020 年 9 月 30 日发布。功能特性及相关文档详见下文。
+
 
 **功能特性**
 

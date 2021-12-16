@@ -5,7 +5,6 @@
 ~96d9aaf0-eb84-11eb-b768-51ffcd29c763~
 
 <a name="prerequisites"></a>
-
 ## 前提条件
 
 - 已在 Agora 控制台创建 Agora 项目，获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id)、[App 证书](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6)并[配置 aPaaS 服务](/cn/agora-class/agora_class_prep?platform=Web)。
@@ -34,33 +33,35 @@
 2. 调用 [AgoraEduSDK.config](/cn/agora-class/agora_class_api_ref_web?platform=Web#config) 方法全局配置 SDK。
 3. 调用 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法启动灵动课堂。
 
-你可以将以下代码复制到 `index.html` 文件，实现以上 API 的调用逻辑。复制时需要将 `launch` 方法中传的 `appID` 和 `rtmToken ` 分别替换为[你的 App ID 和临时 RTM Token](#prerequisites)，并确保 `userUuid` 和你在生成临时 RTM Token 时使用的用户 ID 保持一致。
+你可以将以下代码复制到 `index.html` 文件，实现以上 API 的调用逻辑。复制时需要将 `launch` 方法中传的 `appID`  和 `rtmToken  ` 分别替换为[你的 App ID 和临时 RTM Token](#prerequisites)，并确保 `userUuid` 和你在生成临时 RTM Token 时使用的用户 ID 保持一致。
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AgoraFlexibleClassroomDemo</title>
-    <!-- 此处集成 Agora Classroom SDK -->
-    <script src="https://download.agora.io/edu-apaas/release/edu_sdk_1.1.2.3.js"></script>
-  </head>
 
-  <body>
-    <style>
-      #root1 {
-        width: 100%;
-        height: 100%;
-      }
-    </style>
-    <div id="root1"></div>
-    <script type="text/javascript">
-      AgoraEduSDK.config({
-        // 此处替换成你的 App ID
-        appId: "<your_app_id>",
-      });
-      AgoraEduSDK.launch(document.querySelector("#root1"), {
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgoraFlexibleClassroomDemo</title>
+  <!-- 此处集成 Agora Classroom SDK -->
+  <script src="https://download.agora.io/edu-apaas/release/edu_sdk_1.1.2.3.js"></script>
+</head>
+
+<body>
+  <style>
+    #root1 {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <div id="root1"></div>
+  <script type="text/javascript">
+    AgoraEduSDK.config({
+      // 此处替换成你的 App ID
+      appId: "<your_app_id>",
+    })
+    AgoraEduSDK.launch(
+      document.querySelector("#root1"), {
         // 此处替换成你的 RTM Token
         rtmToken: "<your_rtm_token>",
         // 请确保此次的用户 ID 和你在生成临时 RTM Token 时使用的用户 ID 保持一致
@@ -75,12 +76,13 @@
         startTime: new Date().getTime(),
         duration: 60 * 30,
         courseWareList: [],
-        listener: evt => {
-          console.log("evt", evt);
-        },
-      });
-    </script>
-  </body>
+        listener: (evt) => {
+          console.log("evt", evt)
+        }
+      }
+    )
+  </script>
+</body>
 </html>
 ```
 
@@ -97,7 +99,6 @@
 ## 更多信息
 
 <a name="sdk"></a>
-
 ### 集成 Agora Classroom SDK
 
 你可选择以下任意一种方法将 Agora Classroom SDK 集成到你自己的 Web 项目中：

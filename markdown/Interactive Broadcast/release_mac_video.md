@@ -3,15 +3,14 @@ title: 发版说明
 platform: macOS
 updatedAt: 2021-03-29 03:37:33
 ---
-
 本文提供 Agora 视频 SDK 的发版说明。
 
 ## **简介**
 
 macOS 视频 SDK 支持两种主要场景:
 
-- 音视频通话
-- 音视频直播
+-   音视频通话
+-   音视频直播
 
 点击 [语音通话产品概述](https://docs.agora.io/cn/Voice/product_voice?platform=All%20Platforms)、[视频通话产品概述](https://docs.agora.io/cn/Video/product_video?platform=All%20Platforms)、[音频互动直播产品概述](https://docs.agora.io/cn/Audio%20Broadcast/product_live_audio?platform=All%20Platforms) 及 [视频互动传播产品概述](https://docs.agora.io/cn/Interactive%20Broadcast/product_live?platform=All%20Platforms) 了解关键特性。
 
@@ -32,7 +31,6 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 新增特性、改进与问题修复详见下文。
 
 **升级必看**
-
 #### 1. 静态库更名与新增动态库
 
 为与其他平台保持一致，该版本将 SDK 的库名由 AgoraRtcEngineKit 变更为 AgoraRtcKit。如果你由老版本的 SDK 升级至该版本，请务必重新导入类。详细步骤见《快速开始》中的[导入类](https://docs.agora.io/cn/Video/start_call_mac?platform=macOS#a-nameimportclassa2-%E5%AF%BC%E5%85%A5%E7%B1%BB)章节。
@@ -97,7 +95,7 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 
 为满足更高音质需求，该版本调整了直播场景下 `AgoraAudioProfileDefault(0)` 对应的音频编码属性，详见下表：
 
-| SDK 版本   | `AgoraAudioProfileDefault(0)`                               |
+| SDK 版本   | `AgoraAudioProfileDefault(0)`                                  |
 | :--------- | :---------------------------------------------------------- |
 | 3.0.0      | 48 KHz 采样率，音乐编码，单声道，编码码率最大值为 52 Kbps。 |
 | 3.0.0 之前 | 32 KHz 采样率，音乐编码，单声道，编码码率最大值为 44 Kbps。 |
@@ -105,7 +103,6 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 #### 2. 镜像模式
 
 为提升视频镜像的使用体验，该版本增加了视频编码镜像和视频渲染镜像的功能：
-
 - 视频编码镜像：在 [`AgoraVideoEncoderConfiguration`](./API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html) 结构体中，新增 `mirrorMode` 成员，方便设置本地视频编码的镜像模式，即远端看本地是否镜像。
 - 视频渲染镜像：在 [`AgoraRtcVideoCanvas`](./API%20Reference/oc/Classes/AgoraRtcVideoCanvas.html) 结构体中，新增 `mirrorMode` 成员，方便用户在调用 [`setupLocalVideo`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setupLocalVideo:) 方法初始化本地视图时，设置本地看本地是否镜像，以及调用 [`setupRemoteVideo`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setupRemoteVideo:) 方法初始化远端视图时，设置本地看远端是否镜像；同时在 [`setLocalRenderMode`](./API%20Reference/oc/v3.0.0/Classes/AgoraRtcEngineKit.html#//api/name/setLocalRenderMode:mirrorMode:) 和 [`setRemoteRenderMode`](./API%20Reference/oc/v3.0.0/Classes/AgoraRtcEngineKit.html#//api/name/setRemoteRenderMode:renderMode:mirrorMode:) 方法中新增 `mirrorMode` 参数，支持在通话中更新本地看本地，或本地看远端的镜像模式。
 
@@ -132,7 +129,7 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 #### 新增
 
 - [`setLocalRenderMode`](./API%20Reference/oc/v3.0.0/Classes/AgoraRtcEngineKit.html#//api/name/setLocalRenderMode:mirrorMode:)
-- [`setRemoteRenderMode`](./API%20Reference/oc/v3.0.0/Classes/AgoraRtcEngineKit.html#//api/name/setRemoteRenderMode:renderMode:mirrorMode:)
+- [`setRemoteRenderMode`](./API%20Reference/oc/v3.0.0/Classes/AgoraRtcEngineKit.html#//api/name/setRemoteRenderMode:renderMode:mirrorMode:) 
 - [`AgoraVideoEncoderConfiguration`](./API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html) 结构体新增 `mirrorMode` 成员
 - [`AgoraRtcVideoCanvas`](./API%20Reference/oc/Classes/AgoraRtcVideoCanvas.html) 结构体新增 `channelId`、`mirrorMode` 成员
 - [`AgoraRtcAudioVolumeInfo`](./API%20Reference/oc/Classes/AgoraRtcAudioVolumeInfo.html) 结构体新增 `channelId` 成员
@@ -153,16 +150,14 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 
 ## **2.9.3 版**
 
-该版本于 2020 年 2 月 10 日发布。
+该版本于 2020 年 2 月10 日发布。
 
 该版本修复了如下问题：
-
 - 通信场景下，调用 `setRemoteSubscribeFallbackOption` 方法也生效。
 - 一对一通信场景下，下行音视频弱网下会回退为纯音频。
-- macOS 10.15 系统下，偶现系统渲染窗口 UI 异常。
+- macOS 10.15  系统下，偶现系统渲染窗口 UI 异常。
 
 ## **2.9.1 版**
-
 该版本于 2019 年 9 月 19 日发布。新增特性与修复问题列表详见下文。
 
 **新增特性**
@@ -218,7 +213,6 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 - `addVideoWatermark`
 
 ## **2.9.0 版**
-
 该版本于 2019 年 8 月 16 日发布。新增特性与修复问题列表详见下文。
 
 **升级必看**
@@ -265,7 +259,6 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 #### 2. 跨频道媒体流转发
 
 跨频道媒体流转发，指将主播的媒体流转发至其他直播频道，实现主播跨频道与其他主播实时互动的场景。该版本新增如下接口，通过将源频道中的媒体流转发至目标频道，实现跨直播间连麦功能：
-
 - [`startChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startChannelMediaRelay:)
 - [`updateChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateChannelMediaRelay:)
 - [`stopChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopChannelMediaRelay)
@@ -288,7 +281,6 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 #### 5. 远端音频帧拉取
 
 为提升音频播放体验，该版本新增如下接口，支持使用拉取的方式获取远端音频数据。App 可以对拉取到的原始音频数据进行处理后再渲染，获取想要的音频效果。
-
 - [`enableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSink:channels:)
 - [`disableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSink)
 - [`pullPlaybackAudioFrameRawData`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameRawData:lengthInByte:)
@@ -304,7 +296,6 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 #### 1. 通话中质量透明
 
 该版本进一步扩充了 [`AgoraChannelStats`](./API%20Reference/oc/Classes/AgoraChannelStats.html)、[`AgoraRtcLocalVideoStats`](./API%20Reference/oc/Classes/AgoraRtcLocalVideoStats.html) 和 [`AgoraRtcRemoteVideoStats`](./API%20Reference/oc/Classes/AgoraRtcRemoteVideoStats.html) 类的成员。各类新增成员如下：
-
 - `AgoraChannelStats` 类：累计发送音频/视频字节数及累计接收音频/视频字节数
 - `AgoraRtcLocalVideoStats` 类：本地视频的编码码率、宽高、发送帧数及编码类型
 - `AgoraRtcRemoteVideoStats` 类：远端视频在网络对抗后的丢包率
@@ -342,7 +333,6 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 为提升用户体验，Agora SDK 在该版本中对 API 进行了如下变动：
 
 #### 新增
-
 - [`enableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/enableExternalAudioSink:channels:)
 - [`disableExternalAudioSink`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/disableExternalAudioSink)
 - [`pullPlaybackAudioFrameRawData`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/pullPlaybackAudioFrameRawData:lengthInByte:)
@@ -351,7 +341,7 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 - [`remoteAudioStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStateChangedOfUid:state:reason:elapsed:)
 - [`remoteVideoStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStateChangedOfUid:state:reason:elapsed:)
 - [`localAudioStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localAudioStats:)
-- [`switchChannelByToken`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:joinSuccess:)
+- [`switchChannelByToken`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/switchChannelByToken:channelId:joinSuccess:) 
 - [`startChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/startChannelMediaRelay:)
 - [`updateChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/updateChannelMediaRelay:)
 - [`stopChannelMediaRelay`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/stopChannelMediaRelay)
@@ -367,11 +357,11 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 - [`audioTransportStatsOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:audioTransportStatsOfUid:delay:lost:rxKBitRate:)，请改用 [`remoteAudioStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:) 回调。
 - [`videoTransportStatsOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:videoTransportStatsOfUid:delay:lost:rxKBitRate:)，请改用 [`remoteVideoStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStats:) 回调。
 - [`didVideoEnabled`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didVideoEnabled:byUid:)，请改用 [`remoteVideoStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStateChangedOfUid:state:reason:elapsed:) 回调的：
-  - AgoraVideoRemoteStateStopped(0) 和 AgoraVideoRemoteStateReasonRemoteMuted(5)。
-  - AgoraVideoRemoteStateDecoding(2) 和 AgoraVideoRemoteStateReasonRemoteUnmuted(6)。
+	- AgoraVideoRemoteStateStopped(0) 和 AgoraVideoRemoteStateReasonRemoteMuted(5)。
+	- AgoraVideoRemoteStateDecoding(2) 和 AgoraVideoRemoteStateReasonRemoteUnmuted(6)。
 - [`didLocalVideoEnabled`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didLocalVideoEnabled:byUid:)，请改用 [`remoteVideoStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStateChangedOfUid:state:reason:elapsed:) 回调的：
-  - AgoraVideoRemoteStateStopped(0) 和 AgoraVideoRemoteStateReasonRemoteMuted(5)。
-  - AgoraVideoRemoteStateDecoding(2) 和 AgoraVideoRemoteStateReasonRemoteUnmuted(6)。
+	- AgoraVideoRemoteStateStopped(0) 和 AgoraVideoRemoteStateReasonRemoteMuted(5)。
+	- AgoraVideoRemoteStateDecoding(2) 和 AgoraVideoRemoteStateReasonRemoteUnmuted(6)。
 - [`firstRemoteVideoDecodedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:firstRemoteVideoDecodedOfUid:size:elapsed:)，请改用 [`remoteVideoStateChangedOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteVideoStateChangedOfUid:state:reason:elapsed:) 回调的 AgoraVideoRemoteStateStarting(1) 和 AgoraVideoRemoteStateDecoding(2)。
 
 #### 删除
@@ -402,11 +392,10 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 
 - 同一频道内，Int 型的 User ID 和 String 型的 User account 不可混用。目前支持 String 型 User account 的 SDK 如下：
 
-  - Native SDK：v2.8.0 及之后版本
-  - Web SDK：v2.5.0 及之后版本
+	- Native SDK：v2.8.0 及之后版本
+	- Web SDK：v2.5.0 及之后版本
 
-如果你的频道内有不支持 String 型 User account 的用户，则只能使用 Int 型的 User ID。
-
+ 如果你的频道内有不支持 String 型 User account 的用户，则只能使用 Int 型的 User ID。
 - 如果你使用该版本的 Native SDK 将用户名升级至 String 型 User account，请确保所有终端用户同步升级。
 - 如果使用 String 型的 User account，请确保你的服务端用户生成 Token 的脚本已升级至最新版本。如果使用 String 型 User account 加入频道，请确保使用该 User account 或其对应的 Int 型 UID 来生成 Token。你可以调用 `getUserInfoByUserAccount` 来获取 User account 所对应的 UID。
 
@@ -461,12 +450,12 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 
 为提高推流服务的易用性，该版本对推流接口的参数设置进行了如下限制：
 
-| 类**/**接口                                                                                                                   | 参数限制                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [AgoraLiveTranscoding](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html) 类                                             | <li>[videoFrameRate](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/videoFramerate)：设置转码推流的帧率，单位为 fps，取值范围为 [0, 30]，默认值为 15。如果设值超过 30，Agora 服务端会自动调整为 30<li>[videoBitrate](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/videoBitrate)：设置转码推流的码率，单位为 Kbps，默认值为 400。用户可以根据 [Video Profile 参考表](./API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/bitrate)中的码率值进行设置。如果设置的码率超出合理范围，服务端会在合理区间内对码率值进行自适应<li>[videoCodecProfile](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/videoCodecProfile)：设置转码推流的视频编码规格，可设为 **BASELINE**、**MAIN** 或 **HIGH**。若设为其他值，服务端会改为默认值 **HIGH**<li>[size](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/size)：设置转码推流的视频分辨率。size 的最小值不低于 16 x 16</li> |
-| [AgoraImage](./API%20Reference/oc/Classes/AgoraImage.html) 类                                                                 | `url`：字符长度不得超过 **1024** 字节                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| [addPublishStreamUrl](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/addPublishStreamUrl:transcodingEnabled:) | `url`：字符长度不得超过 **1024** 字节                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| [removePublishStreamUrl](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/removePublishStreamUrl:)              | `url`：字符长度不得超过 **1024** 字节                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| 类**/**接口                 | 参数限制                                                     |
+| --------------------------- | ------------------------------------------------------------ |
+| [AgoraLiveTranscoding](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html) 类 | <li>[videoFrameRate](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/videoFramerate)：设置转码推流的帧率，单位为 fps，取值范围为 [0, 30]，默认值为 15。如果设值超过 30，Agora 服务端会自动调整为 30<li>[videoBitrate](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/videoBitrate)：设置转码推流的码率，单位为 Kbps，默认值为 400。用户可以根据 [Video Profile 参考表](./API%20Reference/oc/Classes/AgoraVideoEncoderConfiguration.html#//api/name/bitrate)中的码率值进行设置。如果设置的码率超出合理范围，服务端会在合理区间内对码率值进行自适应<li>[videoCodecProfile](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/videoCodecProfile)：设置转码推流的视频编码规格，可设为 **BASELINE**、**MAIN** 或 **HIGH**。若设为其他值，服务端会改为默认值 **HIGH**<li>[size](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/size)：设置转码推流的视频分辨率。size 的最小值不低于 16 x 16</li> |
+| [AgoraImage](./API%20Reference/oc/Classes/AgoraImage.html) 类           | `url`：字符长度不得超过 **1024** 字节                        |
+| [addPublishStreamUrl](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/addPublishStreamUrl:transcodingEnabled:)     | `url`：字符长度不得超过 **1024** 字节                        |
+| [removePublishStreamUrl](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/removePublishStreamUrl:)  | `url`：字符长度不得超过 **1024** 字节                        |
 
 同时，该版本在 `LiveTranscoding` 类中新增 [audioCodecProfile](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/audioCodecProfile) 参数，支持设置音频编码的规格。默认规格为 LC-AAC。
 
@@ -521,10 +510,11 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 
 #### 1、质量透明
 
-- 该版本在通话相关的统计信息 [AgoraChannelStats](./API%20Reference/oc/Classes/AgoraChannelStats.html) 类中，新增 [txPacketLossRate](./API%20Reference/oc/Classes/AgoraChannelStats.html#//api/name/txPacketLossRate) 和 [rxPacketLossRate](./API%20Reference/oc/Classes/AgoraChannelStats.html#//api/name/rxPacketLossRate) 参数，分别返回本地客户端到服务器和服务器到本地客户端的丢包率。
+- 该版本在通话相关的统计信息 [AgoraChannelStats](./API%20Reference/oc/Classes/AgoraChannelStats.html) 类中，新增 [txPacketLossRate](./API%20Reference/oc/Classes/AgoraChannelStats.html#//api/name/txPacketLossRate) 和  [rxPacketLossRate](./API%20Reference/oc/Classes/AgoraChannelStats.html#//api/name/rxPacketLossRate) 参数，分别返回本地客户端到服务器和服务器到本地客户端的丢包率。
 - 该版本对 AgoraLocalVideoStats 和 AgoraRemoteVideoStats 类作了如下变动，方便用户更精准地获取本地和远端视频流的统计信息：
   - [AgoraRtcLocalVideoStats](./API%20Reference/oc/Classes/AgoraRtcLocalVideoStats.html)：新增 [encoderOutputFrameRate](./API%20Reference/oc/Classes/AgoraRtcLocalVideoStats.html#//api/name/encoderOutputFrameRate) 和 [rendererOutputFrameRate](./API%20Reference/oc/Classes/AgoraRtcLocalVideoStats.html#//api/name/rendererOutputFrameRate) 参数
   - [AgoraRtcRemoteVideoStats](./API%20Reference/oc/Classes/AgoraRtcRemoteVideoStats.html)：新增 [decoderOutputFrameRate](./API%20Reference/oc/Classes/AgoraRtcRemoteVideoStats.html#//api/name/decoderOutputFrameRate) 参数，并将原有的 receivedFrameRate 参数更名为 [rendererOutputFrameRate](./API%20Reference/oc/Classes/AgoraRtcRemoteVideoStats.html#//api/name/rendererOutputFrameRate)
+
 
 #### 2、其他改进
 
@@ -563,9 +553,9 @@ macOS 上连接 USB 耳麦，可能会出现听不见声音或者声音显示异
 - [localVideoStateChange](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:localVideoStateChange:error:)
 - [networkTypeChangedToType](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:networkTypeChangedToType:)
 - [rtmpStreamingChangedToStats](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:rtmpStreamingChangedToState:state:errorCode:)
-- [setMediaMetadataSource](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setMediaMetadataDataSource:withType:)
-- [setMediaMetadataDelegate](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setMediaMetadataDelegate:withType:)
-- [AgoraMediaMetadataSource](./API%20Reference/oc/Protocols/AgoraMediaMetadataDataSource.html)
+- [setMediaMetadataSource](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setMediaMetadataDataSource:withType:) 
+- [setMediaMetadataDelegate](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setMediaMetadataDelegate:withType:) 
+-  [AgoraMediaMetadataSource](./API%20Reference/oc/Protocols/AgoraMediaMetadataDataSource.html) 
 - [AgoraMediaMetadataDelegate](./API%20Reference/oc/Protocols/AgoraMediaMetadataDelegate.html)
 - `AgoraLiveTranscoding` 类新增参数 [audioCodecProfile](./API%20Reference/oc/Classes/AgoraLiveTranscoding.html#//api/name/audioCodecProfile)
 - `AgoraScreenCaptureParameters` 类新增参数 [captureMouseCursor](./API%20Reference/oc/Classes/AgoraScreenCaptureParameters.html#//api/name/captureMouseCursor)（macOS/Windows）
@@ -726,6 +716,7 @@ Agora SDK 有 2 个日志文件，每个文件默认大小为 512 KB。为解决
 
 修复了 `networkQuality` 回调不准确的问题。
 
+
 ## **2.3.2 版**
 
 该版本于 2019 年 1 月 16 日发布。新增特性与修复问题详见下文。
@@ -773,7 +764,7 @@ Agora SDK 会根据网络条件进行码率自适应。为满足用户在直播�
 
 为提升质量透明的用户体验，该版本废弃了原有的 `audioQualityOfUid` 回调，并新增 `remoteAudioStats` 回调进行取代。和原来的接口相比，新接口使用更为综合的算法，通过引入音频丢帧率、端到端的音频延迟、接收端网络抖动的缓冲延迟等参数，使回调结果更贴近用户感受。同时，该版本优化了 `networkQuality` 的算法，对上下行网络质量采用不同的计算方法，使评分更精准。
 
-- [`remoteAudioStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:)：通话中远端音频流的统计信息回调。用于替换 `audioQualityOfUid`
+- [`remoteAudioStats`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:remoteAudioStats:)：通话中远端音频流的统计信息回调。用于替换	`audioQualityOfUid`
 - [`networkQuality`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:networkQuality:txQuality:rxQuality:)：通话中每个用户的网络上下行 Last mile 质量报告回调。
 
 Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
@@ -793,18 +784,21 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 
 在新的接口下，SDK 共有 5 种连接状态：未连接、正在连接、已连接、正在重新建立连接和连接失败。当连接状态发生改变时，都会触发 `connectionChangedToState` 回调。当条件满足时，原有的 `rtcEngineConnectionDidInterrupted` 和 `rtcEngineConnectionDidBanned` 回调也会触发，但 Agora 不再推荐使用。
 
+
 #### 3. 优化打分反馈机制
 
 为方便用户（开发者）收集最终用户（应用程序使用者）对使用应用进行通话或直播的反馈，该版本将 [`rate`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/rate:rating:description:) 接口中的打分范围由 1 - 10 修改为 1 - 5，减少最终用户的打分干扰。Agora 建议在应用程序中集成该接口，方便应用程序收集用户反馈。
 
+
 #### 4. 其他改进
 
 - 优化了直播模式下视频弱网抗丢包能力
-- 加快了严重拥塞状态视频的恢复速度 s
+- 加快了严重拥塞状态视频的恢复速度s
 - 优化了 API 的调用线程
 - 增加了重新检测耳机插入和蓝牙设备连接的代码
 - 降低了音频延时
 - 优化了 macOS 设备的视频采集方式，降低了性能消耗
+
 
 **问题修复**
 
@@ -826,6 +820,7 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 - 修复了 x86 设备上自采集图像时硬件编码器的相关问题
 - 修复了视频自采集时的偶现问题
 
+
 **API 整理**
 
 为提升用户体验，Agora 在 v2.3.2 版本中对 API 进行了如下变动：
@@ -845,6 +840,7 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 - [`audioTransportStatsOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:audioTransportStatsOfUid:delay:lost:rxKBitRate:)
 - [`videoTransportStatsOfUid`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:videoTransportStatsOfUid:delay:lost:rxKBitRate:)
 
+
 #### 废弃
 
 - [`setVideoProfile`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/setVideoProfile:swapWidthAndHeight:)
@@ -862,15 +858,16 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 
 **问题修复**
 
-- 修复了特定场景下偶发的线上统计崩溃的问题。
+-   修复了特定场景下偶发的线上统计崩溃的问题。
 
-- 修复了直播时特定场景下偶发的崩溃的问题。
+-   修复了直播时特定场景下偶发的崩溃的问题。
 
-- 修复了多人直播连麦时，SDK 内存增长的问题。
+-   修复了多人直播连麦时，SDK 内存增长的问题。
 
-- 修复了特定场景下偶发的视频窗口尺寸变化后，视频卡住的问题。
+-   修复了特定场景下偶发的视频窗口尺寸变化后，视频卡住的问题。
 
-- 修复了偶发的无法正常反馈频道内谁在说话以及说话者的音量的问题。
+-   修复了偶发的无法正常反馈频道内谁在说话以及说话者的音量的问题。
+
 
 ## **2.2.2 版**
 
@@ -897,6 +894,7 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 #### 1. 音效混响进频道
 
 播放音效 `playEffect` 接口新增了一个 `publish` 参数，用于在播放音效时，远端用户可以听到本地播放的音效。
+ 
 
 > 如果你的 SDK 是由之前版本升级到 v2.2 版本，请务必关注该接口功能的变动。
 
@@ -934,9 +932,10 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 
 **问题修复**
 
-- 修复了 macOS 设备上偶现的 crash 问题
+-   修复了 macOS 设备上偶现的 crash 问题
 
-- 修复了大量用户同时连麦直播时，偶发的抖屏现象
+-   修复了大量用户同时连麦直播时，偶发的抖屏现象
+
 
 ## **2.1.3 版**
 
@@ -948,11 +947,12 @@ Agora SDK 计划在下一个版本对如下 API 进行进一步改进：
 
 **问题修复**
 
-- 修复了 SDK 没有设置 Delegate 时，偶尔收不到 Block 回调的问题。
+-   修复了 SDK 没有设置 Delegate 时，偶尔收不到 Block 回调的问题。
 
-- 修复了 SDK 的外链符号里，有 NSAssertionHandler 的问题。
+-   修复了 SDK 的外链符号里，有 NSAssertionHandler 的问题。
 
-- 修复了部分手机上，用户离开频道后，开启自带的录音设备时，偶现录音出错的问题。
+-   修复了部分手机上，用户离开频道后，开启自带的录音设备时，偶现录音出错的问题。
+
 
 **改进**
 
@@ -1022,6 +1022,7 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 直播场景下，可以将采集到的视频添加到正在进行的直播中，直播室里的主播和观众可以一起边看电影、比赛或演出，边进行点评、互动等功能，会让现有的直播话题更广、体验更好。 仅支持拉入一路流，格式包括: RTMP, HLS, FLV。赛事直播最多同时支持 5 人连麦直播。
 
+
 **改进**
 
 本次发版改进如下功能：
@@ -1050,15 +1051,18 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 </tbody>
 </table>
 
+
+
 **问题修复**
 
-- 修复了自采集方案退出频道后 app 录不到声音的问题。
+-   修复了自采集方案退出频道后 app 录不到声音的问题。
 
-- 修复了偶现的崩溃。
+-   修复了偶现的崩溃。
 
-- 修复了偶现的关闭麦克风无法听到声音的问题。
+-   修复了偶现的关闭麦克风无法听到声音的问题。
 
-- 修复了偶现的黑屏问题。
+-   修复了偶现的黑屏问题。
+
 
 ## **2.0.2 版**
 
@@ -1069,61 +1073,63 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 修复了 ffmpeg 符号冲突问题;
 
 ## **2.0 版及之前**
-
 **2.0 版**
 
 该版本于 2017 年 12 月 6 日发布。新增特性与修复问题列表详见下文。
 
 #### **新增功能**
 
-- 通信场景支持视频大小流功能，新增 API `setRemoteVideoStreamType()` 和 `enableDualStreamMode()` ;
+-   通信场景支持视频大小流功能，新增 API `setRemoteVideoStreamType()` 和 `enableDualStreamMode()` ;
 
-- 伴奏和音效回调更新如下:
+-   伴奏和音效回调更新如下:
 
-      <table>
+    <table>
+<colgroup>
+<col/>
+<col/>
+</colgroup>
+<tbody>
+<tr><td><strong>名称</strong></td>
+<td><strong>描述</strong></td>
+</tr>
+<tr><td><code>rtcEngineMediaEngineDidAudioMixingFinish</code></td>
+<td>废弃，已经被<code>rtcEngineLocalAudioMixingDidFinish</code>替代</td>
+</tr>
+<tr><td><code>rtcEngineDidAudioEffectFinish</code></td>
+<td>新增，当本地结束音效播放时触发该回调</td>
+</tr>
+</tbody>
+</table>
 
-  <colgroup>
-  <col/>
-  <col/>
-  </colgroup>
-  <tbody>
-  <tr><td><strong>名称</strong></td>
-  <td><strong>描述</strong></td>
-  </tr>
-  <tr><td><code>rtcEngineMediaEngineDidAudioMixingFinish</code></td>
-  <td>废弃，已经被<code>rtcEngineLocalAudioMixingDidFinish</code>替代</td>
-  </tr>
-  <tr><td><code>rtcEngineDidAudioEffectFinish</code></td>
-  <td>新增，当本地结束音效播放时触发该回调</td>
-  </tr>
-  </tbody>
-  </table>
 
-- 通信和直播场景下支持音频自采集功能，新增以下 API:
 
-      <table>
+-   通信和直播场景下支持音频自采集功能，新增以下 API:
 
-  <colgroup>
-  <col/>
-  <col/>
-  </colgroup>
-  <tbody>
-  <tr><td><strong>名称</strong></td>
-  <td><strong>描述</strong></td>
-  </tr>
-  <tr><td><code>enableExternalAudioSourceWithSampleRate</code></td>
-  <td>开启外部音频采集</td>
-  </tr>
-  <tr><td><code>disableExternalAudioSource</code></td>
-  <td>关闭外部音频采集</td>
-  </tr>
-  <tr><td><code>pushExternalAudioFrameRawData</code></td>
-  <td>推送外部音频帧</td>
-  </tr>
-  </tbody>
-  </table>
+    <table>
+<colgroup>
+<col/>
+<col/>
+</colgroup>
+<tbody>
+<tr><td><strong>名称</strong></td>
+<td><strong>描述</strong></td>
+</tr>
+<tr><td><code>enableExternalAudioSourceWithSampleRate</code></td>
+<td>开启外部音频采集</td>
+</tr>
+<tr><td><code>disableExternalAudioSource</code></td>
+<td>关闭外部音频采集</td>
+</tr>
+<tr><td><code>pushExternalAudioFrameRawData</code></td>
+<td>推送外部音频帧</td>
+</tr>
+</tbody>
+</table>
 
-- 通信和直播场景下支持服务端踢人功能。如有需要，请联系 [sales@agora.io](mailto:sales@agora.io) 开通该功能。
+
+
+-   通信和直播场景下支持服务端踢人功能。如有需要，请联系 [sales@agora.io](mailto:sales@agora.io) 开通该功能。
+
 
 **1.14 版**
 
@@ -1131,29 +1137,31 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### **新增功能**
 
-- 新增 API `setAudioProfile`设置音频参数和应用场景。
+-   新增 API `setAudioProfile`设置音频参数和应用场景。
 
-- 新增 API `setLocalVoicePitch`提供基础变声功能。
+-   新增 API `setLocalVoicePitch`提供基础变声功能。
 
-- 直播场景: 新增 API `setInEarMonitoringVolume` 提供调节耳返音量功能。
+-   直播场景: 新增 API `setInEarMonitoringVolume` 提供调节耳返音量功能。
+
 
 #### **改进**
 
-- 优化了在高码率下的音频体验;
+-   优化了在高码率下的音频体验;
 
-- 秒开: 直播场景下，单流模式时观众加入频道 1 秒内看见主播图像\(均值为 858 ms, 网络状态良好时可达 625 ms\);
+-   秒开: 直播场景下，单流模式时观众加入频道 1 秒内看见主播图像\(均值为 858 ms, 网络状态良好时可达 625 ms\);
 
-- 节省带宽:
+-   节省带宽:
 
-  - 1.14 以前: 如果你选择不听某人的音频或不看某人的视频，音视频流会照发。
+    -   1.14 以前: 如果你选择不听某人的音频或不看某人的视频，音视频流会照发。
 
-  - 1.14 开始: 如果你选择不听或不看某人的流，则不会下发，从而节省带宽。
+    -   1.14 开始: 如果你选择不听或不看某人的流，则不会下发，从而节省带宽。
 
-- 精准的码率控制:
+-   精准的码率控制:
 
-  - 1.14 以前: 码率控制不够精准，上下波动幅度较大。波动过大容易造成网络拥塞，增加丢包、丢帧的概率，影响了带宽估计模块的精度，特别是在弱网低码率情况下尤为明显。
+    -   1.14 以前: 码率控制不够精准，上下波动幅度较大。波动过大容易造成网络拥塞，增加丢包、丢帧的概率，影响了带宽估计模块的精度，特别是在弱网低码率情况下尤为明显。
 
-  - 1.14 开始: 精准的码率控制，要多少给多少，不多给也不少给，避免波动过大造成的网络拥塞，减少传输延时，有助于减少网络卡顿。
+    -   1.14 开始: 精准的码率控制，要多少给多少，不多给也不少给，避免波动过大造成的网络拥塞，减少传输延时，有助于减少网络卡顿。
+
 
 **1.13.1 版**
 
@@ -1169,23 +1177,25 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### **新增功能**
 
-- 新增 API `didClientRoleChanged `用于提醒直播场景下主播、观众上下麦的回调
+-   新增 API `didClientRoleChanged `用于提醒直播场景下主播、观众上下麦的回调
 
-- 新增单独关闭语音播放的功能
+-   新增单独关闭语音播放的功能
 
-- 新增功能支持服务端推流失败回调
+-   新增功能支持服务端推流失败回调
 
-- 屏幕共享直播场景下采集声卡选项动态开启和关闭
+-   屏幕共享直播场景下采集声卡选项动态开启和关闭
+
 
 #### **改进**
 
-- 软编情况下，视频属性可控
+-   软编情况下，视频属性可控
 
-- 可以在客户端设置推流的 profile
+-   可以在客户端设置推流的 profile
 
-- 屏幕共享: 提升了画质清晰度和流畅度
+-   屏幕共享: 提升了画质清晰度和流畅度
 
-- 屏幕共享: 通信场景下新增动态更新截图区域
+-   屏幕共享: 通信场景下新增动态更新截图区域
+
 
 #### **修复问题**
 
@@ -1197,27 +1207,30 @@ Agora SDK 提供了默认的渲染器实现，用来显示本地视频图像和�
 
 #### **新增功能**
 
-- 直播场景下， 新增 API 方法 `injectStream` 在当前频道内插入一条 RTMP 流。该功能目前为 beta 版
+-   直播场景下， 新增 API 方法 `injectStream` 在当前频道内插入一条 RTMP 流。该功能目前为 beta 版
 
-- 在 API 方法 `setEncryptionMode` 里新增加密模式 `aes-128-ecb` 。
+-   在 API 方法 `setEncryptionMode` 里新增加密模式 `aes-128-ecb` 。
 
-- 在 API 方法 `startAudioRecording` 里新增参数 quality 用于设置录音音质。
+-   在 API 方法 `startAudioRecording` 里新增参数 quality 用于设置录音音质。
 
-- 新增一系列 API 管理音效。
+-   新增一系列 API 管理音效。
 
-- 新增 API `activeSpeaker` 提示当前频道内谁在说话。
+-   新增 API `activeSpeaker` 提示当前频道内谁在说话。
 
-- 通信场景下，删除了原有的 API 方法 `setScreenCaptureWindow`，更新 API 方法 `startScreenCapture` 共享整个屏幕、指定窗口或指定区域。
+-   通信场景下，删除了原有的 API 方法 `setScreenCaptureWindow`，更新 API 方法 `startScreenCapture` 共享整个屏幕、指定窗口或指定区域。
 
-- 通信场景下，启用屏幕共享功能后，在屏幕共享过程中可以显示鼠标。
+-   通信场景下，启用屏幕共享功能后，在屏幕共享过程中可以显示鼠标。
+
 
 #### **改进**
 
 通信场景下针对 320 x 180 分辨率提供了以下改进方案:
 
-- 网络和设备状态较差的情况下仍能保证画质流畅度。
-- 网络和设备状态良好的情况下可以做到比 180P 更好的画质清晰度。
+-   网络和设备状态较差的情况下仍能保证画质流畅度。
+-   网络和设备状态良好的情况下可以做到比 180P 更好的画质清晰度。
+
 
 #### **修复问题**
 
 修复了部分机型上偶现的崩溃问题。
+

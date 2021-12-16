@@ -3,12 +3,12 @@ title: App 体验
 platform: All Platforms
 updatedAt: 2021-01-20 07:42:29
 ---
-
 Agora 为视频 PK 连麦提供如下平台的示例 app，扫描下方二维码下载应用。
 
-| Android                                  | iOS                                  |
-| ---------------------------------------- | ------------------------------------ |
-| [前往下载](./downloads?platform=Android) | [前往下载](./downloads?platform=iOS) |
+| Android | iOS | 
+| ---------------- | ---------------- |
+|[前往下载](./downloads?platform=Android)     | [前往下载](./downloads?platform=iOS)     | 
+
 
 由于视频 PK 连麦场景涉及多个直播频道与主播，我们建议你准备**两台**设备进行体验。完成下载和安装后，参考如下步骤试用 Agora 的视频 PK 连麦。
 

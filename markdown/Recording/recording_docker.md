@@ -3,7 +3,6 @@ title: 使用云容器部署录制 SDK
 platform: Linux
 updatedAt: 2020-11-27 08:09:13
 ---
-
 我们推荐使用云容器（云主机 + Docker）的方式部署录制 SDK。使用这种方式，你无需管理底层服务器，只要提供打包好的镜像，即可运行容器，并仅为容器实际运行消耗的资源付费，可以节约成本。本文以阿里云[弹性容器实例](https://help.aliyun.com/product/87486.html)（Elastic Container Instance）为例介绍具体的部署方法，你也可以选择其他的云容器实例服务。
 
 ## 前提条件
@@ -18,12 +17,12 @@ updatedAt: 2020-11-27 08:09:13
    ```
    FROM ubuntu:18.04
    MAINTAINER your name
-
+   
    # Create app directory
    WORKDIR /usr/src/recording
-
+   
    # Install your dependencies
-
+   
    # Copy your exec file
    COPY AgoraCoreService ./
    COPY recorder ./

@@ -2,9 +2,8 @@
 title: 如何解决 Web 端屏幕共享的质量问题？
 platform: ["Web"]
 updatedAt: 2021-03-26 08:58:43
-Products: ["Video", "Interactive Broadcast", "live-streaming"]
+Products: ["Video","Interactive Broadcast","live-streaming"]
 ---
-
 ## 问题描述
 
 Web 端用户共享屏幕时，共享画面卡顿、模糊。

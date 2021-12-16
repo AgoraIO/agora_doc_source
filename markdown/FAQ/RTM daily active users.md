@@ -4,7 +4,6 @@ platform: ["All Platforms"]
 updatedAt: 2021-03-22 04:17:53
 Products: ["Real-time-Messaging"]
 ---
-
 作为 RTM 用户，你可以参考以下步骤查看 RTM 每日活跃用户情况。
 
 1. 登录[控制台](https://console.agora.io/)。

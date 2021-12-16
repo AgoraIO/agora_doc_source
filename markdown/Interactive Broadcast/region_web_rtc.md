@@ -3,7 +3,6 @@ title: 限定访问区域
 platform: Web
 updatedAt: 2021-02-25 08:27:45
 ---
-
 ## 功能描述
 
 为适应不同国家或地区的法律法规，声网支持限定访问区域功能，实现 SDK 只访问指定区域内的声网服务器，希望将音视频和消息数据传输限定在某一区域范围内。
@@ -16,7 +15,7 @@ updatedAt: 2021-02-25 08:27:45
 
 Agora RTC Web SDK 从 v3.1.2 起，支持限定区域访问。一旦指定了访问区域，音视频数据将不会访问制定区域以外的服务器。
 
-你需要在调用 [`createClient`](./API%20Reference/web/globals.html#createclient) 方法创建客户端实例时，通过设置 `ClientConfig` 的中的 `areaCode` 参数来指定访问区域，可设为：
+你需要在调用 [`createClient`](./API%20Reference/web/globals.html#createclient) 方法创建客户端实例时，通过设置 `ClientConfig`  的中的 `areaCode` 参数来指定访问区域，可设为：
 
 - `ASIA`: 亚洲。
 - `CHINA`: 中国大陆。
@@ -37,10 +36,10 @@ Agora RTC Web SDK 从 v3.1.2 起，支持限定区域访问。一旦指定了访
 
 ```javascript
 var config = {
-  mode: "live",
-  codec: "vp8",
-  // 指定仅访问北美的服务器。
-  areaCode: [AgoraRTC.AREAS.NORTH_AMERICA],
+    mode: "live",
+    codec: "vp8",
+    // 指定仅访问北美的服务器。
+    areaCode: [AgoraRTC.AREAS.NORTH_AMERICA]
 };
 // 创建客户端实例。
 var client = AgoraRTC.createClient(config);

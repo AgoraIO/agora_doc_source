@@ -1,23 +1,9 @@
 ---
 title: 如何处理音频卡顿问题？
-platform:
-  [
-    "Android",
-    "iOS",
-    "macOS",
-    "Web",
-    "Windows",
-    "Linux",
-    "Cocos Creator",
-    "微信小程序",
-    "Electron",
-    "React Native",
-    "Flutter",
-  ]
+platform: ["Android","iOS","macOS","Web","Windows","Linux","Cocos Creator","微信小程序","Electron","React Native","Flutter"]
 updatedAt: 2020-11-12 07:17:21
-Products: ["Voice", "Video", "Interactive Broadcast", "Recording"]
+Products: ["Voice","Video","Interactive Broadcast","Recording"]
 ---
-
 卡顿的问题可能涉及到网络，设备，物理环境等原因。比较常见的是客户端的网络较差导致。
 
 ## 步骤 1：自检操作
@@ -55,6 +41,7 @@ Products: ["Voice", "Video", "Interactive Broadcast", "Recording"]
     <td>如果频道内显示了视频，检查视频播放是否流畅、清晰</td>
   </tr>
 </table>
+
 
 ## 步骤 3：水晶球监控通话质量
 

@@ -3,7 +3,6 @@ title: 录制 SDK 发版说明
 platform: Linux
 updatedAt: 2021-01-13 07:35:03
 ---
-
 ## 简介
 
 Agora 本地服务端录制 SDK for Linux (简称本地服务端录制 SDK) 在 Agora Native SDK 或/和 Agora Web SDK 的基础上提供通信和直播录制功能。点击[录制产品概述](/cn/Recording/product_recording)了解关键特性。
@@ -149,11 +148,13 @@ Agora 本地服务端录制 SDK for Linux (简称本地服务端录制 SDK) 在 
 - 修复了录制 Java sample code 手动模式编译出错的问题。
 - 修复了使用转码命令 `-f . -m 3` 转码不成功的问题。
 
+
+
 ## 2.3.0 版
 
 该版本于 2019 年 1 月 15 日发布。新增特性与改进问题详见下文。
 
-> 本地服务端录制 SDK 从 2.3.0 版本起，可支持费用独立计算，录制的用量和费用不与语音通话/语音直播 SDK、视频通话/视频直播 SDK 混合在一起。具体可咨询商务。
+> 本地服务端录制 SDK 从 2.3.0 版本起，可支持费用独立计算，录制的用量和费用不与语音通话/语音直播 SDK、视频通话/视频直播 SDK混合在一起。具体可咨询商务。
 
 **新增功能**
 
@@ -171,7 +172,7 @@ Agora 本地服务端录制 SDK for Linux (简称本地服务端录制 SDK) 在 
   - 固定采样率 48 KHz，声道与原始流保持一致
     - PCM：码率可能改变
     - AAC：码率与 file mode 单流的保持一致
-- 合流模式（file mode）：
+- 合流模式（file mode）：  
   - `audio profile=0`，采样率 48 KHz，单声道，码率 48 Kbps
   - `audio profile=1`，采样率 48 KHz，单声道，码率 128 Kbps
   - `audio profile=2`，采样率 48 KHz，双声道，码率 192 Kbps
@@ -347,6 +348,8 @@ Agora 本地服务端录制 SDK for Linux (简称本地服务端录制 SDK) 在 
 </tbody>
 </table>
 
+
+
 **改进**
 
 <table>
@@ -363,6 +366,8 @@ Agora 本地服务端录制 SDK for Linux (简称本地服务端录制 SDK) 在 
 </tr>
 </tbody>
 </table>
+
+
 
 **修复问题**
 

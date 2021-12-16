@@ -3,17 +3,17 @@ title: 调整通话音量
 platform: iOS
 updatedAt: 2020-12-03 12:01:01
 ---
-
 ## 功能描述
 
-在使用我们 SDK 时，开发者可以对 SDK 采集到的声音及 SDK 播放到声卡的声音音量进行调整，以满足产品在声音上的个性化需求。比如进行双人通话时，想实现静音操作，可以通过调整播放音量的接口将音量设置为 0。
+ 在使用我们 SDK 时，开发者可以对 SDK 采集到的声音及 SDK 播放到声卡的声音音量进行调整，以满足产品在声音上的个性化需求。比如进行双人通话时，想实现静音操作，可以通过调整播放音量的接口将音量设置为 0。
+
+
 
 本文梳理了在使用 SDK 从音频采集到播放各阶段中，用户可能需要调整音量的场景、各场景对应的 API 及其使用注意事项。
 
 ![](https://web-cdn.agora.io/docs-files/1578022890462)
 
 ## 实现方法
-
 在调整通话音量前，请确保已在你的项目中实现基本的实时音视频功能。详见[实现音视频通话](start_call_ios)或[实现互动直播](start_live_ios)。
 
 ### 设置采集音量
@@ -25,7 +25,6 @@ updatedAt: 2020-12-03 12:01:01
 你可以通过 `adjustRecordingSignalVolume` 方法直接调节录制声音的信号幅度，由此实现调节录音的音量。
 
 该方法中 `volume` 参数表示录音信号的音量，取值范围为 [0, 400]：
-
 - 0: 静音。
 - 100: （默认值）原始音量，即不对信号做缩放。
 - 400: 原始音量的 4 倍（把信号放大到原始信号的 4 倍）。
@@ -114,7 +113,6 @@ agoraKit.adjustAudioMixingVolume(50)
 ```
 
 你也可以通过 `adjustAudioMixingPlayoutVolume` 方法和 `adjustAudioMixingPublishVolume` 方法分别调节混音音量。
-
 - `adjustAudioMixingPlayoutVolume`：
   - 用于调节音乐文件在本地播放的混音音量。
   - 该方法中 `volume` 参数表示音乐文件在本地播放的混音音量，取值范围为 [0, 100]。
@@ -155,7 +153,6 @@ agoraKit.adjustAudioMixingPlayoutVolume(50)
 ![](https://web-cdn.agora.io/docs-files/1578023363870)
 
 使用播放设备播放音效音量时，你可以通过 `setEffectsVolume` 方法或 `setVolumeOfEffect` 方法设置音效文件在本地的播放音量。
-
 - `setEffectsVolume`：
   - 用于设置所有音效文件的播放音量。
   - 该方法中 `volume` 参数表示音效文件的音量，取值范围为 [0, 100]。
@@ -226,7 +223,7 @@ agoraKit.setInEarMonitoringVolume(50)
 在音频采集、混音、播放的整个过程中，你都可以使用下面的接口获取用户音量。
 
 - 瞬时说话声音音量提示。`reportAudioVolumeIndicationOfSpeakers` 回调报告频道内瞬时音量最高的几个用户（即说话者）的用户 ID 及他们的音量。若返回的 uid 为 0，则表示返回的是本地用户的瞬时音量。
-
+ 
   <div class="alert note">你需要开启 enableAudioVolumeIndication 方法才能收到该回调。</div>
 
 #### 示例代码
@@ -251,7 +248,7 @@ func rtcEngine(_ engine: AgoraRtcEngineKit, reportAudioVolumeIndicationOfSpeaker
 ```
 
 - 监测到活跃用户提示。`activeSpeaker` 回调报告特定时间段内累积音量最高的用户 ID。如果返回的 uid 为 0，则默认为本地用户。
-
+ 
   <div class="alert note">你需要开启 enableAudioVolumeIndication 方法才能收到该回调。</div>
 
 #### 示例代码
@@ -271,7 +268,6 @@ func rtcEngine(_ engine: AgoraRtcEngineKit, activeSpeaker speakerUid: UInt) {
 ```
 
 #### API 参考
-
 - [`reportAudioVolumeIndicationOfSpeakers`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:reportAudioVolumeIndicationOfSpeakers:totalVolume:)
 - [`activeSpeaker`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:activeSpeaker:)
 

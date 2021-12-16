@@ -3,7 +3,6 @@ title: 视频流回退
 platform: iOS
 updatedAt: 2021-03-25 10:36:17
 ---
-
 ## 功能描述
 
 网络不理想的环境下，音视频的质量都会下降。为提升用户体验，Agora 新增了 `setLocalPublishFallbackOption` 和 `setRemoteSubscribeFallbackOption` 两个方法。用户设置这两个方法后，在网络条件差、无法同时保证音频和视频质量的情况下，SDK 会自动将视频流从大流切换为小流，或将媒体流回退为音频流，从而提高音视频质量。
@@ -35,7 +34,9 @@ updatedAt: 2021-03-25 10:36:17
 
    用户接收到的流从媒体流切换到音频流，或从音频流切换到媒体流时，SDK 会触发 `didRemoteSubscribeFallbackToAudioOnly` 回调报告当前接收流的回退状态。当接收到的流从大流切换到小流，或从小流切换到大流时，SDK 会触发 `remoteVideoStats` 回调报告当前接收到的视频流类型。
 
+
 ### 示例代码
+
 
 ```swift
 //Swift

@@ -3,7 +3,6 @@ title: 发版说明
 platform: Linux
 updatedAt: 2021-02-08 07:44:06
 ---
-
 本页提供 Agora RTSA Pro SDK 的发版说明。
 
 ## 2.1.0 版

@@ -2,16 +2,14 @@
 title: 直播场景下，如何监听远端观众角色用户加入/离开频道的事件？
 platform: ["All Platforms"]
 updatedAt: 2021-02-05 06:06:21
-Products: ["Voice", "Video", "Interactive Broadcast", "Audio Broadcast", "Real-time-Messaging"]
+Products: ["Voice","Video","Interactive Broadcast","Audio Broadcast","Real-time-Messaging"]
 ---
-
 目前，Agora 没有在 RTC SDK 中提供监听远端观众加入或离开频道事件的回调。你可以使用以下两种方法进行实现：
 
 - 通过消息通知服务提供的事件通知。
 - 利用 RTM SDK 的状态维护功能通知。
 
 ## 使用消息通知服务 （Beta）
-
 <div class="alert note">Agora 消息通知服务目前处于 Beta 阶段，不建议你的核心业务依赖该服务。</div>
 
 消息通知服务可以监听 Agora 各业务下的事件，并以 HTTP/HTTPS 请求的形式向你的服务器发送通知。
@@ -21,10 +19,10 @@ Products: ["Voice", "Video", "Interactive Broadcast", "Audio Broadcast", "Real-t
 1. 使用前，你需要参考[用户配置](https://docs-preview.agoralab.co/cn/Agora%20Platform/ncs#%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE)开通消息通知服务。
 2. 完成配置后，消息通知回调会以 HTTP/HTTPS POST 请求的形式发送给你的服务器。你可以使用实时通信业务中的以下事件监听直播频道中观众进出频道的事件：
 
-| event_type | event_name               | 事件含义                 | payload 包含字段                                                                     |
-| ---------- | ------------------------ | ------------------------ | ------------------------------------------------------------------------------------ |
-| 105        | `audience join channel`  | 直播场景下，观众加入频道 | <ul><li>channelName</li><li>uid</li><li>platform</li><li>ts</li></ul>                |
-| 106        | `audience leave channel` | 直播场景下，观众离开频道 | <ul><li>channelName</li><li>uid</li><li>platform</li><li>reason</li><li>ts</li></ul> |
+| event_type | event_name | 事件含义 | payload 包含字段 |
+| ---------------- | ---------------- | ---------------- | ----------------- |
+| 105      | `audience join channel`      | 直播场景下，观众加入频道      |<ul><li>channelName</li><li>uid</li><li>platform</li><li>ts</li></ul> |
+| 106      | `audience leave channel`   | 直播场景下，观众离开频道      |<ul><li>channelName</li><li>uid</li><li>platform</li><li>reason</li><li>ts</li></ul> |
 
 ### 参考链接
 
@@ -52,3 +50,5 @@ Agora RTM SDK 是一个实现了信令功能的 SDK，可以为直播、社交�
 
 - [RTM 快速开始](https://docs.agora.io/cn/Real-time-Messaging/messaging_android?platform=Android)
 - [RTM 加入与离开频道相关 API 参考](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_java/index.html#joinorleavechannel)
+	
+	

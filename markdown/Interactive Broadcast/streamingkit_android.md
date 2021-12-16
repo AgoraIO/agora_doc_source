@@ -3,7 +3,6 @@ title: 推流组件
 platform: Android
 updatedAt: 2021-02-02 03:20:47
 ---
-
 ## 简介
 
 Agora 为 CDN 直播推流场景研发 Streaming Kit（推流组件），支持将单个主播音视频流推送到 CDN。如果你同时集成 Streaming Kit 和 Agora RTC SDK，你还可以在观众无感知的情况下实现单主播和多主播画面的动态切换。
@@ -37,14 +36,13 @@ Agora 在 GitHub 上提供开源的 [RtmpStreaming](https://github.com/AgoraIO/A
 
 3. 在 <b>Configure your project</b> 界面，依次填入以下内容：
 
-   - <b>Name</b>：你的 Android 项目名称，如 LiveStreaming
-   - <b>Package name</b>：你的项目包的名称，如 io.agora.streaming
-   - <b>Project location</b>：项目的存储路径
-   - <b>Language</b>：项目的编程语言，如 Java
-   - <b>Minimum API level</b>：项目的最低 API 等级
+	* <b>Name</b>：你的 Android 项目名称，如 LiveStreaming
+	* <b>Package name</b>：你的项目包的名称，如 io.agora.streaming
+	* <b>Project location</b>：项目的存储路径
+	* <b>Language</b>：项目的编程语言，如 Java
+	* <b>Minimum API level</b>：项目的最低 API 等级
 
 然后点击 <b>Finish</b>。根据屏幕提示，安装可能需要的插件。
-
 </details>
 
 ### 集成 Streaming Kit
@@ -67,13 +65,13 @@ dependencies {
 
 2. 将 Streaming Kit 的如下文件，拷贝到你的项目路径下：
 
-   | 文件或文件夹                 | 项目路径                 |
-   | :--------------------------- | :----------------------- |
+   | 文件或文件夹              | 项目路径               |
+   | :------------------------ | :--------------------- |
    | `AgoraStreamingKit.jar` 文件 | `/app/libs/`             |
-   | `arm-v8a` 文件夹             | `/app/src/main/jniLibs/` |
-   | `armeabi-v7a` 文件夹         | `/app/src/main/jniLibs/` |
-   | `x86` 文件夹                 | `/app/src/main/jniLibs/` |
-   | `x86_64` 文件夹              | `/app/src/main/jniLibs/` |
+   | `arm-v8a` 文件夹            | `/app/src/main/jniLibs/` |
+   | `armeabi-v7a` 文件夹        | `/app/src/main/jniLibs/` |
+   | `x86` 文件夹                | `/app/src/main/jniLibs/` |
+   | `x86_64` 文件夹             | `/app/src/main/jniLibs/` |
 
 3. 在 `/app/src/main/AndroidManifest.xml` 中添加如下内容，配置需要的设备权限。
 
@@ -99,7 +97,6 @@ dependencies {
 #### 1. 创建 Streaming Kit
 
 创建一个 `StreamingKit` 实例，并设置 `StreamingContext` 的如下参数：
-
 - `appId`: 你的 App ID。
 - `eventHandler`: 事件句柄。详见 `StreamingEventHandler` 类。
 - `audioStreamConfiguration`: 音频编码属性。推荐使用默认的音频编码属性：采样率 44.1 kHz，码率 48 Kbps，16 bits，单声道，LC-AAC。
@@ -258,6 +255,7 @@ public void switchToAgoraChannel() {
 - [自定义音频采集](https://docs.agora.io/cn/Interactive%20Broadcast/custom_audio_android?platform=Android#自定义音频采集)
 - [自定义视频采集(MediaIO)](https://docs.agora.io/cn/Interactive%20Broadcast/custom_video_android?platform=Android#自定义视频采集)
 - [使用 RTC SDK 推流到 CDN](https://docs.agora.io/cn/Interactive%20Broadcast/cdn_streaming_android?platform=Android#前提条件)
+
 
 #### 多主播切换为单主播
 

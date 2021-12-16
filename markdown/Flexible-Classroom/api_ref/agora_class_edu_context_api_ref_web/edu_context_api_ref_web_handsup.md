@@ -32,9 +32,11 @@ async studentHandsUp(teacherUuid: string): void
 
 学生举手向老师请求发言。
 
+
 | 参数          | 描述        |
 | :------------ | :---------- |
 | `teacherUuid` | 老师的 ID。 |
+
 
 ## studentCancelHandsUp
 
@@ -55,7 +57,7 @@ handsUpStudentList: array<{userUuid, userName, coVideo}>,
 ## coVideoUsers
 
 ```typescript
-coVideoUsers: array,
+coVideoUsers: array, 
 ```
 
 当前发送视频流的用户列表。

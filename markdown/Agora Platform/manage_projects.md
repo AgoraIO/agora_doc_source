@@ -3,7 +3,6 @@ title: 创建和管理项目
 platform: All Platforms
 updatedAt: 2021-03-15 04:18:41
 ---
-
 本页介绍如何在 Agora 控制台创建和管理项目。
 
 > 角色为管理员/工程师的账户拥有查看项目管理页面的权限。
@@ -15,6 +14,7 @@ updatedAt: 2021-03-15 04:18:41
 创建新项目的步骤如下：
 
 1. 登录控制台，点击左侧导航栏 ![](https://web-cdn.agora.io/docs-files/1551254998344) **项目管理**按钮进入[**项目管理**](https://dashboard.agora.io/projects)页面。
+
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
@@ -44,7 +44,7 @@ updatedAt: 2021-03-15 04:18:41
   - 创建日期
   - App ID
 
-- 点击 ![](https://web-cdn.agora.io/docs-files/1564048991389)，可生成**临时 Token**，用于项目测试阶段。
+- 点击 ![](https://web-cdn.agora.io/docs-files/1564048991389)，可生成**临时 Token**，用于项目测试阶段。 
 
 - 点击 ![](https://web-cdn.agora.io/docs-files/1574156449172)，可在网页端即刻体验实时音视频通信。
 
@@ -71,3 +71,4 @@ updatedAt: 2021-03-15 04:18:41
 
 4. 声网会给你发一封邮件，按照邮件中的提示进行确认，即可启用 App 证书。
 5. 成功启用后， App 证书会显示在**编辑项目**页面。
+

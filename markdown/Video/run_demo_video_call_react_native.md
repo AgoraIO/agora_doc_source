@@ -3,7 +3,6 @@ title: 跑通示例项目
 platform: React Native
 updatedAt: 2020-11-16 01:46:53
 ---
-
 Agora 在 GitHub 上提供一个开源的视频通话示例项目 [Agora-RN-Quickstart](https://github.com/AgoraIO-Community/Agora-RN-Quickstart)，本文介绍如何快速跑通该示例项目，体验 Agora 视频通话效果。
 
 ## 前提条件
@@ -15,7 +14,7 @@ Agora 在 GitHub 上提供一个开源的视频通话示例项目 [Agora-RN-Quic
 - React Native 0.59.10 或以上版本
 - macOS 操作系统
 - Node 10 或以上
-- Xcode 9.4 或以上版本
+- Xcode 9.4 或以上版本 
 - CocoaPods
 - iOS 8.0 或以上设备 （真机或模拟器）
 
@@ -46,7 +45,7 @@ Agora 在 GitHub 上提供一个开源的视频通话示例项目 [Agora-RN-Quic
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
-![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
+ ![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
 
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID + Token。**
 
@@ -60,7 +59,7 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 ![获取appid](https://web-cdn.agora.io/docs-files/1603974707121)
 
-### 3. 生成临时 Token
+###  3. 生成临时 Token
 
 为提高项目的安全性，Agora 使用 Token（动态密钥）对即将加入频道的用户进行鉴权。
 
@@ -68,31 +67,31 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 1. 在控制台的[项目管理](https://console.agora.io/projects)页面，点击已创建项目的 ![](https://web-cdn.agora.io/docs-files/1574923151660) 图标，打开 **Token** 页面。
 
-   ![](https://web-cdn.agora.io/docs-files/1574922827899)
+	![](https://web-cdn.agora.io/docs-files/1574922827899)
 
-2. 输入一个频道名，例如 test，然后点击**生成临时 Token**。临时 Token 的有效期为 24 小时。加入频道时，请确保填入的频道名与生成临时 Token 时填入的频道名一致。
+2. 输入一个频道名，例如 test，然后点击**生成临时Token**。临时 Token 的有效期为 24 小时。加入频道时，请确保填入的频道名与生成临时 Token 时填入的频道名一致。
 
-   ![](https://web-cdn.agora.io/docs-files/1574928082984)
+	![](https://web-cdn.agora.io/docs-files/1574928082984)
 
 <div class="alert note">临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见<a href="token_server">生成 Token</a >。</div>
 
-### 4. 运行示例项目
+###  4. 运行示例项目
 
 1. 下载 [Agora-RN-Quickstart](https://github.com/AgoraIO-Community/Agora-RN-Quickstart) 仓库。打开 `Agora-RN-Quickstart-master/App.tsx` 文件并填入获取到的项目 App ID，临时 Token 和频道名。
 
-```
+ ```
 constructor(props) {
-       super(props)
-       this.state = {
-           // 把 YourAppId 替换成你的 App ID，并加引号，如'xxxxxx'。
-           // 把 YourToken 替换成你的临时 Token，并加引号，如'xxxxxxxxx'。
-           // 将频道名 channel-x 替换为生成临时 Token 时使用的频道名。
-           appId: YourAppId,
-           token: YourToken,
-           channelName: 'channel-x',
-           joinSucceed: false,
-           peerIds: [],
-       }
+        super(props)
+        this.state = {
+            // 把 YourAppId 替换成你的 App ID，并加引号，如'xxxxxx'。
+            // 把 YourToken 替换成你的临时 Token，并加引号，如'xxxxxxxxx'。
+            // 将频道名 channel-x 替换为生成临时 Token 时使用的频道名。
+            appId: YourAppId,
+            token: YourToken,
+            channelName: 'channel-x',
+            joinSucceed: false,
+            peerIds: [],
+        }
 ```
 
 2. 在项目根目录下运行 `npm install` 或 `yarn` 命令安装依赖项。
@@ -101,13 +100,13 @@ constructor(props) {
 
 4. 运行示例项目。
 
-- 运行 Android 应用：
+ - 运行 Android 应用：
 
-  启动 Android 模拟器或连接真机，在项目根目录下执行 `npx react-native run-android` 运行应用。
+    启动 Android 模拟器或连接真机，在项目根目录下执行 `npx react-native run-android` 运行应用。
 
-- 运行 iOS 应用：
-  - 方法一：启动 iOS 模拟器，在项目根目录下执行 `npx react-native run-ios` 运行应用。（该方法仅支持在模拟器上运行项目。）
-  - 方法二：启动模拟器或连接真机，用 Xcode 打开 `Agora-RN-Quickstart-master\ios\AgoraRNQuickstart.xcworkspace` 文件夹，点击 **Build and run** 按钮。
+ - 运行 iOS 应用：
+    - 方法一：启动 iOS 模拟器，在项目根目录下执行 `npx react-native run-ios` 运行应用。（该方法仅支持在模拟器上运行项目。）
+    - 方法二：启动模拟器或连接真机，用 Xcode 打开 `Agora-RN-Quickstart-master\ios\AgoraRNQuickstart.xcworkspace` 文件夹，点击 **Build and run** 按钮。
 
 ## 示例项目结构
 
@@ -125,14 +124,16 @@ constructor(props) {
 .
 ```
 
-| 文件/文件夹                | 描述                                                                       |
-| :------------------------- | :------------------------------------------------------------------------- |
-| `android`                  | 原生 Android 项目文件夹                                                    |
+
+
+| 文件/文件夹                           | 描述                                                         |
+| :------------------------------------ | :----------------------------------------------------------- |
+| `android`                             | 原生 Android 项目文件夹                                      |
 | `components/Permission.ts` | 自定义组件：声明组件所需的设备权限 （仅适用于 Android 平台）定义组件的样式 |
-| `components/Style.ts`      | 定义组件的样式                                                             |
-| `ios`                      | 原生 iOS 项目文件夹                                                        |
-| `App.tsx`                  | 示例项目默认显示内容的源码文件                                             |
-| `index.js`                 | React Native 项目的入口文件                                                |
+| `components/Style.ts` | 定义组件的样式 |
+| `ios`                                 | 原生 iOS 项目文件夹                                          |
+| `App.tsx`                             | 示例项目默认显示内容的源码文件                               |
+| `index.js`                            | React Native 项目的入口文件                                  |
 
 ## 常见问题
 
@@ -148,3 +149,4 @@ npx react-native run-android --port xxxx
 
 1. 在项目根目录下全局搜索 8081，并替换为未被占用的端口号，如 9999。
 2. 连接模拟器或真机，用 Xcode 打开 `Agora-RN-Quickstart-master\ios\AgoraRNQuickstart.xcworkspace` 文件夹，点击 **Build and run** 按钮。
+

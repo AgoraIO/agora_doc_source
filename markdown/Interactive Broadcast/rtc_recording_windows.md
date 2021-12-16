@@ -3,7 +3,6 @@ title: 客户端录制
 platform: Windows
 updatedAt: 2020-03-03 16:35:20
 ---
-
 ## 功能描述
 
 在通话的过程中，将通话各方的声音录制下来，存放在本地，相当于手机上面的通话录音功能，录制下来的声音可用于回放。
@@ -35,8 +34,8 @@ int nRet = rtcEngine.stopAudioRecording();
 
 ### API 参考
 
-- [`startAudioRecording`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3c05d82c97a9d63ebda116b9a1e5ca3f)
-- [`stopAudioRecording`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#adb392026425663e5b9f90fe90130e5a5)
+* [`startAudioRecording`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a3c05d82c97a9d63ebda116b9a1e5ca3f)
+* [`stopAudioRecording`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#adb392026425663e5b9f90fe90130e5a5)
 
 ## 开发注意事项
 

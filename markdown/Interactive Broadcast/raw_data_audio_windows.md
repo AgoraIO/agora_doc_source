@@ -3,9 +3,7 @@ title: 原始音频数据
 platform: Windows
 updatedAt: 2021-01-19 10:14:05
 ---
-
 ## 功能描述
-
 音视频传输过程中，我们可以对采集到的音视频数据进行前处理和后处理，获取想要的播放效果。
 
 对于有自行处理音视频数据需求的场景，Agora 提供原始数据功能，你可以在将数据发送给编码器前进行前处理，对捕捉到的语音信号或视频帧进行修改；也可以在将数据发送给解码器后进行后处理，对接收到的语音信号或视频帧进行修改。
@@ -13,7 +11,6 @@ updatedAt: 2021-01-19 10:14:05
 Native SDK 通过提供 `IAudioFrameObserver` 类，实现采集、修改原始音频数据功能。
 
 ## 实现方法
-
 在使用原始数据功能前，请确保你已在项目中完成基本的实时音视频功能，详见[一对一通话](start_call_windows)或[互动直播](start_live_windows)。
 
 参考如下步骤，在你的项目中实现原始音频数据功能：
@@ -56,7 +53,7 @@ class AgoraAudioFrameObserver : public agora::media::IAudioFrameObserver
          {
          return true;
          }
-
+ 
 };
 
 class IAudioFrameObserver
@@ -94,3 +91,4 @@ class IAudioFrameObserver
 - [setRecordingAudioFrameParameters](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a2c4717760b5fbf1bb8c1a3c16ca67fe5)
 - [setPlaybackAudioFrameParameters](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#aa5f2f6eb3db5acaaf8c40818d90694f1)
 - [setMixedAudioFrameParameters](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a520ebcda51b5eb488339f3a12dfb8013)
+

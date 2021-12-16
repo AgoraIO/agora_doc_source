@@ -2,9 +2,8 @@
 title: 在输入在线媒体流过程中，连接断开后如何处理？
 platform: ["Web"]
 updatedAt: 2021-02-26 08:26:20
-Products: ["Interactive Broadcast", "live-streaming"]
+Products: ["Interactive Broadcast","live-streaming"]
 ---
-
 <div class="alert note">客户端输入在线媒体流功能即将停服。如果你尚未集成该功能，Agora 建议你不要使用。详见<a href="https://docs.agora.io/cn/Interactive%20Broadcast/rtc_sunset">部分服务下架计划</a>。</div>
 
 [输入在线媒体流](https://docs.agora.io/cn/Interactive%20Broadcast/inject_stream_web?platform=Web)是指将频道外的在线媒体流输入到正在进行的直播频道中。

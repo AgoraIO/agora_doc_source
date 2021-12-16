@@ -3,7 +3,6 @@ title: 切换用户角色
 platform: 微信小程序
 updatedAt: 2018-11-02 12:18:44
 ---
-
 使用 `setRole` 方法设置用户角色。
 
 ```

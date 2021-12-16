@@ -3,10 +3,10 @@ title: 管理录制文件
 platform: All Platforms
 updatedAt: 2021-03-02 02:25:10
 ---
-
 ## 功能描述
 
 云端录制生成的录制文件包括 M3U8 索引文件和 TS/WebM 切片文件。如果要对录制文件进行进一步处理，如音视频文件合并，或与其他数据流文件同步回放，你需要了解录制文件的命名规则、文件格式以及切片规则。
+
 
 ## 录制文件命名规则
 
@@ -54,7 +54,7 @@ WebM 文件名：`<sid>_<cname>__uid_s_<uid>__uid_e_<type>_utc.webm`
 
 以文件名 `sid713476478245_cnameagora__uid_s_123__uid_e_video_22194679897_3.m3u8` 为例，`3` 为该 M3U8 文件的索引数，表示该文件为第四次更新后的 M3U8 文件。
 
-> 当云存储中存在带有 `_<tick>_<index>` 后缀的 M3U8 文件，你需要将 `index` 最大的 M3U8 文件与无后缀的 M3U8 文件对比，选择内容较多的一个，作为最终使用的 M3U8 文件。
+> 当云存储中存在带有  `_<tick>_<index>` 后缀的 M3U8 文件，你需要将 `index` 最大的 M3U8 文件与无后缀的 M3U8 文件对比，选择内容较多的一个，作为最终使用的 M3U8 文件。
 
 通过备份云转存的 TS/WebM 文件的文件名不会附上该后缀。
 
@@ -66,18 +66,20 @@ WebM 文件名：`<sid>_<cname>__uid_s_<uid>__uid_e_<type>_utc.webm`
 
 启用高可用机制后，录制生成的 TS/WebM 文件的文件名也会增加 `bak<n>` 前缀。
 
+
 ## 录制文件大小
 
-单流模式下，录制文件大小主要与音视频源的码率和录制时长相关。例如，当音频码率为 48 Kbps，视频码率为 500 Kbps，录制文件时长为 30 分钟时，该录制文件的大小约为 (48 Kbps + 500 Kbps) _ 60 s/min _ 30 min = 986.4 Mbit，即 123.3 MB。
+单流模式下，录制文件大小主要与音视频源的码率和录制时长相关。例如，当音频码率为 48 Kbps，视频码率为 500 Kbps，录制文件时长为 30 分钟时，该录制文件的大小约为 (48 Kbps + 500 Kbps) * 60 s/min * 30 min = 986.4 Mbit，即 123.3 MB。
 
-合流模式下，录制文件大小主要与转码设置中的码率和录制时长相关，如果你未进行转码设置，则使用默认值。例如，当你在 `start` 方法中设置 `audioProfile` 为 `1` (音频码率 128 Kbps)，设置 `bitrate` （视频码率）为 `800`，录制文件时长为 30 分钟时，该文件的大小约为 (128 Kbps + 800 Kbps) _ 60 s/min _ 30 min = 1670.4 Mbit，即 208.8 MB。
+合流模式下，录制文件大小主要与转码设置中的码率和录制时长相关，如果你未进行转码设置，则使用默认值。例如，当你在 `start` 方法中设置 `audioProfile` 为 `1` (音频码率 128 Kbps)，设置 `bitrate` （视频码率）为 `800`，录制文件时长为 30 分钟时，该文件的大小约为 (128 Kbps + 800 Kbps) * 60 s/min * 30 min = 1670.4 Mbit，即 208.8 MB。
+
+
 
 ## M3U8 文件
 
 M3U8 文件包含多个切片文件的文件名及其描述符。Agora 云端录制产生的 M3U8 文件中用到的描述符有三种：
 
 - `#EXT-X-AGORA-TRACK-EVENT:EVENT=<event>,TRACK_TYPE=<type>,TIME=<utc>`：音视频流开始或者中断后重新开始的第一个切片文件会附带这一描述符，描述流状态的变化。
-
   - `EVENT`: 事件名称，目前只能为 `START`，表示音视频开始或中断后重新开始
   - `TRACK_TYPE`：切片文件内容，`AUDIO` 或 `VIDEO`
   - `TIME`: 流状态变化的时间。UTC 时间，时区为 UTC+0
@@ -99,6 +101,7 @@ sid713476478245_cnameagora__uid_s_123__uid_e_video_20190920125142485.ts
 ```
 
 <div class="alert note">如果某些播放器因 #EXTINF:&#60;length&#62; 后没有逗号而出现兼容性问题，可以在 <a href="https://docs.agora.io/cn/cloud-recording/restfulapi/#/%E4%BA%91%E7%AB%AF%E5%BD%95%E5%88%B6/start">start</a> 请求中的 <code>recordingConfig</code> 参数中添加参数 <code>privateParams</code>，即 <code>"recordingConfig": {"privateParams":"{\"correctEXTINF\":true}", ...}</code> </div>
+
 
 ## 切片规则
 

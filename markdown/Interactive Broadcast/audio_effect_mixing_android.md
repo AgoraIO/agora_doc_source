@@ -3,7 +3,6 @@ title: 播放音频文件
 platform: Android
 updatedAt: 2020-12-03 12:01:02
 ---
-
 ## 功能描述
 
 在通话或直播过程中，除了用户自己说话的声音，有时候需要播放自定义的声音或者音乐文件并且让频道内的其他人也听到，比如需要给游戏添加音效，或者需要播放背景音乐等，Agora 提供以下两组方法可以满足播放音效和音乐文件的需求。
@@ -34,42 +33,42 @@ Agora SDK 提供 `IAudioEffectManager` 类统一管理音效，包含一些管�
 ```java
 // 首先获取全局的音效管理类
 IAudioEffectManager manager = rtcEngine.getAudioEffectManager();
-
+  
 // 预加载音效（推荐），需注意音效文件的大小，并在加入频道前完成加载
 // 仅支持 mp3，aac，m4a，3gp，wav格式
 // 开发者可能需要额外记录 id 与文件路径的关联关系，用来播放和停止音效
 int id = 0;
 manager.preloadEffect(id++, "path/to/effect1");
-
+  
 // 可以加载多个音效
 manager.preloadEffect(id++, "path/to/effect2");
-
+  
 // 播放一个音效
 manager.playEffect(
-0,                         // 要播放的音效 id
+0,                         // 要播放的音效 id 
 "path/to/effect1",         // 播放文件的路径
 -1,                        // 播放次数，-1 代表无限循环
 0.0,                       // 改变音效的空间位置，0表示正前方
 100,                       // 音量，取值 0 ~ 100， 100 代表原始音量
 true                       // 是否令远端也能听到音效的声音
  );
-
+  
 // 暂停所有音效播放
 manager.pauseAllEffects();
-
+  
 // 获取音效的音量，范围为 0 ~ 100
 double volume = manager.getEffectsVolume();
-
+  
 // 保证音效音量在原始音量的 80% 以上
 volume = volume < 80 ? 80 : volume;
 manager.setEffectsVolume(volume);
-
+  
 // 继续播放暂停的音效
 manager.resumeAllEffects();
-
+  
 // 停止所有音效
 manager.stopAllEffects();
-
+  
 // 释放预加载的音效
 manager.unloadAllEffects();
 ```
@@ -77,6 +76,7 @@ manager.unloadAllEffects();
 ### API 参考
 
 - [`getAudioEffectManager`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#afd61b8d5e923f9e03cd419dcaf23b4af)
+
 
 ### 开发注意事项
 
@@ -99,31 +99,31 @@ Agora 混音功能支持如下设置：
 int loopCount = -1; //无限循环播放混音文件；设置为正整数表示混音文件播放的次数
 boolean shouldLoop = true; ////文件音频流是否发送给对端；如果设置为 true，文件音频流仅在本地可以听见，不会发送到对端
 boolean replaceMic = false; //不替换麦克风采集的音频
-
+  
 // 开始播放混音
 rtcEngine.startAudioMixing("path/to/music", shouldLoop, replaceMic, loopCount);
-
+  
 // 调整混音的音量。取值为 0 ~ 100, 100 代表维持原来混音的音量（默认）。
 int volume = 50;
 rtcEngine.adjustAudioMixingVolume(volume);
-
+  
 // 获取当前播放的混音音乐的时长
 int duration = rtcEngine.getAudioMixingDuration();
 // duration 可以用来设置播放进度条的最大进度等
 // seekBar.setMax(duration);
-
+  
 // 获取当前混音的播放进度
 int currentPosition = rtcEngine.getAudioMixingCurrentPosition();
 // 可以设置 timer 定时获取播放进度，用来显示播放进度
 // seekBar.setProgress(currentPosition);
-
+  
 // 若用户拖动了进度条，可以在 seekBar 的回调中获取 progress 并重设音乐当前播放的位置
 rtcEngine.setAudioMixingPosition(progress);
-
+  
 // 暂停、恢复混音文件播放
 rtcEngine.pauseAudioMixing();
 rtcEngine.resumeAudioMixing();
-
+  
 // 停止播放混音文件，麦克风采集播放恢复
 rtcEngine.stopAudioMixing()；
 ```

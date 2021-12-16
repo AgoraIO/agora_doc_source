@@ -3,7 +3,6 @@ title: 注册与登录
 platform: All Platforms
 updatedAt: 2020-12-29 06:15:24
 ---
-
 在开始使用 Agora 服务之前，你需要注册一个 Agora 开发者账号。注册后，您可以登录控制台，使用 Agora 提供的各种产品和服务。
 
 本页介绍如何注册 Agora 开发者账号和相关账号设置。
@@ -16,13 +15,14 @@ updatedAt: 2020-12-29 06:15:24
 2. 选择国家或地区，填写你的手机号。
 3. 点击**发送验证码**，根据提示完成安全验证，输入验证码。
 4. 设置登录密码。
-<div class="alert note">设置的密码必须满足以下要求：<ul>
-<li>包含至少八个字符</li>
-<li>包含至少一个大写字母和一个小写字母</li>
-<li>包含至少一个数字</li>
-<li>包含至少一个特殊字符</li></ul></div>
+ <div class="alert note">设置的密码必须满足以下要求：<ul>
+	<li>包含至少八个字符</li>
+	<li>包含至少一个大写字母和一个小写字母</li>
+	<li>包含至少一个数字</li>
+	<li>包含至少一个特殊字符</li></ul></div>
 5. 仔细阅读**服务条款**，**隐私政策**和**可接受使用政策**，并勾选**您同意我们的...**。
 6. 点击**免费试用**，完成账号注册。
+
 
 ## 登录控制台
 
@@ -34,21 +34,21 @@ updatedAt: 2020-12-29 06:15:24
 
 1. 登录[控制台](https://console.agora.io)，点击顶部导航栏右侧账号名下拉菜单中**设置**按钮，进入[基本信息](https://console.agora.io/settings)页面。
 
-![](https://web-cdn.agora.io/docs-files/1594626138503)
+ ![](https://web-cdn.agora.io/docs-files/1594626138503)
 
 2. 完善或修改你的账号信息，包括邮箱、姓名、公司，选择产品兴趣点、开发平台和行业，以便我们为你提供个性化服务。
 
-![](https://web-cdn.agora.io/docs-files/1608603892380)
+ ![](https://web-cdn.agora.io/docs-files/1608603892380)
+
 
 ## 更改密码
-
 1. 登录[控制台](https://console.agora.io)，点击顶部导航栏右侧账号名下拉菜单中**设置**按钮。
 
-![](https://web-cdn.agora.io/docs-files/1594626138503)
+ ![](https://web-cdn.agora.io/docs-files/1594626138503)
 
 2. 选择**安全**，在**旧密码**后填写你的旧密码，在**新密码**和**确认密码**后填写你的新密码，点击**提交**。
 
-![](https://web-cdn.agora.io/docs-files/1608604077390)
+ ![](https://web-cdn.agora.io/docs-files/1608604077390)
 
 ## 找回密码
 
@@ -56,9 +56,9 @@ updatedAt: 2020-12-29 06:15:24
 
 1. 进入[登录页面](https://sso.agora.io/cn/login)。
 2. 点击**忘记密码**。
-   ![](https://web-cdn.agora.io/docs-files/1608607335166)
+ ![](https://web-cdn.agora.io/docs-files/1608607335166)
 
 3. 填写一个有效的**邮箱地址**，点击**发送邮件**，Agora 会向你的邮箱发送一封密码重置邮件。
-   ![](https://web-cdn.agora.io/docs-files/1608607347934)
-
-4. 登录你的邮箱，根据邮件中的指引重置密码。
+ ![](https://web-cdn.agora.io/docs-files/1608607347934)
+ 
+5. 登录你的邮箱，根据邮件中的指引重置密码。

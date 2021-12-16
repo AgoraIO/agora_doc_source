@@ -3,7 +3,6 @@ title: 频道 (channel)
 platform: All Platforms
 updatedAt: 2020-07-03 18:27:35
 ---
-
 频道是由开发者调用 Agora 提供的 API 创建的用于传输实时数据的通道。
 
 根据实时传输数据的类型，Agora 的频道又分为 RTC 频道和 RTM 频道。其中，RTC 频道传输音视频数据，RTM 频道传输消息及信令数据。RTC 频道与 RTM 频道互相独立。

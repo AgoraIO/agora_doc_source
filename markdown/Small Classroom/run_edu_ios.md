@@ -3,7 +3,6 @@ title: 快速跑通 eEducation 示例项目
 platform: All Platforms
 updatedAt: 2021-04-01 08:21:25
 ---
-
 ## 概览
 
 Agora 在 GitHub 上提供一个开源的 [eEducation 示例项目](https://github.com/AgoraIO-Usecase/eEducation)，演示了如何通过 Agora 教育云服务，并配合 Agora RTC SDK、Agora RTM SDK、Agora 云端录制和第三方 Netless 白板 SDK，实现基本的在线互动教学场景。
@@ -22,7 +21,7 @@ Agora 在 GitHub 上提供一个开源的 [eEducation 示例项目](https://gith
 
 ## 操作步骤
 
-### 1. 创建 Agora 项目
+### 1. 创建 Agora 项目 
 
 按照以下步骤，在控制台创建一个 Agora 项目。
 
@@ -30,7 +29,7 @@ Agora 在 GitHub 上提供一个开源的 [eEducation 示例项目](https://gith
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
-![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
+ ![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
 
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID + Token。**
 
@@ -53,40 +52,37 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 ### 4. 获取 Netless 的 AppIdentifier 和 sdkToken
 
+
 参考以下步骤步骤获取第三方白板 Netless 的 AppIdentifier 和 sdkToken：
 
-1. 登录 [Netless 控制台](https://console.netless.link/)，点击左侧导航栏**应用管理**按钮，保存此 AppIdentifier。
+1. 登录 [Netless 控制台](https://console.netless.link/)，点击左侧导航栏**应用管理**按钮，保存此 AppIdentifier。 
 
-![获取 AppIdentifier](https://web-cdn.agora.io/docs-files/1603975237931)
+ ![获取 AppIdentifier](https://web-cdn.agora.io/docs-files/1603975237931)
 
 2. 点击对应应用的**配置**按钮，点击**生成 sdkToken**，然后复制此 sdkToken。
 
-![获取 sdktoken](https://web-cdn.agora.io/docs-files/1603975258941)
+ ![获取 sdktoken](https://web-cdn.agora.io/docs-files/1603975258941)
 
 ### 5. 在示例项目中配置相关字段
 
 按照以下步骤，在示例项目中配置相关字段。
 
 1. 打开终端，克隆 [eEducation 项目](https://github.com/AgoraIO-Usecase/eEducation)仓库至本地。
-
 ```
 git clone https://github.com/AgoraIO-Usecase/eEducation.git
 ```
 
 2. 进入项目目录，安装项目依赖库。
-
 ```
  cd eEducation/education_iOS
 pod install
 ```
-
 <div class="alert info">如果执行 pod install 后长时间停留在 Cloning spec repo `cocoapods` from `https://github.com/CocoaPods/Specs.git`，可能是因为网络连接较慢，你可以尝试使用镜像进行加速。看到 Pod installation complete! 表示安装成功。</div>
 
 3. 用 Xcode 打开示例项目 AgoraEducation.xcworkspace，在 AgoraEducation/KeyCenter.m 文件中填写以下字段：
-
-- Agora 的 App ID
-- Agora 的客户 ID 和客户密钥
-- Netless 的 AppIdentifier
+  - Agora 的 App ID
+  - Agora 的客户 ID 和客户密钥
+  - Netless 的 AppIdentifier
 
 ```objective-c
 + (NSString *)agoraAppid {

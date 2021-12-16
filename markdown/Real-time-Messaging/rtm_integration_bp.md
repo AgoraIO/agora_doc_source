@@ -3,7 +3,6 @@ title: 云信令（原实时消息）SDK 集成最佳实践
 platform: All Platforms
 updatedAt: 2021-03-05 10:30:17
 ---
-
 本文包括集成云信令 SDK 时的最佳实践。
 
 ## 定时更新 Token
@@ -28,11 +27,11 @@ public:
       token_ = "";
     }
   }
-
+   
   void setToken(const std::string& token) {
     token_ = token;
   }
-
+   
   std::string getNewToken()
   {
     return token_;
@@ -40,7 +39,7 @@ public:
 private:
   std::string token_;
 };
-
+ 
 // 获取服务端生成的 Token 并通过 renewToken 方法更新 SDK 的 Token
 void renewTokenDemoCode() {
   auto client = createRtmService();
@@ -54,7 +53,7 @@ void renewTokenDemoCode() {
   client->login(token.c_str(), userId.c_str());
   // 等待登录成功
   sleep(10);
-
+   
   // 在单线程中更新 Token
   while(!stopped) {
     // 每小时更新一次

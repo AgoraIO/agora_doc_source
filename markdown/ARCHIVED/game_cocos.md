@@ -3,7 +3,6 @@ title: 游戏 API
 platform: Cocos
 updatedAt: 2019-11-25 18:13:56
 ---
-
 本文内容适用于 AMG SDK v2.2 之前的版本。如果你使用的是 AMG SDK v2.2 及之后的版本，请参考 [C++ 接口](game_cpp)。
 
 本文提供基于 C++ 语言的游戏语音 API 描述，包括以下类:
@@ -26,6 +25,8 @@ updatedAt: 2019-11-25 18:13:56
 </tbody>
 </table>
 
+
+
 ## IRtcEngine 接口类
 
 ### 设置频道属性 (setChannelProfile)
@@ -36,8 +37,9 @@ virtual int setChannelProfile (CHANNEL_PROFILE_TYPE profile);
 
 该方法用于设置频道模式 (Profile)。Agora RtcEngine 需知道应用程序的使用场景, 从而使用不同的优化手段。
 
-> - 同一频道内只能同时设置一种模式。
-> - 该方法必须在加入频道前调用和进行设置，进入频道后无法再设置。
+> -   同一频道内只能同时设置一种模式。
+> -   该方法必须在加入频道前调用和进行设置，进入频道后无法再设置。
+
 
 <table>
 <colgroup>
@@ -68,6 +70,8 @@ virtual int setChannelProfile (CHANNEL_PROFILE_TYPE profile);
 <tr/>
 </tbody>
 </table>
+
+
 
 ### 设置用户角色 (setClientRole)
 
@@ -108,6 +112,8 @@ virtual int setClientRole(CLIENT_ROLE_TYPE role);
 <tr/>
 </tbody>
 </table>
+
+
 
 ### 加入频道 (joinChannel)
 
@@ -161,6 +167,9 @@ virtual int joinChannel(const char* token, const char* channelName, const char* 
 </tbody>
 </table>
 
+
+
+
 ### 离开频道 (leaveChannel)
 
 ```
@@ -190,6 +199,8 @@ virtual int leaveChannel ();
 </tbody>
 </table>
 
+
+
 ### 打开音频 (enableAudio)
 
 ```
@@ -217,6 +228,8 @@ virtual int enableAudio();
 </tbody>
 </table>
 
+
+
 ### 关闭音频 (disableAudio)
 
 ```
@@ -243,6 +256,8 @@ virtual int disableAudio();
 </tr>
 </tbody>
 </table>
+
+
 
 ### 将自己静音 (muteLocalAudioStream)
 
@@ -280,6 +295,8 @@ virtual int muteLocalAudioStream(bool mute);
 </tbody>
 </table>
 
+
+
 ### 静音所有远端音频 (muteAllRemoteAudioStreams)
 
 ```
@@ -315,6 +332,8 @@ int muteAllRemoteAudioStreams(bool mute);
 </tr>
 </tbody>
 </table>
+
+
 
 ### 静音指定用户音频 (muteRemoteAudioStream)
 
@@ -352,6 +371,8 @@ virtual int muteRemoteAudioStream(uid_t uid, bool mute);
 </tr>
 </tbody>
 </table>
+
+
 
 ### 启用说话者音量提示 (enableAudioVolumeIndication)
 
@@ -392,6 +413,8 @@ int enableAudioVolumeIndication (int interval, int smooth);
 </tbody>
 </table>
 
+
+
 ### 查询 SDK 版本号 (getVersion)
 
 ```
@@ -422,6 +445,8 @@ virtual const char* getVersion(int* build);
 </tbody>
 </table>
 
+
+
 ### 设置日志文件 (setLogFile)
 
 ```
@@ -451,6 +476,8 @@ virtual int setLogFile(const char* filePath);
 </tr>
 </tbody>
 </table>
+
+
 
 ### 设置日志过滤器 (setLogFilter)
 
@@ -492,6 +519,8 @@ virtual int setLogFilter(unsigned int filter);
 </tbody>
 </table>
 
+
+
 ### 更新 Token (renewToken)
 
 ```
@@ -502,9 +531,9 @@ virtual int renewToken(const char* token);
 
 当：
 
-- 发生 `onTokenPrivilegeWillExpire` 回调时，
-- `onError` 回调报告 ERR_TOKEN_EXPIRED (109) 时，
-- `onRequestToken` 回调报告 ERR_TOKEN_EXPIRED (109) 时，
+-   发生 `onTokenPrivilegeWillExpire` 回调时，
+-   `onError` 回调报告 ERR_TOKEN_EXPIRED (109) 时，
+-   `onRequestToken` 回调报告 ERR_TOKEN_EXPIRED (109) 时，
 
 应用程序应重新获取 Token，然后调用该 API 更新 Token，否则 SDK 无法和服务器建立连接。
 
@@ -529,6 +558,8 @@ virtual int renewToken(const char* token);
 </tr>
 </tbody>
 </table>
+
+
 
 ### 调节录音信号音量 (adjustRecordingSignalVolume)
 
@@ -571,6 +602,9 @@ virtual int adjustRecordingSignalVolume(int volume);
 </tbody>
 </table>
 
+
+
+
 ### 调节播放信号音量 (adjustPlaybackSignalVolume)
 
 ```
@@ -611,6 +645,9 @@ virtual int adjustPlaybackSignalVolume(int volume);
 <tr/>
 </tbody>
 </table>
+
+
+
 
 ### 开始客户端本地混音 (startAudioMixing)
 
@@ -685,6 +722,9 @@ virtual int startAudioMixing(const char* filePath,
 </tbody>
 </table>
 
+
+
+
 ### 停止客户端本地混音 (stopAudioMixing)
 
 ```
@@ -711,6 +751,8 @@ virtual int stopAudioMixing()
 </tr>
 </tbody>
 </table>
+
+
 
 ### 暂停伴奏播放 (pauseAudioMixing)
 
@@ -739,6 +781,8 @@ virtual int pauseAudioMixing()
 </tbody>
 </table>
 
+
+
 ### 恢复伴奏播放 (resumeAudioMixing)
 
 ```
@@ -765,6 +809,8 @@ virtual int resumeAudioMixing()
 </tr>
 </tbody>
 </table>
+
+
 
 ### 调节伴奏音量 (adjustAudioMixingVolume)
 
@@ -796,6 +842,8 @@ virtual int adjustAudioMixingVolume(int volume)
 </tbody>
 </table>
 
+
+
 ### 获取伴奏时长 (getAudioMixingDuration)
 
 ```
@@ -822,6 +870,8 @@ virtual int getAudioMixingDuration();
 </tr>
 </tbody>
 </table>
+
+
 
 ### 获取伴奏播放进度 (getAudioMixingCurrentPosition)
 
@@ -850,6 +900,8 @@ virtual int getAudioMixingCurrentPosition();
 </tbody>
 </table>
 
+
+
 ### 开始客户端录音 (startAudioRecording)
 
 ```
@@ -858,8 +910,9 @@ virtual int startAudioRecording (const char* filePath);
 
 Agora SDK 支持通话过程中在客户端进行录音，且录音文件格式可以为:
 
-- .wav : 文件大，音质保真度高
-- .aac : 文件小，有一定的音质保真度损失
+-   .wav : 文件大，音质保真度高
+-   .aac : 文件小，有一定的音质保真度损失
+
 
 确保应用程序里指定的目录存在且可写。该接口需在加入频道之后调用。如果调用 `leaveChannel` 时还在录音，录音会自动停止。
 
@@ -884,6 +937,8 @@ Agora SDK 支持通话过程中在客户端进行录音，且录音文件格式�
 </tr>
 </tbody>
 </table>
+
+
 
 ### 停止客户端录音 (stopAudioRecording)
 
@@ -911,6 +966,8 @@ virtual int stopAudioRecording ();
 </tr>
 </tbody>
 </table>
+
+
 
 ### 定制回调 (setEventHandler)
 
@@ -972,6 +1029,8 @@ virtual int setVoiceOnlyMode(bool enable);
 </tbody>
 </table>
 
+
+
 ### 设置远端用户的语音位置 (setRemoteVoicePosition)
 
 ```
@@ -1023,6 +1082,8 @@ virtual int setRemoteVoicePosition(uid_t uid, double pan, double gain);
 </tbody>
 </table>
 
+
+
 ### 设置本地语音音调 (setLocalVoicePitch)
 
 ```
@@ -1052,6 +1113,8 @@ int SetLocalVoicePitch (double pitch);
 </tr>
 </tbody>
 </table>
+
+
 
 ### 获取音效音量 (getEffectsVolume)
 
@@ -1091,6 +1154,8 @@ virtual int setEffectsVolume(double volume);
 <tr/>
 </tbody>
 </table>
+
+
 
 ### 播放音效 (playEffect)
 
@@ -1195,6 +1260,8 @@ virtual int stopEffect(int soundId);
 </tbody>
 </table>
 
+
+
 ### 停止播放所有的音效 (stopAllEffects)
 
 ```
@@ -1237,6 +1304,8 @@ virtual int preloadEffect(int soundId, const char* filePath);
 </tbody>
 </table>
 
+
+
 ### 释放音效 (unloadEffect)
 
 ```
@@ -1268,6 +1337,8 @@ virtual int unloadEffect(int soundId);
 </tbody>
 </table>
 
+
+
 ### 暂停音效播放 (pauseEffect)
 
 ```
@@ -1298,6 +1369,8 @@ virtual int pauseEffect(int soundId);
 <tr/>
 </tbody>
 </table>
+
+
 
 ### 停止所有音效播放 (pauseAllEffects)
 
@@ -1338,6 +1411,8 @@ virtual int resumeEffect(int soundId);
 </tbody>
 </table>
 
+
+
 ### 恢复播放所有音效 (resumeAllEffects)
 
 ```
@@ -1377,13 +1452,15 @@ virtual void onJoinChannelSuccess (const char* channel, uid_t uid, int elapsed);
 </tbody>
 </table>
 
+
+
 ### 重新加入频道回调 (onRejoinChannelSuccess)
 
 ```
 virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed);
 ```
 
-有时候由于网络原因，客户端可能会和服务器失去连接，SDK 会进行自动重连，自动重连成功后触发此回调方法。
+有时候由于网络原因，客户端可能会和服务器失去连接，SDK会进行自动重连，自动重连成功后触发此回调方法。
 
 <table>
 <colgroup>
@@ -1406,13 +1483,16 @@ virtual void onRejoinChannelSuccess(const char* channel, uid_t uid, int elapsed)
 </tbody>
 </table>
 
+
+
 ### 发生警告回调 (onWarning)
 
 ```
 virtual void onWarning(int warn, const char* msg);
 ```
 
-该回调方法表示 SDK 运行时出现了（网络或媒体相关的）警告。通常情况下，SDK 上报的警告信息应用程序可以忽略，SDK 会自动恢复。例如和服务器失去连接时，SDK 可能会上报 ERR_OPEN_CHANNEL_TIMEOUT 警告，同时自动尝试重连。
+该回调方法表示SDK运行时出现了（网络或媒体相关的）警告。通常情况下，SDK上报的警告信息应用程序可以忽略，SDK会自动恢复。例如和服务器失去连接时，SDK可能会上报ERR_OPEN_CHANNEL_TIMEOUT警告，同时自动尝试重连。
+
 
 <table>
 <colgroup>
@@ -1432,6 +1512,8 @@ virtual void onWarning(int warn, const char* msg);
 </tbody>
 </table>
 
+
+
 ### 发生错误回调 (onError)
 
 ```
@@ -1439,6 +1521,7 @@ virtual void onError(int err, const char* msg);
 ```
 
 表示 SDK 运行时出现了（网络或媒体相关的）错误。通常情况下，SDK 上报的错误意味着 SDK 无法自动恢复，需要 APP 干预或提示用户。 例如启动通话失败时，SDK 会上报 ERR_START_CALL 错误。APP 可以提示用户启动通话失败，并调用 leaveChannel 退出频道。
+
 
 <table>
 <colgroup>
@@ -1457,6 +1540,8 @@ virtual void onError(int err, const char* msg);
 </tr>
 </tbody>
 </table>
+
+
 
 ### 音频质量回调 (onAudioQuality)
 
@@ -1500,6 +1585,8 @@ virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsign
 </tbody>
 </table>
 
+
+
 ### 说话声音音量提示回调 (onAudioVolumeIndication)
 
 ```
@@ -1535,6 +1622,8 @@ virtual void onAudioVolumeIndication (const AudioVolumeInfo* speakers, unsigned 
 </tbody>
 </table>
 
+
+
 ### 离开频道回调 (onLeaveChannel)
 
 ```
@@ -1567,6 +1656,8 @@ virtual void onLeaveChannel(const RtcStats& stat);
 </tbody>
 </table>
 
+
+
 ```
 struct RtcStats {
                 unsigned int duration;
@@ -1589,7 +1680,7 @@ virtual void onAudioMixingFinished();
 virtual void onNetworkQuality(uid_t uid, int txQuality, int rxQuality);
 ```
 
-该回调每 2 秒触发，向 APP 报告频道内用户当前的上行、下行网络质量。
+该回调每 2 秒触发，向APP报告频道内用户当前的上行、下行网络质量。
 
 <table>
 <colgroup>
@@ -1632,13 +1723,15 @@ virtual void onNetworkQuality(uid_t uid, int txQuality, int rxQuality);
 </tbody>
 </table>
 
+
+
 ### 其他用户加入当前频道回调 (onUserJoined)
 
 ```
 virtual void onUserJoined(uid_t uid, int elapsed);
 ```
 
-提示有用户加入了频道。如果该客户端加入频道时已经有人在频道中，SDK 也会向应用程序上报这些已在频道中的用户。
+提示有用户加入了频道。如果该客户端加入频道时已经有人在频道中，SDK也会向应用程序上报这些已在频道中的用户。
 
 > 只有在调用 `setClientRole` 时将用户角色设为主播的才能收到该回调，观众角色无法收到。
 
@@ -1660,13 +1753,15 @@ virtual void onUserJoined(uid_t uid, int elapsed);
 </tbody>
 </table>
 
+
+
 ### 其他用户离开当前频道回调 (onUserOffline)
 
 ```
 virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason);
 ```
 
-提示有用户离开了频道（或掉线）。 SDK 判断用户离开频道（或掉线）的依据是超时: 在一定时间内（15 秒）没有收到对方的任何数据包，判定为对方掉线。在网络较差的情况下，可能会有误报建议可靠的掉线检测应该由信令来做。
+提示有用户离开了频道（或掉线）。 SDK 判断用户离开频道（或掉线）的依据是超时: 在一定时间内（15秒）没有收到对方的任何数据包，判定为对方掉线。在网络较差的情况下，可能会有误报建议可靠的掉线检测应该由信令来做。
 
 <table>
 <colgroup>
@@ -1691,6 +1786,8 @@ virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason);
 </tr>
 </tbody>
 </table>
+
+
 
 ### 用户静音回调 (onUserMuteAudio)
 
@@ -1721,6 +1818,8 @@ virtual void onUserMuteAudio(uid_t uid, bool muted);
 </tr>
 </tbody>
 </table>
+
+
 
 ### 语音路由已变更回调 (onAudioRouteChanged)
 
@@ -1758,6 +1857,8 @@ virtual void onApiCallExecuted(const char* api, int error);
 </tbody>
 </table>
 
+
+
 ### 连接丢失回调 (onConnectionLost)
 
 ```
@@ -1772,7 +1873,7 @@ virtual void onConnectionLost();
 virtual void onConnectionInterrupted ();
 ```
 
-该回调方法表示 SDK 和服务器失去了网络连接。失去连接后，除非 APP 主动调用 `leaveChannel`，SDK 会一直自动重连。
+该回调方法表示SDK和服务器失去了网络连接。失去连接后，除非APP主动调用 `leaveChannel`，SDK 会一直自动重连。
 
 ### 接收到对方数据流消息的回调 (onStreamMessage)
 
@@ -1780,7 +1881,7 @@ virtual void onConnectionInterrupted ();
 virtual void onStreamMessage(uid_t uid, int streamID, const char* data, size_t length);
 ```
 
-该回调表示已在 5 秒内按照顺序收到了对方发送的数据包。
+该回调表示已在5秒内按照顺序收到了对方发送的数据包。
 
 <table>
 <colgroup>
@@ -1803,13 +1904,15 @@ virtual void onStreamMessage(uid_t uid, int streamID, const char* data, size_t l
 </tbody>
 </table>
 
+
+
 ### 接收对方数据流消息错误的回调 (onStreamMessageError)
 
 ```
 virtual void onStreamMessageError(uid_t uid, int streamId, int code, int missed, int cached);
 ```
 
-该回调表示没有在 5 秒内收到对方发送的数据包。
+该回调表示没有在5秒内收到对方发送的数据包。
 
 <table>
 <colgroup>
@@ -1837,6 +1940,8 @@ virtual void onStreamMessageError(uid_t uid, int streamId, int code, int missed,
 </tr>
 </tbody>
 </table>
+
+
 
 ### Token 过期回调 (onRequestToken)
 
@@ -1871,6 +1976,8 @@ virtual void onClientRoleChanged(CLIENT_ROLE_TYPE oldRole,CLIENT_ROLE_TYPE newRo
 </tr>
 </tbody>
 </table>
+
+
 
 ```
 enum CLIENT_ROLE_TYPE
@@ -1912,6 +2019,9 @@ virtual void OnUserMuteVideo (uint uid, bool muted)
 </tbody>
 </table>
 
+
+
 ## 错误代码和警告代码 - Interactive Gaming SDK
 
 详见 [错误代码和警告代码](/cn/API%20Reference/the_error_game)。
+

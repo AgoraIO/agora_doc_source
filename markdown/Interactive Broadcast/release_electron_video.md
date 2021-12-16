@@ -3,21 +3,21 @@ title: 发版说明
 platform: Electron
 updatedAt: 2021-03-12 05:51:57
 ---
-
 本文提供 Agora SDK for Electron 的发版说明。
 
 ## 简介
-
+ 
 Agora SDK for Electron 基于 Agora SDK for macOS 和 Agora SDK for Windows，使用 Node.js C++ 插件开发，支持其它平台 Native SDK 的所有功能。主要支持两种主要场景：
-
+ 
 - 音视频通话
 - 音视频直播
-
+ 
 点击[语音通话产品概述](product_voice)、[视频通话产品概述](product_video)、[音频互动直播产品概述](product_live_audio)及[视频互动直播](product_live)了解关键特性。
 
-## **2.9.0 版**
+ ## **2.9.0 版**
 
 该版本于 2019 年 8 月 30 日发布。新增特性与修复问题详见下文。
+
 
 **新增特性**
 
@@ -79,9 +79,9 @@ Agora SDK for Electron 基于 Agora SDK for macOS 和 Agora SDK for Windows，�
 - 修复了测试麦克风时出现的崩溃问题。
 
 #### 视频
-
 - 修复了视频卡住的问题。
 - 修复了 `remoteVideoStateChanged` 回调行为不符预期的问题。
+
 
 #### 其他
 
@@ -109,6 +109,7 @@ Agora SDK for Electron 基于 Agora SDK for macOS 和 Agora SDK for Windows，�
 - [`localVideoStats`] 类：`encodedBitrate`，`encodedFrameWidth`，`encodedFrameHeight`, `encodedFrameCount` 和 `codecType` 成员
 - [`remoteVideoStats`] 类：`packetLossRate` 成员
 
+
 #### 废弃
 
 - `microphoneEnabled` 回调，请改用 `localAudioStateChanged`
@@ -121,10 +122,10 @@ Agora SDK for Electron 基于 Agora SDK for macOS 和 Agora SDK for Windows，�
 ## **2.8.0 版**
 
 该版本于 2019 年 7 月 8 日发布。
-
+ 
 该 SDK 首次发版。你可以参考以下文档集成 SDK，实现相应的实时音视频功能：
-
+ 
 - [集成 SDK](electron_video)
 - [API 参考](./API%20Reference/electron/index.html)
-
+ 
 Agora 提供了开源的 [Electron Github Demo](https://github.com/AgoraIO-Community/Agora-Electron-Quickstart)，你也可以前往下载并体验。

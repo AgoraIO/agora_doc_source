@@ -3,7 +3,6 @@ title: 实现视频直播
 platform: React Native
 updatedAt: 2021-02-07 02:01:26
 ---
-
 本文介绍如何建立一个简单的 React Native 项目并使用 Agora React Native SDK 实现基础的视频直播。
 
 ## 示例项目
@@ -21,7 +20,7 @@ Agora 在 GitHub 提供一个开源的视频通话示例项目 [Agora-RN-Quickst
 - Node 10 或以上
 - Xcode 9.4 或以上
 - CocoaPods
-- iOS 8.0 或以上设备
+- iOS 8.0 或以上设备 
 
 如果你的目标平台为 Android，你的开发环境需要满足以下需求：
 
@@ -30,11 +29,12 @@ Agora 在 GitHub 提供一个开源的视频通话示例项目 [Agora-RN-Quickst
 - Node 10 或以上
 - Java Development Kit (JDK) 8 或以上
 - 最新版本的 Android Studio
-- Android 5.0 或以上设备
+- Android 5.0 或以上设备 
 
 <div class="alert info">关于搭建开发环境的更多注意事项，详见<a href="https://reactnative.dev/docs/environment-setup">搭建开发环境</a >。</div>
 
-### 其他要求
+
+###  其他要求
 
 有效的 Agora [开发者账号](/cn/Agora%20Platform/sign_in_and_sign_up?platform=All%20Platforms)。
 
@@ -45,12 +45,11 @@ Agora 在 GitHub 提供一个开源的视频通话示例项目 [Agora-RN-Quickst
 1. 确保你已根据你使用的操作系统、针对的目标平台，完成了开发环境的搭建。
 
 2. 运行以下命令创建并初始化一个新项目。
-
-```shell
-npx react-native init ProjectName
-```
-
-运行完成后，会自动生成一个简单的示例项目。
+ ```shell
+ npx react-native init ProjectName
+ ```
+ 
+   运行完成后，会自动生成一个简单的示例项目。
 
 3. 启动你的 Andoird 或 iOS 模拟器，执行以下命令运行你的项目：
 
@@ -74,28 +73,27 @@ npx react-native init ProjectName
    **方法一**：使用 npm 下载
 
    ```shell
-    npm i --save react-native-agora
-   ```
-
+	 npm i --save react-native-agora
+	 ```
+	 
    **方法二**：使用 yarn 下载
 
    ```shell
-    // 安装 yarn
-    npm install -g yarn
-    // 使用 yarn 下载 Agora React Native SDK
-    yarn add react-native-agora
-   ```
-
-   <div class="alert note">React Native 0.60.0 或以上版本支持自动链接原生模块，请勿手动链接。详见  <a href="https://github.com/react-native-community/cli/blob/master/docs/autolinking.md">Autolinking</a >。</div>
+	 // 安装 yarn
+	 npm install -g yarn
+	 // 使用 yarn 下载 Agora React Native SDK
+	 yarn add react-native-agora
+	 ```
+	<div class="alert note">React Native 0.60.0 或以上版本支持自动链接原生模块，请勿手动链接。详见  <a href="https://github.com/react-native-community/cli/blob/master/docs/autolinking.md">Autolinking</a >。</div>
 
 2. 如果你的目标平台是 iOS， 还需要执行 `npx pod-install` 安装 SDK。
 
-<div class="alert note"> 请确保你已安装 <b>CocoaPods</b>。你可以参考 <a href="https://guides.cocoapods.org/using/getting-started.html#getting-started">Getting Started with CocoaPods</a >。</div>
+   <div class="alert note"> 请确保你已安装 <b>CocoaPods</b>。你可以参考 <a href="https://guides.cocoapods.org/using/getting-started.html#getting-started">Getting Started with CocoaPods</a >。</div>
 
-3. Agora React Native SDK 原生层基于 Swift 语言开发，请确保你的工程支持编译 Swift，否则编译 iOS 应用时会报错。
+3.  Agora React Native SDK 原生层基于 Swift 语言开发，请确保你的工程支持编译 Swift，否则编译 iOS 应用时会报错。
 
-a. 用 Xcode 打开 `ios/ProjectName.xcworkspace` 文件夹。
-b. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Next** > **Create**，新建一个空的 `File.swift` 文件。
+   a. 用 Xcode 打开 `ios/ProjectName.xcworkspace` 文件夹。
+   b. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Next** > **Create**，新建一个空的 `File.swift` 文件。
 
 ## 添加 TypeScript 支持
 
@@ -104,22 +102,21 @@ b. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Ne
 1. 在项目根目录下执行以下命令安装 TypeScript 相关依赖。
 
    **方法一**：使用 npm 安装
-
    ```shell
    npm install --save-dev typescript @types/jest @types/react @types/react-native @types/react-test-renderer
    ```
+	 
+	 **方法二**：使用 yarn 安装
+	 确保你已经安装 yarn。
+	 ```shell
+  yarn add --dev typescript @types/jest @types/react @types/react-native @types/react-test-renderer
+	 ```
 
-   **方法二**：使用 yarn 安装
-   确保你已经安装 yarn。
-
-   ```shell
-   yarn add --dev typescript @types/jest @types/react @types/react-native @types/react-test-renderer
-   ```
 
 2. 在项目根目录下创建 `tsconfig.json` 文件，并复制以下代码到该文件：
 
-```json
-{
+ ```json
+ {
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -132,22 +129,28 @@ b. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Ne
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
-}
-```
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
+ }
+ ```
 
 3. 在项目根目录下创建 `jest.config.js` 文件，并复制以下代码到该文件：
 
-```javascript
-module.exports = {
-  preset: "react-native",
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+ ```javascript
+ module.exports = {
+    preset: 'react-native',
+    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
 };
 ```
 
 4. 将根目录下的 `App.js` 文件重命名为 `App.tsx` 文件。
 
 <div class="alert info">关于在 React Native 项目中使用 TypeScript 的更多信息，详见<a href="https://reactnative.dev/docs/typescript">使用 TypeScript</a >。</div>
+
 
 ## 基本流程
 
@@ -167,54 +170,55 @@ module.exports = {
 Agora-RN-Quickstart 示例项目中定义样式的代码如下：
 
 ```typescript
-import {Dimensions, StyleSheet} from "react-native";
-
+import {Dimensions, StyleSheet} from 'react-native'
+ 
 const dimensions = {
-  width: Dimensions.get("window").width,
-  height: Dimensions.get("window").height,
-};
-
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+}
+ 
 export default StyleSheet.create({
-  max: {
-    flex: 1,
-  },
-  buttonHolder: {
-    height: 100,
-    alignItems: "center",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-  },
-  button: {
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    backgroundColor: "#0093E9",
-    borderRadius: 25,
-  },
-  buttonText: {
-    color: "#fff",
-  },
-  fullView: {
-    width: dimensions.width,
-    height: dimensions.height - 100,
-  },
-  remoteContainer: {
-    width: "100%",
-    height: 150,
-    position: "absolute",
-    top: 5,
-  },
-  remote: {
-    width: 150,
-    height: 150,
-    marginHorizontal: 2.5,
-  },
-  noUserText: {
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    color: "#0093E9",
-  },
-});
+    max: {
+        flex: 1,
+    },
+    buttonHolder: {
+        height: 100,
+        alignItems: 'center',
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+    },
+    button: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        backgroundColor: '#0093E9',
+        borderRadius: 25,
+    },
+    buttonText: {
+        color: '#fff',
+    },
+    fullView: {
+        width: dimensions.width,
+        height: dimensions.height - 100,
+    },
+    remoteContainer: {
+        width: '100%',
+        height: 150,
+        position: 'absolute',
+        top: 5
+    },
+    remote: {
+        width: 150,
+        height: 150,
+        marginHorizontal: 2.5
+    },
+    noUserText: {
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        color: '#0093E9',
+    },
+})
+
 ```
 
 ### 2. 导入类
@@ -222,13 +226,15 @@ export default StyleSheet.create({
 打开 `App.tsx` 文件，删除所有代码。在 `App.tsx` 文件的开头添加如下代码：
 
 ```typescript
-import React, {Component} from "react";
-import {Platform, ScrollView, Text, TouchableOpacity, View} from "react-native";
+import React, {Component} from 'react'
+import {Platform, ScrollView, Text, TouchableOpacity, View} from 'react-native'
 // 导入 RtcEngine 类和视图渲染组件。
-import RtcEngine, {RtcLocalView, RtcRemoteView, VideoRenderMode, ChannelProfile, ClientRole} from "react-native-agora";
+import RtcEngine, {RtcLocalView, RtcRemoteView, VideoRenderMode, ChannelProfile, ClientRole,} from 'react-native-agora'
 // 导入自定义的用户界面样式。
-import styles from "./components/Style";
+import styles from './components/Style'
+
 ```
+
 
 ### 3. 获取设备权限（仅 Android 平台）
 
@@ -239,24 +245,25 @@ import styles from "./components/Style";
 `App.tsx` 文件中添加如下代码，设置获取设备麦克风和摄像头使用权限的提示框。
 
 ```typescript
-const requestCameraAndAudioPermission = async () => {
-  try {
-    const granted = await PermissionsAndroid.requestMultiple([
-      PermissionsAndroid.PERMISSIONS.CAMERA,
-      PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
-    ]);
-    if (
-      granted["android.permission.RECORD_AUDIO"] === PermissionsAndroid.RESULTS.GRANTED &&
-      granted["android.permission.CAMERA"] === PermissionsAndroid.RESULTS.GRANTED
-    ) {
-      console.log("You can use the cameras & mic");
-    } else {
-      console.log("Permission denied");
+const requestCameraAndAudioPermission = async () =>{
+    try {
+        const granted = await PermissionsAndroid.requestMultiple([
+            PermissionsAndroid.PERMISSIONS.CAMERA,
+            PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+        ])
+        if (
+            granted['android.permission.RECORD_AUDIO'] === PermissionsAndroid.RESULTS.GRANTED
+            && granted['android.permission.CAMERA'] === PermissionsAndroid.RESULTS.GRANTED
+        ) {
+            console.log('You can use the cameras & mic')
+        } else {
+            console.log('Permission denied')
+        }
+    } catch (err) {
+        console.warn(err)
     }
-  } catch (err) {
-    console.warn(err);
-  }
-};
+}
+
 ```
 
 ### 4. 创建 App 组件
@@ -279,7 +286,7 @@ const requestCameraAndAudioPermission = async () => {
 // 定义一个 Props 接口。
 interface Props {
 }
-
+ 
 // 定义一个 State 接口。
 interface State {
     appId: string,
@@ -288,7 +295,7 @@ interface State {
     joinSucceed: boolean,
     peerIds: number[],
 }
-
+ 
 // 创建一个 App 组件，该组件继承了 Props 和 State 的属性。
 export default class App extends Component<Props, State> {
     _engine?: RtcEngine
@@ -351,7 +358,7 @@ init = async () => {
     await this._engine.setChannelProfile(ChannelProfile.LiveBroadcasting)
     // 设置用户角色为主播。
     await this._engine.setClientRole(ClientRole.Broadcaster)
-
+ 
     // 注册 UserJoined 回调。
     // 远端用户成功加入频道时，会触发该回调，并返回该用户的 id。
     this._engine.addListener('UserJoined', (uid, elapsed) => {
@@ -363,7 +370,7 @@ init = async () => {
             })
         }
     })
-
+ 
     // 注册 UserOffline 回调。
     // 远端用户离开频道时，会触发该回调，并返回该用户的 id。
     this._engine.addListener('UserOffline', (uid, reason) => {
@@ -374,7 +381,7 @@ init = async () => {
             peerIds: peerIds.filter(id => id !== uid)
         })
     })
-
+     
     // 注册 JoinChannelSuccess 回调。
     // 本地用户成功加入频道时，会触发该回调。
     this._engine.addListener('JoinChannelSuccess', (channel, uid, elapsed) => {
@@ -387,6 +394,7 @@ init = async () => {
 
 ```
 
+
 ### 6. 加入频道
 
 完成初始化后，你就可以调用 `joinChannel` 方法加入频道。
@@ -395,8 +403,9 @@ init = async () => {
 // 通过 this.state.token 和 this.state.channelName 获取传入的 Token 和频道名。
 // 本地用户的 ID。数据类型为整型，且频道内每个用户的 uid 必须是唯一的。若将 uid 设为 0，则 SDK 会自动分配一个 uid，并在 JoinChannelSuccess 回调中报告。
 startCall = async () => {
-  await this._engine?.joinChannel(this.state.token, this.state.channelName, null, 0);
-};
+        await this._engine?.joinChannel(this.state.token, this.state.channelName, null, 0)
+    }
+    
 ```
 
 ### 7. 渲染用户界面
@@ -425,7 +434,7 @@ render() {
             </View>
         )
     }
-
+    
 ```
 
 ### 8. 渲染本地用户的视图
@@ -434,19 +443,19 @@ render() {
 
 ```typescript
 _renderVideos = () => {
-  const {joinSucceed} = this.state;
-  return joinSucceed ? (
-    <View style={styles.fullView}>
-      // 将视频渲染模式设为 Hidden, 即优先保证视窗被填满。
-      <RtcLocalView.SurfaceView
-        style={styles.max}
-        channelId={this.state.channelName}
-        renderMode={VideoRenderMode.Hidden}
-      />
-      {this._renderRemoteVideos()}
-    </View>
-  ) : null;
-};
+        const {joinSucceed} = this.state
+        return joinSucceed ? (
+            <View style={styles.fullView}>
+                // 将视频渲染模式设为 Hidden, 即优先保证视窗被填满。
+                <RtcLocalView.SurfaceView
+                    style={styles.max}
+                    channelId={this.state.channelName}
+                    renderMode={VideoRenderMode.Hidden}/>
+                {this._renderRemoteVideos()}
+            </View>
+        ) : null
+    }
+    
 ```
 
 ### 9. 渲染远端用户的视图
@@ -455,24 +464,27 @@ _renderVideos = () => {
 
 ```typescript
 _renderRemoteVideos = () => {
-  const {peerIds} = this.state;
-  return (
-    <ScrollView style={styles.remoteContainer} contentContainerStyle={{paddingHorizontal: 2.5}} horizontal={true}>
-      {peerIds.map((value, index, array) => {
+        const {peerIds} = this.state
         return (
-          // 将视频渲染模式设为 Hidden, 即优先保证视窗被填满。
-          <RtcRemoteView.SurfaceView
-            style={styles.remote}
-            uid={value}
-            channelId={this.state.channelName}
-            renderMode={VideoRenderMode.Hidden}
-            zOrderMediaOverlay={true}
-          />
-        );
-      })}
-    </ScrollView>
-  );
-};
+            <ScrollView
+                style={styles.remoteContainer}
+                contentContainerStyle={{paddingHorizontal: 2.5}}
+                horizontal={true}>
+                {peerIds.map((value, index, array) => {
+                    return (
+                        // 将视频渲染模式设为 Hidden, 即优先保证视窗被填满。
+                        <RtcRemoteView.SurfaceView
+                            style={styles.remote}
+                            uid={value}
+                            channelId={this.state.channelName}
+                            renderMode={VideoRenderMode.Hidden}
+                            zOrderMediaOverlay={true}/>
+                    )
+                })}
+            </ScrollView>
+        )
+    }
+    
 ```
 
 ### 10. 离开频道
@@ -481,9 +493,10 @@ _renderRemoteVideos = () => {
 
 ```typescript
 endCall = async () => {
-  await this._engine?.leaveChannel();
-  this.setState({peerIds: [], joinSucceed: false});
-};
+        await this._engine?.leaveChannel()
+        this.setState({peerIds: [], joinSucceed: false})
+    }
+    
 ```
 
 ## 运行项目

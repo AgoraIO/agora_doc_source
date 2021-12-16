@@ -3,7 +3,6 @@ title: 实现视频直播
 platform: Web
 updatedAt: 2021-03-26 08:37:58
 ---
-
 根据本文指导快速集成 Agora Web SDK 并在你自己的 app 里实现音视频互动直播。
 
 <div class="alert info">声网已经推出下一代 Agora Web SDK (Agora Web SDK NG)，优化了 SDK 的内部架构，提高了 SDK 的可用性。Agora Web SDK NG 基于 TypeScript 开发，并使用 Promise 来管理异步操作，提供了更灵活更易用的 API 方案。Agora Web SDK NG 当前处于 Beta 阶段，点击<a href="https://agoraio-community.github.io/AgoraWebSDK-NG/zh-CN/">此处</a>抢先体验，如有问题，可直接提交 <a href="https://github.com/AgoraIO-Community/AgoraWebSDK-NG">Issue</a>。</div>
@@ -36,47 +35,49 @@ updatedAt: 2021-03-26 08:37:58
    ```html
    <!DOCTYPE html>
    <html>
-     <head>
-       <meta charset="UTF-8" />
+   <head>
+       <meta charset="UTF-8">
        <title>Live Streaming</title>
-       <link rel="stylesheet" href="./styles/style.css" />
-     </head>
-     <body>
-       <h1>Live Streaming<br /><small style="font-size: 14pt;">Powered by Agora.io</small></h1>
+       <link rel="stylesheet" href="./styles/style.css">
+   </head>
+   <body>
+       <h1>
+           Live Streaming<br><small style="font-size: 14pt;">Powered by Agora.io</small>
+       </h1>
        <h4>Local video</h4>
        <div id="me"></div>
        <h4>Remote video</h4>
-       <div id="remote-container"></div>
+       <div id="remote-container">
+       </div>
        <script src="./scripts/script.js"></script>
-     </body>
+   </body>
    </html>
    ```
 
 3. 将以下代码复制到 `style.css` 文件中。
 
    ```css
-   * {
-     font-family: sans-serif;
+   *{
+       font-family: sans-serif;
    }
-   h1,
-   h4 {
-     text-align: center;
+   h1,h4{
+       text-align: center;
    }
-   #me {
-     position: relative;
-     width: 50%;
-     margin: 0 auto;
-     display: block;
+   #me{
+       position: relative;
+       width: 50%;
+       margin: 0 auto;
+       display: block;
    }
-   #me video {
-     position: relative !important;
+   #me video{
+       position: relative !important;
    }
-   #remote-container {
-     display: flex;
+   #remote-container{
+       display: flex;
    }
-   #remote-container video {
-     height: auto;
-     position: relative !important;
+   #remote-container video{
+       height: auto;
+       position: relative !important;
    }
    ```
 
@@ -97,7 +98,7 @@ updatedAt: 2021-03-26 08:37:58
 2. 在你的项目的 JavaScript 代码中添加一行：
 
    ```javascript
-   import AgoraRTC from "agora-rtc-sdk";
+   import AgoraRTC from 'agora-rtc-sdk'
    ```
 
 ### 方法 2. 使用 CDN 方法获取 SDK
@@ -137,30 +138,30 @@ updatedAt: 2021-03-26 08:37:58
 
 ```javascript
 // 处理错误的函数
-let handleError = function (err) {
-  console.log("Error: ", err);
+let handleError = function(err){
+        console.log("Error: ", err);
 };
-
+ 
 // 定义远端视频画面的容器
 let remoteContainer = document.getElementById("remote-container");
-
+ 
 // 将视频流添加到远端视频画面容器的函数
-function addVideoStream(elementId) {
-  // 给每个流创建一个 div
-  let streamDiv = document.createElement("div");
-  // 将 elementId 分配到 div
-  streamDiv.id = elementId;
-  // 处理镜像问题
-  streamDiv.style.transform = "rotateY(180deg)";
-  // 将 div 添加到容器
-  remoteContainer.appendChild(streamDiv);
-}
-
+function addVideoStream(elementId){
+        // 给每个流创建一个 div
+        let streamDiv = document.createElement("div");
+        // 将 elementId 分配到 div
+        streamDiv.id = elementId;
+        // 处理镜像问题
+        streamDiv.style.transform = "rotateY(180deg)";
+        // 将 div 添加到容器
+        remoteContainer.appendChild(streamDiv);
+};
+ 
 // 将视频流从远端视频画面容器移除的函数
 function removeVideoStream(elementId) {
-  let remoteDiv = document.getElementById(elementId);
-  if (remoteDiv) remoteDiv.parentNode.removeChild(remoteDiv);
-}
+        let remoteDiv = document.getElementById(elementId);
+        if (remoteDiv) remoteDiv.parentNode.removeChild(remoteDiv);
+};
 ```
 
 ### 1. 创建本地客户端
@@ -169,10 +170,10 @@ function removeVideoStream(elementId) {
 
 ```javascript
 let client = AgoraRTC.createClient({
-  mode: "live",
-  codec: "vp8",
+    mode: "live",
+    codec: "vp8",
 });
-
+   
 client.init("yourAppId");
 ```
 
@@ -205,15 +206,9 @@ client.setClientRole(role);
 
 ```javascript
 // 加入频道
-client.join(
-  "yourToken",
-  "myChannel",
-  null,
-  uid => {
+client.join("yourToken", "myChannel", null, (uid)=>{
     // 创建本地媒体流
-  },
-  handleError,
-);
+}, handleError);
 ```
 
 ### 4. 创建并发布本地流
@@ -226,15 +221,15 @@ client.join(
 
 ```javascript
 let localStream = AgoraRTC.createStream({
-  audio: true,
-  video: true,
-});
+    audio: true,
+    video: true,
+}); 
 // 初始化本地流
-localStream.init(() => {
-  // 播放本地流
-  localStream.play("me");
-  // 发布本地流
-  client.publish(localStream, handleError);
+localStream.init(()=>{
+    // 播放本地流
+    localStream.play("me");
+    // 发布本地流
+    client.publish(localStream, handleError);
 }, handleError);
 ```
 
@@ -244,15 +239,15 @@ localStream.init(() => {
 
 ```javascript
 // 有远端用户发布流时进行订阅
-client.on("stream-added", function (evt) {
-  client.subscribe(evt.stream, handleError);
+client.on("stream-added", function(evt){
+    client.subscribe(evt.stream, handleError);
 });
 // 订阅成功后播放远端用户的流
-client.on("stream-subscribed", function (evt) {
-  let stream = evt.stream;
-  let streamId = String(stream.getId());
-  addVideoStream(streamId);
-  stream.play(streamId);
+client.on("stream-subscribed", function(evt){
+    let stream = evt.stream;
+    let streamId = String(stream.getId());
+    addVideoStream(streamId);
+    stream.play(streamId);
 });
 ```
 

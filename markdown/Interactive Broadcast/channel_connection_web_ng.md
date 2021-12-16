@@ -3,7 +3,6 @@ title: 频道连接状态管理
 platform: Web
 updatedAt: 2021-01-25 08:58:27
 ---
-
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 Web SDK 3.x 或更早版本，请查看<a href="./channel_connection_web?platform=Web">频道连接状态管理</a>。</li></div>
 
 本文介绍 Agora 频道如何判断用户在通信的各个阶段处于什么连接状态以及各状态的转变过程。

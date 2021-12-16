@@ -3,7 +3,6 @@ title: 跑通示例项目
 platform: Unity
 updatedAt: 2021-01-25 09:30:40
 ---
-
 ## 概览
 
 Agora 在 GitHub 上提供一个开源的视频直播示例项目 [OpenLive-macOS](https://github.com/AgoraIO/Basic-Video-Broadcasting/tree/master/OpenLive-macOS)。本文介绍如何快速跑通该示例项目，体验 Agora 视频直播效果。你也可以直接观看下面的视频教程。
@@ -18,6 +17,8 @@ Agora 在 GitHub 上提供一个开源的视频直播示例项目 [OpenLive-macO
 - macOS 10.10 或以上版本的设备
 - 有效的 [Agora 账户](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up?platform=macOS)
 
+
+
 <div class="alert note">如果你的网络环境部署了防火墙，请参考<a href="https://docs.agora.io/cn/Agora Platform/firewall?platform=macOS">应用企业防火墙限制</a>以正常使用 Agora 服务。</div>
 
 ## 操作步骤
@@ -30,7 +31,7 @@ Agora 在 GitHub 上提供一个开源的视频直播示例项目 [OpenLive-macO
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
-![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
+ ![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
 
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID + Token。**
 
@@ -43,7 +44,6 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 在 [Agora 控制台](https://console.agora.io/)的**项目管理**页面，找到你的项目，点击 App ID 右侧的眼睛图标就可以直接复制项目的 App ID。
 
 ![获取appid](https://web-cdn.agora.io/docs-files/1603974707121)
-
 <div class="alert info">你需要在运行示例项目时填写 App ID。</div>
 
 ### <a name="temptoken"></a>3. 生成临时 Token
@@ -54,11 +54,11 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 1. 在控制台的[项目管理](https://console.agora.io/projects)页面，点击已创建项目的 ![](https://web-cdn.agora.io/docs-files/1574923151660) 图标，打开 **Token** 页面。
 
-   ![](https://web-cdn.agora.io/docs-files/1574922827899)
+	![](https://web-cdn.agora.io/docs-files/1574922827899)
 
-2. 输入一个频道名，例如 test，然后点击**生成临时 Token**。临时 Token 的有效期为 24 小时。加入频道时，请确保填入的频道名与生成临时 Token 时填入的频道名一致。
+2. 输入一个频道名，例如 test，然后点击**生成临时Token**。临时 Token 的有效期为 24 小时。加入频道时，请确保填入的频道名与生成临时 Token 时填入的频道名一致。
 
-   ![](https://web-cdn.agora.io/docs-files/1574928082984)
+	![](https://web-cdn.agora.io/docs-files/1574928082984)
 
 <div class="alert note">临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见<a href="token_server">生成 Token</a >。</div>
 
@@ -71,12 +71,12 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 ```swift
 struct KeyCenter {
-    static let AppId: String = <#Your App Id#>
+    static let AppId: String = <#Your App Id#>   
     static var Token: String? = <#Temp Access Token#>
 }
 ```
 
-### 5. 集成 Agora SDK
+###  5. 集成 Agora SDK
 
 按照以下步骤将 Agora macOS SDK 集成到示例项目中。
 
@@ -88,7 +88,7 @@ struct KeyCenter {
 按照以下步骤运行示例项目：
 
 1. 在 macOS 设备上打开并运行 `OpenLive.xcodeproj` 示例项目。运行成功后，你会看到如下画面。
-   ![](https://web-cdn.agora.io/docs-files/1605689559892)
+![](https://web-cdn.agora.io/docs-files/1605689559892)
 
 2. 选择你的角色，输入你之前生成 Token 时使用的频道名，并点击 **Start Live Streaming** 开始直播。如果你选择的角色为主播，则示例应用会弹出对话框要求麦克风和摄像头权限，点击**允许**，即可在页面上看到本地的视频画面。
 

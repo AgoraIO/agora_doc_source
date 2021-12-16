@@ -3,7 +3,6 @@ title: 原始音频数据
 platform: Android
 updatedAt: 2021-03-05 08:16:14
 ---
-
 ## 功能描述
 
 音频传输过程中，我们可以对采集到的音频数据进行前处理和后处理，获取想要的播放效果。
@@ -13,7 +12,6 @@ updatedAt: 2021-03-05 08:16:14
 ## 示例项目
 
 我们在 GitHub 上提供以下开源的示例项目:
-
 - [通过 JNI 调用 C++ 接口获取原始音频数据](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/ProcessRawData.java)
 - [调用 Java 接口获取原始音频数据](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/ProcessAudioRawData.java)
 
@@ -42,14 +40,14 @@ updatedAt: 2021-03-05 08:16:14
 ```java
 // 调用 registerAudioFrameObserver 方法注册语音观测器，并在该方法中传入一个 IAudioFrameObserver 实例。
 engine.registerAudioFrameObserver(new IAudioFrameObserver() {
-
+    
     //实现 onRecordFrame 回调，从回调中获取音频帧并进行播放。
     @Override
     public boolean onRecordFrame(byte[] samples, int numOfSamples, int bytesPerSample, int channels, int samplesPerSec) {
         if(isEnableLoopBack){
             mAudioPlayer.play(samples, 0, numOfSamples * bytesPerSample);
         }
-
+        
         return false;
     }
     //实现 onPlaybackFrame 回调
@@ -69,13 +67,15 @@ engine.registerAudioFrameObserver(new IAudioFrameObserver() {
     public boolean onMixedFrame(byte[] samples, int numOfSamples, int bytesPerSample, int channels, int samplesPerSec) {
         return false;
     }
-
+    
     // 调用 set 方法设置各回调返回的音视频帧格式
     engine.setRecordingAudioFrameParameters(SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, Constants.RAW_AUDIO_FRAME_OP_MODE_READ_WRITE,SAMPLES_PER_CALL);
     engine.setMixedAudioFrameParameters(SAMPLE_RATE, SAMPLES_PER_CALL);
     engine.setPlaybackAudioFrameParameters(SAMPLE_RATE, SAMPLE_NUM_OF_CHANNEL, Constants.RAW_AUDIO_FRAME_OP_MODE_READ_WRITE,SAMPLES_PER_CALL);
 });
 ```
+
+
 
 #### API 参考
 
@@ -179,7 +179,7 @@ javah -jni MediaPreProcessing.class
 
 3. 创建 C++ 接口文件，用于被 Java 调用。C++ 接口文件需要根据生成的 `.h` 文件，从 C++ SDK export 相应的方法。具体实现可参考示例项目中的 `io_agora_advancedvideo_rawdata_MediaPreProcessing.cpp` 文件。
 
-<div class="alert note">JNI 在 C++ 中定义了与 Java 相映射的数据结构。你可以参考<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/jniTOC.html">这里</a>获取详细信息。</div>
+   <div class="alert note">JNI 在 C++ 中定义了与 Java 相映射的数据结构。你可以参考<a href="https://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/jniTOC.html">这里</a>获取详细信息。</div>
 
 ```cpp
 // 全局变量
@@ -453,7 +453,7 @@ target_link_libraries( # Specifies the target library.
         ${log-lib})
 ```
 
-##### 在 Java 项目中实现原始音频数据功能
+   #####  在 Java 项目中实现原始音频数据功能
 
 1. 实现 Java 接口文件中与 C++ 方法映射的接口。
 

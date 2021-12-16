@@ -3,7 +3,6 @@ title: 实现视频直播
 platform: Cocos Creator
 updatedAt: 2020-12-15 10:06:39
 ---
-
 ## 前提条件
 
 - Cocos Creator 2.3.4 或以上（本文界面描述基于 Cocos Creator 2.4.3）
@@ -11,10 +10,10 @@ updatedAt: 2020-12-15 10:06:39
 
 - 操作系统与集成开发环境要求：
 
-  | 开发平台 | 操作系统版本       | 集成开发环境版本                                                                                   |
-  | :------- | :----------------- | :------------------------------------------------------------------------------------------------- |
+  | 开发平台 | 操作系统版本       | 集成开发环境版本                                             |
+  | :------- | :----------------- | :----------------------------------------------------------- |
   | Android  | Android 4.1 或以上 | <li>Android Studio 3.0 或以上</li><li>Android SDK API 16 或以上</li><li>Android NDK 17 或以上</li> |
-  | iOS      | iOS 8.0 或以上     | Xcode 9.0 或以上                                                                                   |
+  | iOS      | iOS 8.0 或以上     | Xcode 9.0 或以上                                             |
 
 - 有效的 [Cocos 账户](https://account.cocos.com/)和 [Cocos App ID](https://docs.cocos.com/creator/manual/zh/cocos-service/user-guide.html)。
 
@@ -32,7 +31,7 @@ updatedAt: 2020-12-15 10:06:39
 
 1. 打开 Cocos Creator 项目，点击界面右侧的**服务**打开服务面板。
 2. 点击 **AppID** 后的 ![](https://web-cdn.agora.io/docs-files/1603983326448) 按钮并点击**设定 Cocos AppID**。
-   ![](https://web-cdn.agora.io/docs-files/1603984502139)
+ ![](https://web-cdn.agora.io/docs-files/1603984502139)
 3. 点击下拉框，选择一个游戏，并点击**关联**，将该游戏与你的项目关联。
 4. 向下滚动**服务**面板，找到并点击 **Agora RTC**。
 5. 点击 **Agora RTC** 后的开通服务按钮 ![](https://web-cdn.agora.io/docs-files/1603983397604)，仔细阅读弹窗内容，并点击**确认开通**。
@@ -50,8 +49,8 @@ Cocos Creator 也会使用你的 Cocos Creator 账户为你自动注册 Agora �
 1. 在 Agora 控制台的**项目管理**页面，找到你的项目，点击右侧的**编辑**按钮进入**编辑项目**页面。
    ![](https://web-cdn.agora.io/docs-files/1606295923430)
 2. 在**安全**模块，点击**启用**开启主要证书，并点击**删除**移除无证书。
-3. 在**功能**模块，点击**音视频临时 token** 后的**生成临时 token**。
-4. 在 **Token** 页面，输入一个频道名，例如 test，然后点击**生成临时 Token**。你可以在该页面复制 Agora App ID，用于[初始化 Agora 引擎](#initialize)；复制临时 Token，用于在[加入频道](#join)时鉴权。
+3. 在**功能**模块，点击**音视频临时token** 后的**生成临时token**。
+4. 在 **Token** 页面，输入一个频道名，例如 test，然后点击**生成临时Token**。你可以在该页面复制 Agora App ID，用于[初始化 Agora 引擎](#initialize)；复制临时 Token，用于在[加入频道](#join)时鉴权。
 
 <div class="alert note"><li>临时 Token 的有效期为 24 小时。<li>在生产环境，我们推荐你在自己的服务端生成 Token，详见<a href="https://docs.agora.io/cn/Interactive%20Broadcast/token_server?platform=Cocos%20Creator">在服务端生成 Token</a >。</div>
 
@@ -73,9 +72,9 @@ Cocos Creator 也会使用你的 Cocos Creator 账户为你自动注册 Agora �
 
 ```typescript
 cc.Class({
-
+ 
     ...
-
+ 
     onLoad: function () {
         // 初始化 Agora 引擎。将 YOUR_APPID 替换为你 Agora 项目的 App ID。
         agora.init('YOUR_APPID');
@@ -84,7 +83,7 @@ cc.Class({
         agora.on('userJoined', this.onUserJoined, this);
         agora.on('userOffline', this.onUserOffline, this);
     },
-
+ 
     ...
 });
 ```
@@ -97,17 +96,17 @@ cc.Class({
 
 ```typescript
 cc.Class({
-
+ 
     ...
-
+ 
     onLoad: function () {
-
+ 
         ...
-
+ 
         // 设置频道场景为直播场景。
         agora.setChannelProfile(agora.CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
     },
-
+ 
     ...
 });
 ```
@@ -122,37 +121,39 @@ cc.Class({
 
 2. 在**层级管理器**中，你可以看到 **toggleContainer** 内包含三个 Toggle 组件，你需要删除多余的 Toggle 组件（例如 **toggle3**）。
 
-<div class="alert info">本节将 <b>toggle1</b> 作为观众选项，<b>toggle2</b> 作为主播选项。</div>
+   <div class="alert info">本节将 <b>toggle1</b> 作为观众选项，<b>toggle2</b> 作为主播选项。</div>
 
 3. 在 `HelloWorld.js` 中，调用 `setClientRole`，使用用户选择的角色进行传参。
 
    ```typescript
    cc.Class({
-
+    
        ...
-
+    
        setClientRole: function (toggle, customEventData) {
            // 设置用户角色。用户选择的角色会通过 customEventData 传入。
            // customEventData 为 1 表示观众，对应的枚举值为 agora.CLIENT_ROLE_TYPE.CLIENT_ROLE_AUDIENCE。
            // customEventData 为 2 表示主播，对应的枚举值为 agora.CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER。
            agora.setClientRole(customEventData);
        },
-
+    
        ...
    });
-   ```
+	 ```
+
+   
 
 4. 回到 Cocos Creator，选中 **toggle1** 组件，在右侧**属性检查器**中找到 **Toggle** > **Check Events**，添加一个点击事件。
 
-5. 将**层级管理器**面板上的 **Canvas** 添加到该点击事件的 **cc.Node** 属性框。在 **cc.Node** 属性框后的两个下拉框中依次选择场景（**HelloWorld**）和触发事件（**setClientRole**），并在 **CustomEventData** 中输入 **1**。
-   ![](https://web-cdn.agora.io/docs-files/1606296440419)
-6. 点击下方**添加组件** > **渲染组件** > **Label**，在 **toggle1** 中添加一个 Label，并在 **Label** > **String** 中输入**观众**。``
+5. 将**层级管理器**面板上的 **Canvas** 添加到该点击事件的 **cc.Node** 属性框。在  **cc.Node** 属性框后的两个下拉框中依次选择场景（**HelloWorld**）和触发事件（**setClientRole**），并在 **CustomEventData** 中输入 **1**。
+  ![](https://web-cdn.agora.io/docs-files/1606296440419)
+6. 点击下方**添加组件** > **渲染组件** > **Label**，在  **toggle1** 中添加一个 Label，并在 **Label** > **String** 中输入**观众**。``
 
 7. 按步骤 3、4、5 依次配置 **toggle2**。注意需在 **toggle2** 的 **CustomEventData** 中输入 2，并在 **Label** > **String** 中输入**主播**。
 
 <div class="alert note">互动直播频道内的用户只能听到主播的声音。加入频道后，如果你想切换用户角色，也可以调用 <tt>setClientRole</tt>。</div>
 
-### 4. 设置本地视图
+###  4. 设置本地视图
 
 为使主播在互动直播前看到本地图像，你需要在加入频道前设置本地视图。参考以下步骤设置本地视图：
 
@@ -160,22 +161,22 @@ cc.Class({
 
    ```typescript
    cc.Class({
-
+    
        ...
-
+    
        onLoad: function () {
-
+    
            ...
-
+    
            // 启用视频模块。
            agora.enableVideo();
            // 开启本地视频预览。
            agora.startPreview();
        },
-
+    
        ...
    });
-   ```
+	 ```
 
 2. 在 Cocos Creator 中，进入**控件库** > **云组件**，将 **AgoraVideoRender** 添加到**场景编辑器**中。
 
@@ -190,10 +191,10 @@ cc.Class({
 3. 在 `HelloWorld.js` 中，定义一个 `clickButton` 方法，设置点击按钮的事件。
 
    ```typescript
-
+ 
    cc.Class({
     ...
-
+ 
     // 设置点击按钮的行为。
     // joined 为 true 表示已经加入频道，点击按钮后会调用 leaveChannel 离开频道。
     // joined 为 false 表示已经离开频道，点击按钮后会调用 joinChannel 加入频道。
@@ -204,18 +205,18 @@ cc.Class({
             this.joinChannel();
             }
     },
-
+ 
     ...
    });
-   ```
+	 ```
 
 4. 调用 `joinChannel` 并填入 Token、频道名称和用户 ID。
 
    ```typescript
    cc.Class({
-
+    
        ...
-
+    
        joinChannel: function () {
            // 加入频道。
            // 将 YOUR_TOKEN 替换为你生成的 Token。
@@ -223,10 +224,10 @@ cc.Class({
            // 在 uid 中输入你的用户 ID。
            agora.joinChannel('YOUR_TOKEN', 'CHANNEL_NAME', '', uid);
        },
-
+    
        ...
    });
-   ```
+	 ```
 
 5. 在 `onJoinChannelSuccess` 回调中添加是否加入频道的判断逻辑，用于动态更改 **button** 组件的显示内容。注意你需要删除 `HelloWorld.js` 中对 Label 的原始定义：
 
@@ -235,26 +236,26 @@ cc.Class({
 
    ```typescript
    cc.Class({
-
+    
        ...
-
+    
        // 本地用户加入频道回调。
        onJoinChannelSuccess: function (channel, uid, elapsed) {
            // 加入频道后，按钮的显示内容变为离开频道。
            this.joined = true;
            this.label.string = '离开频道';
        },
-
+    
        ...
    });
-   ```
-
+	 ```
+	 
 6. 回到 Cocos Creator 的**层级管理器**中，点击 **Canvas**。在右侧**属性检查器**中找到 **HelloWorld** 组件脚本，将 **button** 组件的 **Label** 添加至该组件脚本中，便于动态修改按钮显示内容。
-   ![](https://web-cdn.agora.io/docs-files/1606296796905)
+  ![](https://web-cdn.agora.io/docs-files/1606296796905)
 
 7. 在**层级管理器**中点击 **button**，在右侧**属性检查器**中找到 **Button** > **Check Events**，添加一个点击事件。
 
-8. 将 **Canvas** 添加到该点击事件的 **cc.Node** 属性框，并在 **cc.Node** 属性框后的两个下拉框中依次选择场景（**HelloWorld**）和触发事件（**clickButton**）。
+8. 将 **Canvas** 添加到该点击事件的 **cc.Node** 属性框，并在  **cc.Node** 属性框后的两个下拉框中依次选择场景（**HelloWorld**）和触发事件（**clickButton**）。
 
 ### 6. 设置远端视图
 
@@ -267,24 +268,24 @@ cc.Class({
    ```typescript
    // 导入 AgoraVideoRender 云组件。
    const AgoraVideoRender = require('AgoraVideoRender');
-
+    
    cc.Class({
-
+        
        ...
-
+    
        properties: {
-
+    
            ...
-
+    
            // 添加远端视图。
            target: {
                default: null,
                type: cc.Prefab
            }
        },
-
+        
        ...
-
+    
        // 远端主播加入频道回调。该回调可获取远端主播的 uid。
        onUserJoined: function (uid, elapsed) {
            if (this.remoteUid === undefined) {
@@ -301,7 +302,7 @@ cc.Class({
                render.setPosition(300, 120);
            }
        },
-
+    
        // 远端主播离开频道回调。
        onUserOffline: function (uid, reason) {
            if (this.remoteUid === uid) {
@@ -310,13 +311,13 @@ cc.Class({
                this.remoteUid = undefined;
            }
        },
-
+    
        ...
    });
-   ```
-
+	 ```
+	 
 2. 在 Cocos Creator 中，点击**层级管理器**中的 **Canvas**，在**资源管理器**中找到 **assets** > **cloud-component** > **AgoraVideoRender** > **AgoraVideoRender.prefab**，并将其添加至 Canvas **属性检查器**的 **HelloWorld** > **Target** 中。
-   ![](https://web-cdn.agora.io/docs-files/1606296862080)
+  ![](https://web-cdn.agora.io/docs-files/1606296862080)
 
 ### 7. 离开频道
 
@@ -326,9 +327,9 @@ cc.Class({
 
 ```typescript
 cc.Class({
-
+ 
     ...
-
+ 
     leaveChannel: function () {
         // 离开频道。
         agora.leaveChannel();
@@ -343,10 +344,10 @@ cc.Class({
         // 销毁 Agora 引擎。
         agora.release();
     },
-
+     
     // 本地用户离开频道回调。
     onLeaveChannel: function (stats) {},
-
+ 
     ...
 });
 ```

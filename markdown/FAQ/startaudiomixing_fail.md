@@ -2,9 +2,8 @@
 title: 为什么无法使用 startAudioMixing 播放音乐文件？
 platform: ["All Platforms"]
 updatedAt: 2021-02-05 07:31:36
-Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming", "Audio Broadcast"]
+Products: ["Voice","Video","Interactive Broadcast","live-streaming","Audio Broadcast"]
 ---
-
 ## 问题描述
 
 调用 `startAudioMixing` 方法播放本地或在线音乐文件时，音乐文件播放失败。
@@ -28,9 +27,8 @@ Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming", "Audio B
 - 如果使用 Android 模拟器，请确保播放的音乐文件为 MP3 格式并且存储在 `/sdcard/` 路径下。
 
 如果上述方案都没有解决问题，请检查音乐文件是否能在系统播放器中播放：
-
-- 如果无法播放，可判断是音乐文件的问题，请更换音乐文件。
-- 如果可以播放，可判断音乐文件没有问题，请跳转至步骤 2。
+ - 如果无法播放，可判断是音乐文件的问题，请更换音乐文件。
+ - 如果可以播放，可判断音乐文件没有问题，请跳转至步骤2。
 
 ### 步骤 2：联系技术支持
 

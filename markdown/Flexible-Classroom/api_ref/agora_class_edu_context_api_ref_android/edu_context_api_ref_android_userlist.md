@@ -13,7 +13,7 @@ abstract fun localUserInfo(): EduContextUserInfo
 ### updateFlexUserProps
 
 ```kotlin
-abstract fun updateFlexUserProps(userUuid: String,
+abstract fun updateFlexUserProps(userUuid: String, 
                                  properties: MutableMap<String, String>,
                                  cause: MutableMap<String, String>?)
 ```
@@ -73,8 +73,8 @@ abstract fun setVideoEncoderConfig(config: EduContextVideoEncoderConfig)
 
 设置视频编码配置。
 
-| 参数     | 描述                                                                                                                                                    |
-| :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 参数     | 描述                                                         |
+| :------- | :----------------------------------------------------------- |
 | `config` | 视频编码配置，详见 [EduContextVideoEncoderConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextvideoencoderconfig)。 |
 
 ## IUserHandler
@@ -89,8 +89,8 @@ fun onUserListUpdated(list: MutableList<EduContextUserDetailInfo>)
 
 提示用户列表已更新。只显示在线用户的信息。
 
-| 参数   | 描述                                                                                                                                                         |
-| :----- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
 | `list` | 在线用户列表，由 [EduContextUserDetailInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo) 对象组成的数组。 |
 
 ### onCoHostListUpdated
@@ -101,8 +101,8 @@ fun onCoHostListUpdated(list: MutableList<EduContextUserDetailInfo>)
 
 提示上台用户列表已更新。只显示状态为“在台上”的用户信息，包含不在线的用户。
 
-| 参数   | 描述                                                                                                                                                         |
-| :----- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
 | `list` | 上台用户列表，由 [EduContextUserDetailInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo) 对象组成的数组。 |
 
 ### onUserReward
@@ -113,8 +113,8 @@ fun onUserReward(userInfo: EduContextUserInfo)
 
 收到奖励。
 
-| 参数       | 描述                                                                                                                            |
-| :--------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| 参数       | 描述                                                         |
+| :--------- | :----------------------------------------------------------- |
 | `userInfo` | 用户信息，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。 |
 
 ### onKickOut
@@ -146,8 +146,8 @@ fun onRoster(context: Context, anchor: View, type: Int?)
 
 显示用户列表。
 
-| 参数   | 描述                                                                                |
-| :----- | :---------------------------------------------------------------------------------- |
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
 | `type` | 花名册分为小班花名册 (RosterType.SmallClass) 和大班花名册 (RosterType.LargeClass)。 |
 
 ### onUserTip
@@ -177,10 +177,10 @@ fun onRoster(context: Context, anchor: View, type: Int?)
 
 显示用户列表。
 
-| 参数      | 描述                                                                                                                   |
-| :-------- | :--------------------------------------------------------------------------------------------------------------------- |
-| `context` | App 的上下文。                                                                                                         |
-| `anchor`  | 用户列表 Icon-View。                                                                                                   |
+| 参数      | 描述                                                         |
+| :-------- | :----------------------------------------------------------- |
+| `context` | App 的上下文。                                               |
+| `anchor`  | 用户列表 Icon-View。                                         |
 | `type`    | 用户列表有两种：<li>`RosterType.SmallClass`: 互动小班课的用户列表。<li>`RosterType.LargeClass`: 直播大班课的用户列表。 |
 
 ### onFlexUserPropsChanged
@@ -195,10 +195,10 @@ fun onFlexUserPropsChanged(changedProperties: MutableMap<String, Any>,
 
 自定义用户属性更新回调。
 
-| 参数                | 描述                                                                                                                                                             |
-| :------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `changedProperties` | 已更新的用户属性。                                                                                                                                               |
-| `properties`        | 全部用户属性。                                                                                                                                                   |
-| `cause`             | 更新原因。                                                                                                                                                       |
-| `fromUser`          | 属性被更新的用户的相关信息，详见 [EduContextUserDetailInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo)。    |
+| 参数                | 描述                                                         |
+| :------------------ | :----------------------------------------------------------- |
+| `changedProperties` | 已更新的用户属性。                                           |
+| `properties`        | 全部用户属性。                                               |
+| `cause`             | 更新原因。                                                   |
+| `fromUser`          | 属性被更新的用户的相关信息，详见 [EduContextUserDetailInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo)。 |
 | `operator`          | 操作者，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。`operator` 为空表示是由服务端更新。 |

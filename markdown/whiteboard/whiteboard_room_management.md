@@ -3,7 +3,6 @@ title: 房间管理
 platform: Android
 updatedAt: 2021-03-31 09:01:57
 ---
-
 ## 创建房间（POST）
 
 创建一个实时互动房间。
@@ -17,17 +16,17 @@ updatedAt: 2021-03-31 09:01:57
 
 该 API 需要在 HTTP 请求头部填入以下参数：
 
-| 参数     | 类型   | 是否必需 | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| :------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `token`  | string | 必需     | SDK Token，可以通过以下方式获取：<li>在 Agora 控制台生成，详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token)。</li><li>调用服务端 RESTful API， 详见[生成 SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）)。</li><li>在 app 服务端用代码生成，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li> |
-| `region` | string | 可选     | 指定处理该请求的数据中心，取值如下：<li>（默认值）`cn-hz`：中国杭州，服务区覆盖东亚、东南亚、以及其他数据中心未覆盖的地区。</li><li>`us-sv`：美国硅谷，服务区覆盖北美洲、南美洲。</li> 详见[数据中心与全球化](https://developer.netless.link/javascript-zh/home/region-and-global)。                                                                                                                                                         |
+| 参数     | 类型   | 是否必需 | 描述                                                         |
+| :------- | :----- | :------- | :----------------------------------------------------------- |
+| `token`    | string | 必需     | SDK Token，可以通过以下方式获取：<li>在 Agora 控制台生成，详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token)。</li><li>调用服务端 RESTful API， 详见[生成 SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）)。</li><li>在 app 服务端用代码生成，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li> |
+| `region` | string | 可选     | 指定处理该请求的数据中心，取值如下：<li>（默认值）`cn-hz`：中国杭州，服务区覆盖东亚、东南亚、以及其他数据中心未覆盖的地区。</li><li>`us-sv`：美国硅谷，服务区覆盖北美洲、南美洲。</li> 详见[数据中心与全球化](https://developer.netless.link/javascript-zh/home/region-and-global)。|
 
 ### 请求包体
 
-| 参数       | 类型    | 是否必需 | 描述                                                                                                        |
-| :--------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------- |
-| `name`     | string  | 可选     | 房间名，不能超过 2048 字节。                                                                                |
-| `isRecord` | boolean | 可选     | 是否开启录制：<li>`true`：（默认值）开启。</li><li>`false`: 不开启。</li>                                   |
+| 参数       | 类型    | 是否必需 | 描述                                                         |
+| :--------- | :------ | :------- | :----------------------------------------------------------- |
+| `name`     | string  | 可选     | 房间名，不能超过 2048 字节。                                 |
+| `isRecord` | boolean | 可选     | 是否开启录制：<li>`true`：（默认值）开启。</li><li>`false`: 不开启。</li>      |
 | `limit`    | integer | 可选     | 房间内可写人数（拥有 `writer` 或 `admin` 权限的用户）的上限。如果传 `0`，则表示无限制。目前推荐设置为 `0`。 |
 
 ### 请求示例
@@ -64,15 +63,15 @@ Content-Type: application/json
 
 **响应包体参数：**
 
-| 参数        | 类型    | 描述                                                                                      |
-| :---------- | :------ | :---------------------------------------------------------------------------------------- |
-| `uuid`      | string  | 房间的 UUID，即房间的全局唯一标识符。                                                     |
-| `name`      | string  | 房间名。                                                                                  |
-| `teamUUID`  | string  | 互动白板控制台账号的唯一标识符。                                                          |
-| `appUUID`   | string  | 互动白板项目的唯一标识符。                                                                |
-| `isRecord`  | boolean | 房间是否开启录制：`true`：开启。`false`: 不开启。                                         |
-| `isBan`     | boolean | 房间是否被封禁：`true`：已封禁。`false`: 未封禁。                                         |
-| `createdAt` | string  | 创建房间的 UTC 时间。                                                                     |
+| 参数        | 类型    | 描述                                                         |
+| :---------- | :------ | :----------------------------------------------------------- |
+| `uuid`      | string  | 房间的 UUID，即房间的全局唯一标识符。                        |
+| `name`        | string  | 房间名。                                                     |
+| `teamUUID`  | string  | 互动白板控制台账号的唯一标识符。                             |
+| `appUUID`   | string  | 互动白板项目的唯一标识符。                                   |
+| `isRecord`  | boolean | 房间是否开启录制：`true`：开启。`false`: 不开启。            |
+| `isBan`     | boolean | 房间是否被封禁：`true`：已封禁。`false`: 未封禁。            |
+| `createdAt` | string  | 创建房间的 UTC 时间。                                        |
 | `limit`     | integer | 房间内可写人数（拥有 `writer` 或 `admin` 权限的用户）的上限。如果值为 `0`，则表示无限制。 |
 
 如果状态码不为 `201`，则请求失败。响应包体中包含 `message` 字段，描述失败的具体原因。
@@ -90,18 +89,18 @@ Content-Type: application/json
 
 该 API 需要在 HTTP 请求头部填入以下参数：
 
-| 参数     | 类型   | 是否必需 | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| :------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `token`  | string | 必需     | 拥有 `writer` 或 `admin` 权限的 SDK Token 或 Room Token。</br>SDK Token 可通过以下方式获取：<li>在 Agora 控制台生成，详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token)。</li><li>调用服务端 RESTful API， 详见[生成 SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）)。</li><li>在 app 服务端用代码生成，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li>Room Token 可以通过以下方式获取：<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>在 app 服务端用代码生成 Token，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li> |
-| `region` | string | 可选     | 指定处理该请求的数据中心，取值如下：<li>（默认值）`cn-hz`：中国杭州，服务区覆盖东亚、东南亚、以及其他数据中心未覆盖的地区。</li><li>`us-sv`：美国硅谷，服务区覆盖北美洲、南美洲。。</li>详见[数据中心与全球化](https://developer.netless.link/javascript-zh/home/region-and-global)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| 参数     | 类型   | 是否必需 | 描述                                                         |
+| :------- | :----- | :------- | :----------------------------------------------------------- |
+| `token`    | string | 必需     | 拥有 `writer` 或 `admin` 权限的 SDK Token 或 Room Token。</br>SDK Token 可通过以下方式获取：<li>在 Agora 控制台生成，详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token)。</li><li>调用服务端 RESTful API， 详见[生成 SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）)。</li><li>在 app 服务端用代码生成，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li>Room Token 可以通过以下方式获取：<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>在 app 服务端用代码生成 Token，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li> |
+| `region` | string | 可选     | 指定处理该请求的数据中心，取值如下：<li>（默认值）`cn-hz`：中国杭州，服务区覆盖东亚、东南亚、以及其他数据中心未覆盖的地区。</li><li>`us-sv`：美国硅谷，服务区覆盖北美洲、南美洲。。</li>详见[数据中心与全球化](https://developer.netless.link/javascript-zh/home/region-and-global) |
 
 ### 请求路径
 
 该 API 需要在 URL 中传入以下参数：
 
-| 参数    | 类型   | 是否必需 | 描述                                                                                                                                                                                                                                                   |
-| :------ | :----- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ` uuid` | string | 必需     | 房间的 UUID, 即房间的全局唯一标识符，可通过调用[创建房间 API](/cn/whiteboard/whiteboard_room_management?platform=RESTful#创建房间（post）) 或[获取房间信息 API](/cn/whiteboard/whiteboard_room_management?platform=RESTful#获取房间信息（get）) 获取。 |
+| 参数 | 类型   | 是否必需 | 描述                                                         |
+| :--- | :----- | :------- | :----------------------------------------------------------- |
+|` uuid` | string | 必需     | 房间的 UUID, 即房间的全局唯一标识符，可通过调用[创建房间 API](/cn/whiteboard/whiteboard_room_management?platform=RESTful#创建房间（post）) 或[获取房间信息 API](/cn/whiteboard/whiteboard_room_management?platform=RESTful#获取房间信息（get）) 获取。 |
 
 ### 请求示例
 
@@ -137,15 +136,15 @@ token: NETLESSSDK_YWs9xxxxxxM2MjRi
 
 **响应包体参数：**
 
-| 参数        | 类型    | 描述                                                                                    |
-| :---------- | :------ | :-------------------------------------------------------------------------------------- |
-| `uuid`      | string  | 房间的 UUID，即房间的全局唯一标识符。                                                   |
-| `name`      | string  | 房间名。                                                                                |
-| `teamUUID`  | string  | 互动白板控制台账号的唯一标识符。                                                        |
-| `appUUID`   | string  | 互动白板项目的唯一标识符。                                                              |
-| `isRecord`  | boolean | 房间是否开启录制： `true`：开启。`false`: 不开启。                                      |
-| `isBan`     | boolean | 房间是否被封禁：`true`：已封禁。`false`: 未封禁。                                       |
-| `createdAt` | string  | 创建房间的 UTC 时间。                                                                   |
+| 参数        | 类型    | 描述                                                         |
+| :---------- | :------ | :----------------------------------------------------------- |
+| `uuid`      | string  | 房间的 UUID，即房间的全局唯一标识符。                        |
+| `name`      | string  | 房间名。                                                     |
+| `teamUUID`  | string  | 互动白板控制台账号的唯一标识符。                             |
+| `appUUID`   | string  | 互动白板项目的唯一标识符。                                   |
+| `isRecord`  | boolean | 房间是否开启录制： `true`：开启。`false`: 不开启。           |
+| `isBan`     | boolean | 房间是否被封禁：`true`：已封禁。`false`: 未封禁。            |
+| `createdAt` | string  | 创建房间的 UTC 时间。                                        |
 | `limit`     | integer | 房间内可写人数（拥有 `writer` 或 `admin` 权限的用户）的上限。如果值为 0，则表示无限制。 |
 
 如果状态码不为 `200`，则请求失败。响应包体中包含 `message` 字段，描述失败的具体原因。
@@ -163,18 +162,18 @@ token: NETLESSSDK_YWs9xxxxxxM2MjRi
 
 该 API 需要在 HTTP 请求头部填入以下参数：
 
-| 参数     | 类型   | 是否必需 | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| :------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `token`  | string | 必需     | 拥有 `writer` 或 `admin` 权限的 SDK Token，可通过以下方式获取：<li>在 Agora 控制台生成，详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token)。</li><li>调用服务端 RESTful API， 详见[生成 SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）)。</li><li>在 app 服务端用代码生成，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li> |
-| `region` | string | 可选     | 指定处理该请求的数据中心，取值如下：<li>（默认值）`cn-hz`：中国杭州，服务区覆盖东亚、东南亚、以及其他数据中心未覆盖的地区。</li><li>`us-sv`：美国硅谷，服务区覆盖北美洲、南美洲。</li> 详见[数据中心与全球化](https://developer.netless.link/javascript-zh/home/region-and-global)。                                                                                                                                                                                       |
+| 参数     | 类型   | 是否必需 | 描述                                                         |
+| :------- | :----- | :------- | :----------------------------------------------------------- |
+| `token`    | string | 必需     | 拥有 `writer` 或 `admin` 权限的 SDK Token，可通过以下方式获取：<li>在 Agora 控制台生成，详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token)。</li><li>调用服务端 RESTful API， 详见[生成 SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）)。</li><li>在 app 服务端用代码生成，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li> |
+| `region` | string | 可选     | 指定处理该请求的数据中心，取值如下：<li>（默认值）`cn-hz`：中国杭州，服务区覆盖东亚、东南亚、以及其他数据中心未覆盖的地区。</li><li>`us-sv`：美国硅谷，服务区覆盖北美洲、南美洲。</li> 详见[数据中心与全球化](https://developer.netless.link/javascript-zh/home/region-and-global)。|
 
 ### 查询参数
 
 该 API 可以传入以下查询参数：
 
-| 参数        | 类型    | 是否必需 | 描述                                                                                 |
-| :---------- | :------ | :------- | :----------------------------------------------------------------------------------- |
-| `beginUUID` | string  | 可选     | 查询的起始房间的 UUID。                                                              |
+| 参数        | 类型    | 是否必需 | 描述                                                         |
+| :---------- | :------ | :------- | :----------------------------------------------------------- |
+| `beginUUID` | string  | 可选     | 查询的起始房间的 UUID。                                      |
 | `limit`     | integer | 可选     | 返回的房间列表的最大长度，取值范围为 (0,1000]。如果不填，则最多返回 100 条房间信息。 |
 
 ### 请求示例
@@ -224,15 +223,15 @@ token: NETLESSSDK_YWs9QlxxxxxxM2MjRi
 
 **响应包体参数：**
 
-| 参数        | 类型    | 描述                                                                                  |
-| :---------- | :------ | :------------------------------------------------------------------------------------ |
-| `uuid`      | string  | 房间的 UUID，即房间的全局唯一标识符。                                                 |
-| `name`      | string  | 房间名。                                                                              |
-| `teamUUID`  | string  | 互动白板控制台账号的唯一标识符。                                                      |
-| `appUUID`   | string  | 互动白板项目的唯一标识符。                                                            |
-| `isRecord`  | boolean | 房间是否开启录制：<li>`true`：开启。</li><li>`false`: 不开启。 </li>                  |
-| `isBan`     | boolean | 房间是否被封禁：<li>`true`：已封禁。</li><li>`false`: 未封禁。 </li>                  |
-| `createdAt` | string  | 创建房间的 UTC 时间。                                                                 |
+| 参数        | 类型    | 描述                                                         |
+| :---------- | :------ | :----------------------------------------------------------- |
+| `uuid`      | string  | 房间的 UUID，即房间的全局唯一标识符。                        |
+| `name`      | string  | 房间名。                                                     |
+| `teamUUID`  | string  | 互动白板控制台账号的唯一标识符。                             |
+| `appUUID`   | string  | 互动白板项目的唯一标识符。                                   |
+| `isRecord`  | boolean | 房间是否开启录制：<li>`true`：开启。</li><li>`false`: 不开启。 </li>           |
+| `isBan`     | boolean | 房间是否被封禁：<li>`true`：已封禁。</li><li>`false`: 未封禁。 </li>             |
+| `createdAt` | string  | 创建房间的 UTC 时间。                                        |
 | `limit`     | integer | 房间内可写人数（拥有 `writer` 或 `admin` 权限的用户）上限。如果值为 `0`，表示无限制。 |
 
 如果状态码不为 200，则请求失败。响应包体中包含 `message` 字段，描述失败的具体原因。
@@ -254,23 +253,23 @@ token: NETLESSSDK_YWs9QlxxxxxxM2MjRi
 
 该 API 需要在 HTTP 请求头部填入以下参数：
 
-| 参数     | 类型   | 是否必需 | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| :------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `token`  | string | 必需     | 拥有 `admin` 权限的 SDK Token 或 Room Token。</br>SDK Token 可通过以下方式获取：<li>在 Agora 控制台生成，详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token)。</li><li>调用服务端 RESTful API， 详见[生成 SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）)。</li><li>在 app 服务端用代码生成，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li>Room Token 可以通过以下方式获取：<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>在 app 服务端用代码生成 Token，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li> |
-| `region` | string | 可选     | 指定处理该请求的数据中心，取值如下：<li>（默认值）`cn-hz`：中国杭州，服务区覆盖东亚、东南亚、以及其他数据中心未覆盖的地区。</li><li>`us-sv`：美国硅谷，服务区覆盖北美洲、南美洲。</li>详见[数据中心与全球化](https://developer.netless.link/javascript-zh/home/region-and-global)。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| 参数     | 类型   | 是否必需 | 描述                                                         |
+| :------- | :----- | :------- | :----------------------------------------------------------- |
+| `token`    | string | 必需     | 拥有 `admin` 权限的 SDK Token 或 Room Token。</br>SDK Token 可通过以下方式获取：<li>在 Agora 控制台生成，详见[获取 SDK Token](/cn/whiteboard/enable_whiteboard?platform=RESTful#获取-sdk-token)。</li><li>调用服务端 RESTful API， 详见[生成 SDK Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-sdk-token-（post）)。</li><li>在 app 服务端用代码生成，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li>Room Token 可以通过以下方式获取：<li>调用服务端生成 Room Token API， 详见[生成 Room Token](/cn/whiteboard/generate_whiteboard_token?platform=RESTful#生成-room-token（post）)。</li><li>在 app 服务端用代码生成 Token，详见[在 app 服务端生成 Token](/cn/whiteboard/generate_whiteboard_token_at_app_server?platform=RESTful)。</li>  |
+| `region` | string | 可选     | 指定处理该请求的数据中心，取值如下：<li>（默认值）`cn-hz`：中国杭州，服务区覆盖东亚、东南亚、以及其他数据中心未覆盖的地区。</li><li>`us-sv`：美国硅谷，服务区覆盖北美洲、南美洲。</li>详见[数据中心与全球化](https://developer.netless.link/javascript-zh/home/region-and-global)。 |
 
 ### 请求路径
 
 该 API 需要在 URL 中传入以下参数：
 
-| 参数   | 类型   | 是否必需 | 描述                                                                                                                                                                                                                                                   |
-| :----- | :----- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 参数   | 类型   | 是否必需 | 描述                                                         |
+| :----- | :----- | :------- | :----------------------------------------------------------- |
 | `uuid` | string | 必需     | 房间的 UUID, 即房间的全局唯一标识符，可通过调用[创建房间 API](/cn/whiteboard/whiteboard_room_management?platform=RESTful#创建房间（post）) 或[获取房间信息 API](/cn/whiteboard/whiteboard_room_management?platform=RESTful#获取房间信息（get）) 获取。 |
 
 ### 请求包体
 
-| 参数    | 类型    | 是否必需 | 描述                                                                       |
-| :------ | :------ | :------- | :------------------------------------------------------------------------- |
+| 参数    | 类型    | 是否必需 | 描述                                                    |
+| :------ | :------ | :------- | :------------------------------------------------------ |
 | `isBan` | boolean | 必需     | <li>是否封禁房间：`true`：封禁。</li> <li>`false`: （默认值）不封禁。</li> |
 
 ### 请求示例
@@ -280,7 +279,7 @@ PATCH /v5/rooms/0e6exxxxxx4d95
 Host: api.netless.link
 Content-Type: application/json
 token: NETLESSSDK_YWs9xxxxxx5ZGM2MjRi
-
+ 
 {
   "isBan": true
 }
@@ -311,16 +310,16 @@ token: NETLESSSDK_YWs9xxxxxx5ZGM2MjRi
 
 **响应包体参数：**
 
-| 参数        | 类型    | 描述                                                                                      |
-| :---------- | :------ | :---------------------------------------------------------------------------------------- |
-| 参数        | 类型    | 描述                                                                                      |
-| `uuid`      | string  | 房间的 UUID，即房间的全局唯一标识符。                                                     |
-| `name`      | string  | 房间名。                                                                                  |
-| `teamUUID`  | string  | 互动白板控制台账号的唯一标识符。                                                          |
-| `appUUID`   | string  | 互动白板项目的唯一标识符。                                                                |
-| `isRecord`  | boolean | 房间是否开启录制：<li>`true`：开启。</li><li>`false`: 不开启。 </li>                      |
-| `isBan`     | boolean | 房间是否被封禁：<li>`true`：已封禁。</li><li>`false`: 未封禁。 </li>                      |
-| `createdAt` | string  | 创建房间的 UTC 时间。                                                                     |
+| 参数        | 类型    | 描述                                                         |
+| :---------- | :------ | :----------------------------------------------------------- |
+| 参数        | 类型    | 描述                                                         |
+| `uuid`      | string  | 房间的 UUID，即房间的全局唯一标识符。                        |
+| `name`      | string  | 房间名。                                                     |
+| `teamUUID`  | string  | 互动白板控制台账号的唯一标识符。                             |
+| `appUUID`   | string  | 互动白板项目的唯一标识符。                                   |
+| `isRecord`  | boolean | 房间是否开启录制：<li>`true`：开启。</li><li>`false`: 不开启。  </li>          |
+| `isBan`     | boolean | 房间是否被封禁：<li>`true`：已封禁。</li><li>`false`: 未封禁。    </li>              |
+| `createdAt` | string  | 创建房间的 UTC 时间。                                        |
 | `limit`     | integer | 房间内可写人数（拥有 `writer` 或 `admin` 权限的用户）的上限。如果值为 `0`，则表示无限制。 |
 
 如果状态码不为 `201`，则请求失败。响应包体中包含 `message` 字段，描述失败的具体原因。

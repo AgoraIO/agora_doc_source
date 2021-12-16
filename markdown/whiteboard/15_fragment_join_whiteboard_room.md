@@ -11,12 +11,12 @@
 ```javascript
 var request = require("request");
 var options = {
-  method: "POST",
-  url: "https://api.netless.link/v5/rooms",
-  headers: {
-    token: "你的 SDK Token",
-    "Content-Type": "application/json",
-  },
+  "method": "POST",
+  "url": "https://api.netless.link/v5/rooms",
+  "headers": {
+    "token": "你的 SDK Token",
+    "Content-Type": "application/json"
+  }
 };
 request(options, function (error, response) {
   if (error) throw new Error(error);
@@ -41,7 +41,7 @@ request(options, function (error, response) {
 }
 ```
 
-### 2. 生成 Room Token
+###  2. 生成 Room Token
 
 创建房间并获取新建房间的 `uuid` 后，你需要在 app 服务端生成 Room Token 并下发给 app 客户端。当 app 客户端加入房间时，Agora 互动白板服务端会使用该 Token 对其鉴权。
 
@@ -59,16 +59,17 @@ request(options, function (error, response) {
  <div class="alert info">使用 Node.js 发送 HTTP 请求前安装 <code>request</code> 模块。你可以运行 <code>npm install request</code> 安装。</div>
 
 ```javascript
-var request = require("request");
+var request = require('request');
 var options = {
-  method: "POST",
-  // 将 <房间的 UUID> 替换成你的房间 UUID
-  url: "https://api.netless.link/v5/tokens/rooms/<房间的 UUID>",
-  headers: {
-    token: "你的 SDK Token",
-    "Content-Type": "application/json",
+  "method": "POST",
+	// 将 <房间的 UUID> 替换成你的房间 UUID
+  "url": "https://api.netless.link/v5/tokens/rooms/<房间的 UUID>", 
+  "headers": {
+    "token": "你的 SDK Token",
+    "Content-Type": "application/json"
   },
-  body: JSON.stringify({lifespan: 60, role: "admin"}),
+  body: JSON.stringify({"lifespan":60,"role":"admin"})
+  
 };
 request(options, function (error, response) {
   if (error) throw new Error(error);
@@ -79,7 +80,6 @@ request(options, function (error, response) {
 如果方法调用成功，Agora 互动白板服务端将返回生成的 Room Token。
 
 **响应示例**
-
 ```javascript
-"NETLESSROOM_YWs9XXXXXXXXXXXZWNhNjk"; // Room Token
+"NETLESSROOM_YWs9XXXXXXXXXXXZWNhNjk" // Room Token
 ```

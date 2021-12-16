@@ -3,7 +3,6 @@ title: 媒体播放器组件
 platform: Windows
 updatedAt: 2020-12-16 09:02:05
 ---
-
 ## 功能描述
 
 媒体播放器组件（MediaPlayer Kit）是一款功能强大的播放器，支持播放本地或在线的媒体资源。通过该播放器，你可以本地播放媒体资源，或将媒体资源同步分享给 Agora 频道内的远端用户观看/收听。
@@ -35,6 +34,7 @@ updatedAt: 2020-12-16 09:02:05
 1. 打开 <b>Microsoft Visual Studio</b> 并点击新建项目。
 2. 进入<b>新建项目</b>窗口，选择项目类型为 <b>MFC 应用程序</b>，输入项目名称，选择项目存储路径，并点击<b>确认</b>。
 3. 进入<b>MFC 应用程序</b>窗口，选择应用程序类型为<b>基于对话框</b>，并点击完成。
+	
 
 </details>
 
@@ -81,9 +81,9 @@ updatedAt: 2020-12-16 09:02:05
 **初始化媒体播放器**
 
 1. 调用 `createAgoraMediaPlayer` 方法创建 `IMediaPlayer` 实例。
-
-> 如需同时播放不同的媒体资源，你可以创建多个实例。
-
+  
+  > 如需同时播放不同的媒体资源，你可以创建多个实例。
+  
 2. 调用 `initialize` 方法初始化媒体播放器。
 
 **设置日志**
@@ -159,8 +159,8 @@ public:
     CPlayerSimpleDemo() : media_player_( nullptr )
     {
     }
-
-
+ 
+ 
     ~CPlayerSimpleDemo()
     {
         if ( media_player_ )
@@ -169,8 +169,8 @@ public:
             media_player_ = nullptr;
         }
     }
-
-
+ 
+ 
     // IMediaPlayerObserver
     virtual void onPlayerStateChanged( const IMediaPlayer::PLAYER_STATE state,
                        const IMediaPlayer::PLAYER_ERROR ec ) override
@@ -190,23 +190,23 @@ public:
             break;
         }
     }
-
-
+ 
+ 
     virtual void onPositionChanged( const int64_t position ) override
     {
     }
-
-
+ 
+ 
     virtual void onMetaData( void* data, int length ) override
     {
     }
-
-
+ 
+ 
     virtual void onPlayerEvent( const IMediaPlayer::PLAYER_EVENT event ) override
     {
     }
-
-
+ 
+ 
     afx_msg int OnCreate( LPCREATESTRUCT lpCreateStruct )
     {
         if ( CWnd::OnCreate( lpCreateStruct ) == -1 )
@@ -220,13 +220,14 @@ public:
         }
         return(0);
     }
-
-
+ 
+ 
 private:
     agora::rtc::IMediaPlayer* media_player_;
 };
 
 ```
+
 
 ### 分享媒体资源到远端
 
@@ -299,11 +300,10 @@ virtual void onPlayerStateChanged( const IMediaPlayer::PLAYER_STATE state,
 ## 注意事项
 
 为避免播放过程中，本地用户切换语音路由后，新的语音路由无声的问题，Agora 建议你进行如下操作：
-
 - 在本地播放媒体资源的场景下，Agora 建议本地用户不要切换语音路由为蓝牙设备。
 - 在分享媒体资源到远端的场景下，Agora 建议你在切换语音路由为蓝牙设备前进行如下操作：
-  1. 在 `joinChannel` 后调用 [`enumeratePlaybackDevices`](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#aa13c99d575d89e7ceeeb139be723b18a) 方法获取蓝牙设备的 `deviceId`。
-  2. 调用 [`setPlaybackDevice`](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a1ee23eae83165a27bcbd88d80158b4f1) 方法并传入 `deviceId`，设置通过该蓝牙设备播放。
+   1. 在 `joinChannel` 后调用 [`enumeratePlaybackDevices`](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#aa13c99d575d89e7ceeeb139be723b18a) 方法获取蓝牙设备的 `deviceId`。
+   2. 调用 [`setPlaybackDevice`](https://docs.agora.io/cn/Interactive%20Broadcast/API%20Reference/cpp/classagora_1_1rtc_1_1_i_audio_device_manager.html#a1ee23eae83165a27bcbd88d80158b4f1) 方法并传入 `deviceId`，设置通过该蓝牙设备播放。
 
 ## API 文档
 

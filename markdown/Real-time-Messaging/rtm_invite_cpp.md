@@ -3,7 +3,6 @@ title: 呼叫邀请
 platform: Linux C++
 updatedAt: 2020-10-10 18:01:39
 ---
-
 ## 概述
 
 Agora RTM SDK 支持呼叫邀请功能，包含通用呼叫场景中的以下行为：
@@ -12,6 +11,7 @@ Agora RTM SDK 支持呼叫邀请功能，包含通用呼叫场景中的以下行
 - 被叫接受或拒绝呼叫邀请
 
 ![](https://web-cdn.agora.io/docs-files/1602313430536)
+
 
 Agora RTM SDK 提供的呼叫邀请功能仅实现了呼叫邀请的基本控制逻辑，即发送、取消、接受和拒绝呼叫邀请。Agora RTM SDK 不会处理邀请接通之后的动作，也不会管理整个会话的生命周期。你需要根据自己的业务逻辑自行实现。
 
@@ -28,9 +28,11 @@ Agora RTM SDK 提供的呼叫邀请功能仅实现了呼叫邀请的基本控制
 
 ![](https://web-cdn.agora.io/docs-files/1602313442227)
 
+
 ### 发送呼叫邀请
 
 发送呼叫邀请的步骤如下：
+
 
 1. 主叫通过调用 `createLocalInvitation` 创建 `LocalInvitation`。此时 `LocalInvitation` 生命周期开始。
 2. 主叫调用 `sendLocalInvitation` 发送呼叫邀请。被叫收到 `onRemoteInvitationReceived` 回调，此时 `RemoteInvitation` 生命周期开始。主叫收到 `onLocalInvitationReceivedByPeer` 回调。
@@ -39,8 +41,8 @@ Agora RTM SDK 提供的呼叫邀请功能仅实现了呼叫邀请的基本控制
 
 ```
 // 示例代码基于 Qt
-
-
+ 
+ 
 // 获取呼叫邀请管理器。
 bool CAgoraRtmInstance::InitCallManager()
 {
@@ -49,7 +51,7 @@ bool CAgoraRtmInstance::InitCallManager()
     m_callManager =m_callService->getRtmCallManager(m_callEventHandler.get());
     return m_callManager != nullptr;
 }
-
+ 
 
 bool CAgoraRtmInstance::CallRemoteUser(QString remoteUserId)
 {
@@ -67,6 +69,8 @@ bool CAgoraRtmInstance::CallRemoteUser(QString remoteUserId)
 }
 ```
 
+
+
 ### 取消呼叫邀请
 
 主叫调用 `cancelLocalInvitation` 取消呼叫邀请。被叫收到 `onRemoteInvitationCanceled` 回调，此时 `RemoteInvitation` 生命周期结束。主叫收到 `onLocalInvitationCanceled` 回调，此时 `LocalInvitation` 生命周期结束。
@@ -77,8 +81,8 @@ bool CAgoraRtmInstance::CallRemoteUser(QString remoteUserId)
 
 ```
 // 示例代码基于 Qt
-
-
+ 
+ 
 //取消呼叫邀请
 bool CAgoraRtmInstance::CancelLocalInvitation()
 {
@@ -88,6 +92,8 @@ bool CAgoraRtmInstance::CancelLocalInvitation()
     return ret == 0 ? true : false;
 }
 ```
+
+
 
 ### 接受呼叫邀请
 
@@ -114,7 +120,7 @@ bool CAgoraRtmInstance::AcceptRemoteInvitation(IRemoteCallInvitation* invitation
 }
 ```
 
-### 拒绝呼叫邀请
+###  拒绝呼叫邀请
 
 被叫调用 `refuseRemoteInvitation` 拒绝呼叫邀请。主叫收到 `onRemoteInvitationRefused` 回调，此时 `RemoteInvitation` 生命周期结束。主叫收到 `onLocalInvitationRefused` 回调，此时 `LocalInvitation` 生命周期结束。
 
@@ -130,7 +136,7 @@ void onRemoteInvitationReceived(void* invitation)
 {
     IRemoteCallInvitation* remoteInvitation = (IRemoteCallInvitation*)invitation;
 }
-
+ 
 //拒绝呼叫邀请
 bool RefuseRemoteInvitation(IRemoteCallInvitation* invitation)
 {
@@ -139,7 +145,7 @@ bool RefuseRemoteInvitation(IRemoteCallInvitation* invitation)
 }
 ```
 
-## API 参考
+##  API 参考
 
 API 详见[呼叫邀请 API 文档](https://docs.agora.io/cn/Real-time-Messaging/API%20Reference/RTM_cpp/index.html#callinvitation)。
 

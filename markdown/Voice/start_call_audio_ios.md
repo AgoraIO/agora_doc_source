@@ -3,7 +3,6 @@ title: 实现语音通话
 platform: iOS
 updatedAt: 2021-01-28 10:25:18
 ---
-
 本文介绍如何使用 Agora 语音通话 SDK 快速实现语音通话。
 
 ## 快速跑通示例项目
@@ -32,7 +31,7 @@ updatedAt: 2021-01-28 10:25:18
 
 3. 输入项目名称（Product Name）、开发团队信息（Team）、组织名称（Organization Name）和语言（Language）等项目信息，并点击 **Next**。
 
-<div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
+   <div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
 
 4. 选择项目存储路径，并点击 **Create**。
 
@@ -50,6 +49,7 @@ updatedAt: 2021-01-28 10:25:18
 
 3. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
 
+
 ```
 # platform :ios, '9.0' use_frameworks!
 target 'Your App' do
@@ -57,7 +57,8 @@ target 'Your App' do
 end
 ```
 
-4. 在终端内运行 ` pod`` install ` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。
+
+4. 在终端内运行 `pod`` install` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。
 
 5. 打开新生成的 `xcworkspace` 文件。
 
@@ -92,10 +93,12 @@ end
 
 在 Xcode 中，打开 `info.plist` 文件。在右侧列表中添加如下内容，获取相应的设备权限：
 
-| Key                                    | Type   | Value                                                              |
-| :------------------------------------- | :----- | :----------------------------------------------------------------- |
+
+| Key                                    | Type   | Value                                                        |
+| :------------------------------------- | :----- | :----------------------------------------------------------- |
 | Privacy - Microphone Usage Description | String | 使用麦克风的目的，例如：for a call or live interactive streaming。 |
 | Privacy - Camera Usage Description     | String | 使用摄像头的目的，例如：for a call or live interactive streaming。 |
+
 
 <div class="alert note">iOS 14.0 版本新增了 <b>Privacy - Local Network Usage Description</b> 权限。如果使用 3.1.2 之前版本的 SDK，你需要添加该权限。详见 <a href="https://docs.agora.io/cn/faq/local_network_privacy">解决方案</a >。</div>
 
@@ -119,7 +122,7 @@ Agora 在 GitHub 上提供开源的实时语音通话示例项目 [Agora-iOS-Voi
 
 3. 输入项目名称（Product Name）、开发团队信息（Team）、组织名称（Organization Name）和语言（Language）等项目信息，并点击 **Next**。
 
-<div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
+   <div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
 
 4. 选择项目存储路径，并点击 **Create**。
 
@@ -137,6 +140,7 @@ Agora 在 GitHub 上提供开源的实时语音通话示例项目 [Agora-iOS-Voi
 
 3. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
 
+
 ```
 # platform :ios, '9.0' use_frameworks!
 target 'Your App' do
@@ -144,7 +148,8 @@ target 'Your App' do
 end
 ```
 
-4. 在终端内运行 ` pod`` install ` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。
+
+4. 在终端内运行 `pod`` install` 命令安装 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件。
 
 5. 打开新生成的 `xcworkspace` 文件。
 
@@ -179,9 +184,11 @@ end
 
 在 Xcode 中，打开 `info.plist` 文件。在右侧列表中添加如下内容，获取相应的设备权限：
 
-| Key                                    | Type   | Value                                                              |
-| :------------------------------------- | :----- | :----------------------------------------------------------------- |
+
+| Key                                    | Type   | Value                                                        |
+| :------------------------------------- | :----- | :----------------------------------------------------------- |
 | Privacy - Microphone Usage Description | String | 使用麦克风的目的，例如：for a call or live interactive streaming。 |
+
 
 <div class="alert note">iOS 14.0 版本新增了 <b>Privacy - Local Network Usage Description</b> 权限。如果使用 3.1.2 之前版本的 SDK，你需要添加该权限。详见 <a href="https://docs.agora.io/cn/faq/local_network_privacy">解决方案</a >。</div>
 
@@ -199,11 +206,11 @@ end
 
 - 语音通话窗口
 - 退出频道按钮
-
+	
 当你使用示例项目中的 UI 设计时，你将会看到如下界面：
 
 ![](https://web-cdn.agora.io/docs-files/1584592390009)
-
+	
 ### <a name="ImportClass"></a>2. 导入类
 
 在项目中导入 AgoraRtcKit 类：
@@ -223,6 +230,7 @@ import AgoraRtcEngineKit
 ```
 
 <div class="alert note">Agora Native SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 Fat Image，包含 32/64 位模拟器、32/64 位真机版本。</div>
+
 
 ### 3. 初始化 AgoraRtcEngineKit
 
@@ -248,15 +256,15 @@ func initializeAgoraEngine() {
 }
 ```
 
+
 ### 4. 加入频道
 
 完成初始化后，你就可以调用 `joinChannelByToken` 方法加入频道。你需要在该方法中传入如下参数：
-
 - channelId: 传入能标识频道的频道 ID。输入频道 ID 相同的用户会进入同一个频道。
 - token: 传入能标识用户角色和权限的 Token。你可以设置如下值：
-  - `nil`。
-  - 控制台中生成的临时 Token。一个临时 Token 的有效期为 24 小时，详情见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#get-a-temporary-token)。
-  - 你的服务器端生成的正式 Token。适用于对安全要求较高的生产环境，详情见[生成 Token](./token_server)。
+	- `nil`。
+	- 控制台中生成的临时 Token。一个临时 Token 的有效期为 24 小时，详情见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#get-a-temporary-token)。
+	- 你的服务器端生成的正式 Token。适用于对安全要求较高的生产环境，详情见[生成 Token](./token_server)。
 
  <div class="alert note">若项目已启用 App 证书，请使用 Token。</div>
 
@@ -287,7 +295,7 @@ func joinChannel() {
     isStartCalling = true
 }
 ```
-
+		
 ### 5. 离开频道
 
 根据场景需要，如结束通话、关闭 app 或 app 切换至后台时，调用 `leaveChannel` 离开当前通话频道。
@@ -311,7 +319,6 @@ func leaveChannel() {
 ```
 
 ## 运行项目
-
 你可以在 iOS 设备中运行此项目。当成功开始语音通话时，你和远端用户可听到彼此的声音。
 
 ## 相关链接

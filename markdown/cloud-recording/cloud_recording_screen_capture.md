@@ -3,7 +3,6 @@ title: 视频截图
 platform: All Platforms
 updatedAt: 2020-12-10 07:34:14
 ---
-
 ## 功能描述
 
 本文介绍如何通过设置 RESTful API 参数对视频进行截图，并将图片上传至你的第三方云存储。
@@ -21,29 +20,28 @@ updatedAt: 2020-12-10 07:34:14
 
 ```json
 {
-  "uid": "527841",
-  "cname": "httpClient463224",
-  "clientRequest": {
-    "token": "<token if any>",
-    "recordingConfig": {
-      "channelType": 0
-    },
-    "snapshotConfig": {
-      "captureInterval": 5,
-      "fileType": ["jpg"]
-    },
-    "storageConfig": {
-      "accessKey": "xxxxxxf",
-      "region": 3,
-      "bucket": "xxxxx",
-      "secretKey": "xxxxx",
-      "vendor": 2,
-      "fileNamePrefix": ["directory1", "directory2"]
+    "uid": "527841",
+    "cname": "httpClient463224",
+    "clientRequest": {
+        "token": "<token if any>",
+        "recordingConfig": {
+            "channelType": 0
+        }, 
+        "snapshotConfig": {
+            "captureInterval": 5,
+            "fileType": ["jpg"]
+        },
+        "storageConfig": {
+            "accessKey": "xxxxxxf",
+            "region": 3,
+            "bucket": "xxxxx",
+            "secretKey": "xxxxx",
+            "vendor": 2,
+            "fileNamePrefix": ["directory1","directory2"]
+        }
     }
-  }
 }
 ```
-
 # 截图文件命名规则
 
 云端录制生成的截图文件的命名规则为 `<sid>_<cname>__uid_s_<uid>__uid_e_video_<utc>.jpg`。文件类型取决于你在 `start` 方法中设置的 `fileType`，目前只支持 JPG。

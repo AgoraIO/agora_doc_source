@@ -3,14 +3,12 @@ title: 加入频道前的 API 调用
 platform: All Platforms
 updatedAt: 2021-02-02 02:33:43
 ---
-
 本文介绍在加入频道（`joinChannel`）之前的 API 调用和设置。通常在加入频道前只需要简单调用一两个 API 即可快速实现实时音视频功能，但是如果你的应用场景对通话质量和稳定性有较高的要求，我们建议参考本文进行更多的设置。
 
 如无特别说明，本文内容适用于 Agora RTC SDK 以下平台：
-
 - Android
 - iOS
-- macOS
+- macOS 
 - Windows
 - Electron
 - Unity
@@ -82,15 +80,15 @@ setParameters("{"che.audio.current.bypassSystemAPO": true}")
 
 SDK 默认的视频采集方式可能与部分摄像头不兼容，建议按照下面的代码设置视频采集方式。
 
-```c++
+ ```c++
 setParameters("{"che.video.videoCaptureType", n}")
-```
-
+ ``` 
+ 
 其中 `n` 的取值可以为：
 
 - `0`: (默认) Direct Show 采集方式。
-- `1`: Video for Windows (VfW) 采集方式。
-- `2`: Media Foundation (MF) 采集方式，仅支持 Windows 7 及以后版本。
+- `1`:  Video for Windows (VfW) 采集方式。
+- `2`:  Media Foundation (MF) 采集方式，仅支持 Windows 7 及以后版本。
 - `3`: New Direct Show 采集方式，声网对 Direct Show 进行优化后的采集方式。
 
 **采集分辨率设置**
@@ -99,4 +97,4 @@ setParameters("{"che.video.videoCaptureType", n}")
 
 ```c++
 setParameters("{"che.video.capture_width": width, "che.video.capture_height": height}")
-```
+``` 

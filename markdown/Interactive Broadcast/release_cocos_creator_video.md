@@ -3,7 +3,6 @@ title: 发版说明
 platform: Cocos Creator
 updatedAt: 2020-12-15 09:24:22
 ---
-
 本文提供 Agora Cocos Creator SDK 的发版说明。
 
 ## 1.3.1_3.1 版

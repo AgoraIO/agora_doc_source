@@ -3,7 +3,6 @@ title: 集成录制 SDK
 platform: Linux
 updatedAt: 2021-03-31 07:50:54
 ---
-
 本页介绍如何设置环境以及集成 Agora 录制 SDK。
 
 你需要将 Agora 录制 SDK 集成在你的 Linux 服务器上而不是你的 App 上。
@@ -50,6 +49,8 @@ updatedAt: 2021-03-31 07:50:54
 </tbody>
 </table>
 
+
+
 参考硬件配置：
 
 <table>
@@ -86,6 +87,8 @@ updatedAt: 2021-03-31 07:50:54
 </tbody>
 </table>
 
+
+
 假设每个频道内有两个人进行视频通话（通信模式），单流模式录制，分辨率是 640 &times; 480 ，帧率为 15 fps ，单流码率为 500 Kbps ：
 
 实测在参考硬件配置下， 12 核 24 线程的 CPU 满载并发 100 个频道，此时：
@@ -117,78 +120,77 @@ updatedAt: 2021-03-31 07:50:54
 
 1. [下载](https://docs.agora.io/cn/Agora%20Platform/downloads)最新的 Agora 录制 SDK 软件包。软件包内容如下:
 
-<table>
-<colgroup>
-<col/>
-<col/>
-</colgroup>
-<tbody>
-<tr><td><strong>文件夹</strong></td>
-<td><strong>描述</strong></td>
-</tr>
-<tr><td>bin</td>
-<td>AgoraCoreService 所在的目录</td>
-</tr>
-<tr><td>include</td>
-<td><ul>
-<li>base：libs 所依赖的一些基础的头文件</li>
-<li>IAgoraLinuxSdkCommon.h：公共的基础结构体和枚举值</li>
-<li>IAgoraRecordingEngine.h：录制引擎的接口类和配置信息</li>
-</ul>
-</td>
-</tr>
-<tr><td>libs</td>
-<td>录制的依赖库</td>
-</tr>
-<tr><td>samples</td>
-<td><p>代码示例</p>
-<ul>
-<li>agorasdk：对录制 C++ 接口的实现以及回调的处理示例</li>
-<li>base：公共的示例代码</li>
-<li>cpp：C++ 示例代码<ul>
-<li>release/bin/recorder：可运行的父程序</li>
-</ul>
-</li>
-<li>java：java 示例代码<ul>
-<li>native：native code</li>
-<li>native/jni：jni 代理</li>
-<li>src: java 层源代码</li>
-<li>src/io/agora/recording/RecordingEventHandler.java: 回调接口类</li>
-<li>src/io/agora/recording/RecordingSDK.java: 录制接口类</li>
-</ul>
-</li>
-</ul>
-</td>
-</tr>
-<tr><td>tools</td>
-<td>转码工具</td>
-</tr>
-</tbody>
-</table>
+   <table>
+   <colgroup>
+   <col/>
+   <col/>
+   </colgroup>
+   <tbody>
+   <tr><td><strong>文件夹</strong></td>
+   <td><strong>描述</strong></td>
+   </tr>
+   <tr><td>bin</td>
+   <td>AgoraCoreService 所在的目录</td>
+   </tr>
+   <tr><td>include</td>
+   <td><ul>
+   <li>base：libs 所依赖的一些基础的头文件</li>
+   <li>IAgoraLinuxSdkCommon.h：公共的基础结构体和枚举值</li>
+   <li>IAgoraRecordingEngine.h：录制引擎的接口类和配置信息</li>
+   </ul>
+   </td>
+   </tr>
+   <tr><td>libs</td>
+   <td>录制的依赖库</td>
+   </tr>
+   <tr><td>samples</td>
+   <td><p>代码示例</p>
+   <ul>
+   <li>agorasdk：对录制 C++ 接口的实现以及回调的处理示例</li>
+   <li>base：公共的示例代码</li>
+   <li>cpp：C++ 示例代码<ul>
+   <li>release/bin/recorder：可运行的父程序</li>
+   </ul>
+   </li>
+   <li>java：java 示例代码<ul>
+   <li>native：native code</li>
+   <li>native/jni：jni 代理</li>
+   <li>src: java 层源代码</li>
+   <li>src/io/agora/recording/RecordingEventHandler.java: 回调接口类</li>
+   <li>src/io/agora/recording/RecordingSDK.java: 录制接口类</li>
+   </ul>
+   </li>
+   </ul>
+   </td>
+   </tr>
+   <tr><td>tools</td>
+   <td>转码工具</td>
+   </tr>
+   </tbody>
+   </table>
 
-2. 为你的项目准备所需库：
-
+6. 为你的项目准备所需库：
    - 将 **include** 文件夹添加到你的项目里。
    - 将 **lib** 文件夹添加到你的项目里，并确保 `libRecordingEngine.a` 与项目有连接。
 
-3. 安装编译器: gcc 4.4+ 。
-4. 配置好 jdk 环境，并确保包含 jni.h。
-5. 配置好 Java 的 `CLASSPATH` 和 Linux 的 `LD_LIBRARY_PATH` 环境变量。
-6. 打开 TCP 端口：1080、8000。
+5. 安装编译器: gcc 4.4+ 。
+8. 配置好 jdk 环境，并确保包含 jni.h。
+9. 配置好 Java 的 `CLASSPATH` 和 Linux 的 `LD_LIBRARY_PATH` 环境变量。
+7. 打开 TCP 端口：1080、8000。
 
-7. 打开 UDP 端口：双向 1080、4000-4030、8000、9700、25000 和 所有的录制进程所使用的单向下行端口。
+3. 打开 UDP 端口：双向 1080、4000-4030、8000、9700、25000 和 所有的录制进程所使用的单向下行端口。
 
    > - 录制一个频道的内容需要开启一个对应的录制进程；单个录制进程需要使用 4 个单向下行端口。进程（包括各个录制进程和系统进程）之间不得有端口冲突。
    > - Agora 建议指定录制进程使用端口的范围。你可以为多个录制进程统一配置较大的端口范围（Agora 建议 40000 ~ 41000 或更大）。此时，录制 SDK 会在指定范围内为每个录制进程分配端口，并避免端口的冲突。要设置端口范围，你需要配置参数 `lowUdpPort` 和`highUdpPort`。
    > - 如果不指定参数 `lowUdpPort` 和 `highUdpPort` ，录制进程所使用的端口为随机端口，会有端口冲突的风险。
    > - 使用`iptables -L`命令查看 UDP 端口。
 
-8. 将域名 .agora.io 和 .agoralab.co 设为白名单。
+4. 将域名 .agora.io 和 .agoralab.co 设为白名单。
 
-9. 为调试方便，Agora 建议你打开系统的 core dump 功能以记录可能产生的程序崩溃信息。
+7. 为调试方便，Agora 建议你打开系统的 core dump 功能以记录可能产生的程序崩溃信息。
+
 
 ## 编译代码示例
-
 1. 打开命令行工具，在 **samples/java** 路径下执行如下命令进行环境预设置。其中 `jni_path` 请填入 `jni.h` 文件绝对路径，例如 `/usr/java8u161/jdk1.8.0_161/include/`：
 
    ```
@@ -204,6 +206,7 @@ updatedAt: 2021-03-31 07:50:54
 编译完成，在本目录下生成一个 **bin** 文件夹，其中的子目录 **io/agora/recording** 下会包含一个 `librecording.so` 文件，如图所示。
 
 ![](https://web-cdn.agora.io/docs-files/1544522310646)
+
 
 你已经集成了录制 SDK。
 

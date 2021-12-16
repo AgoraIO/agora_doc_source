@@ -3,7 +3,6 @@ title: 生成 RTM Token
 platform: All Platforms
 updatedAt: 2021-01-27 07:56:07
 ---
-
 RTM Token 是 app 用户在登录 RTM 系统时采用的一种鉴权方式。
 
 RTM Token 在你的业务服务端生成。用户登录 RTM 系统时，客户端需要向服务端申请 RTM Token；服务器生成 RTM Token 后，再将其传给客户端。
@@ -31,7 +30,7 @@ Agora 在各语言的 sample 文件夹下提供了生成 RTM Token 的示例代�
 
 ```
 int main(int argc, char const *argv[]) {
-
+ 
   // 请填入你的项目 App ID
   std::string appID  = "970CA35de60c44645bbae8a215061b33";
   // 请填入你的项目 App 证书
@@ -42,13 +41,13 @@ int main(int argc, char const *argv[]) {
   uint32_t expirationTimeInSeconds = 3600;
   uint32_t currentTimeStamp = time(NULL);
   uint32_t privilegeExpiredTs = currentTimeStamp + expirationTimeInSeconds;
-
+ 
   std::string result =
     RtmTokenBuilder::buildToken(appID, appCertificate, user,
         RtmUserRole::Rtm_User, privilegeExpiredTs);
   std::cout << "Rtm Token:" << result << std::endl;
   return 0;
-
+ 
 }
 ```
 
@@ -61,14 +60,14 @@ int main(int argc, char const *argv[]) {
 3. 进入 `RtmTokenBuilderSample.cpp` 所在路径，然后运行如下命令行。运行结束后，相同文件夹下会生成一个可执行文件 `RtmTokenBuilderSample`。
 
    ```shell
-    g++ -std=c++0x -O0 -I../../ -L. RtmTokenBuilderSample.cpp -lz -lcrypto -o RtmTokenBuilderSample
-   ```
+	 g++ -std=c++0x -O0 -I../../ -L. RtmTokenBuilderSample.cpp -lz -lcrypto -o RtmTokenBuilderSample
+	 ```
 
 4. 运行如下命令行生成 RTM Token。生成的 RTM Token 会显示在 Terminal 中。
 
    ```shell
-    ./RtmTokenBuilderSample
-   ```
+	 ./RtmTokenBuilderSample
+	 ```
 
 使用其他语言的示例代码在本地生成 RTM Token 的步骤如下：
 
@@ -82,6 +81,7 @@ int main(int argc, char const *argv[]) {
 		<li>在你的 Java IDE 中运行项目。生成的 RTM Token 会显示在 IDE 中。</li>
 	</ol>
 </details>
+
 
 <details>
 	<summary><font color="#3ab7f8">Python</font></summary>
@@ -176,12 +176,12 @@ static std::string buildToken(const std::string& appId,
 																uint32_t privilegeExpiredTs = 0);
 ```
 
-| 参数               | 描述                                                                    |
-| :----------------- | :---------------------------------------------------------------------- |
-| appId              | 你在 Agora 控制台创建项目时生成的 App ID。                              |
-| appCertificate     | 你的 App 证书。                                                         |
-| userAccount        | RTM 系统用户 ID。                                                       |
-| userRole           | 用户角色。暂时只支持一种角色，请使用默认值 `Rtm_User`。                 |
+| 参数               | 描述                                                         |
+| :----------------- | :----------------------------------------------------------- |
+| appId              | 你在 Agora 控制台创建项目时生成的 App ID。                   |
+| appCertificate     | 你的 App 证书。                                              |
+| userAccount        | RTM 系统用户 ID。                                            |
+| userRole           | 用户角色。暂时只支持一种角色，请使用默认值 `Rtm_User`。      |
 | privilegeExpiredTs | 此参数暂不生效。你无需设置此参数。每个 RTM Token 的有效期都是 24 小时。 |
 
 # 开发注意事项

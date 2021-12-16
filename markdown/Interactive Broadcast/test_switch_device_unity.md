@@ -3,7 +3,6 @@ title: 音视频设备测试
 platform: Unity
 updatedAt: 2020-03-08 16:01:32
 ---
-
 ## 功能描述
 
 为保证通话或直播质量，我们推荐在进入频道前进行音视频设备测试，检测麦克风、摄像头等音视频设备能否正常工作。该功能对于有高质量要求的场景，如在线教育等，尤为适用。
@@ -56,11 +55,11 @@ public void loadEngine(string appId)
     // 释放 AudioRecordingDeviceManager 实例。
     audioRecordingDeviceManager.ReleaseAAudioRecordingDeviceManager();
 }
-
+      
 // 实现音频音量回调接口。
 void OnVolumeIndicationHandler(AudioVolumeInfo[] speakers, int speakerNumber, int totalVolume)
 {
-
+  
 }
 ```
 
@@ -69,7 +68,7 @@ void OnVolumeIndicationHandler(AudioVolumeInfo[] speakers, int speakerNumber, in
 public void loadEngine(string appId)
 {
     // 初始化 IRtcEngine。
-    mRtcEngine = IRtcEngine.GetEngine (appId);
+    mRtcEngine = IRtcEngine.GetEngine (appId);  
     // 开始音频设备测试。
     mRtcEngine.StartEchoTest(10);
     // 停止音频设备测试。
@@ -125,11 +124,11 @@ public void loadEngine(string appId)
     // 释放 AudioPlaybackDeviceManager 实例。
     audioPlaybackDeviceManager.ReleaseAAudioPlaybackDeviceManager();
 }
-
+      
 // 实现音频音量回调接口。
 void OnVolumeIndicationHandler(AudioVolumeInfo[] speakers, int speakerNumber, int totalVolume)
 {
-
+  
 }
 ```
 
@@ -138,7 +137,7 @@ void OnVolumeIndicationHandler(AudioVolumeInfo[] speakers, int speakerNumber, in
 public void loadEngine(string appId)
 {
     // 初始化 IRtcEngine。
-    mRtcEngine = IRtcEngine.GetEngine (appId);
+    mRtcEngine = IRtcEngine.GetEngine (appId);  
     // 开始音频设备测试。
     mRtcEngine.StartEchoTest(10);
     // 停止音频设备测试。

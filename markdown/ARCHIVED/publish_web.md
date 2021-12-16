@@ -3,7 +3,6 @@ title: 发布和订阅音视频流
 platform: Web
 updatedAt: 2019-03-25 18:22:40
 ---
-
 在发布和订阅音视频流前，请确保你已经实现了[加入频道](./join_video_web)。
 
 ## 发布本地流
@@ -17,28 +16,25 @@ localStream = AgoraRTC.createStream({
   streamID: userID,
   audio: true,
   video: true,
-  screen: false,
+  screen: false
 });
 
 // 初始化本地流
-localStream.init(
-  function () {
-    // 播放本地流
-    localStream.play("local");
-    console.log("getUserMedia successfully");
-    // 发布本地流
-    client.publish(localStream, function (err) {
-      console.log("Publish local stream error: " + err);
-    });
+localStream.init(function () {
+  // 播放本地流
+  localStream.play("local");
+  console.log("getUserMedia successfully");
+  // 发布本地流
+  client.publish(localStream, function (err) {
+    console.log("Publish local stream error: " + err);
+  });
 
-    client.on("stream-published", function (evt) {
-      console.log("Publish local stream successfully");
-    });
-  },
-  function (err) {
-    console.log("getUserMedia failed", err);
-  },
-);
+  client.on('stream-published', function (evt) {
+    console.log("Publish local stream successfully");
+  });
+}, function (err) {
+  console.log("getUserMedia failed", err);
+});
 ```
 
 这里需要注意的是要在 [Stream.init](./API%20Reference/web/interfaces/agorartc.stream.html#init) 成功的回调中调用 [Client.publish](./API%20Reference/web/interfaces/agorartc.client.html#publish) 来发布本地流。
@@ -53,7 +49,7 @@ localStream.init(
 
 ```javascript
 // 监听 stream-added 事件
-client.on("stream-added", function (evt) {
+client.on('stream-added', function (evt) {
   var remoteStream = evt.stream;
   console.log("New stream added: " + remoteStream.getId());
   console.log("Subscribe to ", remoteStream.getId());
@@ -68,7 +64,7 @@ client.on("stream-added", function (evt) {
   });
 });
 // 当有用户离开通话时
-client.on("peer-leave", function (evt) {
+client.on('peer-leave', function (evt) {
   var stream = evt.stream;
   stream.stop("remote");
   alert("User " + stream.getId() + " has left.");

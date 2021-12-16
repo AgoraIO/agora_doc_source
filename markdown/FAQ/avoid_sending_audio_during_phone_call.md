@@ -2,9 +2,8 @@
 title: 如何避免在打电话时将音频流发送给远端用户？
 platform: ["Android"]
 updatedAt: 2021-02-10 08:37:37
-Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
+Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 ---
-
 ## 问题描述
 
 在 Android 设备中，使用集成了 Agora RTC SDK 的 app 进行实时音视频互动，本地用户拨打或接听系统电话时仍将系统电话的声音发送给远端用户。

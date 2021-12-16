@@ -3,7 +3,6 @@ title: 音视频设备测试
 platform: Web
 updatedAt: 2020-12-30 09:01:59
 ---
-
 ## 功能描述
 
 为保证通话或直播质量，我们推荐在进入频道前进行音视频设备测试，检测麦克风、摄像头等音视频设备能否正常工作。该功能对于有高质量要求的场景，如在线教育等，尤为适用。
@@ -15,7 +14,6 @@ updatedAt: 2020-12-30 09:01:59
 ### 麦克风／摄像头测试
 
 参考以下步骤测试麦克风/摄像头：
-
 1. 调用 `AgoraRTC.getDevices` 获取可用设备及设备 ID。
 2. 调用 `AgoraRTC.createStream` 创建本地音频流或视频流。在创建流时填入 `microphoneId` 或 `cameraId` 指定想测试的设备。
 3. 调用 `Stream.init` 初始化流，在该方法的 `onSuccess` 回调中播放本地流。
@@ -70,6 +68,7 @@ AgoraRTC.getDevices(function(devices){
 - [`Stream.init`](./API%20Reference/web/interfaces/agorartc.stream.html#init)
 - [`Stream.play`](./API%20Reference/web/interfaces/agorartc.stream.html#play)
 - [`Stream.getAudioLevel`](./API%20Reference/web/interfaces/agorartc.stream.html#getaudiolevel)
+
 
 ## 开发注意事项
 

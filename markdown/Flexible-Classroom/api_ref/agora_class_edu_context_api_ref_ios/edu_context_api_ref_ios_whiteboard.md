@@ -10,8 +10,8 @@ func boardInputEnable(_ enable: Bool)
 
 设置是否可以使用白板基础工具。
 
-| 参数     | 描述                       |
-| :------- | :------------------------- |
+| 参数     | 描述                   |
+| :------- | :--------------------- |
 | `enable` | 是否可以使用白板基础工具。 |
 
 ### skipDownload
@@ -82,7 +82,7 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 
 ### onBoardContentView
 
-```swift
+```swift 
 @objc optional func onBoardContentView(_ view: UIView)
 ```
 
@@ -107,8 +107,8 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 - `enabled` 为 `true` 时，UI 层会提示：你可以使用白板了。
 - `enabled` 为 `false` 时，UI 层会提示：你现在无权使用白板了。
 
-| 参数      | 描述                     |
-| :-------- | :----------------------- |
+| 参数      | 描述               |
+| :-------- | :----------------- |
 | `enabled` | 本地是否有权限操作白板。 |
 
 ### onLoadingVisible
@@ -155,6 +155,7 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 | :---- | :------------- |
 | `url` | 课件下载地址。 |
 
+
 ### onDownloadComplete
 
 ```swift
@@ -168,6 +169,7 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 | 参数  | 描述           |
 | :---- | :------------- |
 | `url` | 课件下载地址。 |
+
 
 ### onDownloadError
 
@@ -201,8 +203,8 @@ func applianceSelected(_ mode: AgoraEduContextApplianceType)
 
 选择一个白板基础工具。
 
-| 参数   | 描述                                                    |
-| :----- | :------------------------------------------------------ |
+| 参数   | 描述                                                |
+| :----- | :-------------------------------------------------- |
 | `type` | 白板基础工具类型，详见 `AgoraEduContextApplianceType`。 |
 
 ### colorSelected
@@ -225,9 +227,9 @@ func fontSizeSelected(_ size: Int)
 
 选择字体大小。
 
-| 参数   | 描述       |
-| :----- | :--------- |
-| `size` | 字体大小。 |
+| 参数 | 描述 |
+| :--- | :--- |
+| `size`   |   字体大小。   |
 
 ### thicknessSelected
 
@@ -237,9 +239,9 @@ func thicknessSelected(_ thick: Int)
 
 选择画笔粗细。
 
-| 参数    | 描述       |
-| :------ | :--------- |
-| `thick` | 画笔粗细。 |
+| 参数 | 描述 |
+| :--- | :--- |
+|  `thick`   |  画笔粗细。   |
 
 ## AgoraEduWhiteBoardPageControlContext
 
@@ -303,6 +305,7 @@ func registerPageControlEventHandler(_ handler: AgoraEduWhiteBoardPageControlHan
 | `pageIndex` | 当前页数。 |
 | `pageCount` | 总页数。   |
 
+
 ### onPagingEnable
 
 ```swift
@@ -316,6 +319,7 @@ func registerPageControlEventHandler(_ handler: AgoraEduWhiteBoardPageControlHan
 | 参数     | 描述         |
 | :------- | :----------- |
 | `enable` | 是否可翻页。 |
+
 
 ### onZoomEnable
 

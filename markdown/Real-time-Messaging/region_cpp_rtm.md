@@ -3,7 +3,6 @@ title: 限定访问区域
 platform: Windows CPP
 updatedAt: 2020-12-07 07:08:07
 ---
-
 ## 功能描述
 
 为适应不同国家或地区的法律法规，Agora RTM SDK 支持限定访问区域功能。你可以将 Agora RTM SDK 的数据传输限定在某一区域范围内。限定区域之后，RTM SDK 只能连接位于限定区域的 Agora RTM 服务器。
@@ -22,7 +21,9 @@ updatedAt: 2020-12-07 07:08:07
 - `AREA_CODE_JP`: 日本。
 - `AREA_CODE_IN`: 印度。
 
+
 ### 示例代码
+
 
 ```c++
 // 设置限定区域
@@ -31,7 +32,8 @@ rtmContext.areaCode = agora::rtm::AREA_CODE_CN | agora::rtm::AREA_CODE_AS;
 agora::rtm::SET_RTM_SERVICE_CONTEXT_ERR_CODE errorCode = setRtmServiceContext(rtmContext);
 ```
 
-## 开发注意事项
+
+##  开发注意事项
 
 ### 防火墙要求
 
@@ -39,18 +41,19 @@ agora::rtm::SET_RTM_SERVICE_CONTEXT_ERR_CODE errorCode = setRtmServiceContext(rt
 
 - 域名白名单
 
-| 区域                   | 域名                                                                                 |
-| :--------------------- | :----------------------------------------------------------------------------------- |
-| 中国大陆               | `ap.agoraio.cn` <br> `report-edge.agoraio.cn` <br> `service-agoraio.cn`              |
-| 北美区域               | `ap-america.agora.io` <br> `report-america.agora.io` <br> `service-america.agora.io` |
-| 欧洲区域               | `ap-europe.agora.io` <br> `report-europe.agora.io` <br> `service-europe.agora.io`    |
-| 日本                   | `ap-japan.agora.io` <br> `report-japan.agora.io` <br> `service-japan.agora.io`       |
-| 印度                   | `ap-india.agora.io` <br> `report-india.agora.io` <br> `service-india.agora.io`       |
-| 除中国大陆外的亚洲区域 | `ap-asia.agora.io` <br> `report-asia.agora.io` <br> `service-asia.agora.io`          |
+| 区域                   | 域名                                                         |
+| :--------------------- | :----------------------------------------------------------- |
+| 中国大陆               | `ap.agoraio.cn` <br> `report-edge.agoraio.cn` <br> `service-agoraio.cn` |
+| 北美区域               | `ap-america.agora.io`  <br> `report-america.agora.io` <br> `service-america.agora.io` |
+| 欧洲区域               | `ap-europe.agora.io` <br> `report-europe.agora.io` <br> `service-europe.agora.io` |
+| 日本                   | `ap-japan.agora.io` <br> `report-japan.agora.io` <br> `service-japan.agora.io` |
+| 印度                   | `ap-india.agora.io` <br> `report-india.agora.io` <br> `service-india.agora.io` |
+| 除中国大陆外的亚洲区域 | `ap-asia.agora.io`  <br> `report-asia.agora.io` <br> `service-asia.agora.io` |
 
 - 端口
 
 详见[应用企业防火墙限制](https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms)。
+
 
 ## API 参考
 

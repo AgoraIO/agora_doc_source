@@ -2,9 +2,8 @@
 title: 为什么在运行集成 RTC SDK 的 iOS app 时会看到查找本地网络设备的弹窗提示？
 platform: ["iOS"]
 updatedAt: 2020-12-18 03:21:00
-Products: ["Voice", "Video", "Interactive Broadcast", "Audio Broadcast"]
+Products: ["Voice","Video","Interactive Broadcast","Audio Broadcast"]
 ---
-
 ## 问题描述
 
 iOS 系统版本升级至 14.0 版本后，用户首次使用集成了声网 iOS 语音或视频 SDK 的 app 时会看到查找本地网络设备的弹窗提示。默认弹窗界面如下图所示：

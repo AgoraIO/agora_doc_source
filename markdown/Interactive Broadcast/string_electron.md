@@ -3,7 +3,6 @@ title: 使用 String 型的用户名
 platform: Electron
 updatedAt: 2020-01-14 10:57:21
 ---
-
 ## 场景描述
 
 很多 App 使用 String 类型的用户账号。为降低开发成本，Agora 新增支持 String 型的用户 ID，方便用户使用 App 账号直接加入 Agora 频道。
@@ -13,15 +12,14 @@ Agora 的其他接口仍使用 UID 作为参数。Agora 维护一个 String 型 
 为保证通信质量，频道内所有用户需使用同一数据类型的用户 ID，即频道内的所有用户 ID 应同为 Int 型或同为 String 型。
 
 ## 实现方法
-
 请确保你已完成环境准备、安装包获取等步骤，详见[集成客户端](electron_video)。
 
 Agora Native SDK 和 Web SDK 通过不同方法支持 String 型的用户名：
 
 - Native SDK：从 v2.8.0 起，新增使用 User Account 来标识用户在频道中的身份
 
-- `registerLocalUserAccount`：注册本地用户 User Account
-- `joinChannelWithUserAccount`：使用 User Account 加入频道
+ - `registerLocalUserAccount`：注册本地用户 User Account
+ - `joinChannelWithUserAccount`：使用 User Account 加入频道
 
 - Web SDK：从 v2.5.0 起支持将 join 方法中的 `uid` 设为 Number 或 String 型
 
@@ -31,7 +29,7 @@ Agora Native SDK 和 Web SDK 通过不同方法支持 String 型的用户名：
 - 26 个大写英文字母 A-Z
 - 10 个数字 0-9
 - 空格
-- "!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "|", "~", ","
+- "!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "|", "~", ","
 
 使用 User Account 加入频道的 API 调用时序图如下所示：
 
@@ -43,6 +41,7 @@ Agora Native SDK 和 Web SDK 通过不同方法支持 String 型的用户名：
 - `registerLocalUserAccount` 为选调。你可以注册后再调用 `joinChannelWithUserAccount` 方法加入频道，也可以不注册直接调用 `joinChannelWithUserAccount` 加入频道。我们建议你调用。提前调用 `registerLocalUserAccount` 可以减少调用 `joinChannelWithUserAccount` 加入频道的时间。
 - 远端用户成功调用 `joinChannelWithUserAccount` 加入频道后，SDK 会获取该远端用户的 UID（Int 型）和 User account（String 型），然后生成账号映射表，并在本地触发 `onUserInfoUpdated` 回调。
 - 对于其他接口，Agora SDK 仍沿用 Int 型的 UID 参数标识用户身份。你可以使用 `getUserInfoByUid` 或 `getUserInfoByUserAccount` 获取对应的 User Account 或 UID，无需自己维护映射表。
+
 
 ### API 参考
 

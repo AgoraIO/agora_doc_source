@@ -3,7 +3,6 @@ title: 设置订阅状态
 platform: Android
 updatedAt: 2021-03-12 04:55:47
 ---
-
 ## 概述
 
 在实时音视频互动过程中，你可能需要结合业务场景设置音视频流的[订阅](https://docs.agora.io/cn/Agora%20Platform/subscribe)状态。例如，用户在加入频道后不订阅单个远端用户。
@@ -16,11 +15,11 @@ updatedAt: 2021-03-12 04:55:47
 
 默认情况下，用户加入或切换频道时会订阅所有远端用户的音视频流。你可以调用如下 API 设置订阅状态：
 
-| API                                                                   | 设置对象           | 调用要求                                               |
-| :-------------------------------------------------------------------- | :----------------- | :----------------------------------------------------- |
+| API                                                          | 设置对象           | 调用要求                                               |
+| :----------------------------------------------------------- | :----------------- | :----------------------------------------------------- |
 | `channelMediaOptions` 的 `autoSubscribeAudio` 或 `autoSubscribeVideo` | 所有远端用户       | 调用 `joinChannel`[2/2] 或 `switchChannel`[2/2] 时设置 |
-| `muteAllRemoteAudioStreams` 或 `muteAllRemoteVideoStreams`            | 所有远端用户       | 在频道内可以随时调用                                   |
-| `muteRemoteAudioStream` 或 `muteRemoteVideoStream`                    | 指定的单个远端用户 | 在频道内可以随时调用                                   |
+| `muteAllRemoteAudioStreams` 或 `muteAllRemoteVideoStreams`   | 所有远端用户       | 在频道内可以随时调用                                   |
+| `muteRemoteAudioStream` 或 `muteRemoteVideoStream`           | 指定的单个远端用户 | 在频道内可以随时调用                                   |
 
 <div class="alert note"><li>在频道内，加入或切换频道时的订阅设置会被 <code>muteAll</code> 或 <code>muteRemote</code> 为前缀的方法改变。</li><li><code>muteAll</code> 和 <code>muteRemote</code> 为前缀的方法相互独立。一起调用时，后调用的方法会生效。</li></div>
 
@@ -67,9 +66,8 @@ updatedAt: 2021-03-12 04:55:47
   a. 记录原始订阅状态。例如只订阅远端用户 A 和 B。
   b. 在用户开始使用系统或第三方应用时，调用 `muteAllRemoteAudioStreams(true)` 或 `muteAllRemoteVideoStreams(true)` 取消订阅所有远端用户。
   c. 在用户结束使用系统或第三方应用时，根据步骤 1 的记录恢复原始订阅状态。例如，调用如下方法恢复订阅远端用户 A 和 B。
-
-  - 调用 `muteRemoteAudioStream(A, false)` 和 `muteRemoteVideoStream(A, false)` 恢复订阅远端用户 A。
-  - 调用 `muteRemoteAudioStream(B, false)` 和 `muteRemoteVideoStream(B, false)` 恢复订阅远端用户 B。
+     - 调用 `muteRemoteAudioStream(A, false)` 和 `muteRemoteVideoStream(A, false)` 恢复订阅远端用户 A。
+     - 调用 `muteRemoteAudioStream(B, false)` 和 `muteRemoteVideoStream(B, false)` 恢复订阅远端用户 B。
 
 ## <a name="api_changes"></a>API 变更
 
@@ -83,14 +81,14 @@ updatedAt: 2021-03-12 04:55:47
 
 - `muteAll` 为前缀的方法（下文简称为 `muteAll`）起着总开关的作用，`muteRemote` 或 `setDefaultMute` 为前缀的方法（下文简称为 `muteRemote` 和 `setDefaultMute`）起着子开关的作用。
 
-![](https://web-cdn.agora.io/docs-files/1611154569739)
+ ![](https://web-cdn.agora.io/docs-files/1611154569739)
 
-- 调用 `muteAll(true)` 时，总开关断开，用户取消订阅所有音视频流。`muteRemote` 或 `setDefaultMute` 的设置不生效。
+  - 调用 `muteAll(true)` 时，总开关断开，用户取消订阅所有音视频流。`muteRemote` 或 `setDefaultMute` 的设置不生效。
 
-- 调用 `muteAll(false)` 时，总开关闭合。用户的订阅状态由 `muteRemote` 或 `setDefaultMute` 控制。
+  - 调用 `muteAll(false)` 时，总开关闭合。用户的订阅状态由 `muteRemote` 或 `setDefaultMute` 控制。
 
-  - 设置为 `true` 时，子开关断开，状态为不订阅。
-  - 设置为 `false` 时，子开关闭合，状态为订阅。
+    - 设置为 `true` 时，子开关断开，状态为不订阅。
+    - 设置为 `false` 时，子开关闭合，状态为订阅。
 
 - `muteAll` 只能设置是否订阅当前频道内的音频或视频流。
 

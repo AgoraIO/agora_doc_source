@@ -4,7 +4,6 @@ platform: ["iOS"]
 updatedAt: 2020-12-18 03:24:07
 Products: ["Real-time-Messaging"]
 ---
-
 ## 问题现象
 
 iOS 系统版本升级至 14.0 版本后，用户使用集成了声网 RTM SDK 的 app 时会看到查找本地网络设备的弹窗提示。默认弹窗界面如下图所示：
@@ -30,13 +29,15 @@ iOS 14.0 版本新增了关于本地网络设备的隐私权限，app 需要向�
  <div class="alert info">在 Xcode 11 中，你需要添加 <b>NSLocalNetworkUsageDescription</b>。</div>
 
 2. 结合你的业务需求，在 **Privacy - Local Network Usage Description** 的 **Value** 栏中填写获取本地网络设备权限的目的。例如：此 app 不会连接到您所用网络上的设备，只会检测与您本地网关的连通性。
-   ![](https://web-cdn.agora.io/docs-files/1599798333919)
-
+ ![](https://web-cdn.agora.io/docs-files/1599798333919)
+	 
 修改后，用户使用 app 时收到的弹窗界面如下图所示：
 ![](https://web-cdn.agora.io/docs-files/1599798346549)
 
+
 - 如果用户点击**好**， app 可以通过本地路由器的域名查询结果获得更多 RTM 服务节点。
 - 如果用户点击**不允许**， app 不会通过本地路由器进行域名查询来获得额外的 RTM 服务节点，但也不会对 RTM 服务可用性造成明显影响。
+
 
 ## 相关链接
 

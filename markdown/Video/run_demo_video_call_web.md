@@ -3,10 +3,11 @@ title: 跑通示例项目
 platform: Web
 updatedAt: 2020-12-23 11:44:15
 ---
-
 ## 概览
 
 Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Web-Tutorial-1to1)，本文介绍如何快速跑通该示例项目，体验 Agora 视频通话效果。 你也可以直接观看我们的视频教程。
+
+
 
 ## 快速跑通示例项目
 
@@ -28,7 +29,7 @@ Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](htt
 
 ## 操作步骤
 
-### 1. 创建 Agora 项目
+### 1. 创建 Agora 项目 
 
 按照以下步骤，在控制台创建一个 Agora 项目。
 
@@ -36,7 +37,7 @@ Agora 在 GitHub 上提供一个开源的[一对一视频通话示例项目](htt
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
-![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
+ ![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
 
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID + Token。**
 
@@ -49,7 +50,6 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 在 [Agora 控制台](https://console.agora.io/)的**项目管理**页面，找到你的项目，点击 App ID 右侧的眼睛图标就可以直接复制项目的 App ID。
 
 ![获取appid](https://web-cdn.agora.io/docs-files/1603974707121)
-
 <div class="alert info">你需要在运行示例项目时填写 App ID。</div>
 
 ### 3. 生成临时 Token
@@ -60,11 +60,11 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 1. 在控制台的**项目管理**页面，点击已创建项目的 ![](https://web-cdn.agora.io/docs-files/1574923151660) 图标，打开 **Token** 页面。
 
-   ![](https://web-cdn.agora.io/docs-files/1574922827899)
+	![](https://web-cdn.agora.io/docs-files/1574922827899)
 
-2. 输入一个频道名，例如 test，然后点击**生成临时 Token**。临时 Token 的有效期为 24 小时。
+2. 输入一个频道名，例如 test，然后点击**生成临时Token**。临时 Token 的有效期为 24 小时。
 
-   ![](https://web-cdn.agora.io/docs-files/1574928082984)
+	![](https://web-cdn.agora.io/docs-files/1574928082984)
 
 <div class="alert note">临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见<a href="token_server">生成 Token</a >。</div>
 
@@ -89,7 +89,6 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 4. 如果想体验双人视频通话效果，可以在浏览器中复制当前标签页，输入相同的 App ID、频道名和 Token 并点击 **JOIN**。
 
 如果页面没有正常工作，可以打开浏览器的控制台查看错误信息进行排查。常见的错误信息包括：
-
 - `INVALID_VENDOR_KEY`：App ID 或 Token 错误，检查你填写的 App ID 及 Token。
 - `DYNAMIC_USE_STATIC_KEY`：你的 Agora 项目启用了 App 证书，需要在加入频道时填写 Token。
 - `Media access:NotFoundError`：检查你的摄像头和麦克风是否正常工作。
@@ -104,7 +103,7 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 | `assets/common.css` | 页面样式代码。                                       |
 | `vendor`            | 该文件夹中均为用于实现项目样式和布局的第三方库文件。 |
 
-## 相关链接
+##  相关链接
 
 除本文介绍的示例项目外，我们在 GitHub 上还提供以下开源的视频通话示例项目供你参考：
 

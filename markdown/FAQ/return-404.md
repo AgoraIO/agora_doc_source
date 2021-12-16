@@ -4,7 +4,6 @@ platform: ["RESTful"]
 updatedAt: 2020-05-22 15:06:05
 Products: ["cloud-recording"]
 ---
-
 通过 `start` 方法成功开启云端录制后，调用 `query` 方法返回 404 状态码，可能原因如下：
 
 - 云端录制启动后，录制服务会进行参数检查，如果检查出现问题，则有可能导致录制停止。请检查 `transcoding` 等参数设置是否正确。你可以参考[如何设置录制视频的分辨率](https://docs.agora.io/cn/faq/recording_video_profile)设置 `transcoding`。

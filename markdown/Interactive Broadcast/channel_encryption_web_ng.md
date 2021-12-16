@@ -3,7 +3,6 @@ title: 媒体流加密
 platform: Web
 updatedAt: 2021-02-08 03:00:07
 ---
-
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。如果你使用的是 Web SDK 3.x 或更早版本，请查看<a href="./channel_encryption_web?platform=Web">媒体流加密</a>。</li></div>
 
 ## 功能描述
@@ -39,9 +38,7 @@ client.setEncryptionConfig(encryptionMode, password);
 ```
 
 ### API 参考
-
 - [AgoraRTCClient.setEncryptionConfig](./API%20Reference/web/v4.2.1/interfaces/iagorartcclient.html#setencryptionconfig)
 
 ## 开发注意事项
-
 请确保在调用 `AgoraRTCClient.join` 加入频道之前设置加密。

@@ -1,31 +1,15 @@
 ---
 title: 如何实现主播对观众进行上下麦操作？
-platform:
-  [
-    "Android",
-    "iOS",
-    "macOS",
-    "Web",
-    "Windows",
-    "Linux",
-    "Unity",
-    "Cocos Creator",
-    "Electron",
-    "React Native",
-    "Flutter",
-  ]
+platform: ["Android","iOS","macOS","Web","Windows","Linux","Unity","Cocos Creator","Electron","React Native","Flutter"]
 updatedAt: 2020-08-14 11:36:30
-Products: ["Voice", "Video", "Interactive Broadcast", "Real-time-Messaging"]
+Products: ["Voice","Video","Interactive Broadcast","Real-time-Messaging"]
 ---
-
 ## 简介
-
 在实时音视频互动中，主播可以邀请观众上麦互动，也可以将上麦观众变回为普通观众。
 
 在实际应用场景中，你可以结合 Agora RTM SDK 的消息发送与频道属性功能，和 Agora RTC SDK 的切换用户角色功能，实现主播对观众的上下麦操作。
 
 ## 实现方法
-
 下文展示如何通过 RTM SDK 和 RTC SDK 实现上、下麦功能。使用前，请确保你的项目中已经集成了 RTM SDK 和 RTC SDK。具体的集成文档，请参考：
 
 - [Agora RTM SDK 快速开始](https://docs.agora.io/cn/Real-time-Messaging/messaging_android?platform=Android)
@@ -50,11 +34,12 @@ Products: ["Voice", "Video", "Interactive Broadcast", "Real-time-Messaging"]
 
 本文提及的方法名均为 Java 语言。其他语言对应的方法名如下表所示：
 
-| Java/C++                       | Objective-C                    | JavaScript                         |
-| ------------------------------ | ------------------------------ | ---------------------------------- |
-| `sendMessageToPeer`            | `sendMessage`                  | `sendMessage`                      |
-| `onMessageReceived`            | `messageReceived`              | `MessageFromPeer`                  |
-| `setClientRole`                | `setClientRole`                | `setClientRole`                    |
-| `onClientRoleChanged`          | `didClientRoleChanged`         | `Client.on("client-role-changed")` |
-| `addOrUpdateChannelAttributes` | `addOrUpdateChannelAttributes` | `addOrUpdateChannelAttributes`     |
-| `onAttributesUpdated`          | `attributeUpdate`              | `AttributesUpdated`                |
+| Java/C++ | Objective-C | JavaScript |
+| ---------------- | ---------------- | ---------------- |
+| `sendMessageToPeer`      | `sendMessage`     | `sendMessage`      |
+| `onMessageReceived` | `messageReceived` | `MessageFromPeer` |
+| `setClientRole` | `setClientRole` | `setClientRole` |
+| `onClientRoleChanged` | `didClientRoleChanged` | `Client.on("client-role-changed")` |
+| `addOrUpdateChannelAttributes` | `addOrUpdateChannelAttributes` | `addOrUpdateChannelAttributes` |
+| `onAttributesUpdated` | `attributeUpdate` | `AttributesUpdated` |
+

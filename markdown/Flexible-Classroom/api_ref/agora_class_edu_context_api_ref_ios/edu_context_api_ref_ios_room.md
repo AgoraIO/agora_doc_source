@@ -62,6 +62,7 @@ func registerEventHandler(_ handler: AgoraEduRoomHandler)
 | :-------- | :------------------------------ |
 | `handler` | 详见 `AgoraEduRoomHandler` 类。 |
 
+
 ## AgoraEduRoomHandler
 
 `AgoraEduRoomHandler` 类用于向 App 报告教室相关的事件回调。
@@ -197,9 +198,10 @@ func registerEventHandler(_ handler: AgoraEduRoomHandler)
 
 自定义教室属性更新回调。
 
-| 参数                | 描述                                                                        |
-| :------------------ | :-------------------------------------------------------------------------- |
-| `changedProperties` | 已更新的教室属性。                                                          |
-| `properties`        | 全部教室属性。                                                              |
-| `cause`             | 更新原因。                                                                  |
+| 参数                | 描述                                                         |
+| :------------------ | :----------------------------------------------------------- |
+| `changedProperties` | 已更新的教室属性。                                           |
+| `properties`        | 全部教室属性。                                               |
+| `cause`             | 更新原因。                                                   |
 | `operator`          | 操作者，详见 `AgoraEduContextUserInfo`。`operator` 为空表示是由服务端更新。 |
+

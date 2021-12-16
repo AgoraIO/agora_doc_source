@@ -28,7 +28,7 @@ data class WhiteboardDrawingConfig(
         var color: Int = Color.WHITE,
         var fontSize: Int = 22,
         var thick: Int = 0) {
-
+ 
     fun set(config: AgoraUIDrawingConfig) {
         this.activeAppliance = config.activeAppliance
         this.color = config.color
@@ -40,12 +40,12 @@ data class WhiteboardDrawingConfig(
 
 白板基础工具属性配置类。
 
-| 参数              | 描述                 |
-| :---------------- | :------------------- |
-| `activeAppliance` | 可用的白板基础工具。 |
-| `color`           | 颜色。               |
-| `fontsize`        | 字体大小。           |
-| `thick`           | 画笔粗细度。         |
+| 参数              | 描述         |
+| :---------------- | :----------- |
+| `activeAppliance` | 可用的白板基础工具。   |
+| `color`           | 颜色。       |
+| `fontsize`        | 字体大小。   |
+| `thick`           | 画笔粗细度。 |
 
 ## EduContextNetworkState
 
@@ -465,9 +465,9 @@ enum class EduContextRenderMode(val value: Int) {
 
 视频渲染模式。
 
-| 参数     | 描述                                                                                                                                     |
-| :------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
-| `HIDDEN` | 优先保证视窗被填满。视频尺寸等比缩放，直至整个视窗被视频填满。如果视频长宽与显示窗口不同，多出的视频将被截掉。                           |
+| 参数     | 描述                                                         |
+| :------- | :----------------------------------------------------------- |
+| `HIDDEN` | 优先保证视窗被填满。视频尺寸等比缩放，直至整个视窗被视频填满。如果视频长宽与显示窗口不同，多出的视频将被截掉。 |
 | `FIT`    | 优先保证视频内容全部显示。视频尺寸等比缩放，直至视频窗口的一边与视窗边框对齐。如果视频长宽与显示窗口不同，视窗上未被填满的区域将被涂黑。 |
 
 ## EduContextMirrorMode
@@ -507,12 +507,12 @@ data class EduContextVideoEncoderConfig(
 
 视频编码配置。
 
-| 参数                   | 描述                                                             |
-| :--------------------- | :--------------------------------------------------------------- |
-| `videoDimensionWidth`  | 视频宽，单位为 pixel。默认值为 320。                             |
-| `videoDimensionHeight` | 视频高，单位为 pixel。默认值为 240。                             |
-| `frameRate`            | 视频帧率，单位为 fps，默认值为 15。                              |
-| `bitrate`              | 视频码率，单位为 Kbps，默认值为 200。                            |
+| 参数                   | 描述                                                         |
+| :--------------------- | :----------------------------------------------------------- |
+| `videoDimensionWidth`  | 视频宽，单位为 pixel。默认值为 320。                         |
+| `videoDimensionHeight` | 视频高，单位为 pixel。默认值为 240。                         |
+| `frameRate`            | 视频帧率，单位为 fps，默认值为 15。                          |
+| `bitrate`              | 视频码率，单位为 Kbps，默认值为 200。                        |
 | `mirrorMode`           | 镜像模式，详见 `AgoraEduContextVideoMirrorMode`。默认为 `AUTO`。 |
 
 ## EduContextRenderConfig
@@ -525,9 +525,9 @@ data class EduContextRenderConfig(
 
 视频编码配置。
 
-| 参数         | 描述                                                             |
-| :----------- | :--------------------------------------------------------------- |
-| `renderMode` | 视频渲染模式，详见 `EduContextRenderMode`。默认为 `HIDDEN`。     |
+| 参数         | 描述                                                         |
+| :----------- | :----------------------------------------------------------- |
+| `renderMode` | 视频渲染模式，详见 `EduContextRenderMode`。默认为 `HIDDEN`。 |
 | `mirrorMode` | 镜像模式，详见 `AgoraEduContextVideoMirrorMode`。默认为 `AUTO`。 |
 
 ## EduContextDeviceLifecycle

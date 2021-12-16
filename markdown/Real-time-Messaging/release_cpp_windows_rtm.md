@@ -3,12 +3,12 @@ title: 发版说明
 platform: All Platforms
 updatedAt: 2021-03-02 03:11:49
 ---
-
 ## 简介
 
 <div class="alert info">实时消息于 2021 年 2 月正式更名为云信令，服务不变，初心不改。</div>
 
-Agora 云信令（原实时消息）SDK 提供了稳定可靠、低延时、高并发的全球消息云服务，帮助你快速构建实时通信场景, 可实现消息通道、呼叫、聊天、状态同步等功能。点击[云信令（原实时消息）产品概述](/cn/Real-time-Messaging/product_rtm?platform=All%20Platforms)了解详情。
+Agora 云信令（原实时消息）SDK 提供了稳定可靠、低延时、高并发的全球消息云服务，帮助你快速构建实时通信场景,  可实现消息通道、呼叫、聊天、状态同步等功能。点击[云信令（原实时消息）产品概述](/cn/Real-time-Messaging/product_rtm?platform=All%20Platforms)了解详情。
+
 
 ## 1.3.0 版
 
@@ -30,7 +30,7 @@ v1.3.0 引入了 `IFileMessage` 消息类用于保存和传递系统生成的 `m
 
 - 设置相应的上传文件的显示文件名和显示缩略图。
 - 获取相应的上传文件的大小。
-
+  
 <div class="alert note">消息内容、显示文件名和显示缩略图的总大小不得超过 32 KB。</div>
 
 ##### 收发图片消息
@@ -66,6 +66,7 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 - [downloadMediaToMemory](https://docs-preview.agoralab.co/cn/Video/API%20Reference/RTM_cpp/v1.3.0/classagora_1_1rtm_1_1_i_rtm_service.html?transId=91d56170-7fb5-11ea-a366-4fbfd071e0af#ade134da2be907a8078ce693849e0cc37): 通过 media ID 从 Agora 服务器下载文件或图片至本地内存。
 - [downloadMediaToFile](https://docs-preview.agoralab.co/cn/Video/API%20Reference/RTM_cpp/v1.3.0/classagora_1_1rtm_1_1_i_rtm_service.html?transId=91d56170-7fb5-11ea-a366-4fbfd071e0af#a70584eb57e97476b1da072f737d88c95): 通过 media ID 从 Agora 服务器下载文件或图片至本地指定地址。
 
+
 ### 新增回调
 
 - [onMediaUploadingProgress](https://docs-preview.agoralab.co/cn/Video/API%20Reference/RTM_cpp/v1.3.0/classagora_1_1rtm_1_1_i_rtm_service_event_handler.html?transId=91d56170-7fb5-11ea-a366-4fbfd071e0af#a56d5464c3b5e53c44039190a3ac4dfe9): 主动回调：上传任务的上传进度回调。
@@ -82,15 +83,17 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 
 ### 废弃方法
 
-- [sendMessage](https://docs-preview.agoralab.co/cn/Video/API%20Reference/RTM_cpp/v1.3.0/classagora_1_1rtm_1_1_i_channel.html?transId=91d56170-7fb5-11ea-a366-4fbfd071e0af#a4ae01f44d49f334f7c2950d95f327d30): 被重载方法 [sendMessage (const IMessage \*message, const SendMessageOptions &options)](https://docs-preview.agoralab.co/cn/Video/API%20Reference/RTM_cpp/v1.3.0/classagora_1_1rtm_1_1_i_channel.html?transId=91d56170-7fb5-11ea-a366-4fbfd071e0af#a056dfe9e83c168c3c94e47a017a6ec3f) 替代。
+- [sendMessage](https://docs-preview.agoralab.co/cn/Video/API%20Reference/RTM_cpp/v1.3.0/classagora_1_1rtm_1_1_i_channel.html?transId=91d56170-7fb5-11ea-a366-4fbfd071e0af#a4ae01f44d49f334f7c2950d95f327d30): 被重载方法 [sendMessage (const IMessage *message, const SendMessageOptions &options)](https://docs-preview.agoralab.co/cn/Video/API%20Reference/RTM_cpp/v1.3.0/classagora_1_1rtm_1_1_i_channel.html?transId=91d56170-7fb5-11ea-a366-4fbfd071e0af#a056dfe9e83c168c3c94e47a017a6ec3f) 替代。
 
 ## 1.2.2 版
 
 该版本于 2019 年 12 月 13 日发布。
 
+
 **兼容性改动**
 
 废弃用于创建 <code>IAgoraService</code> 的 <code>createAgoraService</code> 方法以及用于初始化 <code>IAgoraService</code> 的 <code>initialize</code> 方法。从本版本开始，你只需要调用用于创建 <code>IRtmService</code> 的 <code>createRtmService</code> 方法以及用于初始化 <code>IRtmService</code> 的 <code>initialize</code> 方法就可以开始使用 <code>IRtmService</code> 实例。
+
 
 **问题修复**
 
@@ -102,16 +105,18 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 
 **新增功能**
 
-**支持与老信令 SDK 的 endCall 方法兼容**
+**支持与老信令 SDK 的 endCall 方法兼容** 
 
-你可以调用 `sendMessageToPeer` 方法在发送<i>文本</i>消息时将消息设为 AgoraRTMLegacyEndcallCompatibleMessagePrefix\_\<channelId\>\_\<your additional information\> 格式即可。请以 endCall 对应频道的 ID 替换 \<channelId\>， \<your additional information\> 为附加文本信息。请注意：附加文本信息中不可使用下划线 "\_" ，附加文本信息可以设为空字符串 "" 。
+你可以调用 `sendMessageToPeer` 方法在发送<i>文本</i>消息时将消息设为 AgoraRTMLegacyEndcallCompatibleMessagePrefix\_\<channelId\>\_\<your additional information\> 格式即可。请以 endCall 对应频道的 ID 替换 \<channelId\>， \<your additional information\> 为附加文本信息。请注意：附加文本信息中不可使用下划线 "_" ，附加文本信息可以设为空字符串 "" 。
 
 **问题修复**
+
 
 - 修复了一个用户使用 VPN 登录 RTM，关闭 VPN 后 RTM 重连失败的问题。
 - 修复了一个频道中用户断线重连，频道中其它用户有概率收到两次 `onMemberJoined` 回调的问题。
 
 ## 1.2.0 版
+
 
 该版本于 2019 年 11 月 6 日发布。新增如下功能：
 
@@ -119,6 +124,8 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 - [获取某特定内容被订阅的用户列表](#list)
 - [创建自定义二进制消息](#raw)
 - [创建文本消息](#text)
+
+
 
 **兼容性改动**
 
@@ -139,6 +146,8 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 - 在主动查询用户在线状态时，我们推荐你通过 [PEER_ONLINE_STATE](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/namespaceagora_1_1rtm.html#a16966e9a602270d2bbdd9510602ecc5f) 查询，不过系统不会返回 `unreachable` 状态。
 - 在订阅了指定用户的在线状态后，我们推荐你通过 [PEER_ONLINE_STATE](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/namespaceagora_1_1rtm.html#a16966e9a602270d2bbdd9510602ecc5f) 获取用户在线状态，方便 App 在用户连接状态不佳时快速响应，提高整体用户体验。
 
+
+
 **新增功能**
 
 #### 1. <a name="subscribe"></a>订阅或取消订阅指定单个或多个用户的在线状态。
@@ -150,6 +159,7 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 <div class="alert note"> <sup>1</sup>用户登出 Agora RTM 系统后，所有之前的订阅内容都会被清空；重新登录后，如需保留之前订阅内容则需重新订阅。</div>
 
 <div class="alert note"> <sup>2</sup>重复订阅同一用户不会报错。</div>
+
 
 #### 2. <a name="list"></a>获取某特定内容被订阅的用户列表
 
@@ -178,6 +188,7 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 
 <div class="alert note"> 文本消息大小不得超过 32 KB。</div>
 
+
 **API 变更**
 
 #### 新增方法
@@ -195,7 +206,7 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 - [onPeersOnlineStatusChanged](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_service_event_handler.html#a1eb57be5d0cdc9e4533852794e2e47ca): 被订阅用户在线状态改变回调。
 - [onQueryPeersBySubscriptionOptionResult](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_service_event_handler.html#abfa6692f88f55017f3cfbec3ca98ffdf): 返回 [queryPeersBySubscriptionOption](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_service.html#a063bd3db39660a7a3513378ce03f4456) 方法的调用结果。
 
-#### 新增错误码
+#### 新增错误码 
 
 - [PEER_SUBSCRIPTION_STATUS_ERR](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/namespaceagora_1_1rtm.html#a4fa6b08d01154d48966cfcb37acf08be): 订阅或取消订阅指定用户在线状态相关错误码。
 - [QUERY_PEERS_BY_SUBSCRIPTION_OPTION_ERR](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/namespaceagora_1_1rtm.html#a5ecaf0f0a7ac45ea78198f52393bf607): 根据订阅类型获取被订阅用户列表相关的错误码。
@@ -221,6 +232,7 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 > - 如需与 Agora Signaling SDK 互通，则必须调用 `setChannelId` 方法设置频道 ID。不过即使被叫成功接受呼叫邀请，Agora RTM SDK 也不会将主叫或被叫加入指定频道。
 > - 如果你的应用不涉及 Agora Signaling SDK，我们推荐使用 `ILocalCallInvitation::setContent` 或者 `IRemoteCallInvitation::setResponse` 方法设置自定义内容。
 
+
 **发送（离线）点对点消息**
 
 本版本支持发送离线消息。在开通离线消息后，用户不必等到接收端上线才能发送点对点消息。如果对端离线，消息服务器会为每个接收端存储 200 条离线消息长达七天。消息以队列形式存储。当离线消息超限时，最新存储的消息会导致最老的消息丢失。当发送端设置了离线消息，而此时消息接收端不在线，发送端会收到错误码：[PEER_MESSAGE_ERR_CACHED_BY_SERVER](/cn/Video/API%20Reference/RTM_cpp/namespaceagora_1_1rtm.html#ac7c591aac4ca6867e239c8bcccc1fc5caeccb9896a862a86fa1965705e2d394fd)
@@ -236,12 +248,13 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 
 本版本支持设置和查询用户属性。每个用户属性为 key 和 value 的键值对。每个属性的 key 为 32 字节可见字符，每个属性的 value 的字符串长度不得超过 8 KB。单个用户的全部属性长度不得超过 16 KB。以下为本版本支持内容：
 
-- 全量设置本地用户属性
-- 增加或更新本地用户属性
-- 删除本地用户指定属性
-- 清空本地用户属性
-- 全量获取指定用户属性
-- 获取指定用户指定属性。
+   - 全量设置本地用户属性
+   - 增加或更新本地用户属性
+   - 删除本地用户指定属性
+   - 清空本地用户属性
+   - 全量获取指定用户属性
+   - 获取指定用户指定属性。
+
 
 > - 用户属性的相关操作必须在登录 Agora RTM 系统成功后才能进行，否则 SDK 会返回错误码：`ATTRIBUTE_OPERATION_ERR_NOT_LOGGED_IN`
 > - 设置的用户属性会在用户登出 Agora RTM 系统后自动失效。
@@ -255,7 +268,6 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 支持设置或查询某个指定频道的属性。你可以用频道属性实现群公告、上下麦同步等功能。
 
 每个频道属性为 key 和 value 的键值对。详见：[IRtmChannelAttribute](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_rtm_channel_attribute.html)。其中：
-
 - 每个属性的 key 为 32 字节可见字符，每个属性的 value 的字符串长度不得超过 8 KB。
 - 某个频道的全部属性长度不得超过 32 KB。
 - 某个频道属性的全部属性个数不得超过 32 个。
@@ -279,14 +291,17 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 
 **发送或接收频道消息**
 
-<a name="oncount"></a>
 
+
+<a name="oncount"></a>
 ### 频道成员人数自动更新
 
 如果你已经加入某频道，你无需调用 `getChannelMemberCount` 接口查询当前频道人数。我们也不建议你通过监听 `onMemberJoined` 和 `onMemberLeft` 统计频道成员人数。从本版本开始，SDK 会在频道成员人数发生变化时通过 [onMemberCountUpdated](/cn/Real-time-Messaging/API%20Reference/RTM_cpp/classagora_1_1rtm_1_1_i_channel_event_handler.html#aff85052bb2a46c3220789c1ef90aa01e) 回调接口通知频道成员并返回当前频道成员人数：
 
 - 频道成员人数小于等于 512 时，最高触发频率为每秒 1 次。
 - 频道成员人数超过 512 时，最高触发频率为每 3 秒 1 次。
+
+
 
 ### 更新 Token
 
@@ -306,4 +321,14 @@ v1.3.0 引入了 `IImageMessage` 消息类用于保存和传递系统生成的 `
 
 > 该方法无需在 `login` 成功之后调用。
 
+
 > 该方法的调用频率限制为每秒 60 条（点对点消息和频道消息一并计算在内）。
+
+
+
+
+
+
+
+
+

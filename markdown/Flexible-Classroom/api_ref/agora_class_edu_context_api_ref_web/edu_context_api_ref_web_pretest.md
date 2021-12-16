@@ -150,6 +150,7 @@ cameraError: boolean,
 
 摄像头是否正常工作。
 
+
 ## microphoneError
 
 ```typescript

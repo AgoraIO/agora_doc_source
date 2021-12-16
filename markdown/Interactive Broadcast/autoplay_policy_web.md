@@ -3,7 +3,6 @@ title: 处理浏览器的自动播放策略
 platform: Web
 updatedAt: 2021-02-03 11:21:07
 ---
-
 ## 什么是自动播放策略
 
 浏览器为了防止网页在用户非自愿的情况下主动播放声音，对网页上的自动播放（Autoplay）功能做了限制：浏览器在**没有用户交互操作之前不允许有声音的媒体播放**。
@@ -38,7 +37,7 @@ updatedAt: 2021-02-03 11:21:07
 
 ## iOS Safari 的特殊处理
 
-<div class="alert note">iOS Safari 只允许通过用户交互来<b>触发</b>有声媒体的播放，而不是在用户交互后就打开 Autoplay 限制。</div>
+<div class="alert note">iOS Safari 只允许通过用户交互来<b>触发</b>有声媒体的播放，而不是在用户交互后就打开 Autoplay 限制。</div> 
 
 如果你的应用需要兼容 iOS Safari，我们推荐对 iOS Safari 做特殊处理。
 

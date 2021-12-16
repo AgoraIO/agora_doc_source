@@ -4,7 +4,6 @@ platform: ["Linux"]
 updatedAt: 2020-07-09 21:44:58
 Products: ["Recording"]
 ---
-
 对于本地服务端录制，我们测试了以下云主机配置下的录制并发性能：
 
 - AWS：Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00 GHz

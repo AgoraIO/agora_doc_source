@@ -3,7 +3,6 @@ title: 原始视频数据
 platform: Unity
 updatedAt: 2019-12-26 18:59:04
 ---
-
 ## 功能描述
 
 视频传输过程中，我们可以对采集到的视频数据进行前处理和后处理，获取想要的播放效果。
@@ -19,12 +18,10 @@ Agora Unity SDK 通过提供 `VideoRawDataManager` 类，实现采集、修改�
 参考如下步骤，在你的项目中实现原始视频数据功能：
 
 1. 选择如下任意一种方式注册视频观测器：
-
    - 在加入频道前，调用 `EnableVideoObserver` 注册视频观测器。此方法通常用于 SDK 采集和渲染。选择此方法后，若需注销视频观测器，确保在离开频道后调用 `DisableVideoObserver`。
    - 调用 `RegisterVideoRawDataObserver` 注册视频观测器。此方法通常用于自采集和渲染。选择此方法后，若需注销视频观测器，调用 `UnRegisterVideoRawDataObserver`。
 
 2. 成功注册后，根据需求调用以下方法：
-
    - 调用 `SetOnCaptureVideoFrameCallback` 监听 `OnCaptureVideoFrameHandler` 回调。SDK 会在捕捉到每个本地视频帧时通过 `OnCaptureVideoFrameHandler` 回调向用户发送采集到的原始视频数据。
    - 调用 `SetOnRenderVideoFrameCallback` 监听 `OnRenderVideoFrameHandler` 回调。SDK 会在捕捉到每个远端视频帧时通过 `OnRenderVideoFrameHandler` 回调向用户发送接收到的原始视频数据。
 
@@ -32,7 +29,7 @@ Agora Unity SDK 通过提供 `VideoRawDataManager` 类，实现采集、修改�
 4. 选择如下任意一种方式注销视频观测器：
    - 在离开频道后，调用 `DisableVideoObserver` 注销视频观测器。
    - 调用 `UnRegisterVideoRawDataObserver` 注销视频观测器。
-     <div class="alert note">请确保 EnableVideoObserver 和 DisableVideoObserver 配套调用，RegisterVideoRawDataObserver 和 UnRegisterVideoRawDataObserver 配套调用。请勿混合调用，否则会出现未定义行为。</div>
+   <div class="alert note">请确保 EnableVideoObserver 和 DisableVideoObserver 配套调用，RegisterVideoRawDataObserver 和 UnRegisterVideoRawDataObserver 配套调用。请勿混合调用，否则会出现未定义行为。</div>
 
 ### API 调用时序
 
@@ -74,7 +71,7 @@ void OnCaptureVideoFrameHandler(VideoFrame videoFrame)
 }
 
 public enum VIDEO_FRAME_TYPE {
-    FRAME_TYPE_YUV420 = 0,
+    FRAME_TYPE_YUV420 = 0, 
     FRAME_TYPE_RGBA = 1,
 };
 
@@ -82,13 +79,13 @@ public struct VideoFrame {
     // 视频帧类型。仅支持 FRAME_TYPE_RGBA。
     public VIDEO_FRAME_TYPE type;
     // 视频像素宽度。
-    public int width;
+    public int width; 
     // 视频像素高度。
-    public int height;
+    public int height; 
     // YUV 数据中的 Y 缓冲区的行跨度。
-    public int yStride;
+    public int yStride; 
     // RGBA 数据缓冲区。
-    public byte[] buffer;
+    public byte[] buffer; 
     // 在渲染视频前设置该帧的顺时针旋转角度，目前支持 0 度、90 度、180 度，和 270 度。
     public int rotation;
     // 外部音频帧的时间戳。
@@ -97,6 +94,8 @@ public struct VideoFrame {
     public int avsync_type;
 };
 ```
+
+
 
 ### API 参考
 

@@ -2,9 +2,8 @@
 title: 如何设置日志？
 platform: ["Web"]
 updatedAt: 2021-03-22 09:18:26
-Products: ["Voice", "Video", "live-streaming", "Interactive Broadcast"]
+Products: ["Voice","Video","live-streaming","Interactive Broadcast"]
 ---
-
 ## 开启/关闭日志上传
 
 你可以调用 `enableLogUpload` 方法将 Agora Web SDK 的日志上传到 Agora 的服务器，调用 `disableLogUpload` 方法停止上传。

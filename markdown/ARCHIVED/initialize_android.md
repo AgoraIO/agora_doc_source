@@ -3,12 +3,12 @@ title: 创建实例
 platform: Android
 updatedAt: 2019-10-29 11:00:04
 ---
-
 在创建实例前，请确保你已完成环境准备、安装包获取等步骤，详见[集成客户端](/cn/Voice/android_audio)。
 
 ## 前提条件
 
 初始化过程中，你需要传入一个的 App ID。因此需要现在 Agora Dashboard 注册项目并获取 App ID。
+
 
 1. 进入[控制台](https://console.agora.io/)，并按照屏幕提示注册账号并登录控制台。详见[创建新账号](sign_in_and_sign_up)。
 
@@ -23,6 +23,10 @@ updatedAt: 2019-10-29 11:00:04
 4. 项目创建成功后，你会在**项目列表**下看到刚刚创建的项目，并找到对应的 App ID。
 
 ![](https://web-cdn.agora.io/docs-files/1574921811175)
+
+
+
+
 
 ## 实现方法
 
@@ -60,13 +64,11 @@ private void initializeAgoraEngine() {
 > 请确保在调用其他方法前先调用 `create` 方法创建并初始化 RtcEngine。
 
 ## 相关文档
-
 完成创建实例后，你可以使用 Agora SDK，依次实现如下功能进行语音通话：
-
-- [加入频道](/cn/Voice/join_communication_android)
-- [发布和订阅音频流](/cn/Voice/publish_android_audio)
+* [加入频道](/cn/Voice/join_communication_android)
+* [发布和订阅音频流](/cn/Voice/publish_android_audio)
 
 如果对网络或音质有特殊的需求，你还可以在加入频道前：
+* [进行通话前网络质量检测](/cn/Voice/lastmile_android)
+* [使用双声道/高音质](/cn/Voice/audio_profile_android_audio)
 
-- [进行通话前网络质量检测](/cn/Voice/lastmile_android)
-- [使用双声道/高音质](/cn/Voice/audio_profile_android_audio)

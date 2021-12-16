@@ -2,9 +2,8 @@
 title: Agora Web SDK 支持哪些浏览器？
 platform: ["Web"]
 updatedAt: 2021-03-04 07:06:24
-Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
+Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 ---
-
 ## 浏览器支持
 
 本节列出 Agora RTC Web SDK 支持的浏览器及平台。
@@ -16,10 +15,10 @@ Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
 
 Web SDK 对桌面端浏览器的支持情况详见下表：
 
-| 平台       | Chrome 58+                   | Firefox 56+                  | Safari 11+                   | Opera 45+                    | QQ 浏览器 10.5+              | 360 安全浏览器               | Edge 浏览器 80+              |
-| :--------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- |
-| macOS 10+  | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="red">✘</font>   | <font color="red">✘</font>   |
-| Windows 7+ | <font color="green">✔</font> | <font color="green">✔</font> | N/A                          | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
+| 平台       | Chrome 58+ | Firefox 56+ | Safari 11+ | Opera 45+ | QQ 浏览器 10.5+ | 360 安全浏览器 | Edge 浏览器 80+ |
+| :--------- | :--------- | :---------- | :--------- | :-------- | :-------------- | :------------- | :-------------- |
+| macOS 10+  | <font color="green">✔</font>          | <font color="green">✔</font>           | <font color="green">✔</font>          | <font color="green">✔</font>         | <font color="green">✔</font>               | <font color="red">✘</font>              | <font color="red">✘</font>               |
+| Windows 7+ | <font color="green">✔</font>          | <font color="green">✔</font>           | N/A        | <font color="green">✔</font>         | <font color="green">✔</font>               | <font color="green">✔</font>              | <font color="green">✔</font>               |
 
 除上述浏览器外，Web SDK 对桌面端浏览器还有以下支持：
 
@@ -75,12 +74,12 @@ Agora Web SDK 是基于 WebRTC 实现的采集和编解码，而 Chrome 又是�
 - 设备权限限制：
   - Safari 无法获取输出设备信息，因此不支持 `getPlayoutDevices` 和 `setAudioOutput` 这两个方法。
   - 如果 Safari 没有打开**自动播放**（如下图所示），直接播放音视频流会听不到声音，必须在播放前调用 `navigator.mediaDevices.getUserMedia` 方法获取设备权限。
-    ![](https://web-cdn.agora.io/docs-files/1591078696865)
+   ![](https://web-cdn.agora.io/docs-files/1591078696865)
 - Safari 不支持 `addTrack` 和 `removeTrack`。
 - Safari 不支持开启[双流模式](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#dual-stream)。
 - Safari 上调用相关方法获取质量相关统计数据时，多个字段的值为 0。例如调用 `getLocalAudioStats` 获取数据时，`RecordingLevel` 和 `SendLevel` 字段值为 0。
 
-### Firefox
+### Firefox 
 
 - Firefox 上使用 Web SDK 时与某些设备互通时，Firefox 端看其他端的视频画面会发生旋转。
 - Firefox 只支持视频帧率设为 30 fps。
@@ -91,5 +90,4 @@ Agora Web SDK 是基于 WebRTC 实现的采集和编解码，而 Chrome 又是�
 - 在使用 Apple M1 芯片的 Mac 设备上 Firefox 不支持 H.264 编解码，详见 [Firefox 官方说明](https://bugzilla.mozilla.org/show_bug.cgi?id=1686470)。
 
 ## 相关链接
-
 [移动端如何使用 Agora Web SDK？](https://docs.agora.io/cn/faq/web_on_mobile)

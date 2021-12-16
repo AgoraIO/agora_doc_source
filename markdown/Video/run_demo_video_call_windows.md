@@ -3,12 +3,11 @@ title: 跑通示例项目
 platform: Windows
 updatedAt: 2020-11-24 10:08:18
 ---
-
 Agora 在 GitHub 上提供开源的视频通话示例项目。本文介绍如何快速跑通多人视频通话的两个示例项目 [OpenVideoCall-Windows-MFC](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Windows-MFC)（基于 MFC） 和 [OpenVideoCall-Windows](https://github.com/AgoraIO/Basic-Video-Call/tree/master/Group-Video/OpenVideoCall-Windows)（基于 Qt），体验 Agora 视频互动直播。
 
 ## 获取 App ID 和 Token
 
-### 1. 创建 Agora 项目
+### 1. 创建 Agora 项目 
 
 按照以下步骤，在控制台创建一个 Agora 项目。
 
@@ -16,7 +15,7 @@ Agora 在 GitHub 上提供开源的视频通话示例项目。本文介绍如何
 
 2. 在**项目管理**页面，点击**创建**按钮。
 
-![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
+ ![创建项目](https://web-cdn.agora.io/docs-files/1594287028966)
 
 3. 在弹出的对话框内输入**项目名称**，选择**鉴权机制**为 **APP ID + Token。**
 
@@ -38,11 +37,11 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 1. 在控制台的[项目管理](https://console.agora.io/projects)页面，点击已创建项目的 ![](https://web-cdn.agora.io/docs-files/1574923151660) 图标，打开 **Token** 页面。
 
-   ![](https://web-cdn.agora.io/docs-files/1574922827899)
+	![](https://web-cdn.agora.io/docs-files/1574922827899)
 
-2. 输入一个频道名，例如 test，然后点击**生成临时 Token**。临时 Token 的有效期为 24 小时。加入频道时，请确保填入的频道名与生成临时 Token 时填入的频道名一致。
+2. 输入一个频道名，例如 test，然后点击**生成临时Token**。临时 Token 的有效期为 24 小时。加入频道时，请确保填入的频道名与生成临时 Token 时填入的频道名一致。
 
-   ![](https://web-cdn.agora.io/docs-files/1574928082984)
+	![](https://web-cdn.agora.io/docs-files/1574928082984)
 
 <div class="alert note">临时 Token 仅作为演示和测试用途。在生产环境中，你需要自行部署服务器签发 Token，详见<a href="token_server">生成 Token</a >。</div>
 
@@ -79,13 +78,14 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 下表列出示例项目在 Qt Creator 中的代码结构，你可以参考示例项目的代码，根据自己的需求进行调整。
 
-| 文件夹/文件          | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `OpenVideoCall.pro`  | Qt 项目文件。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `Headers`, `Sources` | 项目的所有 `.h` 文件和 `.cpp` 文件 。<ul><li>`main.h/cpp`：定义主应用类 </li><li> `openvideocall.h/cpp`：应用主要逻辑，包括 UI 与底层逻辑的驱动关系。</li><li>`agoraobject.h/cpp`：包含 RTC SDK 实现的主要逻辑。</li><li>`agoraconfig.h/cpp`：读取在 `AgoraConfigOpenVideoCall.ini` 中的 SDK 参数设置</li><li>`avdevice.h/cpp`：选择音视频采集设备并设置音视频参数 </li><li>`nettesting.h/cpp`，`nettestresult.h/cpp`，`nettestdetail.h/cpp`：设备网络测试</li><li>`inroom.h/cpp enterroom.h/cpp`：用户进入频道时及进入后触发的 SDK 回调及 UI 相关变化</li></ul> |
-| `Forms`              | 项目的所有 `.ui` 文件，定义用户界面                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `Resources`          | UI 资源文件。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `Other files`        | `openvideocall.rc`：指定应用图标文件                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| 文件夹/文件       | 描述                                                         |
+| :---------------- | :----------------------------------------------------------- |
+| `OpenVideoCall.pro` | Qt 项目文件。                                                |
+| `Headers`, `Sources`    | 项目的所有 `.h` 文件和 `.cpp` 文件 。<ul><li>`main.h/cpp`：定义主应用类 </li><li> `openvideocall.h/cpp`：应用主要逻辑，包括 UI 与底层逻辑的驱动关系。</li><li>`agoraobject.h/cpp`：包含 RTC SDK 实现的主要逻辑。</li><li>`agoraconfig.h/cpp`：读取在 `AgoraConfigOpenVideoCall.ini` 中的 SDK 参数设置</li><li>`avdevice.h/cpp`：选择音视频采集设备并设置音视频参数 </li><li>`nettesting.h/cpp`，`nettestresult.h/cpp`，`nettestdetail.h/cpp`：设备网络测试</li><li>`inroom.h/cpp enterroom.h/cpp`：用户进入频道时及进入后触发的 SDK 回调及 UI 相关变化</li></ul> |
+| `Forms`             | 项目的所有 `.ui` 文件，定义用户界面                          |
+| `Resources`         | UI 资源文件。                                                |
+| `Other files`       | `openvideocall.rc`：指定应用图标文件                       |
+
 
 ## 跑通基于 MFC 的示例项目
 
@@ -121,10 +121,10 @@ Agora 会给每个项目自动分配一个 App ID 作为项目唯一标识。
 
 下表列出示例项目在 Visual Studio 解决方案管理器中的代码结构，你可以参考示例项目的代码，根据自己的需求进行调整。
 
-| 文件夹        | 描述                                                                                                                                                                                                                                                                                                                                                                  |
-| :------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 文件夹      | 描述                                                         |
+| :---------- | :----------------------------------------------------------- |
 | `AgoraObject` | 应用的主要逻辑。包括：<ul><li>`AgoraObject.h/cpp`: 主逻辑，包含应用的基本功能</li><li>`AgoraAudInputManager.h/cpp`，`AgoraCameraManager.h/cpp`: 选择音视频采集设备并设置音视频参数</li><li>`AgoraPlayoutManager.h/cpp`: 选择音视频播放设备并设置播放参数</li><li>`AGEngineEventHandler.h/cpp`: 设置事件处理逻辑</li><li>`AGResourceVisitor.h/cpp`: 资源处理</li></ul> |
-| `App`         | `OpenVideoCall` 主应用类                                                                                                                                                                                                                                                                                                                                              |
-| `Headers`     | MFC 中需要 include 的标准头文件                                                                                                                                                                                                                                                                                                                                       |
-| `Resources`   | 资源文件                                                                                                                                                                                                                                                                                                                                                              |
-| `UI`          | 用户界面，包括对话框、窗口、控件的定义                                                                                                                                                                                                                                                                                                                                |
+| `App`         | `OpenVideoCall` 主应用类                                   |
+| `Headers`     | MFC 中需要 include 的标准头文件                            |
+| `Resources`   | 资源文件                                                |
+| `UI`          | 用户界面，包括对话框、窗口、控件的定义                     |

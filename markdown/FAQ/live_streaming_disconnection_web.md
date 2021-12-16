@@ -2,9 +2,8 @@
 title: 在推流到 CDN 过程中，连接断开后如何处理？
 platform: ["Web"]
 updatedAt: 2020-12-23 08:11:29
-Products: ["Interactive Broadcast", "live-streaming"]
+Products: ["Interactive Broadcast","live-streaming"]
 ---
-
 <div class="alert note">本文仅适用于 Agora Web SDK 3.x 及之前版本。</div>
 
 [推流到 CDN](https://docs.agora.io/cn/Interactive%20Broadcast/cdn_streaming_web?platform=Web) 是指直播频道里的主播将自己的媒体流发布到 CDN (Content Delivery Network)。

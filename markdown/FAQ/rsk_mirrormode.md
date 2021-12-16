@@ -1,10 +1,9 @@
 ---
 title: 如何设置推流组件的镜像模式？
-platform: ["Android", "iOS"]
+platform: ["Android","iOS"]
 updatedAt: 2021-02-23 08:56:59
 Products: ["Interactive Broadcast"]
 ---
-
 ## Android
 
 Agora 推流组件提供多种场景下的镜像模式：
@@ -18,23 +17,23 @@ Agora 推流组件提供多种场景下的镜像模式：
 
 | `create` 的 `mirrorMode` 值 | `setMirrorMode` 的 `mirrorMode` 值 | 本地预览的视频效果 | 本地发送的视频效果 |
 | :-------------------------- | :--------------------------------- | :----------------- | :----------------- |
-| `DISABLED`                  | `AUTO`                             | 镜像               | 正常               |
-| `DISABLED`                  | `ENABLED`                          | 镜像               | 正常               |
-| `DISABLED`                  | `DISABLED`                         | 正常               | 正常               |
-| `ENABLED`                   | `AUTO` 或 `ENABLED` 或 `DISABLED`  | 镜像               | 镜像               |
-| `AUTO`                      | `AUTO` 或 `ENABLED` 或 `DISABLED`  | 镜像               | 镜像               |
+| `DISABLED`                   | `AUTO`                             | 镜像               | 正常               |
+| `DISABLED`                   | `ENABLED`                           | 镜像               | 正常               |
+| `DISABLED`                   | `DISABLED`                          | 正常               | 正常               |
+| `ENABLED`                    | `AUTO` 或 `ENABLED` 或 `DISABLED`        | 镜像               | 镜像               |
+| `AUTO`                      | `AUTO` 或 `ENABLED` 或 `DISABLED`        | 镜像               | 镜像               |
 
 本地主播设备摄像头方向后置：
 
 | `create` 的 `mirrorMode` 值 | `setMirrorMode` 的 `mirrorMode` 值 | 本地预览的视频效果 | 本地发送的视频效果 |
 | :-------------------------- | :--------------------------------- | :----------------- | :----------------- |
-| `DISABLED`                  | `AUTO`                             | 正常               | 正常               |
-| `DISABLED`                  | `ENABLED`                          | 镜像               | 正常               |
-| `DISABLED`                  | `DISABLED`                         | 正常               | 正常               |
-| `ENABLED`                   | `AUTO` 或 `ENABLED` 或 `DISABLED`  | 镜像               | 镜像               |
+| `DISABLED`                   | `AUTO`                             | 正常               | 正常               |
+| `DISABLED`                   | `ENABLED`                           | 镜像               | 正常               |
+| `DISABLED`                   | `DISABLED`                          | 正常               | 正常               |
+| `ENABLED`                    | `AUTO` 或 `ENABLED` 或 `DISABLED`        | 镜像               | 镜像               |
 | `AUTO`                      | `AUTO`                             | 正常               | 正常               |
-| `AUTO`                      | `ENABLED`                          | 镜像               | 正常               |
-| `AUTO`                      | `DISABLED`                         | 正常               | 正常               |
+| `AUTO`                      | `ENABLED`                           | 镜像               | 正常               |
+| `AUTO`                      | `DISABLED`                          | 正常               | 正常               |
 
 ## iOS
 
@@ -49,20 +48,20 @@ Agora 推流组件提供多种场景下的镜像模式：
 
 | `sharedStreamingKitWithContext` 的 `mirrorMode` 值 | `setMirrorMode` 的 `mirrorMode` 值 | 本地预览的视频效果 | 本地发送的视频效果 |
 | :------------------------------------------------- | :--------------------------------- | :----------------- | :----------------- |
-| `Disabled`                                         | `Auto`                             | 镜像               | 正常               |
-| `Disabled`                                         | `Enabled`                          | 镜像               | 正常               |
-| `Disabled`                                         | `Disabled`                         | 正常               | 正常               |
-| `Enabled`                                          | `Auto` 或 `Enabled` 或 `Disabled`  | 镜像               | 镜像               |
-| `Auto`                                             | `Auto` 或 `Enabled` 或 `Disabled`  | 镜像               | 镜像               |
+| `Disabled`                                          | `Auto`                             | 镜像               | 正常               |
+| `Disabled`                                          | `Enabled`                           | 镜像               | 正常               |
+| `Disabled`                                          | `Disabled`                          | 正常               | 正常               |
+| `Enabled`                                           | `Auto` 或 `Enabled` 或 `Disabled`        | 镜像               | 镜像               |
+| `Auto`                                             | `Auto` 或 `Enabled` 或 `Disabled`        | 镜像               | 镜像               |
 
 本地主播设备摄像头方向后置：
 
 | `sharedStreamingKitWithContext` 的 `mirrorMode` 值 | `setMirrorMode` 的 `mirrorMode` 值 | 本地预览的视频效果 | 本地发送的视频效果 |
 | :------------------------------------------------- | :--------------------------------- | :----------------- | :----------------- |
-| `Disabled`                                         | `Auto`                             | 正常               | 正常               |
-| `Disabled`                                         | `Enabled`                          | 镜像               | 正常               |
-| `Disabled`                                         | `Disabled`                         | 正常               | 正常               |
-| `Enabled`                                          | `Auto` 或 `Enabled` 或 `Disabled`  | 镜像               | 镜像               |
+| `Disabled`                                          | `Auto`                             | 正常               | 正常               |
+| `Disabled`                                          | `Enabled`                           | 镜像               | 正常               |
+| `Disabled`                                          | `Disabled`                          | 正常               | 正常               |
+| `Enabled`                                           | `Auto` 或 `Enabled` 或 `Disabled`        | 镜像               | 镜像               |
 | `Auto`                                             | `Auto`                             | 正常               | 正常               |
-| `Auto`                                             | `Enabled`                          | 镜像               | 正常               |
-| `Auto`                                             | `Disabled`                         | 正常               | 正常               |
+| `Auto`                                             | `Enabled`                           | 镜像               | 正常               |
+| `Auto`                                             | `Disabled`                          | 正常               | 正常               |

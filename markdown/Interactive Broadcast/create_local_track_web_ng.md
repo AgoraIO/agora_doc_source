@@ -3,7 +3,6 @@ title: 创建本地轨道对象
 platform: Web
 updatedAt: 2020-12-30 09:08:13
 ---
-
 <div class="alert note">本文仅适用于 Agora Web SDK 4.x 版本。</div>
 
 本文详细介绍如何使用 Agora Web SDK 创建本地的音视频轨道对象。

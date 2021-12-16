@@ -3,7 +3,6 @@ title: 实现语音通话
 platform: macOS
 updatedAt: 2021-01-28 10:25:37
 ---
-
 本文介绍如何使用 Agora 语音通话 SDK 快速实现语音通话。
 
 ## 示例项目
@@ -36,7 +35,7 @@ Agora 在 GitHub 上提供开源的实时语音通话示例项目 [Agora-macOS-T
 
 3. 输入项目名称（Product Name）、开发团队信息（Team）、组织名称（Organization Name）和语言（Language）等项目信息，并点击 **Next**。
 
-<div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
+   <div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
 
 4. 选择项目存储路径，并点击 **Create**。
 
@@ -78,7 +77,7 @@ end
 4. 点击 **+** > **Add Other…** > **Add Files** 添加对应动态库，并确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。
    添加完成后，项目会自动链接所需系统库
 
-    <div class="alert note"><ul><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>Agora SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></ul></div>
+   <div class="alert note"><ul><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>Agora SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 sales@agora.io。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></ul></div>
 
 ## 实现语音通话
 
@@ -93,7 +92,7 @@ end
 
 - 语音通话窗口
 - 退出频道按钮
-
+	
 当你使用示例项目中的 UI 设计时，你将会看到如下界面：
 
 ![](https://web-cdn.agora.io/docs-files/1584695135878)
@@ -124,7 +123,7 @@ import AgoraRtcEngineKit
 
 在调用其他 Agora API 前，需要创建并初始化 `AgoraRtcEngineKit` 对象。
 
-你需要在该步骤中填入项目的 App ID。请参考如下步骤在控制台[创建 Agora 项目](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms)并获取 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id)。
+你需要在该步骤中填入项目的 App ID。请参考如下步骤在控制台[创建 Agora 项目](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms)并获取 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id )。
 
 1. 登录[控制台](https://console.agora.io/)，点击左侧导航栏的**[项目管理](https://console.agora.io/projects)**图标 ![](https://web-cdn.agora.io/docs-files/1551254998344)。
 2. 点击**创建**，按照屏幕提示设置项目名，选择一种鉴权机制，然后点击**提交**。
@@ -153,13 +152,11 @@ func initializeAgoraEngine() {
 ### 4. 加入频道
 
 完成初始化后，你就可以调用 `joinChannelByToken` 方法加入频道。你需要在该方法中传入如下参数：
-
 - `channelId`: 传入能标识频道的频道 ID。输入频道 ID 相同的用户会进入同一个频道。
 - `token`：传入能标识用户角色和权限的 Token。可设为如下一个值：
-
   - `nil`
-  - 控制台中生成的临时 Token。一个临时 Token 的有效期为 24 小时，详情见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#%E8%8E%B7%E5%8F%96%E4%B8%B4%E6%97%B6-token)。
-  - 你的服务器端生成的正式 Token。适用于对安全要求较高的生产环境，详情见[生成 Token](./token_server)。
+  -  控制台中生成的临时 Token。一个临时 Token 的有效期为 24 小时，详情见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#%E8%8E%B7%E5%8F%96%E4%B8%B4%E6%97%B6-token)。
+	- 你的服务器端生成的正式 Token。适用于对安全要求较高的生产环境，详情见[生成 Token](./token_server)。
 
   <div class="alert note">若项目已启用 App 证书，请使用 Token。</div>
 
@@ -191,7 +188,6 @@ func joinChannel() {
 ### 5. 离开频道
 
 根据场景需要，如结束通话、关闭 App 或 App 切换至后台时，调用 `leaveChannel` 离开当前通话频道。
-
 ```objective-c
 // Objective-C
 - (void)leaveChannel {
@@ -212,10 +208,9 @@ func leaveChannel() {
 
 ### 示例代码
 
-你可以在 Agora-macOS-Tutorial-Objective-C-1to1/Agora-macOS-Tutorial-Swift-1to1 示例项目的 [VideoChatViewController.m](https://github.com/AgoraIO/Basic-Video-Call/blob/master/One-to-One-Video/Agora-macOS-Tutorial-Objective-C-1to1/Agora%20Mac%20Tutorial%20Objective-C/VideoChat/VideoChatViewController.m)/[VideoChatViewController.swift](https://github.com/AgoraIO/Basic-Video-Call/blob/master/One-to-One-Video/Agora-macOS-Tutorial-Swift-1to1/Agora%20Mac%20Tutorial%20Swift/VideoChat/VideoChatViewController.swift) 文件中查看完整的源码和代码逻辑。
+你可以在 Agora-macOS-Tutorial-Objective-C-1to1/Agora-macOS-Tutorial-Swift-1to1 示例项目的  [VideoChatViewController.m](https://github.com/AgoraIO/Basic-Video-Call/blob/master/One-to-One-Video/Agora-macOS-Tutorial-Objective-C-1to1/Agora%20Mac%20Tutorial%20Objective-C/VideoChat/VideoChatViewController.m)/[VideoChatViewController.swift](https://github.com/AgoraIO/Basic-Video-Call/blob/master/One-to-One-Video/Agora-macOS-Tutorial-Swift-1to1/Agora%20Mac%20Tutorial%20Swift/VideoChat/VideoChatViewController.swift)  文件中查看完整的源码和代码逻辑。
 
 ## 运行项目
-
 你可以在 macOS 设备中运行此项目。当成功开始语音通话时，你和远端用户可听到彼此的声音。
 
 ## 相关链接

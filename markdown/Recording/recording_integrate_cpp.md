@@ -3,12 +3,10 @@ title: 集成录制 SDK
 platform: Linux
 updatedAt: 2021-03-31 07:51:45
 ---
-
 本页介绍如何设置环境以及集成 Agora 录制 SDK。
 
 你需要将 Agora 录制 SDK 集成在你的 Linux 服务器上而不是你的 App 上。
-
-> 如果你不想自行部署 Linux 服务器，可尝试 [Agora 云端录制](/cn/cloud-recording/product_cloud_recording)。
+>如果你不想自行部署 Linux 服务器，可尝试 [Agora 云端录制](/cn/cloud-recording/product_cloud_recording)。
 
 <img alt="../_images/recording_linux_cn.png" src="https://web-cdn.agora.io/docs-files/cn/recording_linux_cn.png" style="width: 640.0px;"/>
 
@@ -97,63 +95,63 @@ updatedAt: 2021-03-31 07:51:45
 
 你可参考上述云主机配置和对应的录制性能，根据自己的录制需要选择和配置云主机，详见[使用云容器部署录制 SDK](./recording_docker)。
 
+
 ## 准备环境
 
 在你的 Linux 服务器上进行以下操作：
 
 1. [下载](/cn/Recording/downloads?platform=Linux)最新的 Agora 录制 SDK 软件包。软件包内容如下:
 
-<table>
-<colgroup>
-<col/>
-<col/>
-</colgroup>
-<tbody>
-<tr><td><strong>文件夹</strong></td>
-<td><strong>描述</strong></td>
-</tr>
-<tr><td>bin</td>
-<td>AgoraCoreService 所在的目录</td>
-</tr>
-<tr><td>include</td>
-<td><ul>
-<li>base：libs 所依赖的一些基础的头文件</li>
-<li>IAgoraLinuxSdkCommon.h：公共的基础结构体和枚举值</li>
-<li>IAgoraRecordingEngine.h：录制引擎的接口类和配置信息</li>
-</ul>
-</td>
-</tr>
-<tr><td>libs</td>
-<td>录制的依赖库</td>
-</tr>
-<tr><td>samples</td>
-<td><p>代码示例</p>
-<ul>
-<li>agorasdk：对录制 C++ 接口的实现以及回调的处理示例</li>
-<li>base：公共的示例代码</li>
-<li>cpp：C++ 示例代码<ul>
-<li>release/bin/recorder：可运行的父程序</li>
-</ul>
-</li>
-<li>java：java 示例代码<ul>
-<li>native：native code</li>
-<li>native/jni：jni 代理</li>
-<li>src: java 层源代码</li>
-<li>src/io/agora/recording/RecordingEventHandler.java: 回调接口类</li>
-<li>src/io/agora/recording/RecordingSDK.java: 录制接口类</li>
-</ul>
-</li>
-</ul>
-</td>
-</tr>
-<tr><td>tools</td>
-<td>转码工具</td>
-</tr>
-</tbody>
-</table>
+   <table>
+   <colgroup>
+   <col/>
+   <col/>
+   </colgroup>
+   <tbody>
+   <tr><td><strong>文件夹</strong></td>
+   <td><strong>描述</strong></td>
+   </tr>
+   <tr><td>bin</td>
+   <td>AgoraCoreService 所在的目录</td>
+   </tr>
+   <tr><td>include</td>
+   <td><ul>
+   <li>base：libs 所依赖的一些基础的头文件</li>
+   <li>IAgoraLinuxSdkCommon.h：公共的基础结构体和枚举值</li>
+   <li>IAgoraRecordingEngine.h：录制引擎的接口类和配置信息</li>
+   </ul>
+   </td>
+   </tr>
+   <tr><td>libs</td>
+   <td>录制的依赖库</td>
+   </tr>
+   <tr><td>samples</td>
+   <td><p>代码示例</p>
+   <ul>
+   <li>agorasdk：对录制 C++ 接口的实现以及回调的处理示例</li>
+   <li>base：公共的示例代码</li>
+   <li>cpp：C++ 示例代码<ul>
+   <li>release/bin/recorder：可运行的父程序</li>
+   </ul>
+   </li>
+   <li>java：java 示例代码<ul>
+   <li>native：native code</li>
+   <li>native/jni：jni 代理</li>
+   <li>src: java 层源代码</li>
+   <li>src/io/agora/recording/RecordingEventHandler.java: 回调接口类</li>
+   <li>src/io/agora/recording/RecordingSDK.java: 录制接口类</li>
+   </ul>
+   </li>
+   </ul>
+   </td>
+   </tr>
+   <tr><td>tools</td>
+   <td>转码工具</td>
+   </tr>
+   </tbody>
+   </table>
 
 2. 为你的项目准备所需库：
-
    - 将 **include** 文件夹添加到你的项目里。
    - 将包含 lib 库的目录链接到 **libs** 文件夹下的 `librecorder.a` 库文件。
 
@@ -170,7 +168,6 @@ updatedAt: 2021-03-31 07:51:45
 6. 为调试方便，Agora 建议你打开系统的 core dump 功能以记录可能产生的程序崩溃信息。
 
 你已经集成了录制 SDK，可以选择以下任意一种方式开始录制：
-
 - [命令行录制](./recording_cmd_cpp)，使用我们提供的演示程序在命令行中开始录制。
 - [调用 API 录制](./recording_api_cpp)。
 

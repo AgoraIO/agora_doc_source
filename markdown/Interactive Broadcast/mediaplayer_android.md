@@ -3,7 +3,6 @@ title: 媒体播放器组件
 platform: Android
 updatedAt: 2020-12-16 09:00:25
 ---
-
 ## 功能描述
 
 媒体播放器组件（MediaPlayer Kit）是一款功能强大的播放器，支持播放本地或在线的媒体资源。通过该播放器，你可以本地播放媒体资源，或将媒体资源同步分享给 Agora 频道内的远端用户观看/收听。
@@ -29,7 +28,7 @@ updatedAt: 2020-12-16 09:00:25
 ### 创建项目
 
 参考以下步骤创建一个 Android 项目。
-
+ 
  <details>
 <summary><font color="#3ab7f8">创建 Android 项目</font></summary>
 	
@@ -38,15 +37,14 @@ updatedAt: 2020-12-16 09:00:25
 2. 在 <b>Choose your project</b> 界面，选择 <b>Phone and Tablet</b> > <b>Empty Activity</b>，然后点击 <b>Next</b>。
 
 3. 在 <b>Configure your project</b> 界面，依次填入以下内容：
-
-   - <b>Name</b>：你的 Android 项目名称，如 MediaPlayer
-   - <b>Package name</b>：你的项目包的名称，如 io.agora.mediaplayer
-   - <b>Project location</b>：项目的存储路径
-   - <b>Language</b>：项目的编程语言，如 Java
-   - <b>Minimum API level</b>：项目的最低 API 等级
+	
+	* <b>Name</b>：你的 Android 项目名称，如 MediaPlayer
+	* <b>Package name</b>：你的项目包的名称，如 io.agora.mediaplayer
+	* <b>Project location</b>：项目的存储路径
+	* <b>Language</b>：项目的编程语言，如 Java
+	* <b>Minimum API level</b>：项目的最低 API 等级  
 
 然后点击 <b>Finish</b>。根据屏幕提示，安装可能需要的插件。
-
 </details>
 
 ### 集成 MediaPlayer Kit
@@ -116,7 +114,6 @@ updatedAt: 2020-12-16 09:00:25
 ## 实现方法
 
 <a name="local"></a>
-
 ### 本地播放媒体资源
 
 集成 MediaPlayer Kit 后，参考如下步骤实现本地播放功能。
@@ -177,43 +174,43 @@ updatedAt: 2020-12-16 09:00:25
 
 ```java
 AgoraMediaPlayerKit agoraMediaPlayerKit1 = new AgoraMediaPlayerKit(this.getActivity());
-
+ 
 agoraMediaPlayerKit1.registerPlayerObserver(new MediaPlayerObserver() {
     @Override
  public void onPlayerStateChanged(MediaPlayerState state, MediaPlayerError error) {
         LogUtil.i("agoraMediaPlayerKit1 onPlayerStateChanged:"+state+" "+error);
  }
-
+ 
     @Override
  public void onPositionChanged(final long position) {
         LogUtil.i("agoraMediaPlayerKit1 onPositionChanged:"+position+" duration:"+player1Duration);
    }
-
+ 
     @Override
  public void onPlayerEvent(MediaPlayerEvent eventCode) {
         LogUtil.i("agoraMediaPlayerKit1 onEvent:"+eventCode);
  }
-
+ 
     @Override
  public void onMetaData(final byte[] data) {
         LogUtil.i("agoraMediaPlayerKit1 onMetaData "+ new String(data));
  }
 });
-
+ 
  agoraMediaPlayerKit1.registerVideoFrameObserver(new VideoFrameObserver() {
      @Override
  public void onFrame(VideoFrame videoFrame) {
         LogUtil.i("agoraMediaPlayerKit1 video onFrame :"+videoFrame);
  }
 });
-
+ 
  agoraMediaPlayerKit1.registerAudioFrameObserver(new AudioFrameObserver() {
      @Override
  public void onFrame(AudioFrame audioFrame) {
         LogUtil.i("agoraMediaPlayerKit1 audio onFrame :"+audioFrame);
  }
  });
-
+ 
 agoraMediaPlayerKit1.open("/sdcard/test.mp4",0);
 agoraMediaPlayerKit1.play();
 agoraMediaPlayerKit1.stop();
@@ -273,17 +270,17 @@ agoraMediaPlayerKit1.stop();
 RtcEngine mRtcEngine = RtcEngine.create（context,appid,null);
 RtcEngine agoraMediaPlayerKit = new AgoraMediaPlayerKit(context)；
 RtcChannelPublishHelper rtcChannelPublishHelper = RtcChannelPublishHelper.getInstance();
-
+ 
 rtcChannelPublishHelper.attachPlayerToRtc(agoraMediaPlayerKit,mRtcEngine);
-
-
+ 
+ 
 rtcChannelPublishHelper.publishVideo()
 rtcChannelPublishHelper.publishAudio()
 rtcChannelPublishHelper.unpublishVideo()
 rtcChannelPublishHelper.unpublishAudio()
-
+   
 rtcChannelPublishHelper.detachPlayerFromRtc();
-rtcChannelPublishHelper.release();
+rtcChannelPublishHelper.release(); 
 ```
 
 ## API 文档

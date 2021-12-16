@@ -3,7 +3,6 @@ title: 快速跑通示例项目 (Android C++)
 platform: Linux
 updatedAt: 2021-03-23 07:40:49
 ---
-
 ## 概览
 
 声网提供以下示例项目，演示了发送和接收 PCM 格式的音频流和 H.264 格式的音频流。
@@ -20,8 +19,7 @@ updatedAt: 2021-03-23 07:40:49
 - Ubuntu 14.04 及以上版本，建议 18.04
 
 - CMake 3.6.- 及以上版本。可通过以下命令安装：
-
-```
+ ```
 $ sudo apt install cmake
 // 确认 CMake 版本
 $ cmake --version
@@ -32,7 +30,6 @@ $ cmake --version
   1. 在 [NDK 官网](https://developer.android.google.cn/ndk/downloads/index.html)下载最新版并解压。
 
   2. 参考以下步骤配置 NDK 环境参数：
-
 ```
 // 1. 打开 ~/.bashrc 文件
 $ sudo vim ~/.bashrc
@@ -46,7 +43,7 @@ $ source ~/.bashrc
 
 - Java Development Kit (JDK)。可通过以下命令安装 ：
 
-```
+ ```
 $ sudo apt install openjdk-8-jdk
 ```
 
@@ -110,32 +107,28 @@ $ ./build.sh
 在运行示例项目之前，你需要通过以下步骤激活你申请的 License，生成对应的证书。
 
 1. 运行以下命令查询你的 App ID 下所有的 License Key。
-
-```
+ ```
 $ build/bin/license_query --appId YOUR_APPID --customerKey YOUR_KEY --customerSecret YOUR_SECRET
 ```
 
-参数说明：
+ 参数说明：
+ - `appId`: 你获取到的 Agora App ID。
+ - `customerKey`: 你获取到的 Agora 客户 ID。
+ - `customerSecret`: 你获取到的 Agora 客户密钥。
 
-- `appId`: 你获取到的 Agora App ID。
-- `customerKey`: 你获取到的 Agora 客户 ID。
-- `customerSecret`: 你获取到的 Agora 客户密钥。
-
-2. 运行以下命令激活 License，生成对应的证书。
-
-```
+2. 运行以下命令激活  License，生成对应的证书。
+ ```
 $ build/bin/license_activator --appId YOUR_APPID --customerKey YOUR_KEY --customerSecret YOUR_SECRET --licenseKey YOUR_LICENSE --certOutputDir
 ```
 
-参数说明：
+ 参数说明：
+ - `appId`: 你获取到的 Agora App ID。
+ - `customerKey`: 你获取到的 Agora 客户 ID。
+ - `customerSecret`: 你获取到的 Agora 客户密钥。
+ - `licenseKey`: 你在上一步中查询到的 License Key。
+ - `certOutputDir`: 证书输出目录。如不设，则为当前目录。
 
-- `appId`: 你获取到的 Agora App ID。
-- `customerKey`: 你获取到的 Agora 客户 ID。
-- `customerSecret`: 你获取到的 Agora 客户密钥。
-- `licenseKey`: 你在上一步中查询到的 License Key。
-- `certOutputDir`: 证书输出目录。如不设，则为当前目录。
-
-激活成功后，会在当前目录或你所指定的目录下生成 `deviceID.bin` 和 `certificate.bin` 两个文件，稍后运行示例项目时会用到。
+ 激活成功后，会在当前目录或你所指定的目录下生成 `deviceID.bin` 和 `certificate.bin` 两个文件，稍后运行示例项目时会用到。
 
 ### 7. 将示例项目部署至 Android 设备
 

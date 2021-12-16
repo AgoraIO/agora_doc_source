@@ -3,7 +3,6 @@ title: 实现音频直播
 platform: React Native
 updatedAt: 2021-02-07 02:00:57
 ---
-
 本文介绍如何使用 Agora React Native SDK 快速实现音频直播。
 
 ## 示例项目
@@ -21,7 +20,7 @@ Agora 在 GitHub 提供一个开源的视频通话示例项目 [Agora-RN-Quickst
 - Node 10 或以上
 - Xcode 9.4 或以上
 - CocoaPods
-- iOS 8.0 或以上设备
+- iOS 8.0 或以上设备 
 
 如果你的目标平台为 Android，你的开发环境需要满足以下需求：
 
@@ -30,11 +29,12 @@ Agora 在 GitHub 提供一个开源的视频通话示例项目 [Agora-RN-Quickst
 - Node 10 或以上
 - Java Development Kit (JDK) 8 或以上
 - 最新版本的 Android Studio
-- Android 5.0 或以上设备
+- Android 5.0 或以上设备 
 
 <div class="alert info">关于搭建开发环境的更多注意事项，详见<a href="https://reactnative.dev/docs/environment-setup">搭建开发环境</a >。</div>
 
-### 其他要求
+
+###  其他要求
 
 有效的 Agora [开发者账号](/cn/Agora%20Platform/sign_in_and_sign_up?platform=All%20Platforms)。
 
@@ -45,12 +45,11 @@ Agora 在 GitHub 提供一个开源的视频通话示例项目 [Agora-RN-Quickst
 1. 确保你已根据你使用的操作系统、针对的目标平台，完成了开发环境的搭建。
 
 2. 运行以下命令，在 `ProjectName` 处填入你的项目名称，创建并初始化一个新项目。
-
-```shell
-npx react-native init ProjectName
-```
-
-运行完成后，会在执行该命令的路径下自动生成一个简单的示例项目。
+ ```shell
+ npx react-native init ProjectName
+ ```
+ 
+   运行完成后，会在执行该命令的路径下自动生成一个简单的示例项目。
 
 3. 启动你的 Andoird 或 iOS 模拟器，执行以下命令运行你的项目：
 
@@ -75,28 +74,27 @@ npx react-native init ProjectName
    **方法一**：使用 npm 下载
 
    ```shell
-    npm i --save react-native-agora
-   ```
-
+	 npm i --save react-native-agora
+	 ```
+	 
    **方法二**：使用 yarn 下载
 
    ```shell
-    // 安装 yarn
-    npm install -g yarn
-    // 使用 yarn 下载 Agora React Native SDK
-    yarn add react-native-agora
-   ```
-
-   <div class="alert note">React Native 0.60.0 或以上版本支持自动链接原生模块，请勿手动链接。详见  <a href="https://github.com/react-native-community/cli/blob/master/docs/autolinking.md">Autolinking</a >。</div>
+	 // 安装 yarn
+	 npm install -g yarn
+	 // 使用 yarn 下载 Agora React Native SDK
+	 yarn add react-native-agora
+	 ```
+	<div class="alert note">React Native 0.60.0 或以上版本支持自动链接原生模块，请勿手动链接。详见  <a href="https://github.com/react-native-community/cli/blob/master/docs/autolinking.md">Autolinking</a >。</div>
 
 2. 如果你的目标平台是 iOS， 还需要执行 `npx pod-install` 安装 SDK。
 
-<div class="alert note"> 请确保你已安装 <b>CocoaPods</b>。你可以参考 <a href="https://guides.cocoapods.org/using/getting-started.html#getting-started">Getting Started with CocoaPods</a >。</div>
+   <div class="alert note"> 请确保你已安装 <b>CocoaPods</b>。你可以参考 <a href="https://guides.cocoapods.org/using/getting-started.html#getting-started">Getting Started with CocoaPods</a >。</div>
 
-3. Agora React Native SDK 原生层基于 Swift 语言开发，请确保你的工程支持编译 Swift，否则编译 iOS 应用时会报错。
+3.  Agora React Native SDK 原生层基于 Swift 语言开发，请确保你的工程支持编译 Swift，否则编译 iOS 应用时会报错。
 
-a. 用 Xcode 打开 `ios/ProjectName.xcworkspace` 文件夹。
-b. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Next** > **Create**，新建一个空的 `File.swift` 文件。
+   a. 用 Xcode 打开 `ios/ProjectName.xcworkspace` 文件夹。
+   b. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Next** > **Create**，新建一个空的 `File.swift` 文件。
 
 ## 添加 TypeScript 支持
 
@@ -105,22 +103,21 @@ b. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Ne
 1. 在项目根目录下执行以下命令安装 TypeScript 相关依赖。
 
    **方法一**：使用 npm 安装
-
    ```shell
    npm install --save-dev typescript @types/jest @types/react @types/react-native @types/react-test-renderer
    ```
+	 
+	 **方法二**：使用 yarn 安装
+	 确保你已经安装 yarn。
+	 ```shell
+  yarn add --dev typescript @types/jest @types/react @types/react-native @types/react-test-renderer
+	 ```
 
-   **方法二**：使用 yarn 安装
-   确保你已经安装 yarn。
-
-   ```shell
-   yarn add --dev typescript @types/jest @types/react @types/react-native @types/react-test-renderer
-   ```
 
 2. 在项目根目录下创建 `tsconfig.json` 文件，并复制以下代码到该文件：
 
-```json
-{
+ ```json
+ {
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -133,22 +130,28 @@ b. 点击 **File > New > File**， 选择 **iOS** > **Swift File**，点击 **Ne
     "strict": true,
     "target": "esnext"
   },
-  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
-}
-```
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
+ }
+ ```
 
 3. 在项目根目录下创建 `jest.config.js` 文件，并复制以下代码到该文件：
 
-```javascript
-module.exports = {
-  preset: "react-native",
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+ ```javascript
+ module.exports = {
+    preset: 'react-native',
+    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
 };
 ```
 
 4. 将根目录下的 `App.js` 文件重命名为 `App.tsx` 文件。
 
 <div class="alert info">关于在 React Native 项目中使用 TypeScript 的更多信息，详见<a href="https://reactnative.dev/docs/typescript">使用 TypeScript</a >。</div>
+
 
 ## 实现音频互动直播
 
@@ -215,8 +218,8 @@ engine.setClientRole(ClientRole.Broadcaster)
   - `null` 或者空字符串。
   - 临时 Token。临时 Token 服务有效期为 24 小时。你可以在控制台里生成一个临时 Token，详见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#get-a-temporary-token)。
   - 在你的服务器端生成的 Token。在安全要求高的场景下，我们推荐你使用此种方式生成的 Token，详见[生成 Token](https://docs.agora.io/cn/Video/token_server)。
-
-   <div class="alert note">若项目已启用 App 证书，请使用 Token。</div>
+  
+	 <div class="alert note">若项目已启用 App 证书，请使用 Token。</div>
 
 - `channelName`：传入能标识频道的频道 ID。App ID 相同、频道 ID 相同的用户会进入同一个频道。
 

@@ -2,20 +2,8 @@
 title: 如何在 RESTful API 中进行 HTTP 基本认证和 Token 认证?
 platform: ["RESTful"]
 updatedAt: 2021-03-02 02:51:44
-Products:
-  [
-    "Voice",
-    "Video",
-    "Interactive Broadcast",
-    "Recording",
-    "cloud-recording",
-    "Agora Analytics",
-    "Real-time-Messaging",
-    "live-streaming",
-    "advance media transcoding",
-  ]
+Products: ["Voice","Video","Interactive Broadcast","Recording","cloud-recording","Agora Analytics","Real-time-Messaging","live-streaming","advance media transcoding"]
 ---
-
 ## 功能描述
 
 在使用 RESTful API 前，你需要通过 HTTP 基本认证或 Token 认证。
@@ -35,6 +23,7 @@ Token 认证目前仅适用于[云信令（原实时消息）](https://docs.agor
 
 - 服务端生成的 RTM Token。
 - 生成 RTM Token 时使用的 RTM 用户 ID。
+
 
 <div class="alert note">一般情况下，Agora 建议你在服务端进行 HTTP 基本认证和 Token 认证，否则会有数据泄露的风险。</div>
 
@@ -267,43 +256,44 @@ namespace Examples.System.Net
 
 ```javascript
 // 基于 node.js 实现的 HTTP 基本认证示例，使用 RTC 的服务端 RESTful API
-const https = require("https");
+const https = require('https')
 // 客户 ID
-const customerKey = "Your customer key";
+const customerKey = "Your customer key"
 // 客户密钥
-const customerSecret = "Your customer secret";
+const customerSecret = "Your customer secret"
 // 拼接客户 ID 和客户密钥
-const plainCredential = customerKey + ":" + customerSecret;
+const plainCredential = customerKey + ":" + customerSecret
 // 使用 base64 进行编码
-encodedCredential = Buffer.from(plainCredential).toString("base64");
-authorizationField = "Basic " + encodedCredential;
+encodedCredential = Buffer.from(plainCredential).toString('base64')
+authorizationField = "Basic " + encodedCredential
+
 
 // 设置请求参数
 const options = {
-  hostname: "api.agora.io",
-  port: 443,
-  path: "/dev/v1/projects",
-  method: "GET",
-  headers: {
-    Authorization: authorizationField,
-    "Content-Type": "application/json",
-  },
-};
+hostname: 'api.agora.io',
+port: 443,
+path: '/dev/v1/projects',
+method: 'GET',
+headers: {
+    'Authorization':authorizationField,
+    'Content-Type': 'application/json'
+}
+}
 
 // 创建请求对象，发送请求
 const req = https.request(options, res => {
-  console.log(`Status code: ${res.statusCode}`);
+console.log(`Status code: ${res.statusCode}`)
 
-  res.on("data", d => {
-    process.stdout.write(d);
-  });
-});
+res.on('data', d => {
+    process.stdout.write(d)
+})
+})
 
-req.on("error", error => {
-  console.error(error);
-});
+req.on('error', error => {
+console.error(error)
+})
 
-req.end();
+req.end()
 ```
 
 #### Python
@@ -560,40 +550,41 @@ namespace Examples.System.Net
 
 ```javascript
 // 基于 node.js 实现的 Token 认证示例，使用 RTM 的用户事件 RESTful API
-const https = require("https");
+const https = require('https')
+
 
 // RTM Token
-token = "Your RTM Token";
+token = "Your RTM Token"
 // 生成 RTM Token 时使用的 user ID
-uid = "test_user";
+uid = "test_user"
 
 // 设置请求参数
 const options = {
-  hostname: "api.agora.io",
-  port: 443,
-  path: "/dev/v2/project/<Your App ID>/rtm/vendor/user_events",
-  method: "GET",
-  headers: {
+hostname: 'api.agora.io',
+port: 443,
+path: '/dev/v2/project/<Your App ID>/rtm/vendor/user_events',
+method: 'GET',
+headers: {
     // 在 header 中添加 x-agora-token 字段
-    "x-agora-token": token,
+    'x-agora-token':token,
     // 在 header 中添加 x-agora-uid 字段
-    "x-agora-uid": uid,
-    "Content-Type": "application/json",
-  },
-};
+    'x-agora-uid': uid,
+    'Content-Type': 'application/json'
+}
+}
 
 const req = https.request(options, res => {
-  console.log(`Status code: ${res.statusCode}`);
-  res.on("data", d => {
-    process.stdout.write(d);
-  });
-});
+console.log(`Status code: ${res.statusCode}`)
+res.on('data', d => {
+    process.stdout.write(d)
+})
+})
 
-req.on("error", error => {
-  console.error(error);
-});
+req.on('error', error => {
+console.error(error)
+})
 
-req.end();
+req.end()
 ```
 
 #### Python

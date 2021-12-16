@@ -1,13 +1,13 @@
 ---
 title: 如何使用 String 型用户 ID？
-platform: ["Android", "iOS", "macOS", "Web", "Windows"]
+platform: ["Android","iOS","macOS","Web","Windows"]
 updatedAt: 2020-11-12 03:25:37
-Products: ["Voice", "Video", "Interactive Broadcast", "live-streaming"]
+Products: ["Voice","Video","Interactive Broadcast","live-streaming"]
 ---
-
 ## 场景描述
 
 <div class="alert warning">该功能目前正在验证阶段。如需使用，我们建议你联系声网技术支持。<p>以下产品或功能不支持 String 型的用户 ID：<li><a href="https://docs.agora.io/cn/cloud-recording/product_cloud_recording?platform=All%20Platforms">云端录制</a ><li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/cdn_streaming_android?platform=Android">RTMP 推流</a ><li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/rtc_restful_api?platform=All%20Platforms">服务端 RESTful API</a ><li><a href="https://docs.agora.io/cn/Interactive%20Broadcast/start_live_wechat?platform=微信小程序">微信小程序</a ></p></div>
+
 
 很多 App 使用 String 类型的用户账号。为降低开发成本，Agora 新增支持 String 型的用户 ID，方便用户使用 App 账号直接加入 Agora 频道。
 
@@ -60,7 +60,7 @@ private void initializeAgoraEngine() {
     mRtcEngine.registerLocalUserAccount(appId, mLocal.userAccount);
   } catch (Exception e) {
     Log.e(LOG_TAG, Log.getStackTraceString(e));
-
+    
     throw new RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e));
   }
 }
@@ -99,9 +99,10 @@ LRESULT COpenLiveDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
 	lpAgoraObject->RegisterLocalUserAccount(APP_ID, m_dlgEnterChannel.GetStringUid());
 	// 使用用户名加入频道
 	lpAgoraObject->JoinChannelWithUserAccount(strChannelName, m_dlgEnterChannel.GetStringUid());
-
+	
 }
 ```
+
 
 同时，我们在 Github 提供一个开源的 [String-Account](https://github.com/AgoraIO/Advanced-Video/tree/dev/backup/String-Account) 示例项目。你可以前往下载，或参考各平台相应文件中的源代码。
 
@@ -109,30 +110,30 @@ LRESULT COpenLiveDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
 
 - Java
 
-  - [`registerLocalUserAccount`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa37ea6307e4d1513c0031084c16c9acb)
-  - [`joinChannelWithUserAccount`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a310dbe072dcaec3892c4817cafd0dd88)
-  - [`getUserInfoByUid`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9a787b8d0784e196b08f6d0ae26ea19c)
-  - [`getUserInfoByUserAccount`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#afd4119e2d9cc360a2b99eef56f74ae22)
-  - [`onLocalUserRegistered`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aca1987909703d84c912e2f1e7f64fb0b)
-  - [`onUserInfoUpdated`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa3e9ead25f7999272d5700c427b2cb3d)
+	- [`registerLocalUserAccount`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#aa37ea6307e4d1513c0031084c16c9acb)
+	- [`joinChannelWithUserAccount`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a310dbe072dcaec3892c4817cafd0dd88)
+	- [`getUserInfoByUid`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a9a787b8d0784e196b08f6d0ae26ea19c)
+	- [`getUserInfoByUserAccount`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#afd4119e2d9cc360a2b99eef56f74ae22)
+	- [`onLocalUserRegistered`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aca1987909703d84c912e2f1e7f64fb0b)
+	- [`onUserInfoUpdated`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_i_rtc_engine_event_handler.html#aa3e9ead25f7999272d5700c427b2cb3d)
 
 - Objective-C
 
-  - [`registerLocalUserAccount`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/registerLocalUserAccount:appId:)
-  - [`joinChannelByUserAccount`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByUserAccount:token:channelId:joinSuccess:)
-  - [`getUserInfoByUid`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getUserInfoByUid:withError:)
-  - [`getUserInfoByUserAccount`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getUserInfoByUserAccount:withError:)
-  - [`didRegisteredLocalUser`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didRegisteredLocalUser:withUid:)
-  - [`didUpdatedUserInfo`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didUpdatedUserInfo:withUid:)
+	- [`registerLocalUserAccount`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/registerLocalUserAccount:appId:)
+	- [`joinChannelByUserAccount`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/joinChannelByUserAccount:token:channelId:joinSuccess:)
+	- [`getUserInfoByUid`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getUserInfoByUid:withError:)
+	- [`getUserInfoByUserAccount`](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getUserInfoByUserAccount:withError:)
+	- [`didRegisteredLocalUser`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didRegisteredLocalUser:withUid:)
+	- [`didUpdatedUserInfo`](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:didUpdatedUserInfo:withUid:)
 
 - C++
 
-  - [`registerLocalUserAccount`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0d44b74ced4005ee86353c13186f870d)
-  - [`joinChannelWithUserAccount`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a14f8c308c6c57c55653552b939a8527a)
-  - [`getUserInfoByUid`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#abf4572004e6ceb99ce0ff76a75c69d0b)
-  - [`getUserInfoByUserAccount`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4f75984d3c5de5f6e3e4d8bd81e3b409)
-  - [`onLocalUserRegistered`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a919404869f86412e1945c730e5219b20)
-  - [`onUserInfoUpdated`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad086cc4d8e5555cc75a0ab264c16d5ff)
+	- [`registerLocalUserAccount`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a0d44b74ced4005ee86353c13186f870d)
+	- [`joinChannelWithUserAccount`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a14f8c308c6c57c55653552b939a8527a)
+	- [`getUserInfoByUid`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#abf4572004e6ceb99ce0ff76a75c69d0b)
+	- [`getUserInfoByUserAccount`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine.html#a4f75984d3c5de5f6e3e4d8bd81e3b409)
+	- [`onLocalUserRegistered`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#a919404869f86412e1945c730e5219b20)
+	- [`onUserInfoUpdated`](./API%20Reference/cpp/classagora_1_1rtc_1_1_i_rtc_engine_event_handler.html#ad086cc4d8e5555cc75a0ab264c16d5ff)
 
 ### Web 端
 
@@ -151,20 +152,14 @@ LRESULT COpenLiveDlg::OnJoinChannel(WPARAM wParam, LPARAM lParam)
 ```javascript
 // Javascript
 // 将 UID 设为 agora，然后加入频道 1024
-client.join(
-  "<token>",
-  "1024",
-  "agora",
-  function (uid) {
-    console.log("client" + uid + "joined channel");
-    // 创建本地流
-    // ...
-  },
-  function (err) {
-    console.error("client join failed", err);
-    // 处理报错
-  },
-);
+client.join("<token>", "1024", "agora", function(uid) {
+  console.log("client" + uid + "joined channel");
+  // 创建本地流
+  // ...
+}, function(err) {
+  console.error("client join failed", err)
+  // 处理报错
+});
 ```
 
 **API 参考**

@@ -3,7 +3,6 @@ title: 频道连接状态管理
 platform: iOS
 updatedAt: 2020-09-22 11:37:20
 ---
-
 当用户使用 Agora SDK 进行音视频通话或互动直播时，他会有多个 Agora 频道连接状态。本文介绍 Agora 频道如何判断用户在通信的各个阶段处于什么连接状态以及各状态的转变过程。
 
 ## 连接状态
@@ -37,14 +36,13 @@ updatedAt: 2020-09-22 11:37:20
 - T0：SDK 接收到本地用户 joinChannelByToken 请求
 - T1：通常在调用 joinChannelByToken 200 毫秒后，用户可以加入频道。加入频道过程中，UID 1 会收到 `connectionChangedToState(AgoraConnectionStateConnecting, AgoraConnectionChangedConnecting)`；加入后收到 `connectionChangedToState(AgoraConnectionStateConnected, AgoraConnectionChangedJoinSuccess)` 和 `didJoinChannel` 回调
 - T2：因网间传输延迟，UID 2 感知 UID 1 加入频道约有 100 毫秒的延迟，此时 UID 2 收到 `didJoinedOfUid` 回调，
-  T3：某个时间点 UID 1 客户端因断网等原因导致上行网络变差。SDK 自动尝试重新加入频道
-  T4：如果 UID 1 连续 4 秒没有收到服务器发送的任何数据，UID 1 会收到 `connectionChangedToState(AgoraConnectionStateReconnecting, AgoraConnectionChangedInterrupted)` 回调；同时 SDK 继续尝试重新加入频道
-  T5：如果 UID 1 连续 10 秒没有收到服务器发送的任何数据，UID 1 会收到 `rtcEngineConnectionDidLost` 回调；同时 SDK 继续尝试重新加入频道
-  T6：如果 UID 2 连续 20 秒没有收到 UID 1 的任何数据，SDK 判断远端用户掉线，UID 2 会收到 `didOfflineOfUid` 回调
-  T7：如果 UID 1 连续 20 分钟无法重新加入频道，SDK 不再继续尝试。UID 1 收到 `connectionChangedToState(AgoraConnectionStateFailed, AgoraConnectionChangedJoinFailed)` 回调；用户需要退出当前频道，然后重新加入频道
+T3：某个时间点 UID 1 客户端因断网等原因导致上行网络变差。SDK 自动尝试重新加入频道
+T4：如果 UID 1 连续 4 秒没有收到服务器发送的任何数据，UID 1 会收到 `connectionChangedToState(AgoraConnectionStateReconnecting, AgoraConnectionChangedInterrupted)` 回调；同时 SDK 继续尝试重新加入频道
+T5：如果 UID 1 连续 10 秒没有收到服务器发送的任何数据，UID 1 会收到 `rtcEngineConnectionDidLost` 回调；同时 SDK 继续尝试重新加入频道
+T6：如果 UID 2 连续 20 秒没有收到 UID 1 的任何数据，SDK 判断远端用户掉线，UID 2 会收到 `didOfflineOfUid` 回调
+T7：如果 UID 1 连续 20 分钟无法重新加入频道，SDK 不再继续尝试。UID 1 收到 `connectionChangedToState(AgoraConnectionStateFailed, AgoraConnectionChangedJoinFailed)` 回调；用户需要退出当前频道，然后重新加入频道
 
 ## API 参考
-
 - [getConnectionState](./API%20Reference/oc/Classes/AgoraRtcEngineKit.html#//api/name/getConnectionState)
 - [connectionChangedToState](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngine:connectionChangedToState:reason:)
 - [rtcEngineConnectionDidLost](./API%20Reference/oc/Protocols/AgoraRtcEngineDelegate.html#//api/name/rtcEngineConnectionDidLost:)
