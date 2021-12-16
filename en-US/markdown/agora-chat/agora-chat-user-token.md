@@ -4,10 +4,10 @@ Authentication is the process of validating identities. Agora uses digital token
 
 To securely connect to Agora Chat, you use the following token types:
 
-- User token: Connect to Agora Chat using the Agora Chat SDK. User tokens are used to authenticate users when they log in to your Agora Chat application. 
-- App token: Connect to Agora Chat using the RESTful API. App tokens grant admin privileges for the app developer to manage the Agora Chat applications. For details, see [Generate an App Token for Authentication](link).
+- User token: User level access to Agora Chat from your app using Agora Chat SDK. User tokens are used to authenticate users when they log in to your Agora Chat application. 
+- App token: Admin level access to Agora Chat using the REST API. App tokens grant admin privileges for the app developer to manage the Agora Chat applications, for example, creating and deleting users. For details, see [Generate an App Token for Authentication](link).
 
-This page shows you how to create an Agora Chat user token server and an Agora Chat client app. The client app retrieves a user token from the token server. This token authenticates the current user when the user accesses the Agora Chat service.
+This page shows you how to create an Agora Chat user token server and an Agora Chat client app. The client app retrieves a user token from the token server. TThis token enables the current user to access Agora Chat.
 
 ## Understand the tech
 
@@ -26,25 +26,25 @@ A user token is a dynamic key generated on your app server that is valid for a m
 Ensure that you meet the following requirements before proceeding:
 
 - A valid [Agora Account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
-- An Agora project with the Agora Chat service enabled. 
-  To enable the Agora Chat service, contact support@agora.io.
+- An Agora project with Agora Chat enabled. 
+  To enable Agora Chat, contact support@agora.io.
 - A valid Agora Chat app token. See [Generate an App Token](link) for details.
 
 ## Implement the authentication flow
 
-This section shows you how to supply and consume a token that gives rights to specific functionality for authenticated users using the source code provided by Agora.
+This section shows you how to supply and consume a token used to authenticate a user with Agora Chat. This token also controls the functionality each user has access to in Agora Chat. The encryption source code used to generate this token is provided by Agora.
 
 ### Deploy a token server
 
-Token generators create the tokens requested by your client app to enable secure access to Agora Platform. To serve these tokens you deploy a generator in your security infrastructure.
+Token generators create the tokens requested by your client app to enable secure access to Agora Chat. To serve these tokens you deploy a generator in your security infrastructure.
 
 To show the authentication workflow, this section shows how to build and run a token server written in Java on your local machine.
 
 This sample server is for demonstration purposes only. Do not use it in a production environment.
 
-1. Create a Maven project in IntelliJ, set the name of your project, choose the location to save your project, and click **Finish**.
+1. Create a Maven project in IntelliJ, set the name of your project, choose the location to save your project, then click **Finish**.
 
-1. In `<Project name>/pom.xml` , add the following dependencies and then [reload the Maven project](https://www.jetbrains.com/help/idea/delegate-build-and-run-actions-to-maven.html#maven_reimport):
+1. In `<Project name>/pom.xml`, add the following dependencies and then [reload the Maven project](https://www.jetbrains.com/help/idea/delegate-build-and-run-actions-to-maven.html#maven_reimport):
 
    ```xml
    <properties>
@@ -103,21 +103,14 @@ This sample server is for demonstration purposes only. Do not use it in a produc
 1. Import the token builders provided by Agora to this project.
     1. Download the [chat](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/chat) and [media](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media) packages.
     1. In the token server project, create a `com.agora.chat.token.io.agora` package under `<Project name>/src/main/java`.
-    1. Copy the chat and media packages and paste under `com.agora.chat.token.io.agora`. The following figure shows the project structure:
+    1. Copy the `chat` and `media` packages and paste under `com.agora.chat.token.io.agora`. The following figure shows the project structure:
       
-      ![token server project](https://web-cdn.agora.io/docs-files/1639043760281)
+       ![token server project](https://web-cdn.agora.io/docs-files/1639043760281)
     1. Fix the import errors in `chat/ChatTokenBuilder2` and `media/AccessToken`.
       - In `ChatTokenBuilder2`, the import should be `import com.agora.chat.token.io.agora.media.AccessToken2`.
-      - In `AccessToken`, the import should be as follows:
-        ```java
-        import java.io.ByteArrayOutputStream;
-        import java.io.IOException;
-        import java.util.TreeMap;
+      - In `AccessToken`, the import should be `import static com.agora.chat.token.io.agora.media.Utils.crc32`.
 
-        import static com.agora.chat.token.io.agora.media.Utils.crc32;
-        ```
-
-1. In `<Project name>/src/main/resource`, create a `application.properties` file to hold the information for generating tokens:
+1. In `<Project name>/src/main/resource`, create a `application.properties` file to hold the information for generating tokens and update it with your project information:
 
    ```txt
    ## Server port
@@ -185,7 +178,7 @@ This sample server is for demonstration purposes only. Do not use it in a produc
 
 <a name="uuid"></a>
 
-### Get the UUID
+### Retrieve the UUID for an Agora Chat user
 
 When you create a user in Agora Chat, they are automatically assigned a UUID.
 
