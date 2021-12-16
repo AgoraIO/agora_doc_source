@@ -19,12 +19,12 @@
                 <codeblock props="electron" outputclass="language-typescript">setEffectPosition(soundId: number, pos: number): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetEffectPosition(int soundId, int pos);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEffectPosition(int soundId, int pos);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="android ios mac windows">
-                <dlentry>
+            <dl outputclass="since" props="rtc">
+                <dlentry props="native">
                     <dt>自从</dt>
                     <dd>v3.4.0</dd>
                 </dlentry>
@@ -36,7 +36,7 @@
             <parml>
                 <plentry>
                     <pt>soundId</pt>
-                    <pd>音效 ID。请确保与 <apiname>playEffect</apiname> 中设置的 <parmname>soundId</parmname> 一致。</pd>
+                    <pd conkeyref="preloadEffect/soundId"/>
                 </plentry>
                 <plentry>
                     <pt>pos</pt>
@@ -44,7 +44,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
                 <li>0: 方法调用成功</li>

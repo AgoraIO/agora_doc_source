@@ -29,11 +29,11 @@
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_VIDEO_STATE_CHANGED, cb: (
     localVideoState: number,
     error: number
-    ) => void): this;</codeblock>
+    ) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState,
             LOCAL_VIDEO_STREAM_ERROR error)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">LocalVideoStateCallback? localVideoStateChanged;</codeblock>
         </p>
         <p outputclass="codeblock" props="rtc">
             <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState,
@@ -45,7 +45,7 @@
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry>
+                <dlentry props="native">
                     <dt>自从</dt>
                     <dd>v2.4.1</dd>
                 </dlentry>
@@ -62,7 +62,7 @@
             <note id="note" type="attention">对某些机型而言，当本地视频采集设备正在使用中时，SDK 不会在本地视频状态发生改变时触发该回调，你需要自行做超时判断。</note>
         </section>
         <section id="parameters">
-            <title>参数</title>
+            <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
             <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
@@ -70,10 +70,10 @@
                 </plentry>
                 <plentry>
                     <pt props="android ios mac">state</pt>
-                    <pt props="unity electron">localVideoState</pt>
+                    <pt props="unity electron flutter">localVideoState</pt>
                     <pt props="windows"><ph props="rtc">localVideoState</ph><ph props="rtc-ng">state</ph></pt>
                     <pd>
-                        <p props="ios mac windows unity electron">本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。</p>
+                        <p props="ios mac windows unity electron flutter">本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"/>。</p>
                         <p props="android">
                             <ul>
                                 <li><ph keyref="LOCAL_VIDEO_STREAM_STATE_STOPPED"/> (0):
@@ -91,7 +91,7 @@
                 <plentry>
                     <pt>error</pt>
                     <pd>
-                        <p props="ios mac windows unity">本地视频出错原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_ERROR"/>。</p>
+                        <p props="ios mac windows unity flutter">本地视频出错原因，详见 <xref keyref="LOCAL_VIDEO_STREAM_ERROR"/>。</p>
                         <p props="android">
                             <ul>
                                 <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/> (0): 本地视频状态正常。</li>

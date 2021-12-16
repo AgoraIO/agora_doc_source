@@ -21,7 +21,7 @@
     audioBitrate = 48;
     audioChannels = 1;
     audioCodecProfile = AudioCodecProfileType.LC_AAC;
-    transcodingUsers = new HashMap&lt;>();
+    transcodingUsers = new HashMap&lt;&gt;();
     backgroundColor = 0xFF000000;
     userConfigExtraInfo = null;
     metadata = null;
@@ -34,12 +34,12 @@
 @property(assign, nonatomic) BOOL lowLatency;
 @property(assign, nonatomic) NSInteger videoGop;
 @property(assign, nonatomic) AgoraVideoCodecProfileType videoCodecProfile;
-@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *> *_Nullable transcodingUsers;
+@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *&gt; *_Nullable transcodingUsers;
 @property(copy, nonatomic) NSString *_Nullable transcodingExtraInfo;
 @property(strong, nonatomic) AgoraImage *_Nullable watermark;
-@property (copy, nonatomic) NSArray&lt;AgoraImage *> *_Nullable watermarkArray;
+@property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable watermarkArray;
 @property(strong, nonatomic) AgoraImage *_Nullable backgroundImage;
-@property (copy, nonatomic) NSArray&lt;AgoraImage *> *_Nullable backgroundImageArray;
+@property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable backgroundImageArray;
 @property(strong, nonatomic) COLOR_CLASS *_Nullable backgroundColor;
 @property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;
 @property(assign, nonatomic) NSInteger audioBitrate;
@@ -154,6 +154,44 @@
     backgroundImage: RtcImage;
     transcodingUsers: Array&lt;TranscodingUser&gt;
     }</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
+  
+  int? width;
+  int? height;
+  int? videoBitrate;
+  VideoFrameRate? videoFramerate;
+  bool? lowLatency;
+  int? videoGop;
+  AgoraImage? watermark;
+  AgoraImage? backgroundImage;
+  AudioSampleRateType? audioSampleRate;
+  int? audioBitrate;
+  AudioChannel? audioChannels;
+  AudioCodecProfileType? audioCodecProfile;
+  VideoCodecProfileType? videoCodecProfile;
+  Color? backgroundColor;
+  String? userConfigExtraInfo;
+  List&lt;TranscodingUser&gt; transcodingUsers;
+
+  LiveTranscoding(
+    this.transcodingUsers, {
+    this.width,
+    this.height,
+    this.videoBitrate,
+    this.videoFramerate,
+    this.lowLatency,
+    this.videoGop,
+    this.watermark,
+    this.backgroundImage,
+    this.audioSampleRate,
+    this.audioBitrate,
+    this.audioChannels,
+    this.audioCodecProfile,
+    this.videoCodecProfile,
+    this.backgroundColor,
+    this.userConfigExtraInfo,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="parameters">

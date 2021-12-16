@@ -25,24 +25,24 @@
      }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(
   evt: EngineEvents.USER_INFO_UPDATED,
-  cb: (uid: number, userInfo: UserInfo) => void
+  cb: (uid: number, userInfo: UserInfo) =&gt; void
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserInfoUpdated(uint uid, UserInfo info)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">UserInfoCallback? userInfoUpdated;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
    
    <dl outputclass="since" props="rtc">
-       <dlentry>
+       <dlentry props="native">
   <dt>自从</dt>
   <dd>v2.8.0</dd>
        </dlentry>
    </dl>
    <p>远端用户加入频道后， SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的 Mapping 表，并在本地触发该回调。</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
        <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                   <pt/>
@@ -53,7 +53,7 @@
   <pd>远端用户 ID。</pd>
        </plentry>
        <plentry>
-  <pt props="android ios mac electron">userInfo</pt>
+  <pt props="android ios mac electron flutter">userInfo</pt>
            <pt props="windows unity">info</pt>
   <pd>标识用户信息的 UserInfo 对象，包含用户 UID 和 User Account。详见 <xref keyref="UserInfo"/> 类。</pd>
        </plentry>

@@ -25,7 +25,7 @@
                 <codeblock props="electron" outputclass="language-typescript">enableAudioVolumeIndication(interval: number, smooth: number, report_vad: boolean = false): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int EnableAudioVolumeIndication(int interval, int smooth, bool reportVad);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableAudioVolumeIndication(int interval, int smooth, bool report_vad);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -47,7 +47,7 @@
   <pd>平滑系数，指定音量提示的灵敏度。取值范围为 [0,10]，建议值为 3。数字越大，波动越灵敏；数字越小，波动越平滑。</pd>
        </plentry>
        <plentry>
-           <pt props="rtc"><ph props="ios mac windows android electron">report_vad</ph><ph props="unity">reportVad</ph></pt>
+           <pt props="rtc"><ph props="ios mac windows android electron flutter">report_vad</ph><ph props="unity">reportVad</ph></pt>
            <pt props="rtc-ng">reportVad</pt>
   <pd>
       <ul>
@@ -58,7 +58,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>返回值</title>
    <ul>
        <li>0：方法调用成功。</li>

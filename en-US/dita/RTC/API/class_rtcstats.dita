@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcstats">
-    <title><ph keyref="RtcStats"/></title>
+    <title><ph keyref="RtcStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">Statistics of a call session.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -113,8 +113,8 @@
 </codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
                 <codeblock props="windows unity" outputclass="language-cpp">struct RtcStats {
     unsigned int duration;
     unsigned int txBytes;
@@ -215,14 +215,66 @@
      memoryTotalUsageRatio: number;
      memoryAppUsageInKbytes: number;
      }</codeblock>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">class RtcStats {
+  
+  int duration;
+  int txBytes;
+  int rxBytes;
+  int txAudioBytes;
+  int txVideoBytes;
+  int rxAudioBytes;
+  int rxVideoBytes;
+  int txKBitRate;
+  int rxKBitRate;
+  int txAudioKBitRate;
+  int rxAudioKBitRate;
+  int txVideoKBitRate;
+  int rxVideoKBitRate;
+  int userCount;
+  int lastmileDelay;
+  int txPacketLossRate;
+  int rxPacketLossRate;
+
+  double cpuTotalUsage;
+  double cpuAppUsage;
+  int gatewayRtt;
+  double memoryAppUsageRatio;
+  double memoryTotalUsageRatio;
+  int memoryAppUsageInKbytes;
+
+  RtcStats(
+    this.duration,
+    this.txBytes,
+    this.rxBytes,
+    this.txAudioBytes,
+    this.txVideoBytes,
+    this.rxAudioBytes,
+    this.rxVideoBytes,
+    this.txKBitRate,
+    this.rxKBitRate,
+    this.txAudioKBitRate,
+    this.rxAudioKBitRate,
+    this.txVideoKBitRate,
+    this.rxVideoKBitRate,
+    this.userCount,
+    this.lastmileDelay,
+    this.txPacketLossRate,
+    this.rxPacketLossRate,
+    this.cpuTotalUsage,
+    this.cpuAppUsage,
+    this.gatewayRtt,
+    this.memoryAppUsageRatio,
+    this.memoryTotalUsageRatio,
+    this.memoryAppUsageInKbytes,
+  );
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
                 <plentry>
-                    <pt props="ios mac windows electron unity">duration</pt>
+                    <pt props="ios mac windows electron unity flutter">duration</pt>
                     <pt props="android">totalDuration</pt>
                     <pd>Call duration of the local user in seconds, represented by an aggregate value.</pd>
                 </plentry>
@@ -301,7 +353,7 @@
                         <p>The system CPU usage (%).</p>
                         <p props="windows electron unity">For Windows, in the multi-kernel environment, this member represents the average CPU usage.  The value =
                             100 - System Idle Progress in Task Manager.</p>
-                        <note type="attention"> The value of cpuTotalUsage is always reported as 0 in the <xref keyref="onLeaveChannel"/> callback.</note>
+                        <note type="attention"> The value of cpuTotalUsage is always reported as 0 in the <xref keyref="onLeaveChannel" /> callback.</note>
                     </pd>
                 </plentry>
                 <plentry props="rtc-ng">
@@ -316,7 +368,7 @@
                         <p>To enable this property on devices running iOS 14 or later, contact <xref href="https://agora-ticket.agora.io/" scope="external" format="html">support@agora.io</xref>. </p>
                         </note>
                         <note props="android">
-                            <p>To get gatewayRtt, ensure that you add the <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission after <codeph>&lt;/application></codeph> in the project <codeph>AndroidManifest.xml</codeph> file.</p>
+                            <p>To get gatewayRtt, ensure that you add the <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission after <codeph>&lt;/application&gt;</codeph> in the project <codeph>AndroidManifest.xml</codeph> file.</p>
                         </note></pd>
                 </plentry>
                 <plentry>

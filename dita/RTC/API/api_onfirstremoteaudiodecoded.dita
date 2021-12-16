@@ -33,11 +33,11 @@
                 
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.FIRST_REMOTE_AUDIO_DECODED, cb: (
     uid: number, 
-    elapsed: number) => void
+    elapsed: number) =&gt; void
     ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioDecoded(uint uid, int elapsed)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? firstRemoteAudioDecoded;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -45,7 +45,7 @@
    <dl outputclass="deprecated">
        <dlentry>
   <dt>弃用：</dt>
-  <dd><ph props="rtc">该回调自 v3.0.0 起废弃。</ph>请改用 <xref keyref="onRemoteAudioStateChanged"/> 。</dd>
+  <dd>请改用 <xref keyref="onRemoteAudioStateChanged"/> 。</dd>
        </dlentry>
    </dl>
    <p>SDK 会在以下时机触发该回调： <ul>
@@ -60,7 +60,7 @@
                 </ul>
             </p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
                 <plentry props="ios mac">
                     <pt>engine</pt>

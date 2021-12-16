@@ -24,18 +24,18 @@
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.AUDIO_DEVICE_STATE_CHANGED, cb: (
      deviceId: string, 
      deviceType: number, 
-     deviceState: MEDIA_DEVICE_STATE_TYPE) => void
+     deviceState: MEDIA_DEVICE_STATE_TYPE) =&gt; void
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioDeviceStateChanged(string deviceId, int deviceType, int deviceState)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">AudioDeviceStateChanged? audioDeviceStateChanged;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
    <p id="desc">提示系统音频设备状态发生改变，比如耳机被拔出。</p>
             <note type="attention">该方法仅适用于 Windows 和 macOS 平台。</note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
        <plentry>
   <pt>deviceId</pt>

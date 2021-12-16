@@ -20,11 +20,11 @@
     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.LEAVE_CHANNEL,
-  cb: (channelId: string, stats: RtcStats) => void
+  cb: (channelId: string, stats: RtcStats) =&gt; void
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnLeaveChannel(string channelId, RtcStats stats)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">RtcStatsCallback? leaveChannel;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -32,7 +32,7 @@
    <p>调用 <xref keyref="IChannel_leaveChannel"/> 方法离开频道后，SDK 会出发该回调提示 app 用户已成功离开频道。在该回调中，app
                 可以得到此次通话的总通话时长、SDK 收发数据的流量等信息。</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
        <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
   <pt/>

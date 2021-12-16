@@ -22,13 +22,14 @@
     options?: ChannelMediaOptions): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SwitchChannel(string token, string channelId, ChannelMediaOptions options);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; switchChannel(String? token, String channelName,
+      [ChannelMediaOptions? options]);</codeblock>
        </p>
         </section>
         <section id="detailed_desc">
    
-   <dl outputclass="since">
-       <dlentry>
+   <dl outputclass="since" props="rtc">
+       <dlentry props="native">
   <dt>自从</dt>
   <dd>v3.3.0</dd>
        </dlentry>
@@ -51,15 +52,16 @@
   </p></pd>
        </plentry>
        <plentry>
-  <pt>channelId</pt>
+  <pt props="android ios mac unity electron">channelId</pt>
+  <pt props="flutter">channelName</pt>
   <pd>
       <p>频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同 <codeph>channelId</codeph> 的用户会进入同一个频道进行音视频互动。
-          该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:<ul id="ul_lx4_nrc_h4b">
+          该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:<ul>
  <li>26 个小写英文字母 a~z</li>
  <li>26 个大写英文字母 A~Z</li>
  <li>10 个数字 0~9</li>
  <li>空格</li>
- <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、">"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+ <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
       </ul></p>
   </pd>
        </plentry>
@@ -69,7 +71,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>返回值</title>
    <ul>
        <li>0(ERR_OK): 方法调用成功。</li>

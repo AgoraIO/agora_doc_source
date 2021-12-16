@@ -28,14 +28,14 @@
      }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(
   evt: EngineEvents.VIDEO_SIZE_CHANGED,
-  cb: (uid: number, width: number, height: number, rotation: number) => void
+  cb: (uid: number, width: number, height: number, rotation: number) =&gt; void
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSizeChanged(uint uid, int width, int height, int rotation)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">VideoSizeCallback? videoSizeChanged;</codeblock>
         </p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
@@ -49,11 +49,11 @@
                     <pt>size</pt>
                     <pd>视频流的尺寸。</pd>
                 </plentry>
-                <plentry id="width" props="android windows unity">
+                <plentry id="width" props="android windows unity flutter">
                     <pt>width</pt>
                     <pd>视频流的宽度（像素）。</pd>
                 </plentry>
-                <plentry id="height" props="android windows unity">
+                <plentry id="height" props="android windows unity flutter">
                     <pt>height</pt>
                     <pd>视频流的高度（像素）。</pd>
                 </plentry>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localaudiostats">
-    <title><ph keyref="LocalAudioStats"/></title>
+    <title><ph keyref="LocalAudioStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">Local audio statistics.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -55,12 +55,25 @@
      sentBitrate: number;
      txPacketLossRate: number;
      }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class LocalAudioStats {
+  
+  int numChannels;
+  int sentSampleRate;
+  int sentBitrate;
+  int txPacketLossRate;
+
+  LocalAudioStats(
+    this.numChannels,
+    this.sentSampleRate,
+    this.sentBitrate,
+    this.txPacketLossRate,
+  );
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
   <pt>numChannels</pt>
@@ -68,11 +81,11 @@
        </plentry>
        <plentry>
   <pt>sentSampleRate</pt>
-  <pd>The sampling rate (Hz) of sending the local user&apos;s audio stream.</pd>
+  <pd>The sampling rate (Hz) of sending the local user's audio stream.</pd>
        </plentry>
        <plentry>
   <pt>sentBitrate</pt>
-  <pd>The average bitrate (Kbps) of sending the local user&apos;s audio stream.</pd>
+  <pd>The average bitrate (Kbps) of sending the local user's audio stream.</pd>
        </plentry>
        <plentry>
                     <pt>txPacketLossRate</pt>

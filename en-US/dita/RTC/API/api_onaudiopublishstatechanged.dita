@@ -37,42 +37,42 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioPublishStateChanged(string channel, STREAM_PUBLISH_STATE oldState,
             STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">StreamPublishStateCallback? audioPublishStateChanged;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
    
    <dl outputclass="since" props="rtc">
-       <dlentry>
+       <dlentry props="native">
   <dt>Since</dt>
   <dd>v3.1.0</dd>
        </dlentry>
    </dl>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
-       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-       <plentry>
-  <pt props="android windows unity">channel</pt>
-  <pt props="ios mac">channelId</pt>
-  <pd>The name of the channel.</pd>
-       </plentry>
-       <plentry id="oldState">
-  <pt>oldState</pt>
-  <pd>For the previous publishing state, see <xref keyref="STREAM_PUBLISH_STATE" />.</pd>
-       </plentry>
-       <plentry id="newState">
-  <pt>newState</pt>
-  <pd>For the current publishing state, see <apiname keyref="STREAM_PUBLISH_STATE" />.</pd>
-       </plentry>
-       <plentry id="elapseSinceLastState">
-  <pt>elapseSinceLastState</pt>
-  <pd>The time elapsed (ms) from the previous state to the current state.</pd>
-       </plentry>
-   </parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry>
+                    <pt props="android windows unity flutter">channel</pt>
+                    <pt props="ios mac">channelId</pt>
+                    <pd>The name of the channel.</pd>
+                </plentry>
+                <plentry id="oldState">
+                    <pt>oldState</pt>
+                    <pd>For the previous publishing state, see <xref keyref="STREAM_PUBLISH_STATE" />.</pd>
+                </plentry>
+                <plentry id="newState">
+                    <pt>newState</pt>
+                    <pd>For the current publishing state, see <apiname keyref="STREAM_PUBLISH_STATE" />.</pd>
+                </plentry>
+                <plentry id="elapseSinceLastState">
+                    <pt>elapseSinceLastState</pt>
+                    <pd>The time elapsed (ms) from the previous state to the current state.</pd>
+                </plentry>
+            </parml>
         </section>
     </refbody>
 </reference>

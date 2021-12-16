@@ -18,7 +18,7 @@
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetEnableSpeakerphone(bool speakerOn);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEnableSpeakerphone(bool defaultToSpeaker);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -35,8 +35,8 @@
             </p>
             <note type="attention">
                 <ul>
-                    <li props="windows">该方法仅适用于 Android 和 iOS 平台。</li>
-                    <li>请确保在调用此方法前已调用过 <xref keyref="joinChannel1"/> 方法。</li>
+                    <li props="windows flutter unity electron">该方法仅适用于 Android 和 iOS 平台。</li>
+                    <li>请确保在调用此方法前已经加入频道。</li>
                 </ul>
             </note>
         </section>
@@ -46,6 +46,7 @@
                     <pt props="windows unity">speakerOn</pt>
                     <pt props="android">enabled</pt>
                     <pt props="ios mac">enableSpeaker</pt>
+                    <pt props="flutter">defaultToSpeaker</pt>
                     <pd>是否切换音频路由到扬声器（外放）：<ul>
                             <li><codeph><ph keyref="true"/></codeph>: 切换到外放。如果设备连接了耳机或蓝牙，则无法切换到外放。</li>
                             <li><codeph><ph keyref="false"/></codeph>: 切换到听筒。如果设备连接了耳机，则音频路由走耳机。</li>
@@ -54,7 +55,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
                 <li>0: 方法调用成功。</li>

@@ -38,12 +38,14 @@
                 <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string channelId, string userAccount,
             ChannelMediaOptions options);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelWithUserAccount(
+      String? token, String channelName, String userAccount,
+      [ChannelMediaOptions? options]);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry>
+                <dlentry props="native">
                     <dt>自从</dt>
                     <dd>v3.3.0</dd>
                 </dlentry>
@@ -63,7 +65,7 @@
                     <pd/>
                 </plentry>
                 <plentry>
-                    <pt props="android">channelName</pt>
+                    <pt props="android flutter">channelName</pt>
                     <pt props="windows ios mac unity">channelId</pt>
                     <pd><p conkeyref="joinChannel2/channelID_desc"/></pd>
                 </plentry>
@@ -75,7 +77,7 @@
                                 <li>26 个大写英文字母 A-Z</li>
                                 <li>10 个数字 0-9</li>
                                 <li>空格</li>
-                                <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、">"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+                                <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
                             </ul></p>
                     </pd>
                 </plentry>
@@ -89,6 +91,6 @@
                 </plentry>
             </parml>
         </section>
-        <section conkeyref="joinChannel2/return_values"/>
+        <section conkeyref="joinChannel2/return_values" props="native electron unity"/>
     </refbody>
 </reference>

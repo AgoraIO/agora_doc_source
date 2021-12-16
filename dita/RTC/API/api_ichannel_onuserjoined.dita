@@ -23,11 +23,11 @@
     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(
   evt: ChannelEvents.USER_JOINED,
-  cb: (channelId: string, uid: number, elapsed: number) => void
+  cb: (channelId: string, uid: number, elapsed: number) =&gt; void
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserJoined(string channelId, uint uid, int elapsed)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? userJoined;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -38,13 +38,13 @@
    <p>该回调在如下情况下会被触发：
        <ul>
   <li>远端用户/主播调用 <xref keyref="IChannel_joinChannel"/> 方法加入频道</li>
-  <li>远端用户加入频道后调用 <xref keyref="IChannel_setClientRole1"/> 将用户角色改变为主播</li>
+  <li>远端用户加入频道后将用户角色改变为主播</li>
   <li>远端用户/主播网络中断后重新加入频道</li>
   <li>主播通过调用 <xref keyref="IChannel_addInjectStreamUrl"/> 方法成功输入在线媒体流</li>
        </ul>
    </p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
        <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
   <pt/>

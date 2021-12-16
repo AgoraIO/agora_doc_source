@@ -42,14 +42,23 @@
     destInfos: [ChannelMediaInfo];
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class ChannelMediaRelayConfiguration {
+  
+  ChannelMediaInfo srcInfo;
+  List&lt;ChannelMediaInfo&gt; destInfos;
+
+  ChannelMediaRelayConfiguration(
+    this.srcInfo,
+    this.destInfos,
+  );
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
                 <plentry>
-                    <pt props="android windows unity">srcInfo</pt>
+                    <pt props="android windows unity flutter">srcInfo</pt>
                     <pt props="ios mac">sourceInfo</pt>
                     <pd>
                         <p>The information of the source channel <xref keyref="ChannelMediaInfo" />. It contains the following members:<ul>
@@ -64,7 +73,7 @@
                     </pd>
                 </plentry>
                 <plentry>
-                    <pt props="android windows unity">destInfos</pt>
+                    <pt props="android windows unity flutter">destInfos</pt>
                     <pt props="ios mac">destinationInfos</pt>
                     <pd>
                         <p>The information of the destination channel <apiname keyref="ChannelMediaInfo" />. It contains the following members:<ul>

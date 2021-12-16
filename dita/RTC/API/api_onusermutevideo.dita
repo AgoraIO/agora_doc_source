@@ -18,10 +18,10 @@
     (void)uid;
     (void)muted;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_MUTE_VIDEO, cb: (uid: number, muted: boolean) => void): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_MUTE_VIDEO, cb: (uid: number, muted: boolean) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserMuteVideo(uint uid, bool muted)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">UidWithMutedCallback? userMuteVideo;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -29,7 +29,7 @@
    <dl outputclass="deprecated" props="hide">
        <dlentry>
   <dt>弃用：</dt>
-  <dd> 该回调已废弃。你也可以使用 <xref keyref="onRemoteVideoStateChanged"/> 回调的：
+  <dd>你也可以使用 <xref keyref="onRemoteVideoStateChanged"/> 回调的：
   <ul>
       <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5) 。</li>
       <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6)。</li>
@@ -40,7 +40,7 @@
    <p>该回调是由远端用户调用 <xref keyref="muteLocalVideoStream"/> 方法关闭或开启视频发送触发的。</p>
    <note type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调不生效。</note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>

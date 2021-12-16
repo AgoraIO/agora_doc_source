@@ -21,11 +21,11 @@
     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(
   evt: EngineEvents.REMOTE_SUBSCRIBE_FALLBACK_TO_AUDIO_ONLY,
-  cb: (uid: number, isFallbackOrRecover: boolean) => void
+  cb: (uid: number, isFallbackOrRecover: boolean) =&gt; void
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteSubscribeFallbackToAudioOnly(uint uid, bool isFallbackOrRecover)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">FallbackWithUidCallback? remoteSubscribeFallbackToAudioOnly;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -34,7 +34,7 @@
                     <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>，当下行网络环境不理想、仅接收远端音频流时，或当下行网络改善、恢复订阅音视频流时，会触发该回调。</p>
    <note type="attention"> 远端订阅流因弱网环境不能同时满足音视频而回退为小流时，你可以使用 <xref keyref="RemoteVideoStats"/> 来监控远端视频大小流的切换。</note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>

@@ -18,17 +18,17 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteVideoStats(const RemoteVideoStats&amp; stats) {
     (void)stats;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REMOTE_VIDEO_STATS, cb: (stats: RemoteVideoStats) => void): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REMOTE_VIDEO_STATS, cb: (stats: RemoteVideoStats) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoStats(RemoteVideoStats stats)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">RemoteVideoStatsCallback? remoteVideoStats;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
    
    <p id="desc">该回调描述远端用户在通话中端到端的视频流统计信息， 针对每个远端用户/主播每 2 秒触发一次。如果远端同时存在多个用户/主播， 该回调每 2 秒会被触发多次。</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
        <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                   <pt/>

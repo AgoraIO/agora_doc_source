@@ -13,12 +13,20 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">void onEvent(String vendor, String extension, String key, String value);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)onEvent:(NSString * __nullable)vendor
+                <codeblock props="android" outputclass="language-java">void onEvent(String provider, String extension, String key, String value);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)onEvent:(NSString * __nullable)provider
       extension:(NSString * __nullable)extension
             key:(NSString * __nullable)key
-     value:(NSString * __nullable)value;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onExtensionEvent(const char* provider, const char* extension, const char* key, const char* value) {</codeblock>
+          value:(NSString * __nullable)value;
+@end
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onExtensionEvent(const char* provider, const char* extension, const char* key, const char* value) {
+ (void)provider;
+  (void)extension;
+  (void)key;
+  (void)value;
+  }
+</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -42,9 +50,9 @@
                     <pt/>
                     <pd/>
                 </plentry>
-                <plentry>
-                    <pt>value</pt>
-                    <pd>插件事件 Key 对应的值。</pd>
+                <plentry conkeyref="setExtensionProperty/value">
+                    <pt/>
+                    <pd/>
                 </plentry>
             </parml>
         </section>

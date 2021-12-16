@@ -215,7 +215,59 @@
      memoryTotalUsageRatio: number;
      memoryAppUsageInKbytes: number;
      }</codeblock>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">class RtcStats {
+  
+  int duration;
+  int txBytes;
+  int rxBytes;
+  int txAudioBytes;
+  int txVideoBytes;
+  int rxAudioBytes;
+  int rxVideoBytes;
+  int txKBitRate;
+  int rxKBitRate;
+  int txAudioKBitRate;
+  int rxAudioKBitRate;
+  int txVideoKBitRate;
+  int rxVideoKBitRate;
+  int userCount;
+  int lastmileDelay;
+  int txPacketLossRate;
+  int rxPacketLossRate;
+
+  double cpuTotalUsage;
+  double cpuAppUsage;
+  int gatewayRtt;
+  double memoryAppUsageRatio;
+  double memoryTotalUsageRatio;
+  int memoryAppUsageInKbytes;
+
+  RtcStats(
+    this.duration,
+    this.txBytes,
+    this.rxBytes,
+    this.txAudioBytes,
+    this.txVideoBytes,
+    this.rxAudioBytes,
+    this.rxVideoBytes,
+    this.txKBitRate,
+    this.rxKBitRate,
+    this.txAudioKBitRate,
+    this.rxAudioKBitRate,
+    this.txVideoKBitRate,
+    this.rxVideoKBitRate,
+    this.userCount,
+    this.lastmileDelay,
+    this.txPacketLossRate,
+    this.rxPacketLossRate,
+    this.cpuTotalUsage,
+    this.cpuAppUsage,
+    this.gatewayRtt,
+    this.memoryAppUsageRatio,
+    this.memoryTotalUsageRatio,
+    this.memoryAppUsageInKbytes,
+  );
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
@@ -317,7 +369,7 @@
                         <p>如需在 iOS 14 及之后的设备上启用该属性，请<xref href="https://agora-ticket.agora.io/" scope="external" format="html">提交工单</xref>。 </p>
                         </note>
                         <note props="android">
-                            <p>如需获取 gatewayRtt，请确保已在项目 <codeph>AndroidManifest.xml</codeph> 文件的 <codeph>&lt;/application></codeph> 后面添加 <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。</p>
+                            <p>如需获取 gatewayRtt，请确保已在项目 <codeph>AndroidManifest.xml</codeph> 文件的 <codeph>&lt;/application&gt;</codeph> 后面添加 <codeph>android.permission.ACCESS_WIFI_STATE</codeph> 权限。</p>
                         </note></pd>
                 </plentry>
                 <plentry>

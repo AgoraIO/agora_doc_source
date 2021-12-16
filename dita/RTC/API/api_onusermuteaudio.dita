@@ -18,10 +18,10 @@
     (void)uid;
     (void)muted;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_MUTE_AUDIO, cb: (uid: number, muted: boolean) => void): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_MUTE_AUDIO, cb: (uid: number, muted: boolean) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserMuteAudio(uint uid, bool muted)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">UidWithMutedCallback? userMuteAudio;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -29,13 +29,13 @@
    <dl outputclass="deprecated" props="hide">
        <dlentry>
   <dt>弃用：</dt>
-  <dd>自 v3.0.0 该回调已废弃。请改用 <xref keyref="onRemoteAudioStateChanged"/>。</dd>
+  <dd>请改用 <xref keyref="onRemoteAudioStateChanged"/>。</dd>
        </dlentry>
    </dl>
    <p>该回调是由远端用户调用 <xref keyref="muteLocalAudioStream"/> 方法关闭或开启音频发送触发的。</p>
    <note type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调不生效。</note>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
        <plentry>
   <pt>uid</pt>

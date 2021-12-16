@@ -30,12 +30,12 @@
     url: string,
     state: RTMP_STREAM_PUBLISH_STATE,
     errCode: RTMP_STREAM_PUBLISH_ERROR
-  ) => void
+  ) =&gt; void
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string channelId, string url, RTMP_STREAM_PUBLISH_STATE state,
             RTMP_STREAM_PUBLISH_ERROR errCode)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">RtmpStreamingStateCallback? rtmpStreamingStateChanged;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -44,7 +44,7 @@
        会触发该回调，并在回调中明确状态发生改变的 URL
        地址及当前推流状态。该回调方便推流用户了解当前的推流状态；推流出错时，你可以通过返回的错误码了解出错的原因，方便排查问题。</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
        <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
   <pt/>

@@ -17,17 +17,17 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual void onRequestToken(IChannel *rtcChannel) {
     (void)rtcChannel;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: ChannelEvents.REQUEST_TOKEN, cb: (channelId: string) => void): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: ChannelEvents.REQUEST_TOKEN, cb: (channelId: string) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRequestToken(string channelId)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">EmptyCallback? requestToken;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
             <p>在通话过程中如果 Token 已失效，SDK 会触发该回调，提醒 app 更新 Token。</p>
             <p>当收到该回调时，你需要重新在服务端生成新的 Token，然后调用 <xref keyref="IChannel_joinChannel"/> 重新加入频道。</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters" props="native"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
        <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
   <pt/>

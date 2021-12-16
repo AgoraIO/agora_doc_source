@@ -22,11 +22,11 @@
     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(
   evt: EngineEvents.USER_OFFLINE,
-  cb: (uid: number, reason: USER_OFFLINE_REASON_TYPE) => void
+  cb: (uid: number, reason: USER_OFFLINE_REASON_TYPE) =&gt; void
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserOffline(uint uid, USER_OFFLINE_REASON_TYPE reason)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">UserOfflineCallback? userOffline;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -39,7 +39,7 @@
                 </ul>
             </p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
@@ -51,7 +51,7 @@
                 </plentry>
                 <plentry id="reason">
                     <pt>reason</pt>
-                    <pd><p props="ios mac windows unity">离线原因: <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</p>
+                    <pd><p props="ios mac windows unity flutter">离线原因: <xref keyref="USER_OFFLINE_REASON_TYPE"/>。</p>
                         <p props="android">远端用户（通信场景）或主播（直播场景）下线的原因： <ul>
                                 <li><ph keyref="USER_OFFLINE_QUIT"/>
                                     (0)：用户主动离开。此时离开频道的用户会发送一个类似“再见”的消息。收到该消息是，SDK 判定该用户、 离开频道</li>

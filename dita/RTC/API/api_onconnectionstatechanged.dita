@@ -23,23 +23,23 @@
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CONNECTION_STATE_CHANGED, cb: (
      state: CONNECTION_STATE_TYPE,
      reason: CONNECTION_CHANGED_REASON_TYPE
-     ) => void): this;</codeblock>
+     ) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnConnectionStateChanged(CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">ConnectionStateCallback? connectionStateChanged;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
    
    <dl outputclass="since" props="rtc">
-       <dlentry>
+       <dlentry props="native">
   <dt>自从</dt>
   <dd>v2.3.2</dd>
        </dlentry>
    </dl>
    <p id="desc">该回调在网络连接状态发生改变的时候触发，并告知用户当前的网络连接状态和引起网络状态改变的原因。</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
        <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                   <pt/>
@@ -47,7 +47,7 @@
               </plentry>
        <plentry id="state">
   <pt>state</pt>
-  <pd><p id="connectionstate">当前网络连接状态。<ph props="ios mac windows unity">详见 <xref keyref="CONNECTION_STATE_TYPE"/>。</ph></p>
+  <pd><p id="connectionstate">当前网络连接状态。<ph props="ios mac windows unity flutter">详见 <xref keyref="CONNECTION_STATE_TYPE"/>。</ph></p>
        <ul props="android"><li><ph keyref="CONNECTION_STATE_DISCONNECTED"/>
                                     (1)：网络连接断开。</li><li><ph keyref="CONNECTION_STATE_CONNECTING"/>
                                     (2)：建立网络连接中。</li><li><ph keyref="CONNECTION_STATE_CONNECTED"/>
@@ -58,7 +58,7 @@
        </plentry>
        <plentry id="reason">
   <pt>reason</pt>
-           <pd><p props="ios mac windows unity">引起当前网络连接状态改变的原因。详见 <xref keyref="CONNECTION_CHANGED_REASON_TYPE"/>。</p>
+           <pd><p props="ios mac windows unity flutter">引起当前网络连接状态改变的原因。详见 <xref keyref="CONNECTION_CHANGED_REASON_TYPE"/>。</p>
            <p props="android">
                <ul>
                    <li><ph keyref="CONNECTION_CHANGED_CONNECTING"/> (0)：建立网络连接中 。</li>

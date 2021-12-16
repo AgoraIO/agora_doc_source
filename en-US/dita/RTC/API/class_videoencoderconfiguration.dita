@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoencoderconfiguration">
-    <title><ph keyref="VideoEncoderConfiguration"/></title>
+    <title><ph keyref="VideoEncoderConfiguration" /></title>
     <shortdesc id="short"><ph id="shortdesc">Video encoder configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -89,8 +89,8 @@
 };</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
                 <codeblock props="windows unity" outputclass="language-cpp">struct VideoEncoderConfiguration {
     VideoDimensions dimensions;
     FRAME_RATE frameRate;
@@ -137,17 +137,39 @@
     degradationPreference: DEGRADATION_PREFERENCE;
     mirrorMode: VIDEO_MIRROR_MODE_TYPE;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
+  
+  VideoDimensions? dimensions;
+  VideoFrameRate? frameRate;
+  VideoFrameRate? minFrameRate;
+  int? bitrate;
+  int? minBitrate;
+
+  VideoOutputOrientationMode? orientationMode;
+  DegradationPreference? degradationPrefer;
+  VideoMirrorMode? mirrorMode;
+
+  VideoEncoderConfiguration({
+    this.dimensions,
+    this.frameRate,
+    this.minFrameRate,
+    this.bitrate,
+    this.minBitrate,
+    this.orientationMode,
+    this.degradationPrefer,
+    this.mirrorMode,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
   <pt>dimensions</pt>
   <pd>
-      <p props="android windows">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions"/>. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
+      <p props="android windows flutter">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions" />. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
       <p props="ios mac">The dimensions of the encoded video (px). This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value, or select from the following list:<ul>
               <li>AgoraVideoDimension120x120</li>
               <li>AgoraVideoDimension160x120</li>
@@ -180,13 +202,13 @@
        <plentry props="rtc-ng">
                     <pt props="ios mac windows">codecType</pt>
            <pd props="ios mac windows">
-                        <p>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</p>
+                        <p>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE" />.</p>
                     </pd>
                 </plentry>
        <plentry>
   <pt>frameRate</pt>
   <pd>
-      <p>The encoding frame rate (fps) of the video. See <xref keyref="FRAME_RATE"/>. The default value is 15.</p>
+      <p>The encoding frame rate (fps) of the video. See <xref keyref="FRAME_RATE" />. The default value is 15.</p>
   </pd>
        </plentry>
        <plentry>
@@ -214,10 +236,10 @@
 <option keyref="STANDARD_BITRATE" /> . You can also set the bitrate value of the Live-broadcasting profile to twice the bitrate value of the Communication profile.</p>
       <table props="rtc" id="table_bitrate">
  <tgroup cols="4">
-     <colspec colnum="1" colname="col1"/>
-     <colspec colnum="2" colname="col2"/>
-     <colspec colnum="3" colname="col3"/>
-     <colspec colnum="4" colname="col4"/>
+     <colspec colnum="1" colname="col1" />
+     <colspec colnum="2" colname="col2" />
+     <colspec colnum="3" colname="col3" />
+     <colspec colnum="4" colname="col4" />
      <thead>
 <row>
     <entry>Dimensions</entry>
@@ -421,14 +443,16 @@
   <pt>mirrorMode</pt>
   <pd>
       <dl outputclass="since" props="rtc">
- <dlentry>
+ <dlentry props="native">
      <dt>Since</dt>
      <dd>v3.3.0</dd>
  </dlentry>
       </dl>
-      <p>
- Whether to mirror the video when encoding the video. It only affects the video that the remote user sees. <ph props="ios mac windows electron">For details, see <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</ph><ul conkeyref="setLocalRenderMode2/videomirrormodetype" props="android"><li/></ul>
-      </p>
+      <p> Whether to mirror the video when encoding the video. It only affects the video that the
+                            remote user sees. <ph props="ios mac windows electron">For details, see
+                            <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</ph><ul conkeyref="setLocalRenderMode2/videomirrormodetype" props="android">
+                            <li />
+                            </ul> </p>
       <note type="attention">By default, the video is not mirrored.</note>
   </pd>
        </plentry>

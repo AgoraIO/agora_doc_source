@@ -22,11 +22,11 @@
     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_ENABLE_LOCAL_VIDEO, cb: (
     uid: number, 
-    enabled: boolean) => void
+    enabled: boolean) =&gt; void
     ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserEnableLocalVideo(uint uid, bool enabled)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">UidWithEnabledCallback? userEnableLocalVideo;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -34,7 +34,7 @@
    <dl outputclass="deprecated" props="hide">
        <dlentry>
   <dt>弃用：</dt>
-  <dd>从 v2.9.0。该回调已被废弃，请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调的：
+  <dd>请改用 <xref keyref="onRemoteVideoStateChanged"/> 回调的：
       <ul>
  <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED"/> (0) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5) 。</li>
  <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING"/> (2) 和 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6)。</li>
@@ -44,7 +44,7 @@
    </dl>
    <p id="desc">该回调是由远端用户调用 <xref keyref="enableLocalVideo"/> 方法开启或关闭视频采集触发的。</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>

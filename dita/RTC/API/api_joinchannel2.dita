@@ -38,12 +38,14 @@
                 <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannel(string token, string channelId, string info, uint uid,
             ChannelMediaOptions options);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannel(
+      String? token, String channelName, String? optionalInfo, int optionalUid,
+      [ChannelMediaOptions? options]);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
    <dl outputclass="since" props="rtc">
-       <dlentry>
+       <dlentry props="native">
   <dt>自从</dt>
   <dd>v3.3.0</dd>
        </dlentry>
@@ -69,31 +71,33 @@
        </plentry>
        <plentry id="channelID">
   <pt props="ios mac windows unity">channelId</pt>
-           <pt props="android"><ph props="rtc">channelName</ph><ph props="rtc-ng">channelId</ph></pt>
+           <pt props="android flutter"><ph props="rtc">channelName</ph><ph props="rtc-ng">channelId</ph></pt>
   <pd>
       <p id="channelID_desc">频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同频道名的用户会进入同一个频道进行音视频互动。该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:<ul id="char_support">
      <li>26 个小写英文字母 a~z</li>
      <li>26 个大写英文字母 A~Z</li>
      <li>10 个数字 0~9</li>
      <li>空格</li>
-     <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、">"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
+     <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
  </ul></p>
   </pd>
        </plentry>
        <plentry id="info" props="rtc">
   <pt props="ios mac windows electron unity">info</pt>
-           <pt props="android">optionalInfo</pt>
+           <pt props="android flutter">optionalInfo</pt>
   <pd>
       <p>预留参数。</p>
   </pd>
        </plentry>
        <plentry id="uid">
            <pt props="ios mac windows electron unity">uid</pt>
-           <pt props="android"><ph props="rtc">optionalUid</ph><ph props="rtc-ng">uid</ph></pt>
-  <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位无符号整数。 建议设置范围：1 到 2<sup>32</sup>-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <apiname keyref="onJoinChannelSuccess"/> 回调中返回， 应用层必须记住该返回值并维护，SDK 不对该返回值进行维护。</pd>
+           <pt props="android flutter"><ph props="rtc">optionalUid</ph><ph props="rtc-ng">uid</ph></pt>
+  <pd>用户 ID。该参数用于标识在实时音视频互动频道中的用户。你需要自行设置和管理用户 ID，并确保同一频道内的每个用户 ID 是唯一的。该参数为 32 位无符号整数。 建议设置范围：1 到
+                            2<sup>32</sup>-1。如果不指定（即设为 0），SDK 会自动分配一个，并在 <apiname keyref="onJoinChannelSuccess"/> 回调中返回， 应用层必须记住该返回值并维护，SDK
+                        不对该返回值进行维护。</pd>
        </plentry>
        <plentry id="options">
-           <pt props="windows android electron unity">options</pt>
+           <pt props="windows android electron unity flutter">options</pt>
            <pt props="ios mac"><ph props="rtc">options</ph><ph props="rtc-ng">mediaOptions</ph></pt>
            <pd><p id="options_desc">频道媒体设置选项。详见 <xref keyref="ChannelMediaOptions"/>。</p></pd>
        </plentry>
@@ -103,7 +107,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>返回值</title>
    <ul>
        <li>0(ERR_OK) 方法调用成功。</li>

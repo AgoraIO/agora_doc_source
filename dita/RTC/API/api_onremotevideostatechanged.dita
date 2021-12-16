@@ -33,17 +33,17 @@
      state: REMOTE_VIDEO_STATE,
      reason: REMOTE_VIDEO_STATE_REASON,
      elapsed: number
-     ) => void
+     ) =&gt; void
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoStateChanged(uint uid, REMOTE_VIDEO_STATE state,
             REMOTE_VIDEO_STATE_REASON reason, int elapsed)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">RemoteVideoStateCallback? remoteVideoStateChanged;</codeblock>
         </p>
           </section>
           <section id="detailed_desc">
                <dl outputclass="since" props="rtc">
-                    <dlentry>
+                    <dlentry props="native">
                         <dt>自从</dt>
                         <dd>v2.9.0</dd>
                     </dlentry>
@@ -51,7 +51,7 @@
                <note id="note" type="attention">频道内的用户（通信场景）或主播（直播场景）人数超过 17 人时，该回调可能不准确。</note>
           </section>
           <section id="parameters">
-               <title>参数</title>
+               <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
                <parml>
                     <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                          <pt/>
@@ -64,7 +64,7 @@
                     <plentry id="state">
                          <pt>state</pt>
                          <pd>
-                              <p props="ios mac windows unity">远端视频流状态，详见 <xref keyref="REMOTE_VIDEO_STATE"/>。</p>
+                              <p props="ios mac windows unity flutter">远端视频流状态，详见 <xref keyref="REMOTE_VIDEO_STATE"/>。</p>
                               <p props="android">远端视频流状态： <ul>
                                         <li><ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>
                                              (0)：远端视频默认初始状态。在
@@ -95,7 +95,7 @@
                     <plentry id="reason">
                          <pt>reason</pt>
                          <pd>
-                              <p props="ios mac windows unity">远端视频流状态改变的具体原因，详见 <xref keyref="REMOTE_VIDEO_STATE_REASON"/>。</p>
+                              <p props="ios mac windows unity flutter">远端视频流状态改变的具体原因，详见 <xref keyref="REMOTE_VIDEO_STATE_REASON"/>。</p>
                               <p props="android">远端视频流状态改变的具体原因： <ul>
                                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL"/>
                                              (0)：内部原因。</li>

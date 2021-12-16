@@ -18,10 +18,10 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual void onLeaveChannel(const RtcStats&amp; stats) {
     (void)stats;
     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LEAVE_CHANNEL, cb: (stats: RtcStats) => void): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LEAVE_CHANNEL, cb: (stats: RtcStats) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnLeaveChannel(RtcStats stats)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">RtcStatsCallback? leaveChannel;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -29,7 +29,7 @@
    <p>App 调用 <xref keyref="leaveChannel"/> 方法时，SDK 提示 app 离开频道成功。在该回调方法中，app 可以得到此次通话的总通话时长、SDK
                 收发数据的流量等信息。</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt/>
