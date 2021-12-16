@@ -24,6 +24,7 @@
   public Integer defaultVideoStreamType;
   public Integer channelProfile;
   public Integer audioDelayMs;
+  public String token;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
 
@@ -44,28 +45,30 @@
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable defaultVideoStreamType;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable channelProfile;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable audioDelayMs;
+@property(copy, nonatomic) NSString * _Nullable token;
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct ChannelMediaOptions {
-  Optional&lt;bool&gt; publishCameraTrack;
-  Optional&lt;bool&gt; publishSecondaryCameraTrack;
-  Optional&lt;bool&gt; publishAudioTrack;
-  Optional&lt;bool&gt; publishScreenTrack;
-  Optional&lt;bool&gt; publishSecondaryScreenTrack;
-  Optional&lt;bool&gt; publishCustomAudioTrack;
-  Optional&lt;bool&gt; publishCustomAudioTrackEnableAec;
-  Optional&lt;bool&gt; publishCustomVideoTrack;
-  Optional&lt;bool&gt; publishEncodedVideoTrack;
-  Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
-  Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
-  Optional&lt;bool&gt; publishTrancodedVideoTrack;
-  Optional&lt;bool&gt; autoSubscribeAudio;
-  Optional&lt;bool&gt; autoSubscribeVideo;
-  Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
-  Optional&lt;int&gt; publishMediaPlayerId;
-  Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType;
-  Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
-  Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
-  Optional&lt;int&gt; audioDelayMs;
+  Optional&lt;bool> publishCameraTrack;
+  Optional&lt;bool> publishSecondaryCameraTrack;
+  Optional&lt;bool> publishAudioTrack;
+  Optional&lt;bool> publishScreenTrack;
+  Optional&lt;bool> publishSecondaryScreenTrack;
+  Optional&lt;bool> publishCustomAudioTrack;
+  Optional&lt;bool> publishCustomAudioTrackEnableAec;
+  Optional&lt;bool> publishCustomVideoTrack;
+  Optional&lt;bool> publishEncodedVideoTrack;
+  Optional&lt;bool> publishMediaPlayerAudioTrack;
+  Optional&lt;bool> publishMediaPlayerVideoTrack;
+  Optional&lt;bool> publishTrancodedVideoTrack;
+  Optional&lt;bool> autoSubscribeAudio;
+  Optional&lt;bool> autoSubscribeVideo;
+  Optional&lt;bool> enableAudioRecordingOrPlayout;
+  Optional&lt;int> publishMediaPlayerId;
+  Optional&lt;CLIENT_ROLE_TYPE> clientRoleType;
+  Optional&lt;VIDEO_STREAM_TYPE> defaultVideoStreamType;
+  Optional&lt;CHANNEL_PROFILE_TYPE> channelProfile;
+  Optional&lt;int> audioDelayMs;
+  Optional&lt;char*> token;
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}
 </codeblock>
@@ -211,6 +214,15 @@
                         <p>发送音频帧的时延（以毫秒为单位），用于控制 A/V 同步。</p>
                         <p>如果要关闭时延，将此参数值设置为 0。</p>
                     </pd>
+                </plentry>
+                <plentry>
+                    <pt>token</pt>
+                    <pd>
+                        <p>（可选）在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token">使用 Token 鉴权</xref>。</p>
+                        <note type="caution"><ul>
+                            <li>该参数仅在调用 <xref keyref="updateChannelMediaOptions"/> 或 <xref keyref="updateChannelMediaOptionsEx"/> 时生效。</li>
+                            <li>请确保用于生成 token 的 App ID、频道名和用户名和 <xref keyref="create2"/> 方法初始化引擎时用的 App ID，以及 <xref keyref="joinChannel2"/> 或 <xref keyref="joinChannelEx"/> 方法加入频道时设置的频道名和用户名是一致的。</li>
+                        </ul></note></pd>
                 </plentry>
             </parml>
         </section>
