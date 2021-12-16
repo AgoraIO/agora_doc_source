@@ -27,7 +27,18 @@
   logConfig?: LogConfig;
 }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class RtcEngineContext {
+  
+  String appId;
+  List&lt;AreaCode&gt;? areaCode;
+  LogConfig? logConfig;
+
+  RtcEngineContext(
+    this.appId, {
+    this.areaCode,
+    this.logConfig,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
@@ -38,7 +49,7 @@
   <pd>The event handler of the Agora SDK. See <xref keyref="IRtcEngineEventHandler" />.</pd>
        </plentry>
        <plentry>
-  <pt props="windows electron unity">appId</pt>
+  <pt props="windows electron unity flutter">appId</pt>
   <pt props="android">mAppId</pt>
   <pd><p>The App ID issued by Agora for your app development project. Only users who use the same App ID can join the same channel and communicate with each other.</p>
       <p props="windows">An App ID can only be used to create one <xref keyref="IRtcEngine" />instance. If you need to change the App ID, you must call <xref keyref="release" /> to destroy the current IRtcEngine, and then call <xref keyref="createAgoraRtcEngine" /> and <xref keyref="create2" /> to recreate <apiname keyref="IRtcEngine" />.</p>

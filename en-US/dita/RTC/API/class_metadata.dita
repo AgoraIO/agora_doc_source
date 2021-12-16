@@ -21,7 +21,13 @@
     timeStampMs: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class Metadata {
+  int uid;
+  Uint8List? buffer;
+  int timeStampMs;
+
+  Metadata(this.uid, this.timeStampMs);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
@@ -30,13 +36,13 @@
        <plentry>
   <pt>uid</pt>
   <pd>
-      <p>User ID.<ul id="ul_c1t_3wg_s4b">
+      <p>User ID.<ul>
  <li>For the receiver: The user ID of the user who sent the <apiname keyref="Metadata" />.</li>
      <li>For the sender: Ignore this value.</li>
  </ul></p>
   </pd>
        </plentry>
-       <plentry>
+       <plentry props="windows">
   <pt>size</pt>
   <pd>The buffer size of the sent or received <apiname keyref="Metadata" />.</pd>
        </plentry>

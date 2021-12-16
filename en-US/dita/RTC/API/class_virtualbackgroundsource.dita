@@ -76,7 +76,19 @@
 </codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">class VirtualBackgroundSource {
+
+  VirtualBackgroundSourceType? backgroundSourceType;
+  Color? color;
+  String? source;
+  VirtualBackgroundBlurDegree blurDegree;
+
+  VirtualBackgroundSource({
+    this.backgroundSourceType,
+    this.color,
+    this.source,
+    this.blurDegree = VirtualBackgroundBlurDegree.High,
+  });</codeblock>
             </p>
             <p outputclass="codeblock">
                 <codeblock props="windows unity" outputclass="language-cpp">struct VirtualBackgroundSource {
@@ -98,21 +110,21 @@
                 </codeblock>
                 </p>
         </section>
-        <section id="detailed_desc" props="rtc">
-            <dl outputclass="since">
-                <dlentry>
+        <section id="detailed_desc">
+            <dl outputclass="since" props="rtc">
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v3.5.0</dd>
                 </dlentry>
             </dl>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
                 <plentry>
-                    <pt props="android ios mac">backgroundSourceType</pt>
+                    <pt props="android ios mac flutter">backgroundSourceType</pt>
                     <pt props="unity windows">background_source_type</pt>
-                    <pd>The type of the custom background image. <ph props="ios mac windows unity">See <xref keyref="BACKGROUND_SOURCE_TYPE"/>.</ph><ul props="android">
+                    <pd>The type of the custom background image. <ph props="ios mac windows unity flutter">See <xref keyref="BACKGROUND_SOURCE_TYPE"/>.</ph><ul props="android">
                         <li><ph keyref="BACKGROUND_COLOR"/>(1): (Default) The background image is a solid color.</li>
                         <li><ph keyref="BACKGROUND_IMG"/>(2): The background image is a file in PNG or JPG format.</li>
                         <li><ph keyref="BACKGROUND_BLUR"/>(3): The background image is the blurred background.</li>
@@ -120,7 +132,7 @@
                 </plentry>
                 <plentry>
                     <pt>color</pt>
-                    <pd> The type of the custom background image. The color of the custom background image. The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink.   The default value is 0xFFFFFF, which signifies white.  The value range is [0x000000, 0xffffff]. If the value is invalid, the SDK replaces the original background image with a white background image.<note type="attention">This parameter takes effect only when the type of the custom background image is <ph keyref="BACKGROUND_COLOR"/>.</note></pd>
+                    <pd>The type of the custom background image. The color of the custom background image. The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink.   The default value is 0xFFFFFF, which signifies white.  The value range is [0x000000, 0xffffff]. If the value is invalid, the SDK replaces the original background image with a white background image.<note type="attention">This parameter takes effect only when the type of the custom background image is <ph keyref="BACKGROUND_COLOR"/>.</note></pd>
                 </plentry>
                 <plentry>
                     <pt>source</pt>
@@ -128,7 +140,7 @@
                 </plentry>
                 <plentry>
                     <pt props="rtc-ng"><ph props="ios mac android">blurDegree</ph><ph props="windows">blur_degree</ph></pt>
-                    <pt props="rtc">blur_degree</pt>
+                    <pt props="rtc"><ph props="flutter">blurDegree</ph><ph props="native unity">blur_degree</ph></pt>
                     <pd>The degree of blurring applied to the custom background image. <ph props="ios mac windows unity">See <xref keyref="BACKGROUND_BLUR_DEGREE"/>.</ph><ul props="android">
                         <li><ph keyref="BLUR_DEGREE_LOW"/>(1): The degree of blurring applied to the custom background image is low. The user can almost see the background clearly.</li>
                         <li><ph keyref="BLUR_DEGREE_MEDIUM"/>(2): The degree of blurring applied to the custom background image is medium. It is difficult for the user to recognize details in the background.</li>

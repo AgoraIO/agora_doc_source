@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onactivespeaker">
-    <title><ph keyref="onActiveSpeaker"/></title>
+    <title><ph keyref="onActiveSpeaker" /></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the most active speaker is detected.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -17,10 +17,10 @@
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onActiveSpeaker(int uid) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine activeSpeaker:(NSUInteger)speakerUid;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.ACTIVE_SPEAKER, cb: (uid: number) => void): this;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.ACTIVE_SPEAKER, cb: (uid: number) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnActiveSpeaker(uint uid)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">UidCallback? activeSpeaker;</codeblock>
         </p>
         <p outputclass="codeblock" props="rtc">
             <codeblock props="windows" outputclass="language-cpp">virtual void onActiveSpeaker(uid_t uid) {
@@ -32,20 +32,22 @@
 
    <p>After a successful call of <xref keyref="enableAudioVolumeIndication"/>, the SDK continuously detects which remote user has the loudest volume. During the current period, the remote user, who is detected as the loudest for the most times, is the most active user.</p>
    <p>When the number of users exceeds two (included) and an active speaker is detected, the SDK triggers this callback and reports the <parmname>uid</parmname> of the most active speaker.<ul>
-  <li>If the most active speaker remains the same, the SDK triggers the <apiname keyref="onActiveSpeaker"/> callback only once.</li>
+  <li>If the most active speaker remains the same, the SDK triggers the <apiname keyref="onActiveSpeaker" /> callback only once.</li>
   <li>If the most active speaker changes to another user, the SDK triggers this callback again and reports the <parmname>uid</parmname> of the new active speaker.</li>
        </ul>
    </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry id="uid">
                     <pt props="windows"><ph props="rtc">uid</ph><ph props="rtc-ng">userId</ph></pt>
-                    <pt props="android unity electron">uid</pt>
+                    <pt props="android unity electron flutter">uid</pt>
                     <pt props="ios mac">speakerUid</pt>
                     <pd>The user ID of the most active speaker.</pd>
                 </plentry>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-    <title><ph keyref="LiveTranscoding"/></title>
+    <title><ph keyref="LiveTranscoding" /></title>
     <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for CDN live streaming.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -21,7 +21,7 @@
     audioBitrate = 48;
     audioChannels = 1;
     audioCodecProfile = AudioCodecProfileType.LC_AAC;
-    transcodingUsers = new HashMap&lt;>();
+    transcodingUsers = new HashMap&lt;&gt;();
     backgroundColor = 0xFF000000;
     userConfigExtraInfo = null;
     metadata = null;
@@ -34,12 +34,12 @@
 @property(assign, nonatomic) BOOL lowLatency;
 @property(assign, nonatomic) NSInteger videoGop;
 @property(assign, nonatomic) AgoraVideoCodecProfileType videoCodecProfile;
-@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *> *_Nullable transcodingUsers;
+@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *&gt; *_Nullable transcodingUsers;
 @property(copy, nonatomic) NSString *_Nullable transcodingExtraInfo;
 @property(strong, nonatomic) AgoraImage *_Nullable watermark;
-@property (copy, nonatomic) NSArray&lt;AgoraImage *> *_Nullable watermarkArray;
+@property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable watermarkArray;
 @property(strong, nonatomic) AgoraImage *_Nullable backgroundImage;
-@property (copy, nonatomic) NSArray&lt;AgoraImage *> *_Nullable backgroundImageArray;
+@property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable backgroundImageArray;
 @property(strong, nonatomic) COLOR_CLASS *_Nullable backgroundColor;
 @property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;
 @property(assign, nonatomic) NSInteger audioBitrate;
@@ -154,10 +154,48 @@
     backgroundImage: RtcImage;
     transcodingUsers: Array&lt;TranscodingUser&gt;
     }</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
+  
+  int? width;
+  int? height;
+  int? videoBitrate;
+  VideoFrameRate? videoFramerate;
+  bool? lowLatency;
+  int? videoGop;
+  AgoraImage? watermark;
+  AgoraImage? backgroundImage;
+  AudioSampleRateType? audioSampleRate;
+  int? audioBitrate;
+  AudioChannel? audioChannels;
+  AudioCodecProfileType? audioCodecProfile;
+  VideoCodecProfileType? videoCodecProfile;
+  Color? backgroundColor;
+  String? userConfigExtraInfo;
+  List&lt;TranscodingUser&gt; transcodingUsers;
+
+  LiveTranscoding(
+    this.transcodingUsers, {
+    this.width,
+    this.height,
+    this.videoBitrate,
+    this.videoFramerate,
+    this.lowLatency,
+    this.videoGop,
+    this.watermark,
+    this.backgroundImage,
+    this.audioSampleRate,
+    this.audioBitrate,
+    this.audioChannels,
+    this.audioCodecProfile,
+    this.videoCodecProfile,
+    this.backgroundColor,
+    this.userConfigExtraInfo,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
                 <plentry props="android windows electron unity">
                     <pt>width</pt>
@@ -215,25 +253,23 @@
                 <plentry>
                     <pt>videoCodecProfile</pt>
                     <pd>
-                        <p>The video encoding configuration of the output media stream. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.</p>
+                        <p>The video encoding configuration of the output media stream. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE" />.</p>
                         <note type="attention">If you set this parameter to any other value, Agora adjusts it to the default value.</note>
                     </pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>videoCodecType</pt>
-                    <pd>The codec type of the output video. For details, see <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
+                    <pd>The codec type of the output video. For details, see <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" />.</pd>
                 </plentry>
                 <plentry>
                     <pt>transcodingUsers</pt>
                     <pd>
-                        <p>Transcoding configurations of each host. One live streaming channel supports up to 17 hosts. For details, see <xref keyref="TranscodingUser"
-                            />.</p>
+                        <p>Transcoding configurations of each host. One live streaming channel supports up to 17 hosts. For details, see <xref keyref="TranscodingUser" />.</p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>transcodingExtraInfo</pt>
-                    <pd>The user SEI information embedded in the output media stream. This parameter is used to send SEI information to the CDN. The maximum length is 4096 bytes. See <xref keyref="faq-sei"
-                            >How to solve SEI-related issues</xref>.</pd>
+                    <pd>The user SEI information embedded in the output media stream. This parameter is used to send SEI information to the CDN. The maximum length is 4096 bytes. See <xref keyref="faq-sei">How to solve SEI-related issues</xref>.</pd>
                 </plentry>
                 <plentry>
                     <pt>backgroundColor</pt>
@@ -256,15 +292,15 @@
                 </plentry>
                 <plentry>
                     <pt>watermark</pt>
-                    <pd>The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. For details, see <xref keyref="RtcImage"/>.</pd>
+                    <pd>The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. For details, see <xref keyref="RtcImage" />.</pd>
                 </plentry>
                 <plentry>
                     <pt>backgroundImage</pt>
-                    <pd> The video background image of the output media stream. For details, see <xref keyref="RtcImage"/>.</pd>
+                    <pd> The video background image of the output media stream. For details, see <xref keyref="RtcImage" />.</pd>
                 </plentry>
                 <plentry>
                     <pt>audioSampleRate</pt>
-                    <pd>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
+                    <pd>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />.</pd>
                 </plentry>
                 <plentry>
                     <pt>audioBitrate</pt>
@@ -283,7 +319,7 @@
                 </plentry>
                 <plentry>
                     <pt>audioCodecProfile</pt>
-                    <pd>The audio codec of the output media stream. For details, see <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+                    <pd>The audio codec of the output media stream. For details, see <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />.</pd>
                 </plentry>
             </parml>
             <parml props="rtc-ng">

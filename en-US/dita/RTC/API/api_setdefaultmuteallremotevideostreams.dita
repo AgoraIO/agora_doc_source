@@ -18,12 +18,12 @@
                 <codeblock props="electron" outputclass="language-typescript">setDefaultMuteAllRemoteVideoStreams(mute: boolean): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetDefaultMuteAllRemoteVideoStreams(bool mute);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultMuteAllRemoteVideoStreams(bool muted);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-   <dl outputclass="deprecated">
-       <dlentry>
+   <dl outputclass="deprecated" props="rtc">
+       <dlentry props="native">
            <dt>Deprecated:</dt>
            <dd>This method is deprecated as of v3.3.0.</dd>
        </dlentry>
@@ -38,7 +38,7 @@
         <section id="parameters"><title>Parameters</title>
    <parml>
        <plentry>
-           <pt props="android">muted</pt>
+           <pt props="android flutter">muted</pt>
            <pt props="ios mac windows unity">mute</pt>
   <pd>
       <p>Whether to stop subscribing to the audio streams of all remote users by default.<ul>
@@ -50,7 +50,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>

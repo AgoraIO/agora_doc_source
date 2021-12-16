@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setaudioeffectpreset">
-    <title><ph keyref="setAudioEffectPreset"/></title>
+    <title><ph keyref="setAudioEffectPreset" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置 SDK 预设的人声音效。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -17,14 +17,14 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual int setAudioEffectPreset(AUDIO_EFFECT_PRESET preset) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">setAudioEffectPreset(preset: AUDIO_EFFECT_PRESET): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioEffectPreset(AUDIO_EFFECT_PRESET preset);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioEffectPreset(AudioEffectPreset preset);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
             <title>详细描述</title>
    <dl outputclass="since" props="rtc">
-       <dlentry>
+       <dlentry props="native">
   <dt>自从</dt>
   <dd>v3.2.0</dd>
        </dlentry>
@@ -35,19 +35,20 @@
    <note type="attention">
        <ul>
   <li>该方法在加入频道前后都能调用。</li>
-  <li>请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1) 或 <apiname keyref="AUDIO_PROFILE_IOT"/>(6)，否则该方法不生效。</li>
+  <li props="windows">请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1) 或 <apiname keyref="AUDIO_PROFILE_IOT" />(6)，否则该方法不生效。</li>
+  <li props="android ios mac unity flutter">请勿将 <apiname keyref="setAudioProfile"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD"/>(1)，否则该方法不生效。</li>
   <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
-  <li>如果调用 <apiname keyref="setAudioEffectPreset"/> 并设置除 <apiname keyref="ROOM_ACOUSTICS_3D_VOICE"/> 或 <apiname keyref="PITCH_CORRECTION"/> 外的枚举，请勿再调用 <xref keyref="setAudioEffectParameters"/>，否则 <apiname keyref="setAudioEffectPreset" /> 设置的效果会被覆盖。</li>
-  <li>调用 <apiname keyref="setAudioEffectPreset"/> 后，Agora 不推荐调用以下方法，否则 <apiname keyref="setAudioEffectPreset"/> 设置的效果会被覆盖：
+  <li>如果调用 <apiname keyref="setAudioEffectPreset" /> 并设置除 <apiname keyref="ROOM_ACOUSTICS_3D_VOICE" /> 或 <apiname keyref="PITCH_CORRECTION" /> 外的枚举，请勿再调用 <xref keyref="setAudioEffectParameters" />，否则 <apiname keyref="setAudioEffectPreset" /> 设置的效果会被覆盖。</li>
+  <li>调用 <apiname keyref="setAudioEffectPreset" /> 后，Agora 不推荐调用以下方法，否则 <apiname keyref="setAudioEffectPreset" /> 设置的效果会被覆盖：
       <ul>
-         <li><xref keyref="setVoiceBeautifierPreset"/></li>
-         <li><xref keyref="setLocalVoiceReverbPreset"/></li>
-         <li><xref keyref="setLocalVoiceChanger"/></li>
-         <li><xref keyref="setLocalVoicePitch"/></li>
-         <li><xref keyref="setLocalVoiceEqualization"/></li>
-         <li><xref keyref="setLocalVoiceReverb"/></li>
-         <li><xref keyref="setVoiceBeautifierParameters"/></li>
-         <li><xref keyref="setVoiceConversionPreset"/></li>
+         <li><xref keyref="setVoiceBeautifierPreset" /></li>
+         <li><xref keyref="setLocalVoiceReverbPreset" /></li>
+         <li><xref keyref="setLocalVoiceChanger" /></li>
+         <li><xref keyref="setLocalVoicePitch" /></li>
+         <li><xref keyref="setLocalVoiceEqualization" /></li>
+         <li><xref keyref="setLocalVoiceReverb" /></li>
+         <li><xref keyref="setVoiceBeautifierParameters" /></li>
+         <li><xref keyref="setVoiceConversionPreset" /></li>
       </ul>
   </li>
        </ul>
@@ -57,7 +58,7 @@
    <parml>
        <plentry>
   <pt>preset</pt>
-           <pd props="ios mac windows unity">预设的音效选项，详见 <xref keyref="AUDIO_EFFECT_PRESET"/>。</pd>
+           <pd props="ios mac windows unity flutter">预设的音效选项，详见 <xref keyref="AUDIO_EFFECT_PRESET" />。</pd>
            <pd props="android">预设的音效选项。<ul id="ul_klq_zw3_qqb">
                <li><ph keyref="AUDIO_EFFECT_OFF"/>: 原声，即关闭人声音效。</li>
                <li><ph keyref="ROOM_ACOUSTICS_KTV"/>: KTV。</li>
@@ -86,7 +87,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>返回值</title>
    <ul>
        <li>0: 方法调用成功</li>

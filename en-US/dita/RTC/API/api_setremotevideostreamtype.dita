@@ -26,8 +26,8 @@
                        type:(AgoraVideoStreamType)streamType;</codeblock>
                <codeblock props="electron" outputclass="language-typescript">setRemoteVideoStreamType(userId: number, streamType: REMOTE_VIDEO_STREAM_TYPE): number</codeblock>
                <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteVideoStreamType(uint userId, REMOTE_VIDEO_STREAM_TYPE streamType);</codeblock>
-               <codeblock props="rn" outputclass="language-typescript"/>
-               <codeblock props="flutter" outputclass="language-dart"/>
+               <codeblock props="rn" outputclass="language-typescript" />
+               <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteVideoStreamType(int userId, VideoStreamType streamType);</codeblock>
          </p>   
           </section>
           <section id="detailed_desc">
@@ -40,21 +40,21 @@
                     You can call this method either before or after joining a channel. If you call both <apiname keyref="setRemoteVideoStreamType" /> and <xref keyref="setRemoteDefaultVideoStreamType" />, the setting of <apiname keyref="setRemoteVideoStreamType" /> takes effect.</note>
           </section>
           <section id="parameters">
-               <title>Parameter</title>
+               <title>Parameters</title>
                <parml>
                     <plentry props="rtc-ng">
                          <pt>uid</pt>
-                         <pd>User ID</pd>
+                         <pd>User ID.</pd>
                     </plentry>
                     <plentry props="rtc">
                          <pt props="android ios mac">uid</pt>
-                         <pt props="windows electron unity">userId</pt>
-                         <pd>User ID</pd>
+                         <pt props="windows electron unity flutter">userId</pt>
+                         <pd>User ID.</pd>
                     </plentry>
                     <plentry>
                          <pt>streamType</pt>
                          <pd>
-                              <p props="ios mac windows electron unity">The video stream type: <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />.</p>
+                              <p props="ios mac windows electron unity flutter">The video stream type: <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />.</p>
                               <p props="android">The video stream type:<ul>
                                         <li>0: High-quality video stream.</li>
                                         <li>1: Low-quality video stream.</li>
@@ -64,7 +64,7 @@
                     </plentry>
                </parml>
           </section>
-          <section id="return_values">
+          <section id="return_values" props="native electron unity">
                <title>Returns</title>
                <ul>
                     <li>0: Success.</li>

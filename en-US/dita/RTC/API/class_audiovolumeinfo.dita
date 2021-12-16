@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiovolumeinfo">
-    <title><ph keyref="AudioVolumeInfo"/></title>
+    <title><ph keyref="AudioVolumeInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">The volume information of users.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -53,12 +53,24 @@
     vad: number
     channelId: string
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
+  int uid;
+  int volume;
+  int vad;
+  String channelId;
+
+  AudioVolumeInfo(
+    this.uid,
+    this.volume,
+    this.vad,
+    this.channelId,
+  );
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
                     <pt>uid</pt>
@@ -71,7 +83,7 @@
                 </plentry>
        <plentry>
   <pt>volume</pt>
-  <pd>The volume of the user. The value ranges between 0 (lowest volume) and 255 (highest volume). If the user calls <xref keyref="startAudioMixing2"/>, the value of <parmname>volume</parmname> is the volume after audio mixing.</pd>
+  <pd>The volume of the user. The value ranges between 0 (lowest volume) and 255 (highest volume). If the user calls <xref keyref="startAudioMixing2" />, the value of <parmname>volume</parmname> is the volume after audio mixing.</pd>
        </plentry>
        <plentry>
                     <pt>vad</pt>
@@ -83,8 +95,8 @@
                         <note type="attention">
                             <ul>
                                 <li>The <parmname>vad</parmname> parameter does not report the voice activity status of remote users. In the remote users' callback, the value of <parmname>vad</parmname> is always 0.</li>
-                                <li props="rtc">To use this parameter, you must set <parmname props="ios mac windows android electron">report_vad</parmname><parmname props="unity">reportVad</parmname> to <codeph><ph keyref="true"/></codeph> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
-                                <li props="rtc-ng">To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph keyref="true"/></codeph> when calling <xref keyref="enableAudioVolumeIndication"/>.</li>
+                                <li props="rtc">To use this parameter, you must set <parmname props="ios mac windows android electron">report_vad</parmname><parmname props="unity">reportVad</parmname> to <codeph><ph keyref="true" /></codeph> when calling <xref keyref="enableAudioVolumeIndication" />.</li>
+                                <li props="rtc-ng">To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph keyref="true" /></codeph> when calling <xref keyref="enableAudioVolumeIndication" />.</li>
                             </ul>
                         </note>
                     </pd>

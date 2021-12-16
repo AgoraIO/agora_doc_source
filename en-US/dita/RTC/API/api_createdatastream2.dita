@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_createdatastream2">
-    <title><ph keyref="createDataStream2"/></title>
+    <title><ph keyref="createDataStream2" /></title>
     <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -19,19 +19,19 @@
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">createDataStreamWithConfig(config: DataStreamConfig): number</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int CreateDataStream(DataStreamConfig config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;int?&gt; createDataStreamWithConfig(DataStreamConfig config);</codeblock>
         </p>
     </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry>
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v3.3.0</dd>
                 </dlentry>
             </dl>
             <p id="desc">Creates a data stream. Each user can create up to five data streams in a single channel.</p>
-            <p id="diff">Compared with <xref keyref="createDataStream1"/>[1/2], this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
+            <p id="diff">Compared with <xref keyref="createDataStream1" />[1/2], this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
         </section>
         <section id="parameters"><title>Parameters</title>
    <parml>
@@ -41,7 +41,7 @@
        </plentry>
        <plentry id="config">
   <pt>config</pt>
-  <pd>The configurations for the data stream. For details, see <xref keyref="DataStreamConfig"/>.</pd>
+  <pd>The configurations for the data stream. For details, see <xref keyref="DataStreamConfig" />.</pd>
        </plentry>
    </parml>
         </section>
