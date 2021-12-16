@@ -24,31 +24,31 @@
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioMixingPlaybackSpeed(int speed);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry>
+                <dlentry props="native">
                     <dt>自从</dt>
                     <dd>v3.5.1</dd>
                 </dlentry>
             </dl>
-            <note type="attention" id="note">你需要在 <xref keyref="open"/> 后调用该方法。</note>
+            <note type="attention" id="note"><ph props="rtc-ng">你需要在 <xref keyref="open"/> 后调用该方法。<ph props="rtc">你需要在调用 <xref keyref="startAudioMixing2" /> 并收到 <xref keyref="onAudioMixingStateChanged" /><ph>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>)</ph> 回调后调用该方法。</ph></note>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
                     <pt>speed</pt>
-                    <pd>播放速度。推荐取值范围为 [50,400]，其中： <ul>
+                    <pd>播放速度。推荐取值范围为 [50,400]，其中：<ul>
                         <li>50: 0.5 倍速。</li>
                         <li>100: 原始速度。</li>
                         <li>400: 4 倍速。</li>
-                        </ul></pd>
+                    </ul></pd>
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
                 <li>0: 方法调用成功。</li>

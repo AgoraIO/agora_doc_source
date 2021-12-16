@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remoteaudiostats">
-    <title><ph keyref="RemoteAudioStats"/></title>
+    <title><ph keyref="RemoteAudioStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">Audio statistics of the remote user.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -136,12 +136,47 @@
     qualityChangedReason: number;
     mosValue: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class RemoteAudioStats {
+
+  int uid;
+  NetworkQuality quality;
+  int networkTransportDelay;
+  int jitterBufferDelay;
+  int audioLossRate;
+  int numChannels;
+  int receivedSampleRate;
+  int receivedBitrate;
+  int totalFrozenTime;
+  int frozenRate;
+  int totalActiveTime;
+  int publishDuration;
+  ExperienceQualityType qoeQuality;
+  ExperiencePoorReason qualityChangedReason;
+  int mosValue;
+
+  RemoteAudioStats(
+    this.uid,
+    this.quality,
+    this.networkTransportDelay,
+    this.jitterBufferDelay,
+    this.audioLossRate,
+    this.numChannels,
+    this.receivedSampleRate,
+    this.receivedBitrate,
+    this.totalFrozenTime,
+    this.frozenRate,
+    this.totalActiveTime,
+    this.publishDuration,
+    this.qoeQuality,
+    this.qualityChangedReason,
+    this.mosValue,
+  );
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
   <pt>uid</pt>
@@ -149,8 +184,7 @@
        </plentry>
        <plentry>
   <pt>quality</pt>
-           <pd>The quality of the audio stream sent by the user.  <ph props="ios mac windows electron unity">See <xref
-                                keyref="QUALITY_TYPE"/>.</ph><p props="android">
+           <pd>The quality of the audio stream sent by the user.  <ph props="ios mac windows electron unity flutter">See <xref keyref="QUALITY_TYPE"/>.</ph><p props="android">
                             <ul id="qualitytype">
                                 <li><ph keyref="QUALITY_UNKNOWN"/> (0): The quality is unknown.</li>
                                 <li><ph keyref="QUALITY_EXCELLENT"/> (1): The quality is excellent.</li>
@@ -170,7 +204,7 @@
        <plentry>
   <pt>jitterBufferDelay</pt>
   <pd>
-      <p>The network delay (ms) from the receiver to the jitter buffer.<note type="attention">When the receiving end is an audience member and <parmname>audienceLatencyLevel</parmname> of <xref keyref="ClientRoleOptions"/> is 1, this parameter does not take effect.</note></p>
+      <p>The network delay (ms) from the receiver to the jitter buffer.<note type="attention">This parameter does not take effect if the receiver is an audience member and <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE" /> is 1.</note></p>
   </pd>
        </plentry>
        <plentry>
@@ -201,7 +235,7 @@
                     <pt>totalActiveTime</pt>
                     <pd>
                         <dl outputclass="since" props="rtc">
-                            <dlentry>
+                            <dlentry props="native">
                                 <dt>Since</dt>
                                 <dd>v3.0.0</dd>
                             </dlentry>
@@ -213,7 +247,7 @@
                     <pt>publishDuration</pt>
                     <pd>
                         <dl outputclass="since" props="rtc">
-                            <dlentry>
+                            <dlentry props="native">
                                 <dt>Since</dt>
                                 <dd>v3.1.0</dd>
                             </dlentry>
@@ -224,37 +258,37 @@
   <pt>qoeQuality</pt>
   <pd>
       <dl outputclass="since" props="rtc">
- <dlentry>
+ <dlentry props="native">
      <dt>Since</dt>
      <dd>v3.3.0</dd>
  </dlentry>
       </dl>
-      <p>Quality of experience (QoE) of the local user when receiving the remote audio stream. See <xref keyref="EXPERIENCE_QUALITY_TYPE"/>.</p>
+      <p>Quality of experience (QoE) of the local user when receiving the remote audio stream. See <xref keyref="EXPERIENCE_QUALITY_TYPE" />.</p>
   </pd>
        </plentry>
        <plentry props="rtc">
   <pt>qualityChangedReason</pt>
   <pd>
       <dl outputclass="since" props="rtc">
- <dlentry>
+ <dlentry props="native">
      <dt>Since</dt>
      <dd>v3.3.0</dd>
  </dlentry>
       </dl>
-      <p>The reason for poor QoE of the local user when receiving the remote audio stream. See <xref keyref="EXPERIENCE_POOR_REASON"/>.</p>
+      <p>The reason for poor QoE of the local user when receiving the remote audio stream. See <xref keyref="EXPERIENCE_POOR_REASON" />.</p>
   </pd>
        </plentry>
        <plentry>
            <pt>mosValue</pt>
            <pd>
                <dl outputclass="since" props="rtc">
-                   <dlentry>
+                   <dlentry props="native">
                        <dt>Since</dt>
                        <dd>v3.3.1</dd>
                    </dlentry>
                </dl>
                <p>The quality of the remote audio stream in the reported interval. The quality is determined by the Agora real-time audio MOS (Mean Opinion Score) measurement method. The return value range is [0, 500]. Dividing the return value by 100 gets the MOS score, which ranges from 0 to 5. The higher the score, the better the audio quality.</p>
-               
+
                <p> The subjective perception of audio quality corresponding to the Agora real-time audio MOS scores is as follows:<simpletable>
                                 <sthead>
                                     <stentry>MOS score</stentry>

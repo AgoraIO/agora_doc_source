@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onmetadatareceived">
-    <title><ph keyref="onMetadataReceived"/></title>
+    <title><ph keyref="onMetadataReceived" /></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the local user receives the metadata.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -26,24 +26,28 @@
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnMetadataReceived(Metadata metadata)</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.RECEIVE_METADATA, cb: (
     metadata: Metadata
-    ) => void): this;</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+    ) =&gt; void): this;</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">MetadataCallback? metadataReceived;</codeblock>
         </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
+       <plentry props="rtc">
+           <pt props="flutter">buffer</pt>
+           <pd>The data received</pd>
+       </plentry>
        <plentry props="rtc-ng">
            <pt props="android">buffer</pt>
            <pt props="ios mac">data</pt>
            <pd>The data received.</pd>
        </plentry>
-       <plentry props="ios mac android">
+       <plentry props="ios mac android flutter">
            <pt>uid</pt>
-           <pd>User ID</pd>
+           <pd>The user ID.</pd>
        </plentry>
        <plentry>
-           <pt props="android">timeStampMs</pt>
+           <pt props="android flutter">timeStampMs</pt>
            <pt props="ios mac">timestamp</pt>
            <pd>The timestamp.</pd>
        </plentry>

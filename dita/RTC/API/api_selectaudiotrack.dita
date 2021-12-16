@@ -6,7 +6,7 @@
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="selectAudioTrack"/>
+                <indexterm keyref="selectAudioTrack" />
             </keywords>
         </metadata>
     </prolog>
@@ -22,10 +22,10 @@
             </p>
             <p outputclass="codeblock">
                 <codeblock props="windows" outputclass="language-cpp">virtual int selectAudioTrack(int index) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; selectAudioTrack(int audioIndex);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
@@ -42,14 +42,15 @@
             <parml>
                 <plentry>
                     <pt props="ios mac windows">index</pt>
+                    <pt props="flutter">audioIndex</pt>
                     <pt props="android"><ph props="rtc-ng">index</ph><ph props="rtc">audioIndex</ph></pt>
-                    <pd>指定的播放音轨。<p props="rtc">该参数需小于或等于 getAudioTrack 的返回值。</p><p props="rtc-ng"><ph props="windows">该参数需小于或等于 <xref keyref="getStreamCount"/> 的 <parmname>count</parmname> 参数。</ph><ph props="windows">该参数需小于或等于 <xref keyref="getStreamCount"/> 的返回值。</ph></p></pd>
+                    <pd>音轨的索引值。</pd>
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
-            <ul id="ul_uns_l2y_hqb">
+            <ul>
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。</li>
             </ul>

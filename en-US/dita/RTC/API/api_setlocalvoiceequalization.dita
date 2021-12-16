@@ -20,7 +20,8 @@
                 <codeblock props="electron" outputclass="language-typescript">setLocalVoiceEqualization(bandFrequency: AUDIO_EQUALIZATION_BAND_FREQUENCY, bandGain: number): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoiceEqualization(AUDIO_EQUALIZATION_BAND_FREQUENCY bandFrequency, int bandGain);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoiceEqualization(
+      AudioEqualizationBandFrequency bandFrequency, int bandGain);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -34,13 +35,13 @@
   <pd>The band frequency. The value ranges between 0 and 9; representing the respective 10-band center frequencies of the voice effects, including 31, 62, 125, 250, 500, 1k, 2k, 4k, 8k, and 16k Hz. For more details, see <xref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY" />.</pd>
        </plentry>
        <plentry>
-           <pt props="android windows unity">bandGain</pt>
+           <pt props="android windows unity flutter">bandGain</pt>
            <pt props="ios mac">gain</pt>
   <pd>The gain of each band in dB. The value ranges between -15 and 15. The default value is 0.</pd>
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>

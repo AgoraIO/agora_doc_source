@@ -35,7 +35,7 @@
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteVideoTransportStats(uint uid, ushort delay, ushort lost, ushort rxKBitRate)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">TransportStatsCallback? remoteVideoTransportStats;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -43,36 +43,36 @@
    <dl outputclass="deprecated">
        <dlentry>
   <dt>Deprecated:</dt>
-  <dd>This callback is deprecated, please use <xref keyref="onRemoteVideoStats" /> instead.</dd>
+  <dd>Please use <xref keyref="onRemoteVideoStats" /> instead.</dd>
        </dlentry>
    </dl>
    <p id="desc1">This callback reports the transport-layer statistics, such as the packet loss rate and network time delay, once every two seconds after the local user receives a video packet from a remote user.</p>
    <p id="desc2">During a call, when the user receives the video packet sent by the remote user/host, the callback is triggered every 2 seconds.</p>
         </section>
         <section id="parameters">
-   <title>Parameter</title>
+   <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
-       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-       <plentry>
-  <pt>uid</pt>
-  <pd>The ID of the remote user sending the video packets.</pd>
-       </plentry>
-       <plentry>
-  <pt>delay</pt>
-  <pd>The network delay (ms) from the sender to the receiver.</pd>
-       </plentry>
-       <plentry>
-  <pt>lost</pt>
-  <pd>The packet loss rate (%) of the video packet sent from the remote user.</pd>
-       </plentry>
-       <plentry>
-  <pt>rxKBitRate</pt>
-  <pd>The bitrate of the received video (Kbps).</pd>
-       </plentry>
-   </parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user sending the video packets.</pd>
+                </plentry>
+                <plentry>
+                    <pt>delay</pt>
+                    <pd>The network delay (ms) from the sender to the receiver.</pd>
+                </plentry>
+                <plentry>
+                    <pt>lost</pt>
+                    <pd>The packet loss rate (%) of the video packet sent from the remote user.</pd>
+                </plentry>
+                <plentry>
+                    <pt>rxKBitRate</pt>
+                    <pd>The bitrate of the received video (Kbps).</pd>
+                </plentry>
+            </parml>
         </section>
     </refbody>
 </reference>

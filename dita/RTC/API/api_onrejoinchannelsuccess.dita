@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onrejoinchannelsuccess">
-    <title><ph keyref="onRejoinChannelSuccess"/></title>
+    <title><ph keyref="onRejoinChannelSuccess" /></title>
     <shortdesc id="short"><ph id="shortdesc">成功重新加入频道回调。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -23,22 +23,22 @@
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REJOIN_CHANNEL_SUCCESS, cb: (
      channel: string, 
      uid: number, 
-     elapsed: number) => void
+     elapsed: number) =&gt; void
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRejoinChannelSuccess(string channel, uint uid, int elapsed)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">UidWithElapsedAndChannelCallback? rejoinChannelSuccess;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
    
    <p id="desc">有时候由于网络原因，客户端可能会和服务器失去连接，SDK 会进行自动重连，自动重连成功后触发此回调方法。</p>
         </section>
-        <section id="parameters"><title>参数</title>
+        <section id="parameters"><title><ph keyref="callback-section-title" /></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" />
    <parml>
        <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt/>
-                  <pd/>
+                  <pt />
+                  <pd />
               </plentry>
        <plentry>
   <pt>channel</pt>

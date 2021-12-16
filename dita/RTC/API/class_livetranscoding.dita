@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-    <title><ph keyref="LiveTranscoding"/></title>
+    <title><ph keyref="LiveTranscoding" /></title>
     <shortdesc id="short"><ph id="shortdesc">CDN 直播推流的转码属性。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -21,7 +21,7 @@
     audioBitrate = 48;
     audioChannels = 1;
     audioCodecProfile = AudioCodecProfileType.LC_AAC;
-    transcodingUsers = new HashMap&lt;>();
+    transcodingUsers = new HashMap&lt;&gt;();
     backgroundColor = 0xFF000000;
     userConfigExtraInfo = null;
     metadata = null;
@@ -34,12 +34,12 @@
 @property(assign, nonatomic) BOOL lowLatency;
 @property(assign, nonatomic) NSInteger videoGop;
 @property(assign, nonatomic) AgoraVideoCodecProfileType videoCodecProfile;
-@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *> *_Nullable transcodingUsers;
+@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *&gt; *_Nullable transcodingUsers;
 @property(copy, nonatomic) NSString *_Nullable transcodingExtraInfo;
 @property(strong, nonatomic) AgoraImage *_Nullable watermark;
-@property (copy, nonatomic) NSArray&lt;AgoraImage *> *_Nullable watermarkArray;
+@property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable watermarkArray;
 @property(strong, nonatomic) AgoraImage *_Nullable backgroundImage;
-@property (copy, nonatomic) NSArray&lt;AgoraImage *> *_Nullable backgroundImageArray;
+@property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable backgroundImageArray;
 @property(strong, nonatomic) COLOR_CLASS *_Nullable backgroundColor;
 @property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;
 @property(assign, nonatomic) NSInteger audioBitrate;
@@ -154,10 +154,48 @@
     backgroundImage: RtcImage;
     transcodingUsers: Array&lt;TranscodingUser&gt;
     }</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
+  
+  int? width;
+  int? height;
+  int? videoBitrate;
+  VideoFrameRate? videoFramerate;
+  bool? lowLatency;
+  int? videoGop;
+  AgoraImage? watermark;
+  AgoraImage? backgroundImage;
+  AudioSampleRateType? audioSampleRate;
+  int? audioBitrate;
+  AudioChannel? audioChannels;
+  AudioCodecProfileType? audioCodecProfile;
+  VideoCodecProfileType? videoCodecProfile;
+  Color? backgroundColor;
+  String? userConfigExtraInfo;
+  List&lt;TranscodingUser&gt; transcodingUsers;
+
+  LiveTranscoding(
+    this.transcodingUsers, {
+    this.width,
+    this.height,
+    this.videoBitrate,
+    this.videoFramerate,
+    this.lowLatency,
+    this.videoGop,
+    this.watermark,
+    this.backgroundImage,
+    this.audioSampleRate,
+    this.audioBitrate,
+    this.audioChannels,
+    this.audioCodecProfile,
+    this.videoCodecProfile,
+    this.backgroundColor,
+    this.userConfigExtraInfo,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
                 <plentry props="android windows electron unity">
                     <pt>width</pt>
@@ -215,25 +253,23 @@
                 <plentry>
                     <pt>videoCodecProfile</pt>
                     <pd>
-                        <p>输出媒体流的视频编码规格，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</p>
+                        <p>输出媒体流的视频编码规格，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE" />。</p>
                         <note type="attention">如果你把这个参数设为其他值，Agora 服务器会将其调整为默认值。</note>
                     </pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>videoCodecType</pt>
-                    <pd>输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
+                    <pd>输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" />。</pd>
                 </plentry>
                 <plentry>
                     <pt>transcodingUsers</pt>
                     <pd>
-                        <p>参与转码合流的每个主播的设置。Agora 频道内最多支持 17 个主播。详见 <xref keyref="TranscodingUser"
-                            />。</p>
+                        <p>参与转码合流的每个主播的设置。Agora 频道内最多支持 17 个主播。详见 <xref keyref="TranscodingUser" />。</p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>transcodingExtraInfo</pt>
-                    <pd>输出媒体流中嵌入的用户 SEI 信息。用于向 CDN 推送 SEI 信息。长度限制 4096 字节。详见 <xref keyref="faq-sei"
-                            >SEI 帧相关问题</xref>。</pd>
+                    <pd>输出媒体流中嵌入的用户 SEI 信息。用于向 CDN 推送 SEI 信息。长度限制 4096 字节。详见 <xref keyref="faq-sei">SEI 帧相关问题</xref>。</pd>
                 </plentry>
                 <plentry>
                     <pt>backgroundColor</pt>
@@ -256,15 +292,15 @@
                 </plentry>
                 <plentry>
                     <pt>watermark</pt>
-                    <pd>输出媒体流的视频水印。必须为 PNG 格式。详见 <xref keyref="RtcImage"/>。</pd>
+                    <pd>输出媒体流的视频水印。必须为 PNG 格式。详见 <xref keyref="RtcImage" />。</pd>
                 </plentry>
                 <plentry>
                     <pt>backgroundImage</pt>
-                    <pd> 输出媒体流的视频背景图。详见 <xref keyref="RtcImage"/>。</pd>
+                    <pd> 输出媒体流的视频背景图。详见 <xref keyref="RtcImage" />。</pd>
                 </plentry>
                 <plentry>
                     <pt>audioSampleRate</pt>
-                    <pd>输出媒体流的音频采样率 (Hz)，详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</pd>
+                    <pd>输出媒体流的音频采样率 (Hz)，详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />。</pd>
                 </plentry>
                 <plentry>
                     <pt>audioBitrate</pt>
@@ -283,7 +319,7 @@
                 </plentry>
                 <plentry>
                     <pt>audioCodecProfile</pt>
-                    <pd>输出媒体流的音频编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。</pd>
+                    <pd>输出媒体流的音频编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />。</pd>
                 </plentry>
             </parml>
             <parml props="rtc-ng">
