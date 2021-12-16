@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiomixing2">
-    <title><ph keyref="startAudioMixing2"/></title>
+    <title><ph keyref="startAudioMixing2" /></title>
     <shortdesc id="short"><ph id="shortdesc">Starts playing the music file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startAudioMixing2"/>
+                <indexterm keyref="startAudioMixing2" />
             </keywords>
         </metadata>
     </prolog>
@@ -24,36 +24,57 @@
   startPos?: number,
 ): number </codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioMixing(string filePath, bool loopback, bool replace, int cycle, int startPos);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioMixing(
+      String filePath, bool loopback, bool replace, int cycle,
+      [int? startPos]);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry>
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v3.4.0</dd>
                 </dlentry>
             </dl>
-            <p conkeyref="startAudioMixing/audiomixing_detailed"/>
+            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the<xref keyref="onAudioMixingStateChanged" />  (<codeph>PLAY</codeph>) callback. When the audio mixing file playback finishes, the SDK triggers the<apiname keyref="onAudioMixingStateChanged" />  (<codeph>STOPPED</codeph>) callback on the local client.</p>
+   <note type="attention" id="audiomixing_note">
+       <ul>
+           <li>Call this method after joining a channel. If you need to call <apiname keyref="startAudioMixing2" /> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
+           <li>If the local audio mixing file does not exist, or if the SDK does not support the file format or cannot access the music file URL, the SDK returns <codeph>WARN_AUDIO_MIXING_OPEN_ERROR</codeph> (701).</li>
+           <li conkeyref="getAudioFileInfo/audioFormats"/>
+           <li props="android">To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>
+           <li props="android">If you need to play an online music file, Agora does not recommend using the redirected URL address. Some Android devices may fail to open a redirected URL address.</li>
+           <li props="android">If you call this method on an emulator, ensure that the music file is in the /sdcard/ directory and the format is MP3.</li>
+       </ul>
+   </note>
         </section>
         <section id="parameters"><title>Parameter</title>
             <parml>
+                <plentry conkeyref="getAudioFileInfo/filePath">
+                    <pt/>
+                    <pd/>
+                </plentry>
                 <plentry>
-                    <pt>filePath</pt>
-                    <pd><p conkeyref="playEffect3/filepath"/></pd>
+                    <pt>loopback</pt>
+                    <pd><p>Whether to only play music files on the local client:<ul>
+                               <li><codeph><ph keyref="true" /></codeph>: Only play music files on the local client so that only the local user can hear the music.</li>
+                               <li><codeph><ph keyref="false" /></codeph>: Publish music files to remote clients so that both the local user and remote users can hear the music.</li>
+                           </ul></p></pd>
                 </plentry>
-                <plentry conkeyref="startAudioMixing/loopback">
-                    <pt/>
-                    <pd/>
+                <plentry>
+                    <pt>replace</pt>
+                    <pd><p>Whether to replace the audio captured by the microphone with a music file: <ul>
+                               <li><codeph><ph keyref="true" /></codeph>: Replace the audio captured by the microphone with a music file. Users can only hear the music.</li>
+                               <li><codeph><ph keyref="false" /></codeph>: Do not replace the audio captured by the microphone with a music file. Users can hear both music and audio captured by the microphone.</li>
+                           </ul></p></pd>
                 </plentry>
-                <plentry conkeyref="startAudioMixing/replace">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry conkeyref="startAudioMixing/cycle">
-                    <pt/>
-                    <pd/>
+                <plentry>
+                    <pt>cycle</pt>
+                    <pd><p>The number of times the music file plays.<ul>
+                               <li>≥ 0: The number of playback times.  For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.</li>
+                               <li>-1: Play the audio effect in an infinite loop.</li>
+                           </ul></p></pd>
                 </plentry>
                 <plentry>
                     <pt>startPos</pt>
@@ -61,7 +82,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity electron">
             <title>Returns</title>
             <ul>
                 <li>0: Success.</li>
