@@ -12,15 +12,14 @@
         </note>
         <ul>
             <li><xref keyref="IRtcEngine"/> 类包含应用程序调用的主要方法。</li>
-            <li props="android ios mac windows"><xref keyref="IRtcEngineEventHandler"/> 类用于向应用程序发送回调通知。</li>
+            <li props="android ios mac windows flutter"><xref keyref="IRtcEngineEventHandler"/> 类用于向应用程序发送回调通知。</li>
             <li props="electron"><xref keyref="IRtcEngineEventHandler">AgoraRtcEngine.on</xref> 用于向应用程序发送回调通知。</li>
-            <li><xref keyref="IChannel"/> 类在指定频道中实现实时音视频功能。通过创建多个 <apiname keyref="IChannel"/>
-                对象，用户可以同时加入多个频道。</li>
-            <li props="ios mac windows android"><xref keyref="IChannelEventHandler"/>
-                类监听和报告指定频道的事件和数据。</li>
+            <li><xref keyref="IChannel"/> 类在指定频道中实现实时音视频功能。通过创建多个 <apiname keyref="IChannel"/> 对象，用户可以同时加入多个频道。</li>
+            <li props="ios mac windows android flutter"><xref keyref="IChannelEventHandler"/> 类监听和报告指定频道的事件和数据。</li>
             <li props="electron"><xref keyref="IChannelEventHandler">AgoraRtcChannel.on</xref> 监听和报告指定频道的事件和数据。</li>
             <li props="windows"><xref keyref="IAudioDeviceManager"/> 类提供用于测试音频设备的相关接口。</li>
             <li props="windows"><xref keyref="IVideoDeviceManager"/> 类提供用于测试视频设备的相关接口。</li>
+            <li props="flutter"><xref keyref="RtcDeviceManager"/> 类提供用于测试音、视频设备的相关接口。</li>
         </ul>
         <section id="core_methods">
             <title>核心方法</title>
@@ -29,7 +28,7 @@
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
                 </sthead>
-                <strow props="windows">
+                <strow props="windows flutter">
                     <stentry><xref keyref="createAgoraRtcEngine"/></stentry>
                     <stentry><ph conkeyref="createAgoraRtcEngine/shortdesc"/></stentry>
                 </strow>
@@ -47,7 +46,7 @@
                     <stentry><xref keyref="setChannelProfile"/></stentry>
                     <stentry><ph conkeyref="setChannelProfile/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="native">
                     <stentry><xref keyref="setClientRole1"/></stentry>
                     <stentry><ph conkeyref="setClientRole1/shortdesc"/></stentry>
                 </strow>
@@ -422,7 +421,7 @@
                     <stentry><xref keyref="IChannel"/></stentry>
                     <stentry><ph conkeyref="IChannel/shortdesc"/></stentry>
                 </strow>
-                <strow props="android ios mac windows unity">
+                <strow props="android ios mac windows unity flutter">
                     <stentry><xref keyref="IChannelEventHandler"/></stentry>
                     <stentry><ph conkeyref="IChannelEventHandler/shortdesc"/></stentry>
                 </strow>
@@ -437,7 +436,19 @@
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
                 </sthead>
-                <strow props="windows mac unity">
+                <strow props="flutter">
+                    <stentry><xref keyref="getAssetAbsolutePath"/></stentry>
+                    <stentry><ph conkeyref="getAssetAbsolutePath/shortdesc"/></stentry>
+                </strow>
+                <strow props="flutter">
+                    <stentry><xref keyref="enumerateDisplays"/></stentry>
+                    <stentry><ph conkeyref="enumerateDisplays/shortdesc"/></stentry>
+                </strow>
+                <strow props="flutter">
+                    <stentry><xref keyref="enumerateWindows"/></stentry>
+                    <stentry><ph conkeyref="enumerateWindows/shortdesc"/></stentry>
+                </strow>
+                <strow props="windows mac unity flutter">
                     <stentry><xref keyref="startScreenCaptureByDisplayId"/></stentry>
                     <stentry><ph conkeyref="startScreenCaptureByDisplayId/shortdesc"/></stentry>
                 </strow>
@@ -522,7 +533,7 @@
                     <stentry><xref keyref="getAudioMixingPublishVolume"/></stentry>
                     <stentry><ph conkeyref="getAudioMixingPublishVolume/shortdesc"/></stentry>
                 </strow>
-                <strow props="hide">
+                <strow>
                     <stentry><xref keyref="getAudioMixingDuration2"/></stentry>
                     <stentry><ph conkeyref="getAudioMixingDuration2/shortdesc"/></stentry>
                 </strow>
@@ -533,6 +544,22 @@
                 <strow>
                     <stentry><xref keyref="setAudioMixingPosition"/></stentry>
                     <stentry><ph conkeyref="setAudioMixingPosition/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getAudioTrackCount"/></stentry>
+                    <stentry><ph conkeyref="getAudioTrackCount/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="selectAudioTrack"/></stentry>
+                    <stentry><ph conkeyref="selectAudioTrack/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setAudioMixingPlaybackSpeed"/></stentry>
+                    <stentry><ph conkeyref="setAudioMixingPlaybackSpeed/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setAudioMixingDualMonoMode"/></stentry>
+                    <stentry><ph conkeyref="setAudioMixingDualMonoMode/shortdesc"/></stentry>
                 </strow>
             </simpletable>
             <simpletable>
@@ -626,6 +653,29 @@
                 <strow>
                     <stentry><xref keyref="onAudioEffectFinished"/></stentry>
                     <stentry><ph conkeyref="onAudioEffectFinished/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
+        <section id="audio_file_information" props="android ios windows flutter">
+            <title>音频文件信息</title>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="getAudioFileInfo"/></stentry>
+                    <stentry><ph conkeyref="getAudioFileInfo/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+            <simpletable>
+                <sthead>
+                    <stentry>事件</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onRequestAudioFileInfo"/></stentry>
+                    <stentry><ph conkeyref="onRequestAudioFileInfo/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -764,6 +814,14 @@
                     <stentry><ph conkeyref="updateChannelMediaRelay/shortdesc"/></stentry>
                 </strow>
                 <strow>
+                    <stentry><xref keyref="pauseAllChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="pauseAllChannelMediaRelay/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="resumeAllChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="resumeAllChannelMediaRelay/shortdesc"/></stentry>
+                </strow>
+                <strow>
                     <stentry><xref keyref="stopChannelMediaRelay"/></stentry>
                     <stentry><ph conkeyref="stopChannelMediaRelay/shortdesc"/></stentry>
                 </strow>
@@ -810,7 +868,7 @@
                 </strow>
             </simpletable>
         </section>
-        <section id="face_detection" props="android ios windows unity"><title>人脸检测</title><p
+        <section id="face_detection" props="android ios windows unity flutter"><title>人脸检测</title><p
                 props="windows unity">该组功能仅适用于 Android 和 iOS 平台。</p><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -829,9 +887,10 @@
                     <stentry><xref keyref="onFacePositionChanged"/></stentry>
                     <stentry><ph conkeyref="onFacePositionChanged/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
-        <section id="audio_routing_control" props="android ios windows unity"><title>音频播放路由</title><p
-                props="windows unity">该组方法仅适用于 Android 和 iOS 平台。</p><simpletable>
+            </simpletable>
+        </section>
+        <section id="audio_routing_control" props="android ios windows unity flutter"><title>音频播放路由</title><p
+                props="windows unity flutter">该组方法仅适用于 Android 和 iOS 平台。</p><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -849,7 +908,8 @@
                     <stentry><xref keyref="isSpeakerphoneEnabled"/></stentry>
                     <stentry><ph conkeyref="isSpeakerphoneEnabled/shortdesc"/></stentry>
                 </strow>
-            </simpletable><simpletable>
+            </simpletable>
+            <simpletable>
                 <sthead>
                     <stentry>事件</stentry>
                     <stentry>描述</stentry>
@@ -858,9 +918,10 @@
                     <stentry><xref keyref="onAudioRouteChanged"/></stentry>
                     <stentry><ph conkeyref="onAudioRouteChanged/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
-        <section id="in-ear_monitoring" props="android ios windows unity"><title>耳返控制</title><p
-                props="windows unity">该组方法仅适用于 Android 和 iOS 平台。</p><simpletable>
+            </simpletable>
+        </section>
+        <section id="in-ear_monitoring" props="android ios windows unity flutter"><title>耳返控制</title><p
+                props="windows unity flutter">该组方法仅适用于 Android 和 iOS 平台。</p><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
                     <stentry>描述</stentry>
@@ -873,7 +934,8 @@
                     <stentry><xref keyref="setInEarMonitoringVolume"/></stentry>
                     <stentry><ph conkeyref="setInEarMonitoringVolume/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="dual_video_stream_mode">
             <title>视频双流模式</title>
             <simpletable>
@@ -946,6 +1008,10 @@
                     <stentry><xref keyref="startEchoTest2"/></stentry>
                     <stentry><ph conkeyref="startEchoTest2/shortdesc"/></stentry>
                 </strow>
+                <strow props="android ios mac windows">
+                    <stentry><xref keyref="startEchoTest3"/></stentry>
+                    <stentry><ph conkeyref="startEchoTest3/shortdesc"/></stentry>
+                </strow>
                 <strow>
                     <stentry><xref keyref="stopEchoTest"/></stentry>
                     <stentry><ph conkeyref="stopEchoTest/shortdesc"/></stentry>
@@ -991,7 +1057,8 @@
                     <stentry><xref keyref="setVideoSource"/></stentry>
                     <stentry><ph conkeyref="setVideoSource/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="external_video_data" props="windows unity"><title>视频自采集（仅 Push 模式）</title><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -1005,7 +1072,8 @@
                     <stentry><xref keyref="pushVideoFrame"/></stentry>
                     <stentry><ph conkeyref="pushVideoFrame/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="external_audio_data" props="windows android ios mac unity"><title>音频自采集（仅 Push 模式）</title><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -1023,7 +1091,8 @@
                     <stentry><xref keyref="pushAudioFrame2"></xref></stentry>
                     <stentry><ph conkeyref="pushAudioFrame2/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="external_audio_sink" props="windows unity"><title>音频自渲染（仅 Pull 模式）</title><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -1037,7 +1106,8 @@
                     <stentry><xref keyref="pullAudioFrame"/></stentry>
                     <stentry><ph conkeyref="pullAudioFrame/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="raw_audio_data" props="windows unity"><title>原始音频数据</title><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -1063,7 +1133,8 @@
                     <stentry><xref keyref="setMixedAudioFrameParameters"/></stentry>
                     <stentry><ph conkeyref="setMixedAudioFrameParameters/shortdesc"/></stentry>
                 </strow>
-            </simpletable><simpletable>
+            </simpletable>
+            <simpletable>
                 <sthead>
                     <stentry>事件</stentry>
                     <stentry>描述</stentry>
@@ -1092,7 +1163,8 @@
                     <stentry><xref keyref="onPlaybackAudioFrameBeforeMixingEx"/></stentry>
                     <stentry><ph conkeyref="onPlaybackAudioFrameBeforeMixingEx/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="raw_video_data" props="windows unity"><title>原始视频数据</title><simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -1106,7 +1178,8 @@
                     <stentry><xref keyref="unregisterVideoFrameObserver"/></stentry>
                     <stentry><ph conkeyref="unregisterVideoFrameObserver/shortdesc"/></stentry>
                 </strow>
-            </simpletable><simpletable>
+            </simpletable>
+            <simpletable>
                 <sthead>
                     <stentry>事件</stentry>
                     <stentry>描述</stentry>
@@ -1151,7 +1224,8 @@
                     <stentry><xref keyref="onRenderVideoFrameEx"/></stentry>
                     <stentry><ph conkeyref="onRenderVideoFrameEx/shortdesc"/></stentry>
                 </strow>
-            </simpletable></section>
+            </simpletable>
+        </section>
         <section id="media_metadata">
             <title>媒体附属信息</title>
             <p>该组方法仅适用于互动直播。</p>
@@ -1164,15 +1238,15 @@
                     <stentry><xref keyref="registerMediaMetadataObserver"/></stentry>
                     <stentry><ph conkeyref="registerMediaMetadataObserver/shortdesc"/></stentry>
                 </strow>
-                <strow props="unity">
+                <strow props="unity flutter">
                     <stentry><xref keyref="unregisterMediaMetadataObserver"/></stentry>
                     <stentry><ph conkeyref="unregisterMediaMetadataObserver/shortdesc"/></stentry>
                 </strow>
-                <strow props="electron unity">
+                <strow props="electron unity flutter">
                     <stentry><xref keyref="setMaxMetadataSize"/></stentry>
                     <stentry><ph conkeyref="setMaxMetadataSize/shortdesc"/></stentry>
                 </strow>
-                <strow props="unity">
+                <strow props="unity flutter">
                     <stentry><xref keyref="sendMetadata"/></stentry>
                     <stentry><ph keyref="sendMetadata/shortdesc"/></stentry>
                 </strow>
@@ -1186,7 +1260,7 @@
                     <stentry><xref keyref="getMaxMetadataSize"/></stentry>
                     <stentry><ph conkeyref="getMaxMetadataSize/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="android ios mac windows">
                     <stentry><xref keyref="onReadyToSendMetadata"/></stentry>
                     <stentry><ph conkeyref="onReadyToSendMetadata/shortdesc"/></stentry>
                 </strow>
@@ -1211,6 +1285,29 @@
                 <strow>
                     <stentry><xref keyref="clearVideoWatermarks"/></stentry>
                     <stentry><ph conkeyref="clearVideoWatermarks/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
+        <section id="video_snapshot">
+            <title>视频截图</title>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="takeSnapshot"/></stentry>
+                    <stentry><ph conkeyref="takeSnapshot/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+            <simpletable>
+                <sthead>
+                    <stentry>事件</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onSnapshotTaken"/></stentry>
+                    <stentry><ph conkeyref="onSnapshotTaken/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -1258,6 +1355,42 @@
                 <strow>
                     <stentry><xref keyref="switchCamera"/></stentry>
                     <stentry><ph conkeyref="switchCamera/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="isCameraZoomSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraZoomSupported/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="isCameraTorchSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraTorchSupported/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="isCameraFocusSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraFocusSupported/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="isCameraExposurePositionSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraExposurePositionSupported/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="isCameraAutoFocusFaceModeSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraAutoFocusFaceModeSupported/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="setCameraZoomFactor"/></stentry>
+                    <stentry><ph conkeyref="setCameraZoomFactor/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="getCameraMaxZoomFactor"/></stentry>
+                    <stentry><ph conkeyref="getCameraMaxZoomFactor/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="setCameraFocusPositionInPreview"/></stentry>
+                    <stentry><ph conkeyref="setCameraFocusPositionInPreview/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios flutter">
+                    <stentry><xref keyref="setCameraExposurePosition"/></stentry>
+                    <stentry><ph conkeyref="setCameraExposurePosition/shortdesc"/></stentry>
                 </strow>
             </simpletable>
             <simpletable>
@@ -1434,6 +1567,19 @@
                 </strow>
             </simpletable>
         </section>
+        <section id="child_process" props="flutter">
+            <title>子线程</title>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="getScreenShareHelper"/></stentry>
+                    <stentry><ph conkeyref="getScreenShareHelper/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
         <section id="miscellaneous_audio_control">
             <title>其他音频控制</title>
             <simpletable>
@@ -1445,7 +1591,7 @@
                     <stentry><xref keyref="enableLoopbackRecording"/></stentry>
                     <stentry><ph conkeyref="enableLoopbackRecording/shortdesc"/></stentry>
                 </strow>
-                <strow props="ios mac windows">
+                <strow props="ios mac windows flutter">
                     <stentry><xref keyref="setAudioSessionOperationRestriction"/></stentry>
                     <stentry><ph conkeyref="setAudioSessionOperationRestriction/shortdesc"
                         /></stentry>
@@ -1531,8 +1677,7 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceEnableLoopbackRecording"/></stentry>
-                    <stentry><ph conkeyref="videoSourceEnableLoopbackRecording/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceEnableLoopbackRecording/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceEnableVideo"/></stentry>
@@ -1540,13 +1685,11 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceMuteAllRemoteAudioStreams"/></stentry>
-                    <stentry><ph conkeyref="videoSourceMuteAllRemoteAudioStreams/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceMuteAllRemoteAudioStreams/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceMuteAllRemoteVideoStreams"/></stentry>
-                    <stentry><ph conkeyref="videoSourceMuteAllRemoteVideoStreams/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceMuteAllRemoteVideoStreams/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceSetAddonLogFile"/></stentry>
@@ -1554,13 +1697,11 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceSetScreenCaptureContentHint"/></stentry>
-                    <stentry><ph conkeyref="videoSourceSetScreenCaptureContentHint/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceSetScreenCaptureContentHint/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceSetVideoEncoderConfiguration"/></stentry>
-                    <stentry><ph conkeyref="videoSourceSetVideoEncoderConfiguration/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceSetVideoEncoderConfiguration/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceStartPreview"/></stentry>
@@ -1568,13 +1709,11 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceStartScreenCaptureByScreen"/></stentry>
-                    <stentry><ph conkeyref="videoSourceStartScreenCaptureByScreen/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceStartScreenCaptureByScreen/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceStartScreenCaptureByWindow"/></stentry>
-                    <stentry><ph conkeyref="videoSourceStartScreenCaptureByWindow/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceStartScreenCaptureByWindow/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceStopPreview"/></stentry>
@@ -1586,13 +1725,11 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceUpdateScreenCaptureParameters"/></stentry>
-                    <stentry><ph conkeyref="videoSourceUpdateScreenCaptureParameters/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceUpdateScreenCaptureParameters/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceUpdateScreenCaptureRegion"/></stentry>
-                    <stentry><ph conkeyref="videoSourceUpdateScreenCaptureRegion/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceUpdateScreenCaptureRegion/shortdesc"/></stentry>
                 </strow>
             </simpletable>
             <p>下表为以上双实例方法对应的回调。</p>
@@ -1659,23 +1796,19 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceRemoteVideoTransportStats"/></stentry>
-                    <stentry><ph conkeyref="videoSourceRemoteVideoTransportStats/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteVideoTransportStats/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceRemoteAudioTransportStats"/></stentry>
-                    <stentry><ph conkeyref="videoSourceRemoteAudioTransportStats/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteAudioTransportStats/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceAudioDeviceStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceAudioDeviceStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceAudioDeviceStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceVideoDeviceStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceVideoDeviceStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceVideoDeviceStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceNetworkQuality"/></stentry>
@@ -1719,8 +1852,7 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceMediaEngineStartCallSuccess"/></stentry>
-                    <stentry><ph conkeyref="videoSourceMediaEngineStartCallSuccess/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceMediaEngineStartCallSuccess/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceRequestToken"/></stentry>
@@ -1732,13 +1864,11 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceRemoteVideoStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceRemoteVideoStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteVideoStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceTokenPrivilegeWillExpire"/></stentry>
-                    <stentry><ph conkeyref="videoSourceTokenPrivilegeWillExpire/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceTokenPrivilegeWillExpire/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceConnectionStateChanged"/></stentry>
@@ -1754,28 +1884,23 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceRemoteAudioStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceRemoteAudioStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceRemoteAudioStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceAudioPublishStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceAudioPublishStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceAudioPublishStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceVideoPublishStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceVideoPublishStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceVideoPublishStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceAudioSubscribeStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceAudioSubscribeStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceAudioSubscribeStateChanged/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="videoSourceVideoSubscribeStateChanged"/></stentry>
-                    <stentry><ph conkeyref="videoSourceVideoSubscribeStateChanged/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="videoSourceVideoSubscribeStateChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -1818,7 +1943,7 @@
                     <stentry><xref keyref="getErrorDescription"/></stentry>
                     <stentry><ph conkeyref="getErrorDescription/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="hide">
                     <stentry><xref keyref="uploadLogFile"/></stentry>
                     <stentry><ph conkeyref="uploadLogFile/shortdesc"/></stentry>
                 </strow>

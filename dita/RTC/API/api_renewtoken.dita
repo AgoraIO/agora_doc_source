@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_renewtoken">
-    <title><ph keyref="renewToken"/></title>
+    <title><ph keyref="renewToken" /></title>
     <shortdesc id="short"><ph id="shortdesc">更新 Token。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -17,8 +17,8 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">renewToken(token: string): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int RenewToken(string token);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; renewToken(String token);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -26,8 +26,8 @@
    该方法用于更新 Token。Token 会在一定时间后失效。在以下两种情况下，app 应重新获取 Token,
    然后调用该方法传入新的 Token，否则 SDK 无法和服务器建立连接：
    <ul>
-       <li>发生 <xref keyref="onTokenPrivilegeWillExpire"/> 回调时。</li>
-       <li><xref keyref="onConnectionStateChanged"/> 回调报告 <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED"/>(9) 时。</li>
+       <li>发生 <xref keyref="onTokenPrivilegeWillExpire" /> 回调时。</li>
+       <li><xref keyref="onConnectionStateChanged" /> 回调报告 <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED" />(9) 时。</li>
    </ul>
         </section>
         <section id="parameters"><title>参数</title>
@@ -38,7 +38,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>返回值</title>
    <ul>
        <li>0(ERR_OK): 方法调用成功。</li>

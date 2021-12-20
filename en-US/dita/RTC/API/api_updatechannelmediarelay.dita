@@ -19,7 +19,8 @@
                 <codeblock props="electron" outputclass="language-typescript">updateChannelMediaRelay(config: ChannelMediaRelayConfiguration): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateChannelMediaRelay(ChannelMediaRelayConfiguration configuration);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateChannelMediaRelay(
+      ChannelMediaRelayConfiguration channelMediaRelayConfiguration);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -28,17 +29,17 @@
    <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayEvent" /> callback with the <apiname keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL" /> (7) state code.</p>
    <note type="attention">Call this method after the <xref keyref="startChannelMediaRelay" /> method to update the destination channel.</note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameters</title>
    <parml>
        <plentry>
-           <pt props="android">channelMediaRelayConfiguration</pt>
+           <pt props="android flutter">channelMediaRelayConfiguration</pt>
            <pt props="ios mac">config</pt>
            <pt props="windows unity">configuration</pt>
   <pd>The configuration of the media stream relay. For more details, see <xref keyref="ChannelMediaRelayConfiguration" />.</pd>
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>

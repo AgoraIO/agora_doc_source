@@ -18,7 +18,7 @@
                 <codeblock props="electron" outputclass="language-typescript">createDataStream(reliable: boolean, ordered: boolean): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int CreateDataStream(bool reliable, bool ordered);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;int?&gt; createDataStream(bool reliable, bool ordered);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -26,7 +26,7 @@
    <dl outputclass="deprecated">
        <dlentry>
   <dt>Deprecated:</dt>
-  <dd>This method is deprecated as of v2.4.0. Please use <xref keyref="IChannel_createDataStream2" /> instead.</dd>
+  <dd>Please use <xref keyref="IChannel_createDataStream2" /> instead.</dd>
        </dlentry>
    </dl>
    <p conkeyref="createDataStream1/desc" />
@@ -42,8 +42,13 @@
                     <pt>reliable</pt>
                     <pd>
                         <p>Whether or not the data stream is reliable:<ul>
-                                <li><codeph><ph keyref="true" /></codeph>: The recipients receive the data from the sender within five seconds. If the recipient does not receive the data within five seconds, the SDK triggers the <xref keyref="IChannel_onStreamMessageError" /> callback and returns an error code.</li>
-                                <li><codeph><ph keyref="false" /></codeph>: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.</li>
+                            <li><codeph><ph keyref="true" /></codeph>: The recipients receive the
+                                data from the sender within five seconds. If the recipient does not
+                                receive the data within five seconds, the SDK triggers the <xref keyref="IChannel_onStreamMessageError" /> callback and returns an
+                                error code.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: There is no guarantee that
+                                the recipients receive the data stream within five seconds and no
+                                error message is reported for any delay or missing data stream.</li>
                             </ul></p>
                     </pd>
                 </plentry>

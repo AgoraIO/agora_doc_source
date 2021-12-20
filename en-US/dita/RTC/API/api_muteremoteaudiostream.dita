@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_muteremoteaudiostream">
-    <title><ph keyref="muteRemoteAudioStream"/></title>
+    <title><ph keyref="muteRemoteAudioStream" /></title>
     <shortdesc id="short"><ph id="shortdesc">Stops or resumes subscribing to the audio stream of a specified user.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -18,8 +18,8 @@
 </codeblock>
                 <codeblock props="electron" outputclass="language-typescript">muteRemoteAudioStream(userId: number, mute: boolean): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int MuteRemoteAudioStream(uint userId, bool mute);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteRemoteAudioStream(int uid, bool muted);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -31,26 +31,26 @@
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameters</title>
    <parml>
        <plentry>
   <pt props="unity">userId</pt>
-           <pt props="ios mac windows android">uid</pt>
-  <pd>The user ID of the specified user.</pd>
+           <pt props="ios mac windows android flutter">uid</pt>
+  <pd id="userId">The user ID of the specified user.</pd>
        </plentry>
        <plentry>
-           <pt props="android">muted</pt>
+           <pt props="android flutter">muted</pt>
            <pt props="ios mac windows unity">mute</pt>
-  <pd><p>Whether to stop subscribing to the audio stream of the specified user.</p>
+  <pd id="mute"><p>Whether to stop subscribing to the audio stream of the specified user.
       <ul>
- <li><codeph><ph keyref="true"/></codeph>: Stop subscribing to the audio stream of the specified user.</li>
- <li><codeph><ph keyref="false"/></codeph>: (Default) Subscribe to the audio stream of the specified user.</li>
-      </ul>
+ <li><codeph><ph keyref="true" /></codeph>: Stop subscribing to the audio stream of the specified user.</li>
+ <li><codeph><ph keyref="false" /></codeph>: (Default) Subscribe to the audio stream of the specified user.</li>
+      </ul></p>
   </pd>
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>

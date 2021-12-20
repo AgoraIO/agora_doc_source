@@ -21,7 +21,7 @@
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_PUBLISH_FALLBACK_TO_AUDIO_ONLY, cb: (isFallbackOrRecover: boolean) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalPublishFallbackToAudioOnly(bool isFallbackOrRecover)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">FallbackCallback? localPublishFallbackToAudioOnly;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -29,22 +29,24 @@
    <p>If you call <xref keyref="setLocalPublishFallbackOption" /> and set <parmname>option</parmname> as <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" />, the SDK triggers this callback when the remote media stream falls back to audio-only mode due to poor uplink conditions, or when the remote media stream switches back to the video after the uplink network condition improves.</p>
    <note type="attention">If the local stream falls back to the audio-only stream, the remote user receives the <xref keyref="onUserMuteVideo" /> callback.</note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
    <parml>
-       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-       <plentry id="isFallbackOrRecover">
-  <pt>isFallbackOrRecover</pt>
-  <pd>
-      <ul>
- <li><codeph><ph keyref="true" /></codeph>: The published stream falls back to audio-only due to poor network conditions.</li>
- <li><codeph><ph keyref="false" /></codeph>: The published stream switches back to the video after the network conditions improve.</li>
-      </ul>
-  </pd>
-       </plentry>
-   </parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry id="isFallbackOrRecover">
+                    <pt>isFallbackOrRecover</pt>
+                    <pd>
+                        <ul>
+                            <li><codeph><ph keyref="true" /></codeph>: The published stream falls
+                                back to audio-only due to poor network conditions.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: The published stream switches
+                                back to the video after the network conditions improve.</li>
+                        </ul>
+                    </pd>
+                </plentry>
+            </parml>
         </section>
     </refbody>
 </reference>

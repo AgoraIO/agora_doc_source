@@ -47,7 +47,18 @@
     encryptionKey: string;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
+  
+  EncryptionMode? encryptionMode;
+  String? encryptionKey;
+  List&lt;int&gt;? encryptionKdfSalt;
+
+  EncryptionConfig({
+    this.encryptionMode,
+    this.encryptionKey,
+    this.encryptionKdfSalt,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
@@ -56,11 +67,11 @@
        <plentry>
   <pt>encryptionMode</pt>
   <pd><p props="ios mac windows">The built-in encryption mode. For details, see <xref keyref="ENCRYPTION_MODE" />.</p>
-      <p props="android">The built-in encryption mode. Agora recommends using <ph keyref="AES_128_GCM2" /> or <ph keyref="AES_256_GCM2" /> encrypted mode. These two modes support the use of salt for higher security.<ul id="ul_urr_tlz_rqb">
+      <p props="android flutter">The built-in encryption mode. Agora recommends using <ph keyref="AES_128_GCM2" /> or <ph keyref="AES_256_GCM2" /> encrypted mode. These two modes support the use of salt for higher security.<ul id="ul_urr_tlz_rqb">
                                 <li><ph keyref="SM4_128_ECB" /> (4): 128-bit SM4 encryption, ECB mode.</li>
                                 <li><ph keyref="AES_128_GCM2" /> (7): (Default) 128-bit AES encryption, GCM mode. This encryption mode requires the setting of salt (<codeph>encryptionKdfSalt</codeph>).</li>
                                 <li><ph keyref="AES_256_GCM2" /> (8): 256-bit AES encryption, GCM mode. This encryption mode requires the setting of salt (<codeph>encryptionKdfSalt</codeph>).</li>
-                                <li><ph keyref="MODE_END" /> (9): Enumeration value boundary.</li>
+                                <li props="android"><ph keyref="MODE_END" /> (9): Enumeration value boundary.</li>
                             </ul></p>
   </pd>
        </plentry>
@@ -75,7 +86,7 @@
                     <pt>encryptionKdfSalt</pt>
                     <pd>
                         <dl outputclass="since" props="rtc">
-                            <dlentry>
+                            <dlentry props="native">
                                 <dt>Since</dt>
                                 <dd>v3.4.5</dd>
                             </dlentry>

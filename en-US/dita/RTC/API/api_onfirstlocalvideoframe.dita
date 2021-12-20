@@ -30,14 +30,14 @@
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalVideoFrame(int width, int height, int elapsed)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">VideoFrameCallback? firstLocalVideoFrame;</codeblock>
         </p>
           </section>
           <section id="detailed_desc">
                <p id="desc">The SDK triggers this callback when the first local video frame is displayed/rendered on the local video view.</p>
           </section>
           <section id="parameters">
-               <title>Parameter</title>
+               <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
                <parml>
                     <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                          <pt />
@@ -47,17 +47,20 @@
                          <pt>size</pt>
                          <pd>The size of the first local video frame.</pd>
                     </plentry>
-                    <plentry props="android windows unity">
+                    <plentry props="android windows unity flutter">
                          <pt>width</pt>
                          <pd>The width (px) of the first local video frame.</pd>
                     </plentry>
-                    <plentry props="android windows unity">
+                    <plentry props="android windows unity flutter">
                          <pt>height</pt>
                          <pd>The height (px) of the first local video frame.</pd>
                     </plentry>
                     <plentry>
                          <pt>elapsed</pt>
-                         <pd>The time elapsed (ms) from the local user calling <apiname keyref="joinChannel2" />until the SDK triggers this callback. If you call <xref keyref="startPreview" /> before calling <apiname keyref="joinChannel2" />, then this parameter is the time elapsed from calling the <apiname keyref="startPreview" /> method until the SDK triggers this callback.</pd>
+                         <pd>The time elapsed (ms) from the local user calling <apiname keyref="joinChannel2" />until the SDK triggers this callback. If you
+                              call <xref keyref="startPreview" /> before calling <apiname keyref="joinChannel2" />, then this parameter is the time elapsed from
+                              calling the <apiname keyref="startPreview" /> method until the SDK
+                              triggers this callback.</pd>
                     </plentry>
                </parml>
           </section>
