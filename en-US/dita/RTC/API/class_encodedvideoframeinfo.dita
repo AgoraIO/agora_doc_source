@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encodedvideoframeinfo">
-    <title><ph keyref="EncodedVideoFrameInfo" /></title>
+    <title><ph keyref="EncodedVideoFrameInfo"/></title>
     <shortdesc id="short"><ph id="shortdesc">Information about externally encoded video frames.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public EncodedVideoFrameInfo() {
+                <codeblock props="android" outputclass="language-java">public class EncodedVideoFrameInfo {
+  public int codecType;
+  public int width;
+  public int height;
+  public int framesPerSecond;
+  public int frameType;
+  public int rotation;
+  public int trackId;
+  public long renderTimeMs;
+  public int uid;
+  public EncodedVideoFrameInfo() {
     codecType = Constants.VIDEO_CODEC_H264;
     width = 0;
     height = 0;
@@ -15,55 +25,117 @@
     rotation = Constants.VIDEO_ORIENTATION_0;
     trackId = 0;
     renderTimeMs = 0;
-    internalSendTs = 0;
     uid = 0;
-  }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="windows" outputclass="language-cpp">struct EncodedVideoFrameInfo {
-  EncodedVideoFrameInfo()
-      : codecType(VIDEO_CODEC_H264),
-        width(0),
-        height(0),
-        framesPerSecond(0),
-        frameType(VIDEO_FRAME_TYPE_BLANK_FRAME),
-        rotation(VIDEO_ORIENTATION_0),
-        trackId(0),
-        renderTimeMs(0),
-        uid(0)
-
-  EncodedVideoFrameInfo(const EncodedVideoFrameInfo&amp; rhs)
-      : codecType(rhs.codecType),
-        width(rhs.width),
-        height(rhs.height),
-        framesPerSecond(rhs.framesPerSecond),
-        frameType(rhs.frameType),
-        rotation(rhs.rotation),
-        trackId(rhs.trackId),
-        renderTimeMs(rhs.renderTimeMs),
-        uid(rhs.uid)
-
-  VIDEO_CODEC_TYPE codecType;
-  int width;
-  int height;
-  int framesPerSecond;
-  VIDEO_FRAME_TYPE frameType;
-  VIDEO_ORIENTATION rotation;
-  int trackId; 
-  int64_t renderTimeMs;
-  uid_t uid;
-};</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+  }
+  @CalledByNative
+  public EncodedVideoFrameInfo(int codecType, int width, int height, int framesPerSecond,
+      int frameType, int rotation, int trackId, long renderTimeMs, long ：, int uid) {
+    this.codecType = codecType;
+    this.width = width;
+    this.height = height;
+    this.framesPerSecond = framesPerSecond;
+    this.frameType = frameType;
+    this.rotation = rotation;
+    this.trackId = trackId;
+    this.renderTimeMs = renderTimeMs;
+    this.uid = uid;
+  }
+  @CalledByNative
+  public int getCodecType() {
+    return codecType;
+  }
+  @CalledByNative
+  public int getWidth() {
+    return width;
+  }
+  @CalledByNative
+  public int getHeight() {
+    return height;
+  }
+  @CalledByNative
+  public int getFramesPerSecond() {
+    return framesPerSecond;
+  }
+  @CalledByNative
+  public int getFrameType() {
+    return frameType;
+  }
+  @CalledByNative
+  public int getRotation() {
+    return rotation;
+  }
+  @CalledByNative
+  public int getTrackId() {
+    return trackId;
+  }
+  @CalledByNative
+  public long getRenderTimeMs() {
+    return renderTimeMs;
+  }
+  @CalledByNative
+  public int getUid() {
+    return uid;
+  }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("codecType=").append(codecType);
+    sb.append(" width=").append(width);
+    sb.append(" height=").append(height);
+    sb.append(" framesPerSecond=").append(framesPerSecond);
+    sb.append(" frameType=").append(frameType);
+    sb.append(" rotation=").append(rotation);
+    sb.append(" trackId=").append(trackId);
+    sb.append(" renderTimeMs=").append(renderTimeMs);
+    sb.append(" uid=").append(uid);
+    return sb.toString();
+  }
+}
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
+                <codeblock props="windows" outputclass="language-cpp">struct EncodedVideoFrameInfo {
+                    EncodedVideoFrameInfo()
+                    : codecType(VIDEO_CODEC_H264),
+                    width(0),
+                    height(0),
+                    framesPerSecond(0),
+                    frameType(VIDEO_FRAME_TYPE_BLANK_FRAME),
+                    rotation(VIDEO_ORIENTATION_0),
+                    trackId(0),
+                    renderTimeMs(0),
+                    uid(0),
+                    streamType(VIDEO_STREAM_HIGH) {}
+                    EncodedVideoFrameInfo(const EncodedVideoFrameInfo&amp; rhs)
+                    : codecType(rhs.codecType),
+                    width(rhs.width),
+                    height(rhs.height),
+                    framesPerSecond(rhs.framesPerSecond),
+                    frameType(rhs.frameType),
+                    rotation(rhs.rotation),
+                    trackId(rhs.trackId),
+                    renderTimeMs(rhs.renderTimeMs),
+                    uid(rhs.uid),
+                    streamType(rhs.streamType) {}
+                    VIDEO_CODEC_TYPE codecType;
+                    int width;
+                    int height;
+                    int framesPerSecond;
+                    VIDEO_FRAME_TYPE frameType;
+                    VIDEO_ORIENTATION rotation;
+                    int trackId;
+                    int64_t renderTimeMs;
+                    uid_t uid;
+                    VIDEO_STREAM_TYPE streamType;
+                    };
+                </codeblock>
+            </p> 
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
                     <pt>codecType</pt>
-                    <pd props="windows">The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE" />. The default value is <codeph><ph keyref="VIDEO_CODEC_H264" />(2)</codeph>.</pd>
+                    <pd props="windows">The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>. The default value is <codeph><ph keyref="VIDEO_CODEC_H264"/> (2)</codeph>.</pd>
                     <pd props="android">The codec type of the video:<ul id="ul_hkm_4qy_4qb">
                         <li>1: VP8</li>
                         <li>2: (Default) H264</li>
@@ -72,11 +144,11 @@
                 </plentry>
                 <plentry>
                     <pt>width</pt>
-                    <pd>Width (pixel) of the video frame. The default value is 360.</pd>
+                    <pd>Width (pixel) of the video frame.</pd>
                 </plentry>
                 <plentry>
                     <pt>height</pt>
-                    <pd>Height (pixel) of the video frame. The default value is 640.</pd>
+                    <pd>Height (pixel) of the video frame.</pd>
                 </plentry>
                 <plentry>
                     <pt>framesPerSecond</pt>
@@ -87,19 +159,19 @@
                 </plentry>
                 <plentry>
                     <pt>frameType</pt>
-                    <pd props="windows">The type of the video frame, see <xref keyref="VIDEO_FRAME_TYPE" />.</pd>
-                    <pd props="android">Type of the frame.<ul id="ul_djl_sqy_4qb">
-                        <li>0: (Default) blank frame</li>
-                        <li>3: Keyframe</li>
-                        <li>4: Delta frame.</li>
-                        <li>5: The B frame</li>
-                        <li>6: Unknown frame</li>
+                    <pd props="windows">The video frame type, see <xref keyref="VIDEO_FRAME_TYPE"/>.</pd>
+                    <pd props="android">The video frame type.<ul id="ul_djl_sqy_4qb">
+                        <li>0: (Default) <ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME"/>, blank frame.</li>
+                        <li>3: <ph keyref="VIDEO_FRAME_TYPE_KEY_FRAME"/>, keyframe.</li>
+                        <li>4: <ph keyref="VIDEO_FRAME_TYPE_DELTA_FRAME"/>, Delta frame.</li>
+                        <li>5: <ph keyref="VIDEO_FRAME_TYPE_B_FRAME"/>, the B frame</li>
+                        <li>6: <ph keyref="VIDEO_FRAME_TYPE_UNKNOWN"/>, unknown frame</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>rotation</pt>
-                    <pd props="windows">The rotation information of the video frames, see <xref keyref="VIDEO_ORIENTATION" />.</pd>
-                    <pd props="android">Rotation information of the video frame, as the following:<ul>
+                    <pd props="windows">The rotation information of the video frame, see <xref keyref="VIDEO_ORIENTATION"/>.</pd>
+                    <pd props="android">The rotation information of the video frame, as the following:<ul>
                             <li>0: (Default) 0 degree.</li>
                             <li>90: 90 degrees.</li>
                             <li>180: 80 degrees.</li>
@@ -110,7 +182,7 @@
                 <plentry>
                     <pt>trackId</pt>
                     <pd>Reserved for future use.</pd>
-                    <pd props="android">Track ID. Used in scenarios with multiple video tracks in the channel.</pd>
+                    <pd>The track ID. Used in scenarios with multiple video tracks in the channel.</pd>
                 </plentry>
                 <plentry>
                     <pt>renderTimeMs</pt>
@@ -119,6 +191,10 @@
                 <plentry>
                     <pt>uid</pt>
                     <pd>The user ID to push the externally encoded video frame.</pd>
+                </plentry>
+                <plentry props="windows">
+                    <pt>streamType</pt>
+                    <pd>The type of video streams.</pd>
                 </plentry>
             </parml>
         </section>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_complain">
-    <title><ph keyref="complain"/></title>
+    <title><ph keyref="complain" /></title>
     <shortdesc id="short"><ph id="shortdesc">投诉通话质量。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -18,8 +18,8 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual int complain(const char* callId, const char* description) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">complain(callId: string, description: string): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int Complain(string callId, string description = "");</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; complain(String callId, String description);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -30,7 +30,7 @@
    <parml>
        <plentry>
   <pt>callId</pt>
-  <pd>通话 ID。你可以通过调用 <xref keyref="getCallId"/> 获取该参数。</pd>
+  <pd>通话 ID。你可以通过调用 <xref keyref="getCallId" /> 获取该参数。</pd>
        </plentry>
        <plentry>
   <pt>description</pt>
@@ -38,7 +38,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>返回值</title>
    <ul>
        <li>0: 方法调用成功。</li>

@@ -6,37 +6,38 @@
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableRemoteSuperResolution"/>
+                <indexterm keyref="enableRemoteSuperResolution" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp"/>
-                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="windows" outputclass="language-cpp" />
+                <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="unity" outputclass="language-csharp">public abstract int EnableRemoteSuperResolution(uint userId, bool enable);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableRemoteSuperResolution(int userId, bool enable);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-                <dlentry>
+            <dl outputclass="since" props="rtc">
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v3.5.1</dd>
                 </dlentry>
             </dl>
             <p>This feature effectively boosts the resolution of a remote user's video seen by the local user. If the original resolution of a remote user's video is a × b, the local user's device can render the remote video at a resolution of 2a × 2b
             after you enable this feature.</p>
-            <p>After you call this method, the SDK triggers the <xref keyref="onUserSuperResolutionEnabled"/> callback to report whether you have successfully enabled super resolution.</p>
+            <p>After you call this method, the SDK triggers the <xref keyref="onUserSuperResolutionEnabled" /> callback to report whether you have successfully enabled super resolution.</p>
             <note type="caution">The super resolution feature requires extra system resources. To balance the visual experience and system usage, the SDK poses the following restrictions: This feature can only be enabled for a single remote user.
                 On Android, the original resolution of the remote video must not exceed 640 × 360 pixels. On iOS, the original resolution of the remote video must not exceed 640 × 480 pixels. If you exceed these limitations, the SDK triggers the <xref keyref="onWarning"></xref> callback and returns the corresponding warning codes:<ul>
                 <li><ph keyref="WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION"/>: 1610. The origin resolution of the remote video is beyond the range where the super resolution can be applied.</li>
                 <li><ph keyref="WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION"/>: 1611. Super resolution is already being used on another remote user's video.</li>
                 <li><ph keyref="WARN_SUPER_RESOLUTION_DEVICE_NOT_SUPPORTED"/>: 1612. The device does not support using super resolution.</li>
+
             </ul></note>
             <note type="attention">
                 <ul>
@@ -76,7 +77,7 @@
                 </ul>
             </note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameters</title>
             <parml>
                 <plentry>
                     <pt>userId</pt>
@@ -85,13 +86,13 @@
                 <plentry>
                     <pt>enable</pt>
                     <pd>Whether to enable super resolution for the remote user’s video:<ul>
-                        <li><ph keyref="true"/>: Enable virtual background.</li>
-                        <li><ph keyref="false"/>: Do not enable virtual background.</li>
+                        <li><ph keyref="true" />: Enable virtual background.</li>
+                        <li><ph keyref="false" />: Do not enable virtual background.</li>
                     </ul></pd>
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul>
                 <li>0: Success.</li>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_joinchannelwithuseraccount1">
-    <title><ph keyref="joinChannelWithUserAccount1"/></title>
+    <title><ph keyref="joinChannelWithUserAccount1" /></title>
     <shortdesc id="short"><ph id="shortdesc">使用 User Account 加入频道。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -11,25 +11,28 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
+                channelId:(NSString * _Nonnull)channelId
+              userAccount:(NSString * _Nonnull)userAccount
+              joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
+        </p>
+        <p outputclass="codeblock" props="rtc">
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByUserAccount:(NSString* _Nonnull)userAccount token:(NSString* _Nullable)token channelId:(NSString* _Nonnull)channelId joinSuccess:(void (^_Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
+        </p>
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int joinChannelWithUserAccount(
       String token, String channelName, String userAccount);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (int)joinChannelByToken:(NSString * _Nullable)token
-                channelId:(NSString * _Nonnull)channelId
-              userAccount:(NSString * _Nonnull)userAccount
-              joinSuccess:(void(^ _Nullable)
-              (NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
     const char* channelId,
     const char* userAccount) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannelWithUserAccount(string token, string channelId, string userAccount);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
        </p>
         </section>
         <section id="detailed_desc">
-
    <dl outputclass="since" props="rtc">
        <dlentry>
   <dt>自从</dt>
@@ -38,8 +41,8 @@
    </dl>
    <p>该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
    <ul>
-       <li>本地：<xref keyref="onLocalUserRegistered"/>、<xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
-       <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined"/> 和 <xref keyref="onUserInfoUpdated"/> 回调。</li>
+       <li>本地：<xref keyref="onLocalUserRegistered" />、<xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
+       <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined" /> 和 <xref keyref="onUserInfoUpdated" /> 回调。</li>
    </ul></p>
    <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
    <note type="attention" id="note">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Agora Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note>
@@ -47,28 +50,21 @@
         <section id="parameters"><title>参数</title>
    <parml>
                 <plentry conkeyref="joinChannel2/token">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry conkeyref="joinChannel2/channelID">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry>
-                    <pt>userAccount</pt>
-                    <pd>
-                        <p>用户 User Account。该参数用于标识实时音视频互动频道中的用户。你需要自行设置和管理用户的 User
-                            Account，并确保同一频道中每个用户的 User Account 是唯一的。 该参数为必填，最大不超过 255 字节，不可填 <ph
-                                keyref="NULL"/>。以下为支持的字符集范围（共 89 个字符）：<ul
-                                conkeyref="joinChannel2/char_support">
-                                <li/>
-                            </ul>
-                        </p>
-                    </pd>
+                    <pt props="android">channelName</pt>
+                    <pt props="windows ios mac unity">channelId</pt>
+                    <pd><p conkeyref="joinChannel2/channelID_desc" /></pd>
+                </plentry>
+       <plentry conkeyref="joinChannelWithUserAccount2/userAccount">
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry conkeyref="joinChannel2/joinsuccessblock" props="ios mac">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
             </parml>
         </section>

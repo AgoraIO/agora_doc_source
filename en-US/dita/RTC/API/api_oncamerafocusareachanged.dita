@@ -21,48 +21,49 @@
      (void)height;
      }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CAMERA_FOCUS_AREA_CHANGED, cb: (
-     x: number, 
-     y: number, 
-     width: number, 
+     x: number,
+     y: number,
+     width: number,
      height: number) =&gt; void
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnCameraFocusAreaChanged(int x, int y, int width, int height)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">RectCallback? cameraFocusAreaChanged;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-   <p id="desc" props="android ios windows">The SDK triggers this callback when the local user changes the camera focus position by calling <xref keyref="setCameraFocusPositionInPreview" />.</p>
-   <p props="windows"><note type="attention">This method applies to mobile platforms only.</note></p>
+   <p id="desc" props="android ios windows flutter">The SDK triggers this callback when the local user changes the camera focus position by calling <xref keyref="setCameraFocusPositionInPreview" />.</p>
+            <note type="attention" props="windows flutter">This method is for Android and iOS only.</note>
         </section>
-        <section id="parameters"><title>Parameter</title>
-            <parml props="windows">
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/>
+            <parml props="windows unity">
                 <plentry>
                     <pt>x</pt>
-                    <pd>The x coordinate of the changed camera exposure area.</pd>
+                    <pd>The x coordinate of the changed camera focus area.</pd>
                 </plentry>
                 <plentry>
                     <pt>y</pt>
-                    <pd>The y coordinate of the changed camera exposure area.</pd>
+                    <pd>The y coordinate of the changed camera focus area.</pd>
                 </plentry>
                 <plentry>
                     <pt>width</pt>
-                    <pd>The width of the changed camera exposure area.</pd>
+                    <pd>The width of the changed camera focus area.</pd>
                 </plentry>
                 <plentry>
                     <pt>height</pt>
-                    <pd>The height of the changed exposure area.</pd>
+                    <pd>The height of the changed camera focus area.</pd>
                 </plentry>
             </parml>
-            <parml props="android ios mac">
+            <parml props="android ios mac flutter">
                 <plentry>
                     <pt>rect</pt>
                     <pd>The focus rectangle in the local preview.</pd>
                 </plentry>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
+                    <pt />
+                    <pd />
+                </plentry>
             </parml>
         </section>
     </refbody>

@@ -26,6 +26,12 @@
    git clone https://github.com/AgoraIO-Community/CloudClass-iOS
    ```
 
+   ```
+   git checkout release/apaas/x.y.z
+   ```
+
+   <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_ios?platform=iOS">发版说明</a>中获取最新版本号。</div>
+
 2. 将 `keycenter.m` 文件中的 `Agora App ID` 和 `Agora App Certificate` 替换成[你的 App ID 和 App 证书](#prerequisites)。
 
    ```swift

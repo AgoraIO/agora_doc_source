@@ -10,7 +10,8 @@
    </keywords>
         </metadata>
     </prolog>
-    <refbody><section id="prototype">
+    <refbody>
+        <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onCameraReady() {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngineCameraDidReady:(AgoraRtcEngineKit * _Nonnull)engine;</codeblock>
@@ -18,29 +19,26 @@
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CAMERA_READY, cb: () =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnCameraReady()</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">EmptyCallback? cameraReady;</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
-   
-   <dl outputclass="deprecated">
-       <dlentry>
-  <dt>Deprecated:</dt>
-  <dd>
-                        <p>This callback is deprecated. Please use <xref keyref="onLocalVideoStateChanged" />(1) in <ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING" /> instead.</p>
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>
+                        <p>Please use <ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING" />(1) in <xref keyref="onLocalVideoStateChanged" /> instead.</p>
                     </dd>
-       </dlentry>
-   </dl>
-   <p id="desc">This callback indicates that the camera has been successfully turned on and you can start to capture video.</p>
+                </dlentry>
+            </dl>
+            <p id="desc">This callback indicates that the camera has been successfully turned on and
+                you can start to capture video.</p>
         </section>
-        <section id="parameters" props="ios mac">
-            <title>Parameter</title>
-            <parml>
-                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-            </parml>
-        </section>
+        <section id="parameters" props="ios mac"> <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc"/> <parml>
+            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                <pt />
+                <pd />
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

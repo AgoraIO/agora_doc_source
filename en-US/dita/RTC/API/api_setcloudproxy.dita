@@ -18,18 +18,18 @@
                 <codeblock props="electron" outputclass="language-typescript">setCloudProxy(type: CLOUD_PROXY_TYPE): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetCloudProxy(CLOUD_PROXY_TYPE proxyType);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCloudProxy(CloudProxyType proxyType);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-                <dlentry>
+            <dl outputclass="since" props="rtc">
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>3.3.0</dd>
                 </dlentry>
             </dl>
             <p>When the user's firewall restricts the IP address and port, refer to <xref keyref="guide-cloud-proxy">Use Cloud Proxy</xref> to add the specific IP addresses and ports to the firewall whitelist; then, call this method to enable the cloud proxy and set the cloud <parmname>proxyType</parmname> as <ph keyref="UDP_PROXY" />.</p>
-            <p>After successfully connecting to the cloud proxy, the SDK triggers the<xref keyref="onConnectionStateChanged" /> (<ph keyref="CONNECTION_STATE_CONNECTING" />, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) callback.</p>
+            <p>After successfully connecting to the cloud proxy, the SDK triggers the <xref keyref="onConnectionStateChanged" /> (<ph keyref="CONNECTION_STATE_CONNECTING" />, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) callback.</p>
             <p>To disable the cloud proxy that has been set, call <apiname>setCloudProxy</apiname>(NONE_PROXY).</p>
             <p>To change the cloud proxy type, call <apiname keyref="setCloudProxy" />(NONE_PROXY), and call <apiname keyref="setCloudProxy" /> to set the <parmname>proxyType</parmname> you want.</p>
             <note type="attention">
@@ -40,7 +40,7 @@
             </note>
         </section>
         <section id="parameters">
-            <title>Parameter</title>
+            <title>Parameters</title>
             <parml>
                 <plentry>
                     <pt>proxyType</pt>
@@ -48,7 +48,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul>
                 <li>0: Success.</li>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onaudiomixingstatechanged">
-    <title><ph keyref="onAudioMixingStateChanged"/></title>
+    <title><ph keyref="onAudioMixingStateChanged" /></title>
     <shortdesc id="short"><ph id="shortdesc">音乐文件的播放状态已改变回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onAudioMixingStateChanged"/>
+                <indexterm keyref="onAudioMixingStateChanged" />
             </keywords>
         </metadata>
     </prolog>
@@ -24,11 +24,11 @@
   cb: (
     state: AUDIO_MIXING_STATE_TYPE,
     reason: AUDIO_MIXING_REASON_TYPE
-  ) => void
+  ) =&gt; void
 ): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
             </p>
         </section>
         <section id="detailed_desc">
@@ -38,17 +38,17 @@
             <parml>
                 <plentry>
                     <pt>state</pt>
-                    <pd><p props="ios mac windows">音乐文件播放状态，详见 <xref keyref="AUDIO_MIXING_STATE_TYPE"/>。</p>
-                        <p props="android">状态码：
+                    <pd>音乐文件播放状态。<ph props="ios mac windows">详见 <xref keyref="AUDIO_MIXING_STATE_TYPE" />。</ph>
+                        <p props="android">
                             <ul>
-                                <li><ph keyref="AUDIO_MIXING_STATE_PLAYING"/> (710): 音乐文件正常播放。</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_PAUSED"/> (711): 音乐文件暂停播放。</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_STOPPED"/> (713): 音乐文件停止播放。</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_FAILED"/> (714): 音乐文件报错。SDK 会在
+                                <li><ph keyref="AUDIO_MIXING_STATE_PLAYING" /> (710): 音乐文件正常播放。</li>
+                                <li><ph keyref="AUDIO_MIXING_STATE_PAUSED" /> (711): 音乐文件暂停播放。</li>
+                                <li><ph keyref="AUDIO_MIXING_STATE_STOPPED" /> (713): 音乐文件停止播放。</li>
+                                <li><ph keyref="AUDIO_MIXING_STATE_FAILED" /> (714): 音乐文件报错。SDK 会在
                                         <codeph>errorCode</codeph> 参数中返回具体的报错原因。</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_COMPLETED"/>(715):
+                                <li><ph keyref="AUDIO_MIXING_STATE_COMPLETED" />(715):
                                     音乐文件已结束一次播放。</li>
-                                <li><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED"/> (716):
+                                <li><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED" /> (716):
                                     音乐文件已结束循环播放。</li>
                             </ul>
                         </p>
@@ -56,15 +56,15 @@
                 </plentry>
                 <plentry>
                     <pt>errorCode</pt>
-                    <pd><p props="ios mac windows">错误码，详见 <xref keyref="AUDIO_MIXING_ERROR_TYPE"/>。</p>
-                        <p props="android">错误码：
+                    <pd>错误码。<ph props="ios mac windows">详见 <xref keyref="AUDIO_MIXING_ERROR_TYPE" />。</ph>
+                        <p props="android">
                             <ul>
-                                <li><ph keyref="AUDIO_MIXING_ERROR_OK"/>(0): 正常。</li>
-                                <li><ph keyref="AUDIO_MIXING_ERROR_CAN_NOT_OPEN"/> (701):
+                                <li><ph keyref="AUDIO_MIXING_ERROR_OK" />(0): 正常。</li>
+                                <li><ph keyref="AUDIO_MIXING_ERROR_CAN_NOT_OPEN" /> (701):
                                     音乐文件打开出错。</li>
-                                <li><ph keyref="AUDIO_MIXING_ERROR_TOO_FREQUENT_CALL"/> (702):
+                                <li><ph keyref="AUDIO_MIXING_ERROR_TOO_FREQUENT_CALL" /> (702):
                                     音乐文件打开太频繁。</li>
-                                <li><ph keyref="AUDIO_MIXING_ERROR_INTERRUPTED_EOF"/> (703):
+                                <li><ph keyref="AUDIO_MIXING_ERROR_INTERRUPTED_EOF" /> (703):
                                     音乐文件播放异常中断。</li>
                             </ul>
                         </p>

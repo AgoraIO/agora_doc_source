@@ -18,13 +18,13 @@
                 <codeblock props="electron" outputclass="language-typescript">setAudioEffectPreset(preset: AUDIO_EFFECT_PRESET): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioEffectPreset(AUDIO_EFFECT_PRESET preset);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioEffectPreset(AudioEffectPreset preset);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
             <title>Detailed Description</title>
    <dl outputclass="since" props="rtc">
-       <dlentry>
+       <dlentry props="native">
   <dt>Since</dt>
   <dd>v3.2.0</dd>
        </dlentry>
@@ -35,7 +35,8 @@
    <note type="attention">
        <ul>
   <li>You can call this method either before or after joining a channel.</li>
-  <li>Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" /> (1) or <apiname keyref="AUDIO_PROFILE_IOT" />(6), or the method does not take effect.</li>
+  <li props="windows">Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" /> (1) or <apiname keyref="AUDIO_PROFILE_IOT" />(6), or the method does not take effect.</li>
+  <li props="apple ios mac unity flutter">Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" /> (1), or the method does not take effect.</li>
   <li>This method works best with the human voice. Agora does not recommend using this method for audio containing music.</li>
   <li>If you call <apiname keyref="setAudioEffectPreset" /> and set the parameter to enumerators except for <apiname keyref="ROOM_ACOUSTICS_3D_VOICE" /> or <apiname keyref="PITCH_CORRECTION" />. Do not call <xref keyref="setAudioEffectParameters" />; otherwise, the settings in <apiname keyref="setAudioEffectPreset" /> are overridden.</li>
   <li>After calling <apiname keyref="setAudioEffectPreset" />, Agora recommends not calling the following methods, or the settings in <apiname keyref="setAudioEffectPreset" /> are overridden :<ul>
@@ -52,12 +53,12 @@
        </ul>
    </note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameters</title>
    <parml>
        <plentry>
   <pt>preset</pt>
-           <pd props="ios mac windows">The options for SDK preset audio effects. See <xref keyref="AUDIO_EFFECT_PRESET" />.</pd>
-           <pd props="android">Preset voice effects.<ul id="ul_klq_zw3_qqb">
+           <pd props="ios mac windows unity flutter">The options for SDK preset audio effects. See <xref keyref="AUDIO_EFFECT_PRESET" />.</pd>
+           <pd props="android">Preset voice effects.<ul>
                <li><ph keyref="AUDIO_EFFECT_OFF" />: Turn off audio effects and use the original voice.</li>
                <li><ph keyref="ROOM_ACOUSTICS_KTV" />: The reverberation style typical of a KTV venue.</li>
                <li><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT" />: The reverberation style typical of a concert hall.</li>
@@ -85,7 +86,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>

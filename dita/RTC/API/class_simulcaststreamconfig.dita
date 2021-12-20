@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_simulcaststreamconfig">
-    <title><ph keyref="SimulcastStreamConfig"/></title>
+    <title><ph keyref="SimulcastStreamConfig" /></title>
     <shortdesc id="short"><ph id="shortdesc">视频小流的配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -10,6 +10,19 @@
   public VideoEncoderConfiguration.VideoDimensions dimensions;
   public int bitrate;
   public int framerate;
+
+  public SimulcastStreamConfig() {
+    this.dimensions = new VideoEncoderConfiguration.VideoDimensions(-1, -1);
+    this.bitrate = -1;
+    this.framerate = 5;
+  }
+
+  public SimulcastStreamConfig(
+      VideoEncoderConfiguration.VideoDimensions dimensions, int bitrate, int framerate) {
+    this.dimensions = dimensions;
+    this.bitrate = bitrate;
+    this.framerate = framerate;
+  }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSimulcastStreamConfig: NSObject
  @property (assign, nonatomic) int bitrate;
@@ -21,21 +34,22 @@
   int bitrate;
   int framerate;
   SimulcastStreamConfig() : dimensions(160, 120), bitrate(65), framerate(5) {}
+  bool operator==(const SimulcastStreamConfig&amp; rhs) const {
+    return dimensions == rhs.dimensions &amp;&amp; bitrate == rhs.bitrate &amp;&amp; framerate == rhs.framerate;
   }
-};
-</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"></codeblock>
-            <codeblock props="unity" outputclass="language-csharp"></codeblock>
-            <codeblock props="rn" outputclass="language-typescript"></codeblock>
-            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" />
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
                 <plentry>
                     <pt>dimensions</pt>
-                    <pd>视频尺寸<ph props="android windows">，详见 <xref keyref="VideoDimensions"/></ph>。默认值为 160 × 120。</pd>
+                    <pd>视频尺寸<ph props="android windows">，详见 <xref keyref="VideoDimensions" /></ph>。默认值为 160 × 120。</pd>
                 </plentry>
                 <plentry>
                     <pt>bitrate</pt>

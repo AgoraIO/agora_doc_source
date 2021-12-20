@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setremotevoice3dposition">
+    <title><ph keyref="setRemoteVoice3DPosition" /></title>
+    <shortdesc id="short"><ph id="shortdesc">设置远端用户声音的 3D 位置。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setRemoteVoice3DPosition" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setRemoteVoice3DPosition(
+    int uid, double azimuth, double elevation, double distance);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVoice3DPosition:(NSUInteger)uid
+                        azimuth:(double)azimuth
+                      elevation:(double)elevation
+                       distance:(double)distance;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVoice3DPosition(uid_t uid, double azimuth, double elevation, double distance) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>通过设置远端用户声音的水平角、垂直角和声源距离，让远端用户的声音听起来有方位感。</p>
+            <p>在多人在线游戏场景，如吃鸡游戏中，该方法能有效增加游戏角色的方位感，模拟真实场景。</p>
+            <p>该方法和 <xref keyref="setRemoteVoicePosition" /> 的区别是：该方法设置声音的 3D 位置；<apiname keyref="setRemoteVoicePosition" /> 设置声音的 2D 位置，即水平面上的位置。</p>
+            <note type="attention">
+                <ul>
+                    <li>使用该方法需要在加入频道前调用 <xref keyref="enableSoundPositionIndication" /> 开启远端用户声音的立体声。</li>
+                    <li>为获得最佳听觉体验，我们建议使用该方法时使用有线耳机。</li>
+                    <li>该方法需要在加入频道后调用。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry id="uid">
+                    <pt>uid</pt>
+                    <pd>远端用户的 ID。</pd>
+                </plentry>
+                <plentry id="azimuth">
+                    <pt>azimuth</pt>
+                    <pd>水平角。取值范围为 [0,360]，单位为度。其中：
+                        <ul>
+                            <li>0:（默认）0 度，表示水平面的正前方。</li>
+                            <li>90: 90 度，表示水平面的正左方。</li>
+                            <li>180: 180 度，表示水平面的正右方。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry id="elevation">
+                    <pt>elevation</pt>
+                    <pd>垂直角。取值范围为 [-90,90]，单位为度。其中：
+                        <ul>
+                            <li>0:（默认）0 度，表示水平面无旋转。</li>
+                            <li>-90: -90 度，表示水平面向下旋转 90 度。</li>
+                            <li>90: 90 度，表示水平面向上旋转 90 度。</li>
+                        </ul></pd>
+                </plentry>
+                <plentry id="distance">
+                    <pt>distance</pt>
+                    <pd>声源距离。取值不能小于 0.5，单位为米。为避免设置距离过大导致声音较小，Agora 推荐设置范围为 [0.5,50]。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+                <li>0: 方法调用成功</li>
+                <li>&lt; 0: 方法调用失败</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
