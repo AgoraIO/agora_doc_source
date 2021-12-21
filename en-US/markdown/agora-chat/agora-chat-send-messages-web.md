@@ -383,7 +383,7 @@ In a production context, the best practice is for your app to retrieve the token
 
 ## See also
 
-In addition to integrating the Agora Chat SDK into your project through npm, you can also manually download the [Agora Chat SDK for Web](). 
+In addition to integrating the Agora Chat SDK into your project through npm, you can also manually download the [Agora Chat SDK for Web](https://download.agora.io/sdk/release/https://download.agora.io/sdk/release/Agora_Chat_SDK_for_Web_v1.0.0.zip). 
 
 a. In the SDK folder, find the JS file in the `libs` folder and save it to your project directory.
 
