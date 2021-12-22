@@ -51,7 +51,7 @@ By default, Android Studio displays your project files in the **Android** view:
 
 For easy integration, Agora publishes all Android SDKs to Maven Central. To add the library to your project, take the following steps:
 
-1. To add the Agora SDK maven dependency, in `Gradle Scripts`, open `build.gradle (Project: AgoraChatQuickstart)` and add the following lines:
+1. To add the Agora SDK maven dependency, in `Gradle Scripts`, open `build.gradle (Project: AgoraChatQuickstart)` and add the following lines. If you are using the latest version of Android Studio, the maven dependency is automatically added into your project.
 
    ```java
    buildscript {
@@ -318,7 +318,7 @@ To enable your app to send and receive messages between individual users, do the
    import io.agora.util.EMLog;
    ```
    
-2. Define global variables. In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after `AppCompatActivity {`:
+2.  Define global variables. In `app/java/io.agora.agorachatquickstart/MainActivity`,  before adding the following lines after `AppCompatActivity {`, ensure you delete the `OnCreate` funtion created by default.
 
    ```java
    private final String TAG = getClass().getSimpleName();
@@ -779,7 +779,7 @@ In a production context, the best practice is for your app to retrieve the token
 
 ## See also
 
-In addition to integrating the Agora Chat SDK into your project with mavenCentral, you can also manually download the [Agora Chat SDK for Android](). 
+In addition to integrating the Agora Chat SDK into your project with mavenCentral, you can also manually download the [Agora Chat SDK for Android](https://download.agora.io/sdk/release/Agora_Chat_SDK_for_Android_v1.0.0.zip). 
 
 1. Download the latest version of the Agora Chat SDK for Android, and extract the files from the downloaded SDK package.
 
