@@ -444,57 +444,57 @@ This sample client is for demonstration purposes only. Do not use it in a produc
    }
    ```
 
-  In the code example, you can see that token is related to the following code logic in the client:
+    In the code example, you can see that token is related to the following code logic in the client:
 
-  - Call `open` to log in to the Agora Chat system with token and username. You must use the username that is used to register the user and get the UUID.
-  - Fetch a new token from the app server and call `renewToken` to update the token of the SDK when the token is about to expire and when the token expires. Agora recommends that you regularly (such as every hour) generate a token from the app server and call `renewToken` to update the token of the SDK to ensure that the token is always valid.
+    - Call `open` to log in to the Agora Chat system with token and username. You must use the username that is used to register the user and get the UUID.
+    - Fetch a new token from the app server and call `renewToken` to update the token of the SDK when the token is about to expire and when the token expires. Agora recommends that you regularly (such as every hour) generate a token from the app server and call `renewToken` to update the token of the SDK to ensure that the token is always valid.
 
 1. To build and run your project, take the following steps:
 
-  1. To configure webpack, copy the following code into a new file called `webpack.config.js`:
+    1. To configure webpack, copy the following code into a new file called `webpack.config.js`:
 
-    ```javascript
-    const path = require('path');
-    
-    module.exports = {
-        entry: './index.js',
-        mode: 'production',
-        output: {
-            filename: 'bundle.js',
-            path: path.resolve(__dirname, './dist'),
-        },
-        devServer: {
-            compress: true,
-            port: 9000,
-            https: true
-        }
-    };
-    ```
+      ```javascript
+      const path = require('path');
+      
+      module.exports = {
+          entry: './index.js',
+          mode: 'production',
+          output: {
+              filename: 'bundle.js',
+              path: path.resolve(__dirname, './dist'),
+          },
+          devServer: {
+              compress: true,
+              port: 9000,
+              https: true
+          }
+      };
+      ```
 
-  1. To install the dependencies, run the following command:
+    1. To install the dependencies, run the following command:
 
-    ```shell
-    npm install
-    ```
+      ```shell
+      npm install
+      ```
 
-  1. To build and run the project using webpack, run the following commands:
+    1. To build and run the project using webpack, run the following commands:
 
-    ```shell
-    # Use webpack to package the project
-    npm run build
-    
-    # Use webpack-dev-server to run the project
-    npm run start:dev
-    ```
+      ```shell
+      # Use webpack to package the project
+      npm run build
+      
+      # Use webpack-dev-server to run the project
+      npm run start:dev
+      ```
 
-    The `index.html` page opens in your browser.
-    
-1. Input a username and click the login button. 
-   Open the browser console, and you can see the web client performs the following actions:
+      The `index.html` page opens in your browser.
 
-    - Generates a user token.
-    - Connects to the Agora Chat system.
-    - Renews a token when it is about to expire.
+  1. Input a username and click the login button. 
+    Open the browser console, and you can see the web client performs the following actions:
+
+      - Generates a user token.
+      - Connects to the Agora Chat system.
+      - Renews a token when it is about to expire.
 
 ## Reference
 
