@@ -488,7 +488,7 @@ This sample client is for demonstration purposes only. Do not use it in a produc
       The `index.html` page opens in your browser.
 
   1. Input a username and click the login button. 
-    Open the browser console, and you can see the web client performs the following actions:
+     Open the browser console, and you can see the web client performs the following actions:
 
       - Generates a user token.
       - Connects to the Agora Chat system.
