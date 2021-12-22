@@ -223,7 +223,9 @@ With elements such as these in your app, you can create and update group functio
 
 Groups have a standard [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) lifecycle. Group Owners only have the rights to create and delete groups. Administrators can update the group name or group description. Standard users cannot change anything about the group.  
 
-In order to manage groups, in `MainActivity`, create the methods called when users click the buttons in your UI:
+In order to manage groups, in `MainActivity`, create the methods called when users click the buttons in your UI. In the following code examples, the group the user creates becomes the current group. Further CRUD operations are made to that group.  
+
+The main group lifecycle actions are: 
 
 * **Create**: enable users to create a group of a standard size where they choose privacy options:   
 
@@ -387,6 +389,8 @@ In open groups, any user in your Agora Chat space may request to join a group. M
 The workflow for group membership is:
 
 - **For private groups**:
+
+   The group owner adds and removes users from the current group:
    1. Add users to a private group:
       ```java
        public void addUsers(View view) {
@@ -454,7 +458,7 @@ The workflow for group membership is:
 
 - **For public groups**:
 
-   All users can retrieve the list of public groups and request access. 
+   All users can retrieve the list of public groups and request access using the group ID: 
     1. Retrieve the list of public groups:
           ```java
           //Get the list of public groups
@@ -469,6 +473,8 @@ The workflow for group membership is:
           ```java
             public void joinGroup(View view) {
               //Retrieve the group ID from the UI.
+              //In a production level UI, you would list the groups and
+              //Retrieve the groups from the list
               String groupID = et_group.getText().toString().trim();
               Group groupToJoin = null;
               //In a production app you would retrieve a list of groups so the user can choose one in the UI
@@ -519,10 +525,10 @@ Sending messages to a group works in exactly the same way as sending a message t
 
 ```java
 //Retrieve the Id of the group your user wants to send a message to
-String myGroupId = myGroup.getGroupId();
+String currentGroupId = currentGroup.getGroupId();
 String content = <Retrieve the text from your UI>;
 //Create a text message. 
-ChatMessage message = ChatMessage.createTxtSendMessage(content, myGroupId);
+ChatMessage message = ChatMessage.createTxtSendMessage(content, currentGroupId);
 //If it is a group chat, set the chat type. Default is single chat
 if (chatType == CHATTYPE_GROUP)
     message.setChatType(ChatType.GroupChat);
@@ -736,6 +742,8 @@ To add a groups listener to your app:
           }
           String currentGroupId = currentGroup.getGroupId();
           final List<String> list = new ArrayList<>();
+          
+          //Retrieve the users in the list
           new Thread(new Runnable() {
             @Override public void run() {
               try {
