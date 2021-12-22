@@ -535,7 +535,7 @@ public String buildUserToken(String appId, String appCertificate, String uuid, i
 | :------------- | :------------------------------------------------------------------------------------------------------------------------------------- |
 | appId          | The App ID of your Agora project.                                                                                                      |
 | appCertificate | The App Certificate of your Agora project.                                                                                             |
-| uuid           | The unique identifier (UUID) of a user in the Agora Chat system. You need get the UUID through RESTful APIs. See [Get the UUID](uuid). |
+| uuid           | The unique identifier (UUID) of a user in the Agora Chat system.  |
 | expire         | The valid duration (in seconds) of the token. The maximum is 86,400, that is, 24 hours.                                                |
 
 ### Token expiration
