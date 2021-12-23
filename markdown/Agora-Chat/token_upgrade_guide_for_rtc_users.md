@@ -2,7 +2,7 @@
 
 如果你同时集成了 Agora Chat SDK 和 Agora RTC SDK，Agora 建议你将 Agora RTC SDK 的 Token 鉴权机制升级到 [access token 2](https://github.com/AgoraIO/Tools/blob/release/accesstoken2/DynamicKey/AgoraDynamicKey/cpp/src/AccessToken2.h)。
 
-Agora Chat SDK 的首个版本支持且仅支持 access token 2。
+
 Agora RTC SDK 对于 access token 2 的支持情况如下：
 
 | SDK 类型             | 支持 access token 2 的首个版本 |
