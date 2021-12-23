@@ -12,19 +12,6 @@ static config(params: AgoraEduSDKConfigParams):void
 
 配置 SDK。
 
-**示例代码**
-
-```typescript
-AgoraEduSDK.config({
-  // Agora App ID
-  appId: "<YOUR AGORA APPID>",
-  // Region
-  region: "CN"
-})
-```
-
-**参数**
-
 | 参数     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
 | `params` | 全局配置参数，详见 [AgoraEduSDKConfigParams](#agoraedusdkconfigparams)。 |
@@ -36,56 +23,6 @@ static launch(dom: Element, option: LaunchOption):Promise<void>
 ```
 
 启动课堂。
-
-**示例代码**
-
-```typescript
-// 配置课件
-let resourceUuid = "xxxxx"
-let resourceName = "my ppt slide"
-let sceneInfos = []
-let sceneInfo = {
-    name: "1",
-    ppt: {
-        src: "pptx://....",
-        width: 480,
-        height: 360
-    }
-}
-sceneInfos.push(sceneInfo)
-
-let courseWareList = [{
-    resourceUuid,
-    resourceName,
-    size: 10000,
-    updateTime: new Date().getTime(),
-    ext: "pptx",
-    url:null,
-    scenes: sceneInfos,
-    taskUuid: "xxxx",
-    taskToken: "xxx",
-    taskProgress: NetlessTaskProgress
-}]
-
-// 启动课堂
-AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
-    rtmToken: "<your rtm token>",
-    userUuid: "test",
-    userName: "teacher",
-    roomUuid: "4321",
-    roleType: 1,
-    roomType: 4,
-    roomName: "demo-class",
-    pretest: false,
-    language: "en",
-    startTime: new Date().getTime(),
-    duration: 60 * 30,
-    courseWareList: [],
-    listener: (evt) => {
-        console.log("evt", evt)
-    }
-})
-```
 
 **参数**
 
@@ -249,25 +186,46 @@ export enum MediaEncryptionMode {
 课件预加载配置。用于 [AgoraEduSDK.launch](#launch) 方法。
 
 ```typescript
-export type CourseWareItem = {
-  resourceName: string,
-  resourceUuid: string,
-  ext: string,
-  url: string,
-  conversion: {
-    type: string,
-  },
-  size: number,
-  updateTime: number,
-  scenes: SceneDefinition[],
-  convert?: boolean,
-  taskUuid?: string,
-  taskToken?: string,
-  taskProgress?: NetlessTaskProgress
-}
+export type AgoraConvertedFile = {
+  width: number;
+  height: number;
+  ppt: {
+    width: number;
+    src: string;
+    height: number;
+  };
+  conversionFileUrl: string;
+};
 
-export type CourseWareList = CourseWareItem[]
+export type ConvertedFileList = AgoraConvertedFile[];
+
+export type CourseWareItem = {
+  resourceName: string;
+  resourceUuid: string;
+  ext: string;
+  url: string;
+  conversion: {
+    type: string;
+  };
+  size: number;
+  updateTime: number;
+  scenes: SceneDefinition[];
+  convert?: boolean;
+  taskUuid?: string;
+  taskToken?: string;
+  taskProgress?: {
+    totalPageSize?: number;
+    convertedPageSize?: number;
+    convertedPercentage?: number;
+    convertedFileList: ConvertedFileList;
+  };
+  isActive?: boolean;
+};
+
+export type CourseWareList = CourseWareItem[];
 ```
+
+`CourseWareList` 为 `CourseWareItem` 对象组成的数组。`CourseWareItem` 包含以下参数：
 
 | 参数           | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
@@ -278,10 +236,11 @@ export type CourseWareList = CourseWareItem[]
 | `updateTime`   | 课件最后被修改的时间。                                       |
 | `conversion`   | 文件转换配置对象，包含以下字段：<ul><li>`type`: 转换类型：</li><ul><li>`"dynamic"`: 转换为静态图片。</li><li>`"static"`: 转换为动态 HTML。</li></ul></ul> |
 | `url`          | 文件访问地址。灵动课堂客户端会对后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以用于课堂内白板展示。如果后缀名非上述所列，必须设置 `url`，`scenes` 可为空。 |
-| `scenes`       | 转换后的文件下载配置。当后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"` 或 `"pdf"` 时，必须设置 `scenes`。 |
+| `scenes`       | 转换后的文件下载配置。当后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"` 或 `"pdf"` 时，必须设置 `scenes`。详见 Agora 互动白板 SDK 的 [SceneDefinition 对象](/cn/whiteboard/API%20Reference/whiteboard_web/globals.html#scenedefinition)。 |
+| `convert`      | 是否进行文档转换。                                           |
 | `taskUuid`     | 文件转换任务的 uuid。                                        |
 | `taskToken`    | 文件转换任务使用的 Token。                                   |
-| `taskProgress` | 文件转换任务进度对象。                                       |
+| `taskProgress` | 文件转换任务进度对象，包含以下字段：<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: 转换进度（百分比）。</li><li>`convertedFileList`: 已转换的文档页面列表，由 `AgoraConvertedFile` 组成的数组。`AgoraConvertedFile` 包含以下字段：<ul><li>`width`: 页面宽度。</li><li>`height`: 页面高度。</li><li>`ppt`: 页面上展示的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>`src`: 完成转换的页面的 URL 下载地址。</li></ul></li></ul></li></ul> |
 
 ### EduRoleTypeEnum
 
