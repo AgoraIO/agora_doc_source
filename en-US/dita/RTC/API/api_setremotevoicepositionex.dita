@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setremotevoicepositionex">
-    <title><ph keyref="setRemoteVoicePositionEx" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the sound position and gain of a remote user.</ph></shortdesc>
+    <title><ph keyref="setRemoteVoicePositionEx"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the 2D position (the position on the horizontal plane) of the remote user's voice.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -18,20 +18,20 @@
                           pan:(double)pan
                          gain:(double)gain
                    connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVoicePositionEx(uid_t remoteUid, double pan, double gain, const RtcConnection&amp; connection) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteVoicePositionEx(uid_t uid, double pan, double gain, const RtcConnection&amp; connection) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
         </p>
         </section>
         <section id="detailed_desc">
-   
-   <p>This method sets the sound position and gain of a remote user.</p>
-   <p>When the local user calls this method to set the sound position of a remote user, the sound difference between the left and right channels allows the local user to track the real-time position of the remote user, creating a sense of space. This method applies to massive multiplayer online games, such as Battle Royale games.</p>
+
+   <p>This method sets the voice position and volume of a remote user.</p>
+   <p>When the local user calls this method to set the voice position of a remote user, the voice difference between the left and right channels allows the local user to track the real-time position of the remote user, creating a sense of space. This method applies to massive multiplayer online games, such as Battle Royale games.</p>
    <note type="attention">
        <ul>
-  <li>This method requires hardware support. For the best sound positioning, we recommend using a wired headset.</li>
+  <li>For the best voice positioning, Agora recommends using a wired headset.</li>
   <li>Call this method after joining a channel.</li>
        </ul>
    </note>
@@ -39,25 +39,24 @@
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
-  <pt props="android ios mac">uid</pt>
-           <pt props="windows">remoteUid</pt>
-  <pd>The ID of the remote user.</pd>
+  <pt>uid</pt>
+  <pd>The user ID of the remote user.</pd>
        </plentry>
        <plentry>
   <pt>pan</pt>
-  <pd>The sound position of the remote user. The value ranges from -1.0 to 1.0:<ul>
-                            <li>-1.0: The remote sound comes from the left.</li>
-                            <li>0.0: (Default) The remote sound comes from the front.</li>
-                            <li>1.0: The remote sound comes from the right.</li>
+  <pd>The voice position of the remote user. The value ranges from -1.0 to 1.0:<ul>
+                            <li>-1.0: The remote voice comes from the left.</li>
+                            <li>0.0: (Default) The remote voice comes from the front.</li>
+                            <li>1.0: The remote voice comes from the right.</li>
                         </ul></pd>
        </plentry>
        <plentry>
   <pt>gain</pt>
-  <pd>The gain of the remote user. The value ranges from 0.0 to 100.0. The default value is 100.0 (the original gain of the remote user). The smaller the value, the less the gain.</pd>
+  <pd>The volume of the remote user. The value ranges from 0.0 to 100.0. The default value is 100.0 (the original volume of the remote user). The smaller the value, the lower the volume.</pd>
        </plentry>
                 <plentry conkeyref="joinChannelEx/connection">
-                    <pt />
-                    <pd />
+                    <pt></pt>
+                    <pd></pd>
                 </plentry>
    </parml>
         </section>

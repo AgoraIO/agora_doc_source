@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onuserinfoupdated">
-    <title><ph keyref="onUserInfoUpdated" /></title>
+    <title><ph keyref="onUserInfoUpdated"/></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK gets the user ID and user account of the remote user.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -11,22 +11,25 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didUserInfoUpdatedWithUserId:(NSUInteger)uid userInfo:(AgoraUserInfo* _Nonnull)userInfo;</codeblock>
+        </p>
+        <p outputclass="codeblock" props="rtc">
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine didUpdatedUserInfo:(AgoraUserInfo* _Nonnull)userInfo withUid:(NSUInteger)uid;</codeblock>
+        </p>
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onUserInfoUpdated(int uid, UserInfo userInfo) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
-    didUserInfoUpdatedWithUserId:(NSUInteger)uid 
-    userInfo:(AgoraUserInfo* _Nonnull)userInfo;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onUserInfoUpdated(uid_t uid, const UserInfo&amp; info) {
      (void)uid;
      (void)info;
      }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(
   evt: EngineEvents.USER_INFO_UPDATED,
-  cb: (uid: number, userInfo: UserInfo) =&gt; void
+  cb: (uid: number, userInfo: UserInfo) => void
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserInfoUpdated(uint uid, UserInfo info)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
         </p>
         </section>
         <section id="detailed_desc">
@@ -37,21 +40,22 @@
   <dd>v2.8.0</dd>
        </dlentry>
    </dl>
-   <p>After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object (userInfo), and triggers this callback on the local client.</p>
+   <p>After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers this callback on the local client.</p>
         </section>
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
+                  <pt/>
+                  <pd/>
               </plentry>
        <plentry>
   <pt>uid</pt>
   <pd>The ID of the remote user.</pd>
        </plentry>
        <plentry>
-  <pt>userInfo</pt>
-  <pd>The UserInfo object that contains the user ID and user account of the remote user. See <xref keyref="UserInfo" /> for details.</pd>
+  <pt props="android ios mac electron">userInfo</pt>
+           <pt props="windows unity">info</pt>
+  <pd>The UserInfo object that contains the user ID and user account of the remote user. See <xref keyref="UserInfo"/> for details.</pd>
        </plentry>
    </parml>
         </section>

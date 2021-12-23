@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_pushaudioframe1">
-    <title><ph keyref="pushAudioFrame1" /></title>
+    <title><ph keyref="pushAudioFrame1"/></title>
     <shortdesc id="short"><ph id="shortdesc">Pushes the external audio frame.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -23,13 +23,13 @@
             <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)pushExternalAudioFrameRawData:(void* _Nonnull)data samples:(NSUInteger)samples timestamp:(NSTimeInterval)timestamp;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int PushAudioFrame(AudioFrame frame);</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>
         </p>
         </section>
         <section id="detailed_desc">
-   
+
    <dl outputclass="deprecated">
        <dlentry props="windows android ios mac">
   <dt>Deprecated:</dt>
@@ -58,18 +58,30 @@
            <pd>The timestamp (ms) of the external audio frame. It is mandatory. You can use this parameter for the following purposes: restore the order of the captured audio frame; and synchronize audio and video frames in video-related scenarios, including scenarios where external video sources are used.</pd>
        </plentry>
      </parml>
-            <parml props="rtc-ng">
-                <plentry>
-                    <pt>sourceId</pt>
-                    <pd>The audio track ID. You can set it as an integer between 0 and the value of <parmname>sourceNumber</parmname> in <xref keyref="setExternalAudioSource2" />-1.</pd>
+        <parml props="rtc-ng">
+                <plentry conkeyref="pushAudioFrame2/sourceid" props="ios mac">
+                    <pt/>
+                    <pd/>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
    <title>Returns</title>
-   <ul id="ul_r1t_n1t_r4b">
+            <p props="rtc-ng">
+            <ul>
        <li>0: Success.</li>
        <li>&lt; 0: Failure.</li>
-   </ul>
-        </section></refbody>
+            </ul>
+            </p>
+            <p props="rtc">
+            <ul props="windows android electron unity rn flutter">
+       <li>0: Success.</li>
+       <li>&lt; 0: Failure.</li>
+            </ul>
+            <ul props="ios mac">
+                <li><codeph><ph keyref="true"/></codeph>: Success.</li>
+                <li><codeph><ph keyref="false"/></codeph>: Failure.</li>
+            </ul></p>
+        </section>
+    </refbody>
 </reference>

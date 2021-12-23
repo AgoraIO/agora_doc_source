@@ -12,20 +12,23 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public abstract boolean isCameraTorchSupported();</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)isCameraTorchSupported;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp"/>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+            <codeblock props="android" outputclass="language-java">public abstract boolean isCameraTorchSupported();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)isCameraTorchSupported;</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">virtual bool isCameraTorchSupported() = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>
         </p>
         </section>
         <section id="detailed_desc">
-   
    <p>该方法需要在相机启动（如通过调用 <xref keyref="startPreview"/> 或 <xref keyref="joinChannel1"/> 实现）后调用。</p>
-            <note type="attention">一般情况下，App 默认开启前置摄像头，因此如果你的前置摄像头不支持闪光灯常开，直接使用该方法会返回 <ph keyref="false"/>。
-                如果需要检查后置摄像头是否支持闪光灯常开，需要先使用 <xref keyref="switchCamera"/> 切换摄像头，再使用该方法。</note>
+            <note type="attention">
+                <ul>
+                <li props="windows">该方法仅适用于 Android 和 iOS。</li>
+                <li>一般情况下，App 默认开启前置摄像头，因此如果你的前置摄像头不支持闪光灯常开，直接使用该方法会返回 <ph keyref="false"/>。
+                    如果需要检查后置摄像头是否支持闪光灯常开，需要先使用 <xref keyref="switchCamera"/> 切换摄像头，再使用该方法。</li>
+                </ul></note>
         </section>
         <section id="return_values">
    <title>返回值</title>

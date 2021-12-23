@@ -11,39 +11,47 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
-        <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public void onStreamMessageError(int uid, int streamId, int error, int missed, int cached) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
-    didOccurStreamMessageErrorFromUid:(NSUInteger)uid 
-    streamId:(NSInteger)streamId 
-    error:(NSInteger)error 
-    missed:(NSInteger)missed 
-    cached:(NSInteger)cached;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessageError(uid_t uid, 
-     int streamId, 
-     int code, 
-     int missed, 
-     int cached) {
-     (void)uid;
-     (void)streamId;
-     (void)code;
-     (void)missed;
-     (void)cached;
-     }</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">on(
-  evt: EngineEvents.STREAM_MESSAGE_ERROR,
-  cb: (
-    uid: number,
-    streamId: number,
-    code: number,
-    missed: number,
-    cached: number
-  ) => void
-): this;</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessageError(uint uid, int streamId, int code, int missed, int cached)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+        <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessageError(uid_t userId, int streamId, int code, int missed, int cached) {
+    (void)userId;
+    (void)streamId;
+    (void)code;
+    (void)missed;
+    (void)cached;
+  }
+</codeblock>
         </p>
+        <p outputclass="codeblock" props="rtc">
+            <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessageError(uid_t uid, int streamId, int code, int missed, int cached) {
+    (void)uid;
+    (void)streamId;
+    (void)code;
+    (void)missed;
+    (void)cached;
+  }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">on(
+                evt: EngineEvents.STREAM_MESSAGE_ERROR,
+                cb: (
+                uid: number,
+                streamId: number,
+                code: number,
+                missed: number,
+                cached: number
+                ) => void
+                ): this;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnStreamMessageError(uint uid, int streamId, int code, int missed, int cached)</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
+  <p outputclass="codeblock">    
+        <codeblock props="android" outputclass="language-java">public void onStreamMessageError(int uid, int streamId, int error, int missed, int cached) {}</codeblock>
+        <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
+            didOccurStreamMessageErrorFromUid:(NSUInteger)uid 
+            streamId:(NSInteger)streamId 
+            error:(NSInteger)error 
+            missed:(NSInteger)missed 
+            cached:(NSInteger)cached;</codeblock>
+  </p>
         </section>
         <section id="detailed_desc">
    
@@ -55,10 +63,11 @@
                     <pt/>
                     <pd/>
                 </plentry>
-                <plentry id="uid">
-                    <pt>uid</pt>
-                    <pd>发送消息的用户 ID。</pd>
-                </plentry>
+       <plentry id="uid">
+           <pt props="ios mac android electron unity">uid</pt>
+           <pt props="windows"><ph props="rtc-ng">userId</ph><ph props="rtc">uid</ph></pt>
+           <pd>发送消息的用户 ID。</pd>
+       </plentry>
                 <plentry id="streamId">
                     <pt>streamId</pt>
                     <pd>接收到的消息的 Stream ID。</pd>

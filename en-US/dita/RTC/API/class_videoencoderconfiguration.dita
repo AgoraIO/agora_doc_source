@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoencoderconfiguration">
-    <title><ph keyref="VideoEncoderConfiguration" /></title>
+    <title><ph keyref="VideoEncoderConfiguration"/></title>
     <shortdesc id="short"><ph id="shortdesc">Video encoder configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -40,10 +40,57 @@
                        orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
                             mirrorMode:(AgoraVideoMirrorMode)mirrorMode;
 @end</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">struct VideoEncoderConfiguration {
+  VIDEO_CODEC_TYPE codecType;
+  VideoDimensions dimensions;
+  int frameRate;
+  int bitrate;
+  int minBitrate;
+  ORIENTATION_MODE orientationMode;
+  DEGRADATION_PREFERENCE degradationPreference;
+  VIDEO_MIRROR_MODE_TYPE mirrorMode;
+
+  VideoEncoderConfiguration(const VideoDimensions&amp; d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
+      : codecType(VIDEO_CODEC_H264),
+        dimensions(d),
+        frameRate(f),
+        bitrate(b),
+        minBitrate(DEFAULT_MIN_BITRATE),
+        orientationMode(m),
+        degradationPreference(MAINTAIN_QUALITY),
+        mirrorMode(mirror) {}
+  VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
+      : codecType(VIDEO_CODEC_H264),
+        dimensions(width, height),
+        frameRate(f),
+        bitrate(b),
+        minBitrate(DEFAULT_MIN_BITRATE),
+        orientationMode(m),
+        degradationPreference(MAINTAIN_QUALITY),
+        mirrorMode(mirror) {}
+  VideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config)
+      : codecType(config.codecType),
+        dimensions(config.dimensions),
+        frameRate(config.frameRate),
+        bitrate(config.bitrate),
+        minBitrate(config.minBitrate),
+        orientationMode(config.orientationMode),
+        degradationPreference(config.degradationPreference),
+        mirrorMode(config.mirrorMode) {}
+  VideoEncoderConfiguration()
+      : codecType(VIDEO_CODEC_H264),
+        dimensions(FRAME_WIDTH_640, FRAME_HEIGHT_360),
+        frameRate(FRAME_RATE_FPS_15),
+        bitrate(STANDARD_BITRATE),
+        minBitrate(DEFAULT_MIN_BITRATE),
+        orientationMode(ORIENTATION_MODE_ADAPTIVE),
+        degradationPreference(MAINTAIN_QUALITY),
+        mirrorMode(VIDEO_MIRROR_MODE_DISABLED) {}
+};</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows unity" outputclass="language-cpp">struct VideoEncoderConfiguration {
     VideoDimensions dimensions;
     FRAME_RATE frameRate;
@@ -90,18 +137,18 @@
     degradationPreference: DEGRADATION_PREFERENCE;
     mirrorMode: VIDEO_MIRROR_MODE_TYPE;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
        <plentry>
   <pt>dimensions</pt>
   <pd>
-      <p props="android windows">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions" />. This parameter is used to measure encoding quality and expressed in the form of length × width. The default value is 640 × 360. You can set a custom value.</p>
-      <p props="ios mac">The dimensions of the encoded video (px). This parameter is used to measure encoding quality and expressed in the form of length × width. The default value is 640 × 360. You can set a custom value, or select from the following list:<ul>
+      <p props="android windows">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions"/>. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
+      <p props="ios mac">The dimensions of the encoded video (px). This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value, or select from the following list:<ul>
               <li>AgoraVideoDimension120x120</li>
               <li>AgoraVideoDimension160x120</li>
               <li>AgoraVideoDimension180x180</li>
@@ -119,8 +166,8 @@
               <li>AgoraVideoDimension960x720</li>
               <li>AgoraVideoDimension1280x720</li>
               <li>AgoraVideoDimension1920x1080 (macOS only)</li>
-              <li>AgoraVideoDimension2540x1440 (macOS only)</li>
-              <li>AgoraVideoDimension3840x2160 (macOS only)</li>
+              <li props="hide">AgoraVideoDimension2540x1440 (macOS only)</li>
+              <li props="hide">AgoraVideoDimension3840x2160 (macOS only)</li>
           </ul>
           <note type="attention">
               <ul>
@@ -130,48 +177,53 @@
           </note>
       </p></pd>
        </plentry>
-       <plentry props="ios mac">
-           <pt>codecType</pt>
-           <pd>
-               <p>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE" />.</p>
+       <plentry props="rtc-ng">
+                    <pt props="ios mac windows">codecType</pt>
+           <pd props="ios mac windows">
+                        <p>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</p>
                     </pd>
-       </plentry>
+                </plentry>
        <plentry>
   <pt>frameRate</pt>
   <pd>
-      <p>The frame rate (fps) of encoding the video. See <xref keyref="FRAME_RATE" />. The default value is 15.</p>
+      <p>The encoding frame rate (fps) of the video. See <xref keyref="FRAME_RATE"/>. The default value is 15.</p>
   </pd>
        </plentry>
        <plentry>
   <pt>minFramerate</pt>
-  <pd>The minimum frame rate of encoding the video. The default value is -1.</pd>
+  <pd>The minimum encoding frame rate of the video. The default value is -1.</pd>
        </plentry>
        <plentry>
   <pt>bitrate</pt>
   <pd>
-      <p>The bitrate (Kbps) of encoding the video.</p>
-      <p props="rtc">You can refer to the table below to set your bitrate according to your app scenario. If the bitrate you set is beyond a reasonable range, the SDK sets it within a reasonable range. You can also choose from the following options:</p>
+      <p>The encoding bitrate (Kbps) of the video.</p>
+      <p props="rtc">You can refer to the table below to set the bitrate according to your app scenario. If the bitrate you set is beyond the reasonable range, the SDK sets it within a reasonable range. You can also choose from the following options:</p>
       <ul props="rtc">
- <li><option keyref="STANDARD_BITRATE" /> : (Recommended) Standard bitrate mode In this mode, the video bitrate of the LIVE_BROADCASTING profile is twice that of the COMMUNICATION profile.</li>
- <li><option keyref="COMPATIBLE_BITRATE" />: Adaptive bitrate mode In this mode, the bitrate differs between the LIVE_BROADCASTING and COMMUNICATION profiles. If you choose this mode in the LIVE_BROADCASTING profile, the video frame rate may be lower than the set value.</li>
+ <li><option keyref="STANDARD_BITRATE" /> : (Recommended)
+     Standard bitrate mode. In this mode, the video bitrate of the Live-broadcasting profile is twice that of the Communication profile.</li>
+ <li><option keyref="COMPATIBLE_BITRATE" />
+     : Adaptive bitrate mode. In this mode, the bitrate differs between the Live-broadcasting and Communication profiles. If you choose this mode in the Live-broadcasting profile, the video frame rate may be lower than the set value.</li>
       </ul>
       <ul props="rtc-ng">
-          <li><option keyref="STANDARD_BITRATE" /> : (Recommended) Standard bitrate mode In this mode, the video bitrate is twice the base bitrate.</li>
-          <li><option keyref="COMPATIBLE_BITRATE" />: Adaptive bitrate mode In this mode, the video bitrate is the same as the base bitrate. If you choose this mode in the LIVE_BROADCASTING profile, the video frame rate may be lower than the set value.</li>
+          <li><option keyref="STANDARD_BITRATE" /> : (Recommended)
+              Standard bitrate mode. In this mode, the video bitrate is twice the base bitrate.</li>
+          <li><option keyref="COMPATIBLE_BITRATE" />
+              : Adaptive bitrate mode. In this mode, the video bitrate is the same as the base bitrate. If you choose this mode in the Live-broadcasting profile, the video frame rate may be lower than the set value.</li>
       </ul>
-      <p props="rtc">Agora uses different video codecs for different profiles to optimize user experience. The COMMUNICATION profile prioritizes smoothness while the LIVE_BROADCASTING profile prioritizes video quality (a higher bitrate). Therefore, Agora recommends setting this parameter as <option keyref="STANDARD_BITRATE" />. You can also set the bitrate value of the LIVE_BROADCASTING profile to twice the bitrate value of the COMMUNICATION profile.</p>
+      <p props="rtc">Agora uses different video codecs for different profiles to optimize user experience. The Communication profile prioritizes smoothness while the Live-broadcasting profile prioritizes video quality (a higher bitrate).  Therefore, Agora recommends setting this parameter as
+<option keyref="STANDARD_BITRATE" /> . You can also set the bitrate value of the Live-broadcasting profile to twice the bitrate value of the Communication profile.</p>
       <table props="rtc" id="table_bitrate">
  <tgroup cols="4">
-     <colspec colnum="1" colname="col1" />
-     <colspec colnum="2" colname="col2" />
-     <colspec colnum="3" colname="col3" />
-     <colspec colnum="4" colname="col4" />
+     <colspec colnum="1" colname="col1"/>
+     <colspec colnum="2" colname="col2"/>
+     <colspec colnum="3" colname="col3"/>
+     <colspec colnum="4" colname="col4"/>
      <thead>
 <row>
-    <entry>Resolution</entry>
+    <entry>Dimensions</entry>
     <entry>Frame rate (fps)</entry>
-    <entry>Bitrate (Kbps) for COMMUNICATION</entry>
-    <entry>Bitrate (Kbps) for LIVE_BROADCASTING</entry>
+    <entry>Bitrate (Kbps) for Communication</entry>
+    <entry>Bitrate (Kbps) for Live-broadcasting</entry>
 </row>
      </thead>
      <tbody>
@@ -351,18 +403,19 @@
        <plentry>
   <pt>minBitrate</pt>
   <pd>
-      <p>The minimum bitrate (Kbps) of encoding the video.</p>
-      <p>The SDK automatically adjusts the encoding bitrate to adapt to the network conditions. Using a value greater than the default value forces the video encoder to output high-quality images but may cause more packet loss and hence sacrifice the smoothness of the video transmission. That said, unless you have special requirements for image quality, Agora does not recommend changing this value.</p>
-      <note type="attention">This parameter only applies to the LIVE_BROADCASTING profile.</note>
+      <p>The minimum encoding bitrate (Kbps) of the video.</p>
+      <p>The SDK automatically adjusts the encoding bitrate to adapt to the network conditions. Using a value greater than the default value forces the video encoder to output high-quality images but may cause more packet loss and sacrifice the smoothness of the video transmission. Unless you have special requirements for image quality, Agora does not recommend changing this value.</p>
+      <note type="attention">This parameter only applies to the Live-broadcasting profile.</note>
   </pd>
        </plentry>
        <plentry>
   <pt>orientationMode</pt>
-  <pd>The orientation mode of the encoded video. See <xref keyref="ORIENTATION_MODE" />.</pd>
+  <pd>
+      The orientation mode of the encoded video. See <xref keyref="ORIENTATION_MODE" />.</pd>
        </plentry>
        <plentry>
   <pt>degradationPreference</pt>
-  <pd>Video degradation preferences when the bandwidth is a constraint. For more details, see <xref keyref="DEGRADATION_PREFERENCE" />.</pd>
+  <pd>Video degradation preference under limited bandwidth. For details, see <xref keyref="DEGRADATION_PREFERENCE" />.</pd>
        </plentry>
        <plentry>
   <pt>mirrorMode</pt>
@@ -373,9 +426,10 @@
      <dd>v3.3.0</dd>
  </dlentry>
       </dl>
-      <p>Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees.<ph props="ios mac windows electron"> For details, see <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</ph>
-      <ul conkeyref="setLocalRenderMode2/videomirrormodetype" props="android"><li /></ul></p>
-      <note type="attention">The mirror mode is disabled by default.</note>
+      <p>
+ Whether to mirror the video when encoding the video. It only affects the video that the remote user sees. <ph props="ios mac windows electron">For details, see <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</ph><ul conkeyref="setLocalRenderMode2/videomirrormodetype" props="android"><li/></ul>
+      </p>
+      <note type="attention">By default, the video is not mirrored.</note>
   </pd>
        </plentry>
    </parml>

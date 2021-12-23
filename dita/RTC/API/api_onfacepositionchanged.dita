@@ -11,26 +11,39 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="windows" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, int imageHeight,
+                const Rectangle* vecRectangle, const int* vecDistance,
+                int numFaces) {
+                (void) imageWidth;
+                (void) imageHeight;
+                (void) vecRectangle;
+                (void) vecDistance;
+                (void) numFaces;
+                }</codeblock>
+        </p>
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onFacePositionChanged(
       int imageWidth, int imageHeight, AgoraFacePositionInfo[] faceRectArr) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, 
-     int imageHeight, 
-     Rectangle* vecRectangle, 
-     int* vecDistance, 
-     int numFaces){
-     (void)imageWidth;
-     (void)imageHeight;
-     (void)vecRectangle;
-     (void)vecDistance;
-     (void)numFaces;
-     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnFacePositionChanged(int imageWidth, int imageHeight, Rectangle vecRectangle,
             int[] vecDistance, int numFaces)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
+        <p outputclass="codeblock" props="rtc">
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit* _Nonnull)engine facePositionDidChangeWidth:(int)width previewHeight:(int)height faces:(NSArray&lt;AgoraFacePositionInfo*>* _Nullable)faces;</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">virtual void onFacePositionChanged(int imageWidth, 
+                int imageHeight, 
+                Rectangle* vecRectangle, 
+                int* vecDistance, 
+                int numFaces){
+                (void)imageWidth;
+                (void)imageHeight;
+                (void)vecRectangle;
+                (void)vecDistance;
+                (void)numFaces;
+                }</codeblock>
         </p>
         </section>
         <section id="detailed_desc">

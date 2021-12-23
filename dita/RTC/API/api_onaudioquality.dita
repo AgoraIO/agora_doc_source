@@ -13,20 +13,13 @@
     <refbody><section id="prototype">
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onAudioQuality(int uid, int quality, short delay, short lost) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
-                    audioQualityOfUid:(NSUInteger)uid 
-                    quality:(AgoraNetworkQuality)quality 
-                    delay:(NSUInteger)delay 
-                    lost:(NSUInteger)lost;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, 
-     int quality, 
-     unsigned short delay, 
-     unsigned short lost) {
-     (void)uid;
-     (void)quality;
-     (void)delay;
-     (void)lost;
-     }</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)audioQualityBlock:(void (^_Nullable)(NSUInteger uid, AgoraNetworkQuality quality, NSUInteger delay, NSUInteger lost))audioQualityBlock</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) {
+  (void)uid;
+  (void)quality;
+  (void)delay;
+  (void)lost;
+}</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioQuality(uint uid, int quality, ushort delay, ushort lost)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
@@ -39,7 +32,7 @@
        <dl outputclass="deprecated">
   <dlentry>
       <dt>弃用：</dt>
-      <dd>该方法自 v2.3.2 起废弃。请改用 <xref keyref="onRemoteAudioStats"/> 方法。</dd>
+      <dd><ph props="rtc">该方法自 v2.3.2 起废弃。</ph><ph props="rtc-ng">该方法已废弃。</ph>请改用 <xref keyref="onRemoteAudioStats"/> 方法。</dd>
   </dlentry>
        </dl>
    </p>
@@ -58,7 +51,11 @@
                 </plentry>
                 <plentry>
                     <pt>quality</pt>
-                    <pd>语音质量，详见 <xref keyref="QUALITY_TYPE"/>。</pd>
+                    <pd>语音质量。<ph props="ios mac windows unity">详见 <xref keyref="QUALITY_TYPE"/>。</ph>
+                        <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
+                        <li/>
+                    </ul>
+                    </pd>
                 </plentry>
                 <plentry>
                     <pt>delay</pt>

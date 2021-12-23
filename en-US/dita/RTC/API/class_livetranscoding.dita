@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-    <title><ph keyref="LiveTranscoding" /></title>
+    <title><ph keyref="LiveTranscoding"/></title>
     <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for CDN live streaming.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -21,7 +21,7 @@
     audioBitrate = 48;
     audioChannels = 1;
     audioCodecProfile = AudioCodecProfileType.LC_AAC;
-    transcodingUsers = new HashMap&lt;&gt;();
+    transcodingUsers = new HashMap&lt;>();
     backgroundColor = 0xFF000000;
     userConfigExtraInfo = null;
     metadata = null;
@@ -34,12 +34,12 @@
 @property(assign, nonatomic) BOOL lowLatency;
 @property(assign, nonatomic) NSInteger videoGop;
 @property(assign, nonatomic) AgoraVideoCodecProfileType videoCodecProfile;
-@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *&gt; *_Nullable transcodingUsers;
+@property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *> *_Nullable transcodingUsers;
 @property(copy, nonatomic) NSString *_Nullable transcodingExtraInfo;
 @property(strong, nonatomic) AgoraImage *_Nullable watermark;
-@property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable watermarkArray;
+@property (copy, nonatomic) NSArray&lt;AgoraImage *> *_Nullable watermarkArray;
 @property(strong, nonatomic) AgoraImage *_Nullable backgroundImage;
-@property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable backgroundImageArray;
+@property (copy, nonatomic) NSArray&lt;AgoraImage *> *_Nullable backgroundImageArray;
 @property(strong, nonatomic) COLOR_CLASS *_Nullable backgroundColor;
 @property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;
 @property(assign, nonatomic) NSInteger audioBitrate;
@@ -157,7 +157,7 @@
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry props="android windows electron unity">
                     <pt>width</pt>
@@ -181,15 +181,17 @@
                 </plentry>
                 <plentry props="ios mac">
                     <pt>size</pt>
-                    <pd>The height of the output media stream in pixels.</pd>
+                    <pd>The width and height of the output media stream in pixels.</pd>
                 </plentry>
                 <plentry>
                     <pt>videoBitrate</pt>
-                    <pd>The video bitrate (Kbps) of the output media stream. The default value is 400. You can refer to <xref keyref="guide-cdn-streaming">Pushing Streams to CDN</xref> to set this paramter.</pd>
+                    <pd>The video bitrate (Kbps) of the output media stream. The default value is 400. <ph props="ios android windows">You can refer to <xref keyref="guide-cdn-streaming">Push Streams to
+                            CND</xref> for how to set the parameters.</ph></pd>
                 </plentry>
                 <plentry>
                     <pt>videoFrameRate</pt>
-                    <pd>The video frame rate (fps) of the output media stream. The default value is 15, and the value range is [1, 30].<note type="attention">The Agora server adjusts any value over 30 fps to 30 fps.</note></pd>
+                    <pd>The video frame rate (fps) of the output media stream. The default value is 15, and the value range is [1, 30].<note type="attention">The Agora server adjusts
+                            any frame rate higher than 30 fps to 30 fps.</note></pd>
                 </plentry>
                 <plentry>
                     <pt>lowLatency</pt>
@@ -213,39 +215,56 @@
                 <plentry>
                     <pt>videoCodecProfile</pt>
                     <pd>
-                        <p>The video encoding specifications of the output media stream. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE" />.</p>
-                        <note type="attention">If you set this parameter to other values, Agora adjusts it to the default value.</note>
+                        <p>The video encoding configuration of the output media stream. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.</p>
+                        <note type="attention">If you set this parameter to any other value, Agora adjusts it to the default value.</note>
                     </pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>videoCodecType</pt>
-                    <pd>The codec type of the output video. For details, see <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" />.</pd>
+                    <pd>The codec type of the output video. For details, see <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
                 </plentry>
                 <plentry>
                     <pt>transcodingUsers</pt>
                     <pd>
-                        <p>Transcoding configurations of each host. One live streaming channel supports up to 17 hosts. For details, see <xref keyref="TranscodingUser" />.</p>
+                        <p>Transcoding configurations of each host. One live streaming channel supports up to 17 hosts. For details, see <xref keyref="TranscodingUser"
+                            />.</p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>transcodingExtraInfo</pt>
-                    <pd>The user SEI information embedded in the output media stream. This parameter is used to send SEI information to the CDN. The maximum length is 4096 bytes. See <xref keyref="faq-sei">How to solve SEI-related issues</xref>.</pd>
+                    <pd>The user SEI information embedded in the output media stream. This parameter is used to send SEI information to the CDN. The maximum length is 4096 bytes. See <xref keyref="faq-sei"
+                            >How to solve SEI-related issues</xref>.</pd>
                 </plentry>
                 <plentry>
                     <pt>backgroundColor</pt>
-                    <pd>The video background color of the output media stream. The format is a hexadecimal integer defined by RGB without the # symbol. For example, <codeph>0xFFB6C1</codeph> represents light pink. The default value is <codeph>0x000000 </codeph>(black).</pd>
+                    <pd>The video background color of the output media stream. The format is a hexadecimal integer defined by RGB without the # symbol. For example, <codeph>0xFFB6C1</codeph>
+                        means light pink. The default value is <codeph>0x000000 </codeph>(black).</pd>
                 </plentry>
                 <plentry props="android windows electron unity">
                     <pt>userCount</pt>
-                    <pd>The number of hosts involved in transcoding. The default value is 0.</pd>
-                </plentry>    
+                    <pd>The number of hosts in the transcoding. The default value is 0.</pd>
+                </plentry>
+                <plentry props="android windows unity">
+                    <pt>metadata</pt>
+                    <pd>
+                        <dl outputclass="deprecated">
+                            <dlentry>
+                                <dt>Deprecated:</dt>
+                                <dd>This attribute is deprecated.</dd>
+                            </dlentry>
+                        </dl> The metadata sent to the CDN client.</pd>
+                </plentry>
                 <plentry>
                     <pt>watermark</pt>
-                    <pd>The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. For details, see <xref keyref="RtcImage" />.</pd>
-                </plentry>      
+                    <pd>The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. For details, see <xref keyref="RtcImage"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>backgroundImage</pt>
+                    <pd> The video background image of the output media stream. For details, see <xref keyref="RtcImage"/>.</pd>
+                </plentry>
                 <plentry>
                     <pt>audioSampleRate</pt>
-                    <pd>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />.</pd>
+                    <pd>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
                 </plentry>
                 <plentry>
                     <pt>audioBitrate</pt>
@@ -256,26 +275,25 @@
                     <pd>The number of audio channels of the output media stream. The default value is 1. Agora recommends setting it to 1 or 2.<ul>
                             <li>1: (Default) Mono</li>
                             <li>2: Stereo.</li>
-                            <li>3: Three audio channels</li>
-                            <li>4: Four audio channels</li>
-                            <li>5: Five audio channels</li>
+                            <li>3: Three audio channels.</li>
+                            <li>4: Four audio channels.</li>
+                            <li>5: Five audio channels.</li>
                         </ul>
                     </pd>
                 </plentry>
-                
+                <plentry>
+                    <pt>audioCodecProfile</pt>
+                    <pd>The audio codec of the output media stream. For details, see <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
+                </plentry>
             </parml>
             <parml props="rtc-ng">
-                <plentry>
-                    <pt>backgroundImage</pt>
-                    <pd>The video background image of the output media stream. For details, see <xref keyref="RtcImage" />.</pd>
-                </plentry>
                 <plentry>
                     <pt props="ios mac">watermarkArray</pt>
                     <pt props="windows">watermarkCount</pt>
                     <pd><p>The number of watermarks of the output media stream.</p>
                         <ul>
                             <li>If you do not add a watermark or add only one watermark, this parameter is optional.</li>
-                            <li>If you add more than one watermark, this parameter is required.</li>
+                            <li>If you add more than one watermarks, ensure that you set this parameter.</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -285,23 +303,9 @@
                     <pd><p>The number of background images of the output media stream.</p>
                         <ul>
                             <li>If you do not add a background image or add only one background image, this parameter is optional.</li>
-                            <li>If you add more than one background image, this parameter is required.</li>
+                            <li>If you add more than one background images, ensure that you set this parameter.</li>
                         </ul>
                     </pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>audioCodecProfile</pt>
-                    <pd>The audio codec of the media stream. For details, see <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />.</pd>
-                </plentry>
-                <plentry props="android windows">
-                    <pt>metadata</pt>
-                    <pd>
-                        <dl outputclass="deprecated">
-                            <dlentry>
-                                <dt>Deprecated:</dt>
-                                <dd>This attribute is deprecated.</dd>
-                            </dlentry>
-                        </dl>The metadata sent to the CDN client.</pd>
                 </plentry>
             </parml>
         </section>

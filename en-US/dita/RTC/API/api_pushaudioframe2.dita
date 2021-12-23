@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_pushaudioframe2">
-    <title><ph keyref="pushAudioFrame2" /></title>
+    <title><ph keyref="pushAudioFrame2"/></title>
     <shortdesc id="short"><ph id="shortdesc">Pushes the external audio frame.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -17,14 +17,14 @@
                                            int bytesPerSample, int sourcePos);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameRawData:(AgoraAudioExternalSourcePos)sourcePos frame:(AgoraAudioFrame* _Nonnull)frame;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int pushAudioFrame(int32_t sourcePos, IAudioFrameObserver::AudioFrame* frame) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
         </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="native">
+            <dl outputclass="since" props="rtc">
                 <dlentry>
                     <dt>Since</dt>
                     <dd>v3.5.1</dd>
@@ -32,11 +32,11 @@
             </dl>
         <p>According to your needs, you can push the external audio frame to one of three positions: after audio capture, before audio encoding, or before local playback. </p>
         <p>You can call this method multiple times to push one audio frame to multiple positions or multiple audio frames to different positions. </p>
-        <p>For example, in the KTV scenario, you can push the singing voice to after audio capture, so that the singing voice can be processed by the SDK audio module 
+        <p>For example, in the KTV scenario, you can push the singing voice to after audio capture, so that the singing voice can be processed by the SDK audio module
             and you can obtain a high-quality audio experience; you can also push the accompaniment to before audio encoding, so that the accompaniment is not affected by the audio module of the SDK.</p>
         <note type="attention">Call this method after joining a channel.</note>
         </section>
-        
+
         <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry props="windows ios mac" conkeyref="pushAudioFrame1/frame">
@@ -58,10 +58,10 @@
        <plentry props="android">
            <pt>channels</pt>
            <pd>
-               <p>	The number of audio channels:
+               <p>The number of audio channels:
                    <ul>
-                       <li><codeph>1</codeph>：Mono</li>
-                       <li><codeph>2</codeph>：Stereo (the data is interleaved)</li>
+                       <li><codeph>1</codeph>: Mono</li>
+                       <li><codeph>2</codeph>: Stereo (the data is interleaved)</li>
                    </ul>
                </p>
            </pd>
@@ -72,7 +72,7 @@
        </plentry>
        <plentry>
            <pt>sourcePos</pt>
-           <pd>The push position of the external audio frame. See <xref keyref="AUDIO_EXTERNAL_SOURCE_POSITION"/>。</pd>
+           <pd>The push position of the external audio frame. See <xref keyref="AUDIO_EXTERNAL_SOURCE_POSITION"/>.</pd>
        </plentry>
    </parml>
         </section>

@@ -15,16 +15,17 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR error) {
+                (void)state;
+                (void)error;
+                }</codeblock>
+        </p>
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onLocalVideoStateChanged(int state, int error) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     localVideoStateChangedOfState:(AgoraVideoLocalState)state
     error:(AgoraLocalVideoStreamError)error;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState, 
-    LOCAL_VIDEO_STREAM_ERROR error) {
-    (void)localVideoState;
-    (void)error;
-    }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.LOCAL_VIDEO_STATE_CHANGED, cb: (
     localVideoState: number,
     error: number
@@ -33,6 +34,13 @@
             LOCAL_VIDEO_STREAM_ERROR error)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart"/>
+        </p>
+        <p outputclass="codeblock" props="rtc">
+            <codeblock props="windows" outputclass="language-cpp">virtual void onLocalVideoStateChanged(LOCAL_VIDEO_STREAM_STATE localVideoState,
+                LOCAL_VIDEO_STREAM_ERROR error) {
+                (void)localVideoState;
+                (void)error;
+                }</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -64,9 +72,10 @@
                 </plentry>
                 <plentry>
                     <pt props="android ios mac">state</pt>
-                    <pt props="windows unity">localVideoState</pt>
+                    <pt props="unity electron">localVideoState</pt>
+                    <pt props="windows"><ph props="rtc">localVideoState</ph><ph props="rtc-ng">state</ph></pt>
                     <pd>
-                        <p props="ios mac windows unity">本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"
+                        <p props="ios mac windows unity electron">本地视频状态，详见 <xref keyref="LOCAL_VIDEO_STREAM_STATE"
                             />。</p>
                         <p props="android">
                             <ul>

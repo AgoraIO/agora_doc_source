@@ -18,7 +18,7 @@
                         mode:(AgoraVideoRenderMode)mode
                       mirror:(AgoraVideoMirrorMode)mirror
                   connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderModeEx(uid_t remoteUid, media::base::RENDER_MODE_TYPE renderMode,
+                <codeblock props="windows" outputclass="language-cpp">virtual int setRemoteRenderModeEx(uid_t uid, media::base::RENDER_MODE_TYPE renderMode,
        VIDEO_MIRROR_MODE_TYPE mirrorMode, const RtcConnection&amp; connection) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -38,8 +38,7 @@
         <section id="parameters"><title>参数</title>
    <parml>
        <plentry>
-  <pt props="android ios mac">uid</pt>
-           <pt props="windows">remoteUid</pt>
+  <pt>uid</pt>
   <pd>远端用户 ID。</pd>
        </plentry>
        <plentry>
@@ -59,7 +58,7 @@
                       <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                           <li/>
                       </ul>
-                  </p>  
+                  </p>
                     </pd>
                 </plentry>
                 <plentry conkeyref="joinChannelEx/connection">

@@ -11,14 +11,10 @@
   public int fileSizeInKB;
   public int level = Constants.LogLevel.getValue(Constants.LogLevel.LOG_LEVEL_INFO);
 }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcEngineConfig: NSObject
- @property (copy, nonatomic) NSString * _Nullable appId;
- @property (assign, nonatomic) AgoraChannelProfile channelProfile;
- @property (assign, nonatomic) AgoraAudioScenario audioScenario;
- @property (assign, nonatomic) AgoraAreaCodeType areaCode;
- @property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
- @property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate>>* _Nullable mediaFilterExtensions;
- @property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate> _Nullable eventDelegate;
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLogConfig: NSObject
+@property (copy, nonatomic) NSString * _Nullable filePath;
+@property (assign, nonatomic) NSInteger fileSizeInKB;
+@property (assign, nonatomic) AgoraLogLevel level;
 @end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">struct LogConfig
 {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setrecordingaudioframeparameters">
-    <title><ph keyref="setRecordingAudioFrameParameters" /></title>
+    <title><ph keyref="setRecordingAudioFrameParameters"/></title>
     <shortdesc id="short"><ph id="shortdesc">Set the format of the captured raw audio data.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setRecordingAudioFrameParameters" />
+                <indexterm keyref="setRecordingAudioFrameParameters"/>
             </keywords>
         </metadata>
     </prolog>
@@ -19,9 +19,9 @@
                                               channel:(NSInteger)channel
                                                  mode:(AgoraAudioRawFrameOperationMode)mode
                                        samplesPerCall:(NSInteger)samplesPerCall;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingAudioFrameParameters(int sampleRate, 
-    int channel, 
-    RAW_AUDIO_FRAME_OP_MODE_TYPE mode, 
+                <codeblock props="windows" outputclass="language-cpp">virtual int setRecordingAudioFrameParameters(int sampleRate,
+    int channel,
+    RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
     int samplesPerCall) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">setRecordingAudioFrameParameters(
     sampleRate: number,
@@ -31,17 +31,17 @@
     ): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetRecordingAudioFrameParameters(int sampleRate, int channel,
             RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
             </p>
         </section>
         <section id="detailed_desc">
-            <p props="android ios mac windows unity">Sets the audio format for the <xref keyref="onRecordAudioFrame" /> callback.</p>
-            <p props="electron">After calling <xref keyref="registerPlugin" /> to register an extension and get the captured raw audio data, you can call this method to set the sample rate and number of audio channels of the raw data returned by the SDK.</p>
+            <p props="android ios mac windows">Sets the audio format for the <xref keyref="onRecordAudioFrame"/> callback.</p>
+            <p props="electron">After calling <xref keyref="registerPlugin"/> to register an extension and get the captured raw audio data, you can call this method to set the sample rate and number of audio channels of the raw data returned by the SDK.</p>
             <note type="attention">
                 <ul>
                     <li>Ensure that you call this method before joining a channel.</li>
-                    <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = samplePerCall/(sampleRate × channel)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph props="android ios mac windows">The SDK triggers the callback according to the sampling interval<apiname keyref="onRecordAudioFrame" />.</ph></li>
+                    <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph props="android ios mac windows">The SDK triggers the  callback according to the sampling interval<apiname keyref="onRecordAudioFrame"/>.</ph></li>
                 </ul>
             </note>
         </section>
@@ -49,13 +49,13 @@
             <parml>
                 <plentry>
                     <pt>sampleRate</pt>
-                    <pd props="android ios mac windows unity">The sample rate returned in the <apiname keyref="onRecordAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                    <pd props="android ios mac windows unity">The sample rate returned in the <apiname keyref="onRecordAudioFrame"/> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
                     <pd props="electron">The sample rate returned in the callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
                 </plentry>
                 <plentry>
                     <pt>channel</pt>
                     <pd props="android ios mac windows unity">
-                        <p>The number of channels (channels) returned in the <apiname keyref="onRecordAudioFrame" /> callback:<ul>
+                        <p>The number of channels (channels) returned in the <apiname keyref="onRecordAudioFrame"/> callback:<ul>
                                 <li>1: Mono.</li>
                                 <li>2: Stereo.</li>
                             </ul></p>
@@ -68,14 +68,14 @@
                 <plentry>
                     <pt>mode</pt>
                     <pd props="android ios mac windows unity">
-                        <p props="ios mac windows untiy">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
-                        <p conkeyref="registerAudioFrameObserver2/mode" props="android" />
+                        <p props="ios mac windows unity">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</p>
+                        <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android"/>
                     </pd>
-                    <pd props="electron">The use mode of the returned data, see <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</pd>
+                    <pd props="electron">The use mode of the returned data, see <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</pd>
                 </plentry>
                 <plentry>
                     <pt>samplesPerCall</pt>
-                    <pd props="android ios mac windows unity">The number of samples returned in the <apiname keyref="onRecordAudioFrame" /> callback. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
+                    <pd props="android ios mac windows unity"> The number of samples returned in the <apiname keyref="onRecordAudioFrame"/> callback. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
                     <pd props="electron">The number of samples returned by the SDK. Usually set as 1024 for RTMP or RTMPS streaming.</pd>
                 </plentry>
             </parml>
