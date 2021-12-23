@@ -17,11 +17,8 @@ Agora RTC SDK 对于 access token 2 的支持情况如下：
 
 <div class="alert note">如果你还使用了云端录制、推流等 RTC 配套产品或服务，请在升级到 access token 2 之前<a href="https://agora-ticket.agora.io/">提交工单</a>联系技术支持。</div>
 
-## 实现步骤
 
-本文以 Java 服务端和 Web 客户端为例，通过具体步骤引导你搭建并升级 Agora RTC SDK 的 Token 鉴权机制。
-
-### 前提条件
+## 前提条件
 
 - 你已经根据[使用 Token 鉴权](//TODO LINK) 文档完成了基于 Spring 框架的 Token 服务端和基于 Web 的客户端的搭建。
 - 为 Agora Chat 的 Token 服务端添加基于 [access token](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/AccessToken.h) 的 RTC Token 服务。在 `AgoraChatTokenController.java` 文件中，增加以下引用：
@@ -33,7 +30,7 @@ Agora RTC SDK 对于 access token 2 的支持情况如下：
     并添加以下方法：
 
     ```java
-    // 生成 RTC Token
+    // 生成 RTC access token
     @GetMapping("/rtc/{rtcChannelName}/{rtcUserId}/{role}/token")
     public String getRtcToken(@PathVariable String rtcChannelName, @PathVariable int rtcUserId, @PathVariable int role) {
 
@@ -182,13 +179,19 @@ Agora RTC SDK 对于 access token 2 的支持情况如下：
     startBasicCall()
     ```
 
-### 验证 access token 的鉴权效果
+- 验证 access token 的鉴权效果。
 
-用支持的浏览器打开 `index.html` 文件，可以看到客户端执行以下操作：
-   - 成功加入频道。
-   - 每隔 10 秒更新 Token。
+    用支持的浏览器打开 `index.html` 文件，可以看到客户端执行以下操作：
+    - 成功加入频道。
+    - 每隔 10 秒更新 Token。
 
-### 在 Token 服务端升级到 access token 2
+## 实现步骤
+
+本文以 Java 服务端和 Web 客户端为例，通过具体步骤引导你搭建并升级 Agora RTC SDK 的 Token 鉴权机制。
+
+
+
+### 在 Token 服务端将鉴权机制升级到 access token 2
 
 该小节引导你将 Token 服务端升级到 access token 2。
 
@@ -201,6 +204,7 @@ Agora RTC SDK 对于 access token 2 的支持情况如下：
 2. 将 `getRtcToken` 方法的实现代码替换为以下逻辑：
 
     ```java
+    // 生成 RTC access token 2
     public String getRtcToken(@PathVariable String rtcChannelName, @PathVariable int rtcUserId, @PathVariable int role) {
 
         if (!StringUtils.hasText(appid) || !StringUtils.hasText(appcert)) {
