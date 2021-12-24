@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_oncameraexposureareachanged">
-    <title><ph keyref="onCameraExposureAreaChanged"/></title>
+    <title><ph keyref="onCameraExposureAreaChanged" /></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the camera exposure area changes.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -21,22 +21,22 @@
      (void)height;
      }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.CAMERA_EXPOSURE_AREA_CHANGED, cb: (
-     x: number, 
-     y: number, 
-     width: number, 
-     height: number) => void
+     x: number,
+     y: number,
+     width: number,
+     height: number) =&gt; void
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnCameraExposureAreaChanged(int x, int y, int width, int height)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">RectCallback? cameraExposureAreaChanged;</codeblock>
         </p>
         </section>
-        <section id="detailed_desc" props="android ios windows">
-   <p>The SDK triggers this callback when the local user changes the camera exposure position by calling <xref keyref="setCameraExposurePosition"/>.</p>
-            <note type="attention" props="windows">This method is for Android and iOS only.</note>
+        <section id="detailed_desc" props="android ios windows flutter">
+   <p>The SDK triggers this callback when the local user changes the camera exposure position by calling <xref keyref="setCameraExposurePosition" />.</p>
+            <note type="attention" props="windows flutter">This method is for Android and iOS only.</note>
         </section>
         <section id="parameters">
-            <title>Parameter</title>
+            <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml props="windows unity">
                 <plentry>
                     <pt>x</pt>
@@ -55,10 +55,10 @@
                     <pd>The height of the changed exposure area.</pd>
                 </plentry>
             </parml>
-            <parml props="android ios mac">
+            <parml props="android ios mac flutter">
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry>
                     <pt>rect</pt>

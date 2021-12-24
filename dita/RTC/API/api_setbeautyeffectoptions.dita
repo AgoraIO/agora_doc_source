@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setbeautyeffectoptions">
-    <title><ph keyref="setBeautyEffectOptions"/></title>
+    <title><ph keyref="setBeautyEffectOptions" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置美颜效果选项。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -17,39 +17,39 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual int setBeautyEffectOptions(bool enabled, BeautyOptions options) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">setBeautyEffectOptions(enabled: boolean, options: BeautyOptions): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetBeautyEffectOptions(bool enabled, BeautyOptions options);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setBeautyEffectOptions(bool enabled, BeautyOptions options);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
    
    <dl outputclass="since" props="rtc">
-       <dlentry>
+       <dlentry props="native">
   <dt>自从</dt>
-  <dd><ph keyref="since-setbeautyeffect"/></dd>
+  <dd><ph keyref="since-setbeautyeffect" /></dd>
        </dlentry>
    </dl>
    <p>开启本地美颜功能，并设置美颜效果选项。</p>
-   <p>该方法需要在 <xref keyref="enableVideo"/> 后调用。</p>
+   <p>该方法需要在 <xref keyref="enableVideo" /> 后调用。</p>
    <note type="attention" props="android">该方法仅适用于 Android 4.4 及以上版本。</note>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
        <plentry>
-  <pt props="android windows unity">enabled</pt>
+  <pt props="android windows unity flutter">enabled</pt>
            <pt props="ios mac">enable</pt>
   <pd>是否开启美颜功能：<ul>
-      <li><codeph><ph keyref="true"/></codeph>: 开启。</li>
-      <li><codeph><ph keyref="false"/></codeph>:（默认）关闭。</li>
+      <li><codeph><ph keyref="true" /></codeph>: 开启。</li>
+      <li><codeph><ph keyref="false" /></codeph>:（默认）关闭。</li>
   </ul></pd>
        </plentry>
        <plentry>
   <pt>options</pt>
-  <pd>美颜选项，详细定义见 <xref keyref="BeautyOptions"/>。</pd>
+  <pd>美颜选项，详细定义见 <xref keyref="BeautyOptions" />。</pd>
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>返回值</title>
    <ul>
        <li>0: 方法调用成功。</li>

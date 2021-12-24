@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_muteremotevideostream">
-    <title><ph keyref="muteRemoteVideoStream"/></title>
+    <title><ph keyref="muteRemoteVideoStream" /></title>
     <shortdesc id="short"><ph id="shortdesc">取消或恢复订阅指定远端用户的视频流。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -18,8 +18,8 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual int muteRemoteVideoStream(uid_t userId, bool mute) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">muteRemoteVideoStream(userId: number, mute: boolean): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int MuteRemoteVideoStream(uint userId, bool mute);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteRemoteVideoStream(int uid, bool muted);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -35,27 +35,25 @@
    <parml>
        <plentry>
            <pt props="android windows unity">userId</pt>
-           <pt props="ios mac">uid</pt>
-  <pd>
-      <p>指定用户的用户 ID。</p>
-  </pd>
+           <pt props="ios mac flutter">uid</pt>
+  <pd  id="userId">指定用户的用户 ID。</pd>
        </plentry>
        <plentry>
-           <pt props="android">muted</pt>
+           <pt props="android flutter">muted</pt>
            <pt props="ios mac windows unity">mute</pt>
-           <pd><p>是否取消订阅指定远端用户的视频流。</p><ul>
-      <li><codeph><ph keyref="true"/></codeph>: 取消订阅指定用户的视频流。</li>
-      <li><codeph><ph keyref="false"/></codeph>: （默认）订阅指定用户的视频流。</li>
-  </ul>
+           <pd id="mute"><p>是否取消订阅指定远端用户的视频流。<ul>
+      <li><codeph><ph keyref="true" /></codeph>: 取消订阅指定用户的视频流。</li>
+      <li><codeph><ph keyref="false" /></codeph>: （默认）订阅指定用户的视频流。</li>
+  </ul></p>
       </pd>
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>返回值</title>
    <ul>
        <li>0：方法调用成功。</li>
-       <li>&lt; 0：方法调用失败。 </li>
+       <li>&lt; 0：方法调用失败。</li>
    </ul>
         </section>
     </refbody>

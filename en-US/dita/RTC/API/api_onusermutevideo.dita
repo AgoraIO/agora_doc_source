@@ -21,11 +21,11 @@
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_MUTE_VIDEO, cb: (uid: number, muted: boolean) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserMuteVideo(uint uid, bool muted)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">UidWithMutedCallback? userMuteVideo;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-   
+
    <dl outputclass="deprecated" props="hide">
        <dlentry>
   <dt>Deprecated:</dt>
@@ -39,25 +39,24 @@
    <p>The SDK triggers this callback when the remote user stops or resumes sending the video stream by calling the <xref keyref="muteLocalVideoStream" /> method.</p>
    <note type="attention">This callback does not work properly when the number of users (in the COMMUNICATION profile) or hosts (in the LIVE_BROADCASTING profile) in the channel exceeds 17.</note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
    <parml>
-       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-       <plentry>
-  <pt>uid</pt>
-  <pd>The ID of the remote user.</pd>
-       </plentry>
-       <plentry>
-  <pt>muted</pt>
-  <pd>Whether the remote user's video stream playback is paused/resumed:<ul>
- <li><codeph><ph keyref="true" /></codeph>: Paused.</li>
- <li><codeph><ph keyref="false" /></codeph>: Resumed.</li>
-      </ul>
-  </pd>
-       </plentry>
-   </parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user.</pd>
+                </plentry>
+                <plentry>
+                    <pt>muted</pt>
+                    <pd>Whether the remote user's video stream playback is paused/resumed:<ul>
+                        <li><codeph><ph keyref="true" /></codeph>: Paused.</li>
+                        <li><codeph><ph keyref="false" /></codeph>: Resumed.</li>
+                        </ul> </pd>
+                </plentry>
+            </parml>
         </section>
     </refbody>
 </reference>

@@ -22,14 +22,26 @@
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnMetadataReceived(Metadata metadata)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">MetadataCallback? metadataReceived;</codeblock>
             </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
-                <plentry>
+                <plentry props="unity">
                     <pt>metadata</pt>
                     <pd>The received metadata. See <xref keyref="Metadata" />.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>buffer</pt>
+                    <pd>The recevied metadata.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>uid</pt>
+                    <pd>The ID of the user who sent the metadata.</pd>
+                </plentry>
+                <plentry props="flutter">
+                    <pt>timeStampMs</pt>
+                    <pd>The timestamp (ms) of the received metadata.</pd>
                 </plentry>
             </parml>
         </section>

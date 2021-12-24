@@ -1,502 +1,474 @@
----
-title: 实现视频通话
-platform: Android
-updatedAt: 2021-03-26 06:47:53
----
-本文介绍如何使用 Agora SDK 快速实现音视频通话。
+实时视频通话能够拉近人与人之间的距离，为用户提供沉浸式的交流体验，帮助你的 app 提高用户黏性。
 
-## Demo 体验
+本文介绍如何通过少量代码集成 Agora 视频 SDK 并调用 API，在你的 Android 应用中实现高质量、低延迟的视频通话功能。
 
-Agora 在 GitHub 上提供一个开源的实时音视频通话示例项目 [Agora-Android-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Android-Tutorial-1to1)。在实现相关功能前，你可以下载并查看源代码。
+## 技术原理
 
-<video src="https://web-cdn.agora.io/docs-files/1582781500734" poster="https://web-cdn.agora.io/docs-files/1582785135607"  controlslist="nodownload" width = 100% height = auto></video>
+下图展示在 app 中集成 Agora 视频通话的基本工作流程：
+
+![img](https://web-cdn.agora.io/docs-files/1637569284591)
+
+如图所示，实现视频通话的步骤如下：
+
+1. 获取 Token：当 app 客户端加入频道时，你需要使用 Token 验证用户身份。在测试或生产环境中，从 app 服务器中获取 Token。
+2. 加入频道：调用 `joinChannel` 创建并加入频道。使用同一频道名称的 app 客户端默认加入同一频道。
+3. 在频道内发布和订阅音视频流：加入频道后，app 客户端均可以在频道内发布和订阅音视频。
+
+App 客户端加入频道需要以下信息：
+
+- App ID：Agora 随机生成的字符串，用于识别你的 app，可从 [Agora 控制台](https://console.agora.io/)获取。
+- 用户 ID：用户的唯一标识。你需要自行设置用户 ID，并确保它在频道内是唯一的。
+- Token：在测试或生产环境中，app 客户端从你的服务器中获取 Token。在本文介绍的流程中，你可以从 Agora 控制台获取临时 Token。临时 Token 的有效期为 24 小时。
+- 频道名称：用于标识视频通话频道的字符串。
 
 ## 前提条件
 
-* Android Studio 3.0 或以上版本
-* Android SDK API 等级 16 或以上
-* 支持 Android 4.1 或以上版本的移动设备
-* 有效的 Agora 账户（免费[注册](https://dashboard.agora.io/)）
+开始前，请确保你的开发环境满足以下条件：
 
-<div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a>打开相关端口。</div>
+- Android Studio 3.0 或以上版本。
+- Android SDK API 等级 16 或以上。
+- 有效的 [Agora 账户](https://console.agora.io/)。
+- 带有 App ID 和临时 Token 的 Agora 项目。详见[开始使用 Agora 平台](https://docs.agora.io/cn/AgoraPlatform/get_appid_token?platform=All%20Platforms)。
+- 可以访问互联网的计算机。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms)。
+- 运行 Android 4.1 或更高版本的移动设备。
 
-## 准备开发环境
+## 项目设置
 
-本节介绍如何创建项目，将 Agora 视频通话 SDK 集成进你的项目中，并添加相应的设备权限。
+实现视频通话之前，参考如下步骤设置你的项目：
 
-### 创建 Android 项目
+1. 如需创建新项目，在 **Android Studio** 里，依次选择 **Phone and Tablet** > **Empty Activity**，创建 [Android 项目](https://developer.android.com/studio/projects/create-project)。
 
-参考以下步骤创建一个 Android 项目。若已有 Android 项目，可以直接查看[集成 SDK](#integrate_sdk)。
+   创建项目后，**Android Studio** 会自动开始同步 gradle。请确保同步成功后再进行下一步操作。
 
-<details>
-	<summary><font color="#3ab7f8">创建 Android 项目</font></summary>
+2. 将视频 SDK 集成到你的项目中。对 3.5.0 版或之后的 SDK，请参考以下步骤使用 mavenCentral 集成 SDK。对 3.5.0 版之前的 SDK 版本，请参考<a href="https://docs.agora.io/cn/Video/start_call_android?platform=Android#othermethods">集成 SDK 的其他方法</a>。
 
-1. 打开 <b>Android Studio</b>，点击 <b>Start a new Android Studio project</b>。
-2. 在 <b>Choose your project</b> 界面，选择 <b>Phone and Tablet</b> > <b>Empty Activity</b>，然后点击 <b>Next</b>。
-3. 在 <b>Configure your project</b> 界面，依次填入以下内容：
-	* <b>Name</b>：你的 Android 项目名称，如 HelloAgora
-	* <b>Package name</b>：你的项目包的名称，如 io.agora.helloagora
-	* <b>Project location</b>：项目的存储路径
-	* <b>Language</b>：项目的编程语言，如 Java
-	* <b>Minimum API level</b>：项目的最低 API 等级
+   a. 在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码，以添加 mavenCentral 依赖：
 
-然后点击 <b>Finish</b>。根据屏幕提示，安装可能需要的插件。
-</details>
+   ```java
+    buildscript {
+        repositories {
+            ...
+            mavenCentral()
+        }
+        ...
+   }
 
-<a name="integrate_sdk"></a>
-### 集成 SDK
+     allprojects {
+        repositories {
+            ...
+            mavenCentral()
+        }
+   }
+   ```
 
-选择如下任意一种方式将 Agora 视频通话 SDK 集成到你的项目中。
+   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将 Agora 视频 SDK 集成到你的 Android 项目中：
 
-**方法一：使用 JCenter 自动集成**
-
-在项目的 **/app/build.gradle** 文件中，添加如下行：
-
-```
-...
-dependencies {
+   ```java
     ...
-    // 其中 2.9.4 是最新的 Agora 视频通话 SDK 的版本号。你也可以填写其他版本
-    implementation 'io.agora.rtc:full-sdk:2.9.4'
-}
-```
+    dependencies {
+     ...
+     // x.y.z，请填写具体的 SDK 版本号，如：3.5.0。
+     // 通过发版说明获取最新版本号。
+     implementation 'io.agora.rtc:full-sdk:x.y.z'
+    }
+   ```
 
-**方法二：手动复制 SDK 文件**
+3. 在 `/app/Manifests/AndroidManifest.xml` 文件中的 `</application>` 后面添加如下网络和设备权限：
 
-1. 前往 [SDK 下载](https://docs.agora.io/cn/Agora%20Platform/downloads)页面，获取最新版的 Agora 视频通话 SDK，然后解压。
-2. 将 SDK 包内 libs 路径下的如下文件，拷贝到你的项目路径下：
+   ```xml
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+   ```
+   
+4. 为防止代码混淆，在 `/Gradle Scripts/proguard-rules.pro` 文件中添加如下代码：
 
+   ```java
+    -keep class io.agora.**{*;}
+   ```
 
-| 文件或文件夹                   | 项目路径                               | 
-| ---------------------------- | ------------------------------------ | 
-| **agora-rtc-sdk.jar** 文件    | **/app/libs/**                       | 
-| **arm-v8a** 文件夹            | **/app/src/main/jniLibs/**           | 
-| **armeabi-v7a** 文件夹        | **/app/src/main/jniLibs/**           | 
-| **x86** 文件夹                | **/app/src/main/jniLibs/**           | 
-| **x86_64** 文件夹             | **/app/src/main/jniLibs/**           | 
+## 客户端实现
 
-### 添加项目权限
+本节介绍如何使用 Agora 视频 SDK 在你的 app 里实现视频通话。
 
-根据场景需要，在  **/app/src/main/AndroidManifest.xml** 文件中添加如下行，获取相应的设备权限：
+### 创建用户界面
 
-```xml
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-   package="io.agora.tutorials1v1acall">
- 
-   <uses-permission android:name="android.permission.READ_PHONE_STATE" />   
-   <uses-permission android:name="android.permission.INTERNET" />
-   <uses-permission android:name="android.permission.RECORD_AUDIO" />
-   <uses-permission android:name="android.permission.CAMERA" />
-   <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-   <uses-permission android:name="android.permission.BLUETOOTH" />
-   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-   // 如果你的场景中涉及读取外部存储，需添加如下权限：
-   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-   // 如果你使用的是 Android 10.0 及以上设备，还需要添加如下权限：
-   <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
- 
-...
-</manifest>
-```
-
-
-如果你的 `targetSdkVersion` &ge; 29，还需要在 **AndroidManifest.xml** 文件的 `<application>` 区域添加如下行：
+在用户界面中，你需要设置两个帧布局（FrameLayout），分别展示本地视图和远端视图。因此，将 `/app/res/layout/activity_main.xml` 文件中的内容替换成如下代码：
 
 ```xml
-   <application
-      android:requestLegacyExternalStorage="true">
-	  ...
-   </application>
-```
-
-### 防止代码混淆
-
-在 **app/proguard-rules.pro** 文件中添加如下行，防止代码混淆：
-
-```xml
--keep class io.agora.**{*;}
-```
-
-## 实现音视频通话
-
-本节介绍如何实现音视频通话。视频通话的 API 调用时序见下图：
-
-![](https://web-cdn.agora.io/docs-files/1568254412236)
-
-### 1. 创建用户界面
-
-根据场景需要，为你的项目创建音视频通话的用户界面。若已有界面，可以直接查看[导入类](#import_class)。
-
-如果你想实现一个视频通话，我们推荐你添加如下 UI 元素：
-
-* 本地视频窗口
-* 远端视频窗口
-* 结束通话按钮
-
-你也可以参考 [Agora-Android-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Android-Tutorial-1to1) 示例项目的  [activity_video_chat_view.xml](https://github.com/AgoraIO/Basic-Video-Call/blob/master/One-to-One-Video/Agora-Android-Tutorial-1to1/app/src/main/res/layout/activity_video_chat_view.xml) 文件中的代码。
-
-<details>
-	<summary><font color="#3ab7f8">创建 UI 示例</font></summary>
-
-```java
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_video_chat_view"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.agora.tutorials1v1vcall.VideoChatViewActivity">
- 
-    <RelativeLayout
-        android:id="@+id/remote_video_view_container"
+    tools:context=".MainActivity">
+
+      <FrameLayout
+        android:id="@+id/local_video_view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/remoteBackground">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/icon_padding">
-            <ImageView
-                android:layout_width="@dimen/remote_back_icon_size"
-                android:layout_height="@dimen/remote_back_icon_size"
-                android:layout_centerInParent="true"
-                android:src="@drawable/icon_agora_largest"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/icon_padding"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/remote_back_icon_margin_bottom"
-            android:layout_alignParentBottom="true"/>
-    </RelativeLayout>
- 
-    <FrameLayout
-        android:id="@+id/local_video_view_container"
-        android:layout_width="@dimen/local_preview_width"
-        android:layout_height="@dimen/local_preview_height"
+        android:background="@android:color/white" />
+
+      <FrameLayout
+        android:id="@+id/remote_video_view_container"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="@dimen/local_preview_margin_right"
-        android:layout_marginRight="@dimen/local_preview_margin_right"
-        android:layout_marginTop="@dimen/local_preview_margin_top"
-        android:background="@color/localBackground">
- 
-        <ImageView
-            android:layout_width="@dimen/local_back_icon_size"
-            android:layout_height="@dimen/local_back_icon_size"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_agora_large" />
-    </FrameLayout>
- 
-    <RelativeLayout
-        android:id="@+id/control_panel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/control_bottom_margin">
- 
-        <ImageView
-            android:id="@+id/btn_call"
-            android:layout_width="@dimen/call_button_size"
-            android:layout_height="@dimen/call_button_size"
-            android:layout_centerInParent="true"
-            android:onClick="onCallClicked"
-            android:src="@drawable/btn_endcall"
-            android:scaleType="centerCrop"/>
- 
-        <ImageView
-            android:id="@+id/btn_switch_camera"
-            android:layout_width="@dimen/other_button_size"
-            android:layout_height="@dimen/other_button_size"
-            android:layout_toRightOf="@id/btn_call"
-            android:layout_toEndOf="@id/btn_call"
-            android:layout_marginLeft="@dimen/control_bottom_horizontal_margin"
-            android:layout_centerVertical="true"
-            android:onClick="onSwitchCameraClicked"
-            android:src="@drawable/btn_switch_camera"
-            android:scaleType="centerCrop"/>
- 
-        <ImageView
-            android:id="@+id/btn_mute"
-            android:layout_width="@dimen/other_button_size"
-            android:layout_height="@dimen/other_button_size"
-            android:layout_toLeftOf="@id/btn_call"
-            android:layout_toStartOf="@id/btn_call"
-            android:layout_marginRight="@dimen/control_bottom_horizontal_margin"
-            android:layout_centerVertical="true"
-            android:onClick="onLocalAudioMuteClicked"
-            android:src="@drawable/btn_unmute"
-            android:scaleType="centerCrop"/>
-    </RelativeLayout>
- 
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray" />
+
 </RelativeLayout>
 ```
-</details>
 
-<a name="import_class"></a>
-### 2. 导入类
-		
-在项目的 Activity 文件中添加如下行：
+### 处理 Android 系统逻辑
 
-```java
-import io.agora.rtc.IRtcEngineEventHandler;
-import io.agora.rtc.RtcEngine;
-import io.agora.rtc.video.VideoCanvas;
-  
-import io.agora.rtc.video.VideoEncoderConfiguration;
-```
+参考如下步骤，导入必要的 Android 类，并添加授权必要权限的逻辑。
 
-### 3. 获取设备权限
+1. 导入必要的 Android 类
 
-调用 `checkSelfPermission` 方法，在开启 Activity 时检查并获取 Android 移动设备的摄像头和麦克风使用权限。
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `package com.example.<projectname>` 后添加如下代码：
 
-```java
-private static final int PERMISSION_REQ_ID = 22;
-  
-// App 运行时确认麦克风和摄像头设备的使用权限。
-private static final String[] REQUESTED_PERMISSIONS = {
+   ```java
+   import androidx.core.app.ActivityCompat;
+   import androidx.core.content.ContextCompat;
+
+   import android.Manifest;
+   import android.content.pm.PackageManager;
+   import android.view.SurfaceView;
+   import android.widget.FrameLayout;
+   ```
+
+2. 添加必要权限的授权逻辑
+
+   启动应用程序时，检查是否已在 app 中授予了实现视频通话所需的权限。如果未授权，使用内置的 Android 功能申请权限；如果已授权，则返回 `true`。
+
+   为实现授权逻辑，在 `/app/java/com.example.<projectname>/MainActivity` 文件的 `onCreate` 函数前添加如下代码：
+
+   ```java
+   // Java
+   private static final int PERMISSION_REQ_ID = 22;
+   
+   private static final String[] REQUESTED_PERMISSIONS = {
         Manifest.permission.RECORD_AUDIO,
-        Manifest.permission.CAMERA,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
-};
-  
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_video_chat_view);
-  
-    // 获取权限后，初始化 RtcEngine，并加入频道。
-    if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
-            checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID) &&
-            checkSelfPermission(REQUESTED_PERMISSIONS[2], PERMISSION_REQ_ID)) {
-        initEngineAndJoinChannel();
+        Manifest.permission.CAMERA
+   };
+   
+   private boolean checkSelfPermission(String permission, int requestCode) {
+       if (ContextCompat.checkSelfPermission(this, permission) !=
+               PackageManager.PERMISSION_GRANTED) {
+           ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, requestCode);
+           return false;
+       }
+       return true;
+   }
+   ```
+
+   ```kotlin
+   // Kotlin
+   private val PERMISSION_REQ_ID_RECORD_AUDIO = 22
+   private val PERMISSION_REQ_ID_CAMERA = PERMISSION_REQ_ID_RECORD_AUDIO + 1
+   
+   private fun checkSelfPermission(permission: String, requestCode: Int): Boolean {
+     if (ContextCompat.checkSelfPermission(this, permission) !=
+         PackageManager.PERMISSION_GRANTED) {
+       ActivityCompat.requestPermissions(this,
+                                        arrayOf(permission),
+                                        requestCode)
+       return false
+     }
+     return true
+   }
+   ```
+
+### 实现视频通话逻辑
+
+应用开启时，你需要依次创建 `RtcEngine` 实例，开启视频模块，让本地用户加入频道，将本地视图与处于较低图层的帧布局（FrameLayout）绑定。当其他用户加入频道时，你的应用捕捉到远端用户加入频道的事件，并将远端视图与处于较高图层的帧布局（FrameLayout）绑定。
+
+下图展示视频通话的 API 调用时序：
+
+![img](https://web-cdn.agora.io/docs-files/1637740392911)
+
+按照以下步骤实现该逻辑：
+
+1. 导入必要的 Agora 类。
+
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `import android.os.Bundle;` 后添加如下代码：
+
+   ```java
+    import io.agora.rtc.IRtcEngineEventHandler;
+    import io.agora.rtc.RtcEngine;
+    import io.agora.rtc.video.VideoCanvas;
+   ```
+
+2. 创建变量用以创建并加入视频通话频道。
+
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `AppCompatActivity {` 后添加如下代码：
+
+   ```java
+    // Java
+    // 填写从 Agora 控制台获取的项目的 App ID。
+    private String appId = "";
+    // 填写频道名称。
+    private String channelName = "";  
+    // 填写 Agora 控制台中生成的临时 Token。
+    private String token = "";
+    private RtcEngine mRtcEngine;
+
+     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
+        @Override
+         // 监听频道内的远端用户，获取用户的 uid 信息。
+        public void onUserJoined(int uid, int elapsed) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    // 从 onUserJoined 回调获取 uid 后，调用 setupRemoteVideo，设置远端视频视图。
+                    setupRemoteVideo(uid);
+                }
+            });
+        }
+    };
+   ```
+
+   ```kotlin
+    // Kotlin
+    // 填写你的项目在 Agora 控制台中生成的 App ID。
+    private val APP_ID = ""
+    // 填写频道名称。
+    private val CHANNEL = ""
+    // 填写 Agora 控制台中生成的临时 Token。
+    private val TOKEN = ""
+
+    private var mRtcEngine: RtcEngine ?= null
+
+    private val mRtcEventHandler = object : IRtcEngineEventHandler() {
+       // 监听频道内的远端用户，获取用户的 uid 信息。
+      override fun onUserJoined(uid: Int, elapsed: Int) {
+        runOnUiThread {
+            // 从 onUserJoined 回调获取 uid 后，调用 setupRemoteVideo，设置远端视频视图。
+            setupRemoteVideo(uid)
+        }
+      }
     }
-}
-  
-private boolean checkSelfPermission(String permission, int requestCode) {
-    if (ContextCompat.checkSelfPermission(this, permission) !=
-            PackageManager.PERMISSION_GRANTED) {
-        ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, requestCode);
-        return false;
+   ```
+
+3. 初始化 app 并加入频道。
+
+   在 `MainActivity` 类中调用如下核心方法加入频道。在如下示例代码中，我们使用 `initializeAndJoinChannel` 函数来封装这些核心方法。
+
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `onCreate` 函数后添加如下代码：
+
+   ```java
+    // Java
+    private void initializeAndJoinChannel() {
+        try {
+            mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
+        } catch (Exception e) {
+            throw new RuntimeException("Check the error.");
+        }
+
+        // 视频默认禁用，你需要调用 enableVideo 开始视频流。
+        mRtcEngine.enableVideo();
+
+        FrameLayout container = findViewById(R.id.local_video_view_container);
+        // 调用 CreateRendererView 创建一个 SurfaceView 对象，并将其作为 FrameLayout 的子对象。
+        SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
+        container.addView(surfaceView);
+        // 将 SurfaceView 对象传入 Agora，以渲染本地视频。
+        mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
+
+        // 使用 Token 加入频道。
+        mRtcEngine.joinChannel(token, channelName, "", 0);
+    }    
+   ```
+
+   ```kotlin
+   // Kotlin
+   private fun initializeAndJoinChannel() {
+      try {
+          mRtcEngine = RtcEngine.create(baseContext, APP_ID, mRtcEventHandler)
+      } catch (e: Exception) {
+
+        }
+
+      // 视频默认禁用，你需要调用 enableVideo 开始视频流。
+      mRtcEngine!!.enableVideo()
+
+      val localContainer = findViewById(R.id.local_video_view_container) as FrameLayout
+      // 调用 CreateRendererView 创建一个 SurfaceView 对象，并将其作为 FrameLayout 的子对象。
+      val localFrame = RtcEngine.CreateRendererView(baseContext)
+      localContainer.addView(localFrame)
+      // 将 SurfaceView 对象传入 Agora，以渲染本地视频。
+      mRtcEngine!!.setupLocalVideo(VideoCanvas(localFrame, VideoCanvas.RENDER_MODE_FIT, 0))
+
+      // 使用 Token 加入频道。
+      mRtcEngine!!.joinChannel(TOKEN, CHANNEL, "", 0)
     }
-  
-    return true;
-}
-```
+   ```
 
-### 4. 初始化 RtcEngine
+4. 当远端用户加入频道时，更新远端用户界面。
 
-在调用其他 Agora API 前，需要创建并初始化 RtcEngine 对象。
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `initializeAndJoinChannel` 函数后加入如下代码：
 
-你需要在该步骤中填入项目的 App ID。请参考如下步骤在控制台[创建 Agora 项目](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms)并获取 [App ID](https://docs.agora.io/cn/Agora%20Platform/terms?platform=All%20Platforms#a-nameappidaapp-id )。
+   ```java
+    // Java
+    private void setupRemoteVideo(int uid) {
+        FrameLayout container = findViewById(R.id.remote_video_view_container);
+        SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
+        surfaceView.setZOrderMediaOverlay(true);
+        container.addView(surfaceView);
+        mRtcEngine.setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, uid));
+    }
+   ```
 
-1. 登录[控制台](https://console.agora.io/)，点击左侧导航栏的**[项目管理](https://console.agora.io/projects)**图标 ![](https://web-cdn.agora.io/docs-files/1551254998344)。
-2. 点击**创建**，按照屏幕提示设置项目名，选择一种鉴权机制，然后点击**提交**。
-3. 在**项目管理**页面，你可以获取该项目的 **App ID**。
+   ```kotlin
+    // Kotlin
+    private fun setupRemoteVideo(uid: Int) {
+        val remoteContainer = findViewById(R.id.remote_video_view_container) as FrameLayout
+   
+         val remoteFrame = RtcEngine.CreateRendererView(baseContext)
+        remoteFrame.setZOrderMediaOverlay(true)
+        remoteContainer.addView(remoteFrame)
+        mRtcEngine!!.setupRemoteVideo(VideoCanvas(remoteFrame, VideoCanvas.RENDER_MODE_FIT, uid))
+    }
+   ```
 
-调用 `create` 方法，传入获取到的 App ID，即可初始化 RtcEngine。
+### 启动和关闭 app
 
-你还根据场景需要，在初始化时注册想要监听的回调事件，如本地用户加入频道，及解码远端用户视频首帧等。注意不要在这些回调中进行 UI 操作。
+现在你已经完成视频通话的逻辑，接下来需要添加启动和关闭 app 的逻辑。用户打开你的 app 时，视频通话开始；用户关闭你的 app 时，视频通话结束。
 
-```java
-private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
+1. 检查 app 是否已获取正确的权限。如果已获取权限，调用 `initializeAndJoinChannel` 加入视频通话频道。
+
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中，用如下代码替换 `MainActivity` 类中的 `onCreate`：
+
+   ```java
+    // Java
     @Override
-    // 注册 onJoinChannelSuccess 回调。
-    // 本地用户成功加入频道时，会触发该回调。
-    public void onJoinChannelSuccess(String channel, final int uid, int elapsed) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i("agora","Join channel success, uid: " + (uid & 0xFFFFFFFFL));
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // 如果已经授予所有权限，初始化 RtcEngine 对象并加入一个频道。
+        if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
+                checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID)) {
+            initializeAndJoinChannel();
+        }
+    }
+   ```
+
+   ```kotlin
+    // Kotlin
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // 如果已经授予所有权限，初始化 RtcEngine 对象并加入一个频道。
+        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID_RECORD_AUDIO) && checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA)) {
+          initializeAndJoinChannel()
+        }
+    }
+   ```
+
+2. 当用户关闭 app 时，清理你在 `initializeAndJoinChannel` 函数中创建的所有资源。
+
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `onCreate` 函数后添加 `onDestroy`：
+
+   ```java
+    // Java
+    protected void onDestroy() {
+        super.onDestroy();
+   
+        mRtcEngine.leaveChannel();
+        mRtcEngine.destroy();
+    }
+   ```
+
+   ```kotlin
+    // Kotlin
+    override fun onDestroy() {
+        super.onDestroy()
+   
+        mRtcEngine?.leaveChannel()
+        RtcEngine.destroy()
+    }
+   ```
+
+## 测试你的 app
+
+按照以下步骤测试你的 app：
+
+1. 在 `appId` 和 `token` 参数中分别填写从 Agora 控制台获取的 App ID 和临时 Token。在 `channelName` 中填写用于生成临时 Token 的频道名称。
+2. 将 Android 设备连接到你的电脑，并在 **Android Studio** 里点击 `Run 'app'`。片刻后，项目便会安装到你的设备上。
+3. 启动 app，你可以在本地视图中看到自己。
+4. 请一位朋友在[演示 app](https://webdemo.agora.io/basicVideoCall/index.html) 中加入你的视频通话。输入相同的 App ID 和频道名称。你的朋友加入频道后，你们可以看到彼此，并听到彼此的声音。
+
+## 后续步骤
+
+在生产环境中，为保证通信安全，Agora 推荐从服务器中获取 Token，详情请参考[使用 Token 鉴权](https://docs.agora.io/cn/Video/token_server?platform=Android)。
+
+## 相关信息
+
+本节提供了额外的信息供参考。
+
+### 示例项目
+
+ Agora 在 GitHub 上提供了一个开源的[视频通话](https://github.com/AgoraIO/Basic-Video-Call)示例项目供你参考，以实现一对一视频通话和群聊视频通话。
+
+### <a name="https://docs.agora.io/cn/Video/start_call_android?platform=Android#othermethods">集成 SDK 的其他方法</a>
+
+除了通过 mavenCentral 集成 Android 视频 SDK 外，你也可以使用 JitPack 或者手动复制 SDK 文件，将 SDK 导入你的项目。
+
+**使用 Jitpack 自动集成 SDK**
+
+<div class="alert note">JitPack 的集成方式仅适用于早于 3.5.0 版的 SDK。</div>
+
+1. 在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码，将 JitPack 添加到仓库列表中：
+
+   ```java
+    all projects {
+            repositories {
+            ...
+            maven { url 'https://www.jitpack.io' }
             }
-        });
     }
-  
-    @Override
-    // 注册 onFirstRemoteVideoDecoded 回调。
-    // SDK 接收到第一帧远端视频并成功解码时，会触发该回调。
-    // 可以在该回调中调用 setupRemoteVideo 方法设置远端视图。
-    public void onFirstRemoteVideoDecoded(final int uid, int width, int height, int elapsed) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i("agora","First remote video decoded, uid: " + (uid & 0xFFFFFFFFL));
-                setupRemoteVideo(uid);
-            }
-        });
+   ```
+
+2. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中，添加如下代码，将 Agora 视频 SDK 集成到你的 Android 项目中：
+
+   ```java
+    ...
+    dependencies {
+            ...
+            // x.y.z，请填写具体的 SDK 版本号， 如 3.4.0。
+            implementation 'com.github.agorabuilder:native-full-sdk:x.y.z'
     }
-  
-    @Override
-    // 注册 onUserOffline 回调。
-    // 远端用户离开频道或掉线时，会触发该回调。
-    public void onUserOffline(final int uid, int reason) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i("agora","User offline, uid: " + (uid & 0xFFFFFFFFL));
-                onRemoteUserLeft();
-            }
-        });
-    }
-};
-    
-...
-  
-// 初始化 RtcEngine 对象。
-private void initializeEngine() {
-    try {
-        mRtcEngine = RtcEngine.create(getBaseContext(), getString(R.string.agora_app_id), mRtcEventHandler);
-    } catch (Exception e) {
-        Log.e(TAG, Log.getStackTraceString(e));
-        throw new RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e));
-    }
-}
-```
+   ```
 
-### 5. 设置本地视图
+**手动复制 SDK 文件**
 
-如果你想实现一个语音通话，可以直接查看[加入频道](#join_channel)。
+<div class="alert note">手动的集成方式适用于所有版本 SDK。</div>
 
-成功初始化 RtcEngine 对象后，需要在加入频道前设置本地视图，以便在通话中看到本地图像。参考以下步骤设置本地视图：
+1. 在 [SDK 下载](https://docs.agora.io/cn/Video/downloads?platform=Android)页面下载最新版本的 Agora 视频 SDK，并解压。
 
-* 调用 `enableVideo` 方法启用视频模块。
-* 调用 `createRendererView` 方法创建一个 SurfaceView 对象。
-* 调用 `setupLocalVideo` 方法设置本地视图。
+2. 打开 SDK 包 libs 文件夹，将以下文件或子文件夹复制到你的项目路径中。
 
-```java
-private void setupLocalVideo() {
-  
-    // 启用视频模块。
-    mRtcEngine.enableVideo();
-  
-    // 创建 SurfaceView 对象。
-    private FrameLayout mLocalContainer;
-    private SurfaceView mLocalView;
-  
-    mLocalView = RtcEngine.CreateRendererView(getBaseContext());
-    mLocalView.setZOrderMediaOverlay(true);
-    mLocalContainer.addView(mLocalView);
-    // 设置本地视图。
-    VideoCanvas localVideoCanvas = new VideoCanvas(mLocalView, VideoCanvas.RENDER_MODE_HIDDEN, 0);
-    mRtcEngine.setupLocalVideo(localVideoCanvas);
-}
-```
+   | 文件或子文件夹 | 你的项目路径 |
+   | :----------------------- | :----------------------- |
+   | `agora-rtc-sdk.jar` 文件 | `/app/libs/` |
+   | `arm-v8a` 文件夹 | `/app/src/main/jniLibs/` |
+   | `armeabi-v7a` 文件夹 | `/app/src/main/jniLibs/` |
+   | `x86` 文件夹 | `/app/src/main/jniLibs/` |
+   | `x86_64` 文件夹 | `/app/src/main/jniLibs/` |
+   | `include` 文件夹 | `/app/src/main/jniLibs/` |
 
-<a name="join_channel"></a>
-### 6. 加入频道
+   - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。如果出现不兼容问题，请[联系我们](https://agora-ticket.agora.io)
+   - SDK 包中的库不是全部必须。详情请参考[如何减少集成 RTC Native SDK 的 app 体积](https://docs.agora.io/cn/Video/faq/reduce_app_size_rtc)。
 
-完成初始化和设置本地视图后（视频通话场景），你就可以调用 `joinChannel` 方法加入频道。你需要在该方法中传入如下参数：
-
-* token：传入能标识用户角色和权限的 Token。可设为如下一个值：
-   * `NULL`
-   * 临时 Token。临时 Token 服务有效期为 24 小时。你可以在控制台里生成一个临时 Token，详见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#获取临时-token)。
-   * 在你的服务器端生成的 Token。在安全要求高的场景下，我们推荐你使用此种方式生成的 Token，详见[生成 Token](./token_server)。
-
- <div class="alert note">若项目已启用 App 证书，请使用 Token。</div>
-
-* channelName：传入能标识频道的频道 ID。App ID 相同、频道 ID 相同的用户会进入同一个频道。
-* uid: 本地用户的 ID。数据类型为整型，且频道内每个用户的 uid 必须是唯一的。若将 uid 设为 0，则 SDK 会自动分配一个 uid，并在 `onJoinChannelSuccess` 回调中报告。
-
-更多的参数设置注意事项请参考 [`joinChannel`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8b308c9102c08cb8dafb4672af1a3b4c) 接口中的参数描述。
-
-```java
-private void joinChannel() {
- 
-    // 使用 Token 加入频道。
-    mRtcEngine.joinChannel(YOUR_TOKEN, "demoChannel1", "Extra Optional Data", 0);
-}
-```
-
-### 7. 设置远端视图
-
-视频通话中，通常你也需要看到其他用户。在加入频道后，可通过调用 `setupRemoteVideo` 方法设置远端用户的视图。
-
-远端用户成功加入频道后，SDK 会触发 `onFirstRemoteVideoDecoded` 回调，该回调中会包含这个远端用户的 uid 信息。在该回调中调用 `setupRemoteVideo` 方法，传入获取到的 uid，设置远端用户的视图。
-
-```java
-    @Override
-    // 监听 onFirstRemoteVideoDecoded 回调。
-    // SDK 接收到第一帧远端视频并成功解码时，会触发该回调。
-    // 可以在该回调中调用 setupRemoteVideo 方法设置远端视图。
-    public void onFirstRemoteVideoDecoded(final int uid, int width, int height, int elapsed) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i("agora","First remote video decoded, uid: " + (uid & 0xFFFFFFFFL));
-                setupRemoteVideo(uid);
-            }
-        });
-    }
- 
-private void setupRemoteVideo(int uid) {
- 
-    // 创建一个 SurfaceView 对象。
-    private RelativeLayout mRemoteContainer;
-    private SurfaceView mRemoteView;
- 
-    mRemoteView = RtcEngine.CreateRendererView(getBaseContext());
-    mRemoteContainer.addView(mRemoteView);
-    // 设置远端视图。
-    mRtcEngine.setupRemoteVideo(new VideoCanvas(mRemoteView, VideoCanvas.RENDER_MODE_HIDDEN, uid));
- 
-}
-```
-
-### 8. 更多步骤
-
-你还可以在通话中参考如下代码实现更多功能及场景。
-
-<details>
-	<summary><font color="#3ab7f8">停止发送本地音频流</font></summary>
-	
-调用 `muteLocalAudioStream` 停止或恢复发送本地音频流，实现或取消本地静音。
-
-```java
-public void onLocalAudioMuteClicked(View view) {
-    mMuted = !mMuted;
-    mRtcEngine.muteLocalAudioStream(mMuted);
-}
-```
-</details>
-
-<details>
-	<summary><font color="#3ab7f8">切换前后摄像头</font></summary>
-
-调用 `switchCamera` 方法切换摄像头的方向。
-
-```java
-public void onSwitchCameraClicked(View view) {
-    mRtcEngine.switchCamera();
-}
-```
-</details>
-	
-### 9. 离开频道
-
-根据场景需要，如结束通话、关闭 App 或 App 切换至后台时，调用 `leaveChannel` 离开当前通话频道。
-
-```java
-@Override
-protected void onDestroy() {
-    super.onDestroy();
-    if (!mCallEnd) {
-        leaveChannel();
-    }
-    RtcEngine.destroy();
-}
- 
-private void leaveChannel() {
-    // 离开当前频道。
-    mRtcEngine.leaveChannel();
-}
-```
-
-### 示例代码
-
-你可以在 [Agora-Android-Tutorial-1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Android-Tutorial-1to1) 示例项目的  [VideoChatViewActivity.java](https://github.com/AgoraIO/Basic-Video-Call/blob/master/One-to-One-Video/Agora-Android-Tutorial-1to1/app/src/main/java/io/agora/tutorials1v1vcall/VideoChatViewActivity.java)  文件中查看完整的源码和代码逻辑。
-
-## 运行项目
-
-在 Android 设备中运行该项目。当成功开始视频通话时，你可以同时看到本地和远端的视图。

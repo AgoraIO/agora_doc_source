@@ -18,8 +18,8 @@
                   delay:(NSUInteger)delay
                   lost:(NSUInteger)lost
                   rxKBitRate:(NSUInteger)rxKBitRate;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioTransportStats(uid_t uid, 
-     unsigned short delay, 
+                <codeblock props="windows" outputclass="language-cpp">virtual void onRemoteAudioTransportStats(uid_t uid,
+     unsigned short delay,
      unsigned short lost,
      unsigned short rxKBitRate) {
      (void)uid;
@@ -28,50 +28,51 @@
      (void)rxKBitRate;
      }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.REMOTE_AUDIO_TRANSPORT_STATS, cb: (
-     uid: number, 
-     delay: number, 
-     lost: number, 
+     uid: number,
+     delay: number,
+     lost: number,
      rxKBitRate: number) =&gt; void
      ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioTransportStats(uint uid, ushort delay, ushort lost, ushort rxKBitRate)</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">TransportStatsCallback? remoteAudioTransportStats;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-   
+
    <p>
        <dl outputclass="deprecated">
   <dlentry>
       <dt>Deprecated:</dt>
-      <dd>This callback is deprecated, please use <xref keyref="onRemoteAudioStats" /> instead.</dd>
+      <dd>Please use <xref keyref="onRemoteAudioStats" /> instead.</dd>
   </dlentry>
        </dl>
    </p>
             <p id="desc">This callback reports the transport-layer statistics, such as the packet loss rate and network time delay, once every two seconds after the local user receives an audio packet from a remote user. During a call, when the user receives the audio packet sent by the remote user/host, the callback is triggered every 2 seconds.</p>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
    <parml>
-       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-       <plentry>
-  <pt>uid</pt>
-  <pd>The ID of the remote user sending the audio streams.</pd>
-       </plentry>
-       <plentry>
-  <pt>delay</pt>
-  <pd>The network delay (ms) from the sender to the receiver.</pd>
-       </plentry>
-       <plentry>
-  <pt>lost</pt>
-  <pd>Packet loss rate (%) of the audio packet sent from the sender to the receiver.</pd>
-       </plentry>
-       <plentry>
-  <pt>rxKBitrate</pt>
-  <pd>Bitrate of the received audio (Kbps).</pd>
-       </plentry>
-   </parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry>
+                    <pt>uid</pt>
+                    <pd>The ID of the remote user sending the audio streams.</pd>
+                </plentry>
+                <plentry>
+                    <pt>delay</pt>
+                    <pd>The network delay (ms) from the sender to the receiver.</pd>
+                </plentry>
+                <plentry>
+                    <pt>lost</pt>
+                    <pd>Packet loss rate (%) of the audio packet sent from the sender to the
+                        receiver.</pd>
+                </plentry>
+                <plentry>
+                    <pt>rxKBitrate</pt>
+                    <pd>Bitrate of the received audio (Kbps).</pd>
+                </plentry>
+            </parml>
         </section></refbody>
 </reference>

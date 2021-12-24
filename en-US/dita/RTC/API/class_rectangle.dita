@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rectangle">
     <title><ph keyref="Rectangle"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The relative location of the screen-share area to the screen or window. If you do not set this parameter, the SDK shares the whole screen or window.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The location of the target area relative to the screen or window. If you do not set this parameter, the SDK selects the whole screen or window.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -11,7 +11,7 @@
   public int y = 0;
   public int width = 0;
   public int height = 0;
-  
+
   public Rectangle() {
     x = 0;
     y = 0;
@@ -25,7 +25,7 @@
     height = height_;
   }
 };</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="ios mac" outputclass="language-objectivec" />
                 <codeblock props="windows unity" outputclass="language-cpp">struct Rectangle {
     int x;
     int y;
@@ -41,12 +41,25 @@
     width: number;
     height: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class Rectangle {
+
+  int? x;
+  int? y;
+  int? width;
+  int? height;
+
+  Rectangle({
+    this.x,
+    this.y,
+    this.width,
+    this.height,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
   <pt>x</pt>
@@ -58,11 +71,11 @@
        </plentry>
        <plentry>
   <pt>width</pt>
-  <pd>The width of the shared area.</pd>
+  <pd>The width of the target area.</pd>
        </plentry>
        <plentry>
   <pt>height</pt>
-  <pd>The height of the shared area.</pd>
+  <pd>The height of the target area.</pd>
        </plentry>
    </parml>
         </section></refbody>

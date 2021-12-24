@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_onusersuperresolutionenabled">
-    <title><ph keyref="onUserSuperResolutionEnabled"/></title>
+    <title><ph keyref="onUserSuperResolutionEnabled" /></title>
     <shortdesc id="short"><ph id="shortdesc">Reports whether the super resolution feature is successfully enabled.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onUserSuperResolutionEnabled"/>
+                <indexterm keyref="onUserSuperResolutionEnabled" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp"/>
-                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="windows" outputclass="language-cpp" />
+                <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserSuperResolutionEnabled(uint uid, bool enabled, SUPER_RESOLUTION_STATE_REASON reason)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">UserSuperResolutionEnabledCallback? userSuperResolutionEnabled;</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since">
-                <dlentry>
+            <dl outputclass="since" props="rtc">
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v3.5.1</dd>
                 </dlentry>
             </dl>
-            <p>After calling <xref keyref="enableRemoteSuperResolution"/>, the SDK triggers the callback to report whether super resolution is successfully enabled. If it is not successfully enabled, use <ph>reason</ph> for troubleshooting.</p>
+            <p>After calling <xref keyref="enableRemoteSuperResolution" />, the SDK triggers the callback to report whether super resolution is successfully enabled. If it is not successfully enabled, use <ph>reason</ph> for troubleshooting.</p>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
                 <plentry id="uid">
                     <pt>uid</pt>
@@ -40,13 +40,13 @@
                 <plentry id="enabled">
                     <pt>enabled</pt>
                     <pd>Whether super resolution is successfully enabled:<ul>
-                        <li><ph keyref="true"/>: Super resolution is successfully enabled.</li>
-                        <li><ph keyref="false"/>: Super resolution is not successfully enabled.</li>
+                        <li><ph keyref="true" />: Super resolution is successfully enabled.</li>
+                        <li><ph keyref="false" />: Super resolution is not successfully enabled.</li>
                     </ul></pd>
                 </plentry>
                 <plentry id="reason">
                     <pt>reason</pt>
-                    <pd>The reason why super resolution algorithm is not successfully enabled. For details, see <xref keyref="SUPER_RESOLUTION_STATE_REASON"/>.</pd>
+                    <pd>The reason why super resolution algorithm is not successfully enabled. For details, see <xref keyref="SUPER_RESOLUTION_STATE_REASON" />.</pd>
                 </plentry>
             </parml>
         </section>

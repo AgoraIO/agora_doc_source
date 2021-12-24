@@ -22,13 +22,14 @@
     options?: ChannelMediaOptions): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SwitchChannel(string token, string channelId, ChannelMediaOptions options);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; switchChannel(String? token, String channelName,
+      [ChannelMediaOptions? options]);</codeblock>
        </p>
         </section>
         <section id="detailed_desc">
    
-   <dl outputclass="since">
-       <dlentry>
+   <dl outputclass="since" props="rtc">
+       <dlentry props="native">
   <dt>Since</dt>
   <dd>v3.3.0</dd>
        </dlentry>
@@ -49,7 +50,8 @@
   </p></pd>
        </plentry>
        <plentry>
-  <pt>channelId</pt>
+  <pt props="android ios mac windows electron unity">channelId</pt>
+  <pt props="flutter">channelName</pt>
   <pd>
       <p>The name of the channel. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same <codeph>channelId</codeph> enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters:<ul id="ul_lx4_nrc_h4b">
  <li>All lowercase English letters: a to z.</li>
@@ -66,7 +68,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>Returns</title>
    <ul>
        <li>0(ERR_OK): Success.</li>

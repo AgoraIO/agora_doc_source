@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileproberesult">
-    <title><ph keyref="LastmileProbeResult"/></title>
+    <title><ph keyref="LastmileProbeResult" /></title>
     <shortdesc id="short"><ph id="shortdesc">Results of the uplink and downlink last-mile network tests.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -11,14 +11,14 @@
                     LastmileProbeOneWayResult uplinkReport;
                     LastmileProbeOneWayResult downlinkReport;
                     unsigned int rtt;
-                    
+
                     LastmileProbeResult() : state(LASTMILE_PROBE_RESULT_UNAVAILABLE),
                     rtt(0) {}
                     };</codeblock>
             </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
-    
+
     public static class LastmileProbeOneWayResult {
       public int packetLossRate;
       public int jitter;
@@ -49,8 +49,21 @@
     downlinkReport: LastmileProbeOneWayResult;
     rtt: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class LastmileProbeResult {
+
+  LastmileProbeResultState state;
+  int rtt;
+  LastmileProbeOneWayResult uplinkReport;
+  LastmileProbeOneWayResult downlinkReport;
+
+  LastmileProbeResult(
+    this.state,
+    this.rtt,
+    this.uplinkReport,
+    this.downlinkReport,
+  );
+}</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
                 <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeResult {
@@ -62,29 +75,26 @@
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
   <pt>state</pt>
-           <pd><p props="ios mac windows unity">The status of the last-mile network tests. See <xref keyref="LASTMILE_PROBE_RESULT_STATE"/>.</p>
+           <pd><p props="ios mac windows unity">The status of the last-mile network tests. See <xref keyref="LASTMILE_PROBE_RESULT_STATE" />.</p>
                <p props="android">The status of the last-mile network tests, which includes:<ul>
-                                <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE"/> (1): The last-mile
-                                    network probe test is complete. </li>
-                                <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE"/> (2): The
-                                    last-mile network probe test is incomplete because the bandwidth estimation is not available, probably due to limited test resources.</li>
-                                <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE"/> (3): The
-                                    last-mile network probe test is not carried out, probably due to poor network conditions.</li>
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE"/> (1): The last-mile network probe test is complete.</li>
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE"/> (2): The last-mile network probe test is incomplete because the bandwidth estimation is not available, probably due to limited test resources.</li>
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE"/> (3): The last-mile network probe test is not carried out, probably due to poor network conditions.</li>
                             </ul>
                         </p>
            </pd>
        </plentry>
        <plentry>
   <pt>uplinkReport</pt>
-  <pd>Results of the uplink last-mile network test. For details, see <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+  <pd>Results of the uplink last-mile network test. For details, see <xref keyref="LastmileProbeOneWayResult" />.</pd>
        </plentry>
        <plentry>
   <pt>downlinkReport</pt>
-  <pd>Results of the downlink last-mile network test. For details, see <xref keyref="LastmileProbeOneWayResult"/>.</pd>
+  <pd>Results of the downlink last-mile network test. For details, see <xref keyref="LastmileProbeOneWayResult" />.</pd>
        </plentry>
        <plentry>
   <pt>rtt</pt>

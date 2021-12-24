@@ -18,16 +18,17 @@
                 <codeblock props="electron" outputclass="language-typescript">enableDualStreamMode(enabled: boolean): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int EnableDualStreamMode(bool enabled);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDualStreamMode(bool enabled);</codeblock>
         </p>
         </section>
-        <section id="detailed_desc"><p>You can call this method to enable or disable the dual-stream mode on the publisher side. Dual streams are a hybrid of a high-quality video stream and a low-quality video stream:<ul id="ul_nxc_tdz_hqb">
+        <section id="detailed_desc"><p>You can call this method to enable or disable the dual-stream mode on the publisher side. Dual streams are a hybrid of a high-quality video stream and a low-quality video stream:<ul>
                     <li>High-quality video stream: High bitrate, high resolution.</li>
                     <li>Low-quality video stream: Low bitrate, low resolution.</li>
-                </ul></p>After you enable the dual-stream mode, you can call <xref keyref="setRemoteVideoStreamType" /> to choose to receive the high-quality video stream or low-quality video stream on the subscriber side.<note id="note_h53_zdz_hqb" type="note">
+        </ul></p><p>After you enable the dual-stream mode, you can call <xref keyref="setRemoteVideoStreamType" /> to choose to receive the high-quality video stream or low-quality video stream on the subscriber side.</p>
+            <note type="note">
                 <p>You can call this method either before or after joining a channel.</p>
             </note></section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameters</title>
             <parml>
                 <plentry>
                     <pt>enabled</pt>
@@ -41,7 +42,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul>
                 <li>0: Success.</li>
