@@ -6,7 +6,11 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-kotlin"></codeblock>
+            <codeblock props="android" outputclass="language-kotlin">data class AgoraEduContextDeviceInfo(
+        val deviceId: String,
+        val deviceName: String,
+        val deviceType: AgoraEduContextDeviceType
+)</codeblock>
             <codeblock props="ios mac" outputclass="language-swift"></codeblock>
             <codeblock props="windows" outputclass="language-cpp"></codeblock>
             <codeblock props="web" outputclass="language-typescript"></codeblock>
@@ -19,7 +23,8 @@
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
             <parml>
                 <plentry>
-                    <pt>type</pt>
+                    <pt props="ios">type</pt>
+                    <pt props="android">deviceType</pt>
                     <pd>设备类型，详见 <xref keyref="AgoraEduContextDeviceType"/>。</pd>
                 </plentry>
                 <plentry>
