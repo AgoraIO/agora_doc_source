@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onuserpropertiesdeleted">
+    <title><ph keyref="onUserPropertiesDeleted"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the custom user properties are updated.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserPropertiesDeleted"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">fun onUserPropertiesDeleted(user: AgoraEduContextUserInfo,
+                            keys: List&lt;String>,
+                            cause: Map&lt;String, Any>?,
+                            operator: AgoraEduContextUserInfo?)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">void onUserPropertiesDeleted(AgoraEduContextUserInfo user,
+                             Array&lt;String> deletedProperties,
+                             Map&lt;String, String> cause,
+                             AgoraEduContextUserInfo operator)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>user</pt>
+                    <pd>The volume information of users<xref keyref="AgoraEduContextUserInfo"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>deletedProperties</pt>
+                    <pd>Delete properties.</pd>
+                </plentry>
+                <plentry>
+                    <pt>cause</pt>
+                    <pd>Reason for deletion.</pd>
+                </plentry>
+                <plentry conkeyref="onRoomPropertiesUpdated/operator">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+        </section>
+    </refbody>
+</reference>
