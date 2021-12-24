@@ -31,9 +31,9 @@
    <p>调用该方法后，app 会采取主动拉取的方式获取远端已解码和混音后的音频数据，用于音频播放。</p>
    <note type="attention">
        <ul>
-           <li>开启外部音频渲染后，app 将无法从 <xref keyref="onPlaybackAudioFrame" /> 回调中获得数据。</li>
-           <li>该方法和 <apiname keyref="onPlaybackAudioFrame" /> 回调相比，区别在于： 
-               <ul><li>SDK 通过 <apiname keyref="onPlaybackAudioFrame" /> 回调将音频数据传输给 app。如果 app 处理延时，可能会导致音频播放抖动。</li>
+           <li>开启外部音频渲染后，app 将无法从 <xref keyref="onPlaybackAudioFrame"/> 回调中获得数据。</li>
+           <li>该方法和 <apiname keyref="onPlaybackAudioFrame"/> 回调相比，区别在于：
+               <ul><li>SDK 通过 <apiname keyref="onPlaybackAudioFrame"/> 回调将音频数据传输给 app。如果 app 处理延时，可能会导致音频播放抖动。</li>
                    <li>调用该方法后 app 会主动拉取音频数据。通过设置音频数据，SDK 可以调整缓存，帮助 app 处理延时，从而有效避免音频播放抖动。</li>
                </ul></li>
        </ul>
@@ -51,7 +51,7 @@
        </plentry>
        <plentry props="android ios mac" id="length">
            <pt>lengthInByte</pt>
-           <pd>远端音频数据长度，单位为字节。 该参数的值由音频数据时长、<apiname keyref="setExternalAudioSink" /> 的 <codeph>sampleRate</codeph> 和 <codeph>channels</codeph> 参数确定。 <codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph>/1000 × 2 × <codeph>channels</codeph> × 音频数据时长 (ms)。</pd>
+           <pd>音频数据长度，单位为字节。该参数的值由音频数据时长、<apiname keyref="setExternalAudioSink"/> 的 <codeph>sampleRate</codeph> 和 <codeph>channels</codeph> 参数确定。<codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph>/1000 × 2 × <codeph>channels</codeph> × 音频数据时长 (ms)。</pd>
        </plentry>
    </parml>
         </section>
@@ -62,8 +62,8 @@
        <li>&lt; 0：方法调用失败。</li>
    </ul>
             <ul props="ios mac">
-       <li><codeph><ph keyref="true" /></codeph>：方法调用成功。</li>
-       <li><codeph><ph keyref="false" /></codeph>：方法调用失败。</li>
-   </ul> 
+       <li><codeph><ph keyref="true"/></codeph>：方法调用成功。</li>
+       <li><codeph><ph keyref="false"/></codeph>：方法调用失败。</li>
+   </ul>
         </section></refbody>
 </reference>

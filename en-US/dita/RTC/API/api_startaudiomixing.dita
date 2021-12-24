@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiomixing">
     <title><ph keyref="startAudioMixing"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Starts playing and mixing the music file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts playing the music file.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -33,14 +33,14 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="deprecated" props="rtc">
+            <dl outputclass="deprecated">
                 <dlentry>
                     <dt>Deprecated:</dt>
-                    <dd>This method is deprecated as of v3.4.0. Please use <xref keyref="startAudioMixing2"/> instead.</dd>
+                    <dd>Please use <xref keyref="startAudioMixing2"/> instead.</dd>
                 </dlentry>
             </dl>
 
-            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <xref keyref="onAudioMixingStateChanged"/> (<codeph>PLAY</codeph>) callback. When the audio mixing file playback finishes, the SDK triggers the <apiname keyref="onAudioMixingStateChanged"/> (<codeph>STOPPED</codeph>) callback on the local client.</p>
+            <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <xref keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>) callback. When the audio mixing file playback finishes, the SDK triggers the <apiname keyref="onAudioMixingStateChanged"/> (<apiname keyref="AUDIO_MIXING_STATE_STOPPED"/>) callback on the local client.</p>
    <note type="attention" id="audiomixing_note">
        <ul>
            <li>Call this method after joining a channel. If you need to call <apiname keyref="startAudioMixing"/> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
@@ -77,7 +77,7 @@
   <pt>cycle</pt>
            <pd><p>The number of times the music file plays.<ul>
           <li>≥ 0: The number of playback times.  For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.</li>
-          <li>-1: Play the music effect in an infinite loop.</li>
+          <li>-1: Play the audio effect in an infinite loop.</li>
       </ul></p>
   </pd>
        </plentry>

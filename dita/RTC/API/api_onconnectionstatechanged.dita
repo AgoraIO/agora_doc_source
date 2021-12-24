@@ -13,8 +13,8 @@
     <refbody><section id="prototype">
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onConnectionStateChanged(int state, int reason) {}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine 
-                    connectionStateChanged:(AgoraConnectionState)state 
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
+                    connectionStateChanged:(AgoraConnectionState)state
                     reason:(AgoraConnectionChangedReason)reason;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onConnectionStateChanged(CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason) {
      (void)state;
@@ -30,7 +30,7 @@
         </p>
         </section>
         <section id="detailed_desc">
-   
+
    <dl outputclass="since" props="rtc">
        <dlentry props="native">
   <dt>自从</dt>
@@ -39,7 +39,7 @@
    </dl>
    <p id="desc">该回调在网络连接状态发生改变的时候触发，并告知用户当前的网络连接状态和引起网络状态改变的原因。</p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title" /></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" />
+        <section id="parameters"><title><ph keyref="callback-section-title" /></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
    <parml>
        <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                   <pt />
@@ -67,11 +67,9 @@
                    <li><ph keyref="CONNECTION_CHANGED_BANNED_BY_SERVER" /> (3)：网络连接被服务器禁止 。</li>
                    <li><ph keyref="CONNECTION_CHANGED_JOIN_FAILED" /> (4)：加入频道失败 。</li>
                    <li><ph keyref="CONNECTION_CHANGED_LEAVE_CHANNEL" /> (5)：离开频道 。</li>
-                   <li><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID" /> (6)：不是有效的 APP ID。请更换有效的 APP
-                                    ID 重新加入频道 。</li>
-                   <li><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME" />
-                                    (7)：不是有效的频道名。请更换有效的频道名重新加入频道。 </li>
-                   <li><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN" /> (8)：生成的 Token 无效。一般有以下原因：<ul id="ul_pf4_kcx_qqb">
+                   <li><ph keyref="CONNECTION_CHANGED_INVALID_APP_ID" /> (6)：不是有效的 APP ID。请更换有效的 APP ID 重新加入频道 。</li>
+                   <li><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME"/> (7)：不是有效的频道名。请更换有效的频道名重新加入频道。</li>
+                   <li><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN"/> (8)：生成的 Token 无效。一般有以下原因：<ul id="ul_pf4_kcx_qqb">
                        <li>在控制台上启用了 App Certificate，但加入频道未使用 Token。当启用了 App Certificate，必须使用 Token。</li>
                        <li>在调用 <xref keyref="joinChannel1" /> 加入频道时指定的 uid 与生成 Token 时传入的 uid 不一致。</li>
                                     </ul>
@@ -86,9 +84,9 @@
                                     地址变更，可能是由于网络类型，或网络运营商的 IP 或端口发生改变引起 。</li>
                    <li><ph keyref="CONNECTION_CHANGED_KEEP_ALIVE_TIMEOUT" /> (14)：SDK
                                     和服务器连接保活超时，进入自动重连状态 。</li>
-                   <li><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS" /> (15)：重新加入频道成功 。</li>
-                   <li><ph keyref="CONNECTION_CHANGED_LOST" /> (16)：SDK 和服务器失去连接 。</li>
-                   <li><ph keyref="CONNECTION_CHANGED_ECHO_TEST" /> (17)：连接状态变化由回声测试引起。 </li>
+                   <li><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS"/> (15)：重新加入频道成功。</li>
+                   <li><ph keyref="CONNECTION_CHANGED_LOST"/> (16)：SDK 和服务器失去连接 。</li>
+                   <li><ph keyref="CONNECTION_CHANGED_ECHO_TEST"/> (17)：连接状态变化由回声测试引起。</li>
                </ul>
            </p>
            </pd>
