@@ -8,10 +8,13 @@ jobs:
             - name: Checkout
               uses: actions/checkout@master
 
-            - name: DITA-OT
+            - name: Build HTML
               uses: dita-ot/dita-ot-action@master
               with:
-                  dita-ot-version: 3.6
+                  input: dita/RTC/RTC_API_Flutter.ditamap
+                  transtype: html5
+                  output-path: out
+                  properties: "--filter=dita/RTC/config/filter-flutter-rtc.ditaval"
 
             - name: Vale
               uses: errata-ai/vale-action@v1.4.3
