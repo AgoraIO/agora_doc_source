@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onroompropertiesupdated">
+    <title><ph keyref="onRoomPropertiesUpdated"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the custom user properties are updated.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRoomPropertiesUpdated"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">fun onRoomPropertiesUpdated(properties: Map&lt;String, Any>,
+                            cause: Map&lt;String, Any>?,
+                            operator: AgoraEduContextUserInfo?)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">void onRoomPropertiesUpdated(Map&lt;String, Any> changedProperties,
+                             Map&lt;String, Any> cause,
+                             AgoraEduContextUserInfo operator)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>changedProperties</pt>
+                    <pd>The updated user properties.</pd>
+                </plentry>
+                <plentry>
+                    <pt>cause</pt>
+                    <pd>The update reason.</pd>
+                </plentry>
+                <plentry id="operator">
+                    <pt>operator</pt>
+                    <pd>操作者 <xref keyref="AgoraEduContextUserInfo"/>，可为空。</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>
