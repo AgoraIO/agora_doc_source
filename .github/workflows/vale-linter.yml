@@ -8,22 +8,13 @@ jobs:
             - name: Checkout
               uses: actions/checkout@master
 
-            - name: Build HTML
-              uses: dita-ot/dita-ot-action@master
-              with:
-                  input: dita/RTC/RTC_API_Flutter.ditamap
-                  transtype: html5
-                  output-path: out
-                  properties: "--filter=dita/RTC/config/filter-flutter-rtc.ditaval"
-
             - name: Vale
               uses: errata-ai/vale-action@v1.4.3
               with:
                   # Only lint the modified files
                   # files: __onlyModified
                   # Only lint EN files
-                  files: en-US/
-
+                  files: en-US/markdown/
                   # Optional
                   config: https://raw.githubusercontent.com/errata-ai/vale/master/.vale.ini
 
