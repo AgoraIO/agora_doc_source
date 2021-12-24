@@ -12,19 +12,6 @@ static config(params: AgoraEduSDKConfigParams):void
 
 Configures the SDK.
 
-**Sample code**
-
-```typescript
-AgoraEduSDK.config({
-  // Agora App ID
-  appId: "<YOUR AGORA APPID>",
-  // Region
-  region: "CN"
-})
-```
-
-**Parameter**
-
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
 | `params` | The SDK global configuration. See [AgoraEduSDKConfig](#agoraedusdkconfig). |
@@ -36,56 +23,6 @@ static launch(dom: Element, option: LaunchOption):Promise<void>
 ```
 
 Launches a classroom.
-
-**Sample code**
-
-```typescript
-// Configure courseware
-let resourceUuid = "xxxxx"
-let resourceName = "my ppt slide"
-let sceneInfos = []
-let sceneInfo = {
-    name: "1",
-    ppt: {
-        src: "pptx://....",
-        width: 480,
-        height: 360
-    }
-}
-sceneInfos.push(sceneInfo)
-
-let courseWareList = [{
-    resourceUuid,
-    resourceName,
-    size: 10000,
-    updateTime: new Date().getTime(),
-    ext: "pptx",
-    url:null,
-    scenes: sceneInfos,
-    taskUuid: "xxxx",
-    taskToken: "xxx",
-    taskProgress: NetlessTaskProgress
-}]
-
-// Launch a classroom
-AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
-    rtmToken: "<your rtm token>",
-    userUuid: "test",
-    userName: "teacher",
-    roomUuid: "4321",
-    roleType: 1,
-    roomType: 4,
-    roomName: "demo-class",
-    pretest: false,
-    language: "en",
-    startTime: new Date().getTime(),
-    duration: 60 * 30,
-    courseWareList: [],
-    listener: (evt) => {
-        console.log("evt", evt)
-    }
-})
-```
 
 **Parameter**
 
@@ -140,7 +77,7 @@ export type LaunchOption = {
   userFlexProperties?: { [key: string]: any };
   mediaOptions?: MediaOptions;
   latencyLevel?: 1 | 2;
-}
+    }
 ```
 
 | Parameter | Description |
@@ -213,7 +150,7 @@ Video encoder configurations.
 export declare interface MediaEncryptionConfig {
   mode: MediaEncryptionMode,
   key: string
-}
+    }
 ```
 
 The media stream encryption configuration. Used in [MediaOptions](#mediaoptions).
@@ -250,6 +187,18 @@ Encryption modes. Used in [MediaEncryptionConfig](#mediaencryptionconfig).
 The courseware pre-download configuration. Used when calling [AgoraEduSDK.launch](#launch).
 
 ```typescript
+export type AgoraConvertedFile = {
+  width: number;
+  height: number;
+    ppt: {
+  width: number;
+    src: string;
+  height: number;
+};
+  conversionFileUrl: string;
+};
+
+export type ConvertedFileList = AgoraConvertedFile[];
 export type CourseWareItem = {
   resourceName: string,
   resourceUuid: string,
@@ -257,18 +206,26 @@ export type CourseWareItem = {
   url: string,
   conversion: {
     type: string,
-  },
+};
   size: number,
   updateTime: number,
   scenes: SceneDefinition[],
   convert?: boolean,
   taskUuid?: string,
   taskToken?: string,
-  taskProgress?: NetlessTaskProgress
-}
+  "taskProgress": {
+    totalPageSize?: number;
+    convertedPageSize?: number;
+    convertedPercentage?: number;
+    convertedFileList: ConvertedFileList;
+};
+  isActive?: boolean;
+};
 
 export type CourseWareList = CourseWareItem[]
 ```
+
+`CourseWareList` 为 `CourseWareItem` 对象组成的数组。 `CourseWareItem` 包含以下参数：
 
 | Parameter | Description |
 | :------------- | :----------------------------------------------------------- |
@@ -279,10 +236,11 @@ export type CourseWareList = CourseWareItem[]
 | `updateTime` | The latest modified time of the file. |
 | `conversion` | The file conversion configuration object, which contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>`"dynamic"`: Convert the file to a static picture.</li><li>`"static"`: Convert the file to dynamic HTML.</li></ul></ul> |
 | `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. If the suffix name is not listed above, you must set `url `and leave `scenes` empty. |
-| `scenes` | The download configuration of the converted file. When the file suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, you must set `scenes` for downloading the converted file. |
+| `scenes` | The download configuration of the converted file. When the file suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, you must set `scenes` for downloading the converted file. 详见 Agora 互动白板 SDK 的 [SceneDefinition 对象](/cn/whiteboard/API%20Reference/whiteboard_web/globals.html#scenedefinition)。 |
+| `convert` | 是否进行文档转换。 |
 | `taskUuid` | The unique identifier of the file conversion task. |
 | `taskToken` | The token used by the file conversion task. |
-| `taskProgress` | The JSON object indicates the progress of the file conversion task. |
+| `taskProgress` | The file conversion configuration object, which contains the following fields:<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li><li>`convertedFileList`: 已转换的文档页面列表，由 `AgoraConvertedFile` 组成的数组。 `AgoraConvertedFile` 包含以下字段：<ul><li>`width`: 页面宽度。</li><li>`height`: 页面高度。</li><li>`ppt`: 页面上展示的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>``The URL address of the converted page.</li></ul></li></ul></li></ul> |
 
 ### EduRoleTypeEnum
 
