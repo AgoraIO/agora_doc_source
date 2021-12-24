@@ -59,13 +59,13 @@ Details:
 
 -   RTC APIs for Reuse: This topic contains the API syntaxes for all platforms. It is conrefed in each API topic with a platform filter.
 
--   Windows API DITA map.
+-   Windows API DITA map
 
     -   Keys RTC C++ API: Key definitions of API names for C++.
 
     -   windows.ditaval: Include the Windows platform only.
 
-    -   Relations.
+    -   Relations
 
         -   Method-Class relationship table: Classes need to have related methods.
 
@@ -75,4 +75,4 @@ Details:
 
     -   API topics
 
--   DITA maps for other platforms.
+-   DITA maps for other platforms
