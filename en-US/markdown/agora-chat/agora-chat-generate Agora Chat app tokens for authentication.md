@@ -215,74 +215,77 @@ The following example shows how to build and run an app token server written in 
    
    ![](https://web-cdn.agora.io/docs-files/1638869051945)
 
-### Convert an Agora app token
-
-Before you call Agora Chat REST APIs, you need to convert the Agora app token to an Agora Chat app token in order to use Agora Chat. 
-
-1. To convert the token, you need to send a POST request to the Agora Chat server. The following is a request example. 
-
-   ```shell
-   curl -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer 007eJxTYDgnM+Hok9wIubiAM+zbGRvnbvZ/Y30u74rc2ayjpdnuCosUGIwtEs1TjNOSzC2Mk0wMLIwtk1MNU9Is0szNTUzSjI2Tpr8/lNjQG83wTMFThpGBlYGRgYkBxGdgAAC1bB+a' -d '{"grant_type":"agora"}' 'http://a41.chat.agora.io/41434878/504205/token'
-   ```
-
-
-2. Open your terminal and run the command above. Be sure to replace the value of the `Authorization` parameter with your Agora app token. For more details about the parameters in the request header and body, see <a href="api"> Reference</a>.
-
-3. Following a successful request, you see:
-
--  an Agora Chat app token
--  the timestamp (ms) when the token expires
-
-The following is a response example for a successful request:
-
-```json
-{
-    "access_token": "YWMtocXMjBEEQhmBqj-1iqWUywAAAAAAAAAAAAAAAAAAAAH_Z4gybPJPQ4EwWKw4y2wVAgMAAAF7D4Ab0QBPGgD6xFOaPCHEVIzBMQAtlGlZ3wQF2Ju68ZHglAxaaFRPRg==",
-    "expire_timestamp": 1628148692771
-} 
-```
-
 ### Call the Agora Chat REST APIs with an Agora Chat app token
 
-This section shows how to call the Agora Chat REST API with the converted Agora Chat app token to register a user.
+This section shows how to use the Agora app token obtained to call the Agora Chat REST API to register a user. 
 
-1. Refer to the following example to send a request for registering a user. You need to replace `<YourAppToken>` with the Agora Chat app token obtained.
+1. Before you call Agora Chat REST APIs, you need to convert the Agora app token obtained to an Agora Chat app token in order to use Agora Chat. To get an Agora Chat app token, do the following:
 
-   ```shell
-   curl -X POST -H "Authorization: Bearer <YourAppToken>" -i    "https://a1.agora.com/agora-demo/testapp/users" -d '[
-      { 
-        "username": "user1", 
-        "password": "123", 
-        "nickname": "testuser" 
-      } 
-    ]'
-   ```
+   1. Send a POST request to the Agora Chat server for an Agora Chat app token. The following is a request example and for demonstration purposes only.  
 
-2. Following a successful request, you see a response that resembles:
+      ```shell
+      curl -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer 007eJxTYDgnM+Hok9wIubiAM+zbGRvnbvZ/Y30u74rc2ayjpdnuCosUGIwtEs1TjNOSzC2Mk0wMLIwtk1MNU9Is0szNTUzSjI2Tpr8/lNjQG83wTMFThpGBlYGRgYkBxGdgAAC1bB+a' -d '{"grant_type":"agora"}' 'http://a41.chat.agora.io/41434878/504205/token'
+      ```
+
+   2. Before you run the command above, be sure to replace the value of the `Authorization` parameter with your Agora app token. For more details about the parameters in the request header and body, see <a href="api"> Reference</a>.
+
+   3. Following a successful request, you see:
+
+   -  an Agora Chat app token
+   -  the timestamp (ms) when the token expires
+
+   The following is a response example for a successful request:
 
    ```json
    {
-       "action": "post",
-       "application": "8be024f0-e978-11e8-b697-5d598d5f8402",
-       "path": "/users",
-       "uri": "https://a1.agora.com/agora-demo/testapp/users",
-       "entities": [
-           {
-               "uuid": "0ffe2d80-ed76-11e8-8d66-279e3e1c214b",
-               "type": "user",
-               "created": 1542795196504,
-               "modified": 1542795196504,
-               "username": "user1",
-               "activated": true,
-               "nickname": "testuser"
-           }
-       ],
-       "timestamp": 1542795196515,
-       "duration": 0,
-       "organization": "agora-demo",
-       "applicationName": "testapp"
-   }
+       "access_token": "YWMtocXMjBEEQhmBqj-1iqWUywAAAAAAAAAAAAAAAAAAAAH_Z4gybPJPQ4EwWKw4y2wVAgMAAAF7D4Ab0QBPGgD6xFOaPCHEVIzBMQAtlGlZ3wQF2Ju68ZHglAxaaFRPRg==",
+       "expire_timestamp": 1628148692771
+   } 
    ```
+
+2. Now you have obtained an Agora Chat app token. To use this token to call the Agora Chat REST API to register a user, do the following: 
+
+   1. Send a request the Agora Chat server to register a user. The following is a request example: Open your terminal and run the command aboveYou need to replace `<YourAppToken>` with the Agora Chat app token obtained.
+
+      ```shell
+      # Replace <YourAppToken> with the Agora Chat app token you obtained.
+      curl -X POST -H "Authorization: Bearer <YourAppToken>" -i "https://a1.agora.com/XXXX/XXXX/users" -d '[
+         { 
+           "username": "user1", 
+           "password": "123", 
+           "nickname": "testuser" 
+         } 
+       ]'
+      ```
+      
+   2. Before you run the command above, you need to replace `<YourAppToken>` with the Agora Chat app token just obtained.
+
+   3. Following a successful request, you see a response that resembles:
+
+      ```shell
+      {
+          "action": "post",
+          "application": "8be024f0-e978-11e8-b697-5d598d5f8402",
+          "path": "/users",
+          "uri": "https://a1.agora.com/XXXX/XXXX/users",
+          "entities": [
+              {
+                  "uuid": "0ffe2d80-ed76-11e8-8d66-279e3e1c214b",
+                  "type": "user",
+                  "created": 1542795196504,
+                  "modified": 1542795196504,
+                  "username": "user1",
+                  "activated": true,
+                  "nickname": "testuser"
+              }
+          ],
+          "timestamp": 1542795196515,
+          "duration": 0,
+          "organization": "XXXX",
+          "applicationName": "XXXX"
+      }
+      ```
+
 
 ## <a name = "api">Reference</a>
 
