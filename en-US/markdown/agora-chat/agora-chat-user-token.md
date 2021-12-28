@@ -116,7 +116,8 @@ This sample server is for demonstration purposes only. Do not use it in a produc
    - In `ChatTokenBuilder2`, the import should be `import com.agora.chat.token.io.agora.media.AccessToken2`.
    - In `AccessToken`, the import should be `import static com.agora.chat.token.io.agora.media.Utils.crc32`.
 
-1. In `<Project name>/src/main/resource`, create a `application.properties` file to hold the information for generating tokens and update it with your project information:
+1. In `<Project name>/src/main/resource`, create a `application.properties` file to hold the information for generating tokens and update it with your project information.
+   Note that the value for `appid`, `appcert`, and `appkey` should be a string without quotation marks.
 
    ```txt
    ## Server port
