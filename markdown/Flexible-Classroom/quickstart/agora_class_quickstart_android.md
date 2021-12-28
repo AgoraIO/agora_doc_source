@@ -22,14 +22,16 @@
    ```
    git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
    ```
+
    ```
    git checkout release/apaas/x.y.z
-   ```
+	```
+
    <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_android?platform=Android">发版说明</a>中获取最新版本号。</div>
 
 2. 在 Android Studio 中打开 CloudClass-Android。
 
-3. 将 `app/src/normal/res/values/string_config.xml` 文件中的 `Agora App ID` 和 `Agora App Certificate` 替换成[你的 App ID 和 App 证书](#prerequisites)。
+3. 将 `app/src/normal/res/values/string_config.xml` 文件中的 `Agora App ID` 和 `Agora App Certificate` 替换成[你的 App ID 和 App 证书](#prerequisites)。`Agora API Host` 和 `Report API Host` 无需替换，使用默认配置即可。
 
    ```xml
    <?xml version="1.0" encoding="utf-8"?>
@@ -39,7 +41,7 @@
            <string name="agora_api_host" translatable="false">Agora API Host</string>
            <string name="agora_report_host" translatable="false">Report API Host</string>
    </resources>
-```
+   ```
 
    为方便你快速测试，CloudClass-Android 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
 
@@ -48,7 +50,7 @@
    1. 调用 [AgoraEduSDK.setConfig](/cn/agora-class/agora_class_api_ref_android?platform=Android#setconfig) 方法全局配置 SDK。
    2. 调用 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_android?platform=Android#launch) 方法启动灵动课堂。
 
-4. 在 Android Studio 中编译并运行该项目。你可以在 Android 设备上看到以下画面：
+5. 在 Android Studio 中编译并运行该项目。你可以在 Android 设备上看到以下画面：
 
    ![](https://web-cdn.agora.io/docs-files/1623315354864)
 
@@ -58,34 +60,4 @@
 
 ## 后续步骤
 
-如果 Agora Classroom SDK 中默认的 UI 无法满足你的需求，你可以参考[自定义课堂 UI 文档](/cn/agora-class/agora_class_custom_ui_android?platform=Android)，获取 Agora Classroom SDK 的源码，自行修改灵动课堂的 UI，如更换颜色、调整布局。
-
-## 更多信息
-
-<a name="sdk"></a>
-### 集成 Agora Classroom SDK
-
-你可以参考以下步骤，通过 [JitPack](https://jitpack.io/#AgoraIO-Community/CloudClass-Android) 将 Agora Classroom SDK 集成到你自己的 Android 项目中：
-
-1. 在项目的 **build.gradle** 文件中添加以下库：
-
-```
-   allprojects {
-   	repositories {
-   		...
-   		maven { url'http://maven.aliyun.com/nexus/content/groups/public' }
-   		maven { url 'https://jitpack.io' }
-   	}
-   }
-   ```
-
-2. 在项目的 **build.gradle** 文件中添加以下依赖：
-
-   ```
-   dependencies {
-           ...
-   		// 请访问 https://jitpack.io/#AgoraIO-Community/CloudClass-Android 获取最新 Tag
-   		implementation 'com.github.AgoraIO-Community:CloudClass-Android:Tag'
-   }
-
-   ```
+现在你已经初步体验了灵动课堂的功能，接下来可将[灵动课堂集成到你自己的 app 项目中](/cn/agora-class/agora_class_integrate_android?platform=iOS)。

@@ -18,15 +18,15 @@
 
 ## 启动灵动课堂
 
-参照以下步骤快速启动灵动课堂：
+参照以下步骤启动灵动课堂：
 
-1. 运行以下命令将灵动课堂 GitHub 仓库 CloudClass-iOS 克隆至本地：
+1. 运行以下命令将 Agora 提供的灵动课堂项目 CloudClass-iOS 克隆至本地，并切换至最新发版分支。
 
    ```
    git clone https://github.com/AgoraIO-Community/CloudClass-iOS
    ```
 
-   ```
+	```
    git checkout release/apaas/x.y.z
    ```
 
@@ -48,8 +48,8 @@
 
    你可在 `AgoraEducation/Main/Controllers/LoginViewController.swift` 文件中查看启动课堂的具体逻辑：
 
-   1. 调用 [AgoraClassroomSDK.setConfig](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#setconfig) 方法全局配置 SDK。
-   2. 调用 [AgoraClassroomSDK.launch](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#launch) 方法启动灵动课堂。
+   1. 调用 [AgoraEduSDK.setConfig](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#setconfig) 方法全局配置 SDK。
+   2. 调用 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#launch) 方法启动灵动课堂。
 
 3. 连接上 iOS 设备后，用 Xcode 打开示例项目，然后编译并运行项目。
 
@@ -59,4 +59,4 @@
 
 ## 后续步骤
 
-现在你已经初步体验了灵动课堂的功能，接下来可试着将[灵动课堂集成到你自己的 app 项目中]()。
+现在你已经初步体验了灵动课堂的功能，接下来可将[灵动课堂集成到你自己的 app 项目中](/cn/agora-class/agora_class_integrate_ios?platform=iOS)。

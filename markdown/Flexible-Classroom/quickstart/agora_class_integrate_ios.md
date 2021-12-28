@@ -105,19 +105,19 @@ pod "AgoraRtm_iOS", "1.4.8"
    pod 'AgoraEduContext', :path => '../SDKs/AgoraEduContext/AgoraEduContext.podspec'
    pod 'AgoraEduUI', :path => '../SDKs/AgoraEduUI/AgoraEduUI.podspec'
    pod 'AgoraUIEduBaseViews', :path => '../SDKs/Modules/AgoraUIEduBaseViews/AgoraUIEduBaseViews_Local.podspec'
-    
+
    # Closed-source libs
    pod 'AgoraEduCore', "1.1.5.7"
-    
+
    # Common libs
    pod 'AgoraUIBaseViews', '1.0.1'
    pod 'AgoraExtApp', '1.0.0'
    pod 'AgoraWidget', '1.0.0'
-    
+
    # Widgets
    pod 'AgoraWidgets', :path => '../Widgets/AgoraWidgets/AgoraWidgets.podspec'
    pod 'ChatWidget', :path => '../Widgets/ChatWidget/ChatWidget.podspec', :subspecs => ['SOURCE']
-    
+
    # Third-party libs
    pod 'Protobuf', '3.17.0'
    pod "AFNetworking", "4.0.1"
@@ -144,4 +144,3 @@ pod "Whiteboard", "2.13.19"
 pod "AgoraRtcEngine_iOS", "3.4.6"
 pod "AgoraRtm_iOS", "1.4.8"
 ```
-
