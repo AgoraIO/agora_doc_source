@@ -28,6 +28,7 @@ Ensure that you meet the following requirements before proceeding:
 - A valid [Agora Account](https://docs.agora.io/en/Agora%20Platform/sign_in_and_sign_up).
 - An Agora project with Agora Chat enabled.
   To enable Agora Chat, contact support@agora.io.
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
 ## Implement the authentication flow
 
@@ -298,27 +299,43 @@ This sample server is for demonstration purposes only. Do not use it in a produc
 
 This section uses the Web client as an example to show how to use a token for client-side user authentication.
 
-To show the authentication workflow, this section shows how to build and run a Web client on your local machine. To follow the procedure in this section, you need to have [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed.
+To show the authentication workflow, this section shows how to build and run a Web client on your local machine.
 
 This sample client is for demonstration purposes only. Do not use it in a production environment.
 
-1. Create the project structure of the Web client with a folder including the following files.
+To implement the Web client, do the following:
 
-   - `index.html`: User interface
-   - `index.js`: App logic with Agora Chat Web SDK
+1. Create a project structure for an Agora Chat Web app. In the project root folder, create the following files:
 
-1. Navigate to the project directory in terminal and run `npm init`. This creates a `package.json` file.
+   - `index.html`: The user interface.
+   - `index.js`: The app logic.
+   - `webpack.config.js`: The webpack configuration.
 
-   The project directory now has the following structure:
+1. To configure webpack, copy the following code into `webpack.config.js`:
 
-   ```txt
-    |
-    |-- index.html
-    |-- index.js
-    |-- package.json
-   ```
+    ```javascript
+    const path = require('path');
+  
+    module.exports = {
+        entry: './index.js',
+        mode: 'production',
+        output: {
+            filename: 'bundle.js',
+            path: path.resolve(__dirname, './dist'),
+        },
+        devServer: {
+            compress: true,
+            port: 9000,
+            https: true
+        }
+    };
+    ```
 
-1. Integrate the Agora Chat SDK into your project through npm. To integrate the SDK, in `package.json`, add `agora-chat-sdk` and its version number to the `dependencies` field:
+1. Set up the npm package for your Web app.
+   In terminal, navigate to the project root directory and run `npm init`. This creates a `package.json` file.
+
+1. Configure the dependencies and scripts for your project.
+   In `package.json`, add the following code:
 
    ```json
     {
@@ -334,7 +351,7 @@ This sample client is for demonstration purposes only. Do not use it in a produc
       "author": "",
       "license": "ISC",
       "dependencies": {
-        "agora-chat-sdk": "latest",
+        "agora-chat-sdk": "latest"
       },
       "devDependencies": {
         "webpack": "^5.50.0",
@@ -344,7 +361,8 @@ This sample client is for demonstration purposes only. Do not use it in a produc
    }
    ```
 
-1. In `index.html`, add the following code to include the app logic in the UI:
+1. Create the UI for your app.
+   In `index.html`, add the following code:
 
    ```html
    <!DOCTYPE html>
@@ -368,7 +386,8 @@ This sample client is for demonstration purposes only. Do not use it in a produc
    </html>
    ```
 
-1. Create the app logic by editing `index.js` with the following content. Then replace `<Your App Key>` with your App Key.
+1. Create the app logic.
+   In `index.js`, add the following code and replace `<Your App Key>` with your app key.
 
    ```js
    import WebIM from "agora-chat-sdk";
@@ -447,33 +466,9 @@ This sample client is for demonstration purposes only. Do not use it in a produc
     - Call `open` to log in to the Agora Chat system with token and username. You must use the username that is used to register the user and get the UUID.
     - Fetch a new token from the app server and call `renewToken` to update the token of the SDK when the token is about to expire and when the token expires. Agora recommends that you regularly (such as every hour) generate a token from the app server and call `renewToken` to update the token of the SDK to ensure that the token is always valid.
 
-1. To build and run your project, take the following steps:
+1. To build and run your project, do the following:
 
-    1. To configure webpack, copy the following code into a new file called `webpack.config.js`:
-
-       ```javascript
-       const path = require('path');
-      
-       module.exports = {
-           entry: './index.js',
-           mode: 'production',
-           output: {
-               filename: 'bundle.js',
-               path: path.resolve(__dirname, './dist'),
-           },
-           devServer: {
-               compress: true,
-               port: 9000,
-               https: true
-           }
-       };
-       ```
-
-    1. To install the dependencies, run the following command:
-
-       ```shell
-       npm install
-       ```
+    1. To install the dependencies, run `npm install`.
 
     1. To build and run the project using webpack, run the following commands:
 
@@ -542,14 +537,13 @@ public String buildUserToken(String appId, String appCertificate, String uuid, i
 
 A user token is valid for a maximum of 24 hours.
 
-When the Agora Chat SDK is in the `isConnected(true)` state, the user remains online even if the user token expires. If a user logs in with an expired token, the SDK returns the `TOKEN_EXPIRED` error.
+When the Agora Chat SDK is in the `isConnected(true)` state, the user remains online even if the user token expires. If a user logs in with an expired token, Agora Chat returns the `TOKEN_EXPIRED` error.
 
-The Agora Chat SDK triggers the `onTokenExpired` callback only when a token expires and the SDK is in the `isConnected(true)` state. The callback is triggered only once. Upon receiving this callback, you can generate a new token on your app server, and call `renewToken` to pass the new token to the SDK.
+The Agora Chat SDK triggers the `onTokenExpired` callback only when a token expires and the SDK is in the `isConnected(true)` state. The callback is triggered only once. When your listener receives this event, retrieve a new token from your token server, and pass this token to Agora Chat with a call to `renewToken`.
 
 <div class="alert note">Although you can use the <code>onTokenExpired</code> callback to handle token expiration conditions, Agora recommends that you regularly renew the token (for example every hour) to keep the token valid.</div>
 
-<div class="alert info">The names of methods, callbacks, and enums mentioned above only applies to Java. Refer to the API documentation for names in other platforms.</div>
 
 ### Tokens for Agora RTC products
 
-If you use Agora Chat together with the Agora RTC service, Agora recommends you upgrade to [access token 2](link) for smooth development experience.
+If you use Agora Chat together with the [Agora RTC SDK](https://docs.agora.io/en/Agora%20Platform/term_agora_rtc_sdk), Agora recommends you upgrade to [access token 2](link).
