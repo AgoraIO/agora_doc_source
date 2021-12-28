@@ -10,6 +10,7 @@
         <topicref href="config/subject-scheme-rtc.ditamap" format="ditamap" type="subjectScheme"
             navtitle="Conditional processing attributes"/>
         <topicref href="config/keys-rtc-ng-api-cpp.ditamap" format="ditamap"/>
+        <topicref href="config/keys-rtc-ng-links.ditamap" format="ditamap"/>
         <topicref href="config/keys-rtc-ng-links-windows.ditamap" format="ditamap"/>
         <topicref href="config/relations-rtc-ng-api.ditamap" format="ditamap"/>
     </topichead>
@@ -28,6 +29,7 @@
             <topicref keyref="adjustUserPlaybackSignalVolume" toc="no"/>
             <topicref keyref="clearVideoWatermarks" toc="no"/>
             <topicref keyref="complain" toc="no"/>
+            <topicref keyref="configRhythmPlayer" toc="no"/>
             <topicref keyref="create2" toc="no"/>
             <topicref keyref="createAgoraRtcEngine" toc="no"/>
 	       <topicref keyref="createDataStream1" toc="no"/>
@@ -40,6 +42,8 @@
             <topicref keyref="enableAudio" toc="no"/>
             <topicref keyref="enableAudioSpectrumMonitor" toc="no"/>
             <topicref keyref="enableAudioVolumeIndication" toc="no"/>
+            <topicref keyref="enableContentInspect" toc="no" props="hide"/>
+            <topicref keyref="enableEchoCancellationExternal" toc="no" props="hide"/>
             <topicref keyref="enableDualStreamMode" toc="no"/>
             <topicref keyref="enableDualStreamMode2" toc="no"/>
             <topicref keyref="enableDualStreamMode3" toc="no"/>
@@ -52,6 +56,7 @@
             <topicref keyref="enableLoopbackRecording" toc="no"/>
             <topicref keyref="enableSoundPositionIndication" toc="no"/>
             <topicref keyref="enableVideo" toc="no"/>
+            <topicref keyref="enableVirtualBackground" toc="no"/>
             <topicref keyref="enableWebSdkInteroperability" toc="no"/>
             <topicref keyref="getAudioDeviceInfo" toc="no"/>
             <topicref keyref="getAudioMixingCurrentPosition" toc="no"/>
@@ -89,12 +94,15 @@
             <topicref keyref="muteRecordingSignal" toc="no"/>
             <topicref keyref="muteRemoteAudioStream" toc="no"/>
             <topicref keyref="muteRemoteVideoStream" toc="no"/>
+            <topicref keyref="pauseAllChannelMediaRelay" toc="no"/>
             <topicref keyref="pauseAllEffects" toc="no"/>
             <topicref keyref="pauseAudioMixing" toc="no"/>
             <topicref keyref="pauseEffect" toc="no"/>
             <topicref keyref="playAllEffects" toc="no"/>
             <topicref keyref="playEffect3" toc="no"/>
             <topicref keyref="preloadEffect" toc="no"/>
+            <topicref keyref="pushCaptureAudioFrame1" toc="no" props="hide"/>
+            <topicref keyref="pushReverseAudioFrame1" toc="no" props="hide"/>
             <topicref keyref="queryInterface" toc="no"/>
             <topicref keyref="rate" toc="no"/>
             <topicref keyref="registerAudioEncodedFrameObserver" toc="no"/>
@@ -105,6 +113,7 @@
             <topicref keyref="release" toc="no"/>
             <topicref keyref="removePublishStreamUrl" toc="no"/>
             <topicref keyref="renewToken" toc="no"/>
+            <topicref keyref="resumeAllChannelMediaRelay" toc="no"/>
             <topicref keyref="resumeAllEffects" toc="no"/>
             <topicref keyref="resumeAudioMixing" toc="no"/>
             <topicref keyref="resumeEffect" toc="no"/>
@@ -124,6 +133,7 @@
             <topicref keyref="setCameraZoomFactor" toc="no"/>
             <topicref keyref="setChannelProfile" toc="no"/>
             <topicref keyref="setClientRole1" toc="no"/>
+            <topicref keyref="setClientRole2" toc="no"/>
             <topicref keyref="setDefaultAudioRouteToSpeakerphone" toc="no"/>
             <topicref keyref="setDefaultMuteAllRemoteAudioStreams" toc="no"/>
             <topicref keyref="setDefaultMuteAllRemoteVideoStreams" toc="no"/>
@@ -169,6 +179,7 @@
             <topicref keyref="setVoiceConversionPreset" toc="no"/>
             <topicref keyref="setVolumeOfEffect" toc="no"/>
             <topicref keyref="startAudioMixing" toc="no"/>
+            <topicref keyref="startAudioMixing2" toc="no"/>
             <topicref keyref="startAudioRecording3" toc="no"/>
             <topicref keyref="startChannelMediaRelay" toc="no"/>
             <topicref keyref="startEchoTest1" toc="no"/>
@@ -178,6 +189,7 @@
             <topicref keyref="startPreview" toc="no"/>
             <topicref keyref="startPrimaryCameraCapture" toc="no"/>
             <topicref keyref="startPrimaryScreenCapture" toc="no"/>
+            <topicref keyref="startRhythmPlayer" toc="no"/>
             <topicref keyref="startScreenCapture" toc="no"/>
             <topicref keyref="startScreenCaptureByDisplayId" toc="no"/>
             <topicref keyref="startScreenCaptureByScreenRect" toc="no"/>
@@ -195,10 +207,12 @@
             <topicref keyref="stopPreview" toc="no"/>
             <topicref keyref="stopPrimaryCameraCapture" toc="no"/>
             <topicref keyref="stopPrimaryScreenCapture" toc="no"/>
+            <topicref keyref="stopRhythmPlayer" toc="no"/>
             <topicref keyref="stopScreenCapture" toc="no"/>
             <topicref keyref="stopSecondaryCameraCapture" toc="no"/>
             <topicref keyref="stopSecondaryScreenCapture" toc="no"/>
             <topicref keyref="switchCamera" toc="no"/>
+            <topicref keyref="takeSnapshot" toc="no"/>
             <topicref keyref="unloadAllEffects" toc="no"/>
             <topicref keyref="unloadEffect" toc="no"/>
             <topicref keyref="unregisterAudioSpectrumObserver" toc="no"/>
@@ -222,8 +236,6 @@
             <topicref keyref="leaveChannelEx" toc="no"/>
             <topicref keyref="muteRemoteAudioStreamEx" toc="no"/>
             <topicref keyref="muteRemoteVideoStreamEx" toc="no"/>
-            <topicref keyref="pushEncodedVideoImageEx" toc="no"/>
-            <topicref keyref="pushVideoFrameEx" toc="no"/>
             <topicref keyref="sendCustomReportMessageEx" toc="no"/>
             <topicref keyref="setRemoteVoice3DPositionEx" toc="no"/>
             <topicref keyref="setRemoteVoicePositionEx" toc="no"/>
@@ -232,6 +244,7 @@
             <topicref keyref="updateChannelMediaOptionsEx" toc="no"/>
         </topicref>
         <topicref keyref="IRtcEngineEventHandler" chunk="to-content">
+            <topicref keyref="onActiveSpeaker" toc="no"/>
             <topicref keyref="onApiCallExecuted" toc="no"/>
             <topicref keyref="onAudioDeviceStateChanged" toc="no"/>
             <topicref keyref="onAudioDeviceVolumeChanged" toc="no" props="hide"/>
@@ -253,6 +266,7 @@
             <topicref keyref="onConnectionInterrupted" toc="no"/>
             <topicref keyref="onConnectionLost" toc="no"/>
             <topicref keyref="onConnectionStateChanged" toc="no"/>
+            <topicref keyref="onContentInspectResult" toc="no" props="hide"/>
             <topicref keyref="onEncryptionError" toc="no"/>
             <topicref keyref="onError" toc="no"/>
             <topicref keyref="onExtensionEvent" toc="no"/>
@@ -291,6 +305,7 @@
             <topicref keyref="onRequestToken" toc="no"/>
             <topicref keyref="onRtcStats" toc="no"/>
             <topicref keyref="onRtmpStreamingStateChanged" toc="no"/>
+            <topicref keyref="onSnapshotTaken" toc="no"/>
             <topicref keyref="onStreamMessage" toc="no"/>
             <topicref keyref="onStreamMessageError" toc="no"/>
             <topicref keyref="onStreamPublished" toc="no"/>
@@ -315,7 +330,6 @@
         <topicref keyref="IMediaPlayer" chunk="to-content">
             <topicref keyref="adjustPlayoutVolume" toc="no"/>
             <topicref keyref="adjustPublishSignalVolume" toc="no"/>
-            <topicref keyref="changePlaybackSpeed" toc="no"/>
             <topicref keyref="getDuration" toc="no"/>
             <topicref keyref="getMediaPlayerId" toc="no"/>
             <topicref keyref="getMute" toc="no"/>
@@ -336,8 +350,10 @@
             <topicref keyref="registerVideoFrameObserver_IMediaPlayer" toc="no"/>
             <topicref keyref="resume" toc="no"/>
             <topicref keyref="seek" toc="no"/>
-            <topicref keyref="selectAudioTrack" toc="no"/>
-            <topicref keyref="setAudioMixingDualMonoMode" toc="no"/>
+            <topicref keyref="selectAudioTrack" toc="no" props="hide"/>
+            <topicref keyref="setAudioMixingPitch" toc="no"/>
+            <topicref keyref="setPlaybackSpeed" toc="no"/>
+            <topicref keyref="setAudioDualMonoMode" toc="no"/>
             <topicref keyref="setLoopCount" toc="no"/>
             <topicref keyref="setRenderMode" toc="no"/>
             <topicref keyref="setView" toc="no"/>
@@ -404,12 +420,15 @@
             <topicref keyref="pullAudioFrame" toc="no"/>
             <topicref keyref="pushAudioFrame" toc="no"/>
             <topicref keyref="pushEncodedVideoImage" toc="no"/>
+            <topicref keyref="pushEncodedVideoImageEx" toc="no"/>
             <topicref keyref="pushVideoFrame" toc="no"/>
             <topicref keyref="pushVideoFrameEx" toc="no"/>
             <topicref keyref="registerAudioFrameObserver" toc="no"/>
             <topicref keyref="registerVideoEncodedImageReceiver" toc="no"/>
             <topicref keyref="registerVideoFrameObserver" toc="no"/>
+            <topicref keyref="setExternalAudioSource2" toc="no"/>
             <topicref keyref="setExternalVideoSource" toc="no"/>
+
         </topicref>
         <topicref keyref="IMediaPlayerCustomDataProvider" chunk="to-content">
             <topicref keyref="onReadData" toc="no"/>
@@ -453,11 +472,10 @@
             <topicref keyref="onEncodedVideoImageReceived" toc="no"/>
         </topicref>
         <topicref keyref="IVideoFrameObserver" chunk="to-content">
-            <topicref keyref="getMirrorApplied" toc="no" props="hide"/>
-            <topicref keyref="getRotationApplied" toc="no" props="hide"/>
+            <topicref keyref="getMirrorApplied" toc="no"/>
+            <topicref keyref="getRotationApplied" toc="no"/>
             <topicref keyref="getVideoFrameProcessMode" toc="no"/>
             <topicref keyref="onCaptureVideoFrame" toc="no"/>
-            <topicref keyref="onEncodedVideoImageReceived" toc="no"/>
             <topicref keyref="onMediaPlayerVideoFrame" toc="no"/>
             <topicref keyref="onScreenCaptureVideoFrame" toc="no"/>
             <topicref keyref="onRenderVideoFrame" toc="no"/>
@@ -468,12 +486,13 @@
             <topicref keyref="AUDIENCE_LATENCY_LEVEL_TYPE" toc="no"/>
             <topicref keyref="AUDIO_CODEC_PROFILE_TYPE" toc="no"/>
             <topicref keyref="AUDIO_CODEC_TYPE" toc="no"/>
+            <topicref keyref="AUDIO_DUAL_MONO_MODE" toc="no"/>
             <topicref keyref="AUDIO_EFFECT_PRESET" toc="no"/>
             <topicref keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION" toc="no"/>
             <topicref keyref="AUDIO_ENCODING_TYPE" toc="no"/>
             <topicref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY" toc="no"/>
+	        <topicref keyref="AUDIO_FRAME_TYPE" toc="no"/>
             <topicref keyref="AUDIO_FILE_RECORDING_TYPE" toc="no"/>
-            <topicref keyref="AUDIO_MIXING_DUAL_MONO_MODE" toc="no"/>
             <topicref keyref="AUDIO_MIXING_ERROR_TYPE" toc="no"/>
             <topicref keyref="AUDIO_MIXING_REASON_TYPE" toc="no"/>
             <topicref keyref="AUDIO_MIXING_STATE_TYPE" toc="no"/>
@@ -496,12 +515,16 @@
             <topicref keyref="CLOUD_PROXY_TYPE" toc="no"/>
             <topicref keyref="CONNECTION_CHANGED_REASON_TYPE" toc="no"/>
             <topicref keyref="CONNECTION_STATE_TYPE" toc="no"/>
+            <topicref keyref="CONTENT_INSPECT_DEVICE_TYPE" toc="no" props="hide"/>
+            <topicref keyref="CONTENT_INSPECT_RESULT" toc="no" props="hide"/>
+            <topicref keyref="CONTENT_INSPECT_TYPE" toc="no" props="hide"/>
             <topicref keyref="DEGRADATION_PREFERENCE" toc="no"/>
             <topicref keyref="EAR_MONITORING_FILTER_TYPE" toc="no"/>
             <topicref keyref="ENCRYPTION_ERROR_TYPE" toc="no"/>
             <topicref keyref="ENCRYPTION_MODE" toc="no"/>
             <topicref keyref="EXPERIENCE_POOR_REASON" toc="no"/>
             <topicref keyref="EXPERIENCE_QUALITY_TYPE" toc="no"/>
+            <topicref keyref="EXTERNAL_VIDEO_SOURCE_TYPE" toc="no"/>
             <topicref keyref="FRAME_RATE" toc="no"/>
             <topicref keyref="INJECT_STREAM_STATUS" toc="no"/>
             <topicref keyref="INTERFACE_ID_TYPE" toc="no"/>
@@ -560,8 +583,8 @@
             <topicref keyref="VOICE_BEAUTIFIER_PRESET" toc="no"/>
             <topicref keyref="VOICE_CHANGER_PRESET" toc="no"/>
             <topicref keyref="VOICE_CONVERSION_PRESET" toc="no"/>
+            <topicref keyref="AgoraRhythmPlayerConfig" toc="no"/>
             <topicref keyref="AudioEncodedFrameObserverConfig" toc="no"/>
-            <topicref keyref="AudioFileRecordingConfig" toc="no"/>
             <topicref keyref="AudioRecordingConfiguration" toc="no"/>
             <topicref keyref="AudioSpectrumData" toc="no"/>
             <topicref keyref="AudioVolumeInfo" toc="no"/>
@@ -571,6 +594,8 @@
             <topicref keyref="ChannelMediaOptions" toc="no"/>
             <topicref keyref="ChannelMediaRelayConfiguration" toc="no"/>
             <topicref keyref="ClientRoleOptions" toc="no"/>
+            <topicref keyref="ContentInspectConfig" toc="no" props="hide"/>
+            <topicref keyref="ContentInspectModule" toc="no" props="hide"/>
             <topicref keyref="DataStreamConfig" toc="no"/>
             <topicref keyref="DeviceInfo" toc="no"/>
             <topicref keyref="EncodedAudioFrameInfo" toc="no"/>
@@ -608,6 +633,10 @@
             <topicref keyref="VideoEncoderConfiguration" toc="no"/>
             <topicref keyref="VideoFrame" toc="no"/>
             <topicref keyref="VideoFormat" toc="no"/>
+            <topicref keyref="VirtualBackgroundSource" toc="no">
+                <topicref keyref="BACKGROUND_SOURCE_TYPE" toc="no"/>
+                <topicref keyref="BACKGROUND_BLUR_DEGREE" toc="no"/>
+            </topicref>
             <topicref keyref="WatermarkOptions" toc="no"/>
         </topicref>
     </topichead>

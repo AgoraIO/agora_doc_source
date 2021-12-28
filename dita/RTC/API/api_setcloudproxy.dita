@@ -32,31 +32,12 @@
                     <dd>3.3.0</dd>
                 </dlentry>
             </dl>
-            <p>当用户防火墙限制 IP 和端口号时，你需要参考<xref keyref="guide-cloud-proxy">使用云代理</xref>开放相应 IP
-                和端口号，然后调用该方法开启云代理，并将 <parmname>proxyType</parmname> 设为 <ph keyref="UDP_PROXY" /> (1)，
-                即使用 UDP 协议的云代理。 </p>
-            <p>
-                成功连接云代理后，SDK 会触发
-                <xref keyref="onConnectionStateChanged" />
-                (
-                <ph keyref="CONNECTION_STATE_CONNECTING" />
-                ,
-                <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />
-                ) 回调。
+            <p>当用户防火墙限制 IP 和端口号时，你需要参考<xref keyref="guide-cloud-proxy">使用云代理</xref>开放相应 IP 和端口号，然后调用该方法开启云代理，并将 <parmname>proxyType</parmname> 设为 <ph keyref="UDP_PROXY"/> (1)，即使用 UDP 协议的云代理。</p>
+            <p>成功连接云代理后，SDK 会触发 <xref keyref="onConnectionStateChanged" /> (<ph keyref="CONNECTION_STATE_CONNECTING" />, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) 回调。
             </p>
-            <p>
-                如果你想关闭已设置的云代理，请调用
-                <apiname>setCloudProxy</apiname>
-                (NONE_PROXY)。
+            <p>如果你想关闭已设置的云代理，请调用 <apiname keyref="setCloudProxy"/> (<ph keyref="NONE_PROXY" />)。
             </p>
-            <p>
-                如果你想更改已设置的云代理类型，请先调用
-                <apiname keyref="setCloudProxy" />
-                (NONE_PROXY)， 再调用
-                <apiname keyref="setCloudProxy" />
-                并传入你期望的
-                <parmname>proxyType</parmname>
-                值。
+            <p>如果你想更改已设置的云代理类型，请先调用 <apiname keyref="setCloudProxy"/> (<ph keyref="NONE_PROXY" />)， 再调用 <apiname keyref="setCloudProxy"/> 并传入你期望的 <parmname>proxyType</parmname> 值。
             </p>
             <note type="attention">
                 <ul>
@@ -70,10 +51,7 @@
             <parml>
                 <plentry>
                     <pt>proxyType</pt>
-                    <pd>
-                        云代理类型，详见
-                        <xref keyref="CLOUD_PROXY_TYPE" />
-                        。该参数为必填参数，如果你不赋值，SDK 会报错。
+                    <pd>云代理类型，详见 <xref keyref="CLOUD_PROXY_TYPE" />。该参数为必填参数，如果你不赋值，SDK 会报错。
                     </pd>
                 </plentry>
             </parml>
@@ -85,15 +63,9 @@
                 <li>
                     &lt; 0: 方法调用失败。
                     <ul>
-                        <li>
-                            -2(
-                            <codeph>ERR_INVALID_ARGUMENT</codeph>
-                            ): 传入的参数无效。
+                        <li>-2(<codeph>ERR_INVALID_ARGUMENT</codeph>): 传入的参数无效。
                         </li>
-                        <li>
-                            -7(
-                            <codeph>ERR_NOT_INITIALIZED</codeph>
-                            ): SDK 尚未初始化。
+                        <li>-7(<codeph>ERR_NOT_INITIALIZED</codeph>): SDK 尚未初始化。
                         </li>
                     </ul>
                 </li>

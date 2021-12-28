@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onstreamleft">
+    <title><ph keyref="onStreamLeft"/></title>
+    <shortdesc id="short"><ph id="shortdesc">流移除回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onStreamLeft"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">fun onStreamLeft(streamInfo: AgoraEduContextStreamInfo,
+                 operator: AgoraEduContextUserInfo? = null)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">void onStreamLeft(AgoraEduContextStreamInfo stream,
+                  AgoraEduContextUserInfo operator)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>一路流从房间内移除时，SDK 会触发此回调。</p>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>stream</pt>
+                    <pd>流信息，详见 <xref keyref="AgoraEduContextStreamInfo"/>。</pd>
+                </plentry>
+                <plentry conkeyref="onRoomPropertiesUpdated/operator">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

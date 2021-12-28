@@ -100,9 +100,9 @@
     int height;
     int videoBitrate;
     int videoFramerate;
-    
+
     bool lowLatency;
-    
+
     int videoGop;
     VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
     unsigned int backgroundColor;
@@ -110,11 +110,11 @@
     TranscodingUser *transcodingUsers;
     const char *transcodingExtraInfo;
     RtcImage* watermark;
-    
+
     AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
     int audioBitrate;
     int audioChannels;
-    
+
     LiveTranscoding()
     : width(360)
     , height(640)
@@ -228,7 +228,7 @@
                 </plentry>
                 <plentry>
                     <pt>videoFrameRate</pt>
-                    <pd>输出媒体流的视频帧率（fps）。默认值为 15，取值范围是 [1,30]。 <note type="attention">Agora 服务器会将高于
+                    <pd>输出媒体流的视频帧率（fps）。默认值为 15，取值范围是 [1,30]。<note type="attention">Agora 服务器会将高于
                             30 fps 的帧率统一调整为 30 fps。</note></pd>
                 </plentry>
                 <plentry>
@@ -241,8 +241,8 @@
                             </dlentry>
                         </dl>
                         <ul>
-                            <li>true: 低延时，不保证画质。</li>
-                            <li>false:（默认值）高延时，保证画质。</li>
+                            <li><codeph><ph keyref="true"/></codeph>: 低延时，不保证画质。</li>
+                            <li><codeph><ph keyref="false"/></codeph>:（默认值）高延时，保证画质。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -288,7 +288,7 @@
                                 <dt>弃用：</dt>
                                 <dd>该属性已废弃。</dd>
                             </dlentry>
-                        </dl> 发送给 CDN 客户端的 metadata。 </pd>
+                        </dl> 发送给 CDN 客户端的 metadata。</pd>
                 </plentry>
                 <plentry>
                     <pt>watermark</pt>
@@ -308,7 +308,7 @@
                 </plentry>
                 <plentry>
                     <pt>audioChannels</pt>
-                    <pd>输出媒体流的音频声道数。默认值为 1。建议取值为 1 或 2。 <ul>
+                    <pd>输出媒体流的音频声道数。默认值为 1。建议取值为 1 或 2。<ul>
                             <li>1: （默认）单声道</li>
                             <li>2: 双声道</li>
                             <li>3: 三声道</li>
