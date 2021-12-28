@@ -20,10 +20,10 @@
 
 参照以下步骤启动灵动课堂：
 
-1. 运行以下命令将 Agora 提供的灵动课堂项目 CloudClass-iOS 克隆至本地，并切换至最新发版分支。
+1. 运行以下命令将 CloudClass-iOS 克隆至本地，并切换至最新发版分支。
 
    ```
-   git clone https://github.com/AgoraIO-Community/CloudClass-iOS
+   git clone https://github.com/AgoraIO-Community/CloudClass-iOS.git
    ```
 
 	```
@@ -32,19 +32,17 @@
 
    <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_ios?platform=iOS">发版说明</a>中获取最新版本号。</div>
 
-2. 将 `keycenter.m` 文件中的 `Agora App ID` 和 `Agora App Certificate` 替换成[你的 App ID 和 App 证书](#prerequisites)。
+2. 运行以下命令将 apaas-extapp-ios 仓库克隆至本地，并切换至最新发版分支。apaas-extapp-ios 仓库需要和 CloudClass-iOS 仓库位于同一目录下。
 
-   ```swift
-   + (NSString *)appId {
-       return <#Your Agora App Id#>;
-   }
-   
-   + (NSString *)appCertificate {
-       return <#Your Agora Certificate#>;
-   }
+   ```
+   git clone https://github.com/AgoraIO-Community/apaas-extapp-ios.git
    ```
 
-   为方便你快速测试，CloudClass-iOS 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
+	```
+   git checkout release/apaas/x.y.z
+   ```
+
+2. 在 CloudClass-iOS 目录下运行 `pod install`。
 
    你可在 `AgoraEducation/Main/Controllers/LoginViewController.swift` 文件中查看启动课堂的具体逻辑：
 

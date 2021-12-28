@@ -21,62 +21,82 @@
 如果你使用灵动课堂的默认 UI，在你的项目的 `Podfile` 文件中添加如下引用集成完整的灵动课堂：
 
 ```
-# Open-source libs
-pod 'AgoraClassroomSDK_iOS', "1.1.5.3"
-pod 'AgoraEduContext', "1.1.5.1"
-pod 'AgoraEduUI', "1.1.5.2"
-pod 'AgoraUIEduBaseViews', "1.1.5.2"
- 
-# Closed-source libs
-pod 'AgoraEduCore', "1.1.5.7"
- 
-# Common libs
-pod 'AgoraUIBaseViews', '1.0.1'
-pod 'AgoraExtApp', '1.0.0'
-pod 'AgoraWidget', '1.0.0'
- 
-# Widgets
-pod 'AgoraWidgets', "1.0.1"
-   
 # Third-party libs
+pod 'OpenSSL-Universal', '1.0.2.17'
 pod 'Protobuf', '3.17.0'
-pod "AFNetworking", "4.0.1"
-pod "CocoaLumberjack", "3.6.1"
-pod "AliyunOSSiOS", "2.10.8"
-pod "Whiteboard", "2.13.19"
-pod "AgoraRtcEngine_iOS", "3.4.6"
-pod "AgoraRtm_iOS", "1.4.8"
+pod "CocoaLumberjack", '3.6.1'
+pod 'AliyunOSSiOS',  '2.10.8'
+pod 'Armin',  '1.0.9'
+pod 'Alamofire', '4.7.3'
+pod 'SSZipArchive', '2.4.2'
+pod 'SwifterSwift', '5.2.0'
+pod 'Masonry'
+pod 'SDWebImage', '5.12.0'
+
+# Agora libs
+pod 'AgoraRtm_iOS', '1.4.8'
+pod 'Whiteboard', '2.15.8'
+pod 'AgoraRtcEngine_iOS', '3.4.6'
+pod 'HyphenateChat', '3.8.6'
+
+# Open-source libs
+pod 'AgoraClassroomSDK_iOS', '2.0.0'
+```
+
+请注意，在 `AgoraClassroomSDK_iOS` 库的 `podspec` 中，依赖以下库并指定了最低版本：
+
+```
+# Open-source libs
+spec.dependency "AgoraEduUI", '2.0.0'
+spec.dependency "AgoraEduContext", '2.0.0'
+
+# Closed-source libs
+spec.dependency "AgoraEduCore", '2.0.0'
+
+# Open-source widgets and extApps
+spec.dependency "AgoraWidgets", '>= 2.0.0'
+spec.dependency "ChatWidget", '>= 2.0.0'
+spec.dependency "AgoraExtApps", '>= 2.0.0'</div>
 ```
 
 <a name="custom_ui"></a>
 
 ## 不使用灵动课堂的默认 UI
 
-如果你不需要使用灵动课堂的默认 UI，则无需集成 `AgoraEduUI `库，因此集成灵动课堂时，仅需在你的项目的 Podfile 文件中添加如下引用：
+如果你不需要使用灵动课堂的默认 UI，则无需集成 `AgoraClassroomSDK` 与 `AgoraEduUI` 库，只需要集成 `AgoraEduCore`。因此集成灵动课堂时，仅需在你的项目的 Podfile 文件中添加如下引用：
 
 ```
-# Open-source libs
-pod 'AgoraEduContext', "1.1.5.1"
- 
 # Closed-source libs
-pod 'AgoraEduCore', "1.1.5.7"
- 
-# Common libs
-pod 'AgoraUIBaseViews', '1.0.1'
-pod 'AgoraExtApp', '1.0.0'
-pod 'AgoraWidget', '1.0.0'
- 
-# Widgets
-pod 'AgoraWidgets', "1.0.1"
-   
+pod 'AgoraEduCore', '2.0.0'
+
+# Agora libs
+pod 'AgoraRtm_iOS', '1.4.8'
+pod 'Whiteboard', '2.15.8'
+pod 'AgoraRtcEngine_iOS', '3.4.6'
+pod 'HyphenateChat', '3.8.6'
+
 # Third-party libs
+pod 'OpenSSL-Universal', '1.0.2.17'
 pod 'Protobuf', '3.17.0'
-pod "AFNetworking", "4.0.1"
-pod "CocoaLumberjack", "3.6.1"
-pod "AliyunOSSiOS", "2.10.8"
-pod "Whiteboard", "2.13.19"
-pod "AgoraRtcEngine_iOS", "3.4.6"
-pod "AgoraRtm_iOS", "1.4.8"
+pod "CocoaLumberjack", '3.6.1'
+pod 'AliyunOSSiOS',  '2.10.8'
+pod 'Armin',  '1.0.9'
+pod 'Alamofire', '4.7.3'
+pod 'SSZipArchive', '2.4.2'
+pod 'SwifterSwift', '5.2.0'
+pod 'Masonry'
+pod 'SDWebImage', '5.12.0'
+```
+
+请注意，在 `AgoraEduCore` 库的 `podspec` 中，依赖如下库并指定了最低版本：
+
+```
+# Common libs
+spec.dependency "AgoraExtApp", '2.0.0'
+spec.dependency "AgoraWidget", '2.0.0'
+
+# Open-source libs
+spec.dependency "AgoraEduContext", '2.0.0'
 ```
 
 <a name="change_default_ui"></a>
@@ -85,62 +105,50 @@ pod "AgoraRtm_iOS", "1.4.8"
 
 如果你想要修改灵动课堂的默认 UI，则参考以下步骤集成灵动课堂：
 
-1. 将 CloudClass-iOS 仓库克隆至本地：
+1. 将 CloudClass-iOS 和 apaas-extapp-ios 仓库克隆至本地：
 
    ```bash
-   git clone https://github.com/AgoraIO-Community/CloudClass-iOS
+   git clone https://github.com/AgoraIO-Community/CloudClass-iOS.git
+   git clone https://github.com/AgoraIO-Community/apaas-extapp-ios.git
    ```
 
-2. 通过 `git remote add <shortname> <url>` 命令为 CloudClass-iOS 仓库添加一个远端仓库，指向你的项目仓库。
+2. 通过 `git remote add <shortname> <url>` 命令为 CloudClass-iOS 和 apaas-extapp-ios 仓库添加远端仓库，指向你的项目仓库。
 
 3. 基于最新的发版分支创建一个你自己的分支，推向你的项目仓库。
 
    <div class="alert info">你可在<a href="/cn/agora-class/release_agora_class_ios?platform=iOS">发版说明</a>中查看最新版本号 x.y.z，发版分支为 release/apaas/x.y.z。</div>
 
-4. 在你的项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 仓库中的 `AgoraClassroomSDK.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec`、`AgoraUIEduBaseViews.podspec` 以及其它依赖的库。
+4. 在你的项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 仓库中的 `AgoraClassroomSDK_iOS.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec`、apaas-extapp-ios 仓库中的 `AgoraWidgets.podspec`，`ChatWidget.podspec`，`AgoraExtApps.podspec` 以及其它依赖的库。
 
    ```
+   # Third-party libs
+   pod 'OpenSSL-Universal', '1.0.2.17'
+   pod 'Protobuf', '3.17.0'
+   pod "CocoaLumberjack", '3.6.1'
+   pod 'AliyunOSSiOS',  '2.10.8'
+   pod 'Armin',  '1.0.9'
+   pod 'Alamofire', '4.7.3'
+   pod 'SSZipArchive', '2.4.2'
+   pod 'SwifterSwift', '5.2.0'
+   pod 'Masonry'
+   pod 'SDWebImage', '5.12.0'
+
+   # Agora libs
+   pod 'AgoraRtm_iOS', '1.4.8'
+   pod 'Whiteboard', '2.15.8'
+   pod 'AgoraRtcEngine_iOS', '3.4.6'
+   pod 'HyphenateChat', '3.8.6'
+
    # Open-source libs
-   pod 'AgoraClassroomSDK_iOS', :path => '../SDKs/AgoraClassroomSDK/AgoraClassroomSDK_iOS.podspec'
-   pod 'AgoraEduContext', :path => '../SDKs/AgoraEduContext/AgoraEduContext.podspec'
-   pod 'AgoraEduUI', :path => '../SDKs/AgoraEduUI/AgoraEduUI.podspec'
-   pod 'AgoraUIEduBaseViews', :path => '../SDKs/Modules/AgoraUIEduBaseViews/AgoraUIEduBaseViews_Local.podspec'
+   pod 'AgoraClassroomSDK_iOS', :path => 'CloudClass-iOS/SDKs/AgoraClassroomSDK/AgoraClassroomSDK_iOS.podspec'
+   pod 'AgoraEduContext', :path => 'CloudClass-iOS/SDKs/AgoraEduContext/AgoraEduContext.podspec'
+   pod 'AgoraEduUI', :path => 'CloudClass-iOS/SDKs/AgoraEduUI/AgoraEduUI.podspec'
+
+   # Open-sources widgets and extApps
+   pod 'AgoraWidgets', :path => 'apaas-extapp-ios/Widgets/AgoraWidgets/AgoraWidgets.podspec'
+   pod 'ChatWidget', :path => 'apaas-extapp-ios/Widgets/ChatWidget/ChatWidget.podspec'
+   pod 'AgoraExtApps', :path => 'apaas-extapp-ios/ExtApps/AgoraExtApps.podspec'
 
    # Closed-source libs
-   pod 'AgoraEduCore', "1.1.5.7"
-
-   # Common libs
-   pod 'AgoraUIBaseViews', '1.0.1'
-   pod 'AgoraExtApp', '1.0.0'
-   pod 'AgoraWidget', '1.0.0'
-
-   # Widgets
-   pod 'AgoraWidgets', :path => '../Widgets/AgoraWidgets/AgoraWidgets.podspec'
-   pod 'ChatWidget', :path => '../Widgets/ChatWidget/ChatWidget.podspec', :subspecs => ['SOURCE']
-
-   # Third-party libs
-   pod 'Protobuf', '3.17.0'
-   pod "AFNetworking", "4.0.1"
-   pod "CocoaLumberjack", "3.6.1"
-   pod "AliyunOSSiOS", "2.10.8"
-   pod "Whiteboard", "2.13.19"
-   pod "AgoraRtcEngine_iOS", "3.4.6"
-   pod "AgoraRtm_iOS", "1.4.8"
+   pod 'AgoraEduCore', '2.0.0'
    ```
-
-## 更多信息
-
-### 第三方库说明
-
-灵动课堂中依赖于以下第三方库，你可以自行修改第三方库的版本号，但可能产生兼容性问题。
-
-```
-# Third-party libs
-pod 'Protobuf', '3.17.0'
-pod "AFNetworking", "4.0.1"
-pod "CocoaLumberjack", "3.6.1"
-pod "AliyunOSSiOS", "2.10.8"
-pod "Whiteboard", "2.13.19"
-pod "AgoraRtcEngine_iOS", "3.4.6"
-pod "AgoraRtm_iOS", "1.4.8"
-```

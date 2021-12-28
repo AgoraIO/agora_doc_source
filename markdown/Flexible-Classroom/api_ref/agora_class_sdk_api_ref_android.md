@@ -188,7 +188,7 @@ public enum AgoraEduRoomType {
 | `AgoraEduRoomTypeBig`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。 |
 | `AgoraEduRoomTypeSmall` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。 |
 
-### StreamState
+### AgoraEduStreamState
 
 ```java
 data class AgoraEduStreamState (
@@ -197,12 +197,12 @@ data class AgoraEduStreamState (
 )
 ```
 
-用于控制学生上台后是否发音视流。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
+用于控制学生上讲台后是否默认有发音视频流的权限。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
 | 参数         | 描述                                                         |
 | :----------- | :----------------------------------------------------------- |
-| `videoState` | 是否发视频流：<li>`0`: （默认）不发视频流。</li><li>`1`: 发视频流。</li> |
-| `audioState` | 是否发音频流：<li>`0`: （默认）不发音频流。</li><li>`1`: 发音频流。</li> |
+| `videoState` | 是否有发视频流的权限：<li>`0`: （默认）不发视频流。</li><li>`1`: 发视频流。</li> |
+| `audioState` | 是否有发音频流的权限：<li>`0`: （默认）不发音频流。</li><li>`1`: 发音频流。</li> |
 
 ### AgoraEduLatencyLevel
 
@@ -275,7 +275,7 @@ enum class AgoraEduEncryptMode(val value: Int) {
 | `SM4_128_ECB` | 128 位 ECB 加密，SM4 模式。 |
 | `AES_128_GCM` | 128 位 AES 加密，GCM 模式。 |
 | `AES_256_GCM` | 256 位 AES 加密，GCM 模式。 |
-| `AES_128_GCM2` | 128 位 AES 加密，GCM 模式。相比于 `AES_128_GCM` 加密模式，AES_128_GCM2 加密模式安全性更高且需要设置盐。 |
+| `AES_128_GCM2` | 128 位 AES 加密，GCM 模式。相比于 `AES_128_GCM` 加密模式，`AES_128_GCM2` 加密模式安全性更高且需要设置盐。 |
 | `AES_256_GCM2` | 256 位 AES 加密，GCM 模式。256 位 AES 加密，GCM 模式。相比于 `AES_256_GCM` 加密模式，`AES_256_GCM2` 加密模式安全性更高且需要设置盐。 |
 
 ### AgoraEduRegion

@@ -17,7 +17,7 @@
 
 参照以下步骤启动灵动课堂：
 
-1. 运行以下命令将 Agora 提供的灵动课堂项目 CloudClass-Android 克隆至本地，并切换至最新发版分支。
+1. 运行以下命令将 CloudClass-Android 克隆至本地，并切换至最新发版分支。
 
    ```
    git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
