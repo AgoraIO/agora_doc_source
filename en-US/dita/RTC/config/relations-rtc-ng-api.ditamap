@@ -30,6 +30,7 @@
         <relrow>
             <relcell>
                 <topicref keyref="setClientRole1"/>
+                <topicref keyref="setClientRole2"/>
             </relcell>
             <relcell>
                 <topicref keyref="CLIENT_ROLE_TYPE"/>
@@ -40,9 +41,8 @@
                 <topicref keyref="setClientRole2"/>
             </relcell>
             <relcell>
-                <topicref keyref="CLIENT_ROLE_TYPE"/>
-                <topicref keyref="ClientRoleOptions"/>
                 <topicref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>
+                <topicref keyref="ClientRoleOptions"/>
             </relcell>
         </relrow>
         <relrow>
@@ -61,6 +61,14 @@
             </relcell>
             <relcell>
                 <topicref keyref="CONNECTION_STATE_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setAudioDualMonoMode"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AUDIO_DUAL_MONO_MODE"/>
             </relcell>
         </relrow>
         <relrow>
@@ -199,21 +207,13 @@
                 <topicref keyref="LOCAL_AUDIO_STREAM_ERROR"/>
             </relcell>
         </relrow>
-        <relrow props="rtc">
+        <relrow>
             <relcell>
                 <topicref keyref="startRhythmPlayer"/>
                 <topicref keyref="configRhythmPlayer"/>
             </relcell>
             <relcell>
                 <topicref keyref="AgoraRhythmPlayerConfig"/>
-            </relcell>
-        </relrow>
-        <relrow>
-            <relcell>
-                <topicref keyref="startAudioRecording3"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="AudioRecordingConfiguration"/>
             </relcell>
         </relrow>
         <relrow props="mac windows">
@@ -924,7 +924,7 @@
         <relrow props="windows" >
             <relcell>
                 <topicref keyref="registerVideoFrameObserver_IMediaPlayer"/>
-                <topicref keyref="unregisterVideoFrameObserver"/>
+                <topicref keyref="unregisterVideoFrameObserver_IMediaPlayer"/>
             </relcell>
             <relcell>
                 <topicref keyref="IVideoFrameObserver"/>
@@ -1221,10 +1221,12 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="setAudioMixingDualMonoMode"/>
+                <topicref keyref="enableVirtualBackground"/>
             </relcell>
             <relcell>
-                <topicref keyref="AUDIO_MIXING_DUAL_MONO_MODE"/>
+                <topicref keyref="VirtualBackgroundSource"/>
+                <topicref keyref="BACKGROUND_SOURCE_TYPE" props="ios mac windows"/>
+                <topicref keyref="BACKGROUND_BLUR_DEGREE" props="ios mac windows"/>
             </relcell>
         </relrow>
         <relrow props="windows">
@@ -1348,6 +1350,8 @@
         <relrow>
             <relcell>
                 <topicref keyref="updateChannelMediaRelay"/>
+                <topicref keyref="pauseAllChannelMediaRelay"/>
+                <topicref keyref="resumeAllChannelMediaRelay"/>
             </relcell>
             <relcell>
                 <topicref keyref="onChannelMediaRelayEvent"/>
@@ -1552,6 +1556,14 @@
             <relcell>
                 <topicref keyref="onPlaybackAudioFrame"/>
             </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="takeSnapshot"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onSnapshotTaken"/>
+                </relcell>
         </relrow>
         <relrow>
             <relcell>
