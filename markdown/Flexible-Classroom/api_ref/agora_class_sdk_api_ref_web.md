@@ -14,7 +14,7 @@ static config(params: AgoraEduSDKConfigParams):void
 
 | 参数     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
-| `params` | 全局配置参数，详见 [AgoraEduSDKConfigParams](#agoraedusdkconfigparams)。 |
+| `params` | 全局配置参数，详见 [ConfigParams](#configparams)。 |
 
 ### launch
 
@@ -33,12 +33,12 @@ static launch(dom: Element, option: LaunchOption):Promise<void>
 
 ## 类型定义
 
-### AgoraEduSDKConfigParams
+### ConfigParams
 
 SDK 全局配置。用于 [AgoraEduSDK.config](#config) 方法。
 
 ```typescript
-export type AgoraEduSDKConfigParams = {
+export type ConfigParams = {
   appId: string;
   region?: string;
 };

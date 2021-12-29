@@ -4,7 +4,7 @@
 
 ### 模块介绍
 
-灵动课堂代码包含以下五个模块：
+灵动课堂代码包含以下模块：
 
 - `app`: 包括课堂登录界面、Token 生成等，展示了如何调用灵动课堂 API 进入教室房间。此模块开源，仅供参考，一般情况下不建议开发者直接使用。
 <div class="alert note"></div><li>登录界面的某些规范（比如用户名、房间名的长度和字符限制）不适用于所有 app，开发者要根据自己的应用需求自行定义。</li><li>Agora 提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。。但是在正式环境中，为确保安全，你必须在参考[使用 Token 鉴权文档](/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms)，在服务端部署并生成 Token。</li></div>
@@ -66,7 +66,7 @@
 
 如果你想要基于灵动课堂的默认 UI 进行修改，则参考以下步骤集成灵动课堂：
 
-1. 运行以下命令将 Agora 提供的灵动课堂项目 CloudClass-Android 克隆至本地，并切换至最新发版分支。
+1. 运行以下命令将 CloudClass-Android 克隆至本地，并切换至最新发版分支。
 
    ```
    git clone https://github.com/AgoraIO-Community/CloudClass-Android.git

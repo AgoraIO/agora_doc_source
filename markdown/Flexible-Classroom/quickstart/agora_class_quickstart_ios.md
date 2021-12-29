@@ -1,4 +1,4 @@
-根据本文指导通过 Agora Classroom SDK 快速启动并体验灵动课堂。
+根据本文指导快速启动并体验灵动课堂。
 
 ## 技术原理
 
@@ -20,7 +20,7 @@
 
 参照以下步骤启动灵动课堂：
 
-1. 运行以下命令将 CloudClass-iOS 克隆至本地，并切换至最新发版分支。
+1. 运行以下命令将 CloudClass-iOS 项目克隆至本地，并切换至最新发版分支。
 
    ```
    git clone https://github.com/AgoraIO-Community/CloudClass-iOS.git
