@@ -24,9 +24,9 @@ An Agora Chat app token is valid for a maximum of **24 hours**. When you call Ag
 ## Preprequisites
 
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-account)
-- An [Agora project](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-project) with the [App Certificate](https://docs.agora.io/en/Agora Platform/manage_projects?platform=All Platforms#manage-your-app-certificates) and Agora Chat service enabled. To enable the Agora Chat service, contact support@agora.io.
+- An [Agora project](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-project) with the [App Certificate](https://docs.agora.io/en/Agora Platform/manage_projects?platform=All Platforms#manage-your-app-certificates) and Agora Chat enabled. To enable the Agora Chat, contact support@agora.io.
 
-- The [App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id)  your Agora project
+- The [App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id) , `org_name` and `app_name` of your Agora project, see [Enable and Configure Agora Chat](https://docs-preprod.agora.io/en/test/enable_chat?platform=Android).
 
 If your network environment has a firewall, Agora provides firewall whitelists so that you can use Agora Chat with restricted network access. You can contact support@agora.io for more information about the firewall whitelists.
 
@@ -209,7 +209,7 @@ The following example shows how to build and run an app token server written in 
 
    ![](https://web-cdn.agora.io/docs-files/1638868741690)
 
-8. Now you have created an Agora app token server on your local machine. To retrieve an Agora app token from your token server, open http://localhost:8090/chat/app/token in your broswer.
+8. Now you have created an Agora app token server on your local machine. The server returns an Agora app token on GET requests. To test this, paste http://localhost:8090/chat/app/token in your broswer.
 
    You see an Agora app token that resembles:
    
@@ -217,24 +217,29 @@ The following example shows how to build and run an app token server written in 
 
 ### Call the Agora Chat REST APIs with an Agora Chat app token
 
-This section shows how to use the Agora app token obtained to call the Agora Chat REST API to register a user. 
+This section shows how to create a new user in your Agora Chat using an authenticated call to Agora Chat REST API. To do this you:
 
-1. Before you call Agora Chat REST APIs, you need to convert the Agora app token obtained to an Agora Chat app token in order to use Agora Chat. To get an Agora Chat app token, do the following:
+1. Retrieve an Agora app token and convert it to an Agora Chat token. For example:
 
-   1. Send a POST request to the Agora Chat server for an Agora Chat app token. The following is a request example and for demonstration purposes only.  
+   i. In the terminal, use curl to make a GET request to your Agora app token server:
 
       ```shell
-      curl -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer 007eJxTYDgnM+Hok9wIubiAM+zbGRvnbvZ/Y30u74rc2ayjpdnuCosUGIwtEs1TjNOSzC2Mk0wMLIwtk1MNU9Is0szNTUzSjI2Tpr8/lNjQG83wTMFThpGBlYGRgYkBxGdgAAC1bB+a' -d '{"grant_type":"agora"}' 'http://a41.chat.agora.io/41434878/504205/token'
+      curl http://localhost:8090/chat/app/token
       ```
 
-   2. Before you run the command above, be sure to replace the value of the `Authorization` parameter with your Agora app token. For more details about the parameters in the request header and body, see <a href="api"> Reference</a>.
+   The return parameters contain the Agora app token. For example:
 
-   3. Following a successful request, you see:
+      ```shell
+   007eJxTYPj3p2Tnb4tznzxfO/0LK5cu/GZmI71PnWPVkbVhP/aniEspMBhbJJqnGKclmVsYJ5kYWBhbJqcapqRZpJmbm5ikGRsnnT12OrGhN5pB97zpVEYGVgZGBiYGEJ+BAQBN0CGG
+      ```
+   
+2. Add the Agora app token returned previously as the `Authorization: Bear` parameter and retrieve an Agora Chat app token:
 
-   -  an Agora Chat app token
-   -  the timestamp (ms) when the token expires
+   ```shell
+   curl -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer 007eJxTYPj3p2Tnb4tznzxfO/0LK5cu/GZmI71PnWPVkbVhP/aniEspMBhbJJqnGKclmVsYJ5kYWBhbJqcapqRZpJmbm5ikGRsnnT12OrGhN5pB97zpVEYGVgZGBiYGEJ+BAQBN0CGG' -d '{"grant_type":"agora"}' 'http://a41.chat.agora.io/41434878/504205/token'
+   ```
 
-   The following is a response example for a successful request:
+   The return parameters contain the Agora Chat app token and the timestamp (ms) when the token expires in a JSON object. For example:
 
    ```json
    {
@@ -243,48 +248,46 @@ This section shows how to use the Agora app token obtained to call the Agora Cha
    } 
    ```
 
-2. Now you have obtained an Agora Chat app token. To use this token to call the Agora Chat REST API to register a user, do the following: 
+3. Use the Agora Chat app token returned to call the Agora Chat REST API to create a new user:
 
-   1. Send a request the Agora Chat server to register a user. The following is a request example: Open your terminal and run the command aboveYou need to replace `<YourAppToken>` with the Agora Chat app token obtained.
+   i. In terminal, use curl to make a POST request to the Agora Chat server. For example: 
 
-      ```shell
-      # Replace <YourAppToken> with the Agora Chat app token you obtained.
-      curl -X POST -H "Authorization: Bearer <YourAppToken>" -i "https://a1.agora.com/XXXX/XXXX/users" -d '[
-         { 
-           "username": "user1", 
-           "password": "123", 
-           "nickname": "testuser" 
-         } 
-       ]'
-      ```
-      
-   2. Before you run the command above, you need to replace `<YourAppToken>` with the Agora Chat app token just obtained.
+   ```shell
+   # Replace <YourAppToken> with the Agora Chat app token you received.
+   curl -X POST -H "Authorization: Bearer <YourAppToken>" -i "https://XXXX/XXXX/XXXX/users" -d '[
+       {
+           "username": "user1",
+           "password": "123",
+           "nickname": "testuser"
+       }
+   ]'
+   ```
 
-   3. Following a successful request, you see a response that resembles:
+   The return parameters contain the information about the user you just created. For example:
 
-      ```shell
-      {
-          "action": "post",
-          "application": "8be024f0-e978-11e8-b697-5d598d5f8402",
-          "path": "/users",
-          "uri": "https://a1.agora.com/XXXX/XXXX/users",
-          "entities": [
-              {
-                  "uuid": "0ffe2d80-ed76-11e8-8d66-279e3e1c214b",
-                  "type": "user",
-                  "created": 1542795196504,
-                  "modified": 1542795196504,
-                  "username": "user1",
-                  "activated": true,
-                  "nickname": "testuser"
-              }
-          ],
-          "timestamp": 1542795196515,
-          "duration": 0,
-          "organization": "XXXX",
-          "applicationName": "XXXX"
-      }
-      ```
+   ```shell
+   {
+       "action": "post",
+       "application": "8be024f0-e978-11e8-b697-5d598d5f8402",
+       "path": "/users",
+       "uri": "https://a1.agora.com/XXXX/XXXX/users",
+       "entities": [
+           {
+               "uuid": "0ffe2d80-ed76-11e8-8d66-279e3e1c214b",
+               "type": "user",
+               "created": 1542795196504,
+               "modified": 1542795196504,
+               "username": "user1",
+               "activated": true,
+               "nickname": "testuser"
+           }
+       ],
+       "timestamp": 1542795196515,
+       "duration": 0,
+       "organization": "XXXX",
+       "applicationName": "XXXX"
+   }
+   ```
 
 
 ## <a name = "api">Reference</a>
@@ -297,11 +300,9 @@ The following parameters are required when you send a request for an Agora Chat 
 
 | Parameter  | Data type | Required/Optional | Description                                                  |
 | :--------- | :-------- | :---------------- | :----------------------------------------------------------- |
-| `org_name` | String    | Required          | The unique identification that the Agora Chat service assigns to each enterprise (organization). |
-| `app_name` | String    | Required          | The name that the Agora Chat service assigns to each app.    |
+| `org_name` | String    | Required          | The unique identification that the Agora Chat assigns to each customer developing with Agora Chat. |
+| `app_name` | String    | Required          | The name that the Agora Chat assigns to each app.            |
 | `token`    | String    | Required          | The Agora Chat app token.                                    |
-
-For how to get the `org_name` and `app_name` of your Agora project, see [Enable and Configure Agora Chat](https://docs-preprod.agora.io/en/test/enable_chat?platform=Android).
 
 ### Request header
 
