@@ -453,7 +453,7 @@ To implement the Web client, do the following:
 
    // Renew token
    function refreshToken(username) {
-     fetch(`http://localhost:8090/chat/user/uuid/${username}/token`)
+     fetch(`http://localhost:8090/chat/user/${username}/token`)
        .then((res) => res.text())
        .then((token) => {
          WebIM.conn.renewToken(token);
