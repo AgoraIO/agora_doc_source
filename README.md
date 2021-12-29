@@ -1,7 +1,5 @@
 ## Overview
 
-back end
-
 This is a trial project that uses [DITA](https://en.wikipedia.org/wiki/Darwin_Information_Typing_Architecture) and [LwDITA](http://docs.oasis-open.org/dita/LwDITA/v1.0/cnprd01/LwDITA-v1.0-cnprd01.html) to write customer-facing technical documentation.
 
 ### Purpose
@@ -78,9 +76,3 @@ Details:
     -   API topics
 
 -   DITA maps for other platforms
-
-last-mile
-
-lastmile
-
-SD-RTN
