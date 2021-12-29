@@ -773,7 +773,7 @@ To validate the peer-to-peer messaging you have just integrated into your app us
 5. Send messages between the users.
    <img src="https://web-cdn.agora.io/docs-files/1637562770527" style="zoom:50%;" />
 
-## Next Step
+## Next steps
 
 In a production context, the best practice is for your app to retrieve the token used to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Token]().
 
