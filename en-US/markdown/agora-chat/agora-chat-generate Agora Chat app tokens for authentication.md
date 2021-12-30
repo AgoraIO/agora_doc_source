@@ -11,7 +11,7 @@ You use Agora Chat app tokens to make authenticated REST calls to Agora Chat. To
 
 ## Understand the tech
 
-The following figure shows the workflow of authenticating with Agora Chat app tokens:
+The following figure shows the authentication workflow for Agora Chat REST API:
 
 ![](https://web-cdn.agora.io/docs-files/1640139728606)
 
@@ -24,7 +24,7 @@ An Agora Chat app token is valid for a maximum of **24 hours**. When you call Ag
 ## Preprequisites
 
 - A valid [Agora account](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-account)
-- An [Agora project](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-project) with the [App Certificate](https://docs.agora.io/en/Agora Platform/manage_projects?platform=All Platforms#manage-your-app-certificates) and Agora Chat enabled. To enable the Agora Chat, contact support@agora.io.
+- An [Agora project](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-project) with the [App Certificate](https://docs.agora.io/en/Agora Platform/manage_projects?platform=All Platforms#manage-your-app-certificates) and Agora Chat enabled. To enable Agora Chat, contact support@agora.io.
 
 - The [App ID](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#get-the-app-id) , `org_name` and `app_name` of your Agora project, see [Enable and Configure Agora Chat](https://docs-preprod.agora.io/en/test/enable_chat?platform=Android).
 
