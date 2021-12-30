@@ -14,9 +14,15 @@
 
 ![](https://web-cdn.agora.io/docs-files/1631954134292)
 
+## 集成方式
+
+根据你的实际需求选择集成方式。
+
+<div class="alert info">如果你的工程为 OC 工程，需要在 Build Settings 中 Add User-Defined Setting，Key 设为 SWIFT_VERSION，Value 设为你指定的 Swift 版本。</div>
+
 <a name="default_ui"></a>
 
-## 使用灵动课堂的默认 UI
+### 使用灵动课堂的默认 UI
 
 如果你使用灵动课堂的默认 UI，在你的项目的 `Podfile` 文件中添加如下引用集成完整的灵动课堂：
 
@@ -54,14 +60,14 @@ spec.dependency "AgoraEduContext", '2.0.0'
 spec.dependency "AgoraEduCore", '2.0.1'
 
 # Open-source widgets and extApps
-spec.dependency "AgoraWidgets", '>= 2.0.1'
+spec.dependency "AgoraWidgets", '>= 2.0.0'
 spec.dependency "ChatWidget", '>= 2.0.0'
-spec.dependency "AgoraExtApps", '>= 2.0.0'</div>
+spec.dependency "AgoraExtApps", '>= 2.0.0'
 ```
 
 <a name="custom_ui"></a>
 
-## 不使用灵动课堂的默认 UI
+### 不使用灵动课堂的默认 UI
 
 如果你不需要使用灵动课堂的默认 UI，则无需集成 `AgoraClassroomSDK` 与 `AgoraEduUI` 库，只需要集成 `AgoraEduCore`。因此集成灵动课堂时，仅需在你的项目的 Podfile 文件中添加如下引用：
 
@@ -101,7 +107,7 @@ spec.dependency "AgoraEduContext", '2.0.0'
 
 <a name="change_default_ui"></a>
 
-## 修改灵动课堂的默认 UI
+### 修改灵动课堂的默认 UI
 
 如果你想要修改灵动课堂的默认 UI，则参考以下步骤集成灵动课堂：
 

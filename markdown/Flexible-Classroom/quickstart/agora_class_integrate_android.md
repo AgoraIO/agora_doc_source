@@ -52,11 +52,10 @@
    ```
    dependencies {
          ...
-   		// 请获取最新 Tag
-         implementation "io.github.agoraio-community:hyphenate:Tag"
-         implementation "io.github.agoraio-community:AgoraEduCore:Tag"
-         implementation "io.github.agoraio-community:AgoraEduUIKit:Tag"
-         implementation "io.github.agoraio-community:AgoraClassSDK:Tag"
+         implementation "io.github.agoraio-community:hyphenate:2.0.0"
+         implementation "io.github.agoraio-community:AgoraEduCore:2.0.0"
+         implementation "io.github.agoraio-community:AgoraEduUIKit:2.0.0"
+         implementation "io.github.agoraio-community:AgoraClassSDK:2.0.0"
    }
    ```
 
