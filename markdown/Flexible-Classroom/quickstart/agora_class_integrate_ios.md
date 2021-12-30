@@ -51,10 +51,10 @@ spec.dependency "AgoraEduUI", '2.0.0'
 spec.dependency "AgoraEduContext", '2.0.0'
 
 # Closed-source libs
-spec.dependency "AgoraEduCore", '2.0.0'
+spec.dependency "AgoraEduCore", '2.0.1'
 
 # Open-source widgets and extApps
-spec.dependency "AgoraWidgets", '>= 2.0.0'
+spec.dependency "AgoraWidgets", '>= 2.0.1'
 spec.dependency "ChatWidget", '>= 2.0.0'
 spec.dependency "AgoraExtApps", '>= 2.0.0'</div>
 ```
@@ -67,7 +67,7 @@ spec.dependency "AgoraExtApps", '>= 2.0.0'</div>
 
 ```
 # Closed-source libs
-pod 'AgoraEduCore', '2.0.0'
+pod 'AgoraEduCore', '2.0.1'
 
 # Agora libs
 pod 'AgoraRtm_iOS', '1.4.8'
@@ -93,7 +93,7 @@ pod 'SDWebImage', '5.12.0'
 ```
 # Common libs
 spec.dependency "AgoraExtApp", '2.0.0'
-spec.dependency "AgoraWidget", '2.0.0'
+spec.dependency "AgoraWidget", '2.0.1'
 
 # Open-source libs
 spec.dependency "AgoraEduContext", '2.0.0'
@@ -150,5 +150,5 @@ spec.dependency "AgoraEduContext", '2.0.0'
    pod 'AgoraExtApps', :path => 'apaas-extapp-ios/ExtApps/AgoraExtApps.podspec'
 
    # Closed-source libs
-   pod 'AgoraEduCore', '2.0.0'
+   pod 'AgoraEduCore', '2.0.1'
    ```
