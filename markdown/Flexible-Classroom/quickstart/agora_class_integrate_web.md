@@ -2,8 +2,6 @@
 
 ## 技术原理
 
-### 模块介绍
-
 灵动课堂代码包含以下模块：
 
 - `agora-classroom-sdk`: Agora Classroom SDK，包含以下模块：
@@ -39,7 +37,7 @@
 - 使用 CDN 获取 SDK。在你的项目的 HTML 文件中，添加以下代码：
 
   ```html
-  <script src="https://download.agora.io/edu-apaas/release/edu_sdk_1.1.5.10.js"></script>
+  <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.0.1.bundle.js"></script>
   ```
 
 <a name="change_default_ui"></a>

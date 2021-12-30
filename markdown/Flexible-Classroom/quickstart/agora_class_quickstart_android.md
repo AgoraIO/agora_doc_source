@@ -50,13 +50,13 @@
    1. 调用 [AgoraEduSDK.setConfig](/cn/agora-class/agora_class_api_ref_android?platform=Android#setconfig) 方法全局配置 SDK。
    2. 调用 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_android?platform=Android#launch) 方法启动灵动课堂。
 
-5. 在 Android Studio 中编译并运行该项目。你可以在 Android 设备上看到以下画面：
+4. 在 Android Studio 中编译并运行该项目。你可以在 Android 设备上看到以下画面：
 
-   ![](https://web-cdn.agora.io/docs-files/1623315354864)
+   ![](https://web-cdn.agora.io/docs-files/1640783000891)
 
 5. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
 
-   ![](https://web-cdn.agora.io/docs-files/1622431132516)
+  ![](https://web-cdn.agora.io/docs-files/1640783012588)
 
 ## 后续步骤
 

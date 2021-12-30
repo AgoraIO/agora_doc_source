@@ -154,7 +154,6 @@ Classroom SDK 退出回调。
 | `userRole`                   | 用户在课堂中的角色，详见 `AgoraEduRoleType`。                |
 | `roomName`                   | 课堂名，String 型。用于课堂内显示，长度在 64 字节以内。                 |
 | `roomUuid`                   | 课堂 ID，String 型。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-
 | `roomType`                   | 课堂类型，详见 `AgoraEduRoomType`。                          |
 | `token`                      | 用于鉴权的 RTM Token，String 型。 |
 | `appId`                      | Agora App ID，String 型。 |

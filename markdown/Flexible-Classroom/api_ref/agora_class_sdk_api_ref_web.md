@@ -7,7 +7,7 @@
 ### config
 
 ```typescript
-static config(params: AgoraEduSDKConfigParams):void
+static config(params: ConfigParams):void
 ```
 
 配置 SDK。

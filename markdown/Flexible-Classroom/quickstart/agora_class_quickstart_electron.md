@@ -1,4 +1,4 @@
-根据本文指导通过 Agora Classroom SDK 快速启动并体验灵动课堂。
+根据本文指导快速启动并体验灵动课堂。
 
 ## 技术原理
 
@@ -31,13 +31,13 @@
 
    ```javascript
    import { AgoraEduSDK } from 'agora-classroom-sdk'
-   
+
    export default class App {
      constructor(elem) {
        if (!elem) return
        this.elem = elem
      }
-   
+
      setupClassroom() {
        AgoraEduSDK.config({
          appId: "<YOUR APPID>",
@@ -133,4 +133,4 @@
 
 ## 后续步骤
 
-如果 Agora Classroom SDK 中默认的用户界面无法满足你的需求，你可以参考[自定义课堂 UI 文档](/cn/agora-class/agora_class_custom_ui_web?platform=Electron)，获取 Agora Classroom SDK 的源码，自行开发、调试和编译。
+现在你已经初步体验了灵动课堂的功能，接下来可将[灵动课堂集成到你自己的 app 项目中](/cn/agora-class/agora_class_integrate_web?platform=Electron)。

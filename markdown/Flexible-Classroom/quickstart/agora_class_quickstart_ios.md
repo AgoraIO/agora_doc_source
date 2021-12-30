@@ -44,16 +44,11 @@
 
 2. 在 CloudClass-iOS 目录下运行 `pod install`。
 
-   你可在 `AgoraEducation/Main/Controllers/LoginViewController.swift` 文件中查看启动课堂的具体逻辑：
-
-   1. 调用 [AgoraEduSDK.setConfig](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#setconfig) 方法全局配置 SDK。
-   2. 调用 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_ios?platform=iOS#launch) 方法启动灵动课堂。
-
 3. 连接上 iOS 设备后，用 Xcode 打开示例项目，然后编译并运行项目。
 
-4. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
+   > 当前项目中使用灵动课堂默认的 App ID 和 App 证书。如果你想替换成你自己的 App ID 和 App 证书，需在 `AgoraEducation/Main/Controllers/LoginViewController.swift` 文件中注释掉 `requestToken` 方法，使用 `buildToken` 方法。
 
-   ![](https://web-cdn.agora.io/docs-files/1619164553801)
+4. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂。
 
 ## 后续步骤
 
