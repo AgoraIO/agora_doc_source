@@ -56,7 +56,7 @@
 
 5. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
 
-  ![](https://web-cdn.agora.io/docs-files/1640783012588)
+   ![](https://web-cdn.agora.io/docs-files/1640783012588)
 
 ## 后续步骤
 
