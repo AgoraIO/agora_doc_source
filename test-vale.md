@@ -10,6 +10,8 @@ Valid characters: ",.?-_™
 
 Typo: teh is a typo.
 
+How about tech?
+
 Agora should be OK.
 
 
