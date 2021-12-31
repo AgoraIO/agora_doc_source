@@ -1,23 +1,24 @@
-根据本文指导快速启动并体验灵动课堂。
+This page introduces how to quickly launch a flexible classroom.
 
 ## Understand the tech
 
-~96d9aaf0-eb84-11eb-b768-51ffcd29c763~
+96d9aaf0-eb84-11eb-b768-51ffcd29c763
 
 <a name="prerequisites"></a>
+
 ## Prerequisites
 
-- 已在 Agora 控制台创建 Agora 项目，获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id)、[App 证书](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6)并[配置 aPaaS 服务](/cn/agora-class/agora_class_prep?platform=Web)。
-- [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html)。
+- An Agora project with an Agora App ID/en/Agora%20Platform/get_appid_token#get-the-app-id, App Certificate/en/Agora%20Platform/get_appid_token#get-the-app-certificate and the aPaaS service configured. See Configure Flexible Classroom/en/agora-class/agora_class_prep?platform=Web.
+- Java Development Kit https://www.oracle.com/java/technologies/javase-downloads.html.
 - Android Studio 4.0 or later.
 - Android 5.0 or later.
-- An Android device. A physical Android device.
+- An Android device.  模拟机可能出现功能缺失或者性能问题，所以 Agora 推荐使用真机。
 
-## Launches a flexible classroom.
+## Launch a flexible classroom
 
-参照以下步骤启动灵动课堂：
+Follow the following steps to launch a flexible classroom:
 
-1. 运行以下命令将 CloudClass-Android 项目克隆至本地，并切换至最新发版分支。
+1. 运行以下命令将 CloudClass-Androidhttps://github.com/AgoraIO-Community/CloudClass-Android 项目克隆至本地，并切换至最新发版分支。
 
    ```
    git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
@@ -27,11 +28,11 @@
    git checkout release/apaas/x.y.z
    ```
 
-<div class="alert info">x.y.z 请替换为版本号。 你可在<a href="/cn/agora-class/release_agora_class_android?platform=Android">发版说明</a>中获取最新版本号。</div>
+<div class="alert info">Please replace x.y.z with the version number.  You can get the latest version number in the release notes.</div>
 
-2. 在 Android Studio 中打开 CloudClass-Android。
+2. 在 Android Studio 中打开 CloudClass-Android 项目。
 
-3. 将 `app/src/normal/res/values/string_config.xml` 文件中的 `Agora App ID` 和 `Agora App Certificate` 替换成[你的 App ID 和 App 证书](#prerequisites)。 `Agora API Host` 和 `Report API Host` 无需替换，使用默认配置即可。
+3. Replace the Agora App ID and Agora App Certificate in the app/src/normal/res/values/string_config.xml file with your App ID and App certificate#prerequisites.  Agora API Host and Report API Host do not need to be replaced, just use the default configuration.
 
    ```xml
    <?xml version="1.0" encoding="utf-8"?>
@@ -43,21 +44,16 @@
    </resources>
    ```
 
-   为方便你快速测试，CloudClass-Android 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。 但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
+   To facilitate your quick testing, the CloudClass-Android project has included a temporary RTM Token generator, which will generate a temporary RTM Token with the App ID and App Certificate you passed in.  But in a formal environment, to ensure security, RTM Token must be generated on the server side.
 
-   你可在 `app/src/normal/java/io/agora/education/MainActivity2.kt` 文件中查看启动课堂的具体逻辑：
+4. 在 Android Studio 中编译并运行 CloudClass-Android 项目。  运行成功后，你可以在 Android 设备上看到以下画面：
 
-   1. 调用 [AgoraEduSDK.setConfig](/cn/agora-class/agora_class_api_ref_android?platform=Android#setconfig) 方法全局配置 SDK。
-   2. 调用 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_android?platform=Android#launch) 方法启动灵动课堂。
+   https://web-cdn.agora.io/docs-files/1624525202089
 
-4. Build the project in Android Studio, and run it on a simulator or a physical mobile device. 你可以在 Android 设备上看到以下画面：
+5. Enter the room name and user name, select a class type, and then click Join to enter the Flexible Classroom, and you will see the following screen:
 
-   ![](https://web-cdn.agora.io/docs-files/1624525202089)
-
-5. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
-
-   ![](https://web-cdn.agora.io/docs-files/1624525202089)
+   https://web-cdn.agora.io/docs-files/1624525202089
 
 ## Next steps
 
-现在你已经初步体验了灵动课堂的功能，接下来可将[灵动课堂集成到你自己的 app 项目中](/cn/agora-class/agora_class_integrate_android?platform=Android)。
+现在你已经初步体验了灵动课堂的功能，接下来可将灵动课堂集成到你自己的项目中/cn/agora-class/agora_class_integrate_android?platform=Android。
