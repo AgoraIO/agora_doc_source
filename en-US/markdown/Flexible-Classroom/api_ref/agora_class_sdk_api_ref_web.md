@@ -14,7 +14,7 @@ Configures the SDK.
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `params` | The SDK global configuration. See [AgoraEduSDKConfig](#agoraedusdkconfig). |
+| `params` | 全局配置参数，详见 [ConfigParams](#configparams)。 |
 
 ### launch
 
@@ -33,7 +33,7 @@ Launches a classroom.
 
 ## Type definition
 
-### AgoraEduSDKConfigParams
+### ConfigParams
 
 The SDK global configuration. Used when calling [AgoraEduSDK.config](#config).
 
