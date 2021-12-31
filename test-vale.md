@@ -6,13 +6,15 @@ Chinese characters：。；，‘“
 
 Valid characters: ",.?-_™
 
+。。。。。。。，，，，，“！
+
 ## Spelling
 
 Typo: teh is a typo.
 
-How about tech?
-
 Agora should be OK.
+
+Try spelling error niiiiice, laaunch
 
 
 ## MDITA
