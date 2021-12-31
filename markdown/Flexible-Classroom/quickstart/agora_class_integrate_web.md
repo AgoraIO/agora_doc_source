@@ -14,9 +14,13 @@
 - `agora-scenario-ui-kit`: UI 组件库。
 - `agora-widget-gallery`: Widget 插件库，包含 RTM 聊天和环信聊天两部分。
 
+## 集成方式
+
+根据你的实际需求选择以下任意一种集成方式。
+
 <a name="default_ui"></a>
 
-## 使用灵动课堂的默认 UI
+### 使用灵动课堂的默认 UI
 
 如果你使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可选择以下任意一种方法将完整的 Agora Classroom SDK 集成到你自己的项目中：
 
@@ -42,7 +46,7 @@
 
 <a name="change_default_ui"></a>
 
-## 修改灵动课堂的默认 UI
+### 修改灵动课堂的默认 UI
 
 如果你想要基于灵动课堂的默认 UI 进行修改，则参考以下步骤集成灵动课堂的源码：
 
@@ -63,7 +67,7 @@
    - Web 环境运行 `yarn dev` 命令
    - Electron 环境运行 `yarn dev:electron` 命令
 
-3. 完成开发后，可通过以下命令打包 SDK 或 应用：
+3. 完成开发后，可通过以下命令打包 SDK 或应用：
 
    - 打包 Classroom SDK：`yarn pack:classroom:sdk`
    - 打包 Electron Mac 客户端：`yarn pack:electron:mac`
