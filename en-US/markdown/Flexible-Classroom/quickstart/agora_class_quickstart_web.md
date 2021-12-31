@@ -1,24 +1,24 @@
-根据本文指导快速启动并体验灵动课堂。
+This page introduces how to quickly launch a flexible classroom.
 
 ## Understand the tech
 
 ~96d9aaf0-eb84-11eb-b768-51ffcd29c763~
 
 <a name="prerequisites"></a>
+
 ## Prerequisites
 
-- 已在 Agora 控制台创建 Agora 项目，获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id)、[App 证书](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6)并[配置 aPaaS 服务](/cn/agora-class/agora_class_prep?platform=Web)。
-- Flexible Classroom uses the RTM token for authentication. During the testing phase, you can use the[ Temporary RTM Token Generator]() and pass the App ID and App Certificate that you get in the previous step, and also a user ID to generate a temporary RTM Token with a validity period of 24 hours.
+- An Agora project with an [Agora App ID](/en/Agora%20Platform/get_appid_token#get-the-app-id), [App Certificate](/en/Agora%20Platform/get_appid_token#get-the-app-certificate) and the aPaaS service configured. See [Configure Flexible Classroom](/en/agora-class/agora_class_prep?platform=Web).
 - 安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
 - Physical media input devices, such as a built-in camera and a built-in microphone.
 - 安装 [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - 安装 [yarn](https://yarnpkg.com/getting-started/install)
 
-## Launches a flexible classroom.
+## Launch a flexible classroom
 
-参照以下步骤启动灵动课堂：
+Follow the following steps to launch a flexible classroom:
 
-1. 运行以下命令将 CloudClass-Desktop 项目克隆至本地，并切换至最新发版分支。
+1. 运行以下命令将 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) 项目克隆至本地，并切换至最新发版分支。
 
    ```
    https://github.com/AgoraIO-Community/CloudClass-Desktop.git
@@ -37,12 +37,7 @@
    REACT_APP_AGORA_APP_CERTIFICATE=
    ```
 
-   为方便你快速测试，CloudClass-Desktop 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。 但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
-
-   你可在 `/CloudClass-Desktop/packages/agora-classroom-sdk/src/infra/api/index.tsx` 文件中查看启动课堂的具体逻辑：
-
-   1. 调用 [setConfig](/cn/agora-class/agora_class_api_ref_web?platform=Web#setconfig) 方法全局配置 SDK。
-   2. 调用 [launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法启动灵动课堂。
+   为方便你快速测试，CloudClass-Desktop 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。 But in a formal environment, to ensure security, RTM Token must be generated on the server side.
 
 3. 通过以下命令安装依赖：
 
@@ -60,4 +55,4 @@
 
 ## Next steps
 
-现在你已经初步体验了灵动课堂的功能，接下来可将[灵动课堂集成到你自己的 app 项目中](/cn/agora-class/agora_class_integrate_web?platform=Web)。
+现在你已经初步体验了灵动课堂的功能，接下来可将[灵动课堂集成到你自己的项目中](/cn/agora-class/agora_class_integrate_web?platform=Web)。
