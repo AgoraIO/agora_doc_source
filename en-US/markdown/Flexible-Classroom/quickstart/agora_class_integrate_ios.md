@@ -16,7 +16,7 @@ The following figure shows the structure of Flexible Classroom.
 
 ## 集成方式
 
-根据你的实际需求选择集成方式。
+根据你的实际需求选择以下任意一种集成方式。
 
 <div class="alert info">如果你的工程为 OC 工程，需要在 Build Settings 中 Add User-Defined Setting，Key 设为 SWIFT_VERSION，Value 设为你指定的 Swift 版本。</div>
 
@@ -57,12 +57,12 @@ spec.dependency "AgoraEduUI", '2.0.0'
 spec.dependency "AgoraEduContext", '2.0.0'
 
 # Closed-source libs
-spec.dependency "AgoraEduCore", '2.0.1'
+spec.dependency "AgoraEduCore", '2.0.0'
 
 # Open-source widgets and extApps
 spec.dependency "AgoraWidgets", '>= 2.0.0'
 spec.dependency "ChatWidget", '>= 2.0.0'
-spec.dependency "AgoraExtApps", '>= 2.0.0'
+spec.dependency "AgoraExtApps", '>= 2.0.0'</div>
 ```
 
 <a name="custom_ui"></a>
@@ -72,15 +72,6 @@ spec.dependency "AgoraExtApps", '>= 2.0.0'
 如果你不需要使用灵动课堂的默认 UI，则无需集成 `AgoraClassroomSDK` 与 `AgoraEduUI` 库，只需要集成 `AgoraEduCore`。 因此集成灵动课堂时，仅需在你的项目的 Podfile 文件中添加如下引用：
 
 ```
-# Closed-source libs
-pod 'AgoraEduCore', '2.0.1'
-
-# Agora libs
-pod 'AgoraRtm_iOS', '1.4.8'
-pod 'Whiteboard', '2.15.8'
-pod 'AgoraRtcEngine_iOS', '3.4.6'
-pod 'HyphenateChat', '3.8.6'
-
 # Third-party libs
 pod 'OpenSSL-Universal', '1.0.2.17'
 pod 'Protobuf', '3.17.0'
@@ -92,6 +83,15 @@ pod 'SSZipArchive', '2.4.2'
 pod 'SwifterSwift', '5.2.0'
 pod 'Masonry'
 pod 'SDWebImage', '5.12.0'
+
+# Agora libs
+pod 'AgoraRtm_iOS', '1.4.8'
+pod 'Whiteboard', '2.15.8'
+pod 'AgoraRtcEngine_iOS', '3.4.6'
+pod 'HyphenateChat', '3.8.6'
+
+# Closed-source libs
+pod 'AgoraEduCore', '2.0.1'
 ```
 
 请注意，在 `AgoraEduCore` 库的 `podspec` 中，依赖如下库并指定了最低版本：
@@ -111,10 +111,13 @@ spec.dependency "AgoraEduContext", '2.0.0'
 
 If you want to customize the default UI of Flexible Classroom, integrate Flexible Classroom as follows:
 
-1. 将 CloudClass-iOS 和 apaas-extapp-ios 仓库克隆至本地：
+1. 将 [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) 和 [apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios) 项目克隆至本地，并切换至最新发版分支。
 
    ```bash
    git clone https://github.com/AgoraIO-Community/CloudClass-iOS.git
+   ```
+
+   ```
    git clone https://github.com/AgoraIO-Community/apaas-extapp-ios.git
    ```
 
@@ -122,9 +125,9 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
 
 3. Create a new branch based on the latest release branch of Flexible Classroom and push it to your project.
 
-<div class="alert info">Get the version number x.y.z in the release<a href="/cn/agora-class/release_agora_class_ios?platform=iOS"> notes</a>, and the release branch is named as release/apaas/x.y.z.</div>
+<div class="alert info">发版分支为 release/apaas/x.y.z。 x.y.z 为版本号。 你可在<a href="/cn/agora-class/release_agora_class_ios?platform=iOS">发版说明</a>中获取最新版本号。</div>
 
-4. 在你的项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 仓库中的 `AgoraClassroomSDK_iOS.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec`、apaas-extapp-ios 仓库中的 `AgoraWidgets.podspec`，`ChatWidget.podspec`，`AgoraExtApps.podspec` 以及其它依赖的库。
+4. 在你的项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 项目中的 `AgoraClassroomSDK_iOS.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec` 和 apaas-extapp-ios 项目中的 `AgoraWidgets.podspec`、`ChatWidget.podspec`、`AgoraExtApps.podspec` 以及其它依赖的库。
 
    ```
    # Third-party libs
