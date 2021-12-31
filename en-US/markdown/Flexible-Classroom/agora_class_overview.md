@@ -2,32 +2,19 @@ Flexible Classroom is an aPaaS solution provided by Agora for online interactive
 
 Flexible Classroom covers a variety of teaching scenarios, including one-to-one classrooms, small classrooms, and lecture halls. Users can join a flexible classroom in the role of a teacher, student, or teaching assistant. Flexible Classroom has an abundance of features, including real-time audio and video interaction, real-time messaging, interactive whiteboard, recording, screen sharing, and also classroom and user management. More importantly, Flexible Classroom enables developers to customize their classrooms with tools such as the Agora Edu Context, UIKit, and ExtApp. Developers can also connect Flexible Classroom with their own systems, such as their user management system and class management systems.
 
-![](https://web-cdn.agora.io/docs-files/1619757465085)
+![](https://web-cdn.agora.io/docs-files/1624525158077)
 
 ## Education solution comparison
 
-Agora provides aPaaS and PaaS solutions for online interactive classrooms. See the following table for their differences.
-
-| <span style="white-space:nowrap;">&emsp;&emsp;&emsp;&emsp;</span> | aPaaS solution | PaaS solution |
-| :----------------------------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| Solution introduction | Use Flexible Classroom to implement online interactive classrooms. | Integrate the Agora RTC SDK, RTM SDK, Interactive Whiteboard SDK, and Cloud Recording service respectively to implement online interactive classrooms. |
-| Target customers | Suitable for customers with limited development resources, tight schedules, and medium demand for customization. | Suitable for customers with sufficient development resources and high demand for customization. |
-| Cost | Low | High |
-| Development time | As short as 15 minutes | One to three months |
-| Features | Supports features including real-time audio and video communication, real-time messaging, interactive whiteboard, recording, screen sharing and so on. Provides the cloud service for classroom and user management. Flexible Classroom can be seamlessly connected with developers' other systems, such as their user management system and class management systems. | Developers implement real-time audio and video, real-time messaging, interactive whiteboard, and other functions all by themselves. |
-| Scalability | Medium | High |
-| Data security | Agora does not store any business data of customers. | Agora does not store any business data of customers. |
-| User interface | Agora provides default classroom user interfaces. Developers also have the freedom to customize user interfaces. | Developers implement user interfaces all by themselves. |
-| Platform | <li>Android<li>iOS<li>macOS<li>Windows<li>Web | Supports more than 20 platforms and frameworks. |
-| Supported scenarios | One-to-one Classroom Small Classroom     Lecture Hall | Developers define and implement any online interactive teaching scenarios by themselves. |
+~a27d6b70-a96d-11eb-b31a-57565fd331e4~
 
 ## Scenarios
 
 Flexible Classroom supports the following teaching scenarios:
 
 - One-to-one Classroom: An online teacher gives an exclusive lesson to only one student.
-- Small Classroom: A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher.
-- Lecture Hall: A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher.
+- Small Classroom: A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. 小班课中课堂人数上限为 50，如需更多，请联系 sales@agora.io。
+- Lecture Hall: A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. 大班课中课堂人数上限为 150，如需更多，请联系 sales@agora.io。
 
 ## Classroom demonstation
 
@@ -35,18 +22,17 @@ A flexible classroom mainly includes four areas: navigation bar, whiteboard area
 
 ### Desktop
 
-![](https://web-cdn.agora.io/docs-files/1619757500907)
+![](https://web-cdn.agora.io/docs-files/1624525158077)
 
 ### Mobile
 
-![](https://web-cdn.agora.io/docs-files/1619757513895)
-
+![](https://web-cdn.agora.io/docs-files/1620822526000)
 
 ## Features
 
 Flexible Classroom supports the following features:
 
-### Real-time audio and video interactive
+### Real-time audio and video interaction
 
 - In a one-to-one classroom, both the teacher and student can send and receive audio and video streams by default.
 - In a small classroom, students do not send audio and video by default. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher.
@@ -60,10 +46,6 @@ The teacher and students can send text messages to each other.
 
 The teacher can draw and make notes on the whiteboard. Flexible Classroom supports rich drawing tools, including brushes, text boxes, shapes, mosaics, erasers, paging, laser pointer, and digital pens.
 
-- In a one-to-one classroom, both the teacher and student can draw on the whiteboard.
-- In a small classroom, students do not have permission to draw on the whiteboard, and the teacher can give students permission.
-- In a lecture hall, students can only watch the whiteboard.
-
 ### Teaching tools
 
 Flexible Classroom supports the following teaching tools to enhance interactivity:
@@ -71,6 +53,8 @@ Flexible Classroom supports the following teaching tools to enhance interactivit
 - Cloud storage: Teaching institutions and teachers can upload files to classrooms to help students better understand the class. Supported formats include PDF, PPT, and DOC. Flexible Classroom also supports pre-downloading courseware to the local before the classroom starts and displaying it on the whiteboard, which enhances the teaching experience.
 - Rewards: Teachers can reward students with virtual credits, such as stars and trophies, for good performance during the class.
 - User list: Display the status of all users in the classroom, such as whether the user is "on stage", whether the camera and microphone are on or off, the number of rewards. With the user list, the teacher and teaching assistant can ask students to speak up "on stage, grand the permission of drawing on the whiteboard to students, switch on and off the camera and microphone of students, give rewards, and kick a user out of the classroom.
+- 答题器：适用于课堂中老师提问、全班学生一起答题的场景。 老师端可在答题器中添加或减少选项数量并设置正确选项，然后发起答题。 学生端收到题目选项后可进行选择。 答题结束后，可统计并展示提交人数和正确率。
+- 投票器：适用于课堂中老师向全班学生征集意见的场景。 老师端可在投票器中设置投票主题、选项以及投票的起始和截止时间，然后发起投票。 投票结束后，可统计并展示投票结果。
 
 ### Screen sharing
 
@@ -78,13 +62,13 @@ Teachers can share their screens, windows, or browser tabs with students in clas
 
 ### Recording and replay
 
-Teachers can start recording in the classroom. Flexible Classroom uses [Web Page Recording](https://docs.agora.io/cn/cloud-recording/cloud_recording_webpage_mode?platform=RESTful) to record the audio, video, and whiteboard content in a single file and provides a link to students after the recording finishes.
+Teachers can start recording in the classroom. 灵动课堂会通过[页面录制](/cn/cloud-recording/cloud_recording_webpage_mode?platform=RESTful)将指定 URL 的页面内容和音频混合录制为一个 MP4 音视频文件，实现音视频内容、白板内容、课件内容同步录制。 录制结束后可提供回放链接供学生课后复习。
 
-### Custom the classroom user interface
+### Customizing the UI of classrooms
 
-With UIKit, developers have the freedom to customize the user interfaces, such as changing colors, changing buttons, adjusting layouts, adding logos, even if they do not understand the business logic of the flexible classroom.
+灵动课堂提供 UIKit。 With UIKit, developers have the freedom to customize the user interfaces, such as changing colors, changing buttons, adjusting layouts, adding logos, even if they do not understand the business logic of the flexible classroom.
 
-### Extension app
+### Embedding custom plugins in classrooms
 
 With ExtApp, developers can embed their own applications, such as a countdown plug-in, or a dice, into Flexible Classroom.
 
@@ -101,29 +85,26 @@ Agora provides the Flexible Classroom cloud service for classroom and user manag
 ### Traceability
 
 - Supports testing the audio and video input and output devices before the class and monitoring the network quality during the class to ensure smooth classroom experience.
-- Provides [Agora Analytics](https://docs.agora.io/cn/Agora%20Analytics/aa_guide?platform=All%20Platforms) for monitor the quality, user behavior, device state, and Quality of Experience (QoE)/Quality of Service (QoS) statistics.
+- 提供全周期通话质量监测和分析工具[水晶球](https://docs.agora.io/cn/Agora%20Analytics/aa_guide?platform=All%20Platforms)。
 
 ## Supported platforms
 
-| Classroom roles | Android<sup>1</sup> | iOS<sup>2</sup> | Web<sup>3</sup> | macOS<sup>4</sup> | Windows<sup>5</sup> |
+| Classroom roles | Android1<sup></sup> | iOS2<sup></sup> | Web3<sup></sup> | macOS4<sup></sup> | Windows5<sup></sup> |
 | :------- | :------- | :--- | :--- | :----- | :------- |
 | Teachers | <font color="red">✘</font> | <font color="red">✘</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
 | Students | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
-| Teaching assistants | <font color="red">✔</font> | <font color="red">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
+| Teaching assistants | <font color="red">✘</font> | <font color="red">✘</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
 
-Note:
+<div class="alert info">兼容性要求：<ol><li>Android 5.0 or later.</li><li>iOS 10 or later.</li><li>To ensure better end user experience, Agora highly recommends using the latest version of Google Chrome on desktop. 支持学生在移动端的一些社交 app 内（如微信）通过分享的课程网页链接直接进入教室听课。</li><li>macOS 10.10 or later.</li><li>Windows 7 or later.</li></ol></div>
 
-1. Android 4.4 or later.
-2. iOS 10 or later.
-3. For a Web client, use the latest stable version of Google Chrome on the desktop.
-4. macOS 10.10 or later.
-5. Windows 7 or later.
+<div class="alert info">灵动课堂 macOS 和 Windows 客户端基于 Electron 框架开发。</div>
 
 ## Pricing
 
-The cloud service of Flexible Classroom is free of charge until December 31, 2021. According to your actual usage, Agora will charge fees for Real-time Audio and Video Communication, Real-time Messaging, Cloud Recording, and Interactive Whiteboard. See the following documents for the pricing of each product:
+According to your actual usage, Agora will charge fees for Real-time Audio and Video Communication, Real-time Messaging, Cloud Recording, and Interactive Whiteboard. See the following documents for the pricing of each product:
 
-- [Pricing for Real-time Audio and Video Communication](https://docs.agora.io/cn/Interactive%20Broadcast/billing_rtc?platform=Android)
-- [Pricing for Real-time Messaging](https://docs.agora.io/cn/Real-time-Messaging/billing_rtm?platform=All%20Platforms)
-- [Pricing for Cloud Recording](https://docs.agora.io/cn/cloud-recording/billing_cloud_recording?platform=RESTful)
-- [Pricing for Interactive Whiteboard](https://www.herewhite.com/zh-CN/price)
+- [实时音视频计费说明](/cn/Interactive%20Broadcast/billing_rtc?platform=Android)
+- [云信令计费说明](/cn/Real-time-Messaging/billing_rtm?platform=All%20Platforms)
+- [页面录制计费说明](/cn/cloud-recording/billing_cloud_recording_web?platform=RESTful)
+- [互动白板计费说明](/cn/whiteboard/billing_whiteboard?platform=Web)
+- [IM 计费说明](https://www.easemob.com/pricing/im)
