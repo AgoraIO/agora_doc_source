@@ -27,71 +27,82 @@ The following figure shows the structure of Flexible Classroom.
 If you use the default UI of Flexible Classroom, to integrate the complete Flexible Classroom in your project, add the following dependencies in your project’s `Podfile`:
 
 ```
+# Third-party libs
+pod 'OpenSSL-Universal', '1.0.2.17'
+pod 'Protobuf', '3.17.0'
+pod "CocoaLumberjack", '3.6.1'
+pod 'AliyunOSSiOS',  '2.10.8'
+pod 'Armin',  '1.0.9'
+pod 'Alamofire', '4.7.3'
+pod 'SSZipArchive', '2.4.2'
+pod 'SwifterSwift', '5.2.0'
+pod 'Masonry'
+pod 'SDWebImage', '5.12.0'
+
+# Agora libs
+pod 'AgoraRtm_iOS', '1.4.8'
+pod 'Whiteboard', '2.15.8'
+pod 'AgoraRtcEngine_iOS', '3.4.6'
+pod 'HyphenateChat', '3.8.6'
+
 # Open-source libs
-pod 'AgoraClassroomSDK_iOS', "1.1.5.3"
-pod 'AgoraEduContext', "1.1.5.1"
-pod 'AgoraEduUI', "1.1.5.2"
-pod 'AgoraUIEduBaseViews', "1.1.5.2"
+pod 'AgoraClassroomSDK_iOS', '2.0.0'
+```
+
+请注意，在 `AgoraClassroomSDK_iOS` 库的 `podspec` 中，依赖以下库并指定了最低版本：
+
+```
+# Open-source libs
+spec.dependency "AgoraEduUI", '2.0.0'
+spec.dependency "AgoraEduContext", '2.0.0'
 
 # Closed-source libs
-<<<<<<< Updated upstream
-pod 'AgoraEduCore', "1.1.5.7"
-
-# Common libs
-pod 'AgoraUIBaseViews', '1.0.1'
-pod 'AgoraExtApp', '1.0.0'
-pod 'AgoraWidget', '1.0.0'
-
-# Widgets
-pod 'AgoraWidgets', "1.0.1"
-
-# Third-party libs
-pod 'Protobuf', '3.17.0'
-pod "AFNetworking", "4.0.1"
-pod "CocoaLumberjack", "3.6.1"
-pod "AliyunOSSiOS", "2.10.8"
-pod "Whiteboard", "2.13.19"
-pod "AgoraRtcEngine_iOS", "3.4.6"
-pod "AgoraRtm_iOS", "1.4.8"
-=======
 spec.dependency "AgoraEduCore", '2.0.1'
 
 # Open-source widgets and extApps
 spec.dependency "AgoraWidgets", '>= 2.0.0'
 spec.dependency "ChatWidget", '>= 2.0.0'
-spec.dependency "AgoraExtApps", '>= 2.0.0'</div>
->>>>>>> Stashed changes
+spec.dependency "AgoraExtApps", '>= 2.0.0'
 ```
 
 <a name="custom_ui"></a>
 
 ### Do not use the default UI of Flexible Classroom
 
-If you do not want to use the default UI of Flexible Classroom, you do not need the `AgoraEduUI` library. Therefore, to integrate Flexible Classroom, you only need to add the following dependencies in your project's Podfile file:
+如果你不需要使用灵动课堂的默认 UI，则无需集成 `AgoraClassroomSDK` 与 `AgoraEduUI` 库，只需要集成 `AgoraEduCore`。 因此集成灵动课堂时，仅需在你的项目的 Podfile 文件中添加如下引用：
 
 ```
-# Open-source libs
-pod 'AgoraEduContext', "1.1.5.1"
-
 # Closed-source libs
-pod 'AgoraEduCore', "1.1.5.7"
+pod 'AgoraEduCore', '2.0.1'
 
-# Common libs
-pod 'AgoraUIBaseViews', '1.0.1'
-pod 'AgoraExtApp', '1.0.0'
-pod 'AgoraWidget', '1.0.0'
-
-# Widgets
-pod 'AgoraWidgets', "1.0.1"
+# Agora libs
+pod 'AgoraRtm_iOS', '1.4.8'
+pod 'Whiteboard', '2.15.8'
+pod 'AgoraRtcEngine_iOS', '3.4.6'
+pod 'HyphenateChat', '3.8.6'
 
 # Third-party libs
+pod 'OpenSSL-Universal', '1.0.2.17'
 pod 'Protobuf', '3.17.0'
-pod "AFNetworking", "4.0.1"
-pod "CocoaLumberjack", "3.6.1"
-pod "AliyunOSSiOS", "2.10.8"
-pod "Whiteboard", "2.13.19"
-pod "AgoraRtcEngine_iOS", "3.4.6"
-pod "AgoraRtm_iOS", "1.4.8"
+pod "CocoaLumberjack", '3.6.1'
+pod 'AliyunOSSiOS',  '2.10.8'
+pod 'Armin',  '1.0.9'
+pod 'Alamofire', '4.7.3'
+pod 'SSZipArchive', '2.4.2'
+pod 'SwifterSwift', '5.2.0'
+pod 'Masonry'
+pod 'SDWebImage', '5.12.0'
+```
+
+请注意，在 `AgoraEduCore` 库的 `podspec` 中，依赖如下库并指定了最低版本：
+
+```
+# Common libs
+spec.dependency "AgoraExtApp", '2.0.0'
+spec.dependency "AgoraWidget", '2.0.1'
+
+# Open-source libs
+spec.dependency "AgoraEduContext", '2.0.0'
 ```
 
 <a name="change_default_ui"></a>
@@ -100,63 +111,50 @@ pod "AgoraRtm_iOS", "1.4.8"
 
 If you want to customize the default UI of Flexible Classroom, integrate Flexible Classroom as follows:
 
-1. Clone the CloudClass-iOS repository to your local computer:
+1. 将 CloudClass-iOS 和 apaas-extapp-ios 仓库克隆至本地：
 
    ```bash
-   git clone https://github.com/AgoraIO-Community/CloudClass-iOS
+   git clone https://github.com/AgoraIO-Community/CloudClass-iOS.git
+   git clone https://github.com/AgoraIO-Community/apaas-extapp-ios.git
    ```
 
-2. Use the `git remote add <shortname> <url>` command to add a remote repository to the local CloudClass-iOS repository, pointing to your project.
+2. Use the` git remote add <shortname> <url>` command to add a remote repository to the local CloudClass-iOS repository, pointing to your project.
 
 3. Create a new branch based on the latest release branch of Flexible Classroom and push it to your project.
 
 <div class="alert info">Get the version number x.y.z in the release<a href="/cn/agora-class/release_agora_class_ios?platform=iOS"> notes</a>, and the release branch is named as release/apaas/x.y.z.</div>
 
-4. Add the following code in your project's `Podfile` to link to `AgoraClassroomSDK.podspec`, `AgoraEduContext.podspec`, `AgoraEduUI.podspec`, `AgoraUIEduBaseViews.podspec` and other libraries in the CloudClass-iOS repository.
+4. 在你的项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 仓库中的 `AgoraClassroomSDK_iOS.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec`、apaas-extapp-ios 仓库中的 `AgoraWidgets.podspec`，`ChatWidget.podspec`，`AgoraExtApps.podspec` 以及其它依赖的库。
 
    ```
+   # Third-party libs
+   pod 'OpenSSL-Universal', '1.0.2.17'
+   pod 'Protobuf', '3.17.0'
+   pod "CocoaLumberjack", '3.6.1'
+   pod 'AliyunOSSiOS',  '2.10.8'
+   pod 'Armin',  '1.0.9'
+   pod 'Alamofire', '4.7.3'
+   pod 'SSZipArchive', '2.4.2'
+   pod 'SwifterSwift', '5.2.0'
+   pod 'Masonry'
+   pod 'SDWebImage', '5.12.0'
+
+   # Agora libs
+   pod 'AgoraRtm_iOS', '1.4.8'
+   pod 'Whiteboard', '2.15.8'
+   pod 'AgoraRtcEngine_iOS', '3.4.6'
+   pod 'HyphenateChat', '3.8.6'
+
    # Open-source libs
-   pod 'AgoraClassroomSDK_iOS', :path => '../SDKs/AgoraClassroomSDK/AgoraClassroomSDK_iOS.podspec'
-   pod 'AgoraEduContext', :path => '../SDKs/AgoraEduContext/AgoraEduContext.podspec'
-   pod 'AgoraEduUI', :path => '../SDKs/AgoraEduUI/AgoraEduUI.podspec'
-   pod 'AgoraUIEduBaseViews', :path => '../SDKs/Modules/AgoraUIEduBaseViews/AgoraUIEduBaseViews_Local.podspec'
+   pod 'AgoraClassroomSDK_iOS', :path => 'CloudClass-iOS/SDKs/AgoraClassroomSDK/AgoraClassroomSDK_iOS.podspec'
+   pod 'AgoraEduContext', :path => 'CloudClass-iOS/SDKs/AgoraEduContext/AgoraEduContext.podspec'
+   pod 'AgoraEduUI', :path => 'CloudClass-iOS/SDKs/AgoraEduUI/AgoraEduUI.podspec'
+
+   # Open-sources widgets and extApps
+   pod 'AgoraWidgets', :path => 'apaas-extapp-ios/Widgets/AgoraWidgets/AgoraWidgets.podspec'
+   pod 'ChatWidget', :path => 'apaas-extapp-ios/Widgets/ChatWidget/ChatWidget.podspec'
+   pod 'AgoraExtApps', :path => 'apaas-extapp-ios/ExtApps/AgoraExtApps.podspec'
 
    # Closed-source libs
-   pod 'AgoraEduCore', "1.1.5.7"
-
-   # Common libs
-   pod 'AgoraUIBaseViews', '1.0.1'
-   pod 'AgoraExtApp', '1.0.0'
-   pod 'AgoraWidget', '1.0.0'
-
-   # Widgets
-   pod 'AgoraWidgets', :path => '../Widgets/AgoraWidgets/AgoraWidgets.podspec'
-   pod 'ChatWidget', :path => '../Widgets/ChatWidget/ChatWidget.podspec', :subspecs => ['SOURCE']
-
-   # Third-party libs
-   pod 'Protobuf', '3.17.0'
-   pod "AFNetworking", "4.0.1"
-   pod "CocoaLumberjack", "3.6.1"
-   pod "AliyunOSSiOS", "2.10.8"
-   pod "Whiteboard", "2.13.19"
-   pod "AgoraRtcEngine_iOS", "3.4.6"
-   pod "AgoraRtm_iOS", "1.4.8"
+   pod 'AgoraEduCore', '2.0.1'
    ```
-
-## See also
-
-### 第三方库说明
-
-Flexible Classroom depends on the following third-party libraries. You can change the version number of th third-party libraries, but compatibility issues may occur.
-
-```
-# Third-party libs
-pod 'Protobuf', '3.17.0'
-pod "AFNetworking", "4.0.1"
-pod "CocoaLumberjack", "3.6.1"
-pod "AliyunOSSiOS", "2.10.8"
-pod "Whiteboard", "2.13.19"
-pod "AgoraRtcEngine_iOS", "3.4.6"
-pod "AgoraRtm_iOS", "1.4.8"
-```
-
