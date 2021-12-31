@@ -56,3 +56,7 @@ $$
 ## Style check
 
 It's a contraction.
+
+Agora's voice sdk
+if it rains, i will not go
+this callback will be triggered
