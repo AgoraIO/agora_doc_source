@@ -94,9 +94,13 @@ To run real-time messaging in a ready-made user interface. In Xcode:
        }];
       ```
 
-4. Press **Product** > **Run**. 
+3. Press **Product** > **Run**. 
 
-The demo opens in the Xcode simulator. 
+   The demo opens in the Xcode simulator. 
+
+   ![](images/uikit-ios-welcome-screen.png)
+
+
 
 ### Next steps
 
