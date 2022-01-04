@@ -149,15 +149,21 @@ spec.dependency "AgoraEduContext", '2.0.0'
    pod 'HyphenateChat', '3.8.6'
 
    # Open-source libs
-   pod 'AgoraClassroomSDK_iOS', :path => 'CloudClass-iOS/SDKs/AgoraClassroomSDK/AgoraClassroomSDK_iOS.podspec'
-   pod 'AgoraEduContext', :path => 'CloudClass-iOS/SDKs/AgoraEduContext/AgoraEduContext.podspec'
-   pod 'AgoraEduUI', :path => 'CloudClass-iOS/SDKs/AgoraEduUI/AgoraEduUI.podspec'
+   pod 'AgoraClassroomSDK_iOS', :path => 'CloudClass-iOS/SDKs/AgoraClassroomSDK/AgoraClassroomSDK_Local.podspec'
+   pod 'AgoraEduContext', :path => 'CloudClass-iOS/SDKs/AgoraEduContext/AgoraEduContext_Local.podspec'
+   pod 'AgoraEduUI', :path => 'CloudClass-iOS/SDKs/AgoraEduUI/AgoraEduUI_Local.podspec'
 
-   # Open-sources widgets and extApps
-   pod 'AgoraWidgets', :path => 'apaas-extapp-ios/Widgets/AgoraWidgets/AgoraWidgets.podspec'
-   pod 'ChatWidget', :path => 'apaas-extapp-ios/Widgets/ChatWidget/ChatWidget.podspec'
-   pod 'AgoraExtApps', :path => 'apaas-extapp-ios/ExtApps/AgoraExtApps.podspec'
+   # Open-source widgets and extApps
+   pod 'AgoraWidgets', :path => 'apaas-extapp-ios/Widgets/AgoraWidgets/AgoraWidgets_Local.podspec'
+   pod 'ChatWidget', :path => 'apaas-extapp-ios/Widgets/ChatWidget/ChatWidget_Local.podspec'
+   pod 'AgoraExtApps', :path => 'apaas-extapp-ios/ExtApps/AgoraExtApps_Local.podspec'
 
    # Closed-source libs
    pod 'AgoraEduCore', '2.0.1'
    ```
+
+## 集成注意事项
+
+`AgoraEduCore` 是一个二进制 Swift 框架。由于苹果对二进制 Swift 框架兼容性不好，Agora 套用一层 OC 来避免兼容性问题。所以，你直接通过 `import AgoraEduCore` 引入 `AgoraEduCore` 可能会出现 Swift 版本不兼容的报错。你可通过以下方式解决该报错：
+- OC: 使用 `#import <AgoraEduCorePuppet/AgoraEduCoreWrapper.h>` 引入 `AgoraEduCore`，并以 `AgoraEduCorePuppet` 类代替 `AgoraEduCore` 类。
+- Swift: 使用 `import AgoraEduCorePuppet` 引入 `AgoraEduCore`，并以 `AgoraEduCorePuppet` 类代替 `AgoraEduCore` 类。
