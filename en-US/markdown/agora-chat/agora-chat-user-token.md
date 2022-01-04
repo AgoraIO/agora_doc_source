@@ -113,8 +113,8 @@ This sample server is for demonstration purposes only. Do not use it in a produc
 
    1. Fix the import errors in `chat/ChatTokenBuilder2` and `media/AccessToken`.
 
-   - In `ChatTokenBuilder2`, the import should be `import com.agora.chat.token.io.agora.media.AccessToken2`.
-   - In `AccessToken`, the import should be `import static com.agora.chat.token.io.agora.media.Utils.crc32`.
+      - In `ChatTokenBuilder2`, the import should be `import com.agora.chat.token.io.agora.media.AccessToken2`.
+      - In `AccessToken`, the import should be `import static com.agora.chat.token.io.agora.media.Utils.crc32`.
 
 1. In `<Project name>/src/main/resource`, create a `application.properties` file to hold the information for generating tokens and update it with your project information.
    Note that the value for `appid`, `appcert`, and `appkey` should be a string without quotation marks.
@@ -390,6 +390,11 @@ To implement the Web client, do the following:
 1. Create the app logic.
    In `index.js`, add the following code and replace `<Your App Key>` with your app key.
 
+   In the code example, you can see that token is related to the following code logic in the client:
+
+    - Call `open` to log in to the Agora Chat system with token and username. You must use the username that is used to register the user and get the UUID.
+    - Fetch a new token from the app server and call `renewToken` to update the token of the SDK when the token is about to expire and when the token expires. Agora recommends that you regularly (such as every hour) generate a token from the app server and call `renewToken` to update the token of the SDK to ensure that the token is always valid.
+
    ```js
    import WebIM from "agora-chat-sdk";
 
@@ -461,11 +466,6 @@ To implement the Web client, do the following:
      );
    }
    ```
-
-    In the code example, you can see that token is related to the following code logic in the client:
-
-    - Call `open` to log in to the Agora Chat system with token and username. You must use the username that is used to register the user and get the UUID.
-    - Fetch a new token from the app server and call `renewToken` to update the token of the SDK when the token is about to expire and when the token expires. Agora recommends that you regularly (such as every hour) generate a token from the app server and call `renewToken` to update the token of the SDK to ensure that the token is always valid.
 
 1. To build and run your project, do the following:
 
