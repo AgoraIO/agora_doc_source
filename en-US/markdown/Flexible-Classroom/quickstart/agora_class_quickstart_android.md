@@ -8,7 +8,7 @@ This page introduces how to quickly launch a flexible classroom.
 
 ## Prerequisites
 
-- An Agora project with an Agora App ID/en/Agora%20Platform/get_appid_token#get-the-app-id, App Certificate/en/Agora%20Platform/get_appid_token#get-the-app-certificate and the aPaaS service configured. See Configure Flexible Classroom/en/agora-class/agora_class_prep?platform=Web.
+- An Agora project with an Agora App ID/en/Agora%20Platform/get_appid_token#get-the-app-id, App Certificate/en/Agora%20Platform/get_appid_token#get-the-app-certificate, and the aPaaS service configured/en/agora-class/agora_class_prep?platform=Android.
 - Java Development Kit https://www.oracle.com/java/technologies/javase-downloads.html.
 - Android Studio 4.0 or later.
 - Android 5.0 or later.
