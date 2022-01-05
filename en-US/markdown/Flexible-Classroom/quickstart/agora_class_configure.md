@@ -1,6 +1,6 @@
-This page introduces how to configure the whiteboard, recording, and messaging features in Flexible Classroom in Agora Console.
+This page introduces how to configure the whiteboard and recording features in Flexible Classroom in Agora Console.
 
-<div class="alert info">Before reading this page, ensure sure that you have <a href="/en/agora-class/agora_class_enable?platform=Web" target="_blank">enabled the Flexible Classroom service</a> in Agora Console.</div>
+<div class="alert info">Before reading this page, ensure sure that you have <a href="/en/agora-class/agora_class_enable" target="_blank">enabled the Flexible Classroom service</a> in Agora Console.</div>
 
 ## Configure the whiteboard feature
 
