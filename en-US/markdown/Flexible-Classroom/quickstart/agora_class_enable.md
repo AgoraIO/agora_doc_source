@@ -4,8 +4,8 @@ This page introduces how to enable the Flexible Classroom service in Agora Conso
 
 Before enabling the Flexible Classroom service, ensure that you meet the following requirements:
 
-- A valid Agora account. If you do not have an Agora account, see <a href="/cn/AgoraPlatform/sign_in_and_sign_up?platform=AllPlatforms" target="_blank">Sign up for an Agora account</a>.
-- An active Agora project. If you do not have an Agora project, see <a href="/cn/Agora%20Platform/get_appid_token#创建-agora-项目" target="_blank">Create a project in Agora Console</a>.
+- A valid Agora account. If you do not have an Agora account, see <a href="/en/Agora%20Platform/sign_in_and_sign_up?platform=AllPlatforms" target="_blank">Sign up for an Agora account</a>.
+- An active Agora project. If you do not have an Agora project, see <a href="/en/Agora%20Platform/get_appid_token#create-an-agora-project" target="_blank">Create a project in Agora Console</a>.
 
 ## Procedure
 
@@ -16,7 +16,7 @@ Follow these steps to enable the Flexible Classroom service in Agora Console:
 
    ![](https://web-cdn.agora.io/docs-files/1641364355621)
 
-3. Under **Extensions**, find **Flexible Classroom** and click**Enable**.
+3. Under **Extensions**, find **Flexible Classroom** and click **Enable**.
 
    ![](https://web-cdn.agora.io/docs-files/1641364671472)
 
@@ -35,5 +35,3 @@ After enabling the Flexible Classroom service, you can read the following docume
 - [Launch a Flexible Classroom (Android)](/en/agora-class/agora_class_quickstart_android?platform=Android)
 - [Launch a Flexible Classroom (iOS)](/en/agora-class/agora_class_quickstart_ios?platform=iOS)
 - [Launch a Flexible Classroom (Electron)](/en/agora-class/agora_class_quickstart_electron?platform=Electron)
-
-<div class="alert note">请注意，快速体验暂不支持实时消息功能。 如需试用实时消息功能，你还需配置灵动课堂中的环信 IM 模块，参考<a href="/cn/agora-class/agora_class_configure#配置环信-im">配置环信 IM</a>。</div>
