@@ -1,57 +1,59 @@
-This article describes how to configure the interactive whiteboard, real-time recording, and real-time messaging functions in the Smart Flexible Classroom on the Agora Console console.
+This page introduces how to configure the whiteboard, recording, and messaging features in Flexible Classroom in Agora Console.
 
-<div class="alert info">Before reading this article, please make sure that you have <a href="/cn/agora-class/agora_class_enable?platform=Web" target="_blank">enabled the Flexible Classroom service on the Agora Console console</a>.</div>
+<div class="alert info">Before reading this page, ensure sure that you have <a href="/cn/agora-class/agora_class_enable?platform=Web" target="_blank">enabled the Flexible Classroom service</a> in Agora Console.</div>
 
-## Configure whiteboard
+## 配置白板功能
 
-If you need to upload PPT, Word, PDF and other courseware in the Flexible Classroom and display it on the classroom whiteboard, you need to configure the interactive whiteboard function in Flexible Classroom on the Agora Console console.
+If you want to upload PPT, Word, or PDF files to a flexible classroom and display these files on the whiteboard, you need to configure the whiteboard feature in Agora Console.
 
 ### Prerequisites
 
-The interactive whiteboard function uses a third-party cloud storage service to store files uploaded in the classroom. Therefore, before using the interactive whiteboard function, please make sure that you have activated a third-party cloud storage service. Agora currently supports<a href="https://www.aliyun.com/product/oss" target="_blank">Alibaba Cloud OSS</a> and<a href="https://aws.amazon.com/cn/s3/?nc2=h_m1" target="_blank">Amazon S3</a>
+The whiteboard feature in Flexible Classroom requires a third-party cloud storage service for storing files uploaded in a classroom. Before configuring the whiteboard feature, ensure that you have enabled a third-party cloud storage service. Temporarily, Agora only supports<a href="https://www.aliyun.com/product/oss" target="_blank"></a><a href="https://aws.amazon.com/cn/s3/?nc2=h_m1" target="_blank">Amazon S3</a>.
 
 ### Procedure
 
-On the **Flexible Classroom configuration **page, find the whiteboard module, as shown in the figure below:
+On the **Flexible Classroom configuration** page, find the whiteboard module, as shown in the following figure:
 
-![](https://web-cdn.agora.io/docs-files/1624525202089)
+![](https://web-cdn.agora.io/docs-files/1641366278596)
 
-Therefore, you need to do the following:
+You need to do the following:
 
-1. Turn on advanced services. refer to<a href="/cn/whiteboard/enable_whiteboard#开启互动白板配套服务" target="_blank">Enable server-side supporting features</a>
+1. Enable the advanced services. See <a href="/cn/whiteboard/enable_whiteboard#开启互动白板配套服务" target="_blank">Enable whiteboard server-side features</a>.
 
-2. Configure third-party cloud storage information to store files uploaded in the classroom.
+2. Configure a third-party cloud storage service for storing files uploaded in a classroom.
 
    - If you use Alibaba Cloud OSS, fill in the following information:
-      - `region`: String. The service` region` of Alibaba Cloud OSS, such as "`oss-cn-shanghai`".
+      - `region`: 阿里云 OSS 中创建 Bucket 时指定的数据中心所在区域，例如 `oss-cn-shanghai`。
       - `endpoint`: String. The access` endpoint` of Alibaba Cloud OSS, such as "`oss-cn-shanghai.aliyuncs.com`".
       - `Bucket`: String. The bucket name of Alibaba Cloud OSS, such as "`agora-whiteboard`".
       - `folder`: String. The resource path in Alibaba Cloud OSS, such as "`whiteboard`".
       - `ramAccessKey`: String. The AccessKeyId in the STS AK of Alibaba ``Cloud OSS. This parameter is only applicable to the Flexible Classroom v1.1.0 or later.
       - `ramAccessSecret`: String. The` AccessKeySecret` in the STS AK of Alibaba Cloud OSS. For details, see the documentation of Alibaba ``Cloud OSS. This parameter is only applicable to the Flexible Classroom v1.1.0 or later.
-      - roleArn: String. The `role ARN` for temporary access of Alibaba Cloud OSS. For details, see the documentation of Alibaba Cloud OSS. This parameter is only applicable to the Flexible Classroom v1.1.0 or later.
-      - `roleSessionName`: (Optional) String. The name of the temporary access of Alibaba Cloud OSS. For details, see the documentation of Alibaba Cloud OSS. This parameter is only applicable to the Flexible Classroom v1.1.0 or later.
+      - `roleArn`: 阿里云 OSS 临时授权访问的角色 ARN。 This parameter is only applicable to the Flexible Classroom v1.1.0 or later.
+      - `roleSessionName`: 阿里云 OSS 标识临时访问凭证的名称。 This parameter is only applicable to the Flexible Classroom v1.1.0 or later.
+         <div class="alert info">对于如何获取这些信息，请查看<a href="https://help.aliyun.com/product/31815.html?spm=a2c4g.11186623.3.1.711a65d3R4TYEh" target="_blank">阿里云 OSS 官方文档</a>。</div>
    - If you use Amazon S3, fill in the following information:
-      - `region`: The` region` information specified in Amazon S3.
-      - `endpoint`: The access domain name in Amazon S3.
-      - `Bucket`: The name of the bucket in Amazon S3.
-      - `folder`: The storage path of the resource in Amazon S3.
-      - `accessKey`: The Access Key in the access key provided by Amazon S3 is used to identify the identity of the visitor.
-      - `secretKey`: (Required) The Secret Key provided by the OSS provider, which is used to authenticate signatures.
+      - `region`: Amazon S3 中创建 Bucket 时指定的数据中心所在区域。
+      - `endpoint`: Amazon S3 的访问域名，例如 `s3.us-east-2.amazonaws.com`。
+      - `Bucket`: The bucket name in Amazon S3.
+      - `folder`: Amazon S3 中的资源存放路径，例如 `whiteboard`。
+      - `accessKey`: The Access Key provided by Amazon S3, which is used to identify visitors.
+      - `secretKey`: The Secret Key provided by Amazon S3, which is used to authenticate signatures.
+         <div class="alert info">对于如何获取这些信息，请查看<a href="https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/Welcome.html" target="_blank">Amazon S3 官方文档</a>。</div>
 
-## Configure cloud recording
+## 配置录制功能
 
-The default recording behavior in Flexible Classroom is: use<a href="/cn/cloud-recording/cloud_recording_composite_mode?platform=RESTful" target="_blank">composite recording mode</a> only records the teacher's audio and video, and the recording file will be stored in the Alibaba Cloud OSS account of Agora.
+The default recording behavior in Flexible Classroom is: Record the audio and video of teachers in a classroom in <a href="/cn/cloud-recording/cloud_recording_composite_mode?platform=RESTful" target="_blank">composite recording mode</a>. Your recorded files are be stored in Agora's Amazon S3 account.
 
-If you need to modify the above behavior, you can find the cloud recording module on the **Flexible Classroom configuration** page of the Agora **Console console**, and pass in JSON objects for configuration:
+To change the default  behavior, find the cloud recording module on the **Flexible Classroom configuration** page in Agora Console, and pass in JSON objects:
 
-![](https://web-cdn.agora.io/docs-files/1624525158077)
+![](https://web-cdn.agora.io/docs-files/1641368314262)
 
 ### Recording configuration
 
-Pass in the `recordingConfig` JSON object. refer to<a href="/cn/cloud-recording/cloud_recording_api_start?platform=RESTful#recordingConfig" target="_blank">recordingConfig</a>
+Pass in the `recordingConfig` JSON object. For parameter descriptions, see <a href="/cn/cloud-recording/cloud_recording_api_start?platform=RESTful#recordingConfig" target="_blank">recordingConfig</a>.
 
-Example of` recordingConfig` JSON object:
+An example of the `recordingConfig` JSON object:
 
 ```json
 "recordingConfig": {
@@ -61,13 +63,13 @@ Example of` recordingConfig` JSON object:
 }
 ```
 
-### Recording file storage configuration
+### Storage configuration
 
-The `storageConfig` JSON object passed in is used to store the recording file. refer to<a href="/cn/cloud-recording/cloud_recording_api_start?platform=RESTful#storageConfig" target="_blank">Introducing storageConfig</a>, please pay attention to the settings of the following fields:
-- `endpoint`: (required) String type, complete path composed of Alibaba Cloud Bucket name and access domain name. Suppose your bucket name is `"agora-whiteboard"` and your access domain is `"oss-cn-shanghai.aliyuncs.com"`, set `endpoint` as `"https://agora-whiteboard.oss-cn-shanghai. aliyuncs.com"`.
-- `fileNamePrefix`: (optional) String array, specify the storage location of the recording file in the third-party cloud storage. You can use variables to specify a dynamic path. When you initiate a recording, Smart Flexible Classroom Cloud Service will replace variables with real values. See [how to specify the dynamic storage path ](/cn/live-streaming/faq/agora_class_dynamic_addr )for details.
+Pass in the `storageConfig` JSON object for storing recorded files. For parameter descriptions, see <a href="/cn/cloud-recording/cloud_recording_api_start?platform=RESTful#storageConfig" target="_blank">storageConfig</a>.
+- `endpoint` :（必填）String 类型，由阿里云 Bucket 名称和访问域名拼成的完整路径。 Suppose your bucket name is `"agora-whiteboard"` and your access domain is `"oss-cn-shanghai.aliyuncs.com"`, set `endpoint` as `"https://agora-whiteboard.oss-cn-shanghai. aliyuncs.com"`.
+- `fileNamePrefix`: （选填）String 数组，指定录制文件在第三方云存储中的存储位置。 你可使用变量来指定一个动态路径。 你发起录制时，灵动课堂云服务会用真实的值替换变量。 详见[如何指定动态存储路径](/cn/live-streaming/faq/agora_class_dynamic_addr)。
 
-Example of` storageConfig` JSON object:
+An example of the `storageConfig` JSON object:
 
 ```json
 "storageConfig": {
@@ -84,23 +86,23 @@ Example of` storageConfig` JSON object:
 }
 ```
 
-## Configure ring letter IM
+## 配置环信 IM
 
-Flexible Classroom integrates Huanxin IM SDK to realize real-time message function. Therefore, if you need to use the real-time message function in Flexible Classroom, you need to do the following:
+灵动课堂集成了环信 IM SDK 实现实时消息功能。 因此，如需使用灵动课堂中的实时消息功能，你需要进行以下操作：
 
-1. register<a href="https://console.easemob.com/user/register" target="_blank">Huanxin instant messaging cloud</a>.
-2. Create an application in the backend of Huanxin Developer Management</a>, refer to<a href="https://docs-im.easemob.com/im/quickstart/guide/experience#创建应用" target="_blank">Create an application</a>.
-3. Obtain the following information in the backend of Huanxin Developer Management and fill it in the Agora Console **Flexible Classroom Configuration **page. ![](
+1. 注册<a href="https://console.easemob.com/user/register" target="_blank"></a>
+2. 在环信开发者管理后台创建应用</a>，参考<a href="https://docs-im.easemob.com/im/quickstart/guide/experience#创建应用" target="_blank"></a>
+3. 在环信开发者管理后台获取以下信息后填写在 Agora 控制台**灵动课堂配置**页面中。 ![](
    https://web-cdn.agora.io/docs-files/1624525178299)
-   - `apiHost`: (Required) The access address of Huanxin REST API, such as a1.easemob.com or a1.easecdn.com, which you can obtain from the Huanxin developer management background.
-   - `orgName`: (Required) The unique identification of the company, the company ID you filled in when you registered your account in the Huanxin Developer Management Backstage.
-   - `appName`: (required) the unique identifier of the app under the enterprise, which is the name of the app you filled in when you created the app in the backend of Huanxin Developer Management.
-   - `superAdmin`: (Required) The prefix of the super administrator username. **Only numbers or letters are supported, and special characters are not supported. aPaaS will create an IM room **with **`${superAdmin}-${timestamp}` as the super administrator.**
-   - `appKey`: (Required) The unique identifier of the App, which is generated by the Huanxin Developer Management Backstage based on the rules of` ${org_name}#${app_name}`.
-   - `clientId`: (Required) Developer Client ID, which is generated by Huanxin Developer Management Backstage.
-   - `clientSecret`: (required) developer secret, generated by Huanxin developer management background.
+   - `apiHost`:（必填）环信 REST API 访问地址，例如 a1.easemob.com 或 a1.easecdn.com，你可在环信开发者管理后台获取。
+   - `orgName`:（必填）企业的唯一标识，你在环信开发者管理后台注册账号时填写的企业 ID。
+   - `appName`:（必填）企业下 App 的唯一标识，你在环信开发者管理后台创建应用时填写的应用名称。
+   - `superAdmin`:（必填）超级管理员用户名前缀。 **只支持数字或字母，不支持特殊字符，aPaaS 会以 `${superAdmin}-${timestamp}` 作为超级管理员创建 IM 房间。**
+   - `appKey`:（必填）App 的唯一标识，由环信开发者管理后台基于 `${org_name}#${app_name} `的规则生成。
+   - `clientId`:（必填）开发者 Client ID，由环信开发者管理后台生成。
+   - `clientSecret`:（必填）开发者密钥，由环信开发者管理后台生成。
 
-   You can refer to the figure below to get this information.
+   你可参考下图获取这些信息。
 
    ![](https://web-cdn.agora.io/docs-files/1624525158077)
    ![](https://web-cdn.agora.io/docs-files/1620822526000)
