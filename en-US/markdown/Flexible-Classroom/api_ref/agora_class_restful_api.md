@@ -38,8 +38,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `userUuid` | String | (Required) The user ID. This is the unique identifier of the user and also the user ID used when logging in to the Agora RTM system. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
@@ -107,8 +107,8 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID. |
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `state` | Integer | (Required) The classroom state:<li>`0`: Not started.</li><li>`1`: Started.</li><li>`2`: Ended.</li> |
 
@@ -121,7 +121,7 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 #### Response parameters
 
 | Parameter | Type | Description |
-| :----- | :------ | :------------------------------------------------ |
+| :----- | :------ | :---------------------------------------------------------- |
 | `code` | Integer | Business status code:<li>0: The request succeeds.</li><li>Non-zero: The request fails.</li> |
 | `msg` | String | The detailed information. |
 | `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
@@ -157,8 +157,8 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :------ | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `state` | Integer | (Required) The recording state:<li>`0`: Stop recoding.</li><li>`1`: Started.</li> |
 
@@ -196,7 +196,7 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 #### Response parameters
 
 | Parameter | Type | Description |
-| :----- | :------ | :------------------------------------------------ |
+| :----- | :------ | :---------------------------------------------------------- |
 | `code` | Integer | Business status code:<li>0: The request succeeds.</li><li>Non-zero: The request fails.</li> |
 | `msg` | String | The detailed information. |
 | `ts` | Number | The current Unix timestamp (in milliseconds) of the server in UTC. |
@@ -231,8 +231,8 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID. |
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
 **Request body parameters**
@@ -301,8 +301,8 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
 **Query parameters**
@@ -392,8 +392,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :------------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `resourceUuid` | String | (Required) The resource ID. This is the unique identifier of a file. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
@@ -498,8 +498,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
 **Request body parameters**
@@ -563,8 +563,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
 #### Request example
@@ -643,8 +643,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
 **Query parameters**
@@ -726,8 +726,8 @@ Pass the following parameter in the URL.
 
 | Parameter | Type | Description |
 | :------ | :----- | :--------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 
 #### Request example
 
@@ -784,8 +784,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
 **Request body parameters**
@@ -848,8 +848,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
 **Request body parameters**
@@ -912,8 +912,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `userUuid` | String | (Required) The user ID. This is the unique identifier of the user and also the user ID used when logging in to the Agora RTM system. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
@@ -977,8 +977,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `userUuid` | String | (Required) The user ID. This is the unique identifier of the user and also the user ID used when logging in to the Agora RTM system. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
@@ -1042,8 +1042,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :----------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `extAppUuid` | String | (Required) The extApp ID. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
@@ -1108,8 +1108,8 @@ Pass the following parameters in the URL.
 
 | Parameter | Type | Description |
 | :----------- | :----- | :----------------------------------------------------------- |
-| `region` | String | (Required) The region for connection. For details, see [Network geofencing](/en/agora-class/agora_class_security#network-geofencing). Flexible Classroom supports the following regions:<li>`cn`: Mainland China.</li><li>`ap`: Asia Pacific.</li><li>`eu`: Europe.</li><li>`na`: North America.</li> |
-| `appId` | String | (Required) Agora App ID.|
+| `appId` | String | (Required) Agora App ID.
+ |
 | `roomUuid` | String | (Required) The classroom ID. This is the globally unique identifier of a classroom. It is also used as the channel name when a user joins an RTC or RTM channel. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `extAppUuid` | String | (Required) The extApp ID. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 
