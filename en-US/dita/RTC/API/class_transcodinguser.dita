@@ -6,8 +6,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public static class TranscodingUser {
+                <codeblock props="android" outputclass="language-java">  public static class TranscodingUser {
     public int uid;
+    public String userId;
 
     public int x;
     public int y;
@@ -17,6 +18,10 @@
     public int zOrder;
     public float alpha;
     public int audioChannel;
+
+    public TranscodingUser() {
+      alpha = 1;
+    }
   }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscodingUser : NSObject
 
@@ -26,26 +31,25 @@
 @property(assign, nonatomic) double alpha;
 @property(assign, nonatomic) NSInteger audioChannel;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">typedef struct TranscodingUser {
-    uid_t uid;
-    int x;
-    int y;
-    int width;
-    int height;
-    int zOrder;
-    double alpha;
-    int audioChannel;
-    TranscodingUser()
-        : uid(0)
-        , x(0)
-        , y(0)
-        , width(0)
-        , height(0)
-        , zOrder(0)
-        , alpha(1.0)
-        , audioChannel(0)
-    {}
-    } TranscodingUser;</codeblock>
+                <codeblock props="windows unity" outputclass="language-cpp">truct TranscodingUser {
+  uid_t uid;
+  int x;
+  int y;
+  int width;
+  int height;
+  int zOrder;
+  double alpha;
+  int audioChannel;
+  TranscodingUser()
+      : uid(0),
+        x(0),
+        y(0),
+        width(0),
+        height(0),
+        zOrder(0),
+        alpha(1.0),
+        audioChannel(0) {}
+};</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface TranscodingUser {
     uid: number;
     x: number;
@@ -57,7 +61,28 @@
     audioChannel: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class TranscodingUser {
+  
+  int uid;
+  int? x;
+  int? y;
+  int? width;
+  int? height;
+  int? zOrder;
+  double? alpha;
+  AudioChannel? audioChannel;
+
+  TranscodingUser(
+    this.uid, {
+    this.x,
+    this.y,
+    this.width,
+    this.height,
+    this.zOrder,
+    this.alpha,
+    this.audioChannel,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
@@ -69,20 +94,20 @@
   <p>The user ID of the host.</p>
        </pd>
    </plentry>
-   <plentry>
+   <plentry props="android windows unity flutter">
        <pt>x</pt>
        <pd>
-  <p>The x coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, width], where width is the <codeph>width</codeph> set in <xref keyref="LiveTranscoding" />.</p></pd>
+  <p>The x coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, width], where width is the <xref keyref="LiveTranscoding" /><codeph>width</codeph> set in .</p></pd>
    </plentry>
-                <plentry props="android windows unity">
+            <plentry props="android windows unity flutter">
                     <pt>y</pt>
-                    <pd>The y coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, height], where height is the <codeph>height</codeph> set in <xref keyref="LiveTranscoding" />.</pd>
+                    <pd>The y coordinate (pixel) of the host's video on the output video frame (taking the upper left corner of the video frame as the origin). The value range is [0, height], where height is the <xref keyref="LiveTranscoding" /><codeph>height</codeph> set in .</pd>
                 </plentry>
-                <plentry props="android windows unity">
+            <plentry props="android windows unity flutter">
                     <pt>width</pt>
                     <pd>The width (pixel) of the host's video.</pd>
                 </plentry>
-                <plentry props="android windows unity">
+            <plentry props="android windows unity flutter">
                     <pt>height</pt>
                     <pd>
                         <p>The height (pixel) of the host's video.</p>
@@ -90,12 +115,12 @@
                 </plentry>
             <plentry props="ios mac">
                 <pt>rect</pt>
-                <pd>The position and size of the host's video. The data type is CGRect.</pd>
+                <pd>The position and size of the host's video in the output image. The data size is CGRect.</pd>
             </plentry>
                 <plentry>
                     <pt>zOrder</pt>
                     <pd>
-                        <p>The layer number of the host's video. The value ranges from 0 to 100.<ul>
+                        <p>The layer index number of the host's video. The value range is [0, 100].<ul>
                                 <li>0: (Default) The host's video is the bottom layer.</li>
                                 <li>100: The host's video is the top layer.</li>
                             </ul>
@@ -111,7 +136,7 @@
                 <plentry>
                     <pt>alpha</pt>
                     <pd>
-                        <p>The transparency of the host's video. The value ranges between 0.0 and 1.0.<ul>
+                        <p>The transparency of the host's video. The value range is [0.0, 1.0].<ul>
                                 <li>0.0: Completely transparent.</li>
                                 <li>1.0: (Default) Opaque.</li>
                             </ul>
@@ -123,12 +148,18 @@
                 <pd>
                         <p>The audio channel used by the host's audio in the output audio. The default value is 0, and the value range is [0, 5].<ul id="ul_ugm_rrh_v4b">
                                 <li><codeph>0</codeph>: (Recommended) The defaut setting, which supports dual channels at most and depends on the upstream of the host.</li>
-                                <li><codeph>1</codeph>: The host's audio uses the FL audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
-                                <li><codeph>2</codeph>: The host's audio uses the FC audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
-                                <li><codeph>3</codeph>: The host's audio uses the FR audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
-                                <li><codeph>4</codeph>: The host's audio uses the BL audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
-                                <li><codeph>5</codeph>: The host's audio uses the BR audio channel. If the host's upstream uses multiple audio channels, the Agora server mixes them into mono first.</li>
-                                <li><codeph>0xFF</codeph> or a value greater than <codeph>5</codeph>: The host's audio is muted, and the Agora server removes the host's audio.</li>
+                                <li><codeph>1</codeph>: The host's audio uses the FL audio channel. If the host's upstream uses multiple audio channels, the Agora
+                                    server mixes them into mono first.</li>
+                                <li><codeph>2</codeph>: The host's audio uses the FC audio channel. If the host's upstream uses multiple audio channels, the Agora
+                                    server mixes them into mono first.</li>
+                                <li><codeph>3</codeph>: The host's audio uses the FR audio channel. If the host's upstream uses multiple audio channels, the Agora
+                                    server mixes them into mono first.</li>
+                                <li><codeph>4</codeph>: The host's audio uses the BL audio channel. If the host's upstream uses multiple audio channels, the Agora
+                                    server mixes them into mono first.</li>
+                                <li><codeph>5</codeph>: The host's audio uses the BR audio channel. If the host's upstream uses multiple audio channels, the Agora
+                                    server mixes them into mono first.</li>
+                                <li><codeph>0xFF</codeph> or a value greater than <codeph>5</codeph>: The host's audio is muted, and the Agora
+                                    server removes the host's audio.</li>
                             </ul>
                             <note type="attention">If the value is not <codeph>0</codeph>, a special player is required.</note></p>
                     </pd>

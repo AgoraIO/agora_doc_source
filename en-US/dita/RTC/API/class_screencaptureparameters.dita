@@ -5,23 +5,96 @@
     <shortdesc id="short"><ph id="shortdesc">Screen sharing configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock">
-                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
-
-                    @property (assign, nonatomic) CGSize dimensions;
-                    @property (assign, nonatomic) NSInteger frameRate;
-                    @property (assign, nonatomic) NSInteger bitrate;
-
-                    @end</codeblock>
-            </p>
             <p props="rtc-ng" outputclass="codeblock">
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
+@property (assign, nonatomic) CGSize dimensions;
+@property (assign, nonatomic) NSInteger frameRate;
+@property (assign, nonatomic) NSInteger bitrate;
+
+@end</codeblock>
                 <codeblock props="android" outputclass="language-java">public class ScreenCaptureParameters {
   private VideoDimensions videoDimensions;
   private int frameRate;
   private int bitrate;
+
+  public ScreenCaptureParameters() {
+    videoDimensions = new VideoDimensions(1080, 1920);
+    frameRate = 5;
+    bitrate = 4098;
+  }
+
+  public ScreenCaptureParameters setVideoDimensions(VideoDimensions videoDimensions) {
+    this.videoDimensions = videoDimensions;
+    return this;
+  }
+
+  public ScreenCaptureParameters setFrameRate(int frameRate) {
+    this.frameRate = frameRate;
+    return this;
+  }
+
+  public ScreenCaptureParameters setBitrate(int bitrate) {
+    this.bitrate = bitrate;
+    return this;
+  }
+
+  public VideoDimensions getVideoDimensions() {
+    return videoDimensions;
+  }
+
+  @CalledByNative
+  int getWidth() {
+    return videoDimensions != null ? videoDimensions.width : 0;
+  }
+
+  @CalledByNative
+  int getHeight() {
+    return videoDimensions != null ? videoDimensions.height : 0;
+  }
+
+  @CalledByNative
+  public int getFrameRate() {
+    return frameRate;
+  }
+
+  @CalledByNative
+  public int getBitrate() {
+    return bitrate;
+  }
 }</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">struct ScreenCaptureParameters {
+  VideoDimensions dimensions;
+  int frameRate;
+  int bitrate;
+  bool captureMouseCursor;
+  bool windowFocus;
+  view_t *excludeWindowList;
+  int excludeWindowCount;
+
+  ScreenCaptureParameters()
+    : dimensions(1920, 1080), frameRate(5), bitrate(STANDARD_BITRATE), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0) {}
+  ScreenCaptureParameters(const VideoDimensions&amp; d, int f, int b)
+    : dimensions(d), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0) {}
+  ScreenCaptureParameters(int width, int height, int f, int b)
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0) {}
+  ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs)
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(OPTIONAL_NULLPTR), excludeWindowCount(0) {}
+  ScreenCaptureParameters(int width, int height, int f, int b, view_t *ex, int cnt)
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(true), windowFocus(false), excludeWindowList(ex), excludeWindowCount(cnt) {}
+  ScreenCaptureParameters(int width, int height, int f, int b, bool cur, bool fcs, view_t *ex, int cnt)
+    : dimensions(width, height), frameRate(f), bitrate(b), captureMouseCursor(cur), windowFocus(fcs), excludeWindowList(ex), excludeWindowCount(cnt) {}
+};</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
+                <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters : NSObject
+@property(assign, nonatomic) CGSize dimensions;
+@property(assign, nonatomic) NSInteger frameRate;
+@property(assign, nonatomic) NSInteger bitrate;
+@property(assign, nonatomic) BOOL captureMouseCursor;
+@property(assign, nonatomic) BOOL windowFocus;
+@property(copy, nonatomic) NSArray* _Nullable excludeWindowList;
+
+@end</codeblock>
                 <codeblock props="android" outputclass="language-java" />
                 <codeblock props="windows unity" outputclass="language-cpp">struct ScreenCaptureParameters {
     VideoDimensions dimensions;
@@ -43,19 +116,39 @@
     excludeWindowCount: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters {
+  
+  VideoDimensions? dimensions;
+  int? frameRate;
+  int? bitrate;
+  bool? captureMouseCursor;
+  bool? windowFocus;
+  List&lt;int&gt;? excludeWindowList;
+
+  ScreenCaptureParameters({
+    this.dimensions,
+    this.frameRate,
+    this.bitrate,
+    this.captureMouseCursor,
+    this.windowFocus,
+    this.excludeWindowList,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
             <parml>
                 <plentry>
-                    <pt props="ios mac windows electron unity">dimensions</pt>
+                    <pt props="ios mac windows unity flutter">dimensions</pt>
                     <pt props="android">videoDimensions</pt>
-                    <pd><p>The maximum dimensions of encoding the shared region. For details, see <xref keyref="VideoDimensions" />. The default value is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
-                        <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <codeph>dimensions</codeph> are set to 1920 x 1080:<ul>
-                                <li>If the value of the screen dimensions is lower than that of <codeph>dimensions</codeph>, for example, 1000 x 1000 pixels, the SDK uses 1000 x 1000 pixels for encoding.</li>
-                                <li>If the value of the screen dimensions is higher than that of <codeph>dimensions</codeph>, for example, 2000 x 1500, the SDK uses the maximum value next to 1920 x 1080 with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 x 1080.</li>
+                    <pd><p>The maximum dimensions of encoding the shared region.<ph props="android windows"> For details, see <xref keyref="VideoDimensions" />.</ph> The default value is 1,920 × 1,080, that is,
+                            2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
+                        <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <codeph>dimensions</codeph> are set to 1,920 x 1,080:<ul>
+                                <li>If the value of the screen dimensions is lower than that of <codeph>dimensions</codeph>, for example, 1,000 x 1,000 pixels, the SDK uses 1,000 x 1,000 pixels
+                                    for encoding.</li>
+                                <li>If the value of the screen dimensions is larger than that of <codeph>dimensions</codeph>, for example, 2,000 × 1,500, the SDK uses
+                                    the maximum value next to 1,920 × 1,080 with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1,440 × 1,080.</li>
                             </ul></p>
                     </pd>
                 </plentry>
@@ -67,60 +160,88 @@
                     <pt>bitrate</pt>
                     <pd>The bitrate (Kbps) of the shared region. The default value is 0, which represents that the SDK works out a bitrate according to the dimensions of the current screen.</pd>
                 </plentry>
-                <plentry props="windows electron unity">
+                <plentry props="rtc">
                     <pt>captureMouseCursor</pt>
                     <pd>
-                        <dl outputclass="since" props="rtc">
-                            <dlentry props="windows">
+                        <dl outputclass="since">
+                            <dlentry>
                                 <dt>Since</dt>
                                 <dd>v2.4.1</dd>
                             </dlentry>
                         </dl>
-                        <p>Sets whether to capture the mouse in screen sharing:<ul>
+                        <p>Whether to capture the mouse in screen sharing:<ul>
                                 <li><codeph><ph keyref="true" /></codeph>: (Default) Capture the mouse.</li>
                                 <li><codeph><ph keyref="false" /></codeph>: Do not capture the mouse.</li>
-                            </ul></p></pd>
+                            </ul></p>
+                    </pd>
                 </plentry>
-                <plentry props="windows electron unity">
+                <plentry props="rtc-ng">
+                    <pt props="windows">captureMouseCursor</pt>
+                    <pd props="windows">
+                        <p>Whether to capture the mouse in screen sharing:<ul>
+                            <li><codeph><ph keyref="true" /></codeph>: (Default) Capture the mouse.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: Do not capture the mouse.</li>
+                        </ul></p>
+                    </pd>
+                </plentry>
+                <plentry props="rtc">
                     <pt>windowFocus</pt>
-                    <pd><dl outputclass="since" props="rtc">
-                        <dlentry props="windows">
-                            <dt>Since</dt>
-                            <dd>v3.1.0</dd>
-                        </dlentry>
-                    </dl><p>Sets whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId" /> method to share it:<ul>
-                            <li><codeph><ph keyref="true" /></codeph>: Bring the window to the front.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not bring the window to the front.</li>
-                        </ul></p></pd>
-                </plentry>
-                <plentry props="windows mac unity">
-                    <pt>excludeWindowList</pt>
-                    <pd props="windows unity"><dl outputclass="since" props="rtc">
-                        <dlentry props="windows">
-                            <dt>Since</dt>
-                            <dd>v3.1.0</dd>
-                        </dlentry>
-                    </dl>
-                        <p>The ID list of the windows to be blocked. When calling <xref keyref="startScreenCaptureByScreenRect" /> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters" /> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</p></pd>
-                    <pd props="mac">
-                        <dl outputclass="since" props="rtc">
-                            <dlentry props="windows">
+                    <pd>
+                        <dl outputclass="since">
+                            <dlentry>
                                 <dt>Since</dt>
                                 <dd>v3.1.0</dd>
                             </dlentry>
                         </dl>
-                        <p>The ID list of the windows to be blocked. When calling <xref keyref="startScreenCaptureByDisplayId" /> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters" /> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</p></pd>
+                        <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId" /> method to share it:<ul>
+                                <li><codeph><ph keyref="true" /></codeph>:Bring the window to the front.</li>
+                                <li><codeph><ph keyref="false" /></codeph>: (Default) Do not bring the window to the front.</li>
+                            </ul></p>
+                    </pd>
                 </plentry>
-                <plentry props="windows unity">
-                    <pt>excludeWindowCount</pt>
-                    <pd>
-                        <dl outputclass="since" props="rtc">
-                        <dlentry props="windows">
+                <plentry props="rtc-ng">
+                    <pt props="windows">windowFocus</pt>
+                    <pd props="windows">
+                        <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId" /> method to share it:<ul>
+                            <li><codeph><ph keyref="true" /></codeph>:Bring the window to the front.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not bring the window to the front.</li>
+                        </ul></p>
+                    </pd>
+                </plentry>
+                <plentry props="rtc">
+                    <pt>excludeWindowList</pt>
+                    <pd><dl outputclass="since" props="rtc">
+                        <dlentry props="native">
                             <dt>Since</dt>
                             <dd>v3.1.0</dd>
                         </dlentry>
                     </dl>
-                        <p>The number of windows to be blocked.</p></pd>
+                        <p>The ID list of the windows to be blocked. When calling <xref keyref="startScreenCaptureByScreenRect" /> to start screen sharing, you can use this parameter to block a specified window. When calling  to<xref keyref="updateScreenCaptureParameters" /> update screen sharing configurations, you can use this parameter to dynamically block a specified window.</p></pd>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt props="windows">excludeWindowList</pt>
+                    <pd props="windows">
+                        <p>The ID list of the windows to be blocked. When calling <xref keyref="startScreenCaptureByScreenRect" /> to start screen sharing, you can use this parameter to block a specified window. When calling  to<xref keyref="updateScreenCaptureParameters" /> update screen sharing configurations, you can use this parameter to dynamically block a specified window.</p></pd>
+                </plentry>
+                <plentry props="windows unity electron">
+                    <pt>excludeWindowCount</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry props="native">
+                                <dt>Since</dt>
+                                <dd>v3.1.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>The number of windows to be blocked.</p>
+                    </pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>width</pt>
+                    <pd>The width of the region.</pd>
+                </plentry>
+                <plentry props="electron">
+                    <pt>height</pt>
+                    <pd>The height of the region.</pd>
                 </plentry>
             </parml>
         </section>

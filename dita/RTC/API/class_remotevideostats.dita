@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remotevideostats">
-    <title><ph keyref="RemoteVideoStats"/></title>
+    <title><ph keyref="RemoteVideoStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">远端视频流的统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -20,6 +20,8 @@
     public int totalFrozenTime;
     public int frozenRate;
     public int avSyncTimeMs;
+    public long totalActiveTime;
+    public long publishDuration;
   }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
@@ -35,27 +37,75 @@
 @property(assign, nonatomic) NSInteger packetLossRate;
 @property(assign, nonatomic) NSInteger totalFrozenTime;
 @property(assign, nonatomic) NSInteger frozenRate;
+@property(assign, nonatomic) NSUInteger totalActiveTime;
+@property(assign, nonatomic) NSInteger publishDuration;
 @property(assign, nonatomic) NSInteger avSyncTimeMs;
 @end</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">struct RemoteVideoStats {
+  uid_t uid;
+  int delay;
+  int width;
+  int height;
+  int receivedBitrate;
+  int decoderOutputFrameRate;
+  int rendererOutputFrameRate;
+  int frameLossRate;
+  int packetLossRate;
+  VIDEO_STREAM_TYPE rxStreamType;
+  int totalFrozenTime;
+  int frozenRate;
+  int avSyncTimeMs;
+  int totalActiveTime;
+  int publishDuration;
+};</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java">public static class RemoteVideoStats {
+    public int uid;
+    @Deprecated
+    public int delay;
+    public int width;
+    public int height;
+    public int receivedBitrate;
+    public int decoderOutputFrameRate;
+    public int rendererOutputFrameRate;
+    public int packetLossRate;
+    public int rxStreamType;
+    public int totalFrozenTime;
+    public int frozenRate;
+    public int totalActiveTime;
+    public int publishDuration;
+}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteVideoStats : NSObject
+@property(assign, nonatomic) NSUInteger uid;
+@property(assign, nonatomic) NSUInteger __deprecated delay;
+@property(assign, nonatomic) NSUInteger width;
+@property(assign, nonatomic) NSUInteger height;
+@property(assign, nonatomic) NSUInteger receivedBitrate;
+@property(assign, nonatomic) NSUInteger decoderOutputFrameRate;
+@property(assign, nonatomic) NSUInteger rendererOutputFrameRate;
+@property(assign, nonatomic) NSUInteger packetLossRate;
+@property(assign, nonatomic) AgoraVideoStreamType rxStreamType;
+@property(assign, nonatomic) NSUInteger totalFrozenTime;
+@property(assign, nonatomic) NSUInteger frozenRate;
+@property(assign, nonatomic) NSUInteger totalActiveTime;
+@property(assign, nonatomic) NSInteger publishDuration;
+@end</codeblock>
                 <codeblock props="windows unity" outputclass="language-cpp">struct RemoteVideoStats {
-    uid_t uid;
-    int delay;
-    int width;
-    int height;
-    int receivedBitrate;
-    int decoderOutputFrameRate;
-    int rendererOutputFrameRate;
-    int packetLossRate;
-    REMOTE_VIDEO_STREAM_TYPE rxStreamType;
-    int totalFrozenTime;
-    int frozenRate;
-    int totalActiveTime;
-    int publishDuration;
-    };</codeblock>
+  uid_t uid;
+  int delay;
+  int width;
+  int height;
+  int receivedBitrate;
+  int decoderOutputFrameRate;
+  int rendererOutputFrameRate;
+  int packetLossRate;
+  REMOTE_VIDEO_STREAM_TYPE rxStreamType;
+  int totalFrozenTime;
+  int frozenRate;
+  int totalActiveTime;
+  int publishDuration;
+};</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface RemoteVideoStats {
     uid: number;
     delay: number;
@@ -71,12 +121,43 @@
     totalActiveTime: number;
     publishDuration: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class RemoteVideoStats {
+  
+  int uid;
+  int delay;
+  int width;
+  int height;
+  int receivedBitrate;
+  int decoderOutputFrameRate;
+  int rendererOutputFrameRate;
+  int packetLossRate;
+  VideoStreamType rxStreamType;
+  int totalFrozenTime;
+  int frozenRate;
+  int totalActiveTime;
+  int publishDuration;
+
+  RemoteVideoStats(
+    this.uid,
+    this.delay,
+    this.width,
+    this.height,
+    this.receivedBitrate,
+    this.decoderOutputFrameRate,
+    this.rendererOutputFrameRate,
+    this.packetLossRate,
+    this.rxStreamType,
+    this.totalFrozenTime,
+    this.frozenRate,
+    this.totalActiveTime,
+    this.publishDuration,
+  );
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
   <pt>uid</pt>
@@ -88,9 +169,7 @@
       <dl outputclass="deprecated">
  <dlentry>
      <dt>弃用：</dt>
-     <dd>在有音画同步机制的音视频场景中，你可以参考 <xref keyref="RemoteAudioStats"/> 里的
-    <parmname>networkTransportDelay</parmname> 和
-    <parmname>jitterBufferDelay</parmname> 成员的值，了解视频的延迟数据。</dd>
+     <dd>在有音画同步机制的音视频场景中，你可以参考 <xref keyref="RemoteAudioStats" /> 里的 <parmname>networkTransportDelay</parmname> 和 <parmname>jitterBufferDelay</parmname> 成员的值，了解视频的延迟数据。</dd>
  </dlentry>
       </dl>
       <p>延时（毫秒）。</p>
@@ -120,14 +199,23 @@
   <pt>rendererOutputFrameRate</pt>
   <pd>远端视频渲染器的输出帧率，单位为 fps。</pd>
        </plentry>
+       <plentry props="rtc-ng">
+           <pt>frameLossRate</pt>
+           <pd>远端视频丢包率(%)。</pd>
+       </plentry>
        <plentry>
   <pt>packetLossRate</pt>
   <pd>远端视频在使用抗丢包技术之后的丢包率(%)。</pd>
        </plentry>
        <plentry>
   <pt>rxStreamType</pt>
-           <pd><p props="ios mac windows unity">视频流类型，大流或小流。详见 <xref keyref="REMOTE_VIDEO_STREAM_TYPE"/>。</p>
-               <p props="android">视频流类型，即大流或小流。</p>
+           <pd>视频流类型，大流或小流。<ph props="ios mac windows unity">详见 <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />。</ph>
+               <p props="android">
+               <ul>
+                   <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH" /> (0)：视频大流，即高分辨率高码率的视频流。</li>
+                   <li><ph keyref="REMOTE_VIDEO_STREAM_LOW" /> (1)：视频小流，即低分辨率低码率的视频流。</li>
+               </ul>
+               </p>
            </pd>
        </plentry>
        <plentry>
@@ -139,18 +227,32 @@
   <pt>frozenRate</pt>
   <pd>远端用户在加入频道后发生视频卡顿的累计时长占视频总有效时长的百分比 (%)。视频有效时长是指远端用户加入频道后视频未被停止发送或禁用的时长。</pd>
        </plentry>
-       <plentry props="windows unity">
-  <pt>totalActiveTime</pt>
-  <pd>视频有效时长（毫秒），即远端用户/主播加入频道后，既没有停止发送视频流，也没有禁用视频模块的通话时长。</pd>
-       </plentry>
-       <plentry props="windows unity">
-  <pt>publishDuration</pt>
-  <pd>远端视频流的累计发布时长（毫秒）。</pd>
-       </plentry>
-                <plentry props="android ios mac">
+       <plentry>
+                    <pt>totalActiveTime</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry>
+                                <dt>自从</dt>
+                                <dd>v3.0.1</dd>
+                            </dlentry>
+                        </dl>
+                        <p>视频有效时长（毫秒）。</p>
+                        <p>视频总有效时长是远端用户或主播加入频道后，既没有停止发送视频流，也没有禁用视频模块的通话时长。</p></pd>
+                </plentry>
+       <plentry>
+                    <pt>publishDuration</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry>
+                                <dt>自从</dt>
+                                <dd>v3.1.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>远端视频流的累计发布时长（毫秒）。</p></pd>
+                </plentry>
+                <plentry props="rtc-ng">
                     <pt>avSyncTimeMs</pt>
-                    <pd>音频超前视频的时间 (ms)。
-                        <note type="attention">如果为负值，则代表音频落后于视频。</note></pd>
+                    <pd>音频超前视频的时间 (ms)。<note type="attention">如果为负值，则代表音频落后于视频。</note></pd>
                 </plentry>
    </parml>
         </section></refbody>

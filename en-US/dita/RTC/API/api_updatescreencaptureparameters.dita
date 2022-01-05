@@ -18,13 +18,14 @@
             <codeblock props="electron" outputclass="language-typescript">updateScreenCaptureParameters(captureParams: ScreenCaptureParameters): number</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCaptureParameters(ScreenCaptureParameters captureParams);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" />
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCaptureParameters(
+      ScreenCaptureParameters captureParams);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-   
-   <dl outputclass="since">
-       <dlentry>
+
+   <dl outputclass="since" props="rtc">
+       <dlentry props="native">
   <dt>Since</dt>
   <dd>v2.4.0</dd>
        </dlentry>
@@ -34,16 +35,16 @@
    <parml>
        <plentry>
   <pt>captureParams</pt>
-  <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters" />.</pd>
+  <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. For details, see <xref keyref="ScreenCaptureParameters" />.</pd>
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>
-       <li>&lt; 0: Failure.<ul>
-  <li>-3(ERR_NOT_READY): No screen or window is being shared.</li>
+       <li>&lt; 0: Failure.<ul props="rtc">
+  <li>-3: If no screen or window is being shared, the SDK returns this error code.</li>
        </ul></li>
    </ul>
         </section></refbody>

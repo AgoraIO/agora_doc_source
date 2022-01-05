@@ -1,112 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_externalvideoframe">
-    <title><ph keyref="ExternalVideoFrame" /></title>
+    <title><ph keyref="ExternalVideoFrame"/></title>
     <shortdesc id="short"><ph id="shortdesc">The external video frame.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public class AgoraVideoFrame {
-
-  public static final int FORMAT_NONE = -1;
-  public static final int FORMAT_TEXTURE_2D = 10;
-  public static final int FORMAT_TEXTURE_OES = 11;
-  public static final int FORMAT_I420 = 1;
-  public static final int FORMAT_BGRA = 2;
-  public static final int FORMAT_NV21 = 3;
-  public static final int FORMAT_RGBA = 4;
-  public static final int BUFFER_TYPE_NONE = -1;/
-  public static final int BUFFER_TYPE_BUFFER = 1;
-  public static final int BUFFER_TYPE_ARRAY = 2;
-  public static final int BUFFER_TYPE_TEXTURE = 3;
-
-  public int format;
-  public long timeStamp;
-  public int stride;
-  public int height;
-  public int textureID;
-  public boolean syncMode;
-  public float[] transform;
-  public javax.microedition.khronos.egl.EGLContext eglContext11;
-  public android.opengl.EGLContext eglContext14;
-
-  public byte[] buf;
-  public int cropLeft;
-  public int cropTop;
-  public int cropRight;
-  public int cropBottom;
-  public int rotation;
-}</codeblock>
+                    public static final int FORMAT_NONE = -1;
+                    public static final int FORMAT_TEXTURE_2D = 10;
+                    public static final int FORMAT_TEXTURE_OES = 11;
+                    public static final int FORMAT_I420 = 1;
+                    public static final int FORMAT_BGRA = 2;
+                    public static final int FORMAT_NV21 = 3;
+                    public static final int FORMAT_RGBA = 4;
+                    public static final int BUFFER_TYPE_NONE = -1;/
+                    public static final int BUFFER_TYPE_BUFFER = 1;
+                    public static final int BUFFER_TYPE_ARRAY = 2;
+                    public static final int BUFFER_TYPE_TEXTURE = 3;
+                    public int format;
+                    public long timeStamp;
+                    public int stride;
+                    public int height;
+                    public int textureID;
+                    public boolean syncMode;
+                    public float[] transform;
+                    public javax.microedition.khronos.egl.EGLContext eglContext11;
+                    public android.opengl.EGLContext eglContext14;
+                    public byte[] buf;
+                    public int cropLeft;
+                    public int cropTop;
+                    public int cropRight;
+                    public int cropBottom;
+                    public int rotation;
+                    }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoFrame : NSObject
-
-@property(assign, nonatomic) NSInteger format;
-@property(assign, nonatomic) CMTime time;
-@property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
-@property(assign, nonatomic) int strideInPixels;
-@property(assign, nonatomic) int height; 
-@property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
-@property(assign, nonatomic) int cropLeft; 
-@property(assign, nonatomic) int cropTop; 
-@property(assign, nonatomic) int cropRight; 
-@property(assign, nonatomic) int cropBottom;
-@property(assign, nonatomic) int rotation;
-@end</codeblock>
+                    @property(assign, nonatomic) NSInteger format;
+                    @property(assign, nonatomic) CMTime time;
+                    @property(assign, nonatomic) int stride DEPRECATED_MSG_ATTRIBUTE("use strideInPixels instead");
+                    @property(assign, nonatomic) int strideInPixels;
+                    @property(assign, nonatomic) int height;
+                    @property(assign, nonatomic) CVPixelBufferRef _Nullable textureBuf;
+                    @property(assign, nonatomic) int cropLeft;
+                    @property(assign, nonatomic) int cropTop;
+                    @property(assign, nonatomic) int cropRight;
+                    @property(assign, nonatomic) int cropBottom;
+                    @property(assign, nonatomic) int rotation;
+                    @end</codeblock>
                 <codeblock props="windows unity" outputclass="language-cpp">struct ExternalVideoFrame {
-    enum VIDEO_BUFFER_TYPE
-    {
-        VIDEO_BUFFER_RAW_DATA = 1,
-    };
-    enum VIDEO_PIXEL_FORMAT
-    {
-        VIDEO_PIXEL_UNKNOWN = 0,
-        VIDEO_PIXEL_I420 = 1,
-        VIDEO_PIXEL_BGRA = 2,
-        VIDEO_PIXEL_NV21 = 3,
-        VIDEO_PIXEL_RGBA = 4,
-        VIDEO_PIXEL_IMC2 = 5,
-        VIDEO_PIXEL_ARGB = 7,
-        VIDEO_PIXEL_NV12 = 8,
-        VIDEO_PIXEL_I422 = 16,
-    };
+                enum VIDEO_BUFFER_TYPE
+                {
+                VIDEO_BUFFER_RAW_DATA = 1,
+                };
+                enum VIDEO_PIXEL_FORMAT
+                {
+                VIDEO_PIXEL_UNKNOWN = 0,
+                VIDEO_PIXEL_I420 = 1,
+                VIDEO_PIXEL_BGRA = 2,
+                VIDEO_PIXEL_NV21 = 3,
+                VIDEO_PIXEL_RGBA = 4,
+                VIDEO_PIXEL_IMC2 = 5,
+                VIDEO_PIXEL_ARGB = 7,
+                VIDEO_PIXEL_NV12 = 8,
+                VIDEO_PIXEL_I422 = 16,
+                };
 
-    VIDEO_BUFFER_TYPE type;
-    VIDEO_PIXEL_FORMAT format;
-    void* buffer;
-    int stride;
-    int height;
-    int cropLeft;
-    int cropTop;
-    int cropRight;
-    int cropBottom;
-    int rotation;
-    long long timestamp;
-    };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
-            </p>
+                VIDEO_BUFFER_TYPE type;
+                VIDEO_PIXEL_FORMAT format;
+                void* buffer;
+                int stride;
+                int height;
+                int cropLeft;
+                int cropTop;
+                int cropRight;
+                int cropBottom;
+                int rotation;
+                long long timestamp;
+                };</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+                </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
    <parml>
        <plentry props="windows unity">
   <pt>type</pt>
   <pd>
-      <p>The buffer type. For details, see <xref keyref="VIDEO_BUFFER_TYPE" />.</p>
+      <p>The video buffer type. For details, see <xref keyref="VIDEO_BUFFER_TYPE"/>.</p>
       </pd>
        </plentry>
        <plentry>
   <pt>format</pt>
-           <pd props="windows unity" id="windows-format">The pixel format. For details, see <xref keyref="VIDEO_PIXEL_FORMAT" />.</pd>
-           <pd props="ios mac" id="oc-format">The format of the incoming video frame must be specified as one of the following values:<ul>
+           <pd props="windows unity" id="windows-format">The pixel format. For details, see <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+           <pd props="ios mac" id="oc-format">The format of the incoming video frame. This parameter must be specified as one of the following values:<ul>
                    <li>1: I420</li>
                    <li>2: BGRA</li>
                    <li>3: NV21</li>
-                   <li>2: RGBA</li>
+                   <li>4: RGBA</li>
                    <li>5: IMC2</li>
                    <li>7: ARGB</li>
                    <li>8: NV12</li>
-                   <li>12: iOS texture (CVPixelBufferRef).</li>
+                   <li>12: iOS texture (CVPixelBufferRef)</li>
                </ul>
            </pd>
            <pd props="android">The format of the video data:<ul>
@@ -114,13 +110,14 @@
                    <li>11: TEXTURE_OES, usually the data collected by the camera is in this format.</li>
                    <li>1: I420</li>
                    <li>3: NV21</li>
-                   <li>2: RGBA</li>
+                   <li>4: RGBA</li>
                </ul>
                </pd>
        </plentry>
-       <plentry props="android windows unity">
-  <pt props="windows unity">buffer</pt>
+       <plentry props="android windows ios mac">
+  <pt props="windows">buffer</pt>
   <pt props="android">buf</pt>
+  <pt props="ios mac">dataBuf</pt>
   <pd>The video buffer.</pd>
   <pd props="android">This parameter only applies to video data in non-Texture format.</pd>
        </plentry>
@@ -134,10 +131,10 @@
           <dl outputclass="deprecated">
               <dlentry>
                   <dt>Deprecated:</dt>
-                  <dd>Replaced with strideInPixels.</dd>
+                  <dd>Replaced with <parmname>strideInPixels</parmname>.</dd>
               </dlentry>
           </dl>
-      </p>       
+      </p>
        </pd>
        </plentry>
        <plentry props="ios mac">
@@ -154,15 +151,16 @@
   <pt>height</pt>
   <pd>Height of the incoming video frame.</pd>
        </plentry>
-                <plentry props="android">
-                    <pt>textureID</pt>
-                    <pd>Texture ID of the frame. This parameter only applies to video data in Texture format.</pd>
-                </plentry>
+       <plentry props="android">
+           <pt>textureID</pt>
+           <pd>Texture ID of the frame. This parameter only applies to video data in Texture format.</pd>
+       </plentry>
                 <plentry props="android">
                     <pt>syncMode</pt>
-                    <pd>Set whether to enable the synchronization mode. After enabling, the SDK waits while Texture processing. This parameter only applies to video data in Texture format.<ul id="ul_oxx_wmy_4qb">
-                        <li><codeph><ph keyref="true" /></codeph>: Turn on sync mode.</li>
-                        <li><codeph><ph keyref="false" /></codeph>: Do not turn on sync mode.</li>
+                    <pd>Set whether to enable the synchronization mode. After enabling, the SDK waits while Texture processing. This parameter only applies to video data in Texture format.<ul
+                            id="ul_oxx_wmy_4qb">
+                        <li><codeph><ph keyref="true"/></codeph>: Turn on sync mode.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not turn on sync mode.</li>
                         </ul></pd>
                 </plentry>
        <plentry props="android">
@@ -189,7 +187,7 @@
        </plentry>
        <plentry>
   <pt>cropRight</pt>
-  <pd>Raw data related parameter. The number of pixels trimmed from the right. The default value is 0.</pd>
+  <pd> Raw data related parameter. The number of pixels trimmed from the right. The default value is 0.</pd>
            <pd props="android">This parameter only applies to video data in non-Texture format.</pd>
        </plentry>
        <plentry>

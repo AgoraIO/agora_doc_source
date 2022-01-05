@@ -76,31 +76,44 @@
     rednessLevel: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class BeautyOptions {
+ 
+  LighteningContrastLevel? lighteningContrastLevel;
+  double? lighteningLevel;
+  double? smoothnessLevel;
+  double? rednessLevel;
+
+  BeautyOptions({
+    this.lighteningContrastLevel,
+    this.lighteningLevel,
+    this.smoothnessLevel,
+    this.rednessLevel,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
    <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
-  <pt>lighteningContrastLevel</pt>
+           <pt>lighteningContrastLevel</pt>
   <pd>The contrast level. For details, see <xref keyref="LIGHTENING_CONTRAST_LEVEL" />.</pd>
        </plentry>
        <plentry>
   <pt>lighteningLevel</pt>
-  <pd>The brightness level. The value ranges from 0.0 (original) to 1.0. This parameter adjusts the red saturation level.</pd>
+  <pd>The brightness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph props="ios">0.7</ph><ph props="android">0.6</ph><ph props="windows">0.0</ph>. This parameter makes video whitening.</pd>
        </plentry>
        <plentry>
   <pt>smoothnessLevel</pt>
-  <pd>The sharpness level. The value ranges between 0 (original) and 1. This parameter is usually used to remove blemishes.</pd>
+  <pd>The smoothness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph props="ios">0.5</ph><ph props="android">0.5</ph><ph props="windows">0.0</ph>. This parameter is usually used to remove blemishes.</pd>
        </plentry>
        <plentry>
   <pt>rednessLevel</pt>
-  <pd>The redness level. The value ranges between 0 (original) and 1. This parameter adjusts the red saturation level.</pd>
+  <pd>The redness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph props="ios">0.1</ph><ph props="android">0.1</ph><ph props="windows">0.0</ph>. This parameter adjusts the red saturation level.</pd>
        </plentry>
                 <plentry props="rtc-ng">
                     <pt>sharpnessLevel</pt>
-                    <pd>The sharpness level. The value ranges between 0 (original) and 1.</pd>
+                    <pd>The sharpness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph props="ios">0.1</ph><ph props="android">0.3</ph><ph props="windows">0.0</ph>.</pd>
                 </plentry>
    </parml>
         </section></refbody>

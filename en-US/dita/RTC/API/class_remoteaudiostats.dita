@@ -18,9 +18,74 @@
     public int totalFrozenTime;
     public int frozenRate;
     public int mosValue;
+    public long totalActiveTime;
+    public long publishDuration;
   }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteAudioStats : NSObject
-
+@property(assign, nonatomic) NSUInteger uid;
+@property(assign, nonatomic) NSUInteger quality;
+@property(assign, nonatomic) NSUInteger networkTransportDelay;
+@property(assign, nonatomic) NSUInteger jitterBufferDelay;
+@property(assign, nonatomic) NSUInteger audioLossRate;
+@property(assign, nonatomic) NSUInteger numChannels;
+@property(assign, nonatomic) NSUInteger receivedSampleRate;
+@property(assign, nonatomic) NSUInteger receivedBitrate;
+@property(assign, nonatomic) NSUInteger totalFrozenTime;
+@property(assign, nonatomic) NSUInteger totalActiveTime;
+@property(assign, nonatomic) NSInteger publishDuration;
+@property(assign, nonatomic) NSUInteger frozenRate;
+@property(assign, nonatomic) NSUInteger mosValue;
+@end</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">struct RemoteAudioStats
+{
+  uid_t uid;
+  int quality;
+  int networkTransportDelay;
+  int jitterBufferDelay;
+  int audioLossRate;
+  int numChannels;
+  int receivedSampleRate;
+  int receivedBitrate;
+  int totalFrozenTime;
+  int frozenRate;
+  int mosValue;
+  int totalActiveTime;
+  int publishDuration;
+  RemoteAudioStats() :
+    uid(0),
+    quality(0),
+    networkTransportDelay(0),
+    jitterBufferDelay(0),
+    audioLossRate(0),
+    numChannels(0),
+    receivedSampleRate(0),
+    receivedBitrate(0),
+    totalFrozenTime(0),
+    frozenRate(0),
+    mosValue(0),
+    totalActiveTime(0),
+    publishDuration(0){}
+};</codeblock>
+            </p>
+            <p props="rtc" outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public static class RemoteAudioStats {
+    public int uid;
+    public int quality;
+    public int networkTransportDelay;
+    public int jitterBufferDelay;
+    public int audioLossRate;
+    public int numChannels;
+    public int receivedSampleRate;
+    public int receivedBitrate;
+    public int totalFrozenTime;
+    public int frozenRate;
+    public int totalActiveTime;
+    public int publishDuration;
+    public int qoeQuality;
+    public int qualityChangedReason;
+    public int mosValue;
+}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteAudioStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) NSUInteger quality;
 @property(assign, nonatomic) NSUInteger networkTransportDelay;
@@ -31,29 +96,29 @@
 @property(assign, nonatomic) NSUInteger receivedBitrate;
 @property(assign, nonatomic) NSUInteger totalFrozenTime;
 @property(assign, nonatomic) NSUInteger frozenRate;
-@property(assign, nonatomic) NSUInteger mosValue;
+@property(assign, nonatomic) NSUInteger totalActiveTime;
+@property(assign, nonatomic) NSInteger publishDuration;
+@property(assign, nonatomic) NSUInteger qoeQuality;
+@property(assign, nonatomic) NSUInteger qualityChangedReason;
+@property(assign, nonatomic) NSInteger mosValue;
 @end</codeblock>
-            </p>
-            <p props="rtc" outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
                 <codeblock props="windows unity" outputclass="language-cpp">struct RemoteAudioStats {
-    uid_t uid;
-    int quality;
-    int networkTransportDelay;
-    int jitterBufferDelay;
-    int audioLossRate;
-    int numChannels;
-    int receivedSampleRate;
-    int receivedBitrate;
-    int totalFrozenTime;
-    int frozenRate;
-    int totalActiveTime;
-    int publishDuration;
-    int qoeQuality;
-    int qualityChangedReason;
-    int mosValue;
-    };</codeblock>
+  uid_t uid;
+  int quality;
+  int networkTransportDelay;
+  int jitterBufferDelay;
+  int audioLossRate;
+  int numChannels;
+  int receivedSampleRate;
+  int receivedBitrate;
+  int totalFrozenTime;
+  int frozenRate;
+  int totalActiveTime;
+  int publishDuration;
+  int qoeQuality;
+  int qualityChangedReason;
+  int mosValue;
+};</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface RemoteAudioStats {
     uid: number;
     quality: number;
@@ -72,7 +137,42 @@
     mosValue: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class RemoteAudioStats {
+
+  int uid;
+  NetworkQuality quality;
+  int networkTransportDelay;
+  int jitterBufferDelay;
+  int audioLossRate;
+  int numChannels;
+  int receivedSampleRate;
+  int receivedBitrate;
+  int totalFrozenTime;
+  int frozenRate;
+  int totalActiveTime;
+  int publishDuration;
+  ExperienceQualityType qoeQuality;
+  ExperiencePoorReason qualityChangedReason;
+  int mosValue;
+
+  RemoteAudioStats(
+    this.uid,
+    this.quality,
+    this.networkTransportDelay,
+    this.jitterBufferDelay,
+    this.audioLossRate,
+    this.numChannels,
+    this.receivedSampleRate,
+    this.receivedBitrate,
+    this.totalFrozenTime,
+    this.frozenRate,
+    this.totalActiveTime,
+    this.publishDuration,
+    this.qoeQuality,
+    this.qualityChangedReason,
+    this.mosValue,
+  );
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
@@ -80,32 +180,31 @@
    <parml>
        <plentry>
   <pt>uid</pt>
-  <pd>The ID of the remote user sending the stream.</pd>
+  <pd>The user ID of the remote user.</pd>
        </plentry>
        <plentry>
   <pt>quality</pt>
-  <pd><p props="ios mac windows unity">The quality of the audio stream sent by the user. See <xref keyref="QUALITY_TYPE" />.</p>
-  <p props="android">
-      <ul id="qualitytype">
-          <li><ph keyref="QUALITY_UNKNOWN" /> (0): The quality is unknown.</li>
-                                <li><ph keyref="QUALITY_EXCELLENT" /> (1): The quality is excellent.</li>
-                                <li><ph keyref="QUALITY_GOOD" /> (2): The network quality is quite good, but the bitrate may be slightly lower than excellent.</li>
-                                <li><ph keyref="QUALITY_POOR" /> (3): Users can feel the communication slightly impaired.</li>
-                                <li><ph keyref="QUALITY_BAD" /> (4): Users cannot communicate smoothly.</li>
-                                <li><ph keyref="QUALITY_VBAD" /> (5): The quality is so bad that users can barely communicate.</li>
-          <li><ph keyref="QUALITY_DOWN" /> (6): The quality is down and users cannot communicate at all.</li>
-      </ul>
-  </p>
-  </pd>
+           <pd>The quality of the audio stream sent by the user.  <ph props="ios mac windows electron unity flutter">See <xref keyref="QUALITY_TYPE"/>.</ph><p props="android">
+                            <ul id="qualitytype">
+                                <li><ph keyref="QUALITY_UNKNOWN"/> (0): The quality is unknown.</li>
+                                <li><ph keyref="QUALITY_EXCELLENT"/> (1): The quality is excellent.</li>
+                                <li><ph keyref="QUALITY_GOOD"/> (2): The network quality seems excellent, but the bitrate can be slightly lower than excellent.</li>
+                                <li><ph keyref="QUALITY_POOR"/> (3): Users can feel the communication is slightly impaired.</li>
+                                <li><ph keyref="QUALITY_BAD"/> (4): Users cannot communicate smoothly.</li>
+                                <li><ph keyref="QUALITY_VBAD"/> (5): The quality is so bad that users can barely communicate.</li>
+                                <li><ph keyref="QUALITY_DOWN"/> (6): The network is down, and users cannot communicate at all.</li>
+                            </ul>
+                        </p>
+                    </pd>
        </plentry>
        <plentry>
   <pt>networkTransportDelay</pt>
-  <pd>The network delay (ms) from the audio sender to the receiver.</pd>
+  <pd>The network delay (ms) from the sender to the receiver.</pd>
        </plentry>
        <plentry>
   <pt>jitterBufferDelay</pt>
   <pd>
-      <p>The network delay (ms) from the audio receiver to the jitter buffer.<note type="attention">This parameter does not take effect if the receiver is an audience member and<xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE" /> is 1.</note></p>
+      <p>The network delay (ms) from the receiver to the jitter buffer.<note type="attention">This parameter does not take effect if the receiver is an audience member and <parmname>audienceLatencyLevel</parmname> of <xref keyref="ClientRoleOptions"/> is 1.</note></p>
   </pd>
        </plentry>
        <plentry>
@@ -118,7 +217,7 @@
        </plentry>
        <plentry>
   <pt>receivedSampleRate</pt>
-  <pd>The sampling rate of the received remote audio stream in the reported interval.</pd>
+  <pd>The sampling rate of the received audio stream in the reported interval.</pd>
        </plentry>
        <plentry>
   <pt>receivedBitrate</pt>
@@ -130,21 +229,36 @@
        </plentry>
        <plentry>
   <pt>frozenRate</pt>
-  <pd>The total audio freeze time as a percentage (%) of the total time when the audio is available. The audio is available means that the remote user neither stops sending the audio stream nor disables the audio module after joining the channel.</pd>
+  <pd>The total audio freeze time as a percentage (%) of the total time when the audio is available. The audio is considered available when the remote user neither stops sending the audio stream nor disables the audio module after joining the channel.</pd>
        </plentry>
-       <plentry props="windows unity">
-  <pt>totalActiveTime</pt>
-  <pd>The total time (ms) when the remote user in the COMMUNICATION profile or the remote host in the LIVE_BROADCASTING profile neither stops sending the audio stream nor disables the audio module after joining the channel.</pd>
-       </plentry>
-       <plentry props="windows unity">
-  <pt>publishDuration</pt>
-  <pd>The total duration (ms) of the published remote audio stream.</pd>
-       </plentry>
-       <plentry props="windows unity">
+       <plentry>
+                    <pt>totalActiveTime</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry props="native">
+                                <dt>Since</dt>
+                                <dd>v3.0.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>The total active time (ms) between the start of the audio call and the callback of the remote user.</p>
+                        <p>The active time refers to the total duration of the remote user without the mute state.</p></pd>
+                </plentry>
+       <plentry>
+                    <pt>publishDuration</pt>
+                    <pd>
+                        <dl outputclass="since" props="rtc">
+                            <dlentry props="native">
+                                <dt>Since</dt>
+                                <dd>v3.1.0</dd>
+                            </dlentry>
+                        </dl>
+                        <p>The total duration (ms) of the remote audio stream.</p></pd>
+                </plentry>
+       <plentry props="rtc">
   <pt>qoeQuality</pt>
   <pd>
       <dl outputclass="since" props="rtc">
- <dlentry props="windows android ios mac">
+ <dlentry props="native">
      <dt>Since</dt>
      <dd>v3.3.0</dd>
  </dlentry>
@@ -152,11 +266,11 @@
       <p>Quality of experience (QoE) of the local user when receiving the remote audio stream. See <xref keyref="EXPERIENCE_QUALITY_TYPE" />.</p>
   </pd>
        </plentry>
-       <plentry props="windows unity">
+       <plentry props="rtc">
   <pt>qualityChangedReason</pt>
   <pd>
       <dl outputclass="since" props="rtc">
- <dlentry props="windows">
+ <dlentry props="native">
      <dt>Since</dt>
      <dd>v3.3.0</dd>
  </dlentry>
@@ -168,14 +282,14 @@
            <pt>mosValue</pt>
            <pd>
                <dl outputclass="since" props="rtc">
-                   <dlentry>
+                   <dlentry props="native">
                        <dt>Since</dt>
                        <dd>v3.3.1</dd>
                    </dlentry>
                </dl>
                <p>The quality of the remote audio stream in the reported interval. The quality is determined by the Agora real-time audio MOS (Mean Opinion Score) measurement method. The return value range is [0, 500]. Dividing the return value by 100 gets the MOS score, which ranges from 0 to 5. The higher the score, the better the audio quality.</p>
-               
-               <p>The subjective perception of audio quality corresponding to the Agora real-time audio MOS scores is as follows:<simpletable>
+
+               <p> The subjective perception of audio quality corresponding to the Agora real-time audio MOS scores is as follows:<simpletable>
                                 <sthead>
                                     <stentry>MOS score</stentry>
                                     <stentry>Perception of audio quality</stentry>

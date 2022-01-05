@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlocalvoicepitch">
-    <title><ph keyref="setLocalVoicePitch"/></title>
+    <title><ph keyref="setLocalVoicePitch" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置本地语音音调。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -17,8 +17,8 @@
                 <codeblock props="windows" outputclass="language-cpp">virtual int setLocalVoicePitch(double pitch) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">setLocalVoicePitch(pitch: number): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoicePitch(double pitch);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalVoicePitch(double pitch);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -29,11 +29,11 @@
    <parml>
        <plentry>
   <pt>pitch</pt>
-  <pd>语音频率可以 [0.5,2.0] 范围内设置。取值越小，则音调越低。默认值为 1.0，表示不需要修改音调。</pd>
+  <pd>语音频率。可以 [0.5,2.0] 范围内设置。取值越小，则音调越低。默认值为 1.0，表示不需要修改音调。</pd>
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>返回值</title>
    <ul>
        <li>0: 方法调用成功</li>

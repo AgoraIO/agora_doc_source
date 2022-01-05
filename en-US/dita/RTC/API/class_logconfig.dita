@@ -37,13 +37,24 @@
     level: LOG_LEVEL
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="flutter" outputclass="language-dart">class LogConfig {
+ 
+  String? filePath;
+  int? fileSize;
+  LogLevel? level;
+
+  LogConfig({
+    this.filePath,
+    this.fileSize,
+    this.level,
+  });
+}</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
    
-   <dl outputclass="since" props="windows android ios mac">
-       <dlentry>
+   <dl outputclass="since" props="rtc">
+       <dlentry props="native">
   <dt>Since</dt>
   <dd>v3.3.0</dd>
        </dlentry>
@@ -55,41 +66,44 @@
        <plentry>
   <pt>filePath</pt>
   <pd>
-                        <p>The absolute path of the log files. Ensure that the directory for the log
-                            files exists and is writable. You can use this parameter to rename the
-                            log files. </p>
+      <p>The absolute or relative path of the log file, which ends with \ or /. Ensure that the path for the log file exists and is writable. You can use this parameter to rename the log files.</p>
                         <p props="windows electron rn">The default file path is:<ul>
                                 <li props="windows rn">Android: <filepath id="android-path">/storage/emulated/0/Android/data/&lt;package
-                                        name&gt;/files/agorasdk.log</filepath></li>
+                                        name&gt;/files/agorasdk.log/</filepath>.</li>
                                 <li props="windows rn">iOS: <filepath id="ios-path">App
-                                        Sandbox/Library/caches/agorasdk.log</filepath></li>
+                                        Sandbox/Library/caches/agorasdk.log</filepath>.</li>
                                 <li props="windows electron">macOS:<ul id="mac-path">
-                                        <li>If Sandbox is enabled:<filepath> App
-                                                Sandbox/Library/Logs/agorasdk.log</filepath>, for
-                                                example,<filepath>
-                                                /Users/&lt;username&gt;/Library/Containers/&lt;App
+                                        <li>If Sandbox is enabled: <filepath>App
+                                                Sandbox/Library/Logs/agorasdk.log/</filepath>. For example, 
+<filepath>                                                /Users/&lt;username&gt;/Library/Containers/&lt;App
                                                 Bundle
-                                                Identifier&gt;/Data/Library/Logs/agorasdk.log</filepath>.</li>
+                                                Identifier&gt;/Data/Library/Logs/agorasdk.log/</filepath>.</li>
                                         <li>If Sandbox is disabled:
-                                                <filepath>~/Library/Logs/agorasdk.log</filepath></li>
+<filepath>                                            ~/Library/Logs/agorasdk.log</filepath></li>
                                     </ul></li>
-                                <li props="windows electron">Windows:
-                                        <filepath>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\agorasdk.log</filepath>。</li>
+                                <li props="windows electron">Windows
+                                         <filepath>C: \Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\agorasdk.log</filepath>.</li>
                             </ul></p>
-                        <p props="android">The default file path is <filepath conkeyref="LogConfig/android-path" />.</p>
-                        <p props="ios">The default file path is <filepath conkeyref="LogConfig/ios-path" />.</p>
-                        <p props="mac">The default file path is:<ul conkeyref="LogConfig/mac-path">
-                                <li />
-                            </ul></p>
+                        <p props="android">The default file path is:
+<filepath>                                /storage/emulated/0/Android/data/&lt;package
+                                name&gt;/files/agorasdk.log/</filepath>.</p>
+                        <p props="ios">The default path is <filepath>App
+                                Sandbox/Library/caches/agorasdk.log</filepath>.</p>
+                        <p props="mac">The default file path is:<ul>
+                                        <li>If Sandbox is enabled: <filepath>App
+                                        Sandbox/Library/Logs/agorasdk.log/</filepath>. For example, 
+<filepath>                                        /Users/&lt;username&gt;/Library/Containers/&lt;App
+                                        Bundle
+                                        Identifier&gt;/Data/Library/Logs/agorasdk.log/</filepath>.</li>
+                                        <li>If Sandbox is disabled: <filepath>~/Library/Logs/agorasdk.log</filepath></li>
+                            </ul>
+                        </p>
                     </pd>
        </plentry>
        <plentry>
-  <pt>fileSize</pt>
-  <pd>The size (KB) of a log file. The default value is 2014 KB. If you set
-                            <parmname>fileSize</parmname> to 1024 KB, the maximum aggregate size of
-                        the log files output by the SDK is 5 MB. If you set
-                            <parmname>fileSize</parmname> to less than 1024 KB, the setting is
-                        invalid, and the maximum size of a log file is still 1024 KB.</pd>
+  <pt props="windows unity flutter">fileSize</pt>
+           <pt props="android ios mac">fileSizeInKB</pt>
+  <pd>The size (KB) of a log file. The default value is 2014 KB. If you set <parmname>fileSize</parmname> to 1024 KB, the maximum aggregate size of the log files output by the SDK is 5 MB. If you set <parmname>fileSize</parmname> to less than 1024 KB, the setting is invalid, and the maximum size of a log file is still 1024 KB.</pd>
        </plentry>
        <plentry>
   <pt>level</pt>

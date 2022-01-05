@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileproberesult">
-    <title><ph keyref="LastmileProbeResult"/></title>
+    <title><ph keyref="LastmileProbeResult" /></title>
     <shortdesc id="short"><ph id="shortdesc">上下行 Last mile 网络质量探测结果。</ph></shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeResult {
+                    LASTMILE_PROBE_RESULT_STATE state;
+                    LastmileProbeOneWayResult uplinkReport;
+                    LastmileProbeOneWayResult downlinkReport;
+                    unsigned int rtt;
+
+                    LastmileProbeResult() : state(LASTMILE_PROBE_RESULT_UNAVAILABLE),
+                    rtt(0) {}
+                    };</codeblock>
+            </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
-    
+
     public static class LastmileProbeOneWayResult {
       public int packetLossRate;
       public int jitter;
@@ -26,7 +37,7 @@
 @property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull uplinkReport;
 @property (strong, nonatomic) AgoraLastmileProbeOneWayResult *_Nonnull downlinkReport;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct LastmileProbeResult {
+                <codeblock props="unity" outputclass="language-cpp">struct LastmileProbeResult {
     LASTMILE_PROBE_RESULT_STATE state;
     LastmileProbeOneWayResult uplinkReport;
     LastmileProbeOneWayResult downlinkReport;
@@ -38,20 +49,41 @@
     downlinkReport: LastmileProbeOneWayResult;
     rtt: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">class LastmileProbeResult {
+
+  LastmileProbeResultState state;
+  int rtt;
+  LastmileProbeOneWayResult uplinkReport;
+  LastmileProbeOneWayResult downlinkReport;
+
+  LastmileProbeResult(
+    this.state,
+    this.rtt,
+    this.uplinkReport,
+    this.downlinkReport,
+  );
+}</codeblock>
+            </p>
+            <p outputclass="codeblock" props="rtc">
+                <codeblock props="windows" outputclass="language-cpp">struct LastmileProbeResult {
+  LASTMILE_PROBE_RESULT_STATE state;
+  LastmileProbeOneWayResult uplinkReport;
+  LastmileProbeOneWayResult downlinkReport;
+  unsigned int rtt;
+};</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
    <parml>
        <plentry>
   <pt>state</pt>
-           <pd><p props="ios mac windows unity">Last mile 质量探测结果的状态。详见: <xref keyref="LASTMILE_PROBE_RESULT_STATE"/> 。</p>
+           <pd><p props="ios mac windows unity">Last mile 质量探测结果的状态。详见: <xref keyref="LASTMILE_PROBE_RESULT_STATE" /> 。</p>
                <p props="android">Last-mile 质量探测结果的状态，有如下几种： <ul>
-                                <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE"/> (1)：表示本次 Last-mile
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE" /> (1)：表示本次 Last-mile
                                     质量探测是完整的。</li>
-                                <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE"/> (2)：表示本次
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE" /> (2)：表示本次
                                     Last-mile 质量探测未进行带宽预测，因此结果不完整。一个可能的原因是测试资源暂时受限。</li>
                                 <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE"/> (3)：未进行
                                     Last-mile 质量探测。一个可能的原因是网络连接中断。</li>
@@ -61,11 +93,11 @@
        </plentry>
        <plentry>
   <pt>uplinkReport</pt>
-  <pd>上行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+  <pd>上行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult" />。</pd>
        </plentry>
        <plentry>
   <pt>downlinkReport</pt>
-  <pd>下行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult"/>。</pd>
+  <pd>下行网络质量报告。详见 <xref keyref="LastmileProbeOneWayResult" />。</pd>
        </plentry>
        <plentry>
   <pt>rtt</pt>
