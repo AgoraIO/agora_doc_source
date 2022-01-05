@@ -2,7 +2,7 @@ This page introduces how to configure the whiteboard, recording, and messaging f
 
 <div class="alert info">Before reading this page, ensure sure that you have <a href="/cn/agora-class/agora_class_enable?platform=Web" target="_blank">enabled the Flexible Classroom service</a> in Agora Console.</div>
 
-## 配置白板功能
+## Configure the whiteboard feature
 
 If you want to upload PPT, Word, or PDF files to a flexible classroom and display these files on the whiteboard, you need to configure the whiteboard feature in Agora Console.
 
@@ -22,7 +22,7 @@ You need to do the following:
 
 2. Configure a third-party cloud storage service for storing files uploaded in a classroom.
 
-   - If you use Alibaba Cloud OSS, fill in the following information:
+   - 如果你使用阿里云 OSS，填写以下信息：
       - `region`: 阿里云 OSS 中创建 Bucket 时指定的数据中心所在区域，例如 `oss-cn-shanghai`。
       - `endpoint`: String. The access` endpoint` of Alibaba Cloud OSS, such as "`oss-cn-shanghai.aliyuncs.com`".
       - `Bucket`: String. The bucket name of Alibaba Cloud OSS, such as "`agora-whiteboard`".
