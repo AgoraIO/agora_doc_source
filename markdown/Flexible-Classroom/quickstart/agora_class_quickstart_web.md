@@ -8,11 +8,11 @@
 
 ## 前提条件
 
-- 已在 Agora 控制台创建 Agora 项目，获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id)、[App 证书](/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6)并[配置 aPaaS 服务](/cn/agora-class/agora_class_prep?platform=Web)。
+- 已在 Agora 控制台创建 Agora 项目，获取 <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>、<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App 证书</a>并<a href="/cn/agora-class/agora_class_enable?platform=Web" target="_blank">开通灵动课堂服务</a>。
 - 安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
 - 物理音视频采集设备，如内置摄像头和麦克风。
-- 安装 [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- 安装 [yarn](https://yarnpkg.com/getting-started/install)
+- 安装 [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)。
+- 安装 [yarn](https://yarnpkg.com/getting-started/install)。
 
 ## 启动灵动课堂
 

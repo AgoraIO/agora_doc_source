@@ -12,7 +12,7 @@
 
 ## EduShareUIStore
 
-`EduShareUIStore` 可结合`agora-classroom-sdk` 库中的 `ToastContainer` 组件用于实现通知提示功能，包含 `dialogQueue`（模态框相关）、 `toastQueue`（提示通知相关）、 `classroomViewportSize`（视口尺寸信息）。
+`EduShareUIStore` 提供通用且全局共享的 UI 相关属性和方法。你可以通过此对象实现显示 Toast 提示信息、弹出消息模态框、弹出错误提示框等功能。`EduShareUIStore` 可结合 `agora-classroom-sdk` 库中的 `ToastContainer` 组件用于实现通知提示功能；结合 `agora-classroom-sdk` 库中的 `DialogContainer` 组件用于实现显示模态框。
 
 ### 属性和方法
 
@@ -53,7 +53,7 @@ addToast(desc: string, type?: ToastTypeEnum)
 
 添加一个提示框。
 
-| 参数     | 描述                                                         |
+| 参数     | 描述                   |
 | :------- | :-------------------------------- |
 | `desc` | 提示框描述。 |
 | `type` | 提示框类型，详见 [ToastTypeEnum](#toasttypeenum)。 |
@@ -66,7 +66,7 @@ removeToast(id: string)
 
 移除一个提示框。
 
-| 参数     | 描述                                                         |
+| 参数     | 描述                       |
 | :------- | :-------------------------------- |
 | `id` | 提示框 ID。 |
 
@@ -102,15 +102,15 @@ removeDialog(id: string)
 
 ```typescript
 import { EduShareUIStore, ToastTypeEnum } from 'agora-edu-core';
-  import { action } from 'mobx'
-  import { v4 as uuidv4 } from 'uuid';
+import { action } from 'mobx';
+import { v4 as uuidv4 } from 'uuid';
 
-  export class LectureShareUIStore extends EduShareUIStore {
+export class LectureShareUIStore extends EduShareUIStore {
   @action.bound
     addToast(desc: string, type?: ToastTypeEnum) {
       const id = uuidv4();
       this.toastQueue.push({ id, desc, type });
-      // 提示框大于 5 个时移除多余的提示框
+      // do not show more than five toast messages
       if (this.toastQueue.length > 5) {
         this.toastQueue = this.toastQueue.splice(1, this.toastQueue.length);
       }
@@ -123,59 +123,286 @@ import { EduShareUIStore, ToastTypeEnum } from 'agora-edu-core';
 
 如果你想将提示框 toast 宽度的最小值改为 300px，则可以找到`agora-classroom-sdk` 库中的`ToastContainer` 组件。该组件调用了`agora-scenario-ui-kit` 下的 `Toast` 组件。找到该组件的目录`agora-scenario-ui-kit/src/components/toast`，在 `index.css` 中修改 `toast { min-width: 300px; }` 即可。
 
-## boardUIStore
+## BoardUIStore
 
-`boardUIStore` 可结合 `agora-classroom-sdk` 库中的 `WhiteboardContainer` 组件用于实现白板相关功能，包含白板的挂载、卸载、连接、断开、重连、高度设置等。
+`BoardUIStore` 可结合 `agora-classroom-sdk` 库中的 `WhiteboardContainer` 组件用于实现白板相关功能，包含白板的挂载、卸载、连接、断开、重连、高度设置等。
 
-## cloudUIStore
+### 属性和方法
+
+本节介绍 `BoardUIStore` 提供的属性和方法。
+
+
+#### classroomViewportSize
+
+```typescript
+get connectionLost(): boolean
+```
+白板连接中断。
+
+#### readyToMount
+
+```typescript
+get readyToMount(): boolean
+```
+白板准备好挂载到 DOM。
+
+#### setCollectorContainer
+```typescript
+set setCollectorContainer(collectorContainer: HTMLElement): void
+```
+设置白板课件最小化 DOM。
+| 参数     | 描述                                                         |
+| :------- | :-------------------------------- |
+| `collectorContainer` | 白板最小化后显示的DOM节点，用户可以点击此按钮后课件最大化。 |
+
+
+```typescript
+joinWhiteboard(): Promise<void>
+```
+连接白板。
+
+#### joinWhiteboardWhenConfigReady
+```typescript
+joinWhiteboardWhenConfigReady(): void
+```
+等待白板配置就绪后连接白板。
+
+#### leaveWhiteboard
+```typescript
+leaveWhiteboard(): Promise<void>
+```
+断开白板。
+
+#### mount
+```typescript
+mount(dom: HTMLDivElement): Promise<void>
+```
+白板挂载到 DOM。
+| 参数     | 描述                                                         |
+| :------- | :-------------------------------- |
+| `dom` | 白板挂载的DOM节点。 |
+
+#### rejoinWhiteboard
+
+```typescript
+rejoinWhiteboard(): Promise<void>
+```
+重连白板。
+
+#### unmount
+```typescript
+unmount(): Promise<void>
+```
+白板卸载，销毁白板实例。
+
+
+## boardUIStore 修改示例
+
+#### 通过重写 `uiOverrides` 修改白板的比例
+
+```typescript
+import { BoardUIStore } from 'agora-edu-core';
+
+export class InteractiveBoardUIStore extends BoardUIStore {
+  protected get uiOverrides() {
+    return {
+      ...super.uiOverrides,
+      heightRatio: 0.819,
+      aspectRatio: 0.461,
+    };
+  }
+}
+```
+
+## CloudUIStore
 
 `cloudUIStore` 可结合 `agora-classroom-sdk` 库中的 `PersonalResourcesContainer` 和 `PublicResourcesContainer` 组件用于实现课件管理相关功能，包含获取公共课件列表、上传课件、上传进度、获取个人课件列表、选中课件、删除个人课件、打开课件等。
 
-## handUpUIStore
+### 修改云盘资源列表
+```typescript
+export class CloudUIStore extends EduUIStoreBase {
+  
+  /**
+   * public resources list
+   * @returns
+   */
+  get publicResources() {
+    return this.classroomStore.cloudDriveStore.publicResources;
+  }
+  /**
+   * personal resources list
+   */
+  @computed
+  get personalResources() {
+    return this.classroomStore.cloudDriveStore.personalResources;
+  }
+
+  /**
+   * total number of personal resources
+   */
+  @computed
+  get personalResourcesTotalNum() {
+    return this.classroomStore.cloudDriveStore.personalResourcesTotalNum;
+  }
+}
+```
+
+## HandUpUIStore
 
 `handUpUIStore` 可结合 `agora-classroom-sdk` 库中的 `HandsUpContainer` 组件用于实现举手上讲台相关功能，包含获取挥手用户列表、是否有用户在挥手、挥手用户数、学生上讲台、学生下讲台、学生挥手等功能。
 
-## deviceSettingUIStore
+
+## DeviceSettingUIStore
 
 `deviceSettingUIStore` 用于实现设备相关功能，包含获取摄像头设备信息、麦克风设备信息、扬声器设备等。
 
-## navigationBarUIStore
+
+## NavigationBarUIStore
 
 `navigationBarUIStore` 用于实现导航栏相关功能，包含获取教室时间信息、教室状态、网络质量状态、顶部导航栏按钮列表等。
 
-## toolbarUIStore
+### 修改教室状态文字和颜色
+```typescript
+export class NavigationBarUIStore extends EduUIStoreBase {
+  /**
+   * text that shows on top center of navigation bar
+   * @returns
+   */
+  @computed
+  get classStatusText() {
+    const duration = this.classTimeDuration || 0;
 
-`toolbarUIStore` 用于实现工具栏相关功能，包含选中工具、设置画笔粗细
-获取老师工具栏列表等。
+    if (duration < 0) {
+      return `-- : --`;
+    }
+    switch (this.classState) {
+      case ClassState.beforeClass:
+        return `${transI18n('nav.to_start_in')}${this.formatCountDown(
+          duration,
+          TimeFormatType.Timeboard,
+        )}`;
+      case ClassState.ongoing:
+        return `${transI18n('nav.started_elapse')}${this.formatCountDown(
+          duration,
+          TimeFormatType.Timeboard,
+        )}`;
+      case ClassState.afterClass:
+        return `${transI18n('nav.ended_elapse')}${this.formatCountDown(
+          duration,
+          TimeFormatType.Timeboard,
+        )}`;
+      default:
+        return `-- : --`;
+    }
+  }
 
-## layoutUIStore
 
-`layoutUIStore` 用于实现课堂布局。
+  /**
+   * color of status text 
+   * @returns
+   */
+  @computed
+  get classStatusTextColor() {
+    switch (this.classState) {
+      case ClassState.beforeClass:
+        return '#677386';
+      case ClassState.ongoing:
+        return '#677386';
+      case ClassState.afterClass:
+        return '#F04C36';
+      default:
+        return undefined;
+    }
+  }
+}
+```
 
-## notificationUIStore
+## ToolbarUIStore
 
-`notificationUIStore` 用于实现课堂通知相关功能，包含教室状态通知、根据课堂状态获取时长等。
+`toolbarUIStore` 用于实现工具栏相关功能，包含选中工具、设置画笔粗细、获取老师工具栏列表等。
 
-## trackUIStore
+### 通过重写 teacherTools 和 studentTools，修改白板工具栏工具
 
-`trackUIStore` 用于实现轨迹同步，包括设置组件轨迹同步信息、移除组件轨迹同步信息。
+```typescript
+export class ToolbarUIStore extends EduUIStoreBase {
+  /**
+   * teacher tools
+   * @returns
+   */
+  get teacherTools(): ToolbarItem[] {
+    return [
+      {
+        value: 'cloud',
+        label: 'scaffold.cloud_storage',
+        icon: 'cloud',
+      },
+      {
+        value: 'tools',
+        label: 'scaffold.tools',
+        icon: 'tools',
+        category: ToolbarItemCategory.Cabinet,
+      },
+    ];
+  }
 
-## extAppUIStore
+  /**
+   * student tools
+   * @returns
+   */
+  @computed
+  get studentTools(): ToolbarItem[] {
+    return [
+      ToolbarItem.fromData({
+        value: 'text',
+        label: 'scaffold.text',
+        icon: 'text',
+      }),
+      ToolbarItem.fromData({
+        value: 'eraser',
+        label: 'scaffold.eraser',
+        icon: 'eraser',
+      }),
+    ];
+  }
+}
+```
 
-`extAppUIStore` 用于实现扩展应用相关功能，包括当前打开的 ExtApp、更新 ExtApp 属性等。
-
-## rosterUIStore
+## RosterUIStore
 
 `rosterUIStore` 用于实现花名册相关功能，包括轮播、花名册学生列表、花名册功能按钮点击。
 
-## streamUIStore
+### 通过重写 `userList` 修改用户列表的排序
+```typescript
 
-`streamUIStore` 用于流相关功能，包括获取老师流和学生流信息、获取本地设备状态等。
+  /**
+   * students list
+   * @returns
+   */
+  @computed
+  get userList() {
+    return super.userList.sort((a,b) => {
+      return a.uid > b.uid ? 1 : 0;
+    });
+  }
+```
 
-## pretestUIStore
 
-`pretestUIStore` 用于实现课前检测，包括获取设备列表、设备状态、美颜功能等。
-
+### 所有UI Store都继承自 `EduUIStoreBase`，都拥有以下属性和方法：
+#### uiOverrides 
+用于重写UI相关属性值
+```typescript
+get uiOverrides(): Record<string, any>
+```
+#### onInstall
+用于在教室创建后执行的钩子函数
+```typescript
+onInstall(): void
+```
+#### onDestroy
+用于在教室销毁后执行的钩子函数
+```typescript
+onDestroy(): void
+```
 ## 类型定义
 
 ### DialogType
