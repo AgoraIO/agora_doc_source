@@ -98,13 +98,15 @@
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcEngineConfig: NSObject
- @property (copy, nonatomic) NSString * _Nullable appId;
- @property (assign, nonatomic) AgoraChannelProfile channelProfile;
- @property (assign, nonatomic) AgoraAudioScenario audioScenario;
- @property (assign, nonatomic) AgoraAreaCodeType areaCode;
- @property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
- @property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate&gt;&gt;* _Nullable mediaFilterExtensions;
- @property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate&gt; _Nullable eventDelegate;
+
+@property (copy, nonatomic) NSString * _Nullable appId;
+@property (assign, nonatomic) AgoraChannelProfile channelProfile;
+@property (assign, nonatomic) AgoraAudioScenario audioScenario;
+@property (assign, nonatomic) AgoraAreaCodeType areaCode;
+@property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
+@property (assign, nonatomic) BOOL enableAudioDevice;
+@property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate>>* _Nullable mediaFilterExtensions;
+@property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate> _Nullable eventDelegate;
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct RtcEngineContext {
   IRtcEngineEventHandler* eventHandler;
@@ -153,16 +155,16 @@
                         <p props="android">安卓活动上下文。</p>
                     </pd>
                 </plentry>
-                <plentry props="android windows">
-                    <pt props="windows">enableAudioDevice</pt>
+                <plentry>
+                    <pt props="ios mac windows">enableAudioDevice</pt>
                     <pt props="android">mEnableAudioDevice</pt>
                     <pd>设置是否允许 SDK 使用音频设备： <ul>
-                            <li><codeph><ph keyref="true"/></codeph>:（默认）允许。</li>
-                            <li><codeph><ph keyref="false"/></codeph>: 禁止。</li>
+                        <li><codeph><ph keyref="true"/></codeph>:（默认）允许。</li>
+                        <li><codeph><ph keyref="false"/></codeph>: 禁止。</li>
                         </ul></pd>
                     <pd>
                         <note type="attention">
-                            <p>如需通过 <xref keyref="pullAudioFrame" /> 获取混音后的远端音频数据，请确保将该参数设为<codeph><ph keyref="false" /></codeph>。</p>
+                            <p>如需通过 <xref keyref="pullAudioFrame"/> 获取混音后的远端音频数据，请确保将该参数设为<codeph><ph keyref="false"/></codeph>。</p>
                         </note>
                     </pd>
                 </plentry>
