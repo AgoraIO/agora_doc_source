@@ -93,7 +93,7 @@ SDK 全局配置。用于 [setConfig](#setconfig) 方法。
 
 | 属性      | 描述                                                         |
 | :-------- | :----------------------------------------------------------- |
-| `appId`   | Agora App ID，详见[前提条件中获取 Agora App ID](/cn/agora-class/agora_class_prep#step1)。 |
+| `appId`   | Agora App ID。 |
 
 ### AgoraEduLaunchConfig
 
