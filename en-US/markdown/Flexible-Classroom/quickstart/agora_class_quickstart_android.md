@@ -8,17 +8,17 @@ This page introduces how to quickly launch a flexible classroom.
 
 ## Prerequisites
 
-- An Agora project with an Agora App ID/en/Agora%20Platform/get_appid_token#get-the-app-id, App Certificate/en/Agora%20Platform/get_appid_token#get-the-app-certificate, and the aPaaS service configured/en/agora-class/agora_class_prep?platform=Android.
+- 已在 Agora 控制台创建 Agora 项目，获取 // Agora App IDApp Certificate开通灵动课堂服务。
 - Java Development Kit https://www.oracle.com/java/technologies/javase-downloads.html.
 - Android Studio 4.0 or later.
 - Android 5.0 or later.
-- An Android device.  模拟机可能出现功能缺失或者性能问题，所以 Agora 推荐使用真机。
+- An Android device.  You may encounter unexpected issues on simulators, so Agora recommends using a real device.
 
 ## Launch a flexible classroom
 
-Follow the following steps to launch a flexible classroom:
+Follow these steps to launch a flexible classroom:
 
-1. 运行以下命令将 CloudClass-Androidhttps://github.com/AgoraIO-Community/CloudClass-Android 项目克隆至本地，并切换至最新发版分支。
+1. Run the following command to clone the CloudClass-Androidhttps://github.com/AgoraIO-Community/CloudClass-Android project and check out the latest release branch.
 
    ```
    git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
@@ -28,7 +28,7 @@ Follow the following steps to launch a flexible classroom:
    git checkout release/apaas/x.y.z
    ```
 
-<div class="alert info">Please replace x.y.z with the version number.  You can get the latest version number in the release notes.</div>
+<div class="alert info">Please replace x.y.z with the version number.  Get the latest version number in the release notes.</div>
 
 2. 在 Android Studio 中打开 CloudClass-Android 项目。
 
