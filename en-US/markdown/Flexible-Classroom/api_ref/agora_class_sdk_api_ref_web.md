@@ -98,7 +98,6 @@ export type LaunchOption = {
 | `courseWareList` | The configuration of courseware assigned by the educational institution, which cannot be edited by the client. See [CourseWareList](#coursewarelist) for details. After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 | `personalCourseWareList` | The configuration of courseware uploaded by a teacher. See [CourseWareList](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 | `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](/en/agora-class/agora_class_ext_app_web?platform=Web). |
-| `region` | （选填）课堂所在区域。 All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
 | `userFlexProperties` | User properties customized by the developer. For details, see [How can I set user properties? ](/en/agora-class/faq/agora_class_custom_properties) |
 | `mediaOptions` | Media stream configurations, including the encryption configuration and the encoding configurations of the screen-sharing stream and the video stream captured by the camera. See MediaOptions for details``. |
 | `latencyLevel` | （选填）观众端延时级别：<li>`1`: Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms.</li><li>`2`: (Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms.</li> |
@@ -187,39 +186,36 @@ Encryption modes. Used in [MediaEncryptionConfig](#mediaencryptionconfig).
 The courseware pre-download configuration. Used when calling [AgoraEduSDK.launch](#launch).
 
 ```typescript
-export type AgoraConvertedFile = {
-  width: number;
-  height: number;
+export type CloudDriveResourceConvertProgress = {
+  totalPageSize: number;
+  convertedPageSize: number;
+  convertedPercentage: Number, the progress (percentage) of the conversion task.
+  "convertedFileList": [
+    name: string;
     ppt: {
   width: number;
-    src: string;
   height: number;
+      preview?: string;
+    src: string;
 };
-  conversionFileUrl: string;
+  }[];
+  currentStep: string;
 };
 
-export type ConvertedFileList = AgoraConvertedFile[];
+export type ConvertedFileList = CloudDriveResourceConvertProgress[];
 export type CourseWareItem = {
   resourceName: string,
   resourceUuid: string,
   ext: string,
   url: string,
-  conversion: {
-    type: string,
-};
   size: number,
   updateTime: number,
-  scenes: SceneDefinition[],
-  convert?: boolean,
-  taskUuid?: string,
-  taskToken?: string,
   "taskProgress": {
     totalPageSize?: number;
     convertedPageSize?: number;
     convertedPercentage?: number;
     convertedFileList: ConvertedFileList;
 };
-  isActive?: boolean;
 };
 
 export type CourseWareList = CourseWareItem[]
@@ -234,13 +230,8 @@ export type CourseWareList = CourseWareItem[]
 | `ext` | The file suffix. |
 | `size` | The file size (bytes). |
 | `updateTime` | The latest modified time of the file. |
-| `conversion` | The file conversion configuration object, which contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>`"dynamic"`: Convert the file to a static picture.</li><li>`"static"`: Convert the file to dynamic HTML.</li></ul></ul> |
-| `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. If the suffix name is not listed above, you must set `url `and leave `scenes` empty. |
-| `scenes` | The download configuration of the converted file. When the file suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, you must set `scenes` for downloading the converted file. 详见 Agora 互动白板 SDK 的 [SceneDefinition 对象](/cn/whiteboard/API%20Reference/whiteboard_web/globals.html#scenedefinition)。 |
-| `convert` | 是否进行文档转换。 |
-| `taskUuid` | The unique identifier of the file conversion task. |
-| `taskToken` | The token used by the file conversion task. |
-| `taskProgress` | The file conversion configuration object, which contains the following fields:<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li><li>`convertedFileList`: 已转换的文档页面列表，由 `AgoraConvertedFile` 组成的数组。 `AgoraConvertedFile` 包含以下字段：<ul><li>`width`: 页面宽度。</li><li>`height`: 页面高度。</li><li>`ppt`: 页面上展示的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>``The URL address of the converted page.</li></ul></li></ul></li></ul> |
+| `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. 如果后缀名非上述所列，必须设置 `url` |
+| `taskProgress` | The file conversion configuration object, which contains the following fields:<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li><li>`convertedFileList`: 已转换的文档页面列表，由 `CloudDriveResourceConvertProgress` 组成的数组。 `CloudDriveResourceConvertProgress` 包含以下字段：<ul><li>`width`: 页面宽度。</li><li>`height`: 页面高度。</li><li>`ppt`: 页面上展示的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>``The URL address of the converted page.</li></ul></li></ul></li></ul> |
 
 ### EduRoleTypeEnum
 
