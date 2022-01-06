@@ -93,7 +93,8 @@ The SDK global configuration. Used in [setConfig](#setconfig).
 
 | Attributes | Description |
 | :-------- | :----------------------------------------------------------- |
-| `appId` | The Agora App ID. See Get the[ Agora App]( IDhttps://docs.agora.io/en/agora-class/agora_class_prep#step1). |
+| `appId` | // Agora App ID
+ |
 
 ### AgoraEduLaunchConfig
 
