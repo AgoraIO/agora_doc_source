@@ -201,8 +201,6 @@ export type CloudDriveResourceConvertProgress = {
   currentStep: string;
 };
 
-export type ConvertedFileList = CloudDriveResourceConvertProgress[];
-
 export type CourseWareItem = {
   resourceName: string;
   resourceUuid: string;
@@ -210,12 +208,7 @@ export type CourseWareItem = {
   url?: string;
   size: number;
   updateTime: number;
-  taskProgress?: {
-    totalPageSize?: number;
-    convertedPageSize?: number;
-    convertedPercentage?: number;
-    convertedFileList: ConvertedFileList;
-  };
+  taskProgress?: CloudDriveResourceConvertProgress;
 };
 
 export type CourseWareList = CourseWareItem[];
@@ -231,7 +224,7 @@ export type CourseWareList = CourseWareItem[];
 | `size`         | 课件大小，单位为字节。                                       |
 | `updateTime`   | 课件最后被修改的时间。                                       |
 | `url`          | 文件访问地址。灵动课堂客户端会对后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以用于课堂内白板展示。如果后缀名非上述所列，必须设置 `url`|
-| `taskProgress` | 文件转换任务进度对象，包含以下字段：<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: 转换进度（百分比）。</li><li>`convertedFileList`: 已转换的文档页面列表，由 `CloudDriveResourceConvertProgress` 组成的数组。`CloudDriveResourceConvertProgress` 包含以下字段：<ul><li>`width`: 页面宽度。</li><li>`height`: 页面高度。</li><li>`ppt`: 页面上展示的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>`src`: 完成转换的页面的 URL 下载地址。</li></ul></li></ul></li></ul> |
+| `taskProgress` | 文件转换任务进度对象，包含以下字段：<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: 转换进度（百分比）。</li><li>`convertedFileList`: 已转换的文档页面列表，每页文档对应一条数据，每条数据包含以下字段：<ul><li>`name`: 文档页名称</li><li>`ppt`: 页面上展示的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>`src`: 完成转换的页面的 URL 下载地址。</li><li>`preview?`: 缩略图URL。</li></ul></li></ul></li></ul> |
 
 ### EduRoleTypeEnum
 
