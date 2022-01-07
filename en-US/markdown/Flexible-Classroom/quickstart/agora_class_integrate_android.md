@@ -8,12 +8,12 @@ Flexible Classroom contains the following modules:
 
 - `app`: This module contains code for the classroom login interface and a client-side token generator, showing how to call APIs to join a flexible classroom. This module is an open-source project available on GitHub and for reference only.
 
-<div class="alert note"><li>Specifications defined for the login interface (such as the length requirement of the user name and the room name and character restrictions) do not apply to all apps. You need to define them according to your own business requirements.</li><li>The client-side token generator provided by Agora is only for rapid testing. . When your app goes live, to ensure security, you must deploy a server-side token generator and generate tokens on your server. For details, see <a href="/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms">Authenticate Your Users with Tokens</a>. .</li></div>
+<div class="alert note"><li>Specifications defined for the login interface (such as the length requirement of the user name and the room name and character restrictions) do not apply to all apps. You need to define them according to your own business requirements.</li><li>The client-side token generator provided by Agora is only for rapid testing. When your app goes live, to ensure security, you must<a href="/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms"> deploy a server-side token generator and generate tokens</a> on your server. For details, see Authenticate Your Users with Tokens. .</li></div>
 
-- `AgoraEduUIKit`: This module contains code for the classroom UI, showing how to call APIs to aggregate and update UI data. This module is open source and optional, but usually developers can develop their own classroom UI based on this module.
-- `AgoraClassSDK`: Provides some commonly used methods, such as configuring the SDK, starting the classroom, registering ext app and other functions, as well as providing the implementation of activities in various scenarios. This module is open source and optional, but the developer may use some of its functions and it is recommended to keep it.
-- `AgoraEduCore`: The core module of the Flexible Classroom must be introduced. Since version 2.0.0, this module is closed source, and developers use remote dependencies to introduce it.
-- `hyphenate`: The UI and logic implementation of Huanxin Chat IM. Under normal circumstances it needs to be introduced. If the developer implements the IM module and replaces the part corresponding to the ring letter in the` AgoraEduUIkit` module, there is no need to introduce it.
+- `AgoraEduUIKit`: This module contains code for the classroom UI, showing how to call APIs to aggregate and update UI data. 此模块在 GitHub 上开源。 一般情况下开发者可以基于这个模块开发自己的课堂 UI。
+- `AgoraClassSDK`:（可选）提供一些常用的方法，如配置 SDK、启动教室、注册 ext app 等功能，同时提供各场景的 Activity 实现。 此模块在 GitHub 上开源。 开发者可能用到其中的某些功能，建议保留。
+- `AgoraEduCore`:（必需）灵动课堂的核心模块。 Since version 2.0.0, this module is closed source, and developers use remote dependencies to introduce it.
+- `hyphenate`:（可选）环信聊天 IM 的 UI 和逻辑实现。 If the developer implements the IM module and replaces the part corresponding to the ring letter in the` AgoraEduUIkit` module, there is no need to introduce it.
 
 ### Module dependencies
 
