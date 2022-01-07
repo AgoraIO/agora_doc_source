@@ -127,7 +127,7 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
 
 <div class="alert info">The release branch is release/apaas/x.y.z. Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_ios?platform=iOS">release notes</a>.</div>
 
-4. Add the following code in your project's `Podfile` to import dependencies, including `AgoraClassroomSDK_iOS.podspec`, `AgoraEduContext.podspec`, and `AgoraEduUI.podspec` in CloudClass-iOS and `AgoraWidgets.podspec, ChatWidget.podspec ````AgoraExtApps.podspec and apaas-extapp-ios projects in the CloudClass-iOS project Other dependent libraries.`
+1. 在你的项目的 `Podfile` 文件中添加如下代码引用依赖库。
 
    ```
    # Third-party libs
