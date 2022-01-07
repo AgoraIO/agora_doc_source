@@ -1,18 +1,18 @@
-This page introduces how to add Flexible Classroom into your iOS app.
+This page introduces how to add Flexible Classroom into your Web or Electron project.
 
 ## Understand the tech
 
 Flexible Classroom contains the following modules:
 
-- `agora-classroom-sdk`: Agora Classroom SDK，包含以下模块：
-   - `infra/stores`: UI Store 目录，负责为 UI 组件提供业务逻辑封装。
+- `agora-classroom-sdk`: The Agora Classroom SDK, which contains the following modules:
+   - `infra/stores`: This module contains all the UI stores, which implements all the business logic for UI kits.
    - `ui-kit/capabilities`:
-      - `containers`: 业务组件目录，UI 组件与 UI Store 结合成为业务组件。
-      - `scenarios`: 各个班型场景目录。
-- `agora-chat-widget`: 环信聊天组件。
-- `agora-plugin-gallery`: ExtApp 插件库，包含屏幕共享、答题器、计时器、投票器等插件。
-- `agora-scenario-ui-kit`: UI 组件库。
-- `agora-widget-gallery`: Widget 插件库，包含通过 Agora RTM SDK 实现的聊天插件和通过环信 IM SDK 实现的聊天插件。
+      - `containers`: This folder contains A catalog of business components. UI components are combined with UI Store to become business components.
+      - `scenarios`: A catalog of various class` scenarios`.
+- `agora-chat-widget`: The ring letter chat component.
+- `agora-plugin-gallery`: ExtApp `plug-`in library, including screen sharing, clickers, timers, voting devices and other plug-ins.
+- `agora-scenario-ui-kit`: UI component library.
+- `Agora-widget-gallery`: Widget plug-in library, including chat plug-ins implemented through Agora RTM SDK and chat plug-ins implemented through Huanxin IM SDK.
 
 ## Integration methods
 
@@ -22,23 +22,23 @@ Choose any of the following integration methods according to your needs.
 
 ### Use the default UI of Flexible Classroom
 
-如果你使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可选择以下任意一种方法将完整的灵动课堂集成到你自己的项目中：
+If you use the default UI of Flexible Classroom, choose one of the following methods to integrate the whole Flexible Classroom into your project:
 
-- 使用 [npm](https://www.npmjs.com/package/agora-classroom-sdk) 集成 SDK：
+- Integrate Flexible Classroom through [npm](:https://www.npmjs.com/package/agora-classroom-sdk):
 
-   1. Run the following command to install the SDK.
+   1. Run the following command to install the SDK:
 
       ```
       npm install agora-classroom-sdk
       ```
 
-   2. To import the AgoraEduSDK module, add the following code to the Javascript`` code in your project.
+   2. To import the `AgoraEduSDK` module, add the following code in the Javascript code in your project.
 
       ```
       import {AgoraEduSDK} from 'agora-classroom-sdk'
       ```
 
-- 使用 CDN 获取 SDK。 Add the following code to the line before <style> in your project.
+- Integrate Flexible Classroom through CDN. Add the following code to the HTML file in your project.
 
    ```html
    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.0.1.bundle.js"></script>
@@ -50,7 +50,7 @@ Choose any of the following integration methods according to your needs.
 
 If you want to customize the default UI of Flexible Classroom, integrate Flexible Classroom as follows:
 
-1. 运行以下命令将 CloudClass-Desktop 克隆至本地，并切换至最新发版分支。
+1. To clone CloudClass-Desktop and check out the latest release branch, run the following command:
 
    ```
    git clone https://github.com/AgoraIO-Community/CloudClass-Desktop.git
@@ -62,13 +62,13 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
 
 <div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_web?platform=Web">release notes</a>.</div>
 
-2. 成功拉取代码后，你可根据自己的需求修改课堂 UI，然后通过以下命令进行调试。
+2. After pulling the code, you can modify the classroom UI according to your needs, and debug it with the following commands:
 
-   - Web 项目：`yarn dev`
-   - Electron 项目：`yarn dev:electron`
+   - For a Web project: `yarn dev`
+   - For an Electron project: `yarn dev:electron`
 
-3. 完成开发后，可通过以下命令打包 SDK 或应用：
+3. After completing the development, pack the SDK or application with the following commands:
 
-   - 打包 Classroom SDK：`yarn pack:classroom:sdk`
-   - 打包 Electron Mac 客户端：`yarn pack:electron:mac`
-   - 打包 Electron Windows 客户端：执行命令 `yarn pack:electron:win`
+   - Pack the Classroom SDK: `yarn pack:classroom:sdk`
+   - Pack the Mac client: `yarn pack:electron:mac`
+   - Pack the Windows client: `yarn pack:electron:win`
