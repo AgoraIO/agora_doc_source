@@ -11,8 +11,8 @@
 - 已在 Agora 控制台创建 Agora 项目，获取 <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>、<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App 证书</a>并<a href="/cn/agora-class/agora_class_enable?platform=Electron" target="_blank">开通灵动课堂服务</a>。
 - 安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
 - 物理音视频采集设备，如内置摄像头和麦克风。
-- 安装 [Node.js 和 npm](https://www.npmjs.com/)。
-- 安装 [yarn](https://yarnpkg.com/)。
+- 安装 [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)。
+- 安装 [yarn](https://yarnpkg.com/getting-started/install)。
 
 ## 启动灵动课堂
 
@@ -28,7 +28,7 @@
    git checkout release/apaas/x.y.z
 	 ```
 
-   <div class="alert info">x.y.z 请替换为版本号。你可在 <a href="/cn/agora-class/release_agora_class_web?platform=Web">发版说明</a>中获取最新版本号。</div>
+   <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_web?platform=Web">发版说明</a>中获取最新版本号。</div>
 
 2. 将 `packages/agora-electron-edu-demo/src/renderer/components/app/index.js` 文件中的 `<Your Agora App ID>` 和 `<YOUR RTM TOKEN>` 替换成[你的 App ID 和 RTM Token](#prerequisites)。
 
@@ -72,7 +72,7 @@
 
    **macOS**
 
-   1. 在项目根目录下运行以下命令安装项目依赖：
+   1. 在 CloudClass-Desktop 项目根目录下运行以下命令安装项目依赖：
 
       ```bash
       # Install global dev dependencies
@@ -93,7 +93,7 @@
 
    **Windows**
 
-   1. 在项目根目录下运行以下命令安装项目依赖：
+   1. 在 CloudClass-Desktop 项目根目录下运行以下命令安装项目依赖：
 
       ```bash
       # Install global dev dependencies

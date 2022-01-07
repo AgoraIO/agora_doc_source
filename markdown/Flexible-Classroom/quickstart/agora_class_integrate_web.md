@@ -12,7 +12,7 @@
 - `agora-chat-widget`: 环信聊天组件。
 - `agora-plugin-gallery`: ExtApp 插件库，包含屏幕共享、答题器、计时器、投票器等插件。
 - `agora-scenario-ui-kit`: UI 组件库。
-- `agora-widget-gallery`: Widget 插件库，包含 RTM 聊天和环信聊天两部分。
+- `agora-widget-gallery`: Widget 插件库，包含通过 Agora RTM SDK 实现的聊天插件和通过环信 IM SDK 实现的聊天插件。
 
 ## 集成方式
 
@@ -22,7 +22,7 @@
 
 ### 使用灵动课堂的默认 UI
 
-如果你使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可选择以下任意一种方法将完整的 Agora Classroom SDK 集成到你自己的项目中：
+如果你使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可选择以下任意一种方法将完整的灵动课堂集成到你自己的项目中：
 
 - 使用 [npm](https://www.npmjs.com/package/agora-classroom-sdk) 集成 SDK：
 
@@ -64,8 +64,8 @@
 
 2. 成功拉取代码后，你可根据自己的需求修改课堂 UI，然后通过以下命令进行调试。
 
-   - Web 环境运行 `yarn dev` 命令
-   - Electron 环境运行 `yarn dev:electron` 命令
+   - Web 项目：`yarn dev`
+   - Electron 项目：`yarn dev:electron`
 
 3. 完成开发后，可通过以下命令打包 SDK 或应用：
 
