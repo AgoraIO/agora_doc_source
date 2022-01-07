@@ -32,7 +32,7 @@ Follow these steps to launch a flexible classroom:
 
 2. Open the CloudClass-Android project in Android Studio.
 
-3. Replace the `Agora App ID` and `Agora App Certificate` in the `app/src/normal/res/values/string_config.xml` file with [your App ID and App Certificate](#prerequisites). Leave `Agora API Host` and `Report API Host` do not need to be replaced, just use the default configuration.
+3. Replace the `Agora App ID` and `Agora App Certificate` in the `app/src/normal/res/values/string_config.xml` file with [your App ID and App Certificate](#prerequisites). Leave `Agora API Host` and `Report API Host` as is.
 
    ```xml
    <?xml version="1.0" encoding="utf-8"?>
@@ -44,7 +44,7 @@ Follow these steps to launch a flexible classroom:
    </resources>
    ```
 
-   To facilitate your quick testing, the CloudClass-Android project has included a temporary RTM Token generator, which will generate a temporary RTM Token with the App ID and App Certificate you passed in. But in a formal environment, to ensure security, RTM Token must be generated on the server side.
+   To facilitate your testing, the CloudClass-Android project contains an RTM Token generator, which can generate a temporary RTM Token with the App ID and App Certificate you pass in. But in a formal environment, to ensure security, RTM Token must be generated on the server side.
 
 4. 在 Android Studio 中编译并运行 CloudClass-Android 项目。 运行成功后，你可以在 Android 设备上看到以下画面：
 
