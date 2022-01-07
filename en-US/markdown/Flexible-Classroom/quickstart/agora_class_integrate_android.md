@@ -1,37 +1,37 @@
-This page introduces how to add Flexible Classroom into your iOS app.
+This page introduces how to add Flexible Classroom into your Android app.
 
 ## Understand the tech
 
-### 模块介绍
+### Module introduction
 
-灵动课堂代码包含以下模块：
+Flexible Classroom contains the following modules:
 
-- `app`: 包括课堂登录界面、Token 生成等，展示了如何调用灵动课堂 API 进入教室房间。 此模块开源，仅供参考，一般情况下不建议开发者直接使用。
+- `app`: This module contains code for the classroom login interface and a client-side token generator, showing how to call APIs to join a flexible classroom. This module is an open-source project available on GitHub and for reference only.
 
-<div class="alert note"><li>登录界面的某些规范（比如用户名、房间名的长度和字符限制）不适用于所有 app，开发者要根据自己的应用需求自行定义。</li><li>Agora 提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。 。 但是在正式环境中，为确保安全，你必须在参考<a href="/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。</li></div>
+<div class="alert note"><li>Specifications defined for the login interface (such as the length requirement of the user name and the room name and character restrictions) do not apply to all apps. You need to define them according to your own business requirements.</li><li>The client-side token generator provided by Agora is only for rapid testing. . When your app goes live, to ensure security, you must deploy a server-side token generator and generate tokens on your server. For details, see <a href="/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms">Authenticate Your Users with Tokens</a>. .</li></div>
 
-- `AgoraEduUIKit`: 教室 UI 实现，并展示了如何根据灵动课堂的 API 和数据回调进行 UI 数据的聚合和更新。 此模块开源，可选，但通常开发者可以基于这个模块开发自己的课堂 UI。
-- `AgoraClassSDK`: 提供一些常用的方法，如配置 SDK、启动教室、注册 ext app 等功能，同时提供各场景的 Activity 实现。 此模块开源，可选，但开发者可能用到其中的某些功能，建议保留。
-- `AgoraEduCore`: 灵动课堂的核心模块，必须引入。 自 2.0.0 版起，此模块闭源，开发者使用远程依赖引入。
-- `hyphenate`: 环信聊天 IM 的 UI 和逻辑实现。 一般情况下需要引入。 如果开发者自己实现 IM 模块并替换掉 `AgoraEduUIkit` 模块中对应环信的部分，则无需引入。
+- `AgoraEduUIKit`: This module contains code for the classroom UI, showing how to call APIs to aggregate and update UI data. This module is open source and optional, but usually developers can develop their own classroom UI based on this module.
+- `AgoraClassSDK`: Provides some commonly used methods, such as configuring the SDK, starting the classroom, registering ext app and other functions, as well as providing the implementation of activities in various scenarios. This module is open source and optional, but the developer may use some of its functions and it is recommended to keep it.
+- `AgoraEduCore`: The core module of the Flexible Classroom must be introduced. Since version 2.0.0, this module is closed source, and developers use remote dependencies to introduce it.
+- `hyphenate`: The UI and logic implementation of Huanxin Chat IM. Under normal circumstances it needs to be introduced. If the developer implements the IM module and replaces the part corresponding to the ring letter in the` AgoraEduUIkit` module, there is no need to introduce it.
 
-### 模块依赖关系
+### Module dependencies
 
-- `AgoraEduCore` 为必须引入的模块，其它模块均依赖它。
-- `AgoraEduUIKit` 和 `AgoraClassSDK` 均依赖 `AgoraEduCore`，它们之间无依赖关系。
-- `AgoraEduUIKit` 依赖 `hyphenate`。
-- `hyphenate` 依赖 `AgoraEduCore`。
-- `app` 依赖其它所有模块。
+- `AgoraEduCore` is a must-import module, and all other modules depend on it.
+- Both `AgoraEduUIKit` and `AgoraClassSDK` depend on `AgoraEduCore`, and there is no dependency between them.
+- `AgoraEduUIKit` relies on `hyphenate`.
+- `hyphenate` relies on `AgoraEduCore`.
+- `app` depends on all other modules.
 
-## 集成方式
+## Integration methods
 
-根据你的实际需求选择以下任意一种集成方式。
+Choose any of the following integration methods according to your needs.
 
 <a name="default_ui"></a>
 
 ### Use the default UI of Flexible Classroom
 
-如果你使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可参考以下步骤添加远程依赖集成灵动课堂：
+If you use the default UI of Flexible Classroom and do not need to modify the code of Flexible Classroom, you can refer to the following steps to add remote dependency and integrated Flexible Classroom:
 
 1. Add the following library to your project's `build.gradle` file:
 
@@ -53,7 +53,7 @@ This page introduces how to add Flexible Classroom into your iOS app.
        }
    ```
 
-2. 在项目的 `build.gradle` 文件中添加以下依赖，引入 `AgoraEduUIKit`、`AgoraClassSDK`、`AgoraEduCore` 和 `hyphenate` 四个模块：
+2. Add the following dependencies to the project's `build.gradle` file, and introduce four modules`: AgoraEduUIKit`, `AgoraClassSDK`, `AgoraEduCore`, and `hyphenate`:
 
    ```
    dependencies {
@@ -83,12 +83,12 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
 
 <div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_android?platform=Android">release notes</a>.</div>
 
-2. 成功拉取代码后，各模块之间的依赖关系已默认配置好。 如果你的应用不需要引入全部的模块，则根据需求删除对应的模块，并保持以上的依赖关系。 默认情况下, `app` 模块通过 `implementation` 将所有的模块导入编译，其它模块之间的依赖关系均由 `compileOnly` 引入。 如果你删除 `app` 模块，则需要自行改写引入方式。
+2. After successfully pulling the code, the dependencies between the modules have been configured by default. If your application does not need to import all the modules, delete the corresponding modules according to your needs and keep the above dependencies. By default, the `app` module imports and` compiles` all modules through `implementation`, and the dependencies between other modules are introduced by `compileOnly`. If you delete the `app` module, you need to rewrite the import method yourself.
 
-3. 如需自定义课堂 UI，你只需修改 `AgoraEduUIKit` 模块中的代码。
+3. To customize the classroom UI, you only need to modify the code in the` AgoraEduUIKit` module.
 
 ## See also
 
-### 第三方库说明
+### Third-party libraries
 
-不管以何种方式集成灵动课堂，灵动课堂使用的第三方库可能和你自己的工程所依赖的第三方库产生版本冲突。 这种情况下，你可通过 `exclude` 的方式或者是修改自己工程所依赖的版本解决冲突。
+No matter which method you choose, the third-party libraries used by Flexible Classroom may conflict with the third-party libraries on which your own project depends. You can use `exclude` to resolve this conflict or change the version that your project depends on.
