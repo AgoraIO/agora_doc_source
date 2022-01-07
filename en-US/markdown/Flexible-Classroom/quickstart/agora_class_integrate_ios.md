@@ -5,7 +5,7 @@ This page introduces how to add Flexible Classroom into your iOS app.
 Flexible Classroom contains the following libraries:
 
 - `AgoraClassroomSDK`: The glue code that connects `AgoraEduContext`, `AgoraEduUI` and `AgoraEduCore`. `AgoraClassroomSDK` is an open-sourced project and released on GitHub and CocoaPods.
-- `AgoraEduUI`: This library contains the code for the UI and also includes all the texts and resource files used by Flexible Classroom. `AgoraEduCore` uses `AgoraEduContext` to provide this layer with the capabilities and data in Flexible Classroom. `AgoraEduUI` is an open-sourced project and released on GitHub and CocoaPods.
+- `AgoraEduUI`: This library contains the code for the UI and also includes all the texts and resource files used by Flexible Classroom. `AgoraEduCore` provides this library with the functionality and data in Flexible Classroom through `AgoraEduContext`. `AgoraEduUI` is an open-sourced project and released on GitHub and CocoaPods.
 - `AgoraEduContext`: This library defines context protocols and data structure. `AgoraEduContext` is an open-sourced project and released on GitHub and CocoaPods.
 - `AgoraEduCore`: This library provides the capabilities and data in Flexible Classroom, and follows the protocols defined in ` AgoraEduContext`. `AgoraEduCore` is a closed-source library and released on CocoaPods as a binary package.
 - `ExtApp` and `Widget`: These libraries are independent plugins that include both interfaces and functions. They are injected into Flexible Classroom by `AgoraClassroomSDK`. The difference between `ExtApp` and `Widget` is: `ExtApp` can only communicate with `AgoraEduCore` and does not communicate with other UI components in Flexible Classroom; while `Widget` can communicate with other `Widget` and UI components.
@@ -127,7 +127,7 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
 
 <div class="alert info">The release branch is release/apaas/x.y.z. Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_ios?platform=iOS">release notes</a>.</div>
 
-1. 在你的项目的 `Podfile` 文件中添加如下代码引用依赖库。
+1. To add dependencies, add the following code in your project's `Podfile`.
 
    ```
    # Third-party libs
