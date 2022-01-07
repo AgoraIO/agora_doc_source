@@ -8,7 +8,7 @@ This page introduces how to quickly launch a flexible classroom.
 
 ## Prerequisites
 
-- 已在 Agora 控制台创建 Agora 项目，获取 //<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank"> Agora App ID</a><a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a><a href="/cn/agora-class/agora_class_enable?platform=Web" target="_blank">开通灵动课堂服务</a>。
+- An Agora project with an<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/cn/agora-class/agora_class_enable?platform=Web" target="_blank">enable the Flexible Classroom service</a>.
 - 安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
 - Physical media input devices, such as a built-in camera and a built-in microphone.
 - 安装 [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)。
@@ -28,7 +28,7 @@ Follow these steps to launch a flexible classroom:
    git checkout release/apaas/x.y.z
    ```
 
-<div class="alert info">Please replace x.y.z with the version number. Get the latest version number in the <a href="/cn/agora-class/release_agora_class_web?platform=Web">release notes</a>.</div>
+<div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_web?platform=Web">release notes</a>.</div>
 
 2. 将 `.env.example` 重命名为 `.env.dev` 并移动至 `packages/agora-classroom-sdk` 目录下，然后传入你自己的 `Agora App ID` 和 `Agora App Certificate`。
 
