@@ -37,7 +37,7 @@ Follow these steps to launch a flexible classroom:
    REACT_APP_AGORA_APP_CERTIFICATE=
    ```
 
-   为方便你快速测试，CloudClass-Desktop 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。 But in a formal environment, to ensure security, RTM Token must be generated on the server side.
+   为方便你快速测试，CloudClass-Desktop 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。 When your project goes live, to ensure security, you must deploy the RTM Token generator on your server.
 
 3. 通过以下命令安装依赖：
 
@@ -51,7 +51,7 @@ Follow these steps to launch a flexible classroom:
    npm run dev
    ```
 
-5. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂。
+5. To join a classroom, pass in a room name and user name, select a room type, and click **Enter**.
 
 ## Next steps
 
