@@ -2,7 +2,7 @@ This page introduces how to add Flexible Classroom into your iOS app.
 
 ## Understand the tech
 
-灵动课堂代码包含以下模块：
+Flexible Classroom contains the following modules:
 
 - `agora-classroom-sdk`: Agora Classroom SDK，包含以下模块：
    - `infra/stores`: UI Store 目录，负责为 UI 组件提供业务逻辑封装。
@@ -14,9 +14,9 @@ This page introduces how to add Flexible Classroom into your iOS app.
 - `agora-scenario-ui-kit`: UI 组件库。
 - `agora-widget-gallery`: Widget 插件库，包含 RTM 聊天和环信聊天两部分。
 
-## 集成方式
+## Integration methods
 
-根据你的实际需求选择以下任意一种集成方式。
+Choose any of the following integration methods according to your needs.
 
 <a name="default_ui"></a>
 
