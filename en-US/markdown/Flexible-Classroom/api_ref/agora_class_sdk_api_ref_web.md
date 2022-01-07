@@ -161,7 +161,7 @@ The media stream encryption configuration. Used in [MediaOptions](#mediaoptions)
 
 ### MediaEncryptionMode
 
-```swift
+```typescript
 export enum MediaEncryptionMode {
   AES_128_XTS = 1,
   AES_128_ECB = 2,
@@ -201,8 +201,6 @@ export type CloudDriveResourceConvertProgress = {
   }[];
   currentStep: string;
 };
-
-export type ConvertedFileList = CloudDriveResourceConvertProgress[];
 export type CourseWareItem = {
   resourceName: string,
   resourceUuid: string,
@@ -210,12 +208,7 @@ export type CourseWareItem = {
   url: string,
   size: number,
   updateTime: number,
-  "taskProgress": {
-    totalPageSize?: number;
-    convertedPageSize?: number;
-    convertedPercentage?: number;
-    convertedFileList: ConvertedFileList;
-};
+    taskProgress?: CloudDriveResourceConvertProgress;
 };
 
 export type CourseWareList = CourseWareItem[]
@@ -231,7 +224,7 @@ export type CourseWareList = CourseWareItem[]
 | `size` | The file size (bytes). |
 | `updateTime` | The latest modified time of the file. |
 | `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. 如果后缀名非上述所列，必须设置 `url` |
-| `taskProgress` | The file conversion configuration object, which contains the following fields:<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li><li>`convertedFileList`: 已转换的文档页面列表，由 `CloudDriveResourceConvertProgress` 组成的数组。 `CloudDriveResourceConvertProgress` 包含以下字段：<ul><li>`width`: 页面宽度。</li><li>`height`: 页面高度。</li><li>`ppt`: 页面上展示的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>``The URL address of the converted page.</li></ul></li></ul></li></ul> |
+| `taskProgress` | 文件转换任务进度对象 `CloudDriveResourceConvertProgress`，包含以下字段：<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li><li>`convertedFileList`: 已转换的文档页列表，每页文档对应一条数据，每条数据包含以下字段：<ul><li>`name`: 文档页名称。</li><li>`ppt`: 文档页包含的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>``The URL address of the converted page.</li><li>`preview`: 缩略图 URL。</li></ul></li></ul></li><li>`currentStep`: 文档转换任务当前的步骤。 可为 `extracting`（正在提取资源）、`generatingPreview`（正在生成预览图）、`mediaTranscode`（媒体文件转换）、`packaging`（打包中）。</li></ul> |
 
 ### EduRoleTypeEnum
 
