@@ -9,7 +9,7 @@
    - `ui-kit/capabilities`:
       - `containers`: 业务组件目录，UI 组件与 UI Store 结合成为业务组件。
       - `scenarios`: 各个班型场景目录。
-- `agora-chat-widget`: 环信聊天组件。
+- `agora-chat-widget`: 通过环信 IM SDK 实现的聊天组件。
 - `agora-plugin-gallery`: ExtApp 插件库，包含屏幕共享、答题器、计时器、投票器等插件。
 - `agora-scenario-ui-kit`: UI 组件库。
 - `agora-widget-gallery`: Widget 插件库，包含通过 Agora RTM SDK 实现的聊天插件和通过环信 IM SDK 实现的聊天插件。
@@ -71,4 +71,4 @@
 
    - 打包 Classroom SDK：`yarn pack:classroom:sdk`
    - 打包 Electron Mac 客户端：`yarn pack:electron:mac`
-   - 打包 Electron Windows 客户端：执行命令 `yarn pack:electron:win`
+   - 打包 Electron Windows 客户端：`yarn pack:electron:win`
