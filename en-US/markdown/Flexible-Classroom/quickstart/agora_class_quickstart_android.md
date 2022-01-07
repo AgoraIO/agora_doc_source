@@ -12,7 +12,7 @@ This page introduces how to quickly launch a flexible classroom.
 - [Java Development Kit ](https://www.oracle.com/java/technologies/javase-downloads.html).
 - Android Studio 4.0 or later.
 - Android 5.0 or later.
-- An Android device. You may encounter unexpected issues on simulators, so Agora recommends using a real device.
+- An Android device. You may encounter unexpected issues on simulators, so Agora recommends using a physical device.
 
 ## Launch a flexible classroom
 
@@ -44,16 +44,16 @@ Follow these steps to launch a flexible classroom:
    </resources>
    ```
 
-   To facilitate your testing, the CloudClass-Android project contains an RTM Token generator, which can generate a temporary RTM Token with the App ID and App Certificate you pass in. But in a formal environment, to ensure security, RTM Token must be generated on the server side.
+<div class="alert info">To facilitate your testing, the CloudClass-Android project contains an RTM Token generator, which can generate a temporary RTM Token with the App ID and App Certificate you pass in. When your project goes live, to ensure security, you must deploy the RTM Token generator on your server.</div>
 
-4. 在 Android Studio 中编译并运行 CloudClass-Android 项目。 运行成功后，你可以在 Android 设备上看到以下画面：
+4. Open the CloudClass-Android project in Android Studio, and run it on a physical mobile device. You can see the following page:
 
-   ![](https://web-cdn.agora.io/docs-files/1624525202089)
+   ![](https://web-cdn.agora.io/docs-files/1623315354864)
 
-5. Enter the room name and user name, select a class type, and then click **Join **to enter the Flexible Classroom, and you will see the following screen:
+5. To join a classroom, pass in a room name and user name, select a room type, and click **Enter**. You can see the following page:
 
-   ![](https://web-cdn.agora.io/docs-files/1624525202089)
+   ![](https://web-cdn.agora.io/docs-files/1622431132516)
 
 ## Next steps
 
-现在你已经初步体验了灵动课堂的功能，接下来可将[灵动课堂集成到你自己的项目中](/cn/agora-class/agora_class_integrate_android?platform=Android)。
+Satisfied with the features of Flexible Classroom and want to explore more? Next, you can [integrate Flexible Classroom into your own project](/en/agora-class/agora_class_integrate_android?platform=Android).
