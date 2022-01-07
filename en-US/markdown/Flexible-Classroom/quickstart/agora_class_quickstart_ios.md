@@ -10,17 +10,17 @@ This page introduces how to quickly launch a flexible classroom.
 
 - An Agora project with an<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/cn/agora-class/agora_class_enable?platform=iOS" target="_blank">enable the Flexible Classroom service</a>.
 - Xcode 10.0 or later.
-- CocoaPods 1.10 or later. 参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
+- CocoaPods 1.10 or later. To install CocoaPods, see [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started).
 - iOS 10 or later.
-- If you use Swift, use Swift 5.3.2 or later.
-- A valid Agora account. (Sign up for free)
-- A physical iOS device (iPhone or iPad). A physical Android device.
+- If you use Swift, use Swift 5.0 or later.
+- A valid Apple developer account.
+- A physical iOS device (iPhone or iPad). You may encounter unexpected issues on simulators, so Agora recommends using a physical device.
 
 ## Launch a flexible classroom
 
 Follow these steps to launch a flexible classroom:
 
-1. Run the following command to clone the [CloudClass-Androidhttps](://github.com/AgoraIO-Community/CloudClass-Android) project and check out the latest release branch.
+1. Run the following command to clone the [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) project and check out the latest release branch.
 
    ```
    git clone https://github.com/AgoraIO-Community/CloudClass-iOS.git
@@ -32,7 +32,7 @@ Follow these steps to launch a flexible classroom:
 
 <div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_ios?platform=iOS">release notes</a>.</div>
 
-2. 运行以下命令将 [apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios) 项目克隆至本地，并切换至最新发版分支。 apaas-extapp-ios 仓库需要和 CloudClass-iOS 仓库位于同一目录下。
+2. Run the following command to clone the [apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios) project and check out the latest release branch. Place the apaas-extapp-ios project under the same directory with CloudClass-iOS.
 
    ```
    git clone https://github.com/AgoraIO-Community/apaas-extapp-ios.git
@@ -42,14 +42,14 @@ Follow these steps to launch a flexible classroom:
    git checkout release/apaas/x.y.z
    ```
 
-2. 在 CloudClass-iOS 项目中运行 `pod install`。
+2. In CloudClass-iOS, run `pod install`.
 
-3. 连接上 iOS 设备后，用 Xcode 打开 CloudClass-iOS 项目，然后编译并运行。
+3. Open the CloudClass-iOS project in Xcode, and compile and run the project.
 
-<div class="alert info">CloudClass-iOS 项目中使用灵动课堂默认的 App ID 和 App 证书。 如果你想替换成你自己的 App ID 和 App 证书，需在 <code>AgoraEducation/Main/Controllers/LoginViewController.swift</code> 文件中注释掉 <code>requestToken</code> 方法，使用 <code>buildToken</code> 方法。</div>
+<div class="alert info">To facilitate your testing, the CloudClass-iOS project contains an RTM Token generator, which can generate a temporary RTM Token with a default App ID and App Certificate. If you want to use your own App ID and App Certificate, comment out the <code>requestToken</code> method in the <code>AgoraEducation/Main/Controllers/LoginViewController.swift</code> file and use the <code>buildToken</code> method instead. When your project goes live, to ensure security, you must deploy the RTM Token generator on your server.</div>
 
-4. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂。
+4. To join a classroom, pass in a room name and user name, select a room type, and click **Enter**.
 
 ## Next steps
 
-现在你已经初步体验了灵动课堂的功能，接下来可将[灵动课堂集成到你自己的项目中](/cn/agora-class/agora_class_integrate_ios?platform=iOS)。
+Satisfied with the features of Flexible Classroom and want to explore more? Next, you can integrate [Flexible Classroom into your own project](/en/agora-class/agora_class_integrate_ios?platform=iOS).
