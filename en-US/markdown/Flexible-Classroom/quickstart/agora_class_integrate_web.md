@@ -60,7 +60,7 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
    git checkout release/apaas/x.y.z
    ```
 
-<div class="alert info">Please replace x.y.z with the version number. Get the latest version number in the <a href="/cn/agora-class/release_agora_class_web?platform=Web">release notes</a>.</div>
+<div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_web?platform=Web">release notes</a>.</div>
 
 2. 成功拉取代码后，你可根据自己的需求修改课堂 UI，然后通过以下命令进行调试。
 
