@@ -19,8 +19,8 @@ Flexible Classroom contains the following modules:
 
 - `AgoraEduCore` is the required core module, and all the other modules depend on it.
 - Both `AgoraEduUIKit` and `AgoraClassSDK` depend on `AgoraEduCore`, and there is no dependency between them.
-- `AgoraEduUIKit` dependies on `hyphenate`.
-- `hyphenate` dependies on `AgoraEduCore`.
+- `AgoraEduUIKit` depends on `hyphenate`.
+- `hyphenate` depends on `AgoraEduCore`.
 - `app` depends on all other modules.
 
 ## Integration methods
@@ -83,7 +83,7 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
 
 <div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_android?platform=Android">release notes</a>.</div>
 
-2. After pulling the code, you can see the dependencies between the modules have been configured. If your app does not need to import all the modules, delete the unnecessary modules and ensure the dependencies remain correct. By default, the `app` module imports and compiles all modules through `implementation`, and the dependencies between other modules are imported by`compileOnly`. If you delete the `app` module, you need to rewrite the import method.
+2. After pulling the code, you can see the dependencies between the modules have been configured. If your app does not need to import all the modules, delete the unnecessary modules and ensure the dependencies remain correct. By default, the `app` module imports and compiles all modules through `implementation`, and the dependencies between other modules are imported by `compileOnly`. If you delete the `app` module, you need to rewrite the import method.
 
 3. To customize the classroom UI, just edit the code in the ` AgoraEduUIKit` module.
 
