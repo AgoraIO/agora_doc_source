@@ -8,7 +8,7 @@ This page introduces how to quickly launch a flexible classroom.
 
 ## Prerequisites
 
-- 已在 Agora 控制台创建 Agora 项目，获取 //<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank"> Agora App ID</a><a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a><a href="/cn/agora-class/agora_class_enable?platform=Electron" target="_blank">开通灵动课堂服务</a>。
+- An Agora project with an<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/cn/agora-class/agora_class_enable?platform=Electron" target="_blank">enable the Flexible Classroom service</a>.
 - 安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
 - Physical media input devices, such as a built-in camera and a built-in microphone.
 - 安装 [Node.js 和 npm](https://www.npmjs.com/)。
@@ -28,7 +28,7 @@ Follow these steps to launch a flexible classroom:
    git checkout release/apaas/x.y.z
    ```
 
-<div class="alert info">Please replace x.y.z with the version number. 你可在 <a href="/cn/agora-class/release_agora_class_web?platform=Web">发版说明</a>中获取最新版本号。</div>
+<div class="alert info">Replace x.y.z with the version number. 你可在 <a href="/cn/agora-class/release_agora_class_web?platform=Web">发版说明</a>中获取最新版本号。</div>
 
 2. 将 `packages/agora-electron-edu-demo/src/renderer/components/app/index.js` 文件中的 `<Your Agora App ID>` 和 `<YOUR RTM TOKEN>` 替换成[你的 App ID 和 RTM Token](#prerequisites)。
 
