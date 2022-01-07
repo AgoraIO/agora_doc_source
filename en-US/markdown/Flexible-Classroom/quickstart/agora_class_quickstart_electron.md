@@ -9,16 +9,16 @@ This page introduces how to quickly launch a flexible classroom.
 ## Prerequisites
 
 - An Agora project with an<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/cn/agora-class/agora_class_enable?platform=Electron" target="_blank">enable the Flexible Classroom service</a>.
-- 安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
+- The latest stable version of [Google Chrome](https://www.google.cn/chrome/) on the desktop.
 - Physical media input devices, such as a built-in camera and a built-in microphone.
-- 安装 [Node.js 和 npm](https://www.npmjs.com/)。
-- 安装 [yarn](https://yarnpkg.com/)。
+- Install [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+- Install [yarn](https://yarnpkg.com/getting-started/install).
 
 ## Launch a flexible classroom
 
 Follow these steps to launch a flexible classroom:
 
-1. Run the following command to clone the [CloudClass-Androidhttps](://github.com/AgoraIO-Community/CloudClass-Android) project and check out the latest release branch.
+1. Run the following command to clone the  [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) project and check out the latest release branch.
 
    ```
    https://github.com/AgoraIO-Community/CloudClass-Desktop.git
@@ -28,9 +28,9 @@ Follow these steps to launch a flexible classroom:
    git checkout release/apaas/x.y.z
    ```
 
-<div class="alert info">Replace x.y.z with the version number. 你可在 <a href="/cn/agora-class/release_agora_class_web?platform=Web">发版说明</a>中获取最新版本号。</div>
+<div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_web?platform=Web">release notes</a>.</div>
 
-2. 将 `packages/agora-electron-edu-demo/src/renderer/components/app/index.js` 文件中的 `<Your Agora App ID>` 和 `<YOUR RTM TOKEN>` 替换成[你的 App ID 和 RTM Token](#prerequisites)。
+2. Replace `<Your Agora App ID>` and `<YOUR RTM TOKEN>` in `packages/agora-electron-edu-demo/src/renderer/components/app/index.js` with your [App ID and RTM Token](#prerequisites).
 
    ```javascript
    import { AgoraEduSDK } from 'agora-classroom-sdk'
@@ -68,11 +68,11 @@ Follow these steps to launch a flexible classroom:
    }
    ```
 
-3. 参考以下步骤分别在 macOS 或 Windows 设备上运行项目：
+3. Follow these steps to run the project on macOS or Windows:
 
    **macOS**
 
-   1. Run the following command in the root folder to install dependencies.
+   1. To install dependencies, run the following command in the root directory of the CloudClass-Desktop project:
 
       ```bash
       # Install global dev dependencies
@@ -81,19 +81,19 @@ Follow these steps to launch a flexible classroom:
       yarn bootstrap
       ```
 
-   2. 在 `packages/agora-electron-edu-demo` 目录下运行以下命令编译项目：
+   2. To build the project, run the following command in the `packages/agora-electron-edu-demo` directory:
 
       ```
       npm run dev
       ```
 
-      编译成功后，你可以看到以下页面：
+      You can see the following page:
 
-      ![](https://web-cdn.agora.io/docs-files/1624525158077)
+      ![](https://web-cdn.agora.io/docs-files/1623404345070)
 
    **Windows**
 
-   1. Run the following command in the root folder to install dependencies.
+   1. To install dependencies, run the following command in the root directory of the CloudClass-Desktop project:
 
       ```bash
       # Install global dev dependencies
@@ -102,7 +102,7 @@ Follow these steps to launch a flexible classroom:
       yarn bootstrap
       ```
 
-   2. 将 `packages/agora-electron-edu-demo/package.json` 文件中的 `"agora_electron"` 对象替换成以下内容：
+   2. Replace the `"agora_electron"` object in `packages/agora-electron-edu-demo/package.json` with the following code:
 
       ```json
       "agora_electron": {
@@ -113,22 +113,22 @@ Follow these steps to launch a flexible classroom:
       },
       ```
 
-   3. 运行以下命令安装 electron 7.1.14：
+   3. To install electron 7.1.14, run the following command:
 
       ```bash
       npm install electron@7.1.14 --arch=ia32 --save-dev
       ```
 
-   4. 在 `packages/agora-electron-edu-demo` 目录下运行以下命令编译项目：
+   4. To build the project, run the following command in the `packages/agora-electron-edu-demo` directory:
 
       ```bash
       npm run dev
       ```
 
-      编译成功后，你可以看到以下页面：
+      You can see the following page:
 
-      ![](https://web-cdn.agora.io/docs-files/1624525158077)
+      ![](https://web-cdn.agora.io/docs-files/1623404345070)
 
 ## Next steps
 
-现在你已经初步体验了灵动课堂的功能，接下来可将[灵动课堂集成到你自己的项目中](/cn/agora-class/agora_class_integrate_web?platform=Electron)。
+Satisfied with the features of Flexible Classroom and want to explore more? Next, you can integrate [Flexible Classroom into your own project](/en/agora-class/agora_class_integrate_web?platform=Electron).
