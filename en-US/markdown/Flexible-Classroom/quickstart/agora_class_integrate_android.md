@@ -6,21 +6,21 @@ This page introduces how to add Flexible Classroom into your Android app.
 
 Flexible Classroom contains the following modules:
 
-- `app`: This module contains code for the classroom login interface and a client-side token generator, showing how to call APIs to join a flexible classroom. This module is an open-source project available on GitHub and for reference only.
+- `app`: (Optional) This module contains code for the classroom login interface and a client-side token generator, showing how to call APIs to join a flexible classroom. This module is an open-source project available on GitHub and for reference only.
 
-<div class="alert note"><li>Specifications defined for the login interface (such as the length requirement of the user name and the room name and character restrictions) do not apply to all apps. You need to define them according to your own business requirements.</li><li>The client-side token generator provided by Agora is only for rapid testing. When your app goes live, to ensure security, you must<a href="/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms"> deploy a server-side token generator and generate tokens</a> on your server. For details, see Authenticate Your Users with Tokens. .</li></div>
+<div class="alert note"><li>Specifications defined for the login interface (such as the length requirement of the user name and the room name and character restrictions) do not apply to all apps. You need to define them according to your own business requirements.</li><li>The client-side token generator provided by Agora is only for rapid testing. When your app goes live, to ensure security, you must deploy a server-side token generator and generate tokens on your server. For details, see <a href="/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms">Authenticate Your Users with Tokens</a>.</li></div>
 
-- `AgoraEduUIKit`: This module contains code for the classroom UI, showing how to call APIs to aggregate and update UI data. 此模块在 GitHub 上开源。 一般情况下开发者可以基于这个模块开发自己的课堂 UI。
-- `AgoraClassSDK`:（可选）提供一些常用的方法，如配置 SDK、启动教室、注册 ext app 等功能，同时提供各场景的 Activity 实现。 此模块在 GitHub 上开源。 开发者可能用到其中的某些功能，建议保留。
-- `AgoraEduCore`:（必需）灵动课堂的核心模块。 Since version 2.0.0, this module is closed source, and developers use remote dependencies to introduce it.
-- `hyphenate`:（可选）环信聊天 IM 的 UI 和逻辑实现。 If the developer implements the IM module and replaces the part corresponding to the ring letter in the` AgoraEduUIkit` module, there is no need to introduce it.
+- `AgoraEduUIKit`: (Optional) This module contains code for the classroom UI, showing how to call APIs to aggregate and update UI data. This module is an open-source project available on GitHub. You can develop your own classroom UI based on this module.
+- `AgoraClassSDK`: (Optional) This module provides methods for configuring the SDK, launching a flexible classroom, and registering ext apps, and provides the activity implementation of each teaching scenario. This module is an open-source project available on GitHub. Agora recommends integrating this module.
+- `AgoraEduCore`: (Required) The core module of Flexible Classroom. Since v2.0.0, this module is closed-source, and you can import this module only by adding a remote dependency.
+- `hyphenate`: (Optional) The UI and logic implementation of the real-time messaging module, using the Easemob IM SDK. If the developer implements the IM module and replaces the part corresponding to the ring letter in the` AgoraEduUIkit` module, there is no need to introduce it.
 
-### Module dependencies
+### Module relations
 
-- `AgoraEduCore` is a must-import module, and all other modules depend on it.
+- `AgoraEduCore` is the required core module, and all the other modules depend on it.
 - Both `AgoraEduUIKit` and `AgoraClassSDK` depend on `AgoraEduCore`, and there is no dependency between them.
-- `AgoraEduUIKit` relies on `hyphenate`.
-- `hyphenate` relies on `AgoraEduCore`.
+- `AgoraEduUIKit` dependies on `hyphenate`.
+- `hyphenate` dependies on `AgoraEduCore`.
 - `app` depends on all other modules.
 
 ## Integration methods
@@ -31,9 +31,9 @@ Choose any of the following integration methods according to your needs.
 
 ### Use the default UI of Flexible Classroom
 
-If you use the default UI of Flexible Classroom and do not need to modify the code of Flexible Classroom, you can refer to the following steps to add remote dependency and integrated Flexible Classroom:
+If you use the default UI of Flexible Classroom, take the following steps to add remote dependencies and integrate the whole Flexible Classroom:
 
-1. Add the following library to your project's `build.gradle` file:
+1. Add the following library in your project's `build.gradle` file:
 
    ```
    buildscript {
@@ -53,7 +53,7 @@ If you use the default UI of Flexible Classroom and do not need to modify the co
        }
    ```
 
-2. Add the following dependencies to the project's `build.gradle` file, and introduce four modules`: AgoraEduUIKit`, `AgoraClassSDK`, `AgoraEduCore`, and `hyphenate`:
+2. Add the following dependencies in the project's `build.gradle` file to import four modules: `AgoraEduUIKit`, `AgoraClassSDK`, `AgoraEduCore`, and `hyphenate`:
 
    ```
    dependencies {
@@ -83,9 +83,9 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
 
 <div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_android?platform=Android">release notes</a>.</div>
 
-2. After successfully pulling the code, the dependencies between the modules have been configured by default. If your application does not need to import all the modules, delete the corresponding modules according to your needs and keep the above dependencies. By default, the `app` module imports and` compiles` all modules through `implementation`, and the dependencies between other modules are introduced by `compileOnly`. If you delete the `app` module, you need to rewrite the import method yourself.
+2. After pulling the code, you can see the dependencies between the modules have been configured. If your app does not need to import all the modules, delete the unnecessary modules and ensure the dependencies remain correct. By default, the `app` module imports and compiles all modules through `implementation`, and the dependencies between other modules are imported by`compileOnly`. If you delete the `app` module, you need to rewrite the import method.
 
-3. To customize the classroom UI, you only need to modify the code in the` AgoraEduUIKit` module.
+3. To customize the classroom UI, just edit the code in the ` AgoraEduUIKit` module.
 
 ## See also
 
