@@ -46,7 +46,7 @@
 
 3. 连接上 iOS 设备后，用 Xcode 打开 CloudClass-iOS 项目，然后编译并运行。
 
-   <div class="alert info">CloudClass-iOS 项目中使用灵动课堂默认的 App ID 和 App 证书。如果你想替换成你自己的 App ID 和 App 证书，需在 <code>AgoraEducation/Main/Controllers/LoginViewController.swift</code> 文件中注释掉 <code>requestToken</code> 方法，使用 <code>buildToken</code> 方法。</div>
+   <div class="alert info">为方便你快速测试，CloudClass-iOS 项目中已包含一个临时 RTM Token 生成器，会使用默认的 App ID 和 App 证书生成一个临时 RTM Token。如果你想替换成你自己的 App ID 和 App 证书，需在 <code>AgoraEducation/Main/Controllers/LoginViewController.swift</code> 文件中注释掉 <code>requestToken</code> 方法，使用 <code>buildToken</code> 方法。在正式环境中，为确保安全，RTM Token 必须在服务端生成。</div>
 
 4. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂。
 
