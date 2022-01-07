@@ -72,7 +72,7 @@ Follow these steps to launch a flexible classroom:
 
    **macOS**
 
-   1. To install dependencies, run the following command in the root directory of the CloudClass-Desktop project:
+   1. To install dependencies, run the following command under the root directory of the CloudClass-Desktop project:
 
       ```bash
       # Install global dev dependencies
@@ -93,7 +93,7 @@ Follow these steps to launch a flexible classroom:
 
    **Windows**
 
-   1. To install dependencies, run the following command in the root directory of the CloudClass-Desktop project:
+   1. To install dependencies, run the following command under the root directory of the CloudClass-Desktop project:
 
       ```bash
       # Install global dev dependencies
