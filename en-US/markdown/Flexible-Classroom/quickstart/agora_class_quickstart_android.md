@@ -2,7 +2,7 @@ This page introduces how to quickly launch a flexible classroom.
 
 ## Understand the tech
 
-~96d9aaf0-eb84-11eb-b768-51ffcd29c763~
+~b89350c0-c9c3-11eb-9521-2d3265d0c546~
 
 <a name="prerequisites"></a>
 
