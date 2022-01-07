@@ -125,7 +125,7 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
 
 3. Create a new branch based on the latest release branch of Flexible Classroom and push it to your project.
 
-<div class="alert info">发版分支为 release/apaas/x.y.z。 x.y.z 为版本号。 Get the latest version number in the <a href="/cn/agora-class/release_agora_class_ios?platform=iOS">release notes</a>.</div>
+<div class="alert info">发版分支为 release/apaas/x.y.z。 x.y.z 为版本号。 To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_ios?platform=iOS">release notes</a>.</div>
 
 4. 在你的项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 项目中的 `AgoraClassroomSDK_iOS.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec` 和 apaas-extapp-ios 项目中的 `AgoraWidgets.podspec`、`ChatWidget.podspec`、`AgoraExtApps.podspec` 以及其它依赖的库。
 
