@@ -5,20 +5,20 @@ This page introduces how to add Flexible Classroom into your iOS app.
 Flexible Classroom contains the following libraries:
 
 - `AgoraClassroomSDK`: The glue code that connects `AgoraEduContext`, `AgoraEduUI` and `AgoraEduCore`. `AgoraClassroomSDK` is an open-sourced project and released on GitHub and CocoaPods.
-- `AgoraEduUI`: This library contains the code for the UI and also includes all the texts and resource files used by Flexible Classroom. `AgoraEduCore` 通过 `AgoraEduContext` 为该层提供灵动课堂中的能力与数据。 `AgoraEduUI` is an open-sourced project and released on GitHub and CocoaPods.
+- `AgoraEduUI`: This library contains the code for the UI and also includes all the texts and resource files used by Flexible Classroom. `AgoraEduCore` uses `AgoraEduContext` to provide this layer with the capabilities and data in Flexible Classroom. `AgoraEduUI` is an open-sourced project and released on GitHub and CocoaPods.
 - `AgoraEduContext`: This library defines context protocols and data structure. `AgoraEduContext` is an open-sourced project and released on GitHub and CocoaPods.
 - `AgoraEduCore`: This library provides the capabilities and data in Flexible Classroom, and follows the protocols defined in ` AgoraEduContext`. `AgoraEduCore` is a closed-source library and released on CocoaPods as a binary package.
 - `ExtApp` and `Widget`: These libraries are independent plugins that include both interfaces and functions. They are injected into Flexible Classroom by `AgoraClassroomSDK`. The difference between `ExtApp` and `Widget` is: `ExtApp` can only communicate with `AgoraEduCore` and does not communicate with other UI components in Flexible Classroom; while `Widget` can communicate with other `Widget` and UI components.
 
 The following figure shows the structure of Flexible Classroom.
 
-![](https://web-cdn.agora.io/docs-files/1624525178299)
+![](https://web-cdn.agora.io/docs-files/1631954134292)
 
-## 集成方式
+## Integration methods
 
-根据你的实际需求选择以下任意一种集成方式。
+Choose any of the following integration methods according to your needs.
 
-<div class="alert info">如果你的工程为 OC 工程，需要在 Build Settings 中 Add User-Defined Setting，Key 设为 SWIFT_VERSION，Value 设为你指定的 Swift 版本。</div>
+<div class="alert info">If your project is written in Objective-C, you add user-defined settings in Build Settings. Set Key as SWIFT_VERSION and set Value as the Swift version you specify.</div>
 
 <a name="default_ui"></a>
 
@@ -49,7 +49,7 @@ pod 'HyphenateChat', '3.8.6'
 pod 'AgoraClassroomSDK_iOS', '2.0.0'
 ```
 
-请注意，在 `AgoraClassroomSDK_iOS` 库的 `podspec` 中，依赖以下库并指定了最低版本：
+Note that the libraries on which `AgoraClassroomSDK_iOS` depends and the minimum versions are specified in `podspec`:
 
 ```
 # Open-source libs
@@ -69,7 +69,7 @@ spec.dependency "AgoraExtApps", '>= 2.0.0'</div>
 
 ### Do not use the default UI of Flexible Classroom
 
-如果你不需要使用灵动课堂的默认 UI，则无需集成 `AgoraClassroomSDK` 与 `AgoraEduUI` 库，只需要集成 `AgoraEduCore`。 因此集成灵动课堂时，仅需在你的项目的 Podfile 文件中添加如下引用：
+If you do not need the default UI of Flexible Classroom, just integrate `AgoraEduCore`.  `AgoraClassroomSDK` and `AgoraEduUI` are not required. Add the following dependencies in your project's Podfile:
 
 ```
 # Third-party libs
@@ -94,7 +94,7 @@ pod 'HyphenateChat', '3.8.6'
 pod 'AgoraEduCore', '2.0.1'
 ```
 
-请注意，在 `AgoraEduCore` 库的 `podspec` 中，依赖如下库并指定了最低版本：
+Note that the libraries on which `AgoraEduCore` depends and the minimum versions are specified in `podspec`:
 
 ```
 # Common libs
@@ -111,7 +111,7 @@ spec.dependency "AgoraEduContext", '2.0.0'
 
 If you want to customize the default UI of Flexible Classroom, integrate Flexible Classroom as follows:
 
-1. 将 [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) 和 [apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios) 项目克隆至本地，并切换至最新发版分支。
+1. Clone the [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) and [apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios) projects and check out the latest release branch.
 
    ```bash
    git clone https://github.com/AgoraIO-Community/CloudClass-iOS.git
@@ -121,13 +121,13 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
    git clone https://github.com/AgoraIO-Community/apaas-extapp-ios.git
    ```
 
-2. Use the` git remote add <shortname> <url>` command to add a remote repository to the local CloudClass-iOS repository, pointing to your project.
+2. To add a remote repository to the local CloudClass-iOS and apaas-extapp-ios projects, use the `git remote add <shortname> <url>` command, pointing to your project.
 
-3. Create a new branch based on the latest release branch of Flexible Classroom and push it to your project.
+3. Create a branch based on the latest release branch of Flexible Classroom and push it to your project.
 
-<div class="alert info">发版分支为 release/apaas/x.y.z。 x.y.z 为版本号。 To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_ios?platform=iOS">release notes</a>.</div>
+<div class="alert info">The release branch is release/apaas/x.y.z. Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_ios?platform=iOS">release notes</a>.</div>
 
-4. 在你的项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 项目中的 `AgoraClassroomSDK_iOS.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec` 和 apaas-extapp-ios 项目中的 `AgoraWidgets.podspec`、`ChatWidget.podspec`、`AgoraExtApps.podspec` 以及其它依赖的库。
+4. Add the following code in your project's `Podfile` to import dependencies, including `AgoraClassroomSDK_iOS.podspec`, `AgoraEduContext.podspec`, and `AgoraEduUI.podspec` in CloudClass-iOS and `AgoraWidgets.podspec, ChatWidget.podspec ````AgoraExtApps.podspec and apaas-extapp-ios projects in the CloudClass-iOS project Other dependent libraries.`
 
    ```
    # Third-party libs
@@ -164,6 +164,6 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
 
 ## Considerations
 
-`AgoraEduCore` 是一个二进制 Swift 框架。 由于苹果对二进制 Swift 框架兼容性不好，Agora 套用一层 OC 来避免兼容性问题。 所以，你直接通过 `import AgoraEduCore` 引入 `AgoraEduCore` 可能会出现 Swift 版本不兼容的报错。 你可通过以下方式解决该报错：
-- OC: 使用 `#import <AgoraEduCorePuppet/AgoraEduCoreWrapper.h>` 引入 `AgoraEduCore`，并以 `AgoraEduCorePuppet` 类代替 `AgoraEduCore` 类。
-- Swift: 使用 `import AgoraEduCorePuppet` 引入 `AgoraEduCore`，并以 `AgoraEduCorePuppet` 类代替 `AgoraEduCore` 类。
+`AgoraEduCore` is a binary Swift framework. Since Apple‘s support for binary Swift frameworks is not strong enough, to avoid compatibility issues, Agora adds an OC wapper. If you use `import AgoraEduCore`  to import `AgoraEduCore`, you may encounter an error saying that the Swift version is not compatible. Solve the error in the following ways:
+- OC: Use `#import <AgoraEduCorePuppet/AgoraEduCoreWrapper.h>` to import ` AgoraEduCore`, and replace the `AgoraEduCore` class with the `AgoraEduCorePuppet` class.
+- Swift: Use `import AgoraEduCorePuppet` to import `AgoraEduCore`, and replace the `AgoraEduCore` class with the `AgoraEduCorePuppet` class.
