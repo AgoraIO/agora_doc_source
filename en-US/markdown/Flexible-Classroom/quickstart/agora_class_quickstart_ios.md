@@ -8,7 +8,7 @@ This page introduces how to quickly launch a flexible classroom.
 
 ## Prerequisites
 
-- 已在 Agora 控制台创建 Agora 项目，获取 //<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank"> Agora App ID</a><a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a><a href="/cn/agora-class/agora_class_enable?platform=iOS" target="_blank">开通灵动课堂服务</a>。
+- An Agora project with an<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/cn/agora-class/agora_class_enable?platform=iOS" target="_blank">enable the Flexible Classroom service</a>.
 - Xcode 10.0 or later.
 - CocoaPods 1.10 or later. 参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
 - iOS 10 or later.
@@ -30,7 +30,7 @@ Follow these steps to launch a flexible classroom:
    git checkout release/apaas/x.y.z
    ```
 
-<div class="alert info">Please replace x.y.z with the version number. Get the latest version number in the <a href="/cn/agora-class/release_agora_class_ios?platform=iOS">release notes</a>.</div>
+<div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_ios?platform=iOS">release notes</a>.</div>
 
 2. 运行以下命令将 [apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios) 项目克隆至本地，并切换至最新发版分支。 apaas-extapp-ios 仓库需要和 CloudClass-iOS 仓库位于同一目录下。
 
