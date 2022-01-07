@@ -81,7 +81,7 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
    git checkout release/apaas/x.y.z
    ```
 
-<div class="alert info">Please replace x.y.z with the version number. Get the latest version number in the <a href="/cn/agora-class/release_agora_class_android?platform=Android">release notes</a>.</div>
+<div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_android?platform=Android">release notes</a>.</div>
 
 2. 成功拉取代码后，各模块之间的依赖关系已默认配置好。 如果你的应用不需要引入全部的模块，则根据需求删除对应的模块，并保持以上的依赖关系。 默认情况下, `app` 模块通过 `implementation` 将所有的模块导入编译，其它模块之间的依赖关系均由 `compileOnly` 引入。 如果你删除 `app` 模块，则需要自行改写引入方式。
 
