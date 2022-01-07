@@ -44,7 +44,7 @@ Follow these steps to launch a flexible classroom:
 
 2. In CloudClass-iOS, run `pod install`.
 
-3. Open the CloudClass-iOS project in Xcode, and compile and run the project.
+3. Open the CloudClass-iOS project in Xcode. Build and run the project.
 
 <div class="alert info">To facilitate your testing, the CloudClass-iOS project contains an RTM Token generator, which can generate a temporary RTM Token with a default App ID and App Certificate. If you want to use your own App ID and App Certificate, comment out the <code>requestToken</code> method in the <code>AgoraEducation/Main/Controllers/LoginViewController.swift</code> file and use the <code>buildToken</code> method instead. When your project goes live, to ensure security, you must deploy the RTM Token generator on your server.</div>
 
