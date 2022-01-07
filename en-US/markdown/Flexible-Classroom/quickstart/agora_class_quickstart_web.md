@@ -9,16 +9,16 @@ This page introduces how to quickly launch a flexible classroom.
 ## Prerequisites
 
 - An Agora project with an<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/cn/agora-class/agora_class_enable?platform=Web" target="_blank">enable the Flexible Classroom service</a>.
-- 安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
+- The latest stable version of [Google Chrome](https://www.google.cn/chrome/) on the desktop.
 - Physical media input devices, such as a built-in camera and a built-in microphone.
-- 安装 [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)。
-- 安装 [yarn](https://yarnpkg.com/getting-started/install)。
+- Install [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+- Install [yarn](https://yarnpkg.com/getting-started/install).
 
 ## Launch a flexible classroom
 
 Follow these steps to launch a flexible classroom:
 
-1. Run the following command to clone the [CloudClass-Androidhttps](://github.com/AgoraIO-Community/CloudClass-Android) project and check out the latest release branch.
+1. Run the following command to clone the  [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) project and check out the latest release branch.
 
    ```
    https://github.com/AgoraIO-Community/CloudClass-Desktop.git
@@ -30,22 +30,22 @@ Follow these steps to launch a flexible classroom:
 
 <div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_web?platform=Web">release notes</a>.</div>
 
-2. 将 `.env.example` 重命名为 `.env.dev` 并移动至 `packages/agora-classroom-sdk` 目录下，然后传入你自己的 `Agora App ID` 和 `Agora App Certificate`。
+2. Rename `.env.example` as `.env.dev` and move it to the `packages/Agora-classroom-sdk` folder. Pass in your own `Agora App ID` and `Agora App Certificate` in this file.
 
    ```
    REACT_APP_AGORA_APP_ID=
    REACT_APP_AGORA_APP_CERTIFICATE=
    ```
 
-   为方便你快速测试，CloudClass-Desktop 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。 When your project goes live, to ensure security, you must deploy the RTM Token generator on your server.
+   To facilitate your testing, the CloudClass-Desktop project contains an RTM Token generator, which can generate a temporary RTM Token with the App ID and App Certificate you pass in. When your project goes live, to ensure security, you must deploy the RTM Token generator on your server.
 
-3. 通过以下命令安装依赖：
+3. To install dependencies, run the following command:
 
    ```
    npm install
    ```
 
-4. 通过以下命令在本地运行 Web 项目：
+4. Run the web project with the following command:
 
    ```
    npm run dev
@@ -55,4 +55,4 @@ Follow these steps to launch a flexible classroom:
 
 ## Next steps
 
-现在你已经初步体验了灵动课堂的功能，接下来可将[灵动课堂集成到你自己的项目中](/cn/agora-class/agora_class_integrate_web?platform=Web)。
+Satisfied with the features of Flexible Classroom and want to explore more? Next, you can [integrate Flexible Classroom into your own project](/en/agora-class/agora_class_integrate_web?platform=Web).
