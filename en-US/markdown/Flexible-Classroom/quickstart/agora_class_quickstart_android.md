@@ -8,7 +8,7 @@ This page introduces how to quickly launch a flexible classroom.
 
 ## Prerequisites
 
-- An Agora project with an<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/cn/agora-class/agora_class_enable?platform=Android" target="_blank">enable the Flexible Classroom service</a>.
+- An Agora project with an<a href="/en/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/en/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/en/agora-class/agora_class_enable?platform=Android" target="_blank">enable the Flexible Classroom service</a>.
 - [Java Development Kit ](https://www.oracle.com/java/technologies/javase-downloads.html).
 - Android Studio 4.0 or later.
 - Android 5.0 or later.
@@ -28,7 +28,7 @@ Follow these steps to launch a flexible classroom:
    git checkout release/apaas/x.y.z
    ```
 
-<div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_android?platform=Android">release notes</a>.</div>
+   <div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/en/agora-class/release_agora_class_android?platform=Android">release notes</a>.</div>
 
 2. Open the CloudClass-Android project in Android Studio.
 
@@ -44,7 +44,7 @@ Follow these steps to launch a flexible classroom:
    </resources>
    ```
 
-<div class="alert info">To facilitate your testing, the CloudClass-Android project contains an RTM Token generator, which can generate a temporary RTM Token with the App ID and App Certificate you pass in. When your project goes live, to ensure security, you must deploy the RTM Token generator on your server.</div>
+   <div class="alert info">To facilitate your testing, the CloudClass-Android project contains an RTM Token generator, which can generate a temporary RTM Token with the App ID and App Certificate you pass in. When your project goes live, to ensure security, you must deploy the RTM Token generator on your server.</div>
 
 4. Open the CloudClass-Android project in Android Studio, and run it on a physical mobile device. You can see the following page:
 

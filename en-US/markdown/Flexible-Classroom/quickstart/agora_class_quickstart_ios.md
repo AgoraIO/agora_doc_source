@@ -8,7 +8,7 @@ This page introduces how to quickly launch a flexible classroom.
 
 ## Prerequisites
 
-- An Agora project with an<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/cn/agora-class/agora_class_enable?platform=iOS" target="_blank">enable the Flexible Classroom service</a>.
+- An Agora project with an<a href="/en/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/en/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/en/agora-class/agora_class_enable?platform=iOS" target="_blank">enable the Flexible Classroom service</a>.
 - Xcode 10.0 or later.
 - CocoaPods 1.10 or later. To install CocoaPods, see [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started).
 - iOS 10 or later.
@@ -30,7 +30,7 @@ Follow these steps to launch a flexible classroom:
    git checkout release/apaas/x.y.z
    ```
 
-<div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_ios?platform=iOS">release notes</a>.</div>
+   <div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/en/agora-class/release_agora_class_ios?platform=iOS">release notes</a>.</div>
 
 2. Run the following command to clone the [apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios) project and check out the latest release branch. Place the apaas-extapp-ios project under the same directory with CloudClass-iOS.
 
@@ -46,7 +46,7 @@ Follow these steps to launch a flexible classroom:
 
 3. Open the CloudClass-iOS project in Xcode. Build and run the project.
 
-<div class="alert info">To facilitate your testing, the CloudClass-iOS project contains an RTM Token generator, which can generate a temporary RTM Token with a default App ID and App Certificate. If you want to use your own App ID and App Certificate, comment out the <code>requestToken</code> method in the <code>AgoraEducation/Main/Controllers/LoginViewController.swift</code> file and use the <code>buildToken</code> method instead. When your project goes live, to ensure security, you must deploy the RTM Token generator on your server.</div>
+   <div class="alert info">To facilitate your testing, the CloudClass-iOS project contains an RTM Token generator, which can generate a temporary RTM Token with a default App ID and App Certificate. If you want to use your own App ID and App Certificate, comment out the <code>requestToken</code> method in the <code>AgoraEducation/Main/Controllers/LoginViewController.swift</code> file and use the <code>buildToken</code> method instead. When your project goes live, to ensure security, you must deploy the RTM Token generator on your server.</div>
 
 4. To join a classroom, pass in a room name and user name, select a room type, and click **Enter**.
 

@@ -8,7 +8,7 @@ This page introduces how to quickly launch a flexible classroom.
 
 ## Prerequisites
 
-- An Agora project with an<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/cn/agora-class/agora_class_enable?platform=Electron" target="_blank">enable the Flexible Classroom service</a>.
+- An Agora project with an<a href="/en/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>, <a href="/en/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App Certificate</a>, and <a href="/en/agora-class/agora_class_enable?platform=Electron" target="_blank">enable the Flexible Classroom service</a>.
 - The latest stable version of [Google Chrome](https://www.google.cn/chrome/) on the desktop.
 - Physical media input devices, such as a built-in camera and a built-in microphone.
 - Install [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
@@ -28,7 +28,7 @@ Follow these steps to launch a flexible classroom:
    git checkout release/apaas/x.y.z
    ```
 
-<div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_web?platform=Web">release notes</a>.</div>
+   <div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/en/agora-class/release_agora_class_web?platform=Web">release notes</a>.</div>
 
 2. Replace `<Your Agora App ID>` and `<YOUR RTM TOKEN>` in `packages/agora-electron-edu-demo/src/renderer/components/app/index.js` with your [App ID and RTM Token](#prerequisites).
 
