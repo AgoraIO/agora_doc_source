@@ -1,5 +1,19 @@
 This page introduces how to add Flexible Classroom into your Web or Electron project.
 
+## Understand the tech
+
+Flexible Classroom contains the following modules:
+
+- `agora-classroom-sdk`: The Agora Classroom SDK, which contains the following modules:
+   - `infra/stores`: This module contains all the UI stores, which implements all the business logic for UI kits.
+   - `ui-kit/capabilities`:
+      - `containers`: This folder contains A catalog of business components. UI components are combined with UI Store to become business components.
+      - `scenarios`: A catalog of various class` scenarios`.
+- `agora-chat-widget`: The ring letter chat component.
+- `agora-plugin-gallery`: ExtApp `plug-`in library, including screen sharing, clickers, timers, voting devices and other plug-ins.
+- `agora-scenario-ui-kit`: UI component library.
+- `Agora-widget-gallery`: Widget plug-in library, including chat plug-ins implemented through Agora RTM SDK and chat plug-ins implemented through Huanxin IM SDK.
+
 ## Integration methods
 
 Choose any of the following integration methods according to your needs.
@@ -46,7 +60,7 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
    git checkout release/apaas/x.y.z
    ```
 
-   <div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/en/agora-class/release_agora_class_web?platform=Web">release notes</a>.</div>
+<div class="alert info">Replace x.y.z with the version number. To get the latest version number, see the <a href="/cn/agora-class/release_agora_class_web?platform=Web">release notes</a>.</div>
 
 2. After pulling the code, you can modify the classroom UI according to your needs, and debug it with the following commands:
 
