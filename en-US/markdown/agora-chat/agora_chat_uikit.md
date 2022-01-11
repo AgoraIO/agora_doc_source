@@ -236,8 +236,8 @@ Take the following steps to log into Agora Chat.
 
     - (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler
     {
-        if([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]){//服务器信任证书
-                NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];//服务器信任证书
+        if([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]){
+                NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
                 if(completionHandler)
                     completionHandler(NSURLSessionAuthChallengeUseCredential,credential);
             }
@@ -461,7 +461,4 @@ In **Xcode**, select a simulator and click **Build and run**, and you will see t
 ![](../chat_uikit.png)
 
 Input a Chat ID, and you can now send a peer-to-peer message.
-
-
-## Next steps
 
