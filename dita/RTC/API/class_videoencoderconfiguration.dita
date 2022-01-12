@@ -139,7 +139,7 @@
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
-  
+
   VideoDimensions? dimensions;
   VideoFrameRate? frameRate;
   VideoFrameRate? minFrameRate;
@@ -436,7 +436,7 @@
        <plentry>
   <pt>orientationMode</pt>
   <pd>
-      视频编码的方向模式，详见 <xref keyref="ORIENTATION_MODE" />。
+      视频编码的方向模式，详见 <xref keyref="ORIENTATION_MODE"/>。
   </pd>
        </plentry>
        <plentry>
@@ -458,6 +458,31 @@
       </p>
       <note type="attention">默认关闭镜像模式。</note>
   </pd>
+       </plentry>
+       <plentry props="ios mac">
+           <pt>initWithSize</pt>
+           <pd><p>指定视频分辨率并初始化一个 <xref keyref="VideoEncoderConfiguration"/> 对象。</p>
+           <p>参数：<ul>
+               <li>size: 视频分辨率。</li>
+               <li>frameRate: 视频帧率。详见 <xref keyref="FRAME_RATE" />。</li>
+               <li>bitrate: 视频码率。</li>
+               <li>orientationMode: 视频方向。详见 <xref keyref="ORIENTATION_MODE"/>。</li>
+           </ul></p>
+               <p>返回值：初始化的 <apiname keyref="VideoEncoderConfiguration"/> 对象。</p>
+           </pd>
+       </plentry>
+       <plentry props="ios mac">
+           <pt>initWithWidth</pt>
+           <pd><p>指定视频宽和高并初始化一个 <xref keyref="VideoEncoderConfiguration"/> 对象。</p>
+               <p>参数：<ul>
+                   <li>width: 视频宽度。</li>
+                   <li>height: 视频高度。</li>
+                   <li>frameRate: 视频帧率。详见 <xref keyref="FRAME_RATE" />。</li>
+                   <li>bitrate: 视频码率。</li>
+                   <li>orientationMode: 视频方向。详见 <xref keyref="ORIENTATION_MODE"/>。</li>
+               </ul></p>
+               <p>返回值：初始化的 <apiname keyref="VideoEncoderConfiguration"/> 对象。</p>
+           </pd>
        </plentry>
    </parml>
         </section>

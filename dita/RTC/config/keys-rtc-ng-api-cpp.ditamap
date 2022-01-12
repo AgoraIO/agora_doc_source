@@ -895,7 +895,7 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="setRemoteVoice3DPositionEx" href="../API/api_irtcengineex_setremotevoice3dpositionex.dita">
+            <keydef keys="setRemoteVoice3DPositionEx" href="../API/api_irtcengineex_setremotevoice3dpositionex.dita" props="hide">
                 <topicmeta>
                     <keywords>
                         <keyword>setRemoteVoice3DPositionEx</keyword>
@@ -1332,7 +1332,7 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="setRemoteVoice3DPosition" href="../API/api_setremotevoice3dposition.dita">
+            <keydef keys="setRemoteVoice3DPosition" href="../API/api_setremotevoice3dposition.dita" props="hide">
                 <topicmeta>
                     <keywords>
                         <keyword>setRemoteVoice3DPosition</keyword>
@@ -1739,6 +1739,13 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="onFrame_IAudioFrameObserver" href="../API/callback_iaudioframeobserver_onframe.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onFrame</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
         </topichead>
         <topichead navtitle="原始视频数据">
             <keydef keys="registerVideoFrameObserver"
@@ -1754,6 +1761,13 @@
                 <topicmeta>
                     <keywords>
                         <keyword>registerVideoEncodedImageReceiver</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onFrame_IVideoFrameObserver" href="../API/callback_ivideoframeobserver_onframe.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onFrame</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -2935,6 +2949,22 @@
             </topicmeta>
         </keydef>
         </topichead>
+        <topichead navtitle="移动直播事件">
+            <keydef keys="onDirectCdnStreamingStateChanged" href="../API/callback_idirectcdnstreamingeventhandler_ondirectcdnstreamingstatechanged.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onDirectCdnStreamingStateChanged</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="onDirectCdnStreamingStats" href="../API/callback_idirectcdnstreamingeventhandler_ondirectcdnstreamingstats.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>onDirectCdnStreamingStats</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
         <topichead navtitle="音乐文件播放事件">
             <keydef keys="onAudioMixingStateChanged"
                 href="../API/callback_onaudiomixingstatechanged_ng.dita">
@@ -3449,6 +3479,13 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="DirectCdnStreamStats" href="../API/class_directcdnstreamstats.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>DirectCdnStreamStats</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="EncodedAudioFrameInfo" href="../API/class_encodedaudioframeinfo.dita">
             <topicmeta>
                 <keywords>
@@ -3474,6 +3511,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>ExternalVideoFrame</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="IDirectCdnStreamingEventHandler" href="../API/class_idirectcdnstreamingeventhandler.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>IDirectCdnStreamingEventHandler</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -3560,6 +3604,13 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="PlayerUpdatedInfo" href="../API/class_playerupdatedinfo.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>PlayerUpdatedInfo</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="Rect" href="../API/class_rect.dita" props="hide">
             <topicmeta>
                 <keywords>
@@ -3636,8 +3687,14 @@
                     <keyword>SimulcastStreamConfig</keyword>
                 </keywords>
             </topicmeta>
+                </keydef>
+        <keydef keys="SrcInfo" href="../API/class_srcinfo.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>SrcInfo</keyword>
+                </keywords>
+            </topicmeta>
         </keydef>
-
         <keydef keys="TranscodingUser" href="../API/class_transcodinguser.dita">
             <topicmeta>
                 <keywords>
@@ -5788,6 +5845,97 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_ERROR" href="../API/enum_directcdnstreamingerror.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_ERROR</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_ERROR_OK">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_ERROR_OK</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_ERROR_FAILED">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_ERROR_FAILED</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_ERROR_AUDIO_PUBLICATION">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_ERROR_AUDIO_PUBLICATION</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_ERROR_VIDEO_PUBLICATION">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_ERROR_VIDEO_PUBLICATION</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_ERROR_NET_CONNECT">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_ERROR_NET_CONNECT</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_ERROR_BAD_NAME">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_ERROR_BAD_NAME</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_STATE" href="../API/enum_directcdnstreamingstate.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_STATE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_STATE_IDLE">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_STATE_IDLE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_STATE_RUNNING">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_STATE_RUNNING</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_STATE_STOPPED">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_STATE_STOPPED</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_STATE_FAILED">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_STATE_FAILED</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="DIRECT_CDN_STREAMING_STATE_RECOVERING">
+            <topicmeta>
+                <keywords>
+                    <keyword>DIRECT_CDN_STREAMING_STATE_RECOVERING</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="ENCRYPTION_ERROR_TYPE" href="../API/enum_encryptionerrortype.dita">
             <topicmeta>
                 <keywords>
@@ -6664,6 +6812,13 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="PLAYER_ERROR_INTERRUPTED">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_ERROR_INTERRUPTED</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="MEDIA_PLAYER_EVENT" href="../API/enum_mediaplayerevent.dita">
             <topicmeta>
                 <keywords>
@@ -6692,10 +6847,87 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="PLAYER_EVENT_VIDEO_PUBLISHED">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_EVENT_VIDEO_PUBLISHED</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_EVENT_AUDIO_PUBLISHED">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_EVENT_AUDIO_PUBLISHED</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="PLAYER_EVENT_AUDIO_TRACK_CHANGED">
             <topicmeta>
                 <keywords>
                     <keyword>PLAYER_EVENT_AUDIO_TRACK_CHANGED</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_EVENT_BUFFER_LOW">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_EVENT_BUFFER_LOW</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_EVENT_BUFFER_RECOVER">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_EVENT_BUFFER_RECOVER</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_EVENT_FREEZE_START">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_EVENT_FREEZE_START</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_EVENT_FREEZE_STOP">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_EVENT_FREEZE_STOP</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_EVENT_SWITCH_BEGIN">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_EVENT_SWITCH_BEGIN</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_EVENT_SWITCH_COMPLETE">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_EVENT_SWITCH_COMPLETE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_EVENT_SWITCH_ERROR">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_EVENT_SWITCH_ERROR</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_EVENT_FIRST_DISPLAYED">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_EVENT_FIRST_DISPLAYED</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_EVENT_IDS_UPDATE">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_EVENT_IDS_UPDATE</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -6751,7 +6983,7 @@
         <keydef keys="MEDIA_PLAYER_METADATA_TYPE" href="../API/enum_mediaplayermetadatatype.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>MediaPlayerMetadataType</keyword>
+                    <keyword>MEDIA_PLAYER_METADATA_TYPE</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -7033,6 +7265,34 @@
             <topicmeta>
                 <keywords>
                     <keyword>CAMERA</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_PRELOAD_EVENT" href="../API/enum_playerpreloadevent.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_PRELOAD_EVENT</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_PRELOAD_EVENT_BEGIN">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_PRELOAD_EVENT_BEGIN</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_PRELOAD_EVENT_COMPLETE">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_PRELOAD_EVENT_COMPLETE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="PLAYER_PRELOAD_EVENT_ERROR">
+            <topicmeta>
+                <keywords>
+                    <keyword>PLAYER_PRELOAD_EVENT_ERROR</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -7446,13 +7706,6 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraRhythmPlayerConfig</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="AgoraMediaPlayerRenderMode" href="../API/enum_rendermodetype.dita">
-            <topicmeta>
-                <keywords>
-                    <keyword>AgoraMediaPlayerRenderMode</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
