@@ -144,139 +144,125 @@ To enable your app to send and receive messages between individual users, do the
    ```javascript
    // Note that to avoid browser-compatibility issues, the sample uses the import command to import the SDK and webpack to package the JS file.
    import WebIM from 'agora-chat-sdk'
-   var username, password
-   // Initialize client.
-   WebIM.conn = new WebIM.connection({
-       appKey: "41117440#383391",
-   })
-   // Add callback functions.
-   WebIM.conn.listen({
-       onOpened: function (message) {
-           // This callback occurs when the user logs in to the app successfully. 
-           document.getElementById("log").appendChild(document.createElement('div')).append("Connect success !")
-       }, 
-       onClosed: function (message) {
-           // This callback occurs when the user logs out successfully.
-           document.getElementById("log").appendChild(document.createElement('div')).append("Logout success !")
-       }, 
-       onTextMessage: function (message) {
-           console.log(message)
-           // Receive a text message.
-           document.getElementById("log").appendChild(document.createElement('div')).append("Message from: " + message.from + " Message: " + message.data)
-       }, 
-       // This callback occurs when the token is to expire. 
-       onTokenWillExpire: function (params) {
-           document.getElementById("log").appendChild(document.createElement('div')).append("Token is about to expire")
-           refreshToken(username, password)
-       }, 
-       // This callback occurs when the token expires. When the callback is triggered, the app client must get a new token from the app server and logs in to the app again.
-       onTokenExpired: function (params) {
-           document.getElementById("log").appendChild(document.createElement('div')).append("The token has expired")
-           refreshToken(username, password)
-       }, 
-       onError: function (error) {
-           console.log('on error', error)
-       }
-   })
+    var username, password
+    WebIM.conn = new WebIM.connection({
+        appKey: "41117440#383391",
+    })
+    // Add callback functions.
+    WebIM.conn.addEventHandler('connection&message', {
+        onConnected: () => {
+            document.getElementById("log").appendChild(document.createElement('div')).append("Connect success !")
+        },
+        onDisconnected: () => {
+            document.getElementById("log").appendChild(document.createElement('div')).append("Logout success !")
+        },
+        onTextMessage: (message) => {
+            console.log(message)
+            document.getElementById("log").appendChild(document.createElement('div')).append("Message from: " + message.from + " Message: " + message.msg)
+        },
+        onTokenWillExpire: (params) => {
+            document.getElementById("log").appendChild(document.createElement('div')).append("Token is about to expire")
+            refreshToken(username, password)
+        },
+        onTokenExpired: (params) => {
+            document.getElementById("log").appendChild(document.createElement('div')).append("The token has expired")
+            refreshToken(username, password)
+        },
+        onError: (error) => {
+            console.log('on error', error)
+        }
+    })
    
-   // Retrieve a new token.
-   function refreshToken(username, password) {
-       postData('https://a41.easemob.com/app/chat/user/login', { "userAccount": username, "userPassword": password })
-           .then((res) => {
-               let agoraToken = res.accessToken
-               WebIM.conn.renewToken(agoraToken)
-               document.getElementById("log").appendChild(document.createElement('div')).append("Token has been updated")
-           })
-   }
+    // Retrieve a new token from the app server.
+    function refreshToken(username, password) {
+        postData('https://a41.easemob.com/app/chat/user/login', { "userAccount": username, "userPassword": password })
+            .then((res) => {
+                let agoraToken = res.accessToken
+                WebIM.conn.renewToken(agoraToken)
+                document.getElementById("log").appendChild(document.createElement('div')).append("Token has been updated")
+            })
+    }
    
-   function postData(url, data) {
-       return fetch(url, {
-           body: JSON.stringify(data),
-           cache: 'no-cache',
-           headers: {
-               'content-type': 'application/json'
-           },
-           method: 'POST',
-           mode: 'cors',
-           redirect: 'follow',
-           referrer: 'no-referrer',
-       })
-           .then(response => response.json())
-   }
+    function postData(url, data) {
+        return fetch(url, {
+            body: JSON.stringify(data),
+            cache: 'no-cache',
+            headers: {
+                'content-type': 'application/json'
+            },
+            method: 'POST',
+            mode: 'cors',
+            redirect: 'follow',
+            referrer: 'no-referrer',
+        })
+            .then(response => response.json())
+    }
    
-   // Button behavior
-   window.onload = function () {
-       // Registration.
-       document.getElementById("register").onclick = function () {
-           username = document.getElementById("userID").value.toString()
-           password = document.getElementById("password").value.toString()
-           // 1. Register with a token.
-           postData('https://a41.easemob.com/app/chat/user/register', { "userAccount": username, "userPassword": password })
-               .then((res) => {
-                   document.getElementById("log").appendChild(document.createElement('div')).append(`register user ${username} success`)
-               })
-               .catch((res)=> {
-                   document.getElementById("log").appendChild(document.createElement('div')).append(`${username} already exists`)
-               })
-           // 2. Register with a username and password.
-           // WebIM.conn.registerUser({username, password})
-           // document.getElementById("log").appendChild(document.createElement('div')).append("register user "+username)
-       }
-       // Login.
-       document.getElementById("login").onclick = function () {
-           document.getElementById("log").appendChild(document.createElement('div')).append("Logging in...")
-           username = document.getElementById("userID").value.toString()
-           password = document.getElementById("password").value.toString()
-           // 1. Log in with a token.
-           postData('https://a41.easemob.com/app/chat/user/login', { "userAccount": username, "userPassword": password })
-               .then((res) => {
-                   let agoraToken = res.accessToken
-                   let easemobUserName = res.chatUserName
-                   WebIM.conn.open({
-                       user: easemobUserName,
-                       agoraToken: agoraToken
-                   });
-               })
-               .catch((res)=> {
-                   document.getElementById("log").appendChild(document.createElement('div')).append(`Login failed`)
-               })
-           // 2. Log in with a username and password.
-           // WebIM.conn.open({
-           //     user: username,
-           //     pwd: password,
-           // });
-       }
+    // Button behavior
+    window.onload = function () {
+        // Register a user.
+        document.getElementById("register").onclick = function () {
+            username = document.getElementById("userID").value.toString()
+            password = document.getElementById("password").value.toString()
+            // Register a user with token.
+            postData('https://a41.easemob.com/app/chat/user/register', { "userAccount": username, "userPassword": password })
+                .then((res) => {
+                    document.getElementById("log").appendChild(document.createElement('div')).append(`register user ${username} success`)
+                })
+                .catch((res)=> {
+                    document.getElementById("log").appendChild(document.createElement('div')).append(`${username} already exists`)
+                })
+        }
+        // Login.
+        document.getElementById("login").onclick = function () {
+            document.getElementById("log").appendChild(document.createElement('div')).append("Logging in...")
+            username = document.getElementById("userID").value.toString()
+            password = document.getElementById("password").value.toString()
+            // Log in to Agora Chat with a token.
+            postData('https://a41.easemob.com/app/chat/user/login', { "userAccount": username, "userPassword": password })
+                .then((res) => {
+                    let agoraToken = res.accessToken
+                    let easemobUserName = res.chatUserName
+                    WebIM.conn.open({
+                        user: easemobUserName,
+                        agoraToken: agoraToken
+                    });
+                })
+                .catch((res)=> {
+                    document.getElementById("log").appendChild(document.createElement('div')).append(`Login failed`)
+                })
+        }
    
-       // Logout.
-       document.getElementById("logout").onclick = function () {
-           WebIM.conn.close();
-           document.getElementById("log").appendChild(document.createElement('div')).append("logout")
-       }
+        // Logout.
+        document.getElementById("logout").onclick = function () {
+            WebIM.conn.close();
+            document.getElementById("log").appendChild(document.createElement('div')).append("logout")
+        }
    
-       // Send a peer-to-peer message.
-       document.getElementById("send_peer_message").onclick = function () {
-           let peerId = document.getElementById("peerId").value.toString()
-           let peerMessage = document.getElementById("peerMessage").value.toString()
+        // Send a peer-to-peer message.
+        document.getElementById("send_peer_message").onclick = function () {
+            let peerId = document.getElementById("peerId").value.toString()
+            let peerMessage = document.getElementById("peerMessage").value.toString()
    
-           let id = WebIM.conn.getUniqueId()
-           let msg = new WebIM.message('txt', id);
-           msg.set({
-               msg: peerMessage,
-               to: peerId,
-               chatType: 'singleChat',
-               success: function () {
-                   console.log('send private text success');
-                   document.getElementById("log").appendChild(document.createElement('div')).append("Message send to: " + peerId + " Message: " + peerMessage)
-               },
-               fail: function (e) {
-                   console.log('send private text fail');
-               }
-           });
-           WebIM.conn.send(msg.body);
-       }
-   }
+            let id = WebIM.conn.getUniqueId()
+            let msg = new WebIM.message('txt', id);
+            msg.set({
+                msg: peerMessage,
+                to: peerId,
+                chatType: 'singleChat',
+                success: function () {
+                    console.log('send private text success');
+                    document.getElementById("log").appendChild(document.createElement('div')).append("Message send to: " + peerId + " Message: " + peerMessage)
+                },
+                fail: function (e) {
+                    console.log('send private text fail');
+                }
+            });
+            WebIM.conn.send(msg.body);
+        }
+    }
    ```
-
+   
 2. Replace "<appKey>" with the App key of your Agora project.
 
 ##  Test your app
@@ -302,7 +288,7 @@ To build and run your project, take the following steps:
      "author": "",
      "license": "ISC",
      "dependencies": {
-       "agora-chat-sdk": "^4.0.1-beta4",
+       "agora-chat-sdk": "^4.0.1",
        "agora-rtc-sdk-ng": "^4.6.3"
      },
      "devDependencies": {
