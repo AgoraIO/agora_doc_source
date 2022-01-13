@@ -18,28 +18,58 @@
 
 你需要进行以下操作：
 
-1. 开启进阶服务。参考<a href="/cn/whiteboard/enable_whiteboard#开启互动白板配套服务" target="_blank">开启互动白板配套服务</a>。
-
-2. 配置第三方云存储信息用于储存在课堂中上传的文件。
+1. 配置第三方云存储信息用于储存在课堂中上传的文件。
 
    - 如果你使用阿里云 OSS，填写以下信息：
      - `region`: 阿里云 OSS 中创建 Bucket 时指定的数据中心所在区域，例如 `oss-cn-shanghai`。
      - `endpoint`: 阿里云 OSS 的访问域名，例如 `oss-cn-shanghai.aliyuncs.com`。
      - `bucket`: 阿里云 OSS 中的 Bucket 名称，例如 `agora-whiteboard`。
      - `folder`: 阿里云 OSS 中的资源存放路径，例如 `whiteboard`。
-     - `ramAccessKey`: 阿里云临时访问密钥 STS AK 的 `AccessKeyId`。仅适用于灵动课堂 1.1.0 及之后版本。
-     - `ramAccessSecret`: 阿里云临时访问密钥 STS AK 的 `AccessKeySecret`。仅适用于灵动课堂 1.1.0 及之后版本。
-     - `roleArn`: 阿里云 OSS 临时授权访问的角色 ARN。仅适用于灵动课堂 1.1.0 及之后版本。
+     - `ramAccessKey`: 阿里云临时访问密钥 STS AK 的 AccessKey ID。仅适用于灵动课堂 1.1.0 及之后版本。
+     - `ramAccessSecret`: 阿里云临时访问密钥 STS AK 的 AccessKey Secret。仅适用于灵动课堂 1.1.0 及之后版本。
+     - `roleArn`: 阿里云 OSS 临时授权访问的角色的 ARN。仅适用于灵动课堂 1.1.0 及之后版本。
      - `roleSessionName`: 阿里云 OSS 标识临时访问凭证的名称。仅适用于灵动课堂 1.1.0 及之后版本。
-     <div class="alert info">对于如何获取这些信息，请查看<a href="https://help.aliyun.com/product/31815.html?spm=a2c4g.11186623.3.1.711a65d3R4TYEh" target="_blank">阿里云 OSS 官方文档</a>。</div>
+     <div class="alert info">如需了解如何获取 <code>ramAccessKey</code>、<code>ramAccessSecret</code>、<code>roleArn</code> 和 <code>roleSessionName</code> 字段，请查看阿里云官方文档<a href="https://www.alibabacloud.com/help/zh/doc-detail/100624.htm" target="_blank">使用 STS 临时访问凭证访问 OSS</a>。</div>
    - 如果你使用 Amazon S3，填写以下信息：
      - `region`: Amazon S3 中创建 Bucket 时指定的数据中心所在区域。
-     - `endpoint`: Amazon S3 的访问域名，例如 `s3.us-east-2.amazonaws.com`。
+     - `endpoint`: Amazon S3 的访问域名。
      - `bucket`: Amazon S3 中的 Bucket 名称。
-     - `folder`: Amazon S3 中的资源存放路径，例如 `whiteboard`。
+     - `folder`: Amazon S3 中的资源存放路径，例如 `agora-whiteboard`。
      - `accessKey`: Amazon S3 提供的访问密钥中的 Access Key，用于识别访问者的身份。
      - `secretKey`: Amazon S3 提供的访问密钥中的 Secret Key，用于验证签名的密钥。
-     <div class="alert info">对于如何获取这些信息，请查看<a href="https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/Welcome.html" target="_blank">Amazon S3 官方文档</a>。</div>
+     <div class="alert info">对于如何获取上述信息，请查看 <a href="https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/Welcome.html" target="_blank">Amazon S3 官方文档</a>。</div>
+
+2. 开启文档转网页、文档转图片、截图等白板进阶服务。参考<a href="/cn/whiteboard/enable_whiteboard#开启互动白板配套服务" target="_blank">开启互动白板配套服务</a>。
+
+### 注意事项
+
+为确保 Agora 可以访问你的云存储空间，你的云存储账号中必须进行以下配置：
+
+- 阿里云 OSS 账号：
+  - 读写权限设为**公共读**：
+  ![](https://web-cdn.agora.io/docs-files/1620299427757)
+  - 跨域规则配置：
+    - 来源和允许 Headers 根据你的实际情况配置即可。
+    - 暴露 Headers 必须严格参照下图填写。
+    ![](https://web-cdn.agora.io/docs-files/1620299441544)
+- AWS S3 账号的上传配置如下：
+    ```
+    [
+        {
+            "AllowedHeaders": [
+                "*"
+            ],
+            "AllowedMethods": [
+                "PUT",
+                "GET"
+            ],
+            "AllowedOrigins": [
+                "*"
+            ],
+            "ExposeHeaders": []
+        }
+    ]
+    ```
 
 ## 配置录制功能
 
