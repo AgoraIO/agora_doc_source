@@ -121,7 +121,7 @@ export class LectureShareUIStore extends EduShareUIStore {
 
 #### 自定义提示框 UI
 
-如果你想将提示框 toast 宽度的最小值改为 300px，则可以找到`agora-classroom-sdk` 库中的`ToastContainer` 组件。该组件调用了`agora-scenario-ui-kit` 下的 `Toast` 组件。找到该组件的目录`agora-scenario-ui-kit/src/components/toast`，在 `index.css` 中修改 `toast { min-width: 300px; }` 即可。
+如果你想将提示框 toast 宽度的最小值改为 300 px，则需要修改 `agora-classroom-sdk` 库中的 `ToastContainer` 组件。该组件调用了`agora-scenario-ui-kit` 下的 `Toast` 组件。在 `agora-scenario-ui-kit/src/components/toast/index.css` 中修改 `toast { min-width: 300px; }` 即可。
 
 ## BoardUIStore
 
@@ -131,12 +131,20 @@ export class LectureShareUIStore extends EduShareUIStore {
 
 本节介绍 `BoardUIStore` 提供的属性和方法。
 
+#### boardHeight
+
+```typescript
+get boardHeight()
+```
+
+白板高度。
 
 #### classroomViewportSize
 
 ```typescript
 get connectionLost(): boolean
 ```
+
 白板连接中断。
 
 #### readyToMount
@@ -144,21 +152,27 @@ get connectionLost(): boolean
 ```typescript
 get readyToMount(): boolean
 ```
+
 白板准备好挂载到 DOM。
 
 #### setCollectorContainer
+
 ```typescript
 set setCollectorContainer(collectorContainer: HTMLElement): void
 ```
+
 设置白板课件最小化 DOM。
+
 | 参数     | 描述                                                         |
 | :------- | :-------------------------------- |
 | `collectorContainer` | 白板最小化后显示的DOM节点，用户可以点击此按钮后课件最大化。 |
 
+#### joinWhiteboard
 
 ```typescript
 joinWhiteboard(): Promise<void>
 ```
+
 连接白板。
 
 #### joinWhiteboardWhenConfigReady
