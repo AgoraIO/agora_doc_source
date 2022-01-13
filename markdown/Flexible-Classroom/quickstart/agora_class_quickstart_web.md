@@ -18,15 +18,11 @@
 
 参照以下步骤启动灵动课堂：
 
-1. 运行以下命令将 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) 项目克隆至本地，并切换至最新发版分支。
+1. 运行以下命令将 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) 项目克隆至本地，并切换至最新发版分支 release/apaas/x.y.z。
 
    ```
    https://github.com/AgoraIO-Community/CloudClass-Desktop.git
    ```
-
-   ```
-   git checkout release/apaas/x.y.z
-	```
 
    <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_web?platform=Web">发版说明</a>中获取最新版本号。</div>
 
