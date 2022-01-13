@@ -12,7 +12,7 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">@CalledByNative AudioFrame onFrame(AudioFrame audioFrame);</codeblock>
+                <codeblock props="android" outputclass="language-java">AudioFrame onFrame(AudioFrame audioFrame);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
     didReceiveAudioFrame:(CMSampleBufferRef _Nonnull)audioFrame;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onFrame(AudioPcmFrame* frame) = 0;</codeblock>
@@ -29,18 +29,15 @@
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
    <parml>
-       <plentry props="android windows">
-           <pt props="android">audioFrame</pt>
+       <plentry>
+           <pt props="android ios mac">audioFrame</pt>
            <pt props="windows">frame</pt>
-           <pd>音频帧信息，详见 <ph keyref="AudioFrame"/>。</pd>
+           <pd props="android windows">音频帧信息，详见 <ph keyref="AudioFrame"/>。</pd>
+           <pd props="ios mac">音频帧信息（CMSampleBufferRef）。</pd>
        </plentry>
        <plentry props="ios mac">
            <pt>playerKit</pt>
            <pd>详见 <xref keyref="IMediaPlayer"/>。</pd>
-       </plentry>
-       <plentry props="ios mac">
-           <pt>audioFrame</pt>
-           <pd>音频帧信息（CMSampleBufferRef）。</pd>
        </plentry>
    </parml>
         </section>
