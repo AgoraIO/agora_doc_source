@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_preloadeffect">
     <title><ph keyref="preloadEffect" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Preloads a specified audio effect file into the memory.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Preloads a specified audio effect file into the memory. </ph><ph id="shortdesc">将音效文件加载至内存。</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -25,29 +25,37 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <p>To ensure smooth communication, limit the size of the audio effect file. We recommend using this method to preload the audio effect before calling <apiname keyref="joinChannel2" />.</p>
-                <note type="attention"><ul>
-                <li>This method does not support online audio effect files.</li>
-                <li id="audioFormats">For the supported audio formats, see <xref keyref="audio-format">What formats of audio files does the Agora RTC SDK support</xref>.</li>
-                </ul></note>
+            <p>To ensure smooth communication, limit the size of the audio effect file. Werecommend<apiname keyref="joinChannel2" /> using this method to preload the audio effect before calling . 为保证通信畅通，请注意控制预加载音效文件的大小，并在 <apiname keyref="joinChannel2" /> 前就使用该方法完成音效预加载。</p>
+            <note type="attention"><ul>
+                <li>This method does not support online audio effect files. 该方法不支持在线音频文件。</li>
+                <li id="audioFormats">For the audio file formats supported by this method, see What formats<xref keyref="audio-format"> of audio files does the Agora RTC SDK support</xref>. 该方法支持的音频文件格式见 <xref keyref="audio-format">Agora RTC SDK 支持播放哪些格式的音频文件</xref>。</li>
+            </ul></note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter Parameter</title>
    <parml>
        <plentry>
-  <pt>soundId</pt>
-  <pd id="soundId">The ID of the audio effect. Each audio effect has a unique ID.</pd>
+  <pt>soundId soundId</pt>
+  <pd id="soundId">The audio effect ID. The audio effect ID. The ID of each audio effect file is unique. The ID of each audio effect file is unique.</pd>
        </plentry>
-       <plentry>
-           <pt>filePath</pt>
-           <pd><p conkeyref="playEffect3/filepath" /></pd>
+       <plentry id="filePath">
+        <pt>filePath filePath</pt>
+        <pd>文件路径：
+         文件路径：
+        <ul>
+            <li props="android flutter unity windows">Android: 文件路径，需精确到文件名及后缀。 Android: 文件路径，需精确到文件名及后缀。 Agora supports using a URI address, an absolute path, or a path that starts with <ph>/assets/</ph>. Agora supports using a URI address, an absolute path, or a path that starts with <ph>/assets/</ph>. 
+                You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. 
+                                通过绝对路径访问本地文件可能会遇到权限问题，Agora 推荐使用 URI 地址访问本地文件。 <ph>                    content://com.android.providers.media.documents/document/audio%203A14441 </ph>例如：<ph>content://com.android.providers.media.documents/document/audio%3A14441</ph>。</li>
+            <li props="windows flutter unity">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. Windows: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。 For example: <ph>C:\music\audio.mp4</ph>. 例如： <ph>C:\music\audio.mp4</ph>.</li>
+            <li props="ios mac flutter unity">iOS 或 macOS: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。 iOS 或 macOS: 音频文件的绝对路径或 URL 地址，需精确到文件名及后缀。 iOS/macOS: For example: <ph>/var/mobile/Containers/Data/audio.mp4</ph>. 例如：<ph>/var/mobile/Containers/Data/audio.mp4</ph>.</li>
+        </ul></pd>
        </plentry>
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
-   <title>Returns</title>
+   <title>Returns Returns</title>
        <ul>
-  <li>0: Success.</li>
-  <li>&lt; 0: Failure.</li>
+  <li>0: Success. 0: Success.</li>
+  <li>&lt; 0: Failure. &lt; 0: Failure.</li>
        </ul>
         </section></refbody>
 </reference>
