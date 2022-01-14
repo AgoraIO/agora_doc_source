@@ -2,10 +2,11 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_audioeffectpreset">
     <title><ph keyref="AUDIO_EFFECT_PRESET"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Voice effect presets.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Preset voice effects.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
-   <p>For better voice effects, Agora recommends setting the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile"/> to <xref href="enum_audioprofiletype.dita#enum_audioprofiletype/4"/> or <xref href="enum_audioprofiletype.dita#enum_audioprofiletype/5"/> before using the following presets:</p>
+   <p>为获取更好的人声效果，Agora 建议在使用以下预设音效前将 <xref keyref="setAudioProfile"/> 的
+  <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>：</p>
    <ul id="ul_hpp_hsd_p4b">
        <li><ph keyref="ROOM_ACOUSTICS_KTV"/></li>
        <li><ph keyref="ROOM_ACOUSTICS_VOCAL_CONCERT"/></li>
@@ -50,9 +51,10 @@
   <pt><ph keyref="ROOM_ACOUSTICS_VIRTUAL_STEREO"/></pt>
   <pd>
       <p>The virtual stereo effect, which renders monophonic audio as stereo audio.</p>
-      <note type="attention">Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile"/> to <ph
-     keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> or <ph
-     keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>. Otherwise, the preset setting is invalid.</note>
+      <note type="attention">使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的
+     <parmname>profile</parmname> 参数设置为 <ph
+     keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <ph
+     keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</note>
   </pd>
        </plentry>
        <plentry>
@@ -66,14 +68,15 @@
        <plentry>
   <pt><ph keyref="ROOM_ACOUSTICS_3D_VOICE"/></pt>
   <pd>
-      <p>A 3D voice effect that makes the voice appear to be moving around the user. The default movement cycle is 10 seconds. After setting this effect, you can call <xref
-     keyref="setAudioEffectParameters"/> to modify the movement period.</p>
+      <p>A 3D voice effect that makes the voice appear to be moving around the user. The default movement cycle is 10 seconds. After setting this effect, you can call  to<xref
+     keyref="setAudioEffectParameters"/> modify the movement period.</p>
       <note type="attention">
       <ul id="ul_gnm_3sd_p4b">
- <li>Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile"/> to <ph
-keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> or <ph
+ <li>使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的
+<parmname>profile</parmname> 参数设置为 <ph
+keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> 或 <ph
 keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"
-     />. Otherwise, the preset setting is invalid.</li>
+     />，否则该预设音效的设置无效。</li>
  <li>If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.</li>
       </ul>
       </note>
@@ -82,37 +85,34 @@ keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"
        <plentry>
   <pt><ph keyref="VOICE_CHANGER_EFFECT_UNCLE"/></pt>
   <pd>
-      <p>A middle-aged man&apos;s voice.</p>
-      <note type="attention">Agora recommends using this preset to process a male-sounding voice;
-                            otherwise, you might not hear the anticipated voice effect.</note>
+      <p>A middle-aged man's voice.</p>
+      <note type="attention">Agora recommends using this preset to process a male-sounding voice; otherwise, you may not hear the anticipated voice effect.</note>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="VOICE_CHANGER_EFFECT_OLDMAN"/></pt>
-  <pd><p>A senior man&apos;s voice.</p>
-      <note type="attention">Agora recommends using this preset to process a male-sounding voice;
-                            otherwise, you might not hear the anticipated voice effect.</note>
+  <pd><p>A senior man's voice.</p>
+      <note type="attention">Agora recommends using this preset to process a male-sounding voice; otherwise, you may not hear the anticipated voice effect.</note>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="VOICE_CHANGER_EFFECT_BOY"/></pt>
   <pd>
-      <p>A boy&apos;s voice.</p>
-      <note type="attention">Agora recommends using this preset to process a male-sounding voice;
-                            otherwise, you might not hear the anticipated voice effect.</note>
+      <p>A boy's voice.</p>
+      <note type="attention">Agora recommends using this preset to process a male-sounding voice; otherwise, you may not hear the anticipated voice effect.</note>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="VOICE_CHANGER_EFFECT_SISTER"/></pt>
   <pd>
-      <p>A young woman&apos;s voice.</p>
+      <p>A young woman's voice.</p>
       <note type="attention">Agora recommends using this preset to process a female-sounding voice; otherwise, you may not hear the anticipated voice effect.</note>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="VOICE_CHANGER_EFFECT_GIRL"/></pt>
   <pd>
-      <p>A girl&apos;s voice.</p>
+      <p>A girl's voice.</p>
       <note type="attention">Agora recommends using this preset to process a female-sounding voice; otherwise, you may not hear the anticipated voice effect.</note>
   </pd>
        </plentry>
@@ -122,29 +122,31 @@ keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"
        </plentry>
        <plentry>
   <pt><ph keyref="VOICE_CHANGER_EFFECT_HULK"/></pt>
-  <pd>The Hulk&apos;s voice.</pd>
+  <pd>The Hulk's voice.</pd>
        </plentry>
        <plentry>
   <pt><ph keyref="STYLE_TRANSFORMATION_RNB"/></pt>
   <pd>
       <p>The voice effect typical of R&amp;B music.</p>
-      <note type="attention">Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile"/> to <ph
-     keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> or <ph
-keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>. Otherwise, the preset setting is invalid.</note>
+      <note type="attention">使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的
+ <parmname>profile</parmname> 参数设置为 <ph
+     keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <ph
+keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</note>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="STYLE_TRANSFORMATION_POPULAR"/></pt>
   <pd>
       <p>The voice effect typical of popular music.</p>
-      <note type="attention">Before using this preset, set the <parmname>profile</parmname> parameter of <xref keyref="setAudioProfile"/> to <ph
-     keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> or <ph
-keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>. Otherwise, the preset setting is invalid.</note>
+      <note type="attention">使用该预设音效前，你需要将 <xref keyref="setAudioProfile"/> 的
+ <parmname>profile</parmname> 参数设置为 <ph
+     keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/> 或 <ph
+keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>，否则该预设音效的设置无效。</note>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="PITCH_CORRECTION"/></pt>
-  <pd>A pitch correction effect that corrects the user&apos;s pitch based on the pitch of the natural C major scale. After setting this voice effect, you can call <xref keyref="setAudioEffectParameters"/> to adjust the basic mode of tuning and the pitch of the main tone.</pd>
+  <pd>A pitch correction effect that corrects the user's pitch based on the pitch of the natural C major scale. After setting this voice effect, you can call  to adjust the<xref keyref="setAudioEffectParameters"/> basic mode of tuning and the pitch of the main tone.</pd>
        </plentry>
    </parml>
         </section></refbody>
