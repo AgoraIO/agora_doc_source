@@ -1,5 +1,5 @@
 # GitHub CI build pipeline
-name: Awesome Calculator CI build
+name: Awesome JSON CI build
 
 on:
   push:
@@ -32,11 +32,6 @@ jobs:
         coverage run -m unittest
         coverage report
         coverage html
-    - name: Archive code coverage html report
-      uses: actions/upload-artifact@v2
-      with:
-        name: code-coverage-report
-        path: xml2json/htmlcov
     - name: Run json creation
       run: |
         cd xml2json
