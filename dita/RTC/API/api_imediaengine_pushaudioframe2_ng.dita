@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pushaudioframe2_ng">
     <title><ph keyref="pushAudioFrame2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">推送外部音频数据。</ph><ph props="ios mac">格式为 <codeph>NSData</codeph>。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">推送外部音频数据。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,12 +24,9 @@
                 <codeblock props="flutter" outputclass="language-dart" />
             </p>
         </section>
-        <section id="detailed_desc" props="ios mac">
+        <section id="detailed_desc">
             <note type="attention">
-                <ul>
-                    <li>采样点数计算方式: <parmname>samples</parmname> = <parmname>length</parmname> ÷ <parmname>sizeof(int16_t)</parmname></li>
-                    <li>调用该方法时，请将媒体选项 <codeph>publishCustomAudioTrack</codeph> 设为 <xref keyref="true"/>。</li>
-                </ul>
+                <p>调用该方法前，请将 <xref keyref="DirectCdnStreamingMediaOptions"></xref> 中的 <parmname>publishCustomAudioTrack</parmname> 设为 <codeph><xref keyref="true"/></codeph>。</p>
             </note>
         </section>
         <section id="parameters"><title>参数</title>
