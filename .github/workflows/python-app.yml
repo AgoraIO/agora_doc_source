@@ -29,8 +29,12 @@ jobs:
       run: |
         cd xml2json
         python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag flutter --json_file flutter_newer.json --sdk_type sdk --remove_sdk_type sdk-ng --defined_path flutter
-    - name: Archive package
-      uses: actions/upload-artifact@v2
+    - name: Upload JSON to release
+      uses: svenstaro/upload-release-action@v2
       with:
-        name: dita2json
-        path: xml2json/dist    
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: xml2json/flutter_newer.json
+        asset_name: CommentTemplate
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "Comment release"
