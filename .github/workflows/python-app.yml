@@ -1,0 +1,49 @@
+# GitHub CI build pipeline
+name: Awesome Calculator CI build
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        cd xml2json
+        python -m pip install --upgrade pip
+        pip install coverage
+        if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Run Unit Tests and generate coverage report
+      run: |
+        cd src
+        python -m unittest -v
+        coverage run -m unittest
+        coverage report
+        coverage html
+    - name: Archive code coverage html report
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-coverage-report
+        path: src/htmlcov
+    - name: Run package creation
+      run: |
+        cd src
+        python -m pip install --user --upgrade build
+        python -m build
+    - name: Archive package
+      uses: actions/upload-artifact@v2
+      with:
+        name: dita2json
+        path: xml2json/dist    
