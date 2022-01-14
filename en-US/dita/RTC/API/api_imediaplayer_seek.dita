@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_seek">
     <title><ph keyref="seek" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Seeks to a new playback position.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">定位到媒体文件的指定播放位置。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,9 +25,14 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>After successfully calling the method, you will receive the <xref keyref="onPlayerEvent" /> callback, reporting the result of the seek operation to the new playback position.</p>
+            <p>After successfully calling the method, you will receive
+ the<xref keyref="onPlayerEvent"/>  callback, reporting the result of the seek operation to the new playback position.</p>
+            <p>如果你想定位播放，请进行如下操作： <ul>
+                <li>调用该方法定位。</li>
+                <li>定位完成后，调用 <xref keyref="play"/> 方法播放。</li>
+                </ul></p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt props="android windows">newPos</pt>
