@@ -242,7 +242,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if sys.platform == 'darwin' or sys.platform == 'linux':
                 print("macOS")
                 conref_path = path.join(new_working_dir, str(conref[0]).replace("../", ""))
-                conref_path = path.join("..", conref_path)
+                
             elif sys.platform == 'win32':
                 print("Windows")
                 conref_path = path.join(new_working_dir, str(conref[0]).replace("../", "").replace("/", "\\"))
