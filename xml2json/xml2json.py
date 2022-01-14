@@ -242,6 +242,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if sys.platform == 'darwin' or sys.platform == 'linux':
                 print("macOS")
                 conref_path = path.join(new_working_dir, str(conref[0]).replace("../", ""))
+                conref_path = path.join("..", conref_path)
             elif sys.platform == 'win32':
                 print("Windows")
                 conref_path = path.join(new_working_dir, str(conref[0]).replace("../", "").replace("/", "\\"))
@@ -328,6 +329,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 print("macOS")
                 if href_text is not None and href_text != "":
                     dir = path.join(working_dir, href_text).replace("../", "")
+                    dir = path.join("..", dir)
                 else:
                     dir = None
             elif sys.platform == 'win32':
@@ -395,6 +397,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 print("macOS")
                 if href_text is not None and href_text != "":
                     dir = path.join(working_dir, href_text).replace("../", "")
+                    dir = path.join("..", dir)
                 else:
                     dir = None
             elif sys.platform == 'win32':
@@ -535,6 +538,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 print("macOS")
                 if href_text is not None and href_text != "" and not href_text.startswith("http"):
                     dir = path.join(working_dir, href_text).replace("../", "")
+                    dir = path.join("..", dir)
                 elif href_text.startswith("http"):
                     xref.text = href_text
                     dir = None
