@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pushaudioframe2_ng">
-    <title><ph keyref="pushAudioFrame2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Pushes the external audio frame.</ph></shortdesc>
+    <title><ph keyref="pushAudioFrame2" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Pushes the external video frame to the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="pushAudioFrame2"/>
+                <indexterm keyref="pushAudioFrame2" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,26 +17,31 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)pushExternalAudioFrameNSData:(NSData * _Nonnull)data
                            sourceId:(NSInteger)sourceId
                           timestamp:(NSTimeInterval)timestamp;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp"/>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="windows" outputclass="language-cpp" />
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
             </p>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="detailed_desc">
+            <note type="attention">
+                <p>调用该方法前，请将 <xref keyref="DirectCdnStreamingMediaOptions"></xref> 中的 <parmname>publishCustomAudioTrack</parmname> 设为 <codeph><xref keyref="true"/></codeph>。</p>
+            </note>
+        </section>
+        <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry conkeyref="pushAudioFrame1/data">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry conkeyref="pushAudioFrame1/time">
-                    <pt/>
-                    <pd/>
+                    <pt />
+                    <pd />
                 </plentry>
                 <plentry id="sourceid">
                     <pt>sourceId</pt>
-                    <pd>The ID of external audio source.</pd>
+                    <pd>The audio track ID.</pd>
                 </plentry>
             </parml>
         </section>
