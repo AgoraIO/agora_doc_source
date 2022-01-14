@@ -25,13 +25,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install coverage
         if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Run Unit Tests and generate coverage report
-      run: |
-        cd xml2json
-        python -m unittest -v
-        coverage run -m unittest
-        coverage report
-        coverage html
     - name: Run json creation
       run: |
         cd xml2json
