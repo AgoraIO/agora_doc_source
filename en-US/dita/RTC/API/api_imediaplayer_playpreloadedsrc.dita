@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_playpreloadedsrc">
     <title><ph keyref="playPreloadedSrc"/></title>
-    <shortdesc id="short"><ph id="shortdesc">播放预加载的媒体资源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Plays preloaded media resources.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,17 +26,17 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <xref keyref="preloadSrc"/> 方法将媒体资源预加载到播放列表后，可以调用该方法播放已预加载的媒体资源。 调用该方法后，如果你收到 <xref keyref="onPlayerStateChanged"/> 回调报告状态 <apiname keyref="PLAYER_STATE_PLAYING"/>，则表示播放成功。</p>
-            <p>如果你想更换播放的预加载媒体资源，你可以再次调用该方法并指定新的媒体资源路径。 如果你想重新播放媒体资源，你需要在播放前调用 <xref keyref="preloadSrc"/> 重新将该媒体资源预加载到播放列表。 如果你想清空播放列表，请调用 <xref keyref="stop"/>。</p>
+            <p>After calling the <xref keyref="preloadSrc"/> method to preload the media resource into the playlist, you can call this method to play the preloaded media resource. After calling this method, if you receive the <xref keyref="onPlayerSourceStateChanged"/> callback which reports the state <apiname keyref="PLAYER_STATE_PLAYING"/>, the playback is successful.</p>
+            <p>If you want to change the preloaded media resource to be played, you can call this method again and specify the URL of the new media resource that you want to preload.  If you want to replay the media resource, you need to call <xref keyref="preloadSrc"/> to preload the media resource to the playlist again before playing. If you want to clear the playlist, call the <xref keyref="stop"/> method.</p>
             <note type="note">
-                <p>如果你在播放暂停时调用该方法，该方法会在恢复播放后才生效。</p>
+                <p>If you call this method when playback is paused, this method does not take effect until playback is resumed.</p>
             </note>
         </section>
         <section id="parameters"><title>Parameter</title>
             <parml>
                 <plentry>
                     <pt>src</pt>
-                    <pd>播放列表中的媒体资源 URL 地址，必须与 <apiname keyref="preloadSrc"/> 方法设置的 <parmname>src</parmname> 一致，否则无法播放。</pd>
+                    <pd>The URL of the media resource in the playlist must be consistent with the <parmname>src</parmname> set by the <apiname keyref="preloadSrc"/> method; otherwise, the media resource cannot be played.</pd>
                 </plentry>
             </parml>
         </section>
