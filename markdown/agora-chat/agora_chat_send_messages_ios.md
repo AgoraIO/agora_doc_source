@@ -28,7 +28,7 @@
   - 组织名称（Organization Identifier）设为 agorachat。
   - User Interface 选择 Storyboard。
   - 语言（Language）选择 Objective-C。
-> 如果你没有添加过开发团队信息，会看到 Add account… 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。
+  <div class="alert info">如果你没有添加过开发团队信息，会看到 Add account… 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
 - 选择项目存储路径，并点击 Create。
 
 ### 集成 Agora Chat SDK
