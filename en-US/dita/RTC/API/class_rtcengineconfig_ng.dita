@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcengineconfig_ng">
     <title><ph keyref="RtcEngineConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="RtcEngineConfig" />定义。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Configurations for the <apiname keyref="RtcEngineConfig" /> instance.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -137,12 +137,12 @@
                 <plentry props="windows android">
                     <pt props="windows">eventHandler</pt>
                     <pt props="android">mEventHandler</pt>
-                    <pd id="eventhandler"><xref keyref="IRtcEngine" /> The event handler for . See <xref keyref="IRtcEngineEventHandler" />.</pd>
+                    <pd id="eventhandler"> The event handler for <xref keyref="IRtcEngine" />. See <xref keyref="IRtcEngineEventHandler" />.</pd>
                 </plentry>
                 <plentry>
                     <pt props="windows ios mac">appId</pt>
                     <pt props="android">mAppId</pt>
-                    <pd id="appid">The App ID issued by Agora for your project.  Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one  instance<apiname keyref="IRtcEngine" />. To change your App ID, call  to<xref keyref="release" /> destroy the current  instance<apiname keyref="IRtcEngine" /> and then create a new one.</pd>
+                    <pd id="appid">The App ID issued by Agora for your project.  Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <apiname keyref="IRtcEngine" /> instance. To change your App ID, call <xref keyref="release" /> to destroy the current <apiname keyref="IRtcEngine" /> instanceand then create a new one.</pd>
                 </plentry>
                 <plentry props="android windows">
                     <pt props="windows">context</pt>
@@ -158,13 +158,13 @@
                 <plentry>
                     <pt props="ios mac windows">enableAudioDevice</pt>
                     <pt props="android">mEnableAudioDevice</pt>
-                    <pd>Whether to allow the SDK to use audio devices:<ul>
-                        <li><codeph>: (Default) Allow the SDK to use audio devices.</codeph><ph keyref="true"/></li>
-                        <li><codeph>: Do not allow the SDK to use audio devices.</codeph><ph keyref="false"/></li>
+                    <pd>Sets whether to allow the SDK to use audio devices:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: (Default) Allow the SDK to use audio devices.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not allow the SDK to use audio devices.</li>
                         </ul></pd>
                     <pd>
                         <note type="attention">
-                            <p>If you need to get the mixed remote audio data through , ensure that you set this parameter as .<xref keyref="pullAudioFrame"/><codeph><ph keyref="false"/></codeph></p>
+                            <p>If you need to get the mixed remote audio data through <xref keyref="pullAudioFrame"/>, ensure that you set this parameter as <codeph><ph keyref="false"/></codeph>.</p>
                         </note>
                     </pd>
                 </plentry>
@@ -189,22 +189,22 @@
                     <pd>
                         <p>The log files that the SDK outputs. See <xref keyref="LogConfig"/>.</p>
                         <p>By default, the SDK outputs four log files: <codeph>agorasdk.log</codeph>, <codeph>agorasdk1.log</codeph>, <codeph>agoraapi.log</codeph>, and <codeph>agoraapi1.log</codeph>. The <codeph>agorasdk.log</codeph> and <codeph>agorasdk1.log</codeph> files each have a default size of 1024 KB, and the <codeph>agoraapi.log</codeph> and <codeph>agoraapi1.log</codeph> files each have a default size of 2,048 KB.  These log files are encoded in UTF-8.</p>
-                        <p>The SDK writes the latest logs in <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>. When <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> is full, the SDK deletes <codeph>agorasdk1.log</codeph> or <codeph>agoraapi1.log</codeph>, renames <codeph>agorasdk.log</codeph> to <codeph>agorasdk1.log</codeph> and <codeph>agoraapi.log</codeph> to <codeph>agorasapi1.log</codeph>, and creates a new <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> to record the latest<codeph> logs</codeph>.</p>
+                        <p>The SDK writes the latest logs in <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>. When <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> is full, the SDK deletes <codeph>agorasdk1.log</codeph> or <codeph>agoraapi1.log</codeph>, renames <codeph>agorasdk.log</codeph> to <codeph>agorasdk1.log</codeph> and <codeph>agoraapi.log</codeph> to <codeph>agorasapi1.log</codeph>, and creates a new <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> to record the latest logs.</p>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mExtensionList</pt>
-                    <pd>Extension libraries</pd>
+                    <pd>Extension libraries.</pd>
                 </plentry>
                 <plentry props="android ios mac">
                     <pt props="android">mExtensionObserver</pt>
                     <pt props="ios mac">eventDelegate</pt>
-                    <pd><xref keyref="IMediaExtensionObserver" /> The  instance.</pd>
+                    <pd> The <xref keyref="IMediaExtensionObserver" /> instance.</pd>
                 </plentry>
                 <plentry props="ios mac">
                     <pt>mediaFilterExtensions</pt>
-                    <pd><xref keyref="AgoraMediaFilterExtensionDelegate" />
-                                                 The  instance.</pd>
+                    <pd>
+                                                 The <xref keyref="AgoraMediaFilterExtensionDelegate" /> instance.</pd>
                 </plentry>
             </parml>
         </section>
