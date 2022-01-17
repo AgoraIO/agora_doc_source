@@ -1,7 +1,6 @@
 #!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
-
-
+import re
 import xml.etree.ElementTree as ET
 import json
 from os import path
@@ -28,7 +27,9 @@ defined_path_text = ''
 
 parser = argparse.ArgumentParser(description="JSON generator")
 
-parser.add_argument("--working_dir", help="Your working dir, such as C:\\Users\\WL\\Documents\\GitHub\\doc_source\\en-US\\dita\\RTC", action="store")
+parser.add_argument("--working_dir",
+                    help="Your working dir, such as C:\\Users\\WL\\Documents\\GitHub\\doc_source\\en-US\\dita\\RTC",
+                    action="store")
 parser.add_argument("--platform_tag", help="Your platform tag, such as flutter", action="store")
 parser.add_argument("--json_file", help="Your json file name, such as flutter_interface_new.json", action="store")
 parser.add_argument("--sdk_type", help="Your SDK type: sdk or sdk-ng", action="store")
@@ -117,7 +118,7 @@ elif sys.platform == 'win32':
     c_sharp_ng_full_path = path.join(working_dir, c_sharp_ng_path.replace("/", "\\"))
     flutter_ng_full_path = path.join(working_dir, flutter_ng_path.replace("/", "\\"))
     rn_ng_full_path = path.join(working_dir, rn_ng_path.replace("/", "\\"))
-    unity_ng_full_path =  path.join(working_dir, unity_ng_path.replace("/", "\\"))
+    unity_ng_full_path = path.join(working_dir, unity_ng_path.replace("/", "\\"))
     # Need to add electron??
 
 # print(android_full_path)
@@ -200,9 +201,10 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     for child in root.iter('*'):
         if child.get("props") is not None:
             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
-            if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+            if platform_tag not in child.get("props") and "native" not in child.get(
+                    "props") or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                     "props") and "native" in child.get(
-                    "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+                "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
                 print("------------------- Tag to remove ---------------------------")
                 print(child)
                 print(child.text)
@@ -242,7 +244,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             if sys.platform == 'darwin' or sys.platform == 'linux':
                 print("macOS")
                 conref_path = path.join(new_working_dir, str(conref[0]).replace("../", ""))
-                
+
             elif sys.platform == 'win32':
                 print("Windows")
                 conref_path = path.join(new_working_dir, str(conref[0]).replace("../", "").replace("/", "\\"))
@@ -423,8 +425,6 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 print("----------------------conkeyref text--------------------")
                 print(child)
                 print("----------------------conkeyref text--------------------")
-
-
 
     # TODO: Implement API name keyrefs
     # Tags can be like <apiname keyref="addInjectStreamUrl"/> and <xref keyref="setChannelProfile"/>
@@ -681,7 +681,6 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 child.clear()
                 parent_map[child].remove(child)
 
-
     # Tag filtering 03
     # Once a tagged element. So more elements, more processings...
     # Do tag filtering again!!!!!!!!!!
@@ -703,8 +702,6 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
                 child.clear()
                 parent_map[child].remove(child)
-
-
 
     # Android
 
@@ -803,6 +800,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                         print(text)
                         param_desc = param_desc + text
 
+
             param_pair[param_name] = param_desc
             # Clean the param_desc variable to get new values
             param_desc = ""
@@ -862,11 +860,11 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     name_list = file_name.split(".")
     json_name = name_list[0]
 
-
     # Write to JSON
     # Test only: ensure_ascii=False is only used for UTF-8 characters
     with open(path.join(path.dirname(__file__), "json_files", json_name + '.json'), 'w', encoding="utf-8") as outfile:
         json.dump(data, outfile, ensure_ascii=False, indent=4)
+
 
     # Call the function to create a single JSON file
     # create_json_from_xml(working_dir, file_dir)
@@ -894,6 +892,7 @@ print(files)
 
 def merge_JsonFiles(files):
     result = list()
+
     for file in files:
         print(file)
         with open(file, 'r', encoding="utf-8") as infile:
@@ -903,5 +902,21 @@ def merge_JsonFiles(files):
         json.dump(result, output_file, ensure_ascii=False, indent=4)
 
 
+def replace_newline():
+
+    input_file = open(json_file, 'r', encoding="utf-8")
+    # 2022.1.17 Clean up \n and spaces
+    file_text = input_file.read()
+    replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', file_text)
+    # replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' \n ', replaced_file_text)
+
+    input_file.close()
+
+    output_file = open(json_file, 'w', encoding="utf-8")
+    output_file.write(replaced_file_text)
+
+
 # Merge the individual JSON files to a single JSON file
 merge_JsonFiles(files)
+
+replace_newline()
