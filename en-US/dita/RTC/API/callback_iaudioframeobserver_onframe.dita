@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserver_onframe">
     <title><ph keyref="onFrame_IAudioFrameObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when each time the player receives an audio frame.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs each time the player receives an audio frame.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -23,7 +23,7 @@
         </p>
         </section>
         <section id="detailed_desc">
-            <p>After registering the audio frame observer, the callback occurs when each time the player receives an audio frame, reporting the detailed information of the audio frame.</p>
+            <p>After registering the audio frame observer, the callback occurs every time the player receives an audio frame, reporting the detailed information of the audio frame.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
@@ -32,8 +32,8 @@
        <plentry>
            <pt props="android ios mac">audioFrame</pt>
            <pt props="windows">frame</pt>
-           <pd props="android windows">The type of the audio frame. See <ph keyref="AudioFrame"/>.</pd>
-           <pd props="ios mac">音频帧信息（CMSampleBufferRef）。</pd>
+           <pd props="android windows">Audio frame information. See <ph keyref="AudioFrame"/>.</pd>
+           <pd props="ios mac">Audio frame information (CMSampleBufferRef).</pd>
        </plentry>
        <plentry props="ios mac">
            <pt>playerKit</pt>
@@ -43,6 +43,6 @@
         </section>
         <section id="return_values" props="android">
    <title>Returns</title>
-            <p>根据你在 <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> 中设置的 <parmname>mode</parmname> 使用音频数据后，在此返回值中传入该音频数据。</p>
+            <p>Passes in the audio data after setting the <parmname>mode</parmname> parameter for handling audio data.<xref keyref="registerAudioFrameObserver2_IMediaPlayer"/></p>
         </section></refbody>
 </reference>
