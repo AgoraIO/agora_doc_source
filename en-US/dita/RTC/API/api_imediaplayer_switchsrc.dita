@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_switchsrc">
     <title><ph keyref="switchSrc"/></title>
-    <shortdesc id="short"><ph id="shortdesc">切换媒体资源。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Switches the media resource being played.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,19 +26,19 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>你可以根据当前网络状态调用该方法切换播放的媒体资源的码率。 For example:<ul>
-                <li>在网络较差时，将播放的媒体资源切换为较低码率的媒体资源地址。</li>
-                <li>在网络较好时，将播放的媒体资源切换为较高码率的媒体资源地址。</li>
+            <p>You can call this method to switch the media resource to be played according to the current network status.  For example:<ul>
+                <li>When the network is poor, the media resource to be played is switched to a media resource address with a lower bitrate.</li>
+                <li>When the network is good, the media resource to be played is switched to a media resource address with a higher bitrate.</li>
                 </ul></p>
-            <p>调用该方法后，如果你收到 <xref keyref="onPlayerEvent"/> 回调报告事件 <xref keyref="PLAYER_EVENT_SWITCH_COMPLETE"/>，则媒体资源切换成功；如果你收到 <xref keyref="onPlayerEvent"/> 回调报告事件 <xref keyref="PLAYER_EVENT_SWITCH_ERROR"/>，则媒体资源切换失败。</p>
-            <p>如果用户需要自定义播放线路，你可以调用 <xref keyref="switchAgoraCDNSrc"/> 实现媒体资源切换。 Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. 如果用户不需要自定义播放线路，你可以调用 <xref keyref="switchSrc"/> 实现媒体资源切换。</p>
+            <p>After calling this method, if you receive the <xref keyref="onPlayerEvent"/> callback event <xref keyref="PLAYER_EVENT_SWITCH_COMPLETE"/>, the switch is successful; If you receive the <xref keyref="onPlayerEvent"/> callback event <xref keyref="PLAYER_EVENT_SWITCH_ERROR"/>, the switch fails.</p>
+            <p>If you want to customize CDN routes for playing the media resource, call the <xref keyref="switchAgoraCDNSrc"/> method to switch media resources.  Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you don't need to customize CDN routes for playing the media resource, call the <xref keyref="switchSrc"/> method to switch media resources. </p>
             <note type="attention">
                 <ul>
-                    <li>Ensure that you<xref keyref="open"/> call this method after .</li>
-                    <li>为保证播放正常，请在调用该方法时注意如下：<ul>
-                        <li>不要在播放暂停时调用该方法。</li>
-                        <li>不要在切换码率过程中调用 <xref keyref="seek"/>。</li>
-                        <li>确保切换码率前的播放位置不大于待切换的媒体资源总时长。</li>
+                    <li>Ensure that you call this method after <xref keyref="open"/>.</li>
+                    <li>To ensure normal playback, pay attention to the following when calling this method:<ul>
+                        <li>Do not call this method when playback is paused.</li>
+                        <li>Do not call the <xref keyref="seek"/> method during switching.</li>
+                        <li>Before switching the media resource, make sure that the playback position does not exceed the total duration of the media resource to be switched.</li>
                         </ul></li>
                 </ul>
             </note>
