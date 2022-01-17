@@ -1,6 +1,6 @@
-# 发送和接收文字消息
+# 发送和接收一对一文本消息
 
-本文介绍如何通过少量代码集成 Agora Chat SDK，在你的 iOS 应用中实现发送和接收文字消息。
+本文介绍如何通过少量代码集成 Agora Chat SDK，在你的 iOS 应用中实现发送和接收一对一文本消息。
 
 ## 技术原理
 
@@ -11,7 +11,7 @@
 开始前，请确保满足以下条件：
 
 - Xcode。本文 Xcode 的界面描述以 12.3 为例。
-- iOS 10 或以上版本。
+- 一台 iOS 设备，安装 iOS 10 或以上版本。
 
 ## 准备开发环境
 
@@ -33,11 +33,11 @@
 
 ### 集成 Agora Chat SDK
 
-按照以下步骤使用 CocoaPods 将 Agora chat SDK 集成到你的项目中。
+按照以下步骤使用 CocoaPods 将 Agora Chat SDK 集成到你的项目中。
 
 1. 开始前确保你已安装 CocoaPods。参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
 2. 在终端里进入项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
-3. 在 `Podfile` 文件里添加 Agora Chat SDK。注意将 `AgoraChatAPIExample` 替换为你的 Target 名称。
+3. 在 `Podfile` 文件里添加 Agora Chat SDK。注意将 `AgoraChatAPIExample` 替换为你实际的 Target 名称。
 
    ```
    platform :ios, '11.0'
@@ -67,7 +67,7 @@
 
 ## 实现获取 Token
 
-为帮助你快速体验发送和接收文字消息功能，Agora 已部署了一个 App Server 用于生成 Token。你需要参考以下步骤在客户端实现获取 Token：
+为帮助你快速体验发送和接收一对一文本消息功能，Agora 已部署了一个 App Server 用于生成 Token。你需要参考以下步骤在客户端实现获取 Token：
 1. 在 `AgoraChatExample` 目录下创建 `EMHttpRequest.h` 文件，并将以下代码拷贝到 `EMHttpRequest.h` 文件中：
 
    ```objective-c
@@ -190,9 +190,9 @@
    @end
    ```
 
-## 实现发送和接收文字消息
+## 实现发送和接收消息
 
-在项目的 `ViewController.m` 文件里添加以下代码实现创建用户、登录和登出、发送和接收文字消息等逻辑：
+在项目的 `ViewController.m` 文件里添加以下代码实现创建用户、登录和登出、发送和接收一对一文本消息等逻辑：
 
 ```objective-c
 //
@@ -548,7 +548,7 @@
     [self printLog:[NSString stringWithFormat:@"logout result : %@",!error ? @"success !" : error.errorDescription]];
 }
 
-// 发送文字消息
+// 发送文本消息
 - (void)_sendMessageWithBody:(AgoraChatMessageBody *)body
                         ext:(NSDictionary * __nullable)aExt
 {
@@ -712,15 +712,15 @@
 @end
 ```
 
-## 运行项目
+## 运行和测试项目
 
 使用 Xcode 在 iOS 真机或模拟机上编译和运行项目。你可以看到以下界面：
 
 ![](https://web-cdn.agora.io/docs-files/1641976387226)
 
-参考以下步骤发送文字消息：
+参考以下步骤发送和接收文本消息：
 1. 输入任意的用户名（如 `Localuser` 和 `Remoteuser`）和密码（如 `123456`），点击 `Create user` 创建两个用户用于互通。
-2. 以 `Localuser` 的身份登录 Agora Chat，将 `Peer username` 填为 `Remoteuser`，发送文字消息。
+2. 以 `Localuser` 的身份登录 Agora Chat，将 `Peer username` 填为 `Remoteuser`，发送文本消息。
    ![](https://web-cdn.agora.io/docs-files/1641976375607)
 3. 以 `Remoteuser` 的身份登录 Agora Chat，查看 log 信息确认是否收到消息。
    ![](https://web-cdn.agora.io/docs-files/1641976362744)
