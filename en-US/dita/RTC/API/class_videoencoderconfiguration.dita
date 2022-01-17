@@ -89,8 +89,30 @@
 };</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
+        public VideoDimensions dimensions;
+        public int frameRate;
+        public int minFrameRate;
+        public int bitrate;
+        public int minBitrate;
+        public ORIENTATION_MODE orientationMode;
+        public DEGRADATION_PREFERENCE degradationPrefer;
+        public int mirrorMode;
+}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
+@property(assign, nonatomic) CGSize dimensions;
+@property(assign, nonatomic) NSInteger frameRate;
+@property(assign, nonatomic) NSInteger minFrameRate;
+@property(assign, nonatomic) NSInteger bitrate;
+@property(assign, nonatomic) NSInteger minBitrate;
+@property(assign, nonatomic) AgoraVideoOutputOrientationMode orientationMode;
+@property(assign, nonatomic) AgoraDegradationPreference degradationPreference;
+@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
+
+- (instancetype _Nonnull)initWithSize:(CGSize)size frameRate:(AgoraVideoFrameRate)frameRate bitrate:(NSInteger)bitrate orientationMode:(AgoraVideoOutputOrientationMode)orientationMode;
+
+- (instancetype _Nonnull)initWithWidth:(NSInteger)width height:(NSInteger)height frameRate:(AgoraVideoFrameRate)frameRate bitrate:(NSInteger)bitrate orientationMode:(AgoraVideoOutputOrientationMode)orientationMode;
+@end</codeblock>
                 <codeblock props="windows unity" outputclass="language-cpp">struct VideoEncoderConfiguration {
     VideoDimensions dimensions;
     FRAME_RATE frameRate;
@@ -100,7 +122,7 @@
     ORIENTATION_MODE orientationMode;
     DEGRADATION_PREFERENCE degradationPreference;
     VIDEO_MIRROR_MODE_TYPE mirrorMode;
-    
+
     VideoEncoderConfiguration(
         const VideoDimensions&amp;amp; d, FRAME_RATE f,
         int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mr = VIDEO_MIRROR_MODE_AUTO)
@@ -139,7 +161,7 @@
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
-  
+
   VideoDimensions? dimensions;
   VideoFrameRate? frameRate;
   VideoFrameRate? minFrameRate;
@@ -169,7 +191,7 @@
        <plentry>
   <pt>dimensions</pt>
   <pd>
-      <p props="android windows flutter">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions" />. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
+      <p props="android windows">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions" />. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
       <p props="ios mac">The dimensions of the encoded video (px). This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value, or select from the following list:<ul>
               <li>AgoraVideoDimension120x120</li>
               <li>AgoraVideoDimension160x120</li>
@@ -208,7 +230,8 @@
        <plentry>
   <pt>frameRate</pt>
   <pd>
-      <p>The encoding frame rate (fps) of the video. See <xref keyref="FRAME_RATE" />. The default value is 15.</p>
+      <p props="rtc-ng">视频编码的帧率(fps)，默认值为 15。 See <xref keyref="FRAME_RATE"/>.</p>
+      <p props="rtc">视频编码的帧率(fps)，默认值为 15。 <ph props="electron flutter windows">See <xref keyref="FRAME_RATE"/>.</ph></p>
   </pd>
        </plentry>
        <plentry>
@@ -222,18 +245,18 @@
       <p props="rtc">You can refer to the table below to set the bitrate according to your app scenario. If the bitrate you set is beyond the reasonable range, the SDK sets it within a reasonable range. You can also choose from the following options:</p>
       <ul props="rtc">
  <li><option keyref="STANDARD_BITRATE" /> : (Recommended)
-     Standard bitrate mode. In this mode, the video bitrate of the Live-broadcasting profile is twice that of the Communication profile.</li>
+     Standard bitrate mode. In this mode, the video bitrate of the LIVE_BROADCASTING profile is twice that of the COMMUNICATION profile.</li>
  <li><option keyref="COMPATIBLE_BITRATE" />
-     : Adaptive bitrate mode. In this mode, the bitrate differs between the Live-broadcasting and Communication profiles. If you choose this mode in the Live-broadcasting profile, the video frame rate may be lower than the set value.</li>
+          : Adaptive bitrate mode. In this mode, the bitrate differs between the Live-broadcasting and Communication profiles. If you choose this mode in the Live-broadcasting profile, the video frame rate may be lower than the set value.</li>
       </ul>
       <ul props="rtc-ng">
           <li><option keyref="STANDARD_BITRATE" /> : (Recommended)
               Standard bitrate mode. In this mode, the video bitrate is twice the base bitrate.</li>
           <li><option keyref="COMPATIBLE_BITRATE" />
-              : Adaptive bitrate mode. In this mode, the video bitrate is the same as the base bitrate. If you choose this mode in the Live-broadcasting profile, the video frame rate may be lower than the set value.</li>
+                            : Adaptive bitrate mode. In this mode, the video bitrate is the same as the base bitrate. If you choose this mode in the Live-broadcasting profile, the video frame rate may be lower than the set value.</li>
       </ul>
       <p props="rtc">Agora uses different video codecs for different profiles to optimize user experience. The Communication profile prioritizes smoothness while the Live-broadcasting profile prioritizes video quality (a higher bitrate).  Therefore, Agora recommends setting this parameter as
-<option keyref="STANDARD_BITRATE" /> . You can also set the bitrate value of the Live-broadcasting profile to twice the bitrate value of the Communication profile.</p>
+ <option keyref="STANDARD_BITRATE" />。 You can also set the bitrate value of the Live-broadcasting profile to twice the bitrate value of the Communication profile.</p>
       <table props="rtc" id="table_bitrate">
  <tgroup cols="4">
      <colspec colnum="1" colname="col1" />
@@ -242,7 +265,7 @@
      <colspec colnum="4" colname="col4" />
      <thead>
 <row>
-    <entry>Dimensions</entry>
+    <entry>分辨率</entry>
     <entry>Frame rate (fps)</entry>
     <entry>Bitrate (Kbps) for Communication</entry>
     <entry>Bitrate (Kbps) for Live-broadcasting</entry>
@@ -433,26 +456,18 @@
        <plentry>
   <pt>orientationMode</pt>
   <pd>
-      The orientation mode of the encoded video. See <xref keyref="ORIENTATION_MODE" />.</pd>
+      The orientation mode of the encoded video. See <xref keyref="ORIENTATION_MODE"/>.</pd>
        </plentry>
        <plentry>
   <pt>degradationPreference</pt>
-  <pd>Video degradation preference under limited bandwidth. For details, see <xref keyref="DEGRADATION_PREFERENCE" />.</pd>
+  <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE" />.</pd>
        </plentry>
        <plentry>
   <pt>mirrorMode</pt>
-  <pd>
-      <dl outputclass="since" props="rtc">
- <dlentry props="native">
-     <dt>Since</dt>
-     <dd>v3.3.0</dd>
- </dlentry>
-      </dl>
-      <p> Whether to mirror the video when encoding the video. It only affects the video that the
-                            remote user sees. <ph props="ios mac windows electron">For details, see
-                            <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</ph><ul conkeyref="setLocalRenderMode2/videomirrormodetype" props="android">
-                            <li />
-                            </ul> </p>
+           <pd><p props="android">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. <ph props="rtc-ng">See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</ph>
+               <ul conkeyref="setLocalRenderMode2/videomirrormodetype" props="rtc"><li/></ul>
+           </p>
+               <p props="ios mac windows electron">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
       <note type="attention">By default, the video is not mirrored.</note>
   </pd>
        </plentry>
