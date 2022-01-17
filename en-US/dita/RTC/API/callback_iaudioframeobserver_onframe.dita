@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserver_onframe">
+    <title><ph keyref="onFrame_IAudioFrameObserver" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when each time the player receives an audio frame.</ph></shortdesc>
+    <prolog>
+        <metadata>
+   <keywords>
+       <indexterm keyref="onFrame_IAudioFrameObserver" />
+   </keywords>
+        </metadata>
+    </prolog>
+    <refbody><section id="prototype">
+        <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">AudioFrame onFrame(AudioFrame audioFrame);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
+    didReceiveAudioFrame:(CMSampleBufferRef _Nonnull)audioFrame;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onFrame(AudioPcmFrame* frame) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+        </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After registering the audio frame observer, the callback occurs when each time the player receives an audio frame, reporting the detailed information of the audio frame.</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+   <parml>
+       <plentry>
+           <pt props="android ios mac">audioFrame</pt>
+           <pt props="windows">frame</pt>
+           <pd props="android windows">The type of the audio frame. See <ph keyref="AudioFrame"/>.</pd>
+           <pd props="ios mac">音频帧信息（CMSampleBufferRef）。</pd>
+       </plentry>
+       <plentry props="ios mac">
+           <pt>playerKit</pt>
+           <pd>See <xref keyref="IMediaPlayer"/>.</pd>
+       </plentry>
+   </parml>
+        </section>
+        <section id="return_values" props="android">
+   <title>Returns</title>
+            <p>根据你在 <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> 中设置的 <parmname>mode</parmname> 使用音频数据后，在此返回值中传入该音频数据。</p>
+        </section></refbody>
+</reference>
