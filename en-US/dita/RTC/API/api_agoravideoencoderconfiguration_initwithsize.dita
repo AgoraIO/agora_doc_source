@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_agoravideoencoderconfiguration_initwithsize">
+    <title><ph keyref="initWithSize"/></title>
+    <shortdesc id="short"><ph id="shortdesc">指定视频分辨率并初始化一个 <xref keyref="VideoEncoderConfiguration"/> 对象。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="initWithSize"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="ios mac" outputclass="language-objectivec">- (instancetype _Nonnull)initWithSize:(CGSize)size
+                            frameRate:(AgoraVideoFrameRate)frameRate
+                              bitrate:(NSInteger)bitrate
+                      orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
+                           mirrorMode:(AgoraVideoMirrorMode)mirrorMode;</codeblock>
+            </p>
+            <p outputclass="codeblock" props="rtc">
+                <codeblock props="ios mac" outputclass="language-objectivec">- (instancetype _Nonnull)initWithSize:(CGSize)size frameRate:(AgoraVideoFrameRate)frameRate bitrate:(NSInteger)bitrate orientationMode:(AgoraVideoOutputOrientationMode)orientationMode;</codeblock>
+            </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>size</pt>
+                    <pd>视频分辨率。</pd>
+                </plentry>
+                <plentry>
+                    <pt>frameRate</pt>
+                    <pd>Video frame rates. See <xref keyref="FRAME_RATE" />.</pd>
+                </plentry>
+                <plentry>
+                    <pt>bitrate</pt>
+                    <pd>The bitrate of the encoding video.</pd>
+                </plentry>
+                <plentry>
+                    <pt>orientationMode</pt>
+                    <pd>视频方向。 See <xref keyref="ORIENTATION_MODE"/>.</pd>
+                </plentry>
+                <plentry props="rtc-ng">
+                    <pt>mirrorMode</pt>
+                    <pd>Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <p>初始化的 <apiname keyref="VideoEncoderConfiguration"/> 对象。</p>
+        </section>
+    </refbody>
+</reference>
