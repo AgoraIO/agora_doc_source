@@ -25,13 +25,13 @@
    <dl outputclass="deprecated">
        <dlentry>
   <dt>Deprecated:</dt>
-  <dd>This method is deprecated from <ph keyref="deprecate-encryption" />. Please use <xref keyref="enableEncryption" /> instead.</dd>
+  <dd>Please use  instead<xref keyref="enableEncryption" />.</dd>
        </dlentry>
    </dl>
-   <p id="desc">The Agora SDK supports built-in encryption. The default encryption is AES-128-XTS. Call this method to use other encryption modes. All users in the same channel must use the same encryption mode and <parmname>secret</parmname>. Refer to the information related to the AES encryption algorithm on the differences between the encryption modes.</p>
-   <note type="attention">Before calling this method, please call <xref keyref="setEncryptionSecret" /> to enable the built-in encryption function.</note>
+            <p id="desc"><ph props="rtc-ng">The Agora SDK supports built-in encryption, which is set to the @p aes-128-xts mode by default. </ph><ph props="rtc">The Agora SDK supports built-in encryption. The default encryption is AES-128-XTS. </ph>Call this method to use other encryption modes. All users in the same channel must use the same encryption mode and <parmname>secret</parmname>. Refer to the information related to the AES encryption algorithm on the differences between the encryption modes.</p>
+   <note type="attention"> Before calling this method, please call  to enable<xref keyref="setEncryptionSecret" /> the built-in encryption function.</note>
         </section>
-        <section id="parameters"><title>Parameters</title>
+        <section id="parameters"><title>Parameter</title>
    <parml>
        <plentry>
   <pt>encryptionMode</pt>
@@ -39,8 +39,11 @@
       <p>Encryption mode.<ul>
      <li>"<codeph>aes-128-xts</codeph>": (Default) 128-bit AES encryption, XTS mode.</li>
      <li>"<codeph>aes-128-ecb</codeph>": 128-bit AES encryption, ECB mode.</li>
-     <li>"<codeph>aes-256-xts</codeph>": 256-bit AES encryption, XTS mode.</li>
-     <li>"": When setting as NULL, the encryption mode is set as "<codeph>aes-128-xts</codeph>" by default.</li>
+          <li>"<codeph>aes-256-xts</codeph>": 256-bit AES encryption, XTS mode.</li>
+          <li>"<codeph>sm4-128-ecb</codeph>": 128-bit SM4 encryption, ECB mode.</li>
+          <li>"<codeph>aes-128-</codeph>xts": 128-bit AES encryption, GCM mode.</li>
+          <li>"<codeph>aes-256-gcm</codeph>": 256-bit AES encryption, GCM mode.</li>
+          <li>"": When encryptionMode is set as NULL, the encryption mode is set as "<codeph>aes-128-xts</codeph>" by default.</li>
  </ul>
       </p>
   </pd>
