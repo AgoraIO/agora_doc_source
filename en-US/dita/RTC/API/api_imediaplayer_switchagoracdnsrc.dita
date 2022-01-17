@@ -4,9 +4,8 @@
  <title>
   <ph keyref="switchAgoraCDNSrc" />
  </title>
- <shortdesc id="short">
-    <ph id="shortdesc">切换媒体资源。</ph>
- </shortdesc>
+ <shortdesc id="short"><ph id="shortdesc">
+  Switches the CDN routes for playing the media resource.</ph></shortdesc>
  <prolog>
   <metadata>
 <keywords>
@@ -30,10 +29,10 @@
 </p>
   </section>
   <section id="detailed_desc">
-<p>如果用户需要自定义播放线路，你可以调用该方法实现媒体资源切换。 Agora 会通过自研调度中心支持调度线路，提升观看用户体验。 如果用户不需要自定义播放线路，你可以调用 <xref keyref="switchSrc" /> 实现媒体资源切换。
+<p>If you want to customize the CDN routes for playing the media resource, call this method to switch media resources.  Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you don't need to customize CDN routes for playing the media resource, call <xref keyref="switchSrc" /> method to switch media resources. 
 </p>
-<note type="note"><ul><li>Call<xref keyref="openWithAgoraCDNSrc"/> this method after calling .</li>
-<li>You can call this method either<xref keyref="play" /> before or after joining a channel. 如果你在 <apiname keyref="play" /> 前调用该方法，SDK 会等你调用 <apiname keyref="play" /> 后再完成线路切换。
+<note type="note"><ul><li>Call this method after calling <xref keyref="openWithAgoraCDNSrc"/>.</li>
+<li>You can call the <xref keyref="play" /> method either before or after joining a channel. If you call this method before <apiname keyref="play" />, the SDK will wait for you to call <apiname keyref="play" /> before completing the route switch.
 </li>
  </ul>
 </note>
@@ -44,15 +43,15 @@
 <parml>
  <plentry id="src">
 <pt>src</pt>
-<pd>媒体资源的网络路径。</pd>
+<pd>The URL of the media resource.</pd>
  </plentry>
  <plentry id="syncPts">
 <pt props="android windows">syncPts</pt>
 <pt props="ios mac">sync</pt>
-<pd>是否同步切换前后的起始播放位置: <ul>
-            <li><codeph><ph keyref="true"/></codeph>：同步。 </li>
-            <li><codeph><ph keyref="false"/></codeph>：(默认) 不同步。 </li>
-            </ul><p>如果媒体资源为直播流，你只能将该参数设置为 <codeph><ph keyref="false"/></codeph>，否则 SDK 切换媒体资源会失败。 如果媒体资源为点播流，你可以根据场景需求对该参数赋值。</p> </pd>
+<pd>Whether to synchronize the playback position (ms) before and after the switch:<ul>
+            <li><codeph><ph keyref="true"/></codeph>: Synchronize the playback position before and after the switch.</li>
+            <li><codeph><ph keyref="false"/></codeph>: (Default) Do not synchronize the playback position before and after the media resource switch.</li>
+            </ul><p>Make sure to set this parameter as <codeph><ph keyref="false"/></codeph> if you need to play live streams, or the switch fails.  If you need to play on-demand streams, you can set the value of this parameter according to your scenarios.</p> </pd>
  </plentry>
 </parml>
   </section>
