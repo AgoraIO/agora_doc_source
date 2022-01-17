@@ -2,30 +2,30 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_directcdnstreamingstate">
     <title><ph keyref="DIRECT_CDN_STREAMING_STATE"></ph></title>
-    <shortdesc id="short">The current streaming state.<ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The current media push state.</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>Enumerator</title>
             <parml>
                 <plentry>
                     <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_IDLE"/></pt>
-                    <pd>0：初始状态，即推流尚未开始。</pd>
+                    <pd>0: The initial state before the media push starts.</pd>
                 </plentry>
                 <plentry>
                     <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_RUNNING"/></pt>
-                    <pd>1：正在推流中。 当你调用 <xref keyref="startDirectCdnStreaming"/> 成功推流时，SDK 会返回该值。</pd>
+                    <pd>1: Media streams are being pushed. The SDK returns this value when you call the <xref keyref="startDirectCdnStreaming"/> method to start the media push.</pd>
                 </plentry>
                 <plentry>
                     <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_STOPPED"/></pt>
-                    <pd>2：推流已正常结束。 当你调用 <xref keyref="stopDirectCdnStreaming"/> 主动停止推流时，SDK 会返回该值。</pd>
+                    <pd>2: Stops the media push. The SDK returns this value when you call the <xref keyref="stopDirectCdnStreaming"/> method to stop the media push.</pd>
                 </plentry>
                 <plentry>
                     <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_FAILED"/></pt>
-                    <pd>The RTMP or RTMPS streaming fails. 你可以通过 <xref keyref="onDirectCdnStreamingStateChanged"/> 回调报告的信息排查问题，然后重新推流。</pd>
+                    <pd>3: Fails to push streams. You can troubleshoot the issue with the information reported by the <xref keyref="onDirectCdnStreamingStateChanged"/> callback, and then starts media push again.</pd>
                 </plentry>
                 <plentry>
                     <pt><ph keyref="DIRECT_CDN_STREAMING_STATE_RECOVERING"/></pt>
-                    <pd>4：尝试重新连接 Agora 服务器和 CDN。 最多尝试重连 10 次，如仍未成功恢复连接，则推流状态变为 <ph keyref="DIRECT_CDN_STREAMING_STATE_FAILED"/>。</pd>
+                    <pd>4: Tries to reconnect Agora server and the CDN. The SDK attempts to reconnect a maximum of 10 times; if the connection is not restored, the streaming state becomes <ph keyref="DIRECT_CDN_STREAMING_STATE_FAILED"/>.</pd>
                 </plentry>
             </parml>
         </section></refbody>
