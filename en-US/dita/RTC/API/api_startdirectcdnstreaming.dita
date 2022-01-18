@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startdirectcdnstreaming">
     <title><ph keyref="startDirectCdnStreaming"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置主播端开始直接向 CDN 推流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts pushing media streams to the CDN directly.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,22 +22,22 @@
         <codeblock props="flutter" outputclass="language-dart"></codeblock>
         </section>
         <section id="detailed_desc">
-            <p>Agora 不支持同一时间向同一个 URL 重复推流。</p>
-            <p><b>媒体选项说明</b></p>
-            <p>Agora 不支持 <parmname>publishCameraTrack</parmname> 和 <parmname>publishCustomVideoTrack</parmname> 同时为 <codeph><ph keyref="true"/></codeph>，也不支持 <parmname>publishMicrophoneTrack</parmname> 和 <parmname>publishCustomAudioTrack</parmname> 同时为 <codeph><ph keyref="true"/></codeph>。 你可以根据场景需求设置媒体选项 (<xref keyref="DirectCdnStreamingMediaOptions"/>)。 示例如下：</p>
-            <p>如果你想推送主播端采集的音视频流，请将媒体选项进行如下设置：</p>
-            <ul><li><parmname>publishCameraTrack</parmname><codeph><ph keyref="true"/></codeph></li>
-                <li><parmname>publishMicrophoneTrack</parmname> 设为 <codeph><ph keyref="true"/></codeph></li>
-                 <li>确保 <parmname>publishCustomAudioTrack</parmname> 为 <codeph><ph keyref="false"/></codeph>(默认值)</li>
-                <li>确保 <parmname>publishCustomVideoTrack</parmname> 为 <codeph><ph keyref="false"/></codeph>(默认值)</li>
+            <p>Aogra does not support pushing streams to one URL repeatedly.</p>
+            <p><b>Media options</b></p>
+            <p>Agora does not support setting the value of <parmname>publishCameraTrack</parmname> and <parmname>publishCustomVideoTrack</parmname> as <codeph><ph keyref="true"/></codeph>, or the value of <parmname>publishMicrophoneTrack</parmname> and <parmname>publishCustomAudioTrack</parmname> as <codeph><ph keyref="true"/></codeph> at the same time.  You can refer to the following examples when choosing media setting options (<xref keyref="DirectCdnStreamingMediaOptions"/>):</p>
+            <p>If you want to push audio and video streams published by the host to the CDN, the media setting options should be set as follows:</p>
+            <ul><li><parmname>publishCameraTrack</parmname> is set as <codeph><ph keyref="true"/></codeph></li>
+                <li><parmname>publishMicrophoneTrack</parmname> is set as <codeph><ph keyref="true"/></codeph></li>
+                 <li><parmname>publishCustomAudioTrack</parmname> is set as <codeph><ph keyref="false"/></codeph> (Default)</li>
+                <li><parmname>publishCustomVideoTrack</parmname> is set as <codeph><ph keyref="false"/></codeph> (Default)</li>
              </ul>
-            <p>如果你想推送外部音视频，请进行如下设置：</p>
+            <p>If you want to push external audio and video streams, ensure that:</p>
             <ul>
-                <li props="android windows"><parmname>publishCustomAudioTrack</parmname><codeph><xref props="android" keyref="pushAudioFrame2"/><xref props="windows" keyref="pushAudioFrame"/></codeph><ph keyref="true"/></li>
-                <li props="ios mac"><parmname>publishCustomAudioTrack</parmname><codeph><xref keyref="pushExternalAudioFrameSampleBuffer1"/><xref keyref="pushAudioFrame2"/></codeph><ph keyref="true"/></li>
-                <li><parmname>publishCustomVideoTrack</parmname><codeph><xref keyref="pushDirectCdnStreamingCustomVideoFrame"/></codeph><ph keyref="true"/></li>
-                <li>确保 <parmname>publishCameraTrack</parmname> 为 <codeph><ph keyref="false"/></codeph>(默认值)</li>
-                <li>确保 <parmname>publishMicrophoneTrack</parmname> 为 <codeph><ph keyref="false"/></codeph>(默认值)</li>
+                <li props="android windows"><parmname>publishCustomAudioTrack</parmname> is set as <codeph><ph keyref="true"/></codeph> and call the <xref props="android" keyref="pushAudioFrame2"/><xref props="windows" keyref="pushAudioFrame"/> method</li>
+                <li props="ios mac"><parmname>publishCustomAudioTrack</parmname> is set as <codeph><ph keyref="true"/></codeph> and call the <xref keyref="pushExternalAudioFrameSampleBuffer1"/> or <xref keyref="pushAudioFrame2"/> method</li>
+                <li><parmname>publishCustomVideoTrack</parmname> is set as <codeph><ph keyref="true"/></codeph> and call the <xref keyref="pushDirectCdnStreamingCustomVideoFrame"/> method</li>
+                <li><parmname>publishCameraTrack</parmname> is set as <codeph><ph keyref="false"/></codeph> (Default)</li>
+                <li><parmname>publishMicrophoneTrack</parmname> is set as <codeph><ph keyref="false"/></codeph> (Default)</li>
             </ul>       
         </section>
         <section id="parameters"><title>Parameter</title>
@@ -45,11 +45,11 @@
                 <plentry>
                     <pt props="android windows">eventHandler</pt>
                     <pt props="ios mac">delegate</pt>
-                    <pd>详见 <xref keyref="onDirectCdnStreamingStateChanged"/> 及 <xref keyref="onDirectCdnStreamingStats"/>。</pd>
+                    <pd>See <xref keyref="onDirectCdnStreamingStateChanged"/> and <xref keyref="onDirectCdnStreamingStats"/> for details.</pd>
                 </plentry>
                 <plentry>
                     <pt>publishUrl</pt>
-                    <pd>CDN 推流 URL。</pd>
+                    <pd>The CDN live streaming URL.</pd>
                 </plentry>
                 <plentry>
                     <pt>options</pt>
