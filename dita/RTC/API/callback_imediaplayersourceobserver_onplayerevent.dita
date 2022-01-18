@@ -16,11 +16,11 @@
                 <codeblock props="android" outputclass="language-java">void onPlayerEvent(Constants.MediaPlayerEvent eventCode, long elapsedTime, String message);
 </codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">(void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
-              didOccurEvent:(AgoraMediaPlayerEvent)event
-                elapsedTime:(NSInteger)time
+              didOccurEvent:(AgoraMediaPlayerEvent)eventCode
+                elapsedTime:(NSInteger)elapsedTime
                     message:(NSString *_Nullable)message;
 </codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT event, int64_t elapsedTime, const char* message) = 0;
+                <codeblock props="windows" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
 </codeblock>
                 <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="unity" outputclass="language-csharp" />
@@ -41,13 +41,11 @@
                     <pd>详见 <xref keyref="IMediaPlayer" />。</pd>
                 </plentry>
                 <plentry>
-                    <pt props="ios mac windows">event</pt>
-                    <pt props="android">eventCode</pt>
+                    <pt>eventCode</pt>
                     <pd>播放器事件，详见 <xref keyref="MEDIA_PLAYER_EVENT" />。</pd>
                 </plentry>
                 <plentry>
-                    <pt props="ios mac">time</pt>
-                    <pt props="android windows">elapsedTime</pt>
+                    <pt>elapsedTime</pt>
                     <pd>发生事件的时间 (毫秒)。</pd>
                 </plentry>
                 <plentry>
