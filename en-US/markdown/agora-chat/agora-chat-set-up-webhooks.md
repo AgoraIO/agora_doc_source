@@ -6,9 +6,9 @@ You can use the HTTP callbacks to synchronize messages on your own server, or mo
 
 ## Understand the tech
 
-According to whether the message delivery is intervented, the callbacks are divided in two categories:
+According to whether the message delivery is intervened, the callbacks are divided in two categories:
 - Pre-delivery callbacks: Mainly used for content moderation. When the Agora Chat server receives a message from the client app, it sends a request to your app server and waits for a response that decides if the message delivery is passed or rejected. Pre-delivery callbacks only apply to messages sent from your client apps.
-- Post-delivery callbacks: Maily used for data synchronization. When certain events occur, for example, a user sends out a message or gets offline, the Agora Chat server sends a request to your app server and does not validate the response content. Post-delivery callbacks apply to messages and other events sent from you client and server apps.
+- Post-delivery callbacks: Mainly used for data synchronization. When certain events occur, for example, a user sends out a message or gets offline, the Agora Chat server sends a request to your app server and does not validate the response content. Post-delivery callbacks apply to messages and other events sent from you client and server apps.
 
 The following table summarizes the differences between the two categories of callbacks.
 
@@ -103,12 +103,12 @@ To verify the signature in a callback, do the following:
      ![secret screenshot](https://web-cdn.agora.io/docs-files/1642410578660)
    - The callback timestamp, which is the `timestamp` parameter in the request body of the callback.
 2. Calculate the [MD5](https://en.wikipedia.org/wiki/MD5) value of the concated string of the callback ID, the secret, and the callback timestamp.
-3. Check if the calculated value equals to the `secret` parameter in the request body. If yes, the callback is sent by Agora Chat.
+3. Check if the calculated value equals the `secret` parameter in the request body. If yes, the callback is sent by Agora Chat.
 
 
 ## Reference
 
-This sections provides the details of the HTTP requests and responses.
+This section provides the details of the HTTP requests and responses.
 
 ### HTTP request
 
