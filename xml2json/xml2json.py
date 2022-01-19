@@ -126,6 +126,7 @@ elif sys.platform == 'win32':
 
 # print(android_full_path)
 # print(cpp_full_path)
+# print(cpp_full_path)
 # print(rust_full_path)
 # print(electron_full_path)
 # print(unity_full_path)
@@ -799,9 +800,10 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 param_name = child.find("pt").text
                 if param_name is None and child.find("./pt/ph") is not None:
                     param_name = child.find("./pt/ph").text
+                    print(child.find("./pd").text)
                 else:
                     print("Something unexpected happened for " + child.text)
-                print(child.find("./pd").text)
+
                 for text in child.find("./pd").itertext():
                     if text is not None:
                         print(text)
