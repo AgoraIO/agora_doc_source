@@ -18,7 +18,7 @@
 </p>
 <p>
 
-**问题原因**：由 iOS 15.x 上 WebKit 视频编码功能回退，详见 [WebKit Bug Report](https://bugs.webkit.org/show_bug.cgi?id=231505)。
+**问题原因**：由 iOS 15.x 上 WebKit 视频编码功能回退，详见 [WebKit Bug 231505](https://bugs.webkit.org/show_bug.cgi?id=231505)。
 </p>
 <p>
 
@@ -40,7 +40,7 @@ createClient({codec:'vp8', mode})
 **问题描述**：在 iOS 15.x 版本上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器等）中，订阅远端音频流 `RemoteAudioTrack` 并播放后，有概率播放音频音量极低，且音频从听筒中而不是扬声器中播放出来。</p>
 <p>
 
-**问题原因**：未定位具体原因，由 iOS 15.x 版本中的音频功能回退导致，详见 [WebKit Bug Report](https://bugs.webkit.org/show_bug.cgi?id=230902)。
+**问题原因**：未定位具体原因，由 iOS 15.x 版本中的音频功能回退导致，详见 [WebKit Bug 230902](https://bugs.webkit.org/show_bug.cgi?id=230902)。
 </p>
 <p>
 
@@ -71,7 +71,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**问题原因**：未定位具体原因，由 iOS 15.x 版本中的视频渲染功能回退导致，详见 [WebKit Bug Report](https://bugs.webkit.org/show_bug.cgi?id=230902)。
+**问题原因**：未定位具体原因，由 iOS 15.x 版本中的视频渲染功能回退导致，详见 [WebKit Bug 230902](https://bugs.webkit.org/show_bug.cgi?id=230902)。
 </p>
 <p>
 
@@ -81,7 +81,7 @@ createClient({codec:'vp8', mode})
 
 
 <details>
-<summary>iOS 15.x: 用户佩戴蓝牙耳机后，播放的音频有概率明显失真。</summary>
+<summary>iOS 15.x: 用户佩戴蓝牙耳机后，播放的音频有概率明显失真</summary>
 <p>
 
 **影响范围**：iOS 15.x 版本上的所有浏览器及内嵌 WebView 的应用。
@@ -124,7 +124,7 @@ createClient({codec:'vp8', mode})
    const localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack({bypassWebAudio: true});
    ```
 
-> 注意：此方案会导致混音功能（`MixingAudioTrack`）失效。
+   > 注意：此方案会导致混音功能（`MixingAudioTrack`）失效。
 </p>
 </details>
 
@@ -149,7 +149,7 @@ createClient({codec:'vp8', mode})
 </details>
 
 <details>
-<summary>更多已知问题</summary>
+<summary>其他历史已知问题</summary>
 <p>以下为没有 WebKit 记录的历史问题：
 
 - iOS 13 和 14 上可能出现远端用户音量随机变化的问题。
@@ -162,179 +162,175 @@ createClient({codec:'vp8', mode})
 
 ### Android
 
-Android 12中使用硬件进行WebRTC视频编码，会导致视频花屏
-
-  - 详情：在Android 12的部分设备中，Chrome浏览器或Chromium内核浏览器如默认开启WebRTC `H264`、`VP8`的视频硬件编码，会导致编码后的视频花屏
-  - 影响范围：安装Android 12系统的Android设备
-  - 原因：Chromium WebRTC模块视频编码回退[chromium issue](https://bugs.chromium.org/p/chromium/issues/detail?id=1237677)
-  - 规避方案：引导使用Android 12的客户，在Chrome浏览器中的`Chrome://flags`配置页面中，关闭WebRTC视频硬件编码的相关配置。（Chrome 97版本有计划修复该问题）
-
 <details>
-<summary></summary>
+<summary>Android 12: 使用 WebRTC 视频硬件编码可能会导致花屏</summary>
 <p>
 
-**影响范围**：
+**问题描述**：在部分安装了 Android 12 的设备（如 Pixel 3 和 Pixel 4）上使用 Chrome 浏览器或 Chromium 内核浏览器，如果默认开启 WebRTC `H264` 或 `VP8` 视频硬件编码，可能会导致花屏。
 </p>
 <p>
 
-**问题描述**：
+**问题原因**：由 Chromium WebRTC 模块视频编码回退导致，详见 [Chromium issue 1237677](https://bugs.chromium.org/p/chromium/issues/detail?id=1237677)。
 </p>
 <p>
 
-**问题原因**：
-</p>
-<p>
-
-**规避方案**：
+**规避方案**：引导使用 Android 12 的客户在 Chrome 浏览器中打开 `Chrome://flags` 配置页面，关闭 WebRTC 视频硬件编码相关配置。Chrome 计划在 97 版本中修复该问题。
 </p>
 </details>
 
 <details>
-<summary></summary>
+<summary>在 Chrome 浏览器上发送视频流，码率无法达到预设值</summary>
 <p>
 
-**影响范围**：
+**影响范围**：部分 Android 设备，包括部分小米及 One Plus 手机。
 </p>
 <p>
 
-**问题描述**：
+**问题描述**：在部分Android设备中，使用Chrome浏览器或Chromium内核浏览器，视频发送码率无法达到Web SDK的预设值
 </p>
 <p>
 
-**问题原因**：
+**问题原因**：可能是因为硬件编码导致特定视频编码帧率下，编码码率无法达到预设值
 </p>
 <p>
 
-**规避方案**：
-</p>
-</details>
-
-<details>
-<summary></summary>
-<p>
-
-**影响范围**：
-</p>
-<p>
-
-**问题描述**：
-</p>
-<p>
-
-**问题原因**：
-</p>
-<p>
-
-**规避方案**：
+**规避方案**：目前发现大部分情况下使用15fps进行视频编码会导致码率过低，而使用30fps则情况较好。因此在遇到此问题时，我们推荐使用30fps进行视频编码测试问题是否可以解决
 </p>
 </details>
 
 <details>
-<summary></summary>
+<summary>微信浏览器中视频无法自动播放</summary>
 <p>
 
-**影响范围**：
+**影响范围**：使用Chromium 89内核的微信浏览器
 </p>
 <p>
 
-**问题描述**：
+**问题描述**：在微信浏览器中，视频无法自动播放；且当通过用户手势（点击、触摸）恢复自动播放后，下一次的视频播放仍然无法自动播放
 </p>
 <p>
 
-**问题原因**：
+**问题原因**：可能是微信浏览器对浏览器自动播放的行为处理有异常，导致与其他浏览器的媒体自动播放行为不一致
 </p>
 <p>
 
-**规避方案**：
-</p>
-</details>
-
-<details>
-<summary></summary>
-<p>
-
-**影响范围**：
-</p>
-<p>
-
-**问题描述**：
-</p>
-<p>
-
-**问题原因**：
-</p>
-<p>
-
-**规避方案**：
-</p>
-</details>
-
-- 使用Chrome浏览器，视频发送码率无法达到预设值
-
-  - 详情：在部分Android设备中，使用Chrome浏览器或Chromium内核浏览器，视频发送码率无法达到Web SDK的预设值
-  - 影响范围：具体设备列表未知，但包括部分小米及One Plus手机
-  - 原因：可能是因为硬件编码导致特定视频编码帧率下，编码码率无法达到预设值
-  - 规避方案：目前发现大部分情况下使用15fps进行视频编码会导致码率过低，而使用30fps则情况较好。因此在遇到此问题时，我们推荐使用30fps进行视频编码测试问题是否可以解决
-
-- 在微信浏览器中，视频无法自动播放
-
-  - 详情：在微信浏览器中，视频无法自动播放；且当通过用户手势（点击、触摸）恢复自动播放后，下一次的视频播放仍然无法自动播放
-
-  - 影响范围：使用Chromium 89内核的微信浏览器
-
-  - 原因：可能是微信浏览器对浏览器自动播放的行为处理有异常，导致与其他浏览器的媒体自动播放行为不一致
-
-  - 规避方案：推荐升级到最新的Web SDK NG版本，并且监听`AgoraRTC.onAutoplayFailed`事件，在此事件中，引导用户点击页面，恢复播放：
+**规避方案**：推荐升级到最新的Web SDK NG版本，并且监听`AgoraRTC.onAutoplayFailed`事件，在此事件中，引导用户点击页面，恢复播放：
 
     ```javascript
     AgoraRTC.onAutoplayFailed = ()=>{
       document.alert('请点击页面后恢复播放');
     }
     ```
+</p>
+</details>
 
-- 使用蓝牙耳机，开始发送音频流后，无法听到远端音频
+<details>
+<summary>使用蓝牙耳机，开始发送音频流后，无法听到远端音频</summary>
+<p>
 
-  - 详情：在佩戴蓝牙耳机时，当在通话过程中通过蓝牙耳机采集本地音频，发送音频流后，有概率会导致无法收听到远端媒体流
-  - 影响范围：具体影响范围未知，但包括部分小米及One Plus手机
-  - 原因：明确原因仍未知，但猜测可能是Chromium在蓝牙设备的profile切换后产生的音频异常
-  - 规避方案：暂无
+**影响范围**：具体影响范围未知，但包括部分小米及One Plus手机
+</p>
+<p>
 
-  
+**问题描述**：在佩戴蓝牙耳机时，当在通话过程中通过蓝牙耳机采集本地音频，发送音频流后，有概率会导致无法收听到远端媒体流
+</p>
+<p>
 
-其他一些与具体Android设备相关的已知问题包括：
+**问题原因**：明确原因仍未知，但猜测可能是Chromium在蓝牙设备的profile切换后产生的音频异常
+</p>
+<p>
+
+**规避方案**：暂无
+</p>
+</details>
+
+<details>
+<summary>某些 Android 机型特有的已知问题</summary>
+<p>
 
 - 在**搭载联发科芯片的设备**上无法使用 H.264 编码在Chrome浏览器中发送视频流
 - 在 Android Chrome 88 以下版本，搭载**华为海思麒麟芯片**的设备无法使用 H.264 编码发送视频流
 - 在**OnePlus 6**使用Chrome 浏览器接收远端视频流期间熄灭屏幕，可能会导致视频流冻结
+</p>
+</details>
 
-
+<details>
+<summary>其他历史已知问题</summary>
+<p>
 
 其他一些我们收到客户反馈，或者在研发过程中发现的，但并没有相关Chromium issue记录的历史问题包括：
-
 - 在部分 Android 设备上可能无法获取到媒体设备的 device label
 - 在部分 Android 设备上音视频流被系统电话呼叫或其他语音和视频通话应用打断，可能会导致 track-ended，需要重新采集音视频
 - 在 Android Chrome 上无法使用 H.264 编码发送大小流
+</p>
+</details>
 
-## 二、移动端已知功能限制
+## 已知限制
 
 ### iOS
 
-- 不支持调用 `createScreenVideoTrack` 进行屏幕共享
-  - 原因：iOS Safari及WebView未实现`mediaDevices.getDisplayMedia`接口
-- 不支持调用 `setBeautyEffect` 开启美颜
-  - 原因：iOS Safari及WebView对WebGL支持不佳，且iOS设备在进行美颜算法处理时性能消耗过于巨大
-- 不支持 `IBufferSourceAudioTrack.seekAudioBuffer` 方法
-  - 原因：在iOS上`WebAudio`不支持实现该方法
-- 无法使用 H.264 编码发送 1080p 及以上分辨率的视频流
-  - 原因：目前使用H264 baseline profile进行协商，在iOS上不支持编码发送1080p及以上分辨率
-- 发送小流时，不支持设置 `LowStreamParameter.bitrate`，且小流分辨率需要与大流分辨率成比例
-  - 原因：iOS Safari及WebView中`RTCRTPSender.setParameters`方法无法指定帧率，通过`scaleResolutionDownBy`属性进行分辨率压缩后，小流分辨率与大流成固定比率
-- 不支持获取 `encodeDelay`
-  - 原因：在iOS上无法通过WebRTC `getStats`API计算的到此结果
+<details>
+<summary>不支持调用 <code>createScreenVideoTrack</code> 进行屏幕共享</summary>
+<p>
+
+原因：iOS Safari 及 WebView 不支持 `mediaDevices.getDisplayMedia` 接口。
+</p>
+</details>
+
+<details>
+<summary>不支持调用 <code>setBeautyEffect</code> 开启美颜</summary>
+<p>
+
+原因：iOS Safari 及 WebView 对 WebGL 支持不佳，且 iOS 设备在进行美颜算法处理时性能消耗过大。
+</p>
+</details>
+
+<details>
+<summary>不支持 <code>IBufferSourceAudioTrack.seekAudioBuffer</code> 方法</summary>
+<p>
+
+原因：iOS 上 `WebAudio` 不支持实现该方法。
+</p>
+</details>
+
+<details>
+<summary>无法使用 H.264 编码发送 1080p 及以上分辨率的视频流</summary>
+<p>
+
+原因：Web SDK 使用 H.264 baseline profile 进行协商，iOS 上不支持编码发送 1080p 及以上分辨率的视频流。
+</p>
+</details>
+
+<details>
+<summary>发送小流时，不支持设置 <code>LowStreamParameter.bitrate</code>，且小流分辨率需要与大流分辨率成比例</summary>
+<p>
+
+原因：iOS Safari 及 WebView 中 `RTCRTPSender.setParameters` 方法无法指定帧率，通过 `scaleResolutionDownBy` 属性进行分辨率压缩后，小流分辨率与大流成固定比率。
+</p>
+</details>
+
+<details>
+<summary>不支持获取 <code>encodeDelay</code></summary>
+<p>
+
+原因：iOS 上无法通过 WebRTC 的 `getStats` 方法计算出 `encodeDelay`。
+</p>
+</details>
 
 ### Android
 
-- 不支持调用 `createScreenVideoTrack` 进行屏幕共享
-  - 原因：移动端浏览器及WebView未实现`mediaDevices.getDisplayMedia`接口
-- 不支持调用 `setBeautyEffect` 开启美颜
-  - 原因：移动端设备在进行美颜算法处理时性能消耗过于巨大
+<details>
+<summary>不支持调用 <code>createScreenVideoTrack</code> 进行屏幕共享</summary>
+<p>
+
+原因：移动端浏览器及 WebView 未实现 `mediaDevices.getDisplayMedia` 接口。
+</p>
+</details>
+
+<details>
+<summary>不支持调用 <code>setBeautyEffect</code> 开启美颜</summary>
+<p>
+
+原因：移动端设备在进行美颜算法处理时性能消耗过大。
+</p>
+</details>
