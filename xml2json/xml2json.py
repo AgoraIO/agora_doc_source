@@ -77,6 +77,7 @@ defined_path_text = args['defined_path']
 # android_path, cpp_path, rust_full_path, electron_path
 android_path = "config/keys-rtc-api-android.ditamap"
 cpp_path = "config/keys-rtc-api-cpp.ditamap"
+cpp_ng_path = "config/keys-rtc-ng-api-cpp.ditamap"
 rust_path = "config/keys-rtc-api-rust.ditamap"
 electron_path = "config/keys-rtc-api-electron.ditamap"
 unity_path = "config/keys-rtc-api-unity.ditamap"
@@ -92,6 +93,7 @@ if sys.platform == 'darwin' or sys.platform == 'linux':
     print("macOS")
     android_full_path = path.join(working_dir, android_path)
     cpp_full_path = path.join(working_dir, cpp_path)
+    cpp_ng_full_path = path.join(working_dir, cpp_ng_path)
     rust_full_path = path.join(working_dir, rust_path)
     electron_full_path = path.join(working_dir, electron_path)
     unity_full_path = path.join(working_dir, unity_path)
@@ -108,6 +110,7 @@ elif sys.platform == 'win32':
     print("Windows")
     android_full_path = path.join(working_dir, android_path.replace("/", "\\"))
     cpp_full_path = path.join(working_dir, cpp_path.replace("/", "\\"))
+    cpp_ng_full_path = path.join(working_dir, cpp_ng_path.replace("/", "\\"))
     rust_full_path = path.join(working_dir, rust_path.replace("/", "\\"))
     electron_full_path = path.join(working_dir, electron_path.replace("/", "\\"))
     unity_full_path = path.join(working_dir, unity_path.replace("/", "\\"))
@@ -122,6 +125,7 @@ elif sys.platform == 'win32':
     # Need to add electron??
 
 # print(android_full_path)
+# print(cpp_full_path)
 # print(cpp_full_path)
 # print(rust_full_path)
 # print(electron_full_path)
@@ -138,6 +142,10 @@ elif defined_path_text == "unity":
     defined_path = unity_full_path
 elif defined_path_text == "rn":
     defined_path = rn_full_path
+elif defined_path_text == "cpp":
+    defined_path = cpp_full_path
+elif defined_path_text == "cpp-ng":
+    defined_path = cpp_ng_full_path
 
 #
 # defined_path = android_full_path
@@ -792,13 +800,19 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 param_name = child.find("pt").text
                 if param_name is None and child.find("./pt/ph") is not None:
                     param_name = child.find("./pt/ph").text
+                    
                 else:
                     print("Something unexpected happened for " + child.text)
-                print(child.find("./pd").text)
-                for text in child.find("./pd").itertext():
-                    if text is not None:
-                        print(text)
-                        param_desc = param_desc + text
+                  
+                if child.find("./pd") is not None:
+                
+                    for text in child.find("./pd").itertext():
+                        if text is not None:
+                            print(text)
+                            param_desc = param_desc + text
+                else:
+                    
+                    param_desc = ""
 
 
             param_pair[param_name] = param_desc
