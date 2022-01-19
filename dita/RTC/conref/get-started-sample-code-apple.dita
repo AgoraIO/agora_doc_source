@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="get-started-sample-code">
+    <title>Get started sample code</title>
+    <body>
+        <section>
+            <title>Video</title>
+            <p id="init-video">
+                <codeblock outputclass="language-swift">func initializeAndJoinChannel() {
+  // Pass in your App ID here
+  agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: "Your App ID", delegate: self)
+  // Video is disabled by default. You need to call enableVideo to start a video stream.
+  agoraKit?.enableVideo()
+  // Create a videoCanvas to render the local video
+  let videoCanvas = AgoraRtcVideoCanvas()
+  videoCanvas.uid = 0
+  videoCanvas.renderMode = .hidden
+  videoCanvas.view = localView
+  agoraKit?.setupLocalVideo(videoCanvas)
+  // Join the channel with a token. Pass in your token and channel name here
+  agoraKit?.joinChannel(byToken: "Your token", channelId: "Channel name", info: nil, uid: 0, joinSuccess: { (channel, uid, elapsed) in
+  })
+}</codeblock>
+            </p>
+        </section>
+        <section>
+            <title>Live Streaming Premium</title>
+            <p id="init-live">
+                <codeblock outputclass="language-swift">func initializeAndJoinChannel() {
+  // Pass in your App ID here
+  agoraKit = AgoraRtcEngineKit.sharedEngine(withAppId: "Your App ID", delegate: self)
+  // For a live streaming scenario, set the channel profile as liveBroadcasting.
+  agoraKit?.setChannelProfile(.liveBroadcasting)
+  // Set the client role as broadcaster or audience.
+  agoraKit?.setClientRole(.broadcaster)
+  // Video is disabled by default. You need to call enableVideo to start a video stream.
+  agoraKit?.enableVideo()
+  // Create a videoCanvas to render the local video
+  let videoCanvas = AgoraRtcVideoCanvas()
+  videoCanvas.uid = 0
+  videoCanvas.renderMode = .hidden
+  videoCanvas.view = localView
+  agoraKit?.setupLocalVideo(videoCanvas)
+  // Join the channel with a token. Pass in your token and channel name here
+  agoraKit?.joinChannel(byToken: "Your token", channelId: "Channel name", info: nil, uid: 0, joinSuccess: { (channel, uid, elapsed) in
+  })
+}</codeblock>
+            </p>
+        </section>
+        <section>
+            <title>Video-Cocoapods-iOS</title>
+            <p id="video-cocoapods-ios">
+                <codeblock outputclass="language-swift"># platform :ios, '9.0'
+target 'Your App' do
+    pod 'AgoraRtcEngine_iOS', 'version'
+end</codeblock>
+            </p>
+        </section>
+        <section>
+            <title>Audio-Cocoapods-iOS</title>
+            <p id="audio-cocoapods-ios">
+                <codeblock outputclass="language-swift"># platform :ios, '9.0'
+target 'Your App' do
+    pod 'AgoraAudio_iOS', 'version'
+end</codeblock>
+            </p>
+        </section>
+        <section>
+            <title>Cocoapods-macOS</title>
+            <p id="cocoapods-mac">
+                <codeblock outputclass="language-swift"># platform :macos, '10.11'
+target 'Your App' do
+pod 'AgoraRtcEngine_macOS', 'version'
+end</codeblock>
+            </p>
+        </section>
+        <section>
+            <title>Obejctive-C</title>
+            <p id="oc-1">
+                <codeblock props="ios" outputclass="objc">#import &lt;UIKit/UIKit.h&gt;
+
+#import &lt;AgoraRtcKit/AgoraRtcEngineKit.h&gt;
+
+@interface ViewController : UIViewController &lt;AgoraRtcEngineDelegate&gt;
+@property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
+@end</codeblock>
+                <codeblock props="mac" outputclass="objc">#import &lt;AppKit/AppKit.h&gt;
+
+#import &lt;AgoraRtcKit/AgoraRtcEngineKit.h&gt;
+
+@interface ViewController : NSViewController &lt;AgoraRtcEngineDelegate&gt;
+@property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
+@end</codeblock>
+            </p>
+            <p id="oc-2">
+                <codeblock outputclass="language-objectivec">#import "ViewController.h"
+<ph props="ios">#import &amp;lt;UIKit/UIKit.h&gt;</ph><ph props="mac">#import &amp;lt;AppKit/AppKit.h&gt;</ph>
+@interface ViewController ()
+<ph props="ios">@property (nonatomic, strong) UIView *localView;
+@property (nonatomic, strong) UIView *remoteView;</ph><ph props="mac">@property (nonatomic, strong) NSView *localView;
+@property (nonatomic, strong) NSView *remoteView;</ph>
+@end
+@implementation ViewController
+- (void)viewDidLoad {
+   [super viewDidLoad];
+   [self initViews];
+   [self initializeAndJoinChannel];
+}
+- (void)viewDidLayoutSubviews {
+   [super viewDidLayoutSubviews];
+   self.remoteView.frame = self.view.bounds;
+   self.localView.frame = CGRectMake(self.view.bounds.size.width - 90, 0, 90, 160);
+}
+- (void)initViews {
+   self.remoteView = [[<ph keyref="ui-view"/> alloc] init];
+   [self.view addSubview:self.remoteView];
+   self.localView = [[<ph keyref="ui-view"/> alloc] init];
+   [self.view addSubview:self.localView];
+}
+- (void)initializeAndJoinChannel {
+   // Pass in your App ID here
+   self.agoraKit = [AgoraRtcEngineKit sharedEngineWithAppId:@"Your App ID" delegate:self];
+   <ph props="live">[self.agoraKit setChannelProfile:AgoraChannelProfileLiveBroadcasting];
+   [self.agoraKit setClientRole:AgoraClientRoleBroadcaster];</ph>
+   [self.agoraKit enableVideo];
+   AgoraRtcVideoCanvas *videoCanvas = [[AgoraRtcVideoCanvas alloc] init];
+   videoCanvas.uid = 0;
+   videoCanvas.renderMode = AgoraVideoRenderModeHidden;
+   videoCanvas.view = self.localView;
+   [self.agoraKit setupLocalVideo:videoCanvas];
+   // Pass in your token and channel name here
+   [self.agoraKit joinChannelByToken:@"Your token" channelId:@"Channel name" info:nil uid:0 joinSuccess:^(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed) {
+   }];
+}
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed {
+   AgoraRtcVideoCanvas *videoCanvas = [[AgoraRtcVideoCanvas alloc] init];
+   videoCanvas.uid = uid;
+   videoCanvas.renderMode = AgoraVideoRenderModeHidden;
+   videoCanvas.view = self.remoteView;
+   [self.agoraKit setupRemoteVideo:videoCanvas];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+ [super viewDidDisappear:animated];
+ [self.agoraKit leaveChannel:nil];
+ [AgoraRtcEngineKit destroy];
+}
+@end</codeblock>
+            </p>
+        </section>
+    </body>
+</topic>

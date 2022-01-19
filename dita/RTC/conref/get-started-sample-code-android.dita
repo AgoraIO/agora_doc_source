@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="get-started-sample-code">
+    <title>Get started sample code</title>
+    <body>
+        <section>
+            <title>Video</title>
+            <p id="init-video">
+                <codeblock outputclass="language-java">// Java
+private void initializeAndJoinChannel() {
+    try {
+        mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
+    } catch (Exception e) {
+        throw new RuntimeException("Check the error.");
+    }
+
+    // By default, video is disabled, and you need to call enableVideo to start a video stream.
+    mRtcEngine.enableVideo();
+
+    FrameLayout container = findViewById(R.id.local_video_view_container);
+    // Call CreateRendererView to create a SurfaceView object and add it as a child to the FrameLayout.
+    SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
+    container.addView(surfaceView);
+    // Pass the SurfaceView object to Agora so that it renders the local video.
+    mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
+
+    // Join the channel with a token.
+    mRtcEngine.joinChannel(token, channelName, "", 0);
+}</codeblock>
+                <codeblock outputclass="language-kotlin">// Kotlin
+   private fun initializeAndJoinChannel() {
+      try {
+          mRtcEngine = RtcEngine.create(baseContext, APP_ID, mRtcEventHandler)
+      } catch (e: Exception) {
+   
+      }
+   
+      // By default, video is disabled, and you need to call enableVideo to start a video stream.
+      mRtcEngine!!.enableVideo()
+   
+      val localContainer = findViewById(R.id.local_video_view_container) as FrameLayout
+      // Call CreateRendererView to create a SurfaceView object and add it as a child to the FrameLayout.
+      val localFrame = RtcEngine.CreateRendererView(baseContext)
+      localContainer.addView(localFrame)
+      // Pass the SurfaceView object to Agora so that it renders the local video.
+      mRtcEngine!!.setupLocalVideo(VideoCanvas(localFrame, VideoCanvas.RENDER_MODE_FIT, 0))
+   
+      // Join the channel with a token.
+      mRtcEngine!!.joinChannel(TOKEN, CHANNEL, "", 0)
+    }</codeblock>
+            </p>
+        </section>
+        <section>
+            <title>Live Streaming Premium</title>
+            <p id="init-live">
+                <codeblock outputclass="language-java">// Java
+private void initializeAndJoinChannel() {
+ try {
+     mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
+ } catch (Exception e) {
+     throw new RuntimeException("Check the error.");
+ }
+
+ // For a live streaming scenario, set the channel profile as BROADCASTING.
+ mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
+ // Set the client role as BORADCASTER or AUDIENCE according to the scenario.
+ mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
+
+ // By default, video is disabled, and you need to call enableVideo to start a video stream.
+ mRtcEngine.enableVideo();
+
+ FrameLayout container = findViewById(R.id.local_video_view_container);
+ // Call CreateRendererView to create a SurfaceView object and add it as a child to the FrameLayout.
+ SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
+ container.addView(surfaceView);
+ // Pass the SurfaceView object to Agora so that it renders the local video.
+ mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
+
+ // Join the channel with a token.
+ mRtcEngine.joinChannel(token, channelName, "", 0);
+}    </codeblock>
+            </p>
+        </section>
+    </body>
+</topic>

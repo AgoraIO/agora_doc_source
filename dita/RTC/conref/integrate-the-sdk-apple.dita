@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="integrate-the-sdk">
+    <title>Integrate the SDK</title>
+    <body>
+        <section>
+            <title>Swift Package</title>
+            <p id="swift-package">
+               Go to <b>File</b> &gt; <b>Swift Packages</b> &gt; <b>Add Package Dependencies...</b>, and paste the following URL: <codeph>https://github.com/AgoraIO/AgoraRtcEngine_iOS</codeph>. In <b>Choose Package Options</b>, specify the <ph
+                    keyref="sdk-name"
+                /> version you want to use. You need to fill in x.y.z for version x.y.z and x.y.z-r.a for version x.y.z.a. For example, fill in 3.5.0 for version 3.5.0
+               and 3.5.0-r.2 for version 3.5.0.2.
+                <note type="attention">
+                    <ul>
+                        <li>
+                           For the <ph keyref="sdk-name"/> , Agora provides Swift Packages for 3.4.3 or later versions.
+                        </li>
+                        <li>
+                           If you have issues installing this Swift Package, try going to <b>File</b> &gt; <b>Swift Packages</b> &gt; <b>Reset Package Caches</b>.
+                        </li>
+                        <li>
+                           For more integration methods, see <xref href="../get-started.md#othermethods">Other approaches to integrate the SDK</xref> .
+                        </li>
+                    </ul>
+                </note>
+            </p>
+        </section>
+        <section>
+            <title>CocoaPods</title>
+            <p id="cocoapods">
+                <ol>
+                    <li>
+                       Install CocoaPods if you have not. See <xref href="https://guides.cocoapods.org/using/getting-started.html#getting-started" scope="external" format="html">Getting Started with CocoaPods</xref> .
+                    </li>
+                    <li>
+                       In Terminal, navigate to the root of your project folder, and run the <codeph>pod init</codeph> command to create a <codeph>Podfile</codeph> in the project folder.
+                    </li>
+                    <li>
+                       Open the <codeph>Podfile</codeph> , and replace all contents with the following code. Remember to replace <codeph>Your App</codeph> with the target name of your project and replace <codeph>version</codeph> with the version of the SDK that you want to integrate. For information about the SDK version, see <xref keyref="release-notes-mac"/> .
+                        <codeblock outputclass="language-swift" props="ios">
+                            # platform :ios, '9.0'
+target 'Your App' do
+pod 'AgoraRtcEngine_iOS', 'version'
+end</codeblock>
+                        <codeblock outputclass="language-swift" props="mac">
+                            # platform :macos, '10.11'
+target 'Your App' do
+pod 'AgoraRtcEngine_macOS', 'version'
+end</codeblock>
+                    </li>
+                    <li>
+                       In Terminal, run the <codeph>pod install</codeph> command to install the SDK. When the SDK is installed successfully, you can see <codeph>Pod installation complete!</codeph> in Terminal and an <codeph>xcworkspace</codeph> file in the project folder.
+                    </li>
+                    <li>
+                       Open the <codeph>xcworkspace</codeph> file for any further steps.
+                    </li>
+                </ol>
+                <note type="attention">
+                   For more integration methods, see <xref href="../get-started.md#othermethods">Other approaches to integrate the SDK</xref> .
+                </note>
+            </p>
+        </section>
+    </body>
+</topic>
