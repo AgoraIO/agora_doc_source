@@ -800,9 +800,15 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 param_name = child.find("pt").text
                 if param_name is None and child.find("./pt/ph") is not None:
                     param_name = child.find("./pt/ph").text
-                    print(child.find("./pd").text)
+                    
                 else:
                     print("Something unexpected happened for " + child.text)
+                    
+                if param_name is not None:
+                    print(child.find("./pd").text)
+                else:
+                    print("param_name.text is None!!! Please check ")
+                    print(param_name)
 
                 for text in child.find("./pd").itertext():
                     if text is not None:
