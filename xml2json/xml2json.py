@@ -803,17 +803,16 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     
                 else:
                     print("Something unexpected happened for " + child.text)
-                    
-                if param_name is not None:
-                    print(child.find("./pd").text)
+                  
+                if child.find("./pd") is not None:
+                
+                    for text in child.find("./pd").itertext():
+                        if text is not None:
+                            print(text)
+                            param_desc = param_desc + text
                 else:
-                    print("param_name.text is None!!! Please check ")
-                    print(param_name)
-
-                for text in child.find("./pd").itertext():
-                    if text is not None:
-                        print(text)
-                        param_desc = param_desc + text
+                    
+                    param_desc = ""
 
 
             param_pair[param_name] = param_desc
