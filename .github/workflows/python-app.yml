@@ -28,7 +28,7 @@ jobs:
     - name: Run json creation
       run: |
         cd xml2json
-        # python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag flutter --json_file flutter_newer.json --sdk_type sdk --remove_sdk_type sdk-ng --defined_path flutter
+        python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag flutter --json_file flutter_newer.json --sdk_type sdk --remove_sdk_type sdk-ng --defined_path flutter
         python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag cpp --json_file cpp_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path cpp-ng
     - name: Upload Flutter CG JSON to release
       uses: svenstaro/upload-release-action@v2
