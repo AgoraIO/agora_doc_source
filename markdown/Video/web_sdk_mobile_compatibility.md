@@ -10,7 +10,7 @@
 <summary>iOS 15.1.x: 使用 H.264 编码发送视频流导致页面奔溃</summary>
 <p>
 
-**影响范围**：iOS 15.1.x 上的所有浏览器及内嵌 WebView 的应用。
+**影响范围**：iOS 15.1.x 上的所有浏览器及内嵌 WkWebView 的应用。
 </p>
 <p>
 
@@ -34,7 +34,7 @@ createClient({codec:'vp8', mode})
 <summary>iOS 15.x: 本地用户听到远端音频流的音量极低</summary>
 <p>
 
-**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WebView 的应用。</p>
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用。</p>
 <p>
 
 **问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中，订阅并播放远端音频轨道 `RemoteAudioTrack` 后，播放音量有概率极低，且音频从听筒中而不是扬声器中播放出来。</p>
@@ -63,7 +63,7 @@ createClient({codec:'vp8', mode})
 <summary>iOS 15.x: 播放视频有概率出现黑屏</summary>
 <p>
 
-**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WebView 的应用。
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用。
 </p>
 <p>
 
@@ -84,7 +84,7 @@ createClient({codec:'vp8', mode})
 <summary>iOS 15.x: 用户佩戴蓝牙耳机后，播放音频有概率明显失真</summary>
 <p>
 
-**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WebView 的应用。
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用。
 </p>
 <p>
 
@@ -104,7 +104,7 @@ createClient({codec:'vp8', mode})
 <summary>iOS 15.x: 浏览器切换到后台后，音频流发送中断</summary>
 <p>
 
-**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WebView 的应用。
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用。
 </p>
 <p>
 
@@ -132,7 +132,7 @@ createClient({codec:'vp8', mode})
 <summary>iOS 15.x: 被其它语音或视频通话应用、Siri 呼叫、闹钟等打断后，音视频播放有概率无法自动恢复</summary>
 <p>
 
-**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WebView 的应用。
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用。
 </p>
 <p>
 
@@ -164,9 +164,14 @@ createClient({codec:'vp8', mode})
 
 <details>
 <summary>Android 12: 使用 WebRTC 视频硬件编码可能会导致花屏</summary>
+
 <p>
 
-**问题描述**：在部分安装了 Android 12 的设备（如 Pixel 3 和 Pixel 4）上使用 Chrome 浏览器或 Chromium 内核浏览器，如果默认开启 WebRTC `H264` 或 `VP8` 视频硬件编码，可能会导致花屏。
+**影响范围**：部分安装了 Android 12 的设备，如 Pixel 3 和 Pixel 4。
+</p>
+<p>
+
+**问题描述**：Android 12 上使用 Chrome 浏览器或 Chromium 内核浏览器，如果默认开启 WebRTC `H264` 或 `VP8` 视频硬件编码，可能会导致花屏。
 </p>
 <p>
 
@@ -182,19 +187,19 @@ createClient({codec:'vp8', mode})
 <summary>Chrome 浏览器上发送视频流，码率无法达到预设值</summary>
 <p>
 
-**影响范围**：部分 Android 设备，包括部分小米及 One Plus 手机。
+**影响范围**：部分 Android 设备，如部分小米及 One Plus 机型。
 </p>
 <p>
 
-**问题描述**：在部分 Android 设备上使用 Chrome 浏览器或 Chromium 内核浏览器，视频发送码率无法达到 Web SDK 的预设值。
+**问题描述**：在 Chrome 浏览器或 Chromium 内核浏览器上视频发送码率无法达到 Web SDK 的预设值。
 </p>
 <p>
 
-**问题原因**：可能是因为硬件编码导致特定视频编码帧率下，编码码率无法达到预设值
+**问题原因**：可能是因为硬件编码导致特定视频编码帧率时码率无法达到预设值。
 </p>
 <p>
 
-**规避方案**：目前发现大部分情况下使用15fps进行视频编码会导致码率过低，而使用30fps则情况较好。因此在遇到此问题时，我们推荐使用30fps进行视频编码测试问题是否可以解决。
+**规避方案**：大部分情况下，视频编码帧率为 15 fps 时，码率会过低，而帧率为 30 fps 时码率则相对较高。因此 Agora 建议遇到码率问题时，尝试将帧率设为 30 fps。
 </p>
 </details>
 
@@ -210,7 +215,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**问题原因**：可能是微信浏览器对浏览器自动播放的行为处理有异常，导致与其他浏览器的媒体自动播放行为不一致
+**问题原因**：可能是微信浏览器对自动播放的行为处理有异常，与其他浏览器的行为不一致。
 </p>
 <p>
 
@@ -227,18 +232,18 @@ createClient({codec:'vp8', mode})
 </details>
 
 <details>
-<summary>如果本地用户佩戴蓝牙耳机，开始发送音频流后就无法听到远端音频</summary>
+<summary>本地用户佩戴蓝牙耳机，开始发送音频流后就无法听到远端音频</summary>
 <p>
 
-**影响范围**：部分小米及 One Plus 手机
+**影响范围**：部分小米及 One Plus 机型
 </p>
 <p>
 
-**问题描述**：如果本地用户佩戴蓝牙耳机，在通话过程中通过蓝牙耳机采集本地音频且发送音频流后，有概率会导致无法收听到远端媒体流。
+**问题描述**：如果本地用户佩戴蓝牙耳机，在通话过程中通过蓝牙耳机采集本地音频且发送音频流后，有概率会无法收听到远端用户的声音。
 </p>
 <p>
 
-**问题原因**：明确原因仍未知，但猜测可能是Chromium在蓝牙设备的profile切换后产生的音频异常
+**问题原因**：可能是由于 Chromium 在蓝牙设备的 profile 切换后会产生音频异常。
 </p>
 <p>
 
@@ -247,23 +252,21 @@ createClient({codec:'vp8', mode})
 </details>
 
 <details>
-<summary>某些 Android 机型特有的已知问题</summary>
+<summary>某些 Android 机型特有的问题</summary>
 <p>
 
-- 在**搭载联发科芯片的设备**上无法使用 H.264 编码在Chrome浏览器中发送视频流
-- 在 Android Chrome 88 以下版本，搭载**华为海思麒麟芯片**的设备无法使用 H.264 编码发送视频流
-- 在**OnePlus 6**使用Chrome 浏览器接收远端视频流期间熄灭屏幕，可能会导致视频流冻结
+- 在搭载**联发科芯片**的设备上无法使用 H.264 编码在 Chrome 浏览器中发送视频流。
+- 在搭载**华为海思麒麟芯片**的设备上，Android Chrome 88 以下版本上，无法使用 H.264 编码发送视频流。
+- 在**OnePlus 6**上使用 Chrome 浏览器接收远端视频流期间熄灭屏幕，可能会导致视频流冻结。
 </p>
 </details>
 
 <details>
 <summary>其他历史已知问题</summary>
 <p>
-
-其他一些我们收到客户反馈，或者在研发过程中发现的，但并没有相关Chromium issue记录的历史问题包括：
-- 在部分 Android 设备上可能无法获取到媒体设备的 device label
-- 在部分 Android 设备上音视频流被系统电话呼叫或其他语音和视频通话应用打断，可能会导致 track-ended，需要重新采集音视频
-- 在 Android Chrome 上无法使用 H.264 编码发送大小流
+- 在部分 Android 设备上可能无法获取到媒体设备的 device label。
+- 在部分 Android 设备上音视频流被系统电话呼叫或其他语音和视频通话应用打断，可能会导致 track-ended，需要重新采集音视频。
+- 在 Android Chrome 上无法使用 H.264 编码发送大小流。
 </p>
 </details>
 
@@ -275,7 +278,7 @@ createClient({codec:'vp8', mode})
 <summary>不支持调用 <code>createScreenVideoTrack</code> 进行屏幕共享</summary>
 <p>
 
-原因：iOS Safari 及 WebView 不支持 `mediaDevices.getDisplayMedia` 接口。
+原因：iOS Safari 及 WkWebView 不支持 `mediaDevices.getDisplayMedia` 接口。
 </p>
 </details>
 
@@ -283,7 +286,7 @@ createClient({codec:'vp8', mode})
 <summary>不支持调用 <code>setBeautyEffect</code> 开启美颜</summary>
 <p>
 
-原因：iOS Safari 及 WebView 对 WebGL 支持不佳，且 iOS 设备在进行美颜算法处理时性能消耗过大。
+原因：iOS Safari 及 WkWebView 对 WebGL 支持不佳，且 iOS 设备在进行美颜算法处理时性能消耗过大。
 </p>
 </details>
 
@@ -299,7 +302,7 @@ createClient({codec:'vp8', mode})
 <summary>无法使用 H.264 编码发送 1080p 及以上分辨率的视频流</summary>
 <p>
 
-原因：Web SDK 使用 H.264 Baseline Profile 进行协商，iOS 上不支持编码发送 1080p 及以上分辨率的视频流。
+原因：Web SDK 使用 H.264 Baseline Profile 进行协商，因此 iOS 上不支持编码发送 1080p 及以上分辨率的视频流。
 </p>
 </details>
 
@@ -307,7 +310,7 @@ createClient({codec:'vp8', mode})
 <summary>发送小流时，不支持设置 <code>LowStreamParameter.bitrate</code>，且小流分辨率需要与大流分辨率成比例</summary>
 <p>
 
-原因：iOS Safari 及 WebView 中 `RTCRTPSender.setParameters` 方法无法指定帧率，通过 `scaleResolutionDownBy` 属性进行分辨率压缩后，小流分辨率与大流成固定比率。
+原因：iOS Safari 及 WkWebView 中 `RTCRTPSender.setParameters` 方法无法指定帧率，通过 `scaleResolutionDownBy` 属性进行分辨率压缩后，小流分辨率与大流成固定比率。
 </p>
 </details>
 
@@ -325,7 +328,7 @@ createClient({codec:'vp8', mode})
 <summary>不支持调用 <code>createScreenVideoTrack</code> 进行屏幕共享</summary>
 <p>
 
-原因：移动端浏览器及 WebView 未实现 `mediaDevices.getDisplayMedia` 接口。
+原因：移动端浏览器及 WkWebView 未实现 `mediaDevices.getDisplayMedia` 接口。
 </p>
 </details>
 
