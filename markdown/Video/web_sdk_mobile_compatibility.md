@@ -1,6 +1,6 @@
 # 移动端已知问题和限制
 
-本页列出在移动端使用 Web SDK 的已知问题和限制。
+本页列出在移动端使用 Web SDK 的已知问题和限制，并提供规避方案。
 
 ## 已知问题
 
@@ -150,7 +150,7 @@ createClient({codec:'vp8', mode})
 
 <details>
 <summary>其他历史已知问题</summary>
-<p>以下为没有 WebKit 记录的历史问题：
+<p>
 
 - iOS 13 和 14 上可能出现远端用户音量随机变化的问题。
 - 切换前置、后置摄像头后采集画面可能会瞬间旋转。
@@ -264,6 +264,7 @@ createClient({codec:'vp8', mode})
 <details>
 <summary>其他历史已知问题</summary>
 <p>
+
 - 在部分 Android 设备上可能无法获取到媒体设备的 device label。
 - 在部分 Android 设备上音视频流被系统电话呼叫或其他语音和视频通话应用打断，可能会导致 track-ended，需要重新采集音视频。
 - 在 Android Chrome 上无法使用 H.264 编码发送大小流。
