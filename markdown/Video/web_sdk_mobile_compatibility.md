@@ -10,15 +10,15 @@
 <summary>iOS 15.1.x: 使用 H.264 编码发送视频流导致页面奔溃</summary>
 <p>
 
-**影响范围**：iOS 15.1.x 版本上的所有浏览器及内嵌 WebView 的应用。
+**影响范围**：iOS 15.1.x 上的所有浏览器及内嵌 WebView 的应用。
 </p>
 <p>
 
-**问题描述**：在 iOS 15.1.x 版本上的 Safari 浏览器和内嵌 WkWebView 的应用（微信浏览器和 Chrome 浏览器等）中，如果你调用 `createClient` 时将 `codec` 设为 `'h264'`，发送视频流后，页面会崩溃。
+**问题描述**：在 iOS 15.1.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中，如果你调用 `createClient` 时将 `codec` 设为 `'h264'`，发送视频流后，页面会崩溃。
 </p>
 <p>
 
-**问题原因**：由 iOS 15.x 上 WebKit 视频编码功能回退，详见 [WebKit Bug 231505](https://bugs.webkit.org/show_bug.cgi?id=231505)。
+**问题原因**：该问题是由 iOS 15.x 上 WebKit 视频编码功能回退导致，详见 [WebKit Bug 231505](https://bugs.webkit.org/show_bug.cgi?id=231505)。
 </p>
 <p>
 
@@ -31,20 +31,20 @@ createClient({codec:'vp8', mode})
 </details>
 
 <details>
-<summary>iOS 15.x: 本地用户听到的远端音频流的音量极低</summary>
+<summary>iOS 15.x: 本地用户听到远端音频流的音量极低</summary>
 <p>
 
-**影响范围**：iOS 15.x 版本上的所有浏览器及内嵌 WebView 的应用。</p>
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WebView 的应用。</p>
 <p>
 
-**问题描述**：在 iOS 15.x 版本上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器等）中，订阅远端音频流 `RemoteAudioTrack` 并播放后，有概率播放音频音量极低，且音频从听筒中而不是扬声器中播放出来。</p>
+**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中，订阅并播放远端音频轨道 `RemoteAudioTrack` 后，播放音量有概率极低，且音频从听筒中而不是扬声器中播放出来。</p>
 <p>
 
-**问题原因**：未定位具体原因，由 iOS 15.x 版本中的音频功能回退导致，详见 [WebKit Bug 230902](https://bugs.webkit.org/show_bug.cgi?id=230902)。
+**问题原因**：该问题是由 iOS 15.x 上 WebKit 音频功能回退导致，详见 [WebKit Bug 230902](https://bugs.webkit.org/show_bug.cgi?id=230902)。
 </p>
 <p>
 
-**规避方案**：在 iOS 15.x 版本的浏览器中使用 `WebAudio` 进行音频播放并使用 `GainNode` 调整音量后，可以提高播放音量。Agora 建议你按照以下步骤规避该问题：
+**规避方案**：在 iOS 15.x 上使用 `WebAudio` 进行音频播放并使用 `GainNode` 调整音量后，可以提高播放音量。Agora 建议你按照以下步骤规避该问题：
 1. 升级至 Web SDK 4.9.0 或以上版本。
 2. 设置 SDK 私有参数 `REMOTE_AUDIO_TRACK_USES_WEB_AUDIO` 为 `true`。SDK 内部会使用 `WebAudio` 播放远端音频流。示例代码如下：
    ```javascript
@@ -55,70 +55,70 @@ createClient({codec:'vp8', mode})
    if(isIOS15(navigator.userAgent)){
        AgoraRTC.setParameter("REMOTE_AUDIO_TRACK_USES_WEB_AUDIO", true);
    }
-    ```
+   ```
 </p>
 </details>
 
 <details>
-<summary>iOS 15.x: 视频播放有概率出现黑屏</summary>
+<summary>iOS 15.x: 播放视频有概率出现黑屏</summary>
 <p>
 
-**影响范围**：iOS 15.x 版本上的所有浏览器及内嵌 WebView 的应用。
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WebView 的应用。
 </p>
 <p>
 
-**问题描述**：在 iOS 15.x 版本上的 Safari 浏览器和内嵌 WkWebView 的应用（微信浏览器和 Chrome 浏览器等）中，在 DOM 中播放视频流且在 `video` 元素或其父元素添加某些 CSS 属性（如 `transform`、`animation`）后，或者改变 CSS 属性重绘视频渲染区域后，有概率视频播放出现黑屏。
+**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中，在 DOM 中播放视频且在 `video` 元素或其父元素添加某些 CSS 属性（如 `transform`、`animation`）后，或者改变 CSS 属性重绘视频渲染区域后，有概率视频播放出现黑屏。
 </p>
 <p>
 
-**问题原因**：未定位具体原因，由 iOS 15.x 版本中的视频渲染功能回退导致，详见 [WebKit Bug 230902](https://bugs.webkit.org/show_bug.cgi?id=230902)。
+**问题原因**：该问题是由 iOS 15.x 上 WebKit 视频渲染功能回退导致，详见 [WebKit Bug 230902](https://bugs.webkit.org/show_bug.cgi?id=230902)。
 </p>
 <p>
 
-**规避方案**：升级至 Web SDK 4.x 最新版本，并且尽量减少对`video` 元素及其父元素的 CSS 属性的更改。
+**规避方案**：升级至 Web SDK 4.x 最新版本，并且尽量减少更改 `video` 元素及其父元素的 CSS 属性。
 </p>
 </details>
 
 
 <details>
-<summary>iOS 15.x: 用户佩戴蓝牙耳机后，播放的音频有概率明显失真</summary>
+<summary>iOS 15.x: 用户佩戴蓝牙耳机后，播放音频有概率明显失真</summary>
 <p>
 
-**影响范围**：iOS 15.x 版本上的所有浏览器及内嵌 WebView 的应用。
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WebView 的应用。
 </p>
 <p>
 
-**问题描述**：在 iOS 15.x 版本上的 Safari 浏览器和内嵌 WkWebView 的应用（微信浏览器和 Chrome 浏览器等）中，如果用户佩戴蓝牙耳机进行音频播放，音频有概率明显失真。
+**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中，如果用户佩戴蓝牙耳机进行音频播放，音频有概率明显失真。
 </p>
 <p>
 
-**问题原因**：未定位具体原因，由 iOS 15.x 版本中的音频播放功能回退导致，详见 [WebKit Bug Report](https://bugs.webkit.org/show_bug.cgi?id=231422)。
+**问题原因**：该问题是由 iOS 15.x 上 WebKit 音频播放功能回退导致，详见 [WebKit Bug 231422](https://bugs.webkit.org/show_bug.cgi?id=231422)。
 </p>
 <p>
 
-**规避方案**：无
+**规避方案**：暂无
 </p>
 </details>
 
 <details>
-<summary>iOS 15.x: 浏览器切换到后台后，音频流发送会中断</summary>
+<summary>iOS 15.x: 浏览器切换到后台后，音频流发送中断</summary>
 <p>
 
-**影响范围**：iOS 15.x 版本上的所有浏览器及内嵌 WebView 的应用。
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WebView 的应用。
 </p>
 <p>
 
-**问题描述**：在 iOS 15.x 版本上的 Safari 浏览器和内嵌 WkWebView 的应用（微信浏览器和 Chrome 浏览器等）中发送音频流，浏览器切换到后台后，音频流发送会中断。
+**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中发送音频流，浏览器或应用切换到后台后，音频流发送会中断。
 </p>
 <p>
 
-**问题原因**：由于 [WebKit bug](https://bugs.webkit.org/show_bug.cgi?id=231105)，浏览器切换至后台后，`WebAudio` 的 `AudioContext` 会停止音频处理。
+**问题原因**：由于 WebKit 的 [bug](https://bugs.webkit.org/show_bug.cgi?id=231105)，浏览器切换至后台后，`WebAudio` 的 `AudioContext` 会停止音频处理。
 </p>
 <p>
 
 **规避方案**：参考以下步骤规避此问题：
 1. 升级至 Web SDK 4.7.3 或之后版本。
-2. 在调用 `createMicrophoneAudioTrack` 创建音频轨道时，将`bypassWebAudio` 参数设为 `true`，本地音频流会不绕过 `WebAudio` 处理直接发布。
+2. 调用 `createMicrophoneAudioTrack` 创建音频轨道时，将`bypassWebAudio` 参数设为 `true`，本地音频流会不经由 `WebAudio` 处理直接发布。
 
    ```javascript
    const localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack({bypassWebAudio: true});
@@ -132,19 +132,19 @@ createClient({codec:'vp8', mode})
 <summary>iOS 15.x: 被其它语音或视频通话应用、Siri 呼叫、闹钟等打断后，音视频播放有概率无法自动恢复</summary>
 <p>
 
-**影响范围**：iOS 15.x 版本上的所有浏览器及内嵌 WebView 的应用。
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WebView 的应用。
 </p>
 <p>
 
-**问题描述**：在 iOS 15.x 版本上的 Safari 浏览器和内嵌 WkWebView 的应用（微信浏览器和 Chrome 浏览器等）中播放音视频，如果被其它语音或视频通话应用、Siri 呼叫、闹钟等打断，音视频播放有概率无法自动恢复。
+**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中播放音视频，如果被其它语音或视频通话应用、Siri 呼叫、闹钟等打断，音视频播放有概率无法自动恢复。
 </p>
 <p>
 
-**问题原因**：音视频播放被打断后，DOM `video` 元素和 `audio` 元素的状态变为 `paused`。打断结束后，元素状态无法自动切换回 `playing`，且调用`HTMLMediaElement.play` 方法也无法恢复媒体的播放。详见 [WebKit issue 232599](https://bugs.webkit.org/show_bug.cgi?id=232599) 和[WebKit issue 226698](https://bugs.webkit.org/show_bug.cgi?id=226698)。
+**问题原因**：音视频播放被打断后，DOM `video` 元素和 `audio` 元素的状态变为 `paused`。打断结束后，状态无法自动切回 `playing`，且调用`HTMLMediaElement.play` 方法也无法恢复媒体的播放。详见 [WebKit bug 232599](https://bugs.webkit.org/show_bug.cgi?id=232599) 和[WebKit bug 226698](https://bugs.webkit.org/show_bug.cgi?id=226698)。
 </p>
 <p>
 
-**规避方案**：升级至 Web SDK 4.x 最新版本。SDK 会尝试在打断事件后恢复媒体流的播放。
+**规避方案**：升级至 Web SDK 4.x 最新版本。SDK 会尝试在打断事件后恢复媒体播放。
 </p>
 </details>
 
@@ -170,7 +170,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**问题原因**：由 Chromium WebRTC 模块视频编码回退导致，详见 [Chromium issue 1237677](https://bugs.chromium.org/p/chromium/issues/detail?id=1237677)。
+**问题原因**：该问题是由 Chromium WebRTC 模块视频编码回退导致，详见 [Chromium issue 1237677](https://bugs.chromium.org/p/chromium/issues/detail?id=1237677)。
 </p>
 <p>
 
@@ -179,14 +179,14 @@ createClient({codec:'vp8', mode})
 </details>
 
 <details>
-<summary>在 Chrome 浏览器上发送视频流，码率无法达到预设值</summary>
+<summary>Chrome 浏览器上发送视频流，码率无法达到预设值</summary>
 <p>
 
 **影响范围**：部分 Android 设备，包括部分小米及 One Plus 手机。
 </p>
 <p>
 
-**问题描述**：在部分Android设备中，使用Chrome浏览器或Chromium内核浏览器，视频发送码率无法达到Web SDK的预设值
+**问题描述**：在部分 Android 设备上使用 Chrome 浏览器或 Chromium 内核浏览器，视频发送码率无法达到 Web SDK 的预设值。
 </p>
 <p>
 
@@ -194,7 +194,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**规避方案**：目前发现大部分情况下使用15fps进行视频编码会导致码率过低，而使用30fps则情况较好。因此在遇到此问题时，我们推荐使用30fps进行视频编码测试问题是否可以解决
+**规避方案**：目前发现大部分情况下使用15fps进行视频编码会导致码率过低，而使用30fps则情况较好。因此在遇到此问题时，我们推荐使用30fps进行视频编码测试问题是否可以解决。
 </p>
 </details>
 
@@ -202,11 +202,11 @@ createClient({codec:'vp8', mode})
 <summary>微信浏览器中视频无法自动播放</summary>
 <p>
 
-**影响范围**：使用Chromium 89内核的微信浏览器
+**影响范围**：使用 Chromium 89 内核的微信浏览器
 </p>
 <p>
 
-**问题描述**：在微信浏览器中，视频无法自动播放；且当通过用户手势（点击、触摸）恢复自动播放后，下一次的视频播放仍然无法自动播放
+**问题描述**：视频无法自动播放，并且当通过用户手势（点击、触摸）恢复自动播放后，下一次的视频播放仍然无法自动播放。
 </p>
 <p>
 
@@ -214,25 +214,27 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**规避方案**：推荐升级到最新的Web SDK NG版本，并且监听`AgoraRTC.onAutoplayFailed`事件，在此事件中，引导用户点击页面，恢复播放：
+**规避方案**：参考以下步骤规避此问题：
+1. 升级至 Web SDK 4.x 最新版本。
+2. 监听 `AgoraRTC.onAutoplayFailed` 事件。在此事件中，引导用户点击页面，恢复播放：
 
     ```javascript
     AgoraRTC.onAutoplayFailed = ()=>{
-      document.alert('请点击页面后恢复播放');
+        document.alert('请点击页面后恢复播放');
     }
     ```
 </p>
 </details>
 
 <details>
-<summary>使用蓝牙耳机，开始发送音频流后，无法听到远端音频</summary>
+<summary>如果本地用户佩戴蓝牙耳机，开始发送音频流后就无法听到远端音频</summary>
 <p>
 
-**影响范围**：具体影响范围未知，但包括部分小米及One Plus手机
+**影响范围**：部分小米及 One Plus 手机
 </p>
 <p>
 
-**问题描述**：在佩戴蓝牙耳机时，当在通话过程中通过蓝牙耳机采集本地音频，发送音频流后，有概率会导致无法收听到远端媒体流
+**问题描述**：如果本地用户佩戴蓝牙耳机，在通话过程中通过蓝牙耳机采集本地音频且发送音频流后，有概率会导致无法收听到远端媒体流。
 </p>
 <p>
 
@@ -297,7 +299,7 @@ createClient({codec:'vp8', mode})
 <summary>无法使用 H.264 编码发送 1080p 及以上分辨率的视频流</summary>
 <p>
 
-原因：Web SDK 使用 H.264 baseline profile 进行协商，iOS 上不支持编码发送 1080p 及以上分辨率的视频流。
+原因：Web SDK 使用 H.264 Baseline Profile 进行协商，iOS 上不支持编码发送 1080p 及以上分辨率的视频流。
 </p>
 </details>
 
@@ -313,7 +315,7 @@ createClient({codec:'vp8', mode})
 <summary>不支持获取 <code>encodeDelay</code></summary>
 <p>
 
-原因：iOS 上无法通过 WebRTC 的 `getStats` 方法计算出 `encodeDelay`。
+原因：iOS 上无法通过 WebRTC 的 `getStats` 接口计算出 `encodeDelay`。
 </p>
 </details>
 
