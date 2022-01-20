@@ -6,11 +6,11 @@ This page shows a sample code to add peer-to-peer messaging into your app by usi
 
 ## Understand the tech
 
-The workflow of peer-to-peer messaging is as follows:
+The workflow for peer-to-peer messaging is as follows:
 
 ![](images/chat-uikit-architecture.png)
 
-- The clients retrieve a token from your app server.
+- The clients retrieve a token from your token server.
 - Client A and Client B sign in to Agora Chat.
 - Client A sends a message to Client B.
 - The message is sent to the Agora Chat server and the server delivers the message to Client B.
@@ -26,108 +26,111 @@ In order to follow the procedure in this page, you must have:
 
 ## Project setup
 
-Follow the steps to create the environment necessary to add Agora Chat UIKit into your app.
+In order to create the environment necessary to integrate Agora Chat UIKit into your app, do the following:
 
-### Create an iOS project
+1. [Create a new project](https://help.apple.com/xcode/mac/current/#/dev07db0e578) for an iOS app. Make sure you select **Storyboard** as the **Interface**.
 
-For new projects, in **XCode**, [create an iOS App](https://developer.apple.com/documentation/xcode/creating-an-xcode-project-for-an-app) with the following configurations:
+   If you have added any team information, you see the **Add account...** button. Click it, input your Apple ID, and click Next. Your team information is added to the project.
 
-- Product Name: `EaseChatKitExample`.
-- Organization Identifier: `agorachat`.
-- Interface: `Storyboard`.
-- Language: `Objective-C`.
+2. [Enable automatic signing](https://help.apple.com/xcode/mac/current/#/dev23aab79b4) for your project.
 
-### Integrate Agora Chat UIKit
+3. [Set the target devices](https://help.apple.com/xcode/mac/current/#/deve69552ee5) to deploy your iOS app.
 
-Follow the steps to add the Agora Chat UIKit into your iOS project.
+4. Add project permissions for microphone and camera usage.
+  
+   Open **info** in the project navigation panel, and add the following properties to the [Property List](https://help.apple.com/xcode/mac/current/#/dev3f399a2a6):
 
-1. Download the [souce code for Agora Chat UIKit](https://github.com/AgoraIO-Usecase/AgoraChat-UIKit-ios.git). 
+   | Key | Type | Value |
+   | --- | --- | --- |
+   | `Privacy - Photo Library Usage Description` | String | For photo library access |
+   | `Privacy - Microphone Usage Description` | String | For microphone access |
+   | `Privacy - Camera Usage Description` | String | For camera access |
+   | `App Transport Security Settings > Allow Arbitrary Loads` | Boolean | YES |
 
-2. Go to the root directory of your Xcode project and run the following command to create a `Podfile`.
+5. Integrate the UIKit into your project.
 
-   ```shell
-   pod init
-   ```
-3. Add dependencies to the UIKit in the `Podfile`. Open `Podfile` and replace the content with the following:
+   1. Create a Podfile for your project.
 
-   > The path of `chat-uikit` is the relative path of the downloaded UIkit to the podfile. You need to modify the path accordingly.
+      In the Terminal, navigate to the root directory of your Xcode project and run the following command:
 
-   ```xml
-   platform :ios, '11.0'
-   target 'EaseChatKitExample' do
+      ```shell
+      pod init
+      ```
+   2. Add dependencies to the UIKit in the Podfile.
 
-     # Pods for EaseChatKitExample
-     pod 'chat-uikit', :path => "../AgoraChat-UIKit-ios-main"
-     pod 'Masonry'
+      Open Podfile and replace the content with the following:
 
-   end
-   ```
-   
+      ```shell
+      platform :ios, '11.0'
+      target 'EaseChatKitExample' do
 
-4. In the root directory of your project, run the following command to install the UIKit.
+      # Pods for EaseChatKitExample
+      pod 'chat-uikit'
+      pod 'Masonry'
 
-   ```shell
-   pod install
-   ```
+      end
+      ```
+    
+    3. Install the UIKit.
 
-### Add project permissions
+       In the Terminal, navigate to the root directory of your Xcode project and run the following command:
 
-In **Xcode**, open `info`, and the following permissions:
+       ```shell
+       pod install
+       ```
 
-```xml
-Privacy - Photo Library Usage Description // For photo library access
-Privacy - Microphone Usage Description // For microphone access
-Privacy - Camera Usage Description // For camera access
-App Transport Security Settings > Allow Arbitrary Loads - YES // For network access
-```
+    The Agora Chat UIKit is now added into your project.
+
 
 ## Implement peer-to-peer messaging
 
-This section shows how to call the APIs in the Agora Chat UIKit to implement peer-to-peer messaging in your app.
+This section shows how to use Agora Chat UIKit to rapidly implement peer-to-peer messaging in your app.
 
 ### Initialize UIKit
 
-In **Xcode**, open `SceneDelegate.m` file and add the following lines to import the header file:
+Follow the steps to initialize the UIKit.
 
-```Objective-C
-#import <chat-uikit/EaseChatKit.h>
-#import "AgoraLoginViewController.h"
-#import <AgoraChat/AgoraChat.h>
-```
+1. To import the header file, open `SceneDelegate.m` in **Xcode** and add the following lines to import the header file:
 
-Replace the `scene` function with the following code:
+    ```Objective-C
+    #import <chat-uikit/EaseChatKit.h>
+    #import "AgoraLoginViewController.h"
+    #import <AgoraChat/AgoraChat.h>
+    ```
 
-```Objective-C
-- (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
-    // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-    // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-    // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-    
-    AgoraChatOptions *options = [AgoraChatOptions optionsWithAppkey:@"41117440#383391"];
-    options.enableConsoleLog = YES;
-    options.usingHttpsOnly = YES;
-    options.enableDeliveryAck = YES;
-    options.isAutoLogin = NO;
-  	// Initialize chat-uikit
-    [EaseChatKitManager initWithAgoraChatOptions:options];
-    
-    UIWindowScene *windowScene = (UIWindowScene *)scene;
-    self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
-    self.window.frame = windowScene.coordinateSpace.bounds;
-    // Go to the login view
-    self.window.rootViewController = [[AgoraLoginViewController alloc]init];
-        [self.window makeKeyAndVisible];
-}
-```
+2. Initialize the UIKit by calling the `initWithAgoraChatOptions` method. In `SceneDelegate.m`, replace the `willConnectToSession` method with the following code:
+
+    ```Objective-C
+    - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
+        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
+        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
+        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
+        AgoraChatOptions *options = [AgoraChatOptions optionsWithAppkey:@"41117440#383391"];
+        options.enableConsoleLog = YES;
+        options.usingHttpsOnly = YES;
+        options.enableDeliveryAck = YES;
+        options.isAutoLogin = NO;
+        // Initialize chat-uikit
+        [EaseChatKitManager initWithAgoraChatOptions:options];
+        
+        UIWindowScene *windowScene = (UIWindowScene *)scene;
+        self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
+        self.window.frame = windowScene.coordinateSpace.bounds;
+        // Go to the login view
+        self.window.rootViewController = [[AgoraLoginViewController alloc]init];
+            [self.window makeKeyAndVisible];
+    }
+    ```
 
 ### Log into Agora Chat
 
 Take the following steps to log into Agora Chat.
 
-1. In **Xcode**, go to **File** > **New** > **File**, and create a **Cocoa Touch Class** file named `AgoraChatHttpRequest` with the subclass of `NSObject`.
+1. In **Xcode**, go to **File** > **New** > **File**, and create a **Cocoa Touch Class** file named `AgoraChatHttpRequest`. Make sure to set **Subclass of** as `NSObject`. Save the file under **AgoraChatUIKit**.
    ![](images/create_file.png)
 
-2. Open `AgoraChatHttpRequest.h` and replace the file with the following code:
+2. Open `AgoraChatHttpRequest.h` and replace the code with the following:
 
     ```Objective-C
     #import <Foundation/Foundation.h>
@@ -151,7 +154,7 @@ Take the following steps to log into Agora Chat.
     NS_ASSUME_NONNULL_END
     ```
     
-    To register to the Agora Chat app server, open `AgoraChatHttpRequest.m` and replace the file with the following code:
+    To register to the Agora Chat app server, open `AgoraChatHttpRequest.m` and replace the file with the code with the following:
 
     ```Objective-C
     #import "AgoraChatHttpRequest.h"
@@ -248,9 +251,9 @@ Take the following steps to log into Agora Chat.
     @end
     ```
 
-3. Go to **File** > **New** > **File** and create a **Cocoa Touch Class** file named `AgoraLoginViewController` with the subclass of **UIViewController**.
+3. Go to **File** > **New** > **File** and create a **Cocoa Touch Class** file named `AgoraLoginViewController`. Make sure to set **Subclass of** as `UIViewController`.
 
-4. In `AgoraLoginViewController.m`, add the following lines to import the header file:
+4. To import the header file, open `AgoraLoginViewController.m` and add the following lines:
 
     ```Objective-C
     #import "AgoraChatHttpRequest.h" // To send request to the Appserver
@@ -338,6 +341,7 @@ In `ViewController.m`, add the following code:
 #import <Masonry/Masonry.h>
 #import <AgoraChat/AgoraChat.h>
 #import <chat-uikit/EaseChatKit.h>
+
 @interface ViewController ()<EaseChatViewControllerDelegate, UITextFieldDelegate>
 @property (nonatomic, strong) EaseConversationModel *conversationModel;
 @property (nonatomic, strong) AgoraChatConversation *conversation;
@@ -456,15 +460,18 @@ Add the following code in `ViewController.m` to create the input box and **Chat*
 }
 ```
 
+### Build the project
+
+In **Xcode**, select an iPhone simulator and click **Start**. If the project builds successfully, you will see the user interface.
+
+If the project build fails, and **Xcode** reports **Library not found for -IMasonry**, close the project and open **EaseChatKitExample.xcworkspace** (instead of **EaseChatKitExample.xcodeproj**) in Xcode, selector an iPhone simulator and click **Start**. 
+
+
 ## Test your app
 
-In **Xcode**, select an iPhone simulator and click **Start**, and you will see the following user interface. Input a Chat ID, and you can now send a peer-to-peer message.
-
-![](images/try_uikit_ios.png)
-
-> If the project build fails, and **Xcode** reports **Library not found for -IMasonry**, close the project and open **EaseChatKitExample.xcworkspace** (instead of **EaseChatKitExample.xcodeproj**) in Xcode, selector an iPhone simulator and click **Start**. 
+To be added
 
 ## Reference
 
-For demonstration purposes, Agora has built a full-fledged app that has integrated the Agora Chat UIKit. You can go to [AgoraChat-ios](https://github.com/AgoraIO-Usecase/AgoraChat-ios), donwload the project, run it, and try the various features in the app. You can also view the source code as a reference.
+Agora provides the fully featured [AgoraChat-ios](https://github.com/AgoraIO-Usecase/AgoraChat-ios) demo app as an implementation reference. To run this demo, follow the instructions in the [Readme]().
 
