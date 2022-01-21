@@ -6,7 +6,8 @@ This section provides additional information for your reference.
 
 Agora provides an open source sample project [start-sample-project-android] on GitHub that implements one-to-one video call and group video call for your reference.
 
-## Other approaches to integrate the SDK {#other}
+<a name="other"></a>
+## Other approaches to integrate the SDK
 
 In addition to integrating the Agora Video SDK for Android through JitPack, you can also import the SDK into your project through mavenCentral or by manually copying the SDK files.
 

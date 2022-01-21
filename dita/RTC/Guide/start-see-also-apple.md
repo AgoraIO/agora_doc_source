@@ -18,7 +18,7 @@ In addition to integrating the [sdk-name] for <ph keyref="recommended-method"></
 
 <b props="ios">Automatically integrate the SDK with CocoaPods</b>
 
-<p props="ios" conref="conref/integrate-the-sdk-apple.dita#integrate-the-sdk/cocoapods"></p>
+<p props="ios" conref="../conref/integrate-the-sdk-apple.dita#integrate-the-sdk/cocoapods"></p>
 
 <b>Manually copy the SDK files</b>
 
@@ -33,7 +33,7 @@ In addition to integrating the [sdk-name] for <ph keyref="recommended-method"></
  <note type="attention">
  <ul>
  <li>Apple does not allow an app extension to contain any dynamic library. If you are integrating the Agora SDK to an app extension, choose <b>Do Not Embed</b> in the Embed column.</li>
- <li>The Agora SDK uses libc++ (LLVM) by default. Contact <xref href="mailto:support@agora.io">support@agora.io</xref> if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio and video real devices.</li>
+ <li>The Agora SDK uses libc++ (LLVM) by default. Contact <xref href="mailto:support@agora.io" scope="external">support@agora.io</xref> if you want to use libstdc++ (GNU). The SDK provides FAT image libraries with multi-architecture support for both 32/64-bit audio emulators and 32/64-bit audio and video real devices.</li>
  </ul>
  </note>
 

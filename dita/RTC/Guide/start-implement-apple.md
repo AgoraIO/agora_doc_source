@@ -63,19 +63,19 @@ To implement this logic, take the following steps:
 
 1. Import the Agora kit and add the `agoraKit` variable. Modify your `ViewController.swift` as follows:
 
-<pre outputclass="language-swift">import <ph keyref="ui-lib"></ph>
-// Add this line to import the Agora kit 
-import AgoraRtcKit
-class ViewController: <ph keyref="ui-view"></ph>Controller {
-   var localView: <ph keyref="ui-view"></ph>!
-   var remoteView: <ph keyref="ui-view"></ph>!
-   // Add this linke to add the agoraKit variable
-   var agoraKit: AgoraRtcEngineKit?
-}
-override func viewDidLoad() {
-   super.viewDidLoad()
-   initView()
-}</pre>
+    <pre outputclass="language-swift">import <ph keyref="ui-lib"></ph>
+    // Add this line to import the Agora kit 
+    import AgoraRtcKit
+    class ViewController: <ph keyref="ui-view"></ph>Controller {
+       var localView: <ph keyref="ui-view"></ph>!
+       var remoteView: <ph keyref="ui-view"></ph>!
+       // Add this linke to add the agoraKit variable
+       var agoraKit: AgoraRtcEngineKit?
+    }
+    override func viewDidLoad() {
+       super.viewDidLoad()
+       initView()
+    }</pre>
 
 2. Initialize the app and join the channel.
 
@@ -83,8 +83,8 @@ override func viewDidLoad() {
 
     In `ViewController.swift`, add the following lines after the `initView` function, and fill in your App ID, temporary token, and channel name:
 
-    <p props="video" conref="conref/get-started-sample-code-apple.dita#get-started-sample-code/init-video"/>
-    <p props="live" conref="conref/get-started-sample-code-apple.dita#get-started-sample-code/init-live"/>
+    <p props="video" conref="../conref/get-started-sample-code-apple.dita#get-started-sample-code/init-video"/>
+    <p props="live" conref="../conref/get-started-sample-code-apple.dita#get-started-sample-code/init-live"/>
 
 3. Add the remote interface when a remote [host] joins the channel.
 

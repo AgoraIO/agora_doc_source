@@ -12,8 +12,8 @@ For new projects, in **Xcode**, follow the steps to create the environment neces
 
 2. Integrate the [sdk-name] into your project:
 
-<p props="ios" conref="conref/integrate-the-sdk-apple.dita#integrate-the-sdk/swift-package"></p>
-<p props="mac" conref="conref/integrate-the-sdk-apple.dita#integrate-the-sdk/cocoapods"></p>
+   <p props="ios" conref="../conref/integrate-the-sdk-apple.dita#integrate-the-sdk/swift-package"/>
+   <p props="mac" conref="../conref/integrate-the-sdk-apple.dita#integrate-the-sdk/cocoapods"/>
 
 3. [Enable automatic signing](https://help.apple.com/xcode/mac/current/#/dev23aab79b4) for your project.
 4. Set the deployment target for your app:

@@ -176,8 +176,8 @@ To implement this logic, take the following steps:
 
     In `/app/java/com.example.<projectname>/MainActivity`, add the following lines after the `onCreate` function:
 
-    <p props="video" conref="conref/get-started-sample-code-android.dita#get-started-sample-code/init-video"/>
-    <p props="live" conref="conref/get-started-sample-code-android.dita#get-started-sample-code/init-live"/>
+    <p props="video" conref="../conref/get-started-sample-code-android.dita#get-started-sample-code/init-video"/>
+    <p props="live" conref="../conref/get-started-sample-code-android.dita#get-started-sample-code/init-live"/>
 
 4. Add the remote interface when a remote [host] joins the channel.
 
