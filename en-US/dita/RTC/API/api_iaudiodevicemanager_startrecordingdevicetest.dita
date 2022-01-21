@@ -23,7 +23,7 @@
             <codeblock props="electron" outputclass="language-typescript">startAudioRecordingDeviceTest(indicationInterval: number): number</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartRecordingDeviceTest(int indicationInterval);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioRecordingDeviceTest(String testAudioFilePath)</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startAudioRecordingDeviceTest(int indicationInterval)</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -32,15 +32,11 @@
         </section>
         <section id="parameters"><title>Parameters</title>
    <parml>
-       <plentry props="mac electron unity windows">
-           <pt props="mac electron unity">indicationInterval</pt>
+       <plentry props="mac electron unity windows flutter">
+           <pt props="mac electron unity flutter">indicationInterval</pt>
            <pt props="windows"><ph props="rtc">indicationInterval</ph><ph props="rtc-ng">indication_Interval</ph></pt>
   <pd>The time interval (ms) at which the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback. Agora recommends a setting greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive the <apiname keyref="onAudioVolumeIndication"/> callback.</pd>
        </plentry>
-       <plentry props="flutter">
-           <pt>testAudioFilePath</pt>
-           <pd conkeyref="startPlaybackDeviceTest/testAudioFilePath" />
-           </plentry>
    </parml>
         </section>
         <section id="return_values" props="native electron unity">
