@@ -10,11 +10,11 @@
 <summary>iOS 15.1.x: 使用 H.264 编码发送视频流导致页面奔溃</summary>
 <p>
 
-**影响范围**：iOS 15.1.x 上的所有浏览器及内嵌 WkWebView 的应用。
+**影响范围**：iOS 15.1.x 上的所有浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）。
 </p>
 <p>
 
-**问题描述**：在 iOS 15.1.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中，如果你调用 `createClient` 时将 `codec` 设为 `'h264'`，发送视频流后，页面会崩溃。
+**问题描述**：在 iOS 15.1.x 上的 Safari 浏览器和内嵌 WkWebView 的应用中，如果你调用 `createClient` 时将 `codec` 设为 `'h264'`，发送视频流后，页面会崩溃。
 </p>
 <p>
 
@@ -34,10 +34,10 @@ createClient({codec:'vp8', mode})
 <summary>iOS 15.x: 本地用户听到远端音频流的音量极低</summary>
 <p>
 
-**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用。</p>
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）。</p>
 <p>
 
-**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中，订阅并播放远端音频轨道 `RemoteAudioTrack` 后，播放音量有概率极低，且音频从听筒中而不是扬声器中播放出来。</p>
+**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用中，订阅并播放远端音频轨道 `RemoteAudioTrack` 后，播放音量有概率极低，且音频从听筒中而不是扬声器中播放出来。</p>
 <p>
 
 **问题原因**：该问题是由 iOS 15.x 上 WebKit 音频功能回退导致，详见 [WebKit Bug 230902](https://bugs.webkit.org/show_bug.cgi?id=230902)。
@@ -63,11 +63,11 @@ createClient({codec:'vp8', mode})
 <summary>iOS 15.x: 播放视频有概率出现黑屏</summary>
 <p>
 
-**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用。
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）。
 </p>
 <p>
 
-**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中，在 DOM 中播放视频且在 `video` 元素或其父元素添加某些 CSS 属性（如 `transform`、`animation`）后，或者改变 CSS 属性重绘视频渲染区域后，有概率视频播放出现黑屏。
+**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用中，在 DOM 中播放视频且在 `video` 元素或其父元素添加某些 CSS 属性（如 `transform`、`animation`）后，或者改变 CSS 属性重绘视频渲染区域后，有概率视频播放出现黑屏。
 </p>
 <p>
 
@@ -84,11 +84,11 @@ createClient({codec:'vp8', mode})
 <summary>iOS 15.x: 用户佩戴蓝牙耳机后，播放音频有概率明显失真</summary>
 <p>
 
-**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用。
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）。
 </p>
 <p>
 
-**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中，如果用户佩戴蓝牙耳机进行音频播放，音频有概率明显失真。
+**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用中，如果用户佩戴蓝牙耳机进行音频播放，音频有概率明显失真。
 </p>
 <p>
 
@@ -104,11 +104,11 @@ createClient({codec:'vp8', mode})
 <summary>iOS 15.x: 浏览器切换到后台后，音频流发送中断</summary>
 <p>
 
-**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用。
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）。
 </p>
 <p>
 
-**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中发送音频流，浏览器或应用切换到后台后，音频流发送会中断。
+**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用中发送音频流，浏览器或应用切换到后台后，音频流发送会中断。
 </p>
 <p>
 
@@ -132,11 +132,11 @@ createClient({codec:'vp8', mode})
 <summary>iOS 15.x: 被其它语音或视频通话应用、Siri 呼叫、闹钟等打断后，音视频播放有概率无法自动恢复</summary>
 <p>
 
-**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用。
+**影响范围**：iOS 15.x 上的所有浏览器及内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）。
 </p>
 <p>
 
-**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用（如微信浏览器和 Chrome 浏览器）中播放音视频，如果被其它语音或视频通话应用、Siri 呼叫、闹钟等打断，音视频播放有概率无法自动恢复。
+**问题描述**：在 iOS 15.x 上的 Safari 浏览器和内嵌 WkWebView 的应用中播放音视频，如果被其它语音或视频通话应用、Siri 呼叫、闹钟等打断，音视频播放有概率无法自动恢复。
 </p>
 <p>
 
@@ -171,7 +171,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**问题描述**：Android 12 上使用 Chrome 浏览器或 Chromium 内核浏览器，如果默认开启 WebRTC `H264` 或 `VP8` 视频硬件编码，可能会导致花屏。
+**问题描述**：在 Android 12 上使用 Chrome 浏览器或 Chromium 内核浏览器，如果默认开启 WebRTC `H264` 或 `VP8` 视频硬件编码，可能会导致花屏。
 </p>
 <p>
 
@@ -195,7 +195,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**问题原因**：可能是因为硬件编码导致特定视频编码帧率时码率无法达到预设值。
+**问题原因**：可能是因为硬件编码导致特定视频编码帧率下码率无法达到预设值。
 </p>
 <p>
 
