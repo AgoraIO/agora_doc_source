@@ -41,7 +41,7 @@
 - 使用 CDN 获取 SDK。在你的项目的 HTML 文件中，添加以下代码：
 
   ```html
-  <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.0.1.bundle.js"></script>
+  <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.1.1.bundle.js"></script>
   ```
 
 <a name="change_default_ui"></a>

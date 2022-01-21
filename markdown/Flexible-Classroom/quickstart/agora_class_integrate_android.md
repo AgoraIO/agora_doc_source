@@ -58,10 +58,10 @@
    ```
    dependencies {
          ...
-         implementation "io.github.agoraio-community:hyphenate:2.0.0"
-         implementation "io.github.agoraio-community:AgoraEduCore:2.0.0"
-         implementation "io.github.agoraio-community:AgoraEduUIKit:2.0.0"
-         implementation "io.github.agoraio-community:AgoraClassSDK:2.0.0"
+         implementation "io.github.agoraio-community:hyphenate:2.1.0"
+         implementation "io.github.agoraio-community:AgoraEduCore:2.1.0"
+         implementation "io.github.agoraio-community:AgoraEduUIKit:2.1.0"
+         implementation "io.github.agoraio-community:AgoraClassSDK:2.1.0"
    }
    ```
 
