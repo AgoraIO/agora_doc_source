@@ -43,8 +43,8 @@ To implement [product-name] in your app using Objective-C:
 
 1. Replace the contents in the `ViewController.h` file with the following:
 
- <p conref="conref/get-started-sample-code-apple.dita#get-started-sample-code/oc-1"/>
+ <p conref="../conref/get-started-sample-code-apple.dita#get-started-sample-code/oc-1"/>
 
 2. Replace the contents in the `ViewController.m` file with the following:
 
- <p conref="conref/get-started-sample-code-apple.dita#get-started-sample-code/oc-2"/>
+ <p conref="../conref/get-started-sample-code-apple.dita#get-started-sample-code/oc-2"/>
