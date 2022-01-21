@@ -7,14 +7,14 @@
 ### config
 
 ```typescript
-static config(params: AgoraEduSDKConfigParams):void
+static config(params: ConfigParams):void
 ```
 
 配置 SDK。
 
 | 参数     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
-| `params` | 全局配置参数，详见 [AgoraEduSDKConfigParams](#agoraedusdkconfigparams)。 |
+| `params` | 全局配置参数，详见 [ConfigParams](#configparams)。 |
 
 ### launch
 
@@ -33,14 +33,14 @@ static launch(dom: Element, option: LaunchOption):Promise<void>
 
 ## 类型定义
 
-### AgoraEduSDKConfigParams
+### ConfigParams
 
 SDK 全局配置。用于 [AgoraEduSDK.config](#config) 方法。
 
 ```typescript
-export type AgoraEduSDKConfigParams = {
-  appId: string;
-  region?: string;
+export type ConfigParams = {
+    appId: string;
+    region?: string;
 };
 ```
 
@@ -55,27 +55,27 @@ export type AgoraEduSDKConfigParams = {
 
 ```typescript
 export type LaunchOption = {
-  userUuid: string;
-  userName: string;
-  roomUuid: string;
-  roleType: EduRoleTypeEnum;
-  roomType: EduRoomTypeEnum;
-  roomName: string;
-  listener: ListenerCallback;
-  pretest: boolean;
-  rtmToken: string;
-  language: LanguageEnum;
-  startTime: number;
-  duration: number;
-  courseWareList: CourseWareList;
-  personalCourseWareList?: CourseWareList;
-  recordUrl?: string;
-  extApps?: IAgoraExtApp[];
-  region?: AgoraRegion;
-  widgets?: { [key: string]: IAgoraWidget };
-  userFlexProperties?: { [key: string]: any };
-  mediaOptions?: MediaOptions;
-  latencyLevel?: 1 | 2;
+    userUuid: string;
+    userName: string;
+    roomUuid: string;
+    roleType: EduRoleTypeEnum;
+    roomType: EduRoomTypeEnum;
+    roomName: string;
+    listener: ListenerCallback;
+    pretest: boolean;
+    rtmToken: string;
+    language: LanguageEnum;
+    startTime?: number;
+    duration: number;
+    courseWareList: CourseWareList;
+    personalCourseWareList?: CourseWareList;
+    recordUrl?: string;
+    extApps?: IAgoraExtApp[];
+    region?: AgoraRegion;
+    widgets?: { [key: string]: IAgoraWidget };
+    userFlexProperties?: { [key: string]: any };
+    mediaOptions?: MediaOptions;
+    latencyLevel?: 1 | 2;
 }
 ```
 
@@ -91,13 +91,12 @@ export type LaunchOption = {
 | `listener`               | （必填）课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li> |
 | `pretest`                | （必填）是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
 | `language`               | （必填）课堂界面的语言，详见 [LanguageEnum](#languageenum)。 |
-| `startTime`              | （必填）课堂开始时间（毫秒），以第一个进入课堂的用户传入的参数为准。 |
+| `startTime`              | （选填）课堂开始时间（毫秒），以第一个进入课堂的用户传入的参数为准。 |
 | `duration`               | （必填）课堂持续时间（秒），以第一个进入课堂的用户传入的参数为准。最大值为 86,400 秒，建议根据课堂实际时长设置。 |
 | `recordUrl`              | （选填）待录制 URL 地址，开发者需传入自己部署的网页地址，用于页面录制，例如 `https://cn.bing.com/recordUrl`。 |
 | `courseWareList`         | （选填）教育机构指派的课件配置，客户端无法编辑。详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
 | `personalCourseWareList` | （选填）老师端自行上传的课件配置，详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
 | `extApps`                | （选填）注册扩展应用 ExtApp。ExtApp 是灵动课堂 UIKit 的补充插件。详见[通过 ExtApp 自定义插件](/cn/agora-class/agora_class_ext_app_web?platform=Web)。 |
-| `region`                 | （选填）课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。灵动课堂支持以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
 | `userFlexProperties`     | （选填）由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties) |
 | `mediaOptions`           | （选填）媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 `MediaOptions`。 |
 | `latencyLevel`           | （选填）观众端延时级别：<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>`2`:（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li> |
@@ -106,9 +105,9 @@ export type LaunchOption = {
 
 ```typescript
 export type MediaOptions = {
-  cameraEncoderConfiguration?: EduVideoEncoderConfiguration;
-  screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
-  encryptionConfig?: MediaEncryptionConfig;
+    cameraEncoderConfiguration?: EduVideoEncoderConfiguration;
+    screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
+    encryptionConfig?: MediaEncryptionConfig;
 };
 ```
 
@@ -124,10 +123,10 @@ export type MediaOptions = {
 
 ```typescript
 export interface EduVideoEncoderConfiguration {
-  width: number;
-  height: number;
-  frameRate: number;
-  bitrate: number;
+    width: number;
+    height: number;
+    frameRate: number;
+    bitrate: number;
 }
 ```
 
@@ -147,8 +146,8 @@ export interface EduVideoEncoderConfiguration {
 
 ```typescript
 export declare interface MediaEncryptionConfig {
-  mode: MediaEncryptionMode,
-  key: string
+    mode: MediaEncryptionMode,
+    key: string
 }
 ```
 
@@ -161,13 +160,13 @@ export declare interface MediaEncryptionConfig {
 
 ### MediaEncryptionMode
 
-```swift
+```typescript
 export enum MediaEncryptionMode {
-  AES_128_XTS = 1,
-  AES_128_ECB = 2,
-  AES_256_XTS = 3,
-  AES_128_GCM = 5,
-  AES_256_GCM = 6
+    AES_128_XTS = 1,
+    AES_128_ECB = 2,
+    AES_256_XTS = 3,
+    AES_128_GCM = 5,
+    AES_256_GCM = 6
 }
 ```
 
@@ -186,40 +185,30 @@ export enum MediaEncryptionMode {
 课件预加载配置。用于 [AgoraEduSDK.launch](#launch) 方法。
 
 ```typescript
-export type AgoraConvertedFile = {
-  width: number;
-  height: number;
-  ppt: {
-    width: number;
-    src: string;
-    height: number;
-  };
-  conversionFileUrl: string;
+export type CloudDriveResourceConvertProgress = {
+    totalPageSize: number;
+    convertedPageSize: number;
+    convertedPercentage: number;
+    convertedFileList: {
+      name: string;
+      ppt: {
+        width: number;
+        height: number;
+        preview?: string;
+        src: string;
+      };
+    }[];
+    currentStep: string;
 };
 
-export type ConvertedFileList = AgoraConvertedFile[];
-
 export type CourseWareItem = {
-  resourceName: string;
-  resourceUuid: string;
-  ext: string;
-  url: string;
-  conversion: {
-    type: string;
-  };
-  size: number;
-  updateTime: number;
-  scenes: SceneDefinition[];
-  convert?: boolean;
-  taskUuid?: string;
-  taskToken?: string;
-  taskProgress?: {
-    totalPageSize?: number;
-    convertedPageSize?: number;
-    convertedPercentage?: number;
-    convertedFileList: ConvertedFileList;
-  };
-  isActive?: boolean;
+    resourceName: string;
+    resourceUuid: string;
+    ext: string;
+    url?: string;
+    size: number;
+    updateTime: number;
+    taskProgress?: CloudDriveResourceConvertProgress;
 };
 
 export type CourseWareList = CourseWareItem[];
@@ -234,22 +223,17 @@ export type CourseWareList = CourseWareItem[];
 | `ext`          | 课件后缀。                                                   |
 | `size`         | 课件大小，单位为字节。                                       |
 | `updateTime`   | 课件最后被修改的时间。                                       |
-| `conversion`   | 文件转换配置对象，包含以下字段：<ul><li>`type`: 转换类型：</li><ul><li>`"dynamic"`: 转换为静态图片。</li><li>`"static"`: 转换为动态 HTML。</li></ul></ul> |
-| `url`          | 文件访问地址。灵动课堂客户端会对后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以用于课堂内白板展示。如果后缀名非上述所列，必须设置 `url`，`scenes` 可为空。 |
-| `scenes`       | 转换后的文件下载配置。当后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"` 或 `"pdf"` 时，必须设置 `scenes`。详见 Agora 互动白板 SDK 的 [SceneDefinition 对象](/cn/whiteboard/API%20Reference/whiteboard_web/globals.html#scenedefinition)。 |
-| `convert`      | 是否进行文档转换。                                           |
-| `taskUuid`     | 文件转换任务的 uuid。                                        |
-| `taskToken`    | 文件转换任务使用的 Token。                                   |
-| `taskProgress` | 文件转换任务进度对象，包含以下字段：<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: 转换进度（百分比）。</li><li>`convertedFileList`: 已转换的文档页面列表，由 `AgoraConvertedFile` 组成的数组。`AgoraConvertedFile` 包含以下字段：<ul><li>`width`: 页面宽度。</li><li>`height`: 页面高度。</li><li>`ppt`: 页面上展示的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>`src`: 完成转换的页面的 URL 下载地址。</li></ul></li></ul></li></ul> |
+| `url`          | 文件访问地址。灵动课堂客户端会对后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以用于课堂内白板展示。如果后缀名非上述所列，必须设置 `url`|
+| `taskProgress` | 文件转换任务进度对象 `CloudDriveResourceConvertProgress`，包含以下字段：<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: 转换进度（百分比）。</li><li>`convertedFileList`: 已转换的文档页列表，每页文档对应一条数据，每条数据包含以下字段：<ul><li>`name`: 文档页名称。</li><li>`ppt`: 文档页包含的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>`src`: 完成转换的页面的 URL 下载地址。</li><li>`preview`: 缩略图 URL。</li></ul></li></ul></li><li>`currentStep`: 文档转换任务当前的步骤。可为 `extracting`（正在提取资源）、`generatingPreview`（正在生成预览图）、`mediaTranscode`（媒体文件转换）、`packaging`（打包中）。</li></ul> |
 
 ### EduRoleTypeEnum
 
 ```typescript
 export enum EduRoleTypeEnum {
-  audience = 0,
-  teacher = 1,
-  student = 2,
-  assistant = 3
+    audience = 0,
+    teacher = 1,
+    student = 2,
+    assistant = 3
 }
 ```
 
@@ -266,9 +250,9 @@ export enum EduRoleTypeEnum {
 
 ```typescript
 export enum EduRoomTypeEnum {
-  Room1v1Class = 0,
-  RoomBigClass = 2,
-  RoomSmallClass = 4
+    Room1v1Class = 0,
+    RoomBigClass = 2,
+    RoomSmallClass = 4
 }
 ```
 
