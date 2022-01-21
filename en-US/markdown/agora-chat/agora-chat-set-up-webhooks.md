@@ -2,26 +2,26 @@
 
 Agora Chat supports HTTP callbacks (webhooks). After you set up HTTP callbacks for your Agora Chat app, the Agora Chat server sends notifications in the form of HTTP POST requests to your app server when specified events occur.
 
-You can use the HTTP callbacks to synchronize messages on your own server, or moderate message content.
+You can use the HTTP callbacks to synchronize messages on your own server or to moderate message content.
 
 ## Understand the tech
 
-According to whether the message delivery is intervened, the callbacks are divided in two categories:
+The callbacks are divided into two categories based on whether the message delivery is interrupted, as follows:
 - Pre-delivery callbacks: Mainly used for content moderation. When the Agora Chat server receives a message from the client app, it sends a request to your app server and waits for a response that decides if the message delivery is passed or rejected. Pre-delivery callbacks only apply to messages sent from your client apps.
-- Post-delivery callbacks: Mainly used for data synchronization. When certain events occur, for example, a user sends out a message or gets offline, the Agora Chat server sends a request to your app server and does not validate the response content. Post-delivery callbacks apply to messages and other events sent from you client and server apps.
+- Post-delivery callbacks: Mainly used for data synchronization. When certain events occur, for example, a user sends out a message or goes offline, the Agora Chat server sends a request to your app server and does not validate the response content. Post-delivery callbacks apply to messages and other events sent from you client and server apps.
 
-The following table summarizes the differences between the two categories of callbacks.
+The following table summarizes the differences between the two categories of callbacks:
 
 | Category            | Pre-delivery callback | Post-delivery callback       |
 | ------------------- | --------------------- | ---------------------------- |
 | Supported platforms | Client SDKs           | Client SDKs and REST APIs    |
-| Supported events    | Only messages         | Messages and other events    |
+| Supported events    | Messages only         | Messages and other events    |
 | Response required   | Yes                   | No                           |
 | Typical use case    | Content moderation    | Chat history synchronization |
 
 ### Pre-delivery callbacks
 
-The following figure shows how the pre-delivery callbacks work.
+The following figure shows how the pre-delivery callbacks work:
 
 ![pre-delivery callback workflow](https://web-cdn.agora.io/docs-files/1641538104703)
 
@@ -37,7 +37,7 @@ As shown in the figure, the workflow of pre-delivery callbacks is as follows:
 
 ### Post-delivery callbacks
 
-The following figure shows how the post-delivery callbacks work.
+The following figure shows how the post-delivery callbacks work:
 
 ![post-delivery callback workflow](https://web-cdn.agora.io/docs-files/1641538140245)
 
@@ -65,8 +65,8 @@ To receive the HTTP callbacks, you need to configure rules for the pre- or post-
    
    ![](https://web-cdn.agora.io/docs-files/1640072684075)
 
-1. To add a rule for pre-delivery callbacks, fill the following fields under the **pre send** tab and then click **Save**.
-   - Rule Name: Enter a name for the rule. Under one project, each rule must have a unique name.
+1. To add a rule for pre-delivery callbacks, fill in the following fields under the **pre send** tab, and then click **Save**.
+   - Rule Name: Enter a name for the rule. Each rule under a specific project must have a unique name.
    - Chat Type: Select the types of chat this rule applies to.
    - Message Type: Select the types of messages this rule applies to.
    - Timeout: (Optional) Specify the time (in ms) that the Agora Chat server should wait for the HTTP responses. The default value is 200 ms. If the reponse times out, the Agora Chat server continues with the fallback action.
@@ -74,11 +74,11 @@ To receive the HTTP callbacks, you need to configure rules for the pre- or post-
    - Target Url: Enter the URL of your app server for receiving the pre-delivery callbacks. Supports both HTTP and HTTPS URLs.
    - Rejection Behaviour: (Optional) Set whether to notify the message sender when their message is rejected. The default option is to not notify the message sender.
 
-1. To add a rule for post-delivery callbacks, fill the following fields under the **post send** tab and then click **Save**.
-   - Rule Name: Enter a name for the rule. Under one project, each rule must have a unique name.
+1. To add a rule for post-delivery callbacks, fill in the following fields under the **post send** tab, and then click **Save**.
+   - Rule Name: Enter a name for the rule. Each rule under a specific project must have a unique name.
    - Callback Service: Select the types of chat or events this rule applies to.
    - Message Type: Select the types of messages this rule applies to.
-   - Message Status: Select whether the this rule applies to chat or offline messages, or both.
+   - Message Status: Select whether this rule applies to chat or offline messages, or both.
      - To synchronize the chat history on your own server, select chat messages. All messages sent by the users are chat messages, regardless of the online status of the message receiver.
      - To push message notifications, select offline messages. Messages sent to an offline user are counted as offline messages.
    - Target Url: Enter the URL of your app server for receiving the post-delivery callbacks. Supports both HTTP and HTTPS URLs.
@@ -97,12 +97,12 @@ To enhance the security of the callbacks, Agora Chat includes a signature in the
 
 To verify the signature in a callback, do the following:
 
-1. Retrive the following information:
-   - The callback ID, which is the `callId` paramater in the request body of the callback.
+1. Retrieve the following information:
+   - The callback ID, which is the `callId` parameter in the request body of the callback.
    - The secret assigned to the callback rule. You can find this value on the Agora Chat configuration page in Agora Console.
      ![secret screenshot](https://web-cdn.agora.io/docs-files/1642410578660)
    - The callback timestamp, which is the `timestamp` parameter in the request body of the callback.
-2. Calculate the [MD5](https://en.wikipedia.org/wiki/MD5) value of the concated string of the callback ID, the secret, and the callback timestamp.
+2. Calculate the [MD5](https://en.wikipedia.org/wiki/MD5) value of the concatenated string of the callback ID, the secret, and the callback timestamp.
 3. Check if the calculated value equals the `secret` parameter in the request body. If yes, the callback is sent by Agora Chat.
 
 
@@ -128,8 +128,8 @@ For the pre-delivery callbacks, the Agora Chat server accepts HTTP responses tha
 ```
 
 - `valid`: Boolean. Whether the message is valid according to the processing result on your app server:
-  - `true`: The message is valid and the Agora Chat server should deliver the message.
-  - `false`: The message is invalid and the Agora Chat server should reject the message.
+  - `true`: The message is valid, and the Agora Chat server should deliver the message.
+  - `false`: The message is invalid, and the Agora Chat server should reject the message.
 - `code`: String. Custom information.
 
 For the post-delivery callbacks, ensure that the response content does not exceed 1,000 characters.
@@ -140,7 +140,7 @@ For the post-delivery callbacks, ensure that the response content does not excee
   
 - For post-delivery callbacks, the Agora Chat server records a notification failure and tries resending the callback once in one of the following situations:
 
-  - Your server does not respond in 60 seconds.
+  - Your server does not respond within 60 seconds.
   - The HTTP status code received from your server is not 200.
 
-  If the second try fails, the Agora Chat server stops trying. If 90 notification failures occur in 30 seconds, the corresponding callback rule is automatically turned off for five minutes. To query and resend the missed notifications, use the [Callback APIs](link).
+  If the second try fails, the Agora Chat server stops trying. If 90 notification failures occur within 30 seconds, the corresponding callback rule is automatically turned off for five minutes. To query and resend the missed notifications, use the [Callback APIs](link).
