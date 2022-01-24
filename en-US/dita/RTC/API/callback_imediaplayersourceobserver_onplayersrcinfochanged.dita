@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">void onPlayerSrcInfoChanged(SrcInfo from, SrcInfo to);
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit playerSrcInfoDidChange:(AgoraMediaPlayerSrcInfo *_Nonnull)originalInfo to:(AgoraMediaPlayerSrcInfo *_Nonnull)targetInfo;
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit playerSrcInfoDidChange:(AgoraMediaPlayerSrcInfo *_Nonnull)to from:(AgoraMediaPlayerSrcInfo *_Nonnull)from;
 </codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onPlayerSrcInfoChanged(const media::base::SrcInfo&amp; from, const media::base::SrcInfo&amp; to) = 0;
 </codeblock>
@@ -32,13 +32,11 @@
                     <pd/>
                 </plentry>
                 <plentry>
-                    <pt props="ios mac">originalInfo</pt>
-                    <pt props="android windows">from</pt>
+                    <pt>from</pt>
                     <pd>Information about the video bitrate of the media resource being played. See <xref keyref="SrcInfo"/>.</pd>
                 </plentry>
                 <plentry>
-                    <pt props="ios mac">targetInfo</pt>
-                    <pt props="android windows">to</pt>
+                    <pt>to</pt>
                     <pd>Information about the changed video bitrate of media resource being played See <xref keyref="SrcInfo"/>.</pd>
                 </plentry>
             </parml>
