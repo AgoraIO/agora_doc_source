@@ -3,7 +3,8 @@ on: [pull_request]
 
 jobs: 
     prose:
-        if:  startsWith(github.head_ref, 'translation')
+        # Trigger this job only if the pull request is from YiCAT English translation
+        if:  startsWith(github.head_ref, 'l10n')
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
