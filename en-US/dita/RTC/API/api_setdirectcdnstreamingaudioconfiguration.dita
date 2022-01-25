@@ -12,7 +12,7 @@
     </prolog>
     <refbody><section id="prototype">
         <codeblock props="android" outputclass="language-java">public abstract int setDirectCdnStreamingAudioConfiguration(int profile);</codeblock>
-        <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDirectCdnStreamingAudioProfile:(AgoraAudioProfile)profile;</codeblock>
+        <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDirectCdnStreamingAudioConfiguration:(AgoraAudioProfile)configuration;</codeblock>
         <codeblock props="windows" outputclass="language-cpp">virtual int setDirectCdnStreamingAudioConfiguration(AUDIO_PROFILE_TYPE profile) = 0;</codeblock>
         <codeblock props="electron" outputclass="language-typescript"></codeblock>
         <codeblock props="unity" outputclass="language-csharp"></codeblock>
@@ -20,14 +20,15 @@
         <codeblock props="flutter" outputclass="language-dart"></codeblock>
     </section>
         <section id="detailed_desc">
-            <p>When you set the <parmname>publishMicrophoneTrack</parmname> or <parmname>publishCustomAudioTrack</parmname> in the <xref keyref="DirectCdnStreamingMediaOptions"/> as <codeph><xref keyref="true"/></codeph> to capture audios, you can call this method to set the audio profile.</p>
+            <p>When you set the <xref keyref="DirectCdnStreamingMediaOptions"/><parmname>publishMicrophoneTrack</parmname> or <parmname></parmname><parmname>publishCustomAudioTrack</parmname> in the  as  to capture audios, you can call<codeph> this method to set the audio profile.</codeph><xref keyref="true"/></p>
         </section>
         <section id="parameters"><title>Parameters</title>
             <parml>
                 <plentry>
-                    <pt>profile</pt>
+                    <pt props="android windows">profile</pt>
+                    <pt props="ios mac">configuration</pt>
                     <pd>
-                        <p conkeyref="setAudioProfile/profile"></p>
+                        <p conkeyref="setAudioProfile/profile"/>
                     </pd>
                 </plentry>
             </parml>
