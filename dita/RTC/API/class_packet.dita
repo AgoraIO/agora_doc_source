@@ -19,7 +19,19 @@
 	unsigned int size;
 	};</codeblock>
                 <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="unity" outputclass="language-csharp">public class Packet
+    {
+        public Packet()
+        {
+            buffer = new byte[0];
+        }
+        public Packet(byte[] buffer, uint size)
+        {
+            this.buffer = buffer;
+            this.size = size;
+        }
+        
+        public byte[] buffer { set; get; }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart" />
             </p>

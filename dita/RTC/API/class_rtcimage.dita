@@ -85,21 +85,22 @@
 }</codeblock>
             </p>
             <p outputclass="codeblock">
-                <codeblock props="unity" outputclass="language-cpp">typedef struct RtcImage {
-    RtcImage() :
-       url(NULL),
-       x(0),
-       y(0),
-       width(0),
-       height(0)
-    {}
-
-    const char* url;
-    int x;
-    int y;
-    int width;
-    int height;
-    } RtcImage;</codeblock>
+                <codeblock props="unity" outputclass="language-cpp">public class RtcImage
+    {
+        public RtcImage()
+        {
+        }
+        public RtcImage(string url, int x, int y, int width, int height, int zOrder)
+        {
+            this.url = url;
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.zOrder = zOrder;
+        }
+        
+        public string url { set; get; }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface RtcImage {
     x: number,
     y: number,
