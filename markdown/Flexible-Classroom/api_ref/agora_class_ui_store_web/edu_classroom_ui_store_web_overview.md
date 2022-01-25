@@ -415,7 +415,7 @@ removeDialog(id: string)
                }
                return id;
            }
-       }
+    }
    ```
 
 #### 自定义提示框 UI
