@@ -12,7 +12,7 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">AudioFrame onFrame(AudioFrame audioFrame);</codeblock>
+                <codeblock props="android" outputclass="language-java">AudioFrame onFrame(AudioFrame frame);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
     didReceiveAudioFrame:(CMSampleBufferRef _Nonnull)audioFrame;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onFrame(AudioPcmFrame* frame) = 0;</codeblock>
@@ -30,8 +30,8 @@
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
    <parml>
        <plentry>
-           <pt props="android ios mac">audioFrame</pt>
-           <pt props="windows">frame</pt>
+           <pt props="ios mac">audioFrame</pt>
+           <pt props="android windows">frame</pt>
            <pd props="android windows">Audio frame information. See <ph keyref="AudioFrame"/>.</pd>
            <pd props="ios mac">Audio frame information (CMSampleBufferRef).</pd>
        </plentry>
@@ -43,6 +43,6 @@
         </section>
         <section id="return_values" props="android">
    <title>Returns</title>
-            <p>Passes in the audio data after setting the <parmname>mode</parmname> parameter for handling audio data.<xref keyref="registerAudioFrameObserver2_IMediaPlayer"/></p>
+            <p>Passes in<xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> the audio data after setting the<parmname> mode</parmname> parameter for handling audio data.</p>
         </section></refbody>
 </reference>
