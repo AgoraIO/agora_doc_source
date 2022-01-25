@@ -1,0 +1,39 @@
+# GitHub CI build pipeline
+name: Awesome prototype from code to DITA
+
+on:
+  pull_request:
+    branches:
+      - master
+      - main 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        cd xml2json
+        python -m pip install --upgrade pip
+        pip install coverage
+        if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: sync proto type (cn to en)
+      run: |
+         cd xml2json
+         python extract_proto_and_sync_to_dita_unity.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+         token: ${{ secrets.GITHUB_TOKEN }}
+         commit-message: Code to DITA
+         title: '[AUTO: MERGE AT YOUR EARLIEST CONVENIENCE] Code to DITA'
+         branch: sync-patch
+         base: dev/3.7.200_unity_ng
+         reviewers: lemon-chen 
+         body: >
+            This PR is auto-generated to sync Code to DITA @HeatherWYL  @Cilla-luodan
+         labels: report, automated pr
