@@ -13,7 +13,7 @@
     <refbody><section id="prototype">
         <codeblock props="android" outputclass="language-java">public abstract int startDirectCdnStreaming(IDirectCdnStreamingEventHandler eventHandler,
             String publishUrl, DirectCdnStreamingMediaOptions options);</codeblock>
-        <codeblock props="ios mac" outputclass="language-objectivec">- (int)startDirectCdnStreaming:(id&lt;AgoraDirectCdnStreamingEventDelegate> _Nonnull)delegate publishUrl:(NSString * _Nonnull)url mediaOptions:(AgoraDirectCdnStreamingMediaOptions * _Nonnull)options;</codeblock>
+        <codeblock props="ios mac" outputclass="language-objectivec">- (int)startDirectCdnStreaming:(id&lt;AgoraDirectCdnStreamingEventDelegate> _Nonnull)delegate publishUrl:(NSString * _Nonnull)publishUrl mediaOptions:(AgoraDirectCdnStreamingMediaOptions * _Nonnull)options;</codeblock>
         <codeblock props="windows" outputclass="language-cpp">virtual int startDirectCdnStreaming(IDirectCdnStreamingEventHandler* eventHandler,
             const char* publishUrl, const DirectCdnStreamingMediaOptions&amp; options) = 0;</codeblock>
         <codeblock props="electron" outputclass="language-typescript"></codeblock>
@@ -24,7 +24,7 @@
         <section id="detailed_desc">
             <p>Aogra does not support pushing streams to one URL repeatedly.</p>
             <p><b>Media options</b></p>
-            <p>Agora does not support setting the value of <parmname>publishCameraTrack</parmname> and <parmname>publishCustomVideoTrack</parmname> as <codeph><ph keyref="true"/></codeph>, or the value of <parmname>publishMicrophoneTrack</parmname> and <parmname>publishCustomAudioTrack</parmname> as <codeph><ph keyref="true"/></codeph> at the same time.  You can refer to the following examples when choosing media setting options (<xref keyref="DirectCdnStreamingMediaOptions"/>):</p>
+            <p>Agora does not support setting the value of <parmname>publishCameraTrack</parmname> and <parmname>publishCustomVideoTrack</parmname> as <codeph><ph keyref="true"/></codeph>, or the value of <parmname>publishMicrophoneTrack</parmname> and <parmname>publishCustomAudioTrack</parmname> as <codeph><ph keyref="true"/></codeph> at the same time.  You can refer to the following examples when choosing media setting options (<xref keyref="DirectCdnStreamingMediaOptions"/>): 示例如下：</p>
             <p>If you want to push audio and video streams published by the host to the CDN, the media setting options should be set as follows:</p>
             <ul><li><parmname>publishCameraTrack</parmname> is set as <codeph><ph keyref="true"/></codeph></li>
                 <li><parmname>publishMicrophoneTrack</parmname> is set as <codeph><ph keyref="true"/></codeph></li>
@@ -49,7 +49,7 @@
                 </plentry>
                 <plentry>
                     <pt>publishUrl</pt>
-                    <pd>The URL of media push.</pd>
+                    <pd>The CDN live streaming URL.</pd>
                 </plentry>
                 <plentry>
                     <pt>options</pt>
