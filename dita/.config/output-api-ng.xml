@@ -4,28 +4,45 @@
     <context name="RTC NG API Android" id="android">
         <input href="../RTC/RTC_NG_API_Android.ditamap"/>
         <profile>
-            <ditaval href="../RTC/config/filter-android.ditaval"/>
-            <ditaval href="../RTC/config/filter-rtc-ng.ditaval"/>
-            <ditaval href="filter-hide.ditaval"/>
+            <ditaval href="../RTC/config/filter-android-rtc-ng.ditaval"/>
         </profile>
     </context>
     <context name="RTC NG API iOS" id="ios">
         <input href="../RTC/RTC_NG_API_iOS.ditamap"/>
         <profile>
-            <ditaval href="../RTC/config/filter-ios.ditaval"/>
-            <ditaval href="../RTC/config/filter-rtc-ng.ditaval"/>
-            <ditaval href="filter-hide.ditaval"/>
+            <ditaval href="../RTC/config/filter-ios-rtc-ng.ditaval"/>
         </profile>
     </context>
-
-    <deliverable name="Android" id="Android">
+    <context name="RTC NG API macOS" id="mac">
+        <input href="../RTC/RTC_NG_API_iOS.ditamap"/>
+        <profile>
+            <ditaval href="../RTC/config/filter-mac-rtc-ng.ditaval"/>
+        </profile>
+    </context>
+    <context name="RTC NG API Windows" id="windows">
+        <input href="../RTC/RTC_NG_API_Windows.ditamap"/>
+        <profile>
+            <ditaval href="../RTC/config/filter-windows-rtc-ng.ditaval"/>
+        </profile>
+    </context>
+    <deliverable name="Android" id="android">
         <context idref="android"/>
-        <output href="../../out/cn/rtc-ng/android/"/>
+        <output href="../../out/cn/java_ng/"/>
         <publication idref="html"/>
     </deliverable>
-    <deliverable name="iOS" id="iOS">
+    <deliverable name="iOS" id="ios">
         <context idref="ios"/>
-        <output href="../../out/cn/rtc-ng/ios/"/>
+        <output href="../../out/cn/ios_ng/"/>
+        <publication idref="html"/>
+    </deliverable>
+    <deliverable name="macOS" id="mac">
+        <context idref="mac"/>
+        <output href="../../out/cn/mac_ng/"/>
+        <publication idref="html"/>
+    </deliverable>
+    <deliverable name="Windows" id="windows">
+        <context idref="mac"/>
+        <output href="../../out/cn/windows_ng/"/>
         <publication idref="html"/>
     </deliverable>
 </project>
