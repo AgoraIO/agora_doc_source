@@ -21,19 +21,15 @@
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraDirectCdnStreamingMediaOptions : NSObject
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCameraTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomVideoTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMicrophoneTrack;
-
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct DirectCdnStreamingMediaOptions {
   Optional&lt;bool> publishCameraTrack;
   Optional&lt;bool> publishMicrophoneTrack;
   Optional&lt;bool> publishCustomAudioTrack;
   Optional&lt;bool> publishCustomVideoTrack;
-  Optional&lt;bool> publishMediaPlayerAudioTrack;
-  Optional&lt;int> publishMediaPlayerId;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity" outputclass="language-csharp"></codeblock>
@@ -68,33 +64,23 @@
                             <li><codeph><ph keyref="false"/></codeph>:（默认）不发布自定义采集的音频。</li>
                         </ul></pd>
                 </plentry>
+                <plentry props="hide">
+                    <pt>publishMediaPlayerAudioTrack</pt>
+                    <pd>设置是否发布媒体播放器的音频。 <ul>
+                        <li><codeph><ph keyref="true"/></codeph>: 发布媒体播放器的音频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>:（默认）不发布媒体播放器的音频。</li>
+                        </ul></pd>
+                </plentry>
                 <plentry>
                     <pt>publishCustomVideoTrack</pt>
-                    <pd>设置是否发布自定义采集的视频。
-                        <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: 发布自定义采集的视频。</li>
-                            <li><codeph><ph keyref="false"/></codeph>:（默认）不发布自定义采集的视频。</li>
+                    <pd>设置是否发布自定义采集的视频。 <ul>
+                        <li><codeph><ph keyref="true"/></codeph>: 发布自定义采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>:（默认）不发布自定义采集的视频。</li>
                         </ul></pd>
                 </plentry>
-                <plentry props="windows">
-                    <pt>publishMediaPlayerAudioTrack</pt>
-                    <pd>设置是否发布媒体播放器的音频。
-                        <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: 发布媒体播放器的音频。</li>
-                            <li><codeph><ph keyref="false"/></codeph>:（默认）不发布媒体播放器的音频。</li>
-                        </ul></pd>
-                </plentry>
-                <plentry props="windows">
+                <plentry props="hide">
                     <pt>publishMediaPlayerId</pt>
                     <pd>待发布的媒体播放器的 ID。默认值为 0。</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>publishScreenTrack</pt>
-                    <pd>设置是否发布屏幕采集的视频。
-                        <ul>
-                            <li><codeph><ph keyref="true"/></codeph>: 发布屏幕采集的视频。</li>
-                            <li><codeph><ph keyref="false"/></codeph>:（默认）不发布屏幕采集的视频。</li>
-                        </ul></pd>
                 </plentry>
             </parml>
         </section>
