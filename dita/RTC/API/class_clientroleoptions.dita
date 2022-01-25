@@ -14,7 +14,45 @@
     return audienceLatencyLevel;
   }
 }</codeblock>
-<codeblock props="unity" outputclass="language-csharp" />
+<codeblock props="unity" outputclass="language-csharp">public class ClientRoleOptions
+    {
+        public ClientRoleOptions()
+        {
+            audienceLatencyLevel = AUDIENCE_LATENCY_LEVEL_TYPE.AUDIENCE_LATENCY_LEVEL_LOW_LATENCY;
+        }
+        public ClientRoleOptions(AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel)
+        {
+            this.audienceLatencyLevel = audienceLatencyLevel;
+        }
+        
+        public AUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel;
+    }
+    
+    public class RemoteAudioStats
+    {
+        public RemoteAudioStats()
+        {
+        }
+        public RemoteAudioStats(uint uid, int quality, int networkTransportDelay, int jitterBufferDelay,
+            int audioLossRate, int numChannels, int receivedSampleRate, int receivedBitrate, int totalFrozenTime,
+            int frozenRate, int mosValue, int totalActiveTime, int publishDuration)
+        {
+            this.uid = uid;
+            this.quality = quality;
+            this.networkTransportDelay = networkTransportDelay;
+            this.jitterBufferDelay = jitterBufferDelay;
+            this.audioLossRate = audioLossRate;
+            this.numChannels = numChannels;
+            this.receivedSampleRate = receivedSampleRate;
+            this.receivedBitrate = receivedBitrate;
+            this.totalFrozenTime = totalFrozenTime;
+            this.frozenRate = frozenRate;
+            this.mosValue = mosValue;
+            this.totalActiveTime = totalActiveTime;
+            this.publishDuration = publishDuration;
+        }
+        
+        public uint uid { set; get; }</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
                 <codeblock props="android" outputclass="language-java">public class ClientRoleOptions {
@@ -51,10 +89,10 @@
    <parml>
        <plentry>
   <pt>audienceLatencyLevel</pt>
-           <pd><ph>观众端延时级别。</ph><ph props="ios mac windows unity electron flutter">详见 <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE"/>。</ph>
+           <pd><ph>观众端延时级别。</ph><ph props="ios mac windows unity electron flutter">详见 <xref keyref="AUDIENCE_LATENCY_LEVEL_TYPE" />。</ph>
                <ul props="android">
-               <li><ph keyref="AUDIENCE_LATENCY_LEVEL_LOW_LATENCY"/>(1): 低延时。</li>
-               <li><ph keyref="AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY"/>(2): （默认）超低延时。</li>
+               <li><ph keyref="AUDIENCE_LATENCY_LEVEL_LOW_LATENCY" />(1): 低延时。</li>
+               <li><ph keyref="AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY" />(2): （默认）超低延时。</li>
            </ul></pd>
        </plentry>
    </parml>
