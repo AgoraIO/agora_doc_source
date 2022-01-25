@@ -29,7 +29,10 @@ jobs:
       run: |
         cd xml2json
         python check_cpp_ng_prototype.py --code_location ./code_to_check/cpp_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-cpp.ditamap --decomment_code_location ./code_to_check/decommented
-    - name: Upload log TXT to release
+        python check_java_ng_prototype.py --code_location ./code_to_check/java_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-java.ditamap --decomment_code_location ./code_to_check/decommented
+        python check_oc_ng_prototype.py --code_location ./code_to_check/oc_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-oc.ditamap --decomment_code_location ./code_to_check/decommented
+        # python check_unity_ng_prototype.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC/API --dita_map_location ../dita/RTC/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
+    - name: Upload CPP NG log TXT to release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -37,4 +40,22 @@ jobs:
         asset_name: prototype_check_cpp_ng.txt
         tag: ${{ github.ref }}
         overwrite: true
-        body: "Comment release"      
+        body: "Comment release"
+    - name: Upload Java NG log TXT to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: xml2json/prototype_check_java_ng.txt
+        asset_name: prototype_check_java_ng.txt
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "Comment release"
+    - name: Upload OC NG log TXT to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: xml2json/prototype_check_oc_ng.txt
+        asset_name: prototype_check_oc_ng.txt
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "Comment release"
