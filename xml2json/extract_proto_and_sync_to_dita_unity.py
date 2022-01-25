@@ -53,9 +53,12 @@ def extract_rn_proto(cpp_code, content):
         text = cpp_core[0]
         text = text[:-1]
 
-        print("The matched C++ proto " + text)
+        # There is a symbol in position 0???
+        result = text[1].upper() + text[2:]
+
+        print("The matched C++ proto " + result)
         # Avoid Catastrophic Backtracking: https://www.regular-expressions.info/catastrophic.html
-        unity_proto_re = r'[A-Za-z]{1,10}[\s]{0,1}[A-Za-z]{1,10}[\s]{0,1}[A-Za-z\[\]]{1,10}[\s]{0,1}' + re.escape(text) + r'\([0-9A-Za-z_\s\n=,\[\]=:]{0,200}\);'
+        unity_proto_re = r'[A-Za-z]{1,10}[\s]{0,1}[A-Za-z]{1,10}[\s]{0,1}[A-Za-z\[\]]{1,10}[\s]{0,1}' + re.escape(result) + r'\([0-9A-Za-z_\s\n=,\[\]=:]{0,200}\);'
         print(unity_proto_re)
         result = re.findall(unity_proto_re, content)
 
