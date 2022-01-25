@@ -21,19 +21,15 @@
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraDirectCdnStreamingMediaOptions : NSObject
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCameraTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomVideoTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMicrophoneTrack;
-
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct DirectCdnStreamingMediaOptions {
   Optional&lt;bool> publishCameraTrack;
   Optional&lt;bool> publishMicrophoneTrack;
   Optional&lt;bool> publishCustomAudioTrack;
   Optional&lt;bool> publishCustomVideoTrack;
-  Optional&lt;bool> publishMediaPlayerAudioTrack;
-  Optional&lt;int> publishMediaPlayerId;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity" outputclass="language-csharp"></codeblock>
@@ -65,30 +61,23 @@
                             <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured audio from the custom source.</li>
                         </ul></pd>
                 </plentry>
+                <plentry props="hide">
+                    <pt>publishMediaPlayerAudioTrack</pt>
+                    <pd>Sets whether to publish the audio from the media player:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Publish the audio from the media player.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the audio from the media player.</li>
+                        </ul></pd>
+                </plentry>
                 <plentry>
                     <pt>publishCustomVideoTrack</pt>
                     <pd>Sets whether to publish the captured video from a custom source:<ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from a custom source.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured video from the custom source.</li>
+                        <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from a custom source.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured video from the custom source.</li>
                         </ul></pd>
                 </plentry>
-                <plentry props="windows">
-                    <pt>publishMediaPlayerAudioTrack</pt>
-                    <pd>Sets whether to publish the audio from the media player:<ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the audio from the media player.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the audio from the media player.</li>
-                        </ul></pd>
-                </plentry>
-                <plentry props="windows">
+                <plentry props="hide">
                     <pt>publishMediaPlayerId</pt>
                     <pd>The ID of the media player to be published. The default value is 0.</pd>
-                </plentry>
-                <plentry props="ios mac">
-                    <pt>publishScreenTrack</pt>
-                    <pd>Sets whether to publish the captured video from the screen:<ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the screen.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured video from the screen.</li>
-                        </ul></pd>
                 </plentry>
             </parml>
         </section>
