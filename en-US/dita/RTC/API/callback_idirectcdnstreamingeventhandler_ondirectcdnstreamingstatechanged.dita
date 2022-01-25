@@ -14,14 +14,14 @@
         <section id="prototype">
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">void onDirectCdnStreamingStateChanged(
-    DirectCdnStreamingState state, DirectCdnStreamingError err, String msg);</codeblock>
+    DirectCdnStreamingState state, DirectCdnStreamingError error, String message);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)onDirectCdnStreamingStateChanged:(AgoraDirectCdnStreamingState)state
                                    error:(AgoraDirectCdnStreamingError)error
                                  message:(NSString *_Nullable)message;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_ERROR err, const char* msg)  {
+                <codeblock props="windows" outputclass="language-cpp">virtual void onDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_ERROR error, const char* message)  {
   (void)state;
-  (void)err;
-  (void)msg;
+  (void)error;
+  (void)message;
 };</codeblock>
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp"/>
@@ -41,13 +41,11 @@
                     <pd>The current media push state. See <xref keyref="DIRECT_CDN_STREAMING_STATE"/>.</pd>
                 </plentry>
                 <plentry>
-                    <pt props="android windows">err</pt>
-                    <pt props="ios">error</pt>
+                    <pt>error</pt>
                     <pd>The reason for the streaming error. See <xref keyref="DIRECT_CDN_STREAMING_ERROR"/>.</pd>
                 </plentry>
                 <plentry>
-                    <pt props="android windows">msg</pt>
-                    <pt props="ios">message</pt>
+                    <pt>message</pt>
                     <pd>The information about the changed streaming state.</pd>
                 </plentry>
             </parml>
