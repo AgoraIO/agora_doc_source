@@ -1,0 +1,25 @@
+name: Linting
+on: [push, pull_request]
+
+jobs:
+    prose:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@master
+
+            - name: Vale
+              uses: errata-ai/vale-action@v1.4.3
+              with:
+                  # Only lint the modified files
+                  # files: __onlyModified
+                  # Only lint EN files
+                  files: en-US/markdown/
+
+                  # Only lint modified lines
+                  onlyAnnotateModifiedLines: true
+
+              env:
+                  # Required, set by GitHub actions automatically:
+                  # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret
+                  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
