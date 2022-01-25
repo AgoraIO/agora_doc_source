@@ -1,8 +1,9 @@
 name: Linting
-on: [push, pull_request]
+on: [pull_request]
 
-jobs:
+jobs: 
     prose:
+        if:  startsWith(github.head_ref, 'translation')
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -14,11 +15,11 @@ jobs:
                   # Only lint the modified files
                   # files: __onlyModified
                   # Only lint EN files
-                  files: en-US/markdown/
+                  # files: en-US/markdown/
 
                   # Only lint modified lines
                   # Currently cannot be used together with the files setting
-                  # onlyAnnotateModifiedLines: true
+                  onlyAnnotateModifiedLines: true
 
               env:
                   # Required, set by GitHub actions automatically:
