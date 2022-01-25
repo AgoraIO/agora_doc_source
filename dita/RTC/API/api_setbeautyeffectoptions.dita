@@ -30,8 +30,17 @@
        </dlentry>
    </dl>
    <p>开启本地美颜功能，并设置美颜效果选项。</p>
-   <p>该方法需要在 <xref keyref="enableVideo" /> 后调用。</p>
-   <note type="attention" props="android">该方法仅适用于 Android 4.4 及以上版本。</note>
+            <p>开启美颜功能涉及一系列方法的调用，调用顺序如下： <ol>
+                <li props="android">在初始化 <apiname keyref="IRtcEngine"/> 时调用 <xref keyref="addExtension"/> (<q><codeph>agora_video_process</codeph></q>)，在项目中集成视频增强动态库。</li>
+                <li props="ios">在项目文件中链接动态库 <codeph>AgoraVideoProcessExtension.framework</codeph></li>
+                <li props="mac">在项目文件中链接动态库 <codeph>goraVideoProcessExtension.xcframework</codeph></li>
+                <li props="windows">在项目文件中链接动态库 <codeph>libagora_video_process_extension.dll</codeph></li>
+                <li>调用 <xref keyref="enableExtension"/> (<q><codeph>agora</codeph></q>, <q><codeph>beauty</codeph></q>, <q><codeph><ph keyref="true"/></codeph></q>)，开启插件。</li>
+                <li>调用 <xref keyref="enableVideo"/>，启用视频模块。</li>
+                <li>调用该方法，开启美颜功能。</li>
+            </ol></p>
+            <note type="note" props="android">该方法仅适用于 Android 4.4 及以上版本。
+            </note>
         </section>
         <section id="parameters"><title>参数</title>
    <parml>
