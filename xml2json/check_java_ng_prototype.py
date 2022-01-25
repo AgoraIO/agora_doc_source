@@ -7,6 +7,8 @@
 #  public abstract int addVideoWatermark(String watermarkUrl, WatermarkOptions options);
 #  </codeblock>
 
+import os
+import re
 import argparse
 
 log_name = "prototype_check_java_ng.txt"
