@@ -55,7 +55,7 @@ def extract_rn_proto(cpp_code, content):
 
         print("The matched C++ proto " + text)
         # Avoid Catastrophic Backtracking: https://www.regular-expressions.info/catastrophic.html
-        unity_proto_re = r'[A-Za-z]{1,10}[\s]{0,1}[A-Za-z]{1,10}[\s]{0,1}[A-Za-z\[\]]{1,10}[\s]{0,1}' + re.escape(text) + r'\([A-Za-z_\s\n=,\[\]=:]{0,200}\);'
+        unity_proto_re = r'[A-Za-z]{1,10}[\s]{0,1}[A-Za-z]{1,10}[\s]{0,1}[A-Za-z\[\]]{1,10}[\s]{0,1}' + re.escape(text) + r'\([0-9A-Za-z_\s\n=,\[\]=:]{0,200}\);'
         print(unity_proto_re)
         result = re.findall(unity_proto_re, content)
 
