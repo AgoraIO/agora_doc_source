@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_getstreaminfo">
+    <title><ph keyref="getStreamInfo" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the detailed information of the media stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getStreamInfo" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">MediaStreamInfo getStreamInfo(int index);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraMediaStreamInfo *_Nullable)getStreamByIndex:(int)index;
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int getStreamInfo(int64_t index, media::base::PlayerStreamInfo* info) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>index</pt>
+                    <pd>The index of the media stream.</pd>
+                </plentry>
+                <plentry props="windows">
+                    <pt>info</pt>
+                    <pd>Output parameter. The detailed information of the media stream. See <xref keyref="PlayerStreamInfo" />.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul props="android ios mac">
+                <li>If the call succeeds, returns the detailed information of the media stream. See <xref keyref="PlayerStreamInfo" />.</li>
+                <li>If the call fails, returns <codeph><ph keyref="NULL" /></codeph>.</li>
+            </ul>
+            <ul props="windows" id="ul_uns_l2y_hqb">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

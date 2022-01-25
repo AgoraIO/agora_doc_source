@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayercustomdataprovider_onseek">
+    <title><ph keyref="onSeek"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK seeks the media resource data.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onSeek"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">long onSeek(long offset, int whence);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">typedef long long(^AgoraRtcMediaPlayerCustomSourceOnSeekCallback)(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull playerKit, long long offset, int whence);
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int64_t onSeek(int64_t offset, int whence) = 0;
+</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>When you call the <xref keyref="openWithCustomSource"/> method to open a custom media resource, the SDK triggers this callback to request the specified location in the media resource.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry props="ios mac">
+                    <pt>playerKit</pt>
+                    <pd>Media player protocol. For details, see <xref keyref="IMediaPlayer"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>offset</pt>
+                    <pd>An input parameter. The offset of the target position relative to the starting point, in bytes. The value can be positive or negative.</pd>
+                </plentry>
+                <plentry>
+                    <pt>whence</pt>
+                    <pd>An input parameter. The starting point. You can set it as one of the following values:<ul>
+                        <li>0: The starting point is the head of the data, and the actual data offset after seeking is <parmname>offset</parmname>.</li>
+                        <li>1: The starting point is the current position, and the actual data offset after seeking is the current position plus <parmname>offset</parmname>.</li>
+                        <li>2: The starting point is the end of the data, and the actual data offset after seeking is the whole data length plus <parmname>offset</parmname>.</li>
+                        <li>65536: Do not perform position seeking, return the file size. Agora recommends that you use this parameter value when playing pure audio files such as MP3 and WAV.</li>
+                        </ul></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+                <li>When <parmname>whence</parmname> is <parmname>65536</parmname>, the media file size is returned.</li>
+                <li>When <parmname>whence</parmname> is <parmname>0</parmname>, <parmname>1</parmname>, or <parmname>2</parmname>, the actual data offset after the seeking is returned.</li>
+                <li>-1: Seeking failed.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
