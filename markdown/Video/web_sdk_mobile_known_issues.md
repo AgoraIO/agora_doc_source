@@ -1,9 +1,10 @@
-# 移动端已知问题和限制
+# 移动端已知问题和规避方案
 
-本页列出在移动端使用 Web SDK 的已知问题和限制，并提供规避方案。
+本页列出在移动端使用 Web SDK 的已知问题和限制：
+- 已知问题：由 iOS 平台特定版本的 Bug 或 Android 平台特定浏览器/机型的 Bug 所造成的问题。针对已知问题，Agora 提供规避方案。
+- 已知限制：由于 iOS/Android 平台的问题，Web SDK 不支持的 API 或功能。
 
-> - Agora 建议你遇到问题时，先查阅本页看是否为已知问题。
-> - 如想提升在移动端的体验，Agora 建议你升级到 Web SDK 4.x 最新版本。
+<div class="alert info">随着 Android 和 iOS 版本的迭代，本页内容会根据实际情况定期更新。</div>
 
 ## 已知问题
 
@@ -21,7 +22,7 @@
 </p>
 <p>
 
-**问题原因**：该问题是由 iOS 15.x 上 WebKit 视频编码功能回退导致，详见 [WebKit Bug 231505](https://bugs.webkit.org/show_bug.cgi?id=231505)。
+**问题原因**：该问题是由 iOS 15.1.x 上 WebKit 视频编码功能回退导致，详见 [WebKit Bug 231505](https://bugs.webkit.org/show_bug.cgi?id=231505)。
 </p>
 <p>
 
@@ -78,7 +79,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**规避方案**：升级至 Web SDK 4.x 最新版本，并且尽量减少更改 `video` 元素及其父元素的 CSS 属性。
+**规避方案**：升级至 Web SDK 4.7.3 或以上版本，并且尽量减少更改 `video` 元素及其父元素的 CSS 属性。
 </p>
 </details>
 
@@ -99,7 +100,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**规避方案**：暂无
+**规避方案**：Agora 建议你在业务层面添加提示，告知用户使用蓝牙耳机可能出现音频失真问题。
 </p>
 </details>
 
@@ -147,7 +148,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**规避方案**：升级至 Web SDK 4.x 最新版本。SDK 会尝试在打断事件后恢复媒体播放。
+**规避方案**：升级至 Web SDK 4.7.3 或以上版本。SDK 会尝试在打断事件后恢复媒体播放。Agora 建议你在业务层面增加提示，引导用户刷新页面。
 </p>
 </details>
 
@@ -170,11 +171,11 @@ createClient({codec:'vp8', mode})
 
 <p>
 
-**影响范围**：部分安装了 Android 12 的设备，如 Pixel 3 和 Pixel 4。
+**影响范围**：部分安装了 Android 12 的设备，如 Pixel 3 和 Pixel 4，且使用 Chrome 97 以下版本。
 </p>
 <p>
 
-**问题描述**：在 Android 12 上使用 Chrome 浏览器或 Chromium 内核浏览器，如果默认开启 WebRTC `H264` 或 `VP8` 视频硬件编码，可能会导致花屏。
+**问题描述**：在 Android 12 上使用 Chrome 浏览器或 Chromium 内核浏览器 97 或以下版本，如果默认开启 WebRTC `H264` 或 `VP8` 视频硬件编码，可能会导致花屏。
 </p>
 <p>
 
@@ -182,12 +183,12 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**规避方案**：引导使用 Android 12 的客户在 Chrome 浏览器中打开 `Chrome://flags` 配置页面，关闭 WebRTC 视频硬件编码相关配置。Chrome 计划在 97 版本中修复该问题。
+**规避方案**：Chrome 97 已修改该问题，建议用户升级至 Chrome 97 或以上版本。
 </p>
 </details>
 
 <details>
-<summary>Chrome 浏览器上发送视频流，码率无法达到预设值</summary>
+<summary>Android Chrome 上发送视频流，码率无法达到预设值</summary>
 <p>
 
 **影响范围**：部分 Android 设备，如部分小米及 One Plus 机型。
@@ -202,7 +203,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**规避方案**：大部分情况下，视频编码帧率为 15 fps 时，码率会过低，而帧率为 30 fps 时码率则相对较高。因此 Agora 建议遇到码率问题时，尝试将帧率设为 30 fps。
+**规避方案**：大部分情况下，视频编码帧率为 15 fps 时，码率会过低，而帧率为 30 fps 时码率则相对较高。因此 Agora 建议遇到码率问题时，尝试将帧率设为 30 fps。请注意，将帧率设为 30 fps 可能会带来性能问题。
 </p>
 </details>
 
@@ -223,7 +224,7 @@ createClient({codec:'vp8', mode})
 <p>
 
 **规避方案**：参考以下步骤规避此问题：
-1. 升级至 Web SDK 4.x 最新版本。
+1. 升级至 Web SDK 4.6.0 或以上版本。
 2. 监听 `AgoraRTC.onAutoplayFailed` 事件。在此事件中，引导用户点击页面，恢复播放：
 
     ```javascript
@@ -250,7 +251,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**规避方案**：暂无
+**规避方案**：Agora 建议你在业务层面添加提示，告知用户使用蓝牙耳机可能出现无声问题。
 </p>
 </details>
 
@@ -260,7 +261,8 @@ createClient({codec:'vp8', mode})
 
 - 在搭载**联发科芯片**的设备上无法使用 H.264 编码在 Chrome 浏览器中发送视频流。
 - 在搭载**华为海思麒麟芯片**的设备上，Android Chrome 88 以下版本上，无法使用 H.264 编码发送视频流。
-- 在**OnePlus 6**上使用 Chrome 浏览器接收远端视频流期间熄灭屏幕，可能会导致视频流冻结。
+- 在 **OnePlus 6**上使用 Chrome 浏览器接收远端视频流期间熄灭屏幕，可能会导致视频流冻结。
+- **鸿蒙系统**不支持发 180p 的视频流。
 </p>
 </details>
 
@@ -270,7 +272,9 @@ createClient({codec:'vp8', mode})
 
 - 在部分 Android 设备上可能无法获取到媒体设备的 device label。
 - 在部分 Android 设备上音视频流被系统电话呼叫或其他语音和视频通话应用打断，可能会导致 track-ended，需要重新采集音视频。
-- 在 Android Chrome 上无法使用 H.264 编码发送大小流。
+- Android Chrome 上无法使用 H.264 编码发送大小流。
+- Android Chrome 90 以下版本中 `getVolumeLevel` 获取到的音量为 0，但是能听到声音。
+- Android 系统 WebView 55 至 75 版本中 `decodeFrameRate` 为 0。
 </p>
 </details>
 
