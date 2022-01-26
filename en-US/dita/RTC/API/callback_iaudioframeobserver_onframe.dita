@@ -29,11 +29,13 @@
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
    <parml>
-       <plentry>
-           <pt props="ios mac">audioFrame</pt>
-           <pt props="android windows">frame</pt>
-           <pd props="android windows">Audio frame information. See <ph keyref="AudioFrame"/>.</pd>
-           <pd props="ios mac">Audio frame information (CMSampleBufferRef).</pd>
+       <plentry props="ios mac">
+           <pt>audioFrame</pt>
+           <pd>Audio frame information (CMSampleBufferRef).</pd>
+       </plentry>
+       <plentry props="android windows">
+           <pt>frame</pt>
+           <pd>Audio frame information. See <ph keyref="AudioFrame"/>.</pd>
        </plentry>
        <plentry props="ios mac">
            <pt>playerKit</pt>
@@ -43,6 +45,6 @@
         </section>
         <section id="return_values" props="android">
    <title>Returns</title>
-            <p>Passes in<xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> the audio data after setting the<parmname> mode</parmname> parameter for handling audio data.</p>
+            <p>Passes in the audio data after setting the <parmname>mode</parmname> parameter in <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> for handling audio data.</p>
         </section></refbody>
 </reference>
