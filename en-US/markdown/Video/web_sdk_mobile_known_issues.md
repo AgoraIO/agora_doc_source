@@ -1,4 +1,4 @@
-# Known Issues and Workarounds for Using the Web SDK on Mobile Devices
+# Known Issues and Workarounds on Mobile Devices
 
 This page lists the known issues and limitations of using the Web SDK on mobile devices:
 - Known issues: Caused by bugs on specific versions of iOS or specific browsers on Android. For some known issues, Agora provides workarounds.
