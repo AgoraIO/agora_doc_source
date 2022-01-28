@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onagoracdntokenwillexpire">
+    <title><ph keyref="onAgoraCDNTokenWillExpire"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the token is about to expire.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAgoraCDNTokenWillExpire"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">void onAgoraCDNTokenWillExpire();
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)onAgoraCDNTokenWillExpire;
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onAgoraCDNTokenWillExpire() = 0;
+</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>If the <parmname>ts</parmname> is about to expire when you call the <xref keyref="switchAgoraCDNLineByIndex"/> method to switch the CDN route for playing the media resource, the SDK triggers this callback to remind you to renew the authentication information. You need to call the <xref keyref="renewAgoraCDNSrcToken"/> method to pass in the updated authentication information to update the authentication information of the media resource URL. After updating the authentication information, you need to call <xref keyref="switchAgoraCDNLineByIndex"/> to complete the route switching.</p>
+        </section>
+    </refbody>
+</reference>
