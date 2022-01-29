@@ -4,8 +4,9 @@ This section shows how to use the [sdk-name] to implement [product-name] into yo
 
 ## Create the UI
 
-<p props="audio">Create the user interface (UI) for the <ph keyref="feature"/> in the layout file of your project.</p>
+<p props="audio">Create the user interface (UI) for the <ph keyref="feature"></ph> in the layout file of your project.</p>
 <p props="video live">In the interface, you have one frame for local video and another for remote video.</p>
+
 In `/app/res/layout/activity_main.xml`, replace the content with the following:
 
 ```xml
