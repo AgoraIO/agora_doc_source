@@ -2,7 +2,7 @@
 
 When you implement Agora Chat in your app, each user can log into their account on your chat network from up to four devices concurrently; all messages are automatically synchronized across all devices. You can also implement more advanced features with a few lines of code.
 
-This page shows you how to enable each user to send messages to themselves， kick out a logged in device, and synchronize group and contact changes between devices.
+This page shows you how to enable each user to send messages to themselves，kick out a logged in device, and synchronize group and contact changes between devices.
 
 ## Understand the tech
 
@@ -16,11 +16,8 @@ To synchronize the group and contact updates, the SDK provides a `MultiDeviceLis
 
 Before proceeding, ensure that you have a project that has implemented [Agora Chat functionality](link) in your app.
 
-## Implementation
 
-This section describes how to enable users to send messages to themselves, synchronize the group and contact updates between devices, and kick out a logged in device.
-
-### Enable users to send messages to themselves on all their devices
+## Enable users to send messages to themselves on all their devices
 
 To send messages to other logged in devices, do the following:
 
@@ -42,52 +39,52 @@ To send messages to other logged in devices, do the following:
    ChatClient.getInstance().chatManager().sendMessage(message); 
    ```
 
-### Synchronize group and contact updates
+## Synchronize group and contact updates
 
 When a user is logged into your app on multiple devices, best practice is to update changes made on one device to all others. For example, if a user joins a chat group, it makes sense that this is reflected on all devices. Agora supplies the `MultiDeviceListener` class that listens to actions made by the current user in other instances of your app. You use an implementation of this class to reflect actions made on one device on all others. To achive this, do the following:
 
 1. Implement a custom instance of `MultiDeviceListener`, listen for the group events in `onGroupEvent` and the contact events in `onContactEvent`, and react to actions preformed by the current user on another device:
    ```java
-    private class ChatMultiDeviceListener implements MultiDeviceListener {
-            @Override
-            public void onContactEvent(int event, String target, String ext) {
-                ChatLog.i(TAG, "onContactEvent event"+event);
-                DemoDbHelper dbHelper = DemoDbHelper.getInstance(DemoApplication.getInstance());
-                switch (event) {
-                    // The user sends a contact request on another device.
-                    case CONTACT_ADD:
-                        break;
-                    // The user removes a contact on another device.
-                    case CONTACT_REMOVE:
-                        break;
-                    // Other contact events 
-                    ...
-                }
-            }
-
-            @Override
-            public void onGroupEvent(int event, String groupId, List<String> usernames) {
-                ChatLog.i(TAG, "onGroupEvent event"+event);
-                switch (event) {
-                    // The user creats a group on another device.
-                    case GROUP_CREATE:
-                        break;
-                    // The user destroys a group on another device.
-                    case GROUP_DESTROY:
-                        break;
-                    // The user joins a group on another device.
-                    case GROUP_JOIN:
-                        break;
-                    // Other group events.
-                    ...
-                    default:
-                        break;
-                }
-            }
-    }
-
-    ChatMultiDeviceListener chatMultiDeviceListener = new ChatMultiDeviceListener();
-    ```
+   private class ChatMultiDeviceListener implements MultiDeviceListener {
+     @Override
+     public void onContactEvent(int event, String target, String ext) {
+       ChatLog.i(TAG, "onContactEvent event"+event);
+       DemoDbHelper dbHelper = DemoDbHelper.getInstance(DemoApplication.getInstance());
+       switch (event) {
+           // The user sends a contact request on another device.
+         case CONTACT_ADD:
+           break;
+           // The user removes a contact on another device.
+         case CONTACT_REMOVE:
+           break;
+           // Other contact events 
+           ...
+       }
+     }
+   
+     @Override
+     public void onGroupEvent(int event, String groupId, List<String> usernames) {
+       ChatLog.i(TAG, "onGroupEvent event"+event);
+       switch (event) {
+           // The user creats a group on another device.
+         case GROUP_CREATE:
+           break;
+           // The user destroys a group on another device.
+         case GROUP_DESTROY:
+           break;
+           // The user joins a group on another device.
+         case GROUP_JOIN:
+           break;
+           // Other group events.
+           ...
+             default:
+           break;
+       }
+     }
+   }
+   
+   ChatMultiDeviceListener chatMultiDeviceListener = new ChatMultiDeviceListener();
+   ```
 
 2. In the initiation procedure for your app, add your custom listener to your `ChatClient` instance:
 
@@ -103,8 +100,23 @@ When a user is logged into your app on multiple devices, best practice is to upd
    ChatClient.getInstance().removeMultiDeviceListener(chatMultiDeviceListener);
    ```
 
-### Kick out a logged in device
+## Kick out a logged in device
 
+To kick out a logged in device, do the following:
+
+1. Get the information of all the logged in devices.
+   
+   ```java
+   // Asynchronous method
+   List<DeviceInfo> deviceInfos = ChatClient.getInstance().getLoggedInDevicesFromServer(username, password);
+   ```
+   
+2. Call `kickDevice` and specify the device to be kicked out.
+   
+   ```java
+   // Asynchronous method
+   ChatClient.getInstance().kickDevice(username, password, deviceInfos.get(selectedIndex).getResource());
+   ```
 
 ## Reference
 
