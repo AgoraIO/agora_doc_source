@@ -22,16 +22,24 @@
         </p>
         </section>
         <section id="detailed_desc">
-
+   
    <dl outputclass="since" props="rtc">
-       <dlentry>
+       <dlentry props="native">
   <dt>Since</dt>
   <dd><ph keyref="since-setbeautyeffect" /></dd>
        </dlentry>
    </dl>
    <p>Enables or disables image enhancement and sets the options.</p>
-   <p>Call this method after <xref keyref="enableVideo" />.</p>
-   <note type="attention" props="android">This method only applies to Android 4.4 or later.</note>
+            <p>Enabling the image enhancement function involves a series of method calls. The calling sequence is as follows:<ol>
+                <li props="android">Call <xref keyref="addExtension"/>(<q><codeph>agora_video_process</codeph></q>) during <apiname keyref="IRtcEngine"/> initialization to integrate the video enhancement dynamic library in the project.</li>
+                <li props="ios">Link the extension library in the project file: <codeph>AgoraVideoProcessExtension.framework</codeph></li>
+                <li props="mac">Link the extension library in the project file: <codeph>AgoraVideoProcessExtension.xcframework</codeph></li>
+                <li props="windows">Call <xref keyref="loadExtensionProvider"/> (<q><codeph>libagora_video_process_extension.dll</codeph></q>) during <apiname keyref="IRtcEngine"/> initialization to specify the extension's library path.</li>
+                <li>Call <xref keyref="enableExtension"/>(<q><codeph>agora</codeph></q>, <q><codeph>beauty</codeph></q>, <q><codeph><ph keyref="true"/></codeph></q>) to enable the extension.</li>
+                <li>Call <xref keyref="enableVideo"/> to enable the video module.</li>
+                <li>Call this method to enable the image enhancement function.</li>
+            </ol></p>
+            <note type="note" props="android">This method only applies to Android 4.4 or later.</note>
         </section>
         <section id="parameters"><title>Parameters</title>
    <parml>
@@ -39,8 +47,8 @@
   <pt props="android windows unity flutter">enabled</pt>
            <pt props="ios mac">enable</pt>
   <pd>Whether to enable the image enhancement function:<ul>
-      <li><codeph><ph keyref="true" /></codeph>: Open.</li>
-      <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the image enhancement function.</li>
+      <li><codeph>: Enable.</codeph><ph keyref="true" /></li>
+      <li><codeph>: (Default) Disable the image enhancement function.</codeph><ph keyref="false" /></li>
   </ul></pd>
        </plentry>
        <plentry>
