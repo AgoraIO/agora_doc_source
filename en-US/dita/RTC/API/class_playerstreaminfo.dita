@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerstreaminfo">
     <title><ph keyref="PlayerStreamInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The whole information of the media stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The detailed information of the media stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -73,7 +73,7 @@
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
                 <plentry>
                     <pt>streamIndex</pt>
@@ -82,7 +82,13 @@
                 <plentry>
                     <pt props="ios mac windows">streamType</pt>
                     <pt props="android">mediaStreamType</pt>
-                    <pd>The type of the media stream. See <xref keyref="MEDIA_STREAM_TYPE" /> for details.</pd>
+                    <pd><ph>The type of the media stream. </ph><ph>See <xref keyref="MEDIA_STREAM_TYPE"/>.</ph><ul props="android">
+                            <li><ph keyref="STREAM_TYPE_UNKNOWN"/> (0): The type is unknown.</li>
+                            <li><ph keyref="STREAM_TYPE_VIDEO"/> (1): The video stream.</li>
+                            <li><ph keyref="STREAM_TYPE_AUDIO"/> (2): The audio stream.</li>
+                            <li><ph keyref="STREAM_TYPE_SUBTITLE"/> (3): The subtitle stream.</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry>
                     <pt>codecName</pt>
@@ -94,36 +100,37 @@
                 </plentry>
                 <plentry>
                     <pt>videoFrameRate</pt>
-                    <pd>For video stream, gets the frame rate (fps).</pd>
+                    <pd>This parameter only takes effect for video streams, and indicates the video frame rate (fps).</pd>
                 </plentry>
                 <plentry>
                     <pt>videoBitrate</pt>
-                    <pd>For video stream, gets the bitrate (bps).</pd>
+                    <pd>This parameter only takes effect for video streams, and indicates the video bitrate (bps).</pd>
                 </plentry>
                 <plentry>
                     <pt>videoWidth</pt>
-                    <pd>For video stream, gets the width (pixel) of the video.</pd>
+                    <pd>This parameter only takes effect for video streams, and indicates the video width (pixel).</pd>
                 </plentry>
                 <plentry>
                     <pt>videoHeight</pt>
-                    <pd>For video stream, gets the height (pixel) of the video.</pd>
+                    <pd>This parameter only takes effect for video streams, and indicates the video height (pixel).</pd>
                 </plentry>
                 <plentry props="android ios mac">
                     <pt props="android">videoRotation</pt>
                     <pt props="ios mac">rotation</pt>
-                    <pd>For video stream, gets the rotation angle of the video.</pd>
+                    <pd>This parameter only takes effect for video streams, and indicates the video rotation angle.</pd>
                 </plentry>
                 <plentry>
                     <pt>audioSampleRate</pt>
-                    <pd>For the audio stream, gets the sample rate (Hz).</pd>
+                    <pd>This parameter only takes effect for audio streams, and indicates the audio sample rate (Hz).</pd>
                 </plentry>
                 <plentry>
                     <pt>audioChannels</pt>
-                    <pd>For the audio stream, gets the channel number.</pd>
+                    <pd>This parameter only takes effect for audio streams, and indicates the audio channel number.</pd>
                 </plentry>
                 <plentry props="android windows">
-                    <pt>audioBitsPerSample</pt>
-                    <pd>For the audio stream, gets the bits per sample.</pd>
+                    <pt props="windows">audioBitsPerSample</pt>
+                    <pt props="android">audioBytesPerSample</pt>
+                    <pd>This parameter only takes effect for audio streams, and indicates the bit number of each audio sample.</pd>
                 </plentry>
                 <plentry>
                     <pt>duration</pt>
