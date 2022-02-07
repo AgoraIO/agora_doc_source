@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enablevirtualbackground">
-    <title><ph keyref="enableVirtualBackground" /></title>
+    <title><ph keyref="enableVirtualBackground"/></title>
     <shortdesc id="short"><ph id="shortdesc">Enables/Disables the virtual background. (beta feature)</ph></shortdesc>
     <prolog>
         <metadata>
@@ -35,14 +35,15 @@
             </dl>
             <p>After enabling the virtual background feature, you can replace the original background image of the local user with a custom background image. After the replacement, all users in the channel can see the custom background image.</p>
             <p props="rtc">You can find out from the <xref keyref="onVirtualBackgroundSourceEnabled"/> callback whether the virtual background is successfully enabled or the cause of any errors.</p>
-            <note type="attention"><ul>
-                <li>Before calling this method, ensure that you have integrated the dynamic library.<ul>
-                    <li props="android windows unity rn flutter">Android: <ph>libagora_segmentation_extension.so</ph></li>
-                    <li props="ios windows unity rn flutter">iOS: <ph>AgoraVideoSegmentationExtension.xcframework</ph></li>
-                    <li props="mac windows unity electron">macOS: <ph>AgoraVideoSegmentationExtension.framework</ph></li>
-                    <li props="windows">Windows: <ph>libagora_segmentation_extension.dll</ph></li>
-                </ul></li>
-                <li>Call this method after <xref keyref="enableVideo"/>.</li>
+            <p>Enabling the virtual background function involves a series of method calls. The calling sequence is as follows:<ol>
+                <li props="android">Call <xref keyref="addExtension"/> (<q><codeph>agora_segmentation_extension</codeph></q>) during <apiname keyref="IRtcEngine"/> initialization to integrate the video enhancement library in the project.</li>
+                <li props="ios">Link the extension library in the project file: <codeph>AgoraVideoSegmentationExtension.xcframework</codeph></li>
+                <li props="mac">Link the extension library in the project file: <codeph>AgoraVideoSegmentationExtension.framework</codeph></li>
+                <li props="windows">Call <xref keyref="loadExtensionProvider"/> (<q><codeph>libagora_segmentation_extension.dll</codeph></q>) during <apiname keyref="IRtcEngine"/> initialization to specify the extension's library path.</li>
+                <li>Call <xref keyref="enableExtension"/> (<q><codeph>agora_segmentation</codeph></q>, <q><codeph>PortraitSegmentation</codeph></q>, <q><codeph><ph keyref="true"/></codeph></q>) to enable the extension.</li>
+                <li>Call <xref keyref="enableVideo"/> to enable the video module.</li>
+                <li>Call this method to enable the virtual background function.</li>
+            </ol></p><note type="attention"><ul>
                 <li>This function requires a high-performance device. Agora recommends that you use this function on devices with the following chips:<ul>
                     <li props="android unity windows rn flutter">Snapdragon 700 series 750G and later</li>
                     <li props="android unity windows rn flutter">Snapdragon 800 series 835 and later</li>
@@ -70,14 +71,14 @@
                     <pt props="windows android unity flutter">enabled</pt>
                     <pt props="ios mac">enable</pt>
                     <pd>Whether to enable virtual background:<ul>
-                        <li><ph keyref="true"/>: Enable virtual background.</li>
-                        <li><ph keyref="false"/>: Disable virtual background.</li>
+                        <li><ph keyref="true" />: Enable.</li>
+                        <li><ph keyref="false" />: Disable.</li>
                     </ul></pd>
                 </plentry>
                 <plentry>
                     <pt props="windows android unity flutter">backgroundSource</pt>
                     <pt props="mac ios">backData</pt>
-                    <pd>The custom background image. For details, see <xref keyref="VirtualBackgroundSource"/>. To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</pd>
+                    <pd>The custom background image. See <xref keyref="VirtualBackgroundSource"/>. To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</pd>
                 </plentry>
             </parml>
         </section>
