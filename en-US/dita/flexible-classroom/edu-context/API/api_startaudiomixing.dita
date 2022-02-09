@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_startaudiomixing">
+    <title><ph keyref="startAudioMixing"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Starts audio mixing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startAudioMixing"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">abstract fun startAudioMixing(filepath: String, 
+                              loopback: Boolean, 
+                              replace: Boolean, 
+                              cycle: Int)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">AgoraEduContextError startAudioMixing(String filePath,
+                                      Boolean loopback,
+                                      Boolean replace,
+                                      Int cycle)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>Call this method to mix the audio stream sampled by the microphone with the audio in the locally-played music file, so that the remote user can hear the music file more clearly.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>filePath</pt>
+                    <pd>The path of the music file that needs to be mixed.</pd>
+                </plentry>
+                <plentry>
+                    <pt>loopback</pt>
+                    <pd>Whether to play the music file only on the local client.</pd>
+                </plentry>
+                <plentry>
+                    <pt>replace</pt>
+                    <pd>Whether to replace the audio sampled by the microphone with the music file.</pd>
+                </plentry>
+                <plentry>
+                    <pt>cycle</pt>
+                    <pd>The number of times the music file is played. Setting this parameter as -1 means loop playback.</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="ios">
+            <title>Returns</title>
+            <p><ph conkeyref="getLocalDeviceState/fail-desc"/></p>
+        </section>
+    </refbody>
+</reference>
