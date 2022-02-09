@@ -29,7 +29,7 @@ Flexible Classroom supports the following teaching scenarios:
 - Small Classroom: A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. The size of a Small Classroom is limited to 200.
 - Lecture Hall: A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. The size of a Lecture Hall is limited to 5000.
 
-## Classroom demonstation
+## Classroom demonstration
 
 A flexible classroom mainly includes four areas: navigation bar, whiteboard area, video area, and chat area.
 
@@ -100,7 +100,7 @@ Agora provides the Flexible Classroom cloud service for classroom and user manag
 - Supports testing the audio and video input and output devices before the class and monitoring the network quality during the class to ensure smooth classroom experience.
 - Provides [Agora Analytics](/en/Agora%20Analytics/aa_guide?platform=All%20Platforms) to monitor quality, user behavior, device state, and Quality of Experience (QoE)/Quality of Service (QoS) statistics.
 
-## Supported platforms
+## Supported roles
 
 | Classroom roles | Android<sup>1</sup> | iOS<sup>2</sup> | Web<sup>3</sup> | macOS<sup>4</sup> | Windows<sup>5</sup> |
 | :------- | :------- | :--- | :--- | :----- | :------- |
@@ -108,9 +108,27 @@ Agora provides the Flexible Classroom cloud service for classroom and user manag
 | Students | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
 | Teaching assistants | <font color="red">✘</font> | <font color="red">✘</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
 
-<div class="alert info">Compatibility requirements:<ol><li>Android 5.0 or later.</li><li>iOS 10 or later.</li><li>To ensure a better end-user experience, Agora highly recommends using Flexible Classroom on the latest version of Desktop Chrome. As of v2.1.0, students can join a lecture hall in Flexible Classroom simply by clicking on a shared webpage link within some mobile social applications that use a web view.</li><li>macOS 10.10 or later.</li><li>Windows 7 or later.</li></ol></div>
-
 <div class="alert info">The Windows and macOS apps of Flexible Classroom are built with Electron.</div>
+
+## Compatibility
+
+### Supported operation system versions
+
+- Android 6.0 or later
+- iOS 10 or later
+- macOS 10.13 or later
+- Windows 7 or later
+
+### Supported browsers
+
+To ensure best end-user experience, Agora highly recommends using Flexible Classroom on the latest version of Desktop Chrome. For detailed browser support, see the following list:
+
+- Desktop:
+  - Windows: Chrome 89 or later
+  - macOS:
+      - Safari 13 or later
+      - Chrome 89 or later
+- Mobile: As of v2.1.0, students can join a lecture hall in Flexible Classroom simply by clicking on a shared webpage link within some mobile social applications that use a web view.
 
 ## Pricing
 
