@@ -41,14 +41,14 @@ createClient({codec:'vp8', mode})
 **Impact**: All browsers and apps that use WkWebView on iOS 15.x, such as Safari and Chrome.</p>
 <p>
 
-**Details**: On iOS 15.x, after the local user subscribes to the `RemoteAudioTrack` and plays it, sometimes the audio is routed to the earpiece instead of the speaker, and the volume that the local user may be very low.</p>
+**Details**: On iOS 15.x, after the local user subscribes to the `RemoteAudioTrack` and plays it, sometimes the audio is routed to the earpiece instead of the speaker, and the volume that the local user hear may be very low.</p>
 <p>
 
 **Reason**: This issue happens due to the regression of the WebKit audio module on iOS 15.x. For details, see [ WebKit Bug 230902](https://bugs.webkit.org/show_bug.cgi?id=230902).
 </p>
 <p>
 
-**Workaround**: On iOS 15.x, use `WebAudio` to play the audio and use `GainNode` to increase the audio volume level. Use the following workaround:
+**Workaround**: On iOS 15.x, use `WebAudio` to play the audio, and use `GainNode` to increase the audio volume level. Use the following workaround:
 1. Upgrade to the Web SDK 4.9.0 or later versions.
 2. Set the SDK private parameter `REMOTE_AUDIO_TRACK_USES_WEB_AUDIO` as `true`. The SDK uses `WebAudio` to play the remote audio stream. Sample code:
    ```javascript
@@ -64,14 +64,14 @@ createClient({codec:'vp8', mode})
    </details>
 
 <details>
-<summary>iOS 15.x: The video played goes black</summary>
+<summary>iOS 15.x: The video playback goes black</summary>
 <p>
 
 **Impact**: All browsers and apps that use WkWebView on iOS 15.x, such as Safari and Chrome.
 </p>
 <p>
 
-**Details**: On iOS 15.x, if you play the video in the DOM node and add some CSS properties (such as `transform` and `animation`) to the` video` element or its parent element, or if you change the CSS properties to redraw the video rendering area, sometimes the video goes black.
+**Details**: On iOS 15.x, if you play the video in DOM node and add some CSS properties (such as `transform` and `animation`) to the` video` element or its parent element, or if you change the CSS properties to redraw the video rendering area, sometimes the video goes black.
 </p>
 <p>
 
@@ -85,7 +85,7 @@ createClient({codec:'vp8', mode})
 
 
 <details>
-<summary>iOS 15.x: After the user wears a Bluetooth headset, the audio may be significantly distorted</summary>
+<summary>iOS 15.x: If a user wears a Bluetooth headset, the audio may be significantly distorted</summary>
 <p>
 
 **Impact**: All browsers and apps that use WkWebView on iOS 15.x, such as Safari and Chrome.
@@ -96,7 +96,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**Workaround**: Agora recommends that you add a prompt to remind users of possible audio distortion issues when they try to use a Bluetooth headset.
+**Workaround**: Agora recommends that you add a prompt to remind users of possible audio distortion issues when they use a Bluetooth headset.
 </p>
 </details>
 
@@ -120,12 +120,12 @@ createClient({codec:'vp8', mode})
    const localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack({bypassWebAudio: true});
    ```
 
-   > Note that this workaround has a side effect. After applying this workaround, the audio mixing fuction (`MixingAudioTrack`) in the SDK will fail.
+   > Note that this workaround has a side effect. After applying this workaround, the audio mixing function (`MixingAudioTrack`) in the SDK fails.
    > </p>
    > </details>
 
 <details>
-<summary>iOS 15.x: Audio and video playback may be not resumed automatically after an interruption with a system phone call, another real-time interaction app, Siri, or alarm.</summary>
+<summary>iOS 15.x: Audio and video playback might not resume automatically after being interrupted by a system phone call, another real-time interaction app, Siri, or an alarm.</summary>
 <p>
 
 **Impact**: All browsers and apps that use WkWebView on iOS 15.x, such as Safari and Chrome.
@@ -144,11 +144,11 @@ createClient({codec:'vp8', mode})
 <summary>Other known issues</summary>
 <p>
 
-- The volume of a remote user may change randomly on iOS 13 and 14.
-- Switching between the front and rear cameras may momentarily rotate the video.
-- The audio routing can change randomly: Sometimes, the audio is routed to the speakerphone when a headset is connected, or to the earpiece when no headset is connected.
+- The volume of a remote user can change randomly on iOS 13 and 14.
+- Switching between the front and rear cameras can momentarily rotate the video.
+- The audio routing can change randomly. Sometimes, the audio is routed to the speakerphone when a headset is connected or to the earpiece when no headset is connected.
 - If you call `getUserMedia` twice to get two tracks of the same media type, the first track goes muted or black.
-- After a user switches to other apps that use the microphone or camera (such as Siri or Skype) and then switches back, the audio sampling or video capture fails.
+- After a user switches to another app that uses the microphone or camera (such as Siri or Skype) and then switches back, the audio sampling or video capture fails.
    </p>
    </details>
 
@@ -159,11 +159,11 @@ createClient({codec:'vp8', mode})
 
 <p>
 
-**Impact**: The Chrome browser or Chromium kernel browser 97 or below on certain devices with Android 12, such as Pixel 3 and Pixel 4.
+**Impact**: The Chrome browser or Chromium kernel browser 97 or earlier on certain devices with Android 12, such as Pixel 3 and Pixel 4.
 </p>
 <p>
 
-**Details**: If the Chrome browser on Android 12 enables the WebRTC `H264` or `VP8` hardware acceleration by default, video distortion may occur.
+**Details**: If the Chrome browser on Android 12 enables the WebRTC `H264` or `VP8` hardware acceleration by default, video distortion can occur.
 </p>
 <p>
 
@@ -176,7 +176,7 @@ createClient({codec:'vp8', mode})
 </details>
 
 <details>
-<summary>The video sending bitrate on Android Chrome fails to reach the preset value.</summary>
+<summary>The bitrate when sending video on Android Chrome fails to reach the preset value.</summary>
 <p>
 
 **Scope**: Certain Android devices, such as Xiaomi and OnePlus.
@@ -220,14 +220,14 @@ createClient({codec:'vp8', mode})
    </details>
 
 <details>
-<summary>If the local user wears a Bluetooth headset, after the local user starts to send the audio, the remote audio is lost</summary>
+<summary>If a local user wears a Bluetooth headset, after they start to send the audio, the remote audio is lost</summary>
 <p>
 
 **Scope**: Certain Xiaomi and OnePlus devices
 </p>
 <p>
 
-**Details**: If the local user wears a Bluetooth headset, when the Bluetooth headset starts capturing the audio, there is a possibility that the remote audio is lost.
+**Details**: If a local user wears a Bluetooth headset, when the Bluetooth headset starts capturing the audio, there is a possibility that the remote audio is lost.
 </p>
 <p>
 
@@ -235,7 +235,7 @@ createClient({codec:'vp8', mode})
 </p>
 <p>
 
-**Workaround**: Agora recommends that you add a prompt to remind users of possible no audio issues when they try to use a Bluetooth headset.
+**Workaround**: Agora recommends that you add a prompt to remind users of possible audio-loss issues when they use a Bluetooth headset.
 </p>
 </details>
 
@@ -245,7 +245,7 @@ createClient({codec:'vp8', mode})
 
 - On devices equipped with **MediaTek chips**, the Web SDK cannot encode and send video streams in H.264.
 - On devices equipped with Huawei **HiSilicon Kirin** chips, if you use Chrome versions earlier than 88, the Web SDK cannot encode and send video streams in H.264.
-- When receiving video streams on Chrome on **OnePlus 6**, if the screen turns off, the video may freeze.
+- When receiving video streams on Chrome on **OnePlus 6**, if the screen turns off, the video can freeze.
 - **Harmony OS** does not support sending the video stream of 180p.
    </p>
    </details>
@@ -255,10 +255,10 @@ createClient({codec:'vp8', mode})
 <p>
 
 - On some Android devices, the device labels might not be available.
-- On some Android devices, the interruption of a phone call or an audio or video call from another application may end tracks. To resume the call, the Web SDK needs to re-capture the audio and video.
+- On some Android devices, tracks can end if the audio and video streams are interrupted by system phone calls or other audio or video calling apps. To resume the call, the Web SDK needs to re-capture the audio and video.
 - On Android Chrome, the Web SDK cannot send high-quality and low-quality streams in H.264.
 - On Android Chrome earlier than 90, the volume obtained by `getVolumeLevel` is 0, but the user can hear the audio.
-- On Android system WebView 55 - 75, the `decodeFrameRate` property stays 0.
+- On Android system Webview versions from 55 to 75, the `decodeFrameRate` property stays 0.
    </p>
    </details>
 
@@ -302,7 +302,7 @@ Reason: The Web SDK uses the H.264 Baseline Profile for negotiation, so encoding
 <summary>When sending a low-quality stream on iOS Safari, you cannot set <code>LowStreamParameter.bitrate</code>, and the resolution of the low-quality stream must be proportional to the resolution of the high-quality stream.</summary>
 <p>
 
-Reason: iOS Safari and WkWebView do not support setting the frame rate with the `RTCRTPSender.setParameters` method. After compressing the resolution with the `scaleResolutionDownBy` property, the resolution of the low-quality stream keeps proportional to the resolution of the high-quality stream.
+Reason: iOS Safari and WkWebView do not support setting the frame rate with the `RTCRTPSender.setParameters` method. After compressing the resolution with the `scaleResolutionDownBy` property, the resolution of the low-quality stream stays proportional to the resolution of the high-quality stream.
 </p>
 </details>
 
