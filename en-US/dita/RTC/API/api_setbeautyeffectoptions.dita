@@ -30,15 +30,22 @@
        </dlentry>
    </dl>
    <p>Enables or disables image enhancement, and sets the options.</p>
-            <p>Enabling the image enhancement function involves a series of method calls. The calling sequence is as follows:<ol>
-                <li props="android">Call <xref keyref="addExtension"/> (<q><codeph>agora_video_process</codeph></q>) during <apiname keyref="IRtcEngine"/> initialization to integrate the video enhancement dynamic library in the project.</li>
+            <p props="rtc-ng">Enabling the image enhancement function involves a series of method calls. The calling sequence is as follows:<ol>
+                <li props="android">Call  <xref keyref="IRtcEngine"/>(<codeph><q>agora_video_process</q></codeph>) during  initialization <xref keyref="addExtension"/>to integrate the <codeph><q>video </q></codeph>enhancement dynamic library in the project.</li>
                 <li props="ios">Link the extension library in the project file: <codeph>AgoraVideoProcessExtension.framework</codeph></li>
                 <li props="mac">Link the extension library in the project file: <codeph>AgoraVideoProcessExtension.xcframework</codeph></li>
-                <li props="windows">Call <xref keyref="loadExtensionProvider"/> (<q><codeph>libagora_video_process_extension.dll</codeph></q>) during <apiname keyref="IRtcEngine"/> initialization to specify the extension  library path.</li>
-                <li>Call <xref keyref="enableExtension"/> (<q><codeph>agora</codeph></q>, <q><codeph>beauty</codeph></q>, <q><codeph><ph keyref="true"/></codeph></q>) to enable the extension.</li>
+                <li props="windows">Call <xref keyref="loadExtensionProvider"/> (<codeph><q>libagora_video_process_extension.dll</q></codeph>) during <xref keyref="IRtcEngine"/> initialization to specify the extension  library path.</li>
+                <li>Call  (agora, beauty, ) to enable the extension.<xref keyref="enableExtension"/><codeph><q></q><q></q><q><ph keyref="true"/></q></codeph></li>
                 <li>Call <xref keyref="enableVideo"/> to enable the video module.</li>
                 <li>Call this method to enable the image enhancement function.</li>
-            </ol></p>
+                </ol></p>
+            <p props="rtc"><ul><li>Call this method after <xref keyref="enableVideo" />.</li>
+                    <li>Agora 从 3.6.0 版起更新了基础美颜算法，能提升基础美颜效果并支持锐度调节功能。 如果你想体验优化后的基础美颜效果或设置锐度，请在调用该方法前，将如下动态库集成到项目文件中：<ul>
+                        <li>Android: <codeph>libagora_video_process_extension.so</codeph></li>
+                        <li>Link the extension library in the project file: <codeph>AgoraVideoProcessExtension.xcframework</codeph></li>
+                        <li>Link the extension library in the project file: <codeph>AgoraVideoProcessExtension.framework</codeph></li>
+                        <li>Windows: <codeph>libagora_video_process_extension.dll</codeph></li>
+                        </ul></li></ul></p>
             <note type="note" props="android">This method only applies to Android 4.4 or later.</note>
         </section>
         <section id="parameters"><title>Parameters</title>
