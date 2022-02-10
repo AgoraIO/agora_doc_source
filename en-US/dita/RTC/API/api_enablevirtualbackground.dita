@@ -35,15 +35,22 @@
             </dl>
             <p>After enabling the virtual background feature, you can replace the original background image of the local user with a custom background image. After the replacement, all users in the channel can see the custom background image.</p>
             <p props="rtc">You can find out from the <xref keyref="onVirtualBackgroundSourceEnabled"/> callback whether the virtual background is successfully enabled or the cause of any errors.</p>
-            <p>Enabling the virtual background function involves a series of method calls. The calling sequence is as follows:<ol>
-                <li props="android">Call <xref keyref="addExtension"/> (<q><codeph>agora_segmentation_extension</codeph></q>) during <apiname keyref="IRtcEngine"/> initialization to integrate the video enhancement library in the project.</li>
+            <p props="rtc-ng">Enabling the virtual background function involves a series of method calls. The calling sequence is as follows:<ol>
+                <li props="android">Call  <xref keyref="IRtcEngine"/>(<codeph><q>agora_segmentation_extension</q></codeph>) during  initialization <xref keyref="addExtension"/>to integrate the video enhancement library in the project.</li>
                 <li props="ios">Link the extension library in the project file: <codeph>AgoraVideoSegmentationExtension.xcframework</codeph></li>
                 <li props="mac">Link the extension library in the project file: <codeph>AgoraVideoSegmentationExtension.framework</codeph></li>
-                <li props="windows">Call <xref keyref="loadExtensionProvider"/> (<q><codeph>libagora_segmentation_extension.dll</codeph></q>) during <apiname keyref="IRtcEngine"/> initialization to specify the extension's library path.</li>
-                <li>Call <xref keyref="enableExtension"/> (<q><codeph>agora_segmentation</codeph></q>, <q><codeph>PortraitSegmentation</codeph></q>, <q><codeph><ph keyref="true"/></codeph></q>) to enable the extension.</li>
+                <li props="windows">Call  <xref keyref="IRtcEngine"/><xref keyref="loadExtensionProvider"/>(<codeph><q>libagora_segmentation_extension.dll</q></codeph>) during  initialization to specify the <codeph><q>extension's </q></codeph>library path.</li>
+                <li>Call  (agora_segmentation, PortraitSegmentation, ) to enable the extension.<xref keyref="enableExtension"/><codeph><q></q><q></q><q><ph keyref="true"/></q></codeph></li>
                 <li>Call <xref keyref="enableVideo"/> to enable the video module.</li>
                 <li>Call this method to enable the virtual background function.</li>
-            </ol></p><note type="attention"><ul>
+                </ol></p><note type="attention"><ul>
+                    <li props="rtc">Before calling this method, ensure that you have integrated the dynamic library.<ul>
+                        <li props="android windows unity rn flutter">Android: <ph>libagora_segmentation_extension.so</ph></li>
+                        <li props="ios windows unity rn flutter">iOS: <ph>AgoraVideoSegmentationExtension.xcframework</ph></li>
+                        <li props="mac windows unity electron">macOS: <ph>AgoraVideoSegmentationExtension.framework</ph></li>
+                        <li props="windows">Windows: <ph>libagora_segmentation_extension.dll</ph></li>
+                    </ul></li>
+                    <li props="rtc">Call this method after <xref keyref="enableVideo" />.</li>
                 <li>This function requires a high-performance device. Agora recommends that you use this function on devices with the following chips:<ul>
                     <li props="android unity windows rn flutter">Snapdragon 700 series 750G and later</li>
                     <li props="android unity windows rn flutter">Snapdragon 800 series 835 and later</li>
