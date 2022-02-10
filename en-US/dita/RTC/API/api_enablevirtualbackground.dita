@@ -36,11 +36,11 @@
             <p>After enabling the virtual background feature, you can replace the original background image of the local user with a custom background image. After the replacement, all users in the channel can see the custom background image.</p>
             <p props="rtc">You can find out from the <xref keyref="onVirtualBackgroundSourceEnabled"/> callback whether the virtual background is successfully enabled or the cause of any errors.</p>
             <p props="rtc-ng">Enabling the virtual background function involves a series of method calls. The calling sequence is as follows:<ol>
-                <li props="android">Call <xref keyref="IRtcEngine"/><codeph><xref keyref="addExtension"/>(<q>agora_segmentation_extension</q>) </codeph>during  initialization to integrate the video enhancement library in the project.</li>
+                <li props="android">Call <codeph><xref keyref="addExtension"/>(<q>agora_segmentation_extension</q>) </codeph> during <xref keyref="IRtcEngine"/> initialization to integrate the video enhancement library in the project.</li>
                 <li props="ios">Link the extension library in the project file: <codeph>AgoraVideoSegmentationExtension.xcframework</codeph></li>
                 <li props="mac">Link the extension library in the project file: <codeph>AgoraVideoSegmentationExtension.framework</codeph></li>
-                <li props="windows">Call <xref keyref="IRtcEngine"/><codeph><xref keyref="loadExtensionProvider"/>(<q>libagora_segmentation_extension.dll</q>) </codeph>during   initialization to specify the <codeph><q>extension's </q></codeph>library path.</li>
-                <li>Call (agora_segmentation, PortraitSegmentation, ) to enable the extension.<codeph><xref keyref="enableExtension"/><q></q><q></q><q><ph keyref="true"/></q></codeph></li>
+                <li props="windows">Call <codeph><xref keyref="loadExtensionProvider"/>(<q>libagora_segmentation_extension.dll</q>) </codeph> during <xref keyref="IRtcEngine"/>  initialization to specify the extension's library path.</li>
+                <li>Call <codeph><xref keyref="enableExtension"/>(<q>agora_segmentation</q>, <q>PortraitSegmentation</q>, <q><ph keyref="true"/></q>)</codeph> to enable the extension.</li>
                 <li>Call <xref keyref="enableVideo"/> to enable the video module.</li>
                 <li>Call this method to enable the virtual background function.</li>
                 </ol></p><note type="attention"><ul>
