@@ -1,0 +1,29 @@
+{
+    "name": "docs",
+    "description": "Agora Documentation",
+    "homepage": "https://docs.agora.io",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AgoraDoc/doc_source.git"
+    },
+    "devDependencies": {
+        "chalk": "^3.0.0",
+        "husky": "^7.0.4",
+        "lint-staged": "11.2.6",
+        "prettier": "^2.5.1"
+    },
+    "scripts": {
+        "check": "npm run prettier-check",
+        "fmt": "npm run format",
+        "format": "prettier --write \"**/*.{css,json,md,scss,yaml,yml}\"",
+        "prepare": "husky install",
+        "prettier": "prettier --write \"**/*.{css,json,md,scss,yaml,yml}\"",
+        "prettier-check": "prettier --check \"**/*.{css,json,md,scss,yaml,yml}\"",
+        "test": "prettier --list-different \"**/*.{css,json,md,scss,yaml,yml}\""
+    },
+    "lint-staged": {
+        "*.{css,json,md,scss,yaml,yml}": [
+            "prettier --write"
+        ]
+    }
+}
