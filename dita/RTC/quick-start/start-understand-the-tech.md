@@ -1,6 +1,6 @@
-# Understand the tech
+# 技术原理
 
-The following figure shows the workflow of a [feature] implemented by the Agora SDK.
+下图展示在 app 中集成 Agora [feature]的基本工作流程：
 
 ![start-basic-workflow]
 
