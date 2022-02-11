@@ -4,6 +4,7 @@
 
 ![start-basic-workflow]
 
+测试后台同步的发布。
 To start a [feature], you implement the following steps in your app:
 
 <ol>
