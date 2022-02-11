@@ -22,33 +22,39 @@
          </p>
         </section>
         <section id="detailed_desc">
-   
+
    <dl outputclass="since" props="rtc">
        <dlentry props="native">
   <dt>Since</dt>
   <dd>v3.2.0</dd>
        </dlentry>
    </dl>
-   <p>You can call this method either before or after joining the channel to set the user role as audience or host.</p>
-   <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:<ul>
-      <li>The local client: <xref keyref="onClientRoleChanged" />.</li>
-      <li>The remote client: <xref keyref="onUserJoined" /> or <xref keyref="onUserOffline" />.</li>
-   </ul></p>
-   <p props="native">The difference between this method and <xref keyref="setClientRole1" />[1/2] is that this method can set the user level in addition to the user role.<ul id="diff">
-      <li>The user <parmname>role</parmname> determines the permissions that the SDK grants to a user, such as permission to send local streams, receive remote streams, and push streams to a CDN address.</li>
-      <li>The user <parmname>level </parmname>determines the <parmname>level </parmname>of services that a user can enjoy within the permissions of the user's role. For example, an audience can choose to receive remote streams with low latency or ultra-low latency. Levels affect prices.</li>
+            <p>In the interactive live streaming profile, the SDK sets the user role as audience by default. You can call this method to set the user role as host.</p>
+            <p>You can call this method either before or after joining a channel. If you call this method to switch the user role after joining a channel, the SDK automatically does the following:<ul>
+                <li>Calls <xref keyref="muteLocalAudioStream" /> and <xref keyref="muteLocalVideoStream" /> to change the publishing state.</li>
+                    <li>Triggers <xref keyref="onClientRoleChanged" /> on the local client.</li>
+                    <li>Triggers <xref keyref="onUserJoined" /> or <xref keyref="onUserOffline" /> on the remote client.</li>
+                </ul></p>
+            <p props="native">The difference between this method and <xref keyref="setClientRole1" /> is that this method can set the user level in addition to the user role.<ul id="diff">
+      <li>The user role (<parmname>role</parmname>) determines the permissions that the SDK grants to a user, such as permission to send local streams, receive remote streams, and push streams to a CDN address.</li>
+      <li>The user (<parmname>level</parmname>) determines the level of services that a user can enjoy within the permissions of the user's role. For example, an audience member can choose to receive remote streams with low latency or ultra-low latency. <b>User level affects the pricing of services.</b></li>
     </ul></p>
-   <note type="attention">This method applies to the interactive live streaming profile  (the <parmname>profile</parmname> parameter of <xref keyref="setChannelProfile" /> is <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" />) only.</note>
+   <note type="attention">This method applies to the interactive live streaming profile (the <parmname>profile</parmname> parameter of <xref keyref="setChannelProfile" /> is <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" />) only.</note>
         </section>
         <section id="parameters"><title>Parameters</title>
    <parml>
        <plentry>
   <pt>role</pt>
-  <pd>The user role in the interactive live streaming. For details, see <xref href="enum_clientroletype.dita" />.</pd>
+           <pd><ph>The user role in the interactive live streaming. </ph><ph props="ios mac windows electron unity flutter">See <xref keyref="CLIENT_ROLE_TYPE" />.</ph>
+               <ul props="android">
+                   <li><ph keyref="CLIENT_ROLE_BROADCASTER" /> (1): Host. A host can both send and receive streams.</li>
+                   <li><ph keyref="CLIENT_ROLE_AUDIENCE" /> (2): (Default) Audience. An audience member can only receive streams.</li>
+               </ul>
+           </pd>
        </plentry>
        <plentry>
   <pt>options</pt>
-  <pd>The detailed options of a user, including the user level. For details, see <xref href="class_clientroleoptions.dita" />.</pd>
+  <pd>The detailed options of a user, including the user level. See <xref keyref="ClientRoleOptions" />.</pd>
        </plentry>
    </parml>
         </section>
@@ -60,7 +66,7 @@
   <li>-1: A general error occurs (no specified reason).</li>
   <li>-2: The parameter is invalid.</li>
                         <li>-5: The request is rejected.</li>
-  <li>-7: The SDK is not initialized.- 0: The SDK is initializing.</li>
+  <li>-7: The SDK is not initialized.</li>
        </ul></li>
    </ul>
         </section></refbody>

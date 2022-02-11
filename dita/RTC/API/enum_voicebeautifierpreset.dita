@@ -14,20 +14,20 @@
        <plentry>
   <pt><ph keyref="CHAT_BEAUTIFIER_MAGNETIC"/></pt>
   <pd><p>磁性（男）。</p>
-      <note type="attention">该设置仅对男声有效。请勿用于设置女声，否则音频会失真。</note></pd>
+      <note type="attention">该设置仅对男声有效，请勿用于设置女声，否则音频会失真。</note></pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CHAT_BEAUTIFIER_FRESH"/></pt>
   <pd>
       <p>清新（女）。</p>
-      <note type="attention">该设置仅对女声有效。请勿用于设置男声，否则音频会失真。</note>
+      <note type="attention">该设置仅对女声有效，请勿用于设置男声，否则音频会失真。</note>
   </pd>
        </plentry>
        <plentry>
   <pt><ph keyref="CHAT_BEAUTIFIER_VITALITY"/></pt>
   <pd>
       <p>活力（女）。</p>
-      <note type="attention">该设置仅对女声有效。请勿用于设置男声，否则音频会失真。</note>
+      <note type="attention">该设置仅对女声有效，请勿用于设置男声，否则音频会失真。</note>
   </pd>
        </plentry>
        <plentry>
@@ -77,6 +77,16 @@
        <plentry>
   <pt><ph keyref="TIMBRE_TRANSFORMATION_RINGING"/></pt>
   <pd>嘹亮。</pd>
+       </plentry>
+       <plentry props="rtc-ng">
+           <pt><ph keyref="ULTRA_HIGH_QUALITY_VOICE"/></pt>
+           <pd>超高音质，即让音频更清晰、细节更丰富。
+           <ul>
+               <li>为达到更好的效果，我们推荐在调用 <xref keyref="setVoiceBeautifierPreset"/> 前将 <xref keyref="setAudioProfile2"/> 的 <parmname>profile</parmname> 参数设置为 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY"/>(4) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/>(5)，且 <parmname>scenario</parmname> 参数设置为 <apiname
+                                    keyref="AUDIO_SCENARIO_HIGH_DEFINITION"
+                                />(6)。</li>
+               <li>如果用户的音频采集设备可以高度还原音频细节，Agora 建议你不要开启超高音质，否则 SDK 会过度还原音频细节，达不到预期效果。</li>
+           </ul></pd>
        </plentry>
    </parml>
         </section></refbody>

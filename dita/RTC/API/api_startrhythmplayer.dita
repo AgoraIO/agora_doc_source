@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startrhythmplayer">
-    <title><ph keyref="startRhythmPlayer" /></title>
+    <title><ph keyref="startRhythmPlayer"/></title>
     <shortdesc id="short"><ph id="shortdesc">开启虚拟节拍器。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startRhythmPlayer" />
+                <indexterm keyref="startRhythmPlayer"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="android" outputclass="language-java">public abstract int startRhythmPlayer(
+    String sound1, String sound2, AgoraRhythmPlayerConfig config);</codeblock>
+                <codeblock props="ios" outputclass="language-objectivec">- (int)startRhythmPlayer:(NSString * _Nonnull)sound1 sound2:(NSString * _Nonnull)sound2 config:(AgoraRhythmPlayerConfig *  _Nullable)config;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int startRhythmPlayer(const char* sound1, const char* sound2, const AgoraRhythmPlayerConfig&amp; config) = 0;</codeblock>
+            </p>
+            <p outputclass="codeblock" props="rtc">
                 <codeblock props="android" outputclass="language-java">public int startRhythmPlayer(String sound1, String sound2, AgoraRhythmPlayerConfig config);</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (int)startRhythmPlayer:(NSString* _Nonnull)sound1 sound2:(NSString* _Nonnull)sound2 config:(AgoraRtcRhythmPlayerConfig* _Nonnull)config;</codeblock>
-                <codeblock props="windows" outputclass="language-cpp" />
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="ios" outputclass="language-objectivec">- (int)startRhythmPlayer:(NSString* _Nonnull)sound1 sound2:(NSString* _Nonnull)sound2 config:(AgoraRtcRhythmPlayerConfig* _Nonnull)config;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRhythmPlayer(
       String sound1, String sound2, RhythmPlayerConfig config);</codeblock>
             </p>
@@ -32,29 +38,26 @@
             </dl>
             <p>在音乐教学、体育教学等场景中，老师通常需要使用节拍器，让学生跟着正确的节拍练习。 节拍由强拍和弱拍组成，每小节的第一拍称为强拍，其余称为弱拍。</p>
             <p>你需要在该方法中设置强拍和弱拍的文件路径、每小节的拍数、节拍速度以及是否将节拍器的声音发送至远端。</p>
-            <note type="attention" id="rhythm_play">开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig" /> 中设置的 <parmname>beatsPerMinute</parmname> 控制每个文件的播放时长。
-                例如，将 <parmname>beatsPerMinute</parmname> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放 1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</note>
+            <note type="attention" id="rhythm_play"><ul>
+                <li props="windows">该方法仅适用于 Android 和 iOS。</li>
+                <li>开启虚拟节拍器后，SDK 会从头开始播放指定的音频文件，并根据你在 <xref keyref="AgoraRhythmPlayerConfig"/> 中设置的 <parmname>beatsPerMinute</parmname> 控制每个文件的播放时长。例如，将 <parmname>beatsPerMinute</parmname> 设为 <codeph>60</codeph>，则 SDK 会 1 秒播放 1 个节拍。如果文件时长超过了节拍时长，则 SDK 只播放节拍时长部分的音频。</li>
+            </ul></note>
         </section>
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
                     <pt>sound1</pt>
-                    <pd id="rhythm_sound"><p props="android">强拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如：<codeph>/sdcard/emulated/0/audio.mp4</codeph>。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。
-                        详见 <xref href="https://developer.android.com/guide/topics/media/media-formats?hl=zh-cn" format="html" scope="external">Android 支持的媒体格式</xref>。</p>
-                        <p props="ios">强拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如：<codeph>/var/mobile/Containers/Data/audio.mp4</codeph>。支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。
-                        详见 <xref href="https://developer.ios mac.com/library/archive/documentation/AudioVideo/Conceptual/MultimediaPG/UsingAudio/UsingAudio.html#//ios mac_ref/doc/uid/TP40009767-CH2-SW28" format="html" scope="external">Best Practices for iOS Audio</xref>。</p>
-                        <p props="flutter rn">强拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如：Android：<codeph>/sdcard/emulated/0/audio.mp4</codeph>，iOS：<codeph>/var/mobile/Containers/Data/audio.mp4</codeph>。
-                        支持的音频格式包括 MP3、AAC、M4A、MP4、WAV、3GP。详见 <xref href="https://developer.android.com/guide/topics/media/media-formats?hl=zh-cn" format="html" scope="external">Android 支持的媒体格式</xref>
-                        或 <xref href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/MediaPlaybackGuide/Contents/Resources/en.lproj/Introduction/Introduction.html#//apple_ref/doc/uid/TP40016757" format="html" scope="external">Media Playback Programming Guide</xref>。</p>
+                    <pd>强拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example"/></codeph>。支持的音频文件格式见 <xref keyref="audio-format">Agora RTC SDK 支持播放哪些格式的音频文件</xref>。
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>sound2</pt>
-                    <pd conkeyref="startRhythmPlayer/rhythm_sound" />
+                    <pd>弱拍文件的绝对路径或 URL 地址，需精确到文件名及后缀。例如 <codeph><ph keyref="filePath-example"/></codeph>。支持的音频文件格式见 <xref keyref="audio-format">Agora RTC SDK 支持播放哪些格式的音频文件</xref>。
+                    </pd>
                 </plentry>
                 <plentry>
                     <pt>config</pt>
-                    <pd>节拍器配置。详见 <xref keyref="AgoraRhythmPlayerConfig" />。</pd>
+                    <pd>节拍器配置。详见 <xref keyref="AgoraRhythmPlayerConfig"/>。</pd>
                 </plentry>
             </parml>
         </section>

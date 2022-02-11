@@ -11,14 +11,14 @@
                     LastmileProbeOneWayResult uplinkReport;
                     LastmileProbeOneWayResult downlinkReport;
                     unsigned int rtt;
-                    
+
                     LastmileProbeResult() : state(LASTMILE_PROBE_RESULT_UNAVAILABLE),
                     rtt(0) {}
                     };</codeblock>
             </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public static class LastmileProbeResult {
-    
+
     public static class LastmileProbeOneWayResult {
       public int packetLossRate;
       public int jitter;
@@ -51,7 +51,7 @@
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">class LastmileProbeResult {
-  
+
   LastmileProbeResultState state;
   int rtt;
   LastmileProbeOneWayResult uplinkReport;
@@ -75,18 +75,15 @@
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
    <parml>
        <plentry>
   <pt>state</pt>
            <pd><p props="ios mac windows unity">The status of the last-mile network tests. See <xref keyref="LASTMILE_PROBE_RESULT_STATE" />.</p>
                <p props="android">The status of the last-mile network tests, which includes:<ul>
-                                <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE" /> (1): The last-mile
-                                    network probe test is complete. </li>
-                                <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE" /> (2): The
-                                    last-mile network probe test is incomplete because the bandwidth estimation is not available, probably due to limited test resources.</li>
-                                <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE" /> (3): The
-                                    last-mile network probe test is not carried out, probably due to poor network conditions.</li>
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_COMPLETE" /> (1): The last-mile network probe test is complete.</li>
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_INCOMPLETE_NO_BWE" /> (2): The last-mile network probe test is incomplete because the bandwidth estimation is not available, probably due to limited test resources.</li>
+                                <li><ph keyref="LASTMILE_PROBE_RESULT_UNAVAILABLE" /> (3): The last-mile network probe test is not carried out, probably due to poor network conditions.</li>
                             </ul>
                         </p>
            </pd>

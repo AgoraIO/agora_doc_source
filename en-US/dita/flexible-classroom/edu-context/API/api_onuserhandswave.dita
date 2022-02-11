@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onuserhandswave">
+    <title><ph keyref="onUserHandsWave"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a user raises a hand.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserHandsWave"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">fun onUserHandsWave(user: AgoraEduContextUserInfo, duration: Int)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">void onUserHandsWave(String userUuid,
+                     Int duration,
+                     Map&lt;String, Any> payload)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>When a user raises a hand, the SDK triggers this callback.</p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt props="ios">fromUser</pt>
+                    <pt props="android">user</pt>
+                    <pd>The user who raises a hand: <xref keyref="AgoraEduContextUserInfo"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>duration</pt>
+                    <pd>How long the hand is to be raised, in seconds.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

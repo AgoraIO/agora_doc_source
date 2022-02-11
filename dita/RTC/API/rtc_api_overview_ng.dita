@@ -21,9 +21,7 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="create2"/></stentry>
-                    <stentry><ph props="ios mac android electron">创建并初始化 <apiname
-                                keyref="IRtcEngine"/>。</ph><ph props="windows">初始化 <apiname
-                                keyref="IRtcEngine"/>。</ph></stentry>
+                    <stentry><ph props="ios mac android electron">创建并初始化 <apiname keyref="IRtcEngine"/>。</ph><ph props="windows">初始化 <apiname keyref="IRtcEngine"/>。</ph></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="release"/></stentry>
@@ -60,6 +58,10 @@
                 <strow>
                     <stentry><xref keyref="setClientRole1"/></stentry>
                     <stentry><ph conkeyref="setClientRole1/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setClientRole2"/></stentry>
+                    <stentry><ph conkeyref="setClientRole2/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="getConnectionState"/></stentry>
@@ -278,11 +280,33 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="setDefaultMuteAllRemoteVideoStreams"/></stentry>
-                    <stentry><ph conkeyref="setDefaultMuteAllRemoteVideoStreams/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="setDefaultMuteAllRemoteVideoStreams/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
+        <section>
+            <title>视频截图</title>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="takeSnapshot"/></stentry>
+                    <stentry><ph conkeyref="takeSnapshot/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        <simpletable>
+            <sthead>
+                <stentry>事件</stentry>
+                <stentry>描述</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="onSnapshotTaken"/></stentry>
+                <stentry><ph conkeyref="onSnapshotTaken/shortdesc"/></stentry>
+            </strow>
+        </simpletable>
+        </section>    
         <section props="windows" id="section_hj2_ph1_jqb">
             <title>多设备采集</title>
             <simpletable>
@@ -447,6 +471,10 @@
                     <stentry><xref keyref="setBeautyEffectOptions"/></stentry>
                     <stentry><ph conkeyref="setBeautyEffectOptions/shortdesc"/></stentry>
                 </strow>
+                <strow>
+                    <stentry><xref keyref="enableVirtualBackground"/></stentry>
+                    <stentry><ph conkeyref="enableVirtualBackground/shortdesc"/></stentry>
+                </strow>
             </simpletable>
         </section>
         <section id="in-ear_monitoring" props="android ios windows">
@@ -477,8 +505,8 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry><xref keyref="startAudioMixing"/></stentry>
-                    <stentry><ph conkeyref="startAudioMixing/shortdesc"/></stentry>
+                    <stentry><xref keyref="startAudioMixing2"/></stentry>
+                    <stentry><ph conkeyref="startAudioMixing2/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="stopAudioMixing"/></stentry>
@@ -519,6 +547,10 @@
                 <strow>
                     <stentry><xref keyref="getAudioMixingCurrentPosition"/></stentry>
                     <stentry><ph conkeyref="getAudioMixingCurrentPosition/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setAudioMixingPitch"/></stentry>
+                    <stentry><ph conkeyref="setAudioMixingPitch/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="setAudioMixingPosition"/></stentry>
@@ -602,6 +634,30 @@
                 <strow props="windows">
                     <stentry><xref keyref="unloadAllEffects"/></stentry>
                     <stentry><ph conkeyref="unloadAllEffects/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
+        <section id="rhythm_player" props="windows android ios">
+            <title>虚拟节拍器</title>
+            <note props="windows" type="attention">
+                <p>本组方法仅适用于 Android 和 iOS。</p>
+            </note>
+            <simpletable>
+                <sthead>
+                    <stentry>方法</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="startRhythmPlayer"/></stentry>
+                    <stentry><ph conkeyref="startRhythmPlayer/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopRhythmPlayer"/></stentry>
+                    <stentry><ph conkeyref="stopRhythmPlayer/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="configRhythmPlayer"/></stentry>
+                    <stentry><ph conkeyref="configRhythmPlayer/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -694,35 +750,35 @@
                 </sthead>
                 <strow props="windows mac">
                     <stentry><xref keyref="startScreenCaptureByWindowId"/></stentry>
-                    <stentry><ph conkeyref="startScreenCaptureByWindowId/shortdesc"/></stentry>
+                    <stentry><ph conkeyref="startScreenCaptureByWindowId/shortdesc"/>（仅适用于 Windows 和 macOS）</stentry>
                 </strow>
                 <strow props="windows">
                     <stentry><xref keyref="startScreenCaptureByScreenRect"/></stentry>
-                    <stentry><ph conkeyref="startScreenCaptureByScreenRect/shortdesc"/></stentry>
+                    <stentry><ph conkeyref="startScreenCaptureByScreenRect/shortdesc"/>（仅适用于 Windows）</stentry>
                 </strow>
                 <strow props="windows mac">
                     <stentry><xref keyref="startScreenCaptureByDisplayId"/></stentry>
-                    <stentry><ph conkeyref="startScreenCaptureByDisplayId/shortdesc"/></stentry>
+                    <stentry><ph conkeyref="startScreenCaptureByDisplayId/shortdesc"/>（仅适用于 Windows 和 macOS）</stentry>
                 </strow>
                 <strow props="windows">
                     <stentry><xref keyref="setScreenCaptureContentHint"/></stentry>
-                    <stentry><ph conkeyref="setScreenCaptureContentHint/shortdesc"/></stentry>
+                    <stentry><ph conkeyref="setScreenCaptureContentHint/shortdesc"/>（仅适用于 Windows 和 macOS）</stentry>
                 </strow>
                 <strow props="windows">
                     <stentry><xref keyref="updateScreenCaptureRegion1"/></stentry>
-                    <stentry><ph conkeyref="updateScreenCaptureRegion1/shortdesc"/></stentry>
+                    <stentry><ph conkeyref="updateScreenCaptureRegion1/shortdesc"/>（仅适用于 Windows 和 macOS）</stentry>
                 </strow>
                 <strow props="windows">
                     <stentry><xref keyref="updateScreenCaptureParameters"/></stentry>
-                    <stentry><ph conkeyref="updateScreenCaptureParameters/shortdesc"/></stentry>
+                    <stentry><ph conkeyref="updateScreenCaptureParameters/shortdesc"/>（仅适用于 Windows 和 macOS）</stentry>
                 </strow>
                 <strow props="android windows">
                     <stentry><xref keyref="startScreenCapture"/></stentry>
-                    <stentry><ph conkeyref="startScreenCapture/shortdesc"/></stentry>
+                    <stentry><ph conkeyref="startScreenCapture/shortdesc"/>（仅适用于 Windows 和 Android）</stentry>
                 </strow>
                 <strow props="android windows mac">
                     <stentry><xref keyref="stopScreenCapture"/></stentry>
-                    <stentry><ph conkeyref="stopScreenCapture/shortdesc"/></stentry>
+                    <stentry><ph conkeyref="stopScreenCapture/shortdesc"/>（仅适用于 Android、Windows 和 macOS）</stentry>
                 </strow>
                 <strow props="electron">
                     <stentry><xref keyref="getWindowsInfo"/></stentry>
@@ -888,8 +944,7 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="updateLocalTranscoderConfiguration"/></stentry>
-                    <stentry><ph conkeyref="updateLocalTranscoderConfiguration/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="updateLocalTranscoderConfiguration/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -911,6 +966,14 @@
                 <strow>
                     <stentry><xref keyref="stopChannelMediaRelay"/></stentry>
                     <stentry><ph conkeyref="stopChannelMediaRelay/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="pauseAllChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="pauseAllChannelMediaRelay/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="resumeAllChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="resumeAllChannelMediaRelay/shortdesc"/></stentry>
                 </strow>
             </simpletable>
             <simpletable>
@@ -963,6 +1026,26 @@
                     <stentry><xref keyref="pullAudioFrame2"/></stentry>
                     <stentry><ph conkeyref="pullAudioFrame2/shortdesc"/></stentry>
                 </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="enableEchoCancellationExternal"/></stentry>
+                    <stentry><ph conkeyref="enableEchoCancellationExternal/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="pushCaptureAudioFrame1"/></stentry>
+                    <stentry><ph conkeyref="pushCaptureAudioFrame1/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="pushCaptureAudioFrame2"/></stentry>
+                    <stentry><ph conkeyref="pushCaptureAudioFrame2/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="pushReverseAudioFrame1"/></stentry>
+                    <stentry><ph conkeyref="pushReverseAudioFrame1/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="pushReverseAudioFrame2"/></stentry>
+                    <stentry><ph conkeyref="pushReverseAudioFrame2/shortdesc"/></stentry>
+                </strow>
             </simpletable>
         </section>
         <section id="raw_audio_data" props="windows android ios mac">
@@ -990,8 +1073,7 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="setPlaybackAudioFrameBeforeMixingParameters"/></stentry>
-                    <stentry><ph conkeyref="setPlaybackAudioFrameBeforeMixingParameters/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="setPlaybackAudioFrameBeforeMixingParameters/shortdesc"/></stentry>
                 </strow>
             </simpletable><simpletable>
                 <sthead>
@@ -1155,6 +1237,14 @@
                     <stentry><xref keyref="onEncodedVideoImageReceived"/></stentry>
                     <stentry><ph conkeyref="onEncodedVideoImageReceived/shortdesc"/></stentry>
                 </strow>
+                <strow>
+                    <stentry><xref keyref="getMirrorApplied"/></stentry>
+                    <stentry><ph conkeyref="getMirrorApplied/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getRotationApplied"/></stentry>
+                    <stentry><ph conkeyref="getRotationApplied/shortdesc"/></stentry>
+                </strow>
             </simpletable>
         </section>
         <section id="section_ugt_d11_jqb">
@@ -1294,8 +1384,7 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="isCameraAutoFocusFaceModeSupported"/></stentry>
-                    <stentry><ph conkeyref="isCameraAutoFocusFaceModeSupported/shortdesc"
-                        /></stentry>
+                    <stentry><ph conkeyref="isCameraAutoFocusFaceModeSupported/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="setCameraAutoFocusFaceModeEnabled"/></stentry>
@@ -1394,6 +1483,10 @@
                 <strow>
                     <stentry><xref keyref="onAudioVolumeIndication"/></stentry>
                     <stentry><ph conkeyref="onAudioVolumeIndication/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onActiveSpeaker"/></stentry>
+                    <stentry><ph conkeyref="onActiveSpeaker/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -1497,6 +1590,9 @@
         </section>
         <section props="windows" id="section_ts1_shw_jqb">
             <title>视频设备管理</title>
+            <note type="attention" props="windows">
+                <p>该组方法仅适用于 Windows。</p>
+            </note>
             <simpletable id="simpletable_us1_shw_jqb">
                 <sthead>
                     <stentry>方法</stentry>
@@ -1532,6 +1628,9 @@
         </section>
         <section props="windows" id="section_ws1_shw_jqb">
             <title>视频设备集合</title>
+            <note type="attention" props="windows">
+                <p>该组方法仅适用于 Windows。</p>
+            </note>
             <simpletable id="simpletable_xs1_shw_jqb">
                 <sthead>
                     <stentry>方法</stentry>
@@ -1557,6 +1656,9 @@
         </section>
         <section props="windows" id="section_ys1_shw_jqb">
             <title>音频设备管理器</title>
+            <note type="attention" props="windows">
+                <p>该组方法仅适用于 Windows。</p>
+            </note>
             <simpletable>
                 <sthead>
                     <stentry>方法</stentry>
@@ -1628,7 +1730,7 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="startPlaybackDeviceTest"/></stentry>
-                    <stentry><ph conkeyref="startPlaybackDeviceTest/shortdesc"/> （仅适用于 Windows 和 macOS）</stentry>
+                    <stentry><ph conkeyref="startPlaybackDeviceTest/shortdesc"/>（仅适用于 Windows 和 macOS）</stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="stopPlaybackDeviceTest"/></stentry>
@@ -1672,6 +1774,9 @@
         </section>
         <section props="windows" id="section_at1_shw_jqb">
             <title>音频设备集合</title>
+            <note props="windows" type="attention">
+                <p>该组方法仅适用于 Windows。</p>
+            </note>
             <simpletable id="simpletable_bt1_shw_jqb">
                 <sthead>
                     <stentry>方法</stentry>
@@ -1713,6 +1818,9 @@
         </section>
         <section props="windows mac" id="miscellaneous_audio_control">
             <title>其他音频控制</title>
+            <note props="windows" type="attention">
+                <p>该组方法仅适用于 Windows 和 macOS。</p>
+            </note>
             <simpletable id="simpletable_ct1_shw_jqb">
                 <sthead>
                     <stentry>方法</stentry>

@@ -12,9 +12,9 @@
 
 灵动课堂支持以下教学场景：
 
-- 1 对 1 互动教学：1 位老师对 1 名学生进行专属在线辅导教学。
-- 在线互动小班课：1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。
-- 互动直播大班课：1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。
+-   1 对 1 互动教学：1 位老师对 1 名学生进行专属在线辅导教学。
+-   在线互动小班课：1 位老师进行在线教学，多名学生实时观看和收听。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。小班课中课堂人数上限为 50，如需更多，请联系 sales@agora.io。
+-   互动直播大班课：1 位老师进行在线教学，多名学生实时观看和收听。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。大班课中课堂人数上限为 150，如需更多，请联系 sales@agora.io。
 
 ## 课堂展示
 
@@ -34,9 +34,9 @@
 
 ### 实时音视频互动
 
-- 1 对 1 互动教学场景中，学生和老师默认都可以发送和接收音视频流。
-- 在线互动小班课中，学生默认不发送音视频。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。
-- 互动直播大班课中，学生默认不发送音视频。上课过程中，学生可以"举手"请求发言，老师同意后可发流与老师进行互动。
+-   1 对 1 互动教学场景中，学生和老师默认都可以发送和接收音视频流。
+-   在线互动小班课中，学生默认不发送音视频。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。
+-   互动直播大班课中，学生默认不发送音视频。上课过程中，学生可以"举手"请求发言，老师同意后可发流与老师进行互动。
 
 ### 实时消息互动
 
@@ -44,19 +44,17 @@
 
 ### 互动白板
 
-老师可在白板上进行绘画涂鸦，支持画笔、文本框、图形、马赛克、橡皮擦、分页、激光笔、点阵笔等功能。
-
-- 1 对 1 互动教学中，学生和老师默认都可以操作白板。
-- 在线互动小班课中，学生默认没有权限操作白板，老师可以授权学生操作白板。
-- 互动直播大班课中，学生不能操作白板，只能观看。
+老师可在白板上进行绘画涂鸦，支持画笔、文本框、图形、橡皮擦、分页、激光笔等功能。
 
 ### 互动教学道具
 
 灵动课堂支持以下互动教学道具：
 
-- 云盘：教学机构和老师可为课堂上传 PDF、PPT、DOC 等各种格式的教学文件，帮助学生掌握课堂内容。灵动课堂还支持课件预加载，实现在课堂启动时就将课件加载至本地并显示在课堂中，提升教学体验。
-- 奖励：老师可在上课过程中授予学生星星、奖杯等形式的奖励。
-- 用户列表：展示课堂中所有用户的上下台状态、摄像头状态、麦克风状态、奖励个数等信息，老师和助教可通过用户列表进行邀请学生上下台、白板授权、开关音视频、授予奖励、踢人等操作。
+-   云盘：教学机构和老师可为课堂上传 PDF、PPT、DOC 等各种格式的教学文件，帮助学生掌握课堂内容。灵动课堂还支持课件预加载，实现在课堂启动时就将课件加载至本地并显示在课堂中，提升教学体验。
+-   课堂奖励：老师可在上课过程中授予学生星星、奖杯等形式的奖励。
+-   用户列表：展示课堂中所有用户的上下台状态、摄像头状态、麦克风状态、奖励个数等信息，老师和助教可通过用户列表进行邀请学生上下台、白板授权、开关音视频、授予奖励、踢人等操作。
+-   答题器：适用于课堂中老师提问、全班学生一起答题的场景。老师端可在答题器中添加或减少选项数量并设置正确选项，然后发起答题。学生端收到题目选项后可进行选择。答题结束后，可统计并展示提交人数和正确率。
+-   投票器：适用于课堂中老师向全班学生征集意见的场景。老师端可在投票器中设置投票主题、选项以及投票的起始和截止时间，然后发起投票。投票结束后，可统计并展示投票结果。
 
 ### 屏幕共享
 
@@ -78,35 +76,35 @@
 
 Agora 提供灵动课堂云服务，支持对课堂和用户进行管理，包含以下功能：
 
-- 课堂状态管理。
-- 录制状态管理。
-- 公共资源管理。
-- 课堂事件管理。
-- 用户角色及权限管理。
+-   课堂状态管理。
+-   录制状态管理。
+-   公共资源管理。
+-   课堂事件管理。
+-   用户角色及权限管理。
 
 ### 教学质量透明
 
-- 灵动课堂支持课前麦克风、摄像头、扬声器等音视频设备检测以及课中网络状况监测，确保高质量的互动教学体验。
-- 提供全周期通话质量监测和分析工具[水晶球](https://docs.agora.io/cn/Agora%20Analytics/aa_guide?platform=All%20Platforms)。
+-   灵动课堂支持课前麦克风、摄像头、扬声器等音视频设备检测以及课中网络状况监测，确保高质量的互动教学体验。
+-   提供全周期通话质量监测和分析工具[水晶球](https://docs.agora.io/cn/Agora%20Analytics/aa_guide?platform=All%20Platforms)。
 
 ## 平台支持
 
-| 课堂角色 | Android<sup>1</sup> | iOS<sup>2</sup> | Web<sup>3</sup> | macOS<sup>4</sup> | Windows<sup>5</sup> |
-| :------- | :------- | :--- | :--- | :----- | :------- |
-| 老师端   | <font color="red">✘</font>        | <font color="red">✘</font>    | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        |
-| 学生端   | <font color="green">✔</font>        | <font color="green">✔</font>    | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        |
-| 助教端   | <font color="red">✘</font>        | <font color="red">✘</font>    | <font color="green">✔</font>    | <font color="green">✔</font>      | <font color="green">✔</font>        |
+| 课堂角色 | Android<sup>1</sup>          | iOS<sup>2</sup>              | Web<sup>3</sup>              | macOS<sup>4</sup>            | Windows<sup>5</sup>          |
+| :------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- |
+| 老师端   | <font color="red">✘</font>   | <font color="red">✘</font>   | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
+| 学生端   | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
+| 助教端   | <font color="red">✘</font>   | <font color="red">✘</font>   | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
 
-<div class="alert info">兼容性要求：<ol><li>Android 5.0 或以上版本。</li><li>iOS 10 或以上版本。</li><li>为保证最佳的用户体验，Agora 强烈推荐在桌面端 Google Chrome 浏览器官方最新版本上使用灵动课堂 Web 端。暂不支持移动端浏览器。</li><li>macOS 10.10 或以上版本。</li><li>Windows 7 或以上版本。</li></ol></div>
+<div class="alert info">兼容性要求：<ol><li>Android 5.0 或以上版本。</li><li>iOS 10 或以上版本。</li><li>为保证最佳的用户体验，Agora 强烈推荐在桌面端 Google Chrome 浏览器官方最新版本上使用灵动课堂 Web 端。支持学生在移动端的一些社交 app 内（如微信）通过分享的课程网页链接直接进入教室听课。</li><li>macOS 10.10 或以上版本。</li><li>Windows 7 或以上版本。</li></ol></div>
 
 <div class="alert info">灵动课堂 macOS 和 Windows 客户端基于 Electron 框架开发。</div>
 
 ## 计费说明
 
-灵动课堂云服务在 2021 年 12 月 31 日前免费。根据你的实际用量，Agora 会分别收取实时音视频、云信令（原实时消息）、云端录制和互动白板的费用。具体收费规则请参考以下文档：
+根据你的实际用量，Agora 会分别收取实时音视频、云信令（原实时消息）、云端录制和互动白板的费用。具体收费规则请参考以下文档：
 
-- [实时音视频计费说明](https://docs.agora.io/cn/Interactive%20Broadcast/billing_rtc?platform=Android)
-- [云信令计费说明](https://docs.agora.io/cn/Real-time-Messaging/billing_rtm?platform=All%20Platforms)
-- [云端录制计费说明](https://docs.agora.io/cn/cloud-recording/billing_cloud_recording?platform=RESTful)
-- [互动白板计费说明](https://www.herewhite.com/zh-CN/price)
-- [IM 计费说明](https://www.easemob.com/pricing/im)
+-   [实时音视频计费说明](/cn/Interactive%20Broadcast/billing_rtc?platform=Android)
+-   [云信令计费说明](/cn/Real-time-Messaging/billing_rtm?platform=All%20Platforms)
+-   [页面录制计费说明](/cn/cloud-recording/billing_cloud_recording_web?platform=RESTful)
+-   [互动白板计费说明](/cn/whiteboard/billing_whiteboard?platform=Web)
+-   [IM 计费说明](https://www.easemob.com/pricing/im)

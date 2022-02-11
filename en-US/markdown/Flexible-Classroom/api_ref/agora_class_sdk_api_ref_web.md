@@ -12,22 +12,9 @@ static config(params: AgoraEduSDKConfigParams):void
 
 Configures the SDK.
 
-**Sample code**
-
-```typescript
-AgoraEduSDK.config({
-  // Agora App ID
-  appId: "<YOUR AGORA APPID>",
-  // Region
-  region: "CN"
-})
-```
-
-**Parameter**
-
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `params` | The SDK global configuration. See [AgoraEduSDKConfig](#agoraedusdkconfig). |
+| `params` | 全局配置参数，详见 [ConfigParams](#configparams)。 |
 
 ### launch
 
@@ -36,56 +23,6 @@ static launch(dom: Element, option: LaunchOption):Promise<void>
 ```
 
 Launches a classroom.
-
-**Sample code**
-
-```typescript
-// Configure courseware
-let resourceUuid = "xxxxx"
-let resourceName = "my ppt slide"
-let sceneInfos = []
-let sceneInfo = {
-    name: "1",
-    ppt: {
-        src: "pptx://....",
-        width: 480,
-        height: 360
-    }
-}
-sceneInfos.push(sceneInfo)
-
-let courseWareList = [{
-    resourceUuid,
-    resourceName,
-    size: 10000,
-    updateTime: new Date().getTime(),
-    ext: "pptx",
-    url:null,
-    scenes: sceneInfos,
-    taskUuid: "xxxx",
-    taskToken: "xxx",
-    taskProgress: NetlessTaskProgress
-}]
-
-// Launch a classroom
-AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
-    rtmToken: "<your rtm token>",
-    userUuid: "test",
-    userName: "teacher",
-    roomUuid: "4321",
-    roleType: 1,
-    roomType: 4,
-    roomName: "demo-class",
-    pretest: false,
-    language: "en",
-    startTime: new Date().getTime(),
-    duration: 60 * 30,
-    courseWareList: [],
-    listener: (evt) => {
-        console.log("evt", evt)
-    }
-})
-```
 
 **Parameter**
 
@@ -96,7 +33,7 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
 
 ## Type definition
 
-### AgoraEduSDKConfigParams
+### ConfigParams
 
 The SDK global configuration. Used when calling [AgoraEduSDK.config](#config).
 
@@ -109,9 +46,9 @@ export type AgoraEduSDKConfigParams = {
 
 | Attributes | Description |
 | :------- | :----------------------------------------------------------- |
-| `appId` | // Agora App ID
+| `appId` | (Required) Agora App ID.
  |
-| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
+| `region` | （选填）课堂所在区域。 All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
 
 ### LaunchOption
 
@@ -140,31 +77,30 @@ export type LaunchOption = {
   userFlexProperties?: { [key: string]: any };
   mediaOptions?: MediaOptions;
   latencyLevel?: 1 | 2;
-}
+    }
 ```
 
 | Parameter | Description |
 | :----------------------- | :----------------------------------------------------------- |
 | `rtmToken` | The RTM token used for authentication. |
-| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `userUuid` | (Required) The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomUuid` | (Required) The classroom ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roleType` | The role of the user in the classroom. See [EduRoleTypeEnum](#eduroletypeenum). |
 | `roomType` | The classroom type. See [EduRoomTypeEnum](#eduroomtypeenum). |
-| `listener` | The state of classroom launching.<li>`ready`: The classroom is ready.</li><li>`destroyed`: The classroom has been destroyed.</li> |
+| `listener` | (Required) The classroom state:<li>`ready`: The classroom is ready.</li><li>`destroyed`: The classroom has been destroyed.</li> |
 | `pretest` | Whether to enable the pre-class device test:<li>`true`: Enable the pre-class device test. After this function is enabled, end users can see a page for the device test before entering the classroom. They can check whether their camera, microphone, and speaker can work properly.</li><li>`false`: Disable the pre-class device test.</li> |
 | `language` | The UI language. See [LanguageEnum](#languageenum). |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
-| `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `recordUrl` | The URL address to be recorded. Developers need to pass in the URL of the web page deployed by themselves for page recording, such as `https://bing.com/recordUrl`. |
+| `duration` | The duration (ms) of the class, determined by the first user joining the classroom. 最大值为 86,400 秒，建议根据课堂实际时长设置。 |
+| `recordUrl` | (Optional) The URL address to be recorded. Developers need to pass in the URL of the web page deployed by themselves for page recording, such as `https://cn.bing.com/recordUrl`. |
 | `courseWareList` | The configuration of courseware assigned by the educational institution, which cannot be edited by the client. See [CourseWareList](#coursewarelist) for details. After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 | `personalCourseWareList` | The configuration of courseware uploaded by a teacher. See [CourseWareList](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
 | `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](/en/agora-class/agora_class_ext_app_web?platform=Web). |
-| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
 | `userFlexProperties` | User properties customized by the developer. For details, see [How can I set user properties? ](/en/agora-class/faq/agora_class_custom_properties) |
-| `mediaOptions` | Media stream configurations, including the encryption configuration and the encoding configurations of the screen-sharing stream and the video stream captured by the camera. See `MediaOptions` for details. |
-| `latencyLevel` | The latency level of an audience member in interactive live streaming:<li>`1`: Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms.</li><li>`2`: (Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms.</li> |
+| `mediaOptions` | Media stream configurations, including the encryption configuration and the encoding configurations of the screen-sharing stream and the video stream captured by the camera. See MediaOptions for details``. |
+| `latencyLevel` | （选填）观众端延时级别：<li>`1`: Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms.</li><li>`2`: (Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms.</li> |
 
 ### MediaOptions
 
@@ -197,15 +133,15 @@ export interface EduVideoEncoderConfiguration {
 
 Video encoder configurations.
 
-> - In the Small Classroom scenario, the default resolution is 120p (160*120).
-> - In the One-to-one Classroom and Lecture Hall scenarios, the default resolution is 240p (320*240).
+> - 在小班课中，视频编码参数的默认值为 120p（160×120），200 Kbps，15 fps。
+> - 在一对一和大班课中，视频编码参数的默认值为 240p（320×240），65 Kbps，15 fps。
 
 | Parameter | Description |
 | :---------- | :------------------- |
 | `width` | Width (pixel) of the video frame. |
 | `height` | Height (pixel) of the video frame. |
-| `frameRate` | The frame rate (fps) of the video. The default value is 15. |
-| `bitrate` | The bitrate (Kbps) of the video. The default value is 200. |
+| `frameRate` | The frame rate (fps) of the video. |
+| `bitrate` | The bitrate (Kbps) of the video. |
 
 ### MediaEncryptionConfig
 
@@ -213,7 +149,7 @@ Video encoder configurations.
 export declare interface MediaEncryptionConfig {
   mode: MediaEncryptionMode,
   key: string
-}
+    }
 ```
 
 The media stream encryption configuration. Used in [MediaOptions](#mediaoptions).
@@ -225,7 +161,7 @@ The media stream encryption configuration. Used in [MediaOptions](#mediaoptions)
 
 ### MediaEncryptionMode
 
-```swift
+```typescript
 export enum MediaEncryptionMode {
   AES_128_XTS = 1,
   AES_128_ECB = 2,
@@ -250,39 +186,45 @@ Encryption modes. Used in [MediaEncryptionConfig](#mediaencryptionconfig).
 The courseware pre-download configuration. Used when calling [AgoraEduSDK.launch](#launch).
 
 ```typescript
+export type CloudDriveResourceConvertProgress = {
+  totalPageSize: number;
+  convertedPageSize: number;
+  convertedPercentage: Number, the progress (percentage) of the conversion task.
+  "convertedFileList": [
+    name: string;
+    ppt: {
+  width: number;
+  height: number;
+      preview?: string;
+    src: string;
+};
+  }[];
+  currentStep: string;
+};
 export type CourseWareItem = {
   resourceName: string,
   resourceUuid: string,
   ext: string,
   url: string,
-  conversion: {
-    type: string,
-  },
   size: number,
   updateTime: number,
-  scenes: SceneDefinition[],
-  convert?: boolean,
-  taskUuid?: string,
-  taskToken?: string,
-  taskProgress?: NetlessTaskProgress
-}
+    taskProgress?: CloudDriveResourceConvertProgress;
+};
 
 export type CourseWareList = CourseWareItem[]
 ```
 
+`CourseWareList` 为 `CourseWareItem` 对象组成的数组。 `CourseWareItem` 包含以下参数：
+
 | Parameter | Description |
 | :------------- | :----------------------------------------------------------- |
 | `resourceName` | The file name for display in the classroom. The string length must be less than 64 bytes. |
-| `resourceUuid` | The file ID. This is the unique identifier of a file. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `resourceUuid` | The file ID. This is the unique identifier of a file. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `ext` | The file suffix. |
 | `size` | The file size (bytes). |
 | `updateTime` | The latest modified time of the file. |
-| `conversion` | The file conversion configuration object, which contains the following fields:<ul><li>`type`: The conversion type:</li><ul><li>`"dynamic"`: Convert the file to a static picture.</li><li>`"static"`: Convert the file to dynamic HTML.</li></ul></ul> |
-| `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. If the suffix name is not listed above, you must set `url `and leave `scenes` empty. |
-| `scenes` | The download configuration of the converted file. When the file suffix is `"ppt"`, `"pptx"`, `"doc"`, `"docx"` or `"pdf"`, you must set `scenes` for downloading the converted file. |
-| `taskUuid` | The unique identifier of the file conversion task. |
-| `taskToken` | The token used by the file conversion task. |
-| `taskProgress` | The JSON object indicates the progress of the file conversion task. |
+| `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. 如果后缀名非上述所列，必须设置 `url` |
+| `taskProgress` | 文件转换任务进度对象 `CloudDriveResourceConvertProgress`，包含以下字段：<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li><li>`convertedFileList`: 已转换的文档页列表，每页文档对应一条数据，每条数据包含以下字段：<ul><li>`name`: 文档页名称。</li><li>`ppt`: 文档页包含的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>``The URL address of the converted page.</li><li>`preview`: 缩略图 URL。</li></ul></li></ul></li><li>`currentStep`: 文档转换任务当前的步骤。 可为 `extracting`（正在提取资源）、`generatingPreview`（正在生成预览图）、`mediaTranscode`（媒体文件转换）、`packaging`（打包中）。</li></ul> |
 
 ### EduRoleTypeEnum
 

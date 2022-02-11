@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudiospectrumobserver_onremoteaudiospectrum">
+    <title><ph keyref="onRemoteAudioSpectrum"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取远端音频频谱。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteAudioSpectrum"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">boolean onRemoteAudioSpectrum(UserAudioSpectrumInfo[] userAudioSpectrumInfos, int spectrumNumber);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRemoteAudioSpectrum:(NSArray&lt;AgoraAudioSpectrumInfo *&gt; * _Nullable)AudioSpectrumInfo;
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual bool onRemoteAudioSpectrum(const UserAudioSpectrumInfo * spectrums, unsigned int spectrumNumber) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>成功调用 <xref keyref="registerAudioSpectrumObserver"/> 实现 <xref keyref="IAudioSpectrumObserver"/> 中的
+                    <apiname keyref="onRemoteAudioSpectrum"/> 回调并调用 <xref keyref="enableAudioSpectrumMonitor"/> 开启音频频谱监测后，SDK
+                会按照你设置的时间间隔触发该回调，报告接收到的远端音频数据的频谱。</p>
+        </section>
+        <section id="parameters"><title>参数</title>
+            <parml>
+                <plentry>
+                    <pt props="android">userAudioSpectrumInfos</pt>
+                    <pt props="ios mac">AudioSpectrumInfo</pt>
+                    <pt props="windows">spectrums</pt>
+                    <pd>
+                        <p>远端用户的音频频谱信息，详见 <xref keyref="UserAudioSpectrumInfo"/>。 数组数量等于 SDK
+                            监测到的远端用户数量，数组为空表示没有监测到远端用户的音频频谱。</p>
+                    </pd>
+                </plentry>
+                <plentry props="android windows">
+                    <pt>spectrumNumber</pt>
+                    <pd>
+                        <p>远端用户的数量。</p>
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <p>是否接收频谱数据：<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: 接收。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 不接收。</li>
+                </ul></p>
+        </section>
+    </refbody>
+</reference>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-    <title><ph keyref="LiveTranscoding" /></title>
+    <title><ph keyref="LiveTranscoding"/></title>
     <shortdesc id="short"><ph id="shortdesc">CDN 直播推流的转码属性。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -100,9 +100,9 @@
     int height;
     int videoBitrate;
     int videoFramerate;
-    
+
     bool lowLatency;
-    
+
     int videoGop;
     VIDEO_CODEC_PROFILE_TYPE videoCodecProfile;
     unsigned int backgroundColor;
@@ -110,11 +110,11 @@
     TranscodingUser *transcodingUsers;
     const char *transcodingExtraInfo;
     RtcImage* watermark;
-    
+
     AUDIO_SAMPLE_RATE_TYPE audioSampleRate;
     int audioBitrate;
     int audioChannels;
-    
+
     LiveTranscoding()
     : width(360)
     , height(640)
@@ -195,7 +195,7 @@
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
                 <plentry props="android windows electron unity">
                     <pt>width</pt>
@@ -228,7 +228,7 @@
                 </plentry>
                 <plentry>
                     <pt>videoFrameRate</pt>
-                    <pd>输出媒体流的视频帧率（fps）。默认值为 15，取值范围是 [1,30]。 <note type="attention">Agora 服务器会将高于
+                    <pd>输出媒体流的视频帧率（fps）。默认值为 15，取值范围是 [1,30]。<note type="attention">Agora 服务器会将高于
                             30 fps 的帧率统一调整为 30 fps。</note></pd>
                 </plentry>
                 <plentry>
@@ -241,8 +241,8 @@
                             </dlentry>
                         </dl>
                         <ul>
-                            <li>true: 低延时，不保证画质。</li>
-                            <li>false:（默认值）高延时，保证画质。</li>
+                            <li><codeph><ph keyref="true"/></codeph>: 低延时，不保证画质。</li>
+                            <li><codeph><ph keyref="false"/></codeph>:（默认值）高延时，保证画质。</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -253,18 +253,18 @@
                 <plentry>
                     <pt>videoCodecProfile</pt>
                     <pd>
-                        <p>输出媒体流的视频编码规格，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE" />。</p>
+                        <p>输出媒体流的视频编码规格，详见 <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>。</p>
                         <note type="attention">如果你把这个参数设为其他值，Agora 服务器会将其调整为默认值。</note>
                     </pd>
                 </plentry>
                 <plentry props="electron">
                     <pt>videoCodecType</pt>
-                    <pd>输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" />。</pd>
+                    <pd>输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
                 </plentry>
                 <plentry>
                     <pt>transcodingUsers</pt>
                     <pd>
-                        <p>参与转码合流的每个主播的设置。Agora 频道内最多支持 17 个主播。详见 <xref keyref="TranscodingUser" />。</p>
+                        <p>参与转码合流的每个主播的设置。Agora 频道内最多支持 17 个主播。详见 <xref keyref="TranscodingUser"/>。</p>
                     </pd>
                 </plentry>
                 <plentry>
@@ -288,19 +288,19 @@
                                 <dt>弃用：</dt>
                                 <dd>该属性已废弃。</dd>
                             </dlentry>
-                        </dl> 发送给 CDN 客户端的 metadata。 </pd>
+                        </dl> 发送给 CDN 客户端的 metadata。</pd>
                 </plentry>
                 <plentry>
                     <pt>watermark</pt>
-                    <pd>输出媒体流的视频水印。必须为 PNG 格式。详见 <xref keyref="RtcImage" />。</pd>
+                    <pd>输出媒体流的视频水印。必须为 PNG 格式。详见 <xref keyref="RtcImage"/>。</pd>
                 </plentry>
                 <plentry>
                     <pt>backgroundImage</pt>
-                    <pd> 输出媒体流的视频背景图。详见 <xref keyref="RtcImage" />。</pd>
+                    <pd> 输出媒体流的视频背景图。详见 <xref keyref="RtcImage"/>。</pd>
                 </plentry>
                 <plentry>
                     <pt>audioSampleRate</pt>
-                    <pd>输出媒体流的音频采样率 (Hz)，详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />。</pd>
+                    <pd>输出媒体流的音频采样率 (Hz)，详见 <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>。</pd>
                 </plentry>
                 <plentry>
                     <pt>audioBitrate</pt>
@@ -308,7 +308,7 @@
                 </plentry>
                 <plentry>
                     <pt>audioChannels</pt>
-                    <pd>输出媒体流的音频声道数。默认值为 1。建议取值为 1 或 2。 <ul>
+                    <pd>输出媒体流的音频声道数。默认值为 1。建议取值为 1 或 2。<ul>
                             <li>1: （默认）单声道</li>
                             <li>2: 双声道</li>
                             <li>3: 三声道</li>
@@ -319,7 +319,7 @@
                 </plentry>
                 <plentry>
                     <pt>audioCodecProfile</pt>
-                    <pd>输出媒体流的音频编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />。</pd>
+                    <pd>输出媒体流的音频编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。</pd>
                 </plentry>
             </parml>
             <parml props="rtc-ng">
