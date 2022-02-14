@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ichanneleventhandler_onuserjoined">
-    <title><ph keyref="IChannel_onUserJoined" /></title>
-    <shortdesc conkeyref="onUserJoined/short" />
+    <title><ph keyref="IChannel_onUserJoined"/></title>
+    <shortdesc conkeyref="onUserJoined/short"/>
     <prolog>
         <metadata>
    <keywords>
-       <indexterm keyref="IChannel_onUserJoined" />
+       <indexterm keyref="IChannel_onUserJoined"/>
    </keywords>
         </metadata>
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java" />
-                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="android" outputclass="language-java"/>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows" outputclass="language-cpp">virtual void onUserJoined(IChannel *rtcChannel,
     uid_t uid,
     int elapsed) {
@@ -26,37 +26,37 @@
   cb: (channelId: string, uid: number, elapsed: number) =&gt; void
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserJoined(string channelId, uint uid, int elapsed)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? userJoined;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
 
    <ul conkeyref="onUserJoined/detailed_desc_scene">
-       <li />
+       <li/>
    </ul>
    <p>该回调在如下情况下会被触发：
        <ul>
-  <li>远端用户/主播调用 <xref keyref="IChannel_joinChannel" /> 方法加入频道</li>
+  <li>远端用户/主播调用 <xref keyref="IChannel_joinChannel"/> 方法加入频道</li>
   <li>远端用户加入频道后将用户角色改变为主播</li>
   <li>远端用户/主播网络中断后重新加入频道</li>
-  <li>主播通过调用 <xref keyref="IChannel_addInjectStreamUrl" /> 方法成功输入在线媒体流</li>
+  <li>主播通过调用 <xref keyref="IChannel_addInjectStreamUrl"/> 方法成功输入在线媒体流</li>
        </ul>
    </p>
         </section>
-        <section id="parameters"><title><ph keyref="callback-section-title" /></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+        <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
    <parml>
        <plentry conkeyref="IChannel_onJoinChannelSuccess/rtcChannel">
-  <pt />
-  <pd />
+  <pt/>
+  <pd/>
        </plentry>
        <plentry conkeyref="onUserJoined/uid">
-  <pt />
-  <pd />
+  <pt/>
+  <pd/>
        </plentry>
        <plentry>
   <pt>elapsed</pt>
-  <pd>从本地用户调用 <xref keyref="IChannel_joinChannel" /> 到该回调触发的延迟（毫秒)。</pd>
+  <pd>从本地用户调用 <xref keyref="IChannel_joinChannel"/> 到该回调触发的延迟（毫秒)。</pd>
        </plentry>
    </parml>
         </section>

@@ -53,9 +53,12 @@ def extract_rn_proto(cpp_code, content):
         text = cpp_core[0]
         text = text[:-1]
 
-        print("The matched C++ proto " + text)
+        # There is a symbol in position 0???
+        result = text[1].upper() + text[2:]
+
+        print("The matched C++ proto " + result)
         # Avoid Catastrophic Backtracking: https://www.regular-expressions.info/catastrophic.html
-        unity_proto_re = r'[A-Za-z]{1,10}[\s]{0,1}[A-Za-z]{1,10}[\s]{0,1}[A-Za-z\[\]]{1,10}[\s]{0,1}' + re.escape(text) + r'[0-9\s]{0,1}\([A-Za-z_\s\n\?,\[\]\<\>:\)]{0,200};'
+        unity_proto_re = r'[A-Za-z]{1,10}[\s]{0,1}[A-Za-z]{1,10}[\s]{0,1}[A-Za-z\[\]]{1,10}[\s]{0,1}' + re.escape(result) + r'\([0-9A-Za-z_\s\n=,\[\]=:]{0,200}\);'
         print(unity_proto_re)
         result = re.findall(unity_proto_re, content)
 
@@ -105,7 +108,7 @@ def extract_cpp_struct_unity_class(cpp_code, content):
         # A lazy (also called non-greedy or reluctant) quantifier always attempts to repeat the sub-pattern as few times as possible, before exploring longer matches by expansion.
         # Here we use lazy ones
         unity_proto_re = r'(public struct|public class)\s{0,10}' + re.escape(
-            text) + r'\s{0,10}\{\s{0,10}[A-Za-z_0-9\s\n\?\[\]\.,;\{\}\(\)<>=$@:]{0,2000}?(?<!\s\s)\}(?!\))'
+            text) + r'\s{0,10}\{\s{0,10}[A-Za-z_0-9\s\n\?\[\]\.,;\{\}\(\)=]{0,2000}}'
         print(unity_proto_re)
         result = re.search(unity_proto_re, content)
 

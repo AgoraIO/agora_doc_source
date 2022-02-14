@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encryptionconfig">
-    <title><ph keyref="EncryptionConfig" /></title>
+    <title><ph keyref="EncryptionConfig"/></title>
     <shortdesc id="short"><ph id="shortdesc">配置内置加密模式和密钥。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -46,7 +46,7 @@
     encryptionMode: ENCRYPTION_MODE;
     encryptionKey: string;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
 
   EncryptionMode? encryptionMode;
@@ -62,19 +62,19 @@
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
    <parml>
        <plentry>
   <pt>encryptionMode</pt>
-  <pd><p props="ios mac windows">内置加密模式。详见 <xref keyref="ENCRYPTION_MODE" />。</p>
-      <p props="android">内置加密模式。Agora 推荐使用 <ph keyref="AES_128_GCM2" /> 或
-          <ph keyref="AES_256_GCM2" /> 加密模式。这两种模式支持使用盐，安全性更高。<ul id="ul_urr_tlz_rqb">
-                                <li><ph keyref="SM4_128_ECB" /> (4): 128 位 SM4 加密，ECB 模式。</li>
-                                <li><ph keyref="AES_128_GCM2" /> (7):（默认）128 位 AES 加密，GCM
+  <pd><p props="ios mac windows">内置加密模式。详见 <xref keyref="ENCRYPTION_MODE"/>。</p>
+      <p props="android">内置加密模式。Agora 推荐使用 <ph keyref="AES_128_GCM2"/> 或
+          <ph keyref="AES_256_GCM2"/> 加密模式。这两种模式支持使用盐，安全性更高。<ul id="ul_urr_tlz_rqb">
+                                <li><ph keyref="SM4_128_ECB"/> (4): 128 位 SM4 加密，ECB 模式。</li>
+                                <li><ph keyref="AES_128_GCM2"/> (7):（默认）128 位 AES 加密，GCM
                                         模式。该加密模式需要设置盐（<codeph>encryptionKdfSalt</codeph>）。</li>
-                                <li><ph keyref="AES_256_GCM2" /> (8)：256 位 AES 加密，GCM
+                                <li><ph keyref="AES_256_GCM2"/> (8)：256 位 AES 加密，GCM
                                         模式。该加密模式需要设置盐（<codeph>encryptionKdfSalt</codeph>）。</li>
-                                <li><ph keyref="MODE_END" /> (9)：枚举值边界。</li>
+                                <li><ph keyref="MODE_END"/> (9)：枚举值边界。</li>
                             </ul></p>
   </pd>
        </plentry>
@@ -95,7 +95,7 @@
                             </dlentry>
                         </dl>
                         <p>盐，长度为 32 字节。Agora 推荐你在服务端使用 OpenSSL 生成盐，详见《媒体流加密》。</p>
-                        <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph>
+                        <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2"/></codeph> 或 <codeph><ph keyref="AES_256_GCM2"/></codeph>
                                 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
                     </pd>
                 </plentry>

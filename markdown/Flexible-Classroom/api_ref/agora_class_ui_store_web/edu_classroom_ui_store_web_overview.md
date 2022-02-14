@@ -2,9 +2,9 @@
 
 自 2.0.0 版起，灵动课堂桌面端使用 UI Store 和 Container 组件来实现业务功能。每种课堂类型对应一个 UI Store。`agora-classroom-sdk/src/infra/stores` 目录下包含以下 UI Store：
 
-- `one-on-one` 文件夹：对应 1 对 1 互动教学。
-- `interactive` 文件夹：对应在线互动小班课。
-- `lecture` 文件夹：对应互动直播大班课。
+-   `one-on-one` 文件夹：对应 1 对 1 互动教学。
+-   `interactive` 文件夹：对应在线互动小班课。
+-   `lecture` 文件夹：对应互动直播大班课。
 
 以 1 对 1 互动教学为例，Agora 在 `one-on-one/index.ts` 文件中定义了 `Edu1v1ClassUIStore` 类，继承自 `agora-edu-core` 提供的 `EduClassroomUIStore`，实现了灵动课堂各个班型通用的业务功能。此外，针对 1 对 1 互动教学，Agora 还定义了 `OneToOneStreamUIStore`、`OneToOneToolbarUIStore` 和 `OneToOneBoardUIStore`，分别用于重写流相关功能、工具栏和白板的逻辑。
 
@@ -66,8 +66,8 @@ set setCollectorContainer(collectorContainer: HTMLElement): void
 
 设置白板课件最小化后显示的 DOM 节点。
 
-| 参数     | 描述                                          |
-| :------- | :-------------------------------- |
+| 参数                 | 描述                                                          |
+| :------------------- | :------------------------------------------------------------ |
 | `collectorContainer` | 白板最小化后显示的 DOM 节点。用户可以点击此按钮将课件最大化。 |
 
 ### 方法
@@ -104,8 +104,8 @@ mount(dom: HTMLDivElement): Promise<void>
 
 白板挂载到 DOM。
 
-| 参数     | 描述                                      |
-| :------- | :-------------------------------- |
+| 参数  | 描述                  |
+| :---- | :-------------------- |
 | `dom` | 白板挂载的 DOM 节点。 |
 
 #### rejoinWhiteboard
@@ -131,17 +131,17 @@ unmount(): Promise<void>
 如果你想修改白板的比例，修改指定班型的 UI Store 目录下的 `board-ui.ts` 即可。举例来说，修改大班课中的白板比例，则在 `agora-classroom-sdk/src/infra/stores/interactive/board-ui.ts` 文件中，重写 `uiOverrides` 修改白板的比例。示例代码如下：
 
 ```typescript
-import { BoardUIStore } from 'agora-edu-core';
+import {BoardUIStore} from "agora-edu-core";
 
 export class InteractiveBoardUIStore extends BoardUIStore {
-  protected get uiOverrides() {
-    return {
-      ...super.uiOverrides,
-      // Change the whiteboard ratio
-      heightRatio: 0.819,
-      aspectRatio: 0.461,
-    };
-  }
+    protected get uiOverrides() {
+        return {
+            ...super.uiOverrides,
+            // Change the whiteboard ratio
+            heightRatio: 0.819,
+            aspectRatio: 0.461,
+        };
+    }
 }
 ```
 
@@ -235,8 +235,8 @@ fetchPersonalResources(options: CloudDrivePagingOption): Promise<undefined | { l
 
 获取个人课件列表。
 
-| 参数     | 描述                                      |
-| :------- | :-------------------------------- |
+| 参数      | 描述                                                               |
+| :-------- | :----------------------------------------------------------------- |
 | `options` | 页面配置，详见 [CloudDrivePagingOption](#clouddrivepagingoption)。 |
 
 #### openResource
@@ -263,8 +263,8 @@ setAllPersonalResourceSelected(val: boolean): void
 
 是否全选所有个人课件。
 
-| 参数     | 描述                                      |
-| :------- | :-------------------------------- |
+| 参数  | 描述                   |
+| :---- | :--------------------- |
 | `val` | 是否选中所有个人课件。 |
 
 #### setPersonalResCurrentPage
@@ -275,8 +275,8 @@ setPersonalResCurrentPage(num: number): void
 
 设置个人资源列表页码。
 
-| 参数     | 描述                                      |
-| :------- | :-------------------------------- |
+| 参数  | 描述   |
+| :---- | :----- |
 | `num` | 页码。 |
 
 #### setPersonalResourceSelected
@@ -285,10 +285,10 @@ setPersonalResCurrentPage(num: number): void
 setPersonalResourceSelected(resourceUuid: string, val: boolean): void
 ```
 
-| 参数     | 描述                                      |
-| :------- | :-------------------------------- |
-| `resourceUuid` | 课件 ID。 |
-| `val` | 是否选中个人课件。 |
+| 参数           | 描述               |
+| :------------- | :----------------- |
+| `resourceUuid` | 课件 ID。          |
+| `val`          | 是否选中个人课件。 |
 
 #### uploadPersonalResource
 
@@ -351,9 +351,9 @@ addToast(desc: string, type?: ToastTypeEnum)
 
 添加一个提示框。
 
-| 参数     | 描述                   |
-| :------- | :-------------------------------- |
-| `desc` | 提示框描述。 |
+| 参数   | 描述                                               |
+| :----- | :------------------------------------------------- |
+| `desc` | 提示框描述。                                       |
 | `type` | 提示框类型，详见 [ToastTypeEnum](#toasttypeenum)。 |
 
 #### removeToast
@@ -364,8 +364,8 @@ removeToast(id: string)
 
 移除一个提示框。
 
-| 参数     | 描述                       |
-| :------- | :-------------------------------- |
+| 参数 | 描述        |
+| :--- | :---------- |
 | `id` | 提示框 ID。 |
 
 #### addDialog
@@ -376,8 +376,8 @@ addDialog(category: DialogCategory, props?: any)
 
 添加一个模态框。
 
-| 参数     | 描述                                                         |
-| :------- | :-------------------------------- |
+| 参数       | 描述                                                 |
+| :--------- | :--------------------------------------------------- |
 | `category` | 模态框类型，详见 [DialogCategory](#dialogcategory)。 |
 
 #### removeDialog
@@ -388,8 +388,8 @@ removeDialog(id: string)
 
 移除一个模态框。
 
-| 参数     | 描述                                                         |
-| :------- | :-------------------------------- |
+| 参数 | 描述        |
+| :--- | :---------- |
 | `id` | 模态框 ID。 |
 
 ### EduShareUIStore 修改示例
@@ -397,32 +397,32 @@ removeDialog(id: string)
 #### 修改课堂内通知条数上限
 
 当前所有班型都是默认最多同时出现三条通知。如果你想将大班课修改为可以最多出现五条通知，其余班型不变，则可参考以下步骤修改代码：
+
 1. 在 `agora-classroom-sdk/src/infra/stores/lecture` 目录下新增 `share-ui.ts` 文件。
 2. 在 `share-ui.ts` 文件内定义 `LectureShareUIStore` 类，继承于 `agora-edu-core` 中的 `EduShareUIStore`，然后重写 `addToast` 方法。示例代码如下：
-   ```typescript
-   import { EduShareUIStore, ToastTypeEnum } from 'agora-edu-core';
-   import { action } from 'mobx';
-   import { v4 as uuidv4 } from 'uuid';
 
-   export class LectureShareUIStore extends EduShareUIStore {
-       @action.bound
-           addToast(desc: string, type?: ToastTypeEnum) {
-               const id = uuidv4();
-               this.toastQueue.push({ id, desc, type });
-               // Do not show more than five toast messages
-               if (this.toastQueue.length > 5) {
-                   this.toastQueue = this.toastQueue.splice(1, this.toastQueue.length);
-               }
-               return id;
-           }
+    ```typescript
+    import {EduShareUIStore, ToastTypeEnum} from "agora-edu-core";
+    import {action} from "mobx";
+    import {v4 as uuidv4} from "uuid";
+
+    export class LectureShareUIStore extends EduShareUIStore {
+        @action.bound
+        addToast(desc: string, type?: ToastTypeEnum) {
+            const id = uuidv4();
+            this.toastQueue.push({id, desc, type});
+            // Do not show more than five toast messages
+            if (this.toastQueue.length > 5) {
+                this.toastQueue = this.toastQueue.splice(1, this.toastQueue.length);
+            }
+            return id;
+        }
     }
-   ```
+    ```
 
 #### 自定义提示框 UI
 
 如果你想将提示框宽度的最小值改为 300 px，则需要修改 `agora-classroom-sdk` 库中的 `ToastContainer` 组件。该组件调用了 `agora-scenario-ui-kit` 下的 `Toast` 组件。在 `agora-scenario-ui-kit/src/components/toast/index.css` 中修改 `toast { min-width: 300px; }` 即可。
-
-
 
 ## HandUpUIStore
 
@@ -472,8 +472,8 @@ offPodium(userUuid: string): void
 
 学生离开讲台。
 
-| 参数     | 描述                           |
-| :------- | :---------------------------- |
+| 参数       | 描述      |
+| :--------- | :-------- |
 | `userUuid` | 用户 ID。 |
 
 #### onPodium
@@ -484,8 +484,8 @@ onPodium(userUuid: string): void
 
 学生上讲台。
 
-| 参数     | 描述                           |
-| :------- | :---------------------------- |
+| 参数       | 描述      |
+| :--------- | :-------- |
 | `userUuid` | 用户 ID。 |
 
 #### rejectHandUp
@@ -496,8 +496,8 @@ rejectHandUp(userUuid: string): void
 
 老师拒绝指定学生的举手申请。
 
-| 参数     | 描述                           |
-| :------- | :---------------------------- |
+| 参数       | 描述      |
+| :--------- | :-------- |
 | `userUuid` | 学生 ID。 |
 
 #### waveArm
@@ -508,10 +508,10 @@ waveArm(teacherUuid: string, duration: -1 | 3): void
 
 学生举手申请上讲台。
 
-| 参数     | 描述                           |
-| :------- | :---------------------------- |
-| `teacherUuid` | 老师 ID。 |
-| `duration` | 举手时长，单位为秒。设为 `-1` 表示持续举手。 |
+| 参数          | 描述                                         |
+| :------------ | :------------------------------------------- |
+| `teacherUuid` | 老师 ID。                                    |
+| `duration`    | 举手时长，单位为秒。设为 `-1` 表示持续举手。 |
 
 ## NavigationBarUIStore
 
@@ -655,8 +655,6 @@ export class NavigationBarUIStore extends EduUIStoreBase {
       default:
         return `-- : --`;
     }
-  }
-
 
   /**
    * Change the color of status text
@@ -674,7 +672,6 @@ export class NavigationBarUIStore extends EduUIStoreBase {
       default:
         return undefined;
     }
-  }
 }
 ```
 
@@ -684,111 +681,109 @@ export class NavigationBarUIStore extends EduUIStoreBase {
 
 ```typescript
 export interface DialogType {
-  id: string;
-  category: DialogCategory;
-  props?: any;
+    id: string;
+    category: DialogCategory;
+    props?: any;
 }
 ```
 
 模态对话框信息。
 
-| 参数     | 描述                                           |
-| :------- | :----------------------------------------------------------- |
-| `id` | 模态对话框 ID。 |
+| 参数       | 描述                                                     |
+| :--------- | :------------------------------------------------------- |
+| `id`       | 模态对话框 ID。                                          |
 | `category` | 模态对话框类型，详见 [DialogCategory](#dialogcategory)。 |
 
 ### ToastType
 
 ```typescript
 export interface ToastType {
-  id: string;
-  desc: string;
-  type?: ToastTypeEnum;
+    id: string;
+    desc: string;
+    type?: ToastTypeEnum;
 }
 ```
 
-| 参数     | 描述                                            |
-| :------- | :-------------------------------- |
-| `id` | 提示框 ID。 |
-| `desc` | 提示信息。 |
+| 参数   | 描述                                               |
+| :----- | :------------------------------------------------- |
+| `id`   | 提示框 ID。                                        |
+| `desc` | 提示信息。                                         |
 | `type` | 提示框类型，详见 [ToastTypeEnum](#toasttypeenum)。 |
 
 ### ToastTypeEnum
 
 ```typescript
 export enum DialogCategory {
-  CloudDriver,
-  Roster,
-  KickOut,
-  ErrorGeneric,
-  Confirm,
-  DeviceSetting,
-  ScreenPicker,
+    CloudDriver,
+    Roster,
+    KickOut,
+    ErrorGeneric,
+    Confirm,
+    DeviceSetting,
+    ScreenPicker,
 }
 ```
 
 模态对话框类型。
 
-| 参数     | 描述                                                         |
-| :------- | :------------------ |
-| `CloudDriver` | 云盘模态框。 |
-| `Roster` | 花名册模态框。 |
-| `KickOut` | 踢人模态框。 |
-| `ErrorGeneric` | 错误提示模态框。 |
-| `Confirm` | 确认模态框。 |
-| `DeviceSetting` | 设备设置模态框。 |
-| `ScreenPicker` | 用于屏幕选择的模态框。 |
+| 参数            | 描述                   |
+| :-------------- | :--------------------- |
+| `CloudDriver`   | 云盘模态框。           |
+| `Roster`        | 花名册模态框。         |
+| `KickOut`       | 踢人模态框。           |
+| `ErrorGeneric`  | 错误提示模态框。       |
+| `Confirm`       | 确认模态框。           |
+| `DeviceSetting` | 设备设置模态框。       |
+| `ScreenPicker`  | 用于屏幕选择的模态框。 |
 
 ### ToastTypeEnum
 
 ```typescript
-export type ToastTypeEnum = 'success' | 'error' | 'warning';
+export type ToastTypeEnum = "success" | "error" | "warning";
 ```
 
 提示框类型。
 
-| 参数     | 描述                |
-| :------- | :------------------ |
+| 参数        | 描述         |
+| :---------- | :----------- |
 | `'success'` | 成功提示框。 |
-| `'error'` | 错误提示框。 |
+| `'error'`   | 错误提示框。 |
 | `'warning'` | 警告提示框。 |
-
 
 ### ClassState
 
 ```typescript
 export enum ClassState {
-  beforeClass = 0,
-  ongoing = 1,
-  afterClass = 2,
-  close = 3,
+    beforeClass = 0,
+    ongoing = 1,
+    afterClass = 2,
+    close = 3,
 }
 ```
 
 课堂状态。
 
-| 参数     | 描述                |
-| :------- | :------------------ |
+| 参数          | 描述           |
+| :------------ | :------------- |
 | `beforeClass` | 课堂还未开始。 |
-| `ongoing` | 课堂进行中。|
-| `afterClass` | 课堂已结束。 |
-| `close` | 房间已关闭。 |
-
+| `ongoing`     | 课堂进行中。   |
+| `afterClass`  | 课堂已结束。   |
+| `close`       | 房间已关闭。   |
 
 ### CloudDrivePagingOption
 
 ```typescript
 export interface CloudDrivePagingOption {
-  resourceName?: string;
-  pageNo: number;
-  pageSize?: number;
+    resourceName?: string;
+    pageNo: number;
+    pageSize?: number;
 }
 ```
 
 页面配置。
 
-| 参数     | 描述                |
-| :------- | :------------------ |
-| `resourceName` | 课件名称。 |
-| `pageNo` | 页码。 |
-| `pageSize` | 该页面所包含的课件数。 |
+| 参数           | 描述                   |
+| :------------- | :--------------------- |
+| `resourceName` | 课件名称。             |
+| `pageNo`       | 页码。                 |
+| `pageSize`     | 该页面所包含的课件数。 |
