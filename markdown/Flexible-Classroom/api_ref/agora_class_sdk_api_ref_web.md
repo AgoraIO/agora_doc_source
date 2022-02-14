@@ -12,8 +12,8 @@ static config(params: ConfigParams):void
 
 配置 SDK。
 
-| 参数     | 描述                                                         |
-| :------- | :----------------------------------------------------------- |
+| 参数     | 描述                                               |
+| :------- | :------------------------------------------------- |
 | `params` | 全局配置参数，详见 [ConfigParams](#configparams)。 |
 
 ### launch
@@ -26,10 +26,10 @@ static launch(dom: Element, option: LaunchOption):Promise<void>
 
 **参数**
 
-| 参数     | 描述                                                         |
-| :------- | :----------------------------------------------------------- |
+| 参数     | 描述                                                                         |
+| :------- | :--------------------------------------------------------------------------- |
 | `dom`    | 详见 [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document)。 |
-| `option` | 课堂启动配置，详见 [LaunchOption](#launchoption)。         |
+| `option` | 课堂启动配置，详见 [LaunchOption](#launchoption)。                           |
 
 ## 类型定义
 
@@ -44,9 +44,9 @@ export type ConfigParams = {
 };
 ```
 
-| 属性     | 描述                                                         |
-| :------- | :----------------------------------------------------------- |
-| `appId`  | （必填）Agora App ID。                                       |
+| 属性     | 描述                                                                                                                                                                                 |
+| :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `appId`  | （必填）Agora App ID。                                                                                                                                                               |
 | `region` | （选填）课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。灵动课堂支持以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
 
 ### LaunchOption
@@ -72,34 +72,34 @@ export type LaunchOption = {
     recordUrl?: string;
     extApps?: IAgoraExtApp[];
     region?: AgoraRegion;
-    widgets?: { [key: string]: IAgoraWidget };
-    userFlexProperties?: { [key: string]: any };
+    widgets?: {[key: string]: IAgoraWidget};
+    userFlexProperties?: {[key: string]: any};
     mediaOptions?: MediaOptions;
     latencyLevel?: 1 | 2;
-}
+};
 ```
 
-| 参数                     | 描述                                                         |
-| :----------------------- | :----------------------------------------------------------- |
-| `rtmToken`               | （必填）用于鉴权的 RTM Token。                               |
-| `userUuid`               | （必填）用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
-| `userName`               | （必填）用户名，用于课堂内显示，长度在 64 字节以内。         |
-| `roomUuid`               | （必填）课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
-| `roomName`               | （必填）课堂名，用于课堂内显示，长度在 64 字节以内。         |
-| `roleType`               | （必填）用户在课堂中的角色，详见 [EduRoleTypeEnum](#eduroletypeenum)。 |
-| `roomType`               | （必填）课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。 |
-| `listener`               | （必填）课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li> |
+| 参数                     | 描述                                                                                                                                                                                                |
+| :----------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rtmToken`               | （必填）用于鉴权的 RTM Token。                                                                                                                                                                      |
+| `userUuid`               | （必填）用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~                                                   |
+| `userName`               | （必填）用户名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                |
+| `roomUuid`               | （必填）课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~                                                                                                 |
+| `roomName`               | （必填）课堂名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                |
+| `roleType`               | （必填）用户在课堂中的角色，详见 [EduRoleTypeEnum](#eduroletypeenum)。                                                                                                                              |
+| `roomType`               | （必填）课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。                                                                                                                                        |
+| `listener`               | （必填）课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li>                                                                                                            |
 | `pretest`                | （必填）是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
-| `language`               | （必填）课堂界面的语言，详见 [LanguageEnum](#languageenum)。 |
-| `startTime`              | （选填）课堂开始时间（毫秒），以第一个进入课堂的用户传入的参数为准。 |
-| `duration`               | （必填）课堂持续时间（秒），以第一个进入课堂的用户传入的参数为准。最大值为 86,400 秒，建议根据课堂实际时长设置。 |
-| `recordUrl`              | （选填）待录制 URL 地址，开发者需传入自己部署的网页地址，用于页面录制，例如 `https://cn.bing.com/recordUrl`。 |
-| `courseWareList`         | （选填）教育机构指派的课件配置，客户端无法编辑。详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
-| `personalCourseWareList` | （选填）老师端自行上传的课件配置，详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
-| `extApps`                | （选填）注册扩展应用 ExtApp。ExtApp 是灵动课堂 UIKit 的补充插件。详见[通过 ExtApp 自定义插件](/cn/agora-class/agora_class_ext_app_web?platform=Web)。 |
-| `userFlexProperties`     | （选填）由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties) |
-| `mediaOptions`           | （选填）媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 `MediaOptions`。 |
-| `latencyLevel`           | （选填）观众端延时级别：<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>`2`:（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li> |
+| `language`               | （必填）课堂界面的语言，详见 [LanguageEnum](#languageenum)。                                                                                                                                        |
+| `startTime`              | （选填）课堂开始时间（毫秒），以第一个进入课堂的用户传入的参数为准。                                                                                                                                |
+| `duration`               | （必填）课堂持续时间（秒），以第一个进入课堂的用户传入的参数为准。最大值为 86,400 秒，建议根据课堂实际时长设置。                                                                                    |
+| `recordUrl`              | （选填）待录制 URL 地址，开发者需传入自己部署的网页地址，用于页面录制，例如 `https://cn.bing.com/recordUrl`。                                                                                       |
+| `courseWareList`         | （选填）教育机构指派的课件配置，客户端无法编辑。详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。                                       |
+| `personalCourseWareList` | （选填）老师端自行上传的课件配置，详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。                                                     |
+| `extApps`                | （选填）注册扩展应用 ExtApp。ExtApp 是灵动课堂 UIKit 的补充插件。详见[通过 ExtApp 自定义插件](/cn/agora-class/agora_class_ext_app_web?platform=Web)。                                               |
+| `userFlexProperties`     | （选填）由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)                                                                                 |
+| `mediaOptions`           | （选填）媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 `MediaOptions`。                                                                                 |
+| `latencyLevel`           | （选填）观众端延时级别：<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>`2`:（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li>                                     |
 
 ### MediaOptions
 
@@ -113,11 +113,11 @@ export type MediaOptions = {
 
 媒体流相关设置。
 
-| 参数                              | 描述                                                         |
-| :-------------------------------- | :----------------------------------------------------------- |
+| 参数                              | 描述                                                                                               |
+| :-------------------------------- | :------------------------------------------------------------------------------------------------- |
 | `cameraEncoderConfiguration`      | 摄像头采集视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。 |
-| `screenShareEncoderConfiguration` | 屏幕共享视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。 |
-| `encryptionConfig`                | 媒体流加密配置，详见 [MediaEncryptionConfig](#mediaencryptionconfig)。 |
+| `screenShareEncoderConfiguration` | 屏幕共享视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。   |
+| `encryptionConfig`                | 媒体流加密配置，详见 [MediaEncryptionConfig](#mediaencryptionconfig)。                             |
 
 ### EduVideoEncoderConfiguration
 
@@ -132,8 +132,8 @@ export interface EduVideoEncoderConfiguration {
 
 视频编码参数配置。
 
-> - 在小班课中，视频编码参数的默认值为 120p（160×120），200 Kbps，15 fps。
-> - 在一对一和大班课中，视频编码参数的默认值为 240p（320×240），65 Kbps，15 fps。
+> -   在小班课中，视频编码参数的默认值为 120p（160×120），200 Kbps，15 fps。
+> -   在一对一和大班课中，视频编码参数的默认值为 240p（320×240），65 Kbps，15 fps。
 
 | 参数        | 描述                 |
 | :---------- | :------------------- |
@@ -146,17 +146,17 @@ export interface EduVideoEncoderConfiguration {
 
 ```typescript
 export declare interface MediaEncryptionConfig {
-    mode: MediaEncryptionMode,
-    key: string
+    mode: MediaEncryptionMode;
+    key: string;
 }
 ```
 
 媒体流加密配置，用于 [MediaOptions](#mediaoptions)。
 
-| 参数   | 描述                                                         |
-| :----- | :----------------------------------------------------------- |
+| 参数   | 描述                                                                                                                     |
+| :----- | :----------------------------------------------------------------------------------------------------------------------- |
 | `mode` | 媒体流加密模式，详见 [MediaEncryptionMode](#mediaencryptionmode)。同一教室内所有老师和学生必须使用相同的加密模式和密钥。 |
-| `key`  | 加密密钥。                                                   |
+| `key`  | 加密密钥。                                                                                                               |
 
 ### MediaEncryptionMode
 
@@ -166,7 +166,7 @@ export enum MediaEncryptionMode {
     AES_128_ECB = 2,
     AES_256_XTS = 3,
     AES_128_GCM = 5,
-    AES_256_GCM = 6
+    AES_256_GCM = 6,
 }
 ```
 
@@ -190,13 +190,13 @@ export type CloudDriveResourceConvertProgress = {
     convertedPageSize: number;
     convertedPercentage: number;
     convertedFileList: {
-      name: string;
-      ppt: {
-        width: number;
-        height: number;
-        preview?: string;
-        src: string;
-      };
+        name: string;
+        ppt: {
+            width: number;
+            height: number;
+            preview?: string;
+            src: string;
+        };
     }[];
     currentStep: string;
 };
@@ -216,14 +216,14 @@ export type CourseWareList = CourseWareItem[];
 
 `CourseWareList` 为 `CourseWareItem` 对象组成的数组。`CourseWareItem` 包含以下参数：
 
-| 参数           | 描述                                                         |
-| :------------- | :----------------------------------------------------------- |
-| `resourceName` | 课件名称，用于显示，长度在 64 字节以内。                     |
-| `resourceUuid` | 课件 uuid。这是资源的唯一标识符。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
-| `ext`          | 课件后缀。                                                   |
-| `size`         | 课件大小，单位为字节。                                       |
-| `updateTime`   | 课件最后被修改的时间。                                       |
-| `url`          | 文件访问地址。灵动课堂客户端会对后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以用于课堂内白板展示。如果后缀名非上述所列，必须设置 `url`|
+| 参数           | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `resourceName` | 课件名称，用于显示，长度在 64 字节以内。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `resourceUuid` | 课件 uuid。这是资源的唯一标识符。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `ext`          | 课件后缀。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `size`         | 课件大小，单位为字节。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `updateTime`   | 课件最后被修改的时间。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `url`          | 文件访问地址。灵动课堂客户端会对后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以用于课堂内白板展示。如果后缀名非上述所列，必须设置 `url`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `taskProgress` | 文件转换任务进度对象 `CloudDriveResourceConvertProgress`，包含以下字段：<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: 转换进度（百分比）。</li><li>`convertedFileList`: 已转换的文档页列表，每页文档对应一条数据，每条数据包含以下字段：<ul><li>`name`: 文档页名称。</li><li>`ppt`: 文档页包含的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>`src`: 完成转换的页面的 URL 下载地址。</li><li>`preview`: 缩略图 URL。</li></ul></li></ul></li><li>`currentStep`: 文档转换任务当前的步骤。可为 `extracting`（正在提取资源）、`generatingPreview`（正在生成预览图）、`mediaTranscode`（媒体文件转换）、`packaging`（打包中）。</li></ul> |
 
 ### EduRoleTypeEnum
@@ -233,7 +233,7 @@ export enum EduRoleTypeEnum {
     audience = 0,
     teacher = 1,
     student = 2,
-    assistant = 3
+    assistant = 3,
 }
 ```
 
@@ -252,22 +252,22 @@ export enum EduRoleTypeEnum {
 export enum EduRoomTypeEnum {
     Room1v1Class = 0,
     RoomBigClass = 2,
-    RoomSmallClass = 4
+    RoomSmallClass = 4,
 }
 ```
 
 课堂类型。在 [LaunchOption](#launchoption) 中设置。
 
-| 参数             | 描述                                                         |
-| :--------------- | :----------------------------------------------------------- |
-| `Room1v1Class`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。 |
-| `RoomBigClass`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。 |
+| 参数             | 描述                                                                                                                                                    |
+| :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Room1v1Class`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。                                                                                         |
+| `RoomBigClass`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。         |
 | `RoomSmallClass` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可点名学生“上台”发言，与老师进行实时音视频互动。 |
 
 ### LanguageEnum
 
 ```typescript
-export type LanguageEnum = "en" | "zh"
+export type LanguageEnum = "en" | "zh";
 ```
 
 界面语言。在 [LaunchOption](#launchoption) 中设置。

@@ -2,20 +2,20 @@ Test vale linter configurations.
 
 ## Legal characters
 
-Chinese characters：。；，‘“ 
+Chinese characters：。；，‘“
 
-Valid characters: ",.?-_™
+Valid characters: ",.?-\_™
 
 。。。。。。。，，，，，“！
 
 ## Spelling
 
 Typo: teh is a typo.
+[if it rains, i will not go]
 
 Agora should be OK.
 
 Try spelling error niiiiice, laaunch
-
 
 ## MDITA
 
@@ -43,15 +43,16 @@ In Terminal, run the following command to remove the x86-64 architecture. Rememb
 
 ~96d9aaf0-eb84-11eb-b768-51ffcd29c763~
 
-$$98945f90-0bcb-11ec-8e65-856920855d60
+$$
+98945f90-0bcb-11ec-8e65-856920855d60
 {
 "sdk":"voice"
 }
 $$
 
 <% if (platform == "Android" || platform == "iOS" || platform == "macOS" || platform == "Windows") { %>
-- When setting the source channel information, ensure that you set `uid` as 0, and the `uid` that you use to generate the token should also be set as 0.<% } %>
 
+-   When setting the source channel information, ensure that you set `uid` as 0, and the `uid` that you use to generate the token should also be set as 0.<% } %>
 
 ## Style check
 

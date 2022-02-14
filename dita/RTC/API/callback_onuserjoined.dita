@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onuserjoined">
-    <title><ph keyref="onUserJoined" /></title>
+    <title><ph keyref="onUserJoined"/></title>
         <shortdesc id="short"><ph id="shortdesc">远端用户（通信场景）/主播（直播场景）加入当前频道回调。</ph></shortdesc>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
@@ -14,7 +14,7 @@
     }</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">on(evt: EngineEvents.USER_JOINED, cb: (uid: number, elapsed: number) =&gt; void): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserJoined(uint uid, int elapsed)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">UidWithElapsedCallback? userJoined;</codeblock>
         </p>
    </section>
@@ -25,17 +25,17 @@
         </ul>
   <p>该回调在如下情况下会被触发：
   <ul>
-   <li>远端用户/主播调用 <apiname keyref="joinChannel2" /> 方法加入频道。</li>
+   <li>远端用户/主播调用 <apiname keyref="joinChannel2"/> 方法加入频道。</li>
    <li>远端用户加入频道后将用户角色改变为主播。</li>
    <li>远端用户/主播网络中断后重新加入频道。</li>
         </ul></p>
    </section>
    <section id="parameters">
-  <title><ph keyref="callback-section-title" /></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+  <title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
   <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                    <pt />
-                    <pd />
+                    <pt/>
+                    <pd/>
                 </plentry>
                 <plentry id="uid">
                     <pt>uid</pt>
@@ -43,7 +43,7 @@
                 </plentry>
                 <plentry>
                     <pt>elapsed</pt>
-                    <pd>从本地用户调用 <apiname keyref="joinChannel2" /> 到该回调触发的延迟（毫秒)。</pd>
+                    <pd>从本地用户调用 <apiname keyref="joinChannel2"/> 到该回调触发的延迟（毫秒)。</pd>
                 </plentry>
             </parml>
    </section>
