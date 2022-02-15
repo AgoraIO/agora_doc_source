@@ -63,7 +63,7 @@ The teacher can draw and make notes on the whiteboard. Flexible Classroom suppor
 
 Flexible Classroom supports the following teaching tools to enhance interactivity:
 
-- Cloud storage: Teaching institutions and teachers can upload files to classrooms to help students better understand the class. Supported formats include PDF, PPT, and DOC. Flexible Classroom also supports pre-downloading courseware to the local before the classroom starts and displaying it on the whiteboard, which enhances the teaching experience.
+- Cloud storage: Teaching institutions and teachers can upload files to classrooms to help students better understand the class. Supported formats include PPT, PPTX, DOC, DOCX, PDF, MP3, MP4, PNG, JPG, and GIF. Flexible Classroom also supports pre-downloading a file to the local before the classroom starts and displaying it on the whiteboard, which enhances the teaching experience.
 - Rewards: Teachers can reward students with virtual credits, such as stars and trophies, for good performance during the class.
 - User list: Display the status of all users in the classroom, such as whether the user is "on stage", whether the camera and microphone are on or off, the number of rewards. With the user list, the teacher and teaching assistant can ask students to speak up "on stage, grant the permission of drawing on the whiteboard to students, switch on and off the camera and microphone of students, give rewards, and kick a user out of the classroom.
 - Answer selector: This tool is applicable to scenarios where the teacher asks a single-choice or multiple-choice question and requests the whole class to answer the question together. The teacher can set up the choices and the correct answer, and then trigger answering. The teacher can see the number of students who have submitted an answer and the percentage that are correct in real time.
@@ -123,12 +123,11 @@ Agora provides the Flexible Classroom cloud service for classroom and user manag
 
 To ensure best end-user experience, Agora highly recommends using Flexible Classroom on the latest version of Desktop Chrome. For detailed browser support, see the following list:
 
-- Desktop:
-  - Windows: Chrome 89 or later
-  - macOS:
-      - Safari 13 or later
-      - Chrome 89 or later
-- Mobile: As of v2.1.0, students can join a lecture hall in Flexible Classroom simply by clicking on a shared webpage link within some mobile social applications that use a web view.
+- Windows: Chrome 89 or later
+- macOS:
+  - Safari 13 or later
+  - Chrome 89 or later
+- Apple iPad: Safari and Chrome on Apple iPad 10.0 or later
 
 ## Pricing
 
