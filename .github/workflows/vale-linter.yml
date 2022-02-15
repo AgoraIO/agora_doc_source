@@ -13,10 +13,12 @@ jobs:
             - name: Vale
               uses: errata-ai/vale-action@v1.4.3
               with:
+                  # Use the config that only lints markdown files for now
+                  config: https://github.com/AgoraDoc/doc_source/blob/master/.vale-md.ini
                   # Only lint the modified files
                   # files: __onlyModified
                   # Only lint EN files
-                  # files: en-US/markdown/
+                  # files: en-US/
 
                   # Only lint modified lines
                   # Currently cannot be used together with the files setting

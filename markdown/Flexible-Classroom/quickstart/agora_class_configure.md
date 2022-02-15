@@ -31,7 +31,7 @@
         - `ramAccessSecret`: 阿里云临时访问密钥 STS AK 的 `AccessKeySecret`。仅适用于灵动课堂 1.1.0 及之后版本。
         - `roleArn`: 阿里云 OSS 临时授权访问的角色 ARN。仅适用于灵动课堂 1.1.0 及之后版本。
         - `roleSessionName`: 阿里云 OSS 标识临时访问凭证的名称。仅适用于灵动课堂 1.1.0 及之后版本。
-          <div class="alert info">对于如何获取这些信息，请查看<a href="https://help.aliyun.com/product/31815.html?spm=a2c4g.11186623.3.1.711a65d3R4TYEh" target="_blank">阿里云 OSS 官方文档</a>。</div>
+            <div class="alert info">对于如何获取这些信息，请查看<a href="https://help.aliyun.com/product/31815.html?spm=a2c4g.11186623.3.1.711a65d3R4TYEh" target="_blank">阿里云 OSS 官方文档</a>。</div>
     - 如果你使用 Amazon S3，填写以下信息：
         - `region`: Amazon S3 中创建 Bucket 时指定的数据中心所在区域。
         - `endpoint`: Amazon S3 的访问域名，例如 `s3.us-east-2.amazonaws.com`。
@@ -39,7 +39,7 @@
         - `folder`: Amazon S3 中的资源存放路径，例如 `whiteboard`。
         - `accessKey`: Amazon S3 提供的访问密钥中的 Access Key，用于识别访问者的身份。
         - `secretKey`: Amazon S3 提供的访问密钥中的 Secret Key，用于验证签名的密钥。
-          <div class="alert info">对于如何获取这些信息，请查看<a href="https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/Welcome.html" target="_blank">Amazon S3 官方文档</a>。</div>
+            <div class="alert info">对于如何获取这些信息，请查看<a href="https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/Welcome.html" target="_blank">Amazon S3 官方文档</a>。</div>
 
 ## 配置录制功能
 
