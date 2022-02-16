@@ -74,7 +74,7 @@ Classroom SDK 退出回调。
 
 Regions.
 
-| Attributes | Description |
+| Properties | Description |
 | :--- | :----------------- |
 | `CN` | Mainland China. |
 | `NA` | North America. |
@@ -85,7 +85,7 @@ Regions.
 
 退出 Classroom SDK 原因。
 
-| Attributes | Description |
+| Properties | Description |
 | :--- | :----------------- |
 | `                         Normal` | 正常退出。 |
 | `                    kickOut` | The connection is aborted. |
@@ -94,7 +94,7 @@ Regions.
 
 The role of the user in the classroom. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
-| Attributes | Description |
+| Properties | Description |
 | :------------------------ | :---------- |
 | `student` | `2`: A student. |
 
@@ -102,7 +102,7 @@ The role of the user in the classroom. Set in [AgoraEduLaunchConfig](#agoraedula
 
 The classroom type. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
-| Attributes | Description |
+| Properties | Description |
 | :---------------------- | :----------------------------------------------------------- |
 | `oneToOne` | `0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student. |
 | `small` | `2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
@@ -147,7 +147,7 @@ The media stream encryption configuration. Used in [AgoraEduMediaOptions](#agora
 
 The classroom launching configuration. Used in [launch](#launch).
 
-| Attributes | Description |
+| Properties | Description |
 | :--------------------------- | :----------------------------------------------------------- |
 | `userName` | 用户名，String 型。 The user name for display in the classroom. The string length must be less than 64 bytes. |
 | `userUuid` | 用户 ID，String 型。 This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
