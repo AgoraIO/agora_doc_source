@@ -14,7 +14,7 @@ Flexible Classroom supports the following teaching scenarios:
 
 - One-to-one Classroom: An online teacher gives an exclusive lesson to only one student.
 - Small Classroom: A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. The size of a Small Classroom is limited to 200.
-- Lecture Hall: A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. The size of a Lecture Hall is limited to 5000.
+- Lecture Hall: A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. The size of a Small Classroom is limited to 200.
 
 ## Classroom demonstation
 
@@ -53,7 +53,7 @@ Flexible Classroom supports the following teaching tools to enhance interactivit
 - Cloud storage: Teaching institutions and teachers can upload files to classrooms to help students better understand the class. Supported formats include PDF, PPT, and DOC. Flexible Classroom also supports pre-downloading courseware to the local before the classroom starts and displaying it on the whiteboard, which enhances the teaching experience.
 - Rewards: Teachers can reward students with virtual credits, such as stars and trophies, for good performance during the class.
 - User list: Display the status of all users in the classroom, such as whether the user is "on stage", whether the camera and microphone are on or off, the number of rewards. With the user list, the teacher and teaching assistant can ask students to speak up "on stage, grant the permission of drawing on the whiteboard to students, switch on and off the camera and microphone of students, give rewards, and kick a user out of the classroom.
-- Answer selector: This tool is applicable to scenarios where the teacher asks a single-choice or multiple-choice question and requests the whole class to answer the question together. The teacher can set up the choices and the correct answer, and then trigger answering. The teacher can see the number of students who have submitted an answer and the percentage that are correct in real time.
+- Answer selector: This tool is applicable to scenarios where the teacher asks a single-choice or multiple-choice question and requests the whole class to answer the question together. The teacher can set up the choices and the correct answer, and then trigger answering. 学生端收到题目选项后可进行选择。 The teacher can see the number of students who have submitted an answer and the percentage that are correct in real time.
 - Polling: This tool is applicable to scenarios where the teacher wants to get feedback from the whole class. The teacher can set up the subject, choices, and start and end time of the poll. Flexible Classroom also provides live visualization of polling results.
 
 ### Screen sharing
@@ -62,11 +62,11 @@ Teachers can share their screens, windows, or browser tabs with students in clas
 
 ### Recording and replay
 
-Teachers can start recording in the classroom. Flexible Classroom uses [Web Page Recording](/en/cloud-recording/cloud_recording_webpage_mode?platform=RESTful) to record the audio, video, and whiteboard content in a single file and provides a link for students after the recording finishes.
+Teachers can start recording in the classroom. Flexible Classroom uses Web Page Recording/en/cloud-recording/cloud_recording_webpage_mode?platform=RESTful to record the audio, video, and whiteboard content in a single file and provides a link for students after the recording finishes. 录制结束后可提供回放链接供学生课后复习。[](
 
 ### Customizing the classroom UI
 
-With UIKit, developers have the freedom to customize the user interfaces, such as changing colors, changing buttons, adjusting layouts, adding logos, even if they do not understand the business logic of the flexible classroom.
+灵动课堂提供 UIKit。 With UIKit, developers have the freedom to customize the user interfaces, such as changing colors, changing buttons, adjusting layouts, adding logos, even if they do not understand the business logic of the flexible classroom.
 
 ### Embedding custom plugins in classrooms
 
@@ -90,7 +90,7 @@ Agora provides the Flexible Classroom cloud service for classroom and user manag
 ## Supported platforms
 
 | Classroom roles | Android<sup>1</sup> | iOS<sup>2</sup> | Web<sup>3</sup> | macOS<sup>4</sup> | Windows<sup>5</sup> |
-| :------- | :------- | :--- | :--- | :----- | :------- |
+| :------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- | :--------------------------- |
 | Teachers | <font color="red">✘</font> | <font color="red">✘</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
 | Students | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
 | Teaching assistants | <font color="red">✘</font> | <font color="red">✘</font> | <font color="green">✔</font> | <font color="green">✔</font> | <font color="green">✔</font> |
