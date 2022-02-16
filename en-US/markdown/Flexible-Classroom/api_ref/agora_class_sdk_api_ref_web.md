@@ -13,7 +13,7 @@ static config(params: AgoraEduSDKConfigParams):void
 Configures the SDK.
 
 | Parameter | Description |
-| :------- | :----------------------------------------------------------- |
+| :------- | :------------------------------------------------- |
 | `params` | 全局配置参数，详见 [ConfigParams](#configparams)。 |
 
 ### launch
@@ -27,7 +27,7 @@ Launches a classroom.
 **Parameter**
 
 | Parameter | Description |
-| :------- | :----------------------------------------------------------- |
+| :------- | :--------------------------------------------------------------------------- |
 | `dom` | See [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document) for details. |
 | `option` | The classroom launching configuration. See [LaunchOption](#launchoption). |
 
@@ -45,7 +45,7 @@ export type AgoraEduSDKConfigParams = {
 ```
 
 | Properties | Description |
-| :------- | :----------------------------------------------------------- |
+| :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `appId` | (Required) Agora App ID.
  |
 | `region` | （选填）课堂所在区域。 All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
@@ -73,15 +73,15 @@ export type LaunchOption = {
   recordUrl?: string;
   extApps?: IAgoraExtApp[];
   region?: AgoraRegion;
-  widgets?: { [key: string]: IAgoraWidget };
-  userFlexProperties?: { [key: string]: any };
+    widgets?: { [key: string]: IAgoraWidget };
+    userFlexProperties?: { [key: string]: any };
   mediaOptions?: MediaOptions;
   latencyLevel?: 1 | 2;
-    }
+};
 ```
 
 | Parameter | Description |
-| :----------------------- | :----------------------------------------------------------- |
+| :----------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `rtmToken` | The RTM token used for authentication. |
 | `userUuid` | (Required) The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
@@ -115,7 +115,7 @@ export type MediaOptions = {
 Media options.
 
 | Parameter | Description |
-| :-------------------------------- | :----------------------------------------------------------- |
+| :-------------------------------- | :------------------------------------------------------------------------------------------------- |
 | `cameraEncoderConfiguration` | The encoding configuration of the video stream captured by the camera. See [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration). |
 | `screenShareEncoderConfiguration` | The encoding configuration of the screen-sharing stream. See [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration). |
 | `encryptionConfig` | The media stream encryption configuration. See [MediaEncryptionConfig](#mediaencryptionconfig). |
@@ -128,7 +128,7 @@ export interface EduVideoEncoderConfiguration {
   height: number;
   frameRate: number;
   bitrate: number;
-}
+    }
 ```
 
 Video encoder configurations.
@@ -147,15 +147,15 @@ Video encoder configurations.
 
 ```typescript
 export declare interface MediaEncryptionConfig {
-  mode: MediaEncryptionMode,
-  key: string
-    }
+    mode: MediaEncryptionMode,
+    key: string
+}
 ```
 
 The media stream encryption configuration. Used in [MediaOptions](#mediaoptions).
 
 | Parameter | Description |
-| :----- | :----------------------------------------------------------- |
+| :----- | :----------------------------------------------------------------------------------------------------------------------- |
 | `mode` | Encryption mode. See [MediaEncryptionMode](#mediaencryptionmode). All users in the same classroom must use the same encryption mode and encryption key. |
 | `key` | The encryption key. |
 
@@ -167,8 +167,8 @@ export enum MediaEncryptionMode {
   AES_128_ECB = 2,
   AES_256_XTS = 3,
   AES_128_GCM = 5,
-  AES_256_GCM = 6
-}
+    AES_256_GCM = 6
+    }
 ```
 
 Encryption modes. Used in [MediaEncryptionConfig](#mediaencryptionconfig).
@@ -217,7 +217,7 @@ export type CourseWareList = CourseWareItem[]
 `CourseWareList` 为 `CourseWareItem` 对象组成的数组。 `CourseWareItem` 包含以下参数：
 
 | Parameter | Description |
-| :------------- | :----------------------------------------------------------- |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `resourceName` | The file name for display in the classroom. The string length must be less than 64 bytes. |
 | `resourceUuid` | The file ID. This is the unique identifier of a file. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
 | `ext` | The file suffix. |
@@ -233,7 +233,7 @@ export enum EduRoleTypeEnum {
   audience = 0,
   teacher = 1,
   student = 2,
-  assistant = 3
+    assistant = 3
 }
 ```
 
@@ -252,14 +252,14 @@ The role of the user in the classroom. Set in [LaunchOption](#launchoption).
 export enum EduRoomTypeEnum {
   Room1v1Class = 0,
   RoomBigClass = 2,
-  RoomSmallClass = 4
+    RoomSmallClass = 4
 }
 ```
 
 The classroom type. Set in [LaunchOption](#launchoption).
 
 | Parameter | Description |
-| :--------------- | :----------------------------------------------------------- |
+| :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `Room1v1Class` | `0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student. |
 | `RoomBigClass` | `2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
 | `RoomSmallClass` | `4`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. |
