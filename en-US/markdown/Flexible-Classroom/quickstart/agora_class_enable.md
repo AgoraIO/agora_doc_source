@@ -31,6 +31,7 @@ Follow these steps to enable the Flexible Classroom service in Agora Console:
 ## Next steps
 
 After enabling the Flexible Classroom service, you can read the following documents to quickly launch and join a flexible classroom:
+
 - [Launch a Flexible Classroom (Web)](/en/agora-class/agora_class_quickstart_web?platform=Web)
 - [Launch a Flexible Classroom (Android)](/en/agora-class/agora_class_quickstart_android?platform=Android)
 - [Launch a Flexible Classroom (iOS)](/en/agora-class/agora_class_quickstart_ios?platform=iOS)
