@@ -37,10 +37,10 @@ Follow these steps to launch a flexible classroom:
    ```xml
    <?xml version="1.0" encoding="utf-8"?>
    <resources>
-           <string name="agora_app_id" translatable="false">Agora App ID</string>
-           <string name="agora_app_cert" translatable="false">Agora App Certificate</string>
-           <string name="agora_api_host" translatable="false">Agora API Host</string>
-           <string name="agora_report_host" translatable="false">Report API Host</string>
+       <string name="agora_app_id" translatable="false">Agora App ID</string>
+       <string name="agora_app_cert" translatable="false">Agora App Certificate</string>
+       <string name="agora_api_host" translatable="false">Agora API Host</string>
+       <string name="agora_report_host" translatable="false">Report API Host</string>
    </resources>
    ```
 
