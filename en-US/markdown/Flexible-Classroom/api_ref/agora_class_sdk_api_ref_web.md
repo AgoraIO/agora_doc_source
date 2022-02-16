@@ -44,7 +44,7 @@ export type AgoraEduSDKConfigParams = {
 };
 ```
 
-| Attributes | Description |
+| Properties | Description |
 | :------- | :----------------------------------------------------------- |
 | `appId` | (Required) Agora App ID.
  |
