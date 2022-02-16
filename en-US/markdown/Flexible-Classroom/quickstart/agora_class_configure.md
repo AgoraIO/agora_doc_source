@@ -66,6 +66,7 @@ An example of the `recordingConfig` JSON object:
 ### Storage configuration
 
 Pass in the `storageConfig` JSON object for storing recorded files. For parameter descriptions, see <a href="/cn/cloud-recording/cloud_recording_api_start?platform=RESTful#storageConfig" target="_blank">storageConfig</a>.
+
 - `endpoint`:（必填）String 类型，由 Bucket 名称和访问域名拼成的完整路径。 Suppose your bucket name is `"agora-whiteboard"` and your access domain is `"oss-cn-shanghai.aliyuncs.com"`, set `endpoint` as `"https://agora-whiteboard.oss-cn-shanghai. aliyuncs.com"`.
 - `fileNamePrefix`:（选填）String 数组，指定录制文件在第三方云存储中的存储位置。 你可使用变量来指定一个动态路径。 你发起录制时，灵动课堂云服务会用真实的值替换变量。 详见[如何指定动态存储路径](/cn/live-streaming/faq/agora_class_dynamic_addr)。
 
@@ -94,6 +95,7 @@ An example of the `storageConfig` JSON object:
 2. 在环信开发者管理后台创建应用</a>，参考<a href="https://docs-im.easemob.com/im/quickstart/guide/experience#创建应用" target="_blank"></a>
 3. 在环信开发者管理后台获取以下信息后填写在 Agora 控制台**灵动课堂配置**页面中。 ![](
    https://web-cdn.agora.io/docs-files/1624525178299)
+
    - `apiHost`:（必填）环信 REST API 访问地址，例如 a1.easemob.com 或 a1.easecdn.com，你可在环信开发者管理后台获取。
    - `orgName`:（必填）企业的唯一标识，你在环信开发者管理后台注册账号时填写的企业 ID。
    - `appName`:（必填）企业下 App 的唯一标识，你在环信开发者管理后台创建应用时填写的应用名称。
