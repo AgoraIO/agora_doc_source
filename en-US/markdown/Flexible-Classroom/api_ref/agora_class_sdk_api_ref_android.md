@@ -15,7 +15,7 @@ Globally configures the SDK.
 **Parameter**
 
 | Parameter | Description |
-| :------------------ | :----------------------------------------------------------- |
+| :------- | :--------------------------------------------------------------- |
 | `config` | The SDK global configuration. See [AgoraClassSdkConfig](#agoraclasssdkconfig). |
 
 ### launch
@@ -31,7 +31,7 @@ Launches a flexible classroom.
 **Parameter**
 
 | Parameter | Description |
-| :--------- | :----------------------------------------------------------- |
+| :--------- | :------------------------------------------------------------------------------------------- |
 | `context` | The context of the app. |
 | `config` | The classroom launching configuration. See [AgoraEduLaunchConfig](#agoraedulaunchconfig). |
 | `callback` | The SDK uses the [AgoraEduLaunchCallback](#agoraedulaunchcallback) class to report events related to classroom launching to the app. |
@@ -45,12 +45,13 @@ The `AgoraEduClassRoom` class.
 ```java
 public static void replaceClassActivity(int classRoomType, Class<extend BaseClassActivity> activity)
 ```
+
 如果开发者高度自定义课堂 UI，可调用此方法替换课堂类型所对应的 Activity。
 
 **Parameter**
 
 | Parameter | Description |
-| :------ | :----------------------------------------------------------- |
+| :-------------- | :-------------- |
 | `classRoomType` | The classroom type. |
 | </`activity`> | 课堂 Activity。 |
 
@@ -92,7 +93,7 @@ public class AgoraClassSdkConfig {
 The SDK global configuration. Used in [setConfig](#setconfig).
 
 | Properties | Description |
-| :-------- | :----------------------------------------------------------- |
+| :------ | :------------- |
 | `appId` | // Agora App ID
  |
 
@@ -120,11 +121,11 @@ class AgoraEduLaunchConfig(val userName: String,
 The classroom launching configuration. Used in [launch](#launch).
 
 | Properties | Description |
-| :------------------- | :----------------------------------------------------------- |
+| :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", "," |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
-| `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", "," |
 | `roleType` | The role of the user in the classroom. See  [AgoraEduRoleType](#agoraeduroletype). |
 | `roomType` | The classroom type. See [AgoraEduRoomType](#agoraeduroomtype). |
 | `rtmToken` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/en/agora-class/agora_class_prep#step5). |
@@ -184,7 +185,7 @@ public enum AgoraEduRoomType {
 The classroom type. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Properties | Description |
-| :---------------------- | :----------------------------------------------------------- |
+| :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `AgoraEduRoomType1V1` | `0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student. |
 | `AgoraEduRoomTypeBig` | `2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
 | `AgoraEduRoomTypeSmall` | `4`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. |
@@ -201,7 +202,7 @@ data class StreamState (
 用于控制学生上讲台后是否默认有发音视频流的权限。 Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
-| :----------- | :----------------------------------------------------------- |
+| :----------- | :------------------------------------------------------------------------------- |
 | `videoState` | 是否有发视频流的权限：<li>`0`: (Default) Do not send the video stream.</li><li>`1`: Send the video stream.</li> |
 | `audioState` | 是否有发音频流的权限：<li>`0`: (Default) Do not send the audio stream.</li><li>`1`: Send the audio stream.</li> |
 
@@ -230,8 +231,8 @@ class AgoraEduMediaOptions(val encryptionConfigs: AgoraEduMediaEncryptionConfigs
 Media options. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Parameter | Description |
-| :----------------- | :----------------------------------------------------------- |
-| `encryptionConfig` | The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig) for details. |
+| :----------------- | :------------------------------------------------------------------------------------- |
+| `encryptionConfig` | The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig )for details. |
 
 ### AgoraEduMediaEncryptionConfig
 
@@ -270,7 +271,7 @@ enum class AgoraEduEncryptMode(val value: Int) {
 The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig) for details.
 
 | Parameter | Description |
-| :------------ | :-------------------------- |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
 | `NONE` | No encryption. |
 | `AES_128_XTS` | 128-bit AES encryption, XTS mode. |
 | `AES_128_ECB` | 128-bit AES encryption, ECB mode. |
