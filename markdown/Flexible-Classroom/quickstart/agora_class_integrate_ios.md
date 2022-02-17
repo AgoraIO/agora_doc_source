@@ -127,7 +127,7 @@ spec.dependency "AgoraEduContext", '2.0.0'
 
 <div class="alert info">发版分支为 release/apaas/x.y.z。x.y.z 为版本号。你可在<a href="/cn/agora-class/release_agora_class_ios?platform=iOS">发版说明</a>中获取最新版本号。</div>
 
-4. 在你的项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 项目中的 `AgoraClassroomSDK_iOS.podspec`、`AgoraEduContext.podspec`、`AgoraEduUI.podspec` 和 apaas-extapp-ios 项目中的 `AgoraWidgets.podspec`、`ChatWidget.podspec`、`AgoraExtApps.podspec` 以及其它依赖的库。
+1. 在你的项目的 `Podfile` 文件中添加如下代码引用依赖库。
 
    ```
    # Third-party libs

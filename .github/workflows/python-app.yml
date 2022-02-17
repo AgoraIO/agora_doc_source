@@ -1,0 +1,40 @@
+# GitHub CI build pipeline
+name: Awesome JSON CI build
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        cd xml2json
+        python -m pip install --upgrade pip
+        pip install coverage
+        if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Run json creation
+      run: |
+        cd xml2json
+        python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag flutter --json_file flutter_newer.json --sdk_type sdk --remove_sdk_type sdk-ng --defined_path flutter
+    - name: Upload JSON to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: xml2json/flutter_newer.json
+        asset_name: CommentTemplate
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "Comment release"
