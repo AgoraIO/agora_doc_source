@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcengineconfig_ng">
     <title><ph keyref="RtcEngineConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Definition of <apiname keyref="RtcEngineConfig" />.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Configurations for the <apiname keyref="RtcEngineConfig" /> instance.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -98,13 +98,14 @@
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcEngineConfig: NSObject
- @property (copy, nonatomic) NSString * _Nullable appId;
- @property (assign, nonatomic) AgoraChannelProfile channelProfile;
- @property (assign, nonatomic) AgoraAudioScenario audioScenario;
- @property (assign, nonatomic) AgoraAreaCodeType areaCode;
- @property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
- @property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate&gt;&gt;* _Nullable mediaFilterExtensions;
- @property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate&gt; _Nullable eventDelegate;
+
+@property (copy, nonatomic) NSString * _Nullable appId;
+@property (assign, nonatomic) AgoraChannelProfile channelProfile;
+@property (assign, nonatomic) AgoraAudioScenario audioScenario;
+@property (assign, nonatomic) AgoraAreaCodeType areaCode;
+@property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
+@property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate>>* _Nullable mediaFilterExtensions;
+@property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate> _Nullable eventDelegate;
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct RtcEngineContext {
   IRtcEngineEventHandler* eventHandler;
@@ -140,7 +141,7 @@
                 <plentry>
                     <pt props="windows ios mac">appId</pt>
                     <pt props="android">mAppId</pt>
-                    <pd id="appid">The App ID issued by Agora for your project.  Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <apiname keyref="IRtcEngine" /> instance. To change your App ID, call <xref keyref="release" /> to destroy the current <apiname keyref="IRtcEngine" /> instance and then create a new one.</pd>
+                    <pd id="appid">The App ID issued by Agora for your project.  Only users in apps with the same App ID can join the same channel and communicate with each other. An App ID can only be used to create one <apiname keyref="IRtcEngine" /> instance. To change your App ID, call <xref keyref="release" /> to destroy the current <apiname keyref="IRtcEngine" /> instanceand then create a new one.</pd>
                 </plentry>
                 <plentry props="android windows">
                     <pt props="windows">context</pt>
@@ -156,9 +157,9 @@
                 <plentry props="android windows">
                     <pt props="windows">enableAudioDevice</pt>
                     <pt props="android">mEnableAudioDevice</pt>
-                    <pd>Whether to allow the SDK to use audio devices:<ul>
-                            <li><codeph><ph keyref="true" /></codeph>: (Default) Allow the SDK to use audio devices.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: Do not allow the SDK to use audio devices.</li>
+                    <pd>Sets whether to allow the SDK to use audio devices:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: (Default) Allow the SDK to use audio devices.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not allow the SDK to use audio devices.</li>
                         </ul></pd>
                     <pd>
                         <note type="attention">
@@ -174,15 +175,7 @@
                 <plentry>
                     <pt props="windows ios mac">audioScenario</pt>
                     <pt props="android">mAudioScenario</pt>
-                    <pd>The audio application scenarios. For details, see <xref keyref="AUDIO_SCENARIO_TYPE" />.</pd>
-                    <pd>
-                        <note type="attention" props="hide">Agora recommends that you use the following scenarios.<ul>
-                                    <li><ph keyref="AUDIO_SCENARIO_DEFAULT" />(0).</li>
-                                    <li><ph keyref="AUDIO_SCENARIO_GAME_STREAMING" />(3).</li>
-                                    <li><ph keyref="AUDIO_SCENARIO_HIGH_DEFINITION" />(6).</li>
-                                </ul>
-                        </note>
-                    </pd>
+                    <pd conkeyref="setAudioProfile/scenario-ng"/>
                 </plentry>
                 <plentry>
                     <pt props="windows ios mac">areaCode</pt>
@@ -193,14 +186,14 @@
                     <pt props="windows ios mac">logConfig</pt>
                     <pt props="android">mLogConfig</pt>
                     <pd>
-                        <p>The log files that the SDK outputs. For details, see <xref keyref="LogConfig" />.</p>
-                        <p>By default, the SDK outputs four log files: <codeph>agorasdk.log</codeph>, <codeph>agorasdk1.log</codeph>, <codeph>agoraapi.log</codeph>, and <codeph>agoraapi1.log</codeph>.  The <codeph>agorasdk.log</codeph> and <codeph>agorasdk1.log</codeph> files each have a default size of 1024 KB, and the <codeph>agoraapi.log</codeph> and <codeph>agoraapi1.log</codeph> files each have a default size of 2,048 KB.  These log files are encoded in UTF-8.</p>
+                        <p>The log files that the SDK outputs. See <xref keyref="LogConfig"/>.</p>
+                        <p>By default, the SDK outputs four log files: <codeph>agorasdk.log</codeph>, <codeph>agorasdk1.log</codeph>, <codeph>agoraapi.log</codeph>, and <codeph>agoraapi1.log</codeph>. The <codeph>agorasdk.log</codeph> and <codeph>agorasdk1.log</codeph> files each have a default size of 1024 KB, and the <codeph>agoraapi.log</codeph> and <codeph>agoraapi1.log</codeph> files each have a default size of 2,048 KB.  These log files are encoded in UTF-8.</p>
                         <p>The SDK writes the latest logs in <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>. When <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> is full, the SDK deletes <codeph>agorasdk1.log</codeph> or <codeph>agoraapi1.log</codeph>, renames <codeph>agorasdk.log</codeph> to <codeph>agorasdk1.log</codeph> and <codeph>agoraapi.log</codeph> to <codeph>agorasapi1.log</codeph>, and creates a new <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph> to record the latest logs.</p>
                     </pd>
                 </plentry>
                 <plentry props="android">
                     <pt>mExtensionList</pt>
-                    <pd>Extension libraries</pd>
+                    <pd>Extension libraries.</pd>
                 </plentry>
                 <plentry props="android ios mac">
                     <pt props="android">mExtensionObserver</pt>
@@ -210,7 +203,7 @@
                 <plentry props="ios mac">
                     <pt>mediaFilterExtensions</pt>
                     <pd>
-                         The <xref keyref="AgoraMediaFilterExtensionDelegate" /> instance.</pd>
+                                                 The <xref keyref="AgoraMediaFilterExtensionDelegate" /> instance.</pd>
                 </plentry>
             </parml>
         </section>

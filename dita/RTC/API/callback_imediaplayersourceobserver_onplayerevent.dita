@@ -13,16 +13,19 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">void onPlayerEvent(Constants.MediaPlayerEvent eventCode);
+                <codeblock props="android" outputclass="language-java">void onPlayerEvent(Constants.MediaPlayerEvent eventCode, long elapsedTime, String message);
 </codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
-          didOccurEvent:(AgoraMediaPlayerEvent)event;
+                <codeblock props="ios mac" outputclass="language-objectivec">(void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
+              didOccurEvent:(AgoraMediaPlayerEvent)eventCode
+                elapsedTime:(NSInteger)elapsedTime
+                    message:(NSString *_Nullable)message;
 </codeblock>
-                <codeblock props="windows" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT event) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
+</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
             </p>
         </section>
         <section id="detailed_desc">
@@ -38,9 +41,16 @@
                     <pd>详见 <xref keyref="IMediaPlayer"/>。</pd>
                 </plentry>
                 <plentry>
-                    <pt props="ios mac windows">event</pt>
-                    <pt props="android">eventCode</pt>
-                    <pd>播放器事件，详见 <xref keyref="MEDIA_PLAYER_EVENT"/>。</pd>
+                    <pt>eventCode</pt>
+                    <pd>播放器事件，详见 <xref keyref="MEDIA_PLAYER_EVENT" />。</pd>
+                </plentry>
+                <plentry>
+                    <pt>elapsedTime</pt>
+                    <pd>发生事件的时间 (毫秒)。</pd>
+                </plentry>
+                <plentry>
+                    <pt>message</pt>
+                    <pd>事件的信息。</pd>
                 </plentry>
             </parml>
         </section>
