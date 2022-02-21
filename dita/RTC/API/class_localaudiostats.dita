@@ -11,14 +11,12 @@
   public int sentSampleRate;
   public int sentBitrate;
   public int internalCodec;
-  public int txPacketLossRate;
 };</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalAudioStats : NSObject
 @property(assign, nonatomic) NSUInteger numChannels;
 @property(assign, nonatomic) NSUInteger sentSampleRate;
 @property(assign, nonatomic) NSUInteger sentBitrate;
 @property(assign, nonatomic) NSUInteger internalCodec;
-@property(assign, nonatomic) NSInteger txPacketLossRate;
 
 @end</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">struct LocalAudioStats
@@ -27,7 +25,6 @@
   int sentSampleRate;
   int sentBitrate;
   int internalCodec;
-  int txPacketLossRate;
 };</codeblock>
             </p>
             <p props="rtc" outputclass="codeblock">
@@ -87,7 +84,7 @@
   <pt>sentBitrate</pt>
   <pd>发送本地音频的码率平均值，单位为 Kbps。</pd>
        </plentry>
-       <plentry>
+       <plentry props="rtc">
                     <pt>txPacketLossRate</pt>
                     <pd>弱网对抗前本端到 Agora 边缘服务器的丢包率 (%)。</pd>
                 </plentry>
