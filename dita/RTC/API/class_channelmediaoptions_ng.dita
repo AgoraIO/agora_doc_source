@@ -17,6 +17,7 @@
   public Boolean publishMediaPlayerVideoTrack;
   public Integer publishMediaPlayerId;
   public Boolean publishAudioTrack;
+  public Integer publishCustomAudioSourceId;
   public Boolean autoSubscribeAudio;
   public Boolean autoSubscribeVideo;
   public Boolean enableAudioRecordingOrPlayout;
@@ -37,6 +38,7 @@
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerVideoTrack;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishMediaPlayerId;
+@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishCustomAudioSourceId;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeAudio;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeVideo;
@@ -60,6 +62,7 @@
   Optional&lt;bool> publishMediaPlayerAudioTrack;
   Optional&lt;bool> publishMediaPlayerVideoTrack;
   Optional&lt;bool> publishTrancodedVideoTrack;
+  Optional&lt;int> publishCustomAudioSourceId;
   Optional&lt;bool> autoSubscribeAudio;
   Optional&lt;bool> autoSubscribeVideo;
   Optional&lt;bool> enableAudioRecordingOrPlayout;
@@ -101,6 +104,10 @@
                             <li><codeph><ph keyref="true"/></codeph>：发布采集到的音频。</li>
                             <li><codeph><ph keyref="false"/></codeph>：不发布采集到的音频。</li>
                         </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>publishCustomAudioSourceId</pt>
+                    <pd>待发布的自定义音频源的 ID。默认值为 0。</pd>
                 </plentry>
                 <plentry>
                     <pt>publishScreenTrack</pt>
