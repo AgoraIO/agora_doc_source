@@ -11,6 +11,9 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+        </p>
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract String getCallId();</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (NSString * _Nullable)getCallId;</codeblock>
@@ -38,10 +41,14 @@
         </section>
         <section id="return_values">
    <title>返回值</title>
-   <p props="android ios mac electron unity flutter">通话 ID。</p>
+   <p props="android ios mac electron flutter">通话 ID。</p>
    <ul props="windows">
        <li>0: 方法调用成功</li>
        <li>&lt; 0: 方法调用失败</li>
    </ul>
+            <ul props="unity">
+                <li>方法调用成功则返回当前的通话 ID。</li>
+                <li>方法调用失败则返回空字符串。</li>
+            </ul>   
         </section></refbody>
 </reference>

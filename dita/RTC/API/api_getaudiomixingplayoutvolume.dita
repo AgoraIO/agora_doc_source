@@ -11,6 +11,9 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+        </p>
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int getAudioMixingPlayoutVolume();</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)getAudioMixingPlayoutVolume;</codeblock>
@@ -29,7 +32,8 @@
                 </dlentry>
             </dl>
    <p>该方法获取混音的音乐文件本地播放音量，方便排查音量相关问题。</p>
-            <note type="attention">你需要在调用 <apiname keyref="startAudioMixing2" /> 并收到 <apiname keyref="onAudioMixingStateChanged" />(<codeph>PLAY</codeph>) 回调后调用该方法。</note>
+            <note type="attention"><p props="native">你需要在调用 <apiname keyref="startAudioMixing2" /> 并收到 <apiname keyref="onAudioMixingStateChanged" />(<codeph>PLAY</codeph>) 回调后调用该方法。</p>
+                <p props="unity">请在频道内调用该方法。</p></note>
         </section>
         <section id="return_values">
    <title>返回值</title>

@@ -11,6 +11,9 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+        </p>
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract int enableDualStreamMode(boolean enabled);</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableDualStreamMode:(BOOL)enabled;</codeblock>
@@ -21,7 +24,8 @@
                 <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDualStreamMode(bool enabled);</codeblock>
         </p>
         </section>
-        <section id="detailed_desc"><p>你可以在发流端调用该方法开启或关闭双流模式。双流指视频大流和视频小流： <ul>
+        <section id="detailed_desc"><p props="native">你可以在发流端调用该方法开启或关闭双流模式。</p><p props="unity">该方法设置单流（默认）或者双流模式。</p>
+            <p>双流指视频大流和视频小流： <ul>
                     <li>视频大流：高分辨率、高帧率的视频流。</li>
                     <li>视频小流：低分辨率、低帧率的视频流。</li>
                 </ul></p><p>开启双流模式后，你可以在收流端调用 <xref keyref="setRemoteVideoStreamType"/> 选择接收视频大流或视频小流。</p>
