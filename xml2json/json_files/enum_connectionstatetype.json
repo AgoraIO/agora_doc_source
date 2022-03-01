@@ -1,0 +1,23 @@
+{
+    "id": "enum_connectionstatetype",
+    "name": "ConnectionStateType",
+    "description": "Connection states.\n",
+    "parameters": [
+        {
+            "Disconnected": "1: The SDK is disconnected from the Agora edge server. The state indicates the SDK is in one of the following phases:\n      The initial state before calling the joinChannel method.\n      The app calls the leaveChannel method.\n  \n  "
+        },
+        {
+            "Connecting": "2: The SDK is connecting to the Agora edge server. This state indicates that the SDK is establishing a connection with the specified channel after the app calls joinChannel.\n      If the SDK successfully joins the channel, it triggers the connectionStateChanged callback and the connection state switches to Connected.\n      After the connection is established, the SDK also initializes the media and triggers joinChannelSuccess when everything is ready.\n  \n  "
+        },
+        {
+            "Connected": "3: The SDK is connected to the Agora edge server. This state also indicates that the user has joined a channel and can now publish or subscribe to a media stream in the channel. If the connection to the Agora edge server is lost because, for example, the network is down or switched, the SDK automatically tries to reconnect and triggers connectionStateChanged that indicates the connection state switches to Reconnecting."
+        },
+        {
+            "Reconnecting": "4: The SDK keeps reconnecting to the Agora edge server. The SDK keeps rejoining the channel after being disconnected from a joined channel because of network issues.\n      If the SDK cannot rejoin the channel within 10 seconds, it triggers connectionLost, stays in the Reconnecting state, and keeps rejoining the channel.\n      If the SDK fails to rejoin the channel 20 minutes after being disconnected from the Agora edge server, the SDK triggers the connectionStateChanged callback, switches to the Failed state, and stops rejoining the channel.\n  "
+        },
+        {
+            "Failed": "5: The SDK fails to connect to the Agora edge server or join the channel. This state indicates that the SDK stops trying to rejoin the channel. You must call leaveChannel to leave the channel.\n      You can call joinChannel to rejoin the channel.\n      If the SDK is banned from joining the channel by the Agora edge server through the RESTful API, the SDK triggers the connectionStateChanged callback.\n  "
+        }
+    ],
+    "returns": ""
+}

@@ -1,0 +1,14 @@
+{
+    "id": "api_sendstreammessage",
+    "name": "sendStreamMessage",
+    "description": "Sends data stream messages.\nSends data stream messages to all users in a channel. The SDK has the following restrictions on this method:Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 KB.Each client can send up to 6 KB of data per second.Each user can have up to five data streams simultaneously.\n   A successful method call triggers the streamMessage callback on the remote client, from which the remote user gets the stream message. A failed method call triggers the streamMessageError callback on the remote client.\n   \n       Ensure that you call createDataStreamWithConfig to create a data channel before calling this method.\n       In live streaming scenarios, this method only applies to hosts.",
+    "parameters": [
+        {
+            "streamId": "The data stream ID. You can get the data stream ID by calling createDataStreamWithConfig."
+        },
+        {
+            "message": "The message to be sent."
+        }
+    ],
+    "returns": ""
+}

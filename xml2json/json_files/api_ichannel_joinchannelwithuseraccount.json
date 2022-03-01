@@ -1,0 +1,17 @@
+{
+    "id": "api_ichannel_joinchannelwithuseraccount",
+    "name": "joinChannelWithUserAccount",
+    "description": "Joins the channel with a user account.\nOnce the user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. If you do not want to subscribe to a specified stream or all remote streams, call the mute methods accordingly.\n   \n       \n  If you are already in a channel, you cannot rejoin it with the user ID.\n  We recommend using different user accounts for different channels.\n  If you want to join the same channel from different devices, ensure that the user accounts in all devices are different.",
+    "parameters": [
+        {
+            "options": "The channel media options. For details, see ChannelMediaOptions."
+        },
+        {
+            "userAccount": "\n                        The user account. This parameter is used to identify the user in the channel for real-time audio and video engagement. You need to set and manage user accounts yourself and ensure that each user account in the same channel is unique.   The maximum length of this parameter is 255 bytes. Ensure that you set this parameter and do not set it as null. Supported characters are (89 in total):\n                                The 26 lowercase English letters: a to z.\n                                The 26 uppercase English letters: A to Z.\n                                All numeric characters: 0 to 9.\n                                Space\n                                \"!\", \"#\", \"$\", \"%\", \"&\", \"(\", \")\", \"+\", \"-\", \":\", \";\", \"<\", \"=\", \".\", \">\", \"?\", \"@\", \"[\", \"]\", \"^\", \"_\", \"{\", \"}\", \"|\", \"~\", \",\"\n                            \n                    "
+        },
+        {
+            "token": "\n    The token generated on your server for authentication. See Authenticate Your Users with Token.\n    Ensure that the App ID used for creating the token is the same App ID used by the createWithContext method for initializing the RTC engine.\n      "
+        }
+    ],
+    "returns": ""
+}

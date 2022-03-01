@@ -1,0 +1,17 @@
+{
+    "id": "api_setvoicebeautifierparameters",
+    "name": "setVoiceBeautifierParameters",
+    "description": "Sets parameters for the preset voice beautifier effects.\nCall this method to set a gender characteristic and a reverberation effect for the singing beautifier effect. This method sets parameters for the local user who sends an audio stream. After setting the audio parameters, all users in the channel can hear the effect.\n   For better voice effects, Agora recommends that you call setAudioProfile and setscenario to GameStreaming(3) and profile to MusicHighQuality(4) or MusicHighQualityStereo(5) before calling this method.\n   \n       \n  You can call this method either before or after joining a channel.\n  Do not set the profile parameter of setAudioProfile to SpeechStandard(1). Otherwise, the method does not take effect.\n  This method works best with the human voice. Agora does not recommend using this method for audio containing music.\n  After calling setVoiceBeautifierParameters, Agora recommends not calling the following methods, because they can override settings in setVoiceBeautifierParameters:\n setAudioEffectPreset\n setAudioEffectParameters\n setVoiceBeautifierPreset\n setLocalVoiceReverbPreset\n setLocalVoiceChanger\n setLocalVoicePitch\n setLocalVoiceEqualization\n setLocalVoiceReverb\n setVoiceConversionPreset",
+    "parameters": [
+        {
+            "preset": "The option for the preset audio effect:\n SINGING_BEAUTIFIER: The singing beautifier effect.\n      \n  "
+        },
+        {
+            "param1": "The gender characteristics options for the singing voice:\n 1: A male-sounding voice.\n 2: A female-sounding voice.\n      \n  "
+        },
+        {
+            "param2": "The reverberation effect options for the singing voice:\n 1: The reverberation effect sounds like singing in a small room.\n 2: The reverberation effect sounds like singing in a large room.\n 3: The reverberation effect sounds like singing in a hall.\n      \n  "
+        }
+    ],
+    "returns": ""
+}

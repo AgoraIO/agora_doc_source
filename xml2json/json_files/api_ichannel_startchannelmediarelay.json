@@ -1,0 +1,11 @@
+{
+    "id": "api_ichannel_startchannelmediarelay",
+    "name": "startChannelMediaRelay",
+    "description": "Starts relaying media streams across channels. This method can be used to implement scenarios such as co-host across channels.\nAfter a successful method call, the SDK triggers the channelMediaRelayStateChanged and channelMediaRelayEvent callbacks, and these callbacks return the state and events of the media stream relay.\n  If the channelMediaRelayStateChanged callback returns Running(2) and None(0), and the channelMediaRelayEvent callback returns SentToDestinationChannel(4), it means that the SDK starts relaying media streams between the source channel and the destination channel.\n  If the channelMediaRelayStateChanged callback returns Failure(3), an exception occurs during the media stream relay.\n       \n   \n   \n       \n  Call this method after joining the channel.\n  This method takes effect only when you are a host in a live streaming channel.\n  After a successful method call, if you want to call this method again, ensure that you call the stopChannelMediaRelay method to quit the current relay.\n  Contact support@agora.io (https://agora-ticket.agora.io/) before implementing this function.\n  We do not support string user accounts in this API.",
+    "parameters": [
+        {
+            "channelMediaRelayConfiguration": "The configuration of the media stream relay. For details, see ChannelMediaRelayConfiguration."
+        }
+    ],
+    "returns": ""
+}

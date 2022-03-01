@@ -1,0 +1,20 @@
+{
+    "id": "api_startscreencapture",
+    "name": "startScreenCapture",
+    "description": "Starts screen sharing.\nDeprecated:\n  This method is deprecated as of v2.4.0. See the following methods instead:\n      startScreenCaptureByDisplayId\n      startScreenCaptureByWindowId\n  \n       \n   \n   This method shares the whole screen, a specified window, or the specified region:\n       Whole screen: Set windowId as 0 and rect as null.\n       A specified window: Set windowId as a value other than 0. Each window has a windowId that is not 0.\n       The specified region: Set windowId as 0 and rect as a value other than null. In this case, you can share the specified region, for example by dragging the mouse or implementing your own logic. The specified region is a region on the whole screen. Currently, sharing a specified region in a specific window is not supported.\n   \n   captureFreq is the captured frame rate once the screen-sharing function is enabled. The mandatory value ranges between 1 fps and 15 fps. No matter which of the above functions you enable, the SDK returns 0 when the execution succeeds, and an error code when the execution fails.",
+    "parameters": [
+        {
+            "windowId": "The screen sharing area."
+        },
+        {
+            "captureFreq": "(Mandatory) The captured frame rate. The value ranges between 1 fps and 15 fps."
+        },
+        {
+            "rect": "Specifies the screen-sharing region: Rect. This parameter is valid when windowsId is set as 0. When rect is set as null, the whole screen is shared."
+        },
+        {
+            "bitrate": "The bitrate of the screen share."
+        }
+    ],
+    "returns": ""
+}

@@ -1,0 +1,11 @@
+{
+    "id": "api_setremotedefaultvideostreamtype",
+    "name": "setRemoteDefaultVideoStreamType",
+    "description": "Sets the default stream type of remote video streams.\nUnder limited network conditions, if the publisher has not disabled the dual-stream mode using (),the receiver can choose to receive either the high-quality video stream or the low-quality video stream. The high-quality video stream has a higher resolution and bitrate, and the low-quality video stream has a lower resolution and bitrate.enableDualStreamModefalse\n   By default, users receive the high-quality video stream. Call this method if you want to switch to the low-quality video stream. This method allows the app to adjust the corresponding video stream type based on the size of the video window to reduce the bandwidth and resources. The aspect ratio of the low-quality video stream is the same as the high-quality video stream. Once the resolution of the high-quality video stream is set, the system automatically sets the resolution, frame rate, and bitrate of the low-quality video stream.\n   The result of this method returns in the apiCallExecuted callback.\n   You can call this method either before or after joining a channel. If you call both setRemoteVideoStreamType and setRemoteDefaultVideoStreamType, the settings in setRemoteVideoStreamType take effect.",
+    "parameters": [
+        {
+            "streamType": "\n               The default stream type of the remote video, see VideoStreamType.\n               "
+        }
+    ],
+    "returns": ""
+}

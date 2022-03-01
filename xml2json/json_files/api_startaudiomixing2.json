@@ -1,0 +1,23 @@
+{
+    "id": "api_startaudiomixing2",
+    "name": "startAudioMixing",
+    "description": "Starts playing the music file.\nThis method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the audioMixingStateChanged (PLAY) callback. When the audio mixing file playback finishes, the SDK triggers the audioMixingStateChanged (STOPPED) callback on the local client.\n   \n       \n           Call this method after joining a channel. If you need to call startAudioMixing multiple times, ensure that the time interval between calling this method is more than 500 ms.\n           If the local audio mixing file does not exist, or if the SDK does not support the file format or cannot access the music file URL, the SDK returns WARN_AUDIO_MIXING_OPEN_ERROR (701).",
+    "parameters": [
+        {
+            "filePath": "The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: Android: /sdcard/emulated/0/audio.mp4, iOS: /var/mobile/Containers/Data/audio.mp4. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See supported audio formats."
+        },
+        {
+            "loopcount": "Whether to only play music files on the local client:\n          true: Only play music files on the local client so that only the local user can hear the music.\n          false: Publish music files to remote clients so that both the local user and remote users can hear the music.\n      "
+        },
+        {
+            "replace": "Whether to replace the audio captured by the microphone with a music file:\n          true: Replace the audio captured by the microphone with a music file. Users can only hear the music.\n          false: Do not replace the audio captured by the microphone with a music file. Users can hear both music and audio captured by the microphone.\n      "
+        },
+        {
+            "cycle": "The number of times the music file plays.\n          ≥ 0: The number of playback times. For example, 0 means that the SDK does not play the music file while 1 means that the SDK plays once.\n          -1: Play the music effect in an infinite loop.\n      "
+        },
+        {
+            "startPos": "The playback position (ms) of the music file."
+        }
+    ],
+    "returns": ""
+}

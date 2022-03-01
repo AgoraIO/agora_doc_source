@@ -1,0 +1,20 @@
+{
+    "id": "enum_streamsubscribestate",
+    "name": "StreamSubscribeState",
+    "description": "The subscribing state.\n",
+    "parameters": [
+        {
+            "Idle": "0: The initial subscribing state after joining the channel."
+        },
+        {
+            "NoSubscribed": "\n      1: Fails to subscribe to the remote stream. Possible reasons:\n     The remote user:\nCalls muteLocalAudioStream(true) or muteLocalVideoStream(true) to stop sending local media stream.\nCalls disableAudio or disableVideo to disable the local audio or video module.\n    Calls enableLocalAudio(false) or enableLocalVideo(false) to disable the local audio or video capture.\n    The role of the remote user is audience.\n\n     The local user calls the following methods to stop receiving remote streams:\n    Calls muteRemoteAudioStream(true), muteAllRemoteAudioStreams(true) or setDefaultMuteAllRemoteAudioStreams(true) to stop receiving the remote audio streams.\n    Calls muteRemoteVideoStream(true), muteAllRemoteVideoStreams(true) or setDefaultMuteAllRemoteVideoStreams(true) to stop receiving the remote video streams.\n\n \n  "
+        },
+        {
+            "Subscribing": "2: Subscribing."
+        },
+        {
+            "Subscribed": "3: Subscribes to and receives the remote stream successfully."
+        }
+    ],
+    "returns": ""
+}

@@ -1,0 +1,20 @@
+{
+    "id": "api_joinchannel2",
+    "name": "joinChannel",
+    "description": "Joins a channel with the user ID, and configures whether to automatically subscribe to the audio or video streams.\nThis method enables the local user to join a real-time audio and video interaction channel. With the same App ID, users in the same channel can talk to each other, and multiple users in the same channel can start a group chat.\n            A successful call of this method triggers the following callbacks: \n                The local client: The joinChannelSuccess and connectionStateChanged callbacks.\n                The remote client: userJoined, if the user joining the channel is in the Communication profile or is a host in the Live-broadcasting profile.\n            \n            When the connection between the client and Agora's server is interrupted due to poor network conditions, the SDK tries reconnecting to the server. When the local client successfully rejoins the channel, the SDK triggers the rejoinChannelSuccess callback on the local client.",
+    "parameters": [
+        {
+            "token": "\n    The token generated on your server for authentication. See Authenticate Your Users with Token.\n    Ensure that the App ID used for creating the token is the same App ID used by the createWithContext method for initializing the RTC engine.\n      "
+        },
+        {
+            "null": "\n      The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters:\n     The 26 lowercase English letters: a to z.\n     The 26 uppercase English letters: A to Z.\n     The 10 numeric characters: 0 to 9.\n     Space\n     \"!\", \"#\", \"$\", \"%\", \"&\", \"(\", \")\", \"+\", \"-\", \":\", \";\", \"<\", \"=\", \".\", \">\", \"?\", \"@\", \"[\", \"]\", \"^\", \"_\", \"{\", \"}\", \"|\", \"~\", \",\"\n \n  "
+        },
+        {
+            "uid": "User ID This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique.  This parameter is a 32-bit unsigned integer.  The value range is 1 to\n                            232-1. If the user ID is not assigned (or set to 0), the SDK assigns a random user ID and returns it in the joinChannelSuccess callback. Your app must maintain the returned user ID, because the SDK\n                        does not do so."
+        },
+        {
+            "options": "The channel media options. For details, see ChannelMediaOptions."
+        }
+    ],
+    "returns": ""
+}

@@ -1,0 +1,17 @@
+{
+    "id": "callback_onnetworkquality",
+    "name": "networkQuality",
+    "description": "Reports the last mile network quality of each user in the channel.\nThis callback reports the last mile network conditions of each user in the channel. Last mile refers to the connection between the local device and Agora's edge server.\n   The SDK triggers this callback once every two seconds. If a channel includes multiple users, the SDK triggers this callback as many times.",
+    "parameters": [
+        {
+            "uid": "\n                        User ID. The network quality of the user with this user ID is\n                            reported.\n                        "
+        },
+        {
+            "txQuality": "Uplink network quality rating of the user in terms of the transmission bit\n                        rate, packet loss rate, average RTT (Round-Trip Time) and jitter of the\n                        uplink network. This parameter is a quality rating helping you understand\n                        how well the current uplink network conditions can support the selected\n                        video encoder configuration. For example, a 1000 Kbps uplink network may be\n                        adequate for video frames with a resolution of 640 × 480 and a frame rate of\n                        15 fps in the LIVE_BROADCASTING profile, but might be inadequate for\n                        resolutions higher than 1280 × 720.\n                                Unknown (0): The quality is unknown.\n                                Excellent (1): The quality is excellent.\n                                Good (2): The network quality seems excellent, but the bitrate can be slightly lower than excellent.\n                                Poor (3): Users can feel the communication is slightly impaired.\n                                Bad (4): Users cannot communicate smoothly.\n                                VBad (5): The quality is so bad that users can barely communicate.\n                                Down (6): The network is down, and users cannot communicate at all.\n                            \n                        "
+        },
+        {
+            "rxQuality": "Downlink network quality rating of the user in terms of packet loss rate,\n                        average RTT, and jitter of the downlink network.\n                                Unknown (0): The quality is unknown.\n                                Excellent (1): The quality is excellent.\n                                Good (2): The network quality seems excellent, but the bitrate can be slightly lower than excellent.\n                                Poor (3): Users can feel the communication is slightly impaired.\n                                Bad (4): Users cannot communicate smoothly.\n                                VBad (5): The quality is so bad that users can barely communicate.\n                                Down (6): The network is down, and users cannot communicate at all.\n                            \n                        "
+        }
+    ],
+    "returns": ""
+}

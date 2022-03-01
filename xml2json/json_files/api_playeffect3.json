@@ -1,0 +1,32 @@
+{
+    "id": "api_playeffect3",
+    "name": "playEffect",
+    "description": "Plays the specified local or online audio effect file.\nTo play multiple audio effect files at the same time, call this method multiple times with different soundId and filePath. For the best user experience, Agora recommends playing no more than three audio effect files at the same time. After the playback of an audio effect file completes, the SDK triggers the audioEffectFinished callback.Call this method after joining a channel.",
+    "parameters": [
+        {
+            "soundId": "The audio effect ID. The ID of each audio effect file is unique.If you have preloaded an audio effect into memory by calling preloadEffect, ensure that this parameter is set to the same value as soundId in preloadEffect.\n                    "
+        },
+        {
+            "filePath": "The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: Android: /sdcard/emulated/0/audio.mp4, iOS: /var/mobile/Containers/Data/audio.mp4. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See supported audio formats.\n                        If you have preloaded an audio effect into memory by calling preloadEffect, ensure that this parameter is set to the same value as filePath in preloadEffect.\n                    "
+        },
+        {
+            "loopCount": "The number of times the audio effect loops:\n                        ≥ 0: The number of playback times. For example, 1 means loop one time, which means play the audio effect two times in total.\n                        -1: Play the music effect in an infinite loop.\n                    \n                    "
+        },
+        {
+            "pitch": "The pitch of the audio effect. The value range is 0.5 to 2.0. The default value is 1.0, which means the original pitch. The lower the value, the lower the pitch."
+        },
+        {
+            "pan": "The spatial position of the audio effect. The value range is 1 to10000.\n                        -1.0: The audio effect displays to the left.\n                        0.0: The audio effect displays ahead.\n                        1.0: The audio effect displays to the right.\n                    \n                    "
+        },
+        {
+            "gain": "The volume of the audio effect. The value range is 1 to10000. The default value is 100.0, which means the original volume. The smaller the value, the lower the volume."
+        },
+        {
+            "publish": "Whether to publish the audio effect to the remote users.\n                        true: Publish the audio effect to the remote users. Both the local user and remote users can hear the audio effect.\n                        false: Do not publish the audio effect to the remote users. Only the local user can hear the audio effect.\n                    \n                    "
+        },
+        {
+            "startPos": "\n                        The playback position (ms) of the audio effect file.\n                    "
+        }
+    ],
+    "returns": ""
+}

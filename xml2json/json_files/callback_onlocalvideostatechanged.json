@@ -1,0 +1,14 @@
+{
+    "id": "callback_onlocalvideostatechanged",
+    "name": "localVideoStateChanged",
+    "description": "        Occurs when the local video stream state changes.\nWhen the state of the local video stream changes (including the state of the video capture and encoding), the SDK triggers this callback to report the current state. This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you to troubleshoot issues when exceptions occur.\n            The SDK triggers the localVideoStateChanged callback with the state code Failed and error code CaptureFailure in the following situations:\n                    The app switches to the background, and the system gets the camera resource.\n                    The camera starts normally, but does not output video for four consecutive seconds.\n                \n            When the camera outputs the captured video frames, if the video frames are the same for 15 consecutive frames, the SDK triggers the localVideoStateChanged callback with the state code Capturing and error code CaptureFailure. Note that the video frame duplication detection is only available for video frames with a resolution greater than 200 × 200, a frame rate greater than or equal to 10 fps, and a bitrate less than 20 Kbps.\n            For some device models, the SDK does not trigger this callback when the state of the local video changes while the local video capturing device is in use, so you have to make your own timeout judgment.",
+    "parameters": [
+        {
+            "localVideoState": "\n                        The state of the local video, see LocalVideoStreamState.\n                        "
+        },
+        {
+            "error": "\n                        The detailed error information, see LocalVideoStreamError.\n                        "
+        }
+    ],
+    "returns": ""
+}

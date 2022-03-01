@@ -1,0 +1,47 @@
+{
+    "id": "class_remoteaudiostats",
+    "name": "RemoteAudioStats",
+    "description": "Audio statistics of the remote user.\n",
+    "parameters": [
+        {
+            "uid": "The user ID of the remote user."
+        },
+        {
+            "quality": "The quality of the audio stream sent by the user.  See NetworkQuality."
+        },
+        {
+            "networkTransportDelay": "The network delay (ms) from the sender to the receiver."
+        },
+        {
+            "jitterBufferDelay": "\n      The network delay (ms) from the receiver to the jitter buffer.This parameter does not take effect if the receiver is an audience member and audienceLatencyLevel of ClientRoleOptions is 1.\n  "
+        },
+        {
+            "audioLossRate": "The frame loss rate (%) of the remote audio stream in the reported interval."
+        },
+        {
+            "numChannels": "The number of audio channels."
+        },
+        {
+            "receivedSampleRate": "The sampling rate of the received audio stream in the reported interval."
+        },
+        {
+            "receivedBitrate": "The average bitrate (Kbps) of the received audio stream in the reported interval."
+        },
+        {
+            "totalFrozenTime": "The total freeze time (ms) of the remote audio stream after the remote user joins the channel. In a session, audio freeze occurs when the audio frame loss rate reaches 4%."
+        },
+        {
+            "frozenRate": "The total audio freeze time as a percentage (%) of the total time when the audio is available. The audio is considered available when the remote user neither stops sending the audio stream nor disables the audio module after joining the channel."
+        },
+        {
+            "totalActiveTime": "\n                        The total active time (ms) between the start of the audio call and the callback of the remote user.\n                        The active time refers to the total duration of the remote user without the mute state."
+        },
+        {
+            "publishDuration": "\n                        The total duration (ms) of the remote audio stream."
+        },
+        {
+            "mosValue": "\n               The quality of the remote audio stream in the reported interval. The quality is determined by the Agora real-time audio MOS (Mean Opinion Score) measurement method. The return value range is [0, 500]. Dividing the return value by 100 gets the MOS score, which ranges from 0 to 5. The higher the score, the better the audio quality.\n\n                The subjective perception of audio quality corresponding to the Agora real-time audio MOS scores is as follows:\n                                \n                                    MOS score\n                                    Perception of audio quality\n                                \n                                \n                                    Greater than 4\n                                    Excellent. The audio sounds clear and smooth.\n                                \n                                \n                                    From 3.5 to 4\n                                    Good. The audio has some perceptible impairment but still sounds clear.\n                                \n                                \n                                    From 3 to 3.5\n                                    Fair. The audio freezes occasionally and requires attentive listening.\n                                \n                                \n                                    From 2.5 to 3\n                                    Poor. The audio sounds choppy and requires considerable effort to understand.\n                                \n                                \n                                    From 2 to 2.5\n                                    Bad. The audio has occasional noise. Consecutive audio dropouts occur, resulting in some information loss. The users can communicate only with difficulty.\n                                \n                                \n                                    Less than 2\n                                    Very bad. The audio has persistent noise. Consecutive audio dropouts are frequent, resulting in severe information loss. Communication is nearly impossible.\n                                \n                            \n           "
+        }
+    ],
+    "returns": ""
+}

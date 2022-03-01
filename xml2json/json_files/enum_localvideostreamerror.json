@@ -1,0 +1,50 @@
+{
+    "id": "enum_localvideostreamerror",
+    "name": "LocalVideoStreamError",
+    "description": "Local video state error codes.\n",
+    "parameters": [
+        {
+            "OK": "0: The local video is normal."
+        },
+        {
+            "Failure": "1: No specified reason for the local video failure."
+        },
+        {
+            "DeviceNoPermission": "2: No permission to use the local video capturing device."
+        },
+        {
+            "DeviceBusy": "3: The local video capturing device is in use."
+        },
+        {
+            "CaptureFailure": "4: The local video capture fails. Check whether the capturing device is working properly."
+        },
+        {
+            "EncodeFailure": "5: The local video encoding fails."
+        },
+        {
+            "CaptureInBackground": "6: The local video capturing device not available due to app did enter background."
+        },
+        {
+            "CaptureMultipleForegroundApps": "7: The local video capturing device not available because the app is running in a multi-app layout (generally on the pad)."
+        },
+        {
+            "DeviceNotFound": "\n                        8: Fails to find a local video capture device.\n                    "
+        },
+        {
+            "LocalVideoStreamErrorDeviceInvalidId": "10: (macOS and Windows only) The SDK cannot find the video device in the video device list. Check whether the ID of the video device is valid."
+        },
+        {
+            "ScreenCaptureWindowMinmized": "startScreenCaptureByWindowId11: When calling to share the window, the shared window is in a minimized state."
+        },
+        {
+            "ScreenCaptureWindowClosed": "\n      12: The error code indicates that a window shared by the window ID has been closed, or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.\n      Common scenarios for reporting this error code:\n When the local user closes the shared window, the SDK reports this error code.\n     The local user shows some slides in full-screen mode first, and then shares the windows of the slides. After the user exits full-screen mode, the SDK reports this error code.\n     The local user watches web video or reads web document in full-screen mode first, and then shares the window of the web video or document. After the user exits full-screen mode, the SDK reports this error code.\n      \n  "
+        },
+        {
+            "LocalVideoStreamErrorScreenCaptureWindowOccluded": "13: (Windows only) The window being shared is overlapped by another window, so the overlapped area is blacked out by the SDK during window sharing."
+        },
+        {
+            "LocalVideoStreamErrorScreenCaptureWindowNotSupported": "20: (Windows only) The SDK does not support sharing this type of window."
+        }
+    ],
+    "returns": ""
+}

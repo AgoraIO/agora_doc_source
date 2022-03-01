@@ -1,0 +1,14 @@
+{
+    "id": "api_ichannel_addpublishstreamurl",
+    "name": "addPublishStreamUrl",
+    "description": "Publishes the local stream to a specified CDN live streaming URL.\nCall this method after joining a channel.\n           Ensure that you enable the RTMP Converter service before using this function. \n  This method takes effect only when you are a host in live interactive streaming.\n  This method adds only one stream CDN streaming URL each time it is called. To push multiple URLs, call this method multiple times.\n  Agora supports pushing media streams in RTMPS protocol to the CDN only when you enable transcoding.\n       \n   \n        After calling this method, you can push media streams in RTMP or RTMPS protocol to the CDN. The SDK triggers the rtmpStreamingStateChanged callback on the local client to report the state of adding a local stream to the CDN.",
+    "parameters": [
+        {
+            "url": "The CDN streaming URL in the RTMP or RTMPS format. The maximum length of this parameter is 1024 bytes. The URL address must not contain special characters, such as Chinese language characters."
+        },
+        {
+            "transcodingEnabled": "Whether to enable transcoding. Transcoding in a CDN live streaming converts the audio and video streams before pushing them to the CDN server. It applies to scenarios where a channel has multiple broadcasters and composite layout is needed\n                                true: Enable transcoding.\n                                false: Disable transcoding.\n                            \n      If you set this parameter as true , ensure that you call the setLiveTranscoding method before this method.\n       "
+        }
+    ],
+    "returns": ""
+}

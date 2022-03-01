@@ -1,0 +1,14 @@
+{
+    "id": "api_ichannel_createdatastream",
+    "name": "createDataStream",
+    "description": "Creates a data stream.\nCall this method after joining a channel.\n  Agora does not support setting reliable as true and ordered as true.\n       \n   \n        Each user can create up to five data streams during the lifecycle of RtcEngine.\n   \n       \n  Deprecated:\n  Please use createDataStreamWithConfig instead.",
+    "parameters": [
+        {
+            "ordered": "Whether or not the recipients receive the data stream in the sent order:\n      true: The recipients receive the data in the sent order.\n      false: The recipients do not receive the data in the sent order.\n  "
+        },
+        {
+            "reliable": "\n                        Whether or not the data stream is reliable:\n                            true: The recipients receive the\n                                data from the sender within five seconds. If the recipient does not\n                                receive the data within five seconds, the SDK triggers the streamMessageError callback and returns an\n                                error code.\n                            false: There is no guarantee that\n                                the recipients receive the data stream within five seconds and no\n                                error message is reported for any delay or missing data stream.\n                            \n                    "
+        }
+    ],
+    "returns": ""
+}

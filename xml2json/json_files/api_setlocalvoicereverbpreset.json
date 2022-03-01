@@ -1,0 +1,11 @@
+{
+    "id": "api_setlocalvoicereverbpreset",
+    "name": "setLocalVoiceReverbPreset",
+    "description": "Sets the local voice reverberation option, including the virtual stereo.\nThis method sets the local voice reverberation for users in a COMMUNICATION channel or hosts in a LIVE_BROADCASTING channel. After successfully calling this method, all users in the channel can hear the voice with reverberation.\n   \n       \n  When using the enumeration value prefixed with AUDIO_REVERB_FX, ensure that you set the profile parameter in setAudioProfile toMusicHighQuality(4) or MusicHighQualityStereo(5) before calling this method. Otherwise, the method setting is invalid.\n  When calling the VIRTUAL_STEREO method, Agora recommends setting the profile parameter in setAudioProfile as MusicHighQualityStereo(5).\n  This method works best with the human voice, and Agora does not recommend using it for audio containing music and a human voice.\n  Do not use this method with setLocalVoiceChanger, because the method called later overrides the one called earlier. For detailed considerations, see the advanced guide Set the Voice Effect.\n  You can call this method either before or after joining a channel.",
+    "parameters": [
+        {
+            "reverbPreset": "The local voice reverberation option. The default value is Off, which means the original voice. For more details, see AudioReverbPreset. To achieve better voice effects, Agora recommends the enumeration whose name begins with AUDIO_REVERB_FX."
+        }
+    ],
+    "returns": ""
+}

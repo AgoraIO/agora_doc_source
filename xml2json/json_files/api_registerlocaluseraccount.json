@@ -1,0 +1,14 @@
+{
+    "id": "api_registerlocaluseraccount",
+    "name": "registerLocalUserAccount",
+    "description": "Registers a user account.\nOnce registered, the user account can be used to identify the local user when the user joins the channel. After the registration is successful, the user account can identify the identity of the local user, and the user can use it to join the channel.\n   After the user successfully registers a user account, the SDK triggers the localUserRegistered callback on the local client, reporting the user ID and user account of the local user.\n   This method is optional. To join a channel with a user account, you can choose either of the following ways:\n       Call registerLocalUserAccount to to create a user account, and then call joinChannelWithUserAccount to join the channel.\n       Call the joinChannelWithUserAccount method to join the channel.\n   \n   The difference between the two ways is that the time elapsed between calling the registerLocalUserAccount method and joining the channel is shorter than directly calling joinChannelWithUserAccount.\n   \n       \n  Ensure that you set the userAccount parameter; otherwise, this method does not take effect.\n           Ensure that the userAccount is unique in the channel.\n  To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account.  If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.",
+    "parameters": [
+        {
+            "appId": "The App ID of your project on Agora Console."
+        },
+        {
+            "userAccount": "The user account. This parameter is used to identify the user in the channel for real-time audio and video engagement. You need to set and manage user accounts yourself and ensure that each user account in the same channel is unique.  The maximum length of this parameter is 255 bytes. Ensure that you set this parameter and do not set it as null. Supported characters are (89 in total):\n      The 26 lowercase English letters: a to z.\n      The 26 uppercase English letters: A to Z.\n      All numeric characters: 0 to 9.\n      Space\n      \"!\", \"#\", \"$\", \"%\", \"&\", \"(\", \")\", \"+\", \"-\", \":\", \";\", \"<\", \"=\", \".\", \">\", \"?\", \"@\", \"[\", \"]\", \"^\", \"_\", \"{\", \"}\", \"|\", \"~\", \",\"\n  "
+        }
+    ],
+    "returns": ""
+}

@@ -1,0 +1,11 @@
+{
+    "id": "api_irtcengine2_createchannel",
+    "name": "create",
+    "description": "Creates and gets an RtcChannel object.\nYou can call this method multiple times to create multiple RtcChannel objects,\n                and then call the joinChannel methods of each RtcChannel to join multiple channels at the same time.\n   After joining multiple channels, you can simultaneously subscribe to the the audio and video streams of all the channels, but publish a stream in only one channel at one time.",
+    "parameters": [
+        {
+            "channelId": "\n      The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters:\n     The 26 lowercase English letters: a to z.\n     The 26 uppercase English letters: A to Z.\n     The 10 numeric characters: 0 to 9.\n     Space\n     \"!\", \"#\", \"$\", \"%\", \"&\", \"(\", \")\", \"+\", \"-\", \":\", \";\", \"<\", \"=\", \".\", \">\", \"?\", \"@\", \"[\", \"]\", \"^\", \"_\", \"{\", \"}\", \"|\", \"~\", \",\"\n \n  \n \n     The parameter does not have a default value. You must set it.\n     Do not set this parameter as the empty string \"\". Otherwise, the SDK returns ERR_REFUSED(5).\n \n      \n  "
+        }
+    ],
+    "returns": "A pointer to the RtcChannel instance, if the method call succeeds.\n       If the call fails, returns null."
+}
