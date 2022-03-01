@@ -68,7 +68,7 @@ def main():
 
     # Handle the DITA files
     for file in os.scandir(dita_location):
-        if (file.path.endswith(".dita")) and not file.path.startswith(dita_location + "\enum_") and not file.path.startswith(dita_location + "\\rtc_") and file.is_file() and os.path.basename(file) in ditamap_content:
+        if (file.path.endswith(".dita")) and not file.path.startswith(dita_location + "\\enum_") and not file.path.startswith(dita_location + "\\rtc_") and file.is_file() and os.path.basename(file) in ditamap_content:
             print(file.path)
             dita_file_list.append(file.path)
             with open(file.path, encoding='utf8') as f:
