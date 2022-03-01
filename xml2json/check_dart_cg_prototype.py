@@ -81,6 +81,7 @@ def main():
                     proto_text = before_codeblock_end_tag[0]
                 except IndexError:
                     proto_text = "Error: No prototype"
+                    before_codeblock_end_tag = ["",""]
 
                 try:
                     cg_codeblock_end_tag = re.split('<codeblock props="flutter" outputclass="language-dart">', before_codeblock_end_tag[1])
