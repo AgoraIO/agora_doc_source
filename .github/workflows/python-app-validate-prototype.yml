@@ -68,3 +68,12 @@ jobs:
                   tag: main
                   overwrite: true
                   body: "Comment release"
+            - name: Upload Flutter CG log TXT to release
+              uses: svenstaro/upload-release-action@v2
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: xml2json/prototype_check_dart_cg.txt
+                  asset_name: prototype_check_dart_cg.txt
+                  tag: main
+                  overwrite: true
+                  body: "Comment release"       
