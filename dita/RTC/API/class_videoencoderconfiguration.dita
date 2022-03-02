@@ -160,6 +160,11 @@
     this.degradationPrefer,
     this.mirrorMode,
   });
+
+  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$VideoEncoderConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoEncoderConfigurationToJson(this);
 }</codeblock>
             </p>
         </section>
@@ -209,7 +214,8 @@
        <plentry>
   <pt>frameRate</pt>
   <pd>
-      <p>视频编码的帧率(fps)，详见 <xref keyref="FRAME_RATE" />。默认值为 15。</p>
+      <p props="rtc-ng">视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE" />。</p>
+      <p props="rtc">视频编码的帧率(fps)，默认值为 15。<ph props="electron flutter windows">详见 <xref keyref="FRAME_RATE" />。</ph></p>
   </pd>
        </plentry>
        <plentry>
@@ -445,17 +451,10 @@
        </plentry>
        <plentry>
   <pt>mirrorMode</pt>
-  <pd>
-      <dl outputclass="since" props="rtc">
- <dlentry>
-     <dt>自从</dt>
-     <dd>v3.3.0</dd>
- </dlentry>
-      </dl>
-      <p>
- 发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。<ph props="ios mac windows electron">详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</ph>
-      <ul conkeyref="setLocalRenderMode2/videomirrormodetype" props="android"><li /></ul>
-      </p>
+           <pd><p props="android">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。<ph props="rtc-ng">详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</ph>
+               <ul conkeyref="setLocalRenderMode2/videomirrormodetype" props="rtc"><li /></ul>
+           </p>
+               <p props="ios mac windows electron">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</p>
       <note type="attention">默认关闭镜像模式。</note>
   </pd>
        </plentry>
