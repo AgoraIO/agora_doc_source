@@ -26,17 +26,44 @@
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">class Rect {
   
+  @JsonKey(includeIfNull: false)
+  @Deprecated('This property is deprecated, pls use x instead.')
   int? left;
+
+  @JsonKey(includeIfNull: false)
+  @Deprecated('This property is deprecated, pls use y instead.')
   int? top;
+
+  @JsonKey(includeIfNull: false)
+  @Deprecated('This property is deprecated, pls use x + width instead.')
   int? right;
+
+  @JsonKey(includeIfNull: false)
+  @Deprecated('This property is deprecated, pls use y + height instead.')
   int? bottom;
 
+  int x;
+
+  int y;
+
+  int width;
+
+  int height;
+
   Rect({
+    this.x = 0,
+    this.y = 0,
+    this.width = 0,
+    this.height = 0,
     this.left,
     this.top,
     this.right,
     this.bottom,
   });
+
+  factory Rect.fromJson(Map&lt;String, dynamic> json) => _$RectFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$RectToJson(this);
 }
 </codeblock>
             </p>
@@ -55,19 +82,35 @@
    <parml>
        <plentry>
   <pt>top</pt>
-  <pd>共享区域顶部在纵轴上的坐标。</pd>
+  <pd>已废弃。共享区域顶部在纵轴上的坐标。</pd>
        </plentry>
        <plentry>
   <pt>left</pt>
-  <pd>共享区域左侧在横轴上的坐标。</pd>
+  <pd>已废弃。共享区域左侧在横轴上的坐标。</pd>
        </plentry>
        <plentry>
   <pt>bottom</pt>
-  <pd>共享区域底部在纵轴上的坐标。</pd>
+  <pd>已废弃。共享区域底部在纵轴上的坐标。</pd>
        </plentry>
        <plentry>
   <pt>right</pt>
-  <pd>共享区域右侧在横轴上的坐标。</pd>
+  <pd>已废弃。共享区域右侧在横轴上的坐标。</pd>
+       </plentry>
+              <plentry>
+  <pt>x</pt>
+  <pd>左上角的横向偏移。</pd>
+       </plentry>
+       <plentry>
+  <pt>y</pt>
+  <pd>左上角的纵向偏移。</pd>
+       </plentry>
+       <plentry>
+  <pt>width</pt>
+  <pd>目标区域的宽度。</pd>
+       </plentry>
+       <plentry>
+  <pt>height</pt>
+  <pd>目标区域的高度。</pd>
        </plentry>
    </parml>
         </section></refbody>
