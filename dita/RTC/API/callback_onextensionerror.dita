@@ -13,17 +13,17 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">void onError(String provider, String extension, int errCode, String errMsg);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionErrored:(NSString * __nullable)provider
+            <codeblock props="android" outputclass="language-java">void onError(String provider, String extension, int error, String message);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionError:(NSString * __nullable)provider
                  extension:(NSString * __nullable)extension
                      error:(int)error
                    message:(NSString * __nullable)message;
 </codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual void onExtensionErrored(const char* provider, const char* ext_name, int error, const char* msg) {
+            <codeblock props="windows" outputclass="language-cpp">virtual void onExtensionError(const char* provider, const char* extension, int error, const char* message) {
     (void)provider;
-    (void)ext_name;
+    (void)extension;
     (void)error;
-    (void)msg;
+    (void)message;
   }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
@@ -45,11 +45,11 @@
                 <pd/>
             </plentry>
             <plentry>
-                <pt>errCode</pt>
+                <pt>error</pt>
                 <pd>错误码。详见插件服务商提供的插件文档。</pd>
             </plentry>
             <plentry>
-                <pt>errMsg</pt>
+                <pt>message</pt>
                 <pd>错误原因。详见插件服务商提供的插件文档。</pd>
             </plentry>
             </parml> </section>
