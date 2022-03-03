@@ -13,8 +13,8 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java">public abstract int enterRoom(String token, String roomName, int uid);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enterRoomByToken:(NSString* _Nullable)token roomName:(NSString* _Nonnull)roomName uid:(NSUInteger)uid;</codeblock>
             <codeblock props="windows" outputclass="language-cpp">virtual int enterRoom(const char* token, const char* roomName, unsigned int uid) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
@@ -30,7 +30,6 @@
             <plentry id="token">
                 <pt>token</pt>
                 <pd>用于鉴权的 RTM Token。你可以通过以下方式生成 RTM Token：
-                    
                     <ul>
                     <li>使用 <xref keyref="token-builder"/>，生成临时 Token。</li>
                     <li>自行部署服务器签发 Token，详见<xref keyref="rtm-token"/>。</li>
