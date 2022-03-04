@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_icloudspatialaudioengine_enterroom">
     <title><ph keyref="enterRoom"/></title>
-    <shortdesc id="short"><ph id="shortdesc">进入房间。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enters a room.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,22 +22,21 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>进入房间后，空间音效才会生效。 After a successful method call, the SDK triggers the<xref keyref="onConnectionStateChange"/>  callback.</p>
+            <p>The spatial audio effect does not take effect until you enter a room. After you call this method, the SDK triggers the <xref keyref="onConnectionStateChange"/> callback.</p>
             <note type="note">Call this method after <xref keyref="joinChannel2"/>.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="token">
                 <pt>token</pt>
-                <pd>用于鉴权的 RTM Token。 你可以通过以下方式生成 RTM Token：
-                    <ul>
-                    <li>使用 <xref keyref="token-builder"/>，生成临时 Token。</li>
-                    <li>自行部署服务器签发 Token，详见<xref keyref="rtm-token"/>。</li>
-                    </ul>生成 RTM Token 时填入的 <parmname>uid</parmname> 或 <parmname>userAccount</parmname> 等于 <xref keyref="enterRoom"/> 中设置的 <parmname>roomName</parmname> 加 <parmname>uid</parmname>。 例如，如果 <parmname>roomName</parmname> 为 <codeph>test</codeph>，<parmname>uid</parmname> 为 <codeph>123</codeph>，则生成 RTM Token 时填入的 <parmname>uid</parmname> 或 <parmname>userAccount</parmname> 为 <codeph>test123</codeph>。</pd>
+                <pd>The RTM token for authentication. You can generate the RTM token in the following ways:<ul>
+                    <li>Use <xref keyref="token-builder"/> to generate a temporary token.</li>
+                    <li>Deploy your own server for generating tokens. For details, see <xref keyref="rtm-token"/>.</li>
+                    </ul>The <parmname>uid</parmname> or <parmname>userAccount</parmname> for generating the RTM token is the combination of the <parmname>roomName</parmname> and <parmname>uid</parmname> set in <xref keyref="enterRoom"/>. For example, if <parmname>roomName</parmname> is <codeph>test</codeph> and <parmname>uid</parmname> is <codeph>123</codeph>, the <parmname>uid</parmname> or <parmname>userAccount</parmname> filled in when generating the RTM token is <codeph>test123</codeph>.</pd>
             </plentry>
             <plentry>
                 <pt>roomName</pt>
-                <pd>房间名。 需与加入频道时填写的频道名一致。</pd>
+                <pd>The room name. This parameter must be the same as the channel name filled in when you join the channel.</pd>
             </plentry>
             <plentry conkeyref="removeRemotePosition/uid">
                 <pt/>
