@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enablespatialaudio">
     <title><ph keyref="enableSpatialAudio"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开启或关闭空间音效。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables or disables the spatial audio effect.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,11 +22,10 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>开启空间音效后，你可以选择如下方案实现空间音效：
-            <ul>
-            <li><xref keyref="ICloudSpatialAudioEngine"/>: 该方案通过 Agora 空间音效服务器计算和同步远端用户的空间位置。 你只需调用 <xref keyref="updateSelfPosition"/> 更新本地用户的空间位置，本地用户就可以感受到远端用户空间位置的变化。</li>
-            <li><xref keyref="ILocalSpatialAudioEngine"/>: 该方案通过 SDK 计算远端用户的空间位置。 你需要分别调用 <xref keyref="updateSelfPosition"/> 和 <xref keyref="updateRemotePosition"/> 更新本地和远端用户的空间位置，本地用户才可以感受到远端用户空间位置的变化。</li>
-            <li><xref keyref="setRemoteUserSpatialAudioParams"/>: 该方案需要你自行计算远端用户空间位置并传给 SDK，本地用户才可以感受到远端用户空间位置的变化。</li>
+            <p>After enabling the spatial audio effect, you can choose the following solutions to implement the spatial audio effect:<ul>
+            <li><xref keyref="ICloudSpatialAudioEngine"/>: This solution calculates and synchronizes the spatial position of the remote user through the Agora Spatial Audio Server. You only need to call <xref keyref="updateSelfPosition"/> to update the spatial position of the local user, and the local user can hear the change of the remote user's spatial position.</li>
+            <li><xref keyref="ILocalSpatialAudioEngine"/>: This solution calculates the spatial position of the remote user through the SDK. You need to call <xref keyref="updateSelfPosition"/> and <xref keyref="updateRemotePosition"/> to update the spatial position of the local and remote users respectively, and then the local user can hear the change of the remote user's spatial position.</li>
+            <li><xref keyref="setRemoteUserSpatialAudioParams"/>: This solution requires you to calculate the spatial position of the remote user and pass it to the SDK, so that the local user can hear the change of the remote user's spatial position.</li>
             </ul>
             <note>Ensure that you call this method before joining a channel.</note></p>
         </section>
@@ -35,10 +34,9 @@
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>是否开启空间音效：
-                        <ul>
-                        <li><codeph><ph keyref="true"/></codeph>: 开启空间音效。</li>
-                        <li><codeph><ph keyref="false"/></codeph>: 关闭空间音效。</li>
+                <pd>Whether to enable the spatial audio effect:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Enable the spatial sound effect.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Disable the spatial sound effect.</li>
                         </ul></pd>
             </plentry>
             </parml> </section>
