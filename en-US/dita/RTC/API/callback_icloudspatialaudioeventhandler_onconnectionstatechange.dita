@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_icloudspatialaudioeventhandler_onconnectionstatechange">
     <title><ph keyref="onConnectionStateChange"/></title>
-    <shortdesc id="short"><ph id="shortdesc">SDK 与 Agora 空间音效服务器连接状态已改变回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the connection state between the SDK and the Agora Spatial Audio Server changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,7 +21,7 @@
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">该回调在 SDK 与 Agora 空间音效服务器连接状态发生改变时触发，并告知用户当前的连接状态和引起连接状态改变的原因。</section>
+        <section id="detailed_desc">When the connection state between the SDK and the Agora Spatial Audio Server changes, the SDK triggers this callback to inform the user of the current connection state and the reason for the change of the connection state.</section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -32,22 +32,22 @@
             <plentry>
                 <pt>state</pt>
                 <pd><ph>The connection state between the SDK and the Agora Spatial Audio Server. </ph><ph props="ios mac windows">For details, see <xref keyref="SAE_CONNECTION_STATE_TYPE"/>.</ph><ul props="android">
-                    <li><ph keyref="SAE_CONNECTION_STATE_CONNECTING"/> (0): 建立连接中。</li>
-                    <li><ph keyref="SAE_CONNECTION_STATE_CONNECTED"/> (1): 已连接。 The spatial audio effect settings such as <xref keyref="updateSelfPosition"/> only take effect in this state.</li>
-                    <li><ph keyref="SAE_CONNECTION_STATE_DISCONNECTED"/> (2): 连接断开。</li>
-                    <li><ph keyref="SAE_CONNECTION_STATE_RECONNECTING"/> (3): 重新建立连接中。</li>
-                    <li><ph keyref="SAE_CONNECTION_STATE_RECONNECTED"/> (4): 已重新建立连接。</li>
+                    <li><ph keyref="SAE_CONNECTION_STATE_CONNECTING"/> (0): The SDK is connecting to the Agora Spatial Audio Server.</li>
+                    <li><ph keyref="SAE_CONNECTION_STATE_CONNECTED"/> (1): Connected. The spatial audio effect settings such as <xref keyref="updateSelfPosition"/> only take effect in this state.</li>
+                    <li><ph keyref="SAE_CONNECTION_STATE_DISCONNECTED"/> (2): The connection is disconnected.</li>
+                    <li><ph keyref="SAE_CONNECTION_STATE_RECONNECTING"/> (3): The SDK keeps reconnecting to the Agora Spatial Audio Server.</li>
+                    <li><ph keyref="SAE_CONNECTION_STATE_RECONNECTED"/> (4): The connection has been re-established.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>reason</pt>
                 <pd><ph>The reason for the change of the connection state between the SDK and the Agora Spatial Audio Server. </ph><ph props="ios mac windows">For details, see <xref keyref="SAE_CONNECTION_CHANGED_REASON_TYPE"/>.</ph><ul props="android">
                     <li><ph keyref="SAE_CONNECTION_CHANGED_DEFAULT"/> (0): No error.</li>
-                    <li><ph keyref="SAE_CONNECTION_CHANGED_CONNECTING"/> (1): SDK 建立连接中。</li>
-                    <li><ph keyref="SAE_CONNECTION_CHANGED_CREATE_ROOM_FAIL"/> (2): SDK 创建房间失败。</li>
-                    <li><ph keyref="SAE_CONNECTION_CHANGED_RTM_DISCONNECT"/> (3): SDK 与 RTM 系统连接中断。</li>
-                    <li><ph keyref="SAE_CONNECTION_CHANGED_RTM_ABORTED"/> (4): 用户被 RTM 系统踢出。</li>
-                    <li><ph keyref="SAE_CONNECTION_CHANGED_LOST_SYNC"/> (5): SDK 超过 15 秒未收到 Agora 空间音效服务器的消息。</li>
+                    <li><ph keyref="SAE_CONNECTION_CHANGED_CONNECTING"/> (1): The SDK is establishing a connection.</li>
+                    <li><ph keyref="SAE_CONNECTION_CHANGED_CREATE_ROOM_FAIL"/> (2): The SDK failed to create the room.</li>
+                    <li><ph keyref="SAE_CONNECTION_CHANGED_RTM_DISCONNECT"/> (3): The connection between the SDK and the RTM system is interrupted.</li>
+                    <li><ph keyref="SAE_CONNECTION_CHANGED_RTM_ABORTED"/> (4): The user is kicked out by the RTM system.</li>
+                    <li><ph keyref="SAE_CONNECTION_CHANGED_LOST_SYNC"/> (5): The SDK has not received a message from the Agora Spatial Audio Server for more than 15 seconds.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
