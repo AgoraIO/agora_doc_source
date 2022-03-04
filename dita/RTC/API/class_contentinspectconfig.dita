@@ -46,92 +46,51 @@
 @end
 </codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct ContentInspectConfig {
-    bool DeviceWork;
-    bool CloudWork;
-    CONTENT_INSPECT_DEVICE_TYPE DeviceworkType;
-    const char* extraInfo;
-    ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
-    int moduleCount;
-     ContentInspectConfig&amp; operator=(ContentInspectConfig&amp; rth)
-      {
-          DeviceWork = rth.DeviceWork;
-          CloudWork = rth.CloudWork;
-          DeviceworkType = rth.DeviceworkType;
-          extraInfo = rth.extraInfo;
-          moduleCount = rth.moduleCount;
-          memcpy(&amp;modules, &amp;rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
-          return *this;
-      }
-    ContentInspectConfig() :DeviceWork(false),CloudWork(true),DeviceworkType(CONTENT_INSPECT_DEVICE_INVALID),extraInfo(NULL), moduleCount(0){}
-  };
-</codeblock>
+  const char* extraInfo;
+  ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
+  int moduleCount;
+
+  ContentInspectConfig() : extraInfo(NULL), moduleCount(0) {}
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since" props="rtc">
-                <dlentry>
-                    <dt>自从</dt>
-                    <dd>v3.5.2</dd>
-                </dlentry>
+            <dlentry>
+                <dt>自从</dt>
+                <dd>v3.6.2</dd>
+            </dlentry>
             </dl>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
-                <plentry props="windows">
-                    <pt>enable</pt>
-                    <pd>是否开启鉴黄功能。<ul>
-                            <li><codeph><ph keyref="true"/></codeph>: 开启鉴黄功能。</li>
-                            <li><codeph><ph keyref="false"/></codeph>:（默认）不开启鉴黄功能。</li>
-                        </ul></pd>
-                </plentry>
-                <plentry>
-                    <pt props="android windows">DeviceWork</pt>
-                    <pt props="ios mac">devicework</pt>
-                    <pd>是否在设备端进行鉴黄。<ul>
-                            <li><codeph><ph keyref="true"/></codeph>: 在设备端进行鉴黄。</li>
-                            <li><codeph><ph keyref="false"/></codeph>:（默认）不在设备端进行鉴黄。</li>
-                        </ul></pd>
-                </plentry>
-                <plentry>
-                    <pt props="android windows">CloudWork</pt>
-                    <pt props="ios mac">cloudwork</pt>
-                    <pd>是否在云端进行鉴黄。<ul>
-                            <li><codeph><ph keyref="true"/></codeph>: 在云端进行鉴黄。</li>
-                            <li><codeph><ph keyref="false"/></codeph>:（默认）不在云端进行鉴黄。</li>
-                        </ul></pd>
-                </plentry>
-                <plentry>
-                    <pt props="android windows">DeviceworkType</pt>
-                    <pt props="ios mac">deviceworkType</pt>
-                    <pd>在设备端进行鉴黄的具体类型。详见<xref keyref="CONTENT_INSPECT_DEVICE_TYPE"/>。</pd>
-                </plentry>
-                <plentry>
-                    <pt>extraInfo</pt>
-                    <pd>
-                        <p>附加信息，最大长度为 1024 字节。</p>
-                        <p>SDK 会将附加信息和截图一起上传至 Agora 内容审核服务器；审核完成后，Agora
+            <plentry>
+                <pt>extraInfo</pt>
+                <pd>
+                    <p>附加信息，最大长度为 1024 字节。</p>
+                    <p>SDK 会将附加信息和截图一起上传至 Agora 内容审核服务器；审核完成后，Agora
                             内容审核服务器会将附加信息随审核结果一起发送给你的服务器。</p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>modules</pt>
-                    <pd>
-                        <p>内容审核模块。详见 <xref keyref="ContentInspectModule"/>。</p>
-                        <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"/>
-                                实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为
-                            [0,31] 中的整数。</p>
-                    </pd>
-                </plentry>
-                <plentry>
-                    <pt>moduleCount</pt>
-                    <pd>内容审核模块数，即配置的 <apiname keyref="ContentInspectModule"/> 实例的数量。最大值为 32。</pd>
-                </plentry>
-            </parml>
-        </section>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>modules</pt>
+                <pd>
+                    <p>内容审核模块。详见 <apiname keyref="ContentInspectModule"/>。</p>
+                    <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"
+                            /> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>moduleCount</pt>
+                <pd>内容审核模块数，即配置的 <apiname keyref="ContentInspectModule"
+                    /> 实例的数量。最大值为 32。</pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>
