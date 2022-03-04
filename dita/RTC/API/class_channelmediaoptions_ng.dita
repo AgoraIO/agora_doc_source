@@ -28,7 +28,6 @@
   public String token;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
-
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCameraTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrack;
@@ -98,8 +97,7 @@
                 <pd>设置是否发布第二个摄像头采集的视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第二个摄像头采集的视频。</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>：不发布第二个摄像头采集的视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布第二个摄像头采集的视频。</li>
                     </ul></pd>
             </plentry>
             <plentry>
@@ -126,8 +124,7 @@
                     <p>设置是否发布第二个屏幕采集的视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第二个屏幕采集到的视频。</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>：不发布第二个屏幕采集到的视频。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：不发布第二个屏幕采集到的视频。</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -151,21 +148,21 @@
             </plentry>
             <plentry>
                 <pt>publishCustomAudioSourceId</pt>
-                <pd>待发布的自定义音频源的 ID。默认值为 0。如果你已通过 <xref keyref="setExternalAudioSource2"/> 方法将 <parmname>sourceNumber</parmname> 设置为多个外部音频源，SDK 会从 0 开始为每一条音频轨道分配一个 ID，作为该轨道的 <parmname>publishCustomAudioSourceId</parmname>。</pd>
+                <pd>待发布的自定义音频源的 ID。默认值为 0。
+                    <p>如果你已在 <xref keyref="setExternalAudioSource2" /> 中设置了 <parmname>sourceNumber</parmname> 大于 1，SDK 会创建相对应数量的自采集音频轨道，并从 0 开始为每一个音频轨道分配一个 ID。</p></pd>
             </plentry>
-             <plentry props="windows">
+            <plentry props="windows">
                 <pt>publishCustomAudioTrackEnableAec</pt>
-                <pd>设置发布自定义采集的音频时是否启用 AEC：
+                <pd>设置发布自定义采集的音频时是否启用 AEC： 
                     <ul>
                     <li><codeph><ph keyref="true"
                         /></codeph>：发布自定义采集的音频时启用 AEC。</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>：发布自定义采集的音频时不启用 AEC。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：发布自定义采集的音频时不启用 AEC。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishCustomVideoTrack</pt>
-                <pd>设置是否发布自定义采集的视频：
+                <pd>设置是否发布自定义采集的视频：        
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布自定义采集的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布自定义采集到的视频。</li>
@@ -173,7 +170,7 @@
             </plentry>
             <plentry>
                 <pt>publishEncodedVideoTrack</pt>
-                <pd>设置是否发布编码后的视频：
+                <pd>设置是否发布编码后的视频：        
                     <ul id="ul_ljg_4q5_3qb">
                     <li><codeph><ph keyref="true"/></codeph>：发布编码后的视频 。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布编码后的视频。</li>
@@ -247,7 +244,6 @@
             <plentry props="hide">
                 <pt>publishCustomAudioTrackAec</pt>
                 <pd>设置是否发布经过外部回声消除模块处理的音频帧。
-                        
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布。</li>
@@ -256,17 +252,11 @@
             <plentry>
                 <pt>token</pt>
                 <pd>
-                    <p>（可选）在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token"
-                    >使用 Token 鉴权</xref>。</p>
+                    <p>（可选）在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token">使用 Token 鉴权</xref>。</p>
                     <note type="caution">
                     <ul>
-                    <li>该参数仅在调用 <xref keyref="updateChannelMediaOptions"
-                        /> 或 <xref keyref="updateChannelMediaOptionsEx"
-                        /> 时生效。</li>
-                    <li>请确保用于生成 token 的 App ID、频道名和用户名和 <xref keyref="create2"
-                        /> 方法初始化引擎时用的 App ID，以及 <xref keyref="joinChannel2"
-                        /> 或 <xref keyref="joinChannelEx"
-                        /> 方法加入频道时设置的频道名和用户名是一致的。</li>
+                    <li>该参数仅在调用 <xref keyref="updateChannelMediaOptions"/> 或 <xref keyref="updateChannelMediaOptionsEx" /> 时生效。</li>
+                    <li>请确保用于生成 token 的 App ID、频道名和用户名和 <xref keyref="create2"/> 方法初始化引擎时用的 App ID，以及 <xref keyref="joinChannel2"/> 或 <xref keyref="joinChannelEx"/> 方法加入频道时设置的频道名和用户名是一致的。</li>
                     </ul></note></pd>
             </plentry>
             </parml> </section>

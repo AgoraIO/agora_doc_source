@@ -41,7 +41,6 @@
                 <pt>enabled</pt>
                 <pd>
                     <p>是否开启使用外部音频源的功能：
-                        
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：开启外部音频源。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）关闭外部音频源。</li>
@@ -50,9 +49,7 @@
             </plentry>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd>外部音频源的采样率 (Hz)，可设置为
-                            <codeph>8000</codeph>，<codeph>16000</codeph>，<codeph>32000</codeph>，<codeph>44100</codeph>
-                        或 <codeph>48000</codeph>。</pd>
+                <pd>外部音频源的采样率 (Hz)，可设置为 <codeph>8000</codeph>，<codeph>16000</codeph>，<codeph>32000</codeph>，<codeph>44100</codeph> 或 <codeph>48000</codeph>。</pd>
             </plentry>
             <plentry>
                 <pt>channels</pt>
@@ -60,13 +57,12 @@
             </plentry>
             <plentry>
                 <pt>sourceNumber</pt>
-                <pd><ph>外部音频源的数量，取值为正整数。</ph><ph props="hide">多个音频源会被混音。</ph>当该参数取值大于 1 时，SDK 会从 0 开始为每一条音频轨道分配一个 ID，作为该轨道的 <parmname>publishCustomAudioSourceId</parmname>。</pd>
+                <pd><ph>外部音频源的数量，取值为正整数。</ph><ph props="hide">多个音频源会被混音。</ph><ph>SDK 会根据该参数值创建对应数量的自采集音频轨道，并从 0 开始为音频轨道命名。你可以在 <xref keyref="ChannelMediaOptions"/> 中，设置 <xref keyref="publishCustomAudioSourceId"/> 为你想要发布的音频轨道 ID。</ph></pd>
             </plentry>
             <plentry>
                 <pt>localPlayback</pt>
                 <pd>
                     <p>是否在本地播放外部音频源：
-                        
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：在本地播放。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不在本地播放。</li>
