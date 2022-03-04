@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_icloudspatialaudioengine_enablespatializer">
     <title><ph keyref="enableSpatializer"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开启或关闭 Agora 空间音效服务器对空间音效参数的计算。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables or disables the calculation of spatial audio effect parameters by the Agora Spatial Audio Server.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,11 +22,9 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>开启后，用户可以听到远端用户的空间音效及其空间位置的变化。
-                <note type="note">该方法在 <xref keyref="enterRoom"/> 前后均可调用，区别如下：
-                        <ul>
-                        <li>如果在 <apiname keyref="enterRoom"/> 之前调用，该方法会在进入房间时生效。</li>
-                        <li>如果在 <apiname keyref="enterRoom"/> 之后调用，该方法立即生效。</li>
+            <p>Once enabled, users can hear the spatial audio effect of remote users, and their spatial position changes.<note type="note">You can call this method either before or after <xref keyref="enterRoom"/>, with the following differences:<ul>
+                        <li>If you call this method before <apiname keyref="enterRoom"/>, this method will take effect when entering the room.</li>
+                        <li>If you call this method after <apiname keyref="enterRoom"/>, this method takes effect immediately.</li>
                         </ul>
                 </note> </p>
         </section>
@@ -35,19 +33,17 @@
             <parml>
             <plentry>
                 <pt>enable</pt>
-                <pd>是否在音频接收范围内开启空间音效参数的计算：
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 开启计算。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 关闭计算。</li>
+                <pd>Whether to enable the calculation of spatial audio effect parameters within the audio reception range:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable the calculation.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Disable the calculation.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>applyToTeam</pt>
-                <pd>是否在队伍内开启空间音效参数的计算：
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 开启计算。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 关闭计算。</li>
-                    </ul>该参数仅在 <parmname>enable</parmname> 参数为 <codeph><ph keyref="true"/></codeph> 时生效。</pd>
+                <pd>Whether to enable the calculation of spatial audio effect parameters in the team:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable the calculation.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Disable the calculation.</li>
+                    </ul>This parameter only takes effect when the <parmname>enable</parmname> parameter is <codeph><ph keyref="true"/></codeph>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity">
