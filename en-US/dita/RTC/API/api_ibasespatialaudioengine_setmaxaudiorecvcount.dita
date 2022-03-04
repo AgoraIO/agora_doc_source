@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ibasespatialaudioengine_setmaxaudiorecvcount">
     <title><ph keyref="setMaxAudioRecvCount"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置音频接收范围内最多可接收的音频流数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the maximum number of streams that a user can receive in a specified audio reception range.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,18 +22,17 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>如果在音频接收范围内可接收的音频流数超过设置的值，则本地用户会接收音源距离较近的 <parmname>maxCount</parmname> 路音频。 如果房间里有和本地用户属于同一队伍的用户，则本地用户会优先接收队员的音频。 例如，当 <parmname>maxCount</parmname> 设为 3 时，如果房间里有 5 位远端用户，其中 2 位和本地用户属于同一队伍、3 位和本地用户属于不同队伍但在本地用户的音频接收范围内，则本地用户可以听到 2 位队友和 1 位离自己最近的不同队伍的用户。</p>
-            <note type="note">该方法在 <xref keyref="enterRoom"/> 前后均可调用，区别如下：
-            <ul>
+            <p>If the number of receivable streams exceeds the set value, the local user receives the <parmname>maxCount</parmname> streams that are closest to the local user. If there are users who belong to the same team as the local user in the room, the local user receives the audio of the teammate first. For example, when <parmname>maxCount</parmname> is set to 3, if there are 5 remote users in the room, 2 of which belong to the same team as the local user, and 3 belong to different teams from the local user but are within the audio reception range of the local user, the local user can hear 2 teammates and 1 user from a different team closest to the local user.</p>
+            <note type="note">You can call this method either before or after <xref keyref="enterRoom"/>, with the following differences:<ul>
             <li>If you call this method before <apiname keyref="enterRoom"/>, this method will take effect when entering the room.</li>
-            <li>如果在 <apiname keyref="enterRoom"/> 之后调用，该方法立即生效，即改变当前音频接收范围内最多可接收的音频流数。</li>
+            <li>If you call this method after <apiname keyref="enterRoom"/>, this method takes effect immediately and changes the current maximum number of received streams of the local user.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>maxCount</pt>
-                <pd>音频接收范围内最多可接收的音频流数。</pd>
+                <pd>The maximum number of streams that a user can receive within a specified audio reception range.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity">
