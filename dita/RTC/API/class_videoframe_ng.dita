@@ -21,7 +21,6 @@
 @property (nonatomic, assign) int64_t renderTimeMs;
 @property (nonatomic, assign) int avSyncType;
 @property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
-@property (nonatomic, assign) uint8_t* _Nullable alphaBuffer;
 
 @end</codeblock>
             <codeblock props="windows" outputclass="language-cpp">struct VideoFrame {
@@ -38,7 +37,6 @@
   rotation(0),
   renderTimeMs(0),
   avsync_type(0),
-  alphaBuffer(NULL){}
   VIDEO_PIXEL_FORMAT type;
   int width;
   int height;
@@ -51,7 +49,6 @@
   int rotation;
   int64_t renderTimeMs;
   int avsync_type;
-  uint8_t* alphaBuffer;
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
@@ -121,13 +118,12 @@
                 <pt>pixelBuffer</pt>
                 <pd>将数据填充到 CVPixelBuffer。</pd>
             </plentry>
-            <plentry>
+            <plentry props="hide">
                 <pt>alphaBuffer</pt>
                 <pd>
                     <p>表示人像分割算法的输出数据，跟视频帧的尺寸一致。每个像素点的取值范围为 [0,255]，其中 0 表示背景；255 代表前景（人像）。</p>
                     <p>在用户自定义视频渲染场景下，该参数可帮助实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等等。 
-                            <note>该参数需要<xref keyref="ticket-link"
-                            />联系技术支持开通。</note></p>
+                            <note>该参数需要<xref keyref="ticket-link"/>联系技术支持开通。</note></p>
                 </pd>
             </plentry>
             </parml> </section>
