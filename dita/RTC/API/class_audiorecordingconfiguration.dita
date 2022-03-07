@@ -70,8 +70,14 @@
             <codeblock props="flutter" outputclass="language-dart">class AudioRecordingConfiguration {
 
   String filePath;
+
+  @JsonKey(includeIfNull: false)
   AudioRecordingQuality? recordingQuality;
+
+  @JsonKey(includeIfNull: false)
   AudioRecordingPosition? recordingPosition;
+
+  @JsonKey(includeIfNull: false)
   AudioSampleRateType? recordingSampleRate;
 
   AudioRecordingConfiguration(
@@ -80,6 +86,11 @@
     this.recordingPosition,
     this.recordingSampleRate,
   });
+
+  factory AudioRecordingConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$AudioRecordingConfigurationFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$AudioRecordingConfigurationToJson(this);
 }</codeblock>
             </p>
         </section>

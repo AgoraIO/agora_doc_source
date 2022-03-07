@@ -23,7 +23,6 @@ jobs:
               run: |
                   cd xml2json
                   python -m pip install --upgrade pip
-                  pip install coverage
                   if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
             - name: Run json creation
               run: |
@@ -36,7 +35,7 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/flutter_newer.json
                   asset_name: flutter_doc_template.json
-                  tag: ${{ github.ref }}
+                  tag: main
                   overwrite: true
                   body: "Template file for auto comment population."
             - name: Upload C++ NG JSON to release
@@ -45,6 +44,6 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/cpp_ng.json
                   asset_name: cpp_ng_doc_template.json
-                  tag: ${{ github.ref }}
+                  tag: main
                   overwrite: true
                   body: "Template file for auto comment population."
