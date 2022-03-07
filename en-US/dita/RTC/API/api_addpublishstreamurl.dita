@@ -43,11 +43,11 @@
        <plentry id="transcoding">
   <pt>transcodingEnabled</pt>
   <pd>
-      <p id="transcoding-desc">Whether to enable transcoding. <xref keyref="term-transocding">Transcoding</xref> in a CDN live streaming converts the audio and video streams before pushing them to the CDN server. It applies to scenarios where a channel has multiple broadcasters and composite layout is needed<ul>
-                                <li><codeph><ph keyref="true"/></codeph>: 转码。</li>
-                                <li><codeph>: Disable transcoding.</codeph><ph keyref="false"/></li>
+      <p id="transcoding-desc">Whether to enable transcoding. <xref keyref="term-transocding">Transcoding</xref> in a CDN live streaming converts the audio and video streams before pushing them to the CDN server. It applies to scenarios where a channel has multiple broadcasters and composite layout is needed.<ul>
+                                <li><codeph><ph keyref="true"/></codeph>: Enable transcoding.</li>
+                                <li><codeph><ph keyref="false"/></codeph>: Disable transcoding.</li>
                             </ul></p>
-      <note type="attention">If you set this parameter as , ensure that you call the   method before this method.<codeph><ph keyref="true"/></codeph><xref keyref="setLiveTranscoding"/></note>
+      <note type="attention">If you set this parameter as <codeph><ph keyref="true"/></codeph>, ensure that you call the <xref keyref="setLiveTranscoding"/> method before calling this method.</note>
   </pd>
        </plentry>
    </parml>
@@ -57,8 +57,8 @@
    <ul>
        <li>0: Success.</li>
        <li>&lt; 0: Failure.<ul>
-                        <li>ERR_INVALID_ARGUMENT(-2): <codeph>Invalid argument</codeph>, usually because the URL address is null or the string length is 0.</li>
-                        <li>ERR_NOT_INITIALIZED(-7): You have <codeph>not initialized</codeph> the RTC engine when publishing the stream.</li>
+                        <li><codeph>ERR_INVALID_ARGUMENT</codeph> (-2): Invalid argument, usually because the URL address is null or the string length is 0.</li>
+                        <li><codeph>ERR_NOT_INITIALIZED</codeph> (-7): You have not initialized the RTC Engine when publishing the stream.</li>
                     </ul>
                 </li>
    </ul>
