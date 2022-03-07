@@ -165,5 +165,6 @@ If you want to customize the default UI of Flexible Classroom, integrate Flexibl
 ## Considerations
 
 `AgoraEduCore` is a binary Swift framework. Since Apple‘s support for binary Swift frameworks is not strong enough, to avoid compatibility issues, Agora adds an OC wapper. If you use `import AgoraEduCore`  to import `AgoraEduCore`, you may encounter an error saying that the Swift version is not compatible. Solve the error in the following ways:
+
 - OC: Use `#import <AgoraEduCorePuppet/AgoraEduCoreWrapper.h>` to import ` AgoraEduCore`, and replace the `AgoraEduCore` class with the `AgoraEduCorePuppet` class.
 - Swift: Use `import AgoraEduCorePuppet` to import `AgoraEduCore`, and replace the `AgoraEduCore` class with the `AgoraEduCorePuppet` class.
