@@ -13,14 +13,22 @@
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">class AudioFileInfo {
+
+  @JsonKey()
+  String filePath;
+
+  @JsonKey()
+  int durationMs;
   
   AudioFileInfo({
     required this.filePath,
     required this.durationMs,
   });
 
-  String filePath;
-  int durationMs;
+  factory AudioFileInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$AudioFileInfoFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$AudioFileInfoToJson(this);
 }</codeblock>
             </p>
         </section>

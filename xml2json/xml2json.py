@@ -547,7 +547,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 if href_text is not None and href_text != "" and not href_text.startswith("http"):
                     dir = path.join(working_dir, href_text).replace("../", "")
                     dir = path.join("..", dir)
-                elif href_text.startswith("http"):
+                elif href_text is not None and href_text.startswith("http"):
                     xref.text = href_text
                     dir = None
                     print(xref.text)

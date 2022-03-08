@@ -71,15 +71,30 @@
                 <plentry>
                     <pt>positionInLandscapeMode</pt>
                     <pd props="android windows">横屏模式下，显示水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
-                    <pd/>
+                    <pd props="ios mac">横屏模式下，显示水印图片的区域。该参数包含以下成员：<ul>
+                        <li>x：水印相对左上角的横向偏移。</li>
+                        <li>y：水印相对左上角的纵向偏移。</li>
+                        <li>width：水印区域的宽（pixel）。</li>
+                        <li>height：水印区域的高（pixel）。</li></ul>
+                    </pd>
                 </plentry>
                 <plentry>
                     <pt>positionInPortraitMode</pt>
                     <pd props="android windows">竖屏模式下，显示水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                    <pd props="ios mac">竖屏模式下，显示水印图片的区域。该参数包含以下成员：<ul>
+                        <li>x：水印相对左上角的横向偏移。</li>
+                        <li>y：水印相对左上角的纵向偏移。</li>
+                        <li>width：水印区域的宽（pixel）。</li>
+                        <li>height：水印区域的高（pixel）。</li></ul>
+                    </pd>
                 </plentry>
-                <plentry>
+                <plentry props="windows">
                     <pt>watermarkRatio</pt>
-                    <pd>水印的比例。详见 <xref keyref="watermarkRatio"/>。</pd>
+                    <pd>水印的位置和大小。详见 <xref keyref="WatermarkRatio"/>。</pd>
+                </plentry>
+                <plentry props="windows">
+                    <pt>mode</pt>
+                    <pd>水印的自适应模式。详见 <xref keyref="WATERMARK_FIT_MODE"/>。</pd>
                 </plentry>
             </parml> </section>
     </refbody>
