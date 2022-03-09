@@ -1,38 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="class_size">
-    <title><ph keyref="SIZE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">缩略图或图标的目标尺寸。</ph></shortdesc>
+<reference id="class_wlaccstats">
+    <title><ph keyref="WlAccStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Wi-Fi 加速效果。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows" outputclass="language-cpp">struct SIZE {
-  int width;
-  int height;
-
-  SIZE() : width(0), height(0) {}
-  SIZE(int w, int h) : width(w), height(h) {}
+            <codeblock props="windows" outputclass="language-cpp">struct WlAccStats {
+  unsigned short e2eDelayPercent;
+  unsigned short frozenRatioPercent;
+  unsigned short lossRatePercent;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <p/>
-        </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
-                <pt>width</pt>
-                <pd>缩略图或图标的目标宽度（px），默认值为 0。</pd>
+                <pt>e2eDelayPercent</pt>
+                <pd>端到端延时下降百分比。 </pd>
             </plentry>
             <plentry>
-                <pt>height</pt>
-                <pd>缩略图或图标的目标高度（px），默认值为 0。</pd>
+                <pt>frozenRatioPercent</pt>
+                <pd>音视频卡顿率下降百分比。</pd>
+            </plentry>
+            <plentry>
+                <pt>lossRatePercent</pt>
+                <pd>丢包率下降百分比。 </pd>
             </plentry>
             </parml> </section>
     </refbody>

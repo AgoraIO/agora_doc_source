@@ -106,7 +106,7 @@
                 <pd props="rtc-ng">成功加入频道回调。<codeph>joinSuccessBlock</codeph> 优先级高于 <xref keyref="onJoinChannelSuccess"/>，如果两种回调都实现了，只有 <codeph>block</codeph> 会触发。我们建议你将 <codeph>joinSuccessBlock</codeph> 设置为 <codeph>nil</codeph>，使用 <xref keyref="IRtcEngineEventHandler"/> 回调。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="android apple windows electron unity">
             <title>返回值</title>
             <ul>
             <li>0(ERR_OK) 方法调用成功。</li>
@@ -114,7 +114,7 @@
                 <ul>
                 <li>-2(ERR_INVALID_ARGUMENT): 参数无效。</li>
                 <li>-3(ERR_NOT_READY): SDK 初始化失败，请尝试重新初始化 SDK。</li>
-                <li>-5(ERR_REFUSED): 调用被拒绝。可能有如下两个原因： 
+                <li>-5(ERR_REFUSED): 调用被拒绝。可能有如下两个原因：
                     <ul>
                     <li>已经创建了一个同名的 <xref keyref="IChannel"/> 频道。</li>
                     <li>已经通过 <apiname keyref="IChannel"/> 加入了一个频道，并在该 <apiname keyref="IChannel"/> 频道中发布了音视频流。</li>
