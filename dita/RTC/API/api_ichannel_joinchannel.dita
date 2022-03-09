@@ -26,7 +26,8 @@
      uid: number,
      options?: ChannelMediaOptions
      ): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannel(string token, string info, uint uid, ChannelMediaOptions options);</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannel(string token, string channelId, uint uid,
+                                ChannelMediaOptions options);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannel(String? token, String? optionalInfo, int optionalUid,
       ChannelMediaOptions options);</codeblock>
@@ -47,15 +48,15 @@
            </thead>
            <tbody>
       <row>
- <entry>无 <parmname>channelId</parmname> 参数。因为创建 <xref keyref="IChannel"/> 对象时已指定了 <parmname>channelId</parmname>。</entry>
+ <entry>无 <parmname>channelId</parmname> 参数。因为创建 <xref keyref="IChannel" /> 对象时已指定了 <parmname>channelId</parmname>。</entry>
  <entry>需要填入可以标识频道的 <parmname>channelId</parmname>。</entry>
       </row>
       <row>
- <entry>通过创建多个 <apiname keyref="IChannel"/> 对象，并调用相应对象的 <apiname keyref="IChannel_joinChannel"/> 方法，实现同时加入多个频道。</entry>
+ <entry>通过创建多个 <apiname keyref="IChannel" /> 对象，并调用相应对象的 <apiname keyref="IChannel_joinChannel" /> 方法，实现同时加入多个频道。</entry>
  <entry>只允许加入一个频道。</entry>
       </row>
       <row>
- <entry>通过该方法加入频道后，SDK 默认不发布本地音视频流到本频道，需要调用 <xref keyref="IChannel_publish"/> 方法进行发布。</entry>
+ <entry>通过该方法加入频道后，SDK 默认不发布本地音视频流到本频道，需要调用 <xref keyref="IChannel_publish" /> 方法进行发布。</entry>
  <entry>通过该方法加入频道后，SDK 默认将音视频流发布到本频道。</entry>
       </row>
   </tbody>
@@ -90,5 +91,5 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values" conkeyref="joinChannel2/return_values" props="native electron unity"/></refbody>
+        <section id="return_values" conkeyref="joinChannel2/return_values" props="native electron unity" /></refbody>
 </reference>
