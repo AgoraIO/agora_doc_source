@@ -49,6 +49,7 @@
             </dl>
             <p id="desc1">该方法让用户加入实时音视频互动频道。在 App ID 一致的前提下，进入同一个频道的用户可以互相通话；多个用户加入同一个频道可以群聊。</p>
             <p id="desc2">成功调用该方法加入频道后会触发以下回调：
+            
             <ul>
             <li>本地会触发 <xref keyref="onJoinChannelSuccess"/> 和 <xref keyref="onConnectionStateChanged"/> 回调。</li>
             <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined"/> 回调。</li>
@@ -71,6 +72,7 @@
                 <pt props="android flutter"><ph props="rtc">channelName</ph><ph props="rtc-ng">channelId</ph></pt>
                 <pd>
                     <p id="channelID_desc">频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同频道名的用户会进入同一个频道进行音视频互动。该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:
+                    
                     <ul id="char_support">
                     <li>26 个小写英文字母 a~z</li>
                     <li>26 个大写英文字母 A~Z</li>
@@ -80,13 +82,13 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry id="info" props="rtc">
-                <pt props="ios mac windows electron unity">info</pt>
-                <pt props="android flutter">optionalInfo</pt>
-                <pd>
-                    <p>预留参数。</p>
-                </pd>
-            </plentry>
+            <plentry id="info" props="windows rtc">
+                    <pt props="ios mac windows electron unity">info</pt>
+                    <pt props="android flutter">optionalInfo</pt>
+                    <pd>
+                        <p>预留参数。</p>
+                    </pd>
+                </plentry>
             <plentry id="uid">
                 <pt props="ios mac windows electron unity">uid</pt>
                 <pt props="android flutter"><ph props="rtc">optionalUid</ph><ph props="rtc-ng">uid</ph></pt>
@@ -111,10 +113,12 @@
             <ul>
             <li>0(ERR_OK) 方法调用成功。</li>
             <li>&lt; 0 方法调用失败。
+                
                 <ul>
                 <li>-2(ERR_INVALID_ARGUMENT): 参数无效。</li>
                 <li>-3(ERR_NOT_READY): SDK 初始化失败，请尝试重新初始化 SDK。</li>
                 <li>-5(ERR_REFUSED): 调用被拒绝。可能有如下两个原因：
+                    
                     <ul>
                     <li>已经创建了一个同名的 <xref keyref="IChannel"/> 频道。</li>
                     <li>已经通过 <apiname keyref="IChannel"/> 加入了一个频道，并在该 <apiname keyref="IChannel"/> 频道中发布了音视频流。</li>
