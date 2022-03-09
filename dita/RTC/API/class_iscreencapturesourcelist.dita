@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_iscreencapturesourcelist">
-    <title>iscreencapturesourcelist</title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this class."?></ph></shortdesc>
+    <title><ph keyref="IScreenCaptureSourceList"/></title>
+    <shortdesc id="short"><ph id="shortdesc">IScreenCaptureSourceList 类。该类在 <xref keyref="getScreenCaptureSources"/> 方法中返回。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="windows" outputclass="language-cpp">class IScreenCaptureSourceList {
+ protected:
+  virtual ~IScreenCaptureSourceList(){};
+
+ public:
+  virtual unsigned int getCount() = 0;
+  virtual ScreenCaptureSourceInfo getSourceInfo(unsigned int index) = 0;
+  virtual void release() = 0;
+};
+</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
-        <section id="detailed_desc">
-            <dl outputclass="since">
-            <dlentry>
-                <dt>自从</dt>
-                <dd>v</dd>
-            </dlentry>
-            </dl>
-            <p/>
-        </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
-                <pt><?oxy-placeholder content="The name of the attribute or property."?></pt>
-                <pd><?oxy-placeholder content="The description of the attribute or property."?></pd>
+                <pt>getCount</pt>
+                <pd>获取可共享的窗口和屏幕的个数。该成员方法返回可共享的窗口和屏幕的个数。</pd>
+            </plentry>
+            <plentry>
+                <pt>getSourceInfo</pt>
+                <pd>获取指定的可共享窗口或屏幕的信息。你需要在该成员方法中传入指定的可共享窗口或屏幕的索引值，以获取到该窗口或屏幕的信息 <xref keyref="ScreenCaptureSourceInfo"/>。
+                索引值的取值范围为 [0, <parmname>getCount</parmname> 的返回值)。</pd>
+            </plentry>
+            <plentry>
+                <pt>release</pt>
+                <pd>释放 <xref keyref="IScreenCaptureSourceList"/>。获取可共享的窗口和屏幕对象列表后，为避免内存泄露，需要调用该方法释放 <ph keyref="IScreenCaptureSourceList"/>。
+                不要直接删除 <ph keyref="IScreenCaptureSourceList"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

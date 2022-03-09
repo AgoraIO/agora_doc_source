@@ -61,6 +61,7 @@
             <topicref keyref="getEffectDuration" toc="no"/>
             <topicref keyref="getEffectsVolume" toc="no"/>
             <topicref keyref="getErrorDescription" toc="no"/>
+            <topicref keyref="getScreenCaptureSources" toc="no"/>
             <topicref keyref="getUserInfoByUid" toc="no"/>
             <topicref keyref="getUserInfoByUserAccount" toc="no"/>
             <topicref keyref="getVersion" toc="no"/>
@@ -165,6 +166,7 @@
             <topicref keyref="startChannelMediaRelay" toc="no"/>
             <topicref keyref="startEchoTest1" toc="no"/>
             <topicref keyref="startEchoTest2" toc="no"/>
+            <topicref keyref="startEchoTest3" toc="no"/>
             <topicref keyref="startLastmileProbeTest" toc="no"/>
             <topicref keyref="startPreview" toc="no"/>
             <topicref keyref="startScreenCapture" toc="no"/>
@@ -183,6 +185,7 @@
             <topicref keyref="switchCamera" toc="no"/>
             <topicref keyref="switchChannel1" toc="no"/>
             <topicref keyref="switchChannel2" toc="no"/>
+            <topicref keyref="takeSnapshot" toc="no"/>
             <topicref keyref="unloadEffect" toc="no"/>
             <topicref keyref="updateChannelMediaRelay" toc="no"/>
             <topicref keyref="updateScreenCaptureParameters" toc="no"/>
@@ -256,6 +259,7 @@
             <topicref keyref="onRtcStats" toc="no"/>
             <topicref keyref="onRtmpStreamingEvent" toc="no"/>
             <topicref keyref="onRtmpStreamingStateChanged" toc="no"/>
+            <topicref keyref="onSnapshotTaken" toc="no"/>
             <topicref keyref="onStreamInjectedStatus" toc="no"/>
             <topicref keyref="onStreamMessage" toc="no"/>
             <topicref keyref="onStreamMessageError" toc="no"/>
@@ -417,6 +421,16 @@
             <topicref keyref="registerVideoFrameObserver" toc="no"/>
             <topicref keyref="setExternalVideoSource" toc="no"/>
         </topicref>
+        <topicref keyref="IMediaRecorder" chunk="to-content">
+            <topicref keyref="getMediaRecorder" toc="no"/>
+            <topicref keyref="startRecording" toc="no"/>
+            <topicref keyref="stopRecording" toc="no"/>
+            <topicref keyref="releaseRecorder" toc="no"/>
+        </topicref>
+        <topicref keyref="IMediaRecorderObserver" chunk="to-content">
+            <topicref keyref="onRecorderInfoUpdated" toc="no"/>
+            <topicref keyref="onRecorderStateChanged" toc="no"/>
+        </topicref>
         <topicref keyref="IVideoSource" chunk="to-content">
             <topicref keyref="getBufferType" toc="no"/>
             <topicref keyref="getVideoCaptureType" toc="no"/>
@@ -517,6 +531,8 @@
             <topicref keyref="MAX_DEVICE_ID_LENGTH_TYPE" toc="no"/>
             <topicref keyref="MAX_USER_ACCOUNT_LENGTH_TYPE" toc="no"/>
             <topicref keyref="MEDIA_DEVICE_STATE_TYPE" toc="no"/>
+            <topicref keyref="MediaRecorderContainerFormat" toc="no"/>
+            <topicref keyref="MediaRecorderStreamType" toc="no"/>
             <topicref keyref="MEDIA_DEVICE_TYPE" toc="no"/>
             <topicref keyref="MEDIA_SOURCE_TYPE" toc="no"/>
             <topicref keyref="NETWORK_TYPE" toc="no"/>
@@ -526,6 +542,8 @@
             <topicref keyref="QUALITY_REPORT_FORMAT_TYPE" toc="no"/>
             <topicref keyref="QUALITY_TYPE" toc="no"/>
             <topicref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" toc="no"/>
+            <topicref keyref="RecorderState" toc="no"/>
+            <topicref keyref="RecorderErrorCode" toc="no"/>
             <topicref keyref="REMOTE_AUDIO_STATE_REASON" toc="no"/>
             <topicref keyref="REMOTE_AUDIO_STATE" toc="no"/>
             <topicref keyref="REMOTE_VIDEO_STATE_REASON" toc="no"/>
@@ -536,6 +554,7 @@
             <topicref keyref="RTMP_STREAM_PUBLISH_ERROR" toc="no"/>
             <topicref keyref="RTMP_STREAM_PUBLISH_STATE" toc="no"/>
             <topicref keyref="RTMP_STREAMING_EVENT" toc="no"/>
+            <topicref keyref="ScreenCaptureSourceType" toc="no"/>
             <topicref keyref="STREAM_FALLBACK_OPTIONS" toc="no"/>
             <topicref keyref="STREAM_PUBLISH_STATE" toc="no"/>
             <topicref keyref="STREAM_SUBSCRIBE_STATE" toc="no"/>
@@ -566,9 +585,15 @@
             <topicref keyref="ContentInspectModule" toc="no"/>
             <topicref keyref="ContentInspectType" toc="no"/>
             <topicref keyref="DataStreamConfig" toc="no"/>
+            <topicref keyref="EchoTestConfiguration" toc="no"/>
             <topicref keyref="EncryptionConfig" toc="no"/>
             <topicref keyref="ExternalVideoFrame" toc="no"/>
             <topicref keyref="InjectStreamConfig" toc="no"/>
+            <topicref keyref="IScreenCaptureSourceList" toc="no" chunk="to-content">
+                <topicref keyref="IScreenCaptureSourceList_getCount" toc="no"/>
+                <topicref keyref="IScreenCaptureSourceList_getSourceInfo" toc="no"/>
+                <topicref keyref="IScreenCaptureSourceList_release" toc="no"/>
+            </topicref>
             <topicref keyref="LastmileProbeConfig" toc="no"/>
             <topicref keyref="LastmileProbeOneWayResult" toc="no"/>
             <topicref keyref="LastmileProbeResult" toc="no"/>
@@ -576,14 +601,19 @@
             <topicref keyref="LocalAudioStats" toc="no"/>
             <topicref keyref="LocalVideoStats" toc="no"/>
             <topicref keyref="LogConfig" toc="no"/>
+            <topicref keyref="MediaRecorderConfiguration" toc="no"/>
             <topicref keyref="Rect" toc="no"/>
+            <topicref keyref="RecorderInfo" toc="no"/>
             <topicref keyref="Rectangle" toc="no"/>
             <topicref keyref="RemoteAudioStats" toc="no"/>
             <topicref keyref="RemoteVideoStats" toc="no"/>
+            <topicref keyref="SIZE" toc="no"/>
             <topicref keyref="RtcEngineConfig" toc="no"/>
             <topicref keyref="RtcImage" toc="no"/>
             <topicref keyref="RtcStats" toc="no"/>
             <topicref keyref="ScreenCaptureParameters" toc="no"/>
+            <topicref keyref="ScreenCaptureSourceInfo" toc="no"/>
+            <topicref keyref="ThumbImageBuffer" toc="no"/>
             <topicref keyref="TranscodingUser" toc="no"/>
             <topicref keyref="UserInfo" toc="no"/>
             <topicref keyref="VideoCanvas" toc="no"/>
