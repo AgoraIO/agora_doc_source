@@ -10,6 +10,23 @@
         </relheader>
         <relrow>
             <relcell>
+                <topicref keyref="initialize_ICloudSpatialAudioEngine"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="CloudSpatialAudioConfig"/>
+                <topicref keyref="SAE_DEPLOY_REGION"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="initialize_ILocalSpatialAudioEngine"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="LocalSpatialAudioConfig"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
                 <topicref keyref="create2"/>
             </relcell>
             <relcell>
@@ -17,6 +34,14 @@
                 <topicref keyref="AREA_CODE"/>
                 <topicref keyref="LogConfig"/>
                 <topicref keyref="LOG_LEVEL"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setAudioRangeMode"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AUDIO_RANGE_MODE_TYPE"/>
             </relcell>
         </relrow>
         <relrow>
@@ -236,6 +261,15 @@
                 <topicref keyref="VIDEO_CONTENT_HINT"/>
             </relcell>
         </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="updatePlayerPositionInfo"/>
+                <topicref keyref="updateRemotePosition"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="RemoteVoicePositionInfo"/>
+            </relcell>
+        </relrow>
         <relrow props="windows">
             <relcell>
                 <topicref keyref="updateScreenCaptureParameters"/>
@@ -372,6 +406,14 @@
                 <topicref keyref="RtcImage"/>
                 <topicref keyref="AUDIO_SAMPLE_RATE_TYPE"/>
                 <topicref keyref="AUDIO_CODEC_PROFILE_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setRemoteSubscribeFallbackOption"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="STREAM_FALLBACK_OPTIONS"/>
             </relcell>
         </relrow>
         <relrow>
@@ -571,6 +613,15 @@
             <relcell>
                 <topicref keyref="MEDIA_DEVICE_TYPE"/>
                 <topicref keyref="AgoraRtcDeviceInfo"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="onConnectionStateChange"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="SAE_CONNECTION_STATE_TYPE"/>
+                <topicref keyref="SAE_CONNECTION_CHANGED_REASON_TYPE"/>
             </relcell>
         </relrow>
         <relrow>
@@ -1031,7 +1082,7 @@
                 <topicref keyref="MEDIA_PLAYER_METADATA_TYPE"/>
             </relcell>
         </relrow>
-         <relrow>
+        <relrow>
             <relcell>
                 <topicref keyref="createMediaPlayer"/>
                 <topicref keyref="destroyMediaPlayer"/>
@@ -1277,6 +1328,15 @@
                 <topicref keyref="IAudioEffectManager"/>
             </relcell>
         </relrow>
+        <relrow props="android windows">
+            <relcell>
+                <topicref keyref="addEventHandler"/>
+                <topicref keyref="removeEventHandler"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="ICloudSpatialAudioEventHandler"/>
+            </relcell>
+        </relrow>
         <relrow props="android">
             <relcell>
                 <topicref keyref="addHandler"/>
@@ -1327,6 +1387,9 @@
                 <topicref keyref="VirtualBackgroundSource"/>
                 <topicref keyref="BACKGROUND_SOURCE_TYPE" props="ios mac windows"/>
                 <topicref keyref="BACKGROUND_BLUR_DEGREE" props="ios mac windows"/>
+                <topicref keyref="SegmentationProperty"/>
+                <topicref keyref="SEG_MODEL_TYPE" props="hide"/>
+                <topicref keyref="MEDIA_SOURCE_TYPE" props="windows"/>
             </relcell>
         </relrow>
         <relrow props="windows">
@@ -1345,6 +1408,16 @@
             <relcolspec type="reference"/>
             <relcolspec type="reference"/>
         </relheader>
+        <relrow>
+            <relcell>
+                <topicref keyref="enterRoom"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onConnectionStateChange"/>
+                <topicref keyref="onTeammateJoined"/>
+                <topicref keyref="onTeammateLeft"/>
+            </relcell>
+        </relrow>
         <relrow>
             <relcell>
                 <topicref keyref="joinChannel1" props="android ios mac windows"/>
@@ -1376,6 +1449,14 @@
             <relcell>
                 <topicref keyref="onLeaveChannel"/>
                 <topicref keyref="onUserOffline"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="renewToken_ICloudSpatialAudioEngine"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onTokenWillExpire"/>
             </relcell>
         </relrow>
         <relrow>
@@ -1427,6 +1508,14 @@
             </relcell>
             <relcell>
                 <topicref keyref="onTranscodingUpdated"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="setRemoteSubscribeFallbackOption"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onRemoteSubscribeFallbackToAudioOnly"/>
             </relcell>
         </relrow>
         <relrow>
@@ -1724,6 +1813,16 @@
             </relcell>
             <relcell>
                 <topicref keyref="onFirstRemoteAudioDecoded"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="enableExtension"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onExtensionStarted"/>
+                <topicref keyref="onExtensionStopped"/>
+                <topicref keyref="onExtensionError"/>
             </relcell>
         </relrow>
     </reltable>
