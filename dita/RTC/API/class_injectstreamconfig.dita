@@ -79,13 +79,28 @@
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">class LiveInjectStreamConfig {
 
+  @JsonKey(includeIfNull: false)
   int? width;
+
+  @JsonKey(includeIfNull: false)
   int? height;
+
+  @JsonKey(includeIfNull: false)
   int? videoGop;
+
+  @JsonKey(includeIfNull: false)
   VideoFrameRate? videoFramerate;
+
+  @JsonKey(includeIfNull: false)
   int? videoBitrate;
+
+  @JsonKey(includeIfNull: false)
   AudioSampleRateType? audioSampleRate;
+
+  @JsonKey(includeIfNull: false)
   int? audioBitrate;
+
+  @JsonKey(includeIfNull: false)
   AudioChannel? audioChannels;
 
   LiveInjectStreamConfig({
@@ -98,6 +113,11 @@
     this.audioBitrate,
     this.audioChannels,
   });
+
+  factory LiveInjectStreamConfig.fromJson(Map&lt;String, dynamic> json) =>
+      _$LiveInjectStreamConfigFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$LiveInjectStreamConfigToJson(this);
 }</codeblock>
             </p>
         </section>

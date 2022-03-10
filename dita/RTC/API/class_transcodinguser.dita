@@ -64,12 +64,26 @@
                 <codeblock props="flutter" outputclass="language-dart">class TranscodingUser {
   
   int uid;
+
+  @JsonKey(includeIfNull: false)
   int? x;
+
+  @JsonKey(includeIfNull: false)
   int? y;
+
+  @JsonKey(includeIfNull: false)
   int? width;
+
+  @JsonKey(includeIfNull: false)
   int? height;
+
+  @JsonKey(includeIfNull: false)
   int? zOrder;
+
+  @JsonKey(includeIfNull: false)
   double? alpha;
+
+  @JsonKey(includeIfNull: false)
   AudioChannel? audioChannel;
 
   TranscodingUser(
@@ -82,6 +96,11 @@
     this.alpha,
     this.audioChannel,
   });
+
+  factory TranscodingUser.fromJson(Map&lt;String, dynamic> json) =>
+      _$TranscodingUserFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$TranscodingUserToJson(this);
 }</codeblock>
             </p>
         </section>

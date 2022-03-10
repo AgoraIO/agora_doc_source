@@ -82,7 +82,14 @@
                 <plentry>
                     <pt props="ios mac windows">streamType</pt>
                     <pt props="android">mediaStreamType</pt>
-                    <pd>此条媒体流的类型，详见 <xref keyref="MEDIA_STREAM_TYPE"/>。</pd>
+                    <pd><ph>此条媒体流的类型。</ph><ph props="ios mac windows">详见 <xref keyref="MEDIA_STREAM_TYPE"/>。</ph>
+                        <ul props="android">
+                            <li><ph keyref="STREAM_TYPE_UNKNOWN"/> (0): 未知类型。</li>
+                            <li><ph keyref="STREAM_TYPE_VIDEO"/> (1): 视频流。</li>
+                            <li><ph keyref="STREAM_TYPE_AUDIO"/> (2): 音频流。</li>
+                            <li><ph keyref="STREAM_TYPE_SUBTITLE"/> (3): 字幕流。</li>
+                        </ul>
+                    </pd>
                 </plentry>
                 <plentry>
                     <pt>codecName</pt>
@@ -94,36 +101,37 @@
                 </plentry>
                 <plentry>
                     <pt>videoFrameRate</pt>
-                    <pd>如果此条媒体流是视频流，获取它的视频帧率 (fps)。</pd>
+                    <pd>该参数仅对视频流生效，表示视频帧率 (fps)。</pd>
                 </plentry>
                 <plentry>
                     <pt>videoBitRate</pt>
-                    <pd>如果此条媒体流是视频流，获取它的视频码率 (bps)。</pd>
+                    <pd>该参数仅对视频流生效，表示视频码率 (bps)。</pd>
                 </plentry>
                 <plentry>
                     <pt>videoWidth</pt>
-                    <pd>如果此条媒体流是视频流，获取它的视频宽度 (pixel)。</pd>
+                    <pd>该参数仅对视频流生效，表示视频宽度 (pixel)。</pd>
                 </plentry>
                 <plentry>
                     <pt>videoHeight</pt>
-                    <pd>如果此条媒体流是视频流，获取它的视频高度 (pixel)。</pd>
+                    <pd>该参数仅对视频流生效，表示视频高度 (pixel)。</pd>
                 </plentry>
                 <plentry props="android ios mac">
                     <pt props="android">videoRotation</pt>
                     <pt props="ios mac">rotation</pt>
-                    <pd>如果此条媒体流是视频流，获取它的视频旋转角度。</pd>
+                    <pd>该参数仅对视频流生效，表示旋转角度。</pd>
                 </plentry>
                 <plentry>
                     <pt>audioSampleRate</pt>
-                    <pd>如果此条媒体流是音频流，获取它的音频采样率 (Hz)。</pd>
+                    <pd>该参数仅对音频流生效，表示音频采样率 (Hz)。</pd>
                 </plentry>
                 <plentry>
                     <pt>audioChannels</pt>
-                    <pd>如果此条媒体流是音频流，获取它的声道数。</pd>
+                    <pd>该参数仅对音频流生效，表示声道数。</pd>
                 </plentry>
                 <plentry props="android windows">
-                    <pt>audioBitsPerSample</pt>
-                    <pd>如果此条媒体流是音频流，获取每个音频采样点的位数 (bit)。</pd>
+                    <pt props="windows">audioBitsPerSample</pt>
+                    <pt props="android">audioBytesPerSample</pt>
+                    <pd>该参数仅对音频流生效，表示每个音频采样点的位数 (bit)。</pd>
                 </plentry>
                 <plentry>
                     <pt>duration</pt>

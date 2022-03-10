@@ -24,11 +24,11 @@
             </p>
         </section>
         <section id="detailed_desc">
-            <p>This method applies to scenarios where you want to use external audio data for playback. Before calling the <xref keyref="setExternalAudioSink" /> to set the external audio sink, you need to set <codeph>enableAudioDevice</codeph> as <codeph><ph keyref="false" /></codeph> in the <xref keyref="create2" /> method. After the setting is successful, you can call <xref keyref="pullAudioFrame" /> to pull the remote audio data. The app can process the remote audio and play it with the audio effects that you want.</p>
-            <note id="note_vwq_vwf_3qb">
-                <ul id="ul_irx_vwf_3qb">
+            <p>This method applies to scenarios where you want to use external audio data for playback. After setting <codeph props="windows ios mac">enableAudioDevice</codeph><codeph props="android">mEnableAudioDevice</codeph> to <codeph><ph keyref="false" /></codeph> in <xref keyref="create2" />, you can call <xref keyref="setExternalAudioSink" /> to set the external audio sink. After the setting is successful, you can call <xref keyref="pullAudioFrame" /> to pull the remote audio data. The app can process the remote audio and play it with the audio effects that you want.</p>
+            <note>
+                <ul>
                     <li>Ensure that you call this method before joining a channel.</li>
-                    <li>Once you enable the external audio sink, the app will not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
+                    <li>Once you enable the external audio sink, the app does not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
                 </ul>
             </note>
         </section>
