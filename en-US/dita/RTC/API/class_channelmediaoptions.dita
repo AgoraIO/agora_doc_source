@@ -23,9 +23,16 @@
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">class ChannelMediaOptions {
 
+  @JsonKey(includeIfNull: false)
   bool? autoSubscribeAudio;
+
+  @JsonKey(includeIfNull: false)
   bool? autoSubscribeVideo;
+
+  @JsonKey(includeIfNull: false)
   bool? publishLocalAudio;
+
+  @JsonKey(includeIfNull: false)
   bool? publishLocalVideo;
 
   ChannelMediaOptions({
@@ -34,6 +41,11 @@
     this.publishLocalAudio,
     this.publishLocalVideo,
   });
+
+  factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ChannelMediaOptionsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaOptionsToJson(this);
 }</codeblock>
             </p>
         </section>

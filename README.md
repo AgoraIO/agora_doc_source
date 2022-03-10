@@ -12,8 +12,8 @@ The primary purpose of this project is to single-source the API documentation so
 
 ### Working branches
 
-- The `master` branch has the master ditamap for RTC API reference, and sub maps for each platform.  
-- The `dita-cpp` branch. This branch has some example DITA topics and maps for the C++ API Reference of the RTC SDK.
+-   The `master` branch has the master ditamap for RTC API reference, and sub maps for each platform.
+-   The `dita-cpp` branch. This branch has some example DITA topics and maps for the C++ API Reference of the RTC SDK.
 
 ### Build output
 
@@ -21,38 +21,38 @@ The primary purpose of this project is to single-source the API documentation so
     ```bash
     brew install dita-ot
     ```
-    > See [Installing DITA Open Toolkit](https://www.dita-ot.org/dev/topics/installing-client.html) for more information.  
+    > See [Installing DITA Open Toolkit](https://www.dita-ot.org/dev/topics/installing-client.html) for more information.
 2. Build the documents using the DITA-OT project file.
     ```bash
     dita --project=<path-to-the-project-file>
     ```
-    > If you are running the command from the root directory of this project, the path is `config/html-windows.xml` for the C++ API Reference.  
+    > If you are running the command from the root directory of this project, the path is `config/html-windows.xml` for the C++ API Reference.
 
 See [Building output](https://www.dita-ot.org/dev/topics/building-output.html) for other building options.
 
-## Toolchain
+## Tool chain
 
-- Editing: Oxygen XML Editor.
-- Output: DITA-OT.
-- Peer review: Oxygen XML Editor.
-- Technical review: Agora internal doc site (under development).
-- Publishing: Agora self-developed CMS (in plan).
+-   Editing: Oxygen XML Editor.
+-   Output: DITA-OT.
+-   Peer review: Oxygen XML Editor.
+-   Technical review: Agora internal doc site (under development).
+-   Publishing: Agora self-developed CMS (in plan).
 
 ## Project structure
 
 The following lists the major folders and files:
 
-- `RTC_API.ditamap`: The master DITA map for the RTC API Reference of all platforms.
-- `API`: The DITA topics for the API documentation. Each API or class will be a topic.
-- `conref`: The DITA topics for conref.
-	- `conref_rtc_api.dita`:  The API syntaxes for all the platforms with filtering properties.
-- `config`: Configurations for the output.
-	- `.ditaval`: The filter files for each platform.
-	- `.xml`:  The DITA-OT project file to generate output.
-	- `keys-rtc-cpp-api.ditamap:` Keys for C++ APIs.
-  - `relations.ditamap`: The DITA map that define the relationship between API topics.
-- `out`: The output files.
-- `templates`: The DITA topic templates. Copy the files to the `templates` folder in the Oxygen installation directory to use the templates.
+-   `RTC_API.ditamap`: The master DITA map for the RTC API Reference of all platforms.
+-   `API`: The DITA topics for the API documentation. Each API or class will be a topic.
+-   `conref`: The DITA topics for conref.
+    -   `conref_rtc_api.dita`: The API syntaxes for all the platforms with filtering properties.
+-   `config`: Configurations for the output.
+    -   `.ditaval`: The filter files for each platform.
+    -   `.xml`: The DITA-OT project file to generate output.
+    -   `keys-rtc-cpp-api.ditamap:` Keys for C++ APIs.
+    -   `relations.ditamap`: The DITA map that define the relationship between API topics.
+-   `out`: The output files.
+-   `templates`: The DITA topic templates. Copy the files to the `templates` folder in the Oxygen installation directory to use the templates.
 
 ## DITA map structure
 
@@ -61,21 +61,22 @@ The following figure shows the overall structure of the RTC_API.ditamap:
 
 Details:
 
-- RTC APIs for Reuse: This topic contains the API syntaxes for all platforms. It is conrefed in each API topic with a platform filter.
+-   RTC APIs for Reuse: This topic contains the API syntaxes for all platforms. It is conrefed in each API topic with a platform filter.
 
-- Windows API DITA map
-  - Keys RTC C++ API: Key definitions of API names for C++.
+-   Windows API DITA map
 
-  - windows.ditaval: Include the Windows platform only.
+    -   Keys RTC C++ API: Key definitions of API names for C++.
 
-  - Relations
+    -   windows.ditaval: Include the Windows platform only.
 
-    - Method-Class relationship table: Classes need to have related methods.
+    -   Relations
 
-    - Method-Callback relationship table: Methods and callbacks have bidirectional relationship.
+        -   Method-Class relationship table: Classes need to have related methods.
 
-    - API-feature relationship table: Group APIs by feature.
+        -   Method-Callback relationship table: Methods and callbacks have bidirectional relationship.
 
-  - API topics
+        -   API-feature relationship table: Group APIs by feature.
 
-- DITA maps for other platforms
+    -   API topics
+
+-   DITA maps for other platforms

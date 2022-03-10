@@ -18,8 +18,8 @@
 
 自 1.1.5 起，Agora 对 Edu Context API 进行以下改动：
 
-- 所有 handler 接口进行更名，去除名称中的 “Set” 或 “Get”。对于此前的接口，Agora 支持向下兼容，但建议尽快使用最新的接口。
-- 废弃了所有 `onShowXXXTips` 方法，并将原文本及显示 toast 的处理移至 AgoraEduUI 层。
+-   所有 handler 接口进行更名，去除名称中的 “Set” 或 “Get”。对于此前的接口，Agora 支持向下兼容，但建议尽快使用最新的接口。
+-   废弃了所有 `onShowXXXTips` 方法，并将原文本及显示 toast 的处理移至 AgoraEduUI 层。
 
 ### 新增特性
 
@@ -43,8 +43,8 @@
 
 1.1.5 支持开发者自行设置收流端延时级别。默认情况，收流端延时级别为超低延时。你可在调用 `launch` 接口时通过 `latencyLevel` 参数切换收流端延时级别：
 
-- 超低延时：发流端与收流端的延时为 400 ms - 800 ms。
-- 低延时：发流端与收流端的延时为 1500 ms - 2000 ms。
+-   超低延时：发流端与收流端的延时为 400 ms - 800 ms。
+-   低延时：发流端与收流端的延时为 1500 ms - 2000 ms。
 
 声网针对不同级别的延时收取不同的音视频费用。
 
@@ -65,13 +65,14 @@
 ## 1.1.2.3 版
 
 该版本于 2021 年 7 月 27 日发布。该版本对 iOS 15 进行了兼容性适配。可参考以下步骤将 Agora Classroom SDK 升级至最新版本：
+
 1. 在 Podfile 文件中，将 AgoraClassroomSDK 版本设置为 1.1.2.3：
-  ```
+
+```
 pod "AgoraClassroomSDK", "1.1.2.3"
 ```
 
 2. 执行 `pod update` 升级 SDK。
-
 
 ## 1.1.2 版
 
@@ -95,13 +96,13 @@ pod "AgoraClassroomSDK", "1.1.2.3"
 
 1.1.2 支持开发者自定义用户属性和课堂属性，同时支持更新属性和监听属性更新。例如，开发者可通过自定义用户属性设置用户头像。具体改动如下：
 
-- 课堂属性：
-  - `AgoraEduRoomContext` 中新增 `updateFlexRoomProps` 方法，用于新增或更新自定义课堂属性。
-  - `AgoraEduRoomHandler` 中新增 `onFlexRoomPropsInitialized` 和 `onFlexRoomPropertiesChanged` 回调，用于监听初始课堂自定义属性和课堂属性的变更。
-- 用户属性：
-  - `AgoraEduLaunchConfig` 中新增 `userProperties` 字段，用于在启动课堂时传入自定义用户属性。
-  - `AgoraEduUserContext` 中新增 `updateFlexUserProperties` 方法，用于新增或更新自定义用户属性。
-  - `AgoraEduUserHandler` 中新增 `onFlexUserPropertiesChanged` 回调，用于监听课堂属性的变更。
+-   课堂属性：
+    -   `AgoraEduRoomContext` 中新增 `updateFlexRoomProps` 方法，用于新增或更新自定义课堂属性。
+    -   `AgoraEduRoomHandler` 中新增 `onFlexRoomPropsInitialized` 和 `onFlexRoomPropertiesChanged` 回调，用于监听初始课堂自定义属性和课堂属性的变更。
+-   用户属性：
+    -   `AgoraEduLaunchConfig` 中新增 `userProperties` 字段，用于在启动课堂时传入自定义用户属性。
+    -   `AgoraEduUserContext` 中新增 `updateFlexUserProperties` 方法，用于新增或更新自定义用户属性。
+    -   `AgoraEduUserHandler` 中新增 `onFlexUserPropertiesChanged` 回调，用于监听课堂属性的变更。
 
 **HTML5 课件**
 
@@ -158,8 +159,8 @@ pod "AgoraClassroomSDK", "1.1.2.3"
 
 灵动课堂 1.1.0 在客户端 Agora Classroom SDK 的 `launch` 方法中新增以下参数：
 
-- `startTime`: 设置课堂开始时间（毫秒），以第一个进入课堂的用户传入的参数为准。
-- `duration`: 设置课堂持续时间（秒），以第一个进入课堂的用户传入的参数为准。
+-   `startTime`: 设置课堂开始时间（毫秒），以第一个进入课堂的用户传入的参数为准。
+-   `duration`: 设置课堂持续时间（秒），以第一个进入课堂的用户传入的参数为准。
 
 **课堂奖励**
 
@@ -179,16 +180,16 @@ pod "AgoraClassroomSDK", "1.1.2.3"
 
 该版本于 2021 年 1 月 20 日发布。这是灵动课堂的首个版本，支持以下三种教学场景：
 
-- 1 对 1 互动教学：1 位老师对 1 名学生进行专属在线辅导教学，老师和学生进行实时音视频互动。
-- 1 对 N 在线小班课：1 位教师对 N 名学生（2 ≤ N ≤ 16）进行在线辅导教学，老师和学生进行实时音视频互动。
-- 互动直播大班课：1 位老师进行在线教学，多名学生实时观看和收听，学生人数无上限。上课过程中，学生可以“举手”请求发言，与老师进行实时音视频互动。
+-   1 对 1 互动教学：1 位老师对 1 名学生进行专属在线辅导教学，老师和学生进行实时音视频互动。
+-   1 对 N 在线小班课：1 位教师对 N 名学生（2 ≤ N ≤ 16）进行在线辅导教学，老师和学生进行实时音视频互动。
+-   互动直播大班课：1 位老师进行在线教学，多名学生实时观看和收听，学生人数无上限。上课过程中，学生可以“举手”请求发言，与老师进行实时音视频互动。
 
 该版本主要包含以下功能：
 
-- 实时音视频互动
-- 实时消息互动
-- 互动白板
-- 课件上传
-- 教室管理
-- 屏幕共享
-- 录制回放
+-   实时音视频互动
+-   实时消息互动
+-   互动白板
+-   课件上传
+-   教室管理
+-   屏幕共享
+-   录制回放

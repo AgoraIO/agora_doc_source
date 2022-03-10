@@ -25,7 +25,7 @@
     height = height_;
   }
 };</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
                 <codeblock props="windows unity" outputclass="language-cpp">struct Rectangle {
     int x;
     int y;
@@ -41,12 +41,19 @@
     width: number;
     height: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">class Rectangle {
 
+  @JsonKey(includeIfNull: false)
   int? x;
+
+  @JsonKey(includeIfNull: false)
   int? y;
+
+  @JsonKey(includeIfNull: false)
   int? width;
+
+  @JsonKey(includeIfNull: false)
   int? height;
 
   Rectangle({
@@ -55,11 +62,16 @@
     this.width,
     this.height,
   });
+
+  factory Rectangle.fromJson(Map&lt;String, dynamic> json) =>
+      _$RectangleFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$RectangleToJson(this);
 }</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
    <parml>
        <plentry>
   <pt>x</pt>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_clientroleoptions">
-    <title><ph keyref="ClientRoleOptions" /></title>
+    <title><ph keyref="ClientRoleOptions"/></title>
     <shortdesc id="short"><ph id="shortdesc">用户角色具体设置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -33,20 +33,25 @@
                 <codeblock props="electron" outputclass="language-typescript">export interface ClientRoleOptions {
     audienceLatencyLevel: AUDIENCE_LATENCY_LEVEL_TYPE;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">class ClientRoleOptions {
-
+  @JsonKey(includeIfNull: false)
   AudienceLatencyLevelType? audienceLatencyLevel;
 
   ClientRoleOptions({
     this.audienceLatencyLevel,
   });
+
+  factory ClientRoleOptions.fromJson(Map&lt;String, dynamic> json) =>
+      _$ClientRoleOptionsFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$ClientRoleOptionsToJson(this);
 }
 </codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
    <parml>
        <plentry>
   <pt>audienceLatencyLevel</pt>

@@ -8,11 +8,11 @@
 
 ## 前提条件
 
-- 已在 Agora 控制台创建 Agora 项目，获取 <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>、<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App 证书</a>并<a href="/cn/agora-class/agora_class_enable?platform=Electron" target="_blank">开通灵动课堂服务</a>。
-- 安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
-- 物理音视频采集设备，如内置摄像头和麦克风。
-- 安装 [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)。
-- 安装 [yarn](https://yarnpkg.com/getting-started/install)。
+-   已在 Agora 控制台创建 Agora 项目，获取 <a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-id" target="_blank">Agora App ID</a>、<a href="/cn/Agora%20Platform/get_appid_token#%E8%8E%B7%E5%8F%96-app-%E8%AF%81%E4%B9%A6" target="_blank">App 证书</a>并<a href="/cn/agora-class/agora_class_enable?platform=Electron" target="_blank">开通灵动课堂服务</a>。
+-   安装最新稳定版桌面端 [Google Chrome 浏览器](https://www.google.cn/chrome/)。
+-   物理音视频采集设备，如内置摄像头和麦克风。
+-   安装 [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)。
+-   安装 [yarn](https://yarnpkg.com/getting-started/install)。
 
 ## 启动灵动课堂
 
@@ -20,81 +20,112 @@
 
 1. 运行以下命令将 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) 项目克隆至本地，并切换至最新发版分支 release/apaas/x.y.z。
 
-   ```
-   https://github.com/AgoraIO-Community/CloudClass-Desktop.git
-   ```
+    ```
+    https://github.com/AgoraIO-Community/CloudClass-Desktop.git
+    ```
 
-   <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_web?platform=Web">发版说明</a>中获取最新版本号。</div>
+    ```
+    git checkout release/apaas/x.y.z
+    ```
 
-2. 将 `.env.example` 重命名为 `.env.dev` 并移动至 `packages/agora-classroom-sdk` 目录下，然后传入你自己的 `Agora App ID` 和 `Agora App Certificate`。
+    <div class="alert info">x.y.z 请替换为版本号。你可在<a href="/cn/agora-class/release_agora_class_web?platform=Web">发版说明</a>中获取最新版本号。</div>
 
-   ```
-   REACT_APP_AGORA_APP_ID=
-   REACT_APP_AGORA_APP_CERTIFICATE=
-   ```
+2. 将 `packages/agora-electron-edu-demo/src/renderer/components/app/index.js` 文件中的 `<Your Agora App ID>` 和 `<YOUR RTM TOKEN>` 替换成[你的 App ID 和 RTM Token](#prerequisites)。
 
-   为方便你快速测试，CloudClass-Desktop 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
+    ```javascript
+    import {AgoraEduSDK} from "agora-classroom-sdk";
+
+    export default class App {
+        constructor(elem) {
+            if (!elem) return;
+            this.elem = elem;
+        }
+
+        setupClassroom() {
+            AgoraEduSDK.config({
+                appId: "<YOUR APPID>",
+            });
+            AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
+                rtmToken: "<YOUR RTM TOKEN>",
+                userUuid: "test",
+                userName: "teacher",
+                roomUuid: "4321",
+                roleType: 1,
+                roomType: 0,
+                roomName: "demo-class",
+                pretest: false,
+                language: "en",
+                startTime: new Date().getTime(),
+                duration: 60 * 30,
+                courseWareList: [],
+                listener: evt => {
+                    console.log("evt", evt);
+                },
+            });
+        }
+    }
+    ```
 
 3. 参考以下步骤分别在 macOS 或 Windows 设备上运行项目：
 
-   **macOS**
+    **macOS**
 
-   1. 在 CloudClass-Desktop 项目根目录下运行以下命令安装项目依赖：
+    1. 在 CloudClass-Desktop 项目根目录下运行以下命令安装项目依赖：
 
-      ```bash
-      # Install global dev dependencies
-      yarn
-      # Install all dependencies via lerna and yarn
-      yarn bootstrap
-      ```
+        ```bash
+        # Install global dev dependencies
+        yarn
+        # Install all dependencies via lerna and yarn
+        yarn bootstrap
+        ```
 
-   2. 在项目根目录下运行以下命令编译项目：
+    2. 在 `packages/agora-electron-edu-demo` 目录下运行以下命令编译项目：
 
-      ```
-      yarn dev:electron
-      ```
+        ```
+        npm run dev
+        ```
 
-      编译成功后，你可以看到以下页面：
+        编译成功后，你可以看到以下页面：
 
-      ![](https://web-cdn.agora.io/docs-files/1623404345070)
+        ![](https://web-cdn.agora.io/docs-files/1623404345070)
 
-   **Windows**
+    **Windows**
 
-   1. 在 CloudClass-Desktop 项目根目录下运行以下命令安装项目依赖：
+    1. 在 CloudClass-Desktop 项目根目录下运行以下命令安装项目依赖：
 
-      ```bash
-      # Install global dev dependencies
-      yarn
-      # Install all dependencies via lerna and yarn
-      yarn bootstrap
-      ```
+        ```bash
+        # Install global dev dependencies
+        yarn
+        # Install all dependencies via lerna and yarn
+        yarn bootstrap
+        ```
 
-   2. 将 `packages/agora-electron-edu-demo/package.json` 文件中的 `"agora_electron"` 对象替换成以下内容：
+    2. 将 `packages/agora-electron-edu-demo/package.json` 文件中的 `"agora_electron"` 对象替换成以下内容：
 
-      ```json
-      "agora_electron": {
-        "electron_version": "12.0.0",
-        "prebuilt": true,
-        "platform": "win32",
-        "arch": "ia32"
-      },
-      ```
+        ```json
+        "agora_electron": {
+          "electron_version": "7.1.2",
+          "prebuilt": true,
+          "platform": "win32",
+          "arch": "ia32"
+        },
+        ```
 
-   3. 运行以下命令安装 electron 12.0.0：
+    3. 运行以下命令安装 electron 7.1.14：
 
-      ```bash
-      npm install electron@12.0.0 --arch=ia32 --save-dev
-      ```
+        ```bash
+        npm install electron@7.1.14 --arch=ia32 --save-dev
+        ```
 
-   4. 在根目录下运行以下命令编译项目：
+    4. 在 `packages/agora-electron-edu-demo` 目录下运行以下命令编译项目：
 
-      ```bash
-      yarn dev:electron
-      ```
+        ```bash
+        npm run dev
+        ```
 
-      编译成功后，你可以看到以下页面：
+        编译成功后，你可以看到以下页面：
 
-      ![](https://web-cdn.agora.io/docs-files/1623404345070)
+        ![](https://web-cdn.agora.io/docs-files/1623404345070)
 
 ## 后续步骤
 

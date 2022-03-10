@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcimage">
-    <title><ph keyref="RtcImage" /></title>
+    <title><ph keyref="RtcImage"/></title>
     <shortdesc id="short"><ph id="shortdesc">图像属性。</ph></shortdesc>
     <refbody>
       <section id="prototype">
@@ -107,11 +107,13 @@
     height: number,
     url: string
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">class AgoraImage {
   
   String url;
+  @JsonKey(includeIfNull: false)
   int? x;
+  @JsonKey(includeIfNull: false)
   int? y;
   int? width;
   int? height;
@@ -123,6 +125,11 @@
     this.width,
     this.height,
   });
+
+  factory AgoraImage.fromJson(Map&lt;String, dynamic> json) =>
+      _$AgoraImageFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$AgoraImageToJson(this);
 }</codeblock>
             </p>
         </section>
@@ -131,7 +138,7 @@
    <p>用于设置直播视频的水印和背景图片的属性。</p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
    <parml>
        <plentry>
   <pt>url</pt>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_lastmileprobeonewayresult">
-    <title><ph keyref="LastmileProbeOneWayResult" /></title>
+    <title><ph keyref="LastmileProbeOneWayResult"/></title>
     <shortdesc id="short"><ph id="shortdesc">上行或下行 Last mile 网络质量探测结果。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -37,7 +37,7 @@
     jitter: number;
     availableBandwidth: number;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">class LastmileProbeOneWayResult {
   
   int packetLossRate;
@@ -49,6 +49,11 @@
     this.jitter,
     this.availableBandwidth,
   );
+
+  factory LastmileProbeOneWayResult.fromJson(Map&lt;String, dynamic> json) =>
+      _$LastmileProbeOneWayResultFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$LastmileProbeOneWayResultToJson(this);
 }</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
@@ -60,7 +65,7 @@
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
    <parml>
        <plentry>
   <pt>packetLossRate</pt>

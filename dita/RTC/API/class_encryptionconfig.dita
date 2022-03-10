@@ -1,36 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encryptionconfig">
-    <title><ph keyref="EncryptionConfig" /></title>
+    <title><ph keyref="EncryptionConfig"/></title>
     <shortdesc id="short"><ph id="shortdesc">配置内置加密模式和密钥。</ph></shortdesc>
     <refbody>
         <section id="prototype">
-            <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public class EncryptionConfig {
-  public enum EncryptionMode {
-    SM4_128_ECB(4),
-    AES_128_GCM2(7),
-    AES_256_GCM2(8),
-    MODE_END(9);
-  }
-
-  public EncryptionMode encryptionMode;
-  public String encryptionKey;
-  public final byte[] encryptionKdfSalt = new byte[32];
-
-  public EncryptionConfig() {
-    encryptionMode = EncryptionMode.AES_128_GCM2;
-    encryptionKey = null;
-    java.util.Arrays.fill(encryptionKdfSalt, (byte) 0);
-  }
-}</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncryptionConfig: NSObject
-
- @property (assign, nonatomic) AgoraEncryptionMode encryptionMode;
- @property (copy, nonatomic) NSString * _Nullable encryptionKey;
- @property (strong, nonatomic) NSData * _Nullable encryptionKdfSalt;
- @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">struct EncryptionConfig {
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="windows" outputclass="language-cpp">struct EncryptionConfig {
   ENCRYPTION_MODE encryptionMode;
   const char* encryptionKey;
   uint8_t encryptionKdfSalt[32];
@@ -41,16 +17,111 @@
   {
     memset(encryptionKdfSalt, 0, sizeof(encryptionKdfSalt));
   }
+
+  const char* getEncryptionString() const {
+    switch(encryptionMode) {
+      case AES_128_XTS:
+        return "aes-128-xts";
+      case AES_128_ECB:
+        return "aes-128-ecb";
+      case AES_256_XTS:
+        return "aes-256-xts";
+      case SM4_128_ECB:
+        return "sm4-128-ecb";
+      case AES_128_GCM:
+        return "aes-128-gcm";
+      case AES_256_GCM:
+        return "aes-256-gcm";
+      case AES_128_GCM2:
+        return "aes-128-gcm-2";
+      case AES_256_GCM2:
+        return "aes-256-gcm-2";
+      default:
+        return "aes-128-gcm-2";
+    }
+    return "aes-128-gcm-2";
+  }
 };</codeblock>
+            </p>
+            <p outputclass="codeblock" props="rtc">
+                <codeblock props="windows unity" outputclass="language-cpp">struct EncryptionConfig {
+  ENCRYPTION_MODE encryptionMode;
+  const char* encryptionKey;
+  uint8_t encryptionKdfSalt[32];
+
+  EncryptionConfig() {
+    encryptionMode = AES_128_GCM2;
+    encryptionKey = nullptr;
+    memset(encryptionKdfSalt, 0, sizeof(encryptionKdfSalt));
+  }
+
+  const char* getEncryptionString() const {
+    switch (encryptionMode) {
+      case AES_128_XTS:
+        return "aes-128-xts";
+      case AES_128_ECB:
+        return "aes-128-ecb";
+      case AES_256_XTS:
+        return "aes-256-xts";
+      case SM4_128_ECB:
+        return "sm4-128-ecb";
+      case AES_128_GCM:
+        return "aes-128-gcm";
+      case AES_256_GCM:
+        return "aes-256-gcm";
+      case AES_128_GCM2:
+        return "aes-128-gcm-2";
+      case AES_256_GCM2:
+        return "aes-256-gcm-2";
+      default:
+        return "aes-128-gcm-2";
+    }
+    return "aes-128-gcm-2";
+  }
+};</codeblock>
+            </p>
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public class EncryptionConfig {
+  public enum EncryptionMode {
+    AES_128_XTS(1),
+    AES_128_ECB(2),
+    AES_256_XTS(3),
+    SM4_128_ECB(4),
+    AES_128_GCM(5),
+    AES_256_GCM(6),
+    AES_128_GCM2(7),
+    AES_256_GCM2(8),
+    MODE_END(9);
+    private int value;
+
+    private EncryptionMode(int v) {
+      value = v;
+    }
+
+    public int getValue() {
+      return this.value;
+    }
+}</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraEncryptionConfig: NSObject
+
+ @property (assign, nonatomic) AgoraEncryptionMode encryptionMode;
+ @property (copy, nonatomic) NSString * _Nullable encryptionKey;
+ @property (strong, nonatomic) NSData * _Nullable encryptionKdfSalt;
+ @end</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface EncryptionConfig {
     encryptionMode: ENCRYPTION_MODE;
     encryptionKey: string;
     }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
 
+  @JsonKey(includeIfNull: false)
   EncryptionMode? encryptionMode;
+
+  @JsonKey(includeIfNull: false)
   String? encryptionKey;
+
+  @JsonKey(includeIfNull: false)
   List&lt;int&gt;? encryptionKdfSalt;
 
   EncryptionConfig({
@@ -58,31 +129,27 @@
     this.encryptionKey,
     this.encryptionKdfSalt,
   });
+
+  factory EncryptionConfig.fromJson(Map&lt;String, dynamic> json) =>
+      _$EncryptionConfigFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$EncryptionConfigToJson(this);
 }</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
    <parml>
        <plentry>
   <pt>encryptionMode</pt>
-  <pd><p props="ios mac windows">内置加密模式。详见 <xref keyref="ENCRYPTION_MODE" />。</p>
-      <p props="android">内置加密模式。Agora 推荐使用 <ph keyref="AES_128_GCM2" /> 或
-          <ph keyref="AES_256_GCM2" /> 加密模式。这两种模式支持使用盐，安全性更高。<ul id="ul_urr_tlz_rqb">
-                                <li><ph keyref="SM4_128_ECB" /> (4): 128 位 SM4 加密，ECB 模式。</li>
-                                <li><ph keyref="AES_128_GCM2" /> (7):（默认）128 位 AES 加密，GCM
-                                        模式。该加密模式需要设置盐（<codeph>encryptionKdfSalt</codeph>）。</li>
-                                <li><ph keyref="AES_256_GCM2" /> (8)：256 位 AES 加密，GCM
-                                        模式。该加密模式需要设置盐（<codeph>encryptionKdfSalt</codeph>）。</li>
-                                <li><ph keyref="MODE_END" /> (9)：枚举值边界。</li>
-                            </ul></p>
+           <pd><p>内置加密模式。详见 <xref keyref="ENCRYPTION_MODE" />。Agora 推荐使用 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph> 加密模式。这两种模式支持使用盐，安全性更高。</p>
   </pd>
        </plentry>
        <plentry>
   <pt>encryptionKey</pt>
   <pd>
       <p>内置加密密钥，字符串类型。</p>
-      <note type="attention"> 如果未指定该参数或将该参数设置为 <codeph><ph keyref="NULL"/></codeph>，则无法启用内置加密，且 SDK 会返回错误码 <codeph>ERR_INVALID_ARGUMENT</codeph> (-2)。</note>
+      <note type="attention">如果未指定该参数或将该参数设置为 <codeph><ph keyref="NULL"/></codeph>，则无法启用内置加密，且 SDK 会返回错误码 <codeph>-2</codeph>。</note>
   </pd>
        </plentry>
                 <plentry>
@@ -95,8 +162,7 @@
                             </dlentry>
                         </dl>
                         <p>盐，长度为 32 字节。Agora 推荐你在服务端使用 OpenSSL 生成盐，详见《媒体流加密》。</p>
-                        <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph>
-                                加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
+                        <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
                     </pd>
                 </plentry>
    </parml>

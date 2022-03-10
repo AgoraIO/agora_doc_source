@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setdefaultaudioroutetospeakerphone_ng">
-    <title><ph keyref="setDefaultAudioRouteToSpeakerphone" /></title>
+    <title><ph keyref="setDefaultAudioRouteToSpeakerphone"/></title>
     <shortdesc id="short"><ph id="shortdesc">设置默认的音频路由</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setDefaultAudioRouteToSpeakerphone" />
+                <indexterm keyref="setDefaultAudioRouteToSpeakerphone"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,10 +17,10 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDefaultAudioRouteToSpeakerphone:(BOOL)defaultToSpeaker;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker) = 0;
 </codeblock>
-                <codeblock props="electron" outputclass="language-typescript" />
-                <codeblock props="unity" outputclass="language-csharp" />
-                <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart" />
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
             </p>
         </section>
         <section id="detailed_desc">
@@ -35,9 +35,12 @@
                 <li>语音直播：扬声器</li>
                 <li>视频通话：扬声器</li>
                 <li>视频直播：扬声器</li>
-            </ul></p> <p>调用该 API 可以改变上述默认音频路由。在加入频道前、频道中、离开频道后，你都可以调用该方法。成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRouteChanged" /> 回调。</p>
-            <note>
-                <p>当手机插入外接设备，如蓝牙设备或耳机时，系统的音频路由会发生改变。详细的路由变化规律请参考 <xref keyref="guide-audio-route">音频路由</xref>。</p>
+            </ul></p> <p>调用该方法可以改变上述默认音频路由。在加入频道前、频道中、离开频道后，你都可以调用该方法。成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRouteChanged"/> 回调。</p>
+            <note type="note">
+                <ul>
+                    <li><apiname keyref="setDefaultAudioRouteToSpeakerphone"/> 为稳态 API，该方法的设置在调用 <xref keyref="release"/> 销毁引擎前都有效。</li>
+                    <li>该方法的设置只对移动设备本身的音频路由有效。如果用户连接了外接设备，则 SDK 会使用外接设备作为音频路由。详细的路由更改原则请参考<xref keyref="guide-audio-route">音频路由</xref>。</li>
+                </ul>
             </note>
         </section>
         <section id="parameters"><title>参数</title>

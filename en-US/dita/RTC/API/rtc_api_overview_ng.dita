@@ -21,9 +21,7 @@
                 </strow>
                 <strow>
                     <stentry><xref keyref="create2"/></stentry>
-                    <stentry><ph props="ios mac android electron">Creates and initializes <apiname
-                                keyref="IRtcEngine"/>.</ph><ph props="windows">Initializes <apiname
-                                keyref="IRtcEngine"/>.</ph></stentry>
+                    <stentry><ph props="ios mac android electron">Creates and initializes <apiname keyref="IRtcEngine"/>. </ph><ph props="windows">Initializes <apiname keyref="IRtcEngine"/>.</ph></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="release"/></stentry>
@@ -370,6 +368,49 @@
                     <stentry><ph conkeyref="IMediaPlayerSourceObserver/shortdesc"/></stentry>
                 </strow>
             </simpletable>
+        </section>
+        <section props="hide">
+            <title>Directly pushing streams to the CDN</title>
+            <simpletable>
+                <sthead>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="startDirectCdnStreaming"/></stentry>
+                    <stentry><ph conkeyref="startDirectCdnStreaming/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopDirectCdnStreaming"/></stentry>
+                    <stentry><ph conkeyref="stopDirectCdnStreaming/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setDirectCdnStreamingAudioConfiguration"/></stentry>
+                    <stentry><ph conkeyref="setDirectCdnStreamingAudioConfiguration/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setDirectCdnStreamingVideoConfiguration"/></stentry>
+                    <stentry><ph conkeyref="setDirectCdnStreamingVideoConfiguration/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="pushDirectCdnStreamingCustomVideoFrame"/></stentry>
+                    <stentry><ph conkeyref="pushDirectCdnStreamingCustomVideoFrame/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        <simpletable>
+            <sthead>
+                <stentry>Event</stentry>
+                <stentry>Description</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="onDirectCdnStreamingStateChanged"/></stentry>
+                <stentry><ph conkeyref="onDirectCdnStreamingStateChanged/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="onDirectCdnStreamingStats"/></stentry>
+                <stentry><ph conkeyref="onDirectCdnStreamingStats/shortdesc"/></stentry>
+            </strow>
+        </simpletable>
         </section>
         <section id="local_media_events">
             <title>Local media events</title>
@@ -888,7 +929,7 @@
                     <stentry><xref keyref="setRemoteVoicePosition"/></stentry>
                     <stentry><ph conkeyref="setRemoteVoicePosition/shortdesc"/></stentry>
                 </strow>
-                <strow>
+                <strow props="hide">
                     <stentry><xref keyref="setRemoteVoice3DPosition"/></stentry>
                     <stentry><ph conkeyref="setRemoteVoice3DPosition/shortdesc"/></stentry>
                 </strow>
@@ -993,8 +1034,8 @@
                 </strow>
             </simpletable>
         </section>
-        <section id="external_audio_data" props="windows android ios mac">
-            <title>External audio source</title>
+        <section id="custom_audio_source" props="windows android ios mac">
+            <title>Custom audio source</title>
             <simpletable>
                 <sthead>
                     <stentry>Method</stentry>
@@ -1016,18 +1057,6 @@
                     <stentry><xref keyref="pushAudioFrame"/></stentry>
                     <stentry><ph conkeyref="pushAudioFrame/shortdesc"/></stentry>
                 </strow>
-                <strow props="android windows">
-                    <stentry><xref keyref="setExternalAudioSink"/></stentry>
-                    <stentry><ph conkeyref="setExternalAudioSink/shortdesc"/></stentry>
-                </strow>
-                <strow props="android windows">
-                    <stentry><xref keyref="pullAudioFrame"/></stentry>
-                    <stentry><ph conkeyref="pullAudioFrame/shortdesc"/></stentry>
-                </strow>
-                <strow props="android">
-                    <stentry><xref keyref="pullAudioFrame2"/></stentry>
-                    <stentry><ph conkeyref="pullAudioFrame2/shortdesc"/></stentry>
-                </strow>
                 <strow props="hide">
                     <stentry><xref keyref="enableEchoCancellationExternal"/></stentry>
                     <stentry><ph conkeyref="enableEchoCancellationExternal/shortdesc"/></stentry>
@@ -1047,6 +1076,31 @@
                 <strow props="hide">
                     <stentry><xref keyref="pushReverseAudioFrame2"/></stentry>
                     <stentry><ph conkeyref="pushReverseAudioFrame2/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
+        <section id="custom_audio_sink" props="windows android">
+            <title>Custom audio renderer</title>
+            <simpletable>
+                <sthead>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="setExternalAudioSink"/></stentry>
+                    <stentry><ph conkeyref="setExternalAudioSink/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="pullAudioFrame"/></stentry>
+                    <stentry><ph conkeyref="pullAudioFrame/shortdesc"/></stentry>
+                </strow>
+                <strow props="android">
+                    <stentry><xref keyref="pullAudioFrame2"/></stentry>
+                    <stentry><ph conkeyref="pullAudioFrame2/shortdesc"/></stentry>
+                </strow>
+                <strow props="ios mac">
+                    <stentry><xref keyref="pullPlaybackAudioFrameSampleBufferByLengthInByte"/></stentry>
+                    <stentry><ph conkeyref="pullPlaybackAudioFrameSampleBufferByLengthInByte/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>

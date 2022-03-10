@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_agorarhythmplayerconfig">
-    <title><ph keyref="AgoraRhythmPlayerConfig" /></title>
+    <title><ph keyref="AgoraRhythmPlayerConfig"/></title>
     <shortdesc id="short"><ph id="shortdesc">虚拟节拍器配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -54,14 +54,19 @@
     @property(assign, nonatomic) NSUInteger beatsPerMinute;
     @property(assign, nonatomic) BOOL publish;
     @end</codeblock>
-            <codeblock props="windows" outputclass="language-cpp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">class RhythmPlayerConfig {
 
+  @JsonKey(includeIfNull: false)
   int? beatsPerMeasure;
+
+  @JsonKey(includeIfNull: false)
   int? beatsPerMinute;
+
+  @JsonKey(includeIfNull: false)
   bool? publish;
 
   RhythmPlayerConfig({
@@ -69,6 +74,11 @@
     this.beatsPerMinute,
     this.publish,
   });
+
+  factory RhythmPlayerConfig.fromJson(Map&lt;String, dynamic> json) =>
+      _$RhythmPlayerConfigFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$RhythmPlayerConfigToJson(this);
 }</codeblock>
             </p>
         </section>
@@ -81,7 +91,7 @@
             </dl>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
                 <plentry>
                     <pt>beatsPerMeasure</pt>
@@ -94,8 +104,8 @@
                 <plentry props="rtc">
                     <pt>publish</pt>
                     <pd>是否将节拍器的声音发布至远端：<ul>
-                        <li><codeph><ph keyref="true" /></codeph>: （默认）发布。本地用户和远端用户都能听到节拍器。</li>
-                        <li><codeph><ph keyref="false" /></codeph>: 不发布。只有本地用户能听到节拍器。</li>
+                        <li><codeph><ph keyref="true"/></codeph>: （默认）发布。本地用户和远端用户都能听到节拍器。</li>
+                        <li><codeph><ph keyref="false"/></codeph>: 不发布。只有本地用户能听到节拍器。</li>
                     </ul></pd>
                 </plentry>
             </parml>

@@ -14,8 +14,8 @@ public static void setConfig(AgoraClassSdkConfig config);
 
 **参数**
 
-| 参数                | 描述                                                         |
-| :------------------ | :----------------------------------------------------------- |
+| 参数     | 描述                                                             |
+| :------- | :--------------------------------------------------------------- |
 | `config` | 全局配置参数，详见 [AgoraClassSdkConfig](#agoraclasssdkconfig)。 |
 
 ### launch
@@ -30,10 +30,10 @@ public static AgoraEduClassRoom launch(@NotNull Context context,
 
 **参数**
 
-| 参数       | 描述                                                         |
-| :--------- | :----------------------------------------------------------- |
-| `context`  | App 的上下文环境。                                           |
-| `config`   | 课堂启动配置，详见 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。 |
+| 参数       | 描述                                                                                         |
+| :--------- | :------------------------------------------------------------------------------------------- |
+| `context`  | App 的上下文环境。                                                                           |
+| `config`   | 课堂启动配置，详见 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。                           |
 | `callback` | SDK 通过 [AgoraEduLaunchCallback](#agoraedulaunchcallback) 类向 App 报告课堂启动相关的事件。 |
 
 **返回值**
@@ -45,14 +45,15 @@ public static AgoraEduClassRoom launch(@NotNull Context context,
 ```java
 public static void replaceClassActivity(int classRoomType, Class<extend BaseClassActivity> activity)
 ```
+
 如果开发者高度自定义课堂 UI，可调用此方法替换课堂类型所对应的 Activity。
 
 **参数**
 
-| 参数    | 描述                                                         |
-| :------ | :----------------------------------------------------------- |
-| `classRoomType` | 课堂类型。 |
-| `activity` | 课堂 Activity。 |
+| 参数            | 描述            |
+| :-------------- | :-------------- |
+| `classRoomType` | 课堂类型。      |
+| `activity`      | 课堂 Activity。 |
 
 ### registerExtensionApp
 
@@ -91,9 +92,9 @@ public class AgoraClassSdkConfig {
 
 SDK 全局配置。用于 [setConfig](#setconfig) 方法。
 
-| 属性      | 描述                                                         |
-| :-------- | :----------------------------------------------------------- |
-| `appId`   | Agora App ID。 |
+| 属性    | 描述           |
+| :------ | :------------- |
+| `appId` | Agora App ID。 |
 
 ### AgoraEduLaunchConfig
 
@@ -118,23 +119,23 @@ class AgoraEduLaunchConfig(val userName: String,
 
 课堂启动配置。用于 [launch](#launch) 方法。
 
-| 属性                 | 描述                                                         |
-| :------------------- | :----------------------------------------------------------- |
-| `userName`           | 用户名，用于课堂内显示，长度在 64 字节以内。                 |
-| `userUuid`           | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roomName`           | 课堂名，用于课堂内显示，长度在 64 字节以内。                 |
-| `roomUuid`           | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType`           | 用户在课堂中的角色，详见 [AgoraEduRoleType](#agoraeduroletype)。 |
-| `roomType`           | 课堂类型，详见 [AgoraEduRoomType](#agoraeduroomtype)。     |
-| `rtmToken`           | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。 |
-| `startTime`          | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。 |
-| `duration`           | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。 |
-| `region`             | 课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。详见 [AgoraEduRegionStr](#agoraeduregionstr)。 |
-| `videoEncoderConfig` | 视频编码参数配置，包含视频宽高、帧率、码率，详见 [EduVideoEncoderConfig](#eduvideoencoderconfig) |
-| `mediaOptions`       | 媒体流相关设置，包含媒体流加密，详见 [AgoraEduMediaOptions](#agoraedumediaoptions)。 |
-| `streamState`        | 用于控制学生上台后是否发音视频流，详见 [AgoraEduStreamState](#agoraedustreamstate)。 |
-| `latencyLevel`       | 观众端延时级别，详见 [AgoraEduLatencyLevel](#agoraedulatencylevel)。 |
-| `userProperties`     | 由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties) |
+| 属性                 | 描述                                                                                                                                                                                                                                                                                                                                                             |
+| :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `userName`           | 用户名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                                                                                                                                                                                     |
+| `userUuid`           | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", "," |
+| `roomName`           | 课堂名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                                                                                                                                                                                     |
+| `roomUuid`           | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", ","                                               |
+| `roleType`           | 用户在课堂中的角色，详见 [AgoraEduRoleType](#agoraeduroletype)。                                                                                                                                                                                                                                                                                                 |
+| `roomType`           | 课堂类型，详见 [AgoraEduRoomType](#agoraeduroomtype)。                                                                                                                                                                                                                                                                                                           |
+| `rtmToken`           | 用于鉴权的 RTM Token，详见[前提条件中生成 RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5)。                                                                                                                                                                                                                                              |
+| `startTime`          | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。                                                                                                                                                                                                                                                                                                 |
+| `duration`           | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。                                                                                                                                                                                                                                                                                                   |
+| `region`             | 课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。详见 [AgoraEduRegionStr](#agoraeduregionstr)。                                                                                                                                                                                                                                                         |
+| `videoEncoderConfig` | 视频编码参数配置，包含视频宽高、帧率、码率，详见 [EduVideoEncoderConfig](#eduvideoencoderconfig)                                                                                                                                                                                                                                                                 |
+| `mediaOptions`       | 媒体流相关设置，包含媒体流加密，详见 [AgoraEduMediaOptions](#agoraedumediaoptions)。                                                                                                                                                                                                                                                                             |
+| `streamState`        | 用于控制学生上台后是否发音视频流，详见 [AgoraEduStreamState](#agoraedustreamstate)。                                                                                                                                                                                                                                                                             |
+| `latencyLevel`       | 观众端延时级别，详见 [AgoraEduLatencyLevel](#agoraedulatencylevel)。                                                                                                                                                                                                                                                                                             |
+| `userProperties`     | 由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)                                                                                                                                                                                                                                                      |
 
 ### AgoraEduEvent
 
@@ -182,11 +183,11 @@ public enum AgoraEduRoomType {
 
 课堂类型。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
 
-| 属性                    | 描述                                                         |
-| :---------------------- | :----------------------------------------------------------- |
-| `AgoraEduRoomType1V1`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。 |
-| `AgoraEduRoomTypeBig`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。大班课中课堂人数上限为 5000。 |
-| `AgoraEduRoomTypeSmall` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。小班课中课堂人数上限为 200。 |
+| 属性                    | 描述                                                                                                                                                    |
+| :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `AgoraEduRoomType1V1`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。                                                                                         |
+| `AgoraEduRoomTypeBig`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。         |
+| `AgoraEduRoomTypeSmall` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可邀请学生“上台”发言，与老师进行实时音视频互动。 |
 
 ### AgoraEduStreamState
 
@@ -199,8 +200,8 @@ data class AgoraEduStreamState (
 
 用于控制学生上讲台后是否默认有发音视频流的权限。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
-| 参数         | 描述                                                         |
-| :----------- | :----------------------------------------------------------- |
+| 参数         | 描述                                                                             |
+| :----------- | :------------------------------------------------------------------------------- |
 | `videoState` | 是否有发视频流的权限：<li>`0`: （默认）不发视频流。</li><li>`1`: 发视频流。</li> |
 | `audioState` | 是否有发音频流的权限：<li>`0`: （默认）不发音频流。</li><li>`1`: 发音频流。</li> |
 
@@ -228,9 +229,9 @@ class AgoraEduMediaOptions(val encryptionConfigs: AgoraEduMediaEncryptionConfigs
 
 媒体流相关设置。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
-| 参数               | 描述                                                         |
-| :----------------- | :----------------------------------------------------------- |
-| `encryptionConfig` | 媒体流加密配置，详见  [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig)。 |
+| 参数               | 描述                                                                                   |
+| :----------------- | :------------------------------------------------------------------------------------- |
+| `encryptionConfig` | 媒体流加密配置，详见 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig)。 |
 
 ### AgoraEduMediaEncryptionConfig
 
@@ -266,16 +267,16 @@ enum class AgoraEduEncryptMode(val value: Int) {
 
 加密模式，用于 [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig)。
 
-| 参数          | 描述                        |
-| :------------ | :-------------------------- |
-| `NONE`        | 不加密。                    |
-| `AES_128_XTS` | 128 位 AES 加密，XTS 模式。 |
-| `AES_128_ECB` | 128 位 AES 加密，ECB 模式。 |
-| `AES_256_XTS` | 256 位 AES 加密，XTS 模式。 |
-| `SM4_128_ECB` | 128 位 ECB 加密，SM4 模式。 |
-| `AES_128_GCM` | 128 位 AES 加密，GCM 模式。 |
-| `AES_256_GCM` | 256 位 AES 加密，GCM 模式。 |
-| `AES_128_GCM2` | 128 位 AES 加密，GCM 模式。相比于 `AES_128_GCM` 加密模式，`AES_128_GCM2` 加密模式安全性更高且需要设置盐。 |
+| 参数           | 描述                                                                                                                                 |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
+| `NONE`         | 不加密。                                                                                                                             |
+| `AES_128_XTS`  | 128 位 AES 加密，XTS 模式。                                                                                                          |
+| `AES_128_ECB`  | 128 位 AES 加密，ECB 模式。                                                                                                          |
+| `AES_256_XTS`  | 256 位 AES 加密，XTS 模式。                                                                                                          |
+| `SM4_128_ECB`  | 128 位 ECB 加密，SM4 模式。                                                                                                          |
+| `AES_128_GCM`  | 128 位 AES 加密，GCM 模式。                                                                                                          |
+| `AES_256_GCM`  | 256 位 AES 加密，GCM 模式。                                                                                                          |
+| `AES_128_GCM2` | 128 位 AES 加密，GCM 模式。相比于 `AES_128_GCM` 加密模式，`AES_128_GCM2` 加密模式安全性更高且需要设置盐。                            |
 | `AES_256_GCM2` | 256 位 AES 加密，GCM 模式。256 位 AES 加密，GCM 模式。相比于 `AES_256_GCM` 加密模式，`AES_256_GCM2` 加密模式安全性更高且需要设置盐。 |
 
 ### AgoraEduRegion
@@ -313,8 +314,8 @@ data class EduVideoEncoderConfig(
 
 视频编码参数配置类，用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
-> - 在小班课中，分辨率的默认值为 120p（160*120）。
-> - 在一对一和大班课中，分辨率的默认值为 240p（320*240）。
+> -   在小班课中，分辨率的默认值为 120p（160\*120）。
+> -   在一对一和大班课中，分辨率的默认值为 240p（320\*240）。
 
 | 参数         | 描述                                 |
 | :----------- | :----------------------------------- |

@@ -77,10 +77,17 @@
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
                 <codeblock props="flutter" outputclass="language-dart">class BeautyOptions {
- 
+
+  @JsonKey(includeIfNull: false)
   LighteningContrastLevel? lighteningContrastLevel;
+
+  @JsonKey(includeIfNull: false)
   double? lighteningLevel;
+
+  @JsonKey(includeIfNull: false)
   double? smoothnessLevel;
+
+  @JsonKey(includeIfNull: false)
   double? rednessLevel;
 
   BeautyOptions({
@@ -89,6 +96,11 @@
     this.smoothnessLevel,
     this.rednessLevel,
   });
+
+  factory BeautyOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$BeautyOptionsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$BeautyOptionsToJson(this);
 }</codeblock>
             </p>
         </section>
