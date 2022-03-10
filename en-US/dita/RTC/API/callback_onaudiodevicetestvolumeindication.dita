@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onaudiodevicetestvolumetype">
+    <title><ph keyref="onAudioDeviceTestVolumeIndication"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the result of an audio device test.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onAudioDeviceTestVolumeIndication"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="windows" outputclass="language-cpp">virtual void onAudioDeviceTestVolumeIndication(AudioDeviceTestVolumeType volumeType, int volume) {
+    (void)volumeType;
+    (void)volume;
+  }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After successfully calling <xref keyref="startRecordingDeviceTest"/>, <xref keyref="startPlaybackDeviceTest"/> or <xref keyref="startAudioDeviceLoopbackTest"/> to start an audio device test, the SDK triggers the <apiname>onAudioDeviceTestVolumeIndication</apiname> callback at the set time interval to report the volume information of the audio device tested.</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <parml>
+            <plentry>
+                <pt>volumeType</pt>
+                <pd>
+                    <p>The volume type. See <xref keyref="AudioDeviceTestVolumeType"/>。</p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>volume</pt>
+                <pd>
+                    <p>The volume, in the range of [0,255].</p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

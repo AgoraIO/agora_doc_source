@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_followsystemrecordingdevice">
     <title><ph keyref="followSystemRecordingDevice"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置 SDK 使用的音频采集设备跟随系统默认的音频采集设备。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the audio recording device used by the SDK to follow the system default audio recording device.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,24 +20,22 @@
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioRecordingDevice(String deviceId)</codeblock> </p>
         </section>
-        <section id="section_xwj_tf3_5sb">
-            <title>参数</title>
+        <section><ph keyref="callback-section-title"/>
             <parml id="parml_ywj_tf3_5sb">
             <plentry>
                 <pt>enable</pt>
-                <pd>是否跟随系统默认的音频采集设备：
-                        
+                <pd>Whether to follow the system default audio recording device: 
                     <ul id="ul_zwj_tf3_5sb">
-                    <li><ph keyref="true"/>：跟随。当系统默认的音频采集设备改变时，SDK 立即切换音频采集设备。</li>
-                    <li><ph keyref="false"/>：不跟随。只有当 SDK 使用的音频采集设备被移除后，SDK 才切换至系统默认的音频采集设备。</li>
+                    <li><ph keyref="true"/>: Follow. The SDK immediately switches the audio recording device when the system default audio recording device changes.</li>
+                    <li><ph keyref="false"/>: Do not follow. The SDK switches the audio recording device to the system default audio recording device only when the currently used audio recording device is disconnected.</li>
                     </ul></pd>
             </plentry>
-            </parml> </section>
+            </parml></section>
         <section id="return_values" props="native windows unity electron">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
