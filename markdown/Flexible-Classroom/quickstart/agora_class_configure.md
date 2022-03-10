@@ -86,7 +86,7 @@
 `recordingConfig` JSON 对象示例：
 
 ```json
-"recordingConfig": {
+{
     "maxIdleTime": 30,
     "streamTypes": 2,
     "channelType": 0
@@ -103,17 +103,14 @@
 `storageConfig` JSON 对象示例：
 
 ```json
-"storageConfig": {
+{
     "vendor": 2,
     "region": 3,
     "bucket": "xxxxx",
     "accessKey": "xxxxxxf",
     "secretKey": "xxxxx",
     "endpoint": "https://agora-recording.oss-cn-shanghai.aliyuncs.com",
-    "fileNamePrefix": [
-        "scenario",
-        "recording"
-    ]
+    "fileNamePrefix": ["scenario", "recording"]
 }
 ```
 
