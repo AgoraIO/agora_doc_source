@@ -30,15 +30,14 @@
                     <dd>3.3.0</dd>
                 </dlentry>
             </dl>
-            <p>When the user's firewall restricts the IP address and port, refer to <xref keyref="guide-cloud-proxy">Use Cloud Proxy to</xref> add the specific IP addresses and ports to the firewall whitelist; then, call this method to enable the cloud proxy and set the cloud <parmname>proxyType</parmname> as <ph keyref="UDP_PROXY"/>.</p>
-            <p>After successfully connecting to the cloud proxy, the SDK triggers the<xref keyref="onConnectionStateChanged"/> (<ph keyref="CONNECTION_STATE_CONNECTING"/>,<ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/>) callback.</p>
-            <p>如果你想关闭已设置的云代理，请调用 <apiname keyref="setCloudProxy"/> (<ph keyref="NONE_PROXY"/>)。
-            </p>
-            <p>To change the cloud proxy type, call (NONE_PROXY<apiname keyref="setCloudProxy"/><ph keyref="NONE_PROXY"/>), and<apiname keyref="setCloudProxy"/> call  to set the proxyType you want<parmname></parmname>.</p>
+            <p>When the user's firewall restricts the IP address and port, refer to <xref keyref="guide-cloud-proxy">Use Cloud Proxy</xref> to add the specific IP addresses and ports to the firewall whitelist; then, call this method to enable the cloud proxy and set the <parmname>proxyType</parmname> as <ph keyref="UDP_PROXY"/> (1).</p>
+            <p>After successfully connecting to the cloud proxy, the SDK triggers the <xref keyref="onConnectionStateChanged"/> (<ph keyref="CONNECTION_STATE_CONNECTING"/>, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/>) callback.</p>
+            <p>To disable the cloud proxy that has been set, call <apiname keyref="setCloudProxy"/> (<ph keyref="NONE_PROXY"/>).</p>
+            <p>To change the cloud proxy type, call <apiname keyref="setCloudProxy"/> (<ph keyref="NONE_PROXY"/>), and call <apiname keyref="setCloudProxy"/> to set the <parmname>proxyType</parmname> you want.</p>
             <note type="attention">
                 <ul>
                     <li>Agora recommends that you call this method before joining the channel or after leaving the channel.</li>
-                    <li>When you use the cloud proxy for the UDP protocol, the services for pushing streams to CDN and co-hosting across channels are not available.</li>
+                    <li>When you use the cloud proxy for the UDP protocol, the services for media push and co-hosting across channels are not available.</li>
                 </ul>
             </note>
         </section>
@@ -57,8 +56,8 @@
                 <li>0: Success.</li>
                 <li>
                     &lt; 0: Failure.<ul>
-                        <li>-2 (<codeph>ERR_INVALID_ARGUMENT</codeph>): The parameter is<codeph> invalid</codeph>.</li>
-                        <li>-7(ERR_NOT_INITIALIZED): The SDK is <codeph>not initialized</codeph>.</li>
+                        <li>-2 (<codeph>ERR_INVALID_ARGUMENT</codeph>): The parameter is invalid.</li>
+                        <li>-7(<codeph>ERR_NOT_INITIALIZED</codeph>): The SDK is not initialized.</li>
                     </ul>
                 </li>
             </ul>
