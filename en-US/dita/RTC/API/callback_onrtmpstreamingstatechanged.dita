@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_onrtmpstreamingstatechanged">
-    <title><ph keyref="onRtmpStreamingStateChanged" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the state of the RTMP or RTMPS streaming changes.</ph></shortdesc>
+    <title><ph keyref="onRtmpStreamingStateChanged"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the media push state changes.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
-       <indexterm keyref="onRtmpStreamingStateChanged" />
+       <indexterm keyref="onRtmpStreamingStateChanged"/>
    </keywords>
         </metadata>
     </prolog>
@@ -35,33 +35,36 @@
 ): this;</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public virtual void OnRtmpStreamingStateChanged(string url, RTMP_STREAM_PUBLISH_STATE state,
             RTMP_STREAM_PUBLISH_ERROR errCode)</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">RtmpStreamingStateCallback? rtmpStreamingStateChanged;</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
 
-   <p>The SDK triggers this callback to report the result of the local user calling the <xref keyref="addPublishStreamUrl" /> or <xref keyref="removePublishStreamUrl" /> method. When the RTMP/RTMPS streaming status changes, the SDK triggers this callback and report the URL address and the current status of the streaming. This callback indicates the state of the RTMP or RTMPS streaming. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the error code parameter.</p>
+   <p>The SDK triggers this callback to report the result of the local user calling the<xref keyref="addPublishStreamUrl"/>  or<xref keyref="removePublishStreamUrl"/>  method. 旁路推流状态发生改变时，SDK
+会触发该回调，并在回调中明确状态发生改变的 URL
+地址及当前推流状态。 This callback indicates the state of the RTMP or RTMPS streaming. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the error code parameter.</p>
         </section>
         <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
    <parml>
-       <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                  <pt />
-                  <pd />
-              </plentry>
-       <plentry id="url">
-  <pt>url</pt>
-  <pd>The CDN streaming URL.</pd>
-       </plentry>
-       <plentry id="state">
-  <pt>state</pt>
-  <pd>The RTMP or RTMPS streaming state, see <xref keyref="RTMP_STREAM_PUBLISH_STATE" />. When the streaming status is <apiname keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE" />(4), you can view the error information in the<parmname> errorCode</parmname> parameter.</pd>
-       </plentry>
-       <plentry id="errCode">
-  <pt>errCode</pt>
-  <pd>The detailed error information for streaming, see <xref keyref="RTMP_STREAM_PUBLISH_ERROR" />.</pd>
-       </plentry>
-   </parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry id="url">
+                    <pt>url</pt>
+                    <pd>The CDN streaming URL.</pd>
+                </plentry>
+                <plentry id="state">
+                    <pt>state</pt>
+                    <pd>The RTMP or RTMPS streaming state, see<xref keyref="RTMP_STREAM_PUBLISH_STATE"/> . 当推流状态为 <apiname keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/> (4) 时，你可以在
+<parmname>errorCode</parmname> 参数中查看返回的错误信息。</pd>
+                </plentry>
+                <plentry id="errCode">
+                    <pt>errCode</pt>
+                    <pd>The detailed error information for streaming, see<xref keyref="RTMP_STREAM_PUBLISH_ERROR"/> .</pd>
+                </plentry>
+            </parml>
         </section>
     </refbody>
 </reference>
