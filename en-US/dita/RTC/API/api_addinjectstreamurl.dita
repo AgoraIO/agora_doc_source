@@ -31,8 +31,7 @@
   <ul>
       <li>Ensure that you enable the RTMP Converter service before using this function. See<xref keyref="guide-cdn-streaming"></xref> Prerequisites.</li>
       <li props="android ios mac windows">This method applies to the Native SDK v2.4.1 and later.</li>
-      <li>在直播场景中，只有角色为主播的用户才
-能调用该方法。</li>
+      <li>This method takes effect only when you are a host in a live streaming channel.</li>
       <li>Only one online media stream can be injected into the same channel at the same time.</li>
       <li>Call this method after joining a channel.</li>
   </ul>
@@ -62,8 +61,7 @@
    <ul>
        <li>0: Success.</li>
        <li>&lt; 0: Failure.<ul>
-      <li><codeph>ERR_INVALID_ARGUMENT</codeph> (-2): The<codeph> injected</codeph> URL does not exist.
-为空。 Call this method again to inject the stream and ensure that the URL is valid.</li>
+      <li><codeph>ERR_INVALID_ARGUMENT</codeph> (-2): The injected URL does not exist. Call this method again to inject the stream and ensure that the URL is valid.</li>
       <li><codeph>ERR_NOT_READY</codeph> (-3): The user is<codeph> not</codeph> in the channel.</li>
       <li><codeph>ERR_NOT_SUPPORTED</codeph> (-4): The channel profile is not<codeph> LIVE_BROADCASTING</codeph>. Call<xref keyref="setChannelProfile"/>  and set the channel profile live broadcasting before calling this method.</li>
       <li><codeph>ERR_NOT_INITIALIZED</codeph> (-7): The SDK is not<codeph> initialized</codeph>. Ensure that the  object is initialized before using<xref keyref="IRtcEngine"/> this method.</li>
