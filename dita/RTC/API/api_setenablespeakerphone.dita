@@ -18,7 +18,7 @@
                 <codeblock props="electron" outputclass="language-typescript" />
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetEnableSpeakerphone(bool speakerOn);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEnableSpeakerphone(bool defaultToSpeaker);</codeblock>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setEnableSpeakerphone(bool speakerOn);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -43,10 +43,9 @@
         <section id="parameters"><title>参数</title>
             <parml>
                 <plentry>
-                    <pt props="windows unity">speakerOn</pt>
+                    <pt props="windows unity flutter">speakerOn</pt>
                     <pt props="android">enabled</pt>
                     <pt props="ios mac">enableSpeaker</pt>
-                    <pt props="flutter">defaultToSpeaker</pt>
                     <pd>是否切换音频路由到扬声器（外放）：<ul>
                             <li><codeph><ph keyref="true" /></codeph>: 切换到外放。如果设备连接了耳机或蓝牙，则无法切换到外放。</li>
                             <li><codeph><ph keyref="false" /></codeph>: 切换到听筒。如果设备连接了耳机，则音频路由走耳机。</li>

@@ -115,8 +115,13 @@
                 <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
 
+  @JsonKey(includeIfNull: false)
   EncryptionMode? encryptionMode;
+
+  @JsonKey(includeIfNull: false)
   String? encryptionKey;
+
+  @JsonKey(includeIfNull: false)
   List&lt;int&gt;? encryptionKdfSalt;
 
   EncryptionConfig({
@@ -124,6 +129,11 @@
     this.encryptionKey,
     this.encryptionKdfSalt,
   });
+
+  factory EncryptionConfig.fromJson(Map&lt;String, dynamic> json) =>
+      _$EncryptionConfigFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$EncryptionConfigToJson(this);
 }</codeblock>
             </p>
         </section>

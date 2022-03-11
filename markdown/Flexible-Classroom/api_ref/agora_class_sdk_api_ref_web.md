@@ -214,7 +214,58 @@ export type CourseWareItem = {
 export type CourseWareList = CourseWareItem[];
 ```
 
-`CourseWareList` 为 `CourseWareItem` 对象组成的数组。`CourseWareItem` 包含以下参数：
+`CourseWareList` 为 `CourseWareItem` 对象组成的数组。
+
+<details>
+<summary><font color="#3ab7f8">示例代码一：没有白板转换文件</font></summary>
+<pre class="json show"><code class="language-json">courseWareList:
+[
+    {
+            resourceName: "机械能",
+            resourceUuid: "c06fed32d06268431601b0e0a804e70a",
+            ext: "mp4",
+            url: "https://gymoo-project-cdn.oss-cn-shenzhen.aliyuncs.com/hld_education/upload/9f4d3c149e6b3acfef378aca012780b3.mp4",
+            size: 4560284
+    }
+],
+</code></pre>
+</details>
+
+<details>
+<summary><font color="#3ab7f8">示例代码二：有白板转换文件</font></summary>
+<pre class="json show"><code class="language-json">courseWareList:
+[
+    {
+      resourceName: xxxxxxx,
+      resourceUuid: xxxxxxxxx,
+      ext: 'pptx',
+      url: 'https://xxxxxxxxxxxxxx',
+      size: 0,
+      updateTime: xxxxxxxx
+      taskProgress: {
+        totalPageSize: 3,
+        convertedPageSize: 3,
+        convertedPercentage: 100,
+        convertedFileList: [
+            {
+                name: '1',
+                ppt: {
+                    src: 'pptx://convertcdn.netless.link/dynamicConvert/3bxxxxxxx/1.slide',
+                    width: 1280,
+                    height: 720,
+                    preview:'dddddddddddddddurl'
+                },
+            },
+            ...
+        ] as any,
+        currentStep: '',
+        },
+    },
+],
+</code></pre>
+</details>
+
+`CourseWareItem` 包含以下参数：
 
 | 参数           | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -258,11 +309,11 @@ export enum EduRoomTypeEnum {
 
 课堂类型。在 [LaunchOption](#launchoption) 中设置。
 
-| 参数             | 描述                                                                                                                                                    |
-| :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Room1v1Class`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。                                                                                         |
-| `RoomBigClass`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。上课过程中，学生可“举手”请求发言，与老师进行实时音视频互动。         |
-| `RoomSmallClass` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。课堂人数上限为 500。上课过程中，老师可点名学生“上台”发言，与老师进行实时音视频互动。 |
+| 参数             | 描述                                                                                             |
+| :--------------- | :----------------------------------------------------------------------------------------------- |
+| `Room1v1Class`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。                                  |
+| `RoomBigClass`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。大班课中课堂人数上限为 5000。 |
+| `RoomSmallClass` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。小班课中课堂人数上限为 200    |
 
 ### LanguageEnum
 

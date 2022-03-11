@@ -1,18 +1,18 @@
-This page provides the TypeScript API reference of the Agora Classroom SDK for Web/Electron.
+本页提供 Agora Classroom SDK for Web/Electron 的 TypeScript API 参考。
 
 ## AgoraEduSDK
 
-`AgoraEduSDK` is the basic interface of the Agora Classroom SDK and provides the main methods that can be invoked by your app.
+`AgoraEduSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
 
 ### config
 
 ```typescript
-static config(params: AgoraEduSDKConfigParams):void
+static config(params: ConfigParams):void
 ```
 
-Configures the SDK.
+配置 SDK。
 
-| Parameter | Description |
+| 参数     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
 | `params` | 全局配置参数，详见 [ConfigParams](#configparams)。 |
 
@@ -22,247 +22,314 @@ Configures the SDK.
 static launch(dom: Element, option: LaunchOption):Promise<void>
 ```
 
-Launches a classroom.
+启动课堂。
 
-**Parameter**
+**参数**
 
-| Parameter | Description |
+| 参数     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
-| `dom` | See [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document) for details. |
-| `option` | The classroom launching configuration. See [LaunchOption](#launchoption). |
+| `dom`    | 详见 [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document)。 |
+| `option` | 课堂启动配置，详见 [LaunchOption](#launchoption)。         |
 
-## Type definition
+## 类型定义
 
 ### ConfigParams
 
-The SDK global configuration. Used when calling [AgoraEduSDK.config](#config).
+SDK 全局配置。用于 [AgoraEduSDK.config](#config) 方法。
 
 ```typescript
-export type AgoraEduSDKConfigParams = {
-  appId: string;
-  region?: string;
+export type ConfigParams = {
+    appId: string;
+    region?: string;
 };
 ```
 
-| Attributes | Description |
+| 属性     | 描述                                                         |
 | :------- | :----------------------------------------------------------- |
-| `appId` | (Required) Agora App ID.
- |
-| `region` | （选填）课堂所在区域。 All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
+| `appId`  | （必填）Agora App ID。                                       |
+| `region` | （选填）课堂所在区域。所有客户端必须设置相同的区域，否则无法互通。灵动课堂支持以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
 
 ### LaunchOption
 
-The classroom launching configuration. Used when calling [AgoraEduSDK.launch](#launch).
+课堂启动配置。用于 [AgoraEduSDK.launch](#launch) 方法。
 
 ```typescript
 export type LaunchOption = {
-  userUuid: string;
-  userName: string;
-  roomUuid: string;
-  roleType: EduRoleTypeEnum;
-  roomType: EduRoomTypeEnum;
-  roomName: string;
-  listener: ListenerCallback;
-  pretest: boolean;
-  rtmToken: string;
-  language: LanguageEnum;
-  startTime: number;
-  duration: number;
-  courseWareList: CourseWareList;
-  personalCourseWareList?: CourseWareList;
-  recordUrl?: string;
-  extApps?: IAgoraExtApp[];
-  region?: AgoraRegion;
-  widgets?: { [key: string]: IAgoraWidget };
-  userFlexProperties?: { [key: string]: any };
-  mediaOptions?: MediaOptions;
-  latencyLevel?: 1 | 2;
-    }
+    userUuid: string;
+    userName: string;
+    roomUuid: string;
+    roleType: EduRoleTypeEnum;
+    roomType: EduRoomTypeEnum;
+    roomName: string;
+    listener: ListenerCallback;
+    pretest: boolean;
+    rtmToken: string;
+    language: LanguageEnum;
+    startTime?: number;
+    duration: number;
+    courseWareList: CourseWareList;
+    personalCourseWareList?: CourseWareList;
+    recordUrl?: string;
+    extApps?: IAgoraExtApp[];
+    region?: AgoraRegion;
+    widgets?: { [key: string]: IAgoraWidget };
+    userFlexProperties?: { [key: string]: any };
+    mediaOptions?: MediaOptions;
+    latencyLevel?: 1 | 2;
+}
 ```
 
-| Parameter | Description |
+| 参数                     | 描述                                                         |
 | :----------------------- | :----------------------------------------------------------- |
-| `rtmToken` | The RTM token used for authentication. |
-| `userUuid` | (Required) The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
-| `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `roomUuid` | (Required) The classroom ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
-| `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
-| `roleType` | The role of the user in the classroom. See [EduRoleTypeEnum](#eduroletypeenum). |
-| `roomType` | The classroom type. See [EduRoomTypeEnum](#eduroomtypeenum). |
-| `listener` | (Required) The classroom state:<li>`ready`: The classroom is ready.</li><li>`destroyed`: The classroom has been destroyed.</li> |
-| `pretest` | Whether to enable the pre-class device test:<li>`true`: Enable the pre-class device test. After this function is enabled, end users can see a page for the device test before entering the classroom. They can check whether their camera, microphone, and speaker can work properly.</li><li>`false`: Disable the pre-class device test.</li> |
-| `language` | The UI language. See [LanguageEnum](#languageenum). |
-| `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
-| `duration` | The duration (ms) of the class, determined by the first user joining the classroom. 最大值为 86,400 秒，建议根据课堂实际时长设置。 |
-| `recordUrl` | (Optional) The URL address to be recorded. Developers need to pass in the URL of the web page deployed by themselves for page recording, such as `https://cn.bing.com/recordUrl`. |
-| `courseWareList` | The configuration of courseware assigned by the educational institution, which cannot be edited by the client. See [CourseWareList](#coursewarelist) for details. After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
-| `personalCourseWareList` | The configuration of courseware uploaded by a teacher. See [CourseWareList](#coursewarelist). After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
-| `extApps` | Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](/en/agora-class/agora_class_ext_app_web?platform=Web). |
-| `userFlexProperties` | User properties customized by the developer. For details, see [How can I set user properties? ](/en/agora-class/faq/agora_class_custom_properties) |
-| `mediaOptions` | Media stream configurations, including the encryption configuration and the encoding configurations of the screen-sharing stream and the video stream captured by the camera. See MediaOptions for details``. |
-| `latencyLevel` | （选填）观众端延时级别：<li>`1`: Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms.</li><li>`2`: (Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms.</li> |
+| `rtmToken`               | （必填）用于鉴权的 RTM Token。                               |
+| `userUuid`               | （必填）用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
+| `userName`               | （必填）用户名，用于课堂内显示，长度在 64 字节以内。         |
+| `roomUuid`               | （必填）课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
+| `roomName`               | （必填）课堂名，用于课堂内显示，长度在 64 字节以内。         |
+| `roleType`               | （必填）用户在课堂中的角色，详见 [EduRoleTypeEnum](#eduroletypeenum)。 |
+| `roomType`               | （必填）课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。 |
+| `listener`               | （必填）课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li> |
+| `pretest`                | （必填）是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
+| `language`               | （必填）课堂界面的语言，详见 [LanguageEnum](#languageenum)。 |
+| `startTime`              | （选填）课堂开始时间（毫秒），以第一个进入课堂的用户传入的参数为准。 |
+| `duration`               | （必填）课堂持续时间（秒），以第一个进入课堂的用户传入的参数为准。最大值为 86,400 秒，建议根据课堂实际时长设置。 |
+| `recordUrl`              | （选填）待录制 URL 地址，开发者需传入自己部署的网页地址，用于页面录制，例如 `https://cn.bing.com/recordUrl`。 |
+| `courseWareList`         | （选填）教育机构指派的课件配置，客户端无法编辑。详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
+| `personalCourseWareList` | （选填）老师端自行上传的课件配置，详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。 |
+| `extApps`                | （选填）注册扩展应用 ExtApp。ExtApp 是灵动课堂 UIKit 的补充插件。详见[通过 ExtApp 自定义插件](/cn/agora-class/agora_class_ext_app_web?platform=Web)。 |
+| `userFlexProperties`     | （选填）由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties) |
+| `mediaOptions`           | （选填）媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 `MediaOptions`。 |
+| `latencyLevel`           | （选填）观众端延时级别：<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>`2`:（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li> |
 
 ### MediaOptions
 
 ```typescript
 export type MediaOptions = {
-  cameraEncoderConfiguration?: EduVideoEncoderConfiguration;
-  screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
-  encryptionConfig?: MediaEncryptionConfig;
+    cameraEncoderConfiguration?: EduVideoEncoderConfiguration;
+    screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
+    encryptionConfig?: MediaEncryptionConfig;
 };
 ```
 
-Media options.
+媒体流相关设置。
 
-| Parameter | Description |
+| 参数                              | 描述                                                         |
 | :-------------------------------- | :----------------------------------------------------------- |
-| `cameraEncoderConfiguration` | The encoding configuration of the video stream captured by the camera. See [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration). |
-| `screenShareEncoderConfiguration` | The encoding configuration of the screen-sharing stream. See [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration). |
-| `encryptionConfig` | The media stream encryption configuration. See [MediaEncryptionConfig](#mediaencryptionconfig). |
+| `cameraEncoderConfiguration`      | 摄像头采集视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。 |
+| `screenShareEncoderConfiguration` | 屏幕共享视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。 |
+| `encryptionConfig`                | 媒体流加密配置，详见 [MediaEncryptionConfig](#mediaencryptionconfig)。 |
 
 ### EduVideoEncoderConfiguration
 
 ```typescript
 export interface EduVideoEncoderConfiguration {
-  width: number;
-  height: number;
-  frameRate: number;
-  bitrate: number;
+    width: number;
+    height: number;
+    frameRate: number;
+    bitrate: number;
 }
 ```
 
-Video encoder configurations.
+视频编码参数配置。
 
 > - 在小班课中，视频编码参数的默认值为 120p（160×120），200 Kbps，15 fps。
 > - 在一对一和大班课中，视频编码参数的默认值为 240p（320×240），65 Kbps，15 fps。
 
-| Parameter | Description |
+| 参数        | 描述                 |
 | :---------- | :------------------- |
-| `width` | Width (pixel) of the video frame. |
-| `height` | Height (pixel) of the video frame. |
-| `frameRate` | The frame rate (fps) of the video. |
-| `bitrate` | The bitrate (Kbps) of the video. |
+| `width`     | 视频帧宽度(pixel)。  |
+| `height`    | 视频帧高度 (pixel)。 |
+| `frameRate` | 视频帧率 (fps)。     |
+| `bitrate`   | 视频码率 (Kbps)。    |
 
 ### MediaEncryptionConfig
 
 ```typescript
 export declare interface MediaEncryptionConfig {
-  mode: MediaEncryptionMode,
-  key: string
-    }
+    mode: MediaEncryptionMode,
+    key: string
+}
 ```
 
-The media stream encryption configuration. Used in [MediaOptions](#mediaoptions).
+媒体流加密配置，用于 [MediaOptions](#mediaoptions)。
 
-| Parameter | Description |
+| 参数   | 描述                                                         |
 | :----- | :----------------------------------------------------------- |
-| `mode` | Encryption mode. See [MediaEncryptionMode](#mediaencryptionmode). All users in the same classroom must use the same encryption mode and encryption key. |
-| `key` | The encryption key. |
+| `mode` | 媒体流加密模式，详见 [MediaEncryptionMode](#mediaencryptionmode)。同一教室内所有老师和学生必须使用相同的加密模式和密钥。 |
+| `key`  | 加密密钥。                                                   |
 
 ### MediaEncryptionMode
 
 ```typescript
 export enum MediaEncryptionMode {
-  AES_128_XTS = 1,
-  AES_128_ECB = 2,
-  AES_256_XTS = 3,
-  AES_128_GCM = 5,
-  AES_256_GCM = 6
+    AES_128_XTS = 1,
+    AES_128_ECB = 2,
+    AES_256_XTS = 3,
+    AES_128_GCM = 5,
+    AES_256_GCM = 6
 }
 ```
 
-Encryption modes. Used in [MediaEncryptionConfig](#mediaencryptionconfig).
+媒体流加密模式，用于 [MediaEncryptionConfig](#mediaencryptionconfig)。
 
-| Parameter | Description |
+| 参数          | 描述                        |
 | :------------ | :-------------------------- |
-| `AES_128_XTS` | 128-bit AES encryption, XTS mode. |
-| `AES_128_ECB` | 128-bit AES encryption, ECB mode. |
-| `AES_256_XTS` | 256-bit AES encryption, XTS mode. |
-| `AES_128_GCM` | 128-bit AES encryption, GCM mode. |
-| `AES_256_GCM` | 256-bit AES encryption, GCM mode. |
+| `AES_128_XTS` | 128 位 AES 加密，XTS 模式。 |
+| `AES_128_ECB` | 128 位 AES 加密，ECB 模式。 |
+| `AES_256_XTS` | 256 位 AES 加密，XTS 模式。 |
+| `AES_128_GCM` | 128 位 AES 加密，GCM 模式。 |
+| `AES_256_GCM` | 256 位 AES 加密，GCM 模式。 |
 
 ### CourseWareList
 
-The courseware pre-download configuration. Used when calling [AgoraEduSDK.launch](#launch).
+课件预加载配置。用于 [AgoraEduSDK.launch](#launch) 方法。
 
 ```typescript
 export type CloudDriveResourceConvertProgress = {
-  totalPageSize: number;
-  convertedPageSize: number;
-  convertedPercentage: Number, the progress (percentage) of the conversion task.
-  "convertedFileList": [
-    name: string;
-    ppt: {
-  width: number;
-  height: number;
-      preview?: string;
-    src: string;
+    totalPageSize: number;
+    convertedPageSize: number;
+    convertedPercentage: number;
+    convertedFileList: {
+      name: string;
+      ppt: {
+        width: number;
+        height: number;
+        preview?: string;
+        src: string;
+      };
+    }[];
+    currentStep: string;
 };
-  }[];
-  currentStep: string;
-};
+
 export type CourseWareItem = {
-  resourceName: string,
-  resourceUuid: string,
-  ext: string,
-  url: string,
-  size: number,
-  updateTime: number,
+    resourceName: string;
+    resourceUuid: string;
+    ext: string;
+    url?: string;
+    size: number;
+    updateTime: number;
+    taskUuid: string;
+    conversion: {
+        type: string;
+        preview: boolean;
+        scale: number;
+        outputFormat: string;
+    }
     taskProgress?: CloudDriveResourceConvertProgress;
 };
 
-export type CourseWareList = CourseWareItem[]
+export type CourseWareList = CourseWareItem[];
 ```
 
-`CourseWareList` 为 `CourseWareItem` 对象组成的数组。 `CourseWareItem` 包含以下参数：
+`CourseWareList` 为 `CourseWareItem` 对象组成的数组。
 
-| Parameter | Description |
+<details>
+<summary><font color="#3ab7f8">示例代码一：没有白板转换文件</font></summary>
+<pre class="json show"><code class="language-json">courseWareList:
+[
+    {
+            resourceName: "机械能",
+            resourceUuid: "c06fed32d06268431601b0e0a804e70a",
+            ext: "mp4",
+            url: "https://gymoo-project-cdn.oss-cn-shenzhen.aliyuncs.com/hld_education/upload/9f4d3c149e6b3acfef378aca012780b3.mp4",
+            size: 4560284
+    }
+],
+</code></pre>
+</details>
+
+<details>
+<summary><font color="#3ab7f8">示例代码二：有白板转换文件</font></summary>
+<pre class="json show"><code class="language-json">courseWareList:
+[
+    {
+      resourceName: xxxxxxx,
+      resourceUuid: xxxxxxxxx,
+      ext: 'pptx',
+      url: 'https://xxxxxxxxxxxxxx',
+      size: 0,
+      updateTime: xxxxxxxx
+      taskUuid: 'xxxxxxxxx',
+      conversion: {
+            type: 'dynamic',
+            preview: true,
+            scale: 2,
+            outputFormat: 'png',
+            },
+      taskProgress: {
+        totalPageSize: 3,
+        convertedPageSize: 3,
+        convertedPercentage: 100,
+        convertedFileList: [
+            {
+                name: '1',
+                ppt: {
+                    src: 'pptx://convertcdn.netless.link/dynamicConvert/3bxxxxxxx/1.slide',
+                    width: 1280,
+                    height: 720,
+                    preview:'dddddddddddddddurl'
+                },
+            },
+            ...
+        ] as any,
+        currentStep: '',
+        },
+    },
+],
+</code></pre>
+</details>
+
+`CourseWareItem` 包含以下参数：
+
+| 参数           | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
-| `resourceName` | The file name for display in the classroom. The string length must be less than 64 bytes. |
-| `resourceUuid` | The file ID. This is the unique identifier of a file. The string length must be less than 64 bytes. ~dcf68310-2d96-11ec-837a-476ce6215fac~ |
-| `ext` | The file suffix. |
-| `size` | The file size (bytes). |
-| `updateTime` | The latest modified time of the file. |
-| `url` | The address of the file. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. 如果后缀名非上述所列，必须设置 `url` |
-| `taskProgress` | 文件转换任务进度对象 `CloudDriveResourceConvertProgress`，包含以下字段：<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: Number, the progress (percentage) of the conversion task.</li><li>`convertedFileList`: 已转换的文档页列表，每页文档对应一条数据，每条数据包含以下字段：<ul><li>`name`: 文档页名称。</li><li>`ppt`: 文档页包含的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>``The URL address of the converted page.</li><li>`preview`: 缩略图 URL。</li></ul></li></ul></li><li>`currentStep`: 文档转换任务当前的步骤。 可为 `extracting`（正在提取资源）、`generatingPreview`（正在生成预览图）、`mediaTranscode`（媒体文件转换）、`packaging`（打包中）。</li></ul> |
+| `resourceName` | 课件名称，用于显示，长度在 64 字节以内。                     |
+| `resourceUuid` | 课件 uuid。这是资源的唯一标识符。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
+| `ext`          | 课件后缀。                                                   |
+| `size`         | 课件大小，单位为字节。                                       |
+| `updateTime`   | 课件最后被修改的时间。                                       |
+| `taskUuid`   | 课件转换任务的 uuid。                                       |
+| `conversion`   | 包含以下字段：<ul><li>`type`: String 型，课件转换方式，可设为：<ul><li>`"static"`: 静态转换，是指将 PPT、PPTX、DOC、DOCX、PDF 格式的文件转换成 PNG、JPG/JPEG 或 WEBP 格式的静态图片。转换后的文件不保留源文件的动画效果。</li><li>`"dynamic"`: 动态转换，是指将用 Microsoft Office 编辑的 PPTX 格式的文件转换成 HTML 网页。转换后的文件会保留源文件里的动画效果。</li></ul></li><li>`preview`: Boolean 型，是否需要显示左侧预览。</li><li>`scale`: Number 型，转换缩放比例，取值范围为 [0, 3]。</li><li>`outputFormat`: String 型，课件转换后图片资源的输出格式，可设为 `"png"`。</li></ul>                  |
+| `url`          | 文件访问地址。灵动课堂客户端会对后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以用于课堂内白板展示。如果后缀名非上述所列，必须设置 `url`。|
+| `taskProgress` | 文件转换任务进度对象 `CloudDriveResourceConvertProgress`，包含以下字段：<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: 转换进度（百分比）。</li><li>`convertedFileList`: 已转换的文档页列表，每页文档对应一条数据，每条数据包含以下字段：<ul><li>`name`: 文档页名称。</li><li>`ppt`: 文档页包含的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>`src`: 完成转换的页面的 URL 下载地址。</li><li>`preview`: 缩略图 URL。</li></ul></li></ul></li><li>`currentStep`: 文档转换任务当前的步骤。可为 `extracting`（正在提取资源）、`generatingPreview`（正在生成预览图）、`mediaTranscode`（媒体文件转换）、`packaging`（打包中）。</li></ul> |
 
 ### EduRoleTypeEnum
 
 ```typescript
 export enum EduRoleTypeEnum {
-  audience = 0,
-  teacher = 1,
-  student = 2,
-  assistant = 3
+    audience = 0,
+    teacher = 1,
+    student = 2,
+    assistant = 3
 }
 ```
 
-The role of the user in the classroom. Set in [LaunchOption](#launchoption).
+用户在课堂中的角色。在 [LaunchOption](#launchoption) 中设置。
 
-| Parameter | Description |
+| 参数        | 描述                      |
 | :---------- | :------------------------ |
-| `audience` | `0`: Audience, only used for web page recording. |
-| `teacher` | `1`: Teacher. |
-| `student` | `2`: A student. |
-| `assistant` | `3`: Teaching assistant. |
+| `audience`  | `0`: 观众，用于页面录制。 |
+| `teacher`   | `1`: 老师。               |
+| `student`   | `2`: 学生。               |
+| `assistant` | `3`: 助教。               |
 
 ### EduRoomTypeEnum
 
 ```typescript
 export enum EduRoomTypeEnum {
-  Room1v1Class = 0,
-  RoomBigClass = 2,
-  RoomSmallClass = 4
+    Room1v1Class = 0,
+    RoomBigClass = 2,
+    RoomSmallClass = 4
 }
 ```
 
-The classroom type. Set in [LaunchOption](#launchoption).
+课堂类型。在 [LaunchOption](#launchoption) 中设置。
 
-| Parameter | Description |
+| 参数             | 描述                                                         |
 | :--------------- | :----------------------------------------------------------- |
-| `Room1v1Class` | `0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student. |
-| `RoomBigClass` | `2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
-| `RoomSmallClass` | `4`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. |
+| `Room1v1Class`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。 |
+| `RoomBigClass`   | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。大班课中课堂人数上限为 5000。 |
+| `RoomSmallClass` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。小班课中课堂人数上限为 200 |
 
 ### LanguageEnum
 
@@ -270,9 +337,9 @@ The classroom type. Set in [LaunchOption](#launchoption).
 export type LanguageEnum = "en" | "zh"
 ```
 
-The language of the user interface. Set in [LaunchOption](#launchoption).
+界面语言。在 [LaunchOption](#launchoption) 中设置。
 
-| Parameter | Description |
+| 参数   | 描述   |
 | :----- | :----- |
-| `"en"` | English. |
-| `"zh"` | Chinese. |
+| `"en"` | 英文。 |
+| `"zh"` | 中文。 |
