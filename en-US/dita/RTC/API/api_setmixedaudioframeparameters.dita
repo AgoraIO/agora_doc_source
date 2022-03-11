@@ -23,11 +23,11 @@
         </section>
         <section id="detailed_desc">
 
-   <p>Sets the<xref keyref="onMixedAudioFrame" /> audio format for the  callback.</p>
+   <p>Sets the data format for the <xref keyref="onMixedAudioFrame" /> callback.</p>
    <note type="attention">
        <ul id="ul_t13_lnz_r4b">
   <li>Ensure that you call this method before joining a channel.</li>
-  <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the  callback according to the sampling interval<apiname keyref="onMixedAudioFrame" />.</li>
+  <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the <apiname keyref="onMixedAudioFrame" /> callback according to the sampling interval.</li>
        </ul>
    </note>
         </section>
@@ -35,11 +35,11 @@
    <parml>
        <plentry>
   <pt>sampleRate</pt>
-  <pd><apiname keyref="onMixedAudioFrame" />The sample rate returned in the  callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+  <pd>The sample rate returned in the <apiname keyref="onMixedAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
        </plentry>
        <plentry>
   <pt>samplesPerCall</pt>
-  <pd><apiname keyref="onMixedAudioFrame" />中返回数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+  <pd>The number of data samples returned in the <apiname keyref="onMixedAudioFrame" /> callback, such as 1024 for the media push.</pd>
        </plentry>
    </parml>
         </section>
