@@ -24,25 +24,23 @@
         <section id="detailed_desc" props="rtc-ng">
             <p>This method tests whether the local audio capture device and playback device are working properly. After starting the test, the audio capture device records the local audio, and the audio playback device plays the captured audio. The SDK triggers two independent <xref keyref="onAudioVolumeIndication"/> callbacks at the time interval set in this method, which reports the volume information of the capture device (<parmname>uid</parmname> = 0) and the volume information of the playback device (<parmname>uid</parmname> = 1) respectively.</p>
             <note type="attention">
-                <ul>
-                    <li>Ensure that you call this method before joining a channel.</li>
-                    <li>This method tests local audio devices and does not report the network conditions.</li>
-                </ul>
-            </note>
-        </section>
-        <section>
+            <ul>
+            <li>Ensure that you call this method before joining a channel.</li>
+            <li>This method tests local audio devices and does not report the network conditions.</li>
+            </ul> </note> </section>
+        <section props="rtc">
             <p>This method tests whether the local audio capturing device and playback device work properly. After calling this method, the audio capturing device samples the local audio, and then the audio playback device plays the sampled audio.</p>
             <p>As of v3.6.2, you can call this method either before or after joining a channel. Depending on the call sequence, the SDK triggers the following callbacks at the set time interval to report the volume of the audio capturing and playback devices: 
                 <ul>
                 <li>Two <xref keyref="onAudioVolumeIndication"/> callbacks and two <xref keyref="onAudioDeviceTestVolumeIndication"/> callbacks when you call this method before joining the channel, with the following values: 
                     <ul>
                     <li><codeph>uid = 0</codeph> and <codeph>volume</codeph> in one <apiname keyref="onAudioVolumeIndication"/> callback; <codeph>uid = 1</codeph> and <codeph>volume</codeph> in the other <apiname keyref="onAudioVolumeIndication"/> callback.</li>
-                    <li><codeph>volumeType = AudioTestRecordingVolume(0)</codeph> and <codeph>volume</codeph> in one <apiname keyref="onAudioDeviceTestVolumeIndication"/> callback; <codeph>volumeType = AudioTestPlaybackVolume(1)</codeph> and <codeph>volume</codeph> in the other <apiname keyref="onAudioDeviceTestVolumeIndication"/> callback.</li>
+                    <li><codeph>volumeType = <ph keyref="AudioTestRecordingVolume"/>(0)</codeph> and <codeph>volume</codeph> in one <apiname keyref="onAudioDeviceTestVolumeIndication"/> callback; <codeph>volumeType = <ph keyref="AudioTestPlaybackVolume"/>(1)</codeph> and <codeph>volume</codeph> in the other <apiname keyref="onAudioDeviceTestVolumeIndication"/> callback.</li>
                     </ul>The <apiname keyref="onAudioVolumeIndication"/> and <apiname keyref="onAudioDeviceTestVolumeIndication"/> callbacks report the same volume information. Agora recommends using <apiname keyref="onAudioVolumeIndication"/>.</li>
-                <li>Two <apiname keyref="onAudioDeviceTestVolumeIndication"/> callbacks when you call this method after joining a channel, with the following values:
+                <li>Two <apiname keyref="onAudioDeviceTestVolumeIndication"/> callbacks when you call this method after joining a channel, with the following values: 
                     <ul>
-                    <li><codeph>volumeType = AudioTestRecordingVolume(0)</codeph> and <codeph>volume</codeph> in one callback;</li>
-                    <li><codeph>volumeType = AudioTestPlaybackVolume(1)</codeph> and <codeph>volume</codeph> in the other one.</li>
+                    <li><codeph>volumeType = <ph keyref="AudioTestRecordingVolume"/>(0)</codeph> and <codeph>volume</codeph> in one callback;</li>
+                    <li><codeph>volumeType = <ph keyref="AudioTestPlaybackVolume"/>(1)</codeph> and <codeph>volume</codeph> in the other one.</li>
                     </ul></li>
                 </ul></p>
             <note type="attention">
@@ -59,12 +57,12 @@
             <parml>
             <plentry>
                 <pt>indicationInterval</pt>
-                    <pd props="rtc-ng">
-                        <p>The time interval (ms) at which the SDK triggers the <apiname keyref="onAudioVolumeIndication"/> callback. Agora recommends a setting greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive the callback.</p>
-                    </pd>
+                <pd props="rtc-ng">
+                    <p>The time interval (ms) at which the SDK triggers the <apiname keyref="onAudioVolumeIndication"/> callback. Agora recommends a setting greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive the callback.</p>
+                </pd>
                 <pd props="rtc">
-                        <p>The time interval (ms) at which the SDK triggers the <apiname keyref="onAudioVolumeIndication"/> or <apiname keyref="onAudioDeviceTestVolumeIndication"/> callback. Agora recommends a setting greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive these callbacks.</p>
-                    </pd>
+                    <p>The time interval (ms) at which the SDK triggers the <apiname keyref="onAudioVolumeIndication"/> or <apiname keyref="onAudioDeviceTestVolumeIndication"/> callback. Agora recommends a setting greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive these callbacks.</p>
+                </pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity">

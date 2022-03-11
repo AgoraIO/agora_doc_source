@@ -29,22 +29,22 @@
             <p>This method tests whether the audio playback device works properly. Once a user starts the test, the SDK plays an audio file specified by the user. If the user can hear the audio, the playback device works properly.</p>
             <p>As of v3.6.2, you can call this method either before or after joining a channel. Depending on the call sequence, the SDK triggers the following callbacks every 100 ms to report the volume of the audio playback device:
                 
+            
             <ul>
             <li><xref keyref="onAudioVolumeIndication"/> and <xref keyref="onAudioDeviceTestVolumeIndication"/> when you call this method before joining the channel, with the following values: 
                     
+                
                 <ul>
                 <li><codeph>uid = 1</codeph> and <codeph>volume</codeph> in <apiname keyref="onAudioVolumeIndication"/>.</li>
                 <li><codeph>volumeType = AudioTestPlaybackVolume(1)</codeph> and <codeph>volume</codeph> in <apiname keyref="onAudioDeviceTestVolumeIndication"/>.</li>
                 </ul>The two callbacks report the same volume information. Agora recommends using <apiname keyref="onAudioDeviceTestVolumeIndication"/>.</li>
-            <li><apiname keyref="onAudioDeviceTestVolumeIndication"/> when you call this method after joining a channel, which reports <codeph>volumeType = AudioTestPlaybackVolume(1)</codeph> and <codeph>volume</codeph>.</li>
+            <li><apiname keyref="onAudioDeviceTestVolumeIndication"/> when you call this method after joining a channel, which reports <codeph>volumeType = <ph keyref="AudioTestPlaybackVolume"/>(1)</codeph> and <codeph>volume</codeph>.</li>
             </ul></p>
             <note type="attention">
-                <ul>
-                    <li>Calling this method after joining a channel tests the audio capturing device that the SDK is using.</li>
-                    <li>After calling <apiname>startRecordingDeviceTest</apiname>, you must call <xref keyref="stopPlaybackDeviceTest"/> to stop the test.</li>
-                </ul>
-            </note>
-        </section>
+            <ul>
+            <li>Calling this method after joining a channel tests the audio capturing device that the SDK is using.</li>
+            <li>After calling <apiname>startRecordingDeviceTest</apiname>, you must call <xref keyref="stopPlaybackDeviceTest"/> to stop the test.</li>
+            </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
