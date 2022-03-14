@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-    <title><ph keyref="LiveTranscoding" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for CDN live streaming.</ph></shortdesc>
+    <title><ph keyref="LiveTranscoding"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Transcoding configurations for the media push.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
@@ -155,7 +155,7 @@
     transcodingUsers: Array&lt;TranscodingUser&gt;
     }</codeblock>
                 <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
-  
+
   @JsonKey(includeIfNull: false)
   int? width;
 
@@ -228,23 +228,23 @@
     this.userConfigExtraInfo,
   });
 
-  factory LiveTranscoding.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory LiveTranscoding.fromJson(Map&lt;String, dynamic> json) =>
       _$LiveTranscodingFromJson(json);
 
   /// @nodoc
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LiveTranscodingToJson(this);
+  Map&lt;String, dynamic> toJson() => _$LiveTranscodingToJson(this);
 }</codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
                 <plentry props="android windows electron unity">
                     <pt>width</pt>
                     <pd>
                         <p>The width of the output media stream in pixels. The default value is 360.</p>
                         <ul>
-                            <li>When the output media stream is video, ensure that <codeph>width</codeph> is set to 64 or higher. Otherwise, the Agora server adjusts the value to 64.</li>
+                            <li>When the output media stream is video, ensure that <codeph>width</codeph> is set to 64 or higher; otherwise, the Agora server adjusts the value to 64.</li>
                             <li>When the output media stream is audio, set <codeph>width</codeph> to 0.</li>
                         </ul>
                     </pd>
@@ -254,7 +254,7 @@
                     <pd>
                         <p>The height of the output media stream in pixels. The default value is 640.</p>
                         <ul>
-                            <li>When the output media stream is video, ensure that <codeph>height</codeph> is set to 64 or higher. Otherwise, the Agora server adjusts the value to 64.</li>
+                            <li>When the output media stream is video, ensure that <codeph>height</codeph> is set to 64 or higher; otherwise, the Agora server adjusts the value to 64.</li>
                             <li>When the output media stream is audio, set <codeph>height</codeph> to 0.</li>
                         </ul>
                     </pd>
@@ -265,13 +265,12 @@
                 </plentry>
                 <plentry>
                     <pt>videoBitrate</pt>
-                    <pd>The video bitrate (Kbps) of the output media stream. The default value is 400. <ph props="ios android windows">You can refer to <xref keyref="guide-cdn-streaming">Push Streams to
-                            CND</xref> for how to set the parameters.</ph></pd>
+                    <pd>The video bitrate (Kbps) of the output media stream. The default value is 400. <ph props="ios android windows">You can refer to <xref keyref="guide-cdn-streaming">Media Push</xref> for how to set this parameter.</ph></pd>
                 </plentry>
                 <plentry>
                     <pt>videoFrameRate</pt>
                     <pd>The video frame rate (fps) of the output media stream. The default value is 15, and the value range is [1, 30].<note type="attention">The Agora server adjusts
-                            any frame rate higher than 30 fps to 30 fps.</note></pd>
+any frame rate higher than 30 fps to 30 fps.</note></pd>
                 </plentry>
                 <plentry>
                     <pt>lowLatency</pt>
@@ -283,8 +282,8 @@
                             </dlentry>
                         </dl>
                         <ul>
-                            <li><codeph><ph keyref="true" /></codeph>: Low latency with unassured quality.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: (Default) High latency with assured quality.</li>
+                            <li><codeph><ph keyref="true"/></codeph>: Low latency with unassured quality.</li>
+                            <li><codeph><ph keyref="false"/></codeph>: (Default) High latency with assured quality.</li>
                         </ul>
                     </pd>
                 </plentry>
@@ -295,18 +294,18 @@
                 <plentry>
                     <pt>videoCodecProfile</pt>
                     <pd>
-                        <p>The video encoding configuration of the output media stream. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE" />.</p>
+                        <p>The video encoding configuration of the output media stream. See <xref keyref="VIDEO_CODEC_PROFILE_TYPE"/>.</p>
                         <note type="attention">If you set this parameter to any other value, Agora adjusts it to the default value.</note>
                     </pd>
                 </plentry>
-                <plentry props="electron">
+                <plentry props="electron flutter">
                     <pt>videoCodecType</pt>
-                    <pd>The codec type of the output video. For details, see <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" />.</pd>
+                    <pd>The codec type of the output video. See <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/> for details.</pd>
                 </plentry>
                 <plentry>
                     <pt>transcodingUsers</pt>
                     <pd>
-                        <p>Transcoding configurations of each host. One live streaming channel supports up to 17 hosts. For details, see <xref keyref="TranscodingUser" />.</p>
+                        <p>Transcoding configurations of each host. One live streaming channel supports up to 17 hosts. See <xref keyref="TranscodingUser"/> for details.</p>
                     </pd>
                 </plentry>
                 <plentry>
@@ -316,7 +315,7 @@
                 <plentry>
                     <pt>backgroundColor</pt>
                     <pd>The video background color of the output media stream. The format is a hexadecimal integer defined by RGB without the # symbol. For example, <codeph>0xFFB6C1</codeph>
-                        means light pink. The default value is <codeph>0x000000 </codeph>(black).</pd>
+means light pink. The default value is <codeph>0x000000</codeph> (black).</pd>
                 </plentry>
                 <plentry props="android windows electron unity">
                     <pt>userCount</pt>
@@ -330,19 +329,19 @@
                                 <dt>Deprecated:</dt>
                                 <dd>This attribute is deprecated.</dd>
                             </dlentry>
-                        </dl> The metadata sent to the CDN client.</pd>
+                        </dl>The metadata sent to the CDN client.</pd>
                 </plentry>
                 <plentry>
                     <pt>watermark</pt>
-                    <pd>The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. For details, see <xref keyref="RtcImage" />.</pd>
+                    <pd>The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. See <xref keyref="RtcImage"/> for details.</pd>
                 </plentry>
                 <plentry>
                     <pt>backgroundImage</pt>
-                    <pd> The video background image of the output media stream. For details, see <xref keyref="RtcImage" />.</pd>
+                    <pd>The video background image of the output media stream. See <xref keyref="RtcImage"/> for details.</pd>
                 </plentry>
                 <plentry>
                     <pt>audioSampleRate</pt>
-                    <pd>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE" />.</pd>
+                    <pd>The audio sampling rate (Hz) of the output media stream. See <xref keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
                 </plentry>
                 <plentry>
                     <pt>audioBitrate</pt>
@@ -361,7 +360,7 @@
                 </plentry>
                 <plentry>
                     <pt>audioCodecProfile</pt>
-                    <pd>The audio codec of the output media stream. For details, see <xref keyref="AUDIO_CODEC_PROFILE_TYPE" />.</pd>
+                    <pd>The audio codec of the output media stream. See <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/> for details.</pd>
                 </plentry>
             </parml>
             <parml props="rtc-ng">
