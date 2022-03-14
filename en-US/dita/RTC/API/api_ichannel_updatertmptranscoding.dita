@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="callback_onscreencaptureinfoupdated">
-    <title> <ph keyref="onScreenCaptureInfoUpdated"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc">屏幕共享信息更新回调。</ph> </shortdesc>
+<reference id="api_ichannel_updatertmptranscodingl">
+    <title> <ph keyref="IChannel_updateRtmpTranscoding"/> </title>
+    <shortdesc conkeyref="updateRtmpTranscoding/short"/>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onScreenCaptureInfoUpdated"/>
+                <indexterm keyref="IChannel_updateRtmpTranscoding"/>
             </keywords>
         </metadata>
     </prolog>
@@ -22,15 +22,17 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>调用 <xref keyref="startScreenCaptureByDisplayId"/> 或 <xref keyref="startScreenCaptureByScreenRect"/> 开启屏幕共享，并通过 <parmname>excludeWindowList</parmname> 屏蔽指定窗口时，如果窗口屏蔽失败，SDK 会触发该回调。</p>
-            <note type="attention" props="windows">该回调仅适用于 Windows。</note> </section>
+            <p>After you start pushing media streams to CDN with transcoding, you can dynamically update the transcoding configuration according to the scenario. The SDK triggers the <xref keyref="IChannel_onTranscodingUpdated"/> callback after the transcoding configuration is updated.
+            </p>
+        </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameters</title>
             <parml>
-            <plentry>
-                <pt>info</pt>
-                <pd>屏幕共享信息。详见 <xref keyref="ScreenCaptureInfo"/>。</pd>
+            <plentry conkeyref="updateRtmpTranscoding/transcoding">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
+        <section id="return_values" conkeyref="updateRtmpTranscoding/return_values" props="windows"/>
     </refbody>
 </reference>

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_beautyoptions">
-    <title><ph keyref="BeautyOptions" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Image enhancement options.</ph></shortdesc>
+    <title>
+        <ph keyref="BeautyOptions" />
+    </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">Image enhancement options.</ph>
+    </shortdesc>
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
@@ -25,7 +29,7 @@
 @property(nonatomic, assign) float rednessLevel;
 @property(nonatomic, assign) float sharpnessLevel;
 @end</codeblock>
-<codeblock props="windows" outputclass="language-cpp">struct BeautyOptions {
+                <codeblock props="windows" outputclass="language-cpp">struct BeautyOptions {
     enum LIGHTENING_CONTRAST_LEVEL {
         LIGHTENING_CONTRAST_LOW = 0,
         LIGHTENING_CONTRAST_NORMAL,
@@ -105,28 +109,71 @@
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
-   <parml>
-       <plentry>
-           <pt>lighteningContrastLevel</pt>
-  <pd>The contrast level. For details, see <xref keyref="LIGHTENING_CONTRAST_LEVEL" />.</pd>
-       </plentry>
-       <plentry>
-  <pt>lighteningLevel</pt>
-  <pd>The brightness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph props="ios">0.7</ph><ph props="android">0.6</ph><ph props="windows">0.0</ph>. This parameter makes video whitening.</pd>
-       </plentry>
-       <plentry>
-  <pt>smoothnessLevel</pt>
-  <pd>The smoothness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph props="ios">0.5</ph><ph props="android">0.5</ph><ph props="windows">0.0</ph>. This parameter is usually used to remove blemishes.</pd>
-       </plentry>
-       <plentry>
-  <pt>rednessLevel</pt>
-  <pd>The redness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph props="ios">0.1</ph><ph props="android">0.1</ph><ph props="windows">0.0</ph>. This parameter adjusts the red saturation level.</pd>
-       </plentry>
-                <plentry props="rtc-ng">
-                    <pt>sharpnessLevel</pt>
-                    <pd>The sharpness level. The value ranges from 0.0 (original) to 1.0. The default value is <ph props="ios">0.1</ph><ph props="android">0.3</ph><ph props="windows">0.0</ph>.</pd>
+            <title>
+                <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" />
+            </title>
+            <parml>
+                <plentry>
+                    <pt>lighteningContrastLevel</pt>
+                    <pd>
+                        The contrast level. For details, see
+                        <xref keyref="LIGHTENING_CONTRAST_LEVEL" />
+                        .
+                    </pd>
                 </plentry>
-   </parml>
-        </section></refbody>
+                <plentry>
+                    <pt>lighteningLevel</pt>
+                    <pd props="rtc">
+                        The brightening level, in the range [0.0,1.0], where 0.0 means the original brightening. The default value is 0.6. The higher the value, the greater the brightening level.
+                    </pd>
+                    <pd props="rtc-ng">
+                        The brightness level. The value ranges from 0.0 (original) to 1.0. The default value is
+                        <ph props="ios">0.7</ph>
+                        <ph props="android">0.6</ph>
+                        <ph props="windows">0.0</ph>
+                        . This parameter makes video whitening.
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>smoothnessLevel</pt>
+                    <pd props="rtc">
+                        The smoothness level, in the range [0.0,1.0], where 0.0 means the original smoothness. The default value is 0.5. The higher the value, the greater the smoothness level.
+                    </pd>
+                    <pd props="rtc-ng">
+                        The smoothness level. The value ranges from 0.0 (original) to 1.0. The default value is
+                        <ph props="ios">0.5</ph>
+                        <ph props="android">0.5</ph>
+                        <ph props="windows">0.0</ph>
+                        . This parameter is usually used to remove blemishes.
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>rednessLevel</pt>
+                    <pd props="rtc">
+                        The redness level, in the range [0.0,1.0], where 0.0 means the original redness. The default value is 0.1. The higher the value, the greater the redness level.
+                    </pd>
+                    <pd props="rtc-ng">
+                        The redness level. The value ranges from 0.0 (original) to 1.0. The default value is
+                        <ph props="ios">0.1</ph>
+                        <ph props="android">0.1</ph>
+                        <ph props="windows">0.0</ph>
+                        . This parameter adjusts the red saturation level.
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>sharpnessLevel</pt>
+                    <pd props="rtc">
+                        The sharpness level, in the range [0.0,1.0], where 0.0 means the original sharpness. The default value is 0.3. The higher the value, the greater the sharpness level.
+                    </pd>
+                    <pd props="rtc-ng">
+                        The sharpness level. The value ranges from 0.0 (original) to 1.0. The default value is
+                        <ph props="ios">0.1</ph>
+                        <ph props="android">0.3</ph>
+                        <ph props="windows">0.0</ph>
+                        .
+                    </pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
 </reference>

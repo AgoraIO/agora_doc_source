@@ -361,36 +361,50 @@
         <section id="video_pre-process_and_post-process">
             <title>Video pre-processing and post-processing</title>
             <simpletable>
-            <sthead>
-                <stentry>Method</stentry>
-                <stentry>Description</stentry>
-            </sthead>
-            <strow>
-                <stentry><xref keyref="setBeautyEffectOptions"/></stentry>
-                <stentry><ph conkeyref="setBeautyEffectOptions/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="enableVirtualBackground"/></stentry>
-                <stentry><ph conkeyref="enableVirtualBackground/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="enableRemoteSuperResolution"/></stentry>
-                <stentry><ph conkeyref="enableRemoteSuperResolution/shortdesc"/></stentry>
-            </strow>
-            </simpletable> <simpletable>
-            <sthead>
-                <stentry>Event</stentry>
-                <stentry>Description</stentry>
-            </sthead>
-            <strow>
-                <stentry><xref keyref="onVirtualBackgroundSourceEnabled"/></stentry>
-                <stentry><ph conkeyref="onVirtualBackgroundSourceEnabled/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="onUserSuperResolutionEnabled"/></stentry>
-                <stentry><ph conkeyref="onUserSuperResolutionEnabled/shortdesc"/></stentry>
-            </strow>
-            </simpletable> </section>
+                <sthead>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="setBeautyEffectOptions"/></stentry>
+                    <stentry><ph conkeyref="setBeautyEffectOptions/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="enableVirtualBackground"/></stentry>
+                    <stentry><ph conkeyref="enableVirtualBackground/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="enableRemoteSuperResolution"/></stentry>
+                    <stentry><ph conkeyref="enableRemoteSuperResolution/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry> <xref keyref="setVideoDenoiserOptions"/> </stentry>
+                    <stentry> <ph conkeyref="setVideoDenoiserOptions/shortdesc"/> </stentry>
+                </strow>
+                <strow>
+                    <stentry> <xref keyref="setLowlightEnhanceOptions"/> </stentry>
+                    <stentry> <ph conkeyref="setLowlightEnhanceOptions/shortdesc"/> </stentry>
+                </strow>
+                <strow>
+                    <stentry> <xref keyref="setColorEnhanceOptions"/> </stentry>
+                    <stentry> <ph conkeyref="setColorEnhanceOptions/shortdesc"/> </stentry>
+                </strow>
+            </simpletable>
+            <simpletable>
+                <sthead>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onVirtualBackgroundSourceEnabled"/></stentry>
+                    <stentry><ph conkeyref="onVirtualBackgroundSourceEnabled/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onUserSuperResolutionEnabled"/></stentry>
+                    <stentry><ph conkeyref="onUserSuperResolutionEnabled/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
         <section id="multiple_channels_management">
             <title>Multiple channels management</title>
             <p props="ios mac windows android">We provide an advanced guide on the applicable scenarios, implementation, and considerations for this group of methods. For details, see <xref keyref="guide-multiple-channel"/>.</p>
@@ -740,40 +754,46 @@
             <title>CDN publisher</title>
             <p>This method applies only to interactive live streaming.</p>
             <simpletable>
-            <sthead>
-                <stentry>Method</stentry>
-                <stentry>Description</stentry>
-            </sthead>
-            <strow>
-                <stentry><xref keyref="setLiveTranscoding"/></stentry>
-                <stentry><ph conkeyref="setLiveTranscoding/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="addPublishStreamUrl"/></stentry>
-                <stentry><ph conkeyref="addPublishStreamUrl/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="removePublishStreamUrl"/></stentry>
-                <stentry><ph conkeyref="removePublishStreamUrl/shortdesc"/></stentry>
-            </strow>
-            </simpletable> <simpletable>
-            <sthead>
-                <stentry>Event</stentry>
-                <stentry>Description</stentry>
-            </sthead>
-            <strow>
-                <stentry><xref keyref="onRtmpStreamingStateChanged"/></stentry>
-                <stentry><ph conkeyref="onRtmpStreamingStateChanged/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="onRtmpStreamingEvent"/></stentry>
-                <stentry><ph conkeyref="onRtmpStreamingEvent/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="onTranscodingUpdated"/></stentry>
-                <stentry><ph conkeyref="onTranscodingUpdated/shortdesc"/></stentry>
-            </strow>
-            </simpletable> </section>
+                <sthead>
+                    <stentry>Method</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry> <xref keyref="startRtmpStreamWithoutTranscoding"/> </stentry>
+                    <stentry> <ph conkeyref="startRtmpStreamWithoutTranscoding/shortdesc"/> </stentry>
+                </strow>
+                <strow>
+                    <stentry> <xref keyref="startRtmpStreamWithTranscoding"/> </stentry>
+                    <stentry> <ph conkeyref="startRtmpStreamWithTranscoding/shortdesc"/> </stentry>
+                </strow>
+                <strow>
+                    <stentry> <xref keyref="updateRtmpTranscoding"/> </stentry>
+                    <stentry> <ph conkeyref="updateRtmpTranscoding/shortdesc"/> </stentry>
+                </strow>
+                <strow>
+                    <stentry> <xref keyref="stopRtmpStream"/> </stentry>
+                    <stentry> <ph conkeyref="stopRtmpStream/shortdesc"/> </stentry>
+                </strow>
+            </simpletable>
+            <simpletable>
+                <sthead>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onRtmpStreamingStateChanged"/></stentry>
+                    <stentry><ph conkeyref="onRtmpStreamingStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRtmpStreamingEvent"/></stentry>
+                    <stentry><ph conkeyref="onRtmpStreamingEvent/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onTranscodingUpdated"/></stentry>
+                    <stentry><ph conkeyref="onTranscodingUpdated/shortdesc"/></stentry>
+                </strow>
+            </simpletable>
+        </section>
         <section id="media_stream_relay_across_channels">
             <title>Media stream relay across channels</title>
             <simpletable>
