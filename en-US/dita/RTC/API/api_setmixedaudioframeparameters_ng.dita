@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setmixedaudioframeparameters_ng">
     <title><ph keyref="setMixedAudioFrameParameters"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets<xref keyref="onMixedAudioFrame"/> the audio data format reported by .</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the audio data format reported by <xref keyref="onMixedAudioFrame"/>.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,7 +29,7 @@
                 <plentry>
                     <pt>sampleRate</pt>
                     <pd>
-                        <p>The sample rate returned in the callback, which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000 Hz</codeph>.</p>
+                        <p>The sample rate (Hz) of the audio data, which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</p>
                     </pd>
                 </plentry>
             </parml>
@@ -37,7 +37,7 @@
                 <plentry>
                     <pt>channel</pt>
                     <pd>
-                        <p>The number of channels of the external audio source, which can be set as <codeph>1</codeph>(Mono) or <codeph>2</codeph>(Stereo).</p>
+                        <p>The number of channels of the audio data, which can be set as <codeph>1</codeph> (Mono) or <codeph>2</codeph> (Stereo).</p>
                     </pd>
                 </plentry>
             </parml>
@@ -45,12 +45,12 @@
                 <plentry>
                     <pt>samplesPerCall</pt>
                     <pd>
-                        <p>Sets the number of samples the onMixedAudioFrame callback returns. In RTMP streaming scenarios, set it as <codeph>1024</codeph>.</p>
+                        <p>Sets the number of samples. In media push scenarios, set it as <codeph>1024</codeph>.</p>
                     </pd>
                 </plentry>
             </parml>
             <note id="note_n1y_cgg_3qb">
-                <p>The SDK triggers the  callback according to the sample interval<apiname keyref="onMixedAudioFrame"/>. <codeph>Sample</codeph> interval (sec) = <codeph>samplePerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>). Ensure that the value of sample interval ≥ 0.01. </p>
+                <p>The SDK triggers the <apiname keyref="onMixedAudioFrame"/> callback according to the sample interval. Sample interval (sec) = <codeph>samplePerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>). Ensure that the value of sample interval more than or equal to 0.01. </p>
             </note>
         </section>
         <section id="return_values">
