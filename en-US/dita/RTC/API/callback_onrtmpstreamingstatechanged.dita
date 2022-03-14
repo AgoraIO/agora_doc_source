@@ -41,7 +41,7 @@
         </section>
         <section id="detailed_desc">
 
-   <p>The SDK triggers this callback to report the result of the local user calling the<xref keyref="addPublishStreamUrl"/>  or<xref keyref="removePublishStreamUrl"/>  method. When the RTMP/RTMPS streaming status changes, the SDK triggers this callback and report the URL address and the current status of the streaming. This callback indicates the state of the RTMP or RTMPS streaming. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the errCode parameter.</p>
+   <p>The SDK triggers this callback to report the result of the local user calling the <xref keyref="addPublishStreamUrl"/> or <xref keyref="removePublishStreamUrl"/> method. When the media push state changes, the SDK triggers this callback and reports the URL address and the current state of the media push. This callback indicates the state of the media push. When exceptions occur, you can troubleshoot issues by referring to the detailed error descriptions in the error code.</p>
         </section>
         <section id="parameters"><title><ph keyref="callback-section-title"/></title>             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
    <parml>
@@ -51,15 +51,15 @@
                 </plentry>
                 <plentry id="url">
                     <pt>url</pt>
-                    <pd>The CDN streaming URL.</pd>
+                    <pd>The URL address where the state of the media push changes.</pd>
                 </plentry>
                 <plentry id="state">
                     <pt>state</pt>
-                    <pd>The RTMP or RTMPS streaming state. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>. When the streaming status is<apiname keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/>  (4), you can view the<parmname> error</parmname> information in the<parmname> errorCode</parmname> parameter.</pd>
+                    <pd>The current state of the media push. See <xref keyref="RTMP_STREAM_PUBLISH_STATE"/>. When the streaming state is <apiname keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE"/> (4), you can view the error information in the <parmname>errorCode</parmname> parameter.</pd>
                 </plentry>
                 <plentry id="errCode">
                     <pt>errCode</pt>
-                    <pd>The detailed error information for streaming. See <xref keyref="RTMP_STREAM_PUBLISH_ERROR"/>.</pd>
+                    <pd>The detailed error information for the media push. See <xref keyref="RTMP_STREAM_PUBLISH_ERROR"/>.</pd>
                 </plentry>
             </parml>
         </section>
