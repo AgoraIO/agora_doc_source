@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlowlightenhanceoptions">
     <title> <ph keyref="setLowlightEnhanceOptions"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc">设置暗光增强功能。</ph> </shortdesc>
+    <shortdesc id="short"> <ph id="shortdesc">Sets low-light enhancement.</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,40 +22,34 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>暗光增强功能可以在光线亮度偏低（如背光、阴天、暗场景）和亮度不均匀的环境下自适应调整视频画面的亮度值，恢复或凸显图像的细节信息，最终提升视频图像的整体视觉效果。</p>
-            <p>你可以调用该方法开启暗光增强功能并设置暗光增强的效果。</p>
+            <p>The low-light enhancement feature can adaptively adjust the brightness value of the video captured in situations with low or uneven lighting, such as backlit, cloudy, or dark scenes. It restores or highlights the image details and improves the overall visual effect of the video.</p>
+            <p>You can call this method to enable the low-light enhancement feature and set the options of the low-light enhancement effect.</p>
             <note type="attention">
             <ul>
             <li props="android">Before calling this method, ensure that you have integrated the <codeph>libagora_segmentation_extension.so</codeph> dynamic library into your project.</li>
             <li props="ios mac">Before calling this method, ensure that you have integrated the <codeph>AgoraVideoSegmentationExtension.xcframework</codeph> dynamic library into your project. </li>
             <li props="windows">Before calling this method, ensure that you have integrated the <codeph>libagora_segmentation_extension.dll</codeph> dynamic library into your project.</li>
             <li>Call this method after <xref keyref="enableVideo"/>.</li>
-            <li>暗光增强对设备性能有一定要求。开启暗光增强后，如果设备出现严重发烫等问题，Agora 推荐你将暗光增强等级修改为消耗性能较少的等级或关闭暗光增强功能。</li>
+            <li>The low-light enhancement feature has certain performance requirements on devices. If your device overheats after you enable low-light enhancement, Agora recommends modifying the low-light enhancement options to a less performance-consuming level or disabling low-light enhancement entirely.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt props="windows">enabled</pt>
-                <pd>
-                        是否开启暗光增强功能：：
-
-
+                <pd>Sets whether to enable low-light enhancement:
                     <ul>
                     <li> <codeph> <ph keyref="true"/> </codeph>
-                                : 开启。
+                                : Enable.
                             </li>
                     <li> <codeph> <ph keyref="false"/> </codeph>
-                                :（默认）关闭。
+                                : (Default) Disable.
                             </li>
                     </ul> </pd>
             </plentry>
             <plentry>
                 <pt>options</pt>
-                <pd>
-                        暗光增强选项，用于设置暗光增强的效果。详见
-                        <xref keyref="LowLightEnhanceOptions"/>
-                        。
+                <pd>The low-light enhancement options. See <xref keyref="LowLightEnhanceOptions"/>.
                     </pd>
             </plentry>
             </parml> </section>

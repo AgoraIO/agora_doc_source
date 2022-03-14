@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_ichannel_updatertmptranscodingl">
-    <title> <ph keyref="IChannel_updateRtmpTranscoding"/> </title>
-    <shortdesc conkeyref="updateRtmpTranscoding/short"/>
+<reference id="api_ichannel_stoprtmpstream">
+    <title> <ph keyref="IChannel_stopRtmpStream"/> </title>
+    <shortdesc conkeyref="stopRtmpStream/short"/>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="IChannel_updateRtmpTranscoding"/>
+                <indexterm keyref="IChannel_stopRtmpStream"/>
             </keywords>
         </metadata>
     </prolog>
@@ -22,17 +22,18 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>After you start pushing media streams to CDN with transcoding, you can dynamically update the transcoding configuration according to the scenario. The SDK triggers the <xref keyref="IChannel_onTranscodingUpdated"/> callback after the transcoding configuration is updated.
+            <p>You can call this method to stop the live stream on the specified CDN address. This method can stop pushing media streams to only one CDN address at a time, so if you need to stop pushing streams to multiple addresses, call this method multiple times.</p>
+            <p>After you call this method, the SDK triggers the <xref keyref="IChannel_onRtmpStreamingStateChanged"/> callback on the local client to report the state of the streaming.
             </p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="updateRtmpTranscoding/transcoding">
+            <plentry conkeyref="stopRtmpStream/url">
                 <pt/>
                 <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values" conkeyref="updateRtmpTranscoding/return_values" props="windows"/>
+        <section id="return_values" conkeyref="stopRtmpStream/return_values"  props="windows"/>
     </refbody>
 </reference>

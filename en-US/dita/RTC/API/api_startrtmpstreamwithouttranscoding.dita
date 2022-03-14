@@ -1,52 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startrtmpstreamwithouttranscoding">
-    <title> <ph keyref="startRtmpStreamWithoutTranscoding"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc">开始非转码推流。</ph> </shortdesc>
+    <title>
+        <ph keyref="startRtmpStreamWithoutTranscoding" />
+    </title>
+    <shortdesc id="short">
+        <ph id="shortdesc">Starts pushing media streams to a CDN without transcoding.</ph>
+    </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startRtmpStreamWithoutTranscoding"/>
+                <indexterm keyref="startRtmpStreamWithoutTranscoding" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="windows" outputclass="language-cpp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="windows" outputclass="language-cpp" />
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
         </section>
         <section id="detailed_desc">
-            <p>调用该方法，你可以向指定的 CDN 推流地址推送直播音视频流。该方法每次只能向一个地址推送媒体流，如果你需要向多个地址推流，则需多次调用该方法。</p>
-            <p>调用该方法后，SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告推流的状态。</p>
+            <p>You can call this method to push a live audio-and-video stream to the specified CDN address. This method can push media streams to only one CDN address at a time, so if you need to push streams to multiple addresses, call this method multiple times.</p>
+            <p>
+                After you call this method, the SDK triggers the
+                <xref keyref="onRtmpStreamingStateChanged" />
+                callback on the local client to report the state of the streaming.
+            </p>
             <note type="attention" id="note">
-            <ul>
-            <li>请确保已开通 CDN 推流服务，详见进阶功能<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件。</li>
-            <li>请在加入频道后调用该方法。</li>
-            <li>只有直播场景下的主播才能调用该方法。</li>
-            <li>调用该方法推流失败后，如果你想要重新推流，那么请你务必先调用 <apiname>stopRtmpStream</apiname> ，再调用该方法重推，否则 SDK 会返回与上次推流失败时一样的错误码。</li>
-            </ul> </note>
+                <ul>
+                    <li>
+                        Ensure that you enable the RTMP Converter service before using this function. See Prerequisites in
+                        <xref keyref="guide-cdn-streaming">Media Push</xref>
+                        .
+                    </li>
+                    <li>Call this method after joining a channel.</li>
+                    <li>
+                        Only hosts in the
+                        <codeph>LIVE_BROADCASTING</codeph>
+                        profile can call this method.
+                    </li>
+                    <li>
+                        If you want to retry pushing streams after a failed push, make sure to call
+                        <apiname>stopRtmpStream</apiname>
+                        first, then call this method to retry pushing streams; otherwise, the SDK returns the same error code as the last failed push.
+                    </li>
+                </ul>
+            </note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry id="url">
-                <pt>url</pt>
-                <pd>CDN 推流地址，格式为 RTMP 或 RTMPS。字符长度不能超过 1024 字节。不支持中文字符等特殊字符。</pd>
-            </plentry>
-            </parml> </section>
+                <plentry id="url">
+                    <pt>url</pt>
+                    <pd>The address of the CDN live streaming. The format is RTMP or RTMPS. The character length cannot exceed 1024 bytes. Special characters such as Chinese characters are not supported.</pd>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values" props="windows">
             <title>Returns</title>
             <ul>
-            <li>0: Success.</li>
-            <li>
-                    &lt; 0: Failure.
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.
+                    <ul>
+                        <li>
+                            <codeph>ERR_INVALID_ARGUMENT(-2)</codeph>
+                            : <parmname>url</parmname> is null or the string length is 0.
+                        </li>
+                        <li>
+                            <codeph>ERR_NOT_INITIALIZED(-7)</codeph>
+                            : The SDK is not initialized before calling this method.
+                        </li>
+                    </ul>
                 </li>
-            </ul> </section>
+            </ul>
+        </section>
     </refbody>
 </reference>
