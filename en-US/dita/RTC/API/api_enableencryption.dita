@@ -33,7 +33,7 @@
                </dl>
                <p id="desc1">In scenarios requiring high security, Agora recommends calling this method to enable the built-in encryption before joining a channel.</p>
                <p id="desc2">All users in the same channel must use the same encryption mode and encryption key. After the user leaves the channel, the SDK automatically disables the built-in encryption. To enable the built-in encryption, call this method before the user joins the channel again.</p>
-               <note type="attention">如果开启了内置加密，则不能使用旁路推流功能。</note>
+               <note type="attention">If you enable the built-in encryption, you cannot use the media push function.</note>
           </section>
           <section id="parameters">
                <title>Parameters</title>
@@ -61,7 +61,7 @@
                     <li>&lt; 0: Failure.<ul>
                               <li>-2(ERR_INVALID_ARGUMENT): An invalid parameter is used. Set the parameter with a valid value.</li>
                               <li>-4(ERR_NOT_SUPPORTED): The encryption mode is incorrect or the SDK fails to load the external encryption library. Check the enumeration or reload the external encryption library.</li>
-                              <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized. Initialize the  instance before calling this method<xref keyref="IRtcEngine"/>.</li>
+                              <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized. Initialize the <xref keyref="IRtcEngine"/> instance before calling this method.</li>
                          </ul>
                     </li>
                </ul>
