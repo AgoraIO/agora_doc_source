@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_setadvancedaudiooptions">
+    <title><ph keyref="setAdvancedAudioOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置立体声处理。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setAdvancedAudioOptions"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int SetAdvancedAudioOptions(AdvancedAudioOptions options);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAdvancedAudioOptions:(AgoraAdvancedAudioOptions * _Nonnull)options;</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">virtual int setAdvancedAudioOptions(media::base::AdvancedAudioOptions &amp;options) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>SDK 默认采集双声道音频，为节省资源，处理时会将双声道音频合为单声道音频。</p>
+            <p>如果你需要立体声，Agora 推荐按如下步骤设置：
+            <ol>
+            <li>前处理：调用该方法并在 <apiname keyref="AdvancedAudioOptions"/> 中设置 <parmname>audioProcessingChannels</parmname> 为 <apiname keyref="AUDIO_PROCESSING_STEREO"/>。</li>
+            <li>后处理：调用 <xref keyref="setAudioProfile2"/> 并将 <parmname>profile</parmname> 设为 <apiname keyref="AUDIO_PROFILE_MUSIC_STANDARD_STEREO"/> (3) 或 <apiname keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY_STEREO"/> (5)。</li>
+            </ol> </p>
+            <note type="attention">
+                <ul>
+                    <li props="windows">该方法仅适用于 Android 和 iOS 平台。</li>
+                    <li>Agora 推荐在 <xref keyref="joinChannel2"/>、<xref keyref="enableAudio"/> 和 <xref keyref="enableLocalAudio"/> 前调用该方法。</li>
+                    <li>立体声设置仅在媒体音量下生效。<ph props="android ios">详见<xref keyref="volume-type"/>。</ph><ph props="windows">详见<xref keyref="volume-type-android"/>和<xref keyref="volume-type-ios"/>。</ph></li>
+                    <li props="windows ios">在 iOS 上，该功能对设备性能要求较高。仅支持在 iOS 14.0 及以上版本的如下设备中使用该功能：
+            <ul>
+            <li>iPhone XS</li>
+            <li>iPhone XS Max</li>
+            <li>iPhone XR</li>
+            <li>iPhone 11</li>
+            <li>iPhone 11 Pro</li>
+            <li>iPhone 11 Pro Max</li>
+            <li>iPhone SE (2020)</li>
+            <li>11 英寸 或 12.9 英寸 iPad Pro（第三代）</li>
+            <li>11 英寸 或 12.9 英寸 iPad Pro（第四代）</li>
+            </ul></li>
+                </ul>
+            </note> </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>options</pt>
+                <pd>音频处理选项。详见 <xref keyref="AdvancedAudioOptions"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>
