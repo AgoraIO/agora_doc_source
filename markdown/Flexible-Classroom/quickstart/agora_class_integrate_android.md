@@ -13,7 +13,7 @@
 -   `AgoraEduUIKit`:（可选）教室 UI 实现，并展示了如何根据灵动课堂的 API 和数据回调进行 UI 数据的聚合和更新。此模块在 GitHub 上开源。一般情况下开发者可以基于这个模块开发自己的课堂 UI。
 -   `AgoraClassSDK`:（可选）提供一些常用的方法，如配置 SDK、启动教室、注册 ext app 等功能，同时提供各场景的 Activity 实现。此模块在 GitHub 上开源。开发者可能用到其中的某些功能，建议保留。
 -   `AgoraEduCore`:（必需）灵动课堂的核心模块。自 2.0.0 版起，此模块闭源，开发者使用远程依赖引入。
--   `hyphenate`:（可选）环信聊天 IM 的 UI 和逻辑实现。如果开发者自己实现 IM 模块并替换掉 `AgoraEduUIkit` 模块中对应环信的部分，则无需引入。
+-   `hyphenate`:（可选）课堂消息聊天功能的 UI 和逻辑，通过环信 IM SDK 实现。如果你自行实现课堂消息聊天功能并改写 `AgoraEduUIkit` 模块中课堂消息聊天功能相关的代码，则无需引入此模块。
 
 ### 模块依赖关系
 
@@ -58,10 +58,10 @@
     ```
     dependencies {
           ...
-          implementation "io.github.agoraio-community:hyphenate:2.0.0"
-          implementation "io.github.agoraio-community:AgoraEduCore:2.0.0"
-          implementation "io.github.agoraio-community:AgoraEduUIKit:2.0.0"
-          implementation "io.github.agoraio-community:AgoraClassSDK:2.0.0"
+          implementation "io.github.agoraio-community:hyphenate:2.1.0"
+          implementation "io.github.agoraio-community:AgoraEduCore:2.1.0"
+          implementation "io.github.agoraio-community:AgoraEduUIKit:2.1.0"
+          implementation "io.github.agoraio-community:AgoraClassSDK:2.1.0"
     }
     ```
 

@@ -17,6 +17,7 @@
   public Boolean publishMediaPlayerVideoTrack;
   public Integer publishMediaPlayerId;
   public Boolean publishAudioTrack;
+  public Integer publishCustomAudioSourceId;
   public Boolean autoSubscribeAudio;
   public Boolean autoSubscribeVideo;
   public Boolean enableAudioRecordingOrPlayout;
@@ -27,7 +28,6 @@
   public String token;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
-
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCameraTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrack;
@@ -37,6 +37,7 @@
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerVideoTrack;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishMediaPlayerId;
+@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishCustomAudioSourceId;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeAudio;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeVideo;
@@ -60,6 +61,7 @@
   Optional&lt;bool> publishMediaPlayerAudioTrack;
   Optional&lt;bool> publishMediaPlayerVideoTrack;
   Optional&lt;bool> publishTrancodedVideoTrack;
+  Optional&lt;int> publishCustomAudioSourceId;
   Optional&lt;bool> autoSubscribeAudio;
   Optional&lt;bool> autoSubscribeVideo;
   Optional&lt;bool> enableAudioRecordingOrPlayout;
@@ -75,8 +77,7 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/>
-            </p>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">Agora 支持在同一时间、同一 <xref keyref="RtcConnection"/> 中发布多路音频流、一路视频流。例如，<parmname>publishAudioTrack</parmname>、<parmname>publishCustomAudioTrack</parmname> 和 <parmname>publishMediaPlayerAudioTrack</parmname> 可以同时为 <codeph><ph keyref="true"/></codeph>；
             <parmname>publishCameraTrack</parmname>、<parmname>publishScreenTrack</parmname>、<parmname>publishCustomVideoTrack</parmname> 或 <parmname>publishEncodedVideoTrack</parmname> 之中同一时间只能有一个为 <codeph><ph keyref="true"/></codeph>。</section>
@@ -137,6 +138,12 @@
                         <li><codeph><ph keyref="true"/></codeph>：发布自定义采集到的音频。</li>
                         <li><codeph><ph keyref="false"/></codeph>：（默认）不发布自定义采集到的音频。</li>
                     </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>publishCustomAudioSourceId</pt>
+                    <pd>待发布的自定义音频源的 ID。默认值为 0。
+                        <p>如果你已在 <xref keyref="setExternalAudioSource2"/> 中设置了 <parmname>sourceNumber</parmname> 大于 1，SDK 会创建对应数量的自采集音频轨道，并从 0 开始为每一个音频轨道分配一个 ID。</p>
+                    </pd>
                 </plentry>
                 <plentry props="windows">
                     <pt>publishCustomAudioTrackEnableAec</pt>

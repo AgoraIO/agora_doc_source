@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-    <title> <ph keyref="LiveTranscoding"/> </title>
-    <shortdesc id="short"> <ph id="shortdesc"
-        >Transcoding configurations for CDN live streaming.</ph> </shortdesc>
+    <title><ph keyref="LiveTranscoding"/></title>
+    <shortdesc id="short"><ph id="shortdesc"
+        >Transcoding configurations for CDN live streaming.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
@@ -236,42 +236,26 @@
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title> <text
+            <title><text
             conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /> </title>
+            /></title>
             <parml>
-            <plentry props="android windows electron unity">
+            <plentry props="android windows electron unity flutter">
                 <pt>width</pt>
                 <pd>
                     <p>The width of the output media stream in pixels. The default value is 360.</p>
                     <ul>
-                    <li>
-                                When the output media stream is video, ensure that
-                                <codeph>width</codeph>
-                                is set to 64 or higher. Otherwise, the Agora server adjusts the value to 64.
-                            </li>
-                    <li>
-                                When the output media stream is audio, set
-                                <codeph>width</codeph>
-                                to 0.
-                            </li>
+                    <li>When the output media stream is video, ensure that <codeph>width</codeph> is set to 64 or higher. Otherwise, the Agora server adjusts the value to 64.</li>
+                    <li>When the output media stream is audio, set <codeph>width</codeph> to 0.</li>
                     </ul> </pd>
             </plentry>
-            <plentry props="android windows electron unity">
+            <plentry props="android windows electron unity flutter">
                 <pt>height</pt>
                 <pd>
                     <p>The height of the output media stream in pixels. The default value is 640.</p>
                     <ul>
-                    <li>
-                                When the output media stream is video, ensure that
-                                <codeph>height</codeph>
-                                is set to 64 or higher. Otherwise, the Agora server adjusts the value to 64.
-                            </li>
-                    <li>
-                                When the output media stream is audio, set
-                                <codeph>height</codeph>
-                                to 0.
-                            </li>
+                    <li>When the output media stream is video, ensure that <codeph>height</codeph> is set to 64 or higher. Otherwise, the Agora server adjusts the value to 64.</li>
+                    <li>When the output media stream is audio, set <codeph>height</codeph> to 0.</li>
                     </ul> </pd>
             </plentry>
             <plentry props="ios mac">
@@ -294,8 +278,8 @@
                 <pt>videoFrameRate</pt>
                 <pd>
                         The video frame rate (fps) of the output media stream. The default value is 15, and the value range is [1, 30].
-                        
-                    
+
+
                     <note type="attention">The Agora server adjusts
                             any frame rate higher than 30 fps to 30 fps.</note>
                 </pd>
@@ -325,54 +309,34 @@
             <plentry>
                 <pt>videoCodecProfile</pt>
                 <pd>
-                    <p>
-                            The video encoding configuration of the output media stream. See
-                            <xref
-                    keyref="VIDEO_CODEC_PROFILE_TYPE"/>
-                            .
-                        </p>
+                    <p>The video encoding configuration of the output media stream. See <xref
+                    keyref="VIDEO_CODEC_PROFILE_TYPE"/>.</p>
                     <note type="attention"
                     >If you set this parameter to any other value, Agora adjusts it to the default value.</note>
                 </pd>
             </plentry>
-            <plentry props="electron">
+            <plentry props="electron flutter">
                 <pt>videoCodecType</pt>
-                <pd>
-                        The codec type of the output video. For details, see
-                        <xref
-                    keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>
-                        .
-                    </pd>
+                <pd>The codec type of the output video. For details, see <xref
+                    keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>.</pd>
             </plentry>
             <plentry>
                 <pt>transcodingUsers</pt>
                 <pd>
-                    <p>
-                            Transcoding configurations of each host. One live streaming channel supports up to 17 hosts. For details, see
-                            <xref keyref="TranscodingUser"
-                    />
-                            .
-                        </p>
+                    <p>Transcoding configurations of each host. One live streaming channel supports up to 17 hosts. For details, see <xref
+                    keyref="TranscodingUser"/>.</p>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry props="android apple windows electron unity">
                 <pt>transcodingExtraInfo</pt>
-                <pd>
-                        The user SEI information embedded in the output media stream. This parameter is used to send SEI information to the CDN. The maximum length is 4096 bytes. See
-                        <xref keyref="faq-sei"
-                    >How to solve SEI-related issues</xref>
-                        .
-                    </pd>
+                <pd>The user SEI information embedded in the output media stream. This parameter is used to send SEI information to the CDN. The maximum length is 4096 bytes. See <xref
+                    keyref="faq-sei"
+                    >How to solve SEI-related issues</xref>.</pd>
             </plentry>
             <plentry>
                 <pt>backgroundColor</pt>
-                <pd>
-                        The video background color of the output media stream. The format is a hexadecimal integer defined by RGB without the # symbol. For example,
-                        <codeph>0xFFB6C1</codeph>
-                        means light pink. The default value is
-                        <codeph>0x000000</codeph>
-                        (black).
-                    </pd>
+                <pd>The video background color of the output media stream. The format is a hexadecimal integer defined by RGB without the # symbol. For example, <codeph>0xFFB6C1</codeph>
+                        means light pink. The default value is <codeph>0x000000 </codeph>(black).</pd>
             </plentry>
             <plentry props="android windows electron unity">
                 <pt>userCount</pt>
@@ -387,8 +351,8 @@
                         <dd>This attribute is deprecated.</dd>
                     </dlentry>
                     </dl>
-                    
-                    
+
+
                         The metadata sent to the CDN client.
                     </pd>
             </plentry>
@@ -423,10 +387,7 @@
             </plentry>
             <plentry>
                 <pt>audioChannels</pt>
-                <pd>
-                        The number of audio channels of the output media stream. The default value is 1. Agora recommends setting it to 1 or 2.
-                        
-                    
+                <pd>The number of audio channels of the output media stream. The default value is 1. Agora recommends setting it to 1 or 2.
                     <ul>
                     <li>1: (Default) Mono</li>
                     <li>2: Stereo.</li>
@@ -437,14 +398,12 @@
             </plentry>
             <plentry>
                 <pt>audioCodecProfile</pt>
-                <pd>
-                        The audio codec of the output media stream. For details, see
-                        <xref keyref="AUDIO_CODEC_PROFILE_TYPE"
-                    />
-                        .
-                    </pd>
+                <pd>The audio codec of the output media stream. For details, see <xref
+                    keyref="AUDIO_CODEC_PROFILE_TYPE"/>.</pd>
             </plentry>
-            <plentry props="rtc-ng">
+            </parml>
+            <parml props="rtc-ng">
+            <plentry>
                 <pt props="ios mac">watermarkArray</pt>
                 <pt props="windows">watermarkCount</pt>
                 <pd>
