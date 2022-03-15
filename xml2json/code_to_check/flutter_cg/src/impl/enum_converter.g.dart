@@ -981,6 +981,10 @@ const _$RtmpStreamingErrorCodeEnumMap = {
   RtmpStreamingErrorCode.NotAuthorized: 8,
   RtmpStreamingErrorCode.StreamNotFound: 9,
   RtmpStreamingErrorCode.FormatNotSupported: 10,
+  RtmpStreamingErrorCode.NotBroadcaster: 11,
+  RtmpStreamingErrorCode.TranscodingNoMixStream: 13,
+  RtmpStreamingErrorCode.NetDown: 14,
+  RtmpStreamingErrorCode.InvalidAppid: 15,
   RtmpStreamingErrorCode.UnPublishOK: 100,
 };
 
@@ -1388,6 +1392,8 @@ Map<String, dynamic> _$RtmpStreamingEventConverterToJson(
 const _$RtmpStreamingEventEnumMap = {
   RtmpStreamingEvent.FailedLoadImage: 1,
   RtmpStreamingEvent.UrlAlreadyInUse: 2,
+  RtmpStreamingEvent.AdvancedFeatureNotSupport: 3,
+  RtmpStreamingEvent.RequestTooOften: 4,
 };
 
 AudioSessionOperationRestrictionConverter

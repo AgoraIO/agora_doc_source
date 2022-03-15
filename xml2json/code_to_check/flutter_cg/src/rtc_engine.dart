@@ -1,122 +1,27 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
+import 'package:agora_rtc_engine/src/impl/rtc_engine_impl.dart';
+import 'package:agora_rtc_engine/src/rtc_engine_event_handler.dart';
+
+import 'package:meta/meta.dart';
 
 import 'classes.dart';
-import 'enum_converter.dart';
 import 'enums.dart';
-import 'events.dart';
-import 'rtc_channel.dart';
 import 'rtc_device_manager.dart';
-import 'api_types.dart';
 
 ///
 /// The basic interface of the Agora SDK that implements the core functions of real-time communication.
 /// RtcEngine provides the main methods that your app can call.
 ///
-class RtcEngine with RtcEngineInterface {
-  static const MethodChannel _methodChannel = MethodChannel('agora_rtc_engine');
-  static const EventChannel _eventChannel =
-      EventChannel('agora_rtc_engine/events');
-  static final Stream _stream = _eventChannel.receiveBroadcastStream();
-  static StreamSubscription? _subscription;
-
-  /// Exposing methodChannel to other files
-  static MethodChannel get methodChannel => _methodChannel;
-
-  static RtcEngine? _instance;
-
-  /// Get the singleton of [RtcEngine].
-  static RtcEngine? get instance => _instance;
-
-  final bool _subProcess;
-  final String? _appGroup;
-  RtcEngineContext? _rtcEngineContext;
-  RtcEngine? _screenShareHelper;
-
-  ///
-  /// Gets a child process object.
-  ///
-  ///
-  /// Param [appGroup] The app group.
-  ///
-  /// **return** A child process object, which can be used in scenarios such as screen sharing.
-  ///
-  Future<RtcEngine> getScreenShareHelper({String? appGroup}) async {
-    if (!kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
-      throw PlatformException(code: ErrorCode.NotSupported.toString());
-    }
-    if (_subProcess) {
-      throw PlatformException(code: ErrorCode.TooOften.toString());
-    }
-    _screenShareHelper ??= () {
-      var engine = RtcEngine._(true, appGroup: appGroup);
-      engine.initialize(_rtcEngineContext!);
-      return engine;
-    }();
-    return _screenShareHelper!;
-  }
-
-  final RtcDeviceManager _deviceManager = RtcDeviceManager();
-
+abstract class RtcEngine {
   ///
   /// Gets the RtcDeviceManager class.
   ///
   ///
   /// **return** The RtcDeviceManager class.
   ///
-  RtcDeviceManager get deviceManager {
-    if (!kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
-      throw PlatformException(code: ErrorCode.NotSupported.toString());
-    }
-    return _deviceManager;
-  }
-
-  RtcEngineEventHandler? _handler;
-
-  RtcEngine._(this._subProcess, {String? appGroup}) : _appGroup = appGroup;
-
-  Future<T?> _invokeMethod<T>(String method,
-      [Map<String, dynamic>? arguments]) {
-    if (kIsWeb || (Platform.isWindows || Platform.isMacOS)) {
-      arguments?['subProcess'] = _subProcess;
-    }
-    return _methodChannel.invokeMethod(method, arguments);
-  }
-
-  ///
-  /// Gets the SDK version.
-  ///
-  ///
-  /// **return** The SDK version number. The format is a string.
-  ///
-  Future<String?> getSdkVersion() {
-    return RtcEngine.methodChannel.invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetVersion.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  ///
-  /// Gets the warning or error description.
-  ///
-  ///
-  /// Param [error] The error code or warning code reported by the SDK.
-  ///
-  /// **return** The specific error or warning description.
-  ///
-  Future<String?> getErrorDescription(int error) {
-    return RtcEngine.methodChannel.invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetErrorDescription.index,
-      'params': jsonEncode({
-        'code': error,
-      }),
-    });
-  }
+  RtcDeviceManager get deviceManager;
 
   ///
   /// Creates the RtcEngine object.
@@ -174,1833 +79,40 @@ class RtcEngine with RtcEngineInterface {
   ///
   ///
   static Future<RtcEngine> createWithContext(RtcEngineContext config) async {
-    if (_instance != null) return _instance!;
-    _instance = RtcEngine._(false);
-    await _instance!.initialize(config);
-    return _instance!;
-  }
-
-  @override
-  Future<void> initialize(RtcEngineContext context) {
-    _rtcEngineContext = context;
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineInitialize.index,
-      'params': jsonEncode({
-        'context': context.toJson(),
-        'appGroup': _appGroup,
-      }),
-    }).then((value) => _invokeMethod('callApi', {
-          'apiType': ApiTypeEngine.kEngineSetAppType.index,
-          'params': jsonEncode({
-            'appType': 4,
-          }),
-        }));
-  }
-
-  // TODO(littlegnal): Fill test
-  @override
-  Future<void> destroy() {
-    _rtcEngineContext = null;
-    if (_subProcess) {
-      _handler = null;
-      instance?._screenShareHelper = null;
-    } else {
-      _screenShareHelper?.destroy();
-      RtcChannel.destroyAll();
-      _instance?._handler = null;
-      _instance = null;
-    }
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineRelease.index,
-      'params': jsonEncode({
-        'sync': true,
-      }),
-    });
+    return RtcEngineImpl.createWithContext(config);
   }
 
   ///
-  /// Adds event handlers
-  /// The SDK uses the RtcEngineEventHandler class to send callbacks to the app. The app inherits the methods of this class to receive these callbacks. All methods in this interface class have default (empty) implementations. Therefore, the application can only inherit some required events. In the callbacks, avoid time-consuming tasks or calling APIs that can block the thread, such as the sendStreamMessage method. Otherwise, the SDK may not work properly.
+  /// Gets a child process object.
   ///
-  /// Param [handler] Callback events to be added. For details, see RtcEngineEventHandler.
   ///
-  // TODO(littlegnal): Fill test
-  void setEventHandler(RtcEngineEventHandler handler) {
-    _handler = handler;
-    _subscription ??= _stream.listen((event) {
-      final eventMap = Map<dynamic, dynamic>.from(event);
-      final methodName = eventMap['methodName'] as String;
-      final data = eventMap['data'];
-      final buffer = eventMap['buffer'];
-      final subProcess = (eventMap['subProcess'] as bool?) ?? false;
-      if (subProcess) {
-        _instance?._screenShareHelper?._handler
-            ?.process(methodName, data, buffer);
-      } else {
-        _instance?._handler?.process(methodName, data, buffer);
-      }
-    });
-  }
+  /// Param [appGroup] The app group.
+  ///
+  /// **return** A child process object, which can be used in scenarios such as screen sharing.
+  ///
+  Future<RtcEngine> getScreenShareHelper({String? appGroup});
 
-  @override
-  Future<void> setChannelProfile(ChannelProfile profile) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetChannelProfile.index,
-      'params': jsonEncode({
-        'profile': ChannelProfileConverter(profile).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> setClientRole(ClientRole role, [ClientRoleOptions? options]) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetClientRole.index,
-      'params': jsonEncode({
-        'role': ClientRoleConverter(role).value(),
-        'options': options?.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> joinChannel(
-      String? token, String channelName, String? optionalInfo, int optionalUid,
-      [ChannelMediaOptions? options]) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineJoinChannel.index,
-      'params': jsonEncode({
-        'token': token?.isEmpty == true ? null : token,
-        'channelId': channelName,
-        'info': optionalInfo,
-        'uid': optionalUid,
-        'options': options?.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> switchChannel(String? token, String channelName,
-      [ChannelMediaOptions? options]) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSwitchChannel.index,
-      'params': jsonEncode({
-        'token': token,
-        'channelId': channelName,
-        'options': options?.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> leaveChannel() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineLeaveChannel.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> renewToken(String token) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineRenewToken.index,
-      'params': jsonEncode({
-        'token': token,
-      }),
-    });
-  }
-
-  @override
-  @deprecated
-  Future<void> enableWebSdkInteroperability(bool enabled) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableWebSdkInteroperability.index,
-      'params': jsonEncode({
-        'enabled': enabled,
-      }),
-    });
-  }
-
-  @override
-  Future<ConnectionStateType> getConnectionState() {
-    if (_subProcess) {
-      throw PlatformException(code: ErrorCode.NotSupported.toString());
-    }
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetConnectionState.index,
-      'params': jsonEncode({}),
-    }).then((value) {
-      return ConnectionStateTypeConverter.fromValue(value).e;
-    });
-  }
-
-  @override
-  Future<String?> getCallId() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetCallId.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> rate(String callId, int rating, {String? description}) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineRate.index,
-      'params': jsonEncode({
-        'callId': callId,
-        'rating': rating,
-        'description': description,
-      }),
-    });
-  }
-
-  @override
-  Future<void> complain(String callId, String description) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineComplain.index,
-      'params': jsonEncode({
-        'callId': callId,
-        'description': description,
-      }),
-    });
-  }
-
-  @override
-  @deprecated
-  Future<void> setLogFile(String filePath) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetLogFile.index,
-      'params': jsonEncode({
-        'filePath': filePath,
-      }),
-    });
-  }
-
-  @override
-  @deprecated
-  Future<void> setLogFilter(LogFilter filter) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetLogFilter.index,
-      'params': jsonEncode({
-        'filter': LogFilterConverter(filter).value(),
-      }),
-    });
-  }
-
-  @override
-  @deprecated
-  Future<void> setLogFileSize(int fileSizeInKBytes) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetLogFileSize.index,
-      'params': jsonEncode({
-        'fileSizeInKBytes': fileSizeInKBytes,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setParameters(String parameters) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetParameters.index,
-      'params': jsonEncode({
-        'parameters': parameters,
-      }),
-    });
-  }
-
-  @override
-  Future<UserInfo> getUserInfoByUid(int uid) {
-    if (_subProcess) {
-      throw PlatformException(code: ErrorCode.NotSupported.toString());
-    }
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetUserInfoByUid.index,
-      'params': jsonEncode({
-        'uid': uid,
-      }),
-    }).then((value) {
-      return UserInfo.fromJson(Map<String, dynamic>.from(jsonDecode(value)));
-    });
-  }
-
-  @override
-  Future<UserInfo> getUserInfoByUserAccount(String userAccount) {
-    if (_subProcess) {
-      throw PlatformException(code: ErrorCode.NotSupported.toString());
-    }
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetUserInfoByUserAccount.index,
-      'params': jsonEncode({
-        'userAccount': userAccount,
-      }),
-    }).then((value) {
-      return UserInfo.fromJson(Map<String, dynamic>.from(jsonDecode(value)));
-    });
-  }
-
-  @override
-  Future<void> joinChannelWithUserAccount(
-      String? token, String channelName, String userAccount,
-      [ChannelMediaOptions? options]) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineJoinChannelWithUserAccount.index,
-      'params': jsonEncode({
-        'token': token,
-        'channelId': channelName,
-        'userAccount': userAccount,
-        'options': options?.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> registerLocalUserAccount(String appId, String userAccount) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineRegisterLocalUserAccount.index,
-      'params': jsonEncode({
-        'appId': appId,
-        'userAccount': userAccount,
-      }),
-    });
-  }
-
-  @override
-  Future<void> adjustPlaybackSignalVolume(int volume) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineAdjustPlaybackSignalVolume.index,
-      'params': jsonEncode({
-        'volume': volume,
-      }),
-    });
-  }
-
-  @override
-  Future<void> adjustRecordingSignalVolume(int volume) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineAdjustRecordingSignalVolume.index,
-      'params': jsonEncode({
-        'volume': volume,
-      }),
-    });
-  }
-
-  @override
-  Future<void> adjustUserPlaybackSignalVolume(int uid, int volume) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineAdjustUserPlaybackSignalVolume.index,
-      'params': jsonEncode({
-        'uid': uid,
-        'volume': volume,
-      }),
-    });
-  }
-
-  @override
-  Future<void> enableLoopbackRecording(bool enabled, {String? deviceName}) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableLoopBackRecording.index,
-      'params': jsonEncode({
-        'enabled': enabled,
-        'deviceName': deviceName,
-      }),
-    });
-  }
-
-  @override
-  Future<void> disableAudio() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineDisableAudio.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> enableAudio() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableAudio.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> enableAudioVolumeIndication(
-      int interval, int smooth, bool report_vad) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableAudioVolumeIndication.index,
-      'params': jsonEncode({
-        'interval': interval,
-        'smooth': smooth,
-        'report_vad': report_vad,
-      }),
-    });
-  }
-
-  @override
-  Future<void> enableLocalAudio(bool enabled) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableLocalAudio.index,
-      'params': jsonEncode({
-        'enabled': enabled,
-      }),
-    });
-  }
-
-  @override
-  Future<void> muteAllRemoteAudioStreams(bool muted) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineMuteAllRemoteAudioStreams.index,
-      'params': jsonEncode({
-        'mute': muted,
-      }),
-    });
-  }
-
-  @override
-  Future<void> muteLocalAudioStream(bool muted) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineMuteLocalAudioStream.index,
-      'params': jsonEncode({
-        'mute': muted,
-      }),
-    });
-  }
-
-  @override
-  Future<void> muteRemoteAudioStream(int uid, bool muted) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineMuteRemoteAudioStream.index,
-      'params': jsonEncode({
-        'userId': uid,
-        'mute': muted,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setAudioProfile(AudioProfile profile, AudioScenario scenario) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetAudioProfile.index,
-      'params': jsonEncode({
-        'profile': AudioProfileConverter(profile).value(),
-        'scenario': AudioScenarioConverter(scenario).value(),
-      }),
-    });
-  }
-
-  @override
-  @deprecated
-  Future<void> setDefaultMuteAllRemoteAudioStreams(bool muted) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetDefaultMuteAllRemoteAudioStreams.index,
-      'params': jsonEncode({
-        'mute': muted,
-      }),
-    });
-  }
-
-  @override
-  Future<void> disableVideo() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineDisableVideo.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> enableLocalVideo(bool enabled) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableLocalVideo.index,
-      'params': jsonEncode({
-        'enabled': enabled,
-      }),
-    });
-  }
-
-  @override
-  Future<void> enableVideo() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableVideo.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> muteAllRemoteVideoStreams(bool muted) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineMuteAllRemoteVideoStreams.index,
-      'params': jsonEncode({
-        'mute': muted,
-      }),
-    });
-  }
-
-  @override
-  Future<void> muteLocalVideoStream(bool muted) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineMuteLocalVideoStream.index,
-      'params': jsonEncode({
-        'mute': muted,
-      }),
-    });
-  }
-
-  @override
-  Future<void> muteRemoteVideoStream(int uid, bool muted) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineMuteRemoteVideoStream.index,
-      'params': jsonEncode({
-        'userId': uid,
-        'mute': muted,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setBeautyEffectOptions(bool enabled, BeautyOptions options) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetBeautyEffectOptions.index,
-      'params': jsonEncode({
-        'enabled': enabled,
-        'options': options.toJson(),
-      }),
-    });
-  }
-
-  @override
-  @deprecated
-  Future<void> setDefaultMuteAllRemoteVideoStreams(bool muted) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetDefaultMuteAllRemoteVideoStreams.index,
-      'params': jsonEncode({
-        'mute': muted,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setVideoEncoderConfiguration(VideoEncoderConfiguration config) {
-    assert(
-      config.frameRate != VideoFrameRate.Min,
-      'frameRate must be not be VideoFrameRate.Min',
-    );
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetVideoEncoderConfiguration.index,
-      'params': jsonEncode({
-        'config': config.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> startPreview() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStartPreview.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> stopPreview() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStopPreview.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> adjustAudioMixingPlayoutVolume(int volume) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineAdjustAudioMixingPlayoutVolume.index,
-      'params': jsonEncode({
-        'volume': volume,
-      }),
-    });
-  }
-
-  @override
-  Future<void> adjustAudioMixingPublishVolume(int volume) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineAdjustAudioMixingPublishVolume.index,
-      'params': jsonEncode({
-        'volume': volume,
-      }),
-    });
-  }
-
-  @override
-  Future<void> adjustAudioMixingVolume(int volume) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineAdjustAudioMixingVolume.index,
-      'params': jsonEncode({
-        'volume': volume,
-      }),
-    });
-  }
-
-  @override
-  Future<int?> getAudioMixingCurrentPosition() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetAudioMixingCurrentPosition.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<int?> getAudioMixingDuration([String? filePath]) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetAudioMixingDuration.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<int?> getAudioFileInfo(String filePath) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetAudioFileInfo.index,
-      'params': jsonEncode({
-        'filePath': filePath,
-      }),
-    });
-  }
-
-  @override
-  Future<int?> getAudioMixingPlayoutVolume() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetAudioMixingPlayoutVolume.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<int?> getAudioMixingPublishVolume() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetAudioMixingPublishVolume.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> pauseAudioMixing() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEnginePauseAudioMixing.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> resumeAudioMixing() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineResumeAudioMixing.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> setAudioMixingPosition(int pos) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetAudioMixingPosition.index,
-      'params': jsonEncode({
-        'pos': pos,
-      }),
-    });
-  }
-
-  @override
-  Future<void> startAudioMixing(
-      String filePath, bool loopback, bool replace, int cycle,
-      [int? startPos]) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStartAudioMixing.index,
-      'params': jsonEncode({
-        'filePath': filePath,
-        'loopback': loopback,
-        'replace': replace,
-        'cycle': cycle,
-        'startPos': startPos,
-      }),
-    });
-  }
-
-  @override
-  Future<void> stopAudioMixing() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStopAudioMixing.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> addInjectStreamUrl(String url, LiveInjectStreamConfig config) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineAddInjectStreamUrl.index,
-      'params': jsonEncode({
-        'url': url,
-        'config': config.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> addPublishStreamUrl(String url, bool transcodingEnabled) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineAddPublishStreamUrl.index,
-      'params': jsonEncode({
-        'url': url,
-        'transcodingEnabled': transcodingEnabled,
-      }),
-    });
-  }
-
-  @override
-  Future<void> addVideoWatermark(
-      String watermarkUrl, WatermarkOptions options) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineAddVideoWaterMark.index,
-      'params': jsonEncode({
-        'watermarkUrl': watermarkUrl,
-        'options': options.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> clearVideoWatermarks() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineClearVideoWaterMarks.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<int?> createDataStream(bool reliable, bool ordered) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineCreateDataStream.index,
-      'params': jsonEncode({
-        'reliable': reliable,
-        'ordered': ordered,
-      }),
-    });
-  }
-
-  @override
-  Future<void> disableLastmileTest() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineDisableLastMileTest.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> enableDualStreamMode(bool enabled) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableDualStreamMode.index,
-      'params': jsonEncode({
-        'enabled': enabled,
-      }),
-    });
-  }
-
-  @override
-  Future<void> enableInEarMonitoring(bool enabled) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableInEarMonitoring.index,
-      'params': jsonEncode({
-        'enabled': enabled,
-      }),
-    });
-  }
-
-  @override
-  Future<void> enableLastmileTest() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableLastMileTest.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> enableSoundPositionIndication(bool enabled) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableSoundPositionIndication.index,
-      'params': jsonEncode({
-        'enabled': enabled,
-      }),
-    });
-  }
-
-  @override
-  Future<double?> getCameraMaxZoomFactor() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetCameraMaxZoomFactor.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<double?> getEffectsVolume() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetEffectsVolume.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<bool?> isCameraAutoFocusFaceModeSupported() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineIsCameraAutoFocusFaceModeSupported.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<bool?> isCameraExposurePositionSupported() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineIsCameraExposurePositionSupported.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<bool?> isCameraFocusSupported() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineIsCameraFocusSupported.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<bool?> isCameraTorchSupported() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineIsCameraTorchSupported.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<bool?> isCameraZoomSupported() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineIsCameraZoomSupported.index,
-      'params': jsonEncode({}),
-    }).then((v) => v == 1 ? true : false);
-  }
-
-  @override
-  Future<bool?> isSpeakerphoneEnabled() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineIsSpeakerPhoneEnabled.index,
-      'params': jsonEncode({}),
-    }).then((value) => value == 1 ? true : false);
-  }
-
-  @override
-  Future<void> pauseAllEffects() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEnginePauseAllEffects.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> pauseEffect(int soundId) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEnginePauseEffect.index,
-      'params': jsonEncode({
-        'soundId': soundId,
-      }),
-    });
-  }
-
-  @override
-  Future<void> playEffect(int soundId, String filePath, int loopCount,
-      double pitch, double pan, int gain, bool publish,
-      [int? startPos]) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEnginePlayEffect.index,
-      'params': jsonEncode({
-        'soundId': soundId,
-        'filePath': filePath,
-        'loopCount': loopCount,
-        'pitch': pitch,
-        'pan': pan,
-        'gain': gain,
-        'publish': publish,
-        'startPos': startPos,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setEffectPosition(int soundId, int pos) {
-    if (kIsWeb) {
-      throw PlatformException(code: ErrorCode.NotSupported.toString());
-    }
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetEffectPosition.index,
-      'params': jsonEncode({
-        'soundId': soundId,
-        'pos': pos,
-      }),
-    });
-  }
-
-  @override
-  Future<int?> getEffectDuration(String filePath) {
-    if (kIsWeb) {
-      throw PlatformException(code: ErrorCode.NotSupported.toString());
-    }
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetEffectDuration.index,
-      'params': jsonEncode({
-        'filePath': filePath,
-      }),
-    });
-  }
-
-  @override
-  Future<int?> getEffectCurrentPosition(int soundId) {
-    if (kIsWeb) {
-      throw PlatformException(code: ErrorCode.NotSupported.toString());
-    }
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetEffectCurrentPosition.index,
-      'params': jsonEncode({
-        'soundId': soundId,
-      }),
-    });
-  }
-
-  @override
-  Future<void> preloadEffect(int soundId, String filePath) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEnginePreloadEffect.index,
-      'params': jsonEncode({
-        'soundId': soundId,
-        'filePath': filePath,
-      }),
-    });
-  }
-
-  @override
-  Future<void> registerMediaMetadataObserver() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineRegisterMediaMetadataObserver.index,
-      'params': jsonEncode({'type': 0}),
-    });
-  }
-
-  @override
-  Future<void> removeInjectStreamUrl(String url) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineRemoveInjectStreamUrl.index,
-      'params': jsonEncode({
-        'url': url,
-      }),
-    });
-  }
-
-  @override
-  Future<void> removePublishStreamUrl(String url) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineRemovePublishStreamUrl.index,
-      'params': jsonEncode({
-        'url': url,
-      }),
-    });
-  }
-
-  @override
-  Future<void> resumeAllEffects() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineResumeAllEffects.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> resumeEffect(int soundId) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineResumeEffect.index,
-      'params': jsonEncode({
-        'soundId': soundId,
-      }),
-    });
-  }
-
-  @override
-  Future<void> sendMetadata(Uint8List metadata) {
-    return _invokeMethod('callApiWithBuffer', {
-      'apiType': ApiTypeEngine.kEngineSendMetadata.index,
-      'params': jsonEncode({
-        'metadata': {
-          'size': metadata.length,
-        },
-      }),
-      'buffer': metadata,
-    });
-  }
-
-  @override
-  Future<void> sendStreamMessage(int streamId, Uint8List message) {
-    return _invokeMethod('callApiWithBuffer', {
-      'apiType': ApiTypeEngine.kEngineSendStreamMessage.index,
-      'params': jsonEncode({
-        'streamId': streamId,
-        'length': message.length,
-      }),
-      'buffer': message,
-    });
-  }
-
-  @override
-  Future<void> setCameraAutoFocusFaceModeEnabled(bool enabled) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetCameraAutoFocusFaceModeEnabled.index,
-      'params': jsonEncode({
-        'enabled': enabled,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setCameraCapturerConfiguration(
-      CameraCapturerConfiguration config) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetCameraCapturerConfiguration.index,
-      'params': jsonEncode({
-        'config': config.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> setCameraExposurePosition(
-      double positionXinView, double positionYinView) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetCameraExposurePosition.index,
-      'params': jsonEncode({
-        'positionXinView': positionXinView,
-        'positionYinView': positionYinView,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setCameraFocusPositionInPreview(
-      double positionX, double positionY) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetCameraFocusPositionInPreview.index,
-      'params': jsonEncode({
-        'positionX': positionX,
-        'positionY': positionY,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setCameraTorchOn(bool isOn) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetCameraTorchOn.index,
-      'params': jsonEncode({
-        'isOn': isOn,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setCameraZoomFactor(double factor) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetCameraZoomFactor.index,
-      'params': jsonEncode({
-        'factor': factor,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setDefaultAudioRoutetoSpeakerphone(bool defaultToSpeaker) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetDefaultAudioRouteToSpeakerPhone.index,
-      'params': jsonEncode({
-        'defaultToSpeaker': defaultToSpeaker,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setEffectsVolume(int volume) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetEffectsVolume.index,
-      'params': jsonEncode({
-        'volume': volume,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setEnableSpeakerphone(bool speakerOn) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetEnableSpeakerPhone.index,
-      'params': jsonEncode({
-        'speakerOn': speakerOn,
-      }),
-    });
-  }
-
-  @deprecated
-  @override
-  Future<void> setEncryptionMode(EncryptionMode encryptionMode) {
-    var encryption = '';
-    switch (encryptionMode) {
-      case EncryptionMode.AES128XTS:
-        encryption = 'aes-128-xts';
-        break;
-      case EncryptionMode.AES128ECB:
-        encryption = 'aes-128-ecb';
-        break;
-      case EncryptionMode.AES256XTS:
-        encryption = 'aes-256-xts';
-        break;
-      default:
-        break;
-    }
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetEncryptionMode.index,
-      'params': jsonEncode({
-        'encryptionMode': encryption,
-      }),
-    });
-  }
-
-  @override
-  @deprecated
-  Future<void> setEncryptionSecret(String secret) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetEncryptionSecret.index,
-      'params': jsonEncode({
-        'secret': secret,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setInEarMonitoringVolume(int volume) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetInEarMonitoringVolume.index,
-      'params': jsonEncode({
-        'volume': volume,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setLiveTranscoding(LiveTranscoding transcoding) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetLiveTranscoding.index,
-      'params': jsonEncode({
-        'transcoding': transcoding.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> setLocalPublishFallbackOption(StreamFallbackOptions option) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetLocalPublishFallbackOption.index,
-      'params': jsonEncode({
-        'option': StreamFallbackOptionsConverter(option).value(),
-      }),
-    });
-  }
-
-  @override
-  @deprecated
-  Future<void> setLocalVoiceChanger(AudioVoiceChanger voiceChanger) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetLocalVoiceChanger.index,
-      'params': jsonEncode({
-        'voiceChanger': AudioVoiceChangerConverter(voiceChanger).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> setLocalVoiceEqualization(
-      AudioEqualizationBandFrequency bandFrequency, int bandGain) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetLocalVoiceEqualization.index,
-      'params': jsonEncode({
-        'bandFrequency':
-            AudioEqualizationBandFrequencyConverter(bandFrequency).value(),
-        'bandGain': bandGain,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setLocalVoicePitch(double pitch) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetLocalVoicePitch.index,
-      'params': jsonEncode({
-        'pitch': pitch,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setLocalVoiceReverb(AudioReverbType reverbKey, int value) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetLocalVoiceReverb.index,
-      'params': jsonEncode({
-        'reverbKey': AudioReverbTypeConverter(reverbKey).value(),
-        'value': value,
-      }),
-    });
-  }
-
-  @override
-  @deprecated
-  Future<void> setLocalVoiceReverbPreset(AudioReverbPreset reverbPreset) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetLocalVoiceReverbPreset.index,
-      'params': jsonEncode({
-        'reverbPreset': AudioReverbPresetConverter(reverbPreset).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> setMaxMetadataSize(int size) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetMaxMetadataSize.index,
-      'params': jsonEncode({
-        'size': size,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setRemoteDefaultVideoStreamType(VideoStreamType streamType) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetRemoteDefaultVideoStreamType.index,
-      'params': jsonEncode({
-        'streamType': VideoStreamTypeConverter(streamType).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> setRemoteSubscribeFallbackOption(StreamFallbackOptions option) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetRemoteSubscribeFallbackOption.index,
-      'params': jsonEncode({
-        'option': StreamFallbackOptionsConverter(option).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> setRemoteUserPriority(int uid, UserPriority userPriority) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetRemoteUserPriority.index,
-      'params': jsonEncode({
-        'uid': uid,
-        'userPriority': UserPriorityConverter(userPriority).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> setRemoteVideoStreamType(
-      int userId, VideoStreamType streamType) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetRemoteVideoStreamType.index,
-      'params': jsonEncode({
-        'userId': userId,
-        'streamType': VideoStreamTypeConverter(streamType).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> setRemoteVoicePosition(int uid, double pan, double gain) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetRemoteVoicePosition.index,
-      'params': jsonEncode({
-        'uid': uid,
-        'pan': pan,
-        'gain': gain,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setVolumeOfEffect(int soundId, int volume) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetVolumeOfEffect.index,
-      'params': jsonEncode({
-        'soundId': soundId,
-        'volume': volume,
-      }),
-    });
-  }
-
-  @override
-  @deprecated
-  Future<void> startAudioRecording(String filePath,
-      AudioSampleRateType sampleRate, AudioRecordingQuality quality) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStartAudioRecording.index,
-      'params': jsonEncode({
-        'filePath': filePath,
-        'sampleRate': AudioSampleRateTypeConverter(sampleRate).value(),
-        'quality': AudioRecordingQualityConverter(quality).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> startAudioRecordingWithConfig(
-      AudioRecordingConfiguration config) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStartAudioRecording.index,
-      'params': jsonEncode({
-        'config': config.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> startChannelMediaRelay(
-      ChannelMediaRelayConfiguration channelMediaRelayConfiguration) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStartChannelMediaRelay.index,
-      'params': jsonEncode({
-        'configuration': channelMediaRelayConfiguration.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> startRhythmPlayer(
-      String sound1, String sound2, RhythmPlayerConfig config) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStartRhythmPlayer.index,
-      'params': jsonEncode({
-        'sound1': sound1,
-        'sound2': sound2,
-        'config': config.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> stopRhythmPlayer() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStopRhythmPlayer.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> configRhythmPlayer(RhythmPlayerConfig config) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineConfigRhythmPlayer.index,
-      'params': jsonEncode({
-        'config': config.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> startEchoTest(
-      {int? intervalInSeconds, EchoTestConfiguration? config}) {
-    assert(intervalInSeconds == null || config == null,
-        'Only need one of the params');
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStartEchoTest.index,
-      'params': jsonEncode(config == null
-          ? {'intervalInSeconds': intervalInSeconds}
-          : {'config': config.toJson()}),
-    });
-  }
-
-  @override
-  Future<void> startLastmileProbeTest(LastmileProbeConfig config) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStartLastMileProbeTest.index,
-      'params': jsonEncode({
-        'config': config.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> stopAllEffects() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStopAllEffects.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> stopAudioRecording() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStopAudioRecording.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> stopChannelMediaRelay() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStopChannelMediaRelay.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> stopEchoTest() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStopEchoTest.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> stopEffect(int soundId) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStopEffect.index,
-      'params': jsonEncode({
-        'soundId': soundId,
-      }),
-    });
-  }
-
-  @override
-  Future<void> stopLastmileProbeTest() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStopLastMileProbeTest.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> switchCamera() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSwitchCamera.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> unloadEffect(int soundId) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineUnloadEffect.index,
-      'params': jsonEncode({
-        'soundId': soundId,
-      }),
-    });
-  }
-
-  @override
-  Future<void> unregisterMediaMetadataObserver() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineUnRegisterMediaMetadataObserver.index,
-      'params': jsonEncode({'type': 0}),
-    });
-  }
-
-  @override
-  Future<void> updateChannelMediaRelay(
-      ChannelMediaRelayConfiguration channelMediaRelayConfiguration) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineUpdateChannelMediaRelay.index,
-      'params': jsonEncode({
-        'configuration': channelMediaRelayConfiguration.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> enableFaceDetection(bool enable) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableFaceDetection.index,
-      'params': jsonEncode({
-        'enable': enable,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setAudioMixingPitch(int pitch) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetAudioMixingPitch.index,
-      'params': jsonEncode({
-        'pitch': pitch,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setAudioMixingPlaybackSpeed(int speed) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetAudioMixingPlaybackSpeed.index,
-      'params': jsonEncode({
-        'speed': speed,
-      }),
-    });
-  }
-
-  @override
-  Future<int?> getAudioTrackCount() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetAudioTrackCount.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> selectAudioTrack(int index) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSelectAudioTrack.index,
-      'params': jsonEncode({
-        'index': index,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setAudioMixingDualMonoMode(AudioMixingDualMonoMode mode) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetAudioMixingDualMonoMode.index,
-      'params': jsonEncode({
-        'mode': AudioMixingDualMonoModeConverter(mode).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> enableEncryption(bool enabled, EncryptionConfig config) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableEncryption.index,
-      'params': jsonEncode({
-        'enabled': enabled,
-        'config': config.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> sendCustomReportMessage(
-      String id, String category, String event, String label, int value) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSendCustomReportMessage.index,
-      'params': jsonEncode({
-        'id': id,
-        'category': category,
-        'event': event,
-        'label': label,
-        'value': value,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setAudioSessionOperationRestriction(
-      AudioSessionOperationRestriction restriction) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetAudioSessionOperationRestriction.index,
-      'params': jsonEncode({
-        'restriction':
-            AudioSessionOperationRestrictionConverter(restriction).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<int?> getNativeHandle() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineGetNativeHandle.index,
-      'params': jsonEncode({}),
-    }).then((value) => int.tryParse(value) ?? -1);
-  }
-
-  @override
-  Future<void> setAudioEffectParameters(
-      AudioEffectPreset preset, int param1, int param2) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetAudioEffectParameters.index,
-      'params': jsonEncode({
-        'preset': AudioEffectPresetConverter(preset).value(),
-        'param1': param1,
-        'param2': param2,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setAudioEffectPreset(AudioEffectPreset preset) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetAudioEffectPreset.index,
-      'params': jsonEncode({
-        'preset': AudioEffectPresetConverter(preset).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> setVoiceBeautifierPreset(VoiceBeautifierPreset preset) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetVoiceBeautifierPreset.index,
-      'params': jsonEncode({
-        'preset': VoiceBeautifierPresetConverter(preset).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<int?> createDataStreamWithConfig(DataStreamConfig config) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineCreateDataStream.index,
-      'params': jsonEncode({
-        'config': config.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> enableDeepLearningDenoise(bool enable) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableDeepLearningDenoise.index,
-      'params': jsonEncode({
-        'enable': enable,
-      }),
-    });
-  }
-
-  @override
-  Future<void> enableRemoteSuperResolution(int userId, bool enable) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableRemoteSuperResolution.index,
-      'params': jsonEncode({
-        'userId': userId,
-        'enable': enable,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setCloudProxy(CloudProxyType proxyType) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetCloudProxy.index,
-      'params': jsonEncode({
-        'proxyType': CloudProxyTypeConverter(proxyType).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<String?> uploadLogFile() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineUploadLogFile.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> setVoiceBeautifierParameters(
-      VoiceBeautifierPreset preset, int param1, int param2) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetVoiceBeautifierParameters.index,
-      'params': jsonEncode({
-        'preset': VoiceBeautifierPresetConverter(preset).value(),
-        'param1': param1,
-        'param2': param2,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setVoiceConversionPreset(VoiceConversionPreset preset) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetVoiceConversionPreset.index,
-      'params': jsonEncode({
-        'preset': VoiceConversionPresetConverter(preset).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> pauseAllChannelMediaRelay() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEnginePauseAllChannelMediaRelay.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> resumeAllChannelMediaRelay() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineResumeAllChannelMediaRelay.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> setLocalAccessPoint(List<String> ips, String domain) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetLocalAccessPoint.index,
-      'params': jsonEncode({
-        'ips': ips,
-        'domain': domain,
-      }),
-    });
-  }
-
-  @override
-  Future<void> setScreenCaptureContentHint(VideoContentHint contentHint) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineSetScreenCaptureContentHint.index,
-      'params': jsonEncode({
-        'contentHint': VideoContentHintConverter(contentHint).value(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> startScreenCaptureByDisplayId(int displayId,
-      [Rectangle? regionRect, ScreenCaptureParameters? captureParams]) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStartScreenCaptureByDisplayId.index,
-      'params': jsonEncode({
-        'displayId': displayId,
-        'regionRect': regionRect?.toJson(),
-        'captureParams': captureParams?.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> startScreenCaptureByScreenRect(Rectangle screenRect,
-      [Rectangle? regionRect, ScreenCaptureParameters? captureParams]) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStartScreenCaptureByScreenRect.index,
-      'params': jsonEncode({
-        'screenRect': screenRect.toJson(),
-        'regionRect': regionRect?.toJson(),
-        'captureParams': captureParams?.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> startScreenCaptureByWindowId(int windowId,
-      [Rectangle? regionRect, ScreenCaptureParameters? captureParams]) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStartScreenCaptureByWindowId.index,
-      'params': jsonEncode({
-        'windowId': windowId,
-        'regionRect': regionRect?.toJson(),
-        'captureParams': captureParams?.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> stopScreenCapture() {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStopScreenCapture.index,
-      'params': jsonEncode({}),
-    });
-  }
-
-  @override
-  Future<void> updateScreenCaptureParameters(
-      ScreenCaptureParameters captureParams) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineUpdateScreenCaptureParameters.index,
-      'params': jsonEncode({
-        'captureParams': captureParams.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> updateScreenCaptureRegion(Rectangle regionRect) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineUpdateScreenCaptureRegion.index,
-      'params': jsonEncode({
-        'regionRect': regionRect.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> startScreenCapture(int windowId,
-      [int captureFreq = 0, Rect? rect, int bitrate = 0]) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineStartScreenCapture.index,
-      'params': jsonEncode({
-        'windowId': windowId,
-        'captureFreq': captureFreq,
-        'rect': rect?.toJson(),
-        'bitrate': bitrate,
-      }),
-    });
-  }
-
-  @override
-  Future<void> enableVirtualBackground(
-      bool enabled, VirtualBackgroundSource backgroundSource) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineEnableVirtualBackground.index,
-      'params': jsonEncode({
-        'enabled': enabled,
-        'backgroundSource': backgroundSource.toJson(),
-      }),
-    });
-  }
-
-  @override
-  Future<void> takeSnapshot(String channel, int uid, String filePath) {
-    return _invokeMethod('callApi', {
-      'apiType': ApiTypeEngine.kEngineTakeSnapshot.index,
-      'params': jsonEncode({
-        'channel': channel,
-        'uid': uid,
-        'filePath': filePath,
-      }),
-    });
-  }
-}
-
-/// @nodoc
-mixin RtcEngineInterface
-    implements
-        RtcUserInfoInterface,
-        RtcAudioInterface,
-        RtcVideoInterface,
-        RtcAudioMixingInterface,
-        RtcAudioEffectInterface,
-        RtcVoiceChangerInterface,
-        RtcVoicePositionInterface,
-        RtcPublishStreamInterface,
-        RtcMediaRelayInterface,
-        RtcAudioRouteInterface,
-        RtcEarMonitoringInterface,
-        RtcDualStreamInterface,
-        RtcFallbackInterface,
-        RtcTestInterface,
-        RtcMediaMetadataInterface,
-        RtcWatermarkInterface,
-        RtcEncryptionInterface,
-        RtcAudioRecorderInterface,
-        RtcInjectStreamInterface,
-        RtcCameraInterface,
-        RtcStreamMessageInterface,
-        RtcScreenSharingInterface {
   /// @nodoc
+  @protected
   Future<void> initialize(RtcEngineContext config);
+
+  ///
+  /// Gets the SDK version.
+  ///
+  ///
+  /// **return** The SDK version number. The format is a string.
+  ///
+  Future<String?> getSdkVersion();
+
+  ///
+  /// Gets the warning or error description.
+  ///
+  ///
+  /// Param [error] The error code or warning code reported by the SDK.
+  ///
+  /// **return** The specific error or warning description.
+  ///
+  Future<String?> getErrorDescription(int error);
 
   ///
   /// Releases the RtcEngine instance.
@@ -2008,6 +120,14 @@ mixin RtcEngineInterface
   /// If you want to create a new RtcEngine instance after destroying the current one, ensure that you wait till the destroy method execution to complete.
   ///
   Future<void> destroy();
+
+  ///
+  /// Adds event handlers
+  /// The SDK uses the RtcEngineEventHandler class to send callbacks to the app. The app inherits the methods of this class to receive these callbacks. All methods in this interface class have default (empty) implementations. Therefore, the application can only inherit some required events. In the callbacks, avoid time-consuming tasks or calling APIs that can block the thread, such as the sendStreamMessage method. Otherwise, the SDK may not work properly.
+  ///
+  /// Param [handler] Callback events to be added. For details, see RtcEngineEventHandler.
+  ///
+  void setEventHandler(RtcEngineEventHandler handler);
 
   ///
   /// Sets the channel profile.
@@ -2280,7 +400,7 @@ mixin RtcEngineInterface
   Future<String?> uploadLogFile();
 
   /* api-engine-setLocalAccessPoint */
-  Future<void> setLocalAccessPoint(List<String> ips, String domain);
+  Future<void> setLocalAccessPoint(LocalAccessPointConfiguration config);
 
   ///
   /// Enables/Disables the virtual background. (beta feature)
@@ -2341,10 +461,7 @@ mixin RtcEngineInterface
   ///
   ///
   Future<void> takeSnapshot(String channel, int uid, String filePath);
-}
 
-/// @nodoc
-mixin RtcUserInfoInterface {
   ///
   /// Registers a user account.
   /// Once registered, the user account can be used to identify the local user when the user joins the channel. After the registration is successful, the user account can identify the identity of the local user, and the user can use it to join the channel.
@@ -2423,10 +540,7 @@ mixin RtcUserInfoInterface {
   /// Null: Failure.
   ///
   Future<UserInfo> getUserInfoByUid(int uid);
-}
 
-/// @nodoc
-mixin RtcAudioInterface {
   ///
   /// Enables the audio module.
   /// The audio mode is enabled by default.
@@ -2488,6 +602,8 @@ mixin RtcAudioInterface {
   /// Param [uid] The ID of the remote user.
   ///
   Future<void> adjustUserPlaybackSignalVolume(int uid, int volume);
+
+  Future<void> enableLoopbackRecording(bool enabled, {String? deviceName});
 
   ///
   /// Adjusts the playback signal volume of all remote users.
@@ -2599,10 +715,7 @@ mixin RtcAudioInterface {
   ///
   Future<void> enableAudioVolumeIndication(
       int interval, int smooth, bool report_vad);
-}
 
-/// @nodoc
-mixin RtcVideoInterface {
   ///
   /// Enables the video module.
   /// Call this method either before joining a channel or during a call. If this method is called before joining a channel, the call starts in the video mode. Call disableVideo to disable the video mode.A successful call of this method triggers the remoteVideoStateChanged callback on the remote client.
@@ -2807,10 +920,7 @@ mixin RtcVideoInterface {
   ///
   ///
   Future<void> enableRemoteSuperResolution(int userId, bool enable);
-}
 
-/// @nodoc
-mixin RtcAudioMixingInterface {
   ///
   /// Starts playing the music file.
   /// This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the audioMixingStateChanged (PLAY) callback. When the audio mixing file playback finishes, the SDK triggers the audioMixingStateChanged (STOPPED) callback on the local client.
@@ -3017,10 +1127,7 @@ mixin RtcAudioMixingInterface {
   /// Param [mode] The channel mode. For details, see AudioMixingDualMonoMode.
   ///
   Future<void> setAudioMixingDualMonoMode(AudioMixingDualMonoMode mode);
-}
 
-/// @nodoc
-mixin RtcAudioEffectInterface {
   ///
   /// Retrieves the volume of the audio effects.
   /// The volume is an integer ranging from 0 to 100. The default value is 100, the original volume.
@@ -3199,10 +1306,7 @@ mixin RtcAudioEffectInterface {
   ///
   Future<void> setAudioSessionOperationRestriction(
       AudioSessionOperationRestriction restriction);
-}
 
-/// @nodoc
-mixin RtcVoiceChangerInterface {
   ///
   /// Sets the local voice changer option.
   /// Deprecated:
@@ -3461,10 +1565,7 @@ mixin RtcVoiceChangerInterface {
   ///
   Future<void> setVoiceBeautifierParameters(
       VoiceBeautifierPreset preset, int param1, int param2);
-}
 
-/// @nodoc
-mixin RtcVoicePositionInterface {
   ///
   /// Enables/Disables stereo panning for remote users.
   /// Ensure that you call this method before joining a channel to enable stereo panning for remote users so that the local user can track the position of a remote user by calling setRemoteVoicePosition.
@@ -3499,10 +1600,7 @@ mixin RtcVoicePositionInterface {
   /// Param [gain] The volume of the remote user. The value ranges from 0.0 to 100.0. The default value is 100.0 (the original volume of the remote user). The smaller the value, the lower the volume.
   ///
   Future<void> setRemoteVoicePosition(int uid, double pan, double gain);
-}
 
-/// @nodoc
-mixin RtcPublishStreamInterface {
   ///
   /// Sets the transcoding configurations for CDN live streaming.
   /// This method sets the video layout and audio settings for CDN live streaming. The SDK triggers the transcodingUpdated callback when you call this method to update the transcoding settings.
@@ -3553,10 +1651,7 @@ mixin RtcPublishStreamInterface {
   /// Param [url] The CDN streaming URL to be removed. The maximum length of this parameter is 1024 bytes. The CDN streaming URL must not contain special characters, such as Chinese characters.
   ///
   Future<void> removePublishStreamUrl(String url);
-}
 
-/// @nodoc
-mixin RtcMediaRelayInterface {
   ///
   /// Starts relaying media streams across channels. This method can be used to implement scenarios such as co-host across channels.
   /// After a successful method call, the SDK triggers the channelMediaRelayStateChanged and channelMediaRelayEvent callbacks, and these callbacks return the state and events of the media stream relay.
@@ -3610,10 +1705,7 @@ mixin RtcMediaRelayInterface {
   /// Call this method after the pauseAllChannelMediaRelay method.
   ///
   Future<void> resumeAllChannelMediaRelay();
-}
 
-/// @nodoc
-mixin RtcAudioRouteInterface {
   ///
   /// Sets the default audio playback route.
   /// This method sets whether the received audio is routed to the earpiece or speakerphone by default before joining a channel. If a user does not call this method, the audio is routed to the earpiece by default.
@@ -3636,7 +1728,7 @@ mixin RtcAudioRouteInterface {
   ///
   ///
   ///
-  Future<void> setDefaultAudioRoutetoSpeakerphone(bool defaultToSpeaker);
+  Future<void> setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);
 
   ///
   /// Enables/Disables the audio playback route to the speakerphone.
@@ -3661,10 +1753,7 @@ mixin RtcAudioRouteInterface {
   /// false: The speakerphone is not enabled, and the audio plays from devices other than the speakerphone. For example, the headset or earpiece.
   ///
   Future<bool?> isSpeakerphoneEnabled();
-}
 
-/// @nodoc
-mixin RtcEarMonitoringInterface {
   ///
   /// Enables in-ear monitoring.
   /// This method enables or disables in-ear monitoring.
@@ -3692,10 +1781,7 @@ mixin RtcEarMonitoringInterface {
   /// Param [volume] The volume of the in-ear monitor. The value ranges between 0 and 100. The default value is 100.
   ///
   Future<void> setInEarMonitoringVolume(int volume);
-}
 
-/// @nodoc
-mixin RtcDualStreamInterface {
   ///
   /// Enables/Disables dual-stream mode.
   /// You can call this method to enable or disable the dual-stream mode on the publisher side. Dual streams are a hybrid of a high-quality video stream and a low-quality video stream:
@@ -3740,10 +1826,7 @@ mixin RtcDualStreamInterface {
   ///
   ///
   Future<void> setRemoteDefaultVideoStreamType(VideoStreamType streamType);
-}
 
-/// @nodoc
-mixin RtcFallbackInterface {
   ///
   /// Sets the fallback option for the published video stream based on the network conditions.
   /// An unstable network affects the audio and video quality in a video call or interactive live video streaming. If option is set as AudioOnly(2), the SDK disables the upstream video but enables audio only when the network conditions deteriorate and cannot support both video and audio. The SDK monitors the network quality and restores the video stream when the network conditions improve. When the published video stream falls back to audio-only or when the audio-only stream switches back to the video, the SDK triggers the localPublishFallbackToAudioOnly callback.
@@ -3778,10 +1861,7 @@ mixin RtcFallbackInterface {
   /// Param [userPriority] The priority of the remote user. See UserPriority.
   ///
   Future<void> setRemoteUserPriority(int uid, UserPriority userPriority);
-}
 
-/// @nodoc
-mixin RtcTestInterface {
   ///
   /// Starts an audio call test.
   /// This method starts an audio call test to determine whether the audio devices (for example, headset and speaker) and the network connection are working properly. To conduct the test, let the user speak for a while, and the recording is played back within the set interval. If the user can hear the recording within the interval, the audio devices and network connection are working properly.
@@ -3855,10 +1935,7 @@ mixin RtcTestInterface {
   ///
   ///
   Future<void> stopLastmileProbeTest();
-}
 
-/// @nodoc
-mixin RtcMediaMetadataInterface {
   ///
   /// Registers the metadata observer.
   /// Call this method before joinChannel.
@@ -3887,10 +1964,7 @@ mixin RtcMediaMetadataInterface {
   /// Param [metadata] Media metadata See Metadata.
   ///
   Future<void> sendMetadata(Uint8List metadata);
-}
 
-/// @nodoc
-mixin RtcWatermarkInterface {
   ///
   /// Adds a watermark image to the local video.
   /// This method adds a PNG watermark image to the local video in the live streaming. Once the watermark image is added, all the audience in the channel (CDN audience included), and the capturing device can see and capture it. Agora supports adding only one watermark image onto the local video, and the newly watermark image replaces the previous one.
@@ -3920,10 +1994,7 @@ mixin RtcWatermarkInterface {
   ///
   ///
   Future<void> clearVideoWatermarks();
-}
 
-/// @nodoc
-mixin RtcEncryptionInterface {
   ///
   /// Enables built-in encryption with an encryption password before users join a channel.
   /// Deprecated:
@@ -3978,10 +2049,7 @@ mixin RtcEncryptionInterface {
   /// Param [config] Configurations of built-in encryption. For details, see EncryptionConfig.
   ///
   Future<void> enableEncryption(bool enabled, EncryptionConfig config);
-}
 
-/// @nodoc
-mixin RtcAudioRecorderInterface {
   ///
   /// Starts audio recording on the client.
   /// Deprecated:
@@ -4070,10 +2138,7 @@ mixin RtcAudioRecorderInterface {
   /// Once the user leaves the channel, the recording automatically stops.
   ///
   Future<void> stopAudioRecording();
-}
 
-/// @nodoc
-mixin RtcInjectStreamInterface {
   ///
   /// Injects an online media stream to a live streaming channel.
   /// Agora will soon stop the service for injecting online media streams on the client. If you have not implemented this service, Agora recommends that you do not use it. For details, see Service Sunset Plans.
@@ -4114,10 +2179,7 @@ mixin RtcInjectStreamInterface {
   /// Param [url] The URL address of the injected stream to be removed.
   ///
   Future<void> removeInjectStreamUrl(String url);
-}
 
-/// @nodoc
-mixin RtcCameraInterface {
   ///
   /// Switches between front and rear cameras.
   /// This method needs to be called after the camera is started (for example, by calling startPreview or joinChannel).
@@ -4268,10 +2330,7 @@ mixin RtcCameraInterface {
   ///
   Future<void> setCameraCapturerConfiguration(
       CameraCapturerConfiguration config);
-}
 
-/// @nodoc
-mixin RtcStreamMessageInterface {
   ///
   /// Creates a data stream.
   /// Each user can create up to five data streams during the lifecycle of RtcEngine.
@@ -4320,10 +2379,7 @@ mixin RtcStreamMessageInterface {
   /// Param [message] The message to be sent.
   ///
   Future<void> sendStreamMessage(int streamId, Uint8List message);
-}
 
-/// @nodoc
-mixin RtcScreenSharingInterface {
   ///
   /// Shares the screen by specifying the display ID.
   /// This method shares a screen or part of the screen. You need to specify the ID of the screen to be shared in this method.
@@ -4428,8 +2484,24 @@ mixin RtcScreenSharingInterface {
   ///
   /// Param [bitrate] The bitrate of the screen share.
   ///
-  // TODO(littlegnal): [MS-99459] Doc breack change captureFreq type int? -> int, bitrate type
-  // int? -> int
   Future<void> startScreenCapture(int windowId,
       [int captureFreq, Rect? rect, int bitrate]);
+
+  Future<void> setAVSyncSource(String channelId, int uid);
+
+  Future<void> startRtmpStreamWithoutTranscoding(String url);
+
+  Future<void> updateRtmpTranscoding(LiveTranscoding transcoding);
+
+  Future<void> stopRtmpStream(String url);
+
+  Future<void> setLowlightEnhanceOptions(
+      bool enabled, LowLightEnhanceOptions option);
+
+  Future<void> setVideoDenoiserOptions(
+      bool enabled, VideoDenoiserOptions option);
+
+  Future<void> setColorEnhanceOptions(bool enabled, ColorEnhanceOptions option);
+
+  Future<void> enableWirelessAccelerate(bool enabled);
 }

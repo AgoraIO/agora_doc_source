@@ -1,24 +1,11 @@
 import 'dart:typed_data';
-import 'dart:ui' show Color;
 
-import 'package:agora_rtc_engine/src/enum_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'events.dart';
 
 import 'enums.dart';
+import 'impl/enum_converter.dart';
 
 part 'classes.g.dart';
-
-Color _$ColorFromJson(Map<String, dynamic> json) => Color.fromRGBO(
-    json['red'] as int, json['green'] as int, json['blue'] as int, 1.0);
-
-Map<String, dynamic>? _$ColorToJson(Color? instance) => instance != null
-    ? <String, dynamic>{
-        'red': instance.red,
-        'green': instance.green,
-        'blue': instance.blue,
-      }
-    : null;
 
 ///
 /// The information of the user.
@@ -430,14 +417,14 @@ class LiveTranscoding {
   ///
   /// The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. For details, see AgoraImage.
   ///
-  AgoraImage? watermark;
+  List<AgoraImage>? watermark;
 
   @JsonKey(includeIfNull: false)
 
   ///
   ///  The video background image of the output media stream. For details, see AgoraImage.
   ///
-  AgoraImage? backgroundImage;
+  List<AgoraImage>? backgroundImage;
 
   @JsonKey(includeIfNull: false)
 
@@ -483,14 +470,12 @@ class LiveTranscoding {
   ///
   VideoCodecProfileType? videoCodecProfile;
 
-  @JsonKey(
-      includeIfNull: false, fromJson: _$ColorFromJson, toJson: _$ColorToJson)
-
   ///
   /// The video background color of the output media stream. The format is a hexadecimal integer defined by RGB without the # symbol. For example, 0xFFB6C1
   /// means light pink. The default value is 0x000000 (black).
   ///
-  Color? backgroundColor;
+  @JsonKey(includeIfNull: false)
+  int? backgroundColor;
 
   @JsonKey(includeIfNull: false)
   VideoCodecTypeForStream? videoCodecType;
@@ -2100,13 +2085,12 @@ class VirtualBackgroundSource {
   ///
   VirtualBackgroundSourceType? backgroundSourceType;
 
-  @JsonKey(
-      includeIfNull: false, fromJson: _$ColorFromJson, toJson: _$ColorToJson)
+  @JsonKey(includeIfNull: false)
 
   ///
   /// The type of the custom background image. The color of the custom background image. The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink.The default value is 0xFFFFFF, which signifies white.  The value range is [0x000000, 0xffffff]. If the value is invalid, the SDK replaces the original background image with a white background image.This parameter takes effect only when the type of the custom background image is Color.
   ///
-  Color? color;
+  int? color;
 
   @JsonKey(includeIfNull: false)
 
@@ -2347,20 +2331,20 @@ class Metadata {
 /* class-MediaRecorderConfiguration */
 @JsonSerializable(explicitToJson: true)
 class MediaRecorderConfiguration {
-  String storagePath;
-  AgoraMediaRecorderContainerFormat containerFormat; // = CONTAINER_MP4;
-  AgoraMediaRecorderStreamType streamType; // = STREAM_TYPE_BOTH;
-  int maxDurationMs; // = 120000;
-  int recorderInfoUpdateInterval; // = 0;
+  final String? storagePath;
+  final MediaRecorderContainerFormat containerFormat;
+  final MediaRecorderStreamType streamType;
+  final int maxDurationMs;
+  final int recorderInfoUpdateInterval;
 
   /// Constructs a [MediaRecorderConfiguration]
-  MediaRecorderConfiguration(
+  MediaRecorderConfiguration({
     this.storagePath,
-    this.containerFormat,
-    this.streamType,
-    this.maxDurationMs,
-    this.recorderInfoUpdateInterval,
-  );
+    this.containerFormat = MediaRecorderContainerFormat.MP4,
+    this.streamType = MediaRecorderStreamType.Both,
+    this.maxDurationMs = 120000,
+    this.recorderInfoUpdateInterval = 0,
+  });
 
   /// @nodoc
   factory MediaRecorderConfiguration.fromJson(Map<String, dynamic> json) =>
@@ -2373,9 +2357,9 @@ class MediaRecorderConfiguration {
 /* class-RecorderInfo */
 @JsonSerializable(explicitToJson: true)
 class RecorderInfo {
-  String fileName;
-  int durationMs;
-  int fileSize;
+  final String fileName;
+  final int durationMs;
+  final int fileSize;
 
   /// Constructs a [RecorderInfo]
   RecorderInfo(this.fileName, this.durationMs, this.fileSize);
@@ -2386,4 +2370,159 @@ class RecorderInfo {
 
   /// @nodoc
   Map<String, dynamic> toJson() => _$RecorderInfoToJson(this);
+}
+
+/// @nodoc
+@JsonSerializable(explicitToJson: true)
+class LocalAccessPointConfiguration {
+  /// local access point ip address list.
+  final List<String>? ipList;
+
+  /// local access point domain list.
+  final List<String>? domainList;
+
+  /// certificate domain name installed on specific local access point. pass "" means using sni domain on specific local access point
+  final String? verifyDomainName;
+
+  /// local proxy connection mode, connectivity first or local only.
+  final LocalProxyMode mode;
+
+  /// @nodoc
+  const LocalAccessPointConfiguration({
+    this.ipList,
+    this.domainList,
+    this.verifyDomainName,
+    this.mode = LocalProxyMode.ConnectivityFirst,
+  });
+
+  /// @nodoc
+  factory LocalAccessPointConfiguration.fromJson(Map<String, dynamic> json) =>
+      _$LocalAccessPointConfigurationFromJson(json);
+
+  /// @nodoc
+  Map<String, dynamic> toJson() => _$LocalAccessPointConfigurationToJson(this);
+}
+
+/// The low-light enhancement options.
+/// @since v3.6.2
+@JsonSerializable(explicitToJson: true)
+class LowLightEnhanceOptions {
+  /// The low-light enhancement mode.
+  final LowLightEnhanceMode mode;
+
+  /// The low-light enhancement level.
+  final LowLightEnhanceLevel level;
+
+  /// @nodoc
+  const LowLightEnhanceOptions(
+      {this.mode = LowLightEnhanceMode.Auto,
+      this.level = LowLightEnhanceLevel.HighQuality});
+
+  /// @nodoc
+  factory LowLightEnhanceOptions.fromJson(Map<String, dynamic> json) =>
+      _$LowLightEnhanceOptionsFromJson(json);
+
+  /// @nodoc
+  Map<String, dynamic> toJson() => _$LowLightEnhanceOptionsToJson(this);
+}
+
+/// The video noise reduction options.
+///
+/// @since v3.6.2
+@JsonSerializable(explicitToJson: true)
+class VideoDenoiserOptions {
+  /// The video noise reduction mode.
+  final VideoDenoiserMode mode;
+
+  /// The video noise reduction level.
+  final VideoDenoiserLevel level;
+
+  /// @nodoc
+  const VideoDenoiserOptions(
+      {this.mode = VideoDenoiserMode.Auto,
+      this.level = VideoDenoiserLevel.HighQuality});
+
+  /// @nodoc
+  factory VideoDenoiserOptions.fromJson(Map<String, dynamic> json) =>
+      _$VideoDenoiserOptionsFromJson(json);
+
+  /// @nodoc
+  Map<String, dynamic> toJson() => _$VideoDenoiserOptionsToJson(this);
+}
+
+/// The color enhancement options.
+///
+/// @since v3.6.2
+@JsonSerializable(explicitToJson: true)
+class ColorEnhanceOptions {
+  /// The level of color enhancement. The value range is [0.0,1.0]. `0.0` is
+  /// the default value, which means no color enhancement is applied to the video. The higher the value, the higher the level of color enhancement.
+  final double strengthLevel;
+
+  /// The level of skin tone protection. The value range is [0.0,1.0]. `0.0` means
+  /// no skin tone protection. The higher the value, the higher the level of skin tone protection.
+  /// The default value is `1.0`. When the level of color enhancement is higher,
+  /// the portrait skin tone can be significantly distorted, so you need to set
+  /// the level of skin tone protection; when the level of skin tone protection
+  /// is higher, the color enhancement effect can be slightly reduced.
+  /// Therefore, to get the best color enhancement effect, Agora recommends that
+  ///  you adjust `strengthLevel` and `skinProtectLevel` to get the most appropriate values.
+  final double skinProtectLevel;
+
+  /// @nodoc
+  const ColorEnhanceOptions(
+      {this.strengthLevel = 0.0, this.skinProtectLevel = 1.0});
+
+  /// @nodoc
+  factory ColorEnhanceOptions.fromJson(Map<String, dynamic> json) =>
+      _$ColorEnhanceOptionsFromJson(json);
+
+  /// @nodoc
+  Map<String, dynamic> toJson() => _$ColorEnhanceOptionsToJson(this);
+}
+
+/// The screen sharing information.
+///
+/// @since v3.6.1
+@JsonSerializable(explicitToJson: true)
+class ScreenCaptureInfo {
+  /// The type of the graphics card, which contains the model information of the graphics card.
+  final String graphicsCardType;
+
+  /// The error code of the window blocking during screen sharing.
+  final ExcludeWindowError errCode;
+
+  /// @nodoc
+  const ScreenCaptureInfo(this.graphicsCardType, this.errCode);
+
+  /// @nodoc
+  factory ScreenCaptureInfo.fromJson(Map<String, dynamic> json) =>
+      _$ScreenCaptureInfoFromJson(json);
+
+  /// @nodoc
+  Map<String, dynamic> toJson() => _$ScreenCaptureInfoToJson(this);
+}
+
+/// Indicator optimization degree.
+@JsonSerializable(explicitToJson: true)
+class WlAccStats {
+  /// End-to-end delay optimization percentage.
+  final int e2eDelayPercent;
+
+  /// Frozen Ratio optimization percentage.
+  final int frozenRatioPercent;
+
+  /// Loss Rate optimization percentage.
+  final int lossRatePercent;
+
+  /// @nodoc
+  const WlAccStats(
+      this.e2eDelayPercent, this.frozenRatioPercent, this.lossRatePercent);
+
+  /// @nodoc
+  factory WlAccStats.fromJson(Map<String, dynamic> json) =>
+      _$WlAccStatsFromJson(json);
+
+  /// @nodoc
+  Map<String, dynamic> toJson() => _$WlAccStatsToJson(this);
 }

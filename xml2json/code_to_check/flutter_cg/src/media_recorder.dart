@@ -1,13 +1,11 @@
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:agora_rtc_engine/src/classes.dart';
+import 'package:agora_rtc_engine/src/impl/media_recorder_impl.dart';
 
-typedef OnRecorderStateChanged = void Function(
-    RecorderState state, RecorderError error);
-
-typedef OnRecorderInfoUpdated = void Function(RecorderInfo info);
-
-class MediaRecorderCallback {
-  MediaRecorderCallback({
+///
+class MediaRecorderObserver {
+  ///
+  MediaRecorderObserver({
     this.onRecorderStateChanged,
     this.onRecorderInfoUpdated,
   });
@@ -46,7 +44,7 @@ class MediaRecorderCallback {
   OnRecorderInfoUpdated? onRecorderInfoUpdated;
 }
 
-abstract class AgoraMediaRecorder {
+abstract class MediaRecorder {
   /// Gets the AgoraMediaRecorder object.
   ///
   /// Note
@@ -60,10 +58,10 @@ abstract class AgoraMediaRecorder {
   /// Returns
   ///
   /// The AgoraMediaRecorder object.
-  AgoraMediaRecorder getMediaRecorder(
-    RtcEngine engine,
-    MediaRecorderCallback callback,
-  );
+  static MediaRecorder getMediaRecorder(RtcEngine engine,
+      {MediaRecorderObserver? callback}) {
+    return MediaRecorderImpl.getMediaRecorder(engine, callback: callback);
+  }
 
   /// Starts recording the local audio and video.
   ///
@@ -120,5 +118,5 @@ abstract class AgoraMediaRecorder {
   /// This method releases the RtcEngine object and all other resources used by the
   /// AgoraMediaRecorder object. After calling this method, if you want to enable
   /// the recording again, you must call getMediaRecorder to get the AgoraMediaRecorder object.
-  Future<void> release();
+  Future<void> releaseRecorder();
 }
