@@ -155,7 +155,7 @@
     transcodingUsers: Array&lt;TranscodingUser&gt;
     }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
-  
+
   @JsonKey(includeIfNull: false)
   int? width;
 
@@ -264,16 +264,25 @@
             </plentry>
             <plentry>
                 <pt>videoBitrate</pt>
-                <pd>The video bitrate (Kbps) of the output media stream. The default value is 400. <ph
-                    props="ios android windows">You can refer to <xref
-                    keyref="guide-cdn-streaming">Push Streams to
-                            CND</xref> for how to set the parameters.</ph></pd>
+                <pd>
+                        The video bitrate (Kbps) of the output media stream. The default value is 400.
+                        <ph props="ios android windows">
+                            You can refer to
+                            <xref keyref="guide-cdn-streaming"
+                    >Push Streams to
+                            CND</xref>
+                            for how to set the parameters.
+                        </ph> </pd>
             </plentry>
             <plentry>
-                <pt>videoFramerate</pt>
-                <pd>The video frame rate (fps) of the output media stream. The default value is 15, and the value range is [1, 30].
+                <pt>videoFrameRate</pt>
+                <pd>
+                        The video frame rate (fps) of the output media stream. The default value is 15, and the value range is [1, 30].
+
+
                     <note type="attention">The Agora server adjusts
-                            any frame rate higher than 30 fps to 30 fps.</note></pd>
+                            any frame rate higher than 30 fps to 30 fps.</note>
+                </pd>
             </plentry>
             <plentry>
                 <pt>lowLatency</pt>
@@ -285,10 +294,12 @@
                     </dlentry>
                     </dl>
                     <ul>
-                    <li><codeph><ph keyref="true"
-                        /></codeph>: Low latency with unassured quality.</li>
-                    <li><codeph><ph keyref="false"
-                        /></codeph>: (Default) High latency with assured quality.</li>
+                    <li> <codeph> <ph keyref="true"/> </codeph>
+                                : Low latency with unassured quality.
+                            </li>
+                    <li> <codeph> <ph keyref="false"/> </codeph>
+                                : (Default) High latency with assured quality.
+                            </li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -340,22 +351,35 @@
                         <dd>This attribute is deprecated.</dd>
                     </dlentry>
                     </dl>
-                     The metadata sent to the CDN client.</pd>
+
+
+                        The metadata sent to the CDN client.
+                    </pd>
             </plentry>
-            <plentry>
+            <plentry props="rtc-ng">
                 <pt>watermark</pt>
-                <pd>The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. For details, see <xref
-                    keyref="RtcImage"/>.</pd>
+                <pd>
+                        The video watermark of the output media stream. Ensure that the format of the watermark image is PNG. For details, see
+                        <xref keyref="RtcImage"/>
+                        .
+                    </pd>
             </plentry>
-            <plentry>
+            <plentry props="rtc-ng">
                 <pt>backgroundImage</pt>
-                <pd> The video background image of the output media stream. For details, see <xref
-                    keyref="RtcImage"/>.</pd>
+                <pd>
+                        The video background image of the output media stream. For details, see
+                        <xref keyref="RtcImage"/>
+                        .
+                    </pd>
             </plentry>
             <plentry>
                 <pt>audioSampleRate</pt>
-                <pd>The audio sampling rate (Hz) of the output media stream. See <xref
-                    keyref="AUDIO_SAMPLE_RATE_TYPE"/>.</pd>
+                <pd>
+                        The audio sampling rate (Hz) of the output media stream. See
+                        <xref keyref="AUDIO_SAMPLE_RATE_TYPE"
+                    />
+                        .
+                    </pd>
             </plentry>
             <plentry>
                 <pt>audioBitrate</pt>
@@ -389,7 +413,7 @@
                     <li>If you add more than one watermarks, ensure that you set this parameter.</li>
                     </ul> </pd>
             </plentry>
-            <plentry>
+            <plentry props="rtc-ng">
                 <pt props="ios mac">backgroundArray</pt>
                 <pt props="windows">backgroundCount</pt>
                 <pd>
@@ -398,6 +422,110 @@
                     <li>If you do not add a background image or add only one background image, this parameter is optional.</li>
                     <li>If you add more than one background images, ensure that you set this parameter.</li>
                     </ul> </pd>
+            </plentry>
+            <plentry props="rtc">
+                <pt>backgroundImage</pt>
+                <pd props="windows"
+                        > The background image on the live video. The format must be in the PNG format. See <xref
+                        keyref="RtcImage"
+                        /> . You can add a background image or use an array to add multiple background images. This parameter is used in conjunction with <parmname>backgroundImageCount</parmname>. </pd>
+                <pd props="ios mac">
+                    <p>
+                            Deprecated. Use
+                            <parmname>backgroundImageArray</parmname>
+                            instead.
+                        </p>
+                    <p>
+                            The background image on the live video. The image format must be PNG. See
+                            <xref keyref="RtcImage"/>
+                            .
+                        </p>
+                </pd>
+                <pd props="android">
+                    <p>
+                            Deprecated. Use
+                            <parmname>backgroundImageList</parmname>
+                            instead.
+                        </p>
+                    <p>
+                            The background image on the live video. The image format must be PNG. See
+                            <xref keyref="RtcImage"/>
+                            .
+                        </p>
+                </pd>
+            </plentry>
+            <plentry props="rtc">
+                <pt>watermark</pt>
+                <pd props="windows"
+                        > The watermark on the live video. The format must be in the PNG format. See See <xref
+                        keyref="RtcImage"
+                        /> . You can add a watermark or use an array to add multiple watermarks. This parameter is used in conjunction with <parmname>watermarkCount</parmname>. </pd>
+                <pd props="ios mac">
+                    <p>
+                            Deprecated. Use
+                            <parmname>watermarkArray</parmname>
+                            instead.
+                        </p>
+                    <p>
+                            The watermark on the live video. The image format must be PNG. See
+                            <xref keyref="RtcImage"/>
+                            .
+                        </p>
+                </pd>
+                <pd props="android">
+                    <p>
+                            Deprecated. Use
+                            <parmname>watermarkList</parmname>
+                            instead.
+                        </p>
+                    <p>
+                            The watermark on the live video. The image format must be PNG. See
+                            <xref keyref="RtcImage"/>
+                            .
+                        </p>
+                </pd>
+            </plentry>
+            <plentry props="rtc">
+                <pt props="ios mac">watermarkArray</pt>
+                <pt props="windows">watermarkCount</pt>
+                <pt props="android">watermarkList</pt>
+                <pd props="ios mac">
+                        The array of watermarks on the live video. See
+                        <xref keyref="RtcImage"/>
+                        . You can use
+                        <parmname>watermarkArray</parmname>
+                        to add one or more watermarks. The image format must be PNG. The total number of watermarks and background images on the live video must be greater than or equal to 0 and less than or equal to 10.
+                    </pd>
+                <pd props="windows"
+                        > The number of watermarks on the live video. The total number of watermarks and background images must be greater than or equal to 0 and less than or equal to 10. This parameter is used in conjunction with <parmname>watermark</parmname>. </pd>
+                <pd props="android">
+                        The array of watermarks on the live video. See
+                        <xref keyref="RtcImage"/>
+                        . You can use
+                        <parmname>watermarkList</parmname>
+                        to add one or more watermarks. The image format must be PNG. The total number of watermarks and background images on the live video must be greater than or equal to 0 and less than or equal to 10.
+                    </pd>
+            </plentry>
+            <plentry props="rtc">
+                <pt props="ios mac">backgroundImageArray</pt>
+                <pt props="windows">backgroundImageCount</pt>
+                <pt props="android">backgroundImageList</pt>
+                <pd props="ios mac">
+                        The array of background images on the live video. See
+                        <xref keyref="RtcImage"/>
+                        . You can use
+                        <parmname>backgroundImageArray</parmname>
+                        to add one or more background images. The image format must be PNG. The total number of watermarks and background images on the live video must be greater than or equal to 0 and less than or equal to 10.
+                    </pd>
+                <pd props="windows"
+                        > The number of background images on the live video. The total number of watermarks and background images must be greater than or equal to 0 and less than or equal to 10. This parameter is used in conjunction with <parmname>backgroundImage</parmname>. </pd>
+                <pd props="android">
+                        The array of background images on the live video. See
+                        <xref keyref="RtcImage"/>
+                        . You can use
+                        <parmname>backgroundImageList</parmname>
+                        to add one or more background images. The image format must be PNG. The total number of watermarks and background images on the live video must be greater than or equal to 0 and less than or equal to 10.
+                    </pd>
             </plentry>
             </parml> </section>
     </refbody>
