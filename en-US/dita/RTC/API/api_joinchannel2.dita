@@ -50,6 +50,7 @@
             <p id="desc1">This method enables the local user to join a real-time audio and video interaction channel. With the same App ID, users in the same channel can talk to each other, and multiple users in the same channel can start a group chat.</p>
             <p id="desc2">A successful call of this method triggers the following callbacks: 
             
+            
             <ul>
             <li>The local client: The <xref keyref="onJoinChannelSuccess"/> and <xref keyref="onConnectionStateChanged"/> callbacks.</li>
             <li>The remote client: <xref keyref="onUserJoined"/>, if the user joining the channel is in the Communication profile or is a host in the Live-broadcasting profile.</li>
@@ -72,6 +73,7 @@
                 <pd>
                     <p id="channelID_desc">The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters:
                     
+                    
                     <ul id="char_support">
                     <li>The 26 lowercase English letters: a to z.</li>
                     <li>The 26 uppercase English letters: A to Z.</li>
@@ -82,7 +84,7 @@
                 </pd>
             </plentry>
             <plentry id="info" props="rtc">
-                <pt props="ios mac windows electron unity">info</pt>
+                <pt props="ios mac electron unity windows">info</pt>
                 <pt props="android flutter">optionalInfo</pt>
                 <pd>
                     <p>Reserved for future use.</p>
@@ -107,16 +109,18 @@
                 <pd props="rtc-ng">The block of a user joining the specified channel. <codeph>joinSuccessBlock</codeph> takes higher priority than <xref keyref="onJoinChannelSuccess"/>. If you implement both callbacks, only <codeph>block</codeph> is triggered. Agora recommends setting <codeph>joinSuccessBlock</codeph> as <codeph>nil</codeph> to use the <xref keyref="IRtcEngineEventHandler"/> callback.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="android apple windows electron unity">
             <title>Returns</title>
             <ul>
             <li>0(ERR_OK): Success.</li>
             <li>&lt; 0: Failure.
                 
+                
                 <ul>
                 <li>-2 (ERR_INVALID_ARGUMENT): The parameter is invalid.</li>
                 <li>-3(ERR_NOT_READY): The SDK fails to be initialized. You can try re-initializing the SDK.</li>
                 <li>-5(ERR_REFUSED): The request is rejected. This may be caused by the following:
+                    
                     
                     <ul>
                     <li>You have created an <xref keyref="IChannel"/> object with the same channel name.</li>
