@@ -155,84 +155,84 @@
     }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
 
-  @JsonKey(includeIfNull: false)
-  int? width;
+                @JsonKey(includeIfNull: false)
+                int? width;
+              
+                @JsonKey(includeIfNull: false)
+                int? height;
+              
+                @JsonKey(includeIfNull: false)
+                int? videoBitrate;
 
-  @JsonKey(includeIfNull: false)
-  int? height;
+                @JsonKey(includeIfNull: false)
+                VideoFrameRate? videoFramerate;
+              
+                @Deprecated(
+                    'This attribute is deprecated since v2.8.0, and Agora does not recommend it.')
+                @JsonKey(includeIfNull: false)
+                bool? lowLatency;
+              
+                @JsonKey(includeIfNull: false)
+                int? videoGop;
 
-  @JsonKey(includeIfNull: false)
-  int? videoBitrate;
+                @JsonKey(includeIfNull: false)
+                List&lt;AgoraImage&gt;? watermark;
+              
+                @JsonKey(includeIfNull: false)
+                List&lt;AgoraImage&gt;? backgroundImage;
+              
+                @JsonKey(includeIfNull: false)
+                AudioSampleRateType? audioSampleRate;
+              
+                @JsonKey(includeIfNull: false)
+                int? audioBitrate;
+              
+                @JsonKey(includeIfNull: false)
+                AudioChannel? audioChannels;
+              
+                @JsonKey(includeIfNull: false)
+                AudioCodecProfileType? audioCodecProfile;
+              
+                @JsonKey(includeIfNull: false)
+                VideoCodecProfileType? videoCodecProfile;
+              
+                @JsonKey(includeIfNull: false)
+                int? backgroundColor;
+              
+                @JsonKey(includeIfNull: false)
+                VideoCodecTypeForStream? videoCodecType;
 
-  @JsonKey(includeIfNull: false)
-  VideoFrameRate? videoFramerate;
-
-  @deprecated
-  @JsonKey(includeIfNull: false)
-  bool? lowLatency;
-
-  @JsonKey(includeIfNull: false)
-  int? videoGop;
-
-  @JsonKey(includeIfNull: false)
-  AgoraImage? watermark;
-
-  @JsonKey(includeIfNull: false)
-  AgoraImage? backgroundImage;
-
-  @JsonKey(includeIfNull: false)
-  AudioSampleRateType? audioSampleRate;
-
-  @JsonKey(includeIfNull: false)
-  int? audioBitrate;
-
-  @JsonKey(includeIfNull: false)
-  AudioChannel? audioChannels;
-
-  @JsonKey(includeIfNull: false)
-  AudioCodecProfileType? audioCodecProfile;
-
-  @JsonKey(includeIfNull: false)
-  VideoCodecProfileType? videoCodecProfile;
-
-  @JsonKey(
-      includeIfNull: false, fromJson: _$ColorFromJson, toJson: _$ColorToJson)
-  Color? backgroundColor;
-
-  @JsonKey(includeIfNull: false)
-  VideoCodecTypeForStream? videoCodecType;
-
-  @JsonKey(includeIfNull: false)
-  String? userConfigExtraInfo;
-
-  List&lt;TranscodingUser&gt; transcodingUsers;
-
-  LiveTranscoding(
-    this.transcodingUsers, {
-    this.width,
-    this.height,
-    this.videoBitrate,
-    this.videoFramerate,
-    this.lowLatency,
-    this.videoGop,
-    this.watermark,
-    this.backgroundImage,
-    this.audioSampleRate,
-    this.audioBitrate,
-    this.audioChannels,
-    this.audioCodecProfile,
-    this.videoCodecProfile,
-    this.backgroundColor,
-    this.videoCodecType,
-    this.userConfigExtraInfo,
-  });
-
-  factory LiveTranscoding.fromJson(Map&lt;String, dynamic> json) =>
-      _$LiveTranscodingFromJson(json);
-
-  /// @nodoc
-  Map&lt;String, dynamic> toJson() => _$LiveTranscodingToJson(this);
-}</codeblock> </p>
+                @JsonKey(includeIfNull: false)
+                String? userConfigExtraInfo;
+              
+                List&lt;TranscodingUser&gt; transcodingUsers;
+              
+                /// Constructs the [LiveTranscoding].
+                LiveTranscoding(
+                  this.transcodingUsers, {
+                  this.width,
+                  this.height,
+                  this.videoBitrate,
+                  this.videoFramerate,
+                  this.lowLatency,
+                  this.videoGop,
+                  this.watermark,
+                  this.backgroundImage,
+                  this.audioSampleRate,
+                  this.audioBitrate,
+                  this.audioChannels,
+                  this.audioCodecProfile,
+                  this.videoCodecProfile,
+                  this.backgroundColor,
+                  this.videoCodecType,
+                  this.userConfigExtraInfo,
+                });
+              
+                factory LiveTranscoding.fromJson(Map&lt;String, dynamic&gt; json) =>
+                    _$LiveTranscodingFromJson(json);
+              
+                Map&lt;String, dynamic&gt; toJson() => _$LiveTranscodingToJson(this);
+              }</codeblock> </p>
         </section>
         <section id="parameters">
             <title> <text
