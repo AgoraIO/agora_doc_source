@@ -34,6 +34,11 @@
     this.publishLocalAudio,
     this.publishLocalVideo,
   });
+
+  factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ChannelMediaOptionsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaOptionsToJson(this);
 }</codeblock>
             </p>
         </section>
@@ -65,6 +70,20 @@
   </ul>
   该成员功能与 <xref keyref="muteAllRemoteVideoStreams" /> 相同。加入频道后，你可以通过 <apiname>muteAllRemoteVideoStreams</apiname> 方法重新设置是否订阅频道内的远端视频流。
   </pd>
+       </plentry>
+       <plentry>
+           <pt>publishLocalAudio</pt>
+           <pd>是否自动在频道没发布本地音频流：<ul>
+               <li><codeph><ph keyref="true" /></codeph>：（默认）发布。</li>
+               <li><codeph><ph keyref="false" /></codeph>: 不发布。</li>
+           </ul><p>该成员功能与 <xref keyref="muteLocalAudioStream" /> 相同。加入频道后，你可以通过 <codeph>muteLocalAudioStream</codeph> 方法重新设置是否在频道内发布本地音频流。</p></pd>
+       </plentry>
+              <plentry>
+           <pt>publishLocalVideo</pt>
+           <pd>是否自动在频道没发布本地视频流：<ul>
+               <li><codeph><ph keyref="true" /></codeph>：（默认）发布。</li>
+               <li><codeph><ph keyref="false" /></codeph>: 不发布。</li>
+           </ul><p>该成员功能与 <xref keyref="muteLocalVideoStream" /> 相同。加入频道后，你可以通过 <codeph>muteLocalVideoStream</codeph> 方法重新设置是否在频道内发布本地视频流。</p></pd>
        </plentry>
    </parml>
         </section></refbody>
