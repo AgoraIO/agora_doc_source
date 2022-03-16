@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: non_constant_identifier_names, deprecated_member_use_from_same_package, unused_element
+
 part of 'event_handler_json.dart';
 
 // **************************************************************************
@@ -134,14 +136,14 @@ OnRecorderStateChangedJson _$OnRecorderStateChangedJsonFromJson(
         Map<String, dynamic> json) =>
     OnRecorderStateChangedJson(
       $enumDecode(_$RecorderStateEnumMap, json['state']),
-      $enumDecode(_$RecorderErrorEnumMap, json['error']),
+      $enumDecode(_$RecorderErrorCodeEnumMap, json['error']),
     );
 
 Map<String, dynamic> _$OnRecorderStateChangedJsonToJson(
         OnRecorderStateChangedJson instance) =>
     <String, dynamic>{
       'state': _$RecorderStateEnumMap[instance.state],
-      'error': _$RecorderErrorEnumMap[instance.error],
+      'error': _$RecorderErrorCodeEnumMap[instance.error],
     };
 
 const _$RecorderStateEnumMap = {
@@ -150,13 +152,13 @@ const _$RecorderStateEnumMap = {
   RecorderState.Stop: 3,
 };
 
-const _$RecorderErrorEnumMap = {
-  RecorderError.RECORDER_ERROR_NONE: 0,
-  RecorderError.RECORDER_ERROR_WRITE_FAILED: 1,
-  RecorderError.RECORDER_ERROR_NO_STREAM: 2,
-  RecorderError.RECORDER_ERROR_OVER_MAX_DURATION: 3,
-  RecorderError.RECORDER_ERROR_CONFIG_CHANGED: 4,
-  RecorderError.RECORDER_ERROR_CUSTOM_STREAM_DETECTED: 5,
+const _$RecorderErrorCodeEnumMap = {
+  RecorderErrorCode.None: 0,
+  RecorderErrorCode.WriteFailed: 1,
+  RecorderErrorCode.NoStream: 2,
+  RecorderErrorCode.OverMaxDuration: 3,
+  RecorderErrorCode.ConfigChanged: 4,
+  RecorderErrorCode.CustomStreamDetected: 5,
 };
 
 OnRecorderInfoUpdatedJson _$OnRecorderInfoUpdatedJsonFromJson(
