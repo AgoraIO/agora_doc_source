@@ -122,9 +122,12 @@
     publishDuration: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">class RemoteVideoStats {
-  
+                <codeblock props="flutter" outputclass="language-dart">
+class RemoteVideoStats {
   int uid;
+
+  @Deprecated(
+      'In scenarios where audio and video are synchronized, you can get the video  delay data from networkTransportDelay and jitterBufferDelay in RemoteAudioStats.')
   int delay;
   int width;
   int height;
