@@ -30,8 +30,8 @@ data class WhiteboardDrawingConfig(
         var color: Int = Color.WHITE,
         var fontSize: Int = 22,
         var thick: Int = 0) {
- 
-        fun set(config: AgoraUIDrawingConfig) {
+
+    fun set(config: AgoraUIDrawingConfig) {
         this.activeAppliance = config.activeAppliance
         this.color = config.color
         this.fontSize = config.fontSize
@@ -119,7 +119,7 @@ The user role.
 ## EduContextUserInfo
 
 ```kotlin
-// User Info
+// 用户信息
 data class EduContextUserInfo(
         val userUuid: String,
         val userName: String,
@@ -139,26 +139,26 @@ The volume information of users.
 ## EduContextUserDetailInfo
 
 ```kotlin
-// user: user information
-// streamUuid: stream Id
+// user: 用户信息
+// streamUuid: 流Id
 data class EduContextUserDetailInfo(val user: EduContextUserInfo, val streamUuid: String) {
-    // Is it a local user
+    // 是否是本地用户
     var isSelf: Boolean = true
-    // is online
+    // 是否在线
     var onLine: Boolean = false
-    // Are you on stage
+    // 是否在台上
     var coHost: Boolean = false
-    // Do you have whiteboard permissions
+    // 是否拥有白板权限
     var boardGranted: Boolean = false
-    // camera available status
+    // 摄像头可用状态
     var cameraState: DeviceState = DeviceState.UnAvailable
-    // Microphone available status
+    // 麦克风可用状态
     var microState: DeviceState = DeviceState.UnAvailable
-    // Whether to open the video
+    // 是否打开视频
     var enableVideo: Boolean = false
-    // Whether to open audio
+    // 是否打开音频
     var enableAudio: Boolean = false
-    // Number of rewards
+    // 奖励数量
     var rewardCount: Int = -1
 }
 ```
@@ -167,7 +167,7 @@ The detailed user information.
 
 | Parameter | Description |
 | :--- | :--- |
-|  |  |
+|      |      |
 
 ## DeviceState
 
@@ -190,23 +190,23 @@ The device state.
 ## EduContextChatItem
 
 ```kotlin
-// chat information
+// 聊天信息
 data class EduContextChatItem(
-        // The name of the message sender
+        // 信息发送者姓名
         var name: String = "",
-        // Information sender id
+        // 信息发送者id
         var uid: String = "",
-        // content
+        // 内容
         var message: String = "",
-        // Information Id
+        // 信息Id
         var messageId: Int = 0,
-        // Information type
+        // 信息类型
         var type: EduContextChatItemType = EduContextChatItemType.Text,
-        // Information Sources
+        // 信息来源
         var source: EduContextChatSource = EduContextChatSource.Remote,
-            // The system gets the result of a sent channel message
+        // 信息发送状态
         var state: EduContextChatState = EduContextChatState.Default,
-        // timestamp
+        // 时间戳
         var timestamp: Long = 0) {
 }
 ```
@@ -215,14 +215,14 @@ The information of the message.
 
 | Parameter | Description |
 | :--- | :--- |
-| `` |  |
-| `` |  |
-| `` |  |
-| `` |  |
-| `` |  |
-| `` |  |
-| `` |  |
-| `` |  |
+| `` |      |
+| `` |      |
+| `` |      |
+| `` |      |
+| `` |      |
+| `` |      |
+| `` |      |
+| `` |      |
 
 ## EduContextChatItemType
 

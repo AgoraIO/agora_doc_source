@@ -1,0 +1,30 @@
+name: Linting
+on: [pull_request]
+
+jobs:
+    prose:
+        # Trigger this job only if the pull request is from YiCAT English translation
+        if: startsWith(github.head_ref, 'l10n')
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@master
+
+            - name: Vale
+              uses: errata-ai/vale-action@v1.4.3
+              with:
+                  # Use the config that only lints markdown files for now
+                  config: https://github.com/AgoraDoc/doc_source/blob/master/.vale-md.ini
+                  # Only lint the modified files
+                  # files: __onlyModified
+                  # Only lint EN files
+                  # files: en-US/
+
+                  # Only lint modified lines
+                  # Currently cannot be used together with the files setting
+                  onlyAnnotateModifiedLines: true
+
+              env:
+                  # Required, set by GitHub actions automatically:
+                  # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#about-the-github_token-secret
+                  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

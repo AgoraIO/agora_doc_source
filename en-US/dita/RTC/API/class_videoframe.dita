@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoframe">
-    <title><ph keyref="VideoFrame"/></title>
+    <title><ph keyref="VideoFrame" /></title>
     <shortdesc id="short"><ph id="shortdesc">Configurations of the video frame</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
-                <codeblock props="windows" outputclass="language-cpp">struct VideoFrame { VIDEO_FRAME_TYPE type; int width; int height; int yStride; int uStride; int vStride; void* yBuffer; void* uBuffer; void* vBuffer; int rotation; int64_t renderTimeMs; int avsync_type; };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
+                <codeblock props="windows unity" outputclass="language-cpp">struct VideoFrame {
+   VIDEO_FRAME_TYPE type;
+   int width;
+   int height;
+   int yStride;
+   int uStride;
+   int vStride;
+   void* yBuffer;
+   void* uBuffer;
+   void* vBuffer;
+   int rotation;
+   int64_t renderTimeMs;
+   int avsync_type;
+   };</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
             </p>
         </section>
         <section id="detailed_desc">
@@ -20,11 +32,11 @@
    <p>The video data format is YUV420. Note that the buffer provides a pointer to a pointer. This interface cannot modify the pointer of the buffer but can modify the content of the buffer.</p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
    <parml>
        <plentry>
   <pt>type</pt>
-  <pd>The type of the video frame. See <xref keyref="VIDEO_FRAME_TYPE"/>.</pd>
+  <pd>The type of the video frame. See <xref keyref="VIDEO_FRAME_TYPE" />.</pd>
        </plentry>
        <plentry>
   <pt>width</pt>

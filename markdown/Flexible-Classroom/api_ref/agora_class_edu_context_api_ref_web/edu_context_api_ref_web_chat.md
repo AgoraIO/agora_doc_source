@@ -1,10 +1,4 @@
-# useChatContext
-
-`useChatContext()` 提供消息聊天相关能力。
-
-你可以通过 `import { useChatContext } from 'agora-edu-core';  ` 引入 `useChatContext`，然后使用 `const {...} = useChatContext()` 获取灵动课堂中消息聊天相关能力。
-
-以下具体列出 `useChatContext()` 提供的能力。
+`ChatContext` 提供消息聊天相关能力。
 
 ## isHost
 
@@ -17,10 +11,10 @@ isHost: boolean,
 ## getHistoryChatMessage
 
 ```typescript
-async getHistoryChatMessage(data: {
-    nextId: string,
-    sort: number
-}): array
+getHistoryChatMessage: (data: {
+    nextId: string;
+    sort: number;
+})=>Promise<any>,
 ```
 
 获取历史聊天消息。
@@ -42,35 +36,35 @@ messageList: array,
 ## sendMessage
 
 ```typescript
-async sendMessage(message: any): {
-    id,
-    ts,
-    text,
-    account,
-    sender,
-    messageId,
-    fromRoomName
-}
+sendMessage: (message: any) => Promise<{
+    id: string,
+    ts: number,
+    text: any,
+    account: string,
+    sender: boolean,
+    messageId: string,
+    fromRoomName: string,
+}>,
 ```
 发送聊天消息。
 
 
-| 参数     | 描述                                                         |
-| :------- | :----------------------------------------------------------- |
-| `message` | 聊天消息。  |
+| 参数      | 描述       |
+| :-------- | :--------- |
+| `message` | 聊天消息。 |
 
 
 ## muteChat
 
 ```typescript
-async muteChat(): void
+muteChat: () => void,
 ```
 禁止聊天。
 
 ## unmuteChat
 
 ```typescript
-async unmuteChat(): void
+unmuteChat: () => void,
 ```
 
 取消禁止聊天。
@@ -110,10 +104,10 @@ canChatting: boolean,
 ## addChatMessage
 
 ```typescript
-addChatMessage(args: any): void
+addChatMessage: (args: any) => void
 ```
 
-向聊天消息列表新增一条聊天消息。
+向本地消息列表新增一条聊天消息。
 
 | 参数   | 描述                               |
 | :----- | :--------------------------------- |

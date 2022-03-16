@@ -1,10 +1,4 @@
-# useChatContext
-
-`useChatContext()` enables developers to implement the chat function in the flexible classroom.
-
-You can import `useChatContext` by `import { useChatContext } from 'agora-edu-core';` and then use `const {...} = useChatContext()` to implement the functions and events related to classroom management.
-
-This page lists all the functions and events provided by `useChatContext()`.
+`ChatContext` enables developers to implement the chat function in the flexible classroom.
 
 ## isHost
 
@@ -12,18 +6,18 @@ This page lists all the functions and events provided by `useChatContext()`.
 isHost: boolean,
 ```
 
-Whether the role is the teacher or teaching assistant.
+Whether the local user is the teacher or teaching assistant.
 
 ## getHistoryChatMessage
 
 ```typescript
-async getHistoryChatMessage(data: {
-    nextId: string,
-    sort: number
-}): array
+getHistoryChatMessage: (data: {
+    nextId: string;
+    sort: number;
+})=>Promise<any>,
 ```
 
-Fetch the message history.
+Fetches the message history.
 
 Example:` getHistoryChatMeassage({nextId:"idstring", sort: 1})`
 
@@ -42,38 +36,38 @@ The message list.
 ## sendMessage
 
 ```typescript
-async sendMessage(message: any): {
-    id,
-    ts,
-    text,
-    account,
-    sender,
-    messageId,
-    fromRoomName
-}
+sendMessage: (message: any) => Promise<{
+    id: string,
+    ts: number,
+    text: any,
+    account: string,
+    sender: boolean,
+    messageId: string,
+    fromRoomName: string,
+}>,
 ```
-Send a message.
+Sends a message.
 
 
 | Parameter | Description |
-| :------- | :----------------------------------------------------------- |
+| :-------- | :--------- |
 | `message` | The message. |
 
 
 ## muteChat
 
 ```typescript
-async muteChat(): void
+muteChat: () => void,
 ```
-Disable the chat function.
+Disables the chat function.
 
 ## unmuteChat
 
 ```typescript
-async unmuteChat(): void
+unmuteChat: () => void,
 ```
 
-Enable the chat function.
+Enables the chat function.
 
 ## chatCollapse
 
@@ -81,7 +75,7 @@ Enable the chat function.
 chatCollapse: boolean,
 ```
 
-Whether is the chatbox is folded.
+Whether is the chat box is folded.
 
 ## toggleChatMinimize
 
@@ -89,7 +83,7 @@ Whether is the chatbox is folded.
 toggleChatMinimize(): void
 ```
 
-Fold or expand the chatbox.
+Folds or expands the chat box.
 
 ## unreadMessageCount
 
@@ -110,11 +104,11 @@ Whether the chat function is enabled.
 ## addChatMessage
 
 ```typescript
-addChatMessage(args: any): void
+addChatMessage: (args: any) => void
 ```
 
-Add a message to the message list.
+Adds a message to the message list.
 
 | Parameter | Description |
 | :----- | :--------------------------------- |
-| `args` | Pass in the object returned in the method of sending a message. |
+| `args` | Passes in the object which is returned in the method of sending a message. |

@@ -27,7 +27,8 @@
             <p>媒体播放器支持通过 key 和 value 来设置私有选项。 一般情况下，你无需知晓私有选项设置，使用媒体播放器默认的选项设置即可。</p>
             <note type="attention">
                 <ul>
-                    <li>请确保在 <xref keyref="open"/> 之后调用该方法。</li>
+                    <li>请确保在 <xref keyref="open"/> 之前调用该方法。</li>
+                    <li>如果你使用客户端旁路推流功能，且在推流过程中发送 SEI 信息，你需要调用 <apiname keyref="setPlayerOption"/><codeph>("sei_data_with_uuid", 1)</codeph> 方法，否则会导致 SEI 信息的丢失。</li>
                 </ul>
             </note>
         </section>

@@ -1,10 +1,48 @@
-# useRoomContext
+`RoomContext` enables developers to implement classroom management.
 
-`useRoomContext()` enables developers to implement the classroom management.
+## joined
 
-You can import `useRoomContext` by `import {useRoomContext} from'agora-edu-core';` and then use `const {...} = useRoomContext()` to implement the functions and events related to classroom management.
+```typescript
+joined: boolean;
+```
 
-This page lists all the functions and events provided by `useChatContext()`.
+> Since v1.1.5.
+
+Whether the local client successfully joins the class.
+
+## startCarousel
+
+```typescript
+startCarousel: ({
+    range,
+    type,
+    interval,
+}: {
+    range: number;
+    type: number;
+    interval: number;
+    }) => Promise<any>;
+```
+
+> Since v1.1.5.
+
+Enables the feature of students automatically going onto the "stage". Once the teacher or TA enables this feature, students go onto the "stage" at specified intervals. This feature is only applicable to the Small Classroom scenario. If the number of students in the classroom is less than or equal to 6, after calling this method, all students go onto the "stage" after an `interval`, but cannot be rotated.
+
+| Parameter | Description |
+| :--------- | :----------------------------------------------------------- |
+| `range` | Scope of students who automatically go onto the "stage":<li>`1`: All students in the classroom.</li><li>`2`: All students whose cameras are not disabled.</li> |
+| `type` | Order of students going onto the "stage":<li>Students go onto the "stage" in the order of joining the room.</li><li>Students go onto the "stage" randomly.</li> |
+| `interval` | The interval (seconds) for students going onto the "stage". The default value is 60. The value range is 10 to 99. |
+
+## stopCarousel
+
+```typescript
+stopCarousel: () => Promise<any>;
+```
+
+> Since v1.1.5.
+
+Disables the feature of students automatically going onto the "stage".
 
 ## sceneType
 
@@ -54,7 +92,7 @@ Start screen sharing by the window ID.
 async teacherAcceptHandsUp(userUuid: string): void
 ```
 
-The teacher accepts the student's application for speaking up.
+Kicks a student out of the classroom and prohibits the student from re-joining the classroom.
 
 | Parameter | Description |
 | :--------- | :-------- |
@@ -66,11 +104,51 @@ The teacher accepts the student's application for speaking up.
 async teacherRejectHandsUp(userUuid: string): void
 ```
 
-The teacher approves the student's application for speaking up.
+Kicks a student out of the classroom. The student who is kicked out of the classroom can re-join the classroom.
 
 | Parameter | Description |
 | :--------- | :-------- |
 | `userUuid` | The student ID. |
+| `roomUuid` | The room ID. |
+
+## liveClassStatus
+
+```typescript
+liveClassStatus: {
+    classState: string;
+    duration: number;
+},
+```
+
+> Deprecated as of v1.1.5. Use `liveClassStatus` in `LiveRoomStatsContext` instead.
+
+The current state of the classroom.
+
+## queryCameraDeviceState
+
+```typescript
+queryCameraDeviceState: (userList: EduUser[], userUuid: string, streamUuid: string) => any;
+```
+
+> Since v1.1.5.
+
+Gets the camera state.
+
+## queryMicrophoneDeviceState
+
+```typescript
+queryMicrophoneDeviceState: (userList: EduUser[], userUuid: string, streamUuid: string) => any;
+```
+
+> Since v1.1.5.
+
+Gets the microphone status.
+
+## isJoiningRoom
+
+```typescript
+isJoiningRoom: boolean,
+```
 
 ## handsUpStudentList
 
@@ -110,7 +188,7 @@ Whether the class has started.
 async kickOutOnce(userUuid: string, roomUuid: string): void
 ```
 
-Kick a student out of the classroom. The student who is kicked out of the classroom can re-join the classroom.
+Kicks a student out of the classroom. The student who is kicked out of the classroom can re-join the classroom.
 
 | Parameter | Description |
 | :--------- | :-------- |
@@ -123,7 +201,7 @@ Kick a student out of the classroom. The student who is kicked out of the classr
 async kickOutBan(userUuid: string, roomUuid: string): void
 ```
 
-Kick a student out of the classroom and prohibit the student from re-joining the classroom.
+Kicks a student out of the classroom and prohibits the student from re-joining the classroom.
 
 | Parameter | Description |
 | :--------- | :-------- |
@@ -141,7 +219,7 @@ The current state of the classroom.
 ## muteVideo
 
 ```typescript
-async muteVideo(userUuid: string, isLocal: boolean): void
+async muteVideo(userUuid: string, isLocal: boolean): void  
 ```
 
 Disable the video of the specified user.

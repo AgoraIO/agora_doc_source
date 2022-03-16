@@ -8,7 +8,7 @@
 abstract fun roomInfo(): EduContextRoomInfo
 ```
 
-获取教室相关信息。
+获取教室相关信息，详见[EduContextRoomInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextroominfo)。
 
 ### uploadLog
 
@@ -83,9 +83,9 @@ fun onClassState(state: EduContextClassState)
 
 报告课堂状态。
 
-| 参数    | 描述                                    |
-| :------ | :-------------------------------------- |
-| `state` | 课堂状态，详见 `EduContextClassState`。 |
+| 参数    | 描述                                                         |
+| :------ | :----------------------------------------------------------- |
+| `state` | 课堂状态，详见 [EduContextClassState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextclassstate)。 |
 
 ### onClassTime
 
@@ -111,9 +111,9 @@ fun onNetworkStateChanged(state: EduContextNetworkState)
 
 报告网络状态。
 
-| 参数    | 描述                                      |
-| :------ | :---------------------------------------- |
-| `state` | 网络状态，详见 `EduContextNetworkState`。 |
+| 参数    | 描述                                                         |
+| :------ | :----------------------------------------------------------- |
+| `state` | 网络状态，详见 [EduContextNetworkState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextnetworkstate)。 |
 
 ### onLogUploaded
 
@@ -135,9 +135,9 @@ fun onConnectionStateChanged(state: EduContextConnectionState)
 
 报告连接状态。
 
-| 参数    | 描述                                         |
-| :------ | :------------------------------------------- |
-| `state` | 连接状态，详见 `EduContextConnectionState`。 |
+| 参数    | 描述                                                         |
+| :------ | :----------------------------------------------------------- |
+| `state` | 连接状态，详见 [EduContextConnectionState](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextconnectionstate-1)。 |
 
 ### onClassTip
 
@@ -197,7 +197,7 @@ fun onFlexRoomPropsChanged(changedProperties: MutableMap<String, Any>,
 | `changedProperties` | 已更新的教室属性。                                           |
 | `properties`        | 全部教室属性。                                               |
 | `cause`             | 更新原因。                                                   |
-| `operator`          | 操作者，详见 `EduContextUserInfo`。`operator` 为空表示是由服务端更新。 |
+| `operator`          | 操作者，详见 [EduContextUserInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserinfo)。`operator` 为空表示是由服务端更新。 |
 
 ### onClassroomJoinSuccess
 

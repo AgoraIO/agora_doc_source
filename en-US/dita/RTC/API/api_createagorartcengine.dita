@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_createagorartcengine">
-    <title><ph keyref="createAgoraRtcEngine"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Creates the <apiname keyref="IRtcEngine"/> object.</ph></shortdesc>
+    <title><ph keyref="createAgoraRtcEngine" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Creates the <apiname keyref="IRtcEngine" /> object.</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -12,19 +12,37 @@
     </prolog>
     <refbody><section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
                 <codeblock props="windows" outputclass="language-cpp">AGORA_API agora::rtc::IRtcEngine *AGORA_CALL createAgoraRtcEngine ()</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">static Future&lt;RtcEngine&gt; create(String appId)</codeblock>
             </p>
-        
     </section>
         <section id="detailed_desc">
-   <p>Currently, the Agora RTC Native SDK supports creating only one <apiname keyref="IRtcEngine"/> object for an app.</p>
+            <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>This method is deprecated. Use <xref keyref="create2" /> instead.</dd>
+                </dlentry>
+            </dl>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt>appId</pt>
+                    <pd>The Agora App ID of your Agora project.</pd>
+                </plentry>
+            </parml>
         </section>
         <section id="return_values">
-   <title>Returns</title>Pointer to the <apiname keyref="IRtcEngine"/> object.</section></refbody>
+            <title>Returns</title>
+                <ul>
+                    <li>The <apiname keyref="IRtcEngine" /> instance, if the method call succeeds.</li>
+                    <li>An error code, if the call fails.</li>
+                </ul>
+        </section>
+    </refbody>
 </reference>

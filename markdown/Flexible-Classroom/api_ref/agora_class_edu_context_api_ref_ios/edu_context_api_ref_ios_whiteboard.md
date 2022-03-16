@@ -104,12 +104,8 @@ func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 
 报告本地是否有权限操作白板。
 
-- `enabled` 为 `true` 时，UI 层会提示：
-  - 中文：你可以使用白板了
-  - 英文：You can now use the whiteboard tools.
-- `enabled` 为 `false` 时，UI 层会提示：
-  - 中文：你现在无权使用白板了
-  - 英文：Your cannot use the whiteboard tools.
+- `enabled` 为 `true` 时，UI 层会提示：你可以使用白板了。
+- `enabled` 为 `false` 时，UI 层会提示：你现在无权使用白板了。
 
 | 参数      | 描述               |
 | :-------- | :----------------- |

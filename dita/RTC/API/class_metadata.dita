@@ -21,11 +21,24 @@
     timeStampMs: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">class Metadata {
+  int uid;
+
+  @JsonKey(ignore: true)
+  Uint8List? buffer;
+  int timeStampMs;
+
+  Metadata(this.uid, this.timeStampMs);
+
+  factory Metadata.fromJson(Map&lt;String, dynamic> json) =>
+      _$MetadataFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$MetadataToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
    <parml>
        <plentry>
   <pt>uid</pt>

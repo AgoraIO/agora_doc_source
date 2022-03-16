@@ -1,5 +1,3 @@
-# Extion App Context
-
 ## AgoraExtAppContext
 
 ### properties

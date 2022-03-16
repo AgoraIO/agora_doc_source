@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_mutelocalvideostream">
-    <title><ph keyref= "muteLocalVideoStream"/> </title>
+    <title><ph keyref="muteLocalVideoStream"/> </title>
     <shortdesc id="short"><ph id="shortdesc">取消或恢复发布本地视频流。</ph></shortdesc>
     <prolog>
         <metadata>
@@ -19,7 +19,7 @@
                 <codeblock props="electron" outputclass="language-typescript">muteLocalVideoStream(mute: boolean): number</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int MuteLocalVideoStream(bool mute);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteLocalVideoStream(bool muted);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -27,10 +27,8 @@
             <note type="attention">
                     <ul id="ul_ogk_hwc_f4b">
                         <li>相比于 <xref keyref="enableLocalVideo"/>(<codeph><ph keyref="false"/></codeph>) 用于控制本地视频流发送的方法，该方法响应速度更快。</li>
-                        <li>该方法不影响视频采集状态，没有禁用摄像头。 </li>
-                        <li props="rtc">该方法在加入频道前后都能调用。如果你在该方法后调用 <xref keyref="setChannelProfile"/> 方法，SDK
-                            会根据你设置的频道场景以及用户角色，重新设置是否停止发送本地视频。因此我们建议在 <apiname
-                                keyref="setChannelProfile"/> 后调用该方法。</li>
+                        <li>该方法不影响视频采集状态，没有禁用摄像头。</li>
+                        <li props="rtc">该方法在加入频道前后都能调用。如果你在该方法后调用 <xref keyref="setChannelProfile"/> 方法，SDK 会根据你设置的频道场景以及用户角色，重新设置是否停止发送本地视频。因此我们建议在 <apiname keyref="setChannelProfile"/> 后调用该方法。</li>
                     </ul>
                 </note>
         </section>
@@ -38,11 +36,11 @@
             <title>参数</title>
             <parml>
                 <plentry>
-                    <pt props="android">muted</pt>
+                    <pt props="android flutter">muted</pt>
                     <pt props="ios mac windows unity">mute</pt>
-                    <pd>
+                    <pd id="mute">
                         <p>是否取消发送本地视频流。
-                        <ul id="ul_xwr_mxc_f4b">
+                        <ul>
                             <li><codeph><ph keyref="true"/></codeph>: 取消发送本地视频流。</li>
                             <li><codeph><ph keyref="false"/></codeph>: （默认）发送本地视频流。</li>
                         </ul>
@@ -51,7 +49,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul id="ul_gkv_dxc_f4b">
                 <li>0: 方法调用成功</li>

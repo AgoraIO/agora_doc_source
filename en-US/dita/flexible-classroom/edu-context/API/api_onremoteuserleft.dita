@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onremoteuserleft">
+    <title><ph keyref="onRemoteUserLeft"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user leaves the room.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onRemoteUserLeft"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">fun onRemoteUserLeft(user: AgoraEduContextUserInfo,
+                     operator: AgoraEduContextUserInfo?,
+                     reason: EduContextUserLeftReason)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">void onRemoteUserLeft(AgoraEduContextUserInfo user,
+                      AgoraEduContextUserInfo operator,
+                      AgoraEduContextUserLeaveReason reason)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>user</pt>
+                    <pd>For the information of the user who leaves the room, see <xref keyref="AgoraEduContextUserInfo"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>operator</pt>
+                    <pd>The operator: <xref keyref="AgoraEduContextUserInfo"/>. If the remote user is kicked out of the room, the SDK returns this parameter.</pd>
+                </plentry>
+                <plentry>
+                    <pt>reason</pt>
+                    <pd>The reason for leaving the room. See <xref keyref="AgoraEduContextUserLeaveReason"/>. The default reason is <parmname keyref="normal"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

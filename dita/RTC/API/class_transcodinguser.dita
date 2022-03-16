@@ -6,8 +6,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public static class TranscodingUser {
+                <codeblock props="android" outputclass="language-java">  public static class TranscodingUser {
     public int uid;
+    public String userId;
 
     public int x;
     public int y;
@@ -17,6 +18,10 @@
     public int zOrder;
     public float alpha;
     public int audioChannel;
+
+    public TranscodingUser() {
+      alpha = 1;
+    }
   }</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLiveTranscodingUser : NSObject
 
@@ -26,26 +31,25 @@
 @property(assign, nonatomic) double alpha;
 @property(assign, nonatomic) NSInteger audioChannel;
 @end</codeblock>
-                <codeblock props="windows unity" outputclass="language-cpp">typedef struct TranscodingUser {
-    uid_t uid;
-    int x;
-    int y;
-    int width;
-    int height;
-    int zOrder;
-    double alpha;
-    int audioChannel;
-    TranscodingUser()
-        : uid(0)
-        , x(0)
-        , y(0)
-        , width(0)
-        , height(0)
-        , zOrder(0)
-        , alpha(1.0)
-        , audioChannel(0)
-    {}
-    } TranscodingUser;</codeblock>
+                <codeblock props="windows unity" outputclass="language-cpp">truct TranscodingUser {
+  uid_t uid;
+  int x;
+  int y;
+  int width;
+  int height;
+  int zOrder;
+  double alpha;
+  int audioChannel;
+  TranscodingUser()
+      : uid(0),
+        x(0),
+        y(0),
+        width(0),
+        height(0),
+        zOrder(0),
+        alpha(1.0),
+        audioChannel(0) {}
+};</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">export interface TranscodingUser {
     uid: number;
     x: number;
@@ -57,11 +61,51 @@
     audioChannel: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">class TranscodingUser {
+  
+  int uid;
+
+  @JsonKey(includeIfNull: false)
+  int? x;
+
+  @JsonKey(includeIfNull: false)
+  int? y;
+
+  @JsonKey(includeIfNull: false)
+  int? width;
+
+  @JsonKey(includeIfNull: false)
+  int? height;
+
+  @JsonKey(includeIfNull: false)
+  int? zOrder;
+
+  @JsonKey(includeIfNull: false)
+  double? alpha;
+
+  @JsonKey(includeIfNull: false)
+  AudioChannel? audioChannel;
+
+  TranscodingUser(
+    this.uid, {
+    this.x,
+    this.y,
+    this.width,
+    this.height,
+    this.zOrder,
+    this.alpha,
+    this.audioChannel,
+  });
+
+  factory TranscodingUser.fromJson(Map&lt;String, dynamic> json) =>
+      _$TranscodingUserFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$TranscodingUserToJson(this);
+}</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
         <parml>
    <plentry>
        <pt>uid</pt>

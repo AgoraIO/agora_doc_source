@@ -1,5 +1,3 @@
-# Extension App Context
-
 ## ExtAppContext
 
 `ExtAppContext` 类提供可供 App 调用的扩展应用相关方法。

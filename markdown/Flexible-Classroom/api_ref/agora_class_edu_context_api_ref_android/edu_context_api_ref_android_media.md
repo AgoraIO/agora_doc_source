@@ -58,6 +58,10 @@ abstract fun publishStream(type: EduContextMediaStreamType)
 
 将流发布到远端，包括当前摄像头采集的视频流和麦克风采集的音频流。
 
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
+| `type` | 媒体流类型，详见 [EduContextMediaStreamType](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextmediastreamtype)。 |
+
 ### unpublishStream
 
 ```kotlin
@@ -65,6 +69,10 @@ abstract fun unPublishStream(type: EduContextMediaStreamType)
 ```
 
 取消发布流。
+
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
+| `type` | 媒体流类型，详见 [EduContextMediaStreamType](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextmediastreamtype)。 |
 
 ### renderRemoteView
 
@@ -87,6 +95,6 @@ abstract fun setVideoEncoderConfig(videoEncoderConfig: EduContextVideoEncoderCon
 
 设置视频编码配置。
 
-| 参数                 | 描述                                                |
-| :------------------- | :-------------------------------------------------- |
-| `videoEncoderConfig` | 视频编码配置，详见 `EduContextVideoEncoderConfig`。 |
+| 参数                 | 描述                                                         |
+| :------------------- | :----------------------------------------------------------- |
+| `videoEncoderConfig` | 视频编码配置，详见 [EduContextVideoEncoderConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextvideoencoderconfig)。 |

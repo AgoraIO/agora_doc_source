@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imediaplayersourceobserver_onpreloadevent">
+    <title><ph keyref="onPreloadEvent"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the events of preloaded media resources.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPreloadEvent"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">void onPreloadEvent(String src, Constants.MediaPlayerPreloadEvent event);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
+            didPreloadEvent:(AgoraMediaPlayerPreloadEvent)event;
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual void onPreloadEvent(const char* src, media::base::PLAYER_PRELOAD_EVENT event) = 0;
+</codeblock>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry conkeyref="onPlayerEvent/playerkit" props="ios mac">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry props="android windows">
+                    <pt>src</pt>
+                    <pd>The URL of the media resource.</pd>
+                </plentry>
+                <plentry>
+                    <pt>event</pt>
+                    <pd>Events that occur when media resources are preloaded. See <xref keyref="PLAYER_PRELOAD_EVENT"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

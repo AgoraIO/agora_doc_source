@@ -2,17 +2,49 @@
 
 `WhiteboardContext` provides the methods that can be called by your app for the whiteboard.
 
+### initWhiteboard
+
+```kotlin
+abstract fun initWhiteboard(container: ViewGroup)
+```
+
+Initializes the whiteboard.
+
+### joinWhiteboard
+
+```kotlin
+abstract fun joinWhiteboard()
+```
+
+Joins a whiteboard room.
+
+### isGranted
+
+```kotlin
+abstract fun isGranted(): Boolean
+```
+
+Sets whether the local client has permission to operate the whiteboard.
+
+### leave
+
+```kotlin
+abstract fun leave()
+```
+
+Leaves a whiteboard room.
+
 ### selectAppliance
 
 ```kotlin
 abstract fun selectAppliance(type: WhiteboardApplianceType)
 ```
 
-Select a whiteboard basic editing tool.
+Selects a whiteboard basic editing tool.
 
 | Parameter | Description |
-| :----- | :------------------------------------------------- |
-| `type` | The whiteboard editing tool type. See `WhiteboardApplianceType`. |
+| :----- | :----------------------------------------------------------- |
+| `type` | The whiteboard editing tool type. See [WhiteboardApplianceType](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboardappliancetype). |
 
 ### selectColor
 
@@ -20,7 +52,7 @@ Select a whiteboard basic editing tool.
 abstract fun selectColor(color: Int)
 ```
 
-Select a color.
+Selects a color.
 
 | Parameter | Description |
 | :------ | :----- |
@@ -32,7 +64,7 @@ Select a color.
 abstract fun selectFontSize(size: Int)
 ```
 
-Select a font size.
+Selects a font size.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -44,7 +76,7 @@ Select a font size.
 abstract fun selectThickness(thick: Int)
 ```
 
-Select the line thickness.
+Selects the line thickness.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -56,7 +88,7 @@ Select the line thickness.
 abstract fun selectRoster(anchor: View)
 ```
 
-Click the user list.
+Clicks the user list.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -70,7 +102,7 @@ abstract fun setBoardInputEnable(enable: Boolean)
 
 | Parameter | Description |
 | :--- | :--- |
-| `enable` | Enable or disable the whiteboard basic editing tools and page controller. When a whiteboard courseware downloading progress bar or dialog box appears, the whiteboard basic tools and page controller are not available. |
+| `enable` | Enables or disables the whiteboard basic editing tools and page controller. When a whiteboard courseware downloading progress bar or dialog box appears, the whiteboard basic tools and page controller are not available. |
 
 ### skipDownload
 
@@ -78,7 +110,7 @@ abstract fun setBoardInputEnable(enable: Boolean)
 abstract fun skipDownload(url: String?)
 ```
 
-Skip the courseware download.
+Skips the courseware download.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -90,7 +122,7 @@ Skip the courseware download.
 abstract fun cancelDownload(url: String?)
 ```
 
-Cancel the courseware download.
+Cancels the courseware download.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -102,7 +134,7 @@ Cancel the courseware download.
 abstract fun retryDownload(url: String?)
 ```
 
-Retry the courseware download.
+Retries the courseware download.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -114,7 +146,7 @@ Retry the courseware download.
 abstract fun setFullScreen(full: Boolean)
 ```
 
-Make the whiteboard full screen.
+Makes the whiteboard full screen.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -126,7 +158,7 @@ Make the whiteboard full screen.
 abstract fun setZoomOut()
 ```
 
-Zoom out the whiteboard. Every time you call this method, the whiteboard is zoomed out by 20%.
+Zooms out the whiteboard. Every time you call this method, the whiteboard is zoomed out by 20%.
 
 ### setZoomIn
 
@@ -134,7 +166,7 @@ Zoom out the whiteboard. Every time you call this method, the whiteboard is zoom
 abstract fun setZoomIn()
 ```
 
-Zoom in the whiteboard. Every time you call this method, the whiteboard is zoomed in by 20%.
+Zooms in the whiteboard. Every time you call this method, the whiteboard is zoomed in by 20%.
 
 ### setPrevPage
 
@@ -142,7 +174,7 @@ Zoom in the whiteboard. Every time you call this method, the whiteboard is zoome
 abstract fun setPrevPage()
 ```
 
-Go to the previous page.
+Goes to the previous page.
 
 ### setNextPage
 
@@ -150,11 +182,48 @@ Go to the previous page.
 abstract fun setNextPage()
 ```
 
-Go to the next page.
+Goes to the next page.
 
 ## WhiteboardHandler
 
 `WhiteboardContext` reports whiteboard-related event callbacks to the app.
+
+### onWhiteboardJoinSuccess
+
+```kotlin
+fun onWhiteboardJoinSuccess(config: WhiteboardDrawingConfig)
+```
+
+Occurs when the local cliet successfully joins the whiteboard room.
+
+| Parameter | Description |
+| :------- | :----------------------------------------------------------- |
+| `config` | The initial configuration of the whiteboard. See [WhiteboardDrawingConfig](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboarddrawingconfig). |
+
+### onWhiteboardJoinFail
+
+```kotlin
+fun onWhiteboardJoinFail(msg: String)
+```
+
+Occurs when the local client fails to join the whiteboard room.
+
+| Parameter | Description |
+| :---- | :--------- |
+| `msg` | The error message. |
+
+### onWhiteboardLeft
+
+```kotlin
+fun onWhiteboardLeft(boardId: String, timestamp: Long)
+```
+
+Occurs when the local client successfully leaves the whiteboard room.
+
+| Parameter | Description |
+| :---------- | :------------------- |
+| `boardId` | The whiteboard ID. |
+| `timestamp` | The timestamp when the local client leaves the whiteboard room. |
 
 ### getBoardContainer
 
@@ -162,7 +231,7 @@ Go to the next page.
 fun getBoardContainer(): ViewGroup?
 ```
 
-Get the whiteboard container ViewGroup.
+Gets the whiteboard container ViewGroup.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -179,7 +248,7 @@ Indicates the initial tool configuration of the whiteboard.
 
 | Parameter | Description |
 | :--- | :--- |
-| `config` | The initial configuration of the whiteboard. See `WhiteboardDrawingConfig`. |
+| `config` | The initial configuration of the whiteboard. See [WhiteboardDrawingConfig](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboarddrawingconfig). |
 
 ### onDrawingEnabled
 
@@ -230,8 +299,8 @@ Indicates whether the page zoom function is enabled.
 
 | Parameter | Description |
 | :--- | :--- |
-| `zoomOutEnabled` | Whether the zooming out function is enabled. |
-| `zoomInEnabled` | Whether the zooming in function is enabled. |
+| `zoomOutEnabled` | Whether the local user has permission to zoom out the whiteboard. |
+| `zoomInEnabled` | Whether the local user has permission to zoom in the whiteboard. |
 
 ### onFullScreenEnabled
 
@@ -269,17 +338,17 @@ Indicates whether the whiteboard page controller is enabled.
 | `enabled` | Indicates whether the whiteboard page controller is enabled. |
 
 
-### onLoadingVisible
+### onBoardPhaseChanged
 
 ```kotlin
-fun onLoadingVisible(visible: Boolean)
+fun onBoardPhaseChanged(phase: EduBoardRoomPhase)
 ```
 
-Indicates whether the whiteboard loading status is visible.
+Occurs when the whiteboard connection state changes.
 
 | Parameter | Description |
 | :--- | :--- |
-| `visible` | Whether the whiteboard loading status is visible. |
+| `phase` | The connection state of the whiteboard. See [EduBoardRoomPhase](/en/agora-class/edu_context_api_ref_android_type_def?platform=Android#eduboardroomphase). |
 
 
 ### onDownloadProgress

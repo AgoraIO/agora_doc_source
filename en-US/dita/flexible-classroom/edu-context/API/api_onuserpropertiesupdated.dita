@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_onuserpropertiesupdated">
+    <title><ph keyref="onUserPropertiesUpdated"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the custom user properties are updated.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onUserPropertiesUpdated"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">fun onUserPropertiesUpdated(user: AgoraEduContextUserInfo,
+                            properties: Map&lt;String, Any>,
+                            cause: Map&lt;String, Any>?,
+                            operator: AgoraEduContextUserInfo?)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">void onUserPropertiesUpdated(AgoraEduContextUserInfo user,
+                             Map&lt;String, String> changedProperties,
+                             Map&lt;String, String> cause,
+                             AgoraEduContextUserInfo operator)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p/>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt>user</pt>
+                    <pd>The user information: <xref keyref="AgoraEduContextUserInfo"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt props="ios">changedProperties</pt>
+                    <pt props="android">properties</pt>
+                    <pd>The updated user properties.</pd>
+                </plentry>
+                <plentry>
+                    <pt>cause</pt>
+                    <pd>The update reason.</pd>
+                </plentry>
+                <plentry conkeyref="onRoomPropertiesUpdated/operator">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

@@ -8,7 +8,7 @@
 func boardInputEnable(_ enable: Bool)
 ```
 
-Enable or disable the whiteboard basic editing tools.
+Enables or disables the whiteboard basic editing tools.
 
 | Parameter | Description |
 | :------- | :--------------------- |
@@ -20,7 +20,7 @@ Enable or disable the whiteboard basic editing tools.
 func skipDownload(_ url: String)
 ```
 
-Skip the courseware download.
+Skips the courseware download.
 
 | Parameter | Description |
 | :---- | :------------- |
@@ -32,7 +32,7 @@ Skip the courseware download.
 func cancelDownload(_ url: String)
 ```
 
-Cancel the courseware download.
+Cancels the courseware download.
 
 | Parameter | Description |
 | :---- | :------------- |
@@ -44,7 +44,7 @@ Cancel the courseware download.
 func retryDownload(_ url: String)
 ```
 
-Retry the courseware download.
+Retries the courseware download.
 
 | Parameter | Description |
 | :---- | :------------- |
@@ -56,7 +56,15 @@ Retry the courseware download.
 func boardRefreshSize()
 ```
 
-Refresh the whiteboard size. You need to call this method when the size of the whiteboard container changes.
+Refreshes the whiteboard size. You need to call this method when the size of the whiteboard container changes.
+
+### getContentView
+
+```swift
+func getContentView() -> UIView?
+```
+
+Gets the whiteboard container view. If the whiteboard is not initialized successfully, this method returns `nil`.
 
 ### registerBoardEventHandler
 
@@ -64,7 +72,7 @@ Refresh the whiteboard size. You need to call this method when the size of the w
 func registerBoardEventHandler(_ handler: AgoraEduWhiteBoardHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 | Parameter | Description |
 | :-------- | :--------------------------------- |
@@ -72,44 +80,59 @@ Register the event listener.
 
 ## AgoraEduWhiteBoardHandler
 
-### onGetBoardContainer
+### onBoardContentView
 
 ```swift
-@objc optional func onGetBoardContainer() -> UIView
+@objc optional func onBoardContentView(_ view: UIView)
 ```
 
-Gets the whiteboard container view.
+> Since v1.1.5.
 
-### onSetDrawingEnabled
+Returns the whiteboard container view.
+
+| Parameter | Description |
+| :----- | :-------------- |
+| `view` | The whiteboard container view. |
+
+### onDrawingEnabled
 
 ```swift
-@objc optional func onSetDrawingEnabled(_ enabled: Bool)
+@objc optional func onDrawingEnabled(_ enabled: Bool)
 ```
 
-Indicates whether the whiteboard basic editing tools are enabled.
+> Since v1.1.5.
+
+Reports whether the local client has permission to make drawings on the whiteboard.
+
+- When `enabled` is `true`, Flexible Classroom triggers a pop-up window saying "You can now use the whiteboard tools".
+- When `enabled` is `false`, Flexible Classroom triggers a pop-up window saying "You cannot use the whiteboard tools".
 
 | Parameter | Description |
 | :-------- | :----------------- |
-| `enabled` | Whether the whiteboard editing tools are enabled. |
+| `enabled` | Whether the local client has permission to make drawings on the whiteboard. |
 
-### onSetLoadingVisible
+### onLoadingVisible
 
 ```swift
-@objc optional func onSetLoadingVisible(_ visible: Bool)
+@objc optional func onLoadingVisible(_ visible: Bool)
 ```
 
-Indicates whether the whiteboard loading status is visible.
+> Since v1.1.5.
+
+Indicates whether the whiteboard bar status is visible.
 
 | Parameter | Description |
 | :-------- | :--------------------- |
-| `visible` | Whether the whiteboard loading status is visible. |
+| `visible` | Whether the whiteboard loading bar is visible. |
 
-### onSetDownloadProgress
+### onDownloadProgress
 
 ```swift
-@objc optional func onSetDownloadProgress(_ url: String,
-                                            progress: Float)
+@objc optional func onDownloadProgress(_ url: String,
+                                    progress: Float)
 ```
+
+> Since v1.1.5.
 
 Indicates the progress of the current courseware download.
 
@@ -118,29 +141,33 @@ Indicates the progress of the current courseware download.
 | `url` | The download link of the file. |
 | `progress` | The courseware download progress. The value range is 0 to 100. |
 
-### onSetDownloadTimeOut
+### onDownloadTimeout
 
 ```swift
-@objc optional func onSetDownloadTimeOut(_ url: String)
+@objc optional func onDownloadTimeOut(_ url: String)
 ```
+
+> Since v1.1.5.
 
 Occurs when the courseware download task times out. When a courseware download task takes more than 15 seconds, the SDK triggers this callback.
 
 | Parameter | Description |
-| :---- | :------------------ |
+| :---- | :------------- |
 | `url` | The download link of the file. |
 
 
-### onSetDownloadComplete
+### onDownloadComplete
 
 ```swift
-@objc optional func onSetDownloadComplete(_ url: String)
+@objc optional func onDownloadComplete(_ url: String)
 ```
+
+> Since v1.1.5.
 
 Occurs when the courseware download task completes.
 
 | Parameter | Description |
-| :---- | :------------------ |
+| :---- | :------------- |
 | `url` | The download link of the file. |
 
 
@@ -153,32 +180,16 @@ Occurs when the courseware download task completes.
 Occurs when the courseware download task fails.
 
 | Parameter | Description |
-| :---- | :------------------ |
+| :---- | :------------- |
 | `url` | The download link of the file. |
 
 ### onCancelCurDownload
 
 ```swift
-@objc optional func onCancelCurDownload ()
+@objc optional func onCancelCurDownload()
 ```
 
 Occurs when the current courseware download task is canceled.
-
-| Parameter | Description |
-| :---- | :------------------ |
-| `url` | The download link of the file. |
-
-### onShowPermissionTips
-
-```swift
-@objc optional func onShowPermissionTips(_ granted: Bool)
-```
-
-Occurs when the whiteboard permission changes.
-
-| Parameter | Description |
-| :-------- | :----------------- |
-| `granted` | Whether the local client has the permission of drawing on the whiteboard. |
 
 ## AgoraEduWhiteBoardToolContext
 
@@ -190,7 +201,7 @@ Occurs when the whiteboard permission changes.
 func applianceSelected(_ mode: AgoraEduContextApplianceType)
 ```
 
-Select a whiteboard basic editing tool.
+Selects a whiteboard basic editing tool.
 
 | Parameter | Description |
 | :----- | :-------------------------------------------------- |
@@ -202,7 +213,7 @@ Select a whiteboard basic editing tool.
 func colorSelected(_ color: UIColor)
 ```
 
-Select a color.
+Selects a color.
 
 | Parameter | Description |
 | :------ | :----- |
@@ -214,7 +225,7 @@ Select a color.
 func fontSizeSelected(_ size: Int)
 ```
 
-Select a font size.
+Selects a font size.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -226,7 +237,7 @@ Select a font size.
 func thicknessSelected(_ thick: Int)
 ```
 
-Select the line thickness.
+Selects the line thickness.
 
 | Parameter | Description |
 | :--- | :--- |
@@ -234,29 +245,31 @@ Select the line thickness.
 
 ## AgoraEduWhiteBoardPageControlContext
 
+`AgoraEduWhiteBoardContext` provides the methods that can be called by your app for the whiteboard page controller.
+
 ### zoomOut
 
 ```swift
 func zoomOut()
 ```
 
-Zoom out the whiteboard. Every time you call this method, the whiteboard is zoomed out by 10%.
+Zooms out the whiteboard. Every time you call this method, the whiteboard is zoomed out by 10%.
 
 ### zoomIn
 
 ```swift
-func zoomIn ()
+func zoomIn()
 ```
 
-Zoom in the whiteboard. Every time you call this method, the whiteboard is zoomed in by 10%.
+Zooms in the whiteboard. Every time you call this method, the whiteboard is zoomed in by 10%.
 
 ### prevPage
 
 ```swift
-func prevPage ()
+func prevPage()
 ```
 
-Go to the previous page.
+Goes to the previous page.
 
 ### nextPage
 
@@ -264,7 +277,7 @@ Go to the previous page.
 func nextPage()
 ```
 
-Go to the next page.
+Goes to the next page.
 
 ### registerPageControlEventHandler
 
@@ -272,16 +285,18 @@ Go to the next page.
 func registerPageControlEventHandler(_ handler: AgoraEduWhiteBoardPageControlHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 ## AgoraEduWhiteBoardPageControlHandler
 
-### onSetPageIndex
+### onPageIndex
 
 ```swift
-@objc optional func onSetPageIndex(_ pageIndex: NSInteger,
-                                     pageCount: NSInteger)
+@objc optional func onPageIndex(_ pageIndex: NSInteger,
+                                  pageCount: NSInteger)
 ```
+
+> Since v1.1.5.
 
 Indicates the current page number and total page number of the whiteboard.
 
@@ -291,50 +306,58 @@ Indicates the current page number and total page number of the whiteboard.
 | `pageCount` | The total number of pages. |
 
 
-### onSetPagingEnable
+### onPagingEnable
 
 ```swift
-@objc optional func onSetPagingEnable(_ enable: Bool)
+@objc optional func onPagingEnable(_ enable: Bool)
 ```
 
-Indicates whether the whiteboard page navigator is enabled.
+> Since v1.1.5.
+
+Reports whether the local user has permission to turn pages.
 
 | Parameter | Description |
 | :------- | :----------- |
 | `enable` | Whether the paging function is enabled. |
 
 
-### onSetZoomEnable
+### onZoomEnable
 
 ```swift
-@objc optional func onSetZoomEnable(_ zoomOutEnable: Bool,
-                                      zoomInEnable: Bool)
+@objc optional func onZoomEnable(_ zoomOutEnable: Bool,
+                                    zoomInEnable: Bool)
 ```
 
-Indicates whether the page zoom function is enabled.
+> Since v1.1.5.
+
+Reports whether the local user has permission to zoom in or zoom out the whiteboard.
 
 | Parameter | Description |
 | :-------------- | :----------- |
-| `zoomOutEnable` | Whether the zooming out function is enabled. |
-| `zoomInEnable` | Whether the zooming in function is enabled. |
+| `zoomOutEnable` | Whether the local user has permission to zoom out the whiteboard. |
+| `zoomInEnable` | Whether the local user has permission to zoom in the whiteboard. |
 
-### onSetResizeFullScreenEnable
+### onResizeFullScreenEnable
 
 ```swift
-@objc optional func onSetResizeFullScreenEnable(_ enable: Bool)
+@objc optional func onResizeFullScreenEnable(_ enable: Bool)
 ```
 
-Indicates whether the whiteboard full-screen function is enabled.
+> Since v1.1.5.
+
+Reports whether the local user has permission to make the whiteboard full-screen.
 
 | Parameter | Description |
 | :------- | :--------------- |
 | `enable` | Whether the whiteboard full-screen function is enabled. |
 
-### onSetFullScreen
+### onFullScreen
 
 ```swift
-@objc optional func onSetFullScreen(_ fullScreen: Bool)
+@objc optional func onFullScreen(_ fullScreen: Bool)
 ```
+
+> Since v1.1.5.
 
 Indicates whether the whiteboard is full screen.
 

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiorecordingconfiguration_ng">
+    <title><ph keyref="AudioRecordingConfiguration" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Recording configuration.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class AudioRecordingConfiguration {
+  public String filePath;
+  public int sampleRate;
+  public boolean codec;
+  public int fileRecordOption;
+  public int quality;
+
+  public AudioRecordingConfiguration() {
+    sampleRate = 32000;
+    codec = true;
+    fileRecordOption = Constants.AUDIO_FILE_RECORDING_MIXED;
+    quality = Constants.AUDIO_RECORDING_QUALITY_LOW;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioRecordingConfiguration: NSObject
+@property (copy, nonatomic) NSString * _Nullable filePath;
+@property (assign, nonatomic) BOOL codec;
+@property (assign, nonatomic) NSUInteger sampleRate;
+@property (assign, nonatomic) AgoraAudioFileRecordingType fileRecordOption;
+@property (assign, nonatomic) AgoraAudioRecordingQuality quality;
+@end</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">struct AudioRecordingConfiguration {
+  const char* filePath;
+  bool encode;
+  int sampleRate;
+  AUDIO_FILE_RECORDING_TYPE fileRecordingType;
+  AUDIO_RECORDING_QUALITY_TYPE quality;
+
+  AudioRecordingConfiguration()
+    : filePath(NULL),
+      encode(false),
+      sampleRate(32000),
+      fileRecordingType(AUDIO_FILE_RECORDING_MIXED),
+      quality(AUDIO_RECORDING_QUALITY_LOW) {}
+
+  AudioRecordingConfiguration(const char* file_path, int sample_rate, AUDIO_RECORDING_QUALITY_TYPE quality_type)
+    : filePath(file_path),
+      encode(false),
+      sampleRate(sample_rate),
+      fileRecordingType(AUDIO_FILE_RECORDING_MIXED),
+      quality(quality_type) {}
+
+  AudioRecordingConfiguration(const char* file_path, bool enc, int sample_rate, AUDIO_FILE_RECORDING_TYPE type, AUDIO_RECORDING_QUALITY_TYPE quality_type)
+    : filePath(file_path),
+      encode(enc),
+      sampleRate(sample_rate),
+      fileRecordingType(type),
+      quality(quality_type) {}
+
+  AudioRecordingConfiguration(const AudioRecordingConfiguration &amp;rhs)
+    : filePath(rhs.filePath),
+      encode(rhs.encode),
+      sampleRate(rhs.sampleRate),
+      fileRecordingType(rhs.fileRecordingType),
+      quality(rhs.quality) {}
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+                <plentry id="filepath">
+                    <pt>filePath</pt>
+                    <pd>The absolute path (including the filename extensions) of the recording file. For example: <codeph><ph keyref="filePath-example" /></codeph>.
+                        <note id="note_scm_klz_mqb" type="attention">
+                            <p>Ensure that the directory for the log files exists and is writable.</p>
+                        </note></pd>
+                </plentry>
+                <plentry>
+                    <pt props="windows">encode</pt>
+                    <pt props="android ios mac">codec</pt>
+                    <pd>Whether to encode the audio data:<ul id="ul_bnv_mlz_mqb">
+                            <li><codeph><ph keyref="true" /></codeph>: Encode audio data in AAC.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not encode audio data, but save the recorded audio data directly.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>sampleRate</pt>
+                    <pd>Recording sample rate (Hz).<ul id="ul_pqs_slz_mqb">
+                            <li>16000</li>
+                            <li>(Default) 32000</li>
+                            <li>44100</li>
+                            <li>48000</li>
+                        </ul><note type="attention" id="note_gdq_zlz_mqb">
+                            <p>If you set this parameter to 44100 or 48000, Agora recommends recording WAV files, or AAC files with <parmname>quality</parmname> to be <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" /> or <ph keyref="AUDIO_RECORDING_QUALITY_HIGH" /> for better recording quality.</p>
+                        </note></pd>
+                </plentry>
+                <plentry>
+                    <pt props="windows">fileRecordingType</pt>
+                    <pt props="android ios mac">fileRecordOption</pt>
+                    <pd><p props="ios mac windows">The recording content. See <xref keyref="AUDIO_RECORDING_POSITION" />.</p>
+                        <p props="android">Recording content:<ul>
+                            <li><ph keyref="AUDIO_RECORDING_POSITION_RECORDING" /> (1): Only records the audio of the local user.</li>
+                            <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_PLAYBACK" /> (2): Only records the audio of all remote users.</li>
+                            <li><ph keyref="AUDIO_RECORDING_POSITION_MIXED_RECORDING_AND_PLAYBACK" /> (3): (Default) Records the mixed audio of the local and all remote users.</li>
+                        </ul>
+                    </p>
+                    </pd>
+                </plentry>
+                <plentry>
+                    <pt>quality</pt>
+                    <pd><p props="ios mac windows">Recording quality. See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />.</p>
+                        <p props="android">Recording quality.<ul>
+                                <li><ph keyref="AUDIO_RECORDING_QUALITY_LOW" /> (0): Low quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 1.2 MB.</li>
+                                <li><ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" /> (1): (Default) Medium quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 2 MB.</li>
+                                <li><ph keyref="AUDIO_RECORDING_QUALITY_HIGH" /> (2): High quality. For example, the size of an AAC file with a sample rate of 32,000 Hz and a recording duration of 10 minutes is around 3.75 MB.</li>
+                            </ul>
+                        </p>
+
+                        <note id="note_hrx_mmz_mqb" type="attention">
+                            <p>Note: This parameter applies to AAC files only.</p>
+                        </note></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

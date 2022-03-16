@@ -21,7 +21,32 @@
     autoSubscribeVideo: boolean;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">class ChannelMediaOptions {
+
+  @JsonKey(includeIfNull: false)
+  bool? autoSubscribeAudio;
+
+  @JsonKey(includeIfNull: false)
+  bool? autoSubscribeVideo;
+
+  @JsonKey(includeIfNull: false)
+  bool? publishLocalAudio;
+
+  @JsonKey(includeIfNull: false)
+  bool? publishLocalVideo;
+
+  ChannelMediaOptions({
+    this.autoSubscribeAudio,
+    this.autoSubscribeVideo,
+    this.publishLocalAudio,
+    this.publishLocalVideo,
+  });
+
+  factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic> json) =>
+      _$ChannelMediaOptionsFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$ChannelMediaOptionsToJson(this);
+}</codeblock>
             </p>
         </section>
         <section>
@@ -33,7 +58,7 @@
             </dl>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
    <parml>
        <plentry>
   <pt>autoSubscribeAudio</pt>
@@ -52,6 +77,20 @@
   </ul>
   该成员功能与 <xref keyref="muteAllRemoteVideoStreams"/> 相同。加入频道后，你可以通过 <apiname>muteAllRemoteVideoStreams</apiname> 方法重新设置是否订阅频道内的远端视频流。
   </pd>
+       </plentry>
+       <plentry>
+           <pt>publishLocalAudio</pt>
+           <pd>是否自动在频道没发布本地音频流：<ul>
+               <li><codeph><ph keyref="true"/></codeph>：（默认）发布。</li>
+               <li><codeph><ph keyref="false"/></codeph>: 不发布。</li>
+           </ul><p>该成员功能与 <xref keyref="muteLocalAudioStream"></xref> 相同。加入频道后，你可以通过 <codeph>muteLocalAudioStream</codeph> 方法重新设置是否在频道内发布本地音频流。</p></pd>
+       </plentry>
+              <plentry>
+           <pt>publishLocalVideo</pt>
+           <pd>是否自动在频道没发布本地视频流：<ul>
+               <li><codeph><ph keyref="true"/></codeph>：（默认）发布。</li>
+               <li><codeph><ph keyref="false"/></codeph>: 不发布。</li>
+           </ul><p>该成员功能与 <xref keyref="muteLocalVideoStream"/> 相同。加入频道后，你可以通过 <codeph>muteLocalVideoStream</codeph> 方法重新设置是否在频道内发布本地视频流。</p></pd>
        </plentry>
    </parml>
         </section></refbody>
