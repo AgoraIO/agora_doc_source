@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="class_channelmediaoptions">
+<reference id="class_channelmediaoptions_ng">
     <title><ph keyref="ChannelMediaOptions"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The channel media options.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">频道媒体设置选项。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -17,6 +17,7 @@
   public Boolean publishMediaPlayerVideoTrack;
   public Integer publishMediaPlayerId;
   public Boolean publishAudioTrack;
+  public Integer publishCustomAudioSourceId;
   public Boolean autoSubscribeAudio;
   public Boolean autoSubscribeVideo;
   public Boolean enableAudioRecordingOrPlayout;
@@ -27,7 +28,6 @@
   public String token;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
-
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCameraTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrack;
@@ -37,6 +37,7 @@
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerVideoTrack;
 @property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishMediaPlayerId;
+@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishCustomAudioSourceId;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeAudio;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeVideo;
@@ -60,6 +61,7 @@
   Optional&lt;bool> publishMediaPlayerAudioTrack;
   Optional&lt;bool> publishMediaPlayerVideoTrack;
   Optional&lt;bool> publishTrancodedVideoTrack;
+  Optional&lt;int> publishCustomAudioSourceId;
   Optional&lt;bool> autoSubscribeAudio;
   Optional&lt;bool> autoSubscribeVideo;
   Optional&lt;bool> enableAudioRecordingOrPlayout;
@@ -72,129 +74,136 @@
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"></codeblock>
-            <codeblock props="unity" outputclass="language-csharp"></codeblock>
-            <codeblock props="rn" outputclass="language-typescript"></codeblock>
-            <codeblock props="flutter" outputclass="language-dart"></codeblock>
-            </p>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
+        <section id="detailed_desc">Agora 支持在同一时间、同一 <xref keyref="RtcConnection"/> 中发布多路音频流、一路视频流。 例如，<parmname>publishAudioTrack</parmname>、<parmname>publishCustomAudioTrack</parmname> 和 <parmname>publishMediaPlayerAudioTrack</parmname> 可以同时为 <codeph><ph keyref="true"/></codeph>；
+<parmname>publishCameraTrack</parmname>、<parmname>publishScreenTrack</parmname>、<parmname>publishCustomVideoTrack</parmname> 或 <parmname>publishEncodedVideoTrack</parmname> 之中同一时间只能有一个为 <codeph><ph keyref="true"/></codeph>。</section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
                 <plentry>
                     <pt>publishCameraTrack</pt>
-                    <pd>Whether to publish the video captured by the camera:<ul id="ul_vx5_np5_3qb">
-                        <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the camera.</li>
-                        <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the camera.</li>
+                    <pd>设置是否发布摄像头采集的视频：<ul id="ul_vx5_np5_3qb">
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）发布摄像头采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布摄像头采集的视频。</li>
                         </ul></pd>
                 </plentry>
                 <plentry props="windows">
                     <pt>publishSecondaryCameraTrack</pt>
-                    <pd>Whether to publish the video captured by the camera:<ul>
-                        <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the secondary camera.</li>
-                        <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the secondary camera.</li>
+                    <pd>设置是否发布第二个摄像头采集的视频：<ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）发布第二个摄像头采集的视频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布第二个摄像头采集的视频。</li>
                     </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishAudioTrack</pt>
-                    <pd>Whether to publish the captured audio:<ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the captured audio.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured audio.</li>
+                    <pd>设置是否发布采集到的音频：<ul>
+                            <li><codeph><ph keyref="true"/></codeph>：（默认）发布采集到的音频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不发布采集到的音频。</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishScreenTrack</pt>
                     <pd>
-                        <p>Whether to publish the captured video from the screen:<ul>
-                                <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the screen.</li>
-                                <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured video from the screen.</li>
+                        <p>设置是否发布屏幕采集的视频：<ul>
+                                <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
+                                <li><codeph><ph keyref="false"/></codeph>：（默认）不发布屏幕采集到的视频。</li>
                             </ul></p>
                     </pd>
                 </plentry>
                 <plentry props="windows">
                     <pt>publishSecondaryScreenTrack</pt>
                     <pd>
-                        <p>Whether to publish the captured video from the secondary screen:<ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the secondary screen.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured video from the secondary screen.</li>
+                        <p>设置是否发布第二个屏幕采集的视频：<ul>
+                            <li><codeph><ph keyref="true"/></codeph>：发布第二个屏幕采集到的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不发布第二个屏幕采集到的视频。</li>
                         </ul></p>
                     </pd>
                 </plentry>
                 <plentry props="windows">
                     <pt>publishTrancodedVideoTrack</pt>
                     <pd>
-                        <p>Whether to publish the local transcoded video.<ul>
-                            <li><codeph><ph keyref="true"/>: Publish the local transcoded video.</codeph></li>
-                            <li><codeph><ph keyref="false"/>: Do not publish the local transcoded video.</codeph></li>
+                        <p>设置是否发布本地的转码视频：<ul>
+                            <li><codeph><ph keyref="true"/>：发布本地的转码视频。</codeph></li>
+                            <li><codeph><ph keyref="false"/>：（默认）不发布本地的转码视频。</codeph></li>
                         </ul></p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>publishCustomAudioTrack</pt>
-                    <pd>Whether to publish the captured audio from a custom source:<ul>
-                        <li><codeph><ph keyref="true"/></codeph>: Publish the captured audio from a custom source.</li>
-                        <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured audio from a custom source.</li>
+                    <pd>设置是否发布自定义采集的音频：<ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布自定义采集到的音频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）不发布自定义采集到的音频。</li>
                     </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>publishCustomAudioSourceId</pt>
+                    <pd>待发布的自定义音频源的 ID。 默认值为 0。
+                        <p>如果你已在 <xref keyref="setExternalAudioSource2"/> 中设置了 <parmname>sourceNumber</parmname> 大于 1，SDK 会创建对应数量的自采集音频轨道，并从 0 开始为每一个音频轨道分配一个 ID。</p>
+                    </pd>
                 </plentry>
                 <plentry props="windows">
                     <pt>publishCustomAudioTrackEnableAec</pt>
-                    <pd>Whether to enable AEC when publishing the captured audio from a custom source:<ul>
-                        <li><codeph><ph keyref="true"/></codeph>: Enable AEC when publishing the captured audio from a custom source.</li>
-                        <li><codeph><ph keyref="false"/></codeph>: Do not enable AEC when publishing the captured audio from a custom source.</li>
+                    <pd>设置发布自定义采集的音频时是否启用 AEC：<ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布自定义采集的音频时启用 AEC。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：（默认）发布自定义采集的音频时不启用 AEC。</li>
                     </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishCustomVideoTrack</pt>
-                    <pd>Whether to publish the captured video from a custom source:<ul>
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from a custom source.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured video from a custom source.</li>
+                    <pd>设置是否发布自定义采集的视频：<ul>
+                            <li><codeph><ph keyref="true"/></codeph>：发布自定义采集的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不发布自定义采集到的视频。</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishEncodedVideoTrack</pt>
-                    <pd>Whether to publish the encoded video:<ul id="ul_ljg_4q5_3qb">
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the encoded video.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the encoded video.</li>
+                    <pd>设置是否发布编码后的视频：<ul id="ul_ljg_4q5_3qb">
+                            <li><codeph><ph keyref="true"/></codeph>：发布编码后的视频 。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不发布编码后的视频。</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishMediaPlayerAudioTrack</pt>
-                    <pd>Whether to publish the audio from the media player:<ul id="ul_gr3_rq5_3qb">
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the audio from the media player.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio from the media player.</li>
+                    <pd>设置是否发布媒体播放器的音频： <ul id="ul_gr3_rq5_3qb">
+                            <li><codeph><ph keyref="true"/></codeph>：发布媒体播放器的音频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不发布媒体播放器的音频。</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishMediaPlayerVideoTrack</pt>
-                    <pd>Whether to publish the video from the media player:<ul id="ul_gtd_tq5_3qb">
-                            <li><codeph><ph keyref="true"/></codeph>: Publish the video from the media player.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not publish the video from the media player.</li>
+                    <pd>设置是否发布媒体播放器的视频： <ul id="ul_gtd_tq5_3qb">
+                            <li><codeph><ph keyref="true"/></codeph>：发布媒体播放器的视频。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：（默认）不发布媒体播放器的视频。</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>autoSubscribeAudio</pt>
-                    <pd>Whether to automatically subscribe to all remote audio streams when the user joins a channel:<ul id="ul_gxf_vq5_3qb">
-                            <li><codeph><ph keyref="true"/></codeph>: Subscribe to all remote audio streams.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not subscribe to any remote audio stream.</li>
+                    <pd>设置是否自动订阅所有音频流：  <ul id="ul_gxf_vq5_3qb">
+                            <li><codeph><ph keyref="true"/></codeph>：（默认）自动订阅所有音频流。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不自动订阅任何音频流。</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>autoSubscribeVideo</pt>
-                    <pd>Whether to subscribe to all remote video streams when the user joins the channel:<ul id="ul_gfh_xq5_3qb">
-                            <li><codeph><ph keyref="true"/></codeph>: Subscribe to all remote video streams.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: Do not subscribe to any remote video stream.</li>
+                    <pd>设置是否自动订阅所有视频流：  <ul id="ul_gfh_xq5_3qb">
+                            <li><codeph><ph keyref="true"/></codeph>：（默认）自动订阅所有视频流。</li>
+                            <li><codeph><ph keyref="false"/></codeph>：不自动订阅任何视频流。</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>enableAudioRecordingOrPlayout</pt>
-                    <pd>Whether to enable audio capturing or playback.<ul>
-                        <li><codeph><ph keyref="true"/></codeph>: Enable audio capturing and playback.</li>
-                        <li><codeph><ph keyref="false"/></codeph>: Do not enable audio capturing or playback.</li>
+                    <pd>设置是否开启音频录制或播放：<ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）开启音频录制和播放。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不开启音频录制或播放。</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>publishMediaPlayerId</pt>
-                    <pd>The ID of the media player to be published. The default value is 0.</pd>
+                    <pd>待发布的媒体播放器的 ID。 默认值为 0。</pd>
                 </plentry>
                 <plentry>
                     <pt>clientRoleType</pt>
@@ -208,29 +217,29 @@
                     <pt>channelProfile</pt>
                     <pd conkeyref="setChannelProfile/channelprofiletype"/>
                 </plentry>
-                <plentry props="windows">
+                <plentry>
                     <pt>audioDelayMs</pt>
                     <pd>
-                        <p>The delay in ms for sending audio frames. This is used for explicit control of A/V sync.</p>
-                        <p>To switch off the delay, set the value to 0.</p>
+                        <p>发送音频帧的时延（以毫秒为单位），用于控制 A/V 同步。</p>
+                        <p>如果要关闭时延，将此参数值设置为 0。</p>
                     </pd>
                 </plentry>
                 <plentry props="hide">
                     <pt>publishCustomAudioTrackAec</pt>
-                    <pd>Whether to publish audio frames processed by the external echo cancellation module.<ul>
-                        <li><codeph><ph keyref="true"/></codeph>: Publish audio frames.</li>
-                        <li><codeph><ph keyref="false"/></codeph>: Do not publish audio frames.</li>
-                    </ul></pd>
-                </plentry>
+                    <pd>设置是否发布经过外部回声消除模块处理的音频帧。
+                        <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：发布。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不发布。</li>
+                    </ul>
+                    </pd></plentry>
                 <plentry>
                     <pt>token</pt>
                     <pd>
-                        <p>(Optional) The token generated on your server for authentication. See <xref keyref="guide-token">Authenticate Your Users with Token</xref>.</p>
+                        <p>（可选）在服务端生成的用于鉴权的动态密钥。 详见<xref keyref="guide-token">使用 Token 鉴权</xref>。</p>
                         <note type="caution"><ul>
-                            <li>This parameter tales effect only when you call <xref keyref="updateChannelMediaOptions"/> or <xref keyref="updateChannelMediaOptionsEx"/>.</li>
-                            <li>Ensure that the App ID, channel name, and user ID used for generating the token are the same as the App ID used by the <xref keyref="create2"/> method for initializing the RTC engine, and the channel name and user ID used by the <xref keyref="joinChannel2"/> or <xref keyref="joinChannelEx"/> method for joining a channel.</li>
-                        </ul></note>
-                    </pd>
+                            <li>该参数仅在调用 <xref keyref="updateChannelMediaOptions"/> 或 <xref keyref="updateChannelMediaOptionsEx"/> 时生效。</li>
+                            <li>请确保用于生成 token 的 App ID、频道名和用户名和 <xref keyref="create2"/> 方法初始化引擎时用的 App ID，以及 <xref keyref="joinChannel2"/> 或 <xref keyref="joinChannelEx"/> 方法加入频道时设置的频道名和用户名是一致的。</li>
+                        </ul></note></pd>
                 </plentry>
             </parml>
         </section>
