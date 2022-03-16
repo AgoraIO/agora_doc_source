@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setlogfilter">
-    <title><ph keyref="setLogFilter"/></title>
+    <title><ph keyref="setLogFilter" /></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the log output level of the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -16,31 +16,31 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLogFilter:(NSUInteger)filter;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int setLogFilter(unsigned int filter) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">setLogFilter(filter: LOG_FILTER_TYPE): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetLogFilter(uint filter);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogFilter(LogFilter filter);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-   
-   <dl outputclass="deprecated">
-       <dlentry>
+
+   <dl outputclass="deprecated" props="rtc">
+       <dlentry props="native">
   <dt>Deprecated:</dt>
-  <dd>v3.3.0. Use <parmname>logConfig</parmname> in <xref keyref="create2"/> instead.</dd>
+  <dd>v3.3.0. Use <parmname>logConfig</parmname> in <xref keyref="create2" /> instead.</dd>
        </dlentry>
    </dl>
    <p>This method sets the output log level of the SDK. You can use one or a combination of the log filter levels. The log level follows the sequence of OFF, CRITICAL, ERROR, WARNING, INFO, and DEBUG. Choose a level to see the logs preceding that level.</p>
    <p>If, for example, you set the log level to WARNING, you see the logs within levels CRITICAL, ERROR, and WARNING.</p>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameters</title>
    <parml>
        <plentry>
   <pt>filter</pt>
-  <pd>The output log level of the SDK. For details, see <xref keyref="LOG_FILTER_TYPE"/>.</pd>
+  <pd>The output log level of the SDK. For details, see <xref keyref="LOG_FILTER_TYPE" />.</pd>
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>

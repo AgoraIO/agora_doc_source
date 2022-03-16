@@ -18,7 +18,7 @@
                 <codeblock props="electron" outputclass="language-typescript"/>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setDefaultAudioRoutetoSpeakerphone(bool defaultToSpeaker);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -26,19 +26,17 @@
             <p>各频道场景下默认的音频路由： <ul>
                     <li>通信场景： <ul>
                             <li>语音通话，默认从听筒出声。</li>
-                            <li>视频通话，默认从扬声器出声。如果有用户在频道中使用 <xref keyref="disableVideo"/> 、<xref
-                                    keyref="muteLocalVideoStream"/> 或 <xref
-                                    keyref="muteAllRemoteVideoStreams"/> 方法关闭视频，则语音路由会自动切换回听筒。</li>
+                            <li>视频通话，默认从扬声器出声。如果有用户在频道中使用 <xref keyref="disableVideo"/> 、<xref keyref="muteLocalVideoStream"/> 或 <xref keyref="muteAllRemoteVideoStreams"/> 方法关闭视频，则语音路由会自动切换回听筒。</li>
                         </ul></li>
                     <li>直播场景：扬声器。</li>
                 </ul>
             </p>
             <note type="attention">
                 <ul>
-                    <li props="windows">该方法仅适用于 Android 和 iOS 平台。</li>
+                    <li props="windows flutter">该方法仅适用于 Android 和 iOS 平台。</li>
                     <li props="ios">该方法仅适用于 iOS 平台。</li>
                     <li props="ios windows">在 iOS 平台上，该方法只在纯音频模式下工作，在有视频的模式下不工作。</li>
-                    <li>该方法需要在 <xref keyref="joinChannel1"/> 前设置，否则不生效。</li>
+                    <li>该方法需要在加入频道前设置，否则不生效。</li>
                 </ul>
             </note>
         </section>
@@ -54,7 +52,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>返回值</title>
             <ul>
                 <li>0: 方法调用成功。</li>

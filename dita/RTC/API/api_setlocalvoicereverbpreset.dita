@@ -6,7 +6,7 @@
     <prolog>
         <metadata>
    <keywords>
-       <indexterm keyref="setLocalVoiceReverbPreset" />
+       <indexterm keyref="setLocalVoiceReverbPreset"/>
    </keywords>
         </metadata>
     </prolog>
@@ -18,15 +18,15 @@
                 <codeblock props="electron" outputclass="language-typescript">setLocalVoiceReverbPreset(reverbPreset: AUDIO_REVERB_PRESET)</codeblock>
                 <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalVoiceReverbPreset(AUDIO_REVERB_PRESET reverbPreset);</codeblock>
                 <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setLocalVoiceReverbPreset(AudioReverbPreset preset);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-   
+
    <dl outputclass="deprecated">
-       <dlentry >
+       <dlentry>
   <dt>弃用：</dt>
-  <dd>该方法从 v3.2.0 起废弃，请改用 <xref keyref="setAudioEffectPreset"/> 或 <xref keyref="setVoiceBeautifierPreset"/>。</dd>
+  <dd>请改用 <xref keyref="setAudioEffectPreset"/> 或 <xref keyref="setVoiceBeautifierPreset"/>。</dd>
        </dlentry>
    </dl>
    <p>通信场景下的用户或直播场景下的主播均可调用该方法设置本地语音混响。成功设置以后，频道内的所有用户均可听到声音效果。</p>
@@ -43,9 +43,10 @@
         <section id="parameters"><title>参数</title>
    <parml>
        <plentry>
-  <pt>reverbPreset</pt>
-  <pd><p props="ios mac windows unity">本地语音混响选项，默认值为 <apiname keyref="AUDIO_REVERB_OFF"/> ，即原声。详见 <xref keyref="AUDIO_REVERB_PRESET"/> 。为达到更好的混响效果，Agora 推荐使用以 <codeph>AUDIO_REVERB_FX</codeph> 为前缀的枚举值。</p></pd>
-      <pd><p props="android">本地语音混响选项。为达到更好的混响效果，Agora 推荐使用以 <codeph>AUDIO_REVERB_FX</codeph> 为前缀的枚举值。 <ul>
+  <pt props="native electron unity">reverbPreset</pt>
+  <pt props="flutter">preset</pt>
+  <pd><p props="ios mac windows unity flutter">本地语音混响选项，默认值为 <apiname keyref="AUDIO_REVERB_OFF"/> ，即原声。详见 <xref keyref="AUDIO_REVERB_PRESET"/> 。为达到更好的混响效果，Agora 推荐使用以 <codeph>AUDIO_REVERB_FX</codeph> 为前缀的枚举值。</p></pd>
+      <pd><p props="android">本地语音混响选项。为达到更好的混响效果，Agora 推荐使用以 <codeph>AUDIO_REVERB_FX</codeph> 为前缀的枚举值。<ul>
                                 <li><ph keyref="AUDIO_REVERB_OFF"/>: （默认）原声，即关闭本地语音混响。</li>
                                 <li><ph keyref="AUDIO_REVERB_FX_KTV"/>: KTV（增强版）。</li>
                                 <li><ph keyref="AUDIO_REVERB_FX_VOCAL_CONCERT"/>: 演唱会（增强版）。</li>
@@ -61,7 +62,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>返回值</title>
    <ul>
        <li>0: 方法调用成功</li>

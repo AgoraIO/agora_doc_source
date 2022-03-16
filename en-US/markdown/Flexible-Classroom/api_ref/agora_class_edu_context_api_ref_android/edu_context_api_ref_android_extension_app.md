@@ -1,8 +1,14 @@
-# Extion App Context
-
 ## ExtAppContext
 
-The` ExtAppContext` class provides extended application-related methods that can be called by App.
+`ExtAppContext` provides the methods that can be called by your app for extension applications.
+
+### Init
+
+```kotlin
+fun init(container: RelativeLayout)
+```
+
+Initializes the extension application.
 
 ### launchExtApp
 
@@ -10,11 +16,11 @@ The` ExtAppContext` class provides extended application-related methods that can
 fun launchExtApp(appIdentifier: String): Int
 ```
 
-Start an extended application.
+Launches an extension application.
 
 | Parameter | Description |
 | :-------------- | :-------------- |
-| `GetAppIdentifier` | The ID of the extension application. |
+| `appIdentifier` | The ID of the extension application. |
 
 ### getRegisteredExtApps
 
@@ -22,11 +28,11 @@ Start an extended application.
 fun getRegisteredExtApps(): List<AgoraExtAppInfo>
 ```
 
-Get information about all currently registered extension applications.
+Gets the information of all registered extension applications.
 
 ## IAgoraExtApp
 
-The` IAgoraExtApp` class contains the necessary operations and life cycle callbacks for extended applications.
+The `IAgoraExtApp` class contains the necessary operations and life cycle callbacks for an extension application.
 
 ### onExtAppLoaded
 
@@ -34,7 +40,7 @@ The` IAgoraExtApp` class contains the necessary operations and life cycle callba
 fun onExtAppLoaded(context: Context)
 ```
 
-The instance of the extended application is initialized.
+Occurs when the instance of the extension application is initialized.
 
 | Parameter | Description |
 | :-------- | :--------------- |
@@ -46,7 +52,7 @@ The instance of the extended application is initialized.
 fun onCreateView(content: Context): View
 ```
 
-The view of the extended application has been created.
+The view of the extension application that has been created.
 
 | Parameter | Description |
 | :-------- | :--------------- |
@@ -58,12 +64,12 @@ The view of the extended application has been created.
 fun onPropertyUpdated(properties: MutableMap<String, Any>?, cause: MutableMap<String, Any?>?)
 ```
 
-It prompts that the data of the current extended application is updated.
+Occurs when that the data of the current extension application is updated.
 
 | Parameter | Description |
 | :----------- | :----------- |
-| `properties` | Property Map |
-| `cause` | Update reason Map |
+| `properties` | The property map. |
+| `cause` | The reason map. |
 
 ### onExtAppUnloaded
 
@@ -71,9 +77,4 @@ It prompts that the data of the current extended application is updated.
 fun onExtAppUnloaded()
 ```
 
-The extended application has been closed and the instance has been released.
-
-| Parameter | Description |
-| :--- | :--- |
-|  |  |
-
+Occurs when the extension application is closed and the instance is released.

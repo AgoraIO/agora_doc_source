@@ -1,10 +1,34 @@
-# useBoardContext
+`BoardContext` provides whiteboard-related capabilities.
 
-`useBoardContext()` provides whiteboard-related capabilities.
+## boardConnectionState
 
-You can import `useBoardContext` by `import {useBoardContext} from'agora-edu-core';`, and then use `const {...} = useBoardContext()` to get the whiteboard-related ability in the flexible classroom.
+```typescript
+boardConnectionState: string;
+```
 
-This page lists all the functions and events provided by `useBoardContext()`.
+> Since v1.1.5.
+
+The connection state of the whiteboard.
+
+## joinBoard
+
+```typescript
+joinBoard: () => Promise<any>;
+```
+
+> Since v1.1.5.
+
+Joins a whiteboard room.
+
+## leaveBoard
+
+```typescript
+leaveBoard: () => Promise<any>;
+```
+
+> Since v1.1.5.
+
+Leaves a whiteboard room.
 
 ## room
 
@@ -25,7 +49,7 @@ The value of zooming in or out the whiteboard.
 ## currentPage
 
 ```typescript
-currentPage: number,
+currentPage: number,  
 ```
 
 The current number of the whiteboard page.
@@ -41,8 +65,7 @@ The total number of whiteboard pages.
 ## courseWareList
 
 ```typescript
-courseWareList: [],
-
+courseWareList: array,
 ```
 
 The list of the courseware.
@@ -69,7 +92,7 @@ The line thickness.
 hasPermission: boolean,
 ```
 
-Whether the user has permission of drawing on the whiteboard.
+Whether the user has the permission of drawing on the whiteboard.
 
 ## currentSelector
 
@@ -186,10 +209,10 @@ Display the courseware on the whiteboard.
 ## startDownload
 
 ```typescript
-async startDownload (taskUuid: string): void
+async startDownload(taskUuid: string): void
 ```
 
-Start downloading the courseware.
+Starts downloading a file.
 
 ## updatePen
 
@@ -253,7 +276,7 @@ Remove the courseware.
 async cancelUpload(): void
 ```
 
-Cancel uploading a file to the classroom.
+Cancels uploading a file to the classroom.
 
 ## doUpload
 
@@ -261,7 +284,7 @@ Cancel uploading a file to the classroom.
 async doUpload(payload: any): void
 ```
 
-Upload a file to the classroom.
+Uploads a file to the classroom.
 
 ## closeMaterial
 
@@ -269,7 +292,7 @@ Upload a file to the classroom.
 async closeMaterial(resourceUuid: string): void
 ```
 
-Close the file.
+Closes the file.
 
 ## installTools
 

@@ -37,11 +37,11 @@ abstract fun renderVideo(viewGroup: ViewGroup?,
 
 开始或停止渲染本地视频流。
 
-| 参数           | 描述                                                   |
-| :------------- | :----------------------------------------------------- |
-| `container`    | 视频 Container。`viewGroup` 为 `null` 代表关闭流渲染。 |
-| `streamUuid`   | 流 ID。                                                |
-| `renderConfig` | 视频渲染配置。                                         |
+| 参数           | 描述                                                         |
+| :------------- | :----------------------------------------------------------- |
+| `container`    | 视频 Container。`viewGroup` 为 `null` 代表关闭流渲染。       |
+| `streamUuid`   | 流 ID。                                                      |
+| `renderConfig` | 视频渲染配置，详见 [EduContextRenderConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextrenderconfig)。 |
 
 ### setVideoEncoderConfig
 
@@ -51,9 +51,9 @@ abstract fun setVideoEncoderConfig(config: EduContextVideoEncoderConfig)
 
 设置视频编码配置。
 
-| 参数     | 描述                                                |
-| :------- | :-------------------------------------------------- |
-| `config` | 视频编码配置，详见 `EduContextVideoEncoderConfig`。 |
+| 参数     | 描述                                                         |
+| :------- | :----------------------------------------------------------- |
+| `config` | 视频编码配置，详见 [EduContextVideoEncoderConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextvideoencoderconfig)。 |
 
 ## IVideoHandler
 
@@ -67,9 +67,9 @@ fun onUserDetailInfoUpdated(info: EduContextUserDetailInfo)
 
 提示用户信息更新。
 
-| 参数   | 描述                                        |
-| :----- | :------------------------------------------ |
-| `info` | 用户信息，详见 `EduContextUserDetailInfo`。 |
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
+| `info` | 用户信息，详见 [EduContextUserDetailInfo](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#educontextuserdetailinfo)。 |
 
 ### onVolumeUpdated
 

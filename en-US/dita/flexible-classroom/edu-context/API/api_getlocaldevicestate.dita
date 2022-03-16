@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_getlocaldevicestate">
+    <title><ph keyref="getLocalDeviceState"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the state of the local device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getLocalDeviceState"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">abstract fun getLocalDeviceState(deviceInfo: AgoraEduContextDeviceInfo,
+                                 callback: EduContextCallback&lt;AgoraEduContextDeviceState2>?)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">void getLocalDeviceState(AgoraEduContextDeviceInfo device,
+                         Callback&lt;AgoraEduContextDeviceState> success,
+                         Callback&lt;AgoraEduContextError> fail)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt props="ios">device</pt>
+                    <pt props="android">deviceInfo</pt>
+                    <pd>The device information. See <xref keyref="AgoraEduContextDeviceInfo"/>.</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>success</pt>
+                    <pd>If the method call succeeds, the SDK returns the device state <xref keyref="AgoraEduContextDeviceState"/>.</pd>
+                </plentry>
+                <plentry props="android">
+                    <pt>callback</pt>
+                    <pd>Get the device state <xref keyref="AgoraEduContextDeviceState"/> asynchronously through <xref keyref="AgoraEduContextCallback"/>.</pd>
+                </plentry>
+                <plentry props="ios">
+                    <pt>fail</pt>
+                    <pd><ph id="fail-desc">If the method call fails, the SDK returns <xref keyref="AgoraEduContextError"/>.</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

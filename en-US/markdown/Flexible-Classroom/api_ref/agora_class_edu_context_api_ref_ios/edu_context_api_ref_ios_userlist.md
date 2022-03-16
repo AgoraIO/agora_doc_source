@@ -2,42 +2,33 @@
 
 `AgoraEduUserContext` provides user-list-related methods that can be called by your app.
 
-### muteVideo
+### updateFlexUserProperties
 
 ```swift
-func muteVideo(_ mute: Bool)
+func updateFlexUserProperties(_ userUuid: String,
+                              properties: [String: String],
+                                   cause:[String: String]?)
 ```
 
-Enable or disable the local video.
+Adds or updates custom user properties. For details, see [How can I set user properties? ](/en/agora-class/faq/agora_class_custom_properties)
+
+After you successfully update the properties, the remote client receives the `onFlexUserPropertiesChanged` callback.
 
 | Parameter | Description |
-| :----- | :----------------- |
-| `mute` | Whether to disable the local video. |
+| :----------- | :----------------------------------------------------------- |
+| `userUuid` | The user ID. |
+| `properties` | The user properties. You can set this parameter as `{"key.subkey":"1"}` or `{"key":{"subkey":"1"}}`. |
+| `cause` | The update reason. |
 
-### muteAudio
+### getLocalUserInfo
 
 ```swift
-func muteAudio(_ mute: Bool)
+func getLocalUserInfo() -> AgoraEduContextUserInfo
 ```
 
-Enable or disable the local audio.
+> Since v1.1.5.
 
-| Parameter | Description |
-| :----- | :----------------- |
-| `mute` | Whether to close the local audio. |
-
-### renderView
-
-```swift
-func renderView(_ view: UIView?, streamUuid: String)
-```
-
-Start or stop rendering the local video stream.
-
-| Parameter | Description |
-| :----------- | :----------------------------------------------- |
-| `view` | The video container. `Setting view` as `nil` means stopping rendering the video stream. |
-| `streamUuid` | The stream ID. |
+Gets the information of the local user.
 
 ### registerEventHandler
 
@@ -45,7 +36,7 @@ Start or stop rendering the local video stream.
 func registerEventHandler(_ handler: AgoraEduUserHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 | Parameter | Description |
 | :-------- | :------------------------------ |
@@ -73,7 +64,7 @@ Occurs when the user list is updated. Only display the information of online use
 @objc optional func onUpdateCoHostList(_ list: [AgoraEduContextUserDetailInfo])
 ```
 
-Occurs when the list of on-stage users is updated. Only display the information of users who are on the stage, including the offline users.
+Occurs when the list of on-stage users is updated. Only display the information of users whose status is "on stage", including users who are not online.
 
 | Parameter | Description |
 | :----- | :----------------------------------------------------------- |
@@ -105,28 +96,29 @@ Occurs when the local user is kicked out of the classroom.
 @objc optional func onUpdateAudioVolumeIndication(_ value: Int, streamUuid: String)
 ```
 
-Occurs when the volume of the local user is updated.
+Occurs when the volume of the local user updates.
 
 | Parameter | Description |
 | :----------- | :------ |
 | `volume` | The volume. |
 | `streamUuid` | The stream ID. |
 
-### onShowUserTips
+### onFlexUserPropertiesChanged
 
 ```swift
-@objc optional func onShowUserTips(_ message: String)
+@objc optional func onFlexUserPropertiesChanged(_ changedProperties:[String : Any],
+                                                         properties: [String: Any],
+                                                              cause:[String : Any]?,
+                                                           fromUser:AgoraEduContextUserDetailInfo,
+                                                           operator:AgoraEduContextUserInfo?)
 ```
 
-Reports the tips related to the user.
-
-There are the following tips:
-
-- Your camera has been turned off.
-- Your camera has been turned on.
-- Your microphone has been turned off.
-- Your microphone has been turned on.
+Occurs when the custom user properties are updated.
 
 | Parameter | Description |
-| :-------- | :--------- |
-| `message` | The tip. |
+| :------------------ | :----------------------------------------------------------- |
+| `changedProperties` | The updated user properties. |
+| `properties` | All user properties. |
+| `cause` | The update reason. |
+| `fromUser` | The information of the user whose properties are updated. See `AgoraEduContextUserDetailInfo` for details. |
+| `operator` | The information of the operator. See `AgoraEduContextUserInfo`. `operator` being empty means that properties are updated by the server. |

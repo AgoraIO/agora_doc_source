@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_adjustuserplaybacksignalvolume">
-    <title><ph keyref="adjustUserPlaybackSignalVolume"/></title>
+    <title><ph keyref="adjustUserPlaybackSignalVolume" /></title>
     <shortdesc id="short"><ph id="shortdesc">Adjusts the playback signal volume of a specified remote user.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -16,15 +16,15 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustUserPlaybackSignalVolume:(NSUInteger)uid volume:(int)volume;</codeblock>
             <codeblock props="windows" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolume(unsigned int uid, int volume) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">adjustUserPlaybackSignalVolume(uid: number, volume: number): number</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public int AdjustUserPlaybackSignalVolume(uint uid, int volume)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">adjustUserPlaybackSignalVolume(uid: number, volume: number): Promise&lt;void></codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> adjustUserPlaybackSignalVolume(int uid, int volume);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int AdjustUserPlaybackSignalVolume(uint uid, int volume);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">adjustUserPlaybackSignalVolume(uid: number, volume: number): Promise&lt;void&gt;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; adjustUserPlaybackSignalVolume(int uid, int volume);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-   
+
    <dl outputclass="since" props="rtc">
-       <dlentry>
+       <dlentry props="native">
   <dt>Since</dt>
   <dd>v3.0.0</dd>
        </dlentry>
@@ -35,21 +35,21 @@
   <li>Call this method after joining a channel.</li>
   <li>The playback volume here refers to the mixed volume of a specified remote user.</li>
        </ul>
-   </note> 
+   </note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameters</title>
    <parml>
        <plentry>
   <pt>uid</pt>
   <pd>The ID of the remote user.</pd>
        </plentry>
-       <plentry id="volume" conkeyref="adjustRecordingSignalVolume/volume">
-  <pt/>
-  <pd/>
-       </plentry> 
+       <plentry id="volume" conkeyref="adjustAudioMixingVolume/volume">
+  <pt />
+  <pd />
+       </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>Returns</title>
    <ul>
        <li>0: Success.</li>

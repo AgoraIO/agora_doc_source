@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_closelocaldevice">
+    <title><ph keyref="closeLocalDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Turns off the local device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="closeLocalDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-kotlin">abstract fun closeLocalDevice(deviceInfo: AgoraEduContextDeviceInfo,
+                              callback: EduContextCallback&lt;Unit>? = null)</codeblock>
+                <codeblock props="ios mac" outputclass="language-swift">AgoraEduContextError closeLocalDevice(AgoraEduContextDeviceInfo device)</codeblock>
+                <codeblock props="windows" outputclass="language-cpp"/>
+                <codeblock props="web" outputclass="language-typescript"/>
+            </p>
+        </section>
+        <section id="parameters"><title>Parameter</title>
+            <parml>
+                <plentry>
+                    <pt props="ios">device</pt>
+                    <pt props="android">deviceInfo</pt>
+                    <pd>The device information. See <xref keyref="AgoraEduContextDeviceInfo"/>.</pd>
+                </plentry>
+                <plentry conkeyref="openLocalDevice/callback-desc" props="android">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values" props="ios">
+            <title>Returns</title>
+            <p>If the <parmname>deviceId</parmname> that you pass in does not exist, the SDK returns <xref keyref="AgoraEduContextError"/>.</p>
+        </section>
+    </refbody>
+</reference>

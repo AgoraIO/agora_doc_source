@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enableencryption">
      <title>
-          <ph keyref="enableEncryption" />
+          <ph keyref="enableEncryption"/>
      </title>
      <shortdesc id="short">
           <ph id="shortdesc">开启或关闭内置加密。</ph>
@@ -10,7 +10,7 @@
      <prolog>
           <metadata>
                <keywords>
-                    <indexterm keyref="enableEncryption" />
+                    <indexterm keyref="enableEncryption"/>
                </keywords>
           </metadata>
      </prolog>
@@ -23,12 +23,12 @@
                         <codeblock props="electron" outputclass="language-typescript">enableEncryption(enabled: boolean, config: EncryptionConfig): number</codeblock>
                         <codeblock props="unity" outputclass="language-csharp">public abstract int EnableEncryption(bool enabled, EncryptionConfig config);</codeblock>
                         <codeblock props="rn" outputclass="language-typescript"/>
-                        <codeblock props="flutter" outputclass="language-dart"/>
+                        <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableEncryption(bool enabled, EncryptionConfig config);</codeblock>
               </p>
           </section>
           <section id="detailed_desc">
                <dl outputclass="since" props="rtc">
-                    <dlentry>
+                    <dlentry props="native">
                          <dt>自从</dt>
                          <dd>v3.1.0</dd>
                     </dlentry>
@@ -47,10 +47,10 @@
                                    是否开启内置加密：
                                    <ul>
                                         <li>
-                                             <ph keyref="true" />: 开启内置加密。
+                                             <ph keyref="true"/>: 开启内置加密。
                                         </li>
                                         <li>
-                                             <ph keyref="false" />: 关闭内置加密。
+                                             <ph keyref="false"/>: 关闭内置加密。
                                         </li>
                                    </ul>
                               </p>
@@ -59,22 +59,21 @@
                     <plentry>
                          <pt>config</pt>
                          <pd>
-                              配置内置加密模式和密钥。详见 <xref keyref="EncryptionConfig" />。
+                              配置内置加密模式和密钥。详见 <xref keyref="EncryptionConfig"/>。
                          </pd>
                     </plentry>
                </parml>
           </section>
-          <section id="return_values">
+          <section id="return_values" props="native electron unity">
                <title>返回值</title>
                <ul>
                     <li>0: 方法调用成功</li>
                     <li>
                          &lt; 0: 方法调用失败
                          <ul>
-                              <li> -2(ERR_INVALID_ARGUMENT): 调用了无效的参数。需重新指定参数。 </li>
-                              <li> -4(ERR_NOT_SUPPORTED): 设置的加密模式不正确或加载外部加密库失败。需检查枚举值是否正确或重新加载外部加密库。 </li>
-                              <li> -7(ERR_NOT_INITIALIZED): SDK 尚未初始化。需在调用 API 之前已创建 <xref
-                                        keyref="IRtcEngine"/> 对象并完成初始化。 </li>
+                              <li> -2(ERR_INVALID_ARGUMENT): 调用了无效的参数。需重新指定参数。</li>
+                              <li> -4(ERR_NOT_SUPPORTED): 设置的加密模式不正确或加载外部加密库失败。需检查枚举值是否正确或重新加载外部加密库。</li>
+                              <li> -7(ERR_NOT_INITIALIZED): SDK 尚未初始化。需在调用 API 之前已创建 <xref keyref="IRtcEngine"/> 对象并完成初始化。</li>
                          </ul>
                     </li>
                </ul>

@@ -1,581 +1,382 @@
----
-title: 实现视频直播
-platform: Android
-updatedAt: 2021-03-26 06:45:42
----
-本文介绍如何使用 Agora SDK 快速实现视频直播。
+实时音视频互动能够拉近人与人之间的距离，为用户提供沉浸式的交流体验，帮助你的 app 提高用户黏性。
 
-视频直播和视频通话的区别就在于，直播频道的用户有角色之分。你可以将角色设置为主播或者观众，其中主播可以收、发流，观众只能收流。
+本文介绍如何通过少量代码集成 Agora 视频 SDK，在你的 Android app 里实现高质量、低延迟的直播体验。
+
+## 技术原理
+
+下图展示在 app 中集成 Agora 极速直播的基本工作流程：
+
+![img](https://web-cdn.agora.io/docs-files/1637648568509)
+
+如图所示，实现极速直播的步骤如下：
+
+1. 设置用户角色和延时级别：极速直播频道中，用户角色可以是主播或者观众。主播在频道内发布音视频流，观众可以订阅流。你可以利用 `ClientRoleOptions` 控制观众用户接收主播发布的音视频流的延时。
+2. 获取 Token：当 app 客户端加入频道时，你需要使用 Token 验证用户身份。在测试或生产环境中，从 app 服务器中获取 Token。
+3. 加入频道：调用 `joinChannel` 创建并加入频道。使用同一频道名称的 app 客户端默认加入同一频道。
+4. 在频道内发布和订阅音视频流：加入频道后，角色为主播的 app 客户端可以发布音视频。如果观众想要发布音视频，可以调用 `setClientRole` 切换用户角色。
+
+App 客户端加入频道需要以下信息：
+
+- App ID：Agora 随机生成的字符串，用于识别你的 app，可从 [Agora 控制台](https://console.agora.io/)获取。
+- 用户 ID：用户的唯一标识。 你需要自行设置用户 ID，并确保它在频道内是唯一的。
+- Token：在测试或生产环境中，app 客户端从你的的服务器中获取 Token。在本文介绍的流程中，你可以从 Agora 控制台获取临时 Token。临时 Token 的有效期为 24 小时。
+- 频道名称：用于标识极速直播频道的字符串。
 
 ## 前提条件
 
-* Android Studio 3.0 或以上版本
-* Android SDK API 等级 16 或以上
-* 支持 Android 4.1 或以上版本的移动设备
-* 有效的 [Agora 账户](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up) 和 [App ID](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#getappid)
+- Android Studio 3.0 或以上版本。
+- Android SDK API 等级 16 或以上。
+- 有效的 [Agora 账户](https://console.agora.io/)。
+- 带有 App ID 和临时 Token 的 Agora 项目。详见[开始使用 Agora 平台](https://docs.agora.io/cn/AgoraPlatform/get_appid_token?platform=All%20Platforms)。
+- 可以访问互联网的计算机。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms)。
+- 运行 Android 4.1 或更高版本的移动设备。
 
-<div class="alert note">如果你的网络环境部署了防火墙，请根据<a href="https://docs.agora.io/cn/Agora%20Platform/firewall?platform=All%20Platforms">应用企业防火墙限制</a>打开相关端口。</div>
+## 项目设置
 
-## 准备开发环境
-本节介绍如何创建项目，将 Agora 视频 SDK 集成进你的项目中，并添加相应的设备权限。
+实现极速直播之前，参考如下步骤设置你的项目：
 
-### 创建 Android 项目
+1. 如需创建新项目，在 **Android Studio** 里，依次选择 **Phone and Tablet** > **Empty Activity**，创建 [Android 项目](https://developer.android.com/studio/projects/create-project)。
 
-参考以下步骤创建一个 Android 项目。若已有 Android 项目，可以直接查看[集成 SDK](#integrate_sdk)。
+   创建项目后，**Android Studio** 会自动开始同步 gradle。请确保同步成功再进行下一步操作。
 
-<details>
-	<summary><font color="#3ab7f8">创建 Android 项目</font></summary>
+2. 将视频 SDK 集成到你的项目中。 对 3.5.0 版或之后的 SDK，请参考以下步骤使用 mavenCentral 集成 SDK。 对 3.5.0 版之前的 SDK 版本，请参考<a href="https://docs.agora.io/cn/live-streaming/start_live_standard_android?platform=Android#othermethods">集成 SDK 的其他方法</a>。
 
-1. 打开 <b>Android Studio</b>，点击 <b>Start a new Android Studio project</b>。
-2. 在 <b>Select a Project Template</b> 界面，选择 <b>Phone and Tablet</b> > <b>Empty Activity</b>，然后点击 <b>Next</b>。
-3. 在 <b>Configure Your Project</b> 界面，依次填入以下内容：
-	* <b>Name</b>：你的 Android 项目名称，如 HelloAgora
-	* <b>Package name</b>：你的项目包的名称，如 io.agora.helloagora
-	* <b>Save location</b>：项目的存储路径
-	* <b>Language</b>：项目的编程语言，如 Java
-	* <b>Minimum API level</b>：项目的最低 API 等级
+   a. 在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码，以添加 mavenCentral 依赖：
 
-然后点击 <b>Finish</b>。根据屏幕提示，安装可能需要的插件。
-	
-<div class="alert info">上述步骤使用 <b>Android Studio 3.6.2</b> 示例。你也可以直接参考 Android Studio 官网文档<a href="https://developer.android.com/training/basics/firstapp">创建首个应用</a>。</div>
-	
-</details>
+   ```java
+    buildscript {
+        repositories {
+            ...
+            mavenCentral()
+        }
+        ...
+   }
 
-<a name="integrate_sdk"></a>
-### 集成 SDK
+     allprojects {
+        repositories {
+            ...
+            mavenCentral()
+        }
+   }
+   ```
 
-选择如下任意一种方式将 Agora 视频 SDK 集成到你的项目中。
+   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将 Agora 视频 SDK 集成到你的 Android 项目中：
 
-**方法一：使用 JCenter 自动集成**
-
-在项目的 **/app/build.gradle** 文件中，添加如下行：
-
-```
-...
-dependencies {
+   ```java
     ...
-    // x.y.z 请填写具体版本号，如 3.0.0
-    // 可通过 SDK 发版说明获取最新版本号 
-    implementation 'io.agora.rtc:full-sdk:x.y.z'
-}
-```
+    dependencies {
+     ...
+     // x.y.z，请填写具体的 SDK 版本号，如 3.5.0。
+     // 通过发版说明获取最新版本号。
+     implementation 'io.agora.rtc:full-sdk:x.y.z'
+    }
+   ```
 
-<div class="alert info">请点击查看<a href = "https://docs.agora.io/cn/Video/release_android_video?platform=Android">发版说明</a>获取最新版本号。</div>
+3. 在 `/app/Manifests/AndroidManifest.xml` 文件中的 `</application>` 后面添加如下网络和设备权限：
 
-**方法二：手动复制 SDK 文件**
+   ```xml
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+   ```
+   
+4. 为防止代码混淆，在 `/Gradle Scripts/proguard-rules.pro` 文件中添加如下代码：
 
-1. 前往 [SDK 下载](./downloads?platform=Android)页面，获取最新版的 Agora 视频 SDK，然后解压。
-2. 将 SDK 包内 libs 路径下的如下文件，拷贝到你的项目路径下：
+   ```
+    -keep class io.agora.**{*;}
+   ```
 
+## 客户端实现
 
-| 文件或文件夹                   | 项目路径                               | 
-| ---------------------------- | ------------------------------------ | 
-| **agora-rtc-sdk.jar** 文件    | **/app/libs/**                       | 
-| **arm-v8a** 文件夹            | **/app/src/main/jniLibs/**           | 
-| **armeabi-v7a** 文件夹        | **/app/src/main/jniLibs/**           | 
-| **include** 文件夹   | **/app/src/main/jniLibs/**           | 
-| **x86** 文件夹                | **/app/src/main/jniLibs/**           | 
-| **x86_64** 文件夹             | **/app/src/main/jniLibs/**           | 
+本节介绍如何使用 Agora 视频 SDK 在你的 app 里实现极速直播。
 
-<div class="alert note">
-	<ul>
-	<li>如果你的项目无需使用加密功能，建议删除 SDK 包内的  <code>libagora-crypto.so</code> 文件。</li>
-	<li>如果你使用的是 armeabi 库，可以把 <b>armeabi-v7a</b> 内的文件放入 <b>armeabli</b> 文件夹内。如果遇到不兼容的情况，请联系 <a href ="mailto: sales@agora.io">sales@agora.io</a> 咨询适配相关问题。</li>
-	</ul>
-	</div>
+### 创建用户界面
 
-### 添加项目权限
-
-根据场景需要，在  **/app/src/main/AndroidManifest.xml** 文件中添加如下行，获取相应的设备权限：
-
-```xml
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-   package="io.agora.tutorials1v1acall">
- 
-   <uses-permission android:name="android.permission.READ_PHONE_STATE" />   
-   <uses-permission android:name="android.permission.INTERNET" />
-   <uses-permission android:name="android.permission.RECORD_AUDIO" />
-   <uses-permission android:name="android.permission.CAMERA" />
-   <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-   <uses-permission android:name="android.permission.BLUETOOTH" />
-   <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-   // 如果你的场景中涉及读取外部存储，需添加如下权限：
-   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-   // 如果你使用的是 Android 10.0 及以上设备，还需要添加如下权限：
-   <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
- 
-...
-</manifest>
-```
-
-
-如果你的 `targetSdkVersion` &ge; 29，还需要在 **AndroidManifest.xml** 文件的 `<application>` 区域添加如下行：
-
-```xml
-   <application
-      android:requestLegacyExternalStorage="true">
-	  ...
-   </application>
-```
-
-### 防止代码混淆
-
-在 **app/proguard-rules.pro** 文件中添加如下行，防止混淆 Agora SDK 的代码：
-
-```xml
--keep class io.agora.**{*;}
-```
-
-## 实现视频直播
-
-本节介绍如何实现视频直播。视频直播的 API 调用时序见下图：
-
-![](https://web-cdn.agora.io/docs-files/1568255436454)
-
-### 1. 创建用户界面
-
-根据场景需要，为你的项目创建互动直播的用户界面。若已有界面，可以直接查看[导入类](#import_class)。
-
-如果你想实现一个视频直播，我们推荐你添加如下 UI 元素：
-
-* 主播视频窗口
-* 退出频道按钮
-
-你也可以参考 [OpenLive-Android](https://github.com/AgoraIO/Basic-Video-Broadcasting/tree/master/OpenLive-Android) 示例项目的 [layout](https://github.com/AgoraIO/Basic-Video-Broadcasting/tree/master/OpenLive-Android/app/src/main/res/layout) 文件中的代码。
-
-<details>
-	<summary><font color="#3ab7f8">创建 UI 示例</font></summary>
+在用户界面中，你需要设置两个帧布局（FrameLayout），分别展示本地视图和远端视图。因此，将 `/app/res/layout/activity_main.xml` 文件中的内容替换成如下代码：
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_video_chat_view"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="io.agora.tutorials1v1vcall.VideoChatViewActivity">
- 
-    <RelativeLayout
-        android:id="@+id/remote_video_view_container"
+    tools:context=".MainActivity">
+
+      <FrameLayout
+        android:id="@+id/local_video_view_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/remoteBackground">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/icon_padding">
-            <ImageView
-                android:layout_width="@dimen/remote_back_icon_size"
-                android:layout_height="@dimen/remote_back_icon_size"
-                android:layout_centerInParent="true"
-                android:src="@drawable/icon_agora_largest"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/icon_padding"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/remote_back_icon_margin_bottom"
-            android:layout_alignParentBottom="true"/>
-    </RelativeLayout>
- 
-    <FrameLayout
-        android:id="@+id/local_video_view_container"
-        android:layout_width="@dimen/local_preview_width"
-        android:layout_height="@dimen/local_preview_height"
+        android:background="@android:color/white" />
+
+      <FrameLayout
+        android:id="@+id/remote_video_view_container"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="@dimen/local_preview_margin_right"
-        android:layout_marginRight="@dimen/local_preview_margin_right"
-        android:layout_marginTop="@dimen/local_preview_margin_top"
-        android:background="@color/localBackground">
- 
-        <ImageView
-            android:layout_width="@dimen/local_back_icon_size"
-            android:layout_height="@dimen/local_back_icon_size"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_agora_large" />
-    </FrameLayout>
- 
-    <RelativeLayout
-        android:id="@+id/control_panel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/control_bottom_margin">
- 
-        <ImageView
-            android:id="@+id/btn_call"
-            android:layout_width="@dimen/call_button_size"
-            android:layout_height="@dimen/call_button_size"
-            android:layout_centerInParent="true"
-            android:onClick="onCallClicked"
-            android:src="@drawable/btn_endcall"
-            android:scaleType="centerCrop"/>
- 
-        <ImageView
-            android:id="@+id/btn_switch_camera"
-            android:layout_width="@dimen/other_button_size"
-            android:layout_height="@dimen/other_button_size"
-            android:layout_toRightOf="@id/btn_call"
-            android:layout_toEndOf="@id/btn_call"
-            android:layout_marginLeft="@dimen/control_bottom_horizontal_margin"
-            android:layout_centerVertical="true"
-            android:onClick="onSwitchCameraClicked"
-            android:src="@drawable/btn_switch_camera"
-            android:scaleType="centerCrop"/>
- 
-        <ImageView
-            android:id="@+id/btn_mute"
-            android:layout_width="@dimen/other_button_size"
-            android:layout_height="@dimen/other_button_size"
-            android:layout_toLeftOf="@id/btn_call"
-            android:layout_toStartOf="@id/btn_call"
-            android:layout_marginRight="@dimen/control_bottom_horizontal_margin"
-            android:layout_centerVertical="true"
-            android:onClick="onLocalAudioMuteClicked"
-            android:src="@drawable/btn_unmute"
-            android:scaleType="centerCrop"/>
-    </RelativeLayout>
- 
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/darker_gray" />
+
 </RelativeLayout>
 ```
-</details>
 
-<a name="import_class"></a>
-### 2. 导入类
-		
-在项目的 Activity 文件中添加如下行：
+### 处理 Android 系统逻辑
 
-```java
-import io.agora.rtc.IRtcEngineEventHandler;
-import io.agora.rtc.RtcEngine;
-import io.agora.rtc.video.VideoCanvas;
-  
-import io.agora.rtc.video.VideoEncoderConfiguration;
-```
+参考如下步骤，导入必要的 Android 类，并添加授权必要权限的逻辑。
 
-### 3. 获取设备权限
+1. 导入必要的 Android 类
 
-调用 `checkSelfPermission` 方法，在开启 Activity 时检查并获取 Android 移动设备的摄像头和麦克风使用权限。
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `package com.example.<projectname>` 后添加如下代码：
 
-```java
-private static final int PERMISSION_REQ_ID = 22;
-    
-// App 运行时确认麦克风和摄像头设备的使用权限。
-private static final String[] REQUESTED_PERMISSIONS = {
-        Manifest.permission.RECORD_AUDIO,
-        Manifest.permission.CAMERA,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
-};
-  
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_video_chat_view);
-  
-    // 获取权限后，初始化 RtcEngine，并加入频道。
-    if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
-            checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID) &&
-            checkSelfPermission(REQUESTED_PERMISSIONS[2], PERMISSION_REQ_ID)) {
-        initEngineAndJoinChannel();
-    }
-}
-  
-private boolean checkSelfPermission(String permission, int requestCode) {
-    if (ContextCompat.checkSelfPermission(this, permission) !=
-            PackageManager.PERMISSION_GRANTED) {
-        ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, requestCode);
-        return false;
-    }
-  
-    return true;
-}
-```
+   ```java
+    import androidx.core.app.ActivityCompat;
+    import androidx.core.content.ContextCompat;
 
-### 4. 初始化 RtcEngine
+    import android.Manifest;
+    import android.content.pm.PackageManager;
+    import android.view.SurfaceView;
+    import android.widget.FrameLayout;
+   ```
 
-在调用其他 Agora API 前，需要创建并初始化 RtcEngine 对象。
+2. 添加必要权限的授权逻辑
 
-将获取到的 App ID 添加到 `string.xml` 文件中的 `agora_app_id` 一栏。调用 `create` 方法，传入获取到的 App ID，即可初始化 RtcEngine。
+   启动应用程序时，检查是否已在 app 中授予了实现极速直播所需的权限。如果已获取权限 `true`，调用 `initializeAndJoinChannel` 开始极速直播功能。如果未获取权限 `false`，Android 系统调出权限覆盖，申请权限。
 
-你还根据场景需要，在初始化时注册想要监听的回调事件，如本地用户加入频道，及解码远端用户视频首帧等。注意不要在这些回调中进行 UI 操作。
+   为实现授权逻辑，在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `onCreate` 函数前添加如下代码：
 
-```java
-private RtcEngine mRtcEngine;
-private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
-    @Override
-    // 注册 onJoinChannelSuccess 回调。
-    // 本地用户成功加入频道时，会触发该回调。
-    public void onJoinChannelSuccess(String channel, final int uid, int elapsed) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i("agora","Join channel success, uid: " + (uid & 0xFFFFFFFFL));
+   ```java
+    private static final int PERMISSION_REQ_ID = 22;
+   
+    private static final String[] REQUESTED_PERMISSIONS = {
+                    Manifest.permission.RECORD_AUDIO,
+                    Manifest.permission.CAMERA
+    };
+   
+    private boolean checkSelfPermission(String permission, int requestCode) {
+            if (ContextCompat.checkSelfPermission(this, permission) !=
+                            PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, requestCode);
+                    return false;
             }
-        });
+            return true;
     }
+   ```
+
+### 实现极速直播逻辑
+
+应用开启时，你需要依次创建 `RtcEngine` 实例，开启视频模块，让本地用户加入频道，将本地视图与处于较低图层的帧布局（FrameLayout）绑定。当其他用户加入频道时，你的 app 会捕捉到这一加入事件，并将远端视图与处于较高图层的帧布局（FrameLayout）绑定。
+
+下图展示极速直播的 API 调用时序：
+
+![img](https://web-cdn.agora.io/docs-files/1637740667064)
+
+按照以下步骤实现该逻辑：
+
+1. 导入必要的 Agora 类。
+
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `import android.os.Bundle` 后添加如下代码：
+
+   ```java
+    import io.agora.rtc.Constants;
+    import io.agora.rtc.IRtcEngineEventHandler;
+    import io.agora.rtc.RtcEngine;
+    import io.agora.rtc.models.ClientRoleOptions;
+    import io.agora.rtc.video.VideoCanvas;
+   ```
+
+2. 创建变量用以创建并加入互动直播。
+
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `AppCompatActivity {` 后添加如下代码：
+
+   ```java
+     // 填写你的项目在 Agora 控制台中生成的 App ID。
+     private String appId = "";
+     // 填写频道名称。
+     private String channelName = "";  
+     // 填写 Agora 控制台中生成的临时 Token。
+     private String token = "";
+
+     private RtcEngine mRtcEngine;
+
+     private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
+             @Override
+              // 监听频道内的远端主播，获取主播的 uid 信息。
+             public void onUserJoined(int uid, int elapsed) {
+                     runOnUiThread(new Runnable() {
+                             @Override
+                             public void run() {
+                                     // 从 onUserJoined 回调获取 uid 后，调用 setupRemoteVideo，设置远端视频视图。
+                                     setupRemoteVideo(uid);
+                             }
+                     });
+             }
+     };
+   ```
+
+3. 初始化 app 并加入频道。
+
+   调用核心方法来加入 `MainActivity` 类中的频道。在如下示例代码中，我们使用 `initializeAndJoinChannel` 函数来封装这些核心方法。
+
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `onCreate` 函数后添加如下代码：
+
+   ```java
+     private void initializeAndJoinChannel() {
+             try {
+                     mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
+             } catch (Exception e) {
+                     throw new RuntimeException("Check the error.");
+             }
+
+             // 直播场景下，设置频道场景为 BROADCASTING。
+             mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
+             // 将用户角色设置为观众，将延时性设置为低延时。
+             ClientRoleOptions clientRoleOptions = new ClientRoleOptions();
+             clientRoleOptions.audienceLatencyLevel = Constants.AUDIENCE_LATENCY_LEVEL_LOW_LATENCY;
+             mRtcEngine.setClientRole(Constants.CLIENT_ROLE_AUDIENCE, clientRoleOptions);
+
+             // 视频默认禁用，你需要调用 enableVideo 开始视频流。
+             mRtcEngine.enableVideo();
+
+             FrameLayout container = findViewById(R.id.local_video_view_container);
+             // 调用 CreateRendererView 创建一个 SurfaceView 对象，并将其作为 FrameLayout 的子对象。
+             SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
+             container.addView(surfaceView);
+             // 将 SurfaceView 对象传入 Agora，以渲染本地视频。
+             mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
+
+             // 使用 Token 加入频道。
+             mRtcEngine.joinChannel(token, channelName, "", 0);
+     }
+   ```
+
+4. 当远端用户加入频道时，更新远端用户界面。
+
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中的`initializeAndJoinChannel` 函数后加入如下代码：
+
+   ```java
+     private void setupRemoteVideo(int uid) {
+             FrameLayout container = findViewById(R.id.remote_video_view_container);
+             SurfaceView surfaceView = RtcEngine.CreateRendererView(getBaseContext());
+             surfaceView.setZOrderMediaOverlay(true);
+             container.addView(surfaceView);
+             mRtcEngine.setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, uid));
+     }
+   ```
+
+### 启动和关闭 app
+
+现在你已经完成极速直播的逻辑，接下来需要添加启动和关闭 app 的逻辑。用户打开你的 app 启动时，直播开始；用户关闭你的 app 时，直播结束。
+
+1. 检查 app 是否已获取正确的权限。如果已获取权限，调用 `initializeAndJoinChannel` 加入直播频道。
+
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中，用如下代码替换 `MainActivity` 类中的 `onCreate`：
+
+   ```java
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+             super.onCreate(savedInstanceState);
+             setContentView(R.layout.activity_main);
+
+             // 如果已经授予所有权限，初始化 RtcEngine 对象并加入一个频道。
+             if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
+                             checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID)) {
+                     initializeAndJoinChannel();
+             }
+     }
+   ```
+
+2. 当用户关闭 app 时，清理你在 `initializeAndJoinChannel` 函数中创建的所有资源。
+
+   在 `/app/java/com.example.<projectname>/MainActivity` 文件中的 `onCreate` 函数后添加 `onDestroy`：
+
+   ```java
+     protected void onDestroy() {
+             super.onDestroy();
    
-    @Override
-    // 注册 onFirstRemoteVideoDecoded 回调。
-    // SDK 接收到第一帧远端视频并成功解码时，会触发该回调。
-    // 可以在该回调中调用 setupRemoteVideo 方法设置远端视图。
-    public void onFirstRemoteVideoDecoded(final int uid, int width, int height, int elapsed) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i("agora","First remote video decoded, uid: " + (uid & 0xFFFFFFFFL));
-                setupRemoteVideo(uid);
+             mRtcEngine.leaveChannel();
+             mRtcEngine.destroy();
+     }
+   ```
+
+## 测试你的 app
+
+按照以下步骤测试你的 app：
+
+1. 在 `appId` 和 `token` 参数中分别填写从 Agora 控制台获取的 App ID 和临时 Token。在 `channelName` 中填写用于生成临时 Token 的频道名称。
+
+2. 将 Android 设备连接到你的电脑，并在 **Android Studio** 里点击 `Run 'app'`。片刻后，项目便会安装到你的设备上。
+
+3. 在你的设备上启动 app。在你的 app 里，用户角色被设置为观众。你无法在本地视图中看到自己。
+
+4. 请一位朋友在[演示 app](https://webdemo.agora.io/agora-websdk-api-example-4.x/basicVideoCall/index.html) 中加入你的直播。输入相同的 App ID 和频道名称。你的朋友加入频道后，你们可以看到彼此，并听到彼此的声音。
+
+## 后续步骤
+
+在生产环境中，为保证通信安全，Agora 推荐从服务器中获取 Token，详情请参考[使用 Token 鉴权](https://docs.agora.io/cn/Video/token_server?platform=Android)。
+
+## 相关信息
+
+本节提供了额外的信息供参考。
+
+### 示例项目
+
+Agora 在 GitHub 上提供了一个开源的直播示例项目 [LiveStreaming](https://github.com/AgoraIO/API-Examples/blob/master/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/LiveStreaming.jav) 供你参考。
+
+### <a name="https://docs.agora.io/cn/live-streaming/start_live_standard_android?platform=Android#othermethods">集成 SDK 的其他方法</a>
+
+除了通过 mavenCentral 集成 Android 视频 SDK 外，你也可以使用 JitPack 或者手动复制 SDK 文件，将 SDK 导入你的项目。
+
+**使用 Jitpack 自动集成 SDK**
+
+ Jitpack 的集成方式仅适用于早于 3.5.0版的 SDK。
+
+1. 在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码，将 JitPack 添加到仓库列表中：
+
+   ```java
+    all projects {
+            repositories {
+            ...
+            maven { url 'https://www.jitpack.io' }
             }
-        });
     }
-   
-    @Override
-    // 注册 onUserOffline 回调。
-    // 远端主播离开频道或掉线时，会触发该回调。
-    public void onUserOffline(final int uid, int reason) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i("agora","User offline, uid: " + (uid & 0xFFFFFFFFL));
-                onRemoteUserLeft();
-            }
-        });
+   ```
+
+2. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中，添加如下代码，将 Agora 视频 SDK 集成到你的 Android 项目中：
+
+   ```java
+    ...
+    dependencies {
+            ...
+            // x.y.z，请填写具体的 SDK 版本号，如 3.4.0。
+            implementation 'com.github.agorabuilder:native-full-sdk:x.y.z'
     }
-};
-     
-...
-   
-// 初始化 RtcEngine 对象。
-private void initializeEngine() {
-    try {
-        mRtcEngine = RtcEngine.create(getBaseContext(), getString(R.string.agora_app_id), mRtcEventHandler);
-    } catch (Exception e) {
-        Log.e(TAG, Log.getStackTraceString(e));
-        throw new RuntimeException("NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(e));
-    }
-}
-```
+   ```
 
-### 5. 设置频道场景
+**手动复制 SDK 文件**
 
-初始化结束后，调用 `setChannelProfile` 方法，将频道场景设为直播。
+<div class="alert note">手动的集成方式适用于所有版本 SDK。</div>
 
-一个 RtcEngine 只能使用一种频道场景。如果想切换为其他模式，需要先调用 `destroy` 方法释放当前的 RtcEngine 实例，然后使用 create 方法创建一个新实例，再调用 `setChannelProfile` 设置新的频道场景。
+1. 在 [SDK 下载](https://docs.agora.io/en/live-streaming/downloads?platform=Android)页面下载最新版本的 Agora 视频 SDK，并解压。
 
-```java
-private void setChannelProfile() {
-    mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
-}
-```
+2. 打开 SDK 包 libs 文件夹，将以下文件或子文件夹复制到你的项目路径中。
 
-### 6. 设置用户角色
+   | 文件或子文件夹 | 你的项目路径 |
+   | :----------------------- | :----------------------- |
+   | `agora-rtc-sdk.jar` 文件 | `/app/libs/` |
+   | `arm-v8a` 文件夹 | `/app/src/main/jniLibs/` |
+   | `armeabi-v7a` 文件夹 | `/app/src/main/jniLibs/` |
+   | `x86` 文件夹 | `/app/src/main/jniLibs/` |
+   | `x86_64` 文件夹 | `/app/src/main/jniLibs/` |
+   | `include` 文件夹 | `/app/src/main/jniLibs/` |
 
-直播频道有两种用户角色：主播和观众，其中默认的角色为观众。设置频道场景为直播后，你可以在 App 中参考如下步骤设置用户角色：
+   - 如果你使用 armeabi 架构, 请将 `armeabi-v7a` 文件夹的文件复制到你的项目 `armeabi` 文件中。如果出现不兼容问题，请[联系我们](https://agora-ticket.agora.io)
+   - SDK 包中的库不是全部必须。详情请参考[如何减少集成 RTC Native SDK 的 app 体积](https://docs.agora.io/en/Video/faq/reduce_app_size_rtc)。
 
-1. 让用户选择自己的角色是主播还是观众
-2. 调用 `setClientRole` 方法，然后使用用户选择的角色进行传参
-
-注意，直播频道内的用户，只能看到主播的画面、听到主播的声音。加入频道后，如果你想切换用户角色，也可以调用 `setClientRole` 方法。
-
-```java
-public void onClickJoin(View view) {
-    // 使用弹框让用户自行选择用户角色。
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setMessage(R.string.msg_choose_role);
-    builder.setNegativeButton(R.string.label_audience, new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            MainActivity.this.forwardToLiveRoom(Constants.CLIENT_ROLE_AUDIENCE);
-        }
-    });
-    builder.setPositiveButton(R.string.label_broadcaster, new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            MainActivity.this.forwardToLiveRoom(Constants.CLIENT_ROLE_BROADCASTER);
-        }
-    });
-    AlertDialog dialog = builder.create();
- 
-    dialog.show();
-}
- 
-// 获取用户设置的角色和频道名。
-// 其中，频道名需要在加入频道时使用。
-public void forwardToLiveRoom(int cRole) {
-    final EditText v_room = (EditText) findViewById(R.id.room_name);
-    String room = v_room.getText().toString();
- 
-    Intent i = new Intent(MainActivity.this, LiveRoomActivity.class);
-    i.putExtra("CRole", cRole);
-    i.putExtra("CName", room);
- 
-    startActivity(i);
-}
- 
-// 传入用户设置的角色。
-private int mRole;
-mRole = getIntent().getIntExtra("CRole", 0);
- 
-private void setClientRole() {
-    mRtcEngine.setClientRole(mRole);
-}
-```
-
-### 7. 设置本地视图
-
-成功初始化 RtcEngine 对象后，需要在加入频道前设置本地视图，以便主播在直播中看到本地图像。参考以下步骤设置本地视图：
-
-1. 调用 `enableVideo` 方法启用视频模块。
-2. 调用 `createRendererView` 方法创建一个 SurfaceView 对象。
-3. 调用 `setupLocalVideo` 方法设置本地视图。
-
-```java
-private void setupLocalVideo() {
-   
-    // 启用视频模块。
-    mRtcEngine.enableVideo();
-   
-    // 创建 SurfaceView 对象。
-    private FrameLayout mLocalContainer;
-    private SurfaceView mLocalView;
-   
-    mLocalView = RtcEngine.CreateRendererView(getBaseContext());
-    mLocalView.setZOrderMediaOverlay(true);
-    mLocalContainer.addView(mLocalView);
-    // 设置本地视图。
-    VideoCanvas localVideoCanvas = new VideoCanvas(mLocalView, VideoCanvas.RENDER_MODE_HIDDEN, 0);
-    mRtcEngine.setupLocalVideo(localVideoCanvas);
-}
-```
-
-### 8. 加入频道
-
-完成设置角色和本地视图后，你就可以调用 `joinChannel` 方法加入频道。你需要在该方法中传入如下参数：
-
-* `token`：传入能标识用户角色和权限的 Token。可设为如下一个值：
-   * `NULL`
-   * 临时 Token。临时 Token 服务有效期为 24 小时。你可以在控制台里生成一个临时 Token，详见[获取临时 Token](https://docs.agora.io/cn/Agora%20Platform/token?platform=All%20Platforms#获取临时-token)。
-   * 在你的服务器端生成的 Token。在安全要求高的场景下，我们推荐你使用此种方式生成的 Token，详见[生成 Token](./token_server)。
-
- <div class="alert note">若项目已启用 App 证书，请使用 Token。</div>
-
-* channelName：传入能标识频道的频道 ID。App ID 相同、频道 ID 相同的用户会进入同一个频道。
-* uid: 本地用户的 ID。数据类型为整型，且频道内每个用户的 uid 必须是唯一的。若将 uid 设为 0，则 SDK 会自动分配一个 uid，并在 `onJoinChannelSuccess` 回调中报告。
-<div class="alert note">用户成功加入频道后，会默认订阅频道内其他所有用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <code>mute</code> 方法实现。</div>
-
-更多的参数设置注意事项请参考 [`joinChannel`](./API%20Reference/java/classio_1_1agora_1_1rtc_1_1_rtc_engine.html#a8b308c9102c08cb8dafb4672af1a3b4c) 接口中的参数描述。
-
-```java
-private void joinChannel() {
- 
-    // 对于 v3.0.0 之前的 SDK，如果频道中有 Web SDK，需要调用该方法开启 Native SDK 和 Web SDK 互通。v3.0.0 及之后的 SDK 在通信和直播场景下均自动开启了与 Web SDK 的互通。
-    rtcEngine.enableWebSdkInteroperability(true);
- 
-    // 使用 Token 加入频道。
-    private String mRoomName;
-    mRoomName = getIntent().getStringExtra("CName");
-    mRtcEngine.joinChannel(YOUR_TOKEN, mRoomName, "Extra Optional Data", 0);
-}
-```
-
-### 9. 设置远端视图
-
-视频直播中，不论你是主播还是观众，都应该看到频道中的所有主播。在加入频道后，可通过调用 `setupRemoteVideo` 方法设置远端主播的视图。远端视图和本地视图的区别就是需要设置远端用户的 UID。
-
-远端主播成功加入频道后，SDK 会触发 `onFirstRemoteVideoDecoded` 回调，该回调中会包含这个主播的 uid 信息。在该回调中调用 `setupRemoteVideo` 方法，传入获取到的 uid，设置该主播的视图。
-
-```java
-@Override
-    // 监听 onFirstRemoteVideoDecoded 回调。
-    // SDK 接收到第一帧远端视频并成功解码时，会触发该回调。
-    // 可以在该回调中调用 setupRemoteVideo 方法设置远端视图。
-    public void onFirstRemoteVideoDecoded(final int uid, int width, int height, int elapsed) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i("agora","First remote video decoded, uid: " + (uid & 0xFFFFFFFFL));
-                setupRemoteVideo(uid);
-            }
-        });
-    }
-  
-private void setupRemoteVideo(int uid) {
-  
-    // 创建一个 SurfaceView 对象。
-    private RelativeLayout mRemoteContainer;
-    private SurfaceView mRemoteView;
-    
-    mRemoteView = RtcEngine.CreateRendererView(getBaseContext());
-    mRemoteContainer.addView(mRemoteView);
-    // 设置远端视图。
-    mRtcEngine.setupRemoteVideo(new VideoCanvas(mRemoteView, VideoCanvas.RENDER_MODE_HIDDEN, uid));
-  
-}
-```
-
-### 10. 更多步骤
-
-你还可以在直播中参考如下代码实现更多功能及场景。
-
-<details>
-	<summary><font color="#3ab7f8">停止发送本地音频流</font></summary>
-	
-调用 `muteLocalAudioStream` 停止或恢复发送本地音频流，实现或取消本地静音。
-
-```java
-public void onLocalAudioMuteClicked(View view) {
-    mMuted = !mMuted;
-    mRtcEngine.muteLocalAudioStream(mMuted);
-}
-```
-</details>
-
-<details>
-	<summary><font color="#3ab7f8">切换前后摄像头</font></summary>
-
-调用 `switchCamera` 方法切换摄像头的方向。
-
-```java
-public void onSwitchCameraClicked(View view) {
-    mRtcEngine.switchCamera();
-}
-```
-</details>
-
-### 11. 离开频道
-
-根据场景需要，如结束直播、关闭 App 或 App 切换至后台时，调用 `leaveChannel` 离开当前直播频道。
-
-```java
-
-@Override
-protected void onDestroy() {
-    super.onDestroy();
-    if (!mCallEnd) {
-        leaveChannel();
-    }
-    RtcEngine.destroy();
-}
- 
-private void leaveChannel() {
-    // 离开当前频道。
-    mRtcEngine.leaveChannel();
-}
-```
-
-### 示例代码
-
-你可以在 [OpenLive-Android](https://github.com/AgoraIO/Basic-Video-Broadcasting/tree/master/OpenLive-Android) 示例项目中查看完整的源码和代码逻辑。
-
-## 运行项目
-
-在 Android 设备中运行该项目。当成功开始视频直播时，主播可以看到自己的画面；观众可以看到主播的画面。
-
-## 相关链接
-
-- [直播场景下，如何监听远端观众用户加入/离开频道的事件？](https://docs.agora.io/cn/faq/audience_event)
-- [如何设置日志文件？](https://docs.agora.io/cn/faq/logfile)
-- [如何处理视频黑屏问题？](https://docs.agora.io/cn/faq/video_blank)
-- [为什么 Android 9 应用锁屏或切后台后采集音视频无效？](https://docs.agora.io/cn/faq/android_background)

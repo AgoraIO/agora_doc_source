@@ -42,9 +42,9 @@ abstract fun selectAppliance(type: WhiteboardApplianceType)
 
 选中白板基础工具。
 
-| 参数   | 描述                                               |
-| :----- | :------------------------------------------------- |
-| `type` | 白板基础工具类型，详见 `WhiteboardApplianceType`。 |
+| 参数   | 描述                                                         |
+| :----- | :----------------------------------------------------------- |
+| `type` | 白板基础工具类型，详见 [WhiteboardApplianceType](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboardappliancetype)。 |
 
 ### selectColor
 
@@ -196,9 +196,9 @@ fun onWhiteboardJoinSuccess(config: WhiteboardDrawingConfig)
 
 提示成功加入白板房间。
 
-| 参数     | 描述                                           |
-| :------- | :--------------------------------------------- |
-| `config` | 白板初始配置，详见 `WhiteboardDrawingConfig`。 |
+| 参数     | 描述                                                         |
+| :------- | :----------------------------------------------------------- |
+| `config` | 白板初始配置，详见 [WhiteboardDrawingConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboarddrawingconfig)。 |
 
 ### onWhiteboardJoinFail
 
@@ -248,7 +248,7 @@ fun onDrawingConfig(config: WhiteboardDrawingConfig)
 
 | 参数 | 描述 |
 | :--- | :--- |
-|  `config`    |  白板初始配置，详见 `WhiteboardDrawingConfig`。  |
+|  `config`    |  白板初始配置，详见 [WhiteboardDrawingConfig](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#whiteboarddrawingconfig)。  |
 
 ### onDrawingEnabled
 
@@ -348,7 +348,7 @@ fun onBoardPhaseChanged(phase: EduBoardRoomPhase)
 
 | 参数 | 描述 |
 | :--- | :--- |
-|  `phase`  |  白板连接状态。  |
+|  `phase`  |  白板连接状态，详见 [EduBoardRoomPhase](/cn/agora-class/edu_context_api_ref_android_type_def?platform=Android#eduboardroomphase)。  |
 
 
 ### onDownloadProgress

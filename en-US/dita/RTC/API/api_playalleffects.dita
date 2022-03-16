@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_playalleffects">
-    <title><ph keyref="playAllEffects"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this API."?>Plays all audio effects.</ph></shortdesc>
+    <title><ph keyref="playAllEffects" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Plays all audio effects.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="playAllEffects"/>
+                <indexterm keyref="playAllEffects" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
                 <codeblock props="windows" outputclass="language-cpp">virtual int playAllEffects(int loopCount, double pitch, double pan, int gain, bool publish = false) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
             </p>
         </section>
         <section id="detailed_desc">
-            <p>After calling <xref keyref="preloadEffect"/> multiple times to preload multiple audio effects into the memory, you can call this method to play all the specified audio effects for all users in the channel.</p>
+            <p>After calling <xref keyref="preloadEffect" /> multiple times to preload multiple audio effects into the memory, you can call this method to play all the specified audio effects for all users in the channel.</p>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameters</title>
             <parml>
                 <plentry>
-                    <pt><?oxy-placeholder content="The name of the parameter."?>loopCount</pt>
-                    <pd><?oxy-placeholder content="The description of the parameter. Please specify if the parameter is optional, output, and has a default value or value range."?>The number of times the audio effect loops:<ul>
-                        <li>-1: Play the audio effect in an indefinite loop until you call <xref keyref="stopEffect"/> or <xref keyref="stopAllEffects"/>.</li>
+                    <pt>loopCount</pt>
+                    <pd>The number of times the audio effect loops:<ul>
+                        <li>-1: Play the audio effect in an indefinite loop until you call <xref keyref="stopEffect" /> or <xref keyref="stopAllEffects" />.</li>
                         <li>0: Play the audio effect once.</li>
                         <li>1: Play the audio effect twice.</li></ul></pd>
                 </plentry>
@@ -56,8 +56,8 @@
                 </plentry>
                 <plentry>
                     <pt>publish</pt>
-                    <pd>Whether to publish the audio effect to the remote users:<ul><li>true: Publish the audio effect to the remote users. Both the local user and remote users can hear the audio effect.</li>
-                        <li>false: Do not publish the audio effect to the remote users. Only the local user can hear the audio effect.</li></ul></pd>
+                    <pd>Whether to publish the audio effect to the remote users:<ul><li><codeph><ph keyref="true" /></codeph>: Publish the audio effect to the remote users. Both the local user and remote users can hear the audio effect.</li>
+                        <li><codeph><ph keyref="false" /></codeph>: Do not publish the audio effect to the remote users. Only the local user can hear the audio effect.</li></ul></pd>
                 </plentry>
             </parml>
         </section>

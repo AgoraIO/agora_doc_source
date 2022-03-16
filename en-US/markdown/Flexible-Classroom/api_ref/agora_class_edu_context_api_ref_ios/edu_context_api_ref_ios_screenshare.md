@@ -8,7 +8,7 @@
 func registerEventHandler(_ handler: AgoraEduScreenShareHandler)
 ```
 
-Register the event listener.
+Registers the event listener.
 
 | Parameter | Description |
 | :-------- | :------------------------------------- |
@@ -18,34 +18,32 @@ Register the event listener.
 
 `AgoraEduScreenShareHandler` reports screen-sharing-related event callbacks to your app.
 
-### onScreenShareStateUpdated
+### onUpdateScreenShareState
 
 ```swift
-@objc optional func onUpdateScreenShareState(_ sharing: Bool,
-                                               streamUuid: String)
+@objc optional func onUpdateScreenShareState(_ state: AgoraEduContextScreenShareState,
+                                          streamUuid: String)
 ```
 
-Occurs when the state of screen sharing is updated.
+Occurs when the screen sharing state updates.
+
+- When the `state` is `start`, Flexible Classroom triggers a pop-up window saying "The teacher has started screen sharing".
+- When the `state` is `stop`, Flexible Classroom triggers a pop-up window saying "The teacher has stopped screen sharing".
 
 | Parameter | Description |
-| :----------- | :----------------- |
-| `sharing` | Whether the screen is being shared. |
-| `streamUuid` | The stream ID. |
+| :----------- | :----------------------------------------------------- |
+| `state` | The screen sharing state. See `AgoraEduContextScreenShareState` for details. |
+| `streamUuid` | The ID of the screen-sharing stream. |
 
-### onScreenShareTip
+### onSelectScreenShare
 
 ```swift
-@objc optional func onShowScreenShareTips(_ message: String)
+@objc optional func onSelectScreenShare(_ selected: Bool)
 ```
 
-Displays tips related to screen sharing.
-
-There are the following tips:
-
-- User A has started screen sharing.
-- User A has stopped screen sharing.
+Indicates whether the screen sharing tab is selected.
 
 | Parameter | Description |
-| :-------- | :--------- |
-| `message` | The tip. |
+| :--------- | :----------------------- |
+| `selected` | Whether the screen sharing tab is selected. |
 

@@ -10,7 +10,7 @@
 abstract fun updateVideo(enabled: Boolean)
 ```
 
-Enable or disable the local video.
+Enables or disables the local video.
 
 | Parameter | Description |
 | :-------- | :----------------- |
@@ -22,7 +22,7 @@ Enable or disable the local video.
 abstract fun updateAudio(enabled: Boolean)
 ```
 
-Enable or disable the local audio.
+Enables or disables the local audio.
 
 | Parameter | Description |
 | :-------- | :----------------- |
@@ -34,11 +34,11 @@ Enable or disable the local audio.
 abstract fun renderVideo(viewGroup: ViewGroup?, streamUuid: String)
 ```
 
-Start or stop rendering the local video stream.
+Starts or stops rendering the local video stream.
 
 | Parameter | Description |
 | :----------- | :----------------------------------------------------- |
-| `container` | The video container. `Setting viewGroup` as `null` means stopping rendering the video stream. |
+| `container` | The video container. Setting `viewGroup` as `null` means stopping rendering the video stream. |
 | `streamUuid` | The stream ID. |
 
 ## IVideoHandler
@@ -48,7 +48,7 @@ Start or stop rendering the local video stream.
 ### onUserDetailInfoUpdated
 
 ```kotlin
-fun onUserDetailInfoUpdated (info: EduContextUserDetailInfo)
+fun onUserDetailInfoUpdated(info: EduContextUserDetailInfo)
 ```
 
 Occurs when the user info updates.

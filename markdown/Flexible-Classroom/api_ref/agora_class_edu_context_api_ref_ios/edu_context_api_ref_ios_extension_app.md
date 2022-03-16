@@ -2,6 +2,8 @@
 
 ## AgoraExtAppProtocol
 
+## AgoraExtAppProtocol
+
 ### launchExtApp
 
 ```kotlin

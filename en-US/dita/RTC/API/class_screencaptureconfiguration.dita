@@ -1,52 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureconfiguration">
-    <title><ph keyref="ScreenCaptureConfiguration"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The configuration of the video capture with a primary camera.</ph></shortdesc>
+    <title><ph keyref="ScreenCaptureConfiguration" /></title>
+    <shortdesc id="short"><ph id="shortdesc">The configuration of the captured screen.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
-            <codeblock props="windows" outputclass="language-cpp">struct ScreenCaptureConfiguration { bool isCaptureWindow; unsigned int displayId; Rectangle screenRect; view_t windowId; ScreenCaptureParameters params; Rectangle regionRect; ScreenCaptureConfiguration() : isCaptureWindow(false), displayId(0) {} };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"></codeblock>
-            <codeblock props="unity" outputclass="language-csharp"></codeblock>
-            <codeblock props="rn" outputclass="language-typescript"></codeblock>
-            <codeblock props="flutter" outputclass="language-dart"></codeblock>
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="windows" outputclass="language-cpp">struct ScreenCaptureConfiguration {
+  bool isCaptureWindow;
+  uint32_t displayId;
+  Rectangle screenRect;
+  view_t windowId;
+  ScreenCaptureParameters params;
+  Rectangle regionRect;
+
+  ScreenCaptureConfiguration() : isCaptureWindow(false), displayId(0) {}
+};</codeblock>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" />
             </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
                 <plentry>
                     <pt>isCaptureWindow</pt>
-                    <pd>是否采集屏幕上的窗口：<ul id="ul_ln3_hwd_mqb">
-                        <li><codeph><ph keyref="true"/></codeph>：采集窗口。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：（默认）采集屏幕，不采集窗口。</li>
+                    <pd>Whether to capture the window on the screen:<ul id="ul_ln3_hwd_mqb">
+                        <li><codeph><ph keyref="true" /></codeph>: Capture the window.</li>
+                        <li><codeph><ph keyref="false" /></codeph>: (Default) Capture the screen, not the window.</li>
                         </ul></pd>
                 </plentry>
                 <plentry>
                     <pt>displayId</pt>
-                    <pd>（仅适用于 macOS 平台）屏幕的 display ID。<note id="note_w12_4wd_mqb" type="attention">请仅在 Mac 设备上采集屏幕时使用该参数。</note></pd>
+                    <pd>(macOS only) The display ID of the screen.<note id="note_w12_4wd_mqb" type="attention">This parameter takes effect
+                            only when you want to capture the screen on macOS.</note></pd>
                 </plentry>
                 <plentry>
                     <pt>screenRect</pt>
-                    <pd>（仅适用于 Windows 平台）待共享的屏幕相对于虚拟屏的位置。<note type="attention"
-                        id="note_ifh_swd_mqb">请仅在 Windows 设备上采集屏幕时使用该参数。</note></pd>
+                    <pd>(Windows only) The relative position of the shared screen to the virtual screen.<note type="attention" id="note_ifh_swd_mqb">This parameter takes effect only when you want to capture the screen on Windows.</note></pd>
                 </plentry>
                 <plentry>
                     <pt>windowId</pt>
-                    <pd>(For Windows and macOS only)<note type="attention"
-                        >请仅在采集窗口时使用该参数。</note></pd>
+                    <pd>(For Windows and macOS only)<note type="attention">This parameter takes effect only when you want to capture the window.</note></pd>
                 </plentry>
                 <plentry>
                     <pt>params</pt>
-                    <pd>（仅适用于 Windows 和 macOS 平台）屏幕共享流的编码参数配置。 For details, see <xref
-                            keyref="ScreenCaptureParameters"/>.</pd>
+                    <pd>(For Windows and macOS only) The screen capture configuration. For details, see <xref keyref="ScreenCaptureParameters" />.</pd>
                 </plentry>
                 <plentry>
                     <pt>regionRect</pt>
-                    <pd><p>（仅适用于 Windows 和 macOS 平台）待共享区域相对于整个屏幕的位置。 For details, see <xref keyref="Rectangle"/>.</p><p>If you do not set this parameter, the SDK shares the whole screen. 如果设置的共享区域超出了屏幕的边界，则只共享屏幕内的内容。 如果将 <apiname keyref="Rectangle"/> 中的 width 或 height 设为 0 ，则共享整个屏幕。</p></pd>
+                    <pd><p>(For Windows and macOS only) The relative position of the shared region to the whole screen. For details, see <xref keyref="Rectangle" />.</p><p>If you do not set this parameter, the SDK shares the whole screen. If the region you set exceeds the boundary of the screen, only the region within in the screen is shared.  If you set width or height in <apiname keyref="Rectangle" />
+                            as 0, the whole screen is shared.</p></pd>
                 </plentry>
             </parml>
         </section>

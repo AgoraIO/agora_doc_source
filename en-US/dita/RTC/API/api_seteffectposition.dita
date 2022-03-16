@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_seteffectposition">
-    <title><ph keyref="setEffectPosition"/></title>
+    <title><ph keyref="setEffectPosition" /></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the playback position of an audio effect file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setEffectPosition"/>
+                <indexterm keyref="setEffectPosition" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,14 +17,14 @@
                 <codeblock props="ios mac" outputclass="language-objectivec">- (int)setEffectPosition:(int)soundId pos:(NSInteger)pos;</codeblock>
                 <codeblock props="windows" outputclass="language-cpp">virtual int setEffectPosition(int soundId, int pos) = 0;</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">setEffectPosition(soundId: number, pos: number): number</codeblock>
-                <codeblock props="unity" outputclass="language-csharp"/>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart"/>
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetEffectPosition(int soundId, int pos);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEffectPosition(int soundId, int pos);</codeblock>
             </p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="since" props="android ios mac windows">
-                <dlentry>
+            <dl outputclass="since" props="rtc">
+                <dlentry props="native">
                     <dt>Since</dt>
                     <dd>v3.4.0</dd>
                 </dlentry>
@@ -32,11 +32,11 @@
             <p>After a successful setting, the local audio effect file starts playing at the specified position.</p>
             <note type="attention">Call this method after <apiname>playEffect</apiname>.</note>
         </section>
-        <section id="parameters"><title>Parameter</title>
+        <section id="parameters"><title>Parameters</title>
             <parml>
                 <plentry>
                     <pt>soundId</pt>
-                    <pd>Audio effect ID. Ensure that this parameter matches the <parmname>soundId</parmname> set in <apiname>playEffect</apiname>.</pd>
+                    <pd conkeyref="preloadEffect/soundId" />
                 </plentry>
                 <plentry>
                     <pt>pos</pt>
@@ -44,7 +44,7 @@
                 </plentry>
             </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul>
                 <li>0: Success.</li>

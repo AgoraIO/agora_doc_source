@@ -1,405 +1,211 @@
 This page provides the Swift API reference of the Agora Classroom SDK for iOS.
 
-## AgoraEduSDK
+## AgoraClassroomSDK
 
-`AgoraEduSDK` is the basic interface of the Agora Classroom SDK and provides the main methods that can be invoked by your app.
+`AgoraClassroomSDK` is the basic interface of the Agora Classroom SDK and provides the main methods that can be invoked by your app.
 
 ### version
 
 ```swift
-(NSString *)version;
+String version()
 ```
-
-Gets the SDK version.
-
-**Returns**
 
 The SDK version.
-
-### setConfig
-
-```swift
-+ (void)setConfig:(AgoraEduSDKConfig *)config;
-```
-
-Globally configures the SDK.
-
-**Sample code**
-
-```swift
-/** Global configuration **/
-@interface AgoraEduSDKConfig : NSObject
-// Agora App ID
-@property (nonatomic, copy) NSString *appId;
-// Whether to enable eye care mode
-@property (nonatomic, assign) BOOL eyeCare;
-@end
-AgoraEduSDKConfig *defaultConfig = [[AgoraEduSDKConfig alloc] initWithAppId:appId eyeCare:eyeCare];
-[AgoraEduSDK setConfig:defaultConfig];
-```
-
-**Parameter**
-
-| Parameter | Description |
-| :------- | :----------------------------------------------------------- |
-| `config` | The SDK global configuration. See [`AgoraEduSDKConfig`](#agoraedusdkconfig). |
 
 ### launch
 
 ```swift
-+ (AgoraEduClassroom * _Nullable)launch:(AgoraEduLaunchConfig *)config
-                               delegate:(id<AgoraEduClassroomDelegate> _Nullable)delegate;
+@NotNull AgoraEduLaunchConfig config,
+            Callback<Void> success,
+            Callback<Error> failure)
 ```
 
 Launches a flexible classroom.
-
-**Sample code**
-
-```swift
-/** Classroom launching configuration */
-// The user name
-NSString *userName = @"XXX";
-// The user ID. Must be the same as the user ID that you use for generating an RTM token.
-NSString *userUUid = @"XXX";
-// The classroom name
-NSString *roomName = @"XXX";
-// The classroom ID
-NSString *roomUuid = @"XXX";
-// The user role
-AgoraEduRoleType roleType = AgoraEduRoleTypeStudent;
-// The classroom type
-AgoraEduRoomType roomType = AgoraEduRoomType1V1;
-// The RTM token
-NSString *rtmToken = "";
-// The start time (ms) of the class, determined by the first user joining the classroom.
-NSNumber *startTime = @(XXX);
-// The duration (ms) of the class, determined by the first user joining the classroom.
-NSNumber *duration = @(1800);
- 
-AgoraEduLaunchConfig *config = [[AgoraEduLaunchConfig alloc] initWithUserName:userName userUuid:userUuid roleType:roleType roomName:roomName roomUuid:roomUuid roomType:roomType token:rtmToken startTime:startTime duration:duration];
-[AgoraEduSDK launch:config delegate:self];
-```
 
 **Parameter**
 
 | Parameter | Description |
 | :--------- | :----------------------------------------------------------- |
-| `config` | The classroom launching configuration. See [`AgoraEduLaunchConfig`](#agoraedulaunchconfig). |
-| `delegate` | The SDK uses the [`AgoraEduClassroomDelegate`](#agoraeduclassroomdelegate) class to report events related to classroom launching to the app. |
+| `config` | The classroom launching configuration. See [AgoraEduLaunchConfig](#agoraedulaunchconfig). |
+| `success` | The method call succeeds. |
+| `                         Failure` | 调用失败。 |
 
-**Returns**
-
-`AgoraEduClassroom`.
-
-### configCoursewares
+### setDelegate
 
 ```swift
-+ (void)configCoursewares:(NSArray<AgoraEduCourseware *> *)config;
+void setDelegate(AgoraEduClassroomSDKDelegate delegate)
 ```
 
-Configures courseware downloading.
-
-**Sample code**
-
-```swift
-/** Construct, configure, and download the courseware */
-// The ID of the courseware conversion task
-NSString *taskUuid = @"xxxx";
-// The courseware download address
-NSString *resourceUrl = [NSString stringWithFormat:@"https://convertcdn.netless.link/dynamicConvert/%@/.zip", taskUuid];
-// The courseware name
-NSString *resourceName = @"XXX";
-// The list of courseware pages
-NSArray<WhiteScene*> *convertedFileList = @[];
-// The path for storing the courseware
-// Agora recommends setting this parameter as the combination of resourceName and name of the first object in convertedFileList
-NSString *scenePath = [NSString stringWithFormat:@"%@/%@", resourceName, [convertedFileList.firstObject name]];
-
-AgoraEduCourseware *courseware = [[AgoraEduCourseware alloc] initWithResourceName:resourceName scenePath:scenePath scenes:convertedFileList resourceUrl:resourceUrl];
-// Configure the courseware pre-downloading
-[AgoraEduSDK configCoursewares:@[courseware]];
-```
+设置 Classroom SDK 的 Delegate。
 
 **Parameter**
 
 | Parameter | Description |
 | :------- | :----------------------------------------------------------- |
-| `config` | The courseware pre-downloading configuration. See [`AgoraEduCourseware`](#agoraeducourseware). |
+| `delegate` | 详见 [AgoraEduClassroomSDKDelegate](#agoraeduclassroomsdkdelegate)。 |
 
-### downloadCoursewares
-
-```
-+ (void)downloadCoursewares:(id<AgoraEduCoursewareDelegate> _Nullable)delegate;
-```
-
-Pre-download the courseware.
-
-**Sample code**
+### exit
 
 ```swift
-// Download the configured courseware
-[AgoraEduSDK downloadCoursewares:self];
+void exit()
 ```
 
-**Parameter**
+退出 Classroom SDK。
 
-| Parameter | Description |
-| :--------- | :----------------------------------------------------------- |
-| `delegate` | The SDK reports events related to courseware preloading to the app through the [`AgoraEduCoursewareDelegate`](#agoraeducoursewaredelegate) class. |
+## AgoraEduClassroomSDKDelegate
 
-### registerExtApps
+### didExit
 
 ```swift
-+ (void)registerExtApps:(NSArray<AgoraExtAppConfiguration *> *)apps;
+void classroomSDK:(AgoraClassroomSDK *)classroom
+          didExit:(AgoraEduExitReason)reason
 ```
 
-Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](./agora_class_ext_app_ios?platform=iOS).
-
-## AgoraEduClassroom
-
-### destroy
-
-```swift
-- (void)destroy;
-```
-
-Release the resources occupied by the `AgoraEduClassroom` object.
-
-## AgoraEduClassroomDelegate
-
-`AgoraEduLaunchCallback` reports events related to classroom launching to your app.
-
-### didReceivedEvent
-
-```swift
-- (void)classroom:(AgoraEduClassroom *)classroom didReceivedEvent:(AgoraEduEvent)event;
-```
-
-Reports classroom events.
-
-**Parameter**
-
-| Parameter | Description |
-| :------ | :------------------------------------------------- |
-| `event` | The classroom events. See [`AgoraEduEven`](#agoraeduevent). |
-
-## AgoraEduCoursewareDelegate
-
-`AgoraEduCoursewareDelegate` reports events related to courseware preloading to your app.
-
-### didProcessChanged
-
-```swift
-- (void)courseware:(AgoraEduCourseware *)courseware didProcessChanged:(float)process;
-```
-
-Indicates the progress of courseware pre-downloading.
-
-| Parameter | Description |
-| :--------- | :--------------- |
-| `progress` | Indicates the progress of courseware pre-downloading. |
-
-### didCompleted
-
-```swift
-- (void)courseware:(AgoraEduCourseware *)courseware idCompleted:(NSError * _Nullable)error;
-```
-
-The courseware pre-downloading completes.
+Classroom SDK 退出回调。
 
 | Parameter | Description |
 | :------ | :------- |
-| `error` | The error code. |
+| `classroom` | AgoraClassroomSDK |
+| `reason` | 退出原因。 |
 
 ## Type definition
 
-### AgoraEduEvent
+### AgoraEduRegion
 
-```swift
-typedef NS_ENUM(NSInteger, AgoraEduEvent) {
-    AgoraEduEventFailed = 0,
-    AgoraEduEventReady = 1,
-    AgoraEduEventDestroyed =2,
-};
-```
-
-Classroom events. Reported in the [`didReceivedEvent`](#didreceivedevent) callback.
+Regions.
 
 | Attributes | Description |
-| :----------------------- | :------------------ |
-| `AgoraEduEventFailed` | `0`: The user fails to enter the classroom. |
-| `AgoraEduEventReady` | `1`: The classroom is ready. |
-| `AgoraEduEventDestroyed` | `2`: The classroom has been destroyed. |
+| :--- | :----------------- |
+| `CN` | Mainland China. |
+| `NA` | North America. |
+| `EU` | Europe. |
+| `AP` | Asia Pacific. |
 
-### AgoraEduRoleType
+### AgoraEduReason
 
-```swift
-typedef NS_ENUM(NSInteger, AgoraEduRoleType) {
-    AgoraEduRoleTypeStudent = 2,
-};
-```
+退出 Classroom SDK 原因。
 
-The role of the user in the classroom. You need to set the user role in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+| Attributes | Description |
+| :--- | :----------------- |
+| `                         Normal` | 正常退出。 |
+| `                    kickOut` | The connection is aborted. |
+
+### AgoraEduUserRole
+
+The role of the user in the classroom. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :------------------------ | :---------- |
-| `AgoraEduRoleTypeStudent` | `2`: A student. |
+| `student` | `2`: A student. |
 
 ### AgoraEduRoomType
 
-```swift
-typedef NS_ENUM(NSInteger, AgoraEduRoomType) {
-    AgoraEduRoomType1V1 = 0,
-    AgoraEduRoomTypeSmall = 4,
-    AgoraEduRoomTypeBig = 2,
-};
-```
-
-The classroom type. You need to set the user role in [`AgoraEduLaunchConfig`](#agoraedulaunchconfig).
+The classroom type. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
 | Attributes | Description |
 | :---------------------- | :----------------------------------------------------------- |
-| `AgoraEduRoomType1V1` | `0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student. |
-| `AgoraEduRoomTypeBig` | `2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
-| `AgoraEduRoomTypeSmall` | `4`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. |
+| `oneToOne` | `0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student. |
+| `small` | `2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
+| `lecture` | `4`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. |
 
-### AgoraEduSDKConfig
+### AgoraEduMediaEncryptionMode
 
-```swift
-@interface AgoraEduSDKConfig : NSObject
-@property (nonatomic, copy) NSString *appId;
-@property (nonatomic, assign) BOOL eyeCare;
-- (instancetype)initWithAppId:(NSString *)appId;
-- (instancetype)initWithAppId:(NSString *)appId
-                      eyeCare:(BOOL)eyeCare;
-@end
-```
+Media stream encryption mode. The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig )for details.
 
-The SDK global configuration. Used when calling [`setConfig`](#setConfig).
+| Parameter | Description |
+| :------------------------------------- | :-------------------------- |
+| `NONE` | `0`: Not prohibited. |
+| `                         AES128XTS` | ``128-bit AES encryption, XTS mode. |
+| `                         AES128ECB` | `2`: 128-bit AES encryption, ECB mode. |
+| `                         AES256XTS` | `3`: 256-bit AES encryption, XTS mode. |
+| `                         SM4128ECB` | `4`: 128-bit SM4 encryption, ECB mode. |
+| `                         AES128GCM` | `5`: 128-bit AES encryption, GCM mode. |
+| `                         AES256GCM` | `6`: 256-bit AES encryption, GCM mode. |
+| `                         AES128GCM2` | `7`: 128-bit AES encryption, GCM mode. 相比于 `AES128GCM` 加密模式，`AES128GCM2` 加密模式安全性更高且需要设置盐。 |
+| `                         AES256GCM2` | `8`: 256-bit AES encryption, GCM mode. 相比于 `AES_256_GCM` 加密模式，`AES256GCM2` 加密模式安全性更高且需要设置盐。 |
 
-| Attributes | Description |
-| :-------- | :----------------------------------------------------------- |
-| `appId` | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/cn/agora-class/agora_class_prep#step1). |
-| `eyeCare` | Whether to enable eye care mode:<li>`false`: (Default) Disable eye care mode.</li><li>`true`: Enable eye care mode.</li> |
+### AgoraEduMirrorMode
+
+Mirror mode 用于 [AgoraEduVideoEncoderConfig](#agoraeduvideoencoderconfig)。
+
+| Parameter | Description |
+| :------------------------------------- | :-------------------------- |
+| `disabled` | `0`: Closed. |
+| `enabled` | ``: Enable mirror mode. |
+
+### AgoraEduMediaEncryptionConfig
+
+The media stream encryption configuration. Used in [AgoraEduMediaOptions](#agoraedumediaoptions).
+
+| Parameter | Description |
+| :----- | :----------------------------------------------------------- |
+| `mode` | Encryption mode. See [AgoraEduMediaEncryptionMode](#agoraedumediaencryptionmode). |
+| `key` | The encryption key. |
+
 
 ### AgoraEduLaunchConfig
 
-```swift
-@interface AgoraEduLaunchConfig : NSObject
-@property (nonatomic, copy) NSString *userName;
-@property (nonatomic, copy) NSString *userUuid;
-@property (nonatomic, assign) AgoraEduRoleType roleType;
-@property (nonatomic, copy) NSString *roomName;
-@property (nonatomic, copy) NSString *roomUuid;
-@property (nonatomic, assign) AgoraEduRoomType roomType;
-@property (nonatomic, copy) NSString *token;
-@property (nonatomic, strong, nullable) NSNumber *startTime;
-@property (nonatomic, strong, nullable) NSNumber *duration;
-@property (nonatomic, copy) NSString *boardRegion;
- 
-- (instancetype)initWithUserName:(NSString *)userName
-                        userUuid:(NSString *)userUuid
-                        roleType:(AgoraEduRoleType)roleType
-                        roomName:(NSString *)roomName
-                        roomUuid:(NSString *)roomUuid
-                        roomType:(AgoraEduRoomType)roomType
-                           token:(NSString *)token;
- 
-- (instancetype)initWithUserName:(NSString *)userName
-                        userUuid:(NSString *)userUuid
-                        roleType:(AgoraEduRoleType)roleType
-                        roomName:(NSString *)roomName
-                        roomUuid:(NSString *)roomUuid
-                        roomType:(AgoraEduRoomType)roomType
-                           token:(NSString *)token
-                       startTime:(NSNumber *)startTime
-                        duration:(NSNumber *)duration;
-                     boardRegion:(NSString *_Nullable)boardRegion;
-@end
-```
-
-The classroom launching configuration. Used when calling [`launch`](#launch).
+The classroom launching configuration. Used in [launch](#launch).
 
 | Attributes | Description |
-| :------------ | :----------------------------------------------------------- |
-| `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
-| `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
-| `roleType` | The user's role in the classroom. See `AgoraEduRoleType`. |
+| :--------------------------- | :----------------------------------------------------------- |
+| `userName` | 用户名，String 型。 The user name for display in the classroom. The string length must be less than 64 bytes. |
+| `userUuid` | 用户 ID，String 型。 This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
+| `userRole` | The user's role in the classroom. See `AgoraEduRoleType`. |
+| `roomName` | 课堂名，String 型。 The user name for display in the classroom. The string length must be less than 64 bytes. |
+| `roomUuid` | 课堂 ID，String 型。 This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<li>All lowercase English letters: a to z.<li>All uppercase English letters: A to Z.<li>All numeric characters.<li>0-9<li>The space character.<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", "," |
 | `roomType` | The classroom type. See `AgoraEduRoomType`. |
-| `token` | The RTM token used for authentication. For details, see [Generate an RTM Token](https://docs.agora.io/cn/agora-class/agora_class_prep#step5). |
+| `token` | 用于鉴权的 RTM Token，String 型。 |
+| `appId` | Agora App ID，String 型。 |
 | `startTime` | The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | The duration (ms) of the class, determined by the first user joining the classroom. |
-| `boardRegion` | The area where the classrooms is located. All clients must set the same area, otherwise, they may fail to communicate with each other. |
+| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. `AgoraEduRegion` |
+| `mediaOptions` | Media options, including the media stream encryption configuration. See `AgoraEduMediaOptions` for details. |
+| `userProperties` | 由开发者自定义的用户属性，`Map<String, Any>`。 For details, see `How can I set user properties? `/en/agora-class/faq/agora_class_custom_properties) |
+| `widgets` | `Map<String, AgoraWidgetConfig>`，传入 Widget ID 和 Widget Config。 |
+| `extApps` | `Map<String, AgoraExtAppConfig>`，传入 ExtApp ID 和 ExtApp Config。 |
 
-### AgoraEduCourseware
+### AgoraEduStreamState
 
-```swift
-@interface AgoraEduCourseware : NSObject
-@property (nonatomic, copy) NSString *resourceName;
-@property (nonatomic, copy) NSString *scenePath;
-@property (nonatomic, copy) NSString *resourceUrl;
-@property (nonatomic, strong) NSArray<WhiteScene *> *scenes;
-- (instancetype)initWithResourceName:(NSString *)resourceName
-                           scenePath:(NSString *)scenePath
-                              scenes:(NSArray<WhiteScene *> *)scenes
-                         resourceUrl:(NSString *)resourceUrl;
-@end
-```
+用于控制学生上讲台后是否默认有发视频流的权限。 Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
-The courseware pre-download configuration. The courseware pre-loading configuration. Used when calling [`configCoursewares`](#configcoursewares).
+| Parameter | Description |
+| :---- | :--------------- |
+| `off` | ``(Default) Students do not automatically send audio and video streams after they go onto the "stage". |
+| `on` | `1`: Send the video stream. |
 
-| Attributes | Description |
-| :------------- | :----------------------------------------------------------- |
-| `resourceName` | The file name. |
-| `scenePath` | The local path for storing the file. Agora recommends setting this parameter as the combination of `resourceName` and the `name` of the first `SceneInfo` object in `scenes`. |
-| `resourceUrl` | The URL address of the file, such as `"https://convertcdn.netless.link/dynamicConvert/{taskUuid}.zip".` |
-| `scenes` | A list of converted file pages, an array of `WhiteScene` objects. Flexible Classroom automatically converts files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in the classroom and then display the file on the whiteboard in pages. Each `WhiteScene` object represents one page. |
+### AgoraEduLatencyLevel
 
-### WhiteObject
+The latency level of an audience member. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
-```swift
-@interface WhiteScene : WhiteObject
+| Parameter | Description |
+| :--------- | :--------------------------------------------------------- |
+| `low` | `1`: Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms. |
+| `ultraLow` | `2`: (Default) Ultra low latency. The latency from the sender to the receiver is 400 ms to 800 ms. |
 
-- (instancetype)init;
-- (instancetype)initWithName:(nullable NSString *)name ppt:(nullable WhitePptPage *)ppt;
+### AgoraEduMediaOptions
 
-@property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, assign, readonly) NSInteger componentsCount;
-@property (nonatomic, strong, readonly, nullable) WhitePptPage *ppt;
-@end
-```
+Media options. Set in [AgoraEduLaunchConfig](#agoraedulaunchconfig).
 
-The detailed information of a page. Set in [`AgoraEduCourseware`](#agoraeducourseware).
+| Parameter | Description |
+| :----------------- | :----------------------------------------------------------- |
+| `encryptionConfig` | The media stream encryption configuration. See [AgoraEduMediaEncryptionConfig](#agoraedumediaencryptionconfig) for details. |
+| `videoEncoderConfig` | 视频编码配置，详见 [AgoraEduVideoEncoderConfig](#agoraeduvideoencoderconfig). |
+| `latencyLevel` | The latency level of an audience member. See [AgoraEduLatencyLevel](#agoraedulatencylevel). |
+| `videoState` | 学生上讲台后是否默认有发视频流的权限，详见 [AgoraEduStreamState](#agoraedustreamstate). |
+| `audioState` | 学生上讲台后是否默认有发音频流的权限，详见 [AgoraEduStreamState](#agoraedustreamstate). |
 
-| Attributes | Description |
-| :---------------- | :--------------------------------------------------------- |
-| `componentsCount` | The number of pages. |
-| `ppt` | The detailed information of a converted page. See `WhitePptPage`. |
-| `name` | The page name. |
+### AgoraEduVideoEncoderConfig
 
-### WhitePptPage
+The classroom launching configuration. See `AgoraEduLaunchConfig`.
 
-```swift
-@interface WhitePptPage : WhiteObject
+> - In the Small Classroom scenario, the default resolution is 120p (160*120).
+> - In the One-to-one Classroom and Lecture Hall scenarios, the default resolution is 240p (320*240).
 
-- (instancetype)initWithSrc:(NSString *)src size:(CGSize)size;
-- (instancetype)initWithSrc:(NSString *)src preview:(NSString *)url size:(CGSize)size;
-
-@property (nonatomic, copy) NSString *src;
-@property (nonatomic, assign) CGFloat width;
-@property (nonatomic, assign) CGFloat height;
-@property (nonatomic, copy, readonly) NSString *previewURL;
-
-@end
-```
-
-The detailed information of a converted page. Set in [`SceneInfo`](#sceneinfo).
-
-| Attributes | Description |
-| :----------- | :------------------------------------------ |
-| `src` | The URL address of the converted page. |
-| `width` | The width (pixel) of the page. |
-| `height` | The height (pixel) of the page. |
-| `previewURL` | The URL address of the preview image generated after the dynamic file conversion. |
+| Parameter | Description |
+| :----------- | :-------------------------------------------- |
+| `dimensionWidth` | 视频帧宽度 (pixel)，Int 型。 |
+| `dimensionHeight` | 视频帧高度 (pixel)，Int 型。 |
+| `frameRate` | 视频帧率 (fps)，Int 型，默认值为 15， |
+| `bitrate` | 视频码率 (Kbps)，Int 型，默认值为 200。 |
+| `mirrorMode` | Video mirror modes. See `EduMirrorMode`. |

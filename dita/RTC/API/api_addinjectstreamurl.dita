@@ -6,7 +6,7 @@
     <prolog>
         <metadata>
    <keywords>
-       <indexterm keyref="addInjectStreamUrl" />
+       <indexterm keyref="addInjectStreamUrl"/>
    </keywords>
         </metadata>
     </prolog>
@@ -20,20 +20,21 @@
             <codeblock props="rn" outputclass="language-typescript">addInjectStreamUrl(
     url: string,
     config: LiveInjectStreamConfig
-  ): Promise&lt;void></codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> addInjectStreamUrl(String url, LiveInjectStreamConfig config);</codeblock>
+  ): Promise&lt;void&gt;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; addInjectStreamUrl(String url, LiveInjectStreamConfig config);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
-   
+
    <note id="inject-sunset-note" type="caution">
        客户端输入在线媒体流功能即将停服。如果你尚未集成该功能，Agora 建议你不要使用。详见<xref keyref="rtc-sunset">部分服务下架计划</xref>。
    </note>
    <note type="attention">
   <ul>
-      <li>请确保已开通旁路推流的功能，详见<xref keyref="guide-cdn-streaming">推流到 CDN</xref> 中的前提条件。</li>
+      <li>请确保已开通旁路推流的功能，详见<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件。</li>
       <li props="android ios mac windows">该方法适用于 Native SDK v2.4.1 及之后的版本。</li>
-      <li>在直播场景中，只有角色为主播的用户才能调用该方法。</li>
+      <li>在直播场景中，只有角色为主播的用户才
+      能调用该方法。</li>
       <li>频道内同一时间只允许输入一个在线媒体流。</li>
       <li>该方法需要在加入频道后调用。</li>
   </ul>
@@ -58,7 +59,7 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity">
    <title>返回值</title>
    <ul>
        <li>0: 方法调用成功</li>
@@ -66,10 +67,8 @@
       <li><codeph>ERR_INVALID_ARGUMENT</codeph> (2): 输入的 URL
  为空。请重新调用该方法，并确认输入的媒体流的 URL 有效。</li>
       <li><codeph>ERR_NOT_READY</codeph> (3): 用户没有加入频道。</li>
-      <li><codeph>ERR_NOT_SUPPORTED</codeph> (4): 频道非直播场景。请调用 <xref
-     keyref="setChannelProfile"/> 并将频道设置为直播场景再调用该方法。</li>
-      <li><codeph>ERR_NOT_INITIALIZED</codeph> (7): 引擎没有初始化。请确认调用该方法前已创建 <xref
-     keyref="IRtcEngine"/> 对象并完成初始化。</li>
+      <li><codeph>ERR_NOT_SUPPORTED</codeph> (4): 频道非直播场景。请调用 <xref keyref="setChannelProfile"/> 并将频道设置为直播场景再调用该方法。</li>
+      <li><codeph>ERR_NOT_INITIALIZED</codeph> (7): 引擎没有初始化。请确认调用该方法前已创建 <xref keyref="IRtcEngine"/> 对象并完成初始化。</li>
   </ul>
        </li>
    </ul>

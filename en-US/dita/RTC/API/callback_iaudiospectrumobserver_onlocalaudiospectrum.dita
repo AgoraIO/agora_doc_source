@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudiospectrumobserver_onlocalaudiospectrum">
+    <title><ph keyref="onLocalAudioSpectrum" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the statistics of a local audio spectrum.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLocalAudioSpectrum" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">boolean onLocalAudioSpectrum(AudioSpectrumInfo data);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onLocalAudioSpectrum:(NSArray&lt;NSNumber *&gt; * _Nullable)audioSpectrumData;</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual bool onLocalAudioSpectrum(const AudioSpectrumData&amp; data) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After successfully calling <xref keyref="registerAudioSpectrumObserver" /> to implement the <apiname keyref="onLocalAudioSpectrum" /> callback in <xref keyref="IAudioSpectrumObserver" /> and calling <xref keyref="enableAudioSpectrumMonitor" /> to enable audio spectrum monitoring, the SDK will trigger the callback as the time interval you set to report the received remote audio data spectrum.</p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt props="android windows">data</pt>
+                    <pt props="ios mac">AudioSpectrumData</pt>
+                    <pd props="android windows">The audio spectrum data of the local user. For details, see <xref keyref="AudioSpectrumData" />.</pd>
+                    <pd props="ios mac">The audio spectrum data of the local user. Agora divides the audio frequency into 160 frequency domains, and reports the energy value of each frequency domain through this parameter. The value range of each energy type is [0, 1].</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <p>Whether you have received the spectrum data:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Spectrum data is received.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: No spectrum data is received.</li>
+                </ul></p>
+        </section>
+    </refbody>
+</reference>

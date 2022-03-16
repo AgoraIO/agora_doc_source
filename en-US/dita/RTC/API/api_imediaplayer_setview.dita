@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_setview">
+    <title><ph keyref="setView" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the view.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setView" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">int setView(View videoView);
+</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec">- (void)setView:(View *_Nullable)view;
+</codeblock>
+                <codeblock props="windows" outputclass="language-cpp">virtual int setView(media::base::view_t view) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp" />
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart" />
+            </p>
+        </section>
+        <section id="parameters"><title>Parameters</title>
+            <parml>
+                <plentry>
+                    <pt props="android">videoView</pt>
+                    <pt props="ios mac windows">view</pt>
+                    <pd>The render view. <ph props="windows">On Windows, this parameter sets the window handle (HWND).</ph></pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul id="ul_uns_l2y_hqb">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
