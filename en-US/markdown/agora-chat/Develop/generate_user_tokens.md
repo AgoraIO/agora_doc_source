@@ -1,13 +1,11 @@
-# Authenticate Your Users with Tokens
-
 Authentication is the process of validating identities. Agora uses digital tokens to authenticate users and their privileges before they access an Agora service, such as joining an Agora call, or logging in to Agora Chat.
 
 To securely connect to Agora Chat, you use the following token types:
 
 - User token: User level access to Agora Chat from your app using Agora Chat SDK. User tokens are used to authenticate users when they log in to your Agora Chat application.
-- App token: Admin level access to Agora Chat using the REST API. App tokens grant admin privileges for the app developer to manage the Agora Chat applications, for example, creating and deleting users. For details, see [Generate an App Token for Authentication](link).
+- App token: Admin level access to Agora Chat using the REST API. App tokens grant admin privileges for the app developer to manage the Agora Chat applications, for example, creating and deleting users. For details, see [Implement an Agora app token server for Agora Chat](https://docs-preprod.agora.io/en/null/generate_app_tokens?platform=All%20Platforms).
 
-This page shows you how to create an Agora Chat user token server and an Agora Chat client app. The client app retrieves a user token from the token server. TThis token enables the current user to access Agora Chat.
+This page shows you how to create an Agora Chat user token server and an Agora Chat client app. The client app retrieves a user token from the token server. This token enables the current user to access Agora Chat.
 
 ## Understand the tech
 
@@ -140,7 +138,6 @@ This sample server is for demonstration purposes only. Do not use it in a produc
 
    ```java
    package com.agora.chat.token;
-
    import com.agora.chat.token.io.agora.chat.ChatTokenBuilder2;
    import org.springframework.beans.factory.annotation.Value;
    import org.springframework.util.StringUtils;
@@ -151,9 +148,7 @@ This sample server is for demonstration purposes only. Do not use it in a produc
    import org.springframework.web.client.RestTemplate;
    import org.springframework.http.*;
    import org.springframework.web.client.RestClientException;
-
    import java.util.*;
-
    @RestController
    @CrossOrigin
    public class AgoraChatTokenController {
@@ -167,40 +162,29 @@ This sample server is for demonstration purposes only. Do not use it in a produc
        private String appkey;
        @Value("${domain}")
        private String domain;
-
     private final RestTemplate restTemplate = new RestTemplate();
-
     // Get the Agora Chat user token
     @GetMapping("/chat/user/{chatUserName}/token")
     public String getChatToken(@PathVariable String chatUserName) {
-
         if (!StringUtils.hasText(appid) || !StringUtils.hasText(appcert)) {
             return "appid or appcert is not empty";
         }
-
         if (!StringUtils.hasText(appkey) || !StringUtils.hasText(domain)) {
             return "appkey or domain is not empty";
         }
-
         if (!appkey.contains("#")) {
             return "appkey is illegal";
         }
-
         if (!StringUtils.hasText(chatUserName)) {
             return "chatUserName is not empty";
         }
-
         ChatTokenBuilder2 builder = new ChatTokenBuilder2();
-
         String chatUserUuid = getChatUserUuid(chatUserName);
-
         if (chatUserUuid == null) {
             chatUserUuid = registerChatUser(chatUserName);
         }
-
         return builder.buildUserToken(appid, appcert, chatUserUuid, expire);
     }
-
     // Get the UUID for a username
     private String getChatUserUuid(String chatUserName) {
         String orgName = appkey.split("#")[0];
@@ -222,7 +206,6 @@ This sample server is for demonstration purposes only. Do not use it in a produc
         }
         return null;
     }
-
     // Create a user with the password "123" and get the UUID
     private String registerChatUser(String chatUserName) {
         String orgName = appkey.split("#")[0];
@@ -245,7 +228,6 @@ This sample server is for demonstration purposes only. Do not use it in a produc
         List<Map<String, Object>> results = (List<Map<String, Object>>) response.getBody().get("entities");
         return (String) results.get(0).get("uuid");
     }
-
       // Get the Agora app token
       private String getAppToken() {
           if (!StringUtils.hasText(appid) || !StringUtils.hasText(appcert)) {
@@ -254,7 +236,6 @@ This sample server is for demonstration purposes only. Do not use it in a produc
           ChatTokenBuilder2 builder = new ChatTokenBuilder2();
           return builder.buildAppToken(appid, appcert, expire);
       }
-
       // Convert the Agora app token to Agora Chat app token
       private String exchangeToken() {
           String orgName = appkey.split("#")[0];
@@ -397,11 +378,9 @@ To implement the Web client, do the following:
 
    ```js
    import WebIM from "agora-chat-sdk";
-
    WebIM.conn = new WebIM.connection({
      appKey: "<Your App Key>",
    });
-
    // Login to Agora Chat
    let username;
    document.getElementById("login").onclick = function () {
@@ -417,7 +396,6 @@ To implement the Web client, do the following:
          });
        });
    };
-
    // Add an event handler
    WebIM.conn.addEventHandler("AUTHHANDLER", {
      // Connected to the server
@@ -455,7 +433,6 @@ To implement the Web client, do the following:
        console.log("on error", error);
      },
    });
-
    // Renew token
    function refreshToken(username) {
      fetch(`http://localhost:8090/chat/user/${username}/token`)
@@ -483,7 +460,7 @@ To implement the Web client, do the following:
 
       The `index.html` page opens in your browser.
 
-  1. Input a username and click the login button. 
+  3. Input a username and click the login button. 
      Open the browser console, and you can see the web client performs the following actions:
 
       - Generates a user token.
@@ -514,10 +491,8 @@ This section introduces the method to generate a user token. Take Java as an exa
 public String buildUserToken(String appId, String appCertificate, String uuid, int expire) {
      AccessToken2 accessToken = new AccessToken2(appId, appCertificate, expire);
      AccessToken2.Service serviceChat = new AccessToken2.ServiceChat(uuid);
-
      serviceChat.addPrivilegeChat(AccessToken2.PrivilegeChat.PRIVILEGE_CHAT_USER, expire);
      accessToken.addService(serviceChat);
-
      try {
          return accessToken.build();
      } catch (Exception e) {

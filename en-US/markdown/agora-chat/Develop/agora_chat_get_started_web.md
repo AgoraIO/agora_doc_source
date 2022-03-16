@@ -1,5 +1,3 @@
-# Get Started with Agora Chat
-
 Instant messaging connects people wherever they are and allows them to communicate with others in real time. The Agora Chat SDK enables you to embed peer-to-peer messaging in any app, on any device, anywhere.
 
 This page shows the sample code to add peer-to-peer messaging into your app by using the Agora Chat SDK for Web.
@@ -22,16 +20,14 @@ As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
 In order to follow the procedure in this page, you must have:
 
-- A valid Agora account. 
-- A valid [Agora project](https://docs.agora.io/en/Agora%20Platform/get_appid_token?platform=Web) with an AppKey.
-- A token: In a test or production environment, your app client retrieves tokens from your server.
-- A Windows or macOS computer (Xcode installed) that meets the following requirements:
-  - Access to the Internet. If your network has a firewall, follow the instructions in [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=Web) to access Agora services.
+- A Windows or macOS computer that meets the following requirements:
   - A broswer supported by the Agora Chat SDK: 
     - Internet Explorer 9 or later
     - FireFox 10 or later
     - Chrome 54 or later
     - Safari 6 or later
+  - Access to the Internet. If your network has a firewall, follow the instructions in [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=Web) to access Agora services.
+  - Xcode installed (for macOS only)
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ## Project setup
@@ -39,12 +35,10 @@ In order to follow the procedure in this page, you must have:
 To create the environment necessary to add peer-to-peer messaging into your app, do the following:
 
 1. For a new web project, create a new directory and name it  `agora_quickstart`. Navigate to this directory in terminal and run `npm init`. This creates a `package.json` file. Then, create the following files:
+  - `index.html`, which sets the user interface of the Web app
+  - `index.js`, which contains the code for implementing the messaging logic
 
-- `index.html`
-
-- `index.js`
-
-  The project directory now has the following structure:
+ The project directory now has the following structure:
 
   ```text
   agora_quickstart
@@ -65,7 +59,7 @@ To create the environment necessary to add peer-to-peer messaging into your app,
       "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
-      "agora-chat-sdk": "latest"
+      "agora-chat": "latest"
     },
     "author": "",
     "license": "ISC"
@@ -139,145 +133,191 @@ Copy the following code to the `index.html` file to implement the UI.
 
 To enable your app to send and receive messages between individual users, do the following:
 
-1. Copy the following code to the `index.js` file:
+1. Import the Agora Chat SDK. Copy the following code to the `index.js` file:
 
    ```javascript
+   // Javascript
    // Note that to avoid browser-compatibility issues, the sample uses the import command to import the SDK and webpack to package the JS file.
-   import WebIM from 'agora-chat-sdk'
-   var username, password
-   // Initialize client.
-   WebIM.conn = new WebIM.connection({
-       appKey: "41117440#383391",
-   })
-   // Add callback functions.
-   WebIM.conn.listen({
-       onOpened: function (message) {
-           // This callback occurs when the user logs in to the app successfully. 
-           document.getElementById("log").appendChild(document.createElement('div')).append("Connect success !")
-       }, 
-       onClosed: function (message) {
-           // This callback occurs when the user logs out successfully.
-           document.getElementById("log").appendChild(document.createElement('div')).append("Logout success !")
-       }, 
-       onTextMessage: function (message) {
-           console.log(message)
-           // Receive a text message.
-           document.getElementById("log").appendChild(document.createElement('div')).append("Message from: " + message.from + " Message: " + message.data)
-       }, 
-       // This callback occurs when the token is to expire. 
-       onTokenWillExpire: function (params) {
-           document.getElementById("log").appendChild(document.createElement('div')).append("Token is about to expire")
-           refreshToken(username, password)
-       }, 
-       // This callback occurs when the token expires. When the callback is triggered, the app client must get a new token from the app server and logs in to the app again.
-       onTokenExpired: function (params) {
-           document.getElementById("log").appendChild(document.createElement('div')).append("The token has expired")
-           refreshToken(username, password)
-       }, 
-       onError: function (error) {
-           console.log('on error', error)
-       }
-   })
-   
-   // Retrieve a new token.
-   function refreshToken(username, password) {
-       postData('https://a41.easemob.com/app/chat/user/login', { "userAccount": username, "userPassword": password })
-           .then((res) => {
-               let agoraToken = res.accessToken
-               WebIM.conn.renewToken(agoraToken)
-               document.getElementById("log").appendChild(document.createElement('div')).append("Token has been updated")
-           })
-   }
-   
-   function postData(url, data) {
-       return fetch(url, {
-           body: JSON.stringify(data),
-           cache: 'no-cache',
-           headers: {
-               'content-type': 'application/json'
-           },
-           method: 'POST',
-           mode: 'cors',
-           redirect: 'follow',
-           referrer: 'no-referrer',
-       })
-           .then(response => response.json())
-   }
-   
-   // Button behavior
-   window.onload = function () {
-       // Registration.
-       document.getElementById("register").onclick = function () {
-           username = document.getElementById("userID").value.toString()
-           password = document.getElementById("password").value.toString()
-           // 1. Register with a token.
-           postData('https://a41.easemob.com/app/chat/user/register', { "userAccount": username, "userPassword": password })
-               .then((res) => {
-                   document.getElementById("log").appendChild(document.createElement('div')).append(`register user ${username} success`)
-               })
-               .catch((res)=> {
-                   document.getElementById("log").appendChild(document.createElement('div')).append(`${username} already exists`)
-               })
-           // 2. Register with a username and password.
-           // WebIM.conn.registerUser({username, password})
-           // document.getElementById("log").appendChild(document.createElement('div')).append("register user "+username)
-       }
-       // Login.
-       document.getElementById("login").onclick = function () {
-           document.getElementById("log").appendChild(document.createElement('div')).append("Logging in...")
-           username = document.getElementById("userID").value.toString()
-           password = document.getElementById("password").value.toString()
-           // 1. Log in with a token.
-           postData('https://a41.easemob.com/app/chat/user/login', { "userAccount": username, "userPassword": password })
-               .then((res) => {
-                   let agoraToken = res.accessToken
-                   let easemobUserName = res.chatUserName
-                   WebIM.conn.open({
-                       user: easemobUserName,
-                       agoraToken: agoraToken
-                   });
-               })
-               .catch((res)=> {
-                   document.getElementById("log").appendChild(document.createElement('div')).append(`Login failed`)
-               })
-           // 2. Log in with a username and password.
-           // WebIM.conn.open({
-           //     user: username,
-           //     pwd: password,
-           // });
-       }
-   
-       // Logout.
-       document.getElementById("logout").onclick = function () {
-           WebIM.conn.close();
-           document.getElementById("log").appendChild(document.createElement('div')).append("logout")
-       }
-   
-       // Send a peer-to-peer message.
-       document.getElementById("send_peer_message").onclick = function () {
-           let peerId = document.getElementById("peerId").value.toString()
-           let peerMessage = document.getElementById("peerMessage").value.toString()
-   
-           let id = WebIM.conn.getUniqueId()
-           let msg = new WebIM.message('txt', id);
-           msg.set({
-               msg: peerMessage,
-               to: peerId,
-               chatType: 'singleChat',
-               success: function () {
-                   console.log('send private text success');
-                   document.getElementById("log").appendChild(document.createElement('div')).append("Message send to: " + peerId + " Message: " + peerMessage)
-               },
-               fail: function (e) {
-                   console.log('send private text fail');
-               }
-           });
-           WebIM.conn.send(msg.body);
-       }
-   }
-   ```
+   import WebIM from 'agora-chat'
+	 ```
+	 
+	 If you use typescript, use the following code:
+	 
+	```javascript
+	// Typescript
+	// import WebIM, { AgoraChat } from 'agora-chat'
+	```
+	
+2. Implement peer-to-peer messaging with the core methods provided by the Agora Chat SDK. Copy the following code and add them behind the import function in the `index.js` file.
 
-2. Replace "<appKey>" with the App key of your Agora project.
+	```javascript
+	var username, password;
+	// Initializes the Web client
+	WebIM.conn = new WebIM.connection({
+		appKey: "41117440#383391",
+	});
+	// Adds the event handler
+	WebIM.conn.addEventHandler("connection&message", {
+		// Occurs when the app is connected to Agora Chat
+		onConnected: () => {
+			document
+				.getElementById("log")
+				.appendChild(document.createElement("div"))
+				.append("Connect success !");
+		},
+		// Occurs when the app is disconnected from Agora Chat
+		onDisconnected: () => {
+			document
+				.getElementById("log")
+				.appendChild(document.createElement("div"))
+				.append("Logout success !");
+		},
+		// Occurs when a text message is received
+		onTextMessage: (message) => {
+			console.log(message);
+			document
+				.getElementById("log")
+				.appendChild(document.createElement("div"))
+				.append("Message from: " + message.from + " Message: " + message.msg);
+		},
+		// Occurs when the token is about to expire
+		onTokenWillExpire: (params) => {
+			document
+				.getElementById("log")
+				.appendChild(document.createElement("div"))
+				.append("Token is about to expire");
+			refreshToken(username, password);
+		},
+		// Occurs when the token has expired. You need to get a token from your app server to log in to Agora Chat
+		onTokenExpired: (params) => {
+			document
+				.getElementById("log")
+				.appendChild(document.createElement("div"))
+				.append("The token has expired");
+			refreshToken(username, password);
+		},
+		onError: (error) => {
+			console.log("on error", error);
+		},
+	});
+
+	// Gets the token from the app server
+	function refreshToken(username, password) {
+		postData("https://a41.easemob.com/app/chat/user/login", {
+			userAccount: username,
+			userPassword: password,
+		}).then((res) => {
+			let agoraToken = res.accessToken;
+			WebIM.conn.renewToken(agoraToken);
+			document
+				.getElementById("log")
+				.appendChild(document.createElement("div"))
+				.append("Token has been updated");
+		});
+	}
+	// Sends a request for token
+	function postData(url, data) {
+		return fetch(url, {
+			body: JSON.stringify(data),
+			cache: "no-cache",
+			headers: {
+				"content-type": "application/json",
+			},
+			method: "POST",
+			mode: "cors",
+			redirect: "follow",
+			referrer: "no-referrer",
+		}).then((response) => response.json());
+	}
+
+	// Defines the functions of the buttons
+	window.onload = function () {
+		// Registration
+		document.getElementById("register").onclick = function () {
+			username = document.getElementById("userID").value.toString();
+			password = document.getElementById("password").value.toString();
+			// 1. Uses token to authenticate the user
+			postData("https://a41.easemob.com/app/chat/user/register", {
+				userAccount: username,
+				userPassword: password,
+			})
+				.then((res) => {
+					document
+						.getElementById("log")
+						.appendChild(document.createElement("div"))
+						.append(`register user ${username} success`);
+				})
+				.catch((res) => {
+					document
+						.getElementById("log")
+						.appendChild(document.createElement("div"))
+						.append(`${username} already exists`);
+				});
+		};
+		// Logs into Agora Chat
+		document.getElementById("login").onclick = function () {
+			document
+				.getElementById("log")
+				.appendChild(document.createElement("div"))
+				.append("Logging in...");
+			username = document.getElementById("userID").value.toString();
+			password = document.getElementById("password").value.toString();
+			// 1. Uses a token for authentication
+			postData("https://a41.easemob.com/app/chat/user/login", {
+				userAccount: username,
+				userPassword: password,
+			})
+				.then((res) => {
+					let agoraToken = res.accessToken;
+					let easemobUserName = res.chatUserName;
+					WebIM.conn.open({
+						user: easemobUserName,
+						agoraToken: agoraToken,
+					});
+				})
+				.catch((res) => {
+					document
+						.getElementById("log")
+						.appendChild(document.createElement("div"))
+						.append(`Login failed`);
+				});
+		};
+
+		// Logs out
+		document.getElementById("logout").onclick = function () {
+			WebIM.conn.close();
+			document
+				.getElementById("log")
+				.appendChild(document.createElement("div"))
+				.append("logout");
+		};
+
+		// Sends a peer-to-peer message
+		document.getElementById("send_peer_message").onclick = function () {
+			let peerId = document.getElementById("peerId").value.toString();
+			let peerMessage = document.getElementById("peerMessage").value.toString();
+			let option = {
+				chatType: "singleChat", // Sets the chat type as single chat
+				type: "txt", // Sets the message type
+				to: peerId, // Sets the recipient of the meesage (userId)
+				msg: peerMessage, // Sets the message content
+			};
+			let msg = WebIM.message.create(option);
+			WebIM.conn
+				.send(msg)
+				.then((res) => {
+					console.log("send private text success");
+					document
+						.getElementById("log")
+						.appendChild(document.createElement("div"))
+						.append("Message send to: " + peerId + " Message: " + peerMessage);
+				})
+				.catch(() => {
+					console.log("send private text fail");
+				});
+		};
+	};
+	```
 
 ##  Test your app
 
@@ -302,7 +342,7 @@ To build and run your project, take the following steps:
      "author": "",
      "license": "ISC",
      "dependencies": {
-       "agora-chat-sdk": "^4.0.1-beta4",
+       "agora-chat": "latest",
        "agora-rtc-sdk-ng": "^4.6.3"
      },
      "devDependencies": {
@@ -379,7 +419,7 @@ To validate the peer-to-peer messaging you have just integrated into your Web ap
 
 ## Next Step
 
-In a production context, the best practice is for your app to retrieve the token used to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Token]().
+In a production context, the best practice is for your app to retrieve the token used to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
 
 ## See also
 
@@ -389,6 +429,6 @@ a. In the SDK folder, find the JS file in the `libs` folder and save it to your 
 
 b. Open the HTML file in your project directory and add the following code to refer to the JS file:
 
-```JavaScript
+```javascript
 <script src="path to the JS file"></script>
 ```
