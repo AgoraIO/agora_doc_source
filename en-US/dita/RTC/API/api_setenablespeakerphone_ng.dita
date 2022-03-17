@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setenablespeakerphone_ng">
     <title><ph keyref="setEnableSpeakerphone" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables/Disables the speakerphone temporarily.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">暂态设置启用或关闭扬声器。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,11 +25,13 @@
         <section id="detailed_desc">
             <note><p props="windows">This method is for Android and iOS only.</p>
                 </note>
-            <p>After a successful method call, the SDK triggers the <xref keyref="onAudioRouteChanged" /> callback.</p>
-            <p>You can call this method before, during, or after a call. However, Agora recommends calling this method only when you are in a channel to change the audio route temporarily.</p>
-            <note type="attention" id="note_nvp_trf_3qb">
-                <p>This method sets the audio route temporarily. Connecting in or disconnecting a headphone, or the SDK re-enabling the audio device module (ADM) to adjust the media volume in some scenarios relating to audio, leads to a change in the audio route. See <xref keyref="guide-audio-route">Principles for Changing the Audio Route</xref>.</p>
-                <p props="ios windows">Due to system limitations, if the user uses an external audio playback device such as a Bluetooth or wired headset on an iOS device, this method does not take effect.</p>
+            <p>成功改变音频路由后，SDK 会触发 <xref keyref="onAudioRouteChanged" /> 回调。</p>
+            <p>该 API 可以在加入频道前、频道中、离开频道后调用。 但是由于该 API 为暂态行为，我们推荐你在频道中调用，用来临时改变音频路由。</p>
+            <note type="attention"><ul>
+                <li>如无明确的暂态设置需求，Agora 推荐调用稳态 API <xref keyref="setDefaultAudioRouteToSpeakerphone" /> 设置音频路由。</li>
+                <li>任何用户行为或者音频相关 API 的调用都有可能改变 <apiname keyref="setEnableSpeakerphone" /> 的暂态设置。 详细的路由更改原则请参考<xref keyref="guide-audio-route">音频路由</xref>。</li>
+                <li props="ios windows">由于系统限制，在 iOS 设备上，如果用户使用了蓝牙耳机、有线耳机等外接音频播放设备，则该方法无法将音频路由设置为扬声器。</li>
+            </ul>
             </note>
         </section>
         <section id="parameters"><title>Parameters</title>
@@ -38,8 +40,9 @@
                     <pt props="android">enabled</pt>
                     <pt props="ios mac">enableSpeaker</pt>
                     <pt props="windows">speakerOn</pt>
-                    <pd><p>Whether to set the speakerphone as the default audio route:<ul><li><codeph><ph keyref="true" /></codeph>: Set the speakerphone as the audio route temporarily.</li>
-                            <li><codeph><ph keyref="false" /></codeph>: Do not set the speakerphone as the audio route.</li></ul></p></pd>
+                    <pd><p>是否使用扬声器作为当前音频路由：
+                        <ul><li><codeph><ph keyref="true" /></codeph>: 暂时设置扬声器为音频路由。</li>
+                            <li><codeph><ph keyref="false" /></codeph>: 暂时设置听筒为音频路由。</li></ul></p></pd>
                 </plentry>
             </parml>
         </section>

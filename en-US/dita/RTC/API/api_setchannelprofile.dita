@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setchannelprofile">
     <title><ph keyref="setChannelProfile" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the channel profile.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置频道场景。</ph></shortdesc>
     <prolog>
         <metadata>
    <keywords>
@@ -26,9 +26,10 @@
    <p>Sets the profile of the Agora channel. The Agora SDK differentiates channel profiles and applies optimization algorithms accordingly. For example, it prioritizes smoothness and low latency for a video call and prioritizes video quality for interactive live video streaming.</p>
    <note type="attention">
        <ul id="ul_mgd_h2l_b4b">
-  <li>To ensure the quality of real-time communication, Agora recommends that all users in a channel use the same channel profile.</li>
-  <li>This method must be called and set before <apiname keyref="joinChannel2" />, and cannot be set again after entering the channel.</li>
-  <li props="android ios windows">The default audio route and video encoding bitrate are different in different channel profiles. For details, see <xref keyref="setDefaultAudioRouteToSpeakerphone" /> and <xref keyref="setVideoEncoderConfiguration" />.</li>
+  <li>为保证实时音视频质量，相同频道内的用户必须使用同一种频道场景。</li>
+  <li>该方法必须在 <apiname keyref="joinChannel2" /> 前调用和进行设置，进入频道后无法再设置。</li>
+  <li props="android ios windows">不同的频道场景下，SDK 的默认音频路由和默认视频编码码率是不同的，详见 <xref keyref="setDefaultAudioRouteToSpeakerphone" /> 和 <xref keyref="setVideoEncoderConfiguration" /> 中的说明。
+  </li>
        </ul>
    </note>
         </section>
@@ -37,12 +38,12 @@
        <plentry>
   <pt>profile</pt>
   <pd id="channelprofiletype">
-      <p props="ios mac windows electron unity flutter">The channel profile. For details, see <xref keyref="CHANNEL_PROFILE_TYPE" />.</p>
-      <p props="android">The channel profile.<ul>
-                                <li><ph keyref="CHANNEL_PROFILE_COMMUNICATION" /> (0): (default) Communication. Use this profile of there are only two users in the channel.</li>
-                                <li><ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" /> (1): Live streaming. Use this profile when there are more than two users in the channel.</li>
-                                <li><ph keyref="CHANNEL_PROFILE_GAME" /> (2): This profile is deprecated.</li>
-                                <li><ph keyref="CHANNEL_PROFILE_CLOUD_GAMING" /> (3): Interaction. The scenario is optimized for latency. Use this profile if the use case requires frequent interactions between users.</li>
+      <p props="ios mac windows electron unity flutter">频道使用场景。 详见 <xref keyref="CHANNEL_PROFILE_TYPE" />。</p>
+      <p props="android">频道使用场景。<ul>
+                                <li><ph keyref="CHANNEL_PROFILE_COMMUNICATION" />(0)：通信。 当频道中只有两个用户时，建议使用该场景。</li>
+                                <li><ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" />(1)：直播。 当频道中超过两个用户时，建议使用该场景。</li>
+                                <li><ph keyref="CHANNEL_PROFILE_GAME" />(2)：该属性已废弃。</li>
+                                <li><ph keyref="CHANNEL_PROFILE_CLOUD_GAMING" />(3)：互动。 该场景对延时进行了优化。 如果你的场景中有用户需要频道互动， 建议使用该场景。</li>
                             </ul>
                         </p>
   </pd>
