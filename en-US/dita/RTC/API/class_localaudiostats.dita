@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localaudiostats">
-    <title><ph keyref="LocalAudioStats" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Local audio statistics.</ph></shortdesc>
+    <title><ph keyref="LocalAudioStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">本地音频统计数据。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p props="rtc-ng" outputclass="codeblock">
@@ -52,7 +52,7 @@
      sentBitrate: number;
      txPacketLossRate: number;
      }</codeblock>
-                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="rn" outputclass="language-typescript"/>
                 <codeblock props="flutter" outputclass="language-dart">class LocalAudioStats {
   
   int numChannels;
@@ -67,35 +67,35 @@
     this.txPacketLossRate,
   );
 
-  factory LocalAudioStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory LocalAudioStats.fromJson(Map&lt;String, dynamic> json) =>
       _$LocalAudioStatsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalAudioStatsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$LocalAudioStatsToJson(this);
 }</codeblock>
             </p>
         </section>
         <section id="parameters">
-   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+   <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
    <parml>
        <plentry>
   <pt>numChannels</pt>
-  <pd>The number of audio channels.</pd>
+  <pd>声道数。</pd>
        </plentry>
        <plentry>
   <pt>sentSampleRate</pt>
-  <pd>The sampling rate (Hz) of sending the local user's audio stream.</pd>
+  <pd>发送本地音频的采样率，单位为 Hz。</pd>
        </plentry>
        <plentry>
   <pt>sentBitrate</pt>
-  <pd>The average bitrate (Kbps) of sending the local user's audio stream.</pd>
+  <pd>发送本地音频的码率平均值，单位为 Kbps。</pd>
        </plentry>
-       <plentry>
+       <plentry props="rtc">
                     <pt>txPacketLossRate</pt>
-                    <pd>The packet loss rate (%) from the local client to the Agora server before applying the anti-packet loss strategies.</pd>
+                    <pd>弱网对抗前本端到 Agora 边缘服务器的丢包率 (%)。</pd>
                 </plentry>
        <plentry props="rtc-ng">
                     <pt>internalCodec</pt>
-                    <pd>The internal payload codec.</pd>
+                    <pd>内部的 payload 类型。</pd>
                 </plentry>
    </parml>
         </section></refbody>
