@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setdefaultaudioroutetospeakerphone">
-    <title><ph keyref="setDefaultAudioRouteToSpeakerphone"/></title>
+    <title><ph keyref="setDefaultAudioRouteToSpeakerphone" /></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the default audio playback route.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setDefaultAudioRouteToSpeakerphone"/>
+                <indexterm keyref="setDefaultAudioRouteToSpeakerphone" />
             </keywords>
         </metadata>
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java"/>
-                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="android" outputclass="language-java" />
+                <codeblock props="ios mac" outputclass="language-objectivec" />
                 <codeblock props="windows" outputclass="language-cpp">virtual int setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker) = 0;</codeblock>
-                <codeblock props="electron" outputclass="language-typescript"/>
-                <codeblock props="unity" outputclass="language-csharp">public abstract int setDefaultAudioRoutetoSpeakerphone(boolean defaultToSpeaker);</codeblock>
-                <codeblock props="rn" outputclass="language-typescript"/>
-                <codeblock props="flutter" outputclass="language-dart">virtual int setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker) = 0;</codeblock>
+                <codeblock props="electron" outputclass="language-typescript" />
+                <codeblock props="unity" outputclass="language-csharp">public abstract int SetDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
+                <codeblock props="rn" outputclass="language-typescript" />
+                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
         </p>
         </section>
         <section id="detailed_desc">
@@ -26,7 +26,7 @@
             <p>The default settings for each profile:<ul>
                     <li>For the communication profile:<ul>
                             <li>In a voice call, the default audio route is the earpiece.</li>
-                            <li>In a video call, the default audio route is the speakerphone. If a user calls the <xref keyref="disableVideo"/>, <xref keyref="muteLocalVideoStream"/>, or <xref keyref="muteAllRemoteVideoStreams"/> method, the default audio route switches back to the earpiece automatically.</li>
+                            <li>In a video call, the default audio route is the speakerphone. If a user calls the <xref keyref="disableVideo" />, <xref keyref="muteLocalVideoStream" />, or <xref keyref="muteAllRemoteVideoStreams" /> method, the default audio route switches back to the earpiece automatically.</li>
                         </ul></li>
                     <li>For the live broadcasting profile: Speakerphone.</li>
                 </ul>
@@ -45,8 +45,8 @@
                 <plentry>
                     <pt>defaultToSpeaker</pt>
                     <pd>The default audio playback route.<ul>
-                            <li><codeph><ph keyref="true"/></codeph>:  The audio routing is speakerphone. If the device connects to the earpiece or Bluetooth, the audio cannot be routed to the speakerphone.</li>
-                            <li><codeph><ph keyref="false"/></codeph>: (Default) Route the audio to the earpiece. If a headset is plugged in, the audio is routed to the headset.</li>
+                            <li><codeph><ph keyref="true" /></codeph>:  The audio routing is speakerphone. If the device connects to the earpiece or Bluetooth, the audio cannot be routed to the speakerphone.</li>
+                            <li><codeph><ph keyref="false" /></codeph>: (Default) Route the audio to the earpiece. If a headset is plugged in, the audio is routed to the headset.</li>
                         </ul>
                     </pd>
                 </plentry>
