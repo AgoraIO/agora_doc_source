@@ -5,6 +5,9 @@
     <shortdesc id="short"><ph id="shortdesc"><apiname keyref="RtcEngineConfig"/>定义。</ph></shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            </p>
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class RtcEngineConfig {
   public Context mContext;
@@ -134,28 +137,28 @@
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
                 <plentry props="windows android">
-                    <pt props="windows">eventHandler</pt>
+                    <pt props="windows unity">eventHandler</pt>
                     <pt props="android">mEventHandler</pt>
                     <pd id="eventhandler"><xref keyref="IRtcEngine"/> 的事件句柄，详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
                 </plentry>
                 <plentry>
-                    <pt props="windows ios mac">appId</pt>
+                    <pt props="windows ios mac unity">appId</pt>
                     <pt props="android">mAppId</pt>
                     <pd id="appid">Agora 为 app 开发者签发的 App ID。 使用同一个 App ID 的 app 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <apiname keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <apiname keyref="IRtcEngine"/> 再重新创建 。</pd>
                 </plentry>
-                <plentry props="android windows">
+                <plentry props="android windows unity">
                     <pt props="windows">context</pt>
                     <pt props="android">mContext</pt>
                     <pd id="context">
-                        <ul props="windows">
+                        <ul props="windows unity">
                             <li>Windows 平台上，context 是视窗句柄。如设值，则表示支持设备热插拔。</li>
                             <li>Android 平台上，context 是安卓活动上下文。</li>
                         </ul>
                         <p props="android">安卓活动上下文。</p>
                     </pd>
                 </plentry>
-                <plentry props="android windows">
-                    <pt props="windows">enableAudioDevice</pt>
+                <plentry props="android windows unity">
+                    <pt props="windows unity">enableAudioDevice</pt>
                     <pt props="android">mEnableAudioDevice</pt>
                     <pd>设置是否允许 SDK 使用音频设备： <ul>
                         <li><codeph><ph keyref="true"/></codeph>:（默认）允许。</li>
@@ -168,22 +171,22 @@
                     </pd>
                 </plentry>
                 <plentry>
-                    <pt props="windows ios mac">channelProfile</pt>
+                    <pt props="windows ios mac unity">channelProfile</pt>
                     <pt props="android">mChannelProfile</pt>
                         <pd conkeyref="setChannelProfile/channelprofiletype"/>
                 </plentry>
                 <plentry>
-                    <pt props="windows ios mac">audioScenario</pt>
+                    <pt props="windows ios mac unity">audioScenario</pt>
                     <pt props="android">mAudioScenario</pt>
                     <pd conkeyref="setAudioProfile/scenario-ng"/>
                 </plentry>
                 <plentry>
-                    <pt props="windows ios mac">areaCode</pt>
+                    <pt props="windows ios mac unity">areaCode</pt>
                     <pt props="android">mAreaCode</pt>
                     <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。<p>指定访问区域后，集成了 Agora SDK 的 app 会连接指定区域内的 Agora 服务器。</p></pd>
                 </plentry>
                 <plentry>
-                    <pt props="windows ios mac">logConfig</pt>
+                    <pt props="windows ios mac unity">logConfig</pt>
                     <pt props="android">mLogConfig</pt>
                     <pd>
                         <p>设置 Agora SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。</p>

@@ -13,6 +13,7 @@
     <refbody><section id="prototype">
         <p outputclass="codeblock" props="rtc-ng">
             <codeblock props="windows" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indication_Interval) = 0;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
         </p>
         <p outputclass="codeblock" props="rtc">
             <codeblock props="windows" outputclass="language-cpp">virtual int startRecordingDeviceTest(int indicationInterval) = 0;</codeblock>
@@ -37,9 +38,13 @@
            <pt props="windows"><ph props="rtc">indicationInterval</ph><ph props="rtc-ng">indication_Interval</ph></pt>
   <pd>SDK 触发 <xref keyref="onAudioVolumeIndication"/> 回调的时间间隔，单位为毫秒。建议设置到大于 200 毫秒。不得小于 10 毫秒，否则会收不到 <apiname keyref="onAudioVolumeIndication"/> 回调。</pd>
        </plentry>
-       <plentry conkeyref="startPlaybackDeviceTest/testAudioFilePath">
-           <pt/>
-           <pd/>
+       <plentry id="testAudioFilePath">
+           <pt props="windows electron flutter">testAudioFilePath</pt>
+           <pt props="mac">audioFileName</pt>
+           <pd><p>音频文件的绝对路径，路径字符串使用 UTF-8 编码格式。<ul>
+               <li>支持文件格式: wav、mp3、m4a、aac。</li>
+               <li>支持文件采样率: 8000、16000、32000、44100、48000。</li>
+           </ul></p></pd>
        </plentry>
    </parml>
         </section>

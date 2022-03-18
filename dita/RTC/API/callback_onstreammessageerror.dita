@@ -20,6 +20,7 @@
     (void)cached;
   }
 </codeblock>
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
         </p>
         <p outputclass="codeblock" props="rtc">
             <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessageError(uid_t uid, int streamId, int code, int missed, int cached) {
@@ -63,9 +64,14 @@
                     <pt/>
                     <pd/>
                 </plentry>
+       <plentry props="rtc-ng">
+           <pt props="unity">connection</pt>
+           <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+       </plentry>
        <plentry id="uid">
-           <pt props="ios mac android electron unity flutter">uid</pt>
+           <pt props="ios mac android electron flutter">uid</pt>
            <pt props="windows"><ph props="rtc-ng">userId</ph><ph props="rtc">uid</ph></pt>
+           <pt props="unity"><ph props="rtc-ng">remoteUid</ph><ph props="rtc">uid</ph></pt>
            <pd>发送消息的用户 ID。</pd>
        </plentry>
                 <plentry id="streamId">

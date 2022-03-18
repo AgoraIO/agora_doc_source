@@ -17,6 +17,7 @@
                 int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer,
                 long renderTimeMs, int avsync_type);</codeblock>
             <codeblock props="windows" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(rtc::uid_t uid, AudioFrame&amp; audioFrame) = 0;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
         </p>
         <p outputclass="codeblock">
                 <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrameBeforeMixing:(AgoraAudioFrame* _Nonnull)frame uid:(NSUInteger)uid;</codeblock>
@@ -45,7 +46,8 @@
                     <pd>指定用户的用户 ID。</pd>
                 </plentry>
                 <plentry props="windows unity ios mac">
-                    <pt props="windows unity">audioFrame</pt>
+                    <pt props="windows">audioFrame</pt>
+                    <pt props="unity"><ph props="rtc-ng">audio_frame</ph><ph props="rtc">audioFrame</ph></pt>
                     <pt props="ios mac">frame</pt>
                     <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
                 </plentry>

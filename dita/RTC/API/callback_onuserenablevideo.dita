@@ -12,6 +12,9 @@
     </prolog>
     <refbody><section id="prototype">
         <p outputclass="codeblock">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            </p>
                 <codeblock props="android" outputclass="language-java">public void onUserEnableVideo(int uid, boolean enabled) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     didVideoEnabled:(BOOL)enabled
@@ -48,8 +51,13 @@
                   <pt/>
                   <pd/>
               </plentry>
+       <plentry props="rtc-ng">
+           <pt props="unity">connection</pt>
+           <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+       </plentry>
        <plentry>
-  <pt>uid</pt>
+           <pt props="native electron flutter">uid</pt>
+           <pt props="unity"><ph props="rtc">uid</ph><ph props="rtc-ng">remoteUid</ph></pt>
   <pd>用户 ID，提示是哪个用户的视频流。</pd>
        </plentry>
        <plentry>

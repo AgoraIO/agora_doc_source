@@ -11,6 +11,9 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+        </p>
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public abstract boolean onMixedAudioFrame(int type, int samplesPerChannel, int bytesPerSample,
       int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs, int avsync_type);
@@ -35,7 +38,8 @@
         <section id="parameters"><title>参数</title>
    <parml props="ios mac windows unity">
        <plentry>
-  <pt props="windows unity">audioFrame</pt>
+  <pt props="windows">audioFrame</pt>
+           <pt props="unity"><ph props="rtc">audioFrame</ph><ph props="rtc-ng">audio_frame</ph></pt>
                     <pt props="ios mac">frame</pt>
   <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
        </plentry>

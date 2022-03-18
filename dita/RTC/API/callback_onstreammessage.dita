@@ -19,6 +19,7 @@
   (void)length;
   (void)sentTs;
 } </codeblock>
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
             </p>
         <p outputclass="codeblock" props="rtc">
             <codeblock props="windows" outputclass="language-cpp">virtual void onStreamMessage(uid_t uid, int streamId, const char* data, size_t length) {
@@ -53,9 +54,14 @@
                     <pt/>
                     <pd/>
                 </plentry>
+       <plentry props="rtc-ng">
+           <pt props="unity">connection</pt>
+           <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+       </plentry>
                 <plentry id="uid">
-                    <pt props="android ios mac unity flutter">uid</pt>
+                    <pt props="android ios mac flutter">uid</pt>
                     <pt props="windows"><ph props="rtc-ng">userId</ph><ph props="rtc">uid</ph></pt>
+                    <pt props="unity"><ph props="rtc-ng">remoteUid</ph><ph props="rtc">uid</ph></pt>
                     <pd>发送消息的用户 ID。</pd>
                 </plentry>
                 <plentry id="streamId">
@@ -72,7 +78,7 @@
                 </plentry>
             </parml>
             <parml props="rtc-ng">
-                <plentry props="windows">
+                <plentry props="windows unity">
                     <pt>sentTs</pt>
                     <pd>数据流发出的时间。</pd>
                 </plentry>

@@ -5,6 +5,9 @@
     <shortdesc id="short"><ph id="shortdesc">摄像头采集配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public class CameraCapturerConfiguration {
   public enum CAMERA_DIRECTION {
@@ -34,16 +37,16 @@
             <parml>
                 <plentry>
                     <pt>cameraDirection</pt>
-                    <pd><note type="attention" props="windows">该参数仅适用于 Android 和 iOS 平台。</note>摄像头方向设置。<ph props="ios windows android">详见 <xref keyref="CAMERA_DIRECTION"/>。</ph></pd>
+                    <pd><note type="attention" props="windows unity">该参数仅适用于 Android 和 iOS 平台。</note>摄像头方向设置。<ph props="ios windows android">详见 <xref keyref="CAMERA_DIRECTION"/>。</ph></pd>
                 </plentry>
-                <plentry props="windows android">
-                    <pt props="windows">format</pt>
+                <plentry props="windows android unity">
+                    <pt props="windows unity">format</pt>
                     <pt props="android">captureFormat</pt>
                     <pd>详见 <xref keyref="VideoFormat"/>。</pd>
                 </plentry>
-                <plentry props="windows">
+                <plentry props="windows unity">
                     <pt>deviceId</pt>
-                    <pd>播放设备的设备 ID。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+                    <pd>播放设备的设备 ID。<ph props="windows">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
                 </plentry>
             </parml>
         </section></refbody>

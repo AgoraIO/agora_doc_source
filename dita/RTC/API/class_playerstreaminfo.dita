@@ -5,6 +5,9 @@
     <shortdesc id="short"><ph id="shortdesc">播放器媒体流的所有信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
+            <p outputclass="codeblock" props="rtc-ng">
+                <codeblock props="unity" outputclass="language-csharp"></codeblock>
+            </p>
             <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public class MediaStreamInfo {
   private int streamIndex;
@@ -80,9 +83,9 @@
                     <pd>媒体流的索引值。</pd>
                 </plentry>
                 <plentry>
-                    <pt props="ios mac windows">streamType</pt>
+                    <pt props="ios mac windows unity">streamType</pt>
                     <pt props="android">mediaStreamType</pt>
-                    <pd><ph>此条媒体流的类型。</ph><ph props="ios mac windows">详见 <xref keyref="MEDIA_STREAM_TYPE"/>。</ph>
+                    <pd><ph>此条媒体流的类型。</ph><ph props="ios mac windows unity">详见 <xref keyref="MEDIA_STREAM_TYPE"/>。</ph>
                         <ul props="android">
                             <li><ph keyref="STREAM_TYPE_UNKNOWN"/> (0): 未知类型。</li>
                             <li><ph keyref="STREAM_TYPE_VIDEO"/> (1): 视频流。</li>
@@ -116,7 +119,7 @@
                     <pd>该参数仅对视频流生效，表示视频高度 (pixel)。</pd>
                 </plentry>
                 <plentry props="android ios mac">
-                    <pt props="android">videoRotation</pt>
+                    <pt props="android unity">videoRotation</pt>
                     <pt props="ios mac">rotation</pt>
                     <pd>该参数仅对视频流生效，表示旋转角度。</pd>
                 </plentry>
@@ -128,8 +131,8 @@
                     <pt>audioChannels</pt>
                     <pd>该参数仅对音频流生效，表示声道数。</pd>
                 </plentry>
-                <plentry props="android windows">
-                    <pt props="windows">audioBitsPerSample</pt>
+                <plentry props="android windows unity">
+                    <pt props="windows unity">audioBitsPerSample</pt>
                     <pt props="android">audioBytesPerSample</pt>
                     <pd>该参数仅对音频流生效，表示每个音频采样点的位数 (bit)。</pd>
                 </plentry>

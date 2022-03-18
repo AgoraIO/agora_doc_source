@@ -11,6 +11,9 @@
         </metadata>
     </prolog>
     <refbody><section id="prototype">
+        <p outputclass="codeblock" props="rtc-ng">
+            <codeblock props="unity" outputclass="language-csharp"></codeblock>
+        </p>
         <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onRemoteAudioTransportStats(int uid, int delay, int lost, int rxKBitRate) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
@@ -56,8 +59,13 @@
                     <pt/>
                     <pd/>
                 </plentry>
+       <plentry props="rtc-ng">
+           <pt props="unity">connection</pt>
+           <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+       </plentry>
                 <plentry>
-                    <pt>uid</pt>
+                    <pt props="native electron flutter">uid</pt>
+                    <pt props="unity"><ph props="rtc">uid</ph><ph props="rtc-ng">remoteUid</ph></pt>
                     <pd>用户 ID，指定是哪个用户/主播的音频包。</pd>
                 </plentry>
                 <plentry>

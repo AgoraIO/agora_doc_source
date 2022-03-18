@@ -15,6 +15,9 @@
           </metadata>
      </prolog>
      <refbody><section id="prototype">
+          <p outputclass="codeblock" props="rtc-ng">
+               <codeblock props="unity" outputclass="language-csharp"></codeblock>
+          </p>
          <p outputclass="codeblock">
                 <codeblock props="android" outputclass="language-java">public void onRemoteVideoStateChanged(int uid, int state, int reason, int elapsed) {}</codeblock>
                 <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
@@ -57,8 +60,13 @@
                          <pt/>
                          <pd/>
                     </plentry>
+                    <plentry props="rtc-ng">
+                         <pt props="unity">connection</pt>
+                         <pd props="unity">Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
+                    </plentry>
                     <plentry id="uid">
-                         <pt>uid</pt>
+                         <pt props="native electron flutter">uid</pt>
+                         <pt props="unity"><ph props="rtc">uid</ph><ph props="rtc-ng">remoteUid</ph></pt>
                          <pd>发生视频状态改变的远端用户 ID。</pd>
                     </plentry>
                     <plentry id="state">
