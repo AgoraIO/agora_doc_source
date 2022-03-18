@@ -944,6 +944,7 @@ def replace_newline():
     file_text = input_file.read()
     replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', file_text)
     # replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' \n ', replaced_file_text)
+    replaced_file_text = re.sub(r'See[\s]{0,50}\.', '', replaced_file_text)
 
     input_file.close()
 
