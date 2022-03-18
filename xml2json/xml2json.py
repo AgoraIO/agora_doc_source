@@ -210,9 +210,9 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
         if child.get("props") is not None:
             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
             if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                     "props") and "native" in child.get(
-                "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+                "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                 print("------------------- Tag to remove ---------------------------")
                 print(child)
                 print(child.text)
@@ -675,9 +675,9 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
         if child.get("props") is not None:
             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
             if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") or remove_sdk_type in child.get("props") or platform_tag not in child.get(
-                "props") and "native" in child.get(
-                "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                    "props") and "native" in child.get(
+                "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                 print("------------------- Tag to remove ---------------------------")
                 print(child)
                 print(child.text)
@@ -697,9 +697,9 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
         if child.get("props") is not None:
             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
             if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") or remove_sdk_type in child.get("props") or platform_tag not in child.get(
-                "props") and "native" in child.get(
-                "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                    "props") and "native" in child.get(
+                "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                 print("------------------- Tag to remove ---------------------------")
                 print(child)
                 print(child.text)
@@ -711,6 +711,27 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 child.clear()
                 parent_map[child].remove(child)
 
+    # Tag filtering 04
+    # Once a tagged element. So more elements, more processings...
+    # Do tag filtering again!!!!!!!!!!
+    parent_map = {c: p for p in tree.iter() for c in p}
+    for child in root.iter('*'):
+        if child.get("props") is not None:
+            # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+            if platform_tag not in child.get("props") and "native" not in child.get(
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                    "props") and "native" in child.get(
+                "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                print("------------------- Tag to remove ---------------------------")
+                print(child)
+                print(child.text)
+                print(child.tag)
+                print(child.get("id"))
+                print("--------------------Tag to remove ---------------------------")
+                # clear()
+                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                child.clear()
+                parent_map[child].remove(child)
     # Android
 
     # Rust
