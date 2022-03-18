@@ -985,8 +985,7 @@
                 <stentry><xref keyref="removeEventHandler"/></stentry>
                 <stentry><ph conkeyref="removeEventHandler/shortdesc"/></stentry>
             </strow>
-            </simpletable>
-            <simpletable>
+            </simpletable> <simpletable>
             <sthead>
                 <stentry>本地直角坐标系计算方法</stentry>
                 <stentry>描述</stentry>
@@ -1019,8 +1018,7 @@
                 <stentry><xref keyref="clearRemotePositions"/></stentry>
                 <stentry><ph conkeyref="clearRemotePositions/shortdesc"/></stentry>
             </strow>
-            </simpletable>
-            <simpletable>
+            </simpletable> <simpletable>
             <sthead>
                 <stentry>本地球坐标系计算方法</stentry>
                 <stentry>描述</stentry>
@@ -1067,22 +1065,30 @@
                 <stentry>描述</stentry>
             </sthead>
             <strow>
-                <stentry><xref keyref="setLiveTranscoding"/></stentry>
-                <stentry><ph conkeyref="setLiveTranscoding/shortdesc"/></stentry>
+                <stentry><xref keyref="startRtmpStreamWithoutTranscoding"/></stentry>
+                <stentry><ph conkeyref="startRtmpStreamWithoutTranscoding/shortdesc"/></stentry>
             </strow>
             <strow>
-                <stentry><xref keyref="addPublishStreamUrl"/></stentry>
-                <stentry><ph conkeyref="addPublishStreamUrl/shortdesc"/></stentry>
+                <stentry><xref keyref="startRtmpStreamWithTranscoding"/></stentry>
+                <stentry><ph conkeyref="startRtmpStreamWithTranscoding/shortdesc"/></stentry>
             </strow>
             <strow>
-                <stentry><xref keyref="removePublishStreamUrl"/></stentry>
-                <stentry><ph conkeyref="removePublishStreamUrl/shortdesc"/></stentry>
+                <stentry><xref keyref="updateRtmpTranscoding"/></stentry>
+                <stentry><ph conkeyref="updateRtmpTranscoding/shortdesc"/></stentry>
+            </strow>
+                <strow>
+                <stentry><xref keyref="stopRtmpStream"/></stentry>
+                <stentry><ph conkeyref="stopRtmpStream/shortdesc"/></stentry>
             </strow>
             </simpletable> <simpletable>
             <sthead>
                 <stentry>事件</stentry>
                 <stentry>描述</stentry>
             </sthead>
+            <strow>
+                <stentry><xref keyref="onRtmpStreamingEvent"/></stentry>
+                <stentry><ph conkeyref="onRtmpStreamingEvent/shortdesc"/></stentry>
+            </strow>    
             <strow>
                 <stentry><xref keyref="onRtmpStreamingStateChanged"/></stentry>
                 <stentry><ph conkeyref="onRtmpStreamingStateChanged/shortdesc"/></stentry>
@@ -1384,10 +1390,10 @@
                 <stentry><xref keyref="onCaptureVideoFrame"/></stentry>
                 <stentry><ph conkeyref="onCaptureVideoFrame/shortdesc"/></stentry>
             </strow>
-                <strow>
-                    <stentry><xref keyref="onPreEncodeVideoFrame"/></stentry>
-                    <stentry><ph conkeyref="onPreEncodeVideoFrame/shortdesc"/></stentry>
-                </strow>
+            <strow>
+                <stentry><xref keyref="onPreEncodeVideoFrame"/></stentry>
+                <stentry><ph conkeyref="onPreEncodeVideoFrame/shortdesc"/></stentry>
+            </strow>
             <strow>
                 <stentry><xref keyref="onPreEncodeScreenVideoFrame"/></stentry>
                 <stentry><ph conkeyref="onPreEncodeScreenVideoFrame/shortdesc"/></stentry>
@@ -1436,46 +1442,44 @@
         <section id="section_ugt_d11_jqb">
             <title>Extension</title>
             <simpletable id="simpletable_bpq_j11_jqb">
-                <sthead>
-                    <stentry>方法</stentry>
-                    <stentry>描述</stentry>
-                </sthead>
-                <strow>
-                    <stentry><xref keyref="enableExtension"/></stentry>
-                    <stentry><ph conkeyref="enableExtension/shortdesc"/></stentry>
-                </strow>
-                <strow>
-                    <stentry><xref keyref="setExtensionProperty"/></stentry>
-                    <stentry><ph conkeyref="setExtensionProperty/shortdesc"/></stentry>
-                </strow>
-                <strow>
-                    <stentry><xref keyref="setExtensionProviderProperty"/></stentry>
-                    <stentry><ph conkeyref="setExtensionProviderProperty/shortdesc"/></stentry>
-                </strow>
-            </simpletable>
-            <simpletable>
-                <sthead>
-                    <stentry>事件</stentry>
-                    <stentry>描述</stentry>
-                </sthead>
-                <strow>
-                    <stentry><xref keyref="onExtensionEvent"/></stentry>
-                    <stentry><ph conkeyref="onExtensionEvent/shortdesc"/></stentry>
-                </strow>
-                <strow>
-                    <stentry><xref keyref="onExtensionStarted"/></stentry>
-                    <stentry><ph conkeyref="onExtensionStarted/shortdesc"/></stentry>
-                </strow>
-                <strow>
-                    <stentry><xref keyref="onExtensionStopped"/></stentry>
-                    <stentry><ph conkeyref="onExtensionStopped/shortdesc"/></stentry>
-                </strow>
-                <strow>
-                    <stentry><xref keyref="onExtensionError"/></stentry>
-                    <stentry><ph conkeyref="onExtensionError/shortdesc"/></stentry>
-                </strow>
-            </simpletable>
-        </section>
+            <sthead>
+                <stentry>方法</stentry>
+                <stentry>描述</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="enableExtension"/></stentry>
+                <stentry><ph conkeyref="enableExtension/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setExtensionProperty"/></stentry>
+                <stentry><ph conkeyref="setExtensionProperty/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setExtensionProviderProperty"/></stentry>
+                <stentry><ph conkeyref="setExtensionProviderProperty/shortdesc"/></stentry>
+            </strow>
+            </simpletable> <simpletable>
+            <sthead>
+                <stentry>事件</stentry>
+                <stentry>描述</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="onExtensionEvent"/></stentry>
+                <stentry><ph conkeyref="onExtensionEvent/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="onExtensionStarted"/></stentry>
+                <stentry><ph conkeyref="onExtensionStarted/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="onExtensionStopped"/></stentry>
+                <stentry><ph conkeyref="onExtensionStopped/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="onExtensionError"/></stentry>
+                <stentry><ph conkeyref="onExtensionError/shortdesc"/></stentry>
+            </strow>
+            </simpletable> </section>
         <section id="media_metadata">
             <title>媒体附属信息</title>
             <simpletable>
@@ -2010,6 +2014,14 @@
                 <stentry>方法</stentry>
                 <stentry>描述</stentry>
             </sthead>
+            <strow>
+                <stentry><xref keyref="setAVSyncSource"/></stentry>
+                <stentry><ph conkeyref="setAVSyncSource/shortdesc"/></stentry>
+            </strow>
+             <strow>
+                <stentry><xref keyref="setCloudProxy"/></stentry>
+                <stentry><ph conkeyref="setCloudProxy/shortdesc"/></stentry>
+            </strow>   
             <strow>
                 <stentry><xref keyref="sendCustomReportMessageEx"/></stentry>
                 <stentry><ph conkeyref="sendCustomReportMessageEx/shortdesc"/></stentry>

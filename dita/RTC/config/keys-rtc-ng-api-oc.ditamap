@@ -2391,6 +2391,13 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="setCloudProxy" href="../API/api_setcloudproxy.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setCloudProxy</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="setLogFile" href="../API/api_setlogfile_ng.dita">
                 <topicmeta>
                     <keywords>
@@ -3426,6 +3433,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraLiveTranscoding</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LiveStreamAdvancedFeature" href="../API/class_livestreamadvancedfeature.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraLiveStreamAdvancedFeature</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -5447,6 +5461,34 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="CLOUD_PROXY_TYPE" href="../API/enum_cloudproxytype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraCloudProxyType</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="NONE_PROXY">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraNoneProxy</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="UDP_PROXY">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraUdpProxy</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="TCP_PROXY">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraTcpProxy</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="CLIENT_ROLE_TYPE" href="../API/enum_clientroletype.dita">
             <topicmeta>
                 <keywords>
@@ -7188,105 +7230,119 @@
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR" href="../API/enum_rtmpstreampublisherror.dita">
             <topicmeta>
                 <keywords>
-                    <keyword>AgoraRtmpStreamPublishError</keyword>
-                </keywords>
-            </topicmeta>
-        </keydef>
-        <keydef keys="RTMP_STREAM_PUBLISH_ERROR_FAILED">
-            <topicmeta>
-                <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_FAILED</keyword>
+                    <keyword>AgoraRtmpStreamingErrorCode</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR_OK">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_OK</keyword>
+                    <keyword>AgoraRtmpStreamingErrorCodeOK</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_INVALID_ARGUMENT</keyword>
+                    <keyword>AgoraRtmpStreamingErrorCodeInvalidParameters</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_ENCRYPTED_STREAM_NOT_ALLOWED</keyword>
+                    <keyword>AgoraRtmpStreamingErrorCodeEncryptedStreamNotAllowed</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_CONNECTION_TIMEOUT</keyword>
+                    <keyword>AgoraRtmpStreamingErrorCodeConnectionTimeout</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_INTERNAL_SERVER_ERROR</keyword>
+                    <keyword>AgoraRtmpStreamingErrorCodeInternalServerError</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_RTMP_SERVER_ERROR</keyword>
+                    <keyword>AgoraRtmpStreamingErrorCodeRtmpServerError</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_TOO_OFTEN</keyword>
+                    <keyword>AgoraRtmpStreamingErrorCodeTooOften</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_REACH_LIMIT</keyword>
+                    <keyword>AgoraRtmpStreamingErrorCodeReachLimit</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_NOT_AUTHORIZED</keyword>
+                    <keyword>AgoraRtmpStreamingErrorCodeNotAuthorized</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_STREAM_NOT_FOUND</keyword>
+                    <keyword>AgoraRtmpStreamingErrorCodeStreamNotFound</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
         <keydef keys="RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_FORMAT_NOT_SUPPORTED</keyword>
+                    <keyword>AgoraRtmpStreamingErrorCodeFormatNotSupported</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="RTMP_STREAM_PUBLISH_ERROR_CDN_ERROR">
+        <keydef keys="RTMP_STREAM_PUBLISH_ERROR_NOT_BROADCASTER">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_CDN_ERROR</keyword>
+                    <keyword>AgoraRtmpStreamingErrorNotBroadcaster</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="RTMP_STREAM_PUBLISH_ERROR_ALREADY_IN_USE">
+        <keydef keys="RTMP_STREAM_PUBLISH_ERROR_TRANSCODING_NO_MIX_STREAM">
             <topicmeta>
                 <keywords>
-                    <keyword>RTMP_STREAM_PUBLISH_ERROR_ALREADY_IN_USE</keyword>
+                    <keyword>AgoraRtmpStreamingErrorTranscodingNoMixStream</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RTMP_STREAM_PUBLISH_ERROR_NET_DOWN">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRtmpStreamingErrorNetDown</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RTMP_STREAM_PUBLISH_ERROR_INVALID_APPID">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRtmpStreamingErrorInvalidAppId</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RTMP_STREAM_UNPUBLISH_ERROR_OK">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRtmpStreamingErrorCodeUnpublishOK</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -7329,6 +7385,41 @@
             <topicmeta>
                 <keywords>
                     <keyword>RTMP_STREAM_PUBLISH_STATE_FAILURE</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RTMP_STREAMING_EVENT" href="../API/enum_rtmpstreamingevent.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRtmpStreamingEvent</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RTMP_STREAMING_EVENT_FAILED_LOAD_IMAGE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRtmpStreamingEventFailedLoadImage</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RTMP_STREAMING_EVENT_URL_ALREADY_IN_USE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRtmpStreamingEventUrlAlreadyInUse</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RTMP_STREAMING_EVENT_ADVANCED_FEATURE_NOT_SUPPORT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRtmpStreamingEventAdvancedFeatureNotSupport</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="RTMP_STREAMING_EVENT_REQUEST_TOO_OFTEN">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraRtmpStreamingEventRequestTooOften</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
