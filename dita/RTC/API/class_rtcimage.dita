@@ -6,23 +6,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-            <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
-            const char* url;
-            int x;
-            int y;
-            int width;
-            int height;
-            int zOrder;
-            double alpha;
-            
-            RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0), alpha(1.0) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
-            @property(strong, nonatomic) NSURL *_Nonnull url;
-            @property(assign, nonatomic) CGRect rect;
-            @property (assign, nonatomic) NSInteger zOrder;
-            @property(assign, nonatomic) double alpha;
-            @end</codeblock>
-            <codeblock props="android" outputclass="language-java">public class AgoraImage {
+                <codeblock props="android" outputclass="language-java">public class AgoraImage {
   public String url;
   public int x;
   public int y;
@@ -50,7 +34,23 @@
     this.zOrder = 0;
     this.alpha = 1.0;
   }
-}</codeblock> 
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImage : NSObject
+            @property(strong, nonatomic) NSURL *_Nonnull url;
+            @property(assign, nonatomic) CGRect rect;
+            @property (assign, nonatomic) NSInteger zOrder;
+            @property(assign, nonatomic) double alpha;
+            @end</codeblock>
+            <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
+            const char* url;
+            int x;
+            int y;
+            int width;
+            int height;
+            int zOrder;
+            double alpha;
+            
+            RtcImage() : url(NULL), x(0), y(0), width(0), height(0), zOrder(0), alpha(1.0) {}</codeblock>
             </p>
             <p outputclass="codeblock" props="rtc">
             <codeblock props="windows" outputclass="language-cpp">typedef struct RtcImage {
@@ -159,14 +159,14 @@
                 <pt>zOrder</pt>
                 <pd>视频帧图层编号。取值范围为 [1,100] 中的整型。1 表示该区域图像位于最下层，而 100 表示该区域图像位于最上层。</pd>
             </plentry>
-                <plentry props="rtc-ng">
-                    <pt>alpha</pt>
-                    <pd>水印或背景图片的透明度。取值范围为 [0.0,1.0]：
-                   <ul>
-                       <li>0.0: 完全透明。</li>
-                       <li>1.0:（默认）完全不透明。</li>
-                   </ul></pd>
-                </plentry>
+            <plentry props="rtc-ng">
+                <pt>alpha</pt>
+                <pd>水印或背景图片的透明度。取值范围为 [0.0,1.0]：
+                    <ul>
+                    <li>0.0: 完全透明。</li>
+                    <li>1.0:（默认）完全不透明。</li>
+                    </ul></pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>
