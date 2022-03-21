@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-    <title><ph keyref="LiveTranscoding"/></title>
-    <shortdesc id="short"><ph id="shortdesc">CDN 直播推流的转码属性。</ph></shortdesc>
+    <title> <ph keyref="LiveTranscoding"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">CDN 直播推流的转码属性。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
@@ -149,86 +149,86 @@
   @JsonKey(includeIfNull: false)
   int? width;
 
-  @JsonKey(includeIfNull: false)
-  int? height;
+                @JsonKey(includeIfNull: false)
+                int? width;
+              
+                @JsonKey(includeIfNull: false)
+                int? height;
+              
+                @JsonKey(includeIfNull: false)
+                int? videoBitrate;
 
-  @JsonKey(includeIfNull: false)
-  int? videoBitrate;
+                @JsonKey(includeIfNull: false)
+                VideoFrameRate? videoFramerate;
+              
+                @Deprecated(
+                    'This attribute is deprecated since v2.8.0, and Agora does not recommend it.')
+                @JsonKey(includeIfNull: false)
+                bool? lowLatency;
+              
+                @JsonKey(includeIfNull: false)
+                int? videoGop;
 
-  @JsonKey(includeIfNull: false)
-  VideoFrameRate? videoFramerate;
+                @JsonKey(includeIfNull: false)
+                List&lt;AgoraImage&gt;? watermark;
+              
+                @JsonKey(includeIfNull: false)
+                List&lt;AgoraImage&gt;? backgroundImage;
+              
+                @JsonKey(includeIfNull: false)
+                AudioSampleRateType? audioSampleRate;
+              
+                @JsonKey(includeIfNull: false)
+                int? audioBitrate;
+              
+                @JsonKey(includeIfNull: false)
+                AudioChannel? audioChannels;
+              
+                @JsonKey(includeIfNull: false)
+                AudioCodecProfileType? audioCodecProfile;
+              
+                @JsonKey(includeIfNull: false)
+                VideoCodecProfileType? videoCodecProfile;
+              
+                @JsonKey(includeIfNull: false)
+                int? backgroundColor;
+              
+                @JsonKey(includeIfNull: false)
+                VideoCodecTypeForStream? videoCodecType;
 
-  @deprecated
-  @JsonKey(includeIfNull: false)
-  bool? lowLatency;
-
-  @JsonKey(includeIfNull: false)
-  int? videoGop;
-
-  @JsonKey(includeIfNull: false)
-  AgoraImage? watermark;
-
-  @JsonKey(includeIfNull: false)
-  AgoraImage? backgroundImage;
-
-  @JsonKey(includeIfNull: false)
-  AudioSampleRateType? audioSampleRate;
-
-  @JsonKey(includeIfNull: false)
-  int? audioBitrate;
-
-  @JsonKey(includeIfNull: false)
-  AudioChannel? audioChannels;
-
-  @JsonKey(includeIfNull: false)
-  AudioCodecProfileType? audioCodecProfile;
-
-  @JsonKey(includeIfNull: false)
-  VideoCodecProfileType? videoCodecProfile;
-
-  @JsonKey(
-      includeIfNull: false, fromJson: _$ColorFromJson, toJson: _$ColorToJson)
-  Color? backgroundColor;
-
-  @JsonKey(includeIfNull: false)
-  VideoCodecTypeForStream? videoCodecType;
-
-  @JsonKey(includeIfNull: false)
-  String? userConfigExtraInfo;
-
-  List&lt;TranscodingUser&gt; transcodingUsers;
-
-  LiveTranscoding(
-    this.transcodingUsers, {
-    this.width,
-    this.height,
-    this.videoBitrate,
-    this.videoFramerate,
-    this.lowLatency,
-    this.videoGop,
-    this.watermark,
-    this.backgroundImage,
-    this.audioSampleRate,
-    this.audioBitrate,
-    this.audioChannels,
-    this.audioCodecProfile,
-    this.videoCodecProfile,
-    this.backgroundColor,
-    this.videoCodecType,
-    this.userConfigExtraInfo,
-  });
-
-  factory LiveTranscoding.fromJson(Map&lt;String, dynamic> json) =>
-      _$LiveTranscodingFromJson(json);
-
-  /// @nodoc
-  Map&lt;String, dynamic> toJson() => _$LiveTranscodingToJson(this);
-}</codeblock> </p>
+                @JsonKey(includeIfNull: false)
+                String? userConfigExtraInfo;
+              
+                List&lt;TranscodingUser&gt; transcodingUsers;
+              
+                LiveTranscoding(
+                  this.transcodingUsers, {
+                  this.width,
+                  this.height,
+                  this.videoBitrate,
+                  this.videoFramerate,
+                  this.lowLatency,
+                  this.videoGop,
+                  this.watermark,
+                  this.backgroundImage,
+                  this.audioSampleRate,
+                  this.audioBitrate,
+                  this.audioChannels,
+                  this.audioCodecProfile,
+                  this.videoCodecProfile,
+                  this.backgroundColor,
+                  this.videoCodecType,
+                  this.userConfigExtraInfo,
+                });
+              
+                factory LiveTranscoding.fromJson(Map&lt;String, dynamic&gt; json) =>
+                    _$LiveTranscodingFromJson(json);
+              
+                Map&lt;String, dynamic&gt; toJson() => _$LiveTranscodingToJson(this);
+              }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title> <textconref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/> </title>
             <parml>
             <plentry props="android windows electron unity">
                 <pt>width</pt>
@@ -293,8 +293,7 @@
             </plentry>
             <plentry props="electron flutter">
                 <pt>videoCodecType</pt>
-                <pd>输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"
-                    />。</pd>
+                <pd>输出视频的编解码类型。详见 <xref keyref="VIDEO_CODEC_TYPE_FOR_STREAM"/>。</pd>
             </plentry>
             <plentry>
                 <pt>transcodingUsers</pt>
@@ -358,54 +357,37 @@
             </plentry>
             <plentry>
                 <pt>audioCodecProfile</pt>
-                <pd>输出媒体流的音频编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"
-                    />。</pd>
+                <pd>输出媒体流的音频编码规格。详见 <xref keyref="AUDIO_CODEC_PROFILE_TYPE"/>。</pd>
             </plentry>
-            </parml>
-            <parml props="rtc-ng">
-            <plentry>
+            <plentry props="rtc-ng">
                 <pt props="ios mac">watermarkArray</pt>
                 <pt props="windows">watermarkCount</pt>
-                <pd>
-                    <p>输出媒体流的视频水印 (watermark) 的数量。</p>
-                    <ul>
-                    <li>如果你不添加水印，或仅添加一个水印，该参数为选填。</li>
-                    <li>如果你添加多个水印，该参数为必填。</li>
-                    </ul> </pd>
+                <pd props="ios mac"> 直播视频上的水印数组。详见 <xref keyref="RtcImage"/>。你可以使用 <parmname>watermarkArray</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
+                <pd props="windows">直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>watermark</parmname> 搭配使用。</pd>
             </plentry>
-            <plentry>
+            <plentry props="rtc-ng">
                 <pt props="ios mac">backgroundArray</pt>
                 <pt props="windows">backgroundCount</pt>
-                <pd>
-                    <p>输出媒体流的视频背景图 (backgroundImage) 的数量。</p>
-                    <ul>
-                    <li>如果你不添加背景图，或仅添加一个背景图，该参数为选填。</li>
-                    <li>如果你添加多个背景图，该参数为必填。</li>
-                    </ul> </pd>
+                <pd props="ios mac"> 直播视频上的背景图数组。详见 <xref keyref="RtcImage"/>。你可以使用 <parmname>backgroundImageArray</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
+                <pd props="windows">直播视频上的背景图的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>backgroundImage</parmname> 搭配使用。</pd>
             </plentry>
-                <plentry props="windows">
-                    <pt>advancedFeatures</pt>
-                    <pd>转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
-                </plentry>
-                <plentry props="windows">
-                    <pt>advancedFeatureCount</pt>
-                    <pd>开启的高级功能数量。默认值为 0。</pd>
-                </plentry>
-                <plentry props="ios mac android">
-                    <pt>setAdvancedFeatures</pt>
-                    <pd props="ios mac">设置转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
-                    <pd props="android">featureName：转码推流高级功能的名称，包含 LBHQ（低码率的高清视频功能） 和 VEO（优化的视频编码器功能）。</pd>
-                    <pd props="android">opened：是否启用转码推流的高级功能：<ul>
-                        <li><codeph><ph keyref="true"/></codeph>：开启转码推流的高级功能。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：（默认）关闭转码推流的高级功能。</li>
-                    </ul>
-                        <p>如需使用转码推流高级功能，请联系 sales@agora.io。</p>
-                       </pd>
-                </plentry>
-                <plentry props="ios mac android">
-                    <pt>getAdvancedFeatures</pt>
-                    <pd>获取转码推流高级功能的开/关状态。</pd>
-                </plentry>
+            <plentry props="rtc">
+                <pt props="ios mac">watermarkArray</pt>
+                <pt props="windows">watermarkCount</pt>
+                <pt props="android">watermarkList</pt>
+                <pd props="ios mac"> 直播视频上的水印数组。详见 <xref keyref="RtcImage"/>。你可以使用 <parmname>watermarkArray</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
+                <pd props="windows"
+                    >直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>watermark</parmname> 搭配使用。</pd>
+                <pd props="android"> 直播视频上的水印数组。详见 <xref keyref="RtcImage"/>。你可以使用 <parmname>watermarkList</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
+            </plentry>
+            <plentry props="rtc">
+                <pt props="ios mac">backgroundImageArray</pt>
+                <pt props="windows">backgroundImageCount</pt>
+                <pt props="android">backgroundImageList</pt>
+                <pd props="ios mac"> 直播视频上的背景图数组。详见 <xref keyref="RtcImage"/>。你可以使用 <parmname>backgroundImageArray</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
+                <pd props="windows">直播视频上的背景图的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>backgroundImage</parmname> 搭配使用。</pd>
+                <pd props="android"> 直播视频上的背景图数组。详见 <xref keyref="RtcImage"/>。你可以使用 <parmname>backgroundImageList</parmname> 添加一张或多张背景图。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

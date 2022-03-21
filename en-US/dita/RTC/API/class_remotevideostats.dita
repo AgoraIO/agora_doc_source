@@ -122,9 +122,12 @@
     publishDuration: number;
     }</codeblock>
                 <codeblock props="rn" outputclass="language-typescript" />
-                <codeblock props="flutter" outputclass="language-dart">class RemoteVideoStats {
-  
+                <codeblock props="flutter" outputclass="language-dart">
+class RemoteVideoStats {
   int uid;
+
+  @Deprecated(
+      'In scenarios where audio and video are synchronized, you can get the video  delay data from networkTransportDelay and jitterBufferDelay in RemoteAudioStats.')
   int delay;
   int width;
   int height;
@@ -214,10 +217,10 @@
        </plentry>
        <plentry>
   <pt>rxStreamType</pt>
-           <pd>The type of the video stream. <ph props="ios mac windows unity">For details, see <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />.</ph><p props="android">
+           <pd>The type of the video stream. <ph props="ios mac windows unity">For details, see <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />. </ph><p props="android">
                <ul>
-                   <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH" /> (0): High-quality stream, that is, high-resolution and high-bitrate video stream.</li>
-                   <li><ph keyref="REMOTE_VIDEO_STREAM_LOW" /> (1): Low-quality stream, that is, low-resolution and low-bitrate video stream.</li>
+                   <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH" />(0): High-quality stream, that is, high-resolution and high-bitrate video stream.</li>
+                   <li><ph keyref="REMOTE_VIDEO_STREAM_LOW" />(1): Low-quality stream, that is, low-resolution and low-bitrate video stream.</li>
                </ul>
                </p>
            </pd>
@@ -225,7 +228,7 @@
        <plentry>
   <pt>totalFrozenTime</pt>
   <pd>The total freeze time (ms) of the remote video stream after the remote user joins the channel. In a video session where the frame rate is set to 5 fps or higher, video freeze occurs when the time interval between two adjacent video frames is more than 500
-      ms.</pd>
+ms.</pd>
        </plentry>
        <plentry>
   <pt>frozenRate</pt>
@@ -235,7 +238,7 @@
                     <pt>totalActiveTime</pt>
                     <pd>
                         <dl outputclass="since" props="rtc">
-                            <dlentry props="native">
+                            <dlentry>
                                 <dt>Since</dt>
                                 <dd>v3.0.1</dd>
                             </dlentry>
@@ -247,7 +250,7 @@
                     <pt>publishDuration</pt>
                     <pd>
                         <dl outputclass="since" props="rtc">
-                            <dlentry props="native">
+                            <dlentry>
                                 <dt>Since</dt>
                                 <dd>v3.1.0</dd>
                             </dlentry>

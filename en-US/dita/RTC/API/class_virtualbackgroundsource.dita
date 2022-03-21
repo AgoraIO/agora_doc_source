@@ -98,31 +98,30 @@
                 </codeblock>
                 <codeblock props="flutter" outputclass="language-dart">class VirtualBackgroundSource {
 
-  @JsonKey(includeIfNull: false)
-  VirtualBackgroundSourceType? backgroundSourceType;
-
-  @JsonKey(
-      includeIfNull: false, fromJson: _$ColorFromJson, toJson: _$ColorToJson)
-  Color? color;
-
-  @JsonKey(includeIfNull: false)
-  String? source;
-
-  @JsonKey(name: 'blur_degree')
-  VirtualBackgroundBlurDegree blurDegree;
-
-  VirtualBackgroundSource({
-    this.backgroundSourceType,
-    this.color,
-    this.source,
-    this.blurDegree = VirtualBackgroundBlurDegree.High,
-  });
-
-  factory VirtualBackgroundSource.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
-      _$VirtualBackgroundSourceFromJson(json);
-
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$VirtualBackgroundSourceToJson(this);
-}</codeblock>
+                    @JsonKey(includeIfNull: false)
+                    VirtualBackgroundSourceType? backgroundSourceType;
+                  
+                    @JsonKey(includeIfNull: false)
+                    int? color;
+                  
+                    @JsonKey(includeIfNull: false)
+                    String? source;
+                  
+                    @JsonKey(name: 'blur_degree')
+                    VirtualBackgroundBlurDegree blurDegree;
+                  
+                    VirtualBackgroundSource({
+                      this.backgroundSourceType,
+                      this.color,
+                      this.source,
+                      this.blurDegree = VirtualBackgroundBlurDegree.High,
+                    });
+                  
+                    factory VirtualBackgroundSource.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+                        _$VirtualBackgroundSourceFromJson(json);
+                  
+                    Map&lt;String, dynamic&gt; toJson() =&gt; _$VirtualBackgroundSourceToJson(this);
+                  }</codeblock>
                 </p>
         </section>
         <section id="detailed_desc">
@@ -147,7 +146,7 @@
                 </plentry>
                 <plentry>
                     <pt>color</pt>
-                    <pd>The type of the custom background image. The color of the custom background image. The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink.   The default value is 0xFFFFFF, which signifies white.  The value range is [0x000000, 0xffffff]. If the value is invalid, the SDK replaces the original background image with a white background image.<note type="attention">This parameter takes effect only when the type of the custom background image is <ph keyref="BACKGROUND_COLOR" />.</note></pd>
+                    <pd> The type of the custom background image. The color of the custom background image. The format is a hexadecimal integer defined by RGB, without the # sign, such as 0xFFB6C1 for light pink.  The default value is 0xFFFFFF, which signifies white. The value range is [0x000000, 0xffffff]. If the value is invalid, the SDK replaces the original background image with a white background image.<note type="attention">This parameter takes effect only when the type of the custom background image is <ph keyref="BACKGROUND_COLOR" />.</note></pd>
                 </plentry>
                 <plentry>
                     <pt>source</pt>
@@ -155,8 +154,8 @@
                 </plentry>
                 <plentry>
                     <pt props="rtc-ng"><ph props="ios mac android">blurDegree</ph><ph props="windows">blur_degree</ph></pt>
-                    <pt props="rtc"><ph props="flutter">blurDegree</ph><ph props="native unity">blur_degree</ph></pt>
-                    <pd><ph>The degree of blurring applied to the custom background image. </ph><ph props="ios mac windows unity">See <xref keyref="BACKGROUND_BLUR_DEGREE" />.</ph><ul props="android">
+                    <pt props="rtc"><ph props="native electron unity">blur_degree</ph><ph props="flutter">blurDegree</ph></pt>
+                    <pd><ph>The degree of blurring applied to the custom background image. </ph><ph props="ios mac windows unity flutter">See <xref keyref="BACKGROUND_BLUR_DEGREE" />.</ph><ul props="android">
                         <li><ph keyref="BLUR_DEGREE_LOW" />(1): The degree of blurring applied to the custom background image is low. The user can almost see the background clearly.</li>
                         <li><ph keyref="BLUR_DEGREE_MEDIUM" />(2): The degree of blurring applied to the custom background image is medium. It is difficult for the user to recognize details in the background.</li>
                         <li><ph keyref="BLUR_DEGREE_HIGH" />(3): The degree of blurring applied to the custom background image is high. The user can barely see any distinguishing features in the background.</li>
