@@ -13,13 +13,12 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
-             <codeblock props="android" outputclass="language-java">public abstract int setCloudProxy(int proxyType);</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract int setCloudProxy(int proxyType);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setCloudProxy:(AgoraCloudProxyType)proxyType NS_SWIFT_NAME(setCloudProxy(_:));</codeblock>
-            <codeblock props="windows" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock>   
-            </p>
-            <p outputclass="codeblock">
+            <codeblock props="windows" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock> </p>
+            <p outputclass="codeblock" props="rtc">
             <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
             <codeblock props="windows" outputclass="language-cpp">virtual int setCloudProxy(CLOUD_PROXY_TYPE proxyType) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">setCloudProxy(type: CLOUD_PROXY_TYPE): number</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetCloudProxy(CLOUD_PROXY_TYPE proxyType);</codeblock>
@@ -44,7 +43,7 @@
             <ul>
             <li>Agora 推荐你在频道外调用该方法。</li>
             <li>如果用户处于内网防火墙环境下，使用 Force UDP 云代理时，旁路推流和跨频道媒体流转发功能不可用。</li>
-                <li>使用 Force UDP 云代理时，调用 <xref keyref="startAudioMixing"/> 方法时无法播放 HTTP 协议的在线音频文件。旁路推流和跨频道媒体流转发功能会使用 TCP 协议的云代理。</li>
+            <li>使用 Force UDP 云代理时，调用 <xref keyref="startAudioMixing"/> 方法时无法播放 HTTP 协议的在线音频文件。旁路推流和跨频道媒体流转发功能会使用 TCP 协议的云代理。</li>
             </ul></note></section>
         <section id="parameters">
             <title>参数</title>
@@ -59,9 +58,7 @@
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>
-            <li>
-                    &lt; 0: 方法调用失败。
-                    
+            <li>&lt; 0: 方法调用失败。
                 <ul>
                 <li>-2(<codeph>ERR_INVALID_ARGUMENT</codeph>): 传入的参数无效。
                         </li>
