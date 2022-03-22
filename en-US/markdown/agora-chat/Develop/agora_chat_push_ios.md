@@ -28,7 +28,7 @@ iii. You will get a CSR file named `CertificateSigningRequest.certSigningRequest
 Log in to the [iOS Developer Center](https://developer.apple.com/), click **Account** > **Certificates, Identifiers & Profiles** > **Identifiers** to add an App ID, and configure the following fields:
     - **Select a type**: Select **App**.
     - **Description**: Fill in the description of the App ID.
-    - **Bundle ID**: Set to `com.YourCompany.YourProjectName`.
+    - **Bundle ID**: Set the value to `com.YourCompany.YourProjectName`.
     - **Capabilities**: Select **Push Notification**.  
 
 3. Create a push certificate for the development environment and the production environment respectively.<a name="step1-3"></a>  
@@ -510,7 +510,7 @@ An example is as follows:
 | `body`            | The displayed content of the message.                                     |
 | `badge`           | The number of push notifications.                            |
 | `sound`           | The sound of push notifications.                     |
-| `mutable-content` | Set to 1 to enable `UNNotificationServiceExtension`. |
+| `mutable-content` | Set the value to 1 to enable `UNNotificationServiceExtension`. |
 | `f`               | The user ID of the sender.        |
 | `t`               | The user ID of the receiver.                                 |
 | `m`               | The ID of the message.                               |
