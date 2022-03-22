@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Descriptor for 'Add ID Attributes' XML Refactory operation. 
+-->
+<refactoringOperationDescriptor 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.oxygenxml.com/ns/xmlRefactoring" id="dita.refactory.generate.ids" name="${i18n(Generate_IDs)}">
+  <description>Generate ID attributes</description>    
+  <script type="XSLT" href="generate-ids.xsl"/>
+  <category>DITA</category>
+  <parameters>
+    <description>${i18n(xr_generate_ids_action_description)}</description>
+    <section label="${i18n(Element_names)}">
+      <parameter name="element_names" label="${i18n(Elements)}" type="TEXT">
+        <possibleValues>
+          <value name="topic, section, table, p, simpletable, fig, image, ul, ol, equation-block, codeblock, pre, dl, example, imagemap, lines, lq, msgblock, note, sl" default="true">topic, section, table, p, simpletable, fig, image, ul, ol, equation-block, codeblock, pre, dl, example, imagemap, lines, lq, msgblock, note, sl</value>
+        </possibleValues>
+        <description>${i18n(xr_generate_id_element_names_description)}</description>
+      </parameter>
+      
+      <parameter 
+        label="${i18n(xr_generate_ids_pattern_value_label)}" 
+        type="TEXT" 
+        name="value_pattern">
+        <possibleValues>
+          <value default="true" name="${localName}_${id}">${localName}_${id}</value>
+          <value name="${id}">${id}</value>
+        </possibleValues>
+        <description>${i18n(xr_generate_ids_pattern_values_description)}</description>
+      </parameter>
+    </section>
+  </parameters>
+</refactoringOperationDescriptor>

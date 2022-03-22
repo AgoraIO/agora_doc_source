@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Oxygen WebHelp Plugin for DITA-OT 3.0 or newer.
+
+Copyright (c) 1998-2022 Syncro Soft SRL, Romania.  All rights reserved.
+
+-->
+<!DOCTYPE plugin[
+ <!ENTITY extensions SYSTEM 'plugin_extension_points.xml'>
+ <!ENTITY transtype SYSTEM 'plugin_transtype.xml'> 
+ <!ENTITY features SYSTEM 'plugin_features.xml'>
+ <!ENTITY templates SYSTEM 'plugin_templates.xml'>
+]>
+<plugin id="com.oxygenxml.webhelp.responsive">
+  <require plugin="org.dita.html5"/>
+  &features;  
+  
+  <feature 
+    extension="com.oxygenxml.responsive.internal.target.dependencies.html5.init" 
+    value="html5.init, html5.image-metadata" type="text"/>
+  
+  <feature 
+    extension="com.oxygenxml.responsive.internal.target.dependencies.topics.html" 
+    value="dita.topics.html.common" 
+    type="text"/>
+  
+  <feature 
+    extension="com.oxygenxml.responsive.internal.target.dependencies.preprocess" 
+    value="preprocess" 
+    type="text"/>
+  
+  <feature 
+    extension="com.oxygenxml.responsive.internal.target.dependencies.preprocess2" 
+    value="preprocess2, whr-after.preprocess" 
+    type="text"/>
+  
+  &extensions;
+  <transtype name="webhelp-responsive-preprocess2" extends="webhelp-responsive-common" desc="WebHelp Responsive using preprocess2 DITA-OT step"/>
+  &transtype;
+  &templates;  
+</plugin>
