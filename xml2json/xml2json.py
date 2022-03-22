@@ -948,7 +948,12 @@ def replace_newline():
     # 2022.1.17 Clean up \n and spaces
     file_text = input_file.read()
     replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', file_text)
-    # replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' \n ', replaced_file_text)
+
+    replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}\\n', '', replaced_file_text)
+    replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', '', replaced_file_text)
+    replaced_file_text = re.sub(r'[\s]{2,100}', ' ', replaced_file_text)
+
+
     replaced_file_text = re.sub(r'See[\s\\n]{0,50}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r'For more information[A-Za-z\s\\n,]{0,100}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r'For more details[A-Za-z\s\\n,]{0,50}\.', '', replaced_file_text)
