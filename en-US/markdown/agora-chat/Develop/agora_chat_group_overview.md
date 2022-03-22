@@ -8,7 +8,7 @@ Agora Chat has the following two chat group types:
 
 ## Chat group roles and privileges
 
-Chat groups have the following roles and privilegs:
+Chat groups have the following roles and privileges:
 
 - Chat group members: Regular members that can send and receive group messages. They do not have any administrative privileges.
 - Chat group admins: They are specified by the chat group owner. Apart from sending and receiving group messages, they have some administrative privileges, including modifying the group notification and managing chat group members.
@@ -16,7 +16,7 @@ Chat groups have the following roles and privilegs:
 
 ## Differences between chat group and chat room
 
-Both chat group and chat room support instant messaging among multiple users. The major difference lies in whether members have a stable relationship. Chat group members tend to remain for a long time, whereas chat room members tend to join and leave freely.
+Both chat group and chat room support instant messaging among multiple users. The major difference lies in whether members have a stable relationship. Chat group members tend to remain for a long time, whereas chat room members join and leave freely.
 
 The following table shows the feature comparisons between a chat group and a chat room:
 
@@ -25,19 +25,19 @@ The following table shows the feature comparisons between a chat group and a cha
 | Use cases  | Group chat scenarios in Signal and Skype, where all members have a stable relationship. | Stream chat scenarios in Twitch, where viewers have no relationship with each other. Once a member quits the stream chat channel, this member leaves the chat room.  |
 | Maximum number of members | 5,000 | 20,000 and more  |
 | Message push support | Members receive push messages when they go offline. | Members do not recieve push messages when they go offline. |
-| Message storage support | Supports message storage when a member is offline, and once online, this member can receive all the stored messages. A maximum number of 200 messages can be stored for each group chat conversation.   | This feature can be enabled and disabled. If you enable this feature, the SDK supports message storage when a member is offline, and once online, this member can receive all the stored messages. By default, 10 messages can be stored for each chat room conversation, and you can set this number to a maximum value of 200. |
+| Message storage support | Supports message storage when a member is offline. Once online, this member receives all the stored messages. A maximum number of 200 messages can be stored for each group chat thread.   | This feature can be enabled and disabled. If you enable this feature, the SDK supports message storage when a member is offline. Once online, this member receives all the stored messages. By default, 10 messages can be stored for each chat room thread, and you can set this number to a maximum value of 200. |
 | Message reliablity | All members can receive all the messages in the chat group. | When message overload occurs, the SDK discards the messages based on the threshold, which is 100 messages per second. You can adjust this threshold according to your needs.  |
 
 
 ## Chat group features
 
-Chat groups support creating and managing groups, managing group members, and modifying group attributes.
+The Agora Chat SDK supports creating and managing chat groups, managing group members, and modifying group attributes.
 
-You can implement the following features with the group chat APIs.
+You can implement the following features with the chat group APIs.
 
 ###  Create a chat group
 
-Any chat user can create a chat group, and once you do so, you are the chat group owner. The maximum number of chat group numbers and group members supported vary accroding to the pricing plan. See [Pricing Plan Details](./agora_chat_plan).
+Any chat user can create a chat group, and once you do so, you are the chat group owner. The maximum number of chat group numbers and group members supported vary accroding to the pricing plan. For details, see [Limitations of chat group member count](./limitations).
 
 ### Join a chat group
 
@@ -61,7 +61,7 @@ Only the group owner can disband the chat group. Once a chat group is disbanded,
 
 ### Retrieve the group memberlist
 
-You can retrieve the group members from the server with pagination. And the retrieved members are in the descending order of the timestamp when these members join the chat group.
+All the chat group users can retrieve the group members from the server with pagination. And the retrieved members are in the descending order of the timestamp when these members join the chat group.
 
 ### Retrieve the chat group list
 
@@ -122,7 +122,9 @@ All the chat group members can upload or download group shared files. The chat g
 
 ### Set chat group extensions
 
-The chat group owner or admin can update the extesnion information of the chat group. Extension information can be used to customize group extensions. The data length of the extension information cannot exceed 8KB.
+The chat group owner or admin can update the extesnion information of the chat group. Extension information can be used to customize group extensions. The data length of the extension information cannot exceed 8 KB.
+
+<a name="limitations"></a>
 
 ## Limitations of chat group member count
 
