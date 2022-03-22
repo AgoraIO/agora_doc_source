@@ -436,7 +436,7 @@ An example is as follows:
 }
 ```
 
-| 参数    | 描述                      |
+| Parameter    | Description                      |
 | :------ | :------------------------ |
 | `body`  | The displayed content of the message.           |
 | `badge` | The number of push notifications.                 |
