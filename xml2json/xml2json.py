@@ -948,12 +948,44 @@ def replace_newline():
     # 2022.1.17 Clean up \n and spaces
     file_text = input_file.read()
     replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', file_text)
-    # replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' \n ', replaced_file_text)
+
+    replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}\\n', '', replaced_file_text)
+    replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', '', replaced_file_text)
+    replaced_file_text = re.sub(r'[\s]{2,100}', ' ', replaced_file_text)
+
+
     replaced_file_text = re.sub(r'See[\s\\n]{0,50}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r'For more information[A-Za-z\s\\n,]{0,100}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r'For more details[A-Za-z\s\\n,]{0,50}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r'For details[A-Za-z\s\\n,]{0,50}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r':[\s]{0,10}"\\n[\s\\n]{0,50}', ':"', replaced_file_text)
+
+    # ------------------ Special processing for Flutter classes ------------------------------------------
+    replaced_file_text = re.sub('class_rtc_render_view_rtcsurfaceview', 'class_rtcsurfaceview', replaced_file_text)
+    replaced_file_text = re.sub('rtc_render_view: RtcSurfaceView', 'RtcSurfaceView', replaced_file_text)
+
+    replaced_file_text = re.sub('class_rtc_render_view_rtctextureview', 'class_rtctextureview', replaced_file_text)
+    replaced_file_text = re.sub('rtc_render_view: RtcTextureView', 'RtcTextureView', replaced_file_text)
+
+    replaced_file_text = re.sub('api_rtc_local_view_textureview_screen', 'api_rtclocaltextureview_screenshare', replaced_file_text)
+    replaced_file_text = re.sub('rtc_local_view: TextureView.screenShare', 'screenShare', replaced_file_text)
+
+    replaced_file_text = re.sub('api_rtc_local_view_surfaceview_screen', 'api_rtclocalsurfaceview_screenshare', replaced_file_text)
+    replaced_file_text = re.sub('rtc_local_view: SurfaceView.screenShare', 'screenShare', replaced_file_text)
+
+    replaced_file_text = re.sub('class_rtc_local_view_surfaceview', 'class_rtclocalsurfaceview', replaced_file_text)
+    replaced_file_text = re.sub('rtc_local_view: SurfaceView', 'RtcLocalSurfaceView', replaced_file_text)
+
+    replaced_file_text = re.sub('class_rtc_local_view_textureview', 'class_rtclocaltextureview', replaced_file_text)
+    replaced_file_text = re.sub('rtc_local_view: TextureView', 'RtcLocalTextureView', replaced_file_text)
+
+    replaced_file_text = re.sub('class_rtc_remote_view_textureview', 'class_rtcremotetextureview', replaced_file_text)
+    replaced_file_text = re.sub('rtc_remote_view: TextureView', 'RtcRemoteTextureView', replaced_file_text)
+
+    replaced_file_text = re.sub('class_rtc_remote_view_surfaceview', 'class_rtcremotesurfaceview', replaced_file_text)
+    replaced_file_text = re.sub('rtc_remote_view: SurfaceView', 'RtcRemoteSurfaceView', replaced_file_text)
+    # ------------------ Special processing for Flutter classes ------------------------------------------
+    
 
     input_file.close()
 
