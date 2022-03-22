@@ -31,6 +31,10 @@
             <p>该功能可以有效提升本地用户看到的远端视频画面的分辨率。例如远端用户视频的原始分辨率为 a &lt; b，开启该功能后，本地设备会以 2a &lt; 2b 的分辨率
             显示该远端视频。</p>
             <p props="rtc">调用该方法后，SDK 会触发 <xref keyref="onUserSuperResolutionEnabled"/> 回调报告超分辨率是否成功开启。</p>
+            <p props="rtc-ng">调用该方法后，通过 <xref keyref="onRemoteVideoStats" /> 回调中的远端视频统计数据（<xref keyref="RemoteVideoStats" />），确认超分辨率是否成功开启：<ul>
+                <li>如果参数 <parmname>superResolutionType</parmname> >0：超分辨率已开启。</li>
+                <li>如果参数 <parmname>superResolutionType</parmname> =0：超分辨率未开启。</li></ul>
+            </p>
             <note type="caution">
             <p props="windows unity flutter">超分辨率功能会额外耗费系统资源。为平衡视觉体验和系统消耗，只可以对一个远端用户开启超分辨率，并且远端用户视频的原始分辨率在 Android 设备上不能超过 640 × 360，在 iOS 设备上不能超过 640 × 480。</p>
             <p props="android ios">超分辨率功能会额外耗费系统资源。为平衡视觉体验和系统消耗，只可以对一个远端用户开启超分辨率，并且远端用户视频的原始分辨率在设备上不能超过 <ph props="android">640 × 360</ph><ph props="ios">640 × 480</ph>。</p>
@@ -97,24 +101,15 @@
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="electron unity">
+        <section id="return_values" props="electron unity native" >
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败
-                <ul>
-                <li>-157(<ph>ERR_MODULE_NOT_FOUND</ph>): 未集成超分辨率动态库。</li>
+                <ul props="rtc">
+                <li>-157: 未集成超分辨率动态库。</li>
                 </ul></li>
             </ul>
         </section>
-        <section id="return_values" props="native">
-            <title props="rtc">返回值</title>
-            <ul props="rtc">
-            <li>0: 方法调用成功</li>
-            <li>&lt; 0: 方法调用失败
-                <ul>
-                <li>-157: 未集成超分辨率动态库。</li>
-                </ul></li>
-            </ul> </section>
     </refbody>
 </reference>
