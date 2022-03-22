@@ -98,31 +98,30 @@
                 </codeblock>
                 <codeblock props="flutter" outputclass="language-dart">class VirtualBackgroundSource {
 
-  @JsonKey(includeIfNull: false)
-  VirtualBackgroundSourceType? backgroundSourceType;
-
-  @JsonKey(
-      includeIfNull: false, fromJson: _$ColorFromJson, toJson: _$ColorToJson)
-  Color? color;
-
-  @JsonKey(includeIfNull: false)
-  String? source;
-
-  @JsonKey(name: 'blur_degree')
-  VirtualBackgroundBlurDegree blurDegree;
-
-  VirtualBackgroundSource({
-    this.backgroundSourceType,
-    this.color,
-    this.source,
-    this.blurDegree = VirtualBackgroundBlurDegree.High,
-  });
-
-  factory VirtualBackgroundSource.fromJson(Map&lt;String, dynamic> json) =>
-      _$VirtualBackgroundSourceFromJson(json);
-
-  Map&lt;String, dynamic> toJson() => _$VirtualBackgroundSourceToJson(this);
-}</codeblock>
+                    @JsonKey(includeIfNull: false)
+                    VirtualBackgroundSourceType? backgroundSourceType;
+                  
+                    @JsonKey(includeIfNull: false)
+                    int? color;
+                  
+                    @JsonKey(includeIfNull: false)
+                    String? source;
+                  
+                    @JsonKey(name: 'blur_degree')
+                    VirtualBackgroundBlurDegree blurDegree;
+                  
+                    VirtualBackgroundSource({
+                      this.backgroundSourceType,
+                      this.color,
+                      this.source,
+                      this.blurDegree = VirtualBackgroundBlurDegree.High,
+                    });
+                  
+                    factory VirtualBackgroundSource.fromJson(Map&lt;String, dynamic&gt; json) =>
+                        _$VirtualBackgroundSourceFromJson(json);
+                  
+                    Map&lt;String, dynamic&gt; toJson() => _$VirtualBackgroundSourceToJson(this);
+                  }</codeblock>
                 </p>
         </section>
         <section id="detailed_desc">

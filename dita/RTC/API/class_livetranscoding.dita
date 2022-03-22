@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_livetranscoding">
-    <title><ph keyref="LiveTranscoding"/></title>
-    <shortdesc id="short"><ph id="shortdesc">CDN 直播推流的转码属性。</ph></shortdesc>
+    <title> <ph keyref="LiveTranscoding"/> </title>
+    <shortdesc id="short"> <ph id="shortdesc">CDN 直播推流的转码属性。</ph> </shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
@@ -349,14 +349,52 @@
   @JsonKey(includeIfNull: false)
   int? width;
 
-  @JsonKey(includeIfNull: false)
-  int? height;
+                @JsonKey(includeIfNull: false)
+                int? width;
+              
+                @JsonKey(includeIfNull: false)
+                int? height;
+              
+                @JsonKey(includeIfNull: false)
+                int? videoBitrate;
 
-  @JsonKey(includeIfNull: false)
-  int? videoBitrate;
+                @JsonKey(includeIfNull: false)
+                VideoFrameRate? videoFramerate;
+              
+                @Deprecated(
+                    'This attribute is deprecated since v2.8.0, and Agora does not recommend it.')
+                @JsonKey(includeIfNull: false)
+                bool? lowLatency;
+              
+                @JsonKey(includeIfNull: false)
+                int? videoGop;
 
-  @JsonKey(includeIfNull: false)
-  VideoFrameRate? videoFramerate;
+                @JsonKey(includeIfNull: false)
+                List&lt;AgoraImage&gt;? watermark;
+              
+                @JsonKey(includeIfNull: false)
+                List&lt;AgoraImage&gt;? backgroundImage;
+              
+                @JsonKey(includeIfNull: false)
+                AudioSampleRateType? audioSampleRate;
+              
+                @JsonKey(includeIfNull: false)
+                int? audioBitrate;
+              
+                @JsonKey(includeIfNull: false)
+                AudioChannel? audioChannels;
+              
+                @JsonKey(includeIfNull: false)
+                AudioCodecProfileType? audioCodecProfile;
+              
+                @JsonKey(includeIfNull: false)
+                VideoCodecProfileType? videoCodecProfile;
+              
+                @JsonKey(includeIfNull: false)
+                int? backgroundColor;
+              
+                @JsonKey(includeIfNull: false)
+                VideoCodecTypeForStream? videoCodecType;
 
   @deprecated
   @JsonKey(includeIfNull: false)
