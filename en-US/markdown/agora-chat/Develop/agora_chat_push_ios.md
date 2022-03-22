@@ -27,7 +27,7 @@ iii. You will get a CSR file named `CertificateSigningRequest.certSigningRequest
 2. Request an App ID.<a name="step1-2"></a>  
 Log in to the [iOS Developer Center](https://developer.apple.com/), click **Account** > **Certificates, Identifiers & Profiles** > **Identifiers** to add an App ID, and configure the following fields:
     - **Select a type**: Select **App**.
-    - **Description**: The description of the App ID.
+    - **Description**: Fill in the description of the App ID.
     - **Bundle ID**: Set to `com.YourCompany.YourProjectName`.
     - **Capabilities**: Select **Push Notification**.  
 
