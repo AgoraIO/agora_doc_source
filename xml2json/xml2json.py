@@ -222,8 +222,8 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                  # clear()
                  # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
                  # child.clear()
-                 # parent_map[child].remove(child)
-                 child.text = ""
+                 parent_map[child].remove(child)
+                 # child.text = ""
 
     # Remove all tables because we cannot afford to add tables to code
     for child in root.iter('*'):
@@ -435,6 +435,142 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 print(child)
                 print("----------------------conkeyref text--------------------")
 
+
+    # ----------------------------------------------------------------------------
+    #     # Implement all conkeyrefs with the actual content 03
+    #     # For example:
+    #     # <ph conkeyref="createAgoraRtcEngine1/shortdesc"/>
+    #     # It is first a keyref then a conref
+    #     # Conkeyrefs should be replaced at the element level!!!!!!!!!
+    # ----------------------------------------------------------------------------
+    for child in root.iter('*'):
+        if child.get("conkeyref") is not None:
+            conkeyref = str(child.get("conkeyref"))
+            print("Conkeyref is " + conkeyref)
+            conkeyref_array = conkeyref.split("/")
+            # key
+            key = conkeyref_array[0]
+            # ref
+            if len(conkeyref_array) > 1:
+                ref = conkeyref_array[1]
+            else:
+                ref = ""
+            # Assume that a conkeyref contains only two levels
+            dita_file_tree = ET.parse(defined_path)
+            dita_file_root = dita_file_tree.getroot()
+            for keydef in dita_file_root.iter("keydef"):
+                if keydef.get("keys") == key:
+                    href_text = keydef.get("href")
+            print("----------------------href text--------------------")
+            print(href_text)
+            print("----------------------href text--------------------")
+
+            final_parent = child
+
+            # Get the parent old child
+            for parent in root.iter('*'):
+                for d in parent.iterfind(child.tag):
+                    if d is child:
+                        final_parent = parent
+
+            if sys.platform == 'darwin' or sys.platform == 'linux':
+                print("macOS")
+                if href_text is not None and href_text != "":
+                    dir = path.join(working_dir, href_text).replace("../", "")
+                    dir = path.join("..", dir)
+                else:
+                    dir = None
+            elif sys.platform == 'win32':
+                print("Windows")
+                if href_text is not None and href_text != "":
+                    dir = path.join(working_dir, href_text).replace("../", "").replace("/", "\\")
+                else:
+                    dir = None
+            if dir is not None:
+                print(dir)
+                new_dita_file_tree = ET.parse(dir)
+                new_dita_file_root = new_dita_file_tree.getroot()
+                # Find the keyref
+                for new_child in new_dita_file_root.iter('*'):
+                    if new_child.get("id") == ref:
+                        print("------------ Found a match for conkeyref -----------------")
+                        print(ref)
+                        print("------------ Found a match for conkeyref-----------------")
+                        # Set the node from new child to old child
+                        final_parent.insert(0, new_child)
+                        final_parent.remove(child)
+
+                print("----------------------conkeyref text--------------------")
+                print(child)
+                print("----------------------conkeyref text--------------------")
+
+    # ----------------------------------------------------------------------------
+    #     # Implement all conkeyrefs with the actual content 04
+    #     # For example:
+    #     # <ph conkeyref="createAgoraRtcEngine1/shortdesc"/>
+    #     # It is first a keyref then a conref
+    #     # Conkeyrefs should be replaced at the element level!!!!!!!!!
+    # ----------------------------------------------------------------------------
+    for child in root.iter('*'):
+        if child.get("conkeyref") is not None:
+            conkeyref = str(child.get("conkeyref"))
+            print("Conkeyref is " + conkeyref)
+            conkeyref_array = conkeyref.split("/")
+            # key
+            key = conkeyref_array[0]
+            # ref
+            if len(conkeyref_array) > 1:
+                ref = conkeyref_array[1]
+            else:
+                ref = ""
+            # Assume that a conkeyref contains only two levels
+            dita_file_tree = ET.parse(defined_path)
+            dita_file_root = dita_file_tree.getroot()
+            for keydef in dita_file_root.iter("keydef"):
+                if keydef.get("keys") == key:
+                    href_text = keydef.get("href")
+            print("----------------------href text--------------------")
+            print(href_text)
+            print("----------------------href text--------------------")
+
+            final_parent = child
+
+            # Get the parent old child
+            for parent in root.iter('*'):
+                for d in parent.iterfind(child.tag):
+                    if d is child:
+                        final_parent = parent
+
+            if sys.platform == 'darwin' or sys.platform == 'linux':
+                print("macOS")
+                if href_text is not None and href_text != "":
+                    dir = path.join(working_dir, href_text).replace("../", "")
+                    dir = path.join("..", dir)
+                else:
+                    dir = None
+            elif sys.platform == 'win32':
+                print("Windows")
+                if href_text is not None and href_text != "":
+                    dir = path.join(working_dir, href_text).replace("../", "").replace("/", "\\")
+                else:
+                    dir = None
+            if dir is not None:
+                print(dir)
+                new_dita_file_tree = ET.parse(dir)
+                new_dita_file_root = new_dita_file_tree.getroot()
+                # Find the keyref
+                for new_child in new_dita_file_root.iter('*'):
+                    if new_child.get("id") == ref:
+                        print("------------ Found a match for conkeyref -----------------")
+                        print(ref)
+                        print("------------ Found a match for conkeyref-----------------")
+                        # Set the node from new child to old child
+                        final_parent.insert(0, new_child)
+                        final_parent.remove(child)
+
+                print("----------------------conkeyref text--------------------")
+                print(child)
+                print("----------------------conkeyref text--------------------")
     # TODO: Implement API name keyrefs
     # Tags can be like <apiname keyref="addInjectStreamUrl"/> and <xref keyref="setChannelProfile"/>
     # The keys are defined in ditamap files such as:
@@ -672,7 +808,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
 
     # Tag filtering 02
     # Do tag filtering again!!!!!!!!!!
-    # parent_map = {c: p for p in tree.iter() for c in p}
+    parent_map = {c: p for p in tree.iter() for c in p}
     for child in root.iter('*'):
          if child.get("props") is not None:
              # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
@@ -689,8 +825,8 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                  # clear()
                  # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
                  # child.clear()
-                 # parent_map[child].remove(child)
-                 child.text = ""
+                 parent_map[child].remove(child)
+                 # child.text = ""
 
     # Tag filtering 03
     # Once a tagged element. So more elements, more processings...
@@ -711,13 +847,13 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                  # clear()
                  # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
                  # child.clear()
-                 # parent_map[child].remove(child)
-                 child.text = ""
+                 parent_map[child].remove(child)
+                 # child.text = ""
 
     # Tag filtering 04
     # Once a tagged element. So more elements, more processings...
     # Do tag filtering again!!!!!!!!!!
-    # parent_map = {c: p for p in tree.iter() for c in p}
+    parent_map = {c: p for p in tree.iter() for c in p}
     for child in root.iter('*'):
          if child.get("props") is not None:
              # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
@@ -734,8 +870,8 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                  # clear()
                  # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
                  # child.clear()
-                 # parent_map[child].remove(child)
-                 child.text = ""
+                 parent_map[child].remove(child)
+                 # child.text = ""
     # Android
 
     # Rust
