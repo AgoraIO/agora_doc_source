@@ -34,7 +34,7 @@ Log in to the [iOS Developer Center](https://developer.apple.com/), click **Acco
 3. Create a push certificate for the development environment and the production environment respectively.<a name="step1-3"></a>  
     - **Development environment**  
     i. Click **app** > **Push Notifications** > **Development SSL Certificate** > **Create Certificate**.  
-    ii. Select **iOS** for **Platform**, select the CSR file created in [ step 1](#step1-1) for **Choose File**, and click **Continue**. This generates an [Apple Development IOS Push Services](https://help.apple.com/xcode/mac/current/?spm=a2c4g.11186623.0.0.14864088B1zf4p#/dev80c6204ec) file.  
+    ii. Select **iOS** for **Platform**, select the CSR file created in [step 1](#step1-1) for **Choose File**, and click **Continue**. This generates an [Apple Development IOS Push Services](https://help.apple.com/xcode/mac/current/?spm=a2c4g.11186623.0.0.14864088B1zf4p#/dev80c6204ec) file.  
     - **Production environment**  
     i. Click **app** > **Push Notifications** > **Production SSL Certificate** > **Create Certificate**.  
     ii. Select **iOS** for **Platform**, select the CSR file created in [step 1](#step1-1) for **Choose File**, and click **Continue**. This geneerates an [Apple Development IOS Push Services](https://help.apple.com/xcode/mac/current/?spm=a2c4g.11186623.0.0.14864088B1zf4p#/dev80c6204ec) file.
