@@ -118,149 +118,149 @@ To upload the push certificate to Agora Console, perform the following operation
 
 4. Configure the notification attributes, including the display name, the display style, and the mute feature.
 
-    **Set the display name**
+**Set the display name**
 
-    The following sample code specifies the display name of push notifications:
+The following sample code specifies the display name of push notifications:
 
-    ```swift
-    [AgoraChatClient.sharedClient.pushManager updatePushDisplayName:@"displayName" completion:^(NSString * aDisplayName, AgoraError * aError) {
-        if (aError) 
-        {
-            NSLog(@"update push display name error: %@", aError.errorDescription);
-        }
-    }];
-    ```
-
-    **Set the display style**
-
-    The following sample code specifies the display style of push notifications:
-
-    ```swift
-    [AgoraChatClient.sharedClient.pushManager updatePushDisplayStyle:AgoraPushDisplayStyleSimpleBanner completion:^(AgoraError * aError)
-    {
-        if(aError)
-        {
-            NSLog(@"update display style error --- %@", aError.errorDescription);
-        }
-    }];
-    ```
-
-    | Parameter         | Description                                                         |
-    | :----------- | :----------------------------------------------------------- |
-    | `DisplayStyle` | <li>`AgoraPushDisplayStyleSimpleBanner`: Displays "You have a new message".<li>`AgoraPushDisplayStyleMessageSummary`：Displays the content of the message. |
-
-    **Mute a group**
-
-    After you mute a group, you will not receive push notifications from this group when you go offline.  
-    The following sample code mutes the specified groups:
-
-    ```
-    [AgoraChatClient.sharedClient.pushManager updatePushServiceForGroups:groupIds disablePush:YES completion:^(AgoraError * aError)
-    {
-        if(aError)
-        {
-            NSLog(@"update groups disable push error --- %@", aError.errorDescription);
-        }
-    }];
-    ```
-
-    | Parameter     | Description           |
-    | :------- | :------------- |
-    | `groupIds` | The IDs of groups. |
-
-    **Retrieve the mute group list**
-
-    The following sample code retrieves the list of mute groups:
-
-    ```swift
-    NSArray<NSString*>* groupIds = [AgoraChatClient.sharedClient.pushManager noPushGroups];
-    ```
-
-    | Parameter     | Description                   |
-    | :------- | :--------------------- |
-    | `groupIds` | The list of group IDs. |
-
-    **Mute a user**
-
-    After you mute a user, you will not receive push notifications from this user when you go offline.  
-    The following sample code mutes the specified users:
-
-    ```swift
-    [AgoraChatClient.sharedClient.pushManager updatePushServiceForUsers:userIds disablePush:YES completion:^(EMError * _Nonnull aError) {
-        if(aError)
-        {
-            NSLog(@"update users disable push error --- %@", aError.errorDescription);
-        }
-    }];
-    ```
-    | Parameter    | Description         |
-    | :------ | :----------- |
-    | `userIds` | The IDs of users. |
-
-    **Retrieve the mute user list**
-
-    The following sample code retrieves the list of mute users:
-
-    ```swift
-    NSArray<NSString*>* userIds = [EMClient.sharedClient.pushManager noPushUIds];
-    ```
-
-    | Parameter    | Description                 |
-    | :------ | :------------------- |
-    | `userIds` | The list of user IDs. |
-
-    **Disable push notifications**
-
-    The following sample code specifies the mute time period when push notifications are disabled:
-
-    ```swift
-    AgoraError *aError = [AgoraChatClient.sharedClient.pushManager disableOfflinePushStart:22 end:7];
+```swift
+[AgoraChatClient.sharedClient.pushManager updatePushDisplayName:@"displayName" completion:^(NSString * aDisplayName, AgoraError * aError) {
     if (aError) 
     {
-        NSLog(@"disable push error --- %@", aError.errorDescription);
+        NSLog(@"update push display name error: %@", aError.errorDescription);
     }
-    ```
+}];
+```
 
-    | Parameter | Type | Description |
-    | :------ | :----------------- |:---------------------------- |
-    | `start` | Int | The start time of the mute time period. This value ranges from 0 to 24. |
-    | `end`   | Int | The end time of the mute time period. This value ranges from 0 to 24. |
+**Set the display style**
 
-    **Enable push notifications**
+The following sample code specifies the display style of push notifications:
 
-    You can cut short the mute time period and enable push notifications based on your needs.  
-    The following sample code enables push notifications:
-        
-    ```swift
-    AgoraError *aError = [AgoraChatClient.sharedClient.pushManager enableOfflinePush];
-    if (aError) 
+```swift
+[AgoraChatClient.sharedClient.pushManager updatePushDisplayStyle:AgoraPushDisplayStyleSimpleBanner completion:^(AgoraError * aError)
+{
+    if(aError)
     {
-        NSLog(@"enable push error --- %@", aError.errorDescription);
+        NSLog(@"update display style error --- %@", aError.errorDescription);
     }
-    ```
+}];
+```
 
-    **Retrieve the attributes of push notifications**
+| Parameter         | Description                                                         |
+| :----------- | :----------------------------------------------------------- |
+| `DisplayStyle` | `AgoraPushDisplayStyleSimpleBanner`: Displays "You have a new message".</br>`AgoraPushDisplayStyleMessageSummary`：Displays the content of the message. |
 
-    The following sample code retrieves the attributes of push notifications:
+**Mute a group**
 
-    ```swift
-    [AgoraChatClient.sharedClient.pushManager getPushNotificationOptionsFromServerWithCompletion:^(AgoraPushOptions * aOptions, AgoraError * aError)
+After you mute a group, you will not receive push notifications from this group when you go offline.  
+The following sample code mutes the specified groups:
+
+```
+[AgoraChatClient.sharedClient.pushManager updatePushServiceForGroups:groupIds disablePush:YES completion:^(AgoraError * aError)
+{
+    if(aError)
     {
-        if (aError)
-        {
-            NSLog(@"get push options error --- %@", aError.errorDescription);
-        }
-    }];
-    ```
-    `aOptions` includes the following fields:
+        NSLog(@"update groups disable push error --- %@", aError.errorDescription);
+    }
+}];
+```
 
-    | Field                 | Description                 |
-    | :------------------- | :------------------- |
-    | `displayName`        | The display name of push notifications.    |
-    | `displayStyle`       | The display style of push notifications.       |
-    | `noDisturbingStartH` | The start time of the mute time period.   |
-    | `noDisturbingEndH`   | The end time of the mute time period.   |
-    | `isNoDisturbEnable`  | Whether push notifications are enabled.|
+| Parameter     | Description           |
+| :------- | :------------- |
+| `groupIds` | The IDs of groups. |
+
+**Retrieve the mute group list**
+
+The following sample code retrieves the list of mute groups:
+
+```swift
+NSArray<NSString*>* groupIds = [AgoraChatClient.sharedClient.pushManager noPushGroups];
+```
+
+| Parameter     | Description                   |
+| :------- | :--------------------- |
+| `groupIds` | The list of group IDs. |
+
+**Mute a user**
+
+After you mute a user, you will not receive push notifications from this user when you go offline.  
+The following sample code mutes the specified users:
+
+```swift
+[AgoraChatClient.sharedClient.pushManager updatePushServiceForUsers:userIds disablePush:YES completion:^(EMError * _Nonnull aError) {
+    if(aError)
+    {
+        NSLog(@"update users disable push error --- %@", aError.errorDescription);
+    }
+}];
+```
+| Parameter    | Description         |
+| :------ | :----------- |
+| `userIds` | The IDs of users. |
+
+**Retrieve the mute user list**
+
+The following sample code retrieves the list of mute users:
+
+```swift
+NSArray<NSString*>* userIds = [EMClient.sharedClient.pushManager noPushUIds];
+```
+
+| Parameter    | Description                 |
+| :------ | :------------------- |
+| `userIds` | The list of user IDs. |
+
+**Disable push notifications**
+
+The following sample code specifies the mute time period when push notifications are disabled:
+
+```swift
+AgoraError *aError = [AgoraChatClient.sharedClient.pushManager disableOfflinePushStart:22 end:7];
+if (aError) 
+{
+    NSLog(@"disable push error --- %@", aError.errorDescription);
+}
+```
+
+| Parameter | Type | Description |
+| :------ | :----------------- |:---------------------------- |
+| `start` | Int | The start time of the mute time period. This value ranges from 0 to 24. |
+| `end`   | Int | The end time of the mute time period. This value ranges from 0 to 24. |
+
+**Enable push notifications**
+
+You can cut short the mute time period and enable push notifications based on your needs.  
+The following sample code enables push notifications:
+    
+```swift
+AgoraError *aError = [AgoraChatClient.sharedClient.pushManager enableOfflinePush];
+if (aError) 
+{
+    NSLog(@"enable push error --- %@", aError.errorDescription);
+}
+```
+
+**Retrieve the attributes of push notifications**
+
+The following sample code retrieves the attributes of push notifications:
+
+```swift
+[AgoraChatClient.sharedClient.pushManager getPushNotificationOptionsFromServerWithCompletion:^(AgoraPushOptions * aOptions, AgoraError * aError)
+{
+    if (aError)
+    {
+        NSLog(@"get push options error --- %@", aError.errorDescription);
+    }
+}];
+```
+`aOptions` includes the following fields:
+
+| Field                 | Description                 |
+| :------------------- | :------------------- |
+| `displayName`        | The display name of push notifications.    |
+| `displayStyle`       | The display style of push notifications.       |
+| `noDisturbingStartH` | The start time of the mute time period.   |
+| `noDisturbingEndH`   | The end time of the mute time period.   |
+| `isNoDisturbEnable`  | Whether push notifications are enabled.|
 
 5. When a user receives and clicks a push notification, the app parses this push notification as follows:
 
