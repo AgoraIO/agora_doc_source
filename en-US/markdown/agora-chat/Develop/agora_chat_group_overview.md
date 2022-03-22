@@ -12,21 +12,21 @@ Chat groups have the following roles and privilegs:
 
 - Chat group members: Regular members that can send and receive group messages. They do not have any administrative privileges.
 - Chat group admins: They are specified by the chat group owner. Apart from sending and receiving group messages, they have some administrative privileges, including modifying the group notification and managing chat group members.
-- Chat group owner: The creator of the chat group. Chat group owners have the highest privileges, including specifying the chat group admin, disban the group, transferring the chat group ownership, modifying group notifications, and managing other chat group members.
+- Chat group owner: The creator of the chat group. Chat group owners have the highest privileges, including specifying the chat group admin, disbanding the group, transferring the chat group ownership, modifying group notifications, and managing other chat group members.
 
 ## Differences between chat group and chat room
 
-Both chat group and chat room support instant messaging among multiple users. The major difference between the two is that chat group members have a more stable membership and chat group members tend to remain in the group for a long time. Chat room membership is more flexible, where users can join or leave more freely.
+Both chat group and chat room support instant messaging among multiple users. The major difference lies in whether members have a stable relationship. Chat group members tend to remain for a long time, whereas chat room members tend to join and leave freely.
 
-The followings table show the feature comparisons between a chat group and a chat room:
+The following table shows the feature comparisons between a chat group and a chat room:
 
 | Feature    | Chat group   | Chat room     |
 | --- | --- | --- |
-| Use cases  | Group chat scenarios in Signal and Skype, where all members have a stable relationship.  | Audio live broadcast scenarios in Twitch, where members have no relationship with each other. Once a member quits the broadcast, this member leaves the chat room.  |
+| Use cases  | Group chat scenarios in Signal and Skype, where all members have a stable relationship. | Stream chat scenarios in Twitch, where viewers have no relationship with each other. Once a member quits the stream chat channel, this member leaves the chat room.  |
 | Maximum number of members | 5,000 | 20,000 and more  |
-| Message push support | Members receive push messages when they go offline | Members do not recieve push messages when they go offline |
-| Message storage support | Supports message storage when a member is offline, and once online, this member can receive all the stored messages. A maximum number of 200 messages can be stored for each group chat conversation.   | This feature can be enabled and disabled. If you enable this feature, the SDK supports message storage when a member is offlineand once online, this member can receive all the stored messages. By default, 10 messages can be stored for each chat room conversation, and you can set this number to a maximum value of 200. |
-| Message reliablity | All members can receive all the messages in the chat group | When message overload occurs, the SDK discards the messages based on the threshold, which is 100 messages per second. You can adjust this threshold according to your needs.  |
+| Message push support | Members receive push messages when they go offline. | Members do not recieve push messages when they go offline. |
+| Message storage support | Supports message storage when a member is offline, and once online, this member can receive all the stored messages. A maximum number of 200 messages can be stored for each group chat conversation.   | This feature can be enabled and disabled. If you enable this feature, the SDK supports message storage when a member is offline, and once online, this member can receive all the stored messages. By default, 10 messages can be stored for each chat room conversation, and you can set this number to a maximum value of 200. |
+| Message reliablity | All members can receive all the messages in the chat group. | When message overload occurs, the SDK discards the messages based on the threshold, which is 100 messages per second. You can adjust this threshold according to your needs.  |
 
 
 ## Chat group features
@@ -37,13 +37,13 @@ You can implement the following features with the group chat APIs.
 
 ###  Create a chat group
 
-Any chat user can create a chat group, and once you do so, you are the chat group owner. The maximum number of chat group numbers and group members supported vary accroding to the pricing plan. For details, see [Pricing Plan Details](./agora_chat_plan).
+Any chat user can create a chat group, and once you do so, you are the chat group owner. The maximum number of chat group numbers and group members supported vary accroding to the pricing plan. See [Pricing Plan Details](./agora_chat_plan).
 
 ### Join a chat group
 
 Users can join chat groups. For public chat groups, you can search them with the group ID and request to join it. For private chat groups, you can only join the group if the group owner or admin sends you a group chat invitation.
 
-### Quit a chat group
+### Leave a chat group
 
 Chat group members can quit a chat group and once they do, they no longer receive the group messages. Group owners cannot quit the chat group; instead, they disband the chat group. When a chat group is disbanded, all the chat group members quit the group involuntarily.
 
@@ -75,7 +75,7 @@ All chat group members can block and unblock group messages. Once you block the 
 
 You can listen for chat group events such as when a user joins and leaves the group, and add app logic as needed.
 
-### Manage the chat block list
+### Manage the chat group block list
 
 The group owner or admin can add the specified group members to the block list and remove them from it. Once a member is added to the block list, this member is removed from the chat group and can no longer join it.
 
