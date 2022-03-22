@@ -207,22 +207,23 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     # When you update this code, remember copy the code to 02!!!!!!!!!!!!!!!!!!!!!!!
     parent_map = {c: p for p in tree.iter() for c in p}
     for child in root.iter('*'):
-        if child.get("props") is not None:
-            # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+         if child.get("props") is not None:
+             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
             if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") or remove_sdk_type in child.get("props") or platform_tag not in child.get(
-                    "props") and "native" in child.get(
-                "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
-                print("------------------- Tag to remove ---------------------------")
-                print(child)
-                print(child.text)
-                print(child.tag)
-                print(child.get("id"))
-                print("--------------------Tag to remove ---------------------------")
-                # clear()
-                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                child.clear()
-                parent_map[child].remove(child)
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                     "props") and "native" in child.get(
+                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 print("------------------- Tag to remove ---------------------------")
+                 print(child)
+                 print(child.text)
+                 print(child.tag)
+                 print(child.get("id"))
+                 print("--------------------Tag to remove ---------------------------")
+                 # clear()
+                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                 # child.clear()
+                 # parent_map[child].remove(child)
+                 child.text = ""
 
     # Remove all tables because we cannot afford to add tables to code
     for child in root.iter('*'):
@@ -537,10 +538,10 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             dita_file_root = dita_file_tree.getroot()
             for keydef in dita_file_root.iter("keydef"):
                 if keydef.get("keys") == xref.get("keyref"):
-                    href_text = keydef.get("href")
-            print("----------------------href text--------------------")
-            print(href_text)
-            print("----------------------href text--------------------")
+                    for text in keydef.itertext():
+                        href_text = href_text + text
+                    xref.text = href_text
+                href_text = ""    
 
             if sys.platform == 'darwin' or sys.platform == 'linux':
                 print("macOS")
@@ -562,7 +563,8 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     dir = None
                     print(xref.text)
                 else:
-                    dir = None
+                    dir = None 
+            """         
             if dir is not None:
                 print(dir)
                 dita_file_tree = ET.parse(dir)
@@ -585,7 +587,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 print(title_text)
                 print("----------------------title text--------------------")
                 xref.text = title_text
-                print(xref.text)
+                print(xref.text)  """
 
 
         # xref with href
@@ -595,7 +597,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
         #    <pd>0: 远端视频默认初始状态。在 <xref href="enum_remotevideostatereason.dita#enum_remotevideostatereason/3"/>、 <xref href="enum_remotevideostatereason.dita#enum_remotevideostatereason/5"/> 或
         #    <xref href="enum_remotevideostatereason.dita#enum_remotevideostatereason/7"/> 的情况下，会报告该状态。</pd>
         # </plentry>
-        elif xref.get("href") is not None and not xref.get("href").startswith("http") and not xref.get("href").endswith(
+        if xref.get("href") is not None and not xref.get("href").startswith("http") and not xref.get("href").endswith(
                 "md") and not xref.get("href").startswith("mailto"):
             href = xref.get("href")
             splitted = href.split("#")
@@ -670,47 +672,70 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
 
     # Tag filtering 02
     # Do tag filtering again!!!!!!!!!!
-    parent_map = {c: p for p in tree.iter() for c in p}
+    # parent_map = {c: p for p in tree.iter() for c in p}
     for child in root.iter('*'):
-        if child.get("props") is not None:
-            # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+         if child.get("props") is not None:
+             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
             if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") or remove_sdk_type in child.get("props") or platform_tag not in child.get(
-                "props") and "native" in child.get(
-                "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
-                print("------------------- Tag to remove ---------------------------")
-                print(child)
-                print(child.text)
-                print(child.tag)
-                print(child.get("id"))
-                print("--------------------Tag to remove ---------------------------")
-                # clear()
-                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                child.clear()
-                parent_map[child].remove(child)
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                     "props") and "native" in child.get(
+                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 print("------------------- Tag to remove ---------------------------")
+                 print(child)
+                 print(child.text)
+                 print(child.tag)
+                 print(child.get("id"))
+                 print("--------------------Tag to remove ---------------------------")
+                 # clear()
+                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                 # child.clear()
+                 # parent_map[child].remove(child)
+                 child.text = ""
 
     # Tag filtering 03
     # Once a tagged element. So more elements, more processings...
     # Do tag filtering again!!!!!!!!!!
-    parent_map = {c: p for p in tree.iter() for c in p}
     for child in root.iter('*'):
-        if child.get("props") is not None:
-            # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+         if child.get("props") is not None:
+             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
             if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") or remove_sdk_type in child.get("props") or platform_tag not in child.get(
-                "props") and "native" in child.get(
-                "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
-                print("------------------- Tag to remove ---------------------------")
-                print(child)
-                print(child.text)
-                print(child.tag)
-                print(child.get("id"))
-                print("--------------------Tag to remove ---------------------------")
-                # clear()
-                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                child.clear()
-                parent_map[child].remove(child)
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                     "props") and "native" in child.get(
+                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 print("------------------- Tag to remove ---------------------------")
+                 print(child)
+                 print(child.text)
+                 print(child.tag)
+                 print(child.get("id"))
+                 print("--------------------Tag to remove ---------------------------")
+                 # clear()
+                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                 # child.clear()
+                 # parent_map[child].remove(child)
+                 child.text = ""
 
+    # Tag filtering 04
+    # Once a tagged element. So more elements, more processings...
+    # Do tag filtering again!!!!!!!!!!
+    # parent_map = {c: p for p in tree.iter() for c in p}
+    for child in root.iter('*'):
+         if child.get("props") is not None:
+             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+            if platform_tag not in child.get("props") and "native" not in child.get(
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                     "props") and "native" in child.get(
+                 "props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 print("------------------- Tag to remove ---------------------------")
+                 print(child)
+                 print(child.text)
+                 print(child.tag)
+                 print(child.get("id"))
+                 print("--------------------Tag to remove ---------------------------")
+                 # clear()
+                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                 # child.clear()
+                 # parent_map[child].remove(child)
+                 child.text = ""
     # Android
 
     # Rust
@@ -810,9 +835,10 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                         if text is not None:
                             print(text)
                             param_desc = param_desc + text
+
                 else:
-                    
                     param_desc = ""
+                    print("The param desc tag is empty")
 
 
             param_pair[param_name] = param_desc
@@ -923,6 +949,11 @@ def replace_newline():
     file_text = input_file.read()
     replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', file_text)
     # replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' \n ', replaced_file_text)
+    replaced_file_text = re.sub(r'See[\s\\n]{0,50}\.', '', replaced_file_text)
+    replaced_file_text = re.sub(r'For more information[A-Za-z\s\\n,]{0,100}\.', '', replaced_file_text)
+    replaced_file_text = re.sub(r'For more details[A-Za-z\s\\n,]{0,50}\.', '', replaced_file_text)
+    replaced_file_text = re.sub(r'For details[A-Za-z\s\\n,]{0,50}\.', '', replaced_file_text)
+    replaced_file_text = re.sub(r':[\s]{0,10}"\\n[\s\\n]{0,50}', ':"', replaced_file_text)
 
     input_file.close()
 

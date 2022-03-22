@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_rtc_local_view_textureview">
+    <title><ph keyref="RtcLocalViewTextureView"/></title>
+    <shortdesc id="short"><ph id="shortdesc"
+        ><apiname>TextureView</apiname> 类，用于渲染本地视频。由 <xref keyref="RtcTextureView"></xref> 类扩展而来。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">class TextureView extends RtcTextureView {
+                  const TextureView({
+                    Key? key,
+                    String? channelId,
+                    renderMode = VideoRenderMode.Hidden,
+                    mirrorMode = VideoMirrorMode.Auto,
+                    PlatformViewCreatedCallback? onPlatformViewCreated,
+                    Set&lt;Factory&lt;OneSequenceGestureRecognizer&gt;&gt;? gestureRecognizers,
+                    useFlutterTexture = true,
+                  }) : super(
+                          key: key,
+                          uid: 0,
+                          channelId: channelId,
+                          renderMode: renderMode,
+                          mirrorMode: mirrorMode,
+                          onPlatformViewCreated: onPlatformViewCreated,
+                          gestureRecognizers: gestureRecognizers,
+                          useFlutterTexture: useFlutterTexture,
+                        );
+                
+                  const TextureView.screenShare({
+                    Key? key,
+                    renderMode = VideoRenderMode.Hidden,
+                    mirrorMode = VideoMirrorMode.Disabled,
+                    PlatformViewCreatedCallback? onPlatformViewCreated,
+                    Set&lt;Factory&lt;OneSequenceGestureRecognizer&gt;&gt;? gestureRecognizers,
+                    useFlutterTexture = true,
+                  }) : super(
+                          key: key,
+                          uid: 0,
+                          renderMode: renderMode,
+                          mirrorMode: mirrorMode,
+                          onPlatformViewCreated: onPlatformViewCreated,
+                          gestureRecognizers: gestureRecognizers,
+                          useFlutterTexture: useFlutterTexture,
+                          subProcess: true,
+                        );
+                }</codeblock>
+            </p>
+        </section>
+        <section id="detailed_desc" conkeyref="RtcTextureView/detailed_desc">
+        </section>
+    </refbody>
+</reference>
